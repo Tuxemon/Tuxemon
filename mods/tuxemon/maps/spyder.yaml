@@ -64,3 +64,74 @@ events:
     x: 0
     y: 0
     type: "event"
+  Choice Surf:
+    actions:
+    - translated_dialog itsswimmingtime
+    - translated_dialog_choice yes:no,swimming
+    conditions:
+    - is has_item player,surfboard
+    - is player_facing_tile surfable
+    - is button_pressed K_RETURN
+    - not player_in surfable
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: "event"
+  Surfable:
+    actions:
+    - set_player_template swimmer
+    conditions:
+    - is player_in surfable
+    - not has_sprite swimmer
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: "event"
+  Not surfable:
+    actions:
+    - set_player_template default
+    - set_variable swimming:no
+    conditions:
+    - not player_in surfable
+    - is has_sprite swimmer
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: "event"
+  Allow Swim:
+    actions:
+    - remove_collision water
+    conditions:
+    - is variable_set swimming:yes
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: "event"
+  Swim Encounters Day:
+    actions:
+    - set_variable environment:sea
+    - random_encounter routec,0.25
+    conditions:
+    - is has_sprite swimmer
+    - not variable_set stage_of_day:night
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: "event"
+  Swim Encounters Night:
+    actions:
+    - set_variable environment:night_sea
+    - random_encounter routec,0.75
+    conditions:
+    - is has_sprite swimmer
+    - is variable_set stage_of_day:night
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: "event"

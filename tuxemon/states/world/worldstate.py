@@ -107,8 +107,8 @@ class WorldState(state.State):
         #                           Player Details                           #
         ######################################################################
 
-        self.npcs: dict[str, NPC] = {}
-        self.npcs_off_map: dict[str, NPC] = {}
+        self.npcs: list[NPC] = []
+        self.npcs_off_map: list[NPC] = []
         self.wants_to_move_player: Optional[Direction] = None
         self.allow_player_movement = True
 
@@ -281,11 +281,11 @@ class WorldState(state.State):
             self.client.client.update_player(self.player.facing)
 
         # Update the location of the npcs. Doesn't send network data.
-        for npc in self.npcs.values():
+        for npc in self.npcs:
             char_dict = {"tile_pos": npc.tile_pos}
             networking.update_client(npc, char_dict, self.client)
 
-        for npc in self.npcs_off_map.values():
+        for npc in self.npcs_off_map:
             char_dict = {"tile_pos": npc.tile_pos}
             networking.update_client(npc, char_dict, self.client)
 
@@ -458,7 +458,7 @@ class WorldState(state.State):
         # get npc surfaces/sprites
         for npc in self.npcs:
             world_surfaces.extend(
-                self.npcs[npc].get_sprites(self.current_map.sprite_layer)
+                npc.get_sprites(self.current_map.sprite_layer)
             )
 
         # get map_animations
@@ -554,7 +554,7 @@ class WorldState(state.State):
 
         # Maybe in the future the world should have a dict of entities instead?
         if isinstance(entity, NPC):
-            self.npcs[entity.slug] = entity
+            self.npcs.append(entity)
 
     def get_entity(self, slug: str) -> Optional[NPC]:
         """
@@ -564,7 +564,23 @@ class WorldState(state.State):
             slug: The entity slug.
 
         """
-        return self.npcs.get(slug)
+        for npc in self.npcs:
+            if npc.slug == slug:
+                return npc
+        return None
+
+    def get_entity_by_iid(self, iid: str) -> Optional[NPC]:
+        """
+        Get an entity from the world.
+
+        Parameters:
+            iid: The entity iid.
+
+        """
+        for npc in self.npcs:
+            if npc.instance_id.hex == iid:
+                return npc
+        return None
 
     def get_entity_pos(self, pos: tuple[int, int]) -> Optional[NPC]:
         """
@@ -574,7 +590,7 @@ class WorldState(state.State):
             pos: The entity position.
 
         """
-        for npc in self.npcs.values():
+        for npc in self.npcs:
             if npc.tile_pos == pos:
                 return npc
         return None
@@ -587,7 +603,9 @@ class WorldState(state.State):
             slug: The entity slug.
 
         """
-        del self.npcs[slug]
+        for npc in self.npcs:
+            if npc.slug == slug:
+                self.npcs.remove(npc)
 
     def get_all_entities(self) -> Sequence[NPC]:
         """
@@ -597,7 +615,7 @@ class WorldState(state.State):
             The list of entities in the map.
 
         """
-        return list(self.npcs.values())
+        return self.npcs
 
     def check_collision_zones(
         self,
@@ -970,7 +988,7 @@ class WorldState(state.State):
 
         # Move any multiplayer characters that are off map so we know where
         # they should be when we change maps.
-        for entity in self.npcs_off_map.values():
+        for entity in self.npcs_off_map:
             entity.update(time_delta)
 
     def _collision_box_to_pgrect(self, box: tuple[int, int]) -> Rect:
@@ -1009,7 +1027,7 @@ class WorldState(state.State):
         box_iter = map(self._collision_box_to_pgrect, self.collision_map)
 
         # Next, deal with solid NPCs.
-        npc_iter = map(self._npc_to_pgrect, self.npcs.values())
+        npc_iter = map(self._npc_to_pgrect, self.npcs)
 
         # draw noc and wall collision tiles
         red = (255, 0, 0, 128)
@@ -1063,8 +1081,8 @@ class WorldState(state.State):
         self.client.load_map(map_data)
 
         # Clear out any existing NPCs
-        self.npcs = {}
-        self.npcs_off_map = {}
+        self.npcs = []
+        self.npcs_off_map = []
         self.add_player(local_session.player)
 
         # reset controls and stop moving to prevent player from
@@ -1133,7 +1151,7 @@ class WorldState(state.State):
                         tile = (player_tile_pos[0] - 1, player_tile_pos[1])
                     elif direction == "right":
                         tile = (player_tile_pos[0] + 1, player_tile_pos[1])
-                    for npc in self.npcs.values():
+                    for npc in self.npcs:
                         tile_pos = (
                             int(round(npc.tile_pos[0])),
                             int(round(npc.tile_pos[1])),

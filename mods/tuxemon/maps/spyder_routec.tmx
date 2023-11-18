@@ -404,12 +404,6 @@
     <property name="cond2" value="not variable_set hospitalcure:yes"/>
    </properties>
   </object>
-  <object id="255" name="Swim Encounters" type="event" x="544" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="random_encounter routec"/>
-    <property name="cond1" value="is has_sprite swimmer"/>
-   </properties>
-  </object>
   <object id="256" name="Create Swimmer2" type="event" x="480" y="352" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_alpha,30,22"/>
@@ -471,37 +465,6 @@
     <property name="act6" value="set_variable searoutecmaurice:yes"/>
     <property name="behav1" value="talk spyder_searoutec_maurice"/>
     <property name="cond1" value="not variable_set searoutecmaurice:yes"/>
-   </properties>
-  </object>
-  <object id="266" name="Choice Surf" type="event" x="304" y="384" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog itsswimmingtime"/>
-    <property name="act2" value="translated_dialog_choice yes:no,swimming"/>
-    <property name="cond1" value="is has_item player,surfboard"/>
-    <property name="cond2" value="is player_facing_tile surfable"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="not player_in surfable"/>
-   </properties>
-  </object>
-  <object id="267" name="surfable" type="event" x="272" y="384" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_player_template swimmer"/>
-    <property name="cond1" value="is player_in surfable"/>
-    <property name="cond2" value="not has_sprite swimmer"/>
-   </properties>
-  </object>
-  <object id="268" name="not surfable" type="event" x="256" y="384" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_player_template default"/>
-    <property name="act2" value="set_variable swimming:no"/>
-    <property name="cond1" value="not player_in surfable"/>
-    <property name="cond2" value="is has_sprite swimmer"/>
-   </properties>
-  </object>
-  <object id="269" name="Remove Obstacle" type="event" x="288" y="384" width="16" height="16">
-   <properties>
-    <property name="act1" value="remove_collision water"/>
-    <property name="cond1" value="is variable_set swimming:yes"/>
    </properties>
   </object>
  </objectgroup>

@@ -69,22 +69,22 @@ class NpcWanderAction(EventAction):
 
             # Suspend wandering if a dialog window is open
             coords = (0, 0)
+            # retrieve NPC talking to
+            if player.facing == "down":
+                coords = (player.tile_pos[0], player.tile_pos[1] + 1)
+            elif player.facing == "up":
+                coords = (player.tile_pos[0], player.tile_pos[1] - 1)
+            elif player.facing == "left":
+                coords = (player.tile_pos[0] - 1, player.tile_pos[1])
+            elif player.facing == "right":
+                coords = (player.tile_pos[0] + 1, player.tile_pos[1])
+
             for state in self.session.client.active_states:
-                if state.name == "DialogState":
-                    # retrieve NPC talking to
-                    if player.facing == "down":
-                        coords = (player.tile_pos[0], player.tile_pos[1] + 1)
-                    elif player.facing == "up":
-                        coords = (player.tile_pos[0], player.tile_pos[1] - 1)
-                    elif player.facing == "left":
-                        coords = (player.tile_pos[0] - 1, player.tile_pos[1])
-                    elif player.facing == "right":
-                        coords = (player.tile_pos[0] + 1, player.tile_pos[1])
-                elif state.name == "WorldMenuState":
+                if state.name == "WorldMenuState":
                     return
 
             # Choose a random direction that is free and walk toward it
-            origin = (int(npc.tile_pos[0]), int(npc.tile_pos[1]))
+            origin = (npc.tile_pos[0], npc.tile_pos[1])
             exits = world.get_exits(origin)
             if exits:
                 if origin != coords:

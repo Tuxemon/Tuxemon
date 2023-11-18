@@ -71,6 +71,7 @@ class YAMLEventLoader:
             yaml_data = yaml.load(fp.read(), Loader=yaml.SafeLoader)
 
         for name, event_data in yaml_data["events"].items():
+            _id = uuid.uuid4().int
             conds = []
             acts = []
             x = event_data.get("x")
@@ -79,11 +80,15 @@ class YAMLEventLoader:
             h = event_data.get("height")
             event_type = event_data.get("type")
 
-            for value in event_data.get("actions", []):
+            for key, value in enumerate(
+                event_data.get("actions", []), start=1
+            ):
                 act_type, args = parse_action_string(value)
-                action = MapAction(act_type, args, None)
+                action = MapAction(act_type, args, f"act{str(key*10)}")
                 acts.append(action)
-            for value in event_data.get("conditions", []):
+            for key, value in enumerate(
+                event_data.get("conditions", []), start=1
+            ):
                 operator, cond_type, args = parse_condition_string(value)
                 condition = MapCondition(
                     type=cond_type,
@@ -93,10 +98,10 @@ class YAMLEventLoader:
                     width=w,
                     height=h,
                     operator=operator,
-                    name="",
+                    name=f"cond{str(key*10)}",
                 )
                 conds.append(condition)
-            for value in event_data.get("behav", []):
+            for key, value in enumerate(event_data.get("behav", []), start=1):
                 behav_type, args = parse_behav_string(value)
                 if behav_type == "talk":
                     condition = MapCondition(
@@ -107,13 +112,13 @@ class YAMLEventLoader:
                         width=w,
                         height=h,
                         operator="is",
-                        name="",
+                        name=f"behav{str(key*10)}",
                     )
                     conds.insert(0, condition)
                     action = MapAction(
                         type="npc_face",
                         parameters=[args[0], "player"],
-                        name="",
+                        name=f"behav{str(key*10)}",
                     )
                     acts.insert(0, action)
                 else:
@@ -131,7 +136,7 @@ class YAMLEventLoader:
                 )
                 conds.append(cond_data)
 
-            yield EventObject(name, name, x, y, w, h, conds, acts)
+            yield EventObject(_id, name, x, y, w, h, conds, acts)
 
 
 class TMXMapLoader:

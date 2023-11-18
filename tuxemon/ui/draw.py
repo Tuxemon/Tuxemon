@@ -179,7 +179,7 @@ def shadow_text(
     size = [int(math.ceil(a + b)) for a, b in zip(offset, top.get_size())]
     image = pygame.Surface(size, pygame.SRCALPHA)
 
-    image.blit(shadow, offset)
+    image.blit(shadow, tuple(offset))
     image.blit(top, (0, 0))
     return image
 

@@ -638,28 +638,28 @@ msgstr "It allows to morph a Wood type tuxemon into a different form."
 # Map Types:
 
 msgid "no_type"
-msgstr "no type"
+msgstr "No type"
 
 msgid "town"
-msgstr "town"
+msgstr "Town"
 
 msgid "route"
-msgstr "route"
+msgstr "Route"
 
 msgid "dungeon"
-msgstr "dungeon"
+msgstr "Dungeon"
 
 msgid "clinic"
-msgstr "clinic"
+msgstr "Clinic"
 
 msgid "shop"
-msgstr "shop"
+msgstr "Shop"
 
 msgid "inside"
-msgstr "inside"
+msgstr "Inside"
 
 msgid "outside"
-msgstr "outside"
+msgstr "Outside"
 
 msgid "item_cannot_use_here"
 msgstr "{name} cannot be used here!"
@@ -2790,16 +2790,16 @@ msgid "menu_dropoff_no_monsters"
 msgstr "Can't drop off the last Tuxemon in your party."
 
 msgid "pick_up"
-msgstr "pick up"
+msgstr "Pick up"
 
 msgid "move_to_kennel"
-msgstr "move to {box}"
+msgstr "Move to {box}"
 
 msgid "Kennel"
-msgstr "shelter"
+msgstr "Shelter"
 
 msgid "Locker"
-msgstr "locker"
+msgstr "Locker"
 
 msgid "quarantine"
 msgstr "Quarantine"
@@ -6840,7 +6840,7 @@ msgid "rubberduck_cave_01"
 msgstr "A good place to hide an item"
 
 msgid "rubberduck_cave_02"
-msgstr "if i could swim..."
+msgstr "If I could swim..."
 
 msgid "rubberduck_cave_03"
 msgstr "This ladder leads to nowhere"
@@ -6852,28 +6852,28 @@ msgid "rubberduck_city_02"
 msgstr "Maybe some good guys here"
 
 msgid "rubberduck_city_03"
-msgstr "here you should be able to heal your monsters ... but no one here ..."
+msgstr "Here you should be able to heal your monsters ... but no one here ..."
 
 msgid "rubberduck_city_04"
-msgstr "a mart ..."
+msgstr "A mart ..."
 
 msgid "rubberduck_city_05"
 msgstr "Currently no one is living here"
 
 msgid "rubberduck_city_06"
-msgstr "maybe someone evil / bad should be here"
+msgstr "Maybe someone evil / bad should be here"
 
 msgid "rubberduck_city_07"
-msgstr "maybe make this door opened and put someone here"
+msgstr "Maybe make this door opened and put someone here"
 
 msgid "rubberduck_city_08"
-msgstr "place for a cave route... maybe cave_01.tmx"
+msgstr "Place for a cave route... maybe cave_01.tmx"
 
 msgid "rubberduck_city_09"
-msgstr "where should this lead to??"
+msgstr "Where should this lead to??"
 
 msgid "rubberduck_city_10"
-msgstr "this is a secret place that can't be reached yet..."
+msgstr "This is a secret place that can't be reached yet..."
 
 msgid "37707_town01"
 msgstr "You got a Fruitera for testing purposes. This will be removed later!"

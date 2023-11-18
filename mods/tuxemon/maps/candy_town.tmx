@@ -4,7 +4,6 @@
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="candy_town"/>
-  <property name="south" value="route6"/>
   <property name="types" value="town"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
@@ -270,7 +269,8 @@
   <object id="210" name="Player Spawn" type="event" x="144" y="576" width="16" height="16"/>
   <object id="211" name="Sign: Candy Town" type="event" x="176" y="576" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog welcome_location_town"/>
+    <property name="act10" value="translated_dialog candy_town"/>
+    <property name="act20" value="translated_dialog candy_town_description"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

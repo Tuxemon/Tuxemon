@@ -101,6 +101,7 @@ class WorldState(state.State):
         self.screen_rect = self.screen.get_rect()
         self.resolution = prepare.SCREEN_SIZE
         self.tile_size = prepare.TILE_SIZE
+        self.layer_color: ColorLike = [0, 0, 0, 0]
 
         #####################################################################
         #                           Player Details                           #
@@ -261,6 +262,13 @@ class WorldState(state.State):
             self.client.screen.get_size(), pygame.SRCALPHA
         )
         self.transition_surface.fill(color)
+
+    def set_layer(self) -> None:
+        self.layer = pygame.Surface(
+            self.client.screen.get_size(), pygame.SRCALPHA
+        )
+        self.layer.fill(self.layer_color)
+        self.screen.blit(self.layer, (0, 0))
 
     def broadcast_player_teleport_change(self) -> None:
         """Tell clients/host that player has moved after teleport."""
@@ -495,16 +503,9 @@ class WorldState(state.State):
 
         # If triggers night color only at night (2200-0400) outside
         game_variable = self.player.game_variables
-        if not self.client.map_inside:
-            if (
-                game_variable["stage_of_day"] == "night"
-                and game_variable["change_day_night"] == "Enable"
-            ):
-                game_surf = pygame.surface.Surface(
-                    surface.get_size(), pygame.SRCALPHA
-                )
-                game_surf.fill([0, 0, 128, 128])
-                surface.blit(game_surf, (0, 0))
+
+        # Adds a transparent layer
+        self.set_layer()
 
         if "cinema_mode" in game_variable:
             if game_variable["cinema_mode"] == "on":

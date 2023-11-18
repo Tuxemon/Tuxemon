@@ -235,10 +235,6 @@ class ControlState(PygameMenuState):
                 default_hemi = 0
             elif player.game_variables["hemisphere"] == SOUTHERN:
                 default_hemi = 1
-            if player.game_variables["change_day_night"] == "Disable":
-                default_dn = 0
-            elif player.game_variables["change_day_night"] == "Enable":
-                default_dn = 1
 
         music = menu.add.range_slider(
             title=T.translate("menu_music_volume").upper(),
@@ -315,27 +311,6 @@ class ControlState(PygameMenuState):
             default=default_hemi,
             style="fancy",
             onchange=on_change_hemisphere,
-            font_size=20,
-        )
-
-        def on_change_daynight(value: Any, label: str) -> None:
-            """
-            Updates the value.
-            """
-            if player:
-                player.game_variables["change_day_night"] = label
-
-        off = T.translate("disable")
-        on = T.translate("enable")
-        dayandnight: list[tuple[Any, ...]] = []
-        dayandnight = [(off, off), (on, on)]
-        menu.add.selector(
-            title=T.translate("menu_music_daynight").upper(),
-            items=dayandnight,
-            selector_id="dayandnight",
-            default=default_dn,
-            style="fancy",
-            onchange=on_change_daynight,
             font_size=20,
         )
 

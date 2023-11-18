@@ -12,29 +12,31 @@ from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T, replace_text
 from tuxemon.npc import NPC
-from tuxemon.states.choice.choice_state import ChoiceState
+from tuxemon.states.choice.choice_monster import ChoiceMonster
 
 logger = logging.getLogger(__name__)
 
 
 @final
 @dataclass
-class TranslatedDialogChoiceAction(EventAction):
+class ChoiceMonsterAction(EventAction):
     """
-    Ask the player to make a choice.
+    Ask the player to make a choice among monsters.
 
     Script usage:
         .. code-block::
 
-            translated_dialog_choice <choices>,<variable>
+            choice_monster <choices>,<variable>
 
     Script parameters:
-        choices: List of possible choices, separated by a colon ":".
+        choices: List of possible choices
+            (monster slugs eg: rockitten:apeoro),
+            separated by a colon ":".
         variable: Variable to store the result of the choice.
 
     """
 
-    name = "translated_dialog_choice"
+    name = "choice_monster"
 
     choices: str
     variable: str
@@ -55,16 +57,16 @@ class TranslatedDialogChoiceAction(EventAction):
 
         for val in var_list:
             text = T.translate(val)
-            var_menu.append((text, text, partial(_set_variable, val, player)))
+            var_menu.append((text, val, partial(_set_variable, val, player)))
 
         self.session.client.push_state(
-            ChoiceState(
+            ChoiceMonster(
                 menu=var_menu,
             )
         )
 
     def update(self) -> None:
         try:
-            self.session.client.get_state_by_name(ChoiceState)
+            self.session.client.get_state_by_name(ChoiceMonster)
         except ValueError:
             self.stop()

@@ -8,7 +8,9 @@ from typing import TYPE_CHECKING, Any, Optional
 from tuxemon.graphics import load_and_scale
 from tuxemon.menu.menu import PopUpMenu
 from tuxemon.platform.const import buttons
-from tuxemon.states.choice import ChoiceState
+from tuxemon.platform.events import PlayerInput
+from tuxemon.sprite import Sprite
+from tuxemon.states.choice.choice_state import ChoiceState
 from tuxemon.ui.text import TextArea
 
 if TYPE_CHECKING:

@@ -19,16 +19,9 @@ from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
 
 
-def fix_width(screen_x: int, pos_x: float) -> int:
-    """it returns the correct width based on percentage"""
-    value = round(screen_x * pos_x)
-    return value
-
-
-def fix_height(screen_y: int, pos_y: float) -> int:
-    """it returns the correct height based on percentage"""
-    value = round(screen_y * pos_y)
-    return value
+def fix_measure(measure: int, percentage: float) -> int:
+    """it returns the correct measure based on percentage"""
+    return round(measure * percentage)
 
 
 class MonsterInfoState(PygameMenuState):
@@ -44,7 +37,7 @@ class MonsterInfoState(PygameMenuState):
     ) -> None:
         width = menu._width
         height = menu._height
-        menu._width = fix_height(menu._width, 0.97)
+        menu._width = fix_measure(menu._width, 0.97)
         # history
         evo = ""
         if monster.history:
@@ -80,7 +73,7 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab1, list)
-        lab1.translate(fix_width(width, 0.50), fix_height(height, 0.10))
+        lab1.translate(fix_measure(width, 0.50), fix_measure(height, 0.10))
         # level + exp
         exp = monster.total_experience
         lab2 = menu.add.label(
@@ -91,7 +84,7 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab2, list)
-        lab2.translate(fix_width(width, 0.50), fix_height(height, 0.15))
+        lab2.translate(fix_measure(width, 0.50), fix_measure(height, 0.15))
         # exp next level
         exp_lv = monster.experience_required(1) - monster.total_experience
         lv = monster.level + 1
@@ -103,7 +96,7 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab3, list)
-        lab3.translate(fix_width(width, 0.50), fix_height(height, 0.20))
+        lab3.translate(fix_measure(width, 0.50), fix_measure(height, 0.20))
         # weight
         lab4 = menu.add.label(
             title=str(mon_weight)
@@ -118,7 +111,7 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab4, list)
-        lab4.translate(fix_width(width, 0.50), fix_height(height, 0.25))
+        lab4.translate(fix_measure(width, 0.50), fix_measure(height, 0.25))
         # height
         lab5 = menu.add.label(
             title=str(mon_height)
@@ -133,7 +126,7 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab5, list)
-        lab5.translate(fix_width(width, 0.50), fix_height(height, 0.30))
+        lab5.translate(fix_measure(width, 0.50), fix_measure(height, 0.30))
         # type
         lab6 = menu.add.label(
             title=types,
@@ -143,7 +136,7 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab6, list)
-        lab6.translate(fix_width(width, 0.50), fix_height(height, 0.35))
+        lab6.translate(fix_measure(width, 0.50), fix_measure(height, 0.35))
         # shape
         lab7 = menu.add.label(
             title=T.translate(monster.shape),
@@ -153,7 +146,7 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab7, list)
-        lab7.translate(fix_width(width, 0.65), fix_height(height, 0.35))
+        lab7.translate(fix_measure(width, 0.65), fix_measure(height, 0.35))
         # species
         lab8 = menu.add.label(
             title=monster.category,
@@ -163,7 +156,7 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab8, list)
-        lab8.translate(fix_width(width, 0.50), fix_height(height, 0.40))
+        lab8.translate(fix_measure(width, 0.50), fix_measure(height, 0.40))
         # taste
         tastes = T.translate("tastes") + ": "
         cold = T.translate("taste_" + monster.taste_cold)
@@ -176,7 +169,7 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab9, list)
-        lab9.translate(fix_width(width, 0.50), fix_height(height, 0.45))
+        lab9.translate(fix_measure(width, 0.50), fix_measure(height, 0.45))
         # capture
         doc = formula.today_ordinal() - monster.capture
         if doc >= 1:
@@ -199,7 +192,7 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab10, list)
-        lab10.translate(fix_width(width, 0.50), fix_height(height, 0.50))
+        lab10.translate(fix_measure(width, 0.50), fix_measure(height, 0.50))
         # hp
         lab11 = menu.add.label(
             title=T.translate("short_hp") + ": " + str(monster.hp),
@@ -209,7 +202,7 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab11, list)
-        lab11.translate(fix_width(width, 0.80), fix_height(height, 0.15))
+        lab11.translate(fix_measure(width, 0.80), fix_measure(height, 0.15))
         # armour
         lab12 = menu.add.label(
             title=T.translate("short_armour") + ": " + str(monster.armour),
@@ -219,7 +212,7 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab12, list)
-        lab12.translate(fix_width(width, 0.80), fix_height(height, 0.20))
+        lab12.translate(fix_measure(width, 0.80), fix_measure(height, 0.20))
         # dodge
         lab13 = menu.add.label(
             title=T.translate("short_dodge") + ": " + str(monster.dodge),
@@ -229,7 +222,7 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab13, list)
-        lab13.translate(fix_width(width, 0.80), fix_height(height, 0.25))
+        lab13.translate(fix_measure(width, 0.80), fix_measure(height, 0.25))
         # melee
         lab14 = menu.add.label(
             title=T.translate("short_melee") + ": " + str(monster.melee),
@@ -239,7 +232,7 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab14, list)
-        lab14.translate(fix_width(width, 0.80), fix_height(height, 0.30))
+        lab14.translate(fix_measure(width, 0.80), fix_measure(height, 0.30))
         # ranged
         lab15 = menu.add.label(
             title=T.translate("short_ranged") + ": " + str(monster.ranged),
@@ -249,7 +242,7 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab15, list)
-        lab15.translate(fix_width(width, 0.80), fix_height(height, 0.35))
+        lab15.translate(fix_measure(width, 0.80), fix_measure(height, 0.35))
         # speed
         lab16 = menu.add.label(
             title=T.translate("short_speed") + ": " + str(monster.speed),
@@ -259,7 +252,7 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab16, list)
-        lab16.translate(fix_width(width, 0.80), fix_height(height, 0.40))
+        lab16.translate(fix_measure(width, 0.80), fix_measure(height, 0.40))
         # description
         lab17 = menu.add.label(
             title=monster.description,
@@ -270,7 +263,7 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab17, list)
-        lab17.translate(fix_width(width, 0.01), fix_height(height, 0.56))
+        lab17.translate(fix_measure(width, 0.01), fix_measure(height, 0.56))
         # history
         lab18 = menu.add.label(
             title=evo,
@@ -281,16 +274,16 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab18, list)
-        lab18.translate(fix_width(width, 0.01), fix_height(height, 0.76))
+        lab18.translate(fix_measure(width, 0.01), fix_measure(height, 0.76))
 
         # history monsters
         f = menu.add.frame_h(
             float=True,
-            width=fix_width(width, 0.95),
-            height=fix_width(width, 0.05),
+            width=fix_measure(width, 0.95),
+            height=fix_measure(width, 0.05),
             frame_id="histories",
         )
-        f.translate(fix_width(width, 0.02), fix_height(height, 0.80))
+        f.translate(fix_measure(width, 0.02), fix_measure(height, 0.80))
         f._relax = True
         elements = []
         for ele in monster.history:
@@ -313,7 +306,7 @@ class MonsterInfoState(PygameMenuState):
         image_widget = menu.add.image(image_path=new_image.copy())
         image_widget.set_float(origin_position=True)
         image_widget.translate(
-            fix_width(width, 0.20), fix_height(height, 0.05)
+            fix_measure(width, 0.20), fix_measure(height, 0.05)
         )
         # tuxeball
         tuxeball = pygame_menu.BaseImage(
@@ -324,7 +317,7 @@ class MonsterInfoState(PygameMenuState):
         capture_device = menu.add.image(image_path=tuxeball)
         capture_device.set_float(origin_position=True)
         capture_device.translate(
-            fix_width(width, 0.50), fix_height(height, 0.445)
+            fix_measure(width, 0.50), fix_measure(height, 0.445)
         )
 
     def __init__(

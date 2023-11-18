@@ -18,16 +18,9 @@ from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
 
 
-def fix_width(screen_x: int, pos_x: float) -> int:
-    """it returns the correct width based on percentage"""
-    value = round(screen_x * pos_x)
-    return value
-
-
-def fix_height(screen_y: int, pos_y: float) -> int:
-    """it returns the correct height based on percentage"""
-    value = round(screen_y * pos_y)
-    return value
+def fix_measure(measure: int, percentage: float) -> int:
+    """it returns the correct measure based on percentage"""
+    return round(measure * percentage)
 
 
 class JournalInfoState(PygameMenuState):
@@ -40,7 +33,7 @@ class JournalInfoState(PygameMenuState):
     ) -> None:
         width = menu._width
         height = menu._height
-        menu._width = fix_height(menu._width, 0.97)
+        menu._width = fix_measure(menu._width, 0.97)
 
         name = T.translate(monster.slug).upper()
         desc = T.translate(f"{monster.slug}_description")
@@ -77,7 +70,7 @@ class JournalInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab1, list)
-        lab1.translate(fix_width(width, 0.50), fix_height(height, 0.15))
+        lab1.translate(fix_measure(width, 0.50), fix_measure(height, 0.15))
         # weight
         lab2 = menu.add.label(
             title=str(mon_weight) + " " + unit_weight,
@@ -87,7 +80,7 @@ class JournalInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab2, list)
-        lab2.translate(fix_width(width, 0.50), fix_height(height, 0.25))
+        lab2.translate(fix_measure(width, 0.50), fix_measure(height, 0.25))
         # height
         lab3 = menu.add.label(
             title=str(mon_height) + " " + unit_height,
@@ -97,7 +90,7 @@ class JournalInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab3, list)
-        lab3.translate(fix_width(width, 0.65), fix_height(height, 0.25))
+        lab3.translate(fix_measure(width, 0.65), fix_measure(height, 0.25))
         # type
         lab4 = menu.add.label(
             title=T.translate("monster_menu_type"),
@@ -107,7 +100,7 @@ class JournalInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab4, list)
-        lab4.translate(fix_width(width, 0.50), fix_height(height, 0.30))
+        lab4.translate(fix_measure(width, 0.50), fix_measure(height, 0.30))
         type_image_1 = pygame_menu.BaseImage(
             tools.transform_resource_filename(
                 f"gfx/ui/icons/element/{monster.types[0].name}_type.png"
@@ -120,14 +113,14 @@ class JournalInfoState(PygameMenuState):
                 ),
             )
             menu.add.image(type_image_1, float=True).translate(
-                fix_width(width, 0.17), fix_height(height, 0.29)
+                fix_measure(width, 0.17), fix_measure(height, 0.29)
             )
             menu.add.image(type_image_2, float=True).translate(
-                fix_width(width, 0.19), fix_height(height, 0.29)
+                fix_measure(width, 0.19), fix_measure(height, 0.29)
             )
         else:
             menu.add.image(type_image_1, float=True).translate(
-                fix_width(width, 0.17), fix_height(height, 0.29)
+                fix_measure(width, 0.17), fix_measure(height, 0.29)
             )
         lab5 = menu.add.label(
             title=types,
@@ -137,7 +130,7 @@ class JournalInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab5, list)
-        lab5.translate(fix_width(width, 0.50), fix_height(height, 0.35))
+        lab5.translate(fix_measure(width, 0.50), fix_measure(height, 0.35))
         # shape
         shape = (
             T.translate("monster_menu_shape")
@@ -152,7 +145,7 @@ class JournalInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab6, list)
-        lab6.translate(fix_width(width, 0.50), fix_height(height, 0.40))
+        lab6.translate(fix_measure(width, 0.50), fix_measure(height, 0.40))
         # species
         spec = T.translate(f"cat_{monster.category}")
         species = T.translate("monster_menu_species") + ": " + spec
@@ -164,7 +157,7 @@ class JournalInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab7, list)
-        lab7.translate(fix_width(width, 0.50), fix_height(height, 0.45))
+        lab7.translate(fix_measure(width, 0.50), fix_measure(height, 0.45))
         # txmn_id
         lab8 = menu.add.label(
             title="ID: " + str(monster.txmn_id),
@@ -174,7 +167,7 @@ class JournalInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab8, list)
-        lab8.translate(fix_width(width, 0.50), fix_height(height, 0.10))
+        lab8.translate(fix_measure(width, 0.50), fix_measure(height, 0.10))
         # description
         lab9 = menu.add.label(
             title=desc,
@@ -185,7 +178,7 @@ class JournalInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab9, list)
-        lab9.translate(fix_width(width, 0.01), fix_height(height, 0.56))
+        lab9.translate(fix_measure(width, 0.01), fix_measure(height, 0.56))
         # history
         lab10 = menu.add.label(
             title=evo,
@@ -196,16 +189,16 @@ class JournalInfoState(PygameMenuState):
             float=True,
         )
         assert not isinstance(lab10, list)
-        lab10.translate(fix_width(width, 0.01), fix_height(height, 0.76))
+        lab10.translate(fix_measure(width, 0.01), fix_measure(height, 0.76))
 
         # history monsters
         f = menu.add.frame_h(
             float=True,
-            width=fix_width(width, 0.95),
-            height=fix_width(width, 0.05),
+            width=fix_measure(width, 0.95),
+            height=fix_measure(width, 0.05),
             frame_id="histories",
         )
-        f.translate(fix_width(width, 0.02), fix_height(height, 0.80))
+        f.translate(fix_measure(width, 0.02), fix_measure(height, 0.80))
         f._relax = True
         elements = []
         for ele in monster.history:
@@ -230,7 +223,7 @@ class JournalInfoState(PygameMenuState):
         image_widget = menu.add.image(image_path=new_image.copy())
         image_widget.set_float(origin_position=True)
         image_widget.translate(
-            fix_width(width, 0.20), fix_height(height, 0.05)
+            fix_measure(width, 0.20), fix_measure(height, 0.05)
         )
 
     def __init__(self, **kwargs: Any) -> None:

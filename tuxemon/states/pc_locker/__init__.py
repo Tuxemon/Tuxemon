@@ -41,10 +41,9 @@ if TYPE_CHECKING:
 MenuGameObj = Callable[[], object]
 
 
-def fix_width(screen_x: int, pos_x: float) -> int:
-    """it returns the correct width based on percentage"""
-    value = round(screen_x * pos_x)
-    return value
+def fix_measure(measure: int, percentage: float) -> int:
+    """it returns the correct measure based on percentage"""
+    return round(measure * percentage)
 
 
 HIDDEN_LOCKER = "hidden_locker"
@@ -255,8 +254,6 @@ class ItemTakeState(PygameMenuState):
         theme.scrollarea_position = locals.POSITION_EAST
         theme.background_color = background
         theme.widget_alignment = locals.ALIGN_CENTER
-        theme.scrollbar_color = (237, 246, 248)
-        theme.scrollbar_slider_color = (197, 232, 234)
 
         # menu
         theme.title = True
@@ -281,9 +278,9 @@ class ItemTakeState(PygameMenuState):
         )
 
         self.menu._column_max_width = [
-            fix_width(self.menu._width, 0.33),
-            fix_width(self.menu._width, 0.33),
-            fix_width(self.menu._width, 0.33),
+            fix_measure(self.menu._width, 0.33),
+            fix_measure(self.menu._width, 0.33),
+            fix_measure(self.menu._width, 0.33),
         ]
 
         menu_items_map = []
@@ -300,8 +297,6 @@ class ItemTakeState(PygameMenuState):
         theme.background_color = self.background_color
         theme.widget_alignment = locals.ALIGN_LEFT
         theme.title = False
-        theme.scrollbar_color = (235, 235, 235)
-        theme.scrollbar_slider_color = (200, 200, 200)
 
 
 class ItemBoxChooseState(PygameMenuState):

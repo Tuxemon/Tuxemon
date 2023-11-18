@@ -43,7 +43,7 @@ class DamageEffect(TechEffect):
         player = self.session.player
         value = float(player.game_variables["random_tech_hit"])
         hit = tech.accuracy >= value
-        if hit:
+        if hit and not target.out_of_range:
             tech.hit = True
             tech.advance_counter_success()
             damage, mult = formula.simple_damage_calculate(tech, user, target)

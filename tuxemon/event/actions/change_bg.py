@@ -3,14 +3,15 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import final
+from typing import Optional, final
 
 from pygame_menu import locals
 
 from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 from tuxemon.menu.theme import get_theme
-from tuxemon.states.bg import BgState
+from tuxemon.states.idle.color_state import ColorState
+from tuxemon.states.idle.image_state import ImageState
 
 
 @final
@@ -19,11 +20,9 @@ class ChangeBgAction(EventAction):
     """
     Change the background.
 
-    It's advisable end the bg sequence with "end"
-
     Eg:
-    act1 change_bg filename
-    act2 change_bg end
+    act1 change_bg background
+    act2 change_bg
 
     Script usage:
         .. code-block::
@@ -31,15 +30,17 @@ class ChangeBgAction(EventAction):
             change_bg <background>
 
     Script parameters:
-        background: The name of the file without .PNG
+        background:
+        - it can be the name of the file (see below note)
+        - it can be a RGB color separated by ":" (eg 255:0:0)
 
-        the files must be inside the folder (gfx/ui/background/)
+        note: the files must be inside the folder (gfx/ui/background/)
         Size: 240x160
 
     """
 
     name = "change_bg"
-    background: str
+    background: Optional[str] = None
 
     def start(self) -> None:
         # don't override previous state if we are still in the state.
@@ -52,13 +53,19 @@ class ChangeBgAction(EventAction):
         if len(self.session.client.state_manager.active_states) > 2:
             self.session.client.pop_state()
 
-        if current_state.name != str(BgState):
-            if self.background == "end":
+        if current_state.name != str(ImageState):
+            if self.background is None:
                 return
             else:
-                self.session.client.push_state(
-                    BgState(background=self.background)
-                )
+                _background = self.background.split(":")
+                if len(_background) == 1:
+                    self.session.client.push_state(
+                        ImageState(background=self.background)
+                    )
+                else:
+                    self.session.client.push_state(
+                        ColorState(color=self.background)
+                    )
 
     def cleanup(self) -> None:
         theme = get_theme()

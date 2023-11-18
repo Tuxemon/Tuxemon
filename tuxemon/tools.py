@@ -200,7 +200,7 @@ def open_choice_dialog(
         The pushed dialog choice state.
 
     """
-    from tuxemon.states.choice import ChoiceState
+    from tuxemon.states.choice.choice_state import ChoiceState
 
     return session.client.push_state(
         ChoiceState(

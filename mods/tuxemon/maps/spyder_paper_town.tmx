@@ -496,53 +496,6 @@
     <property name="cond2" value="is party_size less_than,1"/>
    </properties>
   </object>
-  <object id="215" name="Choice Surf" type="event" x="160" y="304" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog itsswimmingtime"/>
-    <property name="act2" value="translated_dialog_choice yes:no,swimming"/>
-    <property name="cond1" value="is has_item player,surfboard"/>
-    <property name="cond2" value="is player_facing_tile surfable"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="not player_in surfable"/>
-   </properties>
-  </object>
-  <object id="216" name="surfable" type="event" x="128" y="304" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_player_template swimmer"/>
-    <property name="cond1" value="is player_in surfable"/>
-    <property name="cond2" value="not has_sprite swimmer"/>
-   </properties>
-  </object>
-  <object id="229" name="not surfable" type="event" x="112" y="304" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_player_template default"/>
-    <property name="act2" value="set_variable swimming:no"/>
-    <property name="cond1" value="not player_in surfable"/>
-    <property name="cond2" value="is has_sprite swimmer"/>
-   </properties>
-  </object>
-  <object id="235" name="Remove Obstacle" type="event" x="144" y="304" width="16" height="16">
-   <properties>
-    <property name="act1" value="remove_collision water"/>
-    <property name="cond1" value="is variable_set swimming:yes"/>
-   </properties>
-  </object>
-  <object id="236" name="Swim Encounters Day" type="event" x="176" y="288" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable environment:sea"/>
-    <property name="act2" value="random_encounter routec"/>
-    <property name="cond1" value="is has_sprite swimmer"/>
-    <property name="cond2" value="not variable_set stage_of_day:night"/>
-   </properties>
-  </object>
-  <object id="234" name="Swim Encounters Night" type="event" x="176" y="304" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable environment:night_sea"/>
-    <property name="act2" value="random_encounter routec"/>
-    <property name="cond1" value="is has_sprite swimmer"/>
-    <property name="cond2" value="is variable_set stage_of_day:night"/>
-   </properties>
-  </object>
   <object id="244" name="Teleport to Daycare Back" type="event" x="336" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_daycare.tmx,13,7,0.3"/>

@@ -1221,7 +1221,7 @@ msgid "all_in"
 msgstr "All In"
 
 msgid "altitude_description"
-msgstr ""
+msgstr "Fly high out of reach, then dive with a powerful attack."
 
 msgid "altitude"
 msgstr "Altitude"

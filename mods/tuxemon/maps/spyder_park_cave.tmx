@@ -70,12 +70,6 @@
     <property name="cond1" value="is variable_set stage_of_day:night"/>
    </properties>
   </object>
-  <object id="11" name="Exhausted" type="event" x="96" y="64" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
   <object id="272" name="Steps" type="event" x="96" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_park_entrance.tmx,5,4,0.3"/>
@@ -117,7 +111,7 @@
     <property name="cond2" value="is player_facing down"/>
    </properties>
   </object>
-  <object id="311" name="Tuxeball" type="event" x="80" y="96" width="16" height="16">
+  <object id="311" name="Tuxeball" type="event" x="96" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_park_entrance.tmx,5,4,0.3"/>
     <property name="act2" value="player_face up"/>

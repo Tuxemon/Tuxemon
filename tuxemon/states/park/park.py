@@ -393,11 +393,11 @@ class ParkState(ParkAnimations):
                 target = self.monsters_in_play_human[0]
                 for trainer in self.ai_players:
                     for monster in self.monsters_in_play[trainer]:
-                        if random.random() > self._distance:
-                            technique.load("park")
+                        if self._distance > random.random():
+                            technique.load("menu_run")
                             self.enqueue_action(monster, technique, target)
                         else:
-                            technique.load("menu_run")
+                            technique.load("park")
                             self.enqueue_action(monster, technique, target)
 
         elif phase == "action phase":

@@ -151,7 +151,7 @@ msgid "tuxeball_park"
 msgstr "Park Tuxeball"
 
 msgid "tuxeball_park_description"
-msgstr "Official Park capture device. It works only inside the Park."
+msgstr "The official Park capture device. It only works inside the Park."
 
 msgid "tuxeball_neuter"
 msgstr "Neuter Tuxeball"

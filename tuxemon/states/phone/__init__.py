@@ -24,16 +24,9 @@ from tuxemon.tools import open_choice_dialog, open_dialog
 MenuGameObj = Callable[[], Any]
 
 
-def fix_width(screen_x: int, pos_x: float) -> int:
-    """it returns the correct width based on percentage"""
-    value = round(screen_x * pos_x)
-    return value
-
-
-def fix_height(screen_y: int, pos_y: float) -> int:
-    """it returns the correct height based on percentage"""
-    value = round(screen_y * pos_y)
-    return value
+def fix_measure(measure: int, percentage: float) -> int:
+    """it returns the correct measure based on percentage"""
+    return round(measure * percentage)
 
 
 class NuPhone(PygameMenuState):
@@ -69,10 +62,10 @@ class NuPhone(PygameMenuState):
                 )
 
         menu._column_max_width = [
-            fix_width(menu._width, 0.25),
-            fix_width(menu._width, 0.25),
-            fix_width(menu._width, 0.25),
-            fix_width(menu._width, 0.25),
+            fix_measure(menu._width, 0.25),
+            fix_measure(menu._width, 0.25),
+            fix_measure(menu._width, 0.25),
+            fix_measure(menu._width, 0.25),
         ]
 
         # menu
@@ -427,7 +420,7 @@ class NuPhoneMap(PygameMenuState):
         )
         assert not isinstance(lab1, list)
         lab1.translate(
-            fix_width(menu._width, 0.20), fix_height(menu._height, -0.03)
+            fix_measure(menu._width, 0.20), fix_measure(menu._height, -0.03)
         )
 
         lab2 = menu.add.label(
@@ -441,7 +434,7 @@ class NuPhoneMap(PygameMenuState):
         )
         assert not isinstance(lab2, list)
         lab2.translate(
-            fix_width(menu._width, 0.20), fix_height(menu._height, 0.08)
+            fix_measure(menu._width, 0.20), fix_measure(menu._height, 0.08)
         )
 
         lab3 = menu.add.label(
@@ -455,7 +448,7 @@ class NuPhoneMap(PygameMenuState):
         )
         assert not isinstance(lab3, list)
         lab3.translate(
-            fix_width(menu._width, 0.20), fix_height(menu._height, 0.18)
+            fix_measure(menu._width, 0.20), fix_measure(menu._height, 0.18)
         )
 
         lab4 = menu.add.label(
@@ -469,7 +462,7 @@ class NuPhoneMap(PygameMenuState):
         )
         assert not isinstance(lab4, list)
         lab4.translate(
-            fix_width(menu._width, -0.20), fix_height(menu._height, 0.18)
+            fix_measure(menu._width, -0.20), fix_measure(menu._height, 0.18)
         )
 
         lab5 = menu.add.label(
@@ -483,7 +476,7 @@ class NuPhoneMap(PygameMenuState):
         )
         assert not isinstance(lab5, list)
         lab5.translate(
-            fix_width(menu._width, -0.20), fix_height(menu._height, -0.03)
+            fix_measure(menu._width, -0.20), fix_measure(menu._height, -0.03)
         )
 
         lab6 = menu.add.label(
@@ -497,7 +490,7 @@ class NuPhoneMap(PygameMenuState):
         )
         assert not isinstance(lab6, list)
         lab6.translate(
-            fix_width(menu._width, -0.15), fix_height(menu._height, -0.15)
+            fix_measure(menu._width, -0.15), fix_measure(menu._height, -0.15)
         )
         # menu
         menu.set_title(title=T.translate("app_map")).center_content()

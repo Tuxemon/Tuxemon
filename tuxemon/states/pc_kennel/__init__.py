@@ -41,10 +41,9 @@ if TYPE_CHECKING:
 MenuGameObj = Callable[[], object]
 
 
-def fix_width(screen_x: int, pos_x: float) -> int:
-    """it returns the correct width based on percentage"""
-    value = round(screen_x * pos_x)
-    return value
+def fix_measure(measure: int, percentage: float) -> int:
+    """it returns the correct measure based on percentage"""
+    return round(measure * percentage)
 
 
 HIDDEN = "hidden_kennel"
@@ -262,9 +261,9 @@ class MonsterTakeState(PygameMenuState):
         )
 
         self.menu._column_max_width = [
-            fix_width(self.menu._width, 0.33),
-            fix_width(self.menu._width, 0.33),
-            fix_width(self.menu._width, 0.33),
+            fix_measure(self.menu._width, 0.33),
+            fix_measure(self.menu._width, 0.33),
+            fix_measure(self.menu._width, 0.33),
         ]
 
         menu_items_map = []
@@ -281,8 +280,6 @@ class MonsterTakeState(PygameMenuState):
         theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
         theme.title = False
-        theme.scrollbar_color = (235, 235, 235)
-        theme.scrollbar_slider_color = (200, 200, 200)
 
 
 class MonsterBoxChooseState(PygameMenuState):

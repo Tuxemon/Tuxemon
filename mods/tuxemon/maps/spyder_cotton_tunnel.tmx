@@ -126,7 +126,7 @@
   </object>
   <object id="65" name="Encounters" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter cotton_tunnel,11"/>
+    <property name="act1" value="random_encounter cotton_tunnel,0.6"/>
    </properties>
   </object>
   <object id="84" name="Create Petrified Dung" type="event" x="384" y="240" width="16" height="16">

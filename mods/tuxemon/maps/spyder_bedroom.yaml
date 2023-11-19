@@ -1,0 +1,121 @@
+events:
+  Go Downstairs:
+    actions:
+    - transition_teleport spyder_downstairs.tmx,0,2,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    height: 1
+    width: 1
+    x: 7
+    y: 2
+    type: "event"
+  Use Computer:
+    actions:
+    - change_state PCState
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    - not variable_set kernelquest:yes
+    height: 1
+    width: 1
+    x: 3
+    y: 1
+    type: "event"
+  Use Computer Kernel:
+    actions:
+    - translated_dialog spyder_pc_alert
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    - is variable_set kernelquest:yes
+    height: 1
+    width: 1
+    x: 3
+    y: 1
+    type: "event"
+  Player Spawn:
+    height: 1
+    width: 1
+    x: 3
+    y: 4
+  Resting in Bed:
+    actions:
+    - screen_transition 1
+    - wait 0.5
+    - translated_dialog spyder_papertown_restinbed
+    - set_monster_health
+    - set_monster_status
+    - set_variable teleport_faint:spyder_bedroom.tmx 6 5
+    conditions:
+    - is button_pressed K_RETURN
+    - is player_facing_tile
+    height: 2
+    width: 1
+    x: 0
+    y: 2
+    type: "event"
+  Intro Question:
+    actions:
+    - translated_dialog spyder_intro_question
+    - translated_dialog_choice no:yes,question_intro
+    conditions:
+    - not variable_set question_intro:yes
+    - not variable_set question_intro:no
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: "event"
+  Spyder Intro:
+    actions:
+    - change_bg spyder_intro01
+    - translated_dialog spyder_intro00
+    - change_bg spyder_tumble
+    - translated_dialog spyder_intro01
+    - change_bg spyder_dol
+    - translated_dialog dollfin
+    - change_bg spyder_ign
+    - translated_dialog ignibus
+    - change_bg spyder_mem
+    - translated_dialog memnomnom
+    - change_bg spyder_bud
+    - translated_dialog budaye
+    - change_bg spyder_gri
+    - translated_dialog grintot
+    - change_bg spyder_monsters
+    - translated_dialog spyder_intro02
+    - change_bg spyder_morph
+    - translated_dialog spyder_intro03
+    - set_variable spyder_intro:yes
+    - transition_teleport spyder_paper_mart.tmx,4,8,0.3
+    conditions:
+    - is variable_set question_intro:no
+    - not variable_set spyder_intro:yes
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: "event"
+  No Intro:
+    actions:
+    - set_variable spyder_intro:yes
+    - transition_teleport spyder_paper_mart.tmx,4,8,0.3
+    conditions:
+    - is variable_set question_intro:yes
+    - not variable_set spyder_intro:yes
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: "event"
+  Play Music:
+    actions:
+    - play_music music_home
+    conditions:
+    - not music_playing music_home
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: "event"

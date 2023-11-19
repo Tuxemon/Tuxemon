@@ -15,7 +15,7 @@ from tuxemon.platform.events import PlayerInput
 
 class ImageState(PygameMenuState):
     """
-    It imposes an image over the world, where it'll be possible to 
+    It imposes an image over the world, where it'll be possible to
     dispay dialogues, etc.
     """
 

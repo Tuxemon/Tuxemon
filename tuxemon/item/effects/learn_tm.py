@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
+from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -29,17 +30,17 @@ class LearnTmEffect(ItemEffect):
         learn: bool = False
         assert target
         # monster moves
-        moves = []
+        moves: list[str] = []
         for tech in target.moves:
             moves.append(tech.slug)
-        # clean up the list
-        set_moves = set(moves)
-        res = list(set_moves)
+        # get rid duplicates
+        _moves = set(moves)
+        moves = list(_moves)
         # continue operation
-        if res:
-            if self.technique not in res:
-                self.user.game_variables[
-                    "overwrite_technique"
-                ] = self.technique
+        if moves:
+            if self.technique not in moves:
+                technique = Technique()
+                technique.load(self.technique)
+                target.learn(technique)
                 learn = True
         return {"success": learn, "num_shakes": 0, "extra": None}

@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING, Union
 
 from tuxemon.db import ElementType, db
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
+from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -33,25 +34,25 @@ class LearnMmEffect(ItemEffect):
         assert target
         techs = list(db.database["technique"])
         # type moves
-        filters = []
+        filters: list[str] = []
         for mov in techs:
             results = db.lookup(mov, table="technique")
-            if results.randomly:
-                if ele in results.types:
-                    filters.append(results.slug)
+            if results.randomly and ele in results.types:
+                filters.append(results.slug)
         # monster moves
-        moves = []
+        moves: list[str] = []
         for tech in target.moves:
             moves.append(tech.slug)
         # remove monster moves from type moves
         set1 = set(filters)
         set2 = set(moves)
-        res = list(set1 - set2)
+        _techs = list(set1 - set2)
         # add a random move from what remains
-        if res:
-            self.user.game_variables["overwrite_technique"] = random.choice(
-                res
-            )
+        if _techs:
+            tech_slug = random.choice(_techs)
+            technique = Technique()
+            technique.load(tech_slug)
+            target.learn(technique)
             learn = True
 
         return {"success": learn, "num_shakes": 0, "extra": None}

@@ -780,6 +780,15 @@ class Monster:
         else:
             return random.randrange(0, int(self.speed))
 
+    def find_tech_by_id(self, instance_id: uuid.UUID) -> Optional[Technique]:
+        """
+        Finds a tech among the monster's moves which has the given id.
+
+        """
+        return next(
+            (m for m in self.moves if m.instance_id == instance_id), None
+        )
+
 
 def decode_monsters(
     json_data: Optional[Sequence[Mapping[str, Any]]],

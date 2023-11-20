@@ -103,7 +103,7 @@ CombatPhase = Literal[
 
 class EnqueuedAction(NamedTuple):
     user: Union[Monster, NPC, None]
-    technique: Union[Technique, Item, Condition, None]
+    method: Union[Technique, Item, Condition, None]
     target: Monster
 
 
@@ -506,8 +506,9 @@ class CombatState(CombatAnimations):
                     for pending in self._pending_queue:
                         pend = pending
                     if pend:
-                        self._action_queue.append(pend)
-                        self._log_action.append((self._turn, pend))
+                        self.enqueue_action(
+                            pend.user, pend.method, pend.target
+                        )
                         self._pending_queue.remove(pend)
                 for condition in monster.status:
                     # validate condition
@@ -621,9 +622,9 @@ class CombatState(CombatAnimations):
         """
 
         def rank_action(action: EnqueuedAction) -> tuple[int, int]:
-            if action.technique is None:
+            if action.method is None:
                 return 0, 0
-            sort = action.technique.sort
+            sort = action.method.sort
             primary_order = sort_order.index(sort)
 
             if sort == "meta":
@@ -640,12 +641,11 @@ class CombatState(CombatAnimations):
 
         # TODO: move to mod config
         sort_order = [
-            "meta",
-            "item",
-            "utility",
             "potion",
+            "utility",
             "food",
-            "heal",
+            "quest",
+            "meta",
             "damage",
         ]
 
@@ -979,7 +979,7 @@ class CombatState(CombatAnimations):
         # rewrite actions in the queue to target the new monster
         for index, action in enumerate(self._action_queue):
             if action.target is original:
-                new_action = EnqueuedAction(action.user, action.technique, new)
+                new_action = EnqueuedAction(action.user, action.method, new)
                 self._action_queue[index] = new_action
 
     def remove_monster_from_play(

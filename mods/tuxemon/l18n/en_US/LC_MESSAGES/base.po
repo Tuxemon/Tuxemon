@@ -638,28 +638,28 @@ msgstr "It allows to morph a Wood type tuxemon into a different form."
 # Map Types:
 
 msgid "no_type"
-msgstr "no type"
+msgstr "No type"
 
 msgid "town"
-msgstr "town"
+msgstr "Town"
 
 msgid "route"
-msgstr "route"
+msgstr "Route"
 
 msgid "dungeon"
-msgstr "dungeon"
+msgstr "Dungeon"
 
 msgid "clinic"
-msgstr "clinic"
+msgstr "Clinic"
 
 msgid "shop"
-msgstr "shop"
+msgstr "Shop"
 
 msgid "inside"
-msgstr "inside"
+msgstr "Inside"
 
 msgid "outside"
-msgstr "outside"
+msgstr "Outside"
 
 msgid "item_cannot_use_here"
 msgstr "{name} cannot be used here!"
@@ -1221,7 +1221,7 @@ msgid "all_in"
 msgstr "All In"
 
 msgid "altitude_description"
-msgstr ""
+msgstr "Fly high out of reach, then dive with a powerful attack."
 
 msgid "altitude"
 msgstr "Altitude"
@@ -2799,16 +2799,16 @@ msgid "menu_dropoff_no_monsters"
 msgstr "Can't drop off the last Tuxemon in your party."
 
 msgid "pick_up"
-msgstr "pick up"
+msgstr "Pick up"
 
 msgid "move_to_kennel"
-msgstr "move to {box}"
+msgstr "Move to {box}"
 
 msgid "Kennel"
-msgstr "shelter"
+msgstr "Shelter"
 
 msgid "Locker"
-msgstr "locker"
+msgstr "Locker"
 
 msgid "quarantine"
 msgstr "Quarantine"
@@ -3097,6 +3097,12 @@ msgstr "A jolly piece of furniture who awoke one morning and decided to explore.
 msgid "cairfrey"
 msgstr "Cairfrey"
 
+msgid "caper_description"
+msgstr "CAPER play and frolic with each other among the foam of mountain rivers, cold as ice."
+
+msgid "caper"
+msgstr "Caper"
+
 msgid "capinyah_description"
 msgstr "Only after intense training in the jungles, lifting logs and river boulders, can CAPITI graduate to become CAPINYAH."
 
@@ -3222,6 +3228,12 @@ msgstr "Some people dry it out and eat it as a medicinal enhancement."
 
 msgid "cowpignon"
 msgstr "Cowpignon"
+
+msgid "crankus_description"
+msgstr "From one mountaintop to another, CRANKUS can be heard bleating to one another in running arguments that end only with the spring thaws."
+
+msgid "crankus"
+msgstr "Crankus"
 
 msgid "criniotherme_description"
 msgstr "Its mane shines during the day, grows big and red at sunset, and blows away as ash at night."
@@ -4674,6 +4686,8 @@ msgid "cat_clot"
 msgstr "Clot"
 msgid "cat_cloudburst"
 msgstr "Cloudburst"
+msgid "cat_cranky"
+msgstr "Cranky"
 msgid "cat_crested"
 msgstr "Crested"
 msgid "cat_cute"
@@ -4846,6 +4860,8 @@ msgid "cat_jellyfish"
 msgstr "Jellyfish"
 msgid "cat_joyful"
 msgstr "Joyful"
+msgid "cat_kid"
+msgstr "Kid"
 msgid "cat_lamenting_emotion"
 msgstr "Lamenting Emotion"
 msgid "cat_light_fin"
@@ -6836,6 +6852,81 @@ msgid "37707_villager_female_missing"
 msgstr "@*!^: 0H... @ n3wc0m3r! H0vv p1d y0v g3t he7e? <NONE> h3llen\"T $33N %^&one new 1n... ()h, never n3ver m3V3t N3W37 MIIIIIIIIND\n"
 "@*!^: WElcoME! W3lcome t0... 0H N/A: We never g0t ar0und to gi^ing 0ur town {<1} We never g00000000 {<2} W3 neVer Bu1lt 0uR t0wN\n"
 "TH S D ES N T EX ST Y U AR  C NNE  ED TO TH  V ID YO  M ST LEA E N W"
+
+msgid "buddha_welcome"
+msgstr "Welcome to Buddha Mountain!"
+
+msgid "old_sphalian_house01"
+msgstr "You watch some TV with your beloved Lv ${{monster_0_level}} ${{monster_0_name}}.,0"
+
+msgid "old_sphalian_house02"
+msgstr "Home Sweet Home"
+
+msgid "old_sphalian_center01"
+msgstr "Your tuxemon are now at full health!"
+
+msgid "old_sphalian_center02"
+msgstr "It says that it is under repair"
+
+msgid "old_sphalian_town01"
+msgstr "Sphalian Town - a quiet\, peaceful place"
+
+msgid "rubberduck_cave_01"
+msgstr "A good place to hide an item"
+
+msgid "rubberduck_cave_02"
+msgstr "If I could swim..."
+
+msgid "rubberduck_cave_03"
+msgstr "This ladder leads to nowhere"
+
+msgid "rubberduck_city_01"
+msgstr "The door won't open"
+
+msgid "rubberduck_city_02"
+msgstr "Maybe some good guys here"
+
+msgid "rubberduck_city_03"
+msgstr "Here you should be able to heal your monsters ... but no one here ..."
+
+msgid "rubberduck_city_04"
+msgstr "A mart ..."
+
+msgid "rubberduck_city_05"
+msgstr "Currently no one is living here"
+
+msgid "rubberduck_city_06"
+msgstr "Maybe someone evil / bad should be here"
+
+msgid "rubberduck_city_07"
+msgstr "Maybe make this door opened and put someone here"
+
+msgid "rubberduck_city_08"
+msgstr "Place for a cave route... maybe cave_01.tmx"
+
+msgid "rubberduck_city_09"
+msgstr "Where should this lead to??"
+
+msgid "rubberduck_city_10"
+msgstr "This is a secret place that can't be reached yet..."
+
+msgid "37707_town01"
+msgstr "You got a Fruitera for testing purposes. This will be removed later!"
+
+msgid "mart_junkyard01"
+msgstr "${{name}}: I got a Fruitera!"
+
+msgid "mart_junkyard02"
+msgstr "${{name}}: I got a Bamboon!"
+
+msgid "mart_junkyard03"
+msgstr "MAPLE: I got a Bamboon!"
+
+msgid "mart_junkyard04"
+msgstr "MAPLE: I got a Fruitera!"
+
+msgid "mart_junkyard05"
+msgstr "CARY: Well, you won this time. But next time, we'll win."
 
 # Taba Town
 msgid "maple_bedroom_sign"

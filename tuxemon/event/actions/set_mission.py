@@ -9,7 +9,6 @@ from tuxemon.db import MissionStatus
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.mission import Mission
-from tuxemon.npc import NPC
 
 
 @final
@@ -21,13 +20,13 @@ class SetMissionAction(EventAction):
     Script usage:
         .. code-block::
 
-            set_mission <slug>,<operation>[,status][,trainer_slug]
+            set_mission <slug>,<operation>[,status][,npc_slug]
 
     Script parameters:
         slug: slug mission
         operation: add, remove or change
-        status: completed, pending,failed (default pending)
-        trainer_slug: slug name (e.g. "npc_maple"), default player.
+        status: completed, pending, failed (default pending)
+        npc_slug: slug name (e.g. "npc_maple"), default player.
 
     """
 
@@ -35,27 +34,20 @@ class SetMissionAction(EventAction):
     slug: str
     operation: str
     status: MissionStatus = MissionStatus.pending
-    trainer_slug: Optional[str] = None
+    npc_slug: Optional[str] = None
 
     def start(self) -> None:
-        player = self.session.player
-        trainer: Optional[NPC]
-        if self.trainer_slug is None:
-            trainer = player
-        else:
-            trainer = get_npc(self.session, self.trainer_slug)
-
-        assert trainer, "No Trainer found with slug '{}'".format(
-            self.trainer_slug or "player"
-        )
+        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
+        npc = get_npc(self.session, self.npc_slug)
+        assert npc
 
         mission = Mission()
         mission.load(self.slug)
         mission.status = self.status
-        existing = trainer.find_mission(self.slug)
+        existing = npc.find_mission(self.slug)
         if self.operation == "add" and existing is None:
-            trainer.add_mission(mission)
+            npc.add_mission(mission)
         if self.operation == "remove" and existing:
-            trainer.remove_mission(existing)
+            npc.remove_mission(existing)
         if self.operation == "change" and existing:
             existing.status = self.status

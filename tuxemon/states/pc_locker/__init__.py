@@ -24,7 +24,7 @@ from tuxemon.menu.quantity import QuantityMenu
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 from tuxemon.state import State
-from tuxemon.states.items import ItemMenuState
+from tuxemon.states.items.item_menu import ItemMenuState
 from tuxemon.tools import (
     open_choice_dialog,
     open_dialog,

@@ -27,7 +27,7 @@ class TranslatedDialogAction(EventAction):
     Script usage:
         .. code-block::
 
-            translated_dialog <text>,<avatar>,<bg>,<style>
+            translated_dialog <text>[,avatar][,style]
 
     Script parameters:
         text: Text of the dialog.
@@ -43,12 +43,13 @@ class TranslatedDialogAction(EventAction):
     avatar: Union[int, str, None] = None
     style: Optional[str] = None
 
+
     def start(self) -> None:
         key = process_translate_text(self.session, self.raw_parameters, [])
 
-        avatar = None
+        avatar_sprite = None
         if self.avatar:
-            avatar = get_avatar(self.session, self.avatar)
+            avatar_sprite = get_avatar(self.session, self.avatar)
 
         dialogue = "default"
         if self.style:
@@ -66,7 +67,7 @@ class TranslatedDialogAction(EventAction):
         open_dialog(
             session=self.session,
             text=key,
-            avatar=avatar,
+            avatar=avatar_sprite,
             colors=colors,
         )
 

@@ -10,13 +10,11 @@ from tuxemon.menu.menu import PopUpMenu
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.sprite import Sprite
-from tuxemon.states.choice.choice_state import ChoiceState
 from tuxemon.ui.text import TextArea
 
 if TYPE_CHECKING:
     from tuxemon.platform.events import PlayerInput
     from tuxemon.sprite import Sprite
-
 
 class DialogState(PopUpMenu[None]):
     """
@@ -35,7 +33,6 @@ class DialogState(PopUpMenu[None]):
         self,
         text: Sequence[str] = (),
         avatar: Optional[Sprite] = None,
-        menu: Optional[Sequence[tuple[str, str, Callable[[], None]]]] = None,
         colors: dict[str, Any] = {},
         **kwargs: Any,
     ) -> None:
@@ -61,9 +58,9 @@ class DialogState(PopUpMenu[None]):
         _border = load_and_scale(border)
         self.window._set_border(_border)
 
-        self.text_area = TextArea(self.font, font_color, font_shadow)
-        self.text_area.rect = self.calc_internal_rect()
-        self.sprites.add(self.text_area)
+        self.dialog_box = TextArea(self.font, font_color, font_shadow)
+        self.dialog_box.rect = self.calc_internal_rect()
+        self.sprites.add(self.dialog_box)
         self.window._color = bg_color
 
         if self.avatar:
@@ -76,19 +73,11 @@ class DialogState(PopUpMenu[None]):
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         if event.pressed and event.button == buttons.A:
-            if self.text_area.drawing_text:
+            if self.dialog_box.drawing_text:
                 self.character_delay = 0.001
 
             elif self.next_text() is None:
-                if self.menu:
-                    self.client.push_state(
-                        ChoiceState(
-                            menu=self.menu,
-                            rect=self.text_area.rect,
-                        )
-                    )
-                else:
-                    self.client.pop_state(self)
+                self.client.pop_state(self)
 
         return None
 

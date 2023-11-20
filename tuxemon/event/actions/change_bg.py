@@ -55,6 +55,7 @@ class ChangeBgAction(EventAction):
 
         if current_state.name != str(ImageState):
             if self.background is None:
+                self.session.client.pop_state()
                 return
             else:
                 _background = self.background.split(":")

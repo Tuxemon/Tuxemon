@@ -51,7 +51,7 @@
    <properties>
     <property name="act10" value="set_monster_health"/>
     <property name="act20" value="set_monster_status"/>
-    <property name="act30" value="dialog Your tuxemon are now at full health!"/>
+    <property name="act30" value="translated_dialog old_sphalian_center01"/>
     <property name="act40" value="set_variable teleport_faint:sphalian_center.tmx 6 10"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
@@ -67,7 +67,7 @@
   </object>
   <object id="18" name="Go upstairs" type="event" x="16" y="112" width="16" height="16">
    <properties>
-    <property name="act10" value="dialog It says that it is under repair"/>
+    <property name="act10" value="translated_dialog old_sphalian_center02"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing left"/>
    </properties>

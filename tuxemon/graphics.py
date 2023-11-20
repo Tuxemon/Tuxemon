@@ -466,7 +466,7 @@ def capture_screenshot(game: LocalPygameClient) -> pygame.surface.Surface:
 
 def get_avatar(
     session: Session,
-    avatar: str,
+    avatar: Union[str, int],
 ) -> Optional[Sprite]:
     """
     Gets the avatar sprite of a monster or NPC.
@@ -489,11 +489,10 @@ def get_avatar(
     # TODO: remove the need for this import
     from tuxemon.monster import Monster
 
-    if avatar and avatar.isdigit():
+    if isinstance(avatar, int):
         try:
             player = session.player
-            slot = int(avatar)
-            return player.monsters[slot].get_sprite("menu")
+            return player.monsters[avatar].get_sprite("menu")
         except IndexError:
             logger.debug("invalid avatar monster slot")
             return None

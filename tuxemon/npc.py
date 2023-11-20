@@ -130,6 +130,12 @@ class NPC(Entity[NPCState]):
             str
         ] = []  # list of ways player can interact with the Npc
         self.isplayer: bool = False  # used for various tests, idk
+        # menu labels (world menu)
+        self.menu_save: bool = True
+        self.menu_load: bool = True
+        self.menu_player: bool = True
+        self.menu_monsters: bool = True
+        self.menu_bag: bool = True
         # This is a list of tuxemon the npc has. Do not modify directly
         self.monsters: list[Monster] = []
         # The player's items.

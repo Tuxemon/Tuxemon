@@ -8,8 +8,4 @@ events:
     - is check_max_tech
     - is current_state WorldState
     - not location_type clinic
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import final
+from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.menu.interface import MenuItem
@@ -31,30 +31,27 @@ class BreedingAction(EventAction):
     name = "breeding"
     gender: str
 
+    def validate(self, target: Optional[Monster]) -> bool:
+        if target:
+            if target.gender == self.gender and target.stage != "basic":
+                return True
+        return False
+
     def set_var(self, menu_item: MenuItem[Monster]) -> None:
-        if menu_item.game_object.stage != "basic":
-            if self.gender == "male":
-                if menu_item.game_object.gender == self.gender:
-                    self.player.game_variables["breeding_father"] = str(
-                        menu_item.game_object.instance_id.hex
-                    )
-                    self.session.client.pop_state()
-            elif self.gender == "female":
-                if menu_item.game_object.gender == self.gender:
-                    self.player.game_variables["breeding_mother"] = str(
-                        menu_item.game_object.instance_id.hex
-                    )
-                    self.session.client.pop_state()
+        player = self.session.player
+        monster = menu_item.game_object
+
+        parent = (
+            "breeding_mother" if self.gender == "female" else "breeding_father"
+        )
+        player.game_variables[parent] = str(monster.instance_id.hex)
+        self.session.client.pop_state()
 
     def start(self) -> None:
-        self.player = self.session.player
-
-        # pull up the monster menu
-        for t in self.player.monsters:
-            if t.stage != "basic":
-                if t.gender == self.gender:
-                    menu = self.session.client.push_state(MonsterMenuState())
-                    menu.on_menu_selection = self.set_var  # type: ignore[assignment]
+        # pull up the monster menu so we know which one we are saving
+        menu = self.session.client.push_state(MonsterMenuState())
+        menu.is_valid_entry = self.validate  # type: ignore[assignment]
+        menu.on_menu_selection = self.set_var  # type: ignore[assignment]
 
     def update(self) -> None:
         try:

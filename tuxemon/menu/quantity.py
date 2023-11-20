@@ -126,6 +126,7 @@ class QuantityAndPriceMenu(QuantityMenu):
         yield from super().initialize_items()
 
         # Now, show the price:
+        wallet = local_session.player.money["player"]
         label_format = "$ {:>{count_len}}".format
         count_len = 3
         price = (
@@ -135,8 +136,10 @@ class QuantityAndPriceMenu(QuantityMenu):
             price_tag = T.translate("shop_buy_free")
         else:
             price_tag = str(price)
-            if self.quantity == 0:
+            if self.quantity == 0 and price > wallet:
                 price_tag = T.translate("shop_buy_soldout")
+            if price > wallet:
+                self.quantity = 0
 
         formatted_name = label_format(price_tag, count_len=count_len)
         image = self.shadow_text(formatted_name, bg=(128, 128, 128))

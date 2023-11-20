@@ -2,7 +2,7 @@ babel
 cbor
 neteria
 pillow
-pygame-ce==2.2.0
+pygame-ce==2.3.2
 pyscroll>=2.31
 pytmx==3.31
 requests>=2.19.1

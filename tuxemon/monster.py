@@ -137,6 +137,7 @@ class Monster:
         self._types: list[Element] = []
         self.shape = MonsterShape.default
         self.randomly = True
+        self.out_of_range = False
         self.got_experience = False
         self.levelling_up = False
         self.traded = False
@@ -764,6 +765,7 @@ class Monster:
         """
         Ends combat, recharges all moves and heals statuses.
         """
+        self.out_of_range = False
         for move in self.moves:
             move.full_recharge()
 
@@ -773,8 +775,8 @@ class Monster:
             self.status = []
 
     def speed_test(self, action: EnqueuedAction) -> int:
-        assert isinstance(action.technique, Technique)
-        technique = action.technique
+        assert isinstance(action.method, Technique)
+        technique = action.method
         if technique.is_fast:
             return int(random.randrange(0, int(self.speed)) * 1.5)
         else:

@@ -17,7 +17,7 @@ class MenuAction(EventAction):
     Script usage:
         .. code-block::
 
-            disable_menu [menu]
+            menu <act>[,menu]
 
     Script parameters:
         act: enable or disable

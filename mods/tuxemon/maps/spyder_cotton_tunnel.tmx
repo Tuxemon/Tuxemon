@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="102">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="103">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -16,12 +16,12 @@
  </layer>
  <layer id="2" name="Pit" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAG7y8TAcHcUUxQGDFDQyMzAMNAY5BT0+IS5b7DQg9l9r3hHw4/SdDKY4xfkt8HuPnQ3UhoftNCPHIa0MJ9SM0fdR1kIDvbwg/kO5M7BDAaj+5DdhMweLOGI7KZIYJsKG0Z3K0gNJQBkJzLGZRZMDS55YsSx+QckBjObGJoYe8hVQ0/3AQAWxp4X
+   eAG7y8TAcHcUUxQGDFDQyMzAMJC4gw/iEPT4hLlvsNCj7qMsJkbDb3iHH8h3yHFMmW9po3vUfZSF62j4URZ+MN2gcBzMYDC6D9lNyOzBEo7IbooEtqmwYXS3gtRQAkB2ImNcZsHU4JInRhybf0BiMLOJoYmxh1w19HQfALvZnTI=
   </data>
  </layer>
  <layer id="8" name="Walls" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHdlVFKBEEMRAe9kHoWBfU06mncfw/i/qtnMQ8pKEJldmdVBANNz3Z3UpVKundZ/rfdnW/L7/1sWRhb7LkwHjfiEH9XPvDD/5ARn/PiN/lwpttH5fNS47L20rgKPsS4rXX43Q/7HYfz4jf5cKYb/N5qgJXGWqyf5te58Rt+0uKv+U36ncLvofSmr55CTZIOYJxa3zV+rxU39aXW6M+LI850fslnX3G6qb7KTXOqdVqjP9fyU492ftKfGvjod3jip3fHfdM39XVs5eezctDaVBNqQSy3iV+6t6km1Jm6CDvNnV86w5rOdX6utd7RnqNym2KvrYPrGL0Owpz4OV/ewoQl37R3aK3nqrvF7HkLw/lQX7ff4LfGX5w4w7d01j3p/LTfa3DMPRAPv1uqnfb67PykszRFt85vugPy6fHTbzBlW+82fuLM93XFog8w5psaE+akbdL6K2J+e1xf6kJc6Yyf81Mcn91ffYDPpK33e//el18311d7/u6Jn/NwDfw/VZqp/xTvO3PiJxx4CEv92HOefictTuF5DC5Yn8/HE3s=
+   eAHdlVFKBEEMRAe9kHoWBfU06mn034O4/+pZTCEPiiIZZ1ZFMND0bHcnVamke5flf9vN6b783k6WRWOPPRbG/U4cxX8qH/GT/xbTefhNPjqT9l75PNc4r71uXDQ+inFd6+J3O+wnjs7Db/LRmTTxe60hrG6sxfppfslNv8UPLf6a36TfMfzuSm/17UNTk04HYRxb3zV+LxW360vW1J9nG84kv87nUHHSqC+5MXe17tbUn2v50aPJD/1VAx95hyd+vDvu232rvo5Nfj6TA2tTTVQLxXKb+HX3tquJ6qy6gN3Nya87ozXOJT/Xmnc0cyS3KfbaunAdI+sA5sTP+eot7LDw7fa+WstcuVuaPW8wnI/q6/Yb/Nb4w0ln9I3O3JPkx37WYMs9gIffLWrHXs7OD53RVLolv+kO4JPxu9/CxPbebfnBWd+XFUt9INN8VWPCnLTttP6M2L89rq/qorjoLD/nRxyf3Z8+kM+krfd7fh/KL831Zc/fPfg5D9fA/1PRjP4j3nfmjh844gEW/Zg5T787LY7huQVXWB84HxL3
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -50,12 +50,12 @@
   <object id="83" type="collision" x="512" y="128" width="80" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="49" name="Teleport to Cotton Town" type="event" x="576" y="64" width="16" height="16">
+  <object id="49" name="Teleport to Cotton Town" type="event" x="560" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_cotton_town.tmx,2,36,0.3"/>
-    <property name="act2" value="player_face right"/>
+    <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
   <object id="50" name="Teleport to Dragon's Cave" type="event" x="48" y="256" width="16" height="16">
@@ -126,7 +126,7 @@
   </object>
   <object id="65" name="Encounters" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter cotton_tunnel,11"/>
+    <property name="act1" value="random_encounter cotton_tunnel,0.6"/>
    </properties>
   </object>
   <object id="84" name="Create Petrified Dung" type="event" x="384" y="240" width="16" height="16">

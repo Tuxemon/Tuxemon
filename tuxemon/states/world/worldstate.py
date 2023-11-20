@@ -106,8 +106,8 @@ class WorldState(state.State):
         #                           Player Details                           #
         ######################################################################
 
-        self.npcs: dict[str, NPC] = {}
-        self.npcs_off_map: dict[str, NPC] = {}
+        self.npcs: list[NPC] = []
+        self.npcs_off_map: list[NPC] = []
         self.wants_to_move_player: Optional[Direction] = None
         self.allow_player_movement = True
 
@@ -273,11 +273,11 @@ class WorldState(state.State):
             self.client.client.update_player(self.player.facing)
 
         # Update the location of the npcs. Doesn't send network data.
-        for npc in self.npcs.values():
+        for npc in self.npcs:
             char_dict = {"tile_pos": npc.tile_pos}
             networking.update_client(npc, char_dict, self.client)
 
-        for npc in self.npcs_off_map.values():
+        for npc in self.npcs_off_map:
             char_dict = {"tile_pos": npc.tile_pos}
             networking.update_client(npc, char_dict, self.client)
 
@@ -450,7 +450,7 @@ class WorldState(state.State):
         # get npc surfaces/sprites
         for npc in self.npcs:
             world_surfaces.extend(
-                self.npcs[npc].get_sprites(self.current_map.sprite_layer)
+                npc.get_sprites(self.current_map.sprite_layer)
             )
 
         # get map_animations
@@ -472,16 +472,16 @@ class WorldState(state.State):
             s, c, l = frame
 
             # project to pixel/screen coords
-            c = self.get_pos_from_tilepos(c)
+            _c = self.get_pos_from_tilepos(c)
 
             # TODO: better handling of tall sprites
             # handle tall sprites
             h = s.get_height()
             if h > prepare.TILE_SIZE[1]:
                 # offset for center and image height
-                c = (c[0], c[1] - h // 2)
+                _c = (_c[0], _c[1] - h // 2)
 
-            r = Rect(c, s.get_size())
+            r = Rect(_c, s.get_size())
             screen_surfaces.append((s, r, l))
 
         # draw the map and sprites
@@ -553,7 +553,7 @@ class WorldState(state.State):
 
         # Maybe in the future the world should have a dict of entities instead?
         if isinstance(entity, NPC):
-            self.npcs[entity.slug] = entity
+            self.npcs.append(entity)
 
     def get_entity(self, slug: str) -> Optional[NPC]:
         """
@@ -563,7 +563,23 @@ class WorldState(state.State):
             slug: The entity slug.
 
         """
-        return self.npcs.get(slug)
+        for npc in self.npcs:
+            if npc.slug == slug:
+                return npc
+        return None
+
+    def get_entity_by_iid(self, iid: str) -> Optional[NPC]:
+        """
+        Get an entity from the world.
+
+        Parameters:
+            iid: The entity iid.
+
+        """
+        for npc in self.npcs:
+            if npc.instance_id.hex == iid:
+                return npc
+        return None
 
     def get_entity_pos(self, pos: tuple[int, int]) -> Optional[NPC]:
         """
@@ -573,7 +589,7 @@ class WorldState(state.State):
             pos: The entity position.
 
         """
-        for npc in self.npcs.values():
+        for npc in self.npcs:
             if npc.tile_pos == pos:
                 return npc
         return None
@@ -586,7 +602,9 @@ class WorldState(state.State):
             slug: The entity slug.
 
         """
-        del self.npcs[slug]
+        for npc in self.npcs:
+            if npc.slug == slug:
+                self.npcs.remove(npc)
 
     def get_all_entities(self) -> Sequence[NPC]:
         """
@@ -596,7 +614,7 @@ class WorldState(state.State):
             The list of entities in the map.
 
         """
-        return list(self.npcs.values())
+        return self.npcs
 
     def check_collision_zones(
         self,
@@ -731,7 +749,7 @@ class WorldState(state.State):
         position: tuple[int, int],
         tile: Union[RegionProperties, EntityCollision],
         skip_nodes: Optional[set[tuple[int, int]]] = None,
-    ) -> Optional[Sequence[tuple[int, int]]]:
+    ) -> Optional[list[tuple[float, ...]]]:
         """
         Check for exits from tile which are defined in the map.
 
@@ -760,7 +778,7 @@ class WorldState(state.State):
             adjacent_tiles = list()
             for direction in tile["exit"]:
                 exit_tile = tuple(dirs2[direction] + position)
-                if exit_tile in skip_nodes:
+                if skip_nodes and exit_tile in skip_nodes:
                     continue
 
                 adjacent_tiles.append(exit_tile)
@@ -919,7 +937,7 @@ class WorldState(state.State):
 
     def get_pos_from_tilepos(
         self,
-        tile_position: tuple[int, int],
+        tile_position: Vector2,
     ) -> tuple[int, int]:
         """
         Returns the map pixel coordinate based on tile position.
@@ -969,7 +987,7 @@ class WorldState(state.State):
 
         # Move any multiplayer characters that are off map so we know where
         # they should be when we change maps.
-        for entity in self.npcs_off_map.values():
+        for entity in self.npcs_off_map:
             entity.update(time_delta)
 
     def _collision_box_to_pgrect(self, box: tuple[int, int]) -> Rect:
@@ -978,7 +996,7 @@ class WorldState(state.State):
         """
 
         # For readability
-        x, y = self.get_pos_from_tilepos(box)
+        x, y = self.get_pos_from_tilepos(Vector2(box))
         tw, th = self.tile_size
 
         return Rect(x, y, tw, th)
@@ -998,7 +1016,8 @@ class WorldState(state.State):
 
         # draw events
         for event in self.client.events:
-            topleft = self.get_pos_from_tilepos((event.x, event.y))
+            vector = Vector2(event.x, event.y)
+            topleft = self.get_pos_from_tilepos(vector)
             size = self.project((event.w, event.h))
             rect = topleft, size
             box(surface, rect, (0, 255, 0, 128))
@@ -1008,7 +1027,7 @@ class WorldState(state.State):
         box_iter = map(self._collision_box_to_pgrect, self.collision_map)
 
         # Next, deal with solid NPCs.
-        npc_iter = map(self._npc_to_pgrect, self.npcs.values())
+        npc_iter = map(self._npc_to_pgrect, self.npcs)
 
         # draw noc and wall collision tiles
         red = (255, 0, 0, 128)
@@ -1062,8 +1081,8 @@ class WorldState(state.State):
         self.client.load_map(map_data)
 
         # Clear out any existing NPCs
-        self.npcs = {}
-        self.npcs_off_map = {}
+        self.npcs = []
+        self.npcs_off_map = []
         self.add_player(local_session.player)
 
         # reset controls and stop moving to prevent player from
@@ -1132,7 +1151,7 @@ class WorldState(state.State):
                         tile = (player_tile_pos[0] - 1, player_tile_pos[1])
                     elif direction == "right":
                         tile = (player_tile_pos[0] + 1, player_tile_pos[1])
-                    for npc in self.npcs.values():
+                    for npc in self.npcs:
                         tile_pos = (
                             int(round(npc.tile_pos[0])),
                             int(round(npc.tile_pos[1])),

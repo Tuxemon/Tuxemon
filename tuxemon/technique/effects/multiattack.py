@@ -48,7 +48,7 @@ class MultiAttackEffect(TechEffect):
             action
             for action in log
             if turn == action[0]
-            and action[1].technique == tech
+            and action[1].method == tech
             and action[1].user == user
             and action[1].target == target
         ]

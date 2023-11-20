@@ -811,6 +811,10 @@ back and menu sprites by ultidonki based on the design by Tricoelacanth, all rel
 * ["Teddisun"](https://www.github.com/Tuxemon/Tuxemon/tree/development/mods/tuxemon/gfx/sprites/battle/teddisun-front.png)
 Character created by Leo (from Discord) and released under the CC-BY-SA 4.0+ license. Front, back, and menu sprites drawn by ultidonki, also released under the CC-BY-SA 4.0+ license based on the design by Leo (from Discord).
 
+### Bubbles
+
+* ["Bubbles"](https://wiki.tuxemon.org/index.php?title=File:AH_SpriteSheet_Balloon.png) [https://opengameart.org/content/rpg-asset-pack CC BY, on OpenGameArt]
+
 ### Items
 
 * ["Backpack RPG Icons"](http://opengameart.org/content/rpg-icons) by

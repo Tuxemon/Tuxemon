@@ -101,7 +101,9 @@ class WorldState(state.State):
         self.screen_rect = self.screen.get_rect()
         self.resolution = prepare.SCREEN_SIZE
         self.tile_size = prepare.TILE_SIZE
-        self.layer_color: ColorLike = [0, 0, 0, 0]
+        # default variables for layer
+        self.layer: Optional[pygame.surface.Surface] = None
+        self.layer_color: ColorLike = (0, 0, 0, 0)
 
         #####################################################################
         #                           Player Details                           #
@@ -126,6 +128,9 @@ class WorldState(state.State):
         self.transition_alpha = 0
         self.transition_surface: Optional[pygame.surface.Surface] = None
         self.in_transition = False
+
+        # bubble above the player's head
+        self.bubble: dict[NPC, pygame.surface.Surface] = {}
 
         # The delayed teleport variable is used to perform a teleport in the
         # middle of a transition. For example, fading to black, then
@@ -269,6 +274,13 @@ class WorldState(state.State):
         )
         self.layer.fill(self.layer_color)
         self.screen.blit(self.layer, (0, 0))
+
+    def set_bubble(self) -> None:
+        if self.bubble:
+            for npc, surface in self.bubble.items():
+                cx, cy = self.get_pos_from_tilepos(npc.tile_pos)
+                position = (cx, cy - 96)
+                self.screen.blit(surface, position)
 
     def broadcast_player_teleport_change(self) -> None:
         """Tell clients/host that player has moved after teleport."""
@@ -506,6 +518,7 @@ class WorldState(state.State):
 
         # Adds a transparent layer
         self.set_layer()
+        self.set_bubble()
 
         if "cinema_mode" in game_variable:
             if game_variable["cinema_mode"] == "on":

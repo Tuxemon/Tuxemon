@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from collections.abc import Callable, Sequence
+from collections.abc import Sequence
 from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon.graphics import load_and_scale
@@ -15,6 +15,7 @@ from tuxemon.ui.text import TextArea
 if TYPE_CHECKING:
     from tuxemon.platform.events import PlayerInput
     from tuxemon.sprite import Sprite
+
 
 class DialogState(PopUpMenu[None]):
     """
@@ -39,7 +40,6 @@ class DialogState(PopUpMenu[None]):
         super().__init__(**kwargs)
         self.text_queue = list(text)
         self.avatar = avatar
-        self.menu = menu
 
         bg_color = self.background_color
         font_color = self.font_color

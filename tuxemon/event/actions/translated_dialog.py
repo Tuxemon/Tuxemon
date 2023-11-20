@@ -43,7 +43,6 @@ class TranslatedDialogAction(EventAction):
     avatar: Union[int, str, None] = None
     style: Optional[str] = None
 
-
     def start(self) -> None:
         key = process_translate_text(self.session, self.raw_parameters, [])
 

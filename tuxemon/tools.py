@@ -150,7 +150,6 @@ def open_dialog(
     session: Session,
     text: Sequence[str],
     avatar: Optional[Sprite] = None,
-    menu: Optional[Sequence[tuple[str, str, Callable[[], None]]]] = None,
     colors: dict[str, Any] = {},
 ) -> State:
     """

@@ -19,7 +19,7 @@ from tuxemon.menu.menu import Menu, PopUpMenu
 from tuxemon.monster import Monster
 from tuxemon.session import local_session
 from tuxemon.sprite import MenuSpriteGroup, SpriteGroup
-from tuxemon.states.items import ItemMenuState
+from tuxemon.states.items.item_menu import ItemMenuState
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.technique.technique import Technique
 from tuxemon.ui.draw import GraphicBox

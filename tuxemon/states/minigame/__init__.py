@@ -23,16 +23,9 @@ from tuxemon.tools import open_dialog
 MenuGameObj = Callable[[], object]
 
 
-def fix_width(screen_x: int, pos_x: float) -> int:
-    """it returns the correct width based on percentage"""
-    value = round(screen_x * pos_x)
-    return value
-
-
-def fix_height(screen_y: int, pos_y: float) -> int:
-    """it returns the correct height based on percentage"""
-    value = round(screen_y * pos_y)
-    return value
+def fix_measure(measure: int, percentage: float) -> int:
+    """it returns the correct measure based on percentage"""
+    return round(measure * percentage)
 
 
 class MinigameState(PygameMenuState):
@@ -87,8 +80,8 @@ class MinigameState(PygameMenuState):
         # replies
         width = menu._width
         f = menu.add.frame_h(
-            width=fix_width(width, 0.95),
-            height=fix_width(width, 0.05),
+            width=fix_measure(width, 0.95),
+            height=fix_measure(width, 0.05),
             frame_id="evolutions",
             align=locals.ALIGN_CENTER,
         )

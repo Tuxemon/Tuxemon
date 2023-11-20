@@ -2,8 +2,6 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Optional
-
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
@@ -41,17 +39,19 @@ class VariableSetCondition(EventCondition):
 
         """
         player = session.player
+        parameters = condition.parameters
+        for param in parameters:
+            var = param.split(":")
+            key = var[0]
+            if len(var) > 1:
+                value = var[1]
+            else:
+                value = None
 
-        parts = condition.parameters[0].split(":")
-        key = parts[0]
-        if len(parts) > 1:
-            value: Optional[str] = parts[1]
-        else:
-            value = None
+            exists = key in player.game_variables
 
-        exists = key in player.game_variables
-
-        if value is None:
-            return exists
-        else:
-            return exists and player.game_variables[key] == value
+            if value is None:
+                return exists
+            else:
+                return exists and player.game_variables[key] == value
+        return False

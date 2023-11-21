@@ -2783,9 +2783,6 @@ msgstr "This shelter is empty, there are no monsters to take."
 msgid "menu_storage_full_kennel"
 msgstr "This shelter is full."
 
-msgid "menu_storage_hidden_kennel"
-msgstr "Unable to access the hidden storage."
-
 msgid "menu_storage_empty_locker"
 msgstr "This locker is empty, there are no items to take."
 
@@ -2794,9 +2791,6 @@ msgstr "Disband"
 
 msgid "item_disbanded"
 msgstr "{nr} {name} have been disbanded."
-
-msgid "menu_dropoff_no_monsters"
-msgstr "Can't drop off the last Tuxemon in your party."
 
 msgid "pick_up"
 msgstr "pick up"

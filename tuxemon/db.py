@@ -895,6 +895,14 @@ class EconomyItemModel(BaseModel):
             return v
         raise ValueError(f"the item {v} doesn't exist in the db")
 
+    @field_validator("variable")
+    def variable_exists(
+        cls: EconomyItemModel, v: Optional[str]
+    ) -> Optional[str]:
+        if not v or v.find(":") > 1:
+            return v
+        raise ValueError(f"the variable {v} isn't formatted correctly")
+
 
 class EconomyModel(BaseModel):
     slug: str = Field(..., description="Slug uniquely identifying the economy")

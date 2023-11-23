@@ -75,24 +75,6 @@ msgstr "Tea"
 msgid "tea_description"
 msgstr "Adds 107 to a monster's XP."
 
-msgid "doll_apeoro"
-msgstr "Doll Apeoro"
-
-msgid "doll_apeoro_description"
-msgstr "A small figure representing Apeoro."
-
-msgid "doll_pairagrin"
-msgstr "Doll Pairagrin"
-
-msgid "doll_pairagrin_description"
-msgstr "A small figure representing Pairagrin."
-
-msgid "doll_rockitten"
-msgstr "Doll Rockitten"
-
-msgid "doll_rockitten_description"
-msgstr "A small figure representing Rockitten."
-
 msgid "revive"
 msgstr "Revive"
 

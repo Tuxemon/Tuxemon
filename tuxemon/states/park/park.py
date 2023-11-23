@@ -24,7 +24,7 @@ from tuxemon.npc import NPC
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.sprite import Sprite
-from tuxemon.states.journal import MonsterInfoState
+from tuxemon.states.monster_info import MonsterInfoState
 from tuxemon.states.transition.fade import FadeOutTransition
 from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.technique.technique import Technique

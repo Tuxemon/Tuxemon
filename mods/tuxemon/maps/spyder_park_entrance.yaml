@@ -1,0 +1,134 @@
+events:
+  Teleport Park:
+    actions:
+    - transition_teleport spyder_park.tmx,8,3,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 2
+    x: 4
+    y: 9
+    type: "event"
+  Create Elroy:
+    actions:
+    - create_npc spyder_park_elroy,1,7
+    - npc_face spyder_park_elroy,right
+    conditions:
+    - not npc_exists spyder_park_elroy
+    height: 1
+    width: 1
+    x: 1
+    y: 7
+    type: "event"
+  Route Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: "event"
+  Teleport Mountain:
+    actions:
+    - transition_teleport spyder_lion_mountain.tmx,7,98,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 2
+    x: 4
+    y: 2
+    type: "event"
+  Payment:
+    actions:
+    - player_stop
+    - lock_controls
+    - wait 1
+    - npc_face player,left
+    - wait 1
+    - pathfind player,3,7
+    - wait 1
+    - unlock_controls
+    - translated_dialog spyder_park_welcome
+    - translated_dialog_choice yes:no,paypark
+    conditions:
+    - is player_at
+    - is player_facing down
+    - not variable_set paypark:yes
+    - not variable_set paypark:no
+    height: 1
+    width: 4
+    x: 3
+    y: 7
+    type: "event"
+  Create Emily:
+    actions:
+    - create_npc spyder_park_emily,8,5
+    - npc_face spyder_park_emily,left
+    conditions:
+    - not npc_exists spyder_park_emily
+    height: 1
+    width: 1
+    x: 8
+    y: 5
+    type: "event"
+  Pay:
+    actions:
+    - translated_dialog spyder_park_yesmoney
+    - lock_controls
+    - transfer_money -,50,spyder_park
+    - add_item tuxeball_park,25
+    - pathfind player,4,9
+    - npc_face player,down
+    - set_variable paypark:null
+    - set_variable steps_park:500
+    - set_variable menu_park_captured:0
+    - unlock_controls
+    conditions:
+    - is variable_set paypark:yes
+    - is money_is player,greater_or_equal,50
+    type: "event"
+  No Pay:
+    actions:
+    - lock_controls
+    - set_variable paypark:null
+    - pathfind player,4,4
+    - npc_face player,up
+    - unlock_controls
+    conditions:
+    - is variable_set paypark:no
+    type: "event"
+  Talk Emily:
+    actions:
+    - translated_dialog spyder_park_assistant
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    height: 1
+    width: 1
+    x: 7
+    y: 5
+    type: "event"
+  Clear:
+    actions:
+    - lock_controls
+    - set_variable paypark:null
+    - pathfind player,4,4
+    - npc_face player,up
+    - unlock_controls
+    conditions:
+    - is variable_set paypark:no
+    type: "event"
+  No Money:
+    actions:
+    - lock_controls
+    - translated_dialog spyder_park_nomoney
+    - set_variable paypark:null
+    - pathfind player,4,4
+    - npc_face player,up
+    - unlock_controls
+    conditions:
+    - is variable_set paypark:yes
+    - not money_is player,greater_or_equal,50
+    type: "event"

@@ -680,7 +680,7 @@
     <property name="cond1" value="not variable_set snarlonmountain:yes"/>
    </properties>
   </object>
-  <object id="451" name="Teleport Park" type="event" x="96" y="1584" width="48" height="16">
+  <object id="451" name="Teleport Park" type="event" x="96" y="1568" width="48" height="16">
    <properties>
     <property name="act10" value="transition_teleport spyder_park_entrance.tmx,4,3,0.3"/>
     <property name="act2" value="player_face down"/>

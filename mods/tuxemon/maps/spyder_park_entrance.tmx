@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="43">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="45">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -39,110 +39,9 @@
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">
   <object id="10" type="collision" x="32" y="48" width="16" height="112"/>
-  <object id="11" type="collision" x="0" y="0" width="160" height="48"/>
+  <object id="11" type="collision" x="0" y="32" width="64" height="16"/>
   <object id="35" type="collision" x="112" y="48" width="16" height="112"/>
- </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="13" name="Teleport" type="event" x="64" y="144" width="32" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_park.tmx,8,3,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-   </properties>
-  </object>
-  <object id="20" name="Create Elroy" type="event" x="16" y="112" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_park_elroy,1,7"/>
-    <property name="act2" value="npc_face spyder_park_elroy,right"/>
-    <property name="cond1" value="not npc_exists spyder_park_elroy"/>
-   </properties>
-  </object>
-  <object id="28" name="Route Music" type="event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="play_music music_cathedral_theme"/>
-    <property name="cond1" value="not music_playing music_cathedral_theme"/>
-   </properties>
-  </object>
-  <object id="32" name="Teleport" type="event" x="64" y="48" width="32" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_lion_mountain.tmx,7,98,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
-   </properties>
-  </object>
-  <object id="33" name="Payment" type="event" x="48" y="112" width="64" height="16">
-   <properties>
-    <property name="act01" value="player_stop"/>
-    <property name="act02" value="lock_controls"/>
-    <property name="act03" value="wait 1"/>
-    <property name="act04" value="npc_face player,left"/>
-    <property name="act05" value="wait 1"/>
-    <property name="act06" value="pathfind player,3,7"/>
-    <property name="act07" value="wait 1"/>
-    <property name="act08" value="unlock_controls"/>
-    <property name="act09" value="translated_dialog spyder_park_welcome"/>
-    <property name="act10" value="translated_dialog_choice yes:no,paypark"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
-    <property name="cond3" value="not variable_set paypark:yes"/>
-    <property name="cond4" value="not variable_set paypark:no"/>
-   </properties>
-  </object>
-  <object id="34" name="Create Emily" type="event" x="128" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_park_emily,8,5"/>
-    <property name="act2" value="npc_face spyder_park_emily,left"/>
-    <property name="cond1" value="not npc_exists spyder_park_emily"/>
-   </properties>
-  </object>
-  <object id="36" name="Pay" type="event" x="32" y="48" width="16" height="16">
-   <properties>
-    <property name="act01" value="translated_dialog spyder_park_yesmoney"/>
-    <property name="act02" value="transfer_money -,50,spyder_park"/>
-    <property name="act03" value="add_item tuxeball_park,25"/>
-    <property name="act04" value="pathfind player,4,9"/>
-    <property name="act05" value="npc_face player,down"/>
-    <property name="act06" value="set_variable paypark:null"/>
-    <property name="act07" value="set_variable steps_park:500"/>
-    <property name="act08" value="set_variable menu_park_captured:0"/>
-    <property name="cond1" value="is variable_set paypark:yes"/>
-    <property name="cond2" value="is money_is player,greater_or_equal,50"/>
-   </properties>
-  </object>
-  <object id="37" name="No Pay" type="event" x="32" y="64" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable paypark:null"/>
-    <property name="act2" value="pathfind player,4,4"/>
-    <property name="act3" value="npc_face player,up"/>
-    <property name="cond1" value="is variable_set paypark:no"/>
-   </properties>
-  </object>
-  <object id="38" name="Talk Emily" type="event" x="112" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_park_assistant"/>
-    <property name="cond1" value="is player_facing_tile"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="41" name="Clear" type="event" x="32" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable paypark:null"/>
-    <property name="act2" value="pathfind player,4,4"/>
-    <property name="act3" value="npc_face player,up"/>
-    <property name="cond1" value="is variable_set paypark:no"/>
-   </properties>
-  </object>
-  <object id="42" name="Pay (no money)" type="event" x="32" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_park_nomoney"/>
-    <property name="act2" value="set_variable paypark:null"/>
-    <property name="act3" value="pathfind player,4,4"/>
-    <property name="act4" value="npc_face player,up"/>
-    <property name="cond1" value="is variable_set paypark:yes"/>
-    <property name="cond2" value="not money_is player,greater_or_equal,50"/>
-   </properties>
-  </object>
+  <object id="43" type="collision" x="96" y="32" width="64" height="16"/>
+  <object id="44" type="collision" x="64" y="16" width="32" height="16"/>
  </objectgroup>
 </map>

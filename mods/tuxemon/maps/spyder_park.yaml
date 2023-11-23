@@ -1,0 +1,321 @@
+events:
+  Play Music:
+    actions:
+    - play_music music_chibi_ninja
+    conditions:
+    - not music_playing music_chibi_ninja
+    type: "event"
+  Environment Day:
+    actions:
+    - set_variable environment:cliff
+    conditions:
+    - not variable_set stage_of_day:night
+    type: "event"
+  Environment Night:
+    actions:
+    - set_variable environment:night_cliff
+    conditions:
+    - is variable_set stage_of_day:night
+    type: "event"
+  Sign:
+    actions:
+    - translated_dialog welcome_location_route
+    conditions:
+    - is player_facing_tile
+    - is button_pressed K_RETURN
+    height: 1
+    width: 1
+    x: 5
+    y: 35
+    type: "event"
+  Player Spawn:
+    height: 1
+    width: 1
+    x: 8
+    y: 3
+  Encounters 1:
+    actions:
+    - random_encounter park,,,ParkState
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_at
+    - is player_moved
+    height: 5
+    width: 5
+    x: 2
+    y: 14
+    type: "event"
+  Encounters 2:
+    actions:
+    - random_encounter park,,,ParkState
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_at
+    - is player_moved
+    height: 4
+    width: 7
+    x: 2
+    y: 7
+    type: "event"
+  Encounters 3:
+    actions:
+    - random_encounter park,,,ParkState
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_at
+    - is player_moved
+    height: 10
+    width: 2
+    x: 1
+    y: 22
+    type: "event"
+  Encounters 4:
+    actions:
+    - random_encounter park,,,ParkState
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_at
+    - is player_moved
+    height: 4
+    width: 5
+    x: 23
+    y: 15
+    type: "event"
+  Encounters 5:
+    actions:
+    - random_encounter park,,,ParkState
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_at
+    - is player_moved
+    height: 6
+    width: 6
+    x: 23
+    y: 21
+    type: "event"
+  Encounters 6:
+    actions:
+    - random_encounter park,,,ParkState
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_at
+    - is player_moved
+    height: 7
+    width: 8
+    x: 13
+    y: 17
+    type: "event"
+  Encounters 7:
+    actions:
+    - random_encounter park,,,ParkState
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_at
+    - is player_moved
+    height: 2
+    width: 28
+    x: 7
+    y: 36
+    type: "event"
+  Encounters 8:
+    actions:
+    - random_encounter park,,,ParkState
+    - play_map_animation grass_blue,0.1,noloop,player
+    conditions:
+    - is player_at
+    - is player_moved
+    height: 3
+    width: 4
+    x: 13
+    y: 3
+    type: "event"
+  Encounters 9:
+    actions:
+    - random_encounter park,,,ParkState
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_at
+    - is player_moved
+    height: 4
+    width: 4
+    x: 37
+    y: 18
+    type: "event"
+  Encounters 10:
+    actions:
+    - random_encounter park,,,ParkState
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_at
+    - is player_moved
+    height: 3
+    width: 5
+    x: 10
+    y: 30
+    type: "event"
+  Talk Guardian:
+    actions:
+    - translated_dialog spyder_park_guardian1
+    - translated_dialog_choice yes:no,park_out
+    behav:
+    - talk spyder_park_guardian
+    conditions:
+    - not variable_set park_out:yes
+    - not variable_set park_out:no
+    height: 1
+    width: 1
+    x: 6
+    y: 2
+    type: "event"
+  Encounters 11:
+    actions:
+    - random_encounter park,,,ParkState
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_at
+    - is player_moved
+    height: 2
+    width: 5
+    x: 35
+    y: 29
+    type: "event"
+  Encounters 12:
+    actions:
+    - random_encounter park,,,ParkState
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_at
+    - is player_moved
+    height: 5
+    width: 4
+    x: 40
+    y: 33
+    type: "event"
+  Steps:
+    actions:
+    - transition_teleport spyder_park_entrance.tmx,5,4,0.3
+    - player_face up
+    - add_item tuxeball_park,-25
+    - clear_variable park_out
+    - clear_variable menu_park_captured
+    - clear_variable alert100
+    conditions:
+    - is variable_is steps_park,equals,0.0
+    type: "event"
+  Alert 100:
+    actions:
+    - translated_dialog spyder_cottonart_steps100
+    - set_variable alert100:done
+    conditions:
+    - is variable_is steps_park,greater_than,100.0
+    - is variable_is steps_park,less_than,101.0
+    - not variable_set alert100:done
+    type: "event"
+  Interrupt (Y):
+    actions:
+    - set_variable park_out:null
+    - transition_teleport spyder_park_entrance.tmx,5,4,0.3
+    - player_face up
+    - add_item tuxeball_park,-25
+    - set_variable steps_park:0.0
+    - clear_variable menu_park_captured
+    conditions:
+    - is variable_set park_out:yes
+    type: "event"
+  Interrupt (N):
+    actions:
+    - set_variable park_out:null
+    conditions:
+    - is variable_set park_out:no
+    type: "event"
+  Create Guardian:
+    actions:
+    - create_npc spyder_park_guardian,7,3
+    conditions:
+    - not npc_exists spyder_park_guardian
+    height: 1
+    width: 1
+    x: 7
+    y: 3
+    type: "event"
+  Encounters 13:
+    actions:
+    - random_encounter park,,,ParkState
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_at
+    - is player_moved
+    height: 2
+    width: 2
+    x: 10
+    y: 10
+    type: "event"
+  Encounters 14:
+    actions:
+    - random_encounter park,,,ParkState
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_at
+    - is player_moved
+    height: 1
+    width: 4
+    x: 19
+    y: 13
+    type: "event"
+  Encounters 15:
+    actions:
+    - random_encounter park,,,ParkState
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is player_at
+    - is player_moved
+    height: 1
+    width: 2
+    x: 16
+    y: 13
+    type: "event"
+  Teleport 1:
+    actions:
+    - transition_teleport spyder_park_cave.tmx,32,12,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 41
+    y: 12
+    type: "event"
+  Teleport 2:
+    actions:
+    - transition_teleport spyder_park_cave.tmx,9,12,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 18
+    y: 12
+    type: "event"
+  Teleport 3:
+    actions:
+    - transition_teleport spyder_park_cave.tmx,2,8,0.3
+    - player_face up
+    conditions:
+    - is player_at
+    - is player_facing up
+    height: 1
+    width: 1
+    x: 11
+    y: 8
+    type: "event"
+  Tuxeball:
+    actions:
+    - transition_teleport spyder_park_entrance.tmx,5,4,0.3
+    - player_face up
+    - clear_variable park_out
+    - clear_variable menu_park_captured
+    conditions:
+    - not has_item player,tuxeball_park
+    type: "event"

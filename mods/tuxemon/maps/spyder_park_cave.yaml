@@ -1,0 +1,78 @@
+events:
+  Route:
+    actions:
+    - play_music music_chibi_ninja
+    conditions:
+    - not music_playing music_chibi_ninja
+    type: "event"
+  Environment:
+    actions:
+    - set_variable environment:cave
+    conditions:
+    - not variable_set environment:cave
+    type: "event"
+  Steps:
+    actions:
+    - transition_teleport spyder_park_entrance.tmx,5,4,0.3
+    - player_face up
+    - add_item tuxeball_park,-25
+    - clear_variable park_out
+    - clear_variable menu_park_captured
+    - clear_variable alert100
+    conditions:
+    - is variable_is steps_park,equals,0.0
+    type: "event"
+  Alert 100:
+    actions:
+    - translated_dialog spyder_cottonart_steps100
+    - set_variable alert100:done
+    conditions:
+    - is variable_is steps_park,greater_than,100.0
+    - is variable_is steps_park,less_than,101.0
+    - not variable_set alert100:done
+    type: "event"
+  Teleport 1:
+    actions:
+    - transition_teleport spyder_park.tmx,41,13,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 1
+    x: 32
+    y: 12
+    type: "event"
+  Teleport 2:
+    actions:
+    - transition_teleport spyder_park.tmx,18,13,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 1
+    x: 9
+    y: 12
+    type: "event"
+  Teleport 3:
+    actions:
+    - transition_teleport spyder_park.tmx,11,9,0.3
+    - player_face down
+    conditions:
+    - is player_at
+    - is player_facing down
+    height: 1
+    width: 1
+    x: 2
+    y: 8
+    type: "event"
+  Tuxeball:
+    actions:
+    - transition_teleport spyder_park_entrance.tmx,5,4,0.3
+    - player_face up
+    - clear_variable park_out
+    - clear_variable menu_park_captured
+    conditions:
+    - not has_item player,tuxeball_park
+    type: "event"

@@ -8,7 +8,7 @@ import uuid
 from collections.abc import Iterable, Mapping, Sequence
 from functools import partial
 from math import hypot
-from typing import TYPE_CHECKING, Any, Optional, TypedDict, Union
+from typing import TYPE_CHECKING, Any, Optional, TypedDict
 
 from tuxemon import surfanim
 from tuxemon.battle import Battle, decode_battle, encode_battle
@@ -42,10 +42,6 @@ if TYPE_CHECKING:
     from tuxemon.states.combat.combat import EnqueuedAction
     from tuxemon.states.world.worldstate import WorldState
 
-    SpriteMap = Union[
-        Mapping[str, pygame.surface.Surface],
-        Mapping[str, surfanim.SurfaceAnimation],
-    ]
 
 logger = logging.getLogger(__name__)
 
@@ -67,19 +63,6 @@ class NPCState(TypedDict):
     monster_boxes: dict[str, Sequence[Mapping[str, Any]]]
     item_boxes: dict[str, Sequence[Mapping[str, Any]]]
     tile_pos: tuple[int, int]
-
-
-# reference direction and movement states to animation names
-# this dictionary is kinda wip, idk
-animation_mapping = {
-    True: {
-        "up": "back_walk",
-        "down": "front_walk",
-        "left": "left_walk",
-        "right": "right_walk",
-    },
-    False: {"up": "back", "down": "front", "left": "left", "right": "right"},
-}
 
 
 def tile_distance(tile0: Iterable[float], tile1: Iterable[float]) -> float:
@@ -341,37 +324,6 @@ class NPC(Entity[NPCState]):
         # all the animation objects at the same time, so that way they'll
         # always be in sync with each other.
         self.surface_animations.add(self.sprite)
-
-    def get_sprites(
-        self, layer: int
-    ) -> Sequence[tuple[pygame.surface.Surface, Vector2, int]]:
-        """
-        Get the surfaces and layers for the sprite.
-
-        Used to render the NPC.
-
-        Parameters:
-            layer: The layer to draw the sprite on.
-
-        Returns:
-            Tuple containing the surface to plot, the current position
-            of the NPC and the layer.
-
-        """
-
-        def get_frame(d: SpriteMap, ani: str) -> pygame.surface.Surface:
-            frame = d[ani]
-            if isinstance(frame, surfanim.SurfaceAnimation):
-                surface = frame.get_current_frame()
-                frame.rate = self.moverate / CONFIG.player_walkrate
-                return surface
-            else:
-                return frame
-
-        # TODO: move out to the world renderer
-        frame_dict: SpriteMap = self.sprite if self.moving else self.standing
-        state = animation_mapping[self.moving][self.facing]
-        return [(get_frame(frame_dict, state), proj(self.position3), layer)]
 
     def pathfind(self, destination: tuple[int, int]) -> None:
         """

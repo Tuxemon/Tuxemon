@@ -1073,6 +1073,7 @@ class WorldState(state.State):
         self.surfable_map = map_data.surfable_map
         self.collision_lines_map = map_data.collision_lines_map
         self.map_size = map_data.size
+        self.map_area = map_data.area
 
         # The first coordinates that are out of bounds.
         self.invalid_x = (-1, self.map_size[0])
@@ -1107,17 +1108,20 @@ class WorldState(state.State):
         """
         txmn_map = TMXMapLoader().load(path)
         yaml_path = path[:-4] + ".yaml"
-        scenario_path = prepare.fetch("maps", txmn_map.scenario + ".yaml")
         # TODO: merge the events from both sources
         if os.path.exists(yaml_path):
             new_events = list(txmn_map.events)
             new_events.extend(YAMLEventLoader().load_events(yaml_path))
             txmn_map.events = new_events
-        # specific YAML, scenario based
-        if os.path.exists(scenario_path):
-            new_events = list(txmn_map.events)
-            new_events.extend(YAMLEventLoader().load_events(scenario_path))
-            txmn_map.events = new_events
+        # scenario YAML, try because not all maps have a scenario
+        try:
+            scenario_path = prepare.fetch("maps", txmn_map.scenario + ".yaml")
+            if os.path.exists(scenario_path):
+                new_events = list(txmn_map.events)
+                new_events.extend(YAMLEventLoader().load_events(scenario_path))
+                txmn_map.events = new_events
+        except:
+            pass
         return txmn_map
 
     @no_type_check  # only used by multiplayer which is disabled

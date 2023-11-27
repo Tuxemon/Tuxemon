@@ -30,6 +30,7 @@ class LoadMenuState(SaveMenuState):
                 # when game is loaded from world menu
                 self.client.pop_state(self)
                 self.client.pop_state(old_world)
+                self.client.pop_state()
             except ValueError:
                 # when game is loaded from the start menu
                 self.client.pop_state()

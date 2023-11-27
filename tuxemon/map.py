@@ -447,6 +447,7 @@ class TuxemonMap:
         self.surfable_map = surfable_map
         self.collision_lines_map = collisions_lines_map
         self.size = tiled_map.width, tiled_map.height
+        self.area = tiled_map.width * tiled_map.height
         self.inits = inits
         self.events = events
         self.renderer: Optional[pyscroll.BufferedRenderer] = None

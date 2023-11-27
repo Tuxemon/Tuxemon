@@ -6,10 +6,6 @@ events:
     - is player_defeated
     - not location_type clinic
     - not location_name wayfarer_inn1:wayfarer_inn2:scoop3:scoop4:paper_town
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Auto healing teleported:
     actions:
@@ -20,10 +16,6 @@ events:
     conditions:
     - is location_type clinic
     - is variable_set teleport_clinic:lost
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Teleport Exception 1:
     actions:
@@ -34,10 +26,6 @@ events:
     conditions:
     - is player_defeated
     - is location_name wayfarer_inn1:wayfarer_inn2
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Teleport Exception 2:
     actions:
@@ -48,10 +36,6 @@ events:
     conditions:
     - is player_defeated
     - is location_name scoop3:scoop4
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Evolution all:
     actions:
@@ -59,10 +43,6 @@ events:
     conditions:
     - is check_evolution all
     - is current_state WorldState
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Choice Surf:
     actions:
@@ -73,10 +53,6 @@ events:
     - is player_facing_tile surfable
     - is button_pressed K_RETURN
     - not player_in surfable
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Surfable:
     actions:
@@ -84,10 +60,6 @@ events:
     conditions:
     - is player_in surfable
     - not has_sprite swimmer
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Not surfable:
     actions:
@@ -96,20 +68,12 @@ events:
     conditions:
     - not player_in surfable
     - is has_sprite swimmer
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Allow Swim:
     actions:
     - remove_collision water
     conditions:
     - is variable_set swimming:yes
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Swim Encounters Day:
     actions:
@@ -118,10 +82,6 @@ events:
     conditions:
     - is has_sprite swimmer
     - not variable_set stage_of_day:night
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Swim Encounters Night:
     actions:
@@ -130,10 +90,6 @@ events:
     conditions:
     - is has_sprite swimmer
     - is variable_set stage_of_day:night
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Night Day Cycle Outside:
     actions:

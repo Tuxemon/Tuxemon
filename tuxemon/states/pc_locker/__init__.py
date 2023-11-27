@@ -24,7 +24,7 @@ from tuxemon.menu.quantity import QuantityMenu
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 from tuxemon.state import State
-from tuxemon.states.items import ItemMenuState
+from tuxemon.states.items.item_menu import ItemMenuState
 from tuxemon.tools import (
     open_choice_dialog,
     open_dialog,
@@ -41,10 +41,9 @@ if TYPE_CHECKING:
 MenuGameObj = Callable[[], object]
 
 
-def fix_width(screen_x: int, pos_x: float) -> int:
-    """it returns the correct width based on percentage"""
-    value = round(screen_x * pos_x)
-    return value
+def fix_measure(measure: int, percentage: float) -> int:
+    """it returns the correct measure based on percentage"""
+    return round(measure * percentage)
 
 
 HIDDEN_LOCKER = "hidden_locker"
@@ -69,7 +68,11 @@ class ItemTakeState(PygameMenuState):
             itm = self.player.find_item_in_storage(iid)
 
             # list with all the lockers and removes where we are
-            lockers = list(local_session.player.item_boxes.keys())
+            lockers = [
+                key
+                for key in self.player.item_boxes
+                if key not in HIDDEN_LIST_LOCKER
+            ]
             lockers.remove(self.box_name)
 
             # updates the kennel and executes operation
@@ -255,8 +258,6 @@ class ItemTakeState(PygameMenuState):
         theme.scrollarea_position = locals.POSITION_EAST
         theme.background_color = background
         theme.widget_alignment = locals.ALIGN_CENTER
-        theme.scrollbar_color = (237, 246, 248)
-        theme.scrollbar_slider_color = (197, 232, 234)
 
         # menu
         theme.title = True
@@ -281,9 +282,9 @@ class ItemTakeState(PygameMenuState):
         )
 
         self.menu._column_max_width = [
-            fix_width(self.menu._width, 0.33),
-            fix_width(self.menu._width, 0.33),
-            fix_width(self.menu._width, 0.33),
+            fix_measure(self.menu._width, 0.33),
+            fix_measure(self.menu._width, 0.33),
+            fix_measure(self.menu._width, 0.33),
         ]
 
         menu_items_map = []
@@ -300,11 +301,9 @@ class ItemTakeState(PygameMenuState):
         theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
         theme.title = False
-        theme.scrollbar_color = (235, 235, 235)
-        theme.scrollbar_slider_color = (200, 200, 200)
 
 
-class ItemBoxChooseState(PygameMenuState):
+class ItemBoxState(PygameMenuState):
     """Menu to choose an item box."""
 
     def __init__(self) -> None:
@@ -386,7 +385,7 @@ class ItemBoxChooseState(PygameMenuState):
         return ani
 
 
-class ItemBoxChooseStorageState(ItemBoxChooseState):
+class ItemStorageState(ItemBoxState):
     """Menu to choose a box, which you can then take an item from."""
 
     def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
@@ -408,7 +407,7 @@ class ItemBoxChooseStorageState(ItemBoxChooseState):
         return menu_items_map
 
 
-class ItemBoxChooseDropOffState(ItemBoxChooseState):
+class ItemDropOffState(ItemBoxState):
     """Menu to choose a box, which you can then drop off an item into."""
 
     def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
@@ -417,13 +416,13 @@ class ItemBoxChooseDropOffState(ItemBoxChooseState):
         for box_name, items in player.item_boxes.items():
             if box_name not in HIDDEN_LIST_LOCKER:
                 menu_callback = self.change_state(
-                    "ItemDropOffState", box_name=box_name
+                    "ItemDropOff", box_name=box_name
                 )
-            menu_items_map.append((box_name, menu_callback))
+                menu_items_map.append((box_name, menu_callback))
         return menu_items_map
 
 
-class ItemDropOffState(ItemMenuState):
+class ItemDropOff(ItemMenuState):
     """Shows all items in player's bag, puts it into box if selected."""
 
     def __init__(self, box_name: str) -> None:

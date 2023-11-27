@@ -2,18 +2,17 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from collections.abc import Callable, Sequence
+from collections.abc import Sequence
 from typing import Any, Optional
 
 from tuxemon.menu.menu import PopUpMenu
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.sprite import Sprite
-from tuxemon.states.choice import ChoiceState
 from tuxemon.ui.text import TextArea
 
 
-class DialogState(PopUpMenu):
+class DialogState(PopUpMenu[None]):
     """
     Game state with a graphic box and some text in it.
 
@@ -30,16 +29,14 @@ class DialogState(PopUpMenu):
         self,
         text: Sequence[str] = (),
         avatar: Optional[Sprite] = None,
-        menu: Optional[Sequence[tuple[str, str, Callable[[], None]]]] = None,
         **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
         self.text_queue = list(text)
         self.avatar = avatar
-        self.menu = menu
-        self.text_area = TextArea(self.font, self.font_color)
-        self.text_area.rect = self.calc_internal_rect()
-        self.sprites.add(self.text_area)
+        self.dialog_box = TextArea(self.font, self.font_color)
+        self.dialog_box.rect = self.calc_internal_rect()
+        self.sprites.add(self.dialog_box)
 
         if self.avatar:
             avatar_rect = self.calc_final_rect()
@@ -51,19 +48,11 @@ class DialogState(PopUpMenu):
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         if event.pressed and event.button == buttons.A:
-            if self.text_area.drawing_text:
+            if self.dialog_box.drawing_text:
                 self.character_delay = 0.001
 
             elif self.next_text() is None:
-                if self.menu:
-                    self.client.push_state(
-                        ChoiceState(
-                            menu=self.menu,
-                            rect=self.text_area.rect,
-                        )
-                    )
-                else:
-                    self.client.pop_state(self)
+                self.client.pop_state(self)
 
         return None
 

@@ -2,11 +2,9 @@
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="186">
  <properties>
   <property name="edges" value="clamped"/>
-  <property name="north" value="tunnel"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="timber_town"/>
   <property name="types" value="town"/>
-  <property name="west" value="route5"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
@@ -193,14 +191,15 @@
   <object id="181" name="Player Spawn" type="event" x="560" y="48" width="16" height="16"/>
   <object id="184" name="Sign: Timber Town" type="event" x="32" y="448" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog welcome_location_town"/>
+    <property name="act1" value="translated_dialog flower_city"/>
+    <property name="act2" value="translated_dialog flower_city_description"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="185" name="Sign: Timber North" type="event" x="528" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog here_to_north"/>
+    <property name="act1" value="translated_dialog tunnel"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

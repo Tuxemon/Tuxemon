@@ -1,16 +1,17 @@
 {
   "tech_id": 111,
-  "accuracy": 0.7,
+  "accuracy": 1,
   "animation": "slash_power",
   "effects": [
+    "land",
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.2,
+  "potency": null,
   "power": 1.5,
   "range": "touch",
-  "recharge": 3,
+  "recharge": 1,
   "sfx": "sfx_blaster",
   "slug": "hawk",
   "sort": "damage",

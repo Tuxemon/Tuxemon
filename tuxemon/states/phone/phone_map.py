@@ -25,6 +25,12 @@ def fix_measure(measure: int, percentage: float) -> int:
 
 
 class NuPhoneMap(PygameMenuState):
+    """
+    This is experimental code for the NuPhone Map. Currently these map names are are hardcoded,
+    but in the future, we will need to use some other data source to get the map names so that this
+    code is not directly tied to any specific maps.
+    """
+
     def add_menu_items(
         self,
         menu: pygame_menu.Menu,
@@ -35,9 +41,7 @@ class NuPhoneMap(PygameMenuState):
             selectable=True,
             float=True,
             selection_effect=HighlightSelection(),
-            selection_color=(232, 48, 48),
             font_size=round(0.015 * width),
-            background_color=(232, 48, 48),
         )
         assert not isinstance(lab1, list)
         lab1.translate(
@@ -49,9 +53,7 @@ class NuPhoneMap(PygameMenuState):
             selectable=True,
             float=True,
             selection_effect=HighlightSelection(),
-            selection_color=(232, 48, 48),
             font_size=round(0.015 * width),
-            background_color=(232, 48, 48),
         )
         assert not isinstance(lab2, list)
         lab2.translate(
@@ -63,9 +65,7 @@ class NuPhoneMap(PygameMenuState):
             selectable=True,
             float=True,
             selection_effect=HighlightSelection(),
-            selection_color=(232, 48, 48),
             font_size=round(0.015 * width),
-            background_color=(232, 48, 48),
         )
         assert not isinstance(lab3, list)
         lab3.translate(
@@ -77,9 +77,7 @@ class NuPhoneMap(PygameMenuState):
             selectable=True,
             float=True,
             selection_effect=HighlightSelection(),
-            selection_color=(232, 48, 48),
             font_size=round(0.015 * width),
-            background_color=(232, 48, 48),
         )
         assert not isinstance(lab4, list)
         lab4.translate(
@@ -91,9 +89,7 @@ class NuPhoneMap(PygameMenuState):
             selectable=True,
             float=True,
             selection_effect=HighlightSelection(),
-            selection_color=(232, 48, 48),
             font_size=round(0.015 * width),
-            background_color=(232, 48, 48),
         )
         assert not isinstance(lab5, list)
         lab5.translate(
@@ -105,9 +101,7 @@ class NuPhoneMap(PygameMenuState):
             selectable=True,
             float=True,
             selection_effect=HighlightSelection(),
-            selection_color=(232, 48, 48),
             font_size=round(0.015 * width),
-            background_color=(232, 48, 48),
         )
         assert not isinstance(lab6, list)
         lab6.translate(

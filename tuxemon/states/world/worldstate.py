@@ -101,7 +101,11 @@ class WorldState(state.State):
         self.screen_rect = self.screen.get_rect()
         self.resolution = prepare.SCREEN_SIZE
         self.tile_size = prepare.TILE_SIZE
-        self.layer_color: ColorLike = [0, 0, 0, 0]
+        # default variables for layer
+        self.layer = pygame.Surface(
+            self.client.screen.get_size(), pygame.SRCALPHA
+        )
+        self.layer_color: ColorLike = (0, 0, 0, 0)
 
         #####################################################################
         #                           Player Details                           #
@@ -264,9 +268,6 @@ class WorldState(state.State):
         self.transition_surface.fill(color)
 
     def set_layer(self) -> None:
-        self.layer = pygame.Surface(
-            self.client.screen.get_size(), pygame.SRCALPHA
-        )
         self.layer.fill(self.layer_color)
         self.screen.blit(self.layer, (0, 0))
 

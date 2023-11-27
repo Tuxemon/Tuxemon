@@ -68,7 +68,7 @@ class MonsterInfoState(PygameMenuState):
         lab1 = menu.add.label(
             title=str(monster.txmn_id) + ". " + monster.name.upper(),
             label_id="name",
-            font_size=20,
+            font_size=round(0.015 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -79,7 +79,7 @@ class MonsterInfoState(PygameMenuState):
         lab2 = menu.add.label(
             title="Lv. " + str(monster.level) + " - " + str(exp) + "px",
             label_id="level",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -91,7 +91,7 @@ class MonsterInfoState(PygameMenuState):
         lab3 = menu.add.label(
             title=T.format("tuxepedia_exp", {"exp_lv": exp_lv, "lv": lv}),
             label_id="exp",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -106,7 +106,7 @@ class MonsterInfoState(PygameMenuState):
             + str(diff_weight)
             + "%)",
             label_id="weight",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -121,7 +121,7 @@ class MonsterInfoState(PygameMenuState):
             + str(diff_height)
             + "%)",
             label_id="height",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -131,7 +131,7 @@ class MonsterInfoState(PygameMenuState):
         lab6 = menu.add.label(
             title=types,
             label_id="type",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -141,7 +141,7 @@ class MonsterInfoState(PygameMenuState):
         lab7 = menu.add.label(
             title=T.translate(monster.shape),
             label_id="shape",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -151,7 +151,7 @@ class MonsterInfoState(PygameMenuState):
         lab8 = menu.add.label(
             title=monster.category,
             label_id="species",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -164,7 +164,7 @@ class MonsterInfoState(PygameMenuState):
         lab9 = menu.add.label(
             title=tastes + cold + ", " + warm,
             label_id="taste",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -187,7 +187,7 @@ class MonsterInfoState(PygameMenuState):
         lab10 = menu.add.label(
             title=ref,
             label_id="capture",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -197,7 +197,7 @@ class MonsterInfoState(PygameMenuState):
         lab11 = menu.add.label(
             title=T.translate("short_hp") + ": " + str(monster.hp),
             label_id="hp",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -207,7 +207,7 @@ class MonsterInfoState(PygameMenuState):
         lab12 = menu.add.label(
             title=T.translate("short_armour") + ": " + str(monster.armour),
             label_id="armour",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -217,7 +217,7 @@ class MonsterInfoState(PygameMenuState):
         lab13 = menu.add.label(
             title=T.translate("short_dodge") + ": " + str(monster.dodge),
             label_id="dodge",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -227,7 +227,7 @@ class MonsterInfoState(PygameMenuState):
         lab14 = menu.add.label(
             title=T.translate("short_melee") + ": " + str(monster.melee),
             label_id="melee",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -237,7 +237,7 @@ class MonsterInfoState(PygameMenuState):
         lab15 = menu.add.label(
             title=T.translate("short_ranged") + ": " + str(monster.ranged),
             label_id="ranged",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -247,7 +247,7 @@ class MonsterInfoState(PygameMenuState):
         lab16 = menu.add.label(
             title=T.translate("short_speed") + ": " + str(monster.speed),
             label_id="speed",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -257,7 +257,7 @@ class MonsterInfoState(PygameMenuState):
         lab17 = menu.add.label(
             title=monster.description,
             label_id="description",
-            font_size=18,
+            font_size=round(0.015 * width),
             wordwrap=True,
             align=locals.ALIGN_LEFT,
             float=True,
@@ -268,7 +268,7 @@ class MonsterInfoState(PygameMenuState):
         lab18 = menu.add.label(
             title=evo,
             label_id="history",
-            font_size=18,
+            font_size=round(0.015 * width),
             wordwrap=True,
             align=locals.ALIGN_LEFT,
             float=True,
@@ -292,7 +292,7 @@ class MonsterInfoState(PygameMenuState):
             menu.add.label(
                 title=f"{T.translate(ele).upper()}",
                 align=locals.ALIGN_LEFT,
-                font_size=15,
+                font_size=round(0.012 * width),
             )
             for ele in elements
         ]

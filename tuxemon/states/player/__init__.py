@@ -119,7 +119,7 @@ class PlayerState(PygameMenuState):
         lab1 = menu.add.label(
             title=name,
             label_id="name",
-            font_size=30,
+            font_size=round(0.025 * width),
             align=locals.ALIGN_LEFT,
             underline=True,
             float=True,
@@ -131,7 +131,7 @@ class PlayerState(PygameMenuState):
         lab2 = menu.add.label(
             title=T.translate("wallet") + ": " + str(money),
             label_id="money",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -141,7 +141,7 @@ class PlayerState(PygameMenuState):
         lab3 = menu.add.label(
             title=msg_seen,
             label_id="seen",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -151,7 +151,7 @@ class PlayerState(PygameMenuState):
         lab4 = menu.add.label(
             title=msg_caught,
             label_id="caught",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -161,7 +161,7 @@ class PlayerState(PygameMenuState):
         lab5 = menu.add.label(
             title=msg_begin,
             label_id="begin",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -171,7 +171,7 @@ class PlayerState(PygameMenuState):
         lab6 = menu.add.label(
             title=msg_walked,
             label_id="walked",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -181,7 +181,7 @@ class PlayerState(PygameMenuState):
         lab7 = menu.add.label(
             title=msg_battles,
             label_id="battle",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )
@@ -191,7 +191,7 @@ class PlayerState(PygameMenuState):
         lab8 = menu.add.label(
             title=msg_progress,
             label_id="progress",
-            font_size=15,
+            font_size=round(0.012 * width),
             align=locals.ALIGN_LEFT,
             float=True,
         )

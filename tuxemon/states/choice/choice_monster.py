@@ -33,6 +33,7 @@ class ChoiceMonster(PygameMenuState):
         escape_key_exits: bool = False,
         **kwargs: Any,
     ) -> None:
+        width, height = prepare.SCREEN_SIZE
         theme = get_theme()
         if len(menu) > 15:
             theme.scrollarea_position = POSITION_EAST
@@ -65,7 +66,7 @@ class ChoiceMonster(PygameMenuState):
             self.menu.add.button(
                 name,
                 callback,
-                font_size=20,
+                font_size=round(0.015 * width),
                 align=ALIGN_CENTER,
                 selection_effect=HighlightSelection(),
             )

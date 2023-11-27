@@ -13,7 +13,6 @@ import pygame_menu
 from pygame_menu import locals
 from pygame_menu.locals import POSITION_CENTER
 from pygame_menu.widgets.selection.highlight import HighlightSelection
-from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
 from tuxemon import prepare
 from tuxemon.item import item
@@ -61,6 +60,8 @@ class ItemTakeState(PygameMenuState):
         menu: pygame_menu.Menu,
         items: Sequence[Item],
     ) -> None:
+        width, height = prepare.SCREEN_SIZE
+
         # it regroups kennel operations: pick up, move and release
         def locker_options(instance_id: str) -> None:
             # retrieves the item from the iid
@@ -231,7 +232,7 @@ class ItemTakeState(PygameMenuState):
             menu.add.label(
                 label,
                 selectable=True,
-                font_size=20,
+                font_size=round(0.015 * width),
                 align=locals.ALIGN_CENTER,
                 selection_effect=HighlightSelection(),
             )
@@ -257,11 +258,7 @@ class ItemTakeState(PygameMenuState):
 
         # menu
         theme.title = True
-        theme.title_background_color = (197, 232, 234)
         theme.title_font_size = round(0.025 * width)
-        theme.title_font_color = (10, 10, 10)
-        theme.title_close_button = False
-        theme.title_bar_style = MENUBAR_STYLE_ADAPTIVE
 
         columns = 3
 

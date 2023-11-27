@@ -13,7 +13,6 @@ import pygame_menu
 from pygame_menu import locals
 from pygame_menu.locals import POSITION_CENTER
 from pygame_menu.widgets.selection.highlight import HighlightSelection
-from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
 from tuxemon import prepare
 from tuxemon.db import PlagueType
@@ -62,6 +61,8 @@ class MonsterTakeState(PygameMenuState):
         menu: pygame_menu.Menu,
         items: Sequence[Monster],
     ) -> None:
+        width, height = prepare.SCREEN_SIZE
+
         # it regroups kennel operations: pick up, move and release
         def kennel_options(instance_id: str) -> None:
             # retrieves the monster from the iid
@@ -206,12 +207,15 @@ class MonsterTakeState(PygameMenuState):
             diff = round((monster.current_hp / monster.hp) * 100, 1)
             level = f"Lv.{monster.level}"
             menu.add.progress_bar(
-                level, default=diff, font_size=20, align=locals.ALIGN_CENTER
+                level,
+                default=diff,
+                font_size=round(0.015 * width),
+                align=locals.ALIGN_CENTER,
             )
             menu.add.button(
                 label,
                 partial(description, monster),
-                font_size=20,
+                font_size=round(0.015 * width),
                 align=locals.ALIGN_CENTER,
                 selection_effect=HighlightSelection(),
             )
@@ -240,11 +244,7 @@ class MonsterTakeState(PygameMenuState):
 
         # menu
         theme.title = True
-        theme.title_background_color = (197, 232, 234)
         theme.title_font_size = round(0.025 * width)
-        theme.title_font_color = (10, 10, 10)
-        theme.title_close_button = False
-        theme.title_bar_style = MENUBAR_STYLE_ADAPTIVE
 
         columns = 3
 

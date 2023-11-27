@@ -74,7 +74,7 @@ class JournalChoice(PygameMenuState):
                         "JournalState",
                         kwargs={"monsters": monsters, "page": page},
                     ),
-                    font_size=20,
+                    font_size=round(0.015 * width),
                 ).translate(
                     fix_measure(width, 0.18), fix_measure(height, 0.01)
                 )
@@ -82,7 +82,7 @@ class JournalChoice(PygameMenuState):
                 lab1 = menu.add.label(
                     label,
                     font_color=(105, 105, 105),
-                    font_size=20,
+                    font_size=round(0.015 * width),
                 )
                 assert not isinstance(lab1, list)
                 lab1.translate(

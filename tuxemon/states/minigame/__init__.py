@@ -37,6 +37,7 @@ class MinigameState(PygameMenuState):
         self,
         menu: pygame_menu.Menu,
     ) -> None:
+        width, height = prepare.SCREEN_SIZE
         # data
         monsters = list(db.database["monster"])
         data = []
@@ -50,7 +51,7 @@ class MinigameState(PygameMenuState):
         menu.add.label(
             title=f"{name}",
             label_id="question",
-            font_size=30,
+            font_size=round(0.025 * width),
             align=locals.ALIGN_CENTER,
             underline=True,
         )
@@ -90,7 +91,7 @@ class MinigameState(PygameMenuState):
             menu.add.button(
                 T.translate(txmn.slug),
                 partial(checking, txmn),
-                font_size=20,
+                font_size=round(0.015 * width),
                 button_id=txmn.slug,
                 selection_effect=HighlightSelection(),
             )

@@ -58,7 +58,7 @@ class JournalState(PygameMenuState):
                             "JournalInfoState",
                             kwargs={"monster": mon},
                         ),
-                        font_size=20,
+                        font_size=round(0.015 * width),
                         font_color=(25, 25, 112, 1),
                         selection_color=(25, 25, 112, 1),
                         button_id=mon.slug,
@@ -72,7 +72,7 @@ class JournalState(PygameMenuState):
                             "JournalInfoState",
                             kwargs={"monster": mon},
                         ),
-                        font_size=20,
+                        font_size=round(0.015 * width),
                         button_id=mon.slug,
                         underline=True,
                     ).translate(
@@ -82,7 +82,7 @@ class JournalState(PygameMenuState):
                 label = str(mon.txmn_id) + ". " + T.translate(mon.slug).upper()
                 lab = menu.add.label(
                     label,
-                    font_size=20,
+                    font_size=round(0.015 * width),
                     font_color=(105, 105, 105),
                     label_id=mon.slug,
                 )

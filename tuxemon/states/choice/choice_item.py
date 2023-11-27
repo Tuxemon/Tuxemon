@@ -67,7 +67,7 @@ class ChoiceItem(PygameMenuState):
             self.menu.add.button(
                 name,
                 callback,
-                font_size=15,
+                font_size=round(0.012 * width),
                 float=True,
                 selection_effect=HighlightSelection(),
             ).translate(

@@ -20,6 +20,7 @@ from tuxemon.item.item import MAX_TYPES_BAG, Item, decode_items, encode_items
 from tuxemon.locale import T
 from tuxemon.map import Direction, dirs2, dirs3, facing, get_direction, proj
 from tuxemon.math import Vector2
+from tuxemon.mission import Mission, decode_mission, encode_mission
 from tuxemon.monster import (
     MAX_LEVEL,
     MAX_MOVES,
@@ -59,6 +60,7 @@ class NPCState(TypedDict):
     contacts: dict[str, str]
     money: dict[str, int]
     template: Sequence[Mapping[str, Any]]
+    missions: Sequence[Mapping[str, Any]]
     items: Sequence[Mapping[str, Any]]
     monsters: Sequence[Mapping[str, Any]]
     player_name: str
@@ -136,11 +138,13 @@ class NPC(Entity[NPCState]):
         self.menu_player: bool = True
         self.menu_monsters: bool = True
         self.menu_bag: bool = True
+        self.menu_missions: bool = True
         # This is a list of tuxemon the npc has. Do not modify directly
         self.monsters: list[Monster] = []
         # The player's items.
         self.items: list[Item] = []
         self.template: list[Template] = []
+        self.missions: list[Mission] = []
         self.economy: Optional[Economy] = None
         # related to spyderbite (PlagueType)
         self.plague = PlagueType.healthy
@@ -227,6 +231,7 @@ class NPC(Entity[NPCState]):
             "money": self.money,
             "items": encode_items(self.items),
             "template": encode_template(self.template),
+            "missions": encode_mission(self.missions),
             "monsters": encode_monsters(self.monsters),
             "player_name": self.name,
             "player_steps": self.steps,
@@ -270,6 +275,9 @@ class NPC(Entity[NPCState]):
         self.template = []
         for tmp in decode_template(save_data.get("template")):
             self.template.append(tmp)
+        self.missions = []
+        for mission in decode_mission(save_data.get("missions")):
+            self.missions.append(mission)
         self.name = save_data["player_name"]
         self.steps = save_data["player_steps"]
         self.plague = save_data["plague"]
@@ -1079,6 +1087,36 @@ class NPC(Entity[NPCState]):
             if item in box:
                 box.remove(item)
                 return
+
+    ####################################################
+    #                    Missions                      #
+    ####################################################
+
+    def add_mission(self, mission: Mission) -> None:
+        """
+        Adds a mission to the npc's missions.
+
+        """
+        self.missions.append(mission)
+
+    def remove_mission(self, mission: Mission) -> None:
+        """
+        Removes a mission from this npc's missions.
+
+        """
+        if mission in self.missions:
+            self.missions.remove(mission)
+
+    def find_mission(self, mission: str) -> Optional[Mission]:
+        """
+        Finds a mission in the npc's missions.
+
+        """
+        for mis in self.missions:
+            if mis.slug == mission:
+                return mis
+
+        return None
 
     def give_money(self, amount: int) -> None:
         self.money["player"] += amount

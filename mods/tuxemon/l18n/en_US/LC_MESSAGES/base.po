@@ -2687,6 +2687,18 @@ msgstr "New Game"
 msgid "menu_options"
 msgstr "Options"
 
+msgid "menu_missions"
+msgstr "Missions"
+
+msgid "completed"
+msgstr "Completed"
+
+msgid "pending"
+msgstr "Pending"
+
+msgid "failed"
+msgstr "Failed"
+
 msgid "menu_minigame"
 msgstr "Minigame"
 

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import uuid
 from dataclasses import dataclass
-from typing import Union, final
+from typing import Optional, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -35,18 +35,15 @@ class AddTechAction(EventAction):
     name = "add_tech"
     monster_id: str
     technique: str
-    power: Union[float, None] = None
-    potency: Union[float, None] = None
-    accuracy: Union[float, None] = None
-    npc_slug: Union[str, None] = None
+    power: Optional[float] = None
+    potency: Optional[float] = None
+    accuracy: Optional[float] = None
+    npc_slug: Optional[str] = None
 
     def start(self) -> None:
         player = self.session.player
-        if self.npc_slug is None:
-            trainer_slug = "player"
-        else:
-            trainer_slug = self.npc_slug
-        trainer = get_npc(self.session, trainer_slug)
+        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
+        trainer = get_npc(self.session, self.npc_slug)
         assert trainer
         instance_id = uuid.UUID(
             player.game_variables[self.monster_id],

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Union, final
+from typing import Optional, final
 
 from tuxemon.db import PlagueType
 from tuxemon.event import get_npc
@@ -31,14 +31,11 @@ class NpcPlagueAttributeAction(
 
     name = "npc_plague"
     value: str
-    npc_slug: Union[str, None] = None
+    npc_slug: Optional[str] = None
 
     def start(self) -> None:
-        if self.npc_slug is None:
-            trainer_slug = "player"
-        else:
-            trainer_slug = self.npc_slug
-        npc = get_npc(self.session, trainer_slug)
+        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
+        npc = get_npc(self.session, self.npc_slug)
         assert npc
         if self.value == PlagueType.infected:
             npc.plague = PlagueType.infected

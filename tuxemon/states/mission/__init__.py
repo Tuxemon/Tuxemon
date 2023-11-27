@@ -58,6 +58,7 @@ class MissionState(PygameMenuState):
         self,
         menu: pygame_menu.Menu,
     ) -> None:
+        width, height = prepare.SCREEN_SIZE
         player = local_session.player
 
         missions: list[Mission] = []
@@ -76,5 +77,5 @@ class MissionState(PygameMenuState):
                 menu.add.button(
                     title=label,
                     action=None,
-                    font_size=20,
+                    font_size=round(0.015 * width),
                 )

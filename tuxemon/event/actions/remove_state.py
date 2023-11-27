@@ -35,7 +35,7 @@ class RemoveStateAction(EventAction):
             raise RuntimeError
         if not self.state_name:
             for ele in self.session.client.active_states:
-                if ele.name != "WorldState" and ele.name != "BackgroundState":
+                if ele.name != "WorldState":
                     self.session.client.remove_state(ele)
         if current_state.name == self.state_name:
             self.session.client.pop_state()

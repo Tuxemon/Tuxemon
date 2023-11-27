@@ -9,7 +9,6 @@ from collections.abc import Callable
 from functools import partial
 from typing import Any, Union
 
-import pygame
 import pygame_menu
 from pygame_menu import locals
 from pygame_menu.locals import POSITION_CENTER
@@ -25,22 +24,6 @@ from tuxemon.state import State
 logger = logging.getLogger(__name__)
 
 StartGameObj = Callable[[], object]
-
-
-class BackgroundState(State):
-    """
-    Background state is used to prevent other states from
-    being required to track dirty screen areas. For example,
-    in the start state, there is a menu on a blank background,
-    since menus do not clean up dirty areas, the blank,
-    "Background state" will do that. The alternative is creating
-    a system for states to clean up their dirty screen areas.
-
-    Eventually the need for this will be phased out.
-    """
-
-    def draw(self, surface: pygame.surface.Surface) -> None:
-        surface.fill((0, 0, 0, 0))
 
 
 class StartState(PygameMenuState):
@@ -60,7 +43,7 @@ class StartState(PygameMenuState):
             local_session.player.game_variables[
                 "date_start_game"
             ] = formula.today_ordinal()
-            self.client.pop_state(self)
+            self.client.remove_state(self)
 
         def change_state(
             state: Union[State, str],

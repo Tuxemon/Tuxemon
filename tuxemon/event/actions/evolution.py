@@ -31,7 +31,7 @@ class EvolutionAction(EventAction):
         player = self.session.player
         client = self.session.client
         # this function cleans up the previous state without crashing
-        if len(client.state_manager.active_states) > 2:
+        if len(client.state_manager.active_states) > 1:
             return
 
         def positive_answer(monster: Monster, evolved: Monster) -> None:

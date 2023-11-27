@@ -9,7 +9,7 @@ from tuxemon import log, prepare
 from tuxemon.session import local_session
 from tuxemon.states.persistance.load_menu import LoadMenuState
 from tuxemon.states.splash import SplashState
-from tuxemon.states.start import BackgroundState, StartState
+from tuxemon.states.start import StartState
 from tuxemon.states.transition.fade import FadeInTransition
 from tuxemon.states.world.worldstate import WorldState
 
@@ -45,13 +45,6 @@ def main(
     # WIP.  Will be more complete with game-view
     local_session.client = client
 
-    # background state is used to prevent other states from
-    # being required to track dirty screen areas.  for example,
-    # in the start state, there is a menu on a blank background,
-    # since menus do not clean up dirty areas, the blank,
-    # "Background state" will do that.  The alternative is creating
-    # a system for states to clean up their dirty screen areas.
-    client.push_state(BackgroundState())
     if not config.skip_titlescreen:
         client.push_state(StartState())
 

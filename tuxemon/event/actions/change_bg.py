@@ -43,30 +43,27 @@ class ChangeBgAction(EventAction):
     background: Optional[str] = None
 
     def start(self) -> None:
+        client = self.session.client
         # don't override previous state if we are still in the state.
-        current_state = self.session.client.current_state
+        current_state = client.current_state
         if current_state is None:
             # obligatory "should not happen"
             raise RuntimeError
 
         # this function cleans up the previous state without crashing
-        if len(self.session.client.state_manager.active_states) > 2:
-            self.session.client.pop_state()
+        if len(client.state_manager.active_states) > 1:
+            client.pop_state()
 
         if current_state.name != str(ImageState):
             if self.background is None:
-                self.session.client.pop_state()
+                client.pop_state()
                 return
             else:
                 _background = self.background.split(":")
                 if len(_background) == 1:
-                    self.session.client.push_state(
-                        ImageState(background=self.background)
-                    )
+                    client.push_state(ImageState(background=self.background))
                 else:
-                    self.session.client.push_state(
-                        ColorState(color=self.background)
-                    )
+                    client.push_state(ColorState(color=self.background))
 
     def cleanup(self) -> None:
         theme = get_theme()

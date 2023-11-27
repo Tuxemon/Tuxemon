@@ -11,10 +11,6 @@ events:
     conditions:
     - not variable_set scenario_choice:spyder_campaign
     - not variable_set scenario_choice:xero_campaign
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Spyder:
     actions:
@@ -30,10 +26,6 @@ events:
     - not variable_set spyder_starting_money:yes
     - not variable_set gender_choice:gender_male
     - not variable_set gender_choice:gender_female
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Xero:
     actions:
@@ -49,10 +41,6 @@ events:
     - not variable_set xero_starting_money:yes
     - not variable_set gender_choice:gender_male
     - not variable_set gender_choice:gender_female
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Gender Male:
     actions:
@@ -60,10 +48,6 @@ events:
     - set_player_name m_default1:m_default2:m_default3
     conditions:
     - is variable_set gender_choice:gender_male
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Gender Female:
     actions:
@@ -71,8 +55,4 @@ events:
     - set_player_name f_default1:f_default2:f_default3
     conditions:
     - is variable_set gender_choice:gender_female
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"

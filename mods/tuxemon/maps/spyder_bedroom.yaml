@@ -62,10 +62,6 @@ events:
     conditions:
     - not variable_set question_intro:yes
     - not variable_set question_intro:no
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Spyder Intro:
     actions:
@@ -92,10 +88,6 @@ events:
     conditions:
     - is variable_set question_intro:no
     - not variable_set spyder_intro:yes
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   No Intro:
     actions:
@@ -104,18 +96,10 @@ events:
     conditions:
     - is variable_set question_intro:yes
     - not variable_set spyder_intro:yes
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Play Music:
     actions:
     - play_music music_home
     conditions:
     - not music_playing music_home
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"

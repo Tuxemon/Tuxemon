@@ -4,10 +4,6 @@ events:
     - play_music music_cathedral_theme
     conditions:
     - not music_playing music_cathedral_theme
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Intro Storekeeper:
     actions:
@@ -94,58 +90,34 @@ events:
     - unlock_controls
     conditions:
     - not variable_set intro_scoop:done
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Billie Budaye:
     actions:
     - set_variable billie_choice:budaye
     conditions:
     - is variable_set myintrochoice:budaye
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Billie Dollfin:
     actions:
     - set_variable billie_choice:dollfin
     conditions:
     - is variable_set myintrochoice:dollfin
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Billie Grintot:
     actions:
     - set_variable billie_choice:grintot
     conditions:
     - is variable_set myintrochoice:grintot
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Billie Ignibus:
     actions:
     - set_variable billie_choice:ignibus
     conditions:
     - is variable_set myintrochoice:ignibus
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Billie Memnomnom:
     actions:
     - set_variable billie_choice:memnomnom
     conditions:
     - is variable_set myintrochoice:memnomnom
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"

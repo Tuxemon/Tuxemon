@@ -24,7 +24,6 @@ events:
     - transition_teleport spyder_bedroom.tmx,4,4,0.3
     - set_money player,250
     - set_variable spyder_starting_money:yes
-    - set_variable change_day_night:Enable
     conditions:
     - is variable_set scenario_choice:spyder_campaign
     - not variable_set spyder_starting_money:yes
@@ -43,7 +42,6 @@ events:
     - transition_teleport player_house_bedroom.tmx,4,4,0.3
     - set_money player,500
     - set_variable xero_starting_money:yes
-    - set_variable change_day_night:Disable
     conditions:
     - is variable_set scenario_choice:xero_campaign
     - not variable_set xero_starting_money:yes

@@ -23,7 +23,7 @@ from tuxemon.menu.quantity import QuantityMenu
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 from tuxemon.state import State
-from tuxemon.states.items import ItemMenuState
+from tuxemon.states.items.item_menu import ItemMenuState
 from tuxemon.tools import (
     open_choice_dialog,
     open_dialog,
@@ -69,7 +69,11 @@ class ItemTakeState(PygameMenuState):
             itm = self.player.find_item_in_storage(iid)
 
             # list with all the lockers and removes where we are
-            lockers = list(local_session.player.item_boxes.keys())
+            lockers = [
+                key
+                for key in self.player.item_boxes
+                if key not in HIDDEN_LIST_LOCKER
+            ]
             lockers.remove(self.box_name)
 
             # updates the kennel and executes operation
@@ -296,7 +300,7 @@ class ItemTakeState(PygameMenuState):
         theme.title = False
 
 
-class ItemBoxChooseState(PygameMenuState):
+class ItemBoxState(PygameMenuState):
     """Menu to choose an item box."""
 
     def __init__(self) -> None:
@@ -378,7 +382,7 @@ class ItemBoxChooseState(PygameMenuState):
         return ani
 
 
-class ItemBoxChooseStorageState(ItemBoxChooseState):
+class ItemStorageState(ItemBoxState):
     """Menu to choose a box, which you can then take an item from."""
 
     def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
@@ -400,7 +404,7 @@ class ItemBoxChooseStorageState(ItemBoxChooseState):
         return menu_items_map
 
 
-class ItemBoxChooseDropOffState(ItemBoxChooseState):
+class ItemDropOffState(ItemBoxState):
     """Menu to choose a box, which you can then drop off an item into."""
 
     def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
@@ -409,13 +413,13 @@ class ItemBoxChooseDropOffState(ItemBoxChooseState):
         for box_name, items in player.item_boxes.items():
             if box_name not in HIDDEN_LIST_LOCKER:
                 menu_callback = self.change_state(
-                    "ItemDropOffState", box_name=box_name
+                    "ItemDropOff", box_name=box_name
                 )
-            menu_items_map.append((box_name, menu_callback))
+                menu_items_map.append((box_name, menu_callback))
         return menu_items_map
 
 
-class ItemDropOffState(ItemMenuState):
+class ItemDropOff(ItemMenuState):
     """Shows all items in player's bag, puts it into box if selected."""
 
     def __init__(self, box_name: str) -> None:

@@ -67,6 +67,8 @@ class YAMLEventLoader:
             path: Path to the file.
 
         """
+        yaml_data: dict[str, dict[str, dict[str, Any]]] = {}
+
         with open(path) as fp:
             yaml_data = yaml.load(fp.read(), Loader=yaml.SafeLoader)
 
@@ -74,10 +76,10 @@ class YAMLEventLoader:
             _id = uuid.uuid4().int
             conds = []
             acts = []
-            x = event_data.get("x")
-            y = event_data.get("y")
-            w = event_data.get("width")
-            h = event_data.get("height")
+            x = event_data.get("x", 0)
+            y = event_data.get("y", 0)
+            w = event_data.get("width", 1)
+            h = event_data.get("height", 1)
             event_type = event_data.get("type")
 
             for key, value in enumerate(

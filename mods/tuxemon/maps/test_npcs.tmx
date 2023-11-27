@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="594">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="slug" value="test_npcs"/>
+  <property name="types" value="notype"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHtV0FywzAIdK7JZ31J+pcmf4n7mOYdhYNmtppdi9iyWnt0YOQQBKsFgzUOwzAeVK52rtsGUouvT8N230Ae5pNhzPn4EHZpb0t8ju1y+s3H2X7PYWyJT8Waw6j2rM055jfVd84dxkD7lFtfW+BDHOr5L/FNxoPLy+Q/4kv5Urn6NtxfJskOV7VHnTOqZ/lSsZhtwqj2RHEoOxbzaRxNRBR3jrElvsTJO2vHx+s+ymHnbx/85d8taeaV1rmZqHpHRJ/3l63qKIKF2ewZn88z1qdb6vKZgPnNuY32mi3tOr56fazn930uj1p/S+dOaS75/3ivXcof7mNzYI0O3wOMg/pST8N9a7CwvYgD4/h9PMK/2+D3gZo7eC9UNmw24QxBfOwsER2eF3lH38oG7dkz+ohgYTYqNvpWNgwT6tTdjfGudJgP9F0DH/qr/bwnfOrdw15Xm5+SP+SP1a3rltZlKXbk/0htq9qN+O82898zP94ARYI=
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHtWAsKwjAM7USv4ucqbnoVETyKel4T8EEIkyaxazdYoSRrX9LXl85tdtuUNtS7jE3UesIM1Gu2Pa13oJ6zzAl7qMkPmuQsc8IeavI77lI6Ubc07MGCLYW5ELerkV+L+nr0a1Ffj34t6us5Jy3q6+HXor6e89eivp7z59G6FNajX6k1PXmWoh90zFnP3ktgoZ/VlljTkyOnl5735C6BteoGXIk1PTmgjyemJraVLtY9Lk2/M70L9oY+GN8ZrTr9wmn9brSuHpOxmLtX4qfPH/PTY5If5mrxgx7gwPwsrRY/6AFOc+O36ofKxOyqX0w3RGn9nnT/vr4dGGkx9zbe5zI24uv7N5Jjqhj+DdP6TbVWJC/zg34leOL7/UH/18HXvOS49DWOr6V+4DmGs47h+535wdexclz6GsfXUr+xee8Yvt+ZH3ydQ45LX+P4mvnNuS2Bn+Vd9F9MtEZL0C+6t2gcnj8Wy8+oDy41S4c=
+  </data>
+ </layer>
+ <layer id="6" name="Above Player" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt0AENAAAAwqD3T20PBxEoDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQNfAwMZAAAB
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="4" name="Collisions">
+  <object id="441" type="collision" x="0" y="144" width="32" height="416"/>
+  <object id="442" type="collision" x="0" y="592" width="400" height="16"/>
+  <object id="444" type="collision" x="624" y="480" width="16" height="160"/>
+  <object id="474" type="collision" x="304" y="512" width="80" height="48"/>
+  <object id="475" type="collision" x="448" y="512" width="32" height="48"/>
+  <object id="476" type="collision" x="496" y="512" width="32" height="48"/>
+  <object id="479" type="collision" x="64" y="320" width="16" height="160"/>
+  <object id="480" type="collision" x="80" y="320" width="160" height="16"/>
+  <object id="481" type="collision" x="224" y="336" width="16" height="144"/>
+  <object id="482" type="collision" x="192" y="464" width="32" height="16"/>
+  <object id="485" type="collision" x="192" y="336" width="32" height="32"/>
+  <object id="486" type="collision" x="80" y="336" width="32" height="32"/>
+  <object id="489" type="collision" x="32" y="208" width="160" height="64"/>
+  <object id="491" type="collision" x="176" y="0" width="32" height="160"/>
+  <object id="492" type="collision" x="0" y="0" width="176" height="48"/>
+  <object id="493" type="collision" x="0" y="48" width="32" height="64"/>
+  <object id="553" type="collision" x="448" y="624" width="176" height="16"/>
+  <object id="569" type="collision" x="32" y="512" width="32" height="32"/>
+  <object id="581" type="collision" x="80" y="464" width="32" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="5" name="Events">
+  <object id="562" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_town_theme"/>
+    <property name="cond1" value="not music_playing music_town_theme"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

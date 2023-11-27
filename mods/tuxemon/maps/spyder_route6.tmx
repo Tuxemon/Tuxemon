@@ -527,12 +527,6 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="221" name="Remove obstacle 1" type="event" x="0" y="128" width="16" height="16">
-   <properties>
-    <property name="act1" value="remove_collision water"/>
-    <property name="cond1" value="is has_item player,surfboard"/>
-   </properties>
-  </object>
   <object id="224" name="Teleport to Tunnel 1" type="event" x="8.88178e-16" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_tunnel.tmx,19,29,0.3"/>

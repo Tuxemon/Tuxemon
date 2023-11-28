@@ -127,7 +127,7 @@ class WorldState(state.State):
         self.layer = pygame.Surface(
             self.client.screen.get_size(), pygame.SRCALPHA
         )
-        self.layer_color: ColorLike = (0, 0, 0, 0)
+        self.layer_color: ColorLike = prepare.TRANSPARENT_COLOR
 
         #####################################################################
         #                           Player Details                           #
@@ -536,8 +536,8 @@ class WorldState(state.State):
                 bottom_bar = pygame.Surface(
                     (self.resolution[0], self.resolution[1] / 6)
                 )
-                top_bar.fill((0, 0, 0))
-                bottom_bar.fill((0, 0, 0))
+                top_bar.fill(prepare.BLACK_COLOR)
+                bottom_bar.fill(prepare.BLACK_COLOR)
                 surface.blit(top_bar, (0, 0))
                 bottom = surface.get_rect().bottom - self.resolution[1] / 6
                 surface.blit(bottom_bar, (0, bottom))

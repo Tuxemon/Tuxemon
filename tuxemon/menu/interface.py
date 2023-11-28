@@ -6,7 +6,7 @@ from typing import ClassVar, Generic, Optional, TypeVar
 
 import pygame
 
-from tuxemon import graphics, tools
+from tuxemon import graphics, prepare, tools
 from tuxemon.sprite import Sprite
 from tuxemon.ui.draw import GraphicBox
 
@@ -16,8 +16,8 @@ class Bar:
 
     border_filename: ClassVar[str]
     border = None  # type: ClassVar[GraphicBox]
-    fg_color: ClassVar[graphics.ColorLike] = (255, 255, 255)
-    bg_color: ClassVar[Optional[graphics.ColorLike]] = (0, 0, 0)
+    fg_color: ClassVar[graphics.ColorLike] = prepare.WHITE_COLOR
+    bg_color: ClassVar[Optional[graphics.ColorLike]] = prepare.BLACK_COLOR
 
     def __init__(self, value: float = 1.0) -> None:
         if self.border is None:
@@ -85,8 +85,8 @@ class HpBar(Bar):
 
     border_filename = "gfx/ui/monster/hp_bar.png"
     border = None  # type: ClassVar[GraphicBox]
-    fg_color = (10, 240, 25)
-    bg_color = (245, 10, 25)
+    fg_color = prepare.HP_COLOR_FG
+    bg_color = prepare.HP_COLOR_BG
 
 
 class ExpBar(Bar):
@@ -94,8 +94,8 @@ class ExpBar(Bar):
 
     border_filename = "gfx/ui/monster/exp_bar.png"
     border = None  # type: ClassVar[GraphicBox]
-    fg_color = (31, 239, 255)
-    bg_color = None
+    fg_color = prepare.XP_COLOR_FG
+    bg_color = prepare.XP_COLOR_BG
 
 
 T = TypeVar("T", covariant=True)

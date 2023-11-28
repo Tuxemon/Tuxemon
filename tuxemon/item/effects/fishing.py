@@ -6,6 +6,7 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
+from tuxemon import prepare
 from tuxemon.db import EvolutionStage, MonsterShape, db
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 
@@ -86,7 +87,8 @@ class FishingEffect(ItemEffect):
             if player.game_variables["stage_of_day"] == "night"
             else "ocean"
         )
-        rgb = "0:105:148"
+        blue = prepare.SEA_BLUE_COLOR
+        rgb = ":".join(map(str, blue))
         if fishing:
             client.event_engine.execute_action(
                 "wild_encounter",

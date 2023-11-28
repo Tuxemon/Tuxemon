@@ -92,15 +92,11 @@ def get_theme() -> pygame_menu.Theme:
         tuxemon_background_center_rect
     )
 
-    width, height = prepare.SCREEN_SIZE
-
     theme = pygame_menu.Theme(
         background_color=tuxemon_background,
         title_font=font_filename,
         widget_font=font_filename,
         widget_alignment=locals.ALIGN_LEFT,
-        title_font_size=round(0.015 * width),
-        widget_font_size=round(0.020 * width),
         title=False,
         widget_selection_effect=TuxemonArrowSelection(),
         widget_font_color=(0, 0, 0),

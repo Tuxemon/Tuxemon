@@ -37,7 +37,6 @@ class ChoiceNpc(PygameMenuState):
         escape_key_exits: bool = False,
         **kwargs: Any,
     ) -> None:
-        width, height = prepare.SCREEN_SIZE
         theme = get_theme()
         if len(menu) > 12:
             theme.scrollarea_position = POSITION_EAST
@@ -67,7 +66,7 @@ class ChoiceNpc(PygameMenuState):
             self.menu.add.button(
                 name,
                 callback,
-                font_size=round(0.012 * width),
+                font_size=self.font_size_smaller,
                 align=ALIGN_CENTER,
                 selection_effect=HighlightSelection(),
             )

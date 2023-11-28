@@ -31,8 +31,6 @@ class NuPhoneContacts(PygameMenuState):
         self,
         menu: pygame_menu.Menu,
     ) -> None:
-        width, height = prepare.SCREEN_SIZE
-
         def choice(slug: str, phone: str) -> None:
             label = (
                 T.translate("action_call") + " " + T.translate(slug).upper()
@@ -70,7 +68,7 @@ class NuPhoneContacts(PygameMenuState):
                 title=T.translate(slug) + " " + phone,
                 action=partial(choice, slug, phone),
                 button_id=slug,
-                font_size=round(0.015 * width),
+                font_size=self.font_size_small,
                 selection_effect=HighlightSelection(),
             )
             menu.add.vertical_margin(25)
@@ -94,7 +92,6 @@ class NuPhoneContacts(PygameMenuState):
 
         # menu
         theme.title = True
-        theme.title_font_size = round(0.025 * width)
 
         self.player = local_session.player
 

@@ -60,8 +60,6 @@ class ItemTakeState(PygameMenuState):
         menu: pygame_menu.Menu,
         items: Sequence[Item],
     ) -> None:
-        width, height = prepare.SCREEN_SIZE
-
         # it regroups kennel operations: pick up, move and release
         def locker_options(instance_id: str) -> None:
             # retrieves the item from the iid
@@ -236,7 +234,7 @@ class ItemTakeState(PygameMenuState):
             menu.add.label(
                 label,
                 selectable=True,
-                font_size=round(0.015 * width),
+                font_size=self.font_size_small,
                 align=locals.ALIGN_CENTER,
                 selection_effect=HighlightSelection(),
             )
@@ -262,7 +260,6 @@ class ItemTakeState(PygameMenuState):
 
         # menu
         theme.title = True
-        theme.title_font_size = round(0.025 * width)
 
         columns = 3
 

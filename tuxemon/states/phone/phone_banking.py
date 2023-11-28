@@ -31,7 +31,6 @@ class NuPhoneBanking(PygameMenuState):
         self,
         menu: pygame_menu.Menu,
     ) -> None:
-        width, height = prepare.SCREEN_SIZE
         if "bank_account" not in self.player.money:
             self.player.money["bank_account"] = 0
         bank = self.player.money["bank_account"]
@@ -39,12 +38,12 @@ class NuPhoneBanking(PygameMenuState):
         menu.add.label(
             title=T.translate("wallet") + ": " + str(money),
             label_id="wallet",
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
         menu.add.label(
             title=T.translate("bank") + ": " + str(bank),
             label_id="bank",
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
 
         elements = [
@@ -126,7 +125,7 @@ class NuPhoneBanking(PygameMenuState):
             title=T.translate("deposit").upper(),
             action=choice_deposit,
             button_id="deposit",
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
             selection_effect=HighlightSelection(),
         )
         menu.add.vertical_margin(100)
@@ -135,7 +134,7 @@ class NuPhoneBanking(PygameMenuState):
             title=T.translate("withdraw").upper(),
             action=choice_withdraw,
             button_id="withdraw",
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
             selection_effect=HighlightSelection(),
         )
         # menu
@@ -157,7 +156,6 @@ class NuPhoneBanking(PygameMenuState):
 
         # menu
         theme.title = True
-        theme.title_font_size = round(0.025 * width)
 
         self.player = local_session.player
 

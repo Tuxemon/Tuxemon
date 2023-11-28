@@ -62,7 +62,6 @@ class SetKeyState(PygameMenuState):
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
         theme.widget_alignment = locals.ALIGN_LEFT
-        theme.title = False
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         # must use get_pressed because the events do not contain references to pygame events
@@ -144,14 +143,11 @@ class ControlState(PygameMenuState):
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
         theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
-        theme.title = False
 
     def initialize_items(
         self,
         menu: pygame_menu.Menu,
     ) -> None:
-        width, height = prepare.SCREEN_SIZE
-
         def change_state(
             state: Union[State, str], **change_state_kwargs: Any
         ) -> Callable[[], State]:
@@ -172,56 +168,55 @@ class ControlState(PygameMenuState):
             action=change_state(
                 "SetKeyState", button=display_buttons[buttons.UP]
             ),
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
         menu.add.button(
             title=T.translate("menu_left_key").upper(),
             action=change_state(
                 "SetKeyState", button=display_buttons[buttons.LEFT]
             ),
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
         menu.add.button(
             title=T.translate("menu_right_key").upper(),
             action=change_state(
                 "SetKeyState", button=display_buttons[buttons.RIGHT]
             ),
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
         menu.add.button(
             title=T.translate("menu_down_key").upper(),
             action=change_state(
                 "SetKeyState", button=display_buttons[buttons.DOWN]
             ),
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
         menu.add.button(
             title=T.translate("menu_primary_select_key").upper(),
             action=change_state(
                 "SetKeyState", button=display_buttons[buttons.A]
             ),
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
         menu.add.button(
             title=T.translate("menu_secondary_select_key").upper(),
             action=change_state(
                 "SetKeyState", button=display_buttons[buttons.B]
             ),
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
         menu.add.button(
             title=T.translate("menu_back_key").upper(),
             action=change_state(
                 "SetKeyState", button=display_buttons[buttons.BACK]
             ),
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
 
         default_music: int = 50
         default_sound: int = 20
         default_unit: int = 0
         default_hemi: int = 0
-        default_dn: int = 0
         if player:
             default_music = int(
                 float(player.game_variables["music_volume"]) * 100
@@ -245,7 +240,7 @@ class ControlState(PygameMenuState):
             increment=10,
             rangeslider_id="menu_music_volume",
             value_format=lambda x: str(int(x)),
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
         sound = menu.add.range_slider(
             title=T.translate("menu_sound_volume").upper(),
@@ -254,7 +249,7 @@ class ControlState(PygameMenuState):
             increment=10,
             rangeslider_id="menu_sound_volume",
             value_format=lambda x: str(int(x)),
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
 
         def on_change_music(val: int) -> None:
@@ -292,7 +287,7 @@ class ControlState(PygameMenuState):
             default=default_unit,
             style="fancy",
             onchange=on_change_units,
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
 
         def on_change_hemisphere(value: Any, label: str) -> None:
@@ -313,7 +308,7 @@ class ControlState(PygameMenuState):
             default=default_hemi,
             style="fancy",
             onchange=on_change_hemisphere,
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
 
     def reload_controls(self) -> None:

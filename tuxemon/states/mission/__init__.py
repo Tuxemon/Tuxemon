@@ -3,8 +3,6 @@
 """This module contains the Options state"""
 from __future__ import annotations
 
-from collections.abc import Generator
-
 import pygame_menu
 from pygame_menu import locals
 from pygame_menu.locals import POSITION_CENTER
@@ -52,13 +50,11 @@ class MissionState(PygameMenuState):
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
         theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
-        theme.title = False
 
     def initialize_items(
         self,
         menu: pygame_menu.Menu,
     ) -> None:
-        width, height = prepare.SCREEN_SIZE
         player = local_session.player
 
         missions: list[Mission] = []
@@ -77,5 +73,5 @@ class MissionState(PygameMenuState):
                 menu.add.button(
                     title=label,
                     action=None,
-                    font_size=round(0.015 * width),
+                    font_size=self.font_size_small,
                 )

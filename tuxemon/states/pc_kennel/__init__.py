@@ -61,8 +61,6 @@ class MonsterTakeState(PygameMenuState):
         menu: pygame_menu.Menu,
         items: Sequence[Monster],
     ) -> None:
-        width, height = prepare.SCREEN_SIZE
-
         # it regroups kennel operations: pick up, move and release
         def kennel_options(instance_id: str) -> None:
             # retrieves the monster from the iid
@@ -213,13 +211,13 @@ class MonsterTakeState(PygameMenuState):
             menu.add.progress_bar(
                 level,
                 default=diff,
-                font_size=round(0.015 * width),
+                font_size=self.font_size_small,
                 align=locals.ALIGN_CENTER,
             )
             menu.add.button(
                 label,
                 partial(description, monster),
-                font_size=round(0.015 * width),
+                font_size=self.font_size_small,
                 align=locals.ALIGN_CENTER,
                 selection_effect=HighlightSelection(),
             )
@@ -248,7 +246,6 @@ class MonsterTakeState(PygameMenuState):
 
         # menu
         theme.title = True
-        theme.title_font_size = round(0.025 * width)
 
         columns = 3
 

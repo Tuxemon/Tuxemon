@@ -36,7 +36,6 @@ class NuPhone(PygameMenuState):
         menu: pygame_menu.Menu,
         items: Sequence[Item],
     ) -> None:
-        width, height = prepare.SCREEN_SIZE
         self._no_signal = False
 
         def change_state(state: str, **kwargs: Any) -> MenuGameObj:
@@ -103,10 +102,12 @@ class NuPhone(PygameMenuState):
             menu.add.button(
                 label,
                 action=partial(uninstall, item),
-                font_size=round(0.012 * width),
+                font_size=self.font_size_smaller,
             )
             menu.add.label(
-                item.description, font_size=round(0.012 * width), wordwrap=True
+                item.description,
+                font_size=self.font_size_smaller,
+                wordwrap=True,
             )
 
     def __init__(self) -> None:
@@ -125,7 +126,6 @@ class NuPhone(PygameMenuState):
 
         # menu
         theme.title = True
-        theme.title_font_size = round(0.025 * width)
 
         self.player = local_session.player
 

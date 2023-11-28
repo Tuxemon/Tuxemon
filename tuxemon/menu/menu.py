@@ -51,6 +51,13 @@ BACKGROUND_COLOR = (248, 248, 248)
 
 class PygameMenuState(state.State):
     transparent = True
+    # FONT SIZE, scaled on the screen width
+    _width, _height = prepare.SCREEN_SIZE
+    font_size_smaller = math.ceil(0.012 * _width)
+    font_size_small = math.ceil(0.015 * _width)
+    font_size = math.ceil(0.020 * _width)
+    font_size_big = math.ceil(0.025 * _width)
+    font_size_bigger = math.ceil(0.028 * _width)
 
     def __init__(
         self,
@@ -66,6 +73,9 @@ class PygameMenuState(state.State):
 
         self.open = False
         self.escape_key_exits = True
+
+        theme.widget_font_size = self.font_size
+        theme.title_font_size = self.font_size_big
 
         self.menu = pygame_menu.Menu(
             "",

@@ -35,13 +35,12 @@ class NuPhoneMap(PygameMenuState):
         self,
         menu: pygame_menu.Menu,
     ) -> None:
-        width, height = prepare.SCREEN_SIZE
         lab1 = menu.add.label(
             title=T.translate("leather_town"),
             selectable=True,
             float=True,
             selection_effect=HighlightSelection(),
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
         assert not isinstance(lab1, list)
         lab1.translate(
@@ -53,7 +52,7 @@ class NuPhoneMap(PygameMenuState):
             selectable=True,
             float=True,
             selection_effect=HighlightSelection(),
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
         assert not isinstance(lab2, list)
         lab2.translate(
@@ -65,7 +64,7 @@ class NuPhoneMap(PygameMenuState):
             selectable=True,
             float=True,
             selection_effect=HighlightSelection(),
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
         assert not isinstance(lab3, list)
         lab3.translate(
@@ -77,7 +76,7 @@ class NuPhoneMap(PygameMenuState):
             selectable=True,
             float=True,
             selection_effect=HighlightSelection(),
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
         assert not isinstance(lab4, list)
         lab4.translate(
@@ -89,7 +88,7 @@ class NuPhoneMap(PygameMenuState):
             selectable=True,
             float=True,
             selection_effect=HighlightSelection(),
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
         assert not isinstance(lab5, list)
         lab5.translate(
@@ -101,7 +100,7 @@ class NuPhoneMap(PygameMenuState):
             selectable=True,
             float=True,
             selection_effect=HighlightSelection(),
-            font_size=round(0.015 * width),
+            font_size=self.font_size_small,
         )
         assert not isinstance(lab6, list)
         lab6.translate(
@@ -126,7 +125,6 @@ class NuPhoneMap(PygameMenuState):
 
         # menu
         theme.title = True
-        theme.title_font_size = round(0.025 * width)
 
         self.player = local_session.player
 

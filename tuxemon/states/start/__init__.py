@@ -50,7 +50,6 @@ class StartState(PygameMenuState):
         self,
         menu: pygame_menu.Menu,
     ) -> None:
-        width, height = prepare.SCREEN_SIZE
         # If there is a save, then move the cursor to "Load game" first
         index = get_index_of_latest_save()
         self.menu._onclose = None
@@ -81,25 +80,25 @@ class StartState(PygameMenuState):
             menu.add.button(
                 title=T.translate("menu_load"),
                 action=change_state("LoadMenuState"),
-                font_size=round(0.025 * width),
+                font_size=self.font_size_big,
                 button_id="menu_load",
             )
         menu.add.button(
             title=T.translate("menu_new_game"),
             action=new_game,
-            font_size=round(0.025 * width),
+            font_size=self.font_size_big,
             button_id="menu_new_game",
         )
         menu.add.button(
             title=T.translate("menu_minigame"),
             action=change_state("MinigameState"),
-            font_size=round(0.025 * width),
+            font_size=self.font_size_big,
             button_id="menu_minigame",
         )
         menu.add.button(
             title=T.translate("exit"),
             action=exit_game,
-            font_size=round(0.025 * width),
+            font_size=self.font_size_big,
             button_id="exit",
         )
 

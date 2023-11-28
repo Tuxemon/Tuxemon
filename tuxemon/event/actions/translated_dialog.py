@@ -50,12 +50,8 @@ class TranslatedDialogAction(EventAction):
         if self.avatar:
             avatar_sprite = get_avatar(self.session, self.avatar)
 
-        dialogue = "default"
-        if self.style:
-            dialogue = self.style
-
+        dialogue = self.style if self.style else "default"
         style = db.lookup(dialogue, table="dialogue")
-
         colors: dict[str, Any] = {
             "bg_color": string_to_colorlike(style.bg_color),
             "font_color": string_to_colorlike(style.font_color),

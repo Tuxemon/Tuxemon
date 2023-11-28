@@ -81,7 +81,7 @@ class JournalChoice(PygameMenuState):
             else:
                 lab1 = menu.add.label(
                     label,
-                    font_color=(105, 105, 105),
+                    font_color=prepare.DIMGRAY_COLOR,
                     font_size=self.font_size_small,
                 )
                 assert not isinstance(lab1, list)

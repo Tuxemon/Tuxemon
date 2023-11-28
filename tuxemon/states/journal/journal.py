@@ -13,7 +13,7 @@ from pygame_menu.locals import POSITION_CENTER
 from tuxemon import prepare, tools
 from tuxemon.db import MonsterModel, SeenStatus
 from tuxemon.locale import T
-from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
+from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 
@@ -59,8 +59,6 @@ class JournalState(PygameMenuState):
                             kwargs={"monster": mon},
                         ),
                         font_size=self.font_size_small,
-                        font_color=(25, 25, 112, 1),
-                        selection_color=(25, 25, 112, 1),
                         button_id=mon.slug,
                     ).translate(
                         fix_measure(width, 0.25), fix_measure(height, 0.01)
@@ -83,7 +81,7 @@ class JournalState(PygameMenuState):
                 lab = menu.add.label(
                     label,
                     font_size=self.font_size_small,
-                    font_color=(105, 105, 105),
+                    font_color=prepare.DARKGRAY_COLOR,
                     label_id=mon.slug,
                 )
                 assert not isinstance(lab, list)
@@ -147,5 +145,5 @@ class JournalState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = BACKGROUND_COLOR
+        theme.background_color = self.background_color
         theme.widget_alignment = locals.ALIGN_LEFT

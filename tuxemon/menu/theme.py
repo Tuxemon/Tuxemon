@@ -99,17 +99,12 @@ def get_theme() -> pygame_menu.Theme:
         widget_alignment=locals.ALIGN_LEFT,
         title=False,
         widget_selection_effect=TuxemonArrowSelection(),
-        widget_font_color=(0, 0, 0),
-        selection_color=(0, 0, 0),
         border_color=tuxemon_border,
         scrollarea_position=locals.SCROLLAREA_POSITION_NONE,
-        scrollbar_color=(235, 235, 235),
-        scrollbar_slider_color=(200, 200, 200),
         widget_padding=(10, 20),
-        title_font_color=(10, 10, 10),
         title_close_button=False,
         title_bar_style=MENUBAR_STYLE_ADAPTIVE,
-        title_background_color=(197, 232, 234),
+        widget_font_shadow=True,
     )
 
     _theme = theme

@@ -46,18 +46,21 @@ layout = layout_func(prepare.SCALE)
 T = TypeVar("T", covariant=True)
 
 
-BACKGROUND_COLOR = (248, 248, 248)
-
-
 class PygameMenuState(state.State):
     transparent = True
-    # FONT SIZE, scaled on the screen width
-    _width, _height = prepare.SCREEN_SIZE
-    font_size_smaller = math.ceil(0.012 * _width)
-    font_size_small = math.ceil(0.015 * _width)
-    font_size = math.ceil(0.020 * _width)
-    font_size_big = math.ceil(0.025 * _width)
-    font_size_bigger = math.ceil(0.028 * _width)
+    # colours
+    background_color = prepare.BACKGROUND_COLOR
+    font_color = prepare.FONT_COLOR
+    font_shadow_color = prepare.FONT_SHADOW_COLOR
+    scrollbar_color = prepare.SCROLLBAR_COLOR
+    scrollbar_slider_color = prepare.SCROLLBAR_SLIDER_COLOR
+    transparent_color = prepare.TRANSPARENT_COLOR
+    # font size
+    font_size_smaller = tools.scale(prepare.FONT_SIZE_SMALLER)
+    font_size_small = tools.scale(prepare.FONT_SIZE_SMALL)
+    font_size = tools.scale(prepare.FONT_SIZE)
+    font_size_big = tools.scale(prepare.FONT_SIZE_BIG)
+    font_size_bigger = tools.scale(prepare.FONT_SIZE_BIGGER)
 
     def __init__(
         self,
@@ -74,8 +77,17 @@ class PygameMenuState(state.State):
         self.open = False
         self.escape_key_exits = True
 
+        # fonts
         theme.widget_font_size = self.font_size
         theme.title_font_size = self.font_size_big
+        # colors
+        theme.widget_font_color = self.font_color
+        theme.selection_color = self.font_color
+        theme.scrollbar_color = self.scrollbar_color
+        theme.scrollbar_slider_color = self.scrollbar_slider_color
+        theme.title_font_color = self.font_color
+        theme.title_background_color = self.transparent_color
+        theme.widget_font_shadow_color = self.font_shadow_color
 
         self.menu = pygame_menu.Menu(
             "",
@@ -189,7 +201,9 @@ class Menu(Generic[T], state.State):
     draw_borders = True
     background = None  # Image used to draw the background
     # The window's background color
-    background_color: ColorLike = BACKGROUND_COLOR
+    background_color: ColorLike = prepare.BACKGROUND_COLOR
+    font_color: ColorLike = prepare.FONT_COLOR
+    font_shadow_color: ColorLike = prepare.FONT_SHADOW_COLOR
     # Font color when the action is unavailable
     unavailable_color: ColorLike = (220, 220, 220)
     # File to load for image background
@@ -471,7 +485,7 @@ class Menu(Generic[T], state.State):
     def shadow_text(
         self,
         text: str,
-        bg: ColorLike = (192, 192, 192),
+        bg: ColorLike = font_shadow_color,
         fg: Optional[ColorLike] = None,
     ) -> pygame.surface.Surface:
         """
@@ -479,26 +493,28 @@ class Menu(Generic[T], state.State):
 
         Parameters:
             text: Text to draw.
-            bg: Background color.
-            fg: Foreground color.
+            bg: Font shadow color.
+            fg: Font color.
 
         Returns:
             Surface with the drawn text.
 
         """
-        color = fg
-        if not color:
-            color = self.font_color
+        if not fg:
+            fg = self.font_color
 
-        top = self.font.render(text, True, color)
-        shadow = self.font.render(text, True, bg)
+        font_color = self.font.render(text, True, fg)
+        shadow_color = self.font.render(text, True, bg)
 
         offset = layout((0.5, 0.5))
-        size = [int(math.ceil(a + b)) for a, b in zip(offset, top.get_size())]
+        size = [
+            int(math.ceil(a + b))
+            for a, b in zip(offset, font_color.get_size())
+        ]
         image = pygame.Surface(size, pygame.SRCALPHA)
 
-        image.blit(shadow, tuple(offset))
-        image.blit(top, (0, 0))
+        image.blit(shadow_color, tuple(offset))
+        image.blit(font_color, (0, 0))
         return image
 
     def load_graphics(self) -> None:
@@ -586,7 +602,6 @@ class Menu(Generic[T], state.State):
         self,
         size: int = 5,
         font: Optional[str] = None,
-        color: ColorLike = (10, 10, 10),
         line_spacing: int = 10,
     ) -> None:
         """
@@ -598,7 +613,6 @@ class Menu(Generic[T], state.State):
         Parameters:
             size: The font size in pixels.
             font: Path to the typeface file (.ttf).
-            color: Font color.
             line_spacing: The spacing in pixels between lines of text.
 
         .. image:: images/menu/set_font.png
@@ -617,7 +631,6 @@ class Menu(Generic[T], state.State):
         else:
             self.font_size = tools.scale(size)
 
-        self.font_color = color
         self.font = pygame.font.Font(font, self.font_size)
 
     def calc_internal_rect(self) -> pygame.rect.Rect:

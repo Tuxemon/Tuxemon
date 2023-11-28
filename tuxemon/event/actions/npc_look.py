@@ -43,7 +43,6 @@ class NpcLookAction(EventAction):
     directions: Optional[str] = None
 
     def start(self) -> None:
-        player = self.session.player
         npc = get_npc(self.session, self.npc_slug)
         world = self.session.client.get_state_by_name(WorldState)
         self.limit_direction = []
@@ -54,11 +53,11 @@ class NpcLookAction(EventAction):
             directions: list[str] = ["up", "down", "right", "left"]
             # Suspend looking around if a dialog window is open
             for state in self.session.client.active_states:
-                if state.name == "DialogState":
-                    # retrieve NPC talking to
-                    if player.facing in directions:
-                        return
-                elif state.name == "WorldMenuState":
+                if state.name in (
+                    "WorldMenuState",
+                    "DialogState",
+                    "ChoiceState",
+                ):
                     return
 
             # Choose a random direction

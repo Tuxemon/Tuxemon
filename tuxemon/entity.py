@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import uuid
 from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Generic, TypeVar
 
@@ -39,7 +40,7 @@ class Entity(Generic[SaveDict]):
         self.slug = slug
         self.world = world
         world.add_entity(self)
-        self.instance_id = None
+        self.instance_id = uuid.uuid4()
         self.tile_pos = (0, 0)
         self.position3 = Point3(0, 0, 0)
         # not used currently

@@ -271,12 +271,6 @@
     <property name="cond2" value="is player_at"/>
    </properties>
   </object>
-  <object id="343" name="Remove obstacle 1" type="event" x="304" y="448" width="16" height="16">
-   <properties>
-    <property name="act1" value="remove_collision water"/>
-    <property name="cond1" value="is has_item player,surfboard"/>
-   </properties>
-  </object>
   <object id="346" name="Teleport to Routee 1" type="event" x="304" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_routee.tmx,0,3,0.3"/>
@@ -307,37 +301,6 @@
     <property name="act2" value="player_face right"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing right"/>
-   </properties>
-  </object>
-  <object id="355" name="Choice Surf" type="event" x="304" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog itsswimmingtime"/>
-    <property name="act2" value="translated_dialog_choice yes:no,swimming"/>
-    <property name="cond1" value="is has_item player,surfboard"/>
-    <property name="cond2" value="is player_facing_tile surfable"/>
-    <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="not player_in surfable"/>
-   </properties>
-  </object>
-  <object id="356" name="surfable" type="event" x="272" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_player_template swimmer"/>
-    <property name="cond1" value="is player_in surfable"/>
-    <property name="cond2" value="not has_sprite swimmer"/>
-   </properties>
-  </object>
-  <object id="357" name="not surfable" type="event" x="256" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_player_template default"/>
-    <property name="act2" value="set_variable swimming:no"/>
-    <property name="cond1" value="not player_in surfable"/>
-    <property name="cond2" value="is has_sprite swimmer"/>
-   </properties>
-  </object>
-  <object id="358" name="Remove Obstacle" type="event" x="288" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="remove_collision water"/>
-    <property name="cond1" value="is variable_set swimming:yes"/>
    </properties>
   </object>
   <object id="359" name="Environment Day" type="event" x="16" y="0" width="16" height="16">

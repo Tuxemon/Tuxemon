@@ -57,10 +57,6 @@ events:
     - set_variable battle_last_result:none
     conditions:
     - is variable_set battle_last_result:lost
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Intro:
     actions:
@@ -84,7 +80,7 @@ events:
     - translated_dialog xero_intro_3
     - translated_dialog xero_intro_question
     - rename_player random
-    - change_bg end
+    - change_bg
     - set_variable xero_intro:done
     conditions:
     - is variable_set question_xero:no
@@ -98,7 +94,7 @@ events:
     actions:
     - translated_dialog xero_intro_question
     - rename_player random
-    - change_bg end
+    - change_bg
     - set_variable xero_intro:done
     conditions:
     - is variable_set question_xero:yes

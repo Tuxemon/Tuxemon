@@ -3,13 +3,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional, Union, final
+from typing import Optional, final
 
 from tuxemon.db import db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.item import Item
-from tuxemon.npc import NPC
 
 
 @final
@@ -21,32 +20,26 @@ class AddItemAction(EventAction):
     Script usage:
         .. code-block::
 
-            add_item <item_slug>[,quantity][,trainer_slug]
+            add_item <item_slug>[,quantity][,npc_slug]
 
     Script parameters:
         item_slug: Item name to look up in the item database.
         quantity: Quantity of the item to add or to reduce. By default it is 1.
-        trainer_slug: Slug of the trainer that will receive the item. It
+        npc_slug: Slug of the trainer that will receive the item. It
             defaults to the current player.
 
     """
 
     name = "add_item"
     item_slug: str
-    quantity: Union[int, None] = None
-    trainer_slug: Union[str, None] = None
+    quantity: Optional[int] = None
+    npc_slug: Optional[str] = None
 
     def start(self) -> None:
         player = self.session.player
-        trainer: Optional[NPC]
-        if self.trainer_slug is None:
-            trainer = player
-        else:
-            trainer = get_npc(self.session, self.trainer_slug)
-
-        assert trainer, "No Trainer found with slug '{}'".format(
-            self.trainer_slug or "player"
-        )
+        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
+        trainer = get_npc(self.session, self.npc_slug)
+        assert trainer
 
         # check item existence
         _item: str = ""

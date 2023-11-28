@@ -43,7 +43,7 @@
     "slug": "spyder_papermart_miles",
     "template": [
       {
-        "sprite_name": "tennisplayer_fiery",
+        "sprite_name": "tennisplayer_green",
         "combat_front": "tennisplayer",
         "slug": "tennisplayer"
       }

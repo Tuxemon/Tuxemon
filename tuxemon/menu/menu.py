@@ -46,10 +46,10 @@ layout = layout_func(prepare.SCALE)
 T = TypeVar("T", covariant=True)
 
 
+BACKGROUND_COLOR = (248, 248, 248)
+
+
 class PygameMenuState(state.State):
-    background_color = prepare.BACKGROUND_COLOR
-    font_color = prepare.FONT_COLOR
-    font_shadow_color = prepare.FONT_SHADOW_COLOR
     transparent = True
 
     def __init__(
@@ -179,9 +179,7 @@ class Menu(Generic[T], state.State):
     draw_borders = True
     background = None  # Image used to draw the background
     # The window's background color
-    background_color: ColorLike = prepare.BACKGROUND_COLOR
-    font_color: ColorLike = prepare.FONT_COLOR
-    font_shadow_color: ColorLike = prepare.FONT_SHADOW_COLOR
+    background_color: ColorLike = BACKGROUND_COLOR
     # Font color when the action is unavailable
     unavailable_color: ColorLike = (220, 220, 220)
     # File to load for image background

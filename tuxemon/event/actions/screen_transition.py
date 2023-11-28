@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional, final
 
+from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import ColorLike, string_to_colorlike
 from tuxemon.states.world.worldstate import WorldState
@@ -41,7 +42,7 @@ class ScreenTransitionAction(EventAction):
         world = self.session.client.get_state_by_name(WorldState)
         if not self.transition_time:
             self.transition_time = 2.0
-        rgb: ColorLike = (0, 0, 0)
+        rgb: ColorLike = prepare.BLACK_COLOR
         if self.rgb:
             rgb = string_to_colorlike(self.rgb)
 

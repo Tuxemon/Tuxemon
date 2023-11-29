@@ -65,7 +65,7 @@ class ChoiceMonster(PygameMenuState):
             self.menu.add.button(
                 name,
                 callback,
-                font_size=20,
+                font_size=self.font_size_small,
                 align=ALIGN_CENTER,
                 selection_effect=HighlightSelection(),
             )

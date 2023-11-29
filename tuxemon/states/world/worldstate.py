@@ -6,7 +6,15 @@ import itertools
 import logging
 import os
 from collections.abc import Mapping, MutableMapping, Sequence
-from typing import TYPE_CHECKING, Any, Optional, TypedDict, no_type_check
+from typing import (
+    TYPE_CHECKING,
+    Any,
+    NamedTuple,
+    Optional,
+    TypedDict,
+    Union,
+    no_type_check,
+)
 
 import pygame
 from pygame.rect import Rect
@@ -44,6 +52,27 @@ direction_map: Mapping[int, Direction] = {
     intentions.LEFT: Direction.left,
     intentions.RIGHT: Direction.right,
 }
+
+SpriteMap = Union[
+    Mapping[str, pygame.surface.Surface],
+    Mapping[str, SurfaceAnimation],
+]
+
+animation_mapping = {
+    "walking": {
+        "up": "back_walk",
+        "down": "front_walk",
+        "left": "left_walk",
+        "right": "right_walk",
+    },
+    "idle": {"up": "back", "down": "front", "left": "left", "right": "right"},
+}
+
+
+class WorldSurfaces(NamedTuple):
+    surface: pygame.surface.Surface
+    position3: Vector2
+    layer: int
 
 
 class AnimationInfo(TypedDict):
@@ -90,6 +119,11 @@ class WorldState(state.State):
         self.screen_rect = self.screen.get_rect()
         self.resolution = prepare.SCREEN_SIZE
         self.tile_size = prepare.TILE_SIZE
+        # default variables for layer
+        self.layer = pygame.Surface(
+            self.client.screen.get_size(), pygame.SRCALPHA
+        )
+        self.layer_color: ColorLike = prepare.TRANSPARENT_COLOR
 
         #####################################################################
         #                           Player Details                           #
@@ -250,6 +284,10 @@ class WorldState(state.State):
             self.client.screen.get_size(), pygame.SRCALPHA
         )
         self.transition_surface.fill(color)
+
+    def set_layer(self) -> None:
+        self.layer.fill(self.layer_color)
+        self.screen.blit(self.layer, (0, 0))
 
     def broadcast_player_teleport_change(self) -> None:
         """Tell clients/host that player has moved after teleport."""
@@ -416,9 +454,7 @@ class WorldState(state.State):
         # TODO: move all drawing into a "WorldView" widget
         # interlace player sprites with tiles surfaces.
         # eventually, maybe use pygame sprites or something similar
-        world_surfaces: list[
-            tuple[pygame.surface.Surface, Vector2, int]
-        ] = list()
+        world_surfaces: list[WorldSurfaces] = []
 
         # temporary
         if self.current_map.renderer is None:
@@ -437,28 +473,28 @@ class WorldState(state.State):
         self.current_map.renderer.center((cx, cy))
 
         # get npc surfaces/sprites
+        current_map = self.current_map.sprite_layer
         for npc in self.npcs:
-            world_surfaces.extend(
-                npc.get_sprites(self.current_map.sprite_layer)
-            )
+            world_surfaces.extend(self.get_sprites(npc, current_map))
 
         # get map_animations
         for anim_data in self.map_animations.values():
             anim = anim_data["animation"]
             if not anim.is_finished() and anim.visibility:
-                frame = (
-                    anim.get_current_frame(),
-                    Vector2(anim_data["position"]),
-                    anim_data["layer"],
-                )
-                world_surfaces.append(frame)
+                _surface = anim.get_current_frame()
+                _vector = Vector2(anim_data["position"])
+                _layer = anim_data["layer"]
+                world_surface = WorldSurfaces(_surface, _vector, _layer)
+                world_surfaces.append(world_surface)
 
         # position the surfaces correctly
         # pyscroll expects surfaces in screen coords, so they are
         # converted from world to screen coords here
         screen_surfaces = list()
         for frame in world_surfaces:
-            s, c, l = frame
+            s = frame.surface
+            c = frame.position3
+            l = frame.layer
 
             # project to pixel/screen coords
             _c = self.get_pos_from_tilepos(c)
@@ -484,16 +520,9 @@ class WorldState(state.State):
 
         # If triggers night color only at night (2200-0400) outside
         game_variable = self.player.game_variables
-        if not self.client.map_inside:
-            if (
-                game_variable["stage_of_day"] == "night"
-                and game_variable["change_day_night"] == "Enable"
-            ):
-                game_surf = pygame.surface.Surface(
-                    surface.get_size(), pygame.SRCALPHA
-                )
-                game_surf.fill([0, 0, 128, 128])
-                surface.blit(game_surf, (0, 0))
+
+        # Adds a transparent layer
+        self.set_layer()
 
         if "cinema_mode" in game_variable:
             if game_variable["cinema_mode"] == "on":
@@ -503,11 +532,41 @@ class WorldState(state.State):
                 bottom_bar = pygame.Surface(
                     (self.resolution[0], self.resolution[1] / 6)
                 )
-                top_bar.fill((0, 0, 0))
-                bottom_bar.fill((0, 0, 0))
+                top_bar.fill(prepare.BLACK_COLOR)
+                bottom_bar.fill(prepare.BLACK_COLOR)
                 surface.blit(top_bar, (0, 0))
                 bottom = surface.get_rect().bottom - self.resolution[1] / 6
                 surface.blit(bottom_bar, (0, bottom))
+
+    def get_sprites(self, npc: NPC, layer: int) -> list[WorldSurfaces]:
+        """
+        Get the surfaces and layers for the sprite. Used to render the NPC.
+
+        Parameters:
+            layer: The layer to draw the sprite on.
+
+        Returns:
+            WorldSurfaces containing the surface to plot, the current
+            position of the NPC and the layer.
+
+        """
+
+        def get_frame(d: SpriteMap, ani: str) -> pygame.surface.Surface:
+            frame = d[ani]
+            if isinstance(frame, SurfaceAnimation):
+                surface = frame.get_current_frame()
+                frame.rate = npc.moverate / prepare.CONFIG.player_walkrate
+                return surface
+            else:
+                return frame
+
+        frame_dict: SpriteMap = npc.sprite if npc.moving else npc.standing
+        moving = "walking" if npc.moving else "idle"
+        state = animation_mapping[moving][npc.facing]
+        world = WorldSurfaces(
+            get_frame(frame_dict, state), proj(npc.position3), layer
+        )
+        return [world]
 
     ####################################################
     #            Pathfinding and Collisions            #
@@ -1072,6 +1131,7 @@ class WorldState(state.State):
         self.surfable_map = map_data.surfable_map
         self.collision_lines_map = map_data.collision_lines_map
         self.map_size = map_data.size
+        self.map_area = map_data.area
 
         # The first coordinates that are out of bounds.
         self.invalid_x = (-1, self.map_size[0])
@@ -1106,17 +1166,20 @@ class WorldState(state.State):
         """
         txmn_map = TMXMapLoader().load(path)
         yaml_path = path[:-4] + ".yaml"
-        scenario_path = prepare.fetch("maps", txmn_map.scenario + ".yaml")
         # TODO: merge the events from both sources
         if os.path.exists(yaml_path):
             new_events = list(txmn_map.events)
             new_events.extend(YAMLEventLoader().load_events(yaml_path))
             txmn_map.events = new_events
-        # specific YAML, scenario based
-        if os.path.exists(scenario_path):
-            new_events = list(txmn_map.events)
-            new_events.extend(YAMLEventLoader().load_events(scenario_path))
-            txmn_map.events = new_events
+        # scenario YAML, try because not all maps have a scenario
+        try:
+            scenario_path = prepare.fetch("maps", txmn_map.scenario + ".yaml")
+            if os.path.exists(scenario_path):
+                new_events = list(txmn_map.events)
+                new_events.extend(YAMLEventLoader().load_events(scenario_path))
+                txmn_map.events = new_events
+        except:
+            pass
         return txmn_map
 
     @no_type_check  # only used by multiplayer which is disabled

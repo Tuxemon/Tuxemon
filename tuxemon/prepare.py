@@ -68,10 +68,41 @@ TILE_SIZE = (16, 16)
 ICON_SIZE = [7, 7]
 
 # Set the healthbar _color
-HP_COLOR = (112, 248, 168)
+HP_COLOR_FG = (10, 240, 25)  # dark saturated green
+HP_COLOR_BG = (245, 10, 25)  # dark saturated red
 
 # Set the XP bar _color
-XP_COLOR = (248, 245, 71)
+XP_COLOR_FG = (31, 239, 255)  # light washed cyan
+XP_COLOR_BG = None  # none for the moment
+
+# Colors
+BLACK_COLOR = (0, 0, 0)
+WHITE_COLOR = (255, 255, 255)
+RED_COLOR = (255, 0, 0)
+GREEN_COLOR = (0, 255, 0)
+FUCHSIA_COLOR = (255, 0, 255)
+SEA_BLUE_COLOR = (0, 105, 148)
+DARKGRAY_COLOR = (169, 169, 169)
+# Default colors
+TRANSPARENT_COLOR = (255, 255, 255, 0)
+BACKGROUND_COLOR = (248, 248, 248)  # Guyabano
+FONT_COLOR = BLACK_COLOR
+FONT_SHADOW_COLOR = (192, 192, 192)  # silver
+SCROLLBAR_COLOR = (237, 246, 248)  # light turquoise
+SCROLLBAR_SLIDER_COLOR = (197, 232, 234)  # darker turquoise
+
+if CONFIG.large_gui:
+    FONT_SIZE_SMALLER = 4
+    FONT_SIZE_SMALL = 5
+    FONT_SIZE = 6
+    FONT_SIZE_BIG = 7
+    FONT_SIZE_BIGGER = 8
+else:
+    FONT_SIZE_SMALLER = 3
+    FONT_SIZE_SMALL = 4
+    FONT_SIZE = 5
+    FONT_SIZE_BIG = 6
+    FONT_SIZE_BIGGER = 7
 
 # Native resolution is similar to the old gameboy resolution. This is
 # used for scaling.

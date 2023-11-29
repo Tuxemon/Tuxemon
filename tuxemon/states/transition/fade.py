@@ -8,6 +8,7 @@ from typing import Optional
 
 import pygame
 
+from tuxemon import prepare
 from tuxemon.graphics import ColorLike
 from tuxemon.platform.events import PlayerInput
 from tuxemon.state import State
@@ -27,7 +28,7 @@ class FadeTransitionBase(State):
         state_duration: Optional[float] = None,
         fade_duration: Optional[float] = None,
         caller: Optional[State] = None,
-        color: ColorLike = (0, 0, 0),
+        color: ColorLike = prepare.BLACK_COLOR,
     ) -> None:
         super().__init__()
 

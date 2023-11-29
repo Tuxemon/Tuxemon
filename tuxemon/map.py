@@ -6,7 +6,7 @@ import logging
 from collections.abc import Generator, Mapping, MutableMapping, Sequence
 from itertools import product
 from math import atan2, pi
-from typing import Literal, Optional, TypedDict, TypeVar, Union
+from typing import TYPE_CHECKING, NamedTuple, Optional, TypeVar, Union
 
 import pyscroll
 from pytmx import pytmx
@@ -14,46 +14,41 @@ from pytmx.pytmx import TiledMap
 
 from tuxemon import prepare
 from tuxemon.compat.rect import ReadOnlyRect
+from tuxemon.db import Direction, Orientation
 from tuxemon.event import EventObject
 from tuxemon.graphics import scaled_image_loader
 from tuxemon.locale import T
 from tuxemon.math import Vector2, Vector3
 from tuxemon.tools import round_to_divisible
 
+if TYPE_CHECKING:
+    from tuxemon.npc import NPC
+
 logger = logging.getLogger(__name__)
 
 RectTypeVar = TypeVar("RectTypeVar", bound=ReadOnlyRect)
 
-Direction = Literal["up", "down", "left", "right"]
-Orientation = Literal["horizontal", "vertical"]
 
-RegionPropertiesOptional = TypedDict(
-    "RegionPropertiesOptional",
-    {
-        "continue": Direction,
-        "key": str,
-    },
-    total=False,
-)
-
-
-class RegionProperties(RegionPropertiesOptional):
-    enter: Sequence[Direction]
-    exit: Sequence[Direction]
+class RegionProperties(NamedTuple):
+    enter_from: Sequence[Direction]
+    exit_from: Sequence[Direction]
+    endure: Sequence[Direction]
+    entity: Optional[NPC]
+    key: Optional[str]
 
 
 # direction => vector
 dirs3: Mapping[Direction, Vector3] = {
-    "up": Vector3(0, -1, 0),
-    "down": Vector3(0, 1, 0),
-    "left": Vector3(-1, 0, 0),
-    "right": Vector3(1, 0, 0),
+    Direction.up: Vector3(0, -1, 0),
+    Direction.down: Vector3(0, 1, 0),
+    Direction.left: Vector3(-1, 0, 0),
+    Direction.right: Vector3(1, 0, 0),
 }
 dirs2: Mapping[Direction, Vector2] = {
-    "up": Vector2(0, -1),
-    "down": Vector2(0, 1),
-    "left": Vector2(-1, 0),
-    "right": Vector2(1, 0),
+    Direction.up: Vector2(0, -1),
+    Direction.down: Vector2(0, 1),
+    Direction.left: Vector2(-1, 0),
+    Direction.right: Vector2(1, 0),
 }
 # just the first letter of the direction => vector
 short_dirs = {d[0]: dirs2[d] for d in dirs2}
@@ -99,9 +94,9 @@ def get_direction(
     look_on_y_axis = abs(y_offset) >= abs(x_offset)
 
     if look_on_y_axis:
-        return "up" if y_offset > 0 else "down"
+        return Direction.up if y_offset > 0 else Direction.down
     else:
-        return "left" if x_offset > 0 else "right"
+        return Direction.left if x_offset > 0 else Direction.right
 
 
 def proj(point: Vector3) -> Vector2:
@@ -266,9 +261,9 @@ def orientation_by_angle(angle: float) -> Orientation:
 
     """
     if angle == 3 / 2 * pi:
-        return "vertical"
+        return Orientation.vertical
     elif angle == 0.0:
-        return "horizontal"
+        return Orientation.horizontal
     else:
         raise Exception("A collision line must be aligned to an axis")
 
@@ -280,7 +275,7 @@ def extract_region_properties(
     Given a dictionary from Tiled properties, return a dictionary
     suitable for collision detection.
 
-    Uses `exit_to`, `enter_from`, and `continue` keys.
+    Uses `exit`, `enter`, and `continue` keys.
 
     Parameters:
         properties: Dictionary of data from Tiled for object, tile, etc.
@@ -290,34 +285,61 @@ def extract_region_properties(
 
     """
     # this could use a rewrite or re-thinking...
+    label = None
+    endure: list[Direction] = []
     enters: list[Direction] = []
     exits: list[Direction] = []
-    new_props: RegionProperties = {
-        "enter": enters,
-        "exit": exits,
-    }
     has_movement_modifier = False
     for key in properties:
-        if "enter" in key:
-            enters.extend(properties[key].split())
+        if "enter_from" == key:
+            enters = direction_to_list(properties[key])
             has_movement_modifier = True
-        elif "exit" in key:
-            exits.extend(properties[key].split())
+        elif "exit_from" == key:
+            exits = direction_to_list(properties[key])
             has_movement_modifier = True
-        elif "continue" in key:
-            new_props["continue"] = properties[key]
+        elif "endure" == key:
+            endure = direction_to_list(properties[key])
             has_movement_modifier = True
-        elif "key" in key:
-            new_props["key"] = properties[key]
+        elif "key" == key:
+            label = properties[key]
             has_movement_modifier = True
     # if there is an exit, but no explicit enter, then
     # allow entering from all sides except the exit side
     if exits and not enters:
-        new_props["enter"] = list({"up", "down", "left", "right"} - set(exits))
+        enters = list(Direction)
+        for _exit in exits:
+            enters.remove(_exit)
     if has_movement_modifier:
-        return new_props
+        return RegionProperties(
+            enter_from=enters,
+            exit_from=exits,
+            endure=endure,
+            entity=None,
+            key=label,
+        )
     else:
         return None
+
+
+def direction_to_list(direction: str) -> list[Direction]:
+    """
+    Splits direction string and returns a list with Direction/s
+
+    Parameters:
+        direction: str (eg. enter_from = "direction")
+
+    Returns:
+        List with Direction/s
+
+    """
+    try:
+        props = direction.split(",")
+    except:
+        props = []
+    result: list[Direction] = []
+    for _props in props:
+        result.append(Direction(_props))
+    return result
 
 
 class PathfindNode:

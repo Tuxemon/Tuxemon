@@ -3,26 +3,26 @@
  <image source="Pacheesi Tiles.png" width="112" height="48"/>
  <tile id="11">
   <properties>
-   <property name="continue" value="up"/>
-   <property name="exit_to" value="up"/>
+   <property name="endure" value="up"/>
+   <property name="exit_from" value="up"/>
   </properties>
  </tile>
  <tile id="12">
   <properties>
-   <property name="continue" value="down"/>
-   <property name="exit_to" value="down"/>
+   <property name="endure" value="down"/>
+   <property name="exit_from" value="down"/>
   </properties>
  </tile>
  <tile id="18">
   <properties>
-   <property name="continue" value="right"/>
-   <property name="exit_to" value="right"/>
+   <property name="endure" value="right"/>
+   <property name="exit_from" value="right"/>
   </properties>
  </tile>
  <tile id="19">
   <properties>
-   <property name="continue" value="left"/>
-   <property name="exit_to" value="left"/>
+   <property name="endure" value="left"/>
+   <property name="exit_from" value="left"/>
   </properties>
  </tile>
 </tileset>

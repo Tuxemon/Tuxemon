@@ -130,30 +130,30 @@
   <object id="147" type="collision" x="640" y="592" width="16" height="80"/>
   <object id="148" type="collision" x="576" y="624" width="64" height="16">
    <properties>
-    <property name="continue" value="up"/>
+    <property name="endure" value="up"/>
     <property name="enter_from" value="down"/>
-    <property name="exit_to" value="up"/>
+    <property name="exit_from" value="up"/>
    </properties>
   </object>
   <object id="149" type="collision" x="592" y="688" width="64" height="16">
    <properties>
-    <property name="continue" value="up"/>
+    <property name="endure" value="up"/>
     <property name="enter_from" value="down"/>
-    <property name="exit_to" value="up"/>
+    <property name="exit_from" value="up"/>
    </properties>
   </object>
   <object id="151" type="collision" x="768" y="576" width="16" height="32">
    <properties>
-    <property name="continue" value="left"/>
+    <property name="endure" value="left"/>
     <property name="enter_from" value="right"/>
-    <property name="exit_to" value="left"/>
+    <property name="exit_from" value="left"/>
    </properties>
   </object>
   <object id="152" type="collision" x="768" y="544" width="16" height="16">
    <properties>
-    <property name="continue" value="left"/>
+    <property name="endure" value="left"/>
     <property name="enter_from" value="right"/>
-    <property name="exit_to" value="left"/>
+    <property name="exit_from" value="left"/>
    </properties>
   </object>
   <object id="153" type="collision-line" x="384" y="816">

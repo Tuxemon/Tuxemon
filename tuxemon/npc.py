@@ -13,12 +13,12 @@ from typing import TYPE_CHECKING, Any, Optional, TypedDict, Union
 from tuxemon import surfanim
 from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.compat import Rect
-from tuxemon.db import ElementType, PlagueType, SeenStatus, db
+from tuxemon.db import Direction, ElementType, PlagueType, SeenStatus, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import MAX_TYPES_BAG, Item, decode_items, encode_items
 from tuxemon.locale import T
-from tuxemon.map import Direction, dirs2, dirs3, facing, get_direction, proj
+from tuxemon.map import dirs2, dirs3, facing, get_direction, proj
 from tuxemon.math import Vector2
 from tuxemon.monster import (
     MAX_LEVEL,
@@ -174,9 +174,9 @@ class NPC(Entity[NPCState]):
         self.move_direction: Optional[
             Direction
         ] = None  # Set this value to move the npc (see below)
-        self.facing: Direction = (
-            "down"  # Set this value to change the facing direction
-        )
+        self.facing = (
+            Direction.down
+        )  # Set this value to change the facing direction
         self.moverate = CONFIG.player_walkrate  # walk by default
         self.ignore_collisions = False
 
@@ -253,7 +253,7 @@ class NPC(Entity[NPCState]):
             save_data: Data used to recreate the NPC.
 
         """
-        self.facing = save_data.get("facing", "down")
+        self.facing = save_data.get("facing", Direction.down)
         self.game_variables = save_data["game_variables"]
         self.tuxepedia = save_data["tuxepedia"]
         self.contacts = save_data["contacts"]
@@ -397,10 +397,14 @@ class NPC(Entity[NPCState]):
 
     def check_continue(self) -> None:
         try:
-            direction_next = self.world.collision_map[self.tile_pos][
-                "continue"
-            ]
-            self.move_one_tile(direction_next)
+            tile = self.world.collision_map[self.tile_pos]
+            if tile and tile.endure:
+                _direction = (
+                    self.facing if len(tile.endure) > 1 else tile.endure[0]
+                )
+                self.move_one_tile(_direction)
+            else:
+                pass
         except (KeyError, TypeError):
             pass
 

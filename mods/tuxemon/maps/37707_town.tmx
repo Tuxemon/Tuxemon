@@ -83,44 +83,44 @@
   <object id="153" type="collision" x="544" y="288" width="16" height="32"/>
   <object id="154" type="collision" x="352" y="192" width="80" height="16">
    <properties>
-    <property name="continue" value="down"/>
+    <property name="endure" value="down"/>
     <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
+    <property name="exit_from" value="down"/>
    </properties>
   </object>
   <object id="155" type="collision" x="368" y="160" width="48" height="16">
    <properties>
-    <property name="continue" value="down"/>
+    <property name="endure" value="down"/>
     <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
+    <property name="exit_from" value="down"/>
    </properties>
   </object>
   <object id="156" type="collision" x="464" y="80" width="16" height="48">
    <properties>
-    <property name="continue" value="right"/>
+    <property name="endure" value="right"/>
     <property name="enter_from" value="left"/>
-    <property name="exit_to" value="right"/>
+    <property name="exit_from" value="right"/>
    </properties>
   </object>
   <object id="157" type="collision" x="304" y="80" width="16" height="48">
    <properties>
-    <property name="continue" value="left"/>
+    <property name="endure" value="left"/>
     <property name="enter_from" value="right"/>
-    <property name="exit_to" value="left"/>
+    <property name="exit_from" value="left"/>
    </properties>
   </object>
   <object id="158" type="collision" x="304" y="128" width="80" height="16">
    <properties>
-    <property name="continue" value="down"/>
+    <property name="endure" value="down"/>
     <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
+    <property name="exit_from" value="down"/>
    </properties>
   </object>
   <object id="159" type="collision" x="400" y="128" width="80" height="16">
    <properties>
-    <property name="continue" value="down"/>
+    <property name="endure" value="down"/>
     <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
+    <property name="exit_from" value="down"/>
    </properties>
   </object>
   <object id="160" type="collision" x="400" y="368" width="16" height="16"/>

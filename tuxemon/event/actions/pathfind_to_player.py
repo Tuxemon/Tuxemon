@@ -6,6 +6,7 @@ import math
 from dataclasses import dataclass
 from typing import Union, final
 
+from tuxemon.db import Direction
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 
@@ -30,7 +31,7 @@ class PathfindToPlayerAction(EventAction):
 
     name = "pathfind_to_player"
     npc_slug: str
-    side: Union[str, None] = None
+    side: Union[Direction, None] = None
     distance: Union[int, None] = None
 
     def start(self) -> None:
@@ -49,18 +50,18 @@ class PathfindToPlayerAction(EventAction):
         if self.side is not None:
             self.tile_pos_x = 0
             self.tile_pos_y = 0
-            if self.side == "up":
+            if self.side == Direction.up:
                 closest = (x, y - value)
-                self.npc.facing = "down"
-            elif self.side == "down":
+                self.npc.facing = self.side
+            elif self.side == Direction.down:
                 closest = (x, y + value)
-                self.npc.facing = "up"
-            elif self.side == "right":
+                self.npc.facing = self.side
+            elif self.side == Direction.right:
                 closest = (x + value, y)
-                self.npc.facing = "left"
-            elif self.side == "left":
+                self.npc.facing = self.side
+            elif self.side == Direction.left:
                 closest = (x - value, y)
-                self.npc.facing = "right"
+                self.npc.facing = self.side
             else:
                 raise ValueError(
                     f"{self.side} must be up, down, left or right.",

@@ -744,6 +744,11 @@ class NPC(Entity[NPCState]):
         new_monster.taste_cold = old_monster.taste_cold
         new_monster.taste_warm = old_monster.taste_warm
         new_monster.plague = old_monster.plague
+        new_monster.name = (
+            new_monster.name
+            if old_monster.name == T.translate(old_monster.slug)
+            else old_monster.name
+        )
         self.remove_monster(old_monster)
         self.add_monster(new_monster, slot)
 

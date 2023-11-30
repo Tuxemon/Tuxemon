@@ -324,7 +324,8 @@ def get_coords_extended(
     tile: tuple[int, int], map_size: tuple[int, int], radius: int = 1
 ) -> list[tuple[int, int]]:
     """
-    Returns a list with the cardinal coordinates (down, right, up, and left),
+    Returns a list with all the coordinates (down, right, up, left, upper left,
+    upper right, bottom left, bottom right).
     Negative coordinates as well as the ones the exceed the map size will be
     filtered out. If no valid coordinates, then it'll be raised a ValueError.
 

@@ -512,20 +512,16 @@ class NPC(Entity[NPCState]):
             If the tile can be moved into.
 
         """
-        _map_size = self.world.map_size
         _direction: bool = True
+        _map_size = self.world.map_size
+        _exit = tile in self.world.get_exits(self.tile_pos)
 
         for neighbor in get_coords_extended(tile, _map_size):
             npc = self.world.get_entity_pos(neighbor)
-            if npc and npc.moving:
-                if self.facing != npc.facing:
-                    _direction = False
+            if npc and npc.moving and self.facing != npc.facing:
+                _direction = False
 
-        return (
-            tile in self.world.get_exits(self.tile_pos)
-            and _direction
-            or self.ignore_collisions
-        )
+        return _exit and _direction or self.ignore_collisions
 
     @property
     def move_destination(self) -> Optional[tuple[int, int]]:

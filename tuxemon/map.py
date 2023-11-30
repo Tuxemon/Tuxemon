@@ -320,6 +320,48 @@ def extract_region_properties(
         return None
 
 
+def get_coords_extended(
+    tile: tuple[int, int], map_size: tuple[int, int], radius: int = 1
+) -> list[tuple[int, int]]:
+    """
+    Returns a list with the cardinal coordinates (down, right, up, and left),
+    Negative coordinates as well as the ones the exceed the map size will be
+    filtered out. If no valid coordinates, then it'll be raised a ValueError.
+
+    0,0 | 1,0 | 2,0 |
+    0,1 | 1,1 | 2,1 |
+    0,2 | 1,2 | 2,2 |
+
+    eg. radius = 1
+    (0,0),(1,0),(2,0),(0,1),(1,1),(2,1),(0,2),(1,2),(2,2)
+
+    Parameters:
+        tile: Tile coordinates
+        map_size: Dimension of the map
+        radius: Radius, default 1
+
+    Returns:
+        List tile coordinates.
+    """
+    coords: list[tuple[int, int]] = []
+    coords.append((tile[0], tile[1] + radius))  # down
+    coords.append((tile[0] + radius, tile[1]))  # right
+    coords.append((tile[0], tile[1] - radius))  # up
+    coords.append((tile[0] - radius, tile[1]))  # left
+    coords.append((tile[0] - 1, tile[1] - 1))  # upper left
+    coords.append((tile[0] + 1, tile[1] - 1))  # upper right
+    coords.append((tile[0] - 1, tile[1] + 1))  # bottom left
+    coords.append((tile[0] + 1, tile[1] + 1))  # bottom right
+    _coords = [
+        _tile
+        for _tile in coords
+        if map_size[0] >= _tile[0] >= 0 and map_size[1] >= _tile[1] >= 0
+    ]
+    if not _coords:
+        raise ValueError(f"{coords} invalid coordinates")
+    return _coords
+
+
 class PathfindNode:
     """Used in path finding search."""
 

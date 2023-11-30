@@ -1093,6 +1093,7 @@ class WorldState(state.State):
         for eo in self.client.events:
             if eo.name.lower() == "player spawn":
                 self.player.set_position((eo.x, eo.y))
+                self.player.remove_collision((eo.x, eo.y))
 
     def load_map(self, path: str) -> TuxemonMap:
         """

@@ -18,7 +18,15 @@ from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import MAX_TYPES_BAG, Item, decode_items, encode_items
 from tuxemon.locale import T
-from tuxemon.map import Direction, dirs2, dirs3, facing, get_direction, proj
+from tuxemon.map import (
+    Direction,
+    dirs2,
+    dirs3,
+    facing,
+    get_coords_extended,
+    get_direction,
+    proj,
+)
 from tuxemon.math import Vector2
 from tuxemon.monster import (
     MAX_LEVEL,
@@ -544,8 +552,18 @@ class NPC(Entity[NPCState]):
             If the tile can be moved into.
 
         """
+        _map_size = self.world.map_size
+        _direction: bool = True
+
+        for neighbor in get_coords_extended(tile, _map_size):
+            npc = self.world.get_entity_pos(neighbor)
+            if npc and npc.moving:
+                if self.facing != npc.facing:
+                    _direction = False
+
         return (
             tile in self.world.get_exits(self.tile_pos)
+            and _direction
             or self.ignore_collisions
         )
 
@@ -581,6 +599,7 @@ class NPC(Entity[NPCState]):
             self.surface_animations.play()
             self.path_origin = self.tile_pos
             self.velocity3 = self.moverate * dirs3[direction]
+            self.remove_collision(self.path_origin)
         else:
             # the target is blocked now
             self.stop_moving()

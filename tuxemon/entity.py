@@ -83,7 +83,32 @@ class Entity(Generic[SaveDict]):
         """
         self.position3.x = pos[0]
         self.position3.y = pos[1]
+        self.add_collision(pos)
         self.pos_update()
+
+    def add_collision(self, pos: Sequence[float]) -> None:
+        """
+        Set the entity's wandering position in the collision zone.
+
+        Parameters:
+            pos: Position to be added.
+
+        """
+        coords = (int(pos[0]), int(pos[1]))
+        self.world.collision_map[coords] = {"entity": self}
+
+    def remove_collision(self, pos: tuple[int, int]) -> None:
+        """
+        Remove the entity's wandering position from the collision zone.
+
+        Parameters:
+            pos: Position to be removed.
+
+        """
+        try:
+            del self.world.collision_map[pos]
+        except:
+            pass
 
     # === PHYSICS END =========================================================
 

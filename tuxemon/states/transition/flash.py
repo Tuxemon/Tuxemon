@@ -20,7 +20,7 @@ class FlashTransition(State):
 
     force_draw = True
 
-    def __init__(self, color: ColorLike = (255, 255, 255)) -> None:
+    def __init__(self, color: ColorLike = prepare.WHITE_COLOR) -> None:
         super().__init__()
         logger.info("Initializing battle transition")
         self.flash_time = 0.2  # Time in seconds between flashes

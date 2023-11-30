@@ -44,6 +44,7 @@ class MenuAction(EventAction):
             player.menu_monsters = result
             player.menu_save = result
             player.menu_player = result
+            player.menu_missions = result
         else:
             if self.menu == "menu_bag":
                 player.menu_bag = result
@@ -55,5 +56,7 @@ class MenuAction(EventAction):
                 player.menu_save = result
             elif self.menu == "menu_player":
                 player.menu_player = result
+            elif self.menu == "menu_missions":
+                player.menu_missions = result
             else:
                 raise ValueError(f"{self.menu} isn't valid.")

@@ -362,6 +362,14 @@ class EventEngine:
         Actions may be started during this function.
 
         """
+        # do the "init" events.  this will be done just once
+        # TODO: find solution that doesn't nuke the init list
+        # TODO: make event engine generic, so can be used in global scope,
+        # not just maps
+        if self.session.client.inits:
+            self.process_map_events(self.session.client.inits)
+            self.session.client.inits = list()
+
         # process any other events
         self.process_map_events(self.session.client.events)
 

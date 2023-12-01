@@ -64,6 +64,7 @@ class LocalPygameClient:
 
         # somehow this value is being patched somewhere
         self.events: Sequence[EventObject] = []
+        self.inits: Sequence[EventObject] = []
 
         # setup controls
         keyboard = PygameKeyboardInput(config.keyboard_button_map)
@@ -143,6 +144,7 @@ class LocalPygameClient:
 
         """
         self.events = map_data.events
+        self.inits = map_data.inits
         self.event_engine.reset()
         self.event_engine.current_map = map_data
         self.maps = map_data.maps
@@ -272,10 +274,10 @@ class LocalPygameClient:
 
         """
         for state in self.active_states:
-            game_event = state.process_event(game_event)
-            if game_event is None:
+            _game_event = state.process_event(game_event)
+            if _game_event is None:
                 break
-        return game_event
+        return _game_event
 
     def main(self) -> None:
         """

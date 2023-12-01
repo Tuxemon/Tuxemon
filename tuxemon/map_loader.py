@@ -173,6 +173,7 @@ class TMXMapLoader:
         tile_size = (data.tilewidth, data.tileheight)
         data.tilewidth, data.tileheight = prepare.TILE_SIZE
         events = list()
+        inits = list()
         surfable_map = list()
         collision_map: dict[tuple[int, int], Optional[RegionProperties]] = {}
         collision_lines_map = set()
@@ -241,9 +242,12 @@ class TMXMapLoader:
                 surfable_map.append(tile_size)
             elif obj_type == "event":
                 events.append(self.load_event(obj, tile_size))
+            elif obj_type == "init":
+                inits.append(self.load_event(obj, tile_size))
 
         return TuxemonMap(
             events,
+            inits,
             surfable_map,
             collision_map,
             collision_lines_map,

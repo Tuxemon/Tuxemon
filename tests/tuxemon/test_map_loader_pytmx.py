@@ -3,8 +3,11 @@
 import unittest
 from itertools import combinations
 from operator import is_not
+from typing import cast
 from unittest.mock import Mock
 
+from tuxemon.map import Direction
+from tuxemon.map import RegionProperties as RP
 from tuxemon.map_loader import TMXMapLoader
 
 
@@ -12,10 +15,10 @@ class TestTMXMapLoaderRegionTiles(unittest.TestCase):
     def setUp(self):
         self.properties = {
             "a": 1,
-            "enter": "up",
+            "enter_from": "up",
             "b": 3,
-            "exit": "down",
-            "continue": "left",
+            "exit_from": "down",
+            "endure": "left",
         }
         self.region = Mock(
             x=0,
@@ -34,19 +37,27 @@ class TestTMXMapLoaderRegionTiles(unittest.TestCase):
         properties = self.result[0][1]
         self.assertIsInstance(point, tuple)
         self.assertEqual(len(point), 2)
-        self.assertIsInstance(properties, dict)
+        if properties:
+            self.assertIsInstance(properties, RP)
 
     def test_result_properties_correct(self):
         properties = self.result[0][1]
-        expected = {"enter": ["up"], "exit": ["down"], "continue": "left"}
-        self.assertEqual(properties, expected)
+        expected = RP(
+            enter_from=["up"],
+            exit_from=["down"],
+            endure=["left"],
+            entity=None,
+            key=None,
+        )
+        if properties:
+            self.assertEqual(properties, expected)
 
     def test_result_properties_is_not_same_object_as_input(self):
         properties = self.result[0][1]
         self.assertIsNot(properties, self.properties)
 
     def test_result_each_properties_are_not_same_object(self):
-        properties = [i[1] for i in self.result]
+        properties = [i[1] for i in self.result if i[1]]
         comps = combinations(properties, 2)
         self.assertTrue(all(is_not(*i) for i in comps))
 
@@ -54,12 +65,12 @@ class TestTMXMapLoaderRegionTiles(unittest.TestCase):
         # fmt: off
         self.assertEqual(
             [
-                ((0, 1), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
-                ((1, 1), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
-                ((0, 2), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
-                ((1, 2), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
-                ((0, 3), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
-                ((1, 3), {"enter": ["up"], "exit": ["down"], "continue": "left"}),
+                ((0, 1), RP(["up"], ["down"], ["left"], None, None)),
+                ((1, 1), RP(["up"], ["down"], ["left"], None, None)),
+                ((0, 2), RP(["up"], ["down"], ["left"], None, None)),
+                ((1, 2), RP(["up"], ["down"], ["left"], None, None)),
+                ((0, 3), RP(["up"], ["down"], ["left"], None, None)),
+                ((1, 3), RP(["up"], ["down"], ["left"], None, None)),
             ],
             self.result,
         )

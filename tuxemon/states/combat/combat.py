@@ -50,10 +50,13 @@ from tuxemon.animation import Animation, Task
 from tuxemon.battle import Battle
 from tuxemon.combat import (
     alive_party,
+    award_experience,
+    award_money,
     check_moves,
     defeated,
     fainted,
     get_awake_monsters,
+    get_winners,
 )
 from tuxemon.condition.condition import Condition
 from tuxemon.db import (
@@ -1287,21 +1290,15 @@ class CombatState(CombatAnimations):
         message: str = ""
         action_time = 0.0
 
-        # nr times fainted monster got damaged
-        hits = len([ele for ele in self._damage_map if ele.defense == monster])
-        # all monsters that hit fainted monster
-        winners = {
-            ele.attack for ele in self._damage_map if ele.defense == monster
-        }
-
-        if hits:
-            # Award experience
-            awarded_exp = (
-                monster.total_experience // (monster.level * hits)
-            ) * monster.experience_modifier
-            # Award money
-            awarded_mon = monster.level * monster.money_modifier
+        winners = get_winners(monster, self._damage_map)
+        if winners:
             for winner in winners:
+                # Award money
+                awarded_mon = award_money(monster, winner)
+                # Award experience
+                awarded_exp = award_experience(
+                    monster, winner, self._damage_map
+                )
                 # check before giving exp
                 levels = winner.give_experience(awarded_exp)
                 # check after giving exp
@@ -1324,7 +1321,7 @@ class CombatState(CombatAnimations):
                             self._layout[self.players[0]]["hud1"][0],
                             self.monsters_in_play_human[1],
                         )
-                    else:
+                    elif len(self.monsters_in_play_human) == 1:
                         self.build_hud(
                             self._layout[self.players[0]]["hud"][0],
                             self.monsters_in_play_human[0],
@@ -1446,7 +1443,7 @@ class CombatState(CombatAnimations):
     @property
     def monsters_in_play_human(self) -> Sequence[Monster]:
         """
-        List of any monsters in battle (ai).
+        List of any monsters in battle (human).
 
         """
         return self.monsters_in_play[self.players[0]]

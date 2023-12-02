@@ -338,6 +338,7 @@ def extract_region_properties(
     else:
         return None
 
+
 def get_coords_extended(
     tile: tuple[int, int], map_size: tuple[int, int], radius: int = 1
 ) -> list[tuple[int, int]]:
@@ -379,7 +380,8 @@ def get_coords_extended(
     if not _coords:
         raise ValueError(f"{coords} invalid coordinates")
     return _coords
-  
+
+
 def direction_to_list(direction: Optional[str]) -> list[Direction]:
     """
     Splits direction string and returns a list with Direction/s
@@ -399,6 +401,7 @@ def direction_to_list(direction: Optional[str]) -> list[Direction]:
     for _props in props:
         result.append(cast(Direction, _props))
     return result
+
 
 class PathfindNode:
     """Used in path finding search."""

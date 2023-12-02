@@ -19,6 +19,7 @@ from pytmx.pytmx import TileFlags
 from pytmx.util_pygame import handle_transformation, smart_convert
 
 from tuxemon import prepare
+from tuxemon.db import db
 from tuxemon.session import Session
 from tuxemon.sprite import Sprite
 from tuxemon.surfanim import SurfaceAnimation
@@ -475,8 +476,6 @@ def get_avatar(
     If avatar is a number, we're referring to a monster slot in
     the player's party.
     If avatar is a string, we're referring to a monster by name.
-    TODO: If the monster name isn't found, we're referring to an NPC
-    on the map.
 
     Parameters:
         session: Game session.
@@ -486,9 +485,6 @@ def get_avatar(
         The surface of the monster or NPC avatar sprite.
 
     """
-    # TODO: remove the need for this import
-    from tuxemon.monster import Monster
-
     if isinstance(avatar, int):
         try:
             player = session.player
@@ -497,15 +493,21 @@ def get_avatar(
             logger.debug("invalid avatar monster slot")
             return None
     else:
-        try:
-            # TODO: don't create a new monster just to load the sprite
-            avatar_monster = Monster()
-            avatar_monster.load_from_db(avatar)
-            avatar_monster.flairs = {}  # Don't use random flair graphics
-            return avatar_monster.get_sprite("menu")
-        except KeyError:
-            logger.debug("invalid avatar monster name")
-            return None
+        monsters = list(db.database["monster"])
+        npcs = list(db.database["npc"])
+        if avatar in monsters:
+            monster = db.lookup(avatar, table="monster")
+            assert monster.sprites
+            menu1 = transform_resource_filename(f"{monster.sprites.menu1}.png")
+            menu2 = transform_resource_filename(f"{monster.sprites.menu2}.png")
+            return load_animated_sprite([menu1, menu2], 0.25)
+        if avatar in npcs:
+            npc = db.lookup(avatar, table="npc")
+            path = f"gfx/sprites/player/{npc.template[0].combat_front}.png"
+            sprite = load_sprite(path)
+            scale_sprite(sprite, 0.5)
+            return sprite
+        return None
 
 
 def string_to_colorlike(

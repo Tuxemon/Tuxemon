@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Union, final
+from typing import Optional, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -26,15 +26,12 @@ class GetPartyMonsterAction(EventAction):
     """
 
     name = "get_party_monster"
-    npc_slug: Union[str, None] = None
+    npc_slug: Optional[str] = None
 
     def start(self) -> None:
         player = self.session.player
-        if self.npc_slug is None:
-            trainer_slug = "player"
-        else:
-            trainer_slug = self.npc_slug
-        trainer = get_npc(self.session, trainer_slug)
+        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
+        trainer = get_npc(self.session, self.npc_slug)
         assert trainer
         for mon in trainer.monsters:
             index = trainer.monsters.index(mon)

@@ -366,7 +366,7 @@ def scale_sprite(
 
 def convert_alpha_to_colorkey(
     surface: pygame.surface.Surface,
-    colorkey: ColorLike = (255, 0, 255),
+    colorkey: ColorLike = prepare.FUCHSIA_COLOR,
 ) -> pygame.surface.Surface:
     """
     Convert image with per-pixel alpha to normal surface with colorkey.
@@ -466,7 +466,7 @@ def capture_screenshot(game: LocalPygameClient) -> pygame.surface.Surface:
 
 def get_avatar(
     session: Session,
-    avatar: str,
+    avatar: Union[str, int],
 ) -> Optional[Sprite]:
     """
     Gets the avatar sprite of a monster or NPC.
@@ -489,11 +489,10 @@ def get_avatar(
     # TODO: remove the need for this import
     from tuxemon.monster import Monster
 
-    if avatar and avatar.isdigit():
+    if isinstance(avatar, int):
         try:
             player = session.player
-            slot = int(avatar)
-            return player.monsters[slot].get_sprite("menu")
+            return player.monsters[avatar].get_sprite("menu")
         except IndexError:
             logger.debug("invalid avatar monster slot")
             return None
@@ -522,7 +521,7 @@ def string_to_colorlike(
         The ColorLike.
 
     """
-    rgb: ColorLike = (0, 0, 0)
+    rgb: ColorLike = prepare.BLACK_COLOR
     part = color.split(":")
     rgb = (
         (int(part[0]), int(part[1]), int(part[2]), int(part[3]))

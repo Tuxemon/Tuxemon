@@ -129,7 +129,7 @@ class RandomEncounterAction(EventAction):
             self.world.stop_player()
 
             # flash the screen
-            rgb: ColorLike = (255, 255, 255)
+            rgb: ColorLike = prepare.WHITE_COLOR
             if self.rgb:
                 rgb = string_to_colorlike(self.rgb)
             self.session.client.push_state(FlashTransition(color=rgb))

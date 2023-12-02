@@ -39,8 +39,8 @@ class Condition:
 
     """
 
-    effects_classes: ClassVar[Mapping[str, type[CondEffect[Any]]]] = {}
-    conditions_classes: ClassVar[Mapping[str, type[CondCondition[Any]]]] = {}
+    effects_classes: ClassVar[Mapping[str, type[CondEffect]]] = {}
+    conditions_classes: ClassVar[Mapping[str, type[CondCondition]]] = {}
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         if save_data is None:
@@ -54,9 +54,9 @@ class Condition:
         self.animation: Optional[str] = None
         self.category: Optional[CategoryCondition] = None
         self.combat_state: Optional[CombatState] = None
-        self.conditions: Sequence[CondCondition[Any]] = []
+        self.conditions: Sequence[CondCondition] = []
         self.description = ""
-        self.effects: Sequence[CondEffect[Any]] = []
+        self.effects: Sequence[CondEffect] = []
         self.flip_axes = ""
         self.gain_cond = ""
         self.icon = ""
@@ -156,7 +156,7 @@ class Condition:
     def parse_effects(
         self,
         raw: Sequence[str],
-    ) -> Sequence[CondEffect[Any]]:
+    ) -> Sequence[CondEffect]:
         """
         Convert effect strings to effect objects.
 
@@ -190,7 +190,7 @@ class Condition:
     def parse_conditions(
         self,
         raw: Sequence[str],
-    ) -> Sequence[CondCondition[Any]]:
+    ) -> Sequence[CondCondition]:
         """
         Convert condition strings to condition objects.
 

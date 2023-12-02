@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
 import uuid
-from collections.abc import Generator, Iterator, Mapping
+from collections.abc import Generator, Iterator
 from math import cos, pi, sin
 from typing import Any, Optional
 
@@ -38,18 +38,13 @@ logger = logging.getLogger(__name__)
 
 RegionTile = tuple[
     tuple[int, int],
-    Optional[Mapping[str, Any]],
+    Optional[RegionProperties],
 ]
 
-# TODO: standardize and document these values
 region_properties = [
-    "enter",
     "enter_from",
-    "enter_to",
-    "exit",
     "exit_from",
-    "exit_to",
-    "continue",
+    "endure",
     "key",
 ]
 
@@ -67,6 +62,8 @@ class YAMLEventLoader:
             path: Path to the file.
 
         """
+        yaml_data: dict[str, dict[str, dict[str, Any]]] = {}
+
         with open(path) as fp:
             yaml_data = yaml.load(fp.read(), Loader=yaml.SafeLoader)
 
@@ -74,10 +71,10 @@ class YAMLEventLoader:
             _id = uuid.uuid4().int
             conds = []
             acts = []
-            x = event_data.get("x")
-            y = event_data.get("y")
-            w = event_data.get("width")
-            h = event_data.get("height")
+            x = event_data.get("x", 0)
+            y = event_data.get("y", 0)
+            w = event_data.get("width", 1)
+            h = event_data.get("height", 1)
             event_type = event_data.get("type")
 
             for key, value in enumerate(

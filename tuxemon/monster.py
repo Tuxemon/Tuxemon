@@ -759,6 +759,7 @@ class Monster:
         faint = Condition()
         faint.load("faint")
         self.current_hp = 0
+        self.status.clear()
         self.apply_status(faint)
 
     def end_combat(self) -> None:
@@ -775,8 +776,8 @@ class Monster:
             self.status = []
 
     def speed_test(self, action: EnqueuedAction) -> int:
-        assert isinstance(action.technique, Technique)
-        technique = action.technique
+        assert isinstance(action.method, Technique)
+        technique = action.method
         if technique.is_fast:
             return int(random.randrange(0, int(self.speed)) * 1.5)
         else:

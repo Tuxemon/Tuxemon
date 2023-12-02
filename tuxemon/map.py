@@ -6,7 +6,15 @@ import logging
 from collections.abc import Generator, Mapping, MutableMapping, Sequence
 from itertools import product
 from math import atan2, pi
-from typing import TYPE_CHECKING, NamedTuple, Optional, TypeVar, Union
+from typing import (
+    TYPE_CHECKING,
+    Literal,
+    NamedTuple,
+    Optional,
+    TypeVar,
+    Union,
+    cast,
+)
 
 import pyscroll
 from pytmx import pytmx
@@ -27,6 +35,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 RectTypeVar = TypeVar("RectTypeVar", bound=ReadOnlyRect)
+
 
 
 class RegionProperties(NamedTuple):
@@ -295,7 +304,15 @@ def extract_region_properties(
     Given a dictionary from Tiled properties, return a dictionary
     suitable for collision detection.
 
-    Uses `exit`, `enter`, and `continue` keys.
+    We are using word "endure" because continue is already used in Python
+    and it can create issues. Endure means "continue to walk in a precise direction".
+
+    If in the tileset.tsx there is endure=left, it means that the player continues
+    walking left. endure is a sequence (possible multiple values); if there are more
+    than 1 direction eg (up and left), then the player will continue in the direction
+    he/she entered the tile, so it takes the direction from self.facing
+
+    Uses `exit_from`, `enter_from`, and `continue` keys.
 
     Parameters:
         properties: Dictionary of data from Tiled for object, tile, etc.
@@ -341,7 +358,8 @@ def extract_region_properties(
         return None
 
 
-def direction_to_list(direction: str) -> list[Direction]:
+
+def direction_to_list(direction: Optional[str]) -> list[Direction]:
     """
     Splits direction string and returns a list with Direction/s
 
@@ -352,10 +370,10 @@ def direction_to_list(direction: str) -> list[Direction]:
         List with Direction/s
 
     """
-    try:
-        props = direction.split(",")
-    except:
+    if direction is None:
         props = []
+    else:
+        props = direction.split(",")
     result: list[Direction] = []
     for _props in props:
         result.append(Direction(_props))

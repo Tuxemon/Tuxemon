@@ -1027,6 +1027,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Wood Booster"](https://wiki.tuxemon.org/File:2nd_the_king_8.png) [https://opengameart.org/content/icons-items-1 CC0 on OGA]
 
+* ["XP Transmitter"](https://wiki.tuxemon.org/File:Pixel_icons_by_oceansdream24.png) [http://opengameart.org/content/various-inventory-24-pixel-icon-set CC BY 3.0 on OGA, from OceansDream]
+
 ### Item Animations
 
 * ["Capture 1"](https://wiki.tuxemon.org/File:Capture_1.gif)

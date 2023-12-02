@@ -264,6 +264,12 @@ class ItemModel(BaseModel):
             return v
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
+    @field_validator("conditions")
+    def check_conditions(cls: ItemModel, v: Sequence[str]) -> Sequence[str]:
+        if not v or has.check_conditions(v):
+            return v
+        raise ValueError(f"the conditions {v} aren't correctly formatted")
+
 
 class ShapeModel(BaseModel):
     slug: MonsterShape = Field(..., description="Slug of the shape")
@@ -632,6 +638,14 @@ class TechniqueModel(BaseModel):
             return v
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
+    @field_validator("conditions")
+    def check_conditions(
+        cls: TechniqueModel, v: Sequence[str]
+    ) -> Sequence[str]:
+        if not v or has.check_conditions(v):
+            return v
+        raise ValueError(f"the conditions {v} aren't correctly formatted")
+
 
 class ConditionModel(BaseModel):
     slug: str = Field(..., description="The slug of the condition")
@@ -736,6 +750,14 @@ class ConditionModel(BaseModel):
         if not v or has.db_entry("condition", v):
             return v
         raise ValueError(f"the status {v} doesn't exist in the db")
+
+    @field_validator("conditions")
+    def check_conditions(
+        cls: ConditionModel, v: Sequence[str]
+    ) -> Sequence[str]:
+        if not v or has.check_conditions(v):
+            return v
+        raise ValueError(f"the conditions {v} aren't correctly formatted")
 
 
 class PartyMemberModel(BaseModel):
@@ -1390,6 +1412,40 @@ class Validator:
             return os.path.exists(path)
         except OSError:
             return False
+
+    def check_conditions(self, conditions: Sequence[str]) -> bool:
+        """
+        Check to see if a condition is correctly formatted.
+
+        Parameters:
+            conditions: The sequence containing the conditions
+
+        Returns:
+            True if it's correctly formatted
+
+        """
+        if not conditions:
+            return True
+
+        _conditions = [
+            element
+            for condition in conditions
+            for element in condition.split(" ")
+        ]
+
+        # check nr of elements
+        if len(_conditions) == 1:
+            raise ValueError(
+                f"{_conditions} invalid, it must have at least: 'is' + 'condition'"
+            )
+
+        # check prefix
+        prefix = _conditions[0]
+        _prefix = True if prefix == "is" or _conditions[0] == "not" else False
+        if not _prefix:
+            raise ValueError(f"{prefix} is invalid, it must be: 'is' or 'not'")
+
+        return True
 
     def db_entry(self, table: TableName, slug: str) -> bool:
         """

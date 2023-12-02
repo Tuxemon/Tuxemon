@@ -759,6 +759,7 @@ class Monster:
         faint = Condition()
         faint.load("faint")
         self.current_hp = 0
+        self.status.clear()
         self.apply_status(faint)
 
     def end_combat(self) -> None:

@@ -357,10 +357,14 @@ class NPC(Entity[NPCState]):
 
     def check_continue(self) -> None:
         try:
-            direction_next = self.world.collision_map[self.tile_pos][
-                "continue"
-            ]
-            self.move_one_tile(direction_next)
+            tile = self.world.collision_map[self.tile_pos]
+            if tile and tile.endure:
+                _direction = (
+                    self.facing if len(tile.endure) > 1 else tile.endure[0]
+                )
+                self.move_one_tile(_direction)
+            else:
+                pass
         except (KeyError, TypeError):
             pass
 
@@ -744,6 +748,11 @@ class NPC(Entity[NPCState]):
         new_monster.taste_cold = old_monster.taste_cold
         new_monster.taste_warm = old_monster.taste_warm
         new_monster.plague = old_monster.plague
+        new_monster.name = (
+            new_monster.name
+            if old_monster.name == T.translate(old_monster.slug)
+            else old_monster.name
+        )
         self.remove_monster(old_monster)
         self.add_monster(new_monster, slot)
 

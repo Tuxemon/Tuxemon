@@ -641,6 +641,12 @@ msgstr "Wood Booster"
 msgid "wood_booster_description"
 msgstr "It allows to morph a Wood type tuxemon into a different form."
 
+msgid "xp_transmitter"
+msgstr "XP Transmitter"
+
+msgid "xp_transmitter_description"
+msgstr "When this item is in your possession, all monsters that did not participate in defeating a monster get half of the XP. The remainder goes to the monsters that did participate."
+
 # Map Types:
 
 msgid "no_type"

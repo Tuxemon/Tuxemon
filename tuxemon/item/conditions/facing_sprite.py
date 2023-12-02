@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from tuxemon.db import Direction
 from tuxemon.event import get_npc_pos
 from tuxemon.item.itemcondition import ItemCondition
 
@@ -29,16 +30,16 @@ class FacingSpriteCondition(ItemCondition):
         facing = player.facing
         player_x = player.tile_pos[0]
         player_y = player.tile_pos[1]
-        if facing == "down":
+        if facing == Direction.down:
             y = player_y - 1
             coords = player_x, y
-        elif facing == "up":
+        elif facing == Direction.up:
             y = player_y + 1
             coords = player_x, y
-        elif facing == "right":
+        elif facing == Direction.right:
             x = player_x + 1
             coords = x, player_y
-        elif facing == "left":
+        elif facing == Direction.left:
             x = player_x - 1
             coords = x, player_y
 

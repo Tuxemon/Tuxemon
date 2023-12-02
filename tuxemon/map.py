@@ -53,9 +53,6 @@ dirs2: Mapping[Direction, Vector2] = {
 # just the first letter of the direction => vector
 short_dirs = {d[0]: dirs2[d] for d in dirs2}
 
-# complimentary directions
-pairs = {"up": "down", "down": "up", "left": "right", "right": "left"}
-
 # what directions entities can face
 facing = "front", "back", "left", "right"
 
@@ -97,6 +94,29 @@ def get_direction(
         return Direction.up if y_offset > 0 else Direction.down
     else:
         return Direction.left if x_offset > 0 else Direction.right
+
+
+def pairs(direction: Direction) -> Direction:
+    """
+    Returns complimentary direction.
+
+    Parameters:
+        direction: Direction.
+
+    Returns:
+        Complimentary direction.
+
+    """
+    if direction == Direction.up:
+        return Direction.down
+    elif direction == Direction.down:
+        return Direction.up
+    elif direction == Direction.left:
+        return Direction.right
+    elif direction == Direction.right:
+        return Direction.left
+    else:
+        raise ValueError(f"{direction} doesn't exist.")
 
 
 def proj(point: Vector3) -> Vector2:

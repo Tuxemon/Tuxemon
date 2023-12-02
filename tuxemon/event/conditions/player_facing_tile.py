@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 
+from tuxemon.db import Direction
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
@@ -62,20 +63,20 @@ class PlayerFacingTileCondition(EventCondition):
                 # Check to see if the tile is to the left of the player
                 if coordinates[0] == session.player.tile_pos[0] - 1:
                     logger.debug("Tile is to the left of the player")
-                    tile_location = "left"
+                    tile_location = Direction.left
                 # Check to see if the tile is to the right of the player
                 elif coordinates[0] == session.player.tile_pos[0] + 1:
                     logger.debug("Tile is to the right of the player")
-                    tile_location = "right"
+                    tile_location = Direction.right
 
             elif coordinates[0] == session.player.tile_pos[0]:
                 # Check to see if the tile is above the player
                 if coordinates[1] == session.player.tile_pos[1] - 1:
                     logger.debug("Tile is above the player")
-                    tile_location = "up"
+                    tile_location = Direction.up
                 elif coordinates[1] == session.player.tile_pos[1] + 1:
                     logger.debug("Tile is below the player")
-                    tile_location = "down"
+                    tile_location = Direction.down
 
             # Then we check to see if we're facing the Tile
             if session.player.facing == tile_location:

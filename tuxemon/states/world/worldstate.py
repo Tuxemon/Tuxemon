@@ -928,7 +928,7 @@ class WorldState(state.State):
                     continue
 
                 try:
-                    if pairs[direction] not in tile_data.enter_from:
+                    if pairs(direction) not in tile_data.enter_from:
                         continue
                 except KeyError:
                     continue

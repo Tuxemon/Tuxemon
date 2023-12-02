@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="212">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="212">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -22,9 +22,7 @@
    </animation>
   </tile>
  </tileset>
- <tileset firstgid="1313" name="My_tuxemon_sheet" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/My_tuxemon_sheet.png" width="128" height="208"/>
- </tileset>
+ <tileset firstgid="1313" source="../gfx/tilesets/My_tuxemon_sheet.tsx"/>
  <layer id="1" name="Tile Layer 1" width="48" height="32">
   <data encoding="base64" compression="zlib">
    eAHtVslKBDEQnYtfoqjgIV5cQA+CW4PCeHGBcTu4/f8XWA/qQRGSSdlJ0430oaiklpeXqp7KLDcWi6WRXbOG/Vj3nWj4gsiByGFCjsRmsXLrXD4wiYFzcvnr7OD4ZHJ5H2rgbqk/5sGz1+HDZ/NyOTinhJPyd5r3o3pf9Z3odxHg2vNtH3Jc4nNy+X2wYmzwZa3h45r3AH97ju15jJXbp/h7757DpJ18uT8TvlijH/AF3cMGH/2MgS4JsEoxNf5NwY9rzD3rZHlzfe7kdeGM63uHUMAn307i8LvAObDdmDXnFjlgz7xbjaOvtQ4FfPIAd9wB51v+JT7kfy95DyqPilPK9fiDA4t3AB7XJ7K+MnKtOJfGBv+p2l9Ev6q8qc3DrxTj4U/e5F7CTPnH5p/iZG2sO/tgfVhPnX/MN95PmT9rz99DqgdT5h/XOrWf+aff8dBwlqXqTtuQ9bdvC9+Y1vpDZz/egNbz39aGb8yQujX/T6nJV095NnVdOTG+JY7fVa0OlVi2dy3r6r3XEPz5fzTWXk5/ifsP/Gvmz1BzxdsD1N9+wzVzZ4zvf0/4b/eQHcmJZ1bLueKtf9849K1v7hTyZv7j9m+u/1z/mjkwxvfzCz3q8bo=
@@ -81,48 +79,6 @@
   <object id="151" type="collision" x="208" y="320" width="32" height="16"/>
   <object id="152" type="collision" x="544" y="240" width="96" height="48"/>
   <object id="153" type="collision" x="544" y="288" width="16" height="32"/>
-  <object id="154" type="collision" x="352" y="192" width="80" height="16">
-   <properties>
-    <property name="endure" value="down"/>
-    <property name="enter_from" value="up"/>
-    <property name="exit_from" value="down"/>
-   </properties>
-  </object>
-  <object id="155" type="collision" x="368" y="160" width="48" height="16">
-   <properties>
-    <property name="endure" value="down"/>
-    <property name="enter_from" value="up"/>
-    <property name="exit_from" value="down"/>
-   </properties>
-  </object>
-  <object id="156" type="collision" x="464" y="80" width="16" height="48">
-   <properties>
-    <property name="endure" value="right"/>
-    <property name="enter_from" value="left"/>
-    <property name="exit_from" value="right"/>
-   </properties>
-  </object>
-  <object id="157" type="collision" x="304" y="80" width="16" height="48">
-   <properties>
-    <property name="endure" value="left"/>
-    <property name="enter_from" value="right"/>
-    <property name="exit_from" value="left"/>
-   </properties>
-  </object>
-  <object id="158" type="collision" x="304" y="128" width="80" height="16">
-   <properties>
-    <property name="endure" value="down"/>
-    <property name="enter_from" value="up"/>
-    <property name="exit_from" value="down"/>
-   </properties>
-  </object>
-  <object id="159" type="collision" x="400" y="128" width="80" height="16">
-   <properties>
-    <property name="endure" value="down"/>
-    <property name="enter_from" value="up"/>
-    <property name="exit_from" value="down"/>
-   </properties>
-  </object>
   <object id="160" type="collision" x="400" y="368" width="16" height="16"/>
   <object id="161" type="collision" x="560" y="80" width="80" height="48"/>
   <object id="162" type="collision" x="384" y="240" width="128" height="16"/>

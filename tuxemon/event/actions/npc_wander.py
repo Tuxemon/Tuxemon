@@ -7,6 +7,7 @@ import random
 from dataclasses import dataclass
 from typing import Optional, final
 
+from tuxemon.db import Direction
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
@@ -70,13 +71,13 @@ class NpcWanderAction(EventAction):
             # Suspend wandering if a dialog window is open
             coords = (0, 0)
             # retrieve NPC talking to
-            if player.facing == "down":
+            if player.facing == Direction.down:
                 coords = (player.tile_pos[0], player.tile_pos[1] + 1)
-            elif player.facing == "up":
+            elif player.facing == Direction.up:
                 coords = (player.tile_pos[0], player.tile_pos[1] - 1)
-            elif player.facing == "left":
+            elif player.facing == Direction.left:
                 coords = (player.tile_pos[0] - 1, player.tile_pos[1])
-            elif player.facing == "right":
+            elif player.facing == Direction.right:
                 coords = (player.tile_pos[0] + 1, player.tile_pos[1])
 
             for state in self.session.client.active_states:

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 
+from tuxemon.db import Direction
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
@@ -60,20 +61,20 @@ class NPCFacingTileCondition(EventCondition):
                 # Check to see if the tile is to the left of the npc
                 if coordinates[0] == npc.tile_pos[0] - 1:
                     logger.debug("Tile is to the left of the NPC")
-                    tile_location = "left"
+                    tile_location = Direction.left
                 # Check to see if the tile is to the right of the npc
                 elif coordinates[0] == npc.tile_pos[0] + 1:
                     logger.debug("Tile is to the right of the NPC")
-                    tile_location = "right"
+                    tile_location = Direction.right
 
             if coordinates[0] == npc.tile_pos[0]:
                 # Check to see if the tile is above the npc
                 if coordinates[1] == npc.tile_pos[1] - 1:
                     logger.debug("Tile is above the NPC")
-                    tile_location = "up"
+                    tile_location = Direction.up
                 elif coordinates[1] == npc.tile_pos[1] + 1:
                     logger.debug("Tile is below the NPC")
-                    tile_location = "down"
+                    tile_location = Direction.down
 
             # Then we check to see the npc is facing the Tile
             if npc.facing == tile_location:

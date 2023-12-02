@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 
+from tuxemon.db import Direction
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
@@ -51,20 +52,20 @@ class PlayerFacingNPCCondition(EventCondition):
             # Check to see if the NPC is to the left of the player
             if npc.tile_pos[0] == session.player.tile_pos[0] - 1:
                 logger.debug("NPC is to the left of the player")
-                npc_location = "left"
+                npc_location = Direction.left
             # Check to see if the NPC is to the right of the player
             elif npc.tile_pos[0] == session.player.tile_pos[0] + 1:
                 logger.debug("NPC is to the right of the player")
-                npc_location = "right"
+                npc_location = Direction.right
 
         if npc.tile_pos[0] == session.player.tile_pos[0]:
             # Check to see if the NPC is above the player
             if npc.tile_pos[1] == session.player.tile_pos[1] - 1:
                 logger.debug("NPC is above the player")
-                npc_location = "up"
+                npc_location = Direction.up
             elif npc.tile_pos[1] == session.player.tile_pos[1] + 1:
                 logger.debug("NPC is below the player")
-                npc_location = "down"
+                npc_location = Direction.down
 
         # Then we check to see if we're facing the NPC
         return session.player.facing == npc_location

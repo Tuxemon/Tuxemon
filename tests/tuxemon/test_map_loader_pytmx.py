@@ -3,22 +3,23 @@
 import unittest
 from itertools import combinations
 from operator import is_not
+from typing import cast
 from unittest.mock import Mock
 
-from tuxemon.db import Direction
+from tuxemon.map import Direction
 from tuxemon.map import RegionProperties as RP
 from tuxemon.map_loader import TMXMapLoader
 
 
 class TestTMXMapLoaderRegionTiles(unittest.TestCase):
     def setUp(self):
-        self.properties = RP(
-            enter_from=[Direction.up],
-            exit_from=[Direction.down],
-            endure=[Direction.left],
-            entity=None,
-            key=None,
-        )
+        self.properties = {
+            "a": 1,
+            "enter_from": "up",
+            "b": 3,
+            "exit_from": "down",
+            "endure": "left",
+        }
         self.region = Mock(
             x=0,
             y=16,
@@ -42,9 +43,9 @@ class TestTMXMapLoaderRegionTiles(unittest.TestCase):
     def test_result_properties_correct(self):
         properties = self.result[0][1]
         expected = RP(
-            enter_from=[Direction.up],
-            exit_from=[Direction.down],
-            endure=[Direction.left],
+            enter_from=["up"],
+            exit_from=["down"],
+            endure=["left"],
             entity=None,
             key=None,
         )
@@ -59,3 +60,17 @@ class TestTMXMapLoaderRegionTiles(unittest.TestCase):
         properties = [i[1] for i in self.result if i[1]]
         comps = combinations(properties, 2)
         self.assertTrue(all(is_not(*i) for i in comps))
+
+    def test_correct_result(self):
+        # fmt: off
+        self.assertEqual(
+            [
+                ((0, 1), RP(["up"], ["down"], ["left"], None, None)),
+                ((1, 1), RP(["up"], ["down"], ["left"], None, None)),
+                ((0, 2), RP(["up"], ["down"], ["left"], None, None)),
+                ((1, 2), RP(["up"], ["down"], ["left"], None, None)),
+                ((0, 3), RP(["up"], ["down"], ["left"], None, None)),
+                ((1, 3), RP(["up"], ["down"], ["left"], None, None)),
+            ],
+            self.result,
+        )

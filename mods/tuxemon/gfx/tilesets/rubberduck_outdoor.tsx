@@ -1,242 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tileset version="1.10" tiledversion="git" name="rubberduck_outdoor" tilewidth="16" tileheight="16" tilecount="1369" columns="37">
  <image source="rubberduck_outdoor.png" width="592" height="592"/>
- <tile id="0">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="3" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="1">
-  <objectgroup draworder="index" id="2">
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="2">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="3">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="3" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="8">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="9">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="10">
-  <objectgroup draworder="index" id="3">
-   <object id="3" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="4" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="11">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="3" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="16">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="17">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="18">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="19">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="3" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="24">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="25">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="26">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="27">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="3" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="37">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="39">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="40">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="45">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="47">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="48">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="53">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="55">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="56">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="61">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="63">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="64">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="72">
   <properties>
    <property name="endure" value="left"/>
@@ -250,67 +14,6 @@
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
- </tile>
- <tile id="74">
-  <objectgroup draworder="index" id="2">
-   <object id="1" x="0" y="0" width="16" height="16"/>
-   <object id="3" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="75">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="76">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="82">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="83">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="84">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="90">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="91">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="92">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="98">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="99">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="100">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="106">
   <properties>
@@ -578,16 +281,6 @@
    <property name="exit_from" value="right"/>
   </properties>
  </tile>
- <tile id="180">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="181">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="185">
   <properties>
    <property name="endure" value="down"/>
@@ -728,56 +421,6 @@
    <property name="exit_from" value="right"/>
   </properties>
  </tile>
- <tile id="217">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="218">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="222">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="223">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="230">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="231">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="238">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="239">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="246">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="247">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="257">
   <properties>
    <property name="endure" value="left"/>
@@ -791,46 +434,6 @@
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
- </tile>
- <tile id="259">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="260">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="267">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="268">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="275">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="276">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="283">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="284">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="291">
   <properties>
@@ -867,166 +470,6 @@
    <property name="exit_from" value="right"/>
   </properties>
  </tile>
- <tile id="296">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="297">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="298">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="299">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="3" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="304">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="305">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="306">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="307">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="3" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="312">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="313">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="314">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="315">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="3" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="320">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="321">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="322">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="323">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="3" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
  <tile id="328">
   <properties>
    <property name="endure" value="down"/>
@@ -1062,107 +505,6 @@
    <property name="exit_from" value="right"/>
   </properties>
  </tile>
- <tile id="333">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="335">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="336">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="341">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="343">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="344">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="349">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="351">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="352">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="357">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="359">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="360">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="365">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="366">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="370">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="371">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="372">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="373">
   <properties>
    <property name="endure" value="left"/>
@@ -1176,21 +518,6 @@
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
- </tile>
- <tile id="378">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="379">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="380">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="381">
   <properties>
@@ -1206,21 +533,6 @@
    <property name="exit_from" value="right"/>
   </properties>
  </tile>
- <tile id="386">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="387">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="388">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="389">
   <properties>
    <property name="endure" value="left"/>
@@ -1235,21 +547,6 @@
    <property name="exit_from" value="right"/>
   </properties>
  </tile>
- <tile id="394">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="395">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="396">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="397">
   <properties>
    <property name="endure" value="left"/>
@@ -1263,16 +560,6 @@
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
- </tile>
- <tile id="402">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="403">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="407">
   <properties>
@@ -1603,46 +890,6 @@
    <property name="exit_from" value="right"/>
   </properties>
  </tile>
- <tile id="481">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="482">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="489">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="490">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="497">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="498">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="505">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="506">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="513">
   <properties>
    <property name="endure" value="down"/>
@@ -1678,184 +925,6 @@
    <property name="exit_from" value="right"/>
   </properties>
  </tile>
- <tile id="518">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="519">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="526">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="527">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="534">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="535">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="542">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="543">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="550">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="551">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="555">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="556">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="557">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="558">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="3" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="563">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="564">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="565">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="566">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="3" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="587">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="588">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="592">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="594">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="595">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="600">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="602">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="603">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="612">
   <properties>
    <property name="surfable" value="1"/>
@@ -1884,36 +953,6 @@
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
- </tile>
- <tile id="629">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="630">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="631">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="637">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="638">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="639">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="661">
   <properties>
@@ -2083,16 +1122,6 @@
    <property name="exit_from" value="right"/>
   </properties>
  </tile>
- <tile id="735">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="736">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="740">
   <properties>
    <property name="endure" value="down"/>
@@ -2163,36 +1192,6 @@
    <property name="exit_from" value="right"/>
   </properties>
  </tile>
- <tile id="772">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="773">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="777">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="778">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="785">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="786">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="812">
   <properties>
    <property name="endure" value="left"/>
@@ -2206,26 +1205,6 @@
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
- </tile>
- <tile id="814">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="815">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="822">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="823">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="846">
   <properties>
@@ -2262,86 +1241,6 @@
    <property name="exit_from" value="right"/>
   </properties>
  </tile>
- <tile id="851">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="852">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="853">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="854">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="3" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="859">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="860">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="861">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="862">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="2" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-   <object id="3" type="collision-line" x="16" y="0">
-    <polyline points="0,0 -16,0"/>
-   </object>
-  </objectgroup>
- </tile>
  <tile id="883">
   <properties>
    <property name="endure" value="down"/>
@@ -2377,69 +1276,6 @@
    <property name="exit_from" value="right"/>
   </properties>
  </tile>
- <tile id="888">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="890">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="891">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="896">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="0" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="898">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision-line" x="16" y="16">
-    <polyline points="0,0 0,-16"/>
-   </object>
-  </objectgroup>
- </tile>
- <tile id="899">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="920">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="921">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="925">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="926">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="927">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="928">
   <properties>
    <property name="endure" value="left"/>
@@ -2454,21 +1290,6 @@
    <property name="exit_from" value="right"/>
   </properties>
  </tile>
- <tile id="933">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="934">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="935">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="936">
   <properties>
    <property name="endure" value="left"/>
@@ -2482,16 +1303,6 @@
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
- </tile>
- <tile id="957">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="958">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <tile id="962">
   <properties>
@@ -2682,26 +1493,6 @@
    <property name="exit_from" value="right"/>
   </properties>
  </tile>
- <tile id="1036">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="1037">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="1044">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="1045">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
  <tile id="1068">
   <properties>
    <property name="endure" value="down"/>
@@ -2736,46 +1527,6 @@
    <property name="enter_from" value="left"/>
    <property name="exit_from" value="right"/>
   </properties>
- </tile>
- <tile id="1073">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="1074">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="1081">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="1082">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="1105">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="1106">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="1142">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
- </tile>
- <tile id="1143">
-  <objectgroup draworder="index" id="2">
-   <object id="1" type="collision" x="0" y="0" width="16" height="16"/>
-  </objectgroup>
  </tile>
  <wangsets>
   <wangset name="Rubberduck" type="corner" tile="-1"/>

@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from tuxemon.db import Direction
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.states.world.worldstate import WorldState
 
@@ -39,17 +40,17 @@ class FacingTileCondition(ItemCondition):
             if coordinates[1] == player.tile_pos[1]:
                 # Check to see if the tile is to the left of the player
                 if coordinates[0] == player.tile_pos[0] - 1:
-                    tile_location = "left"
+                    tile_location = Direction.left
                 # Check to see if the tile is to the right of the player
                 elif coordinates[0] == player.tile_pos[0] + 1:
-                    tile_location = "right"
+                    tile_location = Direction.right
 
             elif coordinates[0] == player.tile_pos[0]:
                 # Check to see if the tile is above the player
                 if coordinates[1] == player.tile_pos[1] - 1:
-                    tile_location = "up"
+                    tile_location = Direction.up
                 elif coordinates[1] == player.tile_pos[1] + 1:
-                    tile_location = "down"
+                    tile_location = Direction.down
 
             # Then we check to see if we're facing the Tile
             if player.facing == tile_location:

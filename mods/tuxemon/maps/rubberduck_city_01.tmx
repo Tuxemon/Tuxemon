@@ -162,24 +162,24 @@
   <object id="131" type="collision" x="480" y="816" width="16" height="32"/>
   <object id="147" type="collision" x="704" y="96" width="64" height="16">
    <properties>
-    <property name="continue" value="down"/>
+    <property name="endure" value="down"/>
     <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
+    <property name="exit_from" value="down"/>
    </properties>
   </object>
   <object id="148" type="collision" x="912" y="688" width="16" height="48">
    <properties>
-    <property name="continue" value="right"/>
+    <property name="endure" value="right"/>
     <property name="enter_from" value="left"/>
-    <property name="exit_to" value="right"/>
+    <property name="exit_from" value="right"/>
    </properties>
   </object>
   <object id="149" type="collision" x="864" y="672" width="16" height="16"/>
   <object id="155" type="collision" x="608" y="160" width="112" height="16">
    <properties>
-    <property name="continue" value="down"/>
+    <property name="endure" value="down"/>
     <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
+    <property name="exit_from" value="down"/>
    </properties>
   </object>
   <object id="157" type="collision" x="720" y="160" width="16" height="32"/>

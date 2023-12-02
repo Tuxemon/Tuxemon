@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
 import uuid
-from collections.abc import Generator, Iterator, Mapping
+from collections.abc import Generator, Iterator
 from math import cos, pi, sin
 from typing import Any, Optional
 
@@ -38,18 +38,13 @@ logger = logging.getLogger(__name__)
 
 RegionTile = tuple[
     tuple[int, int],
-    Optional[Mapping[str, Any]],
+    Optional[RegionProperties],
 ]
 
-# TODO: standardize and document these values
 region_properties = [
-    "enter",
     "enter_from",
-    "enter_to",
-    "exit",
     "exit_from",
-    "exit_to",
-    "continue",
+    "endure",
     "key",
 ]
 

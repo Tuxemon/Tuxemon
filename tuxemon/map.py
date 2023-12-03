@@ -66,9 +66,6 @@ short_dirs = {d[0]: dirs2[d] for d in dirs2}
 # complimentary directions
 pairs = {"up": "down", "down": "up", "left": "right", "right": "left"}
 
-# what directions entities can face
-facing = "front", "back", "left", "right"
-
 
 def translate_short_path(
     path: str,

@@ -118,5 +118,15 @@
         "slug": "interactive_obj"
       }
     ]
+  },
+  {
+    "slug": "spyder_citypark_house_maniac",
+    "template": [
+      {
+        "sprite_name": "maniac_green",
+        "combat_front": "adventurer",
+        "slug": "maniac"
+      }
+    ]
   }
 ]

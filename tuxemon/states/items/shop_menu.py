@@ -2,14 +2,15 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from collections.abc import Generator, Sequence
+from collections.abc import Generator
 from functools import partial
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 import pygame
 
 from tuxemon import tools
 from tuxemon.item.item import INFINITE_ITEMS, Item
+from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.menu.quantity import QuantityAndCostMenu, QuantityAndPriceMenu
@@ -19,34 +20,6 @@ from tuxemon.ui.text import TextArea
 if TYPE_CHECKING:
     from tuxemon.item.economy import Economy
     from tuxemon.npc import NPC
-
-
-def sort_inventory(
-    inventory: Sequence[Item],
-) -> Sequence[Item]:
-    """
-    Sort inventory in a usable way. Expects an iterable of inventory properties.
-
-    * Group items by category
-    * Sort in groups by name
-    * Group order: Potions, Food, Utility Items, Quest/Game Items
-
-    Parameters:
-        inventory: NPC inventory values.
-
-    Returns:
-        Sorted copy of the inventory.
-
-    """
-
-    def rank_item(item: Item) -> tuple[int, str]:
-        primary_order = sort_order.index(item.sort)
-        return primary_order, item.name
-
-    # the two reversals are used to let name sort desc, but class sort asc
-    sort_order = ["potion", "food", "utility", "quest"]
-    sort_order.reverse()
-    return sorted(inventory, key=rank_item, reverse=True)
 
 
 class ShopMenuState(Menu[Item]):
@@ -75,7 +48,7 @@ class ShopMenuState(Menu[Item]):
         rect.left = tools.scale(3)
         rect.width = tools.scale(250)
         rect.height = tools.scale(32)
-        self.text_area = TextArea(self.font, self.font_color, (96, 96, 128))
+        self.text_area = TextArea(self.font, self.font_color)
         self.text_area.rect = rect
         self.sprites.add(self.text_area, layer=100)
 
@@ -113,13 +86,55 @@ class ShopMenuState(Menu[Item]):
         if not inventory:
             return
 
-        for obj in sort_inventory(inventory):
-            if obj.quantity != INFINITE_ITEMS:
-                label = obj.name + " x " + str(obj.quantity)
-            else:
-                label = obj.name
-            image = self.shadow_text(label, bg=(128, 128, 128))
-            yield MenuItem(image, obj.name, obj.description, obj)
+        # when the player buys, sort based on price
+        if self.buyer.isplayer:
+            inventory = sorted(
+                inventory, key=lambda x: self.economy.lookup_item_price(x.slug)
+            )
+        # when the player buys, sort based on cost
+        if self.seller.isplayer:
+            inventory = sorted(
+                inventory, key=lambda x: self.economy.lookup_item_cost(x.slug)
+            )
+
+        for itm in inventory:
+            # buying
+            if self.buyer.isplayer:
+                # recall variable quantity
+                key = f"{self.economy.slug}:{itm.slug}"
+                self.qty = self.buyer.game_variables[key]
+
+                fg = None
+                self.wallet = self.buyer.money["player"]
+                self.price = self.economy.lookup_item_price(itm.slug)
+                if self.price > self.wallet:
+                    fg = self.unavailable_color_shop
+                if itm.quantity != INFINITE_ITEMS:
+                    if self.qty == 0:
+                        label = f"${self.price:4} {T.translate('shop_buy_soldout')}"
+                    else:
+                        label = f"${self.price:4} {itm.name} x {self.qty}"
+                else:
+                    label = f"${self.price:4} {itm.name}"
+                image = self.shadow_text(label, fg=fg)
+                yield MenuItem(image, itm.name, itm.description, itm)
+            # selling
+            if self.seller.isplayer:
+                self.cost = self.economy.lookup_item_cost(itm.slug)
+                if itm.quantity != INFINITE_ITEMS:
+                    label = f"${self.cost:3} {itm.name} x {itm.quantity}"
+                else:
+                    label = f"${self.cost:3} {itm.name}"
+                image = self.shadow_text(label)
+                yield MenuItem(image, itm.name, itm.description, itm)
+
+    def is_valid_entry(self, item: Optional[Item]) -> bool:
+        if self.buyer.isplayer and item:
+            if self.price > self.wallet:
+                return False
+            if self.qty == 0:
+                return False
+        return True
 
     def on_menu_selection_change(self) -> None:
         """Called when menu selection changes."""
@@ -148,20 +163,23 @@ class ShopBuyMenuState(ShopMenuState):
         """
         item = menu_item.game_object
         price = self.economy.lookup_item_price(item.slug)
+        label = f"{self.economy.slug}:{item.slug}"
 
         def buy_item(itm: Item, quantity: int) -> None:
             if not quantity:
                 return
 
-            existing = self.buyer.find_item(itm.slug)
-            if existing:
+            in_bag = self.buyer.find_item(itm.slug)
+            if in_bag:
                 # reduces quantity only no-infinite items
                 if itm.quantity != INFINITE_ITEMS:
                     itm.quantity -= quantity
-                existing.quantity += quantity
+                    self.buyer.game_variables[label] -= quantity
+                in_bag.quantity += quantity
             else:
                 if itm.quantity != INFINITE_ITEMS:
                     itm.quantity -= quantity
+                    self.buyer.game_variables[label] -= quantity
                 new_buy = Item()
                 new_buy.load(itm.slug)
                 new_buy.quantity = quantity
@@ -175,22 +193,15 @@ class ShopBuyMenuState(ShopMenuState):
 
         money = self.buyer.money["player"]
         qty_can_afford = int(money / price)
-
-        inventory = self.economy.lookup_item_inventory(item.slug)
-        if inventory == INFINITE_ITEMS:
-            inventory = 99999
-
-        quantity: int = 1
-        max_quantity = min(inventory, qty_can_afford)
-        if item.quantity == 0:
-            quantity = 0
-            max_quantity = 0
+        inventory = self.buyer.game_variables[label]
+        _inventory = 99999 if inventory == INFINITE_ITEMS else inventory
+        max_quantity = min(_inventory, qty_can_afford)
 
         self.client.push_state(
             QuantityAndPriceMenu(
                 callback=partial(buy_item, item),
                 max_quantity=max_quantity,
-                quantity=quantity,
+                quantity=1,
                 shrink_to_items=True,
                 price=price,
             )

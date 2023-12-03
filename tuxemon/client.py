@@ -156,6 +156,8 @@ class LocalPygameClient:
         self.map_name = map_data.name
         self.map_desc = map_data.description
         self.map_inside = map_data.inside
+        self.map_area = map_data.area
+        self.map_size = map_data.size
 
         # Check if the map type exists
         types = [maps.value for maps in MapType]

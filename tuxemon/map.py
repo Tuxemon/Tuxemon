@@ -66,9 +66,6 @@ short_dirs = {d[0]: dirs2[d] for d in dirs2}
 # complimentary directions
 pairs = {"up": "down", "down": "up", "left": "right", "right": "left"}
 
-# what directions entities can face
-facing = "front", "back", "left", "right"
-
 
 def translate_short_path(
     path: str,
@@ -94,10 +91,97 @@ def translate_short_path(
         yield (int(position_vec.x), int(position_vec.y))
 
 
+def get_coords(
+    tile: tuple[int, int], map_size: tuple[int, int], radius: int = 1
+) -> list[tuple[int, int]]:
+    """
+    Returns a list with the cardinal coordinates (down, right, up, and left),
+    Negative coordinates as well as the ones the exceed the map size will be
+    filtered out. If no valid coordinates, then it'll be raised a ValueError.
+
+     -  | 1,0 |  -
+    0,1 | 1,1 | 2,1 |
+     -  | 1,2 |  -
+
+    eg. radius = 1 (1,0),(0,1),(1,2),(2,1)
+
+    Parameters:
+        tile: Tile coordinates
+        map_size: Dimension of the map
+        radius: Radius, default 1
+
+    Returns:
+        List tile coordinates.
+    """
+    coords: list[tuple[int, int]] = []
+    coords.append((tile[0], tile[1] + radius))  # down
+    coords.append((tile[0] + radius, tile[1]))  # right
+    coords.append((tile[0], tile[1] - radius))  # up
+    coords.append((tile[0] - radius, tile[1]))  # left
+    _coords = [
+        _tile
+        for _tile in coords
+        if map_size[0] >= _tile[0] >= 0 and map_size[1] >= _tile[1] >= 0
+    ]
+    if not _coords:
+        raise ValueError(f"{coords} invalid coordinates")
+    return _coords
+
+
+def get_coord_direction(
+    tile: tuple[int, int],
+    direction: Direction,
+    map_size: tuple[int, int],
+    radius: int = 1,
+) -> tuple[int, int]:
+    """
+    Returns the coordinates for a specific side and radius.
+    Negative coordinates as well as the ones the exceed the map size will
+    raise a ValueError.
+
+    Parameters:
+        tile: Tile coordinates
+        side: Direction "up*, "dowm", "left", "right"
+        map_size: Dimension of the map
+        radius: Radius, default 1
+
+    Returns:
+        Tuple tile coordinates.
+    """
+    _tile: tuple[int, int] = (0, 0)
+    if direction == "down":
+        _tile = (tile[0], tile[1] + radius)
+    elif direction == "right":
+        _tile = (tile[0] + radius, tile[1])
+    elif direction == "up":
+        _tile = (tile[0], tile[1] - radius)
+    elif direction == "left":
+        _tile = (tile[0] - radius, tile[1])
+    else:
+        raise ValueError(f"{direction} doesn't exist")
+    if map_size[0] >= _tile[0] >= 0 and map_size[1] >= _tile[1] >= 0:
+        return _tile
+    else:
+        raise ValueError(f"{_tile} invalid coordinates")
+
+
 def get_direction(
     base: Union[Vector2, tuple[int, int]],
     target: Union[Vector2, tuple[int, int]],
 ) -> Direction:
+    """
+    Return the direction based on the coordinates position.
+
+    eg. base (1,3) - target (1,12) -> "down"
+
+    Parameters:
+        base: Base coordinates
+        target: Target coordinates
+
+    Returns:
+        Direction.
+
+    """
     y_offset = base[1] - target[1]
     x_offset = base[0] - target[0]
     # Is it further away vertically or horizontally?

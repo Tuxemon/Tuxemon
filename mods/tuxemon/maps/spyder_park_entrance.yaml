@@ -13,10 +13,10 @@ events:
     type: "event"
   Create Elroy:
     actions:
-    - create_npc spyder_park_elroy,1,7
-    - npc_face spyder_park_elroy,right
+    - create_npc spyder_park_reception,1,7
+    - npc_face spyder_park_reception,right
     conditions:
-    - not npc_exists spyder_park_elroy
+    - not npc_exists spyder_park_reception
     height: 1
     width: 1
     x: 1
@@ -64,10 +64,10 @@ events:
     type: "event"
   Create Emily:
     actions:
-    - create_npc spyder_park_emily,8,5
-    - npc_face spyder_park_emily,left
+    - create_npc spyder_park_florist,8,5
+    - npc_face spyder_park_florist,left
     conditions:
-    - not npc_exists spyder_park_emily
+    - not npc_exists spyder_park_florist
     height: 1
     width: 1
     x: 8
@@ -77,7 +77,7 @@ events:
     actions:
     - translated_dialog spyder_park_yesmoney
     - lock_controls
-    - transfer_money -,50,spyder_park
+    - transfer_money -,500,spyder_park
     - add_item tuxeball_park,25
     - pathfind player,4,9
     - npc_face player,down
@@ -87,7 +87,7 @@ events:
     - unlock_controls
     conditions:
     - is variable_set paypark:yes
-    - is money_is player,greater_or_equal,50
+    - is money_is player,greater_or_equal,500
     type: "event"
   No Pay:
     actions:
@@ -130,5 +130,5 @@ events:
     - unlock_controls
     conditions:
     - is variable_set paypark:yes
-    - not money_is player,greater_or_equal,50
+    - not money_is player,greater_or_equal,500
     type: "event"

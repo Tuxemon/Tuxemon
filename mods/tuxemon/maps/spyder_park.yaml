@@ -204,7 +204,7 @@ events:
     type: "event"
   Alert 100:
     actions:
-    - translated_dialog spyder_cottonart_steps100
+    - translated_dialog spyder_park_steps100
     - set_variable alert100:done
     conditions:
     - is variable_is steps_park,greater_than,100.0
@@ -318,4 +318,65 @@ events:
     - clear_variable menu_park_captured
     conditions:
     - not has_item player,tuxeball_park
+    type: "event"
+  Create Soldier:
+    actions:
+    - create_npc spyder_park_soldier,35,20
+    - npc_wander spyder_park_soldier
+    conditions:
+    - not npc_exists spyder_park_soldier
+    type: "event"
+  Talk Soldier:
+    actions:
+    - translated_dialog spyder_park_soldier1
+    behav:
+    - talk spyder_park_soldier
+    type: "event"
+  Create Professor:
+    actions:
+    - create_npc spyder_park_professor,10,9
+    - npc_face spyder_park_professor,right
+    conditions:
+    - not npc_exists spyder_park_professor
+    type: "event"
+  Talk Professor:
+    actions:
+    - translated_dialog spyder_park_professor1
+    behav:
+    - talk spyder_park_professor
+    type: "event"
+  Create Tennis Player:
+    actions:
+    - create_npc spyder_park_tennisplayer,15,25
+    - npc_wander spyder_park_tennisplayer
+    conditions:
+    - not npc_exists spyder_park_tennisplayer
+    type: "event"
+  Talk Tennis Player:
+    actions:
+    - translated_dialog spyder_park_tennisplayer1
+    behav:
+    - talk spyder_park_tennisplayer
+    type: "event"
+  Billie:
+    actions:
+    - player_stop
+    - lock_controls
+    - create_npc spyder_billie,16,36
+    - pathfind_to_player spyder_billie,down
+    - wait 0.5
+    - npc_face spyder_billie,up
+    - translated_dialog spyder_park_billie
+    - wait 0.5
+    - pathfind spyder_billie,3,28
+    - remove_npc spyder_billie
+    - set_variable park_billie:yes
+    - unlock_controls
+    conditions:
+    - not variable_set park_billie:yes
+    - is player_at
+    height: 1
+    width: 3
+    x: 1
+    y: 36
     type: "event"

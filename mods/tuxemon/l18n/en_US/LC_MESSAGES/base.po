@@ -2381,7 +2381,7 @@ msgid "tunnel"
 msgstr "Tunnel"
 
 msgid "park"
-msgstr "Park"
+msgstr "Pepper Park"
 
 ## MAP DESCRIPTIONS TOWN / CITY ##
 
@@ -2452,7 +2452,7 @@ msgid "tunnel_description"
 msgstr "The dark expanse - watch your step!"
 
 msgid "park_description"
-msgstr "Description"
+msgstr "See exotic monsters and take them home!"
 
 ## MAP SIGNS ##
 
@@ -8276,7 +8276,7 @@ msgid "spyder_dragonscave_drokoro1"
 msgstr "Rawr!"
 
 msgid "spyder_park_welcome"
-msgstr "Welcome to the Park XXX. Entry is ${{currency}}50. You'll get 25 Park Tuxeball. Are you ready?"
+msgstr "Welcome to Pepper Park. Entry is ${{currency}}500. You'll get 25 Park Tuxeball. Are you ready?"
 
 msgid "spyder_park_assistant"
 msgstr "Welcome!"
@@ -8290,8 +8290,23 @@ msgstr "Unfortunately you don't have enough money!"
 msgid "spyder_park_yesmoney"
 msgstr "Enjoy your experience!"
 
-msgid "spyder_cottonart_steps100"
+msgid "spyder_park_steps100"
 msgstr "You still have ${{var:steps_park}} steps left!"
+
+msgid "spyder_park_scientist1"
+msgstr "Many parks limit or even prohibit scientific activities, but we are at the forefront of ecological knowledge!"
+
+msgid "spyder_park_tennisplayer1"
+msgstr "Fingers crossed your next encounter is with a friendly one!"
+
+msgid "spyder_park_professor1"
+msgstr "There are fences for the visitors, but no fences around the park for the monsters, and that's the way a park is supposed to be."
+
+msgid "spyder_park_soldier1"
+msgstr "I think the park has done a pretty good job of being everyone's friend."
+
+msgid "spyder_park_billie"
+msgstr "Hey ${{name}}! Maybe I'll see you deeper in the park. Bet I'll catch more than you!"
 
 msgid "0floor"
 msgstr "Ground Floor"

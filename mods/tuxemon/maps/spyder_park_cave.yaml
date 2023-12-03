@@ -24,7 +24,7 @@ events:
     type: "event"
   Alert 100:
     actions:
-    - translated_dialog spyder_cottonart_steps100
+    - translated_dialog spyder_park_steps100
     - set_variable alert100:done
     conditions:
     - is variable_is steps_park,greater_than,100.0
@@ -75,4 +75,17 @@ events:
     - clear_variable menu_park_captured
     conditions:
     - not has_item player,tuxeball_park
+    type: "event"
+  Create Scientist:
+    actions:
+    - create_npc spyder_park_scientist,13,8
+    - npc_face spyder_park_scientist,left
+    conditions:
+    - not npc_exists spyder_park_scientist
+    type: "event"
+  Talk Scientist:
+    actions:
+    - translated_dialog spyder_park_scientist1
+    behav:
+    - talk spyder_park_scientist
     type: "event"

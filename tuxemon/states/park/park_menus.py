@@ -12,7 +12,7 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu
 from tuxemon.monster import Monster
-from tuxemon.states.items import ItemMenuState
+from tuxemon.states.items.item_menu import ItemMenuState
 
 if TYPE_CHECKING:
     from tuxemon.states.park.park import ParkState

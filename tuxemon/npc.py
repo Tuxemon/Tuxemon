@@ -310,7 +310,7 @@ class NPC(Entity[NPCState]):
         frame_duration = (1000 / CONFIG.player_walkrate) / n_frames / 1000 * 2
 
         # Load all of the player's sprite animations
-        anim_types = [f"{facing}_walk" for facing in list(EntityFacing)]
+        anim_types = list(EntityFacing)
         for anim_type in anim_types:
             if not self.interactive_obj:
                 images: list[str] = []

@@ -171,6 +171,19 @@ class EvolutionStage(str, Enum):
     stage2 = "stage2"
 
 
+class MissionStatus(str, Enum):
+    pending = "pending"
+    completed = "completed"
+    failed = "failed"
+
+
+class EntityFacing(str, Enum):
+    front = "front"
+    back = "back"
+    left = "left"
+    right = "right"
+
+
 # TODO: Automatically generate state enum through discovery
 State = Enum(
     "State",
@@ -257,6 +270,12 @@ class ItemModel(BaseModel):
         if not v or has.file(file):
             return v
         raise ValueError(f"the animation {v} doesn't exist in the db")
+
+    @field_validator("conditions")
+    def check_conditions(cls: ItemModel, v: Sequence[str]) -> Sequence[str]:
+        if not v or has.check_conditions(v):
+            return v
+        raise ValueError(f"the conditions {v} aren't correctly formatted")
 
 
 class ShapeModel(BaseModel):
@@ -626,6 +645,14 @@ class TechniqueModel(BaseModel):
             return v
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
+    @field_validator("conditions")
+    def check_conditions(
+        cls: TechniqueModel, v: Sequence[str]
+    ) -> Sequence[str]:
+        if not v or has.check_conditions(v):
+            return v
+        raise ValueError(f"the conditions {v} aren't correctly formatted")
+
 
 class ConditionModel(BaseModel):
     slug: str = Field(..., description="The slug of the condition")
@@ -731,6 +758,14 @@ class ConditionModel(BaseModel):
             return v
         raise ValueError(f"the status {v} doesn't exist in the db")
 
+    @field_validator("conditions")
+    def check_conditions(
+        cls: ConditionModel, v: Sequence[str]
+    ) -> Sequence[str]:
+        if not v or has.check_conditions(v):
+            return v
+        raise ValueError(f"the conditions {v} aren't correctly formatted")
+
 
 class PartyMemberModel(BaseModel):
     slug: str = Field(..., description="Slug of the monster")
@@ -779,7 +814,10 @@ class NpcTemplateModel(BaseModel):
 
     @field_validator("sprite_name")
     def sprite_exists(cls: NpcTemplateModel, v: str) -> str:
-        sprite: str = f"sprites/{v}_front.png"
+        sprite = f"sprites/{v}_{EntityFacing.front}.png"
+        sprite = f"sprites/{v}_{EntityFacing.back}.png"
+        sprite = f"sprites/{v}_{EntityFacing.right}.png"
+        sprite = f"sprites/{v}_{EntityFacing.left}.png"
         sprite_obj: str = f"sprites_obj/{v}.png"
         if has.file(sprite) or has.file(sprite_obj):
             return v
@@ -895,6 +933,14 @@ class EconomyItemModel(BaseModel):
             return v
         raise ValueError(f"the item {v} doesn't exist in the db")
 
+    @field_validator("variable")
+    def variable_exists(
+        cls: EconomyItemModel, v: Optional[str]
+    ) -> Optional[str]:
+        if not v or v.find(":") > 1:
+            return v
+        raise ValueError(f"the variable {v} isn't formatted correctly")
+
 
 class EconomyModel(BaseModel):
     slug: str = Field(..., description="Slug uniquely identifying the economy")
@@ -906,6 +952,16 @@ class TemplateModel(BaseModel):
         ..., description="Slug uniquely identifying the template"
     )
     double: bool = Field(False, description="Whether triggers 2vs2 or not")
+
+
+class MissionModel(BaseModel):
+    slug: str = Field(..., description="Slug uniquely identifying the mission")
+
+    @field_validator("slug")
+    def translation_exists_mission(cls: MissionModel, v: str) -> str:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
 
 
 class MusicModel(BaseModel):
@@ -923,6 +979,7 @@ TableName = Literal[
     "element",
     "shape",
     "template",
+    "mission",
     "encounter",
     "environment",
     "item",
@@ -939,6 +996,7 @@ DataModel = Union[
     ElementModel,
     ShapeModel,
     TemplateModel,
+    MissionModel,
     EncounterModel,
     EnvironmentModel,
     ItemModel,
@@ -1001,6 +1059,7 @@ class JSONDatabase:
             "element",
             "shape",
             "template",
+            "mission",
         ]
         self.preloaded: dict[TableName, dict[str, Any]] = {}
         self.database: dict[TableName, dict[str, Any]] = {}
@@ -1132,6 +1191,9 @@ class JSONDatabase:
             elif table == "template":
                 template = TemplateModel(**item)
                 self.database[table][template.slug] = template
+            elif table == "mission":
+                mission = MissionModel(**item)
+                self.database[table][mission.slug] = mission
             elif table == "encounter":
                 encounter = EncounterModel(**item)
                 self.database[table][encounter.slug] = encounter
@@ -1208,6 +1270,10 @@ class JSONDatabase:
 
     @overload
     def lookup(self, slug: str, table: Literal["template"]) -> TemplateModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["mission"]) -> MissionModel:
         pass
 
     @overload
@@ -1294,6 +1360,7 @@ class JSONDatabase:
             "element",
             "shape",
             "template",
+            "mission",
             "encounter",
             "environment",
             "item",
@@ -1363,6 +1430,40 @@ class Validator:
             return os.path.exists(path)
         except OSError:
             return False
+
+    def check_conditions(self, conditions: Sequence[str]) -> bool:
+        """
+        Check to see if a condition is correctly formatted.
+
+        Parameters:
+            conditions: The sequence containing the conditions
+
+        Returns:
+            True if it's correctly formatted
+
+        """
+        if not conditions:
+            return True
+
+        _conditions = [
+            element
+            for condition in conditions
+            for element in condition.split(" ")
+        ]
+
+        # check nr of elements
+        if len(_conditions) == 1:
+            raise ValueError(
+                f"{_conditions} invalid, it must have at least: 'is' + 'condition'"
+            )
+
+        # check prefix
+        prefix = _conditions[0]
+        _prefix = True if prefix == "is" or _conditions[0] == "not" else False
+        if not _prefix:
+            raise ValueError(f"{prefix} is invalid, it must be: 'is' or 'not'")
+
+        return True
 
     def db_entry(self, table: TableName, slug: str) -> bool:
         """

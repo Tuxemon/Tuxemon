@@ -953,6 +953,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Dojo Pass"](https://wiki.tuxemon.org/File:Toll-pass.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 
+* ["Book of Wishes"](https://wiki.tuxemon.org/File:W_Book07_24x24.png) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
 * ["Aardant"](https://wiki.tuxemon.org/index.php?title=Aardant) from the Aardorn sprite by Magic-Purple-Hermit. Tweaked by Sanglorian.
 
 * ["Move Module (Earth)"](https://wiki.tuxemon.org/File:Easteregg-yellow.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
@@ -1024,6 +1026,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Water Booster"](https://wiki.tuxemon.org/File:Water_b.png) Colours tweaked by Sanglorian. [https://opengameart.org/content/icons-items-1 CC0 on OGA]
 
 * ["Wood Booster"](https://wiki.tuxemon.org/File:2nd_the_king_8.png) [https://opengameart.org/content/icons-items-1 CC0 on OGA]
+
+* ["XP Transmitter"](https://wiki.tuxemon.org/File:Pixel_icons_by_oceansdream24.png) [http://opengameart.org/content/various-inventory-24-pixel-icon-set CC BY 3.0 on OGA, from OceansDream]
 
 ### Item Animations
 

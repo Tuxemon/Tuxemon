@@ -73,6 +73,8 @@ class WorldMenuState(PygameMenuState):
             menu.append(("menu_bag", change("ItemMenuState")))
         if player.menu_player:
             menu.append(("menu_player", change("PlayerState")))
+        if player.missions:
+            menu.append(("menu_missions", change("MissionState")))
         if player.menu_save:
             menu.append(("menu_save", change("SaveMenuState")))
         if player.menu_load:

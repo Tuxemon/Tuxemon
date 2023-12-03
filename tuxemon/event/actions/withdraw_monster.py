@@ -5,11 +5,10 @@ from __future__ import annotations
 import logging
 import uuid
 from dataclasses import dataclass
-from typing import Optional, Union, final
+from typing import Optional, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
@@ -27,29 +26,24 @@ class WithdrawMonsterAction(EventAction):
     Script usage:
         .. code-block::
 
-            withdraw_monster <monster_id>[,trainer_slug]
+            withdraw_monster <monster_id>[,npc_slug]
 
     Script parameters:
         monster_id: The id of the monster to pull (variable).
-        trainer_slug: Slug of the trainer that will receive the monster. It
+        npc_slug: Slug of the trainer that will receive the monster. It
             defaults to the current player.
 
     """
 
     name = "withdraw_monster"
     monster_id: str
-    trainer: Union[str, None] = None
+    npc_slug: Optional[str] = None
 
     def start(self) -> None:
-        trainer: Optional[NPC]
-        if self.trainer is None:
-            trainer = self.session.player
-        else:
-            trainer = get_npc(self.session, self.trainer)
+        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
+        trainer = get_npc(self.session, self.npc_slug)
+        assert trainer
 
-        assert trainer, "No Trainer found with slug '{}'".format(
-            self.trainer or "player"
-        )
         instance_id = uuid.UUID(trainer.game_variables[self.monster_id])
         mon = trainer.find_monster_in_storage(instance_id)
         assert mon

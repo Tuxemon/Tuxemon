@@ -11,7 +11,7 @@ from typing import Any, Optional, TypeVar, Union, overload
 
 import pygame as pg
 
-from tuxemon import networking, rumble
+from tuxemon import networking, prepare, rumble
 from tuxemon.cli.processor import CommandProcessor
 from tuxemon.config import TuxemonConfig
 from tuxemon.db import MapType
@@ -156,6 +156,8 @@ class LocalPygameClient:
         self.map_name = map_data.name
         self.map_desc = map_data.description
         self.map_inside = map_data.inside
+        self.map_area = map_data.area
+        self.map_size = map_data.size
 
         # Check if the map type exists
         types = [maps.value for maps in MapType]
@@ -200,9 +202,9 @@ class LocalPygameClient:
                 p = " ".join(item.parameters)
                 text = f"{item.operator} {item.type}: {p}"
                 if valid:
-                    color = (0, 255, 0)
+                    color = prepare.GREEN_COLOR
                 else:
-                    color = (255, 0, 0)
+                    color = prepare.RED_COLOR
                 image = font.render(text, True, color)
                 self.screen.blit(image, (xx, yy))
                 ww, hh = image.get_size()

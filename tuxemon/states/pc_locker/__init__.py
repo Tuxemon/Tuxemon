@@ -13,13 +13,12 @@ import pygame_menu
 from pygame_menu import locals
 from pygame_menu.locals import POSITION_CENTER
 from pygame_menu.widgets.selection.highlight import HighlightSelection
-from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
 from tuxemon import prepare
 from tuxemon.item import item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
+from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.quantity import QuantityMenu
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
@@ -68,7 +67,11 @@ class ItemTakeState(PygameMenuState):
             itm = self.player.find_item_in_storage(iid)
 
             # list with all the lockers and removes where we are
-            lockers = list(local_session.player.item_boxes.keys())
+            lockers = [
+                key
+                for key in self.player.item_boxes
+                if key not in HIDDEN_LIST_LOCKER
+            ]
             lockers.remove(self.box_name)
 
             # updates the kennel and executes operation
@@ -231,7 +234,7 @@ class ItemTakeState(PygameMenuState):
             menu.add.label(
                 label,
                 selectable=True,
-                font_size=20,
+                font_size=self.font_size_small,
                 align=locals.ALIGN_CENTER,
                 selection_effect=HighlightSelection(),
             )
@@ -257,11 +260,6 @@ class ItemTakeState(PygameMenuState):
 
         # menu
         theme.title = True
-        theme.title_background_color = (197, 232, 234)
-        theme.title_font_size = round(0.025 * width)
-        theme.title_font_color = (10, 10, 10)
-        theme.title_close_button = False
-        theme.title_bar_style = MENUBAR_STYLE_ADAPTIVE
 
         columns = 3
 
@@ -294,12 +292,12 @@ class ItemTakeState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = BACKGROUND_COLOR
+        theme.background_color = self.background_color
         theme.widget_alignment = locals.ALIGN_LEFT
         theme.title = False
 
 
-class ItemBoxChooseState(PygameMenuState):
+class ItemBoxState(PygameMenuState):
     """Menu to choose an item box."""
 
     def __init__(self) -> None:
@@ -381,7 +379,7 @@ class ItemBoxChooseState(PygameMenuState):
         return ani
 
 
-class ItemBoxChooseStorageState(ItemBoxChooseState):
+class ItemStorageState(ItemBoxState):
     """Menu to choose a box, which you can then take an item from."""
 
     def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
@@ -403,7 +401,7 @@ class ItemBoxChooseStorageState(ItemBoxChooseState):
         return menu_items_map
 
 
-class ItemBoxChooseDropOffState(ItemBoxChooseState):
+class ItemDropOffState(ItemBoxState):
     """Menu to choose a box, which you can then drop off an item into."""
 
     def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
@@ -412,13 +410,13 @@ class ItemBoxChooseDropOffState(ItemBoxChooseState):
         for box_name, items in player.item_boxes.items():
             if box_name not in HIDDEN_LIST_LOCKER:
                 menu_callback = self.change_state(
-                    "ItemDropOffState", box_name=box_name
+                    "ItemDropOff", box_name=box_name
                 )
-            menu_items_map.append((box_name, menu_callback))
+                menu_items_map.append((box_name, menu_callback))
         return menu_items_map
 
 
-class ItemDropOffState(ItemMenuState):
+class ItemDropOff(ItemMenuState):
     """Shows all items in player's bag, puts it into box if selected."""
 
     def __init__(self, box_name: str) -> None:

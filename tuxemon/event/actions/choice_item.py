@@ -8,7 +8,6 @@ from dataclasses import dataclass
 from functools import partial
 from typing import final
 
-from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T, replace_text
 from tuxemon.npc import NPC
@@ -48,8 +47,7 @@ class ChoiceItemAction(EventAction):
 
         # perform text substitutions
         choices = replace_text(self.session, self.choices)
-        player = get_npc(self.session, "player")
-        assert player
+        player = self.session.player
 
         # make menu options for each string between the colons
         var_list: list[str] = choices.split(":")

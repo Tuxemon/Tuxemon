@@ -46,7 +46,7 @@ msgid "imperial_potion_description"
 msgstr "Heals a monster by 500 HP."
 
 msgid "mega_potion"
-msgstr "Imperial Potion"
+msgstr "Mega Potion"
 
 msgid "mega_potion_description"
 msgstr "Heals a monster by 200 HP."
@@ -2567,6 +2567,12 @@ msgstr "FREE!"
 
 msgid "shop_buy_soldout"
 msgstr "Sold Out!"
+
+msgid "buy"
+msgstr "Buy"
+
+msgid "sell"
+msgstr "Sell"
 
 #Release notifications
 msgid "cant_release"

@@ -53,9 +53,6 @@ dirs2: Mapping[Direction, Vector2] = {
 # just the first letter of the direction => vector
 short_dirs = {d[0]: dirs2[d] for d in dirs2}
 
-# complimentary directions
-pairs = {"up": "down", "down": "up", "left": "right", "right": "left"}
-
 
 def translate_short_path(
     path: str,

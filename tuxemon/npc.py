@@ -13,7 +13,14 @@ from typing import TYPE_CHECKING, Any, Optional, TypedDict
 from tuxemon import surfanim
 from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.compat import Rect
-from tuxemon.db import Direction, ElementType, PlagueType, SeenStatus, db, EntityFacing
+from tuxemon.db import (
+    Direction,
+    ElementType,
+    EntityFacing,
+    PlagueType,
+    SeenStatus,
+    db,
+)
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import MAX_TYPES_BAG, Item, decode_items, encode_items

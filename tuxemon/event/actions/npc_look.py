@@ -40,7 +40,7 @@ class NpcLookAction(EventAction):
     name = "npc_look"
     npc_slug: str
     frequency: Optional[float] = None
-    directions: Optional[Direction] = None
+    directions: Optional[str] = None
 
     def start(self) -> None:
         npc = get_npc(self.session, self.npc_slug)

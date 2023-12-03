@@ -9,7 +9,6 @@ from tuxemon.db import Direction
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.map import get_direction
-from tuxemon.states.world.worldstate import WorldState
 
 
 @final
@@ -46,8 +45,4 @@ class NpcFaceAction(EventAction):
         else:
             direction = Direction(self.direction)
 
-        world_state = self.session.client.get_state_by_name(WorldState)
-        if world_state.in_transition:
-            world_state.delayed_facing = direction
-        else:
-            npc.facing = direction
+        npc.facing = direction

@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import logging
 
-from tuxemon.db import Direction
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.map import get_coords, get_direction
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
@@ -53,31 +53,18 @@ class NPCFacingTileCondition(EventCondition):
             for h in range(0, condition.height)
         ]
         tile_location = None
+        # get all the coordinates around the npc
+        client = session.client
+        npc_tiles = get_coords(npc.tile_pos, client.map_size)
+        # return common coordinates
+        tiles = list(set(tiles).intersection(npc_tiles))
 
-        for coordinates in tiles:
-            # Next, we check the npc position and see if we're one tile away
-            # from the tile.
-            if coordinates[1] == npc.tile_pos[1]:
-                # Check to see if the tile is to the left of the npc
-                if coordinates[0] == npc.tile_pos[0] - 1:
-                    logger.debug("Tile is to the left of the NPC")
-                    tile_location = Direction.left
-                # Check to see if the tile is to the right of the npc
-                elif coordinates[0] == npc.tile_pos[0] + 1:
-                    logger.debug("Tile is to the right of the NPC")
-                    tile_location = Direction.right
-
-            if coordinates[0] == npc.tile_pos[0]:
-                # Check to see if the tile is above the npc
-                if coordinates[1] == npc.tile_pos[1] - 1:
-                    logger.debug("Tile is above the NPC")
-                    tile_location = Direction.up
-                elif coordinates[1] == npc.tile_pos[1] + 1:
-                    logger.debug("Tile is below the NPC")
-                    tile_location = Direction.down
-
+        for coords in tiles:
+            # Look through the remaining tiles and get directions
+            tile_location = get_direction(npc.tile_pos, coords)
             # Then we check to see the npc is facing the Tile
             if npc.facing == tile_location:
+                logger.debug(f"{npc.slug} is facing {tile_location}")
                 return True
 
         return False

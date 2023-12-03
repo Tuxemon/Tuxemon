@@ -6,15 +6,7 @@ import logging
 from collections.abc import Generator, Mapping, MutableMapping, Sequence
 from itertools import product
 from math import atan2, pi
-from typing import (
-    TYPE_CHECKING,
-    Literal,
-    NamedTuple,
-    Optional,
-    TypeVar,
-    Union,
-    cast,
-)
+from typing import TYPE_CHECKING, NamedTuple, Optional, TypeVar, Union
 
 import pyscroll
 from pytmx import pytmx
@@ -35,7 +27,6 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 RectTypeVar = TypeVar("RectTypeVar", bound=ReadOnlyRect)
-
 
 
 class RegionProperties(NamedTuple):
@@ -356,7 +347,6 @@ def extract_region_properties(
         )
     else:
         return None
-
 
 
 def direction_to_list(direction: Optional[str]) -> list[Direction]:

@@ -8,8 +8,8 @@ from typing import final
 from tuxemon.db import Direction
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.map import dirs2, get_direction
-from tuxemon.npc import NPC
+from tuxemon.map import get_direction
+from tuxemon.states.world.worldstate import WorldState
 
 
 @final
@@ -32,21 +32,22 @@ class NpcFaceAction(EventAction):
 
     name = "npc_face"
     npc_slug: str
-    direction: Direction
+    direction: str
 
     def start(self) -> None:
         npc = get_npc(self.session, self.npc_slug)
         assert npc
-        direction = self.direction
 
-        target: NPC
-        if direction not in dirs2:
-            if direction == "player":
-                target = self.session.player
-            else:
-                maybe_target = get_npc(self.session, direction)
-                assert maybe_target
-                target = maybe_target
+        # "player" isn't among the Directions (map_loader.py)
+        if self.direction not in list(Direction):
+            target = get_npc(self.session, self.direction)
+            assert target
             direction = get_direction(npc.tile_pos, target.tile_pos)
+        else:
+            direction = Direction(self.direction)
 
-        npc.facing = direction
+        world_state = self.session.client.get_state_by_name(WorldState)
+        if world_state.in_transition:
+            world_state.delayed_facing = direction
+        else:
+            npc.facing = direction

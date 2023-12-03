@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import logging
 
-from tuxemon.db import Direction
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.map import get_coords, get_direction
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
@@ -40,32 +40,22 @@ class PlayerFacingNPCCondition(EventCondition):
             Whether the player is facing the chosen character.
 
         """
+        player = session.player
+        client = session.client
         npc_location = None
 
         npc = get_npc(session, condition.parameters[0])
         if not npc:
             return False
 
-        # Next, we check the player position and see if we're one tile away
-        # from the NPC.
-        if npc.tile_pos[1] == session.player.tile_pos[1]:
-            # Check to see if the NPC is to the left of the player
-            if npc.tile_pos[0] == session.player.tile_pos[0] - 1:
-                logger.debug("NPC is to the left of the player")
-                npc_location = Direction.left
-            # Check to see if the NPC is to the right of the player
-            elif npc.tile_pos[0] == session.player.tile_pos[0] + 1:
-                logger.debug("NPC is to the right of the player")
-                npc_location = Direction.right
+        # get all the coordinates around the npc
+        npc_tiles = get_coords(npc.tile_pos, client.map_size)
+        npc_location = get_direction(player.tile_pos, npc.tile_pos)
 
-        if npc.tile_pos[0] == session.player.tile_pos[0]:
-            # Check to see if the NPC is above the player
-            if npc.tile_pos[1] == session.player.tile_pos[1] - 1:
-                logger.debug("NPC is above the player")
-                npc_location = Direction.up
-            elif npc.tile_pos[1] == session.player.tile_pos[1] + 1:
-                logger.debug("NPC is below the player")
-                npc_location = Direction.down
+        if player.tile_pos in npc_tiles:
+            logger.debug(
+                f"{player.name} is facing {npc_location} at {npc.slug}"
+            )
+            return player.facing == npc_location
 
-        # Then we check to see if we're facing the NPC
-        return session.player.facing == npc_location
+        return False

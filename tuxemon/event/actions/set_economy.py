@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Union, final
+from typing import final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -30,41 +30,32 @@ class SetEconomyAction(EventAction):
 
     name = "set_economy"
     npc_slug: str
-    economy_slug: Union[str, None] = None
+    economy_slug: str
 
     def start(self) -> None:
         player = self.session.player
         npc = get_npc(self.session, self.npc_slug)
         assert npc
-        if self.economy_slug is None:
-            npc.economy = Economy("default")
-
-            return
 
         def variable(var: str) -> bool:
-            ret: bool = False
-            if var.find(":"):
-                variables = var.split(":")
-                key = variables[0]
-                value = variables[1]
-                if player.game_variables[key] == value:
-                    ret = True
-            else:
-                raise RuntimeError(
-                    f"'{itm.variable}' must be in the 'key:variable' format"
-                )
-            return ret
+            variables = var.split(":")
+            return player.game_variables[variables[0]] == variables[1]
 
         npc.economy = Economy(self.economy_slug)
 
         for itm in npc.economy.items:
-            element = Item()
+            label = f"{self.economy_slug}:{itm.item_name}"
+            # saving quantities inside variables
+            if label not in player.game_variables:
+                player.game_variables[label] = itm.inventory
+
+            itm_in_shop = Item()
             if itm.variable:
                 if variable(itm.variable):
-                    element.load(itm.item_name)
-                    element.quantity = itm.inventory
-                    npc.add_item(element)
+                    itm_in_shop.load(itm.item_name)
+                    itm_in_shop.quantity = int(player.game_variables[label])
+                    npc.add_item(itm_in_shop)
             else:
-                element.load(itm.item_name)
-                element.quantity = itm.inventory
-                npc.add_item(element)
+                itm_in_shop.load(itm.item_name)
+                itm_in_shop.quantity = int(player.game_variables[label])
+                npc.add_item(itm_in_shop)

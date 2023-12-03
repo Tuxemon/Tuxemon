@@ -13,7 +13,7 @@ from typing import TYPE_CHECKING, Any, Optional, TypedDict
 from tuxemon import surfanim
 from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.compat import Rect
-from tuxemon.db import ElementType, PlagueType, SeenStatus, db
+from tuxemon.db import ElementType, EntityFacing, PlagueType, SeenStatus, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import MAX_TYPES_BAG, Item, decode_items, encode_items
@@ -299,7 +299,7 @@ class NPC(Entity[NPCState]):
                     self.interactive_obj = True
 
         self.standing = {}
-        for standing_type in facing:
+        for standing_type in list(EntityFacing):
             # if the template slug is interactive_obj, then it needs _front
             if self.interactive_obj:
                 filename = f"{self.sprite_name}.png"
@@ -309,14 +309,16 @@ class NPC(Entity[NPCState]):
                 path = os.path.join("sprites", filename)
             self.standing[standing_type] = load_and_scale(path)
         # The player's sprite size in pixels
-        self.playerWidth, self.playerHeight = self.standing["front"].get_size()
+        self.playerWidth, self.playerHeight = self.standing[
+            EntityFacing.front
+        ].get_size()
 
         # avoid cutoff frames when steps don't line up with tile movement
         n_frames = 3
         frame_duration = (1000 / CONFIG.player_walkrate) / n_frames / 1000 * 2
 
         # Load all of the player's sprite animations
-        anim_types = ["front_walk", "back_walk", "left_walk", "right_walk"]
+        anim_types = [f"{facing}_walk" for facing in list(EntityFacing)]
         for anim_type in anim_types:
             if not self.interactive_obj:
                 images = [

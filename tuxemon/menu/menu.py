@@ -206,6 +206,7 @@ class Menu(Generic[T], state.State):
     font_shadow_color: ColorLike = prepare.FONT_SHADOW_COLOR
     # Font color when the action is unavailable
     unavailable_color: ColorLike = (220, 220, 220)
+    unavailable_color_shop: ColorLike = (51, 51, 51)
     # File to load for image background
     background_filename: Optional[str] = None
     menu_select_sound_filename = "sound_menu_select"

@@ -179,6 +179,13 @@ class MissionStatus(str, Enum):
     failed = "failed"
 
 
+class EntityFacing(str, Enum):
+    front = "front"
+    back = "back"
+    left = "left"
+    right = "right"
+
+
 # TODO: Automatically generate state enum through discovery
 State = Enum(
     "State",
@@ -809,7 +816,10 @@ class NpcTemplateModel(BaseModel):
 
     @field_validator("sprite_name")
     def sprite_exists(cls: NpcTemplateModel, v: str) -> str:
-        sprite: str = f"sprites/{v}_front.png"
+        sprite = f"sprites/{v}_{EntityFacing.front}.png"
+        sprite = f"sprites/{v}_{EntityFacing.back}.png"
+        sprite = f"sprites/{v}_{EntityFacing.right}.png"
+        sprite = f"sprites/{v}_{EntityFacing.left}.png"
         sprite_obj: str = f"sprites_obj/{v}.png"
         if has.file(sprite) or has.file(sprite_obj):
             return v
@@ -924,6 +934,14 @@ class EconomyItemModel(BaseModel):
         if has.db_entry("item", v):
             return v
         raise ValueError(f"the item {v} doesn't exist in the db")
+
+    @field_validator("variable")
+    def variable_exists(
+        cls: EconomyItemModel, v: Optional[str]
+    ) -> Optional[str]:
+        if not v or v.find(":") > 1:
+            return v
+        raise ValueError(f"the variable {v} isn't formatted correctly")
 
 
 class EconomyModel(BaseModel):

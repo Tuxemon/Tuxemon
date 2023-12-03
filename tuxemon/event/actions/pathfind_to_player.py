@@ -4,10 +4,11 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import Union, final
+from typing import Optional, cast, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.map import Direction, get_coord_direction, get_coords
 
 
 @final
@@ -30,55 +31,35 @@ class PathfindToPlayerAction(EventAction):
 
     name = "pathfind_to_player"
     npc_slug: str
-    side: Union[str, None] = None
-    distance: Union[int, None] = None
+    direction: Optional[str] = None
+    distance: Optional[int] = None
 
     def start(self) -> None:
+        player = self.session.player
+        client = self.session.client
         self.npc = get_npc(self.session, self.npc_slug)
         assert self.npc
-        x, y = self.session.player.tile_pos
-        if self.distance is None:
-            value = 1
-        else:
-            if self.distance == 0:
-                raise ValueError(
-                    f"{self.distance} cannot be 0 (player coordinates).",
-                )
-            else:
-                value = self.distance
-        if self.side is not None:
-            self.tile_pos_x = 0
-            self.tile_pos_y = 0
-            if self.side == "up":
-                closest = (x, y - value)
-                self.npc.facing = "down"
-            elif self.side == "down":
-                closest = (x, y + value)
-                self.npc.facing = "up"
-            elif self.side == "right":
-                closest = (x + value, y)
-                self.npc.facing = "left"
-            elif self.side == "left":
-                closest = (x - value, y)
-                self.npc.facing = "right"
-            else:
-                raise ValueError(
-                    f"{self.side} must be up, down, left or right.",
-                )
+
+        distance = 1 if self.distance is None else self.distance
+        if distance <= 0:
+            raise ValueError(f"{distance} cannot be below 0")
+
+        if self.direction is not None:
+            self.direction = cast(Direction, self.direction)
+            closest = get_coord_direction(
+                player.tile_pos, self.direction, client.map_size, distance
+            )
+            self.npc.facing = self.direction
         else:
             target = self.npc.tile_pos
-            destination = [
-                (x, y - value),
-                (x, y + value),
-                (x + value, y),
-                (x - value, y),
-            ]
+            coords = get_coords(player.tile_pos, client.map_size, distance)
             closest = min(
-                destination,
+                coords,
                 key=lambda point: math.hypot(
                     target[1] - point[1], target[0] - point[0]
                 ),
             )
+
         self.npc.pathfind(closest)
 
     def update(self) -> None:

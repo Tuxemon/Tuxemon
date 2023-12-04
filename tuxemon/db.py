@@ -443,16 +443,16 @@ class MonsterModel(BaseModel):
         [], description="The type(s) of this monster"
     )
     catch_rate: float = Field(
-        0.0, description="The catch rate of the monster (max 100)"
+        ..., description="The catch rate of the monster (max 100)"
     )
     possible_genders: Sequence[GenderType] = Field(
         [], description="Valid genders for the monster"
     )
     lower_catch_resistance: float = Field(
-        0.0, description="The lower catch resistance of the monster"
+        ..., description="The lower catch resistance of the monster"
     )
     upper_catch_resistance: float = Field(
-        0.0, description="The upper catch resistance of the monster"
+        ..., description="The upper catch resistance of the monster"
     )
     moveset: Sequence[MonsterMovesetItemModel] = Field(
         [], description="The moveset of this monster"
@@ -504,9 +504,15 @@ class MonsterModel(BaseModel):
 
     @field_validator("catch_rate")
     def check_catch_rate(cls: MonsterModel, v: float) -> float:
-        if 0 <= v <= 100:
+        if 0 <= v <= 255:
             return v
         raise ValueError(f"the catch rate is between 0 and 100 ({v})")
+
+    @field_validator("lower_catch_resistance", "upper_catch_resistance")
+    def check_catch_resistance(cls: MonsterModel, v: float) -> float:
+        if 0 <= v <= 2:
+            return v
+        raise ValueError(f"the catch resistance is between 0 and 2 ({v})")
 
 
 class StatModel(BaseModel):

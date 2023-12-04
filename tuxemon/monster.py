@@ -14,7 +14,6 @@ from tuxemon.condition.condition import (
     decode_condition,
     encode_condition,
 )
-from tuxemon.config import TuxemonConfig
 from tuxemon.db import (
     CategoryCondition,
     ElementType,
@@ -158,16 +157,12 @@ class Monster:
         # 0 is 0% capture rate and 255 has a very good chance of capture. This numbers are based on the capture system
         # calculations. This is inspired by the calculations which can be found at:
         # https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_catch_rate
-        self.catch_rate = TuxemonConfig().default_catch_rate
+        self.catch_rate = 125.0
 
         # The catch_resistance value is calculated during the capture. The upper and lower catch_resistance
         # set the span on which the catch_resistance will be. For more information check capture.py
-        self.upper_catch_resistance = (
-            TuxemonConfig().default_upper_monster_catch_resistance
-        )
-        self.lower_catch_resistance = (
-            TuxemonConfig().default_lower_monster_catch_resistance
-        )
+        self.upper_catch_resistance = 1.0
+        self.lower_catch_resistance = 1.0
 
         # The tuxemon's state is used for various animations, etc. For example
         # a tuxemon's state might be "attacking" or "fainting" so we know when
@@ -233,7 +228,6 @@ class Monster:
         self.height = self.set_char_height(results.height)
         self.weight = self.set_char_weight(results.weight)
         self.gender = random.choice(list(results.possible_genders))
-        self.escape_rate = self.catch_rate - results.catch_rate
         self.catch_rate = results.catch_rate or self.catch_rate
         self.upper_catch_resistance = (
             results.upper_catch_resistance or self.upper_catch_resistance

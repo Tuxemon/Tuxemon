@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="212">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="48" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="212">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -46,80 +46,9 @@
    </animation>
   </tile>
  </tileset>
- <tileset firstgid="1313" name="My_tuxemon_sheet_BW" tilewidth="16" tileheight="16" tilecount="104" columns="8">
-  <image source="../gfx/tilesets/My_tuxemon_sheet_BW.png" width="128" height="208"/>
-  <tile id="7">
-   <animation>
-    <frame tileid="7" duration="1000"/>
-    <frame tileid="45" duration="100"/>
-   </animation>
-  </tile>
-  <tile id="15">
-   <animation>
-    <frame tileid="15" duration="1500"/>
-    <frame tileid="45" duration="100"/>
-   </animation>
-  </tile>
-  <tile id="23">
-   <animation>
-    <frame tileid="23" duration="1750"/>
-    <frame tileid="45" duration="100"/>
-   </animation>
-  </tile>
-  <tile id="31">
-   <animation>
-    <frame tileid="31" duration="750"/>
-    <frame tileid="48" duration="50"/>
-   </animation>
-  </tile>
-  <tile id="39">
-   <animation>
-    <frame tileid="39" duration="500"/>
-    <frame tileid="76" duration="100"/>
-   </animation>
-  </tile>
-  <tile id="40">
-   <animation>
-    <frame tileid="40" duration="10"/>
-    <frame tileid="41" duration="10"/>
-   </animation>
-  </tile>
-  <tile id="41">
-   <animation>
-    <frame tileid="41" duration="1000"/>
-    <frame tileid="49" duration="10"/>
-   </animation>
-  </tile>
-  <tile id="47">
-   <animation>
-    <frame tileid="47" duration="250"/>
-    <frame tileid="41" duration="50"/>
-   </animation>
-  </tile>
-  <tile id="55">
-   <animation>
-    <frame tileid="55" duration="1000"/>
-    <frame tileid="81" duration="500"/>
-   </animation>
-  </tile>
-  <tile id="63">
-   <animation>
-    <frame tileid="63" duration="1000"/>
-    <frame tileid="81" duration="750"/>
-   </animation>
-  </tile>
-  <tile id="71">
-   <animation>
-    <frame tileid="71" duration="1000"/>
-    <frame tileid="81" duration="250"/>
-   </animation>
-  </tile>
- </tileset>
+ <tileset firstgid="1313" source="../gfx/tilesets/My_tuxemon_sheet_BW.tsx"/>
  <tileset firstgid="1417" name="setPieces_glitch" tilewidth="16" tileheight="16" tilecount="84" columns="12">
   <image source="../gfx/tilesets/setPieces_glitch.png" width="192" height="112"/>
-  <terraintypes>
-   <terrain name="New Terrain" tile="1"/>
-  </terraintypes>
   <tile id="0">
    <animation>
     <frame tileid="0" duration="3000"/>
@@ -276,6 +205,11 @@
     <frame tileid="14" duration="300"/>
    </animation>
   </tile>
+  <wangsets>
+   <wangset name="Terrains" type="corner" tile="-1">
+    <wangcolor name="New Terrain" color="#ff0000" tile="1" probability="1"/>
+   </wangset>
+  </wangsets>
  </tileset>
  <layer id="1" name="Tile Layer 1" width="48" height="32">
   <data encoding="base64" compression="zlib">
@@ -329,48 +263,6 @@
   <object id="151" type="collision" x="208" y="320" width="32" height="16"/>
   <object id="152" type="collision" x="544" y="240" width="96" height="48"/>
   <object id="153" type="collision" x="544" y="288" width="16" height="32"/>
-  <object id="154" type="collision" x="352" y="192" width="80" height="16">
-   <properties>
-    <property name="continue" value="down"/>
-    <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
-   </properties>
-  </object>
-  <object id="155" type="collision" x="368" y="160" width="48" height="16">
-   <properties>
-    <property name="continue" value="down"/>
-    <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
-   </properties>
-  </object>
-  <object id="156" type="collision" x="464" y="80" width="16" height="48">
-   <properties>
-    <property name="continue" value="right"/>
-    <property name="enter_from" value="left"/>
-    <property name="exit_to" value="right"/>
-   </properties>
-  </object>
-  <object id="157" type="collision" x="304" y="80" width="16" height="48">
-   <properties>
-    <property name="continue" value="left"/>
-    <property name="enter_from" value="right"/>
-    <property name="exit_to" value="left"/>
-   </properties>
-  </object>
-  <object id="158" type="collision" x="304" y="128" width="80" height="16">
-   <properties>
-    <property name="continue" value="down"/>
-    <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
-   </properties>
-  </object>
-  <object id="159" type="collision" x="400" y="128" width="80" height="16">
-   <properties>
-    <property name="continue" value="down"/>
-    <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
-   </properties>
-  </object>
   <object id="160" type="collision" x="400" y="368" width="16" height="16"/>
   <object id="161" type="collision" x="560" y="80" width="80" height="48"/>
   <object id="162" type="collision" x="384" y="240" width="128" height="16"/>

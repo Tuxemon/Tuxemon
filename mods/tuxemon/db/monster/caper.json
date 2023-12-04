@@ -1,0 +1,63 @@
+{
+    "slug": "caper",
+    "category": "kid",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 6,
+            "technique": "gyser"
+        },
+        {
+            "level_learned": 8,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 12,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 16,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 20,
+            "technique": "font"
+        },
+        {
+            "level_learned": 24,
+            "technique": "starfall"
+        }
+    ],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 30,
+            "monster_slug": "crankus"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "crankus",
+            "evo_stage": "stage1"
+        }
+    ],
+    "shape": "landrace",
+    "stage": "basic",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 275,
+    "height": 65,
+    "weight": 36,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

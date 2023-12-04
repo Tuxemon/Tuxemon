@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable
 from dataclasses import dataclass
 from functools import partial
 from typing import final
@@ -10,7 +11,8 @@ from typing import final
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T, replace_text
-from tuxemon.states.choice import ChoiceState
+from tuxemon.npc import NPC
+from tuxemon.states.choice.choice_state import ChoiceState
 
 logger = logging.getLogger(__name__)
 
@@ -38,23 +40,22 @@ class TranslatedDialogChoiceAction(EventAction):
     variable: str
 
     def start(self) -> None:
-        def set_variable(var_value: str) -> None:
+        def _set_variable(var_value: str, player: NPC) -> None:
             player.game_variables[self.variable] = var_value
             self.session.client.pop_state()
 
         # perform text substitutions
         choices = replace_text(self.session, self.choices)
-        maybe_player = get_npc(self.session, "player")
-        assert maybe_player
-        player = maybe_player
+        player = get_npc(self.session, "player")
+        assert player
 
         # make menu options for each string between the colons
-        var_list = choices.split(":")
-        var_menu = list()
+        var_list: list[str] = choices.split(":")
+        var_menu: list[tuple[str, str, Callable[[], None]]] = []
 
         for val in var_list:
             text = T.translate(val)
-            var_menu.append((text, text, partial(set_variable, val)))
+            var_menu.append((text, text, partial(_set_variable, val, player)))
 
         self.session.client.push_state(
             ChoiceState(

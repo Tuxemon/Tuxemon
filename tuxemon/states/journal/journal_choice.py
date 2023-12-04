@@ -14,7 +14,7 @@ from pygame_menu.locals import POSITION_CENTER
 from tuxemon import prepare, tools
 from tuxemon.db import MonsterModel, db
 from tuxemon.locale import T
-from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
+from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 
@@ -24,16 +24,9 @@ MAX_PAGE = 20
 MenuGameObj = Callable[[], object]
 
 
-def fix_width(screen_x: int, pos_x: float) -> int:
-    """it returns the correct width based on percentage"""
-    value = round(screen_x * pos_x)
-    return value
-
-
-def fix_height(screen_y: int, pos_y: float) -> int:
-    """it returns the correct height based on percentage"""
-    value = round(screen_y * pos_y)
-    return value
+def fix_measure(measure: int, percentage: float) -> int:
+    """it returns the correct measure based on percentage"""
+    return round(measure * percentage)
 
 
 class JournalChoice(PygameMenuState):
@@ -57,8 +50,8 @@ class JournalChoice(PygameMenuState):
         # round up (eg. 11.49 > 12)
         diff = math.ceil(total_monster / MAX_PAGE)
         menu._column_max_width = [
-            fix_width(width, 0.40),
-            fix_width(width, 0.40),
+            fix_measure(width, 0.40),
+            fix_measure(width, 0.40),
         ]
 
         for page in range(diff):
@@ -81,17 +74,19 @@ class JournalChoice(PygameMenuState):
                         "JournalState",
                         kwargs={"monsters": monsters, "page": page},
                     ),
-                    font_size=20,
-                ).translate(fix_width(width, 0.18), fix_height(height, 0.01))
+                    font_size=self.font_size_small,
+                ).translate(
+                    fix_measure(width, 0.18), fix_measure(height, 0.01)
+                )
             else:
                 lab1 = menu.add.label(
                     label,
                     font_color=(105, 105, 105),
-                    font_size=20,
+                    font_size=self.font_size_small,
                 )
                 assert not isinstance(lab1, list)
                 lab1.translate(
-                    fix_width(width, 0.18), fix_height(height, 0.01)
+                    fix_measure(width, 0.18), fix_measure(height, 0.01)
                 )
 
     def __init__(self) -> None:
@@ -131,5 +126,5 @@ class JournalChoice(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = BACKGROUND_COLOR
+        theme.background_color = self.background_color
         theme.widget_alignment = locals.ALIGN_LEFT

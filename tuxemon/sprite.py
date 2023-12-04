@@ -18,7 +18,6 @@ from typing import (
     overload,
 )
 
-import pygame
 from pygame.rect import Rect
 from pygame.sprite import DirtySprite, Group, LayeredUpdates
 from pygame.sprite import Sprite as PySprite
@@ -44,7 +43,7 @@ dummy_image: Final = Surface((0, 0))
 class Sprite(DirtySprite):
     _original_image: Optional[Surface]
     _image: Optional[Surface]
-    _rect: pygame.rect.Rect
+    _rect: Rect
 
     def __init__(
         self,
@@ -73,8 +72,8 @@ class Sprite(DirtySprite):
     def draw(
         self,
         surface: Surface,
-        rect: Optional[pygame.rect.Rect] = None,
-    ) -> pygame.rect.Rect:
+        rect: Optional[Rect] = None,
+    ) -> Rect:
         """
         Draw the sprite to the surface.
 
@@ -97,8 +96,8 @@ class Sprite(DirtySprite):
     def _draw(
         self,
         surface: Surface,
-        rect: pygame.rect.Rect,
-    ) -> pygame.rect.Rect:
+        rect: Rect,
+    ) -> Rect:
         return surface.blit(self.image, rect)
 
     @property
@@ -328,11 +327,11 @@ class SpriteGroup(LayeredUpdates, Generic[_GroupElement]):
         # patch in indexing / slicing support
         return self.sprites()[item]
 
-    def calc_bounding_rect(self) -> pygame.rect.Rect:
+    def calc_bounding_rect(self) -> Rect:
         """A rect object that contains all sprites of this group."""
         sprites = self.sprites()
         if len(sprites) == 1:
-            return pygame.rect.Rect(sprites[0].rect)
+            return Rect(sprites[0].rect)
         else:
             return sprites[0].rect.unionall([s.rect for s in sprites[1:]])
 
@@ -402,12 +401,12 @@ class RelativeGroup(MenuSpriteGroup[_MenuElement]):
     Drawing operations are relative to the group's rect.
     """
 
-    rect = pygame.rect.Rect(0, 0, 0, 0)
+    rect = Rect(0, 0, 0, 0)
 
     def __init__(
         self,
         *,
-        parent: Union[RelativeGroup[Any], Callable[[], pygame.rect.Rect]],
+        parent: Union[RelativeGroup[Any], Callable[[], Rect]],
         **kwargs: Any,
     ) -> None:
         self.parent = parent
@@ -415,8 +414,8 @@ class RelativeGroup(MenuSpriteGroup[_MenuElement]):
 
     def calc_absolute_rect(
         self,
-        rect: pygame.rect.Rect,
-    ) -> pygame.rect.Rect:
+        rect: Rect,
+    ) -> Rect:
         self.update_rect_from_parent()
         return rect.move(self.rect.topleft)
 
@@ -424,14 +423,14 @@ class RelativeGroup(MenuSpriteGroup[_MenuElement]):
         if callable(self.parent):
             self.rect = self.parent()
         else:
-            self.rect = pygame.rect.Rect(self.parent.rect)
+            self.rect = Rect(self.parent.rect)
 
     def draw(
         self,
         surface: Surface,
         bgsurf: Any = None,
         special_flags: int = 0,
-    ) -> list[pygame.rect.Rect]:
+    ) -> list[Rect]:
         self.update_rect_from_parent()
         topleft = self.rect.topleft
 
@@ -479,7 +478,7 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         self._columns = value
         self._needs_arrange = True
 
-    def calc_bounding_rect(self) -> pygame.rect.Rect:
+    def calc_bounding_rect(self) -> Rect:
         if self._needs_arrange:
             self.arrange_menu_items()
         return super().calc_bounding_rect()

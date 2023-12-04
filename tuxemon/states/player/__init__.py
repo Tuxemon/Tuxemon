@@ -11,23 +11,16 @@ from pygame_menu.locals import POSITION_CENTER
 from tuxemon import formula, prepare, tools
 from tuxemon.db import OutputBattle, SeenStatus, db
 from tuxemon.locale import T
-from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
+from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 
 MenuGameObj = Callable[[], object]
 
 
-def fix_width(screen_x: int, pos_x: float) -> int:
-    """it returns the correct width based on percentage"""
-    value = round(screen_x * pos_x)
-    return value
-
-
-def fix_height(screen_y: int, pos_y: float) -> int:
-    """it returns the correct height based on percentage"""
-    value = round(screen_y * pos_y)
-    return value
+def fix_measure(measure: int, percentage: float) -> int:
+    """it returns the correct measure based on percentage"""
+    return round(measure * percentage)
 
 
 class PlayerState(PygameMenuState):
@@ -126,84 +119,84 @@ class PlayerState(PygameMenuState):
         lab1 = menu.add.label(
             title=name,
             label_id="name",
-            font_size=30,
+            font_size=self.font_size_big,
             align=locals.ALIGN_LEFT,
             underline=True,
             float=True,
         )
         assert not isinstance(lab1, list)
-        lab1.translate(fix_width(width, 0.45), fix_height(height, 0.15))
+        lab1.translate(fix_measure(width, 0.45), fix_measure(height, 0.15))
         # money
         money = player.money["player"]
         lab2 = menu.add.label(
             title=T.translate("wallet") + ": " + str(money),
             label_id="money",
-            font_size=15,
+            font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
             float=True,
         )
         assert not isinstance(lab2, list)
-        lab2.translate(fix_width(width, 0.45), fix_height(height, 0.25))
+        lab2.translate(fix_measure(width, 0.45), fix_measure(height, 0.25))
         # seen
         lab3 = menu.add.label(
             title=msg_seen,
             label_id="seen",
-            font_size=15,
+            font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
             float=True,
         )
         assert not isinstance(lab3, list)
-        lab3.translate(fix_width(width, 0.45), fix_height(height, 0.30))
+        lab3.translate(fix_measure(width, 0.45), fix_measure(height, 0.30))
         # caught
         lab4 = menu.add.label(
             title=msg_caught,
             label_id="caught",
-            font_size=15,
+            font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
             float=True,
         )
         assert not isinstance(lab4, list)
-        lab4.translate(fix_width(width, 0.45), fix_height(height, 0.35))
+        lab4.translate(fix_measure(width, 0.45), fix_measure(height, 0.35))
         # begin adventure
         lab5 = menu.add.label(
             title=msg_begin,
             label_id="begin",
-            font_size=15,
+            font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
             float=True,
         )
         assert not isinstance(lab5, list)
-        lab5.translate(fix_width(width, 0.45), fix_height(height, 0.40))
+        lab5.translate(fix_measure(width, 0.45), fix_measure(height, 0.40))
         # walked
         lab6 = menu.add.label(
             title=msg_walked,
             label_id="walked",
-            font_size=15,
+            font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
             float=True,
         )
         assert not isinstance(lab6, list)
-        lab6.translate(fix_width(width, 0.45), fix_height(height, 0.45))
+        lab6.translate(fix_measure(width, 0.45), fix_measure(height, 0.45))
         # battles
         lab7 = menu.add.label(
             title=msg_battles,
             label_id="battle",
-            font_size=15,
+            font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
             float=True,
         )
         assert not isinstance(lab7, list)
-        lab7.translate(fix_width(width, 0.45), fix_height(height, 0.50))
+        lab7.translate(fix_measure(width, 0.45), fix_measure(height, 0.50))
         # % tuxepedia
         lab8 = menu.add.label(
             title=msg_progress,
             label_id="progress",
-            font_size=15,
+            font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
             float=True,
         )
         assert not isinstance(lab8, list)
-        lab8.translate(fix_width(width, 0.45), fix_height(height, 0.10))
+        lab8.translate(fix_measure(width, 0.45), fix_measure(height, 0.10))
         # image
         combat_front = ""
         for ele in player.template:
@@ -217,7 +210,7 @@ class PlayerState(PygameMenuState):
         image_widget = menu.add.image(image_path=new_image.copy())
         image_widget.set_float(origin_position=True)
         image_widget.translate(
-            fix_width(width, 0.17), fix_height(height, 0.08)
+            fix_measure(width, 0.17), fix_measure(height, 0.08)
         )
 
     def __init__(self) -> None:
@@ -243,5 +236,5 @@ class PlayerState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = BACKGROUND_COLOR
+        theme.background_color = self.background_color
         theme.widget_alignment = locals.ALIGN_LEFT

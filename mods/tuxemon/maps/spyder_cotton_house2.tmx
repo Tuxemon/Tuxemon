@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="71">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="74">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -16,6 +16,7 @@
  <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
   <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
  </tileset>
+ <tileset firstgid="9279" source="../gfx/tilesets/core_buildings.tsx"/>
  <layer id="2" name="Tile Layer 2" width="10" height="8">
   <data encoding="base64" compression="zlib">
    eAE7xMzAcIgILMfCwEAMXinMwDCSMABt6zUX
@@ -23,7 +24,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="10" height="8">
   <data encoding="base64" compression="zlib">
-   eAFjYGBguKTAwHAZiNEBuvhHoJpPQIwOcIkjqzPmZ2AwgWJTII0LJALlkqA4mUx1u5QQpvcDzZgAxRPRzLuJpA6hAz/LXYCBwROIYQAATZ8RqA==
+   eAFjYGBguKTAwHAZiGHgswqEhS7+UYGB4RMQw4CSKoSFLg6TR6aN+RkYTKDYFEjjAolAuSQoTiZT3S4lhOn9QDMmQPFENPNuIqlD6MDPchdgYPAEYhgAANx1EwY=
   </data>
  </layer>
  <layer id="7" name="Tile Layer 4" width="10" height="8">
@@ -37,10 +38,12 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="59" type="collision" x="0" y="0" width="160" height="32"/>
+  <object id="59" type="collision" x="0" y="0" width="80" height="32"/>
   <object id="61" type="collision" x="112" y="32" width="32" height="32"/>
   <object id="62" type="collision" x="16" y="48" width="16" height="48"/>
   <object id="63" type="collision" x="48" y="80" width="16" height="16"/>
+  <object id="72" type="collision" x="96" y="0" width="64" height="32"/>
+  <object id="73" type="collision" x="80" y="0" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="64" name="Create Picnicker" type="event" x="64" y="32" width="16" height="16">
@@ -85,8 +88,17 @@
   <object id="70" name="Go outside" type="event" x="96" y="112" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_cotton_town.tmx,25,9,0.3"/>
+    <property name="act2" value="player_face down"/>
     <property name="cond1" value="is player_at"/>
     <property name="cond2" value="is player_facing down"/>
+   </properties>
+  </object>
+  <object id="71" name="Go outside" type="event" x="80" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_cotton_town.tmx,27,5,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

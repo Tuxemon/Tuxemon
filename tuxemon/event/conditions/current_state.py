@@ -9,7 +9,8 @@ from tuxemon.session import Session
 
 class CurrentStateCondition(EventCondition):
     """
-    Check to see if the state has been started or not.
+    Check to see if one or multiple state/states has/have
+    been started or not.
 
     Script usage:
         .. code-block::
@@ -18,6 +19,9 @@ class CurrentStateCondition(EventCondition):
 
     Script parameters:
         state: Either "CombatState", "DialogState", etc
+
+    eg: "is current_state CombatState"
+    eg: "is current_state CombatState:DialogState"
 
     """
 
@@ -37,4 +41,5 @@ class CurrentStateCondition(EventCondition):
         """
         current_state = session.client.current_state
         assert current_state
-        return current_state.name == condition.parameters[0]
+        states = condition.parameters[0].split(":")
+        return current_state.name in states

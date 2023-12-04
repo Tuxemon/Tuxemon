@@ -50,10 +50,13 @@ from tuxemon.animation import Animation, Task
 from tuxemon.battle import Battle
 from tuxemon.combat import (
     alive_party,
+    award_experience,
+    award_money,
     check_moves,
     defeated,
     fainted,
     get_awake_monsters,
+    get_winners,
 )
 from tuxemon.condition.condition import Condition
 from tuxemon.db import (
@@ -103,7 +106,7 @@ CombatPhase = Literal[
 
 class EnqueuedAction(NamedTuple):
     user: Union[Monster, NPC, None]
-    technique: Union[Technique, Item, Condition, None]
+    method: Union[Technique, Item, Condition, None]
     target: Monster
 
 
@@ -236,6 +239,7 @@ class CombatState(CombatAnimations):
         self._method_cache = MethodAnimationCache()
         self._decision_queue: list[Monster] = []
         self._action_queue: list[EnqueuedAction] = []
+        self._pending_queue: list[EnqueuedAction] = []
         self._log_action: list[tuple[int, EnqueuedAction]] = []
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
         self._layout = dict()  # player => home areas on screen
@@ -482,10 +486,10 @@ class CombatState(CombatAnimations):
             value = random.random()
             self.players[0].game_variables["random_tech_hit"] = value
             if not self._decision_queue:
+                # tracks human players who need to choose an action
                 for player in self.human_players:
-                    # tracks human players who need to choose an action
                     self._decision_queue.extend(self.monsters_in_play[player])
-
+                # tracks ai players who need to choose an action
                 for trainer in self.ai_players:
                     for monster in self.monsters_in_play[trainer]:
                         AI(self, monster)
@@ -499,6 +503,16 @@ class CombatState(CombatAnimations):
         elif phase == "post action phase":
             # apply condition effects to the monsters
             for monster in self.active_monsters:
+                # check if there are pending actions (eg. counterattacks)
+                if self._pending_queue:
+                    pend = None
+                    for pending in self._pending_queue:
+                        pend = pending
+                    if pend:
+                        self.enqueue_action(
+                            pend.user, pend.method, pend.target
+                        )
+                        self._pending_queue.remove(pend)
                 for condition in monster.status:
                     # validate condition
                     if condition.validate(monster):
@@ -611,9 +625,9 @@ class CombatState(CombatAnimations):
         """
 
         def rank_action(action: EnqueuedAction) -> tuple[int, int]:
-            if action.technique is None:
+            if action.method is None:
                 return 0, 0
-            sort = action.technique.sort
+            sort = action.method.sort
             primary_order = sort_order.index(sort)
 
             if sort == "meta":
@@ -630,12 +644,11 @@ class CombatState(CombatAnimations):
 
         # TODO: move to mod config
         sort_order = [
-            "meta",
-            "item",
-            "utility",
             "potion",
+            "utility",
             "food",
-            "heal",
+            "quest",
+            "meta",
             "damage",
         ]
 
@@ -968,7 +981,7 @@ class CombatState(CombatAnimations):
         # rewrite actions in the queue to target the new monster
         for index, action in enumerate(self._action_queue):
             if action.target is original:
-                new_action = EnqueuedAction(action.user, action.technique, new)
+                new_action = EnqueuedAction(action.user, action.method, new)
                 self._action_queue[index] = new_action
             if action.target is new and tech:
                 new_action = EnqueuedAction(action.user, tech, action.target)
@@ -1279,21 +1292,15 @@ class CombatState(CombatAnimations):
         message: str = ""
         action_time = 0.0
 
-        # nr times fainted monster got damaged
-        hits = len([ele for ele in self._damage_map if ele.defense == monster])
-        # all monsters that hit fainted monster
-        winners = {
-            ele.attack for ele in self._damage_map if ele.defense == monster
-        }
-
-        if hits:
-            # Award experience
-            awarded_exp = (
-                monster.total_experience // (monster.level * hits)
-            ) * monster.experience_modifier
-            # Award money
-            awarded_mon = monster.level * monster.money_modifier
+        winners = get_winners(monster, self._damage_map)
+        if winners:
             for winner in winners:
+                # Award money
+                awarded_mon = award_money(monster, winner)
+                # Award experience
+                awarded_exp = award_experience(
+                    monster, winner, self._damage_map
+                )
                 # check before giving exp
                 levels = winner.give_experience(awarded_exp)
                 # check after giving exp
@@ -1316,7 +1323,7 @@ class CombatState(CombatAnimations):
                             self._layout[self.players[0]]["hud1"][0],
                             self.monsters_in_play_human[1],
                         )
-                    else:
+                    elif len(self.monsters_in_play_human) == 1:
                         self.build_hud(
                             self._layout[self.players[0]]["hud"][0],
                             self.monsters_in_play_human[0],
@@ -1438,7 +1445,7 @@ class CombatState(CombatAnimations):
     @property
     def monsters_in_play_human(self) -> Sequence[Monster]:
         """
-        List of any monsters in battle (ai).
+        List of any monsters in battle (human).
 
         """
         return self.monsters_in_play[self.players[0]]
@@ -1487,6 +1494,7 @@ class CombatState(CombatAnimations):
 
         # clear action queue
         self._action_queue = list()
+        self._pending_queue = list()
         self._log_action = list()
         self._damage_map = list()
 

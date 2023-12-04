@@ -35,8 +35,8 @@ class Technique:
 
     """
 
-    effects_classes: ClassVar[Mapping[str, type[TechEffect[Any]]]] = {}
-    conditions_classes: ClassVar[Mapping[str, type[TechCondition[Any]]]] = {}
+    effects_classes: ClassVar[Mapping[str, type[TechEffect]]] = {}
+    conditions_classes: ClassVar[Mapping[str, type[TechCondition]]] = {}
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         if save_data is None:
@@ -49,9 +49,9 @@ class Technique:
         self.accuracy = 0.0
         self.animation: Optional[str] = None
         self.combat_state: Optional[CombatState] = None
-        self.conditions: Sequence[TechCondition[Any]] = []
+        self.conditions: Sequence[TechCondition] = []
         self.description = ""
-        self.effects: Sequence[TechEffect[Any]] = []
+        self.effects: Sequence[TechEffect] = []
         self.flip_axes = ""
         self.icon = ""
         self.images: Sequence[str] = []
@@ -157,7 +157,7 @@ class Technique:
     def parse_effects(
         self,
         raw: Sequence[str],
-    ) -> Sequence[TechEffect[Any]]:
+    ) -> Sequence[TechEffect]:
         """
         Convert effect strings to effect objects.
 
@@ -191,7 +191,7 @@ class Technique:
     def parse_conditions(
         self,
         raw: Sequence[str],
-    ) -> Sequence[TechCondition[Any]]:
+    ) -> Sequence[TechCondition]:
         """
         Convert condition strings to condition objects.
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="287">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="290">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -28,7 +28,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -83,52 +83,12 @@
    <polyline points="0,0 0,96"/>
   </object>
   <object id="260" type="collision" x="496" y="432" width="16" height="32"/>
-  <object id="262" type="collision" x="64" y="80" width="448" height="16">
-   <properties>
-    <property name="continue" value="down"/>
-    <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
-   </properties>
-  </object>
-  <object id="264" type="collision" x="288" y="240" width="16" height="48">
-   <properties>
-    <property name="continue" value="left"/>
-    <property name="enter_from" value="right"/>
-    <property name="exit_to" value="left"/>
-   </properties>
-  </object>
-  <object id="265" type="collision" x="336" y="240" width="16" height="48">
-   <properties>
-    <property name="continue" value="left"/>
-    <property name="enter_from" value="right"/>
-    <property name="exit_to" value="left"/>
-   </properties>
-  </object>
-  <object id="266" type="collision" x="384" y="240" width="16" height="48">
-   <properties>
-    <property name="continue" value="left"/>
-    <property name="enter_from" value="right"/>
-    <property name="exit_to" value="left"/>
-   </properties>
-  </object>
-  <object id="267" type="collision" x="432" y="240" width="16" height="48">
-   <properties>
-    <property name="continue" value="left"/>
-    <property name="enter_from" value="right"/>
-    <property name="exit_to" value="left"/>
-   </properties>
-  </object>
-  <object id="268" type="collision" x="560" y="80" width="48" height="16">
-   <properties>
-    <property name="continue" value="down"/>
-    <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
-   </properties>
-  </object>
-  <object id="269" type="collision" x="528" y="16" width="80" height="48"/>
+  <object id="269" type="collision" x="528" y="48" width="48" height="16"/>
   <object id="270" type="collision" x="512" y="80" width="48" height="112"/>
   <object id="271" type="collision" x="192" y="208" width="16" height="16"/>
   <object id="272" type="collision" x="16" y="192" width="16" height="16"/>
+  <object id="287" type="collision" x="592" y="48" width="16" height="16"/>
+  <object id="288" type="collision" x="576" y="32" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="30" name="random encounter 1" type="event" x="208" y="176" width="128" height="32">
@@ -630,6 +590,14 @@
     <property name="act3" value="remove_npc spyder_citypark_cd2"/>
     <property name="act4" value="set_variable citypark_cd2:yes"/>
     <property name="behav1" value="talk spyder_citypark_cd2"/>
+   </properties>
+  </object>
+  <object id="289" name="Teleport to Maniac House" type="event" x="576" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_citypark_house1.tmx,6,7,0.3"/>
+    <property name="act2" value="player_face up"/>
+    <property name="cond1" value="is player_at"/>
+    <property name="cond2" value="is player_facing up"/>
    </properties>
   </object>
  </objectgroup>

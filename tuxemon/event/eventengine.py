@@ -55,7 +55,7 @@ class RunningEvent:
         self.map_event = map_event
         self.context: dict[str, Any] = dict()
         self.action_index = 0
-        self.current_action: Optional[EventAction[Any]] = None
+        self.current_action: Optional[EventAction] = None
         self.current_map_action = None
 
     def get_next_action(self) -> Optional[MapAction]:
@@ -143,7 +143,7 @@ class EventEngine:
         self,
         name: str,
         parameters: Optional[Sequence[Any]] = None,
-    ) -> Optional[EventAction[Any]]:
+    ) -> Optional[EventAction]:
         """
         Get an action that is loaded into the engine.
 

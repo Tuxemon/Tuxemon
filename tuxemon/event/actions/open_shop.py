@@ -9,6 +9,7 @@ from typing import Optional, final
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.economy import Economy
+from tuxemon.locale import T
 from tuxemon.npc import NPC
 from tuxemon.states.choice.choice_state import ChoiceState
 from tuxemon.states.items.shop_menu import ShopBuyMenuState, ShopSellMenuState
@@ -62,29 +63,30 @@ class OpenShopAction(EventAction):
                 )
             )
 
+        def buy_menu(npc: NPC) -> None:
+            self.session.client.pop_state()
+            push_buy_menu(npc)
+
+        def sell_menu(npc: NPC) -> None:
+            self.session.client.pop_state()
+            push_sell_menu(npc)
+
+        buy = T.translate("buy")
+        sell = T.translate("sell")
+
+        var_menu = [
+            (buy, buy, partial(buy_menu, npc)),
+            (sell, sell, partial(sell_menu, npc)),
+        ]
+
         menu = self.menu or "both"
         if menu == "both":
-
-            def buy_menu(npc: NPC) -> None:
-                self.session.client.pop_state()
-                push_buy_menu(npc)
-
-            def sell_menu(npc: NPC) -> None:
-                self.session.client.pop_state()
-                push_sell_menu(npc)
-
-            var_menu = [
-                ("Buy", "Buy", partial(buy_menu, npc)),
-                ("Sell", "Sell", partial(sell_menu, npc)),
-            ]
-
             self.session.client.push_state(
                 ChoiceState(
                     menu=var_menu,
                     escape_key_exits=True,
                 )
             )
-
         elif menu == "buy":
             push_buy_menu(npc)
         elif menu == "sell":

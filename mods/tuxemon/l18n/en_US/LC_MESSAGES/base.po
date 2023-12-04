@@ -46,7 +46,7 @@ msgid "imperial_potion_description"
 msgstr "Heals a monster by 500 HP."
 
 msgid "mega_potion"
-msgstr "Imperial Potion"
+msgstr "Mega Potion"
 
 msgid "mega_potion_description"
 msgstr "Heals a monster by 200 HP."
@@ -314,6 +314,12 @@ msgstr "Dojo Pass"
 
 msgid "dojo_pass_description"
 msgstr "Admit one to the Dojo of the Five Elements."
+
+msgid "book_wishes"
+msgstr "Book of Wishes"
+
+msgid "book_wishes_description"
+msgstr "The Achievement Maniac's list of achievements for you to attempt."
 
 msgid "earthmover_key"
 msgstr "Earthmover Key"
@@ -634,6 +640,12 @@ msgstr "Wood Booster"
 
 msgid "wood_booster_description"
 msgstr "It allows to morph a Wood type tuxemon into a different form."
+
+msgid "xp_transmitter"
+msgstr "XP Transmitter"
+
+msgid "xp_transmitter_description"
+msgstr "When this item is in your possession, all monsters that did not participate in defeating a monster get half of the XP. The remainder goes to the monsters that did participate."
 
 # Map Types:
 
@@ -2555,6 +2567,12 @@ msgstr "FREE!"
 
 msgid "shop_buy_soldout"
 msgstr "Sold Out!"
+
+msgid "buy"
+msgstr "Buy"
+
+msgid "sell"
+msgstr "Sell"
 
 #Release notifications
 msgid "cant_release"
@@ -9370,7 +9388,31 @@ msgid "spyder_papertown_tvwatch"
 msgstr "What's on TV? A prom queen is breaking her tiara into pieces and handing it out."
 
 msgid "spyder_citypark_achievement"
-msgstr "Achievement Maniac's House: Closed."
+msgstr "Achievement Maniac's House"
+
+msgid "spyder_citypark_house_maniac"
+msgstr "Achievement Maniac"
+
+msgid "spyder_citypark_house_maniac1"
+msgstr "I'm the Achievement Maniac! I'm young ... Well, at heart. My body is old and frail.\n"
+"All my life, my dream has been to do the things that no one else has done.\n"
+"Like ... giving a dog tuxemon to a Cat Girl.\n"
+"I wrote down all the things I wanted to do in my Book of Wishes. But it's unfinished ..."
+
+msgid "spyder_citypark_house_maniac2"
+msgstr "Do you want to help me? You can do all the challenges that I didn't get around to!"
+
+msgid "spyder_citypark_house_maniac3"
+msgstr "Huh, nothing new. Well, keep working on it!"
+
+msgid "spyder_citypark_house_maniac4"
+msgstr "How are you getting along with the Book of Wishes? Tell me of your achievements ..."
+
+msgid "spyder_citypark_house_maniac5"
+msgstr "How are you getting along with the Book of Wishes? Tell me of your achievements ..."
+
+msgid "spyder_maniac_achievement1"
+msgstr "Giving a dog tuxemon to a Cat Girl"
 
 msgid "spyder_column1_sign" 
 msgstr "A rare ancient column. This was once part of a temple building." 

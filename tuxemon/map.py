@@ -6,7 +6,15 @@ import logging
 from collections.abc import Generator, Mapping, MutableMapping, Sequence
 from itertools import product
 from math import atan2, pi
-from typing import Literal, Optional, TypedDict, TypeVar, Union
+from typing import (
+    TYPE_CHECKING,
+    Literal,
+    NamedTuple,
+    Optional,
+    TypeVar,
+    Union,
+    cast,
+)
 
 import pyscroll
 from pytmx import pytmx
@@ -20,6 +28,9 @@ from tuxemon.locale import T
 from tuxemon.math import Vector2, Vector3
 from tuxemon.tools import round_to_divisible
 
+if TYPE_CHECKING:
+    from tuxemon.npc import NPC
+
 logger = logging.getLogger(__name__)
 
 RectTypeVar = TypeVar("RectTypeVar", bound=ReadOnlyRect)
@@ -27,19 +38,13 @@ RectTypeVar = TypeVar("RectTypeVar", bound=ReadOnlyRect)
 Direction = Literal["up", "down", "left", "right"]
 Orientation = Literal["horizontal", "vertical"]
 
-RegionPropertiesOptional = TypedDict(
-    "RegionPropertiesOptional",
-    {
-        "continue": Direction,
-        "key": str,
-    },
-    total=False,
-)
 
-
-class RegionProperties(RegionPropertiesOptional):
-    enter: Sequence[Direction]
-    exit: Sequence[Direction]
+class RegionProperties(NamedTuple):
+    enter_from: Sequence[Direction]
+    exit_from: Sequence[Direction]
+    endure: Sequence[Direction]
+    entity: Optional[NPC]
+    key: Optional[str]
 
 
 # direction => vector
@@ -60,9 +65,6 @@ short_dirs = {d[0]: dirs2[d] for d in dirs2}
 
 # complimentary directions
 pairs = {"up": "down", "down": "up", "left": "right", "right": "left"}
-
-# what directions entities can face
-facing = "front", "back", "left", "right"
 
 
 def translate_short_path(
@@ -89,10 +91,97 @@ def translate_short_path(
         yield (int(position_vec.x), int(position_vec.y))
 
 
+def get_coords(
+    tile: tuple[int, int], map_size: tuple[int, int], radius: int = 1
+) -> list[tuple[int, int]]:
+    """
+    Returns a list with the cardinal coordinates (down, right, up, and left),
+    Negative coordinates as well as the ones the exceed the map size will be
+    filtered out. If no valid coordinates, then it'll be raised a ValueError.
+
+     -  | 1,0 |  -
+    0,1 | 1,1 | 2,1 |
+     -  | 1,2 |  -
+
+    eg. radius = 1 (1,0),(0,1),(1,2),(2,1)
+
+    Parameters:
+        tile: Tile coordinates
+        map_size: Dimension of the map
+        radius: Radius, default 1
+
+    Returns:
+        List tile coordinates.
+    """
+    coords: list[tuple[int, int]] = []
+    coords.append((tile[0], tile[1] + radius))  # down
+    coords.append((tile[0] + radius, tile[1]))  # right
+    coords.append((tile[0], tile[1] - radius))  # up
+    coords.append((tile[0] - radius, tile[1]))  # left
+    _coords = [
+        _tile
+        for _tile in coords
+        if map_size[0] >= _tile[0] >= 0 and map_size[1] >= _tile[1] >= 0
+    ]
+    if not _coords:
+        raise ValueError(f"{coords} invalid coordinates")
+    return _coords
+
+
+def get_coord_direction(
+    tile: tuple[int, int],
+    direction: Direction,
+    map_size: tuple[int, int],
+    radius: int = 1,
+) -> tuple[int, int]:
+    """
+    Returns the coordinates for a specific side and radius.
+    Negative coordinates as well as the ones the exceed the map size will
+    raise a ValueError.
+
+    Parameters:
+        tile: Tile coordinates
+        side: Direction "up*, "dowm", "left", "right"
+        map_size: Dimension of the map
+        radius: Radius, default 1
+
+    Returns:
+        Tuple tile coordinates.
+    """
+    _tile: tuple[int, int] = (0, 0)
+    if direction == "down":
+        _tile = (tile[0], tile[1] + radius)
+    elif direction == "right":
+        _tile = (tile[0] + radius, tile[1])
+    elif direction == "up":
+        _tile = (tile[0], tile[1] - radius)
+    elif direction == "left":
+        _tile = (tile[0] - radius, tile[1])
+    else:
+        raise ValueError(f"{direction} doesn't exist")
+    if map_size[0] >= _tile[0] >= 0 and map_size[1] >= _tile[1] >= 0:
+        return _tile
+    else:
+        raise ValueError(f"{_tile} invalid coordinates")
+
+
 def get_direction(
     base: Union[Vector2, tuple[int, int]],
     target: Union[Vector2, tuple[int, int]],
 ) -> Direction:
+    """
+    Return the direction based on the coordinates position.
+
+    eg. base (1,3) - target (1,12) -> "down"
+
+    Parameters:
+        base: Base coordinates
+        target: Target coordinates
+
+    Returns:
+        Direction.
+
+    """
     y_offset = base[1] - target[1]
     x_offset = base[0] - target[0]
     # Is it further away vertically or horizontally?
@@ -280,7 +369,15 @@ def extract_region_properties(
     Given a dictionary from Tiled properties, return a dictionary
     suitable for collision detection.
 
-    Uses `exit_to`, `enter_from`, and `continue` keys.
+    We are using word "endure" because continue is already used in Python
+    and it can create issues. Endure means "continue to walk in a precise direction".
+
+    If in the tileset.tsx there is endure=left, it means that the player continues
+    walking left. endure is a sequence (possible multiple values); if there are more
+    than 1 direction eg (up and left), then the player will continue in the direction
+    he/she entered the tile, so it takes the direction from self.facing
+
+    Uses `exit_from`, `enter_from`, and `continue` keys.
 
     Parameters:
         properties: Dictionary of data from Tiled for object, tile, etc.
@@ -290,34 +387,61 @@ def extract_region_properties(
 
     """
     # this could use a rewrite or re-thinking...
+    label = None
+    endure: list[Direction] = []
     enters: list[Direction] = []
     exits: list[Direction] = []
-    new_props: RegionProperties = {
-        "enter": enters,
-        "exit": exits,
-    }
     has_movement_modifier = False
     for key in properties:
-        if "enter" in key:
-            enters.extend(properties[key].split())
+        if "enter_from" == key:
+            enters = direction_to_list(properties[key])
             has_movement_modifier = True
-        elif "exit" in key:
-            exits.extend(properties[key].split())
+        elif "exit_from" == key:
+            exits = direction_to_list(properties[key])
             has_movement_modifier = True
-        elif "continue" in key:
-            new_props["continue"] = properties[key]
+        elif "endure" == key:
+            endure = direction_to_list(properties[key])
             has_movement_modifier = True
-        elif "key" in key:
-            new_props["key"] = properties[key]
+        elif "key" == key:
+            label = properties[key]
             has_movement_modifier = True
     # if there is an exit, but no explicit enter, then
     # allow entering from all sides except the exit side
     if exits and not enters:
-        new_props["enter"] = list({"up", "down", "left", "right"} - set(exits))
+        enters = ["up", "down", "left", "right"]
+        for _exit in exits:
+            enters.remove(cast(Direction, _exit))
     if has_movement_modifier:
-        return new_props
+        return RegionProperties(
+            enter_from=enters,
+            exit_from=exits,
+            endure=endure,
+            entity=None,
+            key=label,
+        )
     else:
         return None
+
+
+def direction_to_list(direction: Optional[str]) -> list[Direction]:
+    """
+    Splits direction string and returns a list with Direction/s
+
+    Parameters:
+        direction: str (eg. enter_from = "direction")
+
+    Returns:
+        List with Direction/s
+
+    """
+    if direction is None:
+        props = []
+    else:
+        props = direction.split(",")
+    result: list[Direction] = []
+    for _props in props:
+        result.append(cast(Direction, _props))
+    return result
 
 
 class PathfindNode:

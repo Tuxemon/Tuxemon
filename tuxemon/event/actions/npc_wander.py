@@ -9,6 +9,7 @@ from typing import Optional, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.map import get_coords, get_direction
 from tuxemon.npc import NPC
 from tuxemon.states.world.worldstate import WorldState
 
@@ -46,8 +47,9 @@ class NpcWanderAction(EventAction):
 
     def start(self) -> None:
         player = self.session.player
+        client = self.session.client
         npc = get_npc(self.session, self.npc_slug)
-        world = self.session.client.get_state_by_name(WorldState)
+        world = client.get_state_by_name(WorldState)
 
         # generate all the coordinates
         output = None
@@ -67,19 +69,14 @@ class NpcWanderAction(EventAction):
             if npc.moving or npc.path:
                 return
 
-            # Suspend wandering if a dialog window is open
-            coords = (0, 0)
-            # retrieve NPC talking to
-            if player.facing == "down":
-                coords = (player.tile_pos[0], player.tile_pos[1] + 1)
-            elif player.facing == "up":
-                coords = (player.tile_pos[0], player.tile_pos[1] - 1)
-            elif player.facing == "left":
-                coords = (player.tile_pos[0] - 1, player.tile_pos[1])
-            elif player.facing == "right":
-                coords = (player.tile_pos[0] + 1, player.tile_pos[1])
+            # NPC stops if the player looks at it
+            tiles = get_coords(player.tile_pos, client.map_size)
+            direction = get_direction(player.tile_pos, npc.tile_pos)
+            if npc.tile_pos in tiles and player.facing == direction:
+                return
 
-            for state in self.session.client.active_states:
+            # Suspend wandering if a dialog window is open
+            for state in client.active_states:
                 if state.name == "WorldMenuState":
                     return
 
@@ -87,11 +84,10 @@ class NpcWanderAction(EventAction):
             origin = (npc.tile_pos[0], npc.tile_pos[1])
             exits = world.get_exits(origin)
             if exits:
-                if origin != coords:
-                    path = random.choice(exits)
-                    if not output or path in output:
-                        npc.path = [path]
-                        npc.next_waypoint()
+                path = random.choice(exits)
+                if not output or path in output:
+                    npc.path = [path]
+                    npc.next_waypoint()
 
         def schedule() -> None:
             # The timer is randomized between 0.5 and 1.0 of the frequency

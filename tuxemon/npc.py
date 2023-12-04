@@ -13,12 +13,12 @@ from typing import TYPE_CHECKING, Any, Optional, TypedDict
 from tuxemon import surfanim
 from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.compat import Rect
-from tuxemon.db import ElementType, PlagueType, SeenStatus, db
+from tuxemon.db import ElementType, EntityFacing, PlagueType, SeenStatus, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import MAX_TYPES_BAG, Item, decode_items, encode_items
 from tuxemon.locale import T
-from tuxemon.map import Direction, dirs2, dirs3, facing, get_direction, proj
+from tuxemon.map import Direction, dirs2, dirs3, get_direction, proj
 from tuxemon.math import Vector2
 from tuxemon.mission import Mission, decode_mission, encode_mission
 from tuxemon.monster import (
@@ -291,7 +291,7 @@ class NPC(Entity[NPCState]):
                     self.interactive_obj = True
 
         self.standing = {}
-        for standing_type in facing:
+        for standing_type in list(EntityFacing):
             # if the template slug is interactive_obj, then it needs _front
             if self.interactive_obj:
                 filename = f"{self.sprite_name}.png"
@@ -301,14 +301,16 @@ class NPC(Entity[NPCState]):
                 path = os.path.join("sprites", filename)
             self.standing[standing_type] = load_and_scale(path)
         # The player's sprite size in pixels
-        self.playerWidth, self.playerHeight = self.standing["front"].get_size()
+        self.playerWidth, self.playerHeight = self.standing[
+            EntityFacing.front
+        ].get_size()
 
         # avoid cutoff frames when steps don't line up with tile movement
         n_frames = 3
         frame_duration = (1000 / CONFIG.player_walkrate) / n_frames / 1000 * 2
 
         # Load all of the player's sprite animations
-        anim_types = ["front_walk", "back_walk", "left_walk", "right_walk"]
+        anim_types = [f"{facing}_walk" for facing in list(EntityFacing)]
         for anim_type in anim_types:
             if not self.interactive_obj:
                 images = [
@@ -357,10 +359,14 @@ class NPC(Entity[NPCState]):
 
     def check_continue(self) -> None:
         try:
-            direction_next = self.world.collision_map[self.tile_pos][
-                "continue"
-            ]
-            self.move_one_tile(direction_next)
+            tile = self.world.collision_map[self.tile_pos]
+            if tile and tile.endure:
+                _direction = (
+                    self.facing if len(tile.endure) > 1 else tile.endure[0]
+                )
+                self.move_one_tile(_direction)
+            else:
+                pass
         except (KeyError, TypeError):
             pass
 
@@ -744,6 +750,11 @@ class NPC(Entity[NPCState]):
         new_monster.taste_cold = old_monster.taste_cold
         new_monster.taste_warm = old_monster.taste_warm
         new_monster.plague = old_monster.plague
+        new_monster.name = (
+            new_monster.name
+            if old_monster.name == T.translate(old_monster.slug)
+            else old_monster.name
+        )
         self.remove_monster(old_monster)
         self.add_monster(new_monster, slot)
 

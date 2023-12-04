@@ -56,18 +56,28 @@ events:
     type: "event"
   Surfable:
     actions:
-    - set_player_template swimmer
+    - set_template player,swimmer
     conditions:
     - is player_in surfable
     - not has_sprite swimmer
     type: "event"
-  Not surfable:
+  Not surfable Boy:
     actions:
-    - set_player_template default
+    - set_template player,adventurer,adventurer
     - set_variable swimming:no
     conditions:
     - not player_in surfable
     - is has_sprite swimmer
+    - is variable_set gender_choice:gender_male
+    type: "event"
+  Not surfable Girl:
+    actions:
+    - set_template player,heroine,heroine
+    - set_variable swimming:no
+    conditions:
+    - not player_in surfable
+    - is has_sprite swimmer
+    - is variable_set gender_choice:gender_female
     type: "event"
   Allow Swim:
     actions:

@@ -31,9 +31,6 @@ class PlayerInCondition(EventCondition):
         world = session.client.get_state_by_name(WorldState)
 
         if prop == "surfable":
-            if player.tile_pos in world.surfable_map:
-                return True
-            else:
-                return False
+            return player.tile_pos in world.surfable_map
         else:
             raise ValueError(f"{prop} isn't valid.")

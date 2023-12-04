@@ -2,31 +2,10 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from tuxemon.event import MapCondition
+from tuxemon.event import MapCondition, collide
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.npc import NPC
 from tuxemon.session import Session
-
-
-# TODO: move to some other place?
-def collide(condition: MapCondition, tile_position: tuple[int, int]) -> bool:
-    """
-    Check collision of a tile position with the map condition position.
-
-    Parameters:
-        condition: The map condition object.
-        tile_position: A particular tile position.
-
-    Returns:
-        Whether the tile position is contained in the map condition area.
-
-    """
-    return (
-        condition.x < tile_position[0] + 1
-        and condition.y < tile_position[1] + 1
-        and condition.x + condition.width > tile_position[0]
-        and condition.y + condition.height > tile_position[1]
-    )
 
 
 class PlayerMovedCondition(EventCondition):

@@ -36,7 +36,7 @@ class ToUseTileCondition(EventCondition):
             Whether the player attempts to interact with a map condition tile.
 
         """
-        player_next_to_and_facing_tile = PlayerFacingTileCondition().test(
+        player_facing_tile = PlayerFacingTileCondition().test(
             session,
             condition,
         )
@@ -55,4 +55,4 @@ class ToUseTileCondition(EventCondition):
                 name="",
             ),
         )
-        return player_next_to_and_facing_tile and button_pressed
+        return player_facing_tile and button_pressed

@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from tuxemon.event import MapCondition, collide
+from tuxemon.event import MapCondition, collide, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.npc import NPC
 from tuxemon.session import Session
@@ -44,7 +44,10 @@ class PlayerMovedCondition(EventCondition):
 
         """
         # TODO: Eventually generalize command for checking players and npcs
-        return self.generic_test(session, condition, session.player)
+        player = get_npc(session, "player")
+        if not player:
+            return False
+        return self.generic_test(session, condition, player)
 
     def generic_test(
         self,

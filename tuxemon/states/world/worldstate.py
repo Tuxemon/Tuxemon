@@ -668,7 +668,7 @@ class WorldState(state.State):
         self,
         map: MutableMapping[tuple[int, int], Optional[RegionProperties]],
         label: str,
-    ) -> Optional[tuple[int, int]]:
+    ) -> list[tuple[int, int]]:
         """
         Returns coords (tuple) of specific collision zones.
 
@@ -676,11 +676,11 @@ class WorldState(state.State):
             The coordinates.
 
         """
+        tiles = []
         for coords, props in map.items():
-            if props and props.key:
-                if props.key == label:
-                    return coords
-        return None
+            if props and props.key and props.key == label:
+                tiles.append(coords)
+        return tiles
 
     def get_collision_map(self) -> CollisionMap:
         """

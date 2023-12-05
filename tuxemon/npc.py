@@ -22,7 +22,6 @@ from tuxemon.map import (
     Direction,
     dirs2,
     dirs3,
-    facing,
     get_coords_extended,
     get_direction,
     proj,

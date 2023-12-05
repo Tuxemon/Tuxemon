@@ -8,6 +8,7 @@ from itertools import product
 from math import atan2, pi
 from typing import (
     TYPE_CHECKING,
+    Any,
     Literal,
     NamedTuple,
     Optional,
@@ -29,6 +30,7 @@ from tuxemon.math import Vector2, Vector3
 from tuxemon.tools import round_to_divisible
 
 if TYPE_CHECKING:
+    from tuxemon.entity import Entity
     from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
@@ -43,7 +45,7 @@ class RegionProperties(NamedTuple):
     enter_from: Sequence[Direction]
     exit_from: Sequence[Direction]
     endure: Sequence[Direction]
-    entity: Optional[NPC]
+    entity: Optional[Union[NPC, Entity[Any]]]
     key: Optional[str]
 
 

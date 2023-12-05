@@ -6,7 +6,7 @@ import uuid
 from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Generic, TypeVar
 
-from tuxemon.map import proj
+from tuxemon.map import RegionProperties, proj
 from tuxemon.math import Point3, Vector3
 from tuxemon.session import Session
 from tuxemon.tools import vector2_to_tile_pos
@@ -95,7 +95,10 @@ class Entity(Generic[SaveDict]):
 
         """
         coords = (int(pos[0]), int(pos[1]))
-        self.world.collision_map[coords] = {"entity": self}
+        prop = RegionProperties(
+            enter_from=[], exit_from=[], endure=[], entity=self, key=None
+        )
+        self.world.collision_map[coords] = prop
 
     def remove_collision(self, pos: tuple[int, int]) -> None:
         """

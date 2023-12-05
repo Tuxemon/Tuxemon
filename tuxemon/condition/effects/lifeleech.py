@@ -33,16 +33,20 @@ class LifeLeechEffect(CondEffect):
 
     name = "lifeleech"
 
-    def apply(self, tech: Condition, target: Monster) -> LifeLeechEffectResult:
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> LifeLeechEffectResult:
         lifeleech: bool = False
-        if tech.phase == "perform_action_status":
-            if tech.slug == "lifeleech":
-                user = tech.link
-                assert user
-                damage = formula.simple_lifeleech(user, target)
-                target.current_hp -= damage
-                user.current_hp += damage
-                lifeleech = bool(damage)
+        if (
+            condition.phase == "perform_action_status"
+            and condition.slug == "lifeleech"
+        ):
+            user = condition.link
+            assert user
+            damage = formula.simple_lifeleech(user, target)
+            target.current_hp -= damage
+            user.current_hp += damage
+            lifeleech = True
 
         return {
             "success": lifeleech,

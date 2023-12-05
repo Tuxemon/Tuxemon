@@ -400,7 +400,7 @@ class Monster:
                     elif status.repl_pos == ResponseCondition.removed:
                         self.status.clear()
                     else:
-                        # noddingoff, exhausted, festering, dozing
+                        # noddingoff, exhausted, festering
                         return
                 elif self.status[0].category == CategoryCondition.negative:
                     if status.repl_neg == ResponseCondition.replaced:
@@ -409,7 +409,7 @@ class Monster:
                     elif status.repl_pos == ResponseCondition.removed:
                         self.status.clear()
                     else:
-                        # chargedup, charging and dozing
+                        # chargedup, charging
                         return
                 else:
                     self.status.clear()

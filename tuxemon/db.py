@@ -681,6 +681,9 @@ class ConditionModel(BaseModel):
         False,
         description="Whether or not there is a bond between attacker and defender",
     )
+    duration: int = Field(
+        0, description="How many turns the condition is supposed to last"
+    )
 
     # Optional fields
     category: Optional[CategoryCondition] = Field(

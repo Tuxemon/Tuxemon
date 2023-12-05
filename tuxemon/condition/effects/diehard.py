@@ -26,27 +26,28 @@ class DieHardEffect(CondEffect):
 
     name = "diehard"
 
-    def apply(self, tech: Condition, target: Monster) -> DieHardEffectResult:
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> DieHardEffectResult:
         extra: Optional[str] = None
-        if tech.phase == "check_party_hp":
-            if tech.slug == "diehard":
-                if target.current_hp <= 0:
-                    target.current_hp = 1
-                    target.status.clear()
-                    extra = T.format(
-                        "combat_state_diehard_tech",
-                        {
-                            "target": target.name.upper(),
-                        },
-                    )
-                elif target.current_hp == 1:
-                    target.status.clear()
-                    extra = T.format(
-                        "combat_state_diehard_end",
-                        {
-                            "target": target.name.upper(),
-                        },
-                    )
+        if condition.phase == "check_party_hp" and condition.slug == "diehard":
+            if target.current_hp <= 0:
+                target.current_hp = 1
+                target.status.clear()
+                extra = T.format(
+                    "combat_state_diehard_tech",
+                    {
+                        "target": target.name.upper(),
+                    },
+                )
+            elif target.current_hp == 1:
+                target.status.clear()
+                extra = T.format(
+                    "combat_state_diehard_end",
+                    {
+                        "target": target.name.upper(),
+                    },
+                )
 
         return {
             "success": True,

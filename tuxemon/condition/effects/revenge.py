@@ -32,10 +32,12 @@ class RevengeEffect(CondEffect):
 
     name = "revenge"
 
-    def apply(self, tech: Condition, target: Monster) -> RevengeEffectResult:
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> RevengeEffectResult:
         done: bool = False
-        assert tech.combat_state
-        combat = tech.combat_state
+        assert condition.combat_state
+        combat = condition.combat_state
         log = combat._log_action
         turn = combat._turn
         # check log actions
@@ -63,13 +65,16 @@ class RevengeEffect(CondEffect):
                         )
                         damage = dam
 
-        if tech.phase == "perform_action_status":
-            if tech.slug == "revenge":
-                if attacker and hit:
-                    if attacker.current_hp > 0:
-                        attacker.current_hp -= damage
-                        target.current_hp += damage
-                        done = True
+        if (
+            condition.phase == "perform_action_status"
+            and condition.slug == "revenge"
+            and attacker
+            and hit
+            and attacker.current_hp > 0
+        ):
+            attacker.current_hp -= damage
+            target.current_hp += damage
+            done = True
         return {
             "success": done,
             "condition": None,

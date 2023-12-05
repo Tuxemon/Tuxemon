@@ -608,6 +608,13 @@
             "width": 720,
             "x": 1600,
             "y": -640
+        },
+        {
+            "fileName": "spyder_citypark_house1.tmx",
+            "height": 128,
+            "width": 160,
+            "x": 2720,
+            "y": 1472
         }
     ],
     "onlyShowAdjacentMaps": false,

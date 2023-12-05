@@ -15,6 +15,7 @@
  <tileset firstgid="9743" source="../gfx/tilesets/core_buildings.tsx"/>
  <tileset firstgid="12093" source="../gfx/tilesets/core_outdoor_water.tsx"/>
  <tileset firstgid="20285" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="23060" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <layer id="1" name="Tile Layer 1" width="45" height="40">
   <data encoding="base64" compression="zlib">
    eAHtl90NwjAMhM0bM3QMFkEgBKvwM0vFAkwBDEb8gJQGuzoHQdXoHixFrtNevpybtluKdA3FQtpaT0t7g6xltROxApk7VY2lV3OoHvVsNNB7e3Vz1OytBc1HGbM+7ksyIzN6YOiB21okEv3GPgP1nX1N15B7fbsHyDPyGmoe7vkY/5xbdDwV56jOvH6Omu+pzw7bzz7cp9zzhz2Yc6sZW6zRd4Y+b8y33rUanfkcasa458xqxq1wvqQePKUeLOOccscib3m2hl1kjsXZ+9/S3izrqRn7xim5eYzf301lPTljnPUsfIChZ2NZPwXnSL9atdSMecNiF8mRMzl7fqE36A164z8e8Di/AJi2wG0=
@@ -22,12 +23,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="45" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="6" name="Tile Layer 3" width="45" height="40">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgIjLQRS9RkY0tBwOpBPTWDKTE3TGBiWAt23DA0vp7Kbt466eTSccSTb0kGeNjRxuJuawvTIg9R0L8isoejmp8By7Rkafk7lsg4Wztkwxig9GgLDJARyhok/Rr0xGgKjITAaAqMhMBoCoyEwcCFAj77VwPlu1GZKQmC0/0RJ6A1vvaPlBn3i9yt9rKGqLaaMVDWOJoYBAJfwMq8=
+   eAFjYBgFoyEwGgIjLQRS9RkY0tBwOpBPTWDKTE3TGBiWAt23DA0vp7Kbt466eTSccSTb0kGeNjRxuJuawvTIg9R0L8isoejmp8By7Rkafk7lsg4Wztkwxig9GgLDJARyhok/Rr0xGgKjIUA4BGKCEWpikdgI0VHWaAiMhgAtQ2A450F69K1oGTejZtMuBEb7T7QL26Fu8mi5QZ8Y/Eofa6hqiykjVY2jiWEA0P41bQ==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">

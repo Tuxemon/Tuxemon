@@ -40,6 +40,7 @@ events:
     conditions:
     - is player_at
     - is player_moved
+    - is current_state WorldState
     height: 5
     width: 5
     x: 2
@@ -52,6 +53,7 @@ events:
     conditions:
     - is player_at
     - is player_moved
+    - is current_state WorldState
     height: 4
     width: 7
     x: 2
@@ -64,6 +66,7 @@ events:
     conditions:
     - is player_at
     - is player_moved
+    - is current_state WorldState
     height: 10
     width: 2
     x: 1
@@ -76,6 +79,7 @@ events:
     conditions:
     - is player_at
     - is player_moved
+    - is current_state WorldState
     height: 4
     width: 5
     x: 23
@@ -88,6 +92,7 @@ events:
     conditions:
     - is player_at
     - is player_moved
+    - is current_state WorldState
     height: 6
     width: 6
     x: 23
@@ -100,6 +105,7 @@ events:
     conditions:
     - is player_at
     - is player_moved
+    - is current_state WorldState
     height: 7
     width: 8
     x: 13
@@ -112,6 +118,7 @@ events:
     conditions:
     - is player_at
     - is player_moved
+    - is current_state WorldState
     height: 2
     width: 28
     x: 7
@@ -124,6 +131,7 @@ events:
     conditions:
     - is player_at
     - is player_moved
+    - is current_state WorldState
     height: 3
     width: 4
     x: 13
@@ -136,6 +144,7 @@ events:
     conditions:
     - is player_at
     - is player_moved
+    - is current_state WorldState
     height: 4
     width: 4
     x: 37
@@ -148,6 +157,7 @@ events:
     conditions:
     - is player_at
     - is player_moved
+    - is current_state WorldState
     height: 3
     width: 5
     x: 10
@@ -174,6 +184,7 @@ events:
     conditions:
     - is player_at
     - is player_moved
+    - is current_state WorldState
     height: 2
     width: 5
     x: 35
@@ -186,6 +197,7 @@ events:
     conditions:
     - is player_at
     - is player_moved
+    - is current_state WorldState
     height: 5
     width: 4
     x: 40
@@ -245,6 +257,7 @@ events:
     conditions:
     - is player_at
     - is player_moved
+    - is current_state WorldState
     height: 2
     width: 2
     x: 10
@@ -257,6 +270,7 @@ events:
     conditions:
     - is player_at
     - is player_moved
+    - is current_state WorldState
     height: 1
     width: 4
     x: 19
@@ -269,6 +283,7 @@ events:
     conditions:
     - is player_at
     - is player_moved
+    - is current_state WorldState
     height: 1
     width: 2
     x: 16

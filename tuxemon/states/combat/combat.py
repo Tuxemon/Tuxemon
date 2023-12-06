@@ -1051,12 +1051,6 @@ class CombatState(CombatAnimations):
                 "target": target.name,
             }
             message: str = ""
-            # attempt failed of capture
-            if self._captured_mon and not self._captured:
-                if self._captured_mon == user:
-                    message += "\n" + T.translate("captured_failed")
-                    self._captured_mon = None
-                    action_time += compute_text_animation_time(message)
             message += "\n" + T.format(method.use_tech, context)
             # swapping monster
             if method.slug == "swap":

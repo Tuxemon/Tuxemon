@@ -727,8 +727,8 @@ class CombatAnimations(ABC, Menu[None]):
 
         combat = item.combat_state
         assert combat
-        combat._captured_mon = monster
         if is_captured:
+            combat._captured_mon = monster
             self.task(kill, 2 + num_shakes)
             action_time = num_shakes + 1.8
             # Tuxepedia: set monster as caught (2)
@@ -773,4 +773,11 @@ class CombatAnimations(ABC, Menu[None]):
             self.task(
                 partial(self.blink, sprite),
                 breakout_delay + 0.5,
+            )
+            label = f"captured_failed_{num_shakes}"
+            failed = T.translate(label)
+            breakout_delay += len(failed) * 0.02
+            self.task(
+                partial(self.alert, failed),
+                breakout_delay,
             )

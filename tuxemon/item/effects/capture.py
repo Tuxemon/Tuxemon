@@ -32,7 +32,6 @@ class CaptureEffect(ItemEffect):
         self, item: Item, target: Union[Monster, None]
     ) -> CaptureEffectResult:
         assert target
-        capture_device = "tuxeball"
         # The number of shakes that a tuxemon can do to escape.
         total_shakes = 4
         # The max catch rate.
@@ -44,44 +43,41 @@ class CaptureEffect(ItemEffect):
         # Check if target has status/condition:
         status_modifier = 1.0
         status_category = ""
-        if target.status:
-            for status in target.status:
-                if status.category == "negative":
-                    status_category = "negative"
-                    status_modifier = 1.2
-                if status.category == "positive":
-                    status_category = "positive"
+        if target.status and target.status[0].category:
+            status_modifier = (
+                1.2 if target.status[0].category == "negative" else 1.0
+            )
+            status_category = (
+                "negative"
+                if target.status[0].category == "negative"
+                else "positive"
+            )
         # retrieves monster fighting (player)
         iid = uuid.UUID(self.user.game_variables["iid_fighting_monster"])
-        fighting_monster = self.user.find_monster_by_id(iid)
+        our_monster = self.user.find_monster_by_id(iid)
         # Check type tuxeball and address malus/bonus
         tuxeball_modifier = 1.0
         # type based tuxeball
         if item.slug == "tuxeball_earth":
-            if target.types[0].slug != ElementType.earth:
-                tuxeball_modifier = 0.2
-            else:
-                tuxeball_modifier = 1.5
+            tuxeball_modifier = (
+                0.2 if target.types[0].slug != ElementType.earth else 1.5
+            )
         if item.slug == "tuxeball_fire":
-            if target.types[0].slug != ElementType.fire:
-                tuxeball_modifier = 0.2
-            else:
-                tuxeball_modifier = 1.5
+            tuxeball_modifier = (
+                0.2 if target.types[0].slug != ElementType.fire else 1.5
+            )
         if item.slug == "tuxeball_metal":
-            if target.types[0].slug != ElementType.metal:
-                tuxeball_modifier = 0.2
-            else:
-                tuxeball_modifier = 1.5
+            tuxeball_modifier = (
+                0.2 if target.types[0].slug != ElementType.metal else 1.5
+            )
         if item.slug == "tuxeball_water":
-            if target.types[0].slug != ElementType.water:
-                tuxeball_modifier = 0.2
-            else:
-                tuxeball_modifier = 1.5
+            tuxeball_modifier = (
+                0.2 if target.types[0].slug != ElementType.water else 1.5
+            )
         if item.slug == "tuxeball_wood":
-            if target.types[0].slug != ElementType.wood:
-                tuxeball_modifier = 0.2
-            else:
-                tuxeball_modifier = 1.5
+            tuxeball_modifier = (
+                0.2 if target.types[0].slug != ElementType.wood else 1.5
+            )
         # flavoured based tuxeball
         if item.slug == "tuxeball_hearty":
             target.taste_warm = TasteWarm.hearty
@@ -95,20 +91,17 @@ class CaptureEffect(ItemEffect):
             target.taste_warm = TasteWarm.zesty
         # gender based tuxeball
         if item.slug == "tuxeball_male":
-            if target.gender != GenderType.male:
-                tuxeball_modifier = 0.2
-            else:
-                tuxeball_modifier = 1.5
+            tuxeball_modifier = (
+                0.2 if target.gender != GenderType.male else 1.5
+            )
         if item.slug == "tuxeball_female":
-            if target.gender != GenderType.female:
-                tuxeball_modifier = 0.2
-            else:
-                tuxeball_modifier = 1.5
+            tuxeball_modifier = (
+                0.2 if target.gender != GenderType.female else 1.5
+            )
         if item.slug == "tuxeball_neuter":
-            if target.gender != GenderType.neuter:
-                tuxeball_modifier = 0.2
-            else:
-                tuxeball_modifier = 1.5
+            tuxeball_modifier = (
+                0.2 if target.gender != GenderType.neuter else 1.5
+            )
         # Qiangong2 tuxeball ideas
         if item.slug == "tuxeball_ancient":
             tuxeball_modifier = 99
@@ -119,17 +112,20 @@ class CaptureEffect(ItemEffect):
             if status_category == "positive":
                 crusher = 0.01
             tuxeball_modifier = crusher
-        if fighting_monster:
+        if our_monster:
             if item.slug == "tuxeball_xero":
-                if fighting_monster.types[0].slug != target.types[0].slug:
-                    tuxeball_modifier = 1.4
-                else:
-                    tuxeball_modifier = 0.3
+                tuxeball_modifier = (
+                    1.4
+                    if our_monster.types[0].slug != target.types[0].slug
+                    else 0.3
+                )
             if item.slug == "tuxeball_omni":
-                if fighting_monster.types[0].slug != target.types[0].slug:
-                    tuxeball_modifier = 0.3
-                else:
-                    tuxeball_modifier = 1.4
+                tuxeball_modifier = (
+                    0.3
+                    if our_monster.types[0].slug != target.types[0].slug
+                    else 1.4
+                )
+
             # Sanglorian tuxeball ideas
             if item.slug == "tuxeball_lavish":
                 tuxeball_modifier = 1.5
@@ -195,13 +191,10 @@ class CaptureEffect(ItemEffect):
 
         # it increases the level +1 upon capture
         if item.slug == "tuxeball_candy":
-            capture_device = item.slug
             target.level += 1
-        else:
-            capture_device = item.slug
 
         # add creature to the player's monster list
-        target.capture_device = capture_device
+        target.capture_device = item.slug
         self.user.add_monster(target, len(self.user.monsters))
 
         # TODO: remove monster from the other party

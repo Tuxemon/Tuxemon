@@ -44,7 +44,7 @@ from typing import Literal, NamedTuple, Optional, Union
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import audio, graphics, state, tools
+from tuxemon import audio, graphics, prepare, state, tools
 from tuxemon.ai import AI
 from tuxemon.animation import Animation, Task
 from tuxemon.battle import Battle
@@ -116,20 +116,6 @@ class DamageMap(NamedTuple):
     damage: int
 
 
-# TODO: move to mod config
-MULT_MAP = {
-    4: "attack_very_effective",
-    2: "attack_effective",
-    0.5: "attack_resisted",
-    0.25: "attack_weak",
-}
-
-# This is the time, in seconds, that the text takes to display.
-LETTER_TIME: float = 0.02
-# This is the time, in seconds, that the animation takes to finish.
-ACTION_TIME: float = 2.0
-
-
 def compute_text_animation_time(message: str) -> float:
     """
     Compute required time for a text animation.
@@ -140,7 +126,7 @@ def compute_text_animation_time(message: str) -> float:
     Returns:
         The time in seconds expected to be taken by the animation.
     """
-    return ACTION_TIME + LETTER_TIME * len(message)
+    return prepare.ACTION_TIME + prepare.LETTER_TIME * len(message)
 
 
 class MethodAnimationCache:
@@ -967,16 +953,14 @@ class CombatState(CombatAnimations):
         self._log_action.append((self._turn, action))
 
     def rewrite_action_queue_target(
-        self,
-        original: Monster,
-        new: Monster,
+        self, original: Monster, new: Monster
     ) -> None:
         """
         Used for swapping monsters.
 
         Parameters:
             original: Original targeted monster.
-            new: New monster.
+            new: New targeted monster.
 
         """
         # rewrite actions in the queue to target the new monster
@@ -1129,7 +1113,7 @@ class CombatState(CombatAnimations):
                     message += "\n" + m
                 # allows tackle to special range techniques too
                 if method.range != "special":
-                    element_damage_key = MULT_MAP.get(
+                    element_damage_key = prepare.MULT_MAP.get(
                         result_tech["element_multiplier"]
                     )
                     if element_damage_key:
@@ -1359,7 +1343,7 @@ class CombatState(CombatAnimations):
                                     {"name": monster.name},
                                 ),
                             ),
-                            ACTION_TIME,
+                            prepare.ACTION_TIME,
                         )
                     )
                     self.animate_monster_faint(monster)

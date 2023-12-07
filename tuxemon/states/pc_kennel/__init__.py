@@ -47,7 +47,7 @@ def fix_measure(measure: int, percentage: float) -> int:
 
 HIDDEN = "hidden_kennel"
 HIDDEN_LIST = [HIDDEN]
-MAX_BOX = 30
+MAX_BOX = prepare.MAX_KENNEL
 
 
 class MonsterTakeState(PygameMenuState):

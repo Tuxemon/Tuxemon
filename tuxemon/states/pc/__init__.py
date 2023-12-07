@@ -8,6 +8,7 @@ from typing import Any
 
 import pygame_menu
 
+from tuxemon import prepare
 from tuxemon.animation import Animation
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
@@ -18,9 +19,6 @@ from tuxemon.states.pc_locker import HIDDEN_LIST_LOCKER
 from tuxemon.tools import open_dialog
 
 MenuGameObj = Callable[[], object]
-
-KENNEL = "Kennel"
-LOCKER = "Locker"
 
 
 def add_menu_items(
@@ -41,19 +39,21 @@ class PCState(PygameMenuState):
 
     def __init__(self) -> None:
         super().__init__()
+        kennel = prepare.KENNEL
+        locker = prepare.LOCKER
         player = local_session.player
 
         # it creates the kennel and locker (new players)
-        if KENNEL not in player.monster_boxes.keys():
-            player.monster_boxes[KENNEL] = []
-        if LOCKER not in player.item_boxes.keys():
-            player.item_boxes[LOCKER] = []
+        if kennel not in player.monster_boxes.keys():
+            player.monster_boxes[kennel] = []
+        if locker not in player.item_boxes.keys():
+            player.item_boxes[locker] = []
 
         def change_state(state: str, **kwargs: Any) -> partial[State]:
             return partial(self.client.replace_state, state, **kwargs)
 
         # monster boxes
-        if len(player.monsters) == 6:
+        if len(player.monsters) == player.party_limit:
             storage = partial(
                 open_dialog,
                 local_session,
@@ -65,7 +65,7 @@ class PCState(PygameMenuState):
         dropoff = change_state("MonsterDropOffState")
 
         # item boxes
-        if len(player.items) == 30:
+        if len(player.items) == prepare.MAX_LOCKER:
             storage = partial(
                 open_dialog,
                 local_session,

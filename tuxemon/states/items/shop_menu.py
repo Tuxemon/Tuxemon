@@ -8,8 +8,8 @@ from typing import TYPE_CHECKING, Optional
 
 import pygame
 
-from tuxemon import tools
-from tuxemon.item.item import INFINITE_ITEMS, Item
+from tuxemon import prepare, tools
+from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
@@ -20,6 +20,8 @@ from tuxemon.ui.text import TextArea
 if TYPE_CHECKING:
     from tuxemon.item.economy import Economy
     from tuxemon.npc import NPC
+
+INFINITE_ITEMS = prepare.INFINITE_ITEMS
 
 
 class ShopMenuState(Menu[Item]):

@@ -327,6 +327,10 @@ def extract_region_properties(
         enters = ["up", "down", "left", "right"]
         for _exit in exits:
             enters.remove(cast(Direction, _exit))
+    if label == "slide":
+        enters = ["up", "down", "left", "right"]
+        exits = ["up", "down", "left", "right"]
+        endure = ["up", "down", "left", "right"]
     if has_movement_modifier:
         return RegionProperties(
             enter_from=enters,

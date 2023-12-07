@@ -21,10 +21,10 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import networking, prepare, state
+from tuxemon.db import Direction
 from tuxemon.entity import Entity
 from tuxemon.graphics import ColorLike
 from tuxemon.map import (
-    Direction,
     PathfindNode,
     RegionProperties,
     TuxemonMap,
@@ -49,10 +49,10 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 direction_map: Mapping[int, Direction] = {
-    intentions.UP: "up",
-    intentions.DOWN: "down",
-    intentions.LEFT: "left",
-    intentions.RIGHT: "right",
+    intentions.UP: Direction.up,
+    intentions.DOWN: Direction.down,
+    intentions.LEFT: Direction.left,
+    intentions.RIGHT: Direction.right,
 }
 
 SpriteMap = Union[
@@ -170,7 +170,7 @@ class WorldState(state.State):
         self.map_animations: dict[str, AnimationInfo] = {}
 
         if local_session.player is None:
-            new_player = Player(prepare.CONFIG.player_npc, world=self)
+            new_player = Player(prepare.PLAYER_NPC, world=self)
             local_session.player = new_player
 
         if map_name:
@@ -696,7 +696,7 @@ class WorldState(state.State):
         self,
         map: MutableMapping[tuple[int, int], Optional[RegionProperties]],
         label: str,
-    ) -> Optional[tuple[int, int]]:
+    ) -> list[tuple[int, int]]:
         """
         Returns coords (tuple) of specific collision zones.
 
@@ -704,11 +704,11 @@ class WorldState(state.State):
             The coordinates.
 
         """
+        tiles = []
         for coords, props in map.items():
-            if props and props.key:
-                if props.key == label:
-                    return coords
-        return None
+            if props and props.key and props.key == label:
+                tiles.append(coords)
+        return tiles
 
     def get_collision_map(self) -> CollisionMap:
         """
@@ -918,10 +918,10 @@ class WorldState(state.State):
         # get exits by checking surrounding tiles
         adjacent_tiles = list()
         for direction, neighbor in (
-            ("down", (position[0], position[1] + 1)),
-            ("right", (position[0] + 1, position[1])),
-            ("up", (position[0], position[1] - 1)),
-            ("left", (position[0] - 1, position[1])),
+            (Direction.down, (position[0], position[1] + 1)),
+            (Direction.right, (position[0] + 1, position[1])),
+            (Direction.up, (position[0], position[1] - 1)),
+            (Direction.left, (position[0] - 1, position[1])),
         ):
             # if exits are defined make sure the neighbor is present there
             if exits and neighbor not in exits:
@@ -956,7 +956,7 @@ class WorldState(state.State):
                     continue
 
                 try:
-                    if pairs[direction] not in tile_data.enter_from:
+                    if pairs(direction) not in tile_data.enter_from:
                         continue
                 except KeyError:
                     continue
@@ -1233,13 +1233,13 @@ class WorldState(state.State):
         else:
             for direction in collisions:
                 if self.player.facing == direction:
-                    if direction == "up":
+                    if direction == Direction.up:
                         tile = (player_tile_pos[0], player_tile_pos[1] - 1)
-                    elif direction == "down":
+                    elif direction == Direction.down:
                         tile = (player_tile_pos[0], player_tile_pos[1] + 1)
-                    elif direction == "left":
+                    elif direction == Direction.left:
                         tile = (player_tile_pos[0] - 1, player_tile_pos[1])
-                    elif direction == "right":
+                    elif direction == Direction.right:
                         tile = (player_tile_pos[0] + 1, player_tile_pos[1])
                     for npc in self.npcs:
                         tile_pos = (

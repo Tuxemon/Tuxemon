@@ -58,8 +58,10 @@ class PlayerFacingTileCondition(EventCondition):
         if condition.parameters:
             prop = condition.parameters[0]
             if prop == "surfable":
-                surf = list(world.surfable_map)
-                tiles = list(set(player_tiles).intersection(surf))
+                label = list(world.surfable_map)
+            else:
+                label = world.check_collision_zones(world.collision_map, prop)
+            tiles = list(set(player_tiles).intersection(label))
 
         # return common coordinates
         tiles = list(set(tiles).intersection(player_tiles))

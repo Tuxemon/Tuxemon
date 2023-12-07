@@ -45,6 +45,6 @@ class AddCollisionAction(EventAction):
         )
         if self.x and self.y:
             world.collision_map[(self.x, self.y)] = properties
-        else:
-            if coords:
-                world.collision_map[coords] = properties
+        if coords:
+            for coord in coords:
+                world.collision_map[coord] = properties

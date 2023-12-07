@@ -5,7 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from tuxemon.item.itemcondition import ItemCondition
-from tuxemon.monster import MAX_MOVES, Monster
+from tuxemon.monster import Monster
+from tuxemon.prepare import MAX_MOVES
 
 
 @dataclass

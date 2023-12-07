@@ -150,6 +150,7 @@ def open_dialog(
     session: Session,
     text: Sequence[str],
     avatar: Optional[Sprite] = None,
+    colors: dict[str, Any] = {},
 ) -> State:
     """
     Open a dialog with the standard window size.
@@ -171,6 +172,7 @@ def open_dialog(
             text=text,
             avatar=avatar,
             rect=rect,
+            colors=colors,
         )
     )
 

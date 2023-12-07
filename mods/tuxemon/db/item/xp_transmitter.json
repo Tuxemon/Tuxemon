@@ -1,0 +1,14 @@
+{
+  "effects": [],
+  "slug": "xp_transmitter",
+  "sort": "utility",
+  "sprite": "gfx/items/xp_transmitter.png",
+  "category": "none",
+  "type": "KeyItem",
+  "usable_in": [
+    ""
+  ],
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
+}

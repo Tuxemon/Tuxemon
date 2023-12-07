@@ -28,16 +28,13 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "slug",
     "quantity",
 )
-INFINITE_ITEMS = -1
-# eg 5 capture devices, 1 type and 5 items
-MAX_TYPES_BAG = 99
 
 
 class Item:
     """An item object is an item that can be used either in or out of combat."""
 
-    effects_classes: ClassVar[Mapping[str, type[ItemEffect[Any]]]] = {}
-    conditions_classes: ClassVar[Mapping[str, type[ItemCondition[Any]]]] = {}
+    effects_classes: ClassVar[Mapping[str, type[ItemEffect]]] = {}
+    conditions_classes: ClassVar[Mapping[str, type[ItemCondition]]] = {}
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         if save_data is None:
@@ -58,8 +55,8 @@ class Item:
         self.surface: Optional[pygame.surface.Surface] = None
         self.surface_size_original = (0, 0)
 
-        self.effects: Sequence[ItemEffect[Any]] = []
-        self.conditions: Sequence[ItemCondition[Any]] = []
+        self.effects: Sequence[ItemEffect] = []
+        self.conditions: Sequence[ItemCondition] = []
         self.combat_state: Optional[CombatState] = None
 
         self.sort = ""
@@ -134,7 +131,7 @@ class Item:
     def parse_effects(
         self,
         raw: Sequence[str],
-    ) -> Sequence[ItemEffect[Any]]:
+    ) -> Sequence[ItemEffect]:
         """
         Convert effect strings to effect objects.
 
@@ -168,7 +165,7 @@ class Item:
     def parse_conditions(
         self,
         raw: Sequence[str],
-    ) -> Sequence[ItemCondition[Any]]:
+    ) -> Sequence[ItemCondition]:
         """
         Convert condition strings to condition objects.
 

@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING
 
 from tuxemon.event import get_npc_pos
 from tuxemon.item.itemcondition import ItemCondition
+from tuxemon.map import get_coords, get_direction
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -24,29 +25,14 @@ class FacingSpriteCondition(ItemCondition):
     sprite: str
 
     def test(self, target: Monster) -> bool:
-        coords: tuple[int, int] = (0, 0)
         player = self.session.player
-        facing = player.facing
-        player_x = player.tile_pos[0]
-        player_y = player.tile_pos[1]
-        if facing == "down":
-            y = player_y - 1
-            coords = player_x, y
-        elif facing == "up":
-            y = player_y + 1
-            coords = player_x, y
-        elif facing == "right":
-            x = player_x + 1
-            coords = x, player_y
-        elif facing == "left":
-            x = player_x - 1
-            coords = x, player_y
+        client = self.session.client
+        tiles = get_coords(player.tile_pos, client.map_size)
 
-        npc = get_npc_pos(self.session, coords)
-        if npc:
-            if npc.sprite_name == self.sprite:
-                return True
-            else:
-                return False
-        else:
-            return False
+        for coords in tiles:
+            npc = get_npc_pos(self.session, coords)
+            if npc and npc.sprite_name == self.sprite:
+                facing = get_direction(player.tile_pos, npc.tile_pos)
+                return player.facing == facing
+
+        return False

@@ -11,7 +11,7 @@ from typing import TYPE_CHECKING, DefaultDict
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import combat, graphics, tools
+from tuxemon import combat, graphics, prepare, tools
 from tuxemon.db import ElementType, ItemCategory, State, TechSort
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem

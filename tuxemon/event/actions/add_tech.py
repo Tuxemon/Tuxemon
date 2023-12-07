@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import uuid
 from dataclasses import dataclass
-from typing import Union, final
+from typing import Optional, final
 
+from tuxemon import prepare
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.technique.technique import Technique
@@ -35,18 +36,15 @@ class AddTechAction(EventAction):
     name = "add_tech"
     monster_id: str
     technique: str
-    power: Union[float, None] = None
-    potency: Union[float, None] = None
-    accuracy: Union[float, None] = None
-    npc_slug: Union[str, None] = None
+    power: Optional[float] = None
+    potency: Optional[float] = None
+    accuracy: Optional[float] = None
+    npc_slug: Optional[str] = None
 
     def start(self) -> None:
         player = self.session.player
-        if self.npc_slug is None:
-            trainer_slug = "player"
-        else:
-            trainer_slug = self.npc_slug
-        trainer = get_npc(self.session, trainer_slug)
+        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
+        trainer = get_npc(self.session, self.npc_slug)
         assert trainer
         instance_id = uuid.UUID(
             player.game_variables[self.monster_id],
@@ -59,24 +57,30 @@ class AddTechAction(EventAction):
         tech = Technique()
         tech.load(self.technique)
         if self.power:
-            if 0.0 <= self.power <= 3.0:
+            lower = prepare.MIN_POWER
+            upper = prepare.MAX_POWER
+            if lower <= self.power <= upper:
                 tech.power = self.power
             else:
                 raise ValueError(
-                    f"{self.power} must be between 0.0 and 3.0",
+                    f"{self.power} must be between {lower} and {upper}",
                 )
         if self.potency:
-            if 0.0 <= self.potency <= 1.0:
+            lower = prepare.MIN_POTENCY
+            upper = prepare.MAX_POTENCY
+            if lower <= self.potency <= upper:
                 tech.potency = self.potency
             else:
                 raise ValueError(
-                    f"{self.potency} must be between 0.0 and 1.0",
+                    f"{self.potency} must be between {lower} and {upper}",
                 )
         if self.accuracy:
-            if 0.0 <= self.accuracy <= 1.0:
+            lower = prepare.MIN_ACCURACY
+            upper = prepare.MAX_ACCURACY
+            if lower <= self.accuracy <= upper:
                 tech.accuracy = self.accuracy
             else:
                 raise ValueError(
-                    f"{self.accuracy} must be between 0.0 and 1.0",
+                    f"{self.accuracy} must be between {lower} and {upper}",
                 )
         monster.learn(tech)

@@ -7,8 +7,8 @@ from typing import Optional, final
 
 from pygame_menu import locals
 
+from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
-from tuxemon.menu.menu import BACKGROUND_COLOR
 from tuxemon.menu.theme import get_theme
 from tuxemon.states.idle.color_state import ColorState
 from tuxemon.states.idle.image_state import ImageState
@@ -55,6 +55,7 @@ class ChangeBgAction(EventAction):
 
         if current_state.name != str(ImageState):
             if self.background is None:
+                self.session.client.pop_state()
                 return
             else:
                 _background = self.background.split(":")
@@ -69,5 +70,5 @@ class ChangeBgAction(EventAction):
 
     def cleanup(self) -> None:
         theme = get_theme()
-        theme.background_color = BACKGROUND_COLOR
+        theme.background_color = prepare.BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT

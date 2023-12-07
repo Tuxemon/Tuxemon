@@ -20,7 +20,13 @@ class LearnMmEffectResult(ItemEffectResult):
 
 @dataclass
 class LearnMmEffect(ItemEffect):
-    """This effect teaches the target a random type technique."""
+    """
+    This effect teaches the target a random type technique.
+
+    Parameters:
+        element: type of element (wood, water, etc.)
+
+    """
 
     name = "learn_mm"
     element: str

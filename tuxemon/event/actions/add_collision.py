@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Union, final
+from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.map import RegionProperties
 from tuxemon.states.world.worldstate import WorldState
 
 
@@ -29,22 +30,21 @@ class AddCollisionAction(EventAction):
 
     name = "add_collision"
     label: str
-    x: Union[int, None] = None
-    y: Union[int, None] = None
+    x: Optional[int] = None
+    y: Optional[int] = None
 
     def start(self) -> None:
         world = self.session.client.get_state_by_name(WorldState)
         coords = world.check_collision_zones(world.collision_map, self.label)
+        properties = RegionProperties(
+            enter_from=[],
+            exit_from=[],
+            endure=[],
+            key=self.label,
+            entity=None,
+        )
         if self.x and self.y:
-            world.collision_map[(self.x, self.y)] = {
-                "enter": [],
-                "exit": [],
-                "key": self.label,
-            }
-        else:
-            if coords:
-                world.collision_map[coords] = {
-                    "enter": [],
-                    "exit": [],
-                    "key": self.label,
-                }
+            world.collision_map[(self.x, self.y)] = properties
+        if coords:
+            for coord in coords:
+                world.collision_map[coord] = properties

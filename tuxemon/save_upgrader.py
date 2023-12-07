@@ -69,8 +69,6 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
         save_data["game_variables"]["sound_volume"] = 0.2
     if "unit_measure" not in save_data["game_variables"]:
         save_data["game_variables"]["unit_measure"] = "Metric"
-    if "change_day_night" not in save_data["game_variables"]:
-        save_data["game_variables"]["change_day_night"] = "Disable"
     if "hemisphere" not in save_data["game_variables"]:
         save_data["game_variables"]["hemisphere"] = "Northern"
     if "gender_choice" not in save_data["game_variables"]:
@@ -84,6 +82,7 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
     save_data["tuxepedia"] = save_data.get("tuxepedia", {})
     save_data["contacts"] = save_data.get("contacts", {})
     save_data["items"] = save_data.get("items", [])
+    save_data["missions"] = save_data.get("missions", [])
     save_data["battles"] = save_data.get("battles", [])
     save_data["plague"] = save_data.get("plague", PlagueType.healthy)
 

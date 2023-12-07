@@ -6,7 +6,7 @@ import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon import monster
+from tuxemon import monster, prepare
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
@@ -98,7 +98,7 @@ class WildEncounterAction(EventAction):
         self.world.stop_player()
 
         # flash the screen
-        rgb: ColorLike = (255, 255, 255)
+        rgb: ColorLike = prepare.WHITE_COLOR
         if self.rgb:
             rgb = string_to_colorlike(self.rgb)
         self.session.client.push_state(FlashTransition(color=rgb))

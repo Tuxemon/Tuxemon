@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import uuid
 from dataclasses import dataclass
-from typing import Union, final
+from typing import Optional, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -22,31 +22,28 @@ class RemoveMonsterAction(EventAction):
     Script usage:
         .. code-block::
 
-            remove_monster <instance_id>[,trainer_slug]
+            remove_monster <instance_id>[,npc_slug]
 
     Script parameters:
         instance_id: Id of the monster.
-        trainer_slug: Slug of the trainer. If no trainer slug is passed
+        npc_slug: Slug of the trainer. If no trainer slug is passed
             it defaults to the current player.
 
     """
 
     name = "remove_monster"
     instance_id: str
-    trainer_slug: Union[str, None] = None
+    npc_slug: Optional[str] = None
 
     def start(self) -> None:
-        iid = self.session.player.game_variables[self.instance_id]
+        player = self.session.player
+        iid = player.game_variables[self.instance_id]
         instance_id = uuid.UUID(iid)
-        trainer_slug = self.trainer_slug
 
-        trainer = (
-            self.session.player
-            if trainer_slug is None
-            else get_npc(self.session, trainer_slug)
-        )
+        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
+        trainer = get_npc(self.session, self.npc_slug)
         assert trainer
 
         monster = trainer.find_monster_by_id(instance_id)
         if monster is not None:
-            self.session.player.remove_monster(monster)
+            player.remove_monster(monster)

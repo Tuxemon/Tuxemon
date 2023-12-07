@@ -544,12 +544,6 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="470" name="Remove obstacle 1" type="event" x="16" y="496" width="16" height="16">
-   <properties>
-    <property name="act1" value="remove_collision water"/>
-    <property name="cond1" value="is has_item player,surfboard"/>
-   </properties>
-  </object>
   <object id="471" name="Teleport to Routed 1" type="event" x="400" y="624" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_routed.tmx,5,0,0.3"/>

@@ -28,10 +28,12 @@ class FeedBackEffect(CondEffect):
 
     name = "feedback"
 
-    def apply(self, tech: Condition, target: Monster) -> FeedBackEffectResult:
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> FeedBackEffectResult:
         done: bool = False
-        assert tech.combat_state
-        combat = tech.combat_state
+        assert condition.combat_state
+        combat = condition.combat_state
         log = combat._log_action
         turn = combat._turn
         # check log actions
@@ -40,7 +42,7 @@ class FeedBackEffect(CondEffect):
         for ele in log:
             _turn, action = ele
             if _turn == turn:
-                method = action.technique
+                method = action.method
                 # progress
                 if (
                     isinstance(method, Technique)
@@ -55,12 +57,15 @@ class FeedBackEffect(CondEffect):
                             attacker = action.user
                             hit = True
 
-        if tech.phase == "perform_action_status":
-            if tech.slug == "feedback":
-                if attacker and hit:
-                    if attacker.current_hp > 0:
-                        attacker.current_hp -= target.hp // 8
-                        done = True
+        if (
+            condition.phase == "perform_action_status"
+            and condition.slug == "feedback"
+            and attacker
+            and hit
+            and attacker.current_hp > 0
+        ):
+            attacker.current_hp -= target.hp // 8
+            done = True
         return {
             "success": done,
             "condition": None,

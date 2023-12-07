@@ -22,35 +22,39 @@ class IncreaseEffect(ItemEffect):
     """
     Increases or decreases target's stats by percentage permanently.
 
+    Parameters:
+        statistic: type of statistic (hp, armour, etc.)
+        percentage: percentage of the statistic (increase / decrease)
+
     """
 
     name = "increase"
-    stat: StatType
-    amount: float
+    statistic: StatType
+    percentage: float
 
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> IncreaseEffectResult:
         assert target
-        if self.stat == StatType.hp:
-            value = target.hp * self.amount
+        if self.statistic == StatType.hp:
+            value = target.hp * self.percentage
             target.mod_hp += int(value)
-        elif self.stat == StatType.armour:
-            value = target.armour * self.amount
+        elif self.statistic == StatType.armour:
+            value = target.armour * self.percentage
             target.mod_armour += int(value)
-        elif self.stat == StatType.dodge:
-            value = target.dodge * self.amount
+        elif self.statistic == StatType.dodge:
+            value = target.dodge * self.percentage
             target.mod_dodge += int(value)
-        elif self.stat == StatType.melee:
-            value = target.melee * self.amount
+        elif self.statistic == StatType.melee:
+            value = target.melee * self.percentage
             target.mod_melee += int(value)
-        elif self.stat == StatType.ranged:
-            value = target.ranged * self.amount
+        elif self.statistic == StatType.ranged:
+            value = target.ranged * self.percentage
             target.mod_ranged += int(value)
-        elif self.stat == StatType.speed:
-            value = target.speed * self.amount
+        elif self.statistic == StatType.speed:
+            value = target.speed * self.percentage
             target.mod_speed += int(value)
         else:
-            raise ValueError(f"{self.stat} must be a stat.")
+            raise ValueError(f"{self.statistic} must be a stat.")
         target.set_stats()
         return {"success": True, "num_shakes": 0, "extra": None}

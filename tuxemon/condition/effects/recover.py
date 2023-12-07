@@ -26,30 +26,36 @@ class RecoverEffect(CondEffect):
 
     name = "recover"
 
-    def apply(self, tech: Condition, target: Monster) -> RecoverEffectResult:
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> RecoverEffectResult:
         extra: Optional[str] = None
         healing: bool = False
-        if tech.phase == "perform_action_status":
-            if tech.slug == "recover":
-                user = tech.link
-                assert user
-                heal = formula.simple_recover(user)
-                user.current_hp += heal
-                healing = bool(heal)
-        if tech.phase == "check_party_hp":
-            if tech.slug == "recover":
-                # check for recover (completely healed)
-                if target.current_hp >= target.hp:
-                    target.status.clear()
-                    # avoid "overcome" hp bar
-                    if target.current_hp > target.hp:
-                        target.current_hp = target.hp
-                    extra = T.format(
-                        "combat_state_recover_failure",
-                        {
-                            "target": target.name.upper(),
-                        },
-                    )
+        if (
+            condition.phase == "perform_action_status"
+            and condition.slug == "recover"
+        ):
+            user = condition.link
+            assert user
+            heal = formula.simple_recover(user)
+            user.current_hp += heal
+            healing = bool(heal)
+        # check for recover (completely healed)
+        if (
+            condition.phase == "check_party_hp"
+            and condition.slug == "recover"
+            and target.current_hp >= target.hp
+        ):
+            target.status.clear()
+            # avoid "overcome" hp bar
+            if target.current_hp > target.hp:
+                target.current_hp = target.hp
+            extra = T.format(
+                "combat_state_recover_failure",
+                {
+                    "target": target.name.upper(),
+                },
+            )
 
         return {
             "success": healing,

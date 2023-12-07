@@ -49,12 +49,6 @@
   <object id="70" type="collision" x="96" y="288" width="224" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
-  <object id="61" name="Remove obstacle 1" type="event" x="176" y="112" width="16" height="16">
-   <properties>
-    <property name="act1" value="remove_collision water"/>
-    <property name="cond1" value="is has_item player,surfboard"/>
-   </properties>
-  </object>
   <object id="62" name="Teleport to Timber Town 1" type="event" x="208" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_town.tmx,33,39,0.3"/>

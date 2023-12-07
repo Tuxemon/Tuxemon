@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import logging
-from collections import namedtuple
-from typing import TYPE_CHECKING, NamedTuple, Optional, Sequence, Tuple
+from collections.abc import Sequence
+from typing import TYPE_CHECKING, NamedTuple, Optional
 
 from tuxemon.session import Session
 
@@ -42,7 +42,14 @@ class EventObject(NamedTuple):
     acts: Sequence[MapAction]
 
 
-__all__ = ["EventObject", "MapAction", "MapCondition", "get_npc"]
+__all__ = [
+    "EventObject",
+    "MapAction",
+    "MapCondition",
+    "get_npc",
+    "get_npc_by_iid",
+    "get_npc_pos",
+]
 
 
 def get_npc(session: Session, slug: str) -> Optional[NPC]:
@@ -62,16 +69,40 @@ def get_npc(session: Session, slug: str) -> Optional[NPC]:
     if slug == "player":
         return session.player
 
-    # Loop through the NPC list and see if the slug matches any in the list
     world = session.client.get_state_by_name(WorldState)
 
-    # logger.error("Unable to find NPC: " + slug)
     return world.get_entity(slug)
 
 
-def get_npc_pos(session: Session, pos: Tuple[int, int]) -> Optional[NPC]:
+def get_npc_by_iid(session: Session, iid: str) -> Optional[NPC]:
     """
-    Gets an NPC object by its position.
+    Gets an NPC object by iid.
+
+    Parameters:
+        session: The session object.
+        iid: The iid of the NPC that exists on the current map.
+
+    Returns:
+        The NPC object or None if the NPC is not found.
+
+    """
+    from tuxemon.states.world.worldstate import WorldState
+
+    world = session.client.get_state_by_name(WorldState)
+
+    return world.get_entity_by_iid(iid)
+
+
+def get_npc_pos(session: Session, pos: tuple[int, int]) -> Optional[NPC]:
+    """
+    Gets an NPC object by location (x,y).
+
+    Parameters:
+        session: The session object.
+        pos: The position of the NPC on the current map (x,y).
+
+    Returns:
+        The NPC object or None if the NPC is not found.
 
     """
     from tuxemon.states.world.worldstate import WorldState
@@ -80,7 +111,6 @@ def get_npc_pos(session: Session, pos: Tuple[int, int]) -> Optional[NPC]:
     if player.tile_pos == pos:
         return session.player
 
-    # Loop through the NPC list and see if the slug matches any in the list
     world = session.client.get_state_by_name(WorldState)
 
     return world.get_entity_pos(pos)

@@ -1,17 +1,8 @@
 from __future__ import annotations
 
 from collections import defaultdict
-from typing import (
-    Any,
-    ClassVar,
-    Dict,
-    Generator,
-    List,
-    Mapping,
-    Optional,
-    Tuple,
-    TypedDict,
-)
+from collections.abc import Generator, Mapping
+from typing import Any, ClassVar, Optional, TypedDict
 
 import pygame
 import pygame as pg
@@ -32,7 +23,7 @@ class PygameEventQueueHandler(EventQueueHandler):
     """Handle all events from the pygame event queue."""
 
     def __init__(self) -> None:
-        self._inputs: Dict[int, List[InputHandler[Any]]] = defaultdict(list)
+        self._inputs: dict[int, list[InputHandler[Any]]] = defaultdict(list)
 
     def add_input(self, player: int, handler: InputHandler[Any]) -> None:
         """
@@ -241,13 +232,13 @@ class DPadRectsInfo(TypedDict):
 
 class DPadInfo(TypedDict):
     surface: pygame.surface.Surface
-    position: Tuple[int, int]
+    position: tuple[int, int]
     rect: DPadRectsInfo
 
 
 class DPadButtonInfo(TypedDict):
     surface: pygame.surface.Surface
-    position: Tuple[int, int]
+    position: tuple[int, int]
     rect: Rect
 
 

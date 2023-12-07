@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import logging
-from typing import Callable, Generator, Optional
+from collections.abc import Callable, Generator
+from typing import Optional
 
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -75,8 +76,8 @@ class QuantityMenu(Menu[None]):
             elif event.button == buttons.LEFT:
                 self.quantity -= 10
 
-            if self.quantity < 0:
-                self.quantity = 0
+            if self.quantity <= 0:
+                self.quantity = 1
             elif (
                 self.max_quantity is not None
                 and self.quantity > self.max_quantity
@@ -88,25 +89,15 @@ class QuantityMenu(Menu[None]):
         return None
 
     def initialize_items(self) -> Generator[MenuItem[None], None, None]:
-        # TODO: move this and other format strings to a locale or config file
-        label_format = "x {:>{count_len}}".format
-        count_len = 3
-
-        formatted_name = label_format(self.quantity, count_len=count_len)
-        image = self.shadow_text(formatted_name, bg=(128, 128, 128))
-        yield MenuItem(image, formatted_name, None, None)
+        label = f"{'x':1} {self.quantity}"
+        image = self.shadow_text(label)
+        yield MenuItem(image, label, None, None)
 
     def show_money(self) -> Generator[MenuItem[None], None, None]:
-        # Show the money in the buying/selling menu
-        count_len = 3
-        label_format_money = "Money {:>{count_len}}".format
-        money = str(local_session.player.money["player"])
-
-        formatted_name_money = label_format_money(money, count_len=count_len)
-        image_money = self.shadow_text(
-            formatted_name_money, bg=(128, 128, 128)
-        )
-        yield MenuItem(image_money, formatted_name_money, None, None)
+        money = local_session.player.money["player"]
+        label = f"{T.translate('wallet')}: {money}"
+        image_money = self.shadow_text(label)
+        yield MenuItem(image_money, label, None, None)
 
 
 class QuantityAndPriceMenu(QuantityMenu):
@@ -124,22 +115,13 @@ class QuantityAndPriceMenu(QuantityMenu):
         # Show the quantity by using the method from the parent class:
         yield from super().initialize_items()
 
-        # Now, show the price:
-        label_format = "$ {:>{count_len}}".format
-        count_len = 3
         price = (
             self.price if self.quantity == 0 else self.quantity * self.price
         )
-        if int(price) == 0:
-            price_tag = T.translate("shop_buy_free")
-        else:
-            price_tag = str(price)
-            if self.quantity == 0:
-                price_tag = T.translate("shop_buy_soldout")
-
-        formatted_name = label_format(price_tag, count_len=count_len)
-        image = self.shadow_text(formatted_name, bg=(128, 128, 128))
-        yield MenuItem(image, formatted_name, None, None)
+        price_tag = T.translate("shop_buy_free") if price == 0 else price
+        label = f"{'$':1} {price_tag}"
+        image = self.shadow_text(label)
+        yield MenuItem(image, label, None, None)
 
 
 class QuantityAndCostMenu(QuantityMenu):
@@ -157,16 +139,7 @@ class QuantityAndCostMenu(QuantityMenu):
         # Show the quantity by using the method from the parent class:
         yield from super().initialize_items()
 
-        # Now, show the cost:
-        label_format = "$ {:>{count_len}}".format
-        count_len = 3
-
         cost = self.cost if self.quantity == 0 else self.quantity * self.cost
-        if int(cost) == 0:
-            cost_tag = T.translate("shop_buy_free")
-        else:
-            cost_tag = str(cost)
-
-        formatted_name = label_format(cost_tag, count_len=count_len)
-        image = self.shadow_text(formatted_name, bg=(128, 128, 128))
-        yield MenuItem(image, formatted_name, None, None)
+        label = f"{'$':1} {cost}"
+        image = self.shadow_text(label)
+        yield MenuItem(image, label, None, None)

@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 from abc import ABC
-from typing import TYPE_CHECKING, ClassVar, Iterable, Tuple
+from collections.abc import Iterable
+from typing import TYPE_CHECKING, ClassVar
 
 from tuxemon.cli.exceptions import CommandNotFoundError
 from tuxemon.cli.parameter import Parameter
@@ -75,7 +76,7 @@ class CLICommand(ABC):
                 return command
         raise CommandNotFoundError
 
-    def resolve(self, ctx: InvokeContext, path: str) -> Tuple[CLICommand, str]:
+    def resolve(self, ctx: InvokeContext, path: str) -> tuple[CLICommand, str]:
         """
         Resolve a path into command and remaining text.
 

@@ -65,12 +65,6 @@
     <property name="cond1" value="not variable_set environment:interior"/>
    </properties>
   </object>
-  <object id="22" name="Exhausted" type="event" x="16" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
   <object id="23" name="Create Thri" type="event" x="176" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_thri,11,3"/>

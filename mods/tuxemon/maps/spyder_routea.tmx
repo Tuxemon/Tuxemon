@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="119">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="119">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="route7"/>
@@ -70,13 +70,6 @@
   <object id="51" type="collision" x="128" y="160" width="32" height="48"/>
   <object id="57" type="collision" x="144" y="608" width="80" height="32"/>
   <object id="58" type="collision" x="96" y="624" width="16" height="16"/>
-  <object id="59" type="collision" x="224" y="576" width="64" height="16">
-   <properties>
-    <property name="continue" value="down"/>
-    <property name="enter_from" value="up"/>
-    <property name="exit_to" value="down"/>
-   </properties>
-  </object>
   <object id="99" type="collision" x="96" y="160" width="32" height="32"/>
   <object id="100" type="collision" x="96" y="96" width="32" height="48"/>
   <object id="101" type="collision" x="144" y="96" width="16" height="16"/>
@@ -186,12 +179,6 @@
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
     <property name="cond1" value="is variable_set stage_of_day:night"/>
-   </properties>
-  </object>
-  <object id="67" name="Exhausted" type="event" x="112" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
   <object id="69" name="Billie" type="event" x="256" y="288" width="32" height="16">

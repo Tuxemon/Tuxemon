@@ -2,11 +2,9 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import logging
-from typing import Callable, Optional
+from typing import Optional
 
 import pygame_menu
-from pygame_menu import locals
 from pygame_menu.locals import POSITION_CENTER
 
 from tuxemon import prepare, tools
@@ -14,14 +12,12 @@ from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.platform.events import PlayerInput
 
-logger = logging.getLogger(__name__)
 
-
-MenuGameObj = Callable[[], object]
-
-
-class BgState(PygameMenuState):
-    """Menu for the change of background"""
+class ImageState(PygameMenuState):
+    """
+    It imposes an image over the world, where it'll be possible to
+    dispay dialogues, etc.
+    """
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         return None
@@ -36,6 +32,4 @@ class BgState(PygameMenuState):
             image_path,
             drawing_position=POSITION_CENTER,
         )
-        theme.widget_alignment = locals.ALIGN_CENTER
-
         super().__init__(height=height, width=width)

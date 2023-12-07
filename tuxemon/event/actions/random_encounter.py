@@ -4,13 +4,15 @@ from __future__ import annotations
 
 import logging
 import random
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Optional, Sequence, Union, final
+from typing import Optional, final
 
 from tuxemon import formula, monster, prepare
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import EncounterItemModel, db
 from tuxemon.event.eventaction import EventAction
+from tuxemon.graphics import ColorLike, string_to_colorlike
 from tuxemon.npc import NPC
 from tuxemon.states.combat.combat import CombatState
 from tuxemon.states.transition.flash import FlashTransition
@@ -36,17 +38,19 @@ class RandomEncounterAction(EventAction):
     Script usage:
         .. code-block::
 
-            random_encounter <encounter_slug>[,total_prob]
+            random_encounter <encounter_slug>[,total_prob][,rgb]
 
     Script parameters:
         encounter_slug: Slug of the encounter list.
         total_prob: Total sum of the probabilities.
+        rgb: color (eg red > 255,0,0 > 255:0:0) - default rgb(255,255,255)
 
     """
 
     name = "random_encounter"
     encounter_slug: str
-    total_prob: Union[float, None] = None
+    total_prob: Optional[float] = None
+    rgb: Optional[str] = None
 
     def start(self) -> None:
         player = self.session.player
@@ -108,7 +112,10 @@ class RandomEncounterAction(EventAction):
             self.world.stop_player()
 
             # flash the screen
-            self.session.client.push_state(FlashTransition())
+            rgb: ColorLike = prepare.WHITE_COLOR
+            if self.rgb:
+                rgb = string_to_colorlike(self.rgb)
+            self.session.client.push_state(FlashTransition(color=rgb))
 
             # Start some music!
             filename = env.battle_music

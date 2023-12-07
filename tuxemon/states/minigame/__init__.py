@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import random
+from collections.abc import Callable
 from functools import partial
-from typing import Callable
 
 import pygame_menu
 from pygame_menu import locals
@@ -14,7 +14,7 @@ from pygame_menu.widgets.selection.highlight import HighlightSelection
 from tuxemon import prepare, tools
 from tuxemon.db import MonsterModel, db
 from tuxemon.locale import T
-from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
+from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.monster import Monster
 from tuxemon.session import local_session
@@ -23,16 +23,9 @@ from tuxemon.tools import open_dialog
 MenuGameObj = Callable[[], object]
 
 
-def fix_width(screen_x: int, pos_x: float) -> int:
-    """it returns the correct width based on percentage"""
-    value = round(screen_x * pos_x)
-    return value
-
-
-def fix_height(screen_y: int, pos_y: float) -> int:
-    """it returns the correct height based on percentage"""
-    value = round(screen_y * pos_y)
-    return value
+def fix_measure(measure: int, percentage: float) -> int:
+    """it returns the correct measure based on percentage"""
+    return round(measure * percentage)
 
 
 class MinigameState(PygameMenuState):
@@ -44,6 +37,7 @@ class MinigameState(PygameMenuState):
         self,
         menu: pygame_menu.Menu,
     ) -> None:
+        width, height = prepare.SCREEN_SIZE
         # data
         monsters = list(db.database["monster"])
         data = []
@@ -57,7 +51,7 @@ class MinigameState(PygameMenuState):
         menu.add.label(
             title=f"{name}",
             label_id="question",
-            font_size=30,
+            font_size=self.font_size_big,
             align=locals.ALIGN_CENTER,
             underline=True,
         )
@@ -87,8 +81,8 @@ class MinigameState(PygameMenuState):
         # replies
         width = menu._width
         f = menu.add.frame_h(
-            width=fix_width(width, 0.95),
-            height=fix_width(width, 0.05),
+            width=fix_measure(width, 0.95),
+            height=fix_measure(width, 0.05),
             frame_id="evolutions",
             align=locals.ALIGN_CENTER,
         )
@@ -97,7 +91,7 @@ class MinigameState(PygameMenuState):
             menu.add.button(
                 T.translate(txmn.slug),
                 partial(checking, txmn),
-                font_size=20,
+                font_size=self.font_size_small,
                 button_id=txmn.slug,
                 selection_effect=HighlightSelection(),
             )
@@ -129,5 +123,5 @@ class MinigameState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = BACKGROUND_COLOR
+        theme.background_color = self.background_color
         theme.widget_alignment = locals.ALIGN_LEFT

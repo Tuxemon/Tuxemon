@@ -7,7 +7,6 @@
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_noddingoff.png",
   "range": "special",
-  "repl_neg": "replaced",
   "sfx": "sfx_pulse",
   "slug": "noddingoff",
   "sort": "meta",
@@ -21,6 +20,6 @@
   },
   "cond_id": 6,
   "use_failure": null,
-  "use_success": "combat_state_noddingoff_get",
-  "gain_cond": null
+  "use_success": "combat_state_dozing_get",
+  "gain_cond": "combat_state_noddingoff_get"
 }

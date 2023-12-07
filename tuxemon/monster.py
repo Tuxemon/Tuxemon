@@ -5,15 +5,15 @@ from __future__ import annotations
 import logging
 import random
 import uuid
-from typing import TYPE_CHECKING, Any, Dict, List, Mapping, Optional, Sequence
+from collections.abc import Mapping, Sequence
+from typing import TYPE_CHECKING, Any, Optional
 
-from tuxemon import formula, fusion, graphics, tools
+from tuxemon import formula, fusion, graphics, prepare, tools
 from tuxemon.condition.condition import (
     Condition,
     decode_condition,
     encode_condition,
 )
-from tuxemon.config import TuxemonConfig
 from tuxemon.db import (
     CategoryCondition,
     ElementType,
@@ -58,6 +58,7 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "weight",
     "taste_cold",
     "taste_warm",
+    "traded",
     "mod_armour",
     "mod_dodge",
     "mod_melee",
@@ -66,10 +67,6 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "mod_hp",
     "plague",
 )
-
-MAX_LEVEL = 999
-MAX_MOVES = 4
-MISSING_IMAGE = "gfx/sprites/battle/missing.png"
 
 
 # class definition for tuxemon flairs:
@@ -116,32 +113,36 @@ class Monster:
         self.mod_speed = 0
         self.mod_hp = 0
 
-        self.moves: List[Technique] = []
-        self.moveset: List[MonsterMovesetItemModel] = []
-        self.evolutions: List[MonsterEvolutionItemModel] = []
-        self.history: List[MonsterHistoryItemModel] = []
+        self.moves: list[Technique] = []
+        self.moveset: list[MonsterMovesetItemModel] = []
+        self.evolutions: list[MonsterEvolutionItemModel] = []
+        self.history: list[MonsterHistoryItemModel] = []
         self.stage = EvolutionStage.standalone
-        self.flairs: Dict[str, Flair] = {}
+        self.flairs: dict[str, Flair] = {}
         self.battle_cry = ""
         self.faint_cry = ""
         self.owner: Optional[NPC] = None
-        self.possible_genders: List[GenderType] = []
+        self.possible_genders: list[GenderType] = []
 
         self.money_modifier = 0
         self.experience_modifier = 1
         self.total_experience = 0
 
-        self.types: List[Element] = []
-        self._types: List[Element] = []
+        self.types: list[Element] = []
+        self._types: list[Element] = []
         self.shape = MonsterShape.default
         self.randomly = True
+        self.out_of_range = False
+        self.got_experience = False
+        self.levelling_up = False
+        self.traded = False
 
-        self.status: List[Condition] = []
+        self.status: list[Condition] = []
         self.plague = PlagueType.healthy
         self.taste_cold = TasteCold.tasteless
         self.taste_warm = TasteWarm.tasteless
 
-        self.max_moves = MAX_MOVES
+        self.max_moves = prepare.MAX_MOVES
         self.txmn_id = 0
         self.capture = 0
         self.capture_device = "tuxeball"
@@ -152,16 +153,12 @@ class Monster:
         # 0 is 0% capture rate and 255 has a very good chance of capture. This numbers are based on the capture system
         # calculations. This is inspired by the calculations which can be found at:
         # https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_catch_rate
-        self.catch_rate = TuxemonConfig().default_monster_catch_rate
+        self.catch_rate = 125.0
 
         # The catch_resistance value is calculated during the capture. The upper and lower catch_resistance
         # set the span on which the catch_resistance will be. For more information check capture.py
-        self.upper_catch_resistance = (
-            TuxemonConfig().default_upper_monster_catch_resistance
-        )
-        self.lower_catch_Resistance = (
-            TuxemonConfig().default_lower_monster_catch_resistance
-        )
+        self.upper_catch_resistance = 1.0
+        self.lower_catch_resistance = 1.0
 
         # The tuxemon's state is used for various animations, etc. For example
         # a tuxemon's state might be "attacking" or "fainting" so we know when
@@ -173,7 +170,7 @@ class Monster:
         self.body = fusion.Body()
 
         # Set up our sprites.
-        self.sprites: Dict[str, pygame.surface.Surface] = {}
+        self.sprites: dict[str, pygame.surface.Surface] = {}
         self.front_battle_sprite = ""
         self.back_battle_sprite = ""
         self.menu_sprite_1 = ""
@@ -217,6 +214,9 @@ class Monster:
             self._types.append(_element)
 
         self.randomly = results.randomly or self.randomly
+        self.got_experience = self.got_experience
+        self.levelling_up = self.levelling_up
+        self.traded = self.traded
 
         self.txmn_id = results.txmn_id
         self.capture = self.set_capture(self.capture)
@@ -224,16 +224,12 @@ class Monster:
         self.height = self.set_char_height(results.height)
         self.weight = self.set_char_weight(results.weight)
         self.gender = random.choice(list(results.possible_genders))
-        self.catch_rate = (
-            results.catch_rate or TuxemonConfig().default_monster_catch_rate
-        )
+        self.catch_rate = results.catch_rate or self.catch_rate
         self.upper_catch_resistance = (
-            results.upper_catch_resistance
-            or TuxemonConfig().default_upper_monster_catch_resistance
+            results.upper_catch_resistance or self.upper_catch_resistance
         )
         self.lower_catch_resistance = (
-            results.lower_catch_resistance
-            or TuxemonConfig().default_lower_monster_catch_resistance
+            results.lower_catch_resistance or self.lower_catch_resistance
         )
 
         # Look up the moves that this monster can learn AND LEARN THEM.
@@ -335,7 +331,7 @@ class Monster:
                 ret = True
         return ret
 
-    def give_experience(self, amount: int = 1) -> None:
+    def give_experience(self, amount: int = 1) -> int:
         """
         Increase experience.
 
@@ -345,16 +341,23 @@ class Monster:
         Parameters:
             amount: The amount of experience to add to the monster.
 
+        Returns:
+            int: the amount of levels earned.
+
         Example:
 
         >>> bulbatux.give_experience(20)
 
         """
+        self.got_experience = True
+        levels = 0
         self.total_experience += amount
 
         # Level up worthy monsters
         while self.total_experience >= self.experience_required(1):
             self.level_up()
+            levels += 1
+        return levels
 
     def apply_status(self, status: Condition) -> None:
         """
@@ -375,6 +378,7 @@ class Monster:
             # if the status doesn't exist.
             else:
                 # start counting nr turns
+                self.status[0].nr_turn = 0
                 status.nr_turn = 1
                 if self.status[0].category == CategoryCondition.positive:
                     if status.repl_pos == ResponseCondition.replaced:
@@ -395,7 +399,7 @@ class Monster:
                         # chargedup, charging and dozing
                         return
                 else:
-                    # spyderbite and eliminated
+                    self.status.clear()
                     self.status.append(status)
 
     def set_stats(self) -> None:
@@ -408,7 +412,7 @@ class Monster:
         """
         level = self.level
 
-        multiplier = level + 7
+        multiplier = level + prepare.COEFF_STATS
         shape = Shape(self.shape)
         self.armour = (shape.armour * multiplier) + self.mod_armour
         self.dodge = (shape.dodge * multiplier) + self.mod_dodge
@@ -497,8 +501,9 @@ class Monster:
             % (self.name, self.level, self.level + 1)
         )
         # Increase Level and stats
+        self.levelling_up = True
         self.level += 1
-        self.level = min(self.level, MAX_LEVEL)
+        self.level = min(self.level, prepare.MAX_LEVEL)
         self.set_stats()
 
     def set_level(self, level: int) -> None:
@@ -517,8 +522,8 @@ class Monster:
         >>> bulbatux.set_level(20)
 
         """
-        if level > MAX_LEVEL:
-            level = MAX_LEVEL
+        if level > prepare.MAX_LEVEL:
+            level = prepare.MAX_LEVEL
         elif level < 1:
             level = 1
         self.level = level
@@ -538,16 +543,42 @@ class Monster:
             if move.level_learned <= level:
                 moves.append(move.technique)
 
-        if len(moves) <= MAX_MOVES:
+        if len(moves) <= prepare.MAX_MOVES:
             for ele in moves:
                 tech = Technique()
                 tech.load(ele)
                 self.learn(tech)
         else:
-            for ele in moves[-MAX_MOVES:]:
+            for ele in moves[-prepare.MAX_MOVES :]:
                 tech = Technique()
                 tech.load(ele)
                 self.learn(tech)
+
+    def update_moves(self, levels_earned: int) -> Optional[Technique]:
+        """
+        Set monster moves according to the levels increased.
+        Excludes the moves already learned.
+
+        Parameters:
+            levels_earned: Number of levels earned.
+
+        Returns:
+            technique: if there is a technique, then it returns
+            a technique, otherwise none
+
+        """
+        technique = None
+        for move in self.moveset:
+            if (
+                move.technique not in (m.slug for m in self.moves)
+                and (self.level - levels_earned)
+                < move.level_learned
+                <= self.level
+            ):
+                technique = Technique()
+                technique.load(move.technique)
+                self.learn(technique)
+        return technique
 
     def experience_required(self, level_ofs: int = 0) -> int:
         """
@@ -560,7 +591,7 @@ class Monster:
             Required experience.
 
         """
-        return (self.level + level_ofs) ** 3
+        return (self.level + level_ofs) ** prepare.COEFF_EXP
 
     def get_sprite(self, sprite: str, **kwargs: Any) -> Sprite:
         """
@@ -593,7 +624,7 @@ class Monster:
             flair_path = self.get_sprite_path(
                 f"gfx/sprites/battle/{self.slug}-{sprite}-{flair.name}"
             )
-            if flair_path != MISSING_IMAGE:
+            if flair_path != prepare.MISSING_IMAGE:
                 flair_sprite = graphics.load_sprite(flair_path, **kwargs)
                 surface.image.blit(flair_sprite.image, (0, 0))
 
@@ -633,7 +664,7 @@ class Monster:
             pass
 
         logger.error(f"Could not find monster sprite {sprite}")
-        return MISSING_IMAGE
+        return prepare.MISSING_IMAGE
 
     def load_sprites(self) -> bool:
         """
@@ -708,20 +739,32 @@ class Monster:
 
         self.load_sprites()
 
+    def faint(self) -> None:
+        """
+        Kills the monster, sets 0 HP and applies faint status.
+        """
+        faint = Condition()
+        faint.load("faint")
+        self.current_hp = 0
+        self.status.clear()
+        self.apply_status(faint)
+
     def end_combat(self) -> None:
+        """
+        Ends combat, recharges all moves and heals statuses.
+        """
+        self.out_of_range = False
         for move in self.moves:
             move.full_recharge()
 
         if "faint" in (s.slug for s in self.status):
-            faint = Condition()
-            faint.load("faint")
-            self.status = [faint]
+            self.faint()
         else:
             self.status = []
 
     def speed_test(self, action: EnqueuedAction) -> int:
-        assert isinstance(action.technique, Technique)
-        technique = action.technique
+        assert isinstance(action.method, Technique)
+        technique = action.method
         if technique.is_fast:
             return int(random.randrange(0, int(self.speed)) * 1.5)
         else:
@@ -730,7 +773,7 @@ class Monster:
 
 def decode_monsters(
     json_data: Optional[Sequence[Mapping[str, Any]]],
-) -> List[Monster]:
+) -> list[Monster]:
     return [Monster(save_data=mon) for mon in json_data or {}]
 
 

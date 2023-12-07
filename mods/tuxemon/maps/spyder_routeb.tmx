@@ -194,12 +194,6 @@
     <property name="cond1" value="is variable_set daytime:false"/>
    </properties>
   </object>
-  <object id="83" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
-   </properties>
-  </object>
   <object id="184" name="Billie" type="event" x="48" y="576" width="16" height="32">
    <properties>
     <property name="act01" value="player_stop"/>

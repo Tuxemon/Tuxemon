@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable
 from functools import partial
-from typing import TYPE_CHECKING, Any, Callable, Dict, Sequence, Tuple
+from typing import TYPE_CHECKING, Any
 
 import pygame_menu
 
@@ -14,7 +15,7 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.session import local_session
-from tuxemon.states.journal import MonsterInfoState
+from tuxemon.states.monster_info import MonsterInfoState
 from tuxemon.states.techniques import TechniqueMenuState
 from tuxemon.tools import open_choice_dialog, open_dialog
 
@@ -29,7 +30,7 @@ WorldMenuGameObj = Callable[[], object]
 
 def add_menu_items(
     menu: pygame_menu.Menu,
-    items: Sequence[Tuple[str, WorldMenuGameObj]],
+    items: list[tuple[str, WorldMenuGameObj]],
 ) -> None:
     menu.add.vertical_fill()
     for key, callback in items:
@@ -57,30 +58,36 @@ class WorldMenuState(PygameMenuState):
 
         self.animation_offset = 0
 
-        def change_state(state: str, **kwargs: Any) -> Callable[[], object]:
+        def change(state: str, **kwargs: Any) -> Callable[[], object]:
             return partial(self.client.push_state, state, **kwargs)
 
         def exit_game() -> None:
             self.client.event_engine.execute_action("quit")
 
         # Main Menu - Allows users to open the main menu in game.
-        menu_items_map = [
-            ("menu_monster", self.open_monster_menu),
-            ("menu_bag", change_state("ItemMenuState")),
-            ("menu_player", change_state("PlayerState")),
-            ("menu_save", change_state("SaveMenuState")),
-            ("menu_load", change_state("LoadMenuState")),
-            ("menu_options", change_state("ControlState")),
-            ("exit", exit_game),
-        ]
-        if local_session.player.find_item("nu_phone"):
-            menu_items_map.insert(3, ("nu_phone", change_state("NuPhone")))
-        if local_session.player.find_item("app_tuxepedia"):
-            menu_items_map.insert(
-                0,
-                ("menu_tuxepedia", change_state("JournalChoice")),
-            )
-        add_menu_items(self.menu, tuple(menu_items_map))
+        player = local_session.player
+        menu: list[tuple[str, WorldMenuGameObj]] = []
+        if player.monsters and player.menu_monsters:
+            menu.append(("menu_monster", self.open_monster_menu))
+        if player.items and player.menu_bag:
+            menu.append(("menu_bag", change("ItemMenuState")))
+        if player.menu_player:
+            menu.append(("menu_player", change("PlayerState")))
+        if player.missions:
+            menu.append(("menu_missions", change("MissionState")))
+        if player.menu_save:
+            menu.append(("menu_save", change("SaveMenuState")))
+        if player.menu_load:
+            menu.append(("menu_load", change("LoadMenuState")))
+        menu.append(("menu_options", change("ControlState")))
+        menu.append(("exit", exit_game))
+        for itm in player.items:
+            if itm.menu:
+                menu.insert(
+                    itm.menu[0],
+                    (itm.menu[1], change(itm.menu[2])),
+                )
+        add_menu_items(self.menu, menu)
 
     def open_monster_menu(self) -> None:
         from tuxemon.states.monster import MonsterMenuState
@@ -134,7 +141,9 @@ class WorldMenuState(PygameMenuState):
         def open_monster_stats(monster: Monster) -> None:
             """Show monster statistics."""
             self.client.pop_state()
-            self.client.push_state(MonsterInfoState(monster=monster))
+            self.client.push_state(
+                MonsterInfoState(monster=monster, source=self.name)
+            )
 
         def positive_answer(monster: Monster) -> None:
             success = False
@@ -225,7 +234,7 @@ class WorldMenuState(PygameMenuState):
             else:
                 open_monster_submenu(menu_item)
 
-        context: Dict[
+        context: dict[
             str, Any
         ] = dict()  # dict passed around to hold info between menus/callbacks
         monster_menu = self.client.push_state(MonsterMenuState())

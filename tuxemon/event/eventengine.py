@@ -3,20 +3,10 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Generator, Iterable, Sequence
 from contextlib import contextmanager
 from textwrap import dedent
-from typing import (
-    Any,
-    Dict,
-    Generator,
-    Iterable,
-    List,
-    Optional,
-    Sequence,
-    Tuple,
-    Type,
-    Union,
-)
+from typing import Any, Optional, Union
 
 from tuxemon import plugin, prepare
 from tuxemon.constants import paths
@@ -24,8 +14,6 @@ from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon.event.eventaction import EventAction
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.map import TuxemonMap
-from tuxemon.platform.const import buttons
-from tuxemon.platform.events import PlayerInput
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
@@ -63,9 +51,9 @@ class RunningEvent:
 
     def __init__(self, map_event: EventObject) -> None:
         self.map_event = map_event
-        self.context: Dict[str, Any] = dict()
+        self.context: dict[str, Any] = dict()
         self.action_index = 0
-        self.current_action: Optional[EventAction[Any]] = None
+        self.current_action: Optional[EventAction] = None
         self.current_map_action = None
 
     def get_next_action(self) -> Optional[MapAction]:
@@ -115,7 +103,7 @@ class EventEngine:
     def __init__(self, session: Session) -> None:
         self.session = session
 
-        self.running_events: Dict[int, RunningEvent] = dict()
+        self.running_events: dict[int, RunningEvent] = dict()
         self.name = "Event"
         self.current_map: Optional[TuxemonMap] = None
         self.timer = 0.0
@@ -123,7 +111,7 @@ class EventEngine:
         self.button = None
 
         # debug
-        self.partial_events: List[Sequence[Tuple[bool, MapCondition]]] = list()
+        self.partial_events: list[Sequence[tuple[bool, MapCondition]]] = list()
 
         self.conditions = plugin.load_plugins(
             paths.CONDITIONS_PATH,
@@ -153,7 +141,7 @@ class EventEngine:
         self,
         name: str,
         parameters: Optional[Sequence[Any]] = None,
-    ) -> Optional[EventAction[Any]]:
+    ) -> Optional[EventAction]:
         """
         Get an action that is loaded into the engine.
 
@@ -189,7 +177,7 @@ class EventEngine:
             )
             return None
 
-    def get_actions(self) -> List[Type[EventAction]]:
+    def get_actions(self) -> list[type[EventAction]]:
         """
         Return list of EventActions.
 
@@ -224,7 +212,7 @@ class EventEngine:
         else:
             return condition()
 
-    def get_conditions(self) -> List[Type[EventCondition]]:
+    def get_conditions(self) -> list[type[EventCondition]]:
         """
         Return list of EventConditions.
 
@@ -264,6 +252,7 @@ class EventEngine:
         self,
         action_name: str,
         parameters: Optional[Sequence[Any]] = None,
+        skip: bool = False,
     ) -> None:
         """
         Load and execute an action.
@@ -283,6 +272,8 @@ class EventEngine:
             error_msg = f'Map action "{action_name}" is not loaded'
             logger.warning(error_msg)
             raise ValueError(error_msg)
+
+        action._skip = skip
 
         return action.execute()
 
@@ -484,34 +475,6 @@ class EventEngine:
             except KeyError:
                 # map changes or engine resets may cause this error
                 pass
-
-    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-        """
-        Handles player input events.
-
-        This function is only called when the
-        player provides input such as pressing a key or clicking the mouse.
-
-        Since this is part of a chain of event handlers, the return value
-        from this method becomes input for the next one.  Returning ``None``
-        signifies that this method has dealt with an event and wants it
-        exclusively.  Return the event and others can use it as well.
-
-        You should return ``None`` if you have handled input here.
-
-        Parameters:
-            event: The event received.
-
-        Returns:
-            The input event, or ``None`` to prevent others to receive it.
-
-        """
-        # has the player pressed the action key?
-        if event.pressed and event.button == buttons.A:
-            for map_event in self.session.client.interacts:
-                self.process_map_event(map_event)
-
-        return event
 
 
 @contextmanager

@@ -4,16 +4,8 @@ from __future__ import annotations
 
 import logging
 import uuid
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    ClassVar,
-    List,
-    Mapping,
-    Optional,
-    Sequence,
-    Type,
-)
+from collections.abc import Mapping, Sequence
+from typing import TYPE_CHECKING, Any, ClassVar, Optional
 
 from tuxemon import plugin, prepare
 from tuxemon.condition.condcondition import CondCondition
@@ -47,8 +39,8 @@ class Condition:
 
     """
 
-    effects_classes: ClassVar[Mapping[str, Type[CondEffect[Any]]]] = {}
-    conditions_classes: ClassVar[Mapping[str, Type[CondCondition[Any]]]] = {}
+    effects_classes: ClassVar[Mapping[str, type[CondEffect]]] = {}
+    conditions_classes: ClassVar[Mapping[str, type[CondCondition]]] = {}
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         if save_data is None:
@@ -56,14 +48,15 @@ class Condition:
 
         self.instance_id = uuid.uuid4()
         self.steps = 0.0
+        self.bond = False
         self.counter = 0
         self.cond_id = 0
-        self.animation = Optional[str]
+        self.animation: Optional[str] = None
         self.category: Optional[CategoryCondition] = None
         self.combat_state: Optional[CombatState] = None
-        self.conditions: Sequence[CondCondition[Any]] = []
+        self.conditions: Sequence[CondCondition] = []
         self.description = ""
-        self.effects: Sequence[CondEffect[Any]] = []
+        self.effects: Sequence[CondEffect] = []
         self.flip_axes = ""
         self.gain_cond = ""
         self.icon = ""
@@ -132,6 +125,7 @@ class Condition:
         self.statranged = results.statranged
         self.statdodge = results.statdodge
         # status fields
+        self.bond = results.bond or self.bond
         self.category = results.category or self.category
         self.repl_neg = results.repl_neg or self.repl_neg
         self.repl_pos = results.repl_pos or self.repl_pos
@@ -162,7 +156,7 @@ class Condition:
     def parse_effects(
         self,
         raw: Sequence[str],
-    ) -> Sequence[CondEffect[Any]]:
+    ) -> Sequence[CondEffect]:
         """
         Convert effect strings to effect objects.
 
@@ -196,7 +190,7 @@ class Condition:
     def parse_conditions(
         self,
         raw: Sequence[str],
-    ) -> Sequence[CondCondition[Any]]:
+    ) -> Sequence[CondCondition]:
         """
         Convert condition strings to condition objects.
 
@@ -330,7 +324,7 @@ class Condition:
 
 def decode_condition(
     json_data: Optional[Sequence[Mapping[str, Any]]],
-) -> List[Condition]:
+) -> list[Condition]:
     return [Condition(save_data=cond) for cond in json_data or {}]
 
 

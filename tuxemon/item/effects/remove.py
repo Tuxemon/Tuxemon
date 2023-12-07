@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Tuple, Union
+from typing import TYPE_CHECKING, Union
 
 from tuxemon.event import get_npc_pos
-from tuxemon.event.actions.remove_npc import RemoveNpcAction
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
+from tuxemon.map import get_coords, get_direction
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -30,27 +30,19 @@ class RemoveEffect(ItemEffect):
         self, item: Item, target: Union[Monster, None]
     ) -> RemoveEffectResult:
         remove: bool = False
-        coords: Tuple[int, int] = (0, 0)
+        client = self.session.client
         player = self.session.player
-        facing = player.facing
-        player_x = player.tile_pos[0]
-        player_y = player.tile_pos[1]
-        if facing == "down":
-            y = player_y - 1
-            coords = player_x, y
-        elif facing == "up":
-            y = player_y + 1
-            coords = player_x, y
-        elif facing == "right":
-            x = player_x + 1
-            coords = x, player_y
-        elif facing == "left":
-            x = player_x - 1
-            coords = x, player_y
+        tiles = get_coords(player.tile_pos, client.map_size)
 
-        npc = get_npc_pos(self.session, coords)
-        if npc:
-            RemoveNpcAction(npc_slug=npc.slug).start()
-            self.session.player.game_variables[npc.slug] = self.name
-            remove = True
+        for coords in tiles:
+            npc = get_npc_pos(self.session, coords)
+            if npc:
+                facing = get_direction(player.tile_pos, npc.tile_pos)
+                if player.facing == facing:
+                    client.event_engine.execute_action(
+                        "remove_npc", [npc.slug], True
+                    )
+                    player.game_variables[npc.slug] = self.name
+                    remove = True
+
         return {"success": remove, "num_shakes": 0, "extra": None}

@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import random as rd
+from collections.abc import Callable, Generator
 from functools import partial
-from typing import Any, Callable, Generator, Optional
+from typing import Any, Optional
 
 from pygame.rect import Rect
 
@@ -15,7 +16,7 @@ from tuxemon.menu.menu import Menu
 from tuxemon.platform.const import buttons, events, intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
-from tuxemon.states.choice import ChoiceState
+from tuxemon.states.choice.choice_state import ChoiceState
 from tuxemon.ui.text import TextArea
 
 

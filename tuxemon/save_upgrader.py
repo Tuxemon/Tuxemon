@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import random
-from typing import TYPE_CHECKING, Any, Dict, Mapping
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any
 
 from tuxemon import formula
 from tuxemon.db import PlagueType, SeenStatus
@@ -41,7 +42,7 @@ MAP_RENAMES: Mapping[int, Mapping[str, str]] = {
 }
 
 
-def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
+def upgrade_save(save_data: dict[str, Any]) -> SaveData:
     """
     Updates savegame if necessary.
 
@@ -62,16 +63,12 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
             )
     if "cathedral_ads" not in save_data["game_variables"]:
         save_data["game_variables"]["cathedral_ads"] = 0
-    if "steps" not in save_data["game_variables"]:
-        save_data["game_variables"]["steps"] = 0
     if "music_volume" not in save_data["game_variables"]:
         save_data["game_variables"]["music_volume"] = 0.5
     if "sound_volume" not in save_data["game_variables"]:
         save_data["game_variables"]["sound_volume"] = 0.2
     if "unit_measure" not in save_data["game_variables"]:
         save_data["game_variables"]["unit_measure"] = "Metric"
-    if "change_day_night" not in save_data["game_variables"]:
-        save_data["game_variables"]["change_day_night"] = "Disable"
     if "hemisphere" not in save_data["game_variables"]:
         save_data["game_variables"]["hemisphere"] = "Northern"
     if "gender_choice" not in save_data["game_variables"]:
@@ -85,6 +82,7 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     save_data["tuxepedia"] = save_data.get("tuxepedia", {})
     save_data["contacts"] = save_data.get("contacts", {})
     save_data["items"] = save_data.get("items", [])
+    save_data["missions"] = save_data.get("missions", [])
     save_data["battles"] = save_data.get("battles", [])
     save_data["plague"] = save_data.get("plague", PlagueType.healthy)
 
@@ -180,6 +178,12 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
             for monster in monsters:
                 save_data["tuxepedia"][monster["slug"]] = SeenStatus.caught
 
+    # move steps from variable to field
+    if "steps" in save_data["game_variables"]:
+        steps = save_data["game_variables"]["steps"]
+        save_data["player_steps"] = save_data.get("player_steps", steps)
+        del save_data["game_variables"]["steps"]
+
     # set money old savegames and avoid getting the starter
     if not save_data["money"]:
         save_data["money"]["player"] = 10000
@@ -233,7 +237,7 @@ def upgrade_save(save_data: Dict[str, Any]) -> SaveData:
     return save_data  # type: ignore[return-value]
 
 
-def _update_current_map(version: int, save_data: Dict[str, Any]) -> None:
+def _update_current_map(version: int, save_data: dict[str, Any]) -> None:
     """
     Updates current map if necessary.
 
@@ -248,7 +252,7 @@ def _update_current_map(version: int, save_data: Dict[str, Any]) -> None:
             save_data["current_map"] = new_name
 
 
-def _remove_slug_prefixes(save_data: Dict[str, Any]) -> None:
+def _remove_slug_prefixes(save_data: dict[str, Any]) -> None:
     """
     Fixes slug names in old saves.
 
@@ -261,7 +265,7 @@ def _remove_slug_prefixes(save_data: Dict[str, Any]) -> None:
 
     """
 
-    def fix_items(data: Dict[str, Any]) -> Dict[str, Any]:
+    def fix_items(data: dict[str, Any]) -> dict[str, Any]:
         return {key.partition("_")[2]: num for key, num in data.items()}
 
     chest = save_data.get("storage", {})
@@ -273,7 +277,7 @@ def _remove_slug_prefixes(save_data: Dict[str, Any]) -> None:
             mon["slug"] = mon["slug"].partition("_")[2]
 
 
-def _transfer_storage_boxes(save_data: Dict[str, Any]) -> None:
+def _transfer_storage_boxes(save_data: dict[str, Any]) -> None:
     """
     Fixes storage boxes in old saves.
 

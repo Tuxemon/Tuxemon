@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-from typing import List, Optional
+from typing import Optional
 
 try:
     from ctypes import cdll
@@ -28,7 +28,7 @@ class Rumble:
         pass
 
 
-def find_library(locations: List[str]) -> Optional[str]:
+def find_library(locations: list[str]) -> Optional[str]:
     for path in locations:
         try:
             lib = cdll.LoadLibrary(path)

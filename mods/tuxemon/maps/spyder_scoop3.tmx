@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="30">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="30">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -47,13 +47,6 @@
   <object id="10" type="collision" x="0" y="128" width="160" height="16"/>
   <object id="11" type="collision" x="176" y="128" width="16" height="16"/>
   <object id="12" type="collision" x="144" y="144" width="16" height="32"/>
-  <object id="17" type="collision" x="160" y="112" width="16" height="48">
-   <properties>
-    <property name="continue" value="up"/>
-    <property name="enter_from" value="down"/>
-    <property name="exit_to" value="up"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup color="#ffff00" id="5" name="Event">
   <properties>
@@ -182,12 +175,6 @@
     <property name="act7" value="set_variable scoopdonald:yes"/>
     <property name="cond1" value="not variable_set scoopdonald:yes"/>
     <property name="cond2" value="is player_at"/>
-   </properties>
-  </object>
-  <object id="29" name="Exhausted" type="event" x="0" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_scoop2.tmx,9,6,0.3"/>
-    <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
  </objectgroup>

@@ -14,19 +14,14 @@ from __future__ import annotations
 
 import logging
 import typing
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import fields
 from typing import (
     TYPE_CHECKING,
     Any,
-    Callable,
-    Iterable,
-    Mapping,
     NoReturn,
     Optional,
     Protocol,
-    Sequence,
-    Tuple,
-    Type,
     TypeVar,
     Union,
 )
@@ -52,9 +47,9 @@ logger = logging.getLogger(__name__)
 Never = NoReturn
 
 TVar = TypeVar("TVar")
-TVarSequence = TypeVar("TVarSequence", bound=Tuple[int, ...])
+TVarSequence = TypeVar("TVarSequence", bound=tuple[int, ...])
 
-ValidParameterSingleType = Optional[Type[Any]]
+ValidParameterSingleType = Optional[type[Any]]
 ValidParameterTypes = Union[
     ValidParameterSingleType,
     Sequence[ValidParameterSingleType],
@@ -65,7 +60,7 @@ class NamedTupleProtocol(Protocol):
     """Protocol for arbitrary NamedTuple objects."""
 
     @property
-    def _fields(self) -> Tuple[str, ...]:
+    def _fields(self) -> tuple[str, ...]:
         pass
 
 
@@ -74,9 +69,9 @@ NamedTupleTypeVar = TypeVar("NamedTupleTypeVar", bound=NamedTupleProtocol)
 
 def get_cell_coordinates(
     rect: ReadOnlyRect,
-    point: Tuple[int, int],
-    size: Tuple[int, int],
-) -> Tuple[int, int]:
+    point: tuple[int, int],
+    size: tuple[int, int],
+) -> tuple[int, int]:
     """Find the cell of size, within rect, that point occupies."""
     point = (point[0] - rect.x, point[1] - rect.y)
     cell_x = (point[0] // size[0]) * size[0]
@@ -142,16 +137,12 @@ def calc_dialog_rect(screen_rect: pygame.rect.Rect) -> pygame.rect.Rect:
     """
     rect = screen_rect.copy()
     if prepare.CONFIG.large_gui:
-        rect.height *= 4
-        rect.height //= 10
+        rect.height = int(rect.height * 0.4)
         rect.bottomleft = screen_rect.bottomleft
     else:
-        rect.height //= 4
-        rect.width *= 8
-        rect.width //= 10
-        rect.center = screen_rect.centerx, screen_rect.bottom - (
-            rect.height // 2
-        )
+        rect.height = int(rect.height * 0.25)
+        rect.width = int(rect.width * 0.8)
+        rect.center = screen_rect.centerx, rect.centery * 7
     return rect
 
 
@@ -159,7 +150,7 @@ def open_dialog(
     session: Session,
     text: Sequence[str],
     avatar: Optional[Sprite] = None,
-    menu: Optional[Sequence[Tuple[str, str, Callable[[], None]]]] = None,
+    colors: dict[str, Any] = {},
 ) -> State:
     """
     Open a dialog with the standard window size.
@@ -168,7 +159,6 @@ def open_dialog(
         session: Game session.
         text: List of strings.
         avatar: Optional avatar sprite.
-        menu: Optional menu object.
 
     Returns:
         The pushed dialog state.
@@ -182,14 +172,14 @@ def open_dialog(
             text=text,
             avatar=avatar,
             rect=rect,
-            menu=menu,
+            colors=colors,
         )
     )
 
 
 def open_choice_dialog(
     session: Session,
-    menu: Sequence[Tuple[str, str, Callable[[], None]]],
+    menu: Sequence[tuple[str, str, Callable[[], None]]],
     escape_key_exits: bool = False,
 ) -> State:
     """
@@ -203,7 +193,7 @@ def open_choice_dialog(
         The pushed dialog choice state.
 
     """
-    from tuxemon.states.choice import ChoiceState
+    from tuxemon.states.choice.choice_state import ChoiceState
 
     return session.client.push_state(
         ChoiceState(
@@ -213,7 +203,7 @@ def open_choice_dialog(
     )
 
 
-def vector2_to_tile_pos(vector: Vector2) -> Tuple[int, int]:
+def vector2_to_tile_pos(vector: Vector2) -> tuple[int, int]:
     return (int(vector[0]), int(vector[1]))
 
 
@@ -254,7 +244,7 @@ def number_or_variable(
 
 # TODO: stability/testing
 def cast_value(
-    i: Tuple[Tuple[ValidParameterTypes, str], Any],
+    i: tuple[tuple[ValidParameterTypes, str], Any],
 ) -> Any:
     (type_constructors, param_name), value = i
 

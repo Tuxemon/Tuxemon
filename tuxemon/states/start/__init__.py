@@ -5,8 +5,9 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable
 from functools import partial
-from typing import Any, Callable, Union
+from typing import Any, Union
 
 import pygame
 import pygame_menu
@@ -15,7 +16,7 @@ from pygame_menu.locals import POSITION_CENTER
 
 from tuxemon import formula, prepare, tools
 from tuxemon.locale import T
-from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
+from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.save import get_index_of_latest_save
 from tuxemon.session import local_session
@@ -79,25 +80,25 @@ class StartState(PygameMenuState):
             menu.add.button(
                 title=T.translate("menu_load"),
                 action=change_state("LoadMenuState"),
-                font_size=30,
+                font_size=self.font_size_big,
                 button_id="menu_load",
             )
         menu.add.button(
             title=T.translate("menu_new_game"),
             action=new_game,
-            font_size=30,
+            font_size=self.font_size_big,
             button_id="menu_new_game",
         )
         menu.add.button(
             title=T.translate("menu_minigame"),
             action=change_state("MinigameState"),
-            font_size=30,
+            font_size=self.font_size_big,
             button_id="menu_minigame",
         )
         menu.add.button(
             title=T.translate("exit"),
             action=exit_game,
-            font_size=30,
+            font_size=self.font_size_big,
             button_id="exit",
         )
 
@@ -124,5 +125,5 @@ class StartState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = BACKGROUND_COLOR
+        theme.background_color = self.background_color
         theme.widget_alignment = locals.ALIGN_LEFT

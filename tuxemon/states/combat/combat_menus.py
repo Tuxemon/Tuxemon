@@ -4,21 +4,22 @@ from __future__ import annotations
 
 import logging
 from collections import defaultdict
+from collections.abc import Callable, Generator
 from functools import partial
-from typing import TYPE_CHECKING, Callable, DefaultDict, Generator, List
+from typing import TYPE_CHECKING, DefaultDict
 
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import combat, graphics, tools
+from tuxemon import combat, graphics, prepare, tools
 from tuxemon.db import ElementType, ItemCategory, State, TechSort
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu, PopUpMenu
-from tuxemon.monster import MAX_MOVES, Monster
+from tuxemon.monster import Monster
 from tuxemon.session import local_session
 from tuxemon.sprite import MenuSpriteGroup, SpriteGroup
-from tuxemon.states.items import ItemMenuState
+from tuxemon.states.items.item_menu import ItemMenuState
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.technique.technique import Technique
 from tuxemon.ui.draw import GraphicBox
@@ -340,7 +341,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 self.client.pop_state()  # close technique menu
                 self.client.pop_state()  # close the monster action menu
 
-        if len(self.monster.moves) > MAX_MOVES:
+        if len(self.monster.moves) > prepare.MAX_MOVES:
             local_session.player.remove_technique(local_session, self.monster)
         else:
             choose_technique()
@@ -408,7 +409,7 @@ class CombatTargetMenuState(Menu[Monster]):
         # this is used to determine who owns what monsters and what not
         # TODO: make less duplication of game data in memory, let combat
         # state have more registers, etc
-        self.targeting_map: DefaultDict[str, List[Monster]] = defaultdict(list)
+        self.targeting_map: DefaultDict[str, list[Monster]] = defaultdict(list)
         # avoid choosing multiple targets (aether type tech)
         if (
             self.tech.has_type(ElementType.aether)

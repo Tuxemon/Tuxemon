@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-from typing import List, Literal, Optional, Tuple, Union
+from typing import Literal, Optional, Union
 
 import pygame
 from pygame.rect import Rect
 
+from tuxemon import prepare
 from tuxemon.graphics import ColorLike
 from tuxemon.sprite import Sprite
 from tuxemon.ui import draw
@@ -21,14 +22,14 @@ class TextArea(Sprite):
         self,
         font: pygame.font.Font,
         font_color: ColorLike,
-        bg: ColorLike = (192, 192, 192),
+        font_shadow: ColorLike = prepare.FONT_SHADOW_COLOR,
     ) -> None:
         super().__init__()
         self.rect = Rect(0, 0, 0, 0)
         self.drawing_text = False
         self.font = font
         self.font_color = font_color
-        self.font_bg = bg
+        self.font_shadow = font_shadow
         self._rendered_text = None
         self._text_rect = None
         self._text = ""
@@ -54,7 +55,7 @@ class TextArea(Sprite):
             self.image = draw.shadow_text(
                 self.font,
                 self.font_color,
-                self.font_bg,
+                self.font_shadow,
                 self._text,
             )
 
@@ -78,7 +79,7 @@ class TextArea(Sprite):
             self._text,
             self.font,
             self.font_color,
-            self.font_bg,
+            self.font_shadow,
             self.image.get_rect(),
         )
 
@@ -86,7 +87,7 @@ class TextArea(Sprite):
 def draw_text(
     surface: pygame.surface.Surface,
     text: str,
-    rect: Union[Rect, Tuple[int, int, int, int]],
+    rect: Union[Rect, tuple[int, int, int, int]],
     *,
     justify: Literal["left", "center", "right"] = "left",
     align: Literal["top", "middle", "bottom"] = "top",
@@ -117,7 +118,7 @@ def draw_text(
     _top: float = top
 
     if not font_color:
-        font_color = (0, 0, 0)
+        font_color = prepare.FONT_COLOR
 
     if not text:
         return
@@ -132,8 +133,8 @@ def draw_text(
 
     # Create a list of the lines of text as well as a list of the
     # individual words so we can check each line's length in pixels
-    lines: List[str] = []
-    wordlist: List[str] = []
+    lines: list[str] = []
+    wordlist: list[str] = []
 
     # Loop through each word in the text and add it to the word list
     for word in text.split():

@@ -2,20 +2,22 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+from collections.abc import Generator, Sequence
 from dataclasses import dataclass, field
-from typing import Any, Generator, Sequence, Tuple, cast, final
+from typing import Any, final
 
+from tuxemon.db import Direction
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.map import Direction, dirs2
+from tuxemon.map import dirs2
 from tuxemon.math import Vector2
 
 
 def simple_path(
-    origin: Tuple[int, int],
+    origin: tuple[int, int],
     direction: Direction,
     tiles: int,
-) -> Generator[Tuple[int, int], None, None]:
+) -> Generator[tuple[int, int], None, None]:
     origin_vec = Vector2(origin)
     for _ in range(tiles):
         origin_vec += dirs2[direction]
@@ -23,18 +25,16 @@ def simple_path(
 
 
 def parse_path_parameters(
-    origin: Tuple[int, int],
+    origin: tuple[int, int],
     move_list: Sequence[str],
-) -> Generator[Tuple[int, int], None, None]:
+) -> Generator[tuple[int, int], None, None]:
     for move in move_list:
         try:
             direction, tiles = move.strip().split()
         except ValueError:
             direction, tiles = move.strip(), "1"
-
-        # Pending https://github.com/python/mypy/issues/9718
         assert direction in dirs2
-        direction = cast(Direction, direction)
+        direction = Direction(direction)
         for point in simple_path(origin, direction, int(tiles)):
             yield point
         origin = point

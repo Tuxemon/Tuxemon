@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import configparser
 from collections import OrderedDict
-from typing import Any, Dict, Mapping, Optional
+from collections.abc import Mapping
+from typing import Any, Optional
 
 from tuxemon.animation import Animation
 from tuxemon.platform.const import buttons, events
@@ -77,18 +78,6 @@ class TuxemonConfig:
             "gameplay",
             "encounter_rate_modifier",
         )
-        self.default_monster_catch_rate = cfg.getfloat(
-            "gameplay",
-            "default_monster_catch_rate",
-        )
-        self.default_upper_monster_catch_resistance = cfg.getfloat(
-            "gameplay",
-            "default_upper_monster_catch_resistance",
-        )
-        self.default_lower_monster_catch_resistance = cfg.getfloat(
-            "gameplay",
-            "default_lower_monster_catch_resistance",
-        )
         self.dialog_speed = cfg.get(
             "gameplay",
             "dialog_speed",
@@ -134,7 +123,7 @@ def get_custom_pygame_keyboard_controls(
     """
     import pygame.locals
 
-    custom_controls: Dict[Optional[int], int] = {None: events.UNICODE}
+    custom_controls: dict[Optional[int], int] = {None: events.UNICODE}
     for key, values in cfg.items("controls"):
         key = key.upper()
         button_value: Optional[int] = getattr(buttons, key, None)
@@ -165,7 +154,7 @@ def get_custom_pygame_keyboard_controls_names(
         cfg: Config parser.
 
     """
-    custom_controls: Dict[Optional[str], int] = {None: events.UNICODE}
+    custom_controls: dict[Optional[str], int] = {None: events.UNICODE}
     for key, values in cfg.items("controls"):
         key = key.upper()
         button_value: Optional[int] = getattr(buttons, key, None)
@@ -235,9 +224,6 @@ def get_defaults() -> Mapping[str, Any]:
                     (
                         ("items_consumed_on_failure", "True"),
                         ("encounter_rate_modifier", "1.0"),
-                        ("default_monster_catch_rate", "125"),
-                        ("default_upper_monster_catch_resistance", "1"),
-                        ("default_lower_monster_catch_resistance", "1"),
                         ("dialog_speed", "slow"),
                     )
                 ),

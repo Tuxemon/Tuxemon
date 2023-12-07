@@ -12,7 +12,8 @@ from __future__ import annotations
 
 import logging
 import random
-from typing import TYPE_CHECKING, Generator, List, Sequence, Union
+from collections.abc import Generator, Sequence
+from typing import TYPE_CHECKING, Optional
 
 from tuxemon.db import PlagueType
 from tuxemon.locale import T
@@ -22,6 +23,7 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
     from tuxemon.player import Player
+    from tuxemon.states.combat.combat import DamageMap
 
 
 logger = logging.getLogger()
@@ -105,25 +107,12 @@ def has_effect_param(
     return find
 
 
-def has_status_bond(monster: Monster) -> bool:
-    """
-    Statuses connected are the ones where an effect is present only
-    if both monsters are alive (lifeleech, grabbed).
-    """
-    if has_status(monster, "grabbed"):
-        return True
-    elif has_status(monster, "lifeleech"):
-        return True
-    else:
-        return False
-
-
 def fainted(monster: Monster) -> bool:
     return has_status(monster, "faint") or monster.current_hp <= 0
 
 
 def get_awake_monsters(
-    player: NPC, monsters: List[Monster], turn: int
+    player: NPC, monsters: list[Monster], turn: int
 ) -> Generator[Monster, None, None]:
     """
     Iterate all non-fainted monsters in party.
@@ -152,7 +141,7 @@ def get_awake_monsters(
             yield mons[0]
 
 
-def alive_party(player: NPC) -> List[Monster]:
+def alive_party(player: NPC) -> list[Monster]:
     not_fainted = [ele for ele in player.monsters if not fainted(ele)]
     return not_fainted
 
@@ -165,21 +154,9 @@ def defeated(player: NPC) -> bool:
     return fainted_party(player.monsters)
 
 
-def check_moves(monster: Monster, levels: int) -> Union[str, None]:
-    tech: Union[Technique, None] = None
-    for move in monster.moveset:
-        # monster levels up 1 level
-        if levels == 1:
-            if move.level_learned == monster.level:
-                tech = learn(monster, move.technique)
-        # monster levels up multiple levels
-        else:
-            level_before = monster.level - levels
-            # if there are techniques in this range
-            if level_before < move.level_learned <= monster.level:
-                tech = learn(monster, move.technique)
+def check_moves(monster: Monster, levels: int) -> Optional[str]:
+    tech = monster.update_moves(levels)
     if tech:
-        monster.learn(tech)
         message = T.format(
             "tuxemon_new_tech",
             {
@@ -188,15 +165,139 @@ def check_moves(monster: Monster, levels: int) -> Union[str, None]:
             },
         )
         return message
-    else:
-        return None
+    return None
 
 
-def learn(monster: Monster, tech: str) -> Union[Technique, None]:
-    technique = Technique()
-    technique.load(tech)
-    duplicate = [mov for mov in monster.moves if mov.slug == technique.slug]
-    if duplicate:
-        return None
+def award_money(loser: Monster, winner: Monster) -> int:
+    """
+    It calculates money to be awarded. It allows multiple methods.
+    The default one is "default".
+
+    The method could be changed by setting a new value for the game
+    variable called "method_money".
+
+    Parameters:
+        loser: Fainted monster.
+        winner: Winner monster.
+
+    Returns:
+        Amount of money.
+    """
+    method: str = "default"
+    # update method
+    if winner.owner and winner.owner.isplayer:
+        trainer = winner.owner
+        if "method_money" not in trainer.game_variables:
+            trainer.game_variables["method_money"] = "default"
+        method = trainer.game_variables["method_money"]
+
+    # methods
+    if method == "default":
+        result = loser.level * loser.money_modifier
+        money = int(result)
     else:
-        return technique
+        raise ValueError(f"A formula for '{method}' doesn't exist.")
+    return money
+
+
+def award_experience(
+    loser: Monster, winner: Monster, damages: list[DamageMap]
+) -> int:
+    """
+    It calculates experience to be awarded. It allows multiple methods.
+    The default one is "default".
+
+    The method could be changed by setting a new value for the game
+    variable called "method_experience".
+
+    Parameters:
+        loser: Fainted monster.
+        winner: Winner monster.
+        damages: The list with all the damages.
+
+    Returns:
+        Amount of experience.
+    """
+    # how many loser has been hit
+    hits = len([ele for ele in damages if ele.defense == loser])
+    # how many loser has been hit by the winner
+    hits_mon = len(
+        [
+            ele
+            for ele in damages
+            if ele.defense == loser and ele.attack == winner
+        ]
+    )
+    # all the monsters who hit the loser
+    winners = [ele.attack for ele in damages if ele.defense == loser]
+
+    method: str = "default"
+    exp_tot = float(loser.total_experience)
+    exp_mod = float(loser.experience_modifier)
+
+    # update method
+    if winner.owner and winner.owner.isplayer:
+        trainer = winner.owner
+        if "method_experience" not in trainer.game_variables:
+            trainer.game_variables["method_experience"] = "default"
+        method = trainer.game_variables["method_experience"]
+
+    # methods
+    if method == "default":
+        result = (exp_tot // (loser.level * hits)) * exp_mod
+        exp = int(result)
+    elif method == "proportional":
+        prop = hits_mon / hits
+        result = (exp_tot // (loser.level * hits)) * exp_mod * prop
+        exp = int(result)
+    elif method == "test":
+        traded = 1.5 if winner.traded else 1.0
+        wild = 1 if loser.money_modifier == 0 else 1.5
+        result = (
+            ((exp_tot * loser.level) / 7)
+            * 1
+            / len(winners)
+            * exp_mod
+            * traded
+            * wild
+        )
+        exp = int(result)
+    elif method == "xp_transmitter":
+        alive = alive_party(trainer)
+        idle_monsters = list(set(alive).symmetric_difference(winners))
+        result = (exp_tot // (loser.level * hits)) * exp_mod * 1 / len(alive)
+        exp = int(result)
+        for monster in idle_monsters:
+            monster.give_experience(exp)
+    else:
+        raise ValueError(f"A formula for '{method}' doesn't exist.")
+    return exp
+
+
+def get_winners(loser: Monster, damages: list[DamageMap]) -> set[Monster]:
+    """
+    It extracts from the damages the monster/s who hit the loser.
+
+    Parameters:
+        loser: Fainted monster.
+        damages: The list with all the damages.
+
+    Returns:
+        Set of winners.
+    """
+    method: str = "default"
+    winners = [ele.attack for ele in damages if ele.defense == loser]
+
+    # update method
+    if winners[0].owner and winners[0].owner.isplayer:
+        trainer = winners[0].owner
+        if "method_experience" not in trainer.game_variables:
+            trainer.game_variables["method_experience"] = "default"
+        method = trainer.game_variables["method_experience"]
+
+    # methods
+    if method == "xp_transmitter":
+        alive = alive_party(trainer)
+        return set(alive)
+    else:
+        return set(winners)

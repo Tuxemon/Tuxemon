@@ -1,0 +1,3 @@
+events:
+  Nothing:
+    type: "event"

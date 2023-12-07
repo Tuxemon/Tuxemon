@@ -5,25 +5,25 @@ from __future__ import annotations
 import logging
 import math
 import uuid
+from collections.abc import Callable, Sequence
 from functools import partial
-from typing import TYPE_CHECKING, Any, Callable, Optional, Sequence, Tuple
+from typing import TYPE_CHECKING, Any, Optional
 
 import pygame_menu
 from pygame_menu import locals
 from pygame_menu.locals import POSITION_CENTER
 from pygame_menu.widgets.selection.highlight import HighlightSelection
-from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
 from tuxemon import prepare
 from tuxemon.db import PlagueType
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
-from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
+from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 from tuxemon.state import State
-from tuxemon.states.journal import MonsterInfoState
 from tuxemon.states.monster import MonsterMenuState
+from tuxemon.states.monster_info import MonsterInfoState
 from tuxemon.tools import (
     open_choice_dialog,
     open_dialog,
@@ -40,15 +40,14 @@ if TYPE_CHECKING:
 MenuGameObj = Callable[[], object]
 
 
-def fix_width(screen_x: int, pos_x: float) -> int:
-    """it returns the correct width based on percentage"""
-    value = round(screen_x * pos_x)
-    return value
+def fix_measure(measure: int, percentage: float) -> int:
+    """it returns the correct measure based on percentage"""
+    return round(measure * percentage)
 
 
 HIDDEN = "hidden_kennel"
 HIDDEN_LIST = [HIDDEN]
-MAX_BOX = 30
+MAX_BOX = prepare.MAX_KENNEL
 
 
 class MonsterTakeState(PygameMenuState):
@@ -68,8 +67,12 @@ class MonsterTakeState(PygameMenuState):
             iid = uuid.UUID(instance_id)
             mon = self.player.find_monster_in_storage(iid)
 
-            # list with all the kennels and removes where we are
-            kennels = list(local_session.player.monster_boxes.keys())
+            # all kennels available with less than max value
+            kennels = [
+                key
+                for key, value in self.player.monster_boxes.items()
+                if len(value) < MAX_BOX and key not in HIDDEN_LIST
+            ]
             kennels.remove(self.box_name)
 
             # updates the kennel and executes operation
@@ -184,7 +187,9 @@ class MonsterTakeState(PygameMenuState):
             )
 
         def description(mon: Monster) -> None:
-            self.client.push_state(MonsterInfoState(monster=mon))
+            self.client.push_state(
+                MonsterInfoState(monster=mon, source=self.name)
+            )
 
         # it prints monsters inside the screen: image + button
         _sorted = sorted(items, key=lambda x: x.slug)
@@ -192,24 +197,27 @@ class MonsterTakeState(PygameMenuState):
             label = T.translate(monster.name).upper()
             iid = monster.instance_id.hex
             new_image = pygame_menu.BaseImage(
-                transform_resource_filename(monster.menu_sprite_1),
+                transform_resource_filename(monster.front_battle_sprite),
                 drawing_position=POSITION_CENTER,
             )
-            new_image.scale(prepare.SCALE, prepare.SCALE)
+            new_image.scale(prepare.SCALE * 0.5, prepare.SCALE * 0.5)
             menu.add.banner(
                 new_image,
                 partial(kennel_options, iid),
                 selection_effect=HighlightSelection(),
             )
-            diff = round((monster.current_hp / monster.current_hp) * 100, 1)
+            diff = round((monster.current_hp / monster.hp) * 100, 1)
             level = f"Lv.{monster.level}"
             menu.add.progress_bar(
-                level, default=diff, font_size=20, align=locals.ALIGN_CENTER
+                level,
+                default=diff,
+                font_size=self.font_size_small,
+                align=locals.ALIGN_CENTER,
             )
             menu.add.button(
                 label,
                 partial(description, monster),
-                font_size=20,
+                font_size=self.font_size_small,
                 align=locals.ALIGN_CENTER,
                 selection_effect=HighlightSelection(),
             )
@@ -233,16 +241,9 @@ class MonsterTakeState(PygameMenuState):
         theme.scrollarea_position = locals.POSITION_EAST
         theme.background_color = background
         theme.widget_alignment = locals.ALIGN_CENTER
-        theme.scrollbar_color = (237, 246, 248)
-        theme.scrollbar_slider_color = (197, 232, 234)
 
         # menu
         theme.title = True
-        theme.title_background_color = (197, 232, 234)
-        theme.title_font_size = round(0.025 * width)
-        theme.title_font_color = (10, 10, 10)
-        theme.title_close_button = False
-        theme.title_bar_style = MENUBAR_STYLE_ADAPTIVE
 
         columns = 3
 
@@ -259,9 +260,9 @@ class MonsterTakeState(PygameMenuState):
         )
 
         self.menu._column_max_width = [
-            fix_width(self.menu._width, 0.33),
-            fix_width(self.menu._width, 0.33),
-            fix_width(self.menu._width, 0.33),
+            fix_measure(self.menu._width, 0.33),
+            fix_measure(self.menu._width, 0.33),
+            fix_measure(self.menu._width, 0.33),
         ]
 
         menu_items_map = []
@@ -275,14 +276,12 @@ class MonsterTakeState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = BACKGROUND_COLOR
+        theme.background_color = self.background_color
         theme.widget_alignment = locals.ALIGN_LEFT
         theme.title = False
-        theme.scrollbar_color = (235, 235, 235)
-        theme.scrollbar_slider_color = (200, 200, 200)
 
 
-class MonsterBoxChooseState(PygameMenuState):
+class MonsterBoxState(PygameMenuState):
     """Menu to choose a tuxemon box."""
 
     def __init__(self) -> None:
@@ -298,11 +297,12 @@ class MonsterBoxChooseState(PygameMenuState):
     def add_menu_items(
         self,
         menu: pygame_menu.Menu,
-        items: Sequence[Tuple[str, MenuGameObj]],
+        items: Sequence[tuple[str, MenuGameObj]],
     ) -> None:
         menu.add.vertical_fill()
         for key, callback in items:
-            num_mons = local_session.player.monster_boxes[key]
+            player = local_session.player
+            num_mons = player.monster_boxes[key]
             label = T.format(
                 f"{T.translate(key).upper()}: {len(num_mons)}/{MAX_BOX}"
             )
@@ -318,7 +318,7 @@ class MonsterBoxChooseState(PygameMenuState):
             position=(width + b_width, b_height, False),
         )
 
-    def get_menu_items_map(self) -> Sequence[Tuple[str, MenuGameObj]]:
+    def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         """
         Return a list of menu options and callbacks, to be overridden by
         class descendants.
@@ -362,10 +362,10 @@ class MonsterBoxChooseState(PygameMenuState):
         return ani
 
 
-class MonsterBoxChooseStorageState(MonsterBoxChooseState):
+class MonsterStorageState(MonsterBoxState):
     """Menu to choose a box, which you can then take a tuxemon from."""
 
-    def get_menu_items_map(self) -> Sequence[Tuple[str, MenuGameObj]]:
+    def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         player = local_session.player
         menu_items_map = []
         for box_name, monsters in player.monster_boxes.items():
@@ -384,17 +384,17 @@ class MonsterBoxChooseStorageState(MonsterBoxChooseState):
         return menu_items_map
 
 
-class MonsterBoxChooseDropOffState(MonsterBoxChooseState):
+class MonsterDropOffState(MonsterBoxState):
     """Menu to choose a box, which you can then drop off a tuxemon into."""
 
-    def get_menu_items_map(self) -> Sequence[Tuple[str, MenuGameObj]]:
+    def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         player = local_session.player
         menu_items_map = []
         for box_name, monsters in player.monster_boxes.items():
             if box_name not in HIDDEN_LIST:
-                if len(monsters) <= MAX_BOX:
+                if len(monsters) < MAX_BOX:
                     menu_callback = self.change_state(
-                        "MonsterDropOffState", box_name=box_name
+                        "MonsterDropOff", box_name=box_name
                     )
                 else:
                     menu_callback = partial(
@@ -402,17 +402,11 @@ class MonsterBoxChooseDropOffState(MonsterBoxChooseState):
                         local_session,
                         [T.translate("menu_storage_full_kennel")],
                     )
-            else:
-                menu_callback = partial(
-                    open_dialog,
-                    local_session,
-                    [T.translate("menu_storage_hidden_kennel")],
-                )
-            menu_items_map.append((box_name, menu_callback))
+                menu_items_map.append((box_name, menu_callback))
         return menu_items_map
 
 
-class MonsterDropOffState(MonsterMenuState):
+class MonsterDropOff(MonsterMenuState):
     """Shows all Tuxemon in player's party, puts it into box if selected."""
 
     def __init__(self, box_name: str) -> None:

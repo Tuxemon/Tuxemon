@@ -8,18 +8,9 @@ import importlib
 import json
 import logging
 import os
+from collections.abc import Callable, Mapping
 from operator import itemgetter
-from typing import (
-    Any,
-    Callable,
-    Dict,
-    Literal,
-    Mapping,
-    NewType,
-    Optional,
-    TextIO,
-    TypeVar,
-)
+from typing import Any, Literal, NewType, Optional, TextIO, TypeVar
 
 import pygame
 
@@ -88,8 +79,8 @@ def get_save_data(session: Session) -> SaveData:
     npc_state = session.player.get_state(session)
     save_data: SaveData = {
         "screenshot": base64.b64encode(
-            pygame.image.tostring(screenshot, "RGB")
-        ).decode("utf-8"),
+            pygame.image.tobytes(screenshot, "RGB")
+        ).decode(),
         "screenshot_width": screenshot.get_width(),
         "screenshot_height": screenshot.get_height(),
         "time": datetime.datetime.now().strftime(TIME_FORMAT),
@@ -179,8 +170,8 @@ def json_load(
     )
 
 
-def open_save_file(save_path: str) -> Optional[Dict[str, Any]]:
-    package: Dict[str, Any] = {}
+def open_save_file(save_path: str) -> Optional[dict[str, Any]]:
+    package: dict[str, Any] = {}
     try:
         try:
             if config.compress_save is None and prepare.SAVE_METHOD == "CBOR":

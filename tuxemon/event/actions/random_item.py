@@ -4,9 +4,8 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
-from typing import List, Union, final
+from typing import Union, final
 
-from tuxemon.event.actions.add_item import AddItemAction
 from tuxemon.event.eventaction import EventAction
 
 
@@ -38,15 +37,13 @@ class RandomItemAction(EventAction):
     def start(self) -> None:
         # check if multiple items
         item: str = ""
-        items: List[str] = []
+        items: list[str] = []
         if self.item_slug.find(":"):
             items = self.item_slug.split(":")
             item = random.choice(items)
         else:
             item = self.item_slug
 
-        AddItemAction(
-            item_slug=item,
-            quantity=self.quantity,
-            trainer_slug=self.trainer_slug,
-        ).start()
+        self.session.client.event_engine.execute_action(
+            "add_item", [item, self.quantity, self.trainer_slug], True
+        )

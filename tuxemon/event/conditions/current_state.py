@@ -7,22 +7,29 @@ from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
 
-class CombatStartedCondition(EventCondition):
+class CurrentStateCondition(EventCondition):
     """
-    Check to see if combat has been started or not.
+    Check to see if one or multiple state/states has/have
+    been started or not.
 
     Script usage:
         .. code-block::
 
-            is combat_started
+            is current_state <state>
+
+    Script parameters:
+        state: Either "CombatState", "DialogState", etc
+
+    eg: "is current_state CombatState"
+    eg: "is current_state CombatState:DialogState"
 
     """
 
-    name = "combat_started"
+    name = "current_state"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
         """
-        Check to see if combat has been started or not.
+        Check to see if the state has been started or not.
 
         Parameters:
             session: The session object
@@ -34,4 +41,5 @@ class CombatStartedCondition(EventCondition):
         """
         current_state = session.client.current_state
         assert current_state
-        return current_state.name == "CombatState"
+        states = condition.parameters[0].split(":")
+        return current_state.name in states

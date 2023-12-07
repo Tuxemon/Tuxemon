@@ -60,14 +60,6 @@
    </properties>
   </object>
   <object id="28" name="Player Spawn" type="event" x="176" y="0" width="16" height="16"/>
-  <object id="39" name="Auto Healing Teleported" type="event" x="16" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_monster_health"/>
-    <property name="act2" value="set_monster_status"/>
-    <property name="act3" value="set_variable teleport_clinic:none"/>
-    <property name="cond1" value="is variable_set teleport_clinic:lost"/>
-   </properties>
-  </object>
   <object id="47" name="Room2" type="event" x="112" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_walledgarden2.tmx,7,19,0.3"/>
@@ -118,12 +110,6 @@
    <properties>
     <property name="act1" value="play_music music_cathedral_theme"/>
     <property name="cond1" value="not music_playing music_cathedral_theme"/>
-   </properties>
-  </object>
-  <object id="57" name="Exhausted" type="event" x="48" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
    </properties>
   </object>
   <object id="58" name="Create fugger" type="event" x="224" y="48" width="16" height="16">

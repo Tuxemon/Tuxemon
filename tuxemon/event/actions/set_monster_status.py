@@ -50,7 +50,7 @@ class SetMonsterStatusAction(EventAction):
             monster.apply_status(status)
 
     def start(self) -> None:
-        steps = self.session.player.game_variables["steps"]
+        steps = self.session.player.steps
         if not self.session.player.monsters:
             return
 

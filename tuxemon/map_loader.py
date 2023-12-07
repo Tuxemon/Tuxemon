@@ -1,8 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
+import uuid
+from collections.abc import Generator, Iterator
 from math import cos, pi, sin
-from typing import Any, Dict, Generator, Iterator, Mapping, Optional, Tuple
+from typing import Any, Optional
 
 import pytmx
 import yaml
@@ -10,12 +12,11 @@ from natsort import natsorted
 
 from tuxemon import prepare
 from tuxemon.compat import Rect
+from tuxemon.db import Direction, Orientation
 from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon.graphics import scaled_image_loader
 from tuxemon.lib.bresenham import bresenham
 from tuxemon.map import (
-    Direction,
-    Orientation,
     RegionProperties,
     TuxemonMap,
     angle_of_points,
@@ -34,20 +35,15 @@ from tuxemon.tools import copy_dict_with_keys
 
 logger = logging.getLogger(__name__)
 
-RegionTile = Tuple[
-    Tuple[int, int],
-    Optional[Mapping[str, Any]],
+RegionTile = tuple[
+    tuple[int, int],
+    Optional[RegionProperties],
 ]
 
-# TODO: standardize and document these values
 region_properties = [
-    "enter",
     "enter_from",
-    "enter_to",
-    "exit",
     "exit_from",
-    "exit_to",
-    "continue",
+    "endure",
     "key",
 ]
 
@@ -65,23 +61,30 @@ class YAMLEventLoader:
             path: Path to the file.
 
         """
+        yaml_data: dict[str, dict[str, dict[str, Any]]] = {}
+
         with open(path) as fp:
             yaml_data = yaml.load(fp.read(), Loader=yaml.SafeLoader)
 
         for name, event_data in yaml_data["events"].items():
+            _id = uuid.uuid4().int
             conds = []
             acts = []
-            x = event_data.get("x")
-            y = event_data.get("y")
-            w = event_data.get("width")
-            h = event_data.get("height")
+            x = event_data.get("x", 0)
+            y = event_data.get("y", 0)
+            w = event_data.get("width", 1)
+            h = event_data.get("height", 1)
             event_type = event_data.get("type")
 
-            for value in event_data.get("actions", []):
+            for key, value in enumerate(
+                event_data.get("actions", []), start=1
+            ):
                 act_type, args = parse_action_string(value)
-                action = MapAction(act_type, args, None)
+                action = MapAction(act_type, args, f"act{str(key*10)}")
                 acts.append(action)
-            for value in event_data.get("conditions", []):
+            for key, value in enumerate(
+                event_data.get("conditions", []), start=1
+            ):
                 operator, cond_type, args = parse_condition_string(value)
                 condition = MapCondition(
                     type=cond_type,
@@ -91,10 +94,10 @@ class YAMLEventLoader:
                     width=w,
                     height=h,
                     operator=operator,
-                    name="",
+                    name=f"cond{str(key*10)}",
                 )
                 conds.append(condition)
-            for value in event_data.get("behav", []):
+            for key, value in enumerate(event_data.get("behav", []), start=1):
                 behav_type, args = parse_behav_string(value)
                 if behav_type == "talk":
                     condition = MapCondition(
@@ -105,31 +108,19 @@ class YAMLEventLoader:
                         width=w,
                         height=h,
                         operator="is",
-                        name="",
+                        name=f"behav{str(key*10)}",
                     )
                     conds.insert(0, condition)
                     action = MapAction(
                         type="npc_face",
                         parameters=[args[0], "player"],
-                        name="",
+                        name=f"behav{str(key*10)}",
                     )
                     acts.insert(0, action)
                 else:
                     raise Exception
-            if event_type == "interact":
-                cond_data = MapCondition(
-                    "player_facing_tile",
-                    list(),
-                    x,
-                    y,
-                    w,
-                    h,
-                    "is",
-                    None,
-                )
-                conds.append(cond_data)
 
-            yield EventObject(name, name, x, y, w, h, conds, acts)
+            yield EventObject(_id, name, x, y, w, h, conds, acts)
 
 
 class TMXMapLoader:
@@ -184,9 +175,8 @@ class TMXMapLoader:
         data.tilewidth, data.tileheight = prepare.TILE_SIZE
         events = list()
         inits = list()
-        interacts = list()
         surfable_map = list()
-        collision_map: Dict[Tuple[int, int], Optional[RegionProperties]] = {}
+        collision_map: dict[tuple[int, int], Optional[RegionProperties]] = {}
         collision_lines_map = set()
         maps = data.properties
 
@@ -215,12 +205,7 @@ class TMXMapLoader:
                 colliders = gids_with_colliders.get(gid)
                 if colliders is not None:
                     for obj in colliders:
-                        if obj.type is None:
-                            obj_type = getattr(
-                                obj, "class"
-                            )  # obj.class is invalid syntax
-                        else:
-                            obj_type = obj.type
+                        obj_type = obj.type
                         if obj_type and obj_type.lower().startswith(
                             "collision"
                         ):
@@ -246,10 +231,7 @@ class TMXMapLoader:
                     surfable_map.append((x, y))
 
         for obj in data.objects:
-            if obj.type is None:
-                obj_type = getattr(obj, "class")  # obj.class is invalid syntax
-            else:
-                obj_type = obj.type
+            obj_type = obj.type
             if obj_type and obj_type.lower().startswith("collision"):
                 for tile_position, props in self.extract_tile_collisions(
                     obj, tile_size
@@ -263,13 +245,10 @@ class TMXMapLoader:
                 events.append(self.load_event(obj, tile_size))
             elif obj_type == "init":
                 inits.append(self.load_event(obj, tile_size))
-            elif obj_type == "interact":
-                interacts.append(self.load_event(obj, tile_size))
 
         return TuxemonMap(
             events,
             inits,
-            interacts,
             surfable_map,
             collision_map,
             collision_lines_map,
@@ -281,7 +260,7 @@ class TMXMapLoader:
     def extract_tile_collisions(
         self,
         tiled_object: pytmx.TiledObject,
-        tile_size: Tuple[int, int],
+        tile_size: tuple[int, int],
     ) -> Generator[RegionTile, None, None]:
         if getattr(tiled_object, "closed", True):
             yield from self.region_tiles(tiled_object, tile_size)
@@ -289,27 +268,27 @@ class TMXMapLoader:
     def collision_lines_from_object(
         self,
         tiled_object: pytmx.TiledObject,
-        tile_size: Tuple[int, int],
-    ) -> Generator[Tuple[Tuple[int, int], Direction], None, None]:
+        tile_size: tuple[int, int],
+    ) -> Generator[tuple[tuple[int, int], Direction], None, None]:
         # TODO: test dropping "collision_lines_map" and replacing with "enter/exit" tiles
         if not getattr(tiled_object, "closed", True):
             for item in self.process_line(tiled_object, tile_size):
                 blocker0, blocker1, orientation = item
-                if orientation == "vertical":
-                    yield blocker0, "left"
-                    yield blocker1, "right"
-                elif orientation == "horizontal":
-                    yield blocker1, "down"
-                    yield blocker0, "up"
+                if orientation == Orientation.vertical:
+                    yield blocker0, Direction.left
+                    yield blocker1, Direction.right
+                elif orientation == Orientation.horizontal:
+                    yield blocker1, Direction.down
+                    yield blocker0, Direction.up
                 else:
                     raise Exception(orientation)
 
     def process_line(
         self,
         line: pytmx.TiledObject,
-        tile_size: Tuple[int, int],
+        tile_size: tuple[int, int],
     ) -> Generator[
-        Tuple[Tuple[int, int], Tuple[int, int], Orientation], None, None
+        tuple[tuple[int, int], tuple[int, int], Orientation], None, None
     ]:
         """Identify the tiles on either side of the line and block movement along it."""
         if len(line.points) < 2:
@@ -332,7 +311,7 @@ class TMXMapLoader:
     @staticmethod
     def region_tiles(
         region: pytmx.TiledObject,
-        grid_size: Tuple[int, int],
+        grid_size: tuple[int, int],
     ) -> Generator[RegionTile, None, None]:
         """
         Apply region properties to individual tiles.
@@ -365,7 +344,7 @@ class TMXMapLoader:
     def load_event(
         self,
         obj: pytmx.TiledObject,
-        tile_size: Tuple[int, int],
+        tile_size: tuple[int, int],
     ) -> EventObject:
         """
         Load an Event from the map.
@@ -378,6 +357,7 @@ class TMXMapLoader:
             Loaded event.
 
         """
+        _id = uuid.uuid4().int
         conds = []
         acts = []
         x = int(obj.x / tile_size[0])
@@ -421,16 +401,4 @@ class TMXMapLoader:
                 else:
                     raise Exception
 
-        # add a player_facing_tile condition automatically
-        if obj.type is None:
-            obj_type = getattr(obj, "class")  # obj.class is invalid syntax
-        else:
-            obj_type = obj.type
-        if obj_type == "interact":
-            cond_data = MapCondition(
-                "player_facing_tile", list(), x, y, w, h, "is", None
-            )
-            logger.debug(cond_data)
-            conds.append(cond_data)
-
-        return EventObject(obj.id, obj.name, x, y, w, h, conds, acts)
+        return EventObject(_id, obj.name, x, y, w, h, conds, acts)

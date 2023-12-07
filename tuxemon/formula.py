@@ -5,7 +5,10 @@ from __future__ import annotations
 import datetime as dt
 import logging
 import random
-from typing import TYPE_CHECKING, Sequence, Tuple
+from collections.abc import Sequence
+from typing import TYPE_CHECKING
+
+from tuxemon.prepare import COEFF_DAMAGE, MAX_MULTIPLIER, MIN_MULTIPLIER
 
 if TYPE_CHECKING:
     from tuxemon.db import MonsterModel
@@ -42,8 +45,8 @@ def simple_damage_multiplier(
                     continue
                 m = attack_type.lookup_multiplier(target_type.slug)
 
-    m = min(4, m)
-    m = max(0.25, m)
+    m = min(MAX_MULTIPLIER, m)
+    m = max(MIN_MULTIPLIER, m)
     return m
 
 
@@ -51,7 +54,7 @@ def simple_damage_calculate(
     technique: Technique,
     user: Monster,
     target: Monster,
-) -> Tuple[int, float]:
+) -> tuple[int, float]:
     """
     Calculates the damage of a technique based on stats and multiplier.
 
@@ -65,19 +68,19 @@ def simple_damage_calculate(
 
     """
     if technique.range == "melee":
-        user_strength = user.melee * (7 + user.level)
+        user_strength = user.melee * (COEFF_DAMAGE + user.level)
         target_resist = target.armour
     elif technique.range == "touch":
-        user_strength = user.melee * (7 + user.level)
+        user_strength = user.melee * (COEFF_DAMAGE + user.level)
         target_resist = target.dodge
     elif technique.range == "ranged":
-        user_strength = user.ranged * (7 + user.level)
+        user_strength = user.ranged * (COEFF_DAMAGE + user.level)
         target_resist = target.dodge
     elif technique.range == "reach":
-        user_strength = user.ranged * (7 + user.level)
+        user_strength = user.ranged * (COEFF_DAMAGE + user.level)
         target_resist = target.armour
     elif technique.range == "reliable":
-        user_strength = 7 + user.level
+        user_strength = COEFF_DAMAGE + user.level
         target_resist = 1
     else:
         raise RuntimeError(
@@ -289,7 +292,7 @@ def convert_mi(steps: float) -> float:
 
 def weight_height_diff(
     monster: Monster, db: MonsterModel
-) -> Tuple[float, float]:
+) -> tuple[float, float]:
     weight = round(((monster.weight - db.weight) / db.weight) * 100, 1)
     height = round(((monster.height - db.height) / db.height) * 100, 1)
     return weight, height

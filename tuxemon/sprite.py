@@ -4,25 +4,24 @@ from __future__ import annotations
 
 import logging
 import math
+from collections.abc import Container, Iterator, Sequence
 from typing import (
     TYPE_CHECKING,
     Any,
     Callable,
-    Container,
     Final,
     Generic,
-    Iterator,
-    List,
     Literal,
     Optional,
-    Sequence,
     TypeVar,
     Union,
     overload,
 )
 
-import pygame
 from pygame.rect import Rect
+from pygame.sprite import DirtySprite, Group, LayeredUpdates
+from pygame.sprite import Sprite as PySprite
+from pygame.surface import Surface
 from pygame.transform import rotozoom, scale
 
 from tuxemon import graphics
@@ -38,18 +37,18 @@ if TYPE_CHECKING:
 logger = logging.getLogger()
 
 
-dummy_image: Final = pygame.surface.Surface((0, 0))
+dummy_image: Final = Surface((0, 0))
 
 
-class Sprite(pygame.sprite.DirtySprite):
-    _original_image: Optional[pygame.surface.Surface]
-    _image: Optional[pygame.surface.Surface]
-    _rect: pygame.rect.Rect
+class Sprite(DirtySprite):
+    _original_image: Optional[Surface]
+    _image: Optional[Surface]
+    _rect: Rect
 
     def __init__(
         self,
-        *args: pygame.sprite.Group,
-        image: Optional[pygame.surface.Surface] = None,
+        *args: Group,
+        image: Optional[Surface] = None,
         animation: Optional[SurfaceAnimation] = None,
     ) -> None:
         super().__init__(*args)
@@ -72,9 +71,9 @@ class Sprite(pygame.sprite.DirtySprite):
 
     def draw(
         self,
-        surface: pygame.surface.Surface,
-        rect: Optional[pygame.rect.Rect] = None,
-    ) -> pygame.rect.Rect:
+        surface: Surface,
+        rect: Optional[Rect] = None,
+    ) -> Rect:
         """
         Draw the sprite to the surface.
 
@@ -96,9 +95,9 @@ class Sprite(pygame.sprite.DirtySprite):
 
     def _draw(
         self,
-        surface: pygame.surface.Surface,
-        rect: pygame.rect.Rect,
-    ) -> pygame.rect.Rect:
+        surface: Surface,
+        rect: Rect,
+    ) -> Rect:
         return surface.blit(self.image, rect)
 
     @property
@@ -115,7 +114,7 @@ class Sprite(pygame.sprite.DirtySprite):
             self._needs_update = True
 
     @property
-    def image(self) -> pygame.surface.Surface:
+    def image(self) -> Surface:
         # should always be a cached copy
         if self.animation is not None:
             return self.animation.get_current_frame()
@@ -127,7 +126,7 @@ class Sprite(pygame.sprite.DirtySprite):
         return self._image if self._image and self.visible else dummy_image
 
     @image.setter
-    def image(self, image: Optional[pygame.surface.Surface]) -> None:
+    def image(self, image: Optional[Surface]) -> None:
         if image is not None:
             self.animation = None
             rect = image.get_rect()
@@ -149,7 +148,7 @@ class Sprite(pygame.sprite.DirtySprite):
             self.rect.size = animation.get_rect().size
 
     def update_image(self) -> None:
-        image: Optional[pygame.surface.Surface]
+        image: Optional[Surface]
         if self._original_image is not None and self._needs_rescale:
             w = self.rect.width if self._width is None else self._width
             h = self.rect.height if self._height is None else self._height
@@ -278,7 +277,7 @@ class CaptureDeviceSprite(Sprite):
 _GroupElement = TypeVar("_GroupElement", bound=Sprite)
 
 
-class SpriteGroup(pygame.sprite.LayeredUpdates, Generic[_GroupElement]):
+class SpriteGroup(LayeredUpdates, Generic[_GroupElement]):
     """
     Sane variation of a pygame sprite group.
 
@@ -294,15 +293,15 @@ class SpriteGroup(pygame.sprite.LayeredUpdates, Generic[_GroupElement]):
     def __init__(self, *, default_layer: int = 0) -> None:
         super().__init__(default_layer=default_layer)
 
-    def add(self, *sprites: pygame.sprite.Sprite, **kwargs: Any) -> None:
-        return pygame.sprite.LayeredUpdates.add(self, *sprites, **kwargs)
+    def add(self, *sprites: Union[PySprite, Any], **kwargs: Any) -> None:
+        return LayeredUpdates.add(self, *sprites, **kwargs)
 
     def __iter__(self) -> Iterator[_GroupElement]:
-        return pygame.sprite.LayeredUpdates.__iter__(self)
+        return LayeredUpdates.__iter__(self)
 
     def sprites(self) -> Sequence[_GroupElement]:
         # Pygame typing is awful. Ignore Mypy here.
-        return pygame.sprite.LayeredUpdates.sprites(self)
+        return LayeredUpdates.sprites(self)
 
     def __bool__(self) -> bool:
         return bool(self.sprites())
@@ -328,11 +327,11 @@ class SpriteGroup(pygame.sprite.LayeredUpdates, Generic[_GroupElement]):
         # patch in indexing / slicing support
         return self.sprites()[item]
 
-    def calc_bounding_rect(self) -> pygame.rect.Rect:
+    def calc_bounding_rect(self) -> Rect:
         """A rect object that contains all sprites of this group."""
         sprites = self.sprites()
         if len(sprites) == 1:
-            return pygame.rect.Rect(sprites[0].rect)
+            return Rect(sprites[0].rect)
         else:
             return sprites[0].rect.unionall([s.rect for s in sprites[1:]])
 
@@ -402,12 +401,12 @@ class RelativeGroup(MenuSpriteGroup[_MenuElement]):
     Drawing operations are relative to the group's rect.
     """
 
-    rect = pygame.rect.Rect(0, 0, 0, 0)
+    rect = Rect(0, 0, 0, 0)
 
     def __init__(
         self,
         *,
-        parent: Union[RelativeGroup[Any], Callable[[], pygame.rect.Rect]],
+        parent: Union[RelativeGroup[Any], Callable[[], Rect]],
         **kwargs: Any,
     ) -> None:
         self.parent = parent
@@ -415,8 +414,8 @@ class RelativeGroup(MenuSpriteGroup[_MenuElement]):
 
     def calc_absolute_rect(
         self,
-        rect: pygame.rect.Rect,
-    ) -> pygame.rect.Rect:
+        rect: Rect,
+    ) -> Rect:
         self.update_rect_from_parent()
         return rect.move(self.rect.topleft)
 
@@ -424,12 +423,14 @@ class RelativeGroup(MenuSpriteGroup[_MenuElement]):
         if callable(self.parent):
             self.rect = self.parent()
         else:
-            self.rect = pygame.rect.Rect(self.parent.rect)
+            self.rect = Rect(self.parent.rect)
 
     def draw(
         self,
-        surface: pygame.surface.Surface,
-    ) -> List[pygame.rect.Rect]:
+        surface: Surface,
+        bgsurf: Any = None,
+        special_flags: int = 0,
+    ) -> list[Rect]:
         self.update_rect_from_parent()
         topleft = self.rect.topleft
 
@@ -477,14 +478,14 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         self._columns = value
         self._needs_arrange = True
 
-    def calc_bounding_rect(self) -> pygame.rect.Rect:
+    def calc_bounding_rect(self) -> Rect:
         if self._needs_arrange:
             self.arrange_menu_items()
         return super().calc_bounding_rect()
 
     def add(
         self,
-        *sprites: pygame.sprite.Sprite,
+        *sprites: Union[PySprite, Any],
         **kwargs: Any,
     ) -> None:
         """
@@ -500,20 +501,24 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
 
     def remove(
         self,
-        *items: pygame.sprite.Sprite,
+        *items: Union[PySprite, Any],
     ) -> None:
         super().remove(*items)
         self._needs_arrange = True
 
-    def clear(self) -> None:
+    def clear(
+        self, surface: Any = None, bgsurf: Any = None, special_flags: int = 0
+    ) -> None:
         for i in self.sprites():
             super().remove(i)
         self._needs_arrange = True
 
     def draw(
         self,
-        surface: pygame.surface.Surface,
-    ) -> List[Rect]:
+        surface: Surface,
+        bgsurf: Any = None,
+        special_flags: int = 0,
+    ) -> list[Rect]:
         if self._needs_arrange:
             self.arrange_menu_items()
         dirty = super().draw(surface)

@@ -41,7 +41,7 @@ often out of date.
 
 ### Windows Source
 
-Requires Python 3.8+ and git.
+Requires Python 3.9+ and git.
 
 Install the latest version of Python 3 from
 [here](https://www.python.org/downloads/)

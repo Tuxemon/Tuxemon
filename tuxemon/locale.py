@@ -8,15 +8,8 @@ import logging
 import os
 import os.path
 import re
-from typing import (
-    Any,
-    Callable,
-    Generator,
-    Iterable,
-    Mapping,
-    Optional,
-    Sequence,
-)
+from collections.abc import Callable, Generator, Iterable, Mapping, Sequence
+from typing import Any, Optional
 
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
@@ -244,7 +237,7 @@ def replace_text(session: Session, text: str) -> str:
         text = text.replace("${{height}}", "cm")
         text = text.replace(
             "${{steps}}",
-            str(convert_km(player.game_variables["steps"])),
+            str(convert_km(player.steps)),
         )
     else:
         text = text.replace("${{length}}", "mi")
@@ -252,7 +245,7 @@ def replace_text(session: Session, text: str) -> str:
         text = text.replace("${{height}}", "ft")
         text = text.replace(
             "${{steps}}",
-            str(convert_mi(player.game_variables["steps"])),
+            str(convert_mi(player.steps)),
         )
     # maps
     text = text.replace("${{map_name}}", client.map_name)

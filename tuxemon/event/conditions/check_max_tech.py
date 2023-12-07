@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
-from tuxemon.monster import MAX_MOVES
+from tuxemon.prepare import MAX_MOVES
 from tuxemon.session import Session
 
 

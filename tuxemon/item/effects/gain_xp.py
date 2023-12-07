@@ -20,6 +20,10 @@ class GainXpEffectResult(ItemEffectResult):
 class GainXpEffect(ItemEffect):
     """
     Add exp to the target by 'amount'.
+
+    Parameters:
+        amount: amount of experience
+
     """
 
     name = "gain_xp"

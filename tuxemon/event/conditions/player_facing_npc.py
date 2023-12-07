@@ -40,12 +40,12 @@ class PlayerFacingNPCCondition(EventCondition):
             Whether the player is facing the chosen character.
 
         """
-        player = session.player
         client = session.client
         npc_location = None
 
+        player = get_npc(session, "player")
         npc = get_npc(session, condition.parameters[0])
-        if not npc:
+        if not npc or not player:
             return False
 
         # get all the coordinates around the npc

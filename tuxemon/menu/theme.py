@@ -79,7 +79,7 @@ def get_theme() -> pygame_menu.Theme:
     else:
         font_filename = prepare.fetch("font", prepare.FONT_BASIC)
     tuxemon_border = pygame_menu.BaseImage(
-        image_path=transform_resource_filename("gfx/dialog-borders01.png"),
+        image_path=transform_resource_filename("gfx/borders/borders.png"),
     ).scale(5, 5, smooth=False)
 
     tuxemon_background_center_rect = tuxemon_border.get_rect()

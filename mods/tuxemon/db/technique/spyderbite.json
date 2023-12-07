@@ -1,10 +1,13 @@
 {
   "animation": null,
+  "accuracy": 0.0,
   "effects": [
     "spyderbite"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_spyderbite.png",
+  "potency": 0.0,
+  "power": 0.0,
   "range": "special",
   "sfx": "sfx_pulse",
   "slug": "spyderbite",

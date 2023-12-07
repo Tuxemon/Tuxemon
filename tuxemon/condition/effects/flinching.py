@@ -27,17 +27,18 @@ class FlinchingEffect(CondEffect):
 
     name = "flinching"
 
-    def apply(self, tech: Condition, target: Monster) -> FlinchingEffectResult:
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> FlinchingEffectResult:
         skip: Optional[Technique] = None
-        if tech.phase == "pre_checking":
-            if tech.slug == "flinching":
-                fli = random.randint(1, 2)
-                if fli == 1:
-                    user = tech.link
-                    assert user
-                    skip = Technique()
-                    skip.load("empty")
-                    user.status.clear()
+        if condition.phase == "pre_checking" and condition.slug == "flinching":
+            flinching = random.randint(1, 2)
+            if flinching == 1:
+                user = condition.link
+                assert user
+                skip = Technique()
+                skip.load("empty")
+                user.status.clear()
         return {
             "success": True,
             "condition": None,

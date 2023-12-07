@@ -46,7 +46,7 @@ class RandomBattleAction(EventAction):
     def start(self) -> None:
         player = self.session.player
 
-        if self.nr_txmns < 1 or self.nr_txmns > 6:
+        if self.nr_txmns < 1 or self.nr_txmns > player.party_limit:
             return
 
         # random npc

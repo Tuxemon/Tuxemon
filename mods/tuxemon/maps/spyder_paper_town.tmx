@@ -326,6 +326,7 @@
   <object id="224" name="First Fight - Start" type="event" x="400" y="128" width="16" height="16">
    <properties>
     <property name="act10" value="lock_controls"/>
+    <property name="act11" value="set_variable teleport_faint:spyder_bedroom.tmx 3 4"/>
     <property name="act20" value="create_npc spyder_billie,13,14"/>
     <property name="act30" value="pathfind spyder_billie,25,13"/>
     <property name="act40" value="wait 1.0"/>
@@ -335,8 +336,7 @@
     <property name="act61" value="add_monster billie_choice,5,spyder_billie,5,10"/>
     <property name="act70" value="start_battle spyder_billie"/>
     <property name="act80" value="set_variable firstfightdue:no"/>
-    <property name="act81" value="set_variable teleport_faint:spyder_bedroom.tmx 3 4"/>
-    <property name="act82" value="set_variable firstfightend:yes"/>
+    <property name="act81" value="set_variable firstfightend:yes"/>
     <property name="cond1" value="is variable_set firstfightdue:yes"/>
    </properties>
   </object>
@@ -349,10 +349,10 @@
     <property name="act15" value="translated_dialog spyder_papertown_firstfight_after"/>
     <property name="act20" value="pathfind spyder_billie,15,14"/>
     <property name="act30" value="remove_npc spyder_billie"/>
-    <property name="act40" value="set_variable firstfightend:no"/>
-    <property name="act50" value="unlock_controls"/>
-    <property name="act60" value="set_monster_health"/>
-    <property name="act70" value="set_monster_status"/>
+    <property name="act40" value="unlock_controls"/>
+    <property name="act50" value="set_monster_health"/>
+    <property name="act60" value="set_monster_status"/>
+    <property name="act70" value="set_variable firstfightend:no"/>
     <property name="cond1" value="is variable_set battle_last_result:won"/>
     <property name="cond2" value="is variable_set firstfightend:yes"/>
    </properties>
@@ -366,10 +366,10 @@
     <property name="act15" value="translated_dialog spyder_papertown_firstfight_after"/>
     <property name="act20" value="pathfind spyder_billie,15,14"/>
     <property name="act30" value="remove_npc spyder_billie"/>
-    <property name="act40" value="set_variable firstfightend:no"/>
-    <property name="act50" value="unlock_controls"/>
-    <property name="act60" value="set_monster_health"/>
-    <property name="act70" value="set_monster_status"/>
+    <property name="act40" value="unlock_controls"/>
+    <property name="act50" value="set_monster_health"/>
+    <property name="act60" value="set_monster_status"/>
+    <property name="act70" value="set_variable firstfightend:no"/>
     <property name="cond1" value="is variable_set battle_last_result:lost"/>
     <property name="cond2" value="is variable_set firstfightend:yes"/>
    </properties>

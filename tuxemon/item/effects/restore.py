@@ -22,9 +22,13 @@ class RestoreEffect(ItemEffect):
     """
     Remove status/statuses.
 
-    restore -> removes all statuses
-    restore positive -> removes all positive statuses
-    restore negative -> removes all negative statuses
+    Parameters:
+        category: status's category (positive or negative)
+
+    Examples:
+        restore -> removes all statuses
+        restore positive -> removes all positive statuses
+        restore negative -> removes all negative statuses
 
     """
 

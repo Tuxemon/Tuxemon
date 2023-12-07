@@ -20,6 +20,10 @@ class ReviveEffectResult(ItemEffectResult):
 class ReviveEffect(ItemEffect):
     """
     Revives the target tuxemon, and sets HP to 1.
+
+    Parameters:
+        hp: quantity of HP
+
     """
 
     name = "revive"

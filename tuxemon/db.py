@@ -953,6 +953,25 @@ class EncounterModel(BaseModel):
     )
 
 
+class DialogueModel(BaseModel):
+    slug: str = Field(
+        ..., description="Slug to uniquely identify this dialogue"
+    )
+    bg_color: str = Field(..., description="RGB color (eg. 255:0:0)")
+    font_color: str = Field(..., description="RGB color (eg. 255:0:0)")
+    font_shadow_color: str = Field(..., description="RGB color (eg. 255:0:0)")
+    border_slug: str = Field(..., description="Name of the border")
+    border_path: str = Field(..., description="Path to the border")
+
+    # Validate resources that should exist
+    @field_validator("border_slug")
+    def file_exists(cls: DialogueModel, v: str) -> str:
+        file: str = f"gfx/borders/{v}.png"
+        if has.file(file):
+            return v
+        raise ValueError(f"no resource exists with path: {file}")
+
+
 class ElementItemModel(BaseModel):
     against: ElementType = Field(..., description="Name of the type")
     multiplier: float = Field(1.0, description="Multiplier against the type")
@@ -1041,6 +1060,7 @@ TableName = Literal[
     "template",
     "mission",
     "encounter",
+    "dialogue",
     "environment",
     "item",
     "monster",
@@ -1058,6 +1078,7 @@ DataModel = Union[
     TemplateModel,
     MissionModel,
     EncounterModel,
+    DialogueModel,
     EnvironmentModel,
     ItemModel,
     MonsterModel,
@@ -1112,6 +1133,7 @@ class JSONDatabase:
             "condition",
             "technique",
             "encounter",
+            "dialogue",
             "environment",
             "sounds",
             "music",
@@ -1257,6 +1279,9 @@ class JSONDatabase:
             elif table == "encounter":
                 encounter = EncounterModel(**item)
                 self.database[table][encounter.slug] = encounter
+            elif table == "dialogue":
+                dialogue = DialogueModel(**item)
+                self.database[table][dialogue.slug] = dialogue
             elif table == "environment":
                 env = EnvironmentModel(**item)
                 self.database[table][env.slug] = env
@@ -1314,6 +1339,10 @@ class JSONDatabase:
 
     @overload
     def lookup(self, slug: str, table: Literal["encounter"]) -> EncounterModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["dialogue"]) -> DialogueModel:
         pass
 
     @overload
@@ -1422,6 +1451,7 @@ class JSONDatabase:
             "template",
             "mission",
             "encounter",
+            "dialogue",
             "environment",
             "item",
             "monster",

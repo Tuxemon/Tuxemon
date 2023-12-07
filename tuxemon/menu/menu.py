@@ -216,7 +216,7 @@ class Menu(Generic[T], state.State):
         font_filename = prepare.FONT_JAPANESE
     else:
         font_filename = prepare.FONT_BASIC
-    borders_filename = "gfx/dialog-borders01.png"
+    borders_filename = "gfx/borders/borders.png"
     cursor_filename = "gfx/arrow.png"
     cursor_move_duration = 0.20
     default_character_delay = 0.05

@@ -25,25 +25,31 @@ class ChargingEffect(CondEffect):
 
     name = "charging"
 
-    def apply(self, tech: Condition, target: Monster) -> ChargingEffectResult:
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> ChargingEffectResult:
         player = self.session.player
         cond: Optional[Condition] = None
-        if tech.phase == "perform_action_tech":
-            if tech.slug == "charging":
-                target.status.clear()
-                if tech.repl_tech:
-                    cond = Condition()
-                    cond.load(tech.repl_tech)
-                    cond.steps = player.steps
-                    cond.link = target
-        if tech.phase == "perform_action_item":
-            if tech.slug == "charging":
-                target.status.clear()
-                if tech.repl_item:
-                    cond = Condition()
-                    cond.load(tech.repl_item)
-                    cond.steps = player.steps
-                    cond.link = target
+        if (
+            condition.phase == "perform_action_tech"
+            and condition.slug == "charging"
+        ):
+            target.status.clear()
+            if condition.repl_tech:
+                cond = Condition()
+                cond.load(condition.repl_tech)
+                cond.steps = player.steps
+                cond.link = target
+        if (
+            condition.phase == "perform_action_item"
+            and condition.slug == "charging"
+        ):
+            target.status.clear()
+            if condition.repl_item:
+                cond = Condition()
+                cond.load(condition.repl_item)
+                cond.steps = player.steps
+                cond.link = target
         return {
             "success": True,
             "condition": cond,

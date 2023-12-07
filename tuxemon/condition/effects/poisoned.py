@@ -25,13 +25,17 @@ class PoisonedEffect(CondEffect):
 
     name = "poisoned"
 
-    def apply(self, tech: Condition, target: Monster) -> PoisonedEffectResult:
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> PoisonedEffectResult:
         poisoned: bool = False
-        if tech.phase == "perform_action_status":
-            if tech.slug == "poison":
-                damage = formula.damage_full_hp(target, 8)
-                target.current_hp -= damage
-                poisoned = True
+        if (
+            condition.phase == "perform_action_status"
+            and condition.slug == "poison"
+        ):
+            damage = formula.damage_full_hp(target, 8)
+            target.current_hp -= damage
+            poisoned = True
 
         return {
             "success": poisoned,

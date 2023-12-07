@@ -39,7 +39,7 @@ class SetEconomyAction(EventAction):
 
         def variable(var: str) -> bool:
             variables = var.split(":")
-            return player.game_variables[variables[0]] == variables[1]
+            return variables[1] == player.game_variables.get(variables[0])
 
         npc.economy = Economy(self.economy_slug)
 

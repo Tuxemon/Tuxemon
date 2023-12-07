@@ -7,7 +7,7 @@
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": null,
+  "potency": 0.0,
   "power": 1.5,
   "range": "ranged",
   "recharge": 1,

@@ -108,13 +108,77 @@ else:
 # used for scaling.
 NATIVE_RESOLUTION = [240, 160]
 
-# Set the character limit for setting a player name.
-PLAYER_NAME_LIMIT = 15
+
+# Players
+PLAYER_NPC = CONFIG.player_npc
+PLAYER_NAME_LIMIT: int = 15  # The character limit for a player name.
+PARTY_LIMIT: int = 6  # The maximum number of tuxemon this npc can hold
+
+# PC
+KENNEL: str = "Kennel"
+LOCKER: str = "Locker"
+MAX_KENNEL: int = 30  # nr max of pc monsters
+MAX_LOCKER: int = 30  # nr max of pc items
+
+# Items
+INFINITE_ITEMS: int = -1
+MAX_TYPES_BAG: int = 99  # eg 5 capture devices, 1 type and 5 items
+
+# Monsters
+MAX_LEVEL: int = 999
+MAX_MOVES: int = 4
+MISSING_IMAGE: str = "gfx/sprites/battle/missing.png"
+MIN_CATCH_RATE: int = 0
+MAX_CATCH_RATE: int = 255
+MIN_CATCH_RESISTANCE: float = 0.0
+MAX_CATCH_RESISTANCE: float = 2.0
+# set multiplier stats (multiplier: level + coefficient)
+COEFF_STATS: int = 7
+# set experience required for levelling up
+# (level + level_ofs) ** coefficient) - level_ofs default 0
+COEFF_EXP: int = 3
+
+# Capture
+TOTAL_SHAKES: int = 4
+MAX_SHAKE_RATE: int = 65536
+SHAKE_CONSTANT: int = 524325
+
+# Techniques
+MIN_RECHARGE: int = 0
+MAX_RECHARGE: int = 5
+MIN_POTENCY: float = 0.0
+MAX_POTENCY: float = 1.0
+MIN_ACCURACY: float = 0.0
+MAX_ACCURACY: float = 1.0
+MIN_POWER: float = 0.0
+MAX_POWER: float = 3.0
+MIN_HEALING_POWER: int = 0
+MAX_HEALING_POWER: int = 10
+
+# Combat
+# This is the coefficient that can be found in formula.py and
+# it calculates the user strength
+# eg: user_strength = user.melee * (COEFF_DAMAGE + user.level)
+COEFF_DAMAGE: int = 7
+# Min and max multiplier are the multiplier upper/lower bounds
+MIN_MULTIPLIER: float = 0.25
+MAX_MULTIPLIER: float = 4.0
+# MULT_MAP associates the multiplier to a specific text
+MULT_MAP = {
+    4: "attack_very_effective",
+    2: "attack_effective",
+    0.5: "attack_resisted",
+    0.25: "attack_weak",
+}
+# This is the time, in seconds, that the text takes to display.
+LETTER_TIME: float = 0.02
+# This is the time, in seconds, that the animation takes to finish.
+ACTION_TIME: float = 2.0
 
 # Fonts
-FONT_BASIC = "PressStart2P.ttf"
-FONT_CHINESE = "SourceHanSerifCN-Bold.otf"
-FONT_JAPANESE = "SourceHanSerifJP-Bold.otf"
+FONT_BASIC: str = "PressStart2P.ttf"
+FONT_CHINESE: str = "SourceHanSerifCN-Bold.otf"
+FONT_JAPANESE: str = "SourceHanSerifJP-Bold.otf"
 
 # If scaling is enabled, scale the tiles based on the resolution
 if CONFIG.large_gui:

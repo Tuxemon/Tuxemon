@@ -28,9 +28,6 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "slug",
     "quantity",
 )
-INFINITE_ITEMS = -1
-# eg 5 capture devices, 1 type and 5 items
-MAX_TYPES_BAG = 99
 
 
 class Item:

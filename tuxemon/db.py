@@ -442,9 +442,7 @@ class MonsterModel(BaseModel):
     types: Sequence[ElementType] = Field(
         [], description="The type(s) of this monster"
     )
-    catch_rate: float = Field(
-        ..., description="The catch rate of the monster (max 100)"
-    )
+    catch_rate: float = Field(..., description="The catch rate of the monster")
     possible_genders: Sequence[GenderType] = Field(
         [], description="Valid genders for the monster"
     )
@@ -504,15 +502,23 @@ class MonsterModel(BaseModel):
 
     @field_validator("catch_rate")
     def check_catch_rate(cls: MonsterModel, v: float) -> float:
-        if 0 <= v <= 255:
+        lower = prepare.MIN_CATCH_RATE
+        upper = prepare.MAX_CATCH_RATE
+        if lower <= v <= upper:
             return v
-        raise ValueError(f"the catch rate is between 0 and 100 ({v})")
+        raise ValueError(
+            f"the catch rate is between {lower} and {upper} ({v})"
+        )
 
     @field_validator("lower_catch_resistance", "upper_catch_resistance")
     def check_catch_resistance(cls: MonsterModel, v: float) -> float:
-        if 0 <= v <= 2:
+        lower = prepare.MIN_CATCH_RESISTANCE
+        upper = prepare.MAX_CATCH_RESISTANCE
+        if lower <= v <= upper:
             return v
-        raise ValueError(f"the catch resistance is between 0 and 2 ({v})")
+        raise ValueError(
+            f"the catch resistance is between {lower} and {upper} ({v})"
+        )
 
 
 class StatModel(BaseModel):
@@ -598,7 +604,7 @@ class TechniqueModel(BaseModel):
         False,
         description="Whether or not the technique can be used outside of combat",
     )
-    power: float = Field(0, description="Power of the technique")
+    power: float = Field(..., description="Power of the technique")
     is_fast: bool = Field(
         False, description="Whether or not this is a fast technique"
     )
@@ -610,10 +616,8 @@ class TechniqueModel(BaseModel):
     recharge: int = Field(0, description="Recharge of this technique")
     range: Range = Field(..., description="The attack range of this technique")
     tech_id: int = Field(..., description="The id of this technique")
-    accuracy: float = Field(0, description="The accuracy of the technique")
-    potency: Optional[float] = Field(
-        None, description="How potent the technique is"
-    )
+    accuracy: float = Field(..., description="The accuracy of the technique")
+    potency: float = Field(..., description="How potent the technique is")
 
     # Validate resources that should exist
     @field_validator("icon")
@@ -666,6 +670,48 @@ class TechniqueModel(BaseModel):
         if not v or has.check_conditions(v):
             return v
         raise ValueError(f"the conditions {v} aren't correctly formatted")
+
+    @field_validator("recharge")
+    def check_recharge(cls: TechniqueModel, v: int) -> int:
+        lower = prepare.MIN_RECHARGE
+        upper = prepare.MAX_RECHARGE
+        if lower <= v <= upper:
+            return v
+        raise ValueError(f"the recharge is between {lower} and {upper} ({v})")
+
+    @field_validator("power")
+    def check_power(cls: TechniqueModel, v: float) -> float:
+        lower = prepare.MIN_POWER
+        upper = prepare.MAX_POWER
+        if lower <= v <= upper:
+            return v
+        raise ValueError(f"the power is between {lower} and {upper} ({v})")
+
+    @field_validator("accuracy")
+    def check_accuracy(cls: TechniqueModel, v: float) -> float:
+        lower = prepare.MIN_ACCURACY
+        upper = prepare.MAX_ACCURACY
+        if lower <= v <= upper:
+            return v
+        raise ValueError(f"the accuracy is between {lower} and {upper} ({v})")
+
+    @field_validator("potency")
+    def check_potency(cls: TechniqueModel, v: float) -> float:
+        lower = prepare.MIN_POTENCY
+        upper = prepare.MAX_POTENCY
+        if lower <= v <= upper:
+            return v
+        raise ValueError(f"the potency is between {lower} and {upper} ({v})")
+
+    @field_validator("healing_power")
+    def check_healing_power(cls: TechniqueModel, v: int) -> int:
+        lower = prepare.MIN_HEALING_POWER
+        upper = prepare.MAX_HEALING_POWER
+        if lower <= v <= upper:
+            return v
+        raise ValueError(
+            f"the healing power is between {lower} and {upper} ({v})"
+        )
 
 
 class ConditionModel(BaseModel):

@@ -8,7 +8,7 @@ import uuid
 from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Optional
 
-from tuxemon import formula, fusion, graphics, tools
+from tuxemon import formula, fusion, graphics, prepare, tools
 from tuxemon.condition.condition import (
     Condition,
     decode_condition,
@@ -67,10 +67,6 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "mod_hp",
     "plague",
 )
-
-MAX_LEVEL = 999
-MAX_MOVES = 4
-MISSING_IMAGE = "gfx/sprites/battle/missing.png"
 
 
 # class definition for tuxemon flairs:
@@ -146,7 +142,7 @@ class Monster:
         self.taste_cold = TasteCold.tasteless
         self.taste_warm = TasteWarm.tasteless
 
-        self.max_moves = MAX_MOVES
+        self.max_moves = prepare.MAX_MOVES
         self.txmn_id = 0
         self.capture = 0
         self.capture_device = "tuxeball"
@@ -416,7 +412,7 @@ class Monster:
         """
         level = self.level
 
-        multiplier = level + 7
+        multiplier = level + prepare.COEFF_STATS
         shape = Shape(self.shape)
         self.armour = (shape.armour * multiplier) + self.mod_armour
         self.dodge = (shape.dodge * multiplier) + self.mod_dodge
@@ -507,7 +503,7 @@ class Monster:
         # Increase Level and stats
         self.levelling_up = True
         self.level += 1
-        self.level = min(self.level, MAX_LEVEL)
+        self.level = min(self.level, prepare.MAX_LEVEL)
         self.set_stats()
 
     def set_level(self, level: int) -> None:
@@ -526,8 +522,8 @@ class Monster:
         >>> bulbatux.set_level(20)
 
         """
-        if level > MAX_LEVEL:
-            level = MAX_LEVEL
+        if level > prepare.MAX_LEVEL:
+            level = prepare.MAX_LEVEL
         elif level < 1:
             level = 1
         self.level = level
@@ -547,13 +543,13 @@ class Monster:
             if move.level_learned <= level:
                 moves.append(move.technique)
 
-        if len(moves) <= MAX_MOVES:
+        if len(moves) <= prepare.MAX_MOVES:
             for ele in moves:
                 tech = Technique()
                 tech.load(ele)
                 self.learn(tech)
         else:
-            for ele in moves[-MAX_MOVES:]:
+            for ele in moves[-prepare.MAX_MOVES :]:
                 tech = Technique()
                 tech.load(ele)
                 self.learn(tech)
@@ -595,7 +591,7 @@ class Monster:
             Required experience.
 
         """
-        return (self.level + level_ofs) ** 3
+        return (self.level + level_ofs) ** prepare.COEFF_EXP
 
     def get_sprite(self, sprite: str, **kwargs: Any) -> Sprite:
         """
@@ -628,7 +624,7 @@ class Monster:
             flair_path = self.get_sprite_path(
                 f"gfx/sprites/battle/{self.slug}-{sprite}-{flair.name}"
             )
-            if flair_path != MISSING_IMAGE:
+            if flair_path != prepare.MISSING_IMAGE:
                 flair_sprite = graphics.load_sprite(flair_path, **kwargs)
                 surface.image.blit(flair_sprite.image, (0, 0))
 
@@ -668,7 +664,7 @@ class Monster:
             pass
 
         logger.error(f"Could not find monster sprite {sprite}")
-        return MISSING_IMAGE
+        return prepare.MISSING_IMAGE
 
     def load_sprites(self) -> bool:
         """

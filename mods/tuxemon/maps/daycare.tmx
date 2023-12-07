@@ -74,8 +74,8 @@
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder0"/>
     <property name="act20" value="set_variable breeder_state:1"/>
-    <property name="cond10" value="not variable_set breeder_state"/>
     <property name="behav10" value="talk cotton_breeder"/>
+    <property name="cond10" value="not variable_set breeder_state"/>
    </properties>
   </object>
   <object id="22" name="breeder state 1" type="event" x="152" y="32" width="16" height="16">
@@ -83,8 +83,8 @@
     <property name="act10" value="translated_dialog cotton_breeder1"/>
     <property name="act15" value="translated_dialog_choice yes:no,wannabreed"/>
     <property name="act20" value="set_variable breeder_state:2"/>
-    <property name="cond10" value="is variable_set breeder_state:1"/>
     <property name="behav10" value="talk cotton_breeder"/>
+    <property name="cond10" value="is variable_set breeder_state:1"/>
     <property name="cond30" value="not variable_set wannabreed"/>
     <property name="cond40" value="is has_party_breeder"/>
    </properties>
@@ -146,8 +146,8 @@
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder5"/>
     <property name="act20" value="set_variable breeder_state:6"/>
-    <property name="cond10" value="is variable_set breeder_state:5"/>
     <property name="behav10" value="talk cotton_breeder"/>
+    <property name="cond10" value="is variable_set breeder_state:5"/>
    </properties>
   </object>
   <object id="30" name="breeder state 6a" type="event" x="136" y="112" width="16" height="16">

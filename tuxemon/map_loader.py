@@ -105,11 +105,12 @@ class YAMLEventLoader:
                 behav_type, args = parse_behav_string(value)
                 _args = list(args)
                 _args.insert(0, behav_type)
-                conds.insert(
-                    0,
-                    MapCondition("behav", _args, x, y, w, h, "is", f"behav{str(key*10)}"),
+                _conds = MapCondition(
+                    "behav", _args, x, y, w, h, "is", f"behav{str(key*10)}"
                 )
-                acts.insert(0, MapAction("behav", _args, f"behav{str(key*10)}"))
+                conds.insert(0, _conds)
+                _acts = MapAction("behav", _args, f"behav{str(key*10)}")
+                acts.insert(0, _acts)
             if event_type == "interact":
                 cond_data = MapCondition(
                     "player_facing_tile",

@@ -81,7 +81,7 @@ class JournalState(PygameMenuState):
                 lab = menu.add.label(
                     label,
                     font_size=self.font_size_small,
-                    font_color=prepare.DARKGRAY_COLOR,
+                    font_color=prepare.DIMGRAY_COLOR,
                     label_id=mon.slug,
                 )
                 assert not isinstance(lab, list)

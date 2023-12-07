@@ -8,6 +8,8 @@ import random
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
 
+from tuxemon.prepare import COEFF_DAMAGE, MAX_MULTIPLIER, MIN_MULTIPLIER
+
 if TYPE_CHECKING:
     from tuxemon.db import MonsterModel
     from tuxemon.element import Element
@@ -43,8 +45,8 @@ def simple_damage_multiplier(
                     continue
                 m = attack_type.lookup_multiplier(target_type.slug)
 
-    m = min(4, m)
-    m = max(0.25, m)
+    m = min(MAX_MULTIPLIER, m)
+    m = max(MIN_MULTIPLIER, m)
     return m
 
 
@@ -66,19 +68,19 @@ def simple_damage_calculate(
 
     """
     if technique.range == "melee":
-        user_strength = user.melee * (7 + user.level)
+        user_strength = user.melee * (COEFF_DAMAGE + user.level)
         target_resist = target.armour
     elif technique.range == "touch":
-        user_strength = user.melee * (7 + user.level)
+        user_strength = user.melee * (COEFF_DAMAGE + user.level)
         target_resist = target.dodge
     elif technique.range == "ranged":
-        user_strength = user.ranged * (7 + user.level)
+        user_strength = user.ranged * (COEFF_DAMAGE + user.level)
         target_resist = target.dodge
     elif technique.range == "reach":
-        user_strength = user.ranged * (7 + user.level)
+        user_strength = user.ranged * (COEFF_DAMAGE + user.level)
         target_resist = target.armour
     elif technique.range == "reliable":
-        user_strength = 7 + user.level
+        user_strength = COEFF_DAMAGE + user.level
         target_resist = 1
     else:
         raise RuntimeError(

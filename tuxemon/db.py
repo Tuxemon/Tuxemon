@@ -34,6 +34,18 @@ T.load_translator()
 Target = Mapping[str, int]
 
 
+class Direction(str, Enum):
+    up = "up"
+    down = "down"
+    left = "left"
+    right = "right"
+
+
+class Orientation(str, Enum):
+    horizontal = "horizontal"
+    vertical = "vertical"
+
+
 # ItemSort defines the sort of item an item is.
 class ItemSort(str, Enum):
     food = "food"
@@ -175,6 +187,13 @@ class MissionStatus(str, Enum):
     pending = "pending"
     completed = "completed"
     failed = "failed"
+
+
+class EntityFacing(str, Enum):
+    front = "front"
+    back = "back"
+    left = "left"
+    right = "right"
 
 
 # TODO: Automatically generate state enum through discovery
@@ -435,15 +454,15 @@ class MonsterModel(BaseModel):
     types: Sequence[ElementType] = Field(
         [], description="The type(s) of this monster"
     )
-    catch_rate: float = Field(0, description="The catch rate of the monster")
+    catch_rate: float = Field(..., description="The catch rate of the monster")
     possible_genders: Sequence[GenderType] = Field(
         [], description="Valid genders for the monster"
     )
     lower_catch_resistance: float = Field(
-        0, description="The lower catch resistance of the monster"
+        ..., description="The lower catch resistance of the monster"
     )
     upper_catch_resistance: float = Field(
-        0, description="The upper catch resistance of the monster"
+        ..., description="The upper catch resistance of the monster"
     )
     moveset: Sequence[MonsterMovesetItemModel] = Field(
         [], description="The moveset of this monster"
@@ -492,6 +511,26 @@ class MonsterModel(BaseModel):
         if v > 0.0:
             return v
         raise ValueError(f"The weight or height cannot be {v}. Use 0.1!")
+
+    @field_validator("catch_rate")
+    def check_catch_rate(cls: MonsterModel, v: float) -> float:
+        lower = prepare.MIN_CATCH_RATE
+        upper = prepare.MAX_CATCH_RATE
+        if lower <= v <= upper:
+            return v
+        raise ValueError(
+            f"the catch rate is between {lower} and {upper} ({v})"
+        )
+
+    @field_validator("lower_catch_resistance", "upper_catch_resistance")
+    def check_catch_resistance(cls: MonsterModel, v: float) -> float:
+        lower = prepare.MIN_CATCH_RESISTANCE
+        upper = prepare.MAX_CATCH_RESISTANCE
+        if lower <= v <= upper:
+            return v
+        raise ValueError(
+            f"the catch resistance is between {lower} and {upper} ({v})"
+        )
 
 
 class StatModel(BaseModel):
@@ -577,7 +616,7 @@ class TechniqueModel(BaseModel):
         False,
         description="Whether or not the technique can be used outside of combat",
     )
-    power: float = Field(0, description="Power of the technique")
+    power: float = Field(..., description="Power of the technique")
     is_fast: bool = Field(
         False, description="Whether or not this is a fast technique"
     )
@@ -589,10 +628,8 @@ class TechniqueModel(BaseModel):
     recharge: int = Field(0, description="Recharge of this technique")
     range: Range = Field(..., description="The attack range of this technique")
     tech_id: int = Field(..., description="The id of this technique")
-    accuracy: float = Field(0, description="The accuracy of the technique")
-    potency: Optional[float] = Field(
-        None, description="How potent the technique is"
-    )
+    accuracy: float = Field(..., description="The accuracy of the technique")
+    potency: float = Field(..., description="How potent the technique is")
 
     # Validate resources that should exist
     @field_validator("icon")
@@ -645,6 +682,48 @@ class TechniqueModel(BaseModel):
         if not v or has.check_conditions(v):
             return v
         raise ValueError(f"the conditions {v} aren't correctly formatted")
+
+    @field_validator("recharge")
+    def check_recharge(cls: TechniqueModel, v: int) -> int:
+        lower = prepare.MIN_RECHARGE
+        upper = prepare.MAX_RECHARGE
+        if lower <= v <= upper:
+            return v
+        raise ValueError(f"the recharge is between {lower} and {upper} ({v})")
+
+    @field_validator("power")
+    def check_power(cls: TechniqueModel, v: float) -> float:
+        lower = prepare.MIN_POWER
+        upper = prepare.MAX_POWER
+        if lower <= v <= upper:
+            return v
+        raise ValueError(f"the power is between {lower} and {upper} ({v})")
+
+    @field_validator("accuracy")
+    def check_accuracy(cls: TechniqueModel, v: float) -> float:
+        lower = prepare.MIN_ACCURACY
+        upper = prepare.MAX_ACCURACY
+        if lower <= v <= upper:
+            return v
+        raise ValueError(f"the accuracy is between {lower} and {upper} ({v})")
+
+    @field_validator("potency")
+    def check_potency(cls: TechniqueModel, v: float) -> float:
+        lower = prepare.MIN_POTENCY
+        upper = prepare.MAX_POTENCY
+        if lower <= v <= upper:
+            return v
+        raise ValueError(f"the potency is between {lower} and {upper} ({v})")
+
+    @field_validator("healing_power")
+    def check_healing_power(cls: TechniqueModel, v: int) -> int:
+        lower = prepare.MIN_HEALING_POWER
+        upper = prepare.MAX_HEALING_POWER
+        if lower <= v <= upper:
+            return v
+        raise ValueError(
+            f"the healing power is between {lower} and {upper} ({v})"
+        )
 
 
 class ConditionModel(BaseModel):
@@ -807,7 +886,10 @@ class NpcTemplateModel(BaseModel):
 
     @field_validator("sprite_name")
     def sprite_exists(cls: NpcTemplateModel, v: str) -> str:
-        sprite: str = f"sprites/{v}_front.png"
+        sprite = f"sprites/{v}_{EntityFacing.front}.png"
+        sprite = f"sprites/{v}_{EntityFacing.back}.png"
+        sprite = f"sprites/{v}_{EntityFacing.right}.png"
+        sprite = f"sprites/{v}_{EntityFacing.left}.png"
         sprite_obj: str = f"sprites_obj/{v}.png"
         if has.file(sprite) or has.file(sprite_obj):
             return v
@@ -883,6 +965,25 @@ class EncounterModel(BaseModel):
     )
 
 
+class DialogueModel(BaseModel):
+    slug: str = Field(
+        ..., description="Slug to uniquely identify this dialogue"
+    )
+    bg_color: str = Field(..., description="RGB color (eg. 255:0:0)")
+    font_color: str = Field(..., description="RGB color (eg. 255:0:0)")
+    font_shadow_color: str = Field(..., description="RGB color (eg. 255:0:0)")
+    border_slug: str = Field(..., description="Name of the border")
+    border_path: str = Field(..., description="Path to the border")
+
+    # Validate resources that should exist
+    @field_validator("border_slug")
+    def file_exists(cls: DialogueModel, v: str) -> str:
+        file: str = f"gfx/borders/{v}.png"
+        if has.file(file):
+            return v
+        raise ValueError(f"no resource exists with path: {file}")
+
+
 class ElementItemModel(BaseModel):
     against: ElementType = Field(..., description="Name of the type")
     multiplier: float = Field(1.0, description="Multiplier against the type")
@@ -922,6 +1023,14 @@ class EconomyItemModel(BaseModel):
         if has.db_entry("item", v):
             return v
         raise ValueError(f"the item {v} doesn't exist in the db")
+
+    @field_validator("variable")
+    def variable_exists(
+        cls: EconomyItemModel, v: Optional[str]
+    ) -> Optional[str]:
+        if not v or v.find(":") > 1:
+            return v
+        raise ValueError(f"the variable {v} isn't formatted correctly")
 
 
 class EconomyModel(BaseModel):
@@ -963,6 +1072,7 @@ TableName = Literal[
     "template",
     "mission",
     "encounter",
+    "dialogue",
     "environment",
     "item",
     "monster",
@@ -980,6 +1090,7 @@ DataModel = Union[
     TemplateModel,
     MissionModel,
     EncounterModel,
+    DialogueModel,
     EnvironmentModel,
     ItemModel,
     MonsterModel,
@@ -1034,6 +1145,7 @@ class JSONDatabase:
             "condition",
             "technique",
             "encounter",
+            "dialogue",
             "environment",
             "sounds",
             "music",
@@ -1179,6 +1291,9 @@ class JSONDatabase:
             elif table == "encounter":
                 encounter = EncounterModel(**item)
                 self.database[table][encounter.slug] = encounter
+            elif table == "dialogue":
+                dialogue = DialogueModel(**item)
+                self.database[table][dialogue.slug] = dialogue
             elif table == "environment":
                 env = EnvironmentModel(**item)
                 self.database[table][env.slug] = env
@@ -1236,6 +1351,10 @@ class JSONDatabase:
 
     @overload
     def lookup(self, slug: str, table: Literal["encounter"]) -> EncounterModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["dialogue"]) -> DialogueModel:
         pass
 
     @overload
@@ -1344,6 +1463,7 @@ class JSONDatabase:
             "template",
             "mission",
             "encounter",
+            "dialogue",
             "environment",
             "item",
             "monster",

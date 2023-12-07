@@ -3,10 +3,9 @@
 import unittest
 from itertools import combinations
 from operator import is_not
-from typing import cast
 from unittest.mock import Mock
 
-from tuxemon.map import Direction
+from tuxemon.db import Direction as Dir
 from tuxemon.map import RegionProperties as RP
 from tuxemon.map_loader import TMXMapLoader
 
@@ -15,10 +14,10 @@ class TestTMXMapLoaderRegionTiles(unittest.TestCase):
     def setUp(self):
         self.properties = {
             "a": 1,
-            "enter_from": "up",
+            "enter_from": Dir.up,
             "b": 3,
-            "exit_from": "down",
-            "endure": "left",
+            "exit_from": Dir.down,
+            "endure": Dir.left,
         }
         self.region = Mock(
             x=0,
@@ -43,9 +42,9 @@ class TestTMXMapLoaderRegionTiles(unittest.TestCase):
     def test_result_properties_correct(self):
         properties = self.result[0][1]
         expected = RP(
-            enter_from=["up"],
-            exit_from=["down"],
-            endure=["left"],
+            enter_from=[Dir.up],
+            exit_from=[Dir.down],
+            endure=[Dir.left],
             entity=None,
             key=None,
         )
@@ -65,12 +64,12 @@ class TestTMXMapLoaderRegionTiles(unittest.TestCase):
         # fmt: off
         self.assertEqual(
             [
-                ((0, 1), RP(["up"], ["down"], ["left"], None, None)),
-                ((1, 1), RP(["up"], ["down"], ["left"], None, None)),
-                ((0, 2), RP(["up"], ["down"], ["left"], None, None)),
-                ((1, 2), RP(["up"], ["down"], ["left"], None, None)),
-                ((0, 3), RP(["up"], ["down"], ["left"], None, None)),
-                ((1, 3), RP(["up"], ["down"], ["left"], None, None)),
+                ((0, 1), RP([Dir.up], [Dir.down], [Dir.left], None, None)),
+                ((1, 1), RP([Dir.up], [Dir.down], [Dir.left], None, None)),
+                ((0, 2), RP([Dir.up], [Dir.down], [Dir.left], None, None)),
+                ((1, 2), RP([Dir.up], [Dir.down], [Dir.left], None, None)),
+                ((0, 3), RP([Dir.up], [Dir.down], [Dir.left], None, None)),
+                ((1, 3), RP([Dir.up], [Dir.down], [Dir.left], None, None)),
             ],
             self.result,
         )

@@ -6,15 +6,7 @@ import logging
 from collections.abc import Generator, Mapping, MutableMapping, Sequence
 from itertools import product
 from math import atan2, pi
-from typing import (
-    TYPE_CHECKING,
-    Literal,
-    NamedTuple,
-    Optional,
-    TypeVar,
-    Union,
-    cast,
-)
+from typing import TYPE_CHECKING, NamedTuple, Optional, TypeVar, Union
 
 import pyscroll
 from pytmx import pytmx
@@ -22,6 +14,7 @@ from pytmx.pytmx import TiledMap
 
 from tuxemon import prepare
 from tuxemon.compat.rect import ReadOnlyRect
+from tuxemon.db import Direction, Orientation
 from tuxemon.event import EventObject
 from tuxemon.graphics import scaled_image_loader
 from tuxemon.locale import T
@@ -35,9 +28,6 @@ logger = logging.getLogger(__name__)
 
 RectTypeVar = TypeVar("RectTypeVar", bound=ReadOnlyRect)
 
-Direction = Literal["up", "down", "left", "right"]
-Orientation = Literal["horizontal", "vertical"]
-
 
 class RegionProperties(NamedTuple):
     enter_from: Sequence[Direction]
@@ -49,25 +39,19 @@ class RegionProperties(NamedTuple):
 
 # direction => vector
 dirs3: Mapping[Direction, Vector3] = {
-    "up": Vector3(0, -1, 0),
-    "down": Vector3(0, 1, 0),
-    "left": Vector3(-1, 0, 0),
-    "right": Vector3(1, 0, 0),
+    Direction.up: Vector3(0, -1, 0),
+    Direction.down: Vector3(0, 1, 0),
+    Direction.left: Vector3(-1, 0, 0),
+    Direction.right: Vector3(1, 0, 0),
 }
 dirs2: Mapping[Direction, Vector2] = {
-    "up": Vector2(0, -1),
-    "down": Vector2(0, 1),
-    "left": Vector2(-1, 0),
-    "right": Vector2(1, 0),
+    Direction.up: Vector2(0, -1),
+    Direction.down: Vector2(0, 1),
+    Direction.left: Vector2(-1, 0),
+    Direction.right: Vector2(1, 0),
 }
 # just the first letter of the direction => vector
 short_dirs = {d[0]: dirs2[d] for d in dirs2}
-
-# complimentary directions
-pairs = {"up": "down", "down": "up", "left": "right", "right": "left"}
-
-# what directions entities can face
-facing = "front", "back", "left", "right"
 
 
 def translate_short_path(
@@ -94,19 +78,129 @@ def translate_short_path(
         yield (int(position_vec.x), int(position_vec.y))
 
 
+def get_coords(
+    tile: tuple[int, int], map_size: tuple[int, int], radius: int = 1
+) -> list[tuple[int, int]]:
+    """
+    Returns a list with the cardinal coordinates (down, right, up, and left),
+    Negative coordinates as well as the ones the exceed the map size will be
+    filtered out. If no valid coordinates, then it'll be raised a ValueError.
+
+     -  | 1,0 |  -
+    0,1 | 1,1 | 2,1 |
+     -  | 1,2 |  -
+
+    eg. radius = 1 (1,0),(0,1),(1,2),(2,1)
+
+    Parameters:
+        tile: Tile coordinates
+        map_size: Dimension of the map
+        radius: Radius, default 1
+
+    Returns:
+        List tile coordinates.
+    """
+    coords: list[tuple[int, int]] = []
+    coords.append((tile[0], tile[1] + radius))  # down
+    coords.append((tile[0] + radius, tile[1]))  # right
+    coords.append((tile[0], tile[1] - radius))  # up
+    coords.append((tile[0] - radius, tile[1]))  # left
+    _coords = [
+        _tile
+        for _tile in coords
+        if map_size[0] >= _tile[0] >= 0 and map_size[1] >= _tile[1] >= 0
+    ]
+    if not _coords:
+        raise ValueError(f"{coords} invalid coordinates")
+    return _coords
+
+
+def get_coord_direction(
+    tile: tuple[int, int],
+    direction: Direction,
+    map_size: tuple[int, int],
+    radius: int = 1,
+) -> tuple[int, int]:
+    """
+    Returns the coordinates for a specific side and radius.
+    Negative coordinates as well as the ones the exceed the map size will
+    raise a ValueError.
+
+    Parameters:
+        tile: Tile coordinates
+        side: Direction "up*, "dowm", "left", "right"
+        map_size: Dimension of the map
+        radius: Radius, default 1
+
+    Returns:
+        Tuple tile coordinates.
+    """
+    _tile: tuple[int, int] = (0, 0)
+    if direction == "down":
+        _tile = (tile[0], tile[1] + radius)
+    elif direction == "right":
+        _tile = (tile[0] + radius, tile[1])
+    elif direction == "up":
+        _tile = (tile[0], tile[1] - radius)
+    elif direction == "left":
+        _tile = (tile[0] - radius, tile[1])
+    else:
+        raise ValueError(f"{direction} doesn't exist")
+    if map_size[0] >= _tile[0] >= 0 and map_size[1] >= _tile[1] >= 0:
+        return _tile
+    else:
+        raise ValueError(f"{_tile} invalid coordinates")
+
+
 def get_direction(
     base: Union[Vector2, tuple[int, int]],
     target: Union[Vector2, tuple[int, int]],
 ) -> Direction:
+    """
+    Return the direction based on the coordinates position.
+
+    eg. base (1,3) - target (1,12) -> "down"
+
+    Parameters:
+        base: Base coordinates
+        target: Target coordinates
+
+    Returns:
+        Direction.
+
+    """
     y_offset = base[1] - target[1]
     x_offset = base[0] - target[0]
     # Is it further away vertically or horizontally?
     look_on_y_axis = abs(y_offset) >= abs(x_offset)
 
     if look_on_y_axis:
-        return "up" if y_offset > 0 else "down"
+        return Direction.up if y_offset > 0 else Direction.down
     else:
-        return "left" if x_offset > 0 else "right"
+        return Direction.left if x_offset > 0 else Direction.right
+
+
+def pairs(direction: Direction) -> Direction:
+    """
+    Returns complimentary direction.
+
+    Parameters:
+        direction: Direction.
+
+    Returns:
+        Complimentary direction.
+
+    """
+    if direction == Direction.up:
+        return Direction.down
+    elif direction == Direction.down:
+        return Direction.up
+    elif direction == Direction.left:
+        return Direction.right
+    elif direction == Direction.right:
+        return Direction.left
+    else:
+        raise ValueError(f"{direction} doesn't exist.")
 
 
 def proj(point: Vector3) -> Vector2:
@@ -271,9 +365,9 @@ def orientation_by_angle(angle: float) -> Orientation:
 
     """
     if angle == 3 / 2 * pi:
-        return "vertical"
+        return Orientation.vertical
     elif angle == 0.0:
-        return "horizontal"
+        return Orientation.horizontal
     else:
         raise Exception("A collision line must be aligned to an axis")
 
@@ -324,13 +418,13 @@ def extract_region_properties(
     # if there is an exit, but no explicit enter, then
     # allow entering from all sides except the exit side
     if exits and not enters:
-        enters = ["up", "down", "left", "right"]
+        enters = list(Direction)
         for _exit in exits:
-            enters.remove(cast(Direction, _exit))
+            enters.remove(_exit)
     if label == "slide":
-        enters = ["up", "down", "left", "right"]
-        exits = ["up", "down", "left", "right"]
-        endure = ["up", "down", "left", "right"]
+        enters = list[Direction]
+        exits = list[Direction]
+        endure = list[Direction]
     if has_movement_modifier:
         return RegionProperties(
             enter_from=enters,
@@ -360,7 +454,7 @@ def direction_to_list(direction: Optional[str]) -> list[Direction]:
         props = direction.split(",")
     result: list[Direction] = []
     for _props in props:
-        result.append(cast(Direction, _props))
+        result.append(Direction(_props))
     return result
 
 
@@ -410,7 +504,6 @@ class TuxemonMap:
         self,
         events: Sequence[EventObject],
         inits: Sequence[EventObject],
-        interacts: Sequence[EventObject],
         surfable_map: Sequence[tuple[int, int]],
         collision_map: MutableMapping[
             tuple[int, int], Optional[RegionProperties]
@@ -437,7 +530,6 @@ class TuxemonMap:
         Parameters:
             events: List of map events.
             inits: List of events to be loaded once, when map is entered.
-            interacts: List of intractable spaces.
             surfable_map: Surfable map.
             collision_map: Collision map.
             collisions_lines_map: Collision map of lines.
@@ -446,7 +538,6 @@ class TuxemonMap:
             filename: Path of the map.
 
         """
-        self.interacts = interacts
         self.collision_map = collision_map
         self.surfable_map = surfable_map
         self.collision_lines_map = collisions_lines_map

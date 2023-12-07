@@ -206,6 +206,7 @@ class Menu(Generic[T], state.State):
     font_shadow_color: ColorLike = prepare.FONT_SHADOW_COLOR
     # Font color when the action is unavailable
     unavailable_color: ColorLike = (220, 220, 220)
+    unavailable_color_shop: ColorLike = (51, 51, 51)
     # File to load for image background
     background_filename: Optional[str] = None
     menu_select_sound_filename = "sound_menu_select"
@@ -215,7 +216,7 @@ class Menu(Generic[T], state.State):
         font_filename = prepare.FONT_JAPANESE
     else:
         font_filename = prepare.FONT_BASIC
-    borders_filename = "gfx/dialog-borders01.png"
+    borders_filename = "gfx/borders/borders.png"
     cursor_filename = "gfx/arrow.png"
     cursor_move_duration = 0.20
     default_character_delay = 0.05

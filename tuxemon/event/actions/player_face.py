@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import cast, final
+from typing import final
 
+from tuxemon.db import Direction
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.map import Direction, dirs2, get_direction
+from tuxemon.map import dirs2, get_direction
 from tuxemon.states.world.worldstate import WorldState
 
 
@@ -29,7 +30,7 @@ class PlayerFaceAction(EventAction):
     """
 
     name = "player_face"
-    direction: str  # Using Direction as the typehint breaks the Action
+    direction: Direction
 
     def start(self) -> None:
         # Get the parameters to determine what direction the player will face.
@@ -45,8 +46,7 @@ class PlayerFaceAction(EventAction):
         # If we're doing a transition, only change the player's facing when
         # we've reached the apex of the transition.
         world_state = self.session.client.get_state_by_name(WorldState)
-        # Pending https://github.com/python/mypy/issues/9718
         if world_state.in_transition:
-            world_state.delayed_facing = cast(Direction, direction)
+            world_state.delayed_facing = direction
         else:
-            self.session.player.facing = cast(Direction, direction)
+            self.session.player.facing = direction

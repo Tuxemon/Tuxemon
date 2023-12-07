@@ -186,7 +186,8 @@
   <object id="537" name="fountain" type="event" x="128" y="368" width="48" height="32">
    <properties>
     <property name="act1" value="translated_dialog cotton_town_fountain"/>
-    <property name="cond1" value="is to_use_tile"/>
+    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="538" name="Teleport to Dryad's Grove" type="event" x="0" y="112" width="16" height="16">

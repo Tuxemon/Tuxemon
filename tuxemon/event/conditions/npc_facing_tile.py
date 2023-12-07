@@ -8,6 +8,7 @@ from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.map import get_coords, get_direction
 from tuxemon.session import Session
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -21,10 +22,11 @@ class NPCFacingTileCondition(EventCondition):
     Script usage:
         .. code-block::
 
-            is npc_facing_tile <character>
+            is npc_facing_tile <character>[,value]
 
     Script parameters:
         character: Either "player" or npc slug name (e.g. "npc_maple").
+        value: value (eg surfable) inside the tileset.
 
     """
 
@@ -56,6 +58,17 @@ class NPCFacingTileCondition(EventCondition):
         # get all the coordinates around the npc
         client = session.client
         npc_tiles = get_coords(npc.tile_pos, client.map_size)
+
+        # check if the NPC is facing a specific set of tiles
+        world = session.client.get_state_by_name(WorldState)
+        if len(condition.parameters) > 1:
+            value = condition.parameters[1]
+            if value == "surfable":
+                label = list(world.surfable_map)
+            else:
+                label = world.check_collision_zones(world.collision_map, value)
+            tiles = list(set(npc_tiles).intersection(label))
+
         # return common coordinates
         tiles = list(set(tiles).intersection(npc_tiles))
 

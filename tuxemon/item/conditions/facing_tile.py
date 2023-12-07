@@ -33,8 +33,12 @@ class FacingTileCondition(ItemCondition):
         # check if the NPC is facing a specific set of tiles
         world = client.get_state_by_name(WorldState)
         if self.facing_tile == "surfable":
-            surf = list(world.surfable_map)
-            tiles = list(set(tiles).intersection(surf))
+            label = list(world.surfable_map)
+        else:
+            label = world.check_collision_zones(
+                world.collision_map, self.facing_tile
+            )
+        tiles = list(set(tiles).intersection(label))
 
         # Next, we check the player position and see if we're one tile
         # away from the tile.

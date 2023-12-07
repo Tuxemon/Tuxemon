@@ -17,7 +17,7 @@ from typing import TYPE_CHECKING, Literal, Optional
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import audio, graphics, tools
+from tuxemon import audio, graphics, prepare, tools
 from tuxemon.db import GenderType, SeenStatus
 from tuxemon.locale import T
 from tuxemon.menu.interface import ExpBar, HpBar
@@ -741,7 +741,7 @@ class CombatAnimations(ABC, Menu[None]):
             combat._captured = True
             info = None
             # if party
-            if len(combat.players[0].monsters) >= 6:
+            if len(self.players[0].monsters) >= self.players[0].party_limit:
                 info = T.format(
                     "gotcha_kennel",
                     {"name": monster.name.upper()},
@@ -753,7 +753,7 @@ class CombatAnimations(ABC, Menu[None]):
                 )
             if info:
                 gotcha += "\n" + info
-                action_time += len(gotcha) * 0.02
+                action_time += len(gotcha) * prepare.LETTER_TIME
             self.task(
                 partial(self.alert, gotcha),
                 action_time,

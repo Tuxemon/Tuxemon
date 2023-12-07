@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from math import sqrt
 from typing import TYPE_CHECKING, Union
 
+from tuxemon import prepare
 from tuxemon.db import ElementType, GenderType, TasteWarm
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 
@@ -33,13 +34,13 @@ class CaptureEffect(ItemEffect):
     ) -> CaptureEffectResult:
         assert target
         # The number of shakes that a tuxemon can do to escape.
-        total_shakes = 4
+        total_shakes = prepare.TOTAL_SHAKES
         # The max catch rate.
-        max_catch_rate = 255
+        max_catch_rate = prepare.MAX_CATCH_RATE
         # In every shake a random number form [0-65536] will be produced.
-        max_shake_rate = 65536
+        max_shake_rate = prepare.MAX_SHAKE_RATE
         # Constant used in shake_check calculations
-        shake_constant = 524325
+        shake_constant = prepare.SHAKE_CONSTANT
         # Check if target has status/condition:
         status_modifier = 1.0
         status_category = ""
@@ -198,4 +199,4 @@ class CaptureEffect(ItemEffect):
         self.user.add_monster(target, len(self.user.monsters))
 
         # TODO: remove monster from the other party
-        return {"success": True, "num_shakes": 4, "extra": None}
+        return {"success": True, "num_shakes": total_shakes, "extra": None}

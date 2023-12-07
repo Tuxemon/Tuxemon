@@ -4,11 +4,12 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import Optional, cast, final
+from typing import Optional, final
 
+from tuxemon.db import Direction
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.map import Direction, get_coord_direction, get_coords
+from tuxemon.map import get_coord_direction, get_coords
 
 
 @final
@@ -31,7 +32,7 @@ class PathfindToPlayerAction(EventAction):
 
     name = "pathfind_to_player"
     npc_slug: str
-    direction: Optional[str] = None
+    direction: Optional[Direction] = None
     distance: Optional[int] = None
 
     def start(self) -> None:
@@ -45,7 +46,6 @@ class PathfindToPlayerAction(EventAction):
             raise ValueError(f"{distance} cannot be below 0")
 
         if self.direction is not None:
-            self.direction = cast(Direction, self.direction)
             closest = get_coord_direction(
                 player.tile_pos, self.direction, client.map_size, distance
             )

@@ -12,12 +12,11 @@ from natsort import natsorted
 
 from tuxemon import prepare
 from tuxemon.compat import Rect
+from tuxemon.db import Direction, Orientation
 from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon.graphics import scaled_image_loader
 from tuxemon.lib.bresenham import bresenham
 from tuxemon.map import (
-    Direction,
-    Orientation,
     RegionProperties,
     TuxemonMap,
     angle_of_points,
@@ -275,12 +274,12 @@ class TMXMapLoader:
         if not getattr(tiled_object, "closed", True):
             for item in self.process_line(tiled_object, tile_size):
                 blocker0, blocker1, orientation = item
-                if orientation == "vertical":
-                    yield blocker0, "left"
-                    yield blocker1, "right"
-                elif orientation == "horizontal":
-                    yield blocker1, "down"
-                    yield blocker0, "up"
+                if orientation == Orientation.vertical:
+                    yield blocker0, Direction.left
+                    yield blocker1, Direction.right
+                elif orientation == Orientation.horizontal:
+                    yield blocker1, Direction.down
+                    yield blocker0, Direction.up
                 else:
                     raise Exception(orientation)
 

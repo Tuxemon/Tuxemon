@@ -6,15 +6,7 @@ import logging
 from collections.abc import Generator, Mapping, MutableMapping, Sequence
 from itertools import product
 from math import atan2, pi
-from typing import (
-    TYPE_CHECKING,
-    Literal,
-    NamedTuple,
-    Optional,
-    TypeVar,
-    Union,
-    cast,
-)
+from typing import TYPE_CHECKING, NamedTuple, Optional, TypeVar, Union
 
 import pyscroll
 from pytmx import pytmx
@@ -22,6 +14,7 @@ from pytmx.pytmx import TiledMap
 
 from tuxemon import prepare
 from tuxemon.compat.rect import ReadOnlyRect
+from tuxemon.db import Direction, Orientation
 from tuxemon.event import EventObject
 from tuxemon.graphics import scaled_image_loader
 from tuxemon.locale import T
@@ -35,9 +28,6 @@ logger = logging.getLogger(__name__)
 
 RectTypeVar = TypeVar("RectTypeVar", bound=ReadOnlyRect)
 
-Direction = Literal["up", "down", "left", "right"]
-Orientation = Literal["horizontal", "vertical"]
-
 
 class RegionProperties(NamedTuple):
     enter_from: Sequence[Direction]
@@ -49,22 +39,19 @@ class RegionProperties(NamedTuple):
 
 # direction => vector
 dirs3: Mapping[Direction, Vector3] = {
-    "up": Vector3(0, -1, 0),
-    "down": Vector3(0, 1, 0),
-    "left": Vector3(-1, 0, 0),
-    "right": Vector3(1, 0, 0),
+    Direction.up: Vector3(0, -1, 0),
+    Direction.down: Vector3(0, 1, 0),
+    Direction.left: Vector3(-1, 0, 0),
+    Direction.right: Vector3(1, 0, 0),
 }
 dirs2: Mapping[Direction, Vector2] = {
-    "up": Vector2(0, -1),
-    "down": Vector2(0, 1),
-    "left": Vector2(-1, 0),
-    "right": Vector2(1, 0),
+    Direction.up: Vector2(0, -1),
+    Direction.down: Vector2(0, 1),
+    Direction.left: Vector2(-1, 0),
+    Direction.right: Vector2(1, 0),
 }
 # just the first letter of the direction => vector
 short_dirs = {d[0]: dirs2[d] for d in dirs2}
-
-# complimentary directions
-pairs = {"up": "down", "down": "up", "left": "right", "right": "left"}
 
 
 def translate_short_path(
@@ -188,9 +175,32 @@ def get_direction(
     look_on_y_axis = abs(y_offset) >= abs(x_offset)
 
     if look_on_y_axis:
-        return "up" if y_offset > 0 else "down"
+        return Direction.up if y_offset > 0 else Direction.down
     else:
-        return "left" if x_offset > 0 else "right"
+        return Direction.left if x_offset > 0 else Direction.right
+
+
+def pairs(direction: Direction) -> Direction:
+    """
+    Returns complimentary direction.
+
+    Parameters:
+        direction: Direction.
+
+    Returns:
+        Complimentary direction.
+
+    """
+    if direction == Direction.up:
+        return Direction.down
+    elif direction == Direction.down:
+        return Direction.up
+    elif direction == Direction.left:
+        return Direction.right
+    elif direction == Direction.right:
+        return Direction.left
+    else:
+        raise ValueError(f"{direction} doesn't exist.")
 
 
 def proj(point: Vector3) -> Vector2:
@@ -355,9 +365,9 @@ def orientation_by_angle(angle: float) -> Orientation:
 
     """
     if angle == 3 / 2 * pi:
-        return "vertical"
+        return Orientation.vertical
     elif angle == 0.0:
-        return "horizontal"
+        return Orientation.horizontal
     else:
         raise Exception("A collision line must be aligned to an axis")
 
@@ -408,9 +418,9 @@ def extract_region_properties(
     # if there is an exit, but no explicit enter, then
     # allow entering from all sides except the exit side
     if exits and not enters:
-        enters = ["up", "down", "left", "right"]
+        enters = list(Direction)
         for _exit in exits:
-            enters.remove(cast(Direction, _exit))
+            enters.remove(_exit)
     if has_movement_modifier:
         return RegionProperties(
             enter_from=enters,
@@ -440,7 +450,7 @@ def direction_to_list(direction: Optional[str]) -> list[Direction]:
         props = direction.split(",")
     result: list[Direction] = []
     for _props in props:
-        result.append(cast(Direction, _props))
+        result.append(Direction(_props))
     return result
 
 

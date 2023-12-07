@@ -34,6 +34,18 @@ T.load_translator()
 Target = Mapping[str, int]
 
 
+class Direction(str, Enum):
+    up = "up"
+    down = "down"
+    left = "left"
+    right = "right"
+
+
+class Orientation(str, Enum):
+    horizontal = "horizontal"
+    vertical = "vertical"
+
+
 # ItemSort defines the sort of item an item is.
 class ItemSort(str, Enum):
     food = "food"

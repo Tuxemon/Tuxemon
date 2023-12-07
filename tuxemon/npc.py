@@ -13,12 +13,19 @@ from typing import TYPE_CHECKING, Any, Optional, TypedDict
 from tuxemon import prepare, surfanim
 from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.compat import Rect
-from tuxemon.db import ElementType, EntityFacing, PlagueType, SeenStatus, db
+from tuxemon.db import (
+    Direction,
+    ElementType,
+    EntityFacing,
+    PlagueType,
+    SeenStatus,
+    db,
+)
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import Item, decode_items, encode_items
 from tuxemon.locale import T
-from tuxemon.map import Direction, dirs2, dirs3, get_direction, proj
+from tuxemon.map import dirs2, dirs3, get_direction, proj
 from tuxemon.math import Vector2
 from tuxemon.mission import Mission, decode_mission, encode_mission
 from tuxemon.monster import Monster, decode_monsters, encode_monsters
@@ -153,9 +160,9 @@ class NPC(Entity[NPCState]):
         self.move_direction: Optional[
             Direction
         ] = None  # Set this value to move the npc (see below)
-        self.facing: Direction = (
-            "down"  # Set this value to change the facing direction
-        )
+        self.facing = (
+            Direction.down
+        )  # Set this value to change the facing direction
         self.moverate = CONFIG.player_walkrate  # walk by default
         self.ignore_collisions = False
 
@@ -233,7 +240,7 @@ class NPC(Entity[NPCState]):
             save_data: Data used to recreate the NPC.
 
         """
-        self.facing = save_data.get("facing", "down")
+        self.facing = save_data.get("facing", Direction.down)
         self.game_variables = save_data["game_variables"]
         self.tuxepedia = save_data["tuxepedia"]
         self.contacts = save_data["contacts"]

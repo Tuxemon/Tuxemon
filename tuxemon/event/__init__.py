@@ -114,3 +114,23 @@ def get_npc_pos(session: Session, pos: tuple[int, int]) -> Optional[NPC]:
     world = session.client.get_state_by_name(WorldState)
 
     return world.get_entity_pos(pos)
+
+
+def collide(condition: MapCondition, tile_position: tuple[int, int]) -> bool:
+    """
+    Check collision of a tile position with the map condition position.
+
+    Parameters:
+        condition: The map condition object.
+        tile_position: A particular tile position.
+
+    Returns:
+        Whether the tile position is contained in the map condition area.
+
+    """
+    return (
+        condition.x < tile_position[0] + 1
+        and condition.y < tile_position[1] + 1
+        and condition.x + condition.width > tile_position[0]
+        and condition.y + condition.height > tile_position[1]
+    )

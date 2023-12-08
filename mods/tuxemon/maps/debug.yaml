@@ -42,14 +42,14 @@ events:
     type: "event"
   Gender Male:
     actions:
-    - set_player_template adventurer,adventurer
+    - set_template player,adventurer,adventurer
     - set_player_name m_default1:m_default2:m_default3
     conditions:
     - is variable_set gender_choice:gender_male
     type: "event"
   Gender Female:
     actions:
-    - set_player_template heroine,heroine
+    - set_template player,heroine,heroine
     - set_player_name f_default1:f_default2:f_default3
     conditions:
     - is variable_set gender_choice:gender_female

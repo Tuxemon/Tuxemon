@@ -25,12 +25,16 @@ class StuckEffect(CondEffect):
 
     name = "stuck"
 
-    def apply(self, tech: Condition, target: Monster) -> StuckEffectResult:
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> StuckEffectResult:
         done: bool = False
-        if tech.phase == "perform_action_status":
-            if tech.slug == "stuck":
-                formula.simple_stuck(target)
-                done = True
+        if (
+            condition.phase == "perform_action_status"
+            and condition.slug == "stuck"
+        ):
+            formula.simple_stuck(target)
+            done = True
         return {
             "success": done,
             "condition": None,

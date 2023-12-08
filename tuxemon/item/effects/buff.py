@@ -22,35 +22,39 @@ class BuffEffect(ItemEffect):
     """
     Increases or decreases target's stats by percentage temporarily.
 
+    Parameters:
+        statistic: type of statistic (hp, armour, etc.)
+        percentage: percentage of the statistic (increase / decrease)
+
     """
 
     name = "buff"
-    stat: StatType
-    amount: float
+    statistic: StatType
+    percentage: float
 
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> BuffEffectResult:
         assert target
-        if self.stat == StatType.hp:
-            value = target.hp * self.amount
+        if self.statistic == StatType.hp:
+            value = target.hp * self.percentage
             target.hp += int(value)
-        elif self.stat == StatType.armour:
-            value = target.armour * self.amount
+        elif self.statistic == StatType.armour:
+            value = target.armour * self.percentage
             target.armour += int(value)
-        elif self.stat == StatType.dodge:
-            value = target.dodge * self.amount
+        elif self.statistic == StatType.dodge:
+            value = target.dodge * self.percentage
             target.dodge += int(value)
-        elif self.stat == StatType.melee:
-            value = target.melee * self.amount
+        elif self.statistic == StatType.melee:
+            value = target.melee * self.percentage
             target.melee += int(value)
-        elif self.stat == StatType.ranged:
-            value = target.ranged * self.amount
+        elif self.statistic == StatType.ranged:
+            value = target.ranged * self.percentage
             target.ranged += int(value)
-        elif self.stat == StatType.speed:
-            value = target.speed * self.amount
+        elif self.statistic == StatType.speed:
+            value = target.speed * self.percentage
             target.speed += int(value)
         else:
-            raise ValueError(f"{self.stat} must be a stat.")
+            raise ValueError(f"{self.statistic} must be a stat.")
 
         return {"success": True, "num_shakes": 0, "extra": None}

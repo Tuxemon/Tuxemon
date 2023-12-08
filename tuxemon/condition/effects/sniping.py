@@ -25,10 +25,14 @@ class SnipingEffect(CondEffect):
 
     name = "sniping"
 
-    def apply(self, tech: Condition, target: Monster) -> SnipingEffectResult:
-        if tech.phase == "perform_action_tech":
-            if tech.slug == "sniping":
-                target.status.clear()
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> SnipingEffectResult:
+        if (
+            condition.phase == "perform_action_tech"
+            and condition.slug == "sniping"
+        ):
+            target.status.clear()
         return {
             "success": True,
             "condition": None,

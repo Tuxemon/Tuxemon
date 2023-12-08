@@ -64,6 +64,7 @@ class Condition:
         self.link: Optional[Monster] = None
         self.name = ""
         self.nr_turn = 0
+        self.duration = 0
         self.phase: Optional[str] = None
         self.range = Range.melee
         self.repl_pos: Optional[ResponseCondition] = None
@@ -125,6 +126,7 @@ class Condition:
         self.statranged = results.statranged
         self.statdodge = results.statdodge
         # status fields
+        self.duration = results.duration
         self.bond = results.bond or self.bond
         self.category = results.category or self.category
         self.repl_neg = results.repl_neg or self.repl_neg

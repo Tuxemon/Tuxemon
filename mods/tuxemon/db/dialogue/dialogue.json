@@ -1,0 +1,122 @@
+[
+  {
+    "slug": "default",
+    "bg_color": "248:248:248",
+    "font_color": "10:10:10",
+    "font_shadow_color": "192:192:192",
+    "border_slug": "borders",
+    "border_path": "gfx/borders/borders.png"
+  },
+  {
+    "slug": "default-green",
+    "bg_color": "248:248:248",
+    "font_color": "0:51:0",
+    "font_shadow_color": "192:192:192",
+    "border_slug": "borders",
+    "border_path": "gfx/borders/borders.png"
+  },
+  {
+    "slug": "default-blue",
+    "bg_color": "248:248:248",
+    "font_color": "0:0:51",
+    "font_shadow_color": "192:192:192",
+    "border_slug": "borders",
+    "border_path": "gfx/borders/borders.png"
+  },
+  {
+    "slug": "default-purple",
+    "bg_color": "248:248:248",
+    "font_color": "51:0:51",
+    "font_shadow_color": "192:192:192",
+    "border_slug": "borders",
+    "border_path": "gfx/borders/borders.png"
+  },
+  {
+    "slug": "default-turquoise",
+    "bg_color": "248:248:248",
+    "font_color": "0:51:51",
+    "font_shadow_color": "192:192:192",
+    "border_slug": "borders",
+    "border_path": "gfx/borders/borders.png"
+  },
+  {
+    "slug": "default-umber1",
+    "bg_color": "248:248:248",
+    "font_color": "51:0:0",
+    "font_shadow_color": "192:192:192",
+    "border_slug": "borders",
+    "border_path": "gfx/borders/borders.png"
+  },
+  {
+    "slug": "default-umber2",
+    "bg_color": "248:248:248",
+    "font_color": "51:51:0",
+    "font_shadow_color": "192:192:192",
+    "border_slug": "borders",
+    "border_path": "gfx/borders/borders.png"
+  },
+  {
+    "slug": "black-orange",
+    "bg_color": "0:0:0",
+    "font_color": "255:204:102",
+    "font_shadow_color": "0:0:0",
+    "border_slug": "borders-black",
+    "border_path": "gfx/borders/borders-black.png"
+  },
+  {
+    "slug": "black-yellow",
+    "bg_color": "0:0:0",
+    "font_color": "255:255:0",
+    "font_shadow_color": "0:0:0",
+    "border_slug": "borders-black",
+    "border_path": "gfx/borders/borders-black.png"
+  },
+  {
+    "slug": "black-green",
+    "bg_color": "0:0:0",
+    "font_color": "0:255:0",
+    "font_shadow_color": "0:0:0",
+    "border_slug": "borders-black",
+    "border_path": "gfx/borders/borders-black.png"
+  },
+  {
+    "slug": "black-cyan",
+    "bg_color": "0:0:0",
+    "font_color": "0:255:255",
+    "font_shadow_color": "0:0:0",
+    "border_slug": "borders-black",
+    "border_path": "gfx/borders/borders-black.png"
+  },
+  {
+    "slug": "black-magenta",
+    "bg_color": "0:0:0",
+    "font_color": "255:0:255",
+    "font_shadow_color": "0:0:0",
+    "border_slug": "borders-black",
+    "border_path": "gfx/borders/borders-black.png"
+  },
+  {
+    "slug": "blue-yellow",
+    "bg_color": "0:51:102",
+    "font_color": "255:255:0",
+    "font_shadow_color": "0:51:102",
+    "border_slug": "borders-blue",
+    "border_path": "gfx/borders/borders-blue.png"
+  },
+  {
+    "slug": "orange-black",
+    "bg_color": "255:153:0",
+    "font_color": "0:0:0",
+    "font_shadow_color": "255:153:0",
+    "border_slug": "borders-orange",
+    "border_path": "gfx/borders/borders-orange.png"
+  },
+  {
+    "slug": "gray-white",
+    "bg_color": "51:51:51",
+    "font_color": "248:248:248",
+    "font_shadow_color": "51:51:51",
+    "border_slug": "borders-gray",
+    "border_path": "gfx/borders/borders-gray.png"
+  }
+]

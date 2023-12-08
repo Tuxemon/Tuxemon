@@ -289,7 +289,7 @@ def get_winners(loser: Monster, damages: list[DamageMap]) -> set[Monster]:
     winners = [ele.attack for ele in damages if ele.defense == loser]
 
     # update method
-    if winners[0].owner and winners[0].owner.isplayer:
+    if winners and winners[0].owner and winners[0].owner.isplayer:
         trainer = winners[0].owner
         if "method_experience" not in trainer.game_variables:
             trainer.game_variables["method_experience"] = "default"

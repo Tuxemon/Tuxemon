@@ -23,11 +23,13 @@ class SwitchEffectResult(ItemEffectResult):
 class SwitchEffect(ItemEffect):
     """
     Changes monster type.
-    "switch wood"
-    "switch fire"
-    "switch random"
-    if "switch random"
-    then the type is chosen randomly.
+
+    Parameters:
+        element: type of element (wood, water, etc.)
+
+    Examples:
+        "switch wood" or "switch random"
+        if "switch random" then the type is chosen randomly.
 
     """
 

@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import Union, final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.states.pc import KENNEL
+from tuxemon.prepare import KENNEL
 
 
 @final

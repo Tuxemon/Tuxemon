@@ -11,12 +11,12 @@ from typing import TYPE_CHECKING, DefaultDict
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import combat, graphics, tools
+from tuxemon import combat, graphics, prepare, tools
 from tuxemon.db import ElementType, ItemCategory, State, TechSort
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu, PopUpMenu
-from tuxemon.monster import MAX_MOVES, Monster
+from tuxemon.monster import Monster
 from tuxemon.session import local_session
 from tuxemon.sprite import MenuSpriteGroup, SpriteGroup
 from tuxemon.states.items.item_menu import ItemMenuState
@@ -341,7 +341,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 self.client.pop_state()  # close technique menu
                 self.client.pop_state()  # close the monster action menu
 
-        if len(self.monster.moves) > MAX_MOVES:
+        if len(self.monster.moves) > prepare.MAX_MOVES:
             local_session.player.remove_technique(local_session, self.monster)
         else:
             choose_technique()

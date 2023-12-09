@@ -6,6 +6,7 @@ import logging
 
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.map import get_coords, get_direction
 from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
@@ -47,38 +48,30 @@ class PlayerFacingTileCondition(EventCondition):
             for h in range(0, condition.height)
         ]
         tile_location = None
+        player = session.player
+        client = session.client
+        # get all the coordinates around the player
+        player_tiles = get_coords(player.tile_pos, client.map_size)
 
         # check if the NPC is facing a specific set of tiles
         world = session.client.get_state_by_name(WorldState)
         if condition.parameters:
             prop = condition.parameters[0]
             if prop == "surfable":
-                tiles = list(world.surfable_map)
+                label = list(world.surfable_map)
+            else:
+                label = world.check_collision_zones(world.collision_map, prop)
+            tiles = list(set(player_tiles).intersection(label))
 
-        # Next, we check the player position and see if we're one tile
-        # away from the tile.
-        for coordinates in tiles:
-            if coordinates[1] == session.player.tile_pos[1]:
-                # Check to see if the tile is to the left of the player
-                if coordinates[0] == session.player.tile_pos[0] - 1:
-                    logger.debug("Tile is to the left of the player")
-                    tile_location = "left"
-                # Check to see if the tile is to the right of the player
-                elif coordinates[0] == session.player.tile_pos[0] + 1:
-                    logger.debug("Tile is to the right of the player")
-                    tile_location = "right"
+        # return common coordinates
+        tiles = list(set(tiles).intersection(player_tiles))
 
-            elif coordinates[0] == session.player.tile_pos[0]:
-                # Check to see if the tile is above the player
-                if coordinates[1] == session.player.tile_pos[1] - 1:
-                    logger.debug("Tile is above the player")
-                    tile_location = "up"
-                elif coordinates[1] == session.player.tile_pos[1] + 1:
-                    logger.debug("Tile is below the player")
-                    tile_location = "down"
-
+        for coords in tiles:
+            # Look through the remaining tiles and get directions
+            tile_location = get_direction(player.tile_pos, coords)
             # Then we check to see if we're facing the Tile
-            if session.player.facing == tile_location:
+            if player.facing == tile_location:
+                logger.debug(f"Player is facing {tile_location}")
                 return True
 
         return False

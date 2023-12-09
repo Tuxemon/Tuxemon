@@ -4,11 +4,12 @@ from __future__ import annotations
 
 from collections.abc import Generator, Sequence
 from dataclasses import dataclass, field
-from typing import Any, cast, final
+from typing import Any, final
 
+from tuxemon.db import Direction
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.map import Direction, dirs2
+from tuxemon.map import dirs2
 from tuxemon.math import Vector2
 
 
@@ -32,10 +33,8 @@ def parse_path_parameters(
             direction, tiles = move.strip().split()
         except ValueError:
             direction, tiles = move.strip(), "1"
-
-        # Pending https://github.com/python/mypy/issues/9718
         assert direction in dirs2
-        direction = cast(Direction, direction)
+        direction = Direction(direction)
         for point in simple_path(origin, direction, int(tiles)):
             yield point
         origin = point

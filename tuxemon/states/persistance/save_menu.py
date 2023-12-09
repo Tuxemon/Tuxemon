@@ -94,10 +94,10 @@ class SaveMenuState(PopUpMenu[None]):
             thumb_rect = rect.copy()
             thumb_rect.width //= 5
             thumb_image = pygame.Surface(thumb_rect.size)
-            thumb_image.fill((255, 255, 255))
+            thumb_image.fill(prepare.WHITE_COLOR)
 
         if "error" in save_data:
-            red = (255, 0, 0)
+            red = prepare.RED_COLOR
             pygame.draw.line(thumb_image, red, [0, 0], thumb_rect.size, 3)
             pygame.draw.line(
                 thumb_image,

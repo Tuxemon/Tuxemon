@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from tuxemon.event import MapCondition, get_npc
+from tuxemon.event import MapCondition, collide, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
@@ -14,10 +14,11 @@ class NPCAtCondition(EventCondition):
     Script usage:
         .. code-block::
 
-            is npc_at <character>
+            is npc_at [character]
 
     Script parameters:
         character: Either "player" or npc slug name (e.g. "npc_maple").
+        Default "player".
 
     """
 
@@ -35,18 +36,10 @@ class NPCAtCondition(EventCondition):
             Whether the chosen character is in the condition position.
 
         """
-        player = get_npc(session, condition.parameters[0])
-        if not player:
-            return False
-
-        # Get the condition's rectangle area. If we're on a tile in that area,
-        # then this condition should return True.
-        area_x = range(condition.x, condition.x + condition.width)
-        area_y = range(condition.y, condition.y + condition.height)
-
-        # If the player is at the coordinates and the operator is set to true
-        # then return true
-        return (
-            round(player.tile_pos[0]) in area_x
-            and round(player.tile_pos[1]) in area_y
+        slug = (
+            "player" if not condition.parameters else condition.parameters[0]
         )
+        npc = get_npc(session, slug)
+        if not npc:
+            return False
+        return collide(condition, npc.tile_pos)

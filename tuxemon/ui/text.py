@@ -5,6 +5,7 @@ from typing import Literal, Optional, Union
 import pygame
 from pygame.rect import Rect
 
+from tuxemon import prepare
 from tuxemon.graphics import ColorLike
 from tuxemon.sprite import Sprite
 from tuxemon.ui import draw
@@ -21,14 +22,14 @@ class TextArea(Sprite):
         self,
         font: pygame.font.Font,
         font_color: ColorLike,
-        bg: ColorLike = (192, 192, 192),
+        font_shadow: ColorLike = prepare.FONT_SHADOW_COLOR,
     ) -> None:
         super().__init__()
         self.rect = Rect(0, 0, 0, 0)
         self.drawing_text = False
         self.font = font
         self.font_color = font_color
-        self.font_bg = bg
+        self.font_shadow = font_shadow
         self._rendered_text = None
         self._text_rect = None
         self._text = ""
@@ -54,7 +55,7 @@ class TextArea(Sprite):
             self.image = draw.shadow_text(
                 self.font,
                 self.font_color,
-                self.font_bg,
+                self.font_shadow,
                 self._text,
             )
 
@@ -78,7 +79,7 @@ class TextArea(Sprite):
             self._text,
             self.font,
             self.font_color,
-            self.font_bg,
+            self.font_shadow,
             self.image.get_rect(),
         )
 
@@ -117,7 +118,7 @@ def draw_text(
     _top: float = top
 
     if not font_color:
-        font_color = (0, 0, 0)
+        font_color = prepare.FONT_COLOR
 
     if not text:
         return

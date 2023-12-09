@@ -24,7 +24,9 @@ class LockdownEffect(CondEffect):
 
     name = "lockdown"
 
-    def apply(self, tech: Condition, target: Monster) -> LockdownEffectResult:
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> LockdownEffectResult:
         return {
             "success": True,
             "condition": None,

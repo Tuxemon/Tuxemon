@@ -68,22 +68,118 @@ TILE_SIZE = (16, 16)
 ICON_SIZE = [7, 7]
 
 # Set the healthbar _color
-HP_COLOR = (112, 248, 168)
+HP_COLOR_FG = (10, 240, 25)  # dark saturated green
+HP_COLOR_BG = (245, 10, 25)  # dark saturated red
 
 # Set the XP bar _color
-XP_COLOR = (248, 245, 71)
+XP_COLOR_FG = (31, 239, 255)  # light washed cyan
+XP_COLOR_BG = None  # none for the moment
+
+# Colors
+BLACK_COLOR = (0, 0, 0)
+WHITE_COLOR = (255, 255, 255)
+RED_COLOR = (255, 0, 0)
+GREEN_COLOR = (0, 255, 0)
+FUCHSIA_COLOR = (255, 0, 255)
+SEA_BLUE_COLOR = (0, 105, 148)
+DARKGRAY_COLOR = (169, 169, 169)
+DIMGRAY_COLOR = (105, 105, 105)
+# Default colors
+TRANSPARENT_COLOR = (255, 255, 255, 0)
+BACKGROUND_COLOR = (248, 248, 248)  # Guyabano
+FONT_COLOR = BLACK_COLOR
+FONT_SHADOW_COLOR = (192, 192, 192)  # silver
+SCROLLBAR_COLOR = (237, 246, 248)  # light turquoise
+SCROLLBAR_SLIDER_COLOR = (197, 232, 234)  # darker turquoise
+
+if CONFIG.large_gui:
+    FONT_SIZE_SMALLER = 4
+    FONT_SIZE_SMALL = 5
+    FONT_SIZE = 6
+    FONT_SIZE_BIG = 7
+    FONT_SIZE_BIGGER = 8
+else:
+    FONT_SIZE_SMALLER = 3
+    FONT_SIZE_SMALL = 4
+    FONT_SIZE = 5
+    FONT_SIZE_BIG = 6
+    FONT_SIZE_BIGGER = 7
 
 # Native resolution is similar to the old gameboy resolution. This is
 # used for scaling.
 NATIVE_RESOLUTION = [240, 160]
 
-# Set the character limit for setting a player name.
-PLAYER_NAME_LIMIT = 15
+
+# Players
+PLAYER_NPC = CONFIG.player_npc
+PLAYER_NAME_LIMIT: int = 15  # The character limit for a player name.
+PARTY_LIMIT: int = 6  # The maximum number of tuxemon this npc can hold
+
+# PC
+KENNEL: str = "Kennel"
+LOCKER: str = "Locker"
+MAX_KENNEL: int = 30  # nr max of pc monsters
+MAX_LOCKER: int = 30  # nr max of pc items
+
+# Items
+INFINITE_ITEMS: int = -1
+MAX_TYPES_BAG: int = 99  # eg 5 capture devices, 1 type and 5 items
+
+# Monsters
+MAX_LEVEL: int = 999
+MAX_MOVES: int = 4
+MISSING_IMAGE: str = "gfx/sprites/battle/missing.png"
+MIN_CATCH_RATE: int = 0
+MAX_CATCH_RATE: int = 255
+MIN_CATCH_RESISTANCE: float = 0.0
+MAX_CATCH_RESISTANCE: float = 2.0
+# set multiplier stats (multiplier: level + coefficient)
+COEFF_STATS: int = 7
+# set experience required for levelling up
+# (level + level_ofs) ** coefficient) - level_ofs default 0
+COEFF_EXP: int = 3
+
+# Capture
+TOTAL_SHAKES: int = 4
+MAX_SHAKE_RATE: int = 65536
+SHAKE_CONSTANT: int = 524325
+
+# Techniques
+MIN_RECHARGE: int = 0
+MAX_RECHARGE: int = 5
+MIN_POTENCY: float = 0.0
+MAX_POTENCY: float = 1.0
+MIN_ACCURACY: float = 0.0
+MAX_ACCURACY: float = 1.0
+MIN_POWER: float = 0.0
+MAX_POWER: float = 3.0
+MIN_HEALING_POWER: int = 0
+MAX_HEALING_POWER: int = 10
+
+# Combat
+# This is the coefficient that can be found in formula.py and
+# it calculates the user strength
+# eg: user_strength = user.melee * (COEFF_DAMAGE + user.level)
+COEFF_DAMAGE: int = 7
+# Min and max multiplier are the multiplier upper/lower bounds
+MIN_MULTIPLIER: float = 0.25
+MAX_MULTIPLIER: float = 4.0
+# MULT_MAP associates the multiplier to a specific text
+MULT_MAP = {
+    4: "attack_very_effective",
+    2: "attack_effective",
+    0.5: "attack_resisted",
+    0.25: "attack_weak",
+}
+# This is the time, in seconds, that the text takes to display.
+LETTER_TIME: float = 0.02
+# This is the time, in seconds, that the animation takes to finish.
+ACTION_TIME: float = 2.0
 
 # Fonts
-FONT_BASIC = "PressStart2P.ttf"
-FONT_CHINESE = "SourceHanSerifCN-Bold.otf"
-FONT_JAPANESE = "SourceHanSerifJP-Bold.otf"
+FONT_BASIC: str = "PressStart2P.ttf"
+FONT_CHINESE: str = "SourceHanSerifCN-Bold.otf"
+FONT_JAPANESE: str = "SourceHanSerifJP-Bold.otf"
 
 # If scaling is enabled, scale the tiles based on the resolution
 if CONFIG.large_gui:

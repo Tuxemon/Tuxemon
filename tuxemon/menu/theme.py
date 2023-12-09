@@ -7,6 +7,7 @@ import pygame_menu
 from pygame_menu import locals, sound
 from pygame_menu.widgets.core.selection import Selection
 from pygame_menu.widgets.core.widget import Widget
+from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
 from tuxemon import prepare
 from tuxemon.audio import get_sound_filename
@@ -78,7 +79,7 @@ def get_theme() -> pygame_menu.Theme:
     else:
         font_filename = prepare.fetch("font", prepare.FONT_BASIC)
     tuxemon_border = pygame_menu.BaseImage(
-        image_path=transform_resource_filename("gfx/dialog-borders01.png"),
+        image_path=transform_resource_filename("gfx/borders/borders.png"),
     ).scale(5, 5, smooth=False)
 
     tuxemon_background_center_rect = tuxemon_border.get_rect()
@@ -96,17 +97,14 @@ def get_theme() -> pygame_menu.Theme:
         title_font=font_filename,
         widget_font=font_filename,
         widget_alignment=locals.ALIGN_LEFT,
-        title_font_size=20,
-        widget_font_size=26,
         title=False,
         widget_selection_effect=TuxemonArrowSelection(),
-        widget_font_color=(0, 0, 0),
-        selection_color=(0, 0, 0),
         border_color=tuxemon_border,
         scrollarea_position=locals.SCROLLAREA_POSITION_NONE,
-        scrollbar_color=(235, 235, 235),
-        scrollbar_slider_color=(200, 200, 200),
         widget_padding=(10, 20),
+        title_close_button=False,
+        title_bar_style=MENUBAR_STYLE_ADAPTIVE,
+        widget_font_shadow=True,
     )
 
     _theme = theme

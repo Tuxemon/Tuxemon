@@ -14,7 +14,7 @@ from pygame_menu.widgets.selection.highlight import HighlightSelection
 from tuxemon import prepare, tools
 from tuxemon.db import MonsterModel, db
 from tuxemon.locale import T
-from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
+from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.monster import Monster
 from tuxemon.session import local_session
@@ -37,6 +37,7 @@ class MinigameState(PygameMenuState):
         self,
         menu: pygame_menu.Menu,
     ) -> None:
+        width, height = prepare.SCREEN_SIZE
         # data
         monsters = list(db.database["monster"])
         data = []
@@ -50,7 +51,7 @@ class MinigameState(PygameMenuState):
         menu.add.label(
             title=f"{name}",
             label_id="question",
-            font_size=30,
+            font_size=self.font_size_big,
             align=locals.ALIGN_CENTER,
             underline=True,
         )
@@ -90,7 +91,7 @@ class MinigameState(PygameMenuState):
             menu.add.button(
                 T.translate(txmn.slug),
                 partial(checking, txmn),
-                font_size=20,
+                font_size=self.font_size_small,
                 button_id=txmn.slug,
                 selection_effect=HighlightSelection(),
             )
@@ -122,5 +123,5 @@ class MinigameState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = BACKGROUND_COLOR
+        theme.background_color = self.background_color
         theme.widget_alignment = locals.ALIGN_LEFT

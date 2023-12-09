@@ -121,58 +121,58 @@
   </object>
   <object id="93" type="collision" x="288" y="480" width="16" height="16">
    <properties>
-    <property name="continue" value="down"/>
-    <property name="enter" value="up"/>
-    <property name="exit" value="down"/>
+    <property name="endure" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_from" value="down"/>
    </properties>
   </object>
   <object id="94" type="collision" x="256" y="480" width="16" height="16">
    <properties>
-    <property name="continue" value="down"/>
-    <property name="enter" value="up"/>
-    <property name="exit" value="down"/>
+    <property name="endure" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_from" value="down"/>
    </properties>
   </object>
   <object id="95" type="collision" x="240" y="496" width="16" height="48">
    <properties>
-    <property name="continue" value="right"/>
-    <property name="enter" value="left"/>
-    <property name="exit" value="right"/>
+    <property name="endure" value="right"/>
+    <property name="enter_from" value="left"/>
+    <property name="exit_from" value="right"/>
    </properties>
   </object>
   <object id="96" type="collision" x="208" y="192" width="16" height="16">
    <properties>
-    <property name="continue" value="down"/>
-    <property name="enter" value="up"/>
-    <property name="exit" value="down"/>
+    <property name="endure" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_from" value="down"/>
    </properties>
   </object>
   <object id="97" type="collision" x="240" y="192" width="16" height="16">
    <properties>
-    <property name="continue" value="down"/>
-    <property name="enter" value="up"/>
-    <property name="exit" value="down"/>
+    <property name="endure" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_from" value="down"/>
    </properties>
   </object>
   <object id="98" type="collision" x="304" y="256" width="16" height="32">
    <properties>
-    <property name="continue" value="left"/>
-    <property name="enter" value="right"/>
-    <property name="exit" value="left"/>
+    <property name="endure" value="left"/>
+    <property name="enter_from" value="right"/>
+    <property name="exit_from" value="left"/>
    </properties>
   </object>
   <object id="103" type="collision" x="416" y="592" width="112" height="16">
    <properties>
-    <property name="continue" value="down"/>
-    <property name="enter" value="up"/>
-    <property name="exit" value="down"/>
+    <property name="endure" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_from" value="down"/>
    </properties>
   </object>
   <object id="104" type="collision" x="304" y="672" width="144" height="16">
    <properties>
-    <property name="continue" value="down"/>
-    <property name="enter" value="up"/>
-    <property name="exit" value="down"/>
+    <property name="endure" value="down"/>
+    <property name="enter_from" value="up"/>
+    <property name="exit_from" value="down"/>
    </properties>
   </object>
   <object id="105" type="collision-line" x="432" y="176">

@@ -20,28 +20,26 @@ class SetBubbleAction(EventAction):
     Script usage:
         .. code-block::
 
-            set_bubble [bubble][,npc_slug]
+            set_bubble <npc_slug>[,bubble]
 
     Script parameters:
+        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
         bubble: dots, drop, exclamation, heart, note, question, sleep,
             angry, confused, fireworks
-        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
 
-    eg. "set_bubble ,spyder_shopassistant" (remove bubble NPC)
-    eg. "set_bubble note,spyder_shopassistant" (set bubble NPC)
-    eg. "set_bubble note" (set bubble player)
-    eg. "set_bubble" (remove bubble player)
+    eg. "set_bubble spyder_shopassistant" (remove bubble NPC)
+    eg. "set_bubble spyder_shopassistant,note" (set bubble NPC)
+    eg. "set_bubble player,note" (set bubble player)
+    eg. "set_bubble player" (remove bubble player)
 
     """
 
     name = "set_bubble"
+    npc_slug: str
     bubble: Optional[str] = None
-    npc_slug: Optional[str] = None
 
     def start(self) -> None:
         client = self.session.client
-
-        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
         npc = get_npc(self.session, self.npc_slug)
         assert npc
 

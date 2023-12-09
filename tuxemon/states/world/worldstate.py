@@ -296,12 +296,21 @@ class WorldState(state.State):
         self.layer.fill(self.layer_color)
         self.screen.blit(self.layer, (0, 0))
 
-    def set_bubble(self) -> None:
+    def set_bubble(
+        self, screen_surfaces: list[tuple[pygame.surface.Surface, Rect, int]]
+    ) -> None:
         if self.bubble:
             for npc, surface in self.bubble.items():
-                cx, cy = self.get_pos_from_tilepos(npc.tile_pos)
-                position = (cx, cy - 96)
-                self.screen.blit(surface, position)
+                cx, cy = self.get_pos_from_tilepos(Vector2(npc.tile_pos))
+                bubble_rect = surface.get_rect()
+                bubble_rect.centerx = npc.rect.centerx
+                bubble_rect.bottom = npc.rect.top
+                bubble_rect.x = cx
+                bubble_rect.y = cy - (
+                    surface.get_height() + int(npc.rect.height / 10)
+                )
+                bubble = (surface, bubble_rect, 100)
+                screen_surfaces.append(bubble)
 
     def broadcast_player_teleport_change(self) -> None:
         """Tell clients/host that player has moved after teleport."""
@@ -523,6 +532,9 @@ class WorldState(state.State):
             r = Rect(_c, s.get_size())
             screen_surfaces.append((s, r, l))
 
+        # Adds a bubble above player's head
+        self.set_bubble(screen_surfaces)
+
         # draw the map and sprites
         self.rect = self.current_map.renderer.draw(
             surface, surface.get_rect(), screen_surfaces
@@ -537,9 +549,6 @@ class WorldState(state.State):
 
         # Adds a transparent layer
         self.set_layer()
-        # Adds a bubble above player's head
-        self.set_bubble()
-
 
         if "cinema_mode" in game_variable:
             if game_variable["cinema_mode"] == "on":

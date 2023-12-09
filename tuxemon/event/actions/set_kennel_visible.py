@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.states.pc import KENNEL
+from tuxemon.prepare import KENNEL
 from tuxemon.states.pc_kennel import HIDDEN_LIST
 
 

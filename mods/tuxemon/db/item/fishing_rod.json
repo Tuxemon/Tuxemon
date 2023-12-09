@@ -3,7 +3,7 @@
     "is facing_tile surfable"
   ],
   "effects": [
-    "fishing"
+    "fishing 0.35,5,15"
   ],
   "slug": "fishing_rod",
   "sort": "utility",

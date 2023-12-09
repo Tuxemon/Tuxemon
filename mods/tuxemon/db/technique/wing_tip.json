@@ -7,7 +7,7 @@
   ],
   "flip_axes": "",
   "is_fast": true,
-  "potency": null,
+  "potency": 0.0,
   "power": 1.25,
   "range": "melee",
   "recharge": 2,

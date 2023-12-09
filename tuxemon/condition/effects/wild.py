@@ -27,17 +27,16 @@ class WildEffect(CondEffect):
 
     name = "wild"
 
-    def apply(self, tech: Condition, target: Monster) -> WildEffectResult:
+    def apply(self, condition: Condition, target: Monster) -> WildEffectResult:
         skip: Optional[Technique] = None
-        if tech.phase == "pre_checking":
-            if tech.slug == "wild":
-                wild = random.randint(1, 4)
-                if wild == 1:
-                    user = tech.link
-                    assert user
-                    skip = Technique()
-                    skip.load("empty")
-                    user.current_hp -= user.hp // 8
+        if condition.phase == "pre_checking" and condition.slug == "wild":
+            wild = random.randint(1, 4)
+            if wild == 1:
+                user = condition.link
+                assert user
+                skip = Technique()
+                skip.load("empty")
+                user.current_hp -= user.hp // 8
         return {
             "success": True,
             "condition": None,

@@ -44,16 +44,19 @@ from typing import Literal, NamedTuple, Optional, Union
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import audio, graphics, state, tools
+from tuxemon import audio, graphics, prepare, state, tools
 from tuxemon.ai import AI
 from tuxemon.animation import Animation, Task
 from tuxemon.battle import Battle
 from tuxemon.combat import (
     alive_party,
+    award_experience,
+    award_money,
     check_moves,
     defeated,
     fainted,
     get_awake_monsters,
+    get_winners,
 )
 from tuxemon.condition.condition import Condition
 from tuxemon.db import (
@@ -103,7 +106,7 @@ CombatPhase = Literal[
 
 class EnqueuedAction(NamedTuple):
     user: Union[Monster, NPC, None]
-    technique: Union[Technique, Item, Condition, None]
+    method: Union[Technique, Item, Condition, None]
     target: Monster
 
 
@@ -111,20 +114,6 @@ class DamageMap(NamedTuple):
     attack: Monster
     defense: Monster
     damage: int
-
-
-# TODO: move to mod config
-MULT_MAP = {
-    4: "attack_very_effective",
-    2: "attack_effective",
-    0.5: "attack_resisted",
-    0.25: "attack_weak",
-}
-
-# This is the time, in seconds, that the text takes to display.
-LETTER_TIME: float = 0.02
-# This is the time, in seconds, that the animation takes to finish.
-ACTION_TIME: float = 2.0
 
 
 def compute_text_animation_time(message: str) -> float:
@@ -137,7 +126,7 @@ def compute_text_animation_time(message: str) -> float:
     Returns:
         The time in seconds expected to be taken by the animation.
     """
-    return ACTION_TIME + LETTER_TIME * len(message)
+    return prepare.ACTION_TIME + prepare.LETTER_TIME * len(message)
 
 
 class MethodAnimationCache:
@@ -506,8 +495,9 @@ class CombatState(CombatAnimations):
                     for pending in self._pending_queue:
                         pend = pending
                     if pend:
-                        self._action_queue.append(pend)
-                        self._log_action.append((self._turn, pend))
+                        self.enqueue_action(
+                            pend.user, pend.method, pend.target
+                        )
                         self._pending_queue.remove(pend)
                 for condition in monster.status:
                     # validate condition
@@ -621,9 +611,9 @@ class CombatState(CombatAnimations):
         """
 
         def rank_action(action: EnqueuedAction) -> tuple[int, int]:
-            if action.technique is None:
+            if action.method is None:
                 return 0, 0
-            sort = action.technique.sort
+            sort = action.method.sort
             primary_order = sort_order.index(sort)
 
             if sort == "meta":
@@ -640,12 +630,11 @@ class CombatState(CombatAnimations):
 
         # TODO: move to mod config
         sort_order = [
-            "meta",
-            "item",
-            "utility",
             "potion",
+            "utility",
             "food",
-            "heal",
+            "quest",
+            "meta",
             "damage",
         ]
 
@@ -964,22 +953,20 @@ class CombatState(CombatAnimations):
         self._log_action.append((self._turn, action))
 
     def rewrite_action_queue_target(
-        self,
-        original: Monster,
-        new: Monster,
+        self, original: Monster, new: Monster
     ) -> None:
         """
         Used for swapping monsters.
 
         Parameters:
             original: Original targeted monster.
-            new: New monster.
+            new: New targeted monster.
 
         """
         # rewrite actions in the queue to target the new monster
         for index, action in enumerate(self._action_queue):
             if action.target is original:
-                new_action = EnqueuedAction(action.user, action.technique, new)
+                new_action = EnqueuedAction(action.user, action.method, new)
                 self._action_queue[index] = new_action
 
     def remove_monster_from_play(
@@ -1089,12 +1076,12 @@ class CombatState(CombatAnimations):
                 action_time += compute_text_animation_time(message)
             # TODO: caching sounds
             audio.load_sound(method.sfx, None).play()
-            # animation own monster AI NPC
+            # animation own monster, technique doesn't tackle
+            hit_delay += 0.5
             if "own monster" in method.target:
                 target_sprite = self._monster_sprite_map.get(user, None)
             # TODO: a real check or some params to test if should tackle, etc
             if result_tech["should_tackle"]:
-                hit_delay += 0.5
                 user_sprite = self._monster_sprite_map.get(user, None)
                 if user_sprite:
                     self.animate_sprite_tackle(user_sprite)
@@ -1126,7 +1113,7 @@ class CombatState(CombatAnimations):
                     message += "\n" + m
                 # allows tackle to special range techniques too
                 if method.range != "special":
-                    element_damage_key = MULT_MAP.get(
+                    element_damage_key = prepare.MULT_MAP.get(
                         result_tech["element_multiplier"]
                     )
                     if element_damage_key:
@@ -1287,21 +1274,15 @@ class CombatState(CombatAnimations):
         message: str = ""
         action_time = 0.0
 
-        # nr times fainted monster got damaged
-        hits = len([ele for ele in self._damage_map if ele.defense == monster])
-        # all monsters that hit fainted monster
-        winners = {
-            ele.attack for ele in self._damage_map if ele.defense == monster
-        }
-
-        if hits:
-            # Award experience
-            awarded_exp = (
-                monster.total_experience // (monster.level * hits)
-            ) * monster.experience_modifier
-            # Award money
-            awarded_mon = monster.level * monster.money_modifier
+        winners = get_winners(monster, self._damage_map)
+        if winners:
             for winner in winners:
+                # Award money
+                awarded_mon = award_money(monster, winner)
+                # Award experience
+                awarded_exp = award_experience(
+                    monster, winner, self._damage_map
+                )
                 # check before giving exp
                 levels = winner.give_experience(awarded_exp)
                 # check after giving exp
@@ -1324,7 +1305,7 @@ class CombatState(CombatAnimations):
                             self._layout[self.players[0]]["hud1"][0],
                             self.monsters_in_play_human[1],
                         )
-                    else:
+                    elif len(self.monsters_in_play_human) == 1:
                         self.build_hud(
                             self._layout[self.players[0]]["hud"][0],
                             self.monsters_in_play_human[0],
@@ -1362,7 +1343,7 @@ class CombatState(CombatAnimations):
                                     {"name": monster.name},
                                 ),
                             ),
-                            ACTION_TIME,
+                            prepare.ACTION_TIME,
                         )
                     )
                     self.animate_monster_faint(monster)
@@ -1446,7 +1427,7 @@ class CombatState(CombatAnimations):
     @property
     def monsters_in_play_human(self) -> Sequence[Monster]:
         """
-        List of any monsters in battle (ai).
+        List of any monsters in battle (human).
 
         """
         return self.monsters_in_play[self.players[0]]

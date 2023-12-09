@@ -6,10 +6,7 @@ events:
     - is player_defeated
     - not location_type clinic
     - not location_name wayfarer_inn1:wayfarer_inn2:scoop3:scoop4:paper_town
-    height: 1
-    width: 1
-    x: 0
-    y: 0
+    - is current_state WorldState
     type: "event"
   Auto healing teleported:
     actions:
@@ -20,10 +17,7 @@ events:
     conditions:
     - is location_type clinic
     - is variable_set teleport_clinic:lost
-    height: 1
-    width: 1
-    x: 0
-    y: 0
+    - is current_state WorldState
     type: "event"
   Teleport Exception 1:
     actions:
@@ -34,10 +28,7 @@ events:
     conditions:
     - is player_defeated
     - is location_name wayfarer_inn1:wayfarer_inn2
-    height: 1
-    width: 1
-    x: 0
-    y: 0
+    - is current_state WorldState
     type: "event"
   Teleport Exception 2:
     actions:
@@ -48,10 +39,19 @@ events:
     conditions:
     - is player_defeated
     - is location_name scoop3:scoop4
-    height: 1
-    width: 1
-    x: 0
-    y: 0
+    - is current_state WorldState
+    type: "event"
+  Teleport Exception 3:
+    actions:
+    - transition_teleport spyder_bedroom.tmx,4,3,0.3
+    - set_monster_health
+    - set_monster_status
+    - set_variable teleport_clinic:none
+    conditions:
+    - is player_defeated
+    - is location_name paper_town
+    - is current_state WorldState
+    - is variable_set firstfightend:no
     type: "event"
   Evolution all:
     actions:
@@ -59,10 +59,6 @@ events:
     conditions:
     - is check_evolution all
     - is current_state WorldState
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Choice Surf:
     actions:
@@ -73,43 +69,37 @@ events:
     - is player_facing_tile surfable
     - is button_pressed K_RETURN
     - not player_in surfable
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Surfable:
     actions:
-    - set_player_template swimmer
+    - set_template player,swimmer
     conditions:
     - is player_in surfable
     - not has_sprite swimmer
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
-  Not surfable:
+  Not surfable Boy:
     actions:
-    - set_player_template default
+    - set_template player,adventurer,adventurer
     - set_variable swimming:no
     conditions:
     - not player_in surfable
     - is has_sprite swimmer
-    height: 1
-    width: 1
-    x: 0
-    y: 0
+    - is variable_set gender_choice:gender_male
+    type: "event"
+  Not surfable Girl:
+    actions:
+    - set_template player,heroine,heroine
+    - set_variable swimming:no
+    conditions:
+    - not player_in surfable
+    - is has_sprite swimmer
+    - is variable_set gender_choice:gender_female
     type: "event"
   Allow Swim:
     actions:
     - remove_collision water
     conditions:
     - is variable_set swimming:yes
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Swim Encounters Day:
     actions:
@@ -118,10 +108,7 @@ events:
     conditions:
     - is has_sprite swimmer
     - not variable_set stage_of_day:night
-    height: 1
-    width: 1
-    x: 0
-    y: 0
+    - is current_state WorldState
     type: "event"
   Swim Encounters Night:
     actions:
@@ -130,6 +117,25 @@ events:
     conditions:
     - is has_sprite swimmer
     - is variable_set stage_of_day:night
+    - is current_state WorldState
+    type: "event"
+  Night Day Cycle Outside:
+    actions:
+    - set_layer 0:0:128:128
+    conditions:
+    - is variable_set stage_of_day:night
+    - not location_inside
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: "event"
+  Night Day Cycle Inside:
+    actions:
+    - set_layer
+    conditions:
+    - is variable_set stage_of_day:night
+    - is location_inside
     height: 1
     width: 1
     x: 0

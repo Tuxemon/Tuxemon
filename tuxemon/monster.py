@@ -388,7 +388,7 @@ class Monster:
                     elif status.repl_pos == ResponseCondition.removed:
                         self.status.clear()
                     else:
-                        # noddingoff, exhausted, festering, dozing
+                        # noddingoff, exhausted, festering
                         return
                 elif self.status[0].category == CategoryCondition.negative:
                     if status.repl_neg == ResponseCondition.replaced:
@@ -397,7 +397,7 @@ class Monster:
                     elif status.repl_pos == ResponseCondition.removed:
                         self.status.clear()
                     else:
-                        # chargedup, charging and dozing
+                        # chargedup, charging
                         return
                 else:
                     self.status.clear()
@@ -460,37 +460,24 @@ class Monster:
         """
         It returns the capture date.
         """
-        if amount == 0:
-            result = formula.today_ordinal()
-            self.capture = result
-            return self.capture
-        else:
-            self.capture = amount
-            return self.capture
+        self.capture = formula.today_ordinal() if amount == 0 else amount
+        return self.capture
 
     def set_char_weight(self, value: float) -> float:
         """
         Set weight for each monster.
 
         """
-        if self.weight == value:
-            result = value
-            return result
-        else:
-            result = formula.set_weight(value)
-            return result
+        result = value if self.weight == value else formula.set_weight(value)
+        return result
 
     def set_char_height(self, value: float) -> float:
         """
         Set height for each monster.
 
         """
-        if self.weight == value:
-            result = value
-            return result
-        else:
-            result = formula.set_height(value)
-            return result
+        result = value if self.height == value else formula.set_height(value)
+        return result
 
     def level_up(self) -> None:
         """

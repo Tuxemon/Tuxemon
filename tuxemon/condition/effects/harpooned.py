@@ -25,12 +25,16 @@ class HarpoonedEffect(CondEffect):
 
     name = "harpooned"
 
-    def apply(self, tech: Condition, target: Monster) -> HarpoonedEffectResult:
-        if tech.phase == "add_monster_into_play":
-            if tech.slug == "harpooned":
-                target.current_hp -= target.hp // 8
-                if target.current_hp <= 0:
-                    target.faint()
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> HarpoonedEffectResult:
+        if (
+            condition.phase == "add_monster_into_play"
+            and condition.slug == "harpooned"
+        ):
+            target.current_hp -= target.hp // 8
+            if target.current_hp <= 0:
+                target.faint()
         return {
             "success": True,
             "condition": None,

@@ -19,6 +19,7 @@
     "own trainer": 0
   },
   "cond_id": 6,
+  "duration": 5,
   "use_failure": null,
   "use_success": "combat_state_dozing_get",
   "gain_cond": "combat_state_noddingoff_get"

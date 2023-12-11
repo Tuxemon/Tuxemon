@@ -24,7 +24,9 @@ class FesteringEffect(CondEffect):
 
     name = "festering"
 
-    def apply(self, tech: Condition, target: Monster) -> FesteringEffectResult:
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> FesteringEffectResult:
         return {
             "success": True,
             "condition": None,

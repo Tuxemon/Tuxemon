@@ -1067,12 +1067,12 @@ class CombatState(CombatAnimations):
                 action_time += compute_text_animation_time(message)
             # TODO: caching sounds
             audio.load_sound(method.sfx, None).play()
-            # animation own monster AI NPC
+            # animation own monster, technique doesn't tackle
+            hit_delay += 0.5
             if "own monster" in method.target:
                 target_sprite = self._monster_sprite_map.get(user, None)
             # TODO: a real check or some params to test if should tackle, etc
             if result_tech["should_tackle"]:
-                hit_delay += 0.5
                 user_sprite = self._monster_sprite_map.get(user, None)
                 if user_sprite:
                     self.animate_sprite_tackle(user_sprite)

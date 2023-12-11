@@ -38,15 +38,15 @@ class StatChangeEffect(CondEffect):
     name = "statchange"
 
     def apply(
-        self, tech: Condition, target: Monster
+        self, condition: Condition, target: Monster
     ) -> StatChangeEffectResult:
         statsmaster = [
-            tech.statspeed,
-            tech.stathp,
-            tech.statarmour,
-            tech.statmelee,
-            tech.statranged,
-            tech.statdodge,
+            condition.statspeed,
+            condition.stathp,
+            condition.statarmour,
+            condition.statmelee,
+            condition.statranged,
+            condition.statdodge,
         ]
         statslugs = [
             "speed",
@@ -57,7 +57,7 @@ class StatChangeEffect(CondEffect):
             "dodge",
         ]
         newstatvalue = 0
-        if tech.phase == "perform_action_status":
+        if condition.phase == "perform_action_status":
             for stat, slugdata in zip(statsmaster, statslugs):
                 if not stat:
                     continue
@@ -71,7 +71,7 @@ class StatChangeEffect(CondEffect):
                 if max_deviation:
                     value = random.randint(int(min_value), int(max_value))
 
-                if value > 0 and override is not True:
+                if value > 0 and not override:
                     ops_dict = {
                         "+": operator.add,
                         "-": operator.sub,
@@ -79,9 +79,8 @@ class StatChangeEffect(CondEffect):
                         "/": operator.floordiv,
                     }
                     newstatvalue = ops_dict[operation](basestatvalue, value)
-                if slugdata == "current_hp":
-                    if override:
-                        target.current_hp = target.hp
+                if slugdata == "current_hp" and override:
+                    target.current_hp = target.hp
                 if newstatvalue <= 0:
                     newstatvalue = 1
                 setattr(target, slugdata, newstatvalue)

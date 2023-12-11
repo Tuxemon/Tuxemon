@@ -6057,9 +6057,6 @@ msgstr "店主"
 msgid "spyder_shopassistant"
 msgstr "店员"
 
-msgid "spyder_route2_billie"
-msgstr "比莉"
-
 msgid "spyder_route2_roddick"
 msgstr "罗迪克"
 
@@ -6394,9 +6391,6 @@ msgstr "懒惰的布鲁特"
 
 msgid "spyder_dragonscave_concernedbrute"
 msgstr "关心的布鲁特"
-
-msgid "spyder_hospital_billie"
-msgstr "比利"
 
 msgid "spyder_greenwash_looten"
 msgstr "罗顿"

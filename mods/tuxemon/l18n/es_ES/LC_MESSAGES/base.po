@@ -2272,9 +2272,6 @@ msgstr "Marion"
 msgid "spyder_route2_roddick"
 msgstr "Roddick"
 
-msgid "spyder_route2_billie"
-msgstr "Billie"
-
 msgid "spyder_shopassistant"
 msgstr "Dependiente"
 

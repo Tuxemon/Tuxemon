@@ -2356,9 +2356,6 @@ msgstr "Non, pas grave - je peux voir que tu n'as même pas de Budaye."
 msgid "cotton_breeder5"
 msgstr "Hé ${{name}}, de retour pour soigner vos Tuxemon ?"
 
-msgid "spyder_hospital_billie"
-msgstr "Billie"
-
 msgid "spyder_dragonscave_lazybrute"
 msgstr "Brute Indolente"
 
@@ -4018,9 +4015,6 @@ msgid "spyder_hospital_warning1"
 msgstr ""
 "Bzzzz. Vie détectée.\n"
 " Les portes restent fermées."
-
-msgid "spyder_route2_billie"
-msgstr "Billie"
 
 msgid "spyder_hospital_nurse1"
 msgstr ""

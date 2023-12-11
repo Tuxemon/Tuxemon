@@ -2247,9 +2247,6 @@ msgstr ""
 "Non permettere che il Trial ti impedisca di vedermi. Infatti... Forse ti "
 "troverò prima."
 
-msgid "spyder_route2_billie"
-msgstr "Billie"
-
 msgid "spyder_route3_twig"
 msgstr "Rametto"
 

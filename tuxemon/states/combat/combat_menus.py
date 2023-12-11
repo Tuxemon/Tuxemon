@@ -328,7 +328,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 self.player.game_variables["action_tech"] = technique.slug
                 # pre checking (look for null actions)
                 technique = combat.pre_checking(
-                    self.monster, technique, target
+                    self.monster, technique, target, self.combat
                 )
                 self.combat.enqueue_action(self.monster, technique, target)
                 # remove skip after using it

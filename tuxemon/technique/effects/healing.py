@@ -37,7 +37,9 @@ class HealingEffect(TechEffect):
         done: bool = False
         mon: Monster
         heal: int = 0
-        player = self.session.player
+        if user.owner is None:
+            raise ValueError()
+        player = user.owner
         value = float(player.game_variables["random_tech_hit"])
         hit = tech.accuracy >= value
         # define user or target

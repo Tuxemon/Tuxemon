@@ -39,7 +39,9 @@ class SacrificeEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> SacrificeEffectResult:
-        player = self.session.player
+        if user.owner is None:
+            raise ValueError()
+        player = user.owner
         value = float(player.game_variables["random_tech_hit"])
         hit = tech.accuracy >= value
         if hit:

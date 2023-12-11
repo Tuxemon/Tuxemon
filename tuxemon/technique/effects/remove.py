@@ -34,7 +34,9 @@ class RemoveEffect(TechEffect):
         self, tech: Technique, user: Monster, target: Monster
     ) -> RemoveEffectResult:
         done: bool = False
-        player = self.session.player
+        if user.owner is None:
+            raise ValueError()
+        player = user.owner
         potency = random.random()
         value = float(player.game_variables["random_tech_hit"])
         success = tech.potency >= potency and tech.accuracy >= value

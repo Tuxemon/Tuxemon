@@ -33,8 +33,9 @@ class RunEffect(TechEffect):
     ) -> RunEffectResult:
         extra: Optional[str] = None
         ran: bool = False
+        if tech.combat_state is None or user.owner is None:
+            raise ValueError()
         combat = tech.combat_state
-        assert combat
 
         def escape(level_user: int, level_target: int, attempts: int) -> bool:
             escaping: bool = False
@@ -43,7 +44,7 @@ class RunEffect(TechEffect):
                 escaping = True
             return escaping
 
-        var = self.session.player.game_variables
+        var = user.owner.game_variables
         if "run_attempts" not in var:
             var["run_attempts"] = 0
         # monster in the player party

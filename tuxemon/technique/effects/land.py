@@ -29,8 +29,9 @@ class LandEffect(TechEffect):
         self, tech: Technique, user: Monster, target: Monster
     ) -> LandEffectResult:
         done = True
+        if tech.combat_state is None:
+            raise ValueError()
         combat = tech.combat_state
-        assert combat
 
         # make land the user
         user_sprite = combat._monster_sprite_map.get(user, None)

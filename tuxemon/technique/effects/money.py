@@ -34,7 +34,9 @@ class MoneyEffect(TechEffect):
     ) -> MoneyEffectResult:
         extra: Optional[str] = None
         done: bool = False
-        player = self.session.player
+        if user.owner is None:
+            raise ValueError()
+        player = user.owner
         value = float(player.game_variables["random_tech_hit"])
         damage, mult = formula.simple_damage_calculate(tech, user, target)
         hit = tech.accuracy >= value

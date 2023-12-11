@@ -40,7 +40,9 @@ class DamageEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> DamageEffectResult:
-        player = self.session.player
+        if user.owner is None:
+            raise ValueError()
+        player = user.owner
         value = float(player.game_variables["random_tech_hit"])
         hit = tech.accuracy >= value
         if hit and not target.out_of_range:

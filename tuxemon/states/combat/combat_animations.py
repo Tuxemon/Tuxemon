@@ -465,6 +465,9 @@ class CombatAnimations(ABC, Menu[None]):
             offset = -scale(8)
 
         for index in range(player.party_limit):
+            # opponent is wild monster = no tuxeballs
+            if any(t for t in player.monsters if t.wild):
+                continue
             status = None
 
             monster: Optional[Monster]
@@ -726,8 +729,7 @@ class CombatAnimations(ABC, Menu[None]):
             shake_ball(1.8 + i * 1.0)
 
         combat = item.combat_state
-        assert combat
-        if is_captured:
+        if is_captured and combat:
             combat._captured_mon = monster
             self.task(kill, 2 + num_shakes)
             action_time = num_shakes + 1.8
@@ -738,7 +740,6 @@ class CombatAnimations(ABC, Menu[None]):
             # Display 'Gotcha!' first.
             self.task(combat.end_combat, action_time + 4)
             gotcha = T.translate("gotcha")
-            combat._captured = True
             info = None
             # if party
             if len(self.players[0].monsters) >= self.players[0].party_limit:
@@ -776,7 +777,7 @@ class CombatAnimations(ABC, Menu[None]):
             )
             label = f"captured_failed_{num_shakes}"
             failed = T.translate(label)
-            breakout_delay += len(failed) * 0.02
+            breakout_delay += len(failed) * prepare.LETTER_TIME
             self.task(
                 partial(self.alert, failed),
                 breakout_delay,

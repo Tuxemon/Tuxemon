@@ -29,7 +29,9 @@ class AreaEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> AreaEffectResult:
-        player = self.session.player
+        if tech.combat_state is None or user.owner is None:
+            raise ValueError()
+        player = user.owner
         value = float(player.game_variables["random_tech_hit"])
         hit = tech.accuracy >= value
         if hit:
@@ -38,7 +40,6 @@ class AreaEffect(TechEffect):
             # 2 vs 2, damage both monsters
             if player.max_position > 1:
                 monsters: Sequence[Monster] = []
-                assert tech.combat_state
                 combat = tech.combat_state
                 human = combat.monsters_in_play_human
                 opponent = combat.monsters_in_play_ai

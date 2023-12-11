@@ -30,9 +30,10 @@ class ForfeitEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> ForfeitEffectResult:
+        if tech.combat_state is None or user.owner is None:
+            raise ValueError()
         combat = tech.combat_state
-        assert combat
-        player = self.session.player
+        player = user.owner
         var = player.game_variables
         var["battle_last_result"] = OutputBattle.forfeit
         var["teleport_clinic"] = OutputBattle.lost

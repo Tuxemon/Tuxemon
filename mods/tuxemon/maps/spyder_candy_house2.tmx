@@ -44,16 +44,16 @@
   <object id="68" name="Go Outside" type="event" x="96" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_town.tmx,2,25,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="69" name="Create NPCs" type="event" x="0" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_candyhouse2_barney,8,4"/>
-    <property name="act2" value="npc_face spyder_candyhouse2_barney,left"/>
-    <property name="cond1" value="not npc_exists spyder_candyhouse2_barney"/>
+    <property name="act2" value="char_face spyder_candyhouse2_barney,left"/>
+    <property name="cond1" value="not char_exists spyder_candyhouse2_barney"/>
    </properties>
   </object>
   <object id="70" name="Captain" type="event" x="144" y="80" width="16" height="16" rotation="180">
@@ -65,7 +65,7 @@
   <object id="72" name="Create Prof" type="event" x="64" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_candyhouse2_indiana,4,2"/>
-    <property name="cond1" value="not npc_exists spyder_candyhouse2_indiana"/>
+    <property name="cond1" value="not char_exists spyder_candyhouse2_indiana"/>
    </properties>
   </object>
   <object id="73" name="Talk Prof - No Cateye" type="event" x="80" y="0" width="16" height="16">

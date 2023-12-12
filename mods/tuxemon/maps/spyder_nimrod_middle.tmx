@@ -64,30 +64,30 @@
   <object id="1" name="Teleport to Nimrod Bottom" type="event" x="256" y="288" width="32" height="32">
    <properties>
     <property name="act1" value="transition_teleport spyder_nimrod_bottom.tmx,16,19,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="2" name="Teleport to Nimrod Top" type="event" x="0" y="272" width="32" height="32">
    <properties>
     <property name="act1" value="transition_teleport spyder_nimrod_top.tmx,0,17,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="7" name="Teleport to Nimrod Bottom" type="event" x="80" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_nimrod_bottom.tmx,2,15,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="13" name="Create Thatcher" type="event" x="48" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_thatcher,3,9"/>
-    <property name="cond1" value="not npc_exists spyder_nimrod_thatcher"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_thatcher"/>
    </properties>
   </object>
   <object id="14" name="Talk Thatcher" type="event" x="32" y="144" width="16" height="16">
@@ -105,8 +105,8 @@
   <object id="16" name="Create Honour" type="event" x="240" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_honour,15,4"/>
-    <property name="act2" value="npc_face spyder_nimrod_honour,left"/>
-    <property name="cond1" value="not npc_exists spyder_nimrod_honour"/>
+    <property name="act2" value="char_face spyder_nimrod_honour,left"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_honour"/>
    </properties>
   </object>
   <object id="17" name="Talk Honour" type="event" x="256" y="64" width="16" height="16">
@@ -124,7 +124,7 @@
   <object id="18" name="Create Antimony" type="event" x="64" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_antimony,4,11"/>
-    <property name="cond1" value="not npc_exists spyder_nimrod_antimony"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_antimony"/>
    </properties>
   </object>
   <object id="19" name="Talk Antimony" type="event" x="80" y="176" width="16" height="16">
@@ -141,8 +141,8 @@
   <object id="20" name="Create Chrome Robo" type="event" x="144" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_chromerobo,9,11"/>
-    <property name="act2" value="npc_face spyder_nimrod_chromerobo,down"/>
-    <property name="cond1" value="not npc_exists spyder_nimrod_chromerobo"/>
+    <property name="act2" value="char_face spyder_nimrod_chromerobo,down"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_chromerobo"/>
     <property name="cond2" value="not variable_set nimrodchromerobo_middle:yes"/>
    </properties>
   </object>
@@ -161,8 +161,8 @@
   <object id="24" name="Create Xeon" type="event" x="160" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_xeon,10,15"/>
-    <property name="act2" value="npc_face spyder_nimrod_xeon,up"/>
-    <property name="cond1" value="not npc_exists spyder_nimrod_xeon"/>
+    <property name="act2" value="char_face spyder_nimrod_xeon,up"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_xeon"/>
     <property name="cond2" value="not variable_set nimrodxeon_middle:yes"/>
    </properties>
   </object>
@@ -179,8 +179,8 @@
   <object id="26" name="Create Argon" type="event" x="208" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_argon,13,9"/>
-    <property name="act2" value="npc_face spyder_nimrod_argon,right"/>
-    <property name="cond1" value="not npc_exists spyder_nimrod_argon"/>
+    <property name="act2" value="char_face spyder_nimrod_argon,right"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_argon"/>
    </properties>
   </object>
   <object id="27" name="Talk Argon" type="event" x="192" y="144" width="16" height="16">
@@ -197,8 +197,8 @@
   <object id="29" name="Create Archer" type="event" x="48" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_archer,3,13"/>
-    <property name="act2" value="npc_face spyder_nimrod_archer,right"/>
-    <property name="cond1" value="not npc_exists spyder_nimrod_archer"/>
+    <property name="act2" value="char_face spyder_nimrod_archer,right"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_archer"/>
    </properties>
   </object>
   <object id="30" name="Talk Archer" type="event" x="32" y="208" width="16" height="16">
@@ -229,7 +229,7 @@
     <property name="act4" value="translated_dialog spyder_nimrod_argon2"/>
     <property name="act6" value="set_variable nimrodargon:yes"/>
     <property name="cond1" value="not variable_set nimrodargon:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="38" name="Talk Honour" type="event" x="192" y="64" width="48" height="16">
@@ -242,7 +242,7 @@
     <property name="act5" value="translated_dialog spyder_nimrod_honour2"/>
     <property name="act6" value="set_variable nimrodhonour:yes"/>
     <property name="cond1" value="not variable_set nimrodhonour:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="40" name="Talk Xeon" type="event" x="160" y="176" width="16" height="64">
@@ -255,7 +255,7 @@
     <property name="act6" value="set_variable nimrodxeon_middle:yes"/>
     <property name="act7" value="remove_npc spyder_nimrod_xeon"/>
     <property name="cond1" value="not variable_set nimrodxeon_middle:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="41" name="Talk Chrome Robo" type="event" x="144" y="192" width="16" height="64">
@@ -268,7 +268,7 @@
     <property name="act6" value="set_variable nimrodchromerobo_middle:yes"/>
     <property name="act7" value="remove_npc spyder_nimrod_chromerobo"/>
     <property name="cond1" value="not variable_set nimrodchromerobo_middle:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="42" name="Talk Archer" type="event" x="64" y="208" width="16" height="16">
@@ -282,7 +282,7 @@
     <property name="act6" value="translated_dialog spyder_nimrod_archer2"/>
     <property name="act7" value="set_variable nimrodarcher:yes"/>
     <property name="cond1" value="not variable_set nimrodarcher:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="43" name="Talk Antimony" type="event" x="64" y="192" width="16" height="16">
@@ -294,7 +294,7 @@
     <property name="act4" value="translated_dialog spyder_nimrod_antimony2"/>
     <property name="act6" value="set_variable nimrodantimony:yes"/>
     <property name="cond1" value="not variable_set nimrodantimony:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
  </objectgroup>

@@ -3,7 +3,7 @@ events:
     actions:
     - teleport_faint
     conditions:
-    - is player_defeated
+    - is char_defeated player
     - not location_type clinic
     - not location_name wayfarer_inn1:wayfarer_inn2:scoop3:scoop4:paper_town
     - is current_state WorldState
@@ -26,7 +26,7 @@ events:
     - set_monster_status
     - set_variable teleport_clinic:none
     conditions:
-    - is player_defeated
+    - is char_defeated player
     - is location_name wayfarer_inn1:wayfarer_inn2
     - is current_state WorldState
     type: "event"
@@ -37,7 +37,7 @@ events:
     - set_monster_status
     - set_variable teleport_clinic:none
     conditions:
-    - is player_defeated
+    - is char_defeated player
     - is location_name scoop3:scoop4
     - is current_state WorldState
     type: "event"
@@ -48,7 +48,7 @@ events:
     - set_monster_status
     - set_variable teleport_clinic:none
     conditions:
-    - is player_defeated
+    - is char_defeated player
     - is location_name paper_town
     - is current_state WorldState
     - is variable_set firstfightend:no
@@ -66,15 +66,15 @@ events:
     - translated_dialog_choice yes:no,swimming
     conditions:
     - is has_item player,surfboard
-    - is player_facing_tile surfable
+    - is char_facing_tile player,surfable
     - is button_pressed K_RETURN
-    - not player_in surfable
+    - not char_in player,surfable
     type: "event"
   Surfable:
     actions:
     - set_template player,swimmer
     conditions:
-    - is player_in surfable
+    - is char_in player,surfable
     - not has_sprite swimmer
     type: "event"
   Not surfable Boy:
@@ -82,7 +82,7 @@ events:
     - set_template player,adventurer,adventurer
     - set_variable swimming:no
     conditions:
-    - not player_in surfable
+    - not char_in player,surfable
     - is has_sprite swimmer
     - is variable_set gender_choice:gender_male
     type: "event"
@@ -91,7 +91,7 @@ events:
     - set_template player,heroine,heroine
     - set_variable swimming:no
     conditions:
-    - not player_in surfable
+    - not char_in player,surfable
     - is has_sprite swimmer
     - is variable_set gender_choice:gender_female
     type: "event"

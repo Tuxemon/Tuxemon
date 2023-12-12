@@ -11,18 +11,18 @@ from tuxemon.states.world.worldstate import WorldState
 
 @final
 @dataclass
-class PlayerStopAction(EventAction):
+class CharStopAction(EventAction):
     """
-    Make the player stop moving.
+    Make the character stop moving.
 
     Script usage:
         .. code-block::
 
-            player_stop
+            char_stop
 
     """
 
-    name = "player_stop"
+    name = "char_stop"
 
     def start(self) -> None:
         # Get a copy of the world state.

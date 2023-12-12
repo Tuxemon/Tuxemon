@@ -8,35 +8,36 @@ from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
 
-class PlayerInCondition(EventCondition):
+class CharInCondition(EventCondition):
     """
-    Check to see if the player is at the condition position
+    Check to see if the character is at the condition position
     on a specific set of tiles.
 
     Script usage:
         .. code-block::
 
-            is player_in <value>
+            is char_in <character>,<value>
 
     Script parameters:
+        character: Either "player" or character slug name (e.g. "npc_maple")
         value: value (eg surfable) inside the tileset.
 
     """
 
-    name = "player_in"
+    name = "char_in"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        player = get_npc(session, "player")
-        if not player:
+        character = get_npc(session, condition.parameters[0])
+        if not character:
             return False
-        prop = condition.parameters[0]
+        prop = condition.parameters[1]
         world = session.client.get_state_by_name(WorldState)
 
         if prop == "surfable":
-            return player.tile_pos in world.surfable_map
+            return character.tile_pos in world.surfable_map
         else:
             tiles = world.check_collision_zones(world.collision_map, prop)
             if tiles:
-                return player.tile_pos in tiles
+                return character.tile_pos in tiles
             else:
-                raise ValueError(f"{prop} doesn't exist.")
+                return False

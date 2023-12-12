@@ -12,37 +12,35 @@ from tuxemon.event.eventaction import EventAction
 
 @final
 @dataclass
-class NpcPlagueAttributeAction(
-    EventAction,
-):
+class CharPlagueAction(EventAction):
     """
-    Set the NPC as infected, inoculated or healthy.
+    Set the character as infected, inoculated or healthy.
 
     Script usage:
         .. code-block::
 
-            npc_plague <value>[,npc_slug]
+            char_plague <value>[,character]
 
     Script parameters:
         condition: Infected, inoculated or healthy
-        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        character: Either "player" or character slug name (e.g. "npc_maple").
 
     """
 
-    name = "npc_plague"
+    name = "char_plague"
     value: str
-    npc_slug: Optional[str] = None
+    character: Optional[str] = None
 
     def start(self) -> None:
-        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
-        npc = get_npc(self.session, self.npc_slug)
-        assert npc
+        self.character = "player" if self.character is None else self.character
+        character = get_npc(self.session, self.character)
+        assert character
         if self.value == PlagueType.infected:
-            npc.plague = PlagueType.infected
+            character.plague = PlagueType.infected
         elif self.value == PlagueType.healthy:
-            npc.plague = PlagueType.healthy
+            character.plague = PlagueType.healthy
         elif self.value == PlagueType.inoculated:
-            npc.plague = PlagueType.inoculated
+            character.plague = PlagueType.inoculated
         else:
             raise ValueError(
                 f"{self.value} must be infected, inoculated or healthy."

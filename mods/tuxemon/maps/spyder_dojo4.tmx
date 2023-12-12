@@ -53,9 +53,9 @@
   <object id="10" name="Teleport to Lower Floor" type="event" x="144" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_dojo3.tmx,13,9,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="19" name="Player Spawn" type="event" x="224" y="144" width="16" height="16"/>
@@ -68,7 +68,7 @@
   <object id="23" name="Create Thri" type="event" x="176" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_thri,11,3"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_thri"/>
+    <property name="cond1" value="not char_exists spyder_dojo_thri"/>
    </properties>
   </object>
   <object id="24" name="Talk Thri" type="event" x="144" y="32" width="16" height="16">
@@ -117,7 +117,7 @@
   </object>
   <object id="28" name="Billie encounter" type="event" x="80" y="96" width="224" height="16">
    <properties>
-    <property name="act01" value="player_stop"/>
+    <property name="act01" value="char_stop"/>
     <property name="act02" value="lock_controls"/>
     <property name="act03" value="create_npc spyder_dojo_billie,10,9"/>
     <property name="act04" value="pathfind_to_player spyder_dojo_billie,down"/>
@@ -130,7 +130,7 @@
     <property name="act30" value="start_battle spyder_dojo_billie"/>
     <property name="act40" value="translated_dialog spyder_dojo_billie2"/>
     <property name="act50" value="pathfind spyder_dojo_billie,10,9"/>
-    <property name="act60" value="npc_face spyder_dojo_billie,left"/>
+    <property name="act60" value="char_face spyder_dojo_billie,left"/>
     <property name="act70" value="remove_npc spyder_dojo_billie"/>
     <property name="act80" value="set_tuxepedia eyesore,seen"/>
     <property name="act81" value="set_tuxepedia cardiwing,seen"/>
@@ -142,7 +142,7 @@
     <property name="act95" value="translated_dialog spyder_dojo_billie3"/>
     <property name="cond1" value="not variable_set dojobillie:yes"/>
     <property name="cond2" value="is variable_set dojothrimonster:yes"/>
-    <property name="cond3" value="is player_at"/>
+    <property name="cond3" value="is char_at player"/>
    </properties>
   </object>
   <object id="29" name="Billie Budaye" type="event" x="0" y="64" width="16" height="16">

@@ -12,28 +12,30 @@ from tuxemon.event.eventaction import EventAction
 
 @final
 @dataclass
-class SetNpcAttributeAction(EventAction):
+class SetCharAttributeAction(EventAction):
     """
-    Set the given attribute of the npc to the given value.
+    Set the given attribute of the character to the given value.
 
     Script usage:
         .. code-block::
 
-            set_npc_attribute <npc_slug>,<attribute>,<value>
+            set_char_attribute <character>,<attribute>,<value>
 
     Script parameters:
-        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        character: Either "player" or character slug name (e.g. "npc_maple").
         attribute: Name of the attribute.
         value: Value of the attribute.
 
     """
 
-    name = "set_npc_attribute"
-    npc_slug: str
+    name = "set_char_attribute"
+    character: str
     attribute: str
     value: str
 
     def start(self) -> None:
-        npc = get_npc(self.session, self.npc_slug)
-        assert npc
-        CommonAction.set_character_attribute(npc, self.attribute, self.value)
+        character = get_npc(self.session, self.character)
+        assert character
+        CommonAction.set_character_attribute(
+            character, self.attribute, self.value
+        )

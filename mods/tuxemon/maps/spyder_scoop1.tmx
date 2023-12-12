@@ -60,23 +60,23 @@
   <object id="11" name="Teleport to Timber Town" type="event" x="0" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_town.tmx,29,23,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="12" name="Teleport to Scoop 2" type="event" x="304" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_scoop2.tmx,0,4,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="46" name="Create Lanth" type="event" x="16" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_lanth,0,4"/>
-    <property name="cond1" value="not npc_exists spyder_scoop_lanth"/>
+    <property name="cond1" value="not char_exists spyder_scoop_lanth"/>
    </properties>
   </object>
   <object id="47" name="Talk Lanth" type="event" x="0" y="64" width="16" height="16">
@@ -94,7 +94,7 @@
   <object id="49" name="Create Paine" type="event" x="112" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_paine,6,3"/>
-    <property name="cond1" value="not npc_exists spyder_scoop_paine"/>
+    <property name="cond1" value="not char_exists spyder_scoop_paine"/>
    </properties>
   </object>
   <object id="50" name="Talk Paine" type="event" x="96" y="48" width="16" height="16">
@@ -112,8 +112,8 @@
   <object id="51" name="Create Rubid" type="event" x="224" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_rubid,13,10"/>
-    <property name="act2" value="npc_face spyder_scoop_rubid,left"/>
-    <property name="cond1" value="not npc_exists spyder_scoop_rubid"/>
+    <property name="act2" value="char_face spyder_scoop_rubid,left"/>
+    <property name="cond1" value="not char_exists spyder_scoop_rubid"/>
    </properties>
   </object>
   <object id="52" name="Talk Rubid" type="event" x="208" y="160" width="16" height="16">
@@ -131,8 +131,8 @@
   <object id="53" name="Create Berys" type="event" x="304" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_berys,19,4"/>
-    <property name="act2" value="npc_face spyder_scoop_berys,left"/>
-    <property name="cond1" value="not npc_exists spyder_scoop_berys"/>
+    <property name="act2" value="char_face spyder_scoop_berys,left"/>
+    <property name="cond1" value="not char_exists spyder_scoop_berys"/>
    </properties>
   </object>
   <object id="54" name="Talk Berys" type="event" x="304" y="80" width="16" height="16">
@@ -150,7 +150,7 @@
   <object id="55" name="Create Turner" type="event" x="32" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_turner,1,9"/>
-    <property name="cond1" value="not npc_exists spyder_scoop_turner"/>
+    <property name="cond1" value="not char_exists spyder_scoop_turner"/>
    </properties>
   </object>
   <object id="56" name="Talk Turner" type="event" x="16" y="144" width="16" height="16">
@@ -174,23 +174,23 @@
   <object id="62" name="Create LapinouA" type="event" x="144" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_lapinoua,9,6"/>
-    <property name="act2" value="npc_wander spyder_scoop_lapinoua"/>
-    <property name="cond1" value="not npc_exists spyder_scoop_lapinoua"/>
+    <property name="act2" value="char_wander spyder_scoop_lapinoua"/>
+    <property name="cond1" value="not char_exists spyder_scoop_lapinoua"/>
     <property name="cond2" value="not variable_set scooplapinoua:yes"/>
    </properties>
   </object>
   <object id="63" name="Create CochiniA" type="event" x="288" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_cochinia,18,10"/>
-    <property name="act2" value="npc_wander spyder_scoop_cochinia"/>
-    <property name="cond1" value="not npc_exists spyder_scoop_cochinia"/>
+    <property name="act2" value="char_wander spyder_scoop_cochinia"/>
+    <property name="cond1" value="not char_exists spyder_scoop_cochinia"/>
     <property name="cond2" value="not variable_set scoopcochinia:yes"/>
    </properties>
   </object>
   <object id="64" name="Create Landrace" type="event" x="160" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_landrace,10,9"/>
-    <property name="cond1" value="not npc_exists spyder_scoop_landrace"/>
+    <property name="cond1" value="not char_exists spyder_scoop_landrace"/>
     <property name="cond2" value="not variable_set scooplandrace:yes"/>
    </properties>
   </object>
@@ -204,7 +204,7 @@
     <property name="act5" value="translated_dialog spyder_scoop_lanth2"/>
     <property name="act6" value="set_variable scooplanth:yes"/>
     <property name="cond1" value="not variable_set scooplanth:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="66" name="Talk Berys" type="event" x="272" y="64" width="32" height="16">
@@ -217,7 +217,7 @@
     <property name="act5" value="translated_dialog spyder_scoop_berys2"/>
     <property name="act6" value="set_variable scoopberys:yes"/>
     <property name="cond1" value="not variable_set scoopberys:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="67" name="Talk Turner" type="event" x="16" y="160" width="16" height="48">
@@ -230,7 +230,7 @@
     <property name="act5" value="translated_dialog spyder_scoop_turner2"/>
     <property name="act6" value="set_variable scoopturner:yes"/>
     <property name="cond1" value="not variable_set scoopturner:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="68" name="Talk Paine" type="event" x="96" y="64" width="16" height="32">
@@ -243,7 +243,7 @@
     <property name="act5" value="translated_dialog spyder_scoop_paine2"/>
     <property name="act6" value="set_variable scooppaine:yes"/>
     <property name="cond1" value="not variable_set scooppaine:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="69" name="Talk Rubid" type="event" x="192" y="160" width="16" height="16">
@@ -256,7 +256,7 @@
     <property name="act5" value="translated_dialog spyder_scoop_rubid2"/>
     <property name="act6" value="set_variable scooprubid:yes"/>
     <property name="cond1" value="not variable_set scooprubid:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
  </objectgroup>

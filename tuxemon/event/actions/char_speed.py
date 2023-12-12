@@ -11,28 +11,28 @@ from tuxemon.event.eventaction import EventAction
 
 @final
 @dataclass
-class NpcSpeed(EventAction):
+class CharSpeedAction(EventAction):
     """
-    Set the NPC movement speed to a custom value.
+    Set the character movement speed to a custom value.
 
     Script usage:
         .. code-block::
 
-            npc_speed <npc_slug> <speed>
+            char_speed <character>,<speed>
 
     Script parameters:
-        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        character: Either "player" or character slug name (e.g. "npc_maple").
         speed: Speed amount.
 
     """
 
-    name = "npc_speed"
-    npc_slug: str
+    name = "char_speed"
+    character: str
     speed: float
 
     def start(self) -> None:
-        npc = get_npc(self.session, self.npc_slug)
-        assert npc
-        npc.moverate = self.speed
+        character = get_npc(self.session, self.character)
+        assert character
+        character.moverate = self.speed
         # Just set some sane limit to avoid losing sprites
-        assert 0 < npc.moverate < 20
+        assert 0 < character.moverate < 20

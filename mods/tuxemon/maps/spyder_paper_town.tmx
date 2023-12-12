@@ -120,35 +120,35 @@
   <object id="135" name="Mart Sign" type="event" x="256" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_multi_martsign"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="136" name="Teleport to Protagonist House" type="event" x="160" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_downstairs.tmx,4,6,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="137" name="Sign for Protagonist House" type="event" x="192" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_home"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="138" name="Under Repairs" type="event" x="64" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_multi_underrepairs"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="139" name="Paper Town Sign" type="event" x="192" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog welcome_location_town"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
@@ -156,56 +156,56 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_daycare1"/>
     <property name="cond1" value="not variable_set timberreached:yes"/>
-    <property name="cond2" value="is player_facing_tile"/>
+    <property name="cond2" value="is char_facing_tile player"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="142" name="Teleport to Route 1" type="event" x="224" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route1.tmx,14,19,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
     <property name="cond3" value="is variable_set firstfightdue:no"/>
    </properties>
   </object>
   <object id="143" name="Teleport to Route 1" type="event" x="208" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route1.tmx,13,19,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
     <property name="cond3" value="is variable_set firstfightdue:no"/>
    </properties>
   </object>
   <object id="145" name="Teleport to Daycare" type="event" x="320" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_daycare.tmx,3,8,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="152" name="Teleport to Mart" type="event" x="304" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_paper_scoop.tmx,6,10,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="155" name="Stop!" type="event" x="208" y="16" width="32" height="16">
    <properties>
     <property name="act1" value="lock_controls"/>
-    <property name="act10" value="player_stop"/>
+    <property name="act10" value="char_stop"/>
     <property name="act20" value="create_npc spyder_dante,15,8"/>
     <property name="act30" value="pathfind_to_player spyder_dante,right"/>
-    <property name="act35" value="npc_face spyder_dante,left"/>
+    <property name="act35" value="char_face spyder_dante,left"/>
     <property name="act40" value="translated_dialog spyder_papertown_stopthere"/>
     <property name="act50" value="pathfind player,13,3"/>
-    <property name="act55" value="npc_face player,down"/>
+    <property name="act55" value="char_face player,down"/>
     <property name="act60" value="pathfind spyder_dante,13,14"/>
     <property name="act80" value="remove_npc spyder_dante"/>
     <property name="act81" value="unlock_controls"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is party_size less_than,1"/>
    </properties>
   </object>
@@ -213,30 +213,30 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_daycare2"/>
     <property name="cond1" value="is variable_set timberreached:yes"/>
-    <property name="cond2" value="is player_facing_tile"/>
+    <property name="cond2" value="is char_facing_tile player"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="158" name="Create Conileaf" type="event" x="384" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_rockittenfrolicking,24,2"/>
-    <property name="act2" value="npc_wander spyder_rockittenfrolicking"/>
-    <property name="cond1" value="not npc_exists spyder_rockittenfrolicking"/>
+    <property name="act2" value="char_wander spyder_rockittenfrolicking"/>
+    <property name="cond1" value="not char_exists spyder_rockittenfrolicking"/>
     <property name="cond2" value="is variable_set captainreturns:yes"/>
    </properties>
   </object>
   <object id="160" name="Create Rockitten" type="event" x="400" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_conileaffrolicking,27,3"/>
-    <property name="act2" value="npc_wander spyder_conileaffrolicking"/>
-    <property name="cond1" value="not npc_exists spyder_conileaffrolicking"/>
+    <property name="act2" value="char_wander spyder_conileaffrolicking"/>
+    <property name="cond1" value="not char_exists spyder_conileaffrolicking"/>
     <property name="cond2" value="is variable_set captainreturns:yes"/>
    </properties>
   </object>
   <object id="162" name="Create Homemaker" type="event" x="160" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_papertown_silver,10,14"/>
-    <property name="cond2" value="not npc_exists spyder_papertown_silver"/>
+    <property name="cond2" value="not char_exists spyder_papertown_silver"/>
    </properties>
   </object>
   <object id="163" name="Talk homemaker" type="event" x="400" y="112" width="16" height="16">
@@ -248,23 +248,23 @@
   <object id="217" name="Teleport to Sea Route" type="event" x="0" y="224" width="16" height="64">
    <properties>
     <property name="act1" value="transition_teleport spyder_routec.tmx,39,35,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="218" name="My First Mon" type="event" x="400" y="208" width="112" height="16">
    <properties>
-    <property name="act10" value="player_stop"/>
+    <property name="act10" value="char_stop"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="create_npc spyder_dante,19,13"/>
     <property name="act30" value="pathfind_to_player spyder_dante,down"/>
-    <property name="act31" value="npc_face spyder_dante,up"/>
-    <property name="act32" value="npc_face player,down"/>
+    <property name="act31" value="char_face spyder_dante,up"/>
+    <property name="act32" value="char_face player,down"/>
     <property name="act40" value="translated_dialog spyder_papertown_myfirstmon"/>
     <property name="act45" value="pathfind spyder_dante,26,9"/>
-    <property name="act46" value="npc_face spyder_dante,right"/>
-    <property name="act47" value="npc_face player,up"/>
+    <property name="act46" value="char_face spyder_dante,right"/>
+    <property name="act47" value="char_face player,up"/>
     <property name="act48" value="translated_dialog spyder_papertown_myfirstmon1"/>
     <property name="act49" value="wait 1.0"/>
     <property name="act50" value="translated_dialog spyder_papertown_myfirstmon2"/>
@@ -272,7 +272,7 @@
     <property name="act52" value="remove_npc spyder_dante"/>
     <property name="act60" value="set_variable dantebin:yes"/>
     <property name="act70" value="unlock_controls"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is party_size less_than,1"/>
     <property name="cond3" value="is variable_set dantefirst:yes"/>
     <property name="cond4" value="not variable_set dantebin:yes"/>
@@ -331,7 +331,7 @@
     <property name="act30" value="pathfind spyder_billie,25,13"/>
     <property name="act40" value="wait 1.0"/>
     <property name="act50" value="pathfind_to_player spyder_billie"/>
-    <property name="act51" value="npc_face spyder_billie,player"/>
+    <property name="act51" value="char_face spyder_billie,player"/>
     <property name="act60" value="translated_dialog spyder_papertown_firstfight"/>
     <property name="act61" value="add_monster billie_choice,5,spyder_billie,5,10"/>
     <property name="act70" value="start_battle spyder_billie"/>
@@ -383,15 +383,15 @@
   <object id="230" name="Sign for Sunnyside Manor" type="event" x="192" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_sunnyside"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="200" name="Create Captain" type="event" x="64" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_captain,4,14"/>
-    <property name="act2" value="npc_face spyder_captain,up"/>
-    <property name="cond1" value="not npc_exists spyder_captain"/>
+    <property name="act2" value="char_face spyder_captain,up"/>
+    <property name="cond1" value="not char_exists spyder_captain"/>
     <property name="cond2" value="is variable_set captainreturns:yes"/>
    </properties>
   </object>
@@ -423,7 +423,7 @@
   <object id="206" name="Destination - Flower" type="event" x="208" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
-    <property name="act4" value="player_face up"/>
+    <property name="act4" value="char_face player,up"/>
     <property name="act5" value="transition_teleport spyder_flower_city.tmx,17,30,0.3"/>
     <property name="cond1" value="is variable_set rivergoto:flower"/>
    </properties>
@@ -432,7 +432,7 @@
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_leather_town.tmx,17,19,0.3"/>
-    <property name="act4" value="player_face right"/>
+    <property name="act4" value="char_face player,right"/>
     <property name="cond1" value="is variable_set rivergoto:leather"/>
    </properties>
   </object>
@@ -440,7 +440,7 @@
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_paper_town.tmx,4,13,0.3"/>
-    <property name="act4" value="player_face up"/>
+    <property name="act4" value="char_face player,up"/>
     <property name="cond1" value="is variable_set rivergoto:paper"/>
    </properties>
   </object>
@@ -448,7 +448,7 @@
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_candy_town.tmx,26,29,0.3"/>
-    <property name="act4" value="player_face down"/>
+    <property name="act4" value="char_face player,down"/>
     <property name="cond1" value="is variable_set rivergoto:candy"/>
    </properties>
   </object>
@@ -470,21 +470,21 @@
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_timber_town.tmx,8,21,0.3"/>
-    <property name="act4" value="player_face up"/>
+    <property name="act4" value="char_face player,up"/>
     <property name="cond1" value="is variable_set rivergoto:timber"/>
    </properties>
   </object>
   <object id="213" name="Teleport to Manor" type="event" x="160" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_paper_manor.tmx,6,7,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="214" name="Stop 2!" type="event" x="16" y="240" width="16" height="48">
    <properties>
     <property name="act1" value="lock_controls"/>
-    <property name="act10" value="player_stop"/>
+    <property name="act10" value="char_stop"/>
     <property name="act20" value="create_npc spyder_dante,19,13"/>
     <property name="act30" value="pathfind spyder_dante,2,14"/>
     <property name="act40" value="translated_dialog spyder_papertown_stopthere"/>
@@ -492,44 +492,44 @@
     <property name="act60" value="pathfind spyder_dante,19,13"/>
     <property name="act80" value="remove_npc spyder_dante"/>
     <property name="act81" value="unlock_controls"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is party_size less_than,1"/>
    </properties>
   </object>
   <object id="244" name="Teleport to Daycare Back" type="event" x="336" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_daycare.tmx,13,7,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="238" name="Teleport to Rival" type="event" x="512" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_paper_rival_downstairs.tmx,1,11,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="239" name="Sign for Rival House" type="event" x="448" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_rival"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="240" name="My First Mon - Not Met" type="event" x="400" y="208" width="112" height="16">
    <properties>
-    <property name="act10" value="player_stop"/>
+    <property name="act10" value="char_stop"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="create_npc spyder_dante,19,13"/>
     <property name="act30" value="pathfind_to_player spyder_dante,down"/>
-    <property name="act31" value="npc_face spyder_dante,up"/>
-    <property name="act32" value="npc_face player,down"/>
+    <property name="act31" value="char_face spyder_dante,up"/>
+    <property name="act32" value="char_face player,down"/>
     <property name="act40" value="translated_dialog spyder_papertown_myfirstmon_notmet"/>
     <property name="act45" value="pathfind spyder_dante,26,9"/>
-    <property name="act46" value="npc_face spyder_dante,right"/>
-    <property name="act47" value="npc_face player,up"/>
+    <property name="act46" value="char_face spyder_dante,right"/>
+    <property name="act47" value="char_face player,up"/>
     <property name="act48" value="translated_dialog spyder_papertown_myfirstmon1"/>
     <property name="act49" value="wait 1.0"/>
     <property name="act50" value="translated_dialog spyder_papertown_myfirstmon2"/>
@@ -538,7 +538,7 @@
     <property name="act60" value="set_variable dantefirst:yes"/>
     <property name="act61" value="set_variable dantebin:yes"/>
     <property name="act70" value="unlock_controls"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is party_size less_than,1"/>
     <property name="cond3" value="not variable_set dantefirst:yes"/>
     <property name="cond4" value="not variable_set dantebin:yes"/>
@@ -551,7 +551,7 @@
     <property name="act20" value="remove_state"/>
     <property name="act25" value="translated_dialog spyder_papertown_rockitten"/>
     <property name="act30" value="translated_dialog_choice yes:no,rockittenchosen"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="is party_size less_than,1"/>
    </properties>
@@ -563,7 +563,7 @@
     <property name="act20" value="remove_state"/>
     <property name="act25" value="translated_dialog spyder_papertown_lambert"/>
     <property name="act30" value="translated_dialog_choice yes:no,lambertchosen"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="is party_size less_than,1"/>
    </properties>
@@ -575,7 +575,7 @@
     <property name="act20" value="remove_state"/>
     <property name="act25" value="translated_dialog spyder_papertown_nut"/>
     <property name="act30" value="translated_dialog_choice yes:no,nutchosen"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="is party_size less_than,1"/>
    </properties>
@@ -587,7 +587,7 @@
     <property name="act20" value="remove_state"/>
     <property name="act25" value="translated_dialog spyder_papertown_tweesher"/>
     <property name="act30" value="translated_dialog_choice yes:no,tweesherchosen"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="is party_size less_than,1"/>
    </properties>
@@ -599,7 +599,7 @@
     <property name="act20" value="remove_state"/>
     <property name="act25" value="translated_dialog spyder_papertown_agnite"/>
     <property name="act30" value="translated_dialog_choice yes:no,agnitechosen"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="is party_size less_than,1"/>
    </properties>
@@ -607,7 +607,7 @@
   <object id="250" name="Trash" type="event" x="368" y="208" width="32" height="16">
    <properties>
     <property name="act25" value="translated_dialog spyder_papertown_trash"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>

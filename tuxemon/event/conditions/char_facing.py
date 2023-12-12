@@ -7,38 +7,27 @@ from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
 
-class NPCFacingCondition(EventCondition):
+class CharFacingCondition(EventCondition):
     """
     Check to see where a character is facing.
 
     Script usage:
         .. code-block::
 
-            is npc_facing <character>,<direction>
+            is char_facing <character>,<direction>
 
     Script parameters:
-        character: Either "player" or npc slug name (e.g. "npc_maple").
+        character: Either "player" or character slug name (e.g. "npc_maple").
         direction: One of "up", "down", "left" or "right".
 
     """
 
-    name = "npc_facing"
+    name = "char_facing"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """
-        Check to see where a character is facing.
-
-        Parameters:
-            session: The session object
-            condition: The map condition object.
-
-        Returns:
-            Whether the chosen character faces the chosen direction.
-
-        """
-        player = get_npc(session, condition.parameters[0])
-        if not player:
+        character = get_npc(session, condition.parameters[0])
+        if not character:
             return False
         facing = condition.parameters[1]
 
-        return player.facing == facing
+        return character.facing == facing

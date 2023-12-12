@@ -516,7 +516,7 @@ class NPC(Entity[NPCState]):
 
     @property
     def move_destination(self) -> Optional[tuple[int, int]]:
-        """Only used for the player_moved condition."""
+        """Only used for the char_moved condition."""
         if self.path:
             return self.path[-1]
         else:

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 
-from tuxemon.event import MapCondition
+from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.map import get_coords, get_direction
 from tuxemon.session import Session
@@ -13,34 +13,29 @@ from tuxemon.states.world.worldstate import WorldState
 logger = logging.getLogger(__name__)
 
 
-class PlayerFacingTileCondition(EventCondition):
+class CharFacingTileCondition(EventCondition):
     """
-    Check to see if an NPC is facing a tile position.
+    Check to see if a character is facing a tile position.
+
+    This is checked against all the tiles included in the condition object.
 
     Script usage:
         .. code-block::
 
-            is player_facing_tile [value]
+            is char_facing_tile <character>[,value]
 
     Script parameters:
+        character: Either "player" or character slug name (e.g. "npc_maple").
         value: value (eg surfable) inside the tileset.
 
     """
 
-    name = "player_facing_tile"
+    name = "char_facing_tile"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """
-        Check to see the player is facing a tile position.
-
-        Parameters:
-            session: The session object
-            condition: The map condition object.
-
-        Returns:
-            Whether the player faces one of the condition tiles.
-
-        """
+        character = get_npc(session, condition.parameters[0])
+        if not character:
+            return False
 
         tiles = [
             (condition.x + w, condition.y + h)
@@ -48,30 +43,29 @@ class PlayerFacingTileCondition(EventCondition):
             for h in range(0, condition.height)
         ]
         tile_location = None
-        player = session.player
+        # get all the coordinates around the npc
         client = session.client
-        # get all the coordinates around the player
-        player_tiles = get_coords(player.tile_pos, client.map_size)
+        npc_tiles = get_coords(character.tile_pos, client.map_size)
 
         # check if the NPC is facing a specific set of tiles
         world = session.client.get_state_by_name(WorldState)
-        if condition.parameters:
-            prop = condition.parameters[0]
-            if prop == "surfable":
+        if len(condition.parameters) > 1:
+            value = condition.parameters[1]
+            if value == "surfable":
                 label = list(world.surfable_map)
             else:
-                label = world.check_collision_zones(world.collision_map, prop)
-            tiles = list(set(player_tiles).intersection(label))
+                label = world.check_collision_zones(world.collision_map, value)
+            tiles = list(set(npc_tiles).intersection(label))
 
         # return common coordinates
-        tiles = list(set(tiles).intersection(player_tiles))
+        tiles = list(set(tiles).intersection(npc_tiles))
 
         for coords in tiles:
             # Look through the remaining tiles and get directions
-            tile_location = get_direction(player.tile_pos, coords)
-            # Then we check to see if we're facing the Tile
-            if player.facing == tile_location:
-                logger.debug(f"Player is facing {tile_location}")
+            tile_location = get_direction(character.tile_pos, coords)
+            # Then we check to see the npc is facing the Tile
+            if character.facing == tile_location:
+                logger.debug(f"{character.slug} is facing {tile_location}")
                 return True
 
         return False

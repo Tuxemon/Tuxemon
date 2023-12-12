@@ -7,9 +7,9 @@ from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
 
-class PlayerSpriteCondition(EventCondition):
+class CharSpriteCondition(EventCondition):
     """
-    Check the player's sprite
+    Check the character's sprite
 
     Script usage:
         .. code-block::
@@ -17,22 +17,22 @@ class PlayerSpriteCondition(EventCondition):
             is npc_sprite <character>,<sprite>
 
     Script parameters:
-        character: Either "player" or npc slug name (e.g. "npc_maple")
+        character: Either "player" or character slug name (e.g. "npc_maple")
         sprite: NPC's sprite (eg maniac, florist, etc.)
 
     """
 
-    name = "player_sprite"
+    name = "char_sprite"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        npc = get_npc(session, condition.parameters[0])
-        if not npc:
+        character = get_npc(session, condition.parameters[0])
+        if not character:
             return False
 
         sprite = condition.parameters[1]
 
-        if npc.template:
-            for template in npc.template:
+        if character.template:
+            for template in character.template:
                 if template.sprite_name == sprite:
                     return True
         return False

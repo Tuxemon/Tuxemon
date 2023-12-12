@@ -173,38 +173,38 @@
   <object id="182" name="Teleport to Route 5" type="event" x="64" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route5.tmx,4,19,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="183" name="Teleport to Tunnel" type="event" x="240" y="624" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_tunnel.tmx,15,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="184" name="Teleport to Tunnel" type="event" x="224" y="624" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_tunnel.tmx,14,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="188" name="Teleport to Scoop" type="event" x="464" y="352" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_scoop1.tmx,0,3,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="329" name="Stop! - Scoop" type="event" x="464" y="368" width="16" height="16">
    <properties>
-    <property name="act1" value="player_stop"/>
+    <property name="act1" value="char_stop"/>
     <property name="act3" value="pathfind spyder_dante,29,25"/>
     <property name="act4" value="translated_dialog spyder_timber_dante2"/>
     <property name="act5" value="add_item app_contacts"/>
@@ -212,14 +212,14 @@
     <property name="act7" value="add_contacts professor,111"/>
     <property name="act8" value="pathfind spyder_dante,24,31"/>
     <property name="act9" value="set_variable timberdantewarn:yes"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="not variable_set timberdantewarn:yes"/>
    </properties>
   </object>
   <object id="330" name="Create Dante" type="event" x="384" y="496" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dante,24,31"/>
-    <property name="cond1" value="not npc_exists spyder_dante"/>
+    <property name="cond1" value="not char_exists spyder_dante"/>
    </properties>
   </object>
   <object id="331" name="Talk Dante" type="event" x="384" y="480" width="16" height="16">
@@ -231,14 +231,14 @@
   <object id="332" name="Seen Timber" type="event" x="64" y="16" width="32" height="16">
    <properties>
     <property name="act2" value="set_variable seentimber:yes"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="333" name="Create Captain" type="event" x="160" y="336" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_captain,8,22"/>
-    <property name="act2" value="npc_face spyder_captain,up"/>
-    <property name="cond1" value="not npc_exists spyder_captain"/>
+    <property name="act2" value="char_face spyder_captain,up"/>
+    <property name="cond1" value="not char_exists spyder_captain"/>
     <property name="cond2" value="is variable_set captainreturns:yes"/>
    </properties>
   </object>
@@ -269,23 +269,23 @@
   <object id="342" name="Teleport to Timber Centre" type="event" x="128" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_center.tmx,6,10,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="345" name="Teleport to Timber Scoop" type="event" x="224" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_scoop.tmx,5,10,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="346" name="Destination - Flower" type="event" x="128" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
-    <property name="act4" value="player_face up"/>
+    <property name="act4" value="char_face player,up"/>
     <property name="act5" value="transition_teleport spyder_flower_city.tmx,17,30,0.3"/>
     <property name="cond1" value="is variable_set rivergoto:flower"/>
    </properties>
@@ -294,7 +294,7 @@
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_leather_town.tmx,17,19,0.3"/>
-    <property name="act4" value="player_face right"/>
+    <property name="act4" value="char_face player,right"/>
     <property name="cond1" value="is variable_set rivergoto:leather"/>
    </properties>
   </object>
@@ -302,7 +302,7 @@
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_paper_town.tmx,4,13,0.3"/>
-    <property name="act4" value="player_face up"/>
+    <property name="act4" value="char_face player,up"/>
     <property name="cond1" value="is variable_set rivergoto:paper"/>
    </properties>
   </object>
@@ -310,21 +310,21 @@
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_candy_town.tmx,26,29,0.3"/>
-    <property name="act4" value="player_face down"/>
+    <property name="act4" value="char_face player,down"/>
     <property name="cond1" value="is variable_set rivergoto:candy"/>
    </properties>
   </object>
   <object id="351" name="Sign: Timber Town" type="event" x="96" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog welcome_location_town"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="354" name="Sign: Scoop" type="event" x="480" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_sign"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
@@ -344,82 +344,82 @@
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_timber_town.tmx,8,21,0.3"/>
-    <property name="act4" value="player_face up"/>
+    <property name="act4" value="char_face player,up"/>
     <property name="cond1" value="is variable_set rivergoto:timber"/>
    </properties>
   </object>
   <object id="359" name="Sign: Timber Scoop" type="event" x="176" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_multi_martsign"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="364" name="Teleport to Flower City 1" type="event" x="624" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_flower_city.tmx,0,32,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
   <object id="365" name="Teleport to Flower City 2" type="event" x="624" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_flower_city.tmx,0,33,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
   <object id="366" name="Teleport to Flower City 3" type="event" x="624" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_flower_city.tmx,0,34,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
   <object id="367" name="Teleport to Routee 1" type="event" x="528" y="624" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_routee.tmx,13,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="368" name="Teleport to Routee 2" type="event" x="544" y="624" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_routee.tmx,14,0,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="370" name="Teleport to Timber Cafe" type="event" x="176" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_cafe.tmx,8,11,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="371" name="Teleport to Timber House" type="event" x="304" y="576" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_house.tmx,6,7,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="369" name="Surfboard" type="event" x="272" y="320" width="16" height="16">
    <properties>
-    <property name="act01" value="player_stop"/>
+    <property name="act01" value="char_stop"/>
     <property name="act02" value="lock_controls"/>
     <property name="act03" value="create_npc spyder_papertown_mom,26,23"/>
     <property name="act04" value="pathfind spyder_papertown_mom,17,21"/>
     <property name="act05" value="unlock_controls"/>
-    <property name="act06" value="npc_face player,down"/>
-    <property name="act07" value="npc_face spyder_papertown_mom,up"/>
+    <property name="act06" value="char_face player,down"/>
+    <property name="act07" value="char_face spyder_papertown_mom,up"/>
     <property name="act08" value="translated_dialog spyder_timber_mom1"/>
     <property name="act09" value="add_item surfboard"/>
     <property name="act10" value="translated_dialog spyder_timber_mom2"/>
@@ -433,23 +433,23 @@
   <object id="376" name="Teleport to Walled Garden" type="event" x="512" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_walledgarden1.tmx,8,11,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="377" name="Teleport to Walled Garden" type="event" x="496" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_walledgarden1.tmx,7,11,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="379" name="Create Rogue no pass" type="event" x="464" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_outsidewalled_rogue,33,14"/>
-    <property name="cond1" value="not npc_exists spyder_outsidewalled_rogue"/>
+    <property name="cond1" value="not char_exists spyder_outsidewalled_rogue"/>
     <property name="cond2" value="not has_item player,gold_pass"/>
    </properties>
   </object>
@@ -464,8 +464,8 @@
   <object id="381" name="Create Rogue pass" type="event" x="448" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_outsidewalled_rogue,30,10"/>
-    <property name="act2" value="npc_face spyder_outsidewalled_rogue,right"/>
-    <property name="cond1" value="not npc_exists spyder_outsidewalled_rogue"/>
+    <property name="act2" value="char_face spyder_outsidewalled_rogue,right"/>
+    <property name="cond1" value="not char_exists spyder_outsidewalled_rogue"/>
     <property name="cond2" value="is has_item player,gold_pass"/>
    </properties>
   </object>
@@ -491,7 +491,7 @@
   <object id="384" name="Create Midas" type="event" x="544" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_outsidewalled_midas,33,8"/>
-    <property name="cond1" value="not npc_exists spyder_outsidewalled_midas"/>
+    <property name="cond1" value="not char_exists spyder_outsidewalled_midas"/>
     <property name="cond2" value="is has_item player,gold_pass"/>
     <property name="cond3" value="is variable_set walledmidas:yes"/>
    </properties>

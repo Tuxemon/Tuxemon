@@ -11,24 +11,24 @@ from tuxemon.event.eventaction import EventAction
 
 @final
 @dataclass
-class NpcWalk(EventAction):
+class CharWalkAction(EventAction):
     """
-    Set the NPC movement speed to the global walk speed.
+    Set the character movement speed to the global walk speed.
 
     Script usage:
         .. code-block::
 
-            npc_walk <npc_slug>
+            char_walk <character>
 
     Script parameters:
-        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        character: Either "player" or character slug name (e.g. "npc_maple").
 
     """
 
-    name = "npc_walk"
-    npc_slug: str
+    name = "char_walk"
+    character: str
 
     def start(self) -> None:
-        npc = get_npc(self.session, self.npc_slug)
-        assert npc
-        npc.moverate = self.session.client.config.player_walkrate
+        character = get_npc(self.session, self.character)
+        assert character
+        character.moverate = self.session.client.config.player_walkrate

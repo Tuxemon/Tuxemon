@@ -73,7 +73,7 @@
   <object id="44" name="Create Looten" type="event" x="112" y="480" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_greenwash_looten,7,30"/>
-    <property name="cond1" value="not npc_exists spyder_greenwash_looten"/>
+    <property name="cond1" value="not char_exists spyder_greenwash_looten"/>
    </properties>
   </object>
   <object id="45" name="Talk Looten" type="event" x="80" y="464" width="16" height="16">
@@ -96,48 +96,48 @@
   <object id="46" name="Teleport to Greenhouse" type="event" x="240" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_greenwash_greenhouse.tmx,1,7,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
   <object id="51" name="Teleport to Greenhouse" type="event" x="240" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_greenwash_greenhouse.tmx,1,8,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
   <object id="52" name="Teleport to Candy Town" type="event" x="80" y="496" width="48" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_town.tmx,25,24,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
     <property name="cond3" value="is variable_set gotaardant:yes"/>
    </properties>
   </object>
   <object id="68" name="Teleport to Level 2" type="event" x="16" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_greenwash_level2.tmx,13,5,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="69" name="Create Chip" type="event" x="80" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_greenwash_chip,5,13"/>
-    <property name="act2" value="npc_face spyder_greenwash_chip,down"/>
-    <property name="cond1" value="not npc_exists spyder_greenwash_chip"/>
+    <property name="act2" value="char_face spyder_greenwash_chip,down"/>
+    <property name="cond1" value="not char_exists spyder_greenwash_chip"/>
    </properties>
   </object>
   <object id="71" name="Create Clarence" type="event" x="208" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_greenwash_clarence,13,2"/>
-    <property name="act2" value="npc_face spyder_greenwash_clarence,down"/>
-    <property name="cond1" value="not npc_exists spyder_greenwash_clarence"/>
+    <property name="act2" value="char_face spyder_greenwash_clarence,down"/>
+    <property name="cond1" value="not char_exists spyder_greenwash_clarence"/>
    </properties>
   </object>
   <object id="75" name="Talk Chip" type="event" x="64" y="272" width="32" height="16">
@@ -151,7 +151,7 @@
     <property name="act6" value="translated_dialog spyder_greenwash_chip2"/>
     <property name="act7" value="set_variable greenwashchip:yes"/>
     <property name="cond1" value="not variable_set greenwashchip:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="77" name="Talk Clarence" type="event" x="192" y="112" width="48" height="16">
@@ -164,20 +164,20 @@
     <property name="act5" value="translated_dialog spyder_greenwash_clarence2"/>
     <property name="act6" value="set_variable greenwashclarence:yes"/>
     <property name="cond1" value="not variable_set greenwashclarence:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="78" name="Move Right" type="event" x="144" y="464" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_move player,right"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act1" value="char_move player,right"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="80" name="Create Broer" type="event" x="144" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_greenwash_broer,9,2"/>
-    <property name="act2" value="npc_face spyder_greenwash_broer,down"/>
-    <property name="cond1" value="not npc_exists spyder_greenwash_broer"/>
+    <property name="act2" value="char_face spyder_greenwash_broer,down"/>
+    <property name="cond1" value="not char_exists spyder_greenwash_broer"/>
    </properties>
   </object>
   <object id="81" name="Talk Broer" type="event" x="112" y="96" width="48" height="16">
@@ -190,14 +190,14 @@
     <property name="act5" value="add_item potion"/>
     <property name="act6" value="set_variable greenwashbroer:yes"/>
     <property name="cond1" value="not variable_set greenwashbroer:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="82" name="Create Lewie" type="event" x="160" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_greenwash_lewie,10,11"/>
-    <property name="act2" value="npc_face spyder_greenwash_lewie,right"/>
-    <property name="cond1" value="not npc_exists spyder_greenwash_lewie"/>
+    <property name="act2" value="char_face spyder_greenwash_lewie,right"/>
+    <property name="cond1" value="not char_exists spyder_greenwash_lewie"/>
    </properties>
   </object>
   <object id="83" name="Talk Lewie" type="event" x="160" y="208" width="80" height="16">
@@ -209,14 +209,14 @@
     <property name="act4" value="translated_dialog spyder_greenwash_lewie2"/>
     <property name="act6" value="set_variable greenwashlewie:yes"/>
     <property name="cond1" value="not variable_set greenwashlewie:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="84" name="Create Morehouse" type="event" x="112" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_greenwash_morehouse,7,20"/>
-    <property name="act2" value="npc_face spyder_greenwash_morehouse,right"/>
-    <property name="cond1" value="not npc_exists spyder_greenwash_morehouse"/>
+    <property name="act2" value="char_face spyder_greenwash_morehouse,right"/>
+    <property name="cond1" value="not char_exists spyder_greenwash_morehouse"/>
    </properties>
   </object>
   <object id="85" name="Talk Morehouse" type="event" x="144" y="320" width="16" height="64">
@@ -229,7 +229,7 @@
     <property name="act5" value="translated_dialog spyder_greenwash_morehouse2"/>
     <property name="act6" value="set_variable greenwashmorehouse:yes"/>
     <property name="cond1" value="not variable_set greenwashmorehouse:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
  </objectgroup>

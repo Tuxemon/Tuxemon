@@ -8,33 +8,30 @@ from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
 
-class PlayerDefeatedCondition(EventCondition):
+class CharDefeatedCondition(EventCondition):
     """
-    Check to see the player has at least one tuxemon, and all tuxemon in their
+    Check to see the character has at least one tuxemon, and all tuxemon in their
     party are defeated.
 
     Script usage:
         .. code-block::
 
-            is player_defeated [character]
+            is char_defeated <character>
 
     Script parameters:
-        character: Either "player" or npc slug name (e.g. "npc_maple")
+        character: Either "player" or character slug name (e.g. "npc_maple")
 
     """
 
-    name = "player_defeated"
+    name = "char_defeated"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        slug = (
-            "player" if not condition.parameters else condition.parameters[0]
-        )
-        player = get_npc(session, slug)
-        if not player:
+        character = get_npc(session, condition.parameters[0])
+        if not character:
             return False
 
-        if player.monsters:
-            for mon in player.monsters:
+        if character.monsters:
+            for mon in character.monsters:
                 if mon.current_hp <= 0 and not has_status(mon, "faint"):
                     mon.faint()
                 if "faint" not in (s.slug for s in mon.status):

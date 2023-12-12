@@ -15,35 +15,35 @@ from tuxemon.states.world.worldstate import WorldState
 
 @final
 @dataclass
-class NpcLookAction(EventAction):
+class CharLookAction(EventAction):
     """
-    Make an NPC look around.
+    Make a character look around.
 
     Script usage:
         .. code-block::
 
-            npc_look <npc_slug>[,frequency][,directions]
+            char_look <character>[,frequency][,directions]
 
     Script parameters:
-        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        character: Either "player" or character slug name (e.g. "npc_maple").
         frequency: Frequency of movements. 0 to stop looking. If set to
             a different value it will be clipped to the range [0.5, 5].
             If not passed the default value is 1.
-        directions: the direction the npc is going to look, by default
+        directions: the direction the character is going to look, by default
             all
 
-        eg. npc_look npc_slug
-        eg. npc_look npc_slug,,right:left
+        eg. char_look character
+        eg. char_look character,,right:left
 
     """
 
-    name = "npc_look"
-    npc_slug: str
+    name = "char_look"
+    character: str
     frequency: Optional[float] = None
     directions: Optional[str] = None
 
     def start(self) -> None:
-        npc = get_npc(self.session, self.npc_slug)
+        character = get_npc(self.session, self.character)
         world = self.session.client.get_state_by_name(WorldState)
         self.limit_direction: list[Direction] = []
         if self.directions:
@@ -51,7 +51,7 @@ class NpcLookAction(EventAction):
             for limit in _limit:
                 self.limit_direction.append(Direction(limit))
 
-        def _look(npc: NPC) -> None:
+        def _look(character: NPC) -> None:
             directions = list(Direction)
             # Suspend looking around if a dialog window is open
             for state in self.session.client.active_states:
@@ -66,8 +66,8 @@ class NpcLookAction(EventAction):
             if self.limit_direction:
                 directions = self.limit_direction
             direction = random.choice(directions)
-            if direction != npc.facing:
-                npc.facing = direction
+            if direction != character.facing:
+                character.facing = direction
 
         def schedule() -> None:
             # The timer is randomized between 0.5 and 1.0 of the frequency
@@ -75,7 +75,7 @@ class NpcLookAction(EventAction):
             # Frequency can be set to 0 to indicate that we want to stop
             # looking around
             world.remove_animations_of(schedule)
-            if npc is None or self.frequency == 0:
+            if character is None or self.frequency == 0:
                 return
             else:
                 frequency = 1.0
@@ -84,7 +84,7 @@ class NpcLookAction(EventAction):
                 time = (0.5 + 0.5 * random.random()) * frequency
                 world.task(schedule, time)
 
-            _look(npc)
+            _look(character)
 
         # Schedule the first look
         schedule()

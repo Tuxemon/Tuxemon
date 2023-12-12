@@ -49,38 +49,38 @@
   <object id="51" name="Teleport to Side Route E 1" type="event" x="0" y="576" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_routee.tmx,19,16,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="52" name="Teleport to Side Route E 2" type="event" x="0" y="592" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_routee.tmx,19,17,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="68" name="Teleport to Datacenter" type="event" x="96" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_datacenter.tmx,2,19,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="69" name="Sign: Datacenter" type="event" x="112" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_datacenter_sign"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="70" name="Create Electra" type="event" x="256" y="560" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_routeb_electra,16,35"/>
-    <property name="cond1" value="not npc_exists spyder_routeb_electra"/>
+    <property name="cond1" value="not char_exists spyder_routeb_electra"/>
    </properties>
   </object>
   <object id="71" name="Talk Electra" type="event" x="256" y="576" width="16" height="32">
@@ -94,14 +94,14 @@
     <property name="act7" value="translated_dialog spyder_routeb_electra2"/>
     <property name="act8" value="set_variable routebelectra:yes"/>
     <property name="cond1" value="not variable_set routebelectra:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="72" name="Create Cytherea" type="event" x="240" y="400" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_routeb_cytherea,15,25"/>
-    <property name="act2" value="npc_face spyder_routeb_cytherea,right"/>
-    <property name="cond1" value="not npc_exists spyder_routeb_cytherea"/>
+    <property name="act2" value="char_face spyder_routeb_cytherea,right"/>
+    <property name="cond1" value="not char_exists spyder_routeb_cytherea"/>
    </properties>
   </object>
   <object id="73" name="Talk Cytherea" type="event" x="256" y="400" width="32" height="16">
@@ -115,13 +115,13 @@
     <property name="act7" value="translated_dialog spyder_routeb_cytherea2"/>
     <property name="act8" value="set_variable routebcytherea:yes"/>
     <property name="cond1" value="not variable_set routebcytherea:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="74" name="Create Nephthys" type="event" x="80" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_routeb_nephthys,5,23"/>
-    <property name="cond1" value="not npc_exists spyder_routeb_nephthys"/>
+    <property name="cond1" value="not char_exists spyder_routeb_nephthys"/>
    </properties>
   </object>
   <object id="75" name="Talk Nephthys" type="event" x="80" y="384" width="16" height="32">
@@ -134,13 +134,13 @@
     <property name="act7" value="translated_dialog spyder_routeb_nephthys2"/>
     <property name="act8" value="set_variable routebnephthys:yes"/>
     <property name="cond1" value="not variable_set routebnephthys:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="76" name="Create Sedna" type="event" x="256" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_routeb_sedna,16,17"/>
-    <property name="cond1" value="not npc_exists spyder_routeb_sedna"/>
+    <property name="cond1" value="not char_exists spyder_routeb_sedna"/>
    </properties>
   </object>
   <object id="77" name="Talk Sedna" type="event" x="256" y="288" width="16" height="32">
@@ -152,14 +152,14 @@
     <property name="act7" value="translated_dialog spyder_routeb_sedna2"/>
     <property name="act8" value="set_variable routebsedna:yes"/>
     <property name="cond1" value="not variable_set routebsedna:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="78" name="Create Calypso" type="event" x="48" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_routeb_calypso,3,7"/>
-    <property name="act2" value="npc_face spyder_routeb_calypso,right"/>
-    <property name="cond1" value="not npc_exists spyder_routeb_calypso"/>
+    <property name="act2" value="char_face spyder_routeb_calypso,right"/>
+    <property name="cond1" value="not char_exists spyder_routeb_calypso"/>
    </properties>
   </object>
   <object id="79" name="Talk Calypso" type="event" x="96" y="112" width="16" height="16">
@@ -173,7 +173,7 @@
     <property name="act7" value="translated_dialog spyder_routeb_calypso2"/>
     <property name="act8" value="set_variable routebcalypso:yes"/>
     <property name="cond1" value="not variable_set routebcalypso:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="80" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -196,7 +196,7 @@
   </object>
   <object id="184" name="Billie" type="event" x="48" y="576" width="16" height="32">
    <properties>
-    <property name="act01" value="player_stop"/>
+    <property name="act01" value="char_stop"/>
     <property name="act02" value="lock_controls"/>
     <property name="act03" value="create_npc spyder_billie,17,37"/>
     <property name="act04" value="pathfind_to_player spyder_billie,right"/>
@@ -206,7 +206,7 @@
     <property name="act90" value="set_variable routebbillie:yes"/>
     <property name="act99" value="unlock_controls"/>
     <property name="cond1" value="not variable_set routebbillie:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
  </objectgroup>

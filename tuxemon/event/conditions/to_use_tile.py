@@ -4,9 +4,7 @@ from __future__ import annotations
 
 from tuxemon.event import MapCondition
 from tuxemon.event.conditions.button_pressed import ButtonPressedCondition
-from tuxemon.event.conditions.player_facing_tile import (
-    PlayerFacingTileCondition,
-)
+from tuxemon.event.conditions.char_facing_tile import CharFacingTileCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
@@ -36,7 +34,7 @@ class ToUseTileCondition(EventCondition):
             Whether the player attempts to interact with a map condition tile.
 
         """
-        player_facing_tile = PlayerFacingTileCondition().test(
+        character_facing_tile = CharFacingTileCondition().test(
             session,
             condition,
         )
@@ -55,4 +53,4 @@ class ToUseTileCondition(EventCondition):
                 name="",
             ),
         )
-        return player_facing_tile and button_pressed
+        return character_facing_tile and button_pressed

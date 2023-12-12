@@ -9,6 +9,15 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.change_bg.ChangeBgAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_state.ChangeStateAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_taste.ChangeTasteAction
+.. autoscriptinfoclass:: tuxemon.event.actions.char_face.CharFaceAction
+.. autoscriptinfoclass:: tuxemon.event.actions.char_look.CharLookAction
+.. autoscriptinfoclass:: tuxemon.event.actions.char_move.CharMoveAction
+.. autoscriptinfoclass:: tuxemon.event.actions.char_plague.CharPlagueAction
+.. autoscriptinfoclass:: tuxemon.event.actions.char_run.CharRunAction
+.. autoscriptinfoclass:: tuxemon.event.actions.char_speed.CharSpeedAction
+.. autoscriptinfoclass:: tuxemon.event.actions.char_stop.CharStopAction
+.. autoscriptinfoclass:: tuxemon.event.actions.char_walk.CharWalkAction
+.. autoscriptinfoclass:: tuxemon.event.actions.char_wander.CharWanderAction
 .. autoscriptinfoclass:: tuxemon.event.actions.choice_item.ChoiceItemAction
 .. autoscriptinfoclass:: tuxemon.event.actions.choice_monster.ChoiceMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.choice_npc.ChoiceNpcAction
@@ -25,13 +34,6 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.kennel_print.KennelAction
 .. autoscriptinfoclass:: tuxemon.event.actions.menu.MenuAction
 .. autoscriptinfoclass:: tuxemon.event.actions.money_print.MoneyPrintAction
-.. autoscriptinfoclass:: tuxemon.event.actions.npc_face.NpcFaceAction
-.. autoscriptinfoclass:: tuxemon.event.actions.npc_look.NpcLookAction
-.. autoscriptinfoclass:: tuxemon.event.actions.npc_move.NpcMoveAction
-.. autoscriptinfoclass:: tuxemon.event.actions.npc_run.NpcRun
-.. autoscriptinfoclass:: tuxemon.event.actions.npc_speed.NpcSpeed
-.. autoscriptinfoclass:: tuxemon.event.actions.npc_walk.NpcWalk
-.. autoscriptinfoclass:: tuxemon.event.actions.npc_wander.NpcWanderAction
 .. autoscriptinfoclass:: tuxemon.event.actions.open_shop.OpenShopAction
 .. autoscriptinfoclass:: tuxemon.event.actions.pathfind_to_player.PathfindToPlayerAction
 .. autoscriptinfoclass:: tuxemon.event.actions.pathfind.PathfindAction
@@ -39,8 +41,6 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.play_map_animation.PlayMapAnimationAction
 .. autoscriptinfoclass:: tuxemon.event.actions.play_music.PlayMusicAction
 .. autoscriptinfoclass:: tuxemon.event.actions.play_sound.PlaySoundAction
-.. autoscriptinfoclass:: tuxemon.event.actions.player_face.PlayerFaceAction
-.. autoscriptinfoclass:: tuxemon.event.actions.player_stop.PlayerStopAction
 .. autoscriptinfoclass:: tuxemon.event.actions.print.PrintAction
 .. autoscriptinfoclass:: tuxemon.event.actions.quarantine.QuarantineAction
 .. autoscriptinfoclass:: tuxemon.event.actions.quit.QuitAction
@@ -59,6 +59,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.rumble.RumbleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.screen_transition.ScreenTransitionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_battle.SetBattleAction
+.. autoscriptinfoclass:: tuxemon.event.actions.set_char_attribute.SetCharAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_code.SetCodeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_economy.SetEconomyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_kennel_visible.SetKennelVisibleAction
@@ -71,7 +72,6 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_level.SetMonsterLevelAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_plague.SetMonsterPlagueAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_status.SetMonsterStatusAction
-.. autoscriptinfoclass:: tuxemon.event.actions.set_npc_attribute.SetNpcAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_player_attribute.SetPlayerAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_player_name.SetPlayerNameAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_player_template.SetPlayerTemplateAction

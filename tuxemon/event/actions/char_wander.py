@@ -16,29 +16,29 @@ from tuxemon.states.world.worldstate import WorldState
 
 @final
 @dataclass
-class NpcWanderAction(EventAction):
+class CharWanderAction(EventAction):
     """
-    Make an NPC wander around the map.
+    Make a character wander around the map.
 
     Script usage:
         .. code-block::
 
-            npc_wander <npc_slug>[,frequency][,t_bound][,b_bound]
+            char_wander <character>[,frequency][,t_bound][,b_bound]
 
     Script parameters:
-        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        character: Either "player" or character slug name (e.g. "npc_maple").
         frequency: Frequency of movements. 0 to stop wandering. If set to
             a different value it will be clipped to the range [0.5, 5].
             If not passed the default value is 1.
         t_bound: coordinates top_bound vertex (eg 5,7)
         b_bound: coordinates bottom_bound vertex (eg 7,9)
 
-        eg. npc_wander npc_slug,,5,7,7,9
+        eg. char_wander character,,5,7,7,9
 
     """
 
-    name = "npc_wander"
-    npc_slug: str
+    name = "char_wander"
+    character: str
     frequency: Optional[float] = None
     t_bound_x: Optional[int] = None
     t_bound_y: Optional[int] = None
@@ -48,7 +48,7 @@ class NpcWanderAction(EventAction):
     def start(self) -> None:
         player = self.session.player
         client = self.session.client
-        npc = get_npc(self.session, self.npc_slug)
+        character = get_npc(self.session, self.character)
         world = client.get_state_by_name(WorldState)
 
         # generate all the coordinates
@@ -64,15 +64,15 @@ class NpcWanderAction(EventAction):
             y_coords = [y for y in range(top_bound[1], bottom_bound[1] + 1)]
             output = list(itertools.product(x_coords, y_coords))
 
-        def move(world: WorldState, npc: NPC) -> None:
+        def move(world: WorldState, character: NPC) -> None:
             # Don't interrupt existing movement
-            if npc.moving or npc.path:
+            if character.moving or character.path:
                 return
 
-            # NPC stops if the player looks at it
+            # character stops if the player looks at it
             tiles = get_coords(player.tile_pos, client.map_size)
-            direction = get_direction(player.tile_pos, npc.tile_pos)
-            if npc.tile_pos in tiles and player.facing == direction:
+            direction = get_direction(player.tile_pos, character.tile_pos)
+            if character.tile_pos in tiles and player.facing == direction:
                 return
 
             # Suspend wandering if a dialog window is open
@@ -81,13 +81,13 @@ class NpcWanderAction(EventAction):
                     return
 
             # Choose a random direction that is free and walk toward it
-            origin = (npc.tile_pos[0], npc.tile_pos[1])
+            origin = (character.tile_pos[0], character.tile_pos[1])
             exits = world.get_exits(origin)
             if exits:
                 path = random.choice(exits)
                 if not output or path in output:
-                    npc.path = [path]
-                    npc.next_waypoint()
+                    character.path = [path]
+                    character.next_waypoint()
 
         def schedule() -> None:
             # The timer is randomized between 0.5 and 1.0 of the frequency
@@ -95,7 +95,7 @@ class NpcWanderAction(EventAction):
             # Frequency can be set to 0 to indicate that we want to stop
             # wandering
             world.remove_animations_of(schedule)
-            if npc is None or self.frequency == 0:
+            if character is None or self.frequency == 0:
                 return
             else:
                 frequency = 1.0
@@ -104,7 +104,7 @@ class NpcWanderAction(EventAction):
                 time = (0.5 + 0.5 * random.random()) * frequency
                 world.task(schedule, time)
 
-            move(world, npc)
+            move(world, character)
 
         # Schedule the first move
         schedule()

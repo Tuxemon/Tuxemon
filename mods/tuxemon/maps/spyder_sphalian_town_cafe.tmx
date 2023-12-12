@@ -49,49 +49,49 @@
   <object id="29" name="Go Outside" type="event" x="128" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_sphalian_town.tmx,6,6,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="29" name="Create Maniac" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_sphalian_maniac_green,8,5"/>
-    <property name="cond1" value="not npc_exists spyder_sphalian_maniac_green"/>
+    <property name="cond1" value="not char_exists spyder_sphalian_maniac_green"/>
    </properties>
   </object>
   <object id="34" name="Create Granny" type="event" x="96" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_sphalian_granny,10,6"/>
-    <property name="act2" value="npc_face spyder_sphalian_granny,left"/>
-    <property name="cond1" value="not npc_exists spyder_sphalian_granny"/>
+    <property name="act2" value="char_face spyder_sphalian_granny,left"/>
+    <property name="cond1" value="not char_exists spyder_sphalian_granny"/>
    </properties>
   </object>
   <object id="35" name="Create Beck" type="event" x="112" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_sphalian_monk_orange,7,7"/>
-    <property name="act2" value="npc_face spyder_sphalian_monk_orange,right"/>
-    <property name="cond1" value="not npc_exists spyder_sphalian_monk_orange"/>
+    <property name="act2" value="char_face spyder_sphalian_monk_orange,right"/>
+    <property name="cond1" value="not char_exists spyder_sphalian_monk_orange"/>
    </properties>
   </object>
   <object id="36" name="Create Monk" type="event" x="128" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_sphalian_tennisplayer,7,6"/>
-    <property name="act2" value="npc_face spyder_sphalian_tennisplayer,right"/>
-    <property name="cond1" value="not npc_exists spyder_sphalian_tennisplayer"/>
+    <property name="act2" value="char_face spyder_sphalian_tennisplayer,right"/>
+    <property name="cond1" value="not char_exists spyder_sphalian_tennisplayer"/>
    </properties>
   </object>
   <object id="37" name="Create ShopKeeper" type="event" x="144" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_sphalian_shopkeeper,2,4"/>
-    <property name="cond1" value="not npc_exists spyder_sphalian_shopkeeper"/>
+    <property name="cond1" value="not char_exists spyder_sphalian_shopkeeper"/>
    </properties>
   </object>
   <object id="38" name="Talk ShopKeeper" type="event" x="32" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_sphalian_shopkeeper"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
   </object>

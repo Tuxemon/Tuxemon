@@ -33,14 +33,14 @@ class TrainerBattleCommand(CLICommand):
         """
         args = parse(line)
         if not args:
-            print("Missing arguments: <npc_slug>")
+            print("Missing arguments: <character>")
             raise ParseError
         elif len(args) == 1:
             trainer = args[0]
             try:
                 action = ctx.session.client.event_engine.execute_action
                 action("create_npc", (trainer, 7, 6))
-                action("start_battle", npc_slug=trainer)
+                action("start_battle", character1=trainer)
                 action("remove_npc", (trainer,))
             except Exception:
                 traceback.print_exc()

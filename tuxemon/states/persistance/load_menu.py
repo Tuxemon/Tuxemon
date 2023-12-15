@@ -45,7 +45,7 @@ class LoadMenuState(SaveMenuState):
 
             # TODO: Get player from whatever place and use self.client in
             # order to build a Session
-            local_session.player.set_state(local_session, save_data)
+            local_session.player.set_state(save_data)
 
             # teleport the player to the correct position using an event
             # engine action

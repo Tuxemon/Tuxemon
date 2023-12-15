@@ -8,7 +8,6 @@ from typing import TYPE_CHECKING, Any, Generic, TypeVar
 
 from tuxemon.map import proj
 from tuxemon.math import Point3, Vector3
-from tuxemon.session import Session
 from tuxemon.tools import vector2_to_tile_pos
 
 if TYPE_CHECKING:
@@ -92,7 +91,7 @@ class Entity(Generic[SaveDict]):
         """Return ``True`` if the entity is moving."""
         return not self.velocity3 == (0, 0, 0)
 
-    def get_state(self, session: Session) -> SaveDict:
+    def get_state(self) -> SaveDict:
         """
         Get Entities internal state for saving/loading.
 
@@ -104,7 +103,6 @@ class Entity(Generic[SaveDict]):
 
     def set_state(
         self,
-        session: Session,
         save_data: SaveDict,
     ) -> None:
         """
@@ -112,7 +110,7 @@ class Entity(Generic[SaveDict]):
 
         Parameters:
             session: Game session.
-            ave_data: Data used to recreate the Entity.
+            save_data: Data used to recreate the Entity.
 
         """
         raise NotImplementedError

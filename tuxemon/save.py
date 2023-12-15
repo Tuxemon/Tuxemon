@@ -76,7 +76,7 @@ def get_save_data(session: Session) -> SaveData:
 
     """
     screenshot = capture_screenshot(session.client)
-    npc_state = session.player.get_state(session)
+    npc_state = session.player.get_state()
     save_data: SaveData = {
         "screenshot": base64.b64encode(
             pygame.image.tobytes(screenshot, "RGB")

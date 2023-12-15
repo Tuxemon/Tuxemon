@@ -191,7 +191,7 @@ class NPC(Entity[NPCState]):
             )
         )
 
-    def get_state(self, session: Session) -> NPCState:
+    def get_state(self) -> NPCState:
         """
         Prepares a dictionary of the npc to be saved to a file.
 
@@ -204,7 +204,7 @@ class NPC(Entity[NPCState]):
         """
 
         state: NPCState = {
-            "current_map": session.client.get_map_name(),
+            "current_map": self.world.client.get_map_name(),
             "facing": self.facing,
             "game_variables": self.game_variables,
             "battles": encode_battle(self.battles),
@@ -231,7 +231,7 @@ class NPC(Entity[NPCState]):
 
         return state
 
-    def set_state(self, session: Session, save_data: NPCState) -> None:
+    def set_state(self, save_data: NPCState) -> None:
         """
         Recreates npc from saved data.
 

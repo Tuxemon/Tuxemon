@@ -74,8 +74,8 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_npc_attribute.SetNpcAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_player_attribute.SetPlayerAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_player_name.SetPlayerNameAction
-.. autoscriptinfoclass:: tuxemon.event.actions.set_player_template.SetPlayerTemplateAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_random_variable.SetRandomVariableAction
+.. autoscriptinfoclass:: tuxemon.event.actions.set_template.SetTemplateAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_tuxepedia.SetTuxepediaAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_variable.SetVariableAction
 .. autoscriptinfoclass:: tuxemon.event.actions.spawn_monster.SpawnMonsterAction

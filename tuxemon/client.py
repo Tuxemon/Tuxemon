@@ -279,7 +279,8 @@ class LocalPygameClient:
             _game_event = state.process_event(game_event)
             if _game_event is None:
                 break
-        return _game_event
+            return _game_event
+        return None
 
     def main(self) -> None:
         """

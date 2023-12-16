@@ -22,6 +22,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.npc_facing_tile.NPCFacingTileCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.npc_facing.NPCFacingCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.once.OnceCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.one_of.OneOfCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.party_infected.PartyInfectedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.party_size.PartySizeCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.player_at.PlayerAtCondition

@@ -149,6 +149,9 @@ class WorldState(state.State):
         self.transition_surface: Optional[pygame.surface.Surface] = None
         self.in_transition = False
 
+        # bubble above the player's head
+        self.bubble: dict[NPC, pygame.surface.Surface] = {}
+
         # The delayed teleport variable is used to perform a teleport in the
         # middle of a transition. For example, fading to black, then
         # teleporting the player, and fading back in again.
@@ -288,6 +291,22 @@ class WorldState(state.State):
     def set_layer(self) -> None:
         self.layer.fill(self.layer_color)
         self.screen.blit(self.layer, (0, 0))
+
+    def set_bubble(
+        self, screen_surfaces: list[tuple[pygame.surface.Surface, Rect, int]]
+    ) -> None:
+        if self.bubble:
+            for npc, surface in self.bubble.items():
+                cx, cy = self.get_pos_from_tilepos(Vector2(npc.tile_pos))
+                bubble_rect = surface.get_rect()
+                bubble_rect.centerx = npc.rect.centerx
+                bubble_rect.bottom = npc.rect.top
+                bubble_rect.x = cx
+                bubble_rect.y = cy - (
+                    surface.get_height() + int(npc.rect.height / 10)
+                )
+                bubble = (surface, bubble_rect, 100)
+                screen_surfaces.append(bubble)
 
     def broadcast_player_teleport_change(self) -> None:
         """Tell clients/host that player has moved after teleport."""
@@ -508,6 +527,9 @@ class WorldState(state.State):
 
             r = Rect(_c, s.get_size())
             screen_surfaces.append((s, r, l))
+
+        # Adds a bubble above player's head
+        self.set_bubble(screen_surfaces)
 
         # draw the map and sprites
         self.rect = self.current_map.renderer.draw(

@@ -614,7 +614,7 @@ class CombatState(CombatAnimations):
             if action.method is None:
                 return 0, 0
             sort = action.method.sort
-            primary_order = sort_order.index(sort)
+            primary_order = prepare.SORT_ORDER.index(sort)
 
             if sort == "meta":
                 # all meta items sorted together
@@ -627,16 +627,6 @@ class CombatState(CombatAnimations):
                 # monster speed, trainer speed, etc
                 assert action.user
                 return primary_order, action.user.speed_test(action)
-
-        # TODO: move to mod config
-        sort_order = [
-            "potion",
-            "utility",
-            "food",
-            "quest",
-            "meta",
-            "damage",
-        ]
 
         # TODO: Running happens somewhere else, it should be moved here
         # i think.
@@ -836,38 +826,20 @@ class CombatState(CombatAnimations):
                     status_ico: tuple[float, float] = (0.0, 0.0)
                     if self.players[1].max_position > 1:
                         if monster == self.monsters_in_play_ai[0]:
-                            status_ico = (
-                                self.rect.width * 0.06,
-                                self.rect.height * 0.12,
-                            )
+                            status_ico = prepare.ICON_OPPONENT_DEFAULT
                         elif monster == self.monsters_in_play_ai[1]:
-                            status_ico = (
-                                self.rect.width * 0.06,
-                                self.rect.height * 0.26,
-                            )
+                            status_ico = prepare.ICON_OPPONENT_SLOT
                     else:
                         if monster == self.monsters_in_play_ai[0]:
-                            status_ico = (
-                                self.rect.width * 0.06,
-                                self.rect.height * 0.12,
-                            )
+                            status_ico = prepare.ICON_OPPONENT_DEFAULT
                     if self.players[0].max_position > 1:
                         if monster == self.monsters_in_play_human[0]:
-                            status_ico = (
-                                self.rect.width * 0.64,
-                                self.rect.height * 0.42,
-                            )
+                            status_ico = prepare.ICON_PLAYER_SLOT
                         elif monster == self.monsters_in_play_human[1]:
-                            status_ico = (
-                                self.rect.width * 0.64,
-                                self.rect.height * 0.56,
-                            )
+                            status_ico = prepare.ICON_PLAYER_DEFAULT
                     else:
                         if monster == self.monsters_in_play_human[0]:
-                            status_ico = (
-                                self.rect.width * 0.64,
-                                self.rect.height * 0.56,
-                            )
+                            status_ico = prepare.ICON_PLAYER_DEFAULT
                     # load the sprite and add it to the display
                     icon = self.load_sprite(
                         status.icon,
@@ -875,6 +847,9 @@ class CombatState(CombatAnimations):
                         center=status_ico,
                     )
                     self._status_icons[monster].append(icon)
+
+        # update tuxemon balls to reflect status
+        self.animate_update_party_hud()
 
     def show_combat_dialog(self) -> None:
         """Create and show the area where battle messages are displayed."""
@@ -902,8 +877,6 @@ class CombatState(CombatAnimations):
             monster: Monster to choose an action for.
 
         """
-        from tuxemon.states.combat.combat_menus import MainCombatMenuState
-
         message = T.format("combat_monster_choice", {"name": monster.name})
         self.text_animations_queue.append((partial(self.alert, message), 0))
         rect_screen = self.client.screen.get_rect()
@@ -911,10 +884,7 @@ class CombatState(CombatAnimations):
         rect.bottomright = rect_screen.w, rect_screen.h
 
         state = self.client.push_state(
-            MainCombatMenuState(
-                cmb=self,
-                monster=monster,
-            )
+            "MainCombatMenuState", cmb=self, monster=monster
         )
         state.rect = rect
 

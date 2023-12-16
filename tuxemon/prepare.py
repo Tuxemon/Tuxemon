@@ -157,13 +157,39 @@ MIN_HEALING_POWER: int = 0
 MAX_HEALING_POWER: int = 10
 
 # Combat
+# position coordinates hud
+# player
+PLAYER_COMBAT: dict[str, tuple[int, int, int, int]] = {}
+PLAYER_COMBAT["home"] = (0, 62, 95, 70)
+# name, level, etc.
+PLAYER_COMBAT["hud"] = (145, 45, 110, 50)
+# 1st spot 2 vs 2
+PLAYER_COMBAT["hud0"] = (145, 25, 110, 50)
+# 2nd spot 2 vs 2
+PLAYER_COMBAT["hud1"] = (145, 45, 110, 50)
+# tuxeball icons
+PLAYER_COMBAT["party"] = (145, 57, 110, 50)
+# opponent
+OPPONENT_COMBAT: dict[str, tuple[int, int, int, int]] = {}
+OPPONENT_COMBAT["home"] = (140, 10, 95, 70)
+# name, level, etc.
+OPPONENT_COMBAT["hud"] = (18, 0, 85, 30)
+# 1st spot 2 vs 2
+OPPONENT_COMBAT["hud0"] = (18, 0, 85, 30)
+# 2nd spot 2 vs 2
+OPPONENT_COMBAT["hud1"] = (18, 20, 85, 30)
+# tuxeball icons
+OPPONENT_COMBAT["party"] = (18, 12, 85, 30)
+
 # This is the coefficient that can be found in formula.py and
 # it calculates the user strength
 # eg: user_strength = user.melee * (COEFF_DAMAGE + user.level)
 COEFF_DAMAGE: int = 7
+
 # Min and max multiplier are the multiplier upper/lower bounds
 MIN_MULTIPLIER: float = 0.25
 MAX_MULTIPLIER: float = 4.0
+
 # MULT_MAP associates the multiplier to a specific text
 MULT_MAP = {
     4: "attack_very_effective",
@@ -171,10 +197,42 @@ MULT_MAP = {
     0.5: "attack_resisted",
     0.25: "attack_weak",
 }
+
+# what comes first, second, etc. during a battle
+SORT_ORDER: list[str] = [
+    "potion",
+    "utility",
+    "food",
+    "quest",
+    "meta",
+    "damage",
+]
+
 # This is the time, in seconds, that the text takes to display.
 LETTER_TIME: float = 0.02
+
 # This is the time, in seconds, that the animation takes to finish.
 ACTION_TIME: float = 2.0
+
+# Status icon positions
+# 1 vs 1
+ICON_PLAYER_DEFAULT: tuple[float, float] = (
+    SCREEN_SIZE[0] * 0.64,
+    SCREEN_SIZE[1] * 0.56,
+)
+ICON_OPPONENT_DEFAULT: tuple[float, float] = (
+    SCREEN_SIZE[0] * 0.06,
+    SCREEN_SIZE[1] * 0.12,
+)
+# 2 vs 2
+ICON_PLAYER_SLOT: tuple[float, float] = (
+    SCREEN_SIZE[0] * 0.64,
+    SCREEN_SIZE[1] * 0.42,
+)
+ICON_OPPONENT_SLOT: tuple[float, float] = (
+    SCREEN_SIZE[0] * 0.06,
+    SCREEN_SIZE[1] * 0.26,
+)
 
 # Fonts
 FONT_BASIC: str = "PressStart2P.ttf"

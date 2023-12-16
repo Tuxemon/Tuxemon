@@ -65,7 +65,21 @@ SCREEN_SIZE = CONFIG.resolution
 TILE_SIZE: tuple[int, int] = (16, 16)
 
 # Set the status icon size so we know how much to scale our menu icons
-ICON_SIZE: tuple[int, int] = (7, 7)
+ICON_SIZE: tuple[int, int] = (9, 9)
+# set sprite size (eg. nurse, bob, etc.)
+SPRITE_SIZE: tuple[int, int] = (16, 32)
+# set items size (eg. tuxeball, potion, etc.)
+ITEM_SIZE: tuple[int, int] = (24, 24)
+# set template size (eg. ceo, adventurer, heroine, etc.)
+TEMPLATE_SIZE: tuple[int, int] = (64, 64)
+# set monster size (eg. rockitten-front, rockitten-back, etc.)
+MONSTER_SIZE: tuple[int, int] = (64, 64)
+# set monster menu size (eg. rockitten-menu01, etc.)
+MONSTER_SIZE_MENU: tuple[int, int] = (24, 24)
+# set borders size (eg dialogues black-orange, etc.)
+BORDERS_SIZE: tuple[int, int] = (18, 18)
+# set element size (earth, metal, etc.)
+ELEMENT_SIZE: tuple[int, int] = (24, 24)
 
 # Set the healthbar _color
 HP_COLOR_FG = (10, 240, 25)  # dark saturated green

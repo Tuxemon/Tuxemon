@@ -12,6 +12,7 @@ from enum import Enum
 from operator import itemgetter
 from typing import Any, Literal, Optional, Union, overload
 
+from PIL import Image
 from pydantic import (
     BaseModel,
     Field,
@@ -272,14 +273,18 @@ class ItemModel(BaseModel):
     # Validate resources that should exist
     @field_validator("sprite")
     def file_exists(cls: ItemModel, v: str) -> str:
-        if has.file(v):
+        if has.file(v) and has.size(v, prepare.ITEM_SIZE):
             return v
         raise ValueError(f"the sprite {v} doesn't exist in the db")
 
     @field_validator("animation")
     def animation_exists(cls: ItemModel, v: Optional[str]) -> Optional[str]:
         file: str = f"animations/item/{v}_00.png"
-        if not v or has.file(file):
+        if (
+            not v
+            or has.file(file)
+            and has.size(file, prepare.NATIVE_RESOLUTION)
+        ):
             return v
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
@@ -416,9 +421,17 @@ class MonsterSpritesModel(BaseModel):
     menu2: str = Field(..., description="The menu2 sprite")
 
     # Validate resources that should exist
-    @field_validator("battle1", "battle2", "menu1", "menu2")
-    def file_exists(cls: MonsterSpritesModel, v: str) -> str:
-        if has.file(f"{v}.png"):
+    @field_validator("battle1", "battle2")
+    def battle_exists(cls: MonsterSpritesModel, v: str) -> str:
+        if has.file(f"{v}.png") and has.size(f"{v}.png", prepare.MONSTER_SIZE):
+            return v
+        raise ValueError(f"no resource exists with path: {v}")
+
+    @field_validator("menu1", "menu2")
+    def menu_exists(cls: MonsterSpritesModel, v: str) -> str:
+        if has.file(f"{v}.png") and has.size(
+            f"{v}.png", prepare.MONSTER_SIZE_MENU
+        ):
             return v
         raise ValueError(f"no resource exists with path: {v}")
 
@@ -634,7 +647,7 @@ class TechniqueModel(BaseModel):
     # Validate resources that should exist
     @field_validator("icon")
     def file_exists(cls: TechniqueModel, v: str) -> str:
-        if has.file(v):
+        if v and has.file(v) and has.size(v, prepare.ICON_SIZE):
             return v
         raise ValueError(f"the icon {v} doesn't exist in the db")
 
@@ -671,7 +684,11 @@ class TechniqueModel(BaseModel):
         cls: TechniqueModel, v: Optional[str]
     ) -> Optional[str]:
         file: str = f"animations/technique/{v}_00.png"
-        if not v or has.file(file):
+        if (
+            not v
+            or has.file(file)
+            and has.size(file, prepare.NATIVE_RESOLUTION)
+        ):
             return v
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
@@ -799,7 +816,7 @@ class ConditionModel(BaseModel):
     # Validate resources that should exist
     @field_validator("icon")
     def file_exists(cls: ConditionModel, v: str) -> str:
-        if has.file(v):
+        if has.file(v) and has.size(v, prepare.ICON_SIZE):
             return v
         raise ValueError(f"the icon {v} doesn't exist in the db")
 
@@ -823,7 +840,11 @@ class ConditionModel(BaseModel):
         cls: ConditionModel, v: Optional[str]
     ) -> Optional[str]:
         file: str = f"animations/technique/{v}_00.png"
-        if not v or has.file(file):
+        if (
+            not v
+            or has.file(file)
+            and has.size(file, prepare.NATIVE_RESOLUTION)
+        ):
             return v
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
@@ -894,7 +915,12 @@ class NpcTemplateModel(BaseModel):
         sprite = f"sprites/{v}_{EntityFacing.right}.png"
         sprite = f"sprites/{v}_{EntityFacing.left}.png"
         sprite_obj: str = f"sprites_obj/{v}.png"
-        if has.file(sprite) or has.file(sprite_obj):
+        if (
+            has.file(sprite)
+            and has.size(sprite, prepare.SPRITE_SIZE)
+            or has.file(sprite_obj)
+            and has.size(sprite_obj, prepare.NATIVE_RESOLUTION)
+        ):
             return v
         raise ValueError(f"the sprite {v} doesn't exist in the db")
 
@@ -982,7 +1008,7 @@ class DialogueModel(BaseModel):
     @field_validator("border_slug")
     def file_exists(cls: DialogueModel, v: str) -> str:
         file: str = f"gfx/borders/{v}.png"
-        if has.file(file):
+        if has.file(file) and has.size(file, prepare.BORDERS_SIZE):
             return v
         raise ValueError(f"no resource exists with path: {file}")
 
@@ -1009,7 +1035,7 @@ class ElementModel(BaseModel):
 
     @field_validator("icon")
     def file_exists(cls: ElementModel, v: str) -> str:
-        if has.file(v):
+        if has.file(v) and has.size(v, prepare.ELEMENT_SIZE):
             return v
         raise ValueError(f"the icon {v} doesn't exist in the db")
 
@@ -1535,6 +1561,37 @@ class Validator:
             return os.path.exists(path)
         except OSError:
             return False
+
+    def size(self, file: str, size: tuple[int, int]) -> bool:
+        """
+        Check to see if a given file respects the predefined size.
+
+        Parameters:
+            file: The file path relative to a mod directory
+            size: The predefined size
+
+        Returns:
+            True if file respects
+
+        """
+        path = prepare.fetch(file)
+        sprite = Image.open(path)
+        native = prepare.NATIVE_RESOLUTION
+        if size == native:
+            if sprite.size[0] > size[0] or sprite.size[1] > size[1]:
+                sprite.close()
+                raise ValueError(
+                    f"{file} ({sprite.size}):"
+                    f"It must be less than the native resolution {native}"
+                )
+        else:
+            if sprite.size[0] != size[0] or sprite.size[1] != size[1]:
+                sprite.close()
+                raise ValueError(
+                    f"{file} ({sprite.size}):" f"It must be equal to {size}"
+                )
+        sprite.close()
+        return True
 
     def check_conditions(self, conditions: Sequence[str]) -> bool:
         """

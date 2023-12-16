@@ -236,6 +236,7 @@ class CombatState(CombatAnimations):
         self._run: bool = False
         self._post_animation_task: Optional[Task] = None
         self._xp_message: Optional[str] = None
+        self._random_tech_hit: float = 0.0
 
         super().__init__(players, graphics)
         self.is_trainer_battle = combat_type == "trainer"
@@ -438,6 +439,7 @@ class CombatState(CombatAnimations):
             phase: Name of phase to transition to.
 
         """
+        message = None
         if phase == "begin" or phase == "ready" or phase == "pre action phase":
             pass
 
@@ -469,14 +471,13 @@ class CombatState(CombatAnimations):
             # saves random value, so we are able to reproduce
             # inside the condition files if a tech hit or missed
             value = random.random()
+            self._random_tech_hit = value
             if not self._decision_queue:
                 # tracks human players who need to choose an action
                 for player in self.human_players:
-                    player.game_variables["random_tech_hit"] = value
                     self._decision_queue.extend(self.monsters_in_play[player])
                 # tracks ai players who need to choose an action
                 for trainer in self.ai_players:
-                    trainer.game_variables["random_tech_hit"] = value
                     for monster in self.monsters_in_play[trainer]:
                         AI(self, monster)
                         # recharge opponent moves
@@ -531,17 +532,6 @@ class CombatState(CombatAnimations):
 
             # it is a draw match; both players were defeated in same round
             message = T.translate("combat_draw")
-            action_time = compute_text_animation_time(message)
-            self.text_animations_queue.append(
-                (partial(self.alert, message), action_time)
-            )
-
-            # push a state that blocks until enter is pressed
-            # after the state is popped, the combat state will clean up and close
-            self.task(
-                partial(self.client.push_state, WaitForInputState()),
-                action_time,
-            )
 
         elif phase == "has winner":
             # TODO: proper match check, etc
@@ -583,6 +573,14 @@ class CombatState(CombatAnimations):
                     battle.date = dt.date.today().toordinal()
                     self.players[0].battles.append(battle)
 
+        elif phase == "end combat":
+            self.players[0].set_party_status()
+            self.end_combat()
+
+        else:
+            assert_never(phase)
+
+        if message:
             # push a state that blocks until enter is pressed
             # after the state is popped, the combat state will clean up and close
             action_time = compute_text_animation_time(message)
@@ -593,13 +591,6 @@ class CombatState(CombatAnimations):
                 partial(self.client.push_state, WaitForInputState()),
                 action_time,
             )
-
-        elif phase == "end combat":
-            self.players[0].set_party_status()
-            self.end_combat()
-
-        else:
-            assert_never(phase)
 
     def sort_action_queue(self) -> None:
         """Sort actions in the queue according to game rules.
@@ -790,26 +781,21 @@ class CombatState(CombatAnimations):
                 mon.status.clear()
 
         # TODO: not hardcode
-        message = T.format(
-            "combat_swap",
-            {
-                "target": monster.name.upper(),
-                "user": player.name.upper(),
-            },
-        )
-        if removed:
-            if removed.status:
-                removed.status[0].phase = "add_monster_into_play"
-                removed.status[0].use(removed)
-        self.text_animations_queue.append((partial(self.alert, message), 0))
+        message = None
+        if removed and removed.status:
+            removed.status[0].combat_state = self
+            removed.status[0].phase = "add_monster_into_play"
+            removed.status[0].use(removed)
 
-        if self.is_trainer_battle:
-            pass
-        else:
+        if self._turn > 1:
             message = T.format(
-                "combat_wild_appeared",
-                {"name": monster.name.upper()},
+                "combat_swap",
+                {
+                    "target": monster.name.upper(),
+                    "user": player.name.upper(),
+                },
             )
+        if message:
             self.text_animations_queue.append(
                 (partial(self.alert, message), 0)
             )

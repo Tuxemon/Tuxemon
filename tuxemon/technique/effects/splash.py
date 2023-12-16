@@ -29,10 +29,8 @@ class SplashEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> SplashEffectResult:
-        if user.owner is None:
-            raise ValueError()
-        player = user.owner
-        value = float(player.game_variables["random_tech_hit"])
+        combat = tech.combat_state
+        value = combat._random_tech_hit if combat else 0.0
         hit = tech.accuracy >= value
         damage, mult = formula.simple_damage_calculate(tech, user, target)
         tech.advance_counter_success()

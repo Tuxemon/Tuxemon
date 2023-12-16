@@ -38,10 +38,8 @@ class PropDamageEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> PropDamageEffectResult:
-        if user.owner is None:
-            raise ValueError()
-        player = user.owner
-        value = float(player.game_variables["random_tech_hit"])
+        combat = tech.combat_state
+        value = combat._random_tech_hit if combat else 0.0
         hit = tech.accuracy >= value
         if hit:
             tech.hit = True

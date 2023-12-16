@@ -35,14 +35,12 @@ class FlyOffEffect(TechEffect):
         self, tech: Technique, user: Monster, target: Monster
     ) -> FlyOffEffectResult:
         done = True
-        if tech.combat_state is None:
-            raise ValueError()
         combat = tech.combat_state
+        assert combat
 
         # make fly the user
         user_sprite = combat._monster_sprite_map.get(user, None)
-        assert user_sprite
-        if user_sprite.visible:
+        if user_sprite and user_sprite.visible:
             user_sprite.visible = False
             user.out_of_range = True
             technique = Technique()

@@ -38,8 +38,7 @@ class SwapEffect(TechEffect):
         # TODO: relies on setting "combat_state" attribute.  maybe clear it up
         # later
         # TODO: these values are set in combat_menus.py
-        if tech.combat_state is None or user.owner is None:
-            raise ValueError()
+        assert tech.combat_state and user.owner
         player = user.owner
         combat_state = tech.combat_state
 

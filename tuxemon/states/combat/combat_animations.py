@@ -188,7 +188,7 @@ class CombatAnimations(ABC, Menu[None]):
 
         # load monster and set in final position
         monster_sprite = monster.get_sprite(
-            "back" if npc.isplayer else "front",
+            "back" if npc == self.players[0] else "front",
             midbottom=feet,
         )
         self.sprites.add(monster_sprite)

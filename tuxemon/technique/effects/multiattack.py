@@ -37,12 +37,10 @@ class MultiAttackEffect(TechEffect):
     ) -> MultiAttackEffectResult:
         done: bool = True
         _track: int = 0
-        if tech.combat_state is None or user.owner is None:
-            raise ValueError()
+        assert tech.combat_state
         combat = tech.combat_state
-        player = user.owner
         value = random.random()
-        player.game_variables["random_tech_hit"] = value
+        combat._random_tech_hit = value
         log = combat._log_action
         turn = combat._turn
         track = [

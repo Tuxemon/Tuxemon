@@ -141,3 +141,45 @@ events:
     x: 0
     y: 0
     type: "event"
+  Phone GPS Leather:
+    actions:
+    - set_variable nu_map_1:leather_town*0.20*0.42
+    conditions:
+    - not variable_set nu_map_1:leather_town*0.20*0.42
+    - is location_name leather_town
+    type: "event"
+  Phone GPS Cotton:
+    actions:
+    - set_variable nu_map_2:cotton_town*0.20*0.52
+    conditions:
+    - not variable_set nu_map_2:cotton_town*0.20*0.52
+    - is location_name cotton_town
+    type: "event"
+  Phone GPS Paper:
+    actions:
+    - set_variable nu_map_3:paper_town*0.20*0.62
+    conditions:
+    - not variable_set nu_map_3:paper_town*0.20*0.62
+    - is location_name paper_town
+    type: "event"
+  Phone GPS Candy:
+    actions:
+    - set_variable nu_map_4:candy_town*-0.15*0.62
+    conditions:
+    - not variable_set nu_map_4:candy_town*-0.15*0.62
+    - is location_name candy_town
+    type: "event"
+  Phone GPS Timber:
+    actions:
+    - set_variable nu_map_5:timber_town*-0.15*0.42
+    conditions:
+    - not variable_set nu_map_5:timber_town*-0.15*0.42
+    - is location_name timber_town
+    type: "event"
+  Phone GPS Flower:
+    actions:
+    - set_variable nu_map_6:flower_city*-0.15*0.32
+    conditions:
+    - not variable_set nu_map_6:flower_city*-0.15*0.32
+    - is location_name flower_city
+    type: "event"

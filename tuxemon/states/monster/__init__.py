@@ -25,7 +25,7 @@ class MonsterMenuState(Menu[Optional[Monster]]):
     teach them moves, and switch them both in and out of combat.
     """
 
-    background_filename = "gfx/ui/monster/monster_menu_bg.png"
+    background_filename = prepare.BG_MONSTERS
     draw_borders = False
 
     def __init__(self) -> None:
@@ -167,7 +167,7 @@ class MonsterMenuState(Menu[Optional[Monster]]):
             item.enabled = (monster is not None) and self.is_valid_entry(
                 item.game_object
             )
-            item.image.fill((0, 0, 0, 0))
+            item.image.fill(prepare.TRANSPARENT_COLOR)
             item.in_focus = (index == self.selected_index) and item.enabled
             self.render_monster_slot(
                 item.image,

@@ -25,7 +25,7 @@ INFINITE_ITEMS = prepare.INFINITE_ITEMS
 
 
 class ShopMenuState(Menu[Item]):
-    background_filename = "gfx/ui/item/item_menu_bg.png"
+    background_filename = prepare.BG_SHOP
     draw_borders = False
 
     def __init__(

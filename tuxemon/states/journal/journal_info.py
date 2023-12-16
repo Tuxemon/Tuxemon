@@ -233,7 +233,7 @@ class JournalInfoState(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
         background = pygame_menu.BaseImage(
             image_path=tools.transform_resource_filename(
-                "gfx/ui/item/tux_info.png"
+                prepare.BG_JOURNAL_INFO
             ),
             drawing_position=POSITION_CENTER,
         )

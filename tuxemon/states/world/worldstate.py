@@ -674,6 +674,7 @@ class WorldState(state.State):
         """
         for npc in self.npcs:
             if npc.slug == slug:
+                npc.remove_collision(npc.tile_pos)
                 self.npcs.remove(npc)
 
     def get_all_entities(self) -> Sequence[NPC]:
@@ -768,13 +769,12 @@ class WorldState(state.State):
             return path[:-1]
 
         else:
-            # TODO: get current map name for a more useful error
+            character = self.get_entity_pos(start)
+            assert character
             logger.error(
-                "Pathfinding failed to find a path from "
-                + str(start)
-                + " to "
-                + str(dest)
-                + ". Are you sure that an obstacle-free path exists?"
+                f"{character.name}'s pathfinding failed to find a path from "
+                + f"{str(start)} to {str(dest)} in {self.current_map.filename}. "
+                + "Are you sure that an obstacle-free path exists?"
             )
 
             return None
@@ -1174,6 +1174,7 @@ class WorldState(state.State):
         for eo in self.client.events:
             if eo.name.lower() == "player spawn":
                 self.player.set_position((eo.x, eo.y))
+                self.player.remove_collision((eo.x, eo.y))
 
     def load_map(self, path: str) -> TuxemonMap:
         """

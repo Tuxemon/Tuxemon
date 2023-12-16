@@ -6,14 +6,7 @@ import logging
 from collections.abc import Generator, Mapping, MutableMapping, Sequence
 from itertools import product
 from math import atan2, pi
-from typing import (
-    TYPE_CHECKING,
-    Any,
-    NamedTuple,
-    Optional,
-    TypeVar,
-    Union,
-)
+from typing import TYPE_CHECKING, Any, NamedTuple, Optional, TypeVar, Union
 
 import pyscroll
 from pytmx import pytmx
@@ -91,7 +84,7 @@ def get_coords(
 ) -> list[tuple[int, int]]:
     """
     Returns a list with the cardinal coordinates (down, right, up, and left),
-    Negative coordinates as well as the ones the exceed the map size will be
+    Negative coordinates as well as the ones that exceed the map size will be
     filtered out. If no valid coordinates, then it'll be raised a ValueError.
 
      -  | 1,0 |  -
@@ -131,7 +124,7 @@ def get_coord_direction(
 ) -> tuple[int, int]:
     """
     Returns the coordinates for a specific side and radius.
-    Negative coordinates as well as the ones the exceed the map size will
+    Negative coordinates as well as the ones that exceed the map size will
     raise a ValueError.
 
     Parameters:
@@ -144,13 +137,13 @@ def get_coord_direction(
         Tuple tile coordinates.
     """
     _tile: tuple[int, int] = (0, 0)
-    if direction == "down":
+    if direction == Direction.down:
         _tile = (tile[0], tile[1] + radius)
-    elif direction == "right":
+    elif direction == Direction.right:
         _tile = (tile[0] + radius, tile[1])
-    elif direction == "up":
+    elif direction == Direction.up:
         _tile = (tile[0], tile[1] - radius)
-    elif direction == "left":
+    elif direction == Direction.left:
         _tile = (tile[0] - radius, tile[1])
     else:
         raise ValueError(f"{direction} doesn't exist")
@@ -445,13 +438,13 @@ def extract_region_properties(
         return None
 
 
-def get_coords_extended(
+def get_coords_ext(
     tile: tuple[int, int], map_size: tuple[int, int], radius: int = 1
 ) -> list[tuple[int, int]]:
     """
     Returns a list with all the coordinates (down, right, up, left, upper left,
     upper right, bottom left, bottom right).
-    Negative coordinates as well as the ones the exceed the map size will be
+    Negative coordinates as well as the ones that exceed the map size will be
     filtered out. If no valid coordinates, then it'll be raised a ValueError.
 
     0,0 | 1,0 | 2,0 |

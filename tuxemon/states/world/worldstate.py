@@ -747,11 +747,10 @@ class WorldState(state.State):
             return path[:-1]
 
         else:
-            npc = self.get_entity_pos(start)
-            assert npc
-            name = npc.name if npc.isplayer else npc.slug
+            character = self.get_entity_pos(start)
+            assert character
             logger.error(
-                f"{name}'s pathfinding failed to find a path from "
+                f"{character.name}'s pathfinding failed to find a path from "
                 + f"{str(start)} to {str(dest)} in {self.current_map.filename}. "
                 + "Are you sure that an obstacle-free path exists?"
             )

@@ -25,14 +25,7 @@ from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import Item, decode_items, encode_items
 from tuxemon.locale import T
-from tuxemon.map import (
-    Direction,
-    dirs2,
-    dirs3,
-    get_coords_extended,
-    get_direction,
-    proj,
-)
+from tuxemon.map import dirs2, dirs3, get_coords_ext, get_direction, proj
 from tuxemon.math import Vector2
 from tuxemon.mission import Mission, decode_mission, encode_mission
 from tuxemon.monster import Monster, decode_monsters, encode_monsters
@@ -520,9 +513,9 @@ class NPC(Entity[NPCState]):
         _map_size = self.world.map_size
         _exit = tile in self.world.get_exits(self.tile_pos)
 
-        for neighbor in get_coords_extended(tile, _map_size):
-            npc = self.world.get_entity_pos(neighbor)
-            if npc and npc.moving and self.facing != npc.facing:
+        for neighbor in get_coords_ext(tile, _map_size):
+            char = self.world.get_entity_pos(neighbor)
+            if char and char.moving and self.facing != char.facing:
                 _direction = False
 
         return _exit and _direction or self.ignore_collisions

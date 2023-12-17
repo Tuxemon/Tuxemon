@@ -5,6 +5,7 @@ from __future__ import annotations
 import itertools
 import logging
 import os
+import uuid
 from collections.abc import Mapping, MutableMapping, Sequence
 from typing import (
     TYPE_CHECKING,
@@ -40,6 +41,7 @@ from tuxemon.states.world.world_menus import WorldMenuState
 from tuxemon.surfanim import SurfaceAnimation
 
 if TYPE_CHECKING:
+    from tuxemon.monster import Monster
     from tuxemon.networking import EventData
     from tuxemon.npc import NPC
     from tuxemon.player import Player
@@ -638,7 +640,7 @@ class WorldState(state.State):
                 return npc
         return None
 
-    def get_entity_by_iid(self, iid: str) -> Optional[NPC]:
+    def get_entity_by_iid(self, iid: uuid.UUID) -> Optional[NPC]:
         """
         Get an entity from the world.
 
@@ -647,7 +649,7 @@ class WorldState(state.State):
 
         """
         for npc in self.npcs:
-            if npc.instance_id.hex == iid:
+            if npc.instance_id == iid:
                 return npc
         return None
 
@@ -686,6 +688,32 @@ class WorldState(state.State):
 
         """
         return self.npcs
+
+    def get_all_monsters(self) -> list[Monster]:
+        """
+        List of all monsters in the world.
+
+        Returns:
+            The list of monsters in the map.
+
+        """
+        monsters = []
+        for npc in self.npcs:
+            for monster in npc.monsters:
+                monsters.append(monster)
+        return monsters
+
+    def get_monster_by_iid(self, iid: uuid.UUID) -> Optional[Monster]:
+        """
+        Get a monster from the world.
+
+        Parameters:
+            iid: The monster iid.
+
+        """
+        for npc in self.npcs:
+            return npc.find_monster_by_id(iid)
+        return None
 
     def check_collision_zones(
         self,

@@ -143,6 +143,15 @@ COEFF_EXP: int = 3
 TOTAL_SHAKES: int = 4
 MAX_SHAKE_RATE: int = 65536
 SHAKE_CONSTANT: int = 524325
+# default modifiers
+STATUS_MODIFIER: float = 1.0
+TUXEBALL_MODIFIER: float = 1.0
+# standard modifiers if target has status:
+# if the status is positive
+# equal to status_modifier, but it can be changed
+STATUS_POSITIVE: float = 1.0
+# if the status is negative
+STATUS_NEGATIVE: float = 1.2
 
 # Techniques
 MIN_RECHARGE: int = 0

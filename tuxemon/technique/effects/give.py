@@ -32,9 +32,11 @@ class GiveEffect(TechEffect):
         self, tech: Technique, user: Monster, target: Monster
     ) -> GiveEffectResult:
         done: bool = False
-        player = self.session.player
+        combat = tech.combat_state
+        player = user.owner
+        assert combat and player
         potency = random.random()
-        value = float(player.game_variables["random_tech_hit"])
+        value = combat._random_tech_hit
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
             status = Condition()
@@ -44,8 +46,6 @@ class GiveEffect(TechEffect):
             area = [ele for ele in tech.effects if ele.name == "area"]
             if player.max_position > 1 and area:
                 monsters: Sequence[Monster] = []
-                assert tech.combat_state
-                combat = tech.combat_state
                 both = combat.active_monsters
                 human = combat.monsters_in_play_human
                 opponent = combat.monsters_in_play_ai

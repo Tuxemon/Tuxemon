@@ -136,6 +136,7 @@ class Monster:
         self.got_experience = False
         self.levelling_up = False
         self.traded = False
+        self.wild = False
 
         self.status: list[Condition] = []
         self.plague = PlagueType.healthy

@@ -34,7 +34,8 @@ class ConfusedEffect(CondEffect):
     ) -> ConfusedEffectResult:
         extra: Optional[str] = None
         skip: Optional[Technique] = None
-        player = self.session.player
+        player = target.owner
+        assert player
         if condition.phase == "pre_checking" and condition.slug == "confused":
             confusion = random.randint(1, 2)
             if confusion == 1:

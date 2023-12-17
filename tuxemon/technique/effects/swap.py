@@ -38,26 +38,22 @@ class SwapEffect(TechEffect):
         # TODO: relies on setting "combat_state" attribute.  maybe clear it up
         # later
         # TODO: these values are set in combat_menus.py
-        player = self.session.player
-        assert tech.combat_state
-        # TODO: find a way to pass values. this will only work for SP games with one monster party
+        assert tech.combat_state and user.owner
+        player = user.owner
         combat_state = tech.combat_state
 
         def swap_add(removed: Monster) -> None:
             # TODO: make accommodations for battlefield positions
             combat_state.add_monster_into_play(player, target, removed)
 
-        # get the original monster to be swapped out
-        original_monster = combat_state.monsters_in_play[player][0]
-
         # rewrite actions to target the new monster.  must be done before original is removed
-        combat_state.rewrite_action_queue_target(original_monster, target)
+        combat_state.rewrite_action_queue_target(user, target)
 
         # remove the old monster and all their actions
-        combat_state.remove_monster_from_play(original_monster)
+        combat_state.remove_monster_from_play(user)
 
         # give a slight delay
-        combat_state.task(partial(swap_add, original_monster), 0.75)
+        combat_state.task(partial(swap_add, user), 0.75)
 
         return {
             "success": True,

@@ -22,32 +22,30 @@ from tuxemon.technique.technique import Technique
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
-    from tuxemon.player import Player
-    from tuxemon.states.combat.combat import DamageMap
+    from tuxemon.states.combat.combat import CombatState, DamageMap
 
 
 logger = logging.getLogger()
 
 
-def check_battle_legal(player: Player) -> bool:
+def check_battle_legal(character: NPC) -> bool:
     """
-    Checks to see if the player has any monsters fit for battle.
+    Checks to see if the character has any monsters fit for battle.
 
     Parameters:
-        player: Player object.
+        character: Character object.
 
     Returns:
-        Whether the player has monsters that can fight.
+        Whether the character has monsters that can fight.
 
     """
-    # Don't start a battle if we don't even have monsters in our party yet.
-    if len(player.monsters) < 1:
-        logger.warning("Cannot start battle, player has no monsters!")
+    if not character.monsters:
+        logger.error(f"Cannot start battle, {character.name} has no monsters!")
         return False
     else:
-        if fainted_party(player.monsters):
-            logger.warning(
-                "Cannot start battle, player's monsters are all DEAD."
+        if fainted_party(character.monsters):
+            logger.error(
+                f"Cannot start battle, {character.name}'s monsters are all DEAD."
             )
             return False
         else:
@@ -58,12 +56,14 @@ def pre_checking(
     monster: Monster,
     technique: Technique,
     target: Monster,
+    combat: CombatState,
 ) -> Technique:
     """
     Pre checking allows to check if there are statuses
     or other conditions that change the chosen technique.
     """
     if monster.status:
+        monster.status[0].combat_state = combat
         monster.status[0].phase = "pre_checking"
         result_status = monster.status[0].use(target)
         if result_status["technique"]:

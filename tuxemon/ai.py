@@ -117,7 +117,7 @@ class AI:
         Send action tech.
         """
         self.human.game_variables["action_tech"] = technique.slug
-        technique = pre_checking(self.monster, technique, target)
+        technique = pre_checking(self.monster, technique, target, self.combat)
         self.combat.enqueue_action(self.monster, technique, target)
 
     def action_item(self, item: Item) -> None:

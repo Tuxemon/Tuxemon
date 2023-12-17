@@ -6,7 +6,7 @@ from collections.abc import Generator, Sequence
 
 import pygame
 
-from tuxemon import tools
+from tuxemon import prepare, tools
 from tuxemon.db import State
 from tuxemon.item.item import Item
 from tuxemon.locale import T
@@ -50,7 +50,7 @@ def sort_inventory(
 class ItemMenuState(Menu[Item]):
     """The item menu allows you to view and use items in your inventory."""
 
-    background_filename = "gfx/ui/item/item_menu_bg.png"
+    background_filename = prepare.BG_ITEMS
     draw_borders = False
 
     def __init__(self) -> None:
@@ -77,7 +77,7 @@ class ItemMenuState(Menu[Item]):
         # load the backpack icon
         self.backpack_center = self.rect.width * 0.16, self.rect.height * 0.45
         self.load_sprite(
-            "gfx/ui/item/backpack.png",
+            prepare.BG_ITEMS_BACKPACK,
             center=self.backpack_center,
             layer=100,
         )

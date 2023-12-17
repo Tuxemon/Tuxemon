@@ -1062,8 +1062,17 @@ msgstr "Wrong!"
 msgid "attempting_capture"
 msgstr "Attempting capture..."
 
-msgid "captured_failed"
-msgstr "Not this time! The capture failed!"
+msgid "captured_failed_1"
+msgstr "Capture failed immediately."
+
+msgid "captured_failed_2"
+msgstr "The capture failed."
+
+msgid "captured_failed_3"
+msgstr "Not this time! The capture failed."
+
+msgid "captured_failed_4"
+msgstr "So close! But the capture failed."
 
 msgid "gotcha"
 msgstr "Gotcha!"
@@ -2596,6 +2605,9 @@ msgstr "No Signal"
 
 msgid "omnichannel_mobile"
 msgstr "Omnichannel Mobile 4G"
+
+msgid "nu_map_missing"
+msgstr "GPS tracker not updating."
 
 msgid "max_moves_alert"
 msgstr "{name} has too many techniques.\n"

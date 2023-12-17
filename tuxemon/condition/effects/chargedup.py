@@ -28,7 +28,8 @@ class ChargedUpEffect(CondEffect):
     def apply(
         self, condition: Condition, target: Monster
     ) -> ChargedUpEffectResult:
-        player = self.session.player
+        player = target.owner
+        assert player
         cond: Optional[Condition] = None
         if (
             condition.phase == "perform_action_tech"

@@ -94,7 +94,7 @@ class JournalChoice(PygameMenuState):
 
         background = pygame_menu.BaseImage(
             image_path=tools.transform_resource_filename(
-                "gfx/ui/item/tux_generic.png"
+                prepare.BG_JOURNAL_CHOICE
             ),
             drawing_position=POSITION_CENTER,
         )

@@ -35,20 +35,19 @@ class MultiAttackEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> MultiAttackEffectResult:
-        player = self.session.player
-        value = random.random()
-        player.game_variables["random_tech_hit"] = value
         done: bool = True
         _track: int = 0
         assert tech.combat_state
         combat = tech.combat_state
+        value = random.random()
+        combat._random_tech_hit = value
         log = combat._log_action
         turn = combat._turn
         track = [
             action
             for action in log
             if turn == action[0]
-            and action[1].technique == tech
+            and action[1].method == tech
             and action[1].user == user
             and action[1].target == target
         ]

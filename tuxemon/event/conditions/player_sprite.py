@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from tuxemon.event import MapCondition
+from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
@@ -14,32 +14,25 @@ class PlayerSpriteCondition(EventCondition):
     Script usage:
         .. code-block::
 
-            is player_sprite <sprite>
+            is npc_sprite <character>,<sprite>
+
+    Script parameters:
+        character: Either "player" or npc slug name (e.g. "npc_maple")
+        sprite: NPC's sprite (eg maniac, florist, etc.)
 
     """
 
     name = "player_sprite"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """
-        Check the player's sprite.
-
-        Parameters:
-            session: The session object
-            condition: The map condition object.
-
-        Returns:
-            Whether the player has a specific sprite.
-
-        """
-        player = session.player
-        sprite = condition.parameters[0]
-
-        if player.template:
-            for tmp in player.template:
-                if tmp.sprite_name == sprite:
-                    return True
-                else:
-                    return False
+        npc = get_npc(session, condition.parameters[0])
+        if not npc:
             return False
+
+        sprite = condition.parameters[1]
+
+        if npc.template:
+            for template in npc.template:
+                if template.sprite_name == sprite:
+                    return True
         return False

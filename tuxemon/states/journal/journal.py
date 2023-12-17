@@ -13,7 +13,7 @@ from pygame_menu.locals import POSITION_CENTER
 from tuxemon import prepare, tools
 from tuxemon.db import MonsterModel, SeenStatus
 from tuxemon.locale import T
-from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
+from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 
@@ -22,16 +22,9 @@ MAX_PAGE = 20
 MenuGameObj = Callable[[], object]
 
 
-def fix_width(screen_x: int, pos_x: float) -> int:
-    """it returns the correct width based on percentage"""
-    value = round(screen_x * pos_x)
-    return value
-
-
-def fix_height(screen_y: int, pos_y: float) -> int:
-    """it returns the correct height based on percentage"""
-    value = round(screen_y * pos_y)
-    return value
+def fix_measure(measure: int, percentage: float) -> int:
+    """it returns the correct measure based on percentage"""
+    return round(measure * percentage)
 
 
 class JournalState(PygameMenuState):
@@ -45,8 +38,8 @@ class JournalState(PygameMenuState):
         width = menu._width
         height = menu._height
         menu._column_max_width = [
-            fix_width(width, 0.35),
-            fix_width(width, 0.35),
+            fix_measure(width, 0.35),
+            fix_measure(width, 0.35),
         ]
 
         def change_state(state: str, **kwargs: Any) -> MenuGameObj:
@@ -65,12 +58,10 @@ class JournalState(PygameMenuState):
                             "JournalInfoState",
                             kwargs={"monster": mon},
                         ),
-                        font_size=20,
-                        font_color=(25, 25, 112, 1),
-                        selection_color=(25, 25, 112, 1),
+                        font_size=self.font_size_small,
                         button_id=mon.slug,
                     ).translate(
-                        fix_width(width, 0.25), fix_height(height, 0.01)
+                        fix_measure(width, 0.25), fix_measure(height, 0.01)
                     )
                 elif player.tuxepedia[mon.slug] == SeenStatus.caught:
                     menu.add.button(
@@ -79,22 +70,24 @@ class JournalState(PygameMenuState):
                             "JournalInfoState",
                             kwargs={"monster": mon},
                         ),
-                        font_size=20,
+                        font_size=self.font_size_small,
                         button_id=mon.slug,
                         underline=True,
                     ).translate(
-                        fix_width(width, 0.25), fix_height(height, 0.01)
+                        fix_measure(width, 0.25), fix_measure(height, 0.01)
                     )
             else:
                 label = str(mon.txmn_id) + ". " + T.translate(mon.slug).upper()
                 lab = menu.add.label(
                     label,
-                    font_size=20,
-                    font_color=(105, 105, 105),
+                    font_size=self.font_size_small,
+                    font_color=prepare.DIMGRAY_COLOR,
                     label_id=mon.slug,
                 )
                 assert not isinstance(lab, list)
-                lab.translate(fix_width(width, 0.25), fix_height(height, 0.01))
+                lab.translate(
+                    fix_measure(width, 0.25), fix_measure(height, 0.01)
+                )
 
     def __init__(self, **kwargs: Any) -> None:
         monsters: list[MonsterModel] = []
@@ -106,9 +99,7 @@ class JournalState(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(
-                "gfx/ui/item/tux_generic.png"
-            ),
+            image_path=tools.transform_resource_filename(prepare.BG_JOURNAL),
             drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
@@ -152,5 +143,5 @@ class JournalState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = BACKGROUND_COLOR
+        theme.background_color = self.background_color
         theme.widget_alignment = locals.ALIGN_LEFT

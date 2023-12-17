@@ -19,6 +19,7 @@ from pytmx.pytmx import TileFlags
 from pytmx.util_pygame import handle_transformation, smart_convert
 
 from tuxemon import prepare
+from tuxemon.db import db
 from tuxemon.session import Session
 from tuxemon.sprite import Sprite
 from tuxemon.surfanim import SurfaceAnimation
@@ -32,7 +33,6 @@ logger = logging.getLogger(__name__)
 
 ColorLike = Union[
     pygame.color.Color,
-    str,
     tuple[int, int, int],
     tuple[int, int, int, int],
 ]
@@ -367,7 +367,7 @@ def scale_sprite(
 
 def convert_alpha_to_colorkey(
     surface: pygame.surface.Surface,
-    colorkey: ColorLike = (255, 0, 255),
+    colorkey: ColorLike = prepare.FUCHSIA_COLOR,
 ) -> pygame.surface.Surface:
     """
     Convert image with per-pixel alpha to normal surface with colorkey.
@@ -467,7 +467,7 @@ def capture_screenshot(game: LocalPygameClient) -> pygame.surface.Surface:
 
 def get_avatar(
     session: Session,
-    avatar: str,
+    avatar: Union[str, int],
 ) -> Optional[Sprite]:
     """
     Gets the avatar sprite of a monster or NPC.
@@ -476,8 +476,6 @@ def get_avatar(
     If avatar is a number, we're referring to a monster slot in
     the player's party.
     If avatar is a string, we're referring to a monster by name.
-    TODO: If the monster name isn't found, we're referring to an NPC
-    on the map.
 
     Parameters:
         session: Game session.
@@ -487,27 +485,29 @@ def get_avatar(
         The surface of the monster or NPC avatar sprite.
 
     """
-    # TODO: remove the need for this import
-    from tuxemon.monster import Monster
-
-    if avatar and avatar.isdigit():
+    if isinstance(avatar, int):
         try:
             player = session.player
-            slot = int(avatar)
-            return player.monsters[slot].get_sprite("menu")
+            return player.monsters[avatar].get_sprite("menu")
         except IndexError:
             logger.debug("invalid avatar monster slot")
             return None
     else:
-        try:
-            # TODO: don't create a new monster just to load the sprite
-            avatar_monster = Monster()
-            avatar_monster.load_from_db(avatar)
-            avatar_monster.flairs = {}  # Don't use random flair graphics
-            return avatar_monster.get_sprite("menu")
-        except KeyError:
-            logger.debug("invalid avatar monster name")
-            return None
+        monsters = list(db.database["monster"])
+        npcs = list(db.database["npc"])
+        if avatar in monsters:
+            monster = db.lookup(avatar, table="monster")
+            assert monster.sprites
+            menu1 = transform_resource_filename(f"{monster.sprites.menu1}.png")
+            menu2 = transform_resource_filename(f"{monster.sprites.menu2}.png")
+            return load_animated_sprite([menu1, menu2], 0.25)
+        if avatar in npcs:
+            npc = db.lookup(avatar, table="npc")
+            path = f"gfx/sprites/player/{npc.template[0].combat_front}.png"
+            sprite = load_sprite(path)
+            scale_sprite(sprite, 0.5)
+            return sprite
+        return None
 
 
 def string_to_colorlike(
@@ -523,7 +523,7 @@ def string_to_colorlike(
         The ColorLike.
 
     """
-    rgb: ColorLike = (0, 0, 0)
+    rgb: ColorLike = prepare.BLACK_COLOR
     part = color.split(":")
     rgb = (
         (int(part[0]), int(part[1]), int(part[2]), int(part[3]))

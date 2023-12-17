@@ -13,10 +13,11 @@ from pygame_menu import locals
 from pygame_menu.locals import POSITION_CENTER
 
 from tuxemon import config, prepare, tools
+from tuxemon.animation import Animation
 from tuxemon.constants import paths
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.locale import T
-from tuxemon.menu.menu import BACKGROUND_COLOR, PygameMenuState
+from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
@@ -39,20 +40,14 @@ class SetKeyState(PygameMenuState):
     This only works for pygame events.
     """
 
-    def __init__(self, button: Optional[str]) -> None:
+    def __init__(self, button: Optional[str], **kwargs: Any) -> None:
         """
         Used when initializing the state
         """
-        width, height = prepare.SCREEN_SIZE
-
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
         theme.widget_alignment = locals.ALIGN_CENTER
-
-        width = int(0.8 * width)
-        height = int(0.2 * height)
-        super().__init__(height=height, width=width)
-
+        super().__init__(**kwargs)
         self.menu.add.label(T.translate("options_new_input_key0").upper())
         self.button = button
         self.repristinate()
@@ -62,7 +57,6 @@ class SetKeyState(PygameMenuState):
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
         theme.widget_alignment = locals.ALIGN_LEFT
-        theme.title = False
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         # must use get_pressed because the events do not contain references to pygame events
@@ -108,32 +102,40 @@ class SetKeyState(PygameMenuState):
         else:
             return None
 
+    def update_animation_size(self) -> None:
+        widgets_size = self.menu.get_size(widget=True)
+        self.menu.resize(
+            max(1, int(widgets_size[0] * self.animation_size)),
+            max(1, int(widgets_size[1] * self.animation_size)),
+        )
+
+    def animate_open(self) -> Animation:
+        """
+        Animate the menu popping in.
+
+        Returns:
+            Popping in animation.
+
+        """
+        self.animation_size = 0.0
+        ani = self.animate(self, animation_size=1.0, duration=0.2)
+        ani.update_callback = self.update_animation_size
+        return ani
+
 
 class ControlState(PygameMenuState):
     """
     This state is responsible for the option menu.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, **kwargs: Any) -> None:
         """
         Used when initializing the state.
         """
-        width, height = prepare.SCREEN_SIZE
-
-        background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(
-                "gfx/ui/item/bg_pcstate.png"
-            ),
-            drawing_position=POSITION_CENTER,
-        )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
-        theme.background_color = background
         theme.widget_alignment = locals.ALIGN_CENTER
-
-        width = int(0.8 * width)
-        height = int(0.8 * height)
-        super().__init__(height=height, width=width)
+        super().__init__(**kwargs)
         self.initialize_items(self.menu)
         self.reload_controls()
         self.repristinate()
@@ -142,9 +144,7 @@ class ControlState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT
-        theme.title = False
 
     def initialize_items(
         self,
@@ -170,56 +170,55 @@ class ControlState(PygameMenuState):
             action=change_state(
                 "SetKeyState", button=display_buttons[buttons.UP]
             ),
-            font_size=20,
+            font_size=self.font_size_small,
         )
         menu.add.button(
             title=T.translate("menu_left_key").upper(),
             action=change_state(
                 "SetKeyState", button=display_buttons[buttons.LEFT]
             ),
-            font_size=20,
+            font_size=self.font_size_small,
         )
         menu.add.button(
             title=T.translate("menu_right_key").upper(),
             action=change_state(
                 "SetKeyState", button=display_buttons[buttons.RIGHT]
             ),
-            font_size=20,
+            font_size=self.font_size_small,
         )
         menu.add.button(
             title=T.translate("menu_down_key").upper(),
             action=change_state(
                 "SetKeyState", button=display_buttons[buttons.DOWN]
             ),
-            font_size=20,
+            font_size=self.font_size_small,
         )
         menu.add.button(
             title=T.translate("menu_primary_select_key").upper(),
             action=change_state(
                 "SetKeyState", button=display_buttons[buttons.A]
             ),
-            font_size=20,
+            font_size=self.font_size_small,
         )
         menu.add.button(
             title=T.translate("menu_secondary_select_key").upper(),
             action=change_state(
                 "SetKeyState", button=display_buttons[buttons.B]
             ),
-            font_size=20,
+            font_size=self.font_size_small,
         )
         menu.add.button(
             title=T.translate("menu_back_key").upper(),
             action=change_state(
                 "SetKeyState", button=display_buttons[buttons.BACK]
             ),
-            font_size=20,
+            font_size=self.font_size_small,
         )
 
         default_music: int = 50
         default_sound: int = 20
         default_unit: int = 0
         default_hemi: int = 0
-        default_dn: int = 0
         if player:
             default_music = int(
                 float(player.game_variables["music_volume"]) * 100
@@ -235,10 +234,6 @@ class ControlState(PygameMenuState):
                 default_hemi = 0
             elif player.game_variables["hemisphere"] == SOUTHERN:
                 default_hemi = 1
-            if player.game_variables["change_day_night"] == "Disable":
-                default_dn = 0
-            elif player.game_variables["change_day_night"] == "Enable":
-                default_dn = 1
 
         music = menu.add.range_slider(
             title=T.translate("menu_music_volume").upper(),
@@ -247,7 +242,7 @@ class ControlState(PygameMenuState):
             increment=10,
             rangeslider_id="menu_music_volume",
             value_format=lambda x: str(int(x)),
-            font_size=20,
+            font_size=self.font_size_small,
         )
         sound = menu.add.range_slider(
             title=T.translate("menu_sound_volume").upper(),
@@ -256,7 +251,7 @@ class ControlState(PygameMenuState):
             increment=10,
             rangeslider_id="menu_sound_volume",
             value_format=lambda x: str(int(x)),
-            font_size=20,
+            font_size=self.font_size_small,
         )
 
         def on_change_music(val: int) -> None:
@@ -294,7 +289,7 @@ class ControlState(PygameMenuState):
             default=default_unit,
             style="fancy",
             onchange=on_change_units,
-            font_size=20,
+            font_size=self.font_size_small,
         )
 
         def on_change_hemisphere(value: Any, label: str) -> None:
@@ -315,29 +310,34 @@ class ControlState(PygameMenuState):
             default=default_hemi,
             style="fancy",
             onchange=on_change_hemisphere,
-            font_size=20,
+            font_size=self.font_size_small,
         )
 
-        def on_change_daynight(value: Any, label: str) -> None:
-            """
-            Updates the value.
-            """
-            if player:
-                player.game_variables["change_day_night"] = label
+    def update_animation_size(self) -> None:
+        width, height = prepare.SCREEN_SIZE
+        widgets_size = self.menu.get_size(widget=True)
+        _width, _height = widgets_size
+        # block width if more than screen width
+        _width = width if _width >= width else _width
+        _height = height if _height >= height else _height
 
-        off = T.translate("disable")
-        on = T.translate("enable")
-        dayandnight: list[tuple[Any, ...]] = []
-        dayandnight = [(off, off), (on, on)]
-        menu.add.selector(
-            title=T.translate("menu_music_daynight").upper(),
-            items=dayandnight,
-            selector_id="dayandnight",
-            default=default_dn,
-            style="fancy",
-            onchange=on_change_daynight,
-            font_size=20,
+        self.menu.resize(
+            max(1, int(_width * self.animation_size)),
+            max(1, int(_height * self.animation_size)),
         )
+
+    def animate_open(self) -> Animation:
+        """
+        Animate the menu popping in.
+
+        Returns:
+            Popping in animation.
+
+        """
+        self.animation_size = 0.0
+        ani = self.animate(self, animation_size=1.0, duration=0.2)
+        ani.update_callback = self.update_animation_size
+        return ani
 
     def reload_controls(self) -> None:
         with open(paths.USER_CONFIG_PATH, "w") as fp:

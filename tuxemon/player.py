@@ -63,6 +63,7 @@ class Player(NPC):
         var["hour"] = dt.datetime.now().strftime("%H")
         var["day_of_year"] = str(dt.datetime.now().timetuple().tm_yday)
         var["year"] = dt.datetime.now().strftime("%Y")
+        var["weekday"] = dt.datetime.now().strftime("%A")
 
         # Leap year
         if (int(var["year"]) % 400 == 0) and (int(var["year"]) % 100 == 0):

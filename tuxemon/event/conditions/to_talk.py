@@ -37,7 +37,7 @@ class ToTalkCondition(EventCondition):
             Whether the player attempts to talk with the npc.
 
         """
-        player_next_to_and_facing_target = PlayerFacingNPCCondition().test(
+        player_facing_target = PlayerFacingNPCCondition().test(
             session,
             condition,
         )
@@ -56,4 +56,4 @@ class ToTalkCondition(EventCondition):
                 name="",
             ),
         )
-        return player_next_to_and_facing_target and button_pressed
+        return player_facing_target and button_pressed

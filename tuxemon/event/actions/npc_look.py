@@ -4,11 +4,11 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
-from typing import Optional, cast, final
+from typing import Optional, final
 
+from tuxemon.db import Direction
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.map import Direction
 from tuxemon.npc import NPC
 from tuxemon.states.world.worldstate import WorldState
 
@@ -43,22 +43,23 @@ class NpcLookAction(EventAction):
     directions: Optional[str] = None
 
     def start(self) -> None:
-        player = self.session.player
         npc = get_npc(self.session, self.npc_slug)
         world = self.session.client.get_state_by_name(WorldState)
-        self.limit_direction = []
+        self.limit_direction: list[Direction] = []
         if self.directions:
-            self.limit_direction = self.directions.split(":")
+            _limit = self.directions.split(":")
+            for limit in _limit:
+                self.limit_direction.append(Direction(limit))
 
         def _look(npc: NPC) -> None:
-            directions: list[str] = ["up", "down", "right", "left"]
+            directions = list(Direction)
             # Suspend looking around if a dialog window is open
             for state in self.session.client.active_states:
-                if state.name == "DialogState":
-                    # retrieve NPC talking to
-                    if player.facing in directions:
-                        return
-                elif state.name == "WorldMenuState":
+                if state.name in (
+                    "WorldMenuState",
+                    "DialogState",
+                    "ChoiceState",
+                ):
                     return
 
             # Choose a random direction
@@ -66,7 +67,7 @@ class NpcLookAction(EventAction):
                 directions = self.limit_direction
             direction = random.choice(directions)
             if direction != npc.facing:
-                npc.facing = cast(Direction, direction)
+                npc.facing = direction
 
         def schedule() -> None:
             # The timer is randomized between 0.5 and 1.0 of the frequency

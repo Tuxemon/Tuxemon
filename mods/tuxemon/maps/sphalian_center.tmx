@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="28">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="28">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="tobedefined"/>
@@ -39,19 +39,14 @@
   <object id="8" type="collision" x="64" y="80" width="80" height="16"/>
   <object id="9" type="collision" x="48" y="48" width="16" height="32"/>
   <object id="11" type="collision" x="0" y="16" width="208" height="32"/>
-  <object id="21" type="collision" x="0" y="112" width="16" height="16">
-   <properties>
-    <property name="enter_from" value="right"/>
-    <property name="exit_to" value="right"/>
-   </properties>
-  </object>
+  <object id="21" type="collision" x="0" y="112" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="16" name="Heal Tuxemon" type="event" x="96" y="96" width="16" height="16">
    <properties>
     <property name="act10" value="set_monster_health"/>
     <property name="act20" value="set_monster_status"/>
-    <property name="act30" value="dialog Your tuxemon are now at full health!"/>
+    <property name="act30" value="translated_dialog old_sphalian_center01"/>
     <property name="act40" value="set_variable teleport_faint:sphalian_center.tmx 6 10"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing up"/>
@@ -67,15 +62,15 @@
   </object>
   <object id="18" name="Go upstairs" type="event" x="16" y="112" width="16" height="16">
    <properties>
-    <property name="act10" value="dialog It says that it is under repair"/>
+    <property name="act10" value="translated_dialog old_sphalian_center02"/>
     <property name="cond10" value="is player_at"/>
     <property name="cond20" value="is player_facing left"/>
    </properties>
   </object>
   <object id="23" name="Auto Healing Teleported" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="set_monster_health ,"/>
-    <property name="act2" value="set_monster_status ,"/>
+    <property name="act1" value="set_monster_health"/>
+    <property name="act2" value="set_monster_status"/>
     <property name="act3" value="set_variable battle_last_result:none"/>
     <property name="cond1" value="is variable_set battle_last_result:lost"/>
    </properties>

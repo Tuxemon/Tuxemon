@@ -8,15 +8,10 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon import formula, monster, prepare
+from tuxemon import prepare
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import EncounterItemModel, db
 from tuxemon.event.eventaction import EventAction
-from tuxemon.graphics import ColorLike, string_to_colorlike
-from tuxemon.npc import NPC
-from tuxemon.states.combat.combat import CombatState
-from tuxemon.states.transition.flash import FlashTransition
-from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -54,7 +49,6 @@ class RandomEncounterAction(EventAction):
 
     def start(self) -> None:
         player = self.session.player
-        self.world = None
 
         # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):
@@ -88,56 +82,32 @@ class RandomEncounterAction(EventAction):
         if encounter:
             logger.info("Starting random encounter!")
 
-            self.world = self.session.client.get_state_by_name(WorldState)
-            npc = _create_monster_npc(encounter, world=self.world)
+            # get wild monster level
+            level = _get_level(encounter)
 
             # Lookup the environment
-            env_slug = "grass"
-            if "environment" in player.game_variables:
-                env_slug = player.game_variables["environment"]
-            env = db.lookup(env_slug, table="environment")
-
-            # Add our players and setup combat
-            # "queueing" it will mean it starts after the top of the stack
-            # is popped (or replaced)
-            self.session.client.queue_state(
-                "CombatState",
-                players=(player, npc),
-                combat_type="monster",
-                graphics=env.battle_graphics,
+            environment = (
+                "grass"
+                if "environment" not in player.game_variables
+                else player.game_variables["environment"]
             )
 
-            # stop the player
-            self.world.lock_controls()
-            self.world.stop_player()
+            # flash color
+            rgb = self.rgb if self.rgb else None
 
-            # flash the screen
-            rgb: ColorLike = (255, 255, 255)
-            if self.rgb:
-                rgb = string_to_colorlike(self.rgb)
-            self.session.client.push_state(FlashTransition(color=rgb))
-
-            # Start some music!
-            filename = env.battle_music
+            # starts the battle with wild_encounter
             self.session.client.event_engine.execute_action(
-                "play_music",
-                [filename],
+                "wild_encounter",
+                [
+                    encounter.monster,
+                    level,
+                    encounter.exp_req_mod,
+                    None,
+                    environment,
+                    rgb,
+                ],
+                True,
             )
-
-    def update(self) -> None:
-        # If state is not queued, AND state is not active, then stop.
-        try:
-            self.session.client.get_queued_state_by_name("CombatState")
-        except ValueError:
-            try:
-                self.session.client.get_state_by_name(CombatState)
-            except ValueError:
-                self.stop()
-
-    def cleanup(self) -> None:
-        npc = None
-        if self.world:
-            self.world.remove_entity("random_encounter_dummy")
 
 
 def _choose_encounter(
@@ -164,13 +134,7 @@ def _choose_encounter(
     return None
 
 
-def _create_monster_npc(
-    encounter: EncounterItemModel,
-    world: WorldState,
-) -> NPC:
-    current_monster = monster.Monster()
-    current_monster.load_from_db(encounter.monster)
-    # Set the monster's level based on the specified level range
+def _get_level(encounter: EncounterItemModel) -> int:
     if len(encounter.level_range) > 1:
         level = random.randrange(
             encounter.level_range[0],
@@ -178,20 +142,5 @@ def _create_monster_npc(
         )
     else:
         level = encounter.level_range[0]
-    # Set the monster's level
-    current_monster.level = 1
-    current_monster.set_level(level)
-    current_monster.set_moves(level)
-    current_monster.set_capture(formula.today_ordinal())
-    current_monster.current_hp = current_monster.hp
-    current_monster.experience_modifier = encounter.exp_req_mod
 
-    # Create an NPC object which will be this monster's "trainer"
-    npc = NPC("random_encounter_dummy", world=world)
-    npc.add_monster(current_monster, len(npc.monsters))
-    # NOTE: random battles are implemented as trainer battles.
-    #       this is a hack. remove this once trainer/random battlers are fixed
-    current_monster.owner = None
-    npc.party_limit = 0
-
-    return npc
+    return level

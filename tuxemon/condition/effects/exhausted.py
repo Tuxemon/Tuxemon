@@ -25,17 +25,22 @@ class ExhaustedEffect(CondEffect):
 
     name = "exhausted"
 
-    def apply(self, tech: Condition, target: Monster) -> ExhaustedEffectResult:
-        player = self.session.player
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> ExhaustedEffectResult:
+        player = target.owner
+        assert player
         cond: Optional[Condition] = None
-        if tech.phase == "perform_action_tech":
-            if tech.slug == "exhausted":
-                target.status.clear()
-                if tech.repl_tech:
-                    cond = Condition()
-                    cond.load(tech.repl_tech)
-                    cond.steps = player.steps
-                    cond.link = target
+        if (
+            condition.phase == "perform_action_tech"
+            and condition.slug == "exhausted"
+        ):
+            target.status.clear()
+            if condition.repl_tech:
+                cond = Condition()
+                cond.load(condition.repl_tech)
+                cond.steps = player.steps
+                cond.link = target
         return {
             "success": True,
             "condition": cond,

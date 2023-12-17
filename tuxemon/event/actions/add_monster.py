@@ -3,14 +3,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional, Union, final
+from typing import Optional, final
 
 from tuxemon import formula
 from tuxemon.db import SeenStatus, db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
-from tuxemon.npc import NPC
 
 
 @final
@@ -38,21 +37,15 @@ class AddMonsterAction(EventAction):
     name = "add_monster"
     monster_slug: str
     monster_level: int
-    trainer_slug: Union[str, None] = None
-    exp: Union[int, None] = None
-    money: Union[int, None] = None
+    npc_slug: Optional[str] = None
+    exp: Optional[int] = None
+    money: Optional[int] = None
 
     def start(self) -> None:
         player = self.session.player
-        trainer: Optional[NPC]
-        if self.trainer_slug is None:
-            trainer = player
-        else:
-            trainer = get_npc(self.session, self.trainer_slug)
-
-        assert trainer, "No Trainer found with slug '{}'".format(
-            self.trainer_slug or "player"
-        )
+        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
+        trainer = get_npc(self.session, self.npc_slug)
+        assert trainer
 
         # check monster existence
         _monster: str = ""

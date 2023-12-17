@@ -4,9 +4,12 @@ from __future__ import annotations
 
 import datetime as dt
 import logging
+import math
 import random
 from collections.abc import Sequence
 from typing import TYPE_CHECKING
+
+from tuxemon import prepare as pre
 
 if TYPE_CHECKING:
     from tuxemon.db import MonsterModel
@@ -43,8 +46,8 @@ def simple_damage_multiplier(
                     continue
                 m = attack_type.lookup_multiplier(target_type.slug)
 
-    m = min(4, m)
-    m = max(0.25, m)
+    m = min(pre.MAX_MULTIPLIER, m)
+    m = max(pre.MIN_MULTIPLIER, m)
     return m
 
 
@@ -66,19 +69,19 @@ def simple_damage_calculate(
 
     """
     if technique.range == "melee":
-        user_strength = user.melee * (7 + user.level)
+        user_strength = user.melee * (pre.COEFF_DAMAGE + user.level)
         target_resist = target.armour
     elif technique.range == "touch":
-        user_strength = user.melee * (7 + user.level)
+        user_strength = user.melee * (pre.COEFF_DAMAGE + user.level)
         target_resist = target.dodge
     elif technique.range == "ranged":
-        user_strength = user.ranged * (7 + user.level)
+        user_strength = user.ranged * (pre.COEFF_DAMAGE + user.level)
         target_resist = target.dodge
     elif technique.range == "reach":
-        user_strength = user.ranged * (7 + user.level)
+        user_strength = user.ranged * (pre.COEFF_DAMAGE + user.level)
         target_resist = target.armour
     elif technique.range == "reliable":
-        user_strength = 7 + user.level
+        user_strength = pre.COEFF_DAMAGE + user.level
         target_resist = 1
     else:
         raise RuntimeError(
@@ -294,3 +297,92 @@ def weight_height_diff(
     weight = round(((monster.weight - db.weight) / db.weight) * 100, 1)
     height = round(((monster.height - db.height) / db.height) * 100, 1)
     return weight, height
+
+
+def shake_check(
+    target: Monster, status_modifier: float, tuxeball_modifier: float
+) -> float:
+    """
+    It calculates the shake_check.
+
+    Parameters:
+        target: The monster we are trying to catch.
+        status_modifier: The status modifier.
+        tuxeball_modifier: The tuxeball modifier.
+
+    Returns:
+        The shake check.
+    """
+    # The max catch rate.
+    max_catch_rate = pre.MAX_CATCH_RATE
+    # Constant used in shake_check calculations
+    shake_constant = pre.SHAKE_CONSTANT
+
+    # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
+    # Specifically the catch rate and the shake_check is based on the Generation III-IV
+    # The rate of which a tuxemon is caught is approximately catch_check/255
+    catch_check = (
+        (3 * target.hp - 2 * target.current_hp)
+        * target.catch_rate
+        * status_modifier
+        * tuxeball_modifier
+        / (3 * target.hp)
+    )
+    shake_check = shake_constant / (
+        math.sqrt(math.sqrt(max_catch_rate / catch_check)) * 8
+    )
+    # Catch_resistance is a randomly generated number between the lower and upper catch_resistance of a tuxemon.
+    # This value is used to slightly increase or decrease the chance of a tuxemon being caught. The value changes
+    # Every time a new capture device is thrown.
+    catch_resistance = random.uniform(
+        target.lower_catch_resistance, target.upper_catch_resistance
+    )
+    # Catch_resistance is applied to the shake_check
+    shake_check = shake_check * catch_resistance
+
+    # Debug section
+    logger.debug("--- Capture Variables ---")
+    logger.debug(
+        "(3*target.hp - 2*target.current_hp) "
+        "* target.catch_rate * status_modifier * tuxeball_modifier / (3*target.hp)"
+    )
+
+    msg = "(3 * {0.hp} - 2 * {0.current_hp}) * {0.catch_rate} * {1} * {2} / (3 * {0.hp})"
+
+    logger.debug(msg.format(target, status_modifier, tuxeball_modifier))
+    logger.debug("shake_constant/(sqrt(sqrt(max_catch_rate/catch_check))*8)")
+    logger.debug(f"524325/(sqrt(sqrt(255/{catch_check}))*8)")
+
+    msg = "Each shake has a {}/65536 chance of breaking the creature free. (shake_check = {})"
+    logger.debug(
+        msg.format(
+            round((shake_constant - shake_check) / shake_constant, 2),
+            round(shake_check),
+        )
+    )
+    return shake_check
+
+
+def capture(shake_check: float) -> tuple[bool, int]:
+    """
+    It defines if the wild monster is captured or not.
+
+    Parameters:
+        shake_check: Float.
+
+    Returns:
+        If it's captured: (True, total_shakes)
+        If it isn't captured: (False, nr_shakes)
+
+    """
+    # The number of shakes that a tuxemon can do to escape.
+    total_shakes = pre.TOTAL_SHAKES
+    # In every shake a random number form [0-65536] will be produced.
+    max_shake_rate = pre.MAX_SHAKE_RATE
+    # 4 shakes to give monster chance to escape
+    for i in range(0, total_shakes):
+        random_num = random.randint(0, max_shake_rate)
+        logger.debug(f"shake check {i}: random number {random_num}")
+        if random_num > int(shake_check):
+            return (False, i + 1)
+    return (True, total_shakes)

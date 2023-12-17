@@ -11,7 +11,7 @@ from typing import Any, Optional, TypeVar, Union, overload
 
 import pygame as pg
 
-from tuxemon import networking, rumble
+from tuxemon import networking, prepare, rumble
 from tuxemon.cli.processor import CommandProcessor
 from tuxemon.config import TuxemonConfig
 from tuxemon.db import MapType
@@ -65,7 +65,6 @@ class LocalPygameClient:
         # somehow this value is being patched somewhere
         self.events: Sequence[EventObject] = []
         self.inits: Sequence[EventObject] = []
-        self.interacts: Sequence[EventObject] = []
 
         # setup controls
         keyboard = PygameKeyboardInput(config.keyboard_button_map)
@@ -146,7 +145,6 @@ class LocalPygameClient:
         """
         self.events = map_data.events
         self.inits = map_data.inits
-        self.interacts = map_data.interacts
         self.event_engine.reset()
         self.event_engine.current_map = map_data
         self.maps = map_data.maps
@@ -156,6 +154,8 @@ class LocalPygameClient:
         self.map_name = map_data.name
         self.map_desc = map_data.description
         self.map_inside = map_data.inside
+        self.map_area = map_data.area
+        self.map_size = map_data.size
 
         # Check if the map type exists
         types = [maps.value for maps in MapType]
@@ -200,9 +200,9 @@ class LocalPygameClient:
                 p = " ".join(item.parameters)
                 text = f"{item.operator} {item.type}: {p}"
                 if valid:
-                    color = (0, 255, 0)
+                    color = prepare.GREEN_COLOR
                 else:
-                    color = (255, 0, 0)
+                    color = prepare.RED_COLOR
                 image = font.render(text, True, color)
                 self.screen.blit(image, (xx, yy))
                 ww, hh = image.get_size()
@@ -276,14 +276,11 @@ class LocalPygameClient:
 
         """
         for state in self.active_states:
-            maybe_game_event = state.process_event(game_event)
-            if maybe_game_event is None:
+            _game_event = state.process_event(game_event)
+            if _game_event is None:
                 break
-            game_event = maybe_game_event
-        else:
-            maybe_game_event = self.event_engine.process_event(game_event)
-
-        return maybe_game_event
+            return _game_event
+        return None
 
     def main(self) -> None:
         """
@@ -478,8 +475,8 @@ class LocalPygameClient:
 
         """
         world = self.get_state_by_name(WorldState)
-        world.npcs = {}
-        world.npcs_off_map = {}
+        world.npcs = []
+        world.npcs_off_map = []
         for client in registry:
             if "sprite" in registry[client]:
                 sprite = registry[client]["sprite"]
@@ -488,17 +485,17 @@ class LocalPygameClient:
 
                 # Add the player to the screen if they are on the same map.
                 if client_map == current_map:
-                    if sprite.slug not in world.npcs:
-                        world.npcs[sprite.slug] = sprite
-                    if sprite.slug in world.npcs_off_map:
-                        del world.npcs_off_map[sprite.slug]
+                    if sprite not in world.npcs:
+                        world.npcs.append(sprite)
+                    if sprite in world.npcs_off_map:
+                        world.npcs_off_map.remove(sprite)
 
                 # Remove player from the map if they have changed maps.
                 elif client_map != current_map:
-                    if sprite.slug not in world.npcs_off_map:
-                        world.npcs_off_map[sprite.slug] = sprite
-                    if sprite.slug in world.npcs:
-                        del world.npcs[sprite]
+                    if sprite not in world.npcs_off_map:
+                        world.npcs_off_map.append(sprite)
+                    if sprite in world.npcs:
+                        world.npcs.remove(sprite)
 
     def get_map_filepath(self) -> Optional[str]:
         """

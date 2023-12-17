@@ -14,8 +14,6 @@ from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon.event.eventaction import EventAction
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.map import TuxemonMap
-from tuxemon.platform.const import buttons
-from tuxemon.platform.events import PlayerInput
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
@@ -55,7 +53,7 @@ class RunningEvent:
         self.map_event = map_event
         self.context: dict[str, Any] = dict()
         self.action_index = 0
-        self.current_action: Optional[EventAction[Any]] = None
+        self.current_action: Optional[EventAction] = None
         self.current_map_action = None
 
     def get_next_action(self) -> Optional[MapAction]:
@@ -143,7 +141,7 @@ class EventEngine:
         self,
         name: str,
         parameters: Optional[Sequence[Any]] = None,
-    ) -> Optional[EventAction[Any]]:
+    ) -> Optional[EventAction]:
         """
         Get an action that is loaded into the engine.
 
@@ -477,34 +475,6 @@ class EventEngine:
             except KeyError:
                 # map changes or engine resets may cause this error
                 pass
-
-    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-        """
-        Handles player input events.
-
-        This function is only called when the
-        player provides input such as pressing a key or clicking the mouse.
-
-        Since this is part of a chain of event handlers, the return value
-        from this method becomes input for the next one.  Returning ``None``
-        signifies that this method has dealt with an event and wants it
-        exclusively.  Return the event and others can use it as well.
-
-        You should return ``None`` if you have handled input here.
-
-        Parameters:
-            event: The event received.
-
-        Returns:
-            The input event, or ``None`` to prevent others to receive it.
-
-        """
-        # has the player pressed the action key?
-        if event.pressed and event.button == buttons.A:
-            for map_event in self.session.client.interacts:
-                self.process_map_event(map_event)
-
-        return event
 
 
 @contextmanager

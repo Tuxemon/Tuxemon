@@ -2,10 +2,11 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import uuid
 from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Generic, TypeVar
 
-from tuxemon.map import proj
+from tuxemon.map import RegionProperties, proj
 from tuxemon.math import Point3, Vector3
 from tuxemon.session import Session
 from tuxemon.tools import vector2_to_tile_pos
@@ -39,7 +40,7 @@ class Entity(Generic[SaveDict]):
         self.slug = slug
         self.world = world
         world.add_entity(self)
-        self.instance_id = None
+        self.instance_id = uuid.uuid4()
         self.tile_pos = (0, 0)
         self.position3 = Point3(0, 0, 0)
         # not used currently
@@ -82,7 +83,35 @@ class Entity(Generic[SaveDict]):
         """
         self.position3.x = pos[0]
         self.position3.y = pos[1]
+        self.add_collision(pos)
         self.pos_update()
+
+    def add_collision(self, pos: Sequence[float]) -> None:
+        """
+        Set the entity's wandering position in the collision zone.
+
+        Parameters:
+            pos: Position to be added.
+
+        """
+        coords = (int(pos[0]), int(pos[1]))
+        prop = RegionProperties(
+            enter_from=[], exit_from=[], endure=[], entity=self, key=None
+        )
+        self.world.collision_map[coords] = prop
+
+    def remove_collision(self, pos: tuple[int, int]) -> None:
+        """
+        Remove the entity's wandering position from the collision zone.
+
+        Parameters:
+            pos: Position to be removed.
+
+        """
+        try:
+            del self.world.collision_map[pos]
+        except:
+            pass
 
     # === PHYSICS END =========================================================
 

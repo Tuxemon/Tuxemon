@@ -6,7 +6,7 @@ import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon import monster
+from tuxemon import monster, prepare
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
@@ -67,6 +67,7 @@ class WildEncounterAction(EventAction):
             current_monster.experience_modifier = self.exp
         if self.money is not None:
             current_monster.money_modifier = self.money
+        current_monster.wild = True
 
         # Create an NPC object which will be this monster's "trainer"
         self.world = self.session.client.get_state_by_name(WorldState)
@@ -74,23 +75,16 @@ class WildEncounterAction(EventAction):
         npc.add_monster(current_monster, len(npc.monsters))
         # NOTE: random battles are implemented as trainer battles.
         #       this is a hack. remove this once trainer/random battlers are fixed
-        current_monster.owner = None
-        npc.party_limit = 0
 
         # Lookup the environment
-        environment: str
-        if self.env is None:
-            environment = "grass"
-        else:
-            environment = self.env
-
-        env = db.lookup(environment, table="environment")
+        env = "grass" if self.env is None else self.env
+        environment = db.lookup(env, table="environment")
 
         self.session.client.queue_state(
             "CombatState",
             players=(player, npc),
             combat_type="monster",
-            graphics=env.battle_graphics,
+            graphics=environment.battle_graphics,
         )
 
         # stop the player
@@ -98,13 +92,13 @@ class WildEncounterAction(EventAction):
         self.world.stop_player()
 
         # flash the screen
-        rgb: ColorLike = (255, 255, 255)
+        rgb: ColorLike = prepare.WHITE_COLOR
         if self.rgb:
             rgb = string_to_colorlike(self.rgb)
         self.session.client.push_state(FlashTransition(color=rgb))
 
         # Start some music!
-        filename = env.battle_music
+        filename = environment.battle_music
         self.session.client.event_engine.execute_action(
             "play_music",
             [filename],

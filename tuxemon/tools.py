@@ -137,16 +137,12 @@ def calc_dialog_rect(screen_rect: pygame.rect.Rect) -> pygame.rect.Rect:
     """
     rect = screen_rect.copy()
     if prepare.CONFIG.large_gui:
-        rect.height *= 4
-        rect.height //= 10
+        rect.height = int(rect.height * 0.4)
         rect.bottomleft = screen_rect.bottomleft
     else:
-        rect.height //= 4
-        rect.width *= 8
-        rect.width //= 10
-        rect.center = screen_rect.centerx, screen_rect.bottom - (
-            rect.height // 2
-        )
+        rect.height = int(rect.height * 0.25)
+        rect.width = int(rect.width * 0.8)
+        rect.center = screen_rect.centerx, rect.centery * 7
     return rect
 
 
@@ -154,7 +150,7 @@ def open_dialog(
     session: Session,
     text: Sequence[str],
     avatar: Optional[Sprite] = None,
-    menu: Optional[Sequence[tuple[str, str, Callable[[], None]]]] = None,
+    colors: dict[str, Any] = {},
 ) -> State:
     """
     Open a dialog with the standard window size.
@@ -163,7 +159,6 @@ def open_dialog(
         session: Game session.
         text: List of strings.
         avatar: Optional avatar sprite.
-        menu: Optional menu object.
 
     Returns:
         The pushed dialog state.
@@ -177,7 +172,7 @@ def open_dialog(
             text=text,
             avatar=avatar,
             rect=rect,
-            menu=menu,
+            colors=colors,
         )
     )
 
@@ -198,7 +193,7 @@ def open_choice_dialog(
         The pushed dialog choice state.
 
     """
-    from tuxemon.states.choice import ChoiceState
+    from tuxemon.states.choice.choice_state import ChoiceState
 
     return session.client.push_state(
         ChoiceState(

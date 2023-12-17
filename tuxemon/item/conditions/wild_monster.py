@@ -18,4 +18,4 @@ class WildMonsterCondition(ItemCondition):
     name = "wild_monster"
 
     def test(self, target: Monster) -> bool:
-        return target.owner is None
+        return target.wild

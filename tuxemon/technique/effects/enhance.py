@@ -37,8 +37,8 @@ class EnhanceEffect(TechEffect):
         self, tech: Technique, user: Monster, target: Monster
     ) -> EnhanceEffectResult:
         enhance: bool = False
-        player = self.session.player
-        value = float(player.game_variables["random_tech_hit"])
+        combat = tech.combat_state
+        value = combat._random_tech_hit if combat else 0.0
         hit = tech.accuracy >= value
         if hit:
             tech.hit = True

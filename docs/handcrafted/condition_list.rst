@@ -27,6 +27,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.monster_property.MonsterPropertyCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.music_playing.MusicPlayingCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.once.OnceCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.one_of.OneOfCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.party_infected.PartyInfectedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.party_size.PartySizeCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.to_talk.ToTalkCondition

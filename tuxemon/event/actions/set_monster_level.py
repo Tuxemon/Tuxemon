@@ -2,10 +2,14 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
+import uuid
 from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -17,30 +21,36 @@ class SetMonsterLevelAction(EventAction):
     Script usage:
         .. code-block::
 
-            set_monster_level [levels_added][,slot]
+            set_monster_level [variable][,levels_added]
 
     Script parameters:
+        variable: Name of the variable where to store the monster id. If no
+            variable is specified, all monsters level up.
         levels_added: Number of levels to add. Negative numbers are allowed.
-        slot: Slot of the monster in the party. If no slot is specified, all
-            monsters are leveled.
+            Default 1.
 
     """
 
     name = "set_monster_level"
-    levels_added: int
-    slot: Optional[int] = None
+    variable: Optional[str] = None
+    levels_added: Optional[int] = None
 
     def start(self) -> None:
         player = self.session.player
         if not player.monsters:
             return
+        if self.levels_added is None:
+            self.levels_added = 1
 
-        if self.slot is not None:
-            # check if it's inserted the wrong value
-            if self.slot > len(player.monsters):
+        if self.variable is not None:
+            if self.variable not in player.game_variables:
+                logger.error(f"Game variable {self.variable} not found")
                 return
-
-            monster = player.monsters[self.slot]
+            monster_id = uuid.UUID(player.game_variables[self.variable])
+            monster = player.find_monster_by_id(monster_id)
+            if monster is None:
+                logger.error("Monster not found in party")
+                return
             new_level = monster.level + self.levels_added
             monster.set_level(new_level)
             monster.update_moves(self.levels_added)

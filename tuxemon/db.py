@@ -945,18 +945,77 @@ class NpcModel(BaseModel):
     )
 
 
+class BattleHudModel(BaseModel):
+    hud_player: str = Field(
+        ..., description="Sprite used for hud player background"
+    )
+    hud_opponent: str = Field(
+        ..., description="Sprite used for hud opponent background"
+    )
+    tray_player: str = Field(
+        ..., description="Sprite used for tray player background"
+    )
+    tray_opponent: str = Field(
+        ..., description="Sprite used for tray opponent background"
+    )
+
+    @field_validator(
+        "hud_player",
+        "hud_opponent",
+        "tray_player",
+        "tray_opponent",
+    )
+    def file_exists(cls: BattleHudModel, v: str) -> str:
+        if has.file(v):
+            return v
+        raise ValueError(f"no resource exists with path: {v}")
+
+
+class BattleIconsModel(BaseModel):
+    icon_alive: str = Field(
+        ..., description="Sprite used for icon (small tuxeball) monster alive"
+    )
+    icon_status: str = Field(
+        ...,
+        description="Sprite used for icon (small tuxeball) monster affected",
+    )
+    icon_faint: str = Field(
+        ...,
+        description="Sprite used for icon (small tuxeball) monster fainted",
+    )
+    icon_empty: str = Field(
+        ...,
+        description="Sprite used for icon (small tuxeball) empty slot",
+    )
+
+    @field_validator(
+        "icon_alive",
+        "icon_faint",
+        "icon_status",
+        "icon_empty",
+    )
+    def file_exists(cls: BattleIconsModel, v: str) -> str:
+        if has.file(v):
+            return v
+        raise ValueError(f"no resource exists with path: {v}")
+
+
 class BattleGraphicsModel(BaseModel):
     island_back: str = Field(..., description="Sprite used for back combat")
     island_front: str = Field(..., description="Sprite used for front combat")
     background: str = Field(..., description="Sprite used for background")
+    hud: BattleHudModel
+    icons: BattleIconsModel
 
-    # Validate resources that should exist
-    @field_validator("island_back", "island_front", "background")
+    @field_validator(
+        "island_back",
+        "island_front",
+        "background",
+    )
     def file_exists(cls: BattleGraphicsModel, v: str) -> str:
-        file: str = f"gfx/ui/combat/{v}"
-        if has.file(file):
+        if has.file(v):
             return v
-        raise ValueError(f"no resource exists with path: {file}")
+        raise ValueError(f"no resource exists with path: {v}")
 
 
 class EnvironmentModel(BaseModel):

@@ -31,8 +31,8 @@ class ForfeitEffect(TechEffect):
         self, tech: Technique, user: Monster, target: Monster
     ) -> ForfeitEffectResult:
         combat = tech.combat_state
-        assert combat
-        player = self.session.player
+        player = user.owner
+        assert combat and player
         var = player.game_variables
         var["battle_last_result"] = OutputBattle.forfeit
         var["teleport_clinic"] = OutputBattle.lost

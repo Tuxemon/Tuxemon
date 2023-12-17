@@ -81,7 +81,7 @@ class NuPhoneContacts(PygameMenuState):
 
         background = pygame_menu.BaseImage(
             image_path=tools.transform_resource_filename(
-                "gfx/ui/item/bg_pcstate.png"
+                prepare.BG_PHONE_CONTACTS
             ),
             drawing_position=POSITION_CENTER,
         )

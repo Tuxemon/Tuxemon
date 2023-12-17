@@ -59,6 +59,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.rumble.RumbleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.screen_transition.ScreenTransitionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_battle.SetBattleAction
+.. autoscriptinfoclass:: tuxemon.event.actions.set_bubble.SetBubbleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_code.SetCodeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_economy.SetEconomyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_kennel_visible.SetKennelVisibleAction
@@ -74,8 +75,8 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_npc_attribute.SetNpcAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_player_attribute.SetPlayerAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_player_name.SetPlayerNameAction
-.. autoscriptinfoclass:: tuxemon.event.actions.set_player_template.SetPlayerTemplateAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_random_variable.SetRandomVariableAction
+.. autoscriptinfoclass:: tuxemon.event.actions.set_template.SetTemplateAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_tuxepedia.SetTuxepediaAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_variable.SetVariableAction
 .. autoscriptinfoclass:: tuxemon.event.actions.spawn_monster.SpawnMonsterAction

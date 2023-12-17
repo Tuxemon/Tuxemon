@@ -46,6 +46,8 @@ class Template:
 
         self.slug = results.slug
         self.double = results.double
+        self.front_path: str = f"gfx/sprites/player/{results.slug}.png"
+        self.back_path: str = f"gfx/sprites/player/{results.slug}_back.png"
 
     def get_state(self) -> Mapping[str, Any]:
         """

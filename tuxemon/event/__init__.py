@@ -3,12 +3,14 @@
 from __future__ import annotations
 
 import logging
+import uuid
 from collections.abc import Sequence
 from typing import TYPE_CHECKING, NamedTuple, Optional
 
 from tuxemon.session import Session
 
 if TYPE_CHECKING:
+    from tuxemon.monster import Monster
     from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
@@ -49,6 +51,7 @@ __all__ = [
     "get_npc",
     "get_npc_by_iid",
     "get_npc_pos",
+    "get_monster_by_iid",
 ]
 
 
@@ -74,7 +77,7 @@ def get_npc(session: Session, slug: str) -> Optional[NPC]:
     return world.get_entity(slug)
 
 
-def get_npc_by_iid(session: Session, iid: str) -> Optional[NPC]:
+def get_npc_by_iid(session: Session, iid: uuid.UUID) -> Optional[NPC]:
     """
     Gets an NPC object by iid.
 
@@ -114,6 +117,25 @@ def get_npc_pos(session: Session, pos: tuple[int, int]) -> Optional[NPC]:
     world = session.client.get_state_by_name(WorldState)
 
     return world.get_entity_pos(pos)
+
+
+def get_monster_by_iid(session: Session, iid: uuid.UUID) -> Optional[Monster]:
+    """
+    Gets a monster object by iid among all the entities.
+
+    Parameters:
+        session: The session object.
+        iid: The iid of the monster that exists on the current map.
+
+    Returns:
+        The monster object or None if the monster is not found.
+
+    """
+    from tuxemon.states.world.worldstate import WorldState
+
+    world = session.client.get_state_by_name(WorldState)
+
+    return world.get_monster_by_iid(iid)
 
 
 def collide(condition: MapCondition, tile_position: tuple[int, int]) -> bool:

@@ -40,7 +40,7 @@ class TrainerBattleCommand(CLICommand):
             try:
                 action = ctx.session.client.event_engine.execute_action
                 action("create_npc", (trainer, 7, 6))
-                action("start_battle", character1=trainer)
+                action("start_battle", (trainer,))
                 action("remove_npc", (trainer,))
             except Exception:
                 traceback.print_exc()

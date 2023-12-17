@@ -53,6 +53,7 @@ class StartBattleAction(EventAction):
         if not check_battle_legal(character1) or not check_battle_legal(
             character2
         ):
+            logger.warning("battle is not legal, won't start")
             return
 
         # default environment

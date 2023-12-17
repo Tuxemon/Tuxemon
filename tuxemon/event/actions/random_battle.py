@@ -95,6 +95,7 @@ class RandomBattleAction(EventAction):
         env = db.lookup(env_slug, table="environment")
 
         if not check_battle_legal(player) or not check_battle_legal(npc):
+            logger.warning("battle is not legal, won't start")
             return
 
         # Add our players and setup combat

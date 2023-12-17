@@ -6,7 +6,7 @@ from collections.abc import Generator
 
 import pygame
 
-from tuxemon import tools
+from tuxemon import prepare, tools
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
@@ -21,7 +21,7 @@ from tuxemon.ui.text import TextArea
 class TechniqueMenuState(Menu[Technique]):
     """The technique menu allows you to view and use techniques of your party."""
 
-    background_filename = "gfx/ui/item/item_menu_bg.png"
+    background_filename = prepare.BG_MOVES
     draw_borders = False
 
     def __init__(self, monster: Monster) -> None:

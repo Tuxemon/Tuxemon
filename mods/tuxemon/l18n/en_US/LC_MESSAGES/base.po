@@ -2606,6 +2606,9 @@ msgstr "No Signal"
 msgid "omnichannel_mobile"
 msgstr "Omnichannel Mobile 4G"
 
+msgid "nu_map_missing"
+msgstr "GPS tracker not updating."
+
 msgid "max_moves_alert"
 msgstr "{name} has too many techniques.\n"
 "Which do you want to overwrite for learning {tech}?"

@@ -68,10 +68,12 @@ TILE_SIZE = (16, 16)
 ICON_SIZE = [7, 7]
 
 # Set the healthbar _color
+GFX_HP_BAR: str = "gfx/ui/monster/hp_bar.png"
 HP_COLOR_FG = (10, 240, 25)  # dark saturated green
 HP_COLOR_BG = (245, 10, 25)  # dark saturated red
 
 # Set the XP bar _color
+GFX_XP_BAR: str = "gfx/ui/monster/exp_bar.png"
 XP_COLOR_FG = (31, 239, 255)  # light washed cyan
 XP_COLOR_BG = None  # none for the moment
 
@@ -104,6 +106,52 @@ else:
     FONT_SIZE = 5
     FONT_SIZE_BIG = 6
     FONT_SIZE_BIGGER = 7
+
+# gradients
+# Hex 77767b > Hex ffffff (linear + top/bottom)
+GRAD_BLACK: str = "gfx/ui/background/gradient_black.png"
+# Hex c5e8ea (original)
+GRAD_BLUE: str = "gfx/ui/background/gradient_blue.png"
+# Hex cdab8f > Hex ffffff (linear + top/bottom)
+GRAD_BROWN: str = "gfx/ui/background/gradient_brown.png"
+# Hex 8ff0a4 > Hex ffffff (linear + top/bottom)
+GRAD_GREEN: str = "gfx/ui/background/gradient_green.png"
+# Hex ffbe6f > Hex ffffff (linear + top/bottom)
+GRAD_ORANGE: str = "gfx/ui/background/gradient_orange.png"
+# Hex f66151 > Hex ffffff (linear + top/bottom)
+GRAD_RED: str = "gfx/ui/background/gradient_red.png"
+# Hex dc8add > Hex ffffff (linear + top/bottom)
+GRAD_VIOLET: str = "gfx/ui/background/gradient_violet.png"
+# Hex f9f06b > Hex ffffff (linear + top/bottom)
+GRAD_YELLOW: str = "gfx/ui/background/gradient_yellow.png"
+# backgrounds
+TUX_GENERIC: str = "gfx/ui/background/tux_generic.png"
+TUX_INFO: str = "gfx/ui/background/tux_info.png"
+ITEM_MENU: str = "gfx/ui/item/item_menu_bg.png"
+
+# background per state
+BG_MINIGAME: str = GRAD_BLUE
+BG_MISSIONS: str = GRAD_BLUE
+BG_PC_KENNEL: str = GRAD_BLUE
+BG_PC_LOCKER: str = GRAD_BLUE
+BG_PHONE: str = GRAD_BLUE
+BG_PHONE_BANKING: str = GRAD_BLUE
+BG_PHONE_CONTACTS: str = GRAD_BLUE
+BG_PHONE_MAP: str = GRAD_BLUE
+PHONE_MAP: str = "gfx/ui/background/spyder_map.png"
+BG_START_SCREEN: str = GRAD_BLUE
+PYGAME_LOGO: str = "gfx/ui/intro/pygame_logo.png"
+CREATIVE_COMMONS: str = "gfx/ui/intro/creative_commons.png"
+BG_JOURNAL: str = TUX_GENERIC
+BG_JOURNAL_CHOICE: str = TUX_GENERIC
+BG_JOURNAL_INFO: str = TUX_INFO
+BG_MONSTER_INFO: str = TUX_INFO
+BG_PLAYER: str = "gfx/ui/background/player_info.png"
+BG_ITEMS: str = ITEM_MENU
+BG_ITEMS_BACKPACK: str = "gfx/ui/item/backpack.png"
+BG_MOVES: str = ITEM_MENU
+BG_SHOP: str = ITEM_MENU
+BG_MONSTERS: str = "gfx/ui/monster/monster_menu_bg.png"
 
 # Native resolution is similar to the old gameboy resolution. This is
 # used for scaling.

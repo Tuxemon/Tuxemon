@@ -36,7 +36,7 @@ class ImageState(PygameMenuState):
         bg_size = theme.background_color.get_size()
         if bg_size[0] != native[0] or bg_size[1] != native[1]:
             raise ValueError(
-                f"{image_path} ({bg_size}):"
+                f"{image_path} {bg_size}: "
                 f"It doesn't respect the native resolution {native}"
             )
         super().__init__(height=height, width=width)
@@ -49,7 +49,7 @@ class ImageState(PygameMenuState):
             image_size = new_image.get_size()
             if image_size[0] > native[0] or image_size[1] > native[1]:
                 raise ValueError(
-                    f"{image} ({image_size}):"
+                    f"{image} {image_size}: "
                     f"It must be less than the native resolution {native}"
                 )
             new_image.scale(prepare.SCALE, prepare.SCALE)

@@ -1,13 +1,13 @@
 {
   "tech_id": 170,
-  "accuracy": 0.6,
+  "accuracy": 0.75,
   "animation": "waterfall",
   "effects": [
     "area"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.6,
+  "potency": 0.0,
   "power": 2.7,
   "range": "reach",
   "recharge": 3,

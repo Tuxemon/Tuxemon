@@ -1,16 +1,16 @@
 {
   "tech_id": 144,
-  "accuracy": 0.6,
+  "accuracy": 0.95,
   "animation": "pulse_radiate",
   "effects": [
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.6,
-  "power": 1.6,
-  "range": "touch",
-  "recharge": 1,
+  "potency": 0.0,
+  "power": 2.5,
+  "range": "ranged",
+  "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "radiance",
   "sort": "damage",

@@ -1,6 +1,6 @@
 {
   "tech_id": 84,
-  "accuracy": 1,
+  "accuracy": 0.9,
   "animation": "drip_green",
   "effects": [
     "give poison,target",

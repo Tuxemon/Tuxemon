@@ -1,16 +1,17 @@
 {
   "tech_id": 155,
-  "accuracy": 0.6,
+  "accuracy": 0.95,
   "animation": "amethyst_radiate",
   "effects": [
+    "give revenge,target",
     "damage"
   ],
   "flip_axes": "",
-  "is_fast": false,
-  "potency": 0.9,
-  "power": 2.7,
+  "is_fast": true,
+  "potency": 1,
+  "power": 3,
   "range": "melee",
-  "recharge": 1,
+  "recharge": 3,
   "sfx": "sfx_blaster",
   "slug": "vorpal",
   "sort": "damage",

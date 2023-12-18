@@ -6,10 +6,10 @@
     "damage"
   ],
   "flip_axes": "",
-  "is_fast": false,
-  "potency": 0.5,
+  "is_fast": true,
+  "potency": 0.0,
   "power": 1.7,
-  "range": "touch",
+  "range": "melee",
   "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "assault",

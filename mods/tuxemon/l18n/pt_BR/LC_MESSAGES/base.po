@@ -291,8 +291,8 @@ msgstr "Peregrino"
 msgid "petrify"
 msgstr "Petrificar"
 
-msgid "probiscus"
-msgstr "Probiscus"
+msgid "proboscis"
+msgstr "Proboscis"
 
 msgid "pseudopod"
 msgstr "Pseudópode"
@@ -817,7 +817,7 @@ msgstr "Tempestade de Neve"
 msgid "splinter"
 msgstr "Lasca"
 
-msgid "spray"
+msgid "spit_poison"
 msgstr "Spray"
 
 msgid "stampede"
@@ -3492,8 +3492,8 @@ msgstr "Cristal"
 msgid "clock"
 msgstr "Relógio"
 
-msgid "gyser"
-msgstr "Gyser"
+msgid "geyser"
+msgstr "Geyser"
 
 msgid "chameleon"
 msgstr "Camaleão"

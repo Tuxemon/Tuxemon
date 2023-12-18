@@ -33,7 +33,6 @@ able to.
 """
 from __future__ import annotations
 
-import datetime as dt
 import logging
 import random
 from collections.abc import Iterable, MutableMapping, Sequence
@@ -47,25 +46,21 @@ from pygame.rect import Rect
 from tuxemon import audio, graphics, prepare, state, tools
 from tuxemon.ai import AI
 from tuxemon.animation import Animation, Task
-from tuxemon.battle import Battle
 from tuxemon.combat import (
     alive_party,
     award_experience,
     award_money,
+    battlefield,
     check_moves,
     defeated,
     fainted,
     get_awake_monsters,
     get_winners,
+    plague,
+    track_battles,
 )
 from tuxemon.condition.condition import Condition
-from tuxemon.db import (
-    BattleGraphicsModel,
-    ItemCategory,
-    OutputBattle,
-    PlagueType,
-    SeenStatus,
-)
+from tuxemon.db import BattleGraphicsModel, ItemCategory, PlagueType
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -450,21 +445,11 @@ class CombatState(CombatAnimations):
 
             # plague
             # record the useful properties of the last monster we fought
-            monster_record = self.monsters_in_play[self.players[1]][0]
-            if self.players[1].plague == PlagueType.infected:
-                monster_record.plague = PlagueType.infected
-            if monster_record in self.active_monsters:
-                var = self.players[0].game_variables
-                var["battle_last_monster_name"] = monster_record.name
-                var["battle_last_monster_level"] = monster_record.level
-                var["battle_last_monster_type"] = monster_record.types[0].slug
-                var["battle_last_monster_category"] = monster_record.category
-                var["battle_last_monster_shape"] = monster_record.shape
-                # Avoid reset string to seen if monster has already been caught
-                if monster_record.slug not in self.players[0].tuxepedia:
-                    self.players[0].tuxepedia[
-                        monster_record.slug
-                    ] = SeenStatus.seen
+            for player in self.remaining_players:
+                if self.monsters_in_play[player]:
+                    _monster = self.monsters_in_play[player][0]
+                    battlefield(_monster, self.remaining_players)
+                plague(player)
 
         elif phase == "decision phase":
             self.reset_status_icons()
@@ -479,7 +464,7 @@ class CombatState(CombatAnimations):
                 # tracks ai players who need to choose an action
                 for trainer in self.ai_players:
                     for monster in self.monsters_in_play[trainer]:
-                        AI(self, monster)
+                        AI(self, monster, trainer)
                         # recharge opponent moves
                         for tech in monster.moves:
                             tech.recharge()
@@ -517,61 +502,34 @@ class CombatState(CombatAnimations):
             self.players[0].set_party_status()
 
         elif phase == "draw match":
-            self.players[0].set_party_status()
-            var = self.players[0].game_variables
-            var["battle_last_result"] = OutputBattle.draw
-            var["teleport_clinic"] = OutputBattle.lost
-            if self.is_trainer_battle:
-                var["battle_last_trainer"] = self.players[1].slug
-                # track battles against NPC
-                battle = Battle()
-                battle.opponent = self.players[1].slug
-                battle.outcome = OutputBattle.draw
-                battle.date = dt.date.today().toordinal()
-                self.players[0].battles.append(battle)
-
             # it is a draw match; both players were defeated in same round
-            message = T.translate("combat_draw")
+            draws = self.defeated_players
+            for draw in draws:
+                if draw.isplayer:
+                    message = track_battles(
+                        output="draw", player=draw, players=draws
+                    )
 
         elif phase == "has winner":
-            # TODO: proper match check, etc
-            # This assumes that player[0] is the human playing in single player
-            self.players[0].set_party_status()
-            var = self.players[0].game_variables
-            if self.remaining_players[0] == self.players[0]:
-                var["battle_last_result"] = OutputBattle.won
-                if self.is_trainer_battle:
-                    message = T.format(
-                        "combat_victory_trainer",
-                        {
-                            "npc": self.players[1].name,
-                            "prize": self._prize,
-                            "currency": "$",
-                        },
+            winners = self.remaining_players
+            losers = self.defeated_players
+            for winner in winners:
+                if winner.isplayer:
+                    message = track_battles(
+                        output="won",
+                        player=winner,
+                        players=losers,
+                        prize=self._prize,
+                        trainer_battle=self.is_trainer_battle,
                     )
-                    self.players[0].give_money(self._prize)
-                    var["battle_last_trainer"] = self.players[1].slug
-                    # track battles against NPC
-                    battle = Battle()
-                    battle.opponent = self.players[1].slug
-                    battle.outcome = OutputBattle.won
-                    battle.date = dt.date.today().toordinal()
-                    self.players[0].battles.append(battle)
-                else:
-                    message = T.translate("combat_victory")
-
-            else:
-                var["battle_last_result"] = OutputBattle.lost
-                var["teleport_clinic"] = OutputBattle.lost
-                message = T.translate("combat_defeat")
-                if self.is_trainer_battle:
-                    var["battle_last_trainer"] = self.players[1].slug
-                    # track battles against NPC
-                    battle = Battle()
-                    battle.opponent = self.players[1].slug
-                    battle.outcome = OutputBattle.lost
-                    battle.date = dt.date.today().toordinal()
-                    self.players[0].battles.append(battle)
+            for loser in losers:
+                if loser.isplayer:
+                    message = track_battles(
+                        output="lost",
+                        player=loser,
+                        players=winners,
+                        trainer_battle=self.is_trainer_battle,
+                    )
 
         elif phase == "end combat":
             self.players[0].set_party_status()
@@ -1388,6 +1346,14 @@ class CombatState(CombatAnimations):
 
         """
         return self.monsters_in_play[self.players[1]]
+
+    @property
+    def defeated_players(self) -> Sequence[NPC]:
+        """
+        List of defeated players/trainers.
+
+        """
+        return [p for p in self.players if defeated(p)]
 
     @property
     def remaining_players(self) -> Sequence[NPC]:

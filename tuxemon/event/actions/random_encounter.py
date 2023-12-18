@@ -52,6 +52,7 @@ class RandomEncounterAction(EventAction):
 
         # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):
+            logger.warning("battle is not legal, won't start")
             return
 
         slug = self.encounter_slug

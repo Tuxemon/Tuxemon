@@ -647,7 +647,7 @@ class TechniqueModel(BaseModel):
     # Validate resources that should exist
     @field_validator("icon")
     def file_exists(cls: TechniqueModel, v: str) -> str:
-        if v and has.file(v) and has.size(v, prepare.ICON_SIZE):
+        if v and has.file(v) and has.size(v, prepare.TECH_ICON_SIZE):
             return v
         raise ValueError(f"the icon {v} doesn't exist in the db")
 
@@ -816,7 +816,7 @@ class ConditionModel(BaseModel):
     # Validate resources that should exist
     @field_validator("icon")
     def file_exists(cls: ConditionModel, v: str) -> str:
-        if has.file(v) and has.size(v, prepare.ICON_SIZE):
+        if has.file(v) and has.size(v, prepare.STATUS_ICON_SIZE):
             return v
         raise ValueError(f"the icon {v} doesn't exist in the db")
 
@@ -995,7 +995,7 @@ class BattleIconsModel(BaseModel):
         "icon_empty",
     )
     def file_exists(cls: BattleIconsModel, v: str) -> str:
-        if has.file(v):
+        if has.file(v) and has.size(v, prepare.ICON_SIZE):
             return v
         raise ValueError(f"no resource exists with path: {v}")
 
@@ -1007,12 +1007,14 @@ class BattleGraphicsModel(BaseModel):
     hud: BattleHudModel
     icons: BattleIconsModel
 
-    @field_validator(
-        "island_back",
-        "island_front",
-        "background",
-    )
-    def file_exists(cls: BattleGraphicsModel, v: str) -> str:
+    @field_validator("island_back", "island_front")
+    def island_exists(cls: BattleGraphicsModel, v: str) -> str:
+        if has.file(v) and has.size(v, prepare.ISLAND_SIZE):
+            return v
+        raise ValueError(f"no resource exists with path: {v}")
+
+    @field_validator("background")
+    def background_exists(cls: BattleGraphicsModel, v: str) -> str:
         if has.file(v):
             return v
         raise ValueError(f"no resource exists with path: {v}")
@@ -1640,14 +1642,14 @@ class Validator:
             if sprite.size[0] > size[0] or sprite.size[1] > size[1]:
                 sprite.close()
                 raise ValueError(
-                    f"{file} ({sprite.size}):"
+                    f"{file} {sprite.size}: "
                     f"It must be less than the native resolution {native}"
                 )
         else:
             if sprite.size[0] != size[0] or sprite.size[1] != size[1]:
                 sprite.close()
                 raise ValueError(
-                    f"{file} ({sprite.size}):" f"It must be equal to {size}"
+                    f"{file} {sprite.size}: It must be equal to {size}"
                 )
         sprite.close()
         return True

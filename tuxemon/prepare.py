@@ -64,8 +64,12 @@ SCREEN_SIZE = CONFIG.resolution
 # 1 tile = 16 pixels
 TILE_SIZE: tuple[int, int] = (16, 16)
 
-# Set the status icon size so we know how much to scale our menu icons
-ICON_SIZE: tuple[int, int] = (9, 9)
+# Set the generic icons (eg. party_empty, etc.)
+ICON_SIZE: tuple[int, int] = (7, 7)
+# Set icons technique (eg. poison, etc.)
+TECH_ICON_SIZE: tuple[int, int] = (9, 9)
+# Set icons status (eg. poison, etc.)
+STATUS_ICON_SIZE: tuple[int, int] = (9, 9)
 # set sprite size (eg. nurse, bob, etc.)
 SPRITE_SIZE: tuple[int, int] = (16, 32)
 # set items size (eg. tuxeball, potion, etc.)
@@ -80,6 +84,8 @@ MONSTER_SIZE_MENU: tuple[int, int] = (24, 24)
 BORDERS_SIZE: tuple[int, int] = (18, 18)
 # set element size (earth, metal, etc.)
 ELEMENT_SIZE: tuple[int, int] = (24, 24)
+# set island size, battle terrains (grass, etc.)
+ISLAND_SIZE: tuple[int, int] = (96, 57)
 
 # Set the healthbar _color
 GFX_HP_BAR: str = "gfx/ui/monster/hp_bar.png"

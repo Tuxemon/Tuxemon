@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="361">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="361">
  <properties>
   <property name="east" value="route6"/>
   <property name="edges" value="clamped"/>
@@ -53,72 +53,6 @@
   <object id="292" type="collision" x="288" y="496" width="32" height="32"/>
   <object id="304" type="collision" x="240" y="160" width="16" height="16"/>
   <object id="305" type="collision" x="256" y="176" width="16" height="16"/>
-  <object id="306" type="collision" x="256" y="48" width="32" height="160">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="307" type="collision" x="288" y="48" width="32" height="32"/>
-  <object id="308" type="collision" x="224" y="176" width="32" height="128">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="309" type="collision" x="256" y="256" width="16" height="48">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="310" type="collision" x="272" y="272" width="16" height="64">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="311" type="collision" x="256" y="336" width="16" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="312" type="collision" x="208" y="256" width="16" height="64">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="313" type="collision" x="192" y="272" width="16" height="128">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="314" type="collision" x="176" y="288" width="16" height="96">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="315" type="collision" x="208" y="352" width="16" height="80">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="316" type="collision" x="224" y="368" width="32" height="64">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="317" type="collision" x="256" y="400" width="16" height="96">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="318" type="collision" x="240" y="432" width="16" height="64">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="320" type="collision" x="272" y="464" width="48" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
   <object id="321" type="collision" x="256" y="0" width="64" height="32"/>
   <object id="322" type="collision" x="288" y="576" width="32" height="32"/>
   <object id="323" type="collision" x="288" y="80" width="32" height="368"/>

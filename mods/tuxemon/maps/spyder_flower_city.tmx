@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="499">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="499">
  <properties>
   <property name="east" value="route4"/>
   <property name="edges" value="clamped"/>
@@ -39,36 +39,6 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">
-  <object id="302" type="collision" x="0" y="512" width="64" height="48">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="303" type="collision" x="64" y="528" width="144" height="48">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="304" type="collision" x="160" y="496" width="112" height="48">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="305" type="collision" x="288" y="496" width="16" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="306" type="collision" x="256" y="528" width="192" height="48">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="307" type="collision" x="400" y="576" width="48" height="64">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
   <object id="308" type="collision" x="448" y="608" width="16" height="32"/>
   <object id="332" type="collision" x="368" y="336" width="32" height="48"/>
   <object id="333" type="collision" x="400" y="336" width="48" height="32"/>

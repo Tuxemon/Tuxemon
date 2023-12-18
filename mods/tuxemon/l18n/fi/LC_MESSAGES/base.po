@@ -514,7 +514,7 @@ msgstr "Täydellinen viilto"
 msgid "petrify"
 msgstr "Jähmetä"
 
-msgid "probiscus"
+msgid "proboscis"
 msgstr "Imukärsä"
 
 msgid "pseudopod"
@@ -553,7 +553,7 @@ msgstr "Lumimyräkkä"
 msgid "splinter"
 msgstr "Sirpale"
 
-msgid "spray"
+msgid "spit_poison"
 msgstr "Suihke"
 
 msgid "stampede"

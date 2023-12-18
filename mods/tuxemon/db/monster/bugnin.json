@@ -41,6 +41,10 @@
         {
             "level_learned": 28,
             "technique": "sleep_bomb"
+        },
+        {
+            "level_learned": 45,
+            "technique": "vorpal"
         }
     ],
     "evolutions": [],

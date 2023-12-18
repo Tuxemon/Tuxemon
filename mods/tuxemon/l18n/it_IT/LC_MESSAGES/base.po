@@ -406,7 +406,7 @@ msgstr "Taglionetto"
 msgid "petrify"
 msgstr "Petrificazione"
 
-msgid "probiscus"
+msgid "proboscis"
 msgstr "Proboscide"
 
 msgid "pseudopod"
@@ -457,8 +457,8 @@ msgstr "Tormenta"
 msgid "splinter"
 msgstr "Scheggia"
 
-msgid "spray"
-msgstr "Spray"
+msgid "spit_poison"
+msgstr "Sputa Veleno"
 
 msgid "stampede"
 msgstr "Fuga"

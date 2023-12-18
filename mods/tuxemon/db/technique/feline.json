@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "claws_twice_red",
   "effects": [
-    "give wild,target",
+    "give wild,user",
     "enhance"
   ],
   "flip_axes": "",

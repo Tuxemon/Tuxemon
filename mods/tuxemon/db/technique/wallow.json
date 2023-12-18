@@ -9,7 +9,7 @@
   "flip_axes": "",
   "healing_power": 4,
   "is_fast": false,
-  "potency": 0.5,
+  "potency": 1,
   "power": 0,
   "range": "special",
   "recharge": 1,

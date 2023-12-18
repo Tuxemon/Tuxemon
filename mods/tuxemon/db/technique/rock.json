@@ -9,7 +9,7 @@
   "is_fast": false,
   "potency": 0.0,
   "power": 1.5,
-  "range": "ranged",
+  "range": "touch",
   "recharge": 1,
   "sfx": "sfx_blaster",
   "slug": "rock",

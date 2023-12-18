@@ -3,11 +3,12 @@
   "accuracy": 1,
   "animation": "pound",
   "effects": [
+    "give flinching,target",
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.0,
+  "potency": 0.1,
   "power": 2.25,
   "range": "melee",
   "recharge": 2,

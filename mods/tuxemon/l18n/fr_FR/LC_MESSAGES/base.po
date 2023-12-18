@@ -960,8 +960,8 @@ msgid "nightcrawler"
 msgstr "Chasseur de nuit"
 
 #, fuzzy
-msgid "probiscus"
-msgstr "Probiscus"
+msgid "proboscis"
+msgstr "Proboscis"
 
 #, fuzzy
 msgid "flopped"
@@ -1967,7 +1967,7 @@ msgstr "Éclats d'Obus"
 msgid "sleep_bomb"
 msgstr "Bombe Soporifique"
 
-msgid "spray"
+msgid "spit_poison"
 msgstr "Jet"
 
 msgid "static_field"
@@ -7480,8 +7480,8 @@ msgstr "Broyage"
 msgid "gust"
 msgstr "Rafale"
 
-msgid "gyser"
-msgstr "Gyser"
+msgid "geyser"
+msgstr "Geyser"
 
 msgid "insanity"
 msgstr "Folie"

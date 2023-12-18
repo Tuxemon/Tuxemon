@@ -1,14 +1,15 @@
 {
   "tech_id": 145,
-  "accuracy": 0.6,
+  "accuracy": 0.8,
   "animation": "pulse_absorb",
   "effects": [
-    "damage"
+    "give recover,user",
+    "splash"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.1,
-  "power": 2.4,
+  "potency": 1,
+  "power": 2,
   "range": "reach",
   "recharge": 2,
   "sfx": "sfx_blaster",

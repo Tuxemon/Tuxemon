@@ -2478,7 +2478,7 @@ msgid "here_to_south"
 msgstr "From ${{map_name}} to ${{south}}"
 
 msgid "here_to_west"
-msgstr "Route 17"
+msgstr "From ${{map_name}} to ${{west}}"
 
 msgid "here_to_east"
 msgstr "From ${{map_name}} to ${{east}}"

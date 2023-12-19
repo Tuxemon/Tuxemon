@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import final
+from typing import Optional, final
 
 from tuxemon.combat import alive_party, check_battle_legal
 from tuxemon.db import db
@@ -19,52 +19,69 @@ logger = logging.getLogger(__name__)
 @dataclass
 class StartBattleAction(EventAction):
     """
-    Start a battle with the given npc and switch to the combat module.
+    Start a battle between two characters and switch to the combat module.
 
     Script usage:
         .. code-block::
 
-            start_battle <npc_slug>
+            start_battle <character1>,<character2>
 
     Script parameters:
-        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        character1: Either "player" or character slug name (e.g. "npc_maple").
+        character2: Either "player" or character slug name (e.g. "npc_maple").
 
     """
 
     name = "start_battle"
-    npc_slug: str
+    character1: str
+    character2: Optional[str] = None
 
     def start(self) -> None:
-        player = self.session.player
+        self.character2 = (
+            "player" if self.character2 is None else self.character2
+        )
+        character1 = get_npc(self.session, self.character1)
+        character2 = get_npc(self.session, self.character2)
+        if not character1:
+            logger.error(f"{self.character1} not found in map")
+            return
+        if not character2:
+            logger.error(f"{self.character2} not found in map")
+            return
 
-        # Don't start a battle if we don't even have monsters in our party yet.
-        if not check_battle_legal(player):
+        # check the battle is legal
+        if not check_battle_legal(character1) or not check_battle_legal(
+            character2
+        ):
             logger.warning("battle is not legal, won't start")
             return
 
-        npc = get_npc(self.session, self.npc_slug)
-        assert npc
-        if not npc.monsters:
-            logger.warning(
-                f"npc '{self.npc_slug}' has no monsters, won't start trainer battle."
-            )
-            return
+        # default environment
+        env_slug = "grass"
 
-        # Lookup the environment
-        env_slug = player.game_variables.get("environment", "grass")
+        fighters = [character1, character2]
+        for fighter in fighters:
+            # check and trigger 2 vs 2
+            if fighter.template[0].double and len(alive_party(fighter)) > 1:
+                fighter.max_position = 2
+            # check the human
+            if fighter.isplayer:
+                # update environment
+                env_slug = fighter.game_variables.get("environment", "grass")
+
+        # set the environment
         env = db.lookup(env_slug, table="environment")
 
-        # trigger 2 vs 2
-        if npc.template[0].double:
-            npc.max_position = 2
-            if len(alive_party(player)) > 1:
-                player.max_position = 2
+        # sort the fighters, player first
+        fighters = sorted(fighters, key=lambda x: not x.isplayer)
 
         # Add our players and setup combat
-        logger.info("Starting battle with '{self.npc_slug}'!")
+        logger.info(
+            f"Starting battle between {fighters[0].name} and {fighters[1].name}!"
+        )
         self.session.client.push_state(
             CombatState(
-                players=(player, npc),
+                players=(fighters[0], fighters[1]),
                 combat_type="trainer",
                 graphics=env.battle_graphics,
             )

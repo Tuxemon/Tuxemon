@@ -475,7 +475,7 @@ msgstr "完美切割"
 msgid "petrify"
 msgstr "美杜莎之眼"
 
-msgid "probiscus"
+msgid "proboscis"
 msgstr "普罗比斯库斯"
 
 msgid "pseudopod"
@@ -526,7 +526,7 @@ msgstr "暴风雪"
 msgid "splinter"
 msgstr "分裂"
 
-msgid "spray"
+msgid "spit_poison"
 msgstr "喷雾"
 
 msgid "stampede"
@@ -806,7 +806,7 @@ msgstr "千里眼观众"
 msgid "feline"
 msgstr "猫的"
 
-msgid "gyser"
+msgid "geyser"
 msgstr "吉瑟"
 
 msgid "fishing_rod_description"

@@ -11,7 +11,7 @@
   "potency": 1,
   "power": 2.25,
   "range": "reach",
-  "recharge": 3,
+  "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "venomous_tentacle",
   "sort": "damage",

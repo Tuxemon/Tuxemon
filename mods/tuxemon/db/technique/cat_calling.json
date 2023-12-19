@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "calling",
   "effects": [
-    "give noddingoff,target",
+    "give harpooned,target",
     "enhance"
   ],
   "flip_axes": "",

@@ -847,8 +847,8 @@ msgstr ""
 msgid "nightcrawler"
 msgstr ""
 
-msgid "probiscus"
-msgstr "Probiscus"
+msgid "proboscis"
+msgstr "Proboscis"
 
 msgid "flopped"
 msgstr "Ruiniĝita"

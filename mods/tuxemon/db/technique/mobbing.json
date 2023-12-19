@@ -1,6 +1,6 @@
 {
   "tech_id": 115,
-  "accuracy": 0.7,
+  "accuracy": 1,
   "animation": "pound",
   "effects": [
     "damage"
@@ -8,9 +8,9 @@
   "flip_axes": "",
   "is_fast": false,
   "potency": 0.1,
-  "power": 1.6,
-  "range": "touch",
-  "recharge": 3,
+  "power": 1.8,
+  "range": "melee",
+  "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "mobbing",
   "sort": "damage",

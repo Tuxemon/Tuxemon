@@ -902,20 +902,20 @@ class CombatState(CombatAnimations):
             monster: Monster to choose an action for.
 
         """
-        from tuxemon.states.combat.combat_menus import MainCombatMenuState
-
         message = T.format("combat_monster_choice", {"name": monster.name})
         self.text_animations_queue.append((partial(self.alert, message), 0))
         rect_screen = self.client.screen.get_rect()
         rect = Rect(0, 0, rect_screen.w // 2.5, rect_screen.h // 4)
         rect.bottomright = rect_screen.w, rect_screen.h
 
-        state = self.client.push_state(
-            MainCombatMenuState(
-                cmb=self,
-                monster=monster,
+        if self.client.map_slug == "park":
+            state = self.client.push_state(
+                "MainParkMenuState", cmb=self, monster=monster
             )
-        )
+        else:
+            state = self.client.push_state(
+                "MainCombatMenuState", cmb=self, monster=monster
+            )
         state.rect = rect
 
     def enqueue_damage(

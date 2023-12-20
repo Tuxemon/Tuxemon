@@ -3,7 +3,7 @@
     "is wild_monster"
   ],
   "effects": [
-    "park_capture"
+    "capture"
   ],
   "animation": "capture_1",
   "slug": "tuxeball_park",

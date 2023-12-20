@@ -15,7 +15,7 @@ from tuxemon.monster import Monster
 from tuxemon.states.items.item_menu import ItemMenuState
 
 if TYPE_CHECKING:
-    from tuxemon.states.park.park import ParkState
+    from tuxemon.states.combat.combat import CombatState
 
 
 MenuGameObj = Callable[[], None]
@@ -23,7 +23,7 @@ MenuGameObj = Callable[[], None]
 
 class MainParkMenuState(PopUpMenu[MenuGameObj]):
     """
-    Main menu: Ball, Item, Swap, Run
+    Main menu Park: ball, food, doll and run
 
     """
 
@@ -31,7 +31,7 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
     escape_key_exits = False
     columns = 2
 
-    def __init__(self, cmb: ParkState, monster: Monster) -> None:
+    def __init__(self, cmb: CombatState, monster: Monster) -> None:
         super().__init__()
         self.combat = cmb
         self.player = cmb.players[0]  # human

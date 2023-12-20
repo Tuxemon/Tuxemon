@@ -48,12 +48,17 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
     def __init__(self, cmb: CombatState, monster: Monster) -> None:
         super().__init__()
+        assert monster.owner
         self.combat = cmb
-        self.player = cmb.players[0]  # human
-        self.enemy = cmb.players[1]  # ai
+        self.character = monster.owner
         self.monster = monster
-        self.party = cmb.monsters_in_play[self.player]
-        self.opponents = cmb.monsters_in_play[self.enemy]
+        self.party = cmb.monsters_in_play[self.character]
+        if self.character == cmb.players[0]:
+            self.enemy = cmb.players[1]
+            self.opponents = cmb.monsters_in_play[self.enemy]
+        if self.character == cmb.players[1]:
+            self.enemy = cmb.players[0]
+            self.opponents = cmb.monsters_in_play[self.enemy]
 
     def initialize_items(self) -> Generator[MenuItem[MenuGameObj], None, None]:
         if self.combat.is_trainer_battle:
@@ -227,7 +232,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 return
 
             # enqueue the item
-            self.combat.enqueue_action(self.player, item, target)
+            self.combat.enqueue_action(self.character, item, target)
 
             # close all the open menus
             self.client.pop_state()  # close target chooser
@@ -325,10 +330,10 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 tools.open_dialog(local_session, [msg])
                 return
             else:
-                self.player.game_variables["action_tech"] = technique.slug
+                self.character.game_variables["action_tech"] = technique.slug
                 # pre checking (look for null actions)
                 technique = combat.pre_checking(
-                    self.monster, technique, target
+                    self.monster, technique, target, self.combat
                 )
                 self.combat.enqueue_action(self.monster, technique, target)
                 # remove skip after using it
@@ -366,13 +371,19 @@ class CombatTargetMenuState(Menu[Monster]):
         tech: Technique,
     ) -> None:
         super().__init__()
-        self.combat = cmb
-        self.player = cmb.players[0]  # human
-        self.enemy = cmb.players[1]  # ai
+        assert monster.owner
         self.monster = monster
-        self.party = cmb.monsters_in_play[self.player]
-        self.opponents = cmb.monsters_in_play[self.enemy]
+        self.combat = cmb
+        self.character = monster.owner
+        self.monster = monster
         self.tech = tech
+        self.party = cmb.monsters_in_play[self.character]
+        if self.character == cmb.players[0]:
+            self.enemy = cmb.players[1]
+            self.opponents = cmb.monsters_in_play[self.enemy]
+        if self.character == cmb.players[1]:
+            self.enemy = cmb.players[0]
+            self.opponents = cmb.monsters_in_play[self.enemy]
 
         # creates menu
         rect_screen = self.client.screen.get_rect()
@@ -423,7 +434,7 @@ class CombatTargetMenuState(Menu[Monster]):
             if len(monsters) == 2:
                 for monster in monsters:
                     # allow choosing multiple targets
-                    if player == self.player:
+                    if player == self.character:
                         targeting_class = "own monster"
                     else:
                         targeting_class = "enemy monster"

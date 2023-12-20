@@ -24,14 +24,13 @@ class HealEffect(ItemEffect):
     """
     Heals the target by 'amount' hp.
 
-    This is a constant if amount is an integer, a percentage of total hp
-    if a float
+    Parameters:
+        amount: this is a constant if amount is an integer,
+        a percentage of total hp if a float
 
     Examples:
-    >>> potion = Item('potion')
-    >>> potion.amount = 0.5
-    >>> potion.apply(bulbatux)
-    >>> # bulbatux is healed by 50% of it's total hp
+        heal 0.5 > is healed by 50% of it's total hp
+
     """
 
     name = "heal"

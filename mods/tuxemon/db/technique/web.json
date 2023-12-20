@@ -1,6 +1,6 @@
 {
   "tech_id": 42,
-  "accuracy": 0.75,
+  "accuracy": 0.8,
   "animation": "snake_right",
   "effects": [
     "give grabbed,target",

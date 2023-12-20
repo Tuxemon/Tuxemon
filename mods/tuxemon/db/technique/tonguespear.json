@@ -9,7 +9,7 @@
   "flip_axes": "xy",
   "is_fast": false,
   "potency": 1,
-  "power": 1,
+  "power": 2.5,
   "range": "melee",
   "recharge": 2,
   "sfx": "sfx_blaster",

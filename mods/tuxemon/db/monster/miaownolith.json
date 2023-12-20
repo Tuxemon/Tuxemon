@@ -33,6 +33,10 @@
         {
             "level_learned": 28,
             "technique": "overgrowth"
+        },
+        {
+            "level_learned": 36,
+            "technique": "oedipus"
         }
     ],
     "evolutions": [],

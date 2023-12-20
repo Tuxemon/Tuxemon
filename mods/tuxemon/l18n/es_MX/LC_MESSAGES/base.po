@@ -908,7 +908,7 @@ msgstr "Diabólico"
 msgid "nightcrawler"
 msgstr "Merodeador nocturno"
 
-msgid "probiscus"
+msgid "proboscis"
 msgstr "Probóscide"
 
 msgid "flopped"
@@ -1750,7 +1750,7 @@ msgstr "Polvo para Dormir"
 msgid "snowstorm"
 msgstr "Tormenta de nieve"
 
-msgid "spray"
+msgid "spit_poison"
 msgstr "Aerosol"
 
 msgid "stampede"

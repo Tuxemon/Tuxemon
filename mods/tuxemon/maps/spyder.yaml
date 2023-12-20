@@ -6,6 +6,7 @@ events:
     - is player_defeated
     - not location_type clinic
     - not location_name wayfarer_inn1:wayfarer_inn2:scoop3:scoop4:paper_town
+    - is current_state WorldState
     type: "event"
   Auto healing teleported:
     actions:
@@ -16,6 +17,7 @@ events:
     conditions:
     - is location_type clinic
     - is variable_set teleport_clinic:lost
+    - is current_state WorldState
     type: "event"
   Teleport Exception 1:
     actions:
@@ -26,6 +28,7 @@ events:
     conditions:
     - is player_defeated
     - is location_name wayfarer_inn1:wayfarer_inn2
+    - is current_state WorldState
     type: "event"
   Teleport Exception 2:
     actions:
@@ -36,6 +39,19 @@ events:
     conditions:
     - is player_defeated
     - is location_name scoop3:scoop4
+    - is current_state WorldState
+    type: "event"
+  Teleport Exception 3:
+    actions:
+    - transition_teleport spyder_bedroom.tmx,4,3,0.3
+    - set_monster_health
+    - set_monster_status
+    - set_variable teleport_clinic:none
+    conditions:
+    - is player_defeated
+    - is location_name paper_town
+    - is current_state WorldState
+    - is variable_set firstfightend:no
     type: "event"
   Evolution all:
     actions:
@@ -56,18 +72,28 @@ events:
     type: "event"
   Surfable:
     actions:
-    - set_player_template swimmer
+    - set_template player,swimmer
     conditions:
     - is player_in surfable
     - not has_sprite swimmer
     type: "event"
-  Not surfable:
+  Not surfable Boy:
     actions:
-    - set_player_template default
+    - set_template player,adventurer,adventurer
     - set_variable swimming:no
     conditions:
     - not player_in surfable
     - is has_sprite swimmer
+    - is variable_set gender_choice:gender_male
+    type: "event"
+  Not surfable Girl:
+    actions:
+    - set_template player,heroine,heroine
+    - set_variable swimming:no
+    conditions:
+    - not player_in surfable
+    - is has_sprite swimmer
+    - is variable_set gender_choice:gender_female
     type: "event"
   Allow Swim:
     actions:
@@ -82,6 +108,7 @@ events:
     conditions:
     - is has_sprite swimmer
     - not variable_set stage_of_day:night
+    - is current_state WorldState
     type: "event"
   Swim Encounters Night:
     actions:
@@ -90,6 +117,7 @@ events:
     conditions:
     - is has_sprite swimmer
     - is variable_set stage_of_day:night
+    - is current_state WorldState
     type: "event"
   Night Day Cycle Outside:
     actions:
@@ -112,6 +140,48 @@ events:
     width: 1
     x: 0
     y: 0
+    type: "event"
+  Phone GPS Leather:
+    actions:
+    - set_variable nu_map_1:leather_town*0.20*0.42
+    conditions:
+    - not variable_set nu_map_1:leather_town*0.20*0.42
+    - is location_name leather_town
+    type: "event"
+  Phone GPS Cotton:
+    actions:
+    - set_variable nu_map_2:cotton_town*0.20*0.52
+    conditions:
+    - not variable_set nu_map_2:cotton_town*0.20*0.52
+    - is location_name cotton_town
+    type: "event"
+  Phone GPS Paper:
+    actions:
+    - set_variable nu_map_3:paper_town*0.20*0.62
+    conditions:
+    - not variable_set nu_map_3:paper_town*0.20*0.62
+    - is location_name paper_town
+    type: "event"
+  Phone GPS Candy:
+    actions:
+    - set_variable nu_map_4:candy_town*-0.15*0.62
+    conditions:
+    - not variable_set nu_map_4:candy_town*-0.15*0.62
+    - is location_name candy_town
+    type: "event"
+  Phone GPS Timber:
+    actions:
+    - set_variable nu_map_5:timber_town*-0.15*0.42
+    conditions:
+    - not variable_set nu_map_5:timber_town*-0.15*0.42
+    - is location_name timber_town
+    type: "event"
+  Phone GPS Flower:
+    actions:
+    - set_variable nu_map_6:flower_city*-0.15*0.32
+    conditions:
+    - not variable_set nu_map_6:flower_city*-0.15*0.32
+    - is location_name flower_city
     type: "event"
   Check Max Moves:
     actions:

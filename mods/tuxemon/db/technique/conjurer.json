@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "pound_bright",
   "effects": [
-    "give confused,target",
+    "give grabbed,target",
     "enhance"
   ],
   "flip_axes": "",

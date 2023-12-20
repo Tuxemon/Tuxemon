@@ -3,12 +3,11 @@
   "accuracy": 1,
   "animation": "explosion_dusty_96",
   "effects": [
-    "give focused,user",
     "give noddingoff,target",
-    "enhance"
+    "area"
   ],
   "flip_axes": "",
-  "is_fast": true,
+  "is_fast": false,
   "potency": 1,
   "power": 0,
   "range": "special",

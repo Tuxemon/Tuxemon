@@ -16,7 +16,7 @@ events:
     actions:
     - change_bg choice_gender
     - translated_dialog_choice gender_female:gender_male,gender_choice
-    - change_bg spyder_empty
+    - change_bg gradient_blue
     - transition_teleport spyder_bedroom.tmx,4,4,0.3
     - set_money player,250
     - set_variable spyder_starting_money:yes
@@ -30,7 +30,7 @@ events:
     actions:
     - change_bg choice_gender
     - translated_dialog_choice gender_female:gender_male,gender_choice
-    - change_bg spyder_empty
+    - change_bg gradient_blue
     - transition_teleport player_house_bedroom.tmx,4,4,0.3
     - set_money player,500
     - set_variable xero_starting_money:yes
@@ -42,14 +42,14 @@ events:
     type: "event"
   Gender Male:
     actions:
-    - set_player_template adventurer,adventurer
+    - set_template player,adventurer,adventurer
     - set_player_name m_default1:m_default2:m_default3
     conditions:
     - is variable_set gender_choice:gender_male
     type: "event"
   Gender Female:
     actions:
-    - set_player_template heroine,heroine
+    - set_template player,heroine,heroine
     - set_player_name f_default1:f_default2:f_default3
     conditions:
     - is variable_set gender_choice:gender_female

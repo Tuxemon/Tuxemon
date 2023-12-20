@@ -1,16 +1,16 @@
 {
   "tech_id": 138,
-  "accuracy": 0.6,
+  "accuracy": 0.8,
   "animation": "x_attack",
   "effects": [
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.9,
-  "power": 2.4,
+  "potency": 0.0,
+  "power": 2,
   "range": "reach",
-  "recharge": 3,
+  "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "muck",
   "sort": "damage",

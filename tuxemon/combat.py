@@ -10,44 +10,44 @@ Code here might be shared by states, actions, conditions, etc.
 
 from __future__ import annotations
 
+import datetime as dt
 import logging
 import random
 from collections.abc import Generator, Sequence
 from typing import TYPE_CHECKING, Optional
 
-from tuxemon.db import PlagueType
+from tuxemon.battle import Battle
+from tuxemon.db import OutputBattle, PlagueType, SeenStatus
 from tuxemon.locale import T
 from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
-    from tuxemon.player import Player
-    from tuxemon.states.combat.combat import DamageMap
+    from tuxemon.states.combat.combat import CombatState, DamageMap
 
 
 logger = logging.getLogger()
 
 
-def check_battle_legal(player: Player) -> bool:
+def check_battle_legal(character: NPC) -> bool:
     """
-    Checks to see if the player has any monsters fit for battle.
+    Checks to see if the character has any monsters fit for battle.
 
     Parameters:
-        player: Player object.
+        character: Character object.
 
     Returns:
-        Whether the player has monsters that can fight.
+        Whether the character has monsters that can fight.
 
     """
-    # Don't start a battle if we don't even have monsters in our party yet.
-    if len(player.monsters) < 1:
-        logger.warning("Cannot start battle, player has no monsters!")
+    if not character.monsters:
+        logger.error(f"Cannot start battle, {character.name} has no monsters!")
         return False
     else:
-        if fainted_party(player.monsters):
-            logger.warning(
-                "Cannot start battle, player's monsters are all DEAD."
+        if fainted_party(character.monsters):
+            logger.error(
+                f"Cannot start battle, {character.name}'s monsters are all DEAD."
             )
             return False
         else:
@@ -58,12 +58,14 @@ def pre_checking(
     monster: Monster,
     technique: Technique,
     target: Monster,
+    combat: CombatState,
 ) -> Technique:
     """
     Pre checking allows to check if there are statuses
     or other conditions that change the chosen technique.
     """
     if monster.status:
+        monster.status[0].combat_state = combat
         monster.status[0].phase = "pre_checking"
         result_status = monster.status[0].use(target)
         if result_status["technique"]:
@@ -289,7 +291,7 @@ def get_winners(loser: Monster, damages: list[DamageMap]) -> set[Monster]:
     winners = [ele.attack for ele in damages if ele.defense == loser]
 
     # update method
-    if winners[0].owner and winners[0].owner.isplayer:
+    if winners and winners[0].owner and winners[0].owner.isplayer:
         trainer = winners[0].owner
         if "method_experience" not in trainer.game_variables:
             trainer.game_variables["method_experience"] = "default"
@@ -301,3 +303,126 @@ def get_winners(loser: Monster, damages: list[DamageMap]) -> set[Monster]:
         return set(alive)
     else:
         return set(winners)
+
+
+def battlefield(monster: Monster, players: Sequence[NPC]) -> None:
+    """
+    Record the useful properties of the last monster fought.
+
+    Parameters:
+        monster: The monster on the ground.
+        players: All the remaining players.
+
+    """
+    human = [player for player in players if player.isplayer]
+    for _human in human:
+        var = _human.game_variables
+        if monster not in _human.monsters:
+            var["battle_last_monster_name"] = monster.name
+            var["battle_last_monster_level"] = monster.level
+            var["battle_last_monster_type"] = monster.types[0].slug
+            var["battle_last_monster_category"] = monster.category
+            var["battle_last_monster_shape"] = monster.shape
+            # Avoid reset string to seen if monster has already been caught
+            if monster.slug not in _human.tuxepedia:
+                _human.tuxepedia[monster.slug] = SeenStatus.seen
+
+
+def plague(player: NPC) -> None:
+    """
+    Infects all the team if the trainer is infected.
+
+    Parameters:
+        player: All the remaining players.
+
+    """
+    if player.plague == PlagueType.infected:
+        for monster in player.monsters:
+            monster.plague = PlagueType.infected
+
+
+def track_battles(
+    output: str,
+    player: NPC,
+    players: Sequence[NPC],
+    prize: int = 0,
+    trainer_battle: bool = False,
+) -> str:
+    """
+    Tracks battles, fills variables and returns the message.
+
+    Parameters:
+        output: Output of the battle: won, lost, draw
+        player: The human player.
+        players: All the players (eg if player is winner, players are losers)
+        prize: Amount of money (prize) after fighting.
+        trainer_battle: Whether a trainer or wild encounter.
+
+    Returns:
+        Message to display.
+    """
+    player.set_party_status()
+    for _player in players:
+        _player.set_party_status()
+
+    if output == "won":
+        winner = player
+        losers = players
+        winner.game_variables["battle_last_result"] = OutputBattle.won
+        if trainer_battle:
+            winner.give_money(prize)
+            for _loser in losers:
+                winner.game_variables["battle_last_trainer"] = _loser.slug
+                message = T.format(
+                    "combat_victory_trainer",
+                    {
+                        "npc": _loser.name,
+                        "prize": prize,
+                        "currency": "$",
+                    },
+                )
+                register_battles(OutputBattle.won, winner, _loser)
+            return message
+        else:
+            return T.translate("combat_victory")
+    elif output == "lost":
+        loser = player
+        winners = players
+        loser.game_variables["battle_last_result"] = OutputBattle.lost
+        loser.game_variables["teleport_clinic"] = OutputBattle.lost
+        message = T.translate("combat_defeat")
+        if trainer_battle:
+            for _winner in winners:
+                loser.game_variables["battle_last_trainer"] = _winner.slug
+                register_battles(OutputBattle.lost, loser, _winner)
+            return message
+        return message
+    else:
+        # draw
+        defeat = list(players)
+        defeat.remove(player)
+        player.set_party_status()
+        player.game_variables["battle_last_result"] = OutputBattle.draw
+        player.game_variables["teleport_clinic"] = OutputBattle.lost
+        if trainer_battle:
+            for _player in defeat:
+                player.game_variables["battle_last_trainer"] = _player.slug
+                register_battles(OutputBattle.draw, player, _player)
+        return T.translate("combat_draw")
+
+
+def register_battles(output: OutputBattle, player: NPC, enemy: NPC) -> None:
+    """
+    Registers battles in Battle()
+
+    Parameters:
+        output: Output of the battle: won, lost, draw
+        player: The human player.
+        enemy: The enemy player.
+
+    """
+    battle = Battle()
+    battle.opponent = enemy.slug
+    battle.outcome = output
+    battle.date = dt.date.today().toordinal()
+    player.battles.append(battle)

@@ -10,7 +10,7 @@
   "is_fast": false,
   "potency": 1,
   "power": 1.25,
-  "range": "melee",
+  "range": "ranged",
   "recharge": 2,
   "sfx": "sfx_tornado",
   "slug": "biting_winds",

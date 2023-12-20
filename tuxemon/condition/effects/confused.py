@@ -29,45 +29,49 @@ class ConfusedEffect(CondEffect):
 
     name = "confused"
 
-    def apply(self, tech: Condition, target: Monster) -> ConfusedEffectResult:
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> ConfusedEffectResult:
         extra: Optional[str] = None
         skip: Optional[Technique] = None
-        player = self.session.player
-        if tech.phase == "pre_checking":
-            if tech.slug == "confused":
-                confusion = random.randint(1, 1)
-                if confusion == 1:
-                    user = tech.link
-                    assert user
-                    player.game_variables["confused"] = "on"
-                    confused = [
-                        ele
-                        for ele in user.moves
-                        if ele.next_use <= 0
-                        and not has_effect_param(
-                            ele, "confused", "give", "condition"
-                        )
-                    ]
-                    if confused:
-                        skip = random.choice(confused)
-                    else:
-                        skip = Technique()
-                        skip.load("empty")
+        player = target.owner
+        assert player
+        if condition.phase == "pre_checking" and condition.slug == "confused":
+            confusion = random.randint(1, 2)
+            if confusion == 1:
+                user = condition.link
+                assert user
+                player.game_variables["confused"] = "on"
+                confused = [
+                    ele
+                    for ele in user.moves
+                    if ele.next_use <= 0
+                    and not has_effect_param(
+                        ele, "confused", "give", "condition"
+                    )
+                ]
+                if confused:
+                    skip = random.choice(confused)
                 else:
-                    player.game_variables["confused"] = "off"
-        if tech.phase == "perform_action_tech":
-            if tech.slug == "confused":
-                if "confused" in player.game_variables:
-                    if player.game_variables["confused"] == "on":
-                        _tech = Technique()
-                        _tech.load(player.game_variables["action_tech"])
-                        extra = T.format(
-                            "combat_state_confused_tech",
-                            {
-                                "target": target.name.upper(),
-                                "name": _tech.name.upper(),
-                            },
-                        )
+                    skip = Technique()
+                    skip.load("empty")
+            else:
+                player.game_variables["confused"] = "off"
+        if (
+            condition.phase == "perform_action_tech"
+            and condition.slug == "confused"
+        ):
+            if "confused" in player.game_variables:
+                if player.game_variables["confused"] == "on":
+                    _tech = Technique()
+                    _tech.load(player.game_variables["action_tech"])
+                    extra = T.format(
+                        "combat_state_confused_tech",
+                        {
+                            "target": target.name.upper(),
+                            "name": _tech.name.upper(),
+                        },
+                    )
         return {
             "success": True,
             "condition": None,

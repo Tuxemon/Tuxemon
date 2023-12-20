@@ -29,11 +29,11 @@ class PricklyBackEffect(CondEffect):
     name = "prickly"
 
     def apply(
-        self, tech: Condition, target: Monster
+        self, condition: Condition, target: Monster
     ) -> PricklyBackEffectResult:
         done: bool = False
-        assert tech.combat_state
-        combat = tech.combat_state
+        assert condition.combat_state
+        combat = condition.combat_state
         log = combat._log_action
         turn = combat._turn
         # check log actions
@@ -57,12 +57,15 @@ class PricklyBackEffect(CondEffect):
                             attacker = action.user
                             hit = True
 
-        if tech.phase == "perform_action_status":
-            if tech.slug == "prickly":
-                if attacker and hit:
-                    if attacker.current_hp > 0:
-                        attacker.current_hp -= target.hp // 8
-                        done = True
+        if (
+            condition.phase == "perform_action_status"
+            and condition.slug == "prickly"
+            and attacker
+            and hit
+            and attacker.current_hp > 0
+        ):
+            attacker.current_hp -= target.hp // 8
+            done = True
         return {
             "success": done,
             "condition": None,

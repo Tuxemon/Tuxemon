@@ -1,14 +1,14 @@
 {
   "tech_id": 166,
-  "accuracy": 0.6,
+  "accuracy": 0.8,
   "animation": "fire_storm",
   "effects": [
     "area"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.4,
-  "power": 2.6,
+  "potency": 0.0,
+  "power": 3,
   "range": "reach",
   "recharge": 3,
   "sfx": "sfx_blaster",

@@ -19,7 +19,13 @@ class LearnTmEffectResult(ItemEffectResult):
 
 @dataclass
 class LearnTmEffect(ItemEffect):
-    """This effect teaches the target the technique in the parameters."""
+    """
+    This effect teaches the technique in the parameters.
+
+    Parameters:
+        technique: technique's slug (eg. ram, etc.)
+
+    """
 
     name = "learn_tm"
     technique: str

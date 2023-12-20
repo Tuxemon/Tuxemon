@@ -1015,7 +1015,7 @@ class BattleGraphicsModel(BaseModel):
 
     @field_validator("background")
     def background_exists(cls: BattleGraphicsModel, v: str) -> str:
-        if has.file(v):
+        if has.file(v) and has.size(v, prepare.BATTLE_BG_SIZE):
             return v
         raise ValueError(f"no resource exists with path: {v}")
 

@@ -67,7 +67,7 @@ events:
     actions:
     - change_bg gradient_blue,ceo
     - translated_dialog spyder_intro00
-    - change_bg spyder_tumble
+    - change_bg gradient_blue,spyder_tumble
     - translated_dialog spyder_intro01
     - change_bg gradient_blue,dollfin
     - translated_dialog dollfin
@@ -79,9 +79,9 @@ events:
     - translated_dialog budaye
     - change_bg gradient_blue,grintot
     - translated_dialog grintot
-    - change_bg spyder_monsters
+    - change_bg gradient_blue,spyder_monsters
     - translated_dialog spyder_intro02
-    - change_bg spyder_morph
+    - change_bg gradient_blue,spyder_morph
     - translated_dialog spyder_intro03
     - set_variable spyder_intro:yes
     - transition_teleport spyder_paper_mart.tmx,4,8,0.3

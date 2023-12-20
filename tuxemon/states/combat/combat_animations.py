@@ -531,8 +531,7 @@ class CombatAnimations(ABC, Menu[None]):
                 dev.animate_capture(animate)
 
     def animate_parties_in(self) -> None:
-        surface = pygame.display.get_surface()
-        x, y, w, h = surface.get_rect()
+        x, y, w, h = prepare.SCREEN_RECT
 
         # Get background image if passed in
         self.background = self.load_sprite(self.graphics.background)

@@ -1,19 +1,19 @@
 {
-  "tech_id": 47,
-  "accuracy": 0.8,
-  "animation": "lance_ice",
+  "tech_id": 188,
+  "accuracy": 0.9,
+  "animation": "amethyst",
   "effects": [
-    "give lifeleech,target",
-    "splash"
+    "give charging,user",
+    "damage"
   ],
-  "flip_axes": "xy",
+  "flip_axes": "",
   "is_fast": false,
-  "potency": 0.5,
-  "power": 1,
-  "range": "reach",
-  "recharge": 1,
+  "potency": 1,
+  "power": 3,
+  "range": "ranged",
+  "recharge": 3,
   "sfx": "sfx_blaster",
-  "slug": "probiscus",
+  "slug": "ten_thousand_feathers",
   "sort": "damage",
   "target": {
     "enemy monster": 2,
@@ -24,7 +24,7 @@
     "own trainer": 0
   },
   "types": [
-    "water"
+    "fire"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

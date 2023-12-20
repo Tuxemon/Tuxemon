@@ -1071,8 +1071,17 @@ msgstr "Wrong!"
 msgid "attempting_capture"
 msgstr "Attempting capture..."
 
-msgid "captured_failed"
-msgstr "Not this time! The capture failed!"
+msgid "captured_failed_1"
+msgstr "Capture failed immediately."
+
+msgid "captured_failed_2"
+msgstr "The capture failed."
+
+msgid "captured_failed_3"
+msgstr "Not this time! The capture failed."
+
+msgid "captured_failed_4"
+msgstr "So close! But the capture failed."
 
 msgid "gotcha"
 msgstr "Gotcha!"
@@ -1295,6 +1304,12 @@ msgstr ""
 msgid "battery_discharge"
 msgstr "Battery Discharge"
 
+msgid "beak_description"
+msgstr ""
+
+msgid "beak"
+msgstr "Beak"
+
 msgid "beam_description"
 msgstr ""
 
@@ -1390,6 +1405,12 @@ msgstr ""
 
 msgid "chameleon"
 msgstr "Chameleon"
+
+msgid "changeling_description"
+msgstr ""
+
+msgid "changeling"
+msgstr "Changeling"
 
 msgid "chill_mist_description"
 msgstr ""
@@ -1583,6 +1604,12 @@ msgstr ""
 msgid "fume"
 msgstr "Fume"
 
+msgid "geyser_description"
+msgstr ""
+
+msgid "geyser"
+msgstr "Geyser"
+
 msgid "give_all_description"
 msgstr ""
 
@@ -1618,12 +1645,6 @@ msgstr ""
 
 msgid "gust"
 msgstr "Gust"
-
-msgid "gyser_description"
-msgstr ""
-
-msgid "gyser"
-msgstr "Gyser"
 
 msgid "hawk_description"
 msgstr ""
@@ -1763,6 +1784,12 @@ msgstr ""
 msgid "midnight_mantle"
 msgstr "Midnight Mantle"
 
+msgid "mind_vise_description"
+msgstr ""
+
+msgid "mind_vise"
+msgstr "Mind Vise"
+
 msgid "mobbing_description"
 msgstr ""
 
@@ -1816,6 +1843,12 @@ msgstr ""
 
 msgid "oedipus"
 msgstr "Oedipus"
+
+msgid "one_million_talons_description"
+msgstr ""
+
+msgid "one_million_talons"
+msgstr "One Million Talons"
 
 msgid "one_two_description"
 msgstr "Two decisive strikes bring the target to its knees."
@@ -1895,17 +1928,23 @@ msgstr ""
 msgid "poison_courtship"
 msgstr "Poison Courtship"
 
-msgid "probiscus_description"
+msgid "proboscis_description"
 msgstr ""
 
-msgid "probiscus"
-msgstr "Probiscus"
+msgid "proboscis"
+msgstr "Proboscis"
 
 msgid "pseudopod_description"
 msgstr ""
 
 msgid "pseudopod"
 msgstr "Pseudopod"
+
+msgid "punch_description"
+msgstr ""
+
+msgid "punch"
+msgstr "Punch"
 
 msgid "quicksand_description"
 msgstr ""
@@ -1931,11 +1970,23 @@ msgstr ""
 msgid "refresh"
 msgstr "Refresh"
 
+msgid "revenge_stance_description"
+msgstr ""
+
+msgid "revenge_stance"
+msgstr "Revenge Stance"
+
 msgid "ring_description"
 msgstr ""
 
 msgid "ring"
 msgstr "Ring"
+
+msgid "riposte_description"
+msgstr ""
+
+msgid "riposte"
+msgstr "Riposte"
 
 msgid "rock_description"
 msgstr "A heavy rock falls on the target."
@@ -2033,17 +2084,17 @@ msgstr ""
 msgid "snowstorm"
 msgstr "Snowstorm"
 
+msgid "spit_poison_description"
+msgstr "Liquid death sprays from the user's venom sacs."
+
+msgid "spit_poison"
+msgstr "Spit Poison"
+
 msgid "splinter_description"
 msgstr ""
 
 msgid "splinter"
 msgstr "Splinter"
-
-msgid "spray_description"
-msgstr "Liquid death sprays from the user's venom sacs."
-
-msgid "spray"
-msgstr "Spray"
 
 msgid "stabilo_description"
 msgstr ""
@@ -2152,6 +2203,12 @@ msgstr ""
 
 msgid "take_cover"
 msgstr "Take Cover"
+
+msgid "ten_thousand_feathers_description"
+msgstr ""
+
+msgid "ten_thousand_feathers"
+msgstr "Ten Thousand Feathers"
 
 msgid "terror_description"
 msgstr ""
@@ -2611,6 +2668,9 @@ msgstr "No Signal"
 
 msgid "omnichannel_mobile"
 msgstr "Omnichannel Mobile 4G"
+
+msgid "nu_map_missing"
+msgstr "GPS tracker not updating."
 
 msgid "max_moves_alert"
 msgstr "{name} has too many techniques.\n"
@@ -4989,8 +5049,8 @@ msgid "cat_prehensile"
 msgstr "Prehensile"
 msgid "cat_prescient"
 msgstr "Prescient"
-msgid "cat_probiscus"
-msgstr "Probiscus"
+msgid "cat_proboscis"
+msgstr "Proboscis"
 msgid "cat_pulsar"
 msgstr "Pulsar"
 msgid "cat_pupil"

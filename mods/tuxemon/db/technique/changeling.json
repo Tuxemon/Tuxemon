@@ -1,0 +1,32 @@
+{
+  "tech_id": 183,
+  "accuracy": 1,
+  "animation": "amethyst",
+  "effects": [
+    "give recover,user",
+    "enhance"
+  ],
+  "flip_axes": "",
+  "is_fast": false,
+  "potency": 1,
+  "power": 0,
+  "range": "special",
+  "recharge":4,
+  "sfx": "sfx_blaster",
+  "slug": "changeling",
+  "sort": "damage",
+  "target": {
+    "enemy monster": 2,
+    "enemy team": 0,
+    "enemy trainer": 0,
+    "own monster": 0,
+    "own team": 0,
+    "own trainer": 0
+  },
+  "types": [
+    "wood"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

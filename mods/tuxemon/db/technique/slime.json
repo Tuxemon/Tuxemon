@@ -1,6 +1,6 @@
 {
   "tech_id": 96,
-  "accuracy": 0.6,
+  "accuracy": 1,
   "animation": "sparks_green_alt",
   "effects": [
     "give festering,target",
@@ -8,7 +8,7 @@
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.1,
+  "potency": 0.2,
   "power": 1.1,
   "range": "reach",
   "recharge": 2,

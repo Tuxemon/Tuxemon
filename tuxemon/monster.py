@@ -136,6 +136,7 @@ class Monster:
         self.got_experience = False
         self.levelling_up = False
         self.traded = False
+        self.wild = False
 
         self.status: list[Condition] = []
         self.plague = PlagueType.healthy
@@ -578,7 +579,8 @@ class Monster:
             Required experience.
 
         """
-        return (self.level + level_ofs) ** prepare.COEFF_EXP
+        required = (self.level + level_ofs) ** prepare.COEFF_EXP
+        return int(required)
 
     def get_sprite(self, sprite: str, **kwargs: Any) -> Sprite:
         """

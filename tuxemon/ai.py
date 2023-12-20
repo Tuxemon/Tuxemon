@@ -12,18 +12,23 @@ from tuxemon.technique.technique import Technique
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
+    from tuxemon.npc import NPC
     from tuxemon.states.combat.combat import CombatState
 
 
 # Class definition for an AI model.
 class AI:
-    def __init__(self, combat: CombatState, monster: Monster) -> None:
+    def __init__(
+        self, combat: CombatState, monster: Monster, character: NPC
+    ) -> None:
         super().__init__()
         self.combat = combat
-        self.human = combat.players[0]  # human
-        self.user = combat.players[1]  # ai
+        self.character = character
         self.monster = monster
-        self.opponents = combat.monsters_in_play[self.human]
+        if character == combat.players[0]:
+            self.opponents = combat.monsters_in_play[combat.players[1]]
+        if character == combat.players[1]:
+            self.opponents = combat.monsters_in_play[combat.players[0]]
 
         if self.combat.is_trainer_battle:
             self.make_decision_trainer()
@@ -35,8 +40,8 @@ class AI:
         Trainer battles.
         """
         if self.check_strongest():
-            if len(self.user.items) > 0:
-                for itm in self.user.items:
+            if len(self.character.items) > 0:
+                for itm in self.character.items:
                     if itm.category == ItemCategory.potion:
                         if self.need_potion():
                             self.action_item(itm)
@@ -77,8 +82,8 @@ class AI:
         """
         weakest = [
             m
-            for m in self.user.monsters
-            if m.level == min([m.level for m in self.user.monsters])
+            for m in self.character.monsters
+            if m.level == min([m.level for m in self.character.monsters])
         ]
         weak = weakest[0]
         if weak.level == self.monster.level:
@@ -92,8 +97,8 @@ class AI:
         """
         strongest = [
             m
-            for m in self.user.monsters
-            if m.level == max([m.level for m in self.user.monsters])
+            for m in self.character.monsters
+            if m.level == max([m.level for m in self.character.monsters])
         ]
         strong = strongest[0]
         if strong.level == self.monster.level:
@@ -116,12 +121,12 @@ class AI:
         """
         Send action tech.
         """
-        self.human.game_variables["action_tech"] = technique.slug
-        technique = pre_checking(self.monster, technique, target)
+        self.character.game_variables["action_tech"] = technique.slug
+        technique = pre_checking(self.monster, technique, target, self.combat)
         self.combat.enqueue_action(self.monster, technique, target)
 
     def action_item(self, item: Item) -> None:
         """
         Send action item.
         """
-        self.combat.enqueue_action(self.user, item, self.monster)
+        self.combat.enqueue_action(self.character, item, self.monster)

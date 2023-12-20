@@ -1,18 +1,18 @@
 {
   "tech_id": 172,
-  "accuracy": 0.6,
+  "accuracy": 1,
   "animation": "wall_ice",
   "effects": [
     "give elementalshield,user",
     "give slow,target",
-    "damage"
+    "enhance"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.8,
-  "power": 2.5,
-  "range": "reach",
-  "recharge": 3,
+  "potency": 1,
+  "power": 0,
+  "range": "special",
+  "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "ice_shield",
   "sort": "damage",

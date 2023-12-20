@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "shield_rock",
   "effects": [
-    "give noddingoff,target",
+    "give stuck,target",
     "enhance"
   ],
   "flip_axes": "",

@@ -1,10 +1,10 @@
 {
     "slug": "nostray",
-    "category": "probiscus",
+    "category": "proboscis",
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "probiscus"
+            "technique": "proboscis"
         },
         {
             "level_learned": 2,

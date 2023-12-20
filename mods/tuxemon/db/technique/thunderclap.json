@@ -1,6 +1,6 @@
 {
   "tech_id": 20,
-  "accuracy": 0.75,
+  "accuracy": 0.95,
   "animation": "thunderstrike",
   "effects": [
     "give exhausted,target",
@@ -8,7 +8,7 @@
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 1,
+  "potency": 0.75,
   "power": 1.25,
   "range": "ranged",
   "recharge": 2,

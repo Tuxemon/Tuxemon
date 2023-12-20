@@ -1,24 +1,25 @@
 {
   "tech_id": 169,
-  "accuracy": 0.6,
+  "accuracy": 1,
   "animation": "x_attack",
   "effects": [
-    "damage"
+    "healing user"
   ],
   "flip_axes": "",
+  "healing_power": 2,
   "is_fast": false,
-  "potency": 0.3,
-  "power": 2.3,
-  "range": "ranged",
+  "potency": 1,
+  "power": 0,
+  "range": "special",
   "recharge": 1,
   "sfx": "sfx_blaster",
   "slug": "mending",
-  "sort": "damage",
+  "sort": "meta",
   "target": {
-    "enemy monster": 2,
+    "enemy monster": 0,
     "enemy team": 0,
     "enemy trainer": 0,
-    "own monster": 0,
+    "own monster": 2,
     "own team": 0,
     "own trainer": 0
   },

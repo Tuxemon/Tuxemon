@@ -3,8 +3,8 @@
     "category": "penguin",
     "moveset": [
         {
-            "level_learned": 2,
-            "technique": "goad"
+            "level_learned": 1,
+            "technique": "tux_attack"
         },
         {
             "level_learned": 2,

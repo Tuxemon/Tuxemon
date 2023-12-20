@@ -3,8 +3,8 @@
     "category": "alien",
     "moveset": [
         {
-            "level_learned": 2,
-            "technique": "electrical_storm"
+            "level_learned": 1,
+            "technique": "demiurge"
         },
         {
             "level_learned": 2,

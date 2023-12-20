@@ -3,8 +3,8 @@
     "category": "elf_ring",
     "moveset": [
         {
-            "level_learned": 2,
-            "technique": "fester"
+            "level_learned": 1,
+            "technique": "ring"
         },
         {
             "level_learned": 2,

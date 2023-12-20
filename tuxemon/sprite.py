@@ -31,6 +31,7 @@ from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.tools import scale as tuxemon_scale
 
 if TYPE_CHECKING:
+    from tuxemon.db import BattleIconsModel
     from tuxemon.menu.interface import MenuItem
     from tuxemon.monster import Monster
 
@@ -214,23 +215,16 @@ class CaptureDeviceSprite(Sprite):
         monster: Optional[Monster],
         sprite: Sprite,
         state: str,
+        icon: BattleIconsModel,
     ) -> None:
         self.tray = tray
         self.monster = monster
         self.sprite = sprite
         self.state = state
-        self.empty_img = graphics.load_and_scale(
-            "gfx/ui/combat/empty_slot_icon.png",
-        )
-        self.faint_img = graphics.load_and_scale(
-            "gfx/ui/icons/party/party_icon03.png",
-        )
-        self.alive_img = graphics.load_and_scale(
-            "gfx/ui/icons/party/party_icon01.png",
-        )
-        self.effected_img = graphics.load_and_scale(
-            "gfx/ui/icons/party/party_icon02.png",
-        )
+        self.empty_img = graphics.load_and_scale(icon.icon_empty)
+        self.faint_img = graphics.load_and_scale(icon.icon_faint)
+        self.alive_img = graphics.load_and_scale(icon.icon_alive)
+        self.effected_img = graphics.load_and_scale(icon.icon_status)
         super().__init__()
 
     def update_state(self) -> str:

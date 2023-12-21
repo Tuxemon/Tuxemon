@@ -135,6 +135,7 @@ class NPC(Entity[NPCState]):
         self.monster_boxes: dict[str, list[Monster]] = {}
         self.item_boxes: dict[str, list[Item]] = {}
         self.pending_evolutions: list[tuple[Monster, Monster]] = []
+        self.pending_monsters: list[Monster] = []
         # nr tuxemon fight
         self.max_position: int = 1
         self.speed = 10  # To determine combat order (not related to movement!)

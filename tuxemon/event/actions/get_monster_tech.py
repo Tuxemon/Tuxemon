@@ -32,24 +32,24 @@ class GetMonsterTechAction(EventAction):
     Script usage:
         .. code-block::
 
-            get_monster_tech <monster_id>,<variable_name>,[filter_name][,value_name][,extra]
+            get_monster_tech <variable_name>,<monster_id>[,filter_name][,value_name][,extra]
 
     Script parameters:
-        monster_id: Variable where is stored the monster id.
         variable_name: Variable where to store the technique id.
+        monster_id: Variable where is stored the monster id.
         filter_name: the name of the first filter
         value_name: the actual value to filter
         extra: used to filter more
 
-    eg. "get_monster_tech monster_id,name_variable"
-    eg. "get_monster_tech monster_id,name_variable,element,water"
-    eg, "get_monster_tech monster_id,name_variable,power,less_than,1.6"
+    eg. "get_monster_tech name_variable,monster_id"
+    eg. "get_monster_tech name_variable,monster_id,element,water"
+    eg, "get_monster_tech name_variable,monster_id,power,less_than,1.6"
 
     """
 
     name = "get_monster_tech"
-    monster_id: str
     variable_name: str
+    monster_id: Optional[str] = None
     filter_name: Optional[str] = None
     value_name: Optional[str] = None
     extra: Optional[str] = None
@@ -115,22 +115,30 @@ class GetMonsterTechAction(EventAction):
         self.result = False
         self.choose = False
         player = self.session.player
-        # look for the monster
-        instance_id = uuid.UUID(
-            player.game_variables[self.monster_id],
-        )
-        monster = player.find_monster_by_id(instance_id)
-        if monster is None:
-            raise ValueError(
-                f"No monster found with instance_id {instance_id}",
+
+        if self.monster_id is None:
+            monsters = player.pending_monsters
+        else:
+            # look for the monster
+            instance_id = uuid.UUID(
+                player.game_variables[self.monster_id],
             )
-        # pull up the monster menu so we know which one we are saving
-        menu = self.session.client.push_state(
-            TechniqueMenuState(monster=monster)
-        )
-        menu.is_valid_entry = self.validate  # type: ignore[assignment]
-        menu.on_menu_selection = self.set_var  # type: ignore[assignment]
-        # unable to close it without filters
+            monster = player.find_monster_by_id(instance_id)
+            if monster is None:
+                raise ValueError(
+                    f"No monster found with instance_id {instance_id}",
+                )
+            monsters = [monster]
+
+        for mon in monsters:
+            # pull up the monster menu so we know which one we are saving
+            menu = self.session.client.push_state(
+                TechniqueMenuState(monster=mon)
+            )
+            menu.is_valid_entry = self.validate  # type: ignore[assignment]
+            menu.on_menu_selection = self.set_var  # type: ignore[assignment]
+
+        # if without filters, no closing by clicking back
         if (
             self.filter_name is None
             and self.value_name is None

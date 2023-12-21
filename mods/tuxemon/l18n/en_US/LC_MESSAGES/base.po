@@ -2642,7 +2642,7 @@ msgid "tuxemon_released"
 msgstr "{name} has been released."
 
 msgid "new_tech_delete"
-msgstr "${{var:check_moves_monster}} has too many techniques.\n"
+msgstr "Tuxemon has too many techniques.\n"
 "Which technique do you want to delete?"
 
 msgid "evolution_confirmation"
@@ -2653,10 +2653,6 @@ msgstr "No Signal"
 
 msgid "omnichannel_mobile"
 msgstr "Omnichannel Mobile 4G"
-
-msgid "new_tech_overwrite"
-msgstr "${{var:check_moves_monster}} has too many techniques.\n"
-"Which do you want to overwrite for learning the new one?"
 
 msgid "nu_map_missing"
 msgstr "GPS tracker not updating."

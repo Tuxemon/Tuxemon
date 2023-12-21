@@ -1,6 +1,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.battle_is.BattleIsCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.button_pressed.ButtonPressedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_evolution.CheckEvolutionCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.check_max_tech.CheckMaxTechCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_mission.CheckMissionCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.current_state.CurrentStateCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_bag.HasBagCondition

@@ -2,10 +2,9 @@ events:
   Check Max Moves:
     actions:
     - translated_dialog new_tech_delete
-    - get_monster_tech check_moves,chosen_tech
+    - get_monster_tech chosen_tech,check_moves
     - remove_tech chosen_tech
     conditions:
     - is check_max_tech
-    - is current_state WorldState
-    - not location_type clinic
+    - is current_state MainCombatMenuState
     type: "event"

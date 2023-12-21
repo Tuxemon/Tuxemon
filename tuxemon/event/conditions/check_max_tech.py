@@ -24,7 +24,7 @@ class CheckMaxTechCondition(EventCondition):
     Script parameters:
         nr: Number of tech, default the constant
 
-    eg. "is check_max_tech standard"
+    eg. "is check_max_tech"
 
     """
 
@@ -32,21 +32,15 @@ class CheckMaxTechCondition(EventCondition):
 
     def test(self, session: Session, condition: MapCondition) -> bool:
         player = session.player
-
-        max_techs: int = 0
         max_techs = (
             MAX_MOVES
             if not condition.parameters
             else int(condition.parameters[0])
         )
-
-        for monster in player.monsters:
-            if len(monster.moves) > max_techs:
-                player.game_variables["check_moves"] = str(
-                    monster.instance_id.hex
-                )
-                player.game_variables["check_moves_monster"] = str(
-                    monster.name.upper()
-                )
-                return True
-        return False
+        monsters = [
+            monster
+            for monster in player.monsters
+            if len(monster.moves) > max_techs
+        ]
+        player.pending_monsters = monsters
+        return bool(monsters)

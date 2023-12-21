@@ -20,6 +20,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.delayed_teleport.DelayedTeleportAction
 .. autoscriptinfoclass:: tuxemon.event.actions.evolution.EvolutionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.fadeout_music.FadeoutMusicAction
+.. autoscriptinfoclass:: tuxemon.event.actions.get_monster_tech.GetMonsterTechAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_party_monsters.GetPartyMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_player_monster.GetPlayerMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.kennel_print.KennelAction
@@ -33,6 +34,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.npc_walk.NpcWalk
 .. autoscriptinfoclass:: tuxemon.event.actions.npc_wander.NpcWanderAction
 .. autoscriptinfoclass:: tuxemon.event.actions.open_shop.OpenShopAction
+.. autoscriptinfoclass:: tuxemon.event.actions.overwrite_tech.OverwriteTechAction
 .. autoscriptinfoclass:: tuxemon.event.actions.pathfind_to_player.PathfindToPlayerAction
 .. autoscriptinfoclass:: tuxemon.event.actions.pathfind.PathfindAction
 .. autoscriptinfoclass:: tuxemon.event.actions.pause_music.PauseMusicAction
@@ -54,6 +56,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_monster.RemoveMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_npc.RemoveNpcAction
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_state.RemoveStateAction
+.. autoscriptinfoclass:: tuxemon.event.actions.remove_tech.RemoveTechAction
 .. autoscriptinfoclass:: tuxemon.event.actions.rename_monster.RenameMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.rename_player.RenamePlayerAction
 .. autoscriptinfoclass:: tuxemon.event.actions.rumble.RumbleAction

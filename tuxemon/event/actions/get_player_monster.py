@@ -182,13 +182,6 @@ class GetPlayerMonsterAction(EventAction):
         menu = self.session.client.push_state(MonsterMenuState())
         menu.is_valid_entry = self.validate  # type: ignore[assignment]
         menu.on_menu_selection = self.set_var  # type: ignore[assignment]
-        # unable to close it without filters
-        if (
-            self.filter_name is None
-            and self.value_name is None
-            and self.extra is None
-        ):
-            menu.escape_key_exits = False
 
     def update(self) -> None:
         try:

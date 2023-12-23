@@ -37,12 +37,24 @@
         {
             "level_learned": 28,
             "technique": "ice_shield"
+        },
+        {
+            "level_learned": 32,
+            "technique": "shapechange"
+        },
+        {
+            "level_learned": 36,
+            "technique": "chill_mist"
+        },
+        {
+            "level_learned": 40,
+            "technique": "tsunami"
         }
     ],
     "evolutions": [
         {
             "path": "standard",
-            "at_level": 30,
+            "at_level": 32,
             "monster_slug": "nimbulex"
         }
     ],

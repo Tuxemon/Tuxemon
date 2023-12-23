@@ -29,6 +29,22 @@
         {
             "level_learned": 12,
             "technique": "viper"
+        },
+        {
+            "level_learned": 16,
+            "technique": "lineage"
+        },
+        {
+            "level_learned": 20,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 24,
+            "technique": "eyebite"
+        },
+        {
+            "level_learned": 28,
+            "technique": "constrict"
         }
     ],
     "evolutions": [

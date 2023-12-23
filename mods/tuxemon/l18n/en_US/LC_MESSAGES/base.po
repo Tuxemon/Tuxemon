@@ -1295,12 +1295,6 @@ msgstr ""
 msgid "battery_discharge"
 msgstr "Battery Discharge"
 
-msgid "beak_description"
-msgstr ""
-
-msgid "beak"
-msgstr "Beak"
-
 msgid "beam_description"
 msgstr ""
 
@@ -2164,6 +2158,12 @@ msgstr ""
 
 msgid "supernova"
 msgstr "Supernova"
+
+msgid "suplex_description"
+msgstr ""
+
+msgid "suplex"
+msgstr "Suplex"
 
 msgid "surf_description"
 msgstr ""
@@ -3754,6 +3754,12 @@ msgstr "It uses its claws to carve its firearm out of wood, and uses it for powe
 msgid "komodraw"
 msgstr "Komodraw"
 
+msgid "komoduel_description"
+msgstr "Many a wrongdoer has fled town after seeing just the silhouette of an approaching KOMODUEL."
+
+msgid "komoduel"
+msgstr "Komoduel"
+
 msgid "lambert_description"
 msgstr "It is placed in its nut by its parent, who then sends it into the world."
 
@@ -3777,6 +3783,12 @@ msgstr "When two UNEYE become tangled, they form a single unified LENDOS."
 
 msgid "lendos"
 msgstr "Lendos"
+
+msgid "lesmagu_description"
+msgstr "It oozes along the sea floor, looking for hard nooks and crannies to hide in until it develops its shell."
+
+msgid "lesmagu"
+msgstr "Lesmagu"
 
 msgid "lightmare_description"
 msgstr "It lurks in the depths of the ocean, luring any unsuspecting prey using its light right into its large, gaping mouth."
@@ -4903,6 +4915,8 @@ msgid "cat_gumnut"
 msgstr "Gumnut"
 msgid "cat_gunner"
 msgstr "Gunner"
+msgid "cat_gunslinger"
+msgstr "Gunslinger"
 msgid "cat_halcyon"
 msgstr "Halcyon"
 msgid "cat_hardware"
@@ -5153,6 +5167,8 @@ msgid "cat_unknown"
 msgstr "Unknown"
 msgid "cat_urchin"
 msgstr "Urchin"
+msgid "cat_vagrant"
+msgstr "Vagrant"
 msgid "cat_veiled"
 msgstr "Veiled"
 msgid "cat_vengeance"

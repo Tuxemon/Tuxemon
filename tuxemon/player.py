@@ -46,8 +46,14 @@ class Player(NPC):
         diff_x = abs(after.x - before.x)
         diff_y = abs(after.y - before.y)
 
+        # increases steps player
         self.steps += diff_x + diff_y
 
+        # increases steps party monsters
+        for monster in self.monsters:
+            monster.steps += diff_x + diff_y
+
+        # checks variables starting with steps_
         for key, value in self.game_variables.items():
             if key.startswith("steps_"):
                 if float(value) > 0.0:

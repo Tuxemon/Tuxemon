@@ -307,19 +307,23 @@ class CombatState(CombatAnimations):
 
     def draw_hp_bars(self) -> None:
         """Go through the HP bars and redraw them."""
+        draw: bool = False
         for monster, hud in self.hud.items():
             rect = Rect(0, 0, tools.scale(70), tools.scale(8))
             rect.right = hud.image.get_width() - tools.scale(8)
-            if hud.player:
+            if hud.player and self.graphics.hud.hp_bar_player:
                 rect.top += tools.scale(18)
-            else:
+                draw = True
+            elif not hud.player and self.graphics.hud.hp_bar_opponent:
                 rect.top += tools.scale(12)
-            self._hp_bars[monster].draw(hud.image, rect)
+                draw = True
+            if draw:
+                self._hp_bars[monster].draw(hud.image, rect)
 
     def draw_exp_bars(self) -> None:
         """Go through the EXP bars and redraw them."""
         for monster, hud in self.hud.items():
-            if hud.player:
+            if hud.player and self.graphics.hud.exp_bar_player:
                 rect = Rect(0, 0, tools.scale(70), tools.scale(6))
                 rect.right = hud.image.get_width() - tools.scale(8)
                 rect.top += tools.scale(31)

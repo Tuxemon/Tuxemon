@@ -3,13 +3,22 @@
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass
-from typing import Union, final
+from operator import add, floordiv, mul, sub
+from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.tools import number_or_variable
 
 logger = logging.getLogger(__name__)
+
+ops_dict: Mapping[str, Callable[[float, float], float]] = {
+    "+": add,
+    "-": sub,
+    "*": mul,
+    "/": floordiv,
+}
 
 
 @final
@@ -40,30 +49,25 @@ class VariableMathAction(EventAction):
     var1: str
     operation: str
     var2: str
-    result: Union[str, None] = None
+    result: Optional[str] = None
 
     def start(self) -> None:
         player = self.session.player
 
         # Read the parameters
         var = self.var1
-        result = self.result
-        if result is None:
-            result = var
+        result = var if self.result is None else self.result
         operand1 = number_or_variable(self.session, var)
         operation = self.operation
         operand2 = number_or_variable(self.session, self.var2)
 
         # Perform the operation on the variable
-        if operation == "+":
-            player.game_variables[result] = operand1 + operand2
-        elif operation == "-":
-            player.game_variables[result] = operand1 - operand2
-        elif operation == "*":
-            player.game_variables[result] = operand1 * operand2
-        elif operation == "/":
-            player.game_variables[result] = operand1 / operand2
+        if operation in ops_dict:
+            output = ops_dict[operation](operand1, operand2)
+            player.game_variables[result] = output
+            logger.info(f"Game variable: {result}:{output}")
         elif operation == "=":
             player.game_variables[result] = operand2
+            logger.info(f"Game variable: {result}:{operand2}")
         else:
             raise ValueError(f"invalid operation type {operation}")

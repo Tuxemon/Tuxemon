@@ -2,9 +2,10 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import operator
 import random
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass
+from operator import add, floordiv, mul, sub
 from typing import TYPE_CHECKING
 
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
@@ -16,6 +17,14 @@ if TYPE_CHECKING:
 
 class StatChangeEffectResult(CondEffectResult):
     pass
+
+
+ops_dict: Mapping[str, Callable[[float, float], int]] = {
+    "+": add,
+    "-": sub,
+    "*": mul,
+    "/": floordiv,
+}
 
 
 @dataclass
@@ -72,12 +81,6 @@ class StatChangeEffect(CondEffect):
                     value = random.randint(int(min_value), int(max_value))
 
                 if value > 0 and not override:
-                    ops_dict = {
-                        "+": operator.add,
-                        "-": operator.sub,
-                        "*": operator.mul,
-                        "/": operator.floordiv,
-                    }
                     newstatvalue = ops_dict[operation](basestatvalue, value)
                 if slugdata == "current_hp" and override:
                     target.current_hp = target.hp

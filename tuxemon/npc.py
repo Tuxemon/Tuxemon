@@ -105,7 +105,7 @@ class NPC(Entity[NPCState]):
         self.behavior: Optional[str] = "wander"  # not used for now
         self.game_variables: dict[str, Any] = {}  # Tracks the game state
         self.battles: list[Battle] = []  # Tracks the battles
-        self.forfeit: bool = True
+        self.forfeit: bool = False
         # Tracks Tuxepedia (monster seen or caught)
         self.tuxepedia: dict[str, SeenStatus] = {}
         self.contacts: dict[str, str] = {}

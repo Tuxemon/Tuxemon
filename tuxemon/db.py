@@ -165,6 +165,7 @@ class EvolutionType(str, Enum):
     standard = "standard"
     stat = "stat"
     tech = "tech"
+    traded = "traded"
 
 
 class StatType(str, Enum):
@@ -194,6 +195,15 @@ class EntityFacing(str, Enum):
     back = "back"
     left = "left"
     right = "right"
+
+
+class Comparison(str, Enum):
+    less_than = "less_than"
+    less_or_equal = "less_or_equal"
+    greater_than = "greater_than"
+    greater_or_equal = "greater_or_equal"
+    equals = "equals"
+    not_equals = "not_equals"
 
 
 # TODO: Automatically generate state enum through discovery
@@ -360,16 +370,17 @@ class MonsterEvolutionItemModel(BaseModel):
     item: Optional[str] = Field(None, description="Item parameter.")
     inside: bool = Field(
         None,
-        description="Location parameter: inside true or inside false (outside).",
+        description="Location parameter: whether the monster is inside or not.",
+    )
+    traded: bool = Field(
+        None,
+        description="Traded parameter: whether the monster is traded or not.",
     )
     variable: Optional[str] = Field(
         None, description="Variable parameter based on game variables."
     )
-    stat1: Optional[StatType] = Field(
-        None, description="Stat parameter stat1 >= stat2."
-    )
-    stat2: Optional[StatType] = Field(
-        None, description="Stat parameter stat2 < stat1."
+    stats: Optional[str] = Field(
+        None, description="Stat parameter stat1:more_than:stat2."
     )
     tech: Optional[str] = Field(None, description="Technique parameter.")
 
@@ -402,6 +413,29 @@ class MonsterEvolutionItemModel(BaseModel):
         if not v or v.find(":") > 1:
             return v
         raise ValueError(f"the variable {v} isn't formatted correctly")
+
+    @field_validator("stats")
+    def stats_exists(
+        cls: MonsterEvolutionItemModel, v: Optional[str]
+    ) -> Optional[str]:
+        stats = list(StatType)
+        comparison = list(Comparison)
+        param = v.split(":") if v else []
+        if not v or len(param) == 3:
+            if param[1] not in comparison:
+                raise ValueError(
+                    f"the comparison {param[1]} doesn't exist among {comparison}"
+                )
+            if param[0] not in stats:
+                raise ValueError(
+                    f"the stat {param[0]} doesn't exist among {stats}"
+                )
+            if param[2] not in stats:
+                raise ValueError(
+                    f"the stat {param[2]} doesn't exist among {stats}"
+                )
+            return v
+        raise ValueError(f"the stats {v} isn't formatted correctly")
 
 
 class MonsterFlairItemModel(BaseModel):

@@ -298,15 +298,16 @@ class Monster:
         """
         self.types = self.default_types
 
-    def return_stat(
-        self,
-        stat: Optional[StatType],
-    ) -> int:
+    def return_stat(self, stat: StatType) -> int:
         """
         Returns a monster stat (eg. melee, armour, etc.).
 
         Parameters:
             stat: The stat for the monster to return.
+
+        Returns:
+            value: The stat.
+
         """
         value = 0
         if stat == StatType.armour:

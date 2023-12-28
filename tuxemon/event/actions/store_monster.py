@@ -2,12 +2,16 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 import uuid
 from dataclasses import dataclass
-from typing import Union, final
+from typing import Optional, final
 
+from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.prepare import KENNEL
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -22,39 +26,42 @@ class StoreMonsterAction(EventAction):
     Script usage:
         .. code-block::
 
-            store_monster <monster_id>[,box]
+            store_monster <variable>[,box]
 
     Script parameters:
-        monster_id: Id of the monster to store.
+        variable: Name of the variable where to store the monster id.
         box: An existing box where the monster will be stored.
 
     """
 
     name = "store_monster"
-    monster_id: str
-    box: Union[str, None] = None
+    variable: str
+    box: Optional[str] = None
 
     def start(self) -> None:
         player = self.session.player
-        instance_id = uuid.UUID(
-            player.game_variables[self.monster_id],
-        )
-        box = self.box
-        monster = player.find_monster_by_id(instance_id)
-        if monster is None:
-            raise ValueError(
-                f"No monster found with instance_id {instance_id}",
-            )
+        if self.variable not in player.game_variables:
+            logger.error(f"Game variable {self.variable} not found")
+            return
 
+        monster_id = uuid.UUID(player.game_variables[self.variable])
+        monster = get_monster_by_iid(self.session, monster_id)
+        if monster is None:
+            logger.error("Monster not found")
+            return
+        character = monster.owner
+        if character is None:
+            logger.error("Monster owner not found")
+            return
+
+        box = self.box
         if box is None:
             store = KENNEL
         else:
-            if box not in player.monster_boxes.keys():
-                raise ValueError(
-                    f"No box found with name {box}",
-                )
+            if box not in character.monster_boxes.keys():
+                raise ValueError(f"No box found with name {box}")
             else:
                 store = box
-
-        player.monster_boxes[store].append(monster)
-        player.remove_monster(monster)
+        logger.info(f"{monster.name} stored in {store} box!")
+        character.monster_boxes[store].append(monster)
+        character.remove_monster(monster)

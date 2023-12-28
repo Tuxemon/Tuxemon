@@ -2,14 +2,17 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 import uuid
 from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon import prepare
-from tuxemon.event import get_npc
+from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.technique.technique import Technique
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -21,39 +24,36 @@ class AddTechAction(EventAction):
     Script usage:
         .. code-block::
 
-            add_tech <monster_id>,<technique>[,power][,potency][,accuracy][,npc_slug]
+            add_tech <variable>,<technique>[,power][,potency][,accuracy]
 
     Script parameters:
-        monster_id: Id of the monster (name of the variable).
+        variable: Name of the variable where to store the monster id.
         technique: Slug of the technique (e.g. "bullet").
         power: Power between 0.0 and 3.0
         potency: Potency between 0.0 and 1.0
         accuracy: Accuracy between 0.0 and 1.0
-        npc_slug: npc slug name (e.g. "npc_maple") - default "player"
 
     """
 
     name = "add_tech"
-    monster_id: str
+    variable: str
     technique: str
     power: Optional[float] = None
     potency: Optional[float] = None
     accuracy: Optional[float] = None
-    npc_slug: Optional[str] = None
 
     def start(self) -> None:
         player = self.session.player
-        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
-        trainer = get_npc(self.session, self.npc_slug)
-        assert trainer
-        instance_id = uuid.UUID(
-            player.game_variables[self.monster_id],
-        )
-        monster = trainer.find_monster_by_id(instance_id)
+        if self.variable not in player.game_variables:
+            logger.error(f"Game variable {self.variable} not found")
+            return
+
+        monster_id = uuid.UUID(player.game_variables[self.variable])
+        monster = get_monster_by_iid(self.session, monster_id)
         if monster is None:
-            raise ValueError(
-                f"No monster found with instance_id {instance_id}",
-            )
+            logger.error("Monster not found")
+            return
+
         tech = Technique()
         tech.load(self.technique)
         if self.power:
@@ -83,4 +83,5 @@ class AddTechAction(EventAction):
                 raise ValueError(
                     f"{self.accuracy} must be between {lower} and {upper}",
                 )
+        logger.info(f"{monster.name} learned {tech.name}!")
         monster.learn(tech)

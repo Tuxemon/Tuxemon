@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.db import PlagueType
+from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
@@ -54,8 +55,8 @@ class SetMonsterPlagueAction(EventAction):
                 logger.error(f"Game variable {self.variable} not found")
                 return
             monster_id = uuid.UUID(player.game_variables[self.variable])
-            monster = player.find_monster_by_id(monster_id)
+            monster = get_monster_by_iid(self.session, monster_id)
             if monster is None:
-                logger.error("Monster not found in party")
+                logger.error("Monster not found")
                 return
             monster.plague = PlagueType(self.condition)

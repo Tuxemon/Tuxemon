@@ -2,12 +2,15 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 import uuid
 from dataclasses import dataclass
-from typing import Optional, final
+from typing import final
 
-from tuxemon.event import get_npc
+from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -22,28 +25,33 @@ class RemoveMonsterAction(EventAction):
     Script usage:
         .. code-block::
 
-            remove_monster <instance_id>[,npc_slug]
+            remove_monster <variable>[,npc_slug]
 
     Script parameters:
-        instance_id: Id of the monster.
+        variable: Name of the variable where to store the monster id.
         npc_slug: Slug of the trainer. If no trainer slug is passed
             it defaults to the current player.
 
     """
 
     name = "remove_monster"
-    instance_id: str
-    npc_slug: Optional[str] = None
+    variable: str
 
     def start(self) -> None:
         player = self.session.player
-        iid = player.game_variables[self.instance_id]
-        instance_id = uuid.UUID(iid)
 
-        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
-        trainer = get_npc(self.session, self.npc_slug)
-        assert trainer
+        if self.variable not in player.game_variables:
+            logger.error(f"Game variable {self.variable} not found")
+            return
 
-        monster = trainer.find_monster_by_id(instance_id)
-        if monster is not None:
-            player.remove_monster(monster)
+        monster_id = uuid.UUID(player.game_variables[self.variable])
+        monster = get_monster_by_iid(self.session, monster_id)
+        if monster is None:
+            logger.error("Monster not found")
+            return
+        character = monster.owner
+        if character is None:
+            logger.error("Monster owner not found")
+            return
+        logger.info(f"{monster.name} removed from {character.name} party!")
+        character.remove_monster(monster)

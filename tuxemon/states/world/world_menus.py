@@ -155,10 +155,9 @@ class WorldMenuState(PygameMenuState):
             if success:
                 self.client.pop_state()
                 self.client.pop_state()
-                open_dialog(
-                    local_session,
-                    [T.format("tuxemon_released", {"name": monster.name})],
-                )
+                params = {"name": monster.name.upper()}
+                msg = T.format("tuxemon_released", params)
+                open_dialog(local_session, [msg])
                 monster_menu.refresh_menu_items()
                 monster_menu.on_menu_selection_change()
             else:
@@ -172,10 +171,9 @@ class WorldMenuState(PygameMenuState):
             """Show release monster confirmation dialog."""
             # Remove the submenu and replace with a confirmation dialog
             self.client.pop_state()
-            open_dialog(
-                local_session,
-                [T.format("release_confirmation", {"name": monster.name})],
-            )
+            params = {"name": monster.name.upper()}
+            msg = T.format("release_confirmation", params)
+            open_dialog(local_session, [msg])
             open_choice_dialog(
                 local_session,
                 menu=(

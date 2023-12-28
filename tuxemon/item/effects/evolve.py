@@ -26,20 +26,15 @@ class EvolveEffect(ItemEffect):
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> EvolveEffectResult:
-        assert target
+        assert target and target.owner
         evolve: bool = False
-        if item.slug == "booster_tech":
-            choices = [d for d in target.evolutions if d.path == "item"]
-            evolution = random.choice(choices).monster_slug
-            self.user.evolve_monster(target, evolution)
+        choices = [d for d in target.evolutions if d.item == item.slug]
+        if len(choices) == 1:
+            evolution = choices[0].monster_slug
             evolve = True
         else:
-            choices = [d for d in target.evolutions if d.item == item.slug]
-            if len(choices) == 1:
-                self.user.evolve_monster(target, choices[0].monster_slug)
-                evolve = True
-            elif len(choices) > 1:
-                evolution = random.choice(choices).monster_slug
-                self.user.evolve_monster(target, evolution)
-                evolve = True
+            evolution = random.choice(choices).monster_slug
+            evolve = True
+        if evolve and evolution:
+            target.owner.evolve_monster(target, evolution)
         return {"success": evolve, "num_shakes": 0, "extra": None}

@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 6,
-            "technique": "proboscis"
+            "technique": "punch"
         },
         {
             "level_learned": 8,
@@ -21,6 +21,18 @@
         {
             "level_learned": 12,
             "technique": "snowstorm"
+        },
+        {
+            "level_learned": 24,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 28,
+            "technique": "chill_mist"
+        },
+        {
+            "level_learned": 32,
+            "technique": "frostbite"
         }
     ],
     "evolutions": [

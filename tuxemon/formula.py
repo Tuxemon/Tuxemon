@@ -12,7 +12,6 @@ from typing import TYPE_CHECKING
 from tuxemon import prepare as pre
 
 if TYPE_CHECKING:
-    from tuxemon.db import MonsterModel
     from tuxemon.element import Element
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
@@ -98,132 +97,101 @@ def simple_damage_calculate(
     return damage, mult
 
 
-def damage_full_hp(target: Monster, value: int) -> int:
-    """
-    Damage based on target's full hp.
-
-    Parameters:
-        target: The one the technique is being used on.
-        value: Numerical value (target.hp // value).
-
-    Returns:
-        Inflicted damage.
-
-    """
-    damage = target.hp // value
-    return damage
-
-
-def simple_recover(target: Monster) -> int:
+def simple_recover(target: Monster, divisor: int) -> int:
     """
     Simple recover based on target's full hp.
 
     Parameters:
-        technique: The technique causing recover.
         target: The one being healed.
+        divisor: The number by which target HP is to be divided.
 
     Returns:
         Recovered health.
 
     """
-    heal = min(target.hp // 16, target.hp - target.current_hp)
+    heal = min(target.hp // divisor, target.hp - target.current_hp)
     return heal
 
 
-def simple_lifeleech(user: Monster, target: Monster) -> int:
+def simple_lifeleech(user: Monster, target: Monster, divisor: int) -> int:
     """
     Simple lifeleech based on a few factors.
 
     Parameters:
-        technique: The technique causing lifeleech.
-        user: The user of the technique.
-        target: The one the technique is being used on.
+        user: The monster getting HPs.
+        target: The monster losing HPs.
+        divisor: The number by which target HP is to be divided.
 
     Returns:
-        Inflicted damage.
+        Damage/Gain of HPs.
 
     """
-    if user.current_hp <= 0:
-        damage = 0
-    else:
-        damage = min(
-            target.hp // 16, target.current_hp, user.hp - user.current_hp
-        )
-    return damage
+    heal = min(
+        target.hp // divisor, target.current_hp, user.hp - user.current_hp
+    )
+    return heal
 
 
-def simple_grabbed(monster: Monster) -> None:
-    for move in monster.moves:
-        if move.range.ranged:
-            move.potency = move.default_potency * 0.5
-            move.power = move.default_power * 0.5
-        elif move.range.reach:
-            move.potency = move.default_potency * 0.5
-            move.power = move.default_power * 0.5
-
-
-def simple_stuck(monster: Monster) -> None:
-    for move in monster.moves:
-        if move.range.melee:
-            move.potency = move.default_potency * 0.5
-            move.power = move.default_power * 0.5
-        elif move.range.touch:
-            move.potency = move.default_potency * 0.5
-            move.power = move.default_power * 0.5
-
-
-def check_taste(monster: Monster, stat: str) -> int:
+def update_armour(mon: Monster) -> int:
     """
-    It checks the taste and return the value
+    It returns a bonus / malus of the stat based on additional parameters.
     """
-    positive = 0
-    negative = 0
-    if stat == "speed":
-        if monster.taste_cold == "mild":
-            negative = (monster.speed) * 10 // 100
-        if monster.taste_warm == "peppy":
-            positive = (monster.speed) * 10 // 100
-        value = positive - negative
-        return value
-    elif stat == "melee":
-        if monster.taste_cold == "sweet":
-            negative = (monster.melee) * 10 // 100
-        if monster.taste_warm == "salty":
-            positive = (monster.melee) * 10 // 100
-        value = positive - negative
-        return value
-    elif stat == "armour":
-        if monster.taste_cold == "soft":
-            negative = (monster.armour) * 10 // 100
-        if monster.taste_warm == "hearty":
-            positive = (monster.armour) * 10 // 100
-        value = positive - negative
-        return value
-    elif stat == "ranged":
-        if monster.taste_cold == "flakey":
-            negative = (monster.ranged) * 10 // 100
-        if monster.taste_warm == "zesty":
-            positive = (monster.ranged) * 10 // 100
-        value = positive - negative
-        return value
-    elif stat == "dodge":
-        if monster.taste_cold == "dry":
-            negative = (monster.dodge) * 10 // 100
-        if monster.taste_warm == "refined":
-            positive = (monster.dodge) * 10 // 100
-        value = positive - negative
-        return value
-    else:
-        value = positive
-        return value
+    # tastes - which gives the bonus and which the malus
+    _malus, _bonus = pre.TASTE_RANGE
+    malus = mon.armour * _malus if mon.taste_cold == "soft" else 0.0
+    bonus = mon.armour * _bonus if mon.taste_warm == "hearty" else 0.0
+    return int(bonus + malus)
+
+
+def update_speed(mon: Monster) -> int:
+    """
+    It returns a bonus / malus of the stat based on additional parameters.
+    """
+    # tastes - which gives the bonus and which the malus
+    _malus, _bonus = pre.TASTE_RANGE
+    malus = mon.speed * _malus if mon.taste_cold == "mild" else 0.0
+    bonus = mon.speed * _bonus if mon.taste_warm == "peppy" else 0.0
+    return int(bonus + malus)
+
+
+def update_melee(mon: Monster) -> int:
+    """
+    It returns a bonus / malus of the stat based on additional parameters.
+    """
+    # tastes - which gives the bonus and which the malus
+    _malus, _bonus = pre.TASTE_RANGE
+    malus = mon.melee * _malus if mon.taste_cold == "sweet" else 0.0
+    bonus = mon.melee * _bonus if mon.taste_warm == "salty" else 0.0
+    return int(bonus + malus)
+
+
+def update_ranged(mon: Monster) -> int:
+    """
+    It returns a bonus / malus of the stat based on additional parameters.
+    """
+    # tastes - which gives the bonus and which the malus
+    _malus, _bonus = pre.TASTE_RANGE
+    malus = mon.ranged * _malus if mon.taste_cold == "flakey" else 0.0
+    bonus = mon.ranged * _bonus if mon.taste_warm == "zesty" else 0.0
+    return int(bonus + malus)
+
+
+def update_dodge(mon: Monster) -> int:
+    """
+    It returns a bonus / malus of the stat based on additional parameters.
+    """
+    # tastes - which gives the bonus and which the malus
+    _malus, _bonus = pre.TASTE_RANGE
+    malus = mon.dodge * _malus if mon.taste_cold == "dry" else 0.0
+    bonus = mon.dodge * _bonus if mon.taste_warm == "refined" else 0.0
+    return int(bonus + malus)
 
 
 def today_ordinal() -> int:
     """
     It gives today's proleptic Gregorian ordinal.
     """
-    today = dt.date.today().toordinal()
-    return today
+    return dt.date.today().toordinal()
 
 
 def set_weight(kg: float) -> float:
@@ -232,11 +200,12 @@ def set_weight(kg: float) -> float:
     random number: between +/- 10%.
     Eg 100 kg +/- 10 kg
     """
+    _minor, _major = pre.WEIGHT_RANGE
     if kg == 0:
         weight = kg
     else:
-        minor = kg - (kg * 0.1)
-        major = (kg * 0.1) + kg
+        minor = kg + (kg * _minor)
+        major = kg + (kg * _major)
         weight = round(random.uniform(minor, major), 2)
     return weight
 
@@ -247,11 +216,12 @@ def set_height(cm: float) -> float:
     random number: between +/- 10%.
     Eg 100 cm +/- 10 cm
     """
+    _minor, _major = pre.HEIGHT_RANGE
     if cm == 0:
         height = cm
     else:
-        minor = cm - (cm * 0.1)
-        major = (cm * 0.1) + cm
+        minor = cm + (cm * _minor)
+        major = cm + (cm * _major)
         height = round(random.uniform(minor, major), 2)
     return height
 
@@ -260,26 +230,21 @@ def convert_lbs(kg: float) -> float:
     """
     It converts kilograms into pounds.
     """
-    pounds = round(kg * 2.2046, 2)
-    return pounds
+    return round(kg * pre.COEFF_POUNDS, 2)
 
 
 def convert_ft(cm: float) -> float:
     """
     It converts centimeters into feet.
     """
-    foot = round(cm * 0.032808399, 2)
-    return foot
+    return round(cm * pre.COEFF_FEET, 2)
 
 
 def convert_km(steps: float) -> float:
     """
     It converts steps into kilometers.
-    One tile: 1 meter
     """
-    m = steps * 1
-    km = round(m / 1000, 2)
-    return km
+    return round(steps / 1000, 2)
 
 
 def convert_mi(steps: float) -> float:
@@ -287,16 +252,23 @@ def convert_mi(steps: float) -> float:
     It converts steps into miles.
     """
     km = convert_km(steps)
-    mi = round(km * 0.6213711922, 2)
-    return mi
+    return round(km * pre.COEFF_MILES, 2)
 
 
-def weight_height_diff(
-    monster: Monster, db: MonsterModel
-) -> tuple[float, float]:
-    weight = round(((monster.weight - db.weight) / db.weight) * 100, 1)
-    height = round(((monster.height - db.height) / db.height) * 100, 1)
-    return weight, height
+def diff_percentage(part: float, total: float, decimal: int = 1) -> float:
+    """
+    It returns the difference between two numbers in percentage format.
+
+    Parameters:
+        part: The part, number.
+        total: The total, number.
+        decimal: How many decimals, default 1.
+
+    Returns:
+        The difference in percentage.
+
+    """
+    return round(((part - total) / total) * 100, decimal)
 
 
 def shake_check(

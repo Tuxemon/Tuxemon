@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="156">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="156">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -330,9 +330,9 @@
   </object>
   <object id="117" name="move husband" type="event" x="448" y="176" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind marissa,37,22"/>
+    <property name="act1" value="pathfind marissa,36,23"/>
     <property name="act2" value="npc_face marissa,left"/>
-    <property name="act3" value="pathfind tuxemart_keeper,37,21"/>
+    <property name="act3" value="pathfind tuxemart_keeper,36,24"/>
     <property name="act4" value="npc_face tuxemart_keeper,left"/>
     <property name="act5" value="set_variable getaway:weregone"/>
     <property name="cond1" value="is variable_set getaway:pls"/>
@@ -340,15 +340,17 @@
   </object>
   <object id="118" name="move bob" type="event" x="432" y="192" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind bob,36,23"/>
-    <property name="act2" value="npc_face bob,left"/>
+    <property name="act1" value="pathfind bob,33,22"/>
+    <property name="act2" value="pathfind bob,37,21"/>
+    <property name="act3" value="npc_face bob,left"/>
     <property name="cond1" value="is variable_set getaway:pls"/>
    </properties>
   </object>
   <object id="119" name="move liela" type="event" x="416" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind liela,36,24"/>
-    <property name="act2" value="npc_face liela,left"/>
+    <property name="act1" value="wait 1"/>
+    <property name="act2" value="pathfind liela,37,22"/>
+    <property name="act3" value="npc_face liela,left"/>
     <property name="cond1" value="is variable_set getaway:pls"/>
    </properties>
   </object>
@@ -767,6 +769,7 @@
     <property name="act10" value="translated_dialog hichristie"/>
     <property name="act11" value="translated_dialog hichristie2"/>
     <property name="act12" value="set_variable rivals:maybe"/>
+    <property name="act13" value="wait 0.4"/>
     <property name="act20" value="npc_run christie"/>
     <property name="act21" value="pathfind christie, 53,36"/>
     <property name="act22" value="npc_face christie,down"/>

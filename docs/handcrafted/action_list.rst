@@ -24,6 +24,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.get_player_monster.GetPlayerMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.kennel_print.KennelAction
 .. autoscriptinfoclass:: tuxemon.event.actions.menu.MenuAction
+.. autoscriptinfoclass:: tuxemon.event.actions.modify_monster_stats.ModifyMonsterStatsAction
 .. autoscriptinfoclass:: tuxemon.event.actions.money_print.MoneyPrintAction
 .. autoscriptinfoclass:: tuxemon.event.actions.npc_face.NpcFaceAction
 .. autoscriptinfoclass:: tuxemon.event.actions.npc_look.NpcLookAction

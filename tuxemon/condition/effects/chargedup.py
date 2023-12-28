@@ -31,10 +31,7 @@ class ChargedUpEffect(CondEffect):
         player = target.owner
         assert player
         cond: Optional[Condition] = None
-        if (
-            condition.phase == "perform_action_tech"
-            and condition.slug == "chargedup"
-        ):
+        if condition.phase == "perform_action_tech":
             target.status.clear()
             if condition.repl_tech:
                 cond = Condition()

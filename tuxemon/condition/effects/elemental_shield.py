@@ -5,9 +5,9 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Union
 
+from tuxemon.combat import fainted
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 from tuxemon.condition.condition import Condition
-from tuxemon.db import Range
 from tuxemon.monster import Monster
 from tuxemon.technique.technique import Technique
 
@@ -24,9 +24,14 @@ class ElementalShieldBackEffect(CondEffect):
     Each time you are hit by a Special move
     the attacker takes 1/16th your maximum HP in damage
 
+    Parameters:
+        divisor: The divisor.
+
     """
 
     name = "elemental_shield"
+    divisor: int
+    ranges: str
 
     def apply(
         self, condition: Condition, target: Monster
@@ -36,6 +41,7 @@ class ElementalShieldBackEffect(CondEffect):
         combat = condition.combat_state
         log = combat._log_action
         turn = combat._turn
+        ranges = self.ranges.split(":")
         # check log actions
         attacker: Union[Monster, None] = None
         hit: bool = False
@@ -48,22 +54,19 @@ class ElementalShieldBackEffect(CondEffect):
                     isinstance(method, Technique)
                     and isinstance(action.user, Monster)
                     and method.hit
+                    and method.range in ranges
+                    and action.target.instance_id == target.instance_id
                 ):
-                    if (
-                        method.range == Range.special
-                        and action.target.instance_id == target.instance_id
-                    ):
-                        attacker = action.user
-                        hit = True
+                    attacker = action.user
+                    hit = True
 
         if (
             condition.phase == "perform_action_status"
-            and condition.slug == "elementalshield"
             and attacker
             and hit
-            and attacker.current_hp > 0
+            and not fainted(attacker)
         ):
-            attacker.current_hp -= target.hp // 16
+            attacker.current_hp -= target.hp // self.divisor
             done = True
         return {
             "success": done,

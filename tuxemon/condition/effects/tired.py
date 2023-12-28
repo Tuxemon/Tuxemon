@@ -30,16 +30,9 @@ class TiredEffect(CondEffect):
         self, condition: Condition, target: Monster
     ) -> TiredEffectResult:
         extra: Optional[str] = None
-        if (
-            condition.phase == "perform_action_tech"
-            and condition.slug == "tired"
-        ):
-            extra = T.format(
-                "combat_state_tired_end",
-                {
-                    "target": target.name.upper(),
-                },
-            )
+        if condition.phase == "perform_action_tech":
+            params = {"target": target.name.upper()}
+            extra = T.format("combat_state_tired_end", params)
             target.status.clear()
         return {
             "success": True,

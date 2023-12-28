@@ -769,11 +769,11 @@ class ConditionModel(BaseModel):
     )
     repl_tech: Optional[str] = Field(
         None,
-        description="With which status reply after a tech used",
+        description="With which status or technique reply after a tech used",
     )
     repl_item: Optional[str] = Field(
         None,
-        description="With which status reply after an item used",
+        description="With which status or technique reply after an item used",
     )
     gain_cond: Optional[str] = Field(
         None,
@@ -829,7 +829,11 @@ class ConditionModel(BaseModel):
 
     @field_validator("repl_tech", "repl_item")
     def status_exists(cls: ConditionModel, v: Optional[str]) -> Optional[str]:
-        if not v or has.db_entry("condition", v):
+        if (
+            not v
+            or has.db_entry("condition", v)
+            or has.db_entry("technique", v)
+        ):
             return v
         raise ValueError(f"the status {v} doesn't exist in the db")
 

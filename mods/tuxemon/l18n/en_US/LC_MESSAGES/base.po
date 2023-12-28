@@ -1004,6 +1004,9 @@ msgstr "{target} wiped it off."
 msgid "combat_state_lockdown_get"
 msgstr "Items will not affect {target}."
 
+msgid "combat_state_lockdown_item"
+msgstr "Items cannot be used on {target} while it is locked down."
+
 msgid "combat_state_wasting_get"
 msgstr "{target} is afflicted by a wasting condition."
 

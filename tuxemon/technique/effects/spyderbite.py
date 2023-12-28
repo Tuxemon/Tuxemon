@@ -37,20 +37,11 @@ class SpyderbiteEffect(TechEffect):
         ):
             target.plague = PlagueType.infected
 
+        params = {"target": target.name.upper()}
         if target.plague == PlagueType.infected:
-            extra = T.format(
-                "combat_state_plague3",
-                {
-                    "target": target.name.upper(),
-                },
-            )
+            extra = T.format("combat_state_plague3", params)
         else:
-            extra = T.format(
-                "combat_state_plague0",
-                {
-                    "target": target.name.upper(),
-                },
-            )
+            extra = T.format("combat_state_plague0", params)
 
         return {
             "success": True,

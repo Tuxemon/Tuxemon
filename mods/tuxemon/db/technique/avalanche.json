@@ -4,7 +4,7 @@
   "animation": "rockfall_193",
   "effects": [
     "give exhausted,target",
-    "splash"
+    "splash 2"
   ],
   "flip_axes": "",
   "is_fast": false,

@@ -51,12 +51,8 @@ class FlyOffEffect(TechEffect):
             # if it's already flying
             done = False
 
-        extra = T.format(
-            "combat_fly",
-            {
-                "name": user.name.upper(),
-            },
-        )
+        params = {"name": user.name.upper()}
+        extra = T.format("combat_fly", params)
 
         return {
             "success": done,

@@ -626,28 +626,13 @@ class CombatState(CombatAnimations):
 
         def add(menuitem: MenuItem[Monster]) -> None:
             monster = menuitem.game_object
-            if monster.current_hp == 0:
-                tools.open_dialog(
-                    local_session,
-                    [
-                        T.format(
-                            "combat_fainted",
-                            parameters={"name": monster.name},
-                        ),
-                    ],
-                )
+            params = {"name": monster.name.upper()}
+            if fainted(monster):
+                dialog = T.format("combat_fainted", params)
+                tools.open_dialog(local_session, [dialog])
             elif monster in self.active_monsters:
-                tools.open_dialog(
-                    local_session,
-                    [
-                        T.format(
-                            "combat_isactive",
-                            parameters={"name": monster.name},
-                        ),
-                    ],
-                )
-                msg = T.translate("combat_replacement_is_fainted")
-                tools.open_dialog(local_session, [msg])
+                dialog = T.format("combat_isactive", params)
+                tools.open_dialog(local_session, [dialog])
             else:
                 self.add_monster_into_play(player, monster)
                 self.client.pop_state()
@@ -735,14 +720,9 @@ class CombatState(CombatAnimations):
             removed.status[0].phase = "add_monster_into_play"
             removed.status[0].use(removed)
 
+        params = {"target": monster.name.upper(), "user": player.name.upper()}
         if self._turn > 1:
-            message = T.format(
-                "combat_swap",
-                {
-                    "target": monster.name.upper(),
-                    "user": player.name.upper(),
-                },
-            )
+            message = T.format("combat_swap", params)
         if message:
             self.text_animations_queue.append(
                 (partial(self.alert, message), 0)
@@ -948,10 +928,8 @@ class CombatState(CombatAnimations):
             message += "\n" + T.format(method.use_tech, context)
             # swapping monster
             if method.slug == "swap":
-                message = T.format(
-                    "combat_call_tuxemon",
-                    {"name": target.name.upper()},
-                )
+                params = {"name": target.name.upper()}
+                message = T.format("combat_call_tuxemon", params)
             # check statuses
             if user.status:
                 user.status[0].combat_state = self
@@ -1009,12 +987,8 @@ class CombatState(CombatAnimations):
 
                 # monster infected
                 if user.plague == PlagueType.infected:
-                    m = T.format(
-                        "combat_state_plague1",
-                        {
-                            "target": user.name.upper(),
-                        },
-                    )
+                    params = {"target": user.name.upper()}
+                    m = T.format("combat_state_plague1", params)
                     message += "\n" + m
                 # allows tackle to special range techniques too
                 if method.range != "special":
@@ -1217,10 +1191,8 @@ class CombatState(CombatAnimations):
                             self.monsters_in_play_human[0],
                         )
                 if winner in self.players[0].monsters:
-                    m = T.format(
-                        "combat_gain_exp",
-                        {"name": winner.name.upper(), "xp": awarded_exp},
-                    )
+                    params = {"name": winner.name.upper(), "xp": awarded_exp}
+                    m = T.format("combat_gain_exp", params)
                     message += "\n" + m
             self._xp_message = message
 
@@ -1240,17 +1212,10 @@ class CombatState(CombatAnimations):
         for _, party in self.monsters_in_play.items():
             for monster in party:
                 if fainted(monster):
+                    params = {"name": monster.name.upper()}
+                    msg = T.format("combat_fainted", params)
                     self.text_animations_queue.append(
-                        (
-                            partial(
-                                self.alert,
-                                T.format(
-                                    "combat_fainted",
-                                    {"name": monster.name},
-                                ),
-                            ),
-                            prepare.ACTION_TIME,
-                        )
+                        (partial(self.alert, msg), prepare.ACTION_TIME)
                     )
                     self.animate_monster_faint(monster)
 
@@ -1284,7 +1249,7 @@ class CombatState(CombatAnimations):
                         self.text_animations_queue.append(
                             (partial(self.alert, extra), action_time)
                         )
-                if monster.current_hp <= 0:
+                if fainted(monster):
                     self.remove_monster_actions_from_queue(monster)
                     self.faint_monster(monster)
 
@@ -1384,7 +1349,7 @@ class CombatState(CombatAnimations):
                 mon.set_stats()
                 mon.end_combat()
                 # reset type
-                mon.return_types()
+                mon.reset_types()
                 # reset technique stats
                 for tech in mon.moves:
                     tech.set_stats()

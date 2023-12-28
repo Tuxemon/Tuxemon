@@ -110,7 +110,17 @@ def has_effect_param(
 
 
 def fainted(monster: Monster) -> bool:
+    """
+    Checks to see if the monster is fainted.
+    """
     return has_status(monster, "faint") or monster.current_hp <= 0
+
+
+def recharging(technique: Technique) -> bool:
+    """
+    Checks to see if a technique is recharging.
+    """
+    return technique.next_use > 0
 
 
 def get_awake_monsters(
@@ -159,13 +169,8 @@ def defeated(player: NPC) -> bool:
 def check_moves(monster: Monster, levels: int) -> Optional[str]:
     tech = monster.update_moves(levels)
     if tech:
-        message = T.format(
-            "tuxemon_new_tech",
-            {
-                "name": monster.name.upper(),
-                "tech": tech.name.upper(),
-            },
-        )
+        params = {"name": monster.name.upper(), "tech": tech.name.upper()}
+        message = T.format("tuxemon_new_tech", params)
         return message
     return None
 
@@ -372,15 +377,13 @@ def track_battles(
         if trainer_battle:
             winner.give_money(prize)
             for _loser in losers:
+                params = {
+                    "npc": _loser.name.upper(),
+                    "prize": prize,
+                    "currency": "$",
+                }
                 winner.game_variables["battle_last_trainer"] = _loser.slug
-                message = T.format(
-                    "combat_victory_trainer",
-                    {
-                        "npc": _loser.name,
-                        "prize": prize,
-                        "currency": "$",
-                    },
-                )
+                message = T.format("combat_victory_trainer", params)
                 register_battles(OutputBattle.won, winner, _loser)
             return message
         else:

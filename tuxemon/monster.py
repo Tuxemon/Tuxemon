@@ -129,7 +129,7 @@ class Monster:
         self.total_experience = 0
 
         self.types: list[Element] = []
-        self._types: list[Element] = []
+        self.default_types: list[Element] = []
         self.shape = MonsterShape.default
         self.randomly = True
         self.out_of_range = False
@@ -212,7 +212,7 @@ class Monster:
         for _ele in results.types:
             _element = Element(_ele)
             self.types.append(_element)
-            self._types.append(_element)
+            self.default_types.append(_element)
 
         self.randomly = results.randomly or self.randomly
         self.got_experience = self.got_experience
@@ -289,11 +289,11 @@ class Monster:
 
         self.moves.append(technique)
 
-    def return_types(self) -> None:
+    def reset_types(self) -> None:
         """
-        Returns a monster types.
+        Resets monster types to the default ones.
         """
-        self.types = self._types
+        self.types = self.default_types
 
     def return_stat(
         self,
@@ -421,12 +421,12 @@ class Monster:
         self.melee = (shape.melee * multiplier) + self.mod_melee
         self.ranged = (shape.ranged * multiplier) + self.mod_ranged
         self.speed = (shape.speed * multiplier) + self.mod_speed
-        # tastes
-        self.armour += formula.check_taste(self, "armour")
-        self.dodge += formula.check_taste(self, "dodge")
-        self.melee += formula.check_taste(self, "melee")
-        self.ranged += formula.check_taste(self, "ranged")
-        self.speed += formula.check_taste(self, "speed")
+        # updates stats based on additional parameters
+        self.armour += formula.update_armour(self)
+        self.dodge += formula.update_dodge(self)
+        self.melee += formula.update_melee(self)
+        self.ranged += formula.update_ranged(self)
+        self.speed += formula.update_speed(self)
 
     def set_taste_cold(self, taste_cold: TasteCold) -> TasteCold:
         """

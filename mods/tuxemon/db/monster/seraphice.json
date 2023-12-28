@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 6,
-            "technique": "torch"
+            "technique": "beam"
         },
         {
             "level_learned": 8,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 12,
-            "technique": "muck"
+            "technique": "neutralize"
         },
         {
             "level_learned": 28,
@@ -28,19 +28,19 @@
         },
         {
             "level_learned": 34,
-            "technique": "poison_courtship"
+            "technique": "sudden_glow"
         },
         {
             "level_learned": 44,
-            "technique": "blood_bond"
+            "technique": "hibernate"
         },
         {
             "level_learned": 48,
-            "technique": "kraken"
+            "technique": "icicle_spear"
         },
         {
             "level_learned": 52,
-            "technique": "tsunami"
+            "technique": "snowstorm"
         }
     ],
     "evolutions": [],

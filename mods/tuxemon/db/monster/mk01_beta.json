@@ -42,12 +42,12 @@
     "evolutions": [
         {
             "path": "standard",
-            "at_level": 30,
+            "at_level": 32,
             "monster_slug": "mk01_delta"
         },
         {
             "path": "standard",
-            "at_level": 30,
+            "at_level": 32,
             "monster_slug": "mk01_omega"
         }
     ],

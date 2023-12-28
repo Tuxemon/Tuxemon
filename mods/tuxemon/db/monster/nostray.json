@@ -21,6 +21,18 @@
         {
             "level_learned": 12,
             "technique": "snowstorm"
+        },
+        {
+            "level_learned": 24,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 28,
+            "technique": "kraken"
+        },
+        {
+            "level_learned": 32,
+            "technique": "flood"
         }
     ],
     "evolutions": [

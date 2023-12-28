@@ -1,18 +1,20 @@
 {
   "tech_id": 184,
-  "accuracy": 1,
-  "animation": "amethyst",
+  "accuracy": 0.95,
+  "animation": "amethyst_radiate",
   "effects": [
+    "give diehard,user",
+    "give exhausted,target",
     "damage"
   ],
   "flip_axes": "",
-  "is_fast": false,
-  "potency": 0.0,
-  "power": 1,
+  "is_fast": true,
+  "potency": 0.5,
+  "power": 2,
   "range": "melee",
-  "recharge": 1,
+  "recharge": 3,
   "sfx": "sfx_blaster",
-  "slug": "beak",
+  "slug": "suplex",
   "sort": "damage",
   "target": {
     "enemy monster": 2,
@@ -23,7 +25,7 @@
     "own trainer": 0
   },
   "types": [
-    "fire"
+    "earth", "metal"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

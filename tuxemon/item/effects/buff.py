@@ -36,25 +36,18 @@ class BuffEffect(ItemEffect):
         self, item: Item, target: Union[Monster, None]
     ) -> BuffEffectResult:
         assert target
-        if self.statistic == StatType.hp:
-            value = target.hp * self.percentage
-            target.hp += int(value)
-        elif self.statistic == StatType.armour:
-            value = target.armour * self.percentage
-            target.armour += int(value)
-        elif self.statistic == StatType.dodge:
-            value = target.dodge * self.percentage
-            target.dodge += int(value)
-        elif self.statistic == StatType.melee:
-            value = target.melee * self.percentage
-            target.melee += int(value)
-        elif self.statistic == StatType.ranged:
-            value = target.ranged * self.percentage
-            target.ranged += int(value)
-        elif self.statistic == StatType.speed:
-            value = target.speed * self.percentage
-            target.speed += int(value)
-        else:
-            raise ValueError(f"{self.statistic} must be a stat.")
+
+        if self.statistic not in list(StatType):
+            ValueError(f"{self.statistic} isn't among {list(StatType)}")
+
+        amount = target.return_stat(StatType(self.statistic))
+        value = int(amount * self.percentage)
+
+        target.armour += value if self.statistic == StatType.armour else 0
+        target.dodge += value if self.statistic == StatType.dodge else 0
+        target.hp += value if self.statistic == StatType.hp else 0
+        target.melee += value if self.statistic == StatType.melee else 0
+        target.speed += value if self.statistic == StatType.speed else 0
+        target.ranged += value if self.statistic == StatType.ranged else 0
 
         return {"success": True, "num_shakes": 0, "extra": None}

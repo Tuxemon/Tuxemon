@@ -91,7 +91,6 @@
   },
   {
     "slug": "spyder_dojo_thri",
-    "forfeit": false,
     "template": [
       {
         "sprite_name": "maniac_yellow",
@@ -112,7 +111,6 @@
   },
   {
     "slug": "spyder_dojo_tu",
-    "forfeit": false,
     "template": [
       {
         "sprite_name": "ninja_red",
@@ -123,7 +121,6 @@
   },
   {
     "slug": "spyder_dojo_wan",
-    "forfeit": false,
     "template": [
       {
         "sprite_name": "ninja_blue",

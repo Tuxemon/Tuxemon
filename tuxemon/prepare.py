@@ -157,6 +157,14 @@ BG_MONSTERS: str = "gfx/ui/monster/monster_menu_bg.png"
 # used for scaling.
 NATIVE_RESOLUTION: tuple[int, int] = (240, 160)
 
+# Maps
+# 1 tile = 1 m (3.28 ft) large
+COEFF_TILE: float = 1.0
+# for converting metric into imperial (distance)
+COEFF_MILES: float = 0.6213711922
+COEFF_FEET: float = 0.032808399
+# for converting metric into imperial (weight)
+COEFF_POUNDS: float = 2.2046
 
 # Players
 PLAYER_NPC = CONFIG.player_npc
@@ -186,6 +194,11 @@ COEFF_STATS: int = 7
 # set experience required for levelling up
 # (level + level_ofs) ** coefficient) - level_ofs default 0
 COEFF_EXP: int = 3
+# weight and height (min and max) = -/+ 10%
+WEIGHT_RANGE: tuple[float, float] = (-0.1, 0.1)
+HEIGHT_RANGE: tuple[float, float] = (-0.1, 0.1)
+# tastes (malus and bonus)
+TASTE_RANGE: tuple[float, float] = (-0.1, 0.1)
 
 # Capture
 TOTAL_SHAKES: int = 4

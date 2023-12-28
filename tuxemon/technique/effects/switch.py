@@ -74,15 +74,13 @@ class SwitchEffect(TechEffect):
             _type: str = ""
             _monster: str = ""
             if self.objective == "both":
-                extra = T.format(
-                    "combat_state_switch_both",
-                    {
-                        "user": user.name.upper(),
-                        "type1": T.translate(user.types[0].slug),
-                        "target": target.name.upper(),
-                        "type2": T.translate(target.types[0].slug),
-                    },
-                )
+                params = {
+                    "user": user.name.upper(),
+                    "type1": T.translate(user.types[0].slug),
+                    "target": target.name.upper(),
+                    "type2": T.translate(target.types[0].slug),
+                }
+                extra = T.format("combat_state_switch_both", params)
             else:
                 if self.objective == "target":
                     _monster = target.name.upper()
@@ -90,13 +88,8 @@ class SwitchEffect(TechEffect):
                 if self.objective == "user":
                     _monster = user.name.upper()
                     _type = T.translate(user.types[0].slug)
-                extra = T.format(
-                    "combat_state_switch",
-                    {
-                        "target": _monster,
-                        "types": _type,
-                    },
-                )
+                params = {"target": _monster, "types": _type}
+                extra = T.format("combat_state_switch", params)
         return {
             "success": done,
             "damage": 0,

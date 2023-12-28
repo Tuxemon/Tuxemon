@@ -3,7 +3,7 @@
     "category": "alien",
     "moveset": [
         {
-            "level_learned": 1,
+            "level_learned": 2,
             "technique": "demiurge"
         },
         {
@@ -36,7 +36,7 @@
         },
         {
             "level_learned": 28,
-            "technique": "shuriken"
+            "technique": "neutralize"
         },
         {
             "level_learned": 32,

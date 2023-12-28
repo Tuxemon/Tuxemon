@@ -13,14 +13,14 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class BuffEffectResult(ItemEffectResult):
+class IncreaseEffectResult(ItemEffectResult):
     pass
 
 
 @dataclass
-class BuffEffect(ItemEffect):
+class ChangeStatEffect(ItemEffect):
     """
-    Increases or decreases target's stats by percentage temporarily.
+    Increases or decreases target's stats by percentage permanently.
 
     Parameters:
         statistic: type of statistic (hp, armour, etc.)
@@ -28,26 +28,24 @@ class BuffEffect(ItemEffect):
 
     """
 
-    name = "buff"
-    statistic: StatType
+    name = "change_stat"
+    statistic: str
     percentage: float
 
     def apply(
         self, item: Item, target: Union[Monster, None]
-    ) -> BuffEffectResult:
+    ) -> IncreaseEffectResult:
+        client = self.session.client
         assert target
 
         if self.statistic not in list(StatType):
             ValueError(f"{self.statistic} isn't among {list(StatType)}")
 
-        amount = target.return_stat(StatType(self.statistic))
-        value = int(amount * self.percentage)
-
-        target.armour += value if self.statistic == StatType.armour else 0
-        target.dodge += value if self.statistic == StatType.dodge else 0
-        target.hp += value if self.statistic == StatType.hp else 0
-        target.melee += value if self.statistic == StatType.melee else 0
-        target.speed += value if self.statistic == StatType.speed else 0
-        target.ranged += value if self.statistic == StatType.ranged else 0
-
+        var = f"{self.name}:{str(target.instance_id.hex)}"
+        client.event_engine.execute_action("set_variable", [var], True)
+        client.event_engine.execute_action(
+            "modify_monster_stats",
+            [self.name, self.statistic, self.percentage],
+            True,
+        )
         return {"success": True, "num_shakes": 0, "extra": None}

@@ -135,7 +135,7 @@
     <property name="act11" value="char_plague infected,spyder_wayfarer1_bravo"/>
     <property name="act12" value="add_monster elofly,12,spyder_wayfarer1_bravo,5,10"/>
     <property name="act13" value="add_monster flacono,12,spyder_wayfarer1_bravo,5,10"/>
-    <property name="act14" value="start_battle spyder_wayfarer1_bravo"/>
+    <property name="act14" value="start_battle player,spyder_wayfarer1_bravo"/>
     <property name="act15" value="translated_dialog spyder_wayfarer1_bravo2"/>
     <property name="act16" value="set_variable wayfarer1bravo:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_bravo"/>
@@ -155,7 +155,7 @@
     <property name="act12" value="add_monster botbot,12,spyder_wayfarer1_james,5,10"/>
     <property name="act13" value="add_monster picc,12,spyder_wayfarer1_james,5,10"/>
     <property name="act14" value="add_monster b_ver_1,12,spyder_wayfarer1_james,5,10"/>
-    <property name="act15" value="start_battle spyder_wayfarer1_james"/>
+    <property name="act15" value="start_battle player,spyder_wayfarer1_james"/>
     <property name="act16" value="translated_dialog spyder_wayfarer1_james2"/>
     <property name="act17" value="set_variable wayfarer1james:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_james"/>
@@ -181,7 +181,7 @@
     <property name="act11" value="translated_dialog spyder_wayfarer1_bravo1"/>
     <property name="act13" value="add_monster elofly,12,spyder_wayfarer1_bravo,5,10"/>
     <property name="act14" value="add_monster flacono,12,spyder_wayfarer1_bravo,5,10"/>
-    <property name="act15" value="start_battle spyder_wayfarer1_bravo"/>
+    <property name="act15" value="start_battle player,spyder_wayfarer1_bravo"/>
     <property name="act16" value="translated_dialog spyder_wayfarer1_bravo2"/>
     <property name="act17" value="set_variable wayfarer1bravo:yes"/>
     <property name="cond1" value="not variable_set wayfarer1bravo:yes"/>

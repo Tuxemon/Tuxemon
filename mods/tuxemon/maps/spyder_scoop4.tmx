@@ -107,7 +107,7 @@
     <property name="act1" value="translated_dialog spyder_scoop_orba1"/>
     <property name="act2" value="add_monster abesnaki,30,spyder_scoop_orba,5,10"/>
     <property name="act3" value="add_monster spighter,30,spyder_scoop_orba,5,10"/>
-    <property name="act4" value="start_battle spyder_scoop_orba"/>
+    <property name="act4" value="start_battle player,spyder_scoop_orba"/>
     <property name="act5" value="translated_dialog spyder_scoop_orba2"/>
     <property name="act6" value="set_variable scooporba:yes"/>
     <property name="behav1" value="talk spyder_scoop_orba"/>
@@ -138,7 +138,7 @@
     <property name="act1" value="translated_dialog spyder_scoop_weaver1"/>
     <property name="act2" value="add_monster cardiling,30,spyder_scoop_weaver,5,10"/>
     <property name="act3" value="add_monster spighter,30,spyder_scoop_weaver,5,10"/>
-    <property name="act4" value="start_battle spyder_scoop_weaver"/>
+    <property name="act4" value="start_battle player,spyder_scoop_weaver"/>
     <property name="act5" value="translated_dialog spyder_scoop_weaver2"/>
     <property name="act6" value="set_variable scoopweaver:yes"/>
     <property name="behav1" value="talk spyder_scoop_weaver"/>
@@ -159,7 +159,7 @@
     <property name="act2" value="add_monster cardiwing,35,spyder_scoop_arachne,5,10"/>
     <property name="act3" value="add_monster spighter,35,spyder_scoop_arachne,5,10"/>
     <property name="act4" value="add_monster abesnaki,35,spyder_scoop_arachne,5,10"/>
-    <property name="act5" value="start_battle spyder_scoop_arachne"/>
+    <property name="act5" value="start_battle player,spyder_scoop_arachne"/>
     <property name="act6" value="translated_dialog spyder_scoop_arachne2"/>
     <property name="act7" value="set_variable scooparachne:yes"/>
     <property name="behav1" value="talk spyder_scoop_arachne"/>
@@ -318,7 +318,7 @@
     <property name="act1" value="translated_dialog spyder_scoop_orba1"/>
     <property name="act2" value="add_monster abesnaki,30,spyder_scoop_orba,5,10"/>
     <property name="act3" value="add_monster spighter,30,spyder_scoop_orba,5,10"/>
-    <property name="act4" value="start_battle spyder_scoop_orba"/>
+    <property name="act4" value="start_battle player,spyder_scoop_orba"/>
     <property name="act5" value="translated_dialog spyder_scoop_orba2"/>
     <property name="act6" value="set_variable scooporba:yes"/>
     <property name="cond1" value="not variable_set scooporba:yes"/>
@@ -332,7 +332,7 @@
     <property name="act2" value="add_monster cardiwing,35,spyder_scoop_arachne,5,10"/>
     <property name="act3" value="add_monster spighter,35,spyder_scoop_arachne,5,10"/>
     <property name="act4" value="add_monster abesnaki,35,spyder_scoop_arachne,5,10"/>
-    <property name="act5" value="start_battle spyder_scoop_arachne"/>
+    <property name="act5" value="start_battle player,spyder_scoop_arachne"/>
     <property name="act6" value="translated_dialog spyder_scoop_arachne2"/>
     <property name="act7" value="set_variable scooparachne:yes"/>
     <property name="cond1" value="not variable_set scooparachne:yes"/>
@@ -345,7 +345,7 @@
     <property name="act1" value="translated_dialog spyder_scoop_weaver1"/>
     <property name="act2" value="add_monster cardiling,30,spyder_scoop_weaver,5,10"/>
     <property name="act3" value="add_monster spighter,30,spyder_scoop_weaver,5,10"/>
-    <property name="act4" value="start_battle spyder_scoop_weaver"/>
+    <property name="act4" value="start_battle player,spyder_scoop_weaver"/>
     <property name="act5" value="translated_dialog spyder_scoop_weaver2"/>
     <property name="act6" value="set_variable scoopweaver:yes"/>
     <property name="cond1" value="not variable_set scoopweaver:yes"/>

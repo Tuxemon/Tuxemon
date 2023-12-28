@@ -128,7 +128,7 @@
     <property name="act52" value="add_monster cardinale,40,spyder_billie,5,10"/>
     <property name="act53" value="add_monster eyesore,40,spyder_billie,5,10"/>
     <property name="act54" value="add_monster viviphyta,40,spyder_billie,5,10"/>
-    <property name="act60" value="start_battle spyder_billie"/>
+    <property name="act60" value="start_battle player,spyder_billie"/>
     <property name="act61" value="translated_dialog spyder_hospital_billie2"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>

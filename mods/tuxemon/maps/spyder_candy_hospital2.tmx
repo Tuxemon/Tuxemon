@@ -144,7 +144,7 @@
     <property name="act1" value="translated_dialog spyder_hospital1_luzia1"/>
     <property name="act2" value="add_monster galnec,36,spyder_hospital1_luzia,5,10"/>
     <property name="act3" value="add_monster exclawvate,36,spyder_hospital1_luzia,5,10"/>
-    <property name="act4" value="start_battle spyder_hospital1_luzia"/>
+    <property name="act4" value="start_battle player,spyder_hospital1_luzia"/>
     <property name="act5" value="translated_dialog spyder_hospital1_luzia2"/>
     <property name="act6" value="set_variable hospital1luzia:yes"/>
     <property name="cond1" value="not variable_set hospital1luzia:yes"/>
@@ -163,7 +163,7 @@
     <property name="act1" value="translated_dialog spyder_hospital1_zekar1"/>
     <property name="act2" value="add_monster selket,32,spyder_hospital1_zekar,5,10"/>
     <property name="act3" value="add_monster taupypus,32,spyder_hospital1_zekar,5,10"/>
-    <property name="act4" value="start_battle spyder_hospital1_zekar"/>
+    <property name="act4" value="start_battle player,spyder_hospital1_zekar"/>
     <property name="act5" value="translated_dialog spyder_hospital1_zekar2"/>
     <property name="act6" value="set_variable hospital1zekar:yes"/>
     <property name="cond1" value="not variable_set hospital1zekar:yes"/>
@@ -196,7 +196,7 @@
     <property name="act1" value="translated_dialog spyder_hospital1_rakez1"/>
     <property name="act2" value="add_monster pipis,30,spyder_hospital1_rakez,5,10"/>
     <property name="act3" value="add_monster strella,30,spyder_hospital1_rakez,5,10"/>
-    <property name="act4" value="start_battle spyder_hospital1_rakez"/>
+    <property name="act4" value="start_battle player,spyder_hospital1_rakez"/>
     <property name="act5" value="translated_dialog spyder_hospital1_rakez2"/>
     <property name="act6" value="set_variable hospital1rakez:yes"/>
     <property name="cond1" value="not variable_set hospital1rakez:yes"/>
@@ -216,7 +216,7 @@
     <property name="act1" value="translated_dialog spyder_hospital1_rhizome1"/>
     <property name="act2" value="add_monster flacono,33,spyder_hospital1_rhizome,5,10"/>
     <property name="act3" value="add_monster fancair,33,spyder_hospital1_rhizome,5,10"/>
-    <property name="act4" value="start_battle spyder_hospital1_rhizome"/>
+    <property name="act4" value="start_battle player,spyder_hospital1_rhizome"/>
     <property name="act5" value="translated_dialog spyder_hospital1_rhizome2"/>
     <property name="act6" value="set_variable hospital1rhizome:yes"/>
     <property name="cond1" value="not variable_set hospital1rhizome:yes"/>

@@ -119,7 +119,7 @@
     <property name="act1" value="translated_dialog spyder_omnichannel_strauss1"/>
     <property name="act2" value="add_monster budaye,36,spyder_omnichannel_strauss,5,10"/>
     <property name="act3" value="add_monster frondly,40,spyder_omnichannel_strauss,5,10"/>
-    <property name="act4" value="start_battle spyder_omnichannel_strauss"/>
+    <property name="act4" value="start_battle player,spyder_omnichannel_strauss"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_strauss2"/>
     <property name="act6" value="set_variable omnichannelstrauss:yes"/>
     <property name="cond1" value="not variable_set omnichannelstrauss:yes"/>
@@ -132,7 +132,7 @@
     <property name="act1" value="translated_dialog spyder_omnichannel_carnegie1"/>
     <property name="act2" value="add_monster elofly,38,spyder_omnichannel_carnegie,5,10"/>
     <property name="act3" value="add_monster elostorm,38,spyder_omnichannel_carnegie,5,10"/>
-    <property name="act4" value="start_battle spyder_omnichannel_carnegie"/>
+    <property name="act4" value="start_battle player,spyder_omnichannel_carnegie"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_carnegie2"/>
     <property name="act6" value="set_variable omnichannelcarnegie:yes"/>
     <property name="cond1" value="not variable_set omnichannelcarnegie:yes"/>
@@ -145,7 +145,7 @@
     <property name="act1" value="translated_dialog spyder_omnichannel_byrne1"/>
     <property name="act2" value="add_monster rockat,36,spyder_omnichannel_byrne,5,10"/>
     <property name="act3" value="add_monster jemuar,40,spyder_omnichannel_byrne,5,10"/>
-    <property name="act4" value="start_battle spyder_omnichannel_byrne"/>
+    <property name="act4" value="start_battle player,spyder_omnichannel_byrne"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_byrne2"/>
     <property name="act6" value="set_variable omnichannelbyrne:yes"/>
     <property name="cond1" value="not variable_set omnichannelbyrne:yes"/>

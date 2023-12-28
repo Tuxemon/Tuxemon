@@ -92,7 +92,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_rebel1"/>
     <property name="act2" value="add_monster grimachin,30,spyder_nimrod_rebel,5,10"/>
-    <property name="act3" value="start_battle spyder_nimrod_rebel"/>
+    <property name="act3" value="start_battle player,spyder_nimrod_rebel"/>
     <property name="act4" value="translated_dialog spyder_nimrod_rebel2"/>
     <property name="act6" value="set_variable nimrodrebel:yes"/>
     <property name="behav1" value="talk spyder_nimrod_rebel"/>
@@ -110,7 +110,7 @@
     <property name="act1" value="translated_dialog spyder_nimrod_bowie1"/>
     <property name="act2" value="add_monster tigrock,35,spyder_nimrod_bowie,5,10"/>
     <property name="act3" value="add_monster embazook,35,spyder_nimrod_bowie,5,10"/>
-    <property name="act4" value="start_battle spyder_nimrod_bowie"/>
+    <property name="act4" value="start_battle player,spyder_nimrod_bowie"/>
     <property name="act5" value="translated_dialog spyder_nimrod_bowie2"/>
     <property name="act6" value="set_variable nimrodbowie:yes"/>
     <property name="behav1" value="talk spyder_nimrod_bowie"/>
@@ -132,7 +132,7 @@
     <property name="act04" value="add_monster komodraw,25,spyder_nimrod_tru,5,10"/>
     <property name="act05" value="add_monster sharpfin,25,spyder_nimrod_tru,5,10"/>
     <property name="act06" value="add_monster embazook,25,spyder_nimrod_tru,5,10"/>
-    <property name="act07" value="start_battle spyder_nimrod_tru"/>
+    <property name="act07" value="start_battle player,spyder_nimrod_tru"/>
     <property name="act08" value="translated_dialog spyder_nimrod_tru2"/>
     <property name="act09" value="translated_dialog spyder_nimrod_tru3"/>
     <property name="act10" value="set_variable nimrodtru:yes"/>
@@ -162,7 +162,7 @@
     <property name="act0" value="pathfind_to_player spyder_nimrod_rebel"/>
     <property name="act1" value="translated_dialog spyder_nimrod_rebel1"/>
     <property name="act2" value="add_monster grimachin,30,spyder_nimrod_rebel,5,10"/>
-    <property name="act3" value="start_battle spyder_nimrod_rebel"/>
+    <property name="act3" value="start_battle player,spyder_nimrod_rebel"/>
     <property name="act4" value="translated_dialog spyder_nimrod_rebel2"/>
     <property name="act6" value="set_variable nimrodrebel:yes"/>
     <property name="cond1" value="not variable_set nimrodrebel:yes"/>
@@ -178,7 +178,7 @@
     <property name="act04" value="add_monster komodraw,25,spyder_nimrod_tru,5,10"/>
     <property name="act05" value="add_monster sharpfin,25,spyder_nimrod_tru,5,10"/>
     <property name="act06" value="add_monster embazook,25,spyder_nimrod_tru,5,10"/>
-    <property name="act07" value="start_battle spyder_nimrod_tru"/>
+    <property name="act07" value="start_battle player,spyder_nimrod_tru"/>
     <property name="act08" value="translated_dialog spyder_nimrod_tru2"/>
     <property name="act09" value="translated_dialog spyder_nimrod_tru3"/>
     <property name="act10" value="set_variable nimrodtru:yes"/>
@@ -194,7 +194,7 @@
     <property name="act1" value="translated_dialog spyder_nimrod_bowie1"/>
     <property name="act2" value="add_monster tigrock,35,spyder_nimrod_bowie,5,10"/>
     <property name="act3" value="add_monster embazook,35,spyder_nimrod_bowie,5,10"/>
-    <property name="act4" value="start_battle spyder_nimrod_bowie"/>
+    <property name="act4" value="start_battle player,spyder_nimrod_bowie"/>
     <property name="act5" value="translated_dialog spyder_nimrod_bowie2"/>
     <property name="act6" value="set_variable nimrodbowie:yes"/>
     <property name="cond1" value="not variable_set nimrodbowie:yes"/>

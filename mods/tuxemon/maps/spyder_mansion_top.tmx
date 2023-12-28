@@ -105,7 +105,7 @@
     <property name="act1" value="translated_dialog spyder_top_mickey1"/>
     <property name="act2" value="add_monster gectile,25,spyder_top_mickey,5,10"/>
     <property name="act3" value="add_monster cardiwing,25,spyder_top_mickey,5,10"/>
-    <property name="act4" value="start_battle spyder_top_mickey"/>
+    <property name="act4" value="start_battle player,spyder_top_mickey"/>
     <property name="act5" value="translated_dialog spyder_top_mickey2"/>
     <property name="act6" value="set_variable mansiontop_mickey:yes"/>
     <property name="cond1" value="not variable_set mansiontop_mickey:yes"/>
@@ -155,7 +155,7 @@
     <property name="act2" value="add_monster av8r,22,spyder_top_russell,5,10"/>
     <property name="act3" value="add_monster mrmoswitch,22,spyder_top_russell,5,10"/>
     <property name="act4" value="add_monster k9,22,spyder_top_russell,5,10"/>
-    <property name="act5" value="start_battle spyder_top_russell"/>
+    <property name="act5" value="start_battle player,spyder_top_russell"/>
     <property name="act6" value="translated_dialog spyder_top_russell2"/>
     <property name="act7" value="set_variable mansiontop_russell:yes"/>
     <property name="cond1" value="not variable_set mansiontop_russell:yes"/>
@@ -168,7 +168,7 @@
     <property name="act1" value="translated_dialog spyder_top_ricardo1"/>
     <property name="act2" value="add_monster lapinou,22,spyder_top_ricardo,5,10"/>
     <property name="act3" value="add_monster squabbit,22,spyder_top_ricardo,5,10"/>
-    <property name="act4" value="start_battle spyder_top_ricardo"/>
+    <property name="act4" value="start_battle player,spyder_top_ricardo"/>
     <property name="act5" value="translated_dialog spyder_top_ricardo2"/>
     <property name="act6" value="set_variable mansiontop_ricardo:yes"/>
     <property name="cond1" value="not variable_set mansiontop_ricardo:yes"/>
@@ -180,7 +180,7 @@
     <property name="act0" value="pathfind_to_player spyder_top_jackson"/>
     <property name="act1" value="translated_dialog spyder_top_jackson1"/>
     <property name="act2" value="add_monster viviteel,26,spyder_top_jackson,5,10"/>
-    <property name="act4" value="start_battle spyder_top_jackson"/>
+    <property name="act4" value="start_battle player,spyder_top_jackson"/>
     <property name="act5" value="translated_dialog spyder_top_jackson2"/>
     <property name="act6" value="set_variable mansiontop_jackson:yes"/>
     <property name="cond1" value="not variable_set mansiontop_jackson:yes"/>

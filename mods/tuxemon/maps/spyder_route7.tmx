@@ -270,7 +270,7 @@
     <property name="act12" value="add_monster fluttaflap,40,spyder_route7_arnaut,5,10"/>
     <property name="act13" value="add_monster metesaur,30,spyder_route7_arnaut,5,10"/>
     <property name="act14" value="add_monster heronquak,30,spyder_route7_arnaut,5,10"/>
-    <property name="act15" value="start_battle spyder_route7_arnaut"/>
+    <property name="act15" value="start_battle player,spyder_route7_arnaut"/>
     <property name="act16" value="translated_dialog spyder_route7_arnaut2"/>
     <property name="act17" value="set_variable route7arnaut:yes"/>
     <property name="cond1" value="not variable_set route7arnaut:yes"/>
@@ -327,7 +327,7 @@
     <property name="act12" value="add_monster vividactil,40,spyder_route7_nino,5,10"/>
     <property name="act13" value="add_monster fluttaflap,40,spyder_route7_nino,5,10"/>
     <property name="act14" value="add_monster statursus,40,spyder_route7_nino,5,10"/>
-    <property name="act15" value="start_battle spyder_route7_nino"/>
+    <property name="act15" value="start_battle player,spyder_route7_nino"/>
     <property name="act16" value="translated_dialog spyder_route7_nino2"/>
     <property name="act17" value="set_variable route7nino:yes"/>
     <property name="cond1" value="not variable_set route7nino:yes"/>
@@ -350,7 +350,7 @@
     <property name="act14" value="add_monster woodoor,30,spyder_route7_sordello,5,10"/>
     <property name="act15" value="add_monster potturmeist,30,spyder_route7_sordello,5,10"/>
     <property name="act16" value="add_monster squink,30,spyder_route7_sordello,5,10"/>
-    <property name="act17" value="start_battle spyder_route7_sordello"/>
+    <property name="act17" value="start_battle player,spyder_route7_sordello"/>
     <property name="act18" value="translated_dialog spyder_route7_sordello2"/>
     <property name="act19" value="set_variable route7sordello:yes"/>
     <property name="cond1" value="not variable_set route7sordello:yes"/>
@@ -372,7 +372,7 @@
     <property name="act13" value="add_monster pairagrim,30,spyder_route7_statius,5,10"/>
     <property name="act14" value="add_monster bolt,30,spyder_route7_statius,5,10"/>
     <property name="act15" value="add_monster fribbit,30,spyder_route7_statius,5,10"/>
-    <property name="act16" value="start_battle spyder_route7_statius"/>
+    <property name="act16" value="start_battle player,spyder_route7_statius"/>
     <property name="act17" value="translated_dialog spyder_route7_statius2"/>
     <property name="act18" value="set_variable route7statius:yes"/>
     <property name="cond1" value="not variable_set route7statius:yes"/>
@@ -394,7 +394,7 @@
     <property name="act13" value="add_monster vivisource,30,spyder_route7_jacopo,5,10"/>
     <property name="act14" value="add_monster statursus,30,spyder_route7_jacopo,5,10"/>
     <property name="act15" value="add_monster statursus,35,spyder_route7_jacopo,5,10"/>
-    <property name="act16" value="start_battle spyder_route7_jacopo"/>
+    <property name="act16" value="start_battle player,spyder_route7_jacopo"/>
     <property name="act17" value="translated_dialog spyder_route7_jacopo2"/>
     <property name="act18" value="set_variable route7jacopo:yes"/>
     <property name="cond1" value="not variable_set route7jacopo:yes"/>
@@ -415,7 +415,7 @@
     <property name="act12" value="add_monster anoleaf,35,spyder_route7_pia,5,10"/>
     <property name="act13" value="add_monster gectile,40,spyder_route7_pia,5,10"/>
     <property name="act14" value="add_monster velocitile,45,spyder_route7_pia,5,10"/>
-    <property name="act15" value="start_battle spyder_route7_pia"/>
+    <property name="act15" value="start_battle player,spyder_route7_pia"/>
     <property name="act16" value="translated_dialog spyder_route7_pia2"/>
     <property name="act17" value="set_variable route7pia:yes"/>
     <property name="cond1" value="not variable_set route7pia:yes"/>
@@ -435,7 +435,7 @@
     <property name="act12" value="add_monster rhinocarpe,40,spyder_route7_penitent,5,10"/>
     <property name="act13" value="add_monster bursa,30,spyder_route7_penitent,5,10"/>
     <property name="act14" value="add_monster dandicub,30,spyder_route7_penitent,5,10"/>
-    <property name="act15" value="start_battle spyder_route7_penitent"/>
+    <property name="act15" value="start_battle player,spyder_route7_penitent"/>
     <property name="act16" value="translated_dialog spyder_route7_penitent2"/>
     <property name="act17" value="set_variable route7penitent:yes"/>
     <property name="cond1" value="not variable_set route7penitent:yes"/>
@@ -454,7 +454,7 @@
     <property name="act1" value="translated_dialog spyder_route7_hugh1"/>
     <property name="act2" value="add_monster qetzlrokilus,40,spyder_route7_hugh,5,10"/>
     <property name="act3" value="add_monster velocitile,40,spyder_route7_hugh,5,10"/>
-    <property name="act4" value="start_battle spyder_route7_hugh"/>
+    <property name="act4" value="start_battle player,spyder_route7_hugh"/>
     <property name="act5" value="translated_dialog spyder_route7_hugh2"/>
     <property name="act6" value="set_variable route7hugh:yes"/>
     <property name="cond1" value="not variable_set route7hugh:yes"/>
@@ -474,7 +474,7 @@
     <property name="act12" value="add_monster chenipode,30,spyder_route7_manfred,5,10"/>
     <property name="act13" value="add_monster chenipode,30,spyder_route7_manfred,5,10"/>
     <property name="act14" value="add_monster exapode,40,spyder_route7_manfred,5,10"/>
-    <property name="act15" value="start_battle spyder_route7_manfred"/>
+    <property name="act15" value="start_battle player,spyder_route7_manfred"/>
     <property name="act16" value="translated_dialog spyder_route7_manfred2"/>
     <property name="act17" value="set_variable route7manfred:yes"/>
     <property name="cond1" value="not variable_set route7manfred:yes"/>
@@ -495,7 +495,7 @@
     <property name="act12" value="add_monster tux,40,spyder_route7_conrad,5,10"/>
     <property name="act13" value="add_monster snowrilla,40,spyder_route7_conrad,5,10"/>
     <property name="act14" value="add_monster chillimp,30,spyder_route7_conrad,5,10"/>
-    <property name="act15" value="start_battle spyder_route7_conrad"/>
+    <property name="act15" value="start_battle player,spyder_route7_conrad"/>
     <property name="act16" value="translated_dialog spyder_route7_conrad2"/>
     <property name="act17" value="set_variable route7conrad:yes"/>
     <property name="cond1" value="not variable_set route7conrad:yes"/>

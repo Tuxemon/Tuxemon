@@ -133,7 +133,7 @@
     <property name="act0" value="pathfind_to_player spyder_greenwash_aissa"/>
     <property name="act1" value="translated_dialog spyder_greenwash_aissa1"/>
     <property name="act2" value="add_monster cateye,22,spyder_greenwash_aissa,5,10"/>
-    <property name="act3" value="start_battle spyder_greenwash_aissa"/>
+    <property name="act3" value="start_battle player,spyder_greenwash_aissa"/>
     <property name="act4" value="translated_dialog spyder_greenwash_aissa2"/>
     <property name="act6" value="set_variable greenwashaissa:yes"/>
     <property name="cond1" value="not variable_set greenwashaissa:yes"/>
@@ -146,7 +146,7 @@
     <property name="act1" value="translated_dialog spyder_greenwash_dippel1"/>
     <property name="act2" value="add_monster criniotherme,22,spyder_greenwash_dippel,5,10"/>
     <property name="act3" value="add_monster tikorch,22,spyder_greenwash_dippel,5,10"/>
-    <property name="act4" value="start_battle spyder_greenwash_dippel"/>
+    <property name="act4" value="start_battle player,spyder_greenwash_dippel"/>
     <property name="act5" value="translated_dialog spyder_greenwash_dippel2"/>
     <property name="act6" value="set_variable greenwashdippel:yes"/>
     <property name="cond1" value="not variable_set greenwashdippel:yes"/>
@@ -158,7 +158,7 @@
     <property name="act0" value="pathfind_to_player spyder_greenwash_moreau"/>
     <property name="act1" value="translated_dialog spyder_greenwash_moreau1"/>
     <property name="act2" value="add_monster sclairus,26,spyder_greenwash_moreau,5,10"/>
-    <property name="act3" value="start_battle spyder_greenwash_moreau"/>
+    <property name="act3" value="start_battle player,spyder_greenwash_moreau"/>
     <property name="act4" value="translated_dialog spyder_greenwash_moreau2"/>
     <property name="act6" value="set_variable greenwashmoreau:yes"/>
     <property name="cond1" value="not variable_set greenwashmoreau:yes"/>
@@ -177,7 +177,7 @@
     <property name="act0" value="pathfind_to_player spyder_greenwash_dempsey"/>
     <property name="act1" value="translated_dialog spyder_greenwash_dempsey1"/>
     <property name="act2" value="add_monster masknake,25,spyder_greenwash_dempsey,5,10"/>
-    <property name="act3" value="start_battle spyder_greenwash_dempsey"/>
+    <property name="act3" value="start_battle player,spyder_greenwash_dempsey"/>
     <property name="act4" value="translated_dialog spyder_greenwash_dempsey1"/>
     <property name="act6" value="set_variable greenwashdempsey:yes"/>
     <property name="cond1" value="not variable_set greenwashdempsey:yes"/>
@@ -196,7 +196,7 @@
     <property name="act0" value="pathfind_to_player spyder_greenwash_heidenstam"/>
     <property name="act1" value="translated_dialog spyder_greenwash_heidenstam1"/>
     <property name="act2" value="add_monster foofle,10,spyder_greenwash_heidenstam,5,10"/>
-    <property name="act3" value="start_battle spyder_greenwash_heidenstam"/>
+    <property name="act3" value="start_battle player,spyder_greenwash_heidenstam"/>
     <property name="act4" value="translated_dialog spyder_greenwash_heidenstam2"/>
     <property name="act6" value="set_variable greenwashheidenstam:yes"/>
     <property name="cond1" value="not variable_set greenwashheidenstam:yes"/>

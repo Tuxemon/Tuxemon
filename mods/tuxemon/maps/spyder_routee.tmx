@@ -128,7 +128,7 @@
     <property name="act1" value="translated_dialog spyder_routee_calliope1"/>
     <property name="act2" value="add_monster tumblebee,40,spyder_routee_calliope,5,10"/>
     <property name="act3" value="add_monster windeye,35,spyder_routee_calliope,5,10"/>
-    <property name="act6" value="start_battle spyder_routee_calliope"/>
+    <property name="act6" value="start_battle player,spyder_routee_calliope"/>
     <property name="act7" value="translated_dialog spyder_routee_calliope2"/>
     <property name="act8" value="set_variable routeecalliope:yes"/>
     <property name="cond1" value="is variable_set routeecalliope:yes"/>
@@ -163,7 +163,7 @@
     <property name="act1" value="translated_dialog spyder_routee_aiolos1"/>
     <property name="act2" value="add_monster dune_pincher,35,spyder_routee_aiolos,5,10"/>
     <property name="act3" value="add_monster dinoflop,40,spyder_routee_aiolos,5,10"/>
-    <property name="act6" value="start_battle spyder_routee_aiolos"/>
+    <property name="act6" value="start_battle player,spyder_routee_aiolos"/>
     <property name="act7" value="translated_dialog spyder_routee_aiolos2"/>
     <property name="act8" value="set_variable routeeaiolos:yes"/>
     <property name="cond1" value="not variable_set routeeaiolos:yes"/>

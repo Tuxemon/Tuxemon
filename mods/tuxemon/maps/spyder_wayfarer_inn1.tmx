@@ -203,7 +203,7 @@
     <property name="act10" value="translated_dialog spyder_wayfarer1_morton1"/>
     <property name="act11" value="char_plague infected,spyder_wayfarer1_morton"/>
     <property name="act12" value="add_monster mrmoswitch,14,spyder_wayfarer1_morton,5,10"/>
-    <property name="act13" value="start_battle spyder_wayfarer1_morton"/>
+    <property name="act13" value="start_battle player,spyder_wayfarer1_morton"/>
     <property name="act14" value="translated_dialog spyder_wayfarer1_morton2"/>
     <property name="act16" value="set_variable wayfarer1morton:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_morton"/>
@@ -223,7 +223,7 @@
     <property name="act11" value="char_plague infected,spyder_wayfarer1_jessie"/>
     <property name="act12" value="add_monster lapinou,12,spyder_wayfarer1_jessie,5,10"/>
     <property name="act13" value="add_monster cairfrey,12,spyder_wayfarer1_jessie,5,10"/>
-    <property name="act14" value="start_battle spyder_wayfarer1_jessie"/>
+    <property name="act14" value="start_battle player,spyder_wayfarer1_jessie"/>
     <property name="act15" value="translated_dialog spyder_wayfarer1_jessie2"/>
     <property name="act16" value="set_variable wayfarer1jessie:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_jessie"/>
@@ -242,7 +242,7 @@
     <property name="act11" value="char_plague infected,spyder_wayfarer1_nightshade"/>
     <property name="act12" value="add_monster lapinou,12,spyder_wayfarer1_nightshade,5,10"/>
     <property name="act13" value="add_monster elofly,12,spyder_wayfarer1_nightshade,5,10"/>
-    <property name="act14" value="start_battle spyder_wayfarer1_nightshade"/>
+    <property name="act14" value="start_battle player,spyder_wayfarer1_nightshade"/>
     <property name="act15" value="translated_dialog spyder_wayfarer1_nightshade2"/>
     <property name="act16" value="set_variable wayfarer1nightshade:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_nightshade"/>
@@ -259,7 +259,7 @@
    <properties>
     <property name="act10" value="translated_dialog spyder_wayfarer1_victor1"/>
     <property name="act12" value="add_monster squabbit,14,spyder_wayfarer1_victor,5,10"/>
-    <property name="act13" value="start_battle spyder_wayfarer1_victor"/>
+    <property name="act13" value="start_battle player,spyder_wayfarer1_victor"/>
     <property name="act14" value="translated_dialog spyder_wayfarer1_victor2"/>
     <property name="act16" value="set_variable wayfarer1victor:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_victor"/>
@@ -278,7 +278,7 @@
     <property name="act11" value="char_plague infected,spyder_wayfarer1_morningstar"/>
     <property name="act12" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,5,10"/>
     <property name="act13" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,5,10"/>
-    <property name="act14" value="start_battle spyder_wayfarer1_morningstar"/>
+    <property name="act14" value="start_battle player,spyder_wayfarer1_morningstar"/>
     <property name="act15" value="translated_dialog spyder_wayfarer1_morningstar2"/>
     <property name="act16" value="set_variable wayfarer1morningstar:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_morningstar"/>
@@ -292,7 +292,7 @@
     <property name="act12" value="char_plague infected,spyder_wayfarer1_morningstar"/>
     <property name="act13" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,5,10"/>
     <property name="act14" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,5,10"/>
-    <property name="act15" value="start_battle spyder_wayfarer1_morningstar"/>
+    <property name="act15" value="start_battle player,spyder_wayfarer1_morningstar"/>
     <property name="act16" value="translated_dialog spyder_wayfarer1_morningstar2"/>
     <property name="act17" value="set_variable wayfarer1morningstar:yes"/>
     <property name="cond1" value="not variable_set wayfarer1morningstar:yes"/>
@@ -305,7 +305,7 @@
     <property name="act11" value="translated_dialog spyder_wayfarer1_victor1"/>
     <property name="act12" value="char_plague infected,spyder_wayfarer1_victor"/>
     <property name="act13" value="add_monster squabbit,14,spyder_wayfarer1_victor,5,10"/>
-    <property name="act14" value="start_battle spyder_wayfarer1_victor"/>
+    <property name="act14" value="start_battle player,spyder_wayfarer1_victor"/>
     <property name="act15" value="translated_dialog spyder_wayfarer1_victor2"/>
     <property name="act16" value="set_variable wayfarer1victor:yes"/>
     <property name="cond1" value="not variable_set wayfarer1victor:yes"/>
@@ -330,7 +330,7 @@
     <property name="act10" value="translated_dialog spyder_wayfarer1_ratcher1"/>
     <property name="act11" value="char_plague infected,spyder_wayfarer1_ratcher"/>
     <property name="act12" value="add_monster lapinou,14,spyder_wayfarer1_ratcher,5,10"/>
-    <property name="act13" value="start_battle spyder_wayfarer1_ratcher"/>
+    <property name="act13" value="start_battle player,spyder_wayfarer1_ratcher"/>
     <property name="act14" value="translated_dialog spyder_wayfarer1_ratcher2"/>
     <property name="act15" value="set_variable wayfarer1ratcher:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_ratcher"/>
@@ -349,7 +349,7 @@
     <property name="act10" value="translated_dialog spyder_wayfarer1_bismuth1"/>
     <property name="act11" value="char_plague infected,spyder_wayfarer1_bismuth"/>
     <property name="act12" value="add_monster hydrone,14,spyder_wayfarer1_bismuth,5,10"/>
-    <property name="act13" value="start_battle spyder_wayfarer1_bismuth"/>
+    <property name="act13" value="start_battle player,spyder_wayfarer1_bismuth"/>
     <property name="act14" value="translated_dialog spyder_wayfarer1_bismuth2"/>
     <property name="act15" value="set_variable wayfarer1bismuth:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_bismuth"/>

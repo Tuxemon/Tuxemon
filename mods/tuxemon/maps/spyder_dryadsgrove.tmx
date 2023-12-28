@@ -705,7 +705,7 @@
     <property name="act2" value="add_monster vivitrans,50,spyder_dryadsgrove_aquemini,5,10"/>
     <property name="act3" value="add_monster nudimind,50,spyder_dryadsgrove_aquemini,5,10"/>
     <property name="act4" value="add_monster noctalo,50,spyder_dryadsgrove_aquemini,5,10"/>
-    <property name="act5" value="start_battle spyder_dryadsgrove_aquemini"/>
+    <property name="act5" value="start_battle player,spyder_dryadsgrove_aquemini"/>
     <property name="act6" value="translated_dialog spyder_dryadsgrove_aquemini2"/>
     <property name="act7" value="set_variable dryadsgroveaquemini:yes"/>
     <property name="behav1" value="talk spyder_dryadsgrove_aquemini"/>
@@ -737,7 +737,7 @@
     <property name="act2" value="add_monster vivicinder,50,spyder_dryadsgrove_ignatia,5,10"/>
     <property name="act3" value="add_monster masknake,50,spyder_dryadsgrove_ignatia,5,10"/>
     <property name="act4" value="add_monster criniotherme,50,spyder_dryadsgrove_ignatia,5,10"/>
-    <property name="act5" value="start_battle spyder_dryadsgrove_ignatia"/>
+    <property name="act5" value="start_battle player,spyder_dryadsgrove_ignatia"/>
     <property name="act6" value="translated_dialog spyder_dryadsgrove_ignatia2"/>
     <property name="act7" value="set_variable dryadsgroveignatia:yes"/>
     <property name="behav1" value="talk spyder_dryadsgrove_ignatia"/>
@@ -757,7 +757,7 @@
     <property name="act2" value="add_monster vivitron,50,spyder_dryadsgrove_petra,5,10"/>
     <property name="act3" value="add_monster sumchon,50,spyder_dryadsgrove_petra,5,10"/>
     <property name="act4" value="add_monster exapode,50,spyder_dryadsgrove_petra,5,10"/>
-    <property name="act5" value="start_battle spyder_dryadsgrove_petra"/>
+    <property name="act5" value="start_battle player,spyder_dryadsgrove_petra"/>
     <property name="act6" value="translated_dialog spyder_dryadsgrove_petra2"/>
     <property name="act7" value="set_variable dryadsgrovepetra:yes"/>
     <property name="behav1" value="talk spyder_dryadsgrove_petra"/>
@@ -778,7 +778,7 @@
     <property name="act2" value="add_monster viviphyta,50,spyder_dryadsgrove_sylvia,5,10"/>
     <property name="act3" value="add_monster dandylion,50,spyder_dryadsgrove_sylvia,5,10"/>
     <property name="act4" value="add_monster narcileaf,50,spyder_dryadsgrove_sylvia,5,10"/>
-    <property name="act5" value="start_battle spyder_dryadsgrove_sylvia"/>
+    <property name="act5" value="start_battle player,spyder_dryadsgrove_sylvia"/>
     <property name="act6" value="translated_dialog spyder_dryadsgrove_sylvia2"/>
     <property name="act7" value="set_variable dryadsgrovesylvia:yes"/>
     <property name="behav1" value="talk spyder_dryadsgrove_sylvia"/>
@@ -804,7 +804,7 @@
     <property name="act2" value="add_monster vivitrans,50,spyder_dryadsgrove_aquemini,5,10"/>
     <property name="act3" value="add_monster nudimind,50,spyder_dryadsgrove_aquemini,5,10"/>
     <property name="act4" value="add_monster noctalo,50,spyder_dryadsgrove_aquemini,5,10"/>
-    <property name="act5" value="start_battle spyder_dryadsgrove_aquemini"/>
+    <property name="act5" value="start_battle player,spyder_dryadsgrove_aquemini"/>
     <property name="act6" value="translated_dialog spyder_dryadsgrove_aquemini2"/>
     <property name="act7" value="set_variable dryadsgroveaquemini:yes"/>
     <property name="cond1" value="not variable_set dryadsgroveaquemini:yes"/>
@@ -818,7 +818,7 @@
     <property name="act2" value="add_monster vivicinder,50,spyder_dryadsgrove_ignatia,5,10"/>
     <property name="act3" value="add_monster masknake,50,spyder_dryadsgrove_ignatia,5,10"/>
     <property name="act4" value="add_monster criniotherme,50,spyder_dryadsgrove_ignatia,5,10"/>
-    <property name="act5" value="start_battle spyder_dryadsgrove_ignatia"/>
+    <property name="act5" value="start_battle player,spyder_dryadsgrove_ignatia"/>
     <property name="act6" value="translated_dialog spyder_dryadsgrove_ignatia2"/>
     <property name="act7" value="set_variable dryadsgroveignatia:yes"/>
     <property name="cond1" value="not variable_set dryadsgroveignatia:yes"/>
@@ -832,7 +832,7 @@
     <property name="act2" value="add_monster vivitron,50,spyder_dryadsgrove_petra,5,10"/>
     <property name="act3" value="add_monster sumchon,50,spyder_dryadsgrove_petra,5,10"/>
     <property name="act4" value="add_monster exapode,50,spyder_dryadsgrove_petra,5,10"/>
-    <property name="act5" value="start_battle spyder_dryadsgrove_petra"/>
+    <property name="act5" value="start_battle player,spyder_dryadsgrove_petra"/>
     <property name="act6" value="translated_dialog spyder_dryadsgrove_petra2"/>
     <property name="act7" value="set_variable dryadsgrovepetra:yes"/>
     <property name="cond1" value="not variable_set dryadsgrovepetra:yes"/>
@@ -852,7 +852,7 @@
     <property name="act2" value="add_monster viviteel,50,spyder_dryadsgrove_ferris,5,10"/>
     <property name="act3" value="add_monster allagon,50,spyder_dryadsgrove_ferris,5,10"/>
     <property name="act4" value="add_monster araignee,50,spyder_dryadsgrove_ferris,5,10"/>
-    <property name="act5" value="start_battle spyder_dryadsgrove_ferris"/>
+    <property name="act5" value="start_battle player,spyder_dryadsgrove_ferris"/>
     <property name="act6" value="translated_dialog spyder_dryadsgrove_ferris2"/>
     <property name="act7" value="set_variable dryadsgroveferris:yes"/>
     <property name="behav1" value="talk spyder_dryadsgrove_ferris"/>
@@ -866,7 +866,7 @@
     <property name="act2" value="add_monster viviteel,50,spyder_dryadsgrove_ferris,5,10"/>
     <property name="act3" value="add_monster allagon,50,spyder_dryadsgrove_ferris,5,10"/>
     <property name="act4" value="add_monster araignee,50,spyder_dryadsgrove_ferris,5,10"/>
-    <property name="act5" value="start_battle spyder_dryadsgrove_ferris"/>
+    <property name="act5" value="start_battle player,spyder_dryadsgrove_ferris"/>
     <property name="act6" value="translated_dialog spyder_dryadsgrove_ferris2"/>
     <property name="act7" value="set_variable dryadsgroveferris:yes"/>
     <property name="cond1" value="not variable_set dryadsgroveferris:yes"/>

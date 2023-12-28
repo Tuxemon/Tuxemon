@@ -104,7 +104,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_searoutec_river1"/>
     <property name="act2" value="add_monster manosting,24,spyder_searoutec_river,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_river"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_river"/>
     <property name="act4" value="translated_dialog spyder_searoutec_river2"/>
     <property name="act6" value="set_variable searoutecriver:yes"/>
     <property name="behav1" value="talk spyder_searoutec_river"/>
@@ -126,7 +126,7 @@
     <property name="act05" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
     <property name="act06" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
     <property name="act07" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
-    <property name="act08" value="start_battle spyder_searoutec_wade"/>
+    <property name="act08" value="start_battle player,spyder_searoutec_wade"/>
     <property name="act09" value="translated_dialog spyder_searoutec_wade2"/>
     <property name="act10" value="set_variable searoutecwade:yes"/>
     <property name="behav1" value="talk spyder_searoutec_wade"/>
@@ -145,7 +145,7 @@
     <property name="act3" value="add_monster nudiflot_female,22,spyder_searoutec_gil,5,10"/>
     <property name="act4" value="add_monster nudiflot_female,22,spyder_searoutec_gil,5,10"/>
     <property name="act5" value="add_monster nudimind,24,spyder_searoutec_gil,5,10"/>
-    <property name="act6" value="start_battle spyder_searoutec_gil"/>
+    <property name="act6" value="start_battle player,spyder_searoutec_gil"/>
     <property name="act7" value="translated_dialog spyder_searoutec_gil2"/>
     <property name="act8" value="set_variable searoutecgil:yes"/>
     <property name="behav1" value="talk spyder_searoutec_gil"/>
@@ -163,7 +163,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_searoutec_leek1"/>
     <property name="act2" value="add_monster nudikill,27,spyder_searoutec_leek,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_leek"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_leek"/>
     <property name="act4" value="translated_dialog spyder_searoutec_leek2"/>
     <property name="act6" value="set_variable searoutecleek:yes"/>
     <property name="behav1" value="talk spyder_searoutec_leek"/>
@@ -181,7 +181,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_searoutec_beech1"/>
     <property name="act2" value="add_monster nostray,26,spyder_searoutec_beech,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_beech"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_beech"/>
     <property name="act4" value="translated_dialog spyder_searoutec_beech2"/>
     <property name="act6" value="set_variable searoutecbeech:yes"/>
     <property name="behav1" value="talk spyder_searoutec_beech"/>
@@ -199,7 +199,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_searoutec_rutherford1"/>
     <property name="act2" value="add_monster incandesfin,26,spyder_searoutec_rutherford,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_rutherford"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_rutherford"/>
     <property name="act4" value="translated_dialog spyder_searoutec_rutherford2"/>
     <property name="act6" value="set_variable searoutecrutherford:yes"/>
     <property name="behav1" value="talk spyder_searoutec_rutherford"/>
@@ -217,7 +217,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_searoutec_carstair1"/>
     <property name="act2" value="add_monster axylightl,24,spyder_searoutec_carstair,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_carstair"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_carstair"/>
     <property name="act4" value="translated_dialog spyder_searoutec_carstair2"/>
     <property name="act6" value="set_variable searouteccarstair:yes"/>
     <property name="behav1" value="talk spyder_searoutec_carstair"/>
@@ -236,7 +236,7 @@
     <property name="act2" value="add_monster sharpfin,22,spyder_searoutec_sandy,5,10"/>
     <property name="act3" value="add_monster sharpfin,22,spyder_searoutec_sandy,5,10"/>
     <property name="act4" value="add_monster bigfin,22,spyder_searoutec_sandy,5,10"/>
-    <property name="act5" value="start_battle spyder_searoutec_sandy"/>
+    <property name="act5" value="start_battle player,spyder_searoutec_sandy"/>
     <property name="act6" value="translated_dialog spyder_searoutec_sandy2"/>
     <property name="act7" value="set_variable searoutecsandy:yes"/>
     <property name="behav1" value="talk spyder_searoutec_sandy"/>
@@ -260,7 +260,7 @@
     <property name="act0" value="pathfind_to_player spyder_searoutec_rutherford"/>
     <property name="act1" value="translated_dialog spyder_searoutec_rutherford1"/>
     <property name="act2" value="add_monster incandesfin,26,spyder_searoutec_rutherford,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_rutherford"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_rutherford"/>
     <property name="act4" value="translated_dialog spyder_searoutec_rutherford2"/>
     <property name="act6" value="set_variable searoutecrutherford:yes"/>
     <property name="cond1" value="not variable_set searoutecrutherford:yes"/>
@@ -274,7 +274,7 @@
     <property name="act3" value="add_monster nudiflot_female,22,spyder_searoutec_gil,5,10"/>
     <property name="act4" value="add_monster nudiflot_female,22,spyder_searoutec_gil,5,10"/>
     <property name="act5" value="add_monster nudimind,24,spyder_searoutec_gil,5,10"/>
-    <property name="act6" value="start_battle spyder_searoutec_gil"/>
+    <property name="act6" value="start_battle player,spyder_searoutec_gil"/>
     <property name="act7" value="translated_dialog spyder_searoutec_gil2"/>
     <property name="act8" value="set_variable searoutecgil:yes"/>
     <property name="cond1" value="not variable_set searoutecgil:yes"/>
@@ -286,7 +286,7 @@
     <property name="act0" value="pathfind_to_player spyder_searoutec_carstair"/>
     <property name="act1" value="translated_dialog spyder_searoutec_carstair1"/>
     <property name="act2" value="add_monster axylightl,24,spyder_searoutec_carstair,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_carstair"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_carstair"/>
     <property name="act4" value="translated_dialog spyder_searoutec_carstair2"/>
     <property name="act6" value="set_variable searouteccarstair:yes"/>
     <property name="cond1" value="not variable_set searouteccarstair:yes"/>
@@ -303,7 +303,7 @@
     <property name="act05" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
     <property name="act06" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
     <property name="act07" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
-    <property name="act08" value="start_battle spyder_searoutec_wade"/>
+    <property name="act08" value="start_battle player,spyder_searoutec_wade"/>
     <property name="act09" value="translated_dialog spyder_searoutec_wade2"/>
     <property name="act10" value="set_variable searoutecwade:yes"/>
     <property name="cond1" value="not variable_set searoutecwade:yes"/>
@@ -317,7 +317,7 @@
     <property name="act2" value="add_monster sharpfin,22,spyder_searoutec_sandy,5,10"/>
     <property name="act3" value="add_monster sharpfin,22,spyder_searoutec_sandy,5,10"/>
     <property name="act4" value="add_monster bigfin,22,spyder_searoutec_sandy,5,10"/>
-    <property name="act5" value="start_battle spyder_searoutec_sandy"/>
+    <property name="act5" value="start_battle player,spyder_searoutec_sandy"/>
     <property name="act6" value="translated_dialog spyder_searoutec_sandy2"/>
     <property name="act7" value="set_variable searoutecsandy:yes"/>
     <property name="cond1" value="not variable_set searoutecsandy:yes"/>
@@ -332,7 +332,7 @@
     <property name="act4" value="add_monster nudimind,24,spyder_searoutec_more,5,10"/>
     <property name="act5" value="add_monster nudikill,23,spyder_searoutec_more,5,10"/>
     <property name="act6" value="add_monster bigfin,19,spyder_searoutec_more,5,10"/>
-    <property name="act7" value="start_battle spyder_searoutec_more"/>
+    <property name="act7" value="start_battle player,spyder_searoutec_more"/>
     <property name="act8" value="translated_dialog spyder_searoutec_more2"/>
     <property name="act9" value="set_variable searoutecmore:yes"/>
     <property name="behav1" value="talk spyder_searoutec_more"/>
@@ -348,7 +348,7 @@
     <property name="act4" value="add_monster nudimind,24,spyder_searoutec_more,5,10"/>
     <property name="act5" value="add_monster nudikill,23,spyder_searoutec_more,5,10"/>
     <property name="act6" value="add_monster bigfin,19,spyder_searoutec_more,5,10"/>
-    <property name="act7" value="start_battle spyder_searoutec_more"/>
+    <property name="act7" value="start_battle player,spyder_searoutec_more"/>
     <property name="act8" value="translated_dialog spyder_searoutec_more2"/>
     <property name="act9" value="set_variable searoutecmore:yes"/>
     <property name="cond1" value="not variable_set searoutecmore:yes"/>
@@ -381,7 +381,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_searoutec_nigel1"/>
     <property name="act2" value="add_monster agnigon,36,spyder_searoutec_nigel,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_nigel"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_nigel"/>
     <property name="act4" value="translated_dialog spyder_searoutec_nigel2"/>
     <property name="act6" value="set_variable searoutecnigel:yes"/>
     <property name="behav1" value="talk spyder_searoutec_nigel"/>
@@ -441,7 +441,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_searoutec_stafford1"/>
     <property name="act2" value="add_monster medushock,22,spyder_searoutec_stafford,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_stafford"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_stafford"/>
     <property name="act4" value="translated_dialog spyder_searoutec_stafford2"/>
     <property name="act6" value="set_variable searoutecstafford:yes"/>
     <property name="behav1" value="talk spyder_searoutec_stafford"/>
@@ -460,7 +460,7 @@
     <property name="act1" value="translated_dialog spyder_searoutec_maurice1"/>
     <property name="act2" value="add_monster brewdin,22,spyder_searoutec_maurice,5,10"/>
     <property name="act3" value="add_monster fancair,22,spyder_searoutec_maurice,5,10"/>
-    <property name="act4" value="start_battle spyder_searoutec_maurice"/>
+    <property name="act4" value="start_battle player,spyder_searoutec_maurice"/>
     <property name="act5" value="translated_dialog spyder_searoutec_maurice2"/>
     <property name="act6" value="set_variable searoutecmaurice:yes"/>
     <property name="behav1" value="talk spyder_searoutec_maurice"/>

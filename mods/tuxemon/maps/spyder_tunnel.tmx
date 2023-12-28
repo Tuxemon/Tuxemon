@@ -207,7 +207,7 @@
     <property name="act2" value="add_monster tourbidi,18,spyder_tunnelb_iris,5,10"/>
     <property name="act3" value="add_monster tourbidi,18,spyder_tunnelb_iris,5,10"/>
     <property name="act4" value="add_monster tourbidi,18,spyder_tunnelb_iris,5,10"/>
-    <property name="act5" value="start_battle spyder_tunnelb_iris"/>
+    <property name="act5" value="start_battle player,spyder_tunnelb_iris"/>
     <property name="act6" value="translated_dialog spyder_tunnelb_iris2"/>
     <property name="act7" value="set_variable tunnelbiris:yes"/>
     <property name="behav1" value="talk spyder_tunnelb_iris"/>
@@ -229,7 +229,7 @@
     <property name="act05" value="add_monster foofle,16,spyder_tunnelb_greta,5,10"/>
     <property name="act06" value="add_monster foofle,16,spyder_tunnelb_greta,5,10"/>
     <property name="act07" value="add_monster foofle,16,spyder_tunnelb_greta,5,10"/>
-    <property name="act08" value="start_battle spyder_tunnelb_greta"/>
+    <property name="act08" value="start_battle player,spyder_tunnelb_greta"/>
     <property name="act09" value="translated_dialog spyder_tunnelb_greta2"/>
     <property name="act10" value="set_variable tunnelbgreta:yes"/>
     <property name="behav1" value="talk spyder_tunnelb_greta"/>
@@ -247,7 +247,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_tunnelb_tommy1"/>
     <property name="act2" value="add_monster zunna,22,spyder_tunnelb_tommy,5,10"/>
-    <property name="act3" value="start_battle spyder_tunnelb_tommy"/>
+    <property name="act3" value="start_battle player,spyder_tunnelb_tommy"/>
     <property name="act4" value="translated_dialog spyder_tunnelb_tommy2"/>
     <property name="act6" value="set_variable tunnelbtommy:yes"/>
     <property name="behav1" value="talk spyder_tunnelb_tommy"/>
@@ -264,7 +264,7 @@
     <property name="act05" value="add_monster foofle,16,spyder_tunnelb_greta,5,10"/>
     <property name="act06" value="add_monster foofle,16,spyder_tunnelb_greta,5,10"/>
     <property name="act07" value="add_monster foofle,16,spyder_tunnelb_greta,5,10"/>
-    <property name="act08" value="start_battle spyder_tunnelb_greta"/>
+    <property name="act08" value="start_battle player,spyder_tunnelb_greta"/>
     <property name="act09" value="translated_dialog spyder_tunnelb_greta2"/>
     <property name="act10" value="set_variable tunnelbgreta:yes"/>
     <property name="cond1" value="not variable_set tunnelbgreta:yes"/>

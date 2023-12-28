@@ -194,7 +194,7 @@
     <property name="act4" value="add_monster sadito,35,spyder_datacenter_fermi,5,10"/>
     <property name="act5" value="add_monster happito,35,spyder_datacenter_fermi,5,10"/>
     <property name="act6" value="add_monster neutrito,35,spyder_datacenter_fermi,5,10"/>
-    <property name="act7" value="start_battle spyder_datacenter_fermi"/>
+    <property name="act7" value="start_battle player,spyder_datacenter_fermi"/>
     <property name="act8" value="translated_dialog spyder_datacenter_fermi2"/>
     <property name="act9" value="set_variable datacenterfermi:yes"/>
     <property name="cond1" value="not variable_set datacenterfermi:yes"/>
@@ -214,7 +214,7 @@
     <property name="act1" value="translated_dialog spyder_datacenter_onnes1"/>
     <property name="act2" value="add_monster ouroboutlet,45,spyder_datacenter_onnes,5,10"/>
     <property name="act3" value="add_monster angrito,40,spyder_datacenter_onnes,5,10"/>
-    <property name="act6" value="start_battle spyder_datacenter_onnes"/>
+    <property name="act6" value="start_battle player,spyder_datacenter_onnes"/>
     <property name="act7" value="translated_dialog spyder_datacenter_onnes2"/>
     <property name="act8" value="set_variable datacenteronnes:yes"/>
     <property name="cond1" value="not variable_set datacenteronnes:yes"/>
@@ -234,7 +234,7 @@
     <property name="act1" value="translated_dialog spyder_datacenter_bayliss1"/>
     <property name="act2" value="add_monster sockeserp,45,spyder_datacenter_bayliss,5,10"/>
     <property name="act3" value="add_monster sadito,40,spyder_datacenter_bayliss,5,10"/>
-    <property name="act6" value="start_battle spyder_datacenter_bayliss"/>
+    <property name="act6" value="start_battle player,spyder_datacenter_bayliss"/>
     <property name="act7" value="translated_dialog spyder_datacenter_bayliss2"/>
     <property name="act8" value="set_variable datacenterbayliss:yes"/>
     <property name="cond1" value="not variable_set datacenterbayliss:yes"/>
@@ -254,7 +254,7 @@
     <property name="act1" value="translated_dialog spyder_datacenter_chomsky1"/>
     <property name="act2" value="add_monster fancair,45,spyder_datacenter_chomsky,5,10"/>
     <property name="act3" value="add_monster happito,40,spyder_datacenter_chomsky,5,10"/>
-    <property name="act6" value="start_battle spyder_datacenter_chomsky"/>
+    <property name="act6" value="start_battle player,spyder_datacenter_chomsky"/>
     <property name="act7" value="translated_dialog spyder_datacenter_chomsky2"/>
     <property name="act8" value="set_variable datacenterchomsky:yes"/>
     <property name="cond1" value="not variable_set datacenterchomsky:yes"/>
@@ -274,7 +274,7 @@
     <property name="act1" value="translated_dialog spyder_datacenter_lagrange1"/>
     <property name="act2" value="add_monster windeye,45,spyder_datacenter_lagrange,5,10"/>
     <property name="act3" value="add_monster neutrito,45,spyder_datacenter_lagrange,5,10"/>
-    <property name="act6" value="start_battle spyder_datacenter_lagrange"/>
+    <property name="act6" value="start_battle player,spyder_datacenter_lagrange"/>
     <property name="act7" value="translated_dialog spyder_datacenter_lagrange2"/>
     <property name="act8" value="set_variable datacenterlagrange:yes"/>
     <property name="cond1" value="not variable_set datacenterlagrange:yes"/>

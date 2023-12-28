@@ -193,7 +193,7 @@
     <property name="act21" value="add_monster cardiwing,17,spyder_billie,5,10"/>
     <property name="act22" value="add_monster eyesore,17,spyder_billie,5,10"/>
     <property name="act23" value="add_monster viviphyta,17,spyder_billie,5,10"/>
-    <property name="act30" value="start_battle spyder_billie"/>
+    <property name="act30" value="start_battle player,spyder_billie"/>
     <property name="act71" value="translated_dialog spyder_routea_billie2"/>
     <property name="act75" value="pathfind spyder_billie,17,25"/>
     <property name="act80" value="remove_npc spyder_billie"/>
@@ -214,7 +214,7 @@
     <property name="act0" value="pathfind_to_player spyder_routea_vince"/>
     <property name="act1" value="translated_dialog spyder_routea_vince3"/>
     <property name="act2" value="add_monster sapsnap,18,spyder_routea_vince,5,10"/>
-    <property name="act4" value="start_battle spyder_routea_vince"/>
+    <property name="act4" value="start_battle player,spyder_routea_vince"/>
     <property name="act5" value="translated_dialog spyder_routea_vince4"/>
     <property name="act6" value="set_variable routeavince:yes"/>
     <property name="behav1" value="talk spyder_routea_vince"/>
@@ -236,7 +236,7 @@
     <property name="act1" value="translated_dialog spyder_routea_doris1"/>
     <property name="act2" value="add_monster shybulb,12,spyder_routea_doris,5,10"/>
     <property name="act3" value="add_monster trapsnap,14,spyder_routea_doris,5,10"/>
-    <property name="act4" value="start_battle spyder_routea_doris"/>
+    <property name="act4" value="start_battle player,spyder_routea_doris"/>
     <property name="act5" value="translated_dialog spyder_routea_doris2"/>
     <property name="act6" value="set_variable routeadoris:yes"/>
     <property name="cond1" value="not variable_set routeadoris:yes"/>
@@ -255,7 +255,7 @@
     <property name="act0" value="pathfind_to_player spyder_routea_dagger"/>
     <property name="act1" value="translated_dialog spyder_routea_dagger1"/>
     <property name="act2" value="add_monster cardiwing,16,spyder_routea_dagger,5,10"/>
-    <property name="act4" value="start_battle spyder_routea_dagger"/>
+    <property name="act4" value="start_battle player,spyder_routea_dagger"/>
     <property name="act5" value="translated_dialog spyder_routea_dagger2"/>
     <property name="act6" value="set_variable routeadagger:yes"/>
     <property name="cond1" value="not variable_set routeadagger:yes"/>
@@ -268,7 +268,7 @@
     <property name="act1" value="translated_dialog spyder_routea_doris1"/>
     <property name="act2" value="add_monster shybulb,12,spyder_routea_doris,5,10"/>
     <property name="act3" value="add_monster trapsnap,14,spyder_routea_doris,5,10"/>
-    <property name="act4" value="start_battle spyder_routea_doris"/>
+    <property name="act4" value="start_battle player,spyder_routea_doris"/>
     <property name="act5" value="translated_dialog spyder_routea_doris2"/>
     <property name="act6" value="set_variable routeadoris:yes"/>
     <property name="cond1" value="not variable_set routeadoris:yes"/>
@@ -280,7 +280,7 @@
     <property name="act0" value="pathfind_to_player spyder_routea_dagger"/>
     <property name="act1" value="translated_dialog spyder_routea_dagger1"/>
     <property name="act2" value="add_monster cardiwing,16,spyder_routea_dagger,5,10"/>
-    <property name="act4" value="start_battle spyder_routea_dagger"/>
+    <property name="act4" value="start_battle player,spyder_routea_dagger"/>
     <property name="act5" value="translated_dialog spyder_routea_dagger2"/>
     <property name="act6" value="set_variable routeadagger:yes"/>
     <property name="cond1" value="not variable_set routeadagger:yes"/>
@@ -300,7 +300,7 @@
     <property name="act1" value="translated_dialog spyder_routea_koan1"/>
     <property name="act2" value="add_monster shybulb,12,spyder_routea_koan,5,10"/>
     <property name="act3" value="add_monster budaye,12,spyder_routea_koan,5,10"/>
-    <property name="act4" value="start_battle spyder_routea_koan"/>
+    <property name="act4" value="start_battle player,spyder_routea_koan"/>
     <property name="act5" value="translated_dialog spyder_routea_koan2"/>
     <property name="act6" value="set_variable routeakoan:yes"/>
     <property name="cond1" value="not variable_set routeakoan:yes"/>
@@ -319,7 +319,7 @@
     <property name="act1" value="translated_dialog spyder_routea_lexi1"/>
     <property name="act2" value="add_monster vamporm,14,spyder_routea_lexi,5,10"/>
     <property name="act3" value="add_monster katapill,14,spyder_routea_lexi,5,10"/>
-    <property name="act4" value="start_battle spyder_routea_lexi"/>
+    <property name="act4" value="start_battle player,spyder_routea_lexi"/>
     <property name="act5" value="translated_dialog spyder_routea_lexi2"/>
     <property name="act6" value="set_variable routealexi:yes"/>
     <property name="cond1" value="not variable_set routealexi:yes"/>
@@ -339,7 +339,7 @@
     <property name="act1" value="translated_dialog spyder_routea_lotu1"/>
     <property name="act2" value="add_monster narcileaf,14,spyder_routea_lotu,5,10"/>
     <property name="act3" value="add_monster tarpeur,14,spyder_routea_lotu,5,10"/>
-    <property name="act4" value="start_battle spyder_routea_lotu"/>
+    <property name="act4" value="start_battle player,spyder_routea_lotu"/>
     <property name="act5" value="translated_dialog spyder_routea_lotu2"/>
     <property name="act6" value="set_variable routealotu:yes"/>
     <property name="cond1" value="not variable_set routealotu:yes"/>
@@ -352,7 +352,7 @@
     <property name="act1" value="translated_dialog spyder_routea_connie1"/>
     <property name="act2" value="add_monster sharpfin,14,spyder_routea_connie,5,10"/>
     <property name="act3" value="add_monster bigfin,14,spyder_routea_connie,5,10"/>
-    <property name="act4" value="start_battle spyder_routea_connie"/>
+    <property name="act4" value="start_battle player,spyder_routea_connie"/>
     <property name="act5" value="translated_dialog spyder_routea_connie2"/>
     <property name="act6" value="set_variable routeaconnie:yes"/>
     <property name="cond1" value="not variable_set routeaconnie:yes"/>
@@ -376,7 +376,7 @@
     <property name="act0" value="pathfind_to_player spyder_routea_joe"/>
     <property name="act1" value="translated_dialog spyder_routea_joe1"/>
     <property name="act2" value="add_monster katapill,16,spyder_routea_joe,5,10"/>
-    <property name="act4" value="start_battle spyder_routea_joe"/>
+    <property name="act4" value="start_battle player,spyder_routea_joe"/>
     <property name="act5" value="translated_dialog spyder_routea_joe2"/>
     <property name="act6" value="set_variable routeajoe:yes"/>
     <property name="cond1" value="not variable_set routeajoe:yes"/>
@@ -388,7 +388,7 @@
     <property name="act0" value="pathfind_to_player spyder_routea_joe"/>
     <property name="act1" value="translated_dialog spyder_routea_joe1"/>
     <property name="act2" value="add_monster katapill,16,spyder_routea_joe,5,10"/>
-    <property name="act4" value="start_battle spyder_routea_joe"/>
+    <property name="act4" value="start_battle player,spyder_routea_joe"/>
     <property name="act5" value="translated_dialog spyder_routea_joe2"/>
     <property name="act6" value="set_variable routeajoe:yes"/>
     <property name="cond1" value="not variable_set routeajoe:yes"/>
@@ -406,7 +406,7 @@
     <property name="act0" value="pathfind_to_player spyder_routea_rosy"/>
     <property name="act1" value="translated_dialog spyder_routea_rosy1"/>
     <property name="act2" value="add_monster shammer,16,spyder_routea_rosy,5,10"/>
-    <property name="act4" value="start_battle spyder_routea_rosy"/>
+    <property name="act4" value="start_battle player,spyder_routea_rosy"/>
     <property name="act5" value="translated_dialog spyder_routea_rosy2"/>
     <property name="act6" value="set_variable routearosy:yes"/>
     <property name="cond1" value="not variable_set routearosy:yes"/>

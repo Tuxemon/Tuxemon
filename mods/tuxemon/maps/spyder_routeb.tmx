@@ -90,7 +90,7 @@
     <property name="act2" value="add_monster dracune,35,spyder_routeb_electra,5,10"/>
     <property name="act3" value="add_monster pantherafira,45,spyder_routeb_electra,5,10"/>
     <property name="act4" value="add_monster tumbleworm,40,spyder_routeb_electra,5,10"/>
-    <property name="act6" value="start_battle spyder_routeb_electra"/>
+    <property name="act6" value="start_battle player,spyder_routeb_electra"/>
     <property name="act7" value="translated_dialog spyder_routeb_electra2"/>
     <property name="act8" value="set_variable routebelectra:yes"/>
     <property name="cond1" value="not variable_set routebelectra:yes"/>
@@ -111,7 +111,7 @@
     <property name="act2" value="add_monster fluttaflap,35,spyder_routeb_cytherea,5,10"/>
     <property name="act3" value="add_monster criniotherme,35,spyder_routeb_cytherea,5,10"/>
     <property name="act4" value="add_monster tumblebee,40,spyder_routeb_cytherea,5,10"/>
-    <property name="act6" value="start_battle spyder_routeb_cytherea"/>
+    <property name="act6" value="start_battle player,spyder_routeb_cytherea"/>
     <property name="act7" value="translated_dialog spyder_routeb_cytherea2"/>
     <property name="act8" value="set_variable routebcytherea:yes"/>
     <property name="cond1" value="not variable_set routebcytherea:yes"/>
@@ -130,7 +130,7 @@
     <property name="act1" value="translated_dialog spyder_routeb_nephthys1"/>
     <property name="act2" value="add_monster conifrost,45,spyder_routeb_nephthys,5,10"/>
     <property name="act3" value="add_monster djinnbo,45,spyder_routeb_nephthys,5,10"/>
-    <property name="act6" value="start_battle spyder_routeb_nephthys"/>
+    <property name="act6" value="start_battle player,spyder_routeb_nephthys"/>
     <property name="act7" value="translated_dialog spyder_routeb_nephthys2"/>
     <property name="act8" value="set_variable routebnephthys:yes"/>
     <property name="cond1" value="not variable_set routebnephthys:yes"/>
@@ -148,7 +148,7 @@
     <property name="act0" value="pathfind_to_player spyder_routeb_sedna"/>
     <property name="act1" value="translated_dialog spyder_routeb_sedna1"/>
     <property name="act2" value="add_monster squabbit,40,spyder_routeb_sedna,5,10"/>
-    <property name="act6" value="start_battle spyder_routeb_sedna"/>
+    <property name="act6" value="start_battle player,spyder_routeb_sedna"/>
     <property name="act7" value="translated_dialog spyder_routeb_sedna2"/>
     <property name="act8" value="set_variable routebsedna:yes"/>
     <property name="cond1" value="not variable_set routebsedna:yes"/>
@@ -169,7 +169,7 @@
     <property name="act2" value="add_monster ruption,40,spyder_routeb_calypso,5,10"/>
     <property name="act3" value="add_monster puparmor,35,spyder_routeb_calypso,5,10"/>
     <property name="act4" value="add_monster sumchon,40,spyder_routeb_calypso,5,10"/>
-    <property name="act6" value="start_battle spyder_routeb_calypso"/>
+    <property name="act6" value="start_battle player,spyder_routeb_calypso"/>
     <property name="act7" value="translated_dialog spyder_routeb_calypso2"/>
     <property name="act8" value="set_variable routebcalypso:yes"/>
     <property name="cond1" value="not variable_set routebcalypso:yes"/>

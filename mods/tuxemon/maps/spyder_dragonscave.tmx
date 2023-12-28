@@ -119,7 +119,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_dragonscave_tomas1"/>
     <property name="act2" value="add_monster allagon,35,spyder_dragonscave_tomas,5,10"/>
-    <property name="act3" value="start_battle spyder_dragonscave_tomas"/>
+    <property name="act3" value="start_battle player,spyder_dragonscave_tomas"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_tomas2"/>
     <property name="act6" value="set_variable dragonscavetomas:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_tomas"/>
@@ -136,7 +136,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_dragonscave_lessa1"/>
     <property name="act2" value="add_monster allagon,37,spyder_dragonscave_lessa,5,10"/>
-    <property name="act3" value="start_battle spyder_dragonscave_lessa"/>
+    <property name="act3" value="start_battle player,spyder_dragonscave_lessa"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_lessa2"/>
     <property name="act6" value="set_variable dragonscavelessa:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_lessa"/>
@@ -154,7 +154,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_dragonscave_cailin1"/>
     <property name="act2" value="add_monster dragarbor,36,spyder_dragonscave_cailin,5,10"/>
-    <property name="act3" value="start_battle spyder_dragonscave_cailin"/>
+    <property name="act3" value="start_battle player,spyder_dragonscave_cailin"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_cailin2"/>
     <property name="act6" value="set_variable dragonscavecailin:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_cailin"/>
@@ -172,7 +172,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_dragonscave_griffin1"/>
     <property name="act2" value="add_monster bigfin,35,spyder_dragonscave_griffin,5,10"/>
-    <property name="act3" value="start_battle spyder_dragonscave_griffin"/>
+    <property name="act3" value="start_battle player,spyder_dragonscave_griffin"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_griffin2"/>
     <property name="act6" value="set_variable dragonscavegriffin:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_griffin"/>
@@ -190,7 +190,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_dragonscave_daenny1"/>
     <property name="act2" value="add_monster eaglace,37,spyder_dragonscave_daenny,5,10"/>
-    <property name="act3" value="start_battle spyder_dragonscave_daenny"/>
+    <property name="act3" value="start_battle player,spyder_dragonscave_daenny"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_daenny2"/>
     <property name="act6" value="set_variable dragonscavedaenny:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_daenny"/>
@@ -208,7 +208,7 @@
     <property name="act1" value="translated_dialog spyder_dragonscave_benden1"/>
     <property name="act2" value="add_monster dragarbor,36,spyder_dragonscave_benden,5,10"/>
     <property name="act3" value="add_monster sapragon,38,spyder_dragonscave_benden,5,10"/>
-    <property name="act4" value="start_battle spyder_dragonscave_benden"/>
+    <property name="act4" value="start_battle player,spyder_dragonscave_benden"/>
     <property name="act5" value="translated_dialog spyder_dragonscave_benden2"/>
     <property name="act6" value="set_monster_health"/>
     <property name="act7" value="set_monster_status"/>
@@ -251,7 +251,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_dragonscave_mal1"/>
     <property name="act2" value="add_monster djinnbo,40,spyder_dragonscave_mal,5,10"/>
-    <property name="act3" value="start_battle spyder_dragonscave_mal"/>
+    <property name="act3" value="start_battle player,spyder_dragonscave_mal"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_mal2"/>
     <property name="act6" value="set_variable dragonscavemal:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_mal"/>
@@ -269,7 +269,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_dragonscave_ray1"/>
     <property name="act2" value="add_monster ghosteeth,40,spyder_dragonscave_ray,5,10"/>
-    <property name="act3" value="start_battle spyder_dragonscave_ray"/>
+    <property name="act3" value="start_battle player,spyder_dragonscave_ray"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_ray2"/>
     <property name="act6" value="set_variable dragonscaveray:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_ray"/>
@@ -287,7 +287,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_dragonscave_lucille1"/>
     <property name="act2" value="add_monster coleorus,40,spyder_dragonscave_lucille,5,10"/>
-    <property name="act3" value="start_battle spyder_dragonscave_lucille"/>
+    <property name="act3" value="start_battle player,spyder_dragonscave_lucille"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_lucille2"/>
     <property name="act6" value="set_variable dragonscavelucille:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_lucille"/>
@@ -308,7 +308,7 @@
     <property name="act2" value="add_monster embazook,40,spyder_dragonscave_tru,5,10"/>
     <property name="act3" value="add_monster arthrobolt,40,spyder_dragonscave_tru,5,10"/>
     <property name="act4" value="add_monster hydrone,40,spyder_dragonscave_tru,5,10"/>
-    <property name="act5" value="start_battle spyder_dragonscave_tru"/>
+    <property name="act5" value="start_battle player,spyder_dragonscave_tru"/>
     <property name="act6" value="translated_dialog spyder_dragonscave_tru2"/>
     <property name="act7" value="set_variable dragonscavetru:yes"/>
     <property name="behav1" value="talk spyder_dragonscave_tru"/>
@@ -347,7 +347,7 @@
     <property name="act0" value="pathfind_to_player spyder_dragonscave_tomas"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_tomas1"/>
     <property name="act2" value="add_monster allagon,35,spyder_dragonscave_tomas,5,10"/>
-    <property name="act3" value="start_battle spyder_dragonscave_tomas"/>
+    <property name="act3" value="start_battle player,spyder_dragonscave_tomas"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_tomas2"/>
     <property name="act6" value="set_variable dragonscavetomas:yes"/>
     <property name="cond1" value="not variable_set dragonscavetomas:yes"/>
@@ -359,7 +359,7 @@
     <property name="act0" value="pathfind_to_player spyder_dragonscave_daenny"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_daenny1"/>
     <property name="act2" value="add_monster eaglace,37,spyder_dragonscave_daenny,5,10"/>
-    <property name="act3" value="start_battle spyder_dragonscave_daenny"/>
+    <property name="act3" value="start_battle player,spyder_dragonscave_daenny"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_daenny2"/>
     <property name="act6" value="set_variable dragonscavedaenny:yes"/>
     <property name="cond1" value="not variable_set dragonscavedaenny:yes"/>
@@ -371,7 +371,7 @@
     <property name="act0" value="pathfind_to_player spyder_dragonscave_cailin"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_cailin1"/>
     <property name="act2" value="add_monster dragarbor,36,spyder_dragonscave_cailin,5,10"/>
-    <property name="act3" value="start_battle spyder_dragonscave_cailin"/>
+    <property name="act3" value="start_battle player,spyder_dragonscave_cailin"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_cailin2"/>
     <property name="act6" value="set_variable dragonscavecailin:yes"/>
     <property name="cond1" value="not variable_set dragonscavecailin:yes"/>
@@ -383,7 +383,7 @@
     <property name="act0" value="pathfind_to_player spyder_dragonscave_lessa"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_lessa1"/>
     <property name="act2" value="add_monster allagon,37,spyder_dragonscave_lessa,5,10"/>
-    <property name="act3" value="start_battle spyder_dragonscave_lessa"/>
+    <property name="act3" value="start_battle player,spyder_dragonscave_lessa"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_lessa2"/>
     <property name="act6" value="set_variable dragonscavelessa:yes"/>
     <property name="cond1" value="not variable_set dragonscavelessa:yes"/>
@@ -395,7 +395,7 @@
     <property name="act0" value="pathfind_to_player spyder_dragonscave_griffin"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_griffin1"/>
     <property name="act2" value="add_monster bigfin,35,spyder_dragonscave_griffin,5,10"/>
-    <property name="act3" value="start_battle spyder_dragonscave_griffin"/>
+    <property name="act3" value="start_battle player,spyder_dragonscave_griffin"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_griffin2"/>
     <property name="act6" value="set_variable dragonscavegriffin:yes"/>
     <property name="cond1" value="not variable_set dragonscavegriffin:yes"/>
@@ -408,7 +408,7 @@
     <property name="act1" value="translated_dialog spyder_dragonscave_benden1"/>
     <property name="act2" value="add_monster dragarbor,36,spyder_dragonscave_benden,5,10"/>
     <property name="act3" value="add_monster sapragon,38,spyder_dragonscave_benden,5,10"/>
-    <property name="act4" value="start_battle spyder_dragonscave_benden"/>
+    <property name="act4" value="start_battle player,spyder_dragonscave_benden"/>
     <property name="act5" value="translated_dialog spyder_dragonscave_benden2"/>
     <property name="act6" value="set_monster_health"/>
     <property name="act7" value="set_monster_status"/>
@@ -422,7 +422,7 @@
     <property name="act0" value="pathfind_to_player spyder_dragonscave_ray"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_ray1"/>
     <property name="act2" value="add_monster ghosteeth,40,spyder_dragonscave_ray,5,10"/>
-    <property name="act3" value="start_battle spyder_dragonscave_ray"/>
+    <property name="act3" value="start_battle player,spyder_dragonscave_ray"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_ray2"/>
     <property name="act6" value="set_variable dragonscaveray:yes"/>
     <property name="cond1" value="not variable_set dragonscaveray:yes"/>
@@ -436,7 +436,7 @@
     <property name="act2" value="add_monster embazook,40,spyder_dragonscave_tru,5,10"/>
     <property name="act3" value="add_monster arthrobolt,40,spyder_dragonscave_tru,5,10"/>
     <property name="act4" value="add_monster hydrone,40,spyder_dragonscave_tru,5,10"/>
-    <property name="act5" value="start_battle spyder_dragonscave_tru"/>
+    <property name="act5" value="start_battle player,spyder_dragonscave_tru"/>
     <property name="act6" value="translated_dialog spyder_dragonscave_tru2"/>
     <property name="act7" value="set_variable dragonscavetru:yes"/>
     <property name="cond1" value="not variable_set dragonscavetru:yes"/>
@@ -448,7 +448,7 @@
     <property name="act0" value="pathfind_to_player spyder_dragonscave_lucille"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_lucille1"/>
     <property name="act2" value="add_monster coleorus,40,spyder_dragonscave_lucille,5,10"/>
-    <property name="act3" value="start_battle spyder_dragonscave_lucille"/>
+    <property name="act3" value="start_battle player,spyder_dragonscave_lucille"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_lucille2"/>
     <property name="act6" value="set_variable dragonscavelucille:yes"/>
     <property name="cond1" value="not variable_set dragonscavelucille:yes"/>
@@ -460,7 +460,7 @@
     <property name="act0" value="pathfind_to_player spyder_dragonscave_mal"/>
     <property name="act1" value="translated_dialog spyder_dragonscave_mal1"/>
     <property name="act2" value="add_monster djinnbo,40,spyder_dragonscave_mal,5,10"/>
-    <property name="act3" value="start_battle spyder_dragonscave_mal"/>
+    <property name="act3" value="start_battle player,spyder_dragonscave_mal"/>
     <property name="act4" value="translated_dialog spyder_dragonscave_mal2"/>
     <property name="act6" value="set_variable dragonscavemal:yes"/>
     <property name="cond1" value="not variable_set dragonscavemal:yes"/>

@@ -85,7 +85,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_alyssa1"/>
     <property name="act2" value="add_monster possessun,40,spyder_scoop_alyssa,5,10"/>
-    <property name="act3" value="start_battle spyder_scoop_alyssa"/>
+    <property name="act3" value="start_battle player,spyder_scoop_alyssa"/>
     <property name="act4" value="translated_dialog spyder_scoop_alyssa2"/>
     <property name="act6" value="set_variable scoopalyssa:yes"/>
     <property name="behav1" value="talk spyder_scoop_alyssa"/>
@@ -105,7 +105,7 @@
     <property name="act2" value="add_monster elofly,30,spyder_scoop_taggart,5,10"/>
     <property name="act3" value="add_monster elowind,35,spyder_scoop_taggart,5,10"/>
     <property name="act4" value="add_monster lapinou,30,spyder_scoop_taggart,5,10"/>
-    <property name="act5" value="start_battle spyder_scoop_taggart"/>
+    <property name="act5" value="start_battle player,spyder_scoop_taggart"/>
     <property name="act6" value="translated_dialog spyder_scoop_taggart2"/>
     <property name="act7" value="set_variable scooptaggart:yes"/>
     <property name="behav1" value="talk spyder_scoop_taggart"/>
@@ -124,7 +124,7 @@
     <property name="act2" value="add_monster birdling,35,spyder_scoop_donald,5,10"/>
     <property name="act3" value="add_monster pigabyte,35,spyder_scoop_donald,5,10"/>
     <property name="act4" value="add_monster zunna,35,spyder_scoop_donald,5,10"/>
-    <property name="act5" value="start_battle spyder_scoop_donald"/>
+    <property name="act5" value="start_battle player,spyder_scoop_donald"/>
     <property name="act6" value="translated_dialog spyder_scoop_donald2"/>
     <property name="act7" value="set_variable scoopdonald:yes"/>
     <property name="behav1" value="talk spyder_scoop_donald"/>
@@ -142,7 +142,7 @@
     <property name="act0" value="pathfind_to_player spyder_scoop_alyssa"/>
     <property name="act1" value="translated_dialog spyder_scoop_alyssa1"/>
     <property name="act2" value="add_monster possessun,40,spyder_scoop_alyssa,5,10"/>
-    <property name="act3" value="start_battle spyder_scoop_alyssa"/>
+    <property name="act3" value="start_battle player,spyder_scoop_alyssa"/>
     <property name="act4" value="translated_dialog spyder_scoop_alyssa2"/>
     <property name="act6" value="set_variable scoopalyssa:yes"/>
     <property name="cond1" value="not variable_set scoopalyssa:yes"/>
@@ -156,7 +156,7 @@
     <property name="act2" value="add_monster elofly,30,spyder_scoop_taggart,5,10"/>
     <property name="act3" value="add_monster elowind,35,spyder_scoop_taggart,5,10"/>
     <property name="act4" value="add_monster lapinou,30,spyder_scoop_taggart,5,10"/>
-    <property name="act5" value="start_battle spyder_scoop_taggart"/>
+    <property name="act5" value="start_battle player,spyder_scoop_taggart"/>
     <property name="act6" value="translated_dialog spyder_scoop_taggart2"/>
     <property name="act7" value="set_variable scooptaggart:yes"/>
     <property name="cond1" value="not variable_set scooptaggart:yes"/>
@@ -170,7 +170,7 @@
     <property name="act2" value="add_monster birdling,35,spyder_scoop_donald,5,10"/>
     <property name="act3" value="add_monster pigabyte,35,spyder_scoop_donald,5,10"/>
     <property name="act4" value="add_monster zunna,35,spyder_scoop_donald,5,10"/>
-    <property name="act5" value="start_battle spyder_scoop_donald"/>
+    <property name="act5" value="start_battle player,spyder_scoop_donald"/>
     <property name="act6" value="translated_dialog spyder_scoop_donald2"/>
     <property name="act7" value="set_variable scoopdonald:yes"/>
     <property name="cond1" value="not variable_set scoopdonald:yes"/>

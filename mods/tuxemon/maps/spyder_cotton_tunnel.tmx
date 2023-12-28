@@ -266,7 +266,7 @@
     <property name="act11" value="translated_dialog spyder_cottontunnel_carlos1"/>
     <property name="act12" value="add_monster agnidon,35,spyder_cottontunnel_carlos,5,10"/>
     <property name="act13" value="add_monster legko,35,spyder_cottontunnel_carlos,5,10"/>
-    <property name="act15" value="start_battle spyder_cottontunnel_carlos"/>
+    <property name="act15" value="start_battle player,spyder_cottontunnel_carlos"/>
     <property name="act16" value="translated_dialog spyder_cottontunnel_carlos2"/>
     <property name="act17" value="set_variable cottontunnelcarlos:yes"/>
     <property name="cond1" value="not variable_set cottontunnelcarlos:yes"/>

@@ -409,7 +409,7 @@
     <property name="act10" value="translated_dialog liela_goes_to_battle"/>
     <property name="act11" value="add_monster capiti,6,liela,27,10"/>
     <property name="act12" value="add_monster aardart,6,liela,27,10"/>
-    <property name="act20" value="start_battle liela"/>
+    <property name="act20" value="start_battle player,liela"/>
     <property name="behav10" value="talk liela"/>
    </properties>
   </object>

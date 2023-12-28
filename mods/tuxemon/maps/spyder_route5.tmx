@@ -249,7 +249,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_route5_sara1"/>
     <property name="act2" value="add_monster capiti,20,spyder_route5_sara,5,10"/>
-    <property name="act3" value="start_battle spyder_route5_sara"/>
+    <property name="act3" value="start_battle player,spyder_route5_sara"/>
     <property name="act4" value="translated_dialog spyder_route5_sara2"/>
     <property name="act6" value="set_variable route5sara:yes"/>
     <property name="behav1" value="talk spyder_route5_sara"/>
@@ -262,7 +262,7 @@
     <property name="act30" value="pathfind spyder_route5_goliath,36,9"/>
     <property name="act40" value="translated_dialog spyder_route5_goliath1"/>
     <property name="act44" value="add_monster spighter,35,spyder_route5_goliath,5,10"/>
-    <property name="act45" value="start_battle spyder_route5_goliath"/>
+    <property name="act45" value="start_battle player,spyder_route5_goliath"/>
     <property name="act46" value="translated_dialog spyder_route5_goliath2"/>
     <property name="act50" value="pathfind spyder_route5_goliath,35,4"/>
     <property name="act80" value="remove_npc spyder_route5_goliath"/>
@@ -288,7 +288,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_route5_edith1"/>
     <property name="act2" value="add_monster aardart,20,spyder_route5_edith,5,10"/>
-    <property name="act3" value="start_battle spyder_route5_edith"/>
+    <property name="act3" value="start_battle player,spyder_route5_edith"/>
     <property name="act4" value="translated_dialog spyder_route5_edith2"/>
     <property name="act6" value="set_variable route5edith:yes"/>
     <property name="behav1" value="talk spyder_route5_edith"/>
@@ -308,7 +308,7 @@
     <property name="act2" value="add_monster elowind,18,spyder_route5_hunter,5,10"/>
     <property name="act3" value="add_monster elofly,16,spyder_route5_hunter,5,10"/>
     <property name="act4" value="add_monster elofly,16,spyder_route5_hunter,5,10"/>
-    <property name="act5" value="start_battle spyder_route5_hunter"/>
+    <property name="act5" value="start_battle player,spyder_route5_hunter"/>
     <property name="act6" value="translated_dialog spyder_route5_hunter2"/>
     <property name="act7" value="set_variable route5hunter:yes"/>
     <property name="behav1" value="talk spyder_route5_hunter"/>
@@ -326,7 +326,7 @@
     <property name="act1" value="translated_dialog spyder_route5_cleo1"/>
     <property name="act2" value="add_monster memnomnom,20,spyder_route5_cleo,5,10"/>
     <property name="act3" value="add_monster memnomnom,20,spyder_route5_cleo,5,10"/>
-    <property name="act4" value="start_battle spyder_route5_cleo"/>
+    <property name="act4" value="start_battle player,spyder_route5_cleo"/>
     <property name="act5" value="translated_dialog spyder_route5_cleo2"/>
     <property name="act6" value="set_variable route5cleo:yes"/>
     <property name="behav1" value="talk spyder_route5_cleo"/>
@@ -344,7 +344,7 @@
     <property name="act1" value="translated_dialog spyder_route5_tryphaena1"/>
     <property name="act2" value="add_monster miaownolith,24,spyder_route5_tryphaena,5,10"/>
     <property name="act3" value="add_monster criniotherme,22,spyder_route5_tryphaena,5,10"/>
-    <property name="act4" value="start_battle spyder_route5_tryphaena"/>
+    <property name="act4" value="start_battle player,spyder_route5_tryphaena"/>
     <property name="act5" value="translated_dialog spyder_route5_tryphaena2"/>
     <property name="act6" value="set_variable route5tryphaena:yes"/>
     <property name="behav1" value="talk spyder_route5_tryphaena"/>
@@ -368,7 +368,7 @@
     <property name="act0" value="pathfind_to_player spyder_route5_sara"/>
     <property name="act1" value="translated_dialog spyder_route5_sara1"/>
     <property name="act2" value="add_monster capiti,20,spyder_route5_sara,5,10"/>
-    <property name="act3" value="start_battle spyder_route5_sara"/>
+    <property name="act3" value="start_battle player,spyder_route5_sara"/>
     <property name="act4" value="translated_dialog spyder_route5_sara2"/>
     <property name="act6" value="set_variable route5sara:yes"/>
     <property name="cond1" value="not variable_set route5sara:yes"/>
@@ -381,7 +381,7 @@
     <property name="act1" value="translated_dialog spyder_route5_cleo1"/>
     <property name="act2" value="add_monster memnomnom,20,spyder_route5_cleo,5,10"/>
     <property name="act3" value="add_monster memnomnom,20,spyder_route5_cleo,5,10"/>
-    <property name="act4" value="start_battle spyder_route5_cleo"/>
+    <property name="act4" value="start_battle player,spyder_route5_cleo"/>
     <property name="act5" value="translated_dialog spyder_route5_cleo2"/>
     <property name="act6" value="set_variable route5cleo:yes"/>
     <property name="cond1" value="not variable_set route5cleo:yes"/>
@@ -394,7 +394,7 @@
     <property name="act1" value="translated_dialog spyder_route5_tryphaena1"/>
     <property name="act2" value="add_monster miaownolith,24,spyder_route5_tryphaena,5,10"/>
     <property name="act3" value="add_monster criniotherme,22,spyder_route5_tryphaena,5,10"/>
-    <property name="act4" value="start_battle spyder_route5_tryphaena"/>
+    <property name="act4" value="start_battle player,spyder_route5_tryphaena"/>
     <property name="act5" value="translated_dialog spyder_route5_tryphaena2"/>
     <property name="act6" value="set_variable route5tryphaena:yes"/>
     <property name="cond1" value="not variable_set route5tryphaena:yes"/>
@@ -406,7 +406,7 @@
     <property name="act0" value="pathfind_to_player spyder_route5_edith"/>
     <property name="act1" value="translated_dialog spyder_route5_edith1"/>
     <property name="act2" value="add_monster aardart,20,spyder_route5_edith,5,10"/>
-    <property name="act3" value="start_battle spyder_route5_edith"/>
+    <property name="act3" value="start_battle player,spyder_route5_edith"/>
     <property name="act4" value="translated_dialog spyder_route5_edith2"/>
     <property name="act6" value="set_variable route5edith:yes"/>
     <property name="cond1" value="not variable_set route5edith:yes"/>

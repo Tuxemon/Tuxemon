@@ -84,7 +84,7 @@
     <property name="act1" value="translated_dialog spyder_scoop_lanth1"/>
     <property name="act2" value="add_monster mrmoswitch,35,spyder_scoop_lanth,5,10"/>
     <property name="act3" value="add_monster picc,35,spyder_scoop_lanth,5,10"/>
-    <property name="act4" value="start_battle spyder_scoop_lanth"/>
+    <property name="act4" value="start_battle player,spyder_scoop_lanth"/>
     <property name="act5" value="translated_dialog spyder_scoop_lanth2"/>
     <property name="act6" value="set_variable scooplanth:yes"/>
     <property name="behav1" value="talk spyder_scoop_lanth"/>
@@ -102,7 +102,7 @@
     <property name="act1" value="translated_dialog spyder_scoop_paine1"/>
     <property name="act2" value="add_monster possessun,35,spyder_scoop_paine,5,10"/>
     <property name="act3" value="add_monster cairfrey,30,spyder_scoop_paine,5,10"/>
-    <property name="act4" value="start_battle spyder_scoop_paine"/>
+    <property name="act4" value="start_battle player,spyder_scoop_paine"/>
     <property name="act5" value="translated_dialog spyder_scoop_paine2"/>
     <property name="act6" value="set_variable scooppaine:yes"/>
     <property name="behav1" value="talk spyder_scoop_paine"/>
@@ -121,7 +121,7 @@
     <property name="act1" value="translated_dialog spyder_scoop_rubid1"/>
     <property name="act2" value="add_monster birdling,35,spyder_scoop_rubid,5,10"/>
     <property name="act3" value="add_monster hatchling,30,spyder_scoop_rubid,5,10"/>
-    <property name="act4" value="start_battle spyder_scoop_rubid"/>
+    <property name="act4" value="start_battle player,spyder_scoop_rubid"/>
     <property name="act5" value="translated_dialog spyder_scoop_rubid2"/>
     <property name="act6" value="set_variable scooprubid:yes"/>
     <property name="behav1" value="talk spyder_scoop_rubid"/>
@@ -140,7 +140,7 @@
     <property name="act1" value="translated_dialog spyder_scoop_berys1"/>
     <property name="act2" value="add_monster propellercat,40,spyder_scoop_berys,5,10"/>
     <property name="act3" value="add_monster embazook,35,spyder_scoop_berys,5,10"/>
-    <property name="act4" value="start_battle spyder_scoop_berys"/>
+    <property name="act4" value="start_battle player,spyder_scoop_berys"/>
     <property name="act5" value="translated_dialog spyder_scoop_berys2"/>
     <property name="act6" value="set_variable scoopberys:yes"/>
     <property name="behav1" value="talk spyder_scoop_berys"/>
@@ -158,7 +158,7 @@
     <property name="act1" value="translated_dialog spyder_scoop_turner1"/>
     <property name="act2" value="add_monster flacono,30,spyder_scoop_turner,5,10"/>
     <property name="act3" value="add_monster squabbit,30,spyder_scoop_turner,5,10"/>
-    <property name="act4" value="start_battle spyder_scoop_turner"/>
+    <property name="act4" value="start_battle player,spyder_scoop_turner"/>
     <property name="act5" value="translated_dialog spyder_scoop_turner2"/>
     <property name="act6" value="set_variable scoopturner:yes"/>
     <property name="behav1" value="talk spyder_scoop_turner"/>
@@ -200,7 +200,7 @@
     <property name="act1" value="translated_dialog spyder_scoop_lanth1"/>
     <property name="act2" value="add_monster mrmoswitch,35,spyder_scoop_lanth,5,10"/>
     <property name="act3" value="add_monster picc,35,spyder_scoop_lanth,5,10"/>
-    <property name="act4" value="start_battle spyder_scoop_lanth"/>
+    <property name="act4" value="start_battle player,spyder_scoop_lanth"/>
     <property name="act5" value="translated_dialog spyder_scoop_lanth2"/>
     <property name="act6" value="set_variable scooplanth:yes"/>
     <property name="cond1" value="not variable_set scooplanth:yes"/>
@@ -213,7 +213,7 @@
     <property name="act1" value="translated_dialog spyder_scoop_berys1"/>
     <property name="act2" value="add_monster propellercat,40,spyder_scoop_berys,5,10"/>
     <property name="act3" value="add_monster embazook,35,spyder_scoop_berys,5,10"/>
-    <property name="act4" value="start_battle spyder_scoop_berys"/>
+    <property name="act4" value="start_battle player,spyder_scoop_berys"/>
     <property name="act5" value="translated_dialog spyder_scoop_berys2"/>
     <property name="act6" value="set_variable scoopberys:yes"/>
     <property name="cond1" value="not variable_set scoopberys:yes"/>
@@ -226,7 +226,7 @@
     <property name="act1" value="translated_dialog spyder_scoop_turner1"/>
     <property name="act2" value="add_monster flacono,30,spyder_scoop_turner,5,10"/>
     <property name="act3" value="add_monster squabbit,30,spyder_scoop_turner,5,10"/>
-    <property name="act4" value="start_battle spyder_scoop_turner"/>
+    <property name="act4" value="start_battle player,spyder_scoop_turner"/>
     <property name="act5" value="translated_dialog spyder_scoop_turner2"/>
     <property name="act6" value="set_variable scoopturner:yes"/>
     <property name="cond1" value="not variable_set scoopturner:yes"/>
@@ -239,7 +239,7 @@
     <property name="act1" value="translated_dialog spyder_scoop_paine1"/>
     <property name="act2" value="add_monster possessun,35,spyder_scoop_paine,5,10"/>
     <property name="act3" value="add_monster cairfrey,30,spyder_scoop_paine,5,10"/>
-    <property name="act4" value="start_battle spyder_scoop_paine"/>
+    <property name="act4" value="start_battle player,spyder_scoop_paine"/>
     <property name="act5" value="translated_dialog spyder_scoop_paine2"/>
     <property name="act6" value="set_variable scooppaine:yes"/>
     <property name="cond1" value="not variable_set scooppaine:yes"/>
@@ -252,7 +252,7 @@
     <property name="act1" value="translated_dialog spyder_scoop_rubid1"/>
     <property name="act2" value="add_monster birdling,35,spyder_scoop_rubid,5,10"/>
     <property name="act3" value="add_monster hatchling,30,spyder_scoop_rubid,5,10"/>
-    <property name="act4" value="start_battle spyder_scoop_rubid"/>
+    <property name="act4" value="start_battle player,spyder_scoop_rubid"/>
     <property name="act5" value="translated_dialog spyder_scoop_rubid2"/>
     <property name="act6" value="set_variable scooprubid:yes"/>
     <property name="cond1" value="not variable_set scooprubid:yes"/>

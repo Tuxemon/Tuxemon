@@ -262,7 +262,7 @@
     <property name="act1" value="translated_dialog spyder_citypark_frances1"/>
     <property name="act2" value="add_monster shybulb,8,spyder_citypark_frances,5,10"/>
     <property name="act3" value="add_monster shybulb,8,spyder_citypark_frances,5,10"/>
-    <property name="act4" value="start_battle spyder_citypark_frances"/>
+    <property name="act4" value="start_battle player,spyder_citypark_frances"/>
     <property name="act5" value="translated_dialog spyder_citypark_frances2"/>
     <property name="act6" value="set_variable citypark_frances:yes"/>
     <property name="behav1" value="talk spyder_citypark_frances"/>
@@ -280,7 +280,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_citypark_bobette1"/>
     <property name="act2" value="add_monster aardorn,10,spyder_citypark_bobette,5,10"/>
-    <property name="act3" value="start_battle spyder_citypark_bobette"/>
+    <property name="act3" value="start_battle player,spyder_citypark_bobette"/>
     <property name="act4" value="translated_dialog spyder_citypark_bobette2"/>
     <property name="act5" value="set_variable citypark_bobette:yes"/>
     <property name="behav1" value="talk spyder_citypark_bobette"/>
@@ -299,7 +299,7 @@
     <property name="act1" value="translated_dialog spyder_citypark_edith1"/>
     <property name="act2" value="add_monster squabbit,8,spyder_citypark_edith,5,10"/>
     <property name="act3" value="add_monster squabbit,8,spyder_citypark_edith,5,10"/>
-    <property name="act4" value="start_battle spyder_citypark_edith"/>
+    <property name="act4" value="start_battle player,spyder_citypark_edith"/>
     <property name="act5" value="translated_dialog spyder_citypark_edith2"/>
     <property name="act6" value="set_variable citypark_edith:yes"/>
     <property name="behav1" value="talk spyder_citypark_edith"/>
@@ -505,7 +505,7 @@
     <property name="act0" value="pathfind_to_player spyder_citypark_bobette"/>
     <property name="act1" value="translated_dialog spyder_citypark_bobette1"/>
     <property name="act2" value="add_monster aardorn,10,spyder_citypark_bobette,5,10"/>
-    <property name="act3" value="start_battle spyder_citypark_bobette"/>
+    <property name="act3" value="start_battle player,spyder_citypark_bobette"/>
     <property name="act4" value="translated_dialog spyder_citypark_bobette2"/>
     <property name="act5" value="set_variable citypark_bobette:yes"/>
     <property name="cond1" value="not variable_set citypark_bobette:yes"/>

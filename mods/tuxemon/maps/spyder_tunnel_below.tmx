@@ -143,7 +143,7 @@
     <property name="act0" value="pathfind_to_player spyder_tunnelb_meitner"/>
     <property name="act1" value="translated_dialog spyder_tunnelb_meitner1"/>
     <property name="act2" value="add_monster masknake,22,spyder_tunnelb_meitner,5,10"/>
-    <property name="act3" value="start_battle spyder_tunnelb_meitner"/>
+    <property name="act3" value="start_battle player,spyder_tunnelb_meitner"/>
     <property name="act4" value="translated_dialog spyder_tunnelb_meitner2"/>
     <property name="act6" value="set_variable tunnelbmeitner:yes"/>
     <property name="cond1" value="not variable_set tunnelbmeitner:yes"/>
@@ -158,7 +158,7 @@
     <property name="act03" value="add_monster noctalo,18,spyder_tunnelb_lute,5,10"/>
     <property name="act04" value="add_monster pipis,16,spyder_tunnelb_lute,5,10"/>
     <property name="act05" value="add_monster strella,20,spyder_tunnelb_lute,5,10"/>
-    <property name="act06" value="start_battle spyder_tunnelb_lute"/>
+    <property name="act06" value="start_battle player,spyder_tunnelb_lute"/>
     <property name="act07" value="translated_dialog spyder_tunnelb_lute2"/>
     <property name="act08" value="set_variable tunnelblute:yes"/>
     <property name="cond1" value="not variable_set tunnelblute:yes"/>
@@ -172,7 +172,7 @@
     <property name="act2" value="add_monster rockat,20,spyder_tunnelb_beryll,5,10"/>
     <property name="act3" value="add_monster ignibus,20,spyder_tunnelb_beryll,5,10"/>
     <property name="act4" value="add_monster grintot,20,spyder_tunnelb_beryll,5,10"/>
-    <property name="act5" value="start_battle spyder_tunnelb_beryll"/>
+    <property name="act5" value="start_battle player,spyder_tunnelb_beryll"/>
     <property name="act6" value="translated_dialog spyder_tunnelb_beryll2"/>
     <property name="act7" value="set_variable tunnelbberyll:yes"/>
     <property name="cond1" value="not variable_set tunnelbberyll:yes"/>

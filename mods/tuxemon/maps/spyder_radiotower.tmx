@@ -118,7 +118,7 @@
     <property name="act1" value="translated_dialog spyder_omnichannel_beaverbrook1"/>
     <property name="act2" value="add_monster mk01_alpha,55,spyder_omnichannel_beaverbrook,5,10"/>
     <property name="act3" value="add_monster mk01_beta,55,spyder_omnichannel_beaverbrook,5,10"/>
-    <property name="act4" value="start_battle spyder_omnichannel_beaverbrook"/>
+    <property name="act4" value="start_battle player,spyder_omnichannel_beaverbrook"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_beaverbrook2"/>
     <property name="act6" value="set_variable omnichannelbeaverbrook:yes"/>
     <property name="act7" value="set_variable kernelquest:yes"/>
@@ -141,7 +141,7 @@
     <property name="act80" value="pathfind player,9,13"/>
     <property name="act81" value="add_monster mk01_alpha,55,spyder_omnichannel_beaverbrook,5,10"/>
     <property name="act82" value="add_monster mk01_beta,55,spyder_omnichannel_beaverbrook,5,10"/>
-    <property name="act90" value="start_battle spyder_omnichannel_beaverbrook"/>
+    <property name="act90" value="start_battle player,spyder_omnichannel_beaverbrook"/>
     <property name="act91" value="translated_dialog spyder_omnichannel_beaverbrook2"/>
     <property name="act92" value="set_variable omnichannelbeaverbrook:yes"/>
     <property name="act93" value="set_variable kernelquest:yes"/>

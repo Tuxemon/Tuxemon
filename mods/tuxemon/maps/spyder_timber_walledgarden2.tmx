@@ -111,7 +111,7 @@
     <property name="act1" value="translated_dialog spyder_walled_osman1"/>
     <property name="act2" value="add_monster miaownolith,50,spyder_walled_osman,5,10"/>
     <property name="act3" value="add_monster pyraminx,50,spyder_walled_osman,5,10"/>
-    <property name="act4" value="start_battle spyder_walled_osman"/>
+    <property name="act4" value="start_battle player,spyder_walled_osman"/>
     <property name="act5" value="translated_dialog spyder_walled_osman2"/>
     <property name="act6" value="set_variable walledosman:yes"/>
     <property name="cond1" value="not variable_set walledosman:yes"/>
@@ -131,7 +131,7 @@
     <property name="act1" value="translated_dialog spyder_walled_alexander1"/>
     <property name="act2" value="add_monster Embazook,50,spyder_walled_alexander,5,10"/>
     <property name="act3" value="add_monster Eruptibus,50,spyder_walled_alexander,5,10"/>
-    <property name="act4" value="start_battle spyder_walled_alexander"/>
+    <property name="act4" value="start_battle player,spyder_walled_alexander"/>
     <property name="act5" value="translated_dialog spyder_walled_alexander2"/>
     <property name="act6" value="set_variable walledalexander:yes"/>
     <property name="cond1" value="not variable_set walledalexander:yes"/>
@@ -158,7 +158,7 @@
     <property name="act1" value="translated_dialog spyder_walled_musa1"/>
     <property name="act2" value="add_monster grintrock,50,spyder_walled_musa,5,10"/>
     <property name="act3" value="add_monster grinflare,50,spyder_walled_musa,5,10"/>
-    <property name="act4" value="start_battle spyder_walled_musa"/>
+    <property name="act4" value="start_battle player,spyder_walled_musa"/>
     <property name="act5" value="translated_dialog spyder_walled_musa2"/>
     <property name="act6" value="set_variable walledmusa:yes"/>
     <property name="cond1" value="not variable_set walledmusa:yes"/>
@@ -171,7 +171,7 @@
     <property name="act1" value="translated_dialog spyder_walled_augustus1"/>
     <property name="act2" value="add_monster statursus,50,spyder_walled_augustus,5,10"/>
     <property name="act3" value="add_monster spycozeus,50,spyder_walled_augustus,5,10"/>
-    <property name="act4" value="start_battle spyder_walled_augustus"/>
+    <property name="act4" value="start_battle player,spyder_walled_augustus"/>
     <property name="act5" value="translated_dialog spyder_walled_augustus2"/>
     <property name="act6" value="set_variable walledaugustus:yes"/>
     <property name="cond1" value="not variable_set walledaugustus:yes"/>
@@ -191,7 +191,7 @@
     <property name="act1" value="translated_dialog spyder_walled_rufus1"/>
     <property name="act2" value="add_monster bamboon,50,spyder_walled_rufus,5,10"/>
     <property name="act3" value="add_monster frondly,50,spyder_walled_rufus,5,10"/>
-    <property name="act4" value="start_battle spyder_walled_rufus"/>
+    <property name="act4" value="start_battle player,spyder_walled_rufus"/>
     <property name="act5" value="translated_dialog spyder_walled_rufus2"/>
     <property name="act6" value="set_variable walledrufus:yes"/>
     <property name="cond1" value="not variable_set walledrufus:yes"/>
@@ -211,7 +211,7 @@
     <property name="act1" value="translated_dialog spyder_walled_crassus1"/>
     <property name="act2" value="add_monster bigfin,50,spyder_walled_crassus,5,10"/>
     <property name="act3" value="add_monster sharpfin,50,spyder_walled_crassus,5,10"/>
-    <property name="act4" value="start_battle spyder_walled_crassus"/>
+    <property name="act4" value="start_battle player,spyder_walled_crassus"/>
     <property name="act5" value="translated_dialog spyder_walled_crassus2"/>
     <property name="act6" value="set_variable walledcrassus:yes"/>
     <property name="cond1" value="not variable_set walledcrassus:yes"/>
@@ -229,7 +229,7 @@
     <property name="act20" value="add_monster apeoro,55,spyder_walled_midas,5,10"/>
     <property name="act21" value="add_monster brewdin,55,spyder_walled_midas,5,10"/>
     <property name="act22" value="add_monster narcileaf,50,spyder_walled_midas,5,10"/>
-    <property name="act30" value="start_battle spyder_walled_midas"/>
+    <property name="act30" value="start_battle player,spyder_walled_midas"/>
     <property name="act40" value="translated_dialog spyder_walled_midas2"/>
     <property name="act50" value="pathfind spyder_walled_midas,9,19"/>
     <property name="act60" value="remove_npc spyder_walled_midas"/>

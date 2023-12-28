@@ -354,7 +354,7 @@
     <property name="act1" value="translated_dialog spyder_lionmountain_jacques1"/>
     <property name="act2" value="add_monster jemuar,60,spyder_lionmountain_jacques,5,10"/>
     <property name="act3" value="add_monster heronquak,55,spyder_lionmountain_jacques,5,10"/>
-    <property name="act4" value="start_battle spyder_lionmountain_jacques"/>
+    <property name="act4" value="start_battle player,spyder_lionmountain_jacques"/>
     <property name="act5" value="translated_dialog spyder_lionmountain_jacques2"/>
     <property name="act6" value="set_variable lionmountainjacques:yes"/>
     <property name="cond1" value="not variable_set lionmountainjacques:yes"/>
@@ -374,7 +374,7 @@
     <property name="act2" value="add_monster tikoal,50,spyder_lionmountain_adam,5,10"/>
     <property name="act3" value="add_monster tikorch,55,spyder_lionmountain_adam,5,10"/>
     <property name="act4" value="add_monster loliferno,55,spyder_lionmountain_adam,5,10"/>
-    <property name="act5" value="start_battle spyder_lionmountain_adam"/>
+    <property name="act5" value="start_battle player,spyder_lionmountain_adam"/>
     <property name="act6" value="translated_dialog spyder_lionmountain_adam2"/>
     <property name="act7" value="set_variable lionmountainadam:yes"/>
     <property name="cond1" value="not variable_set lionmountainadam:yes"/>
@@ -394,7 +394,7 @@
     <property name="act2" value="add_monster bumbulus,50,spyder_lionmountain_emilio,5,10"/>
     <property name="act3" value="add_monster glombroc,50,spyder_lionmountain_emilio,5,10"/>
     <property name="act4" value="add_monster tikorch,30,spyder_lionmountain_emilio,5,10"/>
-    <property name="act5" value="start_battle spyder_lionmountain_emilio"/>
+    <property name="act5" value="start_battle player,spyder_lionmountain_emilio"/>
     <property name="act6" value="translated_dialog spyder_lionmountain_emilio2"/>
     <property name="act7" value="set_variable lionmountainemilio:yes"/>
     <property name="cond1" value="not variable_set lionmountainemilio:yes"/>
@@ -414,7 +414,7 @@
     <property name="act2" value="add_monster fribbit,50,spyder_lionmountain_chhurim,5,10"/>
     <property name="act3" value="add_monster propellercat,50,spyder_lionmountain_chhurim,5,10"/>
     <property name="act4" value="add_monster agnigon,50,spyder_lionmountain_chhurim,5,10"/>
-    <property name="act5" value="start_battle spyder_lionmountain_chhurim"/>
+    <property name="act5" value="start_battle player,spyder_lionmountain_chhurim"/>
     <property name="act6" value="translated_dialog spyder_lionmountain_chhurim2"/>
     <property name="act7" value="set_variable lionmountainchhurim:yes"/>
     <property name="cond1" value="not variable_set lionmountainchhurim:yes"/>
@@ -433,7 +433,7 @@
     <property name="act1" value="pathfind_to_player spyder_lionmountain_tom"/>
     <property name="act2" value="translated_dialog spyder_lionmountain_tom1"/>
     <property name="act3" value="add_monster vivicinder,50,spyder_lionmountain_tom,5,10"/>
-    <property name="act4" value="start_battle spyder_lionmountain_tom"/>
+    <property name="act4" value="start_battle player,spyder_lionmountain_tom"/>
     <property name="act5" value="translated_dialog spyder_lionmountain_tom2"/>
     <property name="act6" value="set_variable lionmountaintom:yes"/>
     <property name="cond1" value="not variable_set lionmountaintom:yes"/>
@@ -453,7 +453,7 @@
     <property name="act2" value="add_monster cardinale,50,spyder_lionmountain_conrad,5,10"/>
     <property name="act3" value="add_monster snaki,50,spyder_lionmountain_conrad,5,10"/>
     <property name="act4" value="add_monster slichen,50,spyder_lionmountain_conrad,5,10"/>
-    <property name="act5" value="start_battle spyder_lionmountain_conrad"/>
+    <property name="act5" value="start_battle player,spyder_lionmountain_conrad"/>
     <property name="act6" value="translated_dialog spyder_lionmountain_conrad2"/>
     <property name="act7" value="set_variable lionmountainconrad:yes"/>
     <property name="cond1" value="not variable_set lionmountainconrad:yes"/>
@@ -474,7 +474,7 @@
     <property name="act2" value="add_monster rosarin,50,spyder_lionmountain_kurt,5,10"/>
     <property name="act3" value="add_monster anu,50,spyder_lionmountain_kurt,5,10"/>
     <property name="act4" value="add_monster cardinale,50,spyder_lionmountain_kurt,5,10"/>
-    <property name="act5" value="start_battle spyder_lionmountain_kurt"/>
+    <property name="act5" value="start_battle player,spyder_lionmountain_kurt"/>
     <property name="act6" value="translated_dialog spyder_lionmountain_kurt2"/>
     <property name="act7" value="set_variable lionmountainkurt:yes"/>
     <property name="cond1" value="not variable_set lionmountainkurt:yes"/>
@@ -495,7 +495,7 @@
     <property name="act2" value="add_monster tadcool,45,spyder_lionmountain_arlene,5,10"/>
     <property name="act3" value="add_monster fribbit,55,spyder_lionmountain_arlene,5,10"/>
     <property name="act4" value="add_monster fribbit,55,spyder_lionmountain_arlene,5,10"/>
-    <property name="act5" value="start_battle spyder_lionmountain_arlene"/>
+    <property name="act5" value="start_battle player,spyder_lionmountain_arlene"/>
     <property name="act6" value="translated_dialog spyder_lionmountain_arlene2"/>
     <property name="act7" value="set_variable lionmountainarlene:yes"/>
     <property name="cond1" value="not variable_set lionmountainarlene:yes"/>
@@ -516,7 +516,7 @@
     <property name="act2" value="add_monster polyrock,55,spyder_lionmountain_david,5,10"/>
     <property name="act3" value="add_monster slichen,50,spyder_lionmountain_david,5,10"/>
     <property name="act4" value="add_monster glombroc,55,spyder_lionmountain_david,5,10"/>
-    <property name="act5" value="start_battle spyder_lionmountain_david"/>
+    <property name="act5" value="start_battle player,spyder_lionmountain_david"/>
     <property name="act6" value="translated_dialog spyder_lionmountain_david2"/>
     <property name="act7" value="set_variable lionmountaindavid:yes"/>
     <property name="cond1" value="not variable_set lionmountaindavid:yes"/>
@@ -537,7 +537,7 @@
     <property name="act2" value="add_monster weavifly,50,spyder_lionmountain_alexander,5,10"/>
     <property name="act3" value="add_monster bumbulus,50,spyder_lionmountain_alexander,5,10"/>
     <property name="act4" value="add_monster nimbulex,55,spyder_lionmountain_alexander,5,10"/>
-    <property name="act5" value="start_battle spyder_lionmountain_alexander"/>
+    <property name="act5" value="start_battle player,spyder_lionmountain_alexander"/>
     <property name="act6" value="translated_dialog spyder_lionmountain_alexander2"/>
     <property name="act7" value="set_variable lionmountainalex:yes"/>
     <property name="cond1" value="not variable_set lionmountainalex:yes"/>

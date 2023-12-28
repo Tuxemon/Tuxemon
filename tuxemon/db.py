@@ -15,8 +15,8 @@ from typing import Any, Literal, Optional, Union, overload
 from pydantic import (
     BaseModel,
     Field,
-    FieldValidationInfo,
     ValidationError,
+    ValidationInfo,
     field_validator,
 )
 from typing_extensions import Annotated
@@ -489,7 +489,7 @@ class MonsterModel(BaseModel):
     # because by default pydantic doesn't validate null fields.
     @field_validator("sprites")
     def set_default_sprites(
-        cls: MonsterModel, v: str, info: FieldValidationInfo
+        cls: MonsterModel, v: str, info: ValidationInfo
     ) -> Union[str, MonsterSpritesModel]:
         slug = info.data.get("slug")
         default = MonsterSpritesModel(
@@ -656,7 +656,7 @@ class TechniqueModel(BaseModel):
     # Custom validation for range
     @field_validator("range")
     def range_validation(
-        cls: TechniqueModel, v: Range, info: FieldValidationInfo
+        cls: TechniqueModel, v: Range, info: ValidationInfo
     ) -> Range:
         # Special indicates that we are not doing damage
         if v == Range.special and "damage" in info.data["effects"]:
@@ -931,6 +931,15 @@ class BattleHudModel(BaseModel):
     )
     tray_opponent: str = Field(
         ..., description="Sprite used for tray opponent background"
+    )
+    hp_bar_player: bool = Field(
+        True, description="Whether draw or not player HP Bar"
+    )
+    hp_bar_opponent: bool = Field(
+        True, description="Whether draw or not opponent HP Bar"
+    )
+    exp_bar_player: bool = Field(
+        True, description="Whether draw or not player EXP Bar"
     )
 
     @field_validator(

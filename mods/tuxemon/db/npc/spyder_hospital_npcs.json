@@ -120,16 +120,6 @@
     ]
   },
   {
-    "slug": "spyder_hospital_billie",
-    "template": [
-      {
-        "sprite_name": "fashionista",
-        "combat_front": "fashionista",
-        "slug": "fashionista"
-      }
-    ]
-  },
-  {
     "slug": "spyder_hospital1_smith",
     "template": [
       {

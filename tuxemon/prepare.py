@@ -62,10 +62,10 @@ SCREEN_SIZE = CONFIG.resolution
 
 # Set the native tile size so we know how much to scale our maps
 # 1 tile = 16 pixels
-TILE_SIZE = (16, 16)
+TILE_SIZE: tuple[int, int] = (16, 16)
 
 # Set the status icon size so we know how much to scale our menu icons
-ICON_SIZE = [7, 7]
+ICON_SIZE: tuple[int, int] = (7, 7)
 
 # Set the healthbar _color
 GFX_HP_BAR: str = "gfx/ui/monster/hp_bar.png"
@@ -155,7 +155,7 @@ BG_MONSTERS: str = "gfx/ui/monster/monster_menu_bg.png"
 
 # Native resolution is similar to the old gameboy resolution. This is
 # used for scaling.
-NATIVE_RESOLUTION = [240, 160]
+NATIVE_RESOLUTION: tuple[int, int] = (240, 160)
 
 
 # Players

@@ -65,19 +65,19 @@ events:
     type: "event"
   Spyder Intro:
     actions:
-    - change_bg spyder_intro01
+    - change_bg gradient_blue,ceo
     - translated_dialog spyder_intro00
     - change_bg spyder_tumble
     - translated_dialog spyder_intro01
-    - change_bg spyder_dol
+    - change_bg gradient_blue,dollfin
     - translated_dialog dollfin
-    - change_bg spyder_ign
+    - change_bg gradient_blue,ignibus
     - translated_dialog ignibus
-    - change_bg spyder_mem
+    - change_bg gradient_blue,memnomnom
     - translated_dialog memnomnom
-    - change_bg spyder_bud
+    - change_bg gradient_blue,budaye
     - translated_dialog budaye
-    - change_bg spyder_gri
+    - change_bg gradient_blue,grintot
     - translated_dialog grintot
     - change_bg spyder_monsters
     - translated_dialog spyder_intro02

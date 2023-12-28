@@ -412,7 +412,7 @@ msgstr "Tordenball"
 msgid "static_field"
 msgstr "Statisk felt"
 
-msgid "spray"
+msgid "spit_poison"
 msgstr "Spray"
 
 msgid "splinter"

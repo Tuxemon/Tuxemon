@@ -1,6 +1,6 @@
 {
   "tech_id": 102,
-  "accuracy": 0.6,
+  "accuracy": 0.8,
   "animation": "x_attack",
   "effects": [
     "damage"
@@ -9,8 +9,8 @@
   "is_fast": false,
   "potency": 0.9,
   "power": 2.2,
-  "range": "ranged",
-  "recharge": 3,
+  "range": "melee",
+  "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "saber",
   "sort": "damage",

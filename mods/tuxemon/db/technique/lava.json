@@ -1,6 +1,6 @@
 {
   "tech_id": 134,
-  "accuracy": 0.6,
+  "accuracy": 0.8,
   "animation": "shield_lava",
   "effects": [
     "give burn,both",
@@ -8,9 +8,9 @@
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.4,
+  "potency": 1,
   "power": 2.9,
-  "range": "touch",
+  "range": "ranged",
   "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "lava",

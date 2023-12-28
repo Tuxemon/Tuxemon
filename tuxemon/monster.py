@@ -579,7 +579,8 @@ class Monster:
             Required experience.
 
         """
-        return (self.level + level_ofs) * prepare.COEFF_EXP
+        required = (self.level + level_ofs) ** prepare.COEFF_EXP
+        return int(required)
 
     def get_sprite(self, sprite: str, **kwargs: Any) -> Sprite:
         """

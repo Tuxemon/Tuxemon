@@ -1,6 +1,6 @@
 {
   "tech_id": 54,
-  "accuracy": 0.75,
+  "accuracy": 0.8,
   "animation": "sparks_gold_alt",
   "effects": [
     "give recover,user",
@@ -8,7 +8,7 @@
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.75,
+  "potency": 1,
   "power": 3,
   "range": "touch",
   "recharge": 3,

@@ -3,12 +3,14 @@
   "accuracy": 0.8,
   "animation": "demiurge",
   "effects": [
+    "give recover,user",
+    "give confused,target",
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.7,
-  "power": 1.3,
+  "potency": 0.8,
+  "power": 2,
   "range": "touch",
   "recharge": 2,
   "sfx": "sfx_blaster",

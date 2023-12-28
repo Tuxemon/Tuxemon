@@ -1,13 +1,13 @@
 {
   "tech_id": 154,
-  "accuracy": 0.6,
+  "accuracy": 0.8,
   "animation": "emerald_radiate",
   "effects": [
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.4,
+  "potency": 0.0,
   "power": 2.9,
   "range": "reliable",
   "recharge": 3,

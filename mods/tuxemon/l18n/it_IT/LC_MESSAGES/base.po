@@ -406,7 +406,7 @@ msgstr "Taglionetto"
 msgid "petrify"
 msgstr "Petrificazione"
 
-msgid "probiscus"
+msgid "proboscis"
 msgstr "Proboscide"
 
 msgid "pseudopod"
@@ -457,8 +457,8 @@ msgstr "Tormenta"
 msgid "splinter"
 msgstr "Scheggia"
 
-msgid "spray"
-msgstr "Spray"
+msgid "spit_poison"
+msgstr "Sputa Veleno"
 
 msgid "stampede"
 msgstr "Fuga"
@@ -2246,9 +2246,6 @@ msgid "goodbye"
 msgstr ""
 "Non permettere che il Trial ti impedisca di vedermi. Infatti... Forse ti "
 "troverò prima."
-
-msgid "spyder_route2_billie"
-msgstr "Billie"
 
 msgid "spyder_route3_twig"
 msgstr "Rametto"

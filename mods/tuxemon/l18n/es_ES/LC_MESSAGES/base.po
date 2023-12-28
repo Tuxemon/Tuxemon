@@ -456,7 +456,7 @@ msgstr "Corte perfecto"
 msgid "petrify"
 msgstr "Petrificar"
 
-msgid "probiscus"
+msgid "proboscis"
 msgstr "Probóscide"
 
 msgid "pseudopod"
@@ -507,7 +507,7 @@ msgstr "Tormenta de Nieve"
 msgid "splinter"
 msgstr "Astilla"
 
-msgid "spray"
+msgid "spit_poison"
 msgstr "Rociar"
 
 msgid "stampede"
@@ -2271,9 +2271,6 @@ msgstr "Marion"
 
 msgid "spyder_route2_roddick"
 msgstr "Roddick"
-
-msgid "spyder_route2_billie"
-msgstr "Billie"
 
 msgid "spyder_shopassistant"
 msgstr "Dependiente"

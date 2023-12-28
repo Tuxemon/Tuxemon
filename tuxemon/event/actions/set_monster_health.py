@@ -5,8 +5,9 @@ from __future__ import annotations
 import logging
 import uuid
 from dataclasses import dataclass
-from typing import Optional, final
+from typing import Optional, Union, final
 
+from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
 
@@ -28,31 +29,35 @@ class SetMonsterHealthAction(EventAction):
         variable: Name of the variable where to store the monster id. If no
             variable is specified, all monsters are healed.
         health: A float value between 0 and 1, which is the percent of max
-            hp to be restored to. If no health is specified, the hp is maxed
+            hp to be restored to. A int value, which is the number of HP
+            to be restored to. If no health is specified, the hp is maxed
             out.
 
     """
 
     name = "set_monster_health"
     variable: Optional[str] = None
-    health: Optional[float] = None
+    health: Optional[Union[float, int]] = None
 
     @staticmethod
-    def set_health(monster: Monster, value: Optional[float]) -> None:
-        if value is None:
-            monster.current_hp = monster.hp
+    def set_health(monster: Monster, value: Union[float, int]) -> None:
+        if isinstance(value, float):
+            monster.current_hp += int(monster.hp * value)
         else:
-            if not 0 <= value <= 1:
-                raise ValueError("monster health must between 0 and 1")
-
-            monster.current_hp = int(monster.hp * value)
+            monster.current_hp += int(value)
+        # checks max and min
+        if monster.current_hp < 0:
+            monster.current_hp = 0
+        if monster.current_hp > monster.hp:
+            monster.current_hp = monster.hp
+        logger.info(f"{monster.name}'s {monster.current_hp} HP")
 
     def start(self) -> None:
         player = self.session.player
         if not player.monsters:
             return
 
-        monster_health = self.health
+        monster_health = 1.0 if self.health is None else self.health
 
         if self.variable is None:
             for mon in player.monsters:
@@ -62,8 +67,8 @@ class SetMonsterHealthAction(EventAction):
                 logger.error(f"Game variable {self.variable} not found")
                 return
             monster_id = uuid.UUID(player.game_variables[self.variable])
-            monster = player.find_monster_by_id(monster_id)
+            monster = get_monster_by_iid(self.session, monster_id)
             if monster is None:
-                logger.error("Monster not found in party")
+                logger.error("Monster not found")
                 return
             self.set_health(monster, monster_health)

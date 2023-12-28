@@ -121,14 +121,14 @@
    <properties>
     <property name="act20" value="translated_dialog spyder_hospital_cure1"/>
     <property name="act30" value="set_variable hospitalcure:yes"/>
-    <property name="act40" value="create_npc spyder_hospital_billie,4,12"/>
-    <property name="act45" value="pathfind spyder_hospital_billie,5,8"/>
+    <property name="act40" value="create_npc spyder_billie,4,12"/>
+    <property name="act45" value="pathfind spyder_billie,5,8"/>
     <property name="act50" value="translated_dialog spyder_hospital_billie1"/>
-    <property name="act51" value="add_monster billie_choice,40,spyder_hospital_billie,5,10"/>
-    <property name="act52" value="add_monster cardinale,40,spyder_hospital_billie,5,10"/>
-    <property name="act53" value="add_monster eyesore,40,spyder_hospital_billie,5,10"/>
-    <property name="act54" value="add_monster viviphyta,40,spyder_hospital_billie,5,10"/>
-    <property name="act60" value="start_battle spyder_hospital_billie"/>
+    <property name="act51" value="add_monster billie_choice,40,spyder_billie,5,10"/>
+    <property name="act52" value="add_monster cardinale,40,spyder_billie,5,10"/>
+    <property name="act53" value="add_monster eyesore,40,spyder_billie,5,10"/>
+    <property name="act54" value="add_monster viviphyta,40,spyder_billie,5,10"/>
+    <property name="act60" value="start_battle spyder_billie"/>
     <property name="act61" value="translated_dialog spyder_hospital_billie2"/>
     <property name="cond1" value="is player_facing_tile"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>

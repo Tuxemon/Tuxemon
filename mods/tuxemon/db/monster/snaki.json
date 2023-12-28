@@ -21,6 +21,18 @@
         {
             "level_learned": 12,
             "technique": "midnight_mantle"
+        },
+        {
+            "level_learned": 24,
+            "technique": "tonguespear"
+        },
+        {
+            "level_learned": 28,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 32,
+            "technique": "chill_mist"
         }
     ],
     "evolutions": [

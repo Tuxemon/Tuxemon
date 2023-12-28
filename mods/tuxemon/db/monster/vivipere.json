@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 8,
-            "technique": "sylvan"
+            "technique": "spit_poison"
         },
         {
             "level_learned": 12,
@@ -50,7 +50,7 @@
         },
         {
             "path": "standard",
-            "at_level": 30,
+            "at_level": 26,
             "monster_slug": "vivitron"
         },
         {

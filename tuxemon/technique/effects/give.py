@@ -82,6 +82,9 @@ class GiveEffect(TechEffect):
                     user.apply_status(status)
                     target.apply_status(status)
                     done = True
+        # show icons
+        if done:
+            combat.reset_status_icons()
         return {
             "success": done,
             "damage": 0,

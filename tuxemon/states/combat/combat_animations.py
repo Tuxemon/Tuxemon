@@ -553,9 +553,9 @@ class CombatAnimations(ABC, Menu[None]):
 
         # animation, begin battle
         if self.is_trainer_battle:
-            combat_front = opponent.template[0].front_path
+            combat_front = opponent.template[0].sprite_name
             enemy = self.load_sprite(
-                combat_front,
+                f"gfx/sprites/player/{combat_front}.png",
                 bottom=back_island.rect.bottom - scale(12),
                 centerx=back_island.rect.centerx,
             )
@@ -573,19 +573,11 @@ class CombatAnimations(ABC, Menu[None]):
         self.sprites.add(enemy)
 
         if self.is_trainer_battle:
-            self.alert(
-                T.format(
-                    "combat_trainer_appeared",
-                    {"name": opponent.name.upper()},
-                ),
-            )
+            params = {"name": opponent.name.upper()}
+            self.alert(T.format("combat_trainer_appeared", params))
         else:
-            self.alert(
-                T.format(
-                    "combat_wild_appeared",
-                    {"name": opp_mon.name.upper()},
-                ),
-            )
+            params = {"name": opp_mon.name.upper()}
+            self.alert(T.format("combat_wild_appeared", params))
 
         front_island = self.load_sprite(
             self.graphics.island_front,
@@ -593,8 +585,9 @@ class CombatAnimations(ABC, Menu[None]):
             left=w,
         )
 
+        combat_back = player.template[0].sprite_name
         player_back = self.load_sprite(
-            player.template[0].back_path,
+            f"gfx/sprites/player/{combat_back}_back.png",
             bottom=front_island.rect.centery + scale(6),
             centerx=front_island.rect.centerx,
         )
@@ -722,16 +715,11 @@ class CombatAnimations(ABC, Menu[None]):
             gotcha = T.translate("gotcha")
             info = None
             # if party
+            params = {"name": monster.name.upper()}
             if len(self.players[0].monsters) >= self.players[0].party_limit:
-                info = T.format(
-                    "gotcha_kennel",
-                    {"name": monster.name.upper()},
-                )
+                info = T.format("gotcha_kennel", params)
             else:
-                info = T.format(
-                    "gotcha_team",
-                    {"name": monster.name.upper()},
-                )
+                info = T.format("gotcha_team", params)
             if info:
                 gotcha += "\n" + info
                 action_time += len(gotcha) * prepare.LETTER_TIME

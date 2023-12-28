@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon import formula, monster
-from tuxemon.event import get_npc
+from tuxemon.event import get_monster_by_iid, get_monster_in_storage, get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from tuxemon.states.dialog import DialogState
@@ -48,20 +48,22 @@ class SpawnMonsterAction(EventAction):
     def start(self) -> None:
         self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
         trainer = get_npc(self.session, self.npc_slug)
-        assert trainer
+        if trainer is None:
+            logger.error(f"{self.npc_slug} not found")
+            return
 
         mother_id = uuid.UUID(trainer.game_variables["breeding_mother"])
         father_id = uuid.UUID(trainer.game_variables["breeding_father"])
 
-        mother = trainer.find_monster_by_id(mother_id)
+        mother = get_monster_by_iid(self.session, mother_id)
         if mother is None:
             logger.debug("Mother not found in party, searching storage boxes.")
-            mother = trainer.find_monster_in_storage(mother_id)
+            mother = get_monster_in_storage(self.session, mother_id)
 
-        father = trainer.find_monster_by_id(father_id)
+        father = get_monster_by_iid(self.session, father_id)
         if father is None:
             logger.debug("Father not found in party, searching storage boxes.")
-            father = trainer.find_monster_in_storage(father_id)
+            father = get_monster_in_storage(self.session, father_id)
 
         if mother is None:
             logger.error(

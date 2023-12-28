@@ -711,8 +711,36 @@ class WorldState(state.State):
             iid: The monster iid.
 
         """
+        for monster in self.get_all_monsters():
+            if monster.instance_id == iid:
+                return monster
+        return None
+
+    def get_all_storages(self) -> list[Monster]:
+        """
+        List of all monsters in the storages.
+
+        Returns:
+            The list of monsters in the storages.
+
+        """
+        monsters = []
         for npc in self.npcs:
-            return npc.find_monster_by_id(iid)
+            for monster in npc.monster_boxes.values():
+                monsters.extend(monster)
+        return monsters
+
+    def get_monster_in_storage(self, iid: uuid.UUID) -> Optional[Monster]:
+        """
+        Get a monster from all the storages.
+
+        Parameters:
+            iid: The monster iid.
+
+        """
+        for monster in self.get_all_storages():
+            if monster.instance_id == iid:
+                return monster
         return None
 
     def check_collision_zones(

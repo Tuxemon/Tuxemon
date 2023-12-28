@@ -932,6 +932,15 @@ class BattleHudModel(BaseModel):
     tray_opponent: str = Field(
         ..., description="Sprite used for tray opponent background"
     )
+    hp_bar_player: bool = Field(
+        True, description="Whether draw or not player HP Bar"
+    )
+    hp_bar_opponent: bool = Field(
+        True, description="Whether draw or not opponent HP Bar"
+    )
+    exp_bar_player: bool = Field(
+        True, description="Whether draw or not player EXP Bar"
+    )
 
     @field_validator(
         "hud_player",

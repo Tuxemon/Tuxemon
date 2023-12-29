@@ -16,7 +16,7 @@ import logging
 import typing
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import fields
-from operator import eq, ge, gt, le, lt, ne
+from operator import add, eq, floordiv, ge, gt, le, lt, mul, ne, sub
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -56,6 +56,13 @@ ValidParameterTypes = Union[
     ValidParameterSingleType,
     Sequence[ValidParameterSingleType],
 ]
+
+ops_dict: Mapping[str, Callable[[float, float], int]] = {
+    "+": add,
+    "-": sub,
+    "*": mul,
+    "/": floordiv,
+}
 
 
 class NamedTupleProtocol(Protocol):

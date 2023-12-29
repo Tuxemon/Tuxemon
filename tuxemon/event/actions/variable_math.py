@@ -3,22 +3,13 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import Callable, Mapping
 from dataclasses import dataclass
-from operator import add, floordiv, mul, sub
 from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.tools import number_or_variable
+from tuxemon.tools import number_or_variable, ops_dict
 
 logger = logging.getLogger(__name__)
-
-ops_dict: Mapping[str, Callable[[float, float], float]] = {
-    "+": add,
-    "-": sub,
-    "*": mul,
-    "/": floordiv,
-}
 
 
 @final

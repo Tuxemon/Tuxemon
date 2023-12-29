@@ -3,12 +3,11 @@
 from __future__ import annotations
 
 import random
-from collections.abc import Callable, Mapping
 from dataclasses import dataclass
-from operator import add, floordiv, mul, sub
 from typing import TYPE_CHECKING
 
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
+from tuxemon.tools import ops_dict
 
 if TYPE_CHECKING:
     from tuxemon.condition.condition import Condition
@@ -17,14 +16,6 @@ if TYPE_CHECKING:
 
 class StatChangeEffectResult(CondEffectResult):
     pass
-
-
-ops_dict: Mapping[str, Callable[[float, float], int]] = {
-    "+": add,
-    "-": sub,
-    "*": mul,
-    "/": floordiv,
-}
 
 
 @dataclass

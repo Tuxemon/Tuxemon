@@ -1,7 +1,7 @@
 {
   "conditions": [],
   "effects": [
-    "increase melee,0.05"
+    "change_stat melee,0.05"
   ],
   "slug": "raise_melee",
   "sort": "utility",

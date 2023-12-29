@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "flamethrower"
+            "technique": "spit_poison"
         },
         {
             "level_learned": 2,
-            "technique": "pseudopod"
+            "technique": "crystal"
         },
         {
             "level_learned": 6,
@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 8,
-            "technique": "fire_claw"
+            "technique": "ruby"
         },
         {
             "level_learned": 12,

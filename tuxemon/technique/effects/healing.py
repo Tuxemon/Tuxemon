@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional
 
+from tuxemon.prepare import COEFF_DAMAGE
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -49,7 +50,7 @@ class HealingEffect(TechEffect):
             raise ValueError(f"{self.objective} must be user or target")
         # check healing power
         if isinstance(tech.healing_power, int):
-            heal = (7 + mon.level) * tech.healing_power
+            heal = (COEFF_DAMAGE + mon.level) * tech.healing_power
         diff = mon.hp - mon.current_hp
         if hit:
             tech.hit = True

@@ -2,11 +2,12 @@
   "animation": null,
   "category": "negative",
   "effects": [
-    "noddingoff"
+    "noddingoff 0.5"
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_noddingoff.png",
   "range": "special",
+  "repl_tech": "empty",
   "sfx": "sfx_pulse",
   "slug": "noddingoff",
   "sort": "meta",

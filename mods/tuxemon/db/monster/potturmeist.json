@@ -25,6 +25,22 @@
         {
             "level_learned": 16,
             "technique": "lineage"
+        },
+        {
+            "level_learned": 20,
+            "technique": "ruby"
+        },
+        {
+            "level_learned": 24,
+            "technique": "terror"
+        },
+        {
+            "level_learned": 28,
+            "technique": "phantasmal_force"
+        },
+        {
+            "level_learned": 32,
+            "technique": "crystal"
         }
     ],
     "evolutions": [

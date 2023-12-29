@@ -187,7 +187,7 @@
     <property name="act1" value="translated_dialog spyder_walled_girard1"/>
     <property name="act2" value="add_monster tigrock,50,spyder_walled_girard,5,10"/>
     <property name="act3" value="add_monster anu,50,spyder_walled_girard,5,10"/>
-    <property name="act4" value="add_monster komodraw,50,spyder_walled_girard,5,10"/>
+    <property name="act4" value="add_monster komoduel,50,spyder_walled_girard,5,10"/>
     <property name="act5" value="start_battle spyder_walled_girard"/>
     <property name="act6" value="translated_dialog spyder_walled_girard2"/>
     <property name="act7" value="set_variable walledgirard:yes"/>

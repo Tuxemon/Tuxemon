@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon import formula
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 
 if TYPE_CHECKING:
@@ -21,20 +20,21 @@ class PoisonedEffectResult(CondEffectResult):
 class PoisonedEffect(CondEffect):
     """
     This effect has a chance to apply the poisoned status.
+
+    Parameters:
+        divisor: The divisor.
+
     """
 
     name = "poisoned"
+    divisor: int
 
     def apply(
         self, condition: Condition, target: Monster
     ) -> PoisonedEffectResult:
         poisoned: bool = False
-        if (
-            condition.phase == "perform_action_status"
-            and condition.slug == "poison"
-        ):
-            damage = formula.damage_full_hp(target, 8)
-            target.current_hp -= damage
+        if condition.phase == "perform_action_status":
+            target.current_hp -= target.hp // self.divisor
             poisoned = True
 
         return {

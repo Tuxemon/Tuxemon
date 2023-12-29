@@ -1,7 +1,7 @@
 {
   "conditions": [],
   "effects": [
-    "increase speed,0.05"
+    "change_stat speed,0.05"
   ],
   "slug": "raise_speed",
   "sort": "utility",

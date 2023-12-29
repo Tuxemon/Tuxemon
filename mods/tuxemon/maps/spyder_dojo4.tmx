@@ -119,19 +119,19 @@
    <properties>
     <property name="act01" value="player_stop"/>
     <property name="act02" value="lock_controls"/>
-    <property name="act03" value="create_npc spyder_dojo_billie,10,9"/>
-    <property name="act04" value="pathfind_to_player spyder_dojo_billie,down"/>
+    <property name="act03" value="create_npc spyder_billie,10,9"/>
+    <property name="act04" value="pathfind_to_player spyder_billie,down"/>
     <property name="act05" value="unlock_controls"/>
     <property name="act08" value="translated_dialog spyder_dojo_billie1"/>
-    <property name="act20" value="add_monster billie_choice,35,spyder_dojo_billie,5,10"/>
-    <property name="act21" value="add_monster eyesore,35,spyder_dojo_billie,5,10"/>
-    <property name="act22" value="add_monster cardiwing,35,spyder_dojo_billie,5,10"/>
-    <property name="act23" value="add_monster viviphyta,35,spyder_dojo_billie,5,10"/>
-    <property name="act30" value="start_battle spyder_dojo_billie"/>
+    <property name="act20" value="add_monster billie_choice,35,spyder_billie,5,10"/>
+    <property name="act21" value="add_monster eyesore,35,spyder_billie,5,10"/>
+    <property name="act22" value="add_monster cardiwing,35,spyder_billie,5,10"/>
+    <property name="act23" value="add_monster viviphyta,35,spyder_billie,5,10"/>
+    <property name="act30" value="start_battle spyder_billie"/>
     <property name="act40" value="translated_dialog spyder_dojo_billie2"/>
-    <property name="act50" value="pathfind spyder_dojo_billie,10,9"/>
-    <property name="act60" value="npc_face spyder_dojo_billie,left"/>
-    <property name="act70" value="remove_npc spyder_dojo_billie"/>
+    <property name="act50" value="pathfind spyder_billie,10,9"/>
+    <property name="act60" value="npc_face spyder_billie,left"/>
+    <property name="act70" value="remove_npc spyder_billie"/>
     <property name="act80" value="set_tuxepedia eyesore,seen"/>
     <property name="act81" value="set_tuxepedia cardiwing,seen"/>
     <property name="act82" value="set_tuxepedia vivipere,seen"/>

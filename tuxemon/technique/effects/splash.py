@@ -25,6 +25,7 @@ class SplashEffect(TechEffect):
     """
 
     name = "splash"
+    divisor: int
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
@@ -39,7 +40,7 @@ class SplashEffect(TechEffect):
             target.current_hp -= damage
         else:
             tech.hit = True
-            damage //= 2
+            damage //= self.divisor
             target.current_hp -= damage
         return {
             "success": bool(damage),

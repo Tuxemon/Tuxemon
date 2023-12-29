@@ -60,5 +60,5 @@ class WithdrawMonsterAction(EventAction):
             logger.error("Monster owner not found")
             return
         character.remove_monster_from_storage(monster)
-
         trainer.add_monster(monster, len(trainer.monsters))
+        logger.info(f"{trainer.name} withdrawn {monster.name}!")

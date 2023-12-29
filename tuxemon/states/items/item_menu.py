@@ -114,22 +114,18 @@ class ItemMenuState(Menu[Item]):
             for i in item.conditions:
                 if i.name == "location_inside":
                     loc_inside = getattr(i, "location_inside")
-                    msg = T.format(
-                        "item_used_wrong_location_inside",
-                        {
-                            "name": item.name,
-                            "here": T.translate(loc_inside),
-                        },
-                    )
+                    params = {
+                        "name": item.name.upper(),
+                        "here": T.translate(loc_inside),
+                    }
+                    msg = T.format("item_used_wrong_location_inside", params)
                 elif i.name == "location_type":
                     loc_type = getattr(i, "location_type")
-                    msg = T.format(
-                        "item_used_wrong_location_type",
-                        {
-                            "name": item.name,
-                            "here": T.translate(loc_type),
-                        },
-                    )
+                    params = {
+                        "name": item.name.upper(),
+                        "here": T.translate(loc_type),
+                    }
+                    msg = T.format("item_used_wrong_location_type", params)
                 elif i.name == "facing_tile" or i.name == "facing_sprite":
                     msg = T.format("item_cannot_use_here", {"name": item.name})
             tools.open_dialog(local_session, [msg])

@@ -46,7 +46,7 @@ class RemoveEffect(TechEffect):
                 else:
                     if has_status(user, self.condition):
                         done = True
-                        target.status.clear()
+                        user.status.clear()
             elif self.objective == "target":
                 if self.condition == "all":
                     done = True

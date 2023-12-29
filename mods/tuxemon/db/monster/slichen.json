@@ -29,12 +29,36 @@
         {
             "level_learned": 20,
             "technique": "maori"
+        },
+        {
+            "level_learned": 28,
+            "technique": "breath"
+        },
+        {
+            "level_learned": 32,
+            "technique": "lantern"
+        },
+        {
+            "level_learned": 34,
+            "technique": "surge"
+        },
+        {
+            "level_learned": 38,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 52,
+            "technique": "earthquake"
+        },
+        {
+            "level_learned": 56,
+            "technique": "thunderball"
         }
     ],
     "evolutions": [
         {
             "path": "standard",
-            "at_level": 25,
+            "at_level": 26,
             "monster_slug": "glombroc"
         }
     ],

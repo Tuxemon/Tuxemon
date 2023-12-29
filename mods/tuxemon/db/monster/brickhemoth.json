@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 6,
-            "technique": "mudslide"
+            "technique": "riposte"
         },
         {
             "level_learned": 8,
@@ -28,7 +28,7 @@
         },
         {
             "level_learned": 32,
-            "technique": "ice_claw"
+            "technique": "wall_of_steel"
         },
         {
             "level_learned": 34,
@@ -44,7 +44,7 @@
         },
         {
             "level_learned": 52,
-            "technique": "biting_winds"
+            "technique": "mudslide"
         }
     ],
     "evolutions": [],

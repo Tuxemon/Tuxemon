@@ -25,6 +25,22 @@
         {
             "level_learned": 10,
             "technique": "goad"
+        },
+        {
+            "level_learned": 16,
+            "technique": "geyser"
+        },
+        {
+            "level_learned": 20,
+            "technique": "sleeping_powder"
+        },
+        {
+            "level_learned": 24,
+            "technique": "venomous_tentacle"
+        },
+        {
+            "level_learned": 28,
+            "technique": "icicle_spear"
         }
     ],
     "evolutions": [

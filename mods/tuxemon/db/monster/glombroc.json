@@ -45,6 +45,14 @@
         {
             "level_learned": 38,
             "technique": "mudslide"
+        },
+        {
+            "level_learned": 52,
+            "technique": "earthquake"
+        },
+        {
+            "level_learned": 56,
+            "technique": "thunderball"
         }
     ],
     "evolutions": [

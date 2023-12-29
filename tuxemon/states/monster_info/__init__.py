@@ -51,7 +51,8 @@ class MonsterInfoState(PygameMenuState):
         types = " ".join(map(lambda s: T.translate(s.slug), monster.types))
         # weight and height
         results = db.lookup(monster.slug, table="monster")
-        diff_weight, diff_height = formula.weight_height_diff(monster, results)
+        diff_weight = formula.diff_percentage(monster.weight, results.weight)
+        diff_height = formula.diff_percentage(monster.height, results.height)
         unit = local_session.player.game_variables["unit_measure"]
         if unit == "Metric":
             mon_weight = monster.weight

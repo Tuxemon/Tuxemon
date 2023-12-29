@@ -129,8 +129,8 @@
    <properties>
     <property name="act0" value="pathfind_to_player spyder_walled_alexander"/>
     <property name="act1" value="translated_dialog spyder_walled_alexander1"/>
-    <property name="act2" value="add_monster Embazook,50,spyder_walled_alexander,5,10"/>
-    <property name="act3" value="add_monster Eruptibus,50,spyder_walled_alexander,5,10"/>
+    <property name="act2" value="add_monster embazook,50,spyder_walled_alexander,5,10"/>
+    <property name="act3" value="add_monster eruptibus,50,spyder_walled_alexander,5,10"/>
     <property name="act4" value="start_battle spyder_walled_alexander"/>
     <property name="act5" value="translated_dialog spyder_walled_alexander2"/>
     <property name="act6" value="set_variable walledalexander:yes"/>

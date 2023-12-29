@@ -31,20 +31,14 @@ class ChargingEffect(CondEffect):
         player = target.owner
         assert player
         cond: Optional[Condition] = None
-        if (
-            condition.phase == "perform_action_tech"
-            and condition.slug == "charging"
-        ):
+        if condition.phase == "perform_action_tech":
             target.status.clear()
             if condition.repl_tech:
                 cond = Condition()
                 cond.load(condition.repl_tech)
                 cond.steps = player.steps
                 cond.link = target
-        if (
-            condition.phase == "perform_action_item"
-            and condition.slug == "charging"
-        ):
+        if condition.phase == "perform_action_item":
             target.status.clear()
             if condition.repl_item:
                 cond = Condition()

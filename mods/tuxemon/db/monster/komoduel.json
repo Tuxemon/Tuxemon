@@ -1,0 +1,73 @@
+{
+    "slug": "komoduel",
+    "category": "gunslinger",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "riposte"
+        },
+        {
+            "level_learned": 2,
+            "technique": "bullet"
+        },
+        {
+            "level_learned": 6,
+            "technique": "sudden_glow"
+        },
+        {
+            "level_learned": 8,
+            "technique": "flamethrower"
+        },
+        {
+            "level_learned": 12,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 16,
+            "technique": "beam"
+        },
+        {
+            "level_learned": 20,
+            "technique": "supernova"
+        },
+        {
+            "level_learned": 24,
+            "technique": "breathe_fire"
+        },
+        {
+            "level_learned": 28,
+            "technique": "chameleon"
+        },
+        {
+            "level_learned": 32,
+            "technique": "wall_fire"
+        },
+        {
+            "level_learned": 36,
+            "technique": "fire_shield"
+        },
+        {
+            "level_learned": 40,
+            "technique": "energy_claws"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "komodraw",
+            "evo_stage": "basic"
+        }
+    ],
+    "shape": "humanoid",
+    "stage": "stage1",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 278,
+    "height": 165,
+    "weight": 75,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

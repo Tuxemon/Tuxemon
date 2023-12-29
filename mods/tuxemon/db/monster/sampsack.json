@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "invictus"
+            "technique": "punch"
         },
         {
             "level_learned": 2,
@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 8,
-            "technique": "bullet"
+            "technique": "invictus"
         },
         {
             "level_learned": 12,

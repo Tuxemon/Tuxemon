@@ -15,8 +15,8 @@ from typing import Any, Literal, Optional, Union, overload
 from pydantic import (
     BaseModel,
     Field,
-    FieldValidationInfo,
     ValidationError,
+    ValidationInfo,
     field_validator,
 )
 from typing_extensions import Annotated
@@ -165,6 +165,7 @@ class EvolutionType(str, Enum):
     standard = "standard"
     stat = "stat"
     tech = "tech"
+    traded = "traded"
 
 
 class StatType(str, Enum):
@@ -369,7 +370,11 @@ class MonsterEvolutionItemModel(BaseModel):
     item: Optional[str] = Field(None, description="Item parameter.")
     inside: bool = Field(
         None,
-        description="Location parameter: inside true or inside false (outside).",
+        description="Location parameter: whether the monster is inside or not.",
+    )
+    traded: bool = Field(
+        None,
+        description="Traded parameter: whether the monster is traded or not.",
     )
     variable: Optional[str] = Field(
         None, description="Variable parameter based on game variables."
@@ -518,7 +523,7 @@ class MonsterModel(BaseModel):
     # because by default pydantic doesn't validate null fields.
     @field_validator("sprites")
     def set_default_sprites(
-        cls: MonsterModel, v: str, info: FieldValidationInfo
+        cls: MonsterModel, v: str, info: ValidationInfo
     ) -> Union[str, MonsterSpritesModel]:
         slug = info.data.get("slug")
         default = MonsterSpritesModel(
@@ -685,7 +690,7 @@ class TechniqueModel(BaseModel):
     # Custom validation for range
     @field_validator("range")
     def range_validation(
-        cls: TechniqueModel, v: Range, info: FieldValidationInfo
+        cls: TechniqueModel, v: Range, info: ValidationInfo
     ) -> Range:
         # Special indicates that we are not doing damage
         if v == Range.special and "damage" in info.data["effects"]:
@@ -798,11 +803,11 @@ class ConditionModel(BaseModel):
     )
     repl_tech: Optional[str] = Field(
         None,
-        description="With which status reply after a tech used",
+        description="With which status or technique reply after a tech used",
     )
     repl_item: Optional[str] = Field(
         None,
-        description="With which status reply after an item used",
+        description="With which status or technique reply after an item used",
     )
     gain_cond: Optional[str] = Field(
         None,
@@ -858,7 +863,11 @@ class ConditionModel(BaseModel):
 
     @field_validator("repl_tech", "repl_item")
     def status_exists(cls: ConditionModel, v: Optional[str]) -> Optional[str]:
-        if not v or has.db_entry("condition", v):
+        if (
+            not v
+            or has.db_entry("condition", v)
+            or has.db_entry("technique", v)
+        ):
             return v
         raise ValueError(f"the status {v} doesn't exist in the db")
 
@@ -936,7 +945,7 @@ class NpcTemplateModel(BaseModel):
 
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
-    forfeit: bool = Field(True, description="Whether you can forfeit or not")
+    forfeit: bool = Field(False, description="Whether you can forfeit or not")
     template: Sequence[NpcTemplateModel] = Field(
         [], description="List of templates"
     )
@@ -960,6 +969,15 @@ class BattleHudModel(BaseModel):
     )
     tray_opponent: str = Field(
         ..., description="Sprite used for tray opponent background"
+    )
+    hp_bar_player: bool = Field(
+        True, description="Whether draw or not player HP Bar"
+    )
+    hp_bar_opponent: bool = Field(
+        True, description="Whether draw or not opponent HP Bar"
+    )
+    exp_bar_player: bool = Field(
+        True, description="Whether draw or not player EXP Bar"
     )
 
     @field_validator(

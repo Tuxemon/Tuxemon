@@ -29,16 +29,14 @@ class ScopeEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> ScopeEffectResult:
-        extra = T.format(
-            "combat_scope",
-            {
-                "AR": target.armour,
-                "DE": target.dodge,
-                "ME": target.melee,
-                "RD": target.ranged,
-                "SD": target.speed,
-            },
-        )
+        params = {
+            "AR": target.armour,
+            "DE": target.dodge,
+            "ME": target.melee,
+            "RD": target.ranged,
+            "SD": target.speed,
+        }
+        extra = T.format("combat_scope", params)
         return {
             "success": True,
             "damage": 0,

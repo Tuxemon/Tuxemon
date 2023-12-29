@@ -37,6 +37,18 @@
         {
             "level_learned": 40,
             "technique": "fluff_up"
+        },
+        {
+            "level_learned": 56,
+            "technique": "whirlwind"
+        },
+        {
+            "level_learned": 60,
+            "technique": "wing_tip"
+        },
+        {
+            "level_learned": 64,
+            "technique": "shadow_boxing"
         }
     ],
     "evolutions": [

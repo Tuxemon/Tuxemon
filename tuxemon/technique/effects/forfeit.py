@@ -37,12 +37,8 @@ class ForfeitEffect(TechEffect):
         var["battle_last_result"] = OutputBattle.forfeit
         var["teleport_clinic"] = OutputBattle.lost
         combat._run = True
-        extra = T.format(
-            "combat_forfeit",
-            {
-                "npc": combat.players[1].name,
-            },
-        )
+        params = {"npc": combat.players[1].name.upper()}
+        extra = T.format("combat_forfeit", params)
         # trigger forfeit
         for remove in combat.players:
             combat.clean_combat()

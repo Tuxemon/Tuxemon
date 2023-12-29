@@ -46,18 +46,12 @@ class EvolutionAction(EventAction):
             client.pop_state()
 
         def question_evolution(monster: Monster, evolved: Monster) -> None:
-            open_dialog(
-                self.session,
-                [
-                    T.format(
-                        "evolution_confirmation",
-                        {
-                            "name": monster.name.upper(),
-                            "evolve": evolved.name.upper(),
-                        },
-                    )
-                ],
-            )
+            params = {
+                "name": monster.name.upper(),
+                "evolve": evolved.name.upper(),
+            }
+            msg = T.format("evolution_confirmation", params)
+            open_dialog(self.session, [msg])
             open_choice_dialog(
                 self.session,
                 menu=(

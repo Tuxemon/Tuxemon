@@ -2,11 +2,10 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from operator import eq, ge, gt, le, lt, ne
-
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
+from tuxemon.tools import compare
 
 
 class MoneyIsCondition(EventCondition):
@@ -50,19 +49,6 @@ class MoneyIsCondition(EventCondition):
 
         # Check if the condition is true
         if wallet in player.money:
-            if operator == "less_than":
-                return bool(lt(player.money[wallet], int(amount)))
-            elif operator == "less_or_equal":
-                return bool(le(player.money[wallet], int(amount)))
-            elif operator == "greater_than":
-                return bool(gt(player.money[wallet], int(amount)))
-            elif operator == "greater_or_equal":
-                return bool(ge(player.money[wallet], int(amount)))
-            elif operator == "equals":
-                return bool(eq(player.money[wallet], int(amount)))
-            elif operator == "not_equals":
-                return bool(ne(player.money[wallet], int(amount)))
-            else:
-                raise ValueError(f"{operator} is incorrect.")
+            return compare(operator, player.money[wallet], int(amount))
         else:
             return False

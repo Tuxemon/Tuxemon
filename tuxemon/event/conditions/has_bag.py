@@ -2,11 +2,10 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from operator import eq, ge, gt, le, lt, ne
-
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
+from tuxemon.tools import compare
 
 
 class HasBagCondition(EventCondition):
@@ -37,17 +36,4 @@ class HasBagCondition(EventCondition):
             if itm.visible:
                 sum_total.append(itm.quantity)
         bag_size = sum(sum_total)
-        if check == "less_than":
-            return bool(lt(bag_size, number))
-        elif check == "less_or_equal":
-            return bool(le(bag_size, number))
-        elif check == "greater_than":
-            return bool(gt(bag_size, number))
-        elif check == "greater_or_equal":
-            return bool(ge(bag_size, number))
-        elif check == "equals":
-            return bool(eq(bag_size, number))
-        elif check == "not_equals":
-            return bool(ne(bag_size, number))
-        else:
-            raise ValueError(f"{check} is incorrect.")
+        return compare(check, bag_size, number)

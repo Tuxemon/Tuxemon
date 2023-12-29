@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-from operator import eq, ge, gt, le, lt
 
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
+from tuxemon.tools import compare
 
 
 class HasItemCondition(EventCondition):
@@ -20,7 +20,8 @@ class HasItemCondition(EventCondition):
         character: Either "player" or npc slug name (e.g. "npc_maple").
         item: The item slug name (e.g. "item_cherry").
         operator: Numeric comparison operator. Accepted values are "less_than",
-            "greater_than", "equals", "less_or_equal" and "greater_or_equal".
+            "less_or_equal", "greater_than", "greater_or_equal", "equals"
+            and "not_equals".
         quantity: Quantity to compare with.
 
     """
@@ -42,16 +43,7 @@ class HasItemCondition(EventCondition):
         """
 
         def op(itm_qty: int, op: str, qty: int) -> bool:
-            if op == "less_than":
-                return bool(lt(itm_qty, qty))
-            elif op == "less_or_equal":
-                return bool(le(itm_qty, qty))
-            elif op == "greater_than":
-                return bool(gt(itm_qty, qty))
-            elif op == "greater_or_equal":
-                return bool(ge(itm_qty, qty))
-            else:
-                return bool(eq(itm_qty, qty))
+            return compare(op, itm_qty, qty)
 
         npc_slug, itm_slug = condition.parameters[:2]
         npc = get_npc(session, npc_slug)

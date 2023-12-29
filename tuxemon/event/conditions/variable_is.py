@@ -7,7 +7,7 @@ import logging
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
-from tuxemon.tools import number_or_variable
+from tuxemon.tools import compare, number_or_variable
 
 logger = logging.getLogger(__name__)
 
@@ -46,19 +46,5 @@ class VariableIsCondition(EventCondition):
         operand1 = number_or_variable(session, condition.parameters[0])
         operation = condition.parameters[1]
         operand2 = number_or_variable(session, condition.parameters[2])
-
-        # Check if the condition is true
-        if operation == "==" or operation == "equals":
-            return operand1 == operand2
-        elif operation == "!=" or operation == "not_equals":
-            return operand1 != operand2
-        elif operation == ">" or operation == "greater_than":
-            return operand1 > operand2
-        elif operation == ">=" or operation == "greater_or_equal":
-            return operand1 >= operand2
-        elif operation == "<" or operation == "less_than":
-            return operand1 < operand2
-        elif operation == "<=" or operation == "less_or_equal":
-            return operand1 <= operand2
-        else:
-            raise ValueError(f"invalid operation type {operation}")
+        logger.info(f"{operand1} {operation} {operand2}")
+        return compare(operation, operand1, operand2)

@@ -1,15 +1,18 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+import logging
 
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 from tuxemon.tools import compare
 
+logger = logging.getLogger(__name__)
+
 
 class HasItemCondition(EventCondition):
     """
-    Check to see if a NPC inventory contains something.
+    Check to see if a character inventory contains something.
 
     Script usage:
         .. code-block::
@@ -29,35 +32,21 @@ class HasItemCondition(EventCondition):
     name = "has_item"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """
-        Check to see a character has a particular number of items.
-
-        Parameters:
-            session: The session object
-            condition: The map condition object.
-
-        Returns:
-            Whether the target character has the desired quantity of
-            the specified item.
-
-        """
-
         def op(itm_qty: int, op: str, qty: int) -> bool:
             return compare(op, itm_qty, qty)
 
         npc_slug, itm_slug = condition.parameters[:2]
         npc = get_npc(session, npc_slug)
-        if npc is not None:
-            assert npc
-            itm = npc.find_item(itm_slug)
-            if itm is None:
-                return False
-            else:
-                if len(condition.parameters) > 2:
-                    operator = condition.parameters[2].lower()
-                    qty = int(condition.parameters[3])
-                    return op(itm.quantity, operator, qty)
-                else:
-                    return True
+        if npc is None:
+            logger.error(f"{npc_slug} doesn't exist.")
+            return False
+        itm = npc.find_item(itm_slug)
+        if itm is None:
+            return False
         else:
-            raise ValueError(f"{npc_slug} doesn't exist.")
+            if len(condition.parameters) > 2:
+                operator = condition.parameters[2].lower()
+                qty = int(condition.parameters[3])
+                return op(itm.quantity, operator, qty)
+            else:
+                return True

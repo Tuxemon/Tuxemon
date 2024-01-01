@@ -28,19 +28,6 @@ class PartySizeCondition(EventCondition):
     name = "party_size"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """
-        Check the party size.
-
-        Parameters:
-            session: The session object
-            condition: The map condition object.
-
-        Returns:
-            Result of the comparison between the party size and the chosen
-            value.
-
-        """
-        check = str(condition.parameters[0])
-        number = int(condition.parameters[1])
+        operator, value = condition.parameters[:2]
         party_size = len(session.player.monsters)
-        return compare(check, party_size, number)
+        return compare(operator, party_size, int(value))

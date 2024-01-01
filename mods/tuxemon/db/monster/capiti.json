@@ -65,7 +65,6 @@
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 32,
             "monster_slug": "capinyah"
         }

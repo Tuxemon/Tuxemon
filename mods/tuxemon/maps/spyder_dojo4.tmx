@@ -132,12 +132,12 @@
     <property name="act50" value="pathfind spyder_billie,10,9"/>
     <property name="act60" value="npc_face spyder_billie,left"/>
     <property name="act70" value="remove_npc spyder_billie"/>
-    <property name="act80" value="set_tuxepedia eyesore,seen"/>
-    <property name="act81" value="set_tuxepedia cardiwing,seen"/>
-    <property name="act82" value="set_tuxepedia vivipere,seen"/>
-    <property name="act83" value="set_tuxepedia viviphyta,seen"/>
-    <property name="act84" value="set_tuxepedia eyenemy,seen"/>
-    <property name="act85" value="set_tuxepedia cardiling,seen"/>
+    <property name="act80" value="set_tuxepedia player,eyesore,seen"/>
+    <property name="act81" value="set_tuxepedia player,cardiwing,seen"/>
+    <property name="act82" value="set_tuxepedia player,vivipere,seen"/>
+    <property name="act83" value="set_tuxepedia player,viviphyta,seen"/>
+    <property name="act84" value="set_tuxepedia player,eyenemy,seen"/>
+    <property name="act85" value="set_tuxepedia player,cardiling,seen"/>
     <property name="act90" value="set_variable dojobillie:yes"/>
     <property name="act95" value="translated_dialog spyder_dojo_billie3"/>
     <property name="cond1" value="not variable_set dojobillie:yes"/>

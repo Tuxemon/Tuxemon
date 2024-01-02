@@ -825,8 +825,8 @@ class NPC(Entity[NPCState]):
             monster = Monster(save_data=npc_monster_details.model_dump())
             monster.money_modifier = npc_monster_details.money_mod
             monster.experience_modifier = npc_monster_details.exp_req_mod
-            monster.set_level(monster.level)
-            monster.set_moves(monster.level)
+            monster.set_level(npc_monster_details.level)
+            monster.set_moves(npc_monster_details.level)
             monster.current_hp = monster.hp
             monster.gender = npc_monster_details.gender
 
@@ -1096,7 +1096,12 @@ class NPC(Entity[NPCState]):
         return None
 
     def give_money(self, amount: int) -> None:
-        self.money["player"] += amount
+        if self.isplayer:
+            self.money["player"] += amount
+        else:
+            if self.slug not in self.money:
+                self.money[self.slug] = 0
+            self.money[self.slug] += amount
 
     def speed_test(self, action: EnqueuedAction) -> int:
         return self.speed

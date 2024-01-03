@@ -101,7 +101,8 @@
   </object>
   <object id="31" name="Rename Monster" type="event" x="176" y="128" width="16" height="16">
    <properties>
-    <property name="act10" value="rename_monster"/>
+    <property name="act10" value="get_player_monster rename"/>
+    <property name="act15" value="rename_monster rename"/>
     <property name="act20" value="translated_dialog happy_rename"/>
     <property name="act30" value="npc_face happy_guy,left"/>
     <property name="act40" value="set_variable happy:no"/>

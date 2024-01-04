@@ -553,7 +553,7 @@ class CombatAnimations(ABC, Menu[None]):
 
         # animation, begin battle
         if self.is_trainer_battle:
-            combat_front = opponent.template[0].sprite_name
+            combat_front = opponent.template[0].combat_front
             enemy = self.load_sprite(
                 f"gfx/sprites/player/{combat_front}.png",
                 bottom=back_island.rect.bottom - scale(12),
@@ -585,13 +585,22 @@ class CombatAnimations(ABC, Menu[None]):
             left=w,
         )
 
-        combat_back = player.template[0].sprite_name
-        player_back = self.load_sprite(
-            f"gfx/sprites/player/{combat_back}_back.png",
-            bottom=front_island.rect.centery + scale(6),
-            centerx=front_island.rect.centerx,
-        )
-        assert player_back
+        combat_back = player.template[0].combat_front
+        filename = f"gfx/sprites/player/{combat_back}_back.png"
+        try:
+            player_back = self.load_sprite(
+                filename,
+                bottom=front_island.rect.centery + scale(6),
+                centerx=front_island.rect.centerx,
+            )
+        except:
+            logger.warning(f"(File) {filename} cannot be found.")
+            player_back = self.load_sprite(
+                f"gfx/sprites/player/{combat_back}.png",
+                bottom=front_island.rect.centery + scale(6),
+                centerx=front_island.rect.centerx,
+            )
+
         self._monster_sprite_map[player] = player_back
 
         def flip() -> None:

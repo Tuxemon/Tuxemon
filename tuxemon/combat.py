@@ -366,9 +366,6 @@ def track_battles(
     Returns:
         Message to display.
     """
-    player.set_party_status()
-    for _player in players:
-        _player.set_party_status()
 
     if output == "won":
         winner = player
@@ -404,7 +401,6 @@ def track_battles(
         # draw
         defeat = list(players)
         defeat.remove(player)
-        player.set_party_status()
         player.game_variables["battle_last_result"] = OutputBattle.draw
         player.game_variables["teleport_clinic"] = OutputBattle.lost
         if trainer_battle:

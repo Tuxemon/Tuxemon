@@ -183,3 +183,9 @@ events:
     - not variable_set nu_map_6:flower_city*-0.15*0.32
     - is location_name flower_city
     type: "event"
+  Set Party Status:
+    actions:
+    - set_party_status player
+    conditions:
+    - is current_state MainCombatMenuState:WorldState
+    type: "event"

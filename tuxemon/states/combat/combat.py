@@ -499,11 +499,8 @@ class CombatState(CombatAnimations):
                     # avoid multiple effect condition
                     monster.set_stats()
 
-        elif phase == "resolve match":
+        elif phase == "resolve match" or phase == "ran away":
             pass
-
-        elif phase == "ran away":
-            self.players[0].set_party_status()
 
         elif phase == "draw match":
             # it is a draw match; both players were defeated in same round
@@ -536,7 +533,6 @@ class CombatState(CombatAnimations):
                     )
 
         elif phase == "end combat":
-            self.players[0].set_party_status()
             self.end_combat()
 
         else:

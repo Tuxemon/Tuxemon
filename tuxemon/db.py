@@ -201,6 +201,7 @@ State = Enum(
     "State",
     {
         "MainCombatMenuState": "MainCombatMenuState",
+        "MainParkMenuState": "MainParkMenuState",
         "WorldState": "WorldState",
         "None": "",
     },
@@ -932,6 +933,15 @@ class BattleHudModel(BaseModel):
     tray_opponent: str = Field(
         ..., description="Sprite used for tray opponent background"
     )
+    hp_bar_player: bool = Field(
+        True, description="Whether draw or not player HP Bar"
+    )
+    hp_bar_opponent: bool = Field(
+        True, description="Whether draw or not opponent HP Bar"
+    )
+    exp_bar_player: bool = Field(
+        True, description="Whether draw or not player EXP Bar"
+    )
 
     @field_validator(
         "hud_player",
@@ -975,6 +985,9 @@ class BattleIconsModel(BaseModel):
 
 
 class BattleGraphicsModel(BaseModel):
+    menu: str = Field(
+        "MainCombatMenuState", description="Menu used for combat."
+    )
     island_back: str = Field(..., description="Sprite used for back combat")
     island_front: str = Field(..., description="Sprite used for front combat")
     background: str = Field(..., description="Sprite used for background")

@@ -7,13 +7,13 @@ events:
     type: "event"
   Environment Day:
     actions:
-    - set_variable environment:cliff
+    - set_variable environment:park
     conditions:
     - not variable_set stage_of_day:night
     type: "event"
   Environment Night:
     actions:
-    - set_variable environment:night_cliff
+    - set_variable environment:night_park
     conditions:
     - is variable_set stage_of_day:night
     type: "event"

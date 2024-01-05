@@ -12,7 +12,7 @@
   "category": "capture",
   "type": "Consumable",
   "usable_in": [
-    ""
+    "MainParkMenuState"
   ],
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

@@ -64,8 +64,8 @@
     <property name="act1" value="translated_dialog spyder_candy_catgirl1"/>
     <property name="act2" value="translated_dialog spyder_candy_catgirl_nofossil"/>
     <property name="behav1" value="talk spyder_candyhouse3_joanie"/>
-    <property name="cond1" value="not has_monster shammer"/>
-    <property name="cond2" value="not has_monster rhincus"/>
+    <property name="cond1" value="not has_monster player,shammer"/>
+    <property name="cond2" value="not has_monster player,rhincus"/>
     <property name="cond3" value="not variable_set catgirl_candy_hastraded:yes"/>
    </properties>
   </object>
@@ -75,7 +75,7 @@
     <property name="act2" value="translated_dialog spyder_candy_catgirl2"/>
     <property name="act3" value="translated_dialog_choice yes:no,catgirl_candy_willtrade"/>
     <property name="behav1" value="talk spyder_candyhouse3_joanie"/>
-    <property name="cond1" value="is has_monster rhincus"/>
+    <property name="cond1" value="is has_monster player,rhincus"/>
     <property name="cond2" value="not variable_set catgirl_candy_hastraded:yes"/>
    </properties>
   </object>
@@ -85,8 +85,8 @@
     <property name="act2" value="get_player_monster rhincus,slug,rhincus"/>
     <property name="act3" value="trading rhincus,propellercat"/>
     <property name="act4" value="set_variable catgirl_candy_hastraded:yes"/>
-    <property name="cond1" value="is has_monster rhincus"/>
-    <property name="cond2" value="not has_monster shammer"/>
+    <property name="cond1" value="is has_monster player,rhincus"/>
+    <property name="cond2" value="not has_monster player,shammer"/>
     <property name="cond3" value="is variable_set catgirl_candy_willtrade:yes"/>
     <property name="cond4" value="not variable_set catgirl_candy_hastraded:yes"/>
    </properties>
@@ -97,7 +97,7 @@
     <property name="act2" value="translated_dialog spyder_candy_catgirl2"/>
     <property name="act3" value="translated_dialog_choice yes:no,catgirl_candy_willtrade"/>
     <property name="behav1" value="talk spyder_candyhouse3_joanie"/>
-    <property name="cond1" value="is has_monster shammer"/>
+    <property name="cond1" value="is has_monster player,shammer"/>
     <property name="cond2" value="not variable_set catgirl_candy_hastraded:yes"/>
    </properties>
   </object>
@@ -108,8 +108,8 @@
     <property name="act3" value="trading shammer,propellercat"/>
     <property name="act4" value="set_variable catgirl_candy_hastraded:yes"/>
     <property name="act5" value="set_mission spyder_maniac_achievement1,change,completed"/>
-    <property name="cond1" value="is has_monster shammer"/>
-    <property name="cond2" value="not has_monster rhincus"/>
+    <property name="cond1" value="is has_monster player,shammer"/>
+    <property name="cond2" value="not has_monster player,rhincus"/>
     <property name="cond3" value="is variable_set catgirl_candy_willtrade:yes"/>
     <property name="cond4" value="not variable_set catgirl_candy_hastraded:yes"/>
    </properties>

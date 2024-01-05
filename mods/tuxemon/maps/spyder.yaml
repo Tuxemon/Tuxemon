@@ -75,7 +75,7 @@ events:
     - set_template player,swimmer
     conditions:
     - is char_in player,surfable
-    - not has_sprite swimmer
+    - not char_sprite player,swimmer
     type: "event"
   Not surfable Boy:
     actions:
@@ -83,7 +83,7 @@ events:
     - set_variable swimming:no
     conditions:
     - not char_in player,surfable
-    - is has_sprite swimmer
+    - is char_sprite player,swimmer
     - is variable_set gender_choice:gender_male
     type: "event"
   Not surfable Girl:
@@ -92,7 +92,7 @@ events:
     - set_variable swimming:no
     conditions:
     - not char_in player,surfable
-    - is has_sprite swimmer
+    - is char_sprite player,swimmer
     - is variable_set gender_choice:gender_female
     type: "event"
   Allow Swim:
@@ -106,7 +106,7 @@ events:
     - set_variable environment:sea
     - random_encounter routec,0.25
     conditions:
-    - is has_sprite swimmer
+    - is char_sprite player,swimmer
     - not variable_set stage_of_day:night
     - is current_state WorldState
     type: "event"
@@ -115,7 +115,7 @@ events:
     - set_variable environment:night_sea
     - random_encounter routec,0.75
     conditions:
-    - is has_sprite swimmer
+    - is char_sprite player,swimmer
     - is variable_set stage_of_day:night
     - is current_state WorldState
     type: "event"

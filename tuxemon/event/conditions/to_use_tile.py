@@ -23,17 +23,6 @@ class ToUseTileCondition(EventCondition):
     name = "to_use_tile"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """
-        Check if we are attempting to interact with a map condition tile.
-
-        Parameters:
-            session: The session object
-            condition: The map condition object.
-
-        Returns:
-            Whether the player attempts to interact with a map condition tile.
-
-        """
         character_facing_tile = CharFacingTileCondition().test(
             session,
             condition,

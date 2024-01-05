@@ -94,7 +94,7 @@
     <property name="act3" value="set_variable shows_vivicinder:yes"/>
     <property name="act4" value="set_variable check_vivipere_morph:no"/>
     <property name="cond1" value="is variable_set check_vivipere_morph:yes"/>
-    <property name="cond2" value="is has_monster vivicinder"/>
+    <property name="cond2" value="is has_monster player,vivicinder"/>
     <property name="cond3" value="not variable_set shows_vivicinder:yes"/>
    </properties>
   </object>
@@ -113,7 +113,7 @@
     <property name="act3" value="set_variable shows_vividactil:yes"/>
     <property name="act4" value="set_variable check_vivipere_morph:no"/>
     <property name="cond1" value="is variable_set check_vividactil_morph:yes"/>
-    <property name="cond2" value="is has_monster vividactil"/>
+    <property name="cond2" value="is has_monster player,vividactil"/>
     <property name="cond3" value="not variable_set shows_vividactil:yes"/>
    </properties>
   </object>
@@ -124,7 +124,7 @@
     <property name="act3" value="set_variable shows_viviphyta:yes"/>
     <property name="act4" value="set_variable check_vivipere_morph:no"/>
     <property name="cond1" value="is variable_set check_viviphyta_morph:yes"/>
-    <property name="cond2" value="is has_monster viviphyta"/>
+    <property name="cond2" value="is has_monster player,viviphyta"/>
     <property name="cond3" value="not variable_set shows_viviphyta:yes"/>
    </properties>
   </object>
@@ -134,7 +134,7 @@
     <property name="act2" value="add_monster vivipere,5"/>
     <property name="act3" value="set_variable shows_vivisource:yes"/>
     <property name="cond1" value="is variable_set check_vivisource_morph:yes"/>
-    <property name="cond2" value="is has_monster vivisource"/>
+    <property name="cond2" value="is has_monster player,vivisource"/>
     <property name="cond3" value="not variable_set shows_vivisource:yes"/>
    </properties>
   </object>
@@ -145,7 +145,7 @@
     <property name="act3" value="set_variable shows_viviteel:yes"/>
     <property name="act4" value="set_variable check_vivipere_morph:no"/>
     <property name="cond1" value="is variable_set check_viviteel_morph:yes"/>
-    <property name="cond2" value="is has_monster viviteel"/>
+    <property name="cond2" value="is has_monster player,viviteel"/>
     <property name="cond3" value="not variable_set shows_viviteel:yes"/>
    </properties>
   </object>
@@ -156,7 +156,7 @@
     <property name="act3" value="set_variable shows_vivitrans:yes"/>
     <property name="act4" value="set_variable check_vivipere_morph:no"/>
     <property name="cond1" value="is variable_set check_vivitrans_morph:yes"/>
-    <property name="cond2" value="is has_monster vivitrans"/>
+    <property name="cond2" value="is has_monster player,vivitrans"/>
     <property name="cond3" value="not variable_set shows_vivitrans:yes"/>
    </properties>
   </object>
@@ -167,7 +167,7 @@
     <property name="act3" value="set_variable shows_vivitron:yes"/>
     <property name="act4" value="set_variable check_vivipere_morph:no"/>
     <property name="cond1" value="is variable_set check_vivitron_morph:yes"/>
-    <property name="cond2" value="is has_monster vivitron"/>
+    <property name="cond2" value="is has_monster player,vivitron"/>
     <property name="cond3" value="not variable_set shows_vivitron:yes"/>
    </properties>
   </object>

@@ -414,14 +414,16 @@
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="not variable_set stage_of_day:night"/>
-    <property name="cond2" value="not has_sprite swimmer"/>
+    <property name="cond2" value="not char_sprite player,swimmer"/>
+    <property name="cond3" value="not variable_set environment:grass"/>
    </properties>
   </object>
   <object id="221" name="Environment Night" type="event" x="96" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
     <property name="cond1" value="is variable_set stage_of_day:night"/>
-    <property name="cond2" value="not has_sprite swimmer"/>
+    <property name="cond2" value="not char_sprite player,swimmer"/>
+    <property name="cond3" value="not variable_set environment:night_grass"/>
    </properties>
   </object>
   <object id="213" name="Destination - Timber" type="event" x="496" y="576" width="16" height="16">

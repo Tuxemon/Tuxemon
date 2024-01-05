@@ -229,7 +229,7 @@
     <property name="act1" value="translated_dialog spyder_flower_mieke1"/>
     <property name="act2" value="translated_dialog spyder_flower_mieke_nobudaye"/>
     <property name="behav1" value="talk spyder_flower_mieke"/>
-    <property name="cond1" value="not has_monster budaye"/>
+    <property name="cond1" value="not has_monster player,budaye"/>
     <property name="cond2" value="not variable_set mieke_hastraded:yes"/>
    </properties>
   </object>
@@ -238,7 +238,7 @@
     <property name="act1" value="translated_dialog spyder_flower_mieke1"/>
     <property name="act2" value="translated_dialog_choice yes:no,mieke_willtrade"/>
     <property name="behav1" value="talk spyder_flower_mieke"/>
-    <property name="cond1" value="is has_monster budaye"/>
+    <property name="cond1" value="is has_monster player,budaye"/>
     <property name="cond2" value="not variable_set mieke_hastraded:yes"/>
    </properties>
   </object>
@@ -248,7 +248,7 @@
     <property name="act2" value="get_player_monster budaye,slug,budaye"/>
     <property name="act3" value="trading budaye,conileaf"/>
     <property name="act4" value="set_variable mieke_hastraded:yes"/>
-    <property name="cond1" value="is has_monster budaye"/>
+    <property name="cond1" value="is has_monster player,budaye"/>
     <property name="cond2" value="is variable_set mieke_willtrade:yes"/>
     <property name="cond3" value="not variable_set mieke_hastraded:yes"/>
    </properties>
@@ -334,7 +334,7 @@
     <property name="act1" value="translated_dialog spyder_flower_fez1"/>
     <property name="act2" value="translated_dialog spyder_flower_fez_noignibus"/>
     <property name="behav1" value="talk spyder_flower_fez"/>
-    <property name="cond1" value="not has_monster ignibus"/>
+    <property name="cond1" value="not has_monster player,ignibus"/>
     <property name="cond2" value="not variable_set fez_hastraded:yes"/>
    </properties>
   </object>
@@ -343,7 +343,7 @@
     <property name="act1" value="translated_dialog spyder_flower_fez1"/>
     <property name="act2" value="translated_dialog_choice yes:no,fez_willtrade"/>
     <property name="behav1" value="talk spyder_flower_fez"/>
-    <property name="cond1" value="is has_monster ignibus"/>
+    <property name="cond1" value="is has_monster player,ignibus"/>
     <property name="cond2" value="not variable_set fez_hastraded:yes"/>
    </properties>
   </object>
@@ -353,7 +353,7 @@
     <property name="act2" value="get_player_monster ignibus,slug,ignibus"/>
     <property name="act3" value="trading ignibus,foxfire"/>
     <property name="act4" value="set_variable fez_hastraded:yes"/>
-    <property name="cond1" value="is has_monster ignibus"/>
+    <property name="cond1" value="is has_monster player,ignibus"/>
     <property name="cond2" value="is variable_set fez_willtrade:yes"/>
     <property name="cond3" value="not variable_set fez_hastraded:yes"/>
    </properties>
@@ -369,7 +369,7 @@
     <property name="act1" value="translated_dialog spyder_flower_cady1"/>
     <property name="act2" value="translated_dialog spyder_flower_cady_nogrintot"/>
     <property name="behav1" value="talk spyder_flower_cady"/>
-    <property name="cond1" value="not has_monster grintot"/>
+    <property name="cond1" value="not has_monster player,grintot"/>
     <property name="cond2" value="not variable_set cady_hastraded:yes"/>
    </properties>
   </object>
@@ -378,7 +378,7 @@
     <property name="act1" value="translated_dialog spyder_flower_cady1"/>
     <property name="act2" value="translated_dialog_choice yes:no,cady_willtrade"/>
     <property name="behav1" value="talk spyder_flower_cady"/>
-    <property name="cond1" value="is has_monster grintot"/>
+    <property name="cond1" value="is has_monster player,grintot"/>
     <property name="cond2" value="not variable_set cady_hastraded:yes"/>
    </properties>
   </object>
@@ -388,7 +388,7 @@
     <property name="act2" value="get_player_monster grintot,slug,grintot"/>
     <property name="act3" value="trading grintot,hampotamos"/>
     <property name="act4" value="set_variable cady_hastraded:yes"/>
-    <property name="cond1" value="is has_monster grintot"/>
+    <property name="cond1" value="is has_monster player,grintot"/>
     <property name="cond2" value="is variable_set cady_willtrade:yes"/>
     <property name="cond3" value="not variable_set cady_hastraded:yes"/>
    </properties>
@@ -404,7 +404,7 @@
     <property name="act1" value="translated_dialog spyder_flower_sandy1"/>
     <property name="act2" value="translated_dialog spyder_flower_sandy_notweesher"/>
     <property name="behav1" value="talk spyder_flower_sandy"/>
-    <property name="cond1" value="not has_monster tweesher"/>
+    <property name="cond1" value="not has_monster player,tweesher"/>
     <property name="cond2" value="not variable_set sandy_hastraded:yes"/>
    </properties>
   </object>
@@ -413,7 +413,7 @@
     <property name="act1" value="translated_dialog spyder_flower_sandy1"/>
     <property name="act2" value="translated_dialog_choice yes:no,sandy_willtrade"/>
     <property name="behav1" value="talk spyder_flower_sandy"/>
-    <property name="cond1" value="is has_monster tweesher"/>
+    <property name="cond1" value="is has_monster player,tweesher"/>
     <property name="cond2" value="not variable_set sandy_hastraded:yes"/>
    </properties>
   </object>
@@ -423,7 +423,7 @@
     <property name="act2" value="get_player_monster tweesher,slug,tweesher"/>
     <property name="act3" value="trading tweesher,pharfan"/>
     <property name="act4" value="set_variable sandy_hastraded:yes"/>
-    <property name="cond1" value="is has_monster tweesher"/>
+    <property name="cond1" value="is has_monster player,tweesher"/>
     <property name="cond2" value="is variable_set sandy_willtrade:yes"/>
     <property name="cond3" value="not variable_set sandy_hastraded:yes"/>
    </properties>

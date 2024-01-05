@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -35,7 +35,7 @@ class CharFacingCharCondition(EventCondition):
 
         character1 = get_npc(session, condition.parameters[0])
         character2 = get_npc(session, condition.parameters[1])
-        if not character2 or not character1:
+        if character2 is None or character1 is None:
             return False
 
         # get all the coordinates around the npc

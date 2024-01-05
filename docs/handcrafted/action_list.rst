@@ -33,6 +33,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.get_player_monster.GetPlayerMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.kennel_print.KennelAction
 .. autoscriptinfoclass:: tuxemon.event.actions.menu.MenuAction
+.. autoscriptinfoclass:: tuxemon.event.actions.modify_char_attribute.ModifyCharAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_monster_stats.ModifyMonsterStatsAction
 .. autoscriptinfoclass:: tuxemon.event.actions.money_print.MoneyPrintAction
 .. autoscriptinfoclass:: tuxemon.event.actions.open_shop.OpenShopAction
@@ -74,7 +75,6 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_level.SetMonsterLevelAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_plague.SetMonsterPlagueAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_status.SetMonsterStatusAction
-.. autoscriptinfoclass:: tuxemon.event.actions.set_player_attribute.SetPlayerAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_player_name.SetPlayerNameAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_random_variable.SetRandomVariableAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_template.SetTemplateAction

@@ -73,7 +73,7 @@
     <property name="act1" value="translated_dialog spyder_candy_prof1"/>
     <property name="act2" value="translated_dialog spyder_candy_prof_nocateye"/>
     <property name="behav1" value="talk spyder_candyhouse2_indiana"/>
-    <property name="cond1" value="not has_monster cateye"/>
+    <property name="cond1" value="not has_monster player,cateye"/>
     <property name="cond2" value="not variable_set prof_candy_hastraded:yes"/>
    </properties>
   </object>
@@ -82,7 +82,7 @@
     <property name="act1" value="translated_dialog spyder_candy_prof1"/>
     <property name="act2" value="translated_dialog_choice yes:no,prof_willtrade"/>
     <property name="behav1" value="talk spyder_candyhouse2_indiana"/>
-    <property name="cond1" value="is has_monster cateye"/>
+    <property name="cond1" value="is has_monster player,cateye"/>
     <property name="cond2" value="not variable_set prof_candy_hastraded:yes"/>
    </properties>
   </object>
@@ -92,7 +92,7 @@
     <property name="act2" value="get_player_monster cateye,slug,cateye"/>
     <property name="act3" value="trading cateye,zunna"/>
     <property name="act4" value="set_variable prof_candy_hastraded:yes"/>
-    <property name="cond1" value="is has_monster cateye"/>
+    <property name="cond1" value="is has_monster player,cateye"/>
     <property name="cond2" value="is variable_set prof_willtrade:yes"/>
     <property name="cond3" value="not variable_set prof_candy_hastraded:yes"/>
    </properties>

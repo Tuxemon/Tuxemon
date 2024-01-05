@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import final
 
@@ -10,6 +11,8 @@ from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.map import get_direction
 from tuxemon.states.world.worldstate import WorldState
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -36,12 +39,16 @@ class CharFaceAction(EventAction):
 
     def start(self) -> None:
         character = get_npc(self.session, self.character)
-        assert character
+        if character is None:
+            logger.error(f"{self.character} not found")
+            return
 
         # "player" isn't among the Directions (map_loader.py)
         if self.direction not in list(Direction):
             target = get_npc(self.session, self.direction)
-            assert target
+            if target is None:
+                logger.error(f"{self.direction} not found")
+                return
             direction = get_direction(character.tile_pos, target.tile_pos)
         else:
             direction = Direction(self.direction)

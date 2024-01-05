@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -34,7 +34,7 @@ class CharFacingTileCondition(EventCondition):
 
     def test(self, session: Session, condition: MapCondition) -> bool:
         character = get_npc(session, condition.parameters[0])
-        if not character:
+        if character is None:
             return False
 
         tiles = [

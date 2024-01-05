@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
-from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -34,19 +33,17 @@ class LearnTmEffect(ItemEffect):
         self, item: Item, target: Union[Monster, None]
     ) -> LearnTmEffectResult:
         learn: bool = False
-        assert target
         # monster moves
-        moves: list[str] = []
-        for tech in target.moves:
-            moves.append(tech.slug)
+        moves = [tech.slug for tech in target.moves] if target else []
         # get rid duplicates
-        _moves = set(moves)
-        moves = list(_moves)
+        moves = list(set(moves))
         # continue operation
-        if moves:
-            if self.technique not in moves:
-                technique = Technique()
-                technique.load(self.technique)
-                target.learn(technique)
-                learn = True
+        client = self.session.client
+        if target and moves and self.technique not in moves:
+            var = f"{self.name}:{str(target.instance_id.hex)}"
+            client.event_engine.execute_action("set_variable", [var], True)
+            client.event_engine.execute_action(
+                "add_tech", [self.name, self.technique], True
+            )
+            learn = True
         return {"success": learn, "num_shakes": 0, "extra": None}

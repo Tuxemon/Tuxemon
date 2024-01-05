@@ -8,7 +8,6 @@ from typing import TYPE_CHECKING, Union
 
 from tuxemon.db import ElementType, db
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
-from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -36,29 +35,26 @@ class LearnMmEffect(ItemEffect):
         self, item: Item, target: Union[Monster, None]
     ) -> LearnMmEffectResult:
         learn: bool = False
-        ele = ElementType(self.element)
-        assert target
+        element = ElementType(self.element)
         techs = list(db.database["technique"])
         # type moves
         filters: list[str] = []
         for mov in techs:
             results = db.lookup(mov, table="technique")
-            if results.randomly and ele in results.types:
+            if results.randomly and element in results.types:
                 filters.append(results.slug)
         # monster moves
-        moves: list[str] = []
-        for tech in target.moves:
-            moves.append(tech.slug)
+        moves = [tech.slug for tech in target.moves] if target else []
         # remove monster moves from type moves
-        set1 = set(filters)
-        set2 = set(moves)
-        _techs = list(set1 - set2)
+        _techs = list(set(filters) - set(moves))
         # add a random move from what remains
-        if _techs:
+        client = self.session.client
+        if _techs and target:
             tech_slug = random.choice(_techs)
-            technique = Technique()
-            technique.load(tech_slug)
-            target.learn(technique)
+            var = f"{self.name}:{str(target.instance_id.hex)}"
+            client.event_engine.execute_action("set_variable", [var], True)
+            client.event_engine.execute_action(
+                "add_tech", [self.name, tech_slug], True
+            )
             learn = True
-
         return {"success": learn, "num_shakes": 0, "extra": None}

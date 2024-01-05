@@ -1,17 +1,21 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 import uuid
 from dataclasses import dataclass
-from operator import eq, ge, gt, le, lt, ne
 from typing import Optional, final
 
-from tuxemon.db import ElementType, Range
+from tuxemon.db import Comparison, ElementType, Range
+from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.menu.interface import MenuItem
 from tuxemon.states.techniques import TechniqueMenuState
 from tuxemon.technique.technique import Technique
+from tuxemon.tools import compare
+
+logger = logging.getLogger(__name__)
 
 
 # noinspection PyAttributeOutsideInit
@@ -85,20 +89,8 @@ class GetMonsterTechAction(EventAction):
                 if filter_name == "accuracy":
                     field = technique.accuracy
                 extra = float(self.extra)
-                if value_name == "less_than" and bool(lt(field, extra)):
-                    self.result = True
-                elif value_name == "less_or_equal" and bool(le(field, extra)):
-                    self.result = True
-                elif value_name == "greater_than" and bool(gt(field, extra)):
-                    self.result = True
-                elif value_name == "greater_or_equal" and bool(
-                    ge(field, extra)
-                ):
-                    self.result = True
-                elif value_name == "equals" and bool(eq(field, extra)):
-                    self.result = True
-                elif value_name == "not_equals" and bool(ne(field, extra)):
-                    self.result = True
+                if value_name in list(Comparison):
+                    self.result = compare(value_name, field, extra)
         return self.result
 
     def set_var(self, menu_item: MenuItem[Technique]) -> None:
@@ -119,15 +111,16 @@ class GetMonsterTechAction(EventAction):
         if self.monster_id is None:
             monsters = player.pending_monsters
         else:
-            # look for the monster
-            instance_id = uuid.UUID(
+            if self.monster_id not in player.game_variables:
+                logger.error(f"Game variable {self.monster_id} not found")
+                return
+            monster_id = uuid.UUID(
                 player.game_variables[self.monster_id],
             )
-            monster = player.find_monster_by_id(instance_id)
+            monster = get_monster_by_iid(self.session, monster_id)
             if monster is None:
-                raise ValueError(
-                    f"No monster found with instance_id {instance_id}",
-                )
+                logger.error(f"Monster not found")
+                return
             monsters = [monster]
 
         for mon in monsters:

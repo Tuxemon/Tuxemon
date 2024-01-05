@@ -1,13 +1,16 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 import uuid
 from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -42,7 +45,8 @@ class RemoveTechAction(EventAction):
             player.game_variables[self.tech_id],
         )
 
-        for mon in monsters:
-            technique = mon.find_tech_by_id(tech_id)
+        for monster in monsters:
+            technique = monster.find_tech_by_id(tech_id)
             if technique:
-                mon.moves.remove(technique)
+                monster.moves.remove(technique)
+                logger.info(f"{technique.name} removed from {monster.name}")

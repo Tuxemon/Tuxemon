@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "adamantine"
+            "technique": "torch"
         },
         {
             "level_learned": 20,
@@ -48,7 +48,7 @@
         },
         {
             "level_learned": 40,
-            "technique": "gust"
+            "technique": "tinder"
         }
     ],
     "evolutions": [],

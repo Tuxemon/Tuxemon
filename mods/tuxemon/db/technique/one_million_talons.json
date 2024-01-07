@@ -1,19 +1,19 @@
 {
-  "tech_id": 2,
-  "accuracy": 0.8,
-  "animation": null,
+  "tech_id": 186,
+  "accuracy": 1,
+  "animation": "amethyst",
   "effects": [
-    "give poison,target",
+    "give flinching,target",
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.2,
-  "power": 1.25,
-  "range": "ranged",
-  "recharge": 1,
+  "potency": 0.8,
+  "power": 3,
+  "range": "melee",
+  "recharge": 3,
   "sfx": "sfx_blaster",
-  "slug": "spray",
+  "slug": "one_million_talons",
   "sort": "damage",
   "target": {
     "enemy monster": 2,
@@ -24,7 +24,7 @@
     "own trainer": 0
   },
   "types": [
-    "wood"
+    "fire"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

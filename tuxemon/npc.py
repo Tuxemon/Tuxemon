@@ -25,7 +25,7 @@ from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import Item, decode_items, encode_items
 from tuxemon.locale import T
-from tuxemon.map import dirs2, dirs3, get_direction, proj
+from tuxemon.map import dirs2, dirs3, get_coords_ext, get_direction, proj
 from tuxemon.math import Vector2
 from tuxemon.mission import Mission, decode_mission, encode_mission
 from tuxemon.monster import Monster, decode_monsters, encode_monsters
@@ -105,7 +105,7 @@ class NPC(Entity[NPCState]):
         self.behavior: Optional[str] = "wander"  # not used for now
         self.game_variables: dict[str, Any] = {}  # Tracks the game state
         self.battles: list[Battle] = []  # Tracks the battles
-        self.forfeit: bool = True
+        self.forfeit: bool = False
         # Tracks Tuxepedia (monster seen or caught)
         self.tuxepedia: dict[str, SeenStatus] = {}
         self.contacts: dict[str, str] = {}
@@ -509,10 +509,21 @@ class NPC(Entity[NPCState]):
             If the tile can be moved into.
 
         """
-        return (
-            tile in self.world.get_exits(self.tile_pos)
-            or self.ignore_collisions
-        )
+        _map_size = self.world.map_size
+        _exit = tile in self.world.get_exits(self.tile_pos)
+
+        _direction = []
+        for neighbor in get_coords_ext(tile, _map_size):
+            char = self.world.get_entity_pos(neighbor)
+            if (
+                char
+                and char.moving
+                and char.moverate == CONFIG.player_walkrate
+                and self.facing != char.facing
+            ):
+                _direction.append(char)
+
+        return _exit and not _direction or self.ignore_collisions
 
     @property
     def move_destination(self) -> Optional[tuple[int, int]]:
@@ -546,6 +557,7 @@ class NPC(Entity[NPCState]):
             self.surface_animations.play()
             self.path_origin = self.tile_pos
             self.velocity3 = self.moverate * dirs3[direction]
+            self.remove_collision(self.path_origin)
         else:
             # the target is blocked now
             self.stop_moving()

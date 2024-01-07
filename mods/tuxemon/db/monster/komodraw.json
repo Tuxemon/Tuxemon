@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "flamethrower"
+            "technique": "riposte"
         },
         {
             "level_learned": 2,
-            "technique": "rock"
+            "technique": "bullet"
         },
         {
             "level_learned": 6,
@@ -16,15 +16,15 @@
         },
         {
             "level_learned": 8,
-            "technique": "amnesia"
+            "technique": "flamethrower"
         },
         {
             "level_learned": 12,
-            "technique": "sleep_bomb"
+            "technique": "shrapnel"
         },
         {
             "level_learned": 16,
-            "technique": "muddle"
+            "technique": "beam"
         },
         {
             "level_learned": 20,
@@ -51,8 +51,19 @@
             "technique": "energy_claws"
         }
     ],
-    "evolutions": [],
-    "history": [],
+    "evolutions": [
+        {
+            "path": "standard",
+            "at_level": 32,
+            "monster_slug": "komoduel"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "komoduel",
+            "evo_stage": "stage1"
+        }
+    ],
     "shape": "humanoid",
     "stage": "basic",
     "types": [

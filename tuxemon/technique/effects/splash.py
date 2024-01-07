@@ -25,12 +25,13 @@ class SplashEffect(TechEffect):
     """
 
     name = "splash"
+    divisor: int
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> SplashEffectResult:
-        player = self.session.player
-        value = float(player.game_variables["random_tech_hit"])
+        combat = tech.combat_state
+        value = combat._random_tech_hit if combat else 0.0
         hit = tech.accuracy >= value
         damage, mult = formula.simple_damage_calculate(tech, user, target)
         tech.advance_counter_success()
@@ -39,7 +40,7 @@ class SplashEffect(TechEffect):
             target.current_hp -= damage
         else:
             tech.hit = True
-            damage //= 2
+            damage //= self.divisor
             target.current_hp -= damage
         return {
             "success": bool(damage),

@@ -1,16 +1,17 @@
 {
   "tech_id": 157,
-  "accuracy": 0.6,
+  "accuracy": 1,
   "animation": "tornado_bulk",
   "effects": [
+    "give slow,target",
     "multiattack 5",
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
   "potency": 0.3,
-  "power": 0.4,
-  "range": "melee",
+  "power": 0.5,
+  "range": "ranged",
   "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "webs_wind",

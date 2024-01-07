@@ -1,6 +1,6 @@
 {
   "tech_id": 3,
-  "accuracy": 0.7,
+  "accuracy": 0.75,
   "animation": "slash_power",
   "effects": [
     "give burn,target",
@@ -10,7 +10,7 @@
   "is_fast": false,
   "potency": 0.2,
   "power": 1.75,
-  "range": "melee",
+  "range": "reach",
   "recharge": 2,
   "sfx": "sfx_flames1",
   "slug": "fire_claw",

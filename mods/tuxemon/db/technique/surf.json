@@ -1,13 +1,13 @@
 {
   "tech_id": 174,
-  "accuracy": 0.9,
+  "accuracy": 0.6,
   "animation": "waterfall",
   "effects": [
-    "splash"
+    "splash 2"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.8,
+  "potency": 0.0,
   "power": 2.6,
   "randomly": false,
   "range": "ranged",

@@ -34,8 +34,10 @@ class MoneyEffect(TechEffect):
     ) -> MoneyEffectResult:
         extra: Optional[str] = None
         done: bool = False
-        player = self.session.player
-        value = float(player.game_variables["random_tech_hit"])
+        player = user.owner
+        combat = tech.combat_state
+        assert combat and player
+        value = combat._random_tech_hit
         damage, mult = formula.simple_damage_calculate(tech, user, target)
         hit = tech.accuracy >= value
         if hit:
@@ -46,14 +48,8 @@ class MoneyEffect(TechEffect):
             tech.advance_counter_success()
             amount = int(damage * mult)
             player.give_money(amount)
-            extra = T.format(
-                "combat_state_gold",
-                {
-                    "name": user.name,
-                    "symbol": "$",
-                    "gold": damage,
-                },
-            )
+            params = {"name": user.name.upper(), "symbol": "$", "gold": amount}
+            extra = T.format("combat_state_gold", params)
         return {
             "success": done,
             "damage": 0,

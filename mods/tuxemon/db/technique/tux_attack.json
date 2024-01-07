@@ -1,15 +1,15 @@
 {
   "tech_id": 92,
-  "accuracy": 0.6,
+  "accuracy": 1,
   "animation": "tux_attack",
   "effects": [
     "damage"
   ],
   "flip_axes": "",
-  "is_fast": false,
+  "is_fast": true,
   "potency": 0.1,
-  "power": 1.1,
-  "range": "touch",
+  "power": 2,
+  "range": "melee",
   "recharge": 1,
   "sfx": "sfx_blaster",
   "slug": "tux_attack",

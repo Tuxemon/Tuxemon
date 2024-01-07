@@ -33,6 +33,18 @@
         {
             "level_learned": 32,
             "technique": "starfall"
+        },
+        {
+            "level_learned": 40,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 44,
+            "technique": "chill_mist"
+        },
+        {
+            "level_learned": 48,
+            "technique": "frostbite"
         }
     ],
     "evolutions": [

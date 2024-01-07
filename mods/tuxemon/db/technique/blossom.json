@@ -1,12 +1,13 @@
 {
   "tech_id": 26,
-  "accuracy": 0.75,
+  "accuracy": 0.85,
   "animation": "gloop_orange",
   "effects": [
-    "give recover,user",
+    "healing user",
     "damage"
   ],
   "flip_axes": "",
+  "healing_power": 2,
   "is_fast": false,
   "potency": 1,
   "power": 1.25,

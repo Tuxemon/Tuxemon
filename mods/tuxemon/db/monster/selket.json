@@ -16,11 +16,23 @@
         },
         {
             "level_learned": 8,
-            "technique": "ring"
+            "technique": "petrify"
         },
         {
             "level_learned": 12,
             "technique": "take_cover"
+        },
+        {
+            "level_learned": 24,
+            "technique": "quicksand"
+        },
+        {
+            "level_learned": 28,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 32,
+            "technique": "avalanche"
         }
     ],
     "evolutions": [

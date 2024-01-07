@@ -3,13 +3,15 @@
   "accuracy": 0.6,
   "animation": "shield_fire",
   "effects": [
-    "damage"
+    "give elementalshield,user",
+    "give burn,target",
+    "enhance"
   ],
   "flip_axes": "",
   "is_fast": false,
   "potency": 0.3,
   "power": 1.5,
-  "range": "reliable",
+  "range": "special",
   "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "fire_shield",
@@ -23,7 +25,7 @@
     "own trainer": 0
   },
   "types": [
-    "fire"
+    "aether"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

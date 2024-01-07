@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "peck"
+            "technique": "punch"
         },
         {
             "level_learned": 2,
@@ -28,7 +28,7 @@
         },
         {
             "level_learned": 20,
-            "technique": "spray"
+            "technique": "changeling"
         },
         {
             "level_learned": 24,

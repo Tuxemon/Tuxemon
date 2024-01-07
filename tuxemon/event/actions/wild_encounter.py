@@ -53,6 +53,7 @@ class WildEncounterAction(EventAction):
 
         # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):
+            logger.warning("battle is not legal, won't start")
             return
 
         logger.info("Starting wild encounter!")
@@ -67,6 +68,7 @@ class WildEncounterAction(EventAction):
             current_monster.experience_modifier = self.exp
         if self.money is not None:
             current_monster.money_modifier = self.money
+        current_monster.wild = True
 
         # Create an NPC object which will be this monster's "trainer"
         self.world = self.session.client.get_state_by_name(WorldState)
@@ -74,23 +76,16 @@ class WildEncounterAction(EventAction):
         npc.add_monster(current_monster, len(npc.monsters))
         # NOTE: random battles are implemented as trainer battles.
         #       this is a hack. remove this once trainer/random battlers are fixed
-        current_monster.owner = None
-        npc.party_limit = 0
 
         # Lookup the environment
-        environment: str
-        if self.env is None:
-            environment = "grass"
-        else:
-            environment = self.env
-
-        env = db.lookup(environment, table="environment")
+        env = "grass" if self.env is None else self.env
+        environment = db.lookup(env, table="environment")
 
         self.session.client.queue_state(
             "CombatState",
             players=(player, npc),
             combat_type="monster",
-            graphics=env.battle_graphics,
+            graphics=environment.battle_graphics,
         )
 
         # stop the player
@@ -104,7 +99,7 @@ class WildEncounterAction(EventAction):
         self.session.client.push_state(FlashTransition(color=rgb))
 
         # Start some music!
-        filename = env.battle_music
+        filename = environment.battle_music
         self.session.client.event_engine.execute_action(
             "play_music",
             [filename],

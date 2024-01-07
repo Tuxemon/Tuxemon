@@ -1,15 +1,15 @@
 {
   "tech_id": 137,
-  "accuracy": 0.7,
+  "accuracy": 0.8,
   "animation": "flameball_red",
   "effects": [
     "area"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.3,
+  "potency": 0.0,
   "power": 1.4,
-  "range": "reach",
+  "range": "ranged",
   "recharge": 1,
   "sfx": "sfx_blaster",
   "slug": "magma",

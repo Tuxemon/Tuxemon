@@ -31,18 +31,14 @@ class ForfeitEffect(TechEffect):
         self, tech: Technique, user: Monster, target: Monster
     ) -> ForfeitEffectResult:
         combat = tech.combat_state
-        assert combat
-        player = self.session.player
+        player = user.owner
+        assert combat and player
         var = player.game_variables
         var["battle_last_result"] = OutputBattle.forfeit
         var["teleport_clinic"] = OutputBattle.lost
         combat._run = True
-        extra = T.format(
-            "combat_forfeit",
-            {
-                "npc": combat.players[1].name,
-            },
-        )
+        params = {"npc": combat.players[1].name.upper()}
+        extra = T.format("combat_forfeit", params)
         # trigger forfeit
         for remove in combat.players:
             combat.clean_combat()

@@ -496,7 +496,7 @@ msgstr "Sauberer Schnitt"
 msgid "petrify"
 msgstr "Versteinern"
 
-msgid "probiscus"
+msgid "proboscis"
 msgstr "Rüssel"
 
 msgid "pseudopod"
@@ -547,7 +547,7 @@ msgstr "Schneesturm"
 msgid "splinter"
 msgstr "Splitter"
 
-msgid "spray"
+msgid "spit_poison"
 msgstr "Spray"
 
 msgid "stampede"
@@ -2613,8 +2613,8 @@ msgstr "Reibend"
 msgid "gust"
 msgstr "Gust"
 
-msgid "gyser"
-msgstr "Gyser"
+msgid "geyser"
+msgstr "Geyser"
 
 msgid "hawk"
 msgstr "Habicht"

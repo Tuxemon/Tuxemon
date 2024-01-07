@@ -475,7 +475,7 @@ msgstr "完美切割"
 msgid "petrify"
 msgstr "美杜莎之眼"
 
-msgid "probiscus"
+msgid "proboscis"
 msgstr "普罗比斯库斯"
 
 msgid "pseudopod"
@@ -526,7 +526,7 @@ msgstr "暴风雪"
 msgid "splinter"
 msgstr "分裂"
 
-msgid "spray"
+msgid "spit_poison"
 msgstr "喷雾"
 
 msgid "stampede"
@@ -806,7 +806,7 @@ msgstr "千里眼观众"
 msgid "feline"
 msgstr "猫的"
 
-msgid "gyser"
+msgid "geyser"
 msgstr "吉瑟"
 
 msgid "fishing_rod_description"
@@ -6057,9 +6057,6 @@ msgstr "店主"
 msgid "spyder_shopassistant"
 msgstr "店员"
 
-msgid "spyder_route2_billie"
-msgstr "比莉"
-
 msgid "spyder_route2_roddick"
 msgstr "罗迪克"
 
@@ -6394,9 +6391,6 @@ msgstr "懒惰的布鲁特"
 
 msgid "spyder_dragonscave_concernedbrute"
 msgstr "关心的布鲁特"
-
-msgid "spyder_hospital_billie"
-msgstr "比利"
 
 msgid "spyder_greenwash_looten"
 msgstr "罗顿"

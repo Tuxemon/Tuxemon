@@ -11,7 +11,7 @@
   "potency": 1,
   "power": 2.25,
   "range": "melee",
-  "recharge": 3,
+  "recharge": 2,
   "sfx": "sfx_growl",
   "slug": "berserk",
   "sort": "damage",

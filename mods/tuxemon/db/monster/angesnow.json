@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 6,
-            "technique": "torch"
+            "technique": "beam"
         },
         {
             "level_learned": 8,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 12,
-            "technique": "muck"
+            "technique": "neutralize"
         },
         {
             "level_learned": 28,

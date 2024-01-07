@@ -34,14 +34,14 @@ class ReverseEffect(TechEffect):
     ) -> ReverseEffectResult:
         done: bool = False
         if self.objective == "user":
-            user.return_types()
+            user.reset_types()
             done = True
         elif self.objective == "target":
-            target.return_types()
+            target.reset_types()
             done = True
         elif self.objective == "both":
-            user.return_types()
-            target.return_types()
+            user.reset_types()
+            target.reset_types()
             done = True
         return {
             "success": done,

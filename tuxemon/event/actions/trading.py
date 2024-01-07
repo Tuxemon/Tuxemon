@@ -45,7 +45,7 @@ class TradingAction(EventAction):
         # retrieves character from monster
         character = removed.owner
         if character is None:
-            logger.error("Monster owner not found")
+            logger.error(f"{removed.name}'s owner not found!")
             return
         slot = character.monsters.index(removed)
         # creates traded monster
@@ -66,8 +66,11 @@ class TradingAction(EventAction):
         # defines characters
         receiver = removed.owner
         giver = added.owner
-        if receiver is None or giver is None:
-            logger.error("Monster owner not found")
+        if receiver is None:
+            logger.error(f"{removed.name}'s owner not found!")
+            return
+        if giver is None:
+            logger.error(f"{added.name}'s owner not found!")
             return
         # retrieves slots
         slot_removed = receiver.monsters.index(removed)

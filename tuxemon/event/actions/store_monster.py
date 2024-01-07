@@ -51,7 +51,7 @@ class StoreMonsterAction(EventAction):
             return
         character = monster.owner
         if character is None:
-            logger.error("Monster owner not found")
+            logger.error(f"{monster.name}'s owner not found!")
             return
 
         box = self.box
@@ -59,7 +59,8 @@ class StoreMonsterAction(EventAction):
             store = KENNEL
         else:
             if box not in character.monster_boxes.keys():
-                raise ValueError(f"No box found with name {box}")
+                logger.error(f"No box found with name {box}")
+                return
             else:
                 store = box
         logger.info(f"{monster.name} stored in {store} box!")

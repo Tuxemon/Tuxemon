@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class RemoveMonsterAction(EventAction):
     """
-    Remove a monster from the given trainer's party if the monster is there.
+    Remove a monster from the party if the monster is there.
 
     Monster is determined by instance_id, which must be passed in a game
     variable.
@@ -25,12 +25,10 @@ class RemoveMonsterAction(EventAction):
     Script usage:
         .. code-block::
 
-            remove_monster <variable>[,npc_slug]
+            remove_monster <variable>
 
     Script parameters:
         variable: Name of the variable where to store the monster id.
-        npc_slug: Slug of the trainer. If no trainer slug is passed
-            it defaults to the current player.
 
     """
 
@@ -51,7 +49,7 @@ class RemoveMonsterAction(EventAction):
             return
         character = monster.owner
         if character is None:
-            logger.error("Monster owner not found")
+            logger.error(f"{monster.name}'s owner not found!")
             return
         logger.info(f"{monster.name} removed from {character.name} party!")
         character.remove_monster(monster)

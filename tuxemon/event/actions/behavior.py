@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -12,7 +12,9 @@ from tuxemon.event.eventaction import EventAction
 @dataclass
 class BehaviorAction(EventAction):
     """
-    Triggers behaviors action.
+    Triggers behavior's action.
+
+    Behavior is a combination of 1 action with 1 or more conditions.
 
     """
 
@@ -23,21 +25,17 @@ class BehaviorAction(EventAction):
     value3: Optional[str] = None
 
     def start(self) -> None:
-        _e = self.session.client.event_engine
+        _execute = False
+        _action = ""
+        _params = []
         if self.behavior == "talk":
-            _e.execute_action(
-                "npc_face",
-                [
-                    self.value1,
-                    "player",
-                ],
-                True,
-            )
+            _execute = True
+            _action = "npc_face"
+            _params = [self.value1, "player"]
         elif self.behavior == "door":
-            _e.execute_action(
-                "player_face",
-                [
-                    self.value2,
-                ],
-                True,
-            )
+            _execute = True
+            _action = "player_face"
+            _params = [self.value2]
+        if _execute:
+            client = self.session.client.event_engine
+            client.execute_action(_action, _params, True)

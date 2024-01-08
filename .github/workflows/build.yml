@@ -52,8 +52,9 @@ jobs:
         if_false: 'development'
 
     - name: Clone flatpak manifest from Flathub
-      uses: GuillaumeFalourd/clone-github-repo-action@v1
+      uses: GuillaumeFalourd/clone-github-repo-action@v2.3
       with:
+        branch: 'development'
         owner: 'flathub'
         repository: 'org.tuxemon.Tuxemon'
 
@@ -94,7 +95,7 @@ jobs:
       run: cat org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
 
     - name: Build package
-      uses: flatpak/flatpak-github-actions/flatpak-builder@v5
+      uses: flatpak/flatpak-github-actions/flatpak-builder@v6
       with:
         bundle: Tuxemon.flatpak
         manifest-path: org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
@@ -106,7 +107,7 @@ jobs:
     steps:
       # Checkout the repo
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
             # Version range or exact version of a Python version to use, using SemVer's version range syntax.
             python-version: 3.9 # optional, default is 3.x
@@ -136,7 +137,7 @@ jobs:
           mv tuxemon-installer.exe ../dist/.
 
       - name: Upload installer
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
             name: tuxemon_windows_installer
             path: dist
@@ -148,7 +149,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.9
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: 3.9
     - name: Install dependencies
@@ -170,7 +171,6 @@ jobs:
         pytest tests
         
   publish:
-    # https://github.com/marvinpinto/actions/issues/177
     needs: [flatpak, build_installer_windows]
     runs-on: ubuntu-latest # does not matter which
     # a prerelase is created when pushing to master
@@ -181,7 +181,7 @@ jobs:
     if: ${{ github.ref == 'refs/heads/development' || (github.event_name == 'push' && github.ref_type == 'tag' && startswith(github.ref_name, 'v'))  }}
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           path: artifacts
 
@@ -211,12 +211,14 @@ jobs:
           if_false: 'latest'
 
       - name: Update GitHub release
-        uses: marvinpinto/action-automatic-releases@latest
+        uses: softprops/action-gh-release@v1
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          # Generate changelog from commit messages
+          # generate_release_notes: true
+          token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: ${{ env.IS_RELEASE == 'false' }}
-          title: ${{ steps.release_title.outputs.value }}
-          automatic_release_tag: ${{ steps.release_tag.outputs.value }}
+          name: ${{ steps.release_title.outputs.value }}
+          tag_name: ${{ steps.release_tag.outputs.value }}
           # TODO: Add windows artifact again when #1229 is fixed
           # **/artifacts/tuxemon_windows_installer/*.exe
           files: |

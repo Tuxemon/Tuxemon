@@ -1053,9 +1053,7 @@ class EncounterItemModel(BaseModel):
     level_range: Sequence[int] = Field(
         ..., description="Level range to encounter"
     )
-    daytime: bool = Field(
-        True, description="Options: day (true), night (false)"
-    )
+    variable: Optional[str] = Field(None, description="Variable encounter")
     exp_req_mod: int = Field(1, description="Exp modifier wild monster")
 
     @field_validator("monster")
@@ -1063,6 +1061,14 @@ class EncounterItemModel(BaseModel):
         if has.db_entry("monster", v):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
+
+    @field_validator("variable")
+    def variable_exists(
+        cls: EncounterItemModel, v: Optional[str]
+    ) -> Optional[str]:
+        if not v or v.find(":") > 1:
+            return v
+        raise ValueError(f"the variable {v} isn't formatted correctly")
 
 
 class EncounterModel(BaseModel):

@@ -3,7 +3,7 @@
     "monsters": [
       {
         "encounter_rate": 0.5,
-        "daytime": true,
+        "variable": "daytime:true",
         "exp_req_mod": 1,
         "level_range": [
           18,
@@ -13,7 +13,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": true,
+        "variable": "daytime:true",
         "exp_req_mod": 1,
         "level_range": [
           36,
@@ -23,7 +23,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": true,
+        "variable": "daytime:true",
         "exp_req_mod": 1,
         "level_range": [
           18,
@@ -33,7 +33,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": true,
+        "variable": "daytime:true",
         "exp_req_mod": 1,
         "level_range": [
           36,
@@ -43,7 +43,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": true,
+        "variable": "daytime:true",
         "exp_req_mod": 1,
         "level_range": [
           18,
@@ -53,7 +53,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": true,
+        "variable": "daytime:true",
         "exp_req_mod": 1,
         "level_range": [
           36,
@@ -63,7 +63,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": true,
+        "variable": "daytime:true",
         "exp_req_mod": 1,
         "level_range": [
           18,
@@ -73,7 +73,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": true,
+        "variable": "daytime:true",
         "exp_req_mod": 1,
         "level_range": [
           36,
@@ -83,7 +83,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": true,
+        "variable": "daytime:true",
         "exp_req_mod": 1,
         "level_range": [
           18,
@@ -93,7 +93,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": true,
+        "variable": "daytime:true",
         "exp_req_mod": 1,
         "level_range": [
           10,
@@ -103,7 +103,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": false,
+        "variable": "daytime:false",
         "exp_req_mod": 1,
         "level_range": [
           18,
@@ -113,7 +113,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": false,
+        "variable": "daytime:false",
         "exp_req_mod": 1,
         "level_range": [
           36,
@@ -123,7 +123,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": false,
+        "variable": "daytime:false",
         "exp_req_mod": 1,
         "level_range": [
           18,
@@ -133,7 +133,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": false,
+        "variable": "daytime:false",
         "exp_req_mod": 1,
         "level_range": [
           36,
@@ -143,7 +143,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": false,
+        "variable": "daytime:false",
         "exp_req_mod": 1,
         "level_range": [
           10,
@@ -153,7 +153,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": false,
+        "variable": "daytime:false",
         "exp_req_mod": 1,
         "level_range": [
           18,
@@ -163,7 +163,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": false,
+        "variable": "daytime:false",
         "exp_req_mod": 1,
         "level_range": [
           36,
@@ -173,7 +173,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": false,
+        "variable": "daytime:false",
         "exp_req_mod": 1,
         "level_range": [
           10,
@@ -183,7 +183,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": false,
+        "variable": "daytime:false",
         "exp_req_mod": 1,
         "level_range": [
           10,
@@ -193,7 +193,7 @@
       },
       {
         "encounter_rate": 0.5,
-        "daytime": false,
+        "variable": "daytime:false",
         "exp_req_mod": 1,
         "level_range": [
           10,

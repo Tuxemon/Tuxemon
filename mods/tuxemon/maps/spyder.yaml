@@ -175,3 +175,19 @@ events:
     - not variable_set nu_map_6:flower_city*-0.15*0.32
     - is location_name flower_city
     type: "event"
+  Cheat Code ApexPlayer:
+    actions:
+    - get_party_monster
+    - remove_monster iid_slot_0
+    - add_monster rockat,100
+    - add_monster moloch,100
+    - add_monster arthrobolt,100
+    - add_monster eaglace,100
+    - add_monster agnigon,100
+    - set_variable cheat_apex:enabled
+    conditions:
+    - is check_char_parameter player,name,ApexPlayer
+    - is party_size equals,1
+    - not variable_set cheat_apex:enabled
+    - is current_state WorldState
+    type: "event"

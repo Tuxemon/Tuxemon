@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="4">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="tabathas"/>
+  <property name="types" value="notype"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="1551" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="12" height="12">
+  <data encoding="csv">
+1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,
+1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,
+1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,
+1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,
+1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,
+1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,
+1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,
+1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,
+1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,
+1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,
+1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,
+1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598,1598
+</data>
+ </layer>
+ <layer id="3" name="Tile Layer 2" width="12" height="12">
+  <data encoding="csv">
+916,917,918,916,917,918,916,917,918,916,917,918,
+947,948,949,947,948,949,947,948,949,947,948,949,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,582,584,0,
+0,0,0,0,0,0,0,0,0,613,615,0,
+0,0,0,0,0,0,0,0,0,644,646,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="4" name="Tile Layer 3" width="12" height="12">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,
+919,0,0,0,0,0,0,0,0,0,678,919,
+950,0,0,0,0,0,0,0,0,0,709,950,
+919,0,978,0,0,0,0,0,0,978,740,919,
+950,0,1009,0,0,0,0,0,0,1009,0,950,
+919,954,955,0,0,0,0,0,0,0,0,919,
+950,985,986,0,0,0,0,0,0,833,0,950,
+919,1016,1017,0,0,0,0,0,0,0,860,919,
+950,0,0,0,0,0,0,0,0,0,0,950,
+981,0,0,0,0,0,0,0,0,0,0,981,
+1012,0,0,0,0,0,0,0,0,0,0,1012,
+0,0,0,0,0,0,417,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup color="#ffff00" id="5" name="events">
+  <properties>
+   <property name="act10" value="create_npc unknownwitch,9,10"/>
+   <property name="act20" value="char_face unknownwitch,right"/>
+   <property name="cond10" value="not char_exists unknownwitch"/>
+  </properties>
+  <object id="2" name="Exit To Azure Town" type="event" x="96" y="176" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport azure_town.tmx,9,11,0.3"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,down"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

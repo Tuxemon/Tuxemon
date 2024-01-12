@@ -32,7 +32,8 @@ class RenamePlayerAction(EventAction):
     random: Union[str, None] = None
 
     def set_player_name(self, name: str) -> None:
-        self.session.player.name = name
+        client = self.session.client
+        client.event_engine.execute_action("set_player_name", [name], True)
 
     def start(self) -> None:
         self.session.client.push_state(

@@ -54,15 +54,15 @@
   <object id="47" name="Outside" type="event" x="96" y="176" width="32" height="16">
    <properties>
     <property name="act10" value="transition_teleport cotton_town.tmx,23,17,0.3"/>
-    <property name="act20" value="player_face down"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing down"/>
+    <property name="act20" value="char_face player,down"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="52" name="Fireplace" type="event" x="96" y="80" width="32" height="16">
    <properties>
     <property name="act1" value="translated_dialog cotton_misa_fireplace"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
@@ -76,16 +76,16 @@
    <properties>
     <property name="act11" value="create_npc cotton_misa_gramps,2,4"/>
     <property name="act12" value="create_npc cotton_misa_bro,9,3"/>
-    <property name="act21" value="npc_face cotton_misa_gramps,down"/>
-    <property name="act22" value="npc_face cotton_misa_bro,right"/>
-    <property name="cond1" value="not npc_exists cotton_misa_gramps"/>
-    <property name="cond2" value="not npc_exists cotton_misa_bro"/>
+    <property name="act21" value="char_face cotton_misa_gramps,down"/>
+    <property name="act22" value="char_face cotton_misa_bro,right"/>
+    <property name="cond1" value="not char_exists cotton_misa_gramps"/>
+    <property name="cond2" value="not char_exists cotton_misa_bro"/>
    </properties>
   </object>
   <object id="55" name="TV" type="event" x="16" y="144" width="32" height="16">
    <properties>
     <property name="act1" value="translated_dialog cotton_misa_tv"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>

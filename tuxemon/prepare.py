@@ -64,8 +64,30 @@ SCREEN_SIZE = CONFIG.resolution
 # 1 tile = 16 pixels
 TILE_SIZE: tuple[int, int] = (16, 16)
 
-# Set the status icon size so we know how much to scale our menu icons
+# Set the generic icons (eg. party_empty, etc.)
 ICON_SIZE: tuple[int, int] = (7, 7)
+# Set icons technique (eg. poison, etc.)
+TECH_ICON_SIZE: tuple[int, int] = (9, 9)
+# Set icons status (eg. poison, etc.)
+STATUS_ICON_SIZE: tuple[int, int] = (9, 9)
+# set sprite size (eg. nurse, bob, etc.)
+SPRITE_SIZE: tuple[int, int] = (16, 32)
+# set items size (eg. tuxeball, potion, etc.)
+ITEM_SIZE: tuple[int, int] = (24, 24)
+# set template size (eg. ceo, adventurer, heroine, etc.)
+TEMPLATE_SIZE: tuple[int, int] = (64, 64)
+# set monster size (eg. rockitten-front, rockitten-back, etc.)
+MONSTER_SIZE: tuple[int, int] = (64, 64)
+# set monster menu size (eg. rockitten-menu01, etc.)
+MONSTER_SIZE_MENU: tuple[int, int] = (24, 24)
+# set borders size (eg dialogues black-orange, etc.)
+BORDERS_SIZE: tuple[int, int] = (18, 18)
+# set element size (earth, metal, etc.)
+ELEMENT_SIZE: tuple[int, int] = (24, 24)
+# set island size, battle terrains (grass, etc.)
+ISLAND_SIZE: tuple[int, int] = (96, 57)
+# set battle background size (grass, etc.)
+BATTLE_BG_SIZE: tuple[int, int] = (280, 112)
 
 # Set the healthbar _color
 GFX_HP_BAR: str = "gfx/ui/monster/hp_bar.png"
@@ -170,6 +192,8 @@ COEFF_POUNDS: float = 2.2046
 PLAYER_NPC = CONFIG.player_npc
 PLAYER_NAME_LIMIT: int = 15  # The character limit for a player name.
 PARTY_LIMIT: int = 6  # The maximum number of tuxemon this npc can hold
+#  Moverate limits to avoid losing sprites
+MOVERATE_RANGE: tuple[float, float] = (0.0, 20.0)
 
 # PC
 KENNEL: str = "Kennel"

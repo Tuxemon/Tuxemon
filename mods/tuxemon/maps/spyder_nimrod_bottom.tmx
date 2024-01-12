@@ -41,24 +41,24 @@
   <object id="1" name="Teleport to Flower City" type="event" x="128" y="304" width="48" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_flower_city.tmx,19,10,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="2" name="Teleport to Nimrod Middle" type="event" x="256" y="272" width="32" height="32">
    <properties>
     <property name="act1" value="transition_teleport spyder_nimrod_middle.tmx,15,18,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="34" name="Create Dirk" type="event" x="64" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_dirk,4,19"/>
-    <property name="act2" value="npc_face spyder_nimrod_dirk,up"/>
-    <property name="cond1" value="not npc_exists spyder_nimrod_dirk"/>
+    <property name="act2" value="char_face spyder_nimrod_dirk,up"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_dirk"/>
    </properties>
   </object>
   <object id="35" name="Talk Dirk" type="event" x="48" y="304" width="16" height="16">
@@ -70,8 +70,8 @@
   <object id="38" name="Create Guard" type="event" x="112" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_jake,7,19"/>
-    <property name="act2" value="npc_face spyder_nimrod_jake,right"/>
-    <property name="cond1" value="not npc_exists spyder_nimrod_jake"/>
+    <property name="act2" value="char_face spyder_nimrod_jake,right"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_jake"/>
     <property name="cond2" value="not variable_set nimrodtru:yes"/>
    </properties>
   </object>
@@ -84,15 +84,15 @@
   <object id="40" name="Create Rebel" type="event" x="192" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_rebel,12,15"/>
-    <property name="act2" value="npc_face spyder_nimrod_rebel,right"/>
-    <property name="cond1" value="not npc_exists spyder_nimrod_rebel"/>
+    <property name="act2" value="char_face spyder_nimrod_rebel,right"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_rebel"/>
    </properties>
   </object>
   <object id="41" name="Talk Rebel" type="event" x="192" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_rebel1"/>
     <property name="act2" value="add_monster grimachin,30,spyder_nimrod_rebel,5,10"/>
-    <property name="act3" value="start_battle spyder_nimrod_rebel"/>
+    <property name="act3" value="start_battle player,spyder_nimrod_rebel"/>
     <property name="act4" value="translated_dialog spyder_nimrod_rebel2"/>
     <property name="act6" value="set_variable nimrodrebel:yes"/>
     <property name="behav1" value="talk spyder_nimrod_rebel"/>
@@ -102,7 +102,7 @@
   <object id="42" name="Create Bowie" type="event" x="16" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_bowie,1,15"/>
-    <property name="cond1" value="not npc_exists spyder_nimrod_bowie"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_bowie"/>
    </properties>
   </object>
   <object id="43" name="Talk Bowie" type="event" x="48" y="240" width="16" height="16">
@@ -110,7 +110,7 @@
     <property name="act1" value="translated_dialog spyder_nimrod_bowie1"/>
     <property name="act2" value="add_monster tigrock,35,spyder_nimrod_bowie,5,10"/>
     <property name="act3" value="add_monster embazook,35,spyder_nimrod_bowie,5,10"/>
-    <property name="act4" value="start_battle spyder_nimrod_bowie"/>
+    <property name="act4" value="start_battle player,spyder_nimrod_bowie"/>
     <property name="act5" value="translated_dialog spyder_nimrod_bowie2"/>
     <property name="act6" value="set_variable nimrodbowie:yes"/>
     <property name="behav1" value="talk spyder_nimrod_bowie"/>
@@ -120,8 +120,8 @@
   <object id="44" name="Create Tru" type="event" x="16" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_nimrod_tru,1,18"/>
-    <property name="act2" value="npc_face spyder_nimrod_tru,right"/>
-    <property name="cond1" value="not npc_exists spyder_nimrod_tru"/>
+    <property name="act2" value="char_face spyder_nimrod_tru,right"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_tru"/>
    </properties>
   </object>
   <object id="45" name="Talk Tru" type="event" x="16" y="304" width="16" height="16">
@@ -132,7 +132,7 @@
     <property name="act04" value="add_monster komodraw,25,spyder_nimrod_tru,5,10"/>
     <property name="act05" value="add_monster sharpfin,25,spyder_nimrod_tru,5,10"/>
     <property name="act06" value="add_monster embazook,25,spyder_nimrod_tru,5,10"/>
-    <property name="act07" value="start_battle spyder_nimrod_tru"/>
+    <property name="act07" value="start_battle player,spyder_nimrod_tru"/>
     <property name="act08" value="translated_dialog spyder_nimrod_tru2"/>
     <property name="act09" value="translated_dialog spyder_nimrod_tru3"/>
     <property name="act10" value="set_variable nimrodtru:yes"/>
@@ -145,9 +145,9 @@
   <object id="48" name="Teleport to  Flower City" type="event" x="0" y="256" width="16" height="48">
    <properties>
     <property name="act1" value="transition_teleport spyder_flower_city.tmx,11,4,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="49" type="collision" x="32" y="256" width="48" height="32"/>
@@ -162,11 +162,11 @@
     <property name="act0" value="pathfind_to_player spyder_nimrod_rebel"/>
     <property name="act1" value="translated_dialog spyder_nimrod_rebel1"/>
     <property name="act2" value="add_monster grimachin,30,spyder_nimrod_rebel,5,10"/>
-    <property name="act3" value="start_battle spyder_nimrod_rebel"/>
+    <property name="act3" value="start_battle player,spyder_nimrod_rebel"/>
     <property name="act4" value="translated_dialog spyder_nimrod_rebel2"/>
     <property name="act6" value="set_variable nimrodrebel:yes"/>
     <property name="cond1" value="not variable_set nimrodrebel:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="54" name="Talk Tru" type="event" x="32" y="288" width="32" height="16">
@@ -178,14 +178,14 @@
     <property name="act04" value="add_monster komodraw,25,spyder_nimrod_tru,5,10"/>
     <property name="act05" value="add_monster sharpfin,25,spyder_nimrod_tru,5,10"/>
     <property name="act06" value="add_monster embazook,25,spyder_nimrod_tru,5,10"/>
-    <property name="act07" value="start_battle spyder_nimrod_tru"/>
+    <property name="act07" value="start_battle player,spyder_nimrod_tru"/>
     <property name="act08" value="translated_dialog spyder_nimrod_tru2"/>
     <property name="act09" value="translated_dialog spyder_nimrod_tru3"/>
     <property name="act10" value="set_variable nimrodtru:yes"/>
     <property name="act11" value="pathfind spyder_nimrod_jake,0,17"/>
     <property name="act12" value="remove_npc spyder_nimrod_jake"/>
     <property name="cond1" value="not variable_set nimrodtru:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="55" name="Talk Bowie" type="event" x="16" y="256" width="16" height="32">
@@ -194,11 +194,11 @@
     <property name="act1" value="translated_dialog spyder_nimrod_bowie1"/>
     <property name="act2" value="add_monster tigrock,35,spyder_nimrod_bowie,5,10"/>
     <property name="act3" value="add_monster embazook,35,spyder_nimrod_bowie,5,10"/>
-    <property name="act4" value="start_battle spyder_nimrod_bowie"/>
+    <property name="act4" value="start_battle player,spyder_nimrod_bowie"/>
     <property name="act5" value="translated_dialog spyder_nimrod_bowie2"/>
     <property name="act6" value="set_variable nimrodbowie:yes"/>
     <property name="cond1" value="not variable_set nimrodbowie:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
  </objectgroup>

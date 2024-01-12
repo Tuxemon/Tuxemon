@@ -45,9 +45,9 @@
   <object id="70" name="Go outside" type="event" x="96" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport citypark.tmx,36,4,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
  </objectgroup>

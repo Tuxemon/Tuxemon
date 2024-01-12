@@ -563,9 +563,22 @@ class NPC(Entity[NPCState]):
             self.stop_moving()
 
             if self.pathfinding:
-                # since we are pathfinding, just try a new path
-                logger.error(f"{self.slug} finding new path!")
-                self.pathfind(self.pathfinding)
+                # check tile for npc
+                npc = self.world.get_entity_pos(self.pathfinding)
+                if npc:
+                    # since we are pathfinding, just try a new path
+                    logger.error(
+                        f"{npc.slug} on your way, {self.slug} finding new path!"
+                    )
+                    self.pathfind(self.pathfinding)
+                else:
+                    logger.warning(
+                        f"Possible issue of {self.slug} in {self.tile_pos}"
+                        f" in its way to {self.pathfinding}!"
+                        " Consider to postpone it (eg. 'wait 1') or to split"
+                        f" it (eg. 'pathfind {self.tile_pos}, stop then"
+                        f" pathfind {self.pathfinding})"
+                    )
 
             else:
                 # give up and wait until the target is clear again

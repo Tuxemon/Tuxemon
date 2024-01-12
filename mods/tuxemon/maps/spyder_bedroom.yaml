@@ -103,3 +103,12 @@ events:
     conditions:
     - not music_playing music_home
     type: "event"
+  Auto healing teleported:
+    actions:
+    - set_monster_health
+    - set_monster_status
+    - set_variable teleport_clinic:none
+    conditions:
+    - is variable_set teleport_clinic:lost
+    - is current_state WorldState
+    type: "event"

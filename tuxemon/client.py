@@ -158,11 +158,14 @@ class LocalPygameClient:
         self.map_size = map_data.size
 
         # Check if the map type exists
-        types = [maps.value for maps in MapType]
-        if map_data.types in types:
-            self.map_type = map_data.types
+        self.map_type = MapType.notype
+        if map_data.types in list(MapType):
+            self.map_type = MapType(map_data.types)
         else:
-            logger.error(f"The type '{map_data.types}' doesn't exist.")
+            logger.warning(
+                f"The type '{map_data.types}' doesn't exist."
+                f"By default assigned {MapType.notype}!"
+            )
 
         # Cardinal points
         if map_data.north_trans == "None":

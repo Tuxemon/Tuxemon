@@ -6,7 +6,7 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional
 
-from tuxemon.db import OutputBattle
+from tuxemon.combat import set_var
 from tuxemon.locale import T
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
@@ -60,7 +60,7 @@ class RunEffect(TechEffect):
         if ran:
             combat._run = True
             extra = T.translate("combat_player_run")
-            var["battle_last_result"] = OutputBattle.ran
+            set_var(self.session, "battle_last_result", self.name)
             for remove in combat.players:
                 combat.clean_combat()
                 del combat.monsters_in_play[remove]

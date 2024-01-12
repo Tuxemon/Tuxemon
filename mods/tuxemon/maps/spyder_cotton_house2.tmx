@@ -49,8 +49,8 @@
   <object id="64" name="Create Picnicker" type="event" x="64" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottonhouse2_neva,3,2"/>
-    <property name="act2" value="npc_face spyder_cottonhouse2_neva,up"/>
-    <property name="cond1" value="not npc_exists spyder_cottonhouse2_neva"/>
+    <property name="act2" value="char_face spyder_cottonhouse2_neva,up"/>
+    <property name="cond1" value="not char_exists spyder_cottonhouse2_neva"/>
    </properties>
   </object>
   <object id="65" name="Talk Picnicker" type="event" x="80" y="32" width="16" height="16">
@@ -62,8 +62,8 @@
   <object id="66" name="Create Catgirl" type="event" x="48" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottonhouse2_sidney,0,6"/>
-    <property name="act2" value="npc_face spyder_cottonhouse2_sidney,up"/>
-    <property name="cond1" value="not npc_exists spyder_cottonhouse2_sidney"/>
+    <property name="act2" value="char_face spyder_cottonhouse2_sidney,up"/>
+    <property name="cond1" value="not char_exists spyder_cottonhouse2_sidney"/>
    </properties>
   </object>
   <object id="67" name="Talk Catgirl" type="event" x="0" y="80" width="16" height="16">
@@ -75,8 +75,8 @@
   <object id="68" name="Create Shopkeeper" type="event" x="144" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottonhouse2_davis,9,3"/>
-    <property name="act2" value="npc_face spyder_cottonhouse2_davis,left"/>
-    <property name="cond1" value="not npc_exists spyder_cottonhouse2_davis"/>
+    <property name="act2" value="char_face spyder_cottonhouse2_davis,left"/>
+    <property name="cond1" value="not char_exists spyder_cottonhouse2_davis"/>
    </properties>
   </object>
   <object id="69" name="Talk Shopkeeper" type="event" x="128" y="80" width="16" height="16">
@@ -88,17 +88,17 @@
   <object id="70" name="Go outside" type="event" x="96" y="112" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_cotton_town.tmx,25,9,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="71" name="Go outside" type="event" x="80" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_cotton_town.tmx,27,5,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
  </objectgroup>

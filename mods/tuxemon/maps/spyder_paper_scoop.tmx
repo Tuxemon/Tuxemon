@@ -52,8 +52,8 @@
   <object id="17" name="Go outside" type="event" x="96" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_paper_town.tmx,19,13,0.3"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="59" name="Route Music" type="event" x="0" y="0" width="16" height="16">
@@ -65,14 +65,14 @@
   <object id="60" name="Create Shopkeeper" type="event" x="0" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_paperscoop_santino,0,4"/>
-    <property name="act2" value="npc_face spyder_paperscoop_santino,up"/>
-    <property name="cond1" value="not npc_exists spyder_paperscoop_santino"/>
+    <property name="act2" value="char_face spyder_paperscoop_santino,up"/>
+    <property name="cond1" value="not char_exists spyder_paperscoop_santino"/>
    </properties>
   </object>
   <object id="61" name="Create Dante" type="event" x="176" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dante,11,6"/>
-    <property name="cond1" value="not npc_exists spyder_dante"/>
+    <property name="cond1" value="not char_exists spyder_dante"/>
    </properties>
   </object>
   <object id="62" name="Talk Dante" type="event" x="16" y="0" width="16" height="16">
@@ -85,14 +85,14 @@
   <object id="64" name="potions" type="event" x="128" y="80" width="80" height="16">
    <properties>
     <property name="act10" value="translated_dialog potions_in_shop"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="65" name="capture devices" type="event" x="128" y="128" width="80" height="16">
    <properties>
     <property name="act10" value="translated_dialog capture_devices_in_shop"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>

@@ -4,11 +4,10 @@ from __future__ import annotations
 
 import logging
 import math
-from collections.abc import Container, Iterator, Sequence
+from collections.abc import Callable, Container, Iterator, Sequence
 from typing import (
     TYPE_CHECKING,
     Any,
-    Callable,
     Final,
     Generic,
     Literal,
@@ -422,8 +421,6 @@ class RelativeGroup(MenuSpriteGroup[_MenuElement]):
     def draw(
         self,
         surface: Surface,
-        bgsurf: Any = None,
-        special_flags: int = 0,
     ) -> list[Rect]:
         self.update_rect_from_parent()
         topleft = self.rect.topleft
@@ -510,8 +507,6 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
     def draw(
         self,
         surface: Surface,
-        bgsurf: Any = None,
-        special_flags: int = 0,
     ) -> list[Rect]:
         if self._needs_arrange:
             self.arrange_menu_items()

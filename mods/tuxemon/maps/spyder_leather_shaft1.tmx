@@ -43,14 +43,14 @@
   <object id="2" name="Outside" type="event" x="192" y="224" width="32" height="16">
    <properties>
     <property name="act10" value="transition_teleport spyder_leather_town.tmx,17,4,0.3"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing down"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="17" name="Sign" type="event" x="160" y="160" width="16" height="32">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathershaft1_sign"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
@@ -61,16 +61,16 @@
     <property name="act13" value="create_npc spyder_leathershaft1_beryll,8,8"/>
     <property name="act14" value="create_npc spyder_leathershaft1_surat,12,6"/>
     <property name="act15" value="create_npc spyder_leathershaft1_roxby,4,13"/>
-    <property name="act21" value="npc_face spyder_leathershaft1_cole,up"/>
-    <property name="act22" value="npc_face spyder_leathershaft1_rutherford,up"/>
-    <property name="act23" value="npc_face spyder_leathershaft1_beryll,up"/>
-    <property name="act24" value="npc_face spyder_leathershaft1_surat,right"/>
-    <property name="act25" value="npc_face spyder_leathershaft1_roxby,right"/>
-    <property name="cond1" value="not npc_exists spyder_leathershaft1_cole"/>
-    <property name="cond2" value="not npc_exists spyder_leathershaft1_rutherford"/>
-    <property name="cond3" value="not npc_exists spyder_leathershaft1_beryll"/>
-    <property name="cond4" value="not npc_exists spyder_leathershaft1_surat"/>
-    <property name="cond5" value="not npc_exists spyder_leathershaft1_roxby"/>
+    <property name="act21" value="char_face spyder_leathershaft1_cole,up"/>
+    <property name="act22" value="char_face spyder_leathershaft1_rutherford,up"/>
+    <property name="act23" value="char_face spyder_leathershaft1_beryll,up"/>
+    <property name="act24" value="char_face spyder_leathershaft1_surat,right"/>
+    <property name="act25" value="char_face spyder_leathershaft1_roxby,right"/>
+    <property name="cond1" value="not char_exists spyder_leathershaft1_cole"/>
+    <property name="cond2" value="not char_exists spyder_leathershaft1_rutherford"/>
+    <property name="cond3" value="not char_exists spyder_leathershaft1_beryll"/>
+    <property name="cond4" value="not char_exists spyder_leathershaft1_surat"/>
+    <property name="cond5" value="not char_exists spyder_leathershaft1_roxby"/>
    </properties>
   </object>
   <object id="19" name="Guy5" type="event" x="64" y="208" width="16" height="16">

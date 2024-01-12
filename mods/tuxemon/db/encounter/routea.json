@@ -4,7 +4,7 @@
     {
       "monster": "shybulb",
       "encounter_rate": 3.5,
-      "daytime": true,
+      "variable": "daytime:true",
       "exp_req_mod": 1,
       "level_range": [
         12,
@@ -14,7 +14,7 @@
     {
       "monster": "katapill",
       "encounter_rate": 3.5,
-      "daytime": true,
+      "variable": "daytime:true",
       "exp_req_mod": 1,
       "level_range": [
         12,
@@ -24,7 +24,7 @@
     {
       "monster": "anoleaf",
       "encounter_rate": 1.5,
-      "daytime": true,
+      "variable": "daytime:true",
       "exp_req_mod": 1,
       "level_range": [
         12,
@@ -34,7 +34,7 @@
     {
       "monster": "katapill",
       "encounter_rate": 3.5,
-      "daytime": false,
+      "variable": "daytime:false",
       "exp_req_mod": 1,
       "level_range": [
         14,
@@ -44,7 +44,7 @@
     {
       "monster": "vamporm",
       "encounter_rate": 1.5,
-      "daytime": false,
+      "variable": "daytime:false",
       "exp_req_mod": 1,
       "level_range": [
         14,
@@ -54,7 +54,7 @@
     {
       "monster": "anoleaf",
       "encounter_rate": 1.5,
-      "daytime": false,
+      "variable": "daytime:false",
       "exp_req_mod": 1,
       "level_range": [
         14,

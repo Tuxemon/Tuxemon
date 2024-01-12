@@ -25,13 +25,11 @@
     ],
     "evolutions": [
         {
-            "path": "variable",
             "at_level": 14,
             "monster_slug": "angesnow",
             "variable": "daytime:true"
         },
         {
-            "path": "variable",
             "at_level": 14,
             "monster_slug": "demosnow",
             "variable": "daytime:false"

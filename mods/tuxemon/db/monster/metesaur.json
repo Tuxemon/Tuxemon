@@ -45,7 +45,6 @@
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 40,
             "monster_slug": "qetzlrokilus"
         }

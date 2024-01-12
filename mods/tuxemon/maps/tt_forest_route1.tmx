@@ -94,9 +94,9 @@
   <object id="129" name="Teleport to Route1" type="event" x="112" y="624" width="48" height="16">
    <properties>
     <property name="act1" value="transition_teleport tt_paper_town.tmx,14,4,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="159" name="Player Spawn" type="event" x="128" y="608" width="16" height="16"/>

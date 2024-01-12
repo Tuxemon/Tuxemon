@@ -4,7 +4,8 @@ from __future__ import annotations
 
 import sys
 import traceback
-from typing import TYPE_CHECKING, Iterable
+from collections.abc import Iterable
+from typing import TYPE_CHECKING
 
 from tuxemon.cli.clicommand import CLICommand
 from tuxemon.cli.exceptions import ParseError

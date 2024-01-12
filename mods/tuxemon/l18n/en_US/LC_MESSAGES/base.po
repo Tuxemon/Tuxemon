@@ -2440,6 +2440,12 @@ msgstr "Timber"
 msgid "tunnel"
 msgstr "Tunnel"
 
+msgid "azure_town"
+msgstr "Azure"
+
+msgid "witcher_route_7"
+msgstr "Witcher Route 7"
+
 ## MAP DESCRIPTIONS TOWN / CITY ##
 
 msgid "lion_mountain_description"
@@ -10209,3 +10215,11 @@ msgstr "GARY: People like you shouldn't be able to get Tuxemon like this!"
 
 msgid "junkyard_08"
 msgstr "CARY: It's your own fault. Let's get them, Gary."
+
+## Azure Town
+
+msgid "town_hall"
+msgstr "Town Hall"
+
+msgid "flower_lady"
+msgstr "Flower Lady"

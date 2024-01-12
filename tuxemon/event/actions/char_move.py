@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from collections.abc import Generator, Sequence
 from dataclasses import dataclass, field
 from typing import Any, final
@@ -11,6 +12,8 @@ from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.map import dirs2
 from tuxemon.math import Vector2
+
+logger = logging.getLogger(__name__)
 
 
 def simple_path(
@@ -42,9 +45,9 @@ def parse_path_parameters(
 
 @final
 @dataclass
-class NpcMoveAction(EventAction):
+class CharMoveAction(EventAction):
     """
-    Relative tile movement for NPC.
+    Relative tile movement for character.
 
     This action blocks until the destination is reached.
 
@@ -52,10 +55,10 @@ class NpcMoveAction(EventAction):
     Script usage:
         .. code-block::
 
-            npc_move <npc_slug>,<move>...
+            char_move <character>,<move>...
 
     Script parameters:
-        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        character: Either "player" or character slug name (e.g. "npc_maple").
         move: A tuple with format ``<direction> [amount_of_tiles]`` where
             ``direction`` can be one of "up", "down", "left" and "right" and
             ``amount_of_tiles`` is the number of tiles moved in that direction,
@@ -65,7 +68,7 @@ class NpcMoveAction(EventAction):
 
     """
 
-    name = "npc_move"
+    name = "char_move"
     raw_parameters: Sequence[str] = field(init=False)
 
     def __init__(self, *args: Any) -> None:
@@ -75,26 +78,27 @@ class NpcMoveAction(EventAction):
     # parameter checking not supported due to undefined number of parameters
 
     def start(self) -> None:
-        npc_slug = self.raw_parameters[0]
-        self.npc = get_npc(self.session, npc_slug)
+        character = self.raw_parameters[0]
+        self.character = get_npc(self.session, character)
 
-        if self.npc is None:
+        if self.character is None:
+            logger.error(f"{self.character} not found")
             return
 
         path = list(
             parse_path_parameters(
-                self.npc.tile_pos,
+                self.character.tile_pos,
                 self.raw_parameters[1:],
             )
         )
         path.reverse()
-        self.npc.path = path
-        self.npc.next_waypoint()
+        self.character.path = path
+        self.character.next_waypoint()
 
     def update(self) -> None:
-        if self.npc is None:
+        if self.character is None:
             self.stop()
             return
 
-        if not self.npc.moving and not self.npc.path:
+        if not self.character.moving and not self.character.path:
             self.stop()

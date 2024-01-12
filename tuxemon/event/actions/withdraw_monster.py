@@ -5,9 +5,9 @@ from __future__ import annotations
 import logging
 import uuid
 from dataclasses import dataclass
-from typing import Optional, final
+from typing import final
 
-from tuxemon.event import get_monster_in_storage, get_npc
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
@@ -26,39 +26,36 @@ class WithdrawMonsterAction(EventAction):
     Script usage:
         .. code-block::
 
-            withdraw_monster <variable>[,npc_slug]
+            withdraw_monster <variable>,<character>
 
     Script parameters:
         variable: Name of the variable where to store the monster id.
-        npc_slug: Slug of the trainer that will receive the monster. It
-            defaults to the current player.
+        character: Either "player" or npc slug name (e.g. "npc_maple").
+            the one who is going to receive the monster
 
     """
 
     name = "withdraw_monster"
     variable: str
-    npc_slug: Optional[str] = None
+    character: str
 
     def start(self) -> None:
-        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
-        trainer = get_npc(self.session, self.npc_slug)
-        if trainer is None:
-            logger.error(f"{self.npc_slug} not found")
-            return
-
-        if self.variable not in trainer.game_variables:
+        player = self.session.player
+        if self.variable not in player.game_variables:
             logger.error(f"Game variable {self.variable} not found")
             return
 
-        monster_id = uuid.UUID(trainer.game_variables[self.variable])
-        monster = get_monster_in_storage(self.session, monster_id)
+        monster_id = uuid.UUID(player.game_variables[self.variable])
+        monster = player.find_monster_in_storage(monster_id)
         if monster is None:
             logger.error("Monster not found")
             return
-        character = monster.owner
+        player.remove_monster_from_storage(monster)
+
+        character = get_npc(self.session, self.character)
         if character is None:
-            logger.error("Monster owner not found")
+            logger.error(f"{self.character} not found")
             return
-        character.remove_monster_from_storage(monster)
-        trainer.add_monster(monster, len(trainer.monsters))
-        logger.info(f"{trainer.name} withdrawn {monster.name}!")
+
+        character.add_monster(monster, len(character.monsters))
+        logger.info(f"{character.name} withdrawn {monster.name}!")

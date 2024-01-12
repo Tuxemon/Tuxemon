@@ -6,10 +6,10 @@ import logging
 import random
 import uuid
 from dataclasses import dataclass
-from typing import Optional, final
+from typing import final
 
 from tuxemon import formula, monster
-from tuxemon.event import get_monster_by_iid, get_monster_in_storage, get_npc
+from tuxemon.event import get_monster_by_iid, get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from tuxemon.states.dialog import DialogState
@@ -38,72 +38,48 @@ class SpawnMonsterAction(EventAction):
             spawn_monster [npc_slug]
 
     Script parameters:
-        npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
+        character: Either "player" or npc slug name (e.g. "npc_maple").
+            the one who is going to receive the new born
 
     """
 
     name = "spawn_monster"
-    npc_slug: Optional[str] = None
+    character: str
 
     def start(self) -> None:
-        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
-        trainer = get_npc(self.session, self.npc_slug)
-        if trainer is None:
-            logger.error(f"{self.npc_slug} not found")
-            return
-
-        mother_id = uuid.UUID(trainer.game_variables["breeding_mother"])
-        father_id = uuid.UUID(trainer.game_variables["breeding_father"])
+        player = self.session.player
+        mother_id = uuid.UUID(player.game_variables["breeding_mother"])
+        father_id = uuid.UUID(player.game_variables["breeding_father"])
 
         mother = get_monster_by_iid(self.session, mother_id)
         if mother is None:
-            logger.debug("Mother not found in party, searching storage boxes.")
-            mother = get_monster_in_storage(self.session, mother_id)
+            logger.debug("Mother not found in party, searching boxes.")
+            mother = player.find_monster_in_storage(mother_id)
+            if mother is None:
+                logger.debug(f"Mother {mother_id} not found in boxes.")
+                return
 
         father = get_monster_by_iid(self.session, father_id)
         if father is None:
-            logger.debug("Father not found in party, searching storage boxes.")
-            father = get_monster_in_storage(self.session, father_id)
-
-        if mother is None:
-            logger.error(
-                f"Could not find (mother) monster with instance id {mother_id}"
-            )
-            return
-        if father is None:
-            logger.error(
-                f"Could not find (father) monster with instance id {father_id}"
-            )
-            return
+            logger.debug("Father not found in party, searching boxes.")
+            father = player.find_monster_in_storage(father_id)
+            if father is None:
+                logger.debug(f"Father {father_id} not found in boxes.")
+                return
 
         # matrix, it respects the types[0], strong against weak.
         # Mother (Water), Father (Earth)
         # Earth > Water => Child (Earth)
-        if mother.types[0].slug.water:
-            if father.types[0].slug.earth:
-                seed = father
-            else:
-                seed = mother
-        elif mother.types[0].slug.fire:
-            if father.types[0].slug.water:
-                seed = father
-            else:
-                seed = mother
-        elif mother.types[0].slug.wood:
-            if father.types[0].slug.metal:
-                seed = father
-            else:
-                seed = mother
-        elif mother.types[0].slug.metal:
-            if father.types[0].slug.fire:
-                seed = father
-            else:
-                seed = mother
-        elif mother.types[0].slug.earth:
-            if father.types[0].slug.wood:
-                seed = father
-            else:
-                seed = mother
+        if mother.types[0].slug.water and father.types[0].slug.earth:
+            seed = father
+        elif mother.types[0].slug.fire and father.types[0].slug.water:
+            seed = father
+        elif mother.types[0].slug.wood and father.types[0].slug.metal:
+            seed = father
+        elif mother.types[0].slug.metal and father.types[0].slug.fire:
+            seed = father
+        elif mother.types[0].slug.earth and father.types[0].slug.wood:
+            seed = father
         else:
             seed = mother
 
@@ -125,7 +101,12 @@ class SpawnMonsterAction(EventAction):
         child.moves[replace_tech] = father.moves[
             random.randrange(0, father_moves - 1)
         ]
-        trainer.add_monster(child, len(trainer.monsters))
+
+        character = get_npc(self.session, self.character)
+        if character is None:
+            logger.error(f"{self.character} not found")
+            return
+        character.add_monster(child, len(character.monsters))
 
         msg = T.format("got_new_tuxemon", {"monster_name": child.name})
         open_dialog(self.session, [msg])

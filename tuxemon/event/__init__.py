@@ -52,7 +52,6 @@ __all__ = [
     "get_npc_by_iid",
     "get_npc_pos",
     "get_monster_by_iid",
-    "get_monster_in_storage",
 ]
 
 
@@ -137,27 +136,6 @@ def get_monster_by_iid(session: Session, iid: uuid.UUID) -> Optional[Monster]:
     world = session.client.get_state_by_name(WorldState)
 
     return world.get_monster_by_iid(iid)
-
-
-def get_monster_in_storage(
-    session: Session, iid: uuid.UUID
-) -> Optional[Monster]:
-    """
-    Gets a monster object by iid among all the storages entities.
-
-    Parameters:
-        session: The session object.
-        iid: The iid of the monster that exists on the current map.
-
-    Returns:
-        The monster object or None if the monster is not found.
-
-    """
-    from tuxemon.states.world.worldstate import WorldState
-
-    world = session.client.get_state_by_name(WorldState)
-
-    return world.get_monster_in_storage(iid)
 
 
 def collide(condition: MapCondition, tile_position: tuple[int, int]) -> bool:

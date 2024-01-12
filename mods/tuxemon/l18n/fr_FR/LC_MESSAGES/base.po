@@ -120,10 +120,10 @@ msgid "combat_status_damage"
 msgstr "{name} subit des dégâts de {status} !"
 
 msgid "combat_victory"
-msgstr "Tu as gagné !"
+msgstr "{name} a gagné !"
 
 msgid "combat_defeat"
-msgstr "Tu as perdu !"
+msgstr "{name} a perdu !"
 
 msgid "combat_draw"
 msgstr "Tout le monde s'est évanoui !"
@@ -6228,9 +6228,7 @@ msgid "combat_skip"
 msgstr "{user} saute le tour !"
 
 msgid "combat_victory_trainer"
-msgstr ""
-"Vous avez gagné contre {npc} !\n"
-"Vous obtenez {currency}{prize} !"
+msgstr "{name} a gagné et a reçu {currency}{prize} !"
 
 ## COMBAT STATE STATUSES
 msgid "combat_state_blinded_get"

@@ -199,10 +199,10 @@ msgid "combat_trainer_appeared"
 msgstr "{name} möchte kämpfen!"
 
 msgid "combat_victory"
-msgstr "Du hast gewonnen!"
+msgstr "{name} hat gewonnen!"
 
 msgid "combat_defeat"
-msgstr "Du wurdest geschlagen!"
+msgstr "{name} wurde geschlagen!"
 
 msgid "combat_draw"
 msgstr "Alle Beteiligten sind kampfunfähig!"
@@ -2858,9 +2858,7 @@ msgid "wood_booster_description"
 msgstr "Ermöglicht die Formänderung von Holz Tuxemon."
 
 msgid "combat_victory_trainer"
-msgstr ""
-"Du hast gegen {npc} gewonnen!\n"
-"Du erhältst {currency}{prize}!"
+msgstr "{name} hat gewonnen und {currency}{prize} erhalten!"
 
 msgid "exhausted"
 msgstr "Erschöpft"

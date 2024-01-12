@@ -49,17 +49,17 @@
   <object id="2" name="Teleport to Flower City" type="event" x="176" y="176" width="32" height="16">
    <properties>
     <property name="act10" value="transition_teleport flower_city.tmx,3,18,0.3"/>
-    <property name="act20" value="player_face down"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing down"/>
+    <property name="act20" value="char_face player,down"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="28" name="Teleport to Dojo 2" type="event" x="192" y="80" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport dojo2.tmx,10,9,0.3"/>
-    <property name="act20" value="player_face right"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing right"/>
+    <property name="act20" value="char_face player,right"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,right"/>
    </properties>
   </object>
   <object id="29" name="Player Spawn" type="event" x="80" y="160" width="16" height="16"/>

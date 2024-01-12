@@ -4,7 +4,7 @@
     {
       "monster": "cardiling",
       "encounter_rate": 2.5,
-      "daytime": true,
+      "variable": "daytime:true",
       "exp_req_mod": 1,
       "level_range": [
         3,
@@ -14,7 +14,7 @@
     {
       "monster": "aardorn",
       "encounter_rate": 2.5,
-      "daytime": true,
+      "variable": "daytime:true",
       "exp_req_mod": 1,
       "level_range": [
         3,
@@ -24,7 +24,7 @@
     {
       "monster": "eyenemy",
       "encounter_rate": 2.5,
-      "daytime": true,
+      "variable": "daytime:true",
       "exp_req_mod": 1,
       "level_range": [
         3,
@@ -34,7 +34,7 @@
     {
       "monster": "axylightl",
       "encounter_rate": 1,
-      "daytime": true,
+      "variable": "daytime:true",
       "exp_req_mod": 1,
       "level_range": [
         4,
@@ -44,7 +44,7 @@
     {
       "monster": "cataspike",
       "encounter_rate": 2.5,
-      "daytime": true,
+      "variable": "daytime:true",
       "exp_req_mod": 1,
       "level_range": [
         3,
@@ -54,7 +54,7 @@
     {
       "monster": "cardiling",
       "encounter_rate": 2.5,
-      "daytime": false,
+      "variable": "daytime:false",
       "exp_req_mod": 1,
       "level_range": [
         3,
@@ -64,7 +64,7 @@
     {
       "monster": "aardorn",
       "encounter_rate": 2.5,
-      "daytime": false,
+      "variable": "daytime:false",
       "exp_req_mod": 1,
       "level_range": [
         4,
@@ -74,7 +74,7 @@
     {
       "monster": "eyenemy",
       "encounter_rate": 2.5,
-      "daytime": false,
+      "variable": "daytime:false",
       "exp_req_mod": 1,
       "level_range": [
         4,
@@ -84,7 +84,7 @@
     {
       "monster": "axylightl",
       "encounter_rate": 1,
-      "daytime": false,
+      "variable": "daytime:false",
       "exp_req_mod": 1,
       "level_range": [
         5,
@@ -94,7 +94,7 @@
     {
       "monster": "cataspike",
       "encounter_rate": 2.5,
-      "daytime": false,
+      "variable": "daytime:false",
       "exp_req_mod": 1,
       "level_range": [
         4,

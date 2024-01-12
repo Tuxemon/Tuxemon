@@ -56,9 +56,9 @@
   <object id="15" name="Teleport to Leather Town" type="event" x="80" y="160" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_leather_town.tmx,15,10,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="17" name="Route Music" type="event" x="0" y="0" width="16" height="16">
@@ -69,28 +69,28 @@
   </object>
   <object id="19" name="Open Shop" type="event" x="32" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_face spyder_leatherscoop_blake,right"/>
+    <property name="act1" value="char_face spyder_leatherscoop_blake,right"/>
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
     <property name="act3" value="open_shop spyder_leatherscoop_blake"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="20" name="Open Shop" type="event" x="16" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_face spyder_leatherscoop_blake,down"/>
+    <property name="act1" value="char_face spyder_leatherscoop_blake,down"/>
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
     <property name="act3" value="open_shop spyder_leatherscoop_blake"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="21" name="Create Shopkeeper" type="event" x="16" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_leatherscoop_blake,1,6"/>
-    <property name="act2" value="npc_face spyder_leatherscoop_blake,right"/>
+    <property name="act2" value="char_face spyder_leatherscoop_blake,right"/>
     <property name="act3" value="set_economy spyder_leatherscoop_blake,spyder_leather_scoop"/>
-    <property name="cond1" value="not npc_exists spyder_leatherscoop_blake"/>
+    <property name="cond1" value="not char_exists spyder_leatherscoop_blake"/>
    </properties>
   </object>
  </objectgroup>

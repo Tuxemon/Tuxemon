@@ -190,10 +190,10 @@ msgid "combat_trainer_appeared"
 msgstr "¡{name} quiere combatir!"
 
 msgid "combat_victory"
-msgstr "¡Has ganado!"
+msgstr "¡{name} ha ganado!"
 
 msgid "combat_defeat"
-msgstr "¡Has sido derrotado!"
+msgstr "¡{name} ha sido derrotado!"
 
 msgid "combat_draw"
 msgstr "¡Todos los equipos se han debilitado!"

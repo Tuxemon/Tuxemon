@@ -41,7 +41,6 @@
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 12,
             "monster_slug": "arthrobolt"
         }

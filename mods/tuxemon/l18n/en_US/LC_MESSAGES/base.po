@@ -821,13 +821,13 @@ msgid "combat_trainer_appeared"
 msgstr "{name} wants to battle!"
 
 msgid "combat_victory"
-msgstr "You have won!"
+msgstr "{name} has won!"
 
 msgid "combat_victory_trainer"
-msgstr "You have won against {npc}!\n You get {currency}{prize}!"
+msgstr "{name} has won and has received {currency}{prize}!"
 
 msgid "combat_defeat"
-msgstr "You've been defeated!"
+msgstr "{name} has been defeated!"
 
 msgid "combat_draw"
 msgstr "All parties have fainted!"
@@ -2439,6 +2439,12 @@ msgstr "Timber"
 
 msgid "tunnel"
 msgstr "Tunnel"
+
+msgid "azure_town"
+msgstr "Azure"
+
+msgid "witcher_route_7"
+msgstr "Witcher Route 7"
 
 ## MAP DESCRIPTIONS TOWN / CITY ##
 
@@ -10209,3 +10215,11 @@ msgstr "GARY: People like you shouldn't be able to get Tuxemon like this!"
 
 msgid "junkyard_08"
 msgstr "CARY: It's your own fault. Let's get them, Gary."
+
+## Azure Town
+
+msgid "town_hall"
+msgstr "Town Hall"
+
+msgid "flower_lady"
+msgstr "Flower Lady"

@@ -187,7 +187,7 @@ events:
     - set_variable cheat_apex:enabled
     conditions:
     - is check_char_parameter player,name,ApexPlayer
-    - is party_size equals,1
+    - is party_size player,equals,1
     - not variable_set cheat_apex:enabled
     - is current_state WorldState
     type: "event"

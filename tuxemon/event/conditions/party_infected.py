@@ -2,22 +2,27 @@
 # Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
+
 from tuxemon.db import PlagueType
-from tuxemon.event import MapCondition
+from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
+
+logger = logging.getLogger(__name__)
 
 
 class PartyInfectedCondition(EventCondition):
     """
-    Check to see how many monster are infected and stores the iids.
+    Check to see how many monster are infected in the character's party.
 
     Script usage:
         .. code-block::
 
-            is party_infected <value>
+            is party_infected <character>,<value>
 
     Script parameters:
+        character: Either "player" or npc slug name (e.g. "npc_maple").
         value: all, some or none.
 
     """
@@ -25,26 +30,20 @@ class PartyInfectedCondition(EventCondition):
     name = "party_infected"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        value = str(condition.parameters[0])
-        player = session.player
-        infected = []
-        for mon in player.monsters:
-            if mon.plague == PlagueType.infected:
-                infected.append(mon)
-        if value == "all":
-            if len(infected) == len(player.monsters):
-                return True
-            else:
-                return False
-        elif value == "some":
-            if len(infected) > 0 and len(infected) < len(player.monsters):
-                return True
-            else:
-                return False
-        elif value == "none":
-            if len(infected) == 0:
-                return True
-            else:
-                return False
+        _character, _value = condition.parameters[:2]
+        _plague = PlagueType.infected
+        character = get_npc(session, _character)
+        if character is None:
+            logger.error(f"{_character} not found")
+            return False
+
+        plague = [mon for mon in character.monsters if mon.plague == _plague]
+
+        if _value == "all":
+            return len(plague) == len(character.monsters)
+        elif _value == "some":
+            return len(character.monsters) > len(plague) > 0
+        elif _value == "none":
+            return len(plague) == 0
         else:
-            raise ValueError(f"{value} must be all, some or none")
+            raise ValueError(f"{_value} must be all, some or none")

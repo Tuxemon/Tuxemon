@@ -61,7 +61,7 @@
     <property name="act10" value="translated_dialog tabanurse_dialog_welcome"/>
     <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
-    <property name="cond30" value="is party_size less_than,1"/>
+    <property name="cond30" value="is party_size player,less_than,1"/>
    </properties>
   </object>
   <object id="26" name="hello there" type="event" x="80" y="80" width="16" height="16">
@@ -71,7 +71,7 @@
     <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
     <property name="cond30" value="not variable_set chooses:yes"/>
-    <property name="cond40" value="is party_size greater_than,0"/>
+    <property name="cond40" value="is party_size player,greater_than,0"/>
    </properties>
   </object>
   <object id="27" name="Heal Tuxemon" type="event" x="80" y="96" width="16" height="16">

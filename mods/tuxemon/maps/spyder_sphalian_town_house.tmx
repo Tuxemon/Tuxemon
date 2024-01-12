@@ -52,23 +52,23 @@
   <object id="24" name="Watch TV" type="event" x="16" y="80" width="32" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_sphalian_tvwatch"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="27" name="Go Outside" type="event" x="64" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_sphalian_town.tmx,20,23,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="30" name="Create NPCs" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_sphalian_granny,8,3"/>
-    <property name="act2" value="npc_wander spyder_sphalian_granny"/>
-    <property name="cond1" value="not npc_exists spyder_sphalian_granny"/>
+    <property name="act2" value="char_wander spyder_sphalian_granny"/>
+    <property name="cond1" value="not char_exists spyder_sphalian_granny"/>
    </properties>
   </object>
   <object id="31" name="Talk NPC" type="event" x="32" y="0" width="16" height="16">

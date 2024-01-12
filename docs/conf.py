@@ -17,10 +17,10 @@ sys.path.insert(0, os.path.abspath('../'))
 
 
 # -- Project information -----------------------------------------------------
-from typing import Any, List
+from typing import Any
 
 project = 'Tuxemon'
-copyright = '2015-2021, William Edwards'
+copyright = '2015-2024, William Edwards'
 author = 'William Edwards'
 
 # The full version, including alpha/beta/rc tags
@@ -75,7 +75,7 @@ napoleon_custom_sections = [
 # Apidoc call to generate automatic reference docs. Taken from
 # https://github.com/readthedocs/readthedocs.org/issues/1139#issuecomment-398083449
 def run_apidoc(_: Any) -> None:
-    ignore_paths: List[str] = []
+    ignore_paths: list[str] = []
 
     argv = [
         "-f",

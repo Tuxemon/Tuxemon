@@ -38,29 +38,29 @@
   <object id="3" name="Teleport to Omnichannel 2" type="event" x="16" y="208" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport omnichannel2.tmx,1,10,0.3"/>
-    <property name="act20" value="player_face down"/>
-    <property name="cond10" value="is player_at"/>
+    <property name="act20" value="char_face player,down"/>
+    <property name="cond10" value="is char_at player"/>
    </properties>
   </object>
   <object id="4" name="Teleport to Omnichannel 2" type="event" x="32" y="208" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport omnichannel2.tmx,2,10,0.3"/>
-    <property name="act20" value="player_face down"/>
-    <property name="cond10" value="is player_at"/>
+    <property name="act20" value="char_face player,down"/>
+    <property name="cond10" value="is char_at player"/>
    </properties>
   </object>
   <object id="5" name="Teleport to Omnichannel 4" type="event" x="16" y="144" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport omnichannel4.tmx,1,12,0.3"/>
-    <property name="act20" value="player_face up"/>
-    <property name="cond10" value="is player_at"/>
+    <property name="act20" value="char_face player,up"/>
+    <property name="cond10" value="is char_at player"/>
    </properties>
   </object>
   <object id="6" name="Teleport to Omnichannel 4" type="event" x="32" y="144" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport omnichannel4.tmx,2,12,0.3"/>
-    <property name="act20" value="player_face up"/>
-    <property name="cond10" value="is player_at"/>
+    <property name="act20" value="char_face player,up"/>
+    <property name="cond10" value="is char_at player"/>
    </properties>
   </object>
   <object id="7" name="Play Music" type="event" x="0" y="0" width="16" height="16">

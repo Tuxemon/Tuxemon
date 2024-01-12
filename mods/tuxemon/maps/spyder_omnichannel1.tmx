@@ -62,22 +62,22 @@
   <object id="18" name="Teleport to Omnichannel 3" type="event" x="16" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_omnichannel3.tmx,1,12,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="19" name="Teleport to Omnichannel 3" type="event" x="32" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_omnichannel3.tmx,2,12,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="21" name="Teleport to Cotton Town" type="event" x="16" y="208" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_cotton_town.tmx,17,10,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="22" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -89,7 +89,7 @@
   <object id="24" name="Create William" type="event" x="144" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_william,9,4"/>
-    <property name="cond1" value="not npc_exists spyder_omnichannel_william"/>
+    <property name="cond1" value="not char_exists spyder_omnichannel_william"/>
     <property name="cond2" value="not variable_set omnichannelwilliam:yes"/>
    </properties>
   </object>
@@ -98,7 +98,7 @@
     <property name="act1" value="translated_dialog spyder_omnichannel_william1"/>
     <property name="act2" value="add_monster elowind,36,spyder_omnichannel_william,5,10"/>
     <property name="act3" value="add_monster cardiwing,36,spyder_omnichannel_william,5,10"/>
-    <property name="act4" value="start_battle spyder_omnichannel_william"/>
+    <property name="act4" value="start_battle player,spyder_omnichannel_william"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_william2"/>
     <property name="act6" value="set_variable omnichannelwilliam:yes"/>
     <property name="behav1" value="talk spyder_omnichannel_william"/>
@@ -113,43 +113,43 @@
   </object>
   <object id="32" name="Spot Enforcer" type="event" x="16" y="192" width="32" height="16">
    <properties>
-    <property name="act01" value="player_stop"/>
+    <property name="act01" value="char_stop"/>
     <property name="act02" value="lock_controls"/>
     <property name="act03" value="create_npc spyder_omnichannel_enforcer,8,7"/>
     <property name="act04" value="pathfind spyder_omnichannel_enforcer,3,12"/>
     <property name="act05" value="unlock_controls"/>
-    <property name="act06" value="npc_face player,right"/>
+    <property name="act06" value="char_face player,right"/>
     <property name="act07" value="translated_dialog spyder_cottontown_enforcer"/>
-    <property name="act08" value="npc_face player,down"/>
+    <property name="act08" value="char_face player,down"/>
     <property name="act09" value="pathfind player,2,13"/>
     <property name="act10" value="remove_npc spyder_omnichannel_enforcer"/>
     <property name="cond1" value="not variable_set hospitalcure:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="33" name="Battle Enforcer" type="event" x="16" y="160" width="32" height="16">
    <properties>
-    <property name="act01" value="player_stop"/>
+    <property name="act01" value="char_stop"/>
     <property name="act02" value="lock_controls"/>
     <property name="act03" value="create_npc spyder_omnichannel_enforcer,4,3"/>
     <property name="act04" value="pathfind spyder_omnichannel_enforcer,3,10"/>
     <property name="act05" value="unlock_controls"/>
-    <property name="act06" value="npc_face player,right"/>
+    <property name="act06" value="char_face player,right"/>
     <property name="act10" value="translated_dialog spyder_cottontown_enforcer1"/>
     <property name="act20" value="add_monster rabbitosaur,35,spyder_omnichannel_enforcer,5,10"/>
-    <property name="act30" value="start_battle spyder_omnichannel_enforcer"/>
+    <property name="act30" value="start_battle player,spyder_omnichannel_enforcer"/>
     <property name="act50" value="translated_dialog spyder_cottontown_enforcer2"/>
     <property name="act55" value="pathfind spyder_omnichannel_enforcer,2,12"/>
     <property name="act60" value="remove_npc spyder_omnichannel_enforcer"/>
     <property name="act70" value="set_variable enforceromni:yes"/>
     <property name="cond1" value="not variable_set enforceromni:yes"/>
-    <property name="cond3" value="is player_at"/>
+    <property name="cond3" value="is char_at player"/>
    </properties>
   </object>
   <object id="39" name="Create Maniac" type="event" x="32" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_ethan,2,2"/>
-    <property name="cond1" value="not npc_exists spyder_omnichannel_ethan"/>
+    <property name="cond1" value="not char_exists spyder_omnichannel_ethan"/>
    </properties>
   </object>
   <object id="40" name="Talk Maniac" type="event" x="32" y="16" width="16" height="16">
@@ -161,7 +161,7 @@
   <object id="41" name="Create Nurse" type="event" x="32" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_danita,2,17"/>
-    <property name="cond1" value="not npc_exists spyder_omnichannel_danita"/>
+    <property name="cond1" value="not char_exists spyder_omnichannel_danita"/>
    </properties>
   </object>
   <object id="42" name="Talk Nurse" type="event" x="32" y="256" width="16" height="16">
@@ -176,8 +176,8 @@
   <object id="45" name="Create Spyder Rookie" type="event" x="192" y="175.75" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_talbot,12,11"/>
-    <property name="act2" value="npc_face spyder_omnichannel_talbot,left"/>
-    <property name="cond1" value="not npc_exists spyder_omnichannel_talbot"/>
+    <property name="act2" value="char_face spyder_omnichannel_talbot,left"/>
+    <property name="cond1" value="not char_exists spyder_omnichannel_talbot"/>
    </properties>
   </object>
   <object id="46" name="Talk Spyder Rookie" type="event" x="192" y="160" width="16" height="16">
@@ -195,7 +195,7 @@
   <object id="49" name="Create Screen" type="event" x="112" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_screen,7,18"/>
-    <property name="cond1" value="not npc_exists spyder_screen"/>
+    <property name="cond1" value="not char_exists spyder_screen"/>
     <property name="cond2" value="not variable_set omnichannel1wall:yes"/>
    </properties>
   </object>
@@ -208,7 +208,7 @@
   <object id="53" name="Pass1" type="event" x="144" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_omnichannel1_screen"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set omnichannel1wall:yes"/>
    </properties>

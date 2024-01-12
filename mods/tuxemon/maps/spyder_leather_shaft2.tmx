@@ -50,44 +50,44 @@
   <object id="67" name="Go Outside" type="event" x="64" y="144" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_leather_town.tmx,24,4,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="68" name="PC" type="event" x="0" y="96" width="32" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathershaft2_pc"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="69" name="Papers" type="event" x="32" y="96" width="32" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathershaft2_papers"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="70" name="Dude" type="event" x="112" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathershaft2_dude"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="71" name="Achievement" type="event" x="64" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leathershaft2_achievement"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="72" name="Create NPCs" type="event" x="16" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_leathershaft2_colin,7,7"/>
-    <property name="act2" value="npc_face spyder_leathershaft2_colin,up"/>
-    <property name="cond1" value="not npc_exists spyder_leathershaft2_colin"/>
+    <property name="act2" value="char_face spyder_leathershaft2_colin,up"/>
+    <property name="cond1" value="not char_exists spyder_leathershaft2_colin"/>
    </properties>
   </object>
   <object id="73" name="Skeptic" type="event" x="112" y="112" width="16" height="16">

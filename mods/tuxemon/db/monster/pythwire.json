@@ -25,13 +25,11 @@
     ],
     "evolutions": [
         {
-            "path": "item",
             "at_level": 0,
             "monster_slug": "ouroboutlet",
             "item": "fire_booster"
         },
         {
-            "path": "item",
             "at_level": 0,
             "monster_slug": "sockeserp",
             "item": "metal_booster"

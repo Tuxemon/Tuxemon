@@ -29,13 +29,11 @@
     ],
     "evolutions": [
         {
-            "path": "stat",
             "at_level": 12,
             "monster_slug": "bugnin",
             "stats": "dodge:greater_than:speed"
         },
         {
-            "path": "stat",
             "at_level": 12,
             "monster_slug": "sumchon",
             "stats": "speed:greater_than:dodge"

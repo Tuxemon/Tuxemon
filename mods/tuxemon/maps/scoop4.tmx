@@ -37,17 +37,17 @@
   <object id="2" name="Teleport to Scoop 3" type="event" x="144" y="336" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport scoop3.tmx,5,3,0.3"/>
-    <property name="act20" value="player_face down"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing down"/>
+    <property name="act20" value="char_face player,down"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="3" name="Teleport to Timber Town" type="event" x="176" y="48" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport timber_town.tmx,18,23,0.3"/>
-    <property name="act20" value="player_face down"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing right"/>
+    <property name="act20" value="char_face player,down"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,right"/>
    </properties>
   </object>
   <object id="29" name="Player Spawn" type="event" x="160" y="320" width="16" height="16"/>

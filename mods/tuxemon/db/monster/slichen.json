@@ -57,7 +57,6 @@
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 26,
             "monster_slug": "glombroc"
         }

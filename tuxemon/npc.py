@@ -527,7 +527,7 @@ class NPC(Entity[NPCState]):
 
     @property
     def move_destination(self) -> Optional[tuple[int, int]]:
-        """Only used for the player_moved condition."""
+        """Only used for the char_moved condition."""
         if self.path:
             return self.path[-1]
         else:
@@ -563,9 +563,22 @@ class NPC(Entity[NPCState]):
             self.stop_moving()
 
             if self.pathfinding:
-                # since we are pathfinding, just try a new path
-                logger.error(f"{self.slug} finding new path!")
-                self.pathfind(self.pathfinding)
+                # check tile for npc
+                npc = self.world.get_entity_pos(self.pathfinding)
+                if npc:
+                    # since we are pathfinding, just try a new path
+                    logger.error(
+                        f"{npc.slug} on your way, {self.slug} finding new path!"
+                    )
+                    self.pathfind(self.pathfinding)
+                else:
+                    logger.warning(
+                        f"Possible issue of {self.slug} in {self.tile_pos}"
+                        f" in its way to {self.pathfinding}!"
+                        " Consider to postpone it (eg. 'wait 1') or to split"
+                        f" it (eg. 'pathfind {self.tile_pos}, stop then"
+                        f" pathfind {self.pathfinding})"
+                    )
 
             else:
                 # give up and wait until the target is clear again
@@ -822,8 +835,8 @@ class NPC(Entity[NPCState]):
             monster = Monster(save_data=npc_monster_details.model_dump())
             monster.money_modifier = npc_monster_details.money_mod
             monster.experience_modifier = npc_monster_details.exp_req_mod
-            monster.set_level(monster.level)
-            monster.set_moves(monster.level)
+            monster.set_level(npc_monster_details.level)
+            monster.set_moves(npc_monster_details.level)
             monster.current_hp = monster.hp
             monster.gender = npc_monster_details.gender
 
@@ -1074,7 +1087,12 @@ class NPC(Entity[NPCState]):
         return None
 
     def give_money(self, amount: int) -> None:
-        self.money["player"] += amount
+        if self.isplayer:
+            self.money["player"] += amount
+        else:
+            if self.slug not in self.money:
+                self.money[self.slug] = 0
+            self.money[self.slug] += amount
 
     def speed_test(self, action: EnqueuedAction) -> int:
         return self.speed

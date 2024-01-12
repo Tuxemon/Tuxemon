@@ -451,8 +451,8 @@ class CombatState(CombatAnimations):
             # record the useful properties of the last monster we fought
             for player in self.remaining_players:
                 if self.monsters_in_play[player]:
-                    _monster = self.monsters_in_play[player][0]
-                    battlefield(_monster, self.remaining_players)
+                    mon = self.monsters_in_play[player][0]
+                    battlefield(local_session, mon, self.remaining_players)
                 plague(player)
 
         elif phase == "decision phase":
@@ -506,31 +506,34 @@ class CombatState(CombatAnimations):
             # it is a draw match; both players were defeated in same round
             draws = self.defeated_players
             for draw in draws:
-                if draw.isplayer:
-                    message = track_battles(
-                        output="draw", player=draw, players=draws
-                    )
+                message = track_battles(
+                    session=local_session,
+                    output="draw",
+                    player=draw,
+                    players=draws,
+                )
 
         elif phase == "has winner":
             winners = self.remaining_players
             losers = self.defeated_players
+            message = ""
             for winner in winners:
-                if winner.isplayer:
-                    message = track_battles(
-                        output="won",
-                        player=winner,
-                        players=losers,
-                        prize=self._prize,
-                        trainer_battle=self.is_trainer_battle,
-                    )
+                message = track_battles(
+                    session=local_session,
+                    output="won",
+                    player=winner,
+                    players=losers,
+                    prize=self._prize,
+                    trainer_battle=self.is_trainer_battle,
+                )
             for loser in losers:
-                if loser.isplayer:
-                    message = track_battles(
-                        output="lost",
-                        player=loser,
-                        players=winners,
-                        trainer_battle=self.is_trainer_battle,
-                    )
+                message += "\n" + track_battles(
+                    session=local_session,
+                    output="lost",
+                    player=loser,
+                    players=winners,
+                    trainer_battle=self.is_trainer_battle,
+                )
 
         elif phase == "end combat":
             self.end_combat()
@@ -1259,7 +1262,7 @@ class CombatState(CombatAnimations):
                     # monsters
                     # Enemies don't have a bar, doing it for them will
                     # cause a crash
-                    for monster in self.monsters_in_play[self.players[0]]:
+                    for monster in self.monsters_in_play_human:
                         self.task(partial(self.animate_exp, monster), 2.5)
 
     @property
@@ -1362,6 +1365,8 @@ class CombatState(CombatAnimations):
 
     def end_combat(self) -> None:
         """End the combat."""
+        self.players[0].set_party_status()
+
         self.clean_combat()
 
         # fade music out
@@ -1371,6 +1376,7 @@ class CombatState(CombatAnimations):
         while self.client.current_state is not self:
             self.client.pop_state()
 
+        self.phase = None
         # open Tuxepedia if monster is captured
         if self._captured_mon and self._new_tuxepedia:
             self.client.pop_state()
@@ -1378,5 +1384,4 @@ class CombatState(CombatAnimations):
                 MonsterInfoState(monster=self._captured_mon, source=self.name)
             )
         else:
-            self.phase = None
             self.client.push_state(FadeOutTransition(caller=self))

@@ -49,7 +49,6 @@
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 24,
             "monster_slug": "agnidon"
         }

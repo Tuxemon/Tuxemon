@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="20" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="52">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="witcher_route_7"/>
+  <property name="types" value="route"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_city_and_country.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="20" height="30">
+  <data encoding="csv">
+112,112,112,112,112,112,154,155,155,156,112,112,112,1270,1270,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,1270,1270,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,1270,1270,112,112,572,573,573,
+112,112,112,112,112,112,154,155,155,156,112,112,112,1270,1270,573,573,609,1270,1270,
+112,112,112,112,112,112,154,155,155,156,112,112,112,1270,1270,1270,1270,1270,1270,1270,
+112,112,112,112,112,112,154,155,155,156,112,112,112,1270,1270,1270,1270,1270,1270,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+118,118,118,118,118,118,267,155,155,156,112,112,112,112,112,112,112,112,112,112,
+155,155,155,155,155,155,155,155,155,156,112,112,112,112,112,112,112,112,112,112,
+155,155,155,155,155,155,155,155,155,156,112,112,112,112,112,112,112,112,112,112,
+192,192,192,192,192,192,230,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112,
+112,112,112,112,112,112,154,155,155,156,112,112,112,112,112,112,112,112,112,112
+</data>
+ </layer>
+ <layer id="3" name="Tile Layer 2" width="20" height="30">
+  <data encoding="csv">
+0,1320,1321,1320,1321,1320,1321,0,0,0,0,0,609,0,0,611,0,0,0,0,
+0,1357,1358,1357,1358,1357,1358,0,0,0,0,0,609,0,0,611,0,0,0,0,
+1320,1321,0,0,0,0,0,0,0,0,0,0,609,0,0,611,0,0,0,0,
+1357,1358,0,0,0,0,0,0,0,0,0,0,609,0,0,831,0,832,0,0,
+1247,1247,1247,1247,1247,1247,1247,0,0,0,0,0,609,0,0,0,0,0,0,0,
+1247,1247,1247,1247,1247,1247,1247,0,0,0,0,0,609,0,0,0,0,0,0,794,
+1247,1247,1247,1247,1247,1247,1247,0,0,0,0,0,646,647,647,647,647,647,647,648,
+1247,1247,1247,1247,1247,1247,1247,0,0,0,0,0,297,298,298,298,298,298,298,299,
+1247,1247,1247,1247,1247,1247,1247,0,0,0,0,0,334,0,0,0,0,0,0,336,
+1247,1247,1247,1247,1247,1247,1247,0,0,0,0,0,334,0,0,0,0,0,0,336,
+1247,1247,1247,1247,1247,1247,1247,0,0,0,0,0,334,0,0,0,0,0,0,336,
+1247,1247,1247,1247,1247,1247,1247,0,0,0,0,0,334,0,0,0,0,0,0,336,
+0,0,0,0,0,0,0,0,0,0,0,0,334,0,0,0,0,0,0,336,
+0,0,0,0,0,0,0,0,0,0,0,0,334,0,0,0,0,0,0,336,
+1320,1321,0,0,0,0,0,0,0,0,0,0,334,0,0,0,0,0,0,336,
+1357,1358,0,0,0,0,0,0,0,0,0,0,334,0,0,0,0,0,0,336,
+1320,1321,0,0,0,0,0,0,0,0,0,0,371,372,372,372,372,372,372,373,
+1357,1358,0,0,0,0,0,0,0,0,0,0,0,1323,0,0,0,0,0,0,
+1320,1321,0,0,0,0,0,0,0,0,0,0,0,1360,0,0,0,0,0,0,
+1357,1358,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1320,1321,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1357,1358,0,0,0,0,0,0,0,0,0,0,0,0,0,1247,1247,0,0,0,
+1320,1321,0,0,0,0,0,0,0,0,0,0,0,0,0,1247,1247,1247,1247,0,
+1357,1358,0,0,0,0,0,0,0,0,0,0,0,0,0,1247,1247,1247,1247,0,
+1320,1321,1247,1247,1247,1247,0,0,0,0,0,0,0,0,0,1247,1247,1247,1247,0,
+1357,1358,1247,1247,1247,1247,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1320,1321,1247,1247,1247,1247,1140,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1357,1358,1247,1247,1247,1247,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+1320,1321,1320,1321,1320,1321,0,0,0,1140,1320,1321,1320,1321,1320,1321,1320,1321,0,0,
+1357,1358,1357,1358,1357,1358,1140,1140,1140,1140,1357,1358,1357,1358,1357,1358,1357,1358,0,0
+</data>
+ </layer>
+ <layer id="5" name="collision" width="20" height="30">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,1323,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1360,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1323,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1360,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1323,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1360,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1323,1323,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1360,1360,1320,1321,0,0,0,0,1320,1321,
+0,0,0,0,0,0,0,0,0,0,0,0,1357,1358,0,0,0,0,1357,1358,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,4026,4027,4028,4029,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,4066,4067,4068,4069,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,4106,4107,4108,4109,1287,1288,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,4140,4141,4142,4143,1324,1325,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1361,1362,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1323,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1323,1360,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1360,1323,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1360,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1323,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1360,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1323,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1360,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1287,1288,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1324,1325,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1361,1362
+</data>
+ </layer>
+ <objectgroup color="#ff0000" id="7" name="Collisions">
+  <object id="14" type="collision" x="0" y="224" width="32" height="256"/>
+  <object id="16" type="collision" x="0" y="448" width="320" height="32"/>
+  <object id="20" type="collision" x="304" y="272" width="16" height="176"/>
+  <object id="23" type="collision" x="160" y="0" width="32" height="128"/>
+  <object id="27" type="collision" x="208" y="272" width="16" height="32"/>
+  <object id="28" type="collision" x="288" y="272" width="32" height="32"/>
+  <object id="34" type="collision" x="0" y="32" width="32" height="32"/>
+  <object id="50" type="collision" x="16" y="0" width="96" height="32"/>
+  <object id="51" type="collision" x="288" y="320" width="16" height="32"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="3" x="208" y="272" width="16" height="16">
+   <properties>
+    <property name="act10" value="create_npc azure_knight,15,17"/>
+    <property name="act20" value="char_face azure_knight,left"/>
+    <property name="cond10" value="not char_exists azure_knight"/>
+   </properties>
+  </object>
+  <object id="6" name="Guarding" type="Event" x="224" y="272" width="64" height="16"/>
+  <object id="7" name="SummontheGuards" type="event" x="0" y="256" width="16" height="16">
+   <properties>
+    <property name="act10" value="create_npc azure_enforcer1,15,17"/>
+    <property name="act20" value="char_face azure_enforcer1,down"/>
+    <property name="act30" value="create_npc azure_enforcer1,16,17"/>
+    <property name="act40" value="char_face azure_enforcer1,down"/>
+    <property name="cond10" value="not char_exists azure_enforcer1"/>
+   </properties>
+  </object>
+  <object id="12" name="To Timber Town" type="event" x="112" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport timber_town.tmx,29,39,0.3"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="39" name="SummontheGuards" type="event" x="0" y="224" width="16" height="16">
+   <properties>
+    <property name="act10" value="create_npc azure_enforcer1,15,17"/>
+    <property name="act20" value="char_face azure_enforcer1,down"/>
+    <property name="act30" value="create_npc azure_enforcer2,16,17"/>
+    <property name="act40" value="char_face azure_enforcer2,down"/>
+    <property name="cond10" value="not char_exists azure_enforcer1"/>
+    <property name="cond20" value="not char_exists azure_enforcer2"/>
+   </properties>
+  </object>
+  <object id="40" name="SummontheGuards" type="event" x="0" y="240" width="16" height="16">
+   <properties>
+    <property name="act10" value="create_npc azure_enforcer1,15,17"/>
+    <property name="act20" value="char_face azure_enforcer1,down"/>
+    <property name="act30" value="create_npc azure_enforcer1,16,17"/>
+    <property name="act40" value="char_face azure_enforcer1,down"/>
+    <property name="cond10" value="not char_exists azure_enforcer1"/>
+   </properties>
+  </object>
+  <object id="41" name="SummontheGuards" type="event" x="0" y="272" width="16" height="16">
+   <properties>
+    <property name="act10" value="create_npc azure_enforcer1,15,17"/>
+    <property name="act20" value="create_npc azure_enforcer2,16,17"/>
+    <property name="act30" value="char_face azure_enforcer1,down"/>
+    <property name="act40" value="char_face azure_enforcer2,down"/>
+    <property name="cond10" value="not char_exists azure_enforcer1"/>
+    <property name="cond20" value="not char_exists azure_enforcer2"/>
+   </properties>
+  </object>
+  <object id="44" name="To Timber Town Also" type="event" x="128" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport timber_town.tmx,30,39,0.3"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="46" name="To Azure Town" type="event" x="0" y="192" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport azure_town.tmx,48,28,0.3"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="49" name="Azure town Away" type="event" x="0" y="208" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport azure_town.tmx,48,29,0.3"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,left"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

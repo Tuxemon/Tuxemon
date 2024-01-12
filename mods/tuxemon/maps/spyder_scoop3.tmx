@@ -62,30 +62,30 @@
   <object id="2" name="Teleport to Scoop 2" type="event" x="16" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_scoop2.tmx,7,4,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="3" name="Teleport to Scoop 4" type="event" x="80" y="32" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_scoop4.tmx,9,21,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="18" name="Create Alyssa" type="event" x="80" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_alyssa,4,9"/>
-    <property name="cond1" value="not npc_exists spyder_scoop_alyssa"/>
+    <property name="cond1" value="not char_exists spyder_scoop_alyssa"/>
    </properties>
   </object>
   <object id="19" name="Talk Alyssa" type="event" x="64" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_alyssa1"/>
     <property name="act2" value="add_monster possessun,40,spyder_scoop_alyssa,5,10"/>
-    <property name="act3" value="start_battle spyder_scoop_alyssa"/>
+    <property name="act3" value="start_battle player,spyder_scoop_alyssa"/>
     <property name="act4" value="translated_dialog spyder_scoop_alyssa2"/>
     <property name="act6" value="set_variable scoopalyssa:yes"/>
     <property name="behav1" value="talk spyder_scoop_alyssa"/>
@@ -95,8 +95,8 @@
   <object id="20" name="Create Taggart" type="event" x="112" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_taggart,6,11"/>
-    <property name="act2" value="npc_face spyder_scoop_taggart,up"/>
-    <property name="cond1" value="not npc_exists spyder_scoop_taggart"/>
+    <property name="act2" value="char_face spyder_scoop_taggart,up"/>
+    <property name="cond1" value="not char_exists spyder_scoop_taggart"/>
    </properties>
   </object>
   <object id="21" name="Talk Taggart" type="event" x="96" y="176" width="16" height="16">
@@ -105,7 +105,7 @@
     <property name="act2" value="add_monster elofly,30,spyder_scoop_taggart,5,10"/>
     <property name="act3" value="add_monster elowind,35,spyder_scoop_taggart,5,10"/>
     <property name="act4" value="add_monster lapinou,30,spyder_scoop_taggart,5,10"/>
-    <property name="act5" value="start_battle spyder_scoop_taggart"/>
+    <property name="act5" value="start_battle player,spyder_scoop_taggart"/>
     <property name="act6" value="translated_dialog spyder_scoop_taggart2"/>
     <property name="act7" value="set_variable scooptaggart:yes"/>
     <property name="behav1" value="talk spyder_scoop_taggart"/>
@@ -115,7 +115,7 @@
   <object id="22" name="Create Donald" type="event" x="176" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_donald,11,9"/>
-    <property name="cond1" value="not npc_exists spyder_scoop_donald"/>
+    <property name="cond1" value="not char_exists spyder_scoop_donald"/>
    </properties>
   </object>
   <object id="23" name="Talk Donald" type="event" x="176" y="144" width="16" height="16">
@@ -124,7 +124,7 @@
     <property name="act2" value="add_monster birdling,35,spyder_scoop_donald,5,10"/>
     <property name="act3" value="add_monster pigabyte,35,spyder_scoop_donald,5,10"/>
     <property name="act4" value="add_monster zunna,35,spyder_scoop_donald,5,10"/>
-    <property name="act5" value="start_battle spyder_scoop_donald"/>
+    <property name="act5" value="start_battle player,spyder_scoop_donald"/>
     <property name="act6" value="translated_dialog spyder_scoop_donald2"/>
     <property name="act7" value="set_variable scoopdonald:yes"/>
     <property name="behav1" value="talk spyder_scoop_donald"/>
@@ -142,11 +142,11 @@
     <property name="act0" value="pathfind_to_player spyder_scoop_alyssa"/>
     <property name="act1" value="translated_dialog spyder_scoop_alyssa1"/>
     <property name="act2" value="add_monster possessun,40,spyder_scoop_alyssa,5,10"/>
-    <property name="act3" value="start_battle spyder_scoop_alyssa"/>
+    <property name="act3" value="start_battle player,spyder_scoop_alyssa"/>
     <property name="act4" value="translated_dialog spyder_scoop_alyssa2"/>
     <property name="act6" value="set_variable scoopalyssa:yes"/>
     <property name="cond1" value="not variable_set scoopalyssa:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="27" name="Talk Taggart" type="event" x="96" y="144" width="16" height="32">
@@ -156,11 +156,11 @@
     <property name="act2" value="add_monster elofly,30,spyder_scoop_taggart,5,10"/>
     <property name="act3" value="add_monster elowind,35,spyder_scoop_taggart,5,10"/>
     <property name="act4" value="add_monster lapinou,30,spyder_scoop_taggart,5,10"/>
-    <property name="act5" value="start_battle spyder_scoop_taggart"/>
+    <property name="act5" value="start_battle player,spyder_scoop_taggart"/>
     <property name="act6" value="translated_dialog spyder_scoop_taggart2"/>
     <property name="act7" value="set_variable scooptaggart:yes"/>
     <property name="cond1" value="not variable_set scooptaggart:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="28" name="Talk Donald" type="event" x="176" y="160" width="16" height="32">
@@ -170,11 +170,11 @@
     <property name="act2" value="add_monster birdling,35,spyder_scoop_donald,5,10"/>
     <property name="act3" value="add_monster pigabyte,35,spyder_scoop_donald,5,10"/>
     <property name="act4" value="add_monster zunna,35,spyder_scoop_donald,5,10"/>
-    <property name="act5" value="start_battle spyder_scoop_donald"/>
+    <property name="act5" value="start_battle player,spyder_scoop_donald"/>
     <property name="act6" value="translated_dialog spyder_scoop_donald2"/>
     <property name="act7" value="set_variable scoopdonald:yes"/>
     <property name="cond1" value="not variable_set scoopdonald:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
  </objectgroup>

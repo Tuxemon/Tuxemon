@@ -49,16 +49,16 @@
   <object id="69" name="Go Outside" type="event" x="96" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_paper_town.tmx,10,13,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="70" name="Create NPCs" type="event" x="8.88178e-16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_papermanor_princeton,1,5"/>
-    <property name="act2" value="npc_face spyder_papermanor_princeton,right"/>
-    <property name="cond1" value="not npc_exists spyder_papermanor_princeton"/>
+    <property name="act2" value="char_face spyder_papermanor_princeton,right"/>
+    <property name="cond1" value="not char_exists spyder_papermanor_princeton"/>
    </properties>
   </object>
   <object id="71" name="Old Man" type="event" x="16" y="80" width="16" height="16">

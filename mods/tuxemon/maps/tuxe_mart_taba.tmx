@@ -52,23 +52,23 @@
   <object id="17" name="Go outside" type="event" x="96" y="160" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport taba_town.tmx,30,12,0.3"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing down"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="27" name="open shop" type="event" x="32" y="80" width="16" height="16">
    <properties>
     <property name="act10" value="open_shop tuxemart_keeper"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="56" name="employee" type="event" x="16" y="80" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc tuxemart_keeper,1,5,stand"/>
-    <property name="act20" value="npc_face tuxemart_keeper,right"/>
+    <property name="act20" value="char_face tuxemart_keeper,right"/>
     <property name="act30" value="set_economy tuxemart_keeper,tuxe_mart_taba"/>
-    <property name="cond10" value="not npc_exists tuxemart_keeper"/>
+    <property name="cond10" value="not char_exists tuxemart_keeper"/>
    </properties>
   </object>
   <object id="57" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -80,21 +80,21 @@
   <object id="62" name="potions" type="event" x="128" y="80" width="80" height="16">
    <properties>
     <property name="act10" value="translated_dialog potions_in_shop"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="64" name="capture devices" type="event" x="128" y="128" width="80" height="16">
    <properties>
     <property name="act10" value="translated_dialog capture_devices_in_shop"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="65" name="capture devices" type="event" x="32" y="96" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog cash_register"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
@@ -103,16 +103,16 @@
     <property name="act10" value="lock_controls"/>
     <property name="act11" value="wait 0.7"/>
     <property name="act20" value="create_npc professor,3,5,stand"/>
-    <property name="act30" value="npc_face professor,left"/>
+    <property name="act30" value="char_face professor,left"/>
     <property name="act40" value="translated_dialog professorexists"/>
     <property name="act50" value="wait 1"/>
     <property name="act60" value="translated_dialog professorexists1"/>
-    <property name="act70" value="npc_face professor,down"/>
+    <property name="act70" value="char_face professor,down"/>
     <property name="act80" value="translated_dialog professorexists1.5"/>
     <property name="act90" value="pathfind professor,6,6"/>
-    <property name="act91" value="npc_face professor,down"/>
+    <property name="act91" value="char_face professor,down"/>
     <property name="act92" value="set_variable proftalk1:true"/>
-    <property name="cond1" value="not npc_exists professor"/>
+    <property name="cond1" value="not char_exists professor"/>
     <property name="cond2" value="not variable_set proftalk:true"/>
     <property name="cond3" value="not variable_set proftalk2:yes"/>
    </properties>
@@ -129,11 +129,11 @@
     <property name="act50" value="wait 0.5"/>
     <property name="act60" value="translated_dialog professorexists3"/>
     <property name="act70" value="translated_dialog professorexists4"/>
-    <property name="act80" value="npc_speed professor,7"/>
+    <property name="act80" value="char_speed professor,7"/>
     <property name="act90" value="pathfind professor,6,10"/>
     <property name="act91" value="remove_npc professor"/>
     <property name="act92" value="set_variable proftalk2:yes"/>
-    <property name="act93" value="npc_face player,left"/>
+    <property name="act93" value="char_face player,left"/>
     <property name="act94" value="translated_dialog theenergy"/>
     <property name="act95" value="unlock_controls"/>
     <property name="act99" value="set_variable proftalk1:false"/>

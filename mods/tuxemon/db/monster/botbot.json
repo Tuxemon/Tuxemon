@@ -25,31 +25,26 @@
     ],
     "evolutions": [
         {
-            "path": "item",
             "at_level": 0,
             "monster_slug": "av8r",
             "item": "booster_tech"
         },
         {
-            "path": "item",
             "at_level": 0,
             "monster_slug": "picc",
             "item": "booster_tech"
         },
         {
-            "path": "item",
             "at_level": 0,
             "monster_slug": "mrmoswitch",
             "item": "booster_tech"
         },
         {
-            "path": "item",
             "at_level": 0,
             "monster_slug": "k9",
             "item": "booster_tech"
         },
         {
-            "path": "item",
             "at_level": 0,
             "monster_slug": "b_ver_1",
             "item": "booster_tech"

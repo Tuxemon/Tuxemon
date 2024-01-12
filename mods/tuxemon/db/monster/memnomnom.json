@@ -25,37 +25,31 @@
     ],
     "evolutions": [
         {
-            "path": "item",
             "at_level": 0,
             "monster_slug": "miaownolith",
             "item": "earth_booster"
         },
         {
-            "path": "item",
             "at_level": 0,
             "monster_slug": "miaownolith",
             "item": "miaow_milk"
         },
         {
-            "path": "item",
             "at_level": 0,
             "monster_slug": "pyraminx",
             "item": "metal_booster"
         },
         {
-            "path": "item",
             "at_level": 0,
             "monster_slug": "pyraminx",
             "item": "pyramidion"
         },
         {
-            "path": "item",
             "at_level": 0,
             "monster_slug": "mauai",
             "item": "fire_booster"
         },
         {
-            "path": "item",
             "at_level": 0,
             "monster_slug": "mauai",
             "item": "pyramidion"

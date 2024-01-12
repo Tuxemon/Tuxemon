@@ -157,18 +157,6 @@ class MapType(str, Enum):
     dungeon = "dungeon"
 
 
-class EvolutionType(str, Enum):
-    element = "element"
-    gender = "gender"
-    item = "item"
-    location = "location"
-    variable = "variable"
-    standard = "standard"
-    stat = "stat"
-    tech = "tech"
-    traded = "traded"
-
-
 class StatType(str, Enum):
     armour = "armour"
     dodge = "dodge"
@@ -359,15 +347,14 @@ class MonsterHistoryItemModel(BaseModel):
 
 
 class MonsterEvolutionItemModel(BaseModel):
-    path: EvolutionType = Field(..., description="Paths to evolution")
-    at_level: int = Field(
-        ...,
-        description="The level at which this item can be used for evolution",
-    )
     monster_slug: str = Field(
         ..., description="The monster slug that this evolution item applies to"
     )
     # optional fields
+    at_level: int = Field(
+        ...,
+        description="The level at which this monster evolves",
+    )
     element: Optional[ElementType] = Field(
         None, description="Element parameter"
     )
@@ -387,6 +374,7 @@ class MonsterEvolutionItemModel(BaseModel):
     stats: Optional[str] = Field(
         None, description="Stat parameter stat1:more_than:stat2."
     )
+    steps: Optional[int] = Field(None, description="Steps parameter 50 steps.")
     tech: Optional[str] = Field(None, description="Technique parameter.")
 
     @field_validator("tech")

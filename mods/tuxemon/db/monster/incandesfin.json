@@ -49,7 +49,6 @@
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 36,
             "monster_slug": "lightmare"
         }

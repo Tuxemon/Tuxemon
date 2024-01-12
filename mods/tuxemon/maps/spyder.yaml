@@ -55,9 +55,9 @@ events:
     type: "event"
   Evolution all:
     actions:
-    - evolution
+    - evolution player
     conditions:
-    - is check_evolution all
+    - is check_evolution player
     - is current_state WorldState
     type: "event"
   Choice Surf:

@@ -125,10 +125,6 @@ events:
     conditions:
     - is variable_set stage_of_day:night
     - not location_inside
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Night Day Cycle Inside:
     actions:
@@ -136,10 +132,6 @@ events:
     conditions:
     - is variable_set stage_of_day:night
     - is location_inside
-    height: 1
-    width: 1
-    x: 0
-    y: 0
     type: "event"
   Phone GPS Leather:
     actions:

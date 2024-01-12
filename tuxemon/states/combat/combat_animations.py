@@ -710,21 +710,18 @@ class CombatAnimations(ABC, Menu[None]):
             shake_ball(1.8 + i * 1.0)
 
         combat = item.combat_state
-        if is_captured and combat:
+        if is_captured and combat and monster.owner:
+            trainer = monster.owner
             combat._captured_mon = monster
             self.task(kill, 2 + num_shakes)
             action_time = num_shakes + 1.8
-            # Tuxepedia: set monster as caught (2)
-            if self.players[0].tuxepedia[monster.slug] == SeenStatus.seen:
-                combat._new_tuxepedia = True
-            self.players[0].tuxepedia[monster.slug] = SeenStatus.caught
             # Display 'Gotcha!' first.
             self.task(combat.end_combat, action_time + 4)
             gotcha = T.translate("gotcha")
             info = None
             # if party
             params = {"name": monster.name.upper()}
-            if len(self.players[0].monsters) >= self.players[0].party_limit:
+            if len(trainer.monsters) >= trainer.party_limit:
                 info = T.format("gotcha_kennel", params)
             else:
                 info = T.format("gotcha_team", params)

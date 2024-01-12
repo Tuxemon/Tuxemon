@@ -821,13 +821,13 @@ msgid "combat_trainer_appeared"
 msgstr "{name} wants to battle!"
 
 msgid "combat_victory"
-msgstr "You have won!"
+msgstr "{name} has won!"
 
 msgid "combat_victory_trainer"
-msgstr "You have won against {npc}!\n You get {currency}{prize}!"
+msgstr "{name} has won and has received {currency}{prize}!"
 
 msgid "combat_defeat"
-msgstr "You've been defeated!"
+msgstr "{name} has been defeated!"
 
 msgid "combat_draw"
 msgstr "All parties have fainted!"

@@ -120,8 +120,6 @@ class OutputBattle(str, Enum):
     won = "won"
     lost = "lost"
     draw = "draw"
-    ran = "ran"
-    forfeit = "forfeit"
 
 
 class MonsterShape(str, Enum):

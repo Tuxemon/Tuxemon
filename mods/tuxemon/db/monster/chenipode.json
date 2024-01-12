@@ -21,13 +21,25 @@
         {
             "level_learned": 12,
             "technique": "take_cover"
+        },
+        {
+            "level_learned": 24,
+            "technique": "avalanche"
+        },
+        {
+            "level_learned": 28,
+            "technique": "sand_spray"
+        },
+        {
+            "level_learned": 32,
+            "technique": "headbutt"
         }
     ],
     "evolutions": [
         {
-            "path": "standard",
-            "at_level": 18,
-            "monster_slug": "exapode"
+            "at_level": 0,
+            "monster_slug": "exapode",
+            "steps": "2500"
         }
     ],
     "history": [

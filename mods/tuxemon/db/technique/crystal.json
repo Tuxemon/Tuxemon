@@ -1,16 +1,16 @@
 {
   "tech_id": 128,
-  "accuracy": 0.7,
+  "accuracy": 0.9,
   "animation": "crystal",
   "effects": [
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.9,
+  "potency": 0.0,
   "power": 1,
-  "range": "reliable",
-  "recharge": 2,
+  "range": "ranged",
+  "recharge": 1,
   "sfx": "sfx_blaster",
   "slug": "crystal",
   "sort": "damage",

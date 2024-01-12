@@ -59,8 +59,8 @@
   <object id="27" name="Go Outside" type="event" x="192" y="352" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport 37707_town.tmx,24,6,0.5"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing down"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,down"/>
     <property name="cond30" value="not variable_set 37707_tower:activated"/>
    </properties>
   </object>
@@ -69,7 +69,7 @@
    <properties>
     <property name="act10" value="translated_dialog 37707_computer"/>
     <property name="act20" value="set_variable 37707_tower:activated"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
     <property name="cond30" value="not variable_set 37707_tower:activated"/>
    </properties>
@@ -77,8 +77,8 @@
   <object id="54" name="Go Outside Glitched" type="event" x="192" y="352" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport 37707_town_missing.tmx,24,6,0.5"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing down"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,down"/>
     <property name="cond30" value="is variable_set 37707_tower:activated"/>
    </properties>
   </object>

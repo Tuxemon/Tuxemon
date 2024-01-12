@@ -34,9 +34,9 @@ class RemoveEffect(TechEffect):
         self, tech: Technique, user: Monster, target: Monster
     ) -> RemoveEffectResult:
         done: bool = False
-        player = self.session.player
+        combat = tech.combat_state
+        value = combat._random_tech_hit if combat else 0.0
         potency = random.random()
-        value = float(player.game_variables["random_tech_hit"])
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
             if self.objective == "user":
@@ -46,7 +46,7 @@ class RemoveEffect(TechEffect):
                 else:
                     if has_status(user, self.condition):
                         done = True
-                        target.status.clear()
+                        user.status.clear()
             elif self.objective == "target":
                 if self.condition == "all":
                     done = True

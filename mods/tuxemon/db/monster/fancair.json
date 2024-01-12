@@ -21,12 +21,19 @@
         {
             "level_learned": 12,
             "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 20,
+            "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 28,
+            "technique": "constrict"
         }
     ],
     "evolutions": [
         {
-            "path": "standard",
-            "at_level": 18,
+            "at_level": 24,
             "monster_slug": "windeye"
         }
     ],

@@ -1,6 +1,6 @@
 {
   "tech_id": 53,
-  "accuracy": 0.75,
+  "accuracy": 0.8,
   "animation": "sparks_gold_alt",
   "effects": [
     "give exhausted,both",

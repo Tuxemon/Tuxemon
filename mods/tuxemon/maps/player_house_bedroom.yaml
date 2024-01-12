@@ -11,9 +11,9 @@ events:
   Go Downstairs:
     actions:
     - transition_teleport player_house_downstairs.tmx,0,2,0.3
-    - player_face down
+    - char_face player,down
     conditions:
-    - is player_at
+    - is char_at player
     height: 1
     width: 1
     x: 7
@@ -22,7 +22,7 @@ events:
     actions:
     - change_state PCState
     conditions:
-    - is player_facing_tile
+    - is char_facing_tile player
     - is button_pressed K_RETURN
     height: 1
     width: 1
@@ -44,7 +44,7 @@ events:
     - set_variable teleport_faint:player_house_bedroom.tmx 3 4
     conditions:
     - is button_pressed K_RETURN
-    - is player_facing_tile
+    - is char_facing_tile player
     height: 2
     width: 1
     x: 0
@@ -60,7 +60,7 @@ events:
     type: "event"
   Intro:
     actions:
-    - change_bg spyder_roc
+    - change_bg gradient_blue,rockitten
     - translated_dialog xero_skip_question
     - translated_dialog_choice no:yes,question_xero
     conditions:
@@ -74,9 +74,9 @@ events:
   Intro Yes:
     actions:
     - translated_dialog xero_intro_1
-    - change_bg spyder_intro01
+    - change_bg gradient_blue,ceo
     - translated_dialog xero_intro_2
-    - change_bg spyder_roc
+    - change_bg gradient_blue,rockitten
     - translated_dialog xero_intro_3
     - translated_dialog xero_intro_question
     - rename_player random

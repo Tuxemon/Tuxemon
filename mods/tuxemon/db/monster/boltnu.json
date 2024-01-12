@@ -21,11 +21,22 @@
         {
             "level_learned": 12,
             "technique": "shrapnel"
+        },
+        {
+            "level_learned": 24,
+            "technique": "electrical_storm"
+        },
+        {
+            "level_learned": 28,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 32,
+            "technique": "wall_of_steel"
         }
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 18,
             "monster_slug": "exclawvate"
         }

@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 12,
-            "technique": "spray"
+            "technique": "spit_poison"
         },
         {
             "level_learned": 16,
@@ -48,7 +48,7 @@
         },
         {
             "level_learned": 40,
-            "technique": "webs_wind"
+            "technique": "blossom"
         }
     ],
     "evolutions": [],

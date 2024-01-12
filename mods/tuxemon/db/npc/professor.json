@@ -1,6 +1,5 @@
 {
   "slug": "professor",
-  "forfeit": false,
   "template": [
     {
       "sprite_name": "professor",

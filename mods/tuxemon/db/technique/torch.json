@@ -1,13 +1,14 @@
 {
   "tech_id": 150,
-  "accuracy": 0.6,
+  "accuracy": 0.7,
   "animation": "pulse",
   "effects": [
+    "give flinching,target",
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.8,
+  "potency": 0.2,
   "power": 1.4,
   "range": "reach",
   "recharge": 1,

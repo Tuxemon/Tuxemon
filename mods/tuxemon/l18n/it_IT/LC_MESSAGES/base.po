@@ -146,10 +146,10 @@ msgid "combat_status_damage"
 msgstr "{name} ha subito danno da {status}!"
 
 msgid "combat_victory"
-msgstr "Hai vinto!"
+msgstr "{name} ha vinto!"
 
 msgid "combat_defeat"
-msgstr "Sei stato sconfitto!"
+msgstr "{name} è stato sconfitto!"
 
 msgid "combat_draw"
 msgstr "Tutti sono K.O.!"
@@ -406,7 +406,7 @@ msgstr "Taglionetto"
 msgid "petrify"
 msgstr "Petrificazione"
 
-msgid "probiscus"
+msgid "proboscis"
 msgstr "Proboscide"
 
 msgid "pseudopod"
@@ -457,8 +457,8 @@ msgstr "Tormenta"
 msgid "splinter"
 msgstr "Scheggia"
 
-msgid "spray"
-msgstr "Spray"
+msgid "spit_poison"
+msgstr "Sputa Veleno"
 
 msgid "stampede"
 msgstr "Fuga"
@@ -2247,9 +2247,6 @@ msgstr ""
 "Non permettere che il Trial ti impedisca di vedermi. Infatti... Forse ti "
 "troverò prima."
 
-msgid "spyder_route2_billie"
-msgstr "Billie"
-
 msgid "spyder_route3_twig"
 msgstr "Rametto"
 
@@ -3292,9 +3289,7 @@ msgid "combat_skip"
 msgstr "{user} salta il turno!"
 
 msgid "combat_victory_trainer"
-msgstr ""
-"Hai vinto contro {npc}!\n"
-"Ottieni {currency}{prize}!"
+msgstr "{name} ha vinto e ha ottenuto {currency}{prize}!"
 
 ## COMBAT STATE STATUSES
 msgid "combat_state_blinded_get"

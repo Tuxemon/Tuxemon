@@ -51,8 +51,8 @@ class WildEncounterAction(EventAction):
     def start(self) -> None:
         player = self.session.player
 
-        # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):
+            logger.warning("battle is not legal, won't start")
             return
 
         logger.info("Starting wild encounter!")
@@ -67,51 +67,40 @@ class WildEncounterAction(EventAction):
             current_monster.experience_modifier = self.exp
         if self.money is not None:
             current_monster.money_modifier = self.money
+        current_monster.wild = True
 
-        # Create an NPC object which will be this monster's "trainer"
         self.world = self.session.client.get_state_by_name(WorldState)
         npc = NPC("random_encounter_dummy", world=self.world)
         npc.add_monster(current_monster, len(npc.monsters))
         # NOTE: random battles are implemented as trainer battles.
         #       this is a hack. remove this once trainer/random battlers are fixed
-        current_monster.owner = None
-        npc.party_limit = 0
 
-        # Lookup the environment
-        environment: str
-        if self.env is None:
-            environment = "grass"
-        else:
-            environment = self.env
-
-        env = db.lookup(environment, table="environment")
+        env_var = player.game_variables.get("environment", "grass")
+        env = env_var if self.env is None else self.env
+        environment = db.lookup(env, table="environment")
 
         self.session.client.queue_state(
             "CombatState",
             players=(player, npc),
             combat_type="monster",
-            graphics=env.battle_graphics,
+            graphics=environment.battle_graphics,
         )
 
-        # stop the player
         self.world.lock_controls()
         self.world.stop_player()
 
-        # flash the screen
         rgb: ColorLike = prepare.WHITE_COLOR
         if self.rgb:
             rgb = string_to_colorlike(self.rgb)
         self.session.client.push_state(FlashTransition(color=rgb))
 
-        # Start some music!
-        filename = env.battle_music
+        filename = environment.battle_music
         self.session.client.event_engine.execute_action(
             "play_music",
             [filename],
         )
 
     def update(self) -> None:
-        # If state is not queued, AND state is not active, then stop.
         try:
             self.session.client.get_queued_state_by_name("CombatState")
         except ValueError:

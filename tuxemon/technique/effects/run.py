@@ -6,7 +6,7 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional
 
-from tuxemon.db import OutputBattle
+from tuxemon.combat import set_var
 from tuxemon.locale import T
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
@@ -34,7 +34,8 @@ class RunEffect(TechEffect):
         extra: Optional[str] = None
         ran: bool = False
         combat = tech.combat_state
-        assert combat
+        player = user.owner
+        assert combat and player
 
         def escape(level_user: int, level_target: int, attempts: int) -> bool:
             escaping: bool = False
@@ -43,7 +44,7 @@ class RunEffect(TechEffect):
                 escaping = True
             return escaping
 
-        var = self.session.player.game_variables
+        var = player.game_variables
         if "run_attempts" not in var:
             var["run_attempts"] = 0
         # monster in the player party
@@ -59,7 +60,7 @@ class RunEffect(TechEffect):
         if ran:
             combat._run = True
             extra = T.translate("combat_player_run")
-            var["battle_last_result"] = OutputBattle.ran
+            set_var(self.session, "battle_last_result", self.name)
             for remove in combat.players:
                 combat.clean_combat()
                 del combat.monsters_in_play[remove]

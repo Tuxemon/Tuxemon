@@ -248,9 +248,7 @@ class ItemTakeState(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=transform_resource_filename(
-                "gfx/ui/item/bg_pcstate.png"
-            ),
+            image_path=transform_resource_filename(prepare.BG_PC_LOCKER),
             drawing_position=POSITION_CENTER,
         )
         theme = get_theme()

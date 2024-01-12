@@ -12,11 +12,12 @@ from enum import Enum
 from operator import itemgetter
 from typing import Any, Literal, Optional, Union, overload
 
+from PIL import Image
 from pydantic import (
     BaseModel,
     Field,
-    FieldValidationInfo,
     ValidationError,
+    ValidationInfo,
     field_validator,
 )
 from typing_extensions import Annotated
@@ -119,8 +120,6 @@ class OutputBattle(str, Enum):
     won = "won"
     lost = "lost"
     draw = "draw"
-    ran = "ran"
-    forfeit = "forfeit"
 
 
 class MonsterShape(str, Enum):
@@ -156,17 +155,6 @@ class MapType(str, Enum):
     dungeon = "dungeon"
 
 
-class EvolutionType(str, Enum):
-    element = "element"
-    gender = "gender"
-    item = "item"
-    location = "location"
-    variable = "variable"
-    standard = "standard"
-    stat = "stat"
-    tech = "tech"
-
-
 class StatType(str, Enum):
     armour = "armour"
     dodge = "dodge"
@@ -194,6 +182,15 @@ class EntityFacing(str, Enum):
     back = "back"
     left = "left"
     right = "right"
+
+
+class Comparison(str, Enum):
+    less_than = "less_than"
+    less_or_equal = "less_or_equal"
+    greater_than = "greater_than"
+    greater_or_equal = "greater_or_equal"
+    equals = "equals"
+    not_equals = "not_equals"
 
 
 # TODO: Automatically generate state enum through discovery
@@ -272,14 +269,18 @@ class ItemModel(BaseModel):
     # Validate resources that should exist
     @field_validator("sprite")
     def file_exists(cls: ItemModel, v: str) -> str:
-        if has.file(v):
+        if has.file(v) and has.size(v, prepare.ITEM_SIZE):
             return v
         raise ValueError(f"the sprite {v} doesn't exist in the db")
 
     @field_validator("animation")
     def animation_exists(cls: ItemModel, v: Optional[str]) -> Optional[str]:
         file: str = f"animations/item/{v}_00.png"
-        if not v or has.file(file):
+        if (
+            not v
+            or has.file(file)
+            and has.size(file, prepare.NATIVE_RESOLUTION)
+        ):
             return v
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
@@ -344,15 +345,14 @@ class MonsterHistoryItemModel(BaseModel):
 
 
 class MonsterEvolutionItemModel(BaseModel):
-    path: EvolutionType = Field(..., description="Paths to evolution")
-    at_level: int = Field(
-        ...,
-        description="The level at which this item can be used for evolution",
-    )
     monster_slug: str = Field(
         ..., description="The monster slug that this evolution item applies to"
     )
     # optional fields
+    at_level: int = Field(
+        ...,
+        description="The level at which this monster evolves",
+    )
     element: Optional[ElementType] = Field(
         None, description="Element parameter"
     )
@@ -360,17 +360,19 @@ class MonsterEvolutionItemModel(BaseModel):
     item: Optional[str] = Field(None, description="Item parameter.")
     inside: bool = Field(
         None,
-        description="Location parameter: inside true or inside false (outside).",
+        description="Location parameter: whether the monster is inside or not.",
+    )
+    traded: bool = Field(
+        None,
+        description="Traded parameter: whether the monster is traded or not.",
     )
     variable: Optional[str] = Field(
         None, description="Variable parameter based on game variables."
     )
-    stat1: Optional[StatType] = Field(
-        None, description="Stat parameter stat1 >= stat2."
+    stats: Optional[str] = Field(
+        None, description="Stat parameter stat1:more_than:stat2."
     )
-    stat2: Optional[StatType] = Field(
-        None, description="Stat parameter stat2 < stat1."
-    )
+    steps: Optional[int] = Field(None, description="Steps parameter 50 steps.")
     tech: Optional[str] = Field(None, description="Technique parameter.")
 
     @field_validator("tech")
@@ -403,6 +405,29 @@ class MonsterEvolutionItemModel(BaseModel):
             return v
         raise ValueError(f"the variable {v} isn't formatted correctly")
 
+    @field_validator("stats")
+    def stats_exists(
+        cls: MonsterEvolutionItemModel, v: Optional[str]
+    ) -> Optional[str]:
+        stats = list(StatType)
+        comparison = list(Comparison)
+        param = v.split(":") if v else []
+        if not v or len(param) == 3:
+            if param[1] not in comparison:
+                raise ValueError(
+                    f"the comparison {param[1]} doesn't exist among {comparison}"
+                )
+            if param[0] not in stats:
+                raise ValueError(
+                    f"the stat {param[0]} doesn't exist among {stats}"
+                )
+            if param[2] not in stats:
+                raise ValueError(
+                    f"the stat {param[2]} doesn't exist among {stats}"
+                )
+            return v
+        raise ValueError(f"the stats {v} isn't formatted correctly")
+
 
 class MonsterFlairItemModel(BaseModel):
     category: str = Field(..., description="The category of this flair item")
@@ -416,9 +441,17 @@ class MonsterSpritesModel(BaseModel):
     menu2: str = Field(..., description="The menu2 sprite")
 
     # Validate resources that should exist
-    @field_validator("battle1", "battle2", "menu1", "menu2")
-    def file_exists(cls: MonsterSpritesModel, v: str) -> str:
-        if has.file(f"{v}.png"):
+    @field_validator("battle1", "battle2")
+    def battle_exists(cls: MonsterSpritesModel, v: str) -> str:
+        if has.file(f"{v}.png") and has.size(f"{v}.png", prepare.MONSTER_SIZE):
+            return v
+        raise ValueError(f"no resource exists with path: {v}")
+
+    @field_validator("menu1", "menu2")
+    def menu_exists(cls: MonsterSpritesModel, v: str) -> str:
+        if has.file(f"{v}.png") and has.size(
+            f"{v}.png", prepare.MONSTER_SIZE_MENU
+        ):
             return v
         raise ValueError(f"no resource exists with path: {v}")
 
@@ -489,7 +522,7 @@ class MonsterModel(BaseModel):
     # because by default pydantic doesn't validate null fields.
     @field_validator("sprites")
     def set_default_sprites(
-        cls: MonsterModel, v: str, info: FieldValidationInfo
+        cls: MonsterModel, v: str, info: ValidationInfo
     ) -> Union[str, MonsterSpritesModel]:
         slug = info.data.get("slug")
         default = MonsterSpritesModel(
@@ -634,7 +667,7 @@ class TechniqueModel(BaseModel):
     # Validate resources that should exist
     @field_validator("icon")
     def file_exists(cls: TechniqueModel, v: str) -> str:
-        if has.file(v):
+        if v and has.file(v) and has.size(v, prepare.TECH_ICON_SIZE):
             return v
         raise ValueError(f"the icon {v} doesn't exist in the db")
 
@@ -656,7 +689,7 @@ class TechniqueModel(BaseModel):
     # Custom validation for range
     @field_validator("range")
     def range_validation(
-        cls: TechniqueModel, v: Range, info: FieldValidationInfo
+        cls: TechniqueModel, v: Range, info: ValidationInfo
     ) -> Range:
         # Special indicates that we are not doing damage
         if v == Range.special and "damage" in info.data["effects"]:
@@ -671,7 +704,11 @@ class TechniqueModel(BaseModel):
         cls: TechniqueModel, v: Optional[str]
     ) -> Optional[str]:
         file: str = f"animations/technique/{v}_00.png"
-        if not v or has.file(file):
+        if (
+            not v
+            or has.file(file)
+            and has.size(file, prepare.NATIVE_RESOLUTION)
+        ):
             return v
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
@@ -769,11 +806,11 @@ class ConditionModel(BaseModel):
     )
     repl_tech: Optional[str] = Field(
         None,
-        description="With which status reply after a tech used",
+        description="With which status or technique reply after a tech used",
     )
     repl_item: Optional[str] = Field(
         None,
-        description="With which status reply after an item used",
+        description="With which status or technique reply after an item used",
     )
     gain_cond: Optional[str] = Field(
         None,
@@ -799,7 +836,7 @@ class ConditionModel(BaseModel):
     # Validate resources that should exist
     @field_validator("icon")
     def file_exists(cls: ConditionModel, v: str) -> str:
-        if has.file(v):
+        if has.file(v) and has.size(v, prepare.STATUS_ICON_SIZE):
             return v
         raise ValueError(f"the icon {v} doesn't exist in the db")
 
@@ -823,13 +860,21 @@ class ConditionModel(BaseModel):
         cls: ConditionModel, v: Optional[str]
     ) -> Optional[str]:
         file: str = f"animations/technique/{v}_00.png"
-        if not v or has.file(file):
+        if (
+            not v
+            or has.file(file)
+            and has.size(file, prepare.NATIVE_RESOLUTION)
+        ):
             return v
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
     @field_validator("repl_tech", "repl_item")
     def status_exists(cls: ConditionModel, v: Optional[str]) -> Optional[str]:
-        if not v or has.db_entry("condition", v):
+        if (
+            not v
+            or has.db_entry("condition", v)
+            or has.db_entry("technique", v)
+        ):
             return v
         raise ValueError(f"the status {v} doesn't exist in the db")
 
@@ -894,7 +939,12 @@ class NpcTemplateModel(BaseModel):
         sprite = f"sprites/{v}_{EntityFacing.right}.png"
         sprite = f"sprites/{v}_{EntityFacing.left}.png"
         sprite_obj: str = f"sprites_obj/{v}.png"
-        if has.file(sprite) or has.file(sprite_obj):
+        if (
+            has.file(sprite)
+            and has.size(sprite, prepare.SPRITE_SIZE)
+            or has.file(sprite_obj)
+            and has.size(sprite_obj, prepare.NATIVE_RESOLUTION)
+        ):
             return v
         raise ValueError(f"the sprite {v} doesn't exist in the db")
 
@@ -907,7 +957,7 @@ class NpcTemplateModel(BaseModel):
 
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
-    forfeit: bool = Field(True, description="Whether you can forfeit or not")
+    forfeit: bool = Field(False, description="Whether you can forfeit or not")
     template: Sequence[NpcTemplateModel] = Field(
         [], description="List of templates"
     )
@@ -919,18 +969,88 @@ class NpcModel(BaseModel):
     )
 
 
+class BattleHudModel(BaseModel):
+    hud_player: str = Field(
+        ..., description="Sprite used for hud player background"
+    )
+    hud_opponent: str = Field(
+        ..., description="Sprite used for hud opponent background"
+    )
+    tray_player: str = Field(
+        ..., description="Sprite used for tray player background"
+    )
+    tray_opponent: str = Field(
+        ..., description="Sprite used for tray opponent background"
+    )
+    hp_bar_player: bool = Field(
+        True, description="Whether draw or not player HP Bar"
+    )
+    hp_bar_opponent: bool = Field(
+        True, description="Whether draw or not opponent HP Bar"
+    )
+    exp_bar_player: bool = Field(
+        True, description="Whether draw or not player EXP Bar"
+    )
+
+    @field_validator(
+        "hud_player",
+        "hud_opponent",
+        "tray_player",
+        "tray_opponent",
+    )
+    def file_exists(cls: BattleHudModel, v: str) -> str:
+        if has.file(v):
+            return v
+        raise ValueError(f"no resource exists with path: {v}")
+
+
+class BattleIconsModel(BaseModel):
+    icon_alive: str = Field(
+        ..., description="Sprite used for icon (small tuxeball) monster alive"
+    )
+    icon_status: str = Field(
+        ...,
+        description="Sprite used for icon (small tuxeball) monster affected",
+    )
+    icon_faint: str = Field(
+        ...,
+        description="Sprite used for icon (small tuxeball) monster fainted",
+    )
+    icon_empty: str = Field(
+        ...,
+        description="Sprite used for icon (small tuxeball) empty slot",
+    )
+
+    @field_validator(
+        "icon_alive",
+        "icon_faint",
+        "icon_status",
+        "icon_empty",
+    )
+    def file_exists(cls: BattleIconsModel, v: str) -> str:
+        if has.file(v) and has.size(v, prepare.ICON_SIZE):
+            return v
+        raise ValueError(f"no resource exists with path: {v}")
+
+
 class BattleGraphicsModel(BaseModel):
     island_back: str = Field(..., description="Sprite used for back combat")
     island_front: str = Field(..., description="Sprite used for front combat")
     background: str = Field(..., description="Sprite used for background")
+    hud: BattleHudModel
+    icons: BattleIconsModel
 
-    # Validate resources that should exist
-    @field_validator("island_back", "island_front", "background")
-    def file_exists(cls: BattleGraphicsModel, v: str) -> str:
-        file: str = f"gfx/ui/combat/{v}"
-        if has.file(file):
+    @field_validator("island_back", "island_front")
+    def island_exists(cls: BattleGraphicsModel, v: str) -> str:
+        if has.file(v) and has.size(v, prepare.ISLAND_SIZE):
             return v
-        raise ValueError(f"no resource exists with path: {file}")
+        raise ValueError(f"no resource exists with path: {v}")
+
+    @field_validator("background")
+    def background_exists(cls: BattleGraphicsModel, v: str) -> str:
+        if has.file(v) and has.size(v, prepare.BATTLE_BG_SIZE):
+            return v
+        raise ValueError(f"no resource exists with path: {v}")
 
 
 class EnvironmentModel(BaseModel):
@@ -947,9 +1067,7 @@ class EncounterItemModel(BaseModel):
     level_range: Sequence[int] = Field(
         ..., description="Level range to encounter"
     )
-    daytime: bool = Field(
-        True, description="Options: day (true), night (false)"
-    )
+    variable: Optional[str] = Field(None, description="Variable encounter")
     exp_req_mod: int = Field(1, description="Exp modifier wild monster")
 
     @field_validator("monster")
@@ -957,6 +1075,14 @@ class EncounterItemModel(BaseModel):
         if has.db_entry("monster", v):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
+
+    @field_validator("variable")
+    def variable_exists(
+        cls: EncounterItemModel, v: Optional[str]
+    ) -> Optional[str]:
+        if not v or v.find(":") > 1:
+            return v
+        raise ValueError(f"the variable {v} isn't formatted correctly")
 
 
 class EncounterModel(BaseModel):
@@ -982,7 +1108,7 @@ class DialogueModel(BaseModel):
     @field_validator("border_slug")
     def file_exists(cls: DialogueModel, v: str) -> str:
         file: str = f"gfx/borders/{v}.png"
-        if has.file(file):
+        if has.file(file) and has.size(file, prepare.BORDERS_SIZE):
             return v
         raise ValueError(f"no resource exists with path: {file}")
 
@@ -1009,7 +1135,7 @@ class ElementModel(BaseModel):
 
     @field_validator("icon")
     def file_exists(cls: ElementModel, v: str) -> str:
-        if has.file(v):
+        if has.file(v) and has.size(v, prepare.ELEMENT_SIZE):
             return v
         raise ValueError(f"the icon {v} doesn't exist in the db")
 
@@ -1535,6 +1661,37 @@ class Validator:
             return os.path.exists(path)
         except OSError:
             return False
+
+    def size(self, file: str, size: tuple[int, int]) -> bool:
+        """
+        Check to see if a given file respects the predefined size.
+
+        Parameters:
+            file: The file path relative to a mod directory
+            size: The predefined size
+
+        Returns:
+            True if file respects
+
+        """
+        path = prepare.fetch(file)
+        sprite = Image.open(path)
+        native = prepare.NATIVE_RESOLUTION
+        if size == native:
+            if sprite.size[0] > size[0] or sprite.size[1] > size[1]:
+                sprite.close()
+                raise ValueError(
+                    f"{file} {sprite.size}: "
+                    f"It must be less than the native resolution {native}"
+                )
+        else:
+            if sprite.size[0] != size[0] or sprite.size[1] != size[1]:
+                sprite.close()
+                raise ValueError(
+                    f"{file} {sprite.size}: It must be equal to {size}"
+                )
+        sprite.close()
+        return True
 
     def check_conditions(self, conditions: Sequence[str]) -> bool:
         """

@@ -888,8 +888,8 @@ msgstr "Ďábel"
 msgid "nightcrawler"
 msgstr "Noční plazič"
 
-msgid "probiscus"
-msgstr "Probiscus"
+msgid "proboscis"
+msgstr "Proboscis"
 
 msgid "flopped"
 msgstr "Propadlo"

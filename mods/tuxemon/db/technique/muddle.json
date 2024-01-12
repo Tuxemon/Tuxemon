@@ -1,6 +1,6 @@
 {
   "tech_id": 43,
-  "accuracy": 0.75,
+  "accuracy": 1,
   "animation": "sparks_white",
   "effects": [
     "give focused,both",
@@ -9,7 +9,7 @@
   "flip_axes": "",
   "is_fast": false,
   "potency": 1,
-  "power": 1.25,
+  "power": 1,
   "range": "reach",
   "recharge": 1,
   "sfx": "sfx_blaster",

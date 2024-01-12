@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import logging
+import uuid
 from dataclasses import dataclass
 from typing import Optional, Union, final
 
+from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
 
@@ -21,47 +23,52 @@ class SetMonsterHealthAction(EventAction):
     Script usage:
         .. code-block::
 
-            set_monster_health [slot][,health]
+            set_monster_health [variable][,health]
 
     Script parameters:
-        slot: Slot of the monster in the party. If no slot is specified, all
-            monsters are healed.
+        variable: Name of the variable where to store the monster id. If no
+            variable is specified, all monsters are healed.
         health: A float value between 0 and 1, which is the percent of max
-            hp to be restored to. If no health is specified, the hp is maxed
+            hp to be restored to. A int value, which is the number of HP
+            to be restored to. If no health is specified, the hp is maxed
             out.
 
     """
 
     name = "set_monster_health"
-    slot: Union[int, None] = None
-    health: Union[float, None] = None
+    variable: Optional[str] = None
+    health: Optional[Union[float, int]] = None
 
     @staticmethod
-    def set_health(monster: Monster, value: Optional[float]) -> None:
-        if value is None:
-            monster.current_hp = monster.hp
+    def set_health(monster: Monster, value: Union[float, int]) -> None:
+        if isinstance(value, float):
+            monster.current_hp += int(monster.hp * value)
         else:
-            if not 0 <= value <= 1:
-                raise ValueError("monster health must between 0 and 1")
-
-            monster.current_hp = int(monster.hp * value)
+            monster.current_hp += int(value)
+        # checks max and min
+        if monster.current_hp < 0:
+            monster.current_hp = 0
+        if monster.current_hp > monster.hp:
+            monster.current_hp = monster.hp
+        logger.info(f"{monster.name}'s {monster.current_hp} HP")
 
     def start(self) -> None:
-        if not self.session.player.monsters:
+        player = self.session.player
+        if not player.monsters:
             return
 
-        monster_slot = self.slot
-        monster_health = self.health
+        monster_health = 1.0 if self.health is None else self.health
 
-        if monster_slot is None:
-            if not self.session.player.monsters:
-                return
-            for monster in self.session.player.monsters:
-                self.set_health(monster, monster_health)
+        if self.variable is None:
+            for mon in player.monsters:
+                self.set_health(mon, monster_health)
         else:
-            try:
-                monster = self.session.player.monsters[monster_slot]
-            except IndexError:
-                logger.error("invalid monster slot")
-            else:
-                self.set_health(monster, monster_health)
+            if self.variable not in player.game_variables:
+                logger.error(f"Game variable {self.variable} not found")
+                return
+            monster_id = uuid.UUID(player.game_variables[self.variable])
+            monster = get_monster_by_iid(self.session, monster_id)
+            if monster is None:
+                logger.error("Monster not found")
+                return
+            self.set_health(monster, monster_health)

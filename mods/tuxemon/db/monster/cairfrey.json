@@ -37,12 +37,23 @@
         {
             "level_learned": 28,
             "technique": "muck"
+        },
+        {
+            "level_learned": 32,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 36,
+            "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 40,
+            "technique": "constrict"
         }
     ],
     "evolutions": [
         {
-            "path": "standard",
-            "at_level": 30,
+            "at_level": 32,
             "monster_slug": "possessun"
         }
     ],

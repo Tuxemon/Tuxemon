@@ -120,10 +120,10 @@ msgid "combat_status_damage"
 msgstr "{name} subit des dégâts de {status} !"
 
 msgid "combat_victory"
-msgstr "Tu as gagné !"
+msgstr "{name} a gagné !"
 
 msgid "combat_defeat"
-msgstr "Tu as perdu !"
+msgstr "{name} a perdu !"
 
 msgid "combat_draw"
 msgstr "Tout le monde s'est évanoui !"
@@ -960,8 +960,8 @@ msgid "nightcrawler"
 msgstr "Chasseur de nuit"
 
 #, fuzzy
-msgid "probiscus"
-msgstr "Probiscus"
+msgid "proboscis"
+msgstr "Proboscis"
 
 #, fuzzy
 msgid "flopped"
@@ -1967,7 +1967,7 @@ msgstr "Éclats d'Obus"
 msgid "sleep_bomb"
 msgstr "Bombe Soporifique"
 
-msgid "spray"
+msgid "spit_poison"
 msgstr "Jet"
 
 msgid "static_field"
@@ -2355,9 +2355,6 @@ msgstr "Non, pas grave - je peux voir que tu n'as même pas de Budaye."
 
 msgid "cotton_breeder5"
 msgstr "Hé ${{name}}, de retour pour soigner vos Tuxemon ?"
-
-msgid "spyder_hospital_billie"
-msgstr "Billie"
 
 msgid "spyder_dragonscave_lazybrute"
 msgstr "Brute Indolente"
@@ -4018,9 +4015,6 @@ msgid "spyder_hospital_warning1"
 msgstr ""
 "Bzzzz. Vie détectée.\n"
 " Les portes restent fermées."
-
-msgid "spyder_route2_billie"
-msgstr "Billie"
 
 msgid "spyder_hospital_nurse1"
 msgstr ""
@@ -6234,9 +6228,7 @@ msgid "combat_skip"
 msgstr "{user} saute le tour !"
 
 msgid "combat_victory_trainer"
-msgstr ""
-"Vous avez gagné contre {npc} !\n"
-"Vous obtenez {currency}{prize} !"
+msgstr "{name} a gagné et a reçu {currency}{prize} !"
 
 ## COMBAT STATE STATUSES
 msgid "combat_state_blinded_get"
@@ -7480,8 +7472,8 @@ msgstr "Broyage"
 msgid "gust"
 msgstr "Rafale"
 
-msgid "gyser"
-msgstr "Gyser"
+msgid "geyser"
+msgstr "Geyser"
 
 msgid "insanity"
 msgstr "Folie"

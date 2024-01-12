@@ -14,31 +14,31 @@ events:
     - create_npc test_npc048,1,8
     - create_npc test_npc049,1,9
     - create_npc test_npc050,1,10    
-    - npc_wander test_npc038
-    - npc_wander test_npc039
-    - npc_wander test_npc040
-    - npc_wander test_npc041
-    - npc_wander test_npc042
-    - npc_wander test_npc043
-    - npc_wander test_npc044
-    - npc_wander test_npc045
-    - npc_wander test_npc046
-    - npc_wander test_npc047
-    - npc_wander test_npc048
-    - npc_wander test_npc049
-    - npc_wander test_npc050
+    - char_wander test_npc038
+    - char_wander test_npc039
+    - char_wander test_npc040
+    - char_wander test_npc041
+    - char_wander test_npc042
+    - char_wander test_npc043
+    - char_wander test_npc044
+    - char_wander test_npc045
+    - char_wander test_npc046
+    - char_wander test_npc047
+    - char_wander test_npc048
+    - char_wander test_npc049
+    - char_wander test_npc050
     conditions:
-    - not npc_exists test_npc038
-    - not npc_exists test_npc039
-    - not npc_exists test_npc040
-    - not npc_exists test_npc041
-    - not npc_exists test_npc042
-    - not npc_exists test_npc043
-    - not npc_exists test_npc044
-    - not npc_exists test_npc045
-    - not npc_exists test_npc046
-    - not npc_exists test_npc047
-    - not npc_exists test_npc048
-    - not npc_exists test_npc049
-    - not npc_exists test_npc050
+    - not char_exists test_npc038
+    - not char_exists test_npc039
+    - not char_exists test_npc040
+    - not char_exists test_npc041
+    - not char_exists test_npc042
+    - not char_exists test_npc043
+    - not char_exists test_npc044
+    - not char_exists test_npc045
+    - not char_exists test_npc046
+    - not char_exists test_npc047
+    - not char_exists test_npc048
+    - not char_exists test_npc049
+    - not char_exists test_npc050
     type: "event"

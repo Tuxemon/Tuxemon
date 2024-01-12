@@ -27,26 +27,25 @@ class PropDamageEffect(TechEffect):
         objective: User HP or target HP.
         proportional: The percentage of the max HP
 
-    eg prop_damage target,0.25 (1/4 max enemy HP)
+    eg prop_damage target,4 (1/4 max enemy HP)
 
     """
 
     name = "prop_damage"
     objective: str
-    proportional: float
+    proportional: int
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> PropDamageEffectResult:
-        player = self.session.player
-        value = float(player.game_variables["random_tech_hit"])
+        combat = tech.combat_state
+        value = combat._random_tech_hit if combat else 0.0
         hit = tech.accuracy >= value
         if hit:
             tech.hit = True
             tech.advance_counter_success()
             reference_hp = target.hp if self.objective == "target" else user.hp
-            damage = int(reference_hp * self.proportional)
-            target.current_hp -= damage
+            target.current_hp -= reference_hp // self.proportional
         else:
             tech.hit = False
             damage = 0

@@ -1,7 +1,7 @@
 {
   "conditions": [],
   "effects": [
-    "increase hp,0.05"
+    "change_stat hp,0.05"
   ],
   "slug": "raise_hp",
   "sort": "utility",

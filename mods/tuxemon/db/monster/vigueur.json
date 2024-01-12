@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "one_two"
+            "technique": "hibernate"
         },
         {
             "level_learned": 2,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 32,
-            "technique": "peregrine"
+            "technique": "life_surge"
         }
     ],
     "evolutions": [],

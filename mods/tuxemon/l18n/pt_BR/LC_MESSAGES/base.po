@@ -207,10 +207,10 @@ msgid "combat_state_recover_get"
 msgstr "{target} começou a recuperar saúde."
 
 msgid "combat_victory"
-msgstr "Você venceu!"
+msgstr "{name} venceu!"
 
 msgid "combat_defeat"
-msgstr "Você perdeu!"
+msgstr "{name} perdeu!"
 
 msgid "combat_draw"
 msgstr "O grupo todo desmaiou!"
@@ -291,8 +291,8 @@ msgstr "Peregrino"
 msgid "petrify"
 msgstr "Petrificar"
 
-msgid "probiscus"
-msgstr "Probiscus"
+msgid "proboscis"
+msgstr "Proboscis"
 
 msgid "pseudopod"
 msgstr "Pseudópode"
@@ -817,7 +817,7 @@ msgstr "Tempestade de Neve"
 msgid "splinter"
 msgstr "Lasca"
 
-msgid "spray"
+msgid "spit_poison"
 msgstr "Spray"
 
 msgid "stampede"
@@ -3335,9 +3335,7 @@ msgid "combat_skip"
 msgstr "{user} pula a vez!"
 
 msgid "combat_victory_trainer"
-msgstr ""
-"Você ganhou contra {npc}!\n"
-"Você recebe {currency}{prize}!"
+msgstr "{name} ganhou e recebeu {currency}{prize}!"
 
 msgid "combat_state_chargedup_get"
 msgstr "{target} é totalmente carregado."
@@ -3492,8 +3490,8 @@ msgstr "Cristal"
 msgid "clock"
 msgstr "Relógio"
 
-msgid "gyser"
-msgstr "Gyser"
+msgid "geyser"
+msgstr "Geyser"
 
 msgid "chameleon"
 msgstr "Camaleão"

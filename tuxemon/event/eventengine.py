@@ -262,6 +262,7 @@ class EventEngine:
         Parameters:
             action_name: Name of the action.
             parameters: Parameters of the action.
+            skip: Boolean for skipping the action.update().
 
         """
         if parameters is None:

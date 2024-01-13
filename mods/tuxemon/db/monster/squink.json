@@ -25,11 +25,22 @@
         {
             "level_learned": 16,
             "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 24,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 32,
+            "technique": "tsunami"
+        },
+        {
+            "level_learned": 36,
+            "technique": "ice_storm"
         }
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 20,
             "monster_slug": "hectapod"
         }

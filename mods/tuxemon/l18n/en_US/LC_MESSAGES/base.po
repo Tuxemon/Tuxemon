@@ -746,7 +746,7 @@ msgid "combat_scope"
 msgstr "AR:{AR} DE:{DE} ME:{ME} RD:{RD} SD:{SD}"
 
 msgid "combat_gain_exp"
-msgstr "{name} gains {xp}px"
+msgstr "{name} gains {xp}xp"
 
 msgid "tuxemon_new_tech"
 msgstr "{name} learned technique {tech}!"
@@ -764,13 +764,13 @@ msgid "combat_forfeit"
 msgstr "You have forfeited!\n{npc} is disappointed."
 
 msgid "combat_cannot_run_away"
-msgstr "But can't run away!"
+msgstr "You can't run away!"
 
 msgid "combat_forfeit_trainer"
 msgstr "Can't forfeit!"
 
 msgid "combat_player_run"
-msgstr "Run away!"
+msgstr "You ran away!"
 
 msgid "combat_player_run_status"
 msgstr "Can't escape.\n{monster} is {status}!"
@@ -827,13 +827,13 @@ msgid "combat_trainer_appeared"
 msgstr "{name} wants to battle!"
 
 msgid "combat_victory"
-msgstr "You have won!"
+msgstr "{name} has won!"
 
 msgid "combat_victory_trainer"
-msgstr "You have won against {npc}!\n You get {currency}{prize}!"
+msgstr "{name} has won and has received {currency}{prize}!"
 
 msgid "combat_defeat"
-msgstr "You've been defeated!"
+msgstr "{name} has been defeated!"
 
 msgid "combat_draw"
 msgstr "All parties have fainted!"
@@ -1012,6 +1012,9 @@ msgstr "{target} wiped it off."
 
 msgid "combat_state_lockdown_get"
 msgstr "Items will not affect {target}."
+
+msgid "combat_state_lockdown_item"
+msgstr "Items cannot be used on {target} while it is locked down."
 
 msgid "combat_state_wasting_get"
 msgstr "{target} is afflicted by a wasting condition."
@@ -1303,12 +1306,6 @@ msgstr ""
 
 msgid "battery_discharge"
 msgstr "Battery Discharge"
-
-msgid "beak_description"
-msgstr ""
-
-msgid "beak"
-msgstr "Beak"
 
 msgid "beam_description"
 msgstr ""
@@ -2174,6 +2171,12 @@ msgstr ""
 msgid "supernova"
 msgstr "Supernova"
 
+msgid "suplex_description"
+msgstr ""
+
+msgid "suplex"
+msgstr "Suplex"
+
 msgid "surf_description"
 msgstr ""
 
@@ -2437,6 +2440,9 @@ msgstr "Taba Battle Area - Main Hall"
 msgid "taba_ba_passageway_1"
 msgstr "Taba Battle Area - Passageway 1"
 
+msgid "taba_ba_passageway_2"
+msgstr "Taba Battle Area - Passageway 2"
+
 msgid "timber_town"
 msgstr "Timber"
 
@@ -2445,6 +2451,12 @@ msgstr "Tunnel"
 
 msgid "park"
 msgstr "Pepper Park"
+
+msgid "azure_town"
+msgstr "Azure"
+
+msgid "witcher_route_7"
+msgstr "Witcher Route 7"
 
 ## MAP DESCRIPTIONS TOWN / CITY ##
 
@@ -3784,6 +3796,12 @@ msgstr "It uses its claws to carve its firearm out of wood, and uses it for powe
 msgid "komodraw"
 msgstr "Komodraw"
 
+msgid "komoduel_description"
+msgstr "Many a wrongdoer has fled town after seeing just the silhouette of an approaching KOMODUEL."
+
+msgid "komoduel"
+msgstr "Komoduel"
+
 msgid "lambert_description"
 msgstr "It is placed in its nut by its parent, who then sends it into the world."
 
@@ -3807,6 +3825,12 @@ msgstr "When two UNEYE become tangled, they form a single unified LENDOS."
 
 msgid "lendos"
 msgstr "Lendos"
+
+msgid "lesmagu_description"
+msgstr "It oozes along the sea floor, looking for hard nooks and crannies to hide in until it develops its shell."
+
+msgid "lesmagu"
+msgstr "Lesmagu"
 
 msgid "lightmare_description"
 msgstr "It lurks in the depths of the ocean, luring any unsuspecting prey using its light right into its large, gaping mouth."
@@ -4933,6 +4957,8 @@ msgid "cat_gumnut"
 msgstr "Gumnut"
 msgid "cat_gunner"
 msgstr "Gunner"
+msgid "cat_gunslinger"
+msgstr "Gunslinger"
 msgid "cat_halcyon"
 msgstr "Halcyon"
 msgid "cat_hardware"
@@ -5183,6 +5209,8 @@ msgid "cat_unknown"
 msgstr "Unknown"
 msgid "cat_urchin"
 msgstr "Urchin"
+msgid "cat_vagrant"
+msgstr "Vagrant"
 msgid "cat_veiled"
 msgstr "Veiled"
 msgid "cat_vengeance"
@@ -5964,7 +5992,7 @@ msgid "waterwater"
 msgstr "The water is ice cold and delicious!"
 
 msgid "watchmewatchme"
-msgstr "Why are you heading into town, You know there's an early curfew.\n"
+msgstr "What are you doing? Don't you know there's an early curfew?\n"
 "... ... ... ...\n"
 "... ... ... ...\n"
 "You don't seem like a threat, so you can head on to town...\n"
@@ -6387,11 +6415,11 @@ msgid "oimate"
 msgstr "Hey! This is a restricted area! No one without a badge is allowed in!"
 
 msgid "welcometotaba"
-msgstr "Hello aspiring Tuxemon Trainers!"
+msgstr "Hello, aspiring Tuxemon Trainers!"
 
 msgid "welcometotaba2"
-msgstr "Congratulations on passing the strict evaluation!\n"
-"You are the lucky group that has been chosen to be the first contestants in the trial!"
+msgstr "Congratulations on passing the strict Omnichannel evaluation!\n"
+"Your lucky group has been designated by Omnichannel to be the first contestants in the Trial!"
 
 msgid "welcometotaba3"
 msgstr "Aren't there only three of us? Seems like we barely qualify as a \"group\"."
@@ -6812,6 +6840,51 @@ msgstr "Ha! Some Challenger you are. You'll have to do better than that to beat 
 
 msgid "acolyte1redo"
 msgstr "So, you actually crawled back... Let's see how powerful you really are!"
+
+msgid "healspls2"
+msgstr "So, you actually made it past the first Acolyte? Good Job.\n"
+"I'll take your Tuxemon real quick and heal them for you."
+
+msgid "healsdone2"
+msgstr "And... There you go. Good Luck with the next one."
+
+msgid "acolyte2challenger"
+msgstr "Why hello there Challenger..."
+
+msgid "acolyte2challenger2"
+msgstr "No, no, no. I'm down here... Or am I?\n"
+"Meet me in the center and we'll see... Or maybe we won't! Ha!"
+
+msgid "acolyte2challenger3"
+msgstr "Still wondering where I am? I thought you might!\n"
+"I'm unlike any Acolyte you've faced before. I'm a shadow, unseen to anything and everyone.\n"
+"Soon enough you will fear the true power of ME!\n"
+"I am the second Acolyte! Garth!"
+
+msgid "acolyte2challenger4"
+msgstr "Ahem. I SAID\n"
+"I am the second Acolyte! Garth!"
+
+msgid "acolyte2challenger5"
+msgstr "Darnit Chris! You ruined it!"
+
+msgid "acolyte2challenger6"
+msgstr "Hi, sorry about that. I'm Garth."
+
+msgid "acolyte2challenger7"
+msgstr "NO CHRIS, IT'S TOO LATE! TURN THE LIGHTS BACK ON!!!"
+
+msgid "acolyte2challenger8"
+msgstr "YOU HAD ONE JOB!\n"
+"ARGH!"
+
+msgid "acolyte2challenger9"
+msgstr "Sorry again, some of these grunts are just completely incompetent.\n"
+"I had this whole thing all planned out where I'd be the \"unhinged\" Acolyte and scare everyone.\n"
+"Obviously that didn't happen, no thanks to Chris missing his mark.\n"
+"As I was saying, my name is Garth and I'm the second Acolyte.\n"
+"Presumably you're here to battle right? Well, let's get to it.\n"
+"AND.... LET'S FIGHT!"
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"
@@ -8848,9 +8921,6 @@ msgstr "Shopkeeper"
 msgid "spyder_shopassistant"
 msgstr "Shop Assistant"
 
-msgid "spyder_route2_billie"
-msgstr "Billie"
-
 msgid "spyder_route2_roddick"
 msgstr "Roddick"
 
@@ -9181,8 +9251,6 @@ msgid "spyder_dragonscave_lazybrute"
 msgstr "LazyBrute"
 msgid "spyder_dragonscave_concernedbrute"
 msgstr "ConcernedBrute"
-msgid "spyder_hospital_billie"
-msgstr "Billie"
 msgid "spyder_greenwash_looten"
 msgstr "Looten"
 msgid "spyder_papermart_harith"
@@ -9684,8 +9752,6 @@ msgid "spyder_dojo_hermes"
 msgstr "Monk Hermes"
 msgid "spyder_dojo_saturn"
 msgstr "Monk Saturn"
-msgid "spyder_dojo_billie"
-msgstr "Billie"
 msgid "spyder_dojo_thri"
 msgstr "Riddler Thri"
 
@@ -10212,3 +10278,11 @@ msgstr "GARY: People like you shouldn't be able to get Tuxemon like this!"
 
 msgid "junkyard_08"
 msgstr "CARY: It's your own fault. Let's get them, Gary."
+
+## Azure Town
+
+msgid "town_hall"
+msgstr "Town Hall"
+
+msgid "flower_lady"
+msgstr "Flower Lady"

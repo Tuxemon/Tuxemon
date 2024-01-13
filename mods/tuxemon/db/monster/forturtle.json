@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 6,
-            "technique": "maori"
+            "technique": "tinder"
         },
         {
             "level_learned": 8,
@@ -21,11 +21,22 @@
         {
             "level_learned": 12,
             "technique": "sleep_bomb"
+        },
+        {
+            "level_learned": 20,
+            "technique": "thunderclap"
+        },
+        {
+            "level_learned": 24,
+            "technique": "shadow_boxing"
+        },
+        {
+            "level_learned": 28,
+            "technique": "flamethrower"
         }
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 18,
             "monster_slug": "prophetoise"
         }

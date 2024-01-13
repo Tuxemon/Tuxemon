@@ -25,11 +25,14 @@
         {
             "level_learned": 20,
             "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 28,
+            "technique": "constrict"
         }
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 24,
             "monster_slug": "windeye"
         }

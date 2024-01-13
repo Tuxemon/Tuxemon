@@ -4,7 +4,7 @@
   "animation": "lance_ice",
   "effects": [
     "give poison,target",
-    "splash"
+    "splash 2"
   ],
   "flip_axes": "xy",
   "is_fast": false,

@@ -52,7 +52,12 @@
         }
     ],
     "evolutions": [],
-    "history": [],
+    "history": [
+        {
+            "mon_slug": "lesmagu",
+            "evo_stage": "basic"
+        }
+    ],
     "shape": "polliwog",
     "stage": "stage1",
     "types": [

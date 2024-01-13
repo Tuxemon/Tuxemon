@@ -1,7 +1,7 @@
 {
   "conditions": [],
   "effects": [
-    "increase dodge,0.05"
+    "change_stat dodge,0.05"
   ],
   "slug": "raise_dodge",
   "sort": "utility",

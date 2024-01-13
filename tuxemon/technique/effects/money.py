@@ -48,14 +48,8 @@ class MoneyEffect(TechEffect):
             tech.advance_counter_success()
             amount = int(damage * mult)
             player.give_money(amount)
-            extra = T.format(
-                "combat_state_gold",
-                {
-                    "name": user.name,
-                    "symbol": "$",
-                    "gold": damage,
-                },
-            )
+            params = {"name": user.name.upper(), "symbol": "$", "gold": amount}
+            extra = T.format("combat_state_gold", params)
         return {
             "success": done,
             "damage": 0,

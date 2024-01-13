@@ -33,12 +33,19 @@
         {
             "level_learned": 24,
             "technique": "terror"
+        },
+        {
+            "level_learned": 28,
+            "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 32,
+            "technique": "crystal"
         }
     ],
     "evolutions": [
         {
-            "path": "standard",
-            "at_level": 25,
+            "at_level": 26,
             "monster_slug": "blasdoor"
         }
     ],

@@ -37,17 +37,13 @@ class LearnMmEffect(ItemEffect):
         learn: bool = False
         element = ElementType(self.element)
         techs = list(db.database["technique"])
-        # type moves
         filters: list[str] = []
         for mov in techs:
             results = db.lookup(mov, table="technique")
             if results.randomly and element in results.types:
                 filters.append(results.slug)
-        # monster moves
         moves = [tech.slug for tech in target.moves] if target else []
-        # remove monster moves from type moves
         _techs = list(set(filters) - set(moves))
-        # add a random move from what remains
         client = self.session.client
         if _techs and target:
             tech_slug = random.choice(_techs)

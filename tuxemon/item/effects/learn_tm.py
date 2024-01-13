@@ -33,11 +33,8 @@ class LearnTmEffect(ItemEffect):
         self, item: Item, target: Union[Monster, None]
     ) -> LearnTmEffectResult:
         learn: bool = False
-        # monster moves
         moves = [tech.slug for tech in target.moves] if target else []
-        # get rid duplicates
         moves = list(set(moves))
-        # continue operation
         client = self.session.client
         if target and moves and self.technique not in moves:
             var = f"{self.name}:{str(target.instance_id.hex)}"

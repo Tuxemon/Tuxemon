@@ -11,10 +11,10 @@ from tuxemon.session import Session
 class CheckMaxTechCondition(EventCondition):
     """
     Check to see the player has at least one tuxemon with more
-    than the max number of techniques.
+    than the max number of techniques in its party.
 
     If yes, then it saves automatically the monster_id and
-    inside a variable called "check_moves".
+    inside the dictionary event_data.
 
     Script usage:
         .. code-block::
@@ -25,6 +25,7 @@ class CheckMaxTechCondition(EventCondition):
         nr: Number of tech, default the constant
 
     eg. "is check_max_tech"
+    eg. "is check_max_tech 2"
 
     """
 
@@ -42,5 +43,5 @@ class CheckMaxTechCondition(EventCondition):
             for monster in player.monsters
             if len(monster.moves) > max_techs
         ]
-        player.pending_monsters = monsters
+        session.client.event_data[self.name] = monsters
         return bool(monsters)

@@ -26,7 +26,7 @@ class OverwriteTechAction(EventAction):
             overwrite_tech <removed>,<added>
 
     Script parameters:
-        removed: Instance id (name variable).
+        removed: Name of the variable where to store the tech id.
         added: Slug technique.
 
     eg. "overwrite_tech name_variable,peck"
@@ -39,19 +39,14 @@ class OverwriteTechAction(EventAction):
 
     def overwrite(self, monster: Monster, removed: Technique) -> None:
         slot = monster.moves.index(removed)
-        # creates technique
         added = Technique()
         added.load(self.added)
-        # replaces technique
         monster.moves.remove(removed)
         monster.moves.insert(slot, added)
-        logger.info(
-            f"{monster.name}: {removed.name} replaced by {added.name}!"
-        )
+        logger.info(f"{removed.name} replaced by {added.name}")
 
     def start(self) -> None:
         player = self.session.player
-        # look for the technique
         if self.removed not in player.game_variables:
             logger.error(f"Game variable {self.removed} not found")
             return

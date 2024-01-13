@@ -107,9 +107,11 @@ class GetMonsterTechAction(EventAction):
         self.result = False
         self.choose = False
         player = self.session.player
+        client = self.session.client
 
         if self.monster_id is None:
-            monsters = player.pending_monsters
+            monsters = client.event_data.get("check_max_tech", [])
+            client.event_data.pop("check_max_tech")
         else:
             if self.monster_id not in player.game_variables:
                 logger.error(f"Game variable {self.monster_id} not found")

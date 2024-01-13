@@ -175,15 +175,6 @@ events:
     - not variable_set nu_map_6:flower_city*-0.15*0.32
     - is location_name flower_city
     type: "event"
-  Check Max Moves:
-    actions:
-    - translated_dialog new_tech_delete
-    - get_monster_tech chosen_tech
-    - remove_tech chosen_tech
-    conditions:
-    - is check_max_tech
-    - is current_state MainCombatMenuState
-    type: "event"
   Cheat Code ApexPlayer:
     actions:
     - get_party_monster
@@ -199,4 +190,13 @@ events:
     - is party_size equals,1
     - not variable_set cheat_apex:enabled
     - is current_state WorldState
+    type: "event"
+  Check Max Moves:
+    actions:
+    - translated_dialog new_tech_delete
+    - get_monster_tech chosen_tech
+    - remove_tech chosen_tech
+    conditions:
+    - is check_max_tech
+    - is current_state MainCombatMenuState
     type: "event"

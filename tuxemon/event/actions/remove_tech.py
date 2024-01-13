@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 import uuid
 from dataclasses import dataclass
-from typing import Optional, final
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
@@ -25,7 +25,7 @@ class RemoveTechAction(EventAction):
             remove_tech <tech_id>
 
     Script parameters:
-        tech_id: Id of the technique (name of the variable).
+        tech_id: Name of the variable where to store the tech id.
 
     eg. "remove_tech name_variable"
 
@@ -33,20 +33,20 @@ class RemoveTechAction(EventAction):
 
     name = "remove_tech"
     tech_id: str
-    npc_slug: Optional[str] = None
 
     def start(self) -> None:
         world = self.session.client.get_state_by_name(WorldState)
         monsters = world.get_all_monsters()
         player = self.session.player
-
-        # look for the technique
-        tech_id = uuid.UUID(
-            player.game_variables[self.tech_id],
-        )
+        if self.tech_id not in player.game_variables:
+            logger.error(f"Game variable {self.tech_id} not found")
+            return
+        tech_id = uuid.UUID(player.game_variables[self.tech_id])
 
         for monster in monsters:
             technique = monster.find_tech_by_id(tech_id)
-            if technique:
-                monster.moves.remove(technique)
-                logger.info(f"{technique.name} removed from {monster.name}")
+            if technique is None:
+                logger.error(f"Technique isn't among {monster.name}'s moves")
+                return
+            monster.moves.remove(technique)
+            logger.info(f"{technique.name} removed from {monster.name}")

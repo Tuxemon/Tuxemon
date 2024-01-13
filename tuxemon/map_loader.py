@@ -12,7 +12,7 @@ from natsort import natsorted
 
 from tuxemon import prepare
 from tuxemon.compat import Rect
-from tuxemon.db import Direction, Orientation
+from tuxemon.db import Direction, Orientation, SurfaceKeys
 from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon.graphics import scaled_image_loader
 from tuxemon.lib.bresenham import bresenham
@@ -175,7 +175,7 @@ class TMXMapLoader:
         data.tilewidth, data.tileheight = prepare.TILE_SIZE
         events = list()
         inits = list()
-        surfable_map = list()
+        surface_map: dict[tuple[int, int], dict[str, float]] = {}
         collision_map: dict[tuple[int, int], Optional[RegionProperties]] = {}
         collision_lines_map = set()
         maps = data.properties
@@ -183,16 +183,17 @@ class TMXMapLoader:
         # get all tiles which have properties and/or collisions
         gids_with_props = dict()
         gids_with_colliders = dict()
-        gids_with_surfable = dict()
+        gids_with_surface = dict()
         for gid, props in data.tile_properties.items():
             conds = extract_region_properties(props)
             gids_with_props[gid] = conds if conds else None
             colliders = props.get("colliders")
             if colliders is not None:
                 gids_with_colliders[gid] = colliders
-            surfable = props.get("surfable")
-            if surfable is not None:
-                gids_with_surfable[gid] = surfable
+            for _surface in SurfaceKeys:
+                surface = props.get(_surface)
+                if surface is not None:
+                    gids_with_surface[gid] = {_surface: surface}
 
         # for each tile, apply the properties and collisions for the tile location
         for layer in data.visible_tile_layers:
@@ -225,10 +226,10 @@ class TMXMapLoader:
                             lx, ly = coords
                             line = (lx + x, ly + y), direction
                             collision_lines_map.add(line)
-                # surfable
-                surfable = gids_with_surfable.get(gid)
-                if surfable is not None:
-                    surfable_map.append((x, y))
+                # surfaces
+                surface = gids_with_surface.get(gid)
+                if surface is not None:
+                    surface_map[(x, y)] = surface
 
         for obj in data.objects:
             obj_type = obj.type
@@ -239,8 +240,6 @@ class TMXMapLoader:
                     collision_map[tile_position] = props
                 for line in self.collision_lines_from_object(obj, tile_size):
                     collision_lines_map.add(line)
-            elif obj_type and obj_type.lower().startswith("surfable"):
-                surfable_map.append(tile_size)
             elif obj_type == "event":
                 events.append(self.load_event(obj, tile_size))
             elif obj_type == "init":
@@ -249,7 +248,7 @@ class TMXMapLoader:
         return TuxemonMap(
             events,
             inits,
-            surfable_map,
+            surface_map,
             collision_map,
             collision_lines_map,
             data,

@@ -33,6 +33,8 @@ T.load_translator()
 # Target is a mapping of who this targets
 Target = Mapping[str, int]
 
+SurfaceKeys = prepare.SURFACE_KEYS
+
 
 class Direction(str, Enum):
     up = "up"

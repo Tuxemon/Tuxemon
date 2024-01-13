@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from tuxemon.db import SurfaceKeys
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.map import get_coords, get_direction
 from tuxemon.states.world.worldstate import WorldState
@@ -32,8 +33,10 @@ class FacingTileCondition(ItemCondition):
 
         # check if the NPC is facing a specific set of tiles
         world = client.get_state_by_name(WorldState)
-        if self.facing_tile == "surfable":
-            label = list(world.surfable_map)
+        if self.facing_tile in SurfaceKeys:
+            label = world.get_all_tile_properties(
+                world.surface_map, self.facing_tile
+            )
         else:
             label = world.check_collision_zones(
                 world.collision_map, self.facing_tile

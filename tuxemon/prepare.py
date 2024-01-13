@@ -60,6 +60,9 @@ with open(paths.USER_CONFIG_PATH, "w") as fp:
 # Set up the screen size and caption
 SCREEN_SIZE = CONFIG.resolution
 
+# Surface Keys (tilesets)
+SURFACE_KEYS: list[str] = ["surfable", "walkable", "climbable"]
+
 # Set the native tile size so we know how much to scale our maps
 # 1 tile = 16 pixels
 TILE_SIZE = (16, 16)

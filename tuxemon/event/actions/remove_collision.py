@@ -5,7 +5,9 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import final
 
+from tuxemon.db import Direction
 from tuxemon.event.eventaction import EventAction
+from tuxemon.map import RegionProperties
 from tuxemon.states.world.worldstate import WorldState
 
 
@@ -30,9 +32,16 @@ class RemoveCollisionAction(EventAction):
 
     def start(self) -> None:
         world = self.session.client.get_state_by_name(WorldState)
+        properties = RegionProperties(
+            enter_from=list(Direction),
+            exit_from=list(Direction),
+            endure=[],
+            key=self.label,
+            entity=None,
+        )
 
         # removes the collision
         coords = world.check_collision_zones(world.collision_map, self.label)
         if coords:
             for coord in coords:
-                del world.collision_map[coord]
+                world.collision_map[coord] = properties

@@ -65,10 +65,32 @@ SURFACE_KEYS: list[str] = ["surfable", "walkable", "climbable"]
 
 # Set the native tile size so we know how much to scale our maps
 # 1 tile = 16 pixels
-TILE_SIZE = (16, 16)
+TILE_SIZE: tuple[int, int] = (16, 16)
 
-# Set the status icon size so we know how much to scale our menu icons
-ICON_SIZE = [7, 7]
+# Set the generic icons (eg. party_empty, etc.)
+ICON_SIZE: tuple[int, int] = (7, 7)
+# Set icons technique (eg. poison, etc.)
+TECH_ICON_SIZE: tuple[int, int] = (9, 9)
+# Set icons status (eg. poison, etc.)
+STATUS_ICON_SIZE: tuple[int, int] = (9, 9)
+# set sprite size (eg. nurse, bob, etc.)
+SPRITE_SIZE: tuple[int, int] = (16, 32)
+# set items size (eg. tuxeball, potion, etc.)
+ITEM_SIZE: tuple[int, int] = (24, 24)
+# set template size (eg. ceo, adventurer, heroine, etc.)
+TEMPLATE_SIZE: tuple[int, int] = (64, 64)
+# set monster size (eg. rockitten-front, rockitten-back, etc.)
+MONSTER_SIZE: tuple[int, int] = (64, 64)
+# set monster menu size (eg. rockitten-menu01, etc.)
+MONSTER_SIZE_MENU: tuple[int, int] = (24, 24)
+# set borders size (eg dialogues black-orange, etc.)
+BORDERS_SIZE: tuple[int, int] = (18, 18)
+# set element size (earth, metal, etc.)
+ELEMENT_SIZE: tuple[int, int] = (24, 24)
+# set island size, battle terrains (grass, etc.)
+ISLAND_SIZE: tuple[int, int] = (96, 57)
+# set battle background size (grass, etc.)
+BATTLE_BG_SIZE: tuple[int, int] = (280, 112)
 
 # Set the healthbar _color
 GFX_HP_BAR: str = "gfx/ui/monster/hp_bar.png"
@@ -158,13 +180,23 @@ BG_MONSTERS: str = "gfx/ui/monster/monster_menu_bg.png"
 
 # Native resolution is similar to the old gameboy resolution. This is
 # used for scaling.
-NATIVE_RESOLUTION = [240, 160]
+NATIVE_RESOLUTION: tuple[int, int] = (240, 160)
 
+# Maps
+# 1 tile = 1 m (3.28 ft) large
+COEFF_TILE: float = 1.0
+# for converting metric into imperial (distance)
+COEFF_MILES: float = 0.6213711922
+COEFF_FEET: float = 0.032808399
+# for converting metric into imperial (weight)
+COEFF_POUNDS: float = 2.2046
 
 # Players
 PLAYER_NPC = CONFIG.player_npc
 PLAYER_NAME_LIMIT: int = 15  # The character limit for a player name.
 PARTY_LIMIT: int = 6  # The maximum number of tuxemon this npc can hold
+#  Moverate limits to avoid losing sprites
+MOVERATE_RANGE: tuple[float, float] = (0.0, 20.0)
 
 # PC
 KENNEL: str = "Kennel"
@@ -189,6 +221,11 @@ COEFF_STATS: int = 7
 # set experience required for levelling up
 # (level + level_ofs) ** coefficient) - level_ofs default 0
 COEFF_EXP: int = 3
+# weight and height (min and max) = -/+ 10%
+WEIGHT_RANGE: tuple[float, float] = (-0.1, 0.1)
+HEIGHT_RANGE: tuple[float, float] = (-0.1, 0.1)
+# tastes (malus and bonus)
+TASTE_RANGE: tuple[float, float] = (-0.1, 0.1)
 
 # Capture
 TOTAL_SHAKES: int = 4

@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "mudslide"
+            "technique": "riposte"
         },
         {
             "level_learned": 2,
-            "technique": "ram"
+            "technique": "punch"
         },
         {
             "level_learned": 6,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 24,
-            "technique": "sylvan"
+            "technique": "ram"
         },
         {
             "level_learned": 28,
@@ -48,7 +48,7 @@
         },
         {
             "level_learned": 40,
-            "technique": "webs_wind"
+            "technique": "beam"
         }
     ],
     "evolutions": [],

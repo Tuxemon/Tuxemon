@@ -43,29 +43,22 @@ class MoneyMathAction(EventAction):
         # Read the parameters
         transaction = self.transaction
         amount = self.amount
-
-        wallet_player = player.money.get("player")
-        if wallet_player is None:
-            wallet_player = 0
+        wallet_player = player.money.get("player", 0)
 
         # Perform the transaction on the slug
         # from the slug wallet to the player, included check if it's None
         if transaction == "+":
             player.money["player"] = wallet_player + amount
+            logger.info(f"Player money increased by {amount}")
             if self.slug is not None:
-                wallet_npc = player.money.get(self.slug)
-                if wallet_npc is None:
-                    player.money[self.slug] = amount * -1
-                else:
-                    player.money[self.slug] = wallet_npc - amount
+                wallet_npc = player.money.get(self.slug, 0)
+                player.money[self.slug] = wallet_npc - amount
         # from the player wallet to the slug
         elif transaction == "-":
             player.money["player"] = wallet_player - amount
+            logger.info(f"Player money decreased by {amount}")
             if self.slug is not None:
-                wallet_npc = player.money.get(self.slug)
-                if wallet_npc is None:
-                    player.money[self.slug] = amount
-                else:
-                    player.money[self.slug] = wallet_npc + amount
+                wallet_npc = player.money.get(self.slug, 0)
+                player.money[self.slug] = wallet_npc + amount
         else:
-            raise ValueError(f"invalid transaction type {transaction}")
+            raise ValueError(f"Invalid transaction type {transaction}")

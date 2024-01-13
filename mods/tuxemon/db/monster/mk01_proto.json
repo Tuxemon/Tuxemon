@@ -21,12 +21,10 @@
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 10,
             "monster_slug": "mk01_alpha"
         },
         {
-            "path": "standard",
             "at_level": 10,
             "monster_slug": "mk01_beta"
         }

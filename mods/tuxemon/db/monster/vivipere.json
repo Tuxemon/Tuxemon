@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 8,
-            "technique": "sylvan"
+            "technique": "spit_poison"
         },
         {
             "level_learned": 12,
@@ -25,54 +25,45 @@
     ],
     "evolutions": [
         {
-            "path": "tech",
             "at_level": 0,
             "monster_slug": "vivicinder",
             "tech": "flamethrower"
         },
         {
-            "path": "element",
             "at_level": 0,
             "monster_slug": "viviphyta",
             "element": "wood"
         },
         {
-            "path": "gender",
             "at_level": 24,
             "monster_slug": "viviteel",
             "gender": "female"
         },
         {
-            "path": "location",
             "at_level": 0,
             "monster_slug": "vivitrans",
             "inside": true
         },
         {
-            "path": "standard",
-            "at_level": 30,
+            "at_level": 26,
             "monster_slug": "vivitron"
         },
         {
-            "path": "item",
             "at_level": 0,
             "monster_slug": "vividactil",
             "item": "petrified_dung"
         },
         {
-            "path": "item",
             "at_level": 0,
             "monster_slug": "vividactil",
             "item": "shammer_fossil"
         },
         {
-            "path": "item",
             "at_level": 0,
             "monster_slug": "vividactil",
             "item": "rhincus_fossil"
         },
         {
-            "path": "gender",
             "at_level": 24,
             "monster_slug": "vivisource",
             "gender": "male"

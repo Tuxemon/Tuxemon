@@ -102,7 +102,7 @@ class YAMLEventLoader:
                 if behav_type == "talk":
                     condition = MapCondition(
                         type="to_talk",
-                        parameters=args,
+                        parameters=["player", args[0]],
                         x=x,
                         y=y,
                         width=w,
@@ -112,7 +112,7 @@ class YAMLEventLoader:
                     )
                     conds.insert(0, condition)
                     action = MapAction(
-                        type="npc_face",
+                        type="char_face",
                         parameters=[args[0], "player"],
                         name=f"behav{str(key*10)}",
                     )
@@ -392,10 +392,19 @@ class TMXMapLoader:
                 if behav_type == "talk":
                     conds.insert(
                         0,
-                        MapCondition("to_talk", args, x, y, w, h, "is", key),
+                        MapCondition(
+                            "to_talk",
+                            ["player", args[0]],
+                            x,
+                            y,
+                            w,
+                            h,
+                            "is",
+                            key,
+                        ),
                     )
                     acts.insert(
-                        0, MapAction("npc_face", [args[0], "player"], key)
+                        0, MapAction("char_face", [args[0], "player"], key)
                     )
                 else:
                     raise Exception

@@ -715,8 +715,9 @@ class WorldState(state.State):
             iid: The monster iid.
 
         """
-        for npc in self.npcs:
-            return npc.find_monster_by_id(iid)
+        for monster in self.get_all_monsters():
+            if monster.instance_id == iid:
+                return monster
         return None
 
     def get_all_tile_properties(

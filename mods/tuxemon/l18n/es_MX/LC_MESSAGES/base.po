@@ -120,10 +120,10 @@ msgid "combat_status_damage"
 msgstr "¡{name} recibió {status} de daño!"
 
 msgid "combat_victory"
-msgstr "¡Tú has ganado!"
+msgstr "¡{name} ha ganado!"
 
 msgid "combat_defeat"
-msgstr "¡Te han derrotado!"
+msgstr "¡{name} ha sido derrotado!"
 
 msgid "combat_draw"
 msgstr "¡Todas las partes se han desmayado!"
@@ -908,7 +908,7 @@ msgstr "Diabólico"
 msgid "nightcrawler"
 msgstr "Merodeador nocturno"
 
-msgid "probiscus"
+msgid "proboscis"
 msgstr "Probóscide"
 
 msgid "flopped"
@@ -1750,7 +1750,7 @@ msgstr "Polvo para Dormir"
 msgid "snowstorm"
 msgstr "Tormenta de nieve"
 
-msgid "spray"
+msgid "spit_poison"
 msgstr "Aerosol"
 
 msgid "stampede"

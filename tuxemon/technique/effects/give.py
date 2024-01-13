@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import random
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Sequence
+from typing import TYPE_CHECKING
 
 from tuxemon.condition.condition import Condition
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -82,6 +83,9 @@ class GiveEffect(TechEffect):
                     user.apply_status(status)
                     target.apply_status(status)
                     done = True
+        # show icons
+        if done:
+            combat.reset_status_icons()
         return {
             "success": done,
             "damage": 0,

@@ -37,11 +37,22 @@
         {
             "level_learned": 48,
             "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 60,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 64,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 68,
+            "technique": "bullet"
         }
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 54,
             "monster_slug": "ferricran"
         }

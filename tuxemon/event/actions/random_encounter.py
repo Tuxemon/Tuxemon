@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import logging
 import random
-from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import Optional, final
 
@@ -50,52 +49,31 @@ class RandomEncounterAction(EventAction):
     def start(self) -> None:
         player = self.session.player
 
-        # Don't start a battle if we don't even have monsters in our party yet.
         if not check_battle_legal(player):
+            logger.warning("battle is not legal, won't start")
             return
 
         slug = self.encounter_slug
         encounters = db.lookup(slug, table="encounter").monsters
+        filtered = list(encounters)
 
-        # Filter monsters based on daytime true / false
-        filtered = []
-        for ele in encounters:
-            if (
-                ele.daytime is True
-                and player.game_variables["daytime"] == "true"
-            ):
-                filtered.append(ele)
-            elif (
-                ele.daytime is False
-                and player.game_variables["daytime"] == "false"
-            ):
-                filtered.append(ele)
+        for meet in encounters:
+            if meet.variable:
+                part = meet.variable.split(":")
+                if player.game_variables[part[0]] != part[1]:
+                    filtered.remove(meet)
 
-        if filtered:
-            encounter = _choose_encounter(filtered, self.total_prob)
-        else:
-            # if no monster is set for nighttime, it loads all
-            encounter = _choose_encounter(encounters, self.total_prob)
+        if not filtered:
+            logger.info(f"no wild monsters, check encounter/{slug}.json")
+            return
 
-        # If a random encounter was successfully rolled, look up the monster
-        # and start the battle.
+        encounter = _choose_encounter(filtered, self.total_prob)
+
         if encounter:
             logger.info("Starting random encounter!")
-
-            # get wild monster level
             level = _get_level(encounter)
-
-            # Lookup the environment
-            environment = (
-                "grass"
-                if "environment" not in player.game_variables
-                else player.game_variables["environment"]
-            )
-
-            # flash color
+            environment = player.game_variables.get("environment", "grass")
             rgb = self.rgb if self.rgb else None
-
-            # starts the battle with wild_encounter
             self.session.client.event_engine.execute_action(
                 "wild_encounter",
                 [
@@ -111,7 +89,7 @@ class RandomEncounterAction(EventAction):
 
 
 def _choose_encounter(
-    encounters: Sequence[EncounterItemModel],
+    encounters: list[EncounterItemModel],
     total_prob: Optional[float],
 ) -> Optional[EncounterItemModel]:
     total = 0.0

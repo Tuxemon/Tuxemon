@@ -3,7 +3,7 @@
   "accuracy": 0.6,
   "animation": "watershot",
   "effects": [
-    "splash"
+    "splash 2"
   ],
   "flip_axes": "x",
   "is_fast": false,

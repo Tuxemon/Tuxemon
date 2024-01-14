@@ -91,7 +91,7 @@
   <object id="20" name="First Visit to Cotton Cafe" type="event" x="160" y="48" width="16" height="16">
    <properties>
     <property name="act01" value="wait 0.1"/>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act15" value="pathfind spyder_cottontown_hacker,7,3"/>
     <property name="act20" value="char_face spyder_cottontown_hacker,down"/>

@@ -258,7 +258,7 @@
   </object>
   <object id="49" name="Stop! - Goliath" type="event" x="608" y="144" width="16" height="16">
    <properties>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act30" value="pathfind spyder_route5_goliath,36,9"/>
     <property name="act40" value="translated_dialog spyder_route5_goliath1"/>
     <property name="act44" value="add_monster spighter,35,spyder_route5_goliath,5,10"/>

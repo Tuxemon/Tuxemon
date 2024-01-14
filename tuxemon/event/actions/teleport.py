@@ -72,4 +72,4 @@ class TeleportAction(EventAction):
 
             # unlock_controls will reset controls, but start moving if keys
             # are pressed
-            world.unlock_controls()
+            world.unlock_controls(player)

@@ -130,7 +130,7 @@
   </object>
   <object id="26" name="Egg" type="event" x="64" y="80" width="16" height="48">
    <properties>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="create_npc spyder_candy_eliane,3,2"/>
     <property name="act21" value="pathfind_to_player spyder_candy_eliane,left"/>

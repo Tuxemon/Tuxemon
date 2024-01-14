@@ -71,7 +71,7 @@
   </object>
   <object id="17" name="acolyte2" type="event" x="96" y="48" width="64" height="16">
    <properties>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act12" value="char_face player,down"/>
     <property name="act13" value="translated_dialog acolyte2challenger"/>

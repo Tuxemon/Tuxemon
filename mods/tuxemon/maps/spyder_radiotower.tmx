@@ -128,7 +128,7 @@
   </object>
   <object id="27" name="Stop!" type="event" x="16" y="256" width="208" height="16">
    <properties>
-    <property name="act1" value="char_stop"/>
+    <property name="act1" value="char_stop player"/>
     <property name="act10" value="lock_controls"/>
     <property name="act20" value="create_npc spyder_dante,3,18"/>
     <property name="act30" value="create_npc spyder_billie,2,18"/>
@@ -164,7 +164,7 @@
   </object>
   <object id="31" name="Stop!" type="event" x="16" y="80" width="208" height="16">
    <properties>
-    <property name="act1" value="char_stop"/>
+    <property name="act1" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="translated_dialog spyder_omnichannel_radioannounce"/>
     <property name="act30" value="remove_npc spyder_omnichannel_beaverbrook"/>

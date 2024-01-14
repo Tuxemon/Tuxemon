@@ -105,7 +105,8 @@ class YAMLEventLoader:
                     "behav", _args, x, y, w, h, "is", f"behav{str(key*10)}"
                 )
                 conds.insert(0, _conds)
-                _acts = MapAction("behav", _args, f"behav{str(key*10)}")
+                _squeeze = [":".join(_args)]
+                _acts = MapAction("behav", _squeeze, f"behav{str(key*10)}")
                 acts.insert(0, _acts)
 
             yield EventObject(_id, name, x, y, w, h, conds, acts)
@@ -384,6 +385,7 @@ class TMXMapLoader:
                     0,
                     MapCondition("behav", _args, x, y, w, h, "is", key),
                 )
-                acts.insert(0, MapAction("behav", _args, key))
+                _squeeze = [":".join(_args)]
+                acts.insert(0, MapAction("behav", _squeeze, key))
 
         return EventObject(_id, obj.name, x, y, w, h, conds, acts)

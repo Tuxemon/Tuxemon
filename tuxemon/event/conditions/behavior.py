@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from tuxemon.event import MapCondition
-from tuxemon.event.conditions.player_at import PlayerAtCondition
-from tuxemon.event.conditions.player_facing import PlayerFacingCondition
-from tuxemon.event.conditions.to_talk import ToTalkCondition
+from tuxemon.event.conditions.button_pressed import ButtonPressedCondition
+from tuxemon.event.conditions.char_at import CharAtCondition
+from tuxemon.event.conditions.char_facing import CharFacingCondition
+from tuxemon.event.conditions.char_facing_char import CharFacingCharCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
@@ -14,7 +15,7 @@ class BehaviorCondition(EventCondition):
     """
     Check if the behavior's conditions are true.
 
-    Behavior is a combination of 1 action with 1 or more conditions.
+    Behavior is a combination of actions and conditions.
 
     """
 
@@ -24,11 +25,11 @@ class BehaviorCondition(EventCondition):
         cond = condition
         param = condition.parameters
         if param[0] == "talk":
-            to_talk = ToTalkCondition().test(
+            char_facing_char = CharFacingCharCondition().test(
                 session,
                 MapCondition(
-                    "to_talk",
-                    [param[1]],
+                    "char_facing_char",
+                    ["player", param[1]],
                     cond.x,
                     cond.y,
                     cond.width,
@@ -37,26 +38,11 @@ class BehaviorCondition(EventCondition):
                     "cond10",
                 ),
             )
-            return to_talk
-        elif param[0] == "door":
-            player_at = PlayerAtCondition().test(
+            button_pressed = ButtonPressedCondition().test(
                 session,
                 MapCondition(
-                    "player_at",
-                    [],
-                    cond.x,
-                    cond.y,
-                    cond.width,
-                    cond.height,
-                    "is",
-                    "cond10",
-                ),
-            )
-            player_facing = PlayerFacingCondition().test(
-                session,
-                MapCondition(
-                    "player_facing",
-                    [param[1]],
+                    "button_pressed",
+                    ["K_RETURN"],
                     cond.x,
                     cond.y,
                     cond.width,
@@ -65,5 +51,34 @@ class BehaviorCondition(EventCondition):
                     "cond20",
                 ),
             )
-            return player_at and player_facing
+            return char_facing_char and button_pressed
+        elif param[0] == "door":
+            facing = param[1]
+            char_at = CharAtCondition().test(
+                session,
+                MapCondition(
+                    "char_at",
+                    ["player"],
+                    cond.x,
+                    cond.y,
+                    cond.width,
+                    cond.height,
+                    "is",
+                    "cond10",
+                ),
+            )
+            char_facing = CharFacingCondition().test(
+                session,
+                MapCondition(
+                    "char_facing",
+                    ["player", facing],
+                    cond.x,
+                    cond.y,
+                    cond.width,
+                    cond.height,
+                    "is",
+                    "cond20",
+                ),
+            )
+            return char_at and char_facing
         return False

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional, final
+from typing import Any, final
 
 from tuxemon.event.eventaction import EventAction
 
@@ -14,28 +14,25 @@ class BehaviorAction(EventAction):
     """
     Triggers behavior's action.
 
-    Behavior is a combination of 1 action with 1 or more conditions.
+    Behavior is a combination of actions and conditions.
 
     """
 
     name = "behav"
     behavior: str
-    value1: Optional[str] = None
-    value2: Optional[str] = None
-    value3: Optional[str] = None
 
     def start(self) -> None:
-        _execute = False
-        _action = ""
-        _params = []
-        if self.behavior == "talk":
-            _execute = True
-            _action = "npc_face"
-            _params = [self.value1, "player"]
-        elif self.behavior == "door":
-            _execute = True
-            _action = "player_face"
-            _params = [self.value2]
-        if _execute:
+        values = self.behavior.split(":")
+        behavior = values[0]
+        _action: dict[str, list[Any]] = {}
+        if behavior == "talk":
+            _character = values[1]
+            _action["char_face"] = [_character, "player"]
+        elif behavior == "door":
+            _destination, _x, _y, _direction = values[2:6]
+            _action["transition_teleport"] = [_destination, int(_x), int(_y)]
+            _action["char_face"] = ["player", _direction]
+        if _action:
             client = self.session.client.event_engine
-            client.execute_action(_action, _params, True)
+            for _act, _params in _action.items():
+                client.execute_action(_act, _params, False)

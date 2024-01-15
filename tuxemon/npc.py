@@ -546,6 +546,7 @@ class NPC(Entity[NPCState]):
         direction = get_direction(proj(self.position3), target)
         self.facing = direction
         if self.valid_movement(target):
+            moverate = self.check_moverate(target)
             # surfanim has horrible clock drift.  even after one animation
             # cycle, the time will be off.  drift causes the walking steps to not
             # align with tiles and some frames will only last one game frame.
@@ -556,7 +557,7 @@ class NPC(Entity[NPCState]):
             # not based on wall time, to prevent visual glitches.
             self.surface_animations.play()
             self.path_origin = self.tile_pos
-            self.velocity3 = self.moverate * dirs3[direction]
+            self.velocity3 = moverate * dirs3[direction]
             self.remove_collision(self.path_origin)
         else:
             # the target is blocked now
@@ -583,6 +584,17 @@ class NPC(Entity[NPCState]):
             else:
                 # give up and wait until the target is clear again
                 pass
+
+    def check_moverate(self, destination: tuple[int, int]) -> float:
+        """
+        Check character moverate and adapt it, since there could be some
+        tiles where the coefficient is different (by default 1).
+
+        """
+        surface_map = self.world.surface_map
+        rate = self.world.get_tile_moverate(surface_map, destination)
+        _moverate = self.moverate * rate
+        return _moverate
 
     def check_waypoint(self) -> None:
         """

@@ -427,15 +427,11 @@ class WorldState(state.State):
                     self.check_interactable_space()
                     return None
 
-        moverate = self.get_tile_moverate(
-            self.surface_map, self.player.tile_pos
-        )
         if event.button == intentions.RUN:
             if event.held:
                 self.player.moverate = self.client.config.player_runrate
             else:
                 self.player.moverate = self.client.config.player_walkrate
-            self.player.moverate *= moverate
 
         # If we receive an arrow key press, set the facing and
         # moving direction to that direction
@@ -758,8 +754,8 @@ class WorldState(state.State):
         moverate = 1.0
         for coord, props in map.items():
             if coord == position:
-                moverate = next(iter(props.values()))
-        return float(moverate)
+                moverate = float(next(iter(props.values())))
+        return moverate
 
     def check_collision_zones(
         self,

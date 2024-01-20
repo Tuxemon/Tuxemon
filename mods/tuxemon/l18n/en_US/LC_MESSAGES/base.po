@@ -6260,7 +6260,7 @@ msgstr "My name is Marissa, and these... these... THUGS! Destroyed my flower pat
 
 msgid "soiwashearing4"
 msgstr "How dare you...\n"
-"This is the Premier you're talking too! Have some respect!"
+"This is the Premier you're talking to! Have some respect!"
 
 msgid "soiwashearing5"
 msgstr "Ma'am, should I arrest her for addressing you so insolently?"

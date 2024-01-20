@@ -5,7 +5,7 @@ from __future__ import annotations
 import random
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import pre_checking
+from tuxemon.combat import pre_checking, recharging
 from tuxemon.db import ItemCategory
 from tuxemon.technique.technique import Technique
 
@@ -64,7 +64,7 @@ class AI:
         actions = []
         # it chooses among the last 4 moves
         for mov in self.monster.moves[-self.monster.max_moves :]:
-            if mov.next_use <= 0:
+            if not recharging(mov):
                 for opponent in self.opponents:
                     # it checks technique conditions
                     if mov.validate(opponent):

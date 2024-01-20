@@ -6,6 +6,7 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional
 
+from tuxemon.combat import fainted
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 from tuxemon.technique.technique import Technique
 
@@ -21,22 +22,29 @@ class WildEffectResult(CondEffectResult):
 @dataclass
 class WildEffect(CondEffect):
     """
-    Wild status
+    Wild: 1/4 chance each turn that instead of using the chosen
+    technique, you take 1/8 your maximum HP in unmodified damage.
+
+    Parameters:
+        chance: The chance.
+        divisor: The divisor.
 
     """
 
     name = "wild"
+    chance: float
+    divisor: int
 
     def apply(self, condition: Condition, target: Monster) -> WildEffectResult:
         skip: Optional[Technique] = None
-        if condition.phase == "pre_checking" and condition.slug == "wild":
-            wild = random.randint(1, 4)
-            if wild == 1:
-                user = condition.link
-                assert user
-                skip = Technique()
-                skip.load("empty")
-                user.current_hp -= user.hp // 8
+        if condition.phase == "pre_checking" and random.random() > self.chance:
+            user = condition.link
+            empty = condition.repl_tech
+            assert user and empty
+            skip = Technique()
+            skip.load(empty)
+            if not fainted(user):
+                user.current_hp -= user.hp // self.divisor
         return {
             "success": True,
             "condition": None,

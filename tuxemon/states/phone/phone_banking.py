@@ -73,15 +73,9 @@ class NuPhoneBanking(PygameMenuState):
                     escape_key_exits=True,
                 )
             else:
-                open_dialog(
-                    local_session,
-                    [
-                        T.format(
-                            "no_money_operation",
-                            {"operation": T.translate("deposit")},
-                        )
-                    ],
-                )
+                params = {"operation": T.translate("deposit")}
+                msg = T.format("no_money_operation", params)
+                open_dialog(local_session, [msg])
 
         def choice_withdraw() -> None:
             var_menu = []
@@ -97,15 +91,9 @@ class NuPhoneBanking(PygameMenuState):
                     escape_key_exits=True,
                 )
             else:
-                open_dialog(
-                    local_session,
-                    [
-                        T.format(
-                            "no_money_operation",
-                            {"operation": T.translate("withdraw")},
-                        )
-                    ],
-                )
+                params = {"operation": T.translate("withdraw")}
+                msg = T.format("no_money_operation", params)
+                open_dialog(local_session, [msg])
 
         def deposit(amount: int) -> None:
             self.client.pop_state()

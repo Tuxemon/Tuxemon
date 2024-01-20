@@ -21,24 +21,28 @@ class FlinchingEffectResult(CondEffectResult):
 @dataclass
 class FlinchingEffect(CondEffect):
     """
-    Flinching status
+    Flinching: 50% chance to miss your next turn.
+    If you do miss your next turn, this condition ends.
+
+    Parameters:
+        chance: The chance.
 
     """
 
     name = "flinching"
+    chance: float
 
     def apply(
         self, condition: Condition, target: Monster
     ) -> FlinchingEffectResult:
         skip: Optional[Technique] = None
-        if condition.phase == "pre_checking" and condition.slug == "flinching":
-            flinching = random.randint(1, 2)
-            if flinching == 1:
-                user = condition.link
-                assert user
-                skip = Technique()
-                skip.load("empty")
-                user.status.clear()
+        if condition.phase == "pre_checking" and random.random() > self.chance:
+            user = condition.link
+            empty = condition.repl_tech
+            assert user and empty
+            skip = Technique()
+            skip.load(empty)
+            user.status.clear()
         return {
             "success": True,
             "condition": None,

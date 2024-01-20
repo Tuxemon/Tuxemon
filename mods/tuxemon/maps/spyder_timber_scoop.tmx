@@ -61,17 +61,17 @@
   <object id="13" name="Teleport to Timber City" type="event" x="80" y="160" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_town.tmx,14,12,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="20" name="Create Shopkeeper" type="event" x="16" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_timberscoop_leandro,1,6"/>
-    <property name="act2" value="npc_face spyder_timberscoop_leandro,right"/>
+    <property name="act2" value="char_face spyder_timberscoop_leandro,right"/>
     <property name="act3" value="set_economy spyder_timberscoop_leandro,spyder_timber_scoop"/>
-    <property name="cond1" value="not npc_exists spyder_timberscoop_leandro"/>
+    <property name="cond1" value="not char_exists spyder_timberscoop_leandro"/>
    </properties>
   </object>
   <object id="28" name="Route Music" type="event" x="0" y="0" width="16" height="16">
@@ -82,19 +82,19 @@
   </object>
   <object id="29" name="Open Shop" type="event" x="32" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_face spyder_timberscoop_leandro,right"/>
+    <property name="act1" value="char_face spyder_timberscoop_leandro,right"/>
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
     <property name="act3" value="open_shop spyder_timberscoop_leandro"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="30" name="Open Shop" type="event" x="16" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_face spyder_timberscoop_leandro,down"/>
+    <property name="act1" value="char_face spyder_timberscoop_leandro,down"/>
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
     <property name="act3" value="open_shop spyder_timberscoop_leandro"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>

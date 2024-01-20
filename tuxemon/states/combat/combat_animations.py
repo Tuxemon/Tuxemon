@@ -531,8 +531,7 @@ class CombatAnimations(ABC, Menu[None]):
                 dev.animate_capture(animate)
 
     def animate_parties_in(self) -> None:
-        surface = pygame.display.get_surface()
-        x, y, w, h = surface.get_rect()
+        x, y, w, h = prepare.SCREEN_RECT
 
         # Get background image if passed in
         self.background = self.load_sprite(self.graphics.background)
@@ -553,9 +552,9 @@ class CombatAnimations(ABC, Menu[None]):
 
         # animation, begin battle
         if self.is_trainer_battle:
-            combat_front = opponent.template[0].front_path
+            combat_front = opponent.template[0].combat_front
             enemy = self.load_sprite(
-                combat_front,
+                f"gfx/sprites/player/{combat_front}.png",
                 bottom=back_island.rect.bottom - scale(12),
                 centerx=back_island.rect.centerx,
             )
@@ -573,19 +572,11 @@ class CombatAnimations(ABC, Menu[None]):
         self.sprites.add(enemy)
 
         if self.is_trainer_battle:
-            self.alert(
-                T.format(
-                    "combat_trainer_appeared",
-                    {"name": opponent.name.upper()},
-                ),
-            )
+            params = {"name": opponent.name.upper()}
+            self.alert(T.format("combat_trainer_appeared", params))
         else:
-            self.alert(
-                T.format(
-                    "combat_wild_appeared",
-                    {"name": opp_mon.name.upper()},
-                ),
-            )
+            params = {"name": opp_mon.name.upper()}
+            self.alert(T.format("combat_wild_appeared", params))
 
         front_island = self.load_sprite(
             self.graphics.island_front,
@@ -593,12 +584,22 @@ class CombatAnimations(ABC, Menu[None]):
             left=w,
         )
 
-        player_back = self.load_sprite(
-            player.template[0].back_path,
-            bottom=front_island.rect.centery + scale(6),
-            centerx=front_island.rect.centerx,
-        )
-        assert player_back
+        combat_back = player.template[0].combat_front
+        filename = f"gfx/sprites/player/{combat_back}_back.png"
+        try:
+            player_back = self.load_sprite(
+                filename,
+                bottom=front_island.rect.centery + scale(6),
+                centerx=front_island.rect.centerx,
+            )
+        except:
+            logger.warning(f"(File) {filename} cannot be found.")
+            player_back = self.load_sprite(
+                f"gfx/sprites/player/{combat_back}.png",
+                bottom=front_island.rect.centery + scale(6),
+                centerx=front_island.rect.centerx,
+            )
+
         self._monster_sprite_map[player] = player_back
 
         def flip() -> None:
@@ -709,29 +710,21 @@ class CombatAnimations(ABC, Menu[None]):
             shake_ball(1.8 + i * 1.0)
 
         combat = item.combat_state
-        if is_captured and combat:
+        if is_captured and combat and monster.owner:
+            trainer = monster.owner
             combat._captured_mon = monster
             self.task(kill, 2 + num_shakes)
             action_time = num_shakes + 1.8
-            # Tuxepedia: set monster as caught (2)
-            if self.players[0].tuxepedia[monster.slug] == SeenStatus.seen:
-                combat._new_tuxepedia = True
-            self.players[0].tuxepedia[monster.slug] = SeenStatus.caught
             # Display 'Gotcha!' first.
             self.task(combat.end_combat, action_time + 4)
             gotcha = T.translate("gotcha")
             info = None
             # if party
-            if len(self.players[0].monsters) >= self.players[0].party_limit:
-                info = T.format(
-                    "gotcha_kennel",
-                    {"name": monster.name.upper()},
-                )
+            params = {"name": monster.name.upper()}
+            if len(trainer.monsters) >= trainer.party_limit:
+                info = T.format("gotcha_kennel", params)
             else:
-                info = T.format(
-                    "gotcha_team",
-                    {"name": monster.name.upper()},
-                )
+                info = T.format("gotcha_team", params)
             if info:
                 gotcha += "\n" + info
                 action_time += len(gotcha) * prepare.LETTER_TIME

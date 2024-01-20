@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 2,
-            "technique": "gold_digger"
+            "technique": "mind_vise"
         },
         {
             "level_learned": 6,
@@ -45,11 +45,14 @@
         {
             "level_learned": 36,
             "technique": "sleep_bomb"
+        },
+        {
+            "level_learned": 44,
+            "technique": "peregrine"
         }
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 40,
             "monster_slug": "lendos"
         }

@@ -21,11 +21,22 @@
         {
             "level_learned": 12,
             "technique": "constrict"
+        },
+        {
+            "level_learned": 24,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 28,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 32,
+            "technique": "whirlwind"
         }
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 18,
             "monster_slug": "tumblebee"
         }

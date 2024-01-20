@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 6,
-            "technique": "torch"
+            "technique": "beam"
         },
         {
             "level_learned": 8,
@@ -20,19 +20,17 @@
         },
         {
             "level_learned": 12,
-            "technique": "muck"
+            "technique": "neutralize"
         }
     ],
     "evolutions": [
         {
-            "path": "variable",
-            "at_level": 16,
+            "at_level": 14,
             "monster_slug": "angesnow",
             "variable": "daytime:true"
         },
         {
-            "path": "variable",
-            "at_level": 16,
+            "at_level": 14,
             "monster_slug": "demosnow",
             "variable": "daytime:false"
         }

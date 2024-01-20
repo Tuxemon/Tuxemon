@@ -53,17 +53,17 @@
   <object id="49" name="Teleport to Cotton Town" type="event" x="560" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_cotton_town.tmx,2,36,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="50" name="Teleport to Dragon's Cave" type="event" x="48" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_dragonscave.tmx,16,5,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
     <property name="cond3" value="is variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>
@@ -71,16 +71,16 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_dragonscave_blocked"/>
     <property name="act2" value="pathfind player,3,14"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
     <property name="cond3" value="not variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>
   <object id="52" name="Create Brute" type="event" x="160" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dragonscave_angrybrute,10,3"/>
-    <property name="act2" value="npc_face spyder_dragonscave_angrybrute,right"/>
-    <property name="cond1" value="not npc_exists spyder_dragonscave_angrybrute"/>
+    <property name="act2" value="char_face spyder_dragonscave_angrybrute,right"/>
+    <property name="cond1" value="not char_exists spyder_dragonscave_angrybrute"/>
     <property name="cond2" value="is variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>
@@ -93,8 +93,8 @@
   <object id="54" name="Create Brute" type="event" x="192" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dragonscave_lazybrute,12,6"/>
-    <property name="act2" value="npc_face spyder_dragonscave_lazybrute,up"/>
-    <property name="cond1" value="not npc_exists spyder_dragonscave_lazybrute"/>
+    <property name="act2" value="char_face spyder_dragonscave_lazybrute,up"/>
+    <property name="cond1" value="not char_exists spyder_dragonscave_lazybrute"/>
     <property name="cond2" value="is variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>
@@ -107,8 +107,8 @@
   <object id="56" name="Create Brute" type="event" x="208" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dragonscave_concernedbrute,13,4"/>
-    <property name="act2" value="npc_face spyder_dragonscave_concernedbrute,left"/>
-    <property name="cond1" value="not npc_exists spyder_dragonscave_concernedbrute"/>
+    <property name="act2" value="char_face spyder_dragonscave_concernedbrute,left"/>
+    <property name="cond1" value="not char_exists spyder_dragonscave_concernedbrute"/>
     <property name="cond2" value="is variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>
@@ -132,7 +132,7 @@
   <object id="84" name="Create Petrified Dung" type="event" x="384" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottontunnel_box1,24,15"/>
-    <property name="cond1" value="not npc_exists spyder_cottontunnel_box1"/>
+    <property name="cond1" value="not char_exists spyder_cottontunnel_box1"/>
     <property name="cond2" value="not variable_set cottontunnel_dung:yes"/>
    </properties>
   </object>
@@ -148,7 +148,7 @@
   <object id="86" name="Create Candy Tuxeball" type="event" x="112" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottontunnel_box2,7,18"/>
-    <property name="cond1" value="not npc_exists spyder_cottontunnel_box2"/>
+    <property name="cond1" value="not char_exists spyder_cottontunnel_box2"/>
     <property name="cond2" value="not variable_set cottontunnel_candy:yes"/>
    </properties>
   </object>
@@ -164,7 +164,7 @@
   <object id="88" name="Create Imperial Tea" type="event" x="496" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottontunnel_box3,31,17"/>
-    <property name="cond1" value="not npc_exists spyder_cottontunnel_box3"/>
+    <property name="cond1" value="not char_exists spyder_cottontunnel_box3"/>
     <property name="cond2" value="not variable_set cottontunnel_tea:yes"/>
    </properties>
   </object>
@@ -180,7 +180,7 @@
   <object id="90" name="Create Imperial Potion" type="event" x="128" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottontunnel_box4,8,10"/>
-    <property name="cond1" value="not npc_exists spyder_cottontunnel_box4"/>
+    <property name="cond1" value="not char_exists spyder_cottontunnel_box4"/>
     <property name="cond2" value="not variable_set cottontunnel_potion:yes"/>
    </properties>
   </object>
@@ -196,7 +196,7 @@
   <object id="92" name="Create Cureall" type="event" x="512" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottontunnel_box5,32,3"/>
-    <property name="cond1" value="not npc_exists spyder_cottontunnel_box5"/>
+    <property name="cond1" value="not char_exists spyder_cottontunnel_box5"/>
     <property name="cond2" value="not variable_set cottontunnel_cureall:yes"/>
    </properties>
   </object>
@@ -212,7 +212,7 @@
   <object id="94" name="Create Raise Melee" type="event" x="16" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottontunnel_box6,1,3"/>
-    <property name="cond1" value="not npc_exists spyder_cottontunnel_box6"/>
+    <property name="cond1" value="not char_exists spyder_cottontunnel_box6"/>
     <property name="cond2" value="not variable_set cottontunnel_melee:yes"/>
    </properties>
   </object>
@@ -228,8 +228,8 @@
   <object id="96" name="Create Professor" type="event" x="0" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottontunnel_professor,0,19"/>
-    <property name="act2" value="npc_face spyder_cottontunnel_professor,left"/>
-    <property name="cond1" value="not npc_exists spyder_cottontunnel_professor"/>
+    <property name="act2" value="char_face spyder_cottontunnel_professor,left"/>
+    <property name="cond1" value="not char_exists spyder_cottontunnel_professor"/>
     <property name="cond2" value="is variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>
@@ -242,8 +242,8 @@
   <object id="98" name="Create ShopAssistant" type="event" x="352" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottontunnel_shopassistant,22,15"/>
-    <property name="act2" value="npc_face spyder_cottontunnel_shopassistant,up"/>
-    <property name="cond1" value="not npc_exists spyder_cottontunnel_shopassistant"/>
+    <property name="act2" value="char_face spyder_cottontunnel_shopassistant,up"/>
+    <property name="cond1" value="not char_exists spyder_cottontunnel_shopassistant"/>
     <property name="cond2" value="is variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>
@@ -256,7 +256,7 @@
   <object id="100" name="Create Carlos" type="event" x="592" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottontunnel_carlos,37,9"/>
-    <property name="cond1" value="not npc_exists spyder_cottontunnel_carlos"/>
+    <property name="cond1" value="not char_exists spyder_cottontunnel_carlos"/>
     <property name="cond2" value="is variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>
@@ -266,11 +266,11 @@
     <property name="act11" value="translated_dialog spyder_cottontunnel_carlos1"/>
     <property name="act12" value="add_monster agnidon,35,spyder_cottontunnel_carlos,5,10"/>
     <property name="act13" value="add_monster legko,35,spyder_cottontunnel_carlos,5,10"/>
-    <property name="act15" value="start_battle spyder_cottontunnel_carlos"/>
+    <property name="act15" value="start_battle player,spyder_cottontunnel_carlos"/>
     <property name="act16" value="translated_dialog spyder_cottontunnel_carlos2"/>
     <property name="act17" value="set_variable cottontunnelcarlos:yes"/>
     <property name="cond1" value="not variable_set cottontunnelcarlos:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="is variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>

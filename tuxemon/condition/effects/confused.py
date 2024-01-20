@@ -6,7 +6,7 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional
 
-from tuxemon.combat import has_effect_param
+from tuxemon.combat import has_effect_param, recharging
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 from tuxemon.locale import T
 from tuxemon.technique.technique import Technique
@@ -23,11 +23,17 @@ class ConfusedEffectResult(CondEffectResult):
 @dataclass
 class ConfusedEffect(CondEffect):
     """
-    Confused status
+    Confused: Instead of the technique chosen, the Confused monster uses a
+    random technique (from the ones they have available, other than the one
+    chosen) 50% of the time.
+
+    Parameters:
+        chance: The chance.
 
     """
 
     name = "confused"
+    chance: float
 
     def apply(
         self, condition: Condition, target: Monster
@@ -36,42 +42,34 @@ class ConfusedEffect(CondEffect):
         skip: Optional[Technique] = None
         player = target.owner
         assert player
-        if condition.phase == "pre_checking" and condition.slug == "confused":
-            confusion = random.randint(1, 2)
-            if confusion == 1:
-                user = condition.link
-                assert user
-                player.game_variables["confused"] = "on"
-                confused = [
-                    ele
-                    for ele in user.moves
-                    if ele.next_use <= 0
-                    and not has_effect_param(
-                        ele, "confused", "give", "condition"
-                    )
-                ]
-                if confused:
-                    skip = random.choice(confused)
-                else:
-                    skip = Technique()
-                    skip.load("empty")
-            else:
-                player.game_variables["confused"] = "off"
+        if "confused" in player.game_variables:
+            player.game_variables["confused"] = "off"
+        if condition.phase == "pre_checking" and random.random() > self.chance:
+            user = condition.link
+            assert user
+            player.game_variables["confused"] = "on"
+            confused = [
+                ele
+                for ele in user.moves
+                if not recharging(ele)
+                and not has_effect_param(ele, "confused", "give", "condition")
+            ]
+            if confused:
+                skip = random.choice(confused)
+            if not confused and condition.repl_tech:
+                skip = Technique()
+                skip.load(condition.repl_tech)
         if (
             condition.phase == "perform_action_tech"
-            and condition.slug == "confused"
+            and player.game_variables["confused"] == "on"
         ):
-            if "confused" in player.game_variables:
-                if player.game_variables["confused"] == "on":
-                    _tech = Technique()
-                    _tech.load(player.game_variables["action_tech"])
-                    extra = T.format(
-                        "combat_state_confused_tech",
-                        {
-                            "target": target.name.upper(),
-                            "name": _tech.name.upper(),
-                        },
-                    )
+            _tech = Technique()
+            _tech.load(player.game_variables["action_tech"])
+            params = {
+                "target": target.name.upper(),
+                "name": _tech.name.upper(),
+            }
+            extra = T.format("combat_state_confused_tech", params)
         return {
             "success": True,
             "condition": None,

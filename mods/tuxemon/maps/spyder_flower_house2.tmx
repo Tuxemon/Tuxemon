@@ -49,14 +49,14 @@
   <object id="59" name="Go outside" type="event" x="96" y="112" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_flower_city.tmx,23,18,0.3"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="70" name="Create Soldier" type="event" x="64" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_flowerhouse2_pip,4,5"/>
-    <property name="cond1" value="not npc_exists spyder_flowerhouse2_pip"/>
+    <property name="cond1" value="not char_exists spyder_flowerhouse2_pip"/>
    </properties>
   </object>
   <object id="71" name="Talk Soldier" type="event" x="64" y="64" width="16" height="16">
@@ -68,8 +68,8 @@
   <object id="72" name="Create Scientist" type="event" x="16" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_flowerhouse2_bruce,1,2"/>
-    <property name="act2" value="npc_face spyder_flowerhouse2_bruce,up"/>
-    <property name="cond1" value="not npc_exists spyder_flowerhouse2_bruce"/>
+    <property name="act2" value="char_face spyder_flowerhouse2_bruce,up"/>
+    <property name="cond1" value="not char_exists spyder_flowerhouse2_bruce"/>
    </properties>
   </object>
   <object id="73" name="Talk Scientist" type="event" x="128" y="48" width="16" height="16">

@@ -10,20 +10,19 @@ Code here might be shared by states, actions, conditions, etc.
 
 from __future__ import annotations
 
-import datetime as dt
 import logging
 import random
 from collections.abc import Generator, Sequence
 from typing import TYPE_CHECKING, Optional
 
-from tuxemon.battle import Battle
-from tuxemon.db import OutputBattle, PlagueType, SeenStatus
+from tuxemon.db import OutputBattle, PlagueType
 from tuxemon.locale import T
 from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
+    from tuxemon.session import Session
     from tuxemon.states.combat.combat import CombatState, DamageMap
 
 
@@ -110,7 +109,17 @@ def has_effect_param(
 
 
 def fainted(monster: Monster) -> bool:
+    """
+    Checks to see if the monster is fainted.
+    """
     return has_status(monster, "faint") or monster.current_hp <= 0
+
+
+def recharging(technique: Technique) -> bool:
+    """
+    Checks to see if a technique is recharging.
+    """
+    return technique.next_use > 0
 
 
 def get_awake_monsters(
@@ -159,13 +168,8 @@ def defeated(player: NPC) -> bool:
 def check_moves(monster: Monster, levels: int) -> Optional[str]:
     tech = monster.update_moves(levels)
     if tech:
-        message = T.format(
-            "tuxemon_new_tech",
-            {
-                "name": monster.name.upper(),
-                "tech": tech.name.upper(),
-            },
-        )
+        params = {"name": monster.name.upper(), "tech": tech.name.upper()}
+        message = T.format("tuxemon_new_tech", params)
         return message
     return None
 
@@ -189,9 +193,7 @@ def award_money(loser: Monster, winner: Monster) -> int:
     # update method
     if winner.owner and winner.owner.isplayer:
         trainer = winner.owner
-        if "method_money" not in trainer.game_variables:
-            trainer.game_variables["method_money"] = "default"
-        method = trainer.game_variables["method_money"]
+        method = trainer.game_variables.get("method_money", "default")
 
     # methods
     if method == "default":
@@ -240,9 +242,7 @@ def award_experience(
     # update method
     if winner.owner and winner.owner.isplayer:
         trainer = winner.owner
-        if "method_experience" not in trainer.game_variables:
-            trainer.game_variables["method_experience"] = "default"
-        method = trainer.game_variables["method_experience"]
+        method = trainer.game_variables.get("method_experience", "default")
 
     # methods
     if method == "default":
@@ -264,7 +264,7 @@ def award_experience(
             * wild
         )
         exp = int(result)
-    elif method == "xp_transmitter":
+    elif method == "xp_transmitter" and trainer:
         alive = alive_party(trainer)
         idle_monsters = list(set(alive).symmetric_difference(winners))
         result = (exp_tot // (loser.level * hits)) * exp_mod * 1 / len(alive)
@@ -293,9 +293,7 @@ def get_winners(loser: Monster, damages: list[DamageMap]) -> set[Monster]:
     # update method
     if winners and winners[0].owner and winners[0].owner.isplayer:
         trainer = winners[0].owner
-        if "method_experience" not in trainer.game_variables:
-            trainer.game_variables["method_experience"] = "default"
-        method = trainer.game_variables["method_experience"]
+        method = trainer.game_variables.get("method_experience", "default")
 
     # methods
     if method == "xp_transmitter":
@@ -305,27 +303,44 @@ def get_winners(loser: Monster, damages: list[DamageMap]) -> set[Monster]:
         return set(winners)
 
 
-def battlefield(monster: Monster, players: Sequence[NPC]) -> None:
+def battlefield(
+    session: Session, monster: Monster, players: Sequence[NPC]
+) -> None:
     """
     Record the useful properties of the last monster fought.
 
     Parameters:
+        session: Session
         monster: The monster on the ground.
         players: All the remaining players.
 
     """
     human = [player for player in players if player.isplayer]
     for _human in human:
-        var = _human.game_variables
         if monster not in _human.monsters:
-            var["battle_last_monster_name"] = monster.name
-            var["battle_last_monster_level"] = monster.level
-            var["battle_last_monster_type"] = monster.types[0].slug
-            var["battle_last_monster_category"] = monster.category
-            var["battle_last_monster_shape"] = monster.shape
-            # Avoid reset string to seen if monster has already been caught
-            if monster.slug not in _human.tuxepedia:
-                _human.tuxepedia[monster.slug] = SeenStatus.seen
+            set_var(session, "battle_last_monster_name", monster.name)
+            set_var(session, "battle_last_monster_level", str(monster.level))
+            set_var(session, "battle_last_monster_type", monster.types[0].slug)
+            set_var(session, "battle_last_monster_category", monster.category)
+            set_var(session, "battle_last_monster_shape", monster.shape)
+            # updates tuxepedia
+            set_tuxepedia(session, _human.slug, monster.slug, "seen")
+
+
+def set_tuxepedia(
+    session: Session, character: str, monster: str, label: str
+) -> None:
+    """
+    Registers monster in Tuxepedia.
+
+    Parameters:
+        character: Character slug.
+        monster: The key game variable.
+        value: The value game variable.
+
+    """
+    client = session.client.event_engine
+    client.execute_action("set_tuxepedia", [character, monster, label], True)
 
 
 def plague(player: NPC) -> None:
@@ -342,6 +357,7 @@ def plague(player: NPC) -> None:
 
 
 def track_battles(
+    session: Session,
     output: str,
     player: NPC,
     players: Sequence[NPC],
@@ -352,6 +368,7 @@ def track_battles(
     Tracks battles, fills variables and returns the message.
 
     Parameters:
+        session: Session
         output: Output of the battle: won, lost, draw
         player: The human player.
         players: All the players (eg if player is winner, players are losers)
@@ -361,68 +378,98 @@ def track_battles(
     Returns:
         Message to display.
     """
-    player.set_party_status()
-    for _player in players:
-        _player.set_party_status()
-
     if output == "won":
         winner = player
         losers = players
-        winner.game_variables["battle_last_result"] = OutputBattle.won
+        info = {"name": winner.name.upper()}
         if trainer_battle:
-            winner.give_money(prize)
-            for _loser in losers:
-                winner.game_variables["battle_last_trainer"] = _loser.slug
-                message = T.format(
-                    "combat_victory_trainer",
-                    {
-                        "npc": _loser.name,
-                        "prize": prize,
-                        "currency": "$",
-                    },
-                )
-                register_battles(OutputBattle.won, winner, _loser)
-            return message
+            # set variables
+            if winner.isplayer:
+                set_var(session, "battle_last_result", OutputBattle.won)
+                set_var(session, "battle_last_winner", "player")
+            else:
+                set_var(session, "battle_last_winner", winner.slug)
+                set_var(session, "battle_last_trainer", winner.slug)
+            # if trainer battle prize
+            if prize > 0:
+                winner.give_money(prize)
+                info = {
+                    "name": winner.name.upper(),
+                    "prize": str(prize),
+                    "currency": "$",
+                }
+                # register battle
+                for _loser in losers:
+                    set_battle(session, OutputBattle.won, winner, _loser)
+                return T.format("combat_victory_trainer", info)
+            # trainer battle without prize
+            return T.format("combat_victory", info)
         else:
-            return T.translate("combat_victory")
+            # wild monster
+            info = {"name": winner.name.upper()}
+            if winner.slug == "random_encounter_dummy":
+                info = {"name": winner.monsters[0].name.upper()}
+            return T.format("combat_victory", info)
     elif output == "lost":
         loser = player
         winners = players
-        loser.game_variables["battle_last_result"] = OutputBattle.lost
-        loser.game_variables["teleport_clinic"] = OutputBattle.lost
-        message = T.translate("combat_defeat")
+        info = {"name": loser.name.upper()}
+        set_var(session, "teleport_clinic", OutputBattle.lost)
         if trainer_battle:
+            # set variables
+            if loser.isplayer:
+                set_var(session, "battle_last_result", OutputBattle.lost)
+                set_var(session, "battle_last_loser", "player")
+            else:
+                set_var(session, "battle_last_loser", loser.slug)
+                set_var(session, "battle_last_trainer", loser.slug)
+            # register battle
             for _winner in winners:
-                loser.game_variables["battle_last_trainer"] = _winner.slug
-                register_battles(OutputBattle.lost, loser, _winner)
-            return message
-        return message
+                set_battle(session, OutputBattle.lost, loser, _winner)
+            return T.format("combat_defeat", info)
+        return ""
     else:
         # draw
         defeat = list(players)
         defeat.remove(player)
-        player.set_party_status()
-        player.game_variables["battle_last_result"] = OutputBattle.draw
-        player.game_variables["teleport_clinic"] = OutputBattle.lost
+        set_var(session, "teleport_clinic", OutputBattle.lost)
         if trainer_battle:
+            set_var(session, "battle_last_result", OutputBattle.draw)
             for _player in defeat:
-                player.game_variables["battle_last_trainer"] = _player.slug
-                register_battles(OutputBattle.draw, player, _player)
+                set_var(session, "battle_last_trainer", _player.slug)
+                set_battle(session, OutputBattle.draw, player, _player)
         return T.translate("combat_draw")
 
 
-def register_battles(output: OutputBattle, player: NPC, enemy: NPC) -> None:
+def set_var(session: Session, key: str, value: str) -> None:
+    """
+    Registers variable in game_variables.
+
+    Parameters:
+        session: Session
+        key: The key game variable.
+        value: The value game variable.
+
+    """
+    client = session.client.event_engine
+    var = f"{key}:{value}"
+    client.execute_action("set_variable", [var], True)
+
+
+def set_battle(
+    session: Session, output: OutputBattle, player: NPC, enemy: NPC
+) -> None:
     """
     Registers battles in Battle()
 
     Parameters:
+        session: Session
         output: Output of the battle: won, lost, draw
         player: The human player.
         enemy: The enemy player.
 
     """
-    battle = Battle()
-    battle.opponent = enemy.slug
-    battle.outcome = output
-    battle.date = dt.date.today().toordinal()
-    player.battles.append(battle)
+    fighter = "player" if player.isplayer else player.slug
+    opponent = "player" if enemy.isplayer else enemy.slug
+    client = session.client.event_engine
+    client.execute_action("set_battle", [fighter, output, opponent], True)

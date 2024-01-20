@@ -6856,6 +6856,18 @@ msgstr "Sorry again, some of these grunts are just completely incompetent.\n"
 "Presumably you're here to battle right? Well, let's get to it.\n"
 "AND.... LET'S FIGHT!"
 
+msgid "acolyte2challengerloss"
+msgstr "Ha! You put up a good fight, but as always, no one can defeat the MIGHTY GARTH!\n"
+"Feel free to try again when you think you actually have a chance!"
+
+msgid "acolyte2challengerwin"
+msgstr "... Well done. I put the blame of this loss entirely on Chris though.\n"
+"If he hadn't missed his mark, I'm positive I could have won...\n"
+"If you exit out the entrance behind me, you'll teleport back to the main room."
+
+msgid "acolyte2challengerredo"
+msgstr "Oh ho, back so quick? Well, let's get to it then!"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

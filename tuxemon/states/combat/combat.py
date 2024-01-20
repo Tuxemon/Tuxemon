@@ -57,6 +57,7 @@ from tuxemon.combat import (
     get_awake_monsters,
     get_winners,
     plague,
+    set_var,
     track_battles,
 )
 from tuxemon.condition.condition import Condition
@@ -1148,6 +1149,9 @@ class CombatState(CombatAnimations):
 
         """
         monster.faint()
+        iid = str(monster.instance_id.hex)
+        label = f"{self.name.lower()}_faint"
+        set_var(local_session, label, iid)
 
         """
         Experience is earned when the target monster is fainted.

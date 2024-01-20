@@ -180,6 +180,7 @@ events:
     - set_variable steps_bonding:1000
     conditions:
     - not variable_set steps_bonding
+    - is has_item player,friendship_scroll
     type: "event"
   Bond Up 1000 Steps:
     actions:
@@ -188,6 +189,15 @@ events:
     conditions:
     - is variable_set steps_bonding
     - is variable_is steps_bonding,equals,0.0
+    - is has_item player,friendship_scroll
+    type: "event"
+  Bond Down -10 Fainted:
+    actions:
+    - modify_monster_bond combatstate_faint,-10
+    - clear_variable combatstate_faint
+    conditions:
+    - is variable_set combatstate_faint
+    - is has_item player,friendship_scroll
     type: "event"
   Cheat Code ApexPlayer:
     actions:

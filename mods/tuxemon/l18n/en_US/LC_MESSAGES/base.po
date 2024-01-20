@@ -557,6 +557,12 @@ msgstr "Flintstone"
 msgid "flintstone_description"
 msgstr "A flaky stone used to make stone tools and start fires. Not at the same time."
 
+msgid "friendship_scroll"
+msgstr "Friendship Scroll"
+
+msgid "friendship_scroll_description"
+msgstr "It allows to deepen your relationship with the monsters."
+
 msgid "lucky_bamboo"
 msgstr "Lucky Bamboo"
 

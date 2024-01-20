@@ -35,18 +35,14 @@ class ModifyMonsterBondAction(EventAction):
     eg. "modify_monster_bond name_variable,25"
     eg. "modify_monster_bond name_variable,-0.5"
 
-    Note: a dead monster will get the opposite, eg a monster alive with the
-    action "modify_monster_bond" will get by default 1 point bond, while a dead
-    one will lose 1 point.
-
     """
 
     name = "modify_monster_bond"
     variable: Optional[str] = None
-    amount: Optional[Union[float, int]] = None
+    amount: Optional[Union[int, float]] = None
 
     @staticmethod
-    def change_bond(monster: Monster, value: Union[float, int]) -> None:
+    def change_bond(monster: Monster, value: Union[int, float]) -> None:
         if isinstance(value, float):
             monster.bond += int(value * monster.bond)
         else:
@@ -73,5 +69,7 @@ class ModifyMonsterBondAction(EventAction):
                 return
             monster_id = uuid.UUID(player.game_variables[self.variable])
             monster = get_monster_by_iid(self.session, monster_id)
-            assert monster
-            self.change_bond(monster, amount_bond)
+            if monster is None:
+                logger.error("Monster not found")
+            else:
+                self.change_bond(monster, amount_bond)

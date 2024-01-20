@@ -183,3 +183,17 @@ events:
     - not variable_set nu_map_6:flower_city*-0.15*0.32
     - is location_name flower_city
     type: "event"
+  Set Bonding Variable:
+    actions:
+    - set_variable steps_bonding:1000
+    conditions:
+    - not variable_set steps_bonding
+    type: "event"
+  Bond Up 1000 Steps:
+    actions:
+    - modify_monster_bond
+    - set_variable steps_bonding:1000
+    conditions:
+    - is variable_set steps_bonding
+    - is variable_is steps_bonding,equals,0.0
+    type: "event"

@@ -181,6 +181,9 @@ MIN_CATCH_RATE: int = 0
 MAX_CATCH_RATE: int = 255
 MIN_CATCH_RESISTANCE: float = 0.0
 MAX_CATCH_RESISTANCE: float = 2.0
+# set bond and define range
+BOND: int = 25
+BOND_RANGE: tuple[int, int] = (0, 100)
 # set multiplier stats (multiplier: level + coefficient)
 COEFF_STATS: int = 7
 # set experience required for levelling up

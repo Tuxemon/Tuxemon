@@ -59,6 +59,8 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "taste_cold",
     "taste_warm",
     "traded",
+    "steps",
+    "bond",
     "mod_armour",
     "mod_dodge",
     "mod_melee",
@@ -104,6 +106,8 @@ class Monster:
         self.current_hp = 0
         self.hp = 0
         self.level = 0
+        self.steps = 0.0
+        self.bond = prepare.BOND
 
         # modifier values
         self.mod_armour = 0
@@ -208,6 +212,8 @@ class Monster:
         self.stage = results.stage or EvolutionStage.standalone
         self.taste_cold = self.set_taste_cold(self.taste_cold)
         self.taste_warm = self.set_taste_warm(self.taste_warm)
+        self.steps = self.steps
+        self.bond = self.bond
         # types
         for _ele in results.types:
             _element = Element(_ele)

@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.prepare import TRANS_TIME
 from tuxemon.states.world.worldstate import WorldState
 
 
@@ -21,13 +22,13 @@ class TransitionTeleportAction(EventAction):
     Script usage:
         .. code-block::
 
-            transition_teleport <map_name>,<x>,<y>[,transition_time][,rgb]
+            transition_teleport <map_name>,<x>,<y>[,trans_time][,rgb]
 
     Script parameters:
         map_name: Name of the map to teleport to.
         x: X coordinate of the map to teleport to.
         y: Y coordinate of the map to teleport to.
-        transition_time: Transition time in seconds - default 2
+        trans_time: Transition time in seconds - default 0.3
         rgb: color (eg red > 255,0,0 > 255:0:0) - default rgb(0,0,0)
 
     """
@@ -36,7 +37,7 @@ class TransitionTeleportAction(EventAction):
     map_name: str
     x: int
     y: int
-    transition_time: Optional[float] = None
+    trans_time: Optional[float] = None
     rgb: Optional[str] = None
 
     def start(self) -> None:
@@ -46,10 +47,9 @@ class TransitionTeleportAction(EventAction):
             return
 
         # Start the screen transition
-        self.transition = self.session.client.event_engine.get_action(
-            "screen_transition",
-            [0.3],
-        )
+        _time = TRANS_TIME if self.trans_time is None else self.trans_time
+        action = self.session.client.event_engine
+        self.transition = action.get_action("screen_transition", [_time])
 
     def update(self) -> None:
         if self.done:
@@ -59,11 +59,10 @@ class TransitionTeleportAction(EventAction):
 
         if not self.transition.done:
             self.transition.update()
-        if self.transition.done:
+        else:
             self.transition.cleanup()
             # set the delayed teleport
-            self.session.client.event_engine.execute_action(
-                "delayed_teleport",
-                (self.map_name, self.x, self.y),
-            )
+            action = self.session.client.event_engine
+            params = [self.map_name, self.x, self.y]
+            action.execute_action("delayed_teleport", params)
             self.stop()

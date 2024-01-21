@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional
 
-from tuxemon.db import OutputBattle
+from tuxemon.combat import set_var
 from tuxemon.locale import T
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
@@ -60,7 +60,7 @@ class RunEffect(TechEffect):
         if ran:
             combat._run = True
             extra = T.translate("combat_player_run")
-            var["battle_last_result"] = OutputBattle.ran
+            set_var(self.session, "battle_last_result", self.name)
             for remove in combat.players:
                 combat.clean_combat()
                 del combat.monsters_in_play[remove]

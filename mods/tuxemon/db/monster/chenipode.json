@@ -37,9 +37,9 @@
     ],
     "evolutions": [
         {
-            "path": "standard",
-            "at_level": 18,
-            "monster_slug": "exapode"
+            "at_level": 0,
+            "monster_slug": "exapode",
+            "steps": "2500"
         }
     ],
     "history": [

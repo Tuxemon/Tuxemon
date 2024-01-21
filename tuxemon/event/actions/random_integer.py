@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -44,6 +44,6 @@ class RandomIntegerAction(EventAction):
 
         # Append the game_variables dictionary with a random number between
         # upper and lower bound, inclusive:
-        player.game_variables[self.var] = str(
-            randint(self.lower_bound, self.upper_bound)
-        )
+        number = randint(self.lower_bound, self.upper_bound)
+        player.game_variables[self.var] = str(number)
+        logger.info(f"Game variable: {self.var}:{number}")

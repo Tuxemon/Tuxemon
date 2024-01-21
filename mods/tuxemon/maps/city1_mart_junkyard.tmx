@@ -56,7 +56,7 @@
     <property name="act20" value="set_variable got_Fruitera:true"/>
     <property name="act30" value="translated_dialog mart_junkyard01"/>
     <property name="act40" value="set_variable got_first_tuxemon:true"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
     <property name="cond30" value="not variable_set got_first_tuxemon:true"/>
     <property name="cond40" value="is variable_set maple_bedroom1:true"/>
@@ -68,7 +68,7 @@
     <property name="act20" value="set_variable got_Bamboon:true"/>
     <property name="act30" value="translated_dialog mart_junkyard02"/>
     <property name="act40" value="set_variable got_first_tuxemon:true"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
     <property name="cond30" value="not variable_set got_first_tuxemon:true"/>
     <property name="cond40" value="is variable_set maple_bedroom1:true"/>
@@ -86,9 +86,9 @@
   <object id="16" type="event" x="160" y="528" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport tuxe_mart.tmx,11,4,0.3"/>
-    <property name="act20" value="player_face down"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing down"/>
+    <property name="act20" value="char_face player,down"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="29" type="event" x="144" y="512" width="48" height="16">
@@ -97,7 +97,7 @@
     <property name="act20" value="translated_dialog junkyard_02"/>
     <property name="act40" value="set_variable talked_to_maple_junkyard:true"/>
     <property name="cond10" value="is variable_set maple_bedroom1:true"/>
-    <property name="cond20" value="is player_at"/>
+    <property name="cond20" value="is char_at player"/>
     <property name="cond30" value="not variable_set talked_to_maple_junkyard:true"/>
    </properties>
   </object>
@@ -107,7 +107,7 @@
     <property name="act20" value="translated_dialog junkyard_02"/>
     <property name="act40" value="set_variable talked_to_maple_junkyard:true"/>
     <property name="cond10" value="is variable_set maple_bedroom1:true"/>
-    <property name="cond20" value="is player_at"/>
+    <property name="cond20" value="is char_at player"/>
     <property name="cond30" value="not variable_set talked_to_maple_junkyard:true"/>
    </properties>
   </object>
@@ -117,7 +117,7 @@
     <property name="act20" value="translated_dialog junkyard_02"/>
     <property name="act40" value="set_variable talked_to_maple_junkyard:true"/>
     <property name="cond10" value="is variable_set maple_bedroom1:true"/>
-    <property name="cond20" value="is player_at"/>
+    <property name="cond20" value="is char_at player"/>
     <property name="cond30" value="not variable_set talked_to_maple_junkyard:true"/>
    </properties>
   </object>
@@ -186,7 +186,7 @@
   </object>
   <object id="40" type="event" x="256" y="288" width="16" height="16">
    <properties>
-    <property name="act10" value="start_battle 2"/>
+    <property name="act10" value="start_battle player,2"/>
     <property name="act20" value="set_variable fought_fanatics_in_junkyard:true"/>
     <property name="cond10" value="is variable_set fanatics_in_junkyard3:true"/>
    </properties>

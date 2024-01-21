@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from collections.abc import Generator
@@ -202,17 +202,14 @@ class MonsterMenuState(Menu[Optional[Monster]]):
             icon = "♀"
         else:
             icon = ""
+        upper_label = f"{monster.name}{icon}"
         text_rect = rect.inflate(-tools.scale(6), -tools.scale(6))
-        draw_text(surface, monster.name + icon, text_rect, font=self.font)
+        draw_text(surface, upper_label, text_rect, font=self.font)
 
         # draw the level info
         text_rect.top = rect.bottom - tools.scale(7)
-        draw_text(
-            surface,
-            "  Lv " + str(monster.level),
-            text_rect,
-            font=self.font,
-        )
+        bottom_label = f"  Lv {monster.level}"
+        draw_text(surface, bottom_label, text_rect, font=self.font)
 
         # draw any status icons
         # TODO: caching or something, idk

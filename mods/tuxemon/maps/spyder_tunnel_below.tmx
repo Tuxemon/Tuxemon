@@ -182,6 +182,7 @@
   <object id="42" name="Encounters" type="event" x="0" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter routeb,0.6"/>
+    <property name="cond1" value="is check_char_parameter player,moving,1"/>
    </properties>
   </object>
   <object id="54" name="Create Shammer" type="event" x="32" y="608" width="16" height="16">

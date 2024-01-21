@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -762,6 +762,15 @@ class Monster:
             return int(random.randrange(0, int(self.speed)) * 1.5)
         else:
             return random.randrange(0, int(self.speed))
+
+    def find_tech_by_id(self, instance_id: uuid.UUID) -> Optional[Technique]:
+        """
+        Finds a tech among the monster's moves which has the given id.
+
+        """
+        return next(
+            (m for m in self.moves if m.instance_id == instance_id), None
+        )
 
 
 def decode_monsters(

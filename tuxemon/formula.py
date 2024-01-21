@@ -45,8 +45,8 @@ def simple_damage_multiplier(
                     continue
                 m = attack_type.lookup_multiplier(target_type.slug)
 
-    m = min(pre.MAX_MULTIPLIER, m)
-    m = max(pre.MIN_MULTIPLIER, m)
+    m = min(pre.MULTIPLIER_RANGE[1], m)
+    m = max(pre.MULTIPLIER_RANGE[0], m)
     return m
 
 
@@ -286,7 +286,7 @@ def shake_check(
         The shake check.
     """
     # The max catch rate.
-    max_catch_rate = pre.MAX_CATCH_RATE
+    max_catch_rate = pre.CATCH_RATE_RANGE[1]
     # Constant used in shake_check calculations
     shake_constant = pre.SHAKE_CONSTANT
 

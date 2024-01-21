@@ -57,8 +57,7 @@ class AddTechAction(EventAction):
         tech = Technique()
         tech.load(self.technique)
         if self.power:
-            lower = prepare.MIN_POWER
-            upper = prepare.MAX_POWER
+            lower, upper = prepare.POWER_RANGE
             if lower <= self.power <= upper:
                 tech.power = self.power
             else:
@@ -66,8 +65,7 @@ class AddTechAction(EventAction):
                     f"{self.power} must be between {lower} and {upper}",
                 )
         if self.potency:
-            lower = prepare.MIN_POTENCY
-            upper = prepare.MAX_POTENCY
+            lower, upper = prepare.POTENCY_RANGE
             if lower <= self.potency <= upper:
                 tech.potency = self.potency
             else:
@@ -75,8 +73,7 @@ class AddTechAction(EventAction):
                     f"{self.potency} must be between {lower} and {upper}",
                 )
         if self.accuracy:
-            lower = prepare.MIN_ACCURACY
-            upper = prepare.MAX_ACCURACY
+            lower, upper = prepare.ACCURACY_RANGE
             if lower <= self.accuracy <= upper:
                 tech.accuracy = self.accuracy
             else:

@@ -542,8 +542,7 @@ class MonsterModel(BaseModel, validate_assignment=True):
 
     @field_validator("catch_rate")
     def check_catch_rate(cls: MonsterModel, v: float) -> float:
-        lower = prepare.MIN_CATCH_RATE
-        upper = prepare.MAX_CATCH_RATE
+        lower, upper = prepare.CATCH_RATE_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(
@@ -552,8 +551,7 @@ class MonsterModel(BaseModel, validate_assignment=True):
 
     @field_validator("lower_catch_resistance", "upper_catch_resistance")
     def check_catch_resistance(cls: MonsterModel, v: float) -> float:
-        lower = prepare.MIN_CATCH_RESISTANCE
-        upper = prepare.MAX_CATCH_RESISTANCE
+        lower, upper = prepare.CATCH_RESISTANCE_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(
@@ -717,40 +715,35 @@ class TechniqueModel(BaseModel):
 
     @field_validator("recharge")
     def check_recharge(cls: TechniqueModel, v: int) -> int:
-        lower = prepare.MIN_RECHARGE
-        upper = prepare.MAX_RECHARGE
+        lower, upper = prepare.RECHARGE_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(f"the recharge is between {lower} and {upper} ({v})")
 
     @field_validator("power")
     def check_power(cls: TechniqueModel, v: float) -> float:
-        lower = prepare.MIN_POWER
-        upper = prepare.MAX_POWER
+        lower, upper = prepare.POWER_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(f"the power is between {lower} and {upper} ({v})")
 
     @field_validator("accuracy")
     def check_accuracy(cls: TechniqueModel, v: float) -> float:
-        lower = prepare.MIN_ACCURACY
-        upper = prepare.MAX_ACCURACY
+        lower, upper = prepare.ACCURACY_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(f"the accuracy is between {lower} and {upper} ({v})")
 
     @field_validator("potency")
     def check_potency(cls: TechniqueModel, v: float) -> float:
-        lower = prepare.MIN_POTENCY
-        upper = prepare.MAX_POTENCY
+        lower, upper = prepare.POTENCY_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(f"the potency is between {lower} and {upper} ({v})")
 
     @field_validator("healing_power")
     def check_healing_power(cls: TechniqueModel, v: int) -> int:
-        lower = prepare.MIN_HEALING_POWER
-        upper = prepare.MAX_HEALING_POWER
+        lower, upper = prepare.HEALING_POWER_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(

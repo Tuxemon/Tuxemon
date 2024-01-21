@@ -1218,20 +1218,25 @@ class WorldState(state.State):
         """
         txmn_map = TMXMapLoader().load(path)
         yaml_path = path[:-4] + ".yaml"
-        # TODO: merge the events from both sources
+        new_events = list(txmn_map.events)
+        new_inits = list(txmn_map.inits)
         if os.path.exists(yaml_path):
-            new_events = list(txmn_map.events)
-            new_events.extend(YAMLEventLoader().load_events(yaml_path))
-            txmn_map.events = new_events
+            new_events.extend(
+                YAMLEventLoader().load_events(yaml_path, "event")
+            )
+            new_inits.extend(YAMLEventLoader().load_events(yaml_path, "init"))
         # scenario YAML, try because not all maps have a scenario
-        try:
-            scenario_path = prepare.fetch("maps", txmn_map.scenario + ".yaml")
-            if os.path.exists(scenario_path):
-                new_events = list(txmn_map.events)
-                new_events.extend(YAMLEventLoader().load_events(scenario_path))
-                txmn_map.events = new_events
-        except:
-            pass
+        if txmn_map.scenario:
+            _scenario = prepare.fetch("maps", txmn_map.scenario + ".yaml")
+            if os.path.exists(_scenario):
+                new_events.extend(
+                    YAMLEventLoader().load_events(_scenario, "event")
+                )
+                new_inits.extend(
+                    YAMLEventLoader().load_events(_scenario, "init")
+                )
+        txmn_map.events = new_events
+        txmn_map.inits = new_inits
         return txmn_map
 
     @no_type_check  # only used by multiplayer which is disabled

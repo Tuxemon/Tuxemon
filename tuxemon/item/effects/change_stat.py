@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
+from tuxemon.combat import set_var
 from tuxemon.db import StatType
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 
@@ -35,17 +36,13 @@ class ChangeStatEffect(ItemEffect):
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> IncreaseEffectResult:
-        client = self.session.client
         assert target
 
         if self.statistic not in list(StatType):
             ValueError(f"{self.statistic} isn't among {list(StatType)}")
 
-        var = f"{self.name}:{str(target.instance_id.hex)}"
-        client.event_engine.execute_action("set_variable", [var], True)
-        client.event_engine.execute_action(
-            "modify_monster_stats",
-            [self.name, self.statistic, self.percentage],
-            True,
-        )
+        set_var(self.session, self.name, str(target.instance_id.hex))
+        client = self.session.client.event_engine
+        params = [self.name, self.statistic, self.percentage]
+        client.execute_action("modify_monster_stats", params, True)
         return {"success": True, "num_shakes": 0, "extra": None}

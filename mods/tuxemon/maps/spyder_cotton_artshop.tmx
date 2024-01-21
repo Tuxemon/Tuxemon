@@ -144,7 +144,7 @@
    <properties>
     <property name="act1" value="pathfind player,2,8"/>
     <property name="act2" value="set_variable paygallery:null"/>
-    <property name="act3" value="transfer_money -,50,spyder_cotton_artshop"/>
+    <property name="act3" value="transfer_money player,-,50,spyder_cotton_artshop"/>
     <property name="cond1" value="is variable_set paygallery:yes"/>
    </properties>
   </object>
@@ -210,7 +210,7 @@
     <property name="act1" value="set_variable has_sold_painting:yes"/>
     <property name="act2" value="add_item p_monsters_eyes"/>
     <property name="act3" value="set_variable bought_monsters_eyes:yes"/>
-    <property name="act4" value="transfer_money -,1000"/>
+    <property name="act4" value="transfer_money player,-,1000"/>
     <property name="act5" value="remove_noc p_one"/>
     <property name="cond1" value="is variable_set barmaid_monsters:yes"/>
     <property name="cond2" value="not variable_set bought_monsters_eyes:yes"/>
@@ -221,7 +221,7 @@
     <property name="act1" value="set_variable has_sold_painting:yes"/>
     <property name="act2" value="add_item p_starry_night"/>
     <property name="act3" value="set_variable bought_starry:yes"/>
-    <property name="act4" value="transfer_money -,1000"/>
+    <property name="act4" value="transfer_money player,-,1000"/>
     <property name="act5" value="remove_noc p_two"/>
     <property name="cond1" value="is variable_set barmaid_starry:yes"/>
     <property name="cond2" value="not variable_set bought_starry:yes"/>
@@ -232,7 +232,7 @@
     <property name="act1" value="set_variable has_sold_painting:yes"/>
     <property name="act2" value="add_item p_trepidation"/>
     <property name="act3" value="set_variable bought_trepidation:yes"/>
-    <property name="act4" value="transfer_money -,1000"/>
+    <property name="act4" value="transfer_money player,-,1000"/>
     <property name="act5" value="remove_noc p_three"/>
     <property name="cond1" value="is variable_set barmaid_trepidation:yes"/>
     <property name="cond2" value="not variable_set bought_trepidation:yes"/>
@@ -248,7 +248,7 @@
     <property name="act16" value="remove_npc p_two"/>
     <property name="act17" value="remove_npc p_three"/>
     <property name="act20" value="set_variable bought_bundle:yes"/>
-    <property name="act30" value="transfer_money -,3000"/>
+    <property name="act30" value="transfer_money player,-,3000"/>
     <property name="cond1" value="is variable_set barmaid_sell_bundle:yes"/>
     <property name="cond2" value="not variable_set bought_bundle:yes"/>
    </properties>

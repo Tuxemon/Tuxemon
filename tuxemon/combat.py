@@ -383,27 +383,27 @@ def track_battles(
         losers = players
         info = {"name": winner.name.upper()}
         if trainer_battle:
+            # register battle
+            for _loser in losers:
+                set_battle(session, OutputBattle.won, winner, _loser)
             # set variables
             if winner.isplayer:
                 set_var(session, "battle_last_result", OutputBattle.won)
                 set_var(session, "battle_last_winner", "player")
+                money(session, "player", "+", prize)
+                if prize > 0:
+                    info = {
+                        "name": winner.name.upper(),
+                        "prize": str(prize),
+                        "currency": "$",
+                    }
+                    return T.format("combat_victory_trainer", info)
+                else:
+                    return T.format("combat_victory", info)
             else:
                 set_var(session, "battle_last_winner", winner.slug)
                 set_var(session, "battle_last_trainer", winner.slug)
-            # if trainer battle prize
-            if prize > 0:
-                winner.give_money(prize)
-                info = {
-                    "name": winner.name.upper(),
-                    "prize": str(prize),
-                    "currency": "$",
-                }
-                # register battle
-                for _loser in losers:
-                    set_battle(session, OutputBattle.won, winner, _loser)
-                return T.format("combat_victory_trainer", info)
-            # trainer battle without prize
-            return T.format("combat_victory", info)
+                return T.format("combat_victory", info)
         else:
             # wild monster
             info = {"name": winner.name.upper()}
@@ -454,6 +454,30 @@ def set_var(session: Session, key: str, value: str) -> None:
     client = session.client.event_engine
     var = f"{key}:{value}"
     client.execute_action("set_variable", [var], True)
+
+
+def money(
+    session: Session,
+    slug1: str,
+    transaction: str,
+    amount: int,
+    slug2: Optional[str] = None,
+) -> None:
+    """
+    Gives money to one entity and removes it from another one
+    or simply gives money without removing it from another one.
+
+    Parameters:
+        session: Session
+        slug1: Slug name (e.g. NPC, etc.)
+        transaction: Operator symbol (+/-)
+        amount: amount of money.
+        slug2: Slug name (e.g. NPC, etc.)
+
+    """
+    client = session.client.event_engine
+    var = [slug1, transaction, amount, slug2]
+    client.execute_action("transfer_money", var, True)
 
 
 def set_battle(

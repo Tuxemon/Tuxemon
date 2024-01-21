@@ -129,7 +129,7 @@
     <property name="act41" value="pathfind player,1,8"/>
     <property name="act42" value="set_variable paymuseum:null"/>
     <property name="act43" value="translated_dialog spyder_museum_entrance2"/>
-    <property name="act44" value="transfer_money -,50,spyder_leather_museum"/>
+    <property name="act44" value="transfer_money player,-,50,spyder_leather_museum"/>
     <property name="act90" value="unlock_controls"/>
     <property name="cond1" value="is variable_set paymuseum:yes"/>
    </properties>
@@ -139,7 +139,7 @@
     <property name="act10" value="lock_controls"/>
     <property name="act41" value="pathfind player,1,10"/>
     <property name="act42" value="set_variable paymuseum:null"/>
-    <property name="act43" value="transfer_money -,100,spyder_leather_museum"/>
+    <property name="act43" value="transfer_money player,-,100,spyder_leather_museum"/>
     <property name="act90" value="unlock_controls"/>
     <property name="cond1" value="is variable_set paymuseum:no"/>
     <property name="cond2" value="is variable_set notpaidmuseum:yes"/>

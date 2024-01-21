@@ -237,7 +237,7 @@
     <property name="act1" value="get_player_monster tasteful_zhu"/>
     <property name="act2" value="translated_dialog_choice taste_cold:taste_warm,which_taste"/>
     <property name="act3" value="set_variable zhu_tastes_choice:yes"/>
-    <property name="act4" value="transfer_money -,50"/>
+    <property name="act4" value="transfer_money player,-,50"/>
     <property name="cond1" value="is variable_set zhu_taste:yes"/>
     <property name="cond2" value="is variable_set zhu_yn:yes"/>
     <property name="cond4" value="not variable_set zhu_tastes_choice:yes"/>

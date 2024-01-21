@@ -218,7 +218,7 @@
     <property name="act1" value="translated_dialog squink"/>
     <property name="act2" value="add_monster squink,10"/>
     <property name="act3" value="clear_variable petshopbuy"/>
-    <property name="act4" value="transfer_money -,500"/>
+    <property name="act4" value="transfer_money player,-,500"/>
     <property name="cond1" value="is variable_set petshopbuy:squink"/>
    </properties>
   </object>
@@ -227,7 +227,7 @@
     <property name="act1" value="translated_dialog potturmeist"/>
     <property name="act2" value="add_monster potturmeist,10"/>
     <property name="act3" value="clear_variable petshopbuy"/>
-    <property name="act4" value="transfer_money -,500"/>
+    <property name="act4" value="transfer_money player,-,500"/>
     <property name="cond1" value="is variable_set petshopbuy:potturmeist"/>
    </properties>
   </object>
@@ -236,7 +236,7 @@
     <property name="act1" value="translated_dialog fuzzlet"/>
     <property name="act2" value="add_monster fuzzlet,10"/>
     <property name="act3" value="clear_variable petshopbuy"/>
-    <property name="act4" value="transfer_money -,500"/>
+    <property name="act4" value="transfer_money player,-,500"/>
     <property name="cond1" value="is variable_set petshopbuy:fuzzlet"/>
    </properties>
   </object>
@@ -245,7 +245,7 @@
     <property name="act1" value="translated_dialog woodoor"/>
     <property name="act2" value="add_monster woodoor,10"/>
     <property name="act3" value="clear_variable petshopbuy"/>
-    <property name="act4" value="transfer_money -,500"/>
+    <property name="act4" value="transfer_money player,-,500"/>
     <property name="cond1" value="is variable_set petshopbuy:woodoor"/>
    </properties>
   </object>
@@ -254,7 +254,7 @@
     <property name="act1" value="translated_dialog ziggurat"/>
     <property name="act2" value="add_monster ziggurat,10"/>
     <property name="act3" value="clear_variable petshopbuy"/>
-    <property name="act4" value="transfer_money -,500"/>
+    <property name="act4" value="transfer_money player,-,500"/>
     <property name="cond1" value="is variable_set petshopbuy:ziggurat"/>
    </properties>
   </object>

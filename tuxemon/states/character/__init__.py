@@ -52,6 +52,8 @@ class CharacterState(PygameMenuState):
             else self.char.name
         )
 
+        player = "player" if self.char.isplayer else self.char.slug
+
         # tuxepedia data
         monsters = list(db.database["monster"])
         filters = []
@@ -81,13 +83,19 @@ class CharacterState(PygameMenuState):
         )
 
         battles = self.char.battles
-        tot = len(battles)
-        _won = OutputBattle.won
-        _draw = OutputBattle.draw
-        _lost = OutputBattle.lost
-        won = sum(1 for battle in battles if battle.outcome == _won)
-        draw = sum(1 for battle in battles if battle.outcome == _draw)
-        lost = sum(1 for battle in battles if battle.outcome == _lost)
+        tot = 0
+        won = 0
+        lost = 0
+        draw = 0
+        for battle in battles:
+            if battle.fighter == player:
+                tot += 1
+                if battle.outcome == OutputBattle.won:
+                    won += 1
+                elif battle.outcome == OutputBattle.lost:
+                    lost += 1
+                else:
+                    draw += 1
         _msg_battles = {
             "tot": str(tot),
             "won": str(won),
@@ -118,8 +126,7 @@ class CharacterState(PygameMenuState):
         )
         lab1.translate(fix_measure(width, 0.45), fix_measure(height, 0.15))
         # money
-        wallet = "player" if self.char.isplayer else self.char.slug
-        money = self.char.money.get(wallet, 0)
+        money = self.char.money.get(player, 0)
         lab2: Any = menu.add.label(
             title=T.translate("wallet") + ": " + str(money),
             label_id="money",

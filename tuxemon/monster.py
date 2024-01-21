@@ -546,7 +546,7 @@ class Monster:
                 tech.load(ele)
                 self.learn(tech)
 
-    def update_moves(self, levels_earned: int) -> Optional[Technique]:
+    def update_moves(self, levels_earned: int) -> list[Technique]:
         """
         Set monster moves according to the levels increased.
         Excludes the moves already learned.
@@ -555,11 +555,10 @@ class Monster:
             levels_earned: Number of levels earned.
 
         Returns:
-            technique: if there is a technique, then it returns
-            a technique, otherwise none
+            techniques: list containing the learned techniques
 
         """
-        technique = None
+        _technique = []
         for move in self.moveset:
             if (
                 move.technique not in (m.slug for m in self.moves)
@@ -569,8 +568,9 @@ class Monster:
             ):
                 technique = Technique()
                 technique.load(move.technique)
+                _technique.append(technique)
                 self.learn(technique)
-        return technique
+        return _technique
 
     def experience_required(self, level_ofs: int = 0) -> int:
         """

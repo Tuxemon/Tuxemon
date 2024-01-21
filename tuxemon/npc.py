@@ -295,7 +295,7 @@ class NPC(Entity[NPCState]):
                 filename = f"{self.sprite_name}.png"
                 path = os.path.join("sprites_obj", filename)
             else:
-                filename = f"{self.sprite_name}_{standing_type}.png"
+                filename = f"{self.sprite_name}_{standing_type.value}.png"
                 path = os.path.join("sprites", filename)
             self.standing[standing_type] = load_and_scale(path)
         # The player's sprite size in pixels

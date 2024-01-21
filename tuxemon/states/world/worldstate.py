@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import itertools
@@ -197,6 +197,7 @@ class WorldState(state.State):
 
         Parameters:
             duration: Duration of the fade out. The fade in is slightly larger.
+            color: Fade's color.
 
         """
 
@@ -225,6 +226,7 @@ class WorldState(state.State):
 
         Parameters:
             duration: Duration of the fade in.
+            color: Fade's color.
 
         """
         self.set_transition_surface(color)
@@ -245,6 +247,7 @@ class WorldState(state.State):
 
         Parameters:
             duration: Duration of the fade out.
+            color: Fade's color.
 
         """
         self.set_transition_surface(color)

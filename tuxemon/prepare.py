@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """This module initializes the display and creates dictionaries of resources.
 It contains all the static and dynamic variables used throughout the game such
 as display resolution, scale, etc.
@@ -194,6 +194,7 @@ PLAYER_NAME_LIMIT: int = 15  # The character limit for a player name.
 PARTY_LIMIT: int = 6  # The maximum number of tuxemon this npc can hold
 #  Moverate limits to avoid losing sprites
 MOVERATE_RANGE: tuple[float, float] = (0.0, 20.0)
+TRANS_TIME: float = 0.3  # transition time
 
 # PC
 KENNEL: str = "Kennel"
@@ -209,10 +210,8 @@ MAX_TYPES_BAG: int = 99  # eg 5 capture devices, 1 type and 5 items
 MAX_LEVEL: int = 999
 MAX_MOVES: int = 4
 MISSING_IMAGE: str = "gfx/sprites/battle/missing.png"
-MIN_CATCH_RATE: int = 0
-MAX_CATCH_RATE: int = 255
-MIN_CATCH_RESISTANCE: float = 0.0
-MAX_CATCH_RESISTANCE: float = 2.0
+CATCH_RATE_RANGE: tuple[int, int] = (0, 255)
+CATCH_RESISTANCE_RANGE: tuple[float, float] = (0.0, 2.0)
 # set multiplier stats (multiplier: level + coefficient)
 COEFF_STATS: int = 7
 # set experience required for levelling up
@@ -239,16 +238,11 @@ STATUS_POSITIVE: float = 1.0
 STATUS_NEGATIVE: float = 1.2
 
 # Techniques
-MIN_RECHARGE: int = 0
-MAX_RECHARGE: int = 5
-MIN_POTENCY: float = 0.0
-MAX_POTENCY: float = 1.0
-MIN_ACCURACY: float = 0.0
-MAX_ACCURACY: float = 1.0
-MIN_POWER: float = 0.0
-MAX_POWER: float = 3.0
-MIN_HEALING_POWER: int = 0
-MAX_HEALING_POWER: int = 10
+RECHARGE_RANGE: tuple[int, int] = (0, 5)
+POTENCY_RANGE: tuple[float, float] = (0.0, 1.0)
+ACCURACY_RANGE: tuple[float, float] = (0.0, 1.0)
+POWER_RANGE: tuple[float, float] = (0.0, 3.0)
+HEALING_POWER_RANGE: tuple[int, int] = (0, 10)
 
 # Combat
 # position coordinates hud
@@ -281,8 +275,7 @@ OPPONENT_COMBAT["party"] = (18, 12, 85, 30)
 COEFF_DAMAGE: int = 7
 
 # Min and max multiplier are the multiplier upper/lower bounds
-MIN_MULTIPLIER: float = 0.25
-MAX_MULTIPLIER: float = 4.0
+MULTIPLIER_RANGE: tuple[float, float] = (0.25, 4.0)
 
 # MULT_MAP associates the multiplier to a specific text
 MULT_MAP = {

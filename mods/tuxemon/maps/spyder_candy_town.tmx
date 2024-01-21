@@ -279,7 +279,7 @@
     <property name="act60" value="remove_npc spyder_candy_henrik"/>
     <property name="cond1" value="is variable_set confiscation_candy:yes"/>
     <property name="cond2" value="not variable_set party_all_sick:yes"/>
-    <property name="cond3" value="is party_infected all"/>
+    <property name="cond3" value="is party_infected player,all"/>
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
    </properties>
   </object>
@@ -294,7 +294,7 @@
     <property name="act50" value="remove_npc spyder_candy_henrik"/>
     <property name="cond1" value="is variable_set confiscation_candy:yes"/>
     <property name="cond2" value="not variable_set party_healthy:yes"/>
-    <property name="cond3" value="is party_infected none"/>
+    <property name="cond3" value="is party_infected player,none"/>
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
     <property name="cond5" value="not variable_set party_sick:yes"/>
    </properties>
@@ -313,7 +313,7 @@
     <property name="act60" value="remove_npc spyder_candy_henrik"/>
     <property name="cond1" value="is variable_set confiscation_candy:yes"/>
     <property name="cond2" value="not variable_set party_sick:yes"/>
-    <property name="cond3" value="is party_infected some"/>
+    <property name="cond3" value="is party_infected player,some"/>
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
    </properties>
   </object>

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from collections.abc import Generator, Sequence
@@ -152,20 +152,7 @@ class ItemMenuState(Menu[Item]):
             result = item.use(player, monster)
             self.client.pop_state()  # pop the monster screen
             self.client.pop_state()  # pop the item screen
-            # check effects, some don't need the show_item_result_as_dialog
-            # (e.g. learn_mm, etc)
-            for t in item.effects:
-                if t.name == "learn_mm" or t.name == "learn_tm":
-                    if result["success"]:
-                        player.check_max_moves(local_session, monster)
-                    else:
-                        tools.show_item_result_as_dialog(
-                            local_session, item, result
-                        )
-                else:
-                    tools.show_item_result_as_dialog(
-                        local_session, item, result
-                    )
+            tools.show_item_result_as_dialog(local_session, item, result)
 
         def use_item_no_monster(itm: Item) -> None:
             player = local_session.player

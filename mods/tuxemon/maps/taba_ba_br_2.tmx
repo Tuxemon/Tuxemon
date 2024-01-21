@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="18">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="23">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -106,8 +106,64 @@
     <property name="act47" value="translated_dialog acolyte2challenger9"/>
     <property name="act50" value="add_monster mystikapi,5,garth,80,100"/>
     <property name="act51" value="start_battle player,garth"/>
+    <property name="act52" value="set_variable talkedonce:yes"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="not variable_set talkedonce:yes"/>
+   </properties>
+  </object>
+  <object id="18" name="acolyte2battle-won" type="event" x="48" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="unlock_controls"/>
+    <property name="act2" value="translated_dialog acolyte2challengerwin"/>
+    <property name="act3" value="set_variable lossbattle:no"/>
+    <property name="act4" value="set_variable opentwo:no"/>
+    <property name="act5" value="set_variable openthree:yes"/>
+    <property name="act6" value="set_variable acolyte2battledone:yes"/>
+    <property name="cond1" value="is variable_set talkedonce:yes"/>
+    <property name="cond2" value="is variable_set battle_last_result:won"/>
+    <property name="cond3" value="not variable_set acolyte2battledone:yes"/>
+   </properties>
+  </object>
+  <object id="19" name="acolyte2battle-loss" type="event" x="80" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="unlock_controls"/>
+    <property name="act2" value="translated_dialog acolyte2challengerloss"/>
+    <property name="act3" value="set_variable lossbattle:yes"/>
+    <property name="act4" value="set_variable acolyte2battledone:yes"/>
+    <property name="act5" value="teleport_faint"/>
+    <property name="cond1" value="is variable_set talkedonce:yes"/>
+    <property name="cond2" value="is variable_set battle_last_result:lost"/>
+    <property name="cond3" value="not variable_set acolyte2battledone:yes"/>
+   </properties>
+  </object>
+  <object id="20" name="create garth" type="event" x="80" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc garth,7,9,stand"/>
+    <property name="act2" value="char_face garth,up"/>
+    <property name="act3" value="add_monster mystikapi,5,garth,80,100"/>
+    <property name="cond1" value="not char_exists garth"/>
+    <property name="cond2" value="is variable_set talkedonce:yes"/>
+   </properties>
+  </object>
+  <object id="21" name="battle redo" type="event" x="112" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="translated_dialog acolyte2challengerredo"/>
+    <property name="act3" value="set_variable battle_last_result:clear"/>
+    <property name="act4" value="start_battle player,garth"/>
+    <property name="act5" value="set_variable acolyte2battledone:maybe"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+    <property name="cond3" value="is variable_set lossbattle:yes"/>
+    <property name="cond4" value="is button_pressed K_RETURN"/>
+    <property name="cond5" value="is variable_set acolyte2battledone:yes"/>
+   </properties>
+  </object>
+  <object id="22" name="teleport to main room" type="event" x="96" y="240" width="64" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_main.tmx,1,6,1"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
  </objectgroup>

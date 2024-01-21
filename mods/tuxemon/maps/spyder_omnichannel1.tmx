@@ -190,6 +190,7 @@
    <properties>
     <property name="act1" value="random_encounter omnichannel,0.6"/>
     <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
+    <property name="cond2" value="is check_char_parameter player,moving,1"/>
    </properties>
   </object>
   <object id="49" name="Create Screen" type="event" x="112" y="288" width="16" height="16">

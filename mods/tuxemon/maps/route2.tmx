@@ -224,9 +224,9 @@
     <property name="act20" value="play_music music_the_princess"/>
     <property name="act30" value="translated_dialog route2speech"/>
     <property name="act40" value="char_face misa,right"/>
-    <property name="act50" value="translated_dialog route2speech2\n"/>
+    <property name="act50" value="translated_dialog route2speech2"/>
     <property name="act60" value="char_face misa,up"/>
-    <property name="act70" value="translated_dialog route2speech3\n"/>
+    <property name="act70" value="translated_dialog route2speech3"/>
     <property name="act80" value="set_variable skadoosh:no"/>
     <property name="act90" value="translated_dialog_choice sure_i_do:not_really,route2choice"/>
     <property name="cond10" value="is char_at player"/>
@@ -260,7 +260,7 @@
    <properties>
     <property name="act010" value="char_face misa,right"/>
     <property name="act020" value="set_variable yahoo:maybe"/>
-    <property name="act030" value="translated_dialog spillit\n"/>
+    <property name="act030" value="translated_dialog spillit"/>
     <property name="act040" value="char_face misa,up"/>
     <property name="act050" value="translated_dialog spillit3"/>
     <property name="act060" value="char_face misa,right"/>
@@ -534,12 +534,14 @@
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="not variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:grass"/>
    </properties>
   </object>
   <object id="138" name="Environment Night" type="event" x="16" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
     <property name="cond1" value="is variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:night_grass"/>
    </properties>
   </object>
  </objectgroup>

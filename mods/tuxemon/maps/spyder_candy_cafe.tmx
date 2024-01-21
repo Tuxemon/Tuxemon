@@ -54,7 +54,7 @@
     <property name="act2" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>
-    <property name="cond3" value="is party_size less_than,1"/>
+    <property name="cond3" value="is party_size player,less_than,1"/>
    </properties>
   </object>
   <object id="28" name="Player Spawn" type="event" x="176" y="0" width="16" height="16"/>

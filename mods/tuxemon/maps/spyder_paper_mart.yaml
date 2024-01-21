@@ -9,7 +9,6 @@ events:
     actions:
     - change_bg
     - lock_controls
-    - char_face player,right
     - create_npc spyder_paperscoop_santino,7,6
     - char_face spyder_paperscoop_santino,left
     - create_npc spyder_dante,7,7

@@ -15,6 +15,7 @@ from typing import Annotated, Any, Literal, Optional, Union, overload
 from PIL import Image
 from pydantic import (
     BaseModel,
+    ConfigDict,
     Field,
     ValidationError,
     ValidationInfo,
@@ -204,6 +205,7 @@ State = Enum(
 
 
 class ItemModel(BaseModel):
+    model_config = ConfigDict(title="Item")
     slug: str = Field(..., description="Slug to use")
     use_item: str = Field(
         ...,
@@ -248,9 +250,6 @@ class ItemModel(BaseModel):
     visible: bool = Field(
         True, description="Whether or not this item is visible."
     )
-
-    class Config:
-        title = "Item"
 
     # Validate fields that refer to translated text
     @field_validator("use_item", "use_success", "use_failure")
@@ -464,7 +463,8 @@ class MonsterSoundsModel(BaseModel):
     )
 
 
-class MonsterModel(BaseModel):
+# Validate assignment allows us to assign a default inside a validator
+class MonsterModel(BaseModel, validate_assignment=True):
     slug: str = Field(..., description="The slug of the monster")
     category: str = Field(..., description="The category of monster")
     txmn_id: int = Field(..., description="The id of the monster")
@@ -512,10 +512,6 @@ class MonsterModel(BaseModel):
         None,
         description="The sounds this monster has",
     )
-
-    class Config:
-        # Validate assignment allows us to assign a default inside a validator
-        validate_assignment = True
 
     # Set the default sprites based on slug. Specifying 'always' is needed
     # because by default pydantic doesn't validate null fields.

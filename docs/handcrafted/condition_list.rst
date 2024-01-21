@@ -10,6 +10,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_moved.CharMovedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_sprite.CharSpriteCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_evolution.CheckEvolutionCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.check_max_tech.CheckMaxTechCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_mission.CheckMissionCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.current_state.CurrentStateCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_bag.HasBagCondition

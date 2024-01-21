@@ -2654,7 +2654,7 @@ msgid "tuxemon_released"
 msgstr "{name} has been released."
 
 msgid "new_tech_delete"
-msgstr "{name} has too many techniques.\n"
+msgstr "Tuxemon has too many techniques.\n"
 "Which technique do you want to delete?"
 
 msgid "evolution_confirmation"

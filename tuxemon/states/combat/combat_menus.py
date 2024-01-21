@@ -11,7 +11,7 @@ from typing import TYPE_CHECKING, DefaultDict
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import combat, graphics, prepare, tools
+from tuxemon import combat, graphics, tools
 from tuxemon.db import ElementType, ItemCategory, State, TechSort
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -328,10 +328,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 self.client.pop_state()  # close technique menu
                 self.client.pop_state()  # close the monster action menu
 
-        if len(self.monster.moves) > prepare.MAX_MOVES:
-            local_session.player.remove_technique(local_session, self.monster)
-        else:
-            choose_technique()
+        choose_technique()
 
 
 class CombatTargetMenuState(Menu[Monster]):

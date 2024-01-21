@@ -35,29 +35,22 @@ class LearnMmEffect(ItemEffect):
         self, item: Item, target: Union[Monster, None]
     ) -> LearnMmEffectResult:
         learn: bool = False
-        ele = ElementType(self.element)
-        assert target
+        element = ElementType(self.element)
         techs = list(db.database["technique"])
-        # type moves
-        filters = []
+        filters: list[str] = []
         for mov in techs:
             results = db.lookup(mov, table="technique")
-            if results.randomly:
-                if ele in results.types:
-                    filters.append(results.slug)
-        # monster moves
-        moves = []
-        for tech in target.moves:
-            moves.append(tech.slug)
-        # remove monster moves from type moves
-        set1 = set(filters)
-        set2 = set(moves)
-        res = list(set1 - set2)
-        # add a random move from what remains
-        if res:
-            self.user.game_variables["overwrite_technique"] = random.choice(
-                res
+            if results.randomly and element in results.types:
+                filters.append(results.slug)
+        moves = [tech.slug for tech in target.moves] if target else []
+        _techs = list(set(filters) - set(moves))
+        client = self.session.client
+        if _techs and target:
+            tech_slug = random.choice(_techs)
+            var = f"{self.name}:{str(target.instance_id.hex)}"
+            client.event_engine.execute_action("set_variable", [var], True)
+            client.event_engine.execute_action(
+                "add_tech", [self.name, tech_slug], True
             )
             learn = True
-
         return {"success": learn, "num_shakes": 0, "extra": None}

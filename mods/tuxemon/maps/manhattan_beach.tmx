@@ -175,16 +175,16 @@
     <property name="cond1" value="not music_playing legend_bofie/all-the-tea-in-china.mp3"/>
    </properties>
   </object>
-  <object id="37" name="Talk to Uncle Iroh" type="event" x="304" y="16" width="16" height="16">
+  <object id="37" name="Talk to Uncle Jeff" type="event" x="304" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog manhattan_beach_uncle_iroh_opening"/>
+    <property name="act1" value="translated_dialog manhattan_beach_uncle_jeff_opening"/>
     <property name="act2" value="choice_monster hydrone:rockitten:fruitera,tuxchoice"/>
-    <property name="act3" value="set_variable done_with_iroh_opening:yes"/>
+    <property name="act3" value="set_variable done_with_jeff_opening:yes"/>
     <property name="behav1" value="talk professor"/>
-    <property name="cond1" value="not variable_set done_with_iroh_opening:yes"/>
+    <property name="cond1" value="not variable_set done_with_jeff_opening:yes"/>
    </properties>
   </object>
-  <object id="42" name="Create Uncle Iroh" type="event" x="304" y="16" width="16" height="16">
+  <object id="42" name="Create Uncle Jeff" type="event" x="304" y="16" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc professor,19,1"/>
     <property name="act11" value="char_face professor,left"/>

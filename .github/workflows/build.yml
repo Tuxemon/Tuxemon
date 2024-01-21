@@ -170,7 +170,6 @@ jobs:
         pytest tests
         
   publish:
-    # https://github.com/marvinpinto/actions/issues/177
     needs: [flatpak, build_installer_windows]
     runs-on: ubuntu-latest # does not matter which
     # a prerelase is created when pushing to master
@@ -211,12 +210,14 @@ jobs:
           if_false: 'latest'
 
       - name: Update GitHub release
-        uses: marvinpinto/action-automatic-releases@latest
+        uses: softprops/action-gh-release@v1
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          # Generate changelog from commit messages
+          # generate_release_notes: true
+          token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: ${{ env.IS_RELEASE == 'false' }}
-          title: ${{ steps.release_title.outputs.value }}
-          automatic_release_tag: ${{ steps.release_tag.outputs.value }}
+          name: ${{ steps.release_title.outputs.value }}
+          tag_name: ${{ steps.release_tag.outputs.value }}
           # TODO: Add windows artifact again when #1229 is fixed
           # **/artifacts/tuxemon_windows_installer/*.exe
           files: |

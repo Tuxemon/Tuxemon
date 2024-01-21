@@ -86,7 +86,7 @@
     <property name="behav10" value="talk cotton_breeder"/>
     <property name="cond10" value="is variable_set breeder_state:1"/>
     <property name="cond30" value="not variable_set wannabreed"/>
-    <property name="cond40" value="is has_party_breeder"/>
+    <property name="cond40" value="is has_party_breeder player"/>
    </properties>
   </object>
   <object id="23" name="breeder state 2a" type="event" x="144" y="48" width="16" height="16">

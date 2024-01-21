@@ -9,6 +9,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_in.CharInCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_moved.CharMovedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_sprite.CharSpriteCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.check_char_parameter.CheckCharParameterCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_evolution.CheckEvolutionCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_max_tech.CheckMaxTechCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_mission.CheckMissionCondition

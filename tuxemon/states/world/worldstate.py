@@ -196,6 +196,7 @@ class WorldState(state.State):
 
         Parameters:
             duration: Duration of the fade out. The fade in is slightly larger.
+            color: Fade's color.
 
         """
 
@@ -224,6 +225,7 @@ class WorldState(state.State):
 
         Parameters:
             duration: Duration of the fade in.
+            color: Fade's color.
 
         """
         self.set_transition_surface(color)
@@ -244,6 +246,7 @@ class WorldState(state.State):
 
         Parameters:
             duration: Duration of the fade out.
+            color: Fade's color.
 
         """
         self.set_transition_surface(color)

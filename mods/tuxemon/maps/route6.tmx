@@ -206,12 +206,14 @@
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="not variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:grass"/>
    </properties>
   </object>
   <object id="72" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
     <property name="cond1" value="is variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:night_grass"/>
    </properties>
   </object>
  </objectgroup>

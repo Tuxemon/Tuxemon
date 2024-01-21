@@ -11,6 +11,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_sprite.CharSpriteCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_evolution.CheckEvolutionCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_mission.CheckMissionCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.check_world.CheckWorldCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.current_state.CurrentStateCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_bag.HasBagCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_box.HasBoxCondition

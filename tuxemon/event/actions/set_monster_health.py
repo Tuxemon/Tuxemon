@@ -46,8 +46,8 @@ class SetMonsterHealthAction(EventAction):
         else:
             monster.current_hp += int(value)
         # checks max and min
-        if monster.current_hp < 0:
-            monster.current_hp = 0
+        if monster.current_hp <= 0:
+            monster.faint()
         if monster.current_hp > monster.hp:
             monster.current_hp = monster.hp
         logger.info(f"{monster.name}'s {monster.current_hp} HP")

@@ -82,10 +82,7 @@ class OpenShopAction(EventAction):
         menu = self.menu or "both"
         if menu == "both":
             self.session.client.push_state(
-                ChoiceState(
-                    menu=var_menu,
-                    escape_key_exits=True,
-                )
+                ChoiceState(menu=var_menu, escape_key_exits=True)
             )
         elif menu == "buy":
             push_buy_menu(npc)

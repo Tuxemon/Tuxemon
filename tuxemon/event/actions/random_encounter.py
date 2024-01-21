@@ -64,28 +64,19 @@ class RandomEncounterAction(EventAction):
                     filtered.remove(meet)
 
         if not filtered:
-            logger.info(f"no wild monsters, check encounter/{slug}.json")
+            logger.error(f"no wild monsters, check encounter/{slug}.json")
             return
 
-        encounter = _choose_encounter(filtered, self.total_prob)
+        meet = _choose_encounter(filtered, self.total_prob)
 
-        if encounter:
+        if meet:
             logger.info("Starting random encounter!")
-            level = _get_level(encounter)
-            environment = player.game_variables.get("environment", "grass")
+            level = _get_level(meet)
+            _env = player.game_variables.get("environment", "grass")
             rgb = self.rgb if self.rgb else None
-            self.session.client.event_engine.execute_action(
-                "wild_encounter",
-                [
-                    encounter.monster,
-                    level,
-                    encounter.exp_req_mod,
-                    None,
-                    environment,
-                    rgb,
-                ],
-                True,
-            )
+            params = [meet.monster, level, meet.exp_req_mod, None, _env, rgb]
+            client = self.session.client.event_engine
+            client.execute_action("wild_encounter", params, True)
 
 
 def _choose_encounter(

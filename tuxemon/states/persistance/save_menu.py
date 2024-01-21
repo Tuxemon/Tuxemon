@@ -154,22 +154,12 @@ class SaveMenuState(PopUpMenu[None]):
 
         def ask_confirmation() -> None:
             # open menu to confirm the save
-            tools.open_choice_dialog(
-                local_session,
-                menu=(
-                    (
-                        "overwrite",
-                        T.translate("save_overwrite"),
-                        positive_answer,
-                    ),
-                    (
-                        "keep",
-                        T.translate("save_keep"),
-                        negative_answer,
-                    ),
-                ),
-                escape_key_exits=True,
-            )
+            var_menu = []
+            _overwrite = T.translate("save_overwrite")
+            var_menu.append(("overwrite", _overwrite, positive_answer))
+            _keep = T.translate("save_keep")
+            var_menu.append(("keep", _keep, negative_answer))
+            tools.open_choice_dialog(local_session, var_menu, True)
 
         save_data = save.load(self.selected_index + 1)
         if save_data:

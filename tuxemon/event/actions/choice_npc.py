@@ -57,11 +57,7 @@ class ChoiceNpcAction(EventAction):
             text = T.translate(val)
             var_menu.append((text, val, partial(_set_variable, val, player)))
 
-        self.session.client.push_state(
-            ChoiceNpc(
-                menu=var_menu,
-            )
-        )
+        self.session.client.push_state(ChoiceNpc(menu=var_menu))
 
     def update(self) -> None:
         try:

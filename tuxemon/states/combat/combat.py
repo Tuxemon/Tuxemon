@@ -1365,8 +1365,6 @@ class CombatState(CombatAnimations):
 
     def end_combat(self) -> None:
         """End the combat."""
-        self.players[0].set_party_status()
-
         self.clean_combat()
 
         # fade music out

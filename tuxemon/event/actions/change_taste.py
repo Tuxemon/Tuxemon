@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.db import TasteCold, TasteWarm
+from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
@@ -23,51 +24,46 @@ class ChangeTasteAction(EventAction):
     Script usage:
         .. code-block::
 
-            change_taste <monster_id>,<taste>
+            change_taste <variable>,<taste>
 
     Script parameters:
-        monster_id: Id of the monster to store.
+        variable: Name of the variable where to store the monster id.
         taste: warm or cold
 
     """
 
     name = "change_taste"
-    iid: str
+    variable: str
     taste: str
 
     def start(self) -> None:
-        trainer = self.session.player
+        player = self.session.player
         # avoid crash by "return"
-        if self.iid not in trainer.game_variables:
+        if self.variable not in player.game_variables:
+            logger.error(f"Game variable {self.variable} not found")
             return
-        monster_id = uuid.UUID(trainer.game_variables[self.iid])
 
-        monster = trainer.find_monster_by_id(monster_id)
+        monster_id = uuid.UUID(player.game_variables[self.variable])
+        monster = get_monster_by_iid(self.session, monster_id)
         if monster is None:
-            logger.debug(
-                "Monster not found in party, searching storage boxes."
-            )
-            monster = trainer.find_monster_in_storage(monster_id)
-
-        if monster is None:
-            logger.error(
-                f"Could not find monster with instance id {monster_id}"
-            )
+            logger.error("Monster not found")
             return
 
         if self.taste == "warm":
             warm = list(TasteWarm)
             warm.remove(TasteWarm.tasteless)
             warm.remove(monster.taste_warm)
-            r_warm = random.choice(warm)
-            monster.taste_warm = r_warm
+            warmer = random.choice(warm)
+            logger.info(f"{monster.name}'s {self.taste} taste is {warmer}!")
+            monster.taste_warm = warmer
             monster.set_stats()
         elif self.taste == "cold":
             cold = list(TasteCold)
             cold.remove(TasteCold.tasteless)
             cold.remove(monster.taste_cold)
-            r_cold = random.choice(cold)
-            monster.taste_cold = r_cold
+            colder = random.choice(cold)
+            logger.info(f"{monster.name}'s {self.taste} taste is {colder}!")
+            monster.taste_cold = colder
             monster.set_stats()
         else:
             raise ValueError(f"{self.taste} must be warm or cold")

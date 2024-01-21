@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -296,6 +296,8 @@ class EventEngine:
             token = RunningEvent(map_event)
             assert map_event.id
             self.running_events[map_event.id] = token
+            if map_event in self.session.client.inits:
+                self.session.client.inits.remove(map_event)
 
     def process_map_event(self, map_event: EventObject) -> None:
         """
@@ -364,12 +366,10 @@ class EventEngine:
 
         """
         # do the "init" events.  this will be done just once
-        # TODO: find solution that doesn't nuke the init list
         # TODO: make event engine generic, so can be used in global scope,
         # not just maps
         if self.session.client.inits:
             self.process_map_events(self.session.client.inits)
-            self.session.client.inits = list()
 
         # process any other events
         self.process_map_events(self.session.client.events)

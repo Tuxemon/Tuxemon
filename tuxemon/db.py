@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import difflib
@@ -10,17 +10,17 @@ import sys
 from collections.abc import Mapping, Sequence
 from enum import Enum
 from operator import itemgetter
-from typing import Any, Literal, Optional, Union, overload
+from typing import Annotated, Any, Literal, Optional, Union, overload
 
 from PIL import Image
 from pydantic import (
     BaseModel,
+    ConfigDict,
     Field,
     ValidationError,
     ValidationInfo,
     field_validator,
 )
-from typing_extensions import Annotated
 
 from tuxemon import prepare
 from tuxemon.locale import T
@@ -205,6 +205,7 @@ State = Enum(
 
 
 class ItemModel(BaseModel):
+    model_config = ConfigDict(title="Item")
     slug: str = Field(..., description="Slug to use")
     use_item: str = Field(
         ...,
@@ -249,9 +250,6 @@ class ItemModel(BaseModel):
     visible: bool = Field(
         True, description="Whether or not this item is visible."
     )
-
-    class Config:
-        title = "Item"
 
     # Validate fields that refer to translated text
     @field_validator("use_item", "use_success", "use_failure")
@@ -487,7 +485,8 @@ class MonsterSoundsModel(BaseModel):
     )
 
 
-class MonsterModel(BaseModel):
+# Validate assignment allows us to assign a default inside a validator
+class MonsterModel(BaseModel, validate_assignment=True):
     slug: str = Field(..., description="The slug of the monster")
     category: str = Field(..., description="The category of monster")
     txmn_id: int = Field(..., description="The id of the monster")
@@ -536,10 +535,6 @@ class MonsterModel(BaseModel):
         description="The sounds this monster has",
     )
 
-    class Config:
-        # Validate assignment allows us to assign a default inside a validator
-        validate_assignment = True
-
     # Set the default sprites based on slug. Specifying 'always' is needed
     # because by default pydantic doesn't validate null fields.
     @field_validator("sprites")
@@ -569,8 +564,7 @@ class MonsterModel(BaseModel):
 
     @field_validator("catch_rate")
     def check_catch_rate(cls: MonsterModel, v: float) -> float:
-        lower = prepare.MIN_CATCH_RATE
-        upper = prepare.MAX_CATCH_RATE
+        lower, upper = prepare.CATCH_RATE_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(
@@ -579,8 +573,7 @@ class MonsterModel(BaseModel):
 
     @field_validator("lower_catch_resistance", "upper_catch_resistance")
     def check_catch_resistance(cls: MonsterModel, v: float) -> float:
-        lower = prepare.MIN_CATCH_RESISTANCE
-        upper = prepare.MAX_CATCH_RESISTANCE
+        lower, upper = prepare.CATCH_RESISTANCE_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(
@@ -744,40 +737,35 @@ class TechniqueModel(BaseModel):
 
     @field_validator("recharge")
     def check_recharge(cls: TechniqueModel, v: int) -> int:
-        lower = prepare.MIN_RECHARGE
-        upper = prepare.MAX_RECHARGE
+        lower, upper = prepare.RECHARGE_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(f"the recharge is between {lower} and {upper} ({v})")
 
     @field_validator("power")
     def check_power(cls: TechniqueModel, v: float) -> float:
-        lower = prepare.MIN_POWER
-        upper = prepare.MAX_POWER
+        lower, upper = prepare.POWER_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(f"the power is between {lower} and {upper} ({v})")
 
     @field_validator("accuracy")
     def check_accuracy(cls: TechniqueModel, v: float) -> float:
-        lower = prepare.MIN_ACCURACY
-        upper = prepare.MAX_ACCURACY
+        lower, upper = prepare.ACCURACY_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(f"the accuracy is between {lower} and {upper} ({v})")
 
     @field_validator("potency")
     def check_potency(cls: TechniqueModel, v: float) -> float:
-        lower = prepare.MIN_POTENCY
-        upper = prepare.MAX_POTENCY
+        lower, upper = prepare.POTENCY_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(f"the potency is between {lower} and {upper} ({v})")
 
     @field_validator("healing_power")
     def check_healing_power(cls: TechniqueModel, v: int) -> int:
-        lower = prepare.MIN_HEALING_POWER
-        upper = prepare.MAX_HEALING_POWER
+        lower, upper = prepare.HEALING_POWER_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(
@@ -956,10 +944,10 @@ class NpcTemplateModel(BaseModel):
 
     @field_validator("sprite_name")
     def sprite_exists(cls: NpcTemplateModel, v: str) -> str:
-        sprite = f"sprites/{v}_{EntityFacing.front}.png"
-        sprite = f"sprites/{v}_{EntityFacing.back}.png"
-        sprite = f"sprites/{v}_{EntityFacing.right}.png"
-        sprite = f"sprites/{v}_{EntityFacing.left}.png"
+        sprite = f"sprites/{v}_front.png"
+        sprite = f"sprites/{v}_back.png"
+        sprite = f"sprites/{v}_right.png"
+        sprite = f"sprites/{v}_left.png"
         sprite_obj: str = f"sprites_obj/{v}.png"
         if (
             has.file(sprite)

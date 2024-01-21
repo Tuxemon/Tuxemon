@@ -10,7 +10,7 @@ import sys
 from collections.abc import Mapping, Sequence
 from enum import Enum
 from operator import itemgetter
-from typing import Any, Literal, Optional, Union, overload
+from typing import Annotated, Any, Literal, Optional, Union, overload
 
 from PIL import Image
 from pydantic import (
@@ -20,7 +20,6 @@ from pydantic import (
     ValidationInfo,
     field_validator,
 )
-from typing_extensions import Annotated
 
 from tuxemon import prepare
 from tuxemon.locale import T

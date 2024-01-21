@@ -77,6 +77,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_level.SetMonsterLevelAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_plague.SetMonsterPlagueAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_status.SetMonsterStatusAction
+.. autoscriptinfoclass:: tuxemon.event.actions.set_party_status.SetPartyStatusAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_player_name.SetPlayerNameAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_random_variable.SetRandomVariableAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_template.SetTemplateAction

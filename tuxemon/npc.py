@@ -661,7 +661,6 @@ class NPC(Entity[NPCState]):
                 self.monster_boxes[kennel] = []
         else:
             self.monsters.insert(slot, monster)
-            self.set_party_status()
 
     def find_monster(self, monster_slug: str) -> Optional[Monster]:
         """
@@ -731,7 +730,6 @@ class NPC(Entity[NPCState]):
 
         if monster in self.monsters:
             self.monsters.remove(monster)
-            self.set_party_status()
             return True
         else:
             return False
@@ -746,7 +744,6 @@ class NPC(Entity[NPCState]):
         """
         if monster in self.monsters:
             self.monsters.remove(monster)
-            self.set_party_status()
 
     def evolve_monster(self, old_monster: Monster, evolution: str) -> None:
         """
@@ -866,25 +863,6 @@ class NPC(Entity[NPCState]):
             self.template.append(tmp)
 
         self.load_sprites()
-
-    def set_party_status(self) -> None:
-        """Records important information about all monsters in the party."""
-        if not self.isplayer or len(self.monsters) == 0:
-            return
-
-        level_lowest = prepare.MAX_LEVEL
-        level_highest = 0
-        level_average = 0
-        for npc_monster in self.monsters:
-            if npc_monster.level < level_lowest:
-                level_lowest = npc_monster.level
-            if npc_monster.level > level_highest:
-                level_highest = npc_monster.level
-            level_average += npc_monster.level
-        level_average = int(round(level_average / len(self.monsters)))
-        self.game_variables["party_level_lowest"] = level_lowest
-        self.game_variables["party_level_highest"] = level_highest
-        self.game_variables["party_level_average"] = level_average
 
     def has_tech(self, tech: Optional[str]) -> bool:
         """

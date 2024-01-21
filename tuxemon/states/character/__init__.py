@@ -3,17 +3,22 @@
 from __future__ import annotations
 
 from collections.abc import Callable
+from typing import Any, Optional
 
 import pygame_menu
 from pygame_menu import locals
 from pygame_menu.locals import POSITION_CENTER
 
-from tuxemon import formula, prepare, tools
+from tuxemon import formula
+from tuxemon import prepare as pre
 from tuxemon.db import OutputBattle, SeenStatus, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
-from tuxemon.session import local_session
+from tuxemon.npc import NPC
+from tuxemon.platform.const import buttons
+from tuxemon.platform.events import PlayerInput
+from tuxemon.tools import transform_resource_filename
 
 MenuGameObj = Callable[[], object]
 
@@ -23,10 +28,16 @@ def fix_measure(measure: int, percentage: float) -> int:
     return round(measure * percentage)
 
 
-class PlayerState(PygameMenuState):
-    """Menu for the Journal Info state.
+class CharacterState(PygameMenuState):
+    """
+    This state is responsible for the character menu.
 
-    Shows details of the single monster."""
+    By clicking right, it gives access to the Party Menu.
+
+    Shows details of the character (e.g. monster captured, seen,
+    battles, wallet, etc.).
+
+    """
 
     def add_menu_items(
         self,
@@ -35,12 +46,11 @@ class PlayerState(PygameMenuState):
         width = menu._width
         height = menu._height
 
-        player = local_session.player
-
-        if player.name == "":
-            name = T.translate(player.slug).upper()
-        else:
-            name = player.name.upper()
+        name = (
+            T.translate(self.char.slug)
+            if self.char.name == ""
+            else self.char.name
+        )
 
         # tuxepedia data
         monsters = list(db.database["monster"])
@@ -49,175 +59,161 @@ class PlayerState(PygameMenuState):
             results = db.lookup(mon, table="monster")
             if results.txmn_id > 0:
                 filters.append(results)
-        tuxepedia = list(player.tuxepedia.values())
+        tuxepedia = list(self.char.tuxepedia.values())
         caught = tuxepedia.count(SeenStatus.caught)
         seen = tuxepedia.count(SeenStatus.seen) + caught
         percentage = round((seen / len(filters)) * 100, 1)
 
-        msg_progress = T.format(
-            "tuxepedia_progress", {"value": str(percentage)}
-        )
-        msg_seen = T.format(
-            "tuxepedia_data_seen",
-            {"param": str(seen), "all": str(len(filters))},
-        )
-        msg_caught = T.format(
-            "tuxepedia_data_caught",
-            {"param": str(caught), "all": str(len(filters))},
-        )
-        date_begin = formula.today_ordinal() - int(
-            player.game_variables["date_start_game"]
-        )
+        _msg_progress = {"value": str(percentage)}
+        msg_progress = T.format("tuxepedia_progress", _msg_progress)
+        _msg_seen = {"param": str(seen), "all": str(len(filters))}
+        msg_seen = T.format("tuxepedia_data_seen", _msg_seen)
+        _msg_caught = {"param": str(caught), "all": str(len(filters))}
+        msg_caught = T.format("tuxepedia_data_caught", _msg_caught)
+
+        today = formula.today_ordinal()
+        date = self.char.game_variables.get("date_start_game", today)
+        date_begin = today - int(date)
         msg_begin = (
             T.format("player_start_adventure", {"date": date_begin})
             if date_begin >= 1
             else T.translate("player_start_adventure_today")
         )
-        tot = len(player.battles)
-        won = sum(
-            1
-            for battle in player.battles
-            if battle.outcome == OutputBattle.won
-        )
-        draw = sum(
-            1
-            for battle in player.battles
-            if battle.outcome == OutputBattle.draw
-        )
-        lost = sum(
-            1
-            for battle in player.battles
-            if battle.outcome == OutputBattle.lost
-        )
-        msg_battles = T.format(
-            "player_battles",
-            {
-                "tot": str(tot),
-                "won": str(won),
-                "draw": str(draw),
-                "lost": str(lost),
-            },
-        )
+
+        battles = self.char.battles
+        tot = len(battles)
+        _won = OutputBattle.won
+        _draw = OutputBattle.draw
+        _lost = OutputBattle.lost
+        won = sum(1 for battle in battles if battle.outcome == _won)
+        draw = sum(1 for battle in battles if battle.outcome == _draw)
+        lost = sum(1 for battle in battles if battle.outcome == _lost)
+        _msg_battles = {
+            "tot": str(tot),
+            "won": str(won),
+            "draw": str(draw),
+            "lost": str(lost),
+        }
+        msg_battles = T.format("player_battles", _msg_battles)
         # steps
-        steps = player.steps
-        unit = player.game_variables["unit_measure"]
+        steps = self.char.steps
+        unit = self.char.game_variables.get("unit_measure", "Metric")
         if unit == "Metric":
             walked = formula.convert_km(steps)
             unit_walked = "km"
         else:
             walked = formula.convert_mi(steps)
             unit_walked = "mi"
-        msg_walked = T.format(
-            "player_walked",
-            {
-                "distance": str(walked),
-                "unit": unit_walked,
-            },
-        )
+        _msg_walked = {"distance": str(walked), "unit": unit_walked}
+        msg_walked = T.format("player_walked", _msg_walked)
         # name
         menu._auto_centering = False
-        lab1 = menu.add.label(
-            title=name,
+        lab1: Any = menu.add.label(
+            title=name.upper(),
             label_id="name",
             font_size=self.font_size_big,
             align=locals.ALIGN_LEFT,
             underline=True,
             float=True,
         )
-        assert not isinstance(lab1, list)
         lab1.translate(fix_measure(width, 0.45), fix_measure(height, 0.15))
         # money
-        money = player.money["player"]
-        lab2 = menu.add.label(
+        wallet = "player" if self.char.isplayer else self.char.slug
+        money = self.char.money.get(wallet, 0)
+        lab2: Any = menu.add.label(
             title=T.translate("wallet") + ": " + str(money),
             label_id="money",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
             float=True,
         )
-        assert not isinstance(lab2, list)
         lab2.translate(fix_measure(width, 0.45), fix_measure(height, 0.25))
         # seen
-        lab3 = menu.add.label(
+        lab3: Any = menu.add.label(
             title=msg_seen,
             label_id="seen",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
             float=True,
         )
-        assert not isinstance(lab3, list)
         lab3.translate(fix_measure(width, 0.45), fix_measure(height, 0.30))
         # caught
-        lab4 = menu.add.label(
+        lab4: Any = menu.add.label(
             title=msg_caught,
             label_id="caught",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
             float=True,
         )
-        assert not isinstance(lab4, list)
         lab4.translate(fix_measure(width, 0.45), fix_measure(height, 0.35))
         # begin adventure
-        lab5 = menu.add.label(
+        lab5: Any = menu.add.label(
             title=msg_begin,
             label_id="begin",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
             float=True,
         )
-        assert not isinstance(lab5, list)
         lab5.translate(fix_measure(width, 0.45), fix_measure(height, 0.40))
         # walked
-        lab6 = menu.add.label(
-            title=msg_walked,
-            label_id="walked",
-            font_size=self.font_size_smaller,
-            align=locals.ALIGN_LEFT,
-            float=True,
-        )
-        assert not isinstance(lab6, list)
-        lab6.translate(fix_measure(width, 0.45), fix_measure(height, 0.45))
+        if steps > 0.0:
+            lab6: Any = menu.add.label(
+                title=msg_walked,
+                label_id="walked",
+                font_size=self.font_size_smaller,
+                align=locals.ALIGN_LEFT,
+                float=True,
+            )
+            lab6.translate(fix_measure(width, 0.45), fix_measure(height, 0.45))
         # battles
-        lab7 = menu.add.label(
+        lab7: Any = menu.add.label(
             title=msg_battles,
             label_id="battle",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
             float=True,
         )
-        assert not isinstance(lab7, list)
         lab7.translate(fix_measure(width, 0.45), fix_measure(height, 0.50))
         # % tuxepedia
-        lab8 = menu.add.label(
+        lab8: Any = menu.add.label(
             title=msg_progress,
             label_id="progress",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
             float=True,
         )
-        assert not isinstance(lab8, list)
         lab8.translate(fix_measure(width, 0.45), fix_measure(height, 0.10))
         # image
         combat_front = ""
-        for ele in player.template:
+        for ele in self.char.template:
             combat_front = ele.combat_front
-        new_image = pygame_menu.BaseImage(
-            tools.transform_resource_filename(
-                "gfx/sprites/player/" + combat_front + ".png"
-            ),
-        )
-        new_image.scale(prepare.SCALE, prepare.SCALE)
+        _path = f"gfx/sprites/player/{combat_front}.png"
+        new_image = pygame_menu.BaseImage(transform_resource_filename(_path))
+        new_image.scale(pre.SCALE, pre.SCALE)
         image_widget = menu.add.image(image_path=new_image.copy())
         image_widget.set_float(origin_position=True)
         image_widget.translate(
-            fix_measure(width, 0.17), fix_measure(height, 0.08)
+            fix_measure(width, 0.20), fix_measure(height, 0.08)
         )
 
-    def __init__(self) -> None:
-        width, height = prepare.SCREEN_SIZE
+    def __init__(self, **kwargs: Any) -> None:
+        character: Optional[NPC] = None
+        for element in kwargs.values():
+            character = element["character"]
+        if character is None:
+            raise ValueError("No character found")
+        width, height = pre.SCREEN_SIZE
+
+        self.char = character
+
+        bg = (
+            pre.BG_PLAYER2
+            if self.char.monsters and self.char.isplayer
+            else pre.BG_PLAYER1
+        )
 
         background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(prepare.BG_PLAYER),
+            image_path=transform_resource_filename(bg),
             drawing_position=POSITION_CENTER,
         )
         theme = get_theme()
@@ -236,3 +232,16 @@ class PlayerState(PygameMenuState):
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
         theme.background_color = self.background_color
         theme.widget_alignment = locals.ALIGN_LEFT
+
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+        party = self.char.monsters
+        if event.button == buttons.RIGHT and event.pressed and party:
+            params = {"party": party}
+            self.client.replace_state("PartyState", kwargs=params)
+        if (
+            event.button == buttons.BACK
+            or event.button == buttons.B
+            or event.button == buttons.A
+        ) and event.pressed:
+            self.client.pop_state()
+        return None

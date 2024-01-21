@@ -49,10 +49,9 @@ class ChoiceNpc(PygameMenuState):
 
         for name, slug, callback in menu:
             npc = db.lookup(slug, table="npc")
+            path = f"gfx/sprites/player/{npc.template[0].combat_front}.png"
             new_image = pygame_menu.BaseImage(
-                transform_resource_filename(
-                    f"gfx/sprites/player/{npc.template[0].combat_front}.png"
-                ),
+                transform_resource_filename(path),
                 drawing_position=POSITION_CENTER,
             )
             new_image.scale(prepare.SCALE * 0.4, prepare.SCALE * 0.4)

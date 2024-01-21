@@ -6260,7 +6260,7 @@ msgstr "My name is Marissa, and these... these... THUGS! Destroyed my flower pat
 
 msgid "soiwashearing4"
 msgstr "How dare you...\n"
-"This is the Premier you're talking too! Have some respect!"
+"This is the Premier you're talking to! Have some respect!"
 
 msgid "soiwashearing5"
 msgstr "Ma'am, should I arrest her for addressing you so insolently?"
@@ -6855,6 +6855,18 @@ msgstr "Sorry again, some of these grunts are just completely incompetent.\n"
 "As I was saying, my name is Garth and I'm the second Acolyte.\n"
 "Presumably you're here to battle right? Well, let's get to it.\n"
 "AND.... LET'S FIGHT!"
+
+msgid "acolyte2challengerloss"
+msgstr "Ha! You put up a good fight, but as always, no one can defeat the MIGHTY GARTH!\n"
+"Feel free to try again when you think you actually have a chance!"
+
+msgid "acolyte2challengerwin"
+msgstr "... Well done. I put the blame of this loss entirely on Chris though.\n"
+"If he hadn't missed his mark, I'm positive I could have won...\n"
+"If you exit out the entrance behind me, you'll teleport back to the main room."
+
+msgid "acolyte2challengerredo"
+msgstr "Oh ho, back so quick? Well, let's get to it then!"
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

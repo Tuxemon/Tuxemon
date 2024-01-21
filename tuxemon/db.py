@@ -934,10 +934,10 @@ class NpcTemplateModel(BaseModel):
 
     @field_validator("sprite_name")
     def sprite_exists(cls: NpcTemplateModel, v: str) -> str:
-        sprite = f"sprites/{v}_{EntityFacing.front}.png"
-        sprite = f"sprites/{v}_{EntityFacing.back}.png"
-        sprite = f"sprites/{v}_{EntityFacing.right}.png"
-        sprite = f"sprites/{v}_{EntityFacing.left}.png"
+        sprite = f"sprites/{v}_front.png"
+        sprite = f"sprites/{v}_back.png"
+        sprite = f"sprites/{v}_right.png"
+        sprite = f"sprites/{v}_left.png"
         sprite_obj: str = f"sprites_obj/{v}.png"
         if (
             has.file(sprite)

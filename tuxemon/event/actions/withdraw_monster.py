@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 import uuid
 from dataclasses import dataclass
-from typing import Optional, final
+from typing import final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -26,27 +26,36 @@ class WithdrawMonsterAction(EventAction):
     Script usage:
         .. code-block::
 
-            withdraw_monster <monster_id>[,npc_slug]
+            withdraw_monster <variable>,<character>
 
     Script parameters:
-        monster_id: The id of the monster to pull (variable).
-        npc_slug: Slug of the trainer that will receive the monster. It
-            defaults to the current player.
+        variable: Name of the variable where to store the monster id.
+        character: Either "player" or npc slug name (e.g. "npc_maple").
+            the one who is going to receive the monster
 
     """
 
     name = "withdraw_monster"
-    monster_id: str
-    npc_slug: Optional[str] = None
+    variable: str
+    character: str
 
     def start(self) -> None:
-        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
-        trainer = get_npc(self.session, self.npc_slug)
-        assert trainer
+        player = self.session.player
+        if self.variable not in player.game_variables:
+            logger.error(f"Game variable {self.variable} not found")
+            return
 
-        instance_id = uuid.UUID(trainer.game_variables[self.monster_id])
-        mon = trainer.find_monster_in_storage(instance_id)
-        assert mon
+        monster_id = uuid.UUID(player.game_variables[self.variable])
+        monster = player.find_monster_in_storage(monster_id)
+        if monster is None:
+            logger.error("Monster not found")
+            return
+        player.remove_monster_from_storage(monster)
 
-        trainer.remove_monster_from_storage(mon)
-        trainer.add_monster(mon, len(trainer.monsters))
+        character = get_npc(self.session, self.character)
+        if character is None:
+            logger.error(f"{self.character} not found")
+            return
+
+        character.add_monster(monster, len(character.monsters))
+        logger.info(f"{character.name} withdrawn {monster.name}!")

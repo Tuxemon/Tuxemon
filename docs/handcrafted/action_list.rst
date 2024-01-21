@@ -3,7 +3,6 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.add_item.AddItemAction
 .. autoscriptinfoclass:: tuxemon.event.actions.add_monster.AddMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.add_tech.AddTechAction
-.. autoscriptinfoclass:: tuxemon.event.actions.battles_print.BattlesAction
 .. autoscriptinfoclass:: tuxemon.event.actions.breeding.BreedingAction
 .. autoscriptinfoclass:: tuxemon.event.actions.call_event.CallEventAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_bg.ChangeBgAction
@@ -32,12 +31,10 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.get_monster_tech.GetMonsterTechAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_party_monsters.GetPartyMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_player_monster.GetPlayerMonsterAction
-.. autoscriptinfoclass:: tuxemon.event.actions.kennel_print.KennelAction
 .. autoscriptinfoclass:: tuxemon.event.actions.load_game.LoadGameAction
 .. autoscriptinfoclass:: tuxemon.event.actions.menu.MenuAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_char_attribute.ModifyCharAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_monster_stats.ModifyMonsterStatsAction
-.. autoscriptinfoclass:: tuxemon.event.actions.money_print.MoneyPrintAction
 .. autoscriptinfoclass:: tuxemon.event.actions.open_shop.OpenShopAction
 .. autoscriptinfoclass:: tuxemon.event.actions.overwrite_tech.OverwriteTechAction
 .. autoscriptinfoclass:: tuxemon.event.actions.pathfind_to_player.PathfindToPlayerAction
@@ -97,7 +94,6 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.transition_teleport.TransitionTeleportAction
 .. autoscriptinfoclass:: tuxemon.event.actions.translated_dialog_choice.TranslatedDialogChoiceAction
 .. autoscriptinfoclass:: tuxemon.event.actions.translated_dialog.TranslatedDialogAction
-.. autoscriptinfoclass:: tuxemon.event.actions.tuxepedia_print.TuxepediaPrintAction
 .. autoscriptinfoclass:: tuxemon.event.actions.variable_math.VariableMathAction
 .. autoscriptinfoclass:: tuxemon.event.actions.wait.WaitAction
 .. autoscriptinfoclass:: tuxemon.event.actions.wild_encounter.WildEncounterAction

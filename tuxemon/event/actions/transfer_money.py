@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import Optional, final
+from typing import final
 
 from tuxemon.event.eventaction import EventAction
 
@@ -13,57 +13,54 @@ logger = logging.getLogger(__name__)
 
 @final
 @dataclass
-class MoneyMathAction(EventAction):
+class TransferMoneyAction(EventAction):
     """
-    Performs a money transaction between entities.
+    Transfer money between entities.
+    Both entities needs to have a wallet.
 
     Script usage:
         .. code-block::
 
-            transfer_money <transaction>,<amount>[,slug]
+            transfer_money <slug1>,<amount>,<slug2>
 
     Script parameters:
         slug1: Slug name (e.g. NPC, etc.)
-        transaction: Operator symbol.
         amount: amount of money.
         slug2: Slug name (e.g. NPC, etc.)
 
-    eg: player,+,100,mom (player gets 100 from mom)
-    eg: player,-,100,mom (mom gets 100 from player)
-    eg: player,+,100 (player gets 100)
+    eg: player,100,mom (player transfer 100 to mom)
 
     """
 
     name = "transfer_money"
     slug1: str
-    transaction: str
     amount: int
-    slug2: Optional[str] = None
+    slug2: str
 
     def start(self) -> None:
+        client = self.session.client.event_engine
         player = self.session.player
+        wallet_char1 = player.money.get(self.slug1)
+        wallet_char2 = player.money.get(self.slug2)
 
-        # Read the parameters
-        transaction = self.transaction
-        amount = self.amount
-        wallet_character1 = player.money.get(self.slug1, 0)
+        if wallet_char1 is None:
+            logger.error(f"{self.slug1} has no wallet")
+            return
+        if wallet_char2 is None:
+            logger.info(f"{self.slug2} has no wallet, setting it.")
+            client.execute_action("set_money", [self.slug2], True)
+        if self.amount < 0:
+            logger.error(f"Value {self.amount} must be >= 0")
+            return
+        if self.amount > wallet_char1:
+            logger.error(f"{self.slug1}'s wallet doesn't have {self.amount}")
+            return
 
-        # Perform the transaction
-        if transaction == "+":
-            player.money[self.slug1] = wallet_character1 + amount
-            logger.info(f"{self.slug1} money increased by {amount}")
-            if self.slug2 is not None:
-                wallet_character2 = player.money.get(self.slug2, 0)
-                _diff = wallet_character2 - amount
-                diff = 0 if _diff < 0 else _diff
-                player.money[self.slug2] = diff
-        elif transaction == "-":
-            _diff = wallet_character1 - amount
-            diff = 0 if _diff < 0 else _diff
-            player.money[self.slug1] = diff
-            logger.info(f"{self.slug1} money decreased by {amount}")
-            if self.slug2 is not None:
-                wallet_character2 = player.money.get(self.slug2, 0)
-                player.money[self.slug2] = wallet_character2 + amount
-        else:
-            raise ValueError(f"Invalid transaction type {transaction}")
+        _negative = -abs(self.amount)
+        _positive = self.amount
+
+        giver = [self.slug1, _negative]
+        receiver = [self.slug2, _positive]
+        client.execute_action("modify_money", giver, True)
+        client.execute_action("modify_money", receiver, True)
+        logger.info(f"{self.slug1} transfer {self.amount} to {self.slug2}")

@@ -125,7 +125,7 @@
   </object>
   <object id="75" name="Talk Starry" type="event" x="112" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="transfer_money player,+,2000"/>
+    <property name="act1" value="modify_money player,2000"/>
     <property name="act2" value="set_variable muse_bought:yes"/>
     <property name="act3" value="add_item p_starry_night,-1"/>
     <property name="cond1" value="is has_item player,p_starry_night"/>
@@ -137,7 +137,7 @@
   </object>
   <object id="76" name="Talk Trepidation" type="event" x="96" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="transfer_money player,+,2000"/>
+    <property name="act1" value="modify_money player,2000"/>
     <property name="act2" value="set_variable muse_bought:yes"/>
     <property name="act3" value="add_item p_trepidation,-1"/>
     <property name="cond1" value="is has_item player,p_trepidation"/>
@@ -149,7 +149,7 @@
   </object>
   <object id="77" name="Talk Monsters" type="event" x="80" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="transfer_money player,+,2000"/>
+    <property name="act1" value="modify_money player,2000"/>
     <property name="act2" value="set_variable muse_bought:yes"/>
     <property name="act3" value="add_item p_monsters_eyes,-1"/>
     <property name="cond1" value="is has_item player,p_monsters_eyes"/>
@@ -173,7 +173,7 @@
   </object>
   <object id="79" name="Talk Monsters" type="event" x="48" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="transfer_money player,+,6000"/>
+    <property name="act1" value="modify_money player,6000"/>
     <property name="act2" value="set_variable muse_bought:yes"/>
     <property name="act3" value="add_item p_starry_night,-1"/>
     <property name="act4" value="add_item p_trepidation,-1"/>

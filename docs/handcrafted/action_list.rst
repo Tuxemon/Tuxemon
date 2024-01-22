@@ -34,6 +34,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.load_game.LoadGameAction
 .. autoscriptinfoclass:: tuxemon.event.actions.menu.MenuAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_char_attribute.ModifyCharAttributeAction
+.. autoscriptinfoclass:: tuxemon.event.actions.modify_money.ModifyMoneyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_monster_stats.ModifyMonsterStatsAction
 .. autoscriptinfoclass:: tuxemon.event.actions.open_shop.OpenShopAction
 .. autoscriptinfoclass:: tuxemon.event.actions.overwrite_tech.OverwriteTechAction
@@ -91,7 +92,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.teleport_faint.TeleportFaintAction
 .. autoscriptinfoclass:: tuxemon.event.actions.teleport.TeleportAction
 .. autoscriptinfoclass:: tuxemon.event.actions.trading.TradingAction
-.. autoscriptinfoclass:: tuxemon.event.actions.transfer_money.MoneyMathAction
+.. autoscriptinfoclass:: tuxemon.event.actions.transfer_money.TransferMoneyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.transition_teleport.TransitionTeleportAction
 .. autoscriptinfoclass:: tuxemon.event.actions.translated_dialog_choice.TranslatedDialogChoiceAction
 .. autoscriptinfoclass:: tuxemon.event.actions.translated_dialog.TranslatedDialogAction

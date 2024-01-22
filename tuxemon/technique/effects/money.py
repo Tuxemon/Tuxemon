@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional
 
 from tuxemon import formula
-from tuxemon.combat import money
 from tuxemon.locale import T
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
@@ -49,7 +48,9 @@ class MoneyEffect(TechEffect):
             tech.advance_counter_success()
             amount = int(damage * mult)
             recipient = "player" if player.isplayer else player.slug
-            money(self.session, recipient, "+", amount)
+            client = self.session.client.event_engine
+            var = [recipient, amount]
+            client.execute_action("modify_money", var, True)
             params = {"name": user.name.upper(), "symbol": "$", "gold": amount}
             extra = T.format("combat_state_gold", params)
         return {

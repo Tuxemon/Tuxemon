@@ -347,7 +347,7 @@
   </object>
   <object id="116" name="first battle lost" type="event" x="144" y="0" width="16" height="16">
    <properties>
-    <property name="act2" value="transfer_money player,+,120"/>
+    <property name="act2" value="modify_money player,120"/>
     <property name="act3" value="set_variable firstbattledone:yes"/>
     <property name="act4" value="char_face professor,down"/>
     <property name="act5" value="set_variable ohnotyou:itsme"/>

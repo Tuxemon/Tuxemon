@@ -37,8 +37,7 @@ class SetMoneyAction(EventAction):
         wallet = self.wallet
         amount = 0 if self.amount is None else self.amount
         if amount < 0:
-            logger.error(f"{amount} must be >= 0")
-            return
+            raise AttributeError(f"{amount} must be >= 0")
         else:
             player.money[wallet] = amount
             logger.info(f"{wallet}'s have {amount}")

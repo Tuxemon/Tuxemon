@@ -33,17 +33,16 @@ class ModifyMoneyAction(EventAction):
     amount: int
 
     def start(self) -> None:
-        client = self.session.client.event_engine
+        client = self.session.client
         player = self.session.player
         wallet = self.wallet
         amount = self.amount
         if wallet not in player.money:
             logger.info(f"{wallet} has no wallet, setting it.")
-            client.execute_action("set_money", [wallet], True)
+            client.event_engine.execute_action("set_money", [wallet], True)
         else:
             if amount < 0 and abs(amount) > player.money[wallet]:
-                logger.error(f"{wallet}'s doesn't have {abs(amount)}")
-                return
+                raise AttributeError(f"{wallet}'s doesn't have {abs(amount)}")
             else:
                 player.money[wallet] += amount
                 logger.info(f"{wallet}'s money changed by {amount}")

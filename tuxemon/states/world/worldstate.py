@@ -134,8 +134,8 @@ class WorldState(state.State):
 
         self.npcs: list[NPC] = []
         self.npcs_off_map: list[NPC] = []
-        self.wants_to_move_char: dict[NPC, Direction] = {}
-        self.allow_char_movement: list[NPC] = []
+        self.wants_to_move_char: dict[str, Direction] = {}
+        self.allow_char_movement: list[str] = []
 
         ######################################################################
         #                              Map                                   #
@@ -442,12 +442,12 @@ class WorldState(state.State):
         direction = direction_map.get(event.button)
         if direction is not None:
             if event.held:
-                self.wants_to_move_char[self.player] = direction
-                if self.player in self.allow_char_movement:
+                self.wants_to_move_char[self.player.slug] = direction
+                if self.player.slug in self.allow_char_movement:
                     self.move_player(self.player, direction)
                 return None
             elif not event.pressed:
-                if self.player in self.wants_to_move_char.keys():
+                if self.player.slug in self.wants_to_move_char.keys():
                     self.stop_player(self.player)
                     return None
 
@@ -998,8 +998,8 @@ class WorldState(state.State):
     ####################################################
     def lock_controls(self, char: NPC) -> None:
         """Prevent input from moving the character."""
-        if char in self.allow_char_movement:
-            self.allow_char_movement.remove(char)
+        if char.slug in self.allow_char_movement:
+            self.allow_char_movement.remove(char.slug)
 
     def unlock_controls(self, char: NPC) -> None:
         """
@@ -1009,9 +1009,9 @@ class WorldState(state.State):
         then the character will start moving after this is called.
 
         """
-        self.allow_char_movement.append(char)
-        if char in self.wants_to_move_char.keys():
-            _dir = self.wants_to_move_char.get(char, Direction.down)
+        self.allow_char_movement.append(char.slug)
+        if char.slug in self.wants_to_move_char.keys():
+            _dir = self.wants_to_move_char.get(char.slug, Direction.down)
             self.move_player(char, _dir)
 
     def stop_player(self, char: NPC) -> None:
@@ -1021,8 +1021,8 @@ class WorldState(state.State):
         If character was in a movement, then complete it before stopping.
 
         """
-        if char in self.wants_to_move_char.keys():
-            del self.wants_to_move_char[char]
+        if char.slug in self.wants_to_move_char.keys():
+            del self.wants_to_move_char[char.slug]
         self.client.release_controls()
         char.cancel_movement()
 
@@ -1036,8 +1036,8 @@ class WorldState(state.State):
         Use if you don't want to trigger another tile event.
 
         """
-        if char in self.wants_to_move_char.keys():
-            del self.wants_to_move_char[char]
+        if char.slug in self.wants_to_move_char.keys():
+            del self.wants_to_move_char[char.slug]
         self.client.release_controls()
         char.abort_movement()
 

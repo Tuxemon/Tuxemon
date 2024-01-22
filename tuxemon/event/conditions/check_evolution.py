@@ -87,7 +87,8 @@ class CheckEvolutionCondition(EventCondition):
                     if evolution.bond:
                         parts = evolution.bond.split(":")
                         operator, value = parts[:2]
-                        _evolution = compare(operator, monster.bond, value)
+                        _bond = monster.bond
+                        _evolution = compare(operator, _bond, int(value))
                     # use the item on the monster
                     if evolution.item:
                         _evolution = False

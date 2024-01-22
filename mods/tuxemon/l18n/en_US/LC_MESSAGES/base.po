@@ -2753,6 +2753,9 @@ msgstr "Items"
 msgid "menu_party"
 msgstr "Party"
 
+msgid "menu_bond"
+msgstr "Bond"
+
 msgid "menu_party_level_lowest"
 msgstr "Lowest Level"
 

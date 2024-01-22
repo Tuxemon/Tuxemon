@@ -117,10 +117,37 @@ class PartyState(PygameMenuState):
         lab4.translate(fix_measure(width, 0.05), fix_measure(height, 0.35))
 
         total = sum(monster.steps for monster in monsters)
+        # bond
+        if self.char.find_item("friendship_scroll"):
+            lab5: Any = menu.add.label(
+                title=T.translate("menu_bond"),
+                font_size=self.font_size_big,
+                align=locals.ALIGN_LEFT,
+                underline=True,
+                float=True,
+            )
+            lab5.translate(fix_measure(width, 0.05), fix_measure(height, 0.45))
+            if total > 0:
+                _sorted = sorted(monsters, key=lambda x: x.steps, reverse=True)
+                _bond = 0.50
+                for monster in _sorted:
+                    _bond += 0.05
+                    _label = monster.name.upper()
+                    bar: Any = menu.add.progress_bar(
+                        f"{_label:<10}",
+                        default=monster.bond,
+                        font_size=self.font_size_smaller,
+                        align=locals.ALIGN_LEFT,
+                        progress_text_enabled=False,
+                        float=True,
+                    )
+                    bar.translate(
+                        fix_measure(width, 0.05), fix_measure(height, _bond)
+                    )
+        # steps
         if total > 0:
             _sorted = sorted(monsters, key=lambda x: x.steps, reverse=True)
             for monster in _sorted:
-                # steps
                 steps = monster.steps
                 unit = game_variables["unit_measure"]
                 if unit == "Metric":
@@ -135,12 +162,12 @@ class PartyState(PygameMenuState):
                     "walked": walked,
                     "unit": unit_walked,
                 }
-                lab5: Any = menu.add.label(
+                lab6: Any = menu.add.label(
                     title=T.format("menu_party_traveled", params),
                     font_size=self.font_size_smaller,
                     align=locals.ALIGN_LEFT,
                 )
-                lab5.translate(
+                lab6.translate(
                     fix_measure(width, 0.35), fix_measure(height, 0.25)
                 )
 

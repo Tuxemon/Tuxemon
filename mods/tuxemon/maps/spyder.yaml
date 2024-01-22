@@ -142,6 +142,7 @@ events:
     conditions:
     - is variable_set stage_of_day:night
     - not location_inside
+    - not check_world layer,0:0:128:128
     type: "event"
   Night Day Cycle Inside:
     actions:
@@ -149,6 +150,7 @@ events:
     conditions:
     - is variable_set stage_of_day:night
     - is location_inside
+    - not check_world layer,255:255:255:0
     type: "event"
   Phone GPS Leather:
     actions:
@@ -221,6 +223,7 @@ events:
     - set_party_status player
     conditions:
     - is current_state MainCombatMenuState:WorldState
+    - is party_size player,greater_than,0
     type: "event"
   Cheat Code ApexPlayer:
     actions:

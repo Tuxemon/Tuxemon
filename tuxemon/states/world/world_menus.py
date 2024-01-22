@@ -15,7 +15,6 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.session import local_session
-from tuxemon.states.monster_info import MonsterInfoState
 from tuxemon.states.techniques import TechniqueMenuState
 from tuxemon.tools import open_choice_dialog, open_dialog
 
@@ -66,15 +65,18 @@ class WorldMenuState(PygameMenuState):
 
         # Main Menu - Allows users to open the main menu in game.
         player = local_session.player
+        param = {"character": player}
         menu: list[tuple[str, WorldMenuGameObj]] = []
         if player.monsters and player.menu_monsters:
             menu.append(("menu_monster", self.open_monster_menu))
         if player.items and player.menu_bag:
             menu.append(("menu_bag", change("ItemMenuState")))
         if player.menu_player:
-            menu.append(("menu_player", change("PlayerState")))
+            CharacterState = change("CharacterState", kwargs=param)
+            menu.append(("menu_player", CharacterState))
         if player.missions:
-            menu.append(("menu_missions", change("MissionState")))
+            MissionState = change("MissionState", kwargs=param)
+            menu.append(("menu_missions", MissionState))
         if player.menu_save:
             menu.append(("menu_save", change("SaveMenuState")))
         if player.menu_load:
@@ -141,9 +143,8 @@ class WorldMenuState(PygameMenuState):
         def open_monster_stats(monster: Monster) -> None:
             """Show monster statistics."""
             self.client.pop_state()
-            self.client.push_state(
-                MonsterInfoState(monster=monster, source=self.name)
-            )
+            params = {"monster": monster, "source": self.name}
+            self.client.push_state("MonsterInfoState", kwargs=params)
 
         def positive_answer(monster: Monster) -> None:
             success = False

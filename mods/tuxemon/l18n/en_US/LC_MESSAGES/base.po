@@ -2744,6 +2744,21 @@ msgstr "Item"
 msgid "menu_items"
 msgstr "Items"
 
+msgid "menu_party"
+msgstr "Party"
+
+msgid "menu_party_level_lowest"
+msgstr "Lowest Level"
+
+msgid "menu_party_level_highest"
+msgstr "Highest Level"
+
+msgid "menu_party_level_average"
+msgstr "Average Level"
+
+msgid "menu_party_traveled"
+msgstr "{name} traveled {walked} {unit}"
+
 msgid "menu_journal"
 msgstr "Journal"
 

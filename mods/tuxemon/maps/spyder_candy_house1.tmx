@@ -46,22 +46,22 @@
   <object id="59" name="Go outside" type="event" x="80" y="112" width="48" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_town.tmx,4,31,0.3"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="60" name="TV" type="event" x="16" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_flower_artist_clipping"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="68" name="Create Maniac" type="event" x="48" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_candyhouse1_sawyer,3,5"/>
-    <property name="act2" value="npc_face spyder_candyhouse1_sawyer,up"/>
-    <property name="cond1" value="not npc_exists spyder_candyhouse1_sawyer"/>
+    <property name="act2" value="char_face spyder_candyhouse1_sawyer,up"/>
+    <property name="cond1" value="not char_exists spyder_candyhouse1_sawyer"/>
    </properties>
   </object>
   <object id="69" name="Talk Maniac Before" type="event" x="48" y="80" width="16" height="16">
@@ -74,7 +74,7 @@
   <object id="70" name="Create Picnicker" type="event" x="128" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_candyhouse1_tillie,8,5"/>
-    <property name="cond1" value="not npc_exists spyder_candyhouse1_tillie"/>
+    <property name="cond1" value="not char_exists spyder_candyhouse1_tillie"/>
    </properties>
   </object>
   <object id="71" name="Talk Picnicker" type="event" x="112" y="16" width="16" height="16">

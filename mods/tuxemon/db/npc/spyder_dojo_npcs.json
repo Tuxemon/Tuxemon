@@ -10,17 +10,6 @@
     ]
   },
   {
-    "slug": "spyder_dojo_billie",
-    "forfeit": false,
-    "template": [
-      {
-        "sprite_name": "fashionista",
-        "combat_front": "fashionista",
-        "slug": "fashionista"
-      }
-    ]
-  },
-  {
     "slug": "spyder_dojo_fu",
     "template": [
       {
@@ -102,7 +91,6 @@
   },
   {
     "slug": "spyder_dojo_thri",
-    "forfeit": false,
     "template": [
       {
         "sprite_name": "maniac_yellow",
@@ -123,7 +111,6 @@
   },
   {
     "slug": "spyder_dojo_tu",
-    "forfeit": false,
     "template": [
       {
         "sprite_name": "ninja_red",
@@ -134,7 +121,6 @@
   },
   {
     "slug": "spyder_dojo_wan",
-    "forfeit": false,
     "template": [
       {
         "sprite_name": "ninja_blue",

@@ -525,7 +525,7 @@ msgstr ""
 " ...\n"
 " To nic nie znaczy. Mam swędzący nos."
 
-msgid "professor_dialog2\n"
+msgid "professor_dialog2"
 msgstr ""
 "Skąd się wzięły Tuxemony?\n"
 "Nikt tak naprawdę nie wie, ale zamieszkują naszą planetę co najmniej od "
@@ -550,7 +550,7 @@ msgstr ""
 "pytałem. Proszę kontynuować, miłej podróży."
 
 #, fuzzy
-msgid "mwah\n"
+msgid "mwah"
 msgstr ""
 "???: Czego chcesz? ... ... ... ... Cóż, szkoda. Nie wejdziesz tu, nawet "
 "jeśli spełniasz wymagania co do stroju.\n"
@@ -786,7 +786,7 @@ msgstr "Starfall"
 msgid "stampede"
 msgstr "Popłoch"
 
-msgid "spray"
+msgid "spit_poison"
 msgstr "Spray"
 
 msgid "splinter"
@@ -837,8 +837,8 @@ msgstr "Ruchome piaski"
 msgid "pseudopod"
 msgstr "Pseudopod"
 
-msgid "probiscus"
-msgstr "Probiscus"
+msgid "proboscis"
+msgstr "Proboscis"
 
 msgid "petrify"
 msgstr "Petryfikacja"

@@ -1,9 +1,21 @@
 {
   "slug": "night_valley",
   "battle_graphics": {
-    "island_back": "grass_island.png",
-    "island_front": "grass_island.png",
-    "background": "night_valley_background.png"
+    "island_back": "gfx/ui/combat/grass_island.png",
+    "island_front": "gfx/ui/combat/grass_island.png",
+    "background": "gfx/ui/combat/night_valley_background.png",
+    "hud": {
+      "hud_player": "gfx/ui/combat/hp_player_nohp.png",
+      "hud_opponent": "gfx/ui/combat/hp_opponent_nohp.png",
+      "tray_player": "gfx/ui/combat/player_party_tray.png",
+      "tray_opponent": "gfx/ui/combat/opponent_party_tray.png"
+    },
+    "icons": {
+      "icon_alive": "gfx/ui/icons/party/party_icon01.png",
+      "icon_status": "gfx/ui/icons/party/party_icon02.png",
+      "icon_faint": "gfx/ui/icons/party/party_icon03.png",
+      "icon_empty": "gfx/ui/icons/party/party_empty.png"
+    }
   },
   "battle_music": "music_battle_loop"
 }

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
@@ -104,9 +104,7 @@ class MinigameState(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(
-                "gfx/ui/item/bg_pcstate.png"
-            ),
+            image_path=tools.transform_resource_filename(prepare.BG_MINIGAME),
             drawing_position=POSITION_CENTER,
         )
         theme = get_theme()

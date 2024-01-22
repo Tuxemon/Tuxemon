@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 from collections.abc import Generator, Mapping, MutableMapping, Sequence
 from itertools import product
 from math import atan2, pi
-from typing import TYPE_CHECKING, NamedTuple, Optional, TypeVar, Union
+from typing import TYPE_CHECKING, Any, NamedTuple, Optional, TypeVar, Union
 
 import pyscroll
 from pytmx import pytmx
@@ -22,6 +22,7 @@ from tuxemon.math import Vector2, Vector3
 from tuxemon.tools import round_to_divisible
 
 if TYPE_CHECKING:
+    from tuxemon.entity import Entity
     from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
@@ -33,7 +34,7 @@ class RegionProperties(NamedTuple):
     enter_from: Sequence[Direction]
     exit_from: Sequence[Direction]
     endure: Sequence[Direction]
-    entity: Optional[NPC]
+    entity: Optional[Union[NPC, Entity[Any]]]
     key: Optional[str]
 
 
@@ -83,7 +84,7 @@ def get_coords(
 ) -> list[tuple[int, int]]:
     """
     Returns a list with the cardinal coordinates (down, right, up, and left),
-    Negative coordinates as well as the ones the exceed the map size will be
+    Negative coordinates as well as the ones that exceed the map size will be
     filtered out. If no valid coordinates, then it'll be raised a ValueError.
 
      -  | 1,0 |  -
@@ -123,7 +124,7 @@ def get_coord_direction(
 ) -> tuple[int, int]:
     """
     Returns the coordinates for a specific side and radius.
-    Negative coordinates as well as the ones the exceed the map size will
+    Negative coordinates as well as the ones that exceed the map size will
     raise a ValueError.
 
     Parameters:
@@ -136,13 +137,13 @@ def get_coord_direction(
         Tuple tile coordinates.
     """
     _tile: tuple[int, int] = (0, 0)
-    if direction == "down":
+    if direction == Direction.down:
         _tile = (tile[0], tile[1] + radius)
-    elif direction == "right":
+    elif direction == Direction.right:
         _tile = (tile[0] + radius, tile[1])
-    elif direction == "up":
+    elif direction == Direction.up:
         _tile = (tile[0], tile[1] - radius)
-    elif direction == "left":
+    elif direction == Direction.left:
         _tile = (tile[0] - radius, tile[1])
     else:
         raise ValueError(f"{direction} doesn't exist")
@@ -422,9 +423,9 @@ def extract_region_properties(
         for _exit in exits:
             enters.remove(_exit)
     if label == "slide":
-        enters = list[Direction]
-        exits = list[Direction]
-        endure = list[Direction]
+        enters = list(Direction)
+        exits = list(Direction)
+        endure = list(Direction)
     if has_movement_modifier:
         return RegionProperties(
             enter_from=enters,
@@ -435,6 +436,49 @@ def extract_region_properties(
         )
     else:
         return None
+
+
+def get_coords_ext(
+    tile: tuple[int, int], map_size: tuple[int, int], radius: int = 1
+) -> list[tuple[int, int]]:
+    """
+    Returns a list with all the coordinates (down, right, up, left, upper left,
+    upper right, bottom left, bottom right).
+    Negative coordinates as well as the ones that exceed the map size will be
+    filtered out. If no valid coordinates, then it'll be raised a ValueError.
+
+    0,0 | 1,0 | 2,0 |
+    0,1 | 1,1 | 2,1 |
+    0,2 | 1,2 | 2,2 |
+
+    eg. radius = 1
+    (0,0),(1,0),(2,0),(0,1),(1,1),(2,1),(0,2),(1,2),(2,2)
+
+    Parameters:
+        tile: Tile coordinates
+        map_size: Dimension of the map
+        radius: Radius, default 1
+
+    Returns:
+        List tile coordinates.
+    """
+    coords: list[tuple[int, int]] = []
+    coords.append((tile[0], tile[1] + radius))  # down
+    coords.append((tile[0] + radius, tile[1]))  # right
+    coords.append((tile[0], tile[1] - radius))  # up
+    coords.append((tile[0] - radius, tile[1]))  # left
+    coords.append((tile[0] - 1, tile[1] - 1))  # upper left
+    coords.append((tile[0] + 1, tile[1] - 1))  # upper right
+    coords.append((tile[0] - 1, tile[1] + 1))  # bottom left
+    coords.append((tile[0] + 1, tile[1] + 1))  # bottom right
+    _coords = [
+        _tile
+        for _tile in coords
+        if map_size[0] >= _tile[0] >= 0 and map_size[1] >= _tile[1] >= 0
+    ]
+    if not _coords:
+        raise ValueError(f"{coords} invalid coordinates")
+    return _coords
 
 
 def direction_to_list(direction: Optional[str]) -> list[Direction]:

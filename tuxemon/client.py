@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -64,7 +64,7 @@ class LocalPygameClient:
 
         # somehow this value is being patched somewhere
         self.events: Sequence[EventObject] = []
-        self.inits: Sequence[EventObject] = []
+        self.inits: list[EventObject] = []
 
         # setup controls
         keyboard = PygameKeyboardInput(config.keyboard_button_map)
@@ -144,7 +144,7 @@ class LocalPygameClient:
 
         """
         self.events = map_data.events
-        self.inits = map_data.inits
+        self.inits = list(map_data.inits)
         self.event_engine.reset()
         self.event_engine.current_map = map_data
         self.maps = map_data.maps
@@ -158,11 +158,14 @@ class LocalPygameClient:
         self.map_size = map_data.size
 
         # Check if the map type exists
-        types = [maps.value for maps in MapType]
-        if map_data.types in types:
-            self.map_type = map_data.types
+        self.map_type = MapType.notype
+        if map_data.types in list(MapType):
+            self.map_type = MapType(map_data.types)
         else:
-            logger.error(f"The type '{map_data.types}' doesn't exist.")
+            logger.warning(
+                f"The type '{map_data.types}' doesn't exist."
+                f"By default assigned {MapType.notype}!"
+            )
 
         # Cardinal points
         if map_data.north_trans == "None":
@@ -279,7 +282,8 @@ class LocalPygameClient:
             _game_event = state.process_event(game_event)
             if _game_event is None:
                 break
-        return _game_event
+            return _game_event
+        return None
 
     def main(self) -> None:
         """

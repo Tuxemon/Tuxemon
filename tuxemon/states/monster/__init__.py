@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from collections.abc import Generator
@@ -25,7 +25,7 @@ class MonsterMenuState(Menu[Optional[Monster]]):
     teach them moves, and switch them both in and out of combat.
     """
 
-    background_filename = "gfx/ui/monster/monster_menu_bg.png"
+    background_filename = prepare.BG_MONSTERS
     draw_borders = False
 
     def __init__(self) -> None:
@@ -167,7 +167,7 @@ class MonsterMenuState(Menu[Optional[Monster]]):
             item.enabled = (monster is not None) and self.is_valid_entry(
                 item.game_object
             )
-            item.image.fill((0, 0, 0, 0))
+            item.image.fill(prepare.TRANSPARENT_COLOR)
             item.in_focus = (index == self.selected_index) and item.enabled
             self.render_monster_slot(
                 item.image,
@@ -202,17 +202,14 @@ class MonsterMenuState(Menu[Optional[Monster]]):
             icon = "♀"
         else:
             icon = ""
+        upper_label = f"{monster.name}{icon}"
         text_rect = rect.inflate(-tools.scale(6), -tools.scale(6))
-        draw_text(surface, monster.name + icon, text_rect, font=self.font)
+        draw_text(surface, upper_label, text_rect, font=self.font)
 
         # draw the level info
         text_rect.top = rect.bottom - tools.scale(7)
-        draw_text(
-            surface,
-            "  Lv " + str(monster.level),
-            text_rect,
-            font=self.font,
-        )
+        bottom_label = f"  Lv {monster.level}"
+        draw_text(surface, bottom_label, text_rect, font=self.font)
 
         # draw any status icons
         # TODO: caching or something, idk

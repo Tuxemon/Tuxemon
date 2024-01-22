@@ -3,7 +3,7 @@ events:
     actions:
     - teleport_faint
     conditions:
-    - is player_defeated
+    - is char_defeated player
     - not location_type clinic
     - not location_name wayfarer_inn1:wayfarer_inn2:scoop3:scoop4:paper_town
     - is current_state WorldState
@@ -26,7 +26,7 @@ events:
     - set_monster_status
     - set_variable teleport_clinic:none
     conditions:
-    - is player_defeated
+    - is char_defeated player
     - is location_name wayfarer_inn1:wayfarer_inn2
     - is current_state WorldState
     type: "event"
@@ -37,7 +37,7 @@ events:
     - set_monster_status
     - set_variable teleport_clinic:none
     conditions:
-    - is player_defeated
+    - is char_defeated player
     - is location_name scoop3:scoop4
     - is current_state WorldState
     type: "event"
@@ -48,16 +48,16 @@ events:
     - set_monster_status
     - set_variable teleport_clinic:none
     conditions:
-    - is player_defeated
+    - is char_defeated player
     - is location_name paper_town
     - is current_state WorldState
     - is variable_set firstfightend:no
     type: "event"
   Evolution all:
     actions:
-    - evolution
+    - evolution player
     conditions:
-    - is check_evolution all
+    - is check_evolution player
     - is current_state WorldState
     type: "event"
   Choice Surf:
@@ -66,24 +66,24 @@ events:
     - translated_dialog_choice yes:no,swimming
     conditions:
     - is has_item player,surfboard
-    - is player_facing_tile surfable
+    - is char_facing_tile player,surfable
     - is button_pressed K_RETURN
-    - not player_in surfable
+    - not char_in player,surfable
     type: "event"
   Surfable:
     actions:
     - set_template player,swimmer
     conditions:
-    - is player_in surfable
-    - not has_sprite swimmer
+    - is char_in player,surfable
+    - not char_sprite player,swimmer
     type: "event"
   Not surfable Boy:
     actions:
     - set_template player,adventurer,adventurer
     - set_variable swimming:no
     conditions:
-    - not player_in surfable
-    - is has_sprite swimmer
+    - not char_in player,surfable
+    - is char_sprite player,swimmer
     - is variable_set gender_choice:gender_male
     type: "event"
   Not surfable Girl:
@@ -91,8 +91,8 @@ events:
     - set_template player,heroine,heroine
     - set_variable swimming:no
     conditions:
-    - not player_in surfable
-    - is has_sprite swimmer
+    - not char_in player,surfable
+    - is char_sprite player,swimmer
     - is variable_set gender_choice:gender_female
     type: "event"
   Allow Swim:
@@ -100,24 +100,41 @@ events:
     - remove_collision water
     conditions:
     - is variable_set swimming:yes
+    - is current_state WorldState
     type: "event"
   Swim Encounters Day:
     actions:
-    - set_variable environment:sea
     - random_encounter routec,0.25
     conditions:
-    - is has_sprite swimmer
-    - not variable_set stage_of_day:night
+    - is char_sprite player,swimmer
     - is current_state WorldState
+    - is check_char_parameter player,moving,1
+    - is variable_set environment:ocean
     type: "event"
   Swim Encounters Night:
     actions:
-    - set_variable environment:night_sea
     - random_encounter routec,0.75
     conditions:
-    - is has_sprite swimmer
-    - is variable_set stage_of_day:night
+    - is char_sprite player,swimmer
     - is current_state WorldState
+    - is check_char_parameter player,moving,1
+    - is variable_set environment:night_ocean
+    type: "event"
+  Swim Day Environment:
+    actions:
+    - set_variable environment:ocean
+    conditions:
+    - is char_sprite player,swimmer
+    - not variable_set stage_of_day:night
+    - not variable_set environment:ocean
+    type: "event"
+  Swim Night Environment:
+    actions:
+    - set_variable environment:night_ocean
+    conditions:
+    - is char_sprite player,swimmer
+    - is variable_set stage_of_day:night
+    - not variable_set environment:night_ocean
     type: "event"
   Night Day Cycle Outside:
     actions:
@@ -125,10 +142,7 @@ events:
     conditions:
     - is variable_set stage_of_day:night
     - not location_inside
-    height: 1
-    width: 1
-    x: 0
-    y: 0
+    - not check_world layer,0:0:128:128
     type: "event"
   Night Day Cycle Inside:
     actions:
@@ -136,8 +150,80 @@ events:
     conditions:
     - is variable_set stage_of_day:night
     - is location_inside
-    height: 1
-    width: 1
-    x: 0
-    y: 0
+    - not check_world layer,255:255:255:0
+    type: "event"
+  Phone GPS Leather:
+    actions:
+    - set_variable nu_map_1:leather_town*0.20*0.42
+    conditions:
+    - not variable_set nu_map_1:leather_town*0.20*0.42
+    - is location_name leather_town
+    type: "event"
+  Phone GPS Cotton:
+    actions:
+    - set_variable nu_map_2:cotton_town*0.20*0.52
+    conditions:
+    - not variable_set nu_map_2:cotton_town*0.20*0.52
+    - is location_name cotton_town
+    type: "event"
+  Phone GPS Paper:
+    actions:
+    - set_variable nu_map_3:paper_town*0.20*0.62
+    conditions:
+    - not variable_set nu_map_3:paper_town*0.20*0.62
+    - is location_name paper_town
+    type: "event"
+  Phone GPS Candy:
+    actions:
+    - set_variable nu_map_4:candy_town*-0.15*0.62
+    conditions:
+    - not variable_set nu_map_4:candy_town*-0.15*0.62
+    - is location_name candy_town
+    type: "event"
+  Phone GPS Timber:
+    actions:
+    - set_variable nu_map_5:timber_town*-0.15*0.42
+    conditions:
+    - not variable_set nu_map_5:timber_town*-0.15*0.42
+    - is location_name timber_town
+    type: "event"
+  Phone GPS Flower:
+    actions:
+    - set_variable nu_map_6:flower_city*-0.15*0.32
+    conditions:
+    - not variable_set nu_map_6:flower_city*-0.15*0.32
+    - is location_name flower_city
+    type: "event"
+  Set Party Status:
+    actions:
+    - set_party_status player
+    conditions:
+    - is current_state MainCombatMenuState:WorldState
+    - is party_size player,greater_than,0
+    type: "event"
+  Cheat Code ApexPlayer:
+    actions:
+    - get_party_monster
+    - remove_monster iid_slot_0
+    - add_monster rockat,100
+    - add_monster moloch,100
+    - add_monster arthrobolt,100
+    - add_monster eaglace,100
+    - add_monster agnigon,100
+    - set_monster_plague ,inoculated
+    - set_variable cheat_apex:enabled
+    conditions:
+    - is check_char_parameter player,name,ApexPlayer
+    - is party_size player,equals,1
+    - not variable_set cheat_apex:enabled
+    - is current_state WorldState
+    type: "event"
+  Check Max Moves:
+    actions:
+    - translated_dialog new_tech_delete
+    - get_monster_tech chosen_tech
+    - remove_tech chosen_tech
+    conditions:
+    - is check_max_tech
+    - is current_state MainCombatMenuState
     type: "event"

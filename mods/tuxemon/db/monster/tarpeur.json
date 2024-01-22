@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "one_two"
+            "technique": "hibernate"
         },
         {
             "level_learned": 2,
@@ -21,11 +21,22 @@
         {
             "level_learned": 12,
             "technique": "fluff_up"
+        },
+        {
+            "level_learned": 24,
+            "technique": "headbutt"
+        },
+        {
+            "level_learned": 28,
+            "technique": "shadow_boxing"
+        },
+        {
+            "level_learned": 32,
+            "technique": "life_surge"
         }
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 18,
             "monster_slug": "vigueur"
         }

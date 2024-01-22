@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from collections.abc import Callable
@@ -26,86 +26,67 @@ def fix_measure(measure: int, percentage: float) -> int:
 
 class NuPhoneMap(PygameMenuState):
     """
-    This is experimental code for the NuPhone Map. Currently these map names are are hardcoded,
-    but in the future, we will need to use some other data source to get the map names so that this
-    code is not directly tied to any specific maps.
+    The map will be generated from a game variable called: "phone_map"
+    If there is no variable, then it'll be shown the Spyder map.
+
+    The coordinates of the cities / location will be obtained by game variables
+    beginning with the prefix: "nu_map_"
+    where location is the msgid of the location (PO), x and y are coordinates
+
+    If the player is in Cotton Town, then Cotton Town will be underlined and not
+    selectable.
+
+    If there are no trackers (locations), then it'll be not possible to consult
+    the app. It'll appear a pop up with: "GPS tracker not updating."
+
+    Some examples:
+    game_variables["nu_map_1"] = "leather_town*0.20*0.42"
+    game_variables["nu_map_2"] = "cotton_town*0.20*0.52"
+    game_variables["nu_map_3"] = "paper_town*0.20*0.62"
+    game_variables["nu_map_4"] = "candy_town*-0.15*0.62"
+    game_variables["nu_map_5"] = "timber_town*-0.15*0.42"
+    game_variables["nu_map_6"] = "flower_city*-0.15*0.32"
+
     """
 
     def add_menu_items(
         self,
         menu: pygame_menu.Menu,
     ) -> None:
-        lab1 = menu.add.label(
-            title=T.translate("leather_town"),
-            selectable=True,
-            float=True,
-            selection_effect=HighlightSelection(),
-            font_size=self.font_size_small,
+        phone_map = self.player.game_variables.get(
+            "phone_map", prepare.PHONE_MAP
         )
-        assert not isinstance(lab1, list)
-        lab1.translate(
-            fix_measure(menu._width, 0.20), fix_measure(menu._height, -0.03)
+        # map
+        new_image = pygame_menu.BaseImage(
+            tools.transform_resource_filename(phone_map)
         )
+        new_image.scale(prepare.SCALE, prepare.SCALE)
+        menu.add.image(image_path=new_image.copy())
+        underline = False
+        selectable = True
 
-        lab2 = menu.add.label(
-            title=T.translate("cotton_town"),
-            selectable=True,
-            float=True,
-            selection_effect=HighlightSelection(),
-            font_size=self.font_size_small,
-        )
-        assert not isinstance(lab2, list)
-        lab2.translate(
-            fix_measure(menu._width, 0.20), fix_measure(menu._height, 0.08)
-        )
+        for key, value in self.player.game_variables.items():
+            if key.startswith("nu_map_"):
+                info = value.split("*")
+                place = info[0]
+                x = float(info[1])
+                y = float(info[2])
+                # player is here
+                if self.client.map_slug == place:
+                    underline = True
+                    selectable = False
 
-        lab3 = menu.add.label(
-            title=T.translate("paper_town"),
-            selectable=True,
-            float=True,
-            selection_effect=HighlightSelection(),
-            font_size=self.font_size_small,
-        )
-        assert not isinstance(lab3, list)
-        lab3.translate(
-            fix_measure(menu._width, 0.20), fix_measure(menu._height, 0.18)
-        )
+                lab: Any = menu.add.label(
+                    title=T.translate(place),
+                    selectable=selectable,
+                    float=True,
+                    underline=underline,
+                    font_size=self.font_size_small,
+                )
+                lab.translate(
+                    fix_measure(menu._width, x), fix_measure(menu._height, y)
+                )
 
-        lab4 = menu.add.label(
-            title=T.translate("candy_town"),
-            selectable=True,
-            float=True,
-            selection_effect=HighlightSelection(),
-            font_size=self.font_size_small,
-        )
-        assert not isinstance(lab4, list)
-        lab4.translate(
-            fix_measure(menu._width, -0.20), fix_measure(menu._height, 0.18)
-        )
-
-        lab5 = menu.add.label(
-            title=T.translate("timber_town"),
-            selectable=True,
-            float=True,
-            selection_effect=HighlightSelection(),
-            font_size=self.font_size_small,
-        )
-        assert not isinstance(lab5, list)
-        lab5.translate(
-            fix_measure(menu._width, -0.20), fix_measure(menu._height, -0.03)
-        )
-
-        lab6 = menu.add.label(
-            title=T.translate("flower_city"),
-            selectable=True,
-            float=True,
-            selection_effect=HighlightSelection(),
-            font_size=self.font_size_small,
-        )
-        assert not isinstance(lab6, list)
-        lab6.translate(
-            fix_measure(menu._width, -0.15), fix_measure(menu._height, -0.15)
-        )
         # menu
         menu.set_title(title=T.translate("app_map")).center_content()
 
@@ -113,9 +94,7 @@ class NuPhoneMap(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(
-                "gfx/ui/item/new_spyder_map.png"
-            ),
+            image_path=tools.transform_resource_filename(prepare.BG_PHONE_MAP),
             drawing_position=POSITION_CENTER,
         )
         theme = get_theme()

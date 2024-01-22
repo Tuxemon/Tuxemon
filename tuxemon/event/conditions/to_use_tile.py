@@ -1,12 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from tuxemon.event import MapCondition
 from tuxemon.event.conditions.button_pressed import ButtonPressedCondition
-from tuxemon.event.conditions.player_facing_tile import (
-    PlayerFacingTileCondition,
-)
+from tuxemon.event.conditions.char_facing_tile import CharFacingTileCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
@@ -25,18 +23,7 @@ class ToUseTileCondition(EventCondition):
     name = "to_use_tile"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """
-        Check if we are attempting to interact with a map condition tile.
-
-        Parameters:
-            session: The session object
-            condition: The map condition object.
-
-        Returns:
-            Whether the player attempts to interact with a map condition tile.
-
-        """
-        player_facing_tile = PlayerFacingTileCondition().test(
+        character_facing_tile = CharFacingTileCondition().test(
             session,
             condition,
         )
@@ -55,4 +42,4 @@ class ToUseTileCondition(EventCondition):
                 name="",
             ),
         )
-        return player_facing_tile and button_pressed
+        return character_facing_tile and button_pressed

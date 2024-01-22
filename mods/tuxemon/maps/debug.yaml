@@ -14,9 +14,9 @@ events:
     type: "event"
   Spyder:
     actions:
-    - change_bg choice_gender
+    - change_bg gradient_blue,choice_gender
     - translated_dialog_choice gender_female:gender_male,gender_choice
-    - change_bg spyder_empty
+    - change_bg gradient_blue
     - transition_teleport spyder_bedroom.tmx,4,4,0.3
     - set_money player,250
     - set_variable spyder_starting_money:yes
@@ -28,9 +28,9 @@ events:
     type: "event"
   Xero:
     actions:
-    - change_bg choice_gender
+    - change_bg gradient_blue,choice_gender
     - translated_dialog_choice gender_female:gender_male,gender_choice
-    - change_bg spyder_empty
+    - change_bg gradient_blue
     - transition_teleport player_house_bedroom.tmx,4,4,0.3
     - set_money player,500
     - set_variable xero_starting_money:yes

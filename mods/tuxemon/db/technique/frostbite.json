@@ -4,11 +4,11 @@
   "animation": "lance_ice",
   "effects": [
     "give poison,target",
-    "damage"
+    "splash 2"
   ],
   "flip_axes": "xy",
   "is_fast": false,
-  "potency": 0.2,
+  "potency": 0.5,
   "power": 3,
   "range": "reach",
   "recharge": 3,

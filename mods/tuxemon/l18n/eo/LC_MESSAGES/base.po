@@ -847,8 +847,8 @@ msgstr ""
 msgid "nightcrawler"
 msgstr ""
 
-msgid "probiscus"
-msgstr "Probiscus"
+msgid "proboscis"
+msgstr "Proboscis"
 
 msgid "flopped"
 msgstr "Ruiniĝita"
@@ -1011,7 +1011,7 @@ msgid "not_really"
 msgstr "Not really"
 
 # NPC dialogs
-msgid "professor_dialog\n"
+msgid "professor_dialog"
 msgstr "Profesoro: Ah, jes. Vi estas la persono, kiun mi antendas por renkontiĝi.\n"
 "Mi aŭdis, ke vi volas lerni pri Tuksemonoj.\n"
 "Tuksemonoj estas etaj bestoj, kelkaj personoj nomas ilin monstrojn, kiuj ni amikiĝas kaj uzas por batali kontraŭ aliaj Tuksemonoj.\n"
@@ -1063,13 +1063,13 @@ msgstr ""
 msgid "discovered_a_person"
 msgstr ""
 
-msgid "a_serious_discussion\n"
+msgid "a_serious_discussion"
 msgstr ""
 
-msgid "oops\n"
+msgid "oops"
 msgstr ""
 
-msgid "backstory\n"
+msgid "backstory"
 msgstr ""
 
 msgid "backstory9"
@@ -1078,7 +1078,7 @@ msgstr ""
 msgid "sorryfurthis"
 msgstr ""
 
-msgid "mwah\n"
+msgid "mwah"
 msgstr ""
 
 msgid "mwah2"
@@ -1093,7 +1093,7 @@ msgstr ""
 msgid "kmere"
 msgstr ""
 
-msgid "theinfo\n"
+msgid "theinfo"
 msgstr ""
 
 msgid "liela_goes_to_battle"
@@ -1105,7 +1105,7 @@ msgstr ""
 msgid "Cotton_Mart"
 msgstr ""
 
-msgid "Cotton_Town_Sign\n"
+msgid "Cotton_Town_Sign"
 msgstr "Welcome to Cotton Town: A Growing Force\n"
 "^ Cotton Town --- Route 1 v\n"
 
@@ -1115,17 +1115,17 @@ msgstr ""
 msgid "column2"
 msgstr ""
 
-msgid "cityparksign\n"
+msgid "cityparksign"
 msgstr "Welcome to City Park: A Taste of the Wild\n"
 "^ City Park --- Route 2 v\n"
 
 msgid "route2speech"
 msgstr "EEK!!!"
 
-msgid "route2speech2\n"
+msgid "route2speech2"
 msgstr ""
 
-msgid "route2speech3\n"
+msgid "route2speech3"
 msgstr ""
 
 msgid "yestalk"
@@ -1134,7 +1134,7 @@ msgstr ""
 msgid "notalk"
 msgstr ""
 
-msgid "spillit\n"
+msgid "spillit"
 msgstr ""
 
 msgid "spillit3"
@@ -1155,7 +1155,7 @@ msgstr ""
 msgid "leavemealone"
 msgstr ""
 
-msgid "iamknight\n"
+msgid "iamknight3"
 msgstr "What are you doing here? You know that only knights are allowed through city park.\n"
 "... ... ... Hmm... So you're trying to get to Leather Town...\n"
 "Well, I guess you could enter the challenge if you want. The only problem is that you'll need a Tuxemon...\n"
@@ -1164,14 +1164,14 @@ msgstr "What are you doing here? You know that only knights are allowed through 
 msgid "sorry"
 msgstr "Okay, well... when you're ready, I'll still be here..."
 
-msgid "splendid\n"
+msgid "splendid"
 msgstr "You will? Splendid! Now, to find you a suitable Tuxemon...\n"
 "... ... You already have a Tuxemon? Well, I'm sure that you'd be able to handle yourself well...\n"
 
 msgid "cottonnurse_dialog"
 msgstr "Welcome to the Cotton Town Tuxecenter!"
 
-msgid "tabanurse_dialog\n"
+msgid "tabanurse_dialog"
 msgstr ""
 
 msgid "okaythen"

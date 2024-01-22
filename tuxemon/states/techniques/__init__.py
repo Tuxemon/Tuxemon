@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from collections.abc import Generator
 
 import pygame
 
-from tuxemon import tools
+from tuxemon import prepare, tools
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
@@ -21,7 +21,7 @@ from tuxemon.ui.text import TextArea
 class TechniqueMenuState(Menu[Technique]):
     """The technique menu allows you to view and use techniques of your party."""
 
-    background_filename = "gfx/ui/item/item_menu_bg.png"
+    background_filename = prepare.BG_MOVES
     draw_borders = False
 
     def __init__(self, monster: Monster) -> None:
@@ -105,22 +105,12 @@ class TechniqueMenuState(Menu[Technique]):
 
         def open_choice_menu() -> None:
             # open the menu for use/cancel
-            tools.open_choice_dialog(
-                local_session,
-                menu=(
-                    (
-                        "use",
-                        T.translate("item_confirm_use").upper(),
-                        confirm,
-                    ),
-                    (
-                        "cancel",
-                        T.translate("item_confirm_cancel").upper(),
-                        cancel,
-                    ),
-                ),
-                escape_key_exits=True,
-            )
+            var_menu = []
+            _use = T.translate("item_confirm_use").upper()
+            var_menu.append(("use", _use, confirm))
+            _cancel = T.translate("item_confirm_cancel").upper()
+            var_menu.append(("cancel", _cancel, cancel))
+            tools.open_choice_dialog(local_session, var_menu, True)
 
         open_choice_menu()
 

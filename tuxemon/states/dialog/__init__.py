@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from collections.abc import Sequence
@@ -46,14 +46,10 @@ class DialogState(PopUpMenu[None]):
         font_shadow = self.font_shadow_color
         border = self.borders_filename
 
-        if colors["bg_color"] != "":
-            bg_color = colors["bg_color"]
-        if colors["font_color"] != "":
-            font_color = colors["font_color"]
-        if colors["font_shadow"] != "":
-            font_shadow = colors["font_shadow"]
-        if colors["border"] != "":
-            border = colors["border"]
+        bg_color = colors["bg_color"] if colors else bg_color
+        font_color = colors["font_color"] if colors else font_color
+        font_shadow = colors["font_shadow"] if colors else font_shadow
+        border = colors["border"] if colors else border
 
         _border = load_and_scale(border)
         self.window._set_border(_border)

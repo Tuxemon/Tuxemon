@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from collections.abc import Generator, Sequence
 
 import pygame
 
-from tuxemon import tools
+from tuxemon import prepare, tools
 from tuxemon.db import State
 from tuxemon.item.item import Item
 from tuxemon.locale import T
@@ -50,7 +50,7 @@ def sort_inventory(
 class ItemMenuState(Menu[Item]):
     """The item menu allows you to view and use items in your inventory."""
 
-    background_filename = "gfx/ui/item/item_menu_bg.png"
+    background_filename = prepare.BG_ITEMS
     draw_borders = False
 
     def __init__(self) -> None:
@@ -77,7 +77,7 @@ class ItemMenuState(Menu[Item]):
         # load the backpack icon
         self.backpack_center = self.rect.width * 0.16, self.rect.height * 0.45
         self.load_sprite(
-            "gfx/ui/item/backpack.png",
+            prepare.BG_ITEMS_BACKPACK,
             center=self.backpack_center,
             layer=100,
         )
@@ -114,22 +114,18 @@ class ItemMenuState(Menu[Item]):
             for i in item.conditions:
                 if i.name == "location_inside":
                     loc_inside = getattr(i, "location_inside")
-                    msg = T.format(
-                        "item_used_wrong_location_inside",
-                        {
-                            "name": item.name,
-                            "here": T.translate(loc_inside),
-                        },
-                    )
+                    params = {
+                        "name": item.name.upper(),
+                        "here": T.translate(loc_inside),
+                    }
+                    msg = T.format("item_used_wrong_location_inside", params)
                 elif i.name == "location_type":
                     loc_type = getattr(i, "location_type")
-                    msg = T.format(
-                        "item_used_wrong_location_type",
-                        {
-                            "name": item.name,
-                            "here": T.translate(loc_type),
-                        },
-                    )
+                    params = {
+                        "name": item.name.upper(),
+                        "here": T.translate(loc_type),
+                    }
+                    msg = T.format("item_used_wrong_location_type", params)
                 elif i.name == "facing_tile" or i.name == "facing_sprite":
                     msg = T.format("item_cannot_use_here", {"name": item.name})
             tools.open_dialog(local_session, [msg])
@@ -156,20 +152,7 @@ class ItemMenuState(Menu[Item]):
             result = item.use(player, monster)
             self.client.pop_state()  # pop the monster screen
             self.client.pop_state()  # pop the item screen
-            # check effects, some don't need the show_item_result_as_dialog
-            # (e.g. learn_mm, etc)
-            for t in item.effects:
-                if t.name == "learn_mm" or t.name == "learn_tm":
-                    if result["success"]:
-                        player.check_max_moves(local_session, monster)
-                    else:
-                        tools.show_item_result_as_dialog(
-                            local_session, item, result
-                        )
-                else:
-                    tools.show_item_result_as_dialog(
-                        local_session, item, result
-                    )
+            tools.show_item_result_as_dialog(local_session, item, result)
 
         def use_item_no_monster(itm: Item) -> None:
             player = local_session.player
@@ -198,22 +181,12 @@ class ItemMenuState(Menu[Item]):
 
         def open_choice_menu() -> None:
             # open the menu for use/cancel
-            tools.open_choice_dialog(
-                local_session,
-                menu=(
-                    (
-                        "use",
-                        T.translate("item_confirm_use").upper(),
-                        confirm,
-                    ),
-                    (
-                        "cancel",
-                        T.translate("item_confirm_cancel").upper(),
-                        cancel,
-                    ),
-                ),
-                escape_key_exits=True,
-            )
+            var_menu = []
+            _use = T.translate("item_confirm_use").upper()
+            var_menu.append(("use", _use, confirm))
+            _cancel = T.translate("item_confirm_cancel").upper()
+            var_menu.append(("cancel", _cancel, cancel))
+            tools.open_choice_dialog(local_session, var_menu, True)
 
         open_choice_menu()
 

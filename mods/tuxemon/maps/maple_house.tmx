@@ -48,8 +48,8 @@
   <object id="9" name="Go Outside" type="event" x="96" y="160" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport taba_town.tmx,33,44,0.3"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing down"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="30" name="talkHouse" type="event" x="128" y="112" width="16" height="16">
@@ -63,35 +63,35 @@
   <object id="32" name="wife appears" type="event" x="96" y="160" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc npc_wife,8,6,stand"/>
-    <property name="act20" value="npc_face npc_wife,down"/>
-    <property name="act30" value="npc_wander npc_wife"/>
-    <property name="cond10" value="is player_facing up"/>
-    <property name="cond20" value="not npc_exists npc_wife"/>
+    <property name="act20" value="char_face npc_wife,down"/>
+    <property name="act30" value="char_wander npc_wife"/>
+    <property name="cond10" value="is char_facing player,up"/>
+    <property name="cond20" value="not char_exists npc_wife"/>
    </properties>
   </object>
   <object id="39" name="nodrinkpls" type="event" x="80" y="16" width="32" height="16">
    <properties>
-    <property name="act10" value="npc_face npc_wife, up"/>
+    <property name="act10" value="char_face npc_wife, up"/>
     <property name="act20" value="translated_dialog nodrink"/>
-    <property name="act30" value="npc_face npc_wife,down"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="act30" value="char_face npc_wife,down"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="40" name="create knight" type="event" x="176" y="80" width="16" height="16">
    <properties>
     <property name="act010" value="create_npc knight3,6,10,stand"/>
-    <property name="act020" value="npc_face knight3,up"/>
+    <property name="act020" value="char_face knight3,up"/>
     <property name="act030" value="wait 0.7"/>
-    <property name="act040" value="npc_face knight3,left"/>
+    <property name="act040" value="char_face knight3,left"/>
     <property name="act050" value="wait 0.7"/>
-    <property name="act060" value="npc_face knight3,right"/>
+    <property name="act060" value="char_face knight3,right"/>
     <property name="act070" value="wait 0.7"/>
-    <property name="act080" value="npc_face knight3,up"/>
+    <property name="act080" value="char_face knight3,up"/>
     <property name="act090" value="wait 0.2"/>
     <property name="act100" value="translated_dialog bothofyou"/>
     <property name="act110" value="wait 0.8"/>
-    <property name="act120" value="npc_face knight3,down"/>
+    <property name="act120" value="char_face knight3,down"/>
     <property name="act130" value="wait 0.5"/>
     <property name="act140" value="set_variable goodbyeoldknight:yes"/>
     <property name="act150" value="remove_npc knight3"/>
@@ -103,8 +103,8 @@
   <object id="44" name="Go Upstairs" type="event" x="176" y="16" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport maple_bedroom.tmx,8,2,0.3"/>
-    <property name="act20" value="player_face down"/>
-    <property name="cond10" value="is player_at"/>
+    <property name="act20" value="char_face player,down"/>
+    <property name="cond10" value="is char_at player"/>
    </properties>
   </object>
  </objectgroup>

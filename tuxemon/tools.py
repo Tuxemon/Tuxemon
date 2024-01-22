@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """
 
 Do not import platform-specific libraries such as pygame.
@@ -16,6 +16,7 @@ import logging
 import typing
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import fields
+from operator import add, eq, floordiv, ge, gt, le, lt, mul, ne, sub
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -28,6 +29,7 @@ from typing import (
 
 from tuxemon import prepare
 from tuxemon.compat.rect import ReadOnlyRect
+from tuxemon.db import Comparison
 from tuxemon.locale import T, replace_text
 from tuxemon.math import Vector2
 
@@ -54,6 +56,13 @@ ValidParameterTypes = Union[
     ValidParameterSingleType,
     Sequence[ValidParameterSingleType],
 ]
+
+ops_dict: Mapping[str, Callable[[float, float], int]] = {
+    "+": add,
+    "-": sub,
+    "*": mul,
+    "/": floordiv,
+}
 
 
 class NamedTupleProtocol(Protocol):
@@ -376,3 +385,41 @@ def assert_never(value: Never) -> NoReturn:
 
     """
     assert False, f"Unhandled value: {value} ({type(value).__name__})"
+
+
+def compare(
+    key: str, value1: Union[int, float], value2: Union[int, float]
+) -> bool:
+    """
+    It compares and it returns a boleean whether is greater_than or not.
+
+    It supports: less_than, less_or_equal, greater_than, greater_or_equal
+        equals and not_equals.
+
+    It supports: >, <, >=, <=, == and !=
+
+    It raises a ValueError if the key isn't among the operators.
+
+    Parameters:
+        key: Key to check.
+        value1: First value to compare.
+        value2: Second value to compare.
+
+    Returns:
+        boolean: true / false
+
+    """
+    if key == Comparison.less_than or key == "<":
+        return bool(lt(value1, value2))
+    elif key == Comparison.less_or_equal or key == "<=":
+        return bool(le(value1, value2))
+    elif key == Comparison.greater_than or key == ">":
+        return bool(gt(value1, value2))
+    elif key == Comparison.greater_or_equal or key == ">=":
+        return bool(ge(value1, value2))
+    elif key == Comparison.equals or key == "==":
+        return bool(eq(value1, value2))
+    elif key == Comparison.not_equals or key == "!=":
+        return bool(ne(value1, value2))
+    else:
+        raise ValueError(f"{key} isn't among {list(Comparison)}")

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from collections.abc import Generator
@@ -25,7 +25,7 @@ INFINITE_ITEMS = prepare.INFINITE_ITEMS
 
 
 class ShopMenuState(Menu[Item]):
-    background_filename = "gfx/ui/item/item_menu_bg.png"
+    background_filename = prepare.BG_SHOP
     draw_borders = False
 
     def __init__(

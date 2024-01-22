@@ -8,11 +8,11 @@
         },
         {
             "level_learned": 2,
-            "technique": "blade"
+            "technique": "punch"
         },
         {
             "level_learned": 6,
-            "technique": "wall_of_steel"
+            "technique": "riposte"
         },
         {
             "level_learned": 8,
@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "rust_bomb"
+            "technique": "all_in"
         },
         {
             "level_learned": 20,
@@ -44,7 +44,7 @@
         },
         {
             "level_learned": 36,
-            "technique": "shrapnel"
+            "technique": "blade"
         },
         {
             "level_learned": 40,

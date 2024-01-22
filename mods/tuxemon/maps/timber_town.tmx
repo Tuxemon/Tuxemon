@@ -92,41 +92,41 @@
   <object id="118" name="Teleport to Route 5" type="event" x="0" y="464" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport route5.tmx,39,9,0.3"/>
-    <property name="act20" value="player_face left"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing left"/>
+    <property name="act20" value="char_face player,left"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="172" name="Teleport to Tunnel" type="event" x="528" y="0" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport tunnel.tmx,13,39,0.3"/>
-    <property name="act20" value="player_face up"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
+    <property name="act20" value="char_face player,up"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="173" name="Teleport to Tunnel" type="event" x="544" y="0" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport tunnel.tmx,14,39,0.3"/>
-    <property name="act20" value="player_face up"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
+    <property name="act20" value="char_face player,up"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="174" name="Teleport to Tunnel" type="event" x="560" y="0" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport tunnel.tmx,15,39,0.3"/>
-    <property name="act20" value="player_face up"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
+    <property name="act20" value="char_face player,up"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="175" name="Teleport to Tunnel" type="event" x="576" y="0" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport tunnel.tmx,16,39,0.3"/>
-    <property name="act20" value="player_face up"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
+    <property name="act20" value="char_face player,up"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="176" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -138,9 +138,9 @@
   <object id="180" name="Teleport to Scoop" type="event" x="160" y="352" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport scoop1.tmx,0,3,0.3"/>
-    <property name="act20" value="player_face right"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
+    <property name="act20" value="char_face player,right"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="181" name="Player Spawn" type="event" x="560" y="48" width="16" height="16"/>
@@ -148,14 +148,14 @@
    <properties>
     <property name="act1" value="translated_dialog flower_city"/>
     <property name="act2" value="translated_dialog flower_city_description"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="185" name="Sign: Timber North" type="event" x="528" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog tunnel"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>

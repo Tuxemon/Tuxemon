@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import datetime as dt
@@ -46,8 +46,14 @@ class Player(NPC):
         diff_x = abs(after.x - before.x)
         diff_y = abs(after.y - before.y)
 
+        # increases steps player
         self.steps += diff_x + diff_y
 
+        # increases steps party monsters
+        for monster in self.monsters:
+            monster.steps += diff_x + diff_y
+
+        # checks variables starting with steps_
         for key, value in self.game_variables.items():
             if key.startswith("steps_"):
                 if float(value) > 0.0:
@@ -63,6 +69,7 @@ class Player(NPC):
         var["hour"] = dt.datetime.now().strftime("%H")
         var["day_of_year"] = str(dt.datetime.now().timetuple().tm_yday)
         var["year"] = dt.datetime.now().strftime("%Y")
+        var["weekday"] = dt.datetime.now().strftime("%A")
 
         # Leap year
         if (int(var["year"]) % 400 == 0) and (int(var["year"]) % 100 == 0):

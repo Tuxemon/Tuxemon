@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
@@ -23,9 +23,18 @@ class NoddingOffEffectResult(CondEffectResult):
 class NoddingOffEffect(CondEffect):
     """
     This effect has a chance to apply the nodding off status effect.
+
+    Sleep lasts for a minimum of one turn.
+    It has a 50% chance to end after each turn.
+    If it has gone on for 5 turns, it ends.
+
+    Parameters:
+        chance: The chance.
+
     """
 
     name = "noddingoff"
+    chance: float
 
     def apply(
         self, condition: Condition, target: Monster
@@ -33,24 +42,15 @@ class NoddingOffEffect(CondEffect):
         extra: Optional[str] = None
         skip: Optional[Technique] = None
 
-        if (
-            condition.phase == "pre_checking"
-            and condition.slug == "noddingoff"
-        ):
+        if condition.phase == "pre_checking" and condition.repl_tech:
             skip = Technique()
-            skip.load("empty")
+            skip.load(condition.repl_tech)
 
-        if (
-            condition.phase == "perform_action_tech"
-            and condition.slug == "noddingoff"
-            and self.wake_up(condition)
+        if condition.phase == "perform_action_tech" and self.wake_up(
+            condition
         ):
-            extra = T.format(
-                "combat_state_dozing_end",
-                {
-                    "target": target.name.upper(),
-                },
-            )
+            params = {"target": target.name.upper()}
+            extra = T.format("combat_state_dozing_end", params)
             target.status.clear()
         return {
             "success": True,
@@ -60,8 +60,10 @@ class NoddingOffEffect(CondEffect):
         }
 
     def wake_up(self, condition: Condition) -> bool:
-        value = random.random()
-        if condition.duration >= condition.nr_turn > 0 and value > 0.5:
+        if (
+            condition.duration >= condition.nr_turn > 0
+            and random.random() > self.chance
+        ):
             return True
         if condition.nr_turn > condition.duration:
             return True

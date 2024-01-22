@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "skull_fire",
   "effects": [
-    "give confused,target",
+    "give festering,target",
     "enhance"
   ],
   "flip_axes": "",
@@ -11,7 +11,7 @@
   "potency": 1,
   "power": 0,
   "range": "special",
-  "recharge": 3,
+  "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "negation",
   "sort": "damage",

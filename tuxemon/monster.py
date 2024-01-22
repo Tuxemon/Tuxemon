@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -59,6 +59,7 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "taste_cold",
     "taste_warm",
     "traded",
+    "steps",
     "mod_armour",
     "mod_dodge",
     "mod_melee",
@@ -104,6 +105,7 @@ class Monster:
         self.current_hp = 0
         self.hp = 0
         self.level = 0
+        self.steps = 0.0
 
         # modifier values
         self.mod_armour = 0
@@ -129,13 +131,14 @@ class Monster:
         self.total_experience = 0
 
         self.types: list[Element] = []
-        self._types: list[Element] = []
+        self.default_types: list[Element] = []
         self.shape = MonsterShape.default
         self.randomly = True
         self.out_of_range = False
         self.got_experience = False
         self.levelling_up = False
         self.traded = False
+        self.wild = False
 
         self.status: list[Condition] = []
         self.plague = PlagueType.healthy
@@ -207,11 +210,12 @@ class Monster:
         self.stage = results.stage or EvolutionStage.standalone
         self.taste_cold = self.set_taste_cold(self.taste_cold)
         self.taste_warm = self.set_taste_warm(self.taste_warm)
+        self.steps = self.steps
         # types
         for _ele in results.types:
             _element = Element(_ele)
             self.types.append(_element)
-            self._types.append(_element)
+            self.default_types.append(_element)
 
         self.randomly = results.randomly or self.randomly
         self.got_experience = self.got_experience
@@ -288,21 +292,22 @@ class Monster:
 
         self.moves.append(technique)
 
-    def return_types(self) -> None:
+    def reset_types(self) -> None:
         """
-        Returns a monster types.
+        Resets monster types to the default ones.
         """
-        self.types = self._types
+        self.types = self.default_types
 
-    def return_stat(
-        self,
-        stat: Optional[StatType],
-    ) -> int:
+    def return_stat(self, stat: StatType) -> int:
         """
         Returns a monster stat (eg. melee, armour, etc.).
 
         Parameters:
             stat: The stat for the monster to return.
+
+        Returns:
+            value: The stat.
+
         """
         value = 0
         if stat == StatType.armour:
@@ -420,12 +425,12 @@ class Monster:
         self.melee = (shape.melee * multiplier) + self.mod_melee
         self.ranged = (shape.ranged * multiplier) + self.mod_ranged
         self.speed = (shape.speed * multiplier) + self.mod_speed
-        # tastes
-        self.armour += formula.check_taste(self, "armour")
-        self.dodge += formula.check_taste(self, "dodge")
-        self.melee += formula.check_taste(self, "melee")
-        self.ranged += formula.check_taste(self, "ranged")
-        self.speed += formula.check_taste(self, "speed")
+        # updates stats based on additional parameters
+        self.armour += formula.update_armour(self)
+        self.dodge += formula.update_dodge(self)
+        self.melee += formula.update_melee(self)
+        self.ranged += formula.update_ranged(self)
+        self.speed += formula.update_speed(self)
 
     def set_taste_cold(self, taste_cold: TasteCold) -> TasteCold:
         """
@@ -541,7 +546,7 @@ class Monster:
                 tech.load(ele)
                 self.learn(tech)
 
-    def update_moves(self, levels_earned: int) -> Optional[Technique]:
+    def update_moves(self, levels_earned: int) -> list[Technique]:
         """
         Set monster moves according to the levels increased.
         Excludes the moves already learned.
@@ -550,11 +555,10 @@ class Monster:
             levels_earned: Number of levels earned.
 
         Returns:
-            technique: if there is a technique, then it returns
-            a technique, otherwise none
+            techniques: list containing the learned techniques
 
         """
-        technique = None
+        _technique = []
         for move in self.moveset:
             if (
                 move.technique not in (m.slug for m in self.moves)
@@ -564,8 +568,9 @@ class Monster:
             ):
                 technique = Technique()
                 technique.load(move.technique)
+                _technique.append(technique)
                 self.learn(technique)
-        return technique
+        return _technique
 
     def experience_required(self, level_ofs: int = 0) -> int:
         """
@@ -578,7 +583,8 @@ class Monster:
             Required experience.
 
         """
-        return (self.level + level_ofs) ** prepare.COEFF_EXP
+        required = (self.level + level_ofs) ** prepare.COEFF_EXP
+        return int(required)
 
     def get_sprite(self, sprite: str, **kwargs: Any) -> Sprite:
         """
@@ -756,6 +762,15 @@ class Monster:
             return int(random.randrange(0, int(self.speed)) * 1.5)
         else:
             return random.randrange(0, int(self.speed))
+
+    def find_tech_by_id(self, instance_id: uuid.UUID) -> Optional[Technique]:
+        """
+        Finds a tech among the monster's moves which has the given id.
+
+        """
+        return next(
+            (m for m in self.moves if m.instance_id == instance_id), None
+        )
 
 
 def decode_monsters(

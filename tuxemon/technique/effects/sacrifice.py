@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -39,8 +39,8 @@ class SacrificeEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> SacrificeEffectResult:
-        player = self.session.player
-        value = float(player.game_variables["random_tech_hit"])
+        combat = tech.combat_state
+        value = combat._random_tech_hit if combat else 0.0
         hit = tech.accuracy >= value
         if hit:
             tech.hit = True

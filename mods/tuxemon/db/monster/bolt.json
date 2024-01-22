@@ -25,11 +25,22 @@
         {
             "level_learned": 12,
             "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 16,
+            "technique": "beam"
+        },
+        {
+            "level_learned": 20,
+            "technique": "surge"
+        },
+        {
+            "level_learned": 24,
+            "technique": "thunderclap"
         }
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 12,
             "monster_slug": "arthrobolt"
         }

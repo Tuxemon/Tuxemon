@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """This module contains the Start state.
 """
 from __future__ import annotations
@@ -40,7 +40,7 @@ class BackgroundState(State):
     """
 
     def draw(self, surface: pygame.surface.Surface) -> None:
-        surface.fill((0, 0, 0, 0))
+        surface.fill(prepare.BLACK_COLOR)
 
 
 class StartState(PygameMenuState):
@@ -107,7 +107,7 @@ class StartState(PygameMenuState):
 
         background = pygame_menu.BaseImage(
             image_path=tools.transform_resource_filename(
-                "gfx/ui/item/bg_pcstate.png"
+                prepare.BG_START_SCREEN
             ),
             drawing_position=POSITION_CENTER,
         )

@@ -53,9 +53,9 @@
   <object id="10" name="Teleport to Lower Floor" type="event" x="144" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_dojo3.tmx,13,9,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="19" name="Player Spawn" type="event" x="224" y="144" width="16" height="16"/>
@@ -68,7 +68,7 @@
   <object id="23" name="Create Thri" type="event" x="176" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_thri,11,3"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_thri"/>
+    <property name="cond1" value="not char_exists spyder_dojo_thri"/>
    </properties>
   </object>
   <object id="24" name="Talk Thri" type="event" x="144" y="32" width="16" height="16">
@@ -76,7 +76,7 @@
     <property name="act11" value="translated_dialog spyder_dojo_thri1"/>
     <property name="act12" value="add_monster sampsage,35,spyder_dojo_thri,5,10"/>
     <property name="act13" value="add_monster sampsack,35,spyder_dojo_thri,5,10"/>
-    <property name="act14" value="start_battle spyder_dojo_thri"/>
+    <property name="act14" value="start_battle player,spyder_dojo_thri"/>
     <property name="act15" value="set_variable dojothri:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
@@ -117,32 +117,32 @@
   </object>
   <object id="28" name="Billie encounter" type="event" x="80" y="96" width="224" height="16">
    <properties>
-    <property name="act01" value="player_stop"/>
+    <property name="act01" value="char_stop"/>
     <property name="act02" value="lock_controls"/>
-    <property name="act03" value="create_npc spyder_dojo_billie,10,9"/>
-    <property name="act04" value="pathfind_to_player spyder_dojo_billie,down"/>
+    <property name="act03" value="create_npc spyder_billie,10,9"/>
+    <property name="act04" value="pathfind_to_player spyder_billie,down"/>
     <property name="act05" value="unlock_controls"/>
     <property name="act08" value="translated_dialog spyder_dojo_billie1"/>
-    <property name="act20" value="add_monster billie_choice,35,spyder_dojo_billie,5,10"/>
-    <property name="act21" value="add_monster eyesore,35,spyder_dojo_billie,5,10"/>
-    <property name="act22" value="add_monster cardiwing,35,spyder_dojo_billie,5,10"/>
-    <property name="act23" value="add_monster viviphyta,35,spyder_dojo_billie,5,10"/>
-    <property name="act30" value="start_battle spyder_dojo_billie"/>
+    <property name="act20" value="add_monster billie_choice,35,spyder_billie,5,10"/>
+    <property name="act21" value="add_monster eyesore,35,spyder_billie,5,10"/>
+    <property name="act22" value="add_monster cardiwing,35,spyder_billie,5,10"/>
+    <property name="act23" value="add_monster viviphyta,35,spyder_billie,5,10"/>
+    <property name="act30" value="start_battle player,spyder_billie"/>
     <property name="act40" value="translated_dialog spyder_dojo_billie2"/>
-    <property name="act50" value="pathfind spyder_dojo_billie,10,9"/>
-    <property name="act60" value="npc_face spyder_dojo_billie,left"/>
-    <property name="act70" value="remove_npc spyder_dojo_billie"/>
-    <property name="act80" value="set_tuxepedia eyesore,seen"/>
-    <property name="act81" value="set_tuxepedia cardiwing,seen"/>
-    <property name="act82" value="set_tuxepedia vivipere,seen"/>
-    <property name="act83" value="set_tuxepedia viviphyta,seen"/>
-    <property name="act84" value="set_tuxepedia eyenemy,seen"/>
-    <property name="act85" value="set_tuxepedia cardiling,seen"/>
+    <property name="act50" value="pathfind spyder_billie,10,9"/>
+    <property name="act60" value="char_face spyder_billie,left"/>
+    <property name="act70" value="remove_npc spyder_billie"/>
+    <property name="act80" value="set_tuxepedia player,eyesore,seen"/>
+    <property name="act81" value="set_tuxepedia player,cardiwing,seen"/>
+    <property name="act82" value="set_tuxepedia player,vivipere,seen"/>
+    <property name="act83" value="set_tuxepedia player,viviphyta,seen"/>
+    <property name="act84" value="set_tuxepedia player,eyenemy,seen"/>
+    <property name="act85" value="set_tuxepedia player,cardiling,seen"/>
     <property name="act90" value="set_variable dojobillie:yes"/>
     <property name="act95" value="translated_dialog spyder_dojo_billie3"/>
     <property name="cond1" value="not variable_set dojobillie:yes"/>
     <property name="cond2" value="is variable_set dojothrimonster:yes"/>
-    <property name="cond3" value="is player_at"/>
+    <property name="cond3" value="is char_at player"/>
    </properties>
   </object>
   <object id="29" name="Billie Budaye" type="event" x="0" y="64" width="16" height="16">

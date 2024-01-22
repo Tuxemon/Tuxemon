@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -15,7 +15,6 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.session import local_session
-from tuxemon.states.monster_info import MonsterInfoState
 from tuxemon.states.techniques import TechniqueMenuState
 from tuxemon.tools import open_choice_dialog, open_dialog
 
@@ -66,15 +65,18 @@ class WorldMenuState(PygameMenuState):
 
         # Main Menu - Allows users to open the main menu in game.
         player = local_session.player
+        param = {"character": player}
         menu: list[tuple[str, WorldMenuGameObj]] = []
         if player.monsters and player.menu_monsters:
             menu.append(("menu_monster", self.open_monster_menu))
         if player.items and player.menu_bag:
             menu.append(("menu_bag", change("ItemMenuState")))
         if player.menu_player:
-            menu.append(("menu_player", change("PlayerState")))
+            CharacterState = change("CharacterState", kwargs=param)
+            menu.append(("menu_player", CharacterState))
         if player.missions:
-            menu.append(("menu_missions", change("MissionState")))
+            MissionState = change("MissionState", kwargs=param)
+            menu.append(("menu_missions", MissionState))
         if player.menu_save:
             menu.append(("menu_save", change("SaveMenuState")))
         if player.menu_load:
@@ -131,19 +133,18 @@ class WorldMenuState(PygameMenuState):
             # TODO: maybe add more hooks to eliminate this runtime patching
             MonsterMenuState.on_menu_selection_change(monster_menu)
 
-        def select_first_monster(monster: Monster) -> None:
+        def select_monster(monster: Monster) -> None:
             # TODO: API for getting the game player obj
             player = local_session.player
             context["monster"] = monster
             context["old_index"] = player.monsters.index(monster)
             self.client.pop_state()  # close the info/move menu
 
-        def open_monster_stats(monster: Monster) -> None:
+        def monster_stats(monster: Monster) -> None:
             """Show monster statistics."""
             self.client.pop_state()
-            self.client.push_state(
-                MonsterInfoState(monster=monster, source=self.name)
-            )
+            params = {"monster": monster, "source": self.name}
+            self.client.push_state("MonsterInfoState", kwargs=params)
 
         def positive_answer(monster: Monster) -> None:
             success = False
@@ -155,10 +156,9 @@ class WorldMenuState(PygameMenuState):
             if success:
                 self.client.pop_state()
                 self.client.pop_state()
-                open_dialog(
-                    local_session,
-                    [T.format("tuxemon_released", {"name": monster.name})],
-                )
+                params = {"name": monster.name.upper()}
+                msg = T.format("tuxemon_released", params)
+                open_dialog(local_session, [msg])
                 monster_menu.refresh_menu_items()
                 monster_menu.on_menu_selection_change()
             else:
@@ -168,28 +168,21 @@ class WorldMenuState(PygameMenuState):
             self.client.pop_state()  # close menu
             self.client.pop_state()  # close confirmation dialog
 
-        def release_monster_from_party(monster: Monster) -> None:
+        def release_monster(monster: Monster) -> None:
             """Show release monster confirmation dialog."""
             # Remove the submenu and replace with a confirmation dialog
             self.client.pop_state()
-            open_dialog(
-                local_session,
-                [T.format("release_confirmation", {"name": monster.name})],
-            )
-            open_choice_dialog(
-                local_session,
-                menu=(
-                    ("no", T.translate("no"), negative_answer),
-                    (
-                        "yes",
-                        T.translate("yes"),
-                        partial(positive_answer, monster),
-                    ),
-                ),
-                escape_key_exits=False,
-            )
+            params = {"name": monster.name.upper()}
+            msg = T.format("release_confirmation", params)
+            open_dialog(local_session, [msg])
+            var_menu = []
+            _no = T.translate("no")
+            var_menu.append(("no", _no, negative_answer))
+            _yes = T.translate("yes")
+            var_menu.append(("yes", _yes, partial(positive_answer, monster)))
+            open_choice_dialog(local_session, var_menu, False)
 
-        def open_monster_techs(monster: Monster) -> None:
+        def monster_techs(monster: Monster) -> None:
             """Show techniques."""
             self.client.pop_state()
             self.client.push_state(TechniqueMenuState(monster=monster))
@@ -198,35 +191,22 @@ class WorldMenuState(PygameMenuState):
             menu_item: MenuItem[WorldMenuGameObj],
         ) -> None:
             original = monster_menu.get_selected_item()
-            if original:
-                monster = original.game_object
-                if monster:
-                    open_choice_dialog(
-                        local_session,
-                        menu=(
-                            (
-                                "info",
-                                T.translate("monster_menu_info").upper(),
-                                partial(open_monster_stats, monster),
-                            ),
-                            (
-                                "tech",
-                                T.translate("monster_menu_tech").upper(),
-                                partial(open_monster_techs, monster),
-                            ),
-                            (
-                                "move",
-                                T.translate("monster_menu_move").upper(),
-                                partial(select_first_monster, monster),
-                            ),
-                            (
-                                "release",
-                                T.translate("monster_menu_release").upper(),
-                                partial(release_monster_from_party, monster),
-                            ),
-                        ),
-                        escape_key_exits=True,
-                    )
+            _info = T.translate("monster_menu_info").upper()
+            _tech = T.translate("monster_menu_tech").upper()
+            _move = T.translate("monster_menu_move").upper()
+            _release = T.translate("monster_menu_release").upper()
+            if original and original.game_object:
+                mon = original.game_object
+                open_choice_dialog(
+                    local_session,
+                    menu=(
+                        ("info", _info, partial(monster_stats, mon)),
+                        ("tech", _tech, partial(monster_techs, mon)),
+                        ("move", _move, partial(select_monster, mon)),
+                        ("release", _release, partial(release_monster, mon)),
+                    ),
+                    escape_key_exits=True,
+                )
 
         def handle_selection(menu_item: MenuItem[WorldMenuGameObj]) -> None:
             if "monster" in context:

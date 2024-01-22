@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """This module contains the Options state"""
 from __future__ import annotations
 
@@ -13,6 +13,7 @@ from pygame_menu import locals
 from pygame_menu.locals import POSITION_CENTER
 
 from tuxemon import config, prepare, tools
+from tuxemon.animation import Animation
 from tuxemon.constants import paths
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.locale import T
@@ -39,20 +40,14 @@ class SetKeyState(PygameMenuState):
     This only works for pygame events.
     """
 
-    def __init__(self, button: Optional[str]) -> None:
+    def __init__(self, button: Optional[str], **kwargs: Any) -> None:
         """
         Used when initializing the state
         """
-        width, height = prepare.SCREEN_SIZE
-
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
         theme.widget_alignment = locals.ALIGN_CENTER
-
-        width = int(0.8 * width)
-        height = int(0.2 * height)
-        super().__init__(height=height, width=width)
-
+        super().__init__(**kwargs)
         self.menu.add.label(T.translate("options_new_input_key0").upper())
         self.button = button
         self.repristinate()
@@ -107,32 +102,40 @@ class SetKeyState(PygameMenuState):
         else:
             return None
 
+    def update_animation_size(self) -> None:
+        widgets_size = self.menu.get_size(widget=True)
+        self.menu.resize(
+            max(1, int(widgets_size[0] * self.animation_size)),
+            max(1, int(widgets_size[1] * self.animation_size)),
+        )
+
+    def animate_open(self) -> Animation:
+        """
+        Animate the menu popping in.
+
+        Returns:
+            Popping in animation.
+
+        """
+        self.animation_size = 0.0
+        ani = self.animate(self, animation_size=1.0, duration=0.2)
+        ani.update_callback = self.update_animation_size
+        return ani
+
 
 class ControlState(PygameMenuState):
     """
     This state is responsible for the option menu.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, **kwargs: Any) -> None:
         """
         Used when initializing the state.
         """
-        width, height = prepare.SCREEN_SIZE
-
-        background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(
-                "gfx/ui/item/bg_pcstate.png"
-            ),
-            drawing_position=POSITION_CENTER,
-        )
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
-        theme.background_color = background
         theme.widget_alignment = locals.ALIGN_CENTER
-
-        width = int(0.8 * width)
-        height = int(0.8 * height)
-        super().__init__(height=height, width=width)
+        super().__init__(**kwargs)
         self.initialize_items(self.menu)
         self.reload_controls()
         self.repristinate()
@@ -141,7 +144,6 @@ class ControlState(PygameMenuState):
         """Repristinate original theme (color, alignment, etc.)"""
         theme = get_theme()
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = self.background_color
         theme.widget_alignment = locals.ALIGN_LEFT
 
     def initialize_items(
@@ -310,6 +312,32 @@ class ControlState(PygameMenuState):
             onchange=on_change_hemisphere,
             font_size=self.font_size_small,
         )
+
+    def update_animation_size(self) -> None:
+        width, height = prepare.SCREEN_SIZE
+        widgets_size = self.menu.get_size(widget=True)
+        _width, _height = widgets_size
+        # block width if more than screen width
+        _width = width if _width >= width else _width
+        _height = height if _height >= height else _height
+
+        self.menu.resize(
+            max(1, int(_width * self.animation_size)),
+            max(1, int(_height * self.animation_size)),
+        )
+
+    def animate_open(self) -> Animation:
+        """
+        Animate the menu popping in.
+
+        Returns:
+            Popping in animation.
+
+        """
+        self.animation_size = 0.0
+        ani = self.animate(self, animation_size=1.0, duration=0.2)
+        ani.update_callback = self.update_animation_size
+        return ani
 
     def reload_controls(self) -> None:
         with open(paths.USER_CONFIG_PATH, "w") as fp:

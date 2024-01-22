@@ -1,6 +1,6 @@
 {
   "tech_id": 146,
-  "accuracy": 0.6,
+  "accuracy": 0.8,
   "animation": "ruby",
   "effects": [
     "damage"
@@ -8,7 +8,7 @@
   "flip_axes": "",
   "is_fast": false,
   "potency": 0.6,
-  "power": 2.2,
+  "power": 2.5,
   "range": "reach",
   "recharge": 2,
   "sfx": "sfx_blaster",

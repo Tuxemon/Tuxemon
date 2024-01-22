@@ -1,10 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional
 
+from tuxemon.combat import fainted
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 from tuxemon.locale import T
 
@@ -20,34 +21,32 @@ class DieHardEffectResult(CondEffectResult):
 @dataclass
 class DieHardEffect(CondEffect):
     """
-    DieHard status
+    DieHard: When HP would fall below 1, set it to 1, remove this condition and
+    print "X fights through the pain."
+
+    A monster that is already on exactly 1 HP cannot gain the Diehard condition.
+
+    Parameters:
+        hp: The amount of HP to set.
 
     """
 
     name = "diehard"
+    hp: int
 
     def apply(
         self, condition: Condition, target: Monster
     ) -> DieHardEffectResult:
         extra: Optional[str] = None
-        if condition.phase == "check_party_hp" and condition.slug == "diehard":
-            if target.current_hp <= 0:
-                target.current_hp = 1
+        if condition.phase == "check_party_hp":
+            params = {"target": target.name.upper()}
+            if fainted(target):
+                target.current_hp = self.hp
                 target.status.clear()
-                extra = T.format(
-                    "combat_state_diehard_tech",
-                    {
-                        "target": target.name.upper(),
-                    },
-                )
-            elif target.current_hp == 1:
+                extra = T.format("combat_state_diehard_tech", params)
+            if target.current_hp == self.hp:
                 target.status.clear()
-                extra = T.format(
-                    "combat_state_diehard_end",
-                    {
-                        "target": target.name.upper(),
-                    },
-                )
+                extra = T.format("combat_state_diehard_end", params)
 
         return {
             "success": True,

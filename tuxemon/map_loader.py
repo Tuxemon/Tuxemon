@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
 import uuid
 from collections.abc import Generator, Iterator
@@ -99,26 +99,15 @@ class YAMLEventLoader:
                 conds.append(condition)
             for key, value in enumerate(event_data.get("behav", []), start=1):
                 behav_type, args = parse_behav_string(value)
-                if behav_type == "talk":
-                    condition = MapCondition(
-                        type="to_talk",
-                        parameters=["player", args[0]],
-                        x=x,
-                        y=y,
-                        width=w,
-                        height=h,
-                        operator="is",
-                        name=f"behav{str(key*10)}",
-                    )
-                    conds.insert(0, condition)
-                    action = MapAction(
-                        type="char_face",
-                        parameters=[args[0], "player"],
-                        name=f"behav{str(key*10)}",
-                    )
-                    acts.insert(0, action)
-                else:
-                    raise Exception
+                _args = list(args)
+                _args.insert(0, behav_type)
+                _conds = MapCondition(
+                    "behav", _args, x, y, w, h, "is", f"behav{str(key*10)}"
+                )
+                conds.insert(0, _conds)
+                _squeeze = [":".join(_args)]
+                _acts = MapAction("behav", _squeeze, f"behav{str(key*10)}")
+                acts.insert(0, _acts)
 
             if event_type == source:
                 yield EventObject(_id, name, x, y, w, h, conds, acts)
@@ -391,24 +380,13 @@ class TMXMapLoader:
             if key.startswith("behav"):
                 behav_string = properties[key]
                 behav_type, args = parse_behav_string(behav_string)
-                if behav_type == "talk":
-                    conds.insert(
-                        0,
-                        MapCondition(
-                            "to_talk",
-                            ["player", args[0]],
-                            x,
-                            y,
-                            w,
-                            h,
-                            "is",
-                            key,
-                        ),
-                    )
-                    acts.insert(
-                        0, MapAction("char_face", [args[0], "player"], key)
-                    )
-                else:
-                    raise Exception
+                _args = list(args)
+                _args.insert(0, behav_type)
+                conds.insert(
+                    0,
+                    MapCondition("behav", _args, x, y, w, h, "is", key),
+                )
+                _squeeze = [":".join(_args)]
+                acts.insert(0, MapAction("behav", _squeeze, key))
 
         return EventObject(_id, obj.name, x, y, w, h, conds, acts)

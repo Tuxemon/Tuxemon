@@ -1,8 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
+from collections.abc import Callable
 from dataclasses import dataclass
 from functools import partial
 from typing import final
@@ -45,13 +46,13 @@ class EvolutionAction(EventAction):
         if len(client.state_manager.active_states) > 2:
             return
 
-        def positive_answer(monster: Monster, evolved: Monster) -> None:
+        def positive(monster: Monster, evolved: Monster) -> None:
             client.pop_state()
             client.pop_state()
             logger.info(f"{monster.name} evolves into {evolved.name}!")
             character.evolve_monster(monster, evolved.slug)
 
-        def negative_answer() -> None:
+        def negative() -> None:
             monster.got_experience = False
             monster.levelling_up = False
             logger.info(f"{monster.name}'s evolution refused!")
@@ -65,25 +66,12 @@ class EvolutionAction(EventAction):
             }
             msg = T.format("evolution_confirmation", params)
             open_dialog(self.session, [msg])
-            open_choice_dialog(
-                self.session,
-                menu=(
-                    (
-                        "yes",
-                        T.translate("yes"),
-                        partial(
-                            positive_answer,
-                            monster,
-                            evolved,
-                        ),
-                    ),
-                    (
-                        "no",
-                        T.translate("no"),
-                        negative_answer,
-                    ),
-                ),
-            )
+            _no = T.translate("no")
+            _yes = T.translate("yes")
+            menu: list[tuple[str, str, Callable[[], None]]] = []
+            menu.append(("yes", _yes, partial(positive, monster, evolved)))
+            menu.append(("no", _no, negative))
+            open_choice_dialog(self.session, menu)
 
         if character.pending_evolutions:
             evolutions = set(character.pending_evolutions)

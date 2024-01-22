@@ -1,20 +1,22 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from collections.abc import Callable
 from functools import partial
-from typing import Any
+from typing import Any, Optional
 
 import pygame_menu
 from pygame_menu import locals
 from pygame_menu.locals import POSITION_CENTER
 
 from tuxemon import prepare, tools
-from tuxemon.db import MonsterModel, SeenStatus
+from tuxemon.db import MonsterModel, SeenStatus, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
+from tuxemon.platform.const import buttons
+from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
 
 MAX_PAGE = 20
@@ -50,14 +52,12 @@ class JournalState(PygameMenuState):
         player = local_session.player
         for mon in monsters:
             if mon.slug in player.tuxepedia:
-                label = str(mon.txmn_id) + ". " + T.translate(mon.slug).upper()
+                param = {"monster": mon}
+                label = f"{mon.txmn_id}. {T.translate(mon.slug).upper()}"
                 if player.tuxepedia[mon.slug] == SeenStatus.seen:
                     menu.add.button(
                         label,
-                        change_state(
-                            "JournalInfoState",
-                            kwargs={"monster": mon},
-                        ),
+                        change_state("JournalInfoState", kwargs=param),
                         font_size=self.font_size_small,
                         button_id=mon.slug,
                     ).translate(
@@ -65,11 +65,8 @@ class JournalState(PygameMenuState):
                     )
                 elif player.tuxepedia[mon.slug] == SeenStatus.caught:
                     menu.add.button(
-                        label,
-                        change_state(
-                            "JournalInfoState",
-                            kwargs={"monster": mon},
-                        ),
+                        label + "◉",
+                        change_state("JournalInfoState", kwargs=param),
                         font_size=self.font_size_small,
                         button_id=mon.slug,
                         underline=True,
@@ -77,14 +74,13 @@ class JournalState(PygameMenuState):
                         fix_measure(width, 0.25), fix_measure(height, 0.01)
                     )
             else:
-                label = str(mon.txmn_id) + ". " + T.translate(mon.slug).upper()
-                lab = menu.add.label(
+                label = f"{mon.txmn_id}. -----"
+                lab: Any = menu.add.label(
                     label,
                     font_size=self.font_size_small,
                     font_color=prepare.DIMGRAY_COLOR,
                     label_id=mon.slug,
                 )
-                assert not isinstance(lab, list)
                 lab.translate(
                     fix_measure(width, 0.25), fix_measure(height, 0.01)
                 )
@@ -136,6 +132,8 @@ class JournalState(PygameMenuState):
             height=height, width=width, columns=columns, rows=int(rows)
         )
 
+        self._page = page
+        self._monster_list = monster_list
         self.add_menu_items(self.menu, monster_list)
         self.repristinate()
 
@@ -145,3 +143,40 @@ class JournalState(PygameMenuState):
         theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
         theme.background_color = self.background_color
         theme.widget_alignment = locals.ALIGN_LEFT
+
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+        client = self.client
+
+        monsters = list(db.database["monster"])
+        box: list[MonsterModel] = []
+        for mov in monsters:
+            results = db.lookup(mov, table="monster")
+            if results.txmn_id > 0:
+                box.append(results)
+
+        max_page = round(len(box) / MAX_PAGE)
+        param: dict[str, Any] = {}
+        param["monsters"] = box
+        if event.button == buttons.RIGHT and event.pressed:
+            if self._page < (max_page - 1):
+                self._page += 1
+                param["page"] = self._page
+                client.replace_state("JournalState", kwargs=param)
+            else:
+                param["page"] = 0
+                client.replace_state("JournalState", kwargs=param)
+        elif event.button == buttons.LEFT and event.pressed:
+            if self._page > 0:
+                self._page -= 1
+                param["page"] = self._page
+                client.replace_state("JournalState", kwargs=param)
+            else:
+                param["page"] = max_page - 1
+                client.replace_state("JournalState", kwargs=param)
+        elif (
+            event.button == buttons.BACK or event.button == buttons.B
+        ) and event.pressed:
+            client.pop_state()
+        else:
+            return super().process_event(event)
+        return None

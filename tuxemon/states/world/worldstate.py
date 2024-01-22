@@ -1221,25 +1221,21 @@ class WorldState(state.State):
         """
         txmn_map = TMXMapLoader().load(path)
         yaml_path = path[:-4] + ".yaml"
-        new_events = list(txmn_map.events)
-        new_inits = list(txmn_map.inits)
-        if os.path.exists(yaml_path):
-            new_events.extend(
-                YAMLEventLoader().load_events(yaml_path, "event")
-            )
-            new_inits.extend(YAMLEventLoader().load_events(yaml_path, "init"))
-        # scenario YAML, try because not all maps have a scenario
+        _paths = [yaml_path]
+
         if txmn_map.scenario:
             _scenario = prepare.fetch("maps", txmn_map.scenario + ".yaml")
-            if os.path.exists(_scenario):
-                new_events.extend(
-                    YAMLEventLoader().load_events(_scenario, "event")
-                )
-                new_inits.extend(
-                    YAMLEventLoader().load_events(_scenario, "init")
-                )
-        txmn_map.events = new_events
-        txmn_map.inits = new_inits
+            _paths.append(_scenario)
+
+        _events = list(txmn_map.events)
+        _inits = list(txmn_map.inits)
+        for _path in _paths:
+            if os.path.exists(_path):
+                _events.extend(YAMLEventLoader().load_events(_path, "event"))
+                _inits.extend(YAMLEventLoader().load_events(_path, "init"))
+
+        txmn_map.events = _events
+        txmn_map.inits = _inits
         return txmn_map
 
     @no_type_check  # only used by multiplayer which is disabled

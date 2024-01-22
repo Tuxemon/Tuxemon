@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -33,19 +33,14 @@ class LearnTmEffect(ItemEffect):
         self, item: Item, target: Union[Monster, None]
     ) -> LearnTmEffectResult:
         learn: bool = False
-        assert target
-        # monster moves
-        moves = []
-        for tech in target.moves:
-            moves.append(tech.slug)
-        # clean up the list
-        set_moves = set(moves)
-        res = list(set_moves)
-        # continue operation
-        if res:
-            if self.technique not in res:
-                self.user.game_variables[
-                    "overwrite_technique"
-                ] = self.technique
-                learn = True
+        moves = [tech.slug for tech in target.moves] if target else []
+        moves = list(set(moves))
+        client = self.session.client
+        if target and moves and self.technique not in moves:
+            var = f"{self.name}:{str(target.instance_id.hex)}"
+            client.event_engine.execute_action("set_variable", [var], True)
+            client.event_engine.execute_action(
+                "add_tech", [self.name, self.technique], True
+            )
+            learn = True
         return {"success": learn, "num_shakes": 0, "extra": None}

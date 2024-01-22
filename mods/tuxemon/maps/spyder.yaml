@@ -142,6 +142,7 @@ events:
     conditions:
     - is variable_set stage_of_day:night
     - not location_inside
+    - not check_world layer,0:0:128:128
     type: "event"
   Night Day Cycle Inside:
     actions:
@@ -149,6 +150,7 @@ events:
     conditions:
     - is variable_set stage_of_day:night
     - is location_inside
+    - not check_world layer,255:255:255:0
     type: "event"
   Phone GPS Leather:
     actions:
@@ -192,6 +194,13 @@ events:
     - not variable_set nu_map_6:flower_city*-0.15*0.32
     - is location_name flower_city
     type: "event"
+  Set Party Status:
+    actions:
+    - set_party_status player
+    conditions:
+    - is current_state MainCombatMenuState:WorldState
+    - is party_size player,greater_than,0
+    type: "event"
   Cheat Code ApexPlayer:
     actions:
     - get_party_monster
@@ -205,7 +214,16 @@ events:
     - set_variable cheat_apex:enabled
     conditions:
     - is check_char_parameter player,name,ApexPlayer
-    - is party_size equals,1
+    - is party_size player,equals,1
     - not variable_set cheat_apex:enabled
     - is current_state WorldState
+    type: "event"
+  Check Max Moves:
+    actions:
+    - translated_dialog new_tech_delete
+    - get_monster_tech chosen_tech
+    - remove_tech chosen_tech
+    conditions:
+    - is check_max_tech
+    - is current_state MainCombatMenuState
     type: "event"

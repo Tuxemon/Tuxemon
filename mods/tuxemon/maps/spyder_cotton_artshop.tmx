@@ -46,9 +46,9 @@
   <object id="13" name="Teleport to Cotton Town" type="event" x="16" y="160" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_cotton_town.tmx,16,17,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="15" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -60,8 +60,8 @@
   <object id="17" name="Make Barmaid" type="event" x="160" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottontown_barmaid,10,5"/>
-    <property name="act2" value="npc_wander spyder_cottontown_barmaid"/>
-    <property name="cond1" value="not npc_exists spyder_cottontown_barmaid"/>
+    <property name="act2" value="char_wander spyder_cottontown_barmaid"/>
+    <property name="cond1" value="not char_exists spyder_cottontown_barmaid"/>
    </properties>
   </object>
   <object id="18" name="Florist Talk" type="event" x="32" y="80" width="16" height="16">
@@ -73,8 +73,8 @@
   <object id="21" name="Make Granny" type="event" x="240" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottonartshop_philis,15,8"/>
-    <property name="act2" value="npc_wander spyder_cottonartshop_philis"/>
-    <property name="cond1" value="not npc_exists spyder_cottonartshop_philis"/>
+    <property name="act2" value="char_wander spyder_cottonartshop_philis"/>
+    <property name="cond1" value="not char_exists spyder_cottonartshop_philis"/>
    </properties>
   </object>
   <object id="22" name="Granny Talk" type="event" x="256" y="112" width="16" height="16">
@@ -92,15 +92,15 @@
   <object id="24" name="Make Goth" type="event" x="272" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottonartshop_phoenix,17,8"/>
-    <property name="act2" value="npc_wander spyder_cottonartshop_phoenix"/>
-    <property name="cond1" value="not npc_exists spyder_cottonartshop_phoenix"/>
+    <property name="act2" value="char_wander spyder_cottonartshop_phoenix"/>
+    <property name="cond1" value="not char_exists spyder_cottonartshop_phoenix"/>
    </properties>
   </object>
   <object id="25" name="Make Florist" type="event" x="16" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottonartshop_luvinia,1,6"/>
-    <property name="act2" value="npc_wander spyder_cottonartshop_luvinia"/>
-    <property name="cond1" value="not npc_exists spyder_cottonartshop_luvinia"/>
+    <property name="act2" value="char_wander spyder_cottonartshop_luvinia"/>
+    <property name="cond1" value="not char_exists spyder_cottonartshop_luvinia"/>
    </properties>
   </object>
   <object id="26" name="Barmaid Sold Bundle" type="event" x="176" y="64" width="16" height="16">
@@ -115,8 +115,8 @@
   <object id="27" name="Make Shopkeeper" type="event" x="64" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottonartshop_carter,4,9"/>
-    <property name="act2" value="npc_face spyder_cottonartshop_carter,left"/>
-    <property name="cond1" value="not npc_exists spyder_cottonartshop_carter"/>
+    <property name="act2" value="char_face spyder_cottonartshop_carter,left"/>
+    <property name="cond1" value="not char_exists spyder_cottonartshop_carter"/>
    </properties>
   </object>
   <object id="28" name="Shopkeeper Talk" type="event" x="80" y="128" width="16" height="16">
@@ -130,8 +130,8 @@
     <property name="act1" value="translated_dialog spyder_cottonart_shopkeeper"/>
     <property name="act2" value="translated_dialog player_wallet"/>
     <property name="act3" value="translated_dialog_choice yes:no,paygallery"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
     <property name="cond3" value="not variable_set paygallery:yes"/>
     <property name="cond4" value="not variable_set paygallery:no"/>
     <property name="cond5" value="not variable_set bought_monsters_eyes:yes"/>
@@ -175,7 +175,7 @@
     <property name="act2" value="translated_dialog spyder_cottonart_barmaid_single"/>
     <property name="act3" value="translated_dialog player_wallet"/>
     <property name="act4" value="translated_dialog_choice yes:no,barmaid_starry"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not has_item player,p_starry_night"/>
     <property name="cond4" value="is money_is player,greater_or_equal,1000"/>
@@ -187,7 +187,7 @@
     <property name="act2" value="translated_dialog spyder_cottonart_barmaid_single"/>
     <property name="act3" value="translated_dialog player_wallet"/>
     <property name="act4" value="translated_dialog_choice yes:no,barmaid_trepidation"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not has_item player,p_trepidation"/>
     <property name="cond4" value="is money_is player,greater_or_equal,1000"/>
@@ -199,7 +199,7 @@
     <property name="act2" value="translated_dialog spyder_cottonart_barmaid_single"/>
     <property name="act3" value="translated_dialog player_wallet"/>
     <property name="act4" value="translated_dialog_choice yes:no,barmaid_monsters"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not has_item player,p_monsters_eyes"/>
     <property name="cond4" value="is money_is player,greater_or_equal,1000"/>
@@ -266,13 +266,13 @@
   <object id="44" name="Player Bought Billie" type="event" x="48" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_cottonart_barmaid_painting_sold_billie"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="45" name="Billie Visit" type="event" x="48" y="64" width="16" height="48">
    <properties>
-    <property name="act01" value="player_stop"/>
+    <property name="act01" value="char_stop"/>
     <property name="act02" value="lock_controls"/>
     <property name="act03" value="create_npc spyder_billie,16,6"/>
     <property name="act04" value="pathfind_to_player spyder_billie"/>
@@ -282,41 +282,41 @@
     <property name="act25" value="set_variable artshop_billie:yes"/>
     <property name="act30" value="unlock_controls"/>
     <property name="cond1" value="not variable_set artshop_billie:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="46" name="Create Starry" type="event" x="144" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc p_two,9,2"/>
-    <property name="cond1" value="not npc_exists p_two"/>
+    <property name="cond1" value="not char_exists p_two"/>
     <property name="cond2" value="not has_item player,p_starry_night"/>
    </properties>
   </object>
   <object id="47" name="Create Monster" type="event" x="112" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc p_one,7,2"/>
-    <property name="cond1" value="not npc_exists p_one"/>
+    <property name="cond1" value="not char_exists p_one"/>
     <property name="cond2" value="not has_item player,p_monsters_eyes"/>
    </properties>
   </object>
   <object id="48" name="Create Trepidation" type="event" x="176" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc p_three,11,2"/>
-    <property name="cond1" value="not npc_exists p_three"/>
+    <property name="cond1" value="not char_exists p_three"/>
     <property name="cond2" value="not has_item player,p_trepidation"/>
    </properties>
   </object>
   <object id="49" name="Create Four" type="event" x="80" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc p_four,5,2"/>
-    <property name="cond1" value="not npc_exists p_four"/>
+    <property name="cond1" value="not char_exists p_four"/>
     <property name="cond2" value="is has_item player,p_monsters_eyes"/>
    </properties>
   </object>
   <object id="50" name="Create Five" type="event" x="80" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc p_five,9,2"/>
-    <property name="cond1" value="not npc_exists p_five"/>
+    <property name="cond1" value="not char_exists p_five"/>
     <property name="cond2" value="is has_item player,p_trepidation"/>
     <property name="cond3" value="is has_item player,p_starry_night"/>
    </properties>

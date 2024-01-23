@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -16,7 +16,6 @@ from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu
 from tuxemon.save import get_save_path
 from tuxemon.session import local_session
-from tuxemon.tools import open_dialog
 from tuxemon.ui import text
 
 logger = logging.getLogger(__name__)
@@ -137,23 +136,11 @@ class SaveMenuState(PopUpMenu[None]):
         return slot_image
 
     def save(self) -> None:
-        logger.info("Saving!")
-        try:
-            save_data = save.get_save_data(
-                local_session,
-            )
-            save.save(
-                save_data,
-                self.selected_index + 1,
-            )
-            save.slot_number = self.selected_index
-        except Exception as e:
-            raise
-            logger.error("Unable to save game!!")
-            logger.error(e)
-            open_dialog(local_session, [T.translate("save_failure")])
-        else:
-            open_dialog(local_session, [T.translate("save_success")])
+        self.client.event_engine.execute_action(
+            "save_game",
+            [self.selected_index],
+            True,
+        )
 
     def on_menu_selection(self, menuitem: MenuItem[None]) -> None:
         def positive_answer() -> None:
@@ -167,22 +154,12 @@ class SaveMenuState(PopUpMenu[None]):
 
         def ask_confirmation() -> None:
             # open menu to confirm the save
-            tools.open_choice_dialog(
-                local_session,
-                menu=(
-                    (
-                        "overwrite",
-                        T.translate("save_overwrite"),
-                        positive_answer,
-                    ),
-                    (
-                        "keep",
-                        T.translate("save_keep"),
-                        negative_answer,
-                    ),
-                ),
-                escape_key_exits=True,
-            )
+            var_menu = []
+            _overwrite = T.translate("save_overwrite")
+            var_menu.append(("overwrite", _overwrite, positive_answer))
+            _keep = T.translate("save_keep")
+            var_menu.append(("keep", _keep, negative_answer))
+            tools.open_choice_dialog(local_session, var_menu, True)
 
         save_data = save.load(self.selected_index + 1)
         if save_data:

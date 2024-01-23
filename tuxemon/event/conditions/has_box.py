@@ -1,24 +1,28 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from operator import eq, ge, gt, le, lt, ne
+import logging
 
-from tuxemon.event import MapCondition
+from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
+from tuxemon.tools import compare
+
+logger = logging.getLogger(__name__)
 
 
 class HasBoxCondition(EventCondition):
     """
-    Check to see how many monsters are in the box.
+    Check to see how many monsters are in the character's box.
 
     Script usage:
         .. code-block::
 
-            is has_box <box>,<operator>,<value>
+            is has_box <character>,<box>,<operator>,<value>
 
     Script parameters:
+        character: Either "player" or npc slug name (e.g. "npc_maple").
         operator: Numeric comparison operator. Accepted values are "less_than",
             "less_or_equal", "greater_than", "greater_or_equal", "equals"
             and "not_equals".
@@ -30,24 +34,13 @@ class HasBoxCondition(EventCondition):
     name = "has_box"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        box_name = str(condition.parameters[0])
-        check = str(condition.parameters[1])
-        number = int(condition.parameters[2])
-        player = session.player
-        if box_name not in player.monster_boxes.keys():
+        _character, box_name, check, _number = condition.parameters[:4]
+        number = int(_number)
+        character = get_npc(session, _character)
+        if character is None:
+            logger.error(f"{_character} not found")
+            return False
+        if box_name not in character.monster_boxes.keys():
             raise ValueError(f"{box_name} doesn't exist.")
-        party_size = len(player.monster_boxes[box_name])
-        if check == "less_than":
-            return bool(lt(party_size, number))
-        elif check == "less_or_equal":
-            return bool(le(party_size, number))
-        elif check == "greater_than":
-            return bool(gt(party_size, number))
-        elif check == "greater_or_equal":
-            return bool(ge(party_size, number))
-        elif check == "equals":
-            return bool(eq(party_size, number))
-        elif check == "not_equals":
-            return bool(ne(party_size, number))
-        else:
-            raise ValueError(f"{check} is incorrect.")
+        party_size = len(character.monster_boxes[box_name])
+        return compare(check, party_size, number)

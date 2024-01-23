@@ -45,8 +45,8 @@
   <object id="59" name="Create Maniac" type="event" x="48" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_citypark_house_maniac,3,5"/>
-    <property name="act2" value="npc_wander spyder_citypark_house_maniac"/>
-    <property name="cond1" value="not npc_exists spyder_citypark_house_maniac"/>
+    <property name="act2" value="char_wander spyder_citypark_house_maniac"/>
+    <property name="cond1" value="not char_exists spyder_citypark_house_maniac"/>
    </properties>
   </object>
   <object id="60" name="Talk Maniac1" type="event" x="32" y="32" width="16" height="16">
@@ -61,14 +61,14 @@
   <object id="70" name="Go outside" type="event" x="96" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_citypark.tmx,36,4,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="74" name="Transfer Missions" type="event" x="16" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="set_mission spyder_maniac_achievement1,add"/>
+    <property name="act1" value="set_mission player,spyder_maniac_achievement1,add"/>
     <property name="act2" value="set_variable maniac_help:yes"/>
     <property name="act3" value="add_item book_wishes"/>
     <property name="cond1" value="is variable_set maniac_achievements:yes"/>

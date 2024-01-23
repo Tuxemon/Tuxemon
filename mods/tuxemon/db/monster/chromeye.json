@@ -25,25 +25,21 @@
     ],
     "evolutions": [
         {
-            "path": "variable",
             "at_level": 18,
             "monster_slug": "angrito",
             "variable": "season:winter"
         },
         {
-            "path": "variable",
             "at_level": 18,
             "monster_slug": "happito",
             "variable": "season:summer"
         },
         {
-            "path": "variable",
             "at_level": 18,
             "monster_slug": "neutrito",
             "variable": "season:spring"
         },
         {
-            "path": "variable",
             "at_level": 18,
             "monster_slug": "sadito",
             "variable": "season:autumn"

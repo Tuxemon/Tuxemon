@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from collections.abc import Callable
@@ -76,15 +76,14 @@ class NuPhoneMap(PygameMenuState):
                     underline = True
                     selectable = False
 
-                place = menu.add.label(
+                lab: Any = menu.add.label(
                     title=T.translate(place),
                     selectable=selectable,
                     float=True,
                     underline=underline,
                     font_size=self.font_size_small,
                 )
-                assert not isinstance(place, list)
-                place.translate(
+                lab.translate(
                     fix_measure(menu._width, x), fix_measure(menu._height, y)
                 )
 

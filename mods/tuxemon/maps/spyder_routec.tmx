@@ -80,31 +80,31 @@
   <object id="155" name="Teleport to Candy Town" type="event" x="0" y="128" width="16" height="128">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_town.tmx,39,28,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="156" name="Teleport to Paper Town" type="event" x="624" y="544" width="16" height="64">
    <properties>
     <property name="act1" value="transition_teleport spyder_paper_town.tmx,0,15,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
   <object id="201" name="Create River" type="event" x="80" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_river,5,7"/>
-    <property name="act2" value="npc_wander spyder_searoutec_river"/>
-    <property name="cond1" value="not npc_exists spyder_searoutec_river"/>
+    <property name="act2" value="char_wander spyder_searoutec_river"/>
+    <property name="cond1" value="not char_exists spyder_searoutec_river"/>
    </properties>
   </object>
   <object id="202" name="Talk River" type="event" x="80" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_searoutec_river1"/>
     <property name="act2" value="add_monster manosting,24,spyder_searoutec_river,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_river"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_river"/>
     <property name="act4" value="translated_dialog spyder_searoutec_river2"/>
     <property name="act6" value="set_variable searoutecriver:yes"/>
     <property name="behav1" value="talk spyder_searoutec_river"/>
@@ -114,7 +114,7 @@
   <object id="203" name="Create Wade" type="event" x="224" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_wade,14,11"/>
-    <property name="cond1" value="not npc_exists spyder_searoutec_wade"/>
+    <property name="cond1" value="not char_exists spyder_searoutec_wade"/>
    </properties>
   </object>
   <object id="204" name="Talk Wade" type="event" x="224" y="160" width="16" height="16">
@@ -126,7 +126,7 @@
     <property name="act05" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
     <property name="act06" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
     <property name="act07" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
-    <property name="act08" value="start_battle spyder_searoutec_wade"/>
+    <property name="act08" value="start_battle player,spyder_searoutec_wade"/>
     <property name="act09" value="translated_dialog spyder_searoutec_wade2"/>
     <property name="act10" value="set_variable searoutecwade:yes"/>
     <property name="behav1" value="talk spyder_searoutec_wade"/>
@@ -136,7 +136,7 @@
   <object id="205" name="Create Gil" type="event" x="384" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_gil,24,15"/>
-    <property name="cond1" value="not npc_exists spyder_searoutec_gil"/>
+    <property name="cond1" value="not char_exists spyder_searoutec_gil"/>
    </properties>
   </object>
   <object id="206" name="Talk Gil" type="event" x="384" y="224" width="16" height="16">
@@ -145,7 +145,7 @@
     <property name="act3" value="add_monster nudiflot_female,22,spyder_searoutec_gil,5,10"/>
     <property name="act4" value="add_monster nudiflot_female,22,spyder_searoutec_gil,5,10"/>
     <property name="act5" value="add_monster nudimind,24,spyder_searoutec_gil,5,10"/>
-    <property name="act6" value="start_battle spyder_searoutec_gil"/>
+    <property name="act6" value="start_battle player,spyder_searoutec_gil"/>
     <property name="act7" value="translated_dialog spyder_searoutec_gil2"/>
     <property name="act8" value="set_variable searoutecgil:yes"/>
     <property name="behav1" value="talk spyder_searoutec_gil"/>
@@ -155,15 +155,15 @@
   <object id="207" name="Create Leek" type="event" x="480" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_leek,30,10"/>
-    <property name="act2" value="npc_wander spyder_searoutec_leek"/>
-    <property name="cond1" value="not npc_exists spyder_searoutec_leek"/>
+    <property name="act2" value="char_wander spyder_searoutec_leek"/>
+    <property name="cond1" value="not char_exists spyder_searoutec_leek"/>
    </properties>
   </object>
   <object id="208" name="Talk Leek" type="event" x="480" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_searoutec_leek1"/>
     <property name="act2" value="add_monster nudikill,27,spyder_searoutec_leek,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_leek"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_leek"/>
     <property name="act4" value="translated_dialog spyder_searoutec_leek2"/>
     <property name="act6" value="set_variable searoutecleek:yes"/>
     <property name="behav1" value="talk spyder_searoutec_leek"/>
@@ -173,15 +173,15 @@
   <object id="209" name="Create Beech" type="event" x="128" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_beech,8,14"/>
-    <property name="act2" value="npc_wander spyder_searoutec_beech"/>
-    <property name="cond1" value="not npc_exists spyder_searoutec_beech"/>
+    <property name="act2" value="char_wander spyder_searoutec_beech"/>
+    <property name="cond1" value="not char_exists spyder_searoutec_beech"/>
    </properties>
   </object>
   <object id="210" name="Talk Beech" type="event" x="128" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_searoutec_beech1"/>
     <property name="act2" value="add_monster nostray,26,spyder_searoutec_beech,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_beech"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_beech"/>
     <property name="act4" value="translated_dialog spyder_searoutec_beech2"/>
     <property name="act6" value="set_variable searoutecbeech:yes"/>
     <property name="behav1" value="talk spyder_searoutec_beech"/>
@@ -191,15 +191,15 @@
   <object id="211" name="Create Rutherford" type="event" x="544" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_rutherford,34,12"/>
-    <property name="act2" value="npc_face spyder_searoutec_rutherford,up"/>
-    <property name="cond1" value="not npc_exists spyder_searoutec_rutherford"/>
+    <property name="act2" value="char_face spyder_searoutec_rutherford,up"/>
+    <property name="cond1" value="not char_exists spyder_searoutec_rutherford"/>
    </properties>
   </object>
   <object id="212" name="Talk Rutherford" type="event" x="528" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_searoutec_rutherford1"/>
     <property name="act2" value="add_monster incandesfin,26,spyder_searoutec_rutherford,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_rutherford"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_rutherford"/>
     <property name="act4" value="translated_dialog spyder_searoutec_rutherford2"/>
     <property name="act6" value="set_variable searoutecrutherford:yes"/>
     <property name="behav1" value="talk spyder_searoutec_rutherford"/>
@@ -209,15 +209,15 @@
   <object id="213" name="Create Carstair" type="event" x="400" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_carstair,25,6"/>
-    <property name="act2" value="npc_face spyder_searoutec_carstair,left"/>
-    <property name="cond1" value="not npc_exists spyder_searoutec_carstair"/>
+    <property name="act2" value="char_face spyder_searoutec_carstair,left"/>
+    <property name="cond1" value="not char_exists spyder_searoutec_carstair"/>
    </properties>
   </object>
   <object id="214" name="Talk Carstair" type="event" x="400" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_searoutec_carstair1"/>
     <property name="act2" value="add_monster axylightl,24,spyder_searoutec_carstair,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_carstair"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_carstair"/>
     <property name="act4" value="translated_dialog spyder_searoutec_carstair2"/>
     <property name="act6" value="set_variable searouteccarstair:yes"/>
     <property name="behav1" value="talk spyder_searoutec_carstair"/>
@@ -227,7 +227,7 @@
   <object id="215" name="Create Sandy" type="event" x="80" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_sandy,5,14"/>
-    <property name="cond1" value="not npc_exists spyder_searoutec_sandy"/>
+    <property name="cond1" value="not char_exists spyder_searoutec_sandy"/>
    </properties>
   </object>
   <object id="216" name="Talk Sandy" type="event" x="80" y="208" width="16" height="16">
@@ -236,7 +236,7 @@
     <property name="act2" value="add_monster sharpfin,22,spyder_searoutec_sandy,5,10"/>
     <property name="act3" value="add_monster sharpfin,22,spyder_searoutec_sandy,5,10"/>
     <property name="act4" value="add_monster bigfin,22,spyder_searoutec_sandy,5,10"/>
-    <property name="act5" value="start_battle spyder_searoutec_sandy"/>
+    <property name="act5" value="start_battle player,spyder_searoutec_sandy"/>
     <property name="act6" value="translated_dialog spyder_searoutec_sandy2"/>
     <property name="act7" value="set_variable searoutecsandy:yes"/>
     <property name="behav1" value="talk spyder_searoutec_sandy"/>
@@ -247,12 +247,14 @@
    <properties>
     <property name="act1" value="set_variable environment:ocean"/>
     <property name="cond1" value="not variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:ocean"/>
    </properties>
   </object>
   <object id="228" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_ocean"/>
     <property name="cond1" value="is variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:night_ocean"/>
    </properties>
   </object>
   <object id="222" name="Talk Rutherford" type="event" x="544" y="144" width="16" height="48">
@@ -260,11 +262,11 @@
     <property name="act0" value="pathfind_to_player spyder_searoutec_rutherford"/>
     <property name="act1" value="translated_dialog spyder_searoutec_rutherford1"/>
     <property name="act2" value="add_monster incandesfin,26,spyder_searoutec_rutherford,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_rutherford"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_rutherford"/>
     <property name="act4" value="translated_dialog spyder_searoutec_rutherford2"/>
     <property name="act6" value="set_variable searoutecrutherford:yes"/>
     <property name="cond1" value="not variable_set searoutecrutherford:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="223" name="Talk Gil" type="event" x="384" y="256" width="16" height="32">
@@ -274,11 +276,11 @@
     <property name="act3" value="add_monster nudiflot_female,22,spyder_searoutec_gil,5,10"/>
     <property name="act4" value="add_monster nudiflot_female,22,spyder_searoutec_gil,5,10"/>
     <property name="act5" value="add_monster nudimind,24,spyder_searoutec_gil,5,10"/>
-    <property name="act6" value="start_battle spyder_searoutec_gil"/>
+    <property name="act6" value="start_battle player,spyder_searoutec_gil"/>
     <property name="act7" value="translated_dialog spyder_searoutec_gil2"/>
     <property name="act8" value="set_variable searoutecgil:yes"/>
     <property name="cond1" value="not variable_set searoutecgil:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="224" name="Talk Carstair" type="event" x="384" y="96" width="16" height="16">
@@ -286,11 +288,11 @@
     <property name="act0" value="pathfind_to_player spyder_searoutec_carstair"/>
     <property name="act1" value="translated_dialog spyder_searoutec_carstair1"/>
     <property name="act2" value="add_monster axylightl,24,spyder_searoutec_carstair,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_carstair"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_carstair"/>
     <property name="act4" value="translated_dialog spyder_searoutec_carstair2"/>
     <property name="act6" value="set_variable searouteccarstair:yes"/>
     <property name="cond1" value="not variable_set searouteccarstair:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="225" name="Talk Wade" type="event" x="224" y="192" width="16" height="16">
@@ -303,11 +305,11 @@
     <property name="act05" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
     <property name="act06" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
     <property name="act07" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
-    <property name="act08" value="start_battle spyder_searoutec_wade"/>
+    <property name="act08" value="start_battle player,spyder_searoutec_wade"/>
     <property name="act09" value="translated_dialog spyder_searoutec_wade2"/>
     <property name="act10" value="set_variable searoutecwade:yes"/>
     <property name="cond1" value="not variable_set searoutecwade:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="226" name="Talk Sandy" type="event" x="80" y="240" width="16" height="48">
@@ -317,11 +319,11 @@
     <property name="act2" value="add_monster sharpfin,22,spyder_searoutec_sandy,5,10"/>
     <property name="act3" value="add_monster sharpfin,22,spyder_searoutec_sandy,5,10"/>
     <property name="act4" value="add_monster bigfin,22,spyder_searoutec_sandy,5,10"/>
-    <property name="act5" value="start_battle spyder_searoutec_sandy"/>
+    <property name="act5" value="start_battle player,spyder_searoutec_sandy"/>
     <property name="act6" value="translated_dialog spyder_searoutec_sandy2"/>
     <property name="act7" value="set_variable searoutecsandy:yes"/>
     <property name="cond1" value="not variable_set searoutecsandy:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="229" name="Talk More" type="event" x="528" y="464" width="16" height="16">
@@ -332,7 +334,7 @@
     <property name="act4" value="add_monster nudimind,24,spyder_searoutec_more,5,10"/>
     <property name="act5" value="add_monster nudikill,23,spyder_searoutec_more,5,10"/>
     <property name="act6" value="add_monster bigfin,19,spyder_searoutec_more,5,10"/>
-    <property name="act7" value="start_battle spyder_searoutec_more"/>
+    <property name="act7" value="start_battle player,spyder_searoutec_more"/>
     <property name="act8" value="translated_dialog spyder_searoutec_more2"/>
     <property name="act9" value="set_variable searoutecmore:yes"/>
     <property name="behav1" value="talk spyder_searoutec_more"/>
@@ -348,32 +350,32 @@
     <property name="act4" value="add_monster nudimind,24,spyder_searoutec_more,5,10"/>
     <property name="act5" value="add_monster nudikill,23,spyder_searoutec_more,5,10"/>
     <property name="act6" value="add_monster bigfin,19,spyder_searoutec_more,5,10"/>
-    <property name="act7" value="start_battle spyder_searoutec_more"/>
+    <property name="act7" value="start_battle player,spyder_searoutec_more"/>
     <property name="act8" value="translated_dialog spyder_searoutec_more2"/>
     <property name="act9" value="set_variable searoutecmore:yes"/>
     <property name="cond1" value="not variable_set searoutecmore:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="231" name="Create More" type="event" x="528" y="480" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_more,33,30"/>
-    <property name="act2" value="npc_face spyder_searoutec_more,right"/>
-    <property name="cond1" value="not npc_exists spyder_searoutec_more"/>
+    <property name="act2" value="char_face spyder_searoutec_more,right"/>
+    <property name="cond1" value="not char_exists spyder_searoutec_more"/>
    </properties>
   </object>
   <object id="242" name="Teleport to Dragon's Cave" type="event" x="192" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_dragonscave.tmx,12,39,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="243" name="Create Nigel" type="event" x="192" y="400" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_nigel,13,24"/>
-    <property name="cond1" value="not npc_exists spyder_searoutec_nigel"/>
+    <property name="cond1" value="not char_exists spyder_searoutec_nigel"/>
     <property name="cond3" value="is variable_set hospitalcure:yes"/>
    </properties>
   </object>
@@ -381,7 +383,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_searoutec_nigel1"/>
     <property name="act2" value="add_monster agnigon,36,spyder_searoutec_nigel,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_nigel"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_nigel"/>
     <property name="act4" value="translated_dialog spyder_searoutec_nigel2"/>
     <property name="act6" value="set_variable searoutecnigel:yes"/>
     <property name="behav1" value="talk spyder_searoutec_nigel"/>
@@ -392,7 +394,7 @@
   <object id="245" name="Create Nigel" type="event" x="208" y="400" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_nigel,12,24"/>
-    <property name="cond1" value="not npc_exists spyder_searoutec_nigel"/>
+    <property name="cond1" value="not char_exists spyder_searoutec_nigel"/>
     <property name="cond3" value="not variable_set hospitalcure:yes"/>
    </properties>
   </object>
@@ -407,8 +409,8 @@
   <object id="256" name="Create Swimmer2" type="event" x="480" y="352" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_alpha,30,22"/>
-    <property name="act2" value="npc_wander spyder_searoutec_alpha"/>
-    <property name="cond1" value="not npc_exists spyder_searoutec_alpha"/>
+    <property name="act2" value="char_wander spyder_searoutec_alpha"/>
+    <property name="cond1" value="not char_exists spyder_searoutec_alpha"/>
    </properties>
   </object>
   <object id="257" name="Talk Swimmer2" type="event" x="480" y="368" width="16" height="16">
@@ -420,8 +422,8 @@
   <object id="258" name="Create Swimmer" type="event" x="240" y="480" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_beta,15,30"/>
-    <property name="act2" value="npc_wander spyder_searoutec_beta"/>
-    <property name="cond1" value="not npc_exists spyder_searoutec_beta"/>
+    <property name="act2" value="char_wander spyder_searoutec_beta"/>
+    <property name="cond1" value="not char_exists spyder_searoutec_beta"/>
    </properties>
   </object>
   <object id="259" name="Talk Swimmer" type="event" x="240" y="496" width="16" height="16">
@@ -433,15 +435,15 @@
   <object id="262" name="Create Stafford" type="event" x="432" y="528" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_stafford,27,33"/>
-    <property name="act2" value="npc_face spyder_searoutec_stafford,up"/>
-    <property name="cond1" value="not npc_exists spyder_searoutec_stafford"/>
+    <property name="act2" value="char_face spyder_searoutec_stafford,up"/>
+    <property name="cond1" value="not char_exists spyder_searoutec_stafford"/>
    </properties>
   </object>
   <object id="263" name="Talk Stafford" type="event" x="416" y="528" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_searoutec_stafford1"/>
     <property name="act2" value="add_monster medushock,22,spyder_searoutec_stafford,5,10"/>
-    <property name="act3" value="start_battle spyder_searoutec_stafford"/>
+    <property name="act3" value="start_battle player,spyder_searoutec_stafford"/>
     <property name="act4" value="translated_dialog spyder_searoutec_stafford2"/>
     <property name="act6" value="set_variable searoutecstafford:yes"/>
     <property name="behav1" value="talk spyder_searoutec_stafford"/>
@@ -451,8 +453,8 @@
   <object id="264" name="Create Maurice" type="event" x="96" y="480" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_searoutec_maurice,6,30"/>
-    <property name="act2" value="npc_face spyder_searoutec_maurice,up"/>
-    <property name="cond1" value="not npc_exists spyder_searoutec_maurice"/>
+    <property name="act2" value="char_face spyder_searoutec_maurice,up"/>
+    <property name="cond1" value="not char_exists spyder_searoutec_maurice"/>
    </properties>
   </object>
   <object id="265" name="Talk Maurice" type="event" x="80" y="480" width="16" height="16">
@@ -460,7 +462,7 @@
     <property name="act1" value="translated_dialog spyder_searoutec_maurice1"/>
     <property name="act2" value="add_monster brewdin,22,spyder_searoutec_maurice,5,10"/>
     <property name="act3" value="add_monster fancair,22,spyder_searoutec_maurice,5,10"/>
-    <property name="act4" value="start_battle spyder_searoutec_maurice"/>
+    <property name="act4" value="start_battle player,spyder_searoutec_maurice"/>
     <property name="act5" value="translated_dialog spyder_searoutec_maurice2"/>
     <property name="act6" value="set_variable searoutecmaurice:yes"/>
     <property name="behav1" value="talk spyder_searoutec_maurice"/>

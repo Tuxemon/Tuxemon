@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from abc import ABC
@@ -87,13 +87,13 @@ class CLICommand(ABC):
           of the input.
 
         For example:
-            The string "action npc_face player up" will be parsed by
+            The string "action char_face player up" will be parsed by
             checking each CLICommand for sub commands in a graph search.
             Starting at the root, which is unnamed, it will have an "action"
-            command.  Then searching "action", it will have "npc_face".
-            `npc_face` is a command, but doesn't have "player" as a subcommand,
+            command.  Then searching "action", it will have "char_face".
+            `char_face` is a command, but doesn't have "player" as a subcommand,
             so the remaining portion of the string will be treated as an
-            argument to "npc_face".
+            argument to "char_face".
 
         """
         head, tail = split(path)

@@ -62,70 +62,70 @@
   <object id="51" name="Fall to Lower Floor" type="event" x="16" y="432" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_greenwash.tmx,1,27,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="68" name="Teleport to Level 2" type="event" x="224" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_greenwash.tmx,2,5,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
   <object id="77" name="Fall to Lower Floor" type="event" x="48" y="432" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_greenwash.tmx,3,27,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="79" name="Fall to Lower Floor" type="event" x="32" y="432" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_greenwash.tmx,2,27,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="80" name="Fall to Lower Floor" type="event" x="64" y="432" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_greenwash.tmx,4,27,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="81" name="Fall to Lower Floor" type="event" x="80" y="432" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_greenwash.tmx,5,27,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="86" name="Create Aissa" type="event" x="144" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_greenwash_aissa,9,4"/>
-    <property name="act2" value="npc_face spyder_greenwash_aissa,right"/>
-    <property name="cond1" value="not npc_exists spyder_greenwash_aissa"/>
+    <property name="act2" value="char_face spyder_greenwash_aissa,right"/>
+    <property name="cond1" value="not char_exists spyder_greenwash_aissa"/>
    </properties>
   </object>
   <object id="88" name="Create Moreau" type="event" x="128" y="480" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_greenwash_moreau,8,30"/>
-    <property name="act2" value="npc_face spyder_greenwash_moreau,down"/>
-    <property name="cond1" value="not npc_exists spyder_greenwash_moreau"/>
+    <property name="act2" value="char_face spyder_greenwash_moreau,down"/>
+    <property name="cond1" value="not char_exists spyder_greenwash_moreau"/>
    </properties>
   </object>
   <object id="90" name="Create Dippel" type="event" x="48" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_greenwash_dippel,3,6"/>
-    <property name="act2" value="npc_face spyder_greenwash_dippel,right"/>
-    <property name="cond1" value="not npc_exists spyder_greenwash_dippel"/>
+    <property name="act2" value="char_face spyder_greenwash_dippel,right"/>
+    <property name="cond1" value="not char_exists spyder_greenwash_dippel"/>
    </properties>
   </object>
   <object id="92" name="Talk Aissa" type="event" x="160" y="64" width="80" height="16">
@@ -133,11 +133,11 @@
     <property name="act0" value="pathfind_to_player spyder_greenwash_aissa"/>
     <property name="act1" value="translated_dialog spyder_greenwash_aissa1"/>
     <property name="act2" value="add_monster cateye,22,spyder_greenwash_aissa,5,10"/>
-    <property name="act3" value="start_battle spyder_greenwash_aissa"/>
+    <property name="act3" value="start_battle player,spyder_greenwash_aissa"/>
     <property name="act4" value="translated_dialog spyder_greenwash_aissa2"/>
     <property name="act6" value="set_variable greenwashaissa:yes"/>
     <property name="cond1" value="not variable_set greenwashaissa:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="93" name="Talk Dippel" type="event" x="96" y="112" width="16" height="32">
@@ -146,11 +146,11 @@
     <property name="act1" value="translated_dialog spyder_greenwash_dippel1"/>
     <property name="act2" value="add_monster criniotherme,22,spyder_greenwash_dippel,5,10"/>
     <property name="act3" value="add_monster tikorch,22,spyder_greenwash_dippel,5,10"/>
-    <property name="act4" value="start_battle spyder_greenwash_dippel"/>
+    <property name="act4" value="start_battle player,spyder_greenwash_dippel"/>
     <property name="act5" value="translated_dialog spyder_greenwash_dippel2"/>
     <property name="act6" value="set_variable greenwashdippel:yes"/>
     <property name="cond1" value="not variable_set greenwashdippel:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="94" name="Talk Moreau" type="event" x="208" y="400" width="32" height="16">
@@ -158,18 +158,18 @@
     <property name="act0" value="pathfind_to_player spyder_greenwash_moreau"/>
     <property name="act1" value="translated_dialog spyder_greenwash_moreau1"/>
     <property name="act2" value="add_monster sclairus,26,spyder_greenwash_moreau,5,10"/>
-    <property name="act3" value="start_battle spyder_greenwash_moreau"/>
+    <property name="act3" value="start_battle player,spyder_greenwash_moreau"/>
     <property name="act4" value="translated_dialog spyder_greenwash_moreau2"/>
     <property name="act6" value="set_variable greenwashmoreau:yes"/>
     <property name="cond1" value="not variable_set greenwashmoreau:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="108" name="Create Dempsey" type="event" x="32" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_greenwash_dempsey,2,16"/>
-    <property name="act2" value="npc_face spyder_greenwash_dempsey,up"/>
-    <property name="cond1" value="not npc_exists spyder_greenwash_dempsey"/>
+    <property name="act2" value="char_face spyder_greenwash_dempsey,up"/>
+    <property name="cond1" value="not char_exists spyder_greenwash_dempsey"/>
    </properties>
   </object>
   <object id="109" name="Talk Dempsey" type="event" x="32" y="192" width="16" height="32">
@@ -177,18 +177,18 @@
     <property name="act0" value="pathfind_to_player spyder_greenwash_dempsey"/>
     <property name="act1" value="translated_dialog spyder_greenwash_dempsey1"/>
     <property name="act2" value="add_monster masknake,25,spyder_greenwash_dempsey,5,10"/>
-    <property name="act3" value="start_battle spyder_greenwash_dempsey"/>
+    <property name="act3" value="start_battle player,spyder_greenwash_dempsey"/>
     <property name="act4" value="translated_dialog spyder_greenwash_dempsey1"/>
     <property name="act6" value="set_variable greenwashdempsey:yes"/>
     <property name="cond1" value="not variable_set greenwashdempsey:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="110" name="Create Heidenstam" type="event" x="80" y="352" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_greenwash_heidenstam,5,22"/>
-    <property name="act2" value="npc_face spyder_greenwash_heidenstam,left"/>
-    <property name="cond1" value="not npc_exists spyder_greenwash_heidenstam"/>
+    <property name="act2" value="char_face spyder_greenwash_heidenstam,left"/>
+    <property name="cond1" value="not char_exists spyder_greenwash_heidenstam"/>
    </properties>
   </object>
   <object id="111" name="Talk Heidenstam" type="event" x="16" y="352" width="32" height="16">
@@ -196,18 +196,18 @@
     <property name="act0" value="pathfind_to_player spyder_greenwash_heidenstam"/>
     <property name="act1" value="translated_dialog spyder_greenwash_heidenstam1"/>
     <property name="act2" value="add_monster foofle,10,spyder_greenwash_heidenstam,5,10"/>
-    <property name="act3" value="start_battle spyder_greenwash_heidenstam"/>
+    <property name="act3" value="start_battle player,spyder_greenwash_heidenstam"/>
     <property name="act4" value="translated_dialog spyder_greenwash_heidenstam2"/>
     <property name="act6" value="set_variable greenwashheidenstam:yes"/>
     <property name="cond1" value="not variable_set greenwashheidenstam:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="112" name="Create Fossilisator" type="event" x="160" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_greenwash_selby,10,18"/>
-    <property name="act2" value="npc_face spyder_greenwash_selby,up"/>
-    <property name="cond1" value="not npc_exists spyder_greenwash_selby"/>
+    <property name="act2" value="char_face spyder_greenwash_selby,up"/>
+    <property name="cond1" value="not char_exists spyder_greenwash_selby"/>
    </properties>
   </object>
   <object id="113" name="Talk Fossilisator First" type="event" x="112" y="240" width="16" height="16">

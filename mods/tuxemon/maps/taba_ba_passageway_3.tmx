@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="18">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="20">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -49,5 +49,20 @@
   <object id="15" type="collision" x="224" y="272" width="96" height="48"/>
   <object id="17" type="collision" x="48" y="80" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="6" name="Events"/>
+ <objectgroup color="#fffb00" id="6" name="Events">
+  <object id="18" name="back to main" type="event" x="144" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_main.tmx,13,13,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="19" name="back to main2" type="event" x="160" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_main.tmx,14,13,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

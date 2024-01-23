@@ -56,6 +56,8 @@ class CheckPartyParameterCondition(EventCondition):
         if not character.monsters:
             logger.warning(f"{character.name} has no monsters")
             return False
+        party = len(character.monsters)
+        times = party if int(_times) > party else int(_times)
         return CommonPartyCondition.check_party_parameter(
-            character.monsters, _attribute, _value, _operator, int(_times)
+            character.monsters, _attribute, _value, _operator, times
         )

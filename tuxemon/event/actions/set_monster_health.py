@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -46,8 +46,8 @@ class SetMonsterHealthAction(EventAction):
         else:
             monster.current_hp += int(value)
         # checks max and min
-        if monster.current_hp < 0:
-            monster.current_hp = 0
+        if monster.current_hp <= 0:
+            monster.faint()
         if monster.current_hp > monster.hp:
             monster.current_hp = monster.hp
         logger.info(f"{monster.name}'s {monster.current_hp} HP")

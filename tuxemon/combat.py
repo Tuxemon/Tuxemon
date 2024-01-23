@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """
 
 Combat related code that can be independent of the combat state.
@@ -166,9 +166,14 @@ def defeated(player: NPC) -> bool:
 
 
 def check_moves(monster: Monster, levels: int) -> Optional[str]:
-    tech = monster.update_moves(levels)
-    if tech:
-        params = {"name": monster.name.upper(), "tech": tech.name.upper()}
+    techs = monster.update_moves(levels)
+    if techs:
+        _techs = ""
+        _monster = monster.name.upper()
+        for tech in techs:
+            _tech = tech.name.upper()
+            _techs += _tech + ", "
+        params = {"name": _monster, "tech": _techs[:-2]}
         message = T.format("tuxemon_new_tech", params)
         return message
     return None

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import math
@@ -57,34 +57,29 @@ class JournalChoice(PygameMenuState):
         for page in range(diff):
             maximum = (page * MAX_PAGE) + MAX_PAGE
             minimum = page * MAX_PAGE
-            _tuxepedia = [
-                ele
-                for ele in monsters
-                if page * MAX_PAGE < ele.txmn_id <= (page + 1) * MAX_PAGE
-                and ele.slug in player.tuxepedia
+            tuxepedia = [
+                mon
+                for mon in monsters
+                if minimum < mon.txmn_id <= maximum
+                and mon.slug in player.tuxepedia
             ]
-            tuxepedia = True if _tuxepedia else False
-            label = T.format(
-                "page_tuxepedia", {"a": str(minimum), "b": str(maximum)}
-            ).upper()
+            _label = {"a": str(minimum), "b": str(maximum)}
+            label = T.format("page_tuxepedia", _label).upper()
             if tuxepedia:
+                param = {"monsters": monsters, "page": page}
                 menu.add.button(
                     label,
-                    change_state(
-                        "JournalState",
-                        kwargs={"monsters": monsters, "page": page},
-                    ),
+                    change_state("JournalState", kwargs=param),
                     font_size=self.font_size_small,
                 ).translate(
                     fix_measure(width, 0.18), fix_measure(height, 0.01)
                 )
             else:
-                lab1 = menu.add.label(
+                lab1: Any = menu.add.label(
                     label,
                     font_color=prepare.DIMGRAY_COLOR,
                     font_size=self.font_size_small,
                 )
-                assert not isinstance(lab1, list)
                 lab1.translate(
                     fix_measure(width, 0.18), fix_measure(height, 0.01)
                 )

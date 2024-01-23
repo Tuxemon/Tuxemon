@@ -4,7 +4,7 @@
     "is status faint"
   ],
   "effects": [
-    "revive 1",
+    "restore",
     "heal 20"
   ],
   "slug": "revive",

@@ -89,7 +89,7 @@
     <property name="act1" value="translated_dialog spyder_papertown_mom2"/>
     <property name="act2" value="set_variable spokenmom:yes"/>
     <property name="behav1" value="talk spyder_papertown_mom"/>
-    <property name="cond1" value="is party_size less_than,1"/>
+    <property name="cond1" value="is party_size player,less_than,1"/>
     <property name="cond2" value="is variable_set spokenmom:yes"/>
    </properties>
   </object>
@@ -124,7 +124,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_mom3"/>
     <property name="behav1" value="talk spyder_papertown_mom"/>
-    <property name="cond1" value="is party_size greater_than,0"/>
+    <property name="cond1" value="is party_size player,greater_than,0"/>
     <property name="cond2" value="is variable_set spokenmom:yes"/>
     <property name="cond3" value="not variable_set zoolanderdefeat:yes"/>
    </properties>

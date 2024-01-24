@@ -111,8 +111,10 @@ class CombatAnimations(ABC, Menu[None]):
         self.animate_parties_in()
 
         for player, layout in self._layout.items():
-            if not player.isplayer and player.max_position > 1:
-                pass
+            _side = self.get_side(layout["party"][0])
+            if _side == "left":
+                if self.is_trainer_battle and player.max_position == 1:
+                    self.animate_party_hud_in(player, layout["party"][0])
             else:
                 self.animate_party_hud_in(player, layout["party"][0])
 
@@ -754,4 +756,27 @@ class CombatAnimations(ABC, Menu[None]):
             self.task(
                 partial(self.alert, failed),
                 breakout_delay,
+            )
+
+    def update_hud(self, character: NPC) -> None:
+        """
+        Updates hud (where it appears name, level, etc.).
+
+        Parameters:
+            character: Character who needs to update the hud.
+
+        """
+        if len(self.monsters_in_play[character]) > 1:
+            self.build_hud(
+                self._layout[character]["hud0"][0],
+                self.monsters_in_play[character][0],
+            )
+            self.build_hud(
+                self._layout[character]["hud1"][0],
+                self.monsters_in_play[character][1],
+            )
+        else:
+            self.build_hud(
+                self._layout[character]["hud"][0],
+                self.monsters_in_play[character][0],
             )

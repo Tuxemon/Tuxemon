@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="20">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="27">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -14,14 +14,15 @@
  <tileset firstgid="6835" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
+ <tileset firstgid="10699" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Tile Layer 1" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJylk0EOgjAQRWfTFbLUsO0xCG7EwwArvQxyIOVejqEk7Tg/reMkP9Om5Pe1n1ae6ABUs86sY0N0arZxrlr+5gHUBb+eva4/+L2ABtbEujmiu9vmo6Lap34X/rZ3333mtcWnc+0crfDb95f9yWurT+faOaTfvn8V2BEv6oivCxkgXtQRX+vxnWsZ5Pg+Y3TnWgYlfOjOtQxK+EqrhG8Q/2bOL8c3h3z/4ZN5Tga+2EPmuRj4Yg+Z52rgiz2shd69tdA7shZ6R9ZC7+gN3AeAEQ==
+   eJylk0EOwiAQRdmwql1quuUYpG6sh8Gu9DK1B9LeyzGlCYzzA04n+RkIzefBL40z5gDUks6kY2fMqVvHpfL0zROoj34DeV3/8HsDBdJIultjHnad3wS1Lve70LeD/e0Trc0un0vn8Mxv25/3F60tLp9L5+B+2/5NZEe8qCO+PmaAeFFHfN7hO5cyKPF9x+jOpQxq+NCdSxnU8NVWDV9g/2bJr8Q3xXz38PE8RwVf6sHznBV8qQfPc1HwpR7aQu9eW2EHi1ToHWkLvaMPEGF9ZA==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApIBwAGQAAB
+   eJxjYBi5YKUeAg9FgO52Sv2CTT828yixB5d55JpFzbgbymlhMABaxAe1wWCOX0dWBgYnVlR6sAMA2tIT2w==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="20" height="20">
@@ -31,7 +32,7 @@
  </layer>
  <layer id="4" name="Above Player" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApIBwAGQAAB
+   eJxjYBgFo2AUjIJRMNAgQxETD3YAANHmAq4=
   </data>
  </layer>
  <objectgroup color="#ff2600" id="5" name="Collisions">
@@ -45,9 +46,10 @@
   <object id="11" type="collision" x="64" y="176" width="16" height="32"/>
   <object id="12" type="collision" x="48" y="112" width="16" height="96"/>
   <object id="13" type="collision" x="64" y="112" width="176" height="48"/>
-  <object id="14" type="collision" x="224" y="160" width="16" height="112"/>
-  <object id="15" type="collision" x="224" y="272" width="96" height="48"/>
+  <object id="14" type="collision" x="224" y="160" width="16" height="128"/>
+  <object id="15" type="collision" x="224" y="288" width="96" height="32"/>
   <object id="17" type="collision" x="48" y="80" width="32" height="32"/>
+  <object id="26" type="collision" x="288" y="208" width="32" height="48"/>
  </objectgroup>
  <objectgroup color="#fffb00" id="6" name="Events">
   <object id="18" name="back to main" type="event" x="144" y="0" width="16" height="16">
@@ -62,6 +64,48 @@
     <property name="act1" value="transition_teleport taba_ba_main.tmx,14,13,0.5"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="20" name="wild tuxemon 1" type="event" x="176" y="80" width="32" height="32">
+   <properties>
+    <property name="act1" value="random_encounter taba_ba_passageway_3"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="21" name="wild tuxemon 2" type="event" x="240" y="128" width="32" height="32">
+   <properties>
+    <property name="act1" value="random_encounter taba_ba_passageway_3"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="22" name="wild tuxemon 3" type="event" x="16" y="112" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter taba_ba_passageway_3"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="23" name="wild tuxemon 4" type="event" x="48" y="48" width="48" height="16">
+   <properties>
+    <property name="act1" value="random_encounter taba_ba_passageway_3"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="24" name="wild tuxemon 5" type="event" x="240" y="80" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter taba_ba_passageway_3"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="25" name="wild tuxemon 6" type="event" x="240" y="208" width="16" height="32">
+   <properties>
+    <property name="act1" value="random_encounter taba_ba_passageway_3"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
    </properties>
   </object>
  </objectgroup>

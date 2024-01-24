@@ -550,7 +550,6 @@
    <properties>
     <property name="act05" value="translated_dialog spyder_papertown_thereis"/>
     <property name="act10" value="change_state JournalInfoState,rockitten"/>
-    <property name="act20" value="remove_state"/>
     <property name="act25" value="translated_dialog spyder_papertown_rockitten"/>
     <property name="act30" value="translated_dialog_choice yes:no,rockittenchosen"/>
     <property name="cond1" value="is char_facing_tile player"/>
@@ -562,7 +561,6 @@
    <properties>
     <property name="act05" value="translated_dialog spyder_papertown_thereis"/>
     <property name="act10" value="change_state JournalInfoState,lambert"/>
-    <property name="act20" value="remove_state"/>
     <property name="act25" value="translated_dialog spyder_papertown_lambert"/>
     <property name="act30" value="translated_dialog_choice yes:no,lambertchosen"/>
     <property name="cond1" value="is char_facing_tile player"/>
@@ -574,7 +572,6 @@
    <properties>
     <property name="act05" value="translated_dialog spyder_papertown_thereis"/>
     <property name="act10" value="change_state JournalInfoState,nut"/>
-    <property name="act20" value="remove_state"/>
     <property name="act25" value="translated_dialog spyder_papertown_nut"/>
     <property name="act30" value="translated_dialog_choice yes:no,nutchosen"/>
     <property name="cond1" value="is char_facing_tile player"/>
@@ -586,7 +583,6 @@
    <properties>
     <property name="act05" value="translated_dialog spyder_papertown_thereis"/>
     <property name="act10" value="change_state JournalInfoState,tweesher"/>
-    <property name="act20" value="remove_state"/>
     <property name="act25" value="translated_dialog spyder_papertown_tweesher"/>
     <property name="act30" value="translated_dialog_choice yes:no,tweesherchosen"/>
     <property name="cond1" value="is char_facing_tile player"/>
@@ -598,7 +594,6 @@
    <properties>
     <property name="act05" value="translated_dialog spyder_papertown_thereis"/>
     <property name="act10" value="change_state JournalInfoState,agnite"/>
-    <property name="act20" value="remove_state"/>
     <property name="act25" value="translated_dialog spyder_papertown_agnite"/>
     <property name="act30" value="translated_dialog_choice yes:no,agnitechosen"/>
     <property name="cond1" value="is char_facing_tile player"/>

@@ -6883,6 +6883,13 @@ msgstr "... Well done. I put the blame of this loss entirely on Chris though.\n"
 msgid "acolyte2challengerredo"
 msgstr "Oh ho, back so quick? Well, let's get to it then!"
 
+msgid "healertabapassageway3"
+msgstr "Y'know, that Christie girl is a real piece of work. She would not stop talking about how cute Lamberts are...\n"
+"Oh, sorry. Give me your Tuxemon and I'll heal them."
+
+msgid "healertabapassageway3-2"
+msgstr "There! You should be all set now! Good luck on the next acolyte!"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

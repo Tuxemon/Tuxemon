@@ -175,6 +175,10 @@ def defeated(character: NPC) -> bool:
 
 
 def check_moves(monster: Monster, levels: int) -> Optional[str]:
+    """
+    Checks if during the levelling up there is/are new tech/s to learn.
+    If there is/are new tech/s it returns the message, otherwise None.
+    """
     techs = monster.update_moves(levels)
     if techs:
         _techs = ""

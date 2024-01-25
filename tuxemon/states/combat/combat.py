@@ -722,6 +722,9 @@ class CombatState(CombatAnimations):
 
         TODO: caching, etc
         """
+        # update huds
+        for player in self.active_players:
+            self.update_hud(player, False)
         # remove all status icons
         for s in self._status_icons.values():
             self.sprites.remove(s)
@@ -732,7 +735,7 @@ class CombatState(CombatAnimations):
             for status in monster.status:
                 if status.icon:
                     status_ico: tuple[float, float] = (0.0, 0.0)
-                    if len(self.monsters_in_play[self.players[1]]) > 1:
+                    if len(self.monsters_in_play_left) > 1:
                         if monster == self.monsters_in_play_left[0]:
                             status_ico = prepare.ICON_OPPONENT_DEFAULT
                         elif monster == self.monsters_in_play_left[1]:
@@ -740,7 +743,7 @@ class CombatState(CombatAnimations):
                     else:
                         if monster == self.monsters_in_play_left[0]:
                             status_ico = prepare.ICON_OPPONENT_DEFAULT
-                    if len(self.monsters_in_play[self.players[0]]) > 1:
+                    if len(self.monsters_in_play_right) > 1:
                         if monster == self.monsters_in_play_right[0]:
                             status_ico = prepare.ICON_PLAYER_SLOT
                         elif monster == self.monsters_in_play_right[1]:
@@ -1166,8 +1169,9 @@ class CombatState(CombatAnimations):
                         if mex:
                             message += "\n" + mex
                             action_time += compute_text_animation_time(message)
-                        # updates hud graphics player
-                        self.update_hud(self.players[0])
+                        if winner.owner and winner.owner.isplayer:
+                            del self.hud[winner]
+                            self.update_hud(winner.owner, False)
                     params = {"name": winner.name.upper(), "xp": awarded_exp}
                     m = T.format("combat_gain_exp", params)
                     message += "\n" + m

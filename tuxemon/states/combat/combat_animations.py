@@ -345,6 +345,21 @@ class CombatAnimations(ABC, Menu[None]):
         for sprite in self._status_icons[monster]:
             self.animate(sprite.image, initial=255, set_alpha=0, duration=2)
 
+    def check_hud(self, monster: Monster, filename: str) -> Sprite:
+        """
+        Checks whether exists or not a hud, it returns a sprite.
+        To avoid building over an existing one.
+
+        Parameters:
+            monster: Monster who needs to update the hud.
+            filename: Filename of the hud.
+
+        """
+        if monster in self.hud:
+            return self.hud[monster]
+        else:
+            return self.load_sprite(filename, layer=hud_layer)
+
     def build_hud(
         self, monster: Monster, home: str, animate: bool = True
     ) -> None:
@@ -355,7 +370,6 @@ class CombatAnimations(ABC, Menu[None]):
             monster: Monster who needs to update the hud.
             home: Which part of the layout hud0, hud1, hud, etc.
             animate: Whether the hud is animated (slide in) or not.
-                default True
 
         """
         _trainer = self.is_trainer_battle
@@ -363,9 +377,7 @@ class CombatAnimations(ABC, Menu[None]):
         assert monster.owner
         _home = self._layout[monster.owner][home][0]
 
-        def build_left_hud() -> Sprite:
-            _hud_opponent = self.graphics.hud.hud_opponent
-            hud = self.load_sprite(_hud_opponent, layer=hud_layer)
+        def build_left_hud(hud: Sprite) -> Sprite:
             _symbol = self.players[0].tuxepedia.get(monster.slug)
             label = build_hud_text(_menu, monster, False, _trainer, _symbol)
             text = self.shadow_text(label)
@@ -378,9 +390,7 @@ class CombatAnimations(ABC, Menu[None]):
                 hud.rect.right = _home.right
             return hud
 
-        def build_right_hud() -> Sprite:
-            _hud_player = self.graphics.hud.hud_player
-            hud = self.load_sprite(_hud_player, layer=hud_layer)
+        def build_right_hud(hud: Sprite) -> Sprite:
             label = build_hud_text(_menu, monster, True, _trainer, None)
             text = self.shadow_text(label)
             hud.image.blit(text, scale_sequence((12, 11)))
@@ -395,14 +405,19 @@ class CombatAnimations(ABC, Menu[None]):
         if animate:
             _animate = partial(self.animate, duration=2.0, delay=1.3)
         if self.get_side(_home) == "right":
-            hud = build_right_hud()
+            _hud_player = self.graphics.hud.hud_player
+            _hud_right = self.check_hud(monster, _hud_player)
+            hud = build_right_hud(_hud_right)
         else:
-            hud = build_left_hud()
+            _hud_opponent = self.graphics.hud.hud_opponent
+            _hud_left = self.check_hud(monster, _hud_opponent)
+            hud = build_left_hud(_hud_left)
         self.hud[monster] = hud
 
-        self.build_animate_hp_bar(monster)
-        if hud.player:
-            self.build_animate_exp_bar(monster)
+        if animate:
+            self.build_animate_hp_bar(monster)
+            if hud.player:
+                self.build_animate_exp_bar(monster)
 
     def animate_party_hud_in(self, player: NPC, home: Rect) -> None:
         """
@@ -749,15 +764,15 @@ class CombatAnimations(ABC, Menu[None]):
         Parameters:
             character: Character who needs to update the hud.
             animate: Whether the hud is animated (slide in) or not.
-                default True
 
         """
         total = self.monsters_in_play[character]
         alive = alive_party(character)
-        monster = self.monsters_in_play[character][0]
-        if len(total) > 1 and len(total) == len(alive):
-            monster2 = self.monsters_in_play[character][1]
-            self.build_hud(monster, "hud0", animate)
-            self.build_hud(monster2, "hud1", animate)
-        else:
-            self.build_hud(monster, "hud", animate)
+        if total:
+            monster = self.monsters_in_play[character][0]
+            if len(total) > 1 and len(total) == len(alive):
+                monster2 = self.monsters_in_play[character][1]
+                self.build_hud(monster, "hud0", animate)
+                self.build_hud(monster2, "hud1", animate)
+            else:
+                self.build_hud(monster, "hud", animate)

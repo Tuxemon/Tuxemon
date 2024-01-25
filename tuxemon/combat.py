@@ -15,7 +15,7 @@ import random
 from collections.abc import Generator, Sequence
 from typing import TYPE_CHECKING, Optional
 
-from tuxemon.db import OutputBattle, PlagueType
+from tuxemon.db import GenderType, OutputBattle, PlagueType, SeenStatus
 from tuxemon.locale import T
 from tuxemon.technique.technique import Technique
 
@@ -123,13 +123,13 @@ def recharging(technique: Technique) -> bool:
 
 
 def get_awake_monsters(
-    player: NPC, monsters: list[Monster], turn: int
+    character: NPC, monsters: list[Monster], turn: int
 ) -> Generator[Monster, None, None]:
     """
     Iterate all non-fainted monsters in party.
 
     Parameters:
-        player: Player object.
+        character: The character.
 
     Yields:
         Non-fainted monsters.
@@ -137,7 +137,7 @@ def get_awake_monsters(
     """
     mons = [
         ele
-        for ele in player.monsters
+        for ele in character.monsters
         if not fainted(ele) and ele not in monsters
     ]
     if mons:
@@ -152,17 +152,26 @@ def get_awake_monsters(
             yield mons[0]
 
 
-def alive_party(player: NPC) -> list[Monster]:
-    not_fainted = [ele for ele in player.monsters if not fainted(ele)]
-    return not_fainted
+def alive_party(character: NPC) -> list[Monster]:
+    """
+    Returns a list with all the monsters alive in the character's party.
+    """
+    alive = [ele for ele in character.monsters if not fainted(ele)]
+    return alive
 
 
 def fainted_party(party: Sequence[Monster]) -> bool:
+    """
+    Whether the party is fainted or not.
+    """
     return all(map(fainted, party))
 
 
-def defeated(player: NPC) -> bool:
-    return fainted_party(player.monsters)
+def defeated(character: NPC) -> bool:
+    """
+    Whether all the character's party is fainted.
+    """
+    return fainted_party(character.monsters)
 
 
 def check_moves(monster: Monster, levels: int) -> Optional[str]:
@@ -473,3 +482,37 @@ def set_battle(
     opponent = "player" if enemy.isplayer else enemy.slug
     client = session.client.event_engine
     client.execute_action("set_battle", [fighter, output, opponent], True)
+
+
+def build_hud_text(
+    menu: str,
+    monster: Monster,
+    is_right: bool,
+    is_trainer: bool,
+    is_status: Optional[SeenStatus] = None,
+) -> str:
+    """
+    Returns the text image for use on the callout of the monster.
+    eg. Rockitten Lv3
+
+    Parameters:
+        menu: Combat menu (eg. MainCombatMenuState).
+        monster: The monster fighting.
+        is_right: Boolean side (true: right side, false: left side).
+            right side (player), left side (opponent)
+        is_trainer: Boolean battle (trainer: true, wild: false).
+
+    """
+    icon: str = ""
+    if monster.gender == GenderType.male:
+        icon += "♂"
+    if monster.gender == GenderType.female:
+        icon += "♀"
+    if not is_trainer:
+        # shows captured symbol (wild encounter)
+        symbol: str = ""
+        if is_status and is_status == SeenStatus.caught and not is_right:
+            symbol += "◉"
+        return f"{monster.name}{icon} Lv.{monster.level}{symbol}"
+    else:
+        return f"{monster.name}{icon} Lv.{monster.level}"

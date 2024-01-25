@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
@@ -48,24 +48,24 @@ class GiveEffect(TechEffect):
             if player.max_position > 1 and area:
                 monsters: Sequence[Monster] = []
                 both = combat.active_monsters
-                human = combat.monsters_in_play_human
-                opponent = combat.monsters_in_play_ai
-                if player.isplayer:
+                _right = combat.monsters_in_play_right
+                _left = combat.monsters_in_play_left
+                if user in _right:
                     if self.objective == "user":
-                        monsters = human
+                        monsters = _right
                         for m in monsters:
                             status.link = m
                     elif self.objective == "target":
-                        monsters = opponent
+                        monsters = _left
                     else:
                         monsters = both
                 else:
                     if self.objective == "user":
-                        monsters = opponent
+                        monsters = _left
                         for m in monsters:
                             status.link = m
                     elif self.objective == "target":
-                        monsters = human
+                        monsters = _right
                     else:
                         monsters = both
                 for mon in monsters:

@@ -1034,6 +1034,15 @@ class BattleIconsModel(BaseModel):
 
 
 class BattleGraphicsModel(BaseModel):
+    menu: str = Field(
+        "MainCombatMenuState", description="Menu used for combat."
+    )
+    msgid: str = Field(
+        "combat_monster_choice",
+        description="msgid of the sentence that is going to appear in the "
+        "combat menu in between the rounds, when the monster needs to choose "
+        "the next move, (name) shows monster name, (player) the player name.",
+    )
     island_back: str = Field(..., description="Sprite used for back combat")
     island_front: str = Field(..., description="Sprite used for front combat")
     background: str = Field(..., description="Sprite used for background")
@@ -1051,6 +1060,19 @@ class BattleGraphicsModel(BaseModel):
         if has.file(v) and has.size(v, prepare.BATTLE_BG_SIZE):
             return v
         raise ValueError(f"no resource exists with path: {v}")
+
+    @field_validator("msgid")
+    def translation_exists_msgid(cls: BattleGraphicsModel, v: str) -> str:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+    @field_validator("menu")
+    def check_state(cls: BattleGraphicsModel, v: str) -> str:
+        states = [state.name for state in State]
+        if v in states:
+            return v
+        raise ValueError(f"state isn't among: {states}")
 
 
 class EnvironmentModel(BaseModel):

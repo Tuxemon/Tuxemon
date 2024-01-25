@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """
 
 General guidelines of the combat module
@@ -71,7 +71,6 @@ from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
 from tuxemon.states.monster import MonsterMenuState
-from tuxemon.states.monster_info import MonsterInfoState
 from tuxemon.states.transition.fade import FadeOutTransition
 from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.technique.technique import Technique
@@ -1340,8 +1339,6 @@ class CombatState(CombatAnimations):
 
     def end_combat(self) -> None:
         """End the combat."""
-        self.players[0].set_party_status()
-
         self.clean_combat()
 
         # fade music out
@@ -1355,8 +1352,7 @@ class CombatState(CombatAnimations):
         # open Tuxepedia if monster is captured
         if self._captured_mon and self._new_tuxepedia:
             self.client.pop_state()
-            self.client.push_state(
-                MonsterInfoState(monster=self._captured_mon, source=self.name)
-            )
+            params = {"monster": self._captured_mon, "source": self.name}
+            self.client.push_state("MonsterInfoState", kwargs=params)
         else:
             self.client.push_state(FadeOutTransition(caller=self))

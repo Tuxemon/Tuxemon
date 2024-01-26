@@ -388,27 +388,29 @@ def track_battles(
         losers = players
         info = {"name": winner.name.upper()}
         if trainer_battle:
+            # register battle
+            for _loser in losers:
+                set_battle(session, OutputBattle.won, winner, _loser)
             # set variables
             if winner.isplayer:
                 set_var(session, "battle_last_result", OutputBattle.won)
                 set_var(session, "battle_last_winner", "player")
+                client = session.client.event_engine
+                var = ["player", prize]
+                client.execute_action("modify_money", var, True)
+                if prize > 0:
+                    info = {
+                        "name": winner.name.upper(),
+                        "prize": str(prize),
+                        "currency": "$",
+                    }
+                    return T.format("combat_victory_trainer", info)
+                else:
+                    return T.format("combat_victory", info)
             else:
                 set_var(session, "battle_last_winner", winner.slug)
                 set_var(session, "battle_last_trainer", winner.slug)
-            # if trainer battle prize
-            if prize > 0:
-                winner.give_money(prize)
-                info = {
-                    "name": winner.name.upper(),
-                    "prize": str(prize),
-                    "currency": "$",
-                }
-                # register battle
-                for _loser in losers:
-                    set_battle(session, OutputBattle.won, winner, _loser)
-                return T.format("combat_victory_trainer", info)
-            # trainer battle without prize
-            return T.format("combat_victory", info)
+                return T.format("combat_victory", info)
         else:
             # wild monster
             info = {"name": winner.name.upper()}

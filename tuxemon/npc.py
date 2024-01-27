@@ -312,21 +312,20 @@ class NPC(Entity[NPCState]):
         for anim_type in anim_types:
             if not self.interactive_obj:
                 images: list[str] = []
-                anim_type0 = f"sprites/{self.sprite_name}_{anim_type}_walk"
-                anim_type1 = f"sprites/{self.sprite_name}_{anim_type}.png"
-                images.append(f"{anim_type0}.{str(0).zfill(3)}.png")
-                images.append(anim_type1)
-                images.append(f"{anim_type0}.{str(1).zfill(3)}.png")
-                images.append(anim_type1)
+                anim_0 = f"sprites/{self.sprite_name}_{anim_type.value}_walk"
+                anim_1 = f"sprites/{self.sprite_name}_{anim_type.value}.png"
+                images.append(f"{anim_0}.{str(0).zfill(3)}.png")
+                images.append(anim_1)
+                images.append(f"{anim_0}.{str(1).zfill(3)}.png")
+                images.append(anim_1)
 
                 frames: list[tuple[pygame.surface.Surface, float]] = []
                 for image in images:
                     surface = load_and_scale(image)
                     frames.append((surface, frame_duration))
 
-                self.sprite[f"{anim_type}_walk"] = surfanim.SurfaceAnimation(
-                    frames, loop=True
-                )
+                _surfanim = surfanim.SurfaceAnimation(frames, loop=True)
+                self.sprite[f"{anim_type.value}_walk"] = _surfanim
 
         # Have the animation objects managed by a SurfaceAnimationCollection.
         # With the SurfaceAnimationCollection, we can call play() and stop() on

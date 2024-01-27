@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "probiscus"
+            "technique": "proboscis"
         },
         {
             "level_learned": 2,
-            "technique": "spray"
+            "technique": "spit_poison"
         },
         {
             "level_learned": 4,
@@ -25,11 +25,26 @@
         {
             "level_learned": 10,
             "technique": "goad"
+        },
+        {
+            "level_learned": 16,
+            "technique": "geyser"
+        },
+        {
+            "level_learned": 20,
+            "technique": "sleeping_powder"
+        },
+        {
+            "level_learned": 24,
+            "technique": "venomous_tentacle"
+        },
+        {
+            "level_learned": 28,
+            "technique": "icicle_spear"
         }
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 12,
             "monster_slug": "fluttaflap"
         }

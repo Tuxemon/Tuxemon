@@ -1,13 +1,13 @@
 {
   "tech_id": 5,
-  "accuracy": 1,
+  "accuracy": 0.85,
   "animation": "pound",
   "effects": [
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": null,
+  "potency": 0.0,
   "power": 1.5,
   "range": "melee",
   "recharge": 1,

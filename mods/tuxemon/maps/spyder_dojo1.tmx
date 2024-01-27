@@ -78,17 +78,17 @@
   <object id="2" name="Teleport to Flower City" type="event" x="176" y="176" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_flower_city.tmx,34,18,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="28" name="Teleport to Dojo 2" type="event" x="192" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_dojo2.tmx,10,9,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
   <object id="29" name="Player Spawn" type="event" x="80" y="160" width="16" height="16"/>
@@ -101,60 +101,60 @@
   <object id="31" name="Board B" type="event" x="96" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_dojo_board_b"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="32" name="Board A" type="event" x="16" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_dojo_board_a"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="33" name="Board D" type="event" x="304" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_dojo_board_d"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="34" name="Board C" type="event" x="224" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_dojo_board_c"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="36" name="Create Fu" type="event" x="48" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_fu,3,2"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_fu"/>
+    <property name="cond1" value="not char_exists spyder_dojo_fu"/>
    </properties>
   </object>
   <object id="37" name="Create Yin" type="event" x="128" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_yin,8,2"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_yin"/>
+    <property name="cond1" value="not char_exists spyder_dojo_yin"/>
    </properties>
   </object>
   <object id="38" name="Create Zhu" type="event" x="258" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_zhu,16,2"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_zhu"/>
+    <property name="cond1" value="not char_exists spyder_dojo_zhu"/>
    </properties>
   </object>
   <object id="39" name="Create Xiang" type="event" x="336" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_xiang,21,2"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_xiang"/>
+    <property name="cond1" value="not char_exists spyder_dojo_xiang"/>
    </properties>
   </object>
   <object id="40" name="Create Zhao" type="event" x="160" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_zhao,10,9"/>
-    <property name="act2" value="npc_face spyder_dojo_zhao,right"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_zhao"/>
+    <property name="act2" value="char_face spyder_dojo_zhao,right"/>
+    <property name="cond1" value="not char_exists spyder_dojo_zhao"/>
    </properties>
   </object>
   <object id="41" name="Talk Fu1" type="event" x="0" y="48" width="16" height="16">
@@ -237,7 +237,7 @@
     <property name="act1" value="get_player_monster tasteful_zhu"/>
     <property name="act2" value="translated_dialog_choice taste_cold:taste_warm,which_taste"/>
     <property name="act3" value="set_variable zhu_tastes_choice:yes"/>
-    <property name="act4" value="transfer_money -,50"/>
+    <property name="act4" value="modify_money player,-50"/>
     <property name="cond1" value="is variable_set zhu_taste:yes"/>
     <property name="cond2" value="is variable_set zhu_yn:yes"/>
     <property name="cond4" value="not variable_set zhu_tastes_choice:yes"/>

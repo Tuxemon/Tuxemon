@@ -50,30 +50,30 @@
   <object id="37" name="Go Upstairs" type="event" x="0" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_bedroom.tmx,8,2,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="38" name="Home Sign" type="event" x="16" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_home"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="39" name="Watch TV" type="event" x="16" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_tvwatch"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond3" value="is player_facing up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond3" value="is char_facing player,up"/>
     <property name="cond4" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="41" name="Create Homemaker" type="event" x="64" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_papertown_mom,5,5"/>
-    <property name="act3" value="npc_wander spyder_papertown_mom"/>
-    <property name="cond1" value="not npc_exists spyder_papertown_mom"/>
+    <property name="act3" value="char_wander spyder_papertown_mom"/>
+    <property name="cond1" value="not char_exists spyder_papertown_mom"/>
    </properties>
   </object>
   <object id="42" name="Talk mom1" type="event" x="128" y="16" width="16" height="16">
@@ -89,7 +89,7 @@
     <property name="act1" value="translated_dialog spyder_papertown_mom2"/>
     <property name="act2" value="set_variable spokenmom:yes"/>
     <property name="behav1" value="talk spyder_papertown_mom"/>
-    <property name="cond1" value="is party_size less_than,1"/>
+    <property name="cond1" value="is party_size player,less_than,1"/>
     <property name="cond2" value="is variable_set spokenmom:yes"/>
    </properties>
   </object>
@@ -124,7 +124,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_mom3"/>
     <property name="behav1" value="talk spyder_papertown_mom"/>
-    <property name="cond1" value="is party_size greater_than,0"/>
+    <property name="cond1" value="is party_size player,greater_than,0"/>
     <property name="cond2" value="is variable_set spokenmom:yes"/>
     <property name="cond3" value="not variable_set zoolanderdefeat:yes"/>
    </properties>
@@ -132,9 +132,9 @@
   <object id="56" name="Go Outside" type="event" x="64" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_paper_town.tmx,10,7,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="58" name="Play Music" type="event" x="0" y="0" width="16" height="16">

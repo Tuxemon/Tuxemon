@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
@@ -21,9 +21,20 @@ class FishingEffectResult(ItemEffectResult):
 
 @dataclass
 class FishingEffect(ItemEffect):
-    """This effect triggers fishing."""
+    """
+    This effect triggers fishing.
+
+    Parameters:
+        bait: probability of fishing something
+        lower_bound: min level of the fished monster
+        upper_bound: max level of the fished monster
+
+    """
 
     name = "fishing"
+    bait: float
+    lower_bound: int
+    upper_bound: int
 
     def apply(
         self, item: Item, target: Union[Monster, None]
@@ -63,22 +74,19 @@ class FishingEffect(ItemEffect):
                         pro.append(results.slug)
 
         # bait probability
-        bait = random.randint(1, 100)
-        if item.slug == "fishing_rod":
-            if bait <= 35:
-                mon_slug = random.choice(bas)
-                level = random.randint(5, 15)
-                fishing = True
-        elif item.slug == "neptune":
-            if bait <= 65:
-                mon_slug = random.choice(adv)
-                level = random.randint(15, 25)
-                fishing = True
-        elif item.slug == "poseidon":
-            if bait <= 85:
-                mon_slug = random.choice(pro)
-                level = random.randint(25, 35)
-                fishing = True
+        bait = random.random()
+        if item.slug == "fishing_rod" and bait <= self.bait:
+            mon_slug = random.choice(bas)
+            level = random.randint(self.lower_bound, self.upper_bound)
+            fishing = True
+        elif item.slug == "neptune" and bait <= self.bait:
+            mon_slug = random.choice(adv)
+            level = random.randint(self.lower_bound, self.upper_bound)
+            fishing = True
+        elif item.slug == "poseidon" and bait <= self.bait:
+            mon_slug = random.choice(pro)
+            level = random.randint(self.lower_bound, self.upper_bound)
+            fishing = True
 
         client = self.session.client
         player = self.session.player

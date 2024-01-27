@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -64,6 +64,7 @@ class Condition:
         self.link: Optional[Monster] = None
         self.name = ""
         self.nr_turn = 0
+        self.duration = 0
         self.phase: Optional[str] = None
         self.range = Range.melee
         self.repl_pos: Optional[ResponseCondition] = None
@@ -125,6 +126,7 @@ class Condition:
         self.statranged = results.statranged
         self.statdodge = results.statdodge
         # status fields
+        self.duration = results.duration
         self.bond = results.bond or self.bond
         self.category = results.category or self.category
         self.repl_neg = results.repl_neg or self.repl_neg

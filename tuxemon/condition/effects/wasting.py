@@ -1,10 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from tuxemon.combat import fainted
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 
 if TYPE_CHECKING:
@@ -21,18 +22,23 @@ class WastingEffect(CondEffect):
     """
     Wasting: Take #/16 of your maximum HP in damage each turn
     where # = the number of turns that you have had this condition.
+
+    Parameters:
+        divisor: The divisor.
+
     """
 
     name = "wasting"
+    divisor: int
 
-    def apply(self, tech: Condition, target: Monster) -> WastingEffectResult:
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> WastingEffectResult:
         done: bool = False
-        if tech.phase == "perform_action_status":
-            if tech.slug == "wasting":
-                if target.current_hp > 0:
-                    damage = (target.hp // 16) * tech.nr_turn
-                    target.current_hp -= damage
-                    done = True
+        if condition.phase == "perform_action_status" and not fainted(target):
+            damage = (target.hp // self.divisor) * condition.nr_turn
+            target.current_hp -= damage
+            done = True
         return {
             "success": done,
             "condition": None,

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from collections.abc import Generator
@@ -8,8 +8,8 @@ from typing import TYPE_CHECKING, Optional
 
 import pygame
 
-from tuxemon import tools
-from tuxemon.item.item import INFINITE_ITEMS, Item
+from tuxemon import prepare, tools
+from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
@@ -21,9 +21,11 @@ if TYPE_CHECKING:
     from tuxemon.item.economy import Economy
     from tuxemon.npc import NPC
 
+INFINITE_ITEMS = prepare.INFINITE_ITEMS
+
 
 class ShopMenuState(Menu[Item]):
-    background_filename = "gfx/ui/item/item_menu_bg.png"
+    background_filename = prepare.BG_SHOP
     draw_borders = False
 
     def __init__(

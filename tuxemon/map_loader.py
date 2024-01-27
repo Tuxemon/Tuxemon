@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
 import uuid
 from collections.abc import Generator, Iterator
@@ -12,12 +12,11 @@ from natsort import natsorted
 
 from tuxemon import prepare
 from tuxemon.compat import Rect
+from tuxemon.db import Direction, Orientation
 from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon.graphics import scaled_image_loader
 from tuxemon.lib.bresenham import bresenham
 from tuxemon.map import (
-    Direction,
-    Orientation,
     RegionProperties,
     TuxemonMap,
     angle_of_points,
@@ -100,38 +99,15 @@ class YAMLEventLoader:
                 conds.append(condition)
             for key, value in enumerate(event_data.get("behav", []), start=1):
                 behav_type, args = parse_behav_string(value)
-                if behav_type == "talk":
-                    condition = MapCondition(
-                        type="to_talk",
-                        parameters=args,
-                        x=x,
-                        y=y,
-                        width=w,
-                        height=h,
-                        operator="is",
-                        name=f"behav{str(key*10)}",
-                    )
-                    conds.insert(0, condition)
-                    action = MapAction(
-                        type="npc_face",
-                        parameters=[args[0], "player"],
-                        name=f"behav{str(key*10)}",
-                    )
-                    acts.insert(0, action)
-                else:
-                    raise Exception
-            if event_type == "interact":
-                cond_data = MapCondition(
-                    "player_facing_tile",
-                    list(),
-                    x,
-                    y,
-                    w,
-                    h,
-                    "is",
-                    None,
+                _args = list(args)
+                _args.insert(0, behav_type)
+                _conds = MapCondition(
+                    "behav", _args, x, y, w, h, "is", f"behav{str(key*10)}"
                 )
-                conds.append(cond_data)
+                conds.insert(0, _conds)
+                _squeeze = [":".join(_args)]
+                _acts = MapAction("behav", _squeeze, f"behav{str(key*10)}")
+                acts.insert(0, _acts)
 
             yield EventObject(_id, name, x, y, w, h, conds, acts)
 
@@ -188,7 +164,6 @@ class TMXMapLoader:
         data.tilewidth, data.tileheight = prepare.TILE_SIZE
         events = list()
         inits = list()
-        interacts = list()
         surfable_map = list()
         collision_map: dict[tuple[int, int], Optional[RegionProperties]] = {}
         collision_lines_map = set()
@@ -219,12 +194,7 @@ class TMXMapLoader:
                 colliders = gids_with_colliders.get(gid)
                 if colliders is not None:
                     for obj in colliders:
-                        if obj.type is None:
-                            obj_type = getattr(
-                                obj, "class"
-                            )  # obj.class is invalid syntax
-                        else:
-                            obj_type = obj.type
+                        obj_type = obj.type
                         if obj_type and obj_type.lower().startswith(
                             "collision"
                         ):
@@ -250,10 +220,7 @@ class TMXMapLoader:
                     surfable_map.append((x, y))
 
         for obj in data.objects:
-            if obj.type is None:
-                obj_type = getattr(obj, "class")  # obj.class is invalid syntax
-            else:
-                obj_type = obj.type
+            obj_type = obj.type
             if obj_type and obj_type.lower().startswith("collision"):
                 for tile_position, props in self.extract_tile_collisions(
                     obj, tile_size
@@ -267,13 +234,10 @@ class TMXMapLoader:
                 events.append(self.load_event(obj, tile_size))
             elif obj_type == "init":
                 inits.append(self.load_event(obj, tile_size))
-            elif obj_type == "interact":
-                interacts.append(self.load_event(obj, tile_size))
 
         return TuxemonMap(
             events,
             inits,
-            interacts,
             surfable_map,
             collision_map,
             collision_lines_map,
@@ -299,12 +263,12 @@ class TMXMapLoader:
         if not getattr(tiled_object, "closed", True):
             for item in self.process_line(tiled_object, tile_size):
                 blocker0, blocker1, orientation = item
-                if orientation == "vertical":
-                    yield blocker0, "left"
-                    yield blocker1, "right"
-                elif orientation == "horizontal":
-                    yield blocker1, "down"
-                    yield blocker0, "up"
+                if orientation == Orientation.vertical:
+                    yield blocker0, Direction.left
+                    yield blocker1, Direction.right
+                elif orientation == Orientation.horizontal:
+                    yield blocker1, Direction.down
+                    yield blocker0, Direction.up
                 else:
                     raise Exception(orientation)
 
@@ -415,27 +379,13 @@ class TMXMapLoader:
             if key.startswith("behav"):
                 behav_string = properties[key]
                 behav_type, args = parse_behav_string(behav_string)
-                if behav_type == "talk":
-                    conds.insert(
-                        0,
-                        MapCondition("to_talk", args, x, y, w, h, "is", key),
-                    )
-                    acts.insert(
-                        0, MapAction("npc_face", [args[0], "player"], key)
-                    )
-                else:
-                    raise Exception
-
-        # add a player_facing_tile condition automatically
-        if obj.type is None:
-            obj_type = getattr(obj, "class")  # obj.class is invalid syntax
-        else:
-            obj_type = obj.type
-        if obj_type == "interact":
-            cond_data = MapCondition(
-                "player_facing_tile", list(), x, y, w, h, "is", None
-            )
-            logger.debug(cond_data)
-            conds.append(cond_data)
+                _args = list(args)
+                _args.insert(0, behav_type)
+                conds.insert(
+                    0,
+                    MapCondition("behav", _args, x, y, w, h, "is", key),
+                )
+                _squeeze = [":".join(_args)]
+                acts.insert(0, MapAction("behav", _squeeze, key))
 
         return EventObject(_id, obj.name, x, y, w, h, conds, acts)

@@ -3,10 +3,11 @@
   "accuracy": 0.6,
   "animation": "watershot",
   "effects": [
-    "splash"
+    "splash 2"
   ],
   "flip_axes": "x",
   "is_fast": false,
+  "potency": 0.0,
   "power": 1.5,
   "range": "ranged",
   "recharge": 1,

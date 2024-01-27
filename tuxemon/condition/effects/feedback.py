@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Union
 
+from tuxemon.combat import fainted
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 from tuxemon.condition.condition import Condition
-from tuxemon.db import Range
 from tuxemon.monster import Monster
 from tuxemon.technique.technique import Technique
 
@@ -24,16 +24,24 @@ class FeedBackEffect(CondEffect):
     Each time you are hit by a Special move
     the attacker takes 1/8th your maximum HP in damage
 
+    Parameters:
+        divisor: The divisor.
+
     """
 
     name = "feedback"
+    divisor: int
+    ranges: str
 
-    def apply(self, tech: Condition, target: Monster) -> FeedBackEffectResult:
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> FeedBackEffectResult:
         done: bool = False
-        assert tech.combat_state
-        combat = tech.combat_state
+        assert condition.combat_state
+        combat = condition.combat_state
         log = combat._log_action
         turn = combat._turn
+        ranges = self.ranges.split(":")
         # check log actions
         attacker: Union[Monster, None] = None
         hit: bool = False
@@ -46,21 +54,20 @@ class FeedBackEffect(CondEffect):
                     isinstance(method, Technique)
                     and isinstance(action.user, Monster)
                     and method.hit
+                    and method.range in ranges
+                    and action.target.instance_id == target.instance_id
                 ):
-                    if (
-                        method.range == Range.ranged
-                        or method.range == Range.reach
-                    ):
-                        if action.target.instance_id == target.instance_id:
-                            attacker = action.user
-                            hit = True
+                    attacker = action.user
+                    hit = True
 
-        if tech.phase == "perform_action_status":
-            if tech.slug == "feedback":
-                if attacker and hit:
-                    if attacker.current_hp > 0:
-                        attacker.current_hp -= target.hp // 8
-                        done = True
+        if (
+            condition.phase == "perform_action_status"
+            and attacker
+            and hit
+            and not fainted(attacker)
+        ):
+            attacker.current_hp -= target.hp // self.divisor
+            done = True
         return {
             "success": done,
             "condition": None,

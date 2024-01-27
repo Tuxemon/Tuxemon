@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -216,7 +216,7 @@ class Menu(Generic[T], state.State):
         font_filename = prepare.FONT_JAPANESE
     else:
         font_filename = prepare.FONT_BASIC
-    borders_filename = "gfx/dialog-borders01.png"
+    borders_filename = "gfx/borders/borders.png"
     cursor_filename = "gfx/arrow.png"
     cursor_move_duration = 0.20
     default_character_delay = 0.05

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -7,7 +7,7 @@ import random
 from dataclasses import dataclass
 from typing import final
 
-from tuxemon import formula
+from tuxemon import formula, prepare
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
@@ -44,9 +44,15 @@ class RandomBattleAction(EventAction):
     max_level: int
 
     def start(self) -> None:
-        player = self.session.player
-
-        if self.nr_txmns < 1 or self.nr_txmns > 6:
+        if self.nr_txmns > prepare.PARTY_LIMIT:
+            logger.error(
+                f"{self.nr_txmns} must be between 1 and {prepare.PARTY_LIMIT}"
+            )
+            return
+        if self.max_level > prepare.MAX_LEVEL:
+            logger.error(
+                f"{self.max_level} must be between 1 and {prepare.MAX_LEVEL}"
+            )
             return
 
         # random npc
@@ -70,10 +76,10 @@ class RandomBattleAction(EventAction):
                 filtered.append(elements.slug)
 
         output = random.sample(filtered, self.nr_txmns)
-        for ele in output:
+        for monster in output:
             level = random.randint(self.min_level, self.max_level)
             current_monster = Monster()
-            current_monster.load_from_db(ele)
+            current_monster.load_from_db(monster)
             current_monster.set_level(level)
             current_monster.set_moves(level)
             current_monster.set_capture(formula.today_ordinal())
@@ -82,17 +88,18 @@ class RandomBattleAction(EventAction):
             current_monster.experience_modifier = level
             npc.add_monster(current_monster, len(npc.monsters))
 
-        # Don't start a battle if we don't even have monsters in our party yet.
-        if not check_battle_legal(player):
-            logger.warning("battle is not legal, won't start")
-            return
+        player = self.session.player
 
         # Lookup the environment
         env_slug = player.game_variables.get("environment", "grass")
         env = db.lookup(env_slug, table="environment")
 
+        if not check_battle_legal(player) or not check_battle_legal(npc):
+            logger.warning("battle is not legal, won't start")
+            return
+
         # Add our players and setup combat
-        logger.info("Starting battle with '{self.npc_slug}'!")
+        logger.info(f"Starting battle with '{npc.name}'!")
         self.session.client.push_state(
             CombatState(
                 players=(player, npc),

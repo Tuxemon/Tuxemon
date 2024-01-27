@@ -1,14 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 import math
-from collections.abc import Container, Iterator, Sequence
+from collections.abc import Callable, Container, Iterator, Sequence
 from typing import (
     TYPE_CHECKING,
     Any,
-    Callable,
     Final,
     Generic,
     Literal,
@@ -31,6 +30,7 @@ from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.tools import scale as tuxemon_scale
 
 if TYPE_CHECKING:
+    from tuxemon.db import BattleIconsModel
     from tuxemon.menu.interface import MenuItem
     from tuxemon.monster import Monster
 
@@ -214,23 +214,16 @@ class CaptureDeviceSprite(Sprite):
         monster: Optional[Monster],
         sprite: Sprite,
         state: str,
+        icon: BattleIconsModel,
     ) -> None:
         self.tray = tray
         self.monster = monster
         self.sprite = sprite
         self.state = state
-        self.empty_img = graphics.load_and_scale(
-            "gfx/ui/combat/empty_slot_icon.png",
-        )
-        self.faint_img = graphics.load_and_scale(
-            "gfx/ui/icons/party/party_icon03.png",
-        )
-        self.alive_img = graphics.load_and_scale(
-            "gfx/ui/icons/party/party_icon01.png",
-        )
-        self.effected_img = graphics.load_and_scale(
-            "gfx/ui/icons/party/party_icon02.png",
-        )
+        self.empty_img = graphics.load_and_scale(icon.icon_empty)
+        self.faint_img = graphics.load_and_scale(icon.icon_faint)
+        self.alive_img = graphics.load_and_scale(icon.icon_alive)
+        self.effected_img = graphics.load_and_scale(icon.icon_status)
         super().__init__()
 
     def update_state(self) -> str:
@@ -428,8 +421,6 @@ class RelativeGroup(MenuSpriteGroup[_MenuElement]):
     def draw(
         self,
         surface: Surface,
-        bgsurf: Any = None,
-        special_flags: int = 0,
     ) -> list[Rect]:
         self.update_rect_from_parent()
         topleft = self.rect.topleft
@@ -516,8 +507,6 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
     def draw(
         self,
         surface: Surface,
-        bgsurf: Any = None,
-        special_flags: int = 0,
     ) -> list[Rect]:
         if self._needs_arrange:
             self.arrange_menu_items()

@@ -56,17 +56,17 @@
   <object id="1" name="Teleport to Flower City" type="event" x="0" y="240" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport flower_city.tmx,39,15,0.3"/>
-    <property name="act20" value="player_face left"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing left"/>
+    <property name="act20" value="char_face player,left"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="2" name="Teleport to Timber Town" type="event" x="624" y="144" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport timber_town.tmx,0,29,0.3"/>
-    <property name="act20" value="player_face right"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing right"/>
+    <property name="act20" value="char_face player,right"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,right"/>
    </properties>
   </object>
   <object id="18" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -80,12 +80,14 @@
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="not variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:grass"/>
    </properties>
   </object>
   <object id="21" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
     <property name="cond1" value="is variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:night_grass"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -57,11 +57,7 @@ class ChoiceMonsterAction(EventAction):
             text = T.translate(val)
             var_menu.append((text, val, partial(_set_variable, val, player)))
 
-        self.session.client.push_state(
-            ChoiceMonster(
-                menu=var_menu,
-            )
-        )
+        self.session.client.push_state(ChoiceMonster(menu=var_menu))
 
     def update(self) -> None:
         try:

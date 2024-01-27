@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import operator
 import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
+from tuxemon.tools import ops_dict
 
 if TYPE_CHECKING:
     from tuxemon.condition.condition import Condition
@@ -38,15 +38,15 @@ class StatChangeEffect(CondEffect):
     name = "statchange"
 
     def apply(
-        self, tech: Condition, target: Monster
+        self, condition: Condition, target: Monster
     ) -> StatChangeEffectResult:
         statsmaster = [
-            tech.statspeed,
-            tech.stathp,
-            tech.statarmour,
-            tech.statmelee,
-            tech.statranged,
-            tech.statdodge,
+            condition.statspeed,
+            condition.stathp,
+            condition.statarmour,
+            condition.statmelee,
+            condition.statranged,
+            condition.statdodge,
         ]
         statslugs = [
             "speed",
@@ -57,7 +57,7 @@ class StatChangeEffect(CondEffect):
             "dodge",
         ]
         newstatvalue = 0
-        if tech.phase == "perform_action_status":
+        if condition.phase == "perform_action_status":
             for stat, slugdata in zip(statsmaster, statslugs):
                 if not stat:
                     continue
@@ -71,17 +71,10 @@ class StatChangeEffect(CondEffect):
                 if max_deviation:
                     value = random.randint(int(min_value), int(max_value))
 
-                if value > 0 and override is not True:
-                    ops_dict = {
-                        "+": operator.add,
-                        "-": operator.sub,
-                        "*": operator.mul,
-                        "/": operator.floordiv,
-                    }
+                if value > 0 and not override:
                     newstatvalue = ops_dict[operation](basestatvalue, value)
-                if slugdata == "current_hp":
-                    if override:
-                        target.current_hp = target.hp
+                if slugdata == "current_hp" and override:
+                    target.current_hp = target.hp
                 if newstatvalue <= 0:
                     newstatvalue = 1
                 setattr(target, slugdata, newstatvalue)

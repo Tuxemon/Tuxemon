@@ -1,8 +1,10 @@
 {
   "tech_id": 100,
-  "accuracy": 0.6,
+  "accuracy": 0.85,
   "animation": "skull_fire",
   "effects": [
+    "give slow,user",
+    "give confused,target",
     "damage"
   ],
   "flip_axes": "",

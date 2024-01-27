@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -40,8 +40,7 @@ class FlyOffEffect(TechEffect):
 
         # make fly the user
         user_sprite = combat._monster_sprite_map.get(user, None)
-        assert user_sprite
-        if user_sprite.visible:
+        if user_sprite and user_sprite.visible:
             user_sprite.visible = False
             user.out_of_range = True
             technique = Technique()
@@ -52,12 +51,8 @@ class FlyOffEffect(TechEffect):
             # if it's already flying
             done = False
 
-        extra = T.format(
-            "combat_fly",
-            {
-                "name": user.name.upper(),
-            },
-        )
+        params = {"name": user.name.upper()}
+        extra = T.format("combat_fly", params)
 
         return {
             "success": done,

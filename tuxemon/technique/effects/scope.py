@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -29,16 +29,14 @@ class ScopeEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> ScopeEffectResult:
-        extra = T.format(
-            "combat_scope",
-            {
-                "AR": target.armour,
-                "DE": target.dodge,
-                "ME": target.melee,
-                "RD": target.ranged,
-                "SD": target.speed,
-            },
-        )
+        params = {
+            "AR": target.armour,
+            "DE": target.dodge,
+            "ME": target.melee,
+            "RD": target.ranged,
+            "SD": target.speed,
+        }
+        extra = T.format("combat_scope", params)
         return {
             "success": True,
             "damage": 0,

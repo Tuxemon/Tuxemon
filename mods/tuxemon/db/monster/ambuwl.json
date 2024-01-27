@@ -4,15 +4,15 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "mudslide"
+            "technique": "peck"
         },
         {
             "level_learned": 2,
-            "technique": "ram"
+            "technique": "mending"
         },
         {
             "level_learned": 6,
-            "technique": "rock"
+            "technique": "mudslide"
         },
         {
             "level_learned": 8,
@@ -28,7 +28,7 @@
         },
         {
             "level_learned": 20,
-            "technique": "mending"
+            "technique": "life_surge"
         },
         {
             "level_learned": 24,
@@ -36,7 +36,7 @@
         },
         {
             "level_learned": 28,
-            "technique": "sylvan"
+            "technique": "neutralize"
         },
         {
             "level_learned": 32,

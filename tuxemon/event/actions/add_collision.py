@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -45,6 +45,6 @@ class AddCollisionAction(EventAction):
         )
         if self.x and self.y:
             world.collision_map[(self.x, self.y)] = properties
-        else:
-            if coords:
-                world.collision_map[coords] = properties
+        if coords:
+            for coord in coords:
+                world.collision_map[coord] = properties

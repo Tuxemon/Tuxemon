@@ -48,16 +48,16 @@
   <object id="69" name="Go Outside" type="event" x="96" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_town.tmx,19,37,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="30" name="Create Firefighter" type="event" x="16" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_timberhouse_zed,1,5"/>
-    <property name="act2" value="npc_face spyder_timberhouse_zed,right"/>
-    <property name="cond1" value="not npc_exists spyder_timberhouse_zed"/>
+    <property name="act2" value="char_face spyder_timberhouse_zed,right"/>
+    <property name="cond1" value="not char_exists spyder_timberhouse_zed"/>
    </properties>
   </object>
   <object id="31" name="Talk Firefighter - No Chillimp" type="event" x="80" y="0" width="16" height="16">
@@ -65,7 +65,7 @@
     <property name="act1" value="translated_dialog spyder_timber_firefighter1"/>
     <property name="act2" value="translated_dialog spyder_timber_firefighter_nochillimp"/>
     <property name="behav1" value="talk spyder_timberhouse_zed"/>
-    <property name="cond1" value="not has_monster chillimp"/>
+    <property name="cond1" value="not has_monster player,chillimp"/>
     <property name="cond2" value="not variable_set fire_timber_hastraded:yes"/>
    </properties>
   </object>
@@ -74,7 +74,7 @@
     <property name="act1" value="translated_dialog spyder_timber_firefighter1"/>
     <property name="act2" value="translated_dialog_choice yes:no,fire_timber_willtrade"/>
     <property name="behav1" value="talk spyder_timberhouse_zed"/>
-    <property name="cond1" value="is has_monster chillimp"/>
+    <property name="cond1" value="is has_monster player,chillimp"/>
     <property name="cond2" value="not variable_set fire_timber_hastraded:yes"/>
    </properties>
   </object>
@@ -84,7 +84,7 @@
     <property name="act2" value="get_player_monster chillimp,slug,chillimp"/>
     <property name="act3" value="trading chillimp,tikoal"/>
     <property name="act4" value="set_variable fire_timber_hastraded:yes"/>
-    <property name="cond1" value="is has_monster chillimp"/>
+    <property name="cond1" value="is has_monster player,chillimp"/>
     <property name="cond2" value="is variable_set fire_timber_willtrade:yes"/>
     <property name="cond3" value="not variable_set fire_timber_hastraded:yes"/>
    </properties>

@@ -1,8 +1,9 @@
 {
 	"animation": null,
+	"accuracy": 0.0,
 	"effects": [],
 	"flip_axes": "",
-	"icon": "",
+	"potency": 0.0,
 	"power": 0,
 	"range": "special",
 	"sfx": "sfx_blaster",

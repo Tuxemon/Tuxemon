@@ -1,10 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
 from unittest import mock
 
 from tuxemon.monster import Monster
 from tuxemon.npc import NPC
+from tuxemon.prepare import KENNEL, PARTY_LIMIT
 
 
 def mockNPC(self) -> None:
@@ -12,7 +13,7 @@ def mockNPC(self) -> None:
     self.isplayer = True
     self.game_variables = {}
     self.monster_boxes = {}
-    self.monster_boxes["Kennel"] = []
+    self.monster_boxes[KENNEL] = []
 
 
 class TestCatchTuxemon(unittest.TestCase):
@@ -21,7 +22,7 @@ class TestCatchTuxemon(unittest.TestCase):
         with mock.patch.object(NPC, "__init__", mockNPC):
             npc = NPC()
             self.assertEqual(len(npc.monsters), 0)
-            self.assertEqual(len(npc.monster_boxes["Kennel"]), 0)
+            self.assertEqual(len(npc.monster_boxes[KENNEL]), 0)
 
             monster = Monster()
             npc.add_monster(monster, len(npc.monsters))
@@ -71,10 +72,10 @@ class TestCatchTuxemon(unittest.TestCase):
 
             monsterF = Monster()
             npc.add_monster(monsterF, len(npc.monsters))
-            self.assertEqual(len(npc.monsters), 6)
-            self.assertEqual(len(npc.monster_boxes["Kennel"]), 0)
+            self.assertEqual(len(npc.monsters), PARTY_LIMIT)
+            self.assertEqual(len(npc.monster_boxes[KENNEL]), 0)
 
             monsterG = Monster()
             npc.add_monster(monsterG, len(npc.monsters))
-            self.assertEqual(len(npc.monsters), 6)
-            self.assertEqual(len(npc.monster_boxes["Kennel"]), 1)
+            self.assertEqual(len(npc.monsters), PARTY_LIMIT)
+            self.assertEqual(len(npc.monster_boxes[KENNEL]), 1)

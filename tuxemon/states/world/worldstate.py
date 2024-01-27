@@ -1,10 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import itertools
 import logging
 import os
+import uuid
 from collections.abc import Mapping, MutableMapping, Sequence
 from typing import (
     TYPE_CHECKING,
@@ -20,10 +21,10 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import networking, prepare, state
+from tuxemon.db import Direction
 from tuxemon.entity import Entity
 from tuxemon.graphics import ColorLike
 from tuxemon.map import (
-    Direction,
     PathfindNode,
     RegionProperties,
     TuxemonMap,
@@ -40,6 +41,7 @@ from tuxemon.states.world.world_menus import WorldMenuState
 from tuxemon.surfanim import SurfaceAnimation
 
 if TYPE_CHECKING:
+    from tuxemon.monster import Monster
     from tuxemon.networking import EventData
     from tuxemon.npc import NPC
     from tuxemon.player import Player
@@ -47,10 +49,10 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 direction_map: Mapping[int, Direction] = {
-    intentions.UP: "up",
-    intentions.DOWN: "down",
-    intentions.LEFT: "left",
-    intentions.RIGHT: "right",
+    intentions.UP: Direction.up,
+    intentions.DOWN: Direction.down,
+    intentions.LEFT: Direction.left,
+    intentions.RIGHT: Direction.right,
 }
 
 SpriteMap = Union[
@@ -149,6 +151,9 @@ class WorldState(state.State):
         self.transition_surface: Optional[pygame.surface.Surface] = None
         self.in_transition = False
 
+        # bubble above the player's head
+        self.bubble: dict[NPC, pygame.surface.Surface] = {}
+
         # The delayed teleport variable is used to perform a teleport in the
         # middle of a transition. For example, fading to black, then
         # teleporting the player, and fading back in again.
@@ -168,7 +173,7 @@ class WorldState(state.State):
         self.map_animations: dict[str, AnimationInfo] = {}
 
         if local_session.player is None:
-            new_player = Player(prepare.CONFIG.player_npc, world=self)
+            new_player = Player(prepare.PLAYER_NPC, world=self)
             local_session.player = new_player
 
         if map_name:
@@ -191,6 +196,7 @@ class WorldState(state.State):
 
         Parameters:
             duration: Duration of the fade out. The fade in is slightly larger.
+            color: Fade's color.
 
         """
 
@@ -219,6 +225,7 @@ class WorldState(state.State):
 
         Parameters:
             duration: Duration of the fade in.
+            color: Fade's color.
 
         """
         self.set_transition_surface(color)
@@ -239,6 +246,7 @@ class WorldState(state.State):
 
         Parameters:
             duration: Duration of the fade out.
+            color: Fade's color.
 
         """
         self.set_transition_surface(color)
@@ -288,6 +296,22 @@ class WorldState(state.State):
     def set_layer(self) -> None:
         self.layer.fill(self.layer_color)
         self.screen.blit(self.layer, (0, 0))
+
+    def set_bubble(
+        self, screen_surfaces: list[tuple[pygame.surface.Surface, Rect, int]]
+    ) -> None:
+        if self.bubble:
+            for npc, surface in self.bubble.items():
+                cx, cy = self.get_pos_from_tilepos(Vector2(npc.tile_pos))
+                bubble_rect = surface.get_rect()
+                bubble_rect.centerx = npc.rect.centerx
+                bubble_rect.bottom = npc.rect.top
+                bubble_rect.x = cx
+                bubble_rect.y = cy - (
+                    surface.get_height() + int(npc.rect.height / 10)
+                )
+                bubble = (surface, bubble_rect, 100)
+                screen_surfaces.append(bubble)
 
     def broadcast_player_teleport_change(self) -> None:
         """Tell clients/host that player has moved after teleport."""
@@ -509,6 +533,9 @@ class WorldState(state.State):
             r = Rect(_c, s.get_size())
             screen_surfaces.append((s, r, l))
 
+        # Adds a bubble above player's head
+        self.set_bubble(screen_surfaces)
+
         # draw the map and sprites
         self.rect = self.current_map.renderer.draw(
             surface, surface.get_rect(), screen_surfaces
@@ -616,7 +643,7 @@ class WorldState(state.State):
                 return npc
         return None
 
-    def get_entity_by_iid(self, iid: str) -> Optional[NPC]:
+    def get_entity_by_iid(self, iid: uuid.UUID) -> Optional[NPC]:
         """
         Get an entity from the world.
 
@@ -625,7 +652,7 @@ class WorldState(state.State):
 
         """
         for npc in self.npcs:
-            if npc.instance_id.hex == iid:
+            if npc.instance_id == iid:
                 return npc
         return None
 
@@ -652,6 +679,7 @@ class WorldState(state.State):
         """
         for npc in self.npcs:
             if npc.slug == slug:
+                npc.remove_collision(npc.tile_pos)
                 self.npcs.remove(npc)
 
     def get_all_entities(self) -> Sequence[NPC]:
@@ -664,11 +692,38 @@ class WorldState(state.State):
         """
         return self.npcs
 
+    def get_all_monsters(self) -> list[Monster]:
+        """
+        List of all monsters in the world.
+
+        Returns:
+            The list of monsters in the map.
+
+        """
+        monsters = []
+        for npc in self.npcs:
+            for monster in npc.monsters:
+                monsters.append(monster)
+        return monsters
+
+    def get_monster_by_iid(self, iid: uuid.UUID) -> Optional[Monster]:
+        """
+        Get a monster from the world.
+
+        Parameters:
+            iid: The monster iid.
+
+        """
+        for monster in self.get_all_monsters():
+            if monster.instance_id == iid:
+                return monster
+        return None
+
     def check_collision_zones(
         self,
         map: MutableMapping[tuple[int, int], Optional[RegionProperties]],
         label: str,
-    ) -> Optional[tuple[int, int]]:
+    ) -> list[tuple[int, int]]:
         """
         Returns coords (tuple) of specific collision zones.
 
@@ -676,11 +731,11 @@ class WorldState(state.State):
             The coordinates.
 
         """
+        tiles = []
         for coords, props in map.items():
-            if props and props.key:
-                if props.key == label:
-                    return coords
-        return None
+            if props and props.key and props.key == label:
+                tiles.append(coords)
+        return tiles
 
     def get_collision_map(self) -> CollisionMap:
         """
@@ -746,13 +801,12 @@ class WorldState(state.State):
             return path[:-1]
 
         else:
-            # TODO: get current map name for a more useful error
+            character = self.get_entity_pos(start)
+            assert character
             logger.error(
-                "Pathfinding failed to find a path from "
-                + str(start)
-                + " to "
-                + str(dest)
-                + ". Are you sure that an obstacle-free path exists?"
+                f"{character.name}'s pathfinding failed to find a path from "
+                + f"{str(start)} to {str(dest)} in {self.current_map.filename}. "
+                + "Are you sure that an obstacle-free path exists?"
             )
 
             return None
@@ -890,10 +944,10 @@ class WorldState(state.State):
         # get exits by checking surrounding tiles
         adjacent_tiles = list()
         for direction, neighbor in (
-            ("down", (position[0], position[1] + 1)),
-            ("right", (position[0] + 1, position[1])),
-            ("up", (position[0], position[1] - 1)),
-            ("left", (position[0] - 1, position[1])),
+            (Direction.down, (position[0], position[1] + 1)),
+            (Direction.right, (position[0] + 1, position[1])),
+            (Direction.up, (position[0], position[1] - 1)),
+            (Direction.left, (position[0] - 1, position[1])),
         ):
             # if exits are defined make sure the neighbor is present there
             if exits and neighbor not in exits:
@@ -928,7 +982,7 @@ class WorldState(state.State):
                     continue
 
                 try:
-                    if pairs[direction] not in tile_data.enter_from:
+                    if pairs(direction) not in tile_data.enter_from:
                         continue
                 except KeyError:
                     continue
@@ -1152,6 +1206,7 @@ class WorldState(state.State):
         for eo in self.client.events:
             if eo.name.lower() == "player spawn":
                 self.player.set_position((eo.x, eo.y))
+                self.player.remove_collision((eo.x, eo.y))
 
     def load_map(self, path: str) -> TuxemonMap:
         """
@@ -1205,13 +1260,13 @@ class WorldState(state.State):
         else:
             for direction in collisions:
                 if self.player.facing == direction:
-                    if direction == "up":
+                    if direction == Direction.up:
                         tile = (player_tile_pos[0], player_tile_pos[1] - 1)
-                    elif direction == "down":
+                    elif direction == Direction.down:
                         tile = (player_tile_pos[0], player_tile_pos[1] + 1)
-                    elif direction == "left":
+                    elif direction == Direction.left:
                         tile = (player_tile_pos[0] - 1, player_tile_pos[1])
-                    elif direction == "right":
+                    elif direction == Direction.right:
                         tile = (player_tile_pos[0] + 1, player_tile_pos[1])
                     for npc in self.npcs:
                         tile_pos = (

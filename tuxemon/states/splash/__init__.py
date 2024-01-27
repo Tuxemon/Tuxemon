@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -34,14 +34,14 @@ class SplashState(state.State):
         splash_border = int(prepare.SCREEN_SIZE[0] / 20)
 
         # Set up the splash screen logos
-        logo = self.load_sprite("gfx/ui/intro/pygame_logo.png")
+        logo = self.load_sprite(prepare.PYGAME_LOGO)
         logo.rect.topleft = (
             splash_border,
             height - splash_border - logo.rect.height,
         )
 
         # Set up the splash screen logos
-        cc = self.load_sprite("gfx/ui/intro/creative_commons.png")
+        cc = self.load_sprite(prepare.CREATIVE_COMMONS)
         cc.rect.topleft = (
             width - splash_border - cc.rect.width,
             height - splash_border - cc.rect.height,
@@ -61,7 +61,7 @@ class SplashState(state.State):
 
     def draw(self, surface: pygame.surface.Surface) -> None:
         if not self.triggered:
-            surface.fill((15, 15, 15))
+            surface.fill(prepare.BLACK_COLOR)
             self.sprites.draw(surface)
 
     def fade_out(self) -> None:

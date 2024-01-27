@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -28,9 +28,6 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "slug",
     "quantity",
 )
-INFINITE_ITEMS = -1
-# eg 5 capture devices, 1 type and 5 items
-MAX_TYPES_BAG = 99
 
 
 class Item:

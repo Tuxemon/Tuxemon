@@ -90,46 +90,46 @@
   <object id="38" name="Teleport to Aboveground" type="event" x="112" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_tunnel.tmx,12,3,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="39" name="Teleport to Aboveground" type="event" x="208" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_tunnel.tmx,6,16,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="40" name="Teleport to Aboveground" type="event" x="224" y="400" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_tunnel.tmx,5,27,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="41" name="Player Spawn" type="event" x="160" y="32" width="16" height="16"/>
   <object id="43" name="Create Beryll" type="event" x="144" y="496" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_tunnelb_beryll,9,31"/>
-    <property name="cond1" value="not npc_exists spyder_tunnelb_beryll"/>
+    <property name="cond1" value="not char_exists spyder_tunnelb_beryll"/>
    </properties>
   </object>
   <object id="45" name="Create Lute" type="event" x="32" y="576" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_tunnelb_lute,2,36"/>
-    <property name="act2" value="npc_face spyder_tunnelb_lute,up"/>
-    <property name="cond1" value="not npc_exists spyder_tunnelb_lute"/>
+    <property name="act2" value="char_face spyder_tunnelb_lute,up"/>
+    <property name="cond1" value="not char_exists spyder_tunnelb_lute"/>
    </properties>
   </object>
   <object id="47" name="Create Meitner" type="event" x="240" y="303.667" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_tunnelb_meitner,15,19"/>
-    <property name="act2" value="npc_face spyder_tunnelb_meitner,up"/>
-    <property name="cond1" value="not npc_exists spyder_tunnelb_meitner"/>
+    <property name="act2" value="char_face spyder_tunnelb_meitner,up"/>
+    <property name="cond1" value="not char_exists spyder_tunnelb_meitner"/>
    </properties>
   </object>
   <object id="49" name="Environment" type="event" x="0" y="32" width="16" height="16">
@@ -143,11 +143,11 @@
     <property name="act0" value="pathfind_to_player spyder_tunnelb_meitner"/>
     <property name="act1" value="translated_dialog spyder_tunnelb_meitner1"/>
     <property name="act2" value="add_monster masknake,22,spyder_tunnelb_meitner,5,10"/>
-    <property name="act3" value="start_battle spyder_tunnelb_meitner"/>
+    <property name="act3" value="start_battle player,spyder_tunnelb_meitner"/>
     <property name="act4" value="translated_dialog spyder_tunnelb_meitner2"/>
     <property name="act6" value="set_variable tunnelbmeitner:yes"/>
     <property name="cond1" value="not variable_set tunnelbmeitner:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="51" name="Talk Lute" type="event" x="32" y="560" width="16" height="16">
@@ -158,11 +158,11 @@
     <property name="act03" value="add_monster noctalo,18,spyder_tunnelb_lute,5,10"/>
     <property name="act04" value="add_monster pipis,16,spyder_tunnelb_lute,5,10"/>
     <property name="act05" value="add_monster strella,20,spyder_tunnelb_lute,5,10"/>
-    <property name="act06" value="start_battle spyder_tunnelb_lute"/>
+    <property name="act06" value="start_battle player,spyder_tunnelb_lute"/>
     <property name="act07" value="translated_dialog spyder_tunnelb_lute2"/>
     <property name="act08" value="set_variable tunnelblute:yes"/>
     <property name="cond1" value="not variable_set tunnelblute:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="52" name="Talk Beryll" type="event" x="144" y="512" width="16" height="32">
@@ -172,22 +172,23 @@
     <property name="act2" value="add_monster rockat,20,spyder_tunnelb_beryll,5,10"/>
     <property name="act3" value="add_monster ignibus,20,spyder_tunnelb_beryll,5,10"/>
     <property name="act4" value="add_monster grintot,20,spyder_tunnelb_beryll,5,10"/>
-    <property name="act5" value="start_battle spyder_tunnelb_beryll"/>
+    <property name="act5" value="start_battle player,spyder_tunnelb_beryll"/>
     <property name="act6" value="translated_dialog spyder_tunnelb_beryll2"/>
     <property name="act7" value="set_variable tunnelbberyll:yes"/>
     <property name="cond1" value="not variable_set tunnelbberyll:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="42" name="Encounters" type="event" x="0" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="random_encounter routeb,0.6"/>
+    <property name="cond1" value="is check_char_parameter player,moving,1"/>
    </properties>
   </object>
   <object id="54" name="Create Shammer" type="event" x="32" y="608" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_tunnelb_shammer,2,38"/>
-    <property name="cond1" value="not npc_exists spyder_tunnelb_shammer"/>
+    <property name="cond1" value="not char_exists spyder_tunnelb_shammer"/>
     <property name="cond2" value="not variable_set tunnelb_shammer:yes"/>
    </properties>
   </object>
@@ -203,7 +204,7 @@
   <object id="56" name="Create Rhincus" type="event" x="256" y="528" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_tunnelb_rhincus,16,33"/>
-    <property name="cond1" value="not npc_exists spyder_tunnelb_rhincus"/>
+    <property name="cond1" value="not char_exists spyder_tunnelb_rhincus"/>
     <property name="cond2" value="not variable_set tunnelb_rhincus:yes"/>
    </properties>
   </object>

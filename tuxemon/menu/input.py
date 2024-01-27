@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random as rd
@@ -60,6 +60,7 @@ class InputMenu(Menu[InputMenuObj]):
 
         """
         super().__init__(**kwargs)
+        self.is_first_input = True
         self.input_string = initial
         self.chars = T.translate("menu_alphabet").replace(r"\0", "\0")
         self.n_columns = int(T.translate("menu_alphabet_n_columns"))
@@ -205,7 +206,9 @@ class InputMenu(Menu[InputMenuObj]):
             self.char_limit is None
             or len(self.input_string) <= self.char_limit
         ):
-            self.input_string += char
+            # removes A at the end of the name
+            self.input_string += char if not self.is_first_input else ""
+            self.is_first_input = False
             self.update_text_area()
         else:
             self.text_area.text = T.translate("alert_text")

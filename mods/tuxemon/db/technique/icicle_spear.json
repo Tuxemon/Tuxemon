@@ -3,14 +3,14 @@
   "accuracy": 0.75,
   "animation": "lance_ice",
   "effects": [
-    "splash"
+    "splash 2"
   ],
   "flip_axes": "xy",
   "is_fast": false,
-  "potency": null,
+  "potency": 0.0,
   "power": 2.25,
   "range": "melee",
-  "recharge": 3,
+  "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "icicle_spear",
   "sort": "damage",

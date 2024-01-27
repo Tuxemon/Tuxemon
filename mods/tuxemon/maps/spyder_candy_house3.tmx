@@ -48,15 +48,15 @@
   <object id="17" name="Go outside" type="event" x="96" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_town.tmx,2,7,0.3"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="18" name="Create Catgirl" type="event" x="16" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_candyhouse3_joanie,1,5"/>
-    <property name="act2" value="npc_face spyder_candyhouse3_joanie,up"/>
-    <property name="cond1" value="not npc_exists spyder_candyhouse3_joanie"/>
+    <property name="act2" value="char_face spyder_candyhouse3_joanie,up"/>
+    <property name="cond1" value="not char_exists spyder_candyhouse3_joanie"/>
    </properties>
   </object>
   <object id="19" name="Talk Catgirl - No Fossil" type="event" x="144" y="16" width="16" height="16">
@@ -64,8 +64,8 @@
     <property name="act1" value="translated_dialog spyder_candy_catgirl1"/>
     <property name="act2" value="translated_dialog spyder_candy_catgirl_nofossil"/>
     <property name="behav1" value="talk spyder_candyhouse3_joanie"/>
-    <property name="cond1" value="not has_monster shammer"/>
-    <property name="cond2" value="not has_monster rhincus"/>
+    <property name="cond1" value="not has_monster player,shammer"/>
+    <property name="cond2" value="not has_monster player,rhincus"/>
     <property name="cond3" value="not variable_set catgirl_candy_hastraded:yes"/>
    </properties>
   </object>
@@ -75,7 +75,7 @@
     <property name="act2" value="translated_dialog spyder_candy_catgirl2"/>
     <property name="act3" value="translated_dialog_choice yes:no,catgirl_candy_willtrade"/>
     <property name="behav1" value="talk spyder_candyhouse3_joanie"/>
-    <property name="cond1" value="is has_monster rhincus"/>
+    <property name="cond1" value="is has_monster player,rhincus"/>
     <property name="cond2" value="not variable_set catgirl_candy_hastraded:yes"/>
    </properties>
   </object>
@@ -85,8 +85,8 @@
     <property name="act2" value="get_player_monster rhincus,slug,rhincus"/>
     <property name="act3" value="trading rhincus,propellercat"/>
     <property name="act4" value="set_variable catgirl_candy_hastraded:yes"/>
-    <property name="cond1" value="is has_monster rhincus"/>
-    <property name="cond2" value="not has_monster shammer"/>
+    <property name="cond1" value="is has_monster player,rhincus"/>
+    <property name="cond2" value="not has_monster player,shammer"/>
     <property name="cond3" value="is variable_set catgirl_candy_willtrade:yes"/>
     <property name="cond4" value="not variable_set catgirl_candy_hastraded:yes"/>
    </properties>
@@ -97,7 +97,7 @@
     <property name="act2" value="translated_dialog spyder_candy_catgirl2"/>
     <property name="act3" value="translated_dialog_choice yes:no,catgirl_candy_willtrade"/>
     <property name="behav1" value="talk spyder_candyhouse3_joanie"/>
-    <property name="cond1" value="is has_monster shammer"/>
+    <property name="cond1" value="is has_monster player,shammer"/>
     <property name="cond2" value="not variable_set catgirl_candy_hastraded:yes"/>
    </properties>
   </object>
@@ -107,9 +107,9 @@
     <property name="act2" value="get_player_monster shammer,slug,shammer"/>
     <property name="act3" value="trading shammer,propellercat"/>
     <property name="act4" value="set_variable catgirl_candy_hastraded:yes"/>
-    <property name="act5" value="set_mission spyder_maniac_achievement1,change,completed"/>
-    <property name="cond1" value="is has_monster shammer"/>
-    <property name="cond2" value="not has_monster rhincus"/>
+    <property name="act5" value="set_mission player,spyder_maniac_achievement1,change,completed"/>
+    <property name="cond1" value="is has_monster player,shammer"/>
+    <property name="cond2" value="not has_monster player,rhincus"/>
     <property name="cond3" value="is variable_set catgirl_candy_willtrade:yes"/>
     <property name="cond4" value="not variable_set catgirl_candy_hastraded:yes"/>
    </properties>
@@ -117,8 +117,8 @@
   <object id="24" name="Go outside" type="event" x="48" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_candy_town.tmx,2,3,0.3"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="25" name="Talk Catgirl - No Fossil" type="event" x="144" y="16" width="16" height="16">
@@ -130,14 +130,14 @@
   </object>
   <object id="26" name="Egg" type="event" x="64" y="80" width="16" height="48">
    <properties>
-    <property name="act10" value="player_stop"/>
+    <property name="act10" value="char_stop"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="create_npc spyder_candy_eliane,3,2"/>
     <property name="act21" value="pathfind_to_player spyder_candy_eliane,left"/>
     <property name="act22" value="wait 0.5"/>
-    <property name="act23" value="npc_face spyder_candy_eliane,right"/>
+    <property name="act23" value="char_face spyder_candy_eliane,right"/>
     <property name="act24" value="wait 0.5"/>
-    <property name="act25" value="npc_face player,left"/>
+    <property name="act25" value="char_face player,left"/>
     <property name="act26" value="wait 0.5"/>
     <property name="act27" value="translated_dialog spyder_candy_eliane4"/>
     <property name="act30" value="set_variable giveegg:yes"/>
@@ -146,7 +146,7 @@
     <property name="act40" value="pathfind spyder_candy_eliane,3,1"/>
     <property name="act41" value="remove_npc spyder_candy_eliane"/>
     <property name="act50" value="unlock_controls"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="not variable_set giveegg:yes"/>
     <property name="cond3" value="is variable_set luckgiveegg:9"/>
    </properties>

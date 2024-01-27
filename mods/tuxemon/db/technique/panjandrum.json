@@ -3,11 +3,11 @@
   "accuracy": 0.75,
   "animation": "explosion_mushroom_128",
   "effects": [
-    "prop_damage target,0.25"
+    "prop_damage target,4"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": null,
+  "potency": 0.0,
   "power": 0,
   "range": "reliable",
   "recharge": 2,

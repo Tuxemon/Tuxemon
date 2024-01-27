@@ -20,6 +20,8 @@ classifiers = [
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "Topic :: Games/Entertainment",
         "Topic :: Games/Entertainment :: Role-Playing"
 ]
@@ -45,7 +47,7 @@ dependencies = {file = "requirements.txt"}
 
 [tool.black]
 line-length = 79
-target-version = ["py38"]
+target-version = ["py39"]
 
 [tool.isort]
 line_length = 79

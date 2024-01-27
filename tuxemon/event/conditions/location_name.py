@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from tuxemon.event import MapCondition
@@ -38,6 +38,6 @@ class LocationNameCondition(EventCondition):
         else:
             names.append(name)
 
-        if client.map_name in names:
+        if client.map_slug in names:
             ret = True
         return ret

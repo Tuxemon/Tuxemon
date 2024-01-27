@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import datetime as dt
+import logging
 from dataclasses import dataclass
 from typing import final
 
@@ -10,44 +10,46 @@ from tuxemon.battle import Battle
 from tuxemon.db import OutputBattle
 from tuxemon.event.eventaction import EventAction
 
+logger = logging.getLogger(__name__)
+
 
 @final
 @dataclass
 class SetBattleAction(EventAction):
     """
-    Append the element in player.battles.
+    Append a new element in player.battles.
 
     Script usage:
         .. code-block::
 
-            set_battle <character>,<result>
+            set_battle <fighter>,<result>,<opponent>
 
     Script parameters:
-        character: Npc slug name (e.g. "npc_maple").
-        result: One among "won", "lost" or "draw"
+        fighter: Npc slug name (e.g. "npc_maple").
+        result: One among "won", "lost" and "draw".
+        opponent: Npc slug name (e.g. "npc_maple").
+
+    eg. "set_battle player,won,npc_maple"
+        -> player won against npc_maple
 
     """
 
     name = "set_battle"
-    battle_opponent: str
-    battle_outcome: str
+    fighter: str
+    outcome: str
+    opponent: str
 
     def start(self) -> None:
         player = self.session.player
 
-        new_battle = Battle()
-        new_battle.opponent = self.battle_opponent
-        new_battle.date = dt.date.today().toordinal()
+        if self.outcome not in list(OutputBattle):
+            logger.error(f"{self.outcome} isn't among {list(OutputBattle)}")
+            return
 
-        if self.battle_outcome == "won":
-            new_battle.outcome = OutputBattle.won
-        elif self.battle_outcome == "draw":
-            new_battle.outcome = OutputBattle.draw
-        elif self.battle_outcome == "lost":
-            new_battle.outcome = OutputBattle.lost
-        else:
-            raise ValueError(
-                f"{self.battle_outcome} must be won, lost or draw.",
-            )
-
-        player.battles.append(new_battle)
+        battle = Battle()
+        battle.fighter = self.fighter
+        battle.outcome = OutputBattle(self.outcome)
+        battle.opponent = self.opponent
+        battle.steps = int(player.steps)
+        logger.info(f"{self.fighter} {self.outcome} against {self.opponent}")
+        player.battles.append(battle)

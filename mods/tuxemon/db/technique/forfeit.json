@@ -1,5 +1,6 @@
 {
 	"animation": null,
+	"accuracy": 0.0,
 	"conditions": [
 	  	"not status grabbed",
 	  	"not status stuck"
@@ -8,8 +9,9 @@
 		"forfeit"
 	],
 	"flip_axes": "",
-	"icon": "",
 	"is_fast": true,
+	"potency": 0.0,
+	"power": 0.0,
 	"range": "special",
 	"sfx": "sfx_blaster",
 	"slug": "menu_forfeit",

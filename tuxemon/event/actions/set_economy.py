@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -39,7 +39,7 @@ class SetEconomyAction(EventAction):
 
         def variable(var: str) -> bool:
             variables = var.split(":")
-            return player.game_variables[variables[0]] == variables[1]
+            return variables[1] == player.game_variables.get(variables[0])
 
         npc.economy = Economy(self.economy_slug)
 

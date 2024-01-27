@@ -1,16 +1,16 @@
 {
   "tech_id": 4,
-  "accuracy": 0.7,
+  "accuracy": 0.9,
   "animation": "fireball_114",
   "effects": [
     "damage"
   ],
   "flip_axes": "x",
   "is_fast": false,
-  "potency": null,
-  "power": 1.75,
+  "potency": 0.0,
+  "power": 1.2,
   "range": "ranged",
-  "recharge": 2,
+  "recharge": 1,
   "sfx": "sfx_flames2",
   "slug": "fire_ball",
   "sort": "damage",

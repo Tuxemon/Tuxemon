@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -14,8 +14,6 @@ from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon.event.eventaction import EventAction
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.map import TuxemonMap
-from tuxemon.platform.const import buttons
-from tuxemon.platform.events import PlayerInput
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
@@ -264,6 +262,7 @@ class EventEngine:
         Parameters:
             action_name: Name of the action.
             parameters: Parameters of the action.
+            skip: Boolean for skipping the action.update().
 
         """
         if parameters is None:
@@ -297,6 +296,8 @@ class EventEngine:
             token = RunningEvent(map_event)
             assert map_event.id
             self.running_events[map_event.id] = token
+            if map_event in self.session.client.inits:
+                self.session.client.inits.remove(map_event)
 
     def process_map_event(self, map_event: EventObject) -> None:
         """
@@ -365,12 +366,10 @@ class EventEngine:
 
         """
         # do the "init" events.  this will be done just once
-        # TODO: find solution that doesn't nuke the init list
         # TODO: make event engine generic, so can be used in global scope,
         # not just maps
         if self.session.client.inits:
             self.process_map_events(self.session.client.inits)
-            self.session.client.inits = list()
 
         # process any other events
         self.process_map_events(self.session.client.events)
@@ -477,34 +476,6 @@ class EventEngine:
             except KeyError:
                 # map changes or engine resets may cause this error
                 pass
-
-    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-        """
-        Handles player input events.
-
-        This function is only called when the
-        player provides input such as pressing a key or clicking the mouse.
-
-        Since this is part of a chain of event handlers, the return value
-        from this method becomes input for the next one.  Returning ``None``
-        signifies that this method has dealt with an event and wants it
-        exclusively.  Return the event and others can use it as well.
-
-        You should return ``None`` if you have handled input here.
-
-        Parameters:
-            event: The event received.
-
-        Returns:
-            The input event, or ``None`` to prevent others to receive it.
-
-        """
-        # has the player pressed the action key?
-        if event.pressed and event.button == buttons.A:
-            for map_event in self.session.client.interacts:
-                self.process_map_event(map_event)
-
-        return event
 
 
 @contextmanager

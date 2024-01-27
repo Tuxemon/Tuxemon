@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from typing import ClassVar, Generic, Optional, TypeVar
@@ -83,7 +83,7 @@ class Bar:
 class HpBar(Bar):
     """HP bar for UI elements."""
 
-    border_filename = "gfx/ui/monster/hp_bar.png"
+    border_filename = prepare.GFX_HP_BAR
     border = None  # type: ClassVar[GraphicBox]
     fg_color = prepare.HP_COLOR_FG
     bg_color = prepare.HP_COLOR_BG
@@ -92,7 +92,7 @@ class HpBar(Bar):
 class ExpBar(Bar):
     """EXP bar for UI elements."""
 
-    border_filename = "gfx/ui/monster/exp_bar.png"
+    border_filename = prepare.GFX_XP_BAR
     border = None  # type: ClassVar[GraphicBox]
     fg_color = prepare.XP_COLOR_FG
     bg_color = prepare.XP_COLOR_BG

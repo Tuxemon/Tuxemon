@@ -3,10 +3,11 @@
   "accuracy": 0.6,
   "animation": "waterspurt",
   "effects": [
-    "splash"
+    "splash 2"
   ],
   "flip_axes": "",
   "is_fast": false,
+  "potency": 0.0,
   "power": 1.5,
   "range": "melee",
   "recharge": 1,

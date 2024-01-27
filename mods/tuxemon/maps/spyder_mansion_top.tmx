@@ -73,17 +73,17 @@
   <object id="25" name="Teleport to Middle" type="event" x="16" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_mansion.tmx,1,2,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="26" name="Teleport to Middle" type="event" x="32" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_mansion.tmx,2,2,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="27" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -105,47 +105,47 @@
     <property name="act1" value="translated_dialog spyder_top_mickey1"/>
     <property name="act2" value="add_monster gectile,25,spyder_top_mickey,5,10"/>
     <property name="act3" value="add_monster cardiwing,25,spyder_top_mickey,5,10"/>
-    <property name="act4" value="start_battle spyder_top_mickey"/>
+    <property name="act4" value="start_battle player,spyder_top_mickey"/>
     <property name="act5" value="translated_dialog spyder_top_mickey2"/>
     <property name="act6" value="set_variable mansiontop_mickey:yes"/>
     <property name="cond1" value="not variable_set mansiontop_mickey:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="33" name="Create Mickey" type="event" x="48" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_top_mickey,3,9"/>
-    <property name="cond1" value="not npc_exists spyder_top_mickey"/>
+    <property name="cond1" value="not char_exists spyder_top_mickey"/>
    </properties>
   </object>
   <object id="34" name="Create Jackson" type="event" x="240" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_top_jackson,15,9"/>
-    <property name="cond1" value="not npc_exists spyder_top_jackson"/>
+    <property name="cond1" value="not char_exists spyder_top_jackson"/>
    </properties>
   </object>
   <object id="35" name="Create Russell" type="event" x="128" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_top_russell,8,13"/>
-    <property name="cond1" value="not npc_exists spyder_top_russell"/>
+    <property name="cond1" value="not char_exists spyder_top_russell"/>
    </properties>
   </object>
   <object id="36" name="Create Barmaid" type="event" x="304" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_top_maura,19,15"/>
-    <property name="cond1" value="not npc_exists spyder_top_maura"/>
+    <property name="cond1" value="not char_exists spyder_top_maura"/>
    </properties>
   </object>
   <object id="37" name="Create Dancer" type="event" x="320" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_top_penelope,20,3"/>
-    <property name="cond1" value="not npc_exists spyder_top_penelope"/>
+    <property name="cond1" value="not char_exists spyder_top_penelope"/>
    </properties>
   </object>
   <object id="38" name="Create Ricardo" type="event" x="240" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_top_ricardo,15,3"/>
-    <property name="cond1" value="not npc_exists spyder_top_ricardo"/>
+    <property name="cond1" value="not char_exists spyder_top_ricardo"/>
    </properties>
   </object>
   <object id="41" name="Talk Russell" type="event" x="48" y="208" width="16" height="32">
@@ -155,11 +155,11 @@
     <property name="act2" value="add_monster av8r,22,spyder_top_russell,5,10"/>
     <property name="act3" value="add_monster mrmoswitch,22,spyder_top_russell,5,10"/>
     <property name="act4" value="add_monster k9,22,spyder_top_russell,5,10"/>
-    <property name="act5" value="start_battle spyder_top_russell"/>
+    <property name="act5" value="start_battle player,spyder_top_russell"/>
     <property name="act6" value="translated_dialog spyder_top_russell2"/>
     <property name="act7" value="set_variable mansiontop_russell:yes"/>
     <property name="cond1" value="not variable_set mansiontop_russell:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="45" name="Talk Ricardo" type="event" x="240" y="96" width="16" height="16">
@@ -168,11 +168,11 @@
     <property name="act1" value="translated_dialog spyder_top_ricardo1"/>
     <property name="act2" value="add_monster lapinou,22,spyder_top_ricardo,5,10"/>
     <property name="act3" value="add_monster squabbit,22,spyder_top_ricardo,5,10"/>
-    <property name="act4" value="start_battle spyder_top_ricardo"/>
+    <property name="act4" value="start_battle player,spyder_top_ricardo"/>
     <property name="act5" value="translated_dialog spyder_top_ricardo2"/>
     <property name="act6" value="set_variable mansiontop_ricardo:yes"/>
     <property name="cond1" value="not variable_set mansiontop_ricardo:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="48" name="Talk Jackson" type="event" x="176" y="208" width="80" height="16">
@@ -180,17 +180,17 @@
     <property name="act0" value="pathfind_to_player spyder_top_jackson"/>
     <property name="act1" value="translated_dialog spyder_top_jackson1"/>
     <property name="act2" value="add_monster viviteel,26,spyder_top_jackson,5,10"/>
-    <property name="act4" value="start_battle spyder_top_jackson"/>
+    <property name="act4" value="start_battle player,spyder_top_jackson"/>
     <property name="act5" value="translated_dialog spyder_top_jackson2"/>
     <property name="act6" value="set_variable mansiontop_jackson:yes"/>
     <property name="cond1" value="not variable_set mansiontop_jackson:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="49" name="Create Magician" type="event" x="80" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_top_lenny,5,2"/>
-    <property name="cond1" value="not npc_exists spyder_top_lenny"/>
+    <property name="cond1" value="not char_exists spyder_top_lenny"/>
    </properties>
   </object>
   <object id="50" name="Talk Magician1" type="event" x="80" y="16" width="16" height="16">
@@ -224,17 +224,17 @@
   <object id="58" name="Teleport to Middle" type="event" x="112" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_routea.tmx,5,7,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="59" name="Teleport to Middle" type="event" x="160" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_routea.tmx,8,7,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
  </objectgroup>

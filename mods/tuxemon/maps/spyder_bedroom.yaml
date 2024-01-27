@@ -2,9 +2,9 @@ events:
   Go Downstairs:
     actions:
     - transition_teleport spyder_downstairs.tmx,0,2,0.3
-    - player_face down
+    - char_face player,down
     conditions:
-    - is player_at
+    - is char_at player
     height: 1
     width: 1
     x: 7
@@ -14,7 +14,7 @@ events:
     actions:
     - change_state PCState
     conditions:
-    - is player_facing_tile
+    - is char_facing_tile player
     - is button_pressed K_RETURN
     - not variable_set kernelquest:yes
     height: 1
@@ -26,7 +26,7 @@ events:
     actions:
     - translated_dialog spyder_pc_alert
     conditions:
-    - is player_facing_tile
+    - is char_facing_tile player
     - is button_pressed K_RETURN
     - is variable_set kernelquest:yes
     height: 1
@@ -49,7 +49,7 @@ events:
     - set_variable teleport_faint:spyder_bedroom.tmx 6 5
     conditions:
     - is button_pressed K_RETURN
-    - is player_facing_tile
+    - is char_facing_tile player
     height: 2
     width: 1
     x: 0
@@ -65,26 +65,27 @@ events:
     type: "event"
   Spyder Intro:
     actions:
-    - change_bg spyder_intro01
+    - change_bg gradient_blue,ceo
     - translated_dialog spyder_intro00
-    - change_bg spyder_tumble
+    - change_bg gradient_blue,spyder_tumble
     - translated_dialog spyder_intro01
-    - change_bg spyder_dol
+    - change_bg gradient_blue,dollfin
     - translated_dialog dollfin
-    - change_bg spyder_ign
+    - change_bg gradient_blue,ignibus
     - translated_dialog ignibus
-    - change_bg spyder_mem
+    - change_bg gradient_blue,memnomnom
     - translated_dialog memnomnom
-    - change_bg spyder_bud
+    - change_bg gradient_blue,budaye
     - translated_dialog budaye
-    - change_bg spyder_gri
+    - change_bg gradient_blue,grintot
     - translated_dialog grintot
-    - change_bg spyder_monsters
+    - change_bg gradient_blue,spyder_monsters
     - translated_dialog spyder_intro02
-    - change_bg spyder_morph
+    - change_bg gradient_blue,spyder_morph
     - translated_dialog spyder_intro03
     - set_variable spyder_intro:yes
     - transition_teleport spyder_paper_mart.tmx,4,8,0.3
+    - char_face player,right
     conditions:
     - is variable_set question_intro:no
     - not variable_set spyder_intro:yes
@@ -93,6 +94,7 @@ events:
     actions:
     - set_variable spyder_intro:yes
     - transition_teleport spyder_paper_mart.tmx,4,8,0.3
+    - char_face player,right
     conditions:
     - is variable_set question_intro:yes
     - not variable_set spyder_intro:yes
@@ -102,4 +104,13 @@ events:
     - play_music music_home
     conditions:
     - not music_playing music_home
+    type: "event"
+  Auto healing teleported:
+    actions:
+    - set_monster_health
+    - set_monster_status
+    - set_variable teleport_clinic:none
+    conditions:
+    - is variable_set teleport_clinic:lost
+    - is current_state WorldState
     type: "event"

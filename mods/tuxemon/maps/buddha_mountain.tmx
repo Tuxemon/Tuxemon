@@ -37,8 +37,8 @@
   <object id="2" name="Welcome Sign" type="event" x="176" y="1440" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog buddha_welcome"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
     <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
@@ -51,8 +51,8 @@
   <object id="225" name="Teleport to map1" type="event" x="32" y="1424" width="16" height="32">
    <properties>
     <property name="act10" value="transition_teleport sphalian_town.tmx,22,14,1.5"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing left"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="226" name="Player Spawn" type="event" x="64" y="1440" width="16" height="16"/>

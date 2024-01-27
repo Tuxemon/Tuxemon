@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import configparser
@@ -77,18 +77,6 @@ class TuxemonConfig:
         self.encounter_rate_modifier = cfg.getfloat(
             "gameplay",
             "encounter_rate_modifier",
-        )
-        self.default_monster_catch_rate = cfg.getfloat(
-            "gameplay",
-            "default_monster_catch_rate",
-        )
-        self.default_upper_monster_catch_resistance = cfg.getfloat(
-            "gameplay",
-            "default_upper_monster_catch_resistance",
-        )
-        self.default_lower_monster_catch_resistance = cfg.getfloat(
-            "gameplay",
-            "default_lower_monster_catch_resistance",
         )
         self.dialog_speed = cfg.get(
             "gameplay",
@@ -236,9 +224,6 @@ def get_defaults() -> Mapping[str, Any]:
                     (
                         ("items_consumed_on_failure", "True"),
                         ("encounter_rate_modifier", "1.0"),
-                        ("default_monster_catch_rate", "125"),
-                        ("default_upper_monster_catch_resistance", "1"),
-                        ("default_lower_monster_catch_resistance", "1"),
                         ("dialog_speed", "slow"),
                     )
                 ),

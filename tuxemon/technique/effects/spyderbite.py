@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -37,20 +37,11 @@ class SpyderbiteEffect(TechEffect):
         ):
             target.plague = PlagueType.infected
 
+        params = {"target": target.name.upper()}
         if target.plague == PlagueType.infected:
-            extra = T.format(
-                "combat_state_plague3",
-                {
-                    "target": target.name.upper(),
-                },
-            )
+            extra = T.format("combat_state_plague3", params)
         else:
-            extra = T.format(
-                "combat_state_plague0",
-                {
-                    "target": target.name.upper(),
-                },
-            )
+            extra = T.format("combat_state_plague0", params)
 
         return {
             "success": True,

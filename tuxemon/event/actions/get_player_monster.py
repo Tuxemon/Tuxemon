@@ -1,17 +1,18 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from operator import eq, ge, gt, le, lt, ne
 from typing import Optional, final
 
 from tuxemon.db import (
+    Comparison,
     ElementType,
     EvolutionStage,
     GenderType,
     MonsterShape,
+    StatType,
     TasteCold,
     TasteWarm,
 )
@@ -19,6 +20,7 @@ from tuxemon.event.eventaction import EventAction
 from tuxemon.menu.interface import MenuItem
 from tuxemon.monster import Monster
 from tuxemon.states.monster import MonsterMenuState
+from tuxemon.tools import compare
 
 logger = logging.getLogger(__name__)
 
@@ -137,31 +139,11 @@ class GetPlayerMonsterAction(EventAction):
                     field = target.hp
                 elif filter_name == "current_hp":
                     field = target.current_hp
-                elif filter_name == "armour":
-                    field = target.armour
-                elif filter_name == "dodge":
-                    field = target.dodge
-                elif filter_name == "melee":
-                    field = target.melee
-                elif filter_name == "ranged":
-                    field = target.ranged
-                elif filter_name == "speed":
-                    field = target.speed
+                elif filter_name in list(StatType):
+                    field = target.return_stat(StatType(filter_name))
                 extra = int(self.extra)
-                if value_name == "less_than" and bool(lt(field, extra)):
-                    self.result = True
-                elif value_name == "less_or_equal" and bool(le(field, extra)):
-                    self.result = True
-                elif value_name == "greater_than" and bool(gt(field, extra)):
-                    self.result = True
-                elif value_name == "greater_or_equal" and bool(
-                    ge(field, extra)
-                ):
-                    self.result = True
-                elif value_name == "equals" and bool(eq(field, extra)):
-                    self.result = True
-                elif value_name == "not_equals" and bool(ne(field, extra)):
-                    self.result = True
+                if value_name in list(Comparison):
+                    self.result = compare(value_name, field, extra)
 
         return self.result
 
@@ -182,6 +164,13 @@ class GetPlayerMonsterAction(EventAction):
         menu = self.session.client.push_state(MonsterMenuState())
         menu.is_valid_entry = self.validate  # type: ignore[assignment]
         menu.on_menu_selection = self.set_var  # type: ignore[assignment]
+        # if without filters, no closing by clicking back
+        if (
+            self.filter_name is None
+            and self.value_name is None
+            and self.extra is None
+        ):
+            menu.escape_key_exits = False
 
     def update(self) -> None:
         try:

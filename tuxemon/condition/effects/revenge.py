@@ -1,10 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
+from tuxemon.combat import fainted
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 from tuxemon.db import Range
 from tuxemon.formula import simple_damage_calculate
@@ -32,10 +33,12 @@ class RevengeEffect(CondEffect):
 
     name = "revenge"
 
-    def apply(self, tech: Condition, target: Monster) -> RevengeEffectResult:
+    def apply(
+        self, condition: Condition, target: Monster
+    ) -> RevengeEffectResult:
         done: bool = False
-        assert tech.combat_state
-        combat = tech.combat_state
+        assert condition.combat_state
+        combat = condition.combat_state
         log = combat._log_action
         turn = combat._turn
         # check log actions
@@ -51,25 +54,25 @@ class RevengeEffect(CondEffect):
                     isinstance(method, Technique)
                     and isinstance(action.user, Monster)
                     and method.hit
+                    and action.target.instance_id == target.instance_id
+                    and method.range != Range.special
                 ):
-                    if (
-                        action.target.instance_id == target.instance_id
-                        and method.range != Range.special
-                    ):
-                        attacker = action.user
-                        hit = True
-                        dam, mul = simple_damage_calculate(
-                            method, attacker, target
-                        )
-                        damage = dam
+                    attacker = action.user
+                    hit = True
+                    dam, mul = simple_damage_calculate(
+                        method, attacker, target
+                    )
+                    damage = dam
 
-        if tech.phase == "perform_action_status":
-            if tech.slug == "revenge":
-                if attacker and hit:
-                    if attacker.current_hp > 0:
-                        attacker.current_hp -= damage
-                        target.current_hp += damage
-                        done = True
+        if (
+            condition.phase == "perform_action_status"
+            and attacker
+            and hit
+            and not fainted(attacker)
+        ):
+            attacker.current_hp -= damage
+            target.current_hp += damage
+            done = True
         return {
             "success": done,
             "condition": None,

@@ -1,12 +1,14 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
+import uuid
 from dataclasses import dataclass
-from typing import Optional, Union, final
+from typing import Optional, final
 
 from tuxemon.condition.condition import Condition
+from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
 
@@ -25,16 +27,16 @@ class SetMonsterStatusAction(EventAction):
             set_monster_status [slot][,status]
 
     Script parameters:
-        slot: Slot of the monster in the party. If no slot is specified, all
-            monsters are modified.
+        variable: Name of the variable where to store the monster id. If no
+            variable is specified, all monsters get/lose status.
         status: Status to set. If no status is specified, the status is
             cleared.
 
     """
 
     name = "set_monster_status"
-    slot: Union[int, None] = None
-    status: Union[str, None] = None
+    variable: Optional[str] = None
+    status: Optional[str] = None
 
     @staticmethod
     def set_status(
@@ -50,19 +52,21 @@ class SetMonsterStatusAction(EventAction):
             monster.apply_status(status)
 
     def start(self) -> None:
-        steps = self.session.player.steps
-        if not self.session.player.monsters:
+        player = self.session.player
+        steps = player.steps
+        if not player.monsters:
             return
 
-        if self.slot is None:
-            if not self.session.player.monsters:
-                return
-            for monster in self.session.player.monsters:
-                self.set_status(monster, self.status, steps)
+        if self.variable is None:
+            for mon in player.monsters:
+                self.set_status(mon, self.status, steps)
         else:
-            try:
-                monster = self.session.player.monsters[self.slot]
-            except IndexError:
-                logger.error("invalid monster slot")
-            else:
-                self.set_status(monster, self.status, steps)
+            if self.variable not in player.game_variables:
+                logger.error(f"Game variable {self.variable} not found")
+                return
+            monster_id = uuid.UUID(player.game_variables[self.variable])
+            monster = get_monster_by_iid(self.session, monster_id)
+            if monster is None:
+                logger.error("Monster not found")
+                return
+            self.set_status(monster, self.status, steps)

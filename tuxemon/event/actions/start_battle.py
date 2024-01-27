@@ -66,8 +66,10 @@ class StartBattleAction(EventAction):
                 fighter.max_position = 2
             # check the human
             if fighter.isplayer:
-                # update environment
                 env_slug = fighter.game_variables.get("environment", "grass")
+            else:
+                player = self.session.player
+                env_slug = player.game_variables.get("environment", "grass")
 
         # set the environment
         env = db.lookup(env_slug, table="environment")

@@ -1,0 +1,182 @@
+events:
+  Enviromment:
+    actions:
+    - set_variable environment:interior
+    conditions:
+    - not variable_set environment:interior
+    type: "event"
+  Route Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: "event"
+  Variables:
+    actions:
+    - set_variable chad_points:0
+    - set_variable brad_points:0
+    conditions:
+    - not variable_set chad_points
+    - not variable_set brad_points
+    type: "event"
+  Teleport to Leather Town:
+    actions:
+    - transition_teleport spyder_leather_town.tmx,24,21,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    height: 1
+    width: 2
+    x: 1
+    y: 10
+    type: "event"
+  Bradfort:
+    actions:
+    - translated_dialog spyder_leathergym_bradfort1
+    - start_battle spyder_leathergym_chad,spyder_leathergym_brad
+    - set_variable chadvsbrad:done
+    behav:
+    - talk spyder_leathergym_brad
+    x: 12
+    y: 9
+    type: "event"
+  Chad:
+    actions:
+    - translated_dialog spyder_leathergym_chad1
+    - start_battle spyder_leathergym_brad,spyder_leathergym_chad
+    - set_variable chadvsbrad:done
+    behav:
+    - talk spyder_leathergym_chad
+    x: 9
+    y: 9
+    type: "event"
+  Brad:
+    actions:
+    - translated_dialog spyder_leathergym_brad1
+    behav:
+    - talk spyder_leathergym_bradfort
+    x: 15
+    y: 9
+    type: "event"
+  Chardfort:
+    actions:
+    - translated_dialog spyder_leathergym_chadfort1
+    behav:
+    - talk spyder_leathergym_chadfort
+    x: 6
+    y: 4
+    type: "event"
+  Gigachad:
+    actions:
+    - translated_dialog spyder_leathergym_gigachad1
+    behav:
+    - talk spyder_leathergym_gigachad
+    x: 18
+    y: 6
+    type: "event"
+  Virgin:
+    actions:
+    - translated_dialog spyder_leathergym_virgin1
+    behav:
+    - talk spyder_leathergym_virgin
+    x: 22
+    y: 5
+    type: "event"
+  Create Chardine:
+    actions:
+    - create_npc spyder_leathergym_chadine,5,9
+    - char_face spyder_leathergym_chadine,up
+    conditions:
+    - not char_exists spyder_leathergym_chadine
+    type: "event"
+  Create Chadfort:
+    actions:
+    - create_npc spyder_leathergym_chadfort,5,5
+    conditions:
+    - not char_exists spyder_leathergym_chadfort
+    type: "event"
+  Create Chad:
+    actions:
+    - create_npc spyder_leathergym_chad,9,9
+    - char_face spyder_leathergym_chad,right
+    - add_monster boxali,24,spyder_leathergym_chad
+    conditions:
+    - not char_exists spyder_leathergym_chad
+    type: "event"
+  Create Bradfort:
+    actions:
+    - create_npc spyder_leathergym_brad,12,9
+    - char_face spyder_leathergym_brad,left
+    - add_monster sumchon,24,spyder_leathergym_brad
+    conditions:
+    - not char_exists spyder_leathergym_brad
+    type: "event"
+  Create Brad:
+    actions:
+    - create_npc spyder_leathergym_bradfort,15,9
+    - char_face spyder_leathergym_bradfort,up
+    conditions:
+    - not char_exists spyder_leathergym_bradfort
+    type: "event"
+  Create Gigachad:
+    actions:
+    - create_npc spyder_leathergym_gigachad,18,6
+    - char_face spyder_leathergym_gigachad,left
+    conditions:
+    - not char_exists spyder_leathergym_gigachad
+    type: "event"
+  Create Virgin:
+    actions:
+    - create_npc spyder_leathergym_virgin,22,5
+    - char_face spyder_leathergym_virgin,up
+    conditions:
+    - not char_exists spyder_leathergym_virgin
+    type: "event"
+  Chadine:
+    actions:
+    - translated_dialog spyder_leathergym_chadine1
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 5
+    y: 8
+    type: "event"
+  Board:
+    actions:
+    - translated_dialog spyder_leathergym_board
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 6
+    y: 2
+    type: "event"
+  Points Brad:
+    actions:
+    - variable_math brad_points,+,1
+    - get_party_monster spyder_leathergym_brad
+    - set_monster_health iid_slot_0
+    - set_monster_status iid_slot_0
+    - get_party_monster spyder_leathergym_chad
+    - set_monster_health iid_slot_0
+    - set_monster_status iid_slot_0
+    - set_variable chadvsbrad:null
+    conditions:
+    - is variable_set chadvsbrad:done
+    - is variable_set battle_last_winner:spyder_leathergym_brad
+    type: "event"
+  Points Chad:
+    actions:
+    - variable_math chad_points,+,1
+    - get_party_monster spyder_leathergym_chad
+    - set_monster_health iid_slot_0
+    - set_monster_status iid_slot_0
+    - get_party_monster spyder_leathergym_brad
+    - set_monster_health iid_slot_0
+    - set_monster_status iid_slot_0
+    - set_variable chadvsbrad:null
+    conditions:
+    - is variable_set chadvsbrad:done
+    - is variable_set battle_last_winner:spyder_leathergym_chad
+    type: "event"
+

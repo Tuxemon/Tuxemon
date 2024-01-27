@@ -562,7 +562,7 @@ class CombatAnimations(ABC, Menu[None]):
         else:
             enemy = opp_mon.get_sprite(
                 "front",
-                bottom=back_island.rect.bottom - scale(12),
+                bottom=back_island.rect.bottom - scale(24),
                 centerx=back_island.rect.centerx,
             )
             self._monster_sprite_map[opp_mon] = enemy

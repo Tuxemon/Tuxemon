@@ -261,7 +261,7 @@ PLAYER_COMBAT["hud1"] = (145, 45, 110, 50)
 PLAYER_COMBAT["party"] = (145, 57, 110, 50)
 # opponent
 OPPONENT_COMBAT: dict[str, tuple[int, int, int, int]] = {}
-OPPONENT_COMBAT["home"] = (140, 10, 95, 70)
+OPPONENT_COMBAT["home"] = (140, 18, 95, 70)
 # name, level, etc.
 OPPONENT_COMBAT["hud"] = (18, 0, 85, 30)
 # 1st spot 2 vs 2

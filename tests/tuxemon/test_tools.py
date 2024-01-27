@@ -4,7 +4,7 @@ import unittest
 from unittest import mock
 
 from tuxemon.player import Player
-from tuxemon.session import Session, local_session
+from tuxemon.session import local_session
 from tuxemon.tools import (
     copy_dict_with_keys,
     number_or_variable,
@@ -51,7 +51,7 @@ class TestCopyDictWithKeys(unittest.TestCase):
         self.assertEqual(result, expected)
 
 
-class TestVariableMoney(unittest.TestCase):
+class TestVariableNumber(unittest.TestCase):
     def test_var(self):
         with mock.patch.object(Player, "__init__", mockPlayer):
             # session = Session()

@@ -992,13 +992,5 @@ class NPC(Entity[NPCState]):
 
         return None
 
-    def give_money(self, amount: int) -> None:
-        if self.isplayer:
-            self.money["player"] += amount
-        else:
-            if self.slug not in self.money:
-                self.money[self.slug] = 0
-            self.money[self.slug] += amount
-
     def speed_test(self, action: EnqueuedAction) -> int:
         return self.speed

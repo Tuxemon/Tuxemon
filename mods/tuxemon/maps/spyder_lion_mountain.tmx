@@ -564,9 +564,9 @@
   <object id="451" name="Teleport Park" type="event" x="96" y="1568" width="48" height="16">
    <properties>
     <property name="act10" value="transition_teleport spyder_park_entrance.tmx,4,3,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act20" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
  </objectgroup>

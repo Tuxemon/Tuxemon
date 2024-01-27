@@ -10,18 +10,20 @@ events:
     - set_variable environment:park
     conditions:
     - not variable_set stage_of_day:night
+    - not variable_set environment:park
     type: "event"
   Environment Night:
     actions:
     - set_variable environment:night_park
     conditions:
     - is variable_set stage_of_day:night
+    - not variable_set environment:night_park
     type: "event"
   Sign:
     actions:
     - translated_dialog welcome_location_route
     conditions:
-    - is player_facing_tile
+    - is char_facing_tile player
     - is button_pressed K_RETURN
     height: 1
     width: 1
@@ -38,8 +40,8 @@ events:
     - random_encounter park
     - play_map_animation grass,0.1,noloop,player
     conditions:
-    - is player_at
-    - is player_moved
+    - is char_at player
+    - is char_moved player
     - is current_state WorldState
     height: 5
     width: 5
@@ -51,8 +53,8 @@ events:
     - random_encounter park
     - play_map_animation grass,0.1,noloop,player
     conditions:
-    - is player_at
-    - is player_moved
+    - is char_at player
+    - is char_moved player
     - is current_state WorldState
     height: 4
     width: 7
@@ -64,8 +66,8 @@ events:
     - random_encounter park
     - play_map_animation grass,0.1,noloop,player
     conditions:
-    - is player_at
-    - is player_moved
+    - is char_at player
+    - is char_moved player
     - is current_state WorldState
     height: 10
     width: 2
@@ -77,8 +79,8 @@ events:
     - random_encounter park
     - play_map_animation grass,0.1,noloop,player
     conditions:
-    - is player_at
-    - is player_moved
+    - is char_at player
+    - is char_moved player
     - is current_state WorldState
     height: 4
     width: 5
@@ -90,8 +92,8 @@ events:
     - random_encounter park
     - play_map_animation grass,0.1,noloop,player
     conditions:
-    - is player_at
-    - is player_moved
+    - is char_at player
+    - is char_moved player
     - is current_state WorldState
     height: 6
     width: 6
@@ -103,8 +105,8 @@ events:
     - random_encounter park
     - play_map_animation grass,0.1,noloop,player
     conditions:
-    - is player_at
-    - is player_moved
+    - is char_at player
+    - is char_moved player
     - is current_state WorldState
     height: 7
     width: 8
@@ -116,8 +118,8 @@ events:
     - random_encounter park
     - play_map_animation grass,0.1,noloop,player
     conditions:
-    - is player_at
-    - is player_moved
+    - is char_at player
+    - is char_moved player
     - is current_state WorldState
     height: 2
     width: 28
@@ -129,8 +131,8 @@ events:
     - random_encounter park
     - play_map_animation grass_blue,0.1,noloop,player
     conditions:
-    - is player_at
-    - is player_moved
+    - is char_at player
+    - is char_moved player
     - is current_state WorldState
     height: 3
     width: 4
@@ -142,8 +144,8 @@ events:
     - random_encounter park
     - play_map_animation grass,0.1,noloop,player
     conditions:
-    - is player_at
-    - is player_moved
+    - is char_at player
+    - is char_moved player
     - is current_state WorldState
     height: 4
     width: 4
@@ -155,8 +157,8 @@ events:
     - random_encounter park
     - play_map_animation grass,0.1,noloop,player
     conditions:
-    - is player_at
-    - is player_moved
+    - is char_at player
+    - is char_moved player
     - is current_state WorldState
     height: 3
     width: 5
@@ -182,8 +184,8 @@ events:
     - random_encounter park
     - play_map_animation grass,0.1,noloop,player
     conditions:
-    - is player_at
-    - is player_moved
+    - is char_at player
+    - is char_moved player
     - is current_state WorldState
     height: 2
     width: 5
@@ -195,8 +197,8 @@ events:
     - random_encounter park
     - play_map_animation grass,0.1,noloop,player
     conditions:
-    - is player_at
-    - is player_moved
+    - is char_at player
+    - is char_moved player
     - is current_state WorldState
     height: 5
     width: 4
@@ -206,7 +208,7 @@ events:
   Steps:
     actions:
     - transition_teleport spyder_park_entrance.tmx,5,4,0.3
-    - player_face up
+    - char_face player,up
     - add_item tuxeball_park,-25
     - clear_variable park_out
     - clear_variable menu_park_captured
@@ -227,7 +229,7 @@ events:
     actions:
     - set_variable park_out:null
     - transition_teleport spyder_park_entrance.tmx,5,4,0.3
-    - player_face up
+    - char_face player,up
     - add_item tuxeball_park,-25
     - set_variable steps_park:0.0
     - clear_variable menu_park_captured
@@ -244,7 +246,7 @@ events:
     actions:
     - create_npc spyder_park_guardian,7,3
     conditions:
-    - not npc_exists spyder_park_guardian
+    - not char_exists spyder_park_guardian
     height: 1
     width: 1
     x: 7
@@ -255,8 +257,8 @@ events:
     - random_encounter park
     - play_map_animation grass,0.1,noloop,player
     conditions:
-    - is player_at
-    - is player_moved
+    - is char_at player
+    - is char_moved player
     - is current_state WorldState
     height: 2
     width: 2
@@ -268,8 +270,8 @@ events:
     - random_encounter park
     - play_map_animation grass,0.1,noloop,player
     conditions:
-    - is player_at
-    - is player_moved
+    - is char_at player
+    - is char_moved player
     - is current_state WorldState
     height: 1
     width: 4
@@ -281,8 +283,8 @@ events:
     - random_encounter park
     - play_map_animation grass,0.1,noloop,player
     conditions:
-    - is player_at
-    - is player_moved
+    - is char_at player
+    - is char_moved player
     - is current_state WorldState
     height: 1
     width: 2
@@ -292,10 +294,10 @@ events:
   Teleport 1:
     actions:
     - transition_teleport spyder_park_cave.tmx,32,12,0.3
-    - player_face up
+    - char_face player,up
     conditions:
-    - is player_at
-    - is player_facing up
+    - is char_at player
+    - is char_facing player,up
     height: 1
     width: 1
     x: 41
@@ -304,10 +306,10 @@ events:
   Teleport 2:
     actions:
     - transition_teleport spyder_park_cave.tmx,9,12,0.3
-    - player_face up
+    - char_face player,up
     conditions:
-    - is player_at
-    - is player_facing up
+    - is char_at player
+    - is char_facing player,up
     height: 1
     width: 1
     x: 18
@@ -316,10 +318,10 @@ events:
   Teleport 3:
     actions:
     - transition_teleport spyder_park_cave.tmx,2,8,0.3
-    - player_face up
+    - char_face player,up
     conditions:
-    - is player_at
-    - is player_facing up
+    - is char_at player
+    - is char_facing player,up
     height: 1
     width: 1
     x: 11
@@ -328,7 +330,7 @@ events:
   Tuxeball:
     actions:
     - transition_teleport spyder_park_entrance.tmx,5,4,0.3
-    - player_face up
+    - char_face player,up
     - clear_variable park_out
     - clear_variable menu_park_captured
     conditions:
@@ -337,9 +339,9 @@ events:
   Create Soldier:
     actions:
     - create_npc spyder_park_soldier,35,20
-    - npc_wander spyder_park_soldier
+    - char_wander spyder_park_soldier
     conditions:
-    - not npc_exists spyder_park_soldier
+    - not char_exists spyder_park_soldier
     type: "event"
   Talk Soldier:
     actions:
@@ -350,9 +352,9 @@ events:
   Create Professor:
     actions:
     - create_npc spyder_park_professor,10,9
-    - npc_face spyder_park_professor,right
+    - char_face spyder_park_professor,right
     conditions:
-    - not npc_exists spyder_park_professor
+    - not char_exists spyder_park_professor
     type: "event"
   Talk Professor:
     actions:
@@ -363,9 +365,9 @@ events:
   Create Tennis Player:
     actions:
     - create_npc spyder_park_tennisplayer,15,25
-    - npc_wander spyder_park_tennisplayer
+    - char_wander spyder_park_tennisplayer
     conditions:
-    - not npc_exists spyder_park_tennisplayer
+    - not char_exists spyder_park_tennisplayer
     type: "event"
   Talk Tennis Player:
     actions:
@@ -375,12 +377,12 @@ events:
     type: "event"
   Billie:
     actions:
-    - player_stop
+    - char_stop
     - lock_controls
     - create_npc spyder_billie,16,36
     - pathfind_to_player spyder_billie,down
     - wait 0.5
-    - npc_face spyder_billie,up
+    - char_face spyder_billie,up
     - translated_dialog spyder_park_billie
     - wait 0.5
     - pathfind spyder_billie,3,28
@@ -389,7 +391,7 @@ events:
     - unlock_controls
     conditions:
     - not variable_set park_billie:yes
-    - is player_at
+    - is char_at player
     height: 1
     width: 3
     x: 1

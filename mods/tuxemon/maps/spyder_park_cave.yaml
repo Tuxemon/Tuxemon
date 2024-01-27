@@ -14,7 +14,7 @@ events:
   Steps:
     actions:
     - transition_teleport spyder_park_entrance.tmx,5,4,0.3
-    - player_face up
+    - char_face player,up
     - add_item tuxeball_park,-25
     - clear_variable park_out
     - clear_variable menu_park_captured
@@ -34,10 +34,10 @@ events:
   Teleport 1:
     actions:
     - transition_teleport spyder_park.tmx,41,13,0.3
-    - player_face down
+    - char_face player,down
     conditions:
-    - is player_at
-    - is player_facing down
+    - is char_at player
+    - is char_facing player,down
     height: 1
     width: 1
     x: 32
@@ -46,10 +46,10 @@ events:
   Teleport 2:
     actions:
     - transition_teleport spyder_park.tmx,18,13,0.3
-    - player_face down
+    - char_face player,down
     conditions:
-    - is player_at
-    - is player_facing down
+    - is char_at player
+    - is char_facing player,down
     height: 1
     width: 1
     x: 9
@@ -58,10 +58,10 @@ events:
   Teleport 3:
     actions:
     - transition_teleport spyder_park.tmx,11,9,0.3
-    - player_face down
+    - char_face player,down
     conditions:
-    - is player_at
-    - is player_facing down
+    - is char_at player
+    - is char_facing player,down
     height: 1
     width: 1
     x: 2
@@ -70,7 +70,7 @@ events:
   Tuxeball:
     actions:
     - transition_teleport spyder_park_entrance.tmx,5,4,0.3
-    - player_face up
+    - char_face player,up
     - clear_variable park_out
     - clear_variable menu_park_captured
     conditions:
@@ -79,9 +79,9 @@ events:
   Create Scientist:
     actions:
     - create_npc spyder_park_scientist,13,8
-    - npc_face spyder_park_scientist,left
+    - char_face spyder_park_scientist,left
     conditions:
-    - not npc_exists spyder_park_scientist
+    - not char_exists spyder_park_scientist
     type: "event"
   Talk Scientist:
     actions:

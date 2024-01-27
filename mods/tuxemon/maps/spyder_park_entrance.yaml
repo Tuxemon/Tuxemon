@@ -2,10 +2,10 @@ events:
   Teleport Park:
     actions:
     - transition_teleport spyder_park.tmx,8,3,0.3
-    - player_face down
+    - char_face player,down
     conditions:
-    - is player_at
-    - is player_facing down
+    - is char_at player
+    - is char_facing player,down
     height: 1
     width: 2
     x: 4
@@ -14,9 +14,9 @@ events:
   Create Elroy:
     actions:
     - create_npc spyder_park_reception,1,7
-    - npc_face spyder_park_reception,right
+    - char_face spyder_park_reception,right
     conditions:
-    - not npc_exists spyder_park_reception
+    - not char_exists spyder_park_reception
     height: 1
     width: 1
     x: 1
@@ -31,10 +31,10 @@ events:
   Teleport Mountain:
     actions:
     - transition_teleport spyder_lion_mountain.tmx,7,98,0.3
-    - player_face up
+    - char_face player,up
     conditions:
-    - is player_at
-    - is player_facing up
+    - is char_at player
+    - is char_facing player,up
     height: 1
     width: 2
     x: 4
@@ -42,10 +42,10 @@ events:
     type: "event"
   Payment:
     actions:
-    - player_stop
+    - char_stop
     - lock_controls
     - wait 1
-    - npc_face player,left
+    - char_face player,left
     - wait 1
     - pathfind player,3,7
     - wait 1
@@ -53,8 +53,8 @@ events:
     - translated_dialog spyder_park_welcome
     - translated_dialog_choice yes:no,paypark
     conditions:
-    - is player_at
-    - is player_facing down
+    - is char_at player
+    - is char_facing player,down
     - not variable_set paypark:yes
     - not variable_set paypark:no
     height: 1
@@ -65,9 +65,9 @@ events:
   Create Emily:
     actions:
     - create_npc spyder_park_florist,8,5
-    - npc_face spyder_park_florist,left
+    - char_face spyder_park_florist,left
     conditions:
-    - not npc_exists spyder_park_florist
+    - not char_exists spyder_park_florist
     height: 1
     width: 1
     x: 8
@@ -77,10 +77,10 @@ events:
     actions:
     - translated_dialog spyder_park_yesmoney
     - lock_controls
-    - transfer_money -,500,spyder_park
+    - modify_money player,-500
     - add_item tuxeball_park,25
     - pathfind player,4,9
-    - npc_face player,down
+    - char_face player,down
     - set_variable paypark:null
     - set_variable steps_park:500
     - set_variable menu_park_captured:0
@@ -94,7 +94,7 @@ events:
     - lock_controls
     - set_variable paypark:null
     - pathfind player,4,4
-    - npc_face player,up
+    - char_face player,up
     - unlock_controls
     conditions:
     - is variable_set paypark:no
@@ -103,7 +103,7 @@ events:
     actions:
     - translated_dialog spyder_park_assistant
     conditions:
-    - is player_facing_tile
+    - is char_facing_tile player
     - is button_pressed K_RETURN
     height: 1
     width: 1
@@ -115,7 +115,7 @@ events:
     - lock_controls
     - set_variable paypark:null
     - pathfind player,4,4
-    - npc_face player,up
+    - char_face player,up
     - unlock_controls
     conditions:
     - is variable_set paypark:no
@@ -126,7 +126,7 @@ events:
     - translated_dialog spyder_park_nomoney
     - set_variable paypark:null
     - pathfind player,4,4
-    - npc_face player,up
+    - char_face player,up
     - unlock_controls
     conditions:
     - is variable_set paypark:yes

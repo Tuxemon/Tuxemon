@@ -23,7 +23,9 @@ class PygameEventQueueHandler(EventQueueHandler):
     """Handle all events from the pygame event queue."""
 
     def __init__(self) -> None:
-        self._inputs: dict[int, list[InputHandler[Any]]] = defaultdict(list)
+        self._inputs: defaultdict[int, list[InputHandler[Any]]] = defaultdict(
+            list
+        )
 
     def add_input(self, player: int, handler: InputHandler[Any]) -> None:
         """

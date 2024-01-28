@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 
+from tuxemon.db import SurfaceKeys
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.map import get_coords, get_direction
@@ -35,6 +36,7 @@ class CharFacingTileCondition(EventCondition):
     def test(self, session: Session, condition: MapCondition) -> bool:
         character = get_npc(session, condition.parameters[0])
         if character is None:
+            logger.error(f"{condition.parameters[0]} not found")
             return False
 
         tiles = [
@@ -51,8 +53,8 @@ class CharFacingTileCondition(EventCondition):
         world = session.client.get_state_by_name(WorldState)
         if len(condition.parameters) > 1:
             value = condition.parameters[1]
-            if value == "surfable":
-                label = list(world.surfable_map)
+            if value in SurfaceKeys:
+                label = world.get_all_tile_properties(world.surface_map, value)
             else:
                 label = world.check_collision_zones(world.collision_map, value)
             tiles = list(set(npc_tiles).intersection(label))
@@ -61,11 +63,7 @@ class CharFacingTileCondition(EventCondition):
         tiles = list(set(tiles).intersection(npc_tiles))
 
         for coords in tiles:
-            # Look through the remaining tiles and get directions
             tile_location = get_direction(character.tile_pos, coords)
-            # Then we check to see the npc is facing the Tile
             if character.facing == tile_location:
-                logger.debug(f"{character.slug} is facing {tile_location}")
                 return True
-
         return False

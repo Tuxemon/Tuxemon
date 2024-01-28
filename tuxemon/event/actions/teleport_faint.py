@@ -7,7 +7,6 @@ from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.prepare import TRANS_TIME
 
 logger = logging.getLogger(__name__)
 
@@ -47,7 +46,7 @@ class TeleportFaintAction(EventAction):
             logger.error("The teleport_faint variable has not been set.")
             return
 
-        _time = TRANS_TIME if self.trans_time is None else self.trans_time
+        if self.trans_time is not None:
+            teleport.append(str(self.trans_time))
         action = client.event_engine
-        action.execute_action("screen_transition", [_time], True)
-        action.execute_action("teleport", teleport, True)
+        action.execute_action("transition_teleport", teleport)

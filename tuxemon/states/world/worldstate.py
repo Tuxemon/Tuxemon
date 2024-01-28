@@ -719,6 +719,47 @@ class WorldState(state.State):
                 return monster
         return None
 
+    def get_all_tile_properties(
+        self,
+        map: MutableMapping[tuple[int, int], dict[str, float]],
+        label: str,
+    ) -> list[tuple[int, int]]:
+        """
+        Returns coords (tuple) of specific tile property.
+
+        Parameters:
+            map: The surface map.
+            label: The label (SurfaceKeys).
+
+        Returns:
+            The coordinates.
+
+        """
+        tiles = [coords for coords, props in map.items() if label in props]
+        return tiles
+
+    def get_tile_moverate(
+        self,
+        map: MutableMapping[tuple[int, int], dict[str, float]],
+        position: tuple[int, int],
+    ) -> float:
+        """
+        Returns moverate of a specific tile by looking in surface map.
+
+        Parameters:
+            map: The surface map.
+            position: The coordinate.
+
+        Returns:
+            Moverate (float), default 1.0
+
+        """
+        moverate = 1.0
+        for coord, props in map.items():
+            if coord == position:
+                moverate = float(next(iter(props.values())))
+        return moverate
+
     def check_collision_zones(
         self,
         map: MutableMapping[tuple[int, int], Optional[RegionProperties]],
@@ -762,6 +803,18 @@ class WorldState(state.State):
             )
             pos = npc.tile_pos
             collision_dict[pos] = prop
+
+        for coords, surface in self.surface_map.items():
+            for label, value in surface.items():
+                _prop = RegionProperties(
+                    enter_from=[],
+                    exit_from=[],
+                    endure=[],
+                    entity=None,
+                    key=label,
+                )
+                if float(value) == 0:
+                    collision_dict[coords] = _prop
 
         # tile layout takes precedence
         collision_dict.update(self.collision_map)
@@ -1182,7 +1235,7 @@ class WorldState(state.State):
 
         self.current_map = map_data
         self.collision_map = map_data.collision_map
-        self.surfable_map = map_data.surfable_map
+        self.surface_map = map_data.surface_map
         self.collision_lines_map = map_data.collision_lines_map
         self.map_size = map_data.size
         self.map_area = map_data.area
@@ -1221,20 +1274,21 @@ class WorldState(state.State):
         """
         txmn_map = TMXMapLoader().load(path)
         yaml_path = path[:-4] + ".yaml"
-        # TODO: merge the events from both sources
-        if os.path.exists(yaml_path):
-            new_events = list(txmn_map.events)
-            new_events.extend(YAMLEventLoader().load_events(yaml_path))
-            txmn_map.events = new_events
-        # scenario YAML, try because not all maps have a scenario
-        try:
-            scenario_path = prepare.fetch("maps", txmn_map.scenario + ".yaml")
-            if os.path.exists(scenario_path):
-                new_events = list(txmn_map.events)
-                new_events.extend(YAMLEventLoader().load_events(scenario_path))
-                txmn_map.events = new_events
-        except:
-            pass
+        _paths = [yaml_path]
+
+        if txmn_map.scenario:
+            _scenario = prepare.fetch("maps", txmn_map.scenario + ".yaml")
+            _paths.append(_scenario)
+
+        _events = list(txmn_map.events)
+        _inits = list(txmn_map.inits)
+        for _path in _paths:
+            if os.path.exists(_path):
+                _events.extend(YAMLEventLoader().load_events(_path, "event"))
+                _inits.extend(YAMLEventLoader().load_events(_path, "init"))
+
+        txmn_map.events = _events
+        txmn_map.inits = _inits
         return txmn_map
 
     @no_type_check  # only used by multiplayer which is disabled

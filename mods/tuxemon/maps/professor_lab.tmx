@@ -67,7 +67,6 @@
     <property name="act1" value="pathfind professor,9,9"/>
     <property name="act2" value="char_face professor,up"/>
     <property name="act3" value="change_state JournalInfoState,rockitten"/>
-    <property name="act4" value="remove_state JournalInfoState"/>
     <property name="act5" value="translated_dialog chooseyerfateRockitten"/>
     <property name="act6" value="translated_dialog_choice yes:no,rockittenchoice"/>
     <property name="cond1" value="not variable_set havetuxemon:yes"/>
@@ -81,7 +80,6 @@
     <property name="act1" value="pathfind professor,10,9"/>
     <property name="act2" value="char_face professor,up"/>
     <property name="act3" value="change_state JournalInfoState,cardiling"/>
-    <property name="act4" value="remove_state JournalInfoState"/>
     <property name="act5" value="translated_dialog chooseyerfateCardiling"/>
     <property name="act6" value="translated_dialog_choice yes:no,cardilingchoice"/>
     <property name="cond1" value="not variable_set havetuxemon:yes"/>
@@ -95,7 +93,6 @@
     <property name="act1" value="pathfind professor,11,9"/>
     <property name="act2" value="char_face professor,up"/>
     <property name="act3" value="change_state JournalInfoState,tweesher"/>
-    <property name="act4" value="remove_state JournalInfoState"/>
     <property name="act5" value="translated_dialog chooseyerfateTweesher"/>
     <property name="act6" value="translated_dialog_choice yes:no,tweesherchoice"/>
     <property name="cond1" value="not variable_set havetuxemon:yes"/>

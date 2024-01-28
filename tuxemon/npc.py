@@ -109,9 +109,8 @@ class NPC(Entity[NPCState]):
         self.tuxepedia: dict[str, SeenStatus] = {}
         self.contacts: dict[str, str] = {}
         self.money: dict[str, int] = {}  # Tracks money
-        self.interactions: Sequence[
-            str
-        ] = []  # list of ways player can interact with the Npc
+        # list of ways player can interact with the Npc
+        self.interactions: Sequence[str] = []
         self.isplayer: bool = False  # used for various tests, idk
         # menu labels (world menu)
         self.menu_save: bool = True
@@ -156,12 +155,10 @@ class NPC(Entity[NPCState]):
         self.path_origin: Optional[tuple[int, int]] = None
 
         # movement related
-        self.move_direction: Optional[
-            Direction
-        ] = None  # Set this value to move the npc (see below)
-        self.facing = (
-            Direction.down
-        )  # Set this value to change the facing direction
+        # Set this value to move the npc (see below)
+        self.move_direction: Optional[Direction] = None
+        # Set this value to change the facing direction
+        self.facing = Direction.down
         self.moverate = CONFIG.player_walkrate  # walk by default
         self.ignore_collisions = False
 
@@ -173,12 +170,10 @@ class NPC(Entity[NPCState]):
         # TODO: move sprites into renderer so class can be used headless
         self.playerHeight = 0
         self.playerWidth = 0
-        self.standing: dict[
-            str, pygame.surface.Surface
-        ] = {}  # Standing animation frames
-        self.sprite: dict[
-            str, surfanim.SurfaceAnimation
-        ] = {}  # Moving animation frames
+        # Standing animation frames
+        self.standing: dict[str, pygame.surface.Surface] = {}
+        # Moving animation frames
+        self.sprite: dict[str, surfanim.SurfaceAnimation] = {}
         self.surface_animations = surfanim.SurfaceAnimationCollection()
         self.load_sprites()
         self.rect = Rect(
@@ -545,6 +540,7 @@ class NPC(Entity[NPCState]):
         direction = get_direction(proj(self.position3), target)
         self.facing = direction
         if self.valid_movement(target):
+            moverate = self.check_moverate(target)
             # surfanim has horrible clock drift.  even after one animation
             # cycle, the time will be off.  drift causes the walking steps to not
             # align with tiles and some frames will only last one game frame.
@@ -555,7 +551,7 @@ class NPC(Entity[NPCState]):
             # not based on wall time, to prevent visual glitches.
             self.surface_animations.play()
             self.path_origin = self.tile_pos
-            self.velocity3 = self.moverate * dirs3[direction]
+            self.velocity3 = moverate * dirs3[direction]
             self.remove_collision(self.path_origin)
         else:
             # the target is blocked now
@@ -582,6 +578,17 @@ class NPC(Entity[NPCState]):
             else:
                 # give up and wait until the target is clear again
                 pass
+
+    def check_moverate(self, destination: tuple[int, int]) -> float:
+        """
+        Check character moverate and adapt it, since there could be some
+        tiles where the coefficient is different (by default 1).
+
+        """
+        surface_map = self.world.surface_map
+        rate = self.world.get_tile_moverate(surface_map, destination)
+        _moverate = self.moverate * rate
+        return _moverate
 
     def check_waypoint(self) -> None:
         """

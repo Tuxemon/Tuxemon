@@ -28,6 +28,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.delayed_teleport.DelayedTeleportAction
 .. autoscriptinfoclass:: tuxemon.event.actions.evolution.EvolutionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.fadeout_music.FadeoutMusicAction
+.. autoscriptinfoclass:: tuxemon.event.actions.format_variable.FormatVariableAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_monster_tech.GetMonsterTechAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_party_monsters.GetPartyMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_player_monster.GetPlayerMonsterAction

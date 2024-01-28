@@ -866,7 +866,7 @@ msgid "combat_monster_choice"
 msgstr "What will {name} do?"
 
 msgid "combat_player_choice"
-msgstr "What will {name} throw?"
+msgstr "What will {player} do?"
 
 msgid "combat_fainted"
 msgstr "{name} fainted!"

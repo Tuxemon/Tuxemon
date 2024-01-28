@@ -2,6 +2,7 @@
   "slug": "night_park",
   "battle_graphics": {
     "menu": "MainParkMenuState",
+    "msgid": "combat_player_choice",
     "island_back": "gfx/ui/combat/grass_island.png",
     "island_front": "gfx/ui/combat/grass_island.png",
     "background": "gfx/ui/combat/night_cliff_background.png",

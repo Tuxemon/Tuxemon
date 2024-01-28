@@ -41,6 +41,8 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
         self.description: Optional[str] = None
 
     def initialize_items(self) -> Generator[MenuItem[MenuGameObj], None, None]:
+        del self.combat.hud[self.monster]
+        self.combat.update_hud(self.player, False)
         menu_items_map = (
             ("menu_ball", self.throw_tuxeball),
             ("menu_food", self.open_item_menu),
@@ -51,10 +53,6 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
         for key, callback in menu_items_map:
             label = T.translate(key).upper()
             itm = 1
-            if key == "menu_ball":
-                itm = self.check_item("tuxeball_park")
-                if itm > 0:
-                    label = f"{label}x{itm}"
             if key == "menu_food":
                 itm = self.check_category("food")
                 if itm > 0:
@@ -79,11 +77,6 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
             del self.combat.monsters_in_play[remove]
             self.combat.players.remove(remove)
 
-    def check_item(self, item_slug: str) -> int:
-        item = self.player.find_item(item_slug)
-        assert item
-        return item.quantity
-
     def check_category(self, cat_slug: str) -> int:
         category = sum(
             [
@@ -106,31 +99,20 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
             self.description = choice.description
 
         def choose_item() -> None:
-            # open menu to choose item
             menu = self.client.push_state(ItemMenuState())
-            # set next menu after the selection is made
             menu.is_valid_entry = validate  # type: ignore[assignment]
             menu.on_menu_selection = choose_target  # type: ignore[method-assign]
 
         def validate(item: Optional[Item]) -> bool:
             ret = False
-            if item:
-                ret = (
-                    True
-                    if (
-                        item.category == ItemCategory.potion
-                        and self.description == "menu_doll"
-                    )
-                    or (
-                        item.category == ItemCategory.potion
-                        and self.description == "menu_food"
-                    )
-                    else False
-                )
+            if item and item.category == ItemCategory.potion:
+                if self.description == "menu_doll":
+                    ret = True
+                if self.description == "menu_food":
+                    ret = True
             return ret
 
         def choose_target(menu_item: MenuItem[Item]) -> None:
-            # open menu to choose target of item
             item = menu_item.game_object
             self.deliver_action(item)
             self.client.pop_state()

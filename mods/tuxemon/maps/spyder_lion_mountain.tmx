@@ -4,6 +4,7 @@
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="lion_mountain"/>
+  <property name="south" value="park"/>
   <property name="types" value="route"/>
   <property name="west" value="sphalian_town"/>
  </properties>

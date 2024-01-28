@@ -253,6 +253,11 @@ POWER_RANGE: tuple[float, float] = (0.0, 3.0)
 HEALING_POWER_RANGE: tuple[int, int] = (0, 10)
 
 # Combat
+# Hud right/left lines
+HUD_RT_LINE1: tuple[int, int] = (12, 11)  # monster, lv, etc.
+HUD_RT_LINE2: tuple[int, int] = (12, 19)  # position hp_bar
+HUD_LT_LINE1: tuple[int, int] = (5, 5)  # monster, lv, etc.
+HUD_LT_LINE2: tuple[int, int] = (5, 13)  # position hp_bar
 # position coordinates hud
 # player
 PLAYER_COMBAT: dict[str, tuple[int, int, int, int]] = {}

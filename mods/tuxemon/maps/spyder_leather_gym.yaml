@@ -144,6 +144,8 @@ events:
     type: "event"
   Board:
     actions:
+    - format_variable chad_points,int
+    - format_variable brad_points,int
     - translated_dialog spyder_leathergym_board
     conditions:
     - is char_facing_tile player

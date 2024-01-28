@@ -55,7 +55,7 @@ class VariableMathAction(EventAction):
         # Perform the operation on the variable
         if operation in ops_dict:
             output = ops_dict[operation](operand1, operand2)
-            player.game_variables[result] = int(output)
+            player.game_variables[result] = output
             logger.info(f"Game variable: {result}:{output}")
         elif operation == "=":
             player.game_variables[result] = operand2

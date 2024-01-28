@@ -129,6 +129,12 @@ msgstr "Female Tuxeball"
 msgid "tuxeball_female_description"
 msgstr "Captures more easily a Female Tuxemon."
 
+msgid "tuxeball_park"
+msgstr "Park Tuxeball"
+
+msgid "tuxeball_park_description"
+msgstr "The official Park capture device. It only works inside the Park."
+
 msgid "tuxeball_neuter"
 msgstr "Neuter Tuxeball"
 
@@ -858,6 +864,9 @@ msgstr "A wild {name} appeared!"
 
 msgid "combat_monster_choice"
 msgstr "What will {name} do?"
+
+msgid "combat_player_choice"
+msgstr "What will {player} do?"
 
 msgid "combat_fainted"
 msgstr "{name} fainted!"
@@ -2446,6 +2455,9 @@ msgstr "Timber"
 msgid "tunnel"
 msgstr "Tunnel"
 
+msgid "park"
+msgstr "Pepper Park"
+
 msgid "azure_town"
 msgstr "Azure"
 
@@ -2519,6 +2531,9 @@ msgstr "Breadbasket of Fondant!"
 
 msgid "tunnel_description"
 msgstr "The dark expanse - watch your step!"
+
+msgid "park_description"
+msgstr "See exotic monsters and take them home!"
 
 ## MAP SIGNS ##
 
@@ -2824,6 +2839,21 @@ msgstr "Run"
 
 msgid "menu_forfeit"
 msgstr "Forfeit"
+
+msgid "menu_ball"
+msgstr "Ball"
+
+msgid "menu_park_captured"
+msgstr "Captured"
+
+msgid "menu_park_encountered"
+msgstr "Come across"
+
+msgid "menu_food"
+msgstr "Food"
+
+msgid "menu_doll"
+msgstr "Doll"
 
 msgid "menu_save"
 msgstr "Save"
@@ -8425,6 +8455,39 @@ msgid "spyder_dragonscave_tru2"
 msgstr "Whatever. We already took the DNA sample. \n We just wanted to capture Drokoro as a backup. \n You'll never stop them back at Omnichannel HQ."
 msgid "spyder_dragonscave_drokoro1"
 msgstr "Rawr!"
+
+msgid "spyder_park_welcome"
+msgstr "Welcome to Pepper Park. Entry is ${{currency}}500. You'll get 25 Park Tuxeball. Are you ready?"
+
+msgid "spyder_park_assistant"
+msgstr "Welcome!"
+
+msgid "spyder_park_guardian1"
+msgstr "Do you want to interrupt your experience?"
+
+msgid "spyder_park_nomoney"
+msgstr "Unfortunately you don't have enough money!"
+
+msgid "spyder_park_yesmoney"
+msgstr "Enjoy your experience!"
+
+msgid "spyder_park_steps100"
+msgstr "You still have ${{var:steps_park}} steps left!"
+
+msgid "spyder_park_scientist1"
+msgstr "Many parks limit or even prohibit scientific activities, but we are at the forefront of ecological knowledge!"
+
+msgid "spyder_park_tennisplayer1"
+msgstr "Fingers crossed your next encounter is with a friendly one!"
+
+msgid "spyder_park_professor1"
+msgstr "There are fences for the visitors, but no fences around the park for the monsters, and that's the way a park is supposed to be."
+
+msgid "spyder_park_soldier1"
+msgstr "I think the park has done a pretty good job of being everyone's friend."
+
+msgid "spyder_park_billie"
+msgstr "Hey ${{name}}! Maybe I'll see you deeper in the park. Bet I'll catch more than you!"
 
 msgid "0floor"
 msgstr "Ground Floor"

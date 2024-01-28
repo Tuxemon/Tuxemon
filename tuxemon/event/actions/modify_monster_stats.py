@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -102,7 +102,9 @@ class ModifyMonsterStatsAction(EventAction):
                 return
             monster_id = uuid.UUID(player.game_variables[self.variable])
             monster = get_monster_by_iid(self.session, monster_id)
-            assert monster
+            if monster is None:
+                logger.error("Monster not found")
+                return
             for stat in monster_stats:
                 if isinstance(amount_stat, float):
                     self.modifiy_stat_float(monster, stat, amount_stat)

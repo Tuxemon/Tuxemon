@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import math
@@ -42,17 +42,21 @@ class ChoiceMonster(PygameMenuState):
         rows = math.ceil(len(menu) / columns) * num_widgets
         super().__init__(columns=columns, rows=rows, **kwargs)
 
+        client = self.client
+        action = client.event_engine
+
         def open_journal(monster: MonsterModel) -> None:
-            self.client.push_state(
-                "JournalInfoState", kwargs={"monster": monster}
-            )
+            _set_tuxepedia = ["player", monster.slug, "caught"]
+            action.execute_action("set_tuxepedia", _set_tuxepedia, True)
+            param = {"monster": monster}
+            client.push_state("JournalInfoState", kwargs=param)
+            action.execute_action("clear_tuxepedia", [monster.slug], True)
 
         for name, slug, callback in menu:
             monster = db.lookup(slug, table="monster")
+            path = f"gfx/sprites/battle/{monster.slug}-front.png"
             new_image = pygame_menu.BaseImage(
-                transform_resource_filename(
-                    f"gfx/sprites/battle/{monster.slug}-front.png"
-                ),
+                transform_resource_filename(path),
                 drawing_position=POSITION_CENTER,
             )
             new_image.scale(prepare.SCALE * 0.4, prepare.SCALE * 0.4)

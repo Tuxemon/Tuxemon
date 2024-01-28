@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -47,7 +47,10 @@ class MoneyEffect(TechEffect):
             done = False
             tech.advance_counter_success()
             amount = int(damage * mult)
-            player.give_money(amount)
+            recipient = "player" if player.isplayer else player.slug
+            client = self.session.client.event_engine
+            var = [recipient, amount]
+            client.execute_action("modify_money", var, True)
             params = {"name": user.name.upper(), "symbol": "$", "gold": amount}
             extra = T.format("combat_state_gold", params)
         return {

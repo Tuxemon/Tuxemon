@@ -1,12 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 import os
 import uuid
 from collections.abc import Iterable, Mapping, Sequence
-from functools import partial
 from math import hypot
 from typing import TYPE_CHECKING, Any, Optional, TypedDict
 
@@ -33,7 +32,7 @@ from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
 from tuxemon.technique.technique import Technique
 from tuxemon.template import Template, decode_template, encode_template
-from tuxemon.tools import open_choice_dialog, open_dialog, vector2_to_tile_pos
+from tuxemon.tools import vector2_to_tile_pos
 
 if TYPE_CHECKING:
     import pygame
@@ -110,9 +109,8 @@ class NPC(Entity[NPCState]):
         self.tuxepedia: dict[str, SeenStatus] = {}
         self.contacts: dict[str, str] = {}
         self.money: dict[str, int] = {}  # Tracks money
-        self.interactions: Sequence[
-            str
-        ] = []  # list of ways player can interact with the Npc
+        # list of ways player can interact with the Npc
+        self.interactions: Sequence[str] = []
         self.isplayer: bool = False  # used for various tests, idk
         # menu labels (world menu)
         self.menu_save: bool = True
@@ -157,12 +155,10 @@ class NPC(Entity[NPCState]):
         self.path_origin: Optional[tuple[int, int]] = None
 
         # movement related
-        self.move_direction: Optional[
-            Direction
-        ] = None  # Set this value to move the npc (see below)
-        self.facing = (
-            Direction.down
-        )  # Set this value to change the facing direction
+        # Set this value to move the npc (see below)
+        self.move_direction: Optional[Direction] = None
+        # Set this value to change the facing direction
+        self.facing = Direction.down
         self.moverate = CONFIG.player_walkrate  # walk by default
         self.ignore_collisions = False
 
@@ -174,12 +170,10 @@ class NPC(Entity[NPCState]):
         # TODO: move sprites into renderer so class can be used headless
         self.playerHeight = 0
         self.playerWidth = 0
-        self.standing: dict[
-            str, pygame.surface.Surface
-        ] = {}  # Standing animation frames
-        self.sprite: dict[
-            str, surfanim.SurfaceAnimation
-        ] = {}  # Moving animation frames
+        # Standing animation frames
+        self.standing: dict[str, pygame.surface.Surface] = {}
+        # Moving animation frames
+        self.sprite: dict[str, surfanim.SurfaceAnimation] = {}
         self.surface_animations = surfanim.SurfaceAnimationCollection()
         self.load_sprites()
         self.rect = Rect(
@@ -296,7 +290,7 @@ class NPC(Entity[NPCState]):
                 filename = f"{self.sprite_name}.png"
                 path = os.path.join("sprites_obj", filename)
             else:
-                filename = f"{self.sprite_name}_{standing_type}.png"
+                filename = f"{self.sprite_name}_{standing_type.value}.png"
                 path = os.path.join("sprites", filename)
             self.standing[standing_type] = load_and_scale(path)
         # The player's sprite size in pixels
@@ -546,6 +540,7 @@ class NPC(Entity[NPCState]):
         direction = get_direction(proj(self.position3), target)
         self.facing = direction
         if self.valid_movement(target):
+            moverate = self.check_moverate(target)
             # surfanim has horrible clock drift.  even after one animation
             # cycle, the time will be off.  drift causes the walking steps to not
             # align with tiles and some frames will only last one game frame.
@@ -556,7 +551,7 @@ class NPC(Entity[NPCState]):
             # not based on wall time, to prevent visual glitches.
             self.surface_animations.play()
             self.path_origin = self.tile_pos
-            self.velocity3 = self.moverate * dirs3[direction]
+            self.velocity3 = moverate * dirs3[direction]
             self.remove_collision(self.path_origin)
         else:
             # the target is blocked now
@@ -583,6 +578,17 @@ class NPC(Entity[NPCState]):
             else:
                 # give up and wait until the target is clear again
                 pass
+
+    def check_moverate(self, destination: tuple[int, int]) -> float:
+        """
+        Check character moverate and adapt it, since there could be some
+        tiles where the coefficient is different (by default 1).
+
+        """
+        surface_map = self.world.surface_map
+        rate = self.world.get_tile_moverate(surface_map, destination)
+        _moverate = self.moverate * rate
+        return _moverate
 
     def check_waypoint(self) -> None:
         """
@@ -662,7 +668,6 @@ class NPC(Entity[NPCState]):
                 self.monster_boxes[kennel] = []
         else:
             self.monsters.insert(slot, monster)
-            self.set_party_status()
 
     def find_monster(self, monster_slug: str) -> Optional[Monster]:
         """
@@ -732,7 +737,6 @@ class NPC(Entity[NPCState]):
 
         if monster in self.monsters:
             self.monsters.remove(monster)
-            self.set_party_status()
             return True
         else:
             return False
@@ -747,7 +751,6 @@ class NPC(Entity[NPCState]):
         """
         if monster in self.monsters:
             self.monsters.remove(monster)
-            self.set_party_status()
 
     def evolve_monster(self, old_monster: Monster, evolution: str) -> None:
         """
@@ -868,25 +871,6 @@ class NPC(Entity[NPCState]):
 
         self.load_sprites()
 
-    def set_party_status(self) -> None:
-        """Records important information about all monsters in the party."""
-        if not self.isplayer or len(self.monsters) == 0:
-            return
-
-        level_lowest = prepare.MAX_LEVEL
-        level_highest = 0
-        level_average = 0
-        for npc_monster in self.monsters:
-            if npc_monster.level < level_lowest:
-                level_lowest = npc_monster.level
-            if npc_monster.level > level_highest:
-                level_highest = npc_monster.level
-            level_average += npc_monster.level
-        level_average = int(round(level_average / len(self.monsters)))
-        self.game_variables["party_level_lowest"] = level_lowest
-        self.game_variables["party_level_highest"] = level_highest
-        self.game_variables["party_level_average"] = level_average
-
     def has_tech(self, tech: Optional[str]) -> bool:
         """
         Returns TRUE if there is the technique in the party.
@@ -912,99 +896,6 @@ class NPC(Entity[NPCState]):
             if eles:
                 ret = True
         return ret
-
-    def check_max_moves(self, session: Session, monster: Monster) -> None:
-        """
-        Checks the number of moves:
-        if monster has >= 4 moves (MAX_MOVES) -> overwrite technique
-        if monster has < 4 moves (MAX_MOVES) -> learn technique
-        """
-        overwrite_technique = session.player.game_variables[
-            "overwrite_technique"
-        ]
-
-        if len(monster.moves) >= prepare.MAX_MOVES:
-            self.overwrite_technique(session, monster, overwrite_technique)
-        else:
-            overwrite = Technique()
-            overwrite.load(overwrite_technique)
-            monster.learn(overwrite)
-            msg = T.translate("generic_success")
-            open_dialog(session, [msg])
-
-    def overwrite_technique(
-        self, session: Session, monster: Monster, technique: str
-    ) -> None:
-        """
-        Opens the choice dialog and overwrites the technique.
-        """
-        tech = Technique()
-        tech.load(technique)
-
-        def set_variable(var_value: Technique) -> None:
-            monster.moves.remove(var_value)
-            monster.learn(tech)
-            session.client.pop_state()
-
-        var_list = monster.moves
-        var_menu = list()
-
-        for val in var_list:
-            text = T.translate(val.slug)
-            var_menu.append((text, text, partial(set_variable, val)))
-
-        open_choice_dialog(
-            session,
-            menu=var_menu,
-        )
-        open_dialog(
-            session,
-            [
-                T.format(
-                    "max_moves_alert",
-                    {
-                        "name": monster.name.upper(),
-                        "tech": tech.name,
-                    },
-                )
-            ],
-        )
-
-    def remove_technique(
-        self,
-        session: Session,
-        monster: Monster,
-    ) -> None:
-        """
-        Opens the choice dialog and removes the technique.
-        """
-
-        def set_variable(var_value: Technique) -> None:
-            monster.moves.remove(var_value)
-            session.client.pop_state()
-
-        var_list = monster.moves
-        var_menu = list()
-
-        for val in var_list:
-            text = T.translate(val.slug)
-            var_menu.append((text, text, partial(set_variable, val)))
-
-        open_choice_dialog(
-            session,
-            menu=var_menu,
-        )
-        open_dialog(
-            session,
-            [
-                T.format(
-                    "new_tech_delete",
-                    {
-                        "name": monster.name.upper(),
-                    },
-                )
-            ],
-        )
 
     ####################################################
     #                      Items                       #
@@ -1107,14 +998,6 @@ class NPC(Entity[NPCState]):
                 return mis
 
         return None
-
-    def give_money(self, amount: int) -> None:
-        if self.isplayer:
-            self.money["player"] += amount
-        else:
-            if self.slug not in self.money:
-                self.money[self.slug] = 0
-            self.money[self.slug] += amount
 
     def speed_test(self, action: EnqueuedAction) -> int:
         return self.speed

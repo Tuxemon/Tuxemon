@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -60,6 +60,7 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "taste_warm",
     "traded",
     "steps",
+    "bond",
     "mod_armour",
     "mod_dodge",
     "mod_melee",
@@ -106,6 +107,7 @@ class Monster:
         self.hp = 0
         self.level = 0
         self.steps = 0.0
+        self.bond = prepare.BOND
 
         # modifier values
         self.mod_armour = 0
@@ -211,6 +213,8 @@ class Monster:
         self.taste_cold = self.set_taste_cold(self.taste_cold)
         self.taste_warm = self.set_taste_warm(self.taste_warm)
         self.steps = self.steps
+        self.bond = self.bond
+
         # types
         for _ele in results.types:
             _element = Element(_ele)
@@ -546,7 +550,7 @@ class Monster:
                 tech.load(ele)
                 self.learn(tech)
 
-    def update_moves(self, levels_earned: int) -> Optional[Technique]:
+    def update_moves(self, levels_earned: int) -> list[Technique]:
         """
         Set monster moves according to the levels increased.
         Excludes the moves already learned.
@@ -555,11 +559,10 @@ class Monster:
             levels_earned: Number of levels earned.
 
         Returns:
-            technique: if there is a technique, then it returns
-            a technique, otherwise none
+            techniques: list containing the learned techniques
 
         """
-        technique = None
+        _technique = []
         for move in self.moveset:
             if (
                 move.technique not in (m.slug for m in self.moves)
@@ -569,8 +572,9 @@ class Monster:
             ):
                 technique = Technique()
                 technique.load(move.technique)
+                _technique.append(technique)
                 self.learn(technique)
-        return technique
+        return _technique
 
     def experience_required(self, level_ofs: int = 0) -> int:
         """
@@ -762,6 +766,15 @@ class Monster:
             return int(random.randrange(0, int(self.speed)) * 1.5)
         else:
             return random.randrange(0, int(self.speed))
+
+    def find_tech_by_id(self, instance_id: uuid.UUID) -> Optional[Technique]:
+        """
+        Finds a tech among the monster's moves which has the given id.
+
+        """
+        return next(
+            (m for m in self.moves if m.instance_id == instance_id), None
+        )
 
 
 def decode_monsters(

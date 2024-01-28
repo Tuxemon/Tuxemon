@@ -1,7 +1,7 @@
 Tuxemon
 =========
 
-Copyright (C) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+Copyright (C) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 
 Programming
 ------------
@@ -1002,6 +1002,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Fire Booster"](https://wiki.tuxemon.org/File:2nd_the_king_7.png) [https://opengameart.org/content/icons-items-1 CC0 on OGA]
 
 * ["Flintstone"](https://wiki.tuxemon.org/File:Iron-ore.png) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Friendship Scroll"](https://wiki.tuxemon.org/File:I_Scroll02.png) Adapted by Jaskrendix from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 
 * ["Lucky Bamboo"](https://wiki.tuxemon.org/File:Bamboo_staff.png) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 

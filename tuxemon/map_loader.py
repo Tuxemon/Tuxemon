@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
 import uuid
 from collections.abc import Generator, Iterator
@@ -12,7 +12,7 @@ from natsort import natsorted
 
 from tuxemon import prepare
 from tuxemon.compat import Rect
-from tuxemon.db import Direction, Orientation
+from tuxemon.db import Direction, Orientation, SurfaceKeys
 from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon.graphics import scaled_image_loader
 from tuxemon.lib.bresenham import bresenham
@@ -53,7 +53,7 @@ class YAMLEventLoader:
     Support for reading game events from a YAML file.
     """
 
-    def load_events(self, path: str) -> Iterator[EventObject]:
+    def load_events(self, path: str, source: str) -> Iterator[EventObject]:
         """
         Load EventObjects from YAML file.
 
@@ -74,7 +74,7 @@ class YAMLEventLoader:
             y = event_data.get("y", 0)
             w = event_data.get("width", 1)
             h = event_data.get("height", 1)
-            event_type = event_data.get("type")
+            event_type = str(event_data.get("type"))
 
             for key, value in enumerate(
                 event_data.get("actions", []), start=1
@@ -99,28 +99,18 @@ class YAMLEventLoader:
                 conds.append(condition)
             for key, value in enumerate(event_data.get("behav", []), start=1):
                 behav_type, args = parse_behav_string(value)
-                if behav_type == "talk":
-                    condition = MapCondition(
-                        type="to_talk",
-                        parameters=["player", args[0]],
-                        x=x,
-                        y=y,
-                        width=w,
-                        height=h,
-                        operator="is",
-                        name=f"behav{str(key*10)}",
-                    )
-                    conds.insert(0, condition)
-                    action = MapAction(
-                        type="char_face",
-                        parameters=[args[0], "player"],
-                        name=f"behav{str(key*10)}",
-                    )
-                    acts.insert(0, action)
-                else:
-                    raise Exception
+                _args = list(args)
+                _args.insert(0, behav_type)
+                _conds = MapCondition(
+                    "behav", _args, x, y, w, h, "is", f"behav{str(key*10)}"
+                )
+                conds.insert(0, _conds)
+                _squeeze = [":".join(_args)]
+                _acts = MapAction("behav", _squeeze, f"behav{str(key*10)}")
+                acts.insert(0, _acts)
 
-            yield EventObject(_id, name, x, y, w, h, conds, acts)
+            if event_type == source:
+                yield EventObject(_id, name, x, y, w, h, conds, acts)
 
 
 class TMXMapLoader:
@@ -175,7 +165,7 @@ class TMXMapLoader:
         data.tilewidth, data.tileheight = prepare.TILE_SIZE
         events = list()
         inits = list()
-        surfable_map = list()
+        surface_map: dict[tuple[int, int], dict[str, float]] = {}
         collision_map: dict[tuple[int, int], Optional[RegionProperties]] = {}
         collision_lines_map = set()
         maps = data.properties
@@ -183,16 +173,17 @@ class TMXMapLoader:
         # get all tiles which have properties and/or collisions
         gids_with_props = dict()
         gids_with_colliders = dict()
-        gids_with_surfable = dict()
+        gids_with_surface = dict()
         for gid, props in data.tile_properties.items():
             conds = extract_region_properties(props)
             gids_with_props[gid] = conds if conds else None
             colliders = props.get("colliders")
             if colliders is not None:
                 gids_with_colliders[gid] = colliders
-            surfable = props.get("surfable")
-            if surfable is not None:
-                gids_with_surfable[gid] = surfable
+            for _surface in SurfaceKeys:
+                surface = props.get(_surface)
+                if surface is not None:
+                    gids_with_surface[gid] = {_surface: surface}
 
         # for each tile, apply the properties and collisions for the tile location
         for layer in data.visible_tile_layers:
@@ -213,11 +204,10 @@ class TMXMapLoader:
                                 region_conditions = copy_dict_with_keys(
                                     obj.properties, region_properties
                                 )
-                                collision_map[
-                                    (x, y)
-                                ] = extract_region_properties(
+                                _extract = extract_region_properties(
                                     region_conditions
                                 )
+                                collision_map[(x, y)] = _extract
                         for line in self.collision_lines_from_object(
                             obj, tile_size
                         ):
@@ -225,10 +215,10 @@ class TMXMapLoader:
                             lx, ly = coords
                             line = (lx + x, ly + y), direction
                             collision_lines_map.add(line)
-                # surfable
-                surfable = gids_with_surfable.get(gid)
-                if surfable is not None:
-                    surfable_map.append((x, y))
+                # surfaces
+                surface = gids_with_surface.get(gid)
+                if surface is not None:
+                    surface_map[(x, y)] = surface
 
         for obj in data.objects:
             obj_type = obj.type
@@ -239,8 +229,6 @@ class TMXMapLoader:
                     collision_map[tile_position] = props
                 for line in self.collision_lines_from_object(obj, tile_size):
                     collision_lines_map.add(line)
-            elif obj_type and obj_type.lower().startswith("surfable"):
-                surfable_map.append(tile_size)
             elif obj_type == "event":
                 events.append(self.load_event(obj, tile_size))
             elif obj_type == "init":
@@ -249,7 +237,7 @@ class TMXMapLoader:
         return TuxemonMap(
             events,
             inits,
-            surfable_map,
+            surface_map,
             collision_map,
             collision_lines_map,
             data,
@@ -390,24 +378,13 @@ class TMXMapLoader:
             if key.startswith("behav"):
                 behav_string = properties[key]
                 behav_type, args = parse_behav_string(behav_string)
-                if behav_type == "talk":
-                    conds.insert(
-                        0,
-                        MapCondition(
-                            "to_talk",
-                            ["player", args[0]],
-                            x,
-                            y,
-                            w,
-                            h,
-                            "is",
-                            key,
-                        ),
-                    )
-                    acts.insert(
-                        0, MapAction("char_face", [args[0], "player"], key)
-                    )
-                else:
-                    raise Exception
+                _args = list(args)
+                _args.insert(0, behav_type)
+                conds.insert(
+                    0,
+                    MapCondition("behav", _args, x, y, w, h, "is", key),
+                )
+                _squeeze = [":".join(_args)]
+                acts.insert(0, MapAction("behav", _squeeze, key))
 
         return EventObject(_id, obj.name, x, y, w, h, conds, acts)

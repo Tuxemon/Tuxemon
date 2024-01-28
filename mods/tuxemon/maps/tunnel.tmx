@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="109">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="109">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -58,72 +58,7 @@
   <object id="35" type="collision" x="16" y="368" width="16" height="96"/>
   <object id="36" type="collision" x="32" y="400" width="16" height="32"/>
   <object id="73" type="collision" x="16" y="496" width="16" height="32"/>
-  <object id="74" type="collision" x="0" y="144" width="80" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="75" type="collision" x="48" y="176" width="32" height="64">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="76" type="collision" x="64" y="208" width="48" height="64">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="77" type="collision" x="32" y="432" width="32" height="160">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="78" type="collision" x="0" y="560" width="32" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="79" type="collision" x="64" y="336" width="32" height="128">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="80" type="collision" x="112" y="240" width="32" height="112">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="81" type="collision" x="32" y="336" width="96" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="82" type="collision" x="48" y="368" width="64" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="83" type="collision" x="48" y="272" width="16" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="84" type="collision" x="32" y="304" width="16" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
   <object id="85" type="collision" x="240" y="592" width="16" height="16"/>
-  <object id="86" type="collision" x="96" y="224" width="32" height="64">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="87" type="collision" x="96" y="320" width="16" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="88" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -233,12 +168,14 @@
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="not variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:grass"/>
    </properties>
   </object>
   <object id="108" name="Environment Night" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
     <property name="cond1" value="is variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:night_grass"/>
    </properties>
   </object>
  </objectgroup>

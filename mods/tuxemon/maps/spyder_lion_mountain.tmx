@@ -202,12 +202,14 @@
    <properties>
     <property name="act1" value="set_variable environment:snow"/>
     <property name="cond1" value="not variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:snow"/>
    </properties>
   </object>
   <object id="6" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_snow"/>
     <property name="cond1" value="is variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:night_snow"/>
    </properties>
   </object>
   <object id="7" name="Player Spawn" type="event" x="64" y="1440" width="16" height="16"/>
@@ -317,7 +319,6 @@
     <property name="act5" value="set_variable lionmountainenforcer:yes"/>
     <property name="act6" value="add_monster chromeye,15"/>
     <property name="act7" value="change_state JournalInfoState,chromeye"/>
-    <property name="act8" value="remove_state"/>
     <property name="behav1" value="talk spyder_lionmountain_enforcer"/>
     <property name="cond1" value="not variable_set lionmountainenforcer:yes"/>
    </properties>

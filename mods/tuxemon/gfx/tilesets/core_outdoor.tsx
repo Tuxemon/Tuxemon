@@ -2113,7 +2113,7 @@
  </tile>
  <tile id="612">
   <properties>
-   <property name="surfable" value="1"/>
+   <property name="surfable" value="0"/>
   </properties>
   <animation>
    <frame tileid="941" duration="100"/>
@@ -2792,7 +2792,7 @@
  </tile>
  <tile id="941">
   <properties>
-   <property name="surfable" value="1"/>
+   <property name="surfable" value="0"/>
   </properties>
   <animation>
    <frame tileid="941" duration="150"/>
@@ -2807,37 +2807,37 @@
  </tile>
  <tile id="942">
   <properties>
-   <property name="surfable" value="1"/>
+   <property name="surfable" value="0"/>
   </properties>
  </tile>
  <tile id="943">
   <properties>
-   <property name="surfable" value="1"/>
+   <property name="surfable" value="0"/>
   </properties>
  </tile>
  <tile id="944">
   <properties>
-   <property name="surfable" value="1"/>
+   <property name="surfable" value="0"/>
   </properties>
  </tile>
  <tile id="945">
   <properties>
-   <property name="surfable" value="1"/>
+   <property name="surfable" value="0"/>
   </properties>
  </tile>
  <tile id="946">
   <properties>
-   <property name="surfable" value="1"/>
+   <property name="surfable" value="0"/>
   </properties>
  </tile>
  <tile id="947">
   <properties>
-   <property name="surfable" value="1"/>
+   <property name="surfable" value="0"/>
   </properties>
  </tile>
  <tile id="948">
   <properties>
-   <property name="surfable" value="1"/>
+   <property name="surfable" value="0"/>
   </properties>
  </tile>
  <tile id="957">
@@ -3639,17 +3639,17 @@
  </tile>
  <tile id="1269">
   <properties>
-   <property name="surfable" value="1"/>
+   <property name="surfable" value="0"/>
   </properties>
  </tile>
  <tile id="1270">
   <properties>
-   <property name="surfable" value="1"/>
+   <property name="surfable" value="0"/>
   </properties>
  </tile>
  <tile id="1271">
   <properties>
-   <property name="surfable" value="1"/>
+   <property name="surfable" value="0"/>
   </properties>
  </tile>
  <tile id="1274">
@@ -3795,7 +3795,7 @@
  </tile>
  <tile id="1345">
   <properties>
-   <property name="surfable" value="1"/>
+   <property name="surfable" value="0"/>
   </properties>
  </tile>
  <tile id="1348">

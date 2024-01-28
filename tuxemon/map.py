@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -548,7 +548,7 @@ class TuxemonMap:
         self,
         events: Sequence[EventObject],
         inits: Sequence[EventObject],
-        surfable_map: Sequence[tuple[int, int]],
+        surface_map: MutableMapping[tuple[int, int], dict[str, float]],
         collision_map: MutableMapping[
             tuple[int, int], Optional[RegionProperties]
         ],
@@ -574,7 +574,7 @@ class TuxemonMap:
         Parameters:
             events: List of map events.
             inits: List of events to be loaded once, when map is entered.
-            surfable_map: Surfable map.
+            surface_map: Surface map.
             collision_map: Collision map.
             collisions_lines_map: Collision map of lines.
             tiled_map: Original tiled map.
@@ -583,7 +583,7 @@ class TuxemonMap:
 
         """
         self.collision_map = collision_map
-        self.surfable_map = surfable_map
+        self.surface_map = surface_map
         self.collision_lines_map = collisions_lines_map
         self.size = tiled_map.width, tiled_map.height
         self.area = tiled_map.width * tiled_map.height
@@ -600,22 +600,28 @@ class TuxemonMap:
         self.slug = str(maps.get("slug"))
         self.name = T.translate(self.slug)
         self.description = T.translate(f"{self.slug}_description")
-        # cardinal directions (towns + roads)
-        self.north = str(maps.get("north"))
-        self.south = str(maps.get("south"))
-        self.east = str(maps.get("east"))
-        self.west = str(maps.get("west"))
         # translated cardinal directions (signs)
-        self.north_trans = T.translate(self.north)
-        self.south_trans = T.translate(self.south)
-        self.east_trans = T.translate(self.east)
-        self.west_trans = T.translate(self.west)
+        self.north_trans = self.set_cardinals("north", maps)
+        self.south_trans = self.set_cardinals("south", maps)
+        self.east_trans = self.set_cardinals("east", maps)
+        self.west_trans = self.set_cardinals("west", maps)
         # inside (true), outside (none)
         self.inside = bool(maps.get("inside"))
         # scenario: spyder, xero or none
-        self.scenario = str(maps.get("scenario"))
+        _value = maps.get("scenario")
+        self.scenario = None if _value is None else str(_value)
         # check type of location
         self.types = maps.get("types")
+
+    def set_cardinals(self, cardinal: str, maps: dict[str, str]) -> str:
+        cardinals = str(maps.get(cardinal, "-")).split(",")
+        _cardinals = ""
+        if len(cardinals) > 1:
+            for _cardinal in cardinals:
+                _cardinals += T.translate(_cardinal) + " - "
+            return _cardinals[:-3]
+        else:
+            return T.translate(cardinals[0])
 
     def initialize_renderer(self) -> None:
         """

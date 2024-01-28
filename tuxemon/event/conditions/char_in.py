@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 
+from tuxemon.db import SurfaceKeys
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
@@ -14,8 +15,7 @@ logger = logging.getLogger(__name__)
 
 class CharInCondition(EventCondition):
     """
-    Check to see if the character is at the condition position
-    on a specific set of tiles.
+    Check to see if the character is on a specific set of tiles.
 
     Script usage:
         .. code-block::
@@ -38,11 +38,11 @@ class CharInCondition(EventCondition):
         prop = condition.parameters[1]
         world = session.client.get_state_by_name(WorldState)
 
-        if prop == "surfable":
-            return character.tile_pos in world.surfable_map
+        tiles = []
+        if prop in SurfaceKeys:
+            tiles = world.get_all_tile_properties(world.surface_map, prop)
         else:
             tiles = world.check_collision_zones(world.collision_map, prop)
-            if tiles:
-                return character.tile_pos in tiles
-            else:
-                return False
+        if tiles:
+            return character.tile_pos in tiles
+        return False

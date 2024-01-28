@@ -57,9 +57,8 @@ class StartState(PygameMenuState):
         def new_game() -> None:
             map_path = prepare.fetch("maps", prepare.STARTING_MAP)
             self.client.push_state("WorldState", map_name=map_path)
-            local_session.player.game_variables[
-                "date_start_game"
-            ] = formula.today_ordinal()
+            game_var = local_session.player.game_variables
+            game_var["date_start_game"] = formula.today_ordinal()
             self.client.pop_state(self)
 
         def change_state(

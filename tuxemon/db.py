@@ -34,6 +34,8 @@ T.load_translator()
 # Target is a mapping of who this targets
 Target = Mapping[str, int]
 
+SurfaceKeys = prepare.SURFACE_KEYS
+
 
 class Direction(str, Enum):
     up = "up"
@@ -372,6 +374,7 @@ class MonsterEvolutionItemModel(BaseModel):
     )
     steps: Optional[int] = Field(None, description="Steps parameter 50 steps.")
     tech: Optional[str] = Field(None, description="Technique parameter.")
+    bond: Optional[str] = Field(None, description="Bond parameter.")
 
     @field_validator("tech")
     def technique_exists(
@@ -422,6 +425,27 @@ class MonsterEvolutionItemModel(BaseModel):
             if param[2] not in stats:
                 raise ValueError(
                     f"the stat {param[2]} doesn't exist among {stats}"
+                )
+            return v
+        raise ValueError(f"the stats {v} isn't formatted correctly")
+
+    @field_validator("bond")
+    def bond_exists(
+        cls: MonsterEvolutionItemModel, v: Optional[str]
+    ) -> Optional[str]:
+        comparison = list(Comparison)
+        param = v.split(":") if v else []
+        if not v or len(param) == 2:
+            if param[0] not in comparison:
+                raise ValueError(
+                    f"the comparison {param[0]} doesn't exist among {comparison}"
+                )
+            if not param[1].isdigit():
+                raise ValueError(f"{param[1]} isn't a number (int)")
+            lower, upper = prepare.BOND_RANGE
+            if int(param[1]) < lower or int(param[1]) > upper:
+                raise ValueError(
+                    f"the bond is between {lower} and {upper} ({v})"
                 )
             return v
         raise ValueError(f"the stats {v} isn't formatted correctly")
@@ -1022,6 +1046,15 @@ class BattleIconsModel(BaseModel):
 
 
 class BattleGraphicsModel(BaseModel):
+    menu: str = Field(
+        "MainCombatMenuState", description="Menu used for combat."
+    )
+    msgid: str = Field(
+        "combat_monster_choice",
+        description="msgid of the sentence that is going to appear in the "
+        "combat menu in between the rounds, when the monster needs to choose "
+        "the next move, (name) shows monster name, (player) the player name.",
+    )
     island_back: str = Field(..., description="Sprite used for back combat")
     island_front: str = Field(..., description="Sprite used for front combat")
     background: str = Field(..., description="Sprite used for background")
@@ -1039,6 +1072,19 @@ class BattleGraphicsModel(BaseModel):
         if has.file(v) and has.size(v, prepare.BATTLE_BG_SIZE):
             return v
         raise ValueError(f"no resource exists with path: {v}")
+
+    @field_validator("msgid")
+    def translation_exists_msgid(cls: BattleGraphicsModel, v: str) -> str:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+    @field_validator("menu")
+    def check_state(cls: BattleGraphicsModel, v: str) -> str:
+        states = [state.name for state in State]
+        if v in states:
+            return v
+        raise ValueError(f"state isn't among: {states}")
 
 
 class EnvironmentModel(BaseModel):

@@ -57,11 +57,11 @@ class RandomEncounterAction(EventAction):
         encounters = db.lookup(slug, table="encounter").monsters
         filtered = list(encounters)
 
-        for meet in encounters:
-            if meet.variable:
-                part = meet.variable.split(":")
+        for _meet in encounters:
+            if _meet.variable:
+                part = _meet.variable.split(":")
                 if player.game_variables[part[0]] != part[1]:
-                    filtered.remove(meet)
+                    filtered.remove(_meet)
 
         if not filtered:
             logger.error(f"no wild monsters, check encounter/{slug}.json")

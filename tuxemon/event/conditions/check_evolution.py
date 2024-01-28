@@ -71,8 +71,7 @@ class CheckEvolutionCondition(EventCondition):
                         _evolution = compare(operator, stat1, stat2)
                     if evolution.variable:
                         parts = evolution.variable.split(":")
-                        key = parts[0]
-                        value = parts[1]
+                        key, value = parts[:2]
                         if (
                             key in character.game_variables
                             and character.game_variables[key] == value
@@ -85,6 +84,11 @@ class CheckEvolutionCondition(EventCondition):
                             monster.steps += 1
                         monster.levelling_up = True
                         monster.got_experience = True
+                    if evolution.bond:
+                        parts = evolution.bond.split(":")
+                        operator, value = parts[:2]
+                        _bond = monster.bond
+                        _evolution = compare(operator, _bond, int(value))
                     # use the item on the monster
                     if evolution.item:
                         _evolution = False

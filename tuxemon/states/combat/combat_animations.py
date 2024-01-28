@@ -69,9 +69,9 @@ class CombatAnimations(ABC, Menu[None]):
         self.players = list(players)
         self.graphics = graphics
 
-        self.monsters_in_play: MutableMapping[
-            NPC, list[Monster]
-        ] = defaultdict(list)
+        self.monsters_in_play: defaultdict[NPC, list[Monster]] = defaultdict(
+            list
+        )
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
         self.hud: MutableMapping[Monster, Sprite] = {}
         self.is_trainer_battle = False

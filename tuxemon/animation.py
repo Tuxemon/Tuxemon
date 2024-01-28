@@ -6,7 +6,7 @@ import logging
 from collections import defaultdict
 from collections.abc import Callable, Mapping, Sequence
 from math import cos, pi, sin, sqrt
-from typing import Any, DefaultDict, Optional, Union
+from typing import Any, Optional, Union
 
 import pygame
 
@@ -61,7 +61,7 @@ class TaskBase(pygame.sprite.Sprite):
 
     def __init__(self) -> None:
         super().__init__()
-        self._callbacks: DefaultDict[
+        self._callbacks: defaultdict[
             str,
             list[ScheduledFunction],
         ] = defaultdict(list)

@@ -109,9 +109,8 @@ class NPC(Entity[NPCState]):
         self.tuxepedia: dict[str, SeenStatus] = {}
         self.contacts: dict[str, str] = {}
         self.money: dict[str, int] = {}  # Tracks money
-        self.interactions: Sequence[
-            str
-        ] = []  # list of ways player can interact with the Npc
+        # list of ways player can interact with the Npc
+        self.interactions: Sequence[str] = []
         self.isplayer: bool = False  # used for various tests, idk
         # menu labels (world menu)
         self.menu_save: bool = True
@@ -156,12 +155,10 @@ class NPC(Entity[NPCState]):
         self.path_origin: Optional[tuple[int, int]] = None
 
         # movement related
-        self.move_direction: Optional[
-            Direction
-        ] = None  # Set this value to move the npc (see below)
-        self.facing = (
-            Direction.down
-        )  # Set this value to change the facing direction
+        # Set this value to move the npc (see below)
+        self.move_direction: Optional[Direction] = None
+        # Set this value to change the facing direction
+        self.facing = Direction.down
         self.moverate = CONFIG.player_walkrate  # walk by default
         self.ignore_collisions = False
 
@@ -173,12 +170,10 @@ class NPC(Entity[NPCState]):
         # TODO: move sprites into renderer so class can be used headless
         self.playerHeight = 0
         self.playerWidth = 0
-        self.standing: dict[
-            str, pygame.surface.Surface
-        ] = {}  # Standing animation frames
-        self.sprite: dict[
-            str, surfanim.SurfaceAnimation
-        ] = {}  # Moving animation frames
+        # Standing animation frames
+        self.standing: dict[str, pygame.surface.Surface] = {}
+        # Moving animation frames
+        self.sprite: dict[str, surfanim.SurfaceAnimation] = {}
         self.surface_animations = surfanim.SurfaceAnimationCollection()
         self.load_sprites()
         self.rect = Rect(

@@ -214,9 +214,8 @@ class WorldMenuState(PygameMenuState):
             else:
                 open_monster_submenu(menu_item)
 
-        context: dict[
-            str, Any
-        ] = dict()  # dict passed around to hold info between menus/callbacks
+        # dict passed around to hold info between menus/callbacks
+        context: dict[str, Any] = dict()
         monster_menu = self.client.push_state(MonsterMenuState())
         monster_menu.on_menu_selection = handle_selection  # type: ignore[assignment]
         monster_menu.on_menu_selection_change = monster_menu_hook  # type: ignore[method-assign]

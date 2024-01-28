@@ -53,7 +53,7 @@ class YAMLEventLoader:
     Support for reading game events from a YAML file.
     """
 
-    def load_events(self, path: str) -> Iterator[EventObject]:
+    def load_events(self, path: str, source: str) -> Iterator[EventObject]:
         """
         Load EventObjects from YAML file.
 
@@ -74,7 +74,7 @@ class YAMLEventLoader:
             y = event_data.get("y", 0)
             w = event_data.get("width", 1)
             h = event_data.get("height", 1)
-            event_type = event_data.get("type")
+            event_type = str(event_data.get("type"))
 
             for key, value in enumerate(
                 event_data.get("actions", []), start=1
@@ -109,7 +109,8 @@ class YAMLEventLoader:
                 _acts = MapAction("behav", _squeeze, f"behav{str(key*10)}")
                 acts.insert(0, _acts)
 
-            yield EventObject(_id, name, x, y, w, h, conds, acts)
+            if event_type == source:
+                yield EventObject(_id, name, x, y, w, h, conds, acts)
 
 
 class TMXMapLoader:

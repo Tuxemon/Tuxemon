@@ -168,22 +168,10 @@ class LocalPygameClient:
             )
 
         # Cardinal points
-        if map_data.north_trans == "None":
-            self.map_north = "-"
-        else:
-            self.map_north = map_data.north_trans
-        if map_data.south_trans == "None":
-            self.map_south = "-"
-        else:
-            self.map_south = map_data.south_trans
-        if map_data.east_trans == "None":
-            self.map_east = "-"
-        else:
-            self.map_east = map_data.east_trans
-        if map_data.west_trans == "None":
-            self.map_west = "-"
-        else:
-            self.map_west = map_data.west_trans
+        self.map_north = map_data.north_trans
+        self.map_south = map_data.south_trans
+        self.map_east = map_data.east_trans
+        self.map_west = map_data.west_trans
 
     def draw_event_debug(self) -> None:
         """

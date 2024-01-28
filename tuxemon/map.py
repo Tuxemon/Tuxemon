@@ -600,22 +600,28 @@ class TuxemonMap:
         self.slug = str(maps.get("slug"))
         self.name = T.translate(self.slug)
         self.description = T.translate(f"{self.slug}_description")
-        # cardinal directions (towns + roads)
-        self.north = str(maps.get("north"))
-        self.south = str(maps.get("south"))
-        self.east = str(maps.get("east"))
-        self.west = str(maps.get("west"))
         # translated cardinal directions (signs)
-        self.north_trans = T.translate(self.north)
-        self.south_trans = T.translate(self.south)
-        self.east_trans = T.translate(self.east)
-        self.west_trans = T.translate(self.west)
+        self.north_trans = self.set_cardinals("north", maps)
+        self.south_trans = self.set_cardinals("south", maps)
+        self.east_trans = self.set_cardinals("east", maps)
+        self.west_trans = self.set_cardinals("west", maps)
         # inside (true), outside (none)
         self.inside = bool(maps.get("inside"))
         # scenario: spyder, xero or none
-        self.scenario = str(maps.get("scenario"))
+        _value = maps.get("scenario")
+        self.scenario = None if _value is None else str(_value)
         # check type of location
         self.types = maps.get("types")
+
+    def set_cardinals(self, cardinal: str, maps: dict[str, str]) -> str:
+        cardinals = str(maps.get(cardinal, "-")).split(",")
+        _cardinals = ""
+        if len(cardinals) > 1:
+            for _cardinal in cardinals:
+                _cardinals += T.translate(_cardinal) + " - "
+            return _cardinals[:-3]
+        else:
+            return T.translate(cardinals[0])
 
     def initialize_renderer(self) -> None:
         """

@@ -372,6 +372,7 @@ class MonsterEvolutionItemModel(BaseModel):
     )
     steps: Optional[int] = Field(None, description="Steps parameter 50 steps.")
     tech: Optional[str] = Field(None, description="Technique parameter.")
+    bond: Optional[str] = Field(None, description="Bond parameter.")
 
     @field_validator("tech")
     def technique_exists(
@@ -422,6 +423,27 @@ class MonsterEvolutionItemModel(BaseModel):
             if param[2] not in stats:
                 raise ValueError(
                     f"the stat {param[2]} doesn't exist among {stats}"
+                )
+            return v
+        raise ValueError(f"the stats {v} isn't formatted correctly")
+
+    @field_validator("bond")
+    def bond_exists(
+        cls: MonsterEvolutionItemModel, v: Optional[str]
+    ) -> Optional[str]:
+        comparison = list(Comparison)
+        param = v.split(":") if v else []
+        if not v or len(param) == 2:
+            if param[0] not in comparison:
+                raise ValueError(
+                    f"the comparison {param[0]} doesn't exist among {comparison}"
+                )
+            if not param[1].isdigit():
+                raise ValueError(f"{param[1]} isn't a number (int)")
+            lower, upper = prepare.BOND_RANGE
+            if int(param[1]) < lower or int(param[1]) > upper:
+                raise ValueError(
+                    f"the bond is between {lower} and {upper} ({v})"
                 )
             return v
         raise ValueError(f"the stats {v} isn't formatted correctly")

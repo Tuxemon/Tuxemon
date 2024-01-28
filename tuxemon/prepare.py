@@ -214,6 +214,9 @@ MAX_MOVES: int = 4
 MISSING_IMAGE: str = "gfx/sprites/battle/missing.png"
 CATCH_RATE_RANGE: tuple[int, int] = (0, 255)
 CATCH_RESISTANCE_RANGE: tuple[float, float] = (0.0, 2.0)
+# set bond and define range
+BOND: int = 25
+BOND_RANGE: tuple[int, int] = (0, 100)
 # set multiplier stats (multiplier: level + coefficient)
 COEFF_STATS: int = 7
 # set experience required for levelling up

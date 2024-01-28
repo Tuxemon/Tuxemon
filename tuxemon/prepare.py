@@ -253,29 +253,36 @@ POWER_RANGE: tuple[float, float] = (0.0, 3.0)
 HEALING_POWER_RANGE: tuple[int, int] = (0, 10)
 
 # Combat
+# Hud right/left lines
+HUD_RT_LINE1: tuple[int, int] = (12, 11)  # monster, lv, etc.
+HUD_RT_LINE2: tuple[int, int] = (12, 19)  # position hp_bar
+HUD_LT_LINE1: tuple[int, int] = (5, 5)  # monster, lv, etc.
+HUD_LT_LINE2: tuple[int, int] = (5, 13)  # position hp_bar
 # position coordinates hud
-# player
-PLAYER_COMBAT: dict[str, tuple[int, int, int, int]] = {}
-PLAYER_COMBAT["home"] = (0, 62, 95, 70)
+# right side
+RIGHT_COMBAT: dict[str, tuple[int, int, int, int]] = {}
+# where appears the monster (character right side)
+RIGHT_COMBAT["home"] = (0, 62, 95, 70)
 # name, level, etc.
-PLAYER_COMBAT["hud"] = (145, 45, 110, 50)
+RIGHT_COMBAT["hud"] = (145, 45, 110, 50)
 # 1st spot 2 vs 2
-PLAYER_COMBAT["hud0"] = (145, 25, 110, 50)
+RIGHT_COMBAT["hud0"] = (145, 25, 110, 50)
 # 2nd spot 2 vs 2
-PLAYER_COMBAT["hud1"] = (145, 45, 110, 50)
+RIGHT_COMBAT["hud1"] = (145, 45, 110, 50)
 # tuxeball icons
-PLAYER_COMBAT["party"] = (145, 57, 110, 50)
-# opponent
-OPPONENT_COMBAT: dict[str, tuple[int, int, int, int]] = {}
-OPPONENT_COMBAT["home"] = (140, 18, 95, 70)
+RIGHT_COMBAT["party"] = (145, 57, 110, 50)
+# left side
+LEFT_COMBAT: dict[str, tuple[int, int, int, int]] = {}
+# where appears the monster (character left side)
+LEFT_COMBAT["home"] = (140, 18, 95, 70)
 # name, level, etc.
-OPPONENT_COMBAT["hud"] = (18, 0, 85, 30)
+LEFT_COMBAT["hud"] = (18, 0, 85, 30)
 # 1st spot 2 vs 2
-OPPONENT_COMBAT["hud0"] = (18, 0, 85, 30)
+LEFT_COMBAT["hud0"] = (18, 0, 85, 30)
 # 2nd spot 2 vs 2
-OPPONENT_COMBAT["hud1"] = (18, 20, 85, 30)
+LEFT_COMBAT["hud1"] = (18, 20, 85, 30)
 # tuxeball icons
-OPPONENT_COMBAT["party"] = (18, 12, 85, 30)
+LEFT_COMBAT["party"] = (18, 12, 85, 30)
 
 # This is the coefficient that can be found in formula.py and
 # it calculates the user strength

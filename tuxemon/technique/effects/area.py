@@ -41,12 +41,12 @@ class AreaEffect(TechEffect):
             # 2 vs 2, damage both monsters
             if player.max_position > 1:
                 monsters: Sequence[Monster] = []
-                human = combat.monsters_in_play_human
-                opponent = combat.monsters_in_play_ai
-                if player.isplayer:
-                    monsters = opponent
+                _right = combat.monsters_in_play_right
+                _left = combat.monsters_in_play_left
+                if user in _right:
+                    monsters = _left
                 else:
-                    monsters = human
+                    monsters = _right
                 for mon in monsters:
                     mon.current_hp -= damage
                     combat.enqueue_damage(user, mon, damage)

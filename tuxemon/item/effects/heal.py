@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional, Union
 
-from tuxemon.combat import has_status
+from tuxemon.combat import has_status, set_var
 from tuxemon.db import ItemCategory
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.locale import T
@@ -46,15 +46,9 @@ class HealEffect(ItemEffect):
         if has_status(target, "festering") and item.category == category:
             extra = T.translate("combat_state_festering_item")
         else:
-            heal = 0
-            if isinstance(self.amount, float):
-                heal = int(self.amount * target.hp)
-            else:
-                heal = self.amount
-            target.current_hp += heal
-
-        # If we've exceeded the monster's maximum HP, set their health to 100%.
-        if target.current_hp > target.hp:
-            target.current_hp = target.hp
+            set_var(self.session, self.name, str(target.instance_id.hex))
+            client = self.session.client.event_engine
+            params = [self.name, self.amount]
+            client.execute_action("set_monster_health", params, True)
 
         return {"success": True, "num_shakes": 0, "extra": extra}

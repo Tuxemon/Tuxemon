@@ -97,7 +97,7 @@ events:
     type: "event"
   Allow Swim:
     actions:
-    - remove_collision water
+    - update_tile_properties surfable
     conditions:
     - is variable_set swimming:yes
     - is current_state WorldState
@@ -193,6 +193,30 @@ events:
     conditions:
     - not variable_set nu_map_6:flower_city*-0.15*0.32
     - is location_name flower_city
+    type: "event"
+  Set Bonding Variable:
+    actions:
+    - set_variable steps_bonding:1000
+    conditions:
+    - not variable_set steps_bonding
+    - is has_item player,friendship_scroll
+    type: "event"
+  Bond Up 1000 Steps:
+    actions:
+    - modify_monster_bond
+    - set_variable steps_bonding:1000
+    conditions:
+    - is variable_set steps_bonding
+    - is variable_is steps_bonding,equals,0.0
+    - is has_item player,friendship_scroll
+    type: "event"
+  Bond Down -10 Fainted:
+    actions:
+    - modify_monster_bond combatstate_faint,-10
+    - clear_variable combatstate_faint
+    conditions:
+    - is variable_set combatstate_faint
+    - is has_item player,friendship_scroll
     type: "event"
   Set Party Status:
     actions:

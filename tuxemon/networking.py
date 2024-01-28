@@ -111,35 +111,31 @@ class TuxemonServer:
         :param event_data: Event information sent by client.
 
         """
+        registry = self.server.registry
         # Only respond to the latest message of a given type
-        if "event_list" not in self.server.registry[cuuid]:
-            self.server.registry[cuuid]["event_list"] = {}
-        elif (
-            event_data["type"] not in self.server.registry[cuuid]["event_list"]
-        ):
-            self.server.registry[cuuid]["event_list"][event_data["type"]] = -1
-
+        if "event_list" not in registry[cuuid]:
+            registry[cuuid]["event_list"] = {}
+        elif event_data["type"] not in registry[cuuid]["event_list"]:
+            registry[cuuid]["event_list"][event_data["type"]] = -1
         elif (
             event_data["event_number"]
-            <= self.server.registry[cuuid]["event_list"][event_data["type"]]
+            <= registry[cuuid]["event_list"][event_data["type"]]
         ):
             return
         else:
-            self.server.registry[cuuid]["event_list"][
-                event_data["type"]
-            ] = event_data["event_number"]
+            registry[cuuid]["event_list"][event_data["type"]] = event_data[
+                "event_number"
+            ]
 
         if event_data["type"] == "PUSH_SELF":
-            self.server.registry[cuuid]["sprite_name"] = event_data[
-                "sprite_name"
-            ]
-            self.server.registry[cuuid]["map_name"] = event_data["map_name"]
-            self.server.registry[cuuid]["char_dict"] = event_data["char_dict"]
-            self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
+            registry[cuuid]["sprite_name"] = event_data["sprite_name"]
+            registry[cuuid]["map_name"] = event_data["map_name"]
+            registry[cuuid]["char_dict"] = event_data["char_dict"]
+            registry[cuuid]["ping_timestamp"] = datetime.now()
             self.notify_populate_client(cuuid, event_data)
 
         elif event_data["type"] == "PING":
-            self.server.registry[cuuid]["ping_timestamp"] = datetime.now()
+            registry[cuuid]["ping_timestamp"] = datetime.now()
 
         elif (
             event_data["type"] == "CLIENT_INTERACTION"
@@ -149,7 +145,7 @@ class TuxemonServer:
 
         elif event_data["type"] == "CLIENT_KEYDOWN":
             if event_data["kb_key"] == "SHIFT":
-                self.server.registry[cuuid]["char_dict"]["running"] = True
+                registry[cuuid]["char_dict"]["running"] = True
                 self.notify_client(cuuid, event_data)
             elif event_data["kb_key"] == "CTRL":
                 self.notify_client(cuuid, event_data)
@@ -158,7 +154,7 @@ class TuxemonServer:
 
         elif event_data["type"] == "CLIENT_KEYUP":
             if event_data["kb_key"] == "SHIFT":
-                self.server.registry[cuuid]["char_dict"]["running"] = False
+                registry[cuuid]["char_dict"]["running"] = False
                 self.notify_client(cuuid, event_data)
             elif event_data["kb_key"] == "CTRL":
                 self.notify_client(cuuid, event_data)
@@ -166,17 +162,15 @@ class TuxemonServer:
                 self.notify_client(cuuid, event_data)
 
         elif event_data["type"] == "CLIENT_START_BATTLE":
-            self.server.registry[cuuid]["char_dict"]["running"] = False
+            registry[cuuid]["char_dict"]["running"] = False
             self.update_char_dict(cuuid, event_data["char_dict"])
-            self.server.registry[cuuid]["map_name"] = event_data["map_name"]
+            registry[cuuid]["map_name"] = event_data["map_name"]
             self.notify_client(cuuid, event_data)
 
         else:
             self.update_char_dict(cuuid, event_data["char_dict"])
             if "map_name" in event_data:
-                self.server.registry[cuuid]["map_name"] = event_data[
-                    "map_name"
-                ]
+                registry[cuuid]["map_name"] = event_data["map_name"]
             self.notify_client(cuuid, event_data)
 
     def update_char_dict(self, cuuid: str, char_dict: CharDict) -> None:

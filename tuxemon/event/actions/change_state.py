@@ -41,14 +41,18 @@ class ChangeStateAction(EventAction):
     def start(self) -> None:
         # Don't override previous state if we are still in the state.
         client = self.session.client
+        action = client.event_engine
         if client.current_state is None:
             # obligatory "should not happen"
             raise RuntimeError
         if client.current_state.name != self.state_name:
             if self.state_name == "JournalInfoState" and self.optional:
                 journal = db.lookup(self.optional, table="monster")
+                _set_tuxepedia = ["player", journal.slug, "caught"]
+                action.execute_action("set_tuxepedia", _set_tuxepedia, True)
                 params1 = {"monster": journal}
                 client.push_state(self.state_name, kwargs=params1)
+                action.execute_action("clear_tuxepedia", [journal.slug], True)
             elif self.state_name == "MonsterInfoState" and self.optional:
                 monster = self.retrieve_monster(self.optional)
                 if monster is None:

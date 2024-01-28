@@ -60,6 +60,9 @@ with open(paths.USER_CONFIG_PATH, "w") as fp:
 # Set up the screen size and caption
 SCREEN_SIZE = CONFIG.resolution
 
+# Surface Keys (tilesets)
+SURFACE_KEYS: list[str] = ["surfable", "walkable", "climbable"]
+
 # Set the native tile size so we know how much to scale our maps
 # 1 tile = 16 pixels
 TILE_SIZE: tuple[int, int] = (16, 16)
@@ -214,6 +217,9 @@ MAX_MOVES: int = 4
 MISSING_IMAGE: str = "gfx/sprites/battle/missing.png"
 CATCH_RATE_RANGE: tuple[int, int] = (0, 255)
 CATCH_RESISTANCE_RANGE: tuple[float, float] = (0.0, 2.0)
+# set bond and define range
+BOND: int = 25
+BOND_RANGE: tuple[int, int] = (0, 100)
 # set multiplier stats (multiplier: level + coefficient)
 COEFF_STATS: int = 7
 # set experience required for levelling up

@@ -127,7 +127,7 @@ jobs:
 
       - name: Install nsis
         run: |
-          Invoke-WebRequest -Uri "https://netcologne.dl.sourceforge.net/project/nsis/NSIS%203/3.08/nsis-3.08-setup.exe" -OutFile "nsis.exe"
+          Invoke-WebRequest -Uri "https://sourceforge.net/projects/nsis/files/NSIS%203/3.09/nsis-3.09-setup.exe" -OutFile "nsis.exe"
 
       - name: Build Installer
         run: |

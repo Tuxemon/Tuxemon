@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="236">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="236">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -27,36 +27,6 @@
   <object id="148" type="collision" x="544" y="160" width="32" height="32"/>
   <object id="149" type="collision" x="576" y="32" width="64" height="288"/>
   <object id="150" type="collision" x="560" y="304" width="16" height="16"/>
-  <object id="152" type="collision" x="528" y="208" width="32" height="80">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="153" type="collision" x="496" y="208" width="32" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="154" type="collision" x="368" y="208" width="112" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="155" type="collision" x="192" y="176" width="208" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="156" type="collision" x="96" y="144" width="128" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="157" type="collision" x="0" y="144" width="80" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
   <object id="158" type="collision" x="0" y="128" width="16" height="16"/>
   <object id="159" type="collision" x="144" y="112" width="64" height="32"/>
   <object id="160" type="collision" x="176" y="80" width="160" height="32"/>
@@ -434,12 +404,14 @@
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="not variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:grass"/>
    </properties>
   </object>
   <object id="219" name="Environment Night" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
     <property name="cond1" value="is variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:night_grass"/>
    </properties>
   </object>
   <object id="213" name="Talk Maxwell" type="event" x="64" y="80" width="96" height="16">

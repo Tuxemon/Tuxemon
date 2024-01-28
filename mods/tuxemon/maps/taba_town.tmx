@@ -80,16 +80,6 @@
   <object id="48" type="collision" x="624" y="720" width="16" height="16"/>
   <object id="49" type="collision" x="624" y="832" width="16" height="16"/>
   <object id="50" type="collision" x="688" y="48" width="16" height="16"/>
-  <object id="51" type="collision" x="576" y="912" width="160" height="48">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="52" type="collision" x="672" y="880" width="64" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
   <object id="53" type="collision" x="624" y="624" width="16" height="32"/>
   <object id="63" type="collision" x="576" y="0" width="32" height="48"/>
   <object id="64" type="collision" x="528" y="192" width="16" height="16"/>
@@ -749,7 +739,7 @@
     <property name="act40" value="translated_dialog gotfivetuxeballs"/>
     <property name="act60" value="char_face taba_greeter,down"/>
     <property name="cond10" value="not has_item player,tuxeball"/>
-    <property name="cond20" value="is party_size greater_than,0"/>
+    <property name="cond20" value="is party_size player,greater_than,0"/>
     <property name="cond30" value="is char_at player"/>
     <property name="cond40" value="not variable_set greeter_greets:yes"/>
    </properties>
@@ -762,7 +752,7 @@
     <property name="act30" value="translated_dialog taba_greeting2b"/>
     <property name="act60" value="char_face taba_greeter,down"/>
     <property name="cond10" value="is has_item player,tuxeball"/>
-    <property name="cond20" value="is party_size greater_than,0"/>
+    <property name="cond20" value="is party_size player,greater_than,0"/>
     <property name="cond30" value="is char_at player"/>
     <property name="cond40" value="not variable_set greeter_greets:yes"/>
    </properties>
@@ -878,12 +868,14 @@
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="not variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:grass"/>
    </properties>
   </object>
   <object id="180" name="Environment Night" type="event" x="16" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
     <property name="cond1" value="is variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:night_grass"/>
    </properties>
   </object>
  </objectgroup>

@@ -927,7 +927,7 @@
  </tile>
  <tile id="612">
   <properties>
-   <property name="surfable" value="1"/>
+   <property name="surfable" value="0"/>
   </properties>
   <animation>
    <frame tileid="941" duration="100"/>

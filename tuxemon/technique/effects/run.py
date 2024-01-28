@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
@@ -48,12 +48,12 @@ class RunEffect(TechEffect):
         if "run_attempts" not in var:
             var["run_attempts"] = 0
         # monster in the player party
-        if user in combat.monsters_in_play_human:
+        if user in combat.monsters_in_play_right:
             if escape(user.level, target.level, var["run_attempts"]):
                 var["run_attempts"] += 1
                 ran = True
         # monster in the NPC party
-        elif user in combat.monsters_in_play_ai:
+        elif user in combat.monsters_in_play_left:
             ran = True
 
         # trigger run

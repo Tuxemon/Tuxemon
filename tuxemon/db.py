@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import difflib
@@ -10,17 +10,17 @@ import sys
 from collections.abc import Mapping, Sequence
 from enum import Enum
 from operator import itemgetter
-from typing import Any, Literal, Optional, Union, overload
+from typing import Annotated, Any, Literal, Optional, Union, overload
 
 from PIL import Image
 from pydantic import (
     BaseModel,
+    ConfigDict,
     Field,
     ValidationError,
     ValidationInfo,
     field_validator,
 )
-from typing_extensions import Annotated
 
 from tuxemon import prepare
 from tuxemon.locale import T
@@ -33,6 +33,8 @@ T.load_translator()
 
 # Target is a mapping of who this targets
 Target = Mapping[str, int]
+
+SurfaceKeys = prepare.SURFACE_KEYS
 
 
 class Direction(str, Enum):
@@ -206,6 +208,7 @@ State = Enum(
 
 
 class ItemModel(BaseModel):
+    model_config = ConfigDict(title="Item")
     slug: str = Field(..., description="Slug to use")
     use_item: str = Field(
         ...,
@@ -250,9 +253,6 @@ class ItemModel(BaseModel):
     visible: bool = Field(
         True, description="Whether or not this item is visible."
     )
-
-    class Config:
-        title = "Item"
 
     # Validate fields that refer to translated text
     @field_validator("use_item", "use_success", "use_failure")
@@ -375,6 +375,7 @@ class MonsterEvolutionItemModel(BaseModel):
     )
     steps: Optional[int] = Field(None, description="Steps parameter 50 steps.")
     tech: Optional[str] = Field(None, description="Technique parameter.")
+    bond: Optional[str] = Field(None, description="Bond parameter.")
 
     @field_validator("tech")
     def technique_exists(
@@ -429,6 +430,27 @@ class MonsterEvolutionItemModel(BaseModel):
             return v
         raise ValueError(f"the stats {v} isn't formatted correctly")
 
+    @field_validator("bond")
+    def bond_exists(
+        cls: MonsterEvolutionItemModel, v: Optional[str]
+    ) -> Optional[str]:
+        comparison = list(Comparison)
+        param = v.split(":") if v else []
+        if not v or len(param) == 2:
+            if param[0] not in comparison:
+                raise ValueError(
+                    f"the comparison {param[0]} doesn't exist among {comparison}"
+                )
+            if not param[1].isdigit():
+                raise ValueError(f"{param[1]} isn't a number (int)")
+            lower, upper = prepare.BOND_RANGE
+            if int(param[1]) < lower or int(param[1]) > upper:
+                raise ValueError(
+                    f"the bond is between {lower} and {upper} ({v})"
+                )
+            return v
+        raise ValueError(f"the stats {v} isn't formatted correctly")
+
 
 class MonsterFlairItemModel(BaseModel):
     category: str = Field(..., description="The category of this flair item")
@@ -466,7 +488,8 @@ class MonsterSoundsModel(BaseModel):
     )
 
 
-class MonsterModel(BaseModel):
+# Validate assignment allows us to assign a default inside a validator
+class MonsterModel(BaseModel, validate_assignment=True):
     slug: str = Field(..., description="The slug of the monster")
     category: str = Field(..., description="The category of monster")
     txmn_id: int = Field(..., description="The id of the monster")
@@ -515,10 +538,6 @@ class MonsterModel(BaseModel):
         description="The sounds this monster has",
     )
 
-    class Config:
-        # Validate assignment allows us to assign a default inside a validator
-        validate_assignment = True
-
     # Set the default sprites based on slug. Specifying 'always' is needed
     # because by default pydantic doesn't validate null fields.
     @field_validator("sprites")
@@ -548,8 +567,7 @@ class MonsterModel(BaseModel):
 
     @field_validator("catch_rate")
     def check_catch_rate(cls: MonsterModel, v: float) -> float:
-        lower = prepare.MIN_CATCH_RATE
-        upper = prepare.MAX_CATCH_RATE
+        lower, upper = prepare.CATCH_RATE_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(
@@ -558,8 +576,7 @@ class MonsterModel(BaseModel):
 
     @field_validator("lower_catch_resistance", "upper_catch_resistance")
     def check_catch_resistance(cls: MonsterModel, v: float) -> float:
-        lower = prepare.MIN_CATCH_RESISTANCE
-        upper = prepare.MAX_CATCH_RESISTANCE
+        lower, upper = prepare.CATCH_RESISTANCE_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(
@@ -723,40 +740,35 @@ class TechniqueModel(BaseModel):
 
     @field_validator("recharge")
     def check_recharge(cls: TechniqueModel, v: int) -> int:
-        lower = prepare.MIN_RECHARGE
-        upper = prepare.MAX_RECHARGE
+        lower, upper = prepare.RECHARGE_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(f"the recharge is between {lower} and {upper} ({v})")
 
     @field_validator("power")
     def check_power(cls: TechniqueModel, v: float) -> float:
-        lower = prepare.MIN_POWER
-        upper = prepare.MAX_POWER
+        lower, upper = prepare.POWER_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(f"the power is between {lower} and {upper} ({v})")
 
     @field_validator("accuracy")
     def check_accuracy(cls: TechniqueModel, v: float) -> float:
-        lower = prepare.MIN_ACCURACY
-        upper = prepare.MAX_ACCURACY
+        lower, upper = prepare.ACCURACY_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(f"the accuracy is between {lower} and {upper} ({v})")
 
     @field_validator("potency")
     def check_potency(cls: TechniqueModel, v: float) -> float:
-        lower = prepare.MIN_POTENCY
-        upper = prepare.MAX_POTENCY
+        lower, upper = prepare.POTENCY_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(f"the potency is between {lower} and {upper} ({v})")
 
     @field_validator("healing_power")
     def check_healing_power(cls: TechniqueModel, v: int) -> int:
-        lower = prepare.MIN_HEALING_POWER
-        upper = prepare.MAX_HEALING_POWER
+        lower, upper = prepare.HEALING_POWER_RANGE
         if lower <= v <= upper:
             return v
         raise ValueError(
@@ -935,10 +947,10 @@ class NpcTemplateModel(BaseModel):
 
     @field_validator("sprite_name")
     def sprite_exists(cls: NpcTemplateModel, v: str) -> str:
-        sprite = f"sprites/{v}_{EntityFacing.front}.png"
-        sprite = f"sprites/{v}_{EntityFacing.back}.png"
-        sprite = f"sprites/{v}_{EntityFacing.right}.png"
-        sprite = f"sprites/{v}_{EntityFacing.left}.png"
+        sprite = f"sprites/{v}_front.png"
+        sprite = f"sprites/{v}_back.png"
+        sprite = f"sprites/{v}_right.png"
+        sprite = f"sprites/{v}_left.png"
         sprite_obj: str = f"sprites_obj/{v}.png"
         if (
             has.file(sprite)
@@ -1038,6 +1050,12 @@ class BattleGraphicsModel(BaseModel):
     menu: str = Field(
         "MainCombatMenuState", description="Menu used for combat."
     )
+    msgid: str = Field(
+        "combat_monster_choice",
+        description="msgid of the sentence that is going to appear in the "
+        "combat menu in between the rounds, when the monster needs to choose "
+        "the next move, (name) shows monster name, (player) the player name.",
+    )
     island_back: str = Field(..., description="Sprite used for back combat")
     island_front: str = Field(..., description="Sprite used for front combat")
     background: str = Field(..., description="Sprite used for background")
@@ -1055,6 +1073,19 @@ class BattleGraphicsModel(BaseModel):
         if has.file(v) and has.size(v, prepare.BATTLE_BG_SIZE):
             return v
         raise ValueError(f"no resource exists with path: {v}")
+
+    @field_validator("msgid")
+    def translation_exists_msgid(cls: BattleGraphicsModel, v: str) -> str:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+    @field_validator("menu")
+    def check_state(cls: BattleGraphicsModel, v: str) -> str:
+        states = [state.name for state in State]
+        if v in states:
+            return v
+        raise ValueError(f"state isn't among: {states}")
 
 
 class EnvironmentModel(BaseModel):

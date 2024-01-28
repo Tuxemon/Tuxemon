@@ -176,6 +176,18 @@
     <property name="cond1" value="is variable_set wayfarer1_botbot:yes"/>
     <property name="cond2" value="is variable_set quebotbot:yes"/>
     <property name="cond3" value="not variable_set gotbotbot:yes"/>
+    <property name="cond4" value="not check_char_parameter player,name,ApexPlayer"/>
+   </properties>
+  </object>
+  <object id="38" name="Talk Maniac - Got Botbot - Cheat" type="event" x="112" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_maniac1"/>
+    <property name="act2" value="add_monster botbot,10"/>
+    <property name="act3" value="set_variable gotbotbot:yes"/>
+    <property name="cond1" value="is variable_set wayfarer1_botbot:yes"/>
+    <property name="cond2" value="is variable_set quebotbot:yes"/>
+    <property name="cond3" value="not variable_set gotbotbot:yes"/>
+    <property name="cond4" value="is check_char_parameter player,name,ApexPlayer"/>
    </properties>
   </object>
   <object id="80" name="Talk Maniac - Followup Yes" type="event" x="112" y="112" width="16" height="16">

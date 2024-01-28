@@ -1,17 +1,17 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 from collections import defaultdict
 from collections.abc import Callable, Generator
 from functools import partial
-from typing import TYPE_CHECKING, DefaultDict
+from typing import TYPE_CHECKING
 
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import combat, graphics, prepare, tools
+from tuxemon import combat, graphics, tools
 from tuxemon.db import ElementType, ItemCategory, State, TechSort
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -328,10 +328,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 self.client.pop_state()  # close technique menu
                 self.client.pop_state()  # close the monster action menu
 
-        if len(self.monster.moves) > prepare.MAX_MOVES:
-            local_session.player.remove_technique(local_session, self.monster)
-        else:
-            choose_technique()
+        choose_technique()
 
 
 class CombatTargetMenuState(Menu[Monster]):
@@ -402,7 +399,7 @@ class CombatTargetMenuState(Menu[Monster]):
         # this is used to determine who owns what monsters and what not
         # TODO: make less duplication of game data in memory, let combat
         # state have more registers, etc
-        self.targeting_map: DefaultDict[str, list[Monster]] = defaultdict(list)
+        self.targeting_map: defaultdict[str, list[Monster]] = defaultdict(list)
         # avoid choosing multiple targets (aether type tech)
         if (
             self.tech.has_type(ElementType.aether)

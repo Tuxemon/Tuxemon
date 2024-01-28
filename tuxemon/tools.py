@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """
 
 Do not import platform-specific libraries such as pygame.
@@ -265,6 +265,15 @@ def cast_value(
     ):
         return None
 
+    # checks int, float to avoid float > int or int > float
+    if any(_con in type_constructors for _con in [float, int]):
+        for _cons in type_constructors:
+            if _cons is None:
+                return None
+            elif type(value) == _cons:
+                return value
+            continue
+
     for constructor in type_constructors:
         if not constructor:
             continue
@@ -294,11 +303,15 @@ def get_types_tuple(
 ) -> Sequence[ValidParameterSingleType]:
     if typing.get_origin(param_type) is Union:
         return typing.get_args(param_type)
+    # TODO remove # if Python v3.10 (now 3.9)
+    # from types import UnionType
+    # elif typing.get_origin(param_type) is UnionType:
+    #    return typing.get_args(param_type)
     else:
         return (param_type,)
 
 
-def cast_dataclass_parameters(self) -> None:
+def cast_dataclass_parameters(self: Any) -> None:
     """
     Takes a dataclass object and casts its __init__ values to the correct type
     """

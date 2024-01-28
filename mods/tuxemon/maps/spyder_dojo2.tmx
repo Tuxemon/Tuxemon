@@ -147,11 +147,11 @@
     <property name="act15" value="add_monster masknake,20,spyder_dojo_iroh,5,10"/>
     <property name="act16" value="add_monster prophetoise,20,spyder_dojo_iroh,5,10"/>
     <property name="act20" value="get_party_monster spyder_dojo_iroh"/>
-    <property name="act21" value="add_tech iid_slot_0,peregrine,,,,spyder_dojo_iroh"/>
-    <property name="act22" value="add_tech iid_slot_1,shapechange,,,,spyder_dojo_iroh"/>
-    <property name="act23" value="add_tech iid_slot_2,viper,,,,spyder_dojo_iroh"/>
-    <property name="act24" value="add_tech iid_slot_3,radiance,,,,spyder_dojo_iroh"/>
-    <property name="act25" value="add_tech iid_slot_4,demiurge,,,,spyder_dojo_iroh"/>
+    <property name="act21" value="add_tech iid_slot_0,peregrine"/>
+    <property name="act22" value="add_tech iid_slot_1,shapechange"/>
+    <property name="act23" value="add_tech iid_slot_2,viper"/>
+    <property name="act24" value="add_tech iid_slot_3,radiance"/>
+    <property name="act25" value="add_tech iid_slot_4,demiurge"/>
     <property name="act30" value="start_battle player,spyder_dojo_iroh"/>
     <property name="act31" value="translated_dialog spyder_dojo_iroh2"/>
     <property name="act32" value="set_variable dojoiroh:yes"/>
@@ -250,7 +250,7 @@
     <property name="act15" value="add_monster hydrone,20,spyder_dojo_wan,5,10"/>
     <property name="act16" value="add_monster djinnbo,20,spyder_dojo_wan,5,10"/>
     <property name="act20" value="get_party_monster spyder_dojo_wan"/>
-    <property name="act22" value="add_tech iid_slot_4,shapechange,,,,spyder_dojo_wan"/>
+    <property name="act22" value="add_tech iid_slot_4,shapechange"/>
     <property name="act30" value="start_battle player,spyder_dojo_wan"/>
     <property name="act31" value="set_variable dojowan:yes"/>
     <property name="act32" value="set_monster_health"/>

@@ -69,11 +69,6 @@
   <object id="148" type="collision" x="128" y="96" width="48" height="16"/>
   <object id="149" type="collision" x="208" y="96" width="48" height="16"/>
   <object id="150" type="collision" x="128" y="208" width="128" height="16"/>
-  <object id="151" type="collision" x="608" y="512" width="16" height="48">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
   <object id="152" type="collision" x="496" y="400" width="32" height="32"/>
   <object id="153" type="collision" x="528" y="400" width="32" height="32"/>
   <object id="155" type="collision" x="0" y="576" width="96" height="64"/>
@@ -84,36 +79,6 @@
   <object id="160" type="collision" x="240" y="608" width="400" height="32"/>
   <object id="161" type="collision" x="448" y="576" width="64" height="32"/>
   <object id="163" type="collision" x="576" y="576" width="64" height="32"/>
-  <object id="164" type="collision" x="528" y="32" width="32" height="144">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="165" type="collision" x="272" y="144" width="256" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="166" type="collision" x="272" y="176" width="144" height="80">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="168" type="collision" x="192" y="240" width="112" height="224">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="169" type="collision" x="304" y="416" width="64" height="48">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="170" type="collision" x="368" y="448" width="32" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
   <object id="174" type="collision-line" x="128" y="112">
    <polyline points="0,0 0,96"/>
   </object>
@@ -133,21 +98,6 @@
   <object id="219" type="collision" x="480" y="288" width="64" height="48"/>
   <object id="220" type="collision" x="496" y="336" width="48" height="16"/>
   <object id="224" type="collision" x="128" y="224" width="16" height="16"/>
-  <object id="229" type="collision" x="416" y="448" width="160" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="230" type="collision" x="576" y="448" width="48" height="64">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="231" type="collision" x="624" y="560" width="16" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
   <object id="227" type="collision" x="48" y="384" width="48" height="16"/>
   <object id="234" type="collision" x="80" y="288" width="16" height="16"/>
   <object id="235" type="collision" x="32" y="288" width="32" height="16"/>
@@ -279,7 +229,7 @@
     <property name="act60" value="remove_npc spyder_candy_henrik"/>
     <property name="cond1" value="is variable_set confiscation_candy:yes"/>
     <property name="cond2" value="not variable_set party_all_sick:yes"/>
-    <property name="cond3" value="is party_infected all"/>
+    <property name="cond3" value="is party_infected player,all"/>
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
    </properties>
   </object>
@@ -294,7 +244,7 @@
     <property name="act50" value="remove_npc spyder_candy_henrik"/>
     <property name="cond1" value="is variable_set confiscation_candy:yes"/>
     <property name="cond2" value="not variable_set party_healthy:yes"/>
-    <property name="cond3" value="is party_infected none"/>
+    <property name="cond3" value="is party_infected player,none"/>
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
     <property name="cond5" value="not variable_set party_sick:yes"/>
    </properties>
@@ -313,7 +263,7 @@
     <property name="act60" value="remove_npc spyder_candy_henrik"/>
     <property name="cond1" value="is variable_set confiscation_candy:yes"/>
     <property name="cond2" value="not variable_set party_sick:yes"/>
-    <property name="cond3" value="is party_infected some"/>
+    <property name="cond3" value="is party_infected player,some"/>
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
    </properties>
   </object>

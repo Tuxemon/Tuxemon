@@ -9,8 +9,12 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_in.CharInCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_moved.CharMovedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_sprite.CharSpriteCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.check_char_parameter.CheckCharParameterCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_evolution.CheckEvolutionCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.check_max_tech.CheckMaxTechCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_mission.CheckMissionCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.check_party_parameter.CheckPartyParameterCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.check_world.CheckWorldCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.current_state.CurrentStateCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_bag.HasBagCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_box.HasBoxCondition
@@ -23,13 +27,11 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.location_type.LocationTypeCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.money_is.MoneyIsCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.monster_flair.MonsterFlairCondition
-.. autoscriptinfoclass:: tuxemon.event.conditions.monster_property.MonsterPropertyCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.music_playing.MusicPlayingCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.once.OnceCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.one_of.OneOfCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.party_infected.PartyInfectedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.party_size.PartySizeCondition
-.. autoscriptinfoclass:: tuxemon.event.conditions.to_talk.ToTalkCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.to_use_tile.ToUseTileCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.true.TrueCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.tuxepedia.TuxepediaCondition

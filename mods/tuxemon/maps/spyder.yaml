@@ -97,7 +97,7 @@ events:
     type: "event"
   Allow Swim:
     actions:
-    - remove_collision water
+    - update_tile_properties surfable
     conditions:
     - is variable_set swimming:yes
     - is current_state WorldState

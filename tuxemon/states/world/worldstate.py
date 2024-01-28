@@ -719,6 +719,47 @@ class WorldState(state.State):
                 return monster
         return None
 
+    def get_all_tile_properties(
+        self,
+        map: MutableMapping[tuple[int, int], dict[str, float]],
+        label: str,
+    ) -> list[tuple[int, int]]:
+        """
+        Returns coords (tuple) of specific tile property.
+
+        Parameters:
+            map: The surface map.
+            label: The label (SurfaceKeys).
+
+        Returns:
+            The coordinates.
+
+        """
+        tiles = [coords for coords, props in map.items() if label in props]
+        return tiles
+
+    def get_tile_moverate(
+        self,
+        map: MutableMapping[tuple[int, int], dict[str, float]],
+        position: tuple[int, int],
+    ) -> float:
+        """
+        Returns moverate of a specific tile by looking in surface map.
+
+        Parameters:
+            map: The surface map.
+            position: The coordinate.
+
+        Returns:
+            Moverate (float), default 1.0
+
+        """
+        moverate = 1.0
+        for coord, props in map.items():
+            if coord == position:
+                moverate = float(next(iter(props.values())))
+        return moverate
+
     def check_collision_zones(
         self,
         map: MutableMapping[tuple[int, int], Optional[RegionProperties]],
@@ -762,6 +803,18 @@ class WorldState(state.State):
             )
             pos = npc.tile_pos
             collision_dict[pos] = prop
+
+        for coords, surface in self.surface_map.items():
+            for label, value in surface.items():
+                _prop = RegionProperties(
+                    enter_from=[],
+                    exit_from=[],
+                    endure=[],
+                    entity=None,
+                    key=label,
+                )
+                if float(value) == 0:
+                    collision_dict[coords] = _prop
 
         # tile layout takes precedence
         collision_dict.update(self.collision_map)
@@ -1182,7 +1235,7 @@ class WorldState(state.State):
 
         self.current_map = map_data
         self.collision_map = map_data.collision_map
-        self.surfable_map = map_data.surfable_map
+        self.surface_map = map_data.surface_map
         self.collision_lines_map = map_data.collision_lines_map
         self.map_size = map_data.size
         self.map_area = map_data.area

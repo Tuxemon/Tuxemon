@@ -200,6 +200,7 @@ State = Enum(
     "State",
     {
         "MainCombatMenuState": "MainCombatMenuState",
+        "MainParkMenuState": "MainParkMenuState",
         "WorldState": "WorldState",
         "None": "",
     },

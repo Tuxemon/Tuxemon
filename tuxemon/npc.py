@@ -303,24 +303,24 @@ class NPC(Entity[NPCState]):
         frame_duration = (1000 / CONFIG.player_walkrate) / n_frames / 1000 * 2
 
         # Load all of the player's sprite animations
-        anim_types = [f"{facing}_walk" for facing in list(EntityFacing)]
+        anim_types = list(EntityFacing)
         for anim_type in anim_types:
             if not self.interactive_obj:
-                images = [
-                    "sprites/{}_{}.{}.png".format(
-                        self.sprite_name, anim_type, str(num).rjust(3, "0")
-                    )
-                    for num in range(4)
-                ]
+                images: list[str] = []
+                anim_0 = f"sprites/{self.sprite_name}_{anim_type.value}_walk"
+                anim_1 = f"sprites/{self.sprite_name}_{anim_type.value}.png"
+                images.append(f"{anim_0}.{str(0).zfill(3)}.png")
+                images.append(anim_1)
+                images.append(f"{anim_0}.{str(1).zfill(3)}.png")
+                images.append(anim_1)
 
                 frames: list[tuple[pygame.surface.Surface, float]] = []
                 for image in images:
                     surface = load_and_scale(image)
                     frames.append((surface, frame_duration))
 
-                self.sprite[anim_type] = surfanim.SurfaceAnimation(
-                    frames, loop=True
-                )
+                _surfanim = surfanim.SurfaceAnimation(frames, loop=True)
+                self.sprite[f"{anim_type.value}_walk"] = _surfanim
 
         # Have the animation objects managed by a SurfaceAnimationCollection.
         # With the SurfaceAnimationCollection, we can call play() and stop() on

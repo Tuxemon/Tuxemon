@@ -83,8 +83,8 @@ class CombatAnimations(ABC, Menu[None]):
             list
         )
 
-        player = prepare.PLAYER_COMBAT
-        opponent = prepare.OPPONENT_COMBAT
+        _right = prepare.RIGHT_COMBAT
+        _left = prepare.LEFT_COMBAT
 
         # convert the list/tuple of coordinates to Rects
         layout = [
@@ -92,7 +92,7 @@ class CombatAnimations(ABC, Menu[None]):
                 key: list(map(scale_area, [(*value,)]))
                 for key, value in p.items()
             }
-            for p in (player, opponent)
+            for p in (_right, _left)
         ]
 
         # end config =========================================
@@ -590,7 +590,7 @@ class CombatAnimations(ABC, Menu[None]):
         else:
             enemy = opp_mon.get_sprite(
                 "front",
-                bottom=back_island.rect.bottom - scale(12),
+                bottom=back_island.rect.bottom - scale(24),
                 centerx=back_island.rect.centerx,
             )
             self._monster_sprite_map[opp_mon] = enemy

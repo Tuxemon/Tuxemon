@@ -103,6 +103,30 @@
    <property name="exit_from" value="right,left,up"/>
   </properties>
  </tile>
+ <tile id="50">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="51">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="52">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="53">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="54">
   <properties>
    <property name="enter_from" value="left"/>
@@ -143,6 +167,30 @@
   <properties>
    <property name="enter_from" value="right,left,up"/>
    <property name="exit_from" value="right,left,up"/>
+  </properties>
+ </tile>
+ <tile id="64">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="65">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="66">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="67">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
   </properties>
  </tile>
  <tile id="68">
@@ -187,6 +235,30 @@
    <property name="exit_from" value="right,left,up"/>
   </properties>
  </tile>
+ <tile id="78">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="79">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="80">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="81">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="82">
   <properties>
    <property name="enter_from" value="left"/>
@@ -223,6 +295,30 @@
    <property name="exit_from" value="left,down"/>
   </properties>
  </tile>
+ <tile id="95">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="96">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="97">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="98">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="104">
   <properties>
    <property name="enter_from" value="left"/>
@@ -245,6 +341,30 @@
   <properties>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="left,down"/>
+  </properties>
+ </tile>
+ <tile id="109">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="110">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="111">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="112">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
   </properties>
  </tile>
  <tile id="118">
@@ -271,6 +391,30 @@
    <property name="exit_from" value="left,down"/>
   </properties>
  </tile>
+ <tile id="123">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="124">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="125">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="126">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="136">
   <properties>
    <property name="enter_from" value="down"/>
@@ -295,10 +439,22 @@
    <property name="exit_from" value="left"/>
   </properties>
  </tile>
+ <tile id="140">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="141">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="144">
   <properties>
-   <property name="enter_from" value="down"/>
-   <property name="exit_from" value="down"/>
+   <property name="enter_from" value="down,up"/>
+   <property name="exit_from" value="down,up"/>
   </properties>
  </tile>
  <tile id="145">
@@ -349,10 +505,22 @@
    <property name="exit_from" value="left"/>
   </properties>
  </tile>
+ <tile id="154">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="155">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="158">
   <properties>
-   <property name="enter_from" value="down"/>
-   <property name="exit_from" value="down"/>
+   <property name="enter_from" value="down,up"/>
+   <property name="exit_from" value="down,up"/>
   </properties>
  </tile>
  <tile id="159">
@@ -403,10 +571,22 @@
    <property name="exit_from" value="left"/>
   </properties>
  </tile>
+ <tile id="168">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="169">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="172">
   <properties>
-   <property name="enter_from" value="down"/>
-   <property name="exit_from" value="down"/>
+   <property name="enter_from" value="down,up"/>
+   <property name="exit_from" value="down,up"/>
   </properties>
  </tile>
  <tile id="173">
@@ -571,6 +751,30 @@
    <property name="exit_from" value="right,left,up"/>
   </properties>
  </tile>
+ <tile id="770">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="771">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="772">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="773">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="774">
   <properties>
    <property name="enter_from" value="left"/>
@@ -611,6 +815,30 @@
   <properties>
    <property name="enter_from" value="right,left,up"/>
    <property name="exit_from" value="right,left,up"/>
+  </properties>
+ </tile>
+ <tile id="784">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="785">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="786">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="787">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
   </properties>
  </tile>
  <tile id="788">
@@ -655,6 +883,30 @@
    <property name="exit_from" value="right,left,up"/>
   </properties>
  </tile>
+ <tile id="798">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="799">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="800">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="801">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="802">
   <properties>
    <property name="enter_from" value="left"/>
@@ -691,6 +943,30 @@
    <property name="exit_from" value="left,down"/>
   </properties>
  </tile>
+ <tile id="815">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="816">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="817">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="818">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="824">
   <properties>
    <property name="enter_from" value="left"/>
@@ -713,6 +989,30 @@
   <properties>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="left,down"/>
+  </properties>
+ </tile>
+ <tile id="829">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="830">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="831">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="832">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
   </properties>
  </tile>
  <tile id="838">
@@ -739,6 +1039,30 @@
    <property name="exit_from" value="left,down"/>
   </properties>
  </tile>
+ <tile id="843">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="844">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="845">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="846">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="856">
   <properties>
    <property name="enter_from" value="down"/>
@@ -763,10 +1087,22 @@
    <property name="exit_from" value="left"/>
   </properties>
  </tile>
+ <tile id="860">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="861">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="864">
   <properties>
-   <property name="enter_from" value="down"/>
-   <property name="exit_from" value="down"/>
+   <property name="enter_from" value="down,up"/>
+   <property name="exit_from" value="down,up"/>
   </properties>
  </tile>
  <tile id="865">
@@ -817,10 +1153,22 @@
    <property name="exit_from" value="left"/>
   </properties>
  </tile>
+ <tile id="874">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="875">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="878">
   <properties>
-   <property name="enter_from" value="down"/>
-   <property name="exit_from" value="down"/>
+   <property name="enter_from" value="down,up"/>
+   <property name="exit_from" value="down,up"/>
   </properties>
  </tile>
  <tile id="879">
@@ -871,10 +1219,22 @@
    <property name="exit_from" value="left"/>
   </properties>
  </tile>
+ <tile id="888">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="889">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="892">
   <properties>
-   <property name="enter_from" value="down"/>
-   <property name="exit_from" value="down"/>
+   <property name="enter_from" value="down,up"/>
+   <property name="exit_from" value="down,up"/>
   </properties>
  </tile>
  <tile id="893">
@@ -1039,6 +1399,30 @@
    <property name="exit_from" value="right,left,up"/>
   </properties>
  </tile>
+ <tile id="1535">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="1536">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="1537">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="1538">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="1539">
   <properties>
    <property name="enter_from" value="left"/>
@@ -1079,6 +1463,30 @@
   <properties>
    <property name="enter_from" value="right,left,up"/>
    <property name="exit_from" value="right,left,up"/>
+  </properties>
+ </tile>
+ <tile id="1549">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="1550">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="1551">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="1552">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
   </properties>
  </tile>
  <tile id="1553">
@@ -1123,6 +1531,30 @@
    <property name="exit_from" value="right,left,up"/>
   </properties>
  </tile>
+ <tile id="1563">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="1564">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="1565">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="1566">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="1567">
   <properties>
    <property name="enter_from" value="left"/>
@@ -1159,6 +1591,30 @@
    <property name="exit_from" value="left,down"/>
   </properties>
  </tile>
+ <tile id="1580">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="1581">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="1582">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="1583">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="1589">
   <properties>
    <property name="enter_from" value="left"/>
@@ -1181,6 +1637,30 @@
   <properties>
    <property name="enter_from" value="left,down"/>
    <property name="exit_from" value="left,down"/>
+  </properties>
+ </tile>
+ <tile id="1594">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="1595">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="1596">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="1597">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
   </properties>
  </tile>
  <tile id="1603">
@@ -1207,6 +1687,30 @@
    <property name="exit_from" value="left,down"/>
   </properties>
  </tile>
+ <tile id="1608">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="1609">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="1610">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="1611">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="1621">
   <properties>
    <property name="enter_from" value="down"/>
@@ -1231,10 +1735,22 @@
    <property name="exit_from" value="left"/>
   </properties>
  </tile>
+ <tile id="1625">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="1626">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="1629">
   <properties>
-   <property name="enter_from" value="down"/>
-   <property name="exit_from" value="down"/>
+   <property name="enter_from" value="down,up"/>
+   <property name="exit_from" value="down,up"/>
   </properties>
  </tile>
  <tile id="1630">
@@ -1285,10 +1801,22 @@
    <property name="exit_from" value="left"/>
   </properties>
  </tile>
+ <tile id="1639">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="1640">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="1643">
   <properties>
-   <property name="enter_from" value="down"/>
-   <property name="exit_from" value="down"/>
+   <property name="enter_from" value="down,up"/>
+   <property name="exit_from" value="down,up"/>
   </properties>
  </tile>
  <tile id="1644">
@@ -1339,10 +1867,22 @@
    <property name="exit_from" value="left"/>
   </properties>
  </tile>
+ <tile id="1653">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="1654">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="1657">
   <properties>
-   <property name="enter_from" value="down"/>
-   <property name="exit_from" value="down"/>
+   <property name="enter_from" value="down,up"/>
+   <property name="exit_from" value="down,up"/>
   </properties>
  </tile>
  <tile id="1658">
@@ -1459,6 +1999,30 @@
    <property name="exit_from" value="right,left,up"/>
   </properties>
  </tile>
+ <tile id="2255">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="2256">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="2257">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="2258">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="2259">
   <properties>
    <property name="enter_from" value="left"/>
@@ -1495,6 +2059,42 @@
    <property name="exit_from" value="left,down"/>
   </properties>
  </tile>
+ <tile id="2300">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="2301">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="2302">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="2303">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
+ <tile id="2314">
+  <properties>
+   <property name="enter_from" value="down,up"/>
+   <property name="exit_from" value="down,up"/>
+  </properties>
+ </tile>
+ <tile id="2315">
+  <properties>
+   <property name="enter_from" value="down,up"/>
+   <property name="exit_from" value="down,up"/>
+  </properties>
+ </tile>
  <tile id="2341">
   <properties>
    <property name="enter_from" value="down"/>
@@ -1519,10 +2119,22 @@
    <property name="exit_from" value="left"/>
   </properties>
  </tile>
+ <tile id="2345">
+  <properties>
+   <property name="enter_from" value="up,down,right"/>
+   <property name="exit_from" value="up,down,right"/>
+  </properties>
+ </tile>
+ <tile id="2346">
+  <properties>
+   <property name="enter_from" value="up,down,left"/>
+   <property name="exit_from" value="up,down,left"/>
+  </properties>
+ </tile>
  <tile id="2349">
   <properties>
-   <property name="enter_from" value="down"/>
-   <property name="exit_from" value="down"/>
+   <property name="enter_from" value="down,up"/>
+   <property name="exit_from" value="down,up"/>
   </properties>
  </tile>
  <tile id="2350">

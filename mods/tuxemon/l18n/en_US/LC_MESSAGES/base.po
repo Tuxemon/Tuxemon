@@ -6890,6 +6890,87 @@ msgstr "Y'know, that Christie girl is a real piece of work. She would not stop t
 msgid "healertabapassageway3-2"
 msgstr "There! You should be all set now! Good luck on the next acolyte!"
 
+msgid "acolyte3challenger1"
+msgstr "No... No, no, no."
+
+msgid "acolyte3challenger2"
+msgstr "I'm not ready yet. My Tuxemon aren't healed. This is bad."
+
+msgid "acolyte3challenger3"
+msgstr "Bad, oh so very bad...."
+
+msgid "acolyte3challenger4"
+msgstr "Wait, yes, I can get one from the passageway. Ohhh, this will be good."
+
+msgid "acolyte3challenger5"
+msgstr "Hahaha! There you are challenger!"
+
+msgid "acolyte3challenger6"
+msgstr "Did you know that Tuxemon can become a part of you?"
+
+msgid "acolyte3challenger7"
+msgstr "If you enforce your will on your Tuxemon enough, soon your psyches start to merge!"
+
+msgid "acolyte3challenger8"
+msgstr "They called me crazy, they called me a fool. I was fired from the research division because they feared me. They feared what I could do!\n"
+"Humans and Tuxemon, merged together as one. So in sync that one can't be separated from the other... unless they burn out entirely."
+
+msgid "acolyte3challenger9"
+msgstr "Hee hee hee, but that will come back to bite them in the end, now won't it?\n"
+"For only I know how to withstand a burnout!"
+
+msgid "acolyte3challenger10"
+msgstr "Sure, it results in a little madness..."
+
+msgid "acolyte3challenger11"
+msgstr "But that's the price anyone pays to see the Truth..."
+
+msgid "acolyte3challenger12"
+msgstr "Hahahahaha, and I gladly pay it!"
+
+msgid "acolyte3challenger13"
+msgstr "For to be enlightened like I have, no, to see the TRUTH like I have, there's nothing like it!"
+
+msgid "acolyte3challenger14"
+msgstr "Tuxemon aren't here to better our lives, no, they're here to destroy them. It's why we MUST end this all."
+
+msgid "acolyte3challenger15"
+msgstr "Wait...\n"
+"Wait wait wait wait wait... Why am I telling you this? You're not enlightened, you haven't seen the Truth."
+
+msgid "acolyte3challenger16"
+msgstr "YOU'RE JUST AN OMNICHANNEL PAWN! How DARE you come in here, interrogating me about the Truth, when you haven't even learned it.\n"
+"You can't even BEGIN to understand, you filthy Omni scum.\n"
+"For that, you and your Tuxemon must be... Annihilated..."
+
+msgid "acolyteiskayrazy"
+msgstr "HALT!"
+
+msgid "acolyteiskayrazy2"
+msgstr "Darnit Cam, we thought this would be a good way to bring you back into society."
+
+msgid "acolyteiskayrazy3"
+msgstr "SILENCE! You dare speak to me, you insignificant piece of-"
+
+msgid "acolyteiskayrazy4"
+msgstr "Alright, enough's enough."
+
+msgid "acolytewasdefeated"
+msgstr "Okay, Mack? Take him out of here."
+
+msgid "acolytewasdefeated2"
+msgstr "Hey, sorry about that. I guess that Christy girl really did a number on him..."
+
+msgid "acolytewasdefeated3"
+msgstr "He's been in therapy for the past year, ever since his Tuxemon experiments went haywire. We shut down everything after that.\n"
+"Obviously he needs more time..."
+
+msgid "acolytewasdefeated4"
+msgstr "Since there isn't a third acolyte anymore, you can just move on to the next one. I'll be sure to let everyone know."
+
+msgid "acolytewasdefeated5"
+msgstr "Good luck on the next one"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

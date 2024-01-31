@@ -67,38 +67,14 @@ jobs:
         cd org.tuxemon.Tuxemon
         git checkout development
 
-    - name: Replace git tag by the commit id on which it runs
-      if: github.ref_type != 'tag'
-      run: >
-        sed -i 's@tag: v[0-9]*.[0-9]*.[0-9]*@commit: "${{ github.sha }}"@' org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
-
-    - name: Use correct git tag
-      if: github.ref_type == 'tag'
-      run: >
-        sed -i 's@tag: .*$@tag: "${{ github.ref_name }}"@' org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
-
-    - name: Replace source url
-      run: >
-        sed -i "s@url: .*Tuxemon/Tuxemon.git@url: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY@" org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
-
-    - name: Add dev build marker to cmake options
-      if: github.ref_type != 'tag'
-      run: >
-        sed -i 's@config-opts: \["\(.*\)"\]@config-opts: ["\1", "-DDEV_BUILD=${{ github.ref_name }}"]@' org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
-
-    - name: Replace desktop file name suffix
-      if: github.ref_type != 'tag'
-      run: >
-        sed -i 's@desktop-file-name-suffix: ""@desktop-file-name-suffix: " (Development)"@' org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
-
     - name: Show Flatpak manifest
-      run: cat org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+      run: cat buildconfig/flatpak/build_flatpak.yaml
 
     - name: Build package
       uses: flatpak/flatpak-github-actions/flatpak-builder@v6
       with:
         bundle: Tuxemon.flatpak
-        manifest-path: org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+        manifest-path: buildconfig/flatpak/build_flatpak.yaml
         cache: false
         branch: ${{ steps.flatpak_release_branch.outputs.value }}
 

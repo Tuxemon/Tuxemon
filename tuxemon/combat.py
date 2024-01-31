@@ -396,6 +396,9 @@ def track_battles(
     Returns:
         Message to display.
     """
+    _won = OutputBattle.won.value
+    _lost = OutputBattle.lost.value
+    _draw = OutputBattle.draw.value
     if output == "won":
         winner = player
         losers = players
@@ -406,7 +409,7 @@ def track_battles(
                 set_battle(session, OutputBattle.won, winner, _loser)
             # set variables
             if winner.isplayer:
-                set_var(session, "battle_last_result", OutputBattle.won)
+                set_var(session, "battle_last_result", _won)
                 set_var(session, "battle_last_winner", "player")
                 client = session.client.event_engine
                 var = ["player", prize]
@@ -434,11 +437,11 @@ def track_battles(
         loser = player
         winners = players
         info = {"name": loser.name.upper()}
-        set_var(session, "teleport_clinic", OutputBattle.lost)
+        set_var(session, "teleport_clinic", _lost)
         if trainer_battle:
             # set variables
             if loser.isplayer:
-                set_var(session, "battle_last_result", OutputBattle.lost)
+                set_var(session, "battle_last_result", _lost)
                 set_var(session, "battle_last_loser", "player")
             else:
                 set_var(session, "battle_last_loser", loser.slug)
@@ -452,9 +455,9 @@ def track_battles(
         # draw
         defeat = list(players)
         defeat.remove(player)
-        set_var(session, "teleport_clinic", OutputBattle.lost)
+        set_var(session, "teleport_clinic", _lost)
         if trainer_battle:
-            set_var(session, "battle_last_result", OutputBattle.draw)
+            set_var(session, "battle_last_result", _draw)
             for _player in defeat:
                 set_var(session, "battle_last_trainer", _player.slug)
                 set_battle(session, OutputBattle.draw, player, _player)

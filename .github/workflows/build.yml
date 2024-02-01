@@ -68,13 +68,13 @@ jobs:
         git checkout development
 
     - name: Show Flatpak manifest
-      run: cat buildconfig/flatpak/build_flatpak.yaml
+      run: cat org.tuxemon.Tuxemon.yaml
 
     - name: Build package
       uses: flatpak/flatpak-github-actions/flatpak-builder@v6
       with:
         bundle: Tuxemon.flatpak
-        manifest-path: buildconfig/flatpak/build_flatpak.yaml
+        manifest-path: org.tuxemon.Tuxemon.yaml
         cache: false
         branch: ${{ steps.flatpak_release_branch.outputs.value }}
 
@@ -164,7 +164,7 @@ jobs:
       - name: list artifacts folder
         run: |
           echo "Show artifacts folder:"
-          ls artifacts
+          ls -R artifacts
           echo "Show artifacts/tuxemon_windows_installer folder:"
           ls "artifacts/tuxemon_windows_installer"
           echo "Show artifacts/Tuxemon-x86_64:"

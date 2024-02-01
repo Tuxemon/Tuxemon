@@ -68,7 +68,7 @@ jobs:
         git checkout development
 
     - name: Show Flatpak manifest
-      run: cat org.tuxemon.Tuxemon.yaml
+      run: cat buildconfig/flatpak/org.tuxemon.Tuxemon.yaml
 
     - name: Build package
       uses: flatpak/flatpak-github-actions/flatpak-builder@v6

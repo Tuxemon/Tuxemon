@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="45">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="park_entrance"/>
+  <property name="types" value="notype"/>
+ </properties>
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="7729" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
+  <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
+ </tileset>
+ <tileset firstgid="10321" source="../gfx/tilesets/core_buildings.tsx"/>
+ <layer id="1" name="Layer 1" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJyzEWZgsCECZxGJZxCJGxlHMTYMALr2MjM=
+  </data>
+ </layer>
+ <layer id="2" name="Layer 2" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAPcGtCMDpokoPgZjkI30oTgkGgUQ4hPwmKJ0PV/QPR8hD2RCR5GFiMRd1CJPnBrm6THARvxqJuoxxCHgCAph4M
+  </data>
+ </layer>
+ <layer id="3" name="Layer 3" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFgwkAAAGQAAE=
+  </data>
+ </layer>
+ <layer id="5" name="Above Player" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFgwkAAAGQAAE=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="4" name="Collisions">
+  <object id="10" type="collision" x="32" y="48" width="16" height="112"/>
+  <object id="11" type="collision" x="0" y="32" width="64" height="16"/>
+  <object id="35" type="collision" x="112" y="48" width="16" height="112"/>
+  <object id="43" type="collision" x="96" y="32" width="64" height="16"/>
+  <object id="44" type="collision" x="64" y="16" width="32" height="16"/>
+ </objectgroup>
+</map>

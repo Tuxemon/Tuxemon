@@ -83,36 +83,7 @@
   <object id="248" type="collision" x="352" y="0" width="112" height="16"/>
   <object id="249" type="collision" x="464" y="0" width="80" height="80"/>
   <object id="253" type="collision" x="96" y="192" width="64" height="16"/>
-  <object id="256" type="collision" x="96" y="256" width="64" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="258" type="collision" x="80" y="240" width="16" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="259" type="collision" x="144" y="272" width="16" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="260" type="collision" x="160" y="288" width="32" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="262" type="collision" x="16" y="224" width="16" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="263" type="collision" x="32" y="240" width="32" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
+  <object id="260" type="collision" x="160" y="288" width="32" height="16"/>
   <object id="270" type="collision" x="64" y="256" width="16" height="16"/>
   <object id="275" type="collision" x="528" y="80" width="32" height="16"/>
  </objectgroup>
@@ -550,7 +521,6 @@
    <properties>
     <property name="act05" value="translated_dialog spyder_papertown_thereis"/>
     <property name="act10" value="change_state JournalInfoState,rockitten"/>
-    <property name="act20" value="remove_state"/>
     <property name="act25" value="translated_dialog spyder_papertown_rockitten"/>
     <property name="act30" value="translated_dialog_choice yes:no,rockittenchosen"/>
     <property name="cond1" value="is char_facing_tile player"/>
@@ -562,7 +532,6 @@
    <properties>
     <property name="act05" value="translated_dialog spyder_papertown_thereis"/>
     <property name="act10" value="change_state JournalInfoState,lambert"/>
-    <property name="act20" value="remove_state"/>
     <property name="act25" value="translated_dialog spyder_papertown_lambert"/>
     <property name="act30" value="translated_dialog_choice yes:no,lambertchosen"/>
     <property name="cond1" value="is char_facing_tile player"/>
@@ -574,7 +543,6 @@
    <properties>
     <property name="act05" value="translated_dialog spyder_papertown_thereis"/>
     <property name="act10" value="change_state JournalInfoState,nut"/>
-    <property name="act20" value="remove_state"/>
     <property name="act25" value="translated_dialog spyder_papertown_nut"/>
     <property name="act30" value="translated_dialog_choice yes:no,nutchosen"/>
     <property name="cond1" value="is char_facing_tile player"/>
@@ -586,7 +554,6 @@
    <properties>
     <property name="act05" value="translated_dialog spyder_papertown_thereis"/>
     <property name="act10" value="change_state JournalInfoState,tweesher"/>
-    <property name="act20" value="remove_state"/>
     <property name="act25" value="translated_dialog spyder_papertown_tweesher"/>
     <property name="act30" value="translated_dialog_choice yes:no,tweesherchosen"/>
     <property name="cond1" value="is char_facing_tile player"/>
@@ -598,7 +565,6 @@
    <properties>
     <property name="act05" value="translated_dialog spyder_papertown_thereis"/>
     <property name="act10" value="change_state JournalInfoState,agnite"/>
-    <property name="act20" value="remove_state"/>
     <property name="act25" value="translated_dialog spyder_papertown_agnite"/>
     <property name="act30" value="translated_dialog_choice yes:no,agnitechosen"/>
     <property name="cond1" value="is char_facing_tile player"/>

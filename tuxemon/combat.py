@@ -15,7 +15,7 @@ import random
 from collections.abc import Generator, Sequence
 from typing import TYPE_CHECKING, Optional
 
-from tuxemon.db import OutputBattle, PlagueType
+from tuxemon.db import GenderType, OutputBattle, PlagueType, SeenStatus
 from tuxemon.locale import T
 from tuxemon.technique.technique import Technique
 
@@ -123,13 +123,13 @@ def recharging(technique: Technique) -> bool:
 
 
 def get_awake_monsters(
-    player: NPC, monsters: list[Monster], turn: int
+    character: NPC, monsters: list[Monster], turn: int
 ) -> Generator[Monster, None, None]:
     """
     Iterate all non-fainted monsters in party.
 
     Parameters:
-        player: Player object.
+        character: The character.
 
     Yields:
         Non-fainted monsters.
@@ -137,7 +137,7 @@ def get_awake_monsters(
     """
     mons = [
         ele
-        for ele in player.monsters
+        for ele in character.monsters
         if not fainted(ele) and ele not in monsters
     ]
     if mons:
@@ -152,20 +152,33 @@ def get_awake_monsters(
             yield mons[0]
 
 
-def alive_party(player: NPC) -> list[Monster]:
-    not_fainted = [ele for ele in player.monsters if not fainted(ele)]
-    return not_fainted
+def alive_party(character: NPC) -> list[Monster]:
+    """
+    Returns a list with all the monsters alive in the character's party.
+    """
+    alive = [ele for ele in character.monsters if not fainted(ele)]
+    return alive
 
 
 def fainted_party(party: Sequence[Monster]) -> bool:
+    """
+    Whether the party is fainted or not.
+    """
     return all(map(fainted, party))
 
 
-def defeated(player: NPC) -> bool:
-    return fainted_party(player.monsters)
+def defeated(character: NPC) -> bool:
+    """
+    Whether all the character's party is fainted.
+    """
+    return fainted_party(character.monsters)
 
 
 def check_moves(monster: Monster, levels: int) -> Optional[str]:
+    """
+    Checks if during the levelling up there is/are new tech/s to learn.
+    If there is/are new tech/s it returns the message, otherwise None.
+    """
     techs = monster.update_moves(levels)
     if techs:
         _techs = ""
@@ -388,27 +401,29 @@ def track_battles(
         losers = players
         info = {"name": winner.name.upper()}
         if trainer_battle:
+            # register battle
+            for _loser in losers:
+                set_battle(session, OutputBattle.won, winner, _loser)
             # set variables
             if winner.isplayer:
                 set_var(session, "battle_last_result", OutputBattle.won)
                 set_var(session, "battle_last_winner", "player")
+                client = session.client.event_engine
+                var = ["player", prize]
+                client.execute_action("modify_money", var, True)
+                if prize > 0:
+                    info = {
+                        "name": winner.name.upper(),
+                        "prize": str(prize),
+                        "currency": "$",
+                    }
+                    return T.format("combat_victory_trainer", info)
+                else:
+                    return T.format("combat_victory", info)
             else:
                 set_var(session, "battle_last_winner", winner.slug)
                 set_var(session, "battle_last_trainer", winner.slug)
-            # if trainer battle prize
-            if prize > 0:
-                winner.give_money(prize)
-                info = {
-                    "name": winner.name.upper(),
-                    "prize": str(prize),
-                    "currency": "$",
-                }
-                # register battle
-                for _loser in losers:
-                    set_battle(session, OutputBattle.won, winner, _loser)
-                return T.format("combat_victory_trainer", info)
-            # trainer battle without prize
-            return T.format("combat_victory", info)
+                return T.format("combat_victory", info)
         else:
             # wild monster
             info = {"name": winner.name.upper()}
@@ -478,3 +493,45 @@ def set_battle(
     opponent = "player" if enemy.isplayer else enemy.slug
     client = session.client.event_engine
     client.execute_action("set_battle", [fighter, output, opponent], True)
+
+
+def build_hud_text(
+    menu: str,
+    monster: Monster,
+    is_right: bool,
+    is_trainer: bool,
+    is_status: Optional[SeenStatus] = None,
+) -> str:
+    """
+    Returns the text image for use on the callout of the monster.
+    eg. Rockitten Lv3
+
+    Parameters:
+        menu: Combat menu (eg. MainCombatMenuState).
+        monster: The monster fighting.
+        is_right: Boolean side (true: right side, false: left side).
+            right side (player), left side (opponent)
+        is_trainer: Boolean battle (trainer: true, wild: false).
+
+    """
+    trainer = monster.owner
+    icon: str = ""
+    if menu == "MainParkMenuState" and trainer and is_right:
+        ball = T.translate("tuxeball_park")
+        item = trainer.find_item("tuxeball_park")
+        if item is None:
+            return f"{ball.upper()}: 0"
+        return f"{ball.upper()}: {item.quantity}"
+    else:
+        if monster.gender == GenderType.male:
+            icon += "♂"
+        if monster.gender == GenderType.female:
+            icon += "♀"
+        if not is_trainer:
+            # shows captured symbol (wild encounter)
+            symbol: str = ""
+            if is_status and is_status == SeenStatus.caught and not is_right:
+                symbol += "◉"
+            return f"{monster.name}{icon} Lv.{monster.level}{symbol}"
+        else:
+            return f"{monster.name}{icon} Lv.{monster.level}"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="263">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="263">
  <properties>
   <property name="east" value="cotton_town"/>
   <property name="edges" value="clamped"/>
@@ -34,11 +34,6 @@
   <object id="123" type="collision" x="192" y="608" width="48" height="16"/>
   <object id="124" type="collision" x="208" y="624" width="48" height="16"/>
   <object id="125" type="collision" x="32" y="16" width="480" height="32"/>
-  <object id="126" type="collision" x="528" y="0" width="32" height="80">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
   <object id="129" type="collision" x="560" y="0" width="16" height="16"/>
   <object id="131" type="collision" x="416" y="224" width="16" height="16"/>
   <object id="132" type="collision" x="400" y="240" width="16" height="16"/>
@@ -56,126 +51,6 @@
   <object id="210" type="collision" x="96" y="288" width="32" height="32">
    <properties>
     <property name="key" value="volcoli"/>
-   </properties>
-  </object>
-  <object id="229" type="collision" x="480" y="48" width="32" height="144">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="230" type="collision" x="512" y="48" width="16" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="231" type="collision" x="416" y="160" width="32" height="64">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="232" type="collision" x="448" y="160" width="32" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="233" type="collision" x="304" y="224" width="96" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="234" type="collision" x="400" y="224" width="16" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="235" type="collision" x="432" y="224" width="16" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="236" type="collision" x="416" y="240" width="32" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="237" type="collision" x="272" y="192" width="32" height="64">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="238" type="collision" x="80" y="128" width="48" height="128">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="239" type="collision" x="160" y="240" width="32" height="112">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="240" type="collision" x="48" y="304" width="32" height="144">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="241" type="collision" x="48" y="224" width="32" height="48">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="242" type="collision" x="128" y="336" width="32" height="48">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="243" type="collision" x="80" y="368" width="32" height="112">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="244" type="collision" x="112" y="352" width="16" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="245" type="collision" x="64" y="448" width="16" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="246" type="collision" x="48" y="272" width="16" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="247" type="collision" x="144" y="240" width="16" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="248" type="collision" x="128" y="240" width="16" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="249" type="collision" x="128" y="128" width="16" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="250" type="collision" x="176" y="128" width="128" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="251" type="collision" x="144" y="144" width="16" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="252" type="collision" x="160" y="128" width="16" height="16">
-   <properties>
-    <property name="key" value="water"/>
    </properties>
   </object>
   <object id="262" type="collision" x="512" y="0" width="16" height="16"/>

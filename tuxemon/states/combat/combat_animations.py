@@ -18,8 +18,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import audio, graphics, prepare, tools
-from tuxemon.combat import fainted
-from tuxemon.db import GenderType, SeenStatus
+from tuxemon.combat import alive_party, build_hud_text, fainted
 from tuxemon.locale import T
 from tuxemon.menu.interface import ExpBar, HpBar
 from tuxemon.menu.menu import Menu
@@ -69,9 +68,9 @@ class CombatAnimations(ABC, Menu[None]):
         self.players = list(players)
         self.graphics = graphics
 
-        self.monsters_in_play: MutableMapping[
-            NPC, list[Monster]
-        ] = defaultdict(list)
+        self.monsters_in_play: defaultdict[NPC, list[Monster]] = defaultdict(
+            list
+        )
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
         self.hud: MutableMapping[Monster, Sprite] = {}
         self.is_trainer_battle = False
@@ -84,8 +83,8 @@ class CombatAnimations(ABC, Menu[None]):
             list
         )
 
-        player = prepare.PLAYER_COMBAT
-        opponent = prepare.OPPONENT_COMBAT
+        _right = prepare.RIGHT_COMBAT
+        _left = prepare.LEFT_COMBAT
 
         # convert the list/tuple of coordinates to Rects
         layout = [
@@ -93,7 +92,7 @@ class CombatAnimations(ABC, Menu[None]):
                 key: list(map(scale_area, [(*value,)]))
                 for key, value in p.items()
             }
-            for p in (player, opponent)
+            for p in (_right, _left)
         ]
 
         # end config =========================================
@@ -111,8 +110,10 @@ class CombatAnimations(ABC, Menu[None]):
         self.animate_parties_in()
 
         for player, layout in self._layout.items():
-            if not player.isplayer and player.max_position > 1:
-                pass
+            _side = self.get_side(layout["party"][0])
+            if _side == "left":
+                if self.is_trainer_battle and player.max_position == 1:
+                    self.animate_party_hud_in(player, layout["party"][0])
             else:
                 self.animate_party_hud_in(player, layout["party"][0])
 
@@ -298,14 +299,9 @@ class CombatAnimations(ABC, Menu[None]):
     def animate_exp(self, monster: Monster) -> None:
         target_previous = monster.experience_required()
         target_next = monster.experience_required(1)
-        value = max(
-            0,
-            min(
-                1,
-                (monster.total_experience - target_previous)
-                / (target_next - target_previous),
-            ),
-        )
+        diff_value = monster.total_experience - target_previous
+        diff_target = target_next - target_previous
+        value = max(0, min(1, (diff_value) / (diff_target)))
         exp_bar = self._exp_bars[monster]
         self.animate(
             exp_bar,
@@ -321,35 +317,6 @@ class CombatAnimations(ABC, Menu[None]):
     ) -> None:
         self._exp_bars[monster] = ExpBar(initial)
         self.animate_exp(monster)
-
-    def build_hud_text(
-        self, monster: Monster, source: bool
-    ) -> pygame.surface.Surface:
-        """
-        Return the text image for use on the callout of the monster.
-
-        Parameters:
-            monster: The monster whose name and level will be printed.
-            source: True (opponent), False (Player)
-
-        Returns:
-            Surface with the name and level of the monster written.
-
-        """
-        tuxepedia = self.players[0].tuxepedia
-        icon: str = ""
-        symbol: str = ""
-        if monster.gender == GenderType.male:
-            icon += "♂"
-        if monster.gender == GenderType.female:
-            icon += "♀"
-        # shows captured symbol (wild encounter)
-        if not self.is_trainer_battle and monster.slug in tuxepedia and source:
-            if tuxepedia[monster.slug] == SeenStatus.caught:
-                symbol += "◉"
-        return self.shadow_text(
-            f"{monster.name}{icon} Lv.{monster.level}{symbol}"
-        )
 
     def get_side(self, rect: Rect) -> Literal["left", "right"]:
         """
@@ -378,45 +345,79 @@ class CombatAnimations(ABC, Menu[None]):
         for sprite in self._status_icons[monster]:
             self.animate(sprite.image, initial=255, set_alpha=0, duration=2)
 
-    def build_hud(self, home: Rect, monster: Monster) -> None:
-        def build_left_hud() -> Sprite:
-            hud = self.load_sprite(
-                self.graphics.hud.hud_opponent,
-                layer=hud_layer,
-            )
-            text = self.build_hud_text(monster, True)
-            hud.image.blit(text, scale_sequence((5, 5)))
-            hud.rect.bottomright = 0, home.bottom
-            hud.player = False
-            animate(hud.rect, right=home.right)
-            return hud
+    def check_hud(self, monster: Monster, filename: str) -> Sprite:
+        """
+        Checks whether exists or not a hud, it returns a sprite.
+        To avoid building over an existing one.
 
-        def build_right_hud() -> Sprite:
-            hud = self.load_sprite(
-                self.graphics.hud.hud_player,
-                layer=hud_layer,
-            )
-            text = self.build_hud_text(monster, False)
-            hud.image.blit(text, scale_sequence((12, 11)))
-            hud.rect.bottomleft = home.right, home.bottom
-            hud.player = True
-            animate(hud.rect, left=home.left)
-            return hud
+        Parameters:
+            monster: Monster who needs to update the hud.
+            filename: Filename of the hud.
 
-        animate = partial(
-            self.animate,
-            duration=2.0,
-            delay=1.3,
-        )
-        if self.get_side(home) == "right":
-            hud = build_right_hud()
+        """
+        if monster in self.hud:
+            return self.hud[monster]
         else:
-            hud = build_left_hud()
+            return self.load_sprite(filename, layer=hud_layer)
+
+    def build_hud(
+        self, monster: Monster, home: str, animate: bool = True
+    ) -> None:
+        """
+        Builds hud (where it appears name, level, etc.).
+
+        Parameters:
+            monster: Monster who needs to update the hud.
+            home: Which part of the layout hud0, hud1, hud, etc.
+            animate: Whether the hud is animated (slide in) or not.
+
+        """
+        _trainer = self.is_trainer_battle
+        _menu = self.graphics.menu
+        assert monster.owner
+        _home = self._layout[monster.owner][home][0]
+
+        def build_left_hud(hud: Sprite) -> Sprite:
+            _symbol = self.players[0].tuxepedia.get(monster.slug)
+            label = build_hud_text(_menu, monster, False, _trainer, _symbol)
+            text = self.shadow_text(label)
+            hud.image.blit(text, scale_sequence(prepare.HUD_LT_LINE1))
+            hud.rect.bottomright = 0, _home.bottom
+            hud.player = False
+            if animate:
+                _animate(hud.rect, right=_home.right)
+            else:
+                hud.rect.right = _home.right
+            return hud
+
+        def build_right_hud(hud: Sprite) -> Sprite:
+            label = build_hud_text(_menu, monster, True, _trainer, None)
+            text = self.shadow_text(label)
+            hud.image.blit(text, scale_sequence(prepare.HUD_RT_LINE1))
+            hud.rect.bottomleft = _home.right, _home.bottom
+            hud.player = True
+            if animate:
+                _animate(hud.rect, left=_home.left)
+            else:
+                hud.rect.left = _home.left
+            return hud
+
+        if animate:
+            _animate = partial(self.animate, duration=2.0, delay=1.3)
+        if self.get_side(_home) == "right":
+            _hud_player = self.graphics.hud.hud_player
+            _hud_right = self.check_hud(monster, _hud_player)
+            hud = build_right_hud(_hud_right)
+        else:
+            _hud_opponent = self.graphics.hud.hud_opponent
+            _hud_left = self.check_hud(monster, _hud_opponent)
+            hud = build_left_hud(_hud_left)
         self.hud[monster] = hud
 
-        self.build_animate_hp_bar(monster)
-        if hud.player:
-            self.build_animate_exp_bar(monster)
+        if animate:
+            self.build_animate_hp_bar(monster)
+            if hud.player:
+                self.build_animate_exp_bar(monster)
 
     def animate_party_hud_in(self, player: NPC, home: Rect) -> None:
         """
@@ -562,12 +563,12 @@ class CombatAnimations(ABC, Menu[None]):
         else:
             enemy = opp_mon.get_sprite(
                 "front",
-                bottom=back_island.rect.bottom - scale(12),
+                bottom=back_island.rect.bottom - scale(24),
                 centerx=back_island.rect.centerx,
             )
             self._monster_sprite_map[opp_mon] = enemy
             self.monsters_in_play[opponent].append(opp_mon)
-            self.build_hud(self._layout[opponent]["hud"][0], opp_mon)
+            self.update_hud(opponent)
 
         self.sprites.add(enemy)
 
@@ -755,3 +756,23 @@ class CombatAnimations(ABC, Menu[None]):
                 partial(self.alert, failed),
                 breakout_delay,
             )
+
+    def update_hud(self, character: NPC, animate: bool = True) -> None:
+        """
+        Updates hud (where it appears name, level, etc.).
+
+        Parameters:
+            character: Character who needs to update the hud.
+            animate: Whether the hud is animated (slide in) or not.
+
+        """
+        total = self.monsters_in_play[character]
+        alive = alive_party(character)
+        if total:
+            monster = self.monsters_in_play[character][0]
+            if len(total) > 1 and len(total) == len(alive):
+                monster2 = self.monsters_in_play[character][1]
+                self.build_hud(monster, "hud0", animate)
+                self.build_hud(monster2, "hud1", animate)
+            else:
+                self.build_hud(monster, "hud", animate)

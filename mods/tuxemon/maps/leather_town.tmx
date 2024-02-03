@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="103">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="103">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -93,61 +93,6 @@
   <object id="54" type="collision" x="608" y="32" width="32" height="32"/>
   <object id="55" type="collision" x="576" y="64" width="32" height="32"/>
   <object id="56" type="collision" x="592" y="512" width="16" height="16"/>
-  <object id="57" type="collision" x="464" y="112" width="128" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="58" type="collision" x="464" y="144" width="32" height="96">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="59" type="collision" x="368" y="208" width="96" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="60" type="collision" x="528" y="512" width="80" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="61" type="collision" x="480" y="432" width="80" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="62" type="collision" x="528" y="464" width="32" height="48">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="63" type="collision" x="416" y="240" width="32" height="224">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="64" type="collision" x="448" y="432" width="16" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="65" type="collision" x="368" y="240" width="48" height="64">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="66" type="collision" x="368" y="320" width="48" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="67" type="collision" x="400" y="304" width="16" height="16">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
   <object id="68" type="collision" x="496" y="608" width="32" height="16"/>
   <object id="69" type="collision" x="560" y="608" width="48" height="16"/>
   <object id="85" type="collision" x="336" y="176" width="16" height="16"/>
@@ -155,11 +100,6 @@
   <object id="87" type="collision" x="592" y="240" width="16" height="32"/>
   <object id="88" type="collision" x="272" y="320" width="16" height="16"/>
   <object id="95" type="collision" x="432" y="144" width="16" height="16"/>
-  <object id="102" type="collision" x="560" y="64" width="32" height="48">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Event">
   <object id="75" name="Teleport to City Park" type="event" x="0" y="512" width="16" height="16">

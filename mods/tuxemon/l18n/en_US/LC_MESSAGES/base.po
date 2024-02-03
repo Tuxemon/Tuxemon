@@ -6903,45 +6903,75 @@ msgid "acolyte3challenger4"
 msgstr "Bad, oh so very bad...."
 
 msgid "acolyte3challenger5"
-msgstr "Wait, yes, I can get one from the passageway. Ohhh, this will be good."
+msgstr "Wait, yes, I can get one from the passageway. Yes, I think that would work. Yes... Yes indeed."
 
 msgid "acolyte3challenger6"
-msgstr "Hahaha! There you are challenger!"
+msgstr "Ohhh, this will be GOOD!"
 
 msgid "acolyte3challenger7"
-msgstr "Did you know that Tuxemon can become a part of you?"
+msgstr "You just stay right here. I'll be back soon enough!"
 
 msgid "acolyte3challenger8"
-msgstr "If you enforce your will on your Tuxemon enough, soon your psyches start to merge!"
+msgstr "Hahaha! I've returned successful!"
 
 msgid "acolyte3challenger9"
+msgstr "Catching tuxemon with your bare hands is always exhilarating, isn't it?\n"
+"The fight, the struggle, there's nothing like it!"
+
+msgid "acolyte3challenger10"
+msgstr "To feel them squirm and shake as you physically submit them to your will...\n"
+"...It's a glorious experience. Knowing that for once, you control the weapon, not the other way around."
+
+msgid "acolyte3challenger11"
+msgstr "In all my years of research, that feeling has always brought me the most satisfaction..."
+
+msgid "acolyte3challenger12"
+msgstr "Well... up until last year when I learned the Truth. When I lost my job because THEY COULDN'T SEE!"
+
+msgid "acolyte3challenger13"
+msgstr "THOSE COWARDS!!"
+
+msgid "acolyte3challenger14"
+msgstr "Hmm, wait. Have you seen the Truth as well? Is there actually another like me?\n"
+"Hmm... Yes! Well... Maybe. Wait, no. Wait. Wait wait wait..."
+
+msgid "acolyte3challenger15"
+msgstr "Did you know that Tuxemon can become a part of you? An extension of your mind, specifically?"
+
+msgid "acolyte3challenger16"
+msgstr "If you enforce your will on your Tuxemon enough, soon your psyches start to merge!"
+
+msgid "acolyte3challenger17"
 msgstr "They called me crazy, they called me a fool. I was fired from the research division because they feared me. They feared what I could do!\n"
 "Humans and Tuxemon, merged together as one. So in sync that one can't be separated from the other... unless they burn out entirely."
 
-msgid "acolyte3challenger10"
+msgid "acolyte3challenger18"
 msgstr "Hee hee hee, but that will come back to bite them in the end, now won't it?\n"
 "For only I know how to withstand a burnout!"
 
-msgid "acolyte3challenger11"
+msgid "acolyte3challenger19"
 msgstr "Sure, it results in a little madness..."
 
-msgid "acolyte3challenger12"
+msgid "acolyte3challenger20"
 msgstr "But that's the price anyone pays to see the Truth..."
 
-msgid "acolyte3challenger13"
-msgstr "Hahahahaha, and I gladly pay it!"
+msgid "acolyte3challenger21"
+msgstr "Hahahahaha, and after 30 merges and splits, I gladly pay it!"
 
-msgid "acolyte3challenger14"
-msgstr "For to be enlightened like I have, no, to see the TRUTH like I have, there's nothing like it!"
+msgid "acolyte3challenger22"
+msgstr "For to be enlightened like I have... No, to see the TRUTH like I have, there's nothing like it!"
 
-msgid "acolyte3challenger15"
-msgstr "Tuxemon aren't here to better our lives, no, they're here to destroy them. It's why we MUST end this all."
+msgid "acolyte3challenger23"
+msgstr "Tuxemon aren't here to better our lives, no no no, they're here to DESTROY them. It's why we MUST end this all.\n"
+"I'd do it myself if I could, but unfortunately, the only way to ensure the destruction of them is with their own kind.\n"
+"Hence, merging.\n"
+"It's also rather intoxicating, knowing how much power you can wield..."
 
-msgid "acolyte3challenger16"
+msgid "acolyte3challenger24"
 msgstr "Wait...\n"
 "Wait wait wait wait wait... Why am I telling you this? You're not enlightened, you haven't seen the Truth."
 
-msgid "acolyte3challenger17"
+msgid "acolyte3challenger25"
 msgstr "YOU'RE JUST AN OMNICHANNEL PAWN! How DARE you come in here, interrogating me about the Truth, when you haven't even learned it.\n"
 "You can't even BEGIN to understand, you filthy Omni scum.\n"
 "For that, you and your Tuxemon must be... Annihilated..."

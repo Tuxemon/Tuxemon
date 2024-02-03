@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="14">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="15">
  <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
@@ -86,10 +86,103 @@
     <property name="act16" value="char_face acolyte3,right"/>
     <property name="act17" value="wait 0.2"/>
     <property name="act18" value="translated_dialog acolyte3challenger3"/>
-    <property name="act19" value="char_speed acolyte3,9"/>
+    <property name="act19" value="char_speed acolyte3,10"/>
     <property name="act20" value="pathfind acolyte3,13,11"/>
     <property name="act21" value="translated_dialog acolyte3challenger4"/>
+    <property name="act22" value="wait 0.2"/>
+    <property name="act23" value="char_face acolyte3,left"/>
+    <property name="act24" value="wait 0.2"/>
+    <property name="act25" value="char_face acolyte3,right"/>
+    <property name="act26" value="wait 0.8"/>
+    <property name="act27" value="translated_dialog acolyte3challenger5"/>
+    <property name="act28" value="wait 1"/>
+    <property name="act29" value="char_face acolyte3,left"/>
+    <property name="act30" value="wait 0.2 "/>
+    <property name="act31" value="translated_dialog acolyte3challenger6"/>
+    <property name="act32" value="pathfind acolyte3,7,9"/>
+    <property name="act33" value="translated_dialog acolyte3challenger7"/>
+    <property name="act34" value="pathfind acolyte3,0,3"/>
+    <property name="act35" value="set_variable acolyte3:gone"/>
+    <property name="act36" value="remove_npc acolyte3"/>
+    <property name="act37" value="set_variable unhinged:second"/>
     <property name="cond1" value="is variable_set unhinged:start"/>
+   </properties>
+  </object>
+  <object id="14" name="unhinged 2" type="event" x="144" y="32" width="16" height="16">
+   <properties>
+    <property name="act10" value="wait 1"/>
+    <property name="act11" value="char_face player,up"/>
+    <property name="act12" value="wait 1.4"/>
+    <property name="act13" value="char_face player,right"/>
+    <property name="act14" value="wait 0.3"/>
+    <property name="act15" value="char_face player,up"/>
+    <property name="act16" value="translated_dialog acolyte3challenger8"/>
+    <property name="act17" value="create_npc acolyte3,0,3,stand"/>
+    <property name="act18" value="char_speed acolyte3,10"/>
+    <property name="act19" value="pathfind acolyte3,6,8"/>
+    <property name="act20" value="char_face acolyte3,down"/>
+    <property name="act21" value="translated_dialog acolyte3challenger9"/>
+    <property name="act22" value="char_face acolyte3,up"/>
+    <property name="act23" value="wait 0.3"/>
+    <property name="act24" value="translated_dialog acolyte3challenger10"/>
+    <property name="act25" value="wait 1"/>
+    <property name="act26" value="char_face acolyte3,right"/>
+    <property name="act27" value="wait 0.6"/>
+    <property name="act28" value="translated_dialog acolyte3challenger11"/>
+    <property name="act29" value="wait 1"/>
+    <property name="act30" value="char_face acolyte3,down"/>
+    <property name="act31" value="translated_dialog acolyte3challenger12"/>
+    <property name="act32" value="pathfind acolyte3,10,7"/>
+    <property name="act33" value="char_face player,right"/>
+    <property name="act34" value="wait 0.2"/>
+    <property name="act35" value="translated_dialog acolyte3challenger13"/>
+    <property name="act36" value="pathfind acolyte3,7,9"/>
+    <property name="act37" value="char_face acolyte3,left"/>
+    <property name="act38" value="translated_dialog acolyte3challenger14"/>
+    <property name="act39" value="wait 0.3"/>
+    <property name="act40" value="char_face acolyte3,up"/>
+    <property name="act41" value="wait 0.3"/>
+    <property name="act42" value="char_face acolyte3,down"/>
+    <property name="act43" value="wait 0.3"/>
+    <property name="act44" value="char_face acolyte3,left"/>
+    <property name="act45" value="wait 0.2"/>
+    <property name="act46" value="translated_dialog acolyte3challenger15"/>
+    <property name="act47" value="wait 0.3"/>
+    <property name="act48" value="char_face acolyte3,up"/>
+    <property name="act49" value="wait 0.3"/>
+    <property name="act50" value="char_face acolyte3,down"/>
+    <property name="act51" value="wait 0.3"/>
+    <property name="act52" value="char_face acolyte3,left"/>
+    <property name="act53" value="wait 0.2"/>
+    <property name="act54" value="translated_dialog acolyte3challenger16"/>
+    <property name="act55" value="char_move acolyte3,up 1"/>
+    <property name="act56" value="char_face player,up"/>
+    <property name="act57" value="translated_dialog acolyte3challenger17"/>
+    <property name="act58" value="char_move acolyte3,up 1,left 2,down 1,right 1"/>
+    <property name="act59" value="char_face acolyte3,down"/>
+    <property name="act60" value="translated_dialog acolyte3challenger18"/>
+    <property name="act61" value="char_face acolyte3,up"/>
+    <property name="act62" value="wait 0.3"/>
+    <property name="act63" value="translated_dialog acolyte3challenger19"/>
+    <property name="act64" value="wait 0.3"/>
+    <property name="act65" value="char_face acolyte3,down"/>
+    <property name="act66" value="wait 0.2"/>
+    <property name="act67" value="translated_dialog acolyte3challenger20"/>
+    <property name="act68" value="char_move acolyte3,up 2"/>
+    <property name="act69" value="translated_dialog acolyte3challenger21"/>
+    <property name="act70" value="wait 0.2"/>
+    <property name="act71" value="translated_dialog acolyte3challenger22"/>
+    <property name="act72" value="char_move acolyte3,down 2"/>
+    <property name="act73" value="translated_dialog acolyte3challenger23"/>
+    <property name="act74" value="wait 1.5"/>
+    <property name="act75" value="translated_dialog acolyte3challenger24"/>
+    <property name="act76" value="pathfind acolyte3,10,9"/>
+    <property name="act77" value="char_face player,right"/>
+    <property name="act78" value="char_face acolyte3,left"/>
+    <property name="act79" value="wait 0.2"/>
+    <property name="act80" value="translated_dialog acolyte3challenger25"/>
+    <property name="act99" value="set_variable unhinged:consequences"/>
+    <property name="cond1" value="is variable_set unhinged:second"/>
    </properties>
   </object>
  </objectgroup>

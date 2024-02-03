@@ -2422,6 +2422,12 @@ msgstr "Taba"
 msgid "taba_ba_br_1"
 msgstr "Taba Battle Area - Battle Room 1"
 
+msgid "taba_ba_br_2"
+msgstr "Taba Battle Area - Battle Room 2"
+
+msgid "taba_ba_br_3"
+msgstr "Taba Battle Area - Battle Room 3"
+
 msgid "taba_ba_foyer"
 msgstr "Taba Battle Area - Foyer"
 
@@ -6891,7 +6897,7 @@ msgid "healertabapassageway3-2"
 msgstr "There! You should be all set now! Good luck on the next acolyte!"
 
 msgid "acolyte3challenger1"
-msgstr "Wait... you're the next challenger? Already?"
+msgstr "Wait... the next challenger? Already?"
 
 msgid "acolyte3challenger2"
 msgstr "No... No, no, no."
@@ -6964,7 +6970,7 @@ msgstr "For to be enlightened like I have... No, to see the TRUTH like I have, t
 msgid "acolyte3challenger23"
 msgstr "Tuxemon aren't here to better our lives, no no no, they're here to DESTROY them. It's why we MUST end this all.\n"
 "I'd do it myself if I could, but unfortunately, the only way to ensure the destruction of them is with their own kind.\n"
-"Hence, merging.\n"
+"Hence, Merging.\n"
 "It's also rather intoxicating, knowing how much power you can wield..."
 
 msgid "acolyte3challenger24"
@@ -6991,8 +6997,14 @@ msgstr "Alright, enough's enough."
 msgid "acolytewasdefeated"
 msgstr "Okay, Mack? Take him out of here."
 
+msgid "thisisntthelastofme"
+msgstr "Mark my words, this isn't the last you'll see of me!!"
+
+msgid "thisisntthelastofme2"
+msgstr "Yeah, sure bud. Just start moving"
+
 msgid "acolytewasdefeated2"
-msgstr "Hey, sorry about that. I guess that Christy girl really did a number on him..."
+msgstr "Hey, sorry about that. I guess that Christie girl really did a number on him..."
 
 msgid "acolytewasdefeated3"
 msgstr "He's been in therapy for the past year, ever since his Tuxemon experiments went haywire. We shut down everything after that.\n"

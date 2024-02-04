@@ -42,6 +42,8 @@ jobs:
       run: >
         echo IS_RELEASE: ${{ env.IS_RELEASE }}
 
+    - name: Checkout repository
+      uses: actions/checkout@v4
     # https://stackoverflow.com/questions/60916931/github-action-does-the-if-have-an-else
     - name: Determine flatpak release branch
       uses: haya14busa/action-cond@v1
@@ -51,24 +53,10 @@ jobs:
         if_true: 'stable'
         if_false: 'development'
 
-    - name: Clone flatpak manifest from Flathub
-      uses: GuillaumeFalourd/clone-github-repo-action@v2.3
-      with:
-        branch: 'development'
-        owner: 'flathub'
-        repository: 'org.tuxemon.Tuxemon'
-
-    # Turn this on once the requirements (requirements.txt) changed and the build is not working anymore
-    # Create development branch at https://github.com/flathub/org.tuxemon.Tuxemon and
-    # update the requirements as described in the Readme. Turn it off again when the requirements in the
-    # master branch on flathub are aligned again with the Tuxemon requirements
-    - name: Checkout development branch
-      run: |
-        cd org.tuxemon.Tuxemon
-        git checkout development
-
     - name: Show Flatpak manifest
-      run: cat buildconfig/flatpak/org.tuxemon.Tuxemon.yaml
+      run:  |
+        ls -R buildconfig/flatpak/
+        cat buildconfig/flatpak/org.tuxemon.Tuxemon.yaml
 
     - name: Build package
       uses: flatpak/flatpak-github-actions/flatpak-builder@v6
@@ -166,9 +154,9 @@ jobs:
           echo "Show artifacts folder:"
           ls -R artifacts
           echo "Show artifacts/tuxemon_windows_installer folder:"
-          ls "artifacts/tuxemon_windows_installer"
+          ls -R "artifacts/tuxemon_windows_installer"
           echo "Show artifacts/Tuxemon-x86_64:"
-          ls "artifacts/Tuxemon-x86_64"
+          ls -R "artifacts/Tuxemon-x86_64"
 
       - name: Determine release title
         uses: haya14busa/action-cond@v1
@@ -189,8 +177,6 @@ jobs:
       - name: Update GitHub release
         uses: softprops/action-gh-release@v1
         with:
-          # Generate changelog from commit messages
-          # generate_release_notes: true
           token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: ${{ env.IS_RELEASE == 'false' }}
           name: ${{ steps.release_title.outputs.value }}

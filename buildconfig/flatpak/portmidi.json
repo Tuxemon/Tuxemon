@@ -1,0 +1,11 @@
+{
+    "name": "portmidi",
+    "buildsystem": "cmake",
+    "sources": [
+        {
+            "type": "git",
+            "url": "https://github.com/PortMidi/portmidi.git",
+            "tag": "v2.0.3"
+        }
+    ]
+}

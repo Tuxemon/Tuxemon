@@ -53,3 +53,9 @@ target-version = ["py39"]
 line_length = 79
 profile = "black"
 skip_gitignore = true
+
+[tool.mypy]
+enable_error_code = "ignore-without-code"
+ignore_missing_imports = true
+warn_redundant_casts = true
+warn_unused_ignores = true

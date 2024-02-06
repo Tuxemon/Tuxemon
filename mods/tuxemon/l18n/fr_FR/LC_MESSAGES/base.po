@@ -7701,101 +7701,6 @@ msgstr "Un robot hostile."
 msgid "normal"
 msgstr "Normal"
 
-# Taba Town
-msgid "maple_bedroom_sign"
-msgstr "C'est un calendrier et le 27 avril est entouré de rose."
-
-msgid "taba_house2_sign"
-msgstr "Bibliothèque Legacy"
-
-msgid "taba_house2_reader3a"
-msgstr "Je peux donc vivre mille vies différentes."
-
-msgid "taba_house2_reader2a"
-msgstr "Cela enflamme mon imagination."
-
-msgid "taba_house2_reader4a"
-msgstr ""
-"La lecture stimule mon esprit d'une manière que la télévision et les films "
-"ne pourront jamais faire."
-
-msgid "taba_house1_calendar"
-msgstr ""
-"C'est un calendrier et le 30 septembre et le 12 février sont entourés en "
-"rouge."
-
-msgid "taba_house1_husband1"
-msgstr "Tuxemon ! J'étais parmi les entraîneurs les plus qualifiés !"
-
-msgid "taba_house1_wife1"
-msgstr "Entraîneur ? Mon mari délire."
-
-msgid "taba_house1_reading"
-msgstr "Le livre est Philosophie des études illusoires de Jaiden Gemrevenza."
-
-msgid "taba_house1_watching"
-msgstr ""
-"C'est un documentaire sur les Tuxemon les plus étranges et les plus "
-"merveilleux de la région,\n"
-"ainsi que les comportements étranges qu'ils ont adoptés."
-
-msgid "taba_house2_owner1"
-msgstr ""
-"Bienvenue à la bibliothèque Legacy ! N'hésitez pas à regarder autour de "
-"vous, mais calmez-vous s'il vous plaît."
-
-msgid "taba_house2_reading1"
-msgstr "Le livre est Visiting The King de Manolo Qai."
-
-msgid "taba_house2_reading4"
-msgstr "Le livre est Sailing Into Eternitys de Laurine Doprachuld."
-
-msgid "taba_house2_reading2"
-msgstr "Le livre est Raised By Dreams de Louis Etrergo."
-
-msgid "taba_house2_reading3"
-msgstr "Le livre est Children Without Honor de Leslie Greninza."
-
-msgid "taba_house2_reader1a"
-msgstr "Je me sens mieux à la vue d'un livre ou d'une librairie."
-
-msgid "taba_house2_books"
-msgstr ""
-"000 - Informatique, information et travaux généraux, 100 - Philosophie et "
-"psychologie\n"
-"200 - Religion, 300 - Sciences sociales, 400 - Langue, 500 - Sciences pures, "
-"600 - Technologie\n"
-"700 - Arts et loisirs, 800 - Littérature, 900 - Histoire et géographie"
-
-msgid "taba_house4_dish1"
-msgstr "C'est brun, dense, mais ça ne ressemble pas à du pudding..."
-
-msgid "taba_house3_client2a"
-msgstr "Trop penser peut nous nuire."
-
-msgid "taba_house4_owner1"
-msgstr "Bienvenue au Honorable Seagulls Pub !"
-
-msgid "taba_house3_client3a"
-msgstr "Cela me fait penser à la maison de ma mère."
-
-msgid "taba_house4_client1a"
-msgstr "Ma grand-mère avait l'habitude de faire un plat similaire !"
-
-msgid "taba_house3_client1a"
-msgstr "Je me repose pendant que ma sœur lit probablement des livres."
-
-msgid "taba_house4_client2a"
-msgstr "Hein ? Juste remplir un estomac vide."
-
-msgid "taba_house4_client3a"
-msgstr ""
-"Heureusement, je n'ai pas payé pour cela. Comment pouvez-vous payer pour "
-"cela ?"
-
-msgid "taba_house3_owner1"
-msgstr "Bienvenue à The Thoughtful Leaf Inn !"
-
 msgid "hiperson"
 msgstr ""
 "Qui êtes-vous, qui est Misa et qui est Allie ? Donnez-nous les détails !"
@@ -7815,9 +7720,6 @@ msgstr "Qui sait, peut-être que je pourrai le combattre moi-même !"
 
 msgid "hiperson2"
 msgstr "Whoa là Christie, ne les submerge pas."
-
-msgid "taba_house1_sign"
-msgstr "Maison de M. et Mme Clawbrew"
 
 # Tuxemon Threats
 msgid "chrome_robo_description"

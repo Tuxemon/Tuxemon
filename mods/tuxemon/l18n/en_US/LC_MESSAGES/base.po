@@ -7148,96 +7148,6 @@ msgstr "MAPLE: I got a Fruitera!"
 msgid "mart_junkyard05"
 msgstr "CARY: Well, you won this time. But next time, we'll win."
 
-# Taba Town
-msgid "maple_bedroom_sign"
-msgstr "It's a calendar and the 27 April is circled in pink."
-
-msgid "taba_house1_sign"
-msgstr "Mr and Ms Clawbrew House"
-
-msgid "taba_house2_sign"
-msgstr "Legacy Library"
-
-msgid "taba_house3_sign"
-msgstr "The Thoughtful Leaf Inn"
-
-msgid "taba_house4_sign"
-msgstr "The Honorable Seagulls Pub"
-
-msgid "taba_house1_calendar"
-msgstr "It's a calendar and the 30 September and the 12 February are circled in red."
-
-msgid "taba_house1_husband1"
-msgstr "Tuxemon! I was among the most skilled trainer!"
-
-msgid "taba_house1_wife1"
-msgstr "Trainer? My husband is delusional."
-
-msgid "taba_house1_reading"
-msgstr "The book is Philosophy of Illusionary Studies by Jaiden Gemrevenza."
-
-msgid "taba_house1_watching"
-msgstr "It's a documentary about the strangest and most wonderful Tuxemon in the region,\n as well as the strange behaviors they have adopted."
-
-msgid "taba_house2_owner1"
-msgstr "Welcome to the Legacy Library! Feel free to look around, but quiet please."
-
-msgid "taba_house2_reading1"
-msgstr "The book is Visiting The King by Manolo Qai."
-
-msgid "taba_house2_reading2"
-msgstr "The book is Raised By Dreams by Louis Etrergo."
-
-msgid "taba_house2_reading3"
-msgstr "The book is Children Without Honor by Leslie Greninza."
-
-msgid "taba_house2_reading4"
-msgstr "The book is Sailing Into Eternitys by Laurine Doprachuld."
-
-msgid "taba_house2_reader1a"
-msgstr "I feel better at the sight of a book or a bookstore."
-
-msgid "taba_house2_reader2a"
-msgstr "It ignites my imagination."
-
-msgid "taba_house2_reader3a"
-msgstr "So I can live a thousand different lives."
-
-msgid "taba_house2_reader4a"
-msgstr "Reading stimulates my mind in a way that TV and movies will never be able to do."
-
-msgid "taba_house2_books"
-msgstr "000 - Computer science, information and general works, 100 - Philosophy and psychology\n"
-"200 - Religion, 300 - Social sciences, 400 - Language, 500 - Pure Science, 600 - Technology\n"
-"700 - Arts and recreation, 800 - Literature, 900 - History and geography"
-
-msgid "taba_house3_owner1"
-msgstr "Welcome to The Thoughtful Leaf Inn!"
-
-msgid "taba_house3_client1a"
-msgstr "I'm resting while my sister is probably reading some books."
-
-msgid "taba_house3_client2a"
-msgstr "Thinking too much can harm us."
-
-msgid "taba_house3_client3a"
-msgstr "It makes me think about my mom's house."
-
-msgid "taba_house4_owner1"
-msgstr "Welcome to The Honorable Seagulls Pub!"
-
-msgid "taba_house4_client1a"
-msgstr "My grandma used to do a similar dish!"
-
-msgid "taba_house4_client2a"
-msgstr "Eh? Just filling up an empty stomach."
-
-msgid "taba_house4_client3a"
-msgstr "Luckily I didn't pay for this. How can you pay for this?"
-
-msgid "taba_house4_dish1"
-msgstr "It's brown, dense, but it doesn't look like pudding..."
-
 ## DIALOG TRANSLATIONS ##
 # spyder intros
 
@@ -9998,6 +9908,9 @@ msgid "cotton_breeder7b"
 msgstr "Good idea, the new family should be kept together at this important stage in the baby's development.\n"
 "Ya'll come back now, y'hear?"
 
+msgid "door_locked"
+msgstr "The door is locked!"
+
 msgid "taba_greeting1"
 msgstr "Greeter Jaime: Hey there ${{name}}! Heard you got a Tuxemon, congrats! If you wanna grow your party, you'll need Tuxeballs."
 
@@ -10207,16 +10120,6 @@ msgstr "I have two sons and a niece. The first is a sailor, and last year he wen
 msgid "spyder_candyhouse2_captain"
 msgstr "I'm writing a book about my journey to the Archipelago. It is composed of nine volcanic islands.\n"
 "About 1,400 km (870 mi) west of Paper Town, about 1,500 km (930 mi) north west of Candy Town."
-
-msgid "cotton_misa_fireplace"
-msgstr "It looks like someone burned papers."
-msgid "cotton_misa_tv"
-msgstr "What's on TV? The story of how Omnichannel became a global phenomenon,\n"
-"reflecting and influencing a generation in the process."
-msgid "cotton_misa_granny"
-msgstr "Are you here to ask for my niece's hand? No? I'm sorry!"
-msgid "cotton_misa_littlebro"
-msgstr "My sister is very nice to me."
 
 msgid "omnichannel_sign"
 msgstr "Omnichannel HQ: We Make Headlines"

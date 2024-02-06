@@ -24,7 +24,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAFjYBh84BXn4HMTsouODnL3jYYfcmyRzh6M4feIG+GP4Zb+7GQRfoOxdAVhLMrovUjhBjJpDxqfGNNjge47jebGGALuMyIgj89eesRvIgnuewwNsydQejDmD+TwpEf4IdtHKns0/EgNMVT1gz38UF1LOU+PhLxKuW34TTgLLAfPoJWFsYPIffhdP/JkLflGnp/RfVwMbK+XEIFLB6hdP4OAvTOAHpoJxLMIqEP3N7X4hNx3AGjRQSAmxX0LgX5ZRCX/oLuvnpGBoQGIG4EYGZDivmNAtx0H4jweZBMQ7K3AthAhP0yAtpfQ3bcc6K4VQLySDPfB2sWvgW57A8SeaO6DyYPshvkB4WrsLHT3nQe66wIQXyTDfYTaxcjyMD9gdxVCFN19CBlUFinxi6qTMt5Qct9LtLobmT9Q4bcXmI73AfEBIMYGDkLl9+OQx6ZnsIrVcQ1Wlw1/d8HKxsEaB8hl40DFhqnUwNg8Ga0eI9YVKkToI9dsZDeAyidkjKusQtaDzoa1F8il0c0baD6sfQGjaekecvIsrH0Bo7G5DwBoeVwG
+   eAFjYBh84BXn4HMTsouODnL3jYYfcmyRzh6M4feIG+GP4Zb+7GQRfoOxdAVhLMrovUjhBjJpDxqfGNNjge47jebGGALuMyIgj89eesRvIgnuewwNsydQejDmD+TwpEf4IdtHKns0/EgNMVT1gz38UF1LOU8PR16lVhlJigvPAsvBM2hlYSwO9xEqI0mxd1QteSFgyUeevuGkqxjYXi8hApcOULt+BgF7ZwAjYyYQzyKgjlZxRsh9B4AWHyTRfQuBfllEJf+gu6+ekYGhAYgbgRgZkBJ+x4BuOw7EeTzIJiDYW4FtIUJ+mABtL6G7bznQXSuAeCUZ7oOV+a+BbnsDxJ5o7oPJg+yG+QHhauwsdPedB7rrAhBfJMN9hMp8ZHmYH7C7CiGK7j6EDCqLlPhF1UkZbyi57yVa3Y3MH6jw2wtMx/uA+AAQYwMHofL7cchj0zNYxeq4BqvLhr+7YGXjYI0D5LJxoGLDVGpgbJ6MVo8R6woVIvSRazayG0DlEzLGVVYh60Fnw9oL5NLo5g00H9a+gNG0dA85eRbWvoDR2NwHAFc5XLE=
   </data>
  </layer>
  <layer id="6" name="Above Player" width="40" height="40">
@@ -132,7 +132,7 @@
   <object id="241" type="collision" x="608" y="144" width="32" height="16"/>
   <object id="242" type="collision" x="368" y="16" width="96" height="144"/>
   <object id="243" type="collision" x="352" y="16" width="16" height="128"/>
-  <object id="250" type="collision" x="320" y="256" width="48" height="16"/>
+  <object id="250" type="collision" x="320" y="256" width="64" height="16"/>
   <object id="261" type="collision" x="288" y="320" width="16" height="16"/>
   <object id="285" type="collision" x="112" y="208" width="80" height="16"/>
   <object id="286" type="collision" x="256" y="16" width="32" height="80"/>
@@ -470,14 +470,6 @@
     <property name="act1" value="translated_dialog Cotton_Mart"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="283" name="Teleport to Misa House" type="event" x="368" y="256" width="16" height="16">
-   <properties>
-    <property name="act10" value="transition_teleport cotton_misa_house.tmx,6,11,0.3"/>
-    <property name="act20" value="char_face player,up"/>
-    <property name="cond10" value="is char_at player"/>
-    <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="284" name="purple flowers4" type="event" x="192" y="256" width="16" height="16">

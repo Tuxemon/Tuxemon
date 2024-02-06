@@ -3535,92 +3535,6 @@ msgstr "Un robot asesino fusionado con un dragón. No nos preguntes cómo."
 msgid "mk01_gamma_description"
 msgstr "Un robot asesino fusionado con un dragón. No nos preguntes cómo."
 
-# Taba Town
-msgid "maple_bedroom_sign"
-msgstr "Es un calendario y el 27 de abril está marcado en rosa."
-
-msgid "taba_house2_reading2"
-msgstr "El libro es Raised By Dreams de Louis Etrergo."
-
-msgid "taba_house2_sign"
-msgstr "Biblioteca Legacy"
-
-msgid "taba_house1_husband1"
-msgstr "¡Tuxemon! ¡Estaba entre los entrenadores más hábiles!"
-
-msgid "taba_house1_calendar"
-msgstr ""
-"Es un calendario y el 30 de septiembre y el 12 de febrero están marcados en "
-"rojo."
-
-msgid "taba_house1_wife1"
-msgstr "¿Entrenador? Mi esposo está delirando."
-
-msgid "taba_house1_reading"
-msgstr "El libro es Filosofía de los estudios ilusorios de Jaiden Gemrevenza."
-
-msgid "taba_house2_owner1"
-msgstr ""
-"¡Bienvenido a la biblioteca Legacy! Siéntase libre de mirar a su alrededor, "
-"pero tranquilo, por favor."
-
-msgid "taba_house2_reading4"
-msgstr "El libro es Sailing Into Eternitys de Laurine Doprachuld."
-
-msgid "taba_house2_reader1a"
-msgstr "Me siento mejor al ver un libro o una librería."
-
-msgid "taba_house1_watching"
-msgstr ""
-"Es un documental sobre los Tuxemon más extraños y maravillosos de la región,"
-"\n"
-"así como los comportamientos extraños que han adoptado."
-
-msgid "taba_house4_client1a"
-msgstr "¡Mi abuela solía hacer un plato similar!"
-
-msgid "taba_house3_client1a"
-msgstr ""
-"Estoy descansando mientras mi hermana probablemente está leyendo algunos "
-"libros."
-
-msgid "taba_house2_reading1"
-msgstr "El libro es Visitando al Rey de Manolo Qai."
-
-msgid "taba_house2_reader3a"
-msgstr "Así que puedo vivir mil vidas diferentes."
-
-msgid "taba_house2_reader4a"
-msgstr ""
-"La lectura estimula mi mente de una manera que la televisión y las películas "
-"nunca podrán hacer."
-
-msgid "taba_house2_reading3"
-msgstr "El libro es Children Without Honor de Leslie Greninza."
-
-msgid "taba_house3_client3a"
-msgstr "Me hace pensar en la casa de mi madre."
-
-msgid "taba_house4_client2a"
-msgstr "¿Eh? Simplemente llenando un estómago vacío."
-
-msgid "taba_house4_dish1"
-msgstr "Es marrón, denso, pero no parece pudín..."
-
-msgid "taba_house2_books"
-msgstr ""
-"000 - Informática, información y trabajos generales, 100 - Filosofía y "
-"psicología\n"
-"200 - Religión, 300 - Ciencias sociales, 400 - Lengua, 500 - Ciencia pura, "
-"600 - Tecnología\n"
-"700 - Arte y recreación, 800 - Literatura, 900 - Historia y geografía"
-
-msgid "taba_house3_client2a"
-msgstr "Pensar demasiado puede hacernos daño."
-
-msgid "taba_house4_client3a"
-msgstr "Afortunadamente no pagué por esto. ¿Cómo puedes pagar por esto?"
-
 msgid "spyder_papertown_mom1"
 msgstr ""
 "¡Buenos días sol! Descansa aquí cuando quieras.\n"
@@ -3633,12 +3547,6 @@ msgstr ""
 "¡Eh! ¿Qué crees que estás haciendo?\n"
 "No es seguro ir a la naturaleza a menos que tengas un Tuxemon.\n"
 "Ven a comprar uno en nuestra tienda."
-
-msgid "taba_house4_owner1"
-msgstr "¡Bienvenido a The Honorable Seagulls Pub!"
-
-msgid "taba_house3_owner1"
-msgstr "¡Bienvenido a The Thoughtful Leaf Inn!"
 
 msgid "kylekindasucks6"
 msgstr "Ah, ¿y ${{name}}?"
@@ -3685,12 +3593,6 @@ msgstr "Un robot hostil."
 
 msgid "xeon_2_description"
 msgstr "Un robot hostil."
-
-msgid "taba_house1_sign"
-msgstr "Casa del Sr. y la Sra. Clawbrew"
-
-msgid "taba_house2_reader2a"
-msgstr "Enciende mi imaginación."
 
 msgid "spyder_nimrod_plaque"
 msgstr "Patrocinado por Nimrod. \"Si no los vendiéramos, otro lo haría\""

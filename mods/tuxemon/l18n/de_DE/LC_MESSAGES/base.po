@@ -2655,98 +2655,6 @@ msgstr "Nein, Speicherung behalten."
 msgid "kennel_label"
 msgstr "{box} ({qty})"
 
-msgid "taba_house2_sign"
-msgstr "Legacy-Bibliothek"
-
-msgid "taba_house1_sign"
-msgstr "Herr und Frau Clawbrew Haus"
-
-msgid "taba_house1_calendar"
-msgstr ""
-"Es ist ein Kalender und der 30. September und der 12. Februar sind rot "
-"eingekreist."
-
-msgid "taba_house1_husband1"
-msgstr "Tuxemon! Ich gehörte zu den erfahrensten Trainern!"
-
-msgid "taba_house1_wife1"
-msgstr "Trainer? Mein Mann ist wahnhaft."
-
-msgid "taba_house2_reading1"
-msgstr "Das Buch ist Visiting The King von Manolo Qai."
-
-msgid "taba_house1_reading"
-msgstr "Das Buch ist Philosophy of Illusionary Studies von Jaiden Gemrevenza."
-
-msgid "taba_house2_reading3"
-msgstr "Das Buch ist Children Without Honor von Leslie Greninza."
-
-msgid "taba_house2_reading4"
-msgstr "Das Buch ist Sailing Into Eternitys von Laurine Doprachuld."
-
-msgid "taba_house2_owner1"
-msgstr ""
-"Willkommen in der Legacy-Bibliothek! Fühlen Sie sich frei, sich umzusehen, "
-"aber bitte ruhig."
-
-msgid "taba_house2_reader4a"
-msgstr ""
-"Lesen stimuliert meinen Geist auf eine Weise, die Fernsehen und Filme "
-"niemals tun können."
-
-msgid "taba_house2_reader1a"
-msgstr ""
-"Ich fühle mich besser beim Anblick eines Buches oder einer Buchhandlung."
-
-msgid "taba_house2_reader2a"
-msgstr "Es regt meine Fantasie an."
-
-msgid "taba_house2_reader3a"
-msgstr "So kann ich tausend verschiedene Leben leben."
-
-msgid "taba_house2_reading2"
-msgstr "Das Buch ist Raised By Dreams von Louis Etrergo."
-
-msgid "taba_house2_books"
-msgstr ""
-"000 - Informatik, Information und allgemeine Werke, 100 - Philosophie und "
-"Psychologie\n"
-"200 - Religion, 300 - Sozialwissenschaften, 400 - Sprache, 500 - Reine "
-"Wissenschaft, 600 - Technologie\n"
-"700 - Kunst und Erholung, 800 - Literatur, 900 - Geschichte und Geographie"
-
-msgid "taba_house3_client1a"
-msgstr ""
-"Ich ruhe mich aus, während meine Schwester wahrscheinlich ein paar Bücher "
-"liest."
-
-msgid "taba_house3_client2a"
-msgstr "Zu viel Denken kann uns schaden."
-
-msgid "taba_house4_dish1"
-msgstr "Es ist braun, dicht, aber es sieht nicht aus wie Pudding..."
-
-msgid "taba_house3_client3a"
-msgstr "Es lässt mich an das Haus meiner Mutter denken."
-
-msgid "taba_house4_client1a"
-msgstr "Meine Oma hat früher ein ähnliches Gericht zubereitet!"
-
-msgid "taba_house4_client2a"
-msgstr "Gell? Einfach einen leeren Magen füllen."
-
-msgid "taba_house1_watching"
-msgstr ""
-"Es ist ein Dokumentarfilm über die seltsamsten und wunderbarsten Tuxemon der "
-"Region,\n"
-" sowie die seltsamen Verhaltensweisen, die sie angenommen haben."
-
-msgid "taba_house4_owner1"
-msgstr "Willkommen im Honorable Seagulls Pub!"
-
-msgid "taba_house3_owner1"
-msgstr "Willkommen im Thoughtful Leaf Inn!"
-
 msgid "wall_fire"
 msgstr "Feuerwand"
 
@@ -3641,9 +3549,6 @@ msgid "welcometotaba6"
 msgstr "... .... ..."
 
 # Taba Town
-msgid "maple_bedroom_sign"
-msgstr "Es ist ein Kalender und der 27. April ist rosa eingekreist."
-
 msgid "37707_exit_missing"
 msgstr ""
 "<recovery_module>: GRÜSSE ${{name}}. BITTE HABEN SIE VERSTÄNDNIS DAFÜR, DASS "
@@ -3651,9 +3556,6 @@ msgstr ""
 "<recovery_module>: DER FEHLER WURDE NUN BEHOBEN. SIE KÖNNEN DAS SPIEL VON "
 "NUN AN NORMAL FORTSETZEN. VERSUCHEN SIE NICHT, HIERHER ZURÜCKZUKEHREN.\n"
 "<recovery_module>: WACH AUF. VERGISS ALLES. ALLES IST NUR EIN TRAUM..."
-
-msgid "taba_house4_client3a"
-msgstr "Zum Glück habe ich nicht dafür bezahlt. Wie können Sie das bezahlen?"
 
 msgid "spyder_papertown_homemaker1"
 msgstr ""

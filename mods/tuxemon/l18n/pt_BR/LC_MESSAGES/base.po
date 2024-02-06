@@ -2449,99 +2449,6 @@ msgstr "Um robô assassino fundido com um dragão. Não nos pergunte como."
 msgid "xeon_description"
 msgstr "Um robô hostil."
 
-# Taba Town
-msgid "maple_bedroom_sign"
-msgstr "É um calendário e o dia 27 de abril é circulado em rosa."
-
-msgid "taba_house1_sign"
-msgstr "Casa do Sr. e da Sra. Clawbrew"
-
-msgid "taba_house2_reader3a"
-msgstr "Então eu posso viver mil vidas diferentes."
-
-msgid "taba_house3_client1a"
-msgstr ""
-"Estou descansando enquanto minha irmã provavelmente está lendo alguns livros."
-
-msgid "taba_house3_client2a"
-msgstr "Pensar demais pode nos prejudicar."
-
-msgid "taba_house1_husband1"
-msgstr "Tuxemon! Eu estava entre os treinadores mais habilidosos!"
-
-msgid "taba_house2_reading3"
-msgstr "O livro é Children Without Honor de Leslie Greninza."
-
-msgid "taba_house1_reading"
-msgstr "O livro é Filosofia dos Estudos Ilusórios de Jaiden Gemrevenza."
-
-msgid "taba_house1_calendar"
-msgstr ""
-"É um calendário e o 30 de setembro e o 12 de fevereiro são circulados em "
-"vermelho."
-
-msgid "taba_house1_wife1"
-msgstr "Treinador? Meu marido está delirando."
-
-msgid "taba_house2_reading2"
-msgstr "O livro é Raised By Dreams de Louis Etrergo."
-
-msgid "taba_house2_reading4"
-msgstr "O livro é Sailing Into Eternitys, de Laurine Doprachuld."
-
-msgid "taba_house2_reader1a"
-msgstr "Sinto-me melhor à vista de um livro ou de uma livraria."
-
-msgid "taba_house2_reader2a"
-msgstr "Isso acende minha imaginação."
-
-msgid "taba_house2_reading1"
-msgstr "O livro é Visiting The King, de Manolo Qai."
-
-msgid "taba_house4_client1a"
-msgstr "Minha avó costumava fazer um prato semelhante!"
-
-msgid "taba_house4_client2a"
-msgstr "Eh? Apenas enchendo um estômago vazio."
-
-msgid "taba_house2_owner1"
-msgstr ""
-"Bem-vindo à Biblioteca Legacy! Sinta-se livre para olhar ao redor, mas "
-"calmo, por favor."
-
-msgid "taba_house2_reader4a"
-msgstr ""
-"A leitura estimula minha mente de uma maneira que a TV e os filmes nunca "
-"serão capazes de fazer."
-
-msgid "taba_house2_books"
-msgstr ""
-"000 - Ciência da computação, informação e obras gerais, 100 - Filosofia e "
-"psicologia\n"
-"200 - Religião, 300 - Ciências Sociais, 400 - Linguagem, 500 - Ciência Pura, "
-"600 - Tecnologia\n"
-"700 - Artes e recreação, 800 - Literatura, 900 - História e geografia"
-
-msgid "taba_house4_dish1"
-msgstr "É castanho, denso, mas não parece pudim..."
-
-msgid "taba_house3_client3a"
-msgstr "Isso me faz pensar na casa da minha mãe."
-
-msgid "taba_house4_client3a"
-msgstr "Felizmente eu não paguei por isso. Como você pode pagar por isso?"
-
-msgid "taba_house1_watching"
-msgstr ""
-"É um documentário sobre os Tuxemon mais estranhos e maravilhosos da região,\n"
-" bem como os comportamentos estranhos que adotaram."
-
-msgid "taba_house3_owner1"
-msgstr "Bem-vindo ao The Thoughtful Leaf Inn!"
-
-msgid "taba_house4_owner1"
-msgstr "Bem-vindo ao The Honorable Seagulls Pub!"
-
 msgid "chooseyerfateCardiling"
 msgstr ""
 "Uma escolha interessante, ele fala com a faísca dentro de você. Cardiling é "
@@ -3760,9 +3667,6 @@ msgstr "Ela existe, inalterada, há milhões de anos."
 
 msgid "professorexists1"
 msgstr "Obrigado Ben."
-
-msgid "taba_house2_sign"
-msgstr "Biblioteca Legacy"
 
 msgid "spyder_papertown_homemaker1"
 msgstr ""

@@ -23,7 +23,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="64" height="60">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="64" height="60">
@@ -94,15 +94,13 @@
   <object id="153" type="collision" x="0" y="208" width="192" height="160"/>
   <object id="154" type="collision" x="0" y="160" width="288" height="16"/>
   <object id="161" type="collision" x="800" y="64" width="16" height="48"/>
-  <object id="162" type="collision" x="784" y="64" width="16" height="32"/>
-  <object id="164" type="collision" x="640" y="144" width="16" height="32"/>
-  <object id="165" type="collision" x="400" y="16" width="16" height="32"/>
-  <object id="166" type="collision" x="528" y="16" width="16" height="32"/>
+  <object id="162" type="collision" x="784" y="64" width="16" height="48"/>
+  <object id="164" type="collision" x="640" y="144" width="16" height="48"/>
+  <object id="165" type="collision" x="400" y="16" width="16" height="48"/>
+  <object id="166" type="collision" x="528" y="16" width="16" height="48"/>
   <object id="167" type="collision" x="656" y="144" width="16" height="48"/>
-  <object id="168" type="collision" x="416" y="16" width="32" height="48"/>
-  <object id="169" type="collision" x="544" y="16" width="32" height="48"/>
-  <object id="173" type="collision" x="672" y="176" width="16" height="16"/>
-  <object id="174" type="collision" x="720" y="96" width="16" height="16"/>
+  <object id="168" type="collision" x="416" y="16" width="16" height="48"/>
+  <object id="169" type="collision" x="544" y="16" width="16" height="48"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
@@ -808,58 +806,30 @@
     <property name="cond1" value="not variable_set teleport_faint"/>
    </properties>
   </object>
-  <object id="163" name="Teleport to house1" type="event" x="784" y="96" width="16" height="16">
+  <object id="175" name="door locked" type="event" x="640" y="176" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport taba_town_house1.tmx,7,6,0.3"/>
-    <property name="cond10" value="is char_at player"/>
-    <property name="cond20" value="is char_facing player,up"/>
-   </properties>
-  </object>
-  <object id="170" name="Teleport to house2" type="event" x="640" y="176" width="16" height="16">
-   <properties>
-    <property name="act10" value="transition_teleport taba_town_house2.tmx,7,6,0.3"/>
-    <property name="cond10" value="is char_at player"/>
-    <property name="cond20" value="is char_facing player,up"/>
-   </properties>
-  </object>
-  <object id="171" name="Teleport to house3" type="event" x="528" y="48" width="16" height="16">
-   <properties>
-    <property name="act10" value="transition_teleport taba_town_house3.tmx,7,6,0.3"/>
-    <property name="cond10" value="is char_at player"/>
-    <property name="cond20" value="is char_facing player,up"/>
-   </properties>
-  </object>
-  <object id="172" name="Teleport to house4" type="event" x="400" y="48" width="16" height="16">
-   <properties>
-    <property name="act10" value="transition_teleport taba_town_house4.tmx,7,6,0.3"/>
-    <property name="cond10" value="is char_at player"/>
-    <property name="cond20" value="is char_facing player,up"/>
-   </properties>
-  </object>
-  <object id="175" name="sign house2" type="event" x="672" y="176" width="16" height="16">
-   <properties>
-    <property name="act10" value="translated_dialog taba_house2_sign"/>
+    <property name="act10" value="translated_dialog door_locked"/>
     <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="176" name="sign house1" type="event" x="720" y="96" width="16" height="16">
+  <object id="176" name="door locked" type="event" x="784" y="96" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog taba_house1_sign"/>
+    <property name="act10" value="translated_dialog door_locked"/>
     <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="177" name="sign house3" type="event" x="560" y="48" width="16" height="16">
+  <object id="177" name="door locked" type="event" x="528" y="48" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog taba_house3_sign"/>
+    <property name="act10" value="translated_dialog door_locked"/>
     <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="178" name="sign house4" type="event" x="432" y="48" width="16" height="16">
+  <object id="178" name="door locked" type="event" x="400" y="48" width="16" height="16">
    <properties>
-    <property name="act10" value="translated_dialog taba_house4_sign"/>
+    <property name="act10" value="translated_dialog door_locked"/>
     <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>

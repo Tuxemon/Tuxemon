@@ -514,16 +514,24 @@ def build_hud_text(
         is_trainer: Boolean battle (trainer: true, wild: false).
 
     """
+    trainer = monster.owner
     icon: str = ""
-    if monster.gender == GenderType.male:
-        icon += "♂"
-    if monster.gender == GenderType.female:
-        icon += "♀"
-    if not is_trainer:
-        # shows captured symbol (wild encounter)
-        symbol: str = ""
-        if is_status and is_status == SeenStatus.caught and not is_right:
-            symbol += "◉"
-        return f"{monster.name}{icon} Lv.{monster.level}{symbol}"
+    if menu == "MainParkMenuState" and trainer and is_right:
+        ball = T.translate("tuxeball_park")
+        item = trainer.find_item("tuxeball_park")
+        if item is None:
+            return f"{ball.upper()}: 0"
+        return f"{ball.upper()}: {item.quantity}"
     else:
-        return f"{monster.name}{icon} Lv.{monster.level}"
+        if monster.gender == GenderType.male:
+            icon += "♂"
+        if monster.gender == GenderType.female:
+            icon += "♀"
+        if not is_trainer:
+            # shows captured symbol (wild encounter)
+            symbol: str = ""
+            if is_status and is_status == SeenStatus.caught and not is_right:
+                symbol += "◉"
+            return f"{monster.name}{icon} Lv.{monster.level}{symbol}"
+        else:
+            return f"{monster.name}{icon} Lv.{monster.level}"

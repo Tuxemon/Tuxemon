@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="274">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="281">
  <properties>
   <property name="east" value="cotton_town"/>
   <property name="edges" value="clamped"/>
@@ -797,10 +797,14 @@
     <property name="cond1" value="not char_exists spyder_dryadsgrove_boy"/>
    </properties>
   </object>
-  <object id="266" name="Talk Boy" type="event" x="448" y="544" width="16" height="16">
+  <object id="266" name="Talk Boy Healthy" type="event" x="448" y="544" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_dryadsgrove_boy1"/>
+    <property name="act1" value="translated_dialog spyder_dryadsgrove_boy_healthy"/>
+    <property name="act2" value="translated_dialog_choice yes:no,ruff"/>
     <property name="behav1" value="talk spyder_dryadsgrove_boy"/>
+    <property name="cond1" value="is variable_set party_healthy:yes"/>
+    <property name="cond2" value="not variable_set ruff:yes"/>
+    <property name="cond3" value="not variable_set ruff:proceed"/>
    </properties>
   </object>
   <object id="272" name="Create Dad" type="event" x="576" y="464" width="16" height="16">
@@ -814,6 +818,58 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_dryadsgrove_dad1"/>
     <property name="behav1" value="talk spyder_dryadsgrove_dad"/>
+   </properties>
+  </object>
+  <object id="274" name="Talk Boy Not Healthy" type="event" x="432" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dryadsgrove_boy_not_healthy"/>
+    <property name="behav1" value="talk spyder_dryadsgrove_boy"/>
+    <property name="cond1" value="not variable_set party_healthy:yes"/>
+   </properties>
+  </object>
+  <object id="275" name="Ruff Yes" type="event" x="416" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dryadsgrove_boy_yes"/>
+    <property name="act2" value="set_variable ruff:proceed"/>
+    <property name="cond1" value="is variable_set ruff:yes"/>
+   </properties>
+  </object>
+  <object id="276" name="Ruff No" type="event" x="400" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dryadsgrove_boy_no"/>
+    <property name="act2" value="set_variable ruff:null"/>
+    <property name="cond1" value="is variable_set ruff:no"/>
+   </properties>
+  </object>
+  <object id="277" name="Ruff Party No" type="event" x="384" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dryadsgrove_boy_after"/>
+    <property name="behav1" value="talk spyder_dryadsgrove_boy"/>
+    <property name="cond1" value="is variable_set ruff:proceed"/>
+   </properties>
+  </object>
+  <object id="278" name="Ruff Party Yes" type="event" x="368" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dryadsgrove_boy_after"/>
+    <property name="act2" value="translated_dialog spyder_dryadsgrove_boy_question"/>
+    <property name="act3" value="translated_dialog_choice yes:no,returnruff"/>
+    <property name="behav1" value="talk spyder_dryadsgrove_boy"/>
+    <property name="cond1" value="is variable_set ruff:proceed"/>
+    <property name="cond2" value="is variable_set ruff:proceed"/>
+    <property name="cond3" value="not variable_set returnruff:yes"/>
+   </properties>
+  </object>
+  <object id="279" name="Return Ruff No" type="event" x="368" y="528" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dryadsgrove_boy_after_no"/>
+    <property name="act2" value="set_variable returnruff:null"/>
+    <property name="cond1" value="is variable_set returnruff:no"/>
+   </properties>
+  </object>
+  <object id="280" name="Return Ruff Yes" type="event" x="368" y="512" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dryadsgrove_boy_after_yes"/>
+    <property name="cond1" value="is variable_set returnruff:yes"/>
    </properties>
   </object>
  </objectgroup>

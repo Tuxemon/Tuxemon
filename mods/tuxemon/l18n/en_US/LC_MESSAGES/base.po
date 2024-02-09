@@ -8730,8 +8730,37 @@ msgid "spyder_dryadsgrove_sylvia1"
 msgstr "The seasons turn with Volcoli's dance."
 msgid "spyder_dryadsgrove_sylvia2"
 msgstr "We nymphs wax and wane in power with the passing of the seasons."
+
+msgid "spyder_dryadsgrove_boy_healthy"
+msgstr "Wow, your monsters look really healthy! That's so great.\n You must be rich to be able to look after them so well.\n Hey -- if I gave you my buddy RUFF, you'd look after her, right?"
+
+msgid "spyder_dryadsgrove_boy_yes"
+msgstr "*SNIFF* I'm going to miss you, buddy. But it's for the best."
+
+msgid "spyder_dryadsgrove_boy_no"
+msgstr "Oh. Yeah. Fair enough. It's real expensive, I know."
+
+msgid "spyder_dryadsgrove_boy_not_healthy"
+msgstr "Hey, your monsters are in rough shape. I understand what you're going through.\n My WOLFFSKY got herself hurt, but we can't afford the doctor's fees just now to look after her. It's rough."
+
+msgid "spyder_dryadsgrove_dad1"
+msgstr "I feel bad. When we got him that WOLFFSKY for his birthday, we never realised how much the vet fees would be.\n We just can't afford them. And then RUFF got in that fight ..."
+
+msgid "spyder_dryadsgrove_boy_after"
+msgstr "Hey, how's RUFF going? You're taking good care of her, right?"
+
+msgid "spyder_dryadsgrove_boy_question"
+msgstr "Return RUFF to boy?"
+
+msgid "spyder_dryadsgrove_boy_after_yes"
+msgstr "Oh wow! Oh wow! You just made my day. My week! My year! I missed RUFF so much.\n *SNIFF* You're the best!"
+
+msgid "spyder_dryadsgrove_boy_after_no"
+msgstr "????"
+
 msgid "spyder_leatherhouse1_tennisplayer1"
 msgstr "Is Frostbite an Earth element technique or a Water element technique? "
+
 msgid "spyder_leatherhouse1_tennisplayer2"
 msgstr "Trick question - it's both!"
 

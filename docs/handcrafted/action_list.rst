@@ -32,6 +32,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.get_monster_tech.GetMonsterTechAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_party_monsters.GetPartyMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_player_monster.GetPlayerMonsterAction
+.. autoscriptinfoclass:: tuxemon.event.actions.input_variable.InputVariableAction
 .. autoscriptinfoclass:: tuxemon.event.actions.load_game.LoadGameAction
 .. autoscriptinfoclass:: tuxemon.event.actions.menu.MenuAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_char_attribute.ModifyCharAttributeAction
@@ -67,7 +68,6 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_battle.SetBattleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_char_attribute.SetCharAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_bubble.SetBubbleAction
-.. autoscriptinfoclass:: tuxemon.event.actions.set_code.SetCodeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_economy.SetEconomyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_kennel_visible.SetKennelVisibleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_kennel.SetKennelAction

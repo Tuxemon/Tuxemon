@@ -18,64 +18,62 @@ def mockNPC(self) -> None:
 
 class TestCatchTuxemon(unittest.TestCase):
     # Can't release Tuxemon if it is the only one in the party.
-    def test_release_one(self):
+    def setUp(self):
         with mock.patch.object(NPC, "__init__", mockNPC):
-            npc = NPC()
-            self.assertEqual(len(npc.monsters), 0)
-            self.assertEqual(len(npc.monster_boxes[KENNEL]), 0)
+            self.npc = NPC()
 
-            monster = Monster()
-            npc.add_monster(monster, len(npc.monsters))
-            self.assertEqual(len(npc.monsters), 1)
-            npc.release_monster(monster)
-            self.assertEqual(len(npc.monsters), 1)
+    def test_release_one(self):
+        self.assertEqual(len(self.npc.monsters), 0)
+        self.assertEqual(len(self.npc.monster_boxes[KENNEL]), 0)
+
+        monster = Monster()
+        self.npc.add_monster(monster, len(self.npc.monsters))
+        self.assertEqual(len(self.npc.monsters), 1)
+        self.npc.release_monster(monster)
+        self.assertEqual(len(self.npc.monsters), 1)
 
     # Tuxemon can be released if there is another in the party
     def test_release_two(self):
-        with mock.patch.object(NPC, "__init__", mockNPC):
-            npc = NPC()
-            monsterA = Monster()
-            npc.add_monster(monsterA, len(npc.monsters))
-            self.assertEqual(len(npc.monsters), 1)
+        monsterA = Monster()
+        self.npc.add_monster(monsterA, len(self.npc.monsters))
+        self.assertEqual(len(self.npc.monsters), 1)
 
-            monsterB = Monster()
-            npc.add_monster(monsterB, len(npc.monsters))
-            self.assertEqual(len(npc.monsters), 2)
+        monsterB = Monster()
+        self.npc.add_monster(monsterB, len(self.npc.monsters))
+        self.assertEqual(len(self.npc.monsters), 2)
 
-            npc.release_monster(monsterA)
-            self.assertEqual(len(npc.monsters), 1)
+        self.npc.release_monster(monsterA)
+        self.assertEqual(len(self.npc.monsters), 1)
 
-            self.assertEqual(npc.monsters[0], monsterB)
-            self.assertNotEqual(npc.monsters[0], monsterA)
+        self.assertEqual(self.npc.monsters[0], monsterB)
+        self.assertNotEqual(self.npc.monsters[0], monsterA)
 
     # Can't have more than 6 Tuxemon in party. The excess goes into the Kennel.
     def test_catch_multiple(self):
-        with mock.patch.object(NPC, "__init__", mockNPC):
-            npc = NPC()
-            self.assertEqual(len(npc.monsters), 0)
+        self.assertEqual(len(self.npc.monsters), 0)
 
-            monsterA = Monster()
-            npc.add_monster(monsterA, len(npc.monsters))
+        monsterA = Monster()
+        self.npc.add_monster(monsterA, len(self.npc.monsters))
 
-            monsterB = Monster()
-            npc.add_monster(monsterB, len(npc.monsters))
+        monsterB = Monster()
+        self.npc.add_monster(monsterB, len(self.npc.monsters))
 
-            monsterC = Monster()
-            npc.add_monster(monsterC, len(npc.monsters))
+        monsterC = Monster()
+        self.npc.add_monster(monsterC, len(self.npc.monsters))
 
-            monsterD = Monster()
-            npc.add_monster(monsterD, len(npc.monsters))
+        monsterD = Monster()
+        self.npc.add_monster(monsterD, len(self.npc.monsters))
 
-            monsterE = Monster()
-            npc.add_monster(monsterE, len(npc.monsters))
-            self.assertEqual(len(npc.monsters), 5)
+        monsterE = Monster()
+        self.npc.add_monster(monsterE, len(self.npc.monsters))
+        self.assertEqual(len(self.npc.monsters), 5)
 
-            monsterF = Monster()
-            npc.add_monster(monsterF, len(npc.monsters))
-            self.assertEqual(len(npc.monsters), PARTY_LIMIT)
-            self.assertEqual(len(npc.monster_boxes[KENNEL]), 0)
+        monsterF = Monster()
+        self.npc.add_monster(monsterF, len(self.npc.monsters))
+        self.assertEqual(len(self.npc.monsters), PARTY_LIMIT)
+        self.assertEqual(len(self.npc.monster_boxes[KENNEL]), 0)
 
-            monsterG = Monster()
-            npc.add_monster(monsterG, len(npc.monsters))
-            self.assertEqual(len(npc.monsters), PARTY_LIMIT)
-            self.assertEqual(len(npc.monster_boxes[KENNEL]), 1)
+        monsterG = Monster()
+        self.npc.add_monster(monsterG, len(self.npc.monsters))
+        self.assertEqual(len(self.npc.monsters), PARTY_LIMIT)
+        self.assertEqual(len(self.npc.monster_boxes[KENNEL]), 1)

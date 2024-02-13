@@ -338,11 +338,6 @@ Proposed Improvements
 - Add save and exit feature.
 - Allow exit button to take user back to menu rather than closing program. 
 
-Known Bugs
------------
-- Gameplay may freeze after first Tuxemon battle encounter is completed.
-- Input key modulation not saving new key selections. 
-
 License
 -------
 

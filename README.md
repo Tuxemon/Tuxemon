@@ -31,7 +31,6 @@ level are welcome to join.
     - [CLI Examples](#cli-examples)
 - [Building](#building)
 - [Proposed Improvements](#proposed-improvements)
-- [Known Bugs](#known-bugs)
 - [License](#license)
 - [External Links](#external-links)
 

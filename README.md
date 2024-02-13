@@ -10,6 +10,30 @@ level are welcome to join.
 
 ![screenshot](https://www.tuxemon.org/images/featurette-01.png)
 
+## Table of Contents
+- [Features](#features)
+- [Installation](#installation)
+    - [Windows Source](#windows-source)
+    - [Windows Binary](#windows-binary)
+    - [Flatpak](#flatpak)
+    - [Debian and Ubuntu](#debian-and-ubuntu)
+    - [Fedora Linux](#fedora-linux)
+    - [Arch Linux](#arch-linux)
+    - [Smartphones](#smartphones)
+    - [Mac OX X (Yosemite)](#mac-os-x-yosemite)
+- [Controls](#controls)
+    - [Game Controls](#game-controls)
+    - [Debugging](#debugging)
+    - [Map Editor](#map-editor)
+- [CLI Interface](#cli-interface)
+    - [Setting Up](#setting-up)
+    - [Commands](#commands)
+    - [CLI Examples](#cli-examples)
+- [Building](#building)
+- [Proposed Improvements](#proposed-improvements)
+- [Known Bugs](#known-bugs)
+- [License](#license)
+- [External Links](#external-links)
 
 Features
 --------
@@ -93,11 +117,9 @@ flatpak run org.tuxemon.Tuxemon
 ```
 Depending on your desktop environment, you may also be able to launch via your start menu.
 
+### Debian and Ubuntu
 
-### Debian/Ubuntu with virtual environment
-
-This is the recommended way to run because it will not modify the
-system.
+Option 1: Using virual environment (recommended): 
 ```shell
 sudo apt install git python3-venv
 git clone https://github.com/Tuxemon/Tuxemon.git
@@ -108,9 +130,7 @@ python3 -m pip install -U -r requirements.txt
 python3 run_tuxemon.py
 ```
 
-### Debian/Ubuntu
-
-*Not recommended* because it will change system-installed packages
+Option 2: System install (Not recommended, may change system-installed packages):
 ```shell
 sudo apt install python3 python3-pygame python3-pip python3-imaging git
 git clone https://github.com/Tuxemon/Tuxemon.git
@@ -183,14 +203,14 @@ ulimit -n 10000; python run_tuxemon.py
 Controls
 --------
 
-##### Game Controls
-###### You can also set inputs in the options menu or config file
+### Game Controls
+Note: You can also set inputs in the options menu or config file
 * *Arrow Keys* - Movement
 * *Enter* - Select/activate
 * *ESC* - Menu/Cancel
 * *Shift* - Sprint
 
-##### Debugging
+### Debugging
 
 You can enable dev_tools by changing `dev_tools` to `True` in the
 `tuxemon.cfg` file:
@@ -308,6 +328,15 @@ WARNING!  The build scripts are designed to be run in a dedicated VM.
 They will add and remove packages and could leave your OS in a bad
 state.  You should not use them on your personal computer.  Use in a vm
 or container.
+
+Proposed Improvements
+---------------------
+- Add WASD movement compatibility to the base instruction set.
+- Add confirm button when user chooses original Tuxemon during introduction. Currently, Tuxemon selection is confirmed by user selecting the Tuxemon name. Selection of Tuxemon image sprite opens up menu of Tuxemon bio and stats. Addition of "confirm" button to this page view would increase user experience during introduction.
+
+Known Bugs
+-----------
+- Gameplay may freeze after first Tuxemon battle encounter is completed. 
 
 License
 -------

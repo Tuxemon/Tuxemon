@@ -1,9 +1,9 @@
 Tuxemon
 ==============
 
-Tuxemon is a free, open source monster-fighting RPG.  It's in constant
-development and improving all the time!  Contributors of all skill and
-level are welcome to join.
+Tuxemon is a free, open source monster-fighting role player game (RPG). It hosts a turn-based combat style along with monster acquisition features. 
+Tuxemon also hosts two user-navigatable maps with much more content on the way.  It's in constant development and improving all the time! 
+Contributors of all skill and level are welcome to join.
 
 [![Build Status](https://travis-ci.org/Tuxemon/Tuxemon.svg?branch=development)](https://travis-ci.org/Tuxemon/Tuxemon)
 [![Documentation Status](https://readthedocs.org/projects/tuxemon/badge/?version=latest)](https://tuxemon.readthedocs.io/en/latest/?badge=latest)

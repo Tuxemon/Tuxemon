@@ -333,10 +333,15 @@ Proposed Improvements
 ---------------------
 - Add WASD movement compatibility to the base instruction set.
 - Add confirm button when user chooses original Tuxemon during introduction. Currently, Tuxemon selection is confirmed by user selecting the Tuxemon name. Selection of Tuxemon image sprite opens up menu of Tuxemon bio and stats. Addition of "confirm" button to this page view would increase user experience during introduction.
+- Add diagonal walking capability.
+- Add autosave feature.
+- Add save and exit feature.
+- Allow exit button to take user back to menu rather than closing program. 
 
 Known Bugs
 -----------
-- Gameplay may freeze after first Tuxemon battle encounter is completed. 
+- Gameplay may freeze after first Tuxemon battle encounter is completed.
+- Input key modulation not saving new key selections. 
 
 License
 -------

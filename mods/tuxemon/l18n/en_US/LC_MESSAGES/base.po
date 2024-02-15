@@ -732,6 +732,12 @@ msgstr "Deposit"
 msgid "withdraw"
 msgstr "Withdraw"
 
+msgid "pay"
+msgstr "Pay"
+
+msgid "e_pay"
+msgstr "E-Pay"
+
 msgid "no_money_operation"
 msgstr "{operation} not possible!"
 
@@ -7240,6 +7246,48 @@ msgstr "It's brown, dense, but it doesn't look like pudding..."
 
 ## DIALOG TRANSLATIONS ##
 # spyder intros
+
+msgid "spyder_cathedral"
+msgstr "Cathedral"
+
+msgid "bill_cathedral"
+msgstr "Cathedral Bill"
+
+msgid "spyder_pay_cathedral"
+msgstr "SCAN TO PAY. You can scan the QR code and make payment to the Cathedral by using the Bank App."
+
+msgid "spyder_billing_cathedral1"
+msgstr "Welcome to the Cathedral Centre!\n Would you like to heal your monsters?"
+
+msgid "spyder_billing_cathedral2"
+msgstr "All done. That will be ${{currency}}${{var:party_lost_hp}}."
+
+msgid "spyder_billing_cathedral3"
+msgstr "Plus a ${{currency}}${{var:cathedral_fee}} call-out fee since we had to send the ambulance to collect you."
+
+msgid "spyder_billing_cathedral4"
+msgstr "Oh, you can't afford to pay? No problem. We'll add it to your bill, plus ${{var:cathedral_interest}}% interest."
+
+msgid "spyder_billing_cathedral5"
+msgstr "When you win money, we'll take a share [${{var:cathedral_share}}%] until you've paid us back. Easy peasy!"
+
+msgid "spyder_billing_cathedral6"
+msgstr "Thank you for choosing Cathedral! Have a wonderful day!"
+
+msgid "spyder_scoop_tuxemon1"
+msgstr "Hey buddy, I couldn't help but notice those medical fees are building up. I work for Scoop, I know some guys.\n Why don't you sell me one of your tuxemon so you can get out from under that debt?"
+
+msgid "spyder_scoop_tuxemon2"
+msgstr "Which one?"
+
+msgid "spyder_scoop_tuxemon3"
+msgstr "I can give you ${{currency}}${{var:scoop_price}}, is it ok?"
+
+msgid "spyder_scoop_tuxemon4"
+msgstr "Let me know if you change your mind!"
+
+msgid "spyder_scoop_tuxemon5"
+msgstr "What, you thought you'd get cash back? Tuxemon are pets, not things to be bought and sold. I'm just helping you out with your debt."
 
 msgid "spyder_intro_question"
 msgstr "Do you want to skip the intro?"

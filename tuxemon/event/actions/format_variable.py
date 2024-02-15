@@ -44,16 +44,20 @@ class FormatVariableAction(EventAction):
         if value is None:
             logger.error(f"Game variable {key} doesn't exist")
             return
-        if type_format not in ("int", "float"):
+        if type_format not in ("int", "float", "-int", "-float"):
             logger.error(f"{type_format} isn't 'float' or 'int'")
             return
         if type_format == "int":
             player.game_variables[key] = int(value)
+        elif type_format == "-int":
+            player.game_variables[key] = -int(value)
         elif type_format == "float":
             if _rounding is None:
                 player.game_variables[key] = float(value)
             else:
                 _value = float(value)
                 player.game_variables[key] = round(_value, _rounding)
+        elif type_format == "-float":
+            player.game_variables[key] = -float(value)
         else:
             player.game_variables[key] = value

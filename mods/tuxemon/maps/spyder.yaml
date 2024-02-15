@@ -1,4 +1,19 @@
 events:
+  Cathedral:
+    actions:
+    - set_money bill_cathedral
+    - set_variable cathedral_share:0.5
+    - format_variable cathedral_share,float
+    - set_variable cathedral_interest:0.1
+    - format_variable cathedral_interest,float
+    - set_variable cathedral_fee:100
+    - set_variable scoop_coeff:50
+    conditions:
+    - not variable_set cathedral_share
+    - not variable_set cathedral_interest
+    - not variable_set cathedral_fee
+    - not variable_set scoop_coeff
+    type: "event"
   Teleport Faint:
     actions:
     - teleport_faint
@@ -14,6 +29,8 @@ events:
     - set_monster_status
     - set_variable teleport_clinic:none
     - variable_math cathedral_ads,+,1
+    - format_variable cathedral_fee,int
+    - modify_money bill_cathedral,,cathedral_fee
     conditions:
     - is location_type clinic
     - is variable_set teleport_clinic:lost

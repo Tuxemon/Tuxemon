@@ -1,0 +1,42 @@
+[
+  {
+   "slug": "spyder_dante",
+   "template": [
+    {
+     "sprite_name": "shopassist",
+     "combat_front": "adventurer",
+     "slug": "shopassistant"
+    }
+   ]
+  },
+  {
+   "slug": "spyder_shady",
+   "template": [
+    {
+     "sprite_name": "cooldude_blue",
+     "combat_front": "cooldude",
+     "slug": "cooldude"
+    }
+   ]
+  },
+  {
+   "slug": "spyder_captain",
+   "template": [
+    {
+     "sprite_name": "riverboatcaptain",
+     "combat_front": "enforcer_rookie",
+     "slug": "riverboatcaptain"
+    }
+   ]
+  },
+  {
+   "slug": "spyder_billie",
+   "template": [
+    {
+     "sprite_name": "fashionista",
+     "combat_front": "fashionista",
+     "slug": "fashionista"
+    }
+   ]
+  }
+]

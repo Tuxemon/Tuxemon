@@ -2,19 +2,9 @@
   "slug": "maple_girl",
   "template": [
     {
-      "sprite_name": "girl1",
-      "combat_front": "heroine",
-      "slug": "heroine"
-    }
-  ],
-  "monsters": [
-    {
-      "name": "Snowball",
-      "slug": "bamboon",
-      "level": 5,
-      "money_mod": 10,
-      "exp_req_mod": 27,
-      "gender": "male"
+      "sprite_name": "fashionista_fiery",
+      "combat_front": "fashionista",
+      "slug": "fashionista"
     }
   ]
 }

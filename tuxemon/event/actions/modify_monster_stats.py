@@ -44,7 +44,7 @@ class ModifyMonsterStatsAction(EventAction):
     name = "modify_monster_stats"
     variable: Optional[str] = None
     stat: Optional[str] = None
-    amount: Optional[Union[float, int]] = None
+    amount: Optional[Union[int, float]] = None
 
     @staticmethod
     def modifiy_stat_int(monster: Monster, stat: StatType, value: int) -> None:

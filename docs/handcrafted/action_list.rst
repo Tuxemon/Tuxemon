@@ -36,6 +36,8 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.menu.MenuAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_char_attribute.ModifyCharAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_money.ModifyMoneyAction
+.. autoscriptinfoclass:: tuxemon.event.actions.modify_monster_bond.ModifyMonsterBondAction
+.. autoscriptinfoclass:: tuxemon.event.actions.modify_monster_health.ModifyMonsterHealthAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_monster_stats.ModifyMonsterStatsAction
 .. autoscriptinfoclass:: tuxemon.event.actions.open_shop.OpenShopAction
 .. autoscriptinfoclass:: tuxemon.event.actions.overwrite_tech.OverwriteTechAction

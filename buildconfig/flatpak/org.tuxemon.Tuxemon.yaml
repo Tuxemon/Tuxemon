@@ -1,0 +1,51 @@
+---
+app-id: org.tuxemon.Tuxemon
+runtime: org.freedesktop.Platform
+runtime-version: 22.08
+sdk: org.freedesktop.Sdk
+command: org.tuxemon.Tuxemon
+rename-icon: icon
+finish-args:
+- --socket=wayland
+- --socket=x11
+- --share=ipc
+# everything is stored in the .tuxemon folder
+# also the save files
+- --persist=.tuxemon
+- --share=network
+- --socket=pulseaudio
+- --device=all
+modules:
+  # needed by pygame
+  # otherwise an error message occurs which complains about setuptools
+  - portmidi.json
+  # needed by the rumble manager
+  - libshake.json
+  - python3-requirements.json
+  - name: tuxemon
+    buildsystem: simple
+    build-commands:
+      # lowercase tuxemon is used to search plugin module paths.
+      # So if using that name, no modules are found.
+      - install -d /app/share/Tuxemon
+      - cp -r tuxemon /app/share/Tuxemon
+      - cp -r mods /app/share/Tuxemon/mods
+      - cp run_tuxemon.py /app/share/Tuxemon/org.tuxemon.Tuxemon.py
+      - ln -s ../share/Tuxemon/org.tuxemon.Tuxemon.py /app/bin
+      - install -Dm755 org.tuxemon.Tuxemon -t /app/bin
+    post-install:
+      - desktop-file-install --dir=/app/share/applications buildconfig/flatpak/org.tuxemon.Tuxemon.desktop
+      - install -Dm755 buildconfig/flatpak/org.tuxemon.Tuxemon.appdata.xml /app/share/metainfo/org.tuxemon.Tuxemon.appdata.xml
+      - install -Dm755 mods/tuxemon/gfx/icon.png /app/share/icons/hicolor/64x64/apps/icon.png
+      - install -Dm755 mods/tuxemon/gfx/icon_128.png /app/share/icons/hicolor/128x128/apps/icon.png
+      - install -Dm755 mods/tuxemon/gfx/icon_32.png /app/share/icons/hicolor/32x32/apps/icon.png
+
+    sources:
+    - type: git
+      tag: development
+      url: https://github.com/Tuxemon/Tuxemon.git
+    - type: script
+      dest-filename: org.tuxemon.Tuxemon
+      commands:
+      - MY_PATH="$(dirname "$0")"
+      - python3 "$MY_PATH/org.tuxemon.Tuxemon.py"

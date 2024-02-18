@@ -15,14 +15,17 @@ class MoneyIsCondition(EventCondition):
     Script usage:
         .. code-block::
 
-            is money_is <character>,<operator>,<value>
+            is money_is <character>,<operator>,<amount>
 
     Script parameters:
         character: Either "player" or npc slug name (e.g. "npc_maple").
         operator: Numeric comparison operator. Accepted values are "less_than",
             "less_or_equal", "greater_than", "greater_or_equal", "equals"
             and "not_equals".
-        amount: Amount of money
+        amount: Amount of money or value stored in variable
+
+    eg. "is money_is player,equals,50"
+    eg. "is money_is player,equals,name_variable" (name_variable:75)
 
     """
 
@@ -30,11 +33,16 @@ class MoneyIsCondition(EventCondition):
 
     def test(self, session: Session, condition: MapCondition) -> bool:
         player = session.player
+        wallet, operator, _amount = condition.parameters[:3]
 
-        # Read the parameters
-        wallet, operator, amount = condition.parameters[:3]
+        if not _amount.isdigit():
+            amount = 0
+            if _amount in player.game_variables:
+                amount = int(player.game_variables.get(_amount, 0))
+        else:
+            amount = int(_amount)
 
         # Check if the condition is true
         if wallet in player.money:
-            return compare(operator, player.money[wallet], int(amount))
+            return compare(operator, player.money[wallet], amount)
         return False

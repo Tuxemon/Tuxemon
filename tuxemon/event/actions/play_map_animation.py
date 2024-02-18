@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import Optional, Union, final
+from typing import Optional, final
 
 from tuxemon import prepare
 from tuxemon.event import get_npc
@@ -42,7 +42,7 @@ class PlayMapAnimationAction(EventAction):
     animation_name: str
     duration: float
     loop: str
-    tile_pos_x: Union[int, str]
+    tile_pos_x: str
     tile_pos_y: Optional[int] = None
 
     def start(self) -> None:
@@ -62,7 +62,7 @@ class PlayMapAnimationAction(EventAction):
 
         # Determine the tile position where to draw the animation.
         # TODO: unify npc/player sprites and map animations
-        if isinstance(self.tile_pos_x, str):
+        if not self.tile_pos_x.isdigit():
             character = get_npc(self.session, self.tile_pos_x)
             if character is None:
                 logger.error(f"{self.tile_pos_x} not found")
@@ -72,7 +72,7 @@ class PlayMapAnimationAction(EventAction):
             if self.tile_pos_y is None:
                 logger.error("Y coordinate is missing.")
                 return
-            position = ((self.tile_pos_x), (self.tile_pos_y))
+            position = ((int(self.tile_pos_x)), (self.tile_pos_y))
 
         animations = world_state.map_animations
         if animation_name in animations:

@@ -38,7 +38,7 @@ class BuffEffect(ItemEffect):
         assert target
 
         if self.statistic not in list(StatType):
-            ValueError(f"{self.statistic} isn't among {list(StatType)}")
+            raise ValueError(f"{self.statistic} isn't among {list(StatType)}")
 
         amount = target.return_stat(StatType(self.statistic))
         value = int(amount * self.percentage)

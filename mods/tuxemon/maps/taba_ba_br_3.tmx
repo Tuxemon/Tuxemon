@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="18">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="taba_ba_br_3"/>
+ </properties>
+ <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="3865" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="7729" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzbxsbAsI0MHA3EIPCEjTzcDtUvxE4ehum/Lkge3gr1B7n60f1Cqn50v5DrDhAYKP3b2MjX3w4NO0r0g8KOEv0wAEsLpODtSPofk5H+nyLpFyQj/QuzM1AFAAAhMqgp
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B0EMk20C4YBdQAAK0yAGA=
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjFQAAAQAAAE=
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBjZIIqNgSGabaBdMQpGwcAAAEWOAMI=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="6" name="Collisions">
+  <object id="2" type="collision" x="16" y="192" width="224" height="48"/>
+  <object id="3" type="collision" x="224" y="128" width="32" height="48"/>
+  <object id="4" type="collision" x="224" y="176" width="16" height="16"/>
+  <object id="5" type="collision" x="0" y="80" width="32" height="32"/>
+  <object id="6" type="collision" x="16" y="112" width="16" height="80"/>
+  <object id="7" type="collision" x="0" y="0" width="240" height="48"/>
+  <object id="8" type="collision" x="224" y="48" width="32" height="48"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="5" name="Events">
+  <object id="9" name="back to passageway" type="event" x="0" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_passageway_3.tmx,19,16,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="10" name="back to passageway" type="event" x="0" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_passageway_3.tmx,19,17,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="11" name="there he is" type="event" x="32" y="48" width="16" height="32">
+   <properties>
+    <property name="act1" value="char_stop"/>
+    <property name="act2" value="lock_controls"/>
+    <property name="act3" value="pathfind player,6,9"/>
+    <property name="act4" value="char_face player,right"/>
+    <property name="act5" value="wait 1"/>
+    <property name="act6" value="char_face cam,left"/>
+    <property name="act7" value="wait 0.4"/>
+    <property name="act8" value="translated_dialog acolyte3challenger1"/>
+    <property name="act9" value="set_variable unhinged:start"/>
+    <property name="act999" value="set_variable acolyte3:gone"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not variable_set unhinged:escaped"/>
+   </properties>
+  </object>
+  <object id="12" name="create acolyte" type="event" x="64" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc cam,13,9,stand"/>
+    <property name="act2" value="char_face cam,right"/>
+    <property name="cond1" value="not char_exists acolyte3"/>
+    <property name="cond2" value="not variable_set acolyte3:gone"/>
+   </properties>
+  </object>
+  <object id="13" name="unhinged" type="event" x="128" y="32" width="16" height="16">
+   <properties>
+    <property name="act10" value="char_face cam,right"/>
+    <property name="act11" value="wait 0.3"/>
+    <property name="act12" value="translated_dialog acolyte3challenger2"/>
+    <property name="act14" value="char_face cam,left"/>
+    <property name="act15" value="wait 0.6"/>
+    <property name="act16" value="char_face cam,right"/>
+    <property name="act17" value="wait 0.2"/>
+    <property name="act18" value="translated_dialog acolyte3challenger3"/>
+    <property name="act19" value="char_speed cam,10"/>
+    <property name="act20" value="pathfind cam,13,11"/>
+    <property name="act21" value="translated_dialog acolyte3challenger4"/>
+    <property name="act22" value="wait 0.2"/>
+    <property name="act23" value="char_face cam,left"/>
+    <property name="act24" value="wait 0.2"/>
+    <property name="act25" value="char_face cam,right"/>
+    <property name="act26" value="wait 0.8"/>
+    <property name="act27" value="translated_dialog acolyte3challenger5"/>
+    <property name="act28" value="wait 1"/>
+    <property name="act29" value="char_face cam,left"/>
+    <property name="act30" value="wait 0.2 "/>
+    <property name="act31" value="translated_dialog acolyte3challenger6"/>
+    <property name="act32" value="pathfind cam,7,9"/>
+    <property name="act33" value="translated_dialog acolyte3challenger7"/>
+    <property name="act34" value="pathfind cam,0,3"/>
+    <property name="act35" value="set_variable acolyte3:gone"/>
+    <property name="act36" value="remove_npc acolyte3"/>
+    <property name="act37" value="set_variable unhinged:second"/>
+    <property name="cond1" value="is variable_set unhinged:start"/>
+   </properties>
+  </object>
+  <object id="14" name="unhinged 2" type="event" x="144" y="32" width="16" height="16">
+   <properties>
+    <property name="act10" value="wait 1"/>
+    <property name="act11" value="char_face player,up"/>
+    <property name="act12" value="wait 1.4"/>
+    <property name="act13" value="char_face player,right"/>
+    <property name="act14" value="wait 0.3"/>
+    <property name="act15" value="char_face player,up"/>
+    <property name="act16" value="translated_dialog acolyte3challenger8"/>
+    <property name="act17" value="create_npc cam,0,3,stand"/>
+    <property name="act18" value="char_speed cam,10"/>
+    <property name="act19" value="pathfind cam,6,8"/>
+    <property name="act20" value="char_face cam,down"/>
+    <property name="act21" value="translated_dialog acolyte3challenger9"/>
+    <property name="act22" value="char_face cam,up"/>
+    <property name="act23" value="wait 0.3"/>
+    <property name="act24" value="translated_dialog acolyte3challenger10"/>
+    <property name="act25" value="wait 1"/>
+    <property name="act26" value="char_face cam,right"/>
+    <property name="act27" value="wait 0.6"/>
+    <property name="act28" value="translated_dialog acolyte3challenger11"/>
+    <property name="act29" value="wait 1"/>
+    <property name="act30" value="char_face cam,down"/>
+    <property name="act31" value="translated_dialog acolyte3challenger12"/>
+    <property name="act32" value="pathfind cam,10,7"/>
+    <property name="act33" value="char_face player,right"/>
+    <property name="act34" value="wait 0.2"/>
+    <property name="act35" value="translated_dialog acolyte3challenger13"/>
+    <property name="act36" value="pathfind cam,7,9"/>
+    <property name="act37" value="char_face cam,left"/>
+    <property name="act38" value="translated_dialog acolyte3challenger14"/>
+    <property name="act39" value="wait 0.3"/>
+    <property name="act40" value="char_face cam,up"/>
+    <property name="act41" value="wait 0.3"/>
+    <property name="act42" value="char_face cam,down"/>
+    <property name="act43" value="wait 0.3"/>
+    <property name="act44" value="char_face cam,left"/>
+    <property name="act45" value="wait 0.2"/>
+    <property name="act46" value="translated_dialog acolyte3challenger15"/>
+    <property name="act47" value="wait 0.3"/>
+    <property name="act48" value="char_face cam,up"/>
+    <property name="act49" value="wait 0.3"/>
+    <property name="act50" value="char_face cam,down"/>
+    <property name="act51" value="wait 0.3"/>
+    <property name="act52" value="char_face cam,left"/>
+    <property name="act53" value="wait 0.2"/>
+    <property name="act54" value="translated_dialog acolyte3challenger16"/>
+    <property name="act55" value="char_move cam,up 1"/>
+    <property name="act56" value="char_face player,up"/>
+    <property name="act57" value="translated_dialog acolyte3challenger17"/>
+    <property name="act58" value="char_move cam,up 1,left 2,down 1,right 1"/>
+    <property name="act59" value="char_face cam,down"/>
+    <property name="act60" value="translated_dialog acolyte3challenger18"/>
+    <property name="act61" value="char_face cam,up"/>
+    <property name="act62" value="wait 0.3"/>
+    <property name="act63" value="translated_dialog acolyte3challenger19"/>
+    <property name="act64" value="wait 0.3"/>
+    <property name="act65" value="char_face cam,down"/>
+    <property name="act66" value="wait 0.2"/>
+    <property name="act67" value="translated_dialog acolyte3challenger20"/>
+    <property name="act68" value="char_move cam,up 2"/>
+    <property name="act69" value="translated_dialog acolyte3challenger21"/>
+    <property name="act70" value="wait 0.2"/>
+    <property name="act71" value="translated_dialog acolyte3challenger22"/>
+    <property name="act72" value="char_move cam,down 2"/>
+    <property name="act73" value="translated_dialog acolyte3challenger23"/>
+    <property name="act74" value="wait 1.5"/>
+    <property name="act75" value="translated_dialog acolyte3challenger24"/>
+    <property name="act76" value="pathfind cam,10,9"/>
+    <property name="act77" value="char_face player,right"/>
+    <property name="act78" value="char_face cam,left"/>
+    <property name="act79" value="wait 0.2"/>
+    <property name="act80" value="translated_dialog acolyte3challenger25"/>
+    <property name="act99" value="set_variable unhinged:consequences"/>
+    <property name="cond1" value="is variable_set unhinged:second"/>
+   </properties>
+  </object>
+  <object id="15" name="unhinged 3" type="event" x="160" y="32" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog acolyteiskayrazy"/>
+    <property name="act11" value="char_face cam,right"/>
+    <property name="act12" value="create_npc zeke,15,7,stand"/>
+    <property name="act13" value="pathfind zeke,10,7"/>
+    <property name="act14" value="char_face zeke,down"/>
+    <property name="act15" value="char_face cam,up"/>
+    <property name="act16" value="translated_dialog acolyteiskayrazy2"/>
+    <property name="act17" value="pathfind cam,10,8"/>
+    <property name="act18" value="translated_dialog acolyteiskayrazy3"/>
+    <property name="act19" value="translated_dialog acolyteiskayrazy4"/>
+    <property name="act23" value="add_monster lambert,8,cam"/>
+    <property name="act24" value="add_monster agnidon,32,zeke"/>
+    <property name="act25" value="start_battle cam,zeke"/>
+    <property name="act26" value="wait 1"/>
+    <property name="act27" value="char_face zeke,right"/>
+    <property name="act28" value="wait 0.1"/>
+    <property name="act29" value="translated_dialog acolytewasdefeated"/>
+    <property name="act30" value="create_npc omnigrunt6,15,7,stand"/>
+    <property name="act31" value="char_face zeke,down"/>
+    <property name="act32" value="pathfind omnigrunt6,9,8"/>
+    <property name="act33" value="char_face omnigrunt6,right"/>
+    <property name="act34" value="wait 0.3"/>
+    <property name="act35" value="char_face cam,left"/>
+    <property name="act36" value="wait 0.3"/>
+    <property name="act37" value="char_face cam,up"/>
+    <property name="act38" value="translated_dialog thisisntthelastofme"/>
+    <property name="act39" value="wait 0.2"/>
+    <property name="act40" value="translated_dialog thisisntthelastofme2"/>
+    <property name="act41" value="wait 0.5"/>
+    <property name="act42" value="char_face cam,left"/>
+    <property name="act43" value="wait 0.5"/>
+    <property name="act44" value="char_face cam,up"/>
+    <property name="act45" value="wait 0.3"/>
+    <property name="act46" value="set_variable cammove:now"/>
+    <property name="act47" value="char_move cam,right 3,up 2, right 2"/>
+    <property name="act48" value="remove_npc cam"/>
+    <property name="act50" value="pathfind zeke,7,9"/>
+    <property name="act51" value="char_face zeke,left"/>
+    <property name="act52" value="translated_dialog acolytewasdefeated2"/>
+    <property name="act53" value="wait 0.3"/>
+    <property name="act54" value="char_face zeke,right"/>
+    <property name="act55" value="wait 1.5"/>
+    <property name="act56" value="translated_dialog acolytewasdefeated3"/>
+    <property name="act57" value="wait 1"/>
+    <property name="act58" value="char_face zeke,left"/>
+    <property name="act59" value="translated_dialog acolytewasdefeated4"/>
+    <property name="act60" value="pathfind zeke,12,7"/>
+    <property name="act61" value="char_face zeke,left"/>
+    <property name="act62" value="wait 0.2"/>
+    <property name="act63" value="translated_dialog acolytewasdefeated5"/>
+    <property name="act64" value="pathfind zeke,15,7"/>
+    <property name="act65" value="remove_npc zeke"/>
+    <property name="act66" value="unlock_controls"/>
+    <property name="act97" value="set_variable openthree:no"/>
+    <property name="act98" value="set_variable allthree:done"/>
+    <property name="act99" value="set_variable unhinged:escaped"/>
+    <property name="cond1" value="is variable_set unhinged:consequences"/>
+   </properties>
+  </object>
+  <object id="16" name="movin out" type="event" x="96" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="wait 0.4"/>
+    <property name="act2" value="char_move omnigrunt6,right 4,up 2, right 2"/>
+    <property name="act3" value="remove_npc omnigrunt6"/>
+    <property name="act4" value="set_variable cammove:gone"/>
+    <property name="cond1" value="is variable_set cammove:now"/>
+   </properties>
+  </object>
+  <object id="17" name="teleport to main room" type="event" x="240" y="96" width="16" height="32">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_main.tmx,1,6,1"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

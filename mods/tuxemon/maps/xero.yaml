@@ -1,4 +1,11 @@
 events:
+  Evolution all:
+    actions:
+    - evolution player
+    conditions:
+    - is check_evolution player
+    - is current_state WorldState
+    type: "event"
   Check Max Moves:
     actions:
     - translated_dialog new_tech_delete

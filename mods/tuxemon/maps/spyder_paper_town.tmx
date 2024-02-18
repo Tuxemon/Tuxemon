@@ -126,7 +126,7 @@
   <object id="141" name="Sign for Daycare, Before Opening" type="event" x="256" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_daycare1"/>
-    <property name="cond1" value="not variable_set timberreached:yes"/>
+    <property name="cond1" value="not variable_set seentimber:yes"/>
     <property name="cond2" value="is char_facing_tile player"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>
@@ -183,7 +183,7 @@
   <object id="157" name="Sign for Daycare, After Opening" type="event" x="256" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_daycare2"/>
-    <property name="cond1" value="is variable_set timberreached:yes"/>
+    <property name="cond1" value="is variable_set seentimber:yes"/>
     <property name="cond2" value="is char_facing_tile player"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
    </properties>

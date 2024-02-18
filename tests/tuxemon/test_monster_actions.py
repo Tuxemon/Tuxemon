@@ -134,14 +134,50 @@ class TestMonsterActions(unittest.TestCase):
         self.action.execute_action("add_monster", _params)
         self.action.execute_action("set_monster_health", [None, 0.5])
         monster = self.player.monsters[0]
-        self.assertEqual(monster.current_hp, monster.hp)
+        self.assertEqual(monster.current_hp, monster.hp / 2)
 
     def test_set_monster_health_negative_float(self):
         _params = ["agnite", 5]
         self.action.execute_action("add_monster", _params)
         self.action.execute_action("set_monster_health", [None, -0.5])
         monster = self.player.monsters[0]
-        self.assertEqual(monster.current_hp, monster.hp / 2)
+        self.assertEqual(monster.current_hp, 0)
+        self.assertEqual(len(monster.status), 1)
+
+    def test_modify_monster_health(self):
+        _params = ["agnite", 5]
+        self.action.execute_action("add_monster", _params)
+        self.action.execute_action("modify_monster_health", [])
+        monster = self.player.monsters[0]
+        self.assertEqual(monster.current_hp, monster.hp)
+
+    def test_modify_monster_health_negative_int(self):
+        _params = ["agnite", 5]
+        self.action.execute_action("add_monster", _params)
+        self.action.execute_action("modify_monster_health", [None, -2])
+        monster = self.player.monsters[0]
+        self.assertEqual(monster.current_hp, monster.hp - 2)
+
+    def test_modify_monster_health_positive_int(self):
+        _params = ["agnite", 5]
+        self.action.execute_action("add_monster", _params)
+        self.action.execute_action("modify_monster_health", [None, 2])
+        monster = self.player.monsters[0]
+        self.assertEqual(monster.current_hp, monster.hp)
+
+    def test_modify_monster_health_negative_float(self):
+        _params = ["agnite", 5]
+        self.action.execute_action("add_monster", _params)
+        self.action.execute_action("modify_monster_health", [None, -0.5])
+        monster = self.player.monsters[0]
+        self.assertEqual(monster.current_hp, monster.hp - (monster.hp / 2))
+
+    def test_modify_monster_health_positive_float(self):
+        _params = ["agnite", 5]
+        self.action.execute_action("add_monster", _params)
+        self.action.execute_action("modify_monster_health", [None, 0.5])
+        monster = self.player.monsters[0]
+        self.assertEqual(monster.current_hp, monster.hp)
 
     def test_set_monster_status(self):
         self.player.steps = 0.0

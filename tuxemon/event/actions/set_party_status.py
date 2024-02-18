@@ -33,30 +33,37 @@ class SetPartyStatusAction(EventAction):
     character: str
 
     def start(self) -> None:
-        character = get_npc(self.session, self.character)
-        if character is None:
+        char = get_npc(self.session, self.character)
+        if char is None:
             logger.error(f"{self.character} not found")
             return
-        if not character.monsters:
-            logger.error(f"{character.name} has no monsters!")
+        if not char.monsters:
+            logger.error(f"{char.name} has no monsters!")
             return
 
         # parameters
         level_lowest = MAX_LEVEL
         level_highest = 0
         level_average = 0
+        _healthy = 0
+        _lost_hp = 0
 
         # get values
-        for npc_monster in character.monsters:
-            if npc_monster.level < level_lowest:
-                level_lowest = npc_monster.level
-            if npc_monster.level > level_highest:
-                level_highest = npc_monster.level
-            level_average += npc_monster.level
-        level_average = int(round(level_average / len(character.monsters)))
+        for monster in char.monsters:
+            if monster.level < level_lowest:
+                level_lowest = monster.level
+            if monster.level > level_highest:
+                level_highest = monster.level
+            if monster.current_hp == monster.hp:
+                _healthy += 1
+            _lost_hp += monster.hp - monster.current_hp
+            level_average += monster.level
+
+        level_average = int(round(level_average / len(char.monsters)))
+        party_healthy = "yes" if _healthy == len(char.monsters) else "no"
 
         # ship data in variables
-        variable = character.game_variables
+        variable = char.game_variables
         variables: list[str] = []
         if variable.get("party_level_lowest", 0) != level_lowest:
             variables.append(f"party_level_lowest:{level_lowest}")
@@ -64,8 +71,12 @@ class SetPartyStatusAction(EventAction):
             variables.append(f"party_level_highest:{level_highest}")
         if variable.get("party_level_average", 0) != level_average:
             variables.append(f"party_level_average:{level_average}")
-        client = self.session.client.event_engine
-        if not variables:
-            return
-        for var in variables:
-            client.execute_action("set_variable", [var], True)
+        if variable.get("party_healthy", "no") != party_healthy:
+            variables.append(f"party_healthy:{party_healthy}")
+        if variable.get("party_lost_hp", 0) != _lost_hp:
+            variables.append(f"party_lost_hp:{_lost_hp}")
+
+        if variables:
+            client = self.session.client.event_engine
+            for var in variables:
+                client.execute_action("set_variable", [var], True)

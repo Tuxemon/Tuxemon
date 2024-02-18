@@ -66,5 +66,3 @@ class StoreMonsterAction(EventAction):
         logger.info(f"{monster.name} stored in {store} box!")
         character.monster_boxes[store].append(monster)
         character.remove_monster(monster)
-        label = f"{self.variable}_steps"
-        character.game_variables[label] = int(character.steps)

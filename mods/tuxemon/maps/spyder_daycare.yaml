@@ -88,7 +88,7 @@ events:
     type: "event"
   Talk Granny Piper Open 3:
     actions:
-    - daycare daycare_choice
+    - daycare daycare_choice,daycare_steps
     - translated_dialog spyder_papertown_grannypiper5
     - translated_dialog_choice yes:no,return_monster
     behav:
@@ -104,6 +104,8 @@ events:
     - set_kennel daycare,false
     - store_monster daycare_choice,daycare
     - set_variable stored:stored
+    - info daycare_choice,owner_steps
+    - copy_variable daycare_steps,info_owner_steps
     conditions:
     - is variable_set give_monster:yes
     - not variable_set stored:stored
@@ -116,7 +118,7 @@ events:
     type: "event"
   Return Monster Yes Cash:
     actions:
-    - daycare daycare_choice,release
+    - daycare daycare_choice,daycare_steps,release
     - translated_dialog spyder_papertown_grannypiper6
     - format_variable daycare_exp,-int
     - modify_money player,,daycare_exp

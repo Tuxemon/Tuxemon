@@ -25,14 +25,16 @@ class DaycareAction(EventAction):
 
     Script parameters:
         variable: Name of the variable where to store the monster id.
+        steps: Name of the variable where to store the nr of steps.
         release: Whether will be release or not.
 
-    eg. "daycare name_variable"
+    eg. "daycare name_variable,steps_variable"
 
     """
 
     name = "daycare"
     variable: str
+    steps: str
     release: Optional[str] = None
 
     def start(self) -> None:
@@ -45,8 +47,8 @@ class DaycareAction(EventAction):
         monster = player.find_monster_in_storage(monster_id)
         if monster:
             player.game_variables[f"{self.name}_name"] = monster.name
-            _steps = player.game_variables.get(f"{variable}_steps", 0)
-            diff = player.steps - int(_steps)
+            _steps = player.game_variables.get(self.steps, 0)
+            diff = player.steps - int(float(_steps))
             player.game_variables[f"{self.name}_exp"] = int(diff)
             if self.release:
                 level = monster.give_experience(int(diff))

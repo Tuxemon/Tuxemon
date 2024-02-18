@@ -15,7 +15,13 @@ import random
 from collections.abc import Generator, Sequence
 from typing import TYPE_CHECKING, Optional
 
-from tuxemon.db import GenderType, OutputBattle, PlagueType, SeenStatus
+from tuxemon.db import (
+    GenderType,
+    OutputBattle,
+    PlagueType,
+    SeenStatus,
+    StatType,
+)
 from tuxemon.locale import T
 from tuxemon.technique.technique import Technique
 
@@ -123,31 +129,39 @@ def recharging(technique: Technique) -> bool:
 
 
 def get_awake_monsters(
-    character: NPC, monsters: list[Monster], turn: int
+    character: NPC,
+    monsters: list[Monster],
+    turn: int,
+    method: Optional[str] = None,
 ) -> Generator[Monster, None, None]:
     """
     Iterate all non-fainted monsters in party.
 
     Parameters:
         character: The character.
+        monsters: List of monsters in the battlefield.
+        turn: Turn of the battle.
+        method: Parameter change the monster.
 
     Yields:
         Non-fainted monsters.
 
     """
     mons = [
-        ele
-        for ele in character.monsters
-        if not fainted(ele) and ele not in monsters
+        _mon
+        for _mon in character.monsters
+        if not fainted(_mon) and _mon not in monsters
     ]
     if mons:
         if len(mons) > 1:
-            mon = random.choice(mons)
-            # avoid random choice (1st turn)
             if turn == 1:
                 yield from mons
             else:
-                yield mon
+                if method is None:
+                    yield from mons
+                else:
+                    mon = retrieve_from_party(mons, method)
+                    yield mon
         else:
             yield mons[0]
 
@@ -538,3 +552,44 @@ def build_hud_text(
             return f"{monster.name}{icon} Lv.{monster.level}{symbol}"
         else:
             return f"{monster.name}{icon} Lv.{monster.level}"
+
+
+def retrieve_from_party(party: list[Monster], method: str) -> Monster:
+    """
+    Who is the "method" monster in the party?
+    Picks the respective monster from the party.
+
+    Parameters:
+        party: List of monster.
+        method: Parameter to pick the monster (random, strongest, etc.)
+
+    Returns:
+        Monster.
+    """
+    if method == "lv_highest":
+        highest = max([m.level for m in party])
+        return next(mon for mon in party if mon.level == highest)
+    elif method == "lv_lowest":
+        lowest = min([m.level for m in party])
+        return next(mon for mon in party if mon.level == lowest)
+    elif method == "healthiest":
+        current_hp = max([m.current_hp for m in party])
+        return next(mon for mon in party if mon.current_hp == current_hp)
+    elif method in list(StatType):
+        stat = max([getattr(m, method) for m in party])
+        return next(mon for mon in party if getattr(mon, method) == stat)
+    else:
+        return random_from_party(party)
+
+
+def random_from_party(party: list[Monster]) -> Monster:
+    """
+    Picks a monster randomly from the party.
+
+    Parameters:
+        party: List of monster.
+
+    Returns:
+        Monster.
+    """
+    return random.choice(party)

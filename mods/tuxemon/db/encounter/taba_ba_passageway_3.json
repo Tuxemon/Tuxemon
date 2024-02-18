@@ -1,0 +1,29 @@
+{
+  "slug": "taba_ba_passageway_3",
+  "monsters": [
+    {
+      "monster": "lambert",
+      "encounter_rate": 3.0,
+      "level_range": [
+        5,
+        7
+      ]
+    },
+    {
+      "monster": "katapill",
+      "encounter_rate": 3.0,
+      "level_range": [
+        5,
+        7
+      ]
+    },
+    {
+      "monster": "nut",
+      "encounter_rate": 0.8,
+      "level_range": [
+        6,
+        8
+      ]
+    }
+  ]
+}

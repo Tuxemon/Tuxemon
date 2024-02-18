@@ -29,7 +29,4 @@ class ClearTuxepediaAction(EventAction):
 
     def start(self) -> None:
         player = self.session.player
-        if self.monster_key in player.tuxepedia:
-            player.tuxepedia.pop(self.monster_key)
-        else:
-            return
+        player.tuxepedia.pop(self.monster_key)

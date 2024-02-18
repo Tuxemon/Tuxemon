@@ -20,7 +20,7 @@ class TrainerBattleCommand(CLICommand):
 
     name = "trainer_battle"
     description = "Start a trainer battle."
-    example = "trainer_battle maple_girl"
+    example = "trainer_battle npc_test"
 
     def invoke(self, ctx: InvokeContext, line: str) -> None:
         """

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="45">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="48">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -7,18 +7,10 @@
   <property name="slug" value="maple_house"/>
   <property name="types" value="notype"/>
  </properties>
- <tileset firstgid="1" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
- <tileset firstgid="1551" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="5415" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
- <tileset firstgid="8385" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="1551" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="5415" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
+ <tileset firstgid="8385" source="../gfx/tilesets/core_indoor_walls.tsx"/>
  <layer id="1" name="Tile Layer 1" width="13" height="11">
   <data encoding="base64" compression="zlib">
    eAF7rsTA8BwNN6kwMGDDrHLYxUFq7+HARkA9uORs2RgYRvHQDQMArZ420Q==
@@ -26,23 +18,29 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYKAPEGBiYBAEYiEgFobSyDafZ2ZguAjEyEAfqM4AiA2B2AhKI8sPNPs4CwMDDBPrFk+gHi8g9gZiXOA0UO4MEJ+FqskA0plAnAXl49JHqjjQHgegPQ5Aexxw6V3IiEuGgQEAOsIN2g==
+   eAFjYKAPEGBiYBAEYiEgFobSyDafZ2ZguAjEyEAfqM4AiA2B2AhKI8tTkx0ANAyGiTV3A1DheyDeiEfDRaDcVSC+BFVzHkjzMTIwXIDyiaFg7gLRuMAWoMQnIN6KSwEW8ctQsStY5GBCC4FuRQb8QL4gEAsAMQDjRBAz
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYMAPJjIzMEwGYkLAgIWBwRCIQWAKUP00IvT4A9UHQPVAdA4tUgvodm0g1qGxH44DzYdhfCEEUkNPAADosAck
+   eAFjYMAPJjIzMEwGYkLAgIWBwRCIQWAKUP00IvT4A9UHQPVAdI6SQykEAKUGA2s=
+  </data>
+ </layer>
+ <layer id="7" name="Above Player" width="13" height="11">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFxIbAJqDCbUC8mVgNw1wdADaaAhw=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">
   <object id="4" type="collision" x="0" y="0" width="176" height="32"/>
-  <object id="10" type="collision" x="16" y="102" width="48" height="26"/>
-  <object id="16" type="collision" x="0" y="32" width="80" height="32"/>
-  <object id="34" type="collision" x="160" y="112" width="48" height="16"/>
-  <object id="35" type="collision" x="160" y="144" width="48" height="16"/>
+  <object id="10" type="collision" x="16" y="96" width="48" height="32"/>
+  <object id="16" type="collision" x="0" y="32" width="80" height="16"/>
+  <object id="34" type="collision" x="160" y="96" width="48" height="16"/>
+  <object id="35" type="collision" x="160" y="128" width="48" height="16"/>
   <object id="37" type="collision" x="128" y="32" width="32" height="16"/>
   <object id="41" type="collision" x="192" y="0" width="16" height="32"/>
   <object id="42" type="collision" x="176" y="0" width="16" height="16"/>
+  <object id="45" type="collision" x="160" y="160" width="48" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="5" name="Events">
   <object id="9" name="Go Outside" type="event" x="96" y="160" width="16" height="16">
@@ -52,7 +50,7 @@
     <property name="cond20" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="30" name="talkHouse" type="event" x="128" y="112" width="16" height="16">
+  <object id="30" name="talkHouse1" type="event" x="160" y="128" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog professorswife"/>
     <property name="act20" value="set_variable thewifedidspeak:yes"/>
@@ -60,18 +58,16 @@
     <property name="cond10" value="not variable_set thewifedidspeak:yes"/>
    </properties>
   </object>
-  <object id="32" name="wife appears" type="event" x="96" y="160" width="16" height="16">
+  <object id="32" name="wife appears" type="event" x="128" y="96" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc npc_wife,8,6,stand"/>
-    <property name="act20" value="char_face npc_wife,down"/>
-    <property name="act30" value="char_wander npc_wife"/>
-    <property name="cond10" value="is char_facing player,up"/>
-    <property name="cond20" value="not char_exists npc_wife"/>
+    <property name="act20" value="char_wander npc_wife"/>
+    <property name="cond10" value="not char_exists npc_wife"/>
    </properties>
   </object>
   <object id="39" name="nodrinkpls" type="event" x="80" y="16" width="32" height="16">
    <properties>
-    <property name="act10" value="char_face npc_wife, up"/>
+    <property name="act10" value="char_face npc_wife,up"/>
     <property name="act20" value="translated_dialog nodrink"/>
     <property name="act30" value="char_face npc_wife,down"/>
     <property name="cond10" value="is char_facing_tile player"/>
@@ -105,6 +101,24 @@
     <property name="act10" value="transition_teleport maple_bedroom.tmx,8,2,0.3"/>
     <property name="act20" value="char_face player,down"/>
     <property name="cond10" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="46" name="talkHouse2" type="event" x="176" y="128" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog professorswife1"/>
+    <property name="act20" value="translated_dialog professorswife2"/>
+    <property name="act30" value="translated_dialog_choice yes:no,maplecotton"/>
+    <property name="behav10" value="talk npc_wife"/>
+    <property name="cond10" value="is variable_set thewifedidspeak:yes"/>
+    <property name="cond20" value="not variable_set maplecotton"/>
+   </properties>
+  </object>
+  <object id="47" name="talkHouse3" type="event" x="192" y="128" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog professorswife1"/>
+    <property name="behav10" value="talk npc_wife"/>
+    <property name="cond10" value="is variable_set thewifedidspeak:yes"/>
+    <property name="cond20" value="is variable_set maplecotton"/>
    </properties>
   </object>
  </objectgroup>

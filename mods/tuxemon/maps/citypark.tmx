@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="129">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="132">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -9,13 +9,9 @@
  <tileset firstgid="1" name="Tileset" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
- <tileset firstgid="1601" name="core_buildings" tilewidth="16" tileheight="16" tilecount="2350" columns="47">
-  <image source="../gfx/tilesets/core_buildings.png" width="760" height="800"/>
- </tileset>
+ <tileset firstgid="1601" source="../gfx/tilesets/core_buildings.tsx"/>
  <tileset firstgid="3951" source="../gfx/tilesets/core_outdoor.tsx"/>
- <tileset firstgid="6726" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="6726" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eAHt1LEJgDAQheG3gSi6npXDOIu6i7hApojWnkVK0UbuhL840gTyePmSVEmJoQMMYOAjA1MtzS9msT0ef9Fq5w7t82xB842NtFu2I2g+r96KpWy9XP3cjVdvJR+rz7und3rHAAYwgAEMYAADGMAABjAQz0DfxcuEk//fyQlEnrz4
@@ -28,7 +24,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -67,30 +63,6 @@
   <object id="39" type="collision" x="384" y="384" width="16" height="16"/>
   <object id="40" type="collision" x="368" y="400" width="16" height="16"/>
   <object id="41" type="collision" x="384" y="416" width="16" height="16"/>
-  <object id="46" type="collision" x="96" y="512">
-   <polygon points="0,0 0,32 48,32 48,0"/>
-  </object>
-  <object id="50" type="collision" x="352" y="352">
-   <polygon points="0,0 0,32 32,32 32,0"/>
-  </object>
-  <object id="53" type="collision" x="64" y="80">
-   <polygon points="0,0 0,16 448,16 448,0"/>
-  </object>
-  <object id="54" type="collision" x="560" y="80">
-   <polygon points="0,0 0,16 48,16 48,0"/>
-  </object>
-  <object id="56" type="collision" x="288" y="240">
-   <polygon points="0,0 0,48 16,48 16,0"/>
-  </object>
-  <object id="57" type="collision" x="336" y="240">
-   <polygon points="0,0 0,48 16,48 16,0"/>
-  </object>
-  <object id="58" type="collision" x="384" y="240">
-   <polygon points="0,0 0,48 16,48 16,0"/>
-  </object>
-  <object id="59" type="collision" x="432" y="240">
-   <polygon points="0,0 0,48 16,48 16,0"/>
-  </object>
   <object id="92" type="collision" x="112" y="288" width="16" height="32"/>
   <object id="93" type="collision" x="112" y="416" width="16" height="32"/>
   <object id="94" type="collision" x="496" y="352" width="16" height="32"/>
@@ -98,11 +70,13 @@
   <object id="96" type="collision" x="496" y="432" width="16" height="32"/>
   <object id="97" type="collision" x="608" y="160" width="16" height="16"/>
   <object id="98" type="collision" x="512" y="48" width="64" height="16"/>
-  <object id="99" type="collision" x="80" y="496" width="16" height="16"/>
   <object id="100" type="collision" x="32" y="544" width="32" height="64"/>
   <object id="115" type="collision" x="32" y="384" width="16" height="16"/>
   <object id="127" type="collision" x="576" y="32" width="16" height="16"/>
   <object id="128" type="collision" x="592" y="48" width="16" height="16"/>
+  <object id="129" type="collision" x="352" y="352" width="32" height="32"/>
+  <object id="130" type="collision" x="96" y="512" width="48" height="32"/>
+  <object id="131" type="collision" x="80" y="496" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="33" name="random encounter 1" type="event" x="208" y="176" width="128" height="32">

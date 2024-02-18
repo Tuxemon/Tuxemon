@@ -7338,7 +7338,7 @@ msgstr ""
 msgid "spyder_greenwash_aissa1"
 msgstr "Restez à l'extérieur - Greenwash a tout sous contrôle."
 
-msgid "omnichannel_sign"
+msgid "spyder_omnichannel_sign"
 msgstr "Omnichannel QG : nous faisons les gros titres"
 
 msgid "taba_town_homeplace"

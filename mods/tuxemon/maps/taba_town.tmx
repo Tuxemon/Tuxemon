@@ -8,9 +8,7 @@
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" source="../gfx/tilesets/core_set pieces.tsx"/>
- <tileset firstgid="4326" name="core_buildings" tilewidth="16" tileheight="16" tilecount="2350" columns="47">
-  <image source="../gfx/tilesets/core_buildings.png" width="760" height="800"/>
- </tileset>
+ <tileset firstgid="4326" source="../gfx/tilesets/core_buildings.tsx"/>
  <layer id="1" name="Tile Layer 1" width="64" height="60">
   <data encoding="base64" compression="zlib">
    eAHtWsFNBDEMDCDxgPd1A4hOEKKB+xw0QBUHDfChAEACirlrgAaIJUYYK1mCtHvY2XlYkVfZrMeeSaI7L1NKSxpzQA6QAyNyYJXXup7IbkaMc6q9b51jvJvI7onfvVZfc43eGm2b54Erm8o7es7RXllbEXRR0pvWSo3beg5yZcfau6VvenqmsdUw6DkWN/zau56wlmLR2GoYWvT0nrVTWt/7sxb83jG0xFe7Exzn/Sw6h1vw6zoDrx1r/G9Z3/ucnjVsc397mNJDNhlhds4cfGCXcQ54iTGlp6DnsLfaLagZ7hkBtQT9v3zFLv5zQBy73A8+qHVq3WjkIignoP9d6off4v2aHCAHyAFyIDIHeA8kfyPzd8zYqQVqYUw+cS0ffBr6XdNqnv8b+KgZtcM6TMEB9ASgdwm+9A7imf3u0P5h53r1gRO9D+jpgi99AT33AqwzPtv7YH3kBH2kNT54rfFQXLVeiO1AXnrmA3KleWF7IaP2dwFbacT9Bnuaxj+HetucEP/3vsj6z+/Opfkv51/pzMNeYbUTwf8tdjkX9RkoGjjZT+nU2Fn2I+D9a4xyHui7gZx5lxnr48FPu+oQf6nOUvdzg11y0SP+Up1t3eETf3/6/4/6fwJB68Pj
@@ -683,7 +681,7 @@
     <property name="cond2" value="not variable_set backhome:no"/>
    </properties>
   </object>
-  <object id="146" name="add jaime" type="event" x="456" y="128" width="16" height="16">
+  <object id="146" name="add jaime" type="event" x="448" y="144" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc taba_greeter,31,12,stand"/>
     <property name="act20" value="char_face taba_greeter,down"/>
@@ -757,7 +755,7 @@
     <property name="cond40" value="not variable_set greeter_greets:yes"/>
    </properties>
   </object>
-  <object id="150" name="jaime3" type="event" x="456" y="176" width="16" height="16">
+  <object id="150" name="jaime3" type="event" x="448" y="176" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog taba_greeting3"/>
     <property name="act20" value="char_face taba_greeter,down"/>
@@ -810,28 +808,28 @@
   </object>
   <object id="163" name="Teleport to house1" type="event" x="784" y="96" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport taba_town_house1.tmx,7,6,0.3"/>
+    <property name="act10" value="transition_teleport taba_house1.tmx,7,6,0.3"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="170" name="Teleport to house2" type="event" x="640" y="176" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport taba_town_house2.tmx,7,6,0.3"/>
+    <property name="act10" value="transition_teleport taba_house2.tmx,7,6,0.3"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="171" name="Teleport to house3" type="event" x="528" y="48" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport taba_town_house3.tmx,7,6,0.3"/>
+    <property name="act10" value="transition_teleport taba_house3.tmx,7,6,0.3"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="172" name="Teleport to house4" type="event" x="400" y="48" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport taba_town_house4.tmx,7,6,0.3"/>
+    <property name="act10" value="transition_teleport taba_house4.tmx,7,6,0.3"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
    </properties>

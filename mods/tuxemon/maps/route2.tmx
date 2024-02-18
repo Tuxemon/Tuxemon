@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="1" nextobjectid="139">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="1" nextobjectid="145">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -29,27 +29,6 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="5" type="collision" x="96" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="6" type="collision" x="128" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="7" type="collision" x="192" y="112">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="9" type="collision" x="256" y="80">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="10" type="collision" x="368" y="80">
-   <polygon points="0,0 0,16 80,16 80,0"/>
-  </object>
-  <object id="12" type="collision" x="512" y="224">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="16" type="collision-line" x="288" y="96">
-   <polyline points="0,0 0,-48 96,-48 96,-64 192,-64 192,-48 208,-48 208,-64"/>
-  </object>
   <object id="17" type="collision-line" x="368" y="96">
    <polyline points="0,0 0,64 48,64 48,80 64,80 64,128 112,128 112,144 128,144 128,160 176,160 176,112"/>
   </object>
@@ -138,8 +117,14 @@
   <object id="137" type="collision-line" x="512" y="160">
    <polyline points="0,0 96,0"/>
   </object>
+  <object id="139" type="collision" x="192" y="112" width="16" height="16"/>
+  <object id="140" type="collision" x="256" y="80" width="16" height="16"/>
+  <object id="141" type="collision" x="96" y="96" width="16" height="16"/>
+  <object id="142" type="collision" x="128" y="96" width="16" height="16"/>
+  <object id="143" type="collision" x="512" y="224" width="16" height="16"/>
+  <object id="144" type="collision" x="368" y="80" width="80" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events">
+ <objectgroup color="#ffff00" id="6" name="Events" visible="0">
   <object id="30" name="Teleport to City Park" type="event" x="160" y="0" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport citypark.tmx,10,39,0.3"/>

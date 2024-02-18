@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-import random
+import random as rd
 import uuid
 from dataclasses import dataclass
 from typing import Optional, Union, final
@@ -47,8 +47,8 @@ class ModifyMonsterStatsAction(EventAction):
     variable: Optional[str] = None
     stat: Optional[str] = None
     amount: Optional[Union[float, int]] = None
-    rand1: Optional[int] = None
-    rand2: Optional[int] = None
+    lower_bound: Optional[int] = None
+    upper_bound: Optional[int] = None
 
     @staticmethod
     def modifiy_stat_int(monster: Monster, stat: StatType, value: int) -> None:
@@ -87,13 +87,14 @@ class ModifyMonsterStatsAction(EventAction):
         player = self.session.player
         if not player.monsters:
             return
-        if self.stat not in list(StatType):
+        if self.stat and self.stat not in list(StatType):
             raise ValueError(f"{self.stat} isn't among {list(StatType)}")
 
         monster_stats = [StatType(self.stat)] if self.stat else list(StatType)
         amount_stat = 1 if self.amount is None else self.amount
-        if amount_stat == 1 and self.rand1 and self.rand2:
-            amount_stat = random.randint(self.rand1, self.rand2)
+        if amount_stat == 1:
+            if self.lower_bound is not None and self.upper_bound is not None:
+                amount_stat = rd.randint(self.lower_bound, self.upper_bound)
 
         if self.variable is None:
             for mon in player.monsters:

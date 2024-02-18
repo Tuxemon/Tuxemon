@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-import random
+import random as rd
 import uuid
 from dataclasses import dataclass
 from typing import Optional, Union, final
@@ -43,8 +43,8 @@ class ModifyMonsterBondAction(EventAction):
     name = "modify_monster_bond"
     variable: Optional[str] = None
     amount: Optional[Union[int, float]] = None
-    rand1: Optional[int] = None
-    rand2: Optional[int] = None
+    lower_bound: Optional[int] = None
+    upper_bound: Optional[int] = None
 
     @staticmethod
     def change_bond(monster: Monster, value: Union[int, float]) -> None:
@@ -64,8 +64,9 @@ class ModifyMonsterBondAction(EventAction):
             return
 
         amount_bond = self.amount if self.amount else 1
-        if amount_bond == 1 and self.rand1 and self.rand2:
-            amount_bond = random.randint(self.rand1, self.rand2)
+        if amount_bond == 1:
+            if self.lower_bound is not None and self.upper_bound is not None:
+                amount_bond = rd.randint(self.lower_bound, self.upper_bound)
 
         if self.variable is None:
             for mon in player.monsters:

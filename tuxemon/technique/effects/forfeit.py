@@ -35,7 +35,7 @@ class ForfeitEffect(TechEffect):
         player = user.owner
         assert combat and player
         set_var(self.session, "battle_last_result", self.name)
-        set_var(self.session, "teleport_clinic", OutputBattle.lost)
+        set_var(self.session, "teleport_clinic", OutputBattle.lost.value)
         combat._run = True
         params = {"npc": combat.players[1].name.upper()}
         extra = T.format("combat_forfeit", params)

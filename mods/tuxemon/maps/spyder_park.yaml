@@ -25,16 +25,13 @@ events:
     conditions:
     - is char_facing_tile player
     - is button_pressed K_RETURN
-    height: 1
-    width: 1
     x: 5
     y: 35
     type: "event"
   Player Spawn:
-    height: 1
-    width: 1
     x: 8
     y: 3
+    type: "event"
   Encounters 1:
     actions:
     - random_encounter park
@@ -148,8 +145,8 @@ events:
     - is char_moved player
     - is current_state WorldState
     height: 4
-    width: 4
-    x: 37
+    width: 3
+    x: 36
     y: 18
     type: "event"
   Encounters 10:
@@ -174,10 +171,6 @@ events:
     conditions:
     - not variable_set park_out:yes
     - not variable_set park_out:no
-    height: 1
-    width: 1
-    x: 6
-    y: 2
     type: "event"
   Encounters 11:
     actions:
@@ -188,22 +181,9 @@ events:
     - is char_moved player
     - is current_state WorldState
     height: 2
-    width: 5
+    width: 4
     x: 35
     y: 29
-    type: "event"
-  Encounters 12:
-    actions:
-    - random_encounter park
-    - play_map_animation grass,0.1,noloop,player
-    conditions:
-    - is char_at player
-    - is char_moved player
-    - is current_state WorldState
-    height: 5
-    width: 4
-    x: 40
-    y: 33
     type: "event"
   Steps:
     actions:
@@ -212,12 +192,14 @@ events:
     - add_item tuxeball_park,-25
     - clear_variable park_out
     - clear_variable menu_park_captured
+    - clear_variable menu_park_seen
     - clear_variable alert100
     conditions:
     - is variable_is steps_park,equals,0.0
     type: "event"
   Alert 100:
     actions:
+    - format_variable steps_park,int
     - translated_dialog spyder_park_steps100
     - set_variable alert100:done
     conditions:
@@ -233,6 +215,7 @@ events:
     - add_item tuxeball_park,-25
     - set_variable steps_park:0.0
     - clear_variable menu_park_captured
+    - clear_variable menu_park_seen
     conditions:
     - is variable_set park_out:yes
     type: "event"
@@ -247,8 +230,6 @@ events:
     - create_npc spyder_park_guardian,7,3
     conditions:
     - not char_exists spyder_park_guardian
-    height: 1
-    width: 1
     x: 7
     y: 3
     type: "event"
@@ -298,9 +279,7 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,up
-    height: 1
-    width: 1
-    x: 41
+    x: 38
     y: 12
     type: "event"
   Teleport 2:
@@ -310,8 +289,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,up
-    height: 1
-    width: 1
     x: 18
     y: 12
     type: "event"
@@ -322,8 +299,6 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,up
-    height: 1
-    width: 1
     x: 11
     y: 8
     type: "event"
@@ -333,6 +308,7 @@ events:
     - char_face player,up
     - clear_variable park_out
     - clear_variable menu_park_captured
+    - clear_variable menu_park_seen
     conditions:
     - not has_item player,tuxeball_park
     type: "event"
@@ -396,4 +372,54 @@ events:
     width: 3
     x: 1
     y: 36
+    type: "event"
+  Teleport South:
+    actions:
+    - transition_teleport spyder_park_south.tmx,58,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 38
+    y: 39
+    type: "event"
+  Teleport RiverA:
+    actions:
+    - transition_teleport spyder_routei.tmx,0,24,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 39
+    y: 24
+    type: "event"
+  Teleport RiverB:
+    actions:
+    - transition_teleport spyder_routei.tmx,0,25,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 39
+    y: 25
+    type: "event"
+  Teleport RiverC:
+    actions:
+    - transition_teleport spyder_routei.tmx,0,26,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 39
+    y: 26
+    type: "event"
+  Teleport RiverD:
+    actions:
+    - transition_teleport spyder_routei.tmx,0,27,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 39
+    y: 27
     type: "event"

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="50">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="crystal_bank2"/>
+  <property name="types" value="dungeon"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
+ <tileset firstgid="2971" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+  <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
+ </tileset>
+ <tileset firstgid="3499" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
+  <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="14" height="21">
+  <data encoding="base64" compression="zlib">
+   eAG7y8vAcJdE/ACoPpSPdBwB1ZMNpEnBo/qwh9douIyGy3DNRwCklozs
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="14" height="21">
+  <data encoding="base64" compression="zlib">
+   eAG9kkEOAUEQRX8iscE4hStYkHATWxJugKUD4ABcgJ25ia2lW0j8MvMzpTOZnllQyU91V9XrrqkeAHj0monIx9oJ0ETi6vpTBzhTMbuwD283MmkN7h5w/oyqdYzTPHc839ZPysw45Xw8yxaztDqba0KZaa9ZK55lgUkLmFKvvF7xWJ9LMitq0BeR+Rj3XV3sfsVd+V0me2etzeu+Idd+rupoxG8bU8b5vP6XGeOaqXnZnMwi53xe91ndugtsqQ0VWtU77Fl/pA4l3L/fQXNQ/2Hfiofez8FyYd9hvfYhp3iZfwMaGD49
+  </data>
+ </layer>
+ <layer id="5" name="Tile Layer 3" width="14" height="21">
+  <data encoding="base64" compression="zlib">
+   eAFjYGBgKONlYCgH4gogrgTil9wMDK+AGAauA9k3kPgw8R6g2l4g7gPifiD+D1LDA5NlYHgL5L/Dom8RUO1iIF4CxEuBGB0wA81gAeL9aHpfA8VeQfEbIE0sYATZAcVMWOwj1hxqqEsF2n8a6HZeIJ2Cxy2CQDVCSH6sBqp9COQrA+kqPPrUgWo0kPRNBKr9DuRbAukJePRRw28DZQYoLAmBk8AwOAXE3EhqQWH5AZjGPgLxdqQwQzbrPlD8ARArIukDhSUbUIwdiM8CMTbwFSj+DYjNkfSB1MkAxWRx6MFmDi3E6oFuakBzFzH2TAXqmUaGvr9A/wqTqA8AyrUoRA==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="Collisions">
+  <object id="1" type="collision" x="0" y="0" width="224" height="32"/>
+  <object id="16" type="collision" x="0" y="32" width="16" height="304"/>
+  <object id="17" type="collision" x="112" y="48" width="16" height="272"/>
+  <object id="18" type="collision" x="48" y="128" width="16" height="32"/>
+  <object id="19" type="collision" x="48" y="208" width="64" height="32"/>
+  <object id="20" type="collision" x="16" y="96" width="80" height="32"/>
+  <object id="21" type="collision" x="48" y="241.5" width="16" height="32"/>
+  <object id="22" type="collision" x="16" y="288" width="48" height="48"/>
+  <object id="23" type="collision" x="176" y="32" width="32" height="16"/>
+  <object id="38" type="collision" x="16" y="192" width="96" height="16"/>
+  <object id="44" type="collision" x="160" y="224" width="48" height="16"/>
+  <object id="46" type="collision" x="208" y="32" width="16" height="304"/>
+  <object id="47" type="collision" x="144" y="192" width="64" height="32"/>
+  <object id="48" type="collision" x="128" y="96" width="64" height="32"/>
+  <object id="49" type="collision" x="16" y="48" width="64" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="4" name="Events">
+  <object id="6" name="Teleport to Bank 3" type="event" x="16" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_crystal_bank3.tmx,1,12,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="7" name="Teleport to Bank 3" type="event" x="32" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_crystal_bank3.tmx,2,12,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="9" name="Teleport to Bank 1" type="event" x="32" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_crystal_bank1.tmx,2,10,0.3"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="10" name="Teleport to Bank 1" type="event" x="16" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_crystal_bank1.tmx,1,10,0.3"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="11" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_omnichannel"/>
+    <property name="cond1" value="not music_playing music_omnichannel"/>
+   </properties>
+  </object>
+  <object id="14" name="Environment" type="event" x="16" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable environment:interior"/>
+    <property name="cond1" value="not variable_set environment:interior"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

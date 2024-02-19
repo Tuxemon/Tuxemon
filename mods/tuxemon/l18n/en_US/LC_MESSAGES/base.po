@@ -2371,11 +2371,20 @@ msgstr "Lion Mountain"
 msgid "candy_town"
 msgstr "Candy"
 
+msgid "candy_port"
+msgstr "Candy Port"
+
+msgid "brideswood"
+msgstr "Brideswood"
+
 msgid "citypark"
 msgstr "Citypark"
 
 msgid "cotton_town"
 msgstr "Cotton"
+
+msgid "diamond_hill"
+msgstr "Diamond Hill"
 
 msgid "dryadsgrove"
 msgstr "Dryad's Grove"
@@ -2428,8 +2437,8 @@ msgstr "Route D"
 msgid "routee"
 msgstr "Route E"
 
-msgid "sphalian_town"
-msgstr "Sphalian"
+msgid "crystal_town"
+msgstr "Crystal"
 
 msgid "taba_town"
 msgstr "Taba"
@@ -2520,7 +2529,7 @@ msgstr "A playful meander along the river!"
 msgid "route7_description"
 msgstr "The Ascension Trail on the slopes of Lion Mountain!"
 
-msgid "sphalian_town_description"
+msgid "crystal_town_description"
 msgstr "The highest settlement in the Fondent Region!"
 
 msgid "taba_town_description"
@@ -2846,8 +2855,8 @@ msgstr "Ball"
 msgid "menu_park_captured"
 msgstr "Captured"
 
-msgid "menu_park_encountered"
-msgstr "Come across"
+msgid "menu_park_seen"
+msgstr "Seen"
 
 msgid "menu_food"
 msgstr "Food"
@@ -5590,6 +5599,12 @@ msgstr "You're mistaken."
 msgid "thats_me"
 msgstr "That's me!"
 
+msgid "thats_wild"
+msgstr "That's wild!"
+
+msgid "thats_crazy"
+msgstr "That's crazy!"
+
 msgid "cash_register"
 msgstr "It's a cash register, looks relatively new."
 
@@ -7401,6 +7416,9 @@ msgstr "Right, right!\n There's a data center along the river to the north-east 
 msgid "spyder_pc_alert"
 msgstr "Kernel panic - not syncing: Fatal Machine check"
 
+msgid "spyder_door_locked"
+msgstr "The door is locked!"
+
 msgid "spyder_cottontown_enforcer"
 msgstr "Butt out of it, kid, this is private property!"
 
@@ -7423,7 +7441,7 @@ msgid "spyder_cottontunnel_carlos2"
 msgstr "Hmm, perhaps I could have phrased that more nicely."
 
 msgid "spyder_cottoncafe_hackerchat"
-msgstr "It's so cool that you're helping with Tuxepedia.\n  ... \n Is there a prize for adding all the tuxemon? \n Only the satisfaction of helping the human race, man."
+msgstr "It's so cool that you're helping with Tuxepedia.\n  ... \n Is there a prize for adding all the tuxemon? \n Only the satisfaction of helping the human race, buddy."
 
 msgid "spyder_cottoncafe_barmaidintro"
 msgstr "We call ourselves Team Bazaar. Maybe that's a little pretentious. \n We're a group of rogues and scoundrels who like to get together to drink coffee, discuss philosophy and defy our corporate overlords! \n We try to look out for each other. For example, unlike the Cathedral we don't charge for you to heal your tuxemon! \n Would you like me to heal them now?"
@@ -7822,6 +7840,15 @@ msgstr "I wish I could trade it for a nice quite tuxemon, like a CATEYE."
 msgid "spyder_candy_prof_willtrade"
 msgstr "I'm the luckiest professor in the region of Fondent."
 
+msgid "spyder_candyinn_cott1"
+msgstr "Welcome to Cott's Candy Inn. My name is Cott."
+
+msgid "spyder_candyinn_lyle1"
+msgstr "I was arrested and threatened with death on several occasions but I have gotten used to this kind of intimidation."
+
+msgid "spyder_candyinn_bob1"
+msgstr "Fondent is a dangerous continent for environmental activists.\n But no matter how short my life may be, I will continue to fight to protect the environment."
+
 msgid "spyder_candy_eliane1"
 msgstr "Welcome to my market garden.\n I grow plants.\n Would you like me to harvest some crops for you?"
 
@@ -7833,6 +7860,69 @@ msgstr "Here, you have it."
 
 msgid "spyder_candy_eliane4"
 msgstr "It may be important."
+
+msgid "spyder_candyinn_henrik1"
+msgstr "The old man has been exiled. He wasn't afraid to expose and denounce tycoons who engage in illegal logging and deforestation."
+
+msgid "spyder_candyinn_prof1"
+msgstr "Some journalists are afraid of being arrested if they report on illegal logging."
+
+msgid "spyder_candyinn_jess1"
+msgstr "I'm a wild honeybee hunter. Do you like honey?"
+
+msgid "spyder_candyinn_jess2"
+msgstr "It is so difficult to find bees now because there are less forests.\n In the past bee hunting was easy because the insects built their hives near foot trails."
+
+msgid "spyder_candyinn_james1"
+msgstr "So, the clock is ticking, and the beehives are being depleted. What can we do if Fondent is developed like this?"
+
+msgid "spyder_candyinn_james2"
+msgstr "Stay and fight!"
+
+msgid "spyder_candyinn_james3"
+msgstr "Leave!"
+
+msgid "spyder_candyinn_james4"
+msgstr "Stay? Authorities in Fondent often look the other way when forest crimes take place! We are going to leave."
+
+msgid "spyder_candyinn_james5"
+msgstr "Leave? Sure. An island in the Archipelago."
+
+msgid "spyder_candyinn_monk1"
+msgstr "Are you allergic to bee stings?"
+
+msgid "spyder_candyinn_monk2"
+msgstr "No? Good, because I lost my Tumblebee."
+
+msgid "spyder_candyinn_monk3"
+msgstr "Yes? Wait, how is the reaction?"
+
+msgid "spyder_allergic_mild"
+msgstr "Mild allergic reaction"
+
+msgid "spyder_allergic_severe"
+msgstr "Severe allergic reaction"
+
+msgid "spyder_candyinn_monk4"
+msgstr "Then it's better if you..."
+
+msgid "spyder_buzzing"
+msgstr "B-z-z-z"
+
+msgid "spyder_candyinn_monk5"
+msgstr "Keep calm and don't move a muscle..."
+
+msgid "spyder_candyinn_monk6"
+msgstr "Please take this as apology."
+
+msgid "spyder_candyinn_monk7"
+msgstr "It was very unfortunate what happened."
+
+msgid "spyder_candyport_monk1"
+msgstr "Port authority seized more than 15 illegal containers of timber on a ship. Have you heard about it?"
+
+msgid "spyder_candyport_monk2"
+msgstr "The business owner didn't pay the required bribe for the timber, so the officials decided to confiscate it all."
 
 msgid "spyder_timber_firefighter1"
 msgstr "Hey, do you treat your tuxemon with proper respect?! \n Sorry, I can be very blunt. \n But you wouldn't believe the damage that tuxemon can do if they aren't taken proper care of."        
@@ -8162,7 +8252,7 @@ msgstr "Did you hear about the new tuxemon discovered in the Archipelago?"
 msgid "spyder_route7_sylvester1"
 msgstr "The sea is a long way from here."
 msgid "spyder_route7_fritz1"
-msgstr "A typical Sphalian breakfast consists of white sausage, wheat beer and pretzels."
+msgstr "A typical Crystal breakfast consists of white sausage, wheat beer and pretzels."
 msgid "spyder_route7_statius1"
 msgstr "What would you change about yourself if you could change one thing?"
 msgid "spyder_route7_statius2"
@@ -8464,6 +8554,19 @@ msgstr "Welcome!"
 
 msgid "spyder_park_guardian1"
 msgstr "Do you want to interrupt your experience?"
+
+msgid "spyder_park_guardian2"
+msgstr "Have you seen tree stumps?"
+
+msgid "spyder_park_guardian3"
+msgstr "Illegal logging. The authority's pledge to curb illegal logging exists only on paper. In reality they have not been able to stop it.\n"
+"I have no faith that the authority will protect the forests and the environment. We have to take this matter into our own hands."
+
+msgid "spyder_park_guardian4"
+msgstr "It's revolting!"
+
+msgid "spyder_park_guardian5"
+msgstr "Do you think we got sewer systems and centralised treatment plants inside a park?!"
 
 msgid "spyder_park_nomoney"
 msgstr "Unfortunately you don't have enough money!"
@@ -10315,40 +10418,40 @@ msgstr "Uncle Jeff: Hmm. Very interesting. Fruitera is an air Tuxemon.\n"
 "You and Fruitera will be very compatible together.\n"
 "Now get to school! We don't want you in trouble on your first day."
 
-## Sphalian Town ##
+## Crystal Town ##
 
-msgid "spyder_sphalian_alert_skating"
+msgid "spyder_crystal_alert_skating"
 msgstr "Always be cautious! Always bring safety gear!"
 
-msgid "spyder_sphalian_hackerchat"
+msgid "spyder_crystal_hackerchat"
 msgstr "Two weeks ago a tremendous blizzard struck ${{map_name}}."
 
-msgid "spyder_sphalian_barmaid"
+msgid "spyder_crystal_barmaid"
 msgstr "I don't skate very well."
 
 msgid "spyder_mountain_road_interrupted"
 msgstr "Road blocked due to landslide."
 
-msgid "spyder_sphalian_grannypiper"
+msgid "spyder_crystal_grannypiper"
 msgstr "The Great Blizzard's impact was so great that, still today, survivors met to commemorate."
 
-msgid "spyder_sphalian_monk"
+msgid "spyder_crystal_monk"
 msgstr "I'm reminded of the time the blizzard killed my friend."
 
-msgid "spyder_sphalian_granny"
+msgid "spyder_crystal_granny"
 msgstr "That's, uh... heavy. I'm sorry to hear that."
 
-msgid "spyder_sphalian_shopkeeper"
+msgid "spyder_crystal_shopkeeper"
 msgstr "We worship and have deep respect for the mountain, we trust it will save us from whatever comes."
 
-msgid "spyder_sphalian_maniac"
+msgid "spyder_crystal_maniac"
 msgstr "Climbers need to wake up and understand that climbing Lion Mountain is extremely risky.\n"
 "They need to stop believing just because they have strong tuxemon that they will be able to climb."
 
-msgid "spyder_sphalian_beck"
-msgstr "That's not even a little bit funny, man."
+msgid "spyder_crystal_beck"
+msgstr "That's not even a little bit funny, buddy."
 
-msgid "spyder_sphalian_tvwatch"
+msgid "spyder_crystal_tvwatch"
 msgstr "A journalist travels the globe hunting for lost civilizations."
 
 ## JUNKYARD ##

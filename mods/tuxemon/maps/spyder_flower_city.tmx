@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="499">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="500">
  <properties>
   <property name="east" value="route4"/>
   <property name="edges" value="clamped"/>
@@ -10,13 +10,9 @@
   <property name="west" value="route5"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
- <tileset firstgid="1441" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
-  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
- </tileset>
+ <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <tileset firstgid="9633" source="../gfx/tilesets/core_set pieces.tsx"/>
- <tileset firstgid="11183" name="core_buildings" tilewidth="16" tileheight="16" tilecount="2350" columns="47">
-  <image source="../gfx/tilesets/core_buildings.png" width="760" height="800"/>
- </tileset>
+ <tileset firstgid="11183" source="../gfx/tilesets/core_buildings.tsx"/>
  <tileset firstgid="13533" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
@@ -417,7 +413,7 @@
   <object id="441" name="Talk Captain - Flower" type="event" x="192" y="464" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_river_captain2"/>
-    <property name="act2" value="translated_dialog_choice paper:leather:flower,rivergoto"/>
+    <property name="act2" value="translated_dialog_choice paper_town:leather_town:flower_city,rivergoto"/>
     <property name="behav1" value="talk spyder_captain"/>
     <property name="cond1" value="not variable_set seentimber:yes"/>
    </properties>
@@ -425,7 +421,7 @@
   <object id="445" name="Talk Captain - Timber" type="event" x="208" y="464" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_river_captain2"/>
-    <property name="act2" value="translated_dialog_choice paper:leather:flower:timber,rivergoto"/>
+    <property name="act2" value="translated_dialog_choice paper_town:leather_town:flower_city:timber_town,rivergoto"/>
     <property name="behav1" value="talk spyder_captain"/>
     <property name="cond1" value="not variable_set seencandy:yes"/>
     <property name="cond2" value="is variable_set seentimber:yes"/>
@@ -434,7 +430,7 @@
   <object id="448" name="Talk Captain - Candy" type="event" x="224" y="464" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_river_captain2"/>
-    <property name="act2" value="translated_dialog_choice paper:leather:flower:timber:candy,rivergoto"/>
+    <property name="act2" value="translated_dialog_choice paper_town:leather_town:flower_city:timber_town:candy_port,rivergoto"/>
     <property name="behav1" value="talk spyder_captain"/>
     <property name="cond1" value="is variable_set seencandy:yes"/>
    </properties>
@@ -490,7 +486,7 @@
   <object id="464" name="Destination - Candy" type="event" x="112" y="496" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
-    <property name="act2" value="transition_teleport spyder_candy_town.tmx,26,29,0.3"/>
+    <property name="act2" value="transition_teleport spyder_candy_port.tmx,37,13,0.3"/>
     <property name="act4" value="char_face player,down"/>
     <property name="cond1" value="is variable_set rivergoto:candy"/>
    </properties>
@@ -598,6 +594,13 @@
     <property name="act2" value="char_face player,right"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,right"/>
+   </properties>
+  </object>
+  <object id="499" name="Door locked" type="event" x="512" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_door_locked"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

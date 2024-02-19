@@ -1,0 +1,73 @@
+events:
+  Route Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: "event"
+  Player Spawn:
+    x: 6
+    y: 8
+    type: "event"
+  Go Outside:
+    actions:
+    - transition_teleport spyder_leather_town.tmx,23,10,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 6
+    y: 10
+    type: "event"
+  Heal:
+    actions:
+    - set_monster_health
+    - set_monster_status
+    - variable_math cathedral_ads,+,1
+    - translated_dialog okaythen
+    - char_face spyder_leathercenter_sofia,up
+    - wait 1
+    - char_face spyder_leathercenter_sofia,down
+    - translated_dialog okaythen2
+    - set_variable chooses:none
+    - set_variable teleport_faint:spyder_leather_center.tmx 6 7
+    conditions:
+    - is variable_set chooses:yes
+    type: "event"
+  Create Nurse:
+    actions:
+    - create_npc spyder_leathercenter_sofia,5,4
+    conditions:
+    - not char_exists spyder_leathercenter_sofia
+    type: "event"
+  Talk Nurse:
+    actions:
+    - translated_dialog spyder_cotton_nurse1
+    - translated_dialog_choice yes:no,chooses
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - not variable_set chooses:yes
+    x: 5
+    y: 5
+    type: "event"
+  Use Computer:
+    actions:
+    - change_state PCState
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - not variable_set kernelquest:yes
+    x: 10
+    y: 3
+    type: "event"
+  Use Computer Kernel:
+    actions:
+    - translated_dialog spyder_pc_alert
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - is variable_set kernelquest:yes
+    x: 10
+    y: 3
+    type: "event"

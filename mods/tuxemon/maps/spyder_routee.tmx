@@ -7,9 +7,7 @@
   <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
- <tileset firstgid="2776" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="20" height="20">
   <data encoding="base64" compression="zlib">
    eAErYGBgKCABJzIxMHxjgeBkIJsUvdjUEjLPFmgHPmyH5gZC5sHcjotG9xO9zWsH+gcdSzPjDnNC7iM1zCk1zx7oVuT4csDjdmxuA4khuwFXPIHE0eOKXua1YYkj9DgD8TvQ0iYu94HES4G4DIjLgRifOmLlZgHNmQ3Ec0aYeVyMkHAEhSUhjC+sYeEHCkNiMb6w3g805wCJ+CBQPbHxPVDqAPmY0yI=

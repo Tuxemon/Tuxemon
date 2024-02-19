@@ -279,7 +279,7 @@ class ItemModel(BaseModel):
         file: str = f"animations/item/{v}_00.png"
         if (
             not v
-            or has.file(file)
+            or has.db_entry("animation", v)
             and has.size(file, prepare.NATIVE_RESOLUTION)
         ):
             return v
@@ -724,7 +724,7 @@ class TechniqueModel(BaseModel):
         file: str = f"animations/technique/{v}_00.png"
         if (
             not v
-            or has.file(file)
+            or has.db_entry("animation", v)
             and has.size(file, prepare.NATIVE_RESOLUTION)
         ):
             return v
@@ -875,7 +875,7 @@ class ConditionModel(BaseModel):
         file: str = f"animations/technique/{v}_00.png"
         if (
             not v
-            or has.file(file)
+            or has.db_entry("animation", v)
             and has.size(file, prepare.NATIVE_RESOLUTION)
         ):
             return v
@@ -1229,6 +1229,19 @@ class SoundModel(BaseModel):
     file: str = Field(..., description="File for the sound")
 
 
+class AnimationModel(BaseModel):
+    slug: str = Field(..., description="Unique slug for the animation")
+    folder: str = Field(..., description="Folder of the animation")
+
+    @field_validator("folder")
+    def file_exists(cls: AnimationModel, v: str, info: ValidationInfo) -> str:
+        slug = info.data.get("slug")
+        file: str = f"animations/{v}/{slug}_00.png"
+        if has.file(file):
+            return v
+        raise ValueError(f"the animation {v} doesn't exist in the db")
+
+
 TableName = Literal[
     "economy",
     "element",
@@ -1241,6 +1254,7 @@ TableName = Literal[
     "item",
     "monster",
     "music",
+    "animation",
     "npc",
     "sounds",
     "condition",
@@ -1259,6 +1273,7 @@ DataModel = Union[
     ItemModel,
     MonsterModel,
     MusicModel,
+    AnimationModel,
     NpcModel,
     SoundModel,
     ConditionModel,
@@ -1313,6 +1328,7 @@ class JSONDatabase:
             "environment",
             "sounds",
             "music",
+            "animation",
             "economy",
             "element",
             "shape",
@@ -1470,6 +1486,9 @@ class JSONDatabase:
             elif table == "music":
                 music = MusicModel(**item)
                 self.database[table][music.slug] = music
+            elif table == "animation":
+                animation = AnimationModel(**item)
+                self.database[table][animation.slug] = animation
             elif table == "npc":
                 npc = NpcModel(**item)
                 self.database[table][npc.slug] = npc
@@ -1547,6 +1566,14 @@ class JSONDatabase:
         slug: str,
         table: Literal["music"],
     ) -> MusicModel:
+        pass
+
+    @overload
+    def lookup(
+        self,
+        slug: str,
+        table: Literal["animation"],
+    ) -> AnimationModel:
         pass
 
     @overload
@@ -1632,6 +1659,7 @@ class JSONDatabase:
             "item",
             "monster",
             "music",
+            "animation",
             "npc",
             "sounds",
             "condition",

@@ -1,0 +1,18 @@
+[
+    {
+        "slug" : "dragonbirth",
+        "folder" : "tileset"
+    },
+    {
+        "slug" : "grass",
+        "folder" : "tileset"
+    },
+    {
+        "slug" : "grass_blue",
+        "folder" : "tileset"
+    },
+    {
+        "slug" : "grass_red",
+        "folder" : "tileset"
+    }
+]

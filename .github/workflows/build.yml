@@ -145,18 +145,18 @@ jobs:
     if: ${{ github.ref == 'refs/heads/development' || (github.event_name == 'push' && github.ref_type == 'tag' && startswith(github.ref_name, 'v'))  }}
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           path: artifacts
 
       - name: list artifacts folder
         run: |
           echo "Show artifacts folder:"
-          ls -R artifacts
+          ls artifacts
           echo "Show artifacts/tuxemon_windows_installer folder:"
-          ls -R "artifacts/tuxemon_windows_installer"
+          ls "artifacts/tuxemon_windows_installer"
           echo "Show artifacts/Tuxemon-x86_64:"
-          ls -R "artifacts/Tuxemon-x86_64"
+          ls "artifacts/Tuxemon-x86_64"
 
       - name: Determine release title
         uses: haya14busa/action-cond@v1

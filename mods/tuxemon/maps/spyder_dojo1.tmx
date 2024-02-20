@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="54">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="54">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -7,18 +7,10 @@
   <property name="slug" value="dojo1"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="3865" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
- <tileset firstgid="6835" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="10699" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
+ <tileset firstgid="6835" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="10699" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="24" height="12">
   <data encoding="base64" compression="zlib">
    eAGdkUsKwkAQRHsh+LtBFHGlgp+T6B08h3g5De49g27iB8TPAazCaeg0M5C4KGZSNf1SmewykUGvrEPCe2WyplK55+TgPKAN+FZglJ6Z0Tv2f0rllsH9M/CLqcgl6IqV8zHP8mO595TfnIncwL1DbezJ994b3j7oE8ljM5bfAbcLWb739PuV5XN2sp7lt5BRlu+9E/IzpHyfk2+9uvwl5ld/8u39D/Hv/f3Tm4O9gFK5n7H97b1tA9972j+Vp+5/hE7joAnWvCES87R/Kvcz2p/nq0j7VznLM3X5tn+Vd5D/BUMisEM=
@@ -248,7 +240,6 @@
     <property name="act2" value="change_taste tasteful_zhu,warm"/>
     <property name="act3" value="set_variable zhu_taste_done:yes"/>
     <property name="cond1" value="is variable_set which_taste:taste_warm"/>
-    <property name="cond3" value="is variable_set zhu_tastes_choice:yes"/>
     <property name="cond3" value="not variable_set zhu_taste_done:yes"/>
    </properties>
   </object>
@@ -257,7 +248,6 @@
     <property name="act2" value="change_taste tasteful_zhu,cold"/>
     <property name="act3" value="set_variable zhu_taste_done:yes"/>
     <property name="cond1" value="is variable_set which_taste:taste_cold"/>
-    <property name="cond3" value="is variable_set zhu_tastes_choice:yes"/>
     <property name="cond3" value="not variable_set zhu_taste_done:yes"/>
    </properties>
   </object>

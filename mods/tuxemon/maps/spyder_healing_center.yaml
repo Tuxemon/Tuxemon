@@ -1,0 +1,147 @@
+events:
+  Route Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: "event"
+  Player Spawn:
+    x: 6
+    y: 8
+    type: "event"
+  Go Outside:
+    actions:
+    - transition_teleport spyder_cotton_town.tmx,20,27,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 6
+    y: 10
+    type: "event"
+  Heal:
+    actions:
+    - set_monster_health
+    - set_monster_status
+    - variable_math cathedral_ads,+,1
+    - translated_dialog okaythen
+    - char_face spyder_cottoncenter_krystal,up
+    - wait 1
+    - char_face spyder_cottoncenter_krystal,down
+    - translated_dialog okaythen2
+    - set_variable chooses:none
+    - set_variable teleport_faint:spyder_healing_center.tmx 6 7
+    conditions:
+    - is variable_set chooses:yes
+    type: "event"
+  Create Nurse:
+    actions:
+    - create_npc spyder_cottoncenter_krystal,5,4
+    conditions:
+    - not char_exists spyder_cottoncenter_krystal
+    type: "event"
+  Talk Nurse:
+    actions:
+    - translated_dialog spyder_cotton_nurse1
+    - translated_dialog_choice yes:no,chooses
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - not variable_set chooses:yes
+    x: 5
+    y: 5
+    type: "event"
+  Use Computer:
+    actions:
+    - change_state PCState
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - not variable_set kernelquest:yes
+    x: 10
+    y: 3
+    type: "event"
+  Use Computer Kernel:
+    actions:
+    - translated_dialog spyder_pc_alert
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - is variable_set kernelquest:yes
+    x: 10
+    y: 3
+    type: "event"
+  Create Ada:
+    actions:
+    - create_npc spyder_cottoncenter_ada,10,7
+    conditions:
+    - not char_exists spyder_cottoncenter_ada
+    - is variable_set kernelquest:yes
+    type: "event"
+  Create NPC1:
+    actions:
+    - create_npc spyder_cottonhouse2_davis,8,8
+    - char_face spyder_cottonhouse2_davis,right
+    conditions:
+    - not char_exists spyder_cottonhouse2_davis
+    - is variable_set kernelquest:yes
+    type: "event"
+  Create NPC2:
+    actions:
+    - create_npc spyder_cottonartshop_luvinia,8,9
+    - char_face spyder_cottonartshop_luvinia,right
+    conditions:
+    - not char_exists spyder_cottonartshop_luvinia
+    - is variable_set kernelquest:yes
+    type: "event"
+  Create NPC3:
+    actions:
+    - create_npc spyder_cottoncafe_lotus,11,9
+    - char_face spyder_cottoncafe_lotus,left
+    conditions:
+    - not char_exists spyder_cottoncafe_lotus
+    - is variable_set kernelquest:yes
+    type: "event"
+  Create NPC4:
+    actions:
+    - create_npc spyder_cottoncafe_cayden,11,8
+    - char_face spyder_cottoncafe_cayden,left
+    conditions:
+    - not char_exists spyder_cottoncafe_cayden
+    - is variable_set kernelquest:yes
+    type: "event"
+  Talk NPC1:
+    actions:
+    - translated_dialog spyder_cottoncafe_lotus1
+    - set_variable bumpintomom:yes
+    behav:
+    - talk spyder_cottoncafe_lotus
+    type: "event"
+  Talk NPC2:
+    actions:
+    - translated_dialog spyder_cottoncafe_cayden1
+    - set_variable bumpintomom:yes
+    behav:
+    - talk spyder_cottoncafe_cayden
+    type: "event"
+  Talk NPC3:
+    actions:
+    - translated_dialog spyder_cottonartshop_luvinia1
+    - set_variable bumpintomom:yes
+    behav:
+    - talk spyder_cottonartshop_luvinia
+    type: "event"
+  Talk NPC4:
+    actions:
+    - translated_dialog spyder_cottonhouse2_davis1
+    - set_variable bumpintomom:yes
+    behav:
+    - talk spyder_cottonhouse2_davis
+    type: "event"
+  Talk Ada:
+    actions:
+    - translated_dialog spyder_cottoncenter_ada1
+    - set_variable bumpintomom:yes
+    behav:
+    - talk spyder_cottoncenter_ada
+    type: "event"

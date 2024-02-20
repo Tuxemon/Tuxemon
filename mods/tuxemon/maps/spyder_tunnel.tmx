@@ -9,6 +9,8 @@
   <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <tileset firstgid="10968" source="../gfx/tilesets/core_outdoor_water.tsx"/>
  <layer id="1" name="Lowest Level" width="20" height="40">
   <data encoding="base64" compression="zlib">
    eAHdlssNwkAMRM3nRgfQCr9WEA3kAiUANQC9EIqhBc7YgpGGVTaS1zlEOVi7guUxM7Y2qUSkGmgtxyKrpCJed8p6T/+rr7z5ROSservStw+yTAfnN2Qe5m6rPcC8RPxybn3nYe4ugXlhv5HcbOasF9yHjfZkXagtZaEXJcwcC0yvb84MDF6jPPR18ZvpCM9YNh+cQYSH/JEB+J67D79FZsbE3Hi1pXcdmLaWaGvjwbvHq509af7oJeuzfYnfNmYpD0x7jrHWCA85cb8tQ7wn4HvvyjzO08vB+a551m/LMS38X1/Wg87mkSqq66qsG1VXvJcya60mXuqB/aT72eir755hGT/1wH5y+zbeQ5m1s556vslr9LMPSMaS6g==
@@ -16,12 +18,12 @@
  </layer>
  <layer id="2" name="Obstacles" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAG1llFOAzEMRAMCxFFoexYqrsEfEvQPLsJp4DBwDjy0TwyRvZtuYaV00sQej+NsNq39PNuzfR9k5u4wnv2/uWxtFQ3ERggPyNwU321wbaOB+Difj9EPl/YUOu/PW9t1erHZXex7q5hfR9swcSL2+WV0fc69ja/fX/D5+mV8b9etvUfjOVXfR3B9dnzkBBJLmOm7cgPrq7aqKT6gmfzaf1m+bkuu6ALdxmOM8uEDOp/HeIxc5nJ136zfx6g0kmvG4WOuT+MZH3Vwv6o/om9EG7pA4rk+6Zp67/ERogtkzvlGdOEHTulbwjelbx1BdX7RNtGfe3p92oM6L7N9OKK310d8X0fGRvh6ffgu5ftPfXw/qm+I6jNXE9eX5Uj+4Bynr98I30MQT3FW+njXsn0jzqrWlT7sK83Msw5gpQ/7Y/nEy/3AfeGrzmzm0ZVhxic7H8ePd3tq/7if19DH4QN7ndRDe7m/B2EL36t91ys+6iGf6m4BHxxC7afn8KnubPLJ7hbyzfjQrvns6X0U/yVi6OFM1LlIc13ZOsAnHvnA9U14xA/1gI88dsnaj9B6PWQPH3GWImtEnsRZil/B0lBM
+   eAG1lkFOwzAQRV0EbLgIbS4BYk3FNdghQXewgZvBxZhP8uDLGicmBUvudz0z338yjuNSftp+M45BLHfTfPb/8qyUbXQQHyE8ILY5vtvg2kcHiXE+n2McIeUpdN6flHKo9OJzOB1H27Dvog8YjsQ6v4yuzrn28ef3F3z+/DK+14tS3qLTjtX3HlwfFR85gawlzPSdx/yVceCv2qqmxIDYhb5Glq/7kisxoPv4Gr18xIDFcvE1HiMX5Zo1cs1sPve9xjTZ0kiuHpuNXZ/sGV+vNsX36OvRhi5Q3GquT7rm3vuvgOkHXSA25+vRRRw4p28N35y+XSyq84s+xHip1fq0B3VeZvtQeje2dzPuWh8+/hyZ68m/1kfsWr7/1Mf3o/UNUX2WauL6shzJH1zi9OfXw/cQxHOcLX28a9m+EWer1i19+Lc0Y+c5gC19+P+WT7zcDzwWvtaZjR1dGWZ88vN54ni35/aPx3kNfR4+4XW8y7VO6qG9PLhzjPGFLzsL8CGUeiimdbeAjxih9tNzxLTubIrJ7haKzfhqXfLzVsdo/ZdYQ40zUeci3XXdJGei8znXyNj/Sz2cT7lk96EeVq8H/uJjnbVY62OdtfgJfDpNNg==
   </data>
  </layer>
  <layer id="3" name="Obstacles 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtldENwjAMRMsHiFVod0HsQhkGhmEZFsEn1dLFJBA77UcrIlVxmvrl7CZx162vnXep5osZp7Ofo+cxfZfjeZlMzPF4vsY+SUz99AzksBf75owX7laTIqNx/uLZHOt6pf4qMR1k0vpF9WEdMMeJi7zBjuQOLG7g1nAeZp8xI2rfncxXxfdL6IzGtxW/tefUu8+W/G/JXShnr7Xx3dVyv6iOHG+sOHfqb3u+t+bQp3zo7GWAujLMnEdwI0zOk9YA1Rtlqj96/jcYe/Npz3ErDxq4lXi2DrLPN1t5LfWO11aeN28ljbq3a+pnifF/v50MvAFlNBxG
+   eAHtlmsOwiAQhNFE/3gS20uoBzDeRb20XkIm6abDCikLmMYEkoallK+zUx517v/KdRNqvql22PvduhzCezGelcnEGI/7c+Kjz2mYrpEG7Hz8NOaL4VqTIEvzXOJtlcfyvlR99zntI52l+oAC8zFx4RviEu+0LHBbcDQ3p/0acp6anzllfIe3kTnTe5RywDr/U5x+37lgL/Rrr7bw3lWzv4iOGO+cse5kvK5532qhT/jQiaWOc2Vs7CO4JUz2SZ8BpUzJFzV/G7Stfup1XMuDBi6/4tWcd/x/JPqsvnGOHMvcXuv8ZC09Xt+BDzrLFog=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -46,22 +48,15 @@
   <object id="285" type="collision" x="64" y="400" width="48" height="16"/>
   <object id="286" type="collision" x="64" y="416" width="16" height="80"/>
   <object id="287" type="collision" x="80" y="496" width="16" height="80"/>
-  <object id="288" type="collision" x="48" y="576" width="32" height="16"/>
-  <object id="289" type="collision" x="0" y="592" width="48" height="48"/>
-  <object id="290" type="collision" x="64" y="592" width="16" height="16"/>
+  <object id="288" type="collision" x="64" y="576" width="16" height="16"/>
   <object id="291" type="collision" x="64" y="608" width="256" height="32"/>
   <object id="292" type="collision" x="288" y="496" width="32" height="32"/>
-  <object id="304" type="collision" x="240" y="160" width="16" height="16"/>
-  <object id="305" type="collision" x="256" y="176" width="16" height="16"/>
   <object id="321" type="collision" x="256" y="0" width="64" height="32"/>
   <object id="322" type="collision" x="288" y="576" width="32" height="32"/>
   <object id="323" type="collision" x="288" y="80" width="32" height="368"/>
   <object id="324" type="collision" x="176" y="112" width="64" height="64"/>
-  <object id="325" type="collision" x="256" y="208" width="32" height="48"/>
-  <object id="326" type="collision" x="304" y="448" width="16" height="16"/>
+  <object id="325" type="collision" x="256" y="224" width="32" height="32"/>
   <object id="328" type="collision" x="160" y="0" width="64" height="32"/>
-  <object id="339" type="collision" x="304" y="32" width="16" height="16"/>
-  <object id="350" type="collision" x="272" y="192" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="197" name="Teleport to Below" type="event" x="192" y="32" width="16" height="16">

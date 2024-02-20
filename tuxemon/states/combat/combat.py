@@ -853,6 +853,25 @@ class CombatState(CombatAnimations):
                 new_action = EnqueuedAction(action.user, action.method, new)
                 self._action_queue[index] = new_action
 
+    def rewrite_action_queue_method(
+        self, attacker: Monster, method: Union[Technique, Item, Condition]
+    ) -> None:
+        """
+        Used to replace the method (eg technique, item or condition) used.
+
+        Parameters:
+            attacker: Monster.
+            technique: New technique used.
+
+        eg. "monster uses RAM" -> "monster uses SABER"
+
+        """
+        # rewrite actions in the queue to target the new monster
+        for index, action in enumerate(self._action_queue):
+            if action.user == attacker:
+                new_action = EnqueuedAction(action.user, method, action.target)
+                self._action_queue[index] = new_action
+
     def remove_monster_from_play(
         self,
         monster: Monster,

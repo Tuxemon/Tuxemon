@@ -12,9 +12,7 @@
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
  <tileset firstgid="1601" source="../gfx/tilesets/core_outdoor.tsx"/>
- <tileset firstgid="4376" name="core_buildings" tilewidth="16" tileheight="16" tilecount="2350" columns="47">
-  <image source="../gfx/tilesets/core_buildings.png" width="760" height="800"/>
- </tileset>
+ <tileset firstgid="4376" source="../gfx/tilesets/core_buildings.tsx"/>
  <tileset firstgid="6726" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">

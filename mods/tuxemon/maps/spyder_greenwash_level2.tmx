@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="122">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="122">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -16,12 +16,8 @@
  <tileset firstgid="3121" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
   <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
  </tileset>
- <tileset firstgid="4881" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
- <tileset firstgid="7851" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
-  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1200"/>
- </tileset>
+ <tileset firstgid="4881" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
+ <tileset firstgid="7851" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="7" name="Tile Layer 1" width="16" height="32">
   <data encoding="base64" compression="zlib">
    eAEr52FgqIDiZUhsmBg6XQlVA6KrgHg+EC8A4oVAfI5EehFQ/XEgbhRkYGgiA5+C6l8J1LuKDDyQ+mXEGBgG0n5QeI3aD0l/Qyn9rBVCpPXR+Bt68YdcTlEaf7Dyk9z0O9D6qeX/i2oMDOgYOZxxsWH2o+sF8XHpQRaH6Sc3/AeDfgCqvnfe

@@ -33,7 +33,8 @@ pypy/bin/pypy -m pip install -r "$root_folder/requirements.txt"
 cp $root_folder/LICENSE .
 cp $root_folder/run_tuxemon.py .
 cp $root_folder/CONTRIBUTING.md .
-cp $root_folder/CREDITS.md .
+cp $root_folder/CONTRIBUTORS.md .
+cp $root_folder/ATTRIBUTIONS.md .
 cp $root_folder/README.md .
 cp $root_folder/SPYDER_README.md .
 find . -name "*pyc" -delete

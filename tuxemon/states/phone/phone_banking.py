@@ -33,8 +33,6 @@ class NuPhoneBanking(PygameMenuState):
     ) -> None:
         if "bank_account" not in self.player.money:
             self.player.money["bank_account"] = 0
-        if "bill_cathedral" not in self.player.money:
-            self.player.money["bill_cathedral"] = 0
         bank_account = self.player.money["bank_account"]
         wallet_player = self.player.money["player"]
 

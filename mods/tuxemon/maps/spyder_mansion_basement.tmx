@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="65">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="65">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -8,18 +8,10 @@
   <property name="types" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
- <tileset firstgid="1441" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="5305" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="9169" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
-  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1200"/>
- </tileset>
- <tileset firstgid="11944" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
+ <tileset firstgid="1441" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="5305" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="9169" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="11944" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <layer id="1" name="Tile Layer 1" width="24" height="22">
   <data encoding="base64" compression="zlib">
    eAFjYICAZC4GBlpgqPE0MRvkXhCghbthZtLafJg9ozRt43E0fEfDlxZpAFwAIRHUtgPJaDBz1HzUdDwaPqjhgZ4+aB0+AKZu0KM=

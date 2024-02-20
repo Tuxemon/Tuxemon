@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="47">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="47">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -7,18 +7,10 @@
   <property name="slug" value="nimrod_top"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="3865" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
- <tileset firstgid="5415" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
-  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1200"/>
- </tileset>
- <tileset firstgid="8190" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="5415" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="8190" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <layer id="1" name="Tile Layer 1" width="18" height="20">
   <data encoding="base64" compression="zlib">
    eJz7KcDAsACIFwLxIiD+hcb/SaQ8iN4PxAeA+CAFfFPBUTyKR/EoHsUgDADJ0HaA
@@ -182,7 +174,7 @@
     <property name="act1" value="translated_dialog spyder_nimrod_mace1"/>
     <property name="act2" value="add_monster embazook,20,spyder_nimrod_mace,5,10"/>
     <property name="act3" value="add_monster av8r,20,spyder_nimrod_mace,5,10"/>
-    <property name="act4" value="add_monster komodraw,25,spyder_nimrod_mace,5,10"/>   
+    <property name="act4" value="add_monster komodraw,25,spyder_nimrod_mace,5,10"/>
     <property name="act5" value="start_battle player,spyder_nimrod_mace"/>
     <property name="act6" value="translated_dialog spyder_nimrod_mace2"/>
     <property name="act7" value="set_variable nimrodmace:yes"/>
@@ -195,7 +187,7 @@
     <property name="act1" value="translated_dialog spyder_nimrod_mace1"/>
     <property name="act2" value="add_monster embazook,20,spyder_nimrod_mace,5,10"/>
     <property name="act3" value="add_monster av8r,20,spyder_nimrod_mace,5,10"/>
-    <property name="act4" value="add_monster komodraw,25,spyder_nimrod_mace,5,10"/>   
+    <property name="act4" value="add_monster komodraw,25,spyder_nimrod_mace,5,10"/>
     <property name="act5" value="start_battle player,spyder_nimrod_mace"/>
     <property name="act6" value="translated_dialog spyder_nimrod_mace2"/>
     <property name="act7" value="set_variable nimrodmace:yes"/>

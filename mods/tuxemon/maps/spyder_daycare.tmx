@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="24">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="26">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -7,15 +7,9 @@
   <property name="slug" value="daycare"/>
   <property name="types" value="notype"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="7729" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Layer 1" width="14" height="9">
   <data encoding="base64" compression="zlib">
    eAG7JcTAcIsMzCHMwEAONgPqIwdPYmBgGMXUCwMAEChCSQ==
@@ -37,63 +31,12 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="2" type="collision" x="96" y="64">
-   <polygon points="0,0 0,32 64,32 64,0"/>
-  </object>
-  <object id="4" type="collision" x="16" y="144">
-   <polygon points="0,0 0,-16 -16,-16 -16,0 0,0"/>
-  </object>
   <object id="8" type="collision" x="0" y="0" width="224" height="48"/>
   <object id="12" type="collision" x="160" y="80" width="16" height="16"/>
   <object id="13" type="collision" x="80" y="80" width="16" height="16"/>
   <object id="16" type="collision" x="112" y="48" width="32" height="16"/>
   <object id="18" type="collision" x="80" y="128" width="16" height="16"/>
- </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="14" name="Teleport to Cotton Town" type="event" x="32" y="128" width="32" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_paper_town.tmx,20,5,0.3"/>
-    <property name="act2" value="char_face player,down"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,down"/>
-   </properties>
-  </object>
-  <object id="17" name="Play Music" type="event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="play_music music_cathedral_theme"/>
-    <property name="cond1" value="not music_playing music_cathedral_theme"/>
-   </properties>
-  </object>
-  <object id="20" name="Create Granny Piper" type="event" x="80" y="64" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_grannypiper,3,6"/>
-    <property name="act2" value="char_face spyder_grannypiper,right"/>
-    <property name="cond2" value="not char_exists spyder_grannypiper"/>
-   </properties>
-  </object>
-  <object id="21" name="Talk grannypiper1" type="event" x="144" y="96" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_papertown_grannypiper1"/>
-    <property name="act2" value="set_variable spokengrannypiper:yes"/>
-    <property name="behav1" value="talk spyder_grannypiper"/>
-    <property name="cond1" value="not variable_set spokengrannypiper:yes"/>
-   </properties>
-  </object>
-  <object id="22" name="Talk grannypiper2" type="event" x="144" y="112" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_papertown_grannypiper2"/>
-    <property name="act2" value="set_variable spokengrannypiper:yes"/>
-    <property name="behav1" value="talk spyder_grannypiper"/>
-    <property name="cond2" value="is variable_set spokengrannypiper:yes"/>
-   </properties>
-  </object>
-  <object id="23" name="Teleport to Back" type="event" x="208" y="112" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_paper_town.tmx,22,3,0.3"/>
-    <property name="act2" value="char_face player,right"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,right"/>
-   </properties>
-  </object>
+  <object id="24" type="collision" x="96" y="64" width="64" height="32"/>
+  <object id="25" type="collision" x="0" y="128" width="16" height="16"/>
  </objectgroup>
 </map>

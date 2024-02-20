@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="688">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="698">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -13,24 +13,22 @@
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
  <tileset firstgid="3041" source="../gfx/tilesets/core_outdoor.tsx"/>
- <tileset firstgid="5816" name="core_buildings" tilewidth="16" tileheight="16" tilecount="2350" columns="47">
-  <image source="../gfx/tilesets/core_buildings.png" width="760" height="800"/>
- </tileset>
+ <tileset firstgid="5816" source="../gfx/tilesets/core_buildings.tsx"/>
  <tileset firstgid="8166" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <tileset firstgid="16358" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtmN0NwjAMhDsA4oGFWKFDsAXLowp94hQ5LU5yFUh5QOfYvh/SigfWy7Ks8zPv4A/eged1WbYP7yvnDMIdjZkMe7ujc6G35zl6hmeEo7169Mp8PVoOruZz6Pdqkq9Xx8Wf+d6/ly33y92BLRpODrlAp1eLNrnAFg035x+y/WJGMim6n1VGX3NRZ/juXTIpuj0z+pqLOsN375JJ0e2Z0ddc1Bm+e5dMim7PjL7mos7w3btkUnR7ZvQ1F3WG794lk6LbM6OvuagzfPcumRRLT51FdbnvOKtvqa+zWl1yRp/xjXSZHWHEHdXDO9JjdoQRd1QP70iP2YbR/IweGSIvZjNf/flwR+X90QfL+Vnnzf9++/wfSp4Is5kijVqvpl3bH9V/fPnd9/xe3JwJvQ==
+   eAHtmNENwyAQQxmg6kcX6goZolt0+YoPqxY6CBZnKZH4iHyBu2eH8tXjUcqxn30GN7gD32cp9cF9xbuimM1WJcOoNzsXeCPP7D14RprttcrjjKssxzzyOdgZzJovg+Ni7Hxrv89V7x9yQV33Z5V7h3yr3+icv+L5IROr8wxUNudCrTKc/cjE6vRT2ZwLtcpw9iMTq9NPZXMu1CrD2Y9MrE4/lc25UKsMZz8ysTr9VDbnQq0ynP3IxOr0U9mcC7XKcPYjE2vrx3tR3fY73tm35fNer25nst/hG3Gxd6bRbOZa9Y94Z7mwH81mrs3ky/RTWTtffH9mzzE6P9wt6CzL0fd+/f8PRZ5IVe+I0VsbsXszGeufyW8fef0AmjcNFA==
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHNmE1uFDEQhb1kMqAEhJAQhDDsCRyBBSv+hATcgn2YABIHgUjs+D0EcAj+ViMEe26QV0o/8aZku9t2DxNLL+V2tau+ru52ezI5HcIJaLJGG7rmOWx4F1xXIbM758OLS9A2dBG6AKmf541tyefjcpz2HnjuQneg29AtiL7jYJ+D5xn0FNqH5pBxfbxhf9fTeM8t+wfwvIfeQW+hNxCpfk9DeHjqSH/Q12OO91mbV9p4z23eT/D8gL5D36CvEONdBxvbLvp6zPE+a/NKm9YvN1d5avkedPXXOl+LjGmdtX65e/aou/YJ7PRkCBvQtBvLXVeNz65DGRlDa8Qxb61298FmGnK+nz/0WJ8F1o01ysWweSXn52LlfMpXUger/ZDryOUe4qvl09j2LG50an0WFzONjO8Z4rL11U85yGPW3pPWZzEXm3z2Lmpe31cO8qi157H2nludNBb7ZKPleMryndC1i/0Stsfh35pvuWNrosXV9SWXu4aB19xic8/f3pkQnkBzaB2N3wDmtufvl3y7X4LrFXQgfK/d+8W5Y1vPxvj6Dn8C12foi/DxvFVbva+aS/l0fNX9/bPLGY4b3zLd8rqsvnXVTxmsP1b95u6++Dy1x2Px1ebvm9fC59f+vlw1/ha+mnylc4zP72Usxv98P/5upqlb6je7ko5b47np9goWo4WvhkHnLC7rUbxvfLPIt1Tvb2rPyH1h6145TnY0OuS3W6rGjLvK35aWwzP6/W8fn8VYNaMy6L213Oqz41Tz81Ln1Ywrg+XR75X6crFjfOe2QjC1NmVgHu5B1Wd5Yvt/+79Jye+OUl5lIB9jqM/GvJ/n5exB4/5BGXx+9Q3lY+1zzCU+ZfC/f+33rjbPr75Yv2/95DpqNrWWKl8sh455fo0f6/vr01i+n4pdEsPHHHq8GOF7fQiO94fZ
+   eAHdmE1uFDEQhb1MMiACQkiIkGSyJ3AEFqyAREgkt8g+mQBSDgKR2PF7COAQ/GQ1ipI9N+A9ZUp5U7Ld3e7uYcDSG7vtcvlztdvtnoXrISxCC3Oa3wPXJsR87XY4WoXuQivQHUjbzW6WeZC0DZ4t6Cn0BHoMSXNvxdS98wO+As9L6AV0CI0g2nx+yN/+UuoecURjZ/kTeD5CH6D30DuI9UxngxB2rl7oHGW9tvqqnP1iyRh8TltjZ/kEPL+gn9AP6DvEeqYHYLO0ibJeW31Vzn6xZAw+p60xx/ppnfKU8j2fxF/jfD9Sp3E2ZrLk7tnuZO6LyAdXQliCBpM6nUcXZZ2H+tMYab2WGbtnYKPq2Gvf0rLFzWKU80O+JvY5X3XbmsSBsa8zj7pj17Frwqf+uBaXJmq7FsdD9TxdruJTDuNhzuek7VpM+bZxSMpn0a5juXIYj+Zcj6X3XJ839Tkdwcs4qI2W7ZnQvcvKTdj2wuWeTwbdS8yf5rTJjW22TRjos8vk19/+jRAOoBH0N5KuSY7P9Xcq7+7X4HoDHQvf28zz1eUcyMb17pPG8Au4vkLfhM/b93XN5yWWlC/W3lfd4c1pz/PGN02Hb405i19ffCN3X/w4pdf/c/z83l8ao1y/fyF+sbPMLPeX39fSEWwTv+FG2m9JyyN3VqCPNnwlDNpnvK5X8TL5hpF3qd5ffT9Hz4OJPTQ+YrNanrf0+9J6K18qxmbb57clx/CM/vxbxUcffTMqg8aOY2sbr1PJ90vZldTbuZp9OY6+r9rw3VoOgeoyWRzsDOr5Yud//m8yqzO/8dmcPZ9vN7tcftzh+cGPX8Jnsc8xl7b5719//vf8VeNU7Z+6p7b934Esnl/9x8p+frn5VPnO9W3bNu7gff0HmoeLHg==
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   eAHtmE1uFDEQhb1CIKQwCRmxnQuQFWTFHVixQGzgGoifnACOkAQhOAWwIAkC8XMQxM8RqKfuR54qVW476UWQsOSutl1d9fVz290zpfwv51mBd4uB7u1oa6wX12ujfWPMS4ur9bwv2r/vDW0vzahvTRHo3Kv1dWPbOiPf3mYpu67uW3uO0qpfdu9ge2H1wNUP1j4LI7l69IsYHxvHI6u+HFofGKlrL2uN69qy3L9l9YFVn9e3wXEU8MEPY9Q183mfXEv9EMfzfFqit5TPox1apz/euFLKTavbVh8mPD661+9LJ4ven4/t23eNC+XeaIdW/dgan3589tjW+9P1Gz1nPXzMw/jMR8txtunHfrb17vU5i9ZtLx9i+/zMW+NQpuw8Ws89fIxLHrbnsnPxUb9Wru8Xyo73fXP5ZN8U3w9bIy/H+jNZL5hDr1+Uy/NkbV0feJf4vU7n95UwbRpHxtirn2ezvftv0fXh2eCU8WHstfCizeL1Q7/mpB8std3dKGXP6r7V1oK9eXtt8Mb+t2Ga/RamiA/ftDX98KxFrAfGdWj1qJFP2UDI/VnnOOKDb6Qf+qPC9xPeUT2VujFmD5/Xr8bg8zBfj13YHO+M85rph3XL4vXjM8zxOa2yIW7GpzlVvzu2J/TyIedT06OlUjfkx/63FJ1an79ePj5Les88r+3Bqh38Mz7VD35PGrWgXqoJrteiDNiD+b6Aj2qHdsQXvT/gO1dRvqmYER+u8fppHI7R6lh2rnPqNcqu+WVzdlWeRfXz6zcao4+ue/XT80gz5P9YqRkb4k5pw3GwTfH5NUnubO44TovvC//dTW3oA6scHMe7UPvVn+eZdjV9eC1/P0ffFfShrWlFPemrVvk4pxGbfofxd3H0PYbYkSY1PuoZXYdvEpaIC2PUib+HaWu6+VzUyPcz92kt2WosLbGpUYtvj0/tP4Ysjtfo2aqU51bPa/lqbN+sooDd8w8jfcc5YvD/4dur49wadz3pP/aePmOOac/Bg/lp0btYDWP+uJb0q5/G0f7sPPPX/j+e3dlm
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -61,9 +59,7 @@
   <object id="475" type="collision" x="528" y="96" width="64" height="16"/>
   <object id="476" type="collision" x="592" y="112" width="16" height="16"/>
   <object id="479" type="collision" x="544" y="144" width="16" height="16"/>
-  <object id="480" type="collision" x="528" y="0" width="32" height="80"/>
-  <object id="481" type="collision" x="560" y="0" width="32" height="96"/>
-  <object id="482" type="collision" x="592" y="0" width="32" height="32"/>
+  <object id="480" type="collision" x="528" y="0" width="16" height="96"/>
   <object id="484" type="collision" x="0" y="0" width="528" height="32"/>
   <object id="485" type="collision" x="32" y="240" width="144" height="16"/>
   <object id="486" type="collision" x="176" y="224" width="112" height="16"/>
@@ -729,6 +725,86 @@
     <property name="act8" value="remove_npc spyder_route3_qqq"/>
     <property name="cond1" value="not variable_set ambushedbyqqq:yes"/>
     <property name="cond2" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="688" name="Teleport to Route G" type="event" x="624" y="592" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routeg.tmx,0,37,0.3"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
+   </properties>
+  </object>
+  <object id="689" name="Teleport to Route G" type="event" x="624" y="576" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routeg.tmx,0,36,0.3"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
+   </properties>
+  </object>
+  <object id="690" name="Teleport to Route G" type="event" x="624" y="560" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routeg.tmx,0,35,0.3"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
+   </properties>
+  </object>
+  <object id="691" name="Teleport to Route G" type="event" x="624" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routeg.tmx,0,34,0.3"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
+   </properties>
+  </object>
+  <object id="692" name="Teleport to Route G" type="event" x="624" y="528" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routeg.tmx,0,33,0.3"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
+   </properties>
+  </object>
+  <object id="693" name="Teleport to Route G" type="event" x="624" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routeg.tmx,0,15,0.3"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
+   </properties>
+  </object>
+  <object id="694" name="Teleport to Route G" type="event" x="624" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routeg.tmx,0,8,0.3"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
+   </properties>
+  </object>
+  <object id="695" name="Teleport to Route G" type="event" x="624" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routeg.tmx,0,9,0.3"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
+   </properties>
+  </object>
+  <object id="696" name="Teleport to Route G" type="event" x="624" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routeg.tmx,0,10,0.3"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
+   </properties>
+  </object>
+  <object id="697" name="Teleport to Route G" type="event" x="624" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_routeg.tmx,0,11,0.3"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
  </objectgroup>

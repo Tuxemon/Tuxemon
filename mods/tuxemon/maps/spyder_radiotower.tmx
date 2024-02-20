@@ -16,9 +16,7 @@
  <tileset firstgid="3121" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
   <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
  </tileset>
- <tileset firstgid="4881" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
+ <tileset firstgid="4881" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <layer id="1" name="Tile Layer 1" width="14" height="21">
   <data encoding="base64" compression="zlib">
    eAH7y8vA8A+I/5OAGfgYGFSBWA2I1UnAGkC1vkDsB8T+JOAAoNpSIC4D4nIScMWoPqzhNRou2NPRaLgMnnABAN/VmGg=

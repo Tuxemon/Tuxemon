@@ -360,6 +360,35 @@ class CombatAnimations(ABC, Menu[None]):
         else:
             return self.load_sprite(filename, layer=hud_layer)
 
+    def split_label(self, hud: Sprite, label: str, is_right: bool) -> None:
+        """
+        Checks whether exists a new line inside the label or not.
+        If a new line exists, then it splits it.
+
+        Parameters:
+            hud: Hud's sprite.
+            home: Label blit over the sprite.
+            is_right: Boolean side (true: right side, false: left side).
+                right side (player), left side (opponent)
+
+        """
+        if is_right:
+            line1 = prepare.HUD_RT_LINE1
+            line2 = prepare.HUD_RT_LINE2
+        else:
+            line1 = prepare.HUD_LT_LINE1
+            line2 = prepare.HUD_LT_LINE2
+
+        labels = label.splitlines()
+        if len(labels) > 1:
+            text = self.shadow_text(labels[0])
+            text1 = self.shadow_text(labels[1])
+            hud.image.blit(text, scale_sequence(line1))
+            hud.image.blit(text1, scale_sequence(line2))
+        else:
+            text = self.shadow_text(labels[0])
+            hud.image.blit(text, scale_sequence(line1))
+
     def build_hud(
         self, monster: Monster, home: str, animate: bool = True
     ) -> None:
@@ -380,8 +409,7 @@ class CombatAnimations(ABC, Menu[None]):
         def build_left_hud(hud: Sprite) -> Sprite:
             _symbol = self.players[0].tuxepedia.get(monster.slug)
             label = build_hud_text(_menu, monster, False, _trainer, _symbol)
-            text = self.shadow_text(label)
-            hud.image.blit(text, scale_sequence(prepare.HUD_LT_LINE1))
+            self.split_label(hud, label, False)
             hud.rect.bottomright = 0, _home.bottom
             hud.player = False
             if animate:
@@ -392,8 +420,7 @@ class CombatAnimations(ABC, Menu[None]):
 
         def build_right_hud(hud: Sprite) -> Sprite:
             label = build_hud_text(_menu, monster, True, _trainer, None)
-            text = self.shadow_text(label)
-            hud.image.blit(text, scale_sequence(prepare.HUD_RT_LINE1))
+            self.split_label(hud, label, True)
             hud.rect.bottomleft = _home.right, _home.bottom
             hud.player = True
             if animate:

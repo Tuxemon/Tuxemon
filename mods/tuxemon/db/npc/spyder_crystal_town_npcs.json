@@ -1,0 +1,92 @@
+[
+  {
+    "slug": "spyder_crystal_magician_fiery",
+    "template": [
+      {
+        "sprite_name": "magician_fiery",
+        "combat_front": "magician",
+        "slug": "magician"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_crystal_homemaker",
+    "template": [
+      {
+        "sprite_name": "homemaker_fiery",
+        "combat_front": "heroine",
+        "slug": "homemaker"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_crystal_barmaid",
+    "template": [
+      {
+        "sprite_name": "barmaid_red",
+        "combat_front": "barmaid",
+        "slug": "barmaid"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_crystal_granny",
+    "template": [
+      {
+        "sprite_name": "granny",
+        "combat_front": "adventurer",
+        "slug": "granny"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_crystal_nurse",
+    "template": [
+      {
+        "sprite_name": "nurse",
+        "combat_front": "nurse",
+        "slug": "nurse"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_crystal_maniac_green",
+    "template": [
+      {
+        "sprite_name": "maniac_green",
+        "combat_front": "adventurer",
+        "slug": "maniac"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_crystal_monk_orange",
+    "template": [
+      {
+        "sprite_name": "monk_orange",
+        "combat_front": "monk",
+        "slug": "monk"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_crystal_tennisplayer",
+    "template": [
+      {
+        "sprite_name": "tennisplayer",
+        "combat_front": "tennisplayer",
+        "slug": "tennisplayer"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_crystal_shopkeeper",
+    "template": [
+      {
+        "sprite_name": "shopassist_black",
+        "combat_front": "shopassist",
+        "slug": "shopassistant"
+      }
+    ]
+  }
+]

@@ -1,0 +1,146 @@
+events:
+  Teleport Route7 1:
+    actions:
+    - transition_teleport spyder_route7.tmx,35,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 35
+    y: 24
+    type: "event"
+  Teleport Route7 2:
+    actions:
+    - transition_teleport spyder_route7.tmx,36,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 36
+    y: 24
+    type: "event"
+  Teleport House:
+    actions:
+    - transition_teleport spyder_crystal_town_house.tmx,4,7,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 37
+    y: 22
+    type: "event"
+  Teleport Cafe:
+    actions:
+    - transition_teleport spyder_crystal_town_cafe.tmx,8,11,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 23
+    y: 5
+    type: "event"
+  Music:
+    actions:
+    - play_music music_town_theme
+    conditions:
+    - not music_playing music_town_theme
+    type: "event"
+  Lion Mountain1:
+    actions:
+    - transition_teleport spyder_lion_mountain.tmx,0,89,0.3
+    - char_face player,right
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 39
+    y: 14
+    type: "event"
+  Tuxecenter:
+    actions:
+    - transition_teleport spyder_crystal_center.tmx,6,10,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 34
+    y: 6
+    type: "event"
+  Mountain Sign:
+    actions:
+    - translated_dialog here_to_east
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 37
+    y: 12
+    type: "event"
+  Town Sign:
+    actions:
+    - translated_dialog welcome_location_town
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 32
+    y: 22
+    type: "event"
+  Town Frozen Lake:
+    actions:
+    - translated_dialog spyder_crystal_alert_skating
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 26
+    y: 9
+    type: "event"
+  Create Hacker:
+    actions:
+    - create_npc spyder_crystal_magician_fiery,32,7
+    conditions:
+    - not char_exists spyder_crystal_magician_fiery
+    type: "event"
+  Create Barmaid:
+    actions:
+    - create_npc spyder_crystal_barmaid,26,13
+    - char_face spyder_crystal_barmaid,left
+    conditions:
+    - not char_exists spyder_crystal_barmaid
+    type: "event"
+  Create Homemaker:
+    actions:
+    - create_npc spyder_crystal_homemaker,22,12
+    - char_wander spyder_crystal_homemaker
+    conditions:
+    - not char_exists spyder_crystal_homemaker
+    type: "event"
+  Talk Hacker:
+    actions:
+    - translated_dialog spyder_crystal_hackerchat
+    behav:
+    - talk spyder_crystal_magician_fiery
+    type: "event"
+  Talk Barmaid:
+    actions:
+    - translated_dialog spyder_crystal_barmaid
+    behav:
+    - talk spyder_crystal_barmaid
+    type: "event"
+  Lion Mountain2:
+    actions:
+    - transition_teleport spyder_lion_mountain.tmx,0,90,0.3
+    - char_face player,right
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 39
+    y: 15
+    type: "event"
+  Crystal Inn:
+    actions:
+    - transition_teleport spyder_crystal_bank1.tmx,2,15,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 6
+    y: 7
+    type: "event"

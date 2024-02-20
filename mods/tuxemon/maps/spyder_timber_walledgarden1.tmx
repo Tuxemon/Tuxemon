@@ -6,18 +6,10 @@
   <property name="slug" value="walled_garden1"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
- <tileset firstgid="9279" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="7729" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="9279" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <layer id="1" name="Tile Layer 1" width="16" height="12">
   <data encoding="base64" compression="zlib">
    eAELYWRgCAFiEADRyBgiiiqGTy2yXpg6XOZiU4tNDFk/jA2j0dVTi6+kzsCgDMQw89D5MHFctD9QbwCSfnQ+Ln0w8Rqg3lok/eh8mDpc9Eqg3lVI+tH5uPQNJ/ED7AwMB6H4EJDG5TcAhCxAvA==
@@ -47,8 +39,8 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="23" name="Play Music" type="init" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music music_house_downstairs"/>
-    <property name="cond1" value="not music_playing music_house_downstairs"/>
+    <property name="act1" value="play_music music_home"/>
+    <property name="cond1" value="not music_playing music_home"/>
    </properties>
   </object>
   <object id="29" name="Go Outside" type="event" x="112" y="176" width="16" height="16">

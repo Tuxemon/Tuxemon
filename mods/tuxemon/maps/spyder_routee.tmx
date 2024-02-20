@@ -7,9 +7,7 @@
   <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
- <tileset firstgid="2776" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="20" height="20">
   <data encoding="base64" compression="zlib">
    eAErYGBgKCABJzIxMHxjgeBkIJsUvdjUEjLPFmgHPmyH5gZC5sHcjotG9xO9zWsH+gcdSzPjDnNC7iM1zCk1zx7oVuT4csDjdmxuA4khuwFXPIHE0eOKXua1YYkj9DgD8TvQ0iYu94HES4G4DIjLgRifOmLlZgHNmQ3Ec0aYeVyMkHAEhSUhjC+sYeEHCkNiMb6w3g805wCJ+CBQPbHxPVDqAPmY0yI=
@@ -17,7 +15,7 @@
  </layer>
  <layer id="5" name="Tile Layer 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAGtlEEKwkAMRbNQN649glCvIuipPJY3EDyAehF3pujbPAnT0Q6E159kfkKhHZYRu4xhIkPH9w7pc8yYStl93XPd2vN76+733q2656O5h4bkIXno+Wj60ZA8JA/xNemv8lUdX5P+Kl/VPR9Nf4v0Q89Ht3yo0w/xNem/ryO2i+nfD74mfrf026ef65X2Xmj8HjPvN/rNvd91FXHK4Gw+z2Oec8l/yniq9/CuRjxzv3NH8L5M/HrZ2q/Xz3v9q6v9fs2/AETBUR0=
+   eAGtlFEKwkAMRPOh/vjtEYT2KoKeRm/gsXoDwQNUL+KfWewrMhjSlQ2E2UlmJ2Gh7dZmvWe3EC8rm6Oc9d7RfU6eS3E2mw567/w1T7WF63zVZH3V6/ysr/5w7sFB6iB1UOfD0cNB6iB1EF9F9FE96uOriD6qR32dD0efIXpQ58MzH/roQXwV0T+2Zvsf34Hq4fgq4je638H9tB9xfBXxezber/i13u++Mbt6ErvpXOrEzf8pJaJ3+HTNXr7fUJH6bnD8ajHbr9aPfVphtN+/9TedoVKH
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">

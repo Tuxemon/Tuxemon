@@ -2371,11 +2371,20 @@ msgstr "Lion Mountain"
 msgid "candy_town"
 msgstr "Candy"
 
+msgid "candy_port"
+msgstr "Candy Port"
+
+msgid "brideswood"
+msgstr "Brideswood"
+
 msgid "citypark"
 msgstr "Citypark"
 
 msgid "cotton_town"
 msgstr "Cotton"
+
+msgid "diamond_hill"
+msgstr "Diamond Hill"
 
 msgid "dryadsgrove"
 msgstr "Dryad's Grove"
@@ -2428,14 +2437,20 @@ msgstr "Route D"
 msgid "routee"
 msgstr "Route E"
 
-msgid "sphalian_town"
-msgstr "Sphalian"
+msgid "crystal_town"
+msgstr "Crystal"
 
 msgid "taba_town"
 msgstr "Taba"
 
 msgid "taba_ba_br_1"
 msgstr "Taba Battle Area - Battle Room 1"
+
+msgid "taba_ba_br_2"
+msgstr "Taba Battle Area - Battle Room 2"
+
+msgid "taba_ba_br_3"
+msgstr "Taba Battle Area - Battle Room 3"
 
 msgid "taba_ba_foyer"
 msgstr "Taba Battle Area - Foyer"
@@ -2520,7 +2535,7 @@ msgstr "A playful meander along the river!"
 msgid "route7_description"
 msgstr "The Ascension Trail on the slopes of Lion Mountain!"
 
-msgid "sphalian_town_description"
+msgid "crystal_town_description"
 msgstr "The highest settlement in the Fondent Region!"
 
 msgid "taba_town_description"
@@ -2846,8 +2861,8 @@ msgstr "Ball"
 msgid "menu_park_captured"
 msgstr "Captured"
 
-msgid "menu_park_encountered"
-msgstr "Come across"
+msgid "menu_park_seen"
+msgstr "Seen"
 
 msgid "menu_food"
 msgstr "Food"
@@ -5590,6 +5605,12 @@ msgstr "You're mistaken."
 msgid "thats_me"
 msgstr "That's me!"
 
+msgid "thats_wild"
+msgstr "That's wild!"
+
+msgid "thats_crazy"
+msgstr "That's crazy!"
+
 msgid "cash_register"
 msgstr "It's a cash register, looks relatively new."
 
@@ -6922,6 +6943,133 @@ msgstr "... Well done. I put the blame of this loss entirely on Chris though.\n"
 msgid "acolyte2challengerredo"
 msgstr "Oh ho, back so quick? Well, let's get to it then!"
 
+msgid "healertabapassageway3"
+msgstr "Y'know, that Christie girl is a real piece of work. She would not stop talking about how cute Lamberts are...\n"
+"Oh, sorry. Give me your Tuxemon and I'll heal them."
+
+msgid "healertabapassageway3-2"
+msgstr "There! You should be all set now! Good luck on the next acolyte!"
+
+msgid "acolyte3challenger1"
+msgstr "Wait... the next challenger? Already?"
+
+msgid "acolyte3challenger2"
+msgstr "No... No, no, no."
+
+msgid "acolyte3challenger3"
+msgstr "I'm not ready yet. My Tuxemon aren't healed. This is bad."
+
+msgid "acolyte3challenger4"
+msgstr "Bad, oh so very bad...."
+
+msgid "acolyte3challenger5"
+msgstr "Wait, yes, I can get one from the passageway. Yes, I think that would work. Yes... Yes indeed."
+
+msgid "acolyte3challenger6"
+msgstr "Ohhh, this will be GOOD!"
+
+msgid "acolyte3challenger7"
+msgstr "You just stay right here. I'll be back soon enough!"
+
+msgid "acolyte3challenger8"
+msgstr "Hahaha! I've returned successful!"
+
+msgid "acolyte3challenger9"
+msgstr "Catching tuxemon with your bare hands is always exhilarating, isn't it?\n"
+"The fight, the struggle, there's nothing like it!"
+
+msgid "acolyte3challenger10"
+msgstr "To feel them squirm and shake as you physically submit them to your will...\n"
+"...It's a glorious experience. Knowing that for once, you control the weapon, not the other way around."
+
+msgid "acolyte3challenger11"
+msgstr "In all my years of research, that feeling has always brought me the most satisfaction..."
+
+msgid "acolyte3challenger12"
+msgstr "Well... up until last year when I learned the Truth. When I lost my job because THEY COULDN'T SEE!"
+
+msgid "acolyte3challenger13"
+msgstr "THOSE COWARDS!!"
+
+msgid "acolyte3challenger14"
+msgstr "Hmm, wait. Have you seen the Truth as well? Is there actually another like me?\n"
+"Hmm... Yes! Well... Maybe. Wait, no. Wait. Wait wait wait..."
+
+msgid "acolyte3challenger15"
+msgstr "Did you know that Tuxemon can become a part of you? An extension of your mind, specifically?"
+
+msgid "acolyte3challenger16"
+msgstr "If you enforce your will on your Tuxemon enough, soon your psyches start to merge!"
+
+msgid "acolyte3challenger17"
+msgstr "They called me crazy, they called me a fool. I was fired from the research division because they feared me. They feared what I could do!\n"
+"Humans and Tuxemon, merged together as one. So in sync that one can't be separated from the other... unless they burn out entirely."
+
+msgid "acolyte3challenger18"
+msgstr "Hee hee hee, but that will come back to bite them in the end, now won't it?\n"
+"For only I know how to withstand a burnout!"
+
+msgid "acolyte3challenger19"
+msgstr "Sure, it results in a little madness..."
+
+msgid "acolyte3challenger20"
+msgstr "But that's the price anyone pays to see the Truth..."
+
+msgid "acolyte3challenger21"
+msgstr "Hahahahaha, and after 30 merges and splits, I gladly pay it!"
+
+msgid "acolyte3challenger22"
+msgstr "For to be enlightened like I have... No, to see the TRUTH like I have, there's nothing like it!"
+
+msgid "acolyte3challenger23"
+msgstr "Tuxemon aren't here to better our lives, no no no, they're here to DESTROY them. It's why we MUST end this all.\n"
+"I'd do it myself if I could, but unfortunately, the only way to ensure the destruction of them is with their own kind.\n"
+"Hence, Merging.\n"
+"It's also rather intoxicating, knowing how much power you can wield..."
+
+msgid "acolyte3challenger24"
+msgstr "Wait...\n"
+"Wait wait wait wait wait... Why am I telling you this? You're not enlightened, you haven't seen the Truth."
+
+msgid "acolyte3challenger25"
+msgstr "YOU'RE JUST AN OMNICHANNEL PAWN! How DARE you come in here, interrogating me about the Truth, when you haven't even learned it.\n"
+"You can't even BEGIN to understand, you filthy Omni scum.\n"
+"For that, you and your Tuxemon must be... Annihilated..."
+
+msgid "acolyteiskayrazy"
+msgstr "HALT!"
+
+msgid "acolyteiskayrazy2"
+msgstr "Darnit Cam, we thought this would be a good way to bring you back into society."
+
+msgid "acolyteiskayrazy3"
+msgstr "SILENCE! You dare speak to me, you insignificant piece of-"
+
+msgid "acolyteiskayrazy4"
+msgstr "Alright, enough's enough."
+
+msgid "acolytewasdefeated"
+msgstr "Okay, Mack? Take him out of here."
+
+msgid "thisisntthelastofme"
+msgstr "Mark my words, this isn't the last you'll see of me!!"
+
+msgid "thisisntthelastofme2"
+msgstr "Yeah, sure bud. Just start moving"
+
+msgid "acolytewasdefeated2"
+msgstr "Hey, sorry about that. I guess that Christie girl really did a number on him..."
+
+msgid "acolytewasdefeated3"
+msgstr "He's been in therapy for the past year, ever since his Tuxemon experiments went haywire. We shut down everything after that.\n"
+"Obviously he needs more time..."
+
+msgid "acolytewasdefeated4"
+msgstr "Since there isn't a third acolyte anymore, you can just move on to the next one. I'll be sure to let everyone know."
+
+msgid "acolytewasdefeated5"
+msgstr "Good luck on the next one"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"
@@ -7401,6 +7549,9 @@ msgstr "Right, right!\n There's a data center along the river to the north-east 
 msgid "spyder_pc_alert"
 msgstr "Kernel panic - not syncing: Fatal Machine check"
 
+msgid "spyder_door_locked"
+msgstr "The door is locked!"
+
 msgid "spyder_cottontown_enforcer"
 msgstr "Butt out of it, kid, this is private property!"
 
@@ -7423,7 +7574,7 @@ msgid "spyder_cottontunnel_carlos2"
 msgstr "Hmm, perhaps I could have phrased that more nicely."
 
 msgid "spyder_cottoncafe_hackerchat"
-msgstr "It's so cool that you're helping with Tuxepedia.\n  ... \n Is there a prize for adding all the tuxemon? \n Only the satisfaction of helping the human race, man."
+msgstr "It's so cool that you're helping with Tuxepedia.\n  ... \n Is there a prize for adding all the tuxemon? \n Only the satisfaction of helping the human race, buddy."
 
 msgid "spyder_cottoncafe_barmaidintro"
 msgstr "We call ourselves Team Bazaar. Maybe that's a little pretentious. \n We're a group of rogues and scoundrels who like to get together to drink coffee, discuss philosophy and defy our corporate overlords! \n We try to look out for each other. For example, unlike the Cathedral we don't charge for you to heal your tuxemon! \n Would you like me to heal them now?"
@@ -7822,6 +7973,15 @@ msgstr "I wish I could trade it for a nice quite tuxemon, like a CATEYE."
 msgid "spyder_candy_prof_willtrade"
 msgstr "I'm the luckiest professor in the region of Fondent."
 
+msgid "spyder_candyinn_cott1"
+msgstr "Welcome to Cott's Candy Inn. My name is Cott."
+
+msgid "spyder_candyinn_lyle1"
+msgstr "I was arrested and threatened with death on several occasions but I have gotten used to this kind of intimidation."
+
+msgid "spyder_candyinn_bob1"
+msgstr "Fondent is a dangerous continent for environmental activists.\n But no matter how short my life may be, I will continue to fight to protect the environment."
+
 msgid "spyder_candy_eliane1"
 msgstr "Welcome to my market garden.\n I grow plants.\n Would you like me to harvest some crops for you?"
 
@@ -7833,6 +7993,69 @@ msgstr "Here, you have it."
 
 msgid "spyder_candy_eliane4"
 msgstr "It may be important."
+
+msgid "spyder_candyinn_henrik1"
+msgstr "The old man has been exiled. He wasn't afraid to expose and denounce tycoons who engage in illegal logging and deforestation."
+
+msgid "spyder_candyinn_prof1"
+msgstr "Some journalists are afraid of being arrested if they report on illegal logging."
+
+msgid "spyder_candyinn_jess1"
+msgstr "I'm a wild honeybee hunter. Do you like honey?"
+
+msgid "spyder_candyinn_jess2"
+msgstr "It is so difficult to find bees now because there are less forests.\n In the past bee hunting was easy because the insects built their hives near foot trails."
+
+msgid "spyder_candyinn_james1"
+msgstr "So, the clock is ticking, and the beehives are being depleted. What can we do if Fondent is developed like this?"
+
+msgid "spyder_candyinn_james2"
+msgstr "Stay and fight!"
+
+msgid "spyder_candyinn_james3"
+msgstr "Leave!"
+
+msgid "spyder_candyinn_james4"
+msgstr "Stay? Authorities in Fondent often look the other way when forest crimes take place! We are going to leave."
+
+msgid "spyder_candyinn_james5"
+msgstr "Leave? Sure. An island in the Archipelago."
+
+msgid "spyder_candyinn_monk1"
+msgstr "Are you allergic to bee stings?"
+
+msgid "spyder_candyinn_monk2"
+msgstr "No? Good, because I lost my Tumblebee."
+
+msgid "spyder_candyinn_monk3"
+msgstr "Yes? Wait, how is the reaction?"
+
+msgid "spyder_allergic_mild"
+msgstr "Mild allergic reaction"
+
+msgid "spyder_allergic_severe"
+msgstr "Severe allergic reaction"
+
+msgid "spyder_candyinn_monk4"
+msgstr "Then it's better if you..."
+
+msgid "spyder_buzzing"
+msgstr "B-z-z-z"
+
+msgid "spyder_candyinn_monk5"
+msgstr "Keep calm and don't move a muscle..."
+
+msgid "spyder_candyinn_monk6"
+msgstr "Please take this as apology."
+
+msgid "spyder_candyinn_monk7"
+msgstr "It was very unfortunate what happened."
+
+msgid "spyder_candyport_monk1"
+msgstr "Port authority seized more than 15 illegal containers of timber on a ship. Have you heard about it?"
+
+msgid "spyder_candyport_monk2"
+msgstr "The business owner didn't pay the required bribe for the timber, so the officials decided to confiscate it all."
 
 msgid "spyder_timber_firefighter1"
 msgstr "Hey, do you treat your tuxemon with proper respect?! \n Sorry, I can be very blunt. \n But you wouldn't believe the damage that tuxemon can do if they aren't taken proper care of."        
@@ -8162,7 +8385,7 @@ msgstr "Did you hear about the new tuxemon discovered in the Archipelago?"
 msgid "spyder_route7_sylvester1"
 msgstr "The sea is a long way from here."
 msgid "spyder_route7_fritz1"
-msgstr "A typical Sphalian breakfast consists of white sausage, wheat beer and pretzels."
+msgstr "A typical Crystal breakfast consists of white sausage, wheat beer and pretzels."
 msgid "spyder_route7_statius1"
 msgstr "What would you change about yourself if you could change one thing?"
 msgid "spyder_route7_statius2"
@@ -8465,6 +8688,19 @@ msgstr "Welcome!"
 msgid "spyder_park_guardian1"
 msgstr "Do you want to interrupt your experience?"
 
+msgid "spyder_park_guardian2"
+msgstr "Have you seen tree stumps?"
+
+msgid "spyder_park_guardian3"
+msgstr "Illegal logging. The authority's pledge to curb illegal logging exists only on paper. In reality they have not been able to stop it.\n"
+"I have no faith that the authority will protect the forests and the environment. We have to take this matter into our own hands."
+
+msgid "spyder_park_guardian4"
+msgstr "It's revolting!"
+
+msgid "spyder_park_guardian5"
+msgstr "Do you think we got sewer systems and centralised treatment plants inside a park?!"
+
 msgid "spyder_park_nomoney"
 msgstr "Unfortunately you don't have enough money!"
 
@@ -8488,6 +8724,15 @@ msgstr "I think the park has done a pretty good job of being everyone's friend."
 
 msgid "spyder_park_billie"
 msgstr "Hey ${{name}}! Maybe I'll see you deeper in the park. Bet I'll catch more than you!"
+
+msgid "spyder_park_afraid"
+msgstr "{target} gets afraid."
+
+msgid "spyder_park_stare"
+msgstr "{target} stares at you."
+
+msgid "spyder_park_wander"
+msgstr "{target} continues to wander around."
 
 msgid "0floor"
 msgstr "Ground Floor"
@@ -10315,40 +10560,40 @@ msgstr "Uncle Jeff: Hmm. Very interesting. Fruitera is an air Tuxemon.\n"
 "You and Fruitera will be very compatible together.\n"
 "Now get to school! We don't want you in trouble on your first day."
 
-## Sphalian Town ##
+## Crystal Town ##
 
-msgid "spyder_sphalian_alert_skating"
+msgid "spyder_crystal_alert_skating"
 msgstr "Always be cautious! Always bring safety gear!"
 
-msgid "spyder_sphalian_hackerchat"
+msgid "spyder_crystal_hackerchat"
 msgstr "Two weeks ago a tremendous blizzard struck ${{map_name}}."
 
-msgid "spyder_sphalian_barmaid"
+msgid "spyder_crystal_barmaid"
 msgstr "I don't skate very well."
 
 msgid "spyder_mountain_road_interrupted"
 msgstr "Road blocked due to landslide."
 
-msgid "spyder_sphalian_grannypiper"
+msgid "spyder_crystal_grannypiper"
 msgstr "The Great Blizzard's impact was so great that, still today, survivors met to commemorate."
 
-msgid "spyder_sphalian_monk"
+msgid "spyder_crystal_monk"
 msgstr "I'm reminded of the time the blizzard killed my friend."
 
-msgid "spyder_sphalian_granny"
+msgid "spyder_crystal_granny"
 msgstr "That's, uh... heavy. I'm sorry to hear that."
 
-msgid "spyder_sphalian_shopkeeper"
+msgid "spyder_crystal_shopkeeper"
 msgstr "We worship and have deep respect for the mountain, we trust it will save us from whatever comes."
 
-msgid "spyder_sphalian_maniac"
+msgid "spyder_crystal_maniac"
 msgstr "Climbers need to wake up and understand that climbing Lion Mountain is extremely risky.\n"
 "They need to stop believing just because they have strong tuxemon that they will be able to climb."
 
-msgid "spyder_sphalian_beck"
-msgstr "That's not even a little bit funny, man."
+msgid "spyder_crystal_beck"
+msgstr "That's not even a little bit funny, buddy."
 
-msgid "spyder_sphalian_tvwatch"
+msgid "spyder_crystal_tvwatch"
 msgstr "A journalist travels the globe hunting for lost civilizations."
 
 ## JUNKYARD ##

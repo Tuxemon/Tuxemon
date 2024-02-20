@@ -798,21 +798,44 @@ class WorldState(state.State):
 
         # Get all the NPCs' tile positions
         for npc in self.get_all_entities():
-            prop = RegionProperties(
-                enter_from=[], exit_from=[], endure=[], entity=npc, key=None
-            )
-            pos = npc.tile_pos
-            collision_dict[pos] = prop
-
-        for coords, surface in self.surface_map.items():
-            for label, value in surface.items():
-                _prop = RegionProperties(
+            region = self.collision_map.get(npc.tile_pos)
+            if region:
+                prop = RegionProperties(
+                    region.enter_from,
+                    region.exit_from,
+                    region.endure,
+                    npc,
+                    region.key,
+                )
+            else:
+                prop = RegionProperties(
                     enter_from=[],
                     exit_from=[],
                     endure=[],
-                    entity=None,
-                    key=label,
+                    entity=npc,
+                    key=None,
                 )
+            collision_dict[npc.tile_pos] = prop
+
+        for coords, surface in self.surface_map.items():
+            region = self.collision_map.get(coords)
+            for label, value in surface.items():
+                if region:
+                    _prop = RegionProperties(
+                        region.enter_from,
+                        region.exit_from,
+                        region.endure,
+                        region.entity,
+                        label,
+                    )
+                else:
+                    _prop = RegionProperties(
+                        enter_from=[],
+                        exit_from=[],
+                        endure=[],
+                        entity=None,
+                        key=label,
+                    )
                 if float(value) == 0:
                     collision_dict[coords] = _prop
 
@@ -941,13 +964,13 @@ class WorldState(state.State):
         # does the tile explicitly define exits?
         try:
             adjacent_tiles = list()
-            for direction in tile.exit_from:
-                exit_tile = tuple(dirs2[direction] + position)
-                if skip_nodes and exit_tile in skip_nodes:
-                    continue
-
-                adjacent_tiles.append(exit_tile)
-            return adjacent_tiles
+            if tile.exit_from:
+                for direction in tile.exit_from:
+                    exit_tile = tuple(dirs2[direction] + position)
+                    if skip_nodes and exit_tile in skip_nodes:
+                        continue
+                    adjacent_tiles.append(exit_tile)
+                return adjacent_tiles
         except KeyError:
             pass
 

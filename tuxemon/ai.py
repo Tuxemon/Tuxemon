@@ -39,12 +39,11 @@ class AI:
         """
         Trainer battles.
         """
-        if self.check_strongest():
-            if len(self.character.items) > 0:
-                for itm in self.character.items:
-                    if itm.category == ItemCategory.potion:
-                        if self.need_potion():
-                            self.action_item(itm)
+        if len(self.character.items) > 0:
+            for itm in self.character.items:
+                if itm.category == ItemCategory.potion:
+                    if self.need_potion():
+                        self.action_item(itm)
         technique, target = self.track_next_use()
         # send data
         self.action_tech(technique, target)
@@ -75,36 +74,6 @@ class AI:
             return skip, random.choice(self.opponents)
         else:
             return random.choice(actions)
-
-    def check_weakest(self) -> bool:
-        """
-        Is it the weakest monster in the NPC's party?
-        """
-        weakest = [
-            m
-            for m in self.character.monsters
-            if m.level == min([m.level for m in self.character.monsters])
-        ]
-        weak = weakest[0]
-        if weak.level == self.monster.level:
-            return True
-        else:
-            return False
-
-    def check_strongest(self) -> bool:
-        """
-        Is it the strongest monster in the NPC's party?
-        """
-        strongest = [
-            m
-            for m in self.character.monsters
-            if m.level == max([m.level for m in self.character.monsters])
-        ]
-        strong = strongest[0]
-        if strong.level == self.monster.level:
-            return True
-        else:
-            return False
 
     def need_potion(self) -> bool:
         """

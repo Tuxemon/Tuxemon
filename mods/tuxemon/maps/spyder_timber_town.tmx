@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="385">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="386">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="route5"/>
@@ -14,12 +14,8 @@
  </tileset>
  <tileset firstgid="3041" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="5816" source="../gfx/tilesets/core_set pieces.tsx"/>
- <tileset firstgid="7366" name="core_buildings" tilewidth="16" tileheight="16" tilecount="2350" columns="47">
-  <image source="../gfx/tilesets/core_buildings.png" width="760" height="800"/>
- </tileset>
- <tileset firstgid="9716" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
-  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
- </tileset>
+ <tileset firstgid="7366" source="../gfx/tilesets/core_buildings.tsx"/>
+ <tileset firstgid="9716" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eAHtV8tNw0AQdQGI3xHx6wQhGsiF0AACagAaoArgTB3QABJFwDmX5MKM5EdeRvu1N7BGPozW3rXHb+a9t5tMNppm0sa5jFOJC5rDWg3jreC6k7gf8f1wlsPLf+rfw+5Stzk96PrspXxvKP37FH+ojxG1+Bn9Uw9z1OLnR8H1RPHW4qwFn9Uu+jni67YX+Pq3rnNwf7NpDkwwp/gufPvV6s/6GfOleT8VbB/bq8H40C/2bui6L76XnVVeY/jgX/j2lbzMvsb1s6xzfX2vY/iQH32M9Wdm6sf7OSNr7nhrye1cuL6WcOVKxed6N3fO1TPV4JkHm577NePT+oHP+nYd5zD3D5wqrzee/jE+692YHnO51ecZn49Tmxc+hk8xlvZrF3zsJ7uXu+4PAzzYul33uf3j59VHmtPu6XxvObFnEM4iO0LL/D2bK1ZPF3zwltWuvYeW++LjXrmubc0+7ULDGKHl38bn4iQ0l4vvSvSu+08oFrKOXh7JmeTyTeocn2mWi1BdoTWuGThTR85r3xk6vvfE/9wpGgjpg9dYK6X6pxydRGrZi6yDZ9ZKSXzI33cc8bl/46b2tUT/SvyO9+Etgc+Xu8T8iO/v9VeCR1+OofP7DXrip9o=
@@ -27,12 +23,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtl0tOwzAQhkcgaLuDPQta2LZcgRvwlLgBcAoaOAAch7LldQ3gCLz2fCPF0qgKUSGpNYgZ6dMktmP/+eNIHpH5xXBVZAQpz2+ldmfeFimmZ6xqmx6T6/60Ql9VWy49f2mdSY3Yur6ax1rtSho0W3SR1Nfqgr+cTLUsL4l0wJOu9DqqaYS2Laf6XhakeC55IifdXrJ3fb1FKbolHbIX30JHOPATB277IndwDw/wCJ7iFT1v8A4f8AmeYn0g0ocBbMAm5Igu59pZYgc9u7AH+3AAOULP3LPEGXrGUMA5XEBEOBAOhAP/wYEbzt4Tw7Wzs7iew9cM3moF1af7RDVq9qjvBG3HpYce9dnve0QtY/dj0+um+zntP+vhFV5eln5+127H6PvZcXqf+pt+D1sHpnqwzRy1pf7VEeFAPgcOV/Kt9QUyP3/J
+   eAHtl19OwkAQxicYAd/kHRIB45twBW/AH0m8gXoKKRxAjyO+gnAN5AgovvNN0k0mUGppm3WMM8kvQ2e33a9fl2SWaD9qV/u1NJXrClELuJzmGb9xzw1RsLtuVG13jq/rxwh9UTVfev7SOpMYsXFjMbflOuQ0cJbwIm4s1wVTPoy1FE+JSkCTLvc6rKkFbW2l+lYFCj5ClshOt5asXd/ZCQXlkBKyFt9MhzlwjAPTOtEMvIM5WABNsYaeT/AFNuAbaIqLBlEdNEATXAIfUUZfmyQ60NMFPdAHt8BHcM+dJJ6gZwgCMAJjYGEOmAPmwH9w4A2990TwqqwX5z68KtB2VmB9vE9YI2eN+h6g7T70UKM++X3vcJaR+zHr76z72e0/6eELvHwO/TxUl3P4/eQ8vnbjWb+HPAe682Ce2c6W/K+2SOLA4DzJLJvzkwM+fdwCYoaAcA==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="7" name="Tile Layer 5" width="40" height="40">
@@ -42,13 +38,12 @@
  </layer>
  <layer id="4" name="Tile Layer 4" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt00sOwVAYhuFvD6hEgrAiu3GbdA8tFuM2oqXdCDbhHRo0JhJOju9PnsmZ9D/vSSXPPxY49aUzCpS4wOMCLvC+wJb/ZIc9DjjiG9PiO210kKCL17kmUoUaIc6Nve54BLpfiM280+cFspGUY4U1NvC4gAu4gAu4gAu4gAu4gAvEUWA6kGaYY4ElxlLadD7pSU3ncZSI7xZD3jG+W/lGvyzwBOReHWY=
+   eAHt0zsKwkAARdG3B3UEQUFX5G7ip3EP8bMYjVYm8bMRdRPe0iLEIiBDfA9OM00mF0by/rHAeSjlKFDiAs8FXKC+wJ53ckCGI074xTp8p4seAvr43DVIN9wR4x7c64lXpPeLsZnv1LxAOpbW2GCLHTwXcAEXcAEXcAEXcAEXcIF2FEhG0gxzLLDERFpVnU8HUtV5O0r4L1zABb4VeANzoxzH
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="245" type="collision" x="288" y="16" width="144" height="224"/>
-  <object id="246" type="collision" x="96" y="0" width="192" height="32"/>
-  <object id="247" type="collision" x="80" y="0" width="16" height="16"/>
+  <object id="246" type="collision" x="96" y="0" width="176" height="32"/>
   <object id="248" type="collision" x="0" y="0" width="64" height="32"/>
   <object id="249" type="collision" x="0" y="32" width="48" height="32"/>
   <object id="250" type="collision" x="0" y="64" width="32" height="32"/>
@@ -75,7 +70,6 @@
   <object id="277" type="collision" x="0" y="544" width="48" height="32"/>
   <object id="278" type="collision" x="0" y="576" width="32" height="32"/>
   <object id="280" type="collision" x="256" y="608" width="256" height="32"/>
-  <object id="281" type="collision" x="176" y="592" width="16" height="16"/>
   <object id="282" type="collision" x="272" y="544" width="16" height="16"/>
   <object id="283" type="collision" x="192" y="544" width="80" height="48"/>
   <object id="284" type="collision" x="288" y="544" width="80" height="32"/>
@@ -83,7 +77,6 @@
   <object id="286" type="collision" x="464" y="544" width="16" height="16"/>
   <object id="287" type="collision" x="368" y="544" width="16" height="16"/>
   <object id="288" type="collision" x="144" y="448" width="48" height="32"/>
-  <object id="291" type="collision" x="512" y="624" width="64" height="16"/>
   <object id="293" type="collision" x="576" y="608" width="64" height="32"/>
   <object id="294" type="collision" x="592" y="576" width="48" height="32"/>
   <object id="295" type="collision" x="608" y="544" width="32" height="32"/>
@@ -112,7 +105,6 @@
   <object id="324" type="collision" x="480" y="352" width="48" height="16"/>
   <object id="325" type="collision" x="480" y="368" width="16" height="16"/>
   <object id="326" type="collision" x="0" y="608" width="208" height="32"/>
-  <object id="327" type="collision" x="208" y="624" width="16" height="16"/>
   <object id="343" type="collision" x="240" y="144" width="32" height="48"/>
   <object id="344" type="collision" x="224" y="144" width="16" height="32"/>
   <object id="360" type="collision" x="176" y="176" width="16" height="16"/>
@@ -195,7 +187,7 @@
   <object id="334" name="Talk Captain - Flower" type="event" x="160" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_river_captain2"/>
-    <property name="act2" value="translated_dialog_choice paper:leather:flower,rivergoto"/>
+    <property name="act2" value="translated_dialog_choice paper_town:leather_town:flower_city,rivergoto"/>
     <property name="behav1" value="talk spyder_captain"/>
     <property name="cond1" value="not variable_set seentimber:yes"/>
    </properties>
@@ -203,7 +195,7 @@
   <object id="338" name="Talk Captain - Timber" type="event" x="176" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_river_captain2"/>
-    <property name="act2" value="translated_dialog_choice paper:leather:flower:timber,rivergoto"/>
+    <property name="act2" value="translated_dialog_choice paper_town:leather_town:flower_city:timber_town,rivergoto"/>
     <property name="behav1" value="talk spyder_captain"/>
     <property name="cond1" value="not variable_set seencandy:yes"/>
    </properties>
@@ -211,7 +203,7 @@
   <object id="341" name="Talk Captain - Candy" type="event" x="192" y="320" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_river_captain2"/>
-    <property name="act2" value="translated_dialog_choice paper:leather:flower:timber:candy,rivergoto"/>
+    <property name="act2" value="translated_dialog_choice paper_town:leather_town:flower_city:timber_town:candy_port,rivergoto"/>
     <property name="behav1" value="talk spyder_captain"/>
     <property name="cond1" value="is variable_set seencandy:yes"/>
    </properties>
@@ -259,7 +251,7 @@
   <object id="350" name="Destination - Candy" type="event" x="64" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
-    <property name="act2" value="transition_teleport spyder_candy_town.tmx,26,29,0.3"/>
+    <property name="act2" value="transition_teleport spyder_candy_port.tmx,37,13,0.3"/>
     <property name="act4" value="char_face player,down"/>
     <property name="cond1" value="is variable_set rivergoto:candy"/>
    </properties>
@@ -454,6 +446,13 @@
     <property name="behav1" value="talk spyder_outsidewalled_midas"/>
     <property name="cond1" value="is has_item player,gold_pass"/>
     <property name="cond2" value="is variable_set walledmidas:yes"/>
+   </properties>
+  </object>
+  <object id="385" name="Door locked" type="event" x="64" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_door_locked"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

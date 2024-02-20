@@ -95,9 +95,19 @@ class Entity(Generic[SaveDict]):
 
         """
         coords = (int(pos[0]), int(pos[1]))
-        prop = RegionProperties(
-            enter_from=[], exit_from=[], endure=[], entity=self, key=None
-        )
+        region = self.world.collision_map.get(coords)
+        if region:
+            prop = RegionProperties(
+                region.enter_from,
+                region.exit_from,
+                region.endure,
+                self,
+                region.key,
+            )
+        else:
+            prop = RegionProperties(
+                enter_from=[], exit_from=[], endure=[], entity=self, key=None
+            )
         self.world.collision_map[coords] = prop
 
     def remove_collision(self, pos: tuple[int, int]) -> None:
@@ -108,10 +118,21 @@ class Entity(Generic[SaveDict]):
             pos: Position to be removed.
 
         """
-        try:
-            del self.world.collision_map[pos]
-        except:
-            pass
+        region = self.world.collision_map.get(pos)
+        if region and (region.enter_from or region.exit_from or region.endure):
+            prop = RegionProperties(
+                region.enter_from,
+                region.exit_from,
+                region.endure,
+                None,
+                region.key,
+            )
+            self.world.collision_map[pos] = prop
+        else:
+            try:
+                del self.world.collision_map[pos]
+            except:
+                pass
 
     # === PHYSICS END =========================================================
 

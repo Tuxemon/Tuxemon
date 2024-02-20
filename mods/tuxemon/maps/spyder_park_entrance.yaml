@@ -17,8 +17,6 @@ events:
     - char_face spyder_park_reception,right
     conditions:
     - not char_exists spyder_park_reception
-    height: 1
-    width: 1
     x: 1
     y: 7
     type: "event"
@@ -68,8 +66,6 @@ events:
     - char_face spyder_park_florist,left
     conditions:
     - not char_exists spyder_park_florist
-    height: 1
-    width: 1
     x: 8
     y: 5
     type: "event"
@@ -84,6 +80,7 @@ events:
     - set_variable paypark:null
     - set_variable steps_park:500
     - set_variable menu_park_captured:0
+    - set_variable menu_park_seen:0
     - unlock_controls
     conditions:
     - is variable_set paypark:yes
@@ -105,8 +102,6 @@ events:
     conditions:
     - is char_facing_tile player
     - is button_pressed K_RETURN
-    height: 1
-    width: 1
     x: 7
     y: 5
     type: "event"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="275">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="278">
  <properties>
   <property name="east" value="paper_town"/>
   <property name="edges" value="clamped"/>
@@ -9,9 +9,7 @@
   <property name="west" value="candy_town"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
- <tileset firstgid="2776" name="core_outdoor_water" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
-  <image source="../gfx/tilesets/core_outdoor_water.png" width="1024" height="2048"/>
- </tileset>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_water.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eAHtl0GOAiEQRYnORi/lVTqZ8R5u9QoeYXTrZGbFEYxbNZ7Cdjv/R0l60w0FBcGkFwQjBbwqfkF1+2FMW2n7nNTLxpjVzreYhsfvC7ZLgT39j5kTozXu84AWjkI9rDHvjjlSv6SMJ+zxjbYRxo/7cG5uRsYhho18nLuL9E0aR599Kb35OPrGY/RGn1rEN7dGHbNUC7Tfg0+ae26/En2JHErxg3zbDDHU0A7XIJvk/grJQ9rwzk7xm2uQS3r/hGicNlw3Rdsh+6TohnNL7NHHeJgZM50/2w9+99mF/s/z1LzrbmBamWe7KvC5PNV6j7X5qAXqVZKrQ2ejzce9NPXa5Zu8dOj0yF5Dk0Px8Y2dobm/jgadFl2voUkfg2+8G0PH5fqRz3+njfHzx2hIg8yR3552wf9Dc2seQ73e4JuqqZGRbHjDGtzF6nxcG98CSb6jDsjCxrPg2qg7G7yRSYw5z5WMqDWyxSAne8rayBcLTdqUNULnstaUfFOTDZqxOJcifKyTJHUmcs5C1xZ+FeFjnCW1HGJdlC1UB6Pd+76xJc7uH7E94EM=
@@ -19,12 +17,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlkEKwjAQRUe9g4vexIp4EKsUvIBHKCh4RY/jD6TiZmKyCI3wBj4N06G8vGYRMwoDGMAABjCAAQxgAAP/YWC3Mutj9nq2VhcxTYIKGeGThbJa0l+3MXuu07x3/dOHstVYH6L1nNrn8Sq2Wxrv8/bb46RuSO3zWMJ3Es8Q89K+wvqs1KwSvpoc3rfh88zk9fGX58mbwp9nJq+PvzxP3lTr/o66Hxx+3A+8vdHHAAbaMPAGFtwY/A==
+   eAHtlkEKgzAQRcf2Di56k1qKB7EtQi/QIwgKvaLH8QtaXM2QRdDCG/gYMiG8PLOIGYUBDGAAAxjAAAYwgIH/MHAtzKolN32PVi8xdYKa08InC2m1p7/L2ex78nl7/dNBKbWsmqPxNjnv5FtsHx/v19167DS7JuedTOFrxPRYMupc6/ipuVyVwpeLwdsXPs9O3MNf7MhbgT/PTtzDX+zIW3F0f7XeB/fgfeCdjx4GMLC/gQkEvxoT
   </data>
  </layer>
  <layer id="5" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHdmW9OAyEQxfngB6OeQ5NVT6InaeuB6hk8mX/u4Lykv2RCAuxSKRNJyMIOA4/HvGGbLrcpPVpV+blJ6cnaz6f+p/WXiXZh2tn6e6tfhkXlYO03q9+n/mz7cmf8WY1WdJYqO8O2D4hPsaUz/AiITbyhg6j40EFUfOJQMRgVH/lEOCMWn3cj4iPvRsQGJuWYqIX7Kyo+8l9UfOS/qPiEizs4IkbyH89oGMl/UTXs8x9YOfOadrZ8Y2vvqn7+LedE/IGVsy5pJ7eTo0r+JftajPLv3dvaNXrH3V+l9GCVvffM837d47XO58WwvVrVmfVqZCQ++KtpobXTo/Hn/XMteC1t1Qr8lbTQwoYd/5IWWnbmyZ/wp/foOB8zsw9//1m/I/mFv3P0OxIf8ef1N3I9P7fXtX/v2/CHvrztEm3WLeVe+BOW0pjROPN86deDv9n6Ld2v8Fey+72MatfiEP5m67cVhzP068+jFoMaB37vc+l2K8Zm6Vc8KAa1fukbwOs3j9ec+y12+db8c7v6KsQbdrj9q98WxEvP95YweX/9j/AL1/eizg==
+   eAHtWUkOwjAMzIET8A6QCrwEXsLyM17G8gc8ghGWJacqW+ZApNAkjtth4nEC7SalLKyiXMelLK29evRP1u8a2oFpa8/fWT0bFpS9tQ9WL49+a3s3Nf6sqhWsJcrWsO0E8SG2sIZHQWzgjTpQxUcdqOIDhyiq+JhP7ij1Pn3e1UP3zMuK2IgJOUa1cP9Sxcf8p4qP+U8VH3BxD1bEyPzHqxpG5j9VDfPcCd6IFe14hsaYL9FeO2PDFu3+Xn1txh+xcq0z7UQ7c1Tmn9n7cNEOf88dxxWus1Epc6v87gqYPIa1YdtYxZopaoT8vbuPeP+oBa+loVohf5kWPNe1Nv0zLfTZs3uTP9ip42xui3Hy99fva+yTP3gr6xf55dfx53Wdsev5y+Z8c5y6ztbO6/ebOGr3jvnSz23NH7Fk+6sCf7U4VOGvLw7Jc6trLQZbYYrPzWIwzmvRRwyCwywH+/03xmvkfogdvjX/aEcfZWn/zeP9Ae3k9lO/LRjvr5y3gMn74z3CDTgCmQY=
   </data>
  </layer>
  <layer id="6" name="Tile Layer 4" width="40" height="40">
@@ -33,44 +31,8 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
-  <object id="160" type="collision" x="608" y="32" width="32" height="64"/>
-  <object id="162" type="collision" x="608" y="240" width="16" height="48"/>
-  <object id="163" type="collision" x="608" y="176" width="16" height="48"/>
-  <object id="164" type="collision" x="608" y="112" width="16" height="48"/>
-  <object id="165" type="collision" x="0" y="0" width="640" height="16"/>
-  <object id="166" type="collision" x="384" y="16" width="48" height="16"/>
-  <object id="167" type="collision" x="320" y="16" width="48" height="16"/>
-  <object id="168" type="collision" x="256" y="16" width="48" height="16"/>
-  <object id="169" type="collision" x="192" y="16" width="48" height="16"/>
-  <object id="170" type="collision" x="128" y="16" width="48" height="16"/>
-  <object id="171" type="collision" x="64" y="16" width="48" height="16"/>
-  <object id="172" type="collision" x="0" y="16" width="48" height="16"/>
-  <object id="173" type="collision" x="16" y="304" width="432" height="16"/>
-  <object id="174" type="collision" x="16" y="288" width="32" height="16"/>
-  <object id="175" type="collision" x="0" y="256" width="16" height="32"/>
-  <object id="176" type="collision" x="64" y="288" width="48" height="16"/>
   <object id="177" type="collision" x="112" y="272" width="64" height="64"/>
-  <object id="178" type="collision" x="192" y="288" width="48" height="16"/>
-  <object id="179" type="collision" x="256" y="288" width="48" height="16"/>
-  <object id="180" type="collision" x="320" y="288" width="48" height="16"/>
-  <object id="181" type="collision" x="384" y="288" width="48" height="16"/>
-  <object id="182" type="collision" x="624" y="304" width="16" height="16"/>
-  <object id="186" type="collision" x="512" y="592" width="64" height="16"/>
-  <object id="187" type="collision" x="512" y="496" width="32" height="96"/>
-  <object id="188" type="collision" x="496" y="496" width="16" height="48"/>
-  <object id="189" type="collision" x="480" y="480" width="48" height="16"/>
-  <object id="190" type="collision" x="464" y="464" width="48" height="16"/>
-  <object id="196" type="collision" x="544" y="544" width="16" height="48"/>
-  <object id="197" type="collision" x="624" y="96" width="16" height="208"/>
   <object id="198" type="collision" x="608" y="320" width="32" height="224"/>
-  <object id="219" type="collision" x="0" y="32" width="32" height="32"/>
-  <object id="220" type="collision" x="0" y="64" width="16" height="64"/>
-  <object id="232" type="collision" x="0" y="608" width="640" height="32"/>
-  <object id="233" type="collision" x="256" y="368" width="240" height="32"/>
-  <object id="234" type="collision" x="448" y="16" width="48" height="16"/>
-  <object id="235" type="collision" x="512" y="16" width="48" height="16"/>
-  <object id="236" type="collision" x="576" y="16" width="48" height="16"/>
-  <object id="237" type="collision" x="0" y="320" width="32" height="288"/>
   <object id="238" type="collision" x="144" y="336" width="112" height="32"/>
   <object id="239" type="collision" x="144" y="368" width="48" height="16"/>
   <object id="240" type="collision" x="208" y="368" width="48" height="16"/>
@@ -467,6 +429,30 @@
     <property name="act6" value="set_variable searoutecmaurice:yes"/>
     <property name="behav1" value="talk spyder_searoutec_maurice"/>
     <property name="cond1" value="not variable_set searoutecmaurice:yes"/>
+   </properties>
+  </object>
+  <object id="275" name="Teleport to Candy Port" type="event" x="0" y="480" width="16" height="128">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_candy_port.tmx,39,15,0.3"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="276" name="Teleport to Route1a" type="event" x="624" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route1.tmx,0,6,0.3"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
+   </properties>
+  </object>
+  <object id="277" name="Teleport to Route1b" type="event" x="624" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route1.tmx,0,7,0.3"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
  </objectgroup>

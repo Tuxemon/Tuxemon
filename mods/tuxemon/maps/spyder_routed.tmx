@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="178">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="179">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -7,6 +7,7 @@
   <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eAHtWNsNwjAMjIApYBVeqyAW6BSUifkm/bCwLPvSPFElf0RxHWqfL+eoYQohTGw8diF8Dr/xjM98/d+246vbj978naNeLhlD6qk3Phmfa12zU/hue7vea0HvtMan1US+kt6W+I6x/jnWaY0Uf4RFm1vgy40h69NwkQ/FtvrgHvmi95cZxZDcLc8vwPUpI/baOnPxaZjJJ3Oi2PK3nDNuoxiUd+0sc6LelvvIMXG7Jz6eJ2VbffouOKMsPiV/KUx8vSVPW8WHets6X8nfch8t/txf9+3l/Dl/rgHXgGvANeAacA2M0IB1D6X/aEZgQDlSdwb07oi1LeHT7ngjOEI5OH8j7ngIi7bm+OrO4a3z9wX8Ihbk
@@ -14,7 +15,7 @@
  </layer>
  <layer id="5" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlqERwEAMw0K6S3+Ydv9xGiLsMhv473KCUYR+pq8FWqAFWqAFWqAFWqAFWuBvgfuaOTupfNbt3Ullaje8UrvhhWcq8Uxlaje8UrvhhWcq8Uxlaje8UrvhhaeL6p+Ap4vKz9WNvcrP1Y29yo87XFR+3OGi8nN1Y6/yc3Vjr/LjDheVH3e4qPw+2YLIAQ==
+   eAHtlrENAkEQA1cgIhqBYp6aoDPojE0msTiJ6NaBT1pZ+4nnJjh9VU4MxEAMxEAMxEAMxEAMxMC/Bm6XqnuPax7N9uhxTVdvcLl6gwtO14TTNV29weXqDS44XRNO13T1BperN7jgnMrVf8LzWvXqgXMqV3zvZvv0THmjd8XH9ylv9MKxSu4xlcqlHNxjKpVPOZR396582q+8u3fl037l3b0rn/Yr7+793G8c5/TjPf4CEozQyg==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 3" width="40" height="40">
@@ -37,6 +38,7 @@
   <object id="147" type="collision" x="176" y="288" width="16" height="16"/>
   <object id="156" type="collision" x="512" y="464" width="128" height="16"/>
   <object id="157" type="collision" x="496" y="480" width="16" height="160"/>
+  <object id="178" type="collision" x="576" y="544" width="64" height="96"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="148" name="Play Music" type="event" x="0" y="0" width="16" height="16">

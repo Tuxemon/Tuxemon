@@ -11,12 +11,8 @@
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
  <tileset firstgid="1601" source="../gfx/tilesets/core_city_and_country.tsx"/>
- <tileset firstgid="3041" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="6905" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="3041" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="6905" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="12" height="12">
   <data encoding="base64" compression="zlib">
    eAG7KsvAcJUE/AWolhQsLMfAQAqW4mFgGAlYTYA0f9JaPblhDgCz4Sqp

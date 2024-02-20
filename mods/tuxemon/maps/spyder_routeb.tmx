@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="185">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="185">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -7,12 +7,8 @@
   <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
- <tileset firstgid="2776" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
- <tileset firstgid="4326" name="core_buildings" tilewidth="16" tileheight="16" tilecount="2350" columns="47">
-  <image source="../gfx/tilesets/core_buildings.png" width="760" height="800"/>
- </tileset>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="4326" source="../gfx/tilesets/core_buildings.tsx"/>
  <layer id="1" name="Tile Layer 1" width="20" height="40">
   <data encoding="base64" compression="zlib">
    eAHtVEESgzAIxKv9bC7Vv7T+RfsY+47igSmDS5Lh4EUOzBggGwd2txBRybj9DJ7MgcmJOcCPF995O7EE8Fa+s5n48vl4I4KHOC//nHgxT8j5/edW05Ons8fg81lm62mqlkd81ni70dXWOH+4bvWj8dB7tr91vjPeyDzwOILyyJ/1/GrcQDW0P+S/LZ6kP5910uK9rssO0T50X+934hFFfFk0h/xZZop01JvT+43ozOoQ+XMvR67u+wF1W4U8

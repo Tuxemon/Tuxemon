@@ -2,16 +2,14 @@
 <map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="260">
  <properties>
   <property name="edges" value="clamped"/>
-  <property name="north" value="sphalian_town"/>
+  <property name="north" value="crystal_town"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route7"/>
   <property name="south" value="routea"/>
   <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
- <tileset firstgid="8193" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="8193" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eAHt0rENACAIBMC3cwb3H9QwALGk8AoqCj7PrSRraM5OXjOVre6+stVevr4D/fXdTLpx218YYIABBhhggAEGGGCAAQYYYIABBhhg4AcDF+koDA4=
@@ -196,9 +194,9 @@
     <property name="cond2" value="is char_moved player"/>
    </properties>
   </object>
-  <object id="208" name="Teleport Sphalian" type="event" x="560" y="0" width="16" height="16">
+  <object id="208" name="Teleport Crystal 1" type="event" x="560" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_sphalian_town.tmx,18,24,0.3"/>
+    <property name="act1" value="transition_teleport spyder_crystal_town.tmx,35,24,0.3"/>
     <property name="act2" value="char_face player,up"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>
@@ -251,9 +249,9 @@
     <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="233" name="Teleport Sphalian" type="event" x="576" y="0" width="16" height="16">
+  <object id="233" name="Teleport Crystal 2" type="event" x="576" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_sphalian_town.tmx,19,24,0.3"/>
+    <property name="act1" value="transition_teleport spyder_crystal_town.tmx,36,24,0.3"/>
     <property name="act2" value="char_face player,up"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>

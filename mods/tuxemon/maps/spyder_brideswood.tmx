@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="309">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="north" value="route2"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="brideswood"/>
+  <property name="types" value="route"/>
+  <property name="west" value="paper_town"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt0rERABAQRcErWT3oBZ0RCFRgLtjgzwjfuC0RUZKsno5215M0vX8zTtO8Wwn73lbvPK7dwi0YYIABBhhggAEGGGCAAQYYYIABBhhggIH/BjbAHb4L
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHN0EFqJEEMRNFe+Cyew3juf57pxbzNB6Eslw1laD4RisiS/Pnxev15/z4fwtf/P/t8vff6+/49hfazjz2fQvvZx55Pof3sQ9+le+/SHt6h79K9d2kP79izlKtffZrTk98ob89Sv371aU5PfqO8PUv9+tWnOb2reXuW3qlffZrTu5p3V+md+tWnOb2reXeV3qlffZrTu5p3V+kdPo316Y3tb3l3ld7h01if3tj+lp/29445jfXpjfobvTPtr29OY316o/5G79iz1N/8KdceveU7t2cpt/lTrj16y3furlJu8s2xuUlv+c7dVcpNvjk2N+kt3/l375x6m+/7U67z79459Tbf96dc56d3TLmrvu9Pvc5P75hyV33fn3qdn94x5Tbf9ya2L8c/vWPKbb7vTWxfjk9PdAdOOb4c3vX1J7oDpxxfDu/67iy9O/mdV+vd9d1ZenfyO6/Wu+u7s/Tu5HdercfH+jQ2585SbvI7r9bjY30am7N3KVd/0lOej/rVk2/vUr/+pKc8H/WrJ9/epX79Sf9Uvu/Yu5SrP+mfyved7f8h/1vs932Hv/0/5H+L/b7v8O35VNrzqfwHQ+MSkA==
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt0AENAAAAwqD3T20PBxEoDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQNfAwMZAAAB
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHd0MFOA1EMQ9EB8f/fDJuzsRTldUqFCxK6suNMnXdd3X8fX9f1+fPfQq+lD/3f6d5n6Z18h26lnkl90099mrMnv/HR/Pa9V831TPq99FOf5uzdzdtro7uSeqaf+jRn727eXhvdldSTT2P69MbcP83ba+PUX09zGtOnN9rf6Dtb7q/neib12vwpl3v0ls853Up3JfWdfHPM3KS3fM7pVt69c9rbfO8w5XJOt/L0jin3qO8dpr2c0608vWPKbf52d+7L8+l3pTtwu0MO5Wk89eVa6Z6kvpOf89T2nvXtt9KdSX0nP+ep7fExfRqnHL+Neif1TH/SU56P9lNPvlwr9U7qm/6kfyuf36Fbub3Hq3vn7/s9Pt1KPVvZ+m7v0usbbqELkA==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="6" name="Collisions">
+  <properties>
+   <property name="Collision" value=""/>
+  </properties>
+  <object id="280" type="collision" x="0" y="0" width="288" height="64"/>
+  <object id="281" type="collision" x="0" y="96" width="96" height="320"/>
+  <object id="282" type="collision" x="0" y="448" width="96" height="192"/>
+  <object id="283" type="collision" x="288" y="0" width="160" height="384"/>
+  <object id="284" type="collision" x="96" y="608" width="544" height="32"/>
+  <object id="285" type="collision" x="128" y="96" width="32" height="160"/>
+  <object id="286" type="collision" x="128" y="256" width="64" height="320"/>
+  <object id="287" type="collision" x="224" y="96" width="32" height="192"/>
+  <object id="288" type="collision" x="160" y="96" width="64" height="96"/>
+  <object id="289" type="collision" x="192" y="320" width="96" height="96"/>
+  <object id="290" type="collision" x="192" y="512" width="96" height="64"/>
+  <object id="291" type="collision" x="320" y="384" width="64" height="192"/>
+  <object id="292" type="collision" x="256" y="448" width="32" height="64"/>
+  <object id="293" type="collision" x="288" y="384" width="32" height="32"/>
+  <object id="294" type="collision" x="384" y="544" width="96" height="32"/>
+  <object id="295" type="collision" x="416" y="416" width="64" height="64"/>
+  <object id="296" type="collision" x="480" y="256" width="96" height="128"/>
+  <object id="297" type="collision" x="512" y="384" width="64" height="224"/>
+  <object id="298" type="collision" x="448" y="480" width="32" height="64"/>
+  <object id="299" type="collision" x="448" y="0" width="128" height="96"/>
+  <object id="300" type="collision" x="480" y="128" width="160" height="96"/>
+  <object id="301" type="collision" x="608" y="224" width="32" height="384"/>
+  <object id="302" type="collision" x="608" y="0" width="32" height="128"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="7" name="Events">
+  <object id="279" name="Route Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_the_wild_places"/>
+    <property name="cond1" value="not music_playing music_the_wild_places"/>
+   </properties>
+  </object>
+  <object id="303" name="Teleport to Paper Town B" type="event" x="0" y="432" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_paper_town.tmx,39,7,0.3"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="304" name="Teleport to Paper Town A" type="event" x="0" y="416" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_paper_town.tmx,39,6,0.3"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="305" name="Teleport to Route 2A" type="event" x="576" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route2.tmx,36,19,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="306" name="Teleport to Route 2B" type="event" x="592" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route2.tmx,37,19,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="307" name="Teleport to Route 1B" type="event" x="0" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route1.tmx,39,5,0.3"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="308" name="Teleport to Route 1A" type="event" x="0" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_route1.tmx,39,4,0.3"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

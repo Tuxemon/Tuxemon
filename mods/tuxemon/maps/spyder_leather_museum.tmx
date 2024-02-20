@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="30" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="55">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="30" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="55">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -10,18 +10,10 @@
  <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
- <tileset firstgid="1601" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
- <tileset firstgid="3151" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
-  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1200"/>
- </tileset>
- <tileset firstgid="5926" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="9790" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
+ <tileset firstgid="1601" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="3151" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="5926" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="9790" source="../gfx/tilesets/core_indoor_walls.tsx"/>
  <layer id="1" name="Layer 1" width="30" height="11">
   <data encoding="base64" compression="zlib">
    eJzr0GJg6MCCiQHY9BGLt+HAxABceinBtLb3CQ78T5MwxqWXGLxdmoGhUxqT1tEijLdLo2Js5uCicclFaRHGndKomBS7ccltBeJ2AjQt/EvIznbpUf8OBf8CACnK58w=

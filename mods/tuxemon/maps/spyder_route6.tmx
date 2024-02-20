@@ -10,6 +10,7 @@
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="4216" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eAETYGNgEBjFVAsDUWBYitEJi5MRb1ZAPdZ0wjYUuK8VqDeBRrgN6n9K3EeOXmLzGSyOyLGDEr30cF88NE4TgTSx9pGqjpQwuMvOwEAOvgfUR6q7YOpJcd80LgYGdAwyB10Mnc/MMbjddx/oPmLDHT2sSQk/daA9xOLdQLXo4UgMHz2sKUnjsPoDW9nOSKb7iA1r9HAGpTP0umw1UAxUf2Arm9SoGNbY0jh6OIPU4KrLsLkPpJ5YTCisiXUfrjqM0vKP2LBGTtPYwo/Y8KCmOuQ0jhzOg8V9yOXLqPuIzzOwNEJK+AEALQmu5Q==
@@ -17,7 +18,7 @@
  </layer>
  <layer id="2" name="Obstacles" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHNlT1ORDEMhENLQbU1cA4OANyKlbjcchgogRJP8UnWKD8OzdtI1sTJjD0JecvltrWPiMuV4mf4+oq4VvR7awcN90Hu93aQveHfD5/gUf7oiw9w5/7QrJBeGZ/ucjaeux/vNVbWv6FZjdWe+3G/v62dfyK+I6jlGq2/xTfPYN7jwami+zmlPqrxeNPODxH3EdR0jfzgSRxy56HfwdUZe/569fGU0WuT9/SjtdUZq/5UP3tT7rXJtTcb7/HtcJYRot/xh2YXe2+cs4yQHq/x7l4intP7Y6+CnH/Gnd0BenBWh71T8bdLfM6Ptoczf+jBnl5r+B9h1uV36PzMYz7zV9GrDv5HSC+h/DGcz3rGmT/Xu99qnvtpvqObvXGv436rufv7r25Vx/1Wc+ry9sh39HDRClkDq+d2nmrhDdSa80Z55mquof+1zv8D6q5wNQ==
+   eAHNlT1ORDEMhENLRUENnAa4FXsWTrPcAg4AJVDiKT7JGuXHoXkbyZo4mbEnIW85X7f2FnG+UPwMX18Rl4p+b+2g4T7I/d4Osjf8++ETPMofffEB7twfmhXSK+PrTc7Gc/fjvcbK+jc0q7Hacz/u97e100/EdwS1XKP1l/jmGcx7PDhVdD+3qY9qPFy1033EXQQ1XSM/eBKH3Hnod3B1xp6/Xn08ZfTa5D39aG11xqo/1c/elHttcu3Nxnt8O5xlhOh3/KHZxd4b5ywjpMdzvLuniMf0/tirIOefcWd3gB6c1WHvo/jbJT7nR9vDmT/0YE+vNfyPMOvyO3R+5jGf+avoVQf/I6SXUP4Yzmc948yf691vNc/9NN/Rzd6413G/1dz9/Ve3quN+qzl1eXvkO3q4aIWsgdVzO0+18AZqzXmjPHM119D/Wuf/AS82cc0=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">
@@ -26,23 +27,18 @@
   <object id="147" type="collision" x="544" y="32" width="32" height="32"/>
   <object id="148" type="collision" x="544" y="160" width="32" height="32"/>
   <object id="149" type="collision" x="576" y="32" width="64" height="288"/>
-  <object id="150" type="collision" x="560" y="304" width="16" height="16"/>
-  <object id="158" type="collision" x="0" y="128" width="16" height="16"/>
   <object id="159" type="collision" x="144" y="112" width="64" height="32"/>
   <object id="160" type="collision" x="176" y="80" width="160" height="32"/>
   <object id="161" type="collision" x="304" y="112" width="64" height="64"/>
   <object id="162" type="collision" x="368" y="144" width="32" height="32"/>
-  <object id="163" type="collision" x="416" y="80" width="16" height="16"/>
   <object id="164" type="collision" x="0" y="256" width="224" height="64"/>
   <object id="165" type="collision" x="96" y="224" width="128" height="32"/>
-  <object id="166" type="collision" x="144" y="208" width="16" height="16"/>
   <object id="168" type="collision" x="320" y="208" width="32" height="112"/>
-  <object id="169" type="collision" x="352" y="224" width="32" height="96"/>
-  <object id="170" type="collision" x="384" y="256" width="64" height="64"/>
+  <object id="169" type="collision" x="352" y="224" width="32" height="32"/>
+  <object id="170" type="collision" x="384" y="256" width="64" height="32"/>
   <object id="171" type="collision" x="448" y="288" width="32" height="32"/>
   <object id="172" type="collision" x="288" y="256" width="32" height="32"/>
   <object id="173" type="collision" x="0" y="176" width="32" height="32"/>
-  <object id="174" type="collision" x="528" y="160" width="16" height="16"/>
   <object id="209" type="collision" x="496" y="288" width="32" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="3" name="Events">

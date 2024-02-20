@@ -102,6 +102,13 @@ events:
     - is variable_set swimming:yes
     - is current_state WorldState
     type: "event"
+  Forbid Swim:
+    actions:
+    - update_tile_properties surfable,0
+    conditions:
+    - is variable_set swimming:no
+    - is current_state WorldState
+    type: "event"
   Swim Encounters Day:
     actions:
     - random_encounter routec,0.25

@@ -38,8 +38,6 @@ events:
     - set_variable chadvsbrad:done
     behav:
     - talk spyder_leathergym_brad
-    x: 12
-    y: 9
     type: "event"
   Chad:
     actions:
@@ -48,40 +46,30 @@ events:
     - set_variable chadvsbrad:done
     behav:
     - talk spyder_leathergym_chad
-    x: 9
-    y: 9
     type: "event"
   Brad:
     actions:
     - translated_dialog spyder_leathergym_brad1
     behav:
     - talk spyder_leathergym_bradfort
-    x: 15
-    y: 9
     type: "event"
   Chardfort:
     actions:
     - translated_dialog spyder_leathergym_chadfort1
     behav:
     - talk spyder_leathergym_chadfort
-    x: 6
-    y: 4
     type: "event"
   Gigachad:
     actions:
     - translated_dialog spyder_leathergym_gigachad1
     behav:
     - talk spyder_leathergym_gigachad
-    x: 18
-    y: 6
     type: "event"
   Virgin:
     actions:
     - translated_dialog spyder_leathergym_virgin1
     behav:
     - talk spyder_leathergym_virgin
-    x: 22
-    y: 5
     type: "event"
   Create Chardine:
     actions:

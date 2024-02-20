@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="74">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="74">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -7,36 +7,32 @@
   <property name="slug" value="leather_shaft2"/>
   <property name="types" value="notype"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_walls.tsx"/>
  <tileset firstgid="3865" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
   <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
  </tileset>
  <tileset firstgid="4393" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
   <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
  </tileset>
- <tileset firstgid="6985" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
+ <tileset firstgid="6985" source="../gfx/tilesets/core_indoor_floors.tsx"/>
  <layer id="1" name="Tile Layer 1" width="10" height="10">
   <data encoding="base64" compression="zlib">
-   eAHTZmFg0CYCRwLVEIPbgeqIwX1yDAyjGDMMABEwOe8=
+   eJzTZmFg0CYCRxKJ24nEfXKjGBsGABEwOe8=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="10" height="10">
   <data encoding="base64" compression="zlib">
-   eAFjYCAPTOZnYJgCxOjgiwADw1cg/gbE34F4JVDNKjR124DiXIIMDNxAzAPEvEAMAjOh9DohBoY1QPYZoDoFIK0IxEpArAzEILASSK+C4j1QGiKDSu4Eyu1Cw5JAt0hDsRSau5B16wPlDKHYAI86ZD2ksBfKMTAsBmJksB3oXwAeNhdp
+   eJxjYCAPTOZnYJjCjyn+RYCB4SsQfwPi70C8EqhmFZq6bUBxLkEGBm4g5gFiXkGI+EwovU6IgWENkH0GqE4BSCsCsRIQK0PlVwLpVVC8B0pjAzuB4rvQsCTQLdJQLIXF/TCgD5QzhGIDPOrIBQvlGBgWy6GKbQf6FwAeNhdp
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="10" height="10">
   <data encoding="base64" compression="zlib">
-   eAFjYKAMPBIgTv8PItXxCRJnHrmqWvgZGFqBWB7oHhDGBWYB1cwGYnoDABiDBPI=
+   eJxjYKAMPBIgTt0PItXxCZLvFmJACz8DQysQywtAMC4wC6hmNj9t3YINAAAYgwTy
   </data>
  </layer>
  <layer id="4" name="Above player" width="10" height="10">
   <data encoding="base64" compression="zlib">
-   eAFjYBgeII+fgSEfiOkJugWIs20hkepApgEAFMkCSA==
+   eJxjYBgeII+fgSGfn752dgsQp24hkepAAAAUyQJI
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">

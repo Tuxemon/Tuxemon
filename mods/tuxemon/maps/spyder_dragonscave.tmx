@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="105">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="106">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -35,9 +35,6 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="2" type="collision" x="240" y="336">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
   <object id="3" type="collision" x="160" y="448" width="16" height="16"/>
   <object id="6" type="collision" x="0" y="0" width="160" height="208"/>
   <object id="7" type="collision" x="160" y="176" width="112" height="32"/>
@@ -98,6 +95,7 @@
   <object id="84" type="collision" x="160" y="0" width="96" height="32"/>
   <object id="85" type="collision" x="256" y="0" width="64" height="16"/>
   <object id="86" type="collision" x="272" y="16" width="48" height="16"/>
+  <object id="105" type="collision" x="240" y="336" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="56" name="Teleport to Sea Route" type="event" x="192" y="624" width="32" height="16">

@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="193">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="211">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="citypark"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route2"/>
+  <property name="south" value="brideswood"/>
   <property name="types" value="route"/>
   <property name="west" value="cotton_town"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
- <tileset firstgid="2776" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="4326" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHt0iERAAAMxLBKfv9oLoYCaqCXVZMHDDDAAAMMMMAAAwww8GDgAMjSXhA=
+   eAHt0qERADAMAzGPHNJk/RZkhEIB0wc+VZIyHzDAAAMMMMAAAwwwwMBnA+f1ejfbvsoWXig=
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtVdFNQzEMDFJhk3603YAR+KBswApIwAYswyxIzILEAvVVOvVkOY7Tvp9KtRTFiR37cs/xa+0m18zA9q41juweG/Gj/872qsLzVf+q33rVGmLvggNb26tifJ64S5Cqu/Vk+LLYL8W8e/N76GY5GdTn/rTd1cDfu8VG/I8gRxUfEvCeb6bPnOuCMwP4U2EO7i2Vh/FGMzjKZAaffxNRDWe5zrHN4PO+5+QbnUH9eUH9qKDfRO84w4e3H4m+j8ju93z9ebuu2Rc5j77nl4H5qzxSTeJ08MfhTBctv4Wof9Fng4I/jtmzmf+jYHoVvXemVyvkjnXY8/Nx8dnQC7J+8GNOvwVsiK15taeRO9ah+nlMXAPb56BP0Teao/+m5lV8yh909YtiX4qNMYGR7+zYH2iwWfEpf9Dxr8tkljfWAOfK51Z8nr8M2xK20f2RQznw/C2BYckYB1+jIuk=
+   eAHtVctNQzEQNBJwhiI4kHRACRySdEALkYAOKADKoBYkBJ0g0UB2oowyrMZ+th4XJFayvG+9n/F47VfKv/xlBhYnpXC09nEtfvRfhq1XGN/r3+t3dVoKci9NwCJsvRhXA3sxpaqm28DXyr3prLsOv/NqleOC+pwdzVUN/N1HbuR/MDV68aEA97kNfSSuCi4WwJ8Ka9D2W3WYb2oGRy0ZwZfvhOvhVi2ubS6p/ZxxtllG8GXfnGvuN87WYUT/qOC9cfc447sQHnD3nej9cOtqA7bcf7qedb6LnPU8nwPbi+BD7FOA+eq5pLnQ4Zv8AafjsRJmzR+B7TMGe+lViPoW3QZXjOQPOEd4zOlWiTes3wimO9FzLL9zr8Du+HN+zKEzjg1vQes9eAun9wls7FmtyzfN8ad+ikd1YHuceKfUP+vuv6l1iS/zB7zql/PiW7Gtzbm6GGcDRt6z/fsgTsSX+QNe/OtaMsobe4DzxHHvSxOf4w+Y547W/qb2j1hy4PgD5rmjhW9kDTh26SgyYw==
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHFletNAzEQhI0EiFLyqIWIXsgVA6UAP6AR+AV1sKPcpwwrn30hh1jJGe/T47XjW12Vso6x6mAZpRe3tP82eO1i9BB+vbil/a83pbzF+CtZX5SySWMbukS+j8vjIE5+zuEzuH0tyI81wO2Byo/fTWjy4xNHl7vwcQ5uz/N95A0pN8ecq8fVKvvgo3E9FhM/+terL46/EV+X9YVZhrBxxrvRP7d/1HqfyfEpEp7H8UJyQjjILB7ipvpCfLX+sQfKoYPYW0h9xWgNyZDudo6hvvCenEC/f8Swj0PlY9/Rp5D/gvvh5zbNW/zgAXouNtB9vXkt5xx+uU++vvan9RC9BS2Bm+cQT19572T3eN4Z4kB//6gFev+9Hn6QddgrepVnJMGR/Xs8c2qr937/sAudH3mgxzGv+WTLwnnrP+DvDXO9fdRS7NT7Bz/85IB5XXT8IHYQfugZPa/VP3jRX3TlTwk9AOmFx/td46zlfxjfH/iBrOs1NM+8sp7ja7rOkG9VzV+ziZffZdbNsZxv9mddefv09nqtUzjSM1B1pvonH+dUQ/nnCt+DOfHOTfG1fsiev0eynSqPjb6qVm3fblNMq3/y/7fQv2+7Z6Wz
+   eAG1letNAzEQhB0E/E8XedRCSC8kfUA7QBHQALTCjnKfMqzscw4uKzmz3uf4cc7qrpR1jFUHyyC9uLn9D8FrF6OH8OvFze1/XpbyEuNasl6UskljG3OJfN+350Gc/JzDR3D7nJEfPcDticqv303M5Mcnji778HEObs/6IfKOKTfH/HceV6scgo/G/VBM/Ni/Xn1x/It4X/oLsxzDxhnvBv+l+0etrws5vkbC2zDeSU4IB5nFQ9xUX4ivtn+sgXLMQexjSH3FqIfkMd3tHEN94dOQoz31+0cM6zhVPu878xbyLbgffm6TXuMnOxwcZUfcLn2KkOs5U/iRD+Z98rpan/PTWzAm1PQc4tlX3jvZPZ53hjjQ46kF+v57PfwgffJaqzwjiZ6sn3xHarf2Xn7n57m1voonRjpSi6WnvgF/b9D19lGLWOo5wo/3kRzQY13HD7pP+lhP+T1vLBZefN/Mld8S9gBkLzze7xpn7X74ge5zPfPKc4+lVkadIf9VHj+mqwZ3WXpLOF94EZfn1MjcmE/hSA5IzxZyTjVUDnV6yP9Bq4/bqeW2a+nL9J+W+9TW7TaPX8RZ38SYil6jpu87HGs5NdsPShOwgA==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBj6oIF7cPth/iB3H77QM+fEJzvwcjGD2H3zgPHeOIjdR6/YIzb9j4YXvWJkcNozi2NwugvkqgNAtx0cxO57CnTbMyDeNwjdOHMQumnwprRRl42GwMgJAQAyOApg
+   eAFjYBj6oIF7cPth/iB3H77QM+fEJzvwcjGD2H3zgPHeOIjdR6/YIzb9j4YXvWJk1J7REBgNgdEQGA2B0RBADQFGFgYGJiCmFQ2zDWY+AD8bBXo=
   </data>
  </layer>
  <layer id="1" name="Above Player" width="40" height="20">
@@ -38,43 +38,20 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="5" type="collision" x="112" y="64">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="6" type="collision" x="128" y="80">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="7" type="collision" x="192" y="112">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="9" type="collision" x="256" y="80">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="10" type="collision" x="368" y="80">
-   <polygon points="0,0 0,16 80,16 80,0"/>
-  </object>
-  <object id="12" type="collision" x="512" y="224">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
   <object id="18" type="collision-line" x="448" y="112">
    <polyline points="0,0 0,80 0,-16"/>
   </object>
   <object id="20" type="collision-line" x="560" y="80">
    <polyline points="0,0 0,32"/>
   </object>
-  <object id="32" type="collision" x="64" y="272" width="144" height="16"/>
+  <object id="32" type="collision" x="192" y="272" width="16" height="48"/>
   <object id="33" type="collision" x="240" y="224" width="96" height="16"/>
-  <object id="34" type="collision" x="272" y="208" width="16" height="16"/>
-  <object id="35" type="collision" x="288" y="176" width="32" height="32"/>
-  <object id="36" type="collision" x="304" y="160" width="16" height="16"/>
-  <object id="37" type="collision" x="320" y="192" width="16" height="16"/>
   <object id="38" type="collision" x="208" y="256" width="16" height="16"/>
   <object id="39" type="collision" x="224" y="240" width="16" height="16"/>
   <object id="40" type="collision" x="160" y="240" width="32" height="32"/>
   <object id="41" type="collision" x="64" y="224" width="96" height="48"/>
   <object id="42" type="collision" x="96" y="208" width="32" height="16"/>
   <object id="43" type="collision" x="144" y="32" width="16" height="16"/>
-  <object id="44" type="collision" x="0" y="32" width="32" height="32"/>
   <object id="45" type="collision" x="0" y="0" width="160" height="32"/>
   <object id="49" type="collision-line" x="64" y="112">
    <polyline points="0,0 0,128"/>
@@ -86,11 +63,9 @@
   <object id="55" type="collision" x="192" y="0" width="448" height="32"/>
   <object id="56" type="collision" x="336" y="240" width="16" height="16"/>
   <object id="57" type="collision" x="352" y="256" width="16" height="16"/>
-  <object id="58" type="collision" x="608" y="160" width="32" height="160"/>
+  <object id="58" type="collision" x="624" y="128" width="16" height="192"/>
   <object id="59" type="collision" x="608" y="32" width="32" height="96"/>
-  <object id="64" type="collision" x="560" y="112" width="16" height="16"/>
-  <object id="65" type="collision" x="592" y="112" width="16" height="16"/>
-  <object id="66" type="collision" x="576" y="112" width="16" height="16"/>
+  <object id="64" type="collision" x="560" y="112" width="48" height="16"/>
   <object id="68" type="collision" x="448" y="192" width="96" height="16"/>
   <object id="69" type="collision-line" x="304" y="80">
    <polyline points="0,0 0,48"/>
@@ -148,17 +123,8 @@
   <object id="148" type="collision-line" x="384" y="32">
    <polyline points="0,0 0,16"/>
   </object>
-  <object id="150" type="collision-line" x="480" y="32">
-   <polyline points="0,0 0,16"/>
-  </object>
   <object id="151" type="collision-line" x="288" y="48">
    <polyline points="0,0 96,0"/>
-  </object>
-  <object id="152" type="collision-line" x="496" y="32">
-   <polyline points="0,0 0,16"/>
-  </object>
-  <object id="153" type="collision-line" x="496" y="48">
-   <polyline points="0,0 -16,0"/>
   </object>
   <object id="165" type="collision-line" x="368" y="112">
    <polyline points="0,0 0,48"/>
@@ -190,8 +156,11 @@
   <object id="174" type="collision-line" x="496" y="256">
    <polyline points="0,0 48,0"/>
   </object>
-  <object id="175" type="collision" x="528" y="208" width="16" height="48"/>
   <object id="177" type="collision" x="16" y="112" width="16" height="16"/>
+  <object id="201" type="collision" x="208" y="288" width="128" height="16"/>
+  <object id="206" type="collision" x="192" y="112" width="16" height="16"/>
+  <object id="207" type="collision" x="256" y="80" width="16" height="16"/>
+  <object id="210" type="collision" x="368" y="80" width="80" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="30" name="Teleport to City Park" type="event" x="160" y="0" width="16" height="16">
@@ -619,6 +588,54 @@
     <property name="act7" value="set_variable route2graf:yes"/>
     <property name="cond1" value="not variable_set route2graf:yes"/>
     <property name="cond2" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="195" name="random battle35" type="event" x="512" y="128" width="112" height="32">
+   <properties>
+    <property name="act1" value="random_encounter route2"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="196" name="random battle34" type="event" x="512" y="80" width="48" height="48">
+   <properties>
+    <property name="act1" value="random_encounter route2"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="197" name="Teleport to Brideswood B" type="event" x="592" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_brideswood.tmx,37,0,0.3"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="198" name="Teleport to Brideswood A" type="event" x="576" y="303.875" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_brideswood.tmx,36,0,0.3"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="199" name="random battle36" type="event" x="208" y="256" width="160" height="32">
+   <properties>
+    <property name="act1" value="random_encounter route2"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="200" name="random battle37" type="event" x="240" y="240" width="96" height="16">
+   <properties>
+    <property name="act1" value="random_encounter route2"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
    </properties>
   </object>
  </objectgroup>

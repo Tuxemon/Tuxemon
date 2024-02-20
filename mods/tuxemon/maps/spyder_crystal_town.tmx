@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="66">
+ <properties>
+  <property name="east" value="lion_mountain"/>
+  <property name="edges" value="clamped"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="crystal_town"/>
+  <property name="south" value="route7"/>
+  <property name="types" value="town"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <tileset firstgid="10968" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="12518" source="../gfx/tilesets/core_buildings.tsx"/>
+ <tileset firstgid="14868" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="40" height="25">
+  <data encoding="base64" compression="zlib">
+   eAGl0UFuHDEMRNE5Q3wRZxff/0L2ztmlC8gDCoIG5rQWREkUyfrN/vr1eHwdxufVv8b72+ORSH6d//t/fu1Z72vf3Xvm4sGEq7X91a+98ubcZeo+M9sfV+qyr2c13ZNaXLjb5+65PZxxhW33P7E0d3K4cN5l6j6zMlseV1Qu2jz9LXpp95ye2yezmm0982rO5Jqre9Sfqvlmtz/+5Lxj0pe7N3rKpJ9H5oYBTxRna+rw7bjMM/9UzbMffJjw9F70yK29J0zf117+XjFVDL2rPnv3Xd58w6usf67/83HFVNf5zWNvXZP3sOWt89PzdG/q8LTyx9dvyfUup1zqpntTF+/0RuPdseZyv/tf8dnLVO2odyaHdeXKPcHzFbWXqTZLPJtp9cV1ly3zpntTFy+7ozibp88n/3i6N3XxzXdN9pY6bPrWHf90t5ep8sHnf/e+Vk89a35yt5ep8sLnzmvHmxp7VDfV6d7UxUvsWJqj6zo/ZUvPq5HZ7Zvzzq/zd9h2M5PrneRudud3Ocw0vc34zO9OngcOXsnL8aZd47zT5E6i/czH9Ywt70LPTk+49PJpxcWz33Je8+td/T8t+BHw
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="40" height="25">
+  <data encoding="base64" compression="zlib">
+   eAHFl8uOjEEUx2tlo2dGMy6J24KN2CBha+hBQvfQeoi4vQJmhsQtYYbYuKRfwNjYI+IxSMcbYAYvgKXfSfc/fVKpr7rnS4ZKfn3qq6pz6l+n6rt0ZTSECvzaF8LvDH/os3H/mqfMaUzvD+FchvP0aWzO1ok1LLk4cd8u5t+dYc+Q+r4cDOErfIMlWIZWJSRLrCF3fZb5Wxku0FcfIjfVQyGshw0wDhutXqDP4i0Rdxm+ww/4CSmdD2nP5e8J/YOK5WkCPUfgKNRgEor02fjxA6wBNsFm2AIpfcPkb5C+z2tDuIae63ADZmAWTEeqmO4aeibhGByHE5DSZ/mb77GAfQSPXdsw+TMNL9GzCK9g+jD3HBRZ0z2DnlmYg5twC1L63qDlbY932Nfw3rV9oJ4qloOiMo+2BSiysW7FqXMuY43PRkJ4Di9A8TTerHRU6R+BURiDdUNcm8+Dvf1oih9bjbC8pvR9JM4n0Lo03tsm/Sst5rOY0FcUx3IR59CP1bp8m+rtEvpin1x8zWMafQ7VbjaXv3gu71dUj31y8S2GnYV4j33s3Po6JfInH5vT8pKLbzp0Fvwee3259VVL6JOPPR+t5OJ3R3R/a2v6e+zbc+trl9DXjHwUXzpTVm06g16f+nyb6mX0xT6KL50pq7aUPvWZJj0Tpa8T5ULtORv7+Pi2562xtPdEwf5qfealZ6IiVEvoi318fLtfrFR4Z6QYlL+ud/+3WUJf7OPzp8jSUWQ1zqxfn2+3eruEvtgnFX8r3xPbYDvsgJ3gtXodqfWpv4O+lb5/zceXVPyT6DkFdWjAFHh9dk51L2h9q21Ns74bbqPnDtyFe3AfvD57tute0PpW25o+vSsu8j/lElyGK3AVTF+9h57t5lO26F4s8le/9kXfrro2q7rFMH1WGtgpOA1n4H9c27zarwbn1a4td38B6d1AoQ==
+  </data>
+ </layer>
+ <layer id="11" name="Above Player" width="40" height="25">
+  <data encoding="base64" compression="zlib">
+   eAHt1rkNgDAQBdFtypVzRcZ2P4BdAhNTAYj50uSrF23EvzaliJkWWmkjp4ACCiiggAIKKKDAUyDzJ+5UqFKjN+3gnpMu6jTIKaDAtwVu3zAPBg==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collisions">
+  <object id="12" type="collision" x="544" y="272" width="48" height="96"/>
+  <object id="14" type="collision" x="512" y="352" width="16" height="16"/>
+  <object id="15" type="collision" x="608" y="272" width="16" height="96"/>
+  <object id="16" type="collision" x="592" y="272" width="16" height="80"/>
+  <object id="17" type="collision" x="0" y="0" width="640" height="32"/>
+  <object id="18" type="collision" x="320" y="32" width="80" height="48"/>
+  <object id="19" type="collision" x="496" y="32" width="16" height="32"/>
+  <object id="20" type="collision" x="512" y="64" width="128" height="32"/>
+  <object id="23" type="collision" x="512" y="96" width="32" height="16"/>
+  <object id="24" type="collision" x="560" y="96" width="32" height="16"/>
+  <object id="25" type="collision" x="624" y="256" width="16" height="16"/>
+  <object id="26" type="collision" x="624" y="192" width="16" height="32"/>
+  <object id="30" type="collision" x="32" y="384" width="528" height="16"/>
+  <object id="31" type="collision" x="624" y="272" width="16" height="128"/>
+  <object id="32" type="collision" x="592" y="96" width="48" height="32"/>
+  <object id="33" type="collision" x="608" y="128" width="32" height="32"/>
+  <object id="34" type="collision" x="624" y="160" width="16" height="32"/>
+  <object id="38" type="collision" x="592" y="384" width="32" height="16"/>
+  <object id="39" type="collision" x="128" y="256" width="32" height="32"/>
+  <object id="41" type="collision" x="0" y="32" width="32" height="352"/>
+  <object id="45" type="collision" x="48" y="336" width="32" height="32"/>
+  <object id="46" type="collision" x="176" y="32" width="144" height="32"/>
+  <object id="48" type="collision" x="592" y="192" width="16" height="16"/>
+  <object id="50" type="collision" x="320" y="80" width="48" height="16"/>
+  <object id="51" type="collision" x="384" y="80" width="16" height="16"/>
+  <object id="53" type="collision" x="400" y="128" width="16" height="208"/>
+  <object id="54" type="collision" x="192" y="320" width="208" height="16"/>
+  <object id="55" type="collision" x="192" y="128" width="208" height="16"/>
+  <object id="57" type="collision" x="416" y="144" width="16" height="16"/>
+  <object id="60" type="collision" x="192" y="144" width="16" height="176"/>
+  <object id="61" type="collision" x="32" y="32" width="144" height="80"/>
+  <object id="63" type="collision" x="32" y="112" width="48" height="48"/>
+  <object id="64" type="collision" x="80" y="112" width="16" height="16"/>
+  <object id="65" type="collision" x="112" y="112" width="64" height="16"/>
+ </objectgroup>
+</map>

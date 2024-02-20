@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="49">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="49">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -7,9 +7,7 @@
   <property name="slug" value="omnichannel2"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <tileset firstgid="2971" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
   <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
  </tileset>

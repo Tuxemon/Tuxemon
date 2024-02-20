@@ -8725,6 +8725,15 @@ msgstr "I think the park has done a pretty good job of being everyone's friend."
 msgid "spyder_park_billie"
 msgstr "Hey ${{name}}! Maybe I'll see you deeper in the park. Bet I'll catch more than you!"
 
+msgid "spyder_park_afraid"
+msgstr "{target} gets afraid."
+
+msgid "spyder_park_stare"
+msgstr "{target} stares at you."
+
+msgid "spyder_park_wander"
+msgstr "{target} continues to wander around."
+
 msgid "0floor"
 msgstr "Ground Floor"
 msgid "1floor"

@@ -7,15 +7,9 @@
   <property name="slug" value="timber_center"/>
   <property name="types" value="clinic"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="3865" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="7729" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="13" height="11">
   <data encoding="base64" compression="zlib">
    eAE7xMzAcIhE/AGonlQsx8LAQCoO4mdgGMWDNwwApO4/ew==
@@ -43,66 +37,5 @@
   <object id="8" type="collision" x="64" y="80" width="80" height="16"/>
   <object id="9" type="collision" x="48" y="48" width="16" height="32"/>
   <object id="11" type="collision" x="0" y="16" width="208" height="32"/>
- </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="16" name="Heal Tuxemon" type="event" x="80" y="96" width="16" height="16">
-   <properties>
-    <property name="act11" value="set_monster_health"/>
-    <property name="act12" value="set_monster_status"/>
-    <property name="act15" value="variable_math cathedral_ads,+,1"/>
-    <property name="act20" value="translated_dialog okaythen"/>
-    <property name="act30" value="char_face spyder_timbercenter_luciana,up"/>
-    <property name="act40" value="wait 1"/>
-    <property name="act50" value="char_face spyder_timbercenter_luciana,down"/>
-    <property name="act60" value="translated_dialog okaythen2"/>
-    <property name="act70" value="set_variable chooses:none"/>
-    <property name="act80" value="set_variable teleport_faint:spyder_timber_center.tmx 6 7"/>
-    <property name="cond1" value="is variable_set chooses:yes"/>
-   </properties>
-  </object>
-  <object id="17" name="Go outside" type="event" x="96" y="160" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_timber_town.tmx,8,7,0.3"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,down"/>
-   </properties>
-  </object>
-  <object id="25" name="create npcs" type="event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_timbercenter_luciana,5,4"/>
-    <property name="cond1" value="not char_exists spyder_timbercenter_luciana"/>
-   </properties>
-  </object>
-  <object id="26" name="hello there" type="event" x="80" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_cotton_nurse1"/>
-    <property name="act3" value="translated_dialog_choice yes:no,chooses"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="not variable_set chooses:yes"/>
-   </properties>
-  </object>
-  <object id="27" name="Route Music" type="event" x="32" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="play_music music_cathedral_theme"/>
-    <property name="cond1" value="not music_playing music_cathedral_theme"/>
-   </properties>
-  </object>
-  <object id="28" name="Use Computer" type="event" x="160" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="change_state PCState"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="not variable_set kernelquest:yes"/>
-   </properties>
-  </object>
-  <object id="24" name="Use Computer Kernel" type="event" x="48" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_pc_alert"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-    <property name="cond3" value="is variable_set kernelquest:yes"/>
-   </properties>
-  </object>
  </objectgroup>
 </map>

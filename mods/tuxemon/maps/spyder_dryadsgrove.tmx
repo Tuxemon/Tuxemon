@@ -8,9 +8,7 @@
   <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
- <tileset firstgid="2776" name="core_outdoor_water" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
-  <image source="../gfx/tilesets/core_outdoor_water.png" width="1024" height="2048"/>
- </tileset>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_water.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eAHtV8lRBDEMnAKigFS4UqFIYD9ABkAMQC4sSfFGKqaruhpZeHYO+7EPlzWHpXa3pPHshmHYNRx3J8PwffY77s1uiSWK3SO+S+Ppahy3p/3xx5xBW5/X0PfBcveRxlNFLm+J783wvNP4MBuYS1gZ37np+2Ja+3i1EeXonHufhmdP48tsYHaskW/GB02xJ9bCbV3PuYscrp2vx/0fgg9rWAu3FR/vjXO3xgYXiDWFP9Vhb9h8bIFPNZnTU5Q/zl/kMc8XQf9S/tQnawHOlafStfr6bz2/j3d7x4dc8lp2HngPqkdtT0GOcG7U9HSOfWNaR7XOPsFxSb/SfY7D+aEx0UPgp7SOfbCt+ND3Sr18ahz1Pxef5irw6MxxOEe4PiO9n8dvE9d0Zmu+TcXn2NiHx2eMyp/uc+q11lJpPfjzfMtybGl8JTx6H/giDbNn6met6whD1HN64c+xcd9Cj+gBn+egYkNNc+2spWXkl/UFVzy34g1YI3zgzPtZK94yfK05AzafI/6O+P6e35kztvU7FvVpfr+FrRr3pK/zoWeR1jXbQqNjzPqaW4IrnFGi/5rsnp4Rl8AS+dBzAH9zM3ur2s4wZM96x6f/nVkuHPrMcyjjqPUz16g1hiy+4/sBK9NXOA==

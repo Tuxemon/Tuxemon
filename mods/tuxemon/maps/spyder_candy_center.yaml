@@ -1,0 +1,116 @@
+events:
+  Route Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: "event"
+  Player Spawn:
+    x: 6
+    y: 8
+    type: "event"
+  Go Outside:
+    actions:
+    - transition_teleport spyder_candy_town.tmx,14,35,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 6
+    y: 10
+    type: "event"
+  Heal:
+    actions:
+    - set_monster_health
+    - set_monster_status
+    - variable_math cathedral_ads,+,1
+    - translated_dialog okaythen
+    - char_face spyder_candycenter_diamond,up
+    - wait 1
+    - char_face spyder_candycenter_diamond,down
+    - translated_dialog okaythen2
+    - set_variable chooses:none
+    - set_variable teleport_faint:spyder_candy_center.tmx 6 7
+    conditions:
+    - is variable_set chooses:yes
+    type: "event"
+  Create Nurse:
+    actions:
+    - create_npc spyder_candycenter_diamond,5,4
+    conditions:
+    - not char_exists spyder_candycenter_diamond
+    type: "event"
+  Talk Nurse:
+    actions:
+    - translated_dialog spyder_cotton_nurse1
+    - translated_dialog_choice yes:no,chooses
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - not variable_set chooses:yes
+    x: 5
+    y: 5
+    type: "event"
+  Use Computer:
+    actions:
+    - change_state PCState
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - not variable_set kernelquest:yes
+    x: 10
+    y: 3
+    type: "event"
+  Use Computer Kernel:
+    actions:
+    - translated_dialog spyder_pc_alert
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - is variable_set kernelquest:yes
+    x: 10
+    y: 3
+    type: "event"
+  Elevator1a:
+    actions:
+    - translated_dialog_choice 1floor:2floor:no,choice_floor
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 12
+    y: 4
+    type: "event"
+  Elevator2a:
+    actions:
+    - translated_dialog_choice 1floor:2floor:no,choice_floor
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    width: 2
+    height: 1
+    x: 15
+    y: 4
+    type: "event"
+  Elevator3a:
+    actions:
+    - translated_dialog_choice 1floor:2floor:no,choice_floor
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 19
+    y: 4
+    type: "event"
+  Choice Floor 1st:
+    actions:
+    - transition_teleport spyder_candy_hospital1.tmx,7,15,0.3
+    - set_variable choice_floor:null
+    conditions:
+    - is variable_set choice_floor:1floor
+    type: "event"
+  Choice Floor 2nd:
+    actions:
+    - transition_teleport spyder_candy_hospital2.tmx,11,15,0.3
+    - set_variable choice_floor:null
+    conditions:
+    - is variable_set choice_floor:2floor
+    type: "event"

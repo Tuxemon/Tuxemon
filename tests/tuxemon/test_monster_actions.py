@@ -263,6 +263,26 @@ class TestMonsterActions(unittest.TestCase):
         self.action.execute_action("modify_monster_stats", [None, "speed"])
         self.assertEqual(monster.speed, before)
 
+    def test_modify_monster_stats_random_positive(self):
+        _params = ["agnite", 5]
+        self.action.execute_action("add_monster", _params)
+        monster = self.player.monsters[0]
+        before = monster.speed
+        _params = [None, "speed", None, 1, 5]
+        self.action.execute_action("modify_monster_stats", _params)
+        self.assertGreaterEqual(monster.speed, before + 1)
+        self.assertLessEqual(monster.speed, before + 5)
+
+    def test_modify_monster_stats_random_negative(self):
+        _params = ["agnite", 5]
+        self.action.execute_action("add_monster", _params)
+        monster = self.player.monsters[0]
+        before = monster.speed
+        _params = [None, "speed", None, -5, -1]
+        self.action.execute_action("modify_monster_stats", _params)
+        self.assertGreaterEqual(monster.speed, before - 5)
+        self.assertLessEqual(monster.speed, before - 1)
+
     def test_modify_monster_bond(self):
         _params = ["agnite", 5]
         self.action.execute_action("add_monster", _params)
@@ -291,6 +311,26 @@ class TestMonsterActions(unittest.TestCase):
         self.action.execute_action("modify_monster_bond", [None, 0.5])
         self.assertGreaterEqual(monster.bond, before - 0.5)
         self.assertLessEqual(monster.bond, before + 0.5)
+
+    def test_modify_monster_bond_random_positive(self):
+        _params = ["agnite", 5]
+        self.action.execute_action("add_monster", _params)
+        monster = self.player.monsters[0]
+        before = monster.bond
+        _params = [None, None, 1, 5]
+        self.action.execute_action("modify_monster_bond", _params)
+        self.assertGreaterEqual(monster.bond, before + 1)
+        self.assertLessEqual(monster.bond, before + 5)
+
+    def test_modify_monster_bond_random_negative(self):
+        _params = ["agnite", 5]
+        self.action.execute_action("add_monster", _params)
+        monster = self.player.monsters[0]
+        before = monster.bond
+        _params = [None, None, -5, -1]
+        self.action.execute_action("modify_monster_bond", _params)
+        self.assertGreaterEqual(monster.bond, before - 5)
+        self.assertLessEqual(monster.bond, before - 1)
 
     def test_random_monster(self):
         _params = [5]

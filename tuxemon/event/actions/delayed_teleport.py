@@ -45,7 +45,8 @@ class DelayedTeleportAction(EventAction):
         if world.delayed_teleport:
             logger.error("Stop, there is a teleport in progress")
             return
-
+        player = self.session.player
+        player.remove_collision(player.tile_pos)
         world.delayed_teleport = True
         world.delayed_mapname = self.map_name
         world.delayed_x = self.position_x

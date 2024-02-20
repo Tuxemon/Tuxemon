@@ -1,0 +1,10 @@
+{
+  "slug": "zeke",
+  "template": [
+    {
+      "sprite_name": "knight",
+      "combat_front": "knight",
+      "slug": "knight"
+    }
+  ]
+}

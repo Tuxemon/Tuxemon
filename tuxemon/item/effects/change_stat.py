@@ -39,7 +39,7 @@ class ChangeStatEffect(ItemEffect):
         assert target
 
         if self.statistic not in list(StatType):
-            ValueError(f"{self.statistic} isn't among {list(StatType)}")
+            raise ValueError(f"{self.statistic} isn't among {list(StatType)}")
 
         set_var(self.session, self.name, str(target.instance_id.hex))
         client = self.session.client.event_engine

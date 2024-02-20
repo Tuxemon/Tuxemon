@@ -14,6 +14,7 @@
  <tileset firstgid="4216" source="../gfx/tilesets/core_set pieces.tsx"/>
  <tileset firstgid="5766" source="../gfx/tilesets/core_buildings.tsx"/>
  <tileset firstgid="8116" source="../gfx/tilesets/core_outdoor_water.tsx"/>
+ <tileset firstgid="16308" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eAHtVt0NwkAIbmKixidfrCs4g7qLOowdwSF0JnUVIfFL6PXgDu3Fn/SBcEALH1/h0tW0qubj/5EF9VI/ZWn0taGYJiX5WIu62wGfe/Z+mT/MpjWXJWePc0v+zmRjV1hfSHgnQr98JnbO7Qf9x3LABwzabr7it/Ys5NuT/0hc7XuQA+UIcWg247NqNhRHD56+tXpeP9e23pHzN+DrcvVt/J1mXYy53zd2j+TeFVYNGWN8Hoxy/rAnUvc9k8AHzdj5fJ205UY2x3Yk1n577grJk3YGLmjggw09+tB/Iuqn9J3whZyyDV61/t/1p3Cl4qV5TdVPxUvjewA9NJBD
@@ -21,12 +22,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHNVjtOQ0EMdJUPUKTgU0LBKRB1AqcA6vQIOAA1EjXiFJwAeC8cAuhokkMwVhhpsexk39M+hKXRxF7vejJsVlRDkRqoDEsQl+hbFzs9kd0V2MOaDTuf+RzzFoBlu1/zw63f1XuTc/XImc815WNn3c5nTp2W0/Oafm6jz85nTp2Wm2pK+1XfreMRe/6Df6s89PTRL8vWN+Z3m/y2zVnv/xlwHuDC8ZZzLVu9zdWU2bG94Z9j9fpd3VcjffSvpIIrvFfPGbhBD+dHTP/a6puae/qE/EHnOm/jC2qvAPkRfZwfMXXbOW31ct/c0cc1surj/Iipm3tKsedfenYN/Tn+jfBbV/y1f4sffZFvrL/3RRQfQOngPYvOzfGPez8HS50l9Ob+LXLuH/VZVr1e6NtxncDriWr2zdE+3v+Io7Oiur4dDP1/i/ekK+asXP5K9Ome6HuXqs/2RXoHIn1gXQzQMwTS6Mo3nvsGfWPMnAD6uQJqQHUra651zU/QcwqkUcqn6Jxv3vcYUw==
+   eAHNVjtOA0EMdZUPpKDgU2YLThEhQcXnFEBNjyAHoEaiRpyCEwC7cIhAR5McgmdlnzSxxmF2NYuw9PTWHo/91plMUg5FKqA0LI5dI+832+mJ7K7BHtas2f705+i3ACzb/ervj1ajD/Bnh6sx9SaR/mHWQWTd9qdPnZbDek2f2+iz/elTp+WmmsJ81XcXmRFz/sP81s0wpo/zsmznRv9+k2/bnPX8nwMXBuOjZewyMlv2tWz1NleTZ8f2RryO1RvP6j7q6eP8ciq4wX31koApctjfY86vrb4rc06f4T9qX3NXav1XxN4A8hPy2N9j6rZ92urlvnlEH9fIqo/9PaZu7snFsfmFtSvoT5nfFr7rir+e36LW582N8Vkfv6HAJ5DbeM68uinz496vwVJnDr2pn0XK+aM+y6o3Znp33AaI5Xgxe+doHs+/x14tL653B03/b/GcdMXslcrfgT7d4713rvj7WKRXiPSB0DSu9lGzPg8KkSEQWldzY13tdVyInACqpQSqWhNZ46r3FDlnQGi55uTV+QEYIxiD
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHN1skuBEEYwPFysY3EdjBxwHOIzOCAt8CZsSQG4yBz8QwYu9i3RyASsc5YYt+egKt9iX+Hik6pYlomzZf81HTNV1VfVbdGCH20pQkR0ijK/sw35bQybhktGkH6MvOFyEI2cpALU4yQPwq1NeX7bfVZOXtChE25uv4Ia/mox49SlKEc6vryWjeH075Grwg3IIB61ME0h1VfgHoa0IgmNMMUsk61NeXr+iNeIfrQjwEMwhRWff3UM4BBDGEY6vry2jSP1d/NuB70IoI+qGHd7w3q2cQWoohhmToWNZbo22KeKGLYxg5MIeuUrcyr8gixyrg1rGMDm4g3OtO/Zu5+PKuPzPOEZ7zgFb+JG8bd4g73eID6+/GbeZ2MUc/NyVi3c4uT3V7x5/Xs5yfr63KxTrm+qbXvQNZXQn0dvMNCaEcbWhGEPV9+XsgT4XnMYRYzkN8lsrXXN8Y7YhwTmMQUpqGLS+q5wDnOcApdnq7PdG6yf5X30RqssNe3Ty0HOMQRjnECn/L3LYXrDM7VA+vdl0abajjn91Wc/byituuP+qq5rzWo/afP3y1bu8O9sy26ll2QJEQhihBP6P7/+q5PnXOF+yafM1NrH+O0PvtYNz5XcG6VqIrz/KyaTPtOVL8b+/7LNRJ1TqZ53gDBIcJn
+   eAHN1skuBEEcx/FysSe2A3HAc4jYDngLnO2JmTEO4uIZMMxYYt8egUjEvhzs2xNwtS/x7VDR6dR/0s2kqeSjZmr+VfXr6tEoZW6hNKXCBiU53/VSTZB5q+g0CDCWVahUNnKQizxIbYz6cTh7qb7Clk+qiTceYa9y8lSgElWohnN//T7eWm4/aytQva1oQTOaIM218rWQpxVtaEcHpKZzOnup3jQeKVBqCMOIIgapWfmGyRNFDCMYhXN//V5axxrvZ94ABhHBEJzNut9b5NnGDnaxh1VyLBusMLbDOrvYwz4OIDWdU/e6ri5DqXXmbWATW9iG29aTLlc+s84LXvGGd/yk3THvHg94xBN++/vhNYfz3LzO97O+NNnP3dztZT8/na/Px5x6f6m3X4XOV0a+bp5hYXQhhCACsNfr10v5qncRC5jHHPRniezt+SZ4RkxiCtOYwSxM7Zo8V7jEBc5hqjONSeemx9d5Hm3AavZ8h2Q5wjFOcIozlDv+vqXwPpNzzYD17EujTxXO+XMXbz9vyHb7la+e+9qAxn/6/bvn0h7w6O0SfasuSlKqGCVw00z/f8Ubc665xn3T3zOpt8/xms8+14/XNZxbLepcnp+VSbruRI37cd1/uUeizkla5wO0rL/G
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
@@ -45,7 +46,7 @@
   </properties>
   <object id="133" type="collision" x="192" y="240" width="320" height="48"/>
   <object id="164" type="collision" x="512" y="128" width="128" height="112"/>
-  <object id="165" type="collision" x="432" y="80" width="80" height="16"/>
+  <object id="165" type="collision" x="448" y="80" width="64" height="16"/>
   <object id="166" type="collision" x="336" y="0" width="16" height="48"/>
   <object id="168" type="collision" x="336" y="128" width="176" height="16"/>
   <object id="169" type="collision" x="432" y="144" width="64" height="16"/>
@@ -56,7 +57,6 @@
   <object id="175" type="collision" x="320" y="192" width="32" height="16"/>
   <object id="178" type="collision" x="256" y="192" width="48" height="16"/>
   <object id="179" type="collision" x="240" y="0" width="16" height="16"/>
-  <object id="180" type="collision" x="256" y="16" width="16" height="16"/>
   <object id="181" type="collision" x="272" y="32" width="64" height="32"/>
   <object id="182" type="collision" x="256" y="64" width="64" height="16"/>
   <object id="183" type="collision" x="192" y="16" width="16" height="16"/>
@@ -69,15 +69,12 @@
   <object id="194" type="collision" x="0" y="128" width="32" height="96"/>
   <object id="195" type="collision" x="96" y="160" width="96" height="32"/>
   <object id="197" type="collision" x="64" y="240" width="16" height="16"/>
-  <object id="199" type="collision" x="48" y="304" width="128" height="16"/>
   <object id="202" type="collision" x="176" y="192" width="32" height="16"/>
-  <object id="227" type="collision" x="0" y="288" width="48" height="16"/>
   <object id="231" type="collision" x="336" y="144" width="16" height="16"/>
   <object id="247" type="collision" x="336" y="64" width="128" height="16"/>
   <object id="248" type="collision" x="352" y="0" width="112" height="16"/>
   <object id="249" type="collision" x="464" y="0" width="64" height="80"/>
   <object id="253" type="collision" x="96" y="192" width="64" height="16"/>
-  <object id="260" type="collision" x="176" y="288" width="16" height="16"/>
   <object id="275" type="collision" x="528" y="80" width="112" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">

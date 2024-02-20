@@ -32,12 +32,11 @@
   <object id="2" type="collision" x="368" y="64" width="224" height="16"/>
   <object id="3" type="collision" x="192" y="0" width="16" height="64"/>
   <object id="4" type="collision" x="576" y="0" width="16" height="64"/>
-  <object id="5" type="collision" x="5.68434e-14" y="288" width="640" height="16"/>
   <object id="6" type="collision" x="144" y="0" width="32" height="128"/>
   <object id="7" type="collision" x="352" y="48" width="16" height="16"/>
   <object id="10" type="collision" x="608" y="0" width="32" height="160"/>
-  <object id="19" type="collision" x="240" y="112" width="48" height="32"/>
-  <object id="20" type="collision" x="352" y="112" width="48" height="32"/>
-  <object id="21" type="collision" x="448" y="112" width="48" height="32"/>
+  <object id="19" type="collision" x="240" y="112" width="48" height="16"/>
+  <object id="20" type="collision" x="352" y="112" width="48" height="16"/>
+  <object id="21" type="collision" x="448" y="112" width="48" height="16"/>
  </objectgroup>
 </map>

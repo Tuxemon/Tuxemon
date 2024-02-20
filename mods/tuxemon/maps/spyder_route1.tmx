@@ -12,6 +12,7 @@
  <tileset firstgid="1" source="../gfx/tilesets/core_set pieces.tsx"/>
  <tileset firstgid="1551" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="4326" source="../gfx/tilesets/core_outdoor_water.tsx"/>
+ <tileset firstgid="12518" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eAGrY2NgqBvFZIeBDwfh8DtBxfA9RaJZhUS4byDj35eTgcEb6EYYJiY86eleFm4GBmQ82MIT2W0gNjb3DWT6I8Z99IxPdLtGovuomR6ICT9q2kdq+UeM+9DTBD35MPdpAMvBqcBycNogK69h7sNWrtAznHDZNeo+wu0PXGEHEh8NP8rCb7DmW1icD9Z8C3MfAH51ilk=
@@ -19,12 +20,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAGtlUlOxDAQRc0GiUk0Z2CLQEiNxHAR4A7sGSQWHIFT0ZyBJew4AGwQZTVPCt9VsZO0pdJ3Df717ThJSv/HfDOlEzPFI4sdNNih1fQN5a35u8Y3MwOvbH5tptjXc0hOeWt+TT/5Fg2L9ZSwV5t3B3H4WrGmn3y3V9/80s4+mzf2t8vnAn+ETwGX7s/r58X69OX6obxfM69LuU+/qozW9Ok5PduZjhm6z0e7T/lOZXwxy/fJG+jjvikqLxwaxyevqPvUvOd//t29rHFtx6uIn4v2w/8Oni/6Qb9bGeX8yswyAh9YqzvfS+nCTAf6Qc1Hfp++G+f9jXjoe2/aHhx97A+MeDSOPr13+PBFCB/57HvvMPpB1k1F+CKEn/ypnd2ZWVdvrsEHWTcV4YsQfvK3pu3ODL3k8UHiUxG+CH+2lh3I0w+9+GAUJz8U4QOj9ZpXvayL4uSHInxgtF7z6F016nda+SN91JFH76oR/oxvI75/6GzFbr8x81ofOKkbel6sz/ixkdKx/Wtb7d3qa/3gp+4XwsyRDA==
+   eAGtlc1NAzEQhc0FiT8lqYErAkWCCzQC9EADIHGgBKoCauAINwqAC2JGm08ybz22N4ml0fP8+M2z17ub0v9xvp/ShZnimcVOOuzUampDeVv+zPjmZuCNzW/NFGs9p+SUt+W39JPv0fC6mxL2ZvN8EIevF1v6yee9avNrO3u30jg+HD8X+CN8Crh0f6V+pVhNn9dP5f2el7qM91muGkdb+vScnu1M1xm6z0e7T36nHF/M/D6VBvq4b4rKC4fG8ckr6j41X/K/VnfPNe4clSri56L98H+C54t+sNxtHOX8xpkhAh/YqvP85SKlK7N8oB/Mc7V5Td9d4f1VrtlyiOR9703bg+hjf6DyRD769N7hwxchvOTdL73D6AdZtynCFyH85PFzvR7DB6nbFOGLEH7y+KoXH6RuU4Qvwt+DoQN5+qneVpz8VKQPGK3XvOplXRQnPxXhA30972zOlec9jt5to36nlT/X5PPF6vtCHXn0bhvhd3zv+P5Rjw509iLr18VWH3ipQ2cvst7xcy+lpf1re+3D6lt94KfuD+eKkCg=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHVld0JAjEQhPPkgwjai1qM9mAT2pxagy3Yg1nuPliGxA2sIi7Eyf7NTkI4S/kvWy9L2dSl+Fh95hzKG/mjU2+LUlrrXuNm1xm39Wy2vJHzsexez/WsM6NlM1v6vBbl9bnMPtJmebNI31SV/9Vzfkqf8uaVTgz29ry13qLFfnV/Xtu7u4z0jd4fdX7u6D6jb3RGVId+8OS+fxl98IE9HVFe+3rvzeJ8A7Xnmz76wd6dqYZeHXH4eggfefwI4VfUPs2rr/WjPnrho0/j5EHqQOI9hA+kT7GXV176NI5PHiTeQ+rA0Tr0aj1x+LIIH2jzzo3/dvLZedl+vY/LrFV50Ruh9kX+VQqUX/XhUyftP3d39f72dWHoVCSvaG/lm3ao/Ec34wXmx6p4
+   eAHVlN0NwjAMhPPEA0KCXYBhYAeWYLrCDKzADsRqP8k61TgoVAhL6dV/50satZT/su26lF1dio/Nd/ahvJnfOvW2KmVu3WvcbJhwX/dmyxs5H+t9130968xs2cw5fV6L8vpcz3umzfJmmb6xqv+p+/yWPuXtVzoy2N3zNncXLfar8/Pa3p1lpq/1/Kjzc1vfe/S1zsjq0A9e3P+vRx98YKQjy2tfdN8szj9Qe5b00Q9GZ6Yaojri8EUIH3n8DOFX1D7Nq6/1rT564aNP4+RB6kDiEcIH0qcY5ZWXPo3jkweJR0gd2FqHXq0nDl8vwgfaPLOl545TPn+qLrQqE/vJUPsyf5AC5Vd9+NRJ+8/dQ/3ex+mbmxh0KkZCr643qumJnyr/2c14AWg9qV8=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
@@ -38,7 +39,7 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="7" name="Collisions">
-  <object id="162" type="collision" x="0" y="0" width="160" height="64"/>
+  <object id="162" type="collision" x="0" y="32" width="160" height="32"/>
   <object id="163" type="collision" x="448" y="0" width="64" height="320"/>
   <object id="164" type="collision" x="160" y="256" width="224" height="32"/>
   <object id="165" type="collision" x="320" y="32" width="32" height="144"/>
@@ -52,14 +53,10 @@
   <object id="197" type="collision" x="512" y="160" width="64" height="64"/>
   <object id="198" type="collision" x="608" y="128" width="32" height="160"/>
   <object id="199" type="collision" x="544" y="96" width="96" height="32"/>
-  <object id="200" type="collision" x="32" y="192" width="32" height="96"/>
-  <object id="201" type="collision" x="0" y="288" width="32" height="32"/>
+  <object id="200" type="collision" x="32" y="192" width="32" height="64"/>
   <object id="202" type="collision" x="96" y="64" width="64" height="160"/>
   <object id="203" type="collision" x="128" y="224" width="32" height="32"/>
   <object id="204" type="collision" x="64" y="256" width="96" height="32"/>
-  <object id="205" type="collision" x="0" y="144" width="32" height="48"/>
-  <object id="206" type="collision" x="0" y="64" width="16" height="32"/>
-  <object id="207" type="collision" x="0" y="128" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="118" name="Teleport to Cotton Town" type="event" x="336" y="0" width="16" height="16">

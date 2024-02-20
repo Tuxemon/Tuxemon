@@ -1,0 +1,65 @@
+events:
+  Route:
+    actions:
+    - play_music music_chibi_ninja
+    conditions:
+    - not music_playing music_chibi_ninja
+    type: "event"
+  Go outside:
+    actions:
+    - transition_teleport spyder_park_south.tmx,6,35,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 6
+    y: 5
+    type: "event"
+  Create Guardian:
+    actions:
+    - create_npc spyder_park_guardian,2,4
+    - char_face spyder_park_guardian,right
+    conditions:
+    - not char_exists spyder_park_guardian
+    type: "event"
+  Talk Guardian Question:
+    actions:
+    - translated_dialog spyder_park_guardian2
+    - translated_dialog_choice yes:no,treestumps
+    - translated_dialog spyder_park_guardian3
+    behav:
+    - talk spyder_park_guardian
+    conditions:
+    - not variable_set treestumps
+    type: "event"
+  Talk Guardian:
+    actions:
+    - translated_dialog spyder_park_guardian3
+    behav:
+    - talk spyder_park_guardian
+    conditions:
+    - is variable_set treestumps
+    type: "event"
+  Vase:
+    actions:
+    - lock_controls
+    - translated_dialog spyder_park_guardian4
+    - wait 0.5
+    - char_face spyder_park_guardian,up
+    - wait 0.5
+    - pathfind spyder_park_guardian,2,3
+    - wait 0.5
+    - char_face spyder_park_guardian,player
+    - wait 0.5
+    - translated_dialog spyder_park_guardian5
+    - wait 0.5
+    - pathfind spyder_park_guardian,2,4
+    - wait 0.5
+    - char_face spyder_park_guardian,right
+    - unlock_controls
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 1
+    y: 2
+    type: "event"

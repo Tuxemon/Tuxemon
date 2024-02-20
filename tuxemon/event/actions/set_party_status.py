@@ -59,7 +59,7 @@ class SetPartyStatusAction(EventAction):
             _lost_hp += monster.hp - monster.current_hp
             level_average += monster.level
 
-        level_average = int(level_average / len(char.monsters))
+        level_average = int(round(level_average / len(char.monsters)))
         party_healthy = "yes" if _healthy == len(char.monsters) else "no"
 
         # ship data in variables

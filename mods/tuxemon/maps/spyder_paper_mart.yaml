@@ -47,7 +47,41 @@ events:
     - char_face spyder_dante,left
     - translated_dialog spyder_intro_question_name
     - rename_player random
+    - set_variable choice_phase:yes
+    - unlock_controls
+    conditions:
+    - not variable_set intro_scoop:done
+    - not variable_set choice_phase
+    type: "event"
+  Choice:
+    actions:
     - choice_monster budaye:dollfin:grintot:ignibus:memnomnom,myintrochoice
+    - set_variable choice_phase:next
+    conditions:
+    - is variable_set choice_phase:yes
+    type: "event"
+  Confirm Monster:
+    actions:
+    - translated_dialog_choice yes:no,areyousure
+    conditions:
+    - is variable_set choice_phase:next
+    type: "event"
+  Confirm Monster Yes:
+    actions:
+    - set_variable choice_phase:progress
+    conditions:
+    - is variable_set areyousure:yes
+    type: "event"
+  Confirm Monster No:
+    actions:
+    - set_variable choice_phase:yes
+    - set_variable areyousure:none
+    conditions:
+    - is variable_set areyousure:no
+    type: "event"
+  Continue Storekeeper:
+    actions:
+    - lock_controls
     - translated_dialog spyder_intro_shopkeeper3
     - pathfind spyder_billie,6,7
     - pathfind spyder_billie,6,10
@@ -89,6 +123,7 @@ events:
     - unlock_controls
     conditions:
     - not variable_set intro_scoop:done
+    - is variable_set choice_phase:progress
     type: "event"
   Billie Budaye:
     actions:

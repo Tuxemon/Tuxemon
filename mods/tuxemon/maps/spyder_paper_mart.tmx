@@ -7,15 +7,9 @@
   <property name="slug" value="paper_mart"/>
   <property name="types" value="shop"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="3865" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="7729" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="13" height="11">
   <data encoding="base64" compression="zlib">
    eAHzYWFg8CERVwHVk4pXAPWQilcKMzAMdswABIPdjbRyHwArWV7X

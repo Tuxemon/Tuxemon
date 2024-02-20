@@ -1,0 +1,53 @@
+events:
+  Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: "event"
+  Teleport to Cotton Town:
+    actions:
+    - transition_teleport spyder_paper_town.tmx,20,5,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    width: 2
+    height: 1
+    x: 2
+    y: 8
+    type: "event"
+  Teleport to Back:
+    actions:
+    - transition_teleport spyder_paper_town.tmx,22,3,0.3
+    - char_face player,right
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 13
+    y: 7
+    type: "event"
+  Create Granny Piper:
+    actions:
+    - create_npc spyder_grannypiper,3,6
+    - char_face spyder_grannypiper,right
+    conditions:
+    - not char_exists spyder_grannypiper
+    type: "event"
+  Talk Granny Piper1:
+    actions:
+    - translated_dialog spyder_papertown_grannypiper1
+    - set_variable spokengrannypiper:yes
+    behav:
+    - talk spyder_grannypiper
+    conditions:
+    - not variable_set spokengrannypiper:yes
+    type: "event"
+  Talk Granny Piper2:
+    actions:
+    - translated_dialog spyder_papertown_grannypiper2
+    behav:
+    - talk spyder_grannypiper
+    conditions:
+    - is variable_set spokengrannypiper:yes
+    type: "event"

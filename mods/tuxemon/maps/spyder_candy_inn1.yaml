@@ -1,0 +1,98 @@
+events:
+  Go upstairs:
+    actions:
+    - transition_teleport spyder_candy_inn2.tmx,5,2,0.3
+    - char_face player,right
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 4
+    y: 2
+    type: "event"
+  Play Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: "event"
+  Player Spawn:
+    x: 11
+    y: 9
+    type: "event"
+  Teleport to Port:
+    actions:
+    - transition_teleport spyder_candy_port.tmx,22,5,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    width: 3
+    height: 1
+    x: 10
+    y: 11
+    type: "event"
+  Make Cott:
+    actions:
+    - create_npc spyder_candyinn_cott,11,6
+    conditions:
+    - not char_exists spyder_candyinn_cott
+    type: "event"
+  Talk Cott:
+    actions:
+    - translated_dialog spyder_candyinn_cott1
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 11
+    y: 7
+    type: "event"
+  Create Pirate:
+    actions:
+    - create_npc spyder_candyinn_lyle,1,14
+    - char_face spyder_candyinn_lyle,right
+    conditions:
+    - not char_exists spyder_candyinn_lyle
+    type: "event"
+  Talk Pirate:
+    actions:
+    - translated_dialog spyder_candyinn_lyle1
+    behav:
+    - talk spyder_candyinn_lyle
+    type: "event"
+  Create Maniac:
+    actions:
+    - create_npc spyder_candyinn_bob,6,8
+    - char_face spyder_candyinn_bob,left
+    conditions:
+    - not char_exists spyder_candyinn_bob
+    type: "event"
+  Talk Maniac:
+    actions:
+    - translated_dialog spyder_candyinn_bob1
+    behav:
+    - talk spyder_candyinn_bob
+    type: "event"
+  Create Guard:
+    actions:
+    - create_npc spyder_candy_henrik,6,6
+    conditions:
+    - not char_exists spyder_candy_henrik
+    type: "event"
+  Talk Guard:
+    actions:
+    - translated_dialog spyder_candyinn_henrik1
+    behav:
+    - talk spyder_candy_henrik
+    type: "event"
+  Create Prof:
+    actions:
+    - create_npc spyder_candyinn_prof,9,2
+    conditions:
+    - not char_exists spyder_candyinn_prof
+    type: "event"
+  Talk Prof:
+    actions:
+    - translated_dialog spyder_candyinn_prof1
+    behav:
+    - talk spyder_candyinn_prof
+    type: "event"

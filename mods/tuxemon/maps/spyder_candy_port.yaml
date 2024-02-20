@@ -1,0 +1,156 @@
+events:
+  Teleport to Candy Town1:
+    actions:
+    - transition_teleport spyder_candy_town.tmx,11,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 11
+    y: 0
+    type: "event"
+  Teleport to Candy Inn:
+    actions:
+    - transition_teleport spyder_candy_inn1.tmx,11,10,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 22
+    y: 4
+    type: "event"
+  Teleport to Candy Town2:
+    actions:
+    - transition_teleport spyder_candy_town.tmx,37,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 37
+    y: 0
+    type: "event"
+  Teleport to Hill1:
+    actions:
+    - transition_teleport spyder_diamond_hill.tmx,19,51,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 11
+    type: "event"
+  Teleport to Hill2:
+    actions:
+    - transition_teleport spyder_diamond_hill.tmx,19,52,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 12
+    type: "event"
+  Teleport to Hill3:
+    actions:
+    - transition_teleport spyder_diamond_hill.tmx,19,55,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 13
+    width: 1
+    height: 5
+    type: "event"
+  Teleport to Sea:
+    actions:
+    - transition_teleport spyder_routec.tmx,0,35,0.3
+    - char_face player,right
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 39
+    y: 10
+    width: 1
+    height: 8
+    type: "event"
+  Create Captain:
+    actions:
+    - create_npc spyder_captain,37,8
+    - char_face spyder_captain,left
+    conditions:
+    - not char_exists spyder_captain
+    - is variable_set captainreturns:yes
+    type: "event"
+  Talk Captain - Candy:
+    actions:
+    - translated_dialog spyder_river_captain2
+    - translated_dialog_choice paper_town:leather_town:flower_city:timber_town:candy_port,rivergoto
+    behav:
+    - talk spyder_captain
+    conditions:
+    - is variable_set seencandy:yes
+    type: "event"
+  Destination - Timber:
+    actions:
+    - set_variable rivergoto:nothing
+    - transition_teleport spyder_timber_town.tmx,8,21,0.3
+    - char_face player,up
+    conditions:
+    - is variable_set rivergoto:timber
+    type: "event"
+  Destination - Flower:
+    actions:
+    - set_variable rivergoto:nothing
+    - char_face player,up
+    - transition_teleport spyder_flower_city.tmx,17,30,0.3
+    conditions:
+    - is variable_set rivergoto:flower
+    type: "event"
+  Destination - Leather:
+    actions:
+    - set_variable rivergoto:nothing
+    - transition_teleport spyder_leather_town.tmx,17,19,0.3
+    - char_face player,right
+    conditions:
+    - is variable_set rivergoto:leather
+    type: "event"
+  Destination - Paper:
+    actions:
+    - set_variable rivergoto:nothing
+    - transition_teleport spyder_paper_town.tmx,4,13,0.3
+    - char_face player,up
+    conditions:
+    - is variable_set rivergoto:paper
+    type: "event"
+  Destination - Candy:
+    actions:
+    - set_variable rivergoto:nothing
+    - transition_teleport spyder_candy_port.tmx,37,13,0.3
+    - char_face player,down
+    conditions:
+    - is variable_set rivergoto:candy
+    type: "event"
+  Create Monk:
+    actions:
+    - create_npc spyder_candyport_monk,21,8
+    conditions:
+    - not char_exists spyder_candyport_monk
+    type: "event"
+  Talk Monk Question:
+    actions:
+    - translated_dialog spyder_candyport_monk1
+    - translated_dialog_choice thats_crazy:thats_wild,seizedtimber
+    - translated_dialog spyder_candyport_monk2
+    behav:
+    - talk spyder_candyport_monk
+    conditions:
+    - not variable_set seizedtimber
+    type: "event"
+  Talk Monk:
+    actions:
+    - translated_dialog spyder_candyport_monk2
+    behav:
+    - talk spyder_candyport_monk
+    conditions:
+    - is variable_set seizedtimber
+    type: "event"

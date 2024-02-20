@@ -1,0 +1,20 @@
+{
+  "slug": "npc_test",
+  "template": [
+    {
+      "sprite_name": "adventurer",
+      "combat_front": "adventurer",
+      "slug": "adventurer"
+    }
+  ],
+  "monsters": [
+    {
+      "name": "Snowball",
+      "slug": "bamboon",
+      "level": 5,
+      "money_mod": 10,
+      "exp_req_mod": 27,
+      "gender": "male"
+    }
+  ]
+}

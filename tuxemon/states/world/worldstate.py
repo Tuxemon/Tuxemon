@@ -158,6 +158,7 @@ class WorldState(state.State):
         # The delayed teleport variable is used to perform a teleport in the
         # middle of a transition. For example, fading to black, then
         # teleporting the player, and fading back in again.
+        self.delayed_char: Optional[NPC] = None
         self.delayed_teleport = False
         self.delayed_mapname = ""
         self.delayed_x = 0
@@ -271,8 +272,12 @@ class WorldState(state.State):
 
         """
         if self.delayed_teleport:
-            self.stop_char(self.player)
-            self.lock_controls(self.player)
+            if self.delayed_char:
+                char = self.delayed_char
+            else:
+                char = self.player
+            self.stop_char(char)
+            self.lock_controls(char)
 
             # check if map has changed, and if so, change it
             map_name = prepare.fetch("maps", self.delayed_mapname)
@@ -280,10 +285,10 @@ class WorldState(state.State):
             if map_name != self.current_map.filename:
                 self.change_map(map_name)
 
-            self.player.set_position((self.delayed_x, self.delayed_y))
+            char.set_position((self.delayed_x, self.delayed_y))
 
             if self.delayed_facing:
-                self.player.facing = self.delayed_facing
+                char.facing = self.delayed_facing
                 self.delayed_facing = None
 
             self.delayed_teleport = False

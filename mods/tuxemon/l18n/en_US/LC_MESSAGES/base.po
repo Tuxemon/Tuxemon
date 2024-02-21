@@ -5291,6 +5291,14 @@ msgstr "Neuter"
 msgid "gender_female"
 msgstr "Female"
 
+#Player additional gender, since very few ID as 'neuter'
+
+msgid "gender_enby"
+msgstr "Nonbinary"
+
+msgid "gender_whatever"
+msgstr "Whatever"
+
 # Monster types
 msgid "aether"
 msgstr "Aether"

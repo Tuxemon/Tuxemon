@@ -15,7 +15,7 @@ events:
   Spyder:
     actions:
     - change_bg gradient_blue,choice_gender
-    - translated_dialog_choice gender_female:gender_male,gender_choice
+    - translated_dialog_choice gender_female:gender_male:gender_enby:gender_whatever,gender_choice
     - change_bg gradient_blue
     - transition_teleport spyder_bedroom.tmx,4,4,0.3
     - set_money player,250
@@ -25,11 +25,13 @@ events:
     - not variable_set spyder_starting_money:yes
     - not variable_set gender_choice:gender_male
     - not variable_set gender_choice:gender_female
+    - not variable_set gender_choice:gender_enby
+    - not variable_set gender_choice:gender_whatever
     type: "event"
   Xero:
     actions:
     - change_bg gradient_blue,choice_gender
-    - translated_dialog_choice gender_female:gender_male,gender_choice
+    - translated_dialog_choice gender_female:gender_male:gender_enby:gender_whatever,gender_choice
     - change_bg gradient_blue
     - transition_teleport player_house_bedroom.tmx,4,4,0.3
     - set_money player,500
@@ -39,6 +41,8 @@ events:
     - not variable_set xero_starting_money:yes
     - not variable_set gender_choice:gender_male
     - not variable_set gender_choice:gender_female
+    - not variable_set gender_choice:gender_enby
+    - not variable_set gender_choice:gender_whatever
     type: "event"
   Gender Male:
     actions:
@@ -53,4 +57,18 @@ events:
     - set_player_name f_default1:f_default2:f_default3
     conditions:
     - is variable_set gender_choice:gender_female
+    type: "event"
+  Gender Penguin:
+    actions:
+    - set_template player,penguin,disciple
+    - set_player_name cat_penguin:cat_pulsar:cat_pebble
+    conditions:
+    - is variable_set gender_choice:gender_whatever
+    type: "event"
+  Gender Enby:
+    actions:
+    - set_template player,knight,disciple
+    - set_player_name npc_red:hunter:dragon
+    conditions:
+    - is variable_set gender_choice:gender_enby
     type: "event"

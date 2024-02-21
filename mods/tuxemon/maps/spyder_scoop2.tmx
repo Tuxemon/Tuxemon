@@ -7,15 +7,9 @@
   <property name="slug" value="scoop2"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="3865" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
- <tileset firstgid="5415" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="5415" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <layer id="1" name="Tile Layer 1" width="8" height="5">
   <data encoding="base64" compression="zlib">
    eAFjYICAL4IMDF+B+BsQIwOYmLAQA4MIEIsCMUwtSA4mZgQUNwZiEyCGqQXJwcQOszAwwDBMLUgOJoaLBgDlUxQW
@@ -54,31 +48,31 @@
   <object id="2" name="Teleport to Scoop 1" type="event" x="0" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_scoop1.tmx,19,3,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="3" name="Teleport to Scoop 3" type="event" x="112" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_scoop3.tmx,1,11,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="12" name="Teleport to Timber Town" type="event" x="64" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_town.tmx,17,20,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
   <object id="15" name="Create Asta" type="event" x="32" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_reese,2,3"/>
-    <property name="cond1" value="not npc_exists spyder_scoop_reese"/>
+    <property name="cond1" value="not char_exists spyder_scoop_reese"/>
    </properties>
   </object>
   <object id="16" name="Talk Asta" type="event" x="32" y="48" width="16" height="16">

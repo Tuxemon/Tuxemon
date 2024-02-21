@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -68,8 +68,10 @@ class ChangeBgAction(EventAction):
             template = list(db.database["template"])
             if self.image in monsters:
                 self.image = f"gfx/sprites/battle/{self.image}-front.png"
-            if self.image in template:
+            elif self.image in template:
                 self.image = f"gfx/sprites/player/{self.image}.png"
+            else:
+                self.image = f"gfx/ui/background/{self.image}.png"
 
         if client.current_state.name != str(ImageState):
             if self.background is None:

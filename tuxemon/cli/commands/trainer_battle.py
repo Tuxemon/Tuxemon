@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import traceback
@@ -20,7 +20,7 @@ class TrainerBattleCommand(CLICommand):
 
     name = "trainer_battle"
     description = "Start a trainer battle."
-    example = "trainer_battle maple_girl"
+    example = "trainer_battle npc_test"
 
     def invoke(self, ctx: InvokeContext, line: str) -> None:
         """

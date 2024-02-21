@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """This module contains the Start state.
 """
 from __future__ import annotations
@@ -57,9 +57,8 @@ class StartState(PygameMenuState):
         def new_game() -> None:
             map_path = prepare.fetch("maps", prepare.STARTING_MAP)
             self.client.push_state("WorldState", map_name=map_path)
-            local_session.player.game_variables[
-                "date_start_game"
-            ] = formula.today_ordinal()
+            game_var = local_session.player.game_variables
+            game_var["date_start_game"] = formula.today_ordinal()
             self.client.pop_state(self)
 
         def change_state(

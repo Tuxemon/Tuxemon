@@ -6,18 +6,10 @@
   <property name="slug" value="walled_garden1"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
- <tileset firstgid="9279" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="7729" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="9279" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <layer id="1" name="Tile Layer 1" width="16" height="12">
   <data encoding="base64" compression="zlib">
    eAELYWRgCAFiEADRyBgiiiqGTy2yXpg6XOZiU4tNDFk/jA2j0dVTi6+kzsCgDMQw89D5MHFctD9QbwCSfnQ+Ln0w8Rqg3lok/eh8mDpc9Eqg3lVI+tH5uPQNJ/ED7AwMB6H4EJDG5TcAhCxAvA==
@@ -47,57 +39,57 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="23" name="Play Music" type="init" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music music_house_downstairs"/>
-    <property name="cond1" value="not music_playing music_house_downstairs"/>
+    <property name="act1" value="play_music music_home"/>
+    <property name="cond1" value="not music_playing music_home"/>
    </properties>
   </object>
   <object id="29" name="Go Outside" type="event" x="112" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_town.tmx,31,8,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="28" name="Player Spawn" type="event" x="176" y="0" width="16" height="16"/>
   <object id="47" name="Room2" type="event" x="112" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_walledgarden2.tmx,7,19,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="48" name="Room1" type="event" x="32" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_walledgarden2.tmx,2,19,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="49" name="Room3" type="event" x="208" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_walledgarden2.tmx,13,19,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="50" name="Go Outside" type="event" x="128" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_town.tmx,32,8,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="51" name="Room2" type="event" x="128" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_walledgarden2.tmx,8,19,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="55" name="Environment" type="event" x="64" y="32" width="16" height="16">
@@ -115,8 +107,8 @@
   <object id="58" name="Create fugger" type="event" x="224" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_walled_fugger,14,3"/>
-    <property name="act2" value="npc_face spyder_walled_fugger,left"/>
-    <property name="cond1" value="not npc_exists spyder_walled_fugger"/>
+    <property name="act2" value="char_face spyder_walled_fugger,left"/>
+    <property name="cond1" value="not char_exists spyder_walled_fugger"/>
    </properties>
   </object>
   <object id="59" name="Talk fugger" type="event" x="176" y="48" width="16" height="32">
@@ -126,18 +118,18 @@
     <property name="act2" value="add_monster polyrock,50,spyder_walled_fugger,5,10"/>
     <property name="act3" value="add_monster sampsage,50,spyder_walled_fugger,5,10"/>
     <property name="act4" value="add_monster sampsack,50,spyder_walled_fugger,5,10"/>
-    <property name="act5" value="start_battle spyder_walled_fugger"/>
+    <property name="act5" value="start_battle player,spyder_walled_fugger"/>
     <property name="act6" value="translated_dialog spyder_walled_fugger2"/>
     <property name="act7" value="set_variable walledfugger:yes"/>
     <property name="cond1" value="not variable_set walledfugger:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="60" name="Create carnegie" type="event" x="16" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_walled_carnegie,1,3"/>
-    <property name="act2" value="npc_face spyder_walled_carnegie,right"/>
-    <property name="cond1" value="not npc_exists spyder_walled_carnegie"/>
+    <property name="act2" value="char_face spyder_walled_carnegie,right"/>
+    <property name="cond1" value="not char_exists spyder_walled_carnegie"/>
    </properties>
   </object>
   <object id="61" name="Talk carnegie" type="event" x="64" y="48" width="16" height="32">
@@ -146,18 +138,18 @@
     <property name="act1" value="translated_dialog spyder_walled_carnegie1"/>
     <property name="act2" value="add_monster tetrchimp,45,spyder_walled_carnegie,5,10"/>
     <property name="act3" value="add_monster apeoro,55,spyder_walled_carnegie,5,10"/>
-    <property name="act4" value="start_battle spyder_walled_carnegie"/>
+    <property name="act4" value="start_battle player,spyder_walled_carnegie"/>
     <property name="act5" value="translated_dialog spyder_walled_carnegie2"/>
     <property name="act6" value="set_variable walledcarnegie:yes"/>
     <property name="cond1" value="not variable_set walledcarnegie:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="62" name="Create ford" type="event" x="80" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_walled_ford,5,6"/>
-    <property name="act2" value="npc_face spyder_walled_ford,down"/>
-    <property name="cond1" value="not npc_exists spyder_walled_ford"/>
+    <property name="act2" value="char_face spyder_walled_ford,down"/>
+    <property name="cond1" value="not char_exists spyder_walled_ford"/>
    </properties>
   </object>
   <object id="63" name="Talk ford" type="event" x="80" y="128" width="32" height="16">
@@ -167,18 +159,18 @@
     <property name="act2" value="add_monster drashimi,50,spyder_walled_ford,5,10"/>
     <property name="act3" value="add_monster mingdyn,50,spyder_walled_ford,5,10"/>
     <property name="act4" value="add_monster firomenis,50,spyder_walled_ford,5,10"/>
-    <property name="act5" value="start_battle spyder_walled_ford"/>
+    <property name="act5" value="start_battle player,spyder_walled_ford"/>
     <property name="act6" value="translated_dialog spyder_walled_ford2"/>
     <property name="act7" value="set_variable walledford:yes"/>
     <property name="cond1" value="not variable_set walledford:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="64" name="Create girard" type="event" x="32" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_walled_girard,2,9"/>
-    <property name="act2" value="npc_face spyder_walled_girard,up"/>
-    <property name="cond1" value="not npc_exists spyder_walled_girard"/>
+    <property name="act2" value="char_face spyder_walled_girard,up"/>
+    <property name="cond1" value="not char_exists spyder_walled_girard"/>
    </properties>
   </object>
   <object id="65" name="Talk girard" type="event" x="64" y="144" width="16" height="48">
@@ -188,18 +180,18 @@
     <property name="act2" value="add_monster tigrock,50,spyder_walled_girard,5,10"/>
     <property name="act3" value="add_monster anu,50,spyder_walled_girard,5,10"/>
     <property name="act4" value="add_monster komoduel,50,spyder_walled_girard,5,10"/>
-    <property name="act5" value="start_battle spyder_walled_girard"/>
+    <property name="act5" value="start_battle player,spyder_walled_girard"/>
     <property name="act6" value="translated_dialog spyder_walled_girard2"/>
     <property name="act7" value="set_variable walledgirard:yes"/>
     <property name="cond1" value="not variable_set walledgirard:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="66" name="Create vanderbilt" type="event" x="160" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_walled_vanderbilt,10,6"/>
-    <property name="act2" value="npc_face spyder_walled_vanderbilt,down"/>
-    <property name="cond1" value="not npc_exists spyder_walled_vanderbilt"/>
+    <property name="act2" value="char_face spyder_walled_vanderbilt,down"/>
+    <property name="cond1" value="not char_exists spyder_walled_vanderbilt"/>
    </properties>
   </object>
   <object id="67" name="Talk vanderbilt" type="event" x="144" y="128" width="32" height="16">
@@ -209,11 +201,11 @@
     <property name="act2" value="add_monster angesnow,50,spyder_walled_vanderbilt,5,10"/>
     <property name="act3" value="add_monster cowpignon,50,spyder_walled_vanderbilt,5,10"/>
     <property name="act4" value="add_monster narcileaf,50,spyder_walled_vanderbilt,5,10"/>
-    <property name="act5" value="start_battle spyder_walled_vanderbilt"/>
+    <property name="act5" value="start_battle player,spyder_walled_vanderbilt"/>
     <property name="act6" value="translated_dialog spyder_walled_vanderbilt"/>
     <property name="act7" value="set_variable walledvanderbilt:yes"/>
     <property name="cond1" value="not variable_set walledvanderbilt:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="68" name="Talk ford" type="event" x="80" y="64" width="32" height="16">
@@ -223,11 +215,11 @@
     <property name="act2" value="add_monster drashimi,50,spyder_walled_ford,5,10"/>
     <property name="act3" value="add_monster mingdyn,50,spyder_walled_ford,5,10"/>
     <property name="act4" value="add_monster firomenis,50,spyder_walled_ford,5,10"/>
-    <property name="act5" value="start_battle spyder_walled_ford"/>
+    <property name="act5" value="start_battle player,spyder_walled_ford"/>
     <property name="act6" value="translated_dialog spyder_walled_ford2"/>
     <property name="act7" value="set_variable walledford:yes"/>
     <property name="cond1" value="not variable_set walledford:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="69" name="Talk vanderbilt" type="event" x="144" y="64" width="32" height="16">
@@ -237,18 +229,18 @@
     <property name="act2" value="add_monster angesnow,50,spyder_walled_vanderbilt,5,10"/>
     <property name="act3" value="add_monster cowpignon,50,spyder_walled_vanderbilt,5,10"/>
     <property name="act4" value="add_monster narcileaf,50,spyder_walled_vanderbilt,5,10"/>
-    <property name="act5" value="start_battle spyder_walled_vanderbilt"/>
+    <property name="act5" value="start_battle player,spyder_walled_vanderbilt"/>
     <property name="act6" value="translated_dialog spyder_walled_vanderbilt"/>
     <property name="act7" value="set_variable walledvanderbilt:yes"/>
     <property name="cond1" value="not variable_set walledvanderbilt:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="70" name="Create astor" type="event" x="208" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_walled_astor,13,9"/>
-    <property name="act2" value="npc_face spyder_walled_astor,up"/>
-    <property name="cond1" value="not npc_exists spyder_walled_astor"/>
+    <property name="act2" value="char_face spyder_walled_astor,up"/>
+    <property name="cond1" value="not char_exists spyder_walled_astor"/>
    </properties>
   </object>
   <object id="71" name="Talk astor" type="event" x="176" y="144" width="16" height="48">
@@ -258,11 +250,11 @@
     <property name="act2" value="add_monster araignee,50,spyder_walled_astor,5,10"/>
     <property name="act3" value="add_monster spighter,50,spyder_walled_astor,5,10"/>
     <property name="act4" value="add_monster selket,50,spyder_walled_astor,5,10"/>
-    <property name="act5" value="start_battle spyder_walled_astor"/>
+    <property name="act5" value="start_battle player,spyder_walled_astor"/>
     <property name="act6" value="translated_dialog spyder_walled_astor2"/>
     <property name="act7" value="set_variable walledastor:yes"/>
     <property name="cond1" value="not variable_set walledastor:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
  </objectgroup>

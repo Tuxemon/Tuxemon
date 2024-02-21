@@ -9,46 +9,79 @@ events:
     actions:
     - change_bg
     - lock_controls
-    - npc_face player,right
     - create_npc spyder_paperscoop_santino,7,6
-    - npc_face spyder_paperscoop_santino,left
+    - char_face spyder_paperscoop_santino,left
     - create_npc spyder_dante,7,7
-    - npc_face spyder_dante,left
+    - char_face spyder_dante,left
     - create_npc spyder_papermart_miles,4,7
-    - npc_face spyder_papermart_miles,right
+    - char_face spyder_papermart_miles,right
     - create_npc spyder_papermart_shirley,4,6
-    - npc_face spyder_papermart_shirley,right
+    - char_face spyder_papermart_shirley,right
     - create_npc spyder_route2_roddick,4,5
-    - npc_face spyder_route2_roddick,right
+    - char_face spyder_route2_roddick,right
     - create_npc spyder_papermart_harith,4,4
-    - npc_face spyder_papermart_harith,right
+    - char_face spyder_papermart_harith,right
     - create_npc spyder_billie,4,3
-    - npc_face spyder_billie,right
+    - char_face spyder_billie,right
     - translated_dialog spyder_intro_shopkeeper1
     - pathfind spyder_dante,5,3
-    - npc_face spyder_dante,left
+    - char_face spyder_dante,left
     - translated_dialog spyder_intro_shopkeeper2
     - pathfind spyder_dante,5,4
-    - npc_face spyder_dante,left
+    - char_face spyder_dante,left
     - wait 0.5
     - pathfind spyder_dante,5,5
-    - npc_face spyder_dante,left
+    - char_face spyder_dante,left
     - wait 0.5
     - pathfind spyder_dante,5,6
-    - npc_face spyder_dante,left
+    - char_face spyder_dante,left
     - wait 0.5
     - pathfind spyder_dante,5,7
-    - npc_face spyder_dante,left
+    - char_face spyder_dante,left
     - wait 0.5
     - pathfind spyder_dante,5,8
-    - npc_face spyder_dante,left
+    - char_face spyder_dante,left
     - translated_dialog spyder_intro_shopkeeper2
-    - npc_face spyder_dante,right
+    - char_face spyder_dante,right
     - pathfind spyder_dante,7,7
-    - npc_face spyder_dante,left
+    - char_face spyder_dante,left
     - translated_dialog spyder_intro_question_name
     - rename_player random
+    - set_variable choice_phase:yes
+    - unlock_controls
+    conditions:
+    - not variable_set intro_scoop:done
+    - not variable_set choice_phase
+    type: "event"
+  Choice:
+    actions:
     - choice_monster budaye:dollfin:grintot:ignibus:memnomnom,myintrochoice
+    - set_variable choice_phase:next
+    conditions:
+    - is variable_set choice_phase:yes
+    type: "event"
+  Confirm Monster:
+    actions:
+    - translated_dialog_choice yes:no,areyousure
+    conditions:
+    - is variable_set choice_phase:next
+    type: "event"
+  Confirm Monster Yes:
+    actions:
+    - set_variable choice_phase:progress
+    conditions:
+    - is variable_set areyousure:yes
+    type: "event"
+  Confirm Monster No:
+    actions:
+    - set_variable choice_phase:yes
+    - set_variable areyousure:none
+    conditions:
+    - is variable_set areyousure:no
+    type: "event"
+  Continue Storekeeper:
+    actions:
+    - lock_controls
     - translated_dialog spyder_intro_shopkeeper3
     - pathfind spyder_billie,6,7
     - pathfind spyder_billie,6,10
@@ -66,22 +99,22 @@ events:
     - pathfind spyder_papermart_miles,6,10
     - remove_npc spyder_papermart_miles
     - pathfind player,6,7
-    - npc_face player,right
+    - char_face player,right
     - wait 0.5
-    - npc_face spyder_dante,up
+    - char_face spyder_dante,up
     - wait 0.5
-    - npc_face spyder_paperscoop_santino,down
+    - char_face spyder_paperscoop_santino,down
     - wait 0.5
     - pathfind spyder_paperscoop_santino,6,6
     - wait 0.5
-    - npc_face spyder_paperscoop_santino,down
+    - char_face spyder_paperscoop_santino,down
     - wait 0.5
-    - npc_face spyder_dante,left
+    - char_face spyder_dante,left
     - wait 0.5
-    - npc_face player,up
+    - char_face player,up
     - translated_dialog spyder_intro_shopkeeper4
     - wait 0.5
-    - npc_face spyder_dante,down
+    - char_face spyder_dante,down
     - pathfind player,6,10
     - transition_teleport spyder_bedroom.tmx,3,4,0.3
     - remove_npc spyder_paperscoop_santino
@@ -90,6 +123,7 @@ events:
     - unlock_controls
     conditions:
     - not variable_set intro_scoop:done
+    - is variable_set choice_phase:progress
     type: "event"
   Billie Budaye:
     actions:

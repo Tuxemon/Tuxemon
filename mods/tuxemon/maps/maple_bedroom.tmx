@@ -51,23 +51,23 @@
   <object id="9" name="Go Downstairs" type="event" x="112" y="32" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport maple_house.tmx,11,2,0.3"/>
-    <property name="act20" value="player_face down"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing left"/>
+    <property name="act20" value="char_face player,down"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="30" name="Player Spawn" type="event" x="48" y="64" width="16" height="16"/>
   <object id="31" name="Use Computer" type="event" x="64" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="change_state PCState"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="34" name="Read Sign" type="event" x="128" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog maple_bedroom_sign"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>

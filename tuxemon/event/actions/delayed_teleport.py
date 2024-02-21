@@ -1,12 +1,15 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -37,13 +40,13 @@ class DelayedTeleportAction(EventAction):
     position_y: int
 
     def start(self) -> None:
-        # Get the world object from the session
         world = self.session.client.get_state_by_name(WorldState)
 
-        # give up if there is a teleport in progress
         if world.delayed_teleport:
+            logger.error("Stop, there is a teleport in progress")
             return
-
+        player = self.session.player
+        player.remove_collision(player.tile_pos)
         world.delayed_teleport = True
         world.delayed_mapname = self.map_name
         world.delayed_x = self.position_x

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -8,12 +8,14 @@ from typing import TYPE_CHECKING, Union
 
 from tuxemon import formula, prepare
 from tuxemon.db import CategoryCondition as Category
-from tuxemon.db import ElementType, GenderType, TasteWarm
+from tuxemon.db import ElementType, GenderType, SeenStatus, TasteWarm
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
+from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
+
 logger = logging.getLogger(__name__)
 
 
@@ -131,6 +133,13 @@ class CaptureEffect(ItemEffect):
                 tuxeball = self.user.find_item(item.slug)
                 if tuxeball:
                     tuxeball.quantity += 1
+            if item.slug == "tuxeball_park":
+                empty = Technique()
+                empty.load("empty")
+                _wander = "spyder_park_wander"
+                label = self.user.game_variables.get(item.slug, _wander)
+                empty.use_tech = label
+                item.combat_state.rewrite_action_queue_method(target, empty)
 
             return {"success": False, "num_shakes": shakes, "extra": None}
 
@@ -138,9 +147,15 @@ class CaptureEffect(ItemEffect):
         if item.slug == "tuxeball_candy":
             target.level += 1
 
-        # add creature to the player's monster list
+        if (
+            target.slug in self.user.tuxepedia
+            and self.user.tuxepedia[target.slug] == SeenStatus.seen
+        ):
+            item.combat_state._new_tuxepedia = True
+        self.user.tuxepedia[target.slug] = SeenStatus.caught
         target.capture_device = item.slug
         target.wild = False
+        # add creature to the player's monster list
         self.user.add_monster(target, len(self.user.monsters))
 
         # TODO: remove monster from the other party

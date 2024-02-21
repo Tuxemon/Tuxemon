@@ -1,0 +1,14 @@
+{
+    "name": "libshake",
+    "buildsystem": "simple",
+    "build-commands": [
+        "BACKEND=LINUX PREFIX=${FLATPAK_DEST} make install"
+    ],
+    "sources": [
+        {
+            "type": "git",
+            "url": "https://github.com/zear/libShake.git",
+            "tag": "v0.3.2"
+        }
+    ]
+}

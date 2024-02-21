@@ -7,15 +7,9 @@
   <property name="slug" value="leather_house2"/>
   <property name="types" value="notype"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="3865" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="7729" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="2" name="Tile Layer 2" width="10" height="8">
   <data encoding="base64" compression="zlib">
    eAHzYWFg8CECrwCqIQYH8TMwjCQMAGRPIJU=
@@ -45,21 +39,21 @@
   <object id="59" name="Go outside" type="event" x="32" y="112" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_leather_town.tmx,30,28,0.3"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="63" name="TV" type="event" x="48" y="32" width="32" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_leatherhouse2_tv"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="64" name="Create Scientist" type="event" x="96" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_leatherhouse2_gabe,6,6"/>
-    <property name="cond1" value="not npc_exists spyder_leatherhouse2_gabe"/>
+    <property name="cond1" value="not char_exists spyder_leatherhouse2_gabe"/>
    </properties>
   </object>
   <object id="65" name="Talk Scientist" type="event" x="96" y="80" width="16" height="16">
@@ -71,7 +65,7 @@
   <object id="66" name="Create Miner" type="event" x="0" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_leatherhouse2_memphis,0,4"/>
-    <property name="cond1" value="not npc_exists spyder_leatherhouse2_memphis"/>
+    <property name="cond1" value="not char_exists spyder_leatherhouse2_memphis"/>
    </properties>
   </object>
   <object id="67" name="Talk Miner" type="event" x="0" y="48" width="16" height="16">
@@ -83,7 +77,7 @@
   <object id="68" name="Create Snugglepot" type="event" x="144" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_leatherhouse2_elias,9,4"/>
-    <property name="cond1" value="not npc_exists spyder_leatherhouse2_elias"/>
+    <property name="cond1" value="not char_exists spyder_leatherhouse2_elias"/>
    </properties>
   </object>
   <object id="69" name="Talk Snugglepot" type="event" x="144" y="48" width="16" height="16">

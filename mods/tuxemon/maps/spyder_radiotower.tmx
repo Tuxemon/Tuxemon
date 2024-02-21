@@ -16,9 +16,7 @@
  <tileset firstgid="3121" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
   <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
  </tileset>
- <tileset firstgid="4881" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
+ <tileset firstgid="4881" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <layer id="1" name="Tile Layer 1" width="14" height="21">
   <data encoding="base64" compression="zlib">
    eAH7y8vA8A+I/5OAGfgYGFSBWA2I1UnAGkC1vkDsB8T+JOAAoNpSIC4D4nIScMWoPqzhNRou2NPRaLgMnnABAN/VmGg=
@@ -63,15 +61,15 @@
   <object id="14" name="Teleport to Omnichannel 4" type="event" x="32" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_omnichannel4.tmx,10,2,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="15" name="Teleport to Omnichannel 4" type="event" x="48" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_omnichannel4.tmx,11,2,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="17" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -83,7 +81,7 @@
   <object id="19" name="Create Zoolander" type="event" x="112" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_route3_zoolander,7,14"/>
-    <property name="cond1" value="not npc_exists spyder_route3_zoolander"/>
+    <property name="cond1" value="not char_exists spyder_route3_zoolander"/>
     <property name="cond2" value="not variable_set omnichannelbeaverbrook:yes"/>
    </properties>
   </object>
@@ -96,7 +94,7 @@
   <object id="21" name="Create Donald" type="event" x="176" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_donald,11,14"/>
-    <property name="cond1" value="not npc_exists spyder_scoop_donald"/>
+    <property name="cond1" value="not char_exists spyder_scoop_donald"/>
     <property name="cond2" value="not variable_set omnichannelbeaverbrook:yes"/>
    </properties>
   </object>
@@ -109,7 +107,7 @@
   <object id="25" name="Create Beaverbrook" type="event" x="144" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_beaverbrook,9,12"/>
-    <property name="cond1" value="not npc_exists spyder_omnichannel_beaverbrook"/>
+    <property name="cond1" value="not char_exists spyder_omnichannel_beaverbrook"/>
     <property name="cond2" value="not variable_set omnichannelbeaverbrook:yes"/>
    </properties>
   </object>
@@ -118,7 +116,7 @@
     <property name="act1" value="translated_dialog spyder_omnichannel_beaverbrook1"/>
     <property name="act2" value="add_monster mk01_alpha,55,spyder_omnichannel_beaverbrook,5,10"/>
     <property name="act3" value="add_monster mk01_beta,55,spyder_omnichannel_beaverbrook,5,10"/>
-    <property name="act4" value="start_battle spyder_omnichannel_beaverbrook"/>
+    <property name="act4" value="start_battle player,spyder_omnichannel_beaverbrook"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_beaverbrook2"/>
     <property name="act6" value="set_variable omnichannelbeaverbrook:yes"/>
     <property name="act7" value="set_variable kernelquest:yes"/>
@@ -128,12 +126,12 @@
   </object>
   <object id="27" name="Stop!" type="event" x="16" y="256" width="208" height="16">
    <properties>
-    <property name="act1" value="player_stop"/>
+    <property name="act1" value="char_stop"/>
     <property name="act10" value="lock_controls"/>
     <property name="act20" value="create_npc spyder_dante,3,18"/>
     <property name="act30" value="create_npc spyder_billie,2,18"/>
-    <property name="act31" value="npc_face spyder_dante,up"/>
-    <property name="act32" value="npc_face spyder_billie,up"/>
+    <property name="act31" value="char_face spyder_dante,up"/>
+    <property name="act32" value="char_face spyder_billie,up"/>
     <property name="act40" value="translated_dialog spyder_omnichannel_billie1"/>
     <property name="act50" value="pathfind spyder_dante,11,15"/>
     <property name="act60" value="pathfind spyder_billie,7,15"/>
@@ -141,30 +139,30 @@
     <property name="act80" value="pathfind player,9,13"/>
     <property name="act81" value="add_monster mk01_alpha,55,spyder_omnichannel_beaverbrook,5,10"/>
     <property name="act82" value="add_monster mk01_beta,55,spyder_omnichannel_beaverbrook,5,10"/>
-    <property name="act90" value="start_battle spyder_omnichannel_beaverbrook"/>
+    <property name="act90" value="start_battle player,spyder_omnichannel_beaverbrook"/>
     <property name="act91" value="translated_dialog spyder_omnichannel_beaverbrook2"/>
     <property name="act92" value="set_variable omnichannelbeaverbrook:yes"/>
     <property name="act93" value="set_variable kernelquest:yes"/>
     <property name="act94" value="unlock_controls"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="not variable_set omnichannelbeaverbrook:yes"/>
    </properties>
   </object>
   <object id="28" name="Create Worm" type="event" x="80" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_worm,5,2"/>
-    <property name="cond1" value="not npc_exists spyder_omnichannel_worm"/>
+    <property name="cond1" value="not char_exists spyder_omnichannel_worm"/>
    </properties>
   </object>
   <object id="30" name="Create The Duke of Dead Air" type="event" x="128" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_thedukeofdeadair,8,2"/>
-    <property name="cond1" value="not npc_exists spyder_omnichannel_thedukeofdeadair"/>
+    <property name="cond1" value="not char_exists spyder_omnichannel_thedukeofdeadair"/>
    </properties>
   </object>
   <object id="31" name="Stop!" type="event" x="16" y="80" width="208" height="16">
    <properties>
-    <property name="act1" value="player_stop"/>
+    <property name="act1" value="char_stop"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="translated_dialog spyder_omnichannel_radioannounce"/>
     <property name="act30" value="remove_npc spyder_omnichannel_beaverbrook"/>
@@ -172,7 +170,7 @@
     <property name="act32" value="remove_npc spyder_route3_zoolander"/>
     <property name="act92" value="set_variable omnichannelradioannounce:yes"/>
     <property name="act93" value="unlock_controls"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="not variable_set omnichannelradioannounce:yes"/>
    </properties>
   </object>

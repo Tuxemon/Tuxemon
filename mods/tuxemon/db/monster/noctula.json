@@ -37,7 +37,6 @@
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 18,
             "monster_slug": "noctalo"
         }

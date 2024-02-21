@@ -7,15 +7,9 @@
   <property name="slug" value="paper_scoop"/>
   <property name="types" value="shop"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="7729" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="13" height="11">
   <data encoding="base64" compression="zlib">
    eAFLEWZgSCERTwKqJxUfAOohFU9kYWAYxYM3DABr1lWs
@@ -52,8 +46,8 @@
   <object id="17" name="Go outside" type="event" x="96" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_paper_town.tmx,19,13,0.3"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="59" name="Route Music" type="event" x="0" y="0" width="16" height="16">
@@ -65,14 +59,14 @@
   <object id="60" name="Create Shopkeeper" type="event" x="0" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_paperscoop_santino,0,4"/>
-    <property name="act2" value="npc_face spyder_paperscoop_santino,up"/>
-    <property name="cond1" value="not npc_exists spyder_paperscoop_santino"/>
+    <property name="act2" value="char_face spyder_paperscoop_santino,up"/>
+    <property name="cond1" value="not char_exists spyder_paperscoop_santino"/>
    </properties>
   </object>
   <object id="61" name="Create Dante" type="event" x="176" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dante,11,6"/>
-    <property name="cond1" value="not npc_exists spyder_dante"/>
+    <property name="cond1" value="not char_exists spyder_dante"/>
    </properties>
   </object>
   <object id="62" name="Talk Dante" type="event" x="16" y="0" width="16" height="16">
@@ -85,14 +79,14 @@
   <object id="64" name="potions" type="event" x="128" y="80" width="80" height="16">
    <properties>
     <property name="act10" value="translated_dialog potions_in_shop"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="65" name="capture devices" type="event" x="128" y="128" width="80" height="16">
    <properties>
     <property name="act10" value="translated_dialog capture_devices_in_shop"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.condition.condition import Condition
+from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
 
@@ -64,8 +65,8 @@ class SetMonsterStatusAction(EventAction):
                 logger.error(f"Game variable {self.variable} not found")
                 return
             monster_id = uuid.UUID(player.game_variables[self.variable])
-            monster = player.find_monster_by_id(monster_id)
+            monster = get_monster_by_iid(self.session, monster_id)
             if monster is None:
-                logger.error("Monster not found in party")
+                logger.error("Monster not found")
                 return
             self.set_status(monster, self.status, steps)

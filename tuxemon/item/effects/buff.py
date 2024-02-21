@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -38,7 +38,7 @@ class BuffEffect(ItemEffect):
         assert target
 
         if self.statistic not in list(StatType):
-            ValueError(f"{self.statistic} isn't among {list(StatType)}")
+            raise ValueError(f"{self.statistic} isn't among {list(StatType)}")
 
         amount = target.return_stat(StatType(self.statistic))
         value = int(amount * self.percentage)

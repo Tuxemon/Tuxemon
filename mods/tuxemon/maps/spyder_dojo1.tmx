@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="54">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="54">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -7,18 +7,10 @@
   <property name="slug" value="dojo1"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="3865" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
- <tileset firstgid="6835" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="10699" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
+ <tileset firstgid="6835" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="10699" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="24" height="12">
   <data encoding="base64" compression="zlib">
    eAGdkUsKwkAQRHsh+LtBFHGlgp+T6B08h3g5De49g27iB8TPAazCaeg0M5C4KGZSNf1SmewykUGvrEPCe2WyplK55+TgPKAN+FZglJ6Z0Tv2f0rllsH9M/CLqcgl6IqV8zHP8mO595TfnIncwL1DbezJ994b3j7oE8ljM5bfAbcLWb739PuV5XN2sp7lt5BRlu+9E/IzpHyfk2+9uvwl5ld/8u39D/Hv/f3Tm4O9gFK5n7H97b1tA9972j+Vp+5/hE7joAnWvCES87R/Kvcz2p/nq0j7VznLM3X5tn+Vd5D/BUMisEM=
@@ -78,17 +70,17 @@
   <object id="2" name="Teleport to Flower City" type="event" x="176" y="176" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_flower_city.tmx,34,18,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="28" name="Teleport to Dojo 2" type="event" x="192" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_dojo2.tmx,10,9,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
   <object id="29" name="Player Spawn" type="event" x="80" y="160" width="16" height="16"/>
@@ -101,60 +93,60 @@
   <object id="31" name="Board B" type="event" x="96" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_dojo_board_b"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="32" name="Board A" type="event" x="16" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_dojo_board_a"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="33" name="Board D" type="event" x="304" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_dojo_board_d"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="34" name="Board C" type="event" x="224" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_dojo_board_c"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="36" name="Create Fu" type="event" x="48" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_fu,3,2"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_fu"/>
+    <property name="cond1" value="not char_exists spyder_dojo_fu"/>
    </properties>
   </object>
   <object id="37" name="Create Yin" type="event" x="128" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_yin,8,2"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_yin"/>
+    <property name="cond1" value="not char_exists spyder_dojo_yin"/>
    </properties>
   </object>
   <object id="38" name="Create Zhu" type="event" x="258" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_zhu,16,2"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_zhu"/>
+    <property name="cond1" value="not char_exists spyder_dojo_zhu"/>
    </properties>
   </object>
   <object id="39" name="Create Xiang" type="event" x="336" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_xiang,21,2"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_xiang"/>
+    <property name="cond1" value="not char_exists spyder_dojo_xiang"/>
    </properties>
   </object>
   <object id="40" name="Create Zhao" type="event" x="160" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_zhao,10,9"/>
-    <property name="act2" value="npc_face spyder_dojo_zhao,right"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_zhao"/>
+    <property name="act2" value="char_face spyder_dojo_zhao,right"/>
+    <property name="cond1" value="not char_exists spyder_dojo_zhao"/>
    </properties>
   </object>
   <object id="41" name="Talk Fu1" type="event" x="0" y="48" width="16" height="16">
@@ -237,7 +229,7 @@
     <property name="act1" value="get_player_monster tasteful_zhu"/>
     <property name="act2" value="translated_dialog_choice taste_cold:taste_warm,which_taste"/>
     <property name="act3" value="set_variable zhu_tastes_choice:yes"/>
-    <property name="act4" value="transfer_money -,50"/>
+    <property name="act4" value="modify_money player,-50"/>
     <property name="cond1" value="is variable_set zhu_taste:yes"/>
     <property name="cond2" value="is variable_set zhu_yn:yes"/>
     <property name="cond4" value="not variable_set zhu_tastes_choice:yes"/>
@@ -248,7 +240,6 @@
     <property name="act2" value="change_taste tasteful_zhu,warm"/>
     <property name="act3" value="set_variable zhu_taste_done:yes"/>
     <property name="cond1" value="is variable_set which_taste:taste_warm"/>
-    <property name="cond3" value="is variable_set zhu_tastes_choice:yes"/>
     <property name="cond3" value="not variable_set zhu_taste_done:yes"/>
    </properties>
   </object>
@@ -257,7 +248,6 @@
     <property name="act2" value="change_taste tasteful_zhu,cold"/>
     <property name="act3" value="set_variable zhu_taste_done:yes"/>
     <property name="cond1" value="is variable_set which_taste:taste_cold"/>
-    <property name="cond3" value="is variable_set zhu_tastes_choice:yes"/>
     <property name="cond3" value="not variable_set zhu_taste_done:yes"/>
    </properties>
   </object>

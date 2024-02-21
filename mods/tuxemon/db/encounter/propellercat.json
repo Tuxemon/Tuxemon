@@ -4,7 +4,7 @@
      {
        "monster": "propellercat",
        "encounter_rate": 1,
-       "daytime": true,
+       "variable": "daytime:true",
        "exp_req_mod": 1,
        "level_range": [
          2,
@@ -14,7 +14,7 @@
      {
        "monster": "propellercat",
        "encounter_rate": 1,
-       "daytime": false,
+       "variable": "daytime:false",
        "exp_req_mod": 1,
        "level_range": [
          2,

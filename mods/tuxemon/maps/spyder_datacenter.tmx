@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="118">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="118">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -10,15 +10,9 @@
  <tileset firstgid="1" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
   <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
  </tileset>
- <tileset firstgid="2593" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="6457" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="10321" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="2593" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="6457" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="10321" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="7" name="Tile Layer 1" width="20" height="20">
   <data encoding="base64" compression="zlib">
    eAGlk8ENwkAMBNMANIAE/ZCGgIKAYngiykAIfrzwSLfSypzvAY9T4rG9cda6eTlNczrPxTejpuLev4+6fDYdRk3Fvf8UdfnQlxlxxb32spqmfOjLjLjivVpnVV/FvRcvH+E/7BrvxK+I8f7W5nROPvO8D313F7XyFnZoes7JV5ycfGa+Y4vFzk3PObmKk0NH87kPPeb50Xuvt8dGGp7bxpzyVLtxRk78nu5O3g267ve6eeAMnzUvT+2stxv03G/pOdN+qEWPWCfvxv+bd+ll7vPl3Cj+V0974BvcA+6GmHstztO5avWUt+jlHVT3oOJoyVf08g6y16qtOPmRl7/m3jGbzq8a6vsAo58Ymw==
@@ -75,7 +69,7 @@
   <object id="41" name="PC1" type="event" x="16" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_pc_alert"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
@@ -94,9 +88,9 @@
   <object id="56" name="Teleport to Route B" type="event" x="32" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_routeb.tmx,6,4,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="61" name="PC2" type="event" x="112" y="48" width="16" height="16">
@@ -104,14 +98,14 @@
     <property name="act1" value="translated_dialog spyder_data_pc02"/>
     <property name="act2" value="wild_encounter kernel,50"/>
     <property name="act3" value="set_variable kernelquest:done"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="62" name="PC3" type="event" x="240" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_pc_alert"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
@@ -119,7 +113,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_data_pc04"/>
     <property name="act2" value="translated_dialog_choice snokari:woodoor:furnursus,lightest"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set lightest:snokari"/>
    </properties>
@@ -128,7 +122,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_data_pc06"/>
     <property name="act2" value="translated_dialog_choice shybulb:ruption:narcileaf,binary77"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set binary77:shybulb"/>
    </properties>
@@ -137,7 +131,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_data_pc08"/>
     <property name="act2" value="translated_dialog_choice ignibus:squink:possessun,smallest"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set smallest:ignibus"/>
    </properties>
@@ -146,7 +140,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_data_pc07"/>
     <property name="act2" value="translated_dialog_choice pythock:snarlon:pigabyte,tallest"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set tallest:snarlon"/>
    </properties>
@@ -155,7 +149,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_data_pc09"/>
     <property name="act2" value="translated_dialog_choice apeoro:jemuar:mauai,heaviest"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set heaviest:jemuar"/>
    </properties>
@@ -164,7 +158,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_data_pc10"/>
     <property name="act2" value="translated_dialog_choice baobaraffe:statursus:exclawvate,binary193"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set binary193:baobaraffe"/>
    </properties>
@@ -173,7 +167,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_data_pc05"/>
     <property name="act2" value="translated_dialog_choice shammer:drokoro:rhincus,binary144"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set binary144:shammer"/>
    </properties>
@@ -181,8 +175,8 @@
   <object id="81" name="Create Fermi" type="event" x="144" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_datacenter_fermi,9,14"/>
-    <property name="act2" value="npc_face spyder_datacenter_fermi,left"/>
-    <property name="cond1" value="not npc_exists spyder_datacenter_fermi"/>
+    <property name="act2" value="char_face spyder_datacenter_fermi,left"/>
+    <property name="cond1" value="not char_exists spyder_datacenter_fermi"/>
    </properties>
   </object>
   <object id="82" name="Talk Fermi" type="event" x="128" y="224" width="16" height="16">
@@ -194,18 +188,18 @@
     <property name="act4" value="add_monster sadito,35,spyder_datacenter_fermi,5,10"/>
     <property name="act5" value="add_monster happito,35,spyder_datacenter_fermi,5,10"/>
     <property name="act6" value="add_monster neutrito,35,spyder_datacenter_fermi,5,10"/>
-    <property name="act7" value="start_battle spyder_datacenter_fermi"/>
+    <property name="act7" value="start_battle player,spyder_datacenter_fermi"/>
     <property name="act8" value="translated_dialog spyder_datacenter_fermi2"/>
     <property name="act9" value="set_variable datacenterfermi:yes"/>
     <property name="cond1" value="not variable_set datacenterfermi:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="83" name="Create Onnes" type="event" x="208" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_datacenter_onnes,13,14"/>
-    <property name="act2" value="npc_face spyder_datacenter_onnes,right"/>
-    <property name="cond1" value="not npc_exists spyder_datacenter_onnes"/>
+    <property name="act2" value="char_face spyder_datacenter_onnes,right"/>
+    <property name="cond1" value="not char_exists spyder_datacenter_onnes"/>
    </properties>
   </object>
   <object id="84" name="Talk Onnes" type="event" x="224" y="224" width="16" height="16">
@@ -214,18 +208,18 @@
     <property name="act1" value="translated_dialog spyder_datacenter_onnes1"/>
     <property name="act2" value="add_monster ouroboutlet,45,spyder_datacenter_onnes,5,10"/>
     <property name="act3" value="add_monster angrito,40,spyder_datacenter_onnes,5,10"/>
-    <property name="act6" value="start_battle spyder_datacenter_onnes"/>
+    <property name="act6" value="start_battle player,spyder_datacenter_onnes"/>
     <property name="act7" value="translated_dialog spyder_datacenter_onnes2"/>
     <property name="act8" value="set_variable datacenteronnes:yes"/>
     <property name="cond1" value="not variable_set datacenteronnes:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="85" name="Create Bayliss" type="event" x="208" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_datacenter_bayliss,13,4"/>
-    <property name="act2" value="npc_face spyder_datacenter_bayliss,right"/>
-    <property name="cond1" value="not npc_exists spyder_datacenter_bayliss"/>
+    <property name="act2" value="char_face spyder_datacenter_bayliss,right"/>
+    <property name="cond1" value="not char_exists spyder_datacenter_bayliss"/>
    </properties>
   </object>
   <object id="86" name="Talk Bayliss" type="event" x="224" y="64" width="16" height="16">
@@ -234,18 +228,18 @@
     <property name="act1" value="translated_dialog spyder_datacenter_bayliss1"/>
     <property name="act2" value="add_monster sockeserp,45,spyder_datacenter_bayliss,5,10"/>
     <property name="act3" value="add_monster sadito,40,spyder_datacenter_bayliss,5,10"/>
-    <property name="act6" value="start_battle spyder_datacenter_bayliss"/>
+    <property name="act6" value="start_battle player,spyder_datacenter_bayliss"/>
     <property name="act7" value="translated_dialog spyder_datacenter_bayliss2"/>
     <property name="act8" value="set_variable datacenterbayliss:yes"/>
     <property name="cond1" value="not variable_set datacenterbayliss:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="87" name="Create Chomsky" type="event" x="144" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_datacenter_chomsky,9,4"/>
-    <property name="act2" value="npc_face spyder_datacenter_chomsky,left"/>
-    <property name="cond1" value="not npc_exists spyder_datacenter_chomsky"/>
+    <property name="act2" value="char_face spyder_datacenter_chomsky,left"/>
+    <property name="cond1" value="not char_exists spyder_datacenter_chomsky"/>
    </properties>
   </object>
   <object id="88" name="Talk Chomsky" type="event" x="128" y="64" width="16" height="16">
@@ -254,18 +248,18 @@
     <property name="act1" value="translated_dialog spyder_datacenter_chomsky1"/>
     <property name="act2" value="add_monster fancair,45,spyder_datacenter_chomsky,5,10"/>
     <property name="act3" value="add_monster happito,40,spyder_datacenter_chomsky,5,10"/>
-    <property name="act6" value="start_battle spyder_datacenter_chomsky"/>
+    <property name="act6" value="start_battle player,spyder_datacenter_chomsky"/>
     <property name="act7" value="translated_dialog spyder_datacenter_chomsky2"/>
     <property name="act8" value="set_variable datacenterchomsky:yes"/>
     <property name="cond1" value="not variable_set datacenterchomsky:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="89" name="Create Lagrange" type="event" x="48" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_datacenter_lagrange,3,4"/>
-    <property name="act2" value="npc_face spyder_datacenter_lagrange,left"/>
-    <property name="cond1" value="not npc_exists spyder_datacenter_lagrange"/>
+    <property name="act2" value="char_face spyder_datacenter_lagrange,left"/>
+    <property name="cond1" value="not char_exists spyder_datacenter_lagrange"/>
    </properties>
   </object>
   <object id="90" name="Talk Lagrange" type="event" x="32" y="64" width="16" height="16">
@@ -274,17 +268,17 @@
     <property name="act1" value="translated_dialog spyder_datacenter_lagrange1"/>
     <property name="act2" value="add_monster windeye,45,spyder_datacenter_lagrange,5,10"/>
     <property name="act3" value="add_monster neutrito,45,spyder_datacenter_lagrange,5,10"/>
-    <property name="act6" value="start_battle spyder_datacenter_lagrange"/>
+    <property name="act6" value="start_battle player,spyder_datacenter_lagrange"/>
     <property name="act7" value="translated_dialog spyder_datacenter_lagrange2"/>
     <property name="act8" value="set_variable datacenterlagrange:yes"/>
     <property name="cond1" value="not variable_set datacenterlagrange:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="91" name="Create Gold Pass" type="event" x="16" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_box_goldpass,1,14"/>
-    <property name="cond1" value="not npc_exists spyder_box_goldpass"/>
+    <property name="cond1" value="not char_exists spyder_box_goldpass"/>
     <property name="cond2" value="not has_item player,gold_pass"/>
    </properties>
   </object>
@@ -299,49 +293,49 @@
   <object id="94" name="Create Screen1" type="event" x="128" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_datacenter_s1,8,17"/>
-    <property name="cond1" value="not npc_exists spyder_datacenter_s1"/>
+    <property name="cond1" value="not char_exists spyder_datacenter_s1"/>
     <property name="cond2" value="not variable_set datascreen1:yes"/>
    </properties>
   </object>
   <object id="95" name="Create Screen2" type="event" x="224" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_datacenter_s2,14,17"/>
-    <property name="cond1" value="not npc_exists spyder_datacenter_s2"/>
+    <property name="cond1" value="not char_exists spyder_datacenter_s2"/>
     <property name="cond2" value="not variable_set datascreen2:yes"/>
    </properties>
   </object>
   <object id="96" name="Create Screen3" type="event" x="80" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_datacenter_s3,5,12"/>
-    <property name="cond1" value="not npc_exists spyder_datacenter_s3"/>
+    <property name="cond1" value="not char_exists spyder_datacenter_s3"/>
     <property name="cond2" value="not variable_set datascreen3:yes"/>
    </properties>
   </object>
   <object id="98" name="Create Screen4" type="event" x="272" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_datacenter_s4,17,12"/>
-    <property name="cond1" value="not npc_exists spyder_datacenter_s4"/>
+    <property name="cond1" value="not char_exists spyder_datacenter_s4"/>
     <property name="cond2" value="not variable_set datascreen4:yes"/>
    </properties>
   </object>
   <object id="99" name="Create Screen7" type="event" x="224" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_datacenter_s7,14,7"/>
-    <property name="cond1" value="not npc_exists spyder_datacenter_s7"/>
+    <property name="cond1" value="not char_exists spyder_datacenter_s7"/>
     <property name="cond2" value="not variable_set datascreen7:yes"/>
    </properties>
   </object>
   <object id="100" name="Create Screen6" type="event" x="128" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_datacenter_s6,8,7"/>
-    <property name="cond1" value="not npc_exists spyder_datacenter_s6"/>
+    <property name="cond1" value="not char_exists spyder_datacenter_s6"/>
     <property name="cond2" value="not variable_set datascreen6:yes"/>
    </properties>
   </object>
   <object id="101" name="Create Screen5" type="event" x="32" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_datacenter_s5,2,7"/>
-    <property name="cond1" value="not npc_exists spyder_datacenter_s5"/>
+    <property name="cond1" value="not char_exists spyder_datacenter_s5"/>
     <property name="cond2" value="not variable_set datascreen5:yes"/>
    </properties>
   </object>
@@ -349,6 +343,7 @@
    <properties>
     <property name="act1" value="random_encounter datacenter,0.6"/>
     <property name="cond1" value="not variable_set kernelquest:done"/>
+    <property name="cond2" value="is check_char_parameter player,moving,1"/>
    </properties>
   </object>
   <object id="103" name="PC7 No" type="event" x="128" y="192" width="16" height="16">
@@ -479,12 +474,12 @@
   </object>
   <object id="117" name="Billie" type="event" x="144" y="32" width="16" height="16">
    <properties>
-    <property name="act01" value="player_stop"/>
+    <property name="act01" value="char_stop"/>
     <property name="act02" value="lock_controls"/>
     <property name="act03" value="create_npc spyder_billie,11,14"/>
     <property name="act04" value="pathfind spyder_billie,1,10"/>
-    <property name="act05" value="npc_face spyder_billie,player"/>
-    <property name="act06" value="npc_face player,right"/>
+    <property name="act05" value="char_face spyder_billie,player"/>
+    <property name="act06" value="char_face player,right"/>
     <property name="act07" value="translated_dialog spyder_datacenter_billie1"/>
     <property name="act75" value="pathfind spyder_billie,11,14"/>
     <property name="act80" value="remove_npc spyder_billie"/>

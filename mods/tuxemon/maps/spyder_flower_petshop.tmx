@@ -51,14 +51,14 @@
   <object id="19" name="Create Shop Assistant" type="event" x="112" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_flowerpetshop_titus,7,4"/>
-    <property name="cond1" value="not npc_exists spyder_flowerpetshop_titus"/>
+    <property name="cond1" value="not char_exists spyder_flowerpetshop_titus"/>
    </properties>
   </object>
   <object id="21" name="Talk Shop Assistant1" type="event" x="112" y="80" width="16" height="16">
    <properties>
-    <property name="act0" value="npc_face spyder_flowerpetshop_titus,down"/>
+    <property name="act0" value="char_face spyder_flowerpetshop_titus,down"/>
     <property name="act1" value="translated_dialog spyder_flower_petshopassistant"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not money_is player,greater_or_equal,500"/>
    </properties>
@@ -66,7 +66,7 @@
   <object id="28" name="Create Shop Keeper" type="event" x="32" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_flowerpetshop_denzel,2,5"/>
-    <property name="cond1" value="not npc_exists spyder_flowerpetshop_denzel"/>
+    <property name="cond1" value="not char_exists spyder_flowerpetshop_denzel"/>
    </properties>
   </object>
   <object id="29" name="Talk Shop Keeper - First Time" type="event" x="32" y="16" width="16" height="16">
@@ -94,7 +94,7 @@
     <property name="act3" value="set_variable shows_vivicinder:yes"/>
     <property name="act4" value="set_variable check_vivipere_morph:no"/>
     <property name="cond1" value="is variable_set check_vivipere_morph:yes"/>
-    <property name="cond2" value="is has_monster vivicinder"/>
+    <property name="cond2" value="is has_monster player,vivicinder"/>
     <property name="cond3" value="not variable_set shows_vivicinder:yes"/>
    </properties>
   </object>
@@ -102,8 +102,8 @@
    <properties>
     <property name="act1" value="transition_teleport spyder_flower_city.tmx,10,28,0.3"/>
     <property name="act2" value="set_variable check_vivipere_morph:no"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="33" name="Talk Shop Keeper - Check Vividactil" type="event" x="16" y="0" width="16" height="16">
@@ -113,7 +113,7 @@
     <property name="act3" value="set_variable shows_vividactil:yes"/>
     <property name="act4" value="set_variable check_vivipere_morph:no"/>
     <property name="cond1" value="is variable_set check_vividactil_morph:yes"/>
-    <property name="cond2" value="is has_monster vividactil"/>
+    <property name="cond2" value="is has_monster player,vividactil"/>
     <property name="cond3" value="not variable_set shows_vividactil:yes"/>
    </properties>
   </object>
@@ -124,7 +124,7 @@
     <property name="act3" value="set_variable shows_viviphyta:yes"/>
     <property name="act4" value="set_variable check_vivipere_morph:no"/>
     <property name="cond1" value="is variable_set check_viviphyta_morph:yes"/>
-    <property name="cond2" value="is has_monster viviphyta"/>
+    <property name="cond2" value="is has_monster player,viviphyta"/>
     <property name="cond3" value="not variable_set shows_viviphyta:yes"/>
    </properties>
   </object>
@@ -134,7 +134,7 @@
     <property name="act2" value="add_monster vivipere,5"/>
     <property name="act3" value="set_variable shows_vivisource:yes"/>
     <property name="cond1" value="is variable_set check_vivisource_morph:yes"/>
-    <property name="cond2" value="is has_monster vivisource"/>
+    <property name="cond2" value="is has_monster player,vivisource"/>
     <property name="cond3" value="not variable_set shows_vivisource:yes"/>
    </properties>
   </object>
@@ -145,7 +145,7 @@
     <property name="act3" value="set_variable shows_viviteel:yes"/>
     <property name="act4" value="set_variable check_vivipere_morph:no"/>
     <property name="cond1" value="is variable_set check_viviteel_morph:yes"/>
-    <property name="cond2" value="is has_monster viviteel"/>
+    <property name="cond2" value="is has_monster player,viviteel"/>
     <property name="cond3" value="not variable_set shows_viviteel:yes"/>
    </properties>
   </object>
@@ -156,7 +156,7 @@
     <property name="act3" value="set_variable shows_vivitrans:yes"/>
     <property name="act4" value="set_variable check_vivipere_morph:no"/>
     <property name="cond1" value="is variable_set check_vivitrans_morph:yes"/>
-    <property name="cond2" value="is has_monster vivitrans"/>
+    <property name="cond2" value="is has_monster player,vivitrans"/>
     <property name="cond3" value="not variable_set shows_vivitrans:yes"/>
    </properties>
   </object>
@@ -167,15 +167,15 @@
     <property name="act3" value="set_variable shows_vivitron:yes"/>
     <property name="act4" value="set_variable check_vivipere_morph:no"/>
     <property name="cond1" value="is variable_set check_vivitron_morph:yes"/>
-    <property name="cond2" value="is has_monster vivitron"/>
+    <property name="cond2" value="is has_monster player,vivitron"/>
     <property name="cond3" value="not variable_set shows_vivitron:yes"/>
    </properties>
   </object>
   <object id="44" name="Talk Shop Assistant2" type="event" x="128" y="64" width="16" height="16">
    <properties>
-    <property name="act0" value="npc_face spyder_flowerpetshop_titus,right"/>
+    <property name="act0" value="char_face spyder_flowerpetshop_titus,right"/>
     <property name="act1" value="translated_dialog spyder_flower_petshopassistant"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not money_is player,greater_or_equal,500"/>
    </properties>
@@ -183,18 +183,18 @@
   <object id="46" name="Go outside" type="event" x="0" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_flower_city.tmx,7,25,0.3"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="47" name="Talk Shop Assistant1" type="event" x="112" y="80" width="16" height="16">
    <properties>
-    <property name="act0" value="npc_face spyder_flowerpetshop_titus,down"/>
+    <property name="act0" value="char_face spyder_flowerpetshop_titus,down"/>
     <property name="act1" value="translated_dialog spyder_flower_petshopassistant"/>
     <property name="act2" value="translated_dialog spyder_flower_petshopassistant1"/>
     <property name="act3" value="translated_dialog player_wallet"/>
     <property name="act4" value="translated_dialog_choice ziggurat:woodoor:fuzzlet:potturmeist:squink:no,petshopbuy"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set chooses:yes"/>
     <property name="cond4" value="is money_is player,greater_or_equal,500"/>
@@ -202,12 +202,12 @@
   </object>
   <object id="48" name="Talk Shop Assistant2" type="event" x="128" y="64" width="16" height="16">
    <properties>
-    <property name="act0" value="npc_face spyder_flowerpetshop_titus,right"/>
+    <property name="act0" value="char_face spyder_flowerpetshop_titus,right"/>
     <property name="act1" value="translated_dialog spyder_flower_petshopassistant"/>
     <property name="act2" value="translated_dialog spyder_flower_petshopassistant1"/>
     <property name="act3" value="translated_dialog player_wallet"/>
     <property name="act4" value="translated_dialog_choice ziggurat:woodoor:fuzzlet:potturmeist:squink:no,petshopbuy"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set chooses:yes"/>
     <property name="cond4" value="is money_is player,greater_or_equal,500"/>
@@ -218,7 +218,7 @@
     <property name="act1" value="translated_dialog squink"/>
     <property name="act2" value="add_monster squink,10"/>
     <property name="act3" value="clear_variable petshopbuy"/>
-    <property name="act4" value="transfer_money -,500"/>
+    <property name="act4" value="modify_money player,-500"/>
     <property name="cond1" value="is variable_set petshopbuy:squink"/>
    </properties>
   </object>
@@ -227,7 +227,7 @@
     <property name="act1" value="translated_dialog potturmeist"/>
     <property name="act2" value="add_monster potturmeist,10"/>
     <property name="act3" value="clear_variable petshopbuy"/>
-    <property name="act4" value="transfer_money -,500"/>
+    <property name="act4" value="modify_money player,-500"/>
     <property name="cond1" value="is variable_set petshopbuy:potturmeist"/>
    </properties>
   </object>
@@ -236,7 +236,7 @@
     <property name="act1" value="translated_dialog fuzzlet"/>
     <property name="act2" value="add_monster fuzzlet,10"/>
     <property name="act3" value="clear_variable petshopbuy"/>
-    <property name="act4" value="transfer_money -,500"/>
+    <property name="act4" value="modify_money player,-500"/>
     <property name="cond1" value="is variable_set petshopbuy:fuzzlet"/>
    </properties>
   </object>
@@ -245,7 +245,7 @@
     <property name="act1" value="translated_dialog woodoor"/>
     <property name="act2" value="add_monster woodoor,10"/>
     <property name="act3" value="clear_variable petshopbuy"/>
-    <property name="act4" value="transfer_money -,500"/>
+    <property name="act4" value="modify_money player,-500"/>
     <property name="cond1" value="is variable_set petshopbuy:woodoor"/>
    </properties>
   </object>
@@ -254,7 +254,7 @@
     <property name="act1" value="translated_dialog ziggurat"/>
     <property name="act2" value="add_monster ziggurat,10"/>
     <property name="act3" value="clear_variable petshopbuy"/>
-    <property name="act4" value="transfer_money -,500"/>
+    <property name="act4" value="modify_money player,-500"/>
     <property name="cond1" value="is variable_set petshopbuy:ziggurat"/>
    </properties>
   </object>

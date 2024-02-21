@@ -41,7 +41,6 @@
     ],
     "evolutions": [
         {
-            "path": "standard",
             "at_level": 20,
             "monster_slug": "hectapod"
         }

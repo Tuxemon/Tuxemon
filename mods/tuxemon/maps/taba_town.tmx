@@ -80,16 +80,6 @@
   <object id="48" type="collision" x="624" y="720" width="16" height="16"/>
   <object id="49" type="collision" x="624" y="832" width="16" height="16"/>
   <object id="50" type="collision" x="688" y="48" width="16" height="16"/>
-  <object id="51" type="collision" x="576" y="912" width="160" height="48">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
-  <object id="52" type="collision" x="672" y="880" width="64" height="32">
-   <properties>
-    <property name="key" value="water"/>
-   </properties>
-  </object>
   <object id="53" type="collision" x="624" y="624" width="16" height="32"/>
   <object id="63" type="collision" x="576" y="0" width="32" height="48"/>
   <object id="64" type="collision" x="528" y="192" width="16" height="16"/>
@@ -118,7 +108,7 @@
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport player_house_downstairs.tmx,4,6,0.3"/>
-    <property name="cond10" value="is player_at"/>
+    <property name="cond10" value="is char_at player"/>
    </properties>
   </object>
   <object id="68" name="Play Music" type="init" x="0" y="0" width="16" height="16">
@@ -130,16 +120,16 @@
   <object id="69" name="Go to Test house" type="event" x="528" y="688" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport maple_house.tmx,6,10,0.3"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="70" name="Random Battle 1" type="event" x="512" y="432" width="128" height="80">
    <properties>
     <property name="act10" value="random_encounter new_txmn"/>
     <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond10" value="is player_moved"/>
-    <property name="cond20" value="is player_at"/>
+    <property name="cond10" value="is char_moved player"/>
+    <property name="cond20" value="is char_at player"/>
     <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
@@ -147,8 +137,8 @@
    <properties>
     <property name="act10" value="random_encounter rare_txmn"/>
     <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond10" value="is player_moved"/>
-    <property name="cond20" value="is player_at"/>
+    <property name="cond10" value="is char_moved player"/>
+    <property name="cond20" value="is char_at player"/>
     <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
@@ -156,8 +146,8 @@
    <properties>
     <property name="act10" value="random_encounter default_encounter"/>
     <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond10" value="is player_moved"/>
-    <property name="cond20" value="is player_at"/>
+    <property name="cond10" value="is char_moved player"/>
+    <property name="cond20" value="is char_at player"/>
     <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
@@ -165,8 +155,8 @@
    <properties>
     <property name="act10" value="random_encounter default_encounter"/>
     <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond10" value="is player_moved"/>
-    <property name="cond20" value="is player_at"/>
+    <property name="cond10" value="is char_moved player"/>
+    <property name="cond20" value="is char_at player"/>
     <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
@@ -174,105 +164,105 @@
    <properties>
     <property name="act10" value="random_encounter default_encounter"/>
     <property name="act20" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond10" value="is player_moved"/>
-    <property name="cond20" value="is player_at"/>
+    <property name="cond10" value="is char_moved player"/>
+    <property name="cond20" value="is char_at player"/>
     <property name="cond30" value="is variable_set badge:yes"/>
    </properties>
   </object>
   <object id="75" name="Empty Grass 1" type="event" x="464" y="816" width="80" height="32">
    <properties>
     <property name="act10" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond10" value="is player_moved"/>
-    <property name="cond20" value="is player_at"/>
+    <property name="cond10" value="is char_moved player"/>
+    <property name="cond20" value="is char_at player"/>
    </properties>
   </object>
   <object id="76" name="Empty Grass 2" type="event" x="464" y="800" width="32" height="16">
    <properties>
     <property name="act10" value="play_map_animation grass,0.1,noloop,player"/>
-    <property name="cond10" value="is player_moved"/>
-    <property name="cond20" value="is player_at"/>
+    <property name="cond10" value="is char_moved player"/>
+    <property name="cond20" value="is char_at player"/>
    </properties>
   </object>
   <object id="78" name="Player's House Sign" type="event" x="624" y="720" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog taba_town_homeplace"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="79" name="Professor's House Sign" type="event" x="560" y="688" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog taba_town_sign_profhouse"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="80" name="Teleport to Route 1" type="event" x="128" y="176" width="16" height="16">
    <properties>
     <property name="act10" value="teleport route1.tmx,50,11"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing left"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="81" name="Teleport to Route 1" type="event" x="128" y="192" width="16" height="16">
    <properties>
     <property name="act10" value="teleport route1.tmx,50,12"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing left"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="95" name="Go to Professor's Lab" type="event" x="704" y="832" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport professor_lab.tmx,6,17,0.3"/>
-    <property name="cond10" value="is player_at"/>
+    <property name="cond10" value="is char_at player"/>
    </properties>
   </object>
   <object id="96" name="Professor's Lab Sign" type="event" x="624" y="832" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog taba_town_sign_proflab"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="98" name="Teleport to healing center" type="event" x="640" y="48" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport healing_center.tmx,6,10,0.3"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="108" name="Enter mart" type="event" x="480" y="176" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport tuxe_mart_taba.tmx,6,10,0.3"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="124" name="Tuxemart Sign" type="event" x="528" y="192" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog taba_town_sign_tuxemart"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="110" name="Tuxecenter Sign" type="event" x="688" y="48" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog taba_town_sign_tuxecenter"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="112" name="Startup Town Sign" type="event" x="624" y="640" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog taba_town_sign"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="115" name="Route 0 Sign" type="event" x="576" y="544" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog taba_town_route20"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
@@ -280,29 +270,29 @@
   <object id="123" name="Check for Healing Center Teleport" type="event" x="208" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="teleport_faint"/>
-    <property name="cond1" value="is player_defeated"/>
+    <property name="cond1" value="is char_defeated player"/>
    </properties>
   </object>
   <object id="125" name="bring on the nurses" type="event" x="352" y="640" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc nurse1,37,39,stand"/>
     <property name="act20" value="create_npc nurse2,38,39,stand"/>
-    <property name="act30" value="npc_face nurse1,down"/>
-    <property name="act40" value="npc_face nurse2,down"/>
+    <property name="act30" value="char_face nurse1,down"/>
+    <property name="act40" value="char_face nurse2,down"/>
     <property name="cond10" value="not variable_set thewifedidspeak:yes"/>
    </properties>
   </object>
   <object id="126" name="nopenotyet" type="event" x="592" y="640" width="32" height="16">
    <properties>
     <property name="act10" value="translated_dialog nopenotyet"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
     <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="127" name="bring the cavalry" type="event" x="672" y="752" width="16" height="16">
    <properties>
-    <property name="act10" value="player_stop"/>
+    <property name="act10" value="char_stop"/>
     <property name="act11" value="lock_controls"/>
     <property name="act12" value="wait 1"/>
     <property name="act20" value="create_npc allie,37,40,stand"/>
@@ -310,7 +300,7 @@
     <property name="act40" value="create_npc knight3,38,39,stand"/>
     <property name="act60" value="translated_dialog hellolovelypeople"/>
     <property name="act70" value="create_npc npc_mom,43,46,stand"/>
-    <property name="act80" value="npc_face npc_mom, left"/>
+    <property name="act80" value="char_face npc_mom, left"/>
     <property name="act90" value="set_variable goodbyeoldknight:hedead"/>
     <property name="cond10" value="is variable_set goodbyeoldknight:yes"/>
    </properties>
@@ -319,18 +309,18 @@
    <properties>
     <property name="act010" value="pathfind allie,37,44"/>
     <property name="act020" value="wait 0.5"/>
-    <property name="act030" value="npc_face allie,up"/>
+    <property name="act030" value="char_face allie,up"/>
     <property name="act040" value="wait 0.3"/>
-    <property name="act050" value="npc_face allie,right"/>
+    <property name="act050" value="char_face allie,right"/>
     <property name="act060" value="translated_dialog darnitjohn"/>
-    <property name="act070" value="npc_face allie,up"/>
+    <property name="act070" value="char_face allie,up"/>
     <property name="act080" value="translated_dialog darnitjohn2"/>
     <property name="act090" value="wait 1"/>
     <property name="act100" value="pathfind knight4,37,43"/>
     <property name="act110" value="translated_dialog johnissorry"/>
-    <property name="act120" value="npc_face allie,right"/>
+    <property name="act120" value="char_face allie,right"/>
     <property name="act130" value="translated_dialog uselessnes"/>
-    <property name="act140" value="npc_face allie,down"/>
+    <property name="act140" value="char_face allie,down"/>
     <property name="act150" value="set_variable goodbyeoldknight:heback"/>
     <property name="cond10" value="is variable_set goodbyeoldknight:hedead"/>
    </properties>
@@ -347,14 +337,14 @@
    <properties>
     <property name="act010" value="translated_dialog cometomepls"/>
     <property name="act020" value="set_variable talkpls:yes"/>
-    <property name="act030" value="player_stop"/>
+    <property name="act030" value="char_stop"/>
     <property name="act035" value="lock_controls"/>
     <property name="act040" value="pathfind player,37,47"/>
-    <property name="act050" value="npc_face player,up"/>
+    <property name="act050" value="char_face player,up"/>
     <property name="act060" value="unlock_controls"/>
     <property name="act070" value="create_npc npc_wife,33,44"/>
     <property name="act080" value="pathfind npc_wife,36,47"/>
-    <property name="act090" value="npc_face npc_wife,up"/>
+    <property name="act090" value="char_face npc_wife,up"/>
     <property name="act100" value="set_variable goodbyeoldknight:helpme"/>
     <property name="cond10" value="is variable_set goodbyeoldknight:heback"/>
    </properties>
@@ -362,7 +352,7 @@
   <object id="127" name="timetowalk2" type="event" x="736" y="752" width="16" height="16">
    <properties>
     <property name="act10" value="pathfind npc_mom,38,47"/>
-    <property name="act20" value="npc_face npc_mom,up"/>
+    <property name="act20" value="char_face npc_mom,up"/>
     <property name="act30" value="set_variable talkpls:gone"/>
     <property name="cond10" value="is variable_set talkpls:yes"/>
    </properties>
@@ -371,19 +361,19 @@
    <properties>
     <property name="act010" value="wait 0.6"/>
     <property name="act020" value="translated_dialog hellolovelypeople2"/>
-    <property name="act030" value="npc_face allie,left"/>
+    <property name="act030" value="char_face allie,left"/>
     <property name="act040" value="wait 0.5"/>
-    <property name="act050" value="npc_face allie,right"/>
+    <property name="act050" value="char_face allie,right"/>
     <property name="act060" value="wait 0.5"/>
-    <property name="act070" value="npc_face allie,down"/>
+    <property name="act070" value="char_face allie,down"/>
     <property name="act080" value="wait 0.3"/>
     <property name="act090" value="translated_dialog hellolovelypeople3"/>
     <property name="act100" value="translated_dialog hellolovelypeople4"/>
-    <property name="act110" value="npc_face allie,right"/>
+    <property name="act110" value="char_face allie,right"/>
     <property name="act120" value="wait 0.3"/>
-    <property name="act130" value="npc_face allie,left"/>
+    <property name="act130" value="char_face allie,left"/>
     <property name="act140" value="wait 0.3"/>
-    <property name="act150" value="npc_face allie,down"/>
+    <property name="act150" value="char_face allie,down"/>
     <property name="act160" value="translated_dialog hellolovelypeople5"/>
     <property name="act170" value="set_variable goodbyeoldknight:ohwell"/>
     <property name="cond10" value="is variable_set goodbyeoldknight:helpme"/>
@@ -391,37 +381,37 @@
   </object>
   <object id="129" name="listentime2" type="event" x="736" y="752" width="16" height="16">
    <properties>
-    <property name="act010" value="npc_face allie,up"/>
+    <property name="act010" value="char_face allie,up"/>
     <property name="act020" value="translated_dialog whereismyhairbrush"/>
     <property name="act030" value="pathfind knight3,43,46"/>
-    <property name="act040" value="npc_face knight3,up"/>
-    <property name="act050" value="npc_face allie,right"/>
+    <property name="act040" value="char_face knight3,up"/>
+    <property name="act050" value="char_face allie,right"/>
     <property name="act060" value="remove_npc knight3"/>
     <property name="act070" value="wait 0.3"/>
-    <property name="act080" value="npc_face allie,up"/>
+    <property name="act080" value="char_face allie,up"/>
     <property name="act090" value="translated_dialog darnitjohn3"/>
     <property name="act100" value="translated_dialog darnitjohn4"/>
     <property name="act110" value="translated_dialog darnitjohn5"/>
     <property name="act120" value="translated_dialog darnitjohn6"/>
-    <property name="act130" value="npc_face knight4,right"/>
+    <property name="act130" value="char_face knight4,right"/>
     <property name="act140" value="wait 0.1"/>
-    <property name="act150" value="npc_face knight4,left"/>
+    <property name="act150" value="char_face knight4,left"/>
     <property name="act160" value="wait 0.1"/>
-    <property name="act170" value="npc_face knight4,down"/>
+    <property name="act170" value="char_face knight4,down"/>
     <property name="act180" value="translated_dialog darnitjohn7"/>
-    <property name="act190" value="npc_face allie,down"/>
+    <property name="act190" value="char_face allie,down"/>
     <property name="act200" value="wait 0.6"/>
     <property name="act210" value="translated_dialog darnitjohn8"/>
-    <property name="act220" value="npc_speed allie,10"/>
+    <property name="act220" value="char_speed allie,10"/>
     <property name="act230" value="pathfind allie,38,43"/>
-    <property name="act240" value="npc_face allie,left"/>
-    <property name="act250" value="npc_face knight4,right"/>
+    <property name="act240" value="char_face allie,left"/>
+    <property name="act250" value="char_face knight4,right"/>
     <property name="act260" value="translated_dialog darnitjohn9"/>
     <property name="act270" value="wait 0.5"/>
     <property name="act280" value="translated_dialog darnitjohn10"/>
-    <property name="act290" value="npc_speed knight4,8"/>
+    <property name="act290" value="char_speed knight4,8"/>
     <property name="act300" value="pathfind knight4,33,44"/>
-    <property name="act310" value="npc_face knight4,up"/>
+    <property name="act310" value="char_face knight4,up"/>
     <property name="act320" value="remove_npc knight4"/>
     <property name="act330" value="set_variable goodbyeoldknight:mamamia"/>
     <property name="cond10" value="is variable_set goodbyeoldknight:ohwell"/>
@@ -430,28 +420,28 @@
   <object id="130" name="listentime3" type="event" x="736" y="752" width="16" height="16">
    <properties>
     <property name="act010" value="pathfind allie,37,45"/>
-    <property name="act020" value="npc_face allie,down"/>
+    <property name="act020" value="char_face allie,down"/>
     <property name="act030" value="translated_dialog oopsie"/>
     <property name="act040" value="pathfind npc_mom,38,46"/>
     <property name="act050" value="translated_dialog ourstuffisours"/>
-    <property name="act060" value="npc_face allie,right"/>
+    <property name="act060" value="char_face allie,right"/>
     <property name="act070" value="translated_dialog oopsie2"/>
     <property name="act080" value="pathfind npc_mom,38,47"/>
-    <property name="act090" value="npc_face npc_mom,up"/>
+    <property name="act090" value="char_face npc_mom,up"/>
     <property name="act100" value="create_npc knight3,43,46"/>
-    <property name="act110" value="npc_face knight3,left"/>
+    <property name="act110" value="char_face knight3,left"/>
     <property name="act120" value="translated_dialog maamiexist"/>
     <property name="act130" value="translated_dialog maamiexist2"/>
-    <property name="act140" value="npc_face knight3,up"/>
+    <property name="act140" value="char_face knight3,up"/>
     <property name="act150" value="wait 0.4"/>
-    <property name="act160" value="npc_face knight3,left"/>
+    <property name="act160" value="char_face knight3,left"/>
     <property name="act170" value="translated_dialog maamiexist3"/>
     <property name="act180" value="translated_dialog maamiexist4"/>
     <property name="act190" value="translated_dialog yesmaam"/>
     <property name="act200" value="pathfind knight3,44,53"/>
-    <property name="act210" value="npc_face knight3,up"/>
+    <property name="act210" value="char_face knight3,up"/>
     <property name="act220" value="remove_npc knight3"/>
-    <property name="act230" value="npc_face allie,down"/>
+    <property name="act230" value="char_face allie,down"/>
     <property name="act240" value="set_variable goodbyeoldknight:herewegoagain"/>
     <property name="cond10" value="is variable_set goodbyeoldknight:mamamia"/>
    </properties>
@@ -459,7 +449,7 @@
   <object id="125" name="listentime4" type="event" x="736" y="752" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog itsmyaurababe"/>
-    <property name="act20" value="npc_speed allie,1.5"/>
+    <property name="act20" value="char_speed allie,1.5"/>
     <property name="act30" value="pathfind allie,37,46"/>
     <property name="act40" value="translated_dialog itsmyaurababe2"/>
     <property name="act49" value="play_sound sound_confirm"/>
@@ -473,32 +463,32 @@
   <object id="126" name="listentime5" type="event" x="736" y="752" width="16" height="16">
    <properties>
     <property name="act010" value="create_npc knight4,33,44"/>
-    <property name="act020" value="npc_face knight4,right"/>
+    <property name="act020" value="char_face knight4,right"/>
     <property name="act030" value="translated_dialog maamnothing"/>
-    <property name="act040" value="npc_face allie,left"/>
+    <property name="act040" value="char_face allie,left"/>
     <property name="act050" value="translated_dialog maamnothing2"/>
     <property name="act060" value="translated_dialog maamnothing3"/>
     <property name="act070" value="translated_dialog maamnothing4"/>
     <property name="act080" value="create_npc knight3,38,53"/>
     <property name="act090" value="pathfind knight3,39,46"/>
-    <property name="act100" value="npc_face knight3,left"/>
-    <property name="act110" value="npc_face allie,right"/>
+    <property name="act100" value="char_face knight3,left"/>
+    <property name="act110" value="char_face allie,right"/>
     <property name="act120" value="translated_dialog maamnothing5"/>
-    <property name="act130" value="npc_face allie,left"/>
+    <property name="act130" value="char_face allie,left"/>
     <property name="act140" value="wait 0.4"/>
-    <property name="act150" value="npc_face allie,right"/>
+    <property name="act150" value="char_face allie,right"/>
     <property name="act160" value="translated_dialog maamnothing6"/>
-    <property name="act170" value="npc_speed allie,3"/>
-    <property name="act180" value="npc_face allie,down"/>
+    <property name="act170" value="char_speed allie,3"/>
+    <property name="act180" value="char_face allie,down"/>
     <property name="act190" value="wait 1"/>
     <property name="act200" value="translated_dialog seeme"/>
     <property name="act210" value="pathfind allie,37,44"/>
     <property name="act220" value="pathfind knight3,38,44"/>
-    <property name="act230" value="npc_face allie,left"/>
+    <property name="act230" value="char_face allie,left"/>
     <property name="act240" value="translated_dialog solongjohn"/>
     <property name="act250" value="pathfind allie,37,40"/>
     <property name="act260" value="translated_dialog solongjohn2"/>
-    <property name="act270" value="npc_face knight3,up"/>
+    <property name="act270" value="char_face knight3,up"/>
     <property name="act280" value="translated_dialog yesmaam"/>
     <property name="act290" value="pathfind knight3,38,40"/>
     <property name="act300" value="remove_npc knight3"/>
@@ -510,20 +500,20 @@
   <object id="127" name="listentime6" type="event" x="736" y="752" width="16" height="16">
    <properties>
     <property name="act010" value="pathfind knight4, 37,44"/>
-    <property name="act020" value="npc_face knight4,down"/>
+    <property name="act020" value="char_face knight4,down"/>
     <property name="act030" value="wait 0.4"/>
     <property name="act040" value="translated_dialog knight4ispoor"/>
     <property name="act050" value="wait 0.6"/>
-    <property name="act060" value="npc_face knight4,right"/>
+    <property name="act060" value="char_face knight4,right"/>
     <property name="act070" value="pathfind knight4,39,44"/>
-    <property name="act080" value="npc_face knight4,left"/>
-    <property name="act090" value="npc_face npc_mom,left"/>
+    <property name="act080" value="char_face knight4,left"/>
+    <property name="act090" value="char_face npc_mom,left"/>
     <property name="act100" value="translated_dialog wherewasshe"/>
     <property name="act110" value="pathfind npc_mom,43,46"/>
-    <property name="act120" value="npc_face npc_mom,up"/>
+    <property name="act120" value="char_face npc_mom,up"/>
     <property name="act130" value="remove_npc npc_mom"/>
     <property name="act140" value="pathfind npc_wife,33,44"/>
-    <property name="act150" value="npc_face npc_wife,up"/>
+    <property name="act150" value="char_face npc_wife,up"/>
     <property name="act160" value="remove_npc npc_wife"/>
     <property name="act170" value="set_variable goodbyeoldknight:finallydone"/>
     <property name="act180" value="unlock_controls"/>
@@ -534,34 +524,34 @@
    <properties>
     <property name="act10" value="translated_dialog frowntime"/>
     <property name="cond10" value="is variable_set goodbyeoldknight:finallydone"/>
-    <property name="cond20" value="is player_facing_tile"/>
+    <property name="cond20" value="is char_facing_tile player"/>
     <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="129" name="nuuujohnisgone" type="event" x="752" y="704" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc knight4,39,44"/>
-    <property name="act20" value="npc_face knight4,left"/>
-    <property name="cond10" value="not npc_exists knight4"/>
+    <property name="act20" value="char_face knight4,left"/>
+    <property name="cond10" value="not char_exists knight4"/>
     <property name="cond20" value="is variable_set goodbyeoldknight:finallydone"/>
    </properties>
   </object>
   <object id="130" name="waitdontleave" type="event" x="592" y="624" width="32" height="16">
    <properties>
-    <property name="act1" value="player_stop"/>
+    <property name="act1" value="char_stop"/>
     <property name="act2" value="lock_controls"/>
     <property name="act3" value="translated_dialog waitdontgo"/>
     <property name="act4" value="create_npc npc_mom, 39,46"/>
     <property name="act5" value="pathfind npc_mom,37,40"/>
-    <property name="act6" value="npc_face npc_mom,up"/>
+    <property name="act6" value="char_face npc_mom,up"/>
     <property name="act7" value="translated_dialog thetvbescreamin"/>
     <property name="act8" value="set_variable comeinside:yes"/>
     <property name="act9" value="pathfind npc_mom,43,46"/>
-    <property name="act91" value="npc_face npc_mom, up"/>
+    <property name="act91" value="char_face npc_mom, up"/>
     <property name="act92" value="remove_npc npc_mom"/>
     <property name="cond1" value="is variable_set goodbyeoldknight:finallydone"/>
     <property name="cond2" value="not variable_set comeinside:yes"/>
-    <property name="cond3" value="is player_at"/>
+    <property name="cond3" value="is char_at player"/>
     <property name="cond6" value="not variable_set can_exit_town:yes"/>
    </properties>
   </object>
@@ -577,32 +567,32 @@
   <object id="150" name="create traveler" type="event" x="336" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc xerogrund1,22,23,stand"/>
-    <property name="act2" value="npc_face xerogrund1,right"/>
-    <property name="cond1" value="not npc_exists xerogrund1"/>
+    <property name="act2" value="char_face xerogrund1,right"/>
+    <property name="cond1" value="not char_exists xerogrund1"/>
    </properties>
   </object>
   <object id="149" name="plsletmepass" type="event" x="384" y="368" width="16" height="16">
    <properties>
-    <property name="act1" value="player_stop"/>
+    <property name="act1" value="char_stop"/>
     <property name="act2" value="translated_dialog hey"/>
-    <property name="act3" value="npc_face player,left"/>
+    <property name="act3" value="char_face player,left"/>
     <property name="act4" value="pathfind xerogrund1,23,23"/>
     <property name="act5" value="translated_dialog watchmewatchme"/>
     <property name="act6" value="pathfind xerogrund1,22,23"/>
-    <property name="act7" value="npc_face xerogrund1,down"/>
+    <property name="act7" value="char_face xerogrund1,down"/>
     <property name="act99" value="set_variable curfewz:yes"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
     <property name="cond3" value="not variable_set curfewz:yes"/>
    </properties>
   </object>
   <object id="136" name="why hello there" type="event" x="368" y="368" width="16" height="16">
    <properties>
-    <property name="act1" value="npc_face xerogrund1,right"/>
+    <property name="act1" value="char_face xerogrund1,right"/>
     <property name="act2" value="translated_dialog grumble"/>
-    <property name="act3" value="npc_face xerogrund1,down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act3" value="char_face xerogrund1,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
     <property name="cond4" value="is variable_set curfewz:yes"/>
    </properties>
@@ -610,8 +600,8 @@
   <object id="137" name="go, wander my children" type="event" x="704" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc bob,45,8,stand"/>
-    <property name="act2" value="npc_wander bob,2.0"/>
-    <property name="cond1" value="not npc_exists bob"/>
+    <property name="act2" value="char_wander bob,2.0"/>
+    <property name="cond1" value="not char_exists bob"/>
    </properties>
   </object>
   <object id="138" name="talk to bob" type="event" x="720" y="32" width="16" height="16">
@@ -625,56 +615,56 @@
     <property name="act1" value="create_npc conworker1,21,5,stand"/>
     <property name="act2" value="create_npc conworker2,21,6,stand"/>
     <property name="act3" value="create_npc conworker3,21,7,stand"/>
-    <property name="act4" value="npc_face conworker1,left"/>
-    <property name="act5" value="npc_face conworker2,left"/>
-    <property name="act6" value="npc_face conworker3,left"/>
+    <property name="act4" value="char_face conworker1,left"/>
+    <property name="act5" value="char_face conworker2,left"/>
+    <property name="act6" value="char_face conworker3,left"/>
     <property name="cond1" value="not variable_set announcetwo:done"/>
-    <property name="cond2" value="not npc_exists conworker1"/>
-    <property name="cond3" value="not npc_exists conworker2"/>
-    <property name="cond4" value="not npc_exists conworker3"/>
+    <property name="cond2" value="not char_exists conworker1"/>
+    <property name="cond3" value="not char_exists conworker2"/>
+    <property name="cond4" value="not char_exists conworker3"/>
    </properties>
   </object>
   <object id="140" name="people be blocking" type="event" x="352" y="96" width="16" height="32">
    <properties>
     <property name="act1" value="translated_dialog hmmm"/>
-    <property name="act11" value="player_stop"/>
-    <property name="act2" value="npc_face conworker2,up"/>
+    <property name="act11" value="char_stop"/>
+    <property name="act2" value="char_face conworker2,up"/>
     <property name="act3" value="translated_dialog hmmm2"/>
-    <property name="act4" value="npc_face conworker1,down"/>
+    <property name="act4" value="char_face conworker1,down"/>
     <property name="act5" value="translated_dialog hmmm3"/>
-    <property name="act6" value="npc_face conworker3,up"/>
+    <property name="act6" value="char_face conworker3,up"/>
     <property name="act7" value="translated_dialog hmmm4"/>
     <property name="act8" value="wait 0.5"/>
-    <property name="act81" value="npc_face conworker2,down"/>
+    <property name="act81" value="char_face conworker2,down"/>
     <property name="act82" value="wait 1"/>
     <property name="act9" value="translated_dialog hmmm5"/>
     <property name="act91" value="wait 1.2"/>
-    <property name="act92" value="npc_face conworker3,left"/>
+    <property name="act92" value="char_face conworker3,left"/>
     <property name="act93" value="wait 0.5"/>
     <property name="act94" value="translated_dialog hmmm6"/>
-    <property name="act95" value="npc_face conworker1,left"/>
-    <property name="act96" value="npc_face conworker2,left"/>
+    <property name="act95" value="char_face conworker1,left"/>
+    <property name="act96" value="char_face conworker2,left"/>
     <property name="act97" value="wait 1.2"/>
     <property name="act98" value="translated_dialog hmmm7"/>
     <property name="cond1" value="not variable_set announcetwo:done"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="cond2" value="is char_facing player,left"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="is player_at"/>
+    <property name="cond4" value="is char_at player"/>
    </properties>
   </object>
   <object id="143" name="announcement2" type="event" x="576" y="576" width="64" height="16">
    <properties>
-    <property name="act10" value="player_stop"/>
+    <property name="act10" value="char_stop"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="create_npc npc_mom,38,41,stand"/>
     <property name="act30" value="translated_dialog timeforround2"/>
     <property name="act40" value="pathfind npc_mom,38,38"/>
-    <property name="act50" value="npc_face npc_mom,up"/>
+    <property name="act50" value="char_face npc_mom,up"/>
     <property name="act60" value="set_variable moveon:yes"/>
     <property name="act61" value="set_variable stahp:stop"/>
     <property name="act70" value="pathfind player,38,37"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
     <property name="cond3" value="not variable_set moveon:yes"/>
     <property name="cond4" value="not variable_set timetomove:finite"/>
     <property name="cond5" value="is has_item player,potion, equals,2"/>
@@ -685,7 +675,7 @@
     <property name="act10" value="translated_dialog timeforround22"/>
     <property name="act11" value="set_variable moveplayer:true"/>
     <property name="act20" value="pathfind npc_mom,43,46"/>
-    <property name="act30" value="npc_face npc_mom,up"/>
+    <property name="act30" value="char_face npc_mom,up"/>
     <property name="act40" value="remove_npc npc_mom"/>
     <property name="act50" value="set_variable moveon:bye"/>
     <property name="act60" value="set_variable backhome:no"/>
@@ -696,8 +686,8 @@
   <object id="146" name="add jaime" type="event" x="456" y="128" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc taba_greeter,31,12,stand"/>
-    <property name="act20" value="npc_face taba_greeter,down"/>
-    <property name="cond10" value="not npc_exists taba_greeter"/>
+    <property name="act20" value="char_face taba_greeter,down"/>
+    <property name="cond10" value="not char_exists taba_greeter"/>
    </properties>
   </object>
   <object id="149" name="timetogroove2" type="event" x="512" y="592" width="16" height="16">
@@ -712,14 +702,14 @@
   <object id="132" name="martgreeter" type="event" x="336" y="208" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc taba_greeter,29,12,stand"/>
-    <property name="act20" value="npc_face taba_greeter,down"/>
-    <property name="cond1" value="not npc_exists taba_greeter"/>
+    <property name="act20" value="char_face taba_greeter,down"/>
+    <property name="cond1" value="not char_exists taba_greeter"/>
    </properties>
   </object>
   <object id="147" name="mydogishurt" type="event" x="672" y="608" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc postboy,37,38,stand"/>
-    <property name="act2" value="npc_face postboy,right"/>
+    <property name="act2" value="char_face postboy,right"/>
     <property name="act3" value="create_npc rock,38,38,stand"/>
     <property name="cond1" value="is variable_set go_get_tuxemon:yes"/>
     <property name="cond2" value="not variable_set havetuxemon:yes"/>
@@ -729,48 +719,48 @@
    <properties>
     <property name="act1" value="translated_dialog moverocky"/>
     <property name="act2" value="lock_controls"/>
-    <property name="act3" value="player_stop"/>
+    <property name="act3" value="char_stop"/>
     <property name="act4" value="wait 2"/>
     <property name="act5" value="translated_dialog moverocky2"/>
     <property name="act6" value="unlock_controls"/>
     <property name="cond1" value="is variable_set go_get_tuxemon:yes"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="cond2" value="is char_facing player,up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
-    <property name="cond4" value="is player_at"/>
+    <property name="cond4" value="is char_at player"/>
    </properties>
   </object>
   <object id="133" name="greeter_greets" type="event" x="480" y="192" width="16" height="16">
    <properties>
     <property name="act05" value="set_variable greeter_greets:yes"/>
-    <property name="act10" value="npc_face taba_greeter,left"/>
+    <property name="act10" value="char_face taba_greeter,left"/>
     <property name="act20" value="translated_dialog taba_greeting1"/>
     <property name="act25" value="translated_dialog taba_greeting2a"/>
     <property name="act30" value="add_item tuxeball,5"/>
     <property name="act40" value="translated_dialog gotfivetuxeballs"/>
-    <property name="act60" value="npc_face taba_greeter,down"/>
+    <property name="act60" value="char_face taba_greeter,down"/>
     <property name="cond10" value="not has_item player,tuxeball"/>
-    <property name="cond20" value="is party_size greater_than,0"/>
-    <property name="cond30" value="is player_at"/>
+    <property name="cond20" value="is party_size player,greater_than,0"/>
+    <property name="cond30" value="is char_at player"/>
     <property name="cond40" value="not variable_set greeter_greets:yes"/>
    </properties>
   </object>
   <object id="134" name="greeter_greets2" type="event" x="480" y="192" width="16" height="16">
    <properties>
     <property name="act05" value="set_variable greeter_greets:yes"/>
-    <property name="act10" value="npc_face taba_greeter,left"/>
+    <property name="act10" value="char_face taba_greeter,left"/>
     <property name="act20" value="translated_dialog taba_greeting1"/>
     <property name="act30" value="translated_dialog taba_greeting2b"/>
-    <property name="act60" value="npc_face taba_greeter,down"/>
+    <property name="act60" value="char_face taba_greeter,down"/>
     <property name="cond10" value="is has_item player,tuxeball"/>
-    <property name="cond20" value="is party_size greater_than,0"/>
-    <property name="cond30" value="is player_at"/>
+    <property name="cond20" value="is party_size player,greater_than,0"/>
+    <property name="cond30" value="is char_at player"/>
     <property name="cond40" value="not variable_set greeter_greets:yes"/>
    </properties>
   </object>
   <object id="150" name="jaime3" type="event" x="456" y="176" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog taba_greeting3"/>
-    <property name="act20" value="npc_face taba_greeter,down"/>
+    <property name="act20" value="char_face taba_greeter,down"/>
     <property name="behav10" value="talk taba_greeter"/>
     <property name="cond10" value="is variable_set greeter_greets:yes"/>
    </properties>
@@ -780,8 +770,8 @@
     <property name="act10" value="set_variable secret_ball:found"/>
     <property name="act20" value="add_item tuxeball,5"/>
     <property name="act25" value="translated_dialog gotfivetuxeballs"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing right"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,right"/>
     <property name="cond30" value="not variable_set secret_ball:found"/>
     <property name="cond40" value="is button_pressed K_RETURN"/>
    </properties>
@@ -791,21 +781,21 @@
     <property name="act1" value="remove_npc postboy"/>
     <property name="act2" value="remove_npc rock"/>
     <property name="cond1" value="is variable_set havetuxemon:yes"/>
-    <property name="cond2" value="is npc_exists postboy"/>
+    <property name="cond2" value="is char_exists postboy"/>
    </properties>
   </object>
   <object id="157" name="propeller cat" type="event" x="64" y="64" width="16" height="64">
    <properties>
     <property name="act10" value="random_encounter propellercat"/>
-    <property name="cond10" value="is player_moved"/>
-    <property name="cond20" value="is player_at"/>
+    <property name="cond10" value="is char_moved player"/>
+    <property name="cond20" value="is char_at player"/>
    </properties>
   </object>
   <object id="159" name="move player" type="event" x="512" y="544" width="16" height="16">
    <properties>
     <property name="act10" value="wait 0.7"/>
     <property name="act20" value="pathfind player, 43,46"/>
-    <property name="act30" value="npc_face player,up"/>
+    <property name="act30" value="char_face player,up"/>
     <property name="act35" value="unlock_controls"/>
     <property name="act36" value="set_variable moveplayer:false"/>
     <property name="act40" value="transition_teleport player_house_downstairs.tmx,4,6,0.3"/>
@@ -821,56 +811,56 @@
   <object id="163" name="Teleport to house1" type="event" x="784" y="96" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport taba_town_house1.tmx,7,6,0.3"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="170" name="Teleport to house2" type="event" x="640" y="176" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport taba_town_house2.tmx,7,6,0.3"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="171" name="Teleport to house3" type="event" x="528" y="48" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport taba_town_house3.tmx,7,6,0.3"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="172" name="Teleport to house4" type="event" x="400" y="48" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport taba_town_house4.tmx,7,6,0.3"/>
-    <property name="cond10" value="is player_at"/>
-    <property name="cond20" value="is player_facing up"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="175" name="sign house2" type="event" x="672" y="176" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog taba_house2_sign"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="176" name="sign house1" type="event" x="720" y="96" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog taba_house1_sign"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="177" name="sign house3" type="event" x="560" y="48" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog taba_house3_sign"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="178" name="sign house4" type="event" x="432" y="48" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog taba_house4_sign"/>
-    <property name="cond10" value="is player_facing_tile"/>
+    <property name="cond10" value="is char_facing_tile player"/>
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
@@ -878,12 +868,14 @@
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="not variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:grass"/>
    </properties>
   </object>
   <object id="180" name="Environment Night" type="event" x="16" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:night_grass"/>
     <property name="cond1" value="is variable_set stage_of_day:night"/>
+    <property name="cond2" value="not variable_set environment:night_grass"/>
    </properties>
   </object>
  </objectgroup>

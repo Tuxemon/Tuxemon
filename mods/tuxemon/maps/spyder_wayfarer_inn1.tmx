@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="82">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="82">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -7,18 +7,10 @@
   <property name="slug" value="wayfarer_inn1"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
- <tileset firstgid="1551" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="5415" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
- <tileset firstgid="8385" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="1551" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="5415" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
+ <tileset firstgid="8385" source="../gfx/tilesets/core_indoor_walls.tsx"/>
  <layer id="1" name="Tile Layer 1" width="15" height="16">
   <data encoding="base64" compression="zlib">
    eAE7r8DAoKOIii+jiYH4Zeqo+CJQ7C8QdwD1ImM9ND4DkH8JqBcZ/4fq9eJiYEDGXUC1F4FiMAzSC2PDaFx6YfIwmpDerUCzcfn7CtB96HJMQPUg/4Lc2w5kI/sZxAbZhy4G4+NyM8zvIL0wNjqNrPcS1H5kNcTq1Qbage4nXSLtxebfTiL1IruVGDayf7HFESjd4QP44ghkNj4A04vNnYNVLwBPPXLI
@@ -76,33 +68,33 @@
   <object id="34" name="Go upstairs" type="event" x="64" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_wayfarer_inn2.tmx,5,2,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
   <object id="35" name="Go to the other upstairs" type="event" x="160" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_wayfarer_inn2.tmx,9,3,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="39" name="Teleport to Route 3" type="event" x="160" y="160" width="48" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route3.tmx,4,5,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing down"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="40" name="Teleport to Route 3" type="event" x="176" y="16" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_route3.tmx,2,3,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing up"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="45" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -115,7 +107,7 @@
   <object id="47" name="Make Shopkeeper" type="event" x="176" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_wayfarer1_norm,11,6"/>
-    <property name="cond1" value="not npc_exists spyder_wayfarer1_norm"/>
+    <property name="cond1" value="not char_exists spyder_wayfarer1_norm"/>
    </properties>
   </object>
   <object id="48" name="Heal Tuxemon" type="event" x="192" y="96" width="16" height="16">
@@ -123,9 +115,9 @@
     <property name="act1" value="set_monster_health"/>
     <property name="act2" value="set_monster_status"/>
     <property name="act20" value="translated_dialog okaythen"/>
-    <property name="act30" value="npc_face spyder_wayfarer1_norm,up"/>
+    <property name="act30" value="char_face spyder_wayfarer1_norm,up"/>
     <property name="act40" value="wait 1"/>
-    <property name="act50" value="npc_face spyder_wayfarer1_norm,down"/>
+    <property name="act50" value="char_face spyder_wayfarer1_norm,down"/>
     <property name="act60" value="translated_dialog okaythen2"/>
     <property name="act70" value="set_variable chooses:none"/>
     <property name="cond1" value="is variable_set chooses:yes"/>
@@ -135,7 +127,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_wayfarer_shopkeeper"/>
     <property name="act2" value="translated_dialog_choice yes:no,chooses"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set chooses:yes"/>
    </properties>
@@ -143,7 +135,7 @@
   <object id="50" name="Create Nurse" type="event" x="128" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_wayfarer1_addy,8,9"/>
-    <property name="cond1" value="not npc_exists spyder_wayfarer1_addy"/>
+    <property name="cond1" value="not char_exists spyder_wayfarer1_addy"/>
    </properties>
   </object>
   <object id="51" name="Talk Nurse" type="event" x="128" y="128" width="16" height="16">
@@ -155,7 +147,7 @@
   <object id="52" name="Create Maniac" type="event" x="128" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_wayfarer1_wes,8,3"/>
-    <property name="cond1" value="not npc_exists spyder_wayfarer1_wes"/>
+    <property name="cond1" value="not char_exists spyder_wayfarer1_wes"/>
    </properties>
   </object>
   <object id="53" name="Talk Maniac - Botbot" type="event" x="112" y="112" width="16" height="16">
@@ -176,6 +168,18 @@
     <property name="cond1" value="is variable_set wayfarer1_botbot:yes"/>
     <property name="cond2" value="is variable_set quebotbot:yes"/>
     <property name="cond3" value="not variable_set gotbotbot:yes"/>
+    <property name="cond4" value="not check_char_parameter player,name,ApexPlayer"/>
+   </properties>
+  </object>
+  <object id="38" name="Talk Maniac - Got Botbot - Cheat" type="event" x="112" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_maniac1"/>
+    <property name="act2" value="add_monster botbot,10"/>
+    <property name="act3" value="set_variable gotbotbot:yes"/>
+    <property name="cond1" value="is variable_set wayfarer1_botbot:yes"/>
+    <property name="cond2" value="is variable_set quebotbot:yes"/>
+    <property name="cond3" value="not variable_set gotbotbot:yes"/>
+    <property name="cond4" value="is check_char_parameter player,name,ApexPlayer"/>
    </properties>
   </object>
   <object id="80" name="Talk Maniac - Followup Yes" type="event" x="112" y="112" width="16" height="16">
@@ -195,15 +199,15 @@
   <object id="55" name="Create Morton" type="event" x="80" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_wayfarer1_morton,4,6"/>
-    <property name="cond1" value="not npc_exists spyder_wayfarer1_morton"/>
+    <property name="cond1" value="not char_exists spyder_wayfarer1_morton"/>
    </properties>
   </object>
   <object id="56" name="Talk Morton" type="event" x="64" y="96" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_wayfarer1_morton1"/>
-    <property name="act11" value="npc_plague infected,spyder_wayfarer1_morton"/>
+    <property name="act11" value="char_plague infected,spyder_wayfarer1_morton"/>
     <property name="act12" value="add_monster mrmoswitch,14,spyder_wayfarer1_morton,5,10"/>
-    <property name="act13" value="start_battle spyder_wayfarer1_morton"/>
+    <property name="act13" value="start_battle player,spyder_wayfarer1_morton"/>
     <property name="act14" value="translated_dialog spyder_wayfarer1_morton2"/>
     <property name="act16" value="set_variable wayfarer1morton:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_morton"/>
@@ -213,17 +217,17 @@
   <object id="57" name="Create Jessie" type="event" x="80" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_wayfarer1_jessie,5,15"/>
-    <property name="act2" value="npc_face spyder_wayfarer1_jessie,up"/>
-    <property name="cond1" value="not npc_exists spyder_wayfarer1_jessie"/>
+    <property name="act2" value="char_face spyder_wayfarer1_jessie,up"/>
+    <property name="cond1" value="not char_exists spyder_wayfarer1_jessie"/>
    </properties>
   </object>
   <object id="58" name="Talk Jessie" type="event" x="64" y="240" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_wayfarer1_jessie1"/>
-    <property name="act11" value="npc_plague infected,spyder_wayfarer1_jessie"/>
+    <property name="act11" value="char_plague infected,spyder_wayfarer1_jessie"/>
     <property name="act12" value="add_monster lapinou,12,spyder_wayfarer1_jessie,5,10"/>
     <property name="act13" value="add_monster cairfrey,12,spyder_wayfarer1_jessie,5,10"/>
-    <property name="act14" value="start_battle spyder_wayfarer1_jessie"/>
+    <property name="act14" value="start_battle player,spyder_wayfarer1_jessie"/>
     <property name="act15" value="translated_dialog spyder_wayfarer1_jessie2"/>
     <property name="act16" value="set_variable wayfarer1jessie:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_jessie"/>
@@ -233,16 +237,16 @@
   <object id="59" name="Create Nightshade" type="event" x="64" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_wayfarer1_nightshade,4,13"/>
-    <property name="cond1" value="not npc_exists spyder_wayfarer1_nightshade"/>
+    <property name="cond1" value="not char_exists spyder_wayfarer1_nightshade"/>
    </properties>
   </object>
   <object id="60" name="Talk Nightshade" type="event" x="48" y="208" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_wayfarer1_nightshade1"/>
-    <property name="act11" value="npc_plague infected,spyder_wayfarer1_nightshade"/>
+    <property name="act11" value="char_plague infected,spyder_wayfarer1_nightshade"/>
     <property name="act12" value="add_monster lapinou,12,spyder_wayfarer1_nightshade,5,10"/>
     <property name="act13" value="add_monster elofly,12,spyder_wayfarer1_nightshade,5,10"/>
-    <property name="act14" value="start_battle spyder_wayfarer1_nightshade"/>
+    <property name="act14" value="start_battle player,spyder_wayfarer1_nightshade"/>
     <property name="act15" value="translated_dialog spyder_wayfarer1_nightshade2"/>
     <property name="act16" value="set_variable wayfarer1nightshade:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_nightshade"/>
@@ -252,14 +256,14 @@
   <object id="61" name="Create Victor" type="event" x="208" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_wayfarer1_victor,13,2"/>
-    <property name="cond1" value="not npc_exists spyder_wayfarer1_victor"/>
+    <property name="cond1" value="not char_exists spyder_wayfarer1_victor"/>
    </properties>
   </object>
   <object id="62" name="Talk Victor" type="event" x="208" y="48" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_wayfarer1_victor1"/>
     <property name="act12" value="add_monster squabbit,14,spyder_wayfarer1_victor,5,10"/>
-    <property name="act13" value="start_battle spyder_wayfarer1_victor"/>
+    <property name="act13" value="start_battle player,spyder_wayfarer1_victor"/>
     <property name="act14" value="translated_dialog spyder_wayfarer1_victor2"/>
     <property name="act16" value="set_variable wayfarer1victor:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_victor"/>
@@ -269,16 +273,16 @@
   <object id="63" name="Create Morningstar" type="event" x="32" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_wayfarer1_morningstar,2,2"/>
-    <property name="cond1" value="not npc_exists spyder_wayfarer1_morningstar"/>
+    <property name="cond1" value="not char_exists spyder_wayfarer1_morningstar"/>
    </properties>
   </object>
   <object id="64" name="Talk Morningstar" type="event" x="16" y="32" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_wayfarer1_morningstar1"/>
-    <property name="act11" value="npc_plague infected,spyder_wayfarer1_morningstar"/>
+    <property name="act11" value="char_plague infected,spyder_wayfarer1_morningstar"/>
     <property name="act12" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,5,10"/>
     <property name="act13" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,5,10"/>
-    <property name="act14" value="start_battle spyder_wayfarer1_morningstar"/>
+    <property name="act14" value="start_battle player,spyder_wayfarer1_morningstar"/>
     <property name="act15" value="translated_dialog spyder_wayfarer1_morningstar2"/>
     <property name="act16" value="set_variable wayfarer1morningstar:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_morningstar"/>
@@ -289,27 +293,27 @@
    <properties>
     <property name="act10" value="pathfind_to_player spyder_wayfarer1_morningstar"/>
     <property name="act11" value="translated_dialog spyder_wayfarer1_morningstar1"/>
-    <property name="act12" value="npc_plague infected,spyder_wayfarer1_morningstar"/>
+    <property name="act12" value="char_plague infected,spyder_wayfarer1_morningstar"/>
     <property name="act13" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,5,10"/>
     <property name="act14" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,5,10"/>
-    <property name="act15" value="start_battle spyder_wayfarer1_morningstar"/>
+    <property name="act15" value="start_battle player,spyder_wayfarer1_morningstar"/>
     <property name="act16" value="translated_dialog spyder_wayfarer1_morningstar2"/>
     <property name="act17" value="set_variable wayfarer1morningstar:yes"/>
     <property name="cond1" value="not variable_set wayfarer1morningstar:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="72" name="Talk Victor" type="event" x="176" y="32" width="32" height="16">
    <properties>
     <property name="act10" value="pathfind_to_player spyder_wayfarer1_victor"/>
     <property name="act11" value="translated_dialog spyder_wayfarer1_victor1"/>
-    <property name="act12" value="npc_plague infected,spyder_wayfarer1_victor"/>
+    <property name="act12" value="char_plague infected,spyder_wayfarer1_victor"/>
     <property name="act13" value="add_monster squabbit,14,spyder_wayfarer1_victor,5,10"/>
-    <property name="act14" value="start_battle spyder_wayfarer1_victor"/>
+    <property name="act14" value="start_battle player,spyder_wayfarer1_victor"/>
     <property name="act15" value="translated_dialog spyder_wayfarer1_victor2"/>
     <property name="act16" value="set_variable wayfarer1victor:yes"/>
     <property name="cond1" value="not variable_set wayfarer1victor:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="75" name="Environment" type="event" x="16" y="0" width="16" height="16">
@@ -321,16 +325,16 @@
   <object id="76" name="Create Ratcher" type="event" x="96" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_wayfarer1_ratcher,6,7"/>
-    <property name="act2" value="npc_face spyder_wayfarer1_ratcher,left"/>
-    <property name="cond1" value="not npc_exists spyder_wayfarer1_ratcher"/>
+    <property name="act2" value="char_face spyder_wayfarer1_ratcher,left"/>
+    <property name="cond1" value="not char_exists spyder_wayfarer1_ratcher"/>
    </properties>
   </object>
   <object id="77" name="Talk Ratcher" type="event" x="80" y="112" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_wayfarer1_ratcher1"/>
-    <property name="act11" value="npc_plague infected,spyder_wayfarer1_ratcher"/>
+    <property name="act11" value="char_plague infected,spyder_wayfarer1_ratcher"/>
     <property name="act12" value="add_monster lapinou,14,spyder_wayfarer1_ratcher,5,10"/>
-    <property name="act13" value="start_battle spyder_wayfarer1_ratcher"/>
+    <property name="act13" value="start_battle player,spyder_wayfarer1_ratcher"/>
     <property name="act14" value="translated_dialog spyder_wayfarer1_ratcher2"/>
     <property name="act15" value="set_variable wayfarer1ratcher:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_ratcher"/>
@@ -340,16 +344,16 @@
   <object id="78" name="Create Bismuth" type="event" x="16" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_wayfarer1_bismuth,1,15"/>
-    <property name="act2" value="npc_face spyder_wayfarer1_bismuth,up"/>
-    <property name="cond1" value="not npc_exists spyder_wayfarer1_bismuth"/>
+    <property name="act2" value="char_face spyder_wayfarer1_bismuth,up"/>
+    <property name="cond1" value="not char_exists spyder_wayfarer1_bismuth"/>
    </properties>
   </object>
   <object id="79" name="Talk Bismuth" type="event" x="16" y="224" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_wayfarer1_bismuth1"/>
-    <property name="act11" value="npc_plague infected,spyder_wayfarer1_bismuth"/>
+    <property name="act11" value="char_plague infected,spyder_wayfarer1_bismuth"/>
     <property name="act12" value="add_monster hydrone,14,spyder_wayfarer1_bismuth,5,10"/>
-    <property name="act13" value="start_battle spyder_wayfarer1_bismuth"/>
+    <property name="act13" value="start_battle player,spyder_wayfarer1_bismuth"/>
     <property name="act14" value="translated_dialog spyder_wayfarer1_bismuth2"/>
     <property name="act15" value="set_variable wayfarer1bismuth:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_bismuth"/>

@@ -7,15 +7,9 @@
   <property name="slug" value="rival_bedroom"/>
   <property name="types" value="notype"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="3865" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="7729" source="../gfx/tilesets/core_set pieces.tsx"/>
  <tileset firstgid="9279" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
   <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
  </tileset>
@@ -50,15 +44,15 @@
   <object id="9" name="Go Downstairs" type="event" x="0" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_paper_rival_downstairs.tmx,3,3,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="10" name="Use Computer" type="event" x="32" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="change_state PCState"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
@@ -71,7 +65,7 @@
   <object id="37" name="Radio Dawn" type="event" x="0" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_rivalbedroom_radio_dawn"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="is variable_set stage_of_day:night"/>
    </properties>
@@ -79,7 +73,7 @@
   <object id="38" name="Radio Dusk" type="event" x="0" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_rivalbedroom_radio_dusk"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="is variable_set stage_of_day:dusk"/>
    </properties>
@@ -87,7 +81,7 @@
   <object id="39" name="Radio Afternoon" type="event" x="0" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_rivalbedroom_radio_afternoon"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="is variable_set stage_of_day:afternoon"/>
    </properties>
@@ -95,7 +89,7 @@
   <object id="40" name="Radio Night" type="event" x="0" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_rivalbedroom_radio_night"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="is variable_set stage_of_day:night"/>
    </properties>
@@ -103,7 +97,7 @@
   <object id="41" name="Radio Morning" type="event" x="0" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_rivalbedroom_radio_morning"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="is variable_set stage_of_day:morning"/>
    </properties>

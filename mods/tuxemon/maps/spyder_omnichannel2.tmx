@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="49">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="49">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -7,9 +7,7 @@
   <property name="slug" value="omnichannel2"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <tileset firstgid="2971" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
   <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
  </tileset>
@@ -53,29 +51,29 @@
   <object id="6" name="Teleport to Omnichannel 3" type="event" x="16" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_omnichannel3.tmx,1,12,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="7" name="Teleport to Omnichannel 3" type="event" x="32" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_omnichannel3.tmx,1,12,0.3"/>
-    <property name="act2" value="player_face up"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="9" name="Teleport to Omnichannel 1" type="event" x="32" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_omnichannel1.tmx,2,10,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="10" name="Teleport to Omnichannel 1" type="event" x="16" y="208" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_omnichannel1.tmx,1,10,0.3"/>
-    <property name="act2" value="player_face down"/>
-    <property name="cond1" value="is player_at"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
   <object id="11" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -93,7 +91,7 @@
   <object id="24" name="Create Bettger" type="event" x="192" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_bettger,12,10"/>
-    <property name="cond1" value="not npc_exists spyder_omnichannel_bettger"/>
+    <property name="cond1" value="not char_exists spyder_omnichannel_bettger"/>
     <property name="cond2" value="not variable_set omnichannel2bettger:yes"/>
    </properties>
   </object>
@@ -103,18 +101,18 @@
     <property name="act1" value="translated_dialog spyder_omnichannel_schwartz1"/>
     <property name="act2" value="add_monster grinflare,35,spyder_omnichannel_schwartz,5,10"/>
     <property name="act3" value="add_monster strella,35,spyder_omnichannel_schwartz,5,10"/>
-    <property name="act4" value="start_battle spyder_omnichannel_schwartz"/>
+    <property name="act4" value="start_battle player,spyder_omnichannel_schwartz"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_schwartz2"/>
     <property name="act6" value="set_variable omnichannel2schwartz:yes"/>
     <property name="cond1" value="not variable_set omnichannel2schwartz:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="29" name="Create Schwartz" type="event" x="192" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_schwartz,12,11"/>
-    <property name="act2" value="npc_face spyder_omnichannel_schwartz,up"/>
-    <property name="cond1" value="not npc_exists spyder_omnichannel_schwartz"/>
+    <property name="act2" value="char_face spyder_omnichannel_schwartz,up"/>
+    <property name="cond1" value="not char_exists spyder_omnichannel_schwartz"/>
     <property name="cond2" value="not variable_set omnichannel2schwartz:yes"/>
    </properties>
   </object>
@@ -124,18 +122,18 @@
     <property name="act1" value="translated_dialog spyder_omnichannel_bettger1"/>
     <property name="act2" value="add_monster grintrock,35,spyder_omnichannel_bettger,5,10"/>
     <property name="act3" value="add_monster rabbitosaur,35,spyder_omnichannel_bettger,5,10"/>
-    <property name="act4" value="start_battle spyder_omnichannel_bettger"/>
+    <property name="act4" value="start_battle player,spyder_omnichannel_bettger"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_bettger2"/>
     <property name="act6" value="set_variable omnichannel2bettger:yes"/>
     <property name="cond1" value="not variable_set omnichannel2bettger:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="31" name="Create Tohei" type="event" x="64" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_tohei,4,19"/>
-    <property name="act2" value="npc_face spyder_omnichannel_tohei,up"/>
-    <property name="cond1" value="not npc_exists spyder_omnichannel_tohei"/>
+    <property name="act2" value="char_face spyder_omnichannel_tohei,up"/>
+    <property name="cond1" value="not char_exists spyder_omnichannel_tohei"/>
     <property name="cond2" value="not variable_set omnichannel2tohei:yes"/>
    </properties>
   </object>
@@ -144,18 +142,18 @@
     <property name="act0" value="pathfind_to_player spyder_omnichannel_tohei"/>
     <property name="act1" value="translated_dialog spyder_omnichannel_tohei1"/>
     <property name="act2" value="add_monster sludgehog,40,spyder_omnichannel_tohei,5,10"/>
-    <property name="act4" value="start_battle spyder_omnichannel_tohei"/>
+    <property name="act4" value="start_battle player,spyder_omnichannel_tohei"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_tohei2"/>
     <property name="act6" value="set_variable omnichannel2tohei:yes"/>
     <property name="cond1" value="not variable_set omnichannel2tohei:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="36" name="Create Crane" type="event" x="176" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_crane,12,7"/>
-    <property name="act2" value="npc_face spyder_omnichannel_crane,up"/>
-    <property name="cond1" value="not npc_exists spyder_omnichannel_crane"/>
+    <property name="act2" value="char_face spyder_omnichannel_crane,up"/>
+    <property name="cond1" value="not char_exists spyder_omnichannel_crane"/>
     <property name="cond2" value="not variable_set omnichannel2crane:yes"/>
    </properties>
   </object>
@@ -165,18 +163,18 @@
     <property name="act1" value="translated_dialog spyder_omnichannel_crane1"/>
     <property name="act2" value="add_monster cochini,35,spyder_omnichannel_crane,5,10"/>
     <property name="act3" value="add_monster sharpfin,35,spyder_omnichannel_crane,5,10"/>
-    <property name="act4" value="start_battle spyder_omnichannel_crane"/>
+    <property name="act4" value="start_battle player,spyder_omnichannel_crane"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_crane2"/>
     <property name="act6" value="set_variable omnichannel2crane:yes"/>
     <property name="cond1" value="not variable_set omnichannel2crane:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="39" name="Create Dempsey" type="event" x="64" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_dempsey,4,4"/>
-    <property name="act2" value="npc_face spyder_omnichannel_dempsey,up"/>
-    <property name="cond1" value="not npc_exists spyder_omnichannel_dempsey"/>
+    <property name="act2" value="char_face spyder_omnichannel_dempsey,up"/>
+    <property name="cond1" value="not char_exists spyder_omnichannel_dempsey"/>
     <property name="cond2" value="not variable_set omnichannel2dempsey:yes"/>
    </properties>
   </object>
@@ -186,18 +184,18 @@
     <property name="act1" value="translated_dialog spyder_omnichannel_dempsey1"/>
     <property name="act2" value="add_monster squabbit,20,spyder_omnichannel_dempsey,5,10"/>
     <property name="act3" value="add_monster squabbit,20,spyder_omnichannel_dempsey,5,10"/>
-    <property name="act4" value="start_battle spyder_omnichannel_dempsey"/>
+    <property name="act4" value="start_battle player,spyder_omnichannel_dempsey"/>
     <property name="act5" value="translated_dialog spyder_omnichannel_dempsey2"/>
     <property name="act6" value="set_variable omnichannel2dempsey:yes"/>
     <property name="cond1" value="not variable_set omnichannel2dempsey:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="41" name="PC" type="event" x="16" y="272" width="32" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_omnichannel2_pc"/>
     <property name="act2" value="set_variable omnichannel1wall:yes"/>
-    <property name="cond1" value="is player_facing_tile"/>
+    <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
@@ -205,6 +203,7 @@
    <properties>
     <property name="act1" value="random_encounter omnichannel,0.6"/>
     <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
+    <property name="cond2" value="is check_char_parameter player,moving,1"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,0 +1,45 @@
+events:
+  Go Outside:
+    actions:
+    - transition_teleport spyder_crystal_town.tmx,37,23,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 4
+    y: 7
+    type: "event"
+  Play Music:
+    actions:
+    - play_music music_home
+    conditions:
+    - not music_playing music_home
+    type: "event"
+  Player Spawn:
+    x: 8
+    y: 0
+    type: "event"
+  Watch TV:
+    actions:
+    - translated_dialog spyder_crystal_tvwatch
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    width: 2
+    height: 1
+    x: 1
+    y: 5
+    type: "event"
+  Create NPCs:
+    actions:
+    - create_npc spyder_crystal_granny,8,3
+    - char_wander spyder_crystal_granny
+    conditions:
+    - not char_exists spyder_crystal_granny
+    type: "event"
+  Talk NPCs:
+    actions:
+    - translated_dialog spyder_crystal_grannypiper
+    behav:
+    - talk spyder_crystal_granny
+    type: "event"

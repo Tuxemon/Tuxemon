@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="32">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="32">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -7,15 +7,9 @@
   <property name="slug" value="dojo3"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="3865" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
- <tileset firstgid="6835" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
+ <tileset firstgid="6835" source="../gfx/tilesets/core_indoor_floors.tsx"/>
  <layer id="1" name="Layer 1" width="24" height="12">
   <data encoding="base64" compression="zlib">
    eAFjYKAv4AdaJ4CEqW27LdDAE0iYFuaXyjMwkIOJcQvI/SCzQQBGQ3j4SUJqYeGei2buOzkGBnwYZish82HhfhLNfJB+apkPcgMMw9wFo9HtgInDaJg+XP5ADneYHlw0sl3oaqhpPrrZID41zMdmLkyMluaDzEY3HwCynDTK
@@ -67,17 +61,17 @@
   <object id="10" name="Teleport to Lower Floor" type="event" x="144" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_dojo2.tmx,13,9,0.3"/>
-    <property name="act2" value="player_face left"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing left"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
   <object id="11" name="Teleport to Upper Floor" type="event" x="224" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_dojo4.tmx,10,9,0.3"/>
-    <property name="act2" value="player_face right"/>
-    <property name="cond1" value="is player_at"/>
-    <property name="cond2" value="is player_facing right"/>
+    <property name="act2" value="char_face player,right"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
   <object id="19" name="Player Spawn" type="event" x="176" y="176" width="16" height="16"/>
@@ -90,38 +84,38 @@
   <object id="21" name="Create Ares" type="event" x="64" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_ares,4,8"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_ares"/>
+    <property name="cond1" value="not char_exists spyder_dojo_ares"/>
    </properties>
   </object>
   <object id="22" name="Create Orion" type="event" x="96" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_orion,6,4"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_orion"/>
+    <property name="cond1" value="not char_exists spyder_dojo_orion"/>
    </properties>
   </object>
   <object id="23" name="Create Hermes" type="event" x="272" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_hermes,17,4"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_hermes"/>
+    <property name="cond1" value="not char_exists spyder_dojo_hermes"/>
    </properties>
   </object>
   <object id="24" name="Create Hephastus" type="event" x="192" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_hephastus,12,4"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_hephastus"/>
+    <property name="cond1" value="not char_exists spyder_dojo_hephastus"/>
    </properties>
   </object>
   <object id="25" name="Create Saturn" type="event" x="304" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_saturn,19,8"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_saturn"/>
+    <property name="cond1" value="not char_exists spyder_dojo_saturn"/>
    </properties>
   </object>
   <object id="26" name="Create Tu" type="event" x="208" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_dojo_tu,13,9"/>
-    <property name="act2" value="npc_face spyder_dojo_tu,left"/>
-    <property name="cond1" value="not npc_exists spyder_dojo_tu"/>
+    <property name="act2" value="char_face spyder_dojo_tu,left"/>
+    <property name="cond1" value="not char_exists spyder_dojo_tu"/>
     <property name="cond2" value="not variable_set dojotu:yes"/>
    </properties>
   </object>
@@ -145,7 +139,7 @@
     <property name="act13" value="add_monster baobaraffe,30,spyder_dojo_saturn,5,10"/>
     <property name="act14" value="add_monster shnark,30,spyder_dojo_saturn,5,10"/>
     <property name="act15" value="add_monster sludgehog,30,spyder_dojo_saturn,5,10"/>
-    <property name="act16" value="start_battle spyder_dojo_saturn"/>
+    <property name="act16" value="start_battle player,spyder_dojo_saturn"/>
     <property name="act17" value="translated_dialog spyder_dojo_saturn2"/>
     <property name="act18" value="set_variable dojosaturn:yes"/>
     <property name="act20" value="set_monster_health"/>
@@ -161,7 +155,7 @@
     <property name="act13" value="add_monster lightmare,30,spyder_dojo_hephastus,5,10"/>
     <property name="act14" value="add_monster loliferno,30,spyder_dojo_hephastus,5,10"/>
     <property name="act15" value="add_monster embra,30,spyder_dojo_hephastus,5,10"/>
-    <property name="act16" value="start_battle spyder_dojo_hephastus"/>
+    <property name="act16" value="start_battle player,spyder_dojo_hephastus"/>
     <property name="act17" value="translated_dialog spyder_dojo_hephastus2"/>
     <property name="act18" value="set_variable dojohephastus:yes"/>
     <property name="act20" value="set_monster_health"/>
@@ -177,7 +171,7 @@
     <property name="act13" value="add_monster graffiki,30,spyder_dojo_hermes,5,10"/>
     <property name="act14" value="add_monster volcoli,30,spyder_dojo_hermes,5,10"/>
     <property name="act15" value="add_monster eaglace,30,spyder_dojo_hermes,5,10"/>
-    <property name="act16" value="start_battle spyder_dojo_hermes"/>
+    <property name="act16" value="start_battle player,spyder_dojo_hermes"/>
     <property name="act17" value="translated_dialog spyder_dojo_hermes2"/>
     <property name="act18" value="set_variable dojohermes:yes"/>
     <property name="act20" value="set_monster_health"/>
@@ -193,7 +187,7 @@
     <property name="act13" value="add_monster miaownolith,30,spyder_dojo_orion,5,10"/>
     <property name="act14" value="add_monster grimachin,30,spyder_dojo_orion,5,10"/>
     <property name="act15" value="add_monster drashimi,30,spyder_dojo_orion,5,10"/>
-    <property name="act16" value="start_battle spyder_dojo_orion"/>
+    <property name="act16" value="start_battle player,spyder_dojo_orion"/>
     <property name="act17" value="translated_dialog spyder_dojo_orion2"/>
     <property name="act18" value="set_variable dojoorion:yes"/>
     <property name="act20" value="set_monster_health"/>
@@ -209,7 +203,7 @@
     <property name="act03" value="add_monster flambear,30,spyder_dojo_ares,5,10"/>
     <property name="act04" value="add_monster boltnu,30,spyder_dojo_ares,5,10"/>
     <property name="act05" value="add_monster tourbidi,30,spyder_dojo_ares,5,10"/>
-    <property name="act08" value="start_battle spyder_dojo_ares"/>
+    <property name="act08" value="start_battle player,spyder_dojo_ares"/>
     <property name="act09" value="translated_dialog spyder_dojo_ares2"/>
     <property name="act10" value="set_variable dojoares:yes"/>
     <property name="act20" value="set_monster_health"/>
@@ -220,19 +214,19 @@
   </object>
   <object id="30" name="Encounter" type="event" x="160" y="144" width="16" height="16">
    <properties>
-    <property name="act01" value="player_stop"/>
+    <property name="act01" value="char_stop"/>
     <property name="act02" value="lock_controls"/>
     <property name="act03" value="wait 2"/>
     <property name="act04" value="pathfind spyder_dojo_tu,11,9"/>
     <property name="act05" value="translated_dialog spyder_dojo_tu1"/>
     <property name="act06" value="translated_dialog spyder_dojo_tu3"/>
     <property name="act07" value="unlock_controls"/>
-    <property name="act08" value="npc_face spyder_dojo_tu,right"/>
+    <property name="act08" value="char_face spyder_dojo_tu,right"/>
     <property name="act09" value="pathfind spyder_dojo_tu,13,9"/>
-    <property name="act10" value="npc_face spyder_dojo_tu,left"/>
+    <property name="act10" value="char_face spyder_dojo_tu,left"/>
     <property name="act11" value="set_variable tuintro:yes"/>
     <property name="cond1" value="not variable_set tuintro:yes"/>
-    <property name="cond2" value="is player_at"/>
+    <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="31" name="Talk Tu2" type="event" x="96" y="0" width="16" height="16">
@@ -243,7 +237,7 @@
     <property name="act14" value="add_monster mystikapi,30,spyder_dojo_tu,5,10"/>
     <property name="act15" value="add_monster graffiki,30,spyder_dojo_tu,5,10"/>
     <property name="act16" value="add_monster sludgehog,30,spyder_dojo_tu,5,10"/>
-    <property name="act17" value="start_battle spyder_dojo_tu"/>
+    <property name="act17" value="start_battle player,spyder_dojo_tu"/>
     <property name="act18" value="set_variable dojotu:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>

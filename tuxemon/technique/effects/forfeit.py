@@ -1,10 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2023 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from tuxemon.combat import set_var
 from tuxemon.db import OutputBattle
 from tuxemon.locale import T
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -33,9 +34,8 @@ class ForfeitEffect(TechEffect):
         combat = tech.combat_state
         player = user.owner
         assert combat and player
-        var = player.game_variables
-        var["battle_last_result"] = OutputBattle.forfeit
-        var["teleport_clinic"] = OutputBattle.lost
+        set_var(self.session, "battle_last_result", self.name)
+        set_var(self.session, "teleport_clinic", OutputBattle.lost.value)
         combat._run = True
         params = {"npc": combat.players[1].name.upper()}
         extra = T.format("combat_forfeit", params)

@@ -1,0 +1,15 @@
+{
+  "effects": [],
+  "slug": "friendship_scroll",
+  "sort": "utility",
+  "sprite": "gfx/items/friendship_scroll.png",
+  "category": "none",
+  "type": "KeyItem",
+  "usable_in": [
+    "WorldState"
+  ],
+  "visible": false,
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
+}

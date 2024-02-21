@@ -5,8 +5,6 @@ events:
     - char_face player,down
     conditions:
     - is char_at player
-    height: 1
-    width: 1
     x: 7
     y: 2
     type: "event"
@@ -17,8 +15,6 @@ events:
     - is char_facing_tile player
     - is button_pressed K_RETURN
     - not variable_set kernelquest:yes
-    height: 1
-    width: 1
     x: 3
     y: 1
     type: "event"
@@ -29,16 +25,13 @@ events:
     - is char_facing_tile player
     - is button_pressed K_RETURN
     - is variable_set kernelquest:yes
-    height: 1
-    width: 1
     x: 3
     y: 1
     type: "event"
   Player Spawn:
-    height: 1
-    width: 1
     x: 3
     y: 4
+    type: "event"
   Resting in Bed:
     actions:
     - screen_transition 1

@@ -1,0 +1,88 @@
+events:
+  Route:
+    actions:
+    - play_music music_chibi_ninja
+    conditions:
+    - not music_playing music_chibi_ninja
+    type: "event"
+  Environment:
+    actions:
+    - set_variable environment:cave
+    conditions:
+    - not variable_set environment:cave
+    type: "event"
+  Steps:
+    actions:
+    - transition_teleport spyder_park_entrance.tmx,5,4,0.3
+    - char_face player,up
+    - add_item tuxeball_park,-25
+    - clear_variable park_out
+    - clear_variable menu_park_captured
+    - clear_variable menu_park_seen
+    - clear_variable alert100
+    conditions:
+    - is variable_is steps_park,equals,0.0
+    type: "event"
+  Alert 100:
+    actions:
+    - format_variable steps_park,int
+    - translated_dialog spyder_park_steps100
+    - set_variable alert100:done
+    conditions:
+    - is variable_is steps_park,greater_than,100.0
+    - is variable_is steps_park,less_than,101.0
+    - not variable_set alert100:done
+    type: "event"
+  Teleport 1:
+    actions:
+    - transition_teleport spyder_park.tmx,38,13,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 32
+    y: 12
+    type: "event"
+  Teleport 2:
+    actions:
+    - transition_teleport spyder_park.tmx,18,13,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 9
+    y: 12
+    type: "event"
+  Teleport 3:
+    actions:
+    - transition_teleport spyder_park.tmx,11,9,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 2
+    y: 8
+    type: "event"
+  Tuxeball:
+    actions:
+    - transition_teleport spyder_park_entrance.tmx,5,4,0.3
+    - char_face player,up
+    - clear_variable park_out
+    - clear_variable menu_park_captured
+    - clear_variable menu_park_seen
+    conditions:
+    - not has_item player,tuxeball_park
+    type: "event"
+  Create Scientist:
+    actions:
+    - create_npc spyder_park_scientist,13,8
+    - char_face spyder_park_scientist,left
+    conditions:
+    - not char_exists spyder_park_scientist
+    type: "event"
+  Talk Scientist:
+    actions:
+    - translated_dialog spyder_park_scientist1
+    behav:
+    - talk spyder_park_scientist
+    type: "event"

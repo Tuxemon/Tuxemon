@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="118">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="118">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -10,15 +10,9 @@
  <tileset firstgid="1" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
   <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
  </tileset>
- <tileset firstgid="2593" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="6457" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="10321" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="2593" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="6457" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="10321" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="7" name="Tile Layer 1" width="20" height="20">
   <data encoding="base64" compression="zlib">
    eAGlk8ENwkAMBNMANIAE/ZCGgIKAYngiykAIfrzwSLfSypzvAY9T4rG9cda6eTlNczrPxTejpuLev4+6fDYdRk3Fvf8UdfnQlxlxxb32spqmfOjLjLjivVpnVV/FvRcvH+E/7BrvxK+I8f7W5nROPvO8D313F7XyFnZoes7JV5ycfGa+Y4vFzk3PObmKk0NH87kPPeb50Xuvt8dGGp7bxpzyVLtxRk78nu5O3g267ve6eeAMnzUvT+2stxv03G/pOdN+qEWPWCfvxv+bd+ll7vPl3Cj+V0974BvcA+6GmHstztO5avWUt+jlHVT3oOJoyVf08g6y16qtOPmRl7/m3jGbzq8a6vsAo58Ymw==

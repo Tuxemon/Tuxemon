@@ -9,6 +9,7 @@ cd build/tuxemon
 cp ~/.wine/drive_c/Program\ Files/Python39/python39.dll .
 cp ../../LICENSE .
 cp ../../CONTRIBUTING.md .
-cp ../../CREDITS.md .
+cp ../../CONTRIBUTORS.md .
+cp ../../ATTRIBUTIONS.md .
 cp ../../README.md .
 cp ../../SPYDER_README.md .

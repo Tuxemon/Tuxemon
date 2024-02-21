@@ -98,5 +98,85 @@
         "slug": "shopkeeper"
       }
     ]
+  },
+  {
+    "slug": "spyder_candyinn_cott",
+    "template": [
+      {
+        "sprite_name": "shopkeeper",
+        "combat_front": "adventurer",
+        "slug": "shopkeeper"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candyinn_lyle",
+    "template": [
+      {
+        "sprite_name": "riverboatcaptain",
+        "combat_front": "pirate",
+        "slug": "pirate"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candyinn_bob",
+    "template": [
+      {
+        "sprite_name": "maniac_rose",
+        "combat_front": "adventurer",
+        "slug": "maniac"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candyinn_prof",
+    "template": [
+      {
+        "sprite_name": "professor_lapi",
+        "combat_front": "professor",
+        "slug": "professor"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candyinn_jess",
+    "template": [
+      {
+        "sprite_name": "goth",
+        "combat_front": "adventurer",
+        "slug": "goth"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candyinn_james",
+    "template": [
+      {
+        "sprite_name": "beachcomber_fiery",
+        "combat_front": "yellowbelt",
+        "slug": "yellowbelt"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candyport_monk",
+    "template": [
+      {
+        "sprite_name": "monk_blue",
+        "combat_front": "monk",
+        "slug": "monk"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candyinn_monk",
+    "template": [
+      {
+        "sprite_name": "monk_green",
+        "combat_front": "monk",
+        "slug": "monk"
+      }
+    ]
   }
 ]

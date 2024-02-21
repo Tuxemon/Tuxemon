@@ -60,6 +60,9 @@ with open(paths.USER_CONFIG_PATH, "w") as fp:
 # Set up the screen size and caption
 SCREEN_SIZE = CONFIG.resolution
 
+# Surface Keys (tilesets)
+SURFACE_KEYS: list[str] = ["surfable", "walkable", "climbable"]
+
 # Set the native tile size so we know how much to scale our maps
 # 1 tile = 16 pixels
 TILE_SIZE: tuple[int, int] = (16, 16)
@@ -168,7 +171,9 @@ BG_JOURNAL: str = TUX_GENERIC
 BG_JOURNAL_CHOICE: str = TUX_GENERIC
 BG_JOURNAL_INFO: str = TUX_INFO
 BG_MONSTER_INFO: str = TUX_INFO
-BG_PLAYER: str = "gfx/ui/background/player_info.png"
+BG_PLAYER1: str = "gfx/ui/background/player_info.png"
+BG_PLAYER2: str = "gfx/ui/background/player_info1.png"
+BG_PARTY: str = "gfx/ui/background/player_info2.png"
 BG_ITEMS: str = ITEM_MENU
 BG_ITEMS_BACKPACK: str = "gfx/ui/item/backpack.png"
 BG_MOVES: str = ITEM_MENU
@@ -212,6 +217,9 @@ MAX_MOVES: int = 4
 MISSING_IMAGE: str = "gfx/sprites/battle/missing.png"
 CATCH_RATE_RANGE: tuple[int, int] = (0, 255)
 CATCH_RESISTANCE_RANGE: tuple[float, float] = (0.0, 2.0)
+# set bond and define range
+BOND: int = 25
+BOND_RANGE: tuple[int, int] = (0, 100)
 # set multiplier stats (multiplier: level + coefficient)
 COEFF_STATS: int = 7
 # set experience required for levelling up
@@ -245,29 +253,36 @@ POWER_RANGE: tuple[float, float] = (0.0, 3.0)
 HEALING_POWER_RANGE: tuple[int, int] = (0, 10)
 
 # Combat
+# Hud right/left lines
+HUD_RT_LINE1: tuple[int, int] = (12, 11)  # monster, lv, etc.
+HUD_RT_LINE2: tuple[int, int] = (12, 19)  # position hp_bar
+HUD_LT_LINE1: tuple[int, int] = (5, 5)  # monster, lv, etc.
+HUD_LT_LINE2: tuple[int, int] = (5, 13)  # position hp_bar
 # position coordinates hud
-# player
-PLAYER_COMBAT: dict[str, tuple[int, int, int, int]] = {}
-PLAYER_COMBAT["home"] = (0, 62, 95, 70)
+# right side
+RIGHT_COMBAT: dict[str, tuple[int, int, int, int]] = {}
+# where appears the monster (character right side)
+RIGHT_COMBAT["home"] = (0, 62, 95, 70)
 # name, level, etc.
-PLAYER_COMBAT["hud"] = (145, 45, 110, 50)
+RIGHT_COMBAT["hud"] = (145, 45, 110, 50)
 # 1st spot 2 vs 2
-PLAYER_COMBAT["hud0"] = (145, 25, 110, 50)
+RIGHT_COMBAT["hud0"] = (145, 25, 110, 50)
 # 2nd spot 2 vs 2
-PLAYER_COMBAT["hud1"] = (145, 45, 110, 50)
+RIGHT_COMBAT["hud1"] = (145, 45, 110, 50)
 # tuxeball icons
-PLAYER_COMBAT["party"] = (145, 57, 110, 50)
-# opponent
-OPPONENT_COMBAT: dict[str, tuple[int, int, int, int]] = {}
-OPPONENT_COMBAT["home"] = (140, 10, 95, 70)
+RIGHT_COMBAT["party"] = (145, 57, 110, 50)
+# left side
+LEFT_COMBAT: dict[str, tuple[int, int, int, int]] = {}
+# where appears the monster (character left side)
+LEFT_COMBAT["home"] = (140, 18, 95, 70)
 # name, level, etc.
-OPPONENT_COMBAT["hud"] = (18, 0, 85, 30)
+LEFT_COMBAT["hud"] = (18, 0, 85, 30)
 # 1st spot 2 vs 2
-OPPONENT_COMBAT["hud0"] = (18, 0, 85, 30)
+LEFT_COMBAT["hud0"] = (18, 0, 85, 30)
 # 2nd spot 2 vs 2
-OPPONENT_COMBAT["hud1"] = (18, 20, 85, 30)
+LEFT_COMBAT["hud1"] = (18, 20, 85, 30)
 # tuxeball icons
-OPPONENT_COMBAT["party"] = (18, 12, 85, 30)
+LEFT_COMBAT["party"] = (18, 12, 85, 30)
 
 # This is the coefficient that can be found in formula.py and
 # it calculates the user strength

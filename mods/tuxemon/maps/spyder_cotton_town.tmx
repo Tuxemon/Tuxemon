@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="594">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="596">
  <properties>
   <property name="east" value="route2"/>
   <property name="edges" value="clamped"/>
@@ -10,14 +10,10 @@
   <property name="west" value="dryadsgrove"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
- <tileset firstgid="1441" name="core_buildings" tilewidth="16" tileheight="16" tilecount="2350" columns="47">
-  <image source="../gfx/tilesets/core_buildings.png" width="760" height="800"/>
- </tileset>
+ <tileset firstgid="1441" source="../gfx/tilesets/core_buildings.tsx"/>
  <tileset firstgid="3791" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="6566" source="../gfx/tilesets/core_set pieces.tsx"/>
- <tileset firstgid="8116" name="core_outdoor_nature" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
-  <image source="../gfx/tilesets/core_outdoor_nature.png" width="1024" height="2048"/>
- </tileset>
+ <tileset firstgid="8116" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eAHtmN0NwjAMhNmAjfoC7ALsAgwDw8A2JA+WPlW51C1Jf0QerFipm1zvHDvQ7Xe7rtlfcHAIOh9hpxXpHrF9gl1g7+CvBeMZuNaE0fTsc0eM14B9qTNOHMpfEt89cBPtJfSNmJfEZ7qp/HsGfI9gFsexf94tV34Z1XlU+HLcqXdUnnjm1X63wJFpzVFxF3mcEx918/rqm/h9Hp+5r/jzYqoRRx0avvRZz/G+df5q1LExNZC9NZV/5NdTo2rGbB1f7GeemlUrJtUPqG+K39zZm+NZwze+JlKXxl/jj/lgfs2+w3v01Pzje6V7Cusc9+G88aRGvjcXvvifgbe3s6+rvsO7sYpJ9SL2kRI8KN65topR+tg815iqk9qba6sYw6HGEr9zqAf3KYGP65X2t4RPnT3WutL8DK1H/lRuT83Lob09zz25rXLXs36Lyd9tvtkeRfk=
@@ -30,7 +26,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtV8suBUEQLRv2HsFF4idY+ggLO3vhAyyx8Bc2WHj+gUTYiAS51zdYIVh4bZ3J7UoqbWrU3Jnb05GupNLd0/U4faanuoeoKxMjrhNp8z4cKTAHK/FX7f0k/v43f9VWV957YabrczZk8w1ZX26AbdnhezLiS9+H7T1qVok/jRnb89j5s62id6sv3I++I74jTY0STUNjlVvUuztX82LFmHCFZWBl/He+Xdzz9wy639D/wBXyrs4SrUGL5LpBfMfAdgItkibxSVwbA0Sb0C2olAzfPOotq5yz9tk3a62SvV8pB8B1CD3KwZfZnRfU3DZidaAPis3OGNEH5j+9nDK/3/fxtYGrA71X8Pn+csy5tTWsA98kuGs5/pYGpXd+38eXb0Vk2X8ytxZHPt8OjE/mrqsv+Xv0zks5tvBXFyYZ5xl7NavPr8qefXPzL8q8jJX6YRk4LVEHwyLrfzZeu6WG9R+NnsFSw3TvZmfmWmHyX+BcuoT+JYsGGz+GJTaf6722fs66x3yuc1t3/Krx+Fzntmw8/pbL+uXZ/wDECFvw
+   eAHtVztOxDAQHRrogZVgAYlLsCWHoKDjAnAASqDgFjSwBd8bICFoEBKgXc5ABQgo+LU8a21pZGXCZJO1LeSRRrbj+Ty/OGOHaCAzU7aTaPMxmSgwCyvzV+/9ZP7+N3/1Vlfde3lh4HM+ofMNWV9ugW3N4ntW4svfh+49SlaZP4kZ3fPU+dOtYnirb9yPfhK+I81NE81DU5U71Lt7W/NSxZhxxWdgH/f8A4V2I/0PXCPv+iLRBrRMbiLiOwG2U2iZxMTHcW2NEW1Dd6BcDL4O6q1TPqftO1/TasW8Xy6HwHUEPS7AZ+wuSmpuD7H60EfBZq9F9In5Ly8nz+/3fXw94OpDHwR8vj8fu9zSGjaBbxbctS1/q+Pcu7jv4yu2ItLsP55bisOf7wbGx3M31ef8PXnnJR9r+GsKE4/zgr1q6vObsGff7fyrMM9j5X5YBs4q1MGwyEafza1dU8NGj0bOoKlhsnfcmaV2mPyXOJeuoH/JisLGj6GJ7c71YVs/Z9Njd667tun4deO5c921VeO5b7mqX5H9L45JW3E=
   </data>
  </layer>
  <layer id="6" name="Above Player" width="40" height="40">
@@ -43,8 +39,8 @@
   <object id="441" type="collision" x="0" y="144" width="32" height="400"/>
   <object id="442" type="collision" x="0" y="592" width="400" height="16"/>
   <object id="444" type="collision" x="624" y="480" width="16" height="160"/>
-  <object id="445" type="collision" x="624" y="304" width="16" height="144"/>
-  <object id="447" type="collision" x="608" y="0" width="32" height="304"/>
+  <object id="445" type="collision" x="624" y="432" width="16" height="16"/>
+  <object id="447" type="collision" x="608" y="0" width="32" height="80"/>
   <object id="448" type="collision" x="368" y="0" width="240" height="16"/>
   <object id="449" type="collision" x="352" y="96" width="48" height="48"/>
   <object id="450" type="collision" x="496" y="96" width="80" height="48"/>
@@ -492,6 +488,20 @@
     <property name="act2" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="594" name="Door locked" type="event" x="320" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_door_locked"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="595" name="Door locked" type="event" x="560" y="416" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_door_locked"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

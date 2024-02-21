@@ -1,0 +1,425 @@
+events:
+  Play Music:
+    actions:
+    - play_music music_chibi_ninja
+    conditions:
+    - not music_playing music_chibi_ninja
+    type: "event"
+  Environment Day:
+    actions:
+    - set_variable environment:park
+    conditions:
+    - not variable_set stage_of_day:night
+    - not variable_set environment:park
+    type: "event"
+  Environment Night:
+    actions:
+    - set_variable environment:night_park
+    conditions:
+    - is variable_set stage_of_day:night
+    - not variable_set environment:night_park
+    type: "event"
+  Sign:
+    actions:
+    - translated_dialog welcome_location_route
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 5
+    y: 35
+    type: "event"
+  Player Spawn:
+    x: 8
+    y: 3
+    type: "event"
+  Encounters 1:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 5
+    width: 5
+    x: 2
+    y: 14
+    type: "event"
+  Encounters 2:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 4
+    width: 7
+    x: 2
+    y: 7
+    type: "event"
+  Encounters 3:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 10
+    width: 2
+    x: 1
+    y: 22
+    type: "event"
+  Encounters 4:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 4
+    width: 5
+    x: 23
+    y: 15
+    type: "event"
+  Encounters 5:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 6
+    width: 6
+    x: 23
+    y: 21
+    type: "event"
+  Encounters 6:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 7
+    width: 8
+    x: 13
+    y: 17
+    type: "event"
+  Encounters 7:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 2
+    width: 28
+    x: 7
+    y: 36
+    type: "event"
+  Encounters 8:
+    actions:
+    - random_encounter park
+    - play_map_animation grass_blue,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 3
+    width: 4
+    x: 13
+    y: 3
+    type: "event"
+  Encounters 9:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 4
+    width: 3
+    x: 36
+    y: 18
+    type: "event"
+  Encounters 10:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 3
+    width: 5
+    x: 10
+    y: 30
+    type: "event"
+  Talk Guardian:
+    actions:
+    - translated_dialog spyder_park_guardian1
+    - translated_dialog_choice yes:no,park_out
+    behav:
+    - talk spyder_park_guardian
+    conditions:
+    - not variable_set park_out:yes
+    - not variable_set park_out:no
+    type: "event"
+  Encounters 11:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 2
+    width: 4
+    x: 35
+    y: 29
+    type: "event"
+  Steps:
+    actions:
+    - transition_teleport spyder_park_entrance.tmx,5,4,0.3
+    - char_face player,up
+    - add_item tuxeball_park,-25
+    - clear_variable park_out
+    - clear_variable menu_park_captured
+    - clear_variable menu_park_seen
+    - clear_variable alert100
+    conditions:
+    - is variable_is steps_park,equals,0.0
+    type: "event"
+  Alert 100:
+    actions:
+    - format_variable steps_park,int
+    - translated_dialog spyder_park_steps100
+    - set_variable alert100:done
+    conditions:
+    - is variable_is steps_park,greater_than,100.0
+    - is variable_is steps_park,less_than,101.0
+    - not variable_set alert100:done
+    type: "event"
+  Interrupt (Y):
+    actions:
+    - set_variable park_out:null
+    - transition_teleport spyder_park_entrance.tmx,5,4,0.3
+    - char_face player,up
+    - add_item tuxeball_park,-25
+    - set_variable steps_park:0.0
+    - clear_variable menu_park_captured
+    - clear_variable menu_park_seen
+    conditions:
+    - is variable_set park_out:yes
+    type: "event"
+  Interrupt (N):
+    actions:
+    - set_variable park_out:null
+    conditions:
+    - is variable_set park_out:no
+    type: "event"
+  Create Guardian:
+    actions:
+    - create_npc spyder_park_guardian,7,3
+    conditions:
+    - not char_exists spyder_park_guardian
+    x: 7
+    y: 3
+    type: "event"
+  Encounters 13:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 2
+    width: 2
+    x: 10
+    y: 10
+    type: "event"
+  Encounters 14:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 1
+    width: 4
+    x: 19
+    y: 13
+    type: "event"
+  Encounters 15:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 1
+    width: 2
+    x: 16
+    y: 13
+    type: "event"
+  Teleport 1:
+    actions:
+    - transition_teleport spyder_park_cave.tmx,32,12,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 38
+    y: 12
+    type: "event"
+  Teleport 2:
+    actions:
+    - transition_teleport spyder_park_cave.tmx,9,12,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 18
+    y: 12
+    type: "event"
+  Teleport 3:
+    actions:
+    - transition_teleport spyder_park_cave.tmx,2,8,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 11
+    y: 8
+    type: "event"
+  Tuxeball:
+    actions:
+    - transition_teleport spyder_park_entrance.tmx,5,4,0.3
+    - char_face player,up
+    - clear_variable park_out
+    - clear_variable menu_park_captured
+    - clear_variable menu_park_seen
+    conditions:
+    - not has_item player,tuxeball_park
+    type: "event"
+  Create Soldier:
+    actions:
+    - create_npc spyder_park_soldier,35,20
+    - char_wander spyder_park_soldier
+    conditions:
+    - not char_exists spyder_park_soldier
+    type: "event"
+  Talk Soldier:
+    actions:
+    - translated_dialog spyder_park_soldier1
+    behav:
+    - talk spyder_park_soldier
+    type: "event"
+  Create Professor:
+    actions:
+    - create_npc spyder_park_professor,10,9
+    - char_face spyder_park_professor,right
+    conditions:
+    - not char_exists spyder_park_professor
+    type: "event"
+  Talk Professor:
+    actions:
+    - translated_dialog spyder_park_professor1
+    behav:
+    - talk spyder_park_professor
+    type: "event"
+  Create Tennis Player:
+    actions:
+    - create_npc spyder_park_tennisplayer,15,25
+    - char_wander spyder_park_tennisplayer
+    conditions:
+    - not char_exists spyder_park_tennisplayer
+    type: "event"
+  Talk Tennis Player:
+    actions:
+    - translated_dialog spyder_park_tennisplayer1
+    behav:
+    - talk spyder_park_tennisplayer
+    type: "event"
+  Billie:
+    actions:
+    - char_stop
+    - lock_controls
+    - create_npc spyder_billie,16,36
+    - pathfind_to_player spyder_billie,down
+    - wait 0.5
+    - char_face spyder_billie,up
+    - translated_dialog spyder_park_billie
+    - wait 0.5
+    - pathfind spyder_billie,3,28
+    - remove_npc spyder_billie
+    - set_variable park_billie:yes
+    - unlock_controls
+    conditions:
+    - not variable_set park_billie:yes
+    - is char_at player
+    height: 1
+    width: 3
+    x: 1
+    y: 36
+    type: "event"
+  Teleport South:
+    actions:
+    - transition_teleport spyder_park_south.tmx,58,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 38
+    y: 39
+    type: "event"
+  Teleport RiverA:
+    actions:
+    - transition_teleport spyder_routei.tmx,0,24,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 39
+    y: 24
+    type: "event"
+  Teleport RiverB:
+    actions:
+    - transition_teleport spyder_routei.tmx,0,25,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 39
+    y: 25
+    type: "event"
+  Teleport RiverC:
+    actions:
+    - transition_teleport spyder_routei.tmx,0,26,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 39
+    y: 26
+    type: "event"
+  Teleport RiverD:
+    actions:
+    - transition_teleport spyder_routei.tmx,0,27,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 39
+    y: 27
+    type: "event"

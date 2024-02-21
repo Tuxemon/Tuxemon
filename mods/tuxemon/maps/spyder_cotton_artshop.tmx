@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" width="22" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="51">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="22" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="51">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -7,15 +7,9 @@
   <property name="slug" value="cotton_artshop"/>
   <property name="types" value="notype"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="7729" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Layer 1" width="22" height="11">
   <data encoding="base64" compression="zlib">
    eJz7z8/AUEYilgZiQmAxUM0SErEXjcwtJeAfRgEGhotA+hKJGOQWdmHceClQfhILA0MKC2k0MeaSaiaIJuTHy2S6dwIQJxGgyXEvITOTyDBzuLoXAG32eQs=
@@ -64,7 +58,7 @@
     <property name="cond1" value="not char_exists spyder_cottontown_barmaid"/>
    </properties>
   </object>
-  <object id="18" name="Florist Talk" type="event" x="32" y="80" width="16" height="16">
+  <object id="18" name="Florist Talk" type="event" x="0" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_cottonart_florist"/>
     <property name="behav1" value="talk spyder_cottonartshop_luvinia"/>
@@ -119,13 +113,13 @@
     <property name="cond1" value="not char_exists spyder_cottonartshop_carter"/>
    </properties>
   </object>
-  <object id="28" name="Shopkeeper Talk" type="event" x="80" y="128" width="16" height="16">
+  <object id="28" name="Shopkeeper Talk" type="event" x="64" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_cottonart_shopkeeper"/>
     <property name="behav1" value="talk spyder_cottonartshop_carter"/>
    </properties>
   </object>
-  <object id="29" name="Pay Up" type="event" x="16" y="144" width="32" height="16">
+  <object id="29" name="Pay Up" type="event" x="0" y="144" width="48" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_cottonart_shopkeeper"/>
     <property name="act2" value="translated_dialog player_wallet"/>
@@ -140,15 +134,24 @@
     <property name="cond8" value="not variable_set bought_bundle:yes"/>
    </properties>
   </object>
-  <object id="30" name="Pay" type="event" x="0" y="112" width="16" height="16">
+  <object id="30" name="Afford Pay" type="event" x="48" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="pathfind player,2,8"/>
     <property name="act2" value="set_variable paygallery:null"/>
-    <property name="act3" value="transfer_money -,50,spyder_cotton_artshop"/>
+    <property name="act3" value="transfer_money player,50,spyder_cotton_artshop"/>
     <property name="cond1" value="is variable_set paygallery:yes"/>
+    <property name="cond2" value="is money_is player,greater_or_equal,50"/>
    </properties>
   </object>
-  <object id="31" name="No Pay" type="event" x="0" y="128" width="16" height="16">
+  <object id="20" name="Cannot Affort" type="event" x="48" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="pathfind player,2,10"/>
+    <property name="act2" value="set_variable paygallery:null"/>
+    <property name="cond1" value="is variable_set paygallery:yes"/>
+    <property name="cond2" value="not money_is player,greater_or_equal,50"/>
+   </properties>
+  </object>
+  <object id="31" name="No Pay" type="event" x="48" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="pathfind player,2,10"/>
     <property name="act2" value="set_variable paygallery:null"/>
@@ -210,7 +213,7 @@
     <property name="act1" value="set_variable has_sold_painting:yes"/>
     <property name="act2" value="add_item p_monsters_eyes"/>
     <property name="act3" value="set_variable bought_monsters_eyes:yes"/>
-    <property name="act4" value="transfer_money -,1000"/>
+    <property name="act4" value="modify_money player,-1000"/>
     <property name="act5" value="remove_noc p_one"/>
     <property name="cond1" value="is variable_set barmaid_monsters:yes"/>
     <property name="cond2" value="not variable_set bought_monsters_eyes:yes"/>
@@ -221,7 +224,7 @@
     <property name="act1" value="set_variable has_sold_painting:yes"/>
     <property name="act2" value="add_item p_starry_night"/>
     <property name="act3" value="set_variable bought_starry:yes"/>
-    <property name="act4" value="transfer_money -,1000"/>
+    <property name="act4" value="modify_money player,-1000"/>
     <property name="act5" value="remove_noc p_two"/>
     <property name="cond1" value="is variable_set barmaid_starry:yes"/>
     <property name="cond2" value="not variable_set bought_starry:yes"/>
@@ -232,7 +235,7 @@
     <property name="act1" value="set_variable has_sold_painting:yes"/>
     <property name="act2" value="add_item p_trepidation"/>
     <property name="act3" value="set_variable bought_trepidation:yes"/>
-    <property name="act4" value="transfer_money -,1000"/>
+    <property name="act4" value="modify_money player,-1000"/>
     <property name="act5" value="remove_noc p_three"/>
     <property name="cond1" value="is variable_set barmaid_trepidation:yes"/>
     <property name="cond2" value="not variable_set bought_trepidation:yes"/>
@@ -248,7 +251,7 @@
     <property name="act16" value="remove_npc p_two"/>
     <property name="act17" value="remove_npc p_three"/>
     <property name="act20" value="set_variable bought_bundle:yes"/>
-    <property name="act30" value="transfer_money -,3000"/>
+    <property name="act30" value="modify_money player,-3000"/>
     <property name="cond1" value="is variable_set barmaid_sell_bundle:yes"/>
     <property name="cond2" value="not variable_set bought_bundle:yes"/>
    </properties>

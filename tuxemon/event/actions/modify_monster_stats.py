@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import random as rd
 import uuid
 from dataclasses import dataclass
 from typing import Optional, Union, final
@@ -38,6 +39,7 @@ class ModifyMonsterStatsAction(EventAction):
     eg. "modify_monster_stats name_variable,speed,25"
     eg. "modify_monster_stats name_variable,dodge,-12"
     eg. "modify_monster_stats name_variable,dodge,-0.4"
+    eg. "modify_monster_stats name_variable,,,1,5" (random between 1 and 5)
 
     """
 
@@ -45,6 +47,8 @@ class ModifyMonsterStatsAction(EventAction):
     variable: Optional[str] = None
     stat: Optional[str] = None
     amount: Optional[Union[float, int]] = None
+    lower_bound: Optional[int] = None
+    upper_bound: Optional[int] = None
 
     @staticmethod
     def modifiy_stat_int(monster: Monster, stat: StatType, value: int) -> None:
@@ -83,11 +87,14 @@ class ModifyMonsterStatsAction(EventAction):
         player = self.session.player
         if not player.monsters:
             return
-        if self.stat not in list(StatType):
-            ValueError(f"{self.stat} isn't among {list(StatType)}")
+        if self.stat and self.stat not in list(StatType):
+            raise ValueError(f"{self.stat} isn't among {list(StatType)}")
 
         monster_stats = [StatType(self.stat)] if self.stat else list(StatType)
         amount_stat = 1 if self.amount is None else self.amount
+        if amount_stat == 1:
+            if self.lower_bound is not None and self.upper_bound is not None:
+                amount_stat = rd.randint(self.lower_bound, self.upper_bound)
 
         if self.variable is None:
             for mon in player.monsters:

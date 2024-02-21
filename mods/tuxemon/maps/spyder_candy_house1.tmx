@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="83">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="83">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -13,9 +13,7 @@
  <tileset firstgid="1761" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
   <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
  </tileset>
- <tileset firstgid="4353" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="4353" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="2" name="Tile Layer 2" width="10" height="8">
   <data encoding="base64" compression="zlib">
    eAHbxcjAsIsI/AiohhjMxcTAwE0ENgKqMSYCD3Z1AECGGwM=
@@ -125,7 +123,7 @@
   </object>
   <object id="75" name="Talk Starry" type="event" x="112" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="transfer_money +,2000"/>
+    <property name="act1" value="modify_money player,2000"/>
     <property name="act2" value="set_variable muse_bought:yes"/>
     <property name="act3" value="add_item p_starry_night,-1"/>
     <property name="cond1" value="is has_item player,p_starry_night"/>
@@ -137,7 +135,7 @@
   </object>
   <object id="76" name="Talk Trepidation" type="event" x="96" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="transfer_money +,2000"/>
+    <property name="act1" value="modify_money player,2000"/>
     <property name="act2" value="set_variable muse_bought:yes"/>
     <property name="act3" value="add_item p_trepidation,-1"/>
     <property name="cond1" value="is has_item player,p_trepidation"/>
@@ -149,7 +147,7 @@
   </object>
   <object id="77" name="Talk Monsters" type="event" x="80" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="transfer_money +,2000"/>
+    <property name="act1" value="modify_money player,2000"/>
     <property name="act2" value="set_variable muse_bought:yes"/>
     <property name="act3" value="add_item p_monsters_eyes,-1"/>
     <property name="cond1" value="is has_item player,p_monsters_eyes"/>
@@ -173,7 +171,7 @@
   </object>
   <object id="79" name="Talk Monsters" type="event" x="48" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="transfer_money +,6000"/>
+    <property name="act1" value="modify_money player,6000"/>
     <property name="act2" value="set_variable muse_bought:yes"/>
     <property name="act3" value="add_item p_starry_night,-1"/>
     <property name="act4" value="add_item p_trepidation,-1"/>

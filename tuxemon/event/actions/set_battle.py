@@ -42,9 +42,9 @@ class SetBattleAction(EventAction):
     def start(self) -> None:
         player = self.session.player
 
-        if self.outcome not in list(OutputBattle):
-            logger.error(f"{self.outcome} isn't among {list(OutputBattle)}")
-            return
+        _output = list(OutputBattle)
+        if self.outcome not in _output:
+            raise ValueError(f"{self.outcome} isn't among {_output}")
 
         battle = Battle()
         battle.fighter = self.fighter

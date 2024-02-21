@@ -48,14 +48,12 @@ class SetTuxepediaAction(EventAction):
         _caught = SeenStatus.caught
         # check label
         if self.label not in list(SeenStatus):
-            logger.error(f"{self.label} isn't among {list(SeenStatus)}")
-            return
+            raise ValueError(f"{self.label} isn't among {list(SeenStatus)}")
         label = SeenStatus(self.label)
         # check if existing monster
         monsters = list(db.database["monster"])
         if self.monster_slug not in monsters:
-            logger.error(f"{self.monster_slug} isn't a monster")
-            return
+            raise ValueError(f"{self.monster_slug} isn't a monster")
         # regroup monsters
         caught = [key for key, value in tuxepedia.items() if value == _caught]
         seen = [key for key, value in tuxepedia.items() if value == _seen]

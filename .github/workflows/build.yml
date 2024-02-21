@@ -42,6 +42,8 @@ jobs:
       run: >
         echo IS_RELEASE: ${{ env.IS_RELEASE }}
 
+    - name: Checkout repository
+      uses: actions/checkout@v4
     # https://stackoverflow.com/questions/60916931/github-action-does-the-if-have-an-else
     - name: Determine flatpak release branch
       uses: haya14busa/action-cond@v1
@@ -51,54 +53,16 @@ jobs:
         if_true: 'stable'
         if_false: 'development'
 
-    - name: Clone flatpak manifest from Flathub
-      uses: GuillaumeFalourd/clone-github-repo-action@v2.3
-      with:
-        branch: 'development'
-        owner: 'flathub'
-        repository: 'org.tuxemon.Tuxemon'
-
-    # Turn this on once the requirements (requirements.txt) changed and the build is not working anymore
-    # Create development branch at https://github.com/flathub/org.tuxemon.Tuxemon and
-    # update the requirements as described in the Readme. Turn it off again when the requirements in the
-    # master branch on flathub are aligned again with the Tuxemon requirements
-    - name: Checkout development branch
-      run: |
-        cd org.tuxemon.Tuxemon
-        git checkout development
-
-    - name: Replace git tag by the commit id on which it runs
-      if: github.ref_type != 'tag'
-      run: >
-        sed -i 's@tag: v[0-9]*.[0-9]*.[0-9]*@commit: "${{ github.sha }}"@' org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
-
-    - name: Use correct git tag
-      if: github.ref_type == 'tag'
-      run: >
-        sed -i 's@tag: .*$@tag: "${{ github.ref_name }}"@' org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
-
-    - name: Replace source url
-      run: >
-        sed -i "s@url: .*Tuxemon/Tuxemon.git@url: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY@" org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
-
-    - name: Add dev build marker to cmake options
-      if: github.ref_type != 'tag'
-      run: >
-        sed -i 's@config-opts: \["\(.*\)"\]@config-opts: ["\1", "-DDEV_BUILD=${{ github.ref_name }}"]@' org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
-
-    - name: Replace desktop file name suffix
-      if: github.ref_type != 'tag'
-      run: >
-        sed -i 's@desktop-file-name-suffix: ""@desktop-file-name-suffix: " (Development)"@' org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
-
     - name: Show Flatpak manifest
-      run: cat org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+      run:  |
+        ls -R buildconfig/flatpak/
+        cat buildconfig/flatpak/org.tuxemon.Tuxemon.yaml
 
     - name: Build package
       uses: flatpak/flatpak-github-actions/flatpak-builder@v6
       with:
         bundle: Tuxemon.flatpak
-        manifest-path: org.tuxemon.Tuxemon/org.tuxemon.Tuxemon.yaml
+        manifest-path: buildconfig/flatpak/org.tuxemon.Tuxemon.yaml
         cache: false
         branch: ${{ steps.flatpak_release_branch.outputs.value }}
 
@@ -127,7 +91,7 @@ jobs:
 
       - name: Install nsis
         run: |
-          Invoke-WebRequest -Uri "https://netcologne.dl.sourceforge.net/project/nsis/NSIS%203/3.08/nsis-3.08-setup.exe" -OutFile "nsis.exe"
+          Invoke-WebRequest -Uri "https://sourceforge.net/projects/nsis/files/NSIS%203/3.09/nsis-3.09-setup.exe" -OutFile "nsis.exe"
 
       - name: Build Installer
         run: |
@@ -171,7 +135,6 @@ jobs:
         pytest tests
         
   publish:
-    # https://github.com/marvinpinto/actions/issues/177
     needs: [flatpak, build_installer_windows]
     runs-on: ubuntu-latest # does not matter which
     # a prerelase is created when pushing to master
@@ -189,11 +152,11 @@ jobs:
       - name: list artifacts folder
         run: |
           echo "Show artifacts folder:"
-          ls artifacts
+          ls -R artifacts
           echo "Show artifacts/tuxemon_windows_installer folder:"
-          ls "artifacts/tuxemon_windows_installer"
+          ls -R "artifacts/tuxemon_windows_installer"
           echo "Show artifacts/Tuxemon-x86_64:"
-          ls "artifacts/Tuxemon-x86_64"
+          ls -R "artifacts/Tuxemon-x86_64"
 
       - name: Determine release title
         uses: haya14busa/action-cond@v1
@@ -212,12 +175,12 @@ jobs:
           if_false: 'latest'
 
       - name: Update GitHub release
-        uses: marvinpinto/action-automatic-releases@latest
+        uses: softprops/action-gh-release@v1
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: ${{ env.IS_RELEASE == 'false' }}
-          title: ${{ steps.release_title.outputs.value }}
-          automatic_release_tag: ${{ steps.release_tag.outputs.value }}
+          name: ${{ steps.release_title.outputs.value }}
+          tag_name: ${{ steps.release_tag.outputs.value }}
           # TODO: Add windows artifact again when #1229 is fixed
           # **/artifacts/tuxemon_windows_installer/*.exe
           files: |

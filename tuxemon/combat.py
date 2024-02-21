@@ -15,7 +15,13 @@ import random
 from collections.abc import Generator, Sequence
 from typing import TYPE_CHECKING, Optional
 
-from tuxemon.db import OutputBattle, PlagueType
+from tuxemon.db import (
+    GenderType,
+    OutputBattle,
+    PlagueType,
+    SeenStatus,
+    StatType,
+)
 from tuxemon.locale import T
 from tuxemon.technique.technique import Technique
 
@@ -123,49 +129,70 @@ def recharging(technique: Technique) -> bool:
 
 
 def get_awake_monsters(
-    player: NPC, monsters: list[Monster], turn: int
+    character: NPC,
+    monsters: list[Monster],
+    turn: int,
+    method: Optional[str] = None,
 ) -> Generator[Monster, None, None]:
     """
     Iterate all non-fainted monsters in party.
 
     Parameters:
-        player: Player object.
+        character: The character.
+        monsters: List of monsters in the battlefield.
+        turn: Turn of the battle.
+        method: Parameter change the monster.
 
     Yields:
         Non-fainted monsters.
 
     """
     mons = [
-        ele
-        for ele in player.monsters
-        if not fainted(ele) and ele not in monsters
+        _mon
+        for _mon in character.monsters
+        if not fainted(_mon) and _mon not in monsters
     ]
     if mons:
         if len(mons) > 1:
-            mon = random.choice(mons)
-            # avoid random choice (1st turn)
             if turn == 1:
                 yield from mons
             else:
-                yield mon
+                if method is None:
+                    yield from mons
+                else:
+                    mon = retrieve_from_party(mons, method)
+                    yield mon
         else:
             yield mons[0]
 
 
-def alive_party(player: NPC) -> list[Monster]:
-    not_fainted = [ele for ele in player.monsters if not fainted(ele)]
-    return not_fainted
+def alive_party(character: NPC) -> list[Monster]:
+    """
+    Returns a list with all the monsters alive in the character's party.
+    """
+    alive = [ele for ele in character.monsters if not fainted(ele)]
+    return alive
 
 
 def fainted_party(party: Sequence[Monster]) -> bool:
+    """
+    Whether the party is fainted or not.
+    """
     return all(map(fainted, party))
 
 
-def defeated(player: NPC) -> bool:
-    return fainted_party(player.monsters)
+def defeated(character: NPC) -> bool:
+    """
+    Whether all the character's party is fainted.
+    """
+    return fainted_party(character.monsters)
 
 
 def check_moves(monster: Monster, levels: int) -> Optional[str]:
+    """
+    Checks if during the levelling up there is/are new tech/s to learn.
+    If there is/are new tech/s it returns the message, otherwise None.
+    """
     techs = monster.update_moves(levels)
     if techs:
         _techs = ""
@@ -383,32 +410,37 @@ def track_battles(
     Returns:
         Message to display.
     """
+    _won = OutputBattle.won.value
+    _lost = OutputBattle.lost.value
+    _draw = OutputBattle.draw.value
     if output == "won":
         winner = player
         losers = players
         info = {"name": winner.name.upper()}
         if trainer_battle:
+            # register battle
+            for _loser in losers:
+                set_battle(session, OutputBattle.won, winner, _loser)
             # set variables
             if winner.isplayer:
-                set_var(session, "battle_last_result", OutputBattle.won)
+                set_var(session, "battle_last_result", _won)
                 set_var(session, "battle_last_winner", "player")
+                client = session.client.event_engine
+                var = ["player", prize]
+                client.execute_action("modify_money", var, True)
+                if prize > 0:
+                    info = {
+                        "name": winner.name.upper(),
+                        "prize": str(prize),
+                        "currency": "$",
+                    }
+                    return T.format("combat_victory_trainer", info)
+                else:
+                    return T.format("combat_victory", info)
             else:
                 set_var(session, "battle_last_winner", winner.slug)
                 set_var(session, "battle_last_trainer", winner.slug)
-            # if trainer battle prize
-            if prize > 0:
-                winner.give_money(prize)
-                info = {
-                    "name": winner.name.upper(),
-                    "prize": str(prize),
-                    "currency": "$",
-                }
-                # register battle
-                for _loser in losers:
-                    set_battle(session, OutputBattle.won, winner, _loser)
-                return T.format("combat_victory_trainer", info)
-            # trainer battle without prize
-            return T.format("combat_victory", info)
+                return T.format("combat_victory", info)
         else:
             # wild monster
             info = {"name": winner.name.upper()}
@@ -419,11 +451,11 @@ def track_battles(
         loser = player
         winners = players
         info = {"name": loser.name.upper()}
-        set_var(session, "teleport_clinic", OutputBattle.lost)
+        set_var(session, "teleport_clinic", _lost)
         if trainer_battle:
             # set variables
             if loser.isplayer:
-                set_var(session, "battle_last_result", OutputBattle.lost)
+                set_var(session, "battle_last_result", _lost)
                 set_var(session, "battle_last_loser", "player")
             else:
                 set_var(session, "battle_last_loser", loser.slug)
@@ -437,9 +469,9 @@ def track_battles(
         # draw
         defeat = list(players)
         defeat.remove(player)
-        set_var(session, "teleport_clinic", OutputBattle.lost)
+        set_var(session, "teleport_clinic", _lost)
         if trainer_battle:
-            set_var(session, "battle_last_result", OutputBattle.draw)
+            set_var(session, "battle_last_result", _draw)
             for _player in defeat:
                 set_var(session, "battle_last_trainer", _player.slug)
                 set_battle(session, OutputBattle.draw, player, _player)
@@ -478,3 +510,86 @@ def set_battle(
     opponent = "player" if enemy.isplayer else enemy.slug
     client = session.client.event_engine
     client.execute_action("set_battle", [fighter, output, opponent], True)
+
+
+def build_hud_text(
+    menu: str,
+    monster: Monster,
+    is_right: bool,
+    is_trainer: bool,
+    is_status: Optional[SeenStatus] = None,
+) -> str:
+    """
+    Returns the text image for use on the callout of the monster.
+    eg. Rockitten Lv3
+
+    Parameters:
+        menu: Combat menu (eg. MainCombatMenuState).
+        monster: The monster fighting.
+        is_right: Boolean side (true: right side, false: left side).
+            right side (player), left side (opponent)
+        is_trainer: Boolean battle (trainer: true, wild: false).
+
+    """
+    trainer = monster.owner
+    icon: str = ""
+    if menu == "MainParkMenuState" and trainer and is_right:
+        ball = T.translate("tuxeball_park")
+        item = trainer.find_item("tuxeball_park")
+        if item is None:
+            return f"{ball.upper()}: 0"
+        return f"{ball.upper()}: {item.quantity}"
+    else:
+        if monster.gender == GenderType.male:
+            icon += "♂"
+        if monster.gender == GenderType.female:
+            icon += "♀"
+        if not is_trainer:
+            # shows captured symbol (wild encounter)
+            symbol: str = ""
+            if is_status and is_status == SeenStatus.caught and not is_right:
+                symbol += "◉"
+            return f"{monster.name}{icon} Lv.{monster.level}{symbol}"
+        else:
+            return f"{monster.name}{icon} Lv.{monster.level}"
+
+
+def retrieve_from_party(party: list[Monster], method: str) -> Monster:
+    """
+    Who is the "method" monster in the party?
+    Picks the respective monster from the party.
+
+    Parameters:
+        party: List of monster.
+        method: Parameter to pick the monster (random, strongest, etc.)
+
+    Returns:
+        Monster.
+    """
+    if method == "lv_highest":
+        highest = max([m.level for m in party])
+        return next(mon for mon in party if mon.level == highest)
+    elif method == "lv_lowest":
+        lowest = min([m.level for m in party])
+        return next(mon for mon in party if mon.level == lowest)
+    elif method == "healthiest":
+        current_hp = max([m.current_hp for m in party])
+        return next(mon for mon in party if mon.current_hp == current_hp)
+    elif method in list(StatType):
+        stat = max([getattr(m, method) for m in party])
+        return next(mon for mon in party if getattr(mon, method) == stat)
+    else:
+        return random_from_party(party)
+
+
+def random_from_party(party: list[Monster]) -> Monster:
+    """
+    Picks a monster randomly from the party.
+
+    Parameters:
+        party: List of monster.
+
+    Returns:
+        Monster.
+    """
+    return random.choice(party)

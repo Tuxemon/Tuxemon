@@ -23,9 +23,9 @@
     "slug": "spyder_leathergym_chad",
     "template": [
       {
-        "sprite_name": "spyderrookie",
-        "combat_front": "spyder_rookie",
-        "slug": "spyder_rookie"
+        "sprite_name": "magician_grey",
+        "combat_front": "magician",
+        "slug": "magician"
       }
     ]
   },
@@ -43,9 +43,9 @@
     "slug": "spyder_leathergym_brad",
     "template": [
       {
-        "sprite_name": "miner",
-        "combat_front": "adventurer",
-        "slug": "miner"
+        "sprite_name": "magician_fiery",
+        "combat_front": "magician",
+        "slug": "magician"
       }
     ]
   },

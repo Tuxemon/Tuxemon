@@ -6,18 +6,10 @@
   <property name="slug" value="walled_garden2"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="7729" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
- <tileset firstgid="9279" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="7729" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="9279" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <layer id="1" name="Tile Layer 1" width="16" height="20">
   <data encoding="base64" compression="zlib">
    eAEr42dgKKMALwHqHcXkh8ElYPhRgkMYGRhG8cCFgSQw/qSQsDSQDRJjEUC4iRnIhomjq3UHqkXOP55APkhsBRDD4nU5kA0Tx6YWOf3A1F1D0n8VST82tS/kIXa9AtIw/TC7YTRM/CVU7WsktewKEP2cQBqmDqYPRsPEOaBquXCohamD6YPR2MSJFQOZgUstAE2zmpA=

@@ -189,7 +189,7 @@ class WorldState(state.State):
     def pause(self) -> None:
         """Called before another state gets focus"""
         self.lock_controls(self.player)
-        self.stop_player(self.player)
+        self.stop_char(self.player)
 
     def fade_and_teleport(self, duration: float, color: ColorLike) -> None:
         """
@@ -212,7 +212,7 @@ class WorldState(state.State):
         self.remove_animations_of(self)
         self.remove_animations_of(cleanup)
 
-        self.stop_and_reset_player(self.player)
+        self.stop_and_reset_char(self.player)
 
         self.in_transition = True
         self.trigger_fade_out(duration, color)
@@ -258,7 +258,7 @@ class WorldState(state.State):
             duration=duration,
             round_values=True,
         )
-        self.stop_player(self.player)
+        self.stop_char(self.player)
         self.lock_controls(self.player)
 
     def handle_delayed_teleport(self) -> None:
@@ -271,7 +271,7 @@ class WorldState(state.State):
 
         """
         if self.delayed_teleport:
-            self.stop_player(self.player)
+            self.stop_char(self.player)
             self.lock_controls(self.player)
 
             # check if map has changed, and if so, change it
@@ -444,11 +444,11 @@ class WorldState(state.State):
             if event.held:
                 self.wants_to_move_char[self.player.slug] = direction
                 if self.player.slug in self.allow_char_movement:
-                    self.move_player(self.player, direction)
+                    self.move_char(self.player, direction)
                 return None
             elif not event.pressed:
                 if self.player.slug in self.wants_to_move_char.keys():
-                    self.stop_player(self.player)
+                    self.stop_char(self.player)
                     return None
 
         if prepare.DEV_TOOLS:
@@ -1088,9 +1088,9 @@ class WorldState(state.State):
         self.allow_char_movement.append(char.slug)
         if char.slug in self.wants_to_move_char.keys():
             _dir = self.wants_to_move_char.get(char.slug, Direction.down)
-            self.move_player(char, _dir)
+            self.move_char(char, _dir)
 
-    def stop_player(self, char: NPC) -> None:
+    def stop_char(self, char: NPC) -> None:
         """
         Reset controls and stop character movement at once.
         Do not lock controls. Movement is gracefully stopped.
@@ -1102,7 +1102,7 @@ class WorldState(state.State):
         self.client.release_controls()
         char.cancel_movement()
 
-    def stop_and_reset_player(self, char: NPC) -> None:
+    def stop_and_reset_char(self, char: NPC) -> None:
         """
         Reset controls, stop character and abort movement. Do not lock controls.
 
@@ -1117,7 +1117,7 @@ class WorldState(state.State):
         self.client.release_controls()
         char.abort_movement()
 
-    def move_player(self, char: NPC, direction: Direction) -> None:
+    def move_char(self, char: NPC, direction: Direction) -> None:
         """
         Move character in a direction. Changes facing.
 
@@ -1281,7 +1281,7 @@ class WorldState(state.State):
 
         # reset controls and stop moving to prevent player from
         # moving after the teleport and being out of game
-        self.stop_player(self.player)
+        self.stop_char(self.player)
 
         # move to spawn position, if any
         for eo in self.client.events:

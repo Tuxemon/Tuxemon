@@ -38,4 +38,4 @@ class CharStopAction(EventAction):
             logger.error(f"{self.character} not found")
             return
         world = self.session.client.get_state_by_name(WorldState)
-        world.stop_player(character)
+        world.stop_char(character)

@@ -87,7 +87,7 @@ class WildEncounterAction(EventAction):
         )
 
         self.world.lock_controls(player)
-        self.world.stop_player(player)
+        self.world.stop_char(player)
 
         rgb: ColorLike = prepare.WHITE_COLOR
         if self.rgb:

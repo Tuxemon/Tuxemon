@@ -31,10 +31,12 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="8" type="collision" x="0" y="0" width="224" height="48"/>
+  <object id="8" type="collision" x="0" y="32" width="224" height="16"/>
   <object id="12" type="collision" x="160" y="80" width="16" height="16"/>
   <object id="13" type="collision" x="80" y="80" width="16" height="16"/>
   <object id="16" type="collision" x="112" y="48" width="32" height="16"/>
   <object id="18" type="collision" x="80" y="128" width="16" height="16"/>
+  <object id="24" type="collision" x="96" y="64" width="64" height="32"/>
+  <object id="25" type="collision" x="0" y="128" width="16" height="16"/>
  </objectgroup>
 </map>

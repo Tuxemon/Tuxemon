@@ -38,5 +38,15 @@
      "slug": "fashionista"
     }
    ]
+  },
+  {
+   "slug": "spyder_cathedral_nurse",
+   "template": [
+    {
+      "sprite_name": "nurse",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
+   ]
   }
 ]

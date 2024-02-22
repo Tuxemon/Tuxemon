@@ -425,8 +425,11 @@ def track_battles(
             if winner.isplayer:
                 set_var(session, "battle_last_result", _won)
                 set_var(session, "battle_last_winner", "player")
-                prize = check_wallet(session, winner, prize)
+                client = session.client.event_engine
+                var = ["player", prize]
+                client.execute_action("modify_money", var, True)
                 if prize > 0:
+                    set_var(session, "battle_last_prize", prize)
                     info = {
                         "name": winner.name.upper(),
                         "prize": str(prize),
@@ -474,33 +477,6 @@ def track_battles(
                 set_var(session, "battle_last_trainer", _player.slug)
                 set_battle(session, OutputBattle.draw, player, _player)
         return T.translate("combat_draw")
-
-
-def check_wallet(session: Session, char: NPC, prize: int) -> int:
-    """
-    Check the wallet and possible pending payments (eg cathedral).
-
-    Parameters:
-        session: Session
-        char: The character.
-        prize: The amount of money.
-
-    """
-    client = session.client.event_engine
-    _cathedral = char.money.get("bill_cathedral", 0)
-    _share = char.game_variables.get("cathedral_share", 0.0)
-    if _cathedral > 0:
-        share = prize * float(_share)
-        _prize = prize - int(share)
-        var = ["player", _prize]
-        client.execute_action("modify_money", var, True)
-        cat = ["bill_cathedral", -int(share)]
-        client.execute_action("modify_money", cat, True)
-        return _prize
-    else:
-        var = ["player", prize]
-        client.execute_action("modify_money", var, True)
-        return prize
 
 
 def set_var(session: Session, key: str, value: str) -> None:

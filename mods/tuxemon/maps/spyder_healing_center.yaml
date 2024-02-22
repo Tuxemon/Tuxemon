@@ -21,9 +21,9 @@ events:
     type: "event"
   Create Nurse:
     actions:
-    - create_npc spyder_cottoncenter_krystal,5,4
+    - create_npc spyder_cathedral_nurse,5,4
     conditions:
-    - not char_exists spyder_cottoncenter_krystal
+    - not char_exists spyder_cathedral_nurse
     type: "event"
   Use Computer:
     actions:
@@ -154,7 +154,15 @@ events:
     type: "event"
   Heal Cannot Afford:
     actions:
+    - copy_variable cathedral_share_full,cathedral_share
+    - copy_variable cathedral_interest_full,cathedral_interest
+    - variable_math cathedral_share_full,*,100
+    - variable_math cathedral_interest_full,*,100
+    - format_variable cathedral_share_full,int
+    - format_variable cathedral_interest_full,int
+    - lock_controls
     - translated_dialog spyder_billing_cathedral4
+    - translated_dialog spyder_billing_cathedral3
     - translated_dialog spyder_billing_cathedral5
     - set_variable billcathedral:null
     - format_variable party_lost_hp,int
@@ -162,11 +170,11 @@ events:
     - modify_money bill_cathedral,,cathedral_interest
     - set_monster_health
     - set_monster_status
-    - variable_math cathedral_ads,+,1
-    - char_face spyder_cottoncenter_krystal,up
+    - char_face spyder_cathedral_nurse,up
     - wait 1
-    - char_face spyder_cottoncenter_krystal,down
+    - char_face spyder_cathedral_nurse,down
     - translated_dialog spyder_billing_cathedral6
+    - unlock_controls
     - set_variable teleport_faint:spyder_healing_center.tmx 6 7
     conditions:
     - is variable_set billcathedral:proceed
@@ -179,10 +187,9 @@ events:
     - modify_money player,,party_lost_hp
     - set_monster_health
     - set_monster_status
-    - variable_math cathedral_ads,+,1
-    - char_face spyder_cottoncenter_krystal,up
+    - char_face spyder_cathedral_nurse,up
     - wait 1
-    - char_face spyder_cottoncenter_krystal,down
+    - char_face spyder_cathedral_nurse,down
     - translated_dialog spyder_billing_cathedral6
     - set_variable teleport_faint:spyder_healing_center.tmx 6 7
     conditions:
@@ -224,13 +231,15 @@ events:
     type: "event"
   Proceed Selling:
     actions:
+    - info sold,level
+    - variable_math info_level,*,scoop_coeff,scoop_price
+    - format_variable scoop_price,int
     - translated_dialog spyder_scoop_tuxemon3
     - translated_dialog_choice yes:no,isitok
     conditions:
     - is variable_set selltuxemon:proceed
     - not variable_set isitok:yes
     - not variable_set isitok:no
-    - is scoop sold
     type: "event"
   Agree Yes:
     actions:

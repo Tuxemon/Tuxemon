@@ -59,7 +59,7 @@ class QuantityMenu(Menu[None]):
                 return None
 
             elif event.button == buttons.A:
-                self.menu_select_sound.play()
+                self.reload_sounds()
                 self.close()
                 self.callback(self.quantity)
                 return None

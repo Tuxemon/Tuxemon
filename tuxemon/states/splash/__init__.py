@@ -7,7 +7,7 @@ from typing import Optional
 
 import pygame
 
-from tuxemon import audio, prepare, state
+from tuxemon import prepare, state
 from tuxemon.platform.events import PlayerInput
 from tuxemon.states.transition.fade import FadeOutTransition
 
@@ -46,8 +46,8 @@ class SplashState(state.State):
             width - splash_border - cc.rect.width,
             height - splash_border - cc.rect.height,
         )
-
-        audio.load_sound("sound_ding", None).play()
+        _params = ["sound_ding", None]
+        self.client.event_engine.execute_action("play_sound", _params)
 
     def resume(self) -> None:
         if self.triggered:

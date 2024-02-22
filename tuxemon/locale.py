@@ -231,15 +231,16 @@ def replace_text(session: Session, text: str) -> str:
             "${{msgid:" + str(key) + "}}", T.translate(str(value))
         )
 
-    if player.game_variables["unit_measure"] == "Metric":
-        text = text.replace("${{length}}", "km")
-        text = text.replace("${{weight}}", "kg")
-        text = text.replace("${{height}}", "cm")
+    _unit_measure = player.game_variables.get("unit_measure", prepare.METRIC)
+    if str(_unit_measure) == prepare.METRIC:
+        text = text.replace("${{length}}", prepare.U_KM)
+        text = text.replace("${{weight}}", prepare.U_KG)
+        text = text.replace("${{height}}", prepare.U_CM)
         text = text.replace("${{steps}}", str(convert_km(player.steps)))
     else:
-        text = text.replace("${{length}}", "mi")
-        text = text.replace("${{weight}}", "lb")
-        text = text.replace("${{height}}", "ft")
+        text = text.replace("${{length}}", prepare.U_MI)
+        text = text.replace("${{weight}}", prepare.U_LB)
+        text = text.replace("${{height}}", prepare.U_FT)
         text = text.replace("${{steps}}", str(convert_mi(player.steps)))
 
     text = text.replace("${{map_name}}", client.map_name)
@@ -299,7 +300,7 @@ def replace_text(session: Session, text: str) -> str:
         _msteps = 0.0
         _weight = 0.0
         _height = 0.0
-        if player.game_variables["unit_measure"] == "Metric":
+        if str(_unit_measure) == prepare.METRIC:
             _msteps = convert_km(monster.steps)
             _weight = monster.weight
             _height = monster.height

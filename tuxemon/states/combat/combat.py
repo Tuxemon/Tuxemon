@@ -43,7 +43,7 @@ from typing import Literal, NamedTuple, Optional, Union
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import audio, graphics, prepare, state, tools
+from tuxemon import graphics, prepare, state, tools
 from tuxemon.ai import AI
 from tuxemon.animation import Animation, Task
 from tuxemon.combat import (
@@ -971,7 +971,8 @@ class CombatState(CombatAnimations):
                 message += "\n" + m
                 action_time += compute_text_animation_time(message)
             # TODO: caching sounds
-            audio.load_sound(method.sfx, None).play()
+            _params = [method.sfx, None]
+            self.client.event_engine.execute_action("play_sound", _params)
             # animation own monster, technique doesn't tackle
             hit_delay += 0.5
             if "own monster" in method.target:

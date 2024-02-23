@@ -7070,6 +7070,14 @@ msgstr "Since there isn't a third acolyte anymore, you can just move on to the n
 msgid "acolytewasdefeated5"
 msgstr "Good luck on the next one"
 
+msgid "tabapassageway4heal"
+msgstr "You've done well to make it this far, but he who lies ahead is more powerful than you expect.\n"
+"There's no Tuxemon in this passageway, but that doesn't mean it's any easier than before...\n"
+"Let me heal your Tuxemon."
+
+msgid "tabapassageway4heal2"
+msgstr "Good luck on the path ahead..."
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

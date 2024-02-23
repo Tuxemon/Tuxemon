@@ -24,7 +24,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -38,31 +38,17 @@
   <object id="4" type="collision" x="64" y="32" width="192" height="32"/>
   <object id="5" type="collision" x="256" y="32" width="32" height="16"/>
   <object id="6" type="collision" x="288" y="32" width="224" height="32"/>
-  <object id="7" type="collision" x="512" y="80" width="48" height="112"/>
-  <object id="8" type="collision" x="64" y="224" width="48" height="272"/>
-  <object id="9" type="collision" x="160" y="224" width="48" height="272"/>
-  <object id="10" type="collision" x="208" y="480" width="112" height="16"/>
   <object id="11" type="collision" x="192" y="544" width="448" height="96"/>
   <object id="12" type="collision" x="608" y="224" width="32" height="320"/>
   <object id="13" type="collision" x="32" y="608" width="128" height="32"/>
   <object id="14" type="collision" x="96" y="544" width="96" height="32"/>
-  <object id="15" type="collision" x="512" y="208" width="48" height="288"/>
-  <object id="16" type="collision" x="256" y="432" width="128" height="16"/>
   <object id="17" type="collision" x="208" y="208" width="304" height="32"/>
   <object id="18" type="collision" x="160" y="144" width="320" height="32"/>
   <object id="19" type="collision" x="32" y="128" width="464" height="16"/>
   <object id="20" type="collision" x="176" y="112" width="320" height="16"/>
-  <object id="21" type="collision" x="448" y="288" height="112"/>
-  <object id="22" type="collision" x="288" y="288" width="160" height="16"/>
-  <object id="24" type="collision" x="256" y="288" height="144"/>
-  <object id="26" type="collision" x="288" y="304" height="96"/>
-  <object id="28" type="collision" x="384" y="448" height="96"/>
   <object id="30" type="collision" x="464" y="176" width="32" height="32"/>
   <object id="31" type="collision" x="32" y="144" width="112" height="32"/>
   <object id="32" type="collision" x="608" y="64" width="32" height="96"/>
-  <object id="39" type="collision" x="384" y="384" width="16" height="16"/>
-  <object id="40" type="collision" x="368" y="400" width="16" height="16"/>
-  <object id="41" type="collision" x="384" y="416" width="16" height="16"/>
   <object id="92" type="collision" x="112" y="288" width="16" height="32"/>
   <object id="93" type="collision" x="112" y="416" width="16" height="32"/>
   <object id="94" type="collision" x="496" y="352" width="16" height="32"/>
@@ -74,9 +60,7 @@
   <object id="115" type="collision" x="32" y="384" width="16" height="16"/>
   <object id="127" type="collision" x="576" y="32" width="16" height="16"/>
   <object id="128" type="collision" x="592" y="48" width="16" height="16"/>
-  <object id="129" type="collision" x="352" y="352" width="32" height="32"/>
   <object id="130" type="collision" x="96" y="512" width="48" height="32"/>
-  <object id="131" type="collision" x="80" y="496" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="33" name="random encounter 1" type="event" x="208" y="176" width="128" height="32">

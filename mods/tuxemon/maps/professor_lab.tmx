@@ -17,12 +17,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="13" height="18">
   <data encoding="base64" compression="zlib">
-   eAFjYKAPiFViYIgH4ttyDAx3gVhZnoFBBYjRgTVQzgaIQWA2UP1cIC4FqisHYicgdkbTsxGoNgqIo6F6IDoJkzuB5lIC9NHcQYlZyHofAP0hDzT7IdQ/FkTY8x+o1g6kjgi1yHZRygbFy2+g3TAMiiNkQEgeWS0pbCNGBgZjJGwCZBMCCUA1iUg4iQg9fUA1/Uh4AhF6CLkDJP9CERhmwPT3B4j/IqXDi0jhhywPUg8Atj0nCA==
+   eAFjYKAPOCvHwHAOiG8D8V0gVpZnYFABYnRgDZSzAWIQeAOk3wJxKVBdORA7AbEzmp6NQPkoII4GYhBogNIQHm6SWHW4TNBHcwcudaSKPwC6Xx5o9kOoPyyIsOc/UK0dSB0Rakl1Dz71oHj5DbQbhkFxhAwIySOrJYVtxMjAYIyETYBsQiABqCYRCScRoacPqKYfCU8gQg8hd4DkXygCw0yJgeEPEP8FYhi4iBR+yPIg9QBd/SjZ
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="13" height="18">
   <data encoding="base64" compression="zlib">
-   eAFjYKAPcFVgYHADYlLADiVSVI+qHQ2B4RsCAC3xAaY=
+   eAFjYBgFoyEwGgKDPQQAA6gAAQ==
   </data>
  </layer>
  <layer id="4" name="Above player" width="13" height="18">
@@ -38,8 +38,8 @@
  <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="43" type="collision" x="144" y="112" width="48" height="32"/>
   <object id="56" type="collision" x="144" y="48" width="48" height="16"/>
-  <object id="85" type="collision" x="0" y="0" width="208" height="48"/>
-  <object id="86" type="collision" x="32" y="48" width="64" height="16"/>
+  <object id="85" type="collision" x="0" y="32" width="208" height="16"/>
+  <object id="86" type="collision" x="0" y="48" width="96" height="16"/>
   <object id="87" type="collision" x="0" y="96" width="16" height="16"/>
   <object id="88" type="collision" x="0" y="128" width="16" height="16"/>
   <object id="89" type="collision" x="0" y="176" width="80" height="16"/>
@@ -149,7 +149,7 @@
   </object>
   <object id="101" name="wemoving" type="event" x="0" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind professor,0,3"/>
+    <property name="act1" value="pathfind professor,0,4"/>
     <property name="act2" value="char_face professor,up"/>
     <property name="cond1" value="is variable_set wemoving:now"/>
    </properties>

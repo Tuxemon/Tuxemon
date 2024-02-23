@@ -8,6 +8,7 @@
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="4326" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eAHt0iERAAAMxLBKfv9oLoYCaqCXVZMHDDDAAAMMMMAAAwww8GDgAMjSXhA=
@@ -15,7 +16,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtVcENwjAMzAMhFmCFsguwA3MxGYJHl2ABHAmjcop9Pgl+jRS5ti++i92q06a1g+2J2FZYD6txS/a9wIM6TnbmbJvZgrwShPFgHvVGfomcgPZbPifkR72RT6g/6aPNou9oRfWjOOqN/IgP45m+tX/YrW9/fs+29/Bp79poRfOJ4tHcMT7iGsWy+XY81mV+pBvjIy2jWKbvsn6/o5ZJMZwL89n8PS+JSMBer2qZfs8nlFLK61Vt9R6SiARc5XNc9R4JpZSq8jnOdTIriUjAjAfzrvNfFv8jKg/q/bW/bGXXqtZX76Pil/r6s3pevY+KX+q77vT+vQAEIYc2
+   eAHtVcENwjAM7APx74MVyi7ADoyN4MESXYBEwiicbJ9Pgl8jRa7ti+9it+qym6Zj2wuxU2E9Wo1bsu8FHtRxbmcubTNbkFeCMB7Mo97IL5ET0GHP54T8qDfyCfUnfWqz6DtaUf0ojnojP+LDeKZv6x9269t/vmfbe7i2d81b0XyieDR3jHtcXiybb8djXeZHujHuafFimb7r9v16LZNiOBfms/lbXhKRgK1e1TL9lk8opZTVq9rqPSQRCbjKZ7jqPRJKKVXlM5zpZFYSkYAZD+ZN578s/kdUHtT7a39sZdeq1lfvo+JHff1ZPa/eR8WP+uZZ798L6j2Gtw==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
@@ -34,7 +35,6 @@
   <object id="163" type="collision" x="448" y="0" width="16" height="320"/>
   <object id="164" type="collision" x="320" y="32" width="32" height="128"/>
   <object id="165" type="collision" x="304" y="0" width="144" height="16"/>
-  <object id="166" type="collision" x="432" y="304" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="118" name="Teleport to Cotton Town" type="event" x="160" y="0" width="16" height="16">

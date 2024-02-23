@@ -7,9 +7,7 @@
   <property name="slug" value="leather_museum"/>
   <property name="types" value="notype"/>
  </properties>
- <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
-  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/Superpowers_Tilesheet.tsx"/>
  <tileset firstgid="1601" source="../gfx/tilesets/core_set pieces.tsx"/>
  <tileset firstgid="3151" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="5926" source="../gfx/tilesets/core_indoor_floors.tsx"/>

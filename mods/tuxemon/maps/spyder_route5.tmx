@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="68">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="68">
  <properties>
   <property name="east" value="flower_city"/>
   <property name="edges" value="clamped"/>
@@ -8,56 +8,42 @@
   <property name="south" value="timber_town"/>
   <property name="types" value="route"/>
  </properties>
- <tileset firstgid="1" name="Tileset" tilewidth="16" tileheight="16" tilecount="1120" columns="28">
-  <image source="../gfx/tilesets/Tileset.png" width="448" height="640"/>
- </tileset>
- <tileset firstgid="1121" source="../gfx/tilesets/core_city_and_country.tsx"/>
- <tileset firstgid="2561" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
+ <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="4216" source="../gfx/tilesets/Superpowers_Tilesheet.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHt0iERAAAMA7Hiqa1/VBdDAW/gL72k8oABBhhggAEGGGCAAQYeDAxDjn1Q
+   eAHt0iERAAAMA7Gi4fpXWxdDAW/gL72k8oABBhhggAEGGGCAAQYeDAxMckTB
   </data>
  </layer>
  <layer id="2" name="Long Grass" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtklEKAkEMQ/cEfnh7PZxeRYI+CCXtKKvohwVJJ0kzncVt+9e7vsD1sG3f/k1vYbfJgybvpbxHGhkg/g7xkdX5xOP1Hs6x0xOfOLKSJq6raQ5NqPIzfeITt/JrJlWd45vDg2l24pirqJnEdVl40xzaqzhl1T2UPRV3y0M/Yfd9fWbKco1e2BW50un3YsriXa6pXxW7yEe/F6espInril06vfL4Qb4LZ+Gq3LvyJ69zuouz93AJJ1/SxHVV8+Vzzs/eu6f2ky9p4rpaZWsOj/dwCSdf0sR1pfxafmfV3nEmn//ulIn3m/jsfrzn07vWe6b9fl07He8bnh/4C/veACeFfPA=
+   eAHtklEOwjAMQ/vNoeGKcCNkjSdZUZKObWL7oBI4tR03LYzxX0e9wOM2xtmf7i7M1nnQ5L2H+0gjA8RfIT6w8ol3D3WG7nU94zOOnqjpvt2q+uB5r5iLnvEZN/NXM3Z9aMJvl/dS81bswS7bPdR7UedVGXEW+bpFjjzUe7HLco1aWC1mkU7Nf469Y6fh8yw40DXVs5X1wW1FnVn1Zlo3IzmdxzX8Hbo/q2Nv5oHLvJFjrx7qiP67d75ME1eteI58kWMfNZ8JjzD6ZtrSkX9775bs2L8lI59sYclzj5/p/FE1+bx/l4v3TFwzH3f5xZzxrG6+q2vPz4CvCw36BnXj3pw=
   </data>
  </layer>
  <layer id="3" name="Path" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtldFNgzEMhPMEIwDTAEMwA7ADrFCmYAXYALaBFfAJfdLJcpy/1f+CRKS0jp2cz86lHeN/7NmBi/MxLjfMq9jjg3Pux9fh+X7H6+yvszE+Y+r7O+ZHWit2m/hdxzr78XVYGafjpRiYh8j3UMyX8IlvxtW57MdXYQkn17PiBr+cx88pp3r6Ft9+b++FH1+uZUsez+k2+StMx63uTHVlPcxqJY/XuUWLOifdzfjdR7y698rX3aHyiLvXOcuZ+3eKLhwDGw5VXsWUR9pUHU9hey+lnbvw5dFh5r2rtbB03zN+3D05vZeKPU/4Vfr3t4C90gt5c1903t/OTDOvE35ZF7N11RfvqfipJ7kvrOmfn1nZ1CJN6J3w24XW0csWbPoHhr8h8FY1zvhSO+fJpbXsma4cr9vneH6ms/3/UvrwHpFLWiJW6QptojFhVPtcfx0nj1ET+vAeVTHl9r2nrLkf5zGzxeEmpuvlMdYa6NI1tIcN/m+W/hN+x9TUI+4bpUfH1LQvg7+H9gMNbLRm
-  </data>
- </layer>
- <layer id="4" name="Gravestones" width="40" height="20">
-  <data encoding="base64" compression="zlib">
-   eAHNlsFuwjAMhiOmieOOQ+wF2HmwHXkCupeBp4dp86/2kyyLtOpom1hyUjtp8sU2oc1LSifTpqI+mcC0M6530+sqpVsF+msMMHnO1ydZ/5PmOaVvU4l/bj3DLbHSzDfj8LZiJ4HvuG7tMe3Z2C4dn38eswZzxSchhqo7CXytVa6FjxjCWRMfTIoSnEvx+b3vZWmo/u69M6WPeOTWJL+co7b6+7Dfx4/dMZwDzqXym4tbzg9nLXz6n1D8iFu8/3LnyPlZJ47n/HFetKk/4vZo/bFO3Cfnj/Nk+7OIz9s8l8yvP0u8XxgryedjSn6JG2N9fHEu78zRw0fc2LuPj7lz8MQ1Y/2xt/g23bfDtuvju0vYsf64X3Rv700Ppp+mpb5Vv2xvCXnlfmm907bsMbYXBXn9AwOndcg=
+   eAHNlstNQ0EMRQeQgLAOEgtoAbqBDqAb6IZfBdAEvz3UgI+SIyzLQUEEEUvDvPGbub6275vwsTfGe4yPNZpHmJwegtdjjOvpGDdrMO6Dg5wyz6fwYzebY9wuMe5iz3RjjIMY+zE8pz/7vsNjv7Ui/lvwyGtqh8nvOfZfxriYz1cxn5c1715jZONc9ev7Dgsc8iQfDH6YNUR3WOYH3vHWGLvNOAkffMW1fnDJfuLp67DAqfnAQ37WUJ6ZX42T8yMmNT0N/Ny3s1hXvz5zgbNYcs/v5Ccn1vLM/IjDuc7E7XpGXlUP5iqWsbs80eKy+st5mTMxdqJOXd87X+6hGNajy5OY9tc8Fumvq58xlp3l0GHxTp2Tx2Gs0cz2fugmfcPyzP21J5WHPVp2toddLzJ3n6tmjoKz9c78qs7zd5Cf0QtW83Bt3PotgZG/nawZfieon3Xr7j/qV3Pp1tRFnBnTr7/6Oded5Y6tfeK0+rNuVX/mgibAWHR3iS0O2NaNZ/3sW4QB75oj/MwNHJ/pL/j5vvW8cZ07XYGVzb3eVa6d7T38zIXz9X7xHfz8DVUf1ohz3btOV1mfaAyMbl/WH/ia/bVu+uFnTlkvuf7Eyu9WsQbfmsJFftZNnvJ7if1ZL5OogXu7O/i3PvCzVf0ZG34Y/DBz+us5x+K56s/7hXt7JwY2ifm//lfdm3Owr94vM2ar/WuMn86wsK+fh6R/wA==
   </data>
  </layer>
  <layer id="5" name="Tile Layer 8" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFhEJAg5+BQROIR8FoCIyGwGgIjIbAaAiMhsBoCIyGAP1DQJKZ/naO2ki7EAAAK24AjA==
+   eAHtVUkOgCAM7Nmz/3+PvkK9uz3BcpiENJUlgAFik2Zsi9MOkEDUr+0s7WY/hMST40vkXOE0EM3stVqsnlAdufYvtJ9cB11AWY+JwQG0/9Vydr3Vb+gCpujIweHrjx6h6ONLrcs5UvhycsXOIXsjjuWpdf1Xekr3Mfyu90rrr+XMOck8YmCtZ9niXD3uKTSVRu2uvt2BZSRa2Tf23/rYgQdckGRy
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">
-  <object id="3" type="collision" x="0" y="0" width="32" height="240"/>
-  <object id="4" type="collision" x="32" y="0" width="608" height="32"/>
-  <object id="5" type="collision" x="576" y="32" width="16" height="112"/>
-  <object id="6" type="collision" x="576" y="160" width="64" height="160"/>
-  <object id="7" type="collision" x="80" y="288" width="496" height="32"/>
-  <object id="10" type="collision" x="320" y="32" width="32" height="32"/>
-  <object id="11" type="collision" x="272" y="32" width="32" height="32"/>
+  <object id="3" type="collision" x="0" y="32" width="32" height="256"/>
+  <object id="4" type="collision" x="32" y="16" width="560" height="16"/>
+  <object id="5" type="collision" x="592" y="32" width="48" height="112"/>
+  <object id="6" type="collision" x="592" y="160" width="48" height="128"/>
+  <object id="7" type="collision" x="80" y="288" width="512" height="16"/>
   <object id="12" type="collision" x="448" y="96" width="32" height="32"/>
   <object id="13" type="collision" x="352" y="176" width="32" height="32"/>
   <object id="14" type="collision" x="256" y="176" width="32" height="32"/>
-  <object id="15" type="collision" x="528" y="16" width="32" height="32"/>
+  <object id="15" type="collision" x="528" y="32" width="32" height="16"/>
   <object id="16" type="collision" x="528" y="192" width="32" height="32"/>
   <object id="17" type="collision" x="144" y="240" width="32" height="32"/>
-  <object id="21" type="collision" x="0" y="240" width="32" height="16"/>
   <object id="22" type="collision" x="32" y="288" width="32" height="16"/>
-  <object id="23" type="collision" x="0" y="256" width="32" height="32"/>
-  <object id="41" type="collision" x="48" y="304" width="16" height="16"/>
-  <object id="42" type="collision" x="80" y="304" width="16" height="16"/>
-  <object id="52" type="collision" x="592" y="128" width="48" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="1" name="Teleport to Timber Town" type="event" x="64" y="304" width="16" height="16">
@@ -170,7 +156,7 @@
     <property name="cond2" value="is char_moved player"/>
    </properties>
   </object>
-  <object id="34" name="encounter 3" type="event" x="192" y="192" width="32" height="48">
+  <object id="34" name="encounter 3" type="event" x="176" y="192" width="48" height="48">
    <properties>
     <property name="act1" value="random_encounter route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>

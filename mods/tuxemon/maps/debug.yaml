@@ -70,7 +70,7 @@ events:
     type: "event"
   Black Female:
     actions:
-    - set_template player,firefighter,heroineblack
+    - set_template player,brownheroine_brown,heroineblack
     - set_player_name f_default1:f_default2:f_default3
     - set_variable gender_choice:gender_female
     conditions:

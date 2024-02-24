@@ -241,7 +241,7 @@ events:
     - add_monster arthrobolt,100
     - add_monster eaglace,100
     - add_monster agnigon,100
-    - set_monster_plague ,inoculated
+    - set_party_attribute player,plague,inoculated
     - set_variable cheat_apex:enabled
     conditions:
     - is check_char_parameter player,name,ApexPlayer

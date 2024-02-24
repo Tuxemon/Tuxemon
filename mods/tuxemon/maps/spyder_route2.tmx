@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="211">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="211">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="citypark"/>
@@ -14,27 +14,27 @@
  <tileset firstgid="4326" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHt0qERADAMAzGPHNJk/RZkhEIB0wc+VZIyHzDAAAMMMMAAAwwwwMBnA+f1ejfbvsoWXig=
+   eJztyKEBACAMA7CePMP2PoidgIyISSUpAACAz87Ta/YuyhZeKA==
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtVctNQzEQNBJwhiI4kHRACRySdEALkYAOKADKoBYkBJ0g0UB2oowyrMZ+th4XJFayvG+9n/F47VfKv/xlBhYnpXC09nEtfvRfhq1XGN/r3+t3dVoKci9NwCJsvRhXA3sxpaqm28DXyr3prLsOv/NqleOC+pwdzVUN/N1HbuR/MDV68aEA97kNfSSuCi4WwJ8Ka9D2W3WYb2oGRy0ZwZfvhOvhVi2ubS6p/ZxxtllG8GXfnGvuN87WYUT/qOC9cfc447sQHnD3nej9cOtqA7bcf7qedb6LnPU8nwPbi+BD7FOA+eq5pLnQ4Zv8AafjsRJmzR+B7TMGe+lViPoW3QZXjOQPOEd4zOlWiTes3wimO9FzLL9zr8Du+HN+zKEzjg1vQes9eAun9wls7FmtyzfN8ad+ikd1YHuceKfUP+vuv6l1iS/zB7zql/PiW7Gtzbm6GGcDRt6z/fsgTsSX+QNe/OtaMsobe4DzxHHvSxOf4w+Y547W/qb2j1hy4PgD5rmjhW9kDTh26SgyYw==
+   eJztldENgjAQhiFBn2WIPggbOAIPyAauQCJs4AA6hrOYGN3ExAXsBS/Ucr1eY3kw8Uv6AFx7P3/v2iT588sU6Tg41ulnLIzSM4eaHxuVDWuXxLcikWusZ9AGVBm/diPMu9VxS0GcGbMQxIN/+3RYvyNySPUB+J9t4DwO8I/KgcTKI6Xz5AvRZ/cEVcMSmpx+r7LpuxB9c/UEAntLaWytZ9dZY+tbGT4UjpySHkJAm11/HJPz0fh21NpO1j4dtJiHpEkdoH/K4WMIN63tno+1dDaMeoaYZoD+VYE+2tREfW8MTTuBPqqWKf+kNQ/b1qX8eXDRQVePNqxZMy/2JOWfRB9o67/oXerepPTZ/inPXWdr2zrOLalGV6+5/Kvedx1HqG9YAzgkrcL5F2Nw+P4f6Bn/YoxYwFov6SgyYw==
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAG1letNAzEQhB0E/E8XedRCSC8kfUA7QBHQALTCjnKfMqzscw4uKzmz3uf4cc7qrpR1jFUHyyC9uLn9D8FrF6OH8OvFze1/XpbyEuNasl6UskljG3OJfN+350Gc/JzDR3D7nJEfPcDticqv303M5Mcnji778HEObs/6IfKOKTfH/HceV6scgo/G/VBM/Ni/Xn1x/It4X/oLsxzDxhnvBv+l+0etrws5vkbC2zDeSU4IB5nFQ9xUX4ivtn+sgXLMQexjSH3FqIfkMd3tHEN94dOQoz31+0cM6zhVPu878xbyLbgffm6TXuMnOxwcZUfcLn2KkOs5U/iRD+Z98rpan/PTWzAm1PQc4tlX3jvZPZ53hjjQ46kF+v57PfwgffJaqzwjiZ6sn3xHarf2Xn7n57m1voonRjpSi6WnvgF/b9D19lGLWOo5wo/3kRzQY13HD7pP+lhP+T1vLBZefN/Mld8S9gBkLzze7xpn7X74ge5zPfPKc4+lVkadIf9VHj+mqwZ3WXpLOF94EZfn1MjcmE/hSA5IzxZyTjVUDnV6yP9Bq4/bqeW2a+nL9J+W+9TW7TaPX8RZ38SYil6jpu87HGs5NdsPShOwgA==
+   eJy1lmFShDAMhVMH9z+32MWziNxl4R56HfUQegG8imUkw/ORtN2KbybTYZs2H2nI9nwvcol2zoyqnN/R42O0vmBUlfofNT63Ii+t/JsuQaQjewjb3FezGc5r/j4i2+eBfDsWy0d+zy1sqCHsz83SGNdNTdrnr1oQxvBjJ+Djuvc0VvJhXDTWBGfch42vJH+quZDxNdrbau+OTw+Mw8o2G3ycP30HfubfU+LYi57atA/GuK5zE+VP52eHMSf9FlCDcZYeH8byclKTL15by8fGeeL1ONcVsln7cb9j/072/Yj9U++H+3lcVk3sOGWL2Ts5w3Ve7pmv5My9WmFpzKvRc7T36V4lfPp9l9Zlzi8VE9fnfPnegJyevFygsNas+irNA3Pxc2pP7GMne3tXWMspPj1f716F+x3FeGtvs+oX/z89JouxVDV9t1Zt5r6Wen++Q4TIfNfcPuY0HHSn/AZKE7CA
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBj6oIF7cPth/iB3H77QM+fEJzvwcjGD2H3zgPHeOIjdR6/YIzb9j4YXvWJk1J7REBgNgdEQGA2B0RBADQFGFgYGJiCmFQ2zDWY+AD8bBXo=
+   eJxjYBj6oIF7oF2AH8wf5O7DB8w5B9oF+EHMIHbfPGC8Nw5i99ELEJv+R8NrFIyCUTAKRsEoGBjAyMLAwMRCOxrdHgA/GwV6
   </data>
  </layer>
  <layer id="1" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyGAOwTMOXHLDQaZmEHmvtHwGgypYtQNoyEwGgKjITAaAqMhMBoCgzkEACqgAUs=
+   eJxjYBgFowA3MOccaBfgBzGDzH2j4TUKRsEoGAWjYBSMglGAHwAAKqABSw==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -452,7 +452,7 @@
     <property name="act08" value="translated_dialog spyder_route2_billie1"/>
     <property name="act20" value="add_monster billie_choice,6,spyder_billie,5,10"/>
     <property name="act21" value="add_monster eyenemy,6,spyder_billie,5,10"/>
-    <property name="act22" value="add_monster cardiling,3,spyder_billie,5,10"/>
+    <property name="act22" value="add_monster cardiling,5,spyder_billie,5,10"/>
     <property name="act30" value="start_battle player,spyder_billie"/>
     <property name="act71" value="translated_dialog spyder_route2_billie2"/>
     <property name="act75" value="pathfind spyder_billie,3,15"/>

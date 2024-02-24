@@ -8,15 +8,15 @@
         },
         {
             "level_learned": 2,
-            "technique": "give_all"
+            "technique": "saber"
         },
         {
             "level_learned": 6,
-            "technique": "one_two"
+            "technique": "give_all"
         },
         {
             "level_learned": 8,
-            "technique": "saber"
+            "technique": "one_two"
         },
         {
             "level_learned": 12,
@@ -72,7 +72,7 @@
     "txmn_id": 62,
     "height": 30,
     "weight": 2,
-    "catch_rate": 100.0,
+    "catch_rate": 150.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25
 }

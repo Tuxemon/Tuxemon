@@ -1,44 +1,48 @@
 {
     "slug": "aardorn",
     "category": "snout",
-    "moveset": [
-        {
-            "level_learned": 2,
-            "technique": "tonguespear"
-        },
-        {
-            "level_learned": 2,
-            "technique": "hibernate"
-        },
-        {
-            "level_learned": 6,
-            "technique": "evasion"
-        },
-        {
-            "level_learned": 8,
-            "technique": "stampede"
-        },
-        {
-            "level_learned": 12,
-            "technique": "lantern"
-        },
-        {
-            "level_learned": 16,
-            "technique": "assault"
-        },
-	    {
-            "level_learned": 24,
-            "technique": "feint"
-        },
-	    {
-            "level_learned": 28,
-            "technique": "sand_spray"
-        },
-	    {
-            "level_learned": 32,
-            "technique": "mudslide"
-        }
-    ],
+  "moveset": [
+    {
+      "level_learned": 2,
+      "technique": "tonguespear"
+    },
+    {
+      "level_learned": 2,
+      "technique": "evasion"
+    },
+    {
+      "level_learned": 5,
+      "technique": "headbutt"
+    },
+    {
+      "level_learned": 6,
+      "technique": "hibernate"
+    },
+    {
+      "level_learned": 8,
+      "technique": "stampede"
+    },
+    {
+      "level_learned": 12,
+      "technique": "lantern"
+    },
+    {
+      "level_learned": 16,
+      "technique": "assault"
+    },
+    {
+      "level_learned": 24,
+      "technique": "feint"
+    },
+    {
+      "level_learned": 28,
+      "technique": "sand_spray"
+    },
+    {
+      "level_learned": 32,
+      "technique": "mudslide"
+    }
+  ],
     "evolutions": [
         {
             "at_level": 18,
@@ -60,7 +64,7 @@
     "txmn_id": 42,
     "height": 40,
     "weight": 18,
-    "catch_rate": 100.0,
+    "catch_rate": 160.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25
 }

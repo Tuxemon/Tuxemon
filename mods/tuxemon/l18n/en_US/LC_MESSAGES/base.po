@@ -605,6 +605,12 @@ msgstr "Petrified Dung"
 msgid "petrified_dung_description"
 msgstr "It looks like, well, poo ... but it's hard as stone."
 
+msgid "lima_pie"
+msgstr "Lima Pie"
+
+msgid "lima_pie_description"
+msgstr "A tasty cake baked from lima berries."
+
 msgid "pyramidion"
 msgstr "Pyramidion"
 
@@ -4675,6 +4681,12 @@ msgstr "Like a mighty tree, WINDEYE plants itself on the top of hills to soak in
 msgid "windeye"
 msgstr "Windeye"
 
+msgid "wolffsky_description"
+msgstr "This tuxemon is very friendly. It is common to go hunting with the help of WOLFFSKY."
+
+msgid "wolffsky"
+msgstr "Wolffsky"
+
 msgid "woodoor_description"
 msgstr "When a haunted house burns to the ground, sometimes all that is left is the front door. It hops away to find its next home."
 
@@ -5052,6 +5064,8 @@ msgid "cat_lizard"
 msgstr "Lizard"
 msgid "cat_long_winged"
 msgstr "Long Winged"
+msgid "cat_lupine"
+msgstr "Lupine"
 msgid "cat_ma_bell"
 msgstr "Ma Bell"
 msgid "cat_macropod"
@@ -9001,7 +9015,7 @@ msgid "spyder_dryadsgrove_boy_after_yes"
 msgstr "Oh wow! Oh wow! You just made my day. My week! My year! I missed RUFF so much.\n *SNIFF* You're the best!"
 
 msgid "spyder_dryadsgrove_boy_after_no"
-msgstr "????"
+msgstr "*SNIFF* I understand. It's easy to get attached, and RUFF looks like he's doing really well. Bye RUFF."
 
 msgid "spyder_leatherhouse1_tennisplayer1"
 msgstr "Is Frostbite an Earth element technique or a Water element technique? "

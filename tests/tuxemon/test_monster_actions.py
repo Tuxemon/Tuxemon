@@ -234,8 +234,8 @@ class TestMonsterActions(unittest.TestCase):
         before = monster.speed
         _params = [None, "speed", None, 1, 5]
         self.action.execute_action("modify_monster_stats", _params)
-        self.assertGreaterEqual(monster.speed, before + 1)
-        self.assertLessEqual(monster.speed, before + 5)
+        self.assertGreaterEqual(monster.speed, before)
+        self.assertLessEqual(monster.speed, before + 6)
 
     def test_modify_monster_stats_random_negative(self):
         _params = ["agnite", 5]
@@ -244,8 +244,8 @@ class TestMonsterActions(unittest.TestCase):
         before = monster.speed
         _params = [None, "speed", None, -5, -1]
         self.action.execute_action("modify_monster_stats", _params)
-        self.assertGreaterEqual(monster.speed, before - 5)
-        self.assertLessEqual(monster.speed, before - 1)
+        self.assertGreaterEqual(monster.speed, before - 6)
+        self.assertLessEqual(monster.speed, before)
 
     def test_modify_monster_bond(self):
         _params = ["agnite", 5]

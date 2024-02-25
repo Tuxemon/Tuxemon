@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="285">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="286">
  <properties>
   <property name="east" value="cotton_town"/>
   <property name="edges" value="clamped"/>
@@ -13,30 +13,30 @@
  <tileset firstgid="13318" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtV8lRBDEMnAKigFS4UqFIYD9ABkAMQC4sSfFGKqaruhpZeHYO+7EPlzWHpXa3pPHshmHYNRx3J8PwffY77s1uiSWK3SO+S+Ppahy3p/3xx5xBW5/X0PfBcveRxlNFLm+J783wvNP4MBuYS1gZ37np+2Ja+3i1EeXonHufhmdP48tsYHaskW/GB02xJ9bCbV3PuYscrp2vx/0fgg9rWAu3FR/vjXO3xgYXiDWFP9Vhb9h8bIFPNZnTU5Q/zl/kMc8XQf9S/tQnawHOlafStfr6bz2/j3d7x4dc8lp2HngPqkdtT0GOcG7U9HSOfWNaR7XOPsFxSb/SfY7D+aEx0UPgp7SOfbCt+ND3Sr18ahz1Pxef5irw6MxxOEe4PiO9n8dvE9d0Zmu+TcXn2NiHx2eMyp/uc+q11lJpPfjzfMtybGl8JTx6H/giDbNn6met6whD1HN64c+xcd9Cj+gBn+egYkNNc+2spWXkl/UFVzy34g1YI3zgzPtZK94yfK05AzafI/6O+P6e35kztvU7FvVpfr+FrRr3pK/zoWeR1jXbQqNjzPqaW4IrnFGi/5rsnp4Rl8AS+dBzAH9zM3ur2s4wZM96x6f/nVkuHPIM+ZNx1PIZ9GmJIYuN/7QfCNJWAg==
+   eAHtV9tRxDAQywBVQCu8WmFo4H6ADoAagF44muKb3SGa0Yhdx+Fw7A8+PHac81qWtOvcbpqmXcd2czRNnyff7dbGPbFEe4+I79x4upjb9fF4/DFn0Nb7FvremXfvqT1UeHlLfC+G55Xam42BOcPK+E5N3yfT2tuztcijh8y9G549tQ8bA7NjjWIzPmiKM7EWPtb17F14uLa/nM//G3xYw1r4WPHx2di7NWNwgb3W8Kc67A2bty3wqSaH1BTlj/0LH3N/FtQv5U9jshbgXHnKnjXW0nr+PX47Oj54yXPZeeAzqB61NQUeYW/U1HTe+8q0jnKdY4LjTL9snvdhf+ieqCGIk63jGDxWfKh7WS1fu4/GPxSfehV4tOd92COcn5Hej/PdxDldGqvf1uJzbBzD92eMyp+ec+2z5lK2Hvy530oe+2t8GR6dB75Iw9I7jdPqOcIQ1ZxR+HNsXLdQI0bA5x5UbMhpzp1WWkZxWV9wxX0v3oA1wgfOvJ714q2ET+82v1u19mB96z7ij/XFuJfOJXyuM+6QXvj0HgNf3nM+98Ln/ilxCLw98dV8i/TO49Z5+B//53/mlpzgGyX6X1Oa26pO63cA8nSp3yqPl3Bk70fHF93NJT+sfQf/ZPz0noc+vXFk+7s+zuEXaXpdCA==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtkl0KwzAMg9Ox22wX3U9vtMMtD9NDDcFgKVSDFIxwEstfnG7X1i49tpO0hS9yhG27FLxuYK5ccU6unK5c/zK/yOmau76zK1d8R1dOV641vzgBLmffma0f0c/yHfWrrrOcbP2Ie5bvqF91neVEPbTKEevUftFflas44QNl+VQ+LEdWr+aEn0oz/rP3cU8VB/xUquJifB731p49Xj3ePfYe+HBP5KzCD1r1Y+urfbO6/XY8oeaEH/TYLc8+P75qfd5BewKcs1RL6+c2a27w9bvxInKYwPo/HF5hMXwBedgJaQ==
+   eAHtklEKwzAMQ9PR22wX3dbeaIebP6aPGoLBUqhXUjDGSSS/OF3W1m4Wy0m5uc9zuO1yJXirgVXl8nOqylmV61/m5zmr1lXfuSqXf8eqnFW55vz8BLiafWdW36Mf5dvrl11nOVl9j3uUb69fdp3lhB45y+F1aj/vr6pVnPBBZvlUPixHpFdzwk+VI/6z93FPFQf8VFnFxfg8H629LN4Wm8VugQ/3RM1m+CFn/Vh9tm+k2+/HE2pO+CEfu8XV58eX1ccdtCfAOSpraa/v5t/h+jeeN8xMAP9JRjs1cwKqCXwBZHII+w==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="118" type="collision" x="0" y="0" width="32" height="560"/>
+  <object id="118" type="collision" x="0" y="0" width="32" height="528"/>
   <object id="125" type="collision" x="32" y="16" width="480" height="32"/>
   <object id="138" type="collision" x="576" y="16" width="64" height="32"/>
   <object id="139" type="collision" x="608" y="48" width="32" height="64"/>
   <object id="140" type="collision" x="608" y="144" width="32" height="464"/>
-  <object id="141" type="collision" x="320" y="368" width="64" height="128"/>
+  <object id="141" type="collision" x="320" y="368" width="64" height="192"/>
   <object id="142" type="collision" x="256" y="304" width="64" height="32"/>
   <object id="143" type="collision" x="288" y="336" width="64" height="32"/>
   <object id="145" type="collision" x="256" y="240" width="32" height="64"/>
-  <object id="146" type="collision" x="32" y="496" width="352" height="64"/>
+  <object id="146" type="collision" x="32" y="496" width="288" height="32"/>
   <object id="210" type="collision" x="96" y="288" width="32" height="32">
    <properties>
     <property name="key" value="volcoli"/>
@@ -44,8 +44,6 @@
   </object>
   <object id="263" type="collision" x="384" y="368" width="224" height="64"/>
   <object id="267" type="collision" x="528" y="432" width="80" height="32"/>
-  <object id="270" type="collision" x="384" y="544" width="80" height="16"/>
-  <object id="271" type="collision" x="480" y="544" width="48" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="114" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -786,7 +784,7 @@
     <property name="cond1" value="not char_exists spyder_dryadsgrove_boy"/>
    </properties>
   </object>
-  <object id="266" name="Talk Boy Healthy" type="event" x="448" y="544" width="16" height="16">
+  <object id="266" name="Talk Boy Healthy" type="event" x="320" y="528" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_dryadsgrove_boy_healthy"/>
     <property name="act2" value="translated_dialog_choice yes:no,ruff"/>
@@ -803,34 +801,35 @@
     <property name="cond1" value="not char_exists spyder_dryadsgrove_dad"/>
    </properties>
   </object>
-  <object id="273" name="Talk Dad" type="event" x="480" y="544" width="16" height="16">
+  <object id="273" name="Talk Dad" type="event" x="528" y="448" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_dryadsgrove_dad1"/>
     <property name="behav1" value="talk spyder_dryadsgrove_dad"/>
    </properties>
   </object>
-  <object id="274" name="Talk Boy Not Healthy" type="event" x="432" y="544" width="16" height="16">
+  <object id="274" name="Talk Boy Not Healthy" type="event" x="336" y="528" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_dryadsgrove_boy_not_healthy"/>
     <property name="behav1" value="talk spyder_dryadsgrove_boy"/>
     <property name="cond1" value="not variable_set party_healthy:yes"/>
    </properties>
   </object>
-  <object id="275" name="Ruff Yes" type="event" x="416" y="544" width="16" height="16">
+  <object id="275" name="Ruff Yes" type="event" x="320" y="544" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_dryadsgrove_boy_yes"/>
     <property name="act2" value="set_variable ruff:proceed"/>
+    <property name="act3" value="add_monster wolffsky,10"/>
     <property name="cond1" value="is variable_set ruff:yes"/>
    </properties>
   </object>
-  <object id="276" name="Ruff No" type="event" x="400" y="544" width="16" height="16">
+  <object id="276" name="Ruff No" type="event" x="336" y="544" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_dryadsgrove_boy_no"/>
     <property name="act2" value="set_variable ruff:null"/>
     <property name="cond1" value="is variable_set ruff:no"/>
    </properties>
   </object>
-  <object id="277" name="Ruff Party No" type="event" x="384" y="544" width="16" height="16">
+  <object id="277" name="Ruff Party No" type="event" x="352" y="544" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_dryadsgrove_boy_after"/>
     <property name="behav1" value="talk spyder_dryadsgrove_boy"/>
@@ -844,8 +843,9 @@
     <property name="act3" value="translated_dialog_choice yes:no,returnruff"/>
     <property name="behav1" value="talk spyder_dryadsgrove_boy"/>
     <property name="cond1" value="is variable_set ruff:proceed"/>
-    <property name="cond2" value="is variable_set ruff:proceed"/>
+    <property name="cond2" value="is has_monster player,wolffsky"/>
     <property name="cond3" value="not variable_set returnruff:yes"/>
+    <property name="cond4" value="is party_size player,greater_than,1"/>
    </properties>
   </object>
   <object id="279" name="Return Ruff No" type="event" x="368" y="528" width="16" height="16">
@@ -858,6 +858,8 @@
   <object id="280" name="Return Ruff Yes" type="event" x="368" y="512" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_dryadsgrove_boy_after_yes"/>
+    <property name="act2" value="get_player_monster ruff_back,slug,wolffsky"/>
+    <property name="act3" value="remove_monster ruff_back"/>
     <property name="cond1" value="is variable_set returnruff:yes"/>
    </properties>
   </object>
@@ -891,6 +893,14 @@
     <property name="act2" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="285" name="encounter 3" type="event" x="208" y="384" width="80" height="96">
+   <properties>
+    <property name="act1" value="random_encounter dryadsgrove,11"/>
+    <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
    </properties>
   </object>
  </objectgroup>

@@ -11,6 +11,7 @@
   },
   {
     "slug": "spyder_nimrod_xeon",
+    "name": "xeon",
     "template": [
       {
         "sprite_name": "robot",
@@ -91,6 +92,7 @@
   },
   {
     "slug": "spyder_nimrod_chromerobo",
+    "name": "chrome_robo",
     "template": [
       {
         "sprite_name": "robot",

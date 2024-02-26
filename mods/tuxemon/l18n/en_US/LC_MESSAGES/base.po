@@ -5443,11 +5443,8 @@ msgstr "Aeble"
 msgid "allie"
 msgstr "Allie"
 
-msgid "knight1"
-msgstr "Knight I"
-
-msgid "knight2"
-msgstr "Knight II"
+msgid "knight"
+msgstr "Knight"
 
 msgid "liela"
 msgstr "Liela"
@@ -5497,38 +5494,8 @@ msgstr "Tuxemart Shopkeeper"
 msgid "tuxemart_aide"
 msgstr "Tuxemart Employee"
 
-msgid "xerogrund1"
-msgstr "Team Xero Grunt I"
-
-msgid "xerogrund2"
-msgstr "Team Xero Grunt II"
-
-msgid "xerogrunt2"
-msgstr "Team Xero Grunt II"
-
-msgid "xerogrunt3"
-msgstr "Team Xero Grunt III"
-
-msgid "xerogrunt4"
-msgstr "Team Xero Grunt IV"
-
-msgid "xerogrunt5"
-msgstr "Team Xero Grunt V"
-
-msgid "xerogrunt6"
-msgstr "Team Xero Grunt VI"
-
-msgid "xerogrunt7"
-msgstr "Team Xero Grunt VII"
-
-msgid "xerogrunt8"
-msgstr "Team Xero Grunt VIII"
-
-msgid "xerogrunt9"
-msgstr "Team Xero Grunt IX"
-
-msgid "xerogrunt10"
-msgstr "Team Xero Grunt X"
+msgid "xerogrunt"
+msgstr "Team Xero Grunt"
 
 msgid "acolyte"
 msgstr "Acolyte Corren"
@@ -9184,10 +9151,6 @@ msgstr "Rosamund"
 msgid "spyder_route4_beck"
 msgstr "Beck"
 
-msgid "spyder_nimrod_chromerobo"
-msgstr "Chrome Robo"
-msgid "spyder_nimrod_xeon"
-msgstr "Xeon"
 msgid "spyder_nimrod_justice"
 msgstr "Justice"
 msgid "spyder_nimrod_thatcher"
@@ -9681,20 +9644,6 @@ msgid "spyder_dryadsgrove_ferris"
 msgstr "Ferris"
 msgid "spyder_dryadsgrove_sylvia"
 msgstr "Sylvia"
-msgid "spyder_dryadsgrove_volcoli"
-msgstr "Volcoli"
-msgid "_chromerobo"
-msgstr "Chrome Robo"
-msgid "_darkrobo"
-msgstr "Dark Robo"
-msgid "_xeon"
-msgstr "Xeon"
-msgid "_xeon-2"
-msgstr "Xeon-2"
-msgid "_mk01beta"
-msgstr "Mk01 Beta"
-msgid "_mk01alpha"
-msgstr "Mk01 Alpha"
 
 
 ## MESSAGE TRANSLATIONS ##

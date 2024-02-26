@@ -1,5 +1,6 @@
 {
   "slug": "knight4",
+  "name": "knight",
   "template": [
     {
       "sprite_name": "knight",

@@ -970,6 +970,7 @@ class NpcTemplateModel(BaseModel):
 
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
+    name: Optional[str] = Field(None, description="Name of the NPC (msgid)")
     forfeit: bool = Field(False, description="Whether you can forfeit or not")
     template: Sequence[NpcTemplateModel] = Field(
         [], description="List of templates"
@@ -980,6 +981,12 @@ class NpcModel(BaseModel):
     items: Sequence[BagItemModel] = Field(
         [], description="List of items in the NPCs bag"
     )
+
+    @field_validator("name")
+    def translation_exists(cls: NpcModel, v: str) -> str:
+        if v is not None and has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
 
 
 class BattleHudModel(BaseModel):

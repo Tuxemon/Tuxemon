@@ -124,21 +124,6 @@ msgstr "{name} nie może być teraz użyty na żadnym z twoich Tuxemonów."
 msgid "spyder_route4_wulf"
 msgstr "Wulf"
 
-msgid "_xeon"
-msgstr "Xeon"
-
-msgid "spyder_nimrod_xeon"
-msgstr "Xeon"
-
-msgid "xeon"
-msgstr "Xeon"
-
-msgid "_xeon-2"
-msgstr "Xeon–2"
-
-msgid "xeon_2"
-msgstr "Xeon-2"
-
 msgid "37707_tower_missing"
 msgstr "N1e m0ż3sz w3jść d0 budynku, który n1e 1stn13je."
 
@@ -1584,9 +1569,6 @@ msgstr "Conifrost"
 
 msgid "corvix"
 msgstr "Corvix"
-
-msgid "birb_robo"
-msgstr "Birb Robo"
 
 msgid "mk01_beta"
 msgstr "Mk01 Beta"

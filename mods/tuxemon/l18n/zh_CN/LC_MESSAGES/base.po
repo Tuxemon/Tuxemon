@@ -2591,9 +2591,6 @@ msgstr "雪人"
 msgid "restless"
 msgstr "不安"
 
-msgid "xerogrunt5"
-msgstr "Xero Grunt I团队"
-
 msgid "devil"
 msgstr "恶魔"
 
@@ -2612,38 +2609,17 @@ msgstr "凝块"
 msgid "slurpy"
 msgstr "泥泞的"
 
-msgid "xerogrunt4"
-msgstr "Xero Grunt I团队"
-
 msgid "purple_flowers"
 msgstr "有人种下了一些香甜的紫色花朵!"
 
-msgid "xerogrunt6"
-msgstr "Xero Grunt I团队"
-
 msgid "door_problems"
 msgstr "门被卡住了,打不开..."
-
-msgid "xerogrunt2"
-msgstr "Xero Grunt I团队"
-
-msgid "xerogrunt9"
-msgstr "Xero Grunt I团队"
-
-msgid "xerogrunt3"
-msgstr "Xero Grunt I团队"
 
 msgid "cotton_town_fountain"
 msgstr "这是个喷泉.很多硬币都在底部."
 
 msgid "sure_i_do"
 msgstr "我当然知道."
-
-msgid "xerogrunt8"
-msgstr "Xero Grunt I团队"
-
-msgid "xerogrunt10"
-msgstr "Xero Grunt I团队"
 
 msgid "orange_flowers"
 msgstr "有人种下了一些美丽的橙色花朵!"
@@ -4116,9 +4092,6 @@ msgstr "铬合金机器人"
 msgid "dark_robo"
 msgstr "黑暗机器人"
 
-msgid "birb_robo"
-msgstr "比尔布机器人"
-
 msgid "xeon"
 msgstr "至强"
 
@@ -4179,11 +4152,8 @@ msgstr "艾莉"
 msgid "karrianna"
 msgstr "卡里安纳"
 
-msgid "knight1"
-msgstr "骑士I"
-
-msgid "knight2"
-msgstr "骑士II"
+msgid "knight"
+msgstr "骑士"
 
 msgid "liela"
 msgstr "莉拉"
@@ -4221,14 +4191,8 @@ msgstr "Tuxemart 店主"
 msgid "tuxemart_aide"
 msgstr "Tuxemart员工"
 
-msgid "xerogrund1"
-msgstr "Xero Grunt I团队"
-
-msgid "xerogrund2"
-msgstr "Xero Grunt I团队"
-
-msgid "xerogrunt7"
-msgstr "Xero Grunt I团队"
+msgid "xerogrunt"
+msgstr "Xero Grunt 团队"
 
 msgid "yes"
 msgstr "是"
@@ -5437,12 +5401,6 @@ msgstr ""
 msgid "spyder_flowerhouse1_firefighter"
 msgstr "五大支柱公司是这个地区唯一的大公司.他们有很大的影响力."
 
-msgid "spyder_nimrod_birbrobo1"
-msgstr "哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔哔"
-
-msgid "spyder_nimrod_birbrobo2"
-msgstr "噗噗"
-
 msgid "spyder_nimrod_chromerobo1"
 msgstr "哔哔"
 
@@ -6146,15 +6104,6 @@ msgstr "罗萨蒙德"
 msgid "spyder_route4_beck"
 msgstr "贝克"
 
-msgid "spyder_nimrod_birbrobo"
-msgstr "比尔布机器人"
-
-msgid "spyder_nimrod_chromerobo"
-msgstr "铬合金机器人"
-
-msgid "spyder_nimrod_xeon"
-msgstr "至强"
-
 msgid "spyder_nimrod_justice"
 msgstr "正义"
 
@@ -6419,34 +6368,10 @@ msgstr "费里斯"
 msgid "spyder_dryadsgrove_sylvia"
 msgstr "西尔维娅"
 
-msgid "spyder_dryadsgrove_volcoli"
-msgstr "沃尔科利"
-
 # # MESSAGE TRANSLATIONS ##
 # spyder messages
 msgid "spyder_multi_underrepairs"
 msgstr "牌子上写着：“正在维修”"
-
-msgid "_chromerobo"
-msgstr "铬合金机器人"
-
-msgid "_darkrobo"
-msgstr "黑暗机器人"
-
-msgid "_birbrobo"
-msgstr "比尔布机器人"
-
-msgid "_xeon"
-msgstr "至强"
-
-msgid "_xeon-2"
-msgstr "至强-2"
-
-msgid "_mk01beta"
-msgstr "Mk01 测试版"
-
-msgid "_mk01alpha"
-msgstr "Mk01 阿尔法"
 
 msgid "spyder_multi_martsign"
 msgstr "在这里买东西"
@@ -6774,9 +6699,6 @@ msgstr "一个充满敌意的机器人."
 
 msgid "taba_house4_client1a"
 msgstr "我奶奶以前也做过类似的菜!"
-
-msgid "birb_robo_description"
-msgstr "一个敌对的机器人."
 
 msgid "mk01_alpha_description"
 msgstr "一个与龙融合的杀手机器人.不要问我们怎么做."

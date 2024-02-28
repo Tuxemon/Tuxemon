@@ -83,8 +83,8 @@
     "slug": "spyder_crystal_shopkeeper",
     "template": [
       {
-        "sprite_name": "shopassist_black",
-        "combat_front": "shopassist",
+        "sprite_name": "shopassistant_black",
+        "combat_front": "shopassistant",
         "slug": "shopassistant"
       }
     ]

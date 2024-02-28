@@ -48,7 +48,10 @@
       "slug": "dancer"
     },
     {
-      "slug": "deserttrainer"
+      "slug": "desert_female"
+    },
+    {
+      "slug": "desert_male"
     },
     {
       "slug": "disciple"
@@ -138,7 +141,7 @@
       "slug": "metalnymph"
     },
     {
-      "slug": "mineoverseer"
+      "slug": "overseer"
     },
     {
       "slug": "miner"

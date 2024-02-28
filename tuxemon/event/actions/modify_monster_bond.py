@@ -31,6 +31,8 @@ class ModifyMonsterBondAction(EventAction):
         variable: Name of the variable where to store the monster id. If no
             variable is specified, all monsters are touched.
         amount: An int or float value, if no amount, then default 1 (int).
+        lower_bound: Lower bound of range to return an integer between (inclusive)
+        upper_bound: Upper bound of range to return an integer between (inclusive)
 
     eg. "modify_monster_bond"
     eg. "modify_monster_bond name_variable,25"

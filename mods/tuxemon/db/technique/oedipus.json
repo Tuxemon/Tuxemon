@@ -11,6 +11,7 @@
   "is_fast": false,
   "potency": 0.8,
   "power": 2.2,
+  "randomly": false,
   "range": "reach",
   "recharge": 3,
   "sfx": "sfx_blaster",

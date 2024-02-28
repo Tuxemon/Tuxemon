@@ -3,6 +3,7 @@
     "is wild_monster"
   ],
   "effects": [
+    "park capture",
     "capture"
   ],
   "animation": "capture_1",

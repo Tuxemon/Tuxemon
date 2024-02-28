@@ -3866,38 +3866,32 @@
  </tile>
  <tile id="1362">
   <properties>
-   <property name="enter_from" value="up,left,right"/>
-   <property name="exit_from" value="up,left,right"/>
+   <property name="enter_from" value=""/>
   </properties>
  </tile>
  <tile id="1364">
   <properties>
-   <property name="enter_from" value="up,left,right"/>
-   <property name="exit_from" value="up,left,right"/>
+   <property name="enter_from" value=""/>
   </properties>
  </tile>
  <tile id="1365">
   <properties>
-   <property name="enter_from" value="up,left,right"/>
-   <property name="exit_from" value="up,left,right"/>
+   <property name="enter_from" value=""/>
   </properties>
  </tile>
  <tile id="1366">
   <properties>
-   <property name="enter_from" value="up,left,right"/>
-   <property name="exit_from" value="up,left,right"/>
+   <property name="enter_from" value=""/>
   </properties>
  </tile>
  <tile id="1367">
   <properties>
-   <property name="enter_from" value="up,left,right"/>
-   <property name="exit_from" value="up,left,right"/>
+   <property name="enter_from" value=""/>
   </properties>
  </tile>
  <tile id="1368">
   <properties>
-   <property name="enter_from" value="up,left,right"/>
-   <property name="exit_from" value="up,left,right"/>
+   <property name="enter_from" value=""/>
   </properties>
  </tile>
  <tile id="1371">
@@ -4055,6 +4049,31 @@
    <frame tileid="1560" duration="250"/>
   </animation>
  </tile>
+ <tile id="1562">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="1563">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="1564">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="1565">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="1566">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
  <tile id="1593">
   <animation>
    <frame tileid="1593" duration="250"/>
@@ -4063,6 +4082,31 @@
    <frame tileid="1596" duration="250"/>
    <frame tileid="1597" duration="250"/>
   </animation>
+ </tile>
+ <tile id="1599">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="1600">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="1601">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="1602">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="1603">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
  </tile>
  <tile id="1630">
   <animation>
@@ -4109,12 +4153,67 @@
    <frame tileid="1782" duration="250"/>
   </animation>
  </tile>
+ <tile id="1827">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="1828">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="1829">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="1830">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="1862">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="1863">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="1866">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="1867">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="1868">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
  <tile id="1892">
   <animation>
    <frame tileid="1859" duration="150"/>
    <frame tileid="1893" duration="150"/>
    <frame tileid="1894" duration="150"/>
   </animation>
+ </tile>
+ <tile id="1941">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="1942">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
  </tile>
  <tile id="2003">
   <animation>
@@ -4123,12 +4222,100 @@
    <frame tileid="2005" duration="150"/>
   </animation>
  </tile>
+ <tile id="2090">
+  <properties>
+   <property name="enter_from" value="right,left,up"/>
+   <property name="exit_from" value="right,left,up"/>
+  </properties>
+ </tile>
+ <tile id="2091">
+  <properties>
+   <property name="enter_from" value="right,left,up"/>
+   <property name="exit_from" value="right,left,up"/>
+  </properties>
+ </tile>
+ <tile id="2092">
+  <properties>
+   <property name="enter_from" value="right,left,up"/>
+   <property name="exit_from" value="right,left,up"/>
+  </properties>
+ </tile>
+ <tile id="2093">
+  <properties>
+   <property name="enter_from" value="right,left,up"/>
+   <property name="exit_from" value="right,left,up"/>
+  </properties>
+ </tile>
  <tile id="2114">
   <animation>
    <frame tileid="2081" duration="150"/>
    <frame tileid="2115" duration="150"/>
    <frame tileid="2116" duration="150"/>
   </animation>
+ </tile>
+ <tile id="2127">
+  <properties>
+   <property name="enter_from" value="right,left,down"/>
+   <property name="exit_from" value="right,left,down"/>
+  </properties>
+ </tile>
+ <tile id="2128">
+  <properties>
+   <property name="enter_from" value="right,left,down"/>
+   <property name="exit_from" value="right,left,down"/>
+  </properties>
+ </tile>
+ <tile id="2129">
+  <properties>
+   <property name="enter_from" value="right,left,down"/>
+   <property name="exit_from" value="right,left,down"/>
+  </properties>
+ </tile>
+ <tile id="2130">
+  <properties>
+   <property name="enter_from" value="right,left,down"/>
+   <property name="exit_from" value="right,left,down"/>
+  </properties>
+ </tile>
+ <tile id="2163">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="2164">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="2200">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="2201">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="2202">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="2203">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="2204">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="2205">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
  </tile>
  <tile id="2225">
   <animation>
@@ -4137,10 +4324,59 @@
    <frame tileid="2227" duration="150"/>
   </animation>
  </tile>
+ <tile id="2237">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="2238">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="2239">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="2240">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="2241">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="2274">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="2275">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="2276">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="2277">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
+ <tile id="2278">
+  <properties>
+   <property name="enter_from" value=""/>
+  </properties>
+ </tile>
  <tile id="2432">
   <properties>
-   <property name="enter_from" value="up,left,right"/>
-   <property name="exit_from" value="up,left,right"/>
+   <property name="enter_from" value=""/>
   </properties>
  </tile>
 </tileset>

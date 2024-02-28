@@ -230,16 +230,6 @@
     ]
   },
   {
-    "slug": "spyder_leathercenter_sofia",
-    "template": [
-      {
-        "sprite_name": "nurse",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-    ]
-  },
-  {
     "slug": "spyder_leatherscoop_blake",
     "template": [
       {

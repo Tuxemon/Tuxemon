@@ -48,28 +48,29 @@ class AddMonsterAction(EventAction):
         assert trainer
 
         # check monster existence
-        _monster: str = ""
+        _mon: str = ""
         verify = list(db.database["monster"])
         if self.monster_slug not in verify:
             if self.monster_slug in player.game_variables:
-                _monster = player.game_variables[self.monster_slug]
+                _mon = player.game_variables[self.monster_slug]
             else:
                 raise ValueError(
                     f"{self.monster_slug} doesn't exist (monster or variable)."
                 )
         else:
-            _monster = self.monster_slug
+            _mon = self.monster_slug
 
-        current_monster = Monster()
-        current_monster.load_from_db(_monster)
-        current_monster.set_level(self.monster_level)
-        current_monster.set_moves(self.monster_level)
-        current_monster.set_capture(formula.today_ordinal())
-        current_monster.current_hp = current_monster.hp
+        _monster = Monster()
+        _monster.load_from_db(_mon)
+        _monster.set_level(self.monster_level)
+        _monster.set_moves(self.monster_level)
+        _monster.set_capture(formula.today_ordinal())
+        _monster.current_hp = _monster.hp
         if self.exp is not None:
-            current_monster.experience_modifier = self.exp
+            _monster.experience_modifier = self.exp
         if self.money is not None:
-            current_monster.money_modifier = self.money
+            _monster.money_modifier = self.money
 
-        trainer.add_monster(current_monster, len(trainer.monsters))
-        trainer.tuxepedia[current_monster.slug] = SeenStatus.caught
+        trainer.add_monster(_monster, len(trainer.monsters))
+        trainer.tuxepedia[_monster.slug] = SeenStatus.caught
+        player.game_variables[self.name] = str(_monster.instance_id.hex)

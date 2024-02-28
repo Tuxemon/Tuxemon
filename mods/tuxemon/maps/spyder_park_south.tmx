@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="60" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="308">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="north" value="park,route7"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="park"/>
+  <property name="south" value="route3,route4"/>
+  <property name="types" value="routea"/>
+  <property name="west" value="route7"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
+ <tileset firstgid="8193" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="9743" source="../gfx/tilesets/core_buildings.tsx"/>
+ <tileset firstgid="12093" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="60" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHtmNsNwjAMRb0RomIWWIXXKogFOkVhMGKhK1lWmriIj9jyR+RCBcrxvXYe845ozpE5SA+kB9ID6YH0wN88cN4TXTojwtoLzvtENB3awzsvs1o4kQevvFs0BSvH0XjB0avDLZqOzPso/pTzsz4fS+2+ym97YzR9f+Fl1ndhHY3FMh/Na9HNKyvnQ/M+nepm0TZ5iVJfn31pzd+6fm+l92ItvgasZc0r19+I3m7xSq2hOaJX7RexRzoZzjvQP4L2zG5ljsDLPU3qrffGMhdReNf6uN6btGrbe40jB63ehrqW0bsHkpeodp5CnUfUt8YEH9TeoTY8RPRu6Me1WmOKwgtNwMO83Kf1Xgvva7nAf3iK4EEv1lx4r7/3xCjnCp7k/Z6VkY+o+uq9Fu6qo/LC1zomr8+7IazD+vykP3u+p5b9ecvzB+puojM=
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="60" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHlmUmOVFkMRT/rQCqaCQim/GXQ7QEGwJhFwE5oxsAS2ApUSUVVCRVDfPl5xA3r+TUIgRCWHNfPvu7ej8jIVH7ctu3jb6Cx4pc9H5/btn2gK5wZrvqJN6Pifg/VvvQ7f2PbeireSOCAM3z695A6vfl6MfKF9Lkedi+HHXrvezig92nZ9B4huXm+a4OZ4ZMvpBexCtlBuHeUmvRo3Q8xeo8QfjXbyE++kF6e8yL8L0PdJ55E6H7ZWfYzrvyys8JXrRmF37s7OBnfXjz10M93+DMof4XK9+AMxZMIndva92COX+k9Qiq1eK8iiMLrITXyDvksnkRIrHXf7jsy6u+6PWrNKHXUOyu7CmdE/VSDHSoUT+Jc2T09Muqdql6Vv9WLfek1g75D1Ys6zm31dx85FVa9qu8Kr409+1x9BuX6+xBbHNkSfOIyJz0rPDLrV+rMYqtPXb2OqM7eUGXID8JhPuX1FB7Inc3g0fX0lf6Op4y5k2ZeEebv7apY/n3A+XvEs3p8ZZ4Vru5afdhhhOLD8flaNjzQOa0ZR/FWzqqPHsw0QvHhkFshPNB5mhO/UJLjh3f+lZ/VPaTHzGcqvxfIrdD3ke08beFxnXNcPsnsbDM87zFrM+eIDw90vvbAL5Tk+OE99TvnR9nMOeoHD3S+dsEvlOT44T31O+dH2cw56gcPdD67OBLf42eEC/6fhcyvuXozwBM+igWcq33y54247ypbfVA4FcKrsMrr+X2Pqq78zpPtNbWHn91WrBLntWx6PowC2EKklTPyeR2vRc0Kva44fna7ypd/t2edbdXIs3GmpveZtVXjWRR4Hio7vy+pndHnU6zql/Nmz3kOP1Oj6tnza8d3UeB9qOzMVR9E8UpzHmdyV5H8FlKrFRv58vwtPnebuX7ei/emZnsd+oYhJ7E1Bz5KcF5Bn1l2LzdzZ86a7f/QTww5iXtxf/IjvVmrmM+s51jx5Oc508/R67jtHNn34k7vh1aY+b1zb9Yq5rNVnOz3zzTzeB23iYNPYtenoRXCm8E818yZ2UbPNtfKz5o6GfPc1XPFn/m9c55p5sx8M9wWh2dNnYx53uq54s98nf37UvWR1jwjH/ONeL24dqZORp7bKrKT0L8vW/vunZ9tOcZ8vX1mYtTh73POPLdV9H1lU0+IMBfnv69s24fQf0L/Df0vNAt1dA/kfwtSJ///ZvW5wq/m7O37x9VtuxB6MfRS6OXQLMwp/NadlUcd//+NfKvPFX5rTv5uIMZz4Xwz9rsVejv0TujdUIR7ZE5wZWdxpRLyM9JnFY+qX1+9Lt68L/4Wco9eR7aEPajHOePBPl5zHc70WUWvXdnMV8Xlf3AW5L6ZC/Rc9nNfZZOfkT6rWPVxv/bVjDPCfef5ZnJbnFyHM31WsdUj+7Tr6j3+6vzVe/zV+Z8BV2xxuA==
+  </data>
+ </layer>
+ <layer id="6" name="Tile Layer 3" width="60" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt0LsJACAQRMErxcza7cJfYV4PJgqz8PJlIowAAQLvCbTy3iePCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgb8Feo0Y2cxWtjMjQIAAAQIECNwKHAXlBVc=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="Collisions">
+  <object id="3" type="collision" x="16" y="608" width="928" height="32"/>
+  <object id="151" type="collision" x="0" y="0" width="16" height="640"/>
+  <object id="153" type="collision" x="320" y="384" width="48" height="32"/>
+  <object id="155" type="collision" x="576" y="480" width="224" height="128"/>
+  <object id="156" type="collision" x="400" y="448" width="48" height="112"/>
+  <object id="157" type="collision" x="640" y="240" width="304" height="80"/>
+  <object id="158" type="collision" x="448" y="480" width="32" height="64"/>
+  <object id="159" type="collision" x="272" y="560" width="48" height="16"/>
+  <object id="160" type="collision" x="256" y="352" width="64" height="208"/>
+  <object id="161" type="collision" x="800" y="352" width="112" height="64"/>
+  <object id="164" type="collision" x="176" y="208" width="16" height="32"/>
+  <object id="165" type="collision" x="16" y="240" width="176" height="272"/>
+  <object id="166" type="collision" x="176" y="48" width="16" height="144"/>
+  <object id="169" type="collision" x="416" y="176" width="48" height="192"/>
+  <object id="172" type="collision" x="192" y="48" width="96" height="32"/>
+  <object id="174" type="collision" x="464" y="176" width="80" height="32"/>
+  <object id="179" type="collision" x="288" y="32" width="16" height="48"/>
+  <object id="187" type="collision" x="672" y="80" width="80" height="112"/>
+  <object id="190" type="collision" x="16" y="160" width="80" height="32"/>
+  <object id="191" type="collision" x="384" y="112" width="96" height="32"/>
+  <object id="195" type="collision" x="688" y="320" width="128" height="32"/>
+  <object id="197" type="collision" x="16" y="0" width="912" height="32"/>
+  <object id="220" type="collision" x="480" y="32" width="160" height="96"/>
+  <object id="222" type="collision" x="320" y="32" width="16" height="64"/>
+  <object id="223" type="collision" x="480" y="304" width="96" height="96"/>
+  <object id="224" type="collision" x="160" y="544" width="32" height="64"/>
+  <object id="226" type="collision" x="224" y="448" width="16" height="80"/>
+  <object id="227" type="collision" x="240" y="416" width="16" height="128"/>
+  <object id="228" type="collision" x="320" y="416" width="80" height="160"/>
+  <object id="263" type="collision" x="144" y="160" width="32" height="32"/>
+  <object id="264" type="collision" x="400" y="432" width="16" height="16"/>
+  <object id="265" type="collision" x="240" y="320" width="112" height="16"/>
+  <object id="268" type="collision" x="944" y="192" width="16" height="448"/>
+  <object id="278" type="collision" x="224" y="112" width="128" height="208"/>
+  <object id="279" type="collision" x="144" y="32" width="16" height="112"/>
+  <object id="281" type="collision" x="368" y="64" width="80" height="32"/>
+  <object id="282" type="collision" x="112" y="160" width="16" height="32"/>
+  <object id="286" type="collision" x="544" y="176" width="48" height="128"/>
+  <object id="287" type="collision" x="48" y="512" width="80" height="32"/>
+  <object id="288" type="collision" x="880" y="80" width="16" height="16"/>
+  <object id="294" type="collision" x="640" y="416" width="128" height="64"/>
+  <object id="295" type="collision" x="320" y="368" width="16" height="16"/>
+  <object id="296" type="collision" x="448" y="464" width="16" height="16"/>
+  <object id="297" type="collision" x="448" y="544" width="16" height="16"/>
+  <object id="298" type="collision" x="400" y="560" width="32" height="16"/>
+  <object id="299" type="collision" x="304" y="576" width="32" height="16"/>
+  <object id="300" type="collision" x="112" y="544" width="16" height="16"/>
+  <object id="301" type="collision" x="48" y="544" width="48" height="16"/>
+  <object id="307" type="collision" x="944" y="0" width="16" height="128"/>
+ </objectgroup>
+</map>

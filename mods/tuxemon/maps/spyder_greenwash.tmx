@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="89">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="89">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -16,12 +16,8 @@
  <tileset firstgid="3121" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
   <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
  </tileset>
- <tileset firstgid="4881" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="8745" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
+ <tileset firstgid="4881" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="8745" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <layer id="7" name="Tile Layer 1" width="16" height="32">
   <data encoding="base64" compression="zlib">
    eAEr52FgqIDiZUhsmBg6XQlVA6KrgHg+EC8A4oVAfI5EehFQ/XEgbhRkYGgiA5+C6l8J1LuKDDyqHxL+o+E3mn5GYv4B+RlU/pCb/inVDyo/KbEfVn6S636YflBZjg/L8WLPHzD9oLIfH87HoR9W/p4A6j+JB+PSD7P/A1DvRzx4OVAOW/qG2U9I/3kK9YP8hs9+fG4HyRHjfpAfcPkDn/sBuj99wA==
@@ -45,7 +41,7 @@
  <objectgroup color="#ff0000" id="3" name="Collisions">
   <object id="47" type="collision" x="0" y="0" width="240" height="32"/>
   <object id="48" type="collision" x="0" y="32" width="16" height="480"/>
-  <object id="49" type="collision" x="240" y="-64" width="16" height="368"/>
+  <object id="49" type="collision" x="240" y="0" width="16" height="304"/>
   <object id="50" type="collision" x="240" y="336" width="16" height="176"/>
   <object id="53" type="collision" x="96" y="176" width="64" height="144"/>
   <object id="54" type="collision" x="80" y="96" width="32" height="80"/>

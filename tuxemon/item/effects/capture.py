@@ -10,10 +10,12 @@ from tuxemon import formula, prepare
 from tuxemon.db import CategoryCondition as Category
 from tuxemon.db import ElementType, GenderType, SeenStatus, TasteWarm
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
+from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
+
 logger = logging.getLogger(__name__)
 
 
@@ -131,6 +133,13 @@ class CaptureEffect(ItemEffect):
                 tuxeball = self.user.find_item(item.slug)
                 if tuxeball:
                     tuxeball.quantity += 1
+            if item.slug == "tuxeball_park":
+                empty = Technique()
+                empty.load("empty")
+                _wander = "spyder_park_wander"
+                label = self.user.game_variables.get(item.slug, _wander)
+                empty.use_tech = label
+                item.combat_state.rewrite_action_queue_method(target, empty)
 
             return {"success": False, "num_shakes": shakes, "extra": None}
 

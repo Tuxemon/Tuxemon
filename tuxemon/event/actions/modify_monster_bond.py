@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import random as rd
 import uuid
 from dataclasses import dataclass
 from typing import Optional, Union, final
@@ -30,16 +31,22 @@ class ModifyMonsterBondAction(EventAction):
         variable: Name of the variable where to store the monster id. If no
             variable is specified, all monsters are touched.
         amount: An int or float value, if no amount, then default 1 (int).
+        lower_bound: Lower bound of range to return an integer between (inclusive)
+        upper_bound: Upper bound of range to return an integer between (inclusive)
 
     eg. "modify_monster_bond"
     eg. "modify_monster_bond name_variable,25"
     eg. "modify_monster_bond name_variable,-0.5"
+    eg. "modify_monster_bond name_variable,,1,5" (random between 1 and 5)
+    eg. "modify_monster_bond name_variable,,-11,-5" (random between 1 and 5)
 
     """
 
     name = "modify_monster_bond"
     variable: Optional[str] = None
     amount: Optional[Union[int, float]] = None
+    lower_bound: Optional[int] = None
+    upper_bound: Optional[int] = None
 
     @staticmethod
     def change_bond(monster: Monster, value: Union[int, float]) -> None:
@@ -59,6 +66,9 @@ class ModifyMonsterBondAction(EventAction):
             return
 
         amount_bond = self.amount if self.amount else 1
+        if amount_bond == 1:
+            if self.lower_bound is not None and self.upper_bound is not None:
+                amount_bond = rd.randint(self.lower_bound, self.upper_bound)
 
         if self.variable is None:
             for mon in player.monsters:
@@ -71,5 +81,6 @@ class ModifyMonsterBondAction(EventAction):
             monster = get_monster_by_iid(self.session, monster_id)
             if monster is None:
                 logger.error("Monster not found")
+                return
             else:
                 self.change_bond(monster, amount_bond)

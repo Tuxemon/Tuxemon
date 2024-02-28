@@ -43,5 +43,4 @@ class CharSpeedAction(EventAction):
             logger.info(f"{character.name}'s moverate is {self.speed}")
             character.moverate = self.speed
         else:
-            logger.error(f"{self.speed} isn't among {MOVERATE_RANGE}")
-            return
+            raise ValueError(f"{self.speed} isn't among {MOVERATE_RANGE}")

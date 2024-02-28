@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="73">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="77">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -8,14 +8,16 @@
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="4216" source="../gfx/tilesets/core_outdoor_water.tsx"/>
+ <tileset firstgid="12408" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtlsENwjAMRYOQAHHqBdgAdoDuAgzDCgwBIzALsArfQpaMlchOQqsicbDqNk7y/eIkbSYhNMJGsxDO87eN4W/RtoO1IkbG9+3/9X2uVy5/zW+PdT3AjgNc3yfq7z617YGYXA4yfoHclwmTceRLfrxPrCftIz1OzjvvQdqH2vQ4Jfq8nGktYqxZ3wn6qJakaX1rsNg47IYYi2usPca6psa5NlbIS+ZSwpn05rAm3nLOmM/s9fns5UxrUcqa8olpkt9S+mSM5Zey7ktfDmtd+1bu3+BnzZGqcasftfehr2aOmr6e/GsZsL4LWKbuoNrvV4xd+g/H+vS908W7PsM8/Plsl3dOV/5Q/pE8XH4l5gU1rK9R
+   eAHtltsNwjAMRYOQAPHVH2AD2AHYBRiGFRgCRmAWYBVstVcylqO8aFQkPqy4idNcnzybiXONsNHMucu8tTH5W2rbke1FjIyv7f/1fc5XKn/N70DzeiQ7DXB+X7T+HtM2Xy599uxiUlkgfkG5Lz2GGJSSH/YJt8G3St5H6J9TYg/yPtSm/5ejD5x9fGW9xRr6zqSP15I0rW9NLDbKOEbX3SnGYhmqs1iXrHGsjRVplLlYnEPauD2FNXOXY1o+2Ovz2eKsGeM7lzXnY2mSdT59Mibk57KupS+FNZijDOX+DX6hMXxrPNSP22voKxmjpG9M/qUMoO9KLH13UGn9jf6d+4aDPn3v9PGtz7AY/jjb5Z3Tlz+UN1IMl1+JeQPfhq1W
   </data>
  </layer>
  <layer id="2" name="Obstacles" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAG9kzFugjEMRt2VgYm5cA4OAByjPUmHqpwNDkPHlrF2pSdZVmIntIBkOXbyfXkJ+UVELguRT42TxlnjZSnyqpH9WMsa6ug1W+MTs+2D14eyHTt86Fj73zW+MbMP99HL6Jjv1W/6P1j05lt6GHxmHH3Qf+ngW+NKI8l4wUamn0h/p2DwmXFP+/wkstbYaFQ/vCIX/UrfmrfvITvfKB8esFn2XMy3GLKefbfeJ64d5cs8zDPOrzrfX9y/OtcoX/SdqbM3Hs8VfXf67vYah4H3F7WjdXUHrTt8/+P9+3dYcVZ81R1m/l7LOT0b48wj48Mz01dzeMAKE31q86HnPVt8rMOT2utGx3jYenyMib6N6dPz3q03HtfF2utnxvjAQ6Y/42Va9DM6W7stvh94yLP+tt606G/lvGXfTMO54SHDmWkfOQcPGc5HMlR7GRNcPU7mY8ab/j1qY4pcvZo+Ga571z/QswMw
+   eAG9lMFNBDEMRc0VgQQNACVQBdAVxdAMSFAE4gxH4Ii/xFtZVtZOFnYjWY6d/D8vs5k1M3s/NvvwePR48pgZeS919lqt8clZTHhVfOjY+981vjnznIptdAZ80FHf+++goM7roxqGmJlHn+czsxcPjU+PL49vFc3ACzYy/Ua+OQssysyj9uTc7NRD4+LI7NLjyqMbeGUu+p1+tK7voTrfLB8esClHLtZHDFVP3230yXtn+SoPeeb11+v8pHHdnWuWb+w+163ueD5Xdrzxe3frcTdx/7J2tu7ewegd/vX9x3vYcXZ83Tus/KOWc0Y25pVHxYdnpe/W8IAVJvrU8qEXPUd87MOTOupm53hoPz5ioq85fXrRe3TH875cR/3KHB94yPRXvKRFv6LT3ofm/wse8qq/9kuLflfOXZ5bad5+zw0PGc5Ke8g1eMhwHpKhe5aY4NrGyXrOeNPfRy2mzLWtpk+Ga9/1DwZ1BeU=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">
@@ -39,10 +41,6 @@
   <object id="19" type="collision" x="576" y="288" width="32" height="16"/>
   <object id="20" type="collision" x="608" y="176" width="16" height="32"/>
   <object id="21" type="collision" x="608" y="240" width="16" height="32"/>
-  <object id="22" type="collision" x="576" y="240" width="16" height="16"/>
-  <object id="23" type="collision" x="224" y="224" width="16" height="16"/>
-  <object id="24" type="collision" x="96" y="144" width="16" height="16"/>
-  <object id="25" type="collision" x="80" y="0" width="32" height="32"/>
   <object id="26" type="collision" x="224" y="0" width="336" height="32"/>
   <object id="27" type="collision" x="192" y="16" width="32" height="32"/>
   <object id="28" type="collision" x="256" y="144" width="32" height="32"/>
@@ -66,7 +64,6 @@
   <object id="47" type="collision" x="400" y="48" width="32" height="32"/>
   <object id="48" type="collision" x="416" y="80" width="32" height="32"/>
   <object id="55" type="collision" x="128" y="288" width="96" height="16"/>
-  <object id="69" type="collision" x="480" y="96" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="3" name="Events">
   <object id="1" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -184,6 +181,38 @@
     <property name="act1" value="set_variable environment:night_grass"/>
     <property name="cond1" value="is variable_set stage_of_day:night"/>
     <property name="cond2" value="not variable_set environment:night_grass"/>
+   </properties>
+  </object>
+  <object id="73" name="Teleport to Tunnel" type="event" x="624" y="144" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport tunnel.tmx,0,9"/>
+    <property name="act20" value="char_face player,right"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,right"/>
+   </properties>
+  </object>
+  <object id="74" name="Teleport to Tunnel" type="event" x="624" y="160" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport tunnel.tmx,0,10"/>
+    <property name="act20" value="char_face player,right"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,right"/>
+   </properties>
+  </object>
+  <object id="75" name="Teleport to Candy Town" type="event" x="80" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport candy_town.tmx,5,39,0.3"/>
+    <property name="act20" value="char_face player,up"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="76" name="Teleport to Candy Town" type="event" x="96" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport candy_town.tmx,6,39,0.3"/>
+    <property name="act20" value="char_face player,up"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
  </objectgroup>

@@ -88,9 +88,9 @@ Example:
 - Music should be OGG format -- no mp3
 - Sounds can be WAV or OGG
 - If possible, include a lossless version (.wav, .flac, .ape, .wv, .psd, etc)
-- Add the author, source, and licence to the CREDITS.md file
-- If you rename the asset, include the original filename in CREDITS.md
-- If you are adding content, include the filenames and license in CREDITS.md
+- Add the author, source, and licence to the ATTRIBUTIONS.md file
+- If you rename the asset, include the original filename in ATTRIBUTIONS.md
+- If you are adding content, include the filenames and license in ATTRIBUTIONS.md
 
 PLEASE NOTE!  All contributions must be submitted with LOWER CASE FILENAMES
 only!  PRs which do not follow this format may be rejected until filenames are

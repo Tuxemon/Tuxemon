@@ -1,0 +1,269 @@
+events:
+  Play Music:
+    actions:
+    - play_music music_chibi_ninja
+    conditions:
+    - not music_playing music_chibi_ninja
+    type: "event"
+  Environment Day:
+    actions:
+    - set_variable environment:park
+    conditions:
+    - not variable_set stage_of_day:night
+    - not variable_set environment:park
+    type: "event"
+  Environment Night:
+    actions:
+    - set_variable environment:night_park
+    conditions:
+    - is variable_set stage_of_day:night
+    - not variable_set environment:night_park
+    type: "event"
+  Sign:
+    actions:
+    - translated_dialog welcome_location_route
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 55
+    y: 5
+    type: "event"
+  Player Spawn:
+    x: 57
+    y: 3
+    type: "event"
+  Encounters 1:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 3
+    width: 14
+    x: 42
+    y: 2
+    type: "event"
+  Encounters 2:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 3
+    width: 12
+    x: 30
+    y: 8
+    type: "event"
+  Encounters 3:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 4
+    width: 3
+    x: 30
+    y: 14
+    type: "event"
+  Encounters 4:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 10
+    width: 4
+    x: 22
+    y: 11
+    type: "event"
+  Encounters 5:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 3
+    width: 7
+    x: 23
+    y: 23
+    type: "event"
+  Encounters 6:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 13
+    width: 6
+    x: 30
+    y: 25
+    type: "event"
+  Encounters 7:
+    actions:
+    - random_encounter park
+    - play_map_animation grass_blue,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 6
+    width: 3
+    x: 54
+    y: 29
+    type: "event"
+  Encounters 8:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 2
+    width: 6
+    x: 51
+    y: 20
+    type: "event"
+  Encounters 9:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 33
+    width: 4
+    x: 12
+    y: 5
+    type: "event"
+  Encounters 10:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 8
+    width: 8
+    x: 1
+    y: 2
+    type: "event"
+  Encounters 11:
+    actions:
+    - random_encounter park
+    - play_map_animation grass,0.1,noloop,player
+    conditions:
+    - is char_at player
+    - is char_moved player
+    - is current_state WorldState
+    height: 2
+    width: 10
+    x: 1
+    y: 13
+    type: "event"
+  Steps:
+    actions:
+    - transition_teleport spyder_park_entrance.tmx,5,4,0.3
+    - char_face player,up
+    - add_item tuxeball_park,-25
+    - clear_variable park_out
+    - clear_variable menu_park_captured
+    - clear_variable menu_park_seen
+    - clear_variable alert100
+    conditions:
+    - is variable_is steps_park,equals,0.0
+    type: "event"
+  Alert 100:
+    actions:
+    - format_variable steps_park,int
+    - translated_dialog spyder_park_steps100
+    - set_variable alert100:done
+    conditions:
+    - is variable_is steps_park,greater_than,100.0
+    - is variable_is steps_park,less_than,101.0
+    - not variable_set alert100:done
+    type: "event"
+  Teleport Park:
+    actions:
+    - transition_teleport spyder_park.tmx,38,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 58
+    y: 0
+    type: "event"
+  Teleport Cabin:
+    actions:
+    - transition_teleport spyder_park_cabin.tmx,6,5,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 6
+    y: 34
+    type: "event"
+  Tuxeball:
+    actions:
+    - transition_teleport spyder_park_entrance.tmx,5,4,0.3
+    - char_face player,up
+    - clear_variable park_out
+    - clear_variable menu_park_captured
+    - clear_variable menu_park_seen
+    conditions:
+    - not has_item player,tuxeball_park
+    type: "event"
+  Teleport RiverA:
+    actions:
+    - transition_teleport spyder_routeh.tmx,0,8,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 59
+    y: 8
+    type: "event"
+  Teleport RiverB:
+    actions:
+    - transition_teleport spyder_routeh.tmx,0,9,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 59
+    y: 9
+    type: "event"
+  Teleport RiverC:
+    actions:
+    - transition_teleport spyder_routeh.tmx,0,10,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 59
+    y: 10
+    type: "event"
+  Teleport RiverD:
+    actions:
+    - transition_teleport spyder_routeh.tmx,0,11,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 59
+    y: 11
+    type: "event"

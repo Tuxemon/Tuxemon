@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="39">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="39">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -43,11 +43,7 @@
   <object id="17" type="collision" x="96" y="64" width="32" height="400"/>
   <object id="19" type="collision" x="64" y="416" width="32" height="32"/>
   <object id="20" type="collision" x="64" y="176" width="32" height="32"/>
-  <object id="21" type="collision" x="32" y="160" width="64" height="16"/>
-  <object id="22" type="collision" x="32" y="288" width="64" height="16"/>
   <object id="23" type="collision" x="32" y="336" width="32" height="32"/>
-  <object id="24" type="collision" x="32" y="384" width="64" height="16"/>
-  <object id="25" type="collision" x="32" y="464" width="64" height="16"/>
   <object id="26" type="collision" x="288" y="80" width="32" height="32"/>
   <object id="27" type="collision" x="288" y="32" width="32" height="16"/>
   <object id="28" type="collision" x="128" y="304" width="32" height="32"/>

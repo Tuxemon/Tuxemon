@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="93">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="93">
  <properties>
   <property name="east" value="route3"/>
   <property name="edges" value="clamped"/>
@@ -20,7 +20,7 @@
    eAGt1uFNw0AMhuGIn5Qx2I4dQLACs7BDWaE7wAzECo9wrXMuSD0p8d3nz+85TQg53y/L53qcbxS/Vs73etwq6mtJg/ay7hNHjKfTFmdnfWUfDQ8ze/47H/W4x+DvPLXHzkfn77h016xOfHww2yI/7nX2734/p3tSPXmNg5tzMad3/XV+3JqnH+Xx66Py6Hivd8tyao63VefHxas6nnwXcdTzVf0oD0c9nkg/yuPHxRHpwdsb8vy4tYZ+2XkP5N75cSuv07Mv8/hxsy/mnZ59mcePm30xp3fPXTxzmcePW3l0vpqPdebN/Dh8M171W6vLnOhjNPb6y/VRiz97X9mLv3L0Qc89yI0iP2710PG6+xzvnL33C6798Oji++/73vXy6yN8H+vflrXY8cKfc/y4kY9hLdp/y16fM48f99p5bJV5OLgdobsPcQ9i6B8Hd8v2Z72I8VzmgYObc2po1p5t64gGDq4YnlwX/u6a/b8bPX/4ee+8/+x7Tf3o2xRTz0djXMvo2zT0YNrzaIy62d56rbGrm+2t1+DleVc3+v26vWd67Df6/bq9Z3rwfgBfJGbu
   </data>
  </layer>
- <layer id="3" name="Tile Layer 1" width="20" height="40">
+ <layer id="3" name="Tile Layer 3" width="20" height="40">
   <data encoding="base64" compression="zlib">
    eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwMCFwgouB4SQQUwu8BZr1jormUctdo+aMhsBoCCBCAACenwOV
   </data>
@@ -34,11 +34,6 @@
   <object id="8" type="collision" x="112" y="544" width="208" height="32"/>
   <object id="10" type="collision" x="224" y="576" width="96" height="32"/>
   <object id="11" type="collision" x="240" y="608" width="80" height="32"/>
-  <object id="12" type="collision" x="160" y="160" width="128" height="16"/>
-  <object id="13" type="collision" x="128" y="288" width="112" height="16"/>
-  <object id="14" type="collision" x="160" y="384" width="128" height="16"/>
-  <object id="15" type="collision" x="128" y="464" width="112" height="16"/>
-  <object id="16" type="collision" x="144" y="512" width="144" height="16"/>
   <object id="17" type="collision" x="96" y="64" width="32" height="400"/>
   <object id="19" type="collision" x="64" y="416" width="32" height="32"/>
   <object id="20" type="collision" x="64" y="176" width="32" height="32"/>
@@ -434,7 +429,7 @@
   </object>
   <object id="88" name="Billie" type="event" x="32" y="96" width="64" height="16">
    <properties>
-    <property name="act01" value="char_stop"/>
+    <property name="act01" value="char_stop player"/>
     <property name="act02" value="lock_controls"/>
     <property name="act03" value="create_npc spyder_billie,0,4"/>
     <property name="act04" value="pathfind_to_player spyder_billie"/>

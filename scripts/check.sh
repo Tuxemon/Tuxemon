@@ -7,4 +7,4 @@
 flake8 . | tee flake8.log
 
 # Check for less obvious things.
-pylint --output-format=parseable --reports=y core | tee pylint.log
+pylint --output-format=parseable --reports=y tuxemon | tee pylint.log

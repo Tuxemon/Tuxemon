@@ -31,12 +31,7 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
-  <object id="177" type="collision" x="112" y="272" width="64" height="64"/>
   <object id="198" type="collision" x="608" y="320" width="32" height="224"/>
-  <object id="238" type="collision" x="144" y="336" width="112" height="32"/>
-  <object id="239" type="collision" x="144" y="368" width="48" height="16"/>
-  <object id="240" type="collision" x="208" y="368" width="48" height="16"/>
-  <object id="241" type="collision" x="112" y="336" width="32" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="155" name="Teleport to Candy Town" type="event" x="0" y="128" width="16" height="128">

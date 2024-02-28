@@ -80,16 +80,6 @@
     ]
   },
   {
-    "slug": "spyder_candycenter_diamond",
-    "template": [
-      {
-        "sprite_name": "nurse",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-    ]
-  },
-  {
     "slug": "spyder_candyscoop_clint",
     "template": [
       {

@@ -141,7 +141,7 @@
   </object>
   <object id="145" name="Teleport to Daycare" type="event" x="320" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_daycare.tmx,3,8,0.3"/>
+    <property name="act1" value="transition_teleport spyder_paper_daycare.tmx,3,8,0.3"/>
     <property name="act2" value="char_face player,up"/>
     <property name="cond1" value="is char_at player"/>
    </properties>
@@ -461,7 +461,7 @@
   </object>
   <object id="244" name="Teleport to Daycare Back" type="event" x="336" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_daycare.tmx,13,7,0.3"/>
+    <property name="act1" value="transition_teleport spyder_paper_daycare.tmx,13,7,0.3"/>
     <property name="act2" value="char_face player,left"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,left"/>

@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
+from tuxemon.combat import set_var
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 
 if TYPE_CHECKING:
@@ -33,6 +34,8 @@ class GainXpEffect(ItemEffect):
         self, item: Item, target: Union[Monster, None]
     ) -> GainXpEffectResult:
         assert target
-        levels = target.give_experience(self.amount)
-        target.update_moves(levels)
+        set_var(self.session, self.name, str(target.instance_id.hex))
+        client = self.session.client.event_engine
+        _params = [self.name, self.amount]
+        client.execute_action("give_experience", _params, True)
         return {"success": True, "num_shakes": 0, "extra": None}

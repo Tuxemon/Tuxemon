@@ -7521,6 +7521,30 @@ msgstr "Oh hello ${{name}}, I didn't see you there among all this hustle and deb
 msgid "spyder_papertown_grannypiper2"
 msgstr "You know, the Pipers made our fortune in the daycare business! \n I've been retired for ten years and I'm getting bored. I want to get back into it!"
 
+msgid "spyder_papertown_grannypiper3"
+msgstr "Good morning! Oh, ${{name}}, it's you! You must have heard that my Daycare Centre is open.\n Do you want me to tell you how it works? Okay. You give me a tuxemon, and I look after it while you travel.\n When you return, pay me a small fee and I'll return it to you. ... Huh? What's in it for you?\n Well, tuxemon under my care grow up, increasing in levels."
+
+msgid "spyder_papertown_grannypiper4"
+msgstr "Hello ${{name}}. Would you like to put a tuxemon into my Daycare Centre?"
+
+msgid "spyder_papertown_grannypiper5"
+msgstr "Hello ${{name}}. Would you like to retrieve your ${{var:daycare_name}}?"
+
+msgid "spyder_papertown_grannypiper6"
+msgstr "Okay, ${{var:daycare_name}} rose ${{var:daycare_level}} levels under our care. That will be ${{currency}}${{var:daycare_exp}}."
+
+msgid "spyder_papertown_grannypiper7"
+msgstr "Oh, it looks like you are out of money! Looks like you need to work harder!"
+
+msgid "spyder_papertown_grannypiper8"
+msgstr "Place your tuxemon in the Daycare Centre! Give us a tuxemon, and we will look after it while you travel.\n When you return, pay a small fee and we'll return it. The longer tuxemon are in our care, the higher in level they will rise!"
+
+msgid "spyder_papertown_grannypiper9"
+msgstr "Dearie, I can't take your only tuxemon! Come back when you have another."
+
+msgid "spyder_papertown_grannypiper10"
+msgstr "It looks like a business plan."
+
 msgid "spyder_papertown_danteshop"
 msgstr "I'm working, boss, I'm working! \n Oh, it's just you. You know, we throw out so much of our stock. \n It's such a terrible waste. It all goes into the bins behind the back of the Store."
 

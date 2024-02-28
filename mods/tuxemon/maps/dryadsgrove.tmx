@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="43">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="47">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -7,9 +7,8 @@
   <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
- <tileset firstgid="2776" name="core_outdoor_water" tilewidth="16" tileheight="16" tilecount="8192" columns="64">
-  <image source="../gfx/tilesets/core_outdoor_water.png" width="1024" height="2048"/>
- </tileset>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_water.tsx"/>
+ <tileset firstgid="10968" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eAHNlMlNBEEMRUtAFJAKWyqIBOYCZADEAOTCkBRnbMGTvr7K1dUCWnOw3KMp28/rrrW2OwC5OWrt8+RbbuP7EJhgOA+e6+N5vruo533Iw0Z11dplDZfq9xJcryFvxpd5XqyQy8k+Od9V1HJkW/G5H+al0kt1oL89vyPb96jbPuTD6tfzU7HN9GmGL+fMpZo75TuNHjxF/1zOVsz5DF/OmQtz5/PW2zHfJc1h1CP1rX7pBzO4Dz4X+qqxsEMT22dVbXhDnVTrO3y6Htmnr5EPbEd8WYNq371mOS86G8lKDM1Lv5XP5+3553aM+Lwe1e/0nf403lq+Kpff8JEzuW7B99jZad1x7aHn/N987DL3qnenlMH5MrcRf85etffuiznVW06vuVfcKd6mVj5uCP9nbN2bXky113nuvcUvGlbuFXeK/1O7f91xZav2w+1hnOFTjuq78k8cNDvtftSe/cr5Zsf8/drfvj86b0tsGUv5/qpmoxw0XvJVdcOHvt+Cz+vpffoCYbC64g==
@@ -17,12 +16,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHFlt1NA0EMhJcIoSj0ARIklYRK+GkEKqAKqCh54I2QHvAAnzSy1puTeLiVnPH6ZzyyLsltz1u7C9O5CrwOmwvXl61twnw+vvRt/7TOhY+h7SnM5+O7zn3odJN2HY/J90NOMc95nBwx0Hnw0QOi07nhc8SHu6rPdbpzRj3UoAckLqQf9Bz+1wpvjOKojM5qjnbH/rzW+RSv+ukZoXM5Dz75Hod2x/6oVx09xEDlPifuTbU6zgUPMfI/hekj783T9MPnuexTm+PcycPld/epB9kbd5Ae7iNkJjXcb+I34jbMj/O67zXZ9+cPbmrynfgUvA9tD0mf+pzT/YrTnz/61TfqrXKn+rKGU99/PefV/qpZxB19ruJTTv6O7aJPlk/en/LMzrXcXUPlVzxeD590PV+09hKWNeb9ubYeF7GqzvPMB+mhhrg0vYW2946+3v7o62E1g3juyVqqOmnMuxOX9rcIOwvLXHkWd5+RfWqEnvP71Dnq0f78fU+x0YHbZ49856IODs/1fO1O2vRuKp28o1J76PyPOTfzVO9x+v+LaEIn+Lr8ZT6Gvo/wic+F6ASlzn87ic+F3+xB1B0=
+   eAHFlk1KREEMhNsfXOg9FJxTiMuZk+hN9DB6It2LhzClflCULz0PXLyGttJJpVKEEd7+fIxDXZ3rwpu6W+GPizHud389qLb/9boV4u+s/KUHdibOe/n0S5/nFPuhppzXPE+NHOg6xPgB8eva6DkSo93xk6c3Z9YDBz8geSH9oNeIPy+J5iiN7tLZzdHu2J9zXU/5rp+eGbqW6xBTX9LQ7tgffPHoIQeq9rFyb+LquBY65Kh/E+NP7s3L9KPntYzhZp43dbT87TF8kL3xBunhPUNmwuF9ezXGrq4f1/XYORn77w9tOPkmvwYfyttj+FOfa3rcafrvj371zXq72rG+9HDs/1+/825/3Szyjj5X+TUn/8feqk83T+5PdWYnl7d76OJOx/noydfTxRjPddNj7s+9LWmR63heZz5IDxzy8vRS3l4X/C3tj74l7GaQz5700vHkMXcnLe3vtO5J3dTKWbx9RsZwhF7z99o56tH+/HtPudlB22fPYteCh4bXlmLtTt70bSqffKMuccm5NvNU8zzc/yKe8AmmLvmtEJ+gvl05dxWT3wq/AA8Zzw4=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjZGFgYALiwQ4YB5k7Ye6B0YM9/Aaj+0BhNxp+gzFmRoabQGlvFJAfAqP5l/ywA+kcDT/Kw48yE0au7qFS7+JyJ0h8IAEudw2km4ai3QDjEQCN
+   eAFjZGFgYALiwQ4YB5k7Ye6B0YM9/Aaj+0BhNxp+gzFmRoabQGlvFJAfAqP5l/ywA+kcDT/Kw48yE0au7qFS7w5Wdw5Wdw21FA0A2i0AiA==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
@@ -31,23 +30,16 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="1" type="collision" x="0" y="0" width="640" height="32"/>
-  <object id="2" type="collision" x="96" y="288" width="544" height="32"/>
+  <object id="1" type="collision" x="0" y="0" width="560" height="32"/>
+  <object id="2" type="collision" x="128" y="288" width="482" height="32"/>
   <object id="3" type="collision" x="0" y="32" width="32" height="80"/>
   <object id="4" type="collision" x="0" y="144" width="32" height="176"/>
   <object id="5" type="collision" x="32" y="256" width="16" height="64"/>
-  <object id="6" type="collision" x="48" y="288" width="32" height="32"/>
-  <object id="7" type="collision" x="80" y="304" width="16" height="16"/>
-  <object id="8" type="collision" x="624" y="32" width="16" height="256"/>
+  <object id="6" type="collision" x="48" y="288" width="16" height="32"/>
+  <object id="8" type="collision" x="624" y="0" width="16" height="256"/>
   <object id="9" type="collision" x="608" y="96" width="16" height="32"/>
-  <object id="10" type="collision" x="480" y="160" width="16" height="16"/>
-  <object id="11" type="collision" x="336" y="128" width="32" height="32"/>
-  <object id="12" type="collision" x="192" y="96" width="16" height="16"/>
-  <object id="13" type="collision" x="224" y="64" width="16" height="16"/>
-  <object id="14" type="collision" x="96" y="272" width="16" height="16"/>
   <object id="15" type="collision" x="608" y="256" width="16" height="32"/>
-  <object id="16" type="collision" x="608" y="32" width="16" height="32"/>
-  <object id="33" type="collision" x="528" y="272" height="16"/>
+  <object id="16" type="collision" x="608" y="0" width="16" height="64"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="36" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -85,6 +77,36 @@
     <property name="act1" value="set_variable environment:night_grass"/>
     <property name="cond1" value="is variable_set stage_of_day:night"/>
     <property name="cond2" value="not variable_set environment:night_grass"/>
+   </properties>
+  </object>
+  <object id="43" name="Teleport to Taba" type="event" x="80" y="304" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport taba_town.tmx,59,0"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="44" name="Teleport to Taba" type="event" x="96" y="304" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport taba_town.tmx,59,0"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="45" name="Teleport to Leather Town" type="event" x="560" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport leather_town.tmx,39,33"/>
+    <property name="act20" value="char_face player,left"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="46" name="Teleport to Leather Town" type="event" x="576" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport leather_town.tmx,39,32"/>
+    <property name="act20" value="char_face player,left"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
  </objectgroup>

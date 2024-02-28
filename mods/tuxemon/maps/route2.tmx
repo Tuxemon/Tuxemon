@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="1" nextobjectid="139">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="1" nextobjectid="145">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -8,6 +8,7 @@
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="4326" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eAHt0iERAAAMxLBKfv9oLoYCaqCXVZMHDDDAAAMMMMAAAwww8GDgAMjSXhA=
@@ -15,129 +16,33 @@
  </layer>
  <layer id="2" name="Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtlesKwjAMhSOoryJu7yK+i+79zREOZKG0aZf+EAyU7pLL1zOSifztlxVYTiJctXPcjR/9V30WNcZH/Xv8trMIlrdFH0QZHx1n8XVa9yU2xjyDdW8acGVQ8u7PftH8b+VCzS3Il4y0S+f5oprtkiTdQBNvo3wze8IyjvL5OJsz89rXQd9yxnAv9bGPizDNjCEr9zUClODz0h6dNRsS8L4pRnTPqo08rfqt956FMxJzMsNs/dJ86/nGYDsyt0v/zRYfNIgwHmWj1n5G2F4r6cc4MNasVzd8f7sifVjjq7FlvGudHzV6NcjgGs3xAaeJFok=
+   eAHtVVEOgjAMrYn6q57CCHdR7oLcQ2+mN7L9aFKawV7ZCD82aQZsbV/f0gfR30oYeF2I3uxbWbMjUk9h+DC2L/vNnNPzLX9DTePR85Fzw55I3FvDH1CM90Avvk7uPYVNYzqw7pUDjhpUefW9Hzj/k3FJzQHEVxnSKJ3Hh3I2SjLx8gjOnnDibSm+NWfCYlyKz8fZnDWffR2ZW9UYXVNz7OPOwF36GKQPJCaJ2SRfU+d7ntFSbVCd7wAOTVvwI8LhVLJTBUy5+rl9j001UnSyxLQ3Wz+lb5E7Fmwlup36b+bwCQcIRostqr2WZz9vrdlM8afbgnHOorzJ/VtH5nAOXwkn2tecDub6lxxRDrTuFusPQ8Aewg==
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHFlX1OwzAMxYMEiKPs4yxMHAWJ7TBwGrgI/AXnwI/1pz28NGmlTrOUOo6f7VcnTVd3paxjrDq6DNLDLe1/DF67GD0Nvx5uaf/7QykfMS4l65tSNmlsw5bI93V7GuDkZx++g9vPgvyogd4eqfx7bsKSH584ujyFj33w9WvM42iVffDRuB8IiB/9uwSn50iqGtR1DQfVFbdD4NjjXcwlc/v3mfp/zHL+JD/8zhHxLQ4c5BMPcVN+aXy1/vEO5MRGs97S5Hd+h3S2wSgP/KjxMnBXT/384ec94MA69piufQuqXZMWP+qhPZ41tPt68xzj/cuxU/jlPnkOaklPkRpe/LhD/u4R66XjHcMegJ/6/ZIvc2Wdd8WWziIe3Mnqn2N9TpzOhp8/1rP22Fpd4cF4bA3LedQ34PcNc9075BK21z/8xKCdh8/xo92nOfzyOrbHtfoHL/qLrfgxoQdoeuF4P2vstfyvw/0DPzR1PYfmmVe2M75maw/9P1HD5DXx8rNM3YzDzv5sC7dPdy+x0nM40jO04sf6Jx/7VNPyTxX+B1Pwzk34Wj+0nv9HWpsrb42+KlftvX1NmFb/5L+20L9fMEWk6w==
+   eAHFlQtOxDAMRIMEnGU/Z2HFUZBgrwtXwcP2iZHXbVLUikjZie2JPXXS7uGptWPMQwfbNHq8reMvoesSs4fo6/G2jlN3Lzw+tHZK8xy2hmJfj78TnuKcw4253S81wHOR+hQ+xYlJo4/XiHEO7v+PdVyt9hF6NJ8nAdK3V/9U4i2malDXEQ3iSds1eJzxJdYaa/v3mfp/y3L/S3703TPiXZw0KCYd0qb8QmJV/3gGcmKD+JeQ/Gv1UeN90q6e+v0jznOgAT/2HFbvgnpQDZ5BMfpHnYy+fynmvGrNXmJ/7R95cp/IK4QjHBkVX/r4hvx8R6yXzncOZwB/9P0lX9aKPz+r/HlIB99knS97M7JP5+73D3/Guf3Og5N9bmvNfdQ74N8b1vrukEvcXv+IswfMdbGJg/hB9GFn9H1L/UMX/cXW/rlBD0B64Xy/a5y1x9EHUtc5Wmdd2c78ytYZ+v9Exck+6eIua03dzMPO8WzDm8M1GukZqJxz/VOMc6pQ8dHB/8EI37WJv7YfIzVGOdVzu095lvo3WmdPHv37BlDcnQA=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBj6oIF7cPthPpXcVzIA3jTnJN7SmcQrpYrKemC4xpDgvn1UsRW/IcjhNQ/ovkYS3IffZMplCYXXLqAVu6F4D+XWkWwCvcJrpJQXJEfAAGuYxTHADsBj/QGg2w4OYvc9BbrtGRDvG4RunDkI3YQnqkelRkNgNAToFAIA01QRWw==
+   eAFjYBj6oIF7cPthPpXcVzIA3jTnJN7SmcQrpYrKemC4xpDgvn1UsRW/IcjhNQ/ovkYS3IffZMplCYXXLqAVu6F4D+XWkWwCvcJrpJQXJEfAqIbREBgNgdEQGA2B0RCgUwgAAL5vC+Y=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="5" type="collision" x="96" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="6" type="collision" x="128" y="96">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="7" type="collision" x="192" y="112">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="9" type="collision" x="256" y="80">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="10" type="collision" x="368" y="80">
-   <polygon points="0,0 0,16 80,16 80,0"/>
-  </object>
-  <object id="12" type="collision" x="512" y="224">
-   <polygon points="0,0 0,16 16,16 16,0"/>
-  </object>
-  <object id="16" type="collision-line" x="288" y="96">
-   <polyline points="0,0 0,-48 96,-48 96,-64 192,-64 192,-48 208,-48 208,-64"/>
-  </object>
-  <object id="17" type="collision-line" x="368" y="96">
-   <polyline points="0,0 0,64 48,64 48,80 64,80 64,128 112,128 112,144 128,144 128,160 176,160 176,112"/>
-  </object>
-  <object id="18" type="collision-line" x="448" y="112">
-   <polyline points="0,0 0,80 0,-16"/>
-  </object>
-  <object id="20" type="collision-line" x="560" y="80">
-   <polyline points="0,0 0,32"/>
-  </object>
-  <object id="32" type="collision" x="64" y="272" width="144" height="16"/>
-  <object id="33" type="collision" x="240" y="224" width="96" height="16"/>
-  <object id="34" type="collision" x="272" y="208" width="16" height="16"/>
-  <object id="35" type="collision" x="288" y="176" width="32" height="32"/>
-  <object id="36" type="collision" x="304" y="160" width="16" height="16"/>
-  <object id="37" type="collision" x="320" y="192" width="16" height="16"/>
-  <object id="38" type="collision" x="208" y="256" width="16" height="16"/>
-  <object id="39" type="collision" x="224" y="240" width="16" height="16"/>
   <object id="40" type="collision" x="160" y="240" width="32" height="32"/>
   <object id="41" type="collision" x="64" y="224" width="96" height="32"/>
   <object id="42" type="collision" x="96" y="208" width="32" height="16"/>
   <object id="43" type="collision" x="144" y="32" width="16" height="16"/>
-  <object id="44" type="collision" x="0" y="32" width="32" height="32"/>
   <object id="45" type="collision" x="0" y="0" width="160" height="32"/>
-  <object id="46" type="collision" x="48" y="256" width="16" height="16"/>
-  <object id="47" type="collision" x="32" y="240" width="16" height="16"/>
-  <object id="48" type="collision" x="16" y="192" width="16" height="16"/>
-  <object id="49" type="collision-line" x="16" y="64">
-   <polyline points="0,0 0,128"/>
-  </object>
-  <object id="50" type="collision-line" x="32" y="208">
-   <polyline points="0,0 0,32"/>
-  </object>
-  <object id="51" type="collision" x="448" y="288" width="160" height="16"/>
-  <object id="52" type="collision" x="368" y="272" width="80" height="16"/>
-  <object id="53" type="collision" x="512" y="80" width="16" height="16"/>
-  <object id="54" type="collision" x="528" y="64" width="32" height="16"/>
   <object id="55" type="collision" x="192" y="0" width="448" height="32"/>
-  <object id="56" type="collision" x="336" y="240" width="16" height="16"/>
-  <object id="57" type="collision" x="352" y="256" width="16" height="16"/>
   <object id="58" type="collision" x="608" y="160" width="32" height="160"/>
   <object id="59" type="collision" x="608" y="32" width="32" height="96"/>
-  <object id="64" type="collision" x="560" y="112" width="16" height="16"/>
-  <object id="65" type="collision" x="592" y="112" width="16" height="16"/>
   <object id="66" type="collision" x="592" y="128" width="16" height="16"/>
-  <object id="68" type="collision" x="448" y="192" width="96" height="16"/>
-  <object id="69" type="collision-line" x="304" y="80">
-   <polyline points="0,0 0,48"/>
-  </object>
-  <object id="70" type="collision-line" x="240" y="128">
-   <polyline points="0,0 64,0"/>
-  </object>
-  <object id="71" type="collision-line" x="240" y="128">
-   <polyline points="0,0 0,48"/>
-  </object>
-  <object id="72" type="collision-line" x="240" y="176">
-   <polyline points="0,0 -64,0"/>
-  </object>
-  <object id="73" type="collision-line" x="176" y="176">
-   <polyline points="0,0 0,-16"/>
-  </object>
-  <object id="74" type="collision-line" x="176" y="160">
-   <polyline points="0,0 -80,0"/>
-  </object>
-  <object id="75" type="collision-line" x="96" y="112">
-   <polyline points="0,0 0,48"/>
-  </object>
   <object id="76" type="collision" x="176" y="112" width="16" height="16"/>
   <object id="77" type="collision" x="240" y="80" width="16" height="16"/>
-  <object id="78" type="collision-line" x="32" y="48">
-   <polyline points="0,0 96,0"/>
-  </object>
-  <object id="79" type="collision-line" x="128" y="48">
-   <polyline points="0,0 0,16"/>
-  </object>
-  <object id="80" type="collision-line" x="128" y="64">
-   <polyline points="0,0 16,0"/>
-  </object>
-  <object id="81" type="collision-line" x="144" y="64">
-   <polyline points="0,0 0,32"/>
-  </object>
-  <object id="91" type="collision" x="16" y="64" width="16" height="32"/>
-  <object id="92" type="collision" x="32" y="64" width="16" height="16"/>
-  <object id="136" type="collision-line" x="512" y="96">
-   <polyline points="0,0 0,64"/>
-  </object>
-  <object id="137" type="collision-line" x="512" y="160">
-   <polyline points="0,0 96,0"/>
-  </object>
+  <object id="139" type="collision" x="192" y="112" width="16" height="16"/>
+  <object id="140" type="collision" x="256" y="80" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="30" name="Teleport to City Park" type="event" x="160" y="0" width="16" height="16">

@@ -7,6 +7,7 @@ import logging
 import os
 import uuid
 from collections.abc import Mapping, MutableMapping, Sequence
+from functools import partial
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -133,8 +134,8 @@ class WorldState(state.State):
 
         self.npcs: list[NPC] = []
         self.npcs_off_map: list[NPC] = []
-        self.wants_to_move_player: Optional[Direction] = None
-        self.allow_player_movement = True
+        self.wants_to_move_char: dict[str, Direction] = {}
+        self.allow_char_movement: list[str] = []
 
         ######################################################################
         #                              Map                                   #
@@ -157,6 +158,7 @@ class WorldState(state.State):
         # The delayed teleport variable is used to perform a teleport in the
         # middle of a transition. For example, fading to black, then
         # teleporting the player, and fading back in again.
+        self.delayed_char: Optional[NPC] = None
         self.delayed_teleport = False
         self.delayed_mapname = ""
         self.delayed_x = 0
@@ -183,12 +185,12 @@ class WorldState(state.State):
 
     def resume(self) -> None:
         """Called after returning focus to this state"""
-        self.unlock_controls()
+        self.unlock_controls(self.player)
 
     def pause(self) -> None:
         """Called before another state gets focus"""
-        self.lock_controls()
-        self.stop_player()
+        self.lock_controls(self.player)
+        self.stop_char(self.player)
 
     def fade_and_teleport(self, duration: float, color: ColorLike) -> None:
         """
@@ -211,7 +213,7 @@ class WorldState(state.State):
         self.remove_animations_of(self)
         self.remove_animations_of(cleanup)
 
-        self.stop_and_reset_player()
+        self.stop_and_reset_char(self.player)
 
         self.in_transition = True
         self.trigger_fade_out(duration, color)
@@ -236,7 +238,7 @@ class WorldState(state.State):
             duration=duration,
             round_values=True,
         )
-        self.task(self.unlock_controls, duration - 0.5)
+        self.task(partial(self.unlock_controls, self.player), duration - 0.5)
 
     def trigger_fade_out(self, duration: float, color: ColorLike) -> None:
         """
@@ -257,8 +259,8 @@ class WorldState(state.State):
             duration=duration,
             round_values=True,
         )
-        self.stop_player()
-        self.lock_controls()
+        self.stop_char(self.player)
+        self.lock_controls(self.player)
 
     def handle_delayed_teleport(self) -> None:
         """
@@ -270,8 +272,12 @@ class WorldState(state.State):
 
         """
         if self.delayed_teleport:
-            self.stop_player()
-            self.lock_controls()
+            if self.delayed_char:
+                char = self.delayed_char
+            else:
+                char = self.player
+            self.stop_char(char)
+            self.lock_controls(char)
 
             # check if map has changed, and if so, change it
             map_name = prepare.fetch("maps", self.delayed_mapname)
@@ -279,10 +285,10 @@ class WorldState(state.State):
             if map_name != self.current_map.filename:
                 self.change_map(map_name)
 
-            self.player.set_position((self.delayed_x, self.delayed_y))
+            char.set_position((self.delayed_x, self.delayed_y))
 
             if self.delayed_facing:
-                self.player.facing = self.delayed_facing
+                char.facing = self.delayed_facing
                 self.delayed_facing = None
 
             self.delayed_teleport = False
@@ -441,13 +447,13 @@ class WorldState(state.State):
         direction = direction_map.get(event.button)
         if direction is not None:
             if event.held:
-                self.wants_to_move_player = direction
-                if self.allow_player_movement:
-                    self.move_player(direction)
+                self.wants_to_move_char[self.player.slug] = direction
+                if self.player.slug in self.allow_char_movement:
+                    self.move_char(self.player, direction)
                 return None
             elif not event.pressed:
-                if direction == self.wants_to_move_player:
-                    self.stop_player()
+                if self.player.slug in self.wants_to_move_char.keys():
+                    self.stop_char(self.player)
                     return None
 
         if prepare.DEV_TOOLS:
@@ -1069,59 +1075,63 @@ class WorldState(state.State):
         return adjacent_tiles
 
     ####################################################
-    #                Player Movement                   #
+    #              Character Movement                  #
     ####################################################
-    def lock_controls(self) -> None:
-        """Prevent input from moving the player."""
-        self.allow_player_movement = False
+    def lock_controls(self, char: NPC) -> None:
+        """Prevent input from moving the character."""
+        if char.slug in self.allow_char_movement:
+            self.allow_char_movement.remove(char.slug)
 
-    def unlock_controls(self) -> None:
+    def unlock_controls(self, char: NPC) -> None:
         """
-        Allow the player to move.
+        Allow the character to move.
 
-        If the player was previously holding a direction down,
-        then the player will start moving after this is called.
-
-        """
-        self.allow_player_movement = True
-        if self.wants_to_move_player:
-            self.move_player(self.wants_to_move_player)
-
-    def stop_player(self) -> None:
-        """
-        Reset controls and stop player movement at once. Do not lock controls.
-
-        Movement is gracefully stopped.  If player was in a movement, then
-        complete it before stopping.
+        If the character was previously holding a direction down,
+        then the character will start moving after this is called.
 
         """
-        self.wants_to_move_player = None
+        self.allow_char_movement.append(char.slug)
+        if char.slug in self.wants_to_move_char.keys():
+            _dir = self.wants_to_move_char.get(char.slug, Direction.down)
+            self.move_char(char, _dir)
+
+    def stop_char(self, char: NPC) -> None:
+        """
+        Reset controls and stop character movement at once.
+        Do not lock controls. Movement is gracefully stopped.
+        If character was in a movement, then complete it before stopping.
+
+        """
+        if char.slug in self.wants_to_move_char.keys():
+            del self.wants_to_move_char[char.slug]
         self.client.release_controls()
-        self.player.cancel_movement()
+        char.cancel_movement()
 
-    def stop_and_reset_player(self) -> None:
+    def stop_and_reset_char(self, char: NPC) -> None:
         """
-        Reset controls, stop player and abort movement. Do not lock controls.
+        Reset controls, stop character and abort movement. Do not lock controls.
 
-        Movement is aborted here, so the player will not complete movement
+        Movement is aborted here, so the character will not complete movement
         to a tile.  It will be reset to the tile where movement started.
 
         Use if you don't want to trigger another tile event.
 
         """
-        self.wants_to_move_player = None
+        if char.slug in self.wants_to_move_char.keys():
+            del self.wants_to_move_char[char.slug]
         self.client.release_controls()
-        self.player.abort_movement()
+        char.abort_movement()
 
-    def move_player(self, direction: Direction) -> None:
+    def move_char(self, char: NPC, direction: Direction) -> None:
         """
-        Move player in a direction. Changes facing.
+        Move character in a direction. Changes facing.
 
         Parameters:
-            direction: New direction of the player.
+            char: Character.
+            direction: New direction of the character.
 
         """
-        self.player.move_direction = direction
+        char.move_direction = direction
 
     def get_pos_from_tilepos(
         self,
@@ -1276,7 +1286,7 @@ class WorldState(state.State):
 
         # reset controls and stop moving to prevent player from
         # moving after the teleport and being out of game
-        self.stop_player()
+        self.stop_char(self.player)
 
         # move to spawn position, if any
         for eo in self.client.events:

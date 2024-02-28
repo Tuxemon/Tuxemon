@@ -658,7 +658,7 @@
   </object>
   <object id="142" name="hey!" type="event" x="384" y="480" width="16" height="160">
    <properties>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act12" value="translated_dialog oimate"/>
     <property name="act13" value="char_move player,right 1"/>

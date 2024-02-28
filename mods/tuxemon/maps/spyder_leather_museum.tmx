@@ -178,7 +178,7 @@
   </object>
   <object id="32" name="Pay Requirement" type="event" x="0" y="144" width="48" height="16">
    <properties>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act14" value="translated_dialog spyder_museum_entrance3"/>
     <property name="act16" value="translated_dialog player_wallet"/>
@@ -193,7 +193,7 @@
   </object>
   <object id="34" name="No Pay (Not Required)" type="event" x="48" y="128" width="16" height="16">
    <properties>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act42" value="pathfind player,1,10"/>
     <property name="act43" value="set_variable paymuseum:null"/>

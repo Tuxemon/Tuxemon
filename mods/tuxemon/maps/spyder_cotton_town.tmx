@@ -142,7 +142,7 @@
   </object>
   <object id="531" name="Talk hackerintro" type="event" x="400" y="608" width="128" height="16">
    <properties>
-    <property name="act1" value="char_stop"/>
+    <property name="act1" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="create_npc spyder_cottontown_hacker,25,30"/>
     <property name="act30" value="pathfind spyder_cottontown_hacker,25,36"/>
@@ -241,7 +241,7 @@
   </object>
   <object id="548" name="Stop! Cotton" type="event" x="608" y="448" width="16" height="32">
    <properties>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="create_npc spyder_cottontown_hacker,23,23"/>
     <property name="act30" value="pathfind_to_player spyder_cottontown_hacker,left"/>
@@ -385,7 +385,7 @@
   </object>
   <object id="587" name="Nu Phone Mom" type="event" x="496" y="272" width="16" height="16">
    <properties>
-    <property name="act11" value="char_stop"/>
+    <property name="act11" value="char_stop player"/>
     <property name="act12" value="lock_controls"/>
     <property name="act13" value="create_npc spyder_papertown_mom,23,23"/>
     <property name="act14" value="pathfind spyder_papertown_mom,31,18"/>
@@ -449,7 +449,7 @@
   </object>
   <object id="591" name="Kernel Quest" type="event" x="320" y="432" width="16" height="16">
    <properties>
-    <property name="act11" value="char_stop"/>
+    <property name="act11" value="char_stop player"/>
     <property name="act12" value="lock_controls"/>
     <property name="act13" value="create_npc spyder_papertown_mom,18,33"/>
     <property name="act14" value="create_npc spyder_cottontown_hacker,24,33"/>

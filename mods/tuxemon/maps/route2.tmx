@@ -519,7 +519,7 @@
   </object>
   <object id="134" name="spilledthebeans" type="event" x="48" y="48" width="16" height="16">
    <properties>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act20" value="lock_controls"/>
     <property name="act30" value="wait 1"/>
     <property name="act40" value="translated_dialog leavemealone"/>

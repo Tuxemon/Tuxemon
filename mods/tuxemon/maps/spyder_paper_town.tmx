@@ -156,7 +156,7 @@
   <object id="155" name="Stop!" type="event" x="208" y="16" width="32" height="16">
    <properties>
     <property name="act1" value="lock_controls"/>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act20" value="create_npc spyder_dante,15,8"/>
     <property name="act30" value="pathfind_to_player spyder_dante,right"/>
     <property name="act35" value="char_face spyder_dante,left"/>
@@ -216,7 +216,7 @@
   </object>
   <object id="218" name="My First Mon" type="event" x="400" y="208" width="112" height="16">
    <properties>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="create_npc spyder_dante,19,13"/>
     <property name="act30" value="pathfind_to_player spyder_dante,down"/>
@@ -447,7 +447,7 @@
   <object id="214" name="Stop 2!" type="event" x="16" y="224" width="16" height="64">
    <properties>
     <property name="act1" value="lock_controls"/>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act20" value="create_npc spyder_dante,19,13"/>
     <property name="act30" value="pathfind spyder_dante,2,14"/>
     <property name="act40" value="translated_dialog spyder_papertown_stopthere"/>
@@ -483,7 +483,7 @@
   </object>
   <object id="240" name="My First Mon - Not Met" type="event" x="400" y="208" width="112" height="16">
    <properties>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="create_npc spyder_dante,19,13"/>
     <property name="act30" value="pathfind_to_player spyder_dante,down"/>

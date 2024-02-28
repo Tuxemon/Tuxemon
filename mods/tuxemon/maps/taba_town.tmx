@@ -292,7 +292,7 @@
   </object>
   <object id="127" name="bring the cavalry" type="event" x="672" y="752" width="16" height="16">
    <properties>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act12" value="wait 1"/>
     <property name="act20" value="create_npc allie,37,40,stand"/>
@@ -337,7 +337,7 @@
    <properties>
     <property name="act010" value="translated_dialog cometomepls"/>
     <property name="act020" value="set_variable talkpls:yes"/>
-    <property name="act030" value="char_stop"/>
+    <property name="act030" value="char_stop player"/>
     <property name="act035" value="lock_controls"/>
     <property name="act040" value="pathfind player,37,47"/>
     <property name="act050" value="char_face player,up"/>
@@ -538,7 +538,7 @@
   </object>
   <object id="130" name="waitdontleave" type="event" x="592" y="624" width="32" height="16">
    <properties>
-    <property name="act1" value="char_stop"/>
+    <property name="act1" value="char_stop player"/>
     <property name="act2" value="lock_controls"/>
     <property name="act3" value="translated_dialog waitdontgo"/>
     <property name="act4" value="create_npc npc_mom, 39,46"/>
@@ -573,7 +573,7 @@
   </object>
   <object id="149" name="plsletmepass" type="event" x="384" y="368" width="16" height="16">
    <properties>
-    <property name="act1" value="char_stop"/>
+    <property name="act1" value="char_stop player"/>
     <property name="act2" value="translated_dialog hey"/>
     <property name="act3" value="char_face player,left"/>
     <property name="act4" value="pathfind xerogrund1,23,23"/>
@@ -627,7 +627,7 @@
   <object id="140" name="people be blocking" type="event" x="352" y="96" width="16" height="32">
    <properties>
     <property name="act1" value="translated_dialog hmmm"/>
-    <property name="act11" value="char_stop"/>
+    <property name="act11" value="char_stop player"/>
     <property name="act2" value="char_face conworker2,up"/>
     <property name="act3" value="translated_dialog hmmm2"/>
     <property name="act4" value="char_face conworker1,down"/>
@@ -654,7 +654,7 @@
   </object>
   <object id="143" name="announcement2" type="event" x="576" y="576" width="64" height="16">
    <properties>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="create_npc npc_mom,38,41,stand"/>
     <property name="act30" value="translated_dialog timeforround2"/>
@@ -719,7 +719,7 @@
    <properties>
     <property name="act1" value="translated_dialog moverocky"/>
     <property name="act2" value="lock_controls"/>
-    <property name="act3" value="char_stop"/>
+    <property name="act3" value="char_stop player"/>
     <property name="act4" value="wait 2"/>
     <property name="act5" value="translated_dialog moverocky2"/>
     <property name="act6" value="unlock_controls"/>

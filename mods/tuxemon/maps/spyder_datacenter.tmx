@@ -474,7 +474,7 @@
   </object>
   <object id="117" name="Billie" type="event" x="144" y="32" width="16" height="16">
    <properties>
-    <property name="act01" value="char_stop"/>
+    <property name="act01" value="char_stop player"/>
     <property name="act02" value="lock_controls"/>
     <property name="act03" value="create_npc spyder_billie,11,14"/>
     <property name="act04" value="pathfind spyder_billie,1,10"/>

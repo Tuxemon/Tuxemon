@@ -1180,11 +1180,12 @@ class CombatState(CombatAnimations):
                 awarded_exp = award_experience(
                     monster, winner, self._damage_map
                 )
-                # check before giving exp
-                levels = winner.give_experience(awarded_exp)
-                # check after giving exp
-                if self.is_trainer_battle:
-                    self._prize += awarded_mon
+                if winner.owner and winner.owner.isplayer:
+                    levels = winner.give_experience(awarded_exp)
+                    if self.is_trainer_battle:
+                        self._prize += awarded_mon
+                else:
+                    levels = 0
                 # it checks if there is a "level up"
                 if winner in self.monsters_in_play_right:
                     # it checks if there is a "level up"

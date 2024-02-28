@@ -1,4 +1,32 @@
 events:
+  Cathedral:
+    actions:
+    - set_money bill_cathedral
+    - set_variable cathedral_share:0.5
+    - format_variable cathedral_share,float
+    - set_variable cathedral_interest:0.1
+    - format_variable cathedral_interest,float
+    - set_variable cathedral_fee:100
+    - set_variable scoop_coeff:50
+    conditions:
+    - not variable_set cathedral_share
+    - not variable_set cathedral_interest
+    - not variable_set cathedral_fee
+    - not variable_set scoop_coeff
+    type: "event"
+  Cathedral Share:
+    actions:
+    - variable_math battle_last_prize,*,cathedral_share
+    - format_variable battle_last_prize,-int
+    - modify_money player,,battle_last_prize
+    - modify_money bill_cathedral,,battle_last_prize
+    - set_variable battle_last_prize:0
+    conditions:
+    - is variable_set battle_last_result,_won
+    - is variable_set battle_last_winner,player
+    - is money_is bill_cathedral,greater_than,0
+    - is variable_is battle_last_prize,greater_than,0
+    type: "event"
   Teleport Faint:
     actions:
     - teleport_faint
@@ -13,7 +41,8 @@ events:
     - set_monster_health
     - set_monster_status
     - set_variable teleport_clinic:none
-    - variable_math cathedral_ads,+,1
+    - format_variable cathedral_fee,int
+    - modify_money bill_cathedral,,cathedral_fee
     conditions:
     - is location_type clinic
     - is variable_set teleport_clinic:lost
@@ -241,7 +270,7 @@ events:
     - add_monster arthrobolt,100
     - add_monster eaglace,100
     - add_monster agnigon,100
-    - set_monster_plague ,inoculated
+    - set_party_attribute player,plague,inoculated
     - set_variable cheat_apex:enabled
     conditions:
     - is check_char_parameter player,name,ApexPlayer

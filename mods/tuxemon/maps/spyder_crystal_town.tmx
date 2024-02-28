@@ -47,9 +47,7 @@
   <object id="33" type="collision" x="608" y="128" width="32" height="32"/>
   <object id="34" type="collision" x="624" y="160" width="16" height="32"/>
   <object id="38" type="collision" x="592" y="384" width="32" height="16"/>
-  <object id="39" type="collision" x="128" y="256" width="32" height="32"/>
   <object id="41" type="collision" x="0" y="32" width="32" height="352"/>
-  <object id="45" type="collision" x="48" y="336" width="32" height="32"/>
   <object id="46" type="collision" x="176" y="32" width="144" height="32"/>
   <object id="48" type="collision" x="592" y="192" width="16" height="16"/>
   <object id="50" type="collision" x="320" y="80" width="48" height="16"/>
@@ -60,7 +58,7 @@
   <object id="57" type="collision" x="416" y="144" width="16" height="16"/>
   <object id="60" type="collision" x="192" y="144" width="16" height="176"/>
   <object id="61" type="collision" x="32" y="32" width="144" height="80"/>
-  <object id="63" type="collision" x="32" y="112" width="48" height="48"/>
+  <object id="63" type="collision" x="32" y="112" width="48" height="16"/>
   <object id="64" type="collision" x="80" y="112" width="16" height="16"/>
   <object id="65" type="collision" x="112" y="112" width="64" height="16"/>
  </objectgroup>

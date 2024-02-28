@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="129">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="132">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -9,13 +9,9 @@
  <tileset firstgid="1" name="Tileset" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
  </tileset>
- <tileset firstgid="1601" name="core_buildings" tilewidth="16" tileheight="16" tilecount="2350" columns="47">
-  <image source="../gfx/tilesets/core_buildings.png" width="760" height="800"/>
- </tileset>
+ <tileset firstgid="1601" source="../gfx/tilesets/core_buildings.tsx"/>
  <tileset firstgid="3951" source="../gfx/tilesets/core_outdoor.tsx"/>
- <tileset firstgid="6726" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="6726" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eAHt1LEJgDAQheG3gSi6npXDOIu6i7hApojWnkVK0UbuhL840gTyePmSVEmJoQMMYOAjA1MtzS9msT0ef9Fq5w7t82xB842NtFu2I2g+r96KpWy9XP3cjVdvJR+rz7und3rHAAYwgAEMYAADGMAABjAQz0DfxcuEk//fyQlEnrz4
@@ -28,7 +24,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -42,55 +38,17 @@
   <object id="4" type="collision" x="64" y="32" width="192" height="32"/>
   <object id="5" type="collision" x="256" y="32" width="32" height="16"/>
   <object id="6" type="collision" x="288" y="32" width="224" height="32"/>
-  <object id="7" type="collision" x="512" y="80" width="48" height="112"/>
-  <object id="8" type="collision" x="64" y="224" width="48" height="272"/>
-  <object id="9" type="collision" x="160" y="224" width="48" height="272"/>
-  <object id="10" type="collision" x="208" y="480" width="112" height="16"/>
   <object id="11" type="collision" x="192" y="544" width="448" height="96"/>
   <object id="12" type="collision" x="608" y="224" width="32" height="320"/>
   <object id="13" type="collision" x="32" y="608" width="128" height="32"/>
   <object id="14" type="collision" x="96" y="544" width="96" height="32"/>
-  <object id="15" type="collision" x="512" y="208" width="48" height="288"/>
-  <object id="16" type="collision" x="256" y="432" width="128" height="16"/>
   <object id="17" type="collision" x="208" y="208" width="304" height="32"/>
   <object id="18" type="collision" x="160" y="144" width="320" height="32"/>
   <object id="19" type="collision" x="32" y="128" width="464" height="16"/>
   <object id="20" type="collision" x="176" y="112" width="320" height="16"/>
-  <object id="21" type="collision" x="448" y="288" height="112"/>
-  <object id="22" type="collision" x="288" y="288" width="160" height="16"/>
-  <object id="24" type="collision" x="256" y="288" height="144"/>
-  <object id="26" type="collision" x="288" y="304" height="96"/>
-  <object id="28" type="collision" x="384" y="448" height="96"/>
   <object id="30" type="collision" x="464" y="176" width="32" height="32"/>
   <object id="31" type="collision" x="32" y="144" width="112" height="32"/>
   <object id="32" type="collision" x="608" y="64" width="32" height="96"/>
-  <object id="39" type="collision" x="384" y="384" width="16" height="16"/>
-  <object id="40" type="collision" x="368" y="400" width="16" height="16"/>
-  <object id="41" type="collision" x="384" y="416" width="16" height="16"/>
-  <object id="46" type="collision" x="96" y="512">
-   <polygon points="0,0 0,32 48,32 48,0"/>
-  </object>
-  <object id="50" type="collision" x="352" y="352">
-   <polygon points="0,0 0,32 32,32 32,0"/>
-  </object>
-  <object id="53" type="collision" x="64" y="80">
-   <polygon points="0,0 0,16 448,16 448,0"/>
-  </object>
-  <object id="54" type="collision" x="560" y="80">
-   <polygon points="0,0 0,16 48,16 48,0"/>
-  </object>
-  <object id="56" type="collision" x="288" y="240">
-   <polygon points="0,0 0,48 16,48 16,0"/>
-  </object>
-  <object id="57" type="collision" x="336" y="240">
-   <polygon points="0,0 0,48 16,48 16,0"/>
-  </object>
-  <object id="58" type="collision" x="384" y="240">
-   <polygon points="0,0 0,48 16,48 16,0"/>
-  </object>
-  <object id="59" type="collision" x="432" y="240">
-   <polygon points="0,0 0,48 16,48 16,0"/>
-  </object>
   <object id="92" type="collision" x="112" y="288" width="16" height="32"/>
   <object id="93" type="collision" x="112" y="416" width="16" height="32"/>
   <object id="94" type="collision" x="496" y="352" width="16" height="32"/>
@@ -98,11 +56,11 @@
   <object id="96" type="collision" x="496" y="432" width="16" height="32"/>
   <object id="97" type="collision" x="608" y="160" width="16" height="16"/>
   <object id="98" type="collision" x="512" y="48" width="64" height="16"/>
-  <object id="99" type="collision" x="80" y="496" width="16" height="16"/>
   <object id="100" type="collision" x="32" y="544" width="32" height="64"/>
   <object id="115" type="collision" x="32" y="384" width="16" height="16"/>
   <object id="127" type="collision" x="576" y="32" width="16" height="16"/>
   <object id="128" type="collision" x="592" y="48" width="16" height="16"/>
+  <object id="130" type="collision" x="96" y="512" width="48" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="33" name="random encounter 1" type="event" x="208" y="176" width="128" height="32">

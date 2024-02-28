@@ -58,5 +58,25 @@
         "slug": "interactive_obj"
       }
     ]
+  },
+  {
+    "slug": "spyder_dryadsgrove_boy",
+    "template": [
+      {
+        "sprite_name": "childactor_black",
+        "combat_front": "yellowbelt",
+        "slug": "childactor"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_dryadsgrove_dad",
+    "template": [
+      {
+        "sprite_name": "beachcomber_gray",
+        "combat_front": "yellowbelt",
+        "slug": "beachcomber"
+      }
+    ]
   }
 ]

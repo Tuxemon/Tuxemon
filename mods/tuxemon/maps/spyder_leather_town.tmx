@@ -9,35 +9,33 @@
   <property name="types" value="town"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
- <tileset firstgid="1441" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
-  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
- </tileset>
+ <tileset firstgid="1441" source="../gfx/tilesets/Superpowers_Tilesheet.tsx"/>
  <tileset firstgid="3041" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="5816" source="../gfx/tilesets/core_set pieces.tsx"/>
  <tileset firstgid="7366" source="../gfx/tilesets/core_buildings.tsx"/>
  <tileset firstgid="9716" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtWMtNxEAMnQIQvzO/ThCigb0ADSCgBqABqgDOSNsFnJGQKALOXOCCLeVJDzN2kk0mySIOljOTjfPi9+yZ2dlKSrM/Zqeby/1Nzxv94d9eTcnajsxNhfPX9ZSsHTr49gfi9YbeY7Hp2MM3Rk7PJVdqX2LAurv2m3PVQF+8fyygzwPCB5zWj5nXqeM7k/yBa/bM+5j583ou53VMfF5tLhO+qK6PZA0/FjsZeC3n/Nl6xlh5vxRcV2LX//h+rL1c11zLyJ16zt+b5E95tlaCd14HtX48rhmfcpyzprx32ftE+G4F153YU4XvsRrrnNq9mNcj+pqP8KF+3wVHiTpBfOgmpxeLD9+d47cpn4hR59EfoJ1cfIsPNaL4LL+55+swRPfb4vuk9fpCrhEbcbiOc1zg99bbmsR9xM3l76Har3H+NGd4Vj1+Y+P0pUUbN8dPhA9YEYfrt4/ahX6iftAGX+778A2l/BTwbYmu7HkT4z05l3DN5vIAfhfJn1cb/B7OEbCo19/w2NYHYnTBhxiR74JPz2XAx/0FPd/zbfoP4+Mex2cSveaex2cD4EOfauLbaIHxgUOsfU2+0/YB9IOcx14iwgftw+dqADmJ4kSa8e4hrqcFzQdr3l4jf4hTCp+nAX2fxcTjofDxWsM60HXH6p7HqIEof1h3PQ6j+Shu9Jy9hzieTry+UTffZS87p//ggM/TSdf5rrpu0zNYP02v+9jfWM5LjF+IsxLxS8T8BmKoujM=
+   eAHtWEtOxTAM7AEQvzW/myDEBd4GuAACzgBcgFMAayRuAWskJA4BazawwZY60mBi074kbR9iYblJ+9yJx+Okb7bUNLM/Zsfri72mp7Vy+DeXm8balsxNhfOX1aaxtu/g2x2I1yt6j8WmYw/fGDk9lVypfYoB6/bKT861Bkrx/j5Hfe4RPuC0fsy8Th3fieQPXLNn3sfMn9dzOa9j4vO0uUj4Il0fyB5+KHY08F7O+bN6xlh5PxdcF2KX//i+7b2sa9Yycqee8/cq+VOerdXgnfdB1Y/HNeNTjlPWlfecs0+E71pw3Yg9tvge2rHOqd2KeT2i1HyED/p9Exw1dIL4qJtUvVh8vG7oF9x25ZNjRNdd4lt80IjWn+V3bHwftF+fyTXWjnWyjlNc4HnrrSZxH3FT/Ny15zXOn+YMv1WPZ2ycUrVo46b4ifABK+KwfktoF/UT9YM++FLrwxpq+Sng25C6st+bOtY178h3CWs2lQfwO0/+PG3wezhHwKJen+Gx1Qdi5OBDjMjn4NPvMuDj/oKe7/k+/YfxcY/TNfF3Cfc8/jYAPvSpLr5PLTA+cIi9r8s6bR9AP0h5nCUifFYLKQ0gJ1GcqGa8e4jr1YLmg2veXiN/iFMLn1cD+j6LicdD4eO9hutA9x2ueXsNDUT5w77rcRjNR3Gj39l7iOPVidc3fpvPOcve039wwOfVSe58bl336RlcP12vS5xvLOc1xs/EWY34NWJ+Ae1RulY=
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtmEtOw0AMhr2EJSskJBArdrwk7sApWuAEXIGD0BbuQ5HYk5ajYKv9hWV5ZpykSSMUS9bMOI79xbWVtkS+TK6JpqwPrCLzC6IF61Bkxlxz1sWWb8Vs65Z8Z7dEdTRXC8uX841ey7EhhvaBzVvB98b1k8+5jUqPnNasnXDmBHzyGbdV9IiuDfaWAfYSX8Vcqxr6tH2OR+eeNdtEdE5wbK78XYNd+8KnzYp6o1ZeLJ1Tc6T2XoymtihfigV25JfzeaEH4RtZI3xeHHDZ1fON2O6PN14T7ik90+/b/rPzLrObE80lfvos+6aCepVmO9ePktvy6PPPTVM6oorrouc7Nb+Y3VQmzWP3qXua2MFb4rGxLZM+W99dng+OiA5ZS6J5sJd7ZN+lXDLb1YD5os+OmnlrNEaXfh4XbF3mjcYGi7dGY/TlN1Uzofd95Zc80bnumun5xM8QnWv/7tHaZwWG9pvTPvsufnPamON5eBX4JHpZsn6wlui+Aj6lGOP1+hUYynsnRT6+d1KV2a+9z75JfSe5S3xXkcqMfbPf/viP2V/5f/JZy//Ku6zLN7NVPfH9An8bm4U=
+   eAHtmF1KA0EMgPOojz4JglIQfPMPvIOCZ2jVE3gFD2J/vI8KvrutRzGhG0xDZiazfywygTAzmUzyNTth2wLYMr0EmKE+oJIszgCWqGOROXItUJc13xrZNi35Tq4BcjRWC80X8/Xuxdg4hvRhmzUy3wrrR8+5jdIdOc6sHXHGhPnoGbdVviOyNjzXDGxP8VXItc7Qp/pzPBpnNmgjkTmZY7vzt8d26cs+bUauN9fKiiVzSo7Q3IrR1OblC7GwnfPTepK4g+zrGT18Vhzm0qPl67HdHm69pninZE+/1fdP9zv1bkwkF/nJNc2bCtcr1dux+0i5NY9c/1w1pQOosC6yv0P9y70byiR59Dx0pomdeVM8OrZmkmvt2+V67wBgHzUlkofndIbmfco5sl2MmM/72blm1uiN0aefxcW2PvN6YzOLNXpjDOV3KhLNeu4PkWpnGuvre/Sc1N53O6e6Xzwf2TFTfU1cso52lGGtVDcpei33/tN8bL85dW27+M2pY5b1+CrwCfDygfqOmqL7cvikYpT9/ArE3jv50bo/kXrvdJ+xRPRUYMh7E/pOchP4rkL85d54nmLxyanAK/5PPm/5X3lOvlzfb2SrBuL7BVXVnM0=
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlztOw0AQhkfKAegokKDgNEhpuAiPtNAE8uJxEiDAASBJRSCBjlcNHXAJPgtNtHJis7Y2MREz0ufdtWfHv/+VrbWIhTlgDvwnB66WRa6hA13ogRs3jPtwC3cwgFDRKkm1CQ2oQw209nBR5B4eoKi4RM8FnEMbzkC1fKDrE74K1PeKnhd4hid4BNVn7ewdaK6ItOAADuEIjsHCHPBxoCdS7UIHfPItJ5wDe7yn+1CDOjQgLVZtjUb2rC+Nut6dsuPfmtP3LjClRHddI13ueEq3zFTW9S2aGB9nKmbJM3Ngg+/JJmzBNlQgCtsz/Pjgc9wN+O/hc7+sOad/XF/W57H8Yh1I2pMkfUtUbdI8vT6v7duCyDtom/YcuifZyflO5p2XpmnStZOc+vLMU9+0naTHzvk5EPfwt7Ff1fBZ86orrju8M+MVvwEAYVvz
+   eAHtlztOAzEQhgflAHQUSAkSJ+IQUAKhhSaQNzkJ7wNAkoo3Ha+adIRL8K3QSJHJbhyzq/Uij/TFcjzj/P6jtb0iIYrswKoh3uwbw6E7w4H1BZEN8CGy+i8vyyJX0IcBDGEyrunfwC3cwT2kFe2S1FrQhAbUQed+WBJ5hCfIKy7Qcw5ncAonoFo+0TWGrxz1vaPnDV7hBZ5B9WXVrmQ18T+Yt1URaUMHunAIPQgRHLBxYChSG0AfbPJdcibPtOhMyepccdGWZ80+z+kB1KEBTUiKIvime7W2Sev5y9jasnu1bz76psfd2VDpkwOb7CdbsA1V2IEowp3hxwebz70U3z1sfm/enGPP9c27npCfrwNxd5K4vUTVxtXpeFHbj0WREWibtA69k+w6PpOudUmapo0dOepzqVPftJ2mJ3xn54Dp4ay+3azpZxVVl6k7fWd+z/gNDLtZHw==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="188" type="collision" x="192" y="32" width="80" height="32"/>
+  <object id="188" type="collision" x="224" y="48" width="48" height="16"/>
   <object id="189" type="collision" x="288" y="48" width="96" height="16"/>
   <object id="190" type="collision" x="400" y="48" width="32" height="16"/>
   <object id="191" type="collision" x="432" y="64" width="80" height="64"/>
@@ -51,8 +49,6 @@
   <object id="202" type="collision" x="192" y="512" width="80" height="48"/>
   <object id="203" type="collision" x="176" y="544" width="16" height="16"/>
   <object id="204" type="collision" x="368" y="400" width="80" height="48"/>
-  <object id="206" type="collision" x="448" y="432" width="16" height="16"/>
-  <object id="207" type="collision" x="272" y="432" width="48" height="16"/>
   <object id="209" type="collision" x="368" y="288" width="80" height="32"/>
   <object id="210" type="collision" x="352" y="320" width="32" height="16"/>
   <object id="211" type="collision" x="448" y="304" width="32" height="32"/>
@@ -77,22 +73,11 @@
   <object id="232" type="collision" x="368" y="624" width="208" height="16"/>
   <object id="233" type="collision" x="576" y="592" width="32" height="32"/>
   <object id="234" type="collision" x="608" y="544" width="32" height="48"/>
-  <object id="235" type="collision" x="608" y="352" width="32" height="160"/>
+  <object id="235" type="collision" x="608" y="320" width="32" height="192"/>
   <object id="236" type="collision" x="576" y="480" width="16" height="16"/>
-  <object id="237" type="collision" x="592" y="336" width="16" height="16"/>
-  <object id="238" type="collision" x="528" y="336" width="16" height="16"/>
-  <object id="240" type="collision" x="560" y="288" width="16" height="32"/>
-  <object id="241" type="collision" x="576" y="320" width="16" height="16"/>
-  <object id="243" type="collision" x="32" y="304" width="32" height="16"/>
-  <object id="244" type="collision" x="80" y="304" width="32" height="16"/>
-  <object id="246" type="collision" x="80" y="384" width="32" height="16"/>
-  <object id="247" type="collision" x="32" y="384" width="32" height="16"/>
   <object id="261" type="collision" x="0" y="32" width="32" height="32"/>
   <object id="262" type="collision" x="16" y="0" width="64" height="32"/>
   <object id="264" type="collision" x="80" y="16" width="16" height="16"/>
-  <object id="265" type="collision-line" x="112" y="320">
-   <polyline points="0,0 0,64"/>
-  </object>
   <object id="266" type="collision" x="144" y="384" width="16" height="16"/>
   <object id="267" type="collision" x="288" y="176" width="16" height="16"/>
   <object id="280" type="collision" x="80" y="16" width="16" height="16"/>
@@ -102,7 +87,6 @@
   <object id="297" type="collision" x="384" y="32" width="16" height="16"/>
   <object id="299" type="collision" x="0" y="480" width="64" height="32"/>
   <object id="300" type="collision" x="0" y="544" width="64" height="64"/>
-  <object id="302" type="collision" x="128" y="256" width="48" height="16"/>
   <object id="305" type="collision" x="192" y="144" width="16" height="16"/>
   <object id="310" type="collision" x="400" y="320" width="48" height="16"/>
  </objectgroup>

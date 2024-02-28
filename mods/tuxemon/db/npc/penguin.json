@@ -3,7 +3,7 @@
   "template": [
     {
       "sprite_name": "penguin",
-      "combat_front": "adventurer",
+      "combat_front": "penguin",
       "slug": "noclass"
     }
   ]

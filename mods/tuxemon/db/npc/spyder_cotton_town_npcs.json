@@ -170,16 +170,6 @@
     ]
   },
   {
-    "slug": "spyder_cottoncenter_krystal",
-    "template": [
-      {
-        "sprite_name": "nurse",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-    ]
-  },
-  {
     "slug": "spyder_cottoncenter_ada",
     "template": [
       {

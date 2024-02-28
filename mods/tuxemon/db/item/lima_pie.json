@@ -1,0 +1,20 @@
+{
+  "conditions": [
+    "is level >=,0",
+    "is has_path lima_pie"
+  ],
+  "effects": [
+    "evolve"
+  ],
+  "slug": "lima_pie",
+  "sort": "utility",
+  "sprite": "gfx/items/lima_pie.png",
+  "category": "morph",
+  "type": "Consumable",
+  "usable_in": [
+    "WorldState"
+  ],
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
+}

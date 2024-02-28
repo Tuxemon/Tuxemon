@@ -40,7 +40,7 @@ events:
     type: "event"
   Payment:
     actions:
-    - char_stop
+    - char_stop player
     - lock_controls
     - wait 1
     - char_face player,left

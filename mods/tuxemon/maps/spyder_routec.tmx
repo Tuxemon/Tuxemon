@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="278">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="282">
  <properties>
   <property name="east" value="paper_town"/>
   <property name="edges" value="clamped"/>
@@ -22,7 +22,7 @@
  </layer>
  <layer id="5" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtWUkOwjAMzIET8A6QCrwEXsLyM17G8gc8ghGWJacqW+ZApNAkjtth4nEC7SalLKyiXMelLK29evRP1u8a2oFpa8/fWT0bFpS9tQ9WL49+a3s3Nf6sqhWsJcrWsO0E8SG2sIZHQWzgjTpQxUcdqOIDhyiq+JhP7ij1Pn3e1UP3zMuK2IgJOUa1cP9Sxcf8p4qP+U8VH3BxD1bEyPzHqxpG5j9VDfPcCd6IFe14hsaYL9FeO2PDFu3+Xn1txh+xcq0z7UQ7c1Tmn9n7cNEOf88dxxWus1Epc6v87gqYPIa1YdtYxZopaoT8vbuPeP+oBa+loVohf5kWPNe1Nv0zLfTZs3uTP9ip42xui3Hy99fva+yTP3gr6xf55dfx53Wdsev5y+Z8c5y6ztbO6/ebOGr3jvnSz23NH7Fk+6sCf7U4VOGvLw7Jc6trLQZbYYrPzWIwzmvRRwyCwywH+/03xmvkfogdvjX/aEcfZWn/zeP9Ae3k9lO/LRjvr5y3gMn74z3CDTgCmQY=
+   eAHtmV1OwzAQhPPAE3AOkEo5CZykhZtxMn7uwA7wSatF67SBknnAkhvb60kn492122wupukm6sv59FG20b6N+vrV3xxoF/gtMODVf44++CV2YXbx/fuolIdoP6b+oXaeDzzPB36pfXMZ+kV1K1oLlV1w2xvyk29oDZ4MuUk3/NiVH37syk8aqrjyI94/Wfp95rzpx+57XnbkqBzjWth/XPmR/1z5kf9c+YkXe7AjR/IfVzeO5D/XGObcKN3gqnY9A2ssl2ofnZFlq/Z8r7k2/gdX1rqLnWonR3X4zj7HC7vwWTvGHa5XZ9N0HZVnd+CUOdwFt/uoWjPHGEG/n+4jGV9jIcfSsbGCfl0sZK1HbfBdLMzZu3ujn+zEcTd3jXH0+4/fZeqjn9DO8av88tf+l+O6Uzfr18055Thx3a1djt9T8hjdu+bLPHdt/eDS7a8O+o380EW/OT9E57WuIx9ci1P93s4H67w1+vJBadjl4Lz/Vn+t2h9jF3aEr3b1Vbbx37zeH2BH29/6bYG/LzlviVPG6z3COzxflTA=
   </data>
  </layer>
  <layer id="6" name="Tile Layer 4" width="40" height="40">
@@ -31,12 +31,7 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
-  <object id="177" type="collision" x="112" y="272" width="64" height="64"/>
   <object id="198" type="collision" x="608" y="320" width="32" height="224"/>
-  <object id="238" type="collision" x="144" y="336" width="112" height="32"/>
-  <object id="239" type="collision" x="144" y="368" width="48" height="16"/>
-  <object id="240" type="collision" x="208" y="368" width="48" height="16"/>
-  <object id="241" type="collision" x="112" y="336" width="32" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="155" name="Teleport to Candy Town" type="event" x="0" y="128" width="16" height="128">
@@ -453,6 +448,38 @@
     <property name="act2" value="char_face player,right"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,right"/>
+   </properties>
+  </object>
+  <object id="278" name="Teleport to Dryad" type="event" x="48" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_dryadsgrove.tmx,3,39,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="279" name="Teleport to Dryad" type="event" x="112" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_dryadsgrove.tmx,7,39,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="280" name="Teleport to Dryad" type="event" x="176" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_dryadsgrove.tmx,11,39,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="281" name="Teleport to Dryad" type="event" x="240" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_dryadsgrove.tmx,15,39,0.3"/>
+    <property name="act2" value="char_face player,up"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
  </objectgroup>

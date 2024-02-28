@@ -52,8 +52,10 @@ class InfoAction(EventAction):
         monster_id = uuid.UUID(player.game_variables[variable])
         monster = get_monster_by_iid(self.session, monster_id)
         if monster is None:
-            logger.error("Monster not found")
-            return
+            monster = player.find_monster_in_storage(monster_id)
+            if monster is None:
+                logger.error("Monster not found")
+                return
         character = monster.owner
         if character is None:
             logger.error(f"{monster.name}'s owner not found!")

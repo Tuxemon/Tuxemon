@@ -10,6 +10,7 @@
   "is_fast": true,
   "potency": 1,
   "power": 3,
+  "randomly": false,
   "range": "melee",
   "recharge": 3,
   "sfx": "sfx_blaster",

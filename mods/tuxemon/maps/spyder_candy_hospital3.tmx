@@ -42,7 +42,7 @@
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="35" name="Stop!" type="event" x="80" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="char_stop"/>
+    <property name="act1" value="char_stop player"/>
     <property name="act2" value="translated_dialog spyder_hospital_warning1"/>
     <property name="act3" value="pathfind player,5,16"/>
     <property name="cond1" value="is char_at player"/>
@@ -64,7 +64,7 @@
   </object>
   <object id="41" name="Stop! 2" type="event" x="80" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="char_stop"/>
+    <property name="act1" value="char_stop player"/>
     <property name="act2" value="translated_dialog spyder_hospital_warning2"/>
     <property name="act3" value="pathfind player,5,14"/>
     <property name="cond1" value="is char_at player"/>
@@ -74,7 +74,7 @@
   </object>
   <object id="44" name="Stop!" type="event" x="96" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="char_stop"/>
+    <property name="act1" value="char_stop player"/>
     <property name="act2" value="translated_dialog spyder_hospital_warning1"/>
     <property name="act3" value="pathfind player,6,16"/>
     <property name="cond1" value="is char_at player"/>
@@ -83,7 +83,7 @@
   </object>
   <object id="45" name="Stop! 2" type="event" x="96" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="char_stop"/>
+    <property name="act1" value="char_stop player"/>
     <property name="act2" value="translated_dialog spyder_hospital_warning2"/>
     <property name="act3" value="pathfind player,6,14"/>
     <property name="cond1" value="is char_at player"/>

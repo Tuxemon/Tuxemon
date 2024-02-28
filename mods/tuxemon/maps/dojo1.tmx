@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="30">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="30">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -7,18 +7,10 @@
   <property name="slug" value="dojo1"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="3865" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
- <tileset firstgid="6835" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="10699" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
+ <tileset firstgid="6835" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="10699" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="24" height="12">
   <data encoding="base64" compression="zlib">
    eAGdkUsKwkAQRHsh+LtBFHGlgp+T6B08h3g5De49g27iB8TPAazCaeg0M5C4KGZSNf1SmewykUGvrEPCe2WyplK55+TgPKAN+FZglJ6Z0Tv2f0rllsH9M/CLqcgl6IqV8zHP8mO595TfnIncwL1DbezJ994b3j7oE8ljM5bfAbcLWb739PuV5XN2sp7lt5BRlu+9E/IzpHyfk2+9uvwl5ld/8u39D/Hv/f3Tm4O9gFK5n7H97b1tA9972j+Vp+5/hE7joAnWvCES87R/Kvcz2p/nq0j7VznLM3X5tn+Vd5D/BUMisEM=
@@ -65,13 +57,13 @@
   <object id="29" name="Player Spawn" type="event" x="80" y="160" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ff0000" id="6" name="Collisions">
-  <object id="3" type="collision" x="0" y="0" width="16" height="192"/>
+  <object id="3" type="collision" x="0" y="32" width="16" height="160"/>
   <object id="4" type="collision" x="0" y="0" width="384" height="32"/>
-  <object id="5" type="collision" x="368" y="0" width="16" height="192"/>
-  <object id="6" type="collision" x="80" y="0" width="16" height="144"/>
-  <object id="7" type="collision" x="288" y="0" width="16" height="144"/>
-  <object id="8" type="collision" x="208" y="0" width="16" height="144"/>
-  <object id="9" type="collision" x="160" y="0" width="16" height="144"/>
+  <object id="5" type="collision" x="368" y="32" width="16" height="160"/>
+  <object id="6" type="collision" x="80" y="32" width="16" height="112"/>
+  <object id="7" type="collision" x="288" y="32" width="16" height="112"/>
+  <object id="8" type="collision" x="208" y="32" width="16" height="112"/>
+  <object id="9" type="collision" x="160" y="32" width="16" height="112"/>
   <object id="10" type="collision" x="176" y="48" width="32" height="32"/>
   <object id="11" type="collision" x="16" y="96" width="32" height="16"/>
   <object id="12" type="collision" x="48" y="64" width="32" height="16"/>
@@ -89,8 +81,5 @@
   <object id="24" type="collision" x="96" y="112" width="16" height="16"/>
   <object id="25" type="collision" x="64" y="80" width="16" height="16"/>
   <object id="26" type="collision" x="16" y="112" width="16" height="16"/>
-  <object id="27" type="collision-line" x="192" y="96">
-   <polyline points="0,0 16,0"/>
-  </object>
  </objectgroup>
 </map>

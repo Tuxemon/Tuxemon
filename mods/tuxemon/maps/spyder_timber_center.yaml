@@ -19,37 +19,11 @@ events:
     x: 6
     y: 10
     type: "event"
-  Heal:
-    actions:
-    - set_monster_health
-    - set_monster_status
-    - variable_math cathedral_ads,+,1
-    - translated_dialog okaythen
-    - char_face spyder_timbercenter_luciana,up
-    - wait 1
-    - char_face spyder_timbercenter_luciana,down
-    - translated_dialog okaythen2
-    - set_variable chooses:none
-    - set_variable teleport_faint:spyder_timber_center.tmx 6 7
-    conditions:
-    - is variable_set chooses:yes
-    type: "event"
   Create Nurse:
     actions:
-    - create_npc spyder_timbercenter_luciana,5,4
+    - create_npc spyder_cathedral_nurse,5,4
     conditions:
-    - not char_exists spyder_timbercenter_luciana
-    type: "event"
-  Talk Nurse:
-    actions:
-    - translated_dialog spyder_cotton_nurse1
-    - translated_dialog_choice yes:no,chooses
-    conditions:
-    - is char_facing_tile player
-    - is button_pressed K_RETURN
-    - not variable_set chooses:yes
-    x: 5
-    y: 5
+    - not char_exists spyder_cathedral_nurse
     type: "event"
   Use Computer:
     actions:
@@ -70,4 +44,145 @@ events:
     - is variable_set kernelquest:yes
     x: 10
     y: 3
+    type: "event"
+  Read Sign:
+    actions:
+    - translated_dialog spyder_pay_cathedral
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 1
+    y: 2
+    type: "event"
+  Talk Nurse:
+    actions:
+    - translated_dialog spyder_billing_cathedral1
+    - translated_dialog_choice yes:no,billcathedral
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - not variable_set chooses:yes
+    x: 5
+    y: 5
+    type: "event"
+  Heal Yes:
+    actions:
+    - translated_dialog spyder_billing_cathedral2
+    - set_variable billcathedral:proceed
+    conditions:
+    - is variable_set billcathedral:yes
+    type: "event"
+  Heal No:
+    actions:
+    - set_variable billcathedral:null
+    conditions:
+    - is variable_set billcathedral:no
+    type: "event"
+  Heal Cannot Afford:
+    actions:
+    - copy_variable cathedral_share_full,cathedral_share
+    - copy_variable cathedral_interest_full,cathedral_interest
+    - variable_math cathedral_share_full,*,100
+    - variable_math cathedral_interest_full,*,100
+    - format_variable cathedral_share_full,int
+    - format_variable cathedral_interest_full,int
+    - lock_controls
+    - translated_dialog spyder_billing_cathedral4
+    - translated_dialog spyder_billing_cathedral3
+    - translated_dialog spyder_billing_cathedral5
+    - set_variable billcathedral:null
+    - format_variable party_lost_hp,int
+    - modify_money bill_cathedral,,party_lost_hp
+    - modify_money bill_cathedral,,cathedral_interest
+    - set_monster_health
+    - set_monster_status
+    - char_face spyder_cathedral_nurse,up
+    - wait 1
+    - char_face spyder_cathedral_nurse,down
+    - translated_dialog spyder_billing_cathedral6
+    - unlock_controls
+    - set_variable teleport_faint:spyder_healing_center.tmx 6 7
+    conditions:
+    - is variable_set billcathedral:proceed
+    - not money_is player,greater_or_equal,party_lost_hp
+    type: "event"
+  Heal Afford:
+    actions:
+    - set_variable billcathedral:null
+    - format_variable party_lost_hp,-int
+    - modify_money player,,party_lost_hp
+    - set_monster_health
+    - set_monster_status
+    - char_face spyder_cathedral_nurse,up
+    - wait 1
+    - char_face spyder_cathedral_nurse,down
+    - translated_dialog spyder_billing_cathedral6
+    - set_variable teleport_faint:spyder_healing_center.tmx 6 7
+    conditions:
+    - is variable_set billcathedral:proceed
+    - is money_is player,greater_or_equal,party_lost_hp
+    type: "event"
+  Create Shady Guy:
+    actions:
+    - create_npc spyder_shady,11,9
+    - char_face spyder_shady,left
+    conditions:
+    - not char_exists spyder_shady
+    - is money_is bill_cathedral,greater_than,0
+    - is party_size player,greater_than,0
+    type: "event"
+  Talk Shady Guy:
+    actions:
+    - translated_dialog spyder_scoop_tuxemon1
+    - translated_dialog_choice yes:no,selltuxemon
+    behav:
+    - talk spyder_shady
+    conditions:
+    - is money_is bill_cathedral,greater_than,0
+    type: "event"
+  Selling Yes:
+    actions:
+    - translated_dialog spyder_scoop_tuxemon2
+    - get_player_monster sold
+    - set_variable selltuxemon:proceed
+    conditions:
+    - is variable_set selltuxemon:yes
+    type: "event"
+  Selling No:
+    actions:
+    - translated_dialog spyder_scoop_tuxemon4
+    - set_variable selltuxemon:null
+    conditions:
+    - is variable_set selltuxemon:no
+    type: "event"
+  Proceed Selling:
+    actions:
+    - info sold,level
+    - variable_math info_level,*,scoop_coeff,scoop_price
+    - format_variable scoop_price,int
+    - translated_dialog spyder_scoop_tuxemon3
+    - translated_dialog_choice yes:no,isitok
+    conditions:
+    - is variable_set selltuxemon:proceed
+    - not variable_set isitok:yes
+    - not variable_set isitok:no
+    type: "event"
+  Agree Yes:
+    actions:
+    - remove_monster sold
+    - format_variable scoop_price,-int
+    - modify_money bill_cathedral,,scoop_price
+    - set_variable selltuxemon:null
+    - set_variable isitok:null
+    - translated_dialog spyder_scoop_tuxemon5
+    conditions:
+    - is variable_set isitok:yes
+    type: "event"
+  Agree No:
+    actions:
+    - set_variable selltuxemon:null
+    - set_variable isitok:null
+    - translated_dialog spyder_scoop_tuxemon4
+    conditions:
+    - is variable_set isitok:no
     type: "event"

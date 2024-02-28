@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="22">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="22">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -37,18 +37,18 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">
-  <object id="3" type="collision" x="0" y="0" width="32" height="240"/>
-  <object id="4" type="collision" x="32" y="0" width="608" height="32"/>
+  <object id="3" type="collision" x="0" y="0" width="48" height="240"/>
+  <object id="4" type="collision" x="48" y="16" width="528" height="16"/>
   <object id="5" type="collision" x="576" y="32" width="64" height="112"/>
-  <object id="6" type="collision" x="576" y="160" width="64" height="160"/>
-  <object id="7" type="collision" x="0" y="288" width="576" height="32"/>
-  <object id="8" type="collision" x="0" y="256" width="64" height="32"/>
+  <object id="6" type="collision" x="576" y="160" width="64" height="128"/>
+  <object id="7" type="collision" x="48" y="288" width="528" height="16"/>
+  <object id="8" type="collision" x="0" y="256" width="48" height="32"/>
   <object id="10" type="collision" x="320" y="32" width="32" height="32"/>
   <object id="11" type="collision" x="272" y="32" width="32" height="32"/>
   <object id="12" type="collision" x="448" y="96" width="32" height="32"/>
   <object id="13" type="collision" x="352" y="176" width="32" height="32"/>
   <object id="14" type="collision" x="256" y="176" width="32" height="32"/>
-  <object id="15" type="collision" x="528" y="16" width="32" height="32"/>
+  <object id="15" type="collision" x="528" y="32" width="32" height="16"/>
   <object id="16" type="collision" x="528" y="192" width="32" height="32"/>
   <object id="17" type="collision" x="144" y="240" width="32" height="32"/>
  </objectgroup>

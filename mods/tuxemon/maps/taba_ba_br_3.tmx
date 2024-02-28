@@ -60,7 +60,7 @@
   </object>
   <object id="11" name="there he is" type="event" x="32" y="48" width="16" height="32">
    <properties>
-    <property name="act1" value="char_stop"/>
+    <property name="act1" value="char_stop player"/>
     <property name="act2" value="lock_controls"/>
     <property name="act3" value="pathfind player,6,9"/>
     <property name="act4" value="char_face player,right"/>

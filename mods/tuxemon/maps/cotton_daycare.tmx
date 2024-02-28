@@ -52,8 +52,8 @@
   </object>
   <object id="17" name="Play Music" type="event" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act10" value="play_music music_house_downstairs"/>
-    <property name="cond10" value="not music_playing music_house_downstairs"/>
+    <property name="act10" value="play_music music_home"/>
+    <property name="cond10" value="not music_playing music_home"/>
    </properties>
   </object>
   <object id="19" name="Player Spawn" type="event" x="32" y="112" width="16" height="16"/>

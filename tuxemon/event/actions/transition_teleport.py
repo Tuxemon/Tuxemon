@@ -63,6 +63,6 @@ class TransitionTeleportAction(EventAction):
             self.transition.cleanup()
             # set the delayed teleport
             action = self.session.client.event_engine
-            params = [self.map_name, self.x, self.y]
+            params = ["player", self.map_name, self.x, self.y]
             action.execute_action("delayed_teleport", params)
             self.stop()

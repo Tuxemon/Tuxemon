@@ -353,7 +353,7 @@ events:
     type: "event"
   Billie:
     actions:
-    - char_stop
+    - char_stop player
     - lock_controls
     - create_npc spyder_billie,16,36
     - pathfind_to_player spyder_billie,down

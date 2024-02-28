@@ -22,7 +22,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="20" height="11">
   <data encoding="base64" compression="zlib">
-   eAGbIsHAMIWKmIFEMBloNwwguwMkBuIjA0YBBgZuIOYBYmQAElfmZ2BQAWJk85DVgNjo5j0FqtcC6tVGMm8RUEwRyHcC0s5AvA/ohj4cOA/Nfej2IfPTgWaBwDOgnm048DQs5sUC3fIYqBeG45HcCjFxeJOgcDsBxCeBGBaGlPgYZMZzIH5BgXkisgwMokAsBsSkAgDtRivB
+   eAGbIsHAMIWKmAEItguASOLAZKDdMIDsDpAYiA8C16DmMQJpbiDmQTMfJK7Mz8CgAsTI5kF0I0iYeTCRp0D1WkC92kjmLQKKKQL5TkDaGYj3Ad3QhwPnIbkdZiYuOh1oFgg8A+rZhgNPw2JeLNAtj4F6YTgeya0QE4c3CQq3E0B8EohhYUiJj0FmPAfiFxSYJyLLwCAKxGJATCoAANt9LW4=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="20" height="11">

@@ -130,16 +130,6 @@
     ]
   },
   {
-    "slug": "spyder_flowercenter_tiara",
-    "template": [
-      {
-        "sprite_name": "nurse",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-    ]
-  },
-  {
     "slug": "spyder_flowerscoop_jarod",
     "template": [
       {

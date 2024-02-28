@@ -4151,7 +4151,7 @@ msgstr "Dippel"
 msgid "spyder_greenwash_moreau"
 msgstr "Moreau"
 
-msgid "omnichannel_sign"
+msgid "spyder_omnichannel_sign"
 msgstr "Omnichannel HQ: Facciamo notizia"
 
 msgid "taba_town_homeplace"

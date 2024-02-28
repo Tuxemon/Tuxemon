@@ -6,6 +6,7 @@ import logging
 from dataclasses import dataclass
 from typing import final
 
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
 
@@ -25,7 +26,7 @@ class DelayedTeleportAction(EventAction):
     Script usage:
         .. code-block::
 
-            delayed_teleport <map_name>,<position_x>,<position_y>
+            delayed_teleport <slug>,<map_name>,<position_x>,<position_y>
 
     Script parameters:
         map_name: Name of the map to teleport to.
@@ -35,6 +36,7 @@ class DelayedTeleportAction(EventAction):
     """
 
     name = "delayed_teleport"
+    character: str
     map_name: str
     position_x: int
     position_y: int
@@ -45,8 +47,14 @@ class DelayedTeleportAction(EventAction):
         if world.delayed_teleport:
             logger.error("Stop, there is a teleport in progress")
             return
-        player = self.session.player
-        player.remove_collision(player.tile_pos)
+
+        char = get_npc(self.session, self.character)
+        if char is None:
+            logger.error(f"{self.character} not found")
+            return
+
+        char.remove_collision(char.tile_pos)
+        world.delayed_char = char
         world.delayed_teleport = True
         world.delayed_mapname = self.map_name
         world.delayed_x = self.position_x

@@ -605,6 +605,12 @@ msgstr "Petrified Dung"
 msgid "petrified_dung_description"
 msgstr "It looks like, well, poo ... but it's hard as stone."
 
+msgid "lima_pie"
+msgstr "Lima Pie"
+
+msgid "lima_pie_description"
+msgstr "A tasty cake baked from lima berries."
+
 msgid "pyramidion"
 msgstr "Pyramidion"
 
@@ -731,6 +737,12 @@ msgstr "Deposit"
 
 msgid "withdraw"
 msgstr "Withdraw"
+
+msgid "pay"
+msgstr "Pay"
+
+msgid "e_pay"
+msgstr "E-Pay"
 
 msgid "no_money_operation"
 msgstr "{operation} not possible!"
@@ -4675,6 +4687,12 @@ msgstr "Like a mighty tree, WINDEYE plants itself on the top of hills to soak in
 msgid "windeye"
 msgstr "Windeye"
 
+msgid "wolffsky_description"
+msgstr "This tuxemon is very friendly. It is common to go hunting with the help of WOLFFSKY."
+
+msgid "wolffsky"
+msgstr "Wolffsky"
+
 msgid "woodoor_description"
 msgstr "When a haunted house burns to the ground, sometimes all that is left is the front door. It hops away to find its next home."
 
@@ -5052,6 +5070,8 @@ msgid "cat_lizard"
 msgstr "Lizard"
 msgid "cat_long_winged"
 msgstr "Long Winged"
+msgid "cat_lupine"
+msgstr "Lupine"
 msgid "cat_ma_bell"
 msgstr "Ma Bell"
 msgid "cat_macropod"
@@ -5290,6 +5310,28 @@ msgstr "Neuter"
 
 msgid "gender_female"
 msgstr "Female"
+
+#Player additional gender, since very few ID as 'neuter'
+
+msgid "gender_enby"
+msgstr "Nonbinary"
+
+msgid "gender_whatever"
+msgstr "Whatever"
+
+#Player Color & Gender
+
+msgid "white_female"
+msgstr "White female"
+
+msgid "black_female"
+msgstr "Black female"
+
+msgid "white_male"
+msgstr "White male"
+
+msgid "black_male"
+msgstr "Black male"
 
 # Monster types
 msgid "aether"
@@ -7102,6 +7144,15 @@ msgstr "I'm pretty sure you're too young to drink..."
 msgid "professorswife"
 msgstr "Oh No! You just missed him. I think he went into town though. Maybe check there?"
 
+msgid "professorswife_room"
+msgstr "Hey! Don't just walk into someone's room without permission."
+
+msgid "professorswife1"
+msgstr "I wish Maple would be easier to deal with. Her current attitude will definitely get her in trouble in Cotton Town..."
+
+msgid "professorswife2"
+msgstr "Maybe you could check on her and let me know how she's doing?"
+
 msgid "waithere2"
 msgstr "Oh, I hope nobody got hurt from the fallen tree!"
 
@@ -7371,11 +7422,32 @@ msgstr "Thinking too much can harm us."
 msgid "taba_house3_client3a"
 msgstr "It makes me think about my mom's house."
 
+msgid "taba_house3_client4a"
+msgstr "I'm here with my sister, our uncle sent us both off to Taba to search for information."
+
+msgid "taba_house3_client5a"
+msgstr "Our uncles's TUMBLEBEE hives are dying out."
+
+msgid "taba_house3_choice1"
+msgstr "Loss of natural habitat?"
+
+msgid "taba_house3_choice2"
+msgstr "Use of pesticides?"
+
+msgid "taba_house3_client5a_first"
+msgstr "It could be! If we can all plant flowers, shrubs and trees, and stop mowing."
+
+msgid "taba_house3_client5a_second"
+msgstr "We are scared about pesticides."
+
 msgid "taba_house4_owner1"
 msgstr "Welcome to The Honorable Seagulls Pub!"
 
 msgid "taba_house4_client1a"
 msgstr "My grandma used to do a similar dish!"
+
+msgid "taba_house4_waiter1"
+msgstr "Many dishes dropped off the new menu!"
 
 msgid "taba_house4_client2a"
 msgstr "Eh? Just filling up an empty stomach."
@@ -7388,6 +7460,48 @@ msgstr "It's brown, dense, but it doesn't look like pudding..."
 
 ## DIALOG TRANSLATIONS ##
 # spyder intros
+
+msgid "spyder_cathedral"
+msgstr "Cathedral"
+
+msgid "bill_cathedral"
+msgstr "Cathedral Bill"
+
+msgid "spyder_pay_cathedral"
+msgstr "SCAN TO PAY. You can scan the QR code and make payment to the Cathedral by using the Bank App."
+
+msgid "spyder_billing_cathedral1"
+msgstr "Welcome to the Cathedral Centre!\n Would you like to heal your monsters?"
+
+msgid "spyder_billing_cathedral2"
+msgstr "All done. That will be ${{currency}}${{var:party_lost_hp}}."
+
+msgid "spyder_billing_cathedral3"
+msgstr "Plus a ${{currency}}${{var:cathedral_fee}} call-out fee if we had to send the ambulance to collect you."
+
+msgid "spyder_billing_cathedral4"
+msgstr "Oh, you can't afford to pay? No problem. We'll add it to your bill, plus ${{var:cathedral_interest_full}}% interest."
+
+msgid "spyder_billing_cathedral5"
+msgstr "When you win money, we'll take a share [${{var:cathedral_share_full}}%] until you've paid us back. Easy peasy!"
+
+msgid "spyder_billing_cathedral6"
+msgstr "Thank you for choosing Cathedral! Have a wonderful day!"
+
+msgid "spyder_scoop_tuxemon1"
+msgstr "Hey buddy, I couldn't help but notice those medical fees are building up. I work for Scoop, I know some guys.\n Why don't you sell me one of your tuxemon so you can get out from under that debt?"
+
+msgid "spyder_scoop_tuxemon2"
+msgstr "Which one?"
+
+msgid "spyder_scoop_tuxemon3"
+msgstr "I can give you ${{currency}}${{var:scoop_price}}, is it ok?"
+
+msgid "spyder_scoop_tuxemon4"
+msgstr "Let me know if you change your mind!"
+
+msgid "spyder_scoop_tuxemon5"
+msgstr "What, you thought you'd get cash back? Tuxemon are pets, not things to be bought and sold. I'm just helping you out with your debt."
 
 msgid "spyder_intro_question"
 msgstr "Do you want to skip the intro?"
@@ -7458,6 +7572,30 @@ msgstr "Oh hello ${{name}}, I didn't see you there among all this hustle and deb
 
 msgid "spyder_papertown_grannypiper2"
 msgstr "You know, the Pipers made our fortune in the daycare business! \n I've been retired for ten years and I'm getting bored. I want to get back into it!"
+
+msgid "spyder_papertown_grannypiper3"
+msgstr "Good morning! Oh, ${{name}}, it's you! You must have heard that my Daycare Centre is open.\n Do you want me to tell you how it works? Okay. You give me a tuxemon, and I look after it while you travel.\n When you return, pay me a small fee and I'll return it to you. ... Huh? What's in it for you?\n Well, tuxemon under my care grow up, increasing in levels."
+
+msgid "spyder_papertown_grannypiper4"
+msgstr "Hello ${{name}}. Would you like to put a tuxemon into my Daycare Centre?"
+
+msgid "spyder_papertown_grannypiper5"
+msgstr "Hello ${{name}}. Would you like to retrieve your ${{var:daycare_name}}?"
+
+msgid "spyder_papertown_grannypiper6"
+msgstr "Okay, ${{var:daycare_name}} rose ${{var:daycare_level}} levels under our care. That will be ${{currency}}${{var:daycare_exp}}."
+
+msgid "spyder_papertown_grannypiper7"
+msgstr "Oh, it looks like you are out of money! Looks like you need to work harder!"
+
+msgid "spyder_papertown_grannypiper8"
+msgstr "Place your tuxemon in the Daycare Centre! Give us a tuxemon, and we will look after it while you travel.\n When you return, pay a small fee and we'll return it. The longer tuxemon are in our care, the higher in level they will rise!"
+
+msgid "spyder_papertown_grannypiper9"
+msgstr "Dearie, I can't take your only tuxemon! Come back when you have another."
+
+msgid "spyder_papertown_grannypiper10"
+msgstr "It looks like a business plan."
 
 msgid "spyder_papertown_danteshop"
 msgstr "I'm working, boss, I'm working! \n Oh, it's just you. You know, we throw out so much of our stock. \n It's such a terrible waste. It all goes into the bins behind the back of the Store."
@@ -8975,8 +9113,37 @@ msgid "spyder_dryadsgrove_sylvia1"
 msgstr "The seasons turn with Volcoli's dance."
 msgid "spyder_dryadsgrove_sylvia2"
 msgstr "We nymphs wax and wane in power with the passing of the seasons."
+
+msgid "spyder_dryadsgrove_boy_healthy"
+msgstr "Wow, your monsters look really healthy! That's so great.\n You must be rich to be able to look after them so well.\n Hey -- if I gave you my buddy RUFF, you'd look after her, right?"
+
+msgid "spyder_dryadsgrove_boy_yes"
+msgstr "*SNIFF* I'm going to miss you, buddy. But it's for the best."
+
+msgid "spyder_dryadsgrove_boy_no"
+msgstr "Oh. Yeah. Fair enough. It's real expensive, I know."
+
+msgid "spyder_dryadsgrove_boy_not_healthy"
+msgstr "Hey, your monsters are in rough shape. I understand what you're going through.\n My WOLFFSKY got herself hurt, but we can't afford the doctor's fees just now to look after her. It's rough."
+
+msgid "spyder_dryadsgrove_dad1"
+msgstr "I feel bad. When we got him that WOLFFSKY for his birthday, we never realised how much the vet fees would be.\n We just can't afford them. And then RUFF got in that fight ..."
+
+msgid "spyder_dryadsgrove_boy_after"
+msgstr "Hey, how's RUFF going? You're taking good care of her, right?"
+
+msgid "spyder_dryadsgrove_boy_question"
+msgstr "Return RUFF to boy?"
+
+msgid "spyder_dryadsgrove_boy_after_yes"
+msgstr "Oh wow! Oh wow! You just made my day. My week! My year! I missed RUFF so much.\n *SNIFF* You're the best!"
+
+msgid "spyder_dryadsgrove_boy_after_no"
+msgstr "*SNIFF* I understand. It's easy to get attached, and RUFF looks like he's doing really well. Bye RUFF."
+
 msgid "spyder_leatherhouse1_tennisplayer1"
 msgstr "Is Frostbite an Earth element technique or a Water element technique? "
+
 msgid "spyder_leatherhouse1_tennisplayer2"
 msgstr "Trick question - it's both!"
 
@@ -9141,6 +9308,9 @@ msgstr "The sledgehammer smashes the boulder apart."
 
 msgid "spyder_dante"
 msgstr "Dante"
+
+msgid "spyder_cathedral_nurse"
+msgstr "Cathedral Nurse"
 
 msgid "spyder_drokoro"
 msgstr "Drokoro"
@@ -9752,18 +9922,10 @@ msgid "spyder_cottonartshop_carter"
 msgstr "Carter"
 msgid "spyder_wayfarer1_norm"
 msgstr "Norm"
-msgid "spyder_timbercenter_luciana"
-msgstr "Luciana"
-msgid "spyder_candycenter_diamond"
-msgstr "Diamond"
-msgid "spyder_cottoncenter_krystal"
-msgstr "Krystal"
 msgid "spyder_cottoncenter_ada"
 msgstr "Ada"
 msgid "spyder_cottoncenter_ada1"
 msgstr "The computer system is experiencing technical difficulties.\n Withdrawing and depositing monsters and items is currently unavailable.\n Thank you for your patience."
-msgid "spyder_leathercenter_sofia"
-msgstr "Sofia"
 msgid "spyder_candyscoop_clint"
 msgstr "Clint"
 msgid "spyder_cottonscoop_joe"
@@ -10453,27 +10615,48 @@ msgid "spyder_candyhouse2_captain"
 msgstr "I'm writing a book about my journey to the Archipelago. It is composed of nine volcanic islands.\n"
 "About 1,400 km (870 mi) west of Paper Town, about 1,500 km (930 mi) north west of Candy Town."
 
+msgid "spyder_omnichannel_sign"
+msgstr "Omnichannel HQ: We Make Headlines"
+
 msgid "cotton_misa_fireplace"
 msgstr "It looks like someone burned papers."
+
 msgid "cotton_misa_tv"
-msgstr "What's on TV? The story of how Omnichannel became a global phenomenon,\n"
-"reflecting and influencing a generation in the process."
+msgstr "What's on TV? The story of how Omnichannel became a global phenomenon, reflecting and influencing a generation in the process."
+
 msgid "cotton_misa_granny"
-msgstr "Are you here to ask for my niece's hand? No? I'm sorry!"
+msgstr "Are you here to ask for my grand-daughter's hand?"
+
+msgid "cotton_misa_granny_yes"
+msgstr "Ah, well good luck with that! She inherited my witty personality and her Mother's temper, so she's a handful!"
+
+msgid "cotton_misa_granny_no"
+msgstr "No? I'm sorry!"
+
+msgid "cotton_misa_granny2"
+msgstr "Oh! You must be one of those friends my granddaughter was talking about!"
+
 msgid "cotton_misa_littlebro"
 msgstr "My sister is very nice to me."
 
-msgid "omnichannel_sign"
-msgstr "Omnichannel HQ: We Make Headlines"
+msgid "cotton_underground_stop"
+msgstr "Sorry, I'm under orders to let no one pass."
+
+msgid "xero_omnichannel_sign"
+msgstr "Omnichannel HQ: We are Safety, We are Order, We are Omnichannel"
 
 msgid "taba_town_homeplace"
 msgstr "${{name}}'s house"
+
 msgid "taba_town_sign_profhouse"
 msgstr "Tuxemon Professor's House"
+
 msgid "taba_town_sign_proflab"
 msgstr "Tuxemon Professor's Lab"
+
 msgid "taba_town_sign_tuxemart"
 msgstr "Tuxemart - A place to buy and sell items"
+
 msgid "taba_town_sign_tuxecenter"
 msgstr "Tuxecenter - A place to heal your tuxemon"
 
@@ -10485,6 +10668,7 @@ msgstr "Achievement Maniac's House"
 
 msgid "xero_shaft1_sign"
 msgstr "Shaft Headquarters: Mining Division"
+
 msgid "xero_shaft2_sign"
 msgstr "Shaft Headquarters: Public Relations Division"
 

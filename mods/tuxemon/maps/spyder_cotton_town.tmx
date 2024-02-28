@@ -21,25 +21,25 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtVztOxDAQHRrogZVgAYlLsCWHoKDjAnAASqDgFjSwBd8bICFoEBKgXc5ABQgo+LU8a21pZGXCZJO1LeSRRrbj+Ty/OGOHaCAzU7aTaPMxmSgwCyvzV+/9ZP7+N3/1Vlfde3lh4HM+ofMNWV9ugW3N4ntW4svfh+49SlaZP4kZ3fPU+dOtYnirb9yPfhK+I81NE81DU5U71Lt7W/NSxZhxxWdgH/f8A4V2I/0PXCPv+iLRBrRMbiLiOwG2U2iZxMTHcW2NEW1Dd6BcDL4O6q1TPqftO1/TasW8Xy6HwHUEPS7AZ+wuSmpuD7H60EfBZq9F9In5Ly8nz+/3fXw94OpDHwR8vj8fu9zSGjaBbxbctS1/q+Pcu7jv4yu2ItLsP55bisOf7wbGx3M31ef8PXnnJR9r+GsKE4/zgr1q6vObsGff7fyrMM9j5X5YBs4q1MGwyEafza1dU8NGj0bOoKlhsnfcmaV2mPyXOJeuoH/JisLGj6GJ7c71YVs/Z9Njd667tun4deO5c921VeO5b7mqX5H9L45JW3E=
+   eAFjYIAACWEoY5BSn4UGqcOgzhoNP8riZzT8hnf4UeY70nXbyUL07GYnTi89y5fTQLfFQt33ikj3jeYP4uIRl6rR8MMVMsSJD/bwI84X5Kv6BmwffR/EbSRpEQYGGSAerOAMsLw7Cy3zBqsbR91F3xC4J49p30JgO38REXjxAPUHjhFp7wki1WGGAGUiQ8199YwMDA1A3AjEyGCwhN9yoLtWAPFKHO7bR0SZ+xiHmjmiDAxfgOnkKwlpBT1+zwPddQGIL+JwH3KYorNhduPyQznQfZLAOk8KWu+FsaGbgMlHdx+mCogIMfGLbDcuc5DFW+nsPmS7qcVGDr+XaPUlMp+Y8KOWm5DNeQ1Mq7Dy+S1ausUnh2zGKHtgQmANjvbrfSz18MC4kHa2wvxOTBlGjiuwtWXIMYeYMowcc+mhx1SKHrYwMBwA1ksHgZgQCCJCDboZxJh9HljuXQBicml0O6nNh9XrMJra5lNqHqxeh9GkmgfLy6Tqw6YeAPQRWak=
   </data>
  </layer>
  <layer id="6" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlk1uwjAQhWdFpS5hRSXu00KP0B9OQGkP078VUA4BHKGbdEd7j3bPY/EkY+G4ie3YbTzSJ2ec2PPmBZkUXZEPoEahzem5+myT19TxDX0/wJTH0LSvSV39nsgZMOVN6lNrURfn9Jx+8n4TY4yaofqq08v5icgFGIIRuASMK1xfgxtwC8bgP0cd/1z9iFHTVXNK66v4V+XZlHoMqeWYJ5zTR+rgvHp2mM4QruE4ORW5A1NwDx5AjPB5rtEP28g++RzzPKbrQH5Xbu/G1T/1jNG/T/bKbN8otvVu3YVf7epfeIVpV/Dl36wjMgcL8AaWQA3T74z1TffVPXxfs7bLvj72cKn/19eW+fc+OOxOzw/vtjMr86+djsTr+jdn2CPOxSfwDF7AK8hhd2DVF1mDDUgxttD1Cb4S1ZeiZ1lTeg7w/0QffSnV97XlOxN/eHo=
+   eAHtljkOwjAQRacCiRIqkLgP2xHYTsB2GLaK7RDAEWhCB9wDen6KkRwLY4JNbCAjPTkTx54/n8gkyBMdgRiBdE/OxWeTvGYdV+i7AVXuQlNYk3UVC0QloMqT1CfWYl18T87ZT55PYnRR81N9vdNLJUtUBTVQBw3A0cR1C7RBB3TBL8c7/pn64aKmqWaf1sfxL86zPvX4SS2PPOF7ulE8O1RniKy9lyPqgwEYghFwETbPNZ1PqnkXfac14znAv128VenT7ICpf+IZI3+fhDV03yi69azT19HUP1/7SkqXLf8WGaIlWIE12AAxVO8Z11fNi3vYvubaJvva2MOk/revfebfoRztTs6js/+ZPfPvPx1x1/UrZ9gY5+IETMEMzEEaege2RaId2AMf4wRdZ3DxVJ+PnqWa/HOA/0/k0ZZSeV9dfgfpxXwA
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">
   <object id="439" type="collision" x="80" y="608" width="256" height="32"/>
-  <object id="441" type="collision" x="0" y="144" width="32" height="400"/>
+  <object id="441" type="collision" x="0" y="144" width="32" height="368"/>
   <object id="442" type="collision" x="0" y="592" width="400" height="16"/>
   <object id="444" type="collision" x="624" y="480" width="16" height="160"/>
-  <object id="445" type="collision" x="624" y="432" width="16" height="16"/>
+  <object id="445" type="collision" x="624" y="320" width="16" height="128"/>
   <object id="447" type="collision" x="608" y="0" width="32" height="80"/>
   <object id="448" type="collision" x="368" y="0" width="240" height="16"/>
   <object id="449" type="collision" x="352" y="96" width="48" height="48"/>
@@ -50,7 +50,7 @@
   <object id="454" type="collision" x="592" y="176" width="16" height="32"/>
   <object id="455" type="collision" x="576" y="208" width="32" height="32"/>
   <object id="456" type="collision" x="592" y="240" width="16" height="32"/>
-  <object id="457" type="collision" x="576" y="272" width="32" height="32"/>
+  <object id="457" type="collision" x="576" y="272" width="64" height="32"/>
   <object id="458" type="collision" x="592" y="304" width="16" height="16"/>
   <object id="459" type="collision" x="496" y="320" width="96" height="48"/>
   <object id="460" type="collision" x="480" y="336" width="16" height="32"/>
@@ -62,8 +62,6 @@
   <object id="466" type="collision" x="240" y="320" width="16" height="16"/>
   <object id="467" type="collision" x="288" y="384" width="32" height="48"/>
   <object id="468" type="collision" x="336" y="384" width="32" height="48"/>
-  <object id="469" type="collision" x="240" y="368" width="48" height="16"/>
-  <object id="470" type="collision" x="384" y="368" width="160" height="16"/>
   <object id="471" type="collision" x="368" y="400" width="32" height="32"/>
   <object id="473" type="collision" x="544" y="384" width="80" height="48"/>
   <object id="474" type="collision" x="304" y="512" width="80" height="48"/>
@@ -71,14 +69,8 @@
   <object id="476" type="collision" x="496" y="512" width="32" height="48"/>
   <object id="477" type="collision" x="480" y="512" width="16" height="16"/>
   <object id="478" type="collision" x="320" y="384" width="16" height="16"/>
-  <object id="479" type="collision" x="64" y="320" width="16" height="160"/>
-  <object id="480" type="collision" x="80" y="320" width="160" height="16"/>
-  <object id="481" type="collision" x="224" y="336" width="16" height="144"/>
-  <object id="482" type="collision" x="192" y="464" width="32" height="16"/>
   <object id="483" type="collision" x="112" y="448" width="16" height="16"/>
   <object id="484" type="collision" x="176" y="448" width="16" height="16"/>
-  <object id="485" type="collision" x="192" y="336" width="32" height="32"/>
-  <object id="486" type="collision" x="80" y="336" width="32" height="32"/>
   <object id="487" type="collision" x="128" y="368" width="48" height="32"/>
   <object id="488" type="collision" x="512" y="384" width="32" height="32"/>
   <object id="489" type="collision" x="32" y="208" width="208" height="64"/>
@@ -105,14 +97,10 @@
   <object id="564" type="collision" x="448" y="384" width="48" height="48"/>
   <object id="565" type="collision" x="416" y="384" width="16" height="48"/>
   <object id="566" type="collision" x="432" y="384" width="16" height="32"/>
-  <object id="569" type="collision" x="32" y="512" width="32" height="48"/>
-  <object id="570" type="collision" x="48" y="560" width="16" height="16"/>
-  <object id="571" type="collision" x="0" y="544" width="32" height="32"/>
   <object id="572" type="collision" x="0" y="576" width="16" height="16"/>
   <object id="575" type="collision" x="416" y="96" width="48" height="48"/>
   <object id="576" type="collision" x="400" y="96" width="16" height="32"/>
   <object id="579" type="collision" x="464" y="128" width="32" height="16"/>
-  <object id="581" type="collision" x="80" y="464" width="32" height="16"/>
   <object id="590" type="collision" x="448" y="208" width="80" height="16"/>
   <object id="592" type="collision" x="464" y="16" width="32" height="80"/>
  </objectgroup>
@@ -142,7 +130,7 @@
   </object>
   <object id="531" name="Talk hackerintro" type="event" x="400" y="608" width="128" height="16">
    <properties>
-    <property name="act1" value="char_stop"/>
+    <property name="act1" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="create_npc spyder_cottontown_hacker,25,30"/>
     <property name="act30" value="pathfind spyder_cottontown_hacker,25,36"/>
@@ -204,7 +192,7 @@
   </object>
   <object id="540" name="Sign: Omnichannel HQ" type="event" x="352" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog omnichannel_sign"/>
+    <property name="act1" value="translated_dialog spyder_omnichannel_sign"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
@@ -241,7 +229,7 @@
   </object>
   <object id="548" name="Stop! Cotton" type="event" x="608" y="448" width="16" height="32">
    <properties>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="create_npc spyder_cottontown_hacker,23,23"/>
     <property name="act30" value="pathfind_to_player spyder_cottontown_hacker,left"/>
@@ -385,7 +373,7 @@
   </object>
   <object id="587" name="Nu Phone Mom" type="event" x="496" y="272" width="16" height="16">
    <properties>
-    <property name="act11" value="char_stop"/>
+    <property name="act11" value="char_stop player"/>
     <property name="act12" value="lock_controls"/>
     <property name="act13" value="create_npc spyder_papertown_mom,23,23"/>
     <property name="act14" value="pathfind spyder_papertown_mom,31,18"/>
@@ -449,7 +437,7 @@
   </object>
   <object id="591" name="Kernel Quest" type="event" x="320" y="432" width="16" height="16">
    <properties>
-    <property name="act11" value="char_stop"/>
+    <property name="act11" value="char_stop player"/>
     <property name="act12" value="lock_controls"/>
     <property name="act13" value="create_npc spyder_papertown_mom,18,33"/>
     <property name="act14" value="create_npc spyder_cottontown_hacker,24,33"/>

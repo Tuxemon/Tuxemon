@@ -6669,7 +6669,7 @@ msgstr "迪佩尔"
 msgid "spyder_greenwash_moreau"
 msgstr "莫罗"
 
-msgid "omnichannel_sign"
+msgid "spyder_omnichannel_sign"
 msgstr "全能公司总部.我们制造头条新闻"
 
 msgid "taba_town_homeplace"

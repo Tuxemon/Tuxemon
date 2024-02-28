@@ -7,9 +7,7 @@
   <property name="slug" value="scoop1"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
-  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/Superpowers_Tilesheet.tsx"/>
  <tileset firstgid="1601" source="../gfx/tilesets/core_indoor_floors.tsx"/>
  <tileset firstgid="5465" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="21" height="15">
@@ -42,9 +40,6 @@
   <object id="7" type="collision" x="128" y="64" width="64" height="112"/>
   <object id="8" type="collision" x="224" y="64" width="48" height="48"/>
   <object id="9" type="collision" x="224" y="128" width="96" height="96"/>
-  <object id="15" type="collision-line" x="336" y="48">
-   <polyline points="0,0 0,192"/>
-  </object>
   <object id="58" type="collision" x="48" y="176" width="16" height="16"/>
   <object id="59" type="collision" x="112" y="176" width="16" height="16"/>
  </objectgroup>

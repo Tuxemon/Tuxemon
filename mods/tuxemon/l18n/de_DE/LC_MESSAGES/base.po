@@ -3138,7 +3138,7 @@ msgstr "Chip"
 msgid "spyder_greenwash_gregor"
 msgstr "Gregor"
 
-msgid "omnichannel_sign"
+msgid "spyder_omnichannel_sign"
 msgstr "Omnichannel HQ: Wir machen Schlagzeilen"
 
 msgid "spyder_greenwash_dippel"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="24">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="27">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -7,32 +7,26 @@
   <property name="slug" value="omnichannel1"/>
   <property name="types" value="dungeon"/>
  </properties>
- <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="3865" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
-  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
- </tileset>
- <tileset firstgid="6835" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
+ <tileset firstgid="6835" source="../gfx/tilesets/core_indoor_walls.tsx"/>
  <layer id="1" name="Tile Layer 1" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAE7KMXAcJBEfBio/j0Z+CNUzxcGBgZkDLIfmY/OxqUP5AZ0tch8XPpoad9nLG6ipX3IYaAgDQkPSuyDxSssHJdDzQTzccQfTC0yXQnUVwXViysekNVjYw8lfdjiHZufkMWGkv+Q0xmyH/CxKfEfAKIJGdM=
+   eAH7wsDA8GUUj4bBaBoYTQODKA0AAPtzGEg=
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAHNUjkOwkAM9BegBHE08CR4C0eX/AXxDK73IKigYwatpWG1cSIasDRa2+tJZm2bmR0Hn7hkcX4PytvWQzPFHTyNc995+UneN/avPO/XKb2rq07vl9f72dabRd9sCUwxD1pXXgVODWwTb4RzDOxTzG/tUo75Jlvhjto3UuM55n9lj57ZEzgE++wzUo0z9GQOXIN9vhV2lj0iJsGbSzyfu/ZP9dAv8fIaxmfRxdlFWpSvO8PZRVqaeJpv8/V/pdoXWiZAOA==
+   eAHFUjkOwkAM9BegBHE08CR4C0cHf0E8IxzvQRxF6JiRdiRjbVZBKbA0ctbrWTseVwOzU8A1nOP9Gfc3YD38xiMT8zn3xLNg5JWsK6/umb2BS6rTtt6sbzYHlC/f1Cv7fAKa1+vHepqV6siX6lGHBXpcAlPoQRvBj4FjOjN2SDHG2Rd5O3D2wDblreDZwyadyVOM8SYdmFeyf/Gke4V/lSbRc5dl6lO653ZcGjFXxm/qztkSEzc/5chHnq/h5658+RxPd95rxxmj5r4XvsF6OfO7Rs19L2158d0uvA9lNG8c
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
   <object id="1" type="collision" x="0" y="0" width="16" height="336"/>
   <object id="2" type="collision" x="16" y="0" width="208" height="16"/>
   <object id="4" type="collision" x="208" y="16" width="16" height="320"/>
-  <object id="5" type="collision" x="80" y="16" width="16" height="160"/>
-  <object id="6" type="collision" x="96" y="144" width="32" height="32"/>
-  <object id="7" type="collision" x="160" y="144" width="48" height="32"/>
+  <object id="5" type="collision" x="80" y="16" width="16" height="144"/>
+  <object id="6" type="collision" x="96" y="128" width="32" height="32"/>
+  <object id="7" type="collision" x="160" y="128" width="48" height="32"/>
   <object id="8" type="collision" x="16" y="96" width="48" height="32"/>
   <object id="9" type="collision" x="48" y="128" width="16" height="32"/>
   <object id="10" type="collision" x="16" y="240" width="48" height="32"/>
@@ -41,9 +35,7 @@
   <object id="13" type="collision" x="144" y="272" width="16" height="32"/>
   <object id="14" type="collision" x="96" y="272" width="16" height="64"/>
   <object id="17" type="collision" x="16" y="16" width="192" height="16"/>
-  <object id="20" type="collision-line" x="0" y="336">
-   <polyline points="0,0 224,0 0,0"/>
-  </object>
+  <object id="25" type="collision" x="48" y="64" width="16" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="18" name="Teleport to Omnichannel 2" type="event" x="16" y="144" width="16" height="16">
@@ -74,5 +66,19 @@
    </properties>
   </object>
   <object id="23" name="Player Spawn" type="event" x="32" y="176" width="16" height="16"/>
+  <object id="24" name="Teleport to Omnichannel 0" type="event" x="16" y="64" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport omnichannel0.tmx,1,10,0.3"/>
+    <property name="act20" value="char_face player,down"/>
+    <property name="cond10" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="26" name="Teleport to Omnichannel 0" type="event" x="32" y="64" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport omnichannel0.tmx,2,10,0.3"/>
+    <property name="act20" value="char_face player,down"/>
+    <property name="cond10" value="is char_at player"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

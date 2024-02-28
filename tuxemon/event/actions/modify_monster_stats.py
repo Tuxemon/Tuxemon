@@ -33,6 +33,8 @@ class ModifyMonsterStatsAction(EventAction):
         stat: A stat among armour, dodge, hp, melee, speed and ranged. If no
             stat, then all the stats.
         amount: A/an float/int value, if no amount, then default 1 (+).
+        lower_bound: Lower bound of range to return an integer between (inclusive)
+        upper_bound: Upper bound of range to return an integer between (inclusive)
 
     eg. "modify_monster_stats"
     eg. "modify_monster_stats ,,0.25"

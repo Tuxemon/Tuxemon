@@ -15,35 +15,31 @@ logger = logging.getLogger(__name__)
 
 @final
 @dataclass
-class ModifyCharAttributeAction(EventAction):
+class SetPartyAttributeAction(EventAction):
     """
-    Modify the given attribute of the character by modifier.
-
-    By default this is achieved via addition, but prepending a '%' will cause
-    it to be multiplied by the attribute.
+    Set the given attribute of party's monsters to the given value.
 
     Script usage:
         .. code-block::
 
-            modify_char_attribute <character>,<attribute>,<value>
+            set_party_attribute <character>,<attribute>,<value>
 
     Script parameters:
         character: Either "player" or character slug name (e.g. "npc_maple").
-        attribute: Name of the attribute to modify.
-        value: Value of the attribute modifier.
+        attribute: Name of the attribute.
+        value: Value of the attribute.
 
     """
 
-    name = "modify_char_attribute"
+    name = "set_party_attribute"
     character: str
     attribute: str
     value: str
 
     def start(self) -> None:
         character = get_npc(self.session, self.character)
-        if character is None:
-            logger.error(f"{self.character} not found")
-            return
-        CommonAction.modify_entity_attribute(
-            character, self.attribute, self.value
-        )
+        assert character
+        for monster in character.monsters:
+            CommonAction.set_entity_attribute(
+                monster, self.attribute, self.value
+            )

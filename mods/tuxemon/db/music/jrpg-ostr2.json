@@ -1,0 +1,94 @@
+[
+    {
+        "slug" : "music_01_opening",
+        "file" : "JRPG-OSTR2/01 - Opening.ogg"
+    },
+    {
+        "slug" : "music_02_prelude",
+        "file" : "JRPG-OSTR2/02 - BWV 1007 - Prelude.ogg"
+    },
+    {
+        "slug" : "music_04_sanctuary",
+        "file" : "JRPG-OSTR2/04 - Sanctuary.ogg"
+    },
+    {
+        "slug" : "music_05_reunion",
+        "file" : "JRPG-OSTR2/05 - Reunion.ogg"
+    },
+    {
+        "slug" : "music_06_rebels_be",
+        "file" : "JRPG-OSTR2/06 - Rebels Be.ogg"
+    },
+    {
+        "slug" : "music_07_town",
+        "file" : "JRPG-OSTR2/07 - Town.ogg"
+    },
+    {
+        "slug" : "music_08_overworld",
+        "file" : "JRPG-OSTR2/08 - Overworld.ogg"
+    },
+    {
+        "slug" : "music_09_deities_approve",
+        "file" : "JRPG-OSTR2/09 - Z 339 - Here the Deities approve.ogg"
+    },
+    {
+        "slug" : "music_10_empire",
+        "file" : "JRPG-OSTR2/10 - The Empire.ogg"
+    },
+    {
+        "slug" : "music_11_ostrich",
+        "file" : "JRPG-OSTR2/11 - Ostrich!.ogg"
+    },
+    {
+        "slug" : "music_12_timeworn_pagoda",
+        "file" : "JRPG-OSTR2/12 - Timeworn Pagoda.ogg"
+    },
+    {
+        "slug" : "music_13_danger",
+        "file" : "JRPG-OSTR2/13 - Danger.ogg"
+    },
+    {
+        "slug" : "music_14_barbarian_king",
+        "file" : "JRPG-OSTR2/14 - Barbarian King.ogg"
+    },
+    {
+        "slug" : "music_15_dungeon",
+        "file" : "JRPG-OSTR2/15 - Dungeon.ogg"
+    },
+    {
+        "slug" : "music_17_victory",
+        "file" : "JRPG-OSTR2/17 - Victory.ogg"
+    },
+    {
+        "slug" : "music_18_nighttide_waltz",
+        "file" : "JRPG-OSTR2/18 - Nighttide Waltz.ogg"
+    },
+    {
+        "slug" : "music_19_courtesan",
+        "file" : "JRPG-OSTR2/19 - Courtesan.ogg"
+    },
+    {
+        "slug" : "music_20_game_over",
+        "file" : "JRPG-OSTR2/20 - Game Over.ogg"
+    },
+    {
+        "slug" : "music_21_fanfare",
+        "file" : "JRPG-OSTR2/21 - Fanfare.ogg"
+    },
+    {
+        "slug" : "music_22_new_comrade",
+        "file" : "JRPG-OSTR2/22 - A New Comrade.ogg"
+    },
+    {
+        "slug" : "music_23_inn",
+        "file" : "JRPG-OSTR2/23 - Inn.ogg"
+    },
+    {
+        "slug" : "music_24_facit_potentiam",
+        "file" : "JRPG-OSTR2/24 - RV 610 - Fecit potentiam.ogg"
+    },
+    {
+        "slug" : "music_25_finale",
+        "file" : "JRPG-OSTR2/25 - Finale.ogg"
+    }
+]

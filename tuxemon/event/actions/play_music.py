@@ -46,16 +46,18 @@ class PlayMusicAction(EventAction):
 
     def start(self) -> None:
         player = self.session.player
-        client = self.session.client
         loop = -1 if self.loop is None else self.loop
         _music = prepare.MUSIC_VOLUME
-        music_volume = float(player.game_variables.get("music_volume", _music))
+        if player is None:
+            _volume = _music
+        else:
+            _volume = float(player.game_variables.get("music_volume", _music))
         if not self.volume:
-            volume = music_volume
+            volume = _volume
         else:
             lower, upper = prepare.MUSIC_RANGE
             if lower <= self.volume <= upper:
-                volume = self.volume * music_volume
+                volume = self.volume * _volume
             else:
                 raise ValueError(
                     f"{self.volume} must be between {lower} and {upper}",
@@ -72,6 +74,7 @@ class PlayMusicAction(EventAction):
             logger.error("unable to play music")
 
         # Keep track of what song we're currently playing
+        client = self.session.client
         if client.current_music["song"]:
             client.current_music["previoussong"] = client.current_music["song"]
         client.current_music["status"] = "playing"

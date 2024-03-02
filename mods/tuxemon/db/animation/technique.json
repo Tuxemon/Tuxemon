@@ -1,666 +1,666 @@
 [
     {
         "slug" : "12_hits_for_separation1",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "12_hits_for_separation2",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "12_hits_for_separation3",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "12_hits_for_separation4",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "12_hits_for_separation5",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "12_hits_for_separation6",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "12_hits_for_separation7",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "12_hits_for_separation8",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "12_hits_for_separation9",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "12_hits_for_separation10",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "12_hits_for_separation11",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "amethyst",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "amethyst_absorb",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "amethyst_radiate",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "appearance",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "beartrap",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "bite",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "bite_zombie",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "blue_circle",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "bomb",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "bomb_bright",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "breath_blue",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "breath_fire",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "buff_armour",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "buff_fast",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "buff_rage",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "buff_ranged",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "calling",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "claw_blue",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "claws_twice_blue",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "claws_twice_red",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "claw_yellow_169",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "clock",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "constantburn",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "crushingball",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "crystal",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "crystal_absorb",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "crystal_radiate",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "debian_64",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "debian_240",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "debuff_melee",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "demiurge",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "disintegrate_83",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "drip_blue",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "drip_blue_alt",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "drip_green",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "drip_orange",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "drip_red",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "drip_red_alt",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "emerald",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "emerald_absorb",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "emerald_radiate",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "explosion_big_126",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "explosion_burst",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "explosion_cloud_48",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "explosion_dusty_96",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "explosion_ice_112",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "explosion_multi_128",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "explosion_mushroom_128",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "explosion_small",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "explosion_sun_32",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "explosion_total_192",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "fireball_114",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "fire_big_156",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "fire_big_dark_96",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "fire_fade",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "firelion_back",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "firelion_front",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "firelion_right",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "fire_storm",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "fireworks",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "flameball_blue",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "flameball_red",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "gloop_blue",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "gloop_orange",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "gloop_violet",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "green_circle",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "heal_burst_120",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "heal_cross_120",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "heal_swarm",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "ice_storm",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "icetacle",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "join_80",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "lance_ice",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "lightning_bolt_138",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "lightning_claw",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "lightning_claw_large",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "lightning_spheres",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "meltdown",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "metal_delete",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "metallic_absorb",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "metallic_radiate",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "misc_hit_preview1",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "misc_hit_preview2",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "misc_hit_preview3",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "misc_hit_preview4",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "misc_hit_preview5",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "pound",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "pound_bright",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "pound_rock",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "power_arc_154",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "pulse",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "pulse_absorb",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "pulse_radiate",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "pushtrap_front",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "pushtrap_right",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "red_circle",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "rockfall_193",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "rockfall_264",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "ruby",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "ruby_absorb",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "ruby_radiate",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "screen",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "shield_fire",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "shield_ice",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "shield_lava",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "shield_rock",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "shield_turtle",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "shield_turtle_right",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "skull",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "skull_fire",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "slash_200",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "slash_double_188",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "slash_fire",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "slash_power",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "smokebomb",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "smokebomb_plume",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "smokebomb_puff_128",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "snake_front_128",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "snake_right",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "snake_up_128",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "sparks_blue",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "sparks_blue_alt",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "sparks_gold",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "sparks_gold_alt",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "sparks_green",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "sparks_green_alt",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "sparks_red",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "sparks_white",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "sparks_white_alt",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "spike_ice",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "spike_rock",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "spikes_fire",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "spikes_ice",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "spikes_metal",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "spikes_rock",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "tentacles_water",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "thunderstrike",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "tornado_basic",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "tornado_bulk",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "tornado_volume",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "triforce_163",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "triple_whammy_80",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "turquoise_circle",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "tux_attack",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "ubuntu",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "wall_fire",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "wall_ice",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "wall_wood",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "warp",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "waterfall",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "watershot",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "waterspurt",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "whisp_fire",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "x_attack",
-        "folder" : "technique"
+        "file" : "technique"
     },
     {
         "slug" : "yellow_circle",
-        "folder" : "technique"
+        "file" : "technique"
     }
 ]

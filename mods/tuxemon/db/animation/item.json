@@ -1,10 +1,10 @@
 [
     {
         "slug" : "capture_1",
-        "folder" : "item"
+        "file" : "item"
     },
     {
         "slug" : "tuxeball",
-        "folder" : "item"
+        "file" : "item"
     }
 ]

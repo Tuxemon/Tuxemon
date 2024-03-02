@@ -1231,9 +1231,9 @@ class SoundModel(BaseModel):
 
 class AnimationModel(BaseModel):
     slug: str = Field(..., description="Unique slug for the animation")
-    folder: str = Field(..., description="Folder of the animation")
+    file: str = Field(..., description="File of the animation")
 
-    @field_validator("folder")
+    @field_validator("file")
     def file_exists(cls: AnimationModel, v: str, info: ValidationInfo) -> str:
         slug = info.data.get("slug")
         file: str = f"animations/{v}/{slug}_00.png"

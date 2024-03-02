@@ -108,5 +108,35 @@
         "slug": "spyder_rookie"
       }
     ]
+  },
+  {
+    "slug": "spyder_route3_miner1",
+    "template": [
+      {
+        "sprite_name": "miner_blue",
+        "combat_front": "miner",
+        "slug": "miner"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_route3_miner2",
+    "template": [
+      {
+        "sprite_name": "miner_red",
+        "combat_front": "miner",
+        "slug": "miner"
+      }
+    ]
+  },
+  {
+    "slug": "spyder_route3_miner3",
+    "template": [
+      {
+        "sprite_name": "miner_yellow",
+        "combat_front": "miner",
+        "slug": "miner"
+      }
+    ]
   }
 ]

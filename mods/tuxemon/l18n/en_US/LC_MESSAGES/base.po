@@ -7865,10 +7865,13 @@ msgstr "Did you know that the first spectacles were made of beryl, not glass? \n
 
 msgid "spyder_leather_maniac" 
 msgstr "How is your adventure so far? \n ... \n Wow, so talkative! You are really coming out of your shell." 
+
 msgid "spyder_route3_sign"
 msgstr "Rehabilitation will begin as soon as possible. \n Please stop nagging us."
+
 msgid "spyder_route3_drag1" 
 msgstr "AGENT: What happened to the excavation? \n SHAFT BOSS: We got ... interrupted. By ... a kid. \n AGENT: A kid?! \n SHAFT BOSS: But we did manage to recover one ... \n AGENT: Hush! You know that's top secret. Alright, hand it over and scram! \n SHAFT BOSS: Okay, here ... uh!" 
+
 msgid "spyder_route3_drag2" 
 msgstr "AGENT: What the?! Come with me, you can explain this to HQ!" 
 
@@ -7880,46 +7883,73 @@ msgstr "Ah, I dropped my sledgehammer!"
 
 msgid "spyder_route3_qqq1"
 msgstr "Ah, the Enforcers weren't meant to let anyone out!"
+
 msgid "spyder_route3_qqq2"
 msgstr "I'll reveal nothing about our plot! In fact, forget I said anything about a plot!"
+
 msgid "spyder_route3_novak1"
 msgstr " My Elofly is a genius! I'm going to collect as many as I can."
+
 msgid "spyder_route3_novak2"
 msgstr "Hmm, not smart enough ..."
+
 msgid "spyder_route3_weaver1"
 msgstr "Hey, butt out of it! This mine site belongs to Shaft!"
+
 msgid "spyder_route3_weaver2"
 msgstr "Go on, get out!"
+
 msgid "spyder_route3_curie1"
 msgstr "Look at my magnificent invention!"
+
 msgid "spyder_route3_curie2"
 msgstr "Why did you do that?"
+
 msgid "spyder_route3_connor1"
 msgstr "My Weavifly is fighting fit now - there was a while there where it couldn't fly."
+
 msgid "spyder_route3_connor2"
 msgstr "Oh well, this will be a learning experience for them."
+
 msgid "spyder_route3_roxby1"
 msgstr "Bring that pile driver over here and be quick! Hey ... you don't look like a miner. "
+
 msgid "spyder_route3_roxby2"
 msgstr "Scram! "
+
 msgid "spyder_route3_roxby3"
 msgstr "I hope Boss is not mad - she gets angry so fast, \n But she is a nice person and has a heart like a diamond."
+
 msgid "spyder_route3_surat1"
 msgstr " They call it the \"dark artery\" - the fossilised blood and bone of ancient tuxemon beneath the soil. \n And we get to dig it up!"
+
 msgid "spyder_route3_surat2"
 msgstr "I knew you wouldn't understand. "
+
 msgid "spyder_route3_surat3"
 msgstr "Scram! You're getting in our way."
+
+msgid "spyder_route3_optional1"
+msgstr "Big machinery is coming!"
+
+msgid "spyder_route3_optional2"
+msgstr "I love drilling machines!"
+
+msgid "spyder_route3_optional3"
+msgstr "Enormous machines used for surface mining? Draglines!"
 
 msgid "spyder_route3_twig1"
 msgstr "Some of the stuff we're digging up belongs in a museum! \n Wait, you don't work here. "
 
 msgid "spyder_route3_twig2" 
 msgstr "Don't mention that museum stuff to the boss, okay?" 
+
 msgid "spyder_route3_twig3" 
 msgstr "I will train more and become as strong as our Boss. \n She worked so hard to become the leader, I wanna be like her someday." 
+
 msgid "spyder_route3_wanda1" 
 msgstr "All I ever seem to catch is boring Nudiflot!" 
+
 msgid "spyder_route3_wanda2" 
 msgstr "The fishing's good in Flower City - but who wants to walk that far? \n Here, you can have my Fishing Rod." 
 
@@ -7931,7 +7961,6 @@ msgstr "Welcome to the Cathedral Centre! \n Do you want to heal your Tuxemon?"
 
 msgid "spyder_wayfarer_shopkeeper"
 msgstr "Sorry mate, no rooms available. \n The Enforcers say a rare disease has broken out among some guests' tuxemon, so we're under quarantine. \n I can heal your tuxemon for you, though?"
-
 
 msgid "spyder_wayfarer_nurse"
 msgstr "There are sick tuxemon in this building. Best to leave it to the Enforcers to sort everything out. \n If you keep going, I can't make any promises about how they'll respond. "

@@ -1,10 +1,10 @@
 {
   "slug": "maple_girl",
-  "template": [
+  "template": 
     {
       "sprite_name": "fashionista_fiery",
       "combat_front": "fashionista",
       "slug": "fashionista"
     }
-  ]
+
 }

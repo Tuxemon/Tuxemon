@@ -1,10 +1,10 @@
 {
   "slug": "tuxeball_green",
-  "template": [
+  "template": 
     {
       "sprite_name": "tuxeball_green",
       "combat_front": "noclass",
       "slug": "interactive_obj"
     }
-  ]
+
 }

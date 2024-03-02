@@ -1,10 +1,10 @@
 {
   "slug": "tuxemart_keeper",
-  "template": [
+  "template": 
     {
       "sprite_name": "shopassist",
       "combat_front": "adventurer",
       "slug": "shopassistant"
     }
-  ]
+
 }

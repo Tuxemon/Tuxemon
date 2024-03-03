@@ -40,16 +40,6 @@
     ]
   },
   {
-    "slug": "spyder_crystal_nurse",
-    "template": [
-      {
-        "sprite_name": "nurse",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-    ]
-  },
-  {
     "slug": "spyder_crystal_maniac_green",
     "template": [
       {

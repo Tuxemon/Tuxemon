@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="103">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="104">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -16,12 +16,12 @@
  </layer>
  <layer id="2" name="Pit" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAG7y8TAcHcUUxQGDFDQyMzAMJC4gw/iEPT4hLlvsNCj7qMsJkbDb3iHH8h3yHFMmW9po3vUfZSF62j4URZ+MN2gcBzMYDC6D9lNyOzBEo7IbooEtqmwYXS3gtRQAkB2ImNcZsHU4JInRhybf0BiMLOJoYmxh1w19HQfALvZnTI=
+   eAG7y8TAcHcUUxQGDFDQyMzAQE/cwYdqH4gPAujxCREdPOSo+yiLi9HwG97hB/IdchxT5lva6B51H2XhOhp+lIUfTDcoHAczGIzuQ3YTMnuwhCOymyKBbSpsGN2tIDWUAJCdyBiXWTA1uOSJEcfmH5AYzGxiaGLsIVcNPd0HAH2lnUQ=
   </data>
  </layer>
  <layer id="8" name="Walls" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHdlVFKBEEMRAe9kHoWBfU06mn034O4/+pZTCEPiiIZZ1ZFMND0bHcnVamke5flf9vN6b783k6WRWOPPRbG/U4cxX8qH/GT/xbTefhNPjqT9l75PNc4r71uXDQ+inFd6+J3O+wnjs7Db/LRmTTxe60hrG6sxfppfslNv8UPLf6a36TfMfzuSm/17UNTk04HYRxb3zV+LxW360vW1J9nG84kv87nUHHSqC+5MXe17tbUn2v50aPJD/1VAx95hyd+vDvu232rvo5Nfj6TA2tTTVQLxXKb+HX3tquJ6qy6gN3Nya87ozXOJT/Xmnc0cyS3KfbaunAdI+sA5sTP+eot7LDw7fa+WstcuVuaPW8wnI/q6/Yb/Nb4w0ln9I3O3JPkx37WYMs9gIffLWrHXs7OD53RVLolv+kO4JPxu9/CxPbebfnBWd+XFUt9INN8VWPCnLTttP6M2L89rq/qorjoLD/nRxyf3Z8+kM+krfd7fh/KL831Zc/fPfg5D9fA/1PRjP4j3nfmjh844gEW/Zg5T787LY7huQVXWB84HxL3
+   eAHdldFNBDEMRFfQEFALSEA1QDXwTyHcP1ALfkIjjazxsssJPs5SlL0k9ozHTm5ZTtvuzvfl93G2LIw99lwYjztxiP9SPvDDf4txXvwmH850+6x8Xmtc1l4aV8GHGLe1Dr/7Yb/jcF78Jh/OdIPfew2w0liL9V/8pMUp8Xsovenbp1CTXiN+H1PfNf3eCj/1pdboz4sNZzq/5HMIudJ/7qseTrVOa/TnWn7qUcfAR/pTAx/9Dk/89O64b/qmvo6t/HxWDlqbakItiOU28Uv3NtWEOlMXYae580tnWNO5zs+11jvac1RuU+y1dXAdo9dBmBM/58tbmLDkm/Z+Wuu56m4xe97CcD7U1+0v+K3xFyfO8C2ddU86P+33Gmy5B+Lhd0u1016fnZ90lqbo1vlNd0A+PX76DaZs793GT5z5vq5Y9AHGfFNjwpy0TVp/R8xvj+tLXYgrnfFzforjs/urD/CZtPV+79+H8uvm+mrP3z3xcx6ugf+nSjP1n+IdMyd+woGHsNSPPefpd9LiNzy34IL1BZMZE1I=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -273,6 +273,14 @@
     <property name="cond1" value="not variable_set cottontunnelcarlos:yes"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="is variable_set dragonscavedrokoro:yes"/>
+   </properties>
+  </object>
+  <object id="103" name="Teleport to Cotton Town" type="event" x="496" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_dryadsgrove.tmx,36,36,0.3"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
  </objectgroup>

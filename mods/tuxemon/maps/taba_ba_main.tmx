@@ -78,7 +78,7 @@
   </object>
   <object id="18" name="im here" type="event" x="144" y="144" width="16" height="16">
    <properties>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act12" value="wait 1"/>
     <property name="act13" value="char_move player,up 1"/>

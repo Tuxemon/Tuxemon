@@ -1000,6 +1000,8 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Petrified Dung"](https://wiki.tuxemon.org/File:Coprolite.png)
 
+* ["Pie Lima"](https://wiki.tuxemon.org/File:Pielima.png) A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
 * ["Pyramidion"](https://wiki.tuxemon.org/File:Pyramidion.png) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 
 * ["Sea Girdle"](https://wiki.tuxemon.org/File:Ac_Necklace06_24x24.png) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.

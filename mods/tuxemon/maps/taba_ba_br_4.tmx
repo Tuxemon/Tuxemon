@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="17">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="22">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -55,7 +55,7 @@
   </object>
   <object id="12" name="start talking" type="event" x="64" y="48" width="32" height="16">
    <properties>
-    <property name="act10" value="char_stop"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act12" value="char_move player,down 1"/>
     <property name="act13" value="wait 1.3"/>
@@ -92,13 +92,16 @@
   </object>
   <object id="15" name="check first battle-loss" type="event" x="160" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="unlock_controls"/>
-    <property name="act2" value="translated_dialog tabaacolyte4talklost"/>
-    <property name="act3" value="wait 0.2"/>
-    <property name="act4" value="set_variable tabaacolyte4battle:lost"/>
-    <property name="act5" value="teleport_faint"/>
+    <property name="act2" value="char_face loch,left"/>
+    <property name="act3" value="translated_dialog tabaacolyte4talklost"/>
+    <property name="act4" value="wait 0.2"/>
+    <property name="act5" value="set_variable tabaacolyte4battle:lost"/>
+    <property name="act6" value="teleport_faint 1.5"/>
+    <property name="act7" value="set_variable 1stbattle:redo"/>
+    <property name="act8" value="unlock_controls"/>
+    <property name="act9" value="remove_npc loch"/>
     <property name="cond1" value="is variable_set tabaacolyte4battle:1st"/>
-    <property name="cond2" value="is variable_set battle_last_result:lost"/>
+    <property name="cond2" value="not variable_set battle_last_result:won"/>
     <property name="cond3" value="is variable_set 1stbattle:done"/>
    </properties>
   </object>
@@ -108,9 +111,80 @@
     <property name="act2" value="add_monster mystikapi,5,loch,80,100"/>
     <property name="act3" value="set_monster_status"/>
     <property name="act4" value="start_battle player,loch"/>
+    <property name="act5" value="set_variable 2ndbattle:done"/>
+    <property name="act6" value="set_variable 1stbattle:finished"/>
+    <property name="act7" value="set_variable tabaacolyte4battle:2nd"/>
     <property name="cond1" value="is variable_set tabaacolyte4battle:1st"/>
     <property name="cond2" value="is variable_set battle_last_result:won"/>
     <property name="cond3" value="is variable_set 1stbattle:done"/>
+   </properties>
+  </object>
+  <object id="17" name="check second battle-won" type="event" x="160" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog tabaacolyte4talk4"/>
+    <property name="act2" value="add_monster lambert,8,loch,80,100"/>
+    <property name="act3" value="set_monster_status"/>
+    <property name="act4" value="start_battle player,loch"/>
+    <property name="act5" value="set_variable 3rdbattle:done"/>
+    <property name="act6" value="set_variable 2ndbattle:finished"/>
+    <property name="act7" value="set_variable tabaacolyte4battle:3rd"/>
+    <property name="cond1" value="is variable_set tabaacolyte4battle:2nd"/>
+    <property name="cond2" value="is variable_set battle_last_result:won"/>
+    <property name="cond3" value="is variable_set 2ndbattle:done"/>
+   </properties>
+  </object>
+  <object id="18" name="check second battle-loss" type="event" x="192" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable 1stbattle:redo"/>
+    <property name="act2" value="char_face loch,left"/>
+    <property name="act3" value="unlock_controls"/>
+    <property name="act4" value="translated_dialog tabaacolyte4talklost"/>
+    <property name="act5" value="wait 0.2"/>
+    <property name="act6" value="set_variable tabaacolyte4battle:lost"/>
+    <property name="act7" value="teleport_faint 1.5"/>
+    <property name="act8" value="set_variable 2ndbattle:redo"/>
+    <property name="act9" value="remove_npc loch"/>
+    <property name="cond1" value="is variable_set tabaacolyte4battle:2nd"/>
+    <property name="cond2" value="not variable_set battle_last_result:won"/>
+    <property name="cond3" value="is variable_set 2ndbattle:done"/>
+   </properties>
+  </object>
+  <object id="19" name="check third battle-loss" type="event" x="224" y="16" width="16" height="16">
+   <properties>
+    <property name="act10" value="set_variable 1stbattle:redo"/>
+    <property name="act11" value="char_face loch,left"/>
+    <property name="act12" value="unlock_controls"/>
+    <property name="act13" value="translated_dialog tabaacolyte4talklost"/>
+    <property name="act14" value="wait 0.2"/>
+    <property name="act15" value="set_variable tabaacolyte4battle:lost"/>
+    <property name="act16" value="teleport_faint 1.5"/>
+    <property name="act17" value="set_variable 2ndbattle:redo"/>
+    <property name="act18" value="set_variable 3rdbattle:redo"/>
+    <property name="act22" value="remove_npc loch"/>
+    <property name="cond1" value="is variable_set tabaacolyte4battle:3rd"/>
+    <property name="cond2" value="not variable_set battle_last_result:won"/>
+    <property name="cond3" value="is variable_set 3rdbattle:done"/>
+   </properties>
+  </object>
+  <object id="20" name="check third battle-won" type="event" x="224" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog tabaacolyte4talkwon"/>
+    <property name="act2" value="char_move loch,up 1"/>
+    <property name="act3" value="char_face loch,down"/>
+    <property name="act4" value="set_variable tabaacolyte4battle:finished"/>
+    <property name="act5" value="unlock_controls"/>
+    <property name="act6" value="set_variable fourthacolyte:finished"/>
+    <property name="cond1" value="is variable_set tabaacolyte4battle:3rd"/>
+    <property name="cond2" value="is variable_set battle_last_result:won"/>
+    <property name="cond3" value="is variable_set 3rdbattle:done"/>
+   </properties>
+  </object>
+  <object id="21" name="teleport to main room" type="event" x="240" y="144" width="16" height="32">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_main.tmx,1,6,1"/>
+    <property name="act2" value="set_variable allthree:andfour"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
  </objectgroup>

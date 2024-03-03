@@ -7147,6 +7147,28 @@ msgstr "Heh. Guess I was wrong. Looks like your limit is higher than mine...\n"
 msgid "tabaacolyte4talklost"
 msgstr "FOR THE GLORY OF OMNICHANNEL!"
 
+msgid "headupstairstababa"
+msgstr "Huh. Well I definitely didn't expect you'd be the first to defeat all of them..."
+
+msgid "headupstairstababa2"
+msgstr "Let me take one more look at your papers."
+
+msgid "headsupstairstababa3"
+msgstr "Handed over the papers"
+
+msgid "headupstairstababa4"
+msgstr "This is all standard procedure, of course. We wouldn't want a cheater to make a mockery of the Trial after all."
+
+msgid "headupstairstababa5"
+msgstr "I'm sure you understand."
+
+msgid "headupstairstababa6"
+msgstr "Received the papers back from Kyle"
+
+msgid "headupstairstababa7"
+msgstr "The Battle Area Master is up those stairs on the far side.\n"
+"I'd wish you luck, but, y'know? I don't actually want you to win!"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

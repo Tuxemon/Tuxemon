@@ -11,9 +11,7 @@ from tuxemon.states.sink import SinkState
 
 @final
 @dataclass
-class LockControlsAction(
-    EventAction,
-):
+class LockControlsAction(EventAction):
     """
     Lock player controls
 

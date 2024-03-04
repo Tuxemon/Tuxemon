@@ -6,14 +6,11 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.states.sink import SinkState
 
 
 @final
 @dataclass
-class UnlockControlsAction(
-    EventAction,
-):
+class UnlockControlsAction(EventAction):
     """
     Unlock player controls
 
@@ -27,7 +24,11 @@ class UnlockControlsAction(
     name = "unlock_controls"
 
     def start(self) -> None:
-        sink_state = self.session.client.get_state_by_name(SinkState)
-
-        if sink_state:
-            self.session.client.remove_state(sink_state)
+        current_state = self.session.client.current_state
+        if current_state is None:
+            # obligatory "should not happen"
+            raise RuntimeError
+        if current_state.name == "SinkState":
+            self.session.client.pop_state()
+        else:
+            raise ValueError("It has never been locked or already unlocked!")

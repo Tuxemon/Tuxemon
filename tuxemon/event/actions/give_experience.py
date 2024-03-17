@@ -22,7 +22,7 @@ class GiveExperienceAction(EventAction):
     Script usage:
         .. code-block::
 
-            is give_experience <variable>,<exp>
+            give_experience <variable>,<exp>
 
     Script parameters:
         variable: Name of the variable where to store the monster id. If no

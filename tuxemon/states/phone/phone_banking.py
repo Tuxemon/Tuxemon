@@ -33,99 +33,133 @@ class NuPhoneBanking(PygameMenuState):
     ) -> None:
         if "bank_account" not in self.player.money:
             self.player.money["bank_account"] = 0
-        bank = self.player.money["bank_account"]
-        money = self.player.money["player"]
+        bank_account = self.player.money["bank_account"]
+        wallet_player = self.player.money["player"]
+
+        _wallet = f"{T.translate('wallet')}: {wallet_player}"
         menu.add.label(
-            title=T.translate("wallet") + ": " + str(money),
+            title=_wallet,
             label_id="wallet",
             font_size=self.font_size_small,
         )
+        _bank = f"{T.translate('bank')}: {bank_account}"
         menu.add.label(
-            title=T.translate("bank") + ": " + str(bank),
+            title=_bank,
             label_id="bank",
             font_size=self.font_size_small,
         )
 
-        elements = [
-            100,
-            200,
-            500,
-            1000,
-            2000,
-            5000,
-            10000,
-            20000,
-            50000,
-            100000,
-        ]
+        for key, value in self.player.money.items():
+            if key.startswith("bill_") and value > 0:
+                _cathedral = f"{T.translate(key)}: {value}"
+                menu.add.label(
+                    title=_cathedral,
+                    label_id=key,
+                    font_size=self.font_size_small,
+                )
 
-        def choice_deposit() -> None:
+        elements: list[int] = [1, 10, 50, 100, 500, 1000]
+
+        def choice(op: str, _from: str, _to: str) -> None:
             var_menu = []
             for ele in elements:
-                if ele <= money:
-                    var_menu.append(
-                        (str(ele), str(ele), partial(deposit, ele))
-                    )
+                _ele = str(ele)
+                if op == "deposit" and ele <= wallet_player:
+                    _param = (_ele, _ele, partial(method, ele, _from, _to))
+                    var_menu.append(_param)
+                if op == "withdraw" and ele <= bank_account:
+                    _param = (_ele, _ele, partial(method, ele, _from, _to))
+                    var_menu.append(_param)
+                if op == "pay" and ele <= wallet_player:
+                    _param = (_ele, _ele, partial(pay, ele, _from, _to))
+                    var_menu.append(_param)
+                if op == "e_pay" and ele <= bank_account:
+                    _param = (_ele, _ele, partial(pay, ele, _from, _to))
+                    var_menu.append(_param)
             if var_menu:
-                open_choice_dialog(
-                    local_session,
-                    menu=(var_menu),
-                    escape_key_exits=True,
-                )
+                if op == "pay" or op == "e_pay":
+                    self.client.pop_state()
+                open_choice_dialog(local_session, (var_menu), True)
             else:
-                params = {"operation": T.translate("deposit")}
+                params = {"operation": T.translate(op)}
                 msg = T.format("no_money_operation", params)
                 open_dialog(local_session, [msg])
 
-        def choice_withdraw() -> None:
+        def bill(op: str, _from: str) -> None:
             var_menu = []
-            for ele in elements:
-                if ele <= bank:
-                    var_menu.append(
-                        (str(ele), str(ele), partial(withdraw, ele))
-                    )
+            for key, value in self.player.money.items():
+                _key = T.translate(key)
+                if key.startswith("bill_") and value > 0:
+                    _param = (_key, _key, partial(choice, op, _from, key))
+                    var_menu.append(_param)
             if var_menu:
-                open_choice_dialog(
-                    local_session,
-                    menu=(var_menu),
-                    escape_key_exits=True,
-                )
+                open_choice_dialog(local_session, (var_menu), True)
             else:
-                params = {"operation": T.translate("withdraw")}
+                params = {"operation": T.translate(op)}
                 msg = T.format("no_money_operation", params)
                 open_dialog(local_session, [msg])
 
-        def deposit(amount: int) -> None:
+        def method(amount: int, _from: str, _to: str) -> None:
             self.client.pop_state()
             self.client.pop_state()
-            self.player.money["player"] -= amount
-            self.player.money["bank_account"] += amount
+            self.player.money[_from] -= amount
+            self.player.money[_to] += amount
 
-        def withdraw(amount: int) -> None:
+        def pay(amount: int, _from: str, _to: str) -> None:
             self.client.pop_state()
             self.client.pop_state()
-            self.player.money["player"] += amount
-            self.player.money["bank_account"] -= amount
+            self.player.money[_from] -= amount
+            self.player.money[_to] -= amount
 
-        menu.add.vertical_margin(100)
-        # deposit
-        menu.add.button(
-            title=T.translate("deposit").upper(),
-            action=choice_deposit,
-            button_id="deposit",
-            font_size=self.font_size_small,
-            selection_effect=HighlightSelection(),
-        )
-        menu.add.vertical_margin(100)
-        # withdraw
-        menu.add.button(
-            title=T.translate("withdraw").upper(),
-            action=choice_withdraw,
-            button_id="withdraw",
-            font_size=self.font_size_small,
-            selection_effect=HighlightSelection(),
-        )
-        # menu
+        if wallet_player > 0:
+            menu.add.vertical_margin(25)
+            menu.add.button(
+                title=T.translate("deposit").upper(),
+                action=partial(choice, "deposit", "player", "bank_account"),
+                button_id="deposit",
+                font_size=self.font_size_small,
+                selection_effect=HighlightSelection(),
+            )
+        if bank_account > 0:
+            menu.add.vertical_margin(25)
+            menu.add.button(
+                title=T.translate("withdraw").upper(),
+                action=partial(choice, "withdraw", "bank_account", "player"),
+                button_id="withdraw",
+                font_size=self.font_size_small,
+                selection_effect=HighlightSelection(),
+            )
+
+        _payment = False
+        _e_payment = False
+        for key, value in self.player.money.items():
+            if key.startswith("bill_"):
+                if value > 0 and wallet_player > 0:
+                    _payment = True
+                if value > 0 and bank_account > 0:
+                    _e_payment = True
+
+        if _payment:
+            menu.add.vertical_margin(25)
+            _pay = T.translate("pay").upper()
+            menu.add.button(
+                title=_pay,
+                action=partial(bill, "pay", "player"),
+                button_id=_pay,
+                font_size=self.font_size_small,
+                selection_effect=HighlightSelection(),
+            )
+
+        if _e_payment:
+            menu.add.vertical_margin(25)
+            _pay = T.translate("e_pay").upper()
+            menu.add.button(
+                title=_pay,
+                action=partial(bill, "e_pay", "bank_account"),
+                button_id=_pay,
+                font_size=self.font_size_small,
+                selection_effect=HighlightSelection(),
+            )
         menu.set_title(T.translate("app_banking")).center_content()
 
     def __init__(self) -> None:

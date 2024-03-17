@@ -49,6 +49,6 @@ class HealEffect(ItemEffect):
             set_var(self.session, self.name, str(target.instance_id.hex))
             client = self.session.client.event_engine
             params = [self.name, self.amount]
-            client.execute_action("set_monster_health", params, True)
+            client.execute_action("modify_monster_health", params, True)
 
         return {"success": True, "num_shakes": 0, "extra": extra}

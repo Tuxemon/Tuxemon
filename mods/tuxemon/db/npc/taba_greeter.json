@@ -2,7 +2,7 @@
   "slug": "taba_greeter",
   "template": [
     {
-      "sprite_name": "shopassist",
+      "sprite_name": "shopassistant",
       "combat_front": "adventurer",
       "slug": "shopassistant"
     }

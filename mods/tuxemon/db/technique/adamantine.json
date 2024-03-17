@@ -9,6 +9,7 @@
   "is_fast": false,
   "potency": 0.6,
   "power": 3,
+  "randomly": false,
   "range": "touch",
   "recharge": 2,
   "sfx": "sfx_blaster",

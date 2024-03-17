@@ -1,0 +1,123 @@
+[
+{
+  "slug": "taba_house1_husband",
+  "template": [
+    {
+      "sprite_name": "maniac",
+      "combat_front": "adventurer",
+      "slug": "maniac"
+    }
+  ]
+},
+{
+  "slug": "taba_house1_wife",
+  "template": [
+    {
+      "sprite_name": "granny",
+      "combat_front": "heroine",
+      "slug": "heroine"
+    }
+  ]
+},
+{
+  "slug": "taba_house2_owner",
+  "template": [
+    {
+      "sprite_name": "homemaker_fiery",
+      "combat_front": "heroine",
+      "slug": "heroine"
+    }
+  ]
+},
+{
+  "slug": "taba_house2_reader1",
+  "template": [
+    {
+      "sprite_name": "heroine_brown",
+      "combat_front": "heroine",
+      "slug": "heroine"
+    }
+  ]
+},
+{
+  "slug": "taba_house2_reader2",
+  "template": [
+    {
+      "sprite_name": "heroine_red",
+      "combat_front": "heroine",
+      "slug": "heroine"
+    }
+  ]
+},
+{
+  "slug": "taba_house3_owner",
+  "template": [
+    {
+      "sprite_name": "homemaker_black",
+      "combat_front": "heroine",
+      "slug": "heroine"
+    }
+  ]
+},
+{
+  "slug": "taba_house3_client1",
+  "template": [
+    {
+      "sprite_name": "florist_rose",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
+  ]
+},
+{
+  "slug": "taba_house3_client2",
+  "template": [
+    {
+      "sprite_name": "homemaker_fiery",
+      "combat_front": "heroine",
+      "slug": "homemaker"
+    }
+  ]
+},
+{
+  "slug": "taba_house4_client1",
+  "template": [
+    {
+      "sprite_name": "professor_green",
+      "combat_front": "professor",
+      "slug": "professor"
+    }
+  ]
+},
+{
+  "slug": "taba_house4_waiter",
+  "template": [
+    {
+      "sprite_name": "shopassistant_grey",
+      "combat_front": "adventurer",
+      "slug": "shopassistant"
+    }
+  ]
+},
+{
+  "slug": "taba_house4_client2",
+  "template": [
+    {
+      "sprite_name": "shopassistant_red",
+      "combat_front": "adventurer",
+      "slug": "shopassistant"
+    }
+  ]
+},
+{
+  "slug": "taba_house4_owner",
+  "template": [
+    {
+      "sprite_name": "florist_fiery",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
+  ]
+}
+
+]

@@ -1,0 +1,88 @@
+events:
+  Go Outside:
+    actions:
+    - transition_teleport spyder_crystal_town.tmx,23,6,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 8
+    y: 11
+    type: "event"
+  Play Music:
+    actions:
+    - play_music music_home
+    conditions:
+    - not music_playing music_home
+    type: "event"
+  Player Spawn:
+    x: 11
+    y: 0
+    type: "event"
+  Create Maniac:
+    actions:
+    - create_npc spyder_crystal_maniac_green,8,5
+    conditions:
+    - not char_exists spyder_crystal_maniac_green
+    type: "event"
+  Create Granny:
+    actions:
+    - create_npc spyder_crystal_granny,10,6
+    - char_face spyder_crystal_granny,left
+    conditions:
+    - not char_exists spyder_crystal_granny
+    type: "event"
+  Create Beck:
+    actions:
+    - create_npc spyder_crystal_monk_orange,7,7
+    - char_face spyder_crystal_monk_orange,right
+    conditions:
+    - not char_exists spyder_crystal_monk_orange
+    type: "event"
+  Create Monk:
+    actions:
+    - create_npc spyder_crystal_tennisplayer,7,6
+    - char_face spyder_crystal_tennisplayer,right
+    conditions:
+    - not char_exists spyder_crystal_tennisplayer
+    type: "event"
+  Create ShopKeeper:
+    actions:
+    - create_npc spyder_crystal_shopkeeper,2,4
+    conditions:
+    - not char_exists spyder_crystal_shopkeeper
+    type: "event"
+  Talk ShopKeeper:
+    actions:
+    - translated_dialog spyder_crystal_shopkeeper
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    - is button_pressed K_RETURN
+    x: 2
+    y: 6
+    type: "event"
+  Talk Maniac:
+    actions:
+    - translated_dialog spyder_crystal_maniac
+    behav:
+    - talk spyder_crystal_maniac_green
+    type: "event"
+  Talk Granny:
+    actions:
+    - translated_dialog spyder_crystal_granny
+    behav:
+    - talk spyder_crystal_granny
+    type: "event"
+  Talk Beck:
+    actions:
+    - translated_dialog spyder_crystal_beck
+    behav:
+    - talk spyder_crystal_tennisplayer
+    type: "event"
+  Talk Monk:
+    actions:
+    - translated_dialog spyder_crystal_monk
+    behav:
+    - talk spyder_crystal_monk_orange
+    type: "event"

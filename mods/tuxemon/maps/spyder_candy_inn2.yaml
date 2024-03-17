@@ -1,0 +1,193 @@
+events:
+  Go downstairs:
+    actions:
+    - transition_teleport spyder_candy_inn1.tmx,3,2,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 4
+    y: 2
+    type: "event"
+  Play Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: "event"
+  Player Spawn:
+    x: 5
+    y: 2
+    type: "event"
+  Create Jess:
+    actions:
+    - create_npc spyder_candyinn_jess,5,14
+    - char_face spyder_candyinn_jess,up
+    conditions:
+    - not char_exists spyder_candyinn_jess
+    type: "event"
+  Talk Jess Question:
+    actions:
+    - translated_dialog spyder_candyinn_jess1
+    - translated_dialog_choice yes:no,likehoney
+    - translated_dialog spyder_candyinn_jess2
+    behav:
+    - talk spyder_candyinn_jess
+    conditions:
+    - not variable_set likehoney
+    type: "event"
+  Talk Jess:
+    actions:
+    - translated_dialog spyder_candyinn_jess2
+    behav:
+    - talk spyder_candyinn_jess
+    conditions:
+    - is variable_set likehoney
+    type: "event"
+  Create James:
+    actions:
+    - create_npc spyder_candyinn_james,7,9
+    conditions:
+    - not char_exists spyder_candyinn_james
+    type: "event"
+  Talk James Question:
+    actions:
+    - translated_dialog spyder_candyinn_james1
+    - translated_dialog_choice spyder_candyinn_james2:spyder_candyinn_james3,sowhat
+    behav:
+    - talk spyder_candyinn_james
+    conditions:
+    - not variable_set sowhat
+    type: "event"
+  Talk James Stay:
+    actions:
+    - translated_dialog spyder_candyinn_james4
+    behav:
+    - talk spyder_candyinn_james
+    conditions:
+    - is variable_set sowhat:spyder_candyinn_james2
+    type: "event"
+  Talk James Leave:
+    actions:
+    - translated_dialog spyder_candyinn_james5
+    behav:
+    - talk spyder_candyinn_james
+    conditions:
+    - is variable_set sowhat:spyder_candyinn_james3
+    type: "event"
+  Create Monk Before:
+    actions:
+    - create_npc spyder_candyinn_monk,1,4
+    - char_face spyder_candyinn_monk,up
+    conditions:
+    - not char_exists spyder_candyinn_monk
+    - not variable_set beeevent
+    type: "event"
+  Create Monk After:
+    actions:
+    - create_npc spyder_candyinn_monk,5,7
+    - char_face spyder_candyinn_monk,up
+    conditions:
+    - not char_exists spyder_candyinn_monk
+    - is variable_set beeevent
+    type: "event"
+  Talk Monk Question:
+    actions:
+    - translated_dialog spyder_candyinn_monk1
+    - translated_dialog_choice yes:no,allergicbee
+    behav:
+    - talk spyder_candyinn_monk
+    conditions:
+    - not variable_set allergicbee
+    type: "event"
+  Talk Monk Allergic No:
+    actions:
+    - translated_dialog spyder_candyinn_monk2
+    - set_variable beeevent:start
+    conditions:
+    - is variable_set allergicbee:no
+    - not variable_set beeevent
+    type: "event"
+  Talk Monk Allergic Yes:
+    actions:
+    - translated_dialog spyder_candyinn_monk3
+    - translated_dialog_choice spyder_allergic_mild:spyder_allergic_severe,beereaction
+    - translated_dialog spyder_candyinn_monk4
+    - set_variable beeevent:start
+    conditions:
+    - is variable_set allergicbee:yes
+    - not variable_set beereaction:spyder_allergic_mild
+    - not variable_set beereaction:spyder_allergic_severe
+    - not variable_set beeevent
+    type: "event"
+  Bee Event Buzzing:
+    actions:
+    - lock_controls
+    - translated_dialog spyder_buzzing
+    - wait 0.5
+    - set_bubble player,exclamation
+    - translated_dialog spyder_buzzing
+    - wait 0.5
+    - set_bubble spyder_candyinn_monk,exclamation
+    - translated_dialog spyder_buzzing
+    - translated_dialog spyder_candyinn_monk5
+    - wait 0.5
+    - set_bubble spyder_candyinn_monk
+    - wait 0.5
+    - set_bubble player
+    - set_variable beeevent:stung
+    - transition_teleport spyder_candy_inn2.tmx,5,6,0.3
+    - wait 0.1
+    - remove_npc spyder_candyinn_monk
+    - char_face player,down
+    - set_variable beeevent:stung
+    - unlock_controls
+    conditions:
+    - is variable_set beeevent:start
+    type: "event"
+  Bee Event Stung:
+    actions:
+    - translated_dialog spyder_candyinn_monk6
+    - set_variable beeevent:done
+    conditions:
+    - is variable_set beeevent:stung
+    type: "event"
+  Bee Event Stung Item:
+    actions:
+    - add_item cureall
+    - translated_dialog cureall
+    - add_item restoration
+    - translated_dialog restoration
+    - set_variable beeevent:end
+    conditions:
+    - is variable_set beeevent:done
+    - is variable_set allergicbee:no
+    type: "event"
+  Bee Event Stung Monster Mild:
+    actions:
+    - translated_dialog tumbleworm
+    - add_monster tumbleworm,15
+    - set_variable beeevent:end
+    conditions:
+    - is variable_set beeevent:done
+    - is variable_set allergicbee:yes
+    - is variable_set beereaction:spyder_allergic_mild
+    type: "event"
+  Bee Event Stung Monster Severe:
+    actions:
+    - translated_dialog tumblebee
+    - add_monster tumblebee,20
+    - set_variable beeevent:end
+    conditions:
+    - is variable_set beeevent:done
+    - is variable_set allergicbee:yes
+    - is variable_set beereaction:spyder_allergic_severe
+    type: "event"
+  Talk Monk After:
+    actions:
+    - translated_dialog spyder_candyinn_monk7
+    behav:
+    - talk spyder_candyinn_monk
+    conditions:
+    - is variable_set beeevent:end
+    type: "event"

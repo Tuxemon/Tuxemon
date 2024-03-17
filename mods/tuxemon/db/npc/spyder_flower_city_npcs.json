@@ -123,19 +123,9 @@
     "slug": "spyder_flowerpetshop_titus",
     "template": [
       {
-        "sprite_name": "shopassist_grey",
-        "combat_front": "shopassist",
+        "sprite_name": "shopassistant_grey",
+        "combat_front": "shopassistant",
         "slug": "shopassistant"
-      }
-    ]
-  },
-  {
-    "slug": "spyder_flowercenter_tiara",
-    "template": [
-      {
-        "sprite_name": "nurse",
-        "combat_front": "nurse",
-        "slug": "nurse"
       }
     ]
   },

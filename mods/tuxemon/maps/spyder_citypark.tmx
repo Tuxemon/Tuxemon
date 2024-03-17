@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="290">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="291">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -8,14 +8,11 @@
   <property name="types" value="route"/>
   <property name="west" value="leather_town"/>
  </properties>
- <tileset firstgid="1" name="Tileset" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
-  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
- </tileset>
+ <tileset firstgid="1" source="../gfx/tilesets/Superpowers_Tilesheet.tsx"/>
  <tileset firstgid="1601" source="../gfx/tilesets/core_outdoor.tsx"/>
- <tileset firstgid="4376" name="core_buildings" tilewidth="16" tileheight="16" tilecount="2350" columns="47">
-  <image source="../gfx/tilesets/core_buildings.png" width="760" height="800"/>
- </tileset>
+ <tileset firstgid="4376" source="../gfx/tilesets/core_buildings.tsx"/>
  <tileset firstgid="6726" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="8276" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eAHt1LEJgDAQheFXiaLDWDmMs6i7iAtkiuhYnkVK0UbuhL840gTyePmSVEmJoQMMYOAjA1MtzS9msT0ef9Fq5w7t82xB842NtFu2I2g+r96KpWy9XP3cjVdvJR+rz7und3rHAAYwgAEMYAADGMAABjAQz0DfxcuEk//fyQnxW2Up
@@ -23,12 +20,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtlEsKwkAQRGulC3WjO0WjN/Ag/o4RD6NX8ncff0sRsQYpyMYs0z3QAy89ZAb6TQ1J2QG2pDSshz5wJCdyJhcinx299sSyXulzI3fyIE8iH3nCaFyHwHgATEhBpmRG5CVPIz30RsCCPkuyImuyIfKSp5Xfv77ykqf2vVrAp90Mb/aqDvVO7+Ulz+o+q3nB7zSNVOUlz9+Kn6dHL+XnJ6X8TTzec0rVq1f+Nx4nqEvA8z9Gbqp157Bay8EtB0er+6vrq9xU6/ZarTXllvo01csqy+gbCUQCkUAkEAlEAr4TmHd9+4Vdngl8AW1VYws=
+   eAHtlU1uwjAQhWdFJUo3ZdeKJNyAg7S0x4BLcAPYwFHY83cf2rJEqOobVU9YCJKwMOMQW/pwsEfM52cBg0eRIRgYzotnkSVYgTXYAPqM4TUBlvMWPl/gG/yAHaAPPcVobF9EOm2RBKQgA11AL3oa6cnTq8gbfN5BH3yAT0Avelr5XepLL3qybt8Q+X24DQf0cgd76zq96OnWWT2n+J7q0Jle9PzfCec1RC/mF05K1TcJ8Z411VC9qn/jxSeYN4tr7rUi5N8YunEO8Q6q4ObLMcH/eh5l7suXm/bWz86jyI9unIvqr93Py073ygxfbto7LzuffcucW2vc/KZ4PztZ0xrLcS6/UXbM1dJNe7v56bO6uWvWfqHnZ51P7B8TiAnEBOqYQK9Vx1PHM/tO4A9lXXAH
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -37,58 +34,32 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="177" type="collision" x="0" y="224" width="32" height="416"/>
+  <object id="177" type="collision" x="0" y="224" width="32" height="320"/>
   <object id="178" type="collision" x="32" y="0" width="496" height="32"/>
   <object id="179" type="collision" x="64" y="32" width="192" height="32"/>
   <object id="180" type="collision" x="256" y="32" width="32" height="16"/>
   <object id="181" type="collision" x="288" y="32" width="224" height="32"/>
-  <object id="182" type="collision" x="64" y="224" width="48" height="272"/>
-  <object id="183" type="collision" x="160" y="224" width="48" height="272"/>
-  <object id="184" type="collision" x="608" y="224" width="32" height="320"/>
-  <object id="185" type="collision" x="512" y="208" width="48" height="288"/>
-  <object id="186" type="collision" x="208" y="208" width="304" height="32"/>
+  <object id="186" type="collision" x="224" y="208" width="288" height="32"/>
   <object id="187" type="collision" x="160" y="144" width="320" height="32"/>
-  <object id="188" type="collision" x="32" y="128" width="464" height="16"/>
-  <object id="189" type="collision" x="176" y="112" width="320" height="16"/>
-  <object id="190" type="collision" x="288" y="288" width="160" height="16"/>
-  <object id="191" type="collision" x="32" y="144" width="112" height="32"/>
-  <object id="192" type="collision" x="608" y="0" width="32" height="160"/>
-  <object id="193" type="collision" x="384" y="384" width="16" height="16"/>
+  <object id="189" type="collision" x="176" y="112" width="320" height="32"/>
+  <object id="192" type="collision" x="608" y="64" width="32" height="480"/>
   <object id="194" type="collision" x="112" y="288" width="16" height="32"/>
   <object id="195" type="collision" x="496" y="352" width="16" height="32"/>
   <object id="196" type="collision" x="496" y="272" width="16" height="32"/>
-  <object id="197" type="collision" x="608" y="160" width="32" height="64"/>
   <object id="198" type="collision" x="512" y="48" width="16" height="16"/>
   <object id="200" type="collision" x="32" y="224" width="32" height="32"/>
   <object id="201" type="collision" x="0" y="0" width="32" height="192"/>
-  <object id="202" type="collision" x="352" y="368" width="32" height="16"/>
-  <object id="203" type="collision-line" x="256" y="288">
-   <polyline points="0,0 0,144"/>
-  </object>
-  <object id="204" type="collision-line" x="288" y="304">
-   <polyline points="0,0 0,96"/>
-  </object>
-  <object id="205" type="collision-line" x="448" y="304">
-   <polyline points="0,0 0,96"/>
-  </object>
-  <object id="206" type="collision" x="96" y="544" width="544" height="32"/>
-  <object id="207" type="collision" x="192" y="576" width="448" height="32"/>
-  <object id="208" type="collision" x="192" y="608" width="448" height="32"/>
+  <object id="206" type="collision" x="96" y="544" width="512" height="32"/>
+  <object id="207" type="collision" x="192" y="576" width="16" height="64"/>
   <object id="209" type="collision" x="32" y="544" width="32" height="96"/>
   <object id="210" type="collision" x="64" y="608" width="96" height="32"/>
   <object id="212" type="collision" x="112" y="464" width="48" height="32"/>
-  <object id="213" type="collision" x="208" y="480" width="112" height="16"/>
-  <object id="214" type="collision" x="256" y="432" width="128" height="16"/>
-  <object id="215" type="collision-line" x="384" y="448">
-   <polyline points="0,0 0,96"/>
-  </object>
   <object id="260" type="collision" x="496" y="432" width="16" height="32"/>
   <object id="269" type="collision" x="528" y="48" width="48" height="16"/>
-  <object id="270" type="collision" x="512" y="80" width="48" height="112"/>
-  <object id="271" type="collision" x="192" y="208" width="16" height="16"/>
   <object id="272" type="collision" x="16" y="192" width="16" height="16"/>
   <object id="287" type="collision" x="592" y="48" width="16" height="16"/>
   <object id="288" type="collision" x="576" y="32" width="16" height="16"/>
+  <object id="290" type="collision" x="112" y="416" width="16" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="30" name="random encounter 1" type="event" x="208" y="176" width="128" height="32">

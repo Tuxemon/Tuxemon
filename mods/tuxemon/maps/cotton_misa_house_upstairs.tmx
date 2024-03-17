@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="9" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="64">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="inside" type="bool" value="true"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="cotton_misa_house"/>
+  <property name="types" value="notype"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="3865" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="5415" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="9279" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="9" height="7">
+  <data encoding="base64" compression="zlib">
+   eJy7y8bAcJcA5mYnjEvEhh4GAI9FIOA=
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="9" height="7">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAM6vjx80FgLlDsogADw0wgfUkAwgcBV10GBjddhLoPAhD6owBCrAQoX4qkhl4AAJtMCQc=
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="9" height="7">
+  <data encoding="base64" compression="zlib">
+   eJxjYCAfSOkSVuNOhJqBAgB8kgC8
+  </data>
+ </layer>
+ <layer id="6" name="Above Player" width="9" height="7">
+  <data encoding="base64" compression="zlib">
+   eJxjYBi5AAAA/AAB
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="4" name="Collisions">
+  <object id="4" type="collision" x="0" y="16" width="144" height="16"/>
+  <object id="51" type="collision" x="96" y="48" width="32" height="16"/>
+  <object id="59" type="collision" x="96" y="32" width="16" height="16"/>
+  <object id="61" type="collision" x="0" y="32" width="80" height="16"/>
+  <object id="62" type="collision" x="16" y="48" width="16" height="16"/>
+  <object id="63" type="collision" x="48" y="48" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="5" name="Event">
+  <object id="45" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="play_music music_cathedral_theme"/>
+    <property name="cond10" value="not music_playing music_cathedral_theme"/>
+   </properties>
+  </object>
+  <object id="54" name="Create LittleBro" type="event" x="112" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc cotton_misa_bro,7,5"/>
+    <property name="act2" value="char_wander cotton_misa_bro"/>
+    <property name="cond1" value="not char_exists cotton_misa_bro"/>
+   </properties>
+  </object>
+  <object id="57" name="Talk LittleBro" type="event" x="96" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog cotton_misa_littlebro"/>
+    <property name="behav1" value="talk cotton_misa_bro"/>
+   </properties>
+  </object>
+  <object id="58" name="Player Spawn" type="event" x="128" y="32" width="16" height="16"/>
+  <object id="60" name="Go Downstairs" type="event" x="112" y="32" width="16" height="16">
+   <properties>
+    <property name="act10" value="transition_teleport cotton_misa_house.tmx,4,2,0.3"/>
+    <property name="act20" value="char_face player,down"/>
+    <property name="cond10" value="is char_at player"/>
+    <property name="cond20" value="is char_facing player,left"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -13,7 +13,7 @@
   "power": 1,
   "range": "melee",
   "recharge": 1,
-  "sfx": "sfx_feint",
+  "sfx": "sfx_blaster",
   "slug": "feint",
   "sort": "damage",
   "target": {

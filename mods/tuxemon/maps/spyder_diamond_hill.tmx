@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="21">
+ <properties>
+  <property name="east" value="routec"/>
+  <property name="edges" value="clamped"/>
+  <property name="north" value="tunnel"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="diamond_hill"/>
+  <property name="types" value="route"/>
+  <property name="west" value="candy_town,candy_port"/>
+ </properties>
+ <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <tileset firstgid="2776" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="4326" source="../gfx/tilesets/core_outdoor_water.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="20" height="60">
+  <data encoding="base64" compression="zlib">
+   eAHtlktqw0AQRGUnvooxyRUSyN7OIXIDnd7rTC8eKYqRVDgYjJnF0PPpfqruaQnN0zTNY4wajB4YPTB6YPTA6IGn7IFdu9e9jZd/3PWxE3vq7KX/Fo/G83q9d3J7a3tpTXv5JbVZqum9eJ6351dr7ZstfYlOZehc6wMHq2c+V4bO1Q8O1vNeyjHlweWZGrc0x7cs8W7xWWLoPr7PzPN3kJy9bqw51zo5Q3sef+Ldcr7GuIUHN7Wui3Ua737Eu1W/Q+vTy8bA3zmsOS+rd6L7vTnxbtX3Xry1vHm+6zp36vTd9so/0Qmvx/E7gNvT6fpYJ3ZNJ/q2OKoJnRXz0V6SzzaIT3mlidiKZ3y1D/j19Y+X1K3qWJqIrXgf6EvtT9PkDF2nnPKrPNe0FTflJayUl7JS3lbNtH6/rgHr3A==
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="20" height="60">
+  <data encoding="base64" compression="zlib">
+   eAHt1kFu20AMhWEt2q7TRa9guDdIeoXEuUIukUV7pJwlQM8SoJuiq84A/uAxIWIoZdFNBQye+Ej+Q0mW7cNyOY7t9PhxWb62tVcPF9zSeafGemxrr0Zeda4vn4ZBhuuKvOpc17TL9USe+WK9WJ5G/74ZD+d1amq+b+F69MnT6Gf78Kk+MY1+tg+f6hPT6Gf78Kk+MY1+tg+f6hPT6Md95DNVT3vdU3t24rhPxuGrp9HH5YurGvuyffgzxVNnDr4405fkc64eF0+cqbqo6nFjfhbHPjHurD/mY58YV724qrEPly+uauwzBz/G/FHjd3PP6TNH9/p7M8bdqx76cPWJM53V4aoTZzqrM4e6GPNnqs8c6mPMn6k+3Khjf39OjqyOjxtVf9Ssjo8b+7bGOLhr/T+H61zLjx4O7pirnq/dV9wqI6vDec98IxsHd8w5f23/A6sHDm61L6vDwc3qqj4ObrXvLbkHOLhVXlaHg5vVVX0c3N6X/VZXmDi4lZ5KDW6ltlIzm298Ryu8rfNlnxd7zeZTV9Wt8824/3q+//fv+gm99/nGd37t+f7a8Dt5Pd3+/3uRI16bT26Pbrl/le8G8820Oqv5Zvr8oUaczSXfaX9uluX287LctdXPf5/X6M3mkjfd98b60dZ4jN5fF7iFBg==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="Collisions">
+  <object id="12" type="collision" x="0" y="896" width="160" height="32"/>
+  <object id="13" type="collision" x="0" y="0" width="32" height="896"/>
+  <object id="20" type="collision" x="288" y="0" width="32" height="640"/>
+ </objectgroup>
+</map>

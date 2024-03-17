@@ -13,15 +13,9 @@
  <tileset firstgid="2593" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
   <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
  </tileset>
- <tileset firstgid="4353" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
-  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
- </tileset>
- <tileset firstgid="8217" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
-  <image source="../gfx/tilesets/core_set pieces.png" width="496" height="800"/>
- </tileset>
- <tileset firstgid="9767" name="core_outdoor" tilewidth="16" tileheight="16" tilecount="2775" columns="37">
-  <image source="../gfx/tilesets/core_outdoor.png" width="592" height="1200"/>
- </tileset>
+ <tileset firstgid="4353" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="8217" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <tileset firstgid="9767" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="7" name="Tile Layer 1" width="32" height="16">
   <data encoding="base64" compression="zlib">
    eAGbpsbAMG0Uj4bBaBoYTQOjaWA0DYymgRGVBgAETXgQ

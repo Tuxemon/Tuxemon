@@ -44,6 +44,6 @@ class ModifyCharAttributeAction(EventAction):
         if character is None:
             logger.error(f"{self.character} not found")
             return
-        CommonAction.modify_character_attribute(
+        CommonAction.modify_entity_attribute(
             character, self.attribute, self.value
         )

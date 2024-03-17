@@ -833,6 +833,8 @@ class NPC(Entity[NPCState]):
 
         # Look up the NPC's details from our NPC database
         npc_details = db.lookup(self.slug, "npc")
+        if npc_details.name:
+            self.name = T.translate(npc_details.name)
         self.forfeit = npc_details.forfeit
         npc_party = npc_details.monsters
         for npc_monster_details in npc_party:

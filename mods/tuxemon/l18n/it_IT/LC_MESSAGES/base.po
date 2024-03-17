@@ -1225,11 +1225,8 @@ msgstr "Infermiera di Cotonopoli"
 msgid "karrianna"
 msgstr "Karrianna"
 
-msgid "knight1"
-msgstr "Cavaliere I"
-
-msgid "knight2"
-msgstr "Cavaliere II"
+msgid "knight"
+msgstr "Cavaliere"
 
 msgid "liela"
 msgstr "Liela"
@@ -1258,38 +1255,8 @@ msgstr "Bottegaio del Tuxemercato"
 msgid "tuxemart_aide"
 msgstr "Impiegato del Tuxemercato"
 
-msgid "xerogrund1"
-msgstr "Scagnozzo del team Xero I"
-
-msgid "xerogrund2"
-msgstr "Scagnozzo del team Xero II"
-
-msgid "xerogrunt2"
-msgstr "Scagnozzo del team Xero II"
-
-msgid "xerogrunt3"
-msgstr "Scagnozzo del team Xero III"
-
-msgid "xerogrunt4"
-msgstr "Scagnozzo del team Xero IV"
-
-msgid "xerogrunt5"
-msgstr "Scagnozzo del team Xero V"
-
-msgid "xerogrunt6"
-msgstr "Scagnozzo del team Xero VI"
-
-msgid "xerogrunt7"
-msgstr "Scagnozzo del team Xero VII"
-
-msgid "xerogrunt8"
-msgstr "Scagnozzo del team Xero VIII"
-
-msgid "xerogrunt9"
-msgstr "Scagnozzo del team Xero IX"
-
-msgid "xerogrunt10"
-msgstr "Scagnozzo del team Xero X"
+msgid "xerogrunt"
+msgstr "Scagnozzo del team Xero"
 
 ## DIALOG TRANSLATIONS ##
 # general dialogs
@@ -1823,9 +1790,6 @@ msgstr "Roboscuro"
 
 msgid "xeon_2"
 msgstr "Xeon-2"
-
-msgid "birb_robo"
-msgstr "Roboccellino"
 
 msgid "xeon"
 msgstr "Xeon"
@@ -4111,15 +4075,6 @@ msgstr "Rincewind"
 
 msgid "spyder_route4_rosamund"
 msgstr "Rosamund"
-
-msgid "spyder_nimrod_birbrobo"
-msgstr "Birb Robo"
-
-msgid "spyder_nimrod_chromerobo"
-msgstr "Chrome Robo"
-
-msgid "spyder_nimrod_xeon"
-msgstr "Xeon"
 
 msgid "spyder_nimrod_justice"
 msgstr "Justice"

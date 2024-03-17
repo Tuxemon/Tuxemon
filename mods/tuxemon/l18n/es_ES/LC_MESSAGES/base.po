@@ -1260,11 +1260,8 @@ msgstr "Enfermera de Pueblo Algodón"
 msgid "karrianna"
 msgstr "Karrianna"
 
-msgid "knight1"
-msgstr "Caballero I"
-
-msgid "knight2"
-msgstr "Caballero II"
+msgid "knight"
+msgstr "Caballero"
 
 msgid "liela"
 msgstr "Liela"
@@ -1293,38 +1290,8 @@ msgstr "Dependiente de Tuxemart"
 msgid "tuxemart_aide"
 msgstr "Empleado de Tuxemart"
 
-msgid "xerogrund1"
-msgstr "Soldado del equipo Xero I"
-
-msgid "xerogrund2"
-msgstr "Soldado del equipo Xero II"
-
-msgid "xerogrunt2"
-msgstr "Soldado del equipo Xero II"
-
-msgid "xerogrunt3"
-msgstr "Soldado del equipo Xero III"
-
-msgid "xerogrunt4"
-msgstr "Soldado del equipo Xero IV"
-
-msgid "xerogrunt5"
-msgstr "Soldado del equipo Xero V"
-
-msgid "xerogrunt6"
-msgstr "Soldado del equipo Xero VI"
-
-msgid "xerogrunt7"
-msgstr "Soldado del equipo Xero VII"
-
-msgid "xerogrunt8"
-msgstr "Soldado del equipo Xero VIII"
-
-msgid "xerogrunt9"
-msgstr "Soldado del equipo Xero IX"
-
-msgid "xerogrunt10"
-msgstr "Soldado del equipo Xero X"
+msgid "xerogrunt"
+msgstr "Soldado del equipo Xero"
 
 ## DIALOG TRANSLATIONS ##
 # general dialogs
@@ -4227,9 +4194,6 @@ msgstr "Windeye"
 msgid "chrome_robo"
 msgstr "Chrome Robo"
 
-msgid "birb_robo"
-msgstr "Birb Robo"
-
 msgid "mk01_alpha"
 msgstr "MK01 Alpha"
 
@@ -4599,9 +4563,6 @@ msgstr "Técnicas"
 
 msgid "move_to_kennel"
 msgstr "mover a {box}"
-
-msgid "birb_robo_description"
-msgstr "Un robot hostil."
 
 msgid "mk01_proto_description"
 msgstr "Un robot asesino fusionado con un dragón. No nos preguntes cómo."

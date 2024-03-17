@@ -783,9 +783,6 @@ msgstr "ゥロウゴン"
 msgid "dark_robo"
 msgstr "ダルク ロボ"
 
-msgid "birb_robo"
-msgstr "ビルブ ロボ"
-
 msgid "mk01_beta"
 msgstr "ンク01 ベタ"
 

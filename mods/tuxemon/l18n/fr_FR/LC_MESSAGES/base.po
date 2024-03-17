@@ -1011,11 +1011,8 @@ msgstr "Infirmière de Cottonville"
 msgid "karrianna"
 msgstr "Karrianna"
 
-msgid "knight1"
-msgstr "Chevalier I"
-
-msgid "knight2"
-msgstr "Chevalier II"
+msgid "knight"
+msgstr "Chevalier"
 
 msgid "liela"
 msgstr "Liela"
@@ -1044,38 +1041,8 @@ msgstr "Commerçant de Tuxemart"
 msgid "tuxemart_aide"
 msgstr "Employé de Tuxemart"
 
-msgid "xerogrund1"
-msgstr "Troufion I de l'Équipe Xero"
-
-msgid "xerogrund2"
-msgstr "Troufion II de l'Équipe Xero"
-
-msgid "xerogrunt2"
-msgstr "Troufion II de l'Équipe Xero"
-
-msgid "xerogrunt3"
-msgstr "Troufion III de l'Équipe Xero"
-
-msgid "xerogrunt4"
-msgstr "Troufion IV de l'Équipe Xero"
-
-msgid "xerogrunt5"
-msgstr "Troufion V de l'Équipe Xero"
-
-msgid "xerogrunt6"
-msgstr "Troufion VI de l'Équipe Xero"
-
-msgid "xerogrunt7"
-msgstr "Troufion VII de l'Équipe Xero"
-
-msgid "xerogrunt8"
-msgstr "Troufion VIII de l'Équipe Xero"
-
-msgid "xerogrunt9"
-msgstr "Troufion IX de l'Équipe Xero"
-
-msgid "xerogrunt10"
-msgstr "Troufion X de l'Équipe Xero"
+msgid "xerogrunt"
+msgstr "Troufion de l'Équipe Xero"
 
 ## DIALOG TRANSLATIONS ##
 # general dialogs
@@ -2381,32 +2348,11 @@ msgstr "Ignatia"
 msgid "spyder_dryadsgrove_ferris"
 msgstr "Ferris"
 
-msgid "_chromerobo"
-msgstr "Robot Chromé"
-
-msgid "_darkrobo"
-msgstr "Robot Sombre"
-
-msgid "_birbrobo"
-msgstr "Robot Neige"
-
 msgid "spyder_dryadsgrove_sylvia"
 msgstr "Sylvia"
 
-msgid "spyder_dryadsgrove_volcoli"
-msgstr "Volcoli"
-
 msgid "spyder_dryadsgrove_petra"
 msgstr "Pétra"
-
-msgid "_xeon"
-msgstr "Xénon"
-
-msgid "_xeon-2"
-msgstr "Xénon-2"
-
-msgid "_mk01beta"
-msgstr "Mk01 Béta"
 
 ## MESSAGE TRANSLATIONS ##
 # spyder messages
@@ -2426,9 +2372,6 @@ msgstr "Acheter des trucs ici"
 
 msgid "spyder_route1_routesign"
 msgstr "Route 1 : Prendre garde !"
-
-msgid "_mk01alpha"
-msgstr "Mk01 Alpha"
 
 msgid "spyder_citypark_achievement"
 msgstr "Manoir du Maniaque du Trophée : Fermé."
@@ -2579,9 +2522,6 @@ msgstr "Touche Retour"
 
 msgid "menu_secondary_select_key"
 msgstr "Touche Annuler"
-
-msgid "birb_robo"
-msgstr "Robot Neige"
 
 msgid "oopsie2"
 msgstr ""
@@ -3679,9 +3619,6 @@ msgstr "Bismuth"
 msgid "spyder_route4_marshall"
 msgstr "Marshall"
 
-msgid "spyder_nimrod_chromerobo"
-msgstr "Robot Chromé"
-
 #, fuzzy
 msgid "spyder_route4_rincewind"
 msgstr "Rincewind"
@@ -4337,9 +4274,6 @@ msgid "bothofyou"
 msgstr ""
 "Tous les deux, venez dehors. Un représentant de Omnichannel veut s'adresser "
 "à la foule."
-
-msgid "spyder_nimrod_xeon"
-msgstr "Xénon"
 
 msgid "spyder_leather_maniac"
 msgstr ""
@@ -5017,12 +4951,6 @@ msgstr ""
 "rivière de haut en bas.\n"
 " Mais je ne l'ai pas vu depuis quelques jours. "
 
-msgid "spyder_nimrod_birbrobo1"
-msgstr "Bip bop be di wap bop di wep"
-
-msgid "spyder_nimrod_birbrobo2"
-msgstr "Bip bip bop"
-
 msgid "spyder_nimrod_chromerobo1"
 msgstr "Bop bop bip bip"
 
@@ -5130,9 +5058,6 @@ msgstr "Nous, les nymphes, sentons notre puissance diminuer avec les saisons."
 #, fuzzy
 msgid "spyder_dryadsgrove_petra1"
 msgstr "Brisez les moules de la nature !"
-
-msgid "spyder_nimrod_birbrobo"
-msgstr "Robot Neige"
 
 msgid "spyder_dragonscave_mallory3"
 msgstr ""
@@ -7824,9 +7749,6 @@ msgid "chrome_robo_description"
 msgstr "Un robot hostile."
 
 msgid "dark_robo_description"
-msgstr "Un robot hostile."
-
-msgid "birb_robo_description"
 msgstr "Un robot hostile."
 
 msgid "mk01_alpha_description"

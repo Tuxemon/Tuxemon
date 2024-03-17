@@ -958,11 +958,8 @@ msgstr "Enfermera de Pueblo Algodón"
 msgid "karrianna"
 msgstr "Karrianna"
 
-msgid "knight1"
-msgstr "Caballero I"
-
-msgid "knight2"
-msgstr "Caballero II"
+msgid "knight"
+msgstr "Caballero"
 
 msgid "liela"
 msgstr "Liela"
@@ -991,38 +988,8 @@ msgstr "Tendero de Tuxemart"
 msgid "tuxemart_aide"
 msgstr "Empleado de Tuxemart"
 
-msgid "xerogrund1"
-msgstr "Equipo Xero Grunt I"
-
-msgid "xerogrund2"
-msgstr "Equipo Xero Grunt II"
-
-msgid "xerogrunt2"
-msgstr "Equipo Xero Grunt II"
-
-msgid "xerogrunt3"
-msgstr "Equipo Xero Grunt III"
-
-msgid "xerogrunt4"
-msgstr "Equipo Xero Grunt IV"
-
-msgid "xerogrunt5"
-msgstr "Equipo Xero Grunt V"
-
-msgid "xerogrunt6"
-msgstr "Equipo Xero Grunt VI"
-
-msgid "xerogrunt7"
-msgstr "Equipo Xero Grunt VII"
-
-msgid "xerogrunt8"
-msgstr "Equipo Xero Grunt VIII"
-
-msgid "xerogrunt9"
-msgstr "Equipo Xero Grunt IX"
-
-msgid "xerogrunt10"
-msgstr "Equipo Xero Grunt X"
+msgid "xerogrunt"
+msgstr "Equipo Xero Grunt"
 
 ## DIALOG TRANSLATIONS ##
 # general dialogs
@@ -1957,9 +1924,6 @@ msgid "nudiflot_male_description"
 msgstr ""
 "Ingiere y almacena el veneno de las criaturas marinas que le sirven de "
 "alimento."
-
-msgid "birb_robo"
-msgstr "Robot Pajarito"
 
 msgid "firsts"
 msgstr ""
@@ -3518,9 +3482,6 @@ msgid "Kennel"
 msgstr "refugio"
 
 msgid "dark_robo_description"
-msgstr "Un robot hostil."
-
-msgid "birb_robo_description"
 msgstr "Un robot hostil."
 
 msgid "mk01_delta_description"

@@ -897,11 +897,8 @@ msgstr "Cotton Nurse"
 msgid "karrianna"
 msgstr "Karrianna"
 
-msgid "knight1"
-msgstr ""
-
-msgid "knight2"
-msgstr ""
+msgid "knight"
+msgstr "Kavaliro"
 
 msgid "liela"
 msgstr "Liela"
@@ -930,38 +927,8 @@ msgstr ""
 msgid "tuxemart_aide"
 msgstr ""
 
-msgid "xerogrund1"
-msgstr "Team Xero Grunt I"
-
-msgid "xerogrund2"
-msgstr "Team Xero Grunt II"
-
-msgid "xerogrunt2"
-msgstr "Team Xero Grunt II"
-
-msgid "xerogrunt3"
-msgstr "Team Xero Grunt III"
-
-msgid "xerogrunt4"
-msgstr "Team Xero Grunt IV"
-
-msgid "xerogrunt5"
-msgstr "Team Xero Grunt V"
-
-msgid "xerogrunt6"
-msgstr "Team Xero Grunt VI"
-
-msgid "xerogrunt7"
-msgstr "Team Xero Grunt VII"
-
-msgid "xerogrunt8"
-msgstr "Team Xero Grunt VIII"
-
-msgid "xerogrunt9"
-msgstr "Team Xero Grunt IX"
-
-msgid "xerogrunt10"
-msgstr "Team Xero Grunt X"
+msgid "xerogrunt"
+msgstr "Team Xero Grunt"
 
 ## DIALOG TRANSLATIONS ##
 # general dialogs
@@ -1696,9 +1663,6 @@ msgstr "Windeye"
 
 msgid "yiinaang"
 msgstr "Yiinaang"
-
-msgid "birb_robo"
-msgstr "Birb Robo"
 
 msgid "mk01_beta"
 msgstr "Mk01 Beta"

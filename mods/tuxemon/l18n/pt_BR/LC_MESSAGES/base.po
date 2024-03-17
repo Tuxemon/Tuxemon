@@ -1253,9 +1253,6 @@ msgstr ""
 msgid "nudiflot_male"
 msgstr "Nudiflot"
 
-msgid "birb_robo"
-msgstr "Birb Robo"
-
 msgid "horned_raptor"
 msgstr "Raptor Chifrudo"
 
@@ -1307,11 +1304,8 @@ msgstr "Visitante"
 msgid "earth"
 msgstr "Terra"
 
-msgid "knight1"
-msgstr "Cavaleiro I"
-
-msgid "knight2"
-msgstr "Cavaleiro II"
+msgid "knight"
+msgstr "Cavaleiro"
 
 msgid "professor"
 msgstr "Professor"
@@ -1363,9 +1357,6 @@ msgstr "Água"
 msgid "tree"
 msgstr "Essa árvore parece feliz e saudável!"
 
-msgid "xerogrunt2"
-msgstr "Equipe Xero Grunt II"
-
 msgid "itslockedboi"
 msgstr "Allie trancou a porta atrás de si..."
 
@@ -1404,15 +1395,6 @@ msgstr "Enfermeira do Toque"
 
 msgid "tuxemart_keeper"
 msgstr "Lojista da Tuxemart"
-
-msgid "xerogrunt4"
-msgstr "Equipe Xero Grunt IV"
-
-msgid "xerogrunt5"
-msgstr "Equipe Xero Grunt V"
-
-msgid "xerogrunt6"
-msgstr "Equipe Xero Grunt VI"
 
 msgid "famous_statue2"
 msgstr "Diz: Para nossos amados amigos e heróis de todos, o wywen"
@@ -1495,21 +1477,6 @@ msgstr ""
 msgid "cottonnurse"
 msgstr "Enfermeira Algodão"
 
-msgid "xerogrund2"
-msgstr "Equipe Xero Grunt II"
-
-msgid "xerogrunt7"
-msgstr "Equipe Xero Grunt VII"
-
-msgid "xerogrunt8"
-msgstr "Equipe Xero Grunt VIII"
-
-msgid "xerogrunt9"
-msgstr "Equipe Xero Grunt IX"
-
-msgid "xerogrunt10"
-msgstr "Equipe Xero Grunt X"
-
 msgid "karrianna_dialog2"
 msgstr "Bem... Você foi o primeiro treinador que enfrentei..."
 
@@ -1532,8 +1499,8 @@ msgstr "Professor"
 msgid "professor-rockitten"
 msgstr "Professor"
 
-msgid "xerogrund1"
-msgstr "Equipe Xero Grunt I"
+msgid "xerogrunt"
+msgstr "Equipe Xero Grunt"
 
 msgid "oops"
 msgstr ""
@@ -1567,9 +1534,6 @@ msgstr ""
 
 msgid "route2speech"
 msgstr "AEE!!!"
-
-msgid "xerogrunt3"
-msgstr "Equipe Xero Grunt III"
 
 msgid "backstory"
 msgstr ""
@@ -2414,9 +2378,6 @@ msgid "mk01_proto"
 msgstr "Mk01 Proto"
 
 msgid "dark_robo_description"
-msgstr "Um robô hostil."
-
-msgid "birb_robo_description"
 msgstr "Um robô hostil."
 
 msgid "mk01_beta_description"

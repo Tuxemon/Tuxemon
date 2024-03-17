@@ -938,11 +938,8 @@ msgstr "Cotton Nurse"
 msgid "karrianna"
 msgstr "Karrianna"
 
-msgid "knight1"
-msgstr "Rytíř I"
-
-msgid "knight2"
-msgstr "Rytíř II"
+msgid "knight"
+msgstr "Rytíř"
 
 msgid "liela"
 msgstr "Liela"
@@ -971,38 +968,8 @@ msgstr "Tuxemart Obchodník"
 msgid "tuxemart_aide"
 msgstr "Tuxemart Zaměstnanec"
 
-msgid "xerogrund1"
-msgstr "Tým Xero Grunt I"
-
-msgid "xerogrund2"
-msgstr "Tým Xero Grunt II"
-
-msgid "xerogrunt2"
-msgstr "Tým Xero Grunt II"
-
-msgid "xerogrunt3"
-msgstr "Tým Xero Grunt III"
-
-msgid "xerogrunt4"
-msgstr "Tým Xero Grunt IV"
-
-msgid "xerogrunt5"
-msgstr "Tým Xero Grunt V"
-
-msgid "xerogrunt6"
-msgstr "Tým Xero Grunt VI"
-
-msgid "xerogrunt7"
-msgstr "Tým Xero Grunt VII"
-
-msgid "xerogrunt8"
-msgstr "Tým Xero Grunt VIII"
-
-msgid "xerogrunt9"
-msgstr "Tým Xero Grunt IX"
-
-msgid "xerogrunt10"
-msgstr "Tým Xero Grunt X"
+msgid "xerogrunt"
+msgstr "Tým Xero Grunt"
 
 ## DIALOG TRANSLATIONS ##
 # general dialogs
@@ -1276,9 +1243,6 @@ msgstr "Chrome Robo"
 
 msgid "dark_robo"
 msgstr "Dark Robo"
-
-msgid "birb_robo"
-msgstr "Birb Robo"
 
 msgid "xeon"
 msgstr "Xeon"

@@ -1657,11 +1657,8 @@ msgstr "Cotton Krankenschwester"
 msgid "karrianna"
 msgstr "Karrianna"
 
-msgid "knight1"
-msgstr "Ritter I"
-
-msgid "knight2"
-msgstr "Ritter II"
+msgid "knight"
+msgstr "Ritter"
 
 msgid "liela"
 msgstr "Liela"
@@ -1690,38 +1687,8 @@ msgstr "Tuxemart Ladenbesitzer"
 msgid "tuxemart_aide"
 msgstr "Tuxemart Mitarbeiter"
 
-msgid "xerogrund1"
-msgstr "Team Xero Rüpel I"
-
-msgid "xerogrund2"
-msgstr "Team Xero Rüpel II"
-
-msgid "xerogrunt2"
-msgstr "Team Xero Rüpel II"
-
-msgid "xerogrunt3"
-msgstr "Team Xero Rüpel III"
-
-msgid "xerogrunt4"
-msgstr "Team Xero Rüpel IV"
-
-msgid "xerogrunt5"
-msgstr "Team Xero Rüpel V"
-
-msgid "xerogrunt6"
-msgstr "Team Xero Rüpel VI"
-
-msgid "xerogrunt7"
-msgstr "Team Xero Rüpel VII"
-
-msgid "xerogrunt8"
-msgstr "Team Xero Rüpel VIII"
-
-msgid "xerogrunt9"
-msgstr "Team Xero Rüpel IX"
-
-msgid "xerogrunt10"
-msgstr "Team Xero Rüpel X"
+msgid "xerogrunt"
+msgstr "Team Xero Rüpel"
 
 ## DIALOG TRANSLATIONS ##
 # general dialogs
@@ -2570,9 +2537,6 @@ msgstr "Yiinaang"
 
 msgid "dark_robo"
 msgstr "Dark Robo"
-
-msgid "birb_robo"
-msgstr "Birb Robo"
 
 msgid "xeon"
 msgstr "Xeon"

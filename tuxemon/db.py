@@ -69,6 +69,14 @@ class GenderType(str, Enum):
     female = "female"
 
 
+class SkinSprite(str, Enum):
+    light = "light"
+    tanned = "tanned"
+    dark = "dark"
+    albino = "albino"
+    orc = "orc"
+
+
 class TasteWarm(str, Enum):
     tasteless = "tasteless"
     peppy = "peppy"

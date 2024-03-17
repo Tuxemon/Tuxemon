@@ -653,7 +653,7 @@
     <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
-  <object id="144" name="gym time" type="event" x="736" y="432" width="16" height="208">
+  <object id="144" name="gym time" type="event" x="720" y="432" width="16" height="208">
    <properties>
     <property name="act10" value="lock_controls"/>
     <property name="act11" value="create_npc christie,55,37,stand"/>

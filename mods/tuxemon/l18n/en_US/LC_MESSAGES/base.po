@@ -7097,7 +7097,7 @@ msgid "thisisntthelastofme"
 msgstr "Mark my words, this isn't the last you'll see of me!!"
 
 msgid "thisisntthelastofme2"
-msgstr "Yeah, sure bud. Just start moving"
+msgstr "Yeah, sure bud. Just start moving."
 
 msgid "acolytewasdefeated2"
 msgstr "Hey, sorry about that. I guess that Christie girl really did a number on him..."
@@ -7110,7 +7110,64 @@ msgid "acolytewasdefeated4"
 msgstr "Since there isn't a third acolyte anymore, you can just move on to the next one. I'll be sure to let everyone know."
 
 msgid "acolytewasdefeated5"
-msgstr "Good luck on the next one"
+msgstr "Good luck on the next one."
+
+msgid "tabapassageway4heal"
+msgstr "You've done well to make it this far, but he who lies ahead is more powerful than you expect.\n"
+"There's no Tuxemon in this passageway, but that doesn't mean it's any easier than before...\n"
+"Let me heal your Tuxemon."
+
+msgid "tabapassageway4heal2"
+msgstr "Good luck on the path ahead..."
+
+msgid "tabaacolyte4talk"
+msgstr "Oh, hello there. I was beginning to think none of you would make it.\n"
+"Come on in, don't be shy."
+
+msgid "tabaacolyte4talk2"
+msgstr "That's better! As you might have guessed, I'm the fourth Acolyte.\n"
+"I'm the last one before you reach the Battle Area Master, and believe me, there's absolutely no way I'll let you past.\n"
+"FOR THE GLORY OF OMNICHANNEL... YOU SHALL NOT PASS!!"
+
+msgid "tabaacolyte4talk3"
+msgstr "Heh. You've got spirit, I'll give you that.\n"
+"But that's not even half of my power!\n"
+"FOR THE GLORY OF OMNICHANNEL... YOU SHALL NOT PASS!!"
+
+msgid "tabaacolyte4talk4"
+msgstr "Hahaha! Is that really all you got?\n"
+"You'll have no chance of beating the Battle Area Master if this is your limit. Let's test it more!\n"
+"FOR THE GLORY OF OMNICHANNEL... YOU SHALL NOT PASS!!"
+
+msgid "tabaacolyte4talkwon"
+msgstr "Heh. Guess I was wrong. Looks like your limit is higher than mine...\n"
+"The exit is behind me, it will take you back to the main room.\n"
+"Good luck against the Master."
+
+msgid "tabaacolyte4talklost"
+msgstr "FOR THE GLORY OF OMNICHANNEL!"
+
+msgid "headupstairstababa"
+msgstr "Huh. Well I definitely didn't expect you'd be the first to defeat all of them..."
+
+msgid "headupstairstababa2"
+msgstr "Let me take one more look at your papers."
+
+msgid "headsupstairstababa3"
+msgstr "Handed over the papers"
+
+msgid "headupstairstababa4"
+msgstr "This is all standard procedure, of course. We wouldn't want a cheater to make a mockery of the Trial after all."
+
+msgid "headupstairstababa5"
+msgstr "I'm sure you understand."
+
+msgid "headupstairstababa6"
+msgstr "Received the papers back from Kyle"
+
+msgid "headupstairstababa7"
+msgstr "The Battle Area Master is up those stairs on the far side.\n"
+"I'd wish you luck, but, y'know? I don't actually want you to win!"
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

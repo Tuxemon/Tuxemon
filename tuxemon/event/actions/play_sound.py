@@ -2,11 +2,17 @@
 # Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon import audio
+from pygame import mixer
+
+from tuxemon import prepare
+from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -39,16 +45,28 @@ class PlaySoundAction(EventAction):
 
     def start(self) -> None:
         player = self.session.player
-        sound_volume = float(player.game_variables["sound_volume"])
-        volume: float = 0.0
-        if not self.volume:
-            volume = sound_volume
+        _sound = prepare.SOUND_VOLUME
+        if player is None:
+            _volume = _sound
         else:
-            if 0.0 <= self.volume <= 1.0:
-                volume = self.volume * sound_volume
+            _volume = float(player.game_variables.get("sound_volume", _sound))
+        if not self.volume:
+            volume = _volume
+        else:
+            lower, upper = prepare.SOUND_RANGE
+            if lower <= self.volume <= upper:
+                volume = self.volume * _volume
             else:
                 raise ValueError(
-                    f"{self.volume} must be between 0.0 and 1.0",
+                    f"{self.volume} must be between {lower} and {upper}",
                 )
-        sound = audio.load_sound(self.filename, volume)
-        sound.play()
+        try:
+            path = prepare.fetch(
+                "sounds", db.lookup_file("sounds", self.filename)
+            )
+            sound = mixer.Sound(path)
+            mixer.Sound.set_volume(sound, volume)
+            sound.play()
+        except Exception as e:
+            logger.error(e)
+            logger.error("unable to play music")

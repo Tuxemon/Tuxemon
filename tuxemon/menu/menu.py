@@ -11,7 +11,7 @@ from typing import Any, Generic, Literal, Optional, TypeVar, Union
 import pygame
 import pygame_menu
 
-from tuxemon import audio, graphics, prepare, state, tools
+from tuxemon import graphics, prepare, state, tools
 from tuxemon.animation import Animation
 from tuxemon.graphics import ColorLike
 from tuxemon.menu.events import playerinput_to_event
@@ -479,9 +479,8 @@ class Menu(Generic[T], state.State):
 
     def reload_sounds(self) -> None:
         """Reload sounds."""
-        self.menu_select_sound = audio.load_sound(
-            self.menu_select_sound_filename, None
-        )
+        _params = [self.menu_select_sound_filename, None]
+        self.client.event_engine.execute_action("play_sound", _params)
 
     def shadow_text(
         self,
@@ -686,7 +685,7 @@ class Menu(Generic[T], state.State):
         if event.button in (buttons.A, intentions.SELECT):
             handled_event = True
             if valid_change:
-                self.menu_select_sound.play()
+                self.reload_sounds()
                 selected = self.get_selected_item()
                 assert selected
                 self.on_menu_selection(selected)
@@ -753,7 +752,7 @@ class Menu(Generic[T], state.State):
         if previous is not None:
             previous.in_focus = False
         self.selected_index = index
-        self.menu_select_sound.play()
+        self.reload_sounds()
         self.trigger_cursor_update(animate)
         selected = self.get_selected_item()
         assert selected

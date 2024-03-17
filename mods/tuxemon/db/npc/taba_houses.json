@@ -93,7 +93,7 @@
   "slug": "taba_house4_waiter",
   "template": [
     {
-      "sprite_name": "shopassist_grey",
+      "sprite_name": "shopassistant_grey",
       "combat_front": "adventurer",
       "slug": "shopassistant"
     }
@@ -103,7 +103,7 @@
   "slug": "taba_house4_client2",
   "template": [
     {
-      "sprite_name": "shopassist_red",
+      "sprite_name": "shopassistant_red",
       "combat_front": "adventurer",
       "slug": "shopassistant"
     }

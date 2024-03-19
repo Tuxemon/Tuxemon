@@ -1,0 +1,11 @@
+{
+    "slug": "master1",
+    "template": [
+      {
+        "sprite_name": "disciple",
+        "combat_front": "disciple",
+        "slug": "disciple"
+      }
+    ]
+  }
+  

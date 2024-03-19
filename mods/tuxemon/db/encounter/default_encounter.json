@@ -6,8 +6,8 @@
        "variable": "daytime:true",
        "exp_req_mod": 1,
        "level_range": [
-         2,
-         4
+         5,
+         10
        ],
        "monster": "eyenemy"
      },
@@ -16,8 +16,8 @@
        "variable": "daytime:true",
        "exp_req_mod": 1,
        "level_range": [
-         2,
-         4
+         5,
+         9
        ],
        "monster": "dandicub"
      },
@@ -26,8 +26,8 @@
        "variable": "daytime:true",
        "exp_req_mod": 1,
        "level_range": [
-         2,
-         4
+         5,
+         9
        ],
        "monster": "cardiling"
      },
@@ -36,8 +36,8 @@
        "variable": "daytime:true",
        "exp_req_mod": 1,
        "level_range": [
-         2,
-         4
+         5,
+         9
        ],
        "monster": "budaye"
      },
@@ -46,8 +46,8 @@
        "variable": "daytime:true",
        "exp_req_mod": 1,
        "level_range": [
-         2,
-         4
+         4,
+         9
        ],
        "monster": "cataspike"
      },
@@ -57,7 +57,7 @@
        "exp_req_mod": 1,
        "level_range": [
          3,
-         6
+         8
        ],
        "monster": "elofly"
      },
@@ -66,8 +66,8 @@
        "variable": "daytime:false",
        "exp_req_mod": 1,
        "level_range": [
-         3,
-         6
+         5,
+         9
        ],
        "monster": "aardorn"
      },
@@ -76,8 +76,8 @@
        "variable": "daytime:false",
        "exp_req_mod": 1,
        "level_range": [
-         3,
-         6
+         5,
+         8
        ],
        "monster": "nut"
      },
@@ -86,8 +86,8 @@
        "variable": "daytime:false",
        "exp_req_mod": 1,
        "level_range": [
-         3,
-         6
+         4,
+         8
        ],
        "monster": "grimachin"
      },
@@ -96,8 +96,8 @@
        "variable": "daytime:false",
        "exp_req_mod": 1,
        "level_range": [
-         3,
-         6
+         5,
+         9
        ],
        "monster": "spighter"
      }

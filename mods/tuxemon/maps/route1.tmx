@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="156">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="59" height="42" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="156">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -11,22 +11,22 @@
  <tileset firstgid="5126" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="59" height="42">
   <data encoding="base64" compression="zlib">
-   eAHt0iERAAAMA7HS+efVWhdDAW/gL72k8oABBhhggAEGGGCAAQYYYIABBhhggAEGGGCAAQYYYIABBhhggAEGGGCAAQYYYODJwAAwJFDd
+   eJztw6ENAAAMAjDs/vfcyhdTbdJeUlVVVVVVVVVVVX06MCRQ3Q==
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="59" height="42">
   <data encoding="base64" compression="zlib">
-   eAHlmUtuFEEMhht2IMIteO2QYMMlYEG4CyDgJJBAQu4C4SUOAtnxWmGL/iTrV7tdUz3DhNCSZbvK9du/Pd2T6ezuDMMDk90t6eEvXo+M42OTbWmlusk6/od50s9N9nHu80J+1V7Ppq5tzvW+8HpovsvO5VpW6ceTi3+itzXXmyOvWHPF9VLoQTxX2XCt5lrhTO1XmOzr2YprnLeenfPhWs11DiPbqzDZ1/Nw1fWlPlzpcaaX5vHzip1hvrL76mBCDsf7jbkSx3qGxzpc6XGmiV9FKzfFZl8xWff5Tl1wZf5ZnJ6FK/iZ5tw3M76b/DD5OdrR/2VrXBk3crBPPJr1o3GOrKPhylynPgNza+BnmjxXzg3DVZNrE/q6rd0wyS7FzuLgcpxwzc61rtPrTIPz3Iw9k32TlyYvRA7Mz64Km3Ob5qo9V5863pnxweSjySeT9yKfzc8uxcTX+Ixr1qt1r2s9Pb7WdM+ePedN7oZnUFzTzzC92bTu4aZntEa4a9xpmuvhhWF4HeTI7JYLbmi469mMK/Gb1rGeN8btbZDjRq5aY8SMdsaVHvVqclTniXPdyzXLEbHdzrhqr1b1yVOdI851L9csR8R2O+Oa9ap1nTxVPHGue7lqjog5ZZ/I3xJZr1rXyVHFE+e6l6vmgHvEnrKJW6rBrnCIc93LVXPAPWJP2cQt1WBXOMS57uWqOSLmlK29WeqTo8IhznUv1yxHxI629mapD3aFQ5zrXq5ZjojtdtaTpevkqXCIc93LVXNEzGhnPVm6To4KhzjXvVw1B9wj9lKbdw8ZzjP7HiNvpuPZXq6KDfeIvdRu4UreTMcaerkqNpjVbwn+jqq047Vw1Z6rT12ue7lGjGhXeBVH9h2zhav2XP1VaouxLXbFtQWDmBauOkf1wXK9ztrWjedc92Z+Y/qzSeeo/r/C1d+j3h653ho1vnNY9Tn8xTC+BjkZMemHPmviO4wp+47V1/Pbn3yqeW/s/w94aoLv74x9TeeovuLN+foZjzxa7Nb3HHM1zO3p/an+3FndO+1cdY7qK585f91c+U6p9FxNcU/nqH6MrWy9n+O93WLr/V9xZL+qi32do/rEnQWtczyrvs9K53hWfef6G16BwkE=
+   eJzlmUtOwzAQhlN2jQi34LVDohsuAQvKXQAVTgKFNvQuUF7iINAdrxUTNZbMqMYzju1xyi/9chspjv988cR1+0WWHYH7Qm1MncD1Tgu5NuZ4/gPPGPeRw1MfTyhJcj1EuY6LuYs1uzka5PNWiutOnYuTdbVh1hDzynXOSnN1keucVVl9KyRXLGqfIxjTeIHLeqyK6QgdtykkV5wN92nKrI6b2Kqsij/1GeByfQd/gD/BX/Vn/fu31rcpG86OpY5PDLwwV66pXNc7WbYB3lzQboG3O+b7Sn1WVJYp8dnkisr1AjwEX4GvwZfIY4drYIXOSuV6D34EP4GfwQ/ILw7XwDJlbdO6Ffd5AF4B72v968dwVul1K0fUOpwS17KbZTeaJ11aVmodNmWV4HoL2e40T4lZm9ZhX7w4XF2zNq3DvnhJcI1dh6n9+MjKre2zJeJKzey7vkpwpb7PfNfXlOqw6d60mavtGQ713kypDodeD6VUh0Ovh1KuwxwNLL8Dz/O06zBHlKySddj2W4Kyd6r2T1PhapKtP99ZY3B1zcpR27lyVGUd/nH+MnGt9lF79fm7ddvT+uNyfYVz3zTP0NhwrbF5L/d77/T/A87y3/vIJZOrTZgT102z2uRzHzH1rClz5bxzKPLJFc9nrvH89501xv5wKoq1zyzdVoq1zyzdVvoBXoHCQQ==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="59" height="42">
   <data encoding="base64" compression="zlib">
-   eAHt2MsyHUEYwPGOI8SCWAhhZ2OLIHkBEWzDFpHEC+SGd0CI5AEQEkubJBz3ZJdN7skLJBG5uGwt/LtOdelqI3oMZ0ZXf1W/0zOjp7u/r4c6Q4j4or1QiMriaPO3MYYcx6aNNtPR765mfTUwQ123bfsYox82rTlXts7VPpjzqesn0ZpzZetc7YM+33X2R7Ldp7D99LniPla52qyjiproMXB+72xHO1ZXC4vU0fG2Nr9rQTOGzVXPL2g8/dpJ5arPEeY4bK5hxk5armHWbj7Dh92btFzVsy/393+h9v+wfvoYSctVX1uU45ks/m2Kss4471XPlc0aVF+ztbk3CX3U9xebtai+ZmtzbxL6BH2/OWhdqq/ZHtTfX/cV8BXwFQiqQNT/CQSNmcRrT/geJvnwFTAr8KbEvBLf+YscIV7iFWYxhzRkBL27Z35yOj+/k9cP/MQafmEdMtYKMjJnp//zQkqIUpThIspRARnyfc6ld7pG8rqKJlxDM1rQCtdyvUNOd3EP9/EAvehDP1za1zHyGccEnmISU3iG55iGK/GOXN7jAz7iEz7jC77iG5yJXCHOIAcp5OIs8pCPc3AlqsmlBrW4hDrUowGXcQWuRAe5dKILN9CNm7iF2+iBKzFALoMYwkMMYwSPMIrHcCXS5DKPBSxiCctYwSpew5VYJ5ff+IO/+IcNbGIL23A53ibo3cTlOvvcfAV8BXwFfAX2V2AXBYd3pw==
+   eJzt2LlS20AAxvHFMgEK4RQBAh0NLUcCvABn2pAWCNcLcCTmHQzhSB6AG0oacjjhTEfDDS9AOHPRUuTPCA0ZRbblK7KW/WZ+sx5JI+0nyR7JQriXF7oQpQ+T20eLbuzHyehWyjl2hc3xzeVOxyAGHY5uxTzfkZanY3Qr5vn+O891g9PrFO+YSTG7OkmZZbtQ4O7zdUD8Ez0/8XlFi5Pvml3i7Rqy6RQp6eqaaJK5rrGSaV3jide7mvd4rGtrXn+n98BNMq1rqrL4H3+bvJpIzzfRtrWOXkmk55to21pHr8Tu+SbWttZRRUVFJZ4k+5+AV/JON6ioWPP1kdszuMuST4j3+ICP+ISwz1hn9+7u5RzT6xtOcIoznN92Pc0zyJICTYhCFOExilGiGetu3nFkes+po1c9GtCIJjTjmSZf11469aEfA3iF1whiUJOr6wR9JjGFacxgFnOYx4Lm9gxTly26bGMHu9jDPg5wiCOJugq/EFnwQYMf2XiAHOT63Z5g6lJOlwpUogpP8BTVqEGtRF1b6dKGdrxEBzrRhW70SNQ1RJchDOMNRjCKMYzjrURdw3T5jC9YxgpWsYZ1bEjU9ZwuF7jEd/zAT/zCb1xJ1NUumxn0bqKioqKicr/yBwWHd6c=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="59" height="42">
   <data encoding="base64" compression="zlib">
-   eAHtktFtwzAMRL1AZ0mHaYdpp6/6cT8PoUWRVAQWNWAQJ/Eej04eb9f1Pt7HoXrh+Rg5PsfrrbDfylM7ai7D6XxH3cH0/E/0u3FXnXsr/Xf61K5f43/6PV7r0f2sWv5n56d2fZZl99ls18j8GfP3/sQzy1WRiTMqmBEGc1BHmPTsYHKGRzMHtYfBHjIsTd9ubeXQecV8sVQrmBGG5ls1wqSHbN6/SjMHdUUOMqUr2CsMzbXqCsvqJdvqs87p36Wt+SvnzLbirexlDuqKWWRKe9nq3129ee76mPGud+cdc1BXzM4y6V/V2mHmU1+mWjMyzIjXyqHzCJMesVR5P9PyRav4M7/6MpUzMqyMlzmoM2x5yZTWvVXVl63izzjqy1TOyLAyXuagzrDlXWWyf1VrLuuMw/6ItmZEWBmPlUPnGba8YqnqnFX32Uqu9IyrvkzljAwr42UO6gxbXjKldf+qqrlWrchBdgUzwmAO6giTnh1MzvBo5qD2MLr0cDfqLnt4cnI3ag+jSw93o+6yhycnd6P2MLr0cDfqLnt4cnI3ag+jSw93o+6yhycnd6P2MLr0cDfqLnt4cnK3v6o93+K/p+cX+AF5h8CC
+   eJztl0sKgEAMQ72AZ9HD6GH09M7GjTh+MJ2kkgdDQcHpM8XP0HfdWNZAqkemcmzun9c3sBxrrpH7sRxrufwx16Ws9aLX/fxdzeDKIKKnJ74MWtx/hUzP+rAr9posZ+dqV/QercmQa6Z3PjvPWh+KM+xcv/eh6IrKK8MMo3CuWq4olGcY/Xx1rlzXqPek8gyjUco1+vtHyTUaz7BzRe3BooWrCna1a3bsatfs2NWu2UH9R6lX8182eYfAgg==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -165,6 +165,7 @@
     <property name="act21" value="char_face postboy,right"/>
     <property name="cond1" value="not char_exists rock"/>
     <property name="cond2" value="not char_exists postboy"/>
+    <property name="cond3" value="not variable_set badge:yes"/>
    </properties>
   </object>
   <object id="110" name="move please" type="event" x="512" y="240" width="16" height="16">
@@ -173,6 +174,7 @@
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>
     <property name="cond3" value="is button_pressed K_RETURN"/>
+    <property name="cond4" value="is char_exists postboy"/>
    </properties>
   </object>
   <object id="111" name="angry populace" type="event" x="432" y="320" width="16" height="16">
@@ -651,6 +653,7 @@
     <property name="act13" value="char_move player,right 1"/>
     <property name="act20" value="unlock_controls"/>
     <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not variable_set badge:yes"/>
    </properties>
   </object>
   <object id="144" name="gym time" type="event" x="720" y="432" width="16" height="208">

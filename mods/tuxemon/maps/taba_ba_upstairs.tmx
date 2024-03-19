@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="26" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="39">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="taba_ba_br_1"/>
+ </properties>
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="3865" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="7729" source="../gfx/tilesets/core_outdoor.tsx"/>
+ <layer id="7" name="Tile Layer 1" width="26" height="16">
+  <data encoding="base64" compression="zlib">
+   eJy9lGEKwjAMhYPQG2juoLIdQj2EJ/C31Ut4i7KLeATFXUdFOzT0WTqbTjDwSFaWfmuylIjITohOGe29SPlunCPW+OcZf1fzznHe35RyCc7SvLSKvMTIyX2TKOY44KRYMec40mkzDoyujmcva4J2CS81bwdyrj7vDufp40nNifWcNXCmPm/On/vH6jhS87qAU3HgpHoh3kKM61rOwgROqhfoJcZ1LWcLHM28HTio5DwW/mvtzOHsaTk4P9qZw9kbwim1f3EuBfdo+wPnUdBL4ux2vVYV9LIGzhPw69HE
+  </data>
+ </layer>
+ <layer id="8" name="Tile Layer 2" width="26" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBiegF8ZDSsxMEQBcaQS9e0xAZppqgRhC0DtoMSehaLY7UH3D03sUYL4wQxKgwCl4YbNHlqAUXsGtz2jYBSgAwBiAwz3
+  </data>
+ </layer>
+ <layer id="9" name="Tile Layer 3" width="26" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMAroDwAGgAAB
+  </data>
+ </layer>
+ <layer id="10" name="Above Player" width="26" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDBdwThSCi0UH2iWjYBQQBgAwbwJP
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collisions">
+  <object id="1" type="collision" x="192" y="0" width="192" height="48"/>
+  <object id="2" type="collision" x="368" y="48" width="16" height="64"/>
+  <object id="3" type="collision" x="368" y="96" width="32" height="48"/>
+  <object id="4" type="collision" x="192" y="144" width="16" height="112"/>
+  <object id="5" type="collision" x="208" y="208" width="176" height="48"/>
+  <object id="6" type="collision" x="368" y="144" width="48" height="48"/>
+  <object id="7" type="collision" x="368" y="192" width="16" height="16"/>
+  <object id="18" type="collision" x="192" y="48" width="16" height="64"/>
+  <object id="26" type="collision" x="160" y="16" width="32" height="96"/>
+  <object id="27" type="collision" x="0" y="144" width="192" height="48"/>
+  <object id="28" type="collision" x="0" y="64" width="32" height="48"/>
+  <object id="29" type="collision" x="0" y="16" width="32" height="48"/>
+  <object id="30" type="collision" x="32" y="0" width="128" height="32"/>
+ </objectgroup>
+ <objectgroup color="#ffff00" id="6" name="Events">
+  <object id="13" name="start battle?" type="event" x="208" y="112" width="16" height="32">
+   <properties>
+    <property name="act1" value="translated_dialog masterrumble"/>
+    <property name="act2" value="translated_dialog_choice yes:no,choicechosen2"/>
+    <property name="act3" value="set_variable choose:chose2"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
+    <property name="cond4" value="not variable_set choose:chose2"/>
+    <property name="cond5" value="not variable_set movealong:now2"/>
+   </properties>
+  </object>
+  <object id="14" name="choice-no" type="event" x="384" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog areyoureadytorumbleno"/>
+    <property name="act2" value="set_variable choose:no"/>
+    <property name="act3" value="char_face player,left"/>
+    <property name="cond1" value="is variable_set choicechosen2:no"/>
+    <property name="cond2" value="not variable_set choose:no"/>
+   </properties>
+  </object>
+  <object id="15" name="choice-yes" type="event" x="384" y="80" width="16" height="16">
+   <properties>
+    <property name="act10" value="translated_dialog masterrumbleyes"/>
+    <property name="act11" value="set_monster_health"/>
+    <property name="act12" value="set_monster_status"/>
+    <property name="act13" value="play_sound sound_confirm"/>
+    <property name="act14" value="wait 0.5"/>
+    <property name="act15" value="translated_dialog masterrumbleconfirmed"/>
+    <property name="act20" value="set_variable choose:yes"/>
+    <property name="act21" value="set_variable battledone:no"/>
+    <property name="act30" value="set_variable movealong:now2"/>
+    <property name="cond1" value="is variable_set choicechosen2:yes"/>
+    <property name="cond2" value="not variable_set movealong:now2"/>
+   </properties>
+  </object>
+  <object id="19" name="move to middle" type="event" x="224" y="48" width="16" height="160">
+   <properties>
+    <property name="act10" value="lock_controls"/>
+    <property name="act20" value="pathfind player,17,7"/>
+    <property name="act21" value="char_face player,right"/>
+    <property name="act30" value="set_variable battledone:start"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is variable_set battledone:no"/>
+    <property name="cond3" value="not variable_set battledone:redo"/>
+   </properties>
+  </object>
+  <object id="20" name="start fight" type="event" x="304" y="16" width="16" height="16">
+   <properties>
+    <property name="act12" value="wait 0.1"/>
+    <property name="act20" value="pathfind master1,19,7"/>
+    <property name="act23" value="char_face master1,left"/>
+    <property name="act25" value="translated_dialog challenger2"/>
+    <property name="act26" value="wait 0.5"/>
+    <property name="act50" value="translated_dialog challenger7"/>
+    <property name="act54" value="add_monster spighter,6,master1,5,100"/>
+    <property name="act55" value="add_monster katapill,9,master1,10,100"/>
+    <property name="act60" value="start_battle player,master1"/>
+    <property name="act99" value="set_variable battledone:yes"/>
+    <property name="cond1" value="is variable_set battledone:start"/>
+   </properties>
+  </object>
+  <object id="21" name="won battle" type="event" x="336" y="0" width="16" height="16">
+   <properties>
+    <property name="act10" value="wait 0.2"/>
+    <property name="act11" value="char_face master1,left"/>
+    <property name="act12" value="wait 0.6"/>
+    <property name="act13" value="translated_dialog tabamasterwonagainst"/>
+    <property name="act14" value="wait 1"/>
+    <property name="act20" value="char_face master1,right"/>
+    <property name="act21" value="wait 0.2"/>
+    <property name="act24" value="unlock_controls"/>
+    <property name="act97" value="set_variable badge:yes"/>
+    <property name="act99" value="set_variable master:done"/>
+    <property name="cond1" value="not variable_set master:done"/>
+    <property name="cond2" value="is variable_set battle_last_trainer:master1"/>
+    <property name="cond3" value="is variable_set battle_last_result:won"/>
+    <property name="cond4" value="not variable_set redo:please"/>
+    <property name="cond5" value="is variable_set battledone:yes"/>
+   </properties>
+  </object>
+  <object id="22" name="lost battle" type="event" x="272" y="112" width="48" height="16">
+   <properties>
+    <property name="act13" value="translated_dialog master1loss"/>
+    <property name="act20" value="wait 0.5"/>
+    <property name="act28" value="unlock_controls"/>
+    <property name="act30" value="transition_teleport healing_center.tmx,6,10,0.3"/>
+    <property name="act31" value="variable_set redo:please"/>
+    <property name="cond1" value="is variable_set battle_last_result:lost"/>
+    <property name="cond2" value="is variable_set battle_last_trainer:master1"/>
+    <property name="cond4" value="not variable_set redo:please"/>
+    <property name="cond5" value="is variable_set battledone:yes"/>
+    <property name="cond6" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="23" name="redo" type="event" x="160" y="112" width="16" height="32">
+   <properties>
+    <property name="act12" value="set_variable battledone:redo"/>
+    <property name="act13" value="set variable redo:please"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is variable_set battledone:yes"/>
+    <property name="cond3" value="not variable_set master:done"/>
+   </properties>
+  </object>
+  <object id="24" name="move to middle redo" type="event" x="240" y="48" width="16" height="160">
+   <properties>
+    <property name="act10" value="lock_controls"/>
+    <property name="act11" value="wait 0.3"/>
+    <property name="act12" value="pathfind master1,19,7"/>
+    <property name="act13" value="char_face master1,left"/>
+    <property name="act14" value="pathfind player,17,7"/>
+    <property name="act20" value="translated_dialog acolyte1redo"/>
+    <property name="act25" value="set_variable redo:finished"/>
+    <property name="act54" value="add_monster spighter,7,master1,5,100"/>
+    <property name="act55" value="add_monster katapill,9,master1,10,100"/>
+    <property name="act60" value="start_battle player,master1"/>
+    <property name="act99" value="set_variable battledone:yes"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is variable_set battledone:redo"/>
+   </properties>
+  </object>
+  <object id="25" name="teleport to main" type="event" x="0" y="112" width="16" height="32">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_main.tmx,15,3,1"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="33" name="wild tuxemon 1" type="event" x="32" y="32" width="64" height="48">
+   <properties>
+    <property name="act1" value="random_encounter taba_ba_passageway_1"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="34" name="wild tuxemon 2" type="event" x="112" y="32" width="32" height="64">
+   <properties>
+    <property name="act1" value="random_encounter taba_ba_passageway_2"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="35" name="wild tuxemon 3" type="event" x="80" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="random_encounter taba_ba_passageway_3"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="36" name="wild tuxemon 3" type="event" x="32" y="80" width="32" height="16">
+   <properties>
+    <property name="act1" value="random_encounter taba_ba_passageway_3"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="37" name="wild tuxemon 3" type="event" x="96" y="32" width="16" height="48">
+   <properties>
+    <property name="act1" value="random_encounter taba_ba_passageway_3"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_moved player"/>
+   </properties>
+  </object>
+  <object id="38" name="spawnmaster" type="event" x="336" y="64" width="16" height="16">
+   <properties>
+    <property name="act10" value="create_npc master1,22,3,stand"/>
+    <property name="cond2" value="not char_exists master1"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

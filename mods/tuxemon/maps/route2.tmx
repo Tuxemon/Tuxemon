@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="1" nextobjectid="145">
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="1" nextobjectid="145">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
-  <property name="slug" value="route2"/>
+  <property name="slug" value="xenoroute2"/>
   <property name="types" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
@@ -11,22 +11,22 @@
  <tileset firstgid="4326" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <layer id="1" name="Layer 1" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHt0iERAAAMxLBKfv9oLoYCaqCXVZMHDDDAAAMMMMAAAwww8GDgAMjSXhA=
+   eJztwzENAAAMBKGT/P6nuugECaumqqr68ADI0l4Q
   </data>
  </layer>
  <layer id="2" name="Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtVVEOgjAMrYn6q57CCHdR7oLcQ2+mN7L9aFKawV7ZCD82aQZsbV/f0gfR30oYeF2I3uxbWbMjUk9h+DC2L/vNnNPzLX9DTePR85Fzw55I3FvDH1CM90Avvk7uPYVNYzqw7pUDjhpUefW9Hzj/k3FJzQHEVxnSKJ3Hh3I2SjLx8gjOnnDibSm+NWfCYlyKz8fZnDWffR2ZW9UYXVNz7OPOwF36GKQPJCaJ2SRfU+d7ntFSbVCd7wAOTVvwI8LhVLJTBUy5+rl9j001UnSyxLQ3Wz+lb5E7Fmwlup36b+bwCQcIRostqr2WZz9vrdlM8afbgnHOorzJ/VtH5nAOXwkn2tecDub6lxxRDrTuFusPQ8Aewg==
+   eJztlVEOgjAMhrdEfVVOQcC7KHcB7qE30xu5hjTWWbdupdEH/6QvwNJv3f4f5/7S6NI4d22+17/3z+J0C2z3UJ1//Rbq+GENpy7RQ6t5s1Ss3skZT0ZsII4NNQj7tqF2q9C8K977NtTkl56z4VykivmkM5PoXOi9lnlWy2fpCapaPktPpPqAbyVZE687CM6yZk+SNSwzeW+Z86PXZwPm/GDEqLlL+xWYcv1L+TAjJ6VHcG+0P+fPkjMGNk1uc//NHB9IwkjZSrOXKvYb9Voq38bMXErnhncAS3JGKT7NTFCpHMztH/QL/3ypHkPAHsI=
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHFlQtOxDAMRIMEnGU/Z2HFUZBgrwtXwcP2iZHXbVLUikjZie2JPXXS7uGptWPMQwfbNHq8reMvoesSs4fo6/G2jlN3Lzw+tHZK8xy2hmJfj78TnuKcw4253S81wHOR+hQ+xYlJo4/XiHEO7v+PdVyt9hF6NJ8nAdK3V/9U4i2malDXEQ3iSds1eJzxJdYaa/v3mfp/y3L/S3703TPiXZw0KCYd0qb8QmJV/3gGcmKD+JeQ/Gv1UeN90q6e+v0jznOgAT/2HFbvgnpQDZ5BMfpHnYy+fynmvGrNXmJ/7R95cp/IK4QjHBkVX/r4hvx8R6yXzncOZwB/9P0lX9aKPz+r/HlIB99knS97M7JP5+73D3/Guf3Og5N9bmvNfdQ74N8b1vrukEvcXv+IswfMdbGJg/hB9GFn9H1L/UMX/cXW/rlBD0B64Xy/a5y1x9EHUtc5Wmdd2c78ytYZ+v9Exck+6eIua03dzMPO8WzDm8M1GukZqJxz/VOMc6pQ8dHB/8EI37WJv7YfIzVGOdVzu095lvo3WmdPHv37BlDcnQA=
+   eJzFVgEKgzAMbMH5Ft3eMvEpA/W77iszzMMsa9pU2u0gFE2ol0sa212c6zfrEiuQiiu93jcbDCtgjS+11kbvnbsKu/nD92wO435Zt1L44hKKcZ8+4sYx+t/plwJRmP3b2v3dWFE/wmP/xhywlsXR5xdW48Ef/HL0W5t0DAH7g18sBjyI1xrgJ/VDDvJZvq/BDzbtvkXoB/+qcEwhdBbO8ItpckYvLY+z+mk6aTxzuEl+mCF83sl4HiPno/X8alxjPSFBPMBxiNQUsJ5fS821XpFAvafI3MFelvkHv7UvU3FaP4byjOkn7w2cpwZNCw6tH7X8NP0kL/lswST+ExbwXiZL9Z92r7Iih2OoN2J6hPoXloMpI1727T/vL7H8oUHN+0sJQL8XUNydAA==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBj6oIF7cPthPpXcVzIA3jTnJN7SmcQrpYrKemC4xpDgvn1UsRW/IcjhNQ/ovkYS3IffZMplCYXXLqAVu6F4D+XWkWwCvcJrpJQXJEfAqIbREBgNgdEQGA2B0RCgUwgAAL5vC+Y=
+   eJxjYBj6oIF7oF2AH8ynkvtKqGMMScCck3i1M2nnDKygHhiuMSS4bx/tnAIHyOE1D+i+RhLcR2tAKLx2AfFuKN5DJzchA3qF10gpL0bBKBgFo2AUjILBCgC+bwvm
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -87,8 +87,8 @@
   </object>
   <object id="82" name="Sign: Route 2" type="event" x="592" y="128" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog route2"/>
-    <property name="act2" value="translated_dialog route2_description"/>
+    <property name="act1" value="translated_dialog xenoroute2"/>
+    <property name="act2" value="translated_dialog xenoroute2_description"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
@@ -127,13 +127,13 @@
    <properties>
     <property name="act10" value="set_variable sadsong:yes"/>
     <property name="act20" value="play_music music_the_princess"/>
-    <property name="act30" value="translated_dialog route2speech"/>
+    <property name="act30" value="translated_dialog xenoroute2speech"/>
     <property name="act40" value="char_face misa,right"/>
-    <property name="act50" value="translated_dialog route2speech2"/>
+    <property name="act50" value="translated_dialog xenoroute2speech2"/>
     <property name="act60" value="char_face misa,up"/>
-    <property name="act70" value="translated_dialog route2speech3"/>
+    <property name="act70" value="translated_dialog xenoroute2speech3"/>
     <property name="act80" value="set_variable skadoosh:no"/>
-    <property name="act90" value="translated_dialog_choice sure_i_do:not_really,route2choice"/>
+    <property name="act90" value="translated_dialog_choice sure_i_do:not_really,xenoroute2choice"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,left"/>
     <property name="cond30" value="is button_pressed K_RETURN"/>
@@ -145,20 +145,20 @@
   <object id="89" name="yes to talk" type="event" x="48" y="48" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog yestalk"/>
-    <property name="act20" value="set_variable route2choice:again"/>
+    <property name="act20" value="set_variable xenoroute2choice:again"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,left"/>
-    <property name="cond30" value="is variable_set route2choice:sure_i_do"/>
+    <property name="cond30" value="is variable_set xenoroute2choice:sure_i_do"/>
    </properties>
   </object>
   <object id="90" name="no to talk" type="event" x="48" y="48" width="16" height="16">
    <properties>
     <property name="act10" value="char_face misa,right"/>
     <property name="act20" value="translated_dialog notalk"/>
-    <property name="act30" value="set_variable route2choice:again"/>
+    <property name="act30" value="set_variable xenoroute2choice:again"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,left"/>
-    <property name="cond30" value="is variable_set route2choice:not_really"/>
+    <property name="cond30" value="is variable_set xenoroute2choice:not_really"/>
    </properties>
   </object>
   <object id="93" name="spill the beans" type="event" x="48" y="48" width="16" height="16">
@@ -187,237 +187,237 @@
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,left"/>
     <property name="cond30" value="not variable_set yahoo:maybe"/>
-    <property name="cond40" value="is variable_set route2choice:again"/>
+    <property name="cond40" value="is variable_set xenoroute2choice:again"/>
     <property name="cond50" value="not variable_set leavemealone:yes"/>
    </properties>
   </object>
   <object id="97" name="random battle" type="event" x="160" y="192" width="16" height="48">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="101" name="random battle2" type="event" x="128" y="176" width="32" height="48">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="102" name="random battle3" type="event" x="176" y="208" width="16" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="103" name="random battle4" type="event" x="112" y="192" width="16" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="104" name="random battle5" type="event" x="512" y="96" width="48" height="64">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="105" name="random battle6" type="event" x="528" y="80" width="32" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="106" name="random battle7" type="event" x="560" y="128" width="32" height="32">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="107" name="random battle8" type="event" x="512" y="32" width="48" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="108" name="random battle9" type="event" x="544" y="208" width="32" height="80">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="109" name="random battle10" type="event" x="560" y="192" width="32" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="111" name="random battle11" type="event" x="576" y="224" width="32" height="32">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="112" name="random battle12" type="event" x="256" y="160" width="32" height="48">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="113" name="random battle13" type="event" x="288" y="144" width="16" height="32">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="114" name="random battle14" type="event" x="336" y="192" width="16" height="32">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="115" name="random battle15" type="event" x="288" y="208" width="48" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="116" name="random battle16" type="event" x="352" y="224" width="16" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="117" name="random battle17" type="event" x="272" y="144" width="16" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="118" name="random battle18" type="event" x="224" y="176" width="32" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="119" name="random battle19" type="event" x="528" y="48" width="16" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="120" name="random battle20" type="event" x="608" y="128" width="16" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="121" name="random battle21" type="event" x="592" y="144" width="32" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="122" name="random battle22" type="event" x="464" y="176" width="96" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="123" name="random battle23" type="event" x="448" y="160" width="48" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="124" name="random battle24" type="event" x="32" y="112" width="32" height="48">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="125" name="random battle25" type="event" x="64" y="128" width="16" height="48">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="126" name="random battle26" type="event" x="80" y="144" width="16" height="32">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="127" name="random battle27" type="event" x="96" y="160" width="16" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="128" name="random battle28" type="event" x="16" y="128" width="16" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="129" name="random battle29" type="event" x="96" y="112" width="64" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="130" name="random battle30" type="event" x="128" y="128" width="16" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="131" name="random battle31" type="event" x="144" y="96" width="16" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="132" name="random battle32" type="event" x="528" y="256" width="16" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>
   </object>
   <object id="133" name="random battle33" type="event" x="576" y="256" width="16" height="16">
    <properties>
-    <property name="act10" value="random_encounter route2"/>
+    <property name="act10" value="random_encounter xenoroute2"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
    </properties>

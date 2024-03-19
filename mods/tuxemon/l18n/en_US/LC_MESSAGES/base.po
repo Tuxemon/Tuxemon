@@ -5584,6 +5584,9 @@ msgstr "Team Xero Grunt X"
 msgid "acolyte"
 msgstr "Acolyte Corren"
 
+msgid "master1"
+msgstr "Jim Master"
+
 ## DIALOG TRANSLATIONS ##
 # general dialogs
 
@@ -7168,6 +7171,22 @@ msgstr "Received the papers back from Kyle"
 msgid "headupstairstababa7"
 msgstr "The Battle Area Master is up those stairs on the far side.\n"
 "I'd wish you luck, but, y'know? I don't actually want you to win!"
+
+msgid "masterrumble"
+msgstr "Are you ready for the master?"
+
+msgid "masterrumbleyes"
+msgstr "Very well, we will heal you."
+
+msgid "masterrumbleconfirmed"
+msgstr "Step forward to earn your badge!"
+
+msgid "master1loss"
+msgstr "Everyone was rooting against you."
+
+msgid "tabamasterwonagainst"
+msgstr "Impressive. Here's your badge. You may now leave back the way you came. \n"
+"There should be Tuxemon in the wild now."
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

@@ -64,7 +64,7 @@
     "template": [
       {
         "sprite_name": "goth",
-        "combat_front": "adventurer",
+        "combat_front": "goth",
         "slug": "goth"
       }
     ]

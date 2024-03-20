@@ -69,6 +69,14 @@ class GenderType(str, Enum):
     female = "female"
 
 
+class SkinSprite(str, Enum):
+    light = "light"
+    tanned = "tanned"
+    dark = "dark"
+    albino = "albino"
+    orc = "orc"
+
+
 class TasteWarm(str, Enum):
     tasteless = "tasteless"
     peppy = "peppy"
@@ -487,6 +495,18 @@ class MonsterSoundsModel(BaseModel):
         ..., description="The sound used when the monster faints"
     )
 
+    @field_validator("combat_call")
+    def combat_call_exists(cls: MonsterSoundsModel, v: str) -> str:
+        if has.db_entry("sounds", v):
+            return v
+        raise ValueError(f"the sound {v} doesn't exist in the db")
+
+    @field_validator("faint_call")
+    def faint_call_exists(cls: MonsterSoundsModel, v: str) -> str:
+        if has.db_entry("sounds", v):
+            return v
+        raise ValueError(f"the sound {v} doesn't exist in the db")
+
 
 # Validate assignment allows us to assign a default inside a validator
 class MonsterModel(BaseModel, validate_assignment=True):
@@ -775,6 +795,12 @@ class TechniqueModel(BaseModel):
             f"the healing power is between {lower} and {upper} ({v})"
         )
 
+    @field_validator("sfx")
+    def sfx_tech_exists(cls: TechniqueModel, v: str) -> str:
+        if has.db_entry("sounds", v):
+            return v
+        raise ValueError(f"the sound {v} doesn't exist in the db")
+
 
 class ConditionModel(BaseModel):
     slug: str = Field(..., description="The slug of the condition")
@@ -898,6 +924,12 @@ class ConditionModel(BaseModel):
         if not v or has.check_conditions(v):
             return v
         raise ValueError(f"the conditions {v} aren't correctly formatted")
+
+    @field_validator("sfx")
+    def sfx_cond_exists(cls: ConditionModel, v: str) -> str:
+        if has.db_entry("sounds", v):
+            return v
+        raise ValueError(f"the sound {v} doesn't exist in the db")
 
 
 class PartyMemberModel(BaseModel):
@@ -1095,6 +1127,12 @@ class EnvironmentModel(BaseModel):
     )
     battle_graphics: BattleGraphicsModel
 
+    @field_validator("battle_music")
+    def battle_music_exists(cls: EnvironmentModel, v: str) -> str:
+        if has.db_entry("music", v):
+            return v
+        raise ValueError(f"the music {v} doesn't exist in the db")
+
 
 class EncounterItemModel(BaseModel):
     monster: str = Field(..., description="Monster slug for this encounter")
@@ -1223,10 +1261,24 @@ class MusicModel(BaseModel):
     slug: str = Field(..., description="Unique slug for the music")
     file: str = Field(..., description="File for the music")
 
+    @field_validator("file")
+    def file_exists(cls: MusicModel, v: str) -> str:
+        file: str = f"music/{v}"
+        if has.file(file):
+            return v
+        raise ValueError(f"the music {v} doesn't exist in the db")
+
 
 class SoundModel(BaseModel):
     slug: str = Field(..., description="Unique slug for the sound")
     file: str = Field(..., description="File for the sound")
+
+    @field_validator("file")
+    def file_exists(cls: SoundModel, v: str) -> str:
+        file: str = f"sounds/{v}"
+        if has.file(file):
+            return v
+        raise ValueError(f"the sound {v} doesn't exist in the db")
 
 
 TableName = Literal[

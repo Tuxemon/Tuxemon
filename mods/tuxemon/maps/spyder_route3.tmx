@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="698">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="707">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -9,9 +9,7 @@
   <property name="west" value="route4"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
- <tileset firstgid="1441" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
-  <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>
- </tileset>
+ <tileset firstgid="1441" source="../gfx/tilesets/Superpowers_Tilesheet.tsx"/>
  <tileset firstgid="3041" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="5816" source="../gfx/tilesets/core_buildings.tsx"/>
  <tileset firstgid="8166" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
@@ -23,12 +21,12 @@
  </layer>
  <layer id="2" name="Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHdmE1uFDEQhb1MMiACQkiIkGSyJ3AEFqyAREgkt8g+mQBSDgKR2PF7COAQ/GQ1ipI9N+A9ZUp5U7Ld3e7uYcDSG7vtcvlztdvtnoXrISxCC3Oa3wPXJsR87XY4WoXuQivQHUjbzW6WeZC0DZ4t6Cn0BHoMSXNvxdS98wO+As9L6AV0CI0g2nx+yN/+UuoecURjZ/kTeD5CH6D30DuI9UxngxB2rl7oHGW9tvqqnP1iyRh8TltjZ/kEPL+gn9AP6DvEeqYHYLO0ibJeW31Vzn6xZAw+p60xx/ppnfKU8j2fxF/jfD9Sp3E2ZrLk7tnuZO6LyAdXQliCBpM6nUcXZZ2H+tMYab2WGbtnYKPq2Gvf0rLFzWKU80O+JvY5X3XbmsSBsa8zj7pj17Frwqf+uBaXJmq7FsdD9TxdruJTDuNhzuek7VpM+bZxSMpn0a5juXIYj+Zcj6X3XJ839Tkdwcs4qI2W7ZnQvcvKTdj2wuWeTwbdS8yf5rTJjW22TRjos8vk19/+jRAOoBH0N5KuSY7P9Xcq7+7X4HoDHQvf28zz1eUcyMb17pPG8Au4vkLfhM/b93XN5yWWlC/W3lfd4c1pz/PGN02Hb405i19ffCN3X/w4pdf/c/z83l8ao1y/fyF+sbPMLPeX39fSEWwTv+FG2m9JyyN3VqCPNnwlDNpnvK5X8TL5hpF3qd5ffT9Hz4OJPTQ+YrNanrf0+9J6K18qxmbb57clx/CM/vxbxUcffTMqg8aOY2sbr1PJ90vZldTbuZp9OY6+r9rw3VoOgeoyWRzsDOr5Yud//m8yqzO/8dmcPZ9vN7tcftzh+cGPX8Jnsc8xl7b5719//vf8VeNU7Z+6p7b934Esnl/9x8p+frn5VPnO9W3bNu7gff0HmoeLHg==
+   eAHVWEtuFDEQrWWSAZKwQEJA6GFP4AgsWPENIrkFewgfiRPABQCJHd9DAPuw5LcaIdhzg7ynTGleSnZ7unt6mJT0UmW7XPW67Pa4s7RutgwsLai+CF6bAPX50/Z0AzgHnAXOADrufvPUJnILfG4CN4DrwDVAhnszc2sXEz4Bn8fAI+AhsAvQ5+MV/u1PcmvEjM6d9gfweQ+8A94CbwD2U/4MzLaPH+AvbG17f0lzXkqcQ9T0de60f4HPT+AH8B34BrCfchncXDZha9v7S5rzUuIcoqavc07N0z7l05bf3XH9tc6XEn1aZ+dMLnVrtjN+9mXowTGzFWAw7tPn6GI/q8yeA/ocGk9rpP1qs3Zb4EZM469zS/ZeZfYViOJ18xrFcW2TXxN/nVtn367yo03qwNpP8xz5bAcjd2r4xLlN+Olc7sWVMbruxdHQbD3DucRPeTgfar4nXfdiLrbnYT34Lno7pZWH81HN/dh2zfV905i6TrR1LGX7O6Fnl9tNuN2zyZnPvHqWeDzV9KnL7b5NODDmLCXuv/snzR4Au8D/EN2TzM/991t+u1+A10vglfB7jfdrHkJu3O9RtIafwOsz8EX4Rf++2nxfUqL8UuN99a1VhyMvGr/D7PCtsWD164vfaliXmKdt+yjXr+6Ow3rEs79tjermHYX68S4TZZ7ny7/VmH3S7lK/4YVJnFlYV8NdgTG78OvKaVSVI5DfsLC++vucvA9mztBy9rIH71v6fekzdP/lauy+fXxbemzqyDHef0v8GKNvjspBa8fcOsZ2TuK8nF+bfr9Xcy7z6LdTF36n1syIWYrXwe+gkV/q/s//m8zrzu/8/JkjvzjufnV6q6obbTYW87fh57Vvlnk67/j9G+//kX8paun81DO16f8dUneYyF/jp+z4fHXPU4od58bvAR8/Ubk1vR7N4Pd6H956j0s=
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -42,126 +40,25 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">
-  <object id="459" type="collision" x="64" y="592" width="16" height="48"/>
-  <object id="461" type="collision" x="80" y="576" width="16" height="32"/>
-  <object id="462" type="collision" x="160" y="608" width="16" height="32"/>
   <object id="464" type="collision" x="112" y="464" width="64" height="16"/>
   <object id="465" type="collision" x="128" y="480" width="32" height="32"/>
   <object id="466" type="collision" x="192" y="512" width="32" height="32"/>
-  <object id="467" type="collision" x="432" y="544" width="32" height="32"/>
-  <object id="468" type="collision" x="448" y="528" width="32" height="32"/>
-  <object id="469" type="collision" x="464" y="512" width="96" height="32"/>
-  <object id="470" type="collision" x="544" y="496" width="32" height="32"/>
-  <object id="471" type="collision" x="560" y="480" width="32" height="32"/>
-  <object id="472" type="collision" x="576" y="464" width="16" height="16"/>
-  <object id="473" type="collision" x="592" y="480" width="16" height="16"/>
-  <object id="474" type="collision" x="512" y="224" width="96" height="16"/>
-  <object id="475" type="collision" x="528" y="96" width="64" height="16"/>
-  <object id="476" type="collision" x="592" y="112" width="16" height="16"/>
-  <object id="479" type="collision" x="544" y="144" width="16" height="16"/>
   <object id="480" type="collision" x="528" y="0" width="16" height="96"/>
   <object id="484" type="collision" x="0" y="0" width="528" height="32"/>
-  <object id="485" type="collision" x="32" y="240" width="144" height="16"/>
-  <object id="486" type="collision" x="176" y="224" width="112" height="16"/>
-  <object id="487" type="collision" x="288" y="208" width="16" height="16"/>
-  <object id="488" type="collision" x="192" y="160" width="32" height="16"/>
-  <object id="489" type="collision" x="224" y="144" width="32" height="16"/>
   <object id="490" type="collision" x="48" y="160" width="48" height="16"/>
   <object id="491" type="collision" x="112" y="144" width="48" height="16"/>
-  <object id="492" type="collision" x="128" y="320" width="16" height="16"/>
-  <object id="493" type="collision" x="80" y="304" width="16" height="16"/>
   <object id="494" type="collision" x="80" y="272" width="48" height="16"/>
   <object id="495" type="collision" x="64" y="272" width="16" height="16"/>
   <object id="496" type="collision" x="176" y="304" width="16" height="16"/>
   <object id="497" type="collision" x="192" y="256" width="16" height="16"/>
   <object id="498" type="collision" x="112" y="320" width="16" height="16"/>
   <object id="499" type="collision" x="208" y="304" width="48" height="16"/>
-  <object id="500" type="collision" x="256" y="288" width="16" height="16"/>
-  <object id="503" type="collision" x="304" y="192" width="64" height="32"/>
-  <object id="504" type="collision" x="304" y="272" width="64" height="32"/>
   <object id="505" type="collision" x="272" y="256" width="16" height="16"/>
-  <object id="506" type="collision" x="352" y="208" width="32" height="80"/>
-  <object id="507" type="collision" x="288" y="112" width="32" height="48"/>
-  <object id="508" type="collision" x="304" y="96" width="96" height="32"/>
-  <object id="509" type="collision" x="384" y="112" width="32" height="32"/>
-  <object id="510" type="collision" x="400" y="128" width="64" height="32"/>
-  <object id="511" type="collision" x="432" y="160" width="48" height="208"/>
-  <object id="512" type="collision" x="416" y="304" width="32" height="96"/>
-  <object id="513" type="collision" x="448" y="368" width="16" height="16"/>
-  <object id="514" type="collision" x="400" y="320" width="16" height="80"/>
-  <object id="515" type="collision" x="176" y="336" width="224" height="64"/>
-  <object id="516" type="collision" x="64" y="352" width="208" height="80"/>
-  <object id="517" type="collision" x="32" y="496" width="16" height="16"/>
-  <object id="518" type="collision" x="32" y="528" width="16" height="16"/>
-  <object id="519" type="collision" x="32" y="144" width="32" height="16"/>
-  <object id="520" type="collision" x="64" y="112" width="112" height="16"/>
-  <object id="521" type="collision" x="176" y="64" width="32" height="16"/>
-  <object id="522" type="collision" x="240" y="64" width="192" height="16"/>
-  <object id="523" type="collision" x="432" y="96" width="80" height="16"/>
-  <object id="524" type="collision" x="48" y="32" width="16" height="64"/>
+  <object id="524" type="collision" x="48" y="32" width="16" height="48"/>
   <object id="525" type="collision" x="64" y="32" width="64" height="32"/>
   <object id="526" type="collision" x="80" y="64" width="48" height="16"/>
-  <object id="527" type="collision" x="160" y="544" width="64" height="16"/>
-  <object id="528" type="collision" x="240" y="544" width="16" height="16"/>
-  <object id="529" type="collision" x="0" y="64" width="32" height="576"/>
-  <object id="530" type="collision" x="32" y="272" width="16" height="224"/>
-  <object id="531" type="collision" x="32" y="80" width="32" height="64"/>
-  <object id="532" type="collision" x="176" y="608" width="464" height="32"/>
-  <object id="533" type="collision" x="336" y="592" width="192" height="16"/>
-  <object id="534" type="collision" x="608" y="0" width="32" height="608"/>
-  <object id="535" type="collision" x="592" y="256" width="16" height="224"/>
-  <object id="536" type="collision" x="576" y="272" width="16" height="192"/>
-  <object id="537" type="collision" x="512" y="192" width="96" height="32"/>
-  <object id="546" type="collision" x="32" y="208" width="144" height="32"/>
-  <object id="547" type="collision" x="144" y="192" width="144" height="32"/>
+  <object id="531" type="collision" x="32" y="80" width="32" height="32"/>
   <object id="561" type="collision" x="80" y="544" width="32" height="32"/>
-  <object id="562" type="collision-line" x="80" y="544">
-   <polyline points="0,0 0,-80"/>
-  </object>
-  <object id="563" type="collision-line" x="224" y="464">
-   <polyline points="0,0 -144,0"/>
-  </object>
-  <object id="564" type="collision-line" x="240" y="480">
-   <polyline points="0,0 0,16"/>
-  </object>
-  <object id="565" type="collision-line" x="256" y="496">
-   <polyline points="0,0 0,48"/>
-  </object>
-  <object id="566" type="collision-line" x="224" y="480">
-   <polyline points="0,0 16,0"/>
-  </object>
-  <object id="567" type="collision-line" x="160" y="560">
-   <polyline points="0,0 0,48"/>
-  </object>
-  <object id="568" type="collision-line" x="224" y="464">
-   <polyline points="0,0 0,16"/>
-  </object>
-  <object id="569" type="collision-line" x="32" y="592">
-   <polyline points="0,0 32,0"/>
-  </object>
-  <object id="570" type="collision-line" x="208" y="80">
-   <polyline points="0,0 0,32"/>
-  </object>
-  <object id="571" type="collision-line" x="240" y="80">
-   <polyline points="0,0 0,32"/>
-  </object>
-  <object id="572" type="collision-line" x="208" y="112">
-   <polyline points="0,0 -16,0"/>
-  </object>
-  <object id="573" type="collision-line" x="240" y="112">
-   <polyline points="0,0 16,0"/>
-  </object>
-  <object id="574" type="collision-line" x="192" y="112">
-   <polyline points="0,0 0,48"/>
-  </object>
-  <object id="575" type="collision-line" x="256" y="112">
-   <polyline points="0,0 0,32"/>
-  </object>
-  <object id="576" type="collision" x="480" y="160" width="16" height="16"/>
-  <object id="577" type="collision" x="512" y="304" width="16" height="16"/>
-  <object id="578" type="collision" x="352" y="560" width="16" height="16"/>
-  <object id="591" type="collision" x="48" y="384" width="16" height="16"/>
-  <object id="630" type="collision" x="240" y="176" width="64" height="32"/>
   <object id="634" type="collision" x="480" y="416" width="16" height="16"/>
   <object id="635" type="collision" x="400" y="464" width="16" height="16"/>
   <object id="636" type="collision" x="528" y="464" width="16" height="16"/>
@@ -183,17 +80,9 @@
   <object id="672" type="collision" x="112" y="160" width="16" height="16"/>
   <object id="673" type="collision" x="144" y="160" width="16" height="16"/>
   <object id="677" type="collision" x="96" y="80" width="32" height="16"/>
-  <object id="678" type="collision-line" x="240" y="496">
-   <polyline points="0,0 16,0"/>
-  </object>
-  <object id="685" type="collision-line" x="432" y="80">
-   <polyline points="0,0 0,16"/>
-  </object>
+  <object id="698" type="collision" x="0" y="64" width="32" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
-  <object id="559" type="collision-line" x="176" y="80">
-   <polyline points="0,0 0,32"/>
-  </object>
   <object id="579" name="Teleport to Leather Town" type="event" x="144" y="624" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_leather_town.tmx,9,0,0.3"/>
@@ -805,6 +694,45 @@
     <property name="act2" value="char_face player,right"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,right"/>
+   </properties>
+  </object>
+  <object id="701" name="Create Miner 2" type="event" x="592" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route3_miner2,37,15"/>
+    <property name="act2" value="char_face spyder_route3_miner2,left"/>
+    <property name="cond1" value="not char_exists spyder_route3_miner2"/>
+   </properties>
+  </object>
+  <object id="702" name="Create Miner 3" type="event" x="560" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route3_miner3,35,10"/>
+    <property name="act2" value="char_face spyder_route3_miner3,right"/>
+    <property name="cond1" value="not char_exists spyder_route3_miner3"/>
+   </properties>
+  </object>
+  <object id="703" name="Create Miner 1" type="event" x="432" y="576" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route3_miner1,27,36"/>
+    <property name="act2" value="char_face spyder_route3_miner1,left"/>
+    <property name="cond1" value="not char_exists spyder_route3_miner1"/>
+   </properties>
+  </object>
+  <object id="704" name="Miner 1 Talk" type="event" x="448" y="576" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route3_optional1"/>
+    <property name="behav1" value="talk spyder_route3_miner1"/>
+   </properties>
+  </object>
+  <object id="705" name="Miner 2 Talk" type="event" x="592" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route3_optional2"/>
+    <property name="behav1" value="talk spyder_route3_miner2"/>
+   </properties>
+  </object>
+  <object id="706" name="Miner 3 Talk" type="event" x="560" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route3_optional3"/>
+    <property name="behav1" value="talk spyder_route3_miner3"/>
    </properties>
   </object>
  </objectgroup>

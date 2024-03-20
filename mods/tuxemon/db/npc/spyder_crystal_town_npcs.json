@@ -40,16 +40,6 @@
     ]
   },
   {
-    "slug": "spyder_crystal_nurse",
-    "template": [
-      {
-        "sprite_name": "nurse",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-    ]
-  },
-  {
     "slug": "spyder_crystal_maniac_green",
     "template": [
       {
@@ -83,8 +73,8 @@
     "slug": "spyder_crystal_shopkeeper",
     "template": [
       {
-        "sprite_name": "shopassist_black",
-        "combat_front": "shopassist",
+        "sprite_name": "shopassistant_black",
+        "combat_front": "shopassistant",
         "slug": "shopassistant"
       }
     ]

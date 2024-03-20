@@ -73,8 +73,8 @@
     "slug": "spyder_cottoncafe_wilford",
     "template": [
       {
-        "sprite_name": "shopassist",
-        "combat_front": "shopassist",
+        "sprite_name": "shopassistant",
+        "combat_front": "shopassistant",
         "slug": "shopassistant"
       }
     ]
@@ -170,16 +170,6 @@
     ]
   },
   {
-    "slug": "spyder_cottoncenter_krystal",
-    "template": [
-      {
-        "sprite_name": "nurse",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-    ]
-  },
-  {
     "slug": "spyder_cottoncenter_ada",
     "template": [
       {
@@ -203,8 +193,8 @@
     "slug": "spyder_shopassistant",
     "template": [
       {
-        "sprite_name": "shopassist",
-        "combat_front": "shopassist",
+        "sprite_name": "shopassistant",
+        "combat_front": "shopassistant",
         "slug": "shopassistant"
       }
     ]
@@ -283,8 +273,8 @@
     "slug": "spyder_cottontunnel_shopassistant",
     "template": [
       {
-        "sprite_name": "shopassist_black",
-        "combat_front": "shopassist",
+        "sprite_name": "shopassistant_black",
+        "combat_front": "shopassistant",
         "slug": "shopassistant"
       }
     ]

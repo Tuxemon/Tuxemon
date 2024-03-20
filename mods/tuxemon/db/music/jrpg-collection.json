@@ -1,0 +1,74 @@
+[
+    {
+        "slug" : "music_battle_loop",
+        "file" : "JRPGCollection/ogg/JRPG_battle_loop.ogg"
+    },
+    {
+        "slug" : "music_battle_loop_slow",
+        "file" : "JRPGCollection/ogg/JRPG_battle_loop_slow.ogg"
+    },
+    {
+        "slug" : "music_dungeon_loop_slow",
+        "file" : "JRPGCollection/ogg/JRPG_dungeon_loop.ogg"
+    },
+    {
+        "slug" : "music_fields_loop",
+        "file" : "JRPGCollection/ogg/JRPG_fields_loop.ogg"
+    },
+    {
+        "slug" : "music_gameover",
+        "file" : "JRPGCollection/ogg/JRPG_gameOver.ogg"
+    },
+    {
+        "slug" : "music_goodnight",
+        "file" : "JRPGCollection/ogg/JRPG_goodNight.ogg"
+    },
+    {
+        "slug" : "music_labyrinth_loop",
+        "file" : "JRPGCollection/ogg/JRPG_labyrinth_loop.ogg"
+    },
+    {
+        "slug" : "music_main_theme",
+        "file" : "JRPGCollection/ogg/JRPG_mainTheme.ogg"
+    },
+    {
+        "slug" : "music_temple",
+        "file" : "JRPGCollection/ogg/JRPG_temple.ogg"
+    },
+    {
+        "slug" : "music_character_revived",
+        "file" : "JRPGCollection2/ogg/JRPG_characterRevived.ogg"
+    },
+    {
+        "slug" : "music_discovery",
+        "file" : "JRPGCollection2/ogg/JRPG_discovery.ogg"
+    },
+    {
+        "slug" : "music_inn_loop",
+        "file" : "JRPGCollection2/ogg/JRPG_inn_loop.ogg"
+    },
+    {
+        "slug" : "music_join_party",
+        "file" : "JRPGCollection2/ogg/JRPG_joinParty.ogg"
+    },
+    {
+        "slug" : "music_level_up",
+        "file" : "JRPGCollection2/ogg/JRPG_levelUp.ogg"
+    },
+    {
+        "slug" : "music_machine_room_loop",
+        "file" : "JRPGCollection2/ogg/JRPG_machineRoom_loop.ogg"
+    },
+    {
+        "slug" : "music_shop_loop",
+        "file" : "JRPGCollection2/ogg/JRPG_shop_loop.ogg"
+    },
+    {
+        "slug" : "music_tavern",
+        "file" : "JRPGCollection2/ogg/JRPG_tavern.ogg"
+    },
+    {
+        "slug" : "music_win_battle_boss",
+        "file" : "JRPGCollection2/ogg/JRPG_winBattleBoss.ogg"
+    }
+]

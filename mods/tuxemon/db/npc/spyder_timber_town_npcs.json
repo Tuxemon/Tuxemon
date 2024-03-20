@@ -20,16 +20,6 @@
     ]
   },
   {
-    "slug": "spyder_timbercenter_luciana",
-    "template": [
-      {
-        "sprite_name": "nurse",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-    ]
-  },
-  {
     "slug": "spyder_timberscoop_leandro",
     "template": [
       {

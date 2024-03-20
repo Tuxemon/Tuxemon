@@ -44,11 +44,6 @@
   <object id="288" type="collision" x="512" y="448" width="96" height="96"/>
   <object id="289" type="collision" x="480" y="576" width="96" height="64"/>
   <object id="290" type="collision" x="480" y="0" width="32" height="32"/>
-  <object id="313" type="collision" x="352" y="0" width="16" height="16"/>
-  <object id="314" type="collision" x="432" y="0" width="16" height="16"/>
-  <object id="315" type="collision" x="0" y="112" width="16" height="16"/>
-  <object id="316" type="collision" x="0" y="192" width="16" height="16"/>
-  <object id="317" type="collision" x="16" y="128" width="16" height="64"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="295" name="Teleport to Route" type="event" x="368" y="624" width="16" height="16">

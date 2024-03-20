@@ -134,14 +134,50 @@ class TestMonsterActions(unittest.TestCase):
         self.action.execute_action("add_monster", _params)
         self.action.execute_action("set_monster_health", [None, 0.5])
         monster = self.player.monsters[0]
-        self.assertEqual(monster.current_hp, monster.hp)
+        self.assertEqual(monster.current_hp, monster.hp / 2)
 
     def test_set_monster_health_negative_float(self):
         _params = ["agnite", 5]
         self.action.execute_action("add_monster", _params)
         self.action.execute_action("set_monster_health", [None, -0.5])
         monster = self.player.monsters[0]
-        self.assertEqual(monster.current_hp, monster.hp / 2)
+        self.assertEqual(monster.current_hp, 0)
+        self.assertEqual(len(monster.status), 1)
+
+    def test_modify_monster_health(self):
+        _params = ["agnite", 5]
+        self.action.execute_action("add_monster", _params)
+        self.action.execute_action("modify_monster_health", [])
+        monster = self.player.monsters[0]
+        self.assertEqual(monster.current_hp, monster.hp)
+
+    def test_modify_monster_health_negative_int(self):
+        _params = ["agnite", 5]
+        self.action.execute_action("add_monster", _params)
+        self.action.execute_action("modify_monster_health", [None, -2])
+        monster = self.player.monsters[0]
+        self.assertEqual(monster.current_hp, monster.hp - 2)
+
+    def test_modify_monster_health_positive_int(self):
+        _params = ["agnite", 5]
+        self.action.execute_action("add_monster", _params)
+        self.action.execute_action("modify_monster_health", [None, 2])
+        monster = self.player.monsters[0]
+        self.assertEqual(monster.current_hp, monster.hp)
+
+    def test_modify_monster_health_negative_float(self):
+        _params = ["agnite", 5]
+        self.action.execute_action("add_monster", _params)
+        self.action.execute_action("modify_monster_health", [None, -0.5])
+        monster = self.player.monsters[0]
+        self.assertEqual(monster.current_hp, monster.hp - (monster.hp / 2))
+
+    def test_modify_monster_health_positive_float(self):
+        _params = ["agnite", 5]
+        self.action.execute_action("add_monster", _params)
+        self.action.execute_action("modify_monster_health", [None, 0.5])
+        monster = self.player.monsters[0]
+        self.assertEqual(monster.current_hp, monster.hp)
 
     def test_set_monster_status(self):
         self.player.steps = 0.0
@@ -234,8 +270,8 @@ class TestMonsterActions(unittest.TestCase):
         before = monster.speed
         _params = [None, "speed", None, 1, 5]
         self.action.execute_action("modify_monster_stats", _params)
-        self.assertGreaterEqual(monster.speed, before + 1)
-        self.assertLessEqual(monster.speed, before + 5)
+        self.assertGreaterEqual(monster.speed, before)
+        self.assertLessEqual(monster.speed, before + 6)
 
     def test_modify_monster_stats_random_negative(self):
         _params = ["agnite", 5]
@@ -244,8 +280,8 @@ class TestMonsterActions(unittest.TestCase):
         before = monster.speed
         _params = [None, "speed", None, -5, -1]
         self.action.execute_action("modify_monster_stats", _params)
-        self.assertGreaterEqual(monster.speed, before - 5)
-        self.assertLessEqual(monster.speed, before - 1)
+        self.assertGreaterEqual(monster.speed, before - 6)
+        self.assertLessEqual(monster.speed, before)
 
     def test_modify_monster_bond(self):
         _params = ["agnite", 5]
@@ -333,3 +369,40 @@ class TestMonsterActions(unittest.TestCase):
         _params = [5, None, None, None, None, "stage69"]
         with self.assertRaises(ValueError):
             self.action.execute_action("random_monster", _params)
+
+    def test_give_experience(self):
+        _params = [5]
+        self.action.execute_action("random_monster", _params)
+        before = self.player.monsters[0].total_experience
+        _params = [None, None]
+        self.action.execute_action("give_experience", _params)
+        after = self.player.monsters[0].total_experience
+        self.assertEqual(after, before)
+
+    def test_give_experience_number_negative(self):
+        _params = [5]
+        self.action.execute_action("random_monster", _params)
+        before = self.player.monsters[0].total_experience
+        _params = [None, -50]
+        self.action.execute_action("give_experience", _params)
+        after = self.player.monsters[0].total_experience
+        self.assertEqual(after, before)
+
+    def test_give_experience_number_positive(self):
+        _params = [5]
+        self.action.execute_action("random_monster", _params)
+        before = self.player.monsters[0].total_experience
+        _params = [None, 50]
+        self.action.execute_action("give_experience", _params)
+        after = self.player.monsters[0].total_experience
+        self.assertEqual(after, before + 50)
+
+    def test_give_experience_number_variable(self):
+        _params = [5]
+        self.action.execute_action("random_monster", _params)
+        self.action.execute_action("set_variable", ["exp:50"])
+        before = self.player.monsters[0].total_experience
+        _params = [None, "exp"]
+        self.action.execute_action("give_experience", _params)
+        after = self.player.monsters[0].total_experience
+        self.assertEqual(after, before + 50)

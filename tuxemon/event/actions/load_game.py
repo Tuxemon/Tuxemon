@@ -76,5 +76,5 @@ class LoadGameAction(EventAction):
             # teleport the player to the correct position using an event
             # engine action
             tele_x, tele_y = save_data["tile_pos"]
-            params = [save_data["current_map"], tele_x, tele_y]
+            params = ["player", save_data["current_map"], tele_x, tele_y]
             client.event_engine.execute_action("teleport", params)

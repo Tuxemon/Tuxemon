@@ -37,8 +37,8 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="23" name="Play Music" type="init" x="0" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="play_music music_house_downstairs"/>
-    <property name="cond1" value="not music_playing music_house_downstairs"/>
+    <property name="act1" value="play_music music_home"/>
+    <property name="cond1" value="not music_playing music_home"/>
    </properties>
   </object>
   <object id="29" name="Go Outside" type="event" x="128" y="176" width="16" height="16">
@@ -83,7 +83,7 @@
    <properties>
     <property name="act10" value="quarantine in"/>
     <property name="act11" value="char_face player,right"/>
-    <property name="act12" value="char_stop"/>
+    <property name="act12" value="char_stop player"/>
     <property name="act13" value="lock_controls"/>
     <property name="act14" value="create_npc spyder_candycafe_nora,6,3"/>
     <property name="act15" value="char_face spyder_candycafe_nora,left"/>

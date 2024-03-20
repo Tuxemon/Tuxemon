@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="8" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="23">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="scenario" value="xero"/>
+  <property name="slug" value="taba_ba_passageway_4"/>
+ </properties>
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="3865" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
+ </tileset>
+ <tileset firstgid="6835" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ </tileset>
+ <layer id="2" name="Tile Layer 1" width="8" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAecGRlYHBixS2fD5QrwCIP04dOo+tDp0f1U0c/ujm4AC59lOgHAHwAHq8=
+  </data>
+ </layer>
+ <layer id="1" name="Tile Layer 2" width="8" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYIAAS0UGhkRRBoYkUQgbBriB7AwgzgTiPqBcPxCnQ8V4FSFqpwHxdCQ9U6FillB8BIiPIskfhorB5HGBUXnK5dPxyIPiFDmukPXB4hQ5rpDl0eMUXR6bW7CxAV4dH00=
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="8" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2DgAAACgAAB
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="8" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFwx1kKDIw8Coi+NyKELHBAADRoAFt
+  </data>
+ </layer>
+ <objectgroup color="#ff2600" id="5" name="Collisions">
+  <object id="1" type="collision" x="80" y="16" width="48" height="48"/>
+  <object id="6" type="collision" x="80" y="256" width="48" height="32"/>
+  <object id="7" type="collision" x="112" y="64" width="16" height="192"/>
+  <object id="8" type="collision" x="0" y="16" width="48" height="48"/>
+  <object id="9" type="collision" x="32" y="0" width="16" height="16"/>
+  <object id="10" type="collision" x="80" y="0" width="16" height="16"/>
+  <object id="11" type="collision" x="0" y="64" width="16" height="192"/>
+  <object id="12" type="collision" x="0" y="256" width="48" height="32"/>
+  <object id="13" type="collision" x="32" y="288" width="16" height="32"/>
+  <object id="14" type="collision" x="80" y="288" width="16" height="32"/>
+ </objectgroup>
+ <objectgroup color="#fffb00" id="6" name="Events">
+  <object id="15" name="create npc" type="event" x="0" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc omnigrunt5,6,9,stand"/>
+    <property name="act2" value="char_face omnigrunt5,left"/>
+    <property name="cond1" value="not char_exists omnigrunt5"/>
+   </properties>
+  </object>
+  <object id="16" name="heal tuxemon up" type="event" x="96" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_face omnigrunt5,up"/>
+    <property name="act2" value="translated_dialog tabapassageway4heal"/>
+    <property name="act3" value="set_monster_health"/>
+    <property name="act4" value="set_monster_status"/>
+    <property name="act5" value="wait 1.2"/>
+    <property name="act6" value="play_sound sound_confirm"/>
+    <property name="act7" value="wait 0.1"/>
+    <property name="act8" value="translated_dialog tabapassageway4heal2"/>
+    <property name="act9" value="char_face omnigrunt5,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="17" name="heal tuxemon left" type="event" x="80" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_face omnigrunt5,left"/>
+    <property name="act2" value="translated_dialog tabapassageway4heal"/>
+    <property name="act3" value="set_monster_health"/>
+    <property name="act4" value="set_monster_status"/>
+    <property name="act5" value="wait 1.2"/>
+    <property name="act6" value="play_sound sound_confirm"/>
+    <property name="act7" value="wait 0.1"/>
+    <property name="act8" value="translated_dialog tabapassageway4heal2"/>
+    <property name="act9" value="char_face omnigrunt5,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="18" name="heal tuxemon down" type="event" x="96" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_face omnigrunt5,down"/>
+    <property name="act2" value="translated_dialog tabapassageway4heal"/>
+    <property name="act3" value="set_monster_health"/>
+    <property name="act4" value="set_monster_status"/>
+    <property name="act5" value="wait 1.2"/>
+    <property name="act6" value="play_sound sound_confirm"/>
+    <property name="act7" value="wait 0.1"/>
+    <property name="act8" value="translated_dialog tabapassageway4heal2"/>
+    <property name="act9" value="char_face omnigrunt5,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="19" name="teleport to main" type="event" x="48" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_main.tmx,16,13,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="20" name="teleport to main" type="event" x="64" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_main.tmx,17,13,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="21" name="to battle room" type="event" x="48" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_br_4.tmx,4,1,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="22" name="to battle room-2" type="event" x="64" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_br_4.tmx,5,1,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

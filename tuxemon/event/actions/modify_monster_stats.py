@@ -48,7 +48,7 @@ class ModifyMonsterStatsAction(EventAction):
     name = "modify_monster_stats"
     variable: Optional[str] = None
     stat: Optional[str] = None
-    amount: Optional[Union[float, int]] = None
+    amount: Optional[Union[int, float]] = None
     lower_bound: Optional[int] = None
     upper_bound: Optional[int] = None
 

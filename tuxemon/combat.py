@@ -429,7 +429,7 @@ def track_battles(
                 var = ["player", prize]
                 client.execute_action("modify_money", var, True)
                 if prize > 0:
-                    set_var(session, "battle_last_prize", prize)
+                    set_var(session, "battle_last_prize", str(prize))
                     info = {
                         "name": winner.name.upper(),
                         "prize": str(prize),

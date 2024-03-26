@@ -1,52 +1,52 @@
 [
   {
     "slug": "p_one",
-    "template": [
+    "template": 
       {
         "sprite_name": "p_one",
         "combat_front": "noclass",
         "slug": "interactive_obj"
       }
-    ]
+  
   },
   {
     "slug": "p_two",
-    "template": [
+    "template": 
       {
         "sprite_name": "p_two",
         "combat_front": "noclass",
         "slug": "interactive_obj"
       }
-    ]
+  
   },
   {
     "slug": "p_three",
-    "template": [
+    "template": 
       {
         "sprite_name": "p_three",
         "combat_front": "noclass",
         "slug": "interactive_obj"
       }
-    ]
+  
   },
   {
     "slug": "p_four",
-    "template": [
+    "template": 
       {
         "sprite_name": "p_four",
         "combat_front": "noclass",
         "slug": "interactive_obj"
       }
-    ]
+  
   },
   {
     "slug": "p_five",
-    "template": [
+    "template": 
       {
         "sprite_name": "p_five",
         "combat_front": "noclass",
         "slug": "interactive_obj"
       }
-    ]
+  
   }
 ]

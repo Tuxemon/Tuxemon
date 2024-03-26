@@ -1,42 +1,42 @@
 [
   {
     "slug": "unknownwitch",
-    "template": [
+    "template": 
       {
         "sprite_name": "witch",
         "combat_front": "witch",
         "slug": "heroine"
       }
-    ]
+  
   },
   {
     "slug": "azure_enforcer",
-    "template": [
+    "template": 
       {
         "sprite_name": "knight",
         "combat_front": "enforcer_rookie",
         "slug": "enforcer_rookie"
       }
-    ]
+  
   },
   {
     "slug": "azure_enforcer2",
-    "template": [
+    "template": 
       {
         "sprite_name": "knight",
         "combat_front": "enforcer_rookie",
         "slug": "enforcer_rookie"
       }
-    ]
+  
   },
   {
     "slug": "azure_knight",
-    "template": [
+    "template": 
       {
         "sprite_name": "knight",
         "combat_front": "knight",
         "slug": "knight"
       }
-    ]
+  
   }
 ]

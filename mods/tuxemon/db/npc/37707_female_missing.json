@@ -1,10 +1,10 @@
 {
   "slug": "37707_female_missing",
-  "template": [
+  "template": 
     {
       "sprite_name": "37707_female_missing",
       "combat_front": "heroine",
       "slug": "heroine"
     }
-  ]
+
 }

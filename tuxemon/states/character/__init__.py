@@ -191,9 +191,7 @@ class CharacterState(PygameMenuState):
         )
         lab8.translate(fix_measure(width, 0.45), fix_measure(height, 0.10))
         # image
-        combat_front = ""
-        for ele in self.char.template:
-            combat_front = ele.combat_front
+        combat_front = self.char.template.combat_front
         _path = f"gfx/sprites/player/{combat_front}.png"
         new_image = pygame_menu.BaseImage(transform_resource_filename(_path))
         new_image.scale(pre.SCALE, pre.SCALE)

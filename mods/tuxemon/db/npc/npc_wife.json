@@ -1,10 +1,10 @@
 {
   "slug": "npc_wife",
-  "template": [
+  "template": 
     {
       "sprite_name": "girl1",
       "combat_front": "heroine",
       "slug": "heroine"
     }
-  ]
+
 }

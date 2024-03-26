@@ -50,6 +50,14 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
         Modified save data.
 
     """
+    if isinstance(save_data["template"], list):
+        _npc = {
+            "sprite_name": save_data["template"][0]["sprite_name"],
+            "combat_front": save_data["template"][0]["combat_front"],
+            "slug": save_data["template"][0]["slug"],
+        }
+        save_data["template"] = _npc
+
     version = save_data.get("version", 0)
     for i in range(version, SAVE_VERSION):
         _update_current_map(i, save_data)

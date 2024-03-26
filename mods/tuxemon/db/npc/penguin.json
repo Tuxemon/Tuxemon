@@ -1,10 +1,10 @@
 {
   "slug": "penguin",
-  "template": [
+  "template": 
     {
       "sprite_name": "penguin",
       "combat_front": "penguin",
       "slug": "noclass"
     }
-  ]
+
 }

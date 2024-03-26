@@ -503,7 +503,7 @@ def get_avatar(
             return load_animated_sprite([menu1, menu2], 0.25)
         if avatar in npcs:
             npc = db.lookup(avatar, table="npc")
-            path = f"gfx/sprites/player/{npc.template[0].combat_front}.png"
+            path = f"gfx/sprites/player/{npc.template.combat_front}.png"
             sprite = load_sprite(path)
             scale_sprite(sprite, 0.5)
             return sprite

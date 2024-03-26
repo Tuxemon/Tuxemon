@@ -1,142 +1,142 @@
 [
   {
     "slug": "spyder_wayfarer1_bismuth",
-    "template": [
+    "template": 
       {
         "sprite_name": "scientist_black",
         "combat_front": "scientist",
         "slug": "scientist"
       }
-    ]
+  
   },
   {
     "slug": "spyder_wayfarer1_victor",
-    "template": [
+    "template": 
       {
         "sprite_name": "knight",
         "combat_front": "enforcer_rookie",
         "slug": "enforcer_rookie"
       }
-    ]
+  
   },
   {
     "slug": "spyder_wayfarer1_ratcher",
-    "template": [
+    "template": 
       {
         "sprite_name": "nurse",
         "combat_front": "nurse",
         "slug": "nurse"
       }
-    ]
+  
   },
   {
     "slug": "spyder_wayfarer1_nightshade",
-    "template": [
+    "template": 
       {
         "sprite_name": "nurse_blue",
         "combat_front": "nurse",
         "slug": "nurse"
       }
-    ]
+  
   },
   {
     "slug": "spyder_wayfarer1_morton",
-    "template": [
+    "template": 
       {
         "sprite_name": "beachcomber_fiery",
         "combat_front": "yellowbelt",
         "slug": "yellowbelt"
       }
-    ]
+  
   },
   {
     "slug": "spyder_wayfarer1_jessie",
-    "template": [
+    "template": 
       {
         "sprite_name": "nurse_red",
         "combat_front": "nurse",
         "slug": "nurse"
       }
-    ]
+  
   },
   {
     "slug": "spyder_wayfarer1_morningstar",
-    "template": [
+    "template": 
       {
         "sprite_name": "nurse_lapi",
         "combat_front": "nurse",
         "slug": "nurse"
       }
-    ]
+  
   },
   {
     "slug": "spyder_wayfarer1_james",
-    "template": [
+    "template": 
       {
         "sprite_name": "scientist",
         "combat_front": "scientist",
         "slug": "scientist"
       }
-    ]
+  
   },
   {
     "slug": "spyder_wayfarer1_bravo",
-    "template": [
+    "template": 
       {
         "sprite_name": "knight",
         "combat_front": "enforcer_agent",
         "slug": "enforcer_agent"
       }
-    ]
+  
   },
   {
     "slug": "spyder_wayfarer2_gae",
-    "template": [
+    "template": 
       {
         "sprite_name": "granny",
         "combat_front": "adventurer",
         "slug": "granny"
       }
-    ]
+  
   },
   {
     "slug": "spyder_wayfarer1_addy",
-    "template": [
+    "template": 
       {
         "sprite_name": "nurse_green",
         "combat_front": "nurse",
         "slug": "nurse"
       }
-    ]
+  
   },
   {
     "slug": "spyder_wayfarer1_wes",
-    "template": [
+    "template": 
       {
         "sprite_name": "maniac_violet",
         "combat_front": "adventurer",
         "slug": "maniac"
       }
-    ]
+  
   },
   {
     "slug": "spyder_wayfarer2_kim",
-    "template": [
+    "template": 
       {
         "sprite_name": "maniac",
         "combat_front": "adventurer",
         "slug": "maniac"
       }
-    ]
+  
   },
   {
     "slug": "spyder_wayfarer1_norm",
-    "template": [
+    "template": 
       {
         "sprite_name": "shopkeeper_brown",
         "combat_front": "adventurer",
         "slug": "shopkeeper"
       }
-    ]
+  
   }
 ]

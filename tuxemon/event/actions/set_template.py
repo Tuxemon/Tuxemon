@@ -53,10 +53,9 @@ class SetTemplateAction(EventAction):
             logger.error(f"{self.character} not found")
             return
 
-        if character.template:
-            character.template[0].sprite_name = self.sprite
-            logger.info(f"{character.name}'s sprite is {self.sprite}")
-            if self.combat_front:
-                character.template[0].combat_front = self.combat_front
-                logger.info(f"{character.name}'s front is {self.combat_front}")
+        character.template.sprite_name = self.sprite
+        logger.info(f"{character.name}'s sprite is {self.sprite}")
+        if self.combat_front:
+            character.template.combat_front = self.combat_front
+            logger.info(f"{character.name}'s front is {self.combat_front}")
         character.load_sprites()

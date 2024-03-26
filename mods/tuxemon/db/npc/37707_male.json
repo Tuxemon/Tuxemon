@@ -1,10 +1,10 @@
 {
   "slug": "37707_male",
-  "template": [
+  "template": 
     {
       "sprite_name": "37707_male",
       "combat_front": "adventurer",
       "slug": "noclass"
     }
-  ]
+
 }

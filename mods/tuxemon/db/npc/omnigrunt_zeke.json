@@ -1,10 +1,10 @@
 {
   "slug": "zeke",
-  "template": [
+  "template": 
     {
       "sprite_name": "knight",
       "combat_front": "knight",
       "slug": "knight"
     }
-  ]
+
 }

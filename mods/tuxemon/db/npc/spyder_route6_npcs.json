@@ -1,92 +1,92 @@
 [
   {
     "slug": "spyder_route6_frances",
-    "template": [
+    "template": 
       {
         "sprite_name": "florist_brown",
         "combat_front": "florist",
         "slug": "florist"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route6_orion",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route6_ping",
-    "template": [
+    "template": 
       {
         "sprite_name": "picnicker",
         "combat_front": "picnicker",
         "slug": "picnicker"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route6_rigel",
-    "template": [
+    "template": 
       {
         "sprite_name": "scientist_fiery",
         "combat_front": "scientist",
         "slug": "scientist"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route6_richard",
-    "template": [
+    "template": 
       {
         "sprite_name": "magician_grey",
         "combat_front": "magician",
         "slug": "magician"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route6_blair",
-    "template": [
+    "template": 
       {
         "sprite_name": "miner_yellow",
         "combat_front": "miner",
         "slug": "miner"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route6_gunner",
-    "template": [
+    "template": 
       {
         "sprite_name": "knight",
         "combat_front": "enforcer_rookie",
         "slug": "enforcer_rookie"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route6_mungo",
-    "template": [
+    "template": 
       {
         "sprite_name": "scientist_brown",
         "combat_front": "scientist",
         "slug": "scientist"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route6_maxwell",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor_blue",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   }
 ]

@@ -1,52 +1,52 @@
 [
   {
     "slug": "spyder_timberhouse_zed",
-    "template": [
+    "template": 
       {
         "sprite_name": "firefighter",
         "combat_front": "firefighter",
         "slug": "firefighter"
       }
-    ]
+  
   },
   {
     "slug": "spyder_timbercafe_grady",
-    "template": [
+    "template": 
       {
         "sprite_name": "magician",
         "combat_front": "magician",
         "slug": "magician"
       }
-    ]
+  
   },
   {
     "slug": "spyder_timberscoop_leandro",
-    "template": [
+    "template": 
       {
         "sprite_name": "shopkeeper",
         "combat_front": "adventurer",
         "slug": "shopkeeper"
       }
-    ]
+  
   },
   {
     "slug": "spyder_outsidewalled_rogue",
-    "template": [
+    "template": 
       {
         "sprite_name": "rogue_green",
         "combat_front": "rogue",
         "slug": "rogue"
       }
-    ]
+  
   },
   {
     "slug": "spyder_outsidewalled_midas",
-    "template": [
+    "template": 
       {
         "sprite_name": "picnicker",
         "combat_front": "picnicker",
         "slug": "picnicker"
       }
-    ]
+  
   }
 ]

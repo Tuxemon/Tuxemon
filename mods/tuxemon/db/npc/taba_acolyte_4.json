@@ -1,11 +1,10 @@
 {
     "slug": "loch",
-    "template": [
+    "template":
       {
         "sprite_name": "disciple",
         "combat_front": "disciple",
         "slug": "disciple"
       }
-    ]
   }
   

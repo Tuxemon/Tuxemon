@@ -1,182 +1,182 @@
 [
   {
     "slug": "spyder_dojo_ares",
-    "template": [
+    "template": 
       {
         "sprite_name": "monk_black",
         "combat_front": "monk",
         "slug": "monk"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dojo_fu",
-    "template": [
+    "template": 
       {
         "sprite_name": "granny_yellow",
         "combat_front": "adventurer",
         "slug": "granny"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dojo_kataro",
-    "template": [
+    "template": 
       {
         "sprite_name": "monk_orange",
         "combat_front": "monk",
         "slug": "monk"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dojo_iroh",
-    "template": [
+    "template": 
       {
         "sprite_name": "monk_red",
         "combat_front": "monk",
         "slug": "monk"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dojo_hermes",
-    "template": [
+    "template": 
       {
         "sprite_name": "monk_orange",
         "combat_front": "monk",
         "slug": "monk"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dojo_hephastus",
-    "template": [
+    "template": 
       {
         "sprite_name": "monk_blue",
         "combat_front": "monk",
         "slug": "monk"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dojo_orion",
-    "template": [
+    "template": 
       {
         "sprite_name": "monk_green",
         "combat_front": "monk",
         "slug": "monk"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dojo_saturn",
-    "template": [
+    "template": 
       {
         "sprite_name": "monk_red",
         "combat_front": "monk",
         "slug": "monk"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dojo_sokka",
-    "template": [
+    "template": 
       {
         "sprite_name": "monk_green",
         "combat_front": "monk",
         "slug": "monk"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dojo_thri",
-    "template": [
+    "template": 
       {
         "sprite_name": "maniac_yellow",
         "combat_front": "riddler",
         "slug": "maniac"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dojo_toph",
-    "template": [
+    "template": 
       {
         "sprite_name": "monk_black",
         "combat_front": "monk",
         "slug": "monk"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dojo_tu",
-    "template": [
+    "template": 
       {
         "sprite_name": "ninja_red",
         "combat_front": "ninja",
         "slug": "ninja"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dojo_wan",
-    "template": [
+    "template": 
       {
         "sprite_name": "ninja_blue",
         "combat_front": "ninja",
         "slug": "ninja"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dojo_xiang",
-    "template": [
+    "template": 
       {
         "sprite_name": "granny_green",
         "combat_front": "adventurer",
         "slug": "granny"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dojo_yangchen",
-    "template": [
+    "template": 
       {
         "sprite_name": "monk_blue",
         "combat_front": "monk",
         "slug": "monk"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dojo_yin",
-    "template": [
+    "template": 
       {
         "sprite_name": "maniac_violet",
         "combat_front": "adventurer",
         "slug": "maniac"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dojo_zhao",
-    "template": [
+    "template": 
       {
         "sprite_name": "maniac_green",
         "combat_front": "adventurer",
         "slug": "maniac"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dojo_zhu",
-    "template": [
+    "template": 
       {
         "sprite_name": "maniac_rose",
         "combat_front": "adventurer",
         "slug": "maniac"
       }
-    ]
+  
   }
 ]

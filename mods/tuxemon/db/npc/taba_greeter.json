@@ -1,10 +1,10 @@
 {
   "slug": "taba_greeter",
-  "template": [
+  "template": 
     {
       "sprite_name": "shopassistant",
       "combat_front": "adventurer",
       "slug": "shopassistant"
     }
-  ]
+
 }

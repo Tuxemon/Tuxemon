@@ -55,6 +55,15 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
         Modified save data.
 
     """
+
+    if isinstance(save_data["template"], list):
+        _npc = {
+            "sprite_name": save_data["template"][0]["sprite_name"],
+            "combat_front": save_data["template"][0]["combat_front"],
+            "slug": save_data["template"][0]["slug"],
+        }
+        save_data["template"] = _npc
+
     starter = ["budaye", "dollfin", "grintot", "ignibus", "memnomnom"]
     if "firstfightdue" in save_data["game_variables"]:
         if "billie_choice" not in save_data["game_variables"]:
@@ -153,17 +162,6 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
                     }
                 )
                 save_data["items"].remove(capture)
-
-    # template
-    if "template" not in save_data:
-        save_data["template"] = save_data.get("template", [])
-        save_data["template"].append(
-            {
-                "slug": "adventurer",
-                "sprite_name": "adventurer",
-                "combat_front": "adventurer",
-            }
-        )
 
     # trasfer data from "inventory" to "items"
     if "inventory" in save_data:

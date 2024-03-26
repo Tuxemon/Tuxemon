@@ -205,6 +205,20 @@ MOVERATE_RANGE: tuple[float, float] = (0.0, 20.0)
 TRANS_TIME: float = 0.3  # transition time
 
 # PC
+METRIC: str = "Metric"
+IMPERIAL: str = "Imperial"
+NORTHERN: str = "Northern"
+SOUTHERN: str = "Southern"
+U_KM: str = "km"
+U_MI: str = "mi"
+U_KG: str = "kg"
+U_LB: str = "lb"
+U_CM: str = "cm"
+U_FT: str = "ft"
+MUSIC_VOLUME: float = 0.5
+MUSIC_RANGE: tuple[float, float] = (0.0, 1.0)
+SOUND_VOLUME: float = 0.2
+SOUND_RANGE: tuple[float, float] = (0.0, 1.0)
 KENNEL: str = "Kennel"
 LOCKER: str = "Locker"
 MAX_KENNEL: int = 30  # nr max of pc monsters

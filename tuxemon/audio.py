@@ -9,6 +9,7 @@ from typing import Optional, Protocol
 import pygame
 from pygame import mixer
 
+from tuxemon import prepare
 from tuxemon.db import db
 from tuxemon.session import local_session
 from tuxemon.tools import transform_resource_filename
@@ -69,11 +70,11 @@ def load_sound(slug: Optional[str], value: Optional[float]) -> SoundProtocol:
     filename = get_sound_filename(slug)
     if filename is None:
         return DummySound()
-    volume: float = 0.3
+    volume = prepare.SOUND_VOLUME
     if value is None:
         if local_session.player:
             player = local_session.player
-            volume = float(player.game_variables["sound_volume"])
+            volume = float(player.game_variables.get("sound_volume", volume))
     else:
         volume = value
     try:

@@ -74,17 +74,18 @@ class MonsterInfoState(PygameMenuState):
         results = db.lookup(monster.slug, table="monster")
         diff_weight = formula.diff_percentage(monster.weight, results.weight)
         diff_height = formula.diff_percentage(monster.height, results.height)
-        unit = local_session.player.game_variables["unit_measure"]
-        if unit == "Metric":
+        player = local_session.player
+        unit = player.game_variables.get("unit_measure", prepare.METRIC)
+        if unit == prepare.METRIC:
             mon_weight = monster.weight
             mon_height = monster.height
-            unit_weight = "kg"
-            unit_height = "cm"
+            unit_weight = prepare.U_KG
+            unit_height = prepare.U_CM
         else:
             mon_weight = formula.convert_lbs(monster.weight)
             mon_height = formula.convert_ft(monster.height)
-            unit_weight = "lb"
-            unit_height = "ft"
+            unit_weight = prepare.U_LB
+            unit_height = prepare.U_FT
         # name
         menu._auto_centering = False
         lab1: Any = menu.add.label(

@@ -48,16 +48,17 @@ class PlayMusicAction(EventAction):
         player = self.session.player
         client = self.session.client
         loop = -1 if self.loop is None else self.loop
-        music_volume = float(player.game_variables["music_volume"])
-        volume: float = 0.0
+        _music = prepare.MUSIC_VOLUME
+        music_volume = float(player.game_variables.get("music_volume", _music))
         if not self.volume:
             volume = music_volume
         else:
-            if 0.0 <= self.volume <= 1.0:
+            lower, upper = prepare.MUSIC_RANGE
+            if lower <= self.volume <= upper:
                 volume = self.volume * music_volume
             else:
                 raise ValueError(
-                    f"{self.volume} must be between 0.0 and 1.0",
+                    f"{self.volume} must be between {lower} and {upper}",
                 )
         try:
             path = prepare.fetch(

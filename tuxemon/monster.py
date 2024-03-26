@@ -762,10 +762,11 @@ class Monster:
     def speed_test(self, action: EnqueuedAction) -> int:
         assert isinstance(action.method, Technique)
         technique = action.method
+        
         if technique.is_fast:
-            return int(random.randrange(0, int(self.speed)) * 1.5)
+            return 0 - int(random.randrange(int(self.speed/2), int(self.speed)) * 2.5) 
         else:
-            return random.randrange(0, int(self.speed))
+            return 0 - random.randrange(0, int(self.speed))
 
     def find_tech_by_id(self, instance_id: uuid.UUID) -> Optional[Technique]:
         """

@@ -577,7 +577,7 @@
   </object>
   <object id="50" name="movin on up" type="event" x="272" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport taba_ba_stairwell.tmx,1,8,0.5"/>
+    <property name="act1" value="transition_teleport taba_ba_stairwell_1.tmx,1,8,0.5"/>
     <property name="cond1" value="is variable_set fourthacolyte:finished"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="is char_facing player,right"/>

@@ -1,0 +1,666 @@
+[
+    {
+        "slug" : "12_hits_for_separation1",
+        "file" : "technique"
+    },
+    {
+        "slug" : "12_hits_for_separation2",
+        "file" : "technique"
+    },
+    {
+        "slug" : "12_hits_for_separation3",
+        "file" : "technique"
+    },
+    {
+        "slug" : "12_hits_for_separation4",
+        "file" : "technique"
+    },
+    {
+        "slug" : "12_hits_for_separation5",
+        "file" : "technique"
+    },
+    {
+        "slug" : "12_hits_for_separation6",
+        "file" : "technique"
+    },
+    {
+        "slug" : "12_hits_for_separation7",
+        "file" : "technique"
+    },
+    {
+        "slug" : "12_hits_for_separation8",
+        "file" : "technique"
+    },
+    {
+        "slug" : "12_hits_for_separation9",
+        "file" : "technique"
+    },
+    {
+        "slug" : "12_hits_for_separation10",
+        "file" : "technique"
+    },
+    {
+        "slug" : "12_hits_for_separation11",
+        "file" : "technique"
+    },
+    {
+        "slug" : "amethyst",
+        "file" : "technique"
+    },
+    {
+        "slug" : "amethyst_absorb",
+        "file" : "technique"
+    },
+    {
+        "slug" : "amethyst_radiate",
+        "file" : "technique"
+    },
+    {
+        "slug" : "appearance",
+        "file" : "technique"
+    },
+    {
+        "slug" : "beartrap",
+        "file" : "technique"
+    },
+    {
+        "slug" : "bite",
+        "file" : "technique"
+    },
+    {
+        "slug" : "bite_zombie",
+        "file" : "technique"
+    },
+    {
+        "slug" : "blue_circle",
+        "file" : "technique"
+    },
+    {
+        "slug" : "bomb",
+        "file" : "technique"
+    },
+    {
+        "slug" : "bomb_bright",
+        "file" : "technique"
+    },
+    {
+        "slug" : "breath_blue",
+        "file" : "technique"
+    },
+    {
+        "slug" : "breath_fire",
+        "file" : "technique"
+    },
+    {
+        "slug" : "buff_armour",
+        "file" : "technique"
+    },
+    {
+        "slug" : "buff_fast",
+        "file" : "technique"
+    },
+    {
+        "slug" : "buff_rage",
+        "file" : "technique"
+    },
+    {
+        "slug" : "buff_ranged",
+        "file" : "technique"
+    },
+    {
+        "slug" : "calling",
+        "file" : "technique"
+    },
+    {
+        "slug" : "claw_blue",
+        "file" : "technique"
+    },
+    {
+        "slug" : "claws_twice_blue",
+        "file" : "technique"
+    },
+    {
+        "slug" : "claws_twice_red",
+        "file" : "technique"
+    },
+    {
+        "slug" : "claw_yellow_169",
+        "file" : "technique"
+    },
+    {
+        "slug" : "clock",
+        "file" : "technique"
+    },
+    {
+        "slug" : "constantburn",
+        "file" : "technique"
+    },
+    {
+        "slug" : "crushingball",
+        "file" : "technique"
+    },
+    {
+        "slug" : "crystal",
+        "file" : "technique"
+    },
+    {
+        "slug" : "crystal_absorb",
+        "file" : "technique"
+    },
+    {
+        "slug" : "crystal_radiate",
+        "file" : "technique"
+    },
+    {
+        "slug" : "debian_64",
+        "file" : "technique"
+    },
+    {
+        "slug" : "debian_240",
+        "file" : "technique"
+    },
+    {
+        "slug" : "debuff_melee",
+        "file" : "technique"
+    },
+    {
+        "slug" : "demiurge",
+        "file" : "technique"
+    },
+    {
+        "slug" : "disintegrate_83",
+        "file" : "technique"
+    },
+    {
+        "slug" : "drip_blue",
+        "file" : "technique"
+    },
+    {
+        "slug" : "drip_blue_alt",
+        "file" : "technique"
+    },
+    {
+        "slug" : "drip_green",
+        "file" : "technique"
+    },
+    {
+        "slug" : "drip_orange",
+        "file" : "technique"
+    },
+    {
+        "slug" : "drip_red",
+        "file" : "technique"
+    },
+    {
+        "slug" : "drip_red_alt",
+        "file" : "technique"
+    },
+    {
+        "slug" : "emerald",
+        "file" : "technique"
+    },
+    {
+        "slug" : "emerald_absorb",
+        "file" : "technique"
+    },
+    {
+        "slug" : "emerald_radiate",
+        "file" : "technique"
+    },
+    {
+        "slug" : "explosion_big_126",
+        "file" : "technique"
+    },
+    {
+        "slug" : "explosion_burst",
+        "file" : "technique"
+    },
+    {
+        "slug" : "explosion_cloud_48",
+        "file" : "technique"
+    },
+    {
+        "slug" : "explosion_dusty_96",
+        "file" : "technique"
+    },
+    {
+        "slug" : "explosion_ice_112",
+        "file" : "technique"
+    },
+    {
+        "slug" : "explosion_multi_128",
+        "file" : "technique"
+    },
+    {
+        "slug" : "explosion_mushroom_128",
+        "file" : "technique"
+    },
+    {
+        "slug" : "explosion_small",
+        "file" : "technique"
+    },
+    {
+        "slug" : "explosion_sun_32",
+        "file" : "technique"
+    },
+    {
+        "slug" : "explosion_total_192",
+        "file" : "technique"
+    },
+    {
+        "slug" : "fireball_114",
+        "file" : "technique"
+    },
+    {
+        "slug" : "fire_big_156",
+        "file" : "technique"
+    },
+    {
+        "slug" : "fire_big_dark_96",
+        "file" : "technique"
+    },
+    {
+        "slug" : "fire_fade",
+        "file" : "technique"
+    },
+    {
+        "slug" : "firelion_back",
+        "file" : "technique"
+    },
+    {
+        "slug" : "firelion_front",
+        "file" : "technique"
+    },
+    {
+        "slug" : "firelion_right",
+        "file" : "technique"
+    },
+    {
+        "slug" : "fire_storm",
+        "file" : "technique"
+    },
+    {
+        "slug" : "fireworks",
+        "file" : "technique"
+    },
+    {
+        "slug" : "flameball_blue",
+        "file" : "technique"
+    },
+    {
+        "slug" : "flameball_red",
+        "file" : "technique"
+    },
+    {
+        "slug" : "gloop_blue",
+        "file" : "technique"
+    },
+    {
+        "slug" : "gloop_orange",
+        "file" : "technique"
+    },
+    {
+        "slug" : "gloop_violet",
+        "file" : "technique"
+    },
+    {
+        "slug" : "green_circle",
+        "file" : "technique"
+    },
+    {
+        "slug" : "heal_burst_120",
+        "file" : "technique"
+    },
+    {
+        "slug" : "heal_cross_120",
+        "file" : "technique"
+    },
+    {
+        "slug" : "heal_swarm",
+        "file" : "technique"
+    },
+    {
+        "slug" : "ice_storm",
+        "file" : "technique"
+    },
+    {
+        "slug" : "icetacle",
+        "file" : "technique"
+    },
+    {
+        "slug" : "join_80",
+        "file" : "technique"
+    },
+    {
+        "slug" : "lance_ice",
+        "file" : "technique"
+    },
+    {
+        "slug" : "lightning_bolt_138",
+        "file" : "technique"
+    },
+    {
+        "slug" : "lightning_claw",
+        "file" : "technique"
+    },
+    {
+        "slug" : "lightning_claw_large",
+        "file" : "technique"
+    },
+    {
+        "slug" : "lightning_spheres",
+        "file" : "technique"
+    },
+    {
+        "slug" : "meltdown",
+        "file" : "technique"
+    },
+    {
+        "slug" : "metal_delete",
+        "file" : "technique"
+    },
+    {
+        "slug" : "metallic_absorb",
+        "file" : "technique"
+    },
+    {
+        "slug" : "metallic_radiate",
+        "file" : "technique"
+    },
+    {
+        "slug" : "misc_hit_preview1",
+        "file" : "technique"
+    },
+    {
+        "slug" : "misc_hit_preview2",
+        "file" : "technique"
+    },
+    {
+        "slug" : "misc_hit_preview3",
+        "file" : "technique"
+    },
+    {
+        "slug" : "misc_hit_preview4",
+        "file" : "technique"
+    },
+    {
+        "slug" : "misc_hit_preview5",
+        "file" : "technique"
+    },
+    {
+        "slug" : "pound",
+        "file" : "technique"
+    },
+    {
+        "slug" : "pound_bright",
+        "file" : "technique"
+    },
+    {
+        "slug" : "pound_rock",
+        "file" : "technique"
+    },
+    {
+        "slug" : "power_arc_154",
+        "file" : "technique"
+    },
+    {
+        "slug" : "pulse",
+        "file" : "technique"
+    },
+    {
+        "slug" : "pulse_absorb",
+        "file" : "technique"
+    },
+    {
+        "slug" : "pulse_radiate",
+        "file" : "technique"
+    },
+    {
+        "slug" : "pushtrap_front",
+        "file" : "technique"
+    },
+    {
+        "slug" : "pushtrap_right",
+        "file" : "technique"
+    },
+    {
+        "slug" : "red_circle",
+        "file" : "technique"
+    },
+    {
+        "slug" : "rockfall_193",
+        "file" : "technique"
+    },
+    {
+        "slug" : "rockfall_264",
+        "file" : "technique"
+    },
+    {
+        "slug" : "ruby",
+        "file" : "technique"
+    },
+    {
+        "slug" : "ruby_absorb",
+        "file" : "technique"
+    },
+    {
+        "slug" : "ruby_radiate",
+        "file" : "technique"
+    },
+    {
+        "slug" : "screen",
+        "file" : "technique"
+    },
+    {
+        "slug" : "shield_fire",
+        "file" : "technique"
+    },
+    {
+        "slug" : "shield_ice",
+        "file" : "technique"
+    },
+    {
+        "slug" : "shield_lava",
+        "file" : "technique"
+    },
+    {
+        "slug" : "shield_rock",
+        "file" : "technique"
+    },
+    {
+        "slug" : "shield_turtle",
+        "file" : "technique"
+    },
+    {
+        "slug" : "shield_turtle_right",
+        "file" : "technique"
+    },
+    {
+        "slug" : "skull",
+        "file" : "technique"
+    },
+    {
+        "slug" : "skull_fire",
+        "file" : "technique"
+    },
+    {
+        "slug" : "slash_200",
+        "file" : "technique"
+    },
+    {
+        "slug" : "slash_double_188",
+        "file" : "technique"
+    },
+    {
+        "slug" : "slash_fire",
+        "file" : "technique"
+    },
+    {
+        "slug" : "slash_power",
+        "file" : "technique"
+    },
+    {
+        "slug" : "smokebomb",
+        "file" : "technique"
+    },
+    {
+        "slug" : "smokebomb_plume",
+        "file" : "technique"
+    },
+    {
+        "slug" : "smokebomb_puff_128",
+        "file" : "technique"
+    },
+    {
+        "slug" : "snake_front_128",
+        "file" : "technique"
+    },
+    {
+        "slug" : "snake_right",
+        "file" : "technique"
+    },
+    {
+        "slug" : "snake_up_128",
+        "file" : "technique"
+    },
+    {
+        "slug" : "sparks_blue",
+        "file" : "technique"
+    },
+    {
+        "slug" : "sparks_blue_alt",
+        "file" : "technique"
+    },
+    {
+        "slug" : "sparks_gold",
+        "file" : "technique"
+    },
+    {
+        "slug" : "sparks_gold_alt",
+        "file" : "technique"
+    },
+    {
+        "slug" : "sparks_green",
+        "file" : "technique"
+    },
+    {
+        "slug" : "sparks_green_alt",
+        "file" : "technique"
+    },
+    {
+        "slug" : "sparks_red",
+        "file" : "technique"
+    },
+    {
+        "slug" : "sparks_white",
+        "file" : "technique"
+    },
+    {
+        "slug" : "sparks_white_alt",
+        "file" : "technique"
+    },
+    {
+        "slug" : "spike_ice",
+        "file" : "technique"
+    },
+    {
+        "slug" : "spike_rock",
+        "file" : "technique"
+    },
+    {
+        "slug" : "spikes_fire",
+        "file" : "technique"
+    },
+    {
+        "slug" : "spikes_ice",
+        "file" : "technique"
+    },
+    {
+        "slug" : "spikes_metal",
+        "file" : "technique"
+    },
+    {
+        "slug" : "spikes_rock",
+        "file" : "technique"
+    },
+    {
+        "slug" : "tentacles_water",
+        "file" : "technique"
+    },
+    {
+        "slug" : "thunderstrike",
+        "file" : "technique"
+    },
+    {
+        "slug" : "tornado_basic",
+        "file" : "technique"
+    },
+    {
+        "slug" : "tornado_bulk",
+        "file" : "technique"
+    },
+    {
+        "slug" : "tornado_volume",
+        "file" : "technique"
+    },
+    {
+        "slug" : "triforce_163",
+        "file" : "technique"
+    },
+    {
+        "slug" : "triple_whammy_80",
+        "file" : "technique"
+    },
+    {
+        "slug" : "turquoise_circle",
+        "file" : "technique"
+    },
+    {
+        "slug" : "tux_attack",
+        "file" : "technique"
+    },
+    {
+        "slug" : "ubuntu",
+        "file" : "technique"
+    },
+    {
+        "slug" : "wall_fire",
+        "file" : "technique"
+    },
+    {
+        "slug" : "wall_ice",
+        "file" : "technique"
+    },
+    {
+        "slug" : "wall_wood",
+        "file" : "technique"
+    },
+    {
+        "slug" : "warp",
+        "file" : "technique"
+    },
+    {
+        "slug" : "waterfall",
+        "file" : "technique"
+    },
+    {
+        "slug" : "watershot",
+        "file" : "technique"
+    },
+    {
+        "slug" : "waterspurt",
+        "file" : "technique"
+    },
+    {
+        "slug" : "whisp_fire",
+        "file" : "technique"
+    },
+    {
+        "slug" : "x_attack",
+        "file" : "technique"
+    },
+    {
+        "slug" : "yellow_circle",
+        "file" : "technique"
+    }
+]

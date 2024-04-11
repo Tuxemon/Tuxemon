@@ -1,82 +1,82 @@
 [
   {
     "slug": "spyder_dryadsgrove_aquemini",
-    "template": [
+    "template": 
       {
         "sprite_name": "woodnymph",
         "combat_front": "waternymph",
         "slug": "waternymph"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dryadsgrove_ferris",
-    "template": [
+    "template": 
       {
         "sprite_name": "woodnymph",
         "combat_front": "metalnymph",
         "slug": "metalnymph"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dryadsgrove_ignatia",
-    "template": [
+    "template": 
       {
         "sprite_name": "firenymph",
         "combat_front": "firenymph",
         "slug": "firenymph"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dryadsgrove_petra",
-    "template": [
+    "template": 
       {
         "sprite_name": "woodnymph",
         "combat_front": "earthnymph",
         "slug": "earthnymph"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dryadsgrove_sylvia",
-    "template": [
+    "template": 
       {
         "sprite_name": "woodnymph",
         "combat_front": "woodnymph",
         "slug": "woodnymph"
       }
-    ]
+  
   },
   {
     "slug": "spyder_volcoli",
-    "template": [
+    "template": 
       {
         "sprite_name": "volcoli",
         "combat_front": "noclass",
         "slug": "interactive_obj"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dryadsgrove_boy",
-    "template": [
+    "template": 
       {
         "sprite_name": "childactor_black",
         "combat_front": "yellowbelt",
         "slug": "childactor"
       }
-    ]
+  
   },
   {
     "slug": "spyder_dryadsgrove_dad",
-    "template": [
+    "template": 
       {
         "sprite_name": "beachcomber_gray",
         "combat_front": "yellowbelt",
         "slug": "beachcomber"
       }
-    ]
+  
   }
 ]

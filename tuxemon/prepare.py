@@ -63,6 +63,9 @@ SCREEN_SIZE = CONFIG.resolution
 # Surface Keys (tilesets)
 SURFACE_KEYS: list[str] = ["surfable", "walkable", "climbable"]
 
+# frame
+FRAME_TIME: float = 0.09
+
 # Set the native tile size so we know how much to scale our maps
 # 1 tile = 16 pixels
 TILE_SIZE: tuple[int, int] = (16, 16)

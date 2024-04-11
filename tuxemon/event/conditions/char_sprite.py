@@ -36,7 +36,6 @@ class CharSpriteCondition(EventCondition):
 
         sprite = condition.parameters[1]
 
-        if character.template:
-            if character.template[0].sprite_name == sprite:
-                return True
+        if character.template.sprite_name == sprite:
+            return True
         return False

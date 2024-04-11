@@ -1,12 +1,11 @@
 {
   "slug": "npc_test",
-  "template": [
+  "template": 
     {
       "sprite_name": "adventurer",
       "combat_front": "adventurer",
       "slug": "adventurer"
-    }
-  ],
+    },
   "monsters": [
     {
       "name": "Snowball",

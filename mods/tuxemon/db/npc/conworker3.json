@@ -1,10 +1,10 @@
 {
   "slug": "conworker3",
-  "template": [
+  "template": 
     {
       "sprite_name": "bob",
       "combat_front": "adventurer",
       "slug": "noclass"
     }
-  ]
+
 }

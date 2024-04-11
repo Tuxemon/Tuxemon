@@ -6,10 +6,9 @@ import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon import prepare
+from tuxemon.animation_entity import AnimationEntity
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.graphics import load_animation_from_frames
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
@@ -30,7 +29,7 @@ class PlayMapAnimationAction(EventAction):
     Script parameters:
         animation_name: The name of the animation stored under
             resources/animations/tileset. For example, an animation called
-            "grass" will load frames called "grass.xxx.png".
+            "grass" will load frames called "grass_xx.png".
         duration: The duration of each frame of the animation in seconds.
         loop: Can be either "loop" or "noloop" to loop the animation.
         tile_pos: Can be either an x,y coordinate or "npc_slug" to draw the
@@ -49,7 +48,6 @@ class PlayMapAnimationAction(EventAction):
         # ('play_animation', 'grass,1.5,noloop,player', '1', 6)
         # "position" can be either a (x, y) tile coordinate or "player"
         animation_name = self.animation_name
-        directory = prepare.fetch("animations", "tileset")
 
         if self.loop == "loop":
             loop = True
@@ -57,6 +55,8 @@ class PlayMapAnimationAction(EventAction):
             loop = False
         else:
             raise ValueError('animation loop value must be "loop" or "noloop"')
+
+        _animation = AnimationEntity(animation_name, self.duration, loop)
 
         world_state = self.session.client.get_state_by_name(WorldState)
 
@@ -81,17 +81,11 @@ class PlayMapAnimationAction(EventAction):
             animations[animation_name]["animation"].play()
         else:
             logger.debug(f"{animation_name} not loaded, loading")
-            animation = load_animation_from_frames(
-                directory,
-                animation_name,
-                self.duration,
-                loop,
-            )
 
             animations[animation_name] = {
-                "animation": animation,
+                "animation": _animation.play,
                 "position": position,
                 "layer": 4,
             }
 
-            animation.play()
+            _animation.play.play()

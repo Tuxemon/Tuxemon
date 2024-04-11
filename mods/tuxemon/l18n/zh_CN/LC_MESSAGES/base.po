@@ -989,7 +989,7 @@ msgstr "{name}现在不能使用."
 
 msgid "combat_victory_trainer"
 msgstr ""
-"你战胜了{npc}!\n"
+"你战胜了{name}!\n"
 " 你获得了 {currency}{prize}!"
 
 msgid "combat_state_chargedup_get"

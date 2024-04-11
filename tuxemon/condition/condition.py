@@ -7,7 +7,7 @@ import uuid
 from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, ClassVar, Optional
 
-from tuxemon import plugin, prepare
+from tuxemon import plugin
 from tuxemon.condition.condcondition import CondCondition
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 from tuxemon.constants import paths
@@ -18,7 +18,6 @@ from tuxemon.db import (
     db,
     process_targets,
 )
-from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
@@ -60,7 +59,6 @@ class Condition:
         self.flip_axes = ""
         self.gain_cond = ""
         self.icon = ""
-        self.images: Sequence[str] = []
         self.link: Optional[Monster] = None
         self.name = ""
         self.nr_turn = 0
@@ -143,13 +141,6 @@ class Condition:
 
         # Load the animation sprites that will be used for this condition
         self.animation = results.animation
-        if self.animation:
-            directory = prepare.fetch("animations", "technique")
-            self.images = animation_frame_files(directory, self.animation)
-            if self.animation and not self.images:
-                logger.error(
-                    f"Cannot find animation frames for: {self.animation}",
-                )
         self.flip_axes = results.flip_axes
 
         # Load the sound effect for this condition

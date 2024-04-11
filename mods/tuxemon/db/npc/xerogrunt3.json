@@ -1,10 +1,10 @@
 {
   "slug": "xerogrunt3",
-  "template": [
+  "template": 
     {
       "sprite_name": "xerogrunt",
       "combat_front": "adventurer",
       "slug": "xerogrunt"
     }
-  ]
+
 }

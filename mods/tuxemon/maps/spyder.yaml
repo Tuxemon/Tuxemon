@@ -33,7 +33,7 @@ events:
     conditions:
     - is char_defeated player
     - not location_type clinic
-    - not location_name wayfarer_inn1:wayfarer_inn2:scoop3:scoop4:paper_town
+    - not location_name wayfarer_inn1:wayfarer_inn2:scoop3:scoop4:paper_town:bedroom
     - is current_state WorldState
     type: "event"
   Auto healing teleported:

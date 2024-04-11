@@ -1,52 +1,52 @@
 [
   {
     "slug": "spyder_statue_blue",
-    "template": [
+    "template": 
       {
         "sprite_name": "statue_blue",
         "combat_front": "noclass",
         "slug": "interactive_obj"
       }
-    ]
+  
   },
   {
     "slug": "spyder_statue_red",
-    "template": [
+    "template": 
       {
         "sprite_name": "statue_red",
         "combat_front": "noclass",
         "slug": "interactive_obj"
       }
-    ]
+  
   },
   {
     "slug": "spyder_statue_orange",
-    "template": [
+    "template": 
       {
         "sprite_name": "statue_orange",
         "combat_front": "noclass",
         "slug": "interactive_obj"
       }
-    ]
+  
   },
   {
     "slug": "spyder_statue_grey",
-    "template": [
+    "template": 
       {
         "sprite_name": "statue_grey",
         "combat_front": "noclass",
         "slug": "interactive_obj"
       }
-    ]
+  
   },
   {
     "slug": "spyder_statue_green",
-    "template": [
+    "template": 
       {
         "sprite_name": "statue_green",
         "combat_front": "noclass",
         "slug": "interactive_obj"
       }
-    ]
+  
   }
 ]

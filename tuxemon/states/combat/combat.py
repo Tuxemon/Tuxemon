@@ -46,6 +46,7 @@ from pygame.rect import Rect
 from tuxemon import audio, graphics, prepare, state, tools
 from tuxemon.ai import AI
 from tuxemon.animation import Animation, Task
+from tuxemon.animation_entity import AnimationEntity
 from tuxemon.combat import (
     alive_party,
     award_experience,
@@ -73,7 +74,6 @@ from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.states.transition.fade import FadeOutTransition
-from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.technique.technique import Technique
 from tuxemon.tools import assert_never
 from tuxemon.ui.draw import GraphicBox
@@ -166,17 +166,13 @@ class MethodAnimationCache:
             Sprite associated with the animation.
 
         """
-        if not method.images:
+        if not method.animation:
             return None
-        frame_time = 0.09
-        images = list()
-        for fn in method.images:
-            image = graphics.load_and_scale(fn)
-            images.append((image, frame_time))
-        tech = SurfaceAnimation(images, False)
+
+        ani = AnimationEntity(method.animation)
         if is_flipped:
-            tech.flip(method.flip_axes)
-        return Sprite(animation=tech)
+            ani.play.flip(method.flip_axes)
+        return Sprite(animation=ani.play)
 
 
 class WaitForInputState(state.State):

@@ -11,7 +11,7 @@ from __future__ import annotations
 import logging
 import os
 import re
-from collections.abc import Generator, Iterable, Sequence
+from collections.abc import Iterable, Sequence
 from typing import TYPE_CHECKING, Any, Optional, Protocol, Union
 
 import pygame
@@ -223,9 +223,8 @@ def scale_surface(
 
 
 def load_frames_files(
-    directory: str,
-    name: str,
-) -> Generator[pygame.surface.Surface, None, None]:
+    directory: str, name: str
+) -> Iterable[pygame.surface.Surface]:
     """
     Load frames from filenames.
 
@@ -293,29 +292,6 @@ def create_animation(
     data = [(f, duration) for f in frames]
     animation = SurfaceAnimation(data, loop=loop)
     return animation
-
-
-def load_animation_from_frames(
-    directory: str,
-    name: str,
-    duration: float,
-    loop: bool = False,
-) -> SurfaceAnimation:
-    """
-    Load animation from a collection of frame files.
-
-    Parameters:
-        directory: Directory where the frames are located.
-        name: Name of the animation (common prefix of the frames).
-        duration: Duration in seconds.
-        loop: Whether the animation should loop or not.
-
-    Returns:
-        Created animation.
-
-    """
-    frames = load_frames_files(directory, name)
-    return create_animation(frames, duration, loop)
 
 
 def scale_tile(
@@ -503,7 +479,7 @@ def get_avatar(
             return load_animated_sprite([menu1, menu2], 0.25)
         if avatar in npcs:
             npc = db.lookup(avatar, table="npc")
-            path = f"gfx/sprites/player/{npc.template[0].combat_front}.png"
+            path = f"gfx/sprites/player/{npc.template.combat_front}.png"
             sprite = load_sprite(path)
             scale_sprite(sprite, 0.5)
             return sprite

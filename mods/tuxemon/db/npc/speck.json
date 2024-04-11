@@ -1,10 +1,10 @@
 {
   "slug": "speck",
-  "template": [
+  "template": 
     {
       "sprite_name": "beachcomber",
       "combat_front": "beachgoer",
       "slug": "beachgoer"
     }
-  ]
+
 }

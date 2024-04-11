@@ -7,11 +7,10 @@ import uuid
 from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, ClassVar, Optional
 
-from tuxemon import plugin, prepare
+from tuxemon import plugin
 from tuxemon.constants import paths
 from tuxemon.db import ElementType, Range, db, process_targets
 from tuxemon.element import Element
-from tuxemon.graphics import animation_frame_files
 from tuxemon.locale import T
 from tuxemon.technique.techcondition import TechCondition
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -54,7 +53,6 @@ class Technique:
         self.effects: Sequence[TechEffect] = []
         self.flip_axes = ""
         self.icon = ""
-        self.images: Sequence[str] = []
         self.hit = False
         self.is_fast = False
         self.randomly = True
@@ -142,13 +140,6 @@ class Technique:
 
         # Load the animation sprites that will be used for this technique
         self.animation = results.animation
-        if self.animation:
-            directory = prepare.fetch("animations", "technique")
-            self.images = animation_frame_files(directory, self.animation)
-            if self.animation and not self.images:
-                logger.error(
-                    f"Cannot find animation frames for: {self.animation}",
-                )
         self.flip_axes = results.flip_axes
 
         # Load the sound effect for this technique

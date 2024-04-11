@@ -1,132 +1,132 @@
 [
   {
     "slug": "spyder_route7_arnold",
-    "template": [
+    "template": 
       {
         "sprite_name": "scientist",
         "combat_front": "scientist",
         "slug": "scientist"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route7_sylvester",
-    "template": [
+    "template": 
       {
         "sprite_name": "beachcomber_copper",
         "combat_front": "beachgoer",
         "slug": "beachgoer"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route7_fritz",
-    "template": [
+    "template": 
       {
         "sprite_name": "maniac_violet",
         "combat_front": "adventurer",
         "slug": "maniac"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route7_statius",
-    "template": [
+    "template": 
       {
         "sprite_name": "monk_black",
         "combat_front": "monk",
         "slug": "monk"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route7_jacopo",
-    "template": [
+    "template": 
       {
         "sprite_name": "magician_blonde",
         "combat_front": "magician",
         "slug": "magician"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route7_pia",
-    "template": [
+    "template": 
       {
         "sprite_name": "florist_fiery",
         "combat_front": "florist",
         "slug": "florist"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route7_penitent",
-    "template": [
+    "template": 
       {
         "sprite_name": "boss_orange",
         "combat_front": "baller",
         "slug": "baller"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route7_nino",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor_lapi",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route7_hugh",
-    "template": [
+    "template": 
       {
         "sprite_name": "cooldude_black",
         "combat_front": "rocker",
         "slug": "rocker"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route7_arnaut",
-    "template": [
+    "template": 
       {
         "sprite_name": "rogue_copper",
         "combat_front": "winger",
         "slug": "winger"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route7_conrad",
-    "template": [
+    "template": 
       {
         "sprite_name": "picnicker",
         "combat_front": "picnicker",
         "slug": "picnicker"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route7_manfred",
-    "template": [
+    "template": 
       {
         "sprite_name": "postboy_green",
         "combat_front": "cooldude",
         "slug": "postboy"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route7_sordello",
-    "template": [
+    "template": 
       {
         "sprite_name": "tennisplayer_green",
         "combat_front": "coach",
         "slug": "coach"
       }
-    ]
+  
   }
 ]

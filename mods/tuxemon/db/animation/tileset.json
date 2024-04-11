@@ -1,0 +1,42 @@
+[
+    {
+        "slug" : "dragonbirth",
+        "file" : "tileset"
+    },
+    {
+        "slug" : "grass",
+        "file" : "tileset"
+    },
+    {
+        "slug" : "grass_blue",
+        "file" : "tileset"
+    },
+    {
+        "slug" : "grass_red",
+        "file" : "tileset"
+    },
+    {
+        "slug" : "party1",
+        "file" : "tileset"
+    },
+    {
+        "slug" : "party2",
+        "file" : "tileset"
+    },
+    {
+        "slug" : "party3",
+        "file" : "tileset"
+    },
+    {
+        "slug" : "party4",
+        "file" : "tileset"
+    },
+    {
+        "slug" : "party5",
+        "file" : "tileset"
+    },
+    {
+        "slug" : "party6",
+        "file" : "tileset"
+    }
+]

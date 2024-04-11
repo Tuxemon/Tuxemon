@@ -1,10 +1,10 @@
 {
   "slug": "liela",
-  "template": [
+  "template": 
     {
       "sprite_name": "heroine",
       "combat_front": "heroine",
       "slug": "heroine"
     }
-  ]
+
 }

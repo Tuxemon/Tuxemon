@@ -1,5002 +1,5002 @@
 [
   {
     "slug": "test_npc001",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc002",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc003",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc004",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc005",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc006",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc007",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc008",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc009",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc010",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc011",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc012",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc013",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc014",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc015",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc016",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc017",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc018",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc019",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc020",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc021",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc022",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc023",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc024",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc025",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc026",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc027",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc028",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc029",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc030",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc031",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc032",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc033",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc034",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc035",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc036",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc037",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc038",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc039",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc040",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc041",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc042",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc043",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc044",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc045",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc046",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc047",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc048",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc049",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc050",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc051",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc052",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc053",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc054",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc055",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc056",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc057",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc058",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc059",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc060",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc061",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc062",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc063",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc064",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc065",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc066",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc067",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc068",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc069",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc070",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc071",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc072",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc073",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc074",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc075",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc076",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc077",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc078",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc079",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc080",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc081",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc082",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc083",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc084",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc085",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc086",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc087",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc088",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc089",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc090",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc091",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc092",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc093",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc094",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc095",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc096",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc097",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc098",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc099",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc100",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc101",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc102",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc103",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc104",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc105",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc106",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc107",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc108",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc109",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc110",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc111",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc112",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc113",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc114",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc115",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc116",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc117",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc118",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc119",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc120",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc121",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc122",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc123",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc124",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc125",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc126",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc127",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc128",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc129",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc130",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc131",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc132",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc133",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc134",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc135",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc136",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc137",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc138",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc139",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc140",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc141",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc142",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc143",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc144",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc145",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc146",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc147",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc148",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc149",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc150",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc151",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc152",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc153",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc154",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc155",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc156",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc157",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc158",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc159",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc160",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc161",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc162",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc163",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc164",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc165",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc166",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc167",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc168",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc169",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc170",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc171",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc172",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc173",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc174",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc175",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc176",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc177",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc178",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc179",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc180",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc181",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc182",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc183",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc184",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc185",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc186",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc187",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc188",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc189",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc190",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc191",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc192",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc193",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc194",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc195",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc196",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc197",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc198",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc199",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc200",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc201",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc202",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc203",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc204",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc205",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc206",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc207",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc208",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc209",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc210",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc211",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc212",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc213",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc214",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc215",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc216",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc217",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc218",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc219",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc220",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc221",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc222",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc223",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc224",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc225",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc226",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc227",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc228",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc229",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc230",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc231",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc232",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc233",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc234",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc235",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc236",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc237",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc238",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc239",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc240",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc241",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc242",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc243",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc244",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc245",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc246",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc247",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc248",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc249",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc250",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc251",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc252",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc253",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc254",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc255",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc256",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc257",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc258",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc259",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc260",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc261",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc262",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc263",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc264",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc265",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc266",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc267",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc268",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc269",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc270",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc271",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc272",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc273",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc274",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc275",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc276",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc277",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc278",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc279",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc280",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc281",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc282",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc283",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc284",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc285",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc286",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc287",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc288",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc289",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc290",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc291",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc292",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc293",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc294",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc295",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc296",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc297",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc298",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc299",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc300",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc301",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc302",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc303",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc304",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc305",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc306",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc307",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc308",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc309",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc310",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc311",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc312",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc313",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc314",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc315",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc316",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc317",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc318",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc319",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc320",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc321",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc322",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc323",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc324",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc325",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc326",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc327",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc328",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc329",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc330",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc331",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc332",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc333",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc334",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc335",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc336",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc337",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc338",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc339",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc340",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc341",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc342",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc343",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc344",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc345",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc346",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc347",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc348",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc349",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc350",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc351",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc352",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc353",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc354",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc355",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc356",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc357",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc358",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc359",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc360",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc361",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc362",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc363",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc364",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc365",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc366",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc367",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc368",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc369",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc370",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc371",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc372",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc373",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc374",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc375",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc376",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc377",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc378",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc379",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc380",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc381",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc382",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc383",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc384",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc385",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc386",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc387",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc388",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc389",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc390",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc391",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc392",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc393",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc394",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc395",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc396",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc397",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc398",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc399",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc400",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc401",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc402",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc403",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc404",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc405",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc406",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc407",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc408",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc409",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc410",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc411",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc412",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc413",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc414",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc415",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc416",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc417",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc418",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc419",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc420",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc421",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc422",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc423",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc424",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc425",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc426",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc427",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc428",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc429",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc430",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc431",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc432",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc433",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc434",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc435",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc436",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc437",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc438",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc439",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc440",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc441",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc442",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc443",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc444",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc445",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc446",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc447",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc448",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc449",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc450",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc451",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc452",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc453",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc454",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc455",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc456",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc457",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc458",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc459",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc460",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc461",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc462",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc463",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc464",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc465",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc466",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc467",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc468",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc469",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc470",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc471",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc472",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc473",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc474",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc475",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc476",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc477",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc478",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc479",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc480",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc481",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc482",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc483",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc484",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc485",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc486",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc487",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc488",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc489",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc490",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc491",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc492",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc493",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc494",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc495",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc496",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc497",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc498",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc499",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "test_npc500",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   }
 ]

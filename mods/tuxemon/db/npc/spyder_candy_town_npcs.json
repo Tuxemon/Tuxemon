@@ -1,172 +1,172 @@
 [
   {
     "slug": "spyder_candy_henrik",
-    "template": [
+    "template": 
       {
         "sprite_name": "knight_red",
         "combat_front": "enforcer_rookie",
         "slug": "enforcer_rookie"
       }
-    ]
+  
   },
   {
     "slug": "spyder_candy_eliane",
-    "template": [
+    "template": 
       {
         "sprite_name": "florist_fiery",
         "combat_front": "florist",
         "slug": "florist"
       }
-    ]
+  
   },
   {
     "slug": "spyder_candycafe_nora",
-    "template": [
+    "template": 
       {
         "sprite_name": "barmaid_red",
         "combat_front": "barmaid",
         "slug": "barmaid"
       }
-    ]
+  
   },
   {
     "slug": "spyder_candyhouse2_indiana",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor_green",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "spyder_candyhouse2_barney",
-    "template": [
+    "template": 
       {
         "sprite_name": "riverboatcaptain",
         "combat_front": "enforcer_rookie",
         "slug": "riverboatcaptain"
       }
-    ]
+  
   },
   {
     "slug": "spyder_candyhouse3_joanie",
-    "template": [
+    "template": 
       {
         "sprite_name": "catgirl",
         "combat_front": "catgirl",
         "slug": "catgirl"
       }
-    ]
+  
   },
   {
     "slug": "spyder_candyhouse1_tillie",
-    "template": [
+    "template": 
       {
         "sprite_name": "picnicker",
         "combat_front": "picnicker",
         "slug": "picnicker"
       }
-    ]
+  
   },
   {
     "slug": "spyder_candyhouse1_sawyer",
-    "template": [
+    "template": 
       {
         "sprite_name": "maniac_yellow",
         "combat_front": "adventurer",
         "slug": "maniac"
       }
-    ]
+  
   },
   {
     "slug": "spyder_candyscoop_clint",
-    "template": [
+    "template": 
       {
         "sprite_name": "shopkeeper",
         "combat_front": "adventurer",
         "slug": "shopkeeper"
       }
-    ]
+  
   },
   {
     "slug": "spyder_candyinn_cott",
-    "template": [
+    "template": 
       {
         "sprite_name": "shopkeeper",
         "combat_front": "adventurer",
         "slug": "shopkeeper"
       }
-    ]
+  
   },
   {
     "slug": "spyder_candyinn_lyle",
-    "template": [
+    "template": 
       {
         "sprite_name": "riverboatcaptain",
         "combat_front": "pirate",
         "slug": "pirate"
       }
-    ]
+  
   },
   {
     "slug": "spyder_candyinn_bob",
-    "template": [
+    "template": 
       {
         "sprite_name": "maniac_rose",
         "combat_front": "adventurer",
         "slug": "maniac"
       }
-    ]
+  
   },
   {
     "slug": "spyder_candyinn_prof",
-    "template": [
+    "template": 
       {
         "sprite_name": "professor_lapi",
         "combat_front": "professor",
         "slug": "professor"
       }
-    ]
+  
   },
   {
     "slug": "spyder_candyinn_jess",
-    "template": [
+    "template": 
       {
         "sprite_name": "goth",
         "combat_front": "adventurer",
         "slug": "goth"
       }
-    ]
+  
   },
   {
     "slug": "spyder_candyinn_james",
-    "template": [
+    "template": 
       {
         "sprite_name": "beachcomber_fiery",
         "combat_front": "yellowbelt",
         "slug": "yellowbelt"
       }
-    ]
+  
   },
   {
     "slug": "spyder_candyport_monk",
-    "template": [
+    "template": 
       {
         "sprite_name": "monk_blue",
         "combat_front": "monk",
         "slug": "monk"
       }
-    ]
+  
   },
   {
     "slug": "spyder_candyinn_monk",
-    "template": [
+    "template": 
       {
         "sprite_name": "monk_green",
         "combat_front": "monk",
         "slug": "monk"
       }
-    ]
+  
   }
 ]

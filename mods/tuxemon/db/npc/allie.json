@@ -1,10 +1,10 @@
 {
   "slug": "allie",
-  "template": [
+  "template": 
     {
       "sprite_name": "omnichannelallie",
       "combat_front": "goth_rose",
       "slug": "heroine"
     }
-  ]
+
 }

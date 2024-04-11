@@ -1,52 +1,52 @@
 [
   {
     "slug": "spyder_routeb_electra",
-    "template": [
+    "template": 
       {
         "sprite_name": "knight_green",
         "combat_front": "enforcer_agent",
         "slug": "enforcer_agent"
       }
-    ]
+  
   },
   {
     "slug": "spyder_routeb_cytherea",
-    "template": [
+    "template": 
       {
         "sprite_name": "knight",
         "combat_front": "enforcer_rookie",
         "slug": "enforcer_rookie"
       }
-    ]
+  
   },
   {
     "slug": "spyder_routeb_nephthys",
-    "template": [
+    "template": 
       {
         "sprite_name": "knight_red",
         "combat_front": "enforcer_agent",
         "slug": "enforcer_agent"
       }
-    ]
+  
   },
   {
     "slug": "spyder_routeb_sedna",
-    "template": [
+    "template": 
       {
         "sprite_name": "knight_red",
         "combat_front": "enforcer_rookie",
         "slug": "enforcer_rookie"
       }
-    ]
+  
   },
   {
     "slug": "spyder_routeb_calypso",
-    "template": [
+    "template": 
       {
         "sprite_name": "knight_yellow",
         "combat_front": "enforcer_boss",
         "slug": "enforcer_boss"
       }
-    ]
+  
   }
 ]

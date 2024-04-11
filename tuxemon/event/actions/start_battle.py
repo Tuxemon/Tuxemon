@@ -62,7 +62,7 @@ class StartBattleAction(EventAction):
         fighters = [character1, character2]
         for fighter in fighters:
             # check and trigger 2 vs 2
-            if fighter.template[0].double and len(alive_party(fighter)) > 1:
+            if fighter.double and len(alive_party(fighter)) > 1:
                 fighter.max_position = 2
             # check the human
             if fighter.isplayer:

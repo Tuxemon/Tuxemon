@@ -1,142 +1,142 @@
 [
   {
     "slug": "spyder_lionmountain_jacques",
-    "template": [
+    "template": 
       {
         "sprite_name": "miner_blue",
         "combat_front": "miner",
         "slug": "miner"
       }
-    ]
+  
   },
   {
     "slug": "spyder_lionmountain_adam",
-    "template": [
+    "template": 
       {
         "sprite_name": "miner_green",
         "combat_front": "miner",
         "slug": "miner"
       }
-    ]
+  
   },
   {
     "slug": "spyder_lionmountain_arlene",
-    "template": [
+    "template": 
       {
         "sprite_name": "miner_red",
         "combat_front": "miner",
         "slug": "miner"
       }
-    ]
+  
   },
   {
     "slug": "spyder_lionmountain_david",
-    "template": [
+    "template": 
       {
         "sprite_name": "miner_yellow",
         "combat_front": "miner",
         "slug": "miner"
       }
-    ]
+  
   },
   {
     "slug": "spyder_lionmountain_alexander",
-    "template": [
+    "template": 
       {
         "sprite_name": "miner",
         "combat_front": "miner",
         "slug": "miner"
       }
-    ]
+  
   },
   {
     "slug": "spyder_lionmountain_chhurim",
-    "template": [
+    "template": 
       {
         "sprite_name": "miner_blue",
         "combat_front": "miner",
         "slug": "miner"
       }
-    ]
+  
   },
   {
     "slug": "spyder_lionmountain_emilio",
-    "template": [
+    "template": 
       {
         "sprite_name": "miner_green",
         "combat_front": "miner",
         "slug": "miner"
       }
-    ]
+  
   },
   {
     "slug": "spyder_lionmountain_tom",
-    "template": [
+    "template": 
       {
         "sprite_name": "miner_red",
         "combat_front": "miner",
         "slug": "miner"
       }
-    ]
+  
   },
   {
     "slug": "spyder_lionmountain_conrad",
-    "template": [
+    "template": 
       {
         "sprite_name": "miner_yellow",
         "combat_front": "miner",
         "slug": "miner"
       }
-    ]
+  
   },
   {
     "slug": "spyder_lionmountain_kurt",
-    "template": [
+    "template": 
       {
         "sprite_name": "miner",
         "combat_front": "miner",
         "slug": "miner"
       }
-    ]
+  
   },
   {
     "slug": "spyder_lionmountain_scientist",
-    "template": [
+    "template": 
       {
         "sprite_name": "scientist_fiery",
         "combat_front": "scientist",
         "slug": "scientist"
       }
-    ]
+  
   },
   {
     "slug": "spyder_lionmountain_enforcer",
-    "template": [
+    "template": 
       {
         "sprite_name": "knight_green",
         "combat_front": "enforcer_agent",
         "slug": "enforcer_agent"
       }
-    ]
+  
   },
   {
     "slug": "spyder_lionmountain_nurse",
-    "template": [
+    "template": 
       {
         "sprite_name": "nurse",
         "combat_front": "nurse",
         "slug": "nurse"
       }
-    ]
+  
   },
   {
     "slug": "spyder_lionmountain_snarlon",
-    "template": [
+    "template": 
       {
         "sprite_name": "landrace",
         "combat_front": "sludgehog",
         "slug": "noclass"
       }
-    ]
+  
   }
 ]

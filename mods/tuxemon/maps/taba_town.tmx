@@ -670,7 +670,7 @@
     <property name="cond2" value="is char_facing player,down"/>
     <property name="cond3" value="not variable_set moveon:yes"/>
     <property name="cond4" value="not variable_set timetomove:finite"/>
-    <property name="cond5" value="is has_item player,potion"/>
+    <property name="cond5" value="is has_item player,potion,greater_or_equal,2"/>
    </properties>
   </object>
   <object id="145" name="anouncement2part2" type="event" x="560" y="576" width="16" height="16">

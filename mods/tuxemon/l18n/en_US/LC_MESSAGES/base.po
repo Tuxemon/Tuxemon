@@ -7181,7 +7181,35 @@ msgid "tabawaitup"
 msgstr "Hey! ${{name}}! Wait up!"
 
 msgid "tabawaitup2"
-msgstr "Phew, looks like I caught you. You about to face the Master?"
+msgstr "Phew, looks like I caught you. Looks like you're about to face the Master. That's good, I-"
+
+msgid "tabawaitup3"
+msgstr "You didn't have to run up the stairs, Speck!"
+
+msgid "tabawaitup4"
+msgstr "Oh, come on Christie, I wasn't running. You're just slow."
+
+msgid "tabawaitup5"
+msgstr "UGGGH. You are UN. BE. LIEVABLE."
+
+msgid "tabawaitup6"
+msgstr "Hey, ${{name}}, is it alright if I punch him? A good whack to his face would probably do him some good."
+
+msgid "tabawaitup7"
+msgstr "Hey, hey, hey. We don't need to go that far."
+
+msgid "tabawaitup8"
+msgstr "Anyway... I was thinking, what's the point of making us go through all this?"
+
+msgid "tabawaitup9"
+msgstr "Through what, exactly?"
+
+msgid "tabawaitup10"
+msgstr "Training, The Trial, Life in this cursed land. Y'know, all the hits."
+
+msgid "tabawaitup11"
+msgstr "Seriously though, why even have The Trial? Omnichannel hasn't felt the need to do this in the past. Why now?"
+
 
 msgid "ripjimmy"
 msgstr "The grave says:\n"

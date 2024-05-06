@@ -7177,6 +7177,12 @@ msgid "finaltabahealer2"
 msgstr "What? You thought Omnichannel would pay for more than a single grunt to heal Tuxemon?\n"
 "Nope, it's been me the whole time!"
 
+msgid "tabawaitup"
+msgstr "Hey! ${{name}}! Wait up!"
+
+msgid "tabawaitup2"
+msgstr "Phew, looks like I caught you. You about to face the Master?"
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"

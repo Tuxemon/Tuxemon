@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 2,
-            "technique": "hibernate"
+            "technique": "headbutt"
         },
         {
             "level_learned": 6,
@@ -17,6 +17,10 @@
         {
             "level_learned": 8,
             "technique": "stampede"
+        },
+        {
+            "level_learned": 10,
+            "technique": "hibernate"
         },
         {
             "level_learned": 12,

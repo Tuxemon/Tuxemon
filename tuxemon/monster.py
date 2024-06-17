@@ -764,7 +764,7 @@ class Monster:
         technique = action.method
         
         if technique.is_fast:
-            return 0 - int(random.randrange(int(self.speed/2), int(self.speed)) * 2.5) 
+            return 0 - int(random.randrange(int(self.speed/2), int(self.speed)) * 2.5)
         else:
             return 0 - random.randrange(0, int(self.speed))
 

@@ -3383,9 +3383,6 @@ msgstr "Lujuria"
 msgid "magma"
 msgstr "Magma"
 
-msgid "maori"
-msgstr "Maorí"
-
 msgid "meltdown"
 msgstr "Fusión"
 

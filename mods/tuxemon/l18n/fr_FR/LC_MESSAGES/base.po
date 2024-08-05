@@ -7640,9 +7640,6 @@ msgstr "Magma"
 msgid "lust"
 msgstr "Luxure"
 
-msgid "maori"
-msgstr "Maori"
-
 msgid "monster_menu_tech"
 msgstr "Techniques"
 

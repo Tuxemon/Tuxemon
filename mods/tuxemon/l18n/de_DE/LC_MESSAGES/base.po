@@ -3792,9 +3792,6 @@ msgstr "Lust"
 msgid "magma"
 msgstr "Magma"
 
-msgid "maori"
-msgstr "Maori"
-
 msgid "mobbing"
 msgstr "Mobbing"
 

@@ -1294,9 +1294,6 @@ msgstr "欲望"
 msgid "magma"
 msgstr "岩浆攻击"
 
-msgid "maori"
-msgstr "毛利语"
-
 msgid "meltdown"
 msgstr "崩溃"
 

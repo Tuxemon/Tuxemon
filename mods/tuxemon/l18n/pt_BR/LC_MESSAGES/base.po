@@ -3376,9 +3376,6 @@ msgstr "{target} começa a sniffle."
 msgid "lust"
 msgstr "Luxúria"
 
-msgid "maori"
-msgstr "Maori"
-
 msgid "phantasmal_force"
 msgstr "Força Fantasmagórica"
 

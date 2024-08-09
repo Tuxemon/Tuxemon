@@ -464,10 +464,10 @@ class CombatState(CombatAnimations):
                 # tracks ai players who need to choose an action
                 for trainer in self.ai_players:
                     for monster in self.monsters_in_play[trainer]:
-                        AI(self, monster, trainer)
                         # recharge opponent moves
                         for tech in monster.moves:
                             tech.recharge()
+                        AI(self, monster, trainer)
 
         elif phase == "action phase":
             self.sort_action_queue()

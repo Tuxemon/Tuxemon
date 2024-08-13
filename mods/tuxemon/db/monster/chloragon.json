@@ -67,6 +67,7 @@
             "evo_stage": "stage2"
         }
     ],
+    "tags": ["dragon", "jungle"],
     "shape": "dragon",
     "stage": "basic",
     "types": [

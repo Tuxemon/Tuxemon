@@ -42,6 +42,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["grub"],
     "shape": "grub",
     "stage": "stage1",
     "types": [

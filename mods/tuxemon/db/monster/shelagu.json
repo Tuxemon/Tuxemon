@@ -58,6 +58,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["polliwog", "coastal", "sea"],
     "shape": "polliwog",
     "stage": "stage1",
     "types": [

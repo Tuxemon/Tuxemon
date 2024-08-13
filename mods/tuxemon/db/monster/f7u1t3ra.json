@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["flier"],
     "shape": "flier",
     "stage": "standalone",
     "types": [

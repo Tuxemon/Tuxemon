@@ -50,6 +50,7 @@
             "evo_stage": "stage1"
         }
     ],
+    "tags": ["humanoid"],
     "shape": "humanoid",
     "stage": "stage2",
     "types": [

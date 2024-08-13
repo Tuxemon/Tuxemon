@@ -42,6 +42,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["flier", "urban"],
     "shape": "flier",
     "stage": "stage1",
     "types": [

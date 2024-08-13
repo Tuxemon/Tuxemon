@@ -58,6 +58,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["brute"],
     "shape": "brute",
     "stage": "stage1",
     "types": [

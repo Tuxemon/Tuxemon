@@ -42,6 +42,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["sprite", "urban"],
     "shape": "sprite",
     "stage": "stage1",
     "types": [

@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["humanoid", "urban"],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [

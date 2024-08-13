@@ -63,6 +63,7 @@
             "evo_stage": "stage2"
         }
     ],
+    "tags": ["sprite"],
     "shape": "sprite",
     "stage": "basic",
     "types": [

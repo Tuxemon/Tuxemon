@@ -47,6 +47,7 @@
             "evo_stage": "stage1"
         }
     ],
+    "tags": ["polliwog", "freshwater"],
     "shape": "polliwog",
     "stage": "basic",
     "types": [

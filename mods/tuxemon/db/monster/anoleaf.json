@@ -63,6 +63,7 @@
             "evo_stage": "stage2"
         }
     ],
+    "tags": ["varmint"],
     "shape": "varmint",
     "stage": "basic",
     "types": [

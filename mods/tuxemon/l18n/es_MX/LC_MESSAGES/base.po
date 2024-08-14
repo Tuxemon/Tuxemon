@@ -1415,9 +1415,6 @@ msgstr "Respira Fuego"
 msgid "energy_field"
 msgstr "Campo de Energía"
 
-msgid "headbutt"
-msgstr "Golpe de cabeza"
-
 msgid "ice_claw"
 msgstr "Garra de Hielo"
 
@@ -3436,9 +3433,6 @@ msgstr "Estrangulación"
 
 msgid "sunburst"
 msgstr "Rayos de Sol"
-
-msgid "sword"
-msgstr "Espada"
 
 msgid "sylvan"
 msgstr "Silvestre"

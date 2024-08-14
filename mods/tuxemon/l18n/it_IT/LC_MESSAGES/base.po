@@ -358,9 +358,6 @@ msgstr "Occhiata"
 msgid "goad"
 msgstr "Pungolo"
 
-msgid "headbutt"
-msgstr "Testata"
-
 msgid "hibernate"
 msgstr "Ibernazione"
 

@@ -1667,17 +1667,17 @@ msgstr "The user creates a powerful wind that blows the opponent back."
 msgid "gust"
 msgstr "Gust"
 
+msgid "hammerhead_description"
+msgstr "The user charges forward, striking the opponent with its head."
+
+msgid "hammerhead"
+msgstr "Hammerhead"
+
 msgid "hawk_description"
 msgstr "The user soars high into the air before diving down with a powerful attack."
 
 msgid "hawk"
 msgstr "Hawk"
-
-msgid "headbutt_description"
-msgstr "The user charges forward, striking the opponent with its head."
-
-msgid "headbutt"
-msgstr "Headbutt"
 
 msgid "hibernate_description"
 msgstr "The user falls into a restorative sleep."
@@ -2087,6 +2087,12 @@ msgstr "A cloud of sleep-inducing pollen is released, causing the opponent to fa
 msgid "sleeping_powder"
 msgstr "Sleeping Powder"
 
+msgid "slice_description"
+msgstr "The user wields a sharp blade, delivery a powerful, cutting attack."
+
+msgid "slice"
+msgstr "Slice"
+
 msgid "slime_description"
 msgstr "A sticky, viscous substance is emitted, engulfing the opponent and dealing damage."
 
@@ -2206,12 +2212,6 @@ msgstr "A powerful electric discharge that shocks the opponent."
 
 msgid "surge"
 msgstr "Surge"
-
-msgid "sword_description"
-msgstr "The user wields a sharp blade, delivery a powerful, cutting attack."
-
-msgid "sword"
-msgstr "Sword"
 
 msgid "sylvan_description"
 msgstr "The user summons the power of nature, transforming the opponent into a wooden puppet."

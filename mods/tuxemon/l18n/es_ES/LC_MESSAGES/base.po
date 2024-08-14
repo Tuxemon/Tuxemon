@@ -408,9 +408,6 @@ msgstr "Mirada Fulminante"
 msgid "goad"
 msgstr "Aguijón"
 
-msgid "headbutt"
-msgstr "Cabezazo"
-
 msgid "hibernate"
 msgstr "Hibernar"
 
@@ -4533,9 +4530,6 @@ msgstr "Estrangulación"
 
 msgid "sunburst"
 msgstr "Rayos de Sol"
-
-msgid "sword"
-msgstr "Espada"
 
 msgid "sylvan"
 msgstr "Silvestre"

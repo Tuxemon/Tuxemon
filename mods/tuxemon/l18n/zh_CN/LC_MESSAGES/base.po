@@ -427,9 +427,6 @@ msgstr "热切注视"
 msgid "goad"
 msgstr "刺棒"
 
-msgid "headbutt"
-msgstr "头锤"
-
 msgid "hibernate"
 msgstr "冬眠"
 
@@ -1359,9 +1356,6 @@ msgstr "缠绕"
 
 msgid "sunburst"
 msgstr "旭日子"
-
-msgid "sword"
-msgstr "剑击"
 
 msgid "sylvan"
 msgstr "塞尔万"

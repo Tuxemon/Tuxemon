@@ -1557,9 +1557,6 @@ msgstr "Sable mouvant"
 msgid "levitate"
 msgstr "Lévitation"
 
-msgid "headbutt"
-msgstr "Coup de Boule"
-
 msgid "flood"
 msgstr "Inondation"
 
@@ -7549,9 +7546,6 @@ msgstr "Strangulation"
 
 msgid "sunburst"
 msgstr "Éclat Solaire"
-
-msgid "sword"
-msgstr "Épée"
 
 msgid "sylvan"
 msgstr "Sylvestre"

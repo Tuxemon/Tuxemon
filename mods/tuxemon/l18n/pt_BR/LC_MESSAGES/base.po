@@ -279,9 +279,6 @@ msgstr "Olhar Ameaçador"
 msgid "goad"
 msgstr "Incitar"
 
-msgid "headbutt"
-msgstr "Cabeçada"
-
 msgid "perfect_cut"
 msgstr "Corte Perfeito"
 
@@ -3384,9 +3381,6 @@ msgstr "Anel"
 
 msgid "ruby"
 msgstr "Rubi"
-
-msgid "sword"
-msgstr "Espada"
 
 msgid "poison_courtship"
 msgstr "Namoro Venenoso"

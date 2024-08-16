@@ -37,7 +37,7 @@ class GiveEffect(TechEffect):
         player = user.owner
         assert combat and player
         potency = random.random()
-        value = combat._random_tech_hit
+        value = combat._random_tech_hit.get(user, 0.0)
         success = tech.potency >= potency and tech.accuracy >= value
         if success:
             status = Condition()

@@ -7876,6 +7876,9 @@ msgstr "Enjoy the flower display! It's the pride of Leather Town."
 msgid "spyder_citypark2_florist"
 msgstr "The flowers look okay, don't they? ... Ever since the mining began in Leather Town, the flowers have been under the weather!"
 
+msgid "spyder_citypark_nurse"
+msgstr "Hey, you look tired. Let me help you feel better!"
+
 msgid "spyder_route2_graf2"
 msgstr "I got served."
 

@@ -789,17 +789,17 @@ class CombatAnimations(ABC, Menu[None]):
         Updates hud (where it appears name, level, etc.).
 
         Parameters:
-            character: Character who needs to update the hud.
-            animate: Whether the hud is animated (slide in) or not.
+            character: The character whose HUD needs to be updated.
+            animate: Whether to animate the HUD update. Defaults to True.
 
         """
-        total = self.monsters_in_play[character]
-        alive = alive_party(character)
-        if total:
-            monster = self.monsters_in_play[character][0]
-            if len(total) > 1 and len(total) == len(alive):
-                monster2 = self.monsters_in_play[character][1]
-                self.build_hud(monster, "hud0", animate)
-                self.build_hud(monster2, "hud1", animate)
-            else:
-                self.build_hud(monster, "hud", animate)
+        monsters = self.monsters_in_play.get(character)
+        if not monsters:
+            return
+
+        alive_members = alive_party(character)
+        if len(monsters) > 1 and len(monsters) <= len(alive_members):
+            self.build_hud(monsters[0], "hud0", animate)
+            self.build_hud(monsters[1], "hud1", animate)
+        else:
+            self.build_hud(monsters[0], "hud", animate)

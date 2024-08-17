@@ -1003,7 +1003,6 @@ class NpcTemplateModel(BaseModel):
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
     forfeit: bool = Field(False, description="Whether you can forfeit or not")
-    double: bool = Field(False, description="Whether triggers 2vs2 or not")
     template: NpcTemplateModel
     monsters: Sequence[PartyMemberModel] = Field(
         [], description="List of monsters in the NPCs party"
@@ -1243,6 +1242,7 @@ class TemplateModel(BaseModel):
     slug: str = Field(
         ..., description="Slug uniquely identifying the template"
     )
+    double: bool = Field(False, description="Whether triggers 2vs2 or not")
 
 
 class MissionModel(BaseModel):

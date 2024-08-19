@@ -257,23 +257,32 @@ def cast_value(
 ) -> Any:
     (type_constructors, param_name), value = i
 
+    # Normalize type constructors to a list
     if not isinstance(type_constructors, Sequence):
         type_constructors = [type_constructors]
 
-    if (value is None or value == "") and (
-        None in type_constructors or type(None) in type_constructors
-    ):
-        return None
+    # Early return for None or empty string if None is in type constructors
+    if value is None or value == "":
+        if None in type_constructors or type(None) in type_constructors:
+            return None
 
-    # checks int, float to avoid float > int or int > float
-    if any(_con in type_constructors for _con in [float, int]):
+    # Check for numeric types first to avoid float > int or int > float
+    numeric_constructors = [float, int]
+    if any(_con in type_constructors for _con in numeric_constructors):
         for _cons in type_constructors:
             if _cons is None:
                 return None
             elif type(value) == _cons:
                 return value
-            continue
+        # If value is not already of a numeric type, try to cast it
+        for _cons in numeric_constructors:
+            if _cons in type_constructors:
+                try:
+                    return _cons(value)
+                except (ValueError, TypeError):
+                    pass
 
+    # Try to cast value to each type constructor
     for constructor in type_constructors:
         if not constructor:
             continue
@@ -292,6 +301,7 @@ def cast_value(
             except (ValueError, TypeError):
                 pass
 
+    # If all attempts fail, raise a ValueError
     raise ValueError(
         f"Error parsing parameter {param_name} with value {value} and "
         f"constructor list {type_constructors}",

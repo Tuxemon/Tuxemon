@@ -65,6 +65,9 @@ class ItemTakeState(PygameMenuState):
             # retrieves the item from the iid
             iid = uuid.UUID(instance_id)
             itm = self.player.find_item_in_storage(iid)
+            if itm is None:
+                logger.error(f"Item {iid} not found")
+                return
 
             # list with all the lockers and removes where we are
             lockers = [

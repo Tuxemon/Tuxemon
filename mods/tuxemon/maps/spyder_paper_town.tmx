@@ -287,6 +287,7 @@
     <property name="act51" value="char_face spyder_billie,player"/>
     <property name="act60" value="translated_dialog spyder_papertown_firstfight"/>
     <property name="act61" value="add_monster billie_choice,5,spyder_billie,5,10"/>
+    <property name="act62" value="set_monster_attribute add_monster,gender,male"/>
     <property name="act70" value="start_battle player,spyder_billie"/>
     <property name="act80" value="set_variable firstfightdue:no"/>
     <property name="act81" value="set_variable firstfightend:yes"/>

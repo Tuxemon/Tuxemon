@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="291">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="293">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -571,6 +571,20 @@
     <property name="act2" value="char_face player,up"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="291" name="Create Nurse" type="event" x="128" y="496" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_citypark_nurse,8,31"/>
+    <property name="cond1" value="not char_exists spyder_citypark_nurse"/>
+   </properties>
+  </object>
+  <object id="292" name="Talk Nurse" type="event" x="128" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_citypark_nurse"/>
+    <property name="act2" value="set_monster_health"/>
+    <property name="act3" value="set_monster_status"/>
+    <property name="behav1" value="talk spyder_citypark_nurse"/>
    </properties>
   </object>
  </objectgroup>

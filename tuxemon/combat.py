@@ -57,7 +57,14 @@ def check_battle_legal(character: NPC) -> bool:
             )
             return False
         else:
-            return True
+            if party_no_tech(character.monsters):
+                no_tech = party_no_tech(character.monsters)
+                logger.error(
+                    f"Cannot start battle, {no_tech} has/have no techniques."
+                )
+                return False
+            else:
+                return True
 
 
 def pre_checking(
@@ -98,6 +105,13 @@ def has_effect(technique: Technique, effect_name: str) -> bool:
     Checks to see if the technique has a specific effect (eg ram -> damage).
     """
     return any(t for t in technique.effects if t.name == effect_name)
+
+
+def party_no_tech(party: list[Monster]) -> list[str]:
+    """
+    Return list of monsters without techniques.
+    """
+    return [p.name for p in party if not p.moves]
 
 
 def has_effect_param(

@@ -125,9 +125,13 @@
     <property name="act45" value="pathfind spyder_billie,5,8"/>
     <property name="act50" value="translated_dialog spyder_hospital_billie1"/>
     <property name="act51" value="add_monster billie_choice,40,spyder_billie,5,10"/>
-    <property name="act52" value="add_monster cardinale,40,spyder_billie,5,10"/>
-    <property name="act53" value="add_monster eyesore,40,spyder_billie,5,10"/>
-    <property name="act54" value="add_monster viviphyta,40,spyder_billie,5,10"/>
+    <property name="act52" value="set_monster_attribute add_monster,gender,male"/>
+    <property name="act53" value="add_monster cardinale,40,spyder_billie,5,10"/>
+    <property name="act54" value="set_monster_attribute add_monster,gender,female"/>
+    <property name="act55" value="add_monster eyesore,40,spyder_billie,5,10"/>
+    <property name="act56" value="set_monster_attribute add_monster,gender,female"/>
+    <property name="act57" value="add_monster viviphyta,40,spyder_billie,5,10"/>
+    <property name="act58" value="set_monster_attribute add_monster,gender,male"/>
     <property name="act60" value="start_battle player,spyder_billie"/>
     <property name="act61" value="translated_dialog spyder_hospital_billie2"/>
     <property name="cond1" value="is char_facing_tile player"/>

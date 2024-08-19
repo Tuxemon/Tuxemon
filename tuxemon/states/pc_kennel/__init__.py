@@ -65,6 +65,9 @@ class MonsterTakeState(PygameMenuState):
             # retrieves the monster from the iid
             iid = uuid.UUID(instance_id)
             mon = self.player.find_monster_in_storage(iid)
+            if mon is None:
+                logger.error(f"Monster {iid} not found")
+                return
 
             # all kennels available with less than max value
             kennels = [

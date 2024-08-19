@@ -61,25 +61,26 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             self.opponents = cmb.monsters_in_play[self.enemy]
 
     def initialize_items(self) -> Generator[MenuItem[MenuGameObj], None, None]:
+        common_menu_items = (
+            ("menu_fight", self.open_technique_menu),
+            ("menu_monster", self.open_swap_menu),
+            ("menu_item", self.open_item_menu),
+        )
+
         if self.combat.is_trainer_battle:
-            menu_items_map = (
-                ("menu_fight", self.open_technique_menu),
-                ("menu_monster", self.open_swap_menu),
-                ("menu_item", self.open_item_menu),
+            menu_items_map = common_menu_items + (
                 ("menu_forfeit", self.forfeit),
             )
         else:
-            menu_items_map = (
-                ("menu_fight", self.open_technique_menu),
-                ("menu_monster", self.open_swap_menu),
-                ("menu_item", self.open_item_menu),
-                ("menu_run", self.run),
-            )
+            menu_items_map = common_menu_items + (("menu_run", self.run),)
 
         for key, callback in menu_items_map:
-            label = T.translate(key).upper()
-            image = self.shadow_text(label)
-            yield MenuItem(image, label, None, callback)
+            yield MenuItem(
+                self.shadow_text(T.translate(key).upper()),
+                T.translate(key).upper(),
+                None,
+                callback,
+            )
 
     def forfeit(self) -> None:
         """

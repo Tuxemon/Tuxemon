@@ -75,7 +75,7 @@
     <property name="act50" value="char_face spyder_cottontown_barmaid,down"/>
     <property name="act60" value="translated_dialog okaythen2"/>
     <property name="act70" value="set_variable chooses:none"/>
-    <property name="act80" value="set_variable teleport_faint:spyder_timber_cafe.tmx 1 10"/>
+    <property name="act80" value="set_variable teleport_faint:spyder_candy_cafe.tmx 1 10"/>
     <property name="cond1" value="is variable_set chooses:yes"/>
    </properties>
   </object>

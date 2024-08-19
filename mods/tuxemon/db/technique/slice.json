@@ -1,18 +1,18 @@
 {
-  "tech_id": 72,
-  "accuracy": 1,
-  "animation": "slash_power",
+  "tech_id": 101,
+  "accuracy": 0.9,
+  "animation": "pound",
   "effects": [
     "damage"
   ],
-  "flip_axes": "x",
+  "flip_axes": "",
   "is_fast": false,
   "potency": 0.0,
-  "power": 1,
+  "power": 1.2,
   "range": "melee",
   "recharge": 1,
   "sfx": "sfx_blaster",
-  "slug": "headbutt",
+  "slug": "slice",
   "sort": "damage",
   "target": {
     "enemy monster": 2,
@@ -23,7 +23,7 @@
     "own trainer": 0
   },
   "types": [
-    "earth"
+    "metal"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

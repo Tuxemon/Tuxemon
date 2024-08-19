@@ -72,7 +72,7 @@ class MinigameState(PygameMenuState):
             choice.pop()
             choice.insert(pos, tuxemon)
 
-        def checking(mon: Monster) -> None:
+        def checking(mon: MonsterModel) -> None:
             if mon.slug == self.tuxemon.slug:
                 self.client.replace_state("MinigameState")
             else:

@@ -5584,6 +5584,9 @@ msgstr "Team Xero Grunt X"
 msgid "acolyte"
 msgstr "Acolyte Corren"
 
+msgid "confusedperson"
+msgstr "Confused Guy"
+
 ## DIALOG TRANSLATIONS ##
 # general dialogs
 
@@ -7738,6 +7741,15 @@ msgstr "Great work on Tuxepedia, my friend.\n You're our top contributor."
 msgid "spyder_cottontown_mom2"
 msgstr "!!!"
 
+msgid "spyder_lostfight"
+msgstr "I guess I shouldn't have picked that fight. But it's the spirit, the spirit of too much coffee, that matters!"
+
+msgid "confused1"
+msgstr "This guy won't let me through! I can't figure out how to get out of town! If I win, you have to tell me how! \n If I lose... the same!"
+
+msgid "confused2"
+msgstr "Oh, you say there is another way out on the opposite side of town? Just go right and go straight past the heal center? Thanks!"
+
 msgid "spyder_cottontown_hacker2"
 msgstr "Right, right!\n There's a data center along the river to the north-east of Timber Town.\n If Omnichannel's done anything to the computer network, they would have done it there."
 
@@ -7837,8 +7849,11 @@ msgstr "You are so engrossed reading the new entries, that you don't notice peop
 msgid "spyder_cotton_tuxepediaintro4"
 msgstr "It's so cool that you came. There's still so many tuxemon to be added - over a hundred, I think. \n You could really get into it, and make a difference to the world. "
 
+msgid "request_fight"
+msgstr "Do you want a quick battle?"
+
 msgid "spyder_cotton_cafegoth"
-msgstr "Don't look at me. I'm just here for the free canapes."
+msgstr "Don't look at me. I'm just here for the free canapes and heals."
 
 msgid "spyder_cotton_cafeflorist1"
 msgstr "Shhh, it's about to begin."

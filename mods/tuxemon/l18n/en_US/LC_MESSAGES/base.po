@@ -5584,9 +5584,6 @@ msgstr "Team Xero Grunt X"
 msgid "acolyte"
 msgstr "Acolyte Corren"
 
-msgid "confusedperson"
-msgstr "Confused Guy"
-
 ## DIALOG TRANSLATIONS ##
 # general dialogs
 
@@ -7744,10 +7741,10 @@ msgstr "!!!"
 msgid "spyder_lostfight"
 msgstr "I guess I shouldn't have picked that fight. But it's the spirit, the spirit of too much coffee, that matters!"
 
-msgid "confused1"
+msgid "spyder_confused1"
 msgstr "This guy won't let me through! I can't figure out how to get out of town! If I win, you have to tell me how! \n If I lose... the same!"
 
-msgid "confused2"
+msgid "spyder_confused2"
 msgstr "Oh, you say there is another way out on the opposite side of town? Just go right and go straight past the heal center? Thanks!"
 
 msgid "spyder_cottontown_hacker2"
@@ -7849,7 +7846,7 @@ msgstr "You are so engrossed reading the new entries, that you don't notice peop
 msgid "spyder_cotton_tuxepediaintro4"
 msgstr "It's so cool that you came. There's still so many tuxemon to be added - over a hundred, I think. \n You could really get into it, and make a difference to the world. "
 
-msgid "request_fight"
+msgid "spyder_request_fight"
 msgstr "Do you want a quick battle?"
 
 msgid "spyder_cotton_cafegoth"
@@ -10721,6 +10718,9 @@ msgstr "I'm writing a book about my journey to the Archipelago. It is composed o
 
 msgid "spyder_omnichannel_sign"
 msgstr "Omnichannel HQ: We Make Headlines"
+
+msgid "spyder_confusedperson"
+msgstr "Confused Guy"
 
 msgid "cotton_misa_fireplace"
 msgstr "It looks like someone burned papers."

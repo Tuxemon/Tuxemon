@@ -494,33 +494,33 @@
   </object>
   <object id="596" name="Talk to confused" type="event" x="112" y="544" width="16" height="16">
    <properties>
-    <property name="act0" value="translated_dialog confused1"/>
+    <property name="act0" value="translated_dialog spyder_confused1"/>
     <property name="act3" value="translated_dialog_choice yes:no,confusedchoice"/>
-    <property name="behav1" value="talk confusedperson"/>
+    <property name="behav1" value="talk spyder_confusedperson"/>
     <property name="cond1" value="not variable_set confusedbattle"/>
    </properties>
   </object>
   <object id="597" name="Create confused" type="event" x="96" y="528" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc confusedperson,6,33"/>
-    <property name="act2" value="char_face confusedperson,player"/>
-    <property name="cond1" value="not char_exists confusedperson"/>
+    <property name="act1" value="create_npc spyder_confusedperson,6,33"/>
+    <property name="act2" value="char_face spyder_confusedperson,player"/>
+    <property name="cond1" value="not char_exists spyder_confusedperson"/>
     <property name="cond2" value="not variable_set dragonscavedrokoro:yes"/>
    </properties>
   </object>
   <object id="598" name="Talk less confused later" type="event" x="80" y="512" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog confused2"/>
-    <property name="behav1" value="talk confusedperson"/>
+    <property name="act1" value="translated_dialog spyder_confused2"/>
+    <property name="behav1" value="talk spyder_confusedperson"/>
     <property name="cond1" value="is variable_set confusedbattle:yes"/>
    </properties>
   </object>
   <object id="599" name="Battle confused" type="event" x="128" y="576" width="16" height="16">
    <properties>
-    <property name="act2" value="add_monster pairagrin,2,confusedperson,5,10"/>
-    <property name="act3" value="add_monster capiti,2,confusedperson,5,10"/>
-    <property name="act4" value="start_battle player,confusedperson"/>
-    <property name="act5" value="translated_dialog confused2"/>
+    <property name="act2" value="add_monster pairagrin,2,spyder_confusedperson,5,10"/>
+    <property name="act3" value="add_monster capiti,2,spyder_confusedperson,5,10"/>
+    <property name="act4" value="start_battle player,spyder_confusedperson"/>
+    <property name="act5" value="translated_dialog spyder_confused2"/>
     <property name="act6" value="set_variable confusedbattle:yes"/>
     <property name="cond1" value="not variable_set confusedbattle:yes"/>
     <property name="cond2" value="is variable_set confusedchoice:yes"/>

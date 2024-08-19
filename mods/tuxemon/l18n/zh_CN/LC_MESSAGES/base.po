@@ -427,9 +427,6 @@ msgstr "热切注视"
 msgid "goad"
 msgstr "挑衅打击"
 
-msgid "headbutt"
-msgstr "头锤"
-
 msgid "hibernate"
 msgstr "冬眠"
 
@@ -1294,9 +1291,6 @@ msgstr "欲望"
 msgid "magma"
 msgstr "岩浆攻击"
 
-msgid "maori"
-msgstr "毛利语"
-
 msgid "meltdown"
 msgstr "崩溃"
 
@@ -1362,9 +1356,6 @@ msgstr "缠绕"
 
 msgid "sunburst"
 msgstr "旭日子"
-
-msgid "sword"
-msgstr "剑击"
 
 msgid "sylvan"
 msgstr "塞尔万"

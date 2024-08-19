@@ -473,18 +473,22 @@ class CombatState(CombatAnimations):
             self.sort_action_queue()
 
         elif phase == "post action phase":
+            # remove actions from fainted users from the pending queue
+            self._pending_queue = [
+                pend
+                for pend in self._pending_queue
+                if pend.user
+                and isinstance(pend.user, Monster)
+                and not (fainted(pend.user) or fainted(pend.target))
+            ]
+
             # apply condition effects to the monsters
             for monster in self.active_monsters:
-                # check if there are pending actions (eg. counterattacks)
-                if self._pending_queue:
-                    pend = None
-                    for pending in self._pending_queue:
-                        pend = pending
-                    if pend:
-                        self.enqueue_action(
-                            pend.user, pend.method, pend.target
-                        )
-                        self._pending_queue.remove(pend)
+                # Check if there are pending actions (e.g. counterattacks)
+                while self._pending_queue:
+                    pend = self._pending_queue.pop(0)
+                    self.enqueue_action(pend.user, pend.method, pend.target)
+
                 for condition in monster.status:
                     # validate condition
                     if condition.validate(monster):

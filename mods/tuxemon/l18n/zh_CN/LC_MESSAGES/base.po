@@ -44,35 +44,35 @@ msgstr "回复一只精灵20点生命."
 
 # Potion
 msgid "potion"
-msgstr "伤药"
+msgstr "治疗药水"
 
 msgid "potion_description"
 msgstr "回复一只精灵50点生命."
 
 # Super Potion
 msgid "super_potion"
-msgstr "超级伤药"
+msgstr "超级治疗药水"
 
 msgid "super_potion_description"
 msgstr "回复一只精灵150点生命."
 
 # Imperial Potion
 msgid "imperial_potion"
-msgstr "皇室伤药"
+msgstr "皇室治疗药水"
 
 msgid "imperial_potion_description"
 msgstr "回复一只精灵350点生命."
 
 # Revive
 msgid "revive"
-msgstr "恢复"
+msgstr "复活草"
 
 msgid "revive_description"
 msgstr "复活被击倒的精灵,恢复20点生命."
 
 # Capture Device
 msgid "capture_device"
-msgstr "捕捉设备"
+msgstr "精灵球"
 
 msgid "capture_device_description"
 msgstr "用来捕捉精灵."
@@ -200,7 +200,7 @@ msgid "combat_victory"
 msgstr "你赢了!"
 
 msgid "combat_defeat"
-msgstr "你被打败了!"
+msgstr "你的对手被打败了!"
 
 msgid "combat_draw"
 msgstr "大家都昏过去了!"
@@ -209,7 +209,7 @@ msgid "combat_capturing_success"
 msgstr "你捉住了{name}!"
 
 msgid "combat_capturing_fail"
-msgstr "{name}冲出了捕捉设备!"
+msgstr "{name}冲出了精灵球!"
 
 msgid "combat_recharging"
 msgstr "{name}使用前需要休息一下才能再一次使用{move}..."
@@ -283,7 +283,7 @@ msgid "not_implemented"
 msgstr "该特性尚未实现."
 
 msgid "receive_happiness"
-msgstr "收到5个捕捉设备!"
+msgstr "获得5个精灵球!"
 
 msgid "received_x"
 msgstr "获得了{name}!"
@@ -320,7 +320,7 @@ msgstr "恢复"
 
 # # TECHNIQUE TRANSLATIONS ##
 msgid "all_in"
-msgstr "全部的"
+msgstr "全力以赴"
 
 msgid "amnesia"
 msgstr "失忆"
@@ -347,7 +347,7 @@ msgid "blade"
 msgstr "叶之刃"
 
 msgid "blood_bond"
-msgstr "血统联系"
+msgstr "血之契约"
 
 msgid "blossom"
 msgstr "绽放"
@@ -359,7 +359,7 @@ msgid "breathe_fire"
 msgstr "暴怒"
 
 msgid "bubble_trap"
-msgstr "气泡捕捉"
+msgstr "气泡陷阱"
 
 msgid "bullet"
 msgstr "高速球"
@@ -368,7 +368,7 @@ msgid "chill_mist"
 msgstr "冷雾"
 
 msgid "clamp_on"
-msgstr "夹合"
+msgstr "紧锁"
 
 msgid "constrict"
 msgstr "缠绕"
@@ -377,7 +377,7 @@ msgid "electrical_storm"
 msgstr "雷暴"
 
 msgid "energy_claws"
-msgstr "能源之爪"
+msgstr "能量之爪"
 
 msgid "energy_field"
 msgstr "能量场"
@@ -395,7 +395,7 @@ msgid "fire_ball"
 msgstr "火球"
 
 msgid "fire_claw"
-msgstr "火爪"
+msgstr "火之爪"
 
 msgid "flamethrower"
 msgstr "火焰喷射"
@@ -425,7 +425,7 @@ msgid "glower"
 msgstr "热切注视"
 
 msgid "goad"
-msgstr "刺棒"
+msgstr "挑衅打击"
 
 msgid "headbutt"
 msgstr "头锤"
@@ -434,7 +434,7 @@ msgid "hibernate"
 msgstr "冬眠"
 
 msgid "ice_claw"
-msgstr "冰爪"
+msgstr "冰之爪"
 
 msgid "icicle_spear"
 msgstr "冰矛"
@@ -476,7 +476,7 @@ msgid "petrify"
 msgstr "美杜莎之眼"
 
 msgid "proboscis"
-msgstr "普罗比斯库斯"
+msgstr "探针打击"
 
 msgid "pseudopod"
 msgstr "伪足"
@@ -491,7 +491,7 @@ msgid "refresh"
 msgstr "小憩"
 
 msgid "rock"
-msgstr "岩石"
+msgstr "岩石攻击"
 
 msgid "rot"
 msgstr "腐烂"
@@ -500,10 +500,10 @@ msgid "rust_bomb"
 msgstr "铁锈炸弹"
 
 msgid "salamander"
-msgstr "火蜥蜴"
+msgstr "焰蜴召唤"
 
 msgid "sand_spray"
-msgstr "喷砂"
+msgstr "流沙喷发"
 
 msgid "shadow_boxing"
 msgstr "太极拳"
@@ -527,10 +527,10 @@ msgid "splinter"
 msgstr "分裂"
 
 msgid "spit_poison"
-msgstr "喷雾"
+msgstr "毒雾"
 
 msgid "stampede"
-msgstr "奔逃"
+msgstr "奔腾冲击"
 
 msgid "starfall"
 msgstr "星落"
@@ -542,22 +542,22 @@ msgid "sting"
 msgstr "叮咬"
 
 msgid "stone_rot"
-msgstr "石头腐烂"
+msgstr "石腐"
 
 msgid "strike"
 msgstr "罢工"
 
 msgid "suck_poison"
-msgstr "吸入毒液"
+msgstr "毒液汲取"
 
 msgid "sudden_glow"
-msgstr "突然发光"
+msgstr "骤然光辉"
 
 msgid "supernova"
 msgstr "超新星"
 
 msgid "surge"
-msgstr "飙升"
+msgstr "爆发"
 
 msgid "take_cover"
 msgstr "隐蔽"
@@ -581,7 +581,7 @@ msgid "wallow"
 msgstr "打滚"
 
 msgid "web"
-msgstr "网络"
+msgstr "束缚之网"
 
 msgid "whirlwind"
 msgstr "旋风"
@@ -989,7 +989,7 @@ msgstr "{name}现在不能使用."
 
 msgid "combat_victory_trainer"
 msgstr ""
-"你战胜了{name}!\n"
+"{name}获胜了!\n"
 " 你获得了 {currency}{prize}!"
 
 msgid "combat_state_chargedup_get"
@@ -1153,7 +1153,7 @@ msgid "fledgling"
 msgstr "雏鸟"
 
 msgid "gold_digger"
-msgstr "淘金者"
+msgstr "淘金"
 
 msgid "grinding"
 msgstr "研磨"
@@ -1482,7 +1482,7 @@ msgid "leather_town_description"
 msgstr "证明美丽与采矿可以共存!"
 
 msgid "paper_town_description"
-msgstr "通往丰登特的门户!"
+msgstr "通往丰登特的入口!"
 
 msgid "route1_description"
 msgstr "当心!"
@@ -2652,7 +2652,7 @@ msgid "37707_villager_female_2"
 msgstr "微识：请.不要进入该塔.它还没有建成."
 
 msgid "famous_statue"
-msgstr "这是一个前自由梦大师的雕像.名字已经被风化了..."
+msgstr "这是一个前精灵大师的雕像.名字已经被风化了..."
 
 msgid "famous_statue2"
 msgstr "它说.为了我们亲爱的朋友和所有的英雄,维文"
@@ -3123,19 +3123,19 @@ msgstr ""
 
 msgid "spyder_papertown_mom1"
 msgstr ""
-"早晨的阳光!你可以在这里随时休息. \n"
+"啊,早安,温暖的晨曦!你可以在这里随时休息. \n"
 " 我为什么这么说?你住在这里!"
 
 msgid "spyder_papertown_mom2"
 msgstr ""
 "你好,亲爱的.我应该继续进行我的发明. \n"
-" 你就不能自娱自乐吗? \n"
-" 在我的时代,我们可以用任何东西来消遣自己--一根棍子、一块石头、在垃圾桶里找到\n"
+" 不好意思,你可以自己去玩吗? \n"
+" 在我的时代,我们可以用任何东西来消遣自己--一根棍子,一块石头,甚至在垃圾桶里找到\n"
 "的垃圾...... "
 
 msgid "spyder_papertown_grannypiper1"
 msgstr ""
-"哦,你好,${name}},在这么多的喧嚣和杂物中我没有看到你! \n"
+"哦,你好,${name},在这么多的喧嚣和杂物中我没有看到你! \n"
 " 我迫不及待地想等到日托中心建造完毕!"
 
 msgid "spyder_cotton_tuxepediaintro"
@@ -3172,24 +3172,24 @@ msgstr ""
 
 msgid "spyder_cottonart_barmaid"
 msgstr ""
-"你喜欢我的套装吗? \n"
+"你喜欢我的画吗? \n"
 " 它们记录了我早期作为一个专业驯兽师的日子,在我靠赢利退休之前. \n"
-"  我称它们为：\"精灵的眼睛相遇\",\"星空的夜晚 \"和 \"惶恐\".它们正在出\n"
+"  我称它们为：\"邂逅\",\"夜空 \"和 \"惶恐\".它们正在出\n"
 "售! \n"
 " 趁热打铁,买下它们!每张只有1,000元."
 
 msgid "spyder_cottonscoop_shopassistant"
 msgstr ""
-"捕获装置允许你捕获小精灵并将其作为伙伴. \n"
+"精灵球让你可以捕获小精灵并将其作为伙伴. \n"
 " 它们在用于受伤的和低级的小精灵时最为有效. \n"
 " 在战斗中从你的物品菜单中选择它们."
 
 msgid "spyder_cottonscoop_deviceexplan2"
 msgstr ""
-"捕获装置允许你捕获小精灵并将其作为伙伴. \n"
+"精灵球让你可以捕获小精灵并将其作为伙伴. \n"
 " 它们在用于受伤的和低级的小精灵时最为有效.在战斗中从你的物品菜单中选择它\n"
 "们. \n"
-" 谢谢你的聆听.这里有五个捕获装置作为免费样品. "
+" 谢谢你的聆听.这里有五个精灵球作为免费样品. "
 
 msgid "spyder_route2_marion2"
 msgstr "我不吃蚂蚁."
@@ -4240,7 +4240,7 @@ msgid "potions_in_shop"
 msgstr "展示柜里似乎有很多药水,在这里一定很受欢迎."
 
 msgid "capture_devices_in_shop"
-msgstr "这是捕捉设备.他们是如何制造这些的?"
+msgstr "这是精灵球.他们是如何制造这些的?"
 
 # NPC dialogs
 msgid "karrianna_dialog1"
@@ -5027,7 +5027,7 @@ msgstr ""
 msgid "spyder_papertown_homemaker1"
 msgstr ""
 "你好吗,${{name}}? \n"
-" 一如既往地安静和庄重,我看到了."
+" 我看到了你一如既往地安静和庄重."
 
 msgid "spyder_papertown_mom3"
 msgstr ""
@@ -5103,7 +5103,7 @@ msgid "spyder_cottontown_stopthere"
 msgstr "嘿,这可不行!在你跑掉之前,你必须来参加我在咖啡馆的讲座!"
 
 msgid "spyder_cottontown_enforcer"
-msgstr "不要管它,孩子,这是私人财产!"
+msgstr "少管闲事,小子,这里闲人免进!"
 
 msgid "37707_villager_male_missing"
 msgstr ""
@@ -5142,10 +5142,10 @@ msgid "spyder_cottonart_shopkeeper"
 msgstr ""
 "欢迎来到棉花镇艺术馆.啊--我是说艺术商店! \n"
 " 自从他们削减我们的资金后,我们不得不出售艺术品,而不仅仅是展示它们. \n"
-" 入场费为${{currency}50元.这将用于公司的年度股息."
+" 入场费为${currency}50元.这将用于公司的年度股息."
 
 msgid "spyder_cottonscoop_deviceoffer"
-msgstr "欢迎.今天,我们正在推广采集设备.你知道这些是什么吗?"
+msgstr "欢迎.今天,我们正在推广精灵球.你知道这些是什么吗?"
 
 msgid "spyder_cottonscoop_devicenoexplan"
 msgstr ""
@@ -5185,13 +5185,13 @@ msgid "spyder_route2_roddick2"
 msgstr "嘿,你看起来一点也不惊慌失措!"
 
 msgid "spyder_citypark_maniac"
-msgstr "唷,我们大腹便便了!"
+msgstr "哈哈,我们已经大腹便便了!"
 
 msgid "spyder_citypark_granny"
-msgstr "稍作休息后,我们将走回皮革城."
+msgstr "我们打算在这里歇会,然后走回皮革镇."
 
 msgid "spyder_citypark_florist"
-msgstr "欣赏花展!它是皮革城的骄傲."
+msgstr "一定要欣赏一下皮革城的花展!它是皮革城的骄傲."
 
 msgid "spyder_citypark2_florist"
 msgstr ""
@@ -5202,10 +5202,10 @@ msgid "spyder_route2_graf2"
 msgstr "我被招待了."
 
 msgid "spyder_citypark_frances1"
-msgstr "我有全世界最好的花园.这就是为什么这些小叶灯不断出现."
+msgstr "我有全世界最好的花园.这就是为什么这些小叶灯很喜欢来这里."
 
 msgid "spyder_citypark_bobette2"
-msgstr " 一只猫会赢得…"
+msgstr " 一只猫会赢的…"
 
 msgid "spyder_route3_drag1"
 msgstr ""
@@ -5376,7 +5376,7 @@ msgstr ""
 
 msgid "spyder_cottonhouse1_homemaker"
 msgstr ""
-"看到周围有这么多执法者,我感到很安全.我认为你永远不会太小心. \n"
+"看到周围有这么多执法者,我感到很安全.我认为谨慎点总是好事. \n"
 " 报纸上总是报道在这个地区发生的可怕的犯罪行为!"
 
 msgid "spyder_cottonhouse1_firefighter"
@@ -5387,7 +5387,7 @@ msgstr ""
 msgid "spyder_cottonhouse2_magician"
 msgstr ""
 "有些属性是相互克制的. \n"
-" 学习属性之间的相互作用,是成为一名自由梦大师的关键."
+" 学习属性之间的相互作用,是成为一名精灵大师的关键."
 
 msgid "spyder_cottonhouse2_catgirl"
 msgstr "你见过城市公园里的那个老人吗?他对打破记录很着迷!"
@@ -6917,31 +6917,31 @@ msgid "spyder_intro_question"
 msgstr "你要跳过介绍吗?"
 
 msgid "spyder_intro00"
-msgstr "您好,我是全能公司的首席执行官,我们为该地区经营报纸,电视频道和广播电台.\n"
-"我有责任通知你."
+msgstr "你好,我是全能公司的首席执行官,我们为这个地区经营报纸,电视频道和广播电台.\n"
+"我有责任向你介绍关于精灵的信息."
 
 msgid "spyder_intro01"
 msgstr "精灵是栖息在这个世界上的一种生物.\n"
 "他们喜欢被俘虏,这样他们的主人就可以与他们争夺乐趣和利润.\n"
-"最强的胜利，就像在商业世界中一样.\n"
-"大多数精灵都是在野外发现的,当他们获得经验时,他们会变成更高级的形式.\n"
-"但是构成大教堂的五大支柱,即在该地区运营的五家盟国公司,\n"
-"改善了自然.本季,我们提供五款豪华精灵!"
+"最强者胜出，就像在商业世界中一样.\n"
+"很多精灵都是在野外发现的,当他们获得足够的经验时,他们会进化成更高级的形式.\n"
+"但是构成大教堂的五大支柱,也就是在该地区运营的五家盟友公司,\n"
+"改善了自然环境.本季,我们提供五款豪华精灵!"
 
 msgid "spyder_intro02"
-msgstr "这些精灵在接触到令牌时会立即进化 - 这是即时满足!\n"
-"更重要的是,它们让你选择它们变成哪种形式."
+msgstr "这些精灵在接触到令牌时会立即进化 - 这是一种即刻的满足!\n"
+"更重要的是,他们会让你选择他们将要变成的形态."
 
 msgid "spyder_intro03"
-msgstr "代币可从所有支柱收取适度费用!\n"
-"咳咳，我在说什么?\n"
+msgstr "令牌可从所有支柱获得,当然,要收取适度费用!\n"
+"咳咳,我刚刚说到哪里了?\n"
 "哦,是的,每个支柱都提供这些独家精灵之一."
 
 msgid "spyder_intro_shopkeeper1"
-msgstr "我们首席执行官的演讲真是太棒了!所有金卡会员都将获得免费的精灵."
+msgstr "我们首席执行官的演讲真是太棒了!所有金卡会员都能获得这些免费精灵之一."
 
 msgid "spyder_intro_shopkeeper2"
-msgstr "只需填写此表格."
+msgstr "填一下这个表格就行了."
 
 msgid "spyder_intro_question_name"
 msgstr "你叫什么名字?"
@@ -6950,7 +6950,7 @@ msgid "spyder_intro_shopkeeper3"
 msgstr "请现在将表格退还给店员,以便我们为您提供精灵."
 
 msgid "spyder_intro_shopkeeper4"
-msgstr "对不起,您不是金卡会员,此优惠仅适用于金卡会员."
+msgstr "对不起,您不是金卡会员,此优惠只有金卡会员能够享受."
 
 msgid "bank"
 msgstr "银行"
@@ -7097,7 +7097,7 @@ msgid "spyder_cotton_cafeflorist2"
 msgstr "我迫不及待地想对其他人的条目进行事实核查. \n 你最好确保你有好的来源!"
 
 msgid "spyder_papertown_myfirstmon_notmet"
-msgstr "我认得你,你就是那个没有金卡会员的孩子. \n 你知道,我也许能帮你. \n 当花哨的新精灵从大教堂出来时,我们只是把所有的旧精灵都扔进了垃圾箱!\n 这似乎是一种浪费,尤其是当像你这样的孩子没有任何东西时!"
+msgstr "我认得你,你就是那个没有金卡会员的孩子. \n 你知道,我也许能帮你. \n 当花哨的新精灵从大教堂出来时,我们只是把所有的旧精灵都扔进了垃圾箱!\n 这好像太浪费了,尤其是当像你这样的孩子没有任何东西的时候!"
 
 msgid "spyder_papertown_thereis"
 msgstr "这里有东西..."
@@ -7118,4 +7118,175 @@ msgid "spyder_papertown_tweesher"
 msgstr "你想要镊鹭吗?"
 
 msgid "spyder_papertown_agnite"
-msgstr "你想要AGNITE吗?"
+msgstr "你想要火鬣蜥吗?"
+
+#Player additional gender, since very few ID as 'neuter'
+
+msgid "gender_enby"
+msgstr "非二元"
+
+msgid "gender_whatever"
+msgstr "我不在乎"
+
+#Player Color & Gender
+
+msgid "white_female"
+msgstr "白人女性"
+
+msgid "black_female"
+msgstr "黑人女性"
+
+msgid "white_male"
+msgstr "白人男性"
+
+msgid "black_male"
+msgstr "黑人男性"
+
+msgid "dont_care"
+msgstr "随机"
+
+msgid "spyder_papertown_rival"
+msgstr "比莉的房子"
+
+msgid "spyder_rivalbedroom_radio_morning"
+msgstr "早晨:一首流行歌曲正在播放,歌名是\"全频之爱:心之通道的旅程\"."
+
+msgid "spyder_rivalbedroom_radio_afternoon"
+msgstr "下午:一首摇滚歌曲响起,歌名是\"崛起主宰:终极训练师的焚歌\"."
+
+msgid "spyder_rivalbedroom_radio_dusk"
+msgstr "黄昏时分:一首乡村音乐缓缓流淌,歌名是\"挣脱枷锁,寻找力量:从恐惧到坚强\"."
+
+msgid "spyder_rivalbedroom_radio_dawn"
+msgstr "黎明时分:一首金属乐震撼播放,歌名是\"龙吟怒吼:击打的狂怒\"."
+
+msgid "spyder_rivalbedroom_radio_night"
+msgstr "晚上: 一首电子舞曲正轰鸣回响,歌名是\"机器人革命:机器人群起之始\"."
+
+msgid "spyder_rivaldownstairs_tv"
+msgstr "一群男学生流落荒岛,以及他们克服逆境的故事"
+
+msgid "brideswood"
+msgstr "新生之林"
+
+msgid "spyder_route1_routesign"
+msgstr "路线1. 保重,旅行者!"
+
+msgid "spyder_cottontown_followme"
+msgstr "咖啡馆在这些房子的另一侧."
+
+msgid "spyder_door_locked"
+msgstr "门是锁着的!"
+
+msgid "tuxeball"
+msgstr "精灵球"
+
+msgid "tuxeball_description"
+msgstr "用来捕捉精灵."
+
+msgid "buy"
+msgstr "购买"
+
+msgid "sell"
+msgstr "出售"
+
+msgid "spyder_cottonart_billie"
+msgstr "我看到你在努力拓宽你的视野,这很可爱,尽量不要碰任何东西"
+
+msgid "spyder_cottonart_barmaid_painting_sold_billie"
+msgstr "这幅画已被比莉买下并捐赠回画廊!"
+
+msgid "spyder_cotton_lazybrute"
+msgstr "走开, 这条隧道正在建设中."
+
+msgid "combat_gain_exp"
+msgstr "{name}获得了{xp}经验"
+
+msgid "captured_failed_1"
+msgstr "捕捉立即失败."
+
+msgid "captured_failed_2"
+msgstr "捕捉失败."
+
+msgid "captured_failed_3"
+msgstr "这次不行!捕捉失败."
+
+msgid "captured_failed_4"
+msgstr "差一点就成功了."
+
+msgid "spyder_leathergym_chadfort1"
+msgstr "你看过墙上的纸吗?Chad和Brad之间永无止境的战斗."
+
+msgid "spyder_leathergym_chadine1"
+msgstr "感谢您加入 Chad & Brad Fondent Fitness （C&BFF）,我们很高兴您能加入!"
+
+msgid "spyder_leathergym_chad1"
+msgstr "是的,我能听到寂静."
+
+msgid "spyder_leathergym_bradfort1"
+msgstr "是的,我能感觉到你的心."
+
+msgid "spyder_leathergym_brad1"
+msgstr "是的,我能看到黑暗."
+
+msgid "spyder_leathergym_gigachad1"
+msgstr "你为什么在这里?遇到困难了吗?别担心,西格玛同胞."
+
+msgid "spyder_leathergym_virgin1"
+msgstr "我喜欢在有人上厕所时敲门,尖叫和逃跑!"
+
+msgid "spyder_leathergym_board"
+msgstr "Chad ${{var:chad_points}} 对战 Brad ${{var:brad_points}}"
+
+msgid "spyder_billing_cathedral1"
+msgstr "欢迎来到大教堂中心!\n 你想治愈你的精灵吗?"
+
+msgid "spyder_billing_cathedral2"
+msgstr "治疗完成。费用是 ${{currency}}${{var:party_lost_hp}}."
+
+msgid "spyder_billing_cathedral3"
+msgstr "需要支付 ${{currency}}${{var:cathedral_fee}} 如果我们不得不派救护车来接你，则收取呼叫费."
+
+msgid "spyder_billing_cathedral4"
+msgstr "哦,你付不起钱?没关系,我们会将其添加到您的账单中,另外有 ${{var:cathedral_interest_full}}% 的利息."
+
+msgid "spyder_billing_cathedral5"
+msgstr "当你从对战中获得了钱,我们会分一杯羹,百分比是[${{var:cathedral_share_full}}%] 直到你还给我们钱。简单易行!"
+
+msgid "spyder_billing_cathedral6"
+msgstr "感谢您选择大教堂!祝你有美好的一天!"
+
+msgid "spyder_leathershaft1_sign"
+msgstr "地心之旅!"
+msgid "spyder_leathershaft1_miner1"
+msgstr "我们要保护原住民、土地......但我们不能将挖矿定为犯罪\n"
+"他们正在寻找谋生手段生存,重要的是矿工受到保护!"
+msgid "spyder_leathershaft1_beryll1"
+msgstr "只是在丰登特,就有大约十几个地方正在进行非法或工匠采矿\n"
+"但沙夫特被视为邪恶."
+msgid "spyder_leathershaft1_roxby1"
+msgstr "群岛中的一些岛屿完全被采矿所接管,无法区分\n"
+"在土著社区和矿区之间,甚至没有水喝,沙夫特反对这些!"
+msgid "spyder_leathershaft1_rutherford1"
+msgstr "沙夫特的领导者是一个思想家和实干家,她不是一个健谈的人,她与矿工们见过两次面.\n"
+"她显示了她对丰登特的计划。在气候变化问题上,我们的领导人始终如一."
+msgid "spyder_leathershaft1_surat1"
+msgstr "为了简化采矿业,有人开始向有资格采矿的人颁发证书.\n"
+"背后的实体?全能公司!而沙夫特是替罪羊."
+
+msgid "spyder_leathershaft2_dude"
+msgstr "沙夫特是这个地区最大的矿业公司之一,\n"
+"尤其是那些为社区做出贡献的人."
+msgid "spyder_leathershaft2_achievement"
+msgstr "沙夫特很荣幸能与顶级企业一起参与这场迈向净零经济的竞赛\n"
+"因为我们相信,气候变化不仅是丰登特面临的最大风险之一,\n"
+"同时也是可持续创新的最大机遇之一."
+msgid "spyder_leathershaft2_pc"
+msgstr "TuxTube上的沙夫特宣传片."
+msgid "spyder_leathershaft2_papers"
+msgstr "这本来自沙夫特的传单旨在获得基金会人民的信任."
+msgid "spyder_leathershaft2_skeptic"
+msgstr "我不相信沙夫特,我的地质学家朋友加入了一个团队来探索河流流域\n"
+"确定森林砍伐和采矿对河流和水质的影响.\n"
+"这将标志着有史以来第一次对采矿区池塘的碳和汞生产进行评估,\n"
+"以及它们随后对水流路径的影响,曾经在丰登特进行过."

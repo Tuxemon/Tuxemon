@@ -101,7 +101,7 @@ events:
     conditions:
     - not char_exists spyder_shady
     - is money_is bill_cathedral,greater_than,0
-    - is party_size player,greater_than,0
+    - is party_size player,greater_than,1
     type: "event"
   Talk Shady Guy:
     actions:

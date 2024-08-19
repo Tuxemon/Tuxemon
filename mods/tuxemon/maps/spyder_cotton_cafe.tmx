@@ -247,7 +247,7 @@
   </object>
   <object id="43" name="ask battle cayden" type="event" x="16" y="144" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog request_fight"/>
+    <property name="act1" value="translated_dialog spyder_request_fight"/>
     <property name="act2" value="translated_dialog_choice yes:no,cafebattle"/>
     <property name="behav1" value="talk spyder_cottoncafe_cayden"/>
     <property name="cond1" value="not variable_set foughtincafe:yes"/>

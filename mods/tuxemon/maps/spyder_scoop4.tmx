@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="59">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="59">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -39,18 +39,6 @@
  <objectgroup color="#ff0000" id="7" name="Collisions">
   <object id="4" type="collision" x="0" y="0" width="192" height="48"/>
   <object id="5" type="collision" x="112" y="160" width="80" height="16"/>
-  <object id="7" type="collision-line" x="0" y="352">
-   <polyline points="0,0 192,0"/>
-  </object>
-  <object id="8" type="collision-line" x="0" y="48">
-   <polyline points="0,0 0,304"/>
-  </object>
-  <object id="9" type="collision-line" x="192" y="48">
-   <polyline points="0,0 0,304"/>
-  </object>
-  <object id="10" type="collision-line" x="176" y="64">
-   <polyline points="0,0 16,0"/>
-  </object>
   <object id="11" type="collision" x="0" y="288" width="64" height="16"/>
   <object id="12" type="collision" x="16" y="224" width="96" height="16"/>
   <object id="13" type="collision" x="144" y="208" width="16" height="48"/>

@@ -37,7 +37,7 @@
    <property name="Collision" value=""/>
   </properties>
   <object id="280" type="collision" x="0" y="464" width="112" height="16"/>
-  <object id="281" type="collision" x="112" y="482" width="64" height="16"/>
+  <object id="281" type="collision" x="112" y="480" width="64" height="16"/>
   <object id="282" type="collision" x="176" y="496" width="32" height="16"/>
   <object id="283" type="collision" x="208" y="512" width="32" height="16"/>
   <object id="284" type="collision" x="240" y="528" width="32" height="16"/>

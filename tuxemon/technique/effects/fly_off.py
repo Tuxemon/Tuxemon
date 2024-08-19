@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.locale import T
-from tuxemon.states.combat.combat import EnqueuedAction
+from tuxemon.states.combat.combat_classes import EnqueuedAction
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 

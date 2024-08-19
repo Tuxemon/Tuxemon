@@ -291,6 +291,10 @@ LEFT_COMBAT["party"] = (18, 12, 85, 30)
 # it calculates the user strength
 # eg: user_strength = user.melee * (COEFF_DAMAGE + user.level)
 COEFF_DAMAGE: int = 7
+# This is used as random offset in the def speed_test
+SPEED_OFFSET: float = 50.0
+# This is used as multiplier in the def speed_test
+MULTIPLIER_SPEED: float = 1.5
 
 # Min and max multiplier are the multiplier upper/lower bounds
 MULTIPLIER_RANGE: tuple[float, float] = (0.25, 4.0)

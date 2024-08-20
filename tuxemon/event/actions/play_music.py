@@ -46,33 +46,38 @@ class PlayMusicAction(EventAction):
 
     def start(self) -> None:
         player = self.session.player
-        client = self.session.client
         loop = -1 if self.loop is None else self.loop
-        _music = prepare.MUSIC_VOLUME
-        music_volume = float(player.game_variables.get("music_volume", _music))
-        if not self.volume:
-            volume = music_volume
+        base_volume = prepare.MUSIC_VOLUME
+        if player:
+            base_volume = float(
+                player.game_variables.get("music_volume", base_volume)
+            )
+
+        # Validate and calculate the volume
+        if self.volume is None:
+            volume = base_volume
         else:
             lower, upper = prepare.MUSIC_RANGE
-            if lower <= self.volume <= upper:
-                volume = self.volume * music_volume
-            else:
-                raise ValueError(
-                    f"{self.volume} must be between {lower} and {upper}",
-                )
+            if not (lower <= self.volume <= upper):
+                raise ValueError(f"Volume must be between {lower} and {upper}")
+            volume = self.volume * base_volume
+
         try:
+            # Load and play the music
             path = prepare.fetch(
                 "music", db.lookup_file("music", self.filename)
             )
             mixer.music.load(path)
             mixer.music.set_volume(volume)
             mixer.music.play(loop)
-        except Exception as e:
-            logger.error(e)
-            logger.error("unable to play music")
 
-        # Keep track of what song we're currently playing
-        if client.current_music["song"]:
-            client.current_music["previoussong"] = client.current_music["song"]
-        client.current_music["status"] = "playing"
-        client.current_music["song"] = self.filename
+            # Update the current music status
+            client = self.session.client
+            if client.current_music["song"]:
+                client.current_music["previoussong"] = client.current_music[
+                    "song"
+                ]
+            client.current_music["status"] = "playing"
+            client.current_music["song"] = self.filename
+        except Exception as e:
+            logger.error(f"Error playing music: {e}")

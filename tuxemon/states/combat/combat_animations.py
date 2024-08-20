@@ -17,7 +17,7 @@ from typing import TYPE_CHECKING, Literal, Optional
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import audio, graphics, prepare, tools
+from tuxemon import graphics, prepare, tools
 from tuxemon.combat import alive_party, build_hud_text, fainted
 from tuxemon.locale import T
 from tuxemon.menu.interface import ExpBar, HpBar
@@ -205,9 +205,8 @@ class CombatAnimations(ABC, Menu[None]):
         self.task(partial(self.sprites.add, sprite), 1.3)
 
         # attempt to load and queue up combat_call
-        call_sound = audio.load_sound(monster.combat_call, None)
-        if call_sound:
-            self.task(call_sound.play, 1.3)
+        _params = [monster.combat_call, None]
+        self.client.event_engine.execute_action("play_sound", _params)
 
     def animate_sprite_spin(self, sprite: Sprite) -> None:
         self.animate(
@@ -340,8 +339,8 @@ class CombatAnimations(ABC, Menu[None]):
             if monster.current_hp > 0
             else monster.faint_call
         )
-        sound = audio.load_sound(cry, None)
-        sound.play()
+        _params = [cry, None]
+        self.client.event_engine.execute_action("play_sound", _params)
         self.animate(sprite.rect, x=x_diff, relative=True, duration=2)
         for sprite in self._status_icons[monster]:
             self.animate(sprite.image, initial=255, set_alpha=0, duration=2)
@@ -641,7 +640,8 @@ class CombatAnimations(ABC, Menu[None]):
         self.task(flip, 1.5)
 
         if not self.is_trainer_battle:
-            self.task(audio.load_sound(opp_mon.combat_call, None).play, 1.5)
+            _params = [opp_mon.combat_call, None]
+            self.client.event_engine.execute_action("play_sound", _params)
 
         animate = partial(
             self.animate, transition="out_quad", duration=duration
@@ -758,10 +758,8 @@ class CombatAnimations(ABC, Menu[None]):
 
             def show_monster(delay: float) -> None:
                 self.task(partial(toggle_visible, monster_sprite), delay)
-                self.task(
-                    audio.load_sound(monster.combat_call, None).play,
-                    delay,
-                )
+                _params = [monster.combat_call, None]
+                self.client.event_engine.execute_action("play_sound", _params)
 
             def capture_capsule(delay: float) -> None:
                 assert sprite.animation

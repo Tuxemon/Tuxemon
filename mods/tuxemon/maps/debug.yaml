@@ -1,7 +1,6 @@
 events:
   Scenario:
     actions:
-    - set_variable cathedral_ads:0
     - translated_dialog_choice spyder_campaign:xero_campaign,scenario_choice
     conditions:
     - not variable_set scenario_choice

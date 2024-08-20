@@ -24,8 +24,8 @@
   <object id="1" type="collision" x="0" y="0" width="16" height="336"/>
   <object id="2" type="collision" x="16" y="0" width="208" height="16"/>
   <object id="4" type="collision" x="208" y="16" width="16" height="320"/>
-  <object id="5" type="collision" x="80.3333" y="47.6667" width="16" height="112"/>
-  <object id="6" type="collision" x="95.6667" y="127.667" width="112" height="32"/>
+  <object id="5" type="collision" x="80" y="48" width="16" height="112"/>
+  <object id="6" type="collision" x="96" y="128" width="112" height="32"/>
   <object id="7" type="collision" x="96" y="48" width="80" height="32"/>
   <object id="8" type="collision" x="16" y="96" width="48" height="48"/>
   <object id="9" type="collision" x="48" y="144" width="16" height="16"/>

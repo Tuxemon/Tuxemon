@@ -72,7 +72,7 @@
     <property name="cond2" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="467" name="Teleport to Sea Route" type="event" x="0" y="284.094">
+  <object id="467" name="Teleport to Sea Route" type="event" x="0" y="288">
    <properties>
     <property name="act1" value="transition_teleport tt_searoute1.tmx,39,35,0.3"/>
     <property name="act2" value="char_face player,left"/>

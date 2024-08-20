@@ -41,7 +41,7 @@
   <object id="15" type="collision" x="32" y="64" width="32" height="32"/>
   <object id="16" type="collision" x="144" y="64" width="32" height="16"/>
   <object id="17" type="collision" x="144" y="80" width="16" height="16"/>
-  <object id="19" type="collision" x="95.5581" y="16.3863" width="16" height="16"/>
+  <object id="19" type="collision" x="96" y="16" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="12" name="Play Music" type="event" x="0" y="0" width="16" height="16">

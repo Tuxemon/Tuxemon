@@ -510,7 +510,7 @@
     <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="198" name="Teleport to Brideswood A" type="event" x="576" y="303.875" width="16" height="16">
+  <object id="198" name="Teleport to Brideswood A" type="event" x="576" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_brideswood.tmx,36,0,0.3"/>
     <property name="act2" value="char_face player,down"/>

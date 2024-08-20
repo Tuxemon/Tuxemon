@@ -867,7 +867,7 @@
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="179" name="Environment Day" type="event" x="8.88178e-16" y="16" width="16" height="16">
+  <object id="179" name="Environment Day" type="event" x="0" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>
     <property name="cond1" value="not variable_set stage_of_day:night"/>

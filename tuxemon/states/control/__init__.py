@@ -28,11 +28,6 @@ from tuxemon.state import State
 tuxe_config = config.TuxemonConfig(paths.USER_CONFIG_PATH)
 pre_config = prepare.CONFIG
 
-METRIC = "Metric"
-IMPERIAL = "Imperial"
-NORTHERN = "Northern"
-SOUTHERN = "Southern"
-
 
 class SetKeyState(PygameMenuState):
     """
@@ -215,25 +210,24 @@ class ControlState(PygameMenuState):
             font_size=self.font_size_small,
         )
 
-        default_music: int = 50
-        default_sound: int = 20
-        default_unit: int = 0
-        default_hemi: int = 0
+        default_music = prepare.MUSIC_VOLUME
+        default_sound = prepare.SOUND_VOLUME
+        _unit: int = 0
+        _hemi: int = 0
         if player:
-            default_music = int(
-                float(player.game_variables["music_volume"]) * 100
-            )
-            default_sound = int(
-                float(player.game_variables["sound_volume"]) * 100
-            )
-            if player.game_variables["unit_measure"] == METRIC:
-                default_unit = 0
-            elif player.game_variables["unit_measure"] == IMPERIAL:
-                default_unit = 1
-            if player.game_variables["hemisphere"] == NORTHERN:
-                default_hemi = 0
-            elif player.game_variables["hemisphere"] == SOUTHERN:
-                default_hemi = 1
+            _music = player.game_variables.get("music_volume", default_music)
+            default_music = int(float(_music) * 100)
+            _sound = player.game_variables.get("sound_volume", default_sound)
+            default_sound = int(float(_sound) * 100)
+
+            unit = player.game_variables.get("unit_measure", prepare.METRIC)
+            _unit = 0 if str(unit) == prepare.METRIC else 1
+
+            hemi = player.game_variables.get("hemisphere", prepare.NORTHERN)
+            _hemi = 0 if str(hemi) == prepare.NORTHERN else 1
+        else:
+            default_music *= 100
+            default_sound *= 100
 
         music = menu.add.range_slider(
             title=T.translate("menu_music_volume").upper(),
@@ -286,7 +280,7 @@ class ControlState(PygameMenuState):
             title=T.translate("menu_units").upper(),
             items=units,
             selector_id="unit",
-            default=default_unit,
+            default=_unit,
             style="fancy",
             onchange=on_change_units,
             font_size=self.font_size_small,
@@ -307,7 +301,7 @@ class ControlState(PygameMenuState):
             title=T.translate("menu_hemisphere").upper(),
             items=hemispheres,
             selector_id="hemisphere",
-            default=default_hemi,
+            default=_hemi,
             style="fancy",
             onchange=on_change_hemisphere,
             font_size=self.font_size_small,

@@ -44,7 +44,7 @@
         },
         {
             "level_learned": 36,
-            "technique": "maori"
+            "technique": "greenstone"
         },
         {
             "level_learned": 40,
@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["varmint"],
     "shape": "varmint",
     "stage": "standalone",
     "types": [

@@ -73,7 +73,7 @@ events:
     type: "event"
   Gender Enby:
     actions:
-    - set_template player,knight,disciple
+    - set_template player,enbyasian,enbyasian
     - set_player_name npc_red:hunter:dragon
     - set_variable gender_choice:gender_enby
     conditions:

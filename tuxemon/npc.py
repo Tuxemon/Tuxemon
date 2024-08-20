@@ -31,7 +31,6 @@ from tuxemon.monster import Monster, decode_monsters, encode_monsters
 from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
 from tuxemon.technique.technique import Technique
-from tuxemon.template import Template, decode_template, encode_template
 from tuxemon.tools import vector2_to_tile_pos
 
 if TYPE_CHECKING:
@@ -53,7 +52,7 @@ class NPCState(TypedDict):
     tuxepedia: dict[str, SeenStatus]
     contacts: dict[str, str]
     money: dict[str, int]
-    template: Sequence[Mapping[str, Any]]
+    template: dict[str, Any]
     missions: Sequence[Mapping[str, Any]]
     items: Sequence[Mapping[str, Any]]
     monsters: Sequence[Mapping[str, Any]]
@@ -96,6 +95,7 @@ class NPC(Entity[NPCState]):
 
         # load initial data from the npc database
         npc_data = db.lookup(npc_slug, table="npc")
+        self.template = npc_data.template
 
         # This is the NPC's name to be used in dialog
         self.name = T.translate(self.slug)
@@ -123,7 +123,6 @@ class NPC(Entity[NPCState]):
         self.monsters: list[Monster] = []
         # The player's items.
         self.items: list[Item] = []
-        self.template: list[Template] = []
         self.missions: list[Mission] = []
         self.economy: Optional[Economy] = None
         # related to spyderbite (PlagueType)
@@ -206,7 +205,7 @@ class NPC(Entity[NPCState]):
             "contacts": self.contacts,
             "money": self.money,
             "items": encode_items(self.items),
-            "template": encode_template(self.template),
+            "template": self.template.model_dump(),
             "missions": encode_mission(self.missions),
             "monsters": encode_monsters(self.monsters),
             "player_name": self.name,
@@ -248,9 +247,6 @@ class NPC(Entity[NPCState]):
         self.monsters = []
         for monster in decode_monsters(save_data.get("monsters")):
             self.add_monster(monster, len(self.monsters))
-        self.template = []
-        for tmp in decode_template(save_data.get("template")):
-            self.template.append(tmp)
         self.missions = []
         for mission in decode_mission(save_data.get("missions")):
             self.missions.append(mission)
@@ -262,6 +258,10 @@ class NPC(Entity[NPCState]):
         for itemkey, itemvalue in save_data["item_boxes"].items():
             self.item_boxes[itemkey] = decode_items(itemvalue)
 
+        _template = save_data["template"]
+        self.template.slug = _template["slug"]
+        self.template.sprite_name = _template["sprite_name"]
+        self.template.combat_front = _template["combat_front"]
         self.load_sprites()
 
     def load_sprites(self) -> None:
@@ -269,28 +269,19 @@ class NPC(Entity[NPCState]):
         # TODO: refactor animations into renderer
         # Get all of the player's standing animation images.
         self.interactive_obj: bool = False
-        self.sprite_name: str = ""
-        if not self.template:
-            self.sprite_name = "adventurer"
-            template = Template()
-            template.slug = self.sprite_name
-            template.sprite_name = self.sprite_name
-            template.combat_front = self.sprite_name
-            self.template.append(template)
-        else:
-            for tmp in self.template:
-                self.sprite_name = tmp.sprite_name
-                if tmp.slug == "interactive_obj":
-                    self.interactive_obj = True
+        if self.template.slug == "interactive_obj":
+            self.interactive_obj = True
 
         self.standing = {}
         for standing_type in list(EntityFacing):
             # if the template slug is interactive_obj, then it needs _front
             if self.interactive_obj:
-                filename = f"{self.sprite_name}.png"
+                filename = f"{self.template.sprite_name}.png"
                 path = os.path.join("sprites_obj", filename)
             else:
-                filename = f"{self.sprite_name}_{standing_type.value}.png"
+                filename = (
+                    f"{self.template.sprite_name}_{standing_type.value}.png"
+                )
                 path = os.path.join("sprites", filename)
             self.standing[standing_type] = load_and_scale(path)
         # The player's sprite size in pixels
@@ -307,8 +298,8 @@ class NPC(Entity[NPCState]):
         for anim_type in anim_types:
             if not self.interactive_obj:
                 images: list[str] = []
-                anim_0 = f"sprites/{self.sprite_name}_{anim_type.value}_walk"
-                anim_1 = f"sprites/{self.sprite_name}_{anim_type.value}.png"
+                anim_0 = f"sprites/{self.template.sprite_name}_{anim_type.value}_walk"
+                anim_1 = f"sprites/{self.template.sprite_name}_{anim_type.value}.png"
                 images.append(f"{anim_0}.{str(0).zfill(3)}.png")
                 images.append(anim_1)
                 images.append(f"{anim_0}.{str(1).zfill(3)}.png")
@@ -859,16 +850,7 @@ class NPC(Entity[NPCState]):
             itm.quantity = npc_itm_details.quantity
 
         # load NPC template
-        for tmp in self.template:
-            self.template.remove(tmp)
-        self.template = []
-        npc_template = npc_details.template
-        for npc_template_details in npc_template:
-            tmp = Template(save_data=npc_template_details.model_dump())
-            tmp.sprite_name = npc_template_details.sprite_name
-            tmp.combat_front = npc_template_details.combat_front
-            self.template.append(tmp)
-
+        self.template = npc_details.template
         self.load_sprites()
 
     def has_tech(self, tech: Optional[str]) -> bool:

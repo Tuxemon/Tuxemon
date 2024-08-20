@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 6,
-            "technique": "headbutt"
+            "technique": "hammerhead"
         },
         {
             "level_learned": 8,
@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["varmint"],
     "shape": "varmint",
     "stage": "standalone",
     "types": [

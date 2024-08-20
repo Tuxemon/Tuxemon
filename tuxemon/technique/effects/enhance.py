@@ -36,18 +36,14 @@ class EnhanceEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> EnhanceEffectResult:
-        enhance: bool = False
         combat = tech.combat_state
-        value = combat._random_tech_hit if combat else 0.0
+        value = combat._random_tech_hit.get(user, 0.0) if combat else 0.0
         hit = tech.accuracy >= value
+        tech.hit = hit
         if hit:
-            tech.hit = True
             tech.advance_counter_success()
-            enhance = True
-        else:
-            tech.hit = False
         return {
-            "success": enhance,
+            "success": hit,
             "damage": 0,
             "element_multiplier": 0.0,
             "should_tackle": False,

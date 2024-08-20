@@ -1,10 +1,10 @@
 {
   "slug": "happy_guy",
-  "template": [
+  "template": 
     {
       "sprite_name": "ceo",
       "combat_front": "adventurer",
       "slug": "ceo"
     }
-  ]
+
 }

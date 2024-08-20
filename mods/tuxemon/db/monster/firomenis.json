@@ -54,6 +54,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["dragon"],
     "shape": "dragon",
     "stage": "stage1",
     "types": [

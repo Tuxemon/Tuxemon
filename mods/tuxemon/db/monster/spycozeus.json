@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 12,
-            "technique": "sword"
+            "technique": "slice"
         },
         {
             "level_learned": 16,
@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["varmint"],
     "shape": "varmint",
     "stage": "standalone",
     "types": [

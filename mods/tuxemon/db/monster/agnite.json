@@ -63,6 +63,7 @@
             "evo_stage": "stage2"
         }
     ],
+    "tags": ["dragon", "coastal", "desert", "mountains"],
     "shape": "dragon",
     "stage": "basic",
     "types": [

@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class SetMonsterHealthAction(EventAction):
     """
-    Change the hp of a monster in the current player's party.
+    Set the hp of a monster in the current player's party.
 
     Script usage:
         .. code-block::
@@ -37,14 +37,14 @@ class SetMonsterHealthAction(EventAction):
 
     name = "set_monster_health"
     variable: Optional[str] = None
-    health: Optional[Union[float, int]] = None
+    health: Optional[Union[int, float]] = None
 
     @staticmethod
     def set_health(monster: Monster, value: Union[float, int]) -> None:
         if isinstance(value, float):
-            monster.current_hp += int(monster.hp * value)
+            monster.current_hp = int(monster.hp * value)
         else:
-            monster.current_hp += int(value)
+            monster.current_hp = int(value)
         # checks max and min
         if monster.current_hp <= 0:
             monster.faint()

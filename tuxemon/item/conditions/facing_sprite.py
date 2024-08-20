@@ -31,7 +31,7 @@ class FacingSpriteCondition(ItemCondition):
 
         for coords in tiles:
             npc = get_npc_pos(self.session, coords)
-            if npc and npc.sprite_name == self.sprite:
+            if npc and npc.template.sprite_name == self.sprite:
                 facing = get_direction(player.tile_pos, npc.tile_pos)
                 return player.facing == facing
 

@@ -358,3 +358,57 @@ def capture(shake_check: float) -> tuple[bool, int]:
         if random_num > int(shake_check):
             return (False, i + 1)
     return (True, total_shakes)
+
+
+def attempt_escape(
+    method: str, user: Monster, target: Monster, attempts: int
+) -> bool:
+    """
+    Attempt to escape from a target monster.
+
+    Parameters:
+    - method: The escape method to use.
+    - user: The monster attempting to escape.
+    - target: The monster from which the user is attempting to escape.
+    - attempts: The number of attempts the user has made to escape so far.
+
+    Returns:
+    - bool: True if the escape is successful, False otherwise.
+
+    Raises:
+    - ValueError: If the specified method is not supported.
+    """
+
+    def relative_method() -> bool:
+        monster_strength = (target.melee + target.ranged + target.dodge) / 3
+        level_advantage = user.level - target.level
+        escape_chance = (
+            0.2
+            + (0.1 * level_advantage)
+            - (0.05 * monster_strength / 10)
+            + (0.05 * user.speed / 10)
+        )
+        escape_chance = max(0, min(escape_chance, 1))
+        return random.random() <= escape_chance
+
+    def always_method() -> bool:
+        return True
+
+    def never_method() -> bool:
+        return False
+
+    def default_method() -> bool:
+        escape_chance = 0.4 + (0.15 * (attempts + user.level - target.level))
+        return random.random() <= escape_chance
+
+    methods = {
+        "default": default_method,
+        "relative": relative_method,
+        "always": always_method,
+        "never": never_method,
+    }
+
+    if method not in methods:
+        raise ValueError(f"A formula for {method} doesn't exist.")
+
+    return methods[method]()

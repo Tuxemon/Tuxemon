@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["flier", "boreal/snow", "coastal"],
     "shape": "flier",
     "stage": "standalone",
     "types": [

@@ -480,9 +480,6 @@ msgstr "Lodowy Pazur"
 msgid "hibernate"
 msgstr "Hibernacja"
 
-msgid "headbutt"
-msgstr "Headbutt"
-
 msgid "spyder_cotton_tuxepediaintro"
 msgstr ""
 "Obecnie, jedyne wiarygodne informacje o tuxemonach pochodzą z drogiej i "

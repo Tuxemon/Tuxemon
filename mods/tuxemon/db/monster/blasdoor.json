@@ -50,6 +50,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["sprite", "ruins", "urban"],
     "shape": "sprite",
     "stage": "stage1",
     "types": [

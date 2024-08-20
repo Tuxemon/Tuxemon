@@ -1,10 +1,10 @@
 {
   "slug": "npc_red",
-  "template": [
+  "template": 
     {
       "sprite_name": "adventurer",
       "combat_front": "adventurer",
       "slug": "adventurer"
     }
-  ]
+
 }

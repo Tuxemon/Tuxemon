@@ -35,7 +35,7 @@ class RemoveEffect(TechEffect):
     ) -> RemoveEffectResult:
         done: bool = False
         combat = tech.combat_state
-        value = combat._random_tech_hit if combat else 0.0
+        value = combat._random_tech_hit.get(user, 0.0) if combat else 0.0
         potency = random.random()
         success = tech.potency >= potency and tech.accuracy >= value
         if success:

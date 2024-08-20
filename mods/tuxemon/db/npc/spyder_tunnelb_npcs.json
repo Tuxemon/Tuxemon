@@ -1,82 +1,82 @@
 [
   {
     "slug": "spyder_tunnelb_beryll",
-    "template": [
+    "template": 
       {
         "sprite_name": "scientist",
         "combat_front": "scientist",
         "slug": "scientist"
       }
-    ]
+  
   },
   {
     "slug": "spyder_tunnelb_greta",
-    "template": [
+    "template": 
       {
         "sprite_name": "picnicker",
         "combat_front": "picnicker",
         "slug": "picnicker"
       }
-    ]
+  
   },
   {
     "slug": "spyder_tunnelb_iris",
-    "template": [
+    "template": 
       {
         "sprite_name": "florist_brown",
         "combat_front": "florist",
         "slug": "florist"
       }
-    ]
+  
   },
   {
     "slug": "spyder_tunnelb_meitner",
-    "template": [
+    "template": 
       {
         "sprite_name": "scientist_fiery",
         "combat_front": "scientist",
         "slug": "scientist"
       }
-    ]
+  
   },
   {
     "slug": "spyder_tunnelb_lute",
-    "template": [
+    "template": 
       {
         "sprite_name": "scientist_black",
         "combat_front": "scientist",
         "slug": "scientist"
       }
-    ]
+  
   },
   {
     "slug": "spyder_tunnelb_tommy",
-    "template": [
+    "template": 
       {
         "sprite_name": "beachcomber_gray",
         "combat_front": "yellowbelt",
         "slug": "yellowbelt"
       }
-    ]
+  
   },
   {
     "slug": "spyder_tunnelb_rhincus",
-    "template": [
+    "template": 
       {
         "sprite_name": "box",
         "combat_front": "noclass",
         "slug": "interactive_obj"
       }
-    ]
+  
   },
   {
     "slug": "spyder_tunnelb_shammer",
-    "template": [
+    "template": 
       {
         "sprite_name": "box",
         "combat_front": "noclass",
         "slug": "interactive_obj"
       }
-    ]
+  
   }
 ]

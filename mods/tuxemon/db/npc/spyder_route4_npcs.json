@@ -1,82 +1,82 @@
 [
   {
     "slug": "spyder_route4_beck",
-    "template": [
+    "template": 
       {
         "sprite_name": "tennisplayer",
         "combat_front": "yellowbelt",
         "slug": "yellowbelt"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route4_marshall",
-    "template": [
+    "template": 
       {
         "sprite_name": "soldier",
         "combat_front": "soldier",
         "slug": "soldier"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route4_rincewind",
-    "template": [
+    "template": 
       {
         "sprite_name": "beachcomber_blue",
         "combat_front": "yellowbelt",
         "slug": "yellowbelt"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route4_roger",
-    "template": [
+    "template": 
       {
         "sprite_name": "soldier",
         "combat_front": "soldier",
         "slug": "soldier"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route4_wulf",
-    "template": [
+    "template": 
       {
         "sprite_name": "maniac",
         "combat_front": "alchemist",
         "slug": "alchemist"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route4_rosamund",
-    "template": [
+    "template": 
       {
         "sprite_name": "picnicker",
         "combat_front": "picnicker",
         "slug": "picnicker"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route4_super",
-    "template": [
+    "template": 
       {
         "sprite_name": "box",
         "combat_front": "noclass",
         "slug": "interactive_obj"
       }
-    ]
+  
   },
   {
     "slug": "spyder_route4_boost",
-    "template": [
+    "template": 
       {
         "sprite_name": "box",
         "combat_front": "noclass",
         "slug": "interactive_obj"
       }
-    ]
+  
   }
 ]

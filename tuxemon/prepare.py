@@ -63,6 +63,9 @@ SCREEN_SIZE = CONFIG.resolution
 # Surface Keys (tilesets)
 SURFACE_KEYS: list[str] = ["surfable", "walkable", "climbable"]
 
+# frame
+FRAME_TIME: float = 0.09
+
 # Set the native tile size so we know how much to scale our maps
 # 1 tile = 16 pixels
 TILE_SIZE: tuple[int, int] = (16, 16)
@@ -229,7 +232,7 @@ MAX_TYPES_BAG: int = 99  # eg 5 capture devices, 1 type and 5 items
 MAX_LEVEL: int = 999
 MAX_MOVES: int = 4
 MISSING_IMAGE: str = "gfx/sprites/battle/missing.png"
-CATCH_RATE_RANGE: tuple[int, int] = (0, 255)
+CATCH_RATE_RANGE: tuple[int, int] = (0, 100)
 CATCH_RESISTANCE_RANGE: tuple[float, float] = (0.0, 2.0)
 # set bond and define range
 BOND: int = 25

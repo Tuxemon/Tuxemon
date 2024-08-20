@@ -69,6 +69,14 @@ class GenderType(str, Enum):
     female = "female"
 
 
+class SkinSprite(str, Enum):
+    light = "light"
+    tanned = "tanned"
+    dark = "dark"
+    albino = "albino"
+    orc = "orc"
+
+
 class TasteWarm(str, Enum):
     tasteless = "tasteless"
     peppy = "peppy"
@@ -279,7 +287,7 @@ class ItemModel(BaseModel):
         file: str = f"animations/item/{v}_00.png"
         if (
             not v
-            or has.file(file)
+            or has.db_entry("animation", v)
             and has.size(file, prepare.NATIVE_RESOLUTION)
         ):
             return v
@@ -487,6 +495,18 @@ class MonsterSoundsModel(BaseModel):
         ..., description="The sound used when the monster faints"
     )
 
+    @field_validator("combat_call")
+    def combat_call_exists(cls: MonsterSoundsModel, v: str) -> str:
+        if has.db_entry("sounds", v):
+            return v
+        raise ValueError(f"the sound {v} doesn't exist in the db")
+
+    @field_validator("faint_call")
+    def faint_call_exists(cls: MonsterSoundsModel, v: str) -> str:
+        if has.db_entry("sounds", v):
+            return v
+        raise ValueError(f"the sound {v} doesn't exist in the db")
+
 
 # Validate assignment allows us to assign a default inside a validator
 class MonsterModel(BaseModel, validate_assignment=True):
@@ -508,6 +528,7 @@ class MonsterModel(BaseModel, validate_assignment=True):
         Optional[MonsterSpritesModel], Field(validate_default=True)
     ] = None
     shape: MonsterShape = Field(..., description="The shape of the monster")
+    tags: list[str] = Field(..., description="The tags of the monster")
     types: Sequence[ElementType] = Field(
         [], description="The type(s) of this monster"
     )
@@ -581,6 +602,14 @@ class MonsterModel(BaseModel, validate_assignment=True):
             return v
         raise ValueError(
             f"the catch resistance is between {lower} and {upper} ({v})"
+        )
+
+    @field_validator("tags")
+    def check_tags(cls: MonsterModel, v: list[str]) -> list[str]:
+        if v:
+            return v
+        raise ValueError(
+            f"there are no tags, insert at least the shape of the monster"
         )
 
 
@@ -724,7 +753,7 @@ class TechniqueModel(BaseModel):
         file: str = f"animations/technique/{v}_00.png"
         if (
             not v
-            or has.file(file)
+            or has.db_entry("animation", v)
             and has.size(file, prepare.NATIVE_RESOLUTION)
         ):
             return v
@@ -774,6 +803,12 @@ class TechniqueModel(BaseModel):
         raise ValueError(
             f"the healing power is between {lower} and {upper} ({v})"
         )
+
+    @field_validator("sfx")
+    def sfx_tech_exists(cls: TechniqueModel, v: str) -> str:
+        if has.db_entry("sounds", v):
+            return v
+        raise ValueError(f"the sound {v} doesn't exist in the db")
 
 
 class ConditionModel(BaseModel):
@@ -875,7 +910,7 @@ class ConditionModel(BaseModel):
         file: str = f"animations/technique/{v}_00.png"
         if (
             not v
-            or has.file(file)
+            or has.db_entry("animation", v)
             and has.size(file, prepare.NATIVE_RESOLUTION)
         ):
             return v
@@ -898,6 +933,12 @@ class ConditionModel(BaseModel):
         if not v or has.check_conditions(v):
             return v
         raise ValueError(f"the conditions {v} aren't correctly formatted")
+
+    @field_validator("sfx")
+    def sfx_cond_exists(cls: ConditionModel, v: str) -> str:
+        if has.db_entry("sounds", v):
+            return v
+        raise ValueError(f"the sound {v} doesn't exist in the db")
 
 
 class PartyMemberModel(BaseModel):
@@ -971,9 +1012,7 @@ class NpcTemplateModel(BaseModel):
 class NpcModel(BaseModel):
     slug: str = Field(..., description="Slug of the name of the NPC")
     forfeit: bool = Field(False, description="Whether you can forfeit or not")
-    template: Sequence[NpcTemplateModel] = Field(
-        [], description="List of templates"
-    )
+    template: NpcTemplateModel
     monsters: Sequence[PartyMemberModel] = Field(
         [], description="List of monsters in the NPCs party"
     )
@@ -1094,6 +1133,12 @@ class EnvironmentModel(BaseModel):
         ..., description="Filename of the music to use for this environment"
     )
     battle_graphics: BattleGraphicsModel
+
+    @field_validator("battle_music")
+    def battle_music_exists(cls: EnvironmentModel, v: str) -> str:
+        if has.db_entry("music", v):
+            return v
+        raise ValueError(f"the music {v} doesn't exist in the db")
 
 
 class EncounterItemModel(BaseModel):
@@ -1223,10 +1268,37 @@ class MusicModel(BaseModel):
     slug: str = Field(..., description="Unique slug for the music")
     file: str = Field(..., description="File for the music")
 
+    @field_validator("file")
+    def file_exists(cls: MusicModel, v: str) -> str:
+        file: str = f"music/{v}"
+        if has.file(file):
+            return v
+        raise ValueError(f"the music {v} doesn't exist in the db")
+
 
 class SoundModel(BaseModel):
     slug: str = Field(..., description="Unique slug for the sound")
     file: str = Field(..., description="File for the sound")
+
+    @field_validator("file")
+    def file_exists(cls: SoundModel, v: str) -> str:
+        file: str = f"sounds/{v}"
+        if has.file(file):
+            return v
+        raise ValueError(f"the sound {v} doesn't exist in the db")
+
+
+class AnimationModel(BaseModel):
+    slug: str = Field(..., description="Unique slug for the animation")
+    file: str = Field(..., description="File of the animation")
+
+    @field_validator("file")
+    def file_exists(cls: AnimationModel, v: str, info: ValidationInfo) -> str:
+        slug = info.data.get("slug")
+        file: str = f"animations/{v}/{slug}_00.png"
+        if has.file(file):
+            return v
+        raise ValueError(f"the animation {v} doesn't exist in the db")
 
 
 TableName = Literal[
@@ -1241,6 +1313,7 @@ TableName = Literal[
     "item",
     "monster",
     "music",
+    "animation",
     "npc",
     "sounds",
     "condition",
@@ -1259,6 +1332,7 @@ DataModel = Union[
     ItemModel,
     MonsterModel,
     MusicModel,
+    AnimationModel,
     NpcModel,
     SoundModel,
     ConditionModel,
@@ -1313,6 +1387,7 @@ class JSONDatabase:
             "environment",
             "sounds",
             "music",
+            "animation",
             "economy",
             "element",
             "shape",
@@ -1470,6 +1545,9 @@ class JSONDatabase:
             elif table == "music":
                 music = MusicModel(**item)
                 self.database[table][music.slug] = music
+            elif table == "animation":
+                animation = AnimationModel(**item)
+                self.database[table][animation.slug] = animation
             elif table == "npc":
                 npc = NpcModel(**item)
                 self.database[table][npc.slug] = npc
@@ -1547,6 +1625,14 @@ class JSONDatabase:
         slug: str,
         table: Literal["music"],
     ) -> MusicModel:
+        pass
+
+    @overload
+    def lookup(
+        self,
+        slug: str,
+        table: Literal["animation"],
+    ) -> AnimationModel:
         pass
 
     @overload
@@ -1632,6 +1718,7 @@ class JSONDatabase:
             "item",
             "monster",
             "music",
+            "animation",
             "npc",
             "sounds",
             "condition",

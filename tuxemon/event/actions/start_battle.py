@@ -6,7 +6,7 @@ import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon.combat import alive_party, check_battle_legal
+from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -24,7 +24,7 @@ class StartBattleAction(EventAction):
     Script usage:
         .. code-block::
 
-            start_battle <character1>,<character2>
+            start_battle <character1>,<character2>[,]
 
     Script parameters:
         character1: Either "player" or character slug name (e.g. "npc_maple").
@@ -35,49 +35,52 @@ class StartBattleAction(EventAction):
     name = "start_battle"
     character1: str
     character2: Optional[str] = None
+    music: Optional[str] = None
 
     def start(self) -> None:
-        self.character2 = (
-            "player" if self.character2 is None else self.character2
-        )
+        self.character2 = self.character2 or "player"
+
         character1 = get_npc(self.session, self.character1)
         character2 = get_npc(self.session, self.character2)
-        if not character1:
-            logger.error(f"{self.character1} not found in map")
-            return
-        if not character2:
-            logger.error(f"{self.character2} not found in map")
+
+        if not character1 or not character2:
+            _char = self.character1 if not character1 else self.character2
+            logger.error(f"Character not found in map: {_char}")
             return
 
-        # check the battle is legal
-        if not check_battle_legal(character1) or not check_battle_legal(
-            character2
+        if not (
+            check_battle_legal(character1) and check_battle_legal(character2)
         ):
-            logger.warning("battle is not legal, won't start")
+            logger.warning("Battle is not legal, won't start")
             return
 
-        # default environment
-        env_slug = "grass"
+        # double (2 vs 2)
+        template1 = db.lookup(character1.template.slug, table="template")
+        template2 = db.lookup(character2.template.slug, table="template")
 
-        fighters = [character1, character2]
-        for fighter in fighters:
-            # check and trigger 2 vs 2
-            if fighter.template[0].double and len(alive_party(fighter)) > 1:
-                fighter.max_position = 2
-            # check the human
+        if (template1 and template1.double) or (
+            template2 and template2.double
+        ):
+            character1.max_position = 2
+            character2.max_position = 2
+
+        # environment
+        env_slug = "grass"
+        for fighter in [character1, character2]:
             if fighter.isplayer:
                 env_slug = fighter.game_variables.get("environment", "grass")
             else:
-                player = self.session.player
-                env_slug = player.game_variables.get("environment", "grass")
+                env_slug = self.session.player.game_variables.get(
+                    "environment", "grass"
+                )
 
-        # set the environment
         env = db.lookup(env_slug, table="environment")
 
-        # sort the fighters, player first
-        fighters = sorted(fighters, key=lambda x: not x.isplayer)
-
-        # Add our players and setup combat
+        # sort fighters
+        fighters = sorted(
+            [character1, character2], key=lambda x: not x.isplayer
+        )
+        # start the battle
         logger.info(
             f"Starting battle between {fighters[0].name} and {fighters[1].name}!"
         )
@@ -88,9 +91,8 @@ class StartBattleAction(EventAction):
                 graphics=env.battle_graphics,
             )
         )
-
-        # Start some music!
-        filename = env.battle_music
+        # music
+        filename = env.battle_music if not self.music else self.music
         self.session.client.event_engine.execute_action(
             "play_music",
             [filename],

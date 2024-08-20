@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "headbutt"
+            "technique": "hammerhead"
         },
         {
             "level_learned": 2,
@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["hunter"],
     "shape": "hunter",
     "stage": "standalone",
     "types": [

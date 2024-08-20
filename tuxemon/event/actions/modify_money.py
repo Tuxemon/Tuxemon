@@ -61,7 +61,7 @@ class ModifyMoneyAction(EventAction):
             client.event_engine.execute_action("set_money", [wallet], True)
 
         if amount < 0 and abs(amount) > player.money[wallet]:
-            raise AttributeError(f"{wallet}'s doesn't have {abs(amount)}")
+            player.money[wallet] = 0
         else:
             player.money[wallet] += amount
             logger.info(f"{wallet}'s money changed by {amount}")

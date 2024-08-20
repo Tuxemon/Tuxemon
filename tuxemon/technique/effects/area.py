@@ -33,7 +33,7 @@ class AreaEffect(TechEffect):
         combat = tech.combat_state
         player = user.owner
         assert combat and player
-        value = combat._random_tech_hit
+        value = combat._random_tech_hit.get(user, 0.0)
         hit = tech.accuracy >= value
         if hit:
             tech.advance_counter_success()

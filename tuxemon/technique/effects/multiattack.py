@@ -35,38 +35,33 @@ class MultiAttackEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> MultiAttackEffectResult:
-        done: bool = True
-        _track: int = 0
         assert tech.combat_state
         combat = tech.combat_state
         value = random.random()
-        combat._random_tech_hit = value
+        combat._random_tech_hit[user] = value
         log = combat._log_action
         turn = combat._turn
+        # Track previous actions with the same technique, user, and target
         track = [
             action
             for action in log
-            if turn == action[0]
+            if action[0] == turn
             and action[1].method == tech
             and action[1].user == user
             and action[1].target == target
         ]
-        if track:
-            _track = len(track)
-
-        if _track == self.times:
-            done = False
-
-        # check if technique hits
+        # Check if the technique has been used the maximum number of times
+        done = len(track) < self.times
+        # Check if the technique hits
         hit = tech.accuracy >= value
-
+        # If the technique is done and hits, enqueue the action
         if done and hit:
             combat.enqueue_action(user, tech, target)
 
         return {
             "damage": 0,
             "element_multiplier": 0.0,
-            "should_tackle": bool(done),
-            "success": bool(done),
+            "should_tackle": done,
+            "success": done,
             "extra": None,
         }

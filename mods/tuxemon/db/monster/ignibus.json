@@ -55,6 +55,7 @@
             "evo_stage": "stage1"
         }
     ],
+    "tags": ["polliwog", "desert", "mountains"],
     "shape": "polliwog",
     "stage": "basic",
     "types": [

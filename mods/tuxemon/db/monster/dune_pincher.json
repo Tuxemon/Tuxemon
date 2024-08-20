@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["grub"],
     "shape": "grub",
     "stage": "standalone",
     "types": [

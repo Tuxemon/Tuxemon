@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["landrace", "grassland", "jungle"],
     "shape": "landrace",
     "stage": "standalone",
     "types": [

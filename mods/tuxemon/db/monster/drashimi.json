@@ -63,6 +63,7 @@
             "evo_stage": "stage2"
         }
     ],
+    "tags": ["polliwog", "sea", "urban"],
     "shape": "polliwog",
     "stage": "basic",
     "types": [

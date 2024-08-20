@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["blob"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

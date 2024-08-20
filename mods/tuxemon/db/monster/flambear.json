@@ -46,6 +46,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["brute", "mountains", "woodland"],
     "shape": "brute",
     "stage": "stage1",
     "types": [

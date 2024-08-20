@@ -46,6 +46,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["hunter"],
     "shape": "hunter",
     "stage": "stage1",
     "types": [

@@ -528,6 +528,7 @@ class MonsterModel(BaseModel, validate_assignment=True):
         Optional[MonsterSpritesModel], Field(validate_default=True)
     ] = None
     shape: MonsterShape = Field(..., description="The shape of the monster")
+    tags: list[str] = Field(..., description="The tags of the monster")
     types: Sequence[ElementType] = Field(
         [], description="The type(s) of this monster"
     )
@@ -601,6 +602,14 @@ class MonsterModel(BaseModel, validate_assignment=True):
             return v
         raise ValueError(
             f"the catch resistance is between {lower} and {upper} ({v})"
+        )
+
+    @field_validator("tags")
+    def check_tags(cls: MonsterModel, v: list[str]) -> list[str]:
+        if v:
+            return v
+        raise ValueError(
+            f"there are no tags, insert at least the shape of the monster"
         )
 
 

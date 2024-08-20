@@ -12,6 +12,7 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
+    from tuxemon.states.combat.combat import CombatState
     from tuxemon.technique.technique import Technique
 
 
@@ -39,12 +40,8 @@ class ForfeitEffect(TechEffect):
         combat._run = True
         params = {"npc": combat.players[1].name.upper()}
         extra = T.format("combat_forfeit", params)
-        # trigger forfeit
-        for remove in combat.players:
-            combat.clean_combat()
-            del combat.monsters_in_play[remove]
-            combat.players.remove(remove)
-        # kill monsters -> teleport center
+        self._clean_combat_state(combat)
+        # Faint all player monsters
         for mon in player.monsters:
             mon.faint()
 
@@ -55,3 +52,12 @@ class ForfeitEffect(TechEffect):
             "should_tackle": False,
             "extra": extra,
         }
+
+    def _clean_combat_state(self, combat: CombatState) -> None:
+        """
+        Clean up the combat state by removing all players and monsters.
+        """
+        for remove in combat.players:
+            combat.clean_combat()
+            del combat.monsters_in_play[remove]
+            combat.players.remove(remove)

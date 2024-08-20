@@ -46,6 +46,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["landrace"],
     "shape": "landrace",
     "stage": "stage1",
     "types": [

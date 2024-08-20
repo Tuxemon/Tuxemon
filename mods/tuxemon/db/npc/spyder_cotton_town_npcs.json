@@ -64,7 +64,7 @@
     "template": 
       {
         "sprite_name": "goth",
-        "combat_front": "adventurer",
+        "combat_front": "goth",
         "slug": "goth"
       }
   
@@ -288,5 +288,14 @@
         "slug": "dragonrider"
       }
   
+  },
+  {
+    "slug": "spyder_confusedperson",
+    "template": 
+      {
+        "sprite_name": "childactor_fiery",
+        "combat_front": "tennisplayer_fiery",
+        "slug": "childactor"
+      }
   }
 ]

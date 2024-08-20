@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 6,
-            "technique": "maori"
+            "technique": "greenstone"
         },
         {
             "level_learned": 8,
@@ -62,6 +62,7 @@
             "evo_stage": "stage1"
         }
     ],
+    "tags": ["dragon", "jungle"],
     "shape": "dragon",
     "stage": "stage2",
     "types": [

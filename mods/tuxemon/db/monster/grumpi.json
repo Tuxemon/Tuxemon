@@ -48,11 +48,12 @@
         },
         {
             "level_learned": 40,
-            "technique": "maori"
+            "technique": "greenstone"
         }
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["brute"],
     "shape": "brute",
     "stage": "standalone",
     "types": [

@@ -39,8 +39,9 @@ class HealingEffect(TechEffect):
         mon: Monster
         heal: int = 0
         combat = tech.combat_state
-        value = combat._random_tech_hit if combat else 0.0
+        value = combat._random_tech_hit.get(user, 0.0) if combat else 0.0
         hit = tech.accuracy >= value
+        tech.hit = hit
         # define user or target
         if self.objective == "user":
             mon = user
@@ -53,7 +54,6 @@ class HealingEffect(TechEffect):
             heal = (COEFF_DAMAGE + mon.level) * tech.healing_power
         diff = mon.hp - mon.current_hp
         if hit:
-            tech.hit = True
             tech.advance_counter_success()
             if diff > 0:
                 if heal >= diff:
@@ -63,8 +63,6 @@ class HealingEffect(TechEffect):
                 done = True
             else:
                 extra = "combat_full_health"
-        else:
-            tech.hit = False
         return {
             "success": done,
             "damage": 0,

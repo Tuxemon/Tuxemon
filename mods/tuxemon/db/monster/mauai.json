@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 8,
-            "technique": "sword"
+            "technique": "slice"
         },
         {
             "level_learned": 12,
@@ -42,6 +42,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["humanoid"],
     "shape": "humanoid",
     "stage": "stage1",
     "types": [

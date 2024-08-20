@@ -105,13 +105,13 @@ class CharacterState(PygameMenuState):
         msg_battles = T.format("player_battles", _msg_battles)
         # steps
         steps = self.char.steps
-        unit = self.char.game_variables.get("unit_measure", "Metric")
-        if unit == "Metric":
+        unit = self.char.game_variables.get("unit_measure", pre.METRIC)
+        if unit == pre.METRIC:
             walked = formula.convert_km(steps)
-            unit_walked = "km"
+            unit_walked = pre.U_KM
         else:
             walked = formula.convert_mi(steps)
-            unit_walked = "mi"
+            unit_walked = pre.U_MI
         _msg_walked = {"distance": str(walked), "unit": unit_walked}
         msg_walked = T.format("player_walked", _msg_walked)
         # name

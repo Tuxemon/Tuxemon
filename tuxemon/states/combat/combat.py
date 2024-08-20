@@ -227,8 +227,8 @@ class CombatState(CombatAnimations):
         self._run: bool = False
         self._post_animation_task: Optional[Task] = None
         self._xp_message: Optional[str] = None
-        self._random_tech_hit: float = 0.0
         self._status_icon_cache: dict[str, Sprite] = {}
+        self._random_tech_hit: dict[Monster, float] = {}
 
         super().__init__(players, graphics)
         self.is_trainer_battle = combat_type == "trainer"
@@ -454,38 +454,38 @@ class CombatState(CombatAnimations):
 
         elif phase == "decision phase":
             self.reset_status_icons()
-            # saves random value, so we are able to reproduce
-            # inside the condition files if a tech hit or missed
-            value = random.random()
-            self._random_tech_hit = value
             if not self._decision_queue:
-                # tracks human players who need to choose an action
-                for player in self.human_players:
-                    self._decision_queue.extend(self.monsters_in_play[player])
-                # tracks ai players who need to choose an action
-                for trainer in self.ai_players:
-                    for monster in self.monsters_in_play[trainer]:
-                        AI(self, monster, trainer)
-                        # recharge opponent moves
-                        for tech in monster.moves:
-                            tech.recharge()
+                for player in list(self.human_players) + list(self.ai_players):
+                    for monster in self.monsters_in_play[player]:
+                        value = random.random()
+                        self._random_tech_hit[monster] = value
+                        if player in self.human_players:
+                            self._decision_queue.append(monster)
+                        else:
+                            for tech in monster.moves:
+                                tech.recharge()
+                            AI(self, monster, player)
 
         elif phase == "action phase":
             self.sort_action_queue()
 
         elif phase == "post action phase":
+            # remove actions from fainted users from the pending queue
+            self._pending_queue = [
+                pend
+                for pend in self._pending_queue
+                if pend.user
+                and isinstance(pend.user, Monster)
+                and not (fainted(pend.user) or fainted(pend.target))
+            ]
+
             # apply condition effects to the monsters
             for monster in self.active_monsters:
-                # check if there are pending actions (eg. counterattacks)
-                if self._pending_queue:
-                    pend = None
-                    for pending in self._pending_queue:
-                        pend = pending
-                    if pend:
-                        self.enqueue_action(
-                            pend.user, pend.method, pend.target
-                        )
-                        self._pending_queue.remove(pend)
+                # Check if there are pending actions (e.g. counterattacks)
+                while self._pending_queue:
+                    pend = self._pending_queue.pop(0)
+                    self.enqueue_action(pend.user, pend.method, pend.target)
+
                 for condition in monster.status:
                     # validate condition
                     if condition.validate(monster):

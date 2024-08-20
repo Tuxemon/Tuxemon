@@ -58,6 +58,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["humanoid", "desert", "grassland", "urban"],
     "shape": "humanoid",
     "stage": "stage1",
     "types": [

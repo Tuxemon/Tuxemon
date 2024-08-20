@@ -33,11 +33,10 @@ class TestMoneyActions(unittest.TestCase):
     def test_modify_money(self):
         self.action.execute_action("modify_money", ["player", 100])
         self.assertEqual(self.player.money["player"], 100)
-        with self.assertRaises(AttributeError):
-            self.action.execute_action("modify_money", ["player", -200])
-        self.assertEqual(self.player.money["player"], 100)
         self.action.execute_action("modify_money", ["player", -50])
         self.assertEqual(self.player.money["player"], 50)
+        self.action.execute_action("modify_money", ["player", -200])
+        self.assertEqual(self.player.money["player"], 0)
 
     def test_modify_money_variable_str(self):
         self.action.execute_action("set_variable", [f"name:{50}"])

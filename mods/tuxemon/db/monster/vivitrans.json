@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 2,
-            "technique": "headbutt"
+            "technique": "hammerhead"
         },
         {
             "level_learned": 6,
@@ -42,6 +42,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["serpent", "grassland", "jungle", "mountains", "ruins", "underground"],
     "shape": "serpent",
     "stage": "stage1",
     "types": [

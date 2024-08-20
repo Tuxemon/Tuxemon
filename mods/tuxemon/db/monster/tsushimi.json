@@ -59,6 +59,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["dragon", "sea", "urban"],
     "shape": "dragon",
     "stage": "stage1",
     "types": [

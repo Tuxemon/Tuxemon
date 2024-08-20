@@ -48,11 +48,12 @@
         },
         {
             "level_learned": 40,
-            "technique": "sword"
+            "technique": "slice"
         }
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["humanoid", "urban"],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [

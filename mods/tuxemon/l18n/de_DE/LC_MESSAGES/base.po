@@ -448,9 +448,6 @@ msgstr "Finsterblick"
 msgid "goad"
 msgstr "Anspornen"
 
-msgid "headbutt"
-msgstr "Kopfnuss"
-
 msgid "hibernate"
 msgstr "Winterschlaf"
 
@@ -2985,9 +2982,6 @@ msgstr "Sei vorsichtig!"
 msgid "spyder_citypark_maniac"
 msgstr "Puh, wir sind fix und fertig!"
 
-msgid "sword"
-msgstr "Schwert"
-
 msgid "ubuntu"
 msgstr "Ubuntu"
 
@@ -3791,9 +3785,6 @@ msgstr "Lust"
 
 msgid "magma"
 msgstr "Magma"
-
-msgid "maori"
-msgstr "Maori"
 
 msgid "mobbing"
 msgstr "Mobbing"

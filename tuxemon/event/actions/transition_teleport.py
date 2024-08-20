@@ -42,6 +42,11 @@ class TransitionTeleportAction(EventAction):
 
     def start(self) -> None:
         world = self.session.client.get_state_by_name(WorldState)
+
+        if world.npcs:
+            for _npc in world.npcs:
+                world.npcs.remove(_npc)
+
         if world.delayed_teleport:
             self.stop()
             return

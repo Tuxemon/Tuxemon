@@ -12,7 +12,7 @@
   "range": "touch",
   "recharge": 2,
   "sfx": "sfx_blaster",
-  "slug": "maori",
+  "slug": "greenstone",
   "sort": "damage",
   "target": {
     "enemy monster": 2,

@@ -54,6 +54,7 @@
             "evo_stage": "stage1"
         }
     ],
+    "tags": ["humanoid", "extraplanar"],
     "shape": "humanoid",
     "stage": "stage2",
     "types": [

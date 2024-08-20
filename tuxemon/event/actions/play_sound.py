@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon import audio
+from tuxemon import audio, prepare
 from tuxemon.event.eventaction import EventAction
 
 
@@ -39,16 +39,17 @@ class PlaySoundAction(EventAction):
 
     def start(self) -> None:
         player = self.session.player
-        sound_volume = float(player.game_variables["sound_volume"])
-        volume: float = 0.0
+        _sound = prepare.SOUND_VOLUME
+        sound_volume = float(player.game_variables.get("sound_volume", _sound))
         if not self.volume:
             volume = sound_volume
         else:
-            if 0.0 <= self.volume <= 1.0:
+            lower, upper = prepare.SOUND_RANGE
+            if lower <= self.volume <= upper:
                 volume = self.volume * sound_volume
             else:
                 raise ValueError(
-                    f"{self.volume} must be between 0.0 and 1.0",
+                    f"{self.volume} must be between {lower} and {upper}",
                 )
         sound = audio.load_sound(self.filename, volume)
         sound.play()

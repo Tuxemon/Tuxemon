@@ -358,9 +358,6 @@ msgstr "Occhiata"
 msgid "goad"
 msgstr "Pungolo"
 
-msgid "headbutt"
-msgstr "Testata"
-
 msgid "hibernate"
 msgstr "Ibernazione"
 
@@ -4769,9 +4766,6 @@ msgstr "Lava"
 
 msgid "lineage"
 msgstr "Lignaggio"
-
-msgid "maori"
-msgstr "Maori"
 
 msgid "meltdown"
 msgstr "Fusione"

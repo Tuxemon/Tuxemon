@@ -70,6 +70,16 @@
   
   },
   {
+    "slug": "spyder_citypark_nurse",
+    "template": 
+      {
+        "sprite_name": "nurse_red",
+        "combat_front": "nurse",
+        "slug": "nurse"
+      }
+  
+  },
+  {
     "slug": "spyder_citypark_cd1",
     "template": 
       {

@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["serpent"],
     "shape": "serpent",
     "stage": "standalone",
     "types": [

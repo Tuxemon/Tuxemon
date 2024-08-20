@@ -56,7 +56,14 @@ def check_battle_legal(character: NPC) -> bool:
             )
             return False
         else:
-            return True
+            if party_no_tech(character.monsters):
+                no_tech = party_no_tech(character.monsters)
+                logger.error(
+                    f"Cannot start battle, {no_tech} has/have no techniques."
+                )
+                return False
+            else:
+                return True
 
 
 def pre_checking(
@@ -97,6 +104,13 @@ def has_effect(technique: Technique, effect_name: str) -> bool:
     Checks to see if the technique has a specific effect (eg ram -> damage).
     """
     return any(t for t in technique.effects if t.name == effect_name)
+
+
+def party_no_tech(party: list[Monster]) -> list[str]:
+    """
+    Return list of monsters without techniques.
+    """
+    return [p.name for p in party if not p.moves]
 
 
 def has_effect_param(
@@ -195,12 +209,8 @@ def check_moves(monster: Monster, levels: int) -> Optional[str]:
     """
     techs = monster.update_moves(levels)
     if techs:
-        _techs = ""
-        _monster = monster.name.upper()
-        for tech in techs:
-            _tech = tech.name.upper()
-            _techs += _tech + ", "
-        params = {"name": _monster, "tech": _techs[:-2]}
+        tech_list = ", ".join(tech.name.upper() for tech in techs)
+        params = {"name": monster.name.upper(), "tech": tech_list}
         message = T.format("tuxemon_new_tech", params)
         return message
     return None
@@ -221,19 +231,21 @@ def award_money(loser: Monster, winner: Monster) -> int:
     Returns:
         Amount of money.
     """
-    method: str = "default"
-    # update method
-    if winner.owner and winner.owner.isplayer:
-        trainer = winner.owner
-        method = trainer.game_variables.get("method_money", "default")
+    method = (
+        winner.owner.game_variables.get("method_money", "default")
+        if winner.owner and winner.owner.isplayer
+        else "default"
+    )
 
-    # methods
-    if method == "default":
-        result = loser.level * loser.money_modifier
-        money = int(result)
-    else:
-        raise ValueError(f"A formula for '{method}' doesn't exist.")
-    return money
+    def default_method() -> int:
+        return int(loser.level * loser.money_modifier)
+
+    methods = {"default": default_method}
+
+    if method not in methods:
+        raise ValueError(f"A formula for {method} doesn't exist.")
+
+    return methods[method]()
 
 
 def award_experience(
@@ -254,58 +266,75 @@ def award_experience(
     Returns:
         Amount of experience.
     """
-    # how many loser has been hit
-    hits = len([ele for ele in damages if ele.defense == loser])
-    # how many loser has been hit by the winner
-    hits_mon = len(
-        [
-            ele
-            for ele in damages
-            if ele.defense == loser and ele.attack == winner
-        ]
+    hits = sum(1 for damage in damages if damage.defense == loser)
+    hits_mon = sum(
+        1
+        for damage in damages
+        if damage.defense == loser and damage.attack == winner
     )
-    # all the monsters who hit the loser
-    winners = [ele.attack for ele in damages if ele.defense == loser]
+    winners = [damage.attack for damage in damages if damage.defense == loser]
 
-    method: str = "default"
+    method = (
+        winner.owner.game_variables.get("method_experience", "default")
+        if winner.owner and winner.owner.isplayer
+        else "default"
+    )
+
     exp_tot = float(loser.total_experience)
     exp_mod = float(loser.experience_modifier)
 
-    # update method
-    if winner.owner and winner.owner.isplayer:
-        trainer = winner.owner
-        method = trainer.game_variables.get("method_experience", "default")
+    def default_method() -> int:
+        return int((exp_tot // (loser.level * hits)) * exp_mod)
 
-    # methods
-    if method == "default":
-        result = (exp_tot // (loser.level * hits)) * exp_mod
-        exp = int(result)
-    elif method == "proportional":
-        prop = hits_mon / hits
-        result = (exp_tot // (loser.level * hits)) * exp_mod * prop
-        exp = int(result)
-    elif method == "test":
-        traded = 1.5 if winner.traded else 1.0
-        wild = 1 if loser.money_modifier == 0 else 1.5
-        result = (
+    def proportional_method() -> int:
+        return int(
+            (exp_tot // (loser.level * hits)) * exp_mod * (hits_mon / hits)
+        )
+
+    def test_method() -> int:
+        return int(
             ((exp_tot * loser.level) / 7)
             * 1
             / len(winners)
             * exp_mod
-            * traded
-            * wild
+            * (1.5 if winner.traded else 1.0)
+            * (1 if loser.money_modifier == 0 else 1.5)
         )
-        exp = int(result)
-    elif method == "xp_transmitter" and trainer:
-        alive = alive_party(trainer)
+
+    def xp_transmitter_method() -> int:
+        return distribute_experience(
+            exp_tot, loser.level, hits, exp_mod, winners, winner.owner
+        )
+
+    methods = {
+        "default": default_method,
+        "proportional": proportional_method,
+        "test": test_method,
+        "xp_transmitter": xp_transmitter_method,
+    }
+
+    if method not in methods:
+        raise ValueError(f"A formula for {method} doesn't exist.")
+
+    return methods[method]()
+
+
+def distribute_experience(
+    exp_tot: float,
+    level: int,
+    hits: int,
+    exp_mod: float,
+    winners: list[Monster],
+    owner: Optional[NPC],
+) -> int:
+    if owner:
+        alive = alive_party(owner)
         idle_monsters = list(set(alive).symmetric_difference(winners))
-        result = (exp_tot // (loser.level * hits)) * exp_mod * 1 / len(alive)
-        exp = int(result)
+        exp = int((exp_tot // (level * hits)) * exp_mod * 1 / len(alive))
         for monster in idle_monsters:
             monster.give_experience(exp)
-    else:
-        raise ValueError(f"A formula for '{method}' doesn't exist.")
-    return exp
+        return exp
+    return 0
 
 
 def get_winners(loser: Monster, damages: list[DamageMap]) -> set[Monster]:
@@ -319,20 +348,14 @@ def get_winners(loser: Monster, damages: list[DamageMap]) -> set[Monster]:
     Returns:
         Set of winners.
     """
-    method: str = "default"
-    winners = [ele.attack for ele in damages if ele.defense == loser]
-
-    # update method
-    if winners and winners[0].owner and winners[0].owner.isplayer:
-        trainer = winners[0].owner
-        method = trainer.game_variables.get("method_experience", "default")
-
-    # methods
-    if method == "xp_transmitter":
-        alive = alive_party(trainer)
-        return set(alive)
-    else:
-        return set(winners)
+    winners = {damage.attack for damage in damages if damage.defense == loser}
+    if winners and next(iter(winners)).owner:
+        trainer = next(iter(winners)).owner
+        if trainer and trainer.isplayer:
+            method = trainer.game_variables.get("method_experience", "default")
+            if method == "xp_transmitter":
+                return set(alive_party(trainer))
+    return winners
 
 
 def battlefield(

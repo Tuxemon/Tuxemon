@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 
-from tuxemon.db import StatType
+from tuxemon.db import MonsterEvolutionItemModel, StatType
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.monster import Monster
@@ -41,60 +41,76 @@ class CheckEvolutionCondition(EventCondition):
             logger.error(f"{_character} not found")
             return False
 
-        client = session.client
-        _evolution: bool = False
+        self.character = character
+        self.client = session.client
 
-        evolving: list[tuple[Monster, Monster]] = []
+        evolving_monsters = []
         for monster in character.monsters:
             if monster.evolutions:
-                evolved = Monster()
                 for evolution in monster.evolutions:
-                    evolved.load_from_db(evolution.monster_slug)
-                    op = "greater_or_equal"
-                    if compare(op, monster.level, evolution.at_level):
-                        _evolution = True
-                    if evolution.gender == monster.gender:
-                        _evolution = True
-                    if character.has_type(evolution.element):
-                        _evolution = True
-                    if character.has_tech(evolution.tech):
-                        _evolution = True
-                    if evolution.inside == client.map_inside:
-                        _evolution = True
-                    if evolution.traded == monster.traded:
-                        _evolution = True
-                    if evolution.stats:
-                        params = evolution.stats.split(":")
-                        operator = params[1]
-                        stat1 = monster.return_stat(StatType(params[0]))
-                        stat2 = monster.return_stat(StatType(params[2]))
-                        _evolution = compare(operator, stat1, stat2)
-                    if evolution.variable:
-                        parts = evolution.variable.split(":")
-                        key, value = parts[:2]
-                        if (
-                            key in character.game_variables
-                            and character.game_variables[key] == value
-                        ):
-                            _evolution = True
-                    if evolution.steps:
-                        result = evolution.steps - int(monster.steps)
-                        if result == 0:
-                            _evolution = True
-                            monster.steps += 1
-                        monster.levelling_up = True
-                        monster.got_experience = True
-                    if evolution.bond:
-                        parts = evolution.bond.split(":")
-                        operator, value = parts[:2]
-                        _bond = monster.bond
-                        _evolution = compare(operator, _bond, int(value))
-                    # use the item on the monster
-                    if evolution.item:
-                        _evolution = False
-                    if _evolution:
-                        evolving.append((monster, evolved))
+                    if self.can_evolve(monster, evolution):
+                        evolved_monster = Monster()
+                        evolved_monster.load_from_db(evolution.monster_slug)
+                        evolving_monsters.append((monster, evolved_monster))
 
-        if evolving:
-            character.pending_evolutions = evolving
-        return len(evolving) > 0
+        if evolving_monsters:
+            character.pending_evolutions = evolving_monsters
+
+        return len(evolving_monsters) > 0
+
+    def can_evolve(
+        self, monster: Monster, evo: MonsterEvolutionItemModel
+    ) -> bool:
+        # Check if the evolution is actually possible
+        if evo.monster_slug == monster.slug:
+            return False
+
+        conditions = [
+            bool(
+                evo.at_level
+                and compare("greater_or_equal", monster.level, evo.at_level)
+            ),
+            bool(evo.gender and evo.gender == monster.gender),
+            bool(evo.element and monster.has_type(evo.element)),
+            bool(evo.tech and self.character.has_tech(evo.tech)),
+            bool(evo.inside and evo.inside == self.client.map_inside),
+            bool(evo.traded and evo.traded == monster.traded),
+        ]
+
+        # Check if the monster's stats meet the evolution conditions
+        if evo.stats:
+            params = evo.stats.split(":")
+            operator = params[1]
+            stat1 = monster.return_stat(StatType(params[0]))
+            stat2 = monster.return_stat(StatType(params[2]))
+            conditions.append(compare(operator, stat1, stat2))
+
+        # Check if the monster's game variables meet the evolution conditions
+        if evo.variable:
+            parts = evo.variable.split(":")
+            key, value = parts[:2]
+            conditions.append(
+                key in self.character.game_variables
+                and self.character.game_variables[key] == value
+            )
+
+        # Check if the monster has taken the required number of steps
+        if evo.steps:
+            result = evo.steps - int(monster.steps)
+            conditions.append(result == 0)
+            monster.steps += 1
+            monster.levelling_up = True
+            monster.got_experience = True
+
+        # Check if the monster's bond meets the evolution conditions
+        if evo.bond:
+            parts = evo.bond.split(":")
+            operator, value = parts[:2]
+            _bond = monster.bond
+            conditions.append(compare(operator, _bond, int(value)))
+
+        # If the evolution requires an item, do not evolve
+        if evo.item:
+            return False
+        # The monster can evolve if any of the conditions are met
+        return any(conditions)

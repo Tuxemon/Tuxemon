@@ -714,7 +714,7 @@ class CombatState(CombatAnimations):
                 (partial(self.alert, message), 0)
             )
 
-    def get_status_ico(
+    def get_status_icon_position(
         self, monster: Monster, monsters_in_play: Sequence[Monster]
     ) -> tuple[float, float]:
         icon_positions = {
@@ -747,11 +747,11 @@ class CombatState(CombatAnimations):
             for status in monster.status:
                 if status.icon:
                     icon_position = (
-                        self.get_status_ico(
+                        self.get_status_icon_position(
                             monster, self.monsters_in_play_left
                         )
                         if monster in self.monsters_in_play_left
-                        else self.get_status_ico(
+                        else self.get_status_icon_position(
                             monster, self.monsters_in_play_right
                         )
                     )

@@ -776,11 +776,10 @@ class Monster:
         random_offset = random.uniform(-speed_offset, speed_offset)
         speed_modifier += random_offset
 
-        # Use dodge as a tiebreaker
-        speed_modifier += float(self.dodge) * 0.01
-
         # Ensure the speed modifier is not negative
         speed_modifier = max(speed_modifier, 1)
+        # Use dodge as a tiebreaker
+        speed_modifier += float(self.dodge) * 0.01
 
         return int(speed_modifier)
 

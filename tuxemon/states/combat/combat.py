@@ -156,6 +156,7 @@ class CombatState(CombatAnimations):
         self.phase: Optional[CombatPhase] = None
         self._damage_map: list[DamageReport] = []
         self._method_cache = MethodAnimationCache()
+        self._action_queue = ActionQueue()
         self._decision_queue: list[Monster] = []
         self._pending_queue: list[EnqueuedAction] = []
         self._log_action: list[tuple[int, EnqueuedAction]] = []
@@ -313,7 +314,7 @@ class CombatState(CombatAnimations):
 
             # assume each monster executes one action
             # if number of actions == monsters, then all monsters are ready
-            elif len(ActionQueue().queue) == len(self.active_monsters):
+            elif len(self._action_queue.queue) == len(self.active_monsters):
                 return "pre action phase"
 
             return None
@@ -322,13 +323,13 @@ class CombatState(CombatAnimations):
             return "action phase"
 
         elif phase == "action phase":
-            if ActionQueue().is_empty():
+            if self._action_queue.is_empty():
                 return "post action phase"
 
             return None
 
         elif phase == "post action phase":
-            if ActionQueue().is_empty():
+            if self._action_queue.is_empty():
                 return "resolve match"
 
             return None
@@ -411,7 +412,7 @@ class CombatState(CombatAnimations):
                             tech.recharge()
 
         elif phase == "action phase":
-            ActionQueue().sort()
+            self._action_queue.sort()
 
         elif phase == "post action phase":
             # remove actions from fainted users from the pending queue
@@ -520,8 +521,8 @@ class CombatState(CombatAnimations):
 
     def handle_action_queue(self) -> None:
         """Take one action from the queue and do it."""
-        if not ActionQueue().is_empty():
-            action = ActionQueue().pop()
+        if not self._action_queue.is_empty():
+            action = self._action_queue.pop()
             self.perform_action(*action)
             self.task(self.check_party_hp, 1)
             self.task(self.animate_party_status, 3)
@@ -742,7 +743,7 @@ class CombatState(CombatAnimations):
 
         """
         action = EnqueuedAction(user, technique, target)
-        ActionQueue().enqueue(action)
+        self._action_queue.enqueue(action)
         self._log_action.append((self._turn, action))
 
     def remove_monster_from_play(
@@ -770,7 +771,7 @@ class CombatState(CombatAnimations):
             monster: Monster whose actions will be removed.
 
         """
-        action_queue = ActionQueue().queue
+        action_queue = self._action_queue.queue
         action_queue[:] = [
             action
             for action in action_queue
@@ -1237,7 +1238,7 @@ class CombatState(CombatAnimations):
                     tech.set_stats()
 
         # clear action queue
-        ActionQueue().clear_queue()
+        self._action_queue.clear_queue()
         self._pending_queue = list()
         self._log_action = list()
         self._damage_map = list()

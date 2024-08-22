@@ -156,7 +156,7 @@ class CaptureEffect(ItemEffect):
             _wander = "spyder_park_wander"
             label = self.user.game_variables.get(item.slug, _wander)
             empty.use_tech = label
-            item.combat_state.rewrite_action_queue_method(target, empty)
+            item.combat_state._action_queue.rewrite(target, empty)
 
     def _apply_capture_effects(self, item: Item, target: Monster) -> None:
         assert item.combat_state

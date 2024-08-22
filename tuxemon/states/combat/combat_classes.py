@@ -70,7 +70,9 @@ class EnqueuedAction(NamedTuple):
 
 
 class ActionQueue:
-    _action_queue: list[EnqueuedAction] = []
+
+    def __init__(self) -> None:
+        self._action_queue: list[EnqueuedAction] = []
 
     @property
     def queue(self) -> list[EnqueuedAction]:

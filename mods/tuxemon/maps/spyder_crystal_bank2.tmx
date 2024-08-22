@@ -36,7 +36,7 @@
   <object id="18" type="collision" x="48" y="128" width="16" height="32"/>
   <object id="19" type="collision" x="48" y="208" width="64" height="32"/>
   <object id="20" type="collision" x="16" y="96" width="80" height="32"/>
-  <object id="21" type="collision" x="48" y="241.5" width="16" height="32"/>
+  <object id="21" type="collision" x="48" y="240" width="16" height="32"/>
   <object id="22" type="collision" x="16" y="288" width="48" height="48"/>
   <object id="23" type="collision" x="176" y="32" width="32" height="16"/>
   <object id="38" type="collision" x="16" y="192" width="96" height="16"/>

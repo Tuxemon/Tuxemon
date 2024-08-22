@@ -42,6 +42,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["serpent", "urban"],
     "shape": "serpent",
     "stage": "stage1",
     "types": [

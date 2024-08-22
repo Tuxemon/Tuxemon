@@ -47,6 +47,7 @@ class Entity(Generic[SaveDict]):
         self.acceleration3 = Vector3(0, 0, 0)
         self.velocity3 = Vector3(0, 0, 0)
         self.update_location = False
+        self.isplayer: bool = False
 
     # === PHYSICS START =======================================================
     def stop_moving(self) -> None:
@@ -96,18 +97,26 @@ class Entity(Generic[SaveDict]):
         """
         coords = (int(pos[0]), int(pos[1]))
         region = self.world.collision_map.get(coords)
-        if region:
+
+        # Handle player vs non-player entities
+        if self.isplayer and region:
             prop = RegionProperties(
-                region.enter_from,
-                region.exit_from,
-                region.endure,
+                region.enter_from or [],  # Use empty list if not present
+                region.exit_from or [],
+                region.endure or [],
                 self,
                 region.key,
             )
         else:
             prop = RegionProperties(
-                enter_from=[], exit_from=[], endure=[], entity=self, key=None
+                enter_from=[],
+                exit_from=[],
+                endure=[],
+                entity=self,
+                key=None,
             )
+
+        # Update collision map
         self.world.collision_map[coords] = prop
 
     def remove_collision(self, pos: tuple[int, int]) -> None:
@@ -119,7 +128,11 @@ class Entity(Generic[SaveDict]):
 
         """
         region = self.world.collision_map.get(pos)
-        if region and (region.enter_from or region.exit_from or region.endure):
+        if not region:
+            return  # Nothing to remove
+
+        if region.enter_from or region.exit_from or region.endure:
+            # Update properties
             prop = RegionProperties(
                 region.enter_from,
                 region.exit_from,
@@ -129,10 +142,8 @@ class Entity(Generic[SaveDict]):
             )
             self.world.collision_map[pos] = prop
         else:
-            try:
-                del self.world.collision_map[pos]
-            except:
-                pass
+            # Remove region
+            del self.world.collision_map[pos]
 
     # === PHYSICS END =========================================================
 

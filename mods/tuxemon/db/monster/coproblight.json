@@ -40,7 +40,7 @@
         },
         {
             "level_learned": 32,
-            "technique": "maori"
+            "technique": "greenstone"
         },
         {
             "level_learned": 36,
@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["blob"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

@@ -13,9 +13,9 @@ from typing import Any, Optional
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
 
-from tuxemon import prepare
+from tuxemon import db, prepare
 from tuxemon.constants import paths
-from tuxemon.formula import convert_km, convert_mi
+from tuxemon.formula import convert_ft, convert_km, convert_lbs, convert_mi
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
@@ -213,63 +213,139 @@ def replace_text(session: Session, text: str) -> str:
     """
     player = session.player
     client = session.client
-    text = text.replace("${{name}}", player.name)
-    text = text.replace("${{currency}}", "$")
-    text = text.replace(r"\n", "\n")
-    text = text.replace("${{money}}", str(player.money["player"]))
-    # replace variables
-    for key, value in player.game_variables.items():
-        text = text.replace("${{var:" + str(key) + "}}", str(value))
-    # distance (metric / imperial)
-    if player.game_variables["unit_measure"] == "Metric":
-        text = text.replace("${{length}}", "km")
-        text = text.replace("${{weight}}", "kg")
-        text = text.replace("${{height}}", "cm")
-        text = text.replace(
-            "${{steps}}",
-            str(convert_km(player.steps)),
+    unit_measure = player.game_variables.get("unit_measure", prepare.METRIC)
+
+    replacements = {
+        "${{name}}": player.name,
+        "${{NAME}}": player.name.upper(),
+        "${{currency}}": "$",
+        "${{money}}": str(player.money.get("player", 0)),
+        "${{tuxepedia_seen}}": str(
+            sum(
+                1
+                for status in player.tuxepedia.values()
+                if status in (db.SeenStatus.caught, db.SeenStatus.seen)
+            )
+        ),
+        "${{tuxepedia_caught}}": str(
+            sum(
+                1
+                for status in player.tuxepedia.values()
+                if status == db.SeenStatus.caught
+            )
+        ),
+        "${{map_name}}": client.map_name,
+        "${{map_desc}}": client.map_desc,
+        "${{north}}": client.map_north,
+        "${{south}}": client.map_south,
+        "${{east}}": client.map_east,
+        "${{west}}": client.map_west,
+    }
+
+    # Add unit-specific replacements
+    if unit_measure == prepare.METRIC:
+        replacements.update(
+            {
+                "${{length}}": prepare.U_KM,
+                "${{weight}}": prepare.U_KG,
+                "${{height}}": prepare.U_CM,
+                "${{steps}}": str(convert_km(player.steps)),
+            }
         )
     else:
-        text = text.replace("${{length}}", "mi")
-        text = text.replace("${{weight}}", "lb")
-        text = text.replace("${{height}}", "ft")
-        text = text.replace(
-            "${{steps}}",
-            str(convert_mi(player.steps)),
+        replacements.update(
+            {
+                "${{length}}": prepare.U_MI,
+                "${{weight}}": prepare.U_LB,
+                "${{height}}": prepare.U_FT,
+                "${{steps}}": str(convert_mi(player.steps)),
+            }
         )
-    # maps
-    text = text.replace("${{map_name}}", client.map_name)
-    text = text.replace("${{map_desc}}", client.map_desc)
-    text = text.replace("${{north}}", client.map_north)
-    text = text.replace("${{south}}", client.map_south)
-    text = text.replace("${{east}}", client.map_east)
-    text = text.replace("${{west}}", client.map_west)
 
-    for i in range(len(player.monsters)):
-        monster = player.monsters[i]
-        text = text.replace("${{monster_" + str(i) + "_name}}", monster.name)
-        text = text.replace(
-            "${{monster_" + str(i) + "_desc}}",
-            monster.description,
+    # Add monster-specific replacements
+    for i, monster in enumerate(player.monsters):
+        monster_replacements = {
+            "${{monster_" + str(i) + "_name}}": monster.name,
+            "${{monster_" + str(i) + "_desc}}": monster.description,
+            "${{monster_"
+            + str(i)
+            + "_types}}": " - ".join(
+                T.translate(_type.name) for _type in monster.types
+            ),
+            "${{monster_" + str(i) + "_category}}": monster.category,
+            "${{monster_" + str(i) + "_shape}}": T.translate(monster.shape),
+            "${{monster_" + str(i) + "_hp}}": str(monster.current_hp),
+            "${{monster_" + str(i) + "_hp_max}}": str(monster.hp),
+            "${{monster_" + str(i) + "_level}}": str(monster.level),
+            "${{monster_"
+            + str(i)
+            + "_gender}}": T.translate(f"gender_{monster.gender}"),
+            "${{monster_" + str(i) + "_bond}}": str(monster.bond),
+            "${{monster_" + str(i) + "_txmn_id}}": str(monster.txmn_id),
+            "${{monster_"
+            + str(i)
+            + "_warm}}": T.translate(f"taste_{monster.taste_warm}"),
+            "${{monster_"
+            + str(i)
+            + "_cold}}": T.translate(f"taste_{monster.taste_cold}"),
+            "${{monster_"
+            + str(i)
+            + "_moves}}": " - ".join(_move.name for _move in monster.moves),
+        }
+
+        # Add unit-specific monster replacements
+        if unit_measure == prepare.METRIC:
+            monster_replacements.update(
+                {
+                    "${{monster_"
+                    + str(i)
+                    + "_steps}}": str(convert_km(monster.steps)),
+                    "${{monster_" + str(i) + "_weight}}": str(monster.weight),
+                    "${{monster_" + str(i) + "_height}}": str(monster.height),
+                }
+            )
+        else:
+            monster_replacements.update(
+                {
+                    "${{monster_"
+                    + str(i)
+                    + "_steps}}": str(convert_mi(monster.steps)),
+                    "${{monster_"
+                    + str(i)
+                    + "_weight}}": str(convert_lbs(monster.weight)),
+                    "${{monster_"
+                    + str(i)
+                    + "_height}}": str(convert_ft(monster.height)),
+                }
+            )
+
+        monster_replacements.update(
+            {
+                "${{monster_" + str(i) + "_armour}}": str(monster.armour),
+                "${{monster_" + str(i) + "_dodge}}": str(monster.dodge),
+                "${{monster_" + str(i) + "_melee}}": str(monster.melee),
+                "${{monster_" + str(i) + "_ranged}}": str(monster.ranged),
+                "${{monster_" + str(i) + "_speed}}": str(monster.speed),
+            }
         )
-        text = text.replace("${{monster_" + str(i) + "_type}}", monster.slug)
-        text = text.replace(
-            "${{monster_" + str(i) + "_category}}",
-            monster.category,
+
+        replacements.update(monster_replacements)
+
+    # Add game variable replacements
+    for key, value in player.game_variables.items():
+        replacements.update(
+            {
+                "${{var:" + str(key) + "}}": str(value),
+                "${{msgid:" + str(key) + "}}": T.translate(str(value)),
+            }
         )
-        text = text.replace("${{monster_" + str(i) + "_shape}}", monster.shape)
-        text = text.replace(
-            "${{monster_" + str(i) + "_hp}}",
-            str(monster.current_hp),
-        )
-        text = text.replace(
-            "${{monster_" + str(i) + "_hp_max}}",
-            str(monster.hp),
-        )
-        text = text.replace(
-            "${{monster_" + str(i) + "_level}}",
-            str(monster.level),
-        )
+
+    # Replace placeholders in the text
+    for placeholder, replacement in replacements.items():
+        text = text.replace(placeholder, replacement)
+
+    # Replace newline characters
+    text = text.replace(r"\n", "\n")
 
     return text
 

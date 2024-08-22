@@ -42,6 +42,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["piscine"],
     "shape": "piscine",
     "stage": "stage1",
     "types": [

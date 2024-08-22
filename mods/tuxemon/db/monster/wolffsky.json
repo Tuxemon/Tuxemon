@@ -36,7 +36,7 @@
         },
         {
             "level_learned": 28,
-            "technique": "maori"
+            "technique": "greenstone"
         },
         {
             "level_learned": 32,
@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["hunter", "boreal/snow", "woodland"],
     "shape": "hunter",
     "stage": "standalone",
     "types": [

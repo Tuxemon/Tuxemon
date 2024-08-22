@@ -472,9 +472,6 @@ msgstr "Kimaltaja"
 msgid "goad"
 msgstr "Yllytä"
 
-msgid "headbutt"
-msgstr "Pääpusku"
-
 msgid "hibernate"
 msgstr "Vaivuta"
 

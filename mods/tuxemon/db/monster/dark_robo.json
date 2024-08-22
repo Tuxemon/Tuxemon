@@ -28,7 +28,7 @@
         },
         {
             "level_learned": 20,
-            "technique": "sword"
+            "technique": "slice"
         },
         {
             "level_learned": 24,
@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["humanoid"],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [

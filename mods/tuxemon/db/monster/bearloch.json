@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "maori"
+            "technique": "greenstone"
         },
         {
             "level_learned": 2,
@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["brute"],
     "shape": "brute",
     "stage": "standalone",
     "types": [

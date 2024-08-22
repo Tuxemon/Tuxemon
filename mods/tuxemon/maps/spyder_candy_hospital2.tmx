@@ -170,7 +170,7 @@
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
-  <object id="101" name="Create Rea" type="event" x="287.667" y="128" width="16" height="16">
+  <object id="101" name="Create Rea" type="event" x="288" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_hospital1_rea,18,8"/>
     <property name="act2" value="char_face spyder_hospital1_rea,up"/>

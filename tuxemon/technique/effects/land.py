@@ -28,25 +28,28 @@ class LandEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> LandEffectResult:
-        done = True
         combat = tech.combat_state
         assert combat
-
-        # make land the user
+        # Check if the user is flying
         user_sprite = combat._monster_sprite_map.get(user, None)
         if user_sprite and not user_sprite.visible:
+            # Make the user land
             user_sprite.visible = True
             user.out_of_range = False
 
-        # check if the enemy isn't flying
+        # Check if the target is flying
         target_sprite = combat._monster_sprite_map.get(target, None)
         if target_sprite and not target_sprite.visible:
-            done = False
+            # If the target is flying, don't tackle
+            target_is_flying = True
+        else:
+            target_is_flying = False
 
+        # Return the result
         return {
-            "success": done,
+            "success": not target_is_flying,
             "damage": 0,
             "element_multiplier": 0.0,
-            "should_tackle": done,
+            "should_tackle": not target_is_flying,
             "extra": None,
         }

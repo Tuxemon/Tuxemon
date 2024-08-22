@@ -1,6 +1,6 @@
 {
     "slug": "angesnow",
-    "category": "driven_snow",	
+    "category": "driven_snow",
     "moveset": [
         {
             "level_learned": 2,
@@ -39,6 +39,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["humanoid", "extraplanar"],
     "shape": "humanoid",
     "stage": "stage1",
     "types": [

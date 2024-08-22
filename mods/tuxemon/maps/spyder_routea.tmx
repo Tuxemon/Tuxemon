@@ -146,9 +146,13 @@
     <property name="act05" value="unlock_controls"/>
     <property name="act08" value="translated_dialog spyder_routea_billie1"/>
     <property name="act20" value="add_monster billie_choice,20,spyder_billie,5,10"/>
-    <property name="act21" value="add_monster cardiwing,17,spyder_billie,5,10"/>
-    <property name="act22" value="add_monster eyesore,17,spyder_billie,5,10"/>
-    <property name="act23" value="add_monster viviphyta,17,spyder_billie,5,10"/>
+    <property name="act21" value="set_monster_attribute add_monster,gender,male"/>
+    <property name="act22" value="add_monster cardiwing,17,spyder_billie,5,10"/>
+    <property name="act23" value="set_monster_attribute add_monster,gender,female"/>
+    <property name="act24" value="add_monster eyesore,17,spyder_billie,5,10"/>
+    <property name="act25" value="set_monster_attribute add_monster,gender,female"/>
+    <property name="act26" value="add_monster viviphyta,17,spyder_billie,5,10"/>
+    <property name="act27" value="set_monster_attribute add_monster,gender,male"/>
     <property name="act30" value="start_battle player,spyder_billie"/>
     <property name="act71" value="translated_dialog spyder_routea_billie2"/>
     <property name="act75" value="pathfind spyder_billie,17,25"/>

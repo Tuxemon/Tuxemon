@@ -50,6 +50,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["landrace", "boreal/snow", "grassland", "mountains"],
     "shape": "landrace",
     "stage": "stage1",
     "types": [

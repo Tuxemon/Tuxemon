@@ -205,6 +205,20 @@ MOVERATE_RANGE: tuple[float, float] = (0.0, 20.0)
 TRANS_TIME: float = 0.3  # transition time
 
 # PC
+METRIC: str = "Metric"
+IMPERIAL: str = "Imperial"
+NORTHERN: str = "Northern"
+SOUTHERN: str = "Southern"
+U_KM: str = "km"
+U_MI: str = "mi"
+U_KG: str = "kg"
+U_LB: str = "lb"
+U_CM: str = "cm"
+U_FT: str = "ft"
+MUSIC_VOLUME: float = 0.5
+MUSIC_RANGE: tuple[float, float] = (0.0, 1.0)
+SOUND_VOLUME: float = 0.2
+SOUND_RANGE: tuple[float, float] = (0.0, 1.0)
 KENNEL: str = "Kennel"
 LOCKER: str = "Locker"
 MAX_KENNEL: int = 30  # nr max of pc monsters
@@ -218,7 +232,7 @@ MAX_TYPES_BAG: int = 99  # eg 5 capture devices, 1 type and 5 items
 MAX_LEVEL: int = 999
 MAX_MOVES: int = 4
 MISSING_IMAGE: str = "gfx/sprites/battle/missing.png"
-CATCH_RATE_RANGE: tuple[int, int] = (0, 255)
+CATCH_RATE_RANGE: tuple[int, int] = (0, 100)
 CATCH_RESISTANCE_RANGE: tuple[float, float] = (0.0, 2.0)
 # set bond and define range
 BOND: int = 25

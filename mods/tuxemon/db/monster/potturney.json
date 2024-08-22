@@ -50,6 +50,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["blob"],
     "shape": "blob",
     "stage": "stage1",
     "types": [

@@ -26,6 +26,7 @@ from tuxemon.sprite import CaptureDeviceSprite, Sprite
 from tuxemon.tools import scale, scale_sequence
 
 if TYPE_CHECKING:
+    from tuxemon.animation import Animation
     from tuxemon.db import BattleGraphicsModel
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
@@ -696,110 +697,110 @@ class CombatAnimations(ABC, Menu[None]):
         animate(y=monster_sprite.rect.centery)
         self.task(partial(toggle_visible, monster_sprite), 1.0)
 
-        def kill() -> None:
-            self._monster_sprite_map[monster].kill()
-            self.hud[monster].kill()
-            del self._monster_sprite_map[monster]
-            del self.hud[monster]
-
         # TODO: cache this sprite from the first time it's used.
         assert sprite.animation
         self.task(sprite.animation.play, 1.0)
         self.task(partial(self.sprites.add, sprite), 1.0)
         sprite.rect.midbottom = monster_sprite.rect.midbottom
 
+        def kill_monster() -> None:
+            self._monster_sprite_map[monster].kill()
+            self.hud[monster].kill()
+            del self._monster_sprite_map[monster]
+            del self.hud[monster]
+
         def shake_ball(initial_delay: float) -> None:
-            animate = partial(
-                self.animate,
-                duration=0.1,
-                transition="linear",
-                delay=initial_delay,
-            )
-            animate(capdev.rect, y=scale(3), relative=True)
+            # Define reusable shake animation functions
+            def shake_up() -> Animation:
+                return animate(
+                    capdev.rect, y=scale(3), relative=True, duration=0.1
+                )
 
-            animate = partial(
-                self.animate,
-                duration=0.2,
-                transition="linear",
-                delay=initial_delay + 0.1,
-            )
-            animate(capdev.rect, y=-scale(6), relative=True)
+            def shake_down() -> Animation:
+                return animate(
+                    capdev.rect, y=-scale(6), relative=True, duration=0.2
+                )
 
-            animate = partial(
-                self.animate,
-                duration=0.1,
-                transition="linear",
-                delay=initial_delay + 0.3,
-            )
-            animate(capdev.rect, y=scale(3), relative=True)
+            # Chain shake animations with delays
+            self.task(shake_up, initial_delay)
+            self.task(shake_down, initial_delay + 0.1)
+            self.task(shake_up, initial_delay + 0.3)
 
-        for i in range(0, num_shakes):
-            # leave a 0.6s wait between each shake
+        # Perform shakes with delays
+        for i in range(num_shakes):
             shake_ball(1.8 + i * 1.0)
 
         combat = item.combat_state
         if is_captured and combat and monster.owner:
             trainer = monster.owner
             combat._captured_mon = monster
-            self.task(kill, 2 + num_shakes)
-            action_time = num_shakes + 1.8
-            # Display 'Gotcha!' first.
-            self.task(combat.end_combat, action_time + 4)
-            gotcha = T.translate("gotcha")
-            info = None
-            # if party
-            params = {"name": monster.name.upper()}
-            if len(trainer.monsters) >= trainer.party_limit:
-                info = T.format("gotcha_kennel", params)
-            else:
-                info = T.format("gotcha_team", params)
-            if info:
+
+            def show_success(delay: float) -> None:
+                self.task(combat.end_combat, delay + 4)
+                gotcha = T.translate("gotcha")
+                params = {"name": monster.name.upper()}
+                if len(trainer.monsters) >= trainer.party_limit:
+                    info = T.format("gotcha_kennel", params)
+                else:
+                    info = T.format("gotcha_team", params)
                 gotcha += "\n" + info
-                action_time += len(gotcha) * prepare.LETTER_TIME
-            self.task(
-                partial(self.alert, gotcha),
-                action_time,
-            )
+                delay += len(gotcha) * prepare.LETTER_TIME
+                self.task(
+                    partial(self.alert, gotcha),
+                    delay,
+                )
+
+            self.task(kill_monster, 2 + num_shakes)
+            delay = num_shakes / 2
+            self.task(partial(show_success, delay), num_shakes)
         else:
             breakout_delay = 1.8 + num_shakes * 1.0
-            self.task(  # make the monster appear again!
-                partial(toggle_visible, monster_sprite),
-                breakout_delay,
-            )
-            self.task(
-                audio.load_sound(monster.combat_call, None).play,
-                breakout_delay,
-            )
-            self.task(sprite.animation.play, breakout_delay)
-            self.task(capdev.kill, breakout_delay)
-            self.task(
-                partial(self.blink, sprite),
-                breakout_delay + 0.5,
-            )
-            label = f"captured_failed_{num_shakes}"
-            failed = T.translate(label)
-            breakout_delay += len(failed) * prepare.LETTER_TIME
-            self.task(
-                partial(self.alert, failed),
-                breakout_delay,
-            )
+
+            def show_monster(delay: float) -> None:
+                self.task(partial(toggle_visible, monster_sprite), delay)
+                self.task(
+                    audio.load_sound(monster.combat_call, None).play,
+                    delay,
+                )
+
+            def capture_capsule(delay: float) -> None:
+                assert sprite.animation
+                self.task(sprite.animation.play, delay)
+                self.task(capdev.kill, delay)
+
+            def blink_monster(delay: float) -> None:
+                self.task(partial(self.blink, sprite), delay + 0.5)
+
+            def show_failure(delay: float) -> None:
+                label = f"captured_failed_{num_shakes}"
+                failed = T.translate(label)
+                delay += len(failed) * prepare.LETTER_TIME
+                self.task(
+                    partial(self.alert, failed),
+                    delay,
+                )
+
+            show_monster(breakout_delay)
+            capture_capsule(breakout_delay)
+            blink_monster(breakout_delay)
+            show_failure(breakout_delay)
 
     def update_hud(self, character: NPC, animate: bool = True) -> None:
         """
         Updates hud (where it appears name, level, etc.).
 
         Parameters:
-            character: Character who needs to update the hud.
-            animate: Whether the hud is animated (slide in) or not.
+            character: The character whose HUD needs to be updated.
+            animate: Whether to animate the HUD update. Defaults to True.
 
         """
-        total = self.monsters_in_play[character]
-        alive = alive_party(character)
-        if total:
-            monster = self.monsters_in_play[character][0]
-            if len(total) > 1 and len(total) == len(alive):
-                monster2 = self.monsters_in_play[character][1]
-                self.build_hud(monster, "hud0", animate)
-                self.build_hud(monster2, "hud1", animate)
-            else:
-                self.build_hud(monster, "hud", animate)
+        monsters = self.monsters_in_play.get(character)
+        if not monsters:
+            return
+
+        alive_members = alive_party(character)
+        if len(monsters) > 1 and len(monsters) <= len(alive_members):
+            self.build_hud(monsters[0], "hud0", animate)
+            self.build_hud(monsters[1], "hud1", animate)
+        else:
+            self.build_hud(monsters[0], "hud", animate)

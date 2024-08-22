@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="227">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="227">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -341,9 +341,5 @@
   <object id="214" type="collision" x="176" y="1424" width="16" height="16"/>
   <object id="216" type="collision" x="0" y="1456" width="272" height="16"/>
   <object id="217" type="collision" x="0" y="1408" width="208" height="16"/>
-  <object id="218" type="collision" x="-32" y="-32" width="1664" height="32"/>
-  <object id="219" type="collision" x="1600" y="0" width="32" height="1600"/>
-  <object id="220" type="collision" x="-32" y="1600" width="1664" height="32"/>
-  <object id="221" type="collision" x="-32" y="0" width="48" height="1600"/>
  </objectgroup>
 </map>

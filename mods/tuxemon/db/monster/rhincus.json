@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "headbutt"
+            "technique": "hammerhead"
         },
         {
             "level_learned": 2,
@@ -36,7 +36,7 @@
         },
         {
             "level_learned": 28,
-            "technique": "maori"
+            "technique": "greenstone"
         },
         {
             "level_learned": 32,
@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["flier"],
     "shape": "flier",
     "stage": "standalone",
     "types": [

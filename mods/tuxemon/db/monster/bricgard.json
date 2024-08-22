@@ -1,6 +1,6 @@
 {
     "slug": "bricgard",
-    "category": "brick_wall",	
+    "category": "brick_wall",
     "moveset": [
         {
             "level_learned": 2,
@@ -59,6 +59,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["blob", "ruins", "urban"],
     "shape": "blob",
     "stage": "stage1",
     "types": [

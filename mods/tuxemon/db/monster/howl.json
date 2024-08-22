@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 12,
-            "technique": "maori"
+            "technique": "greenstone"
         },
         {
             "level_learned": 16,
@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["flier"],
     "shape": "flier",
     "stage": "standalone",
     "types": [

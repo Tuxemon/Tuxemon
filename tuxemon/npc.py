@@ -111,7 +111,6 @@ class NPC(Entity[NPCState]):
         self.money: dict[str, int] = {}  # Tracks money
         # list of ways player can interact with the Npc
         self.interactions: Sequence[str] = []
-        self.isplayer: bool = False  # used for various tests, idk
         # menu labels (world menu)
         self.menu_save: bool = True
         self.menu_load: bool = True
@@ -135,8 +134,6 @@ class NPC(Entity[NPCState]):
         self.pending_evolutions: list[tuple[Monster, Monster]] = []
         # nr tuxemon fight
         self.max_position: int = 1
-        # triggers fights 2 vs 2
-        self.double: bool = False
         self.speed = 10  # To determine combat order (not related to movement!)
         self.moves: Sequence[Technique] = []  # list of techniques
         self.steps: float = 0.0
@@ -827,7 +824,6 @@ class NPC(Entity[NPCState]):
         # Look up the NPC's details from our NPC database
         npc_details = db.lookup(self.slug, "npc")
         self.forfeit = npc_details.forfeit
-        self.double = npc_details.double
         npc_party = npc_details.monsters
         for npc_monster_details in npc_party:
             # This seems slightly wrong. The only usable element in

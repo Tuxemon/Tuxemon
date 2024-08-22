@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="44">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="9" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="44">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -64,7 +64,7 @@
     <property name="cond10" value="not char_exists cotton_breeder"/>
    </properties>
   </object>
-  <object id="21" name="breeder state 0" type="event" x="152" y="16" width="16" height="16">
+  <object id="21" name="breeder state 0" type="event" x="144" y="16" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder0"/>
     <property name="act20" value="set_variable breeder_state:1"/>
@@ -72,7 +72,7 @@
     <property name="cond10" value="not variable_set breeder_state"/>
    </properties>
   </object>
-  <object id="22" name="breeder state 1" type="event" x="152" y="32" width="16" height="16">
+  <object id="22" name="breeder state 1" type="event" x="144" y="32" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder1"/>
     <property name="act15" value="translated_dialog_choice yes:no,wannabreed"/>
@@ -98,7 +98,7 @@
     <property name="cond30" value="is variable_set wannabreed:yes"/>
    </properties>
   </object>
-  <object id="24" name="breeder state 3" type="event" x="152" y="64" width="16" height="16">
+  <object id="24" name="breeder state 3" type="event" x="160" y="64" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder3"/>
     <property name="act15" value="translated_dialog_choice yes:no,confirm"/>
@@ -136,7 +136,7 @@
     <property name="cond20" value="is variable_set confirm:no"/>
    </properties>
   </object>
-  <object id="29" name="breeder state 5" type="event" x="152" y="96" width="16" height="16">
+  <object id="29" name="breeder state 5" type="event" x="144" y="96" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder5"/>
     <property name="act20" value="set_variable breeder_state:6"/>
@@ -144,7 +144,7 @@
     <property name="cond10" value="is variable_set breeder_state:5"/>
    </properties>
   </object>
-  <object id="30" name="breeder state 6a" type="event" x="136" y="112" width="16" height="16">
+  <object id="30" name="breeder state 6a" type="event" x="128" y="112" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder6a"/>
     <property name="act20" value="set_variable breeder_state:5"/>
@@ -152,7 +152,7 @@
     <property name="cond20" value="is variable_is steps_breeder_time,greater_or_equal,5000"/>
    </properties>
   </object>
-  <object id="31" name="breeder state 6b" type="event" x="152" y="112" width="16" height="16">
+  <object id="31" name="breeder state 6b" type="event" x="144" y="112" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder6b"/>
     <property name="act20" value="set_variable breeder_state:5"/>
@@ -161,7 +161,7 @@
     <property name="cond30" value="is variable_is steps_breeder_time,greater_than,0"/>
    </properties>
   </object>
-  <object id="32" name="breeder state 6c" type="event" x="168" y="112" width="16" height="16">
+  <object id="32" name="breeder state 6c" type="event" x="160" y="112" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder6c"/>
     <property name="act30" value="spawn_monster player"/>

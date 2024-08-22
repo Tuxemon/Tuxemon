@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 8,
-            "technique": "sword"
+            "technique": "slice"
         },
         {
             "level_learned": 12,
@@ -63,6 +63,7 @@
             "evo_stage": "stage2"
         }
     ],
+    "tags": ["flier", "desert", "grassland", "mountains", "woodland"],
     "shape": "flier",
     "stage": "basic",
     "types": [

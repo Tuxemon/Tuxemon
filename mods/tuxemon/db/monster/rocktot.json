@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 6,
-            "technique": "headbutt"
+            "technique": "hammerhead"
         },
         {
             "level_learned": 8,
@@ -40,7 +40,7 @@
         },
         {
             "level_learned": 32,
-            "technique": "maori"
+            "technique": "greenstone"
         },
         {
             "level_learned": 36,
@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["brute"],
     "shape": "brute",
     "stage": "standalone",
     "types": [

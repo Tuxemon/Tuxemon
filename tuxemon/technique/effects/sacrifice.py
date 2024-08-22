@@ -40,16 +40,15 @@ class SacrificeEffect(TechEffect):
         self, tech: Technique, user: Monster, target: Monster
     ) -> SacrificeEffectResult:
         combat = tech.combat_state
-        value = combat._random_tech_hit if combat else 0.0
+        value = combat._random_tech_hit.get(user, 0.0) if combat else 0.0
         hit = tech.accuracy >= value
+        tech.hit = hit
         if hit:
-            tech.hit = True
             tech.advance_counter_success()
             damage = int(user.current_hp * self.multiplier)
             user.current_hp -= user.current_hp
             target.current_hp -= damage
         else:
-            tech.hit = False
             damage = 0
 
         return {

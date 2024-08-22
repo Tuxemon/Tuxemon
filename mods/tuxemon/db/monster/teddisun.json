@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 2,
-            "technique": "headbutt"
+            "technique": "hammerhead"
         },
         {
             "level_learned": 6,
@@ -53,6 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
+    "tags": ["humanoid"],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [

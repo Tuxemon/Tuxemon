@@ -46,6 +46,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["flier"],
     "shape": "flier",
     "stage": "stage1",
     "types": [

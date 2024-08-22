@@ -50,6 +50,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["flier", "jungle", "mountains"],
     "shape": "flier",
     "stage": "stage1",
     "types": [

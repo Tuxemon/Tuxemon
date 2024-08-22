@@ -238,7 +238,7 @@
     <property name="cond1" value="not char_exists spyder_route7_arnaut"/>
    </properties>
   </object>
-  <object id="235" name="Talk Arnaut" type="event" x="79.9997" y="304" width="16" height="16">
+  <object id="235" name="Talk Arnaut" type="event" x="80" y="304" width="16" height="16">
    <properties>
     <property name="act10" value="pathfind_to_player spyder_route7_arnaut"/>
     <property name="act11" value="translated_dialog spyder_route7_arnaut1"/>

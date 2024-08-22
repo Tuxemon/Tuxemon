@@ -45,6 +45,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["grub", "woodland"],
     "shape": "grub",
     "stage": "stage1",
     "types": [

@@ -42,6 +42,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["blob", "extraplanar", "urban"],
     "shape": "blob",
     "stage": "stage1",
     "types": [

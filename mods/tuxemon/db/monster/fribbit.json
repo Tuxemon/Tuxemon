@@ -50,6 +50,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["polliwog"],
     "shape": "polliwog",
     "stage": "stage1",
     "types": [

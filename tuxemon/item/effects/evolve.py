@@ -27,14 +27,12 @@ class EvolveEffect(ItemEffect):
         self, item: Item, target: Union[Monster, None]
     ) -> EvolveEffectResult:
         assert target and target.owner
-        evolve: bool = False
+        if not target.evolutions:
+            return {"success": False, "num_shakes": 0, "extra": None}
         choices = [d for d in target.evolutions if d.item == item.slug]
         if len(choices) == 1:
             evolution = choices[0].monster_slug
-            evolve = True
         else:
             evolution = random.choice(choices).monster_slug
-            evolve = True
-        if evolve and evolution:
-            target.owner.evolve_monster(target, evolution)
-        return {"success": evolve, "num_shakes": 0, "extra": None}
+        target.owner.evolve_monster(target, evolution)
+        return {"success": True, "num_shakes": 0, "extra": None}

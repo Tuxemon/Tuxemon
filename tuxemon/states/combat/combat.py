@@ -227,6 +227,7 @@ class CombatState(CombatAnimations):
         self._run: bool = False
         self._post_animation_task: Optional[Task] = None
         self._xp_message: Optional[str] = None
+        self._status_icon_cache: dict[str, Sprite] = {}
         self._random_tech_hit: dict[Monster, float] = {}
 
         super().__init__(players, graphics)
@@ -713,47 +714,54 @@ class CombatState(CombatAnimations):
                 (partial(self.alert, message), 0)
             )
 
+    def get_status_icon_position(
+        self, monster: Monster, monsters_in_play: Sequence[Monster]
+    ) -> tuple[float, float]:
+        icon_positions = {
+            (True, 1): prepare.ICON_OPPONENT_SLOT,
+            (True, 0): prepare.ICON_OPPONENT_DEFAULT,
+            (False, 1): prepare.ICON_PLAYER_SLOT,
+            (False, 0): prepare.ICON_PLAYER_DEFAULT,
+        }
+        return icon_positions[
+            (
+                monsters_in_play == self.monsters_in_play_left,
+                monsters_in_play.index(monster),
+            )
+        ]
+
     def reset_status_icons(self) -> None:
         """
         Update/reset status icons for monsters.
 
-        TODO: caching, etc
         """
         # update huds
         for player in self.active_players:
             self.update_hud(player, False)
         # remove all status icons
-        for s in self._status_icons.values():
-            self.sprites.remove(s)
+        self.sprites.remove(*self._status_icons.values())
         self._status_icons.clear()
 
         # add status icons
         for monster in self.active_monsters:
             for status in monster.status:
                 if status.icon:
-                    status_ico: tuple[float, float] = (0.0, 0.0)
-                    if len(self.monsters_in_play_left) > 1:
-                        if monster == self.monsters_in_play_left[0]:
-                            status_ico = prepare.ICON_OPPONENT_DEFAULT
-                        elif monster == self.monsters_in_play_left[1]:
-                            status_ico = prepare.ICON_OPPONENT_SLOT
-                    else:
-                        if monster == self.monsters_in_play_left[0]:
-                            status_ico = prepare.ICON_OPPONENT_DEFAULT
-                    if len(self.monsters_in_play_right) > 1:
-                        if monster == self.monsters_in_play_right[0]:
-                            status_ico = prepare.ICON_PLAYER_SLOT
-                        elif monster == self.monsters_in_play_right[1]:
-                            status_ico = prepare.ICON_PLAYER_DEFAULT
-                    else:
-                        if monster == self.monsters_in_play_right[0]:
-                            status_ico = prepare.ICON_PLAYER_DEFAULT
-                    # load the sprite and add it to the display
-                    icon = self.load_sprite(
-                        status.icon,
-                        layer=200,
-                        center=status_ico,
+                    icon_position = (
+                        self.get_status_icon_position(
+                            monster, self.monsters_in_play_left
+                        )
+                        if monster in self.monsters_in_play_left
+                        else self.get_status_icon_position(
+                            monster, self.monsters_in_play_right
+                        )
                     )
+                    if status.icon not in self._status_icon_cache:
+                        self._status_icon_cache[status.icon] = (
+                            self.load_sprite(
+                                status.icon, layer=200, center=icon_position
+                            )
+                        )
+                    icon = self._status_icon_cache[status.icon]
                     self._status_icons[monster].append(icon)
 
         # update tuxemon balls to reflect status

@@ -51,6 +51,7 @@
             "evo_stage": "stage1"
         }
     ],
+    "tags": ["varmint", "grassland", "jungle", "woodland"],
     "shape": "varmint",
     "stage": "basic",
     "types": [

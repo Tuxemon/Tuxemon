@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="12">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="12">
  <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
  </tileset>
@@ -33,8 +33,6 @@
   <object id="3" type="collision" x="0" y="192" width="112" height="16"/>
   <object id="4" type="collision" x="144" y="192" width="176" height="16"/>
   <object id="5" type="collision" x="0" y="0" width="320" height="48"/>
-  <object id="6" type="collision" x="-16" y="48" width="16" height="144"/>
-  <object id="7" type="collision" x="320" y="48" width="16" height="144"/>
   <object id="8" type="collision" x="304" y="80" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="2" name="Events">

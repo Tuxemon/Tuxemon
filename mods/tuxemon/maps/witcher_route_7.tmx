@@ -122,14 +122,14 @@
   <object id="51" type="collision" x="288" y="320" width="16" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="3" x="208" y="272" width="16" height="16">
+  <object id="3" name="Knight" type="event" x="208" y="272" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc azure_knight,15,17"/>
     <property name="act20" value="char_face azure_knight,left"/>
     <property name="cond10" value="not char_exists azure_knight"/>
    </properties>
   </object>
-  <object id="6" name="Guarding" type="Event" x="224" y="272" width="64" height="16"/>
+  <object id="6" name="Guarding" type="event" x="224" y="272" width="64" height="16"/>
   <object id="7" name="SummontheGuards" type="event" x="0" y="256" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc azure_enforcer1,15,17"/>

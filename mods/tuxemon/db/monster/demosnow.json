@@ -39,6 +39,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["sprite", "extraplanar"],
     "shape": "sprite",
     "stage": "stage1",
     "types": [

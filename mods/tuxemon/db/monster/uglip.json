@@ -53,6 +53,7 @@
     ],  
     "evolutions": [],
     "history": [],
+    "tags": ["piscine", "coastal", "freshwater", "sea"],
     "shape": "piscine",
     "stage": "standalone",
     "types": [

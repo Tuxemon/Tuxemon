@@ -59,6 +59,7 @@
             "evo_stage": "basic"
         }
     ],
+    "tags": ["flier", "desert", "grassland", "mountains", "woodland"],
     "shape": "flier",
     "stage": "stage1",
     "types": [

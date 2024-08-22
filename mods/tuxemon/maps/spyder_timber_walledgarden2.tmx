@@ -33,7 +33,7 @@
   <object id="9" type="collision" x="80" y="112" width="96" height="16"/>
   <object id="10" type="collision" x="160" y="272" width="32" height="48"/>
   <object id="43" type="collision" x="208" y="144" width="16" height="32"/>
-  <object id="46" type="collision" x="2.84217e-14" y="0" width="256" height="112"/>
+  <object id="46" type="collision" x="0" y="0" width="256" height="112"/>
   <object id="51" type="collision" x="64" y="272" width="32" height="48"/>
   <object id="52" type="collision" x="0" y="272" width="16" height="48"/>
   <object id="53" type="collision" x="240" y="272" width="16" height="48"/>

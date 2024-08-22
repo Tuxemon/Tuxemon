@@ -410,7 +410,7 @@
     <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
-  <object id="314" name="Teleport to Routed 3" type="event" x="8.88178e-16" y="512" width="16" height="16">
+  <object id="314" name="Teleport to Routed 3" type="event" x="0" y="512" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_routed.tmx,39,32,0.3"/>
     <property name="act2" value="char_face player,left"/>
@@ -418,7 +418,7 @@
     <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
-  <object id="315" name="Teleport to Routed 4" type="event" x="8.88178e-16" y="528" width="16" height="16">
+  <object id="315" name="Teleport to Routed 4" type="event" x="0" y="528" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_routed.tmx,39,33,0.3"/>
     <property name="act2" value="char_face player,left"/>

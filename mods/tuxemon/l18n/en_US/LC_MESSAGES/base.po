@@ -7938,6 +7938,9 @@ msgstr "Did you know that the first spectacles were made of beryl, not glass? \n
 msgid "spyder_leather_maniac" 
 msgstr "How is your adventure so far? \n ... \n Wow, so talkative! You are really coming out of your shell." 
 
+msgid "spyder_route3_boulder"
+msgstr "I need to find something in my bag that can help me push this boulder... Ah, if only I had the right item..."
+
 msgid "spyder_route3_sign"
 msgstr "Rehabilitation will begin as soon as possible. \n Please stop nagging us."
 

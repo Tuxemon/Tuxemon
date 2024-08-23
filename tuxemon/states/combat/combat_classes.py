@@ -69,6 +69,32 @@ class EnqueuedAction(NamedTuple):
     target: Monster
 
 
+def get_action_sort_key(action: EnqueuedAction) -> tuple[int, int]:
+    """
+    Returns a tuple representing the sort key for the given action.
+
+    The sort key is a tuple of two integers: the primary order and the secondary order.
+    The primary order is determined by the action's sort type, and the secondary order
+    is determined by the user's speed test result (if applicable).
+
+    If the action's method is None, or if the action's user is None, the function returns
+    a default sort key of (0, 0).
+    """
+    if action.method is None:
+        return 0, 0
+    else:
+        action_sort_type = action.method.sort
+        primary_order = prepare.SORT_ORDER.index(action_sort_type)
+
+        if action_sort_type in ["meta", "potion"]:
+            return primary_order, 0
+        else:
+            if action.user is None:
+                return 0, 0
+            else:
+                return primary_order, -action.user.speed_test(action)
+
+
 class ActionQueue:
 
     def __init__(self) -> None:
@@ -103,34 +129,14 @@ class ActionQueue:
         self._action_queue.clear()
 
     def sort(self) -> None:
-        """Sorts the queue based on the action's sort key (game rules).
-        * Techniques that damage are sorted by monster speed
-        * Items are sorted by trainer speed
         """
-
-        def get_action_sort_key(action: EnqueuedAction) -> tuple[int, int]:
-            if action.method is None:
-                return 0, 0
-            else:
-                action_sort_type = action.method.sort
-                primary_order = prepare.SORT_ORDER.index(action_sort_type)
-
-                if action_sort_type in ["meta", "potion"]:
-                    return primary_order, 0
-                else:
-                    if action.user is None:
-                        return 0, 0
-                    else:
-                        return primary_order, action.user.speed_test(action)
-
+        Sorts the queue based on the action's sort key (game rules).
+        * Techniques that damage are sorted by monster speed (fastest monsters first)
+        * Items are sorted by trainer speed (fastest trainers first)
+        * Actions are ordered from lowest to highest priority, with the highest priority
+        actions last in the queue.
+        """
         self._action_queue.sort(key=get_action_sort_key, reverse=True)
-
-        # Custom sorting to handle same primary order
-        for i in range(len(self._action_queue) - 1):
-            if self._action_queue[i][0] == self._action_queue[i + 1][0]:
-                self._action_queue[i : i + 2] = sorted(
-                    self._action_queue[i : i + 2], key=lambda x: (x[0], -x[1])
-                )
 
     def swap(self, old: Monster, new: Monster) -> None:
         """Swaps the target of all actions in the queue from old to new."""

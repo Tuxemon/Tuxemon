@@ -29,7 +29,8 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
     from tuxemon.session import Session
-    from tuxemon.states.combat.combat import CombatState, DamageMap
+    from tuxemon.states.combat.combat import CombatState
+    from tuxemon.states.combat.combat_classes import DamageReport
 
 
 logger = logging.getLogger()
@@ -249,7 +250,7 @@ def award_money(loser: Monster, winner: Monster) -> int:
 
 
 def award_experience(
-    loser: Monster, winner: Monster, damages: list[DamageMap]
+    loser: Monster, winner: Monster, damages: list[DamageReport]
 ) -> int:
     """
     It calculates experience to be awarded. It allows multiple methods.
@@ -337,7 +338,7 @@ def distribute_experience(
     return 0
 
 
-def get_winners(loser: Monster, damages: list[DamageMap]) -> set[Monster]:
+def get_winners(loser: Monster, damages: list[DamageReport]) -> set[Monster]:
     """
     It extracts from the damages the monster/s who hit the loser.
 

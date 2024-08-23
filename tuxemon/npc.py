@@ -37,7 +37,7 @@ if TYPE_CHECKING:
     import pygame
 
     from tuxemon.item.economy import Economy
-    from tuxemon.states.combat.combat import EnqueuedAction
+    from tuxemon.states.combat.combat_classes import EnqueuedAction
     from tuxemon.states.world.worldstate import WorldState
 
 

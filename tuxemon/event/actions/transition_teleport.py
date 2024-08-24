@@ -45,7 +45,8 @@ class TransitionTeleportAction(EventAction):
 
         if world.npcs:
             for _npc in world.npcs:
-                world.npcs.remove(_npc)
+                if _npc.moving or _npc.path:
+                    world.npcs.remove(_npc)
 
         if world.delayed_teleport:
             self.stop()

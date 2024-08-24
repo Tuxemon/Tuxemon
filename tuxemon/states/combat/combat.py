@@ -672,6 +672,7 @@ class CombatState(CombatAnimations):
                             )
                         )
                     icon = self._status_icon_cache[status.icon]
+                    self.sprites.add(icon, layer=200)
                     self._status_icons[monster].append(icon)
 
         # update tuxemon balls to reflect status

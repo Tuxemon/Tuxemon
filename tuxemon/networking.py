@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import logging
 import pprint
+from collections.abc import Sequence
 from datetime import datetime
 from typing import TYPE_CHECKING, Any, Literal, Optional, TypedDict
 
@@ -14,6 +15,7 @@ import pygame as pg
 from tuxemon import prepare
 from tuxemon.middleware import Controller, Multiplayer
 from tuxemon.npc import NPC
+from tuxemon.platform.const import buttons
 from tuxemon.session import local_session
 from tuxemon.states import world
 
@@ -31,6 +33,7 @@ except ImportError:
 
 if TYPE_CHECKING:
     from tuxemon.client import LocalPygameClient
+    from tuxemon.platform.events import PlayerInput
 
 
 class CharDict(TypedDict):
@@ -293,56 +296,33 @@ class ControllerServer:
                 if self.game.current_state:
                     self.game.current_state.process_event(controller_event)
 
-    def net_controller_loop(self) -> Any:
+    def net_controller_loop(self) -> Sequence[PlayerInput]:
         """
         Process all network events from controllers and pass them
         down to current State. All network events are converted to keyboard
         events for compatibility.
         """
+        event_map = {
+            "KEYDOWN:up": PlayerInput(button=buttons.UP, value=1),
+            "KEYUP:up": PlayerInput(button=buttons.UP, value=0),
+            "KEYDOWN:down": PlayerInput(button=buttons.DOWN, value=1),
+            "KEYUP:down": PlayerInput(button=buttons.DOWN, value=0),
+            "KEYDOWN:left": PlayerInput(button=buttons.LEFT, value=1),
+            "KEYUP:left": PlayerInput(button=buttons.LEFT, value=0),
+            "KEYDOWN:right": PlayerInput(button=buttons.RIGHT, value=1),
+            "KEYUP:right": PlayerInput(button=buttons.RIGHT, value=0),
+            "KEYDOWN:enter": PlayerInput(button=buttons.A, value=1),
+            "KEYUP:enter": PlayerInput(button=buttons.A, value=0),
+            "KEYDOWN:esc": PlayerInput(button=buttons.BACK, value=1),
+            "KEYUP:esc": PlayerInput(button=buttons.BACK, value=0),
+        }
         events = []
         for event_data in self.network_events:
-            if event_data == "KEYDOWN:up":
-                event = self.game.keyboard_events["KEYDOWN"]["up"]
-
-            elif event_data == "KEYUP:up":
-                event = self.game.keyboard_events["KEYUP"]["up"]
-
-            elif event_data == "KEYDOWN:down":
-                event = self.game.keyboard_events["KEYDOWN"]["down"]
-
-            elif event_data == "KEYUP:down":
-                event = self.game.keyboard_events["KEYUP"]["down"]
-
-            elif event_data == "KEYDOWN:left":
-                event = self.game.keyboard_events["KEYDOWN"]["left"]
-
-            elif event_data == "KEYUP:left":
-                event = self.game.keyboard_events["KEYUP"]["left"]
-
-            elif event_data == "KEYDOWN:right":
-                event = self.game.keyboard_events["KEYDOWN"]["right"]
-
-            elif event_data == "KEYUP:right":
-                event = self.game.keyboard_events["KEYUP"]["right"]
-
-            elif event_data == "KEYDOWN:enter":
-                event = self.game.keyboard_events["KEYDOWN"]["enter"]
-
-            elif event_data == "KEYUP:enter":
-                event = self.game.keyboard_events["KEYUP"]["enter"]
-
-            elif event_data == "KEYDOWN:esc":
-                event = self.game.keyboard_events["KEYDOWN"]["escape"]
-
-            elif event_data == "KEYUP:esc":
-                event = self.game.keyboard_events["KEYUP"]["escape"]
-
-            else:
-                logger.debug("Unknown network event: " + str(event_data))
-                event = None
-
+            event = event_map.get(event_data)
             if event:
                 events.append(event)
+            else:
+                logger.warning(f"Unknown network event: {event_data}")
 
         # Clear out the network events list once all events have been processed.
         self.network_events = []

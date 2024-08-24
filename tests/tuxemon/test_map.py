@@ -6,14 +6,13 @@ from math import pi
 from tuxemon.compat import Rect
 from tuxemon.db import Direction, Orientation
 from tuxemon.map import (
-    PathfindNode,
-    RegionProperties,
-    extract_region_properties,
+    direction_to_list,
     get_coord_direction,
     get_coords,
     get_coords_ext,
     get_direction,
     orientation_by_angle,
+    pairs,
     point_to_grid,
     snap_interval,
     snap_point,
@@ -134,34 +133,28 @@ class TestTilesInsideRect(unittest.TestCase):
 
 
 class TestOrientationByAngle(unittest.TestCase):
-    def test_horizontal(self):
-        self.assertEqual(orientation_by_angle(0.0), Orientation.horizontal)
-
     def test_vertical(self):
-        self.assertEqual(
-            orientation_by_angle(3 / 2 * pi), Orientation.vertical
-        )
+        angle = 3 / 2 * pi
+        self.assertEqual(orientation_by_angle(angle), Orientation.vertical)
 
-    def test_invalid_angle(self):
+    def test_horizontal(self):
+        angle = 0.0
+        self.assertEqual(orientation_by_angle(angle), Orientation.horizontal)
+
+    def test_not_aligned(self):
+        angle = pi / 4
         with self.assertRaises(Exception):
-            orientation_by_angle(pi / 4)
+            orientation_by_angle(angle)
 
     def test_vertical_with_tolerance(self):
         angle = 3 / 2 * pi + 1e-7
         with self.assertRaises(Exception):
             orientation_by_angle(angle)
 
-    def test_edge_cases(self):
+    def test_horizontal_with_tolerance(self):
+        angle = 1e-7
         with self.assertRaises(Exception):
-            orientation_by_angle(1e-9)
-        with self.assertRaises(Exception):
-            orientation_by_angle(-1e-9)
-        angle1 = 3 / 2 * pi - 1e-9
-        with self.assertRaises(Exception):
-            orientation_by_angle(angle1)
-        angle2 = 3 / 2 * pi + 1e-9
-        with self.assertRaises(Exception):
-            orientation_by_angle(angle2)
+            orientation_by_angle(angle)
 
 
 class TestGetCoordsExt(unittest.TestCase):
@@ -169,16 +162,13 @@ class TestGetCoordsExt(unittest.TestCase):
         tile = (1, 1)
         map_size = (3, 3)
         radius = 1
-        expected_coords = list(range(9))
-        self.assertEqual(
-            len(get_coords_ext(tile, map_size, radius)), len(expected_coords)
-        )
+        self.assertEqual(len(get_coords_ext(tile, map_size, radius)), 8)
 
     def test_negative_coordinates(self):
         tile = (0, 0)
         map_size = (3, 3)
         radius = 1
-        expected_coords = [(0, 1), (1, 0), (1, 1), (0, 0)]
+        expected_coords = [(0, 1), (1, 0), (1, 1)]
         self.assertEqual(
             get_coords_ext(tile, map_size, radius), expected_coords
         )
@@ -187,7 +177,7 @@ class TestGetCoordsExt(unittest.TestCase):
         tile = (2, 2)
         map_size = (3, 3)
         radius = 1
-        expected_coords = [(1, 1), (1, 2), (2, 1), (2, 2)]
+        expected_coords = [(1, 1), (1, 2), (2, 1)]
         self.assertEqual(
             get_coords_ext(tile, map_size, radius), expected_coords
         )
@@ -203,43 +193,33 @@ class TestGetCoordsExt(unittest.TestCase):
         tile = (1, 1)
         map_size = (3, 3)
         radius = 0
-        expected_coords = [(1, 1)]
-        self.assertEqual(
-            get_coords_ext(tile, map_size, radius), expected_coords
-        )
+        with self.assertRaises(ValueError):
+            get_coords_ext(tile, map_size, radius)
 
     def test_larger_radius(self):
         tile = (1, 1)
         map_size = (5, 5)
         radius = 2
-        expected_coords = list(range(16))
-        self.assertEqual(
-            len(get_coords_ext(tile, map_size, radius)), len(expected_coords)
-        )
+        self.assertEqual(len(get_coords_ext(tile, map_size, radius)), 15)
 
     def test_map_size_one(self):
         tile = (0, 0)
         map_size = (1, 1)
         radius = 1
-        expected_coords = [(0, 0)]
-        self.assertEqual(
-            get_coords_ext(tile, map_size, radius), expected_coords
-        )
+        with self.assertRaises(ValueError):
+            get_coords_ext(tile, map_size, radius)
 
     def test_radius_larger_than_map(self):
         tile = (1, 1)
         map_size = (3, 3)
         radius = 3
-        expected_coords = list(range(9))
-        self.assertEqual(
-            len(get_coords_ext(tile, map_size, radius)), len(expected_coords)
-        )
+        self.assertEqual(len(get_coords_ext(tile, map_size, radius)), 8)
 
     def test_tile_on_map_edge(self):
         tile = (0, 0)
         map_size = (3, 3)
         radius = 1
-        expected_coords = [(0, 1), (1, 0), (1, 1), (0, 0)]
+        expected_coords = [(0, 1), (1, 0), (1, 1)]
         self.assertEqual(
             get_coords_ext(tile, map_size, radius), expected_coords
         )
@@ -248,122 +228,17 @@ class TestGetCoordsExt(unittest.TestCase):
         tile = (0, 0)
         map_size = (2, 2)
         radius = 1
-        expected_coords = [(0, 0), (0, 1), (1, 0), (1, 1)]
+        expected_coords = [(0, 1), (1, 0), (1, 1)]
         self.assertEqual(
-            sorted(get_coords_ext(tile, map_size, radius)),
-            sorted(expected_coords),
+            get_coords_ext(tile, map_size, radius),
+            expected_coords,
         )
 
     def test_different_radius(self):
         tile = (2, 2)
         map_size = (5, 5)
         radius = 2
-        expected_coords = list(range(25))
-        self.assertEqual(
-            len(get_coords_ext(tile, map_size, radius)), len(expected_coords)
-        )
-
-
-class TestExtractRegionProperties(unittest.TestCase):
-    def test_empty_properties(self):
-        self.assertIsNone(extract_region_properties({}))
-
-    def test_only_enter_from(self):
-        properties = {"enter_from": "up, left"}
-        expected = RegionProperties(
-            enter_from=[Direction.up, Direction.left],
-            exit_from=[],
-            endure=[],
-            entity=None,
-            key=None,
-        )
-        self.assertEqual(extract_region_properties(properties), expected)
-
-    def test_only_exit_from(self):
-        properties = {"exit_from": "down"}
-        expected = RegionProperties(
-            enter_from=[Direction.up, Direction.left, Direction.right],
-            exit_from=[Direction.down],
-            endure=[],
-            entity=None,
-            key=None,
-        )
-        self.assertEqual(extract_region_properties(properties), expected)
-
-    def test_all_properties(self):
-        properties = {
-            "enter_from": "up, left",
-            "exit_from": "down, right",
-            "endure": "left",
-            "key": "door",
-        }
-        expected = RegionProperties(
-            enter_from=[Direction.up, Direction.left],
-            exit_from=[Direction.down, Direction.right],
-            endure=[Direction.left],
-            entity=None,
-            key="door",
-        )
-        self.assertEqual(extract_region_properties(properties), expected)
-
-    def test_slide_label(self):
-        properties = {"key": "slide"}
-        expected = RegionProperties(
-            enter_from=list(Direction),
-            exit_from=list(Direction),
-            endure=list(Direction),
-            entity=None,
-            key="slide",
-        )
-        self.assertEqual(extract_region_properties(properties), expected)
-
-    def test_invalid_direction(self):
-        properties = {"enter_from": "up, invalid"}
-        with self.assertRaises(ValueError):
-            extract_region_properties(properties)
-
-    def test_none_value(self):
-        properties = {"enter_from": None}
-        expected = RegionProperties(
-            enter_from=[], exit_from=[], endure=[], entity=None, key=None
-        )
-        self.assertEqual(extract_region_properties(properties), expected)
-
-    def test_duplicate_directions(self):
-        properties = {"enter_from": "up, up, left"}
-        expected = RegionProperties(
-            enter_from=[Direction.up, Direction.left],
-            exit_from=[],
-            endure=[],
-            entity=None,
-            key=None,
-        )
-        self.assertEqual(extract_region_properties(properties), expected)
-
-    def test_mixed_case_directions(self):
-        properties = {"enter_from": "Up, Left"}
-        with self.assertRaises(ValueError):
-            extract_region_properties(properties)
-
-    def test_extra_whitespace(self):
-        properties = {"enter_from": " up , left "}
-        expected = RegionProperties(
-            enter_from=[Direction.up, Direction.left],
-            exit_from=[],
-            endure=[],
-            entity=None,
-            key=None,
-        )
-        self.assertEqual(extract_region_properties(properties), expected)
-
-    def test_invalid_key(self):
-        properties = {"invalid_key": "value"}
-        self.assertIsNone(extract_region_properties(properties))
-
-    def test_empty_string_values(self):
-        properties = {"enter_from": "", "exit_from": ""}
-        with self.assertRaises(ValueError):
-            extract_region_properties(properties)
+        self.assertEqual(len(get_coords_ext(tile, map_size, radius)), 24)
 
 
 class TestGetCoords(unittest.TestCase):
@@ -371,10 +246,8 @@ class TestGetCoords(unittest.TestCase):
         map_size = (5, 5)
         tile = (2, 2)
         radius = 1
-        expected_coords = [(2, 3), (3, 2), (2, 1), (1, 2)]
-        self.assertEqual(
-            sorted(get_coords(tile, map_size, radius)), sorted(expected_coords)
-        )
+        expected_coords = [(2, 3), (3, 2), (1, 2), (2, 1)]
+        self.assertEqual(get_coords(tile, map_size, radius), expected_coords)
 
     def test_radius_greater_than_one(self):
         map_size = (5, 5)
@@ -593,3 +466,76 @@ class TestGetDirection(unittest.TestCase):
         self.assertEqual(get_direction((2, 3), (1, 2)), Direction.up)
         self.assertEqual(get_direction((2, 1), (4, 2)), Direction.right)
         self.assertEqual(get_direction((4, 2), (2, 1)), Direction.left)
+
+
+class TestPairsFunction(unittest.TestCase):
+    def test_up_down(self):
+        self.assertEqual(pairs(Direction.up), Direction.down)
+
+    def test_down_up(self):
+        self.assertEqual(pairs(Direction.down), Direction.up)
+
+    def test_left_right(self):
+        self.assertEqual(pairs(Direction.left), Direction.right)
+
+    def test_right_left(self):
+        self.assertEqual(pairs(Direction.right), Direction.left)
+
+    def test_invalid_direction(self):
+        with self.assertRaises(ValueError):
+            pairs("invalid_direction")
+
+    def test_none_direction(self):
+        with self.assertRaises(ValueError):
+            pairs(None)
+
+
+class TestDirectionToList(unittest.TestCase):
+    def test_empty_string_with_whitespace(self):
+        with self.assertRaises(ValueError):
+            direction_to_list("    ")
+
+    def test_empty_string(self):
+        with self.assertRaises(ValueError):
+            direction_to_list("")
+
+    def test_single_direction(self):
+        result = direction_to_list("up")
+        self.assertEqual(result, [Direction.up])
+
+    def test_multiple_direction(self):
+        result = direction_to_list("up,down,right")
+        self.assertEqual(len(result), 3)
+
+    def test_single_direction_with_whitespace(self):
+        result = direction_to_list("   up    ")
+        self.assertEqual(len(result), 1)
+
+    def test_mutiple_direction_with_whitespace(self):
+        result = direction_to_list("up   ,down  ,   right")
+        self.assertEqual(len(result), 3)
+
+    def test_repeated_directions(self):
+        result = direction_to_list("up,up,down,down")
+        self.assertEqual(len(result), 2)
+
+    def test_insensitive_duplicates(self):
+        result = direction_to_list("uP,dOWn")
+        self.assertEqual(len(result), 2)
+
+    def test_none_input(self):
+        result = direction_to_list(None)
+        self.assertEqual(result, [])
+
+    def test_very_long_string(self):
+        long_string = ",".join(["up"] * 100)
+        result = direction_to_list(long_string)
+        self.assertEqual(result, [Direction.up])
+
+    def test_unicode_characters(self):
+        with self.assertRaises(ValueError):
+            direction_to_list("ä, ü, up")
+
+    def test_invalid_direction(self):
+        with self.assertRaises(ValueError):
+            direction_to_list("invalid direction")

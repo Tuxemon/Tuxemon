@@ -88,10 +88,10 @@ def get_coords(
     filtered out. If no valid coordinates, then it'll be raised a ValueError.
 
      -  | 1,0 |  -
-    0,1 | 1,1 | 2,1 |
+    0,1 |     | 2,1 |
      -  | 1,2 |  -
 
-    eg. radius = 1 (1,0),(0,1),(1,2),(2,1)
+    eg. origin (1,1), radius = 1 = (1,0),(0,1),(1,2),(2,1)
 
     Parameters:
         tile: Tile coordinates
@@ -184,8 +184,10 @@ def get_direction(
     """
     y_offset = base[1] - target[1]
     x_offset = base[0] - target[0]
+    # Is it further away vertically or horizontally?
+    look_on_y_axis = abs(y_offset) >= abs(x_offset)
 
-    if abs(y_offset) >= abs(x_offset):
+    if look_on_y_axis:
         return Direction.up if y_offset > 0 else Direction.down
     else:
         return Direction.left if x_offset > 0 else Direction.right
@@ -202,16 +204,16 @@ def pairs(direction: Direction) -> Direction:
         Complimentary direction.
 
     """
-    if direction == Direction.up:
-        return Direction.down
-    elif direction == Direction.down:
-        return Direction.up
-    elif direction == Direction.left:
-        return Direction.right
-    elif direction == Direction.right:
-        return Direction.left
-    else:
+    opposites = {
+        Direction.up: Direction.down,
+        Direction.down: Direction.up,
+        Direction.left: Direction.right,
+        Direction.right: Direction.left,
+    }
+    opposite = opposites.get(direction)
+    if opposite is None:
         raise ValueError(f"{direction} doesn't exist.")
+    return opposite
 
 
 def proj(point: Vector3) -> Vector2:
@@ -455,11 +457,10 @@ def get_coords_ext(
     filtered out. If no valid coordinates, then it'll be raised a ValueError.
 
     0,0 | 1,0 | 2,0 |
-    0,1 | 1,1 | 2,1 |
+    0,1 |     | 2,1 |
     0,2 | 1,2 | 2,2 |
 
-    eg. radius = 1
-    (0,0),(1,0),(2,0),(0,1),(1,1),(2,1),(0,2),(1,2),(2,2)
+    eg. origin (1,1), radius = 1 = (0,0),(1,0),(2,0),(0,1),(2,1),(0,2),(1,2),(2,2)
 
     Parameters:
         tile: Tile coordinates
@@ -479,7 +480,11 @@ def get_coords_ext(
     for dx in range(-radius, radius + 1):
         for dy in range(-radius, radius + 1):
             new_x, new_y = x + dx, y + dy
-            if 0 <= new_x < width and 0 <= new_y < height:
+            if (
+                0 <= new_x < width
+                and 0 <= new_y < height
+                and (new_x, new_y) != (x, y)
+            ):
                 coords.add((new_x, new_y))
 
     if not coords:
@@ -501,12 +506,12 @@ def direction_to_list(direction: Optional[str]) -> list[Direction]:
     """
     if direction is None:
         return []
-    seen = set()
-    return [
-        Direction(d.strip())
-        for d in direction.split(",")
-        if not (d.strip() in seen or seen.add(d.strip()))
-    ]
+    return sorted(
+        [
+            Direction(d)
+            for d in {d.strip().lower() for d in direction.split(",")}
+        ]
+    )
 
 
 class PathfindNode:

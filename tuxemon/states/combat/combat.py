@@ -159,7 +159,6 @@ class CombatState(CombatAnimations):
         self._action_queue = ActionQueue()
         self._decision_queue: list[Monster] = []
         self._pending_queue: list[EnqueuedAction] = []
-        self._log_action: list[tuple[int, EnqueuedAction]] = []
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
         self._layout = dict()  # player => home areas on screen
         self._turn: int = 0
@@ -747,8 +746,7 @@ class CombatState(CombatAnimations):
 
         """
         action = EnqueuedAction(user, technique, target)
-        self._action_queue.enqueue(action)
-        self._log_action.append((self._turn, action))
+        self._action_queue.enqueue(action, self._turn)
 
     def remove_monster_from_play(
         self,
@@ -1243,8 +1241,8 @@ class CombatState(CombatAnimations):
 
         # clear action queue
         self._action_queue.clear_queue()
+        self._action_queue.clear_history()
         self._pending_queue = list()
-        self._log_action = list()
         self._damage_map = list()
 
     def end_combat(self) -> None:

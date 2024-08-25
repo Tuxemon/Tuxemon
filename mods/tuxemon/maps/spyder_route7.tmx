@@ -512,7 +512,7 @@
     <property name="cond1" value="is variable_set route7pia:yes"/>
    </properties>
   </object>
-  <object id="265" name="Post Talk Conrad" type="event" x="416" y="48.3333" width="16" height="16">
+  <object id="265" name="Post Talk Conrad" type="event" x="416" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_route7_conrad2"/>
     <property name="behav1" value="talk spyder_route7_conrad"/>

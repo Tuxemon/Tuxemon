@@ -325,7 +325,7 @@
     <property name="cond2" value="is variable_set tealucy:yes"/>
    </properties>
   </object>
-  <object id="73" name="Post Talk Lyle" type="event" x="8.88178e-15" y="112" width="16" height="16">
+  <object id="73" name="Post Talk Lyle" type="event" x="0" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_mansion_pirate2"/>
     <property name="behav1" value="talk spyder_mansion_lyle"/>

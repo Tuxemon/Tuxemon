@@ -51,7 +51,7 @@ def _is_object_type(obj_name: str) -> bool:
 def _is_valid_integer(value: str) -> bool:
     try:
         int(value)
-        return True
+        return value == str(int(value))
     except ValueError:
         return False
 

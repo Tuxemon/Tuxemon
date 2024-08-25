@@ -73,7 +73,7 @@
     <property name="cond1" value="not char_exists spyder_scoop_alyssa"/>
    </properties>
   </object>
-  <object id="19" name="Post Talk Alyssa" type="event" x="80.1818" y="127.818" width="16" height="16">
+  <object id="19" name="Post Talk Alyssa" type="event" x="80" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_alyssa2"/>
     <property name="behav1" value="talk spyder_scoop_alyssa"/>

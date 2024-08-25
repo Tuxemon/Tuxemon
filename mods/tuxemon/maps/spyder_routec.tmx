@@ -496,7 +496,7 @@
     <property name="cond1" value="is variable_set searoutecwade:yes"/>
    </properties>
   </object>
-  <object id="288" name="Post Talk Stafford" type="event" x="416" y="544.333" width="16" height="16">
+  <object id="288" name="Post Talk Stafford" type="event" x="416" y="544" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_searoutec_stafford2"/>
     <property name="behav1" value="talk spyder_searoutec_stafford"/>

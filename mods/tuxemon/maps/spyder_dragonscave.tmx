@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="106">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="111">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -483,6 +483,41 @@
     <property name="act1" value="random_encounter dragonscave,0.6"/>
     <property name="cond1" value="not variable_set dragonscavebenden:yes"/>
     <property name="cond2" value="is check_char_parameter player,moving,1"/>
+   </properties>
+  </object>
+  <object id="106" name="Post Talk Cailin" type="event" x="176" y="528" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dragonscave_cailin2"/>
+    <property name="behav1" value="talk spyder_dragonscave_cailin"/>
+    <property name="cond1" value="is variable_set dragonscavecailin:yes"/>
+   </properties>
+  </object>
+  <object id="107" name="Post Talk Daenny" type="event" x="192" y="528" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dragonscave_daenny2"/>
+    <property name="behav1" value="talk spyder_dragonscave_daenny"/>
+    <property name="cond1" value="is variable_set dragonscavedaenny:yes"/>
+   </properties>
+  </object>
+  <object id="108" name="Post Talk Tomas" type="event" x="176" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dragonscave_tomas2"/>
+    <property name="behav1" value="talk spyder_dragonscave_tomas"/>
+    <property name="cond1" value="is variable_set dragonscavetomas:yes"/>
+   </properties>
+  </object>
+  <object id="109" name="Post Talk Griffin" type="event" x="192" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dragonscave_griffin2"/>
+    <property name="behav1" value="talk spyder_dragonscave_griffin"/>
+    <property name="cond1" value="is variable_set dragonscavegriffin:yes"/>
+   </properties>
+  </object>
+  <object id="110" name="Post Talk Lessa" type="event" x="208" y="528" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_dragonscave_lessa2"/>
+    <property name="behav1" value="talk spyder_dragonscave_lessa"/>
+    <property name="cond1" value="is variable_set dragonscavelessa:yes"/>
    </properties>
   </object>
  </objectgroup>

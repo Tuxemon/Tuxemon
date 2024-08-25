@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="32" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="109">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="32" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="115">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -371,6 +371,48 @@
     <property name="act6" value="set_variable greenwashgluck:yes"/>
     <property name="cond1" value="not variable_set greenwashgluck:yes"/>
     <property name="cond2" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="109" name="Post Talk Alex" type="event" x="144" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_alex2"/>
+    <property name="behav1" value="talk spyder_greenwash_alex"/>
+    <property name="cond1" value="is variable_set greenwashalex:yes"/>
+   </properties>
+  </object>
+  <object id="110" name="Post Talk Louis" type="event" x="144" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_louis2"/>
+    <property name="behav1" value="talk spyder_greenwash_louis"/>
+    <property name="cond1" value="is variable_set greenwashlouis:yes"/>
+   </properties>
+  </object>
+  <object id="111" name="Post Talk Lewis" type="event" x="256" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_lewis2"/>
+    <property name="behav1" value="talk spyder_greenwash_lewis"/>
+    <property name="cond1" value="is variable_set greenwashlewis:yes"/>
+   </properties>
+  </object>
+  <object id="112" name="Post Talk Hunt" type="event" x="304" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_hunt2"/>
+    <property name="behav1" value="talk spyder_greenwash_hunt"/>
+    <property name="cond1" value="is variable_set greenwashhunt:yes"/>
+   </properties>
+  </object>
+  <object id="113" name="Post Talk Gluck" type="event" x="448" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_gluck2"/>
+    <property name="behav1" value="talk spyder_greenwash_gluck"/>
+    <property name="cond1" value="is variable_set greenwashgluck:yes"/>
+   </properties>
+  </object>
+  <object id="114" name="Post Talk Gregor" type="event" x="352" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_gregor2"/>
+    <property name="behav1" value="talk spyder_greenwash_gregor"/>
+    <property name="cond1" value="is variable_set greenwashgregor:yes"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="21" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="71">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="21" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="76">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -102,14 +102,14 @@
     <property name="cond1" value="not variable_set scooppaine:yes"/>
    </properties>
   </object>
-  <object id="51" name="Create Rubid" type="event" x="224" y="160" width="16" height="16">
+  <object id="51" name="Create Rubid" type="event" x="208" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_rubid,13,10"/>
     <property name="act2" value="char_face spyder_scoop_rubid,left"/>
     <property name="cond1" value="not char_exists spyder_scoop_rubid"/>
    </properties>
   </object>
-  <object id="52" name="Talk Rubid" type="event" x="208" y="160" width="16" height="16">
+  <object id="52" name="Talk Rubid" type="event" x="224" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_rubid1"/>
     <property name="act2" value="add_monster birdling,35,spyder_scoop_rubid,5,10"/>
@@ -250,6 +250,41 @@
     <property name="act6" value="set_variable scooprubid:yes"/>
     <property name="cond1" value="not variable_set scooprubid:yes"/>
     <property name="cond2" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="71" name="Post Talk Turner" type="event" x="32" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_scoop_turner2"/>
+    <property name="behav1" value="talk spyder_scoop_turner"/>
+    <property name="cond1" value="is variable_set scoopturner:yes"/>
+   </properties>
+  </object>
+  <object id="72" name="Post Talk Lanth" type="event" x="32" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_scoop_lanth2"/>
+    <property name="behav1" value="talk spyder_scoop_lanth"/>
+    <property name="cond1" value="is variable_set scooplanth:yes"/>
+   </properties>
+  </object>
+  <object id="73" name="Post Talk Paine" type="event" x="96" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_scoop_paine2"/>
+    <property name="behav1" value="talk spyder_scoop_paine"/>
+    <property name="cond1" value="is variable_set scooppaine:yes"/>
+   </properties>
+  </object>
+  <object id="74" name="Post Talk Rubid" type="event" x="224" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_scoop_rubid2"/>
+    <property name="behav1" value="talk spyder_scoop_rubid"/>
+    <property name="cond1" value="is variable_set scooprubid:yes"/>
+   </properties>
+  </object>
+  <object id="75" name="Post Talk Berys" type="event" x="320" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_scoop_berys2"/>
+    <property name="behav1" value="talk spyder_scoop_berys"/>
+    <property name="cond1" value="is variable_set scoopberys:yes"/>
    </properties>
   </object>
  </objectgroup>

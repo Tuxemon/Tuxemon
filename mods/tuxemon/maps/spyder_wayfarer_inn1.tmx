@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="82">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="89">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -34,10 +34,9 @@
  <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="1" type="collision" x="0" y="0" width="16" height="256"/>
   <object id="5" type="collision" x="16" y="0" width="160" height="32"/>
-  <object id="8" type="collision" x="32" y="176" width="96" height="16"/>
+  <object id="8" type="collision" x="32" y="176" width="192" height="16"/>
   <object id="9" type="collision" x="32" y="192" width="32" height="16"/>
   <object id="10" type="collision" x="112" y="192" width="16" height="64"/>
-  <object id="12" type="collision" x="128" y="176" width="112" height="16"/>
   <object id="13" type="collision" x="224" y="0" width="16" height="176"/>
   <object id="14" type="collision" x="176" y="0" width="32" height="16"/>
   <object id="15" type="collision" x="208" y="0" width="16" height="32"/>
@@ -159,7 +158,7 @@
     <property name="cond1" value="not variable_set quebotbot:yes"/>
    </properties>
   </object>
-  <object id="54" name="Talk Maniac - Got Botbot" type="event" x="112" y="112" width="16" height="16">
+  <object id="54" name="Talk Maniac - Got Botbot" type="event" x="112" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_wayfarer1_maniac1"/>
     <property name="act2" value="add_monster botbot,10"/>
@@ -171,7 +170,7 @@
     <property name="cond4" value="not check_char_parameter player,name,ApexPlayer"/>
    </properties>
   </object>
-  <object id="38" name="Talk Maniac - Got Botbot - Cheat" type="event" x="112" y="112" width="16" height="16">
+  <object id="38" name="Talk Maniac - Got Botbot - Cheat" type="event" x="112" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_wayfarer1_maniac1"/>
     <property name="act2" value="add_monster botbot,10"/>
@@ -182,14 +181,14 @@
     <property name="cond4" value="is check_char_parameter player,name,ApexPlayer"/>
    </properties>
   </object>
-  <object id="80" name="Talk Maniac - Followup Yes" type="event" x="112" y="112" width="16" height="16">
+  <object id="80" name="Talk Maniac - Followup Yes" type="event" x="112" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_wayfarer1_maniac2"/>
     <property name="behav1" value="talk spyder_wayfarer1_wes"/>
     <property name="cond1" value="is variable_set wayfarer1_botbot:yes"/>
    </properties>
   </object>
-  <object id="81" name="Talk Maniac - Followup no" type="event" x="112" y="112" width="16" height="16">
+  <object id="81" name="Talk Maniac - Followup no" type="event" x="112" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_wayfarer1_maniac2"/>
     <property name="behav1" value="talk spyder_wayfarer1_wes"/>
@@ -358,6 +357,55 @@
     <property name="act15" value="set_variable wayfarer1bismuth:yes"/>
     <property name="behav1" value="talk spyder_wayfarer1_bismuth"/>
     <property name="cond1" value="not variable_set wayfarer1bismuth:yes"/>
+   </properties>
+  </object>
+  <object id="82" name="Post Talk Jessie" type="event" x="112" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_jessie2"/>
+    <property name="behav1" value="talk spyder_wayfarer1_jessie"/>
+    <property name="cond1" value="is variable_set wayfarer1jessie:yes"/>
+   </properties>
+  </object>
+  <object id="83" name="Post Talk Nightshade" type="event" x="112" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_nightshade2"/>
+    <property name="behav1" value="talk spyder_wayfarer1_nightshade"/>
+    <property name="cond1" value="is variable_set wayfarer1nightshade:yes"/>
+   </properties>
+  </object>
+  <object id="84" name="Post Talk Bismuth" type="event" x="112" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_bismuth2"/>
+    <property name="behav1" value="talk spyder_wayfarer1_bismuth"/>
+    <property name="cond1" value="is variable_set wayfarer1bismuth:yes"/>
+   </properties>
+  </object>
+  <object id="85" name="Post Talk Morton" type="event" x="32" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_morton2"/>
+    <property name="behav1" value="talk spyder_wayfarer1_morton"/>
+    <property name="cond1" value="is variable_set wayfarer1morton:yes"/>
+   </properties>
+  </object>
+  <object id="86" name="Post Talk Ratcher" type="event" x="48" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_ratcher2"/>
+    <property name="behav1" value="talk spyder_wayfarer1_ratcher"/>
+    <property name="cond1" value="is variable_set wayfarer1ratcher:yes"/>
+   </properties>
+  </object>
+  <object id="87" name="Post Talk Morningstar" type="event" x="64" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_morningstar2"/>
+    <property name="behav1" value="talk spyder_wayfarer1_morningstar"/>
+    <property name="cond1" value="is variable_set wayfarer1morningstar:yes"/>
+   </properties>
+  </object>
+  <object id="88" name="Post Talk Victor" type="event" x="208" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_wayfarer1_victor2"/>
+    <property name="behav1" value="talk spyder_wayfarer1_victor"/>
+    <property name="cond1" value="is variable_set wayfarer1victor:yes"/>
    </properties>
   </object>
  </objectgroup>

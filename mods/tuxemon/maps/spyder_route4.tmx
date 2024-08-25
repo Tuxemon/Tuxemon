@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="93">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="99">
  <properties>
   <property name="east" value="route3"/>
   <property name="edges" value="clamped"/>
@@ -482,6 +482,48 @@
     <property name="act3" value="remove_npc spyder_route4_boost"/>
     <property name="act4" value="set_variable route4_boost:yes"/>
     <property name="behav1" value="talk spyder_route4_boost"/>
+   </properties>
+  </object>
+  <object id="93" name="Post Talk Rincewind" type="event" x="288" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route4_rincewind2"/>
+    <property name="behav1" value="talk spyder_route4_rincewind"/>
+    <property name="cond1" value="is variable_set route4rincewind:yes"/>
+   </properties>
+  </object>
+  <object id="94" name="Post Talk Roger" type="event" x="144" y="320" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route4_roger2"/>
+    <property name="behav1" value="talk spyder_route4_roger"/>
+    <property name="cond1" value="is variable_set route4roger:yes"/>
+   </properties>
+  </object>
+  <object id="95" name="Post Talk Rosamund" type="event" x="192" y="464" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route4_rosamund2"/>
+    <property name="behav1" value="talk spyder_route4_rosamund"/>
+    <property name="cond1" value="is variable_set route4rosamund:yes"/>
+   </properties>
+  </object>
+  <object id="96" name="Post Talk Marshall" type="event" x="16" y="464" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route4_marshall2"/>
+    <property name="behav1" value="talk spyder_route4_marshall"/>
+    <property name="cond1" value="is variable_set route4marshall:yes"/>
+   </properties>
+  </object>
+  <object id="97" name="Post Talk Beck" type="event" x="16" y="320" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route4_beck2"/>
+    <property name="behav1" value="talk spyder_route4_beck"/>
+    <property name="cond1" value="is variable_set route4beck:yes"/>
+   </properties>
+  </object>
+  <object id="98" name="Post Talk Wulf" type="event" x="16" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route4_wulf2"/>
+    <property name="behav1" value="talk spyder_route4_wulf"/>
+    <property name="cond1" value="is variable_set route4wulf:yes"/>
    </properties>
   </object>
  </objectgroup>

@@ -45,7 +45,7 @@
   <object id="78" type="collision" x="480" y="208" width="48" height="64"/>
   <object id="79" type="collision" x="480" y="160" width="96" height="32"/>
   <object id="80" type="collision" x="560" y="192" width="16" height="80"/>
-  <object id="81" type="collision" x="576" y="239.5" width="32" height="64"/>
+  <object id="81" type="collision" x="576" y="240" width="32" height="64"/>
   <object id="82" type="collision" x="608" y="144" width="32" height="80"/>
   <object id="83" type="collision" x="512" y="128" width="80" height="16"/>
  </objectgroup>

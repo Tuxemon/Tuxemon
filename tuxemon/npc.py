@@ -37,7 +37,7 @@ if TYPE_CHECKING:
     import pygame
 
     from tuxemon.item.economy import Economy
-    from tuxemon.states.combat.combat import EnqueuedAction
+    from tuxemon.states.combat.combat_classes import EnqueuedAction
     from tuxemon.states.world.worldstate import WorldState
 
 
@@ -111,7 +111,6 @@ class NPC(Entity[NPCState]):
         self.money: dict[str, int] = {}  # Tracks money
         # list of ways player can interact with the Npc
         self.interactions: Sequence[str] = []
-        self.isplayer: bool = False  # used for various tests, idk
         # menu labels (world menu)
         self.menu_save: bool = True
         self.menu_load: bool = True

@@ -54,7 +54,7 @@
   <object id="21" type="collision" x="80" y="48" width="64" height="48"/>
   <object id="22" type="collision" x="0" y="128" width="64" height="112"/>
   <object id="23" type="collision" x="144" y="128" width="16" height="112"/>
-  <object id="24" type="collision" x="1.42109e-14" y="240" width="16" height="16"/>
+  <object id="24" type="collision" x="0" y="240" width="16" height="16"/>
   <object id="25" type="collision" x="160" y="176" width="16" height="64"/>
   <object id="26" type="collision" x="176" y="208" width="16" height="48"/>
   <object id="27" type="collision" x="192" y="240" width="32" height="16"/>
@@ -83,7 +83,7 @@
   <object id="70" type="collision" x="48" y="496" width="32" height="32"/>
   <object id="71" type="collision" x="0" y="352" width="16" height="176"/>
   <object id="72" type="collision" x="112" y="352" width="32" height="48"/>
-  <object id="73" type="collision" x="48" y="382" width="64" height="48"/>
+  <object id="73" type="collision" x="48" y="384" width="64" height="48"/>
   <object id="74" type="collision" x="112" y="400" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
@@ -125,7 +125,7 @@
     <property name="cond1" value="not char_exists spyder_tunnelb_lute"/>
    </properties>
   </object>
-  <object id="47" name="Create Meitner" type="event" x="240" y="303.667" width="16" height="16">
+  <object id="47" name="Create Meitner" type="event" x="240" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_tunnelb_meitner,15,19"/>
     <property name="act2" value="char_face spyder_tunnelb_meitner,up"/>

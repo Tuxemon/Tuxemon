@@ -23,6 +23,7 @@ from pydantic import (
 )
 
 from tuxemon import prepare
+from tuxemon.constants import paths
 from tuxemon.locale import T
 
 logger = logging.getLogger(__name__)
@@ -1415,7 +1416,6 @@ class JSONDatabase:
                 to "all".
 
         """
-        self.path = prepare.fetch("db")
         if directory == "all":
             for table in self._tables:
                 self.load_json(table)
@@ -1443,16 +1443,7 @@ class JSONDatabase:
                 self.load_model(item, table, validate)
         self.preloaded.clear()
 
-    def load_json(self, directory: TableName, validate: bool = False) -> None:
-        """
-        Loads all JSON items under a specified path.
-
-        Parameters:
-            directory: The directory under mods/tuxemon/db/ to look in.
-            validate: Whether or not we should raise an exception if validation
-                fails
-
-        """
+    def _load_json_files(self, directory: TableName) -> None:
         for json_item in os.listdir(os.path.join(self.path, directory)):
             # Only load .json files.
             if not json_item.endswith(".json"):
@@ -1462,17 +1453,40 @@ class JSONDatabase:
             with open(os.path.join(self.path, directory, json_item)) as fp:
                 try:
                     item = json.load(fp)
-                except ValueError:
-                    logger.error("invalid JSON " + json_item)
-                    raise
+                except ValueError as e:
+                    logger.error(f"Invalid JSON {json_item}: {e}")
+                    continue
 
             if type(item) is list:
                 for sub in item:
-                    self.load_dict(sub, directory)
+                    self.load_dict(
+                        sub, directory, os.path.join(self.path, directory)
+                    )
             else:
-                self.load_dict(item, directory)
+                self.load_dict(
+                    item, directory, os.path.join(self.path, directory)
+                )
 
-    def load_dict(self, item: Mapping[str, Any], table: TableName) -> None:
+    def load_json(self, directory: TableName, validate: bool = False) -> None:
+        """
+        Loads all JSON items under a specified path.
+
+        Parameters:
+            directory: The directory under mods/mod_name/db/ to look in.
+            validate: Whether or not we should raise an exception if validation
+                fails
+
+        """
+        for mod_directory in prepare.CONFIG.mods:
+            self.path = os.path.join(paths.mods_folder, mod_directory, "db")
+            if os.path.exists(self.path) and os.path.exists(
+                os.path.join(self.path, directory)
+            ):
+                self._load_json_files(directory)
+
+    def load_dict(
+        self, item: Mapping[str, Any], table: TableName, path: str
+    ) -> None:
         """
         Loads a single json object and adds it to the appropriate preload db
         table.
@@ -1480,15 +1494,20 @@ class JSONDatabase:
         Parameters:
             item: The json object to load in.
             table: The db table to load the object into.
+            path: The path from which the item was loaded.
 
         """
         if item["slug"] in self.preloaded[table]:
-            logger.warning(
-                "Error: Item with slug %s was already loaded.",
-                item,
-            )
-            return
-        self.preloaded[table][item["slug"]] = item
+            if path in self.preloaded[table][item["slug"]].get("paths", []):
+                logger.warning(
+                    f"Error: Item with slug {item['slug']} was already loaded from this path ({path}).",
+                )
+                return
+            else:
+                self.preloaded[table][item["slug"]]["paths"].append(path)
+        else:
+            self.preloaded[table][item["slug"]] = item
+            self.preloaded[table][item["slug"]]["paths"] = [path]
 
     def load_model(
         self, item: Mapping[str, Any], table: TableName, validate: bool = False

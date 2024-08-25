@@ -500,7 +500,7 @@
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
-  <object id="224" name="Teleport to Tunnel 1" type="event" x="8.88178e-16" y="144" width="16" height="16">
+  <object id="224" name="Teleport to Tunnel 1" type="event" x="0" y="144" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_tunnel.tmx,19,29,0.3"/>
     <property name="act2" value="char_face player,left"/>
@@ -508,7 +508,7 @@
     <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
-  <object id="225" name="Teleport to Tunnel 2" type="event" x="8.88178e-16" y="160" width="16" height="16">
+  <object id="225" name="Teleport to Tunnel 2" type="event" x="0" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_tunnel.tmx,19,30,0.3"/>
     <property name="act2" value="char_face player,left"/>

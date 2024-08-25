@@ -38,7 +38,7 @@ import random
 from collections.abc import Iterable, MutableMapping, Sequence
 from functools import partial
 from itertools import chain
-from typing import Literal, NamedTuple, Optional, Union
+from typing import Literal, Optional, Union
 
 import pygame
 from pygame.rect import Rect
@@ -46,7 +46,6 @@ from pygame.rect import Rect
 from tuxemon import audio, graphics, prepare, state, tools
 from tuxemon.ai import AI
 from tuxemon.animation import Animation, Task
-from tuxemon.animation_entity import AnimationEntity
 from tuxemon.combat import (
     alive_party,
     award_experience,
@@ -80,6 +79,12 @@ from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea
 
 from .combat_animations import CombatAnimations
+from .combat_classes import (
+    ActionQueue,
+    DamageReport,
+    EnqueuedAction,
+    MethodAnimationCache,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -99,18 +104,6 @@ CombatPhase = Literal[
 ]
 
 
-class EnqueuedAction(NamedTuple):
-    user: Union[Monster, NPC, None]
-    method: Union[Technique, Item, Condition, None]
-    target: Monster
-
-
-class DamageMap(NamedTuple):
-    attack: Monster
-    defense: Monster
-    damage: int
-
-
 def compute_text_animation_time(message: str) -> float:
     """
     Compute required time for a text animation.
@@ -122,57 +115,6 @@ def compute_text_animation_time(message: str) -> float:
         The time in seconds expected to be taken by the animation.
     """
     return prepare.ACTION_TIME + prepare.LETTER_TIME * len(message)
-
-
-class MethodAnimationCache:
-    def __init__(self) -> None:
-        self._sprites: dict[
-            Union[Technique, Condition, Item], Optional[Sprite]
-        ] = {}
-
-    def get(
-        self, method: Union[Technique, Condition, Item], is_flipped: bool
-    ) -> Optional[Sprite]:
-        """
-        Return a sprite usable as a method (technique, item, condition) animation.
-
-        Parameters:
-            method: Whose sprite is requested.
-            is_flipped: Flag to determine whether animation frames should be flipped.
-
-        Returns:
-            Sprite associated with the animation.
-
-        """
-        try:
-            return self._sprites[method]
-        except KeyError:
-            sprite = self.load_method_animation(method, is_flipped)
-            self._sprites[method] = sprite
-            return sprite
-
-    @staticmethod
-    def load_method_animation(
-        method: Union[Technique, Condition, Item], is_flipped: bool
-    ) -> Optional[Sprite]:
-        """
-        Return animated sprite from a technique, condition or item.
-
-        Parameters:
-            method: Whose sprite is requested.
-            is_flipped: Flag to determine whether animation frames should be flipped.
-
-        Returns:
-            Sprite associated with the animation.
-
-        """
-        if not method.animation:
-            return None
-
-        ani = AnimationEntity(method.animation)
-        if is_flipped:
-            ani.play.flip(method.flip_axes)
-        return Sprite(animation=ani.play)
 
 
 class WaitForInputState(state.State):
@@ -212,10 +154,10 @@ class CombatState(CombatAnimations):
         combat_type: Literal["monster", "trainer"],
     ) -> None:
         self.phase: Optional[CombatPhase] = None
-        self._damage_map: list[DamageMap] = []
+        self._damage_map: list[DamageReport] = []
         self._method_cache = MethodAnimationCache()
+        self._action_queue = ActionQueue()
         self._decision_queue: list[Monster] = []
-        self._action_queue: list[EnqueuedAction] = []
         self._pending_queue: list[EnqueuedAction] = []
         self._log_action: list[tuple[int, EnqueuedAction]] = []
         self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
@@ -227,6 +169,7 @@ class CombatState(CombatAnimations):
         self._run: bool = False
         self._post_animation_task: Optional[Task] = None
         self._xp_message: Optional[str] = None
+        self._status_icon_cache: dict[str, Sprite] = {}
         self._random_tech_hit: dict[Monster, float] = {}
 
         super().__init__(players, graphics)
@@ -372,7 +315,7 @@ class CombatState(CombatAnimations):
 
             # assume each monster executes one action
             # if number of actions == monsters, then all monsters are ready
-            elif len(self._action_queue) == len(self.active_monsters):
+            elif len(self._action_queue.queue) == len(self.active_monsters):
                 return "pre action phase"
 
             return None
@@ -381,13 +324,13 @@ class CombatState(CombatAnimations):
             return "action phase"
 
         elif phase == "action phase":
-            if not self._action_queue:
+            if self._action_queue.is_empty():
                 return "post action phase"
 
             return None
 
         elif phase == "post action phase":
-            if not self._action_queue:
+            if self._action_queue.is_empty():
                 return "resolve match"
 
             return None
@@ -466,7 +409,7 @@ class CombatState(CombatAnimations):
                             AI(self, monster, player)
 
         elif phase == "action phase":
-            self.sort_action_queue()
+            self._action_queue.sort()
 
         elif phase == "post action phase":
             # remove actions from fainted users from the pending queue
@@ -549,38 +492,6 @@ class CombatState(CombatAnimations):
                 action_time,
             )
 
-    def sort_action_queue(self) -> None:
-        """Sort actions in the queue according to game rules.
-
-        * Swap actions are always first
-        * Techniques that damage are sorted by monster speed
-        * Items are sorted by trainer speed
-
-        """
-
-        def rank_action(action: EnqueuedAction) -> tuple[int, int]:
-            if action.method is None:
-                return 0, 0
-            sort = action.method.sort
-            primary_order = prepare.SORT_ORDER.index(sort)
-
-            if sort == "meta":
-                # all meta items sorted together
-                # use of 0 leads to undefined sort/probably random
-                return primary_order, 0
-            elif sort == "potion":
-                return primary_order, 0
-            else:
-                # TODO: determine the secondary sort element,
-                # monster speed, trainer speed, etc
-                assert action.user
-                return primary_order, action.user.speed_test(action)
-
-        # TODO: Running happens somewhere else, it should be moved here
-        # i think.
-        # TODO: Eventually make an action queue class?
-        self._action_queue.sort(key=rank_action, reverse=True)
-
     def update_phase(self) -> None:
         """
         Execute/update phase actions.
@@ -607,7 +518,7 @@ class CombatState(CombatAnimations):
 
     def handle_action_queue(self) -> None:
         """Take one action from the queue and do it."""
-        if self._action_queue:
+        if not self._action_queue.is_empty():
             action = self._action_queue.pop()
             self.perform_action(*action)
             self.task(self.check_party_hp, 1)
@@ -713,47 +624,54 @@ class CombatState(CombatAnimations):
                 (partial(self.alert, message), 0)
             )
 
+    def get_status_icon_position(
+        self, monster: Monster, monsters_in_play: Sequence[Monster]
+    ) -> tuple[float, float]:
+        icon_positions = {
+            (True, 1): prepare.ICON_OPPONENT_SLOT,
+            (True, 0): prepare.ICON_OPPONENT_DEFAULT,
+            (False, 1): prepare.ICON_PLAYER_SLOT,
+            (False, 0): prepare.ICON_PLAYER_DEFAULT,
+        }
+        return icon_positions[
+            (
+                monsters_in_play == self.monsters_in_play_left,
+                monsters_in_play.index(monster),
+            )
+        ]
+
     def reset_status_icons(self) -> None:
         """
         Update/reset status icons for monsters.
 
-        TODO: caching, etc
         """
         # update huds
         for player in self.active_players:
             self.update_hud(player, False)
         # remove all status icons
-        for s in self._status_icons.values():
-            self.sprites.remove(s)
+        self.sprites.remove(*self._status_icons.values())
         self._status_icons.clear()
 
         # add status icons
         for monster in self.active_monsters:
             for status in monster.status:
                 if status.icon:
-                    status_ico: tuple[float, float] = (0.0, 0.0)
-                    if len(self.monsters_in_play_left) > 1:
-                        if monster == self.monsters_in_play_left[0]:
-                            status_ico = prepare.ICON_OPPONENT_DEFAULT
-                        elif monster == self.monsters_in_play_left[1]:
-                            status_ico = prepare.ICON_OPPONENT_SLOT
-                    else:
-                        if monster == self.monsters_in_play_left[0]:
-                            status_ico = prepare.ICON_OPPONENT_DEFAULT
-                    if len(self.monsters_in_play_right) > 1:
-                        if monster == self.monsters_in_play_right[0]:
-                            status_ico = prepare.ICON_PLAYER_SLOT
-                        elif monster == self.monsters_in_play_right[1]:
-                            status_ico = prepare.ICON_PLAYER_DEFAULT
-                    else:
-                        if monster == self.monsters_in_play_right[0]:
-                            status_ico = prepare.ICON_PLAYER_DEFAULT
-                    # load the sprite and add it to the display
-                    icon = self.load_sprite(
-                        status.icon,
-                        layer=200,
-                        center=status_ico,
+                    icon_position = (
+                        self.get_status_icon_position(
+                            monster, self.monsters_in_play_left
+                        )
+                        if monster in self.monsters_in_play_left
+                        else self.get_status_icon_position(
+                            monster, self.monsters_in_play_right
+                        )
                     )
+                    if status.icon not in self._status_icon_cache:
+                        self._status_icon_cache[status.icon] = (
+                            self.load_sprite(
+                                status.icon, layer=200, center=icon_position
+                            )
+                        )
+                    icon = self._status_icon_cache[status.icon]
                     self._status_icons[monster].append(icon)
 
         # update tuxemon balls to reflect status
@@ -810,7 +728,7 @@ class CombatState(CombatAnimations):
             damage: Quantity of damage.
 
         """
-        damage_map = DamageMap(attacker, defender, damage)
+        damage_map = DamageReport(attacker, defender, damage)
         self._damage_map.append(damage_map)
 
     def enqueue_action(
@@ -829,44 +747,8 @@ class CombatState(CombatAnimations):
 
         """
         action = EnqueuedAction(user, technique, target)
-        self._action_queue.append(action)
+        self._action_queue.enqueue(action)
         self._log_action.append((self._turn, action))
-
-    def rewrite_action_queue_target(
-        self, original: Monster, new: Monster
-    ) -> None:
-        """
-        Used for swapping monsters.
-
-        Parameters:
-            original: Original targeted monster.
-            new: New targeted monster.
-
-        """
-        # rewrite actions in the queue to target the new monster
-        for index, action in enumerate(self._action_queue):
-            if action.target is original:
-                new_action = EnqueuedAction(action.user, action.method, new)
-                self._action_queue[index] = new_action
-
-    def rewrite_action_queue_method(
-        self, attacker: Monster, method: Union[Technique, Item, Condition]
-    ) -> None:
-        """
-        Used to replace the method (eg technique, item or condition) used.
-
-        Parameters:
-            attacker: Monster.
-            technique: New technique used.
-
-        eg. "monster uses RAM" -> "monster uses SABER"
-
-        """
-        # rewrite actions in the queue to target the new monster
-        for index, action in enumerate(self._action_queue):
-            if action.user == attacker:
-                new_action = EnqueuedAction(action.user, method, action.target)
-                self._action_queue[index] = new_action
 
     def remove_monster_from_play(
         self,
@@ -893,13 +775,12 @@ class CombatState(CombatAnimations):
             monster: Monster whose actions will be removed.
 
         """
-        to_remove = set()
-        for action in self._action_queue:
-            if action.user is monster or action.target is monster:
-                to_remove.add(action)
-
-        for action in to_remove:
-            self._action_queue.remove(action)
+        action_queue = self._action_queue.queue
+        action_queue[:] = [
+            action
+            for action in action_queue
+            if action.user is not monster and action.target is not monster
+        ]
 
     def perform_action(
         self,
@@ -1163,44 +1044,49 @@ class CombatState(CombatAnimations):
         Any monsters who contributed any amount of damage will be awarded.
         Experience is distributed evenly to all participants.
         """
-        message: str = ""
-        action_time = 0.0
-
         winners = get_winners(monster, self._damage_map)
         if winners:
+            action_time = 0.0
+            self._xp_message = ""
             for winner in winners:
-                # Award money
+                # Award money and experience
                 awarded_mon = award_money(monster, winner)
-                # Award experience
                 awarded_exp = award_experience(
                     monster, winner, self._damage_map
                 )
+
                 if winner.owner and winner.owner.isplayer:
                     levels = winner.give_experience(awarded_exp)
                     if self.is_trainer_battle:
                         self._prize += awarded_mon
                 else:
                     levels = 0
-                # it checks if there is a "level up"
-                if winner in self.monsters_in_play_right:
-                    # it checks if there is a "level up"
-                    if levels >= 1:
-                        mex = check_moves(winner, levels)
-                        if mex:
-                            message += "\n" + mex
-                            action_time += compute_text_animation_time(message)
-                        if winner.owner and winner.owner.isplayer:
-                            del self.hud[winner]
-                            self.update_hud(winner.owner, False)
+
+                # Check for level up and update HUD
+                if winner in self.monsters_in_play_right and levels >= 1:
+                    mex = check_moves(winner, levels)
+                    if mex:
+                        self._xp_message += "\n" + mex
+                        action_time += compute_text_animation_time(
+                            self._xp_message
+                        )
+                    if winner.owner and winner.owner.isplayer:
+                        del self.hud[winner]
+                        self.update_hud(winner.owner, False)
+
+                if winner.owner and winner.owner.isplayer:
+                    # Log experience gain
                     params = {"name": winner.name.upper(), "xp": awarded_exp}
-                    m = T.format("combat_gain_exp", params)
-                    message += "\n" + m
-            self._xp_message = message
+                    self._xp_message += "\n" + T.format(
+                        "combat_gain_exp", params
+                    )
 
             # Remove monster from damage map
-            for element in self._damage_map:
-                if element.defense == monster or element.attack == monster:
-                    self._damage_map.remove(element)
+            self._damage_map = [
+                element
+                for element in self._damage_map
+                if element.defense != monster and element.attack != monster
+            ]
 
     def animate_party_status(self) -> None:
         """
@@ -1356,7 +1242,7 @@ class CombatState(CombatAnimations):
                     tech.set_stats()
 
         # clear action queue
-        self._action_queue = list()
+        self._action_queue.clear_queue()
         self._pending_queue = list()
         self._log_action = list()
         self._damage_map = list()

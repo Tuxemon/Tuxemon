@@ -152,7 +152,7 @@
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
-  <object id="75" name="Create Fring" type="event" x="96" y="31.75" width="16" height="16">
+  <object id="75" name="Create Fring" type="event" x="96" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_hospital1_fring,6,2"/>
     <property name="cond1" value="not char_exists spyder_hospital1_fring"/>

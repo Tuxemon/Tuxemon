@@ -32,7 +32,7 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="29" type="collision" x="1.42109e-14" y="16" width="144" height="16"/>
+  <object id="29" type="collision" x="0" y="16" width="144" height="16"/>
   <object id="39" type="collision" x="0" y="32" width="96" height="16"/>
   <object id="40" type="collision" x="0" y="80" width="64" height="16"/>
   <object id="59" type="collision" x="80" y="80" width="64" height="16"/>
@@ -82,7 +82,7 @@
     <property name="behav1" value="talk taba_house2_reader1"/>
    </properties>
   </object>
-  <object id="63" name="Reader1 Talk" type="event" x="7.10543e-15" y="32" width="16" height="16">
+  <object id="63" name="Reader1 Talk" type="event" x="0" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog taba_house2_reader3a"/>
     <property name="behav1" value="talk taba_house2_reader2"/>

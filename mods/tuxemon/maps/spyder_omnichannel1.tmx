@@ -171,7 +171,7 @@
     <property name="cond1" value="not variable_set nurse_spyder:yes"/>
    </properties>
   </object>
-  <object id="45" name="Create Spyder Rookie" type="event" x="192" y="175.75" width="16" height="16">
+  <object id="45" name="Create Spyder Rookie" type="event" x="192" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_talbot,12,11"/>
     <property name="act2" value="char_face spyder_omnichannel_talbot,left"/>

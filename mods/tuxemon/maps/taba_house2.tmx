@@ -32,7 +32,7 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="29" type="collision" x="1.42109e-14" y="32" width="64" height="16"/>
+  <object id="29" type="collision" x="0" y="32" width="64" height="16"/>
   <object id="39" type="collision" x="96" y="48" width="48" height="16"/>
   <object id="40" type="collision" x="0" y="64" width="64" height="32"/>
   <object id="59" type="collision" x="96" y="16" width="48" height="16"/>

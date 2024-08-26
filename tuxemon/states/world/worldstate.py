@@ -1306,22 +1306,29 @@ class WorldState(state.State):
 
         """
         txmn_map = TMXMapLoader().load(path)
-        yaml_path = path[:-4] + ".yaml"
-        _paths = [yaml_path]
+        yaml_files = [f"{path[:-4]}.yaml"]
 
         if txmn_map.scenario:
-            _scenario = prepare.fetch("maps", txmn_map.scenario + ".yaml")
-            _paths.append(_scenario)
+            _scenario = prepare.fetch("maps", f"{txmn_map.scenario}.yaml")
+            yaml_files.append(_scenario)
 
         _events = list(txmn_map.events)
         _inits = list(txmn_map.inits)
-        for _path in _paths:
-            if os.path.exists(_path):
-                _events.extend(YAMLEventLoader().load_events(_path, "event"))
-                _inits.extend(YAMLEventLoader().load_events(_path, "init"))
+        events = {"event": _events, "init": _inits}
 
-        txmn_map.events = _events
-        txmn_map.inits = _inits
+        yaml_loader = YAMLEventLoader()
+
+        for yaml_file in yaml_files:
+            if os.path.exists(yaml_file):
+                yaml_data = yaml_loader.load_events(yaml_file, "event")
+                events["event"].extend(yaml_data["event"])
+                yaml_data = yaml_loader.load_events(yaml_file, "init")
+                events["init"].extend(yaml_data["init"])
+            else:
+                logger.warning(f"YAML file {yaml_file} not found")
+
+        txmn_map.events = events["event"]
+        txmn_map.inits = events["init"]
         return txmn_map
 
     @no_type_check  # only used by multiplayer which is disabled

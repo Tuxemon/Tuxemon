@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
 import uuid
-from collections.abc import Generator, Iterator
+from collections.abc import Generator
 from math import cos, pi, sin
 from typing import Any, Optional
 
@@ -53,18 +53,30 @@ class YAMLEventLoader:
     Support for reading game events from a YAML file.
     """
 
-    def load_events(self, path: str, source: str) -> Iterator[EventObject]:
+    def load_events(
+        self, path: str, source: str
+    ) -> dict[str, list[EventObject]]:
         """
-        Load EventObjects from YAML file.
+        Load EventObjects from a YAML file.
+
+        This function reads a YAML file at the specified path and extracts EventObject
+        instances from it. The EventObjects are filtered by the specified source type
+        (either "event" or "init").
 
         Parameters:
             path: Path to the file.
+            source: The type of events to load (either "event" or "init").
 
+        Returns:
+            A dictionary with "events" and "inits" as keys, each containing a list
+            of EventObject instances.
         """
         yaml_data: dict[str, dict[str, dict[str, Any]]] = {}
 
         with open(path) as fp:
             yaml_data = yaml.load(fp.read(), Loader=yaml.SafeLoader)
+
+        events_dict: dict[str, list[EventObject]] = {"event": [], "init": []}
 
         for name, event_data in yaml_data["events"].items():
             _id = uuid.uuid4().int
@@ -110,7 +122,10 @@ class YAMLEventLoader:
                 acts.insert(0, _acts)
 
             if event_type == source:
-                yield EventObject(_id, name, x, y, w, h, conds, acts)
+                event = EventObject(_id, name, x, y, w, h, conds, acts)
+                events_dict[event_type].append(event)
+
+        return events_dict
 
 
 class TMXMapLoader:

@@ -4,7 +4,7 @@
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="azure_town"/>
-  <property name="types" value="town"/>
+  <property name="map_type" value="town"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" source="../gfx/tilesets/core_indoor_floors.tsx"/>

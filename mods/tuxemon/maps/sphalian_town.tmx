@@ -4,7 +4,7 @@
   <property name="edges" value="clamped"/>
   <property name="scenario" value="tobedefined"/>
   <property name="slug" value="sphalian_town"/>
-  <property name="types" value="town"/>
+  <property name="map_type" value="town"/>
  </properties>
  <tileset firstgid="1" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>

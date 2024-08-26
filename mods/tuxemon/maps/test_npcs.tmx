@@ -3,7 +3,7 @@
  <properties>
   <property name="edges" value="clamped"/>
   <property name="slug" value="test_npcs"/>
-  <property name="types" value="notype"/>
+  <property name="map_type" value="notype"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <layer id="1" name="Tile Layer 1" width="40" height="40">

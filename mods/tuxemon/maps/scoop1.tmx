@@ -5,7 +5,7 @@
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="scoop1"/>
-  <property name="types" value="dungeon"/>
+  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
   <image source="../gfx/tilesets/Superpowers_Tilesheet.png" width="640" height="640"/>

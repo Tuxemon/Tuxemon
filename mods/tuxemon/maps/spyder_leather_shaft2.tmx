@@ -5,7 +5,7 @@
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="leather_shaft2"/>
-  <property name="types" value="notype"/>
+  <property name="map_type" value="notype"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_walls.tsx"/>
  <tileset firstgid="3865" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">

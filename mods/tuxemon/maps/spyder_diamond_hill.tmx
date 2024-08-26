@@ -6,7 +6,7 @@
   <property name="north" value="tunnel"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="diamond_hill"/>
-  <property name="types" value="route"/>
+  <property name="map_type" value="route"/>
   <property name="west" value="candy_town,candy_port"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>

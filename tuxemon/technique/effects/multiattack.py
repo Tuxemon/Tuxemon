@@ -39,7 +39,7 @@ class MultiAttackEffect(TechEffect):
         combat = tech.combat_state
         value = random.random()
         combat._random_tech_hit[user] = value
-        log = combat._log_action
+        log = combat._action_queue.history
         turn = combat._turn
         # Track previous actions with the same technique, user, and target
         track = [

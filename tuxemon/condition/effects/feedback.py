@@ -39,7 +39,7 @@ class FeedBackEffect(CondEffect):
         done: bool = False
         assert condition.combat_state
         combat = condition.combat_state
-        log = combat._log_action
+        log = combat._action_queue.history
         turn = combat._turn
         ranges = self.ranges.split(":")
         # check log actions

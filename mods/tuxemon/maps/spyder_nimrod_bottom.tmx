@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="58">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="61">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -53,7 +53,7 @@
     <property name="cond1" value="not char_exists spyder_nimrod_dirk"/>
    </properties>
   </object>
-  <object id="35" name="Talk Dirk" type="event" x="48" y="304" width="16" height="16">
+  <object id="35" name="Talk Dirk" type="event" x="96" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_dirk1"/>
     <property name="behav1" value="talk spyder_nimrod_dirk"/>
@@ -97,7 +97,7 @@
     <property name="cond1" value="not char_exists spyder_nimrod_bowie"/>
    </properties>
   </object>
-  <object id="43" name="Talk Bowie" type="event" x="48" y="240" width="16" height="16">
+  <object id="43" name="Talk Bowie" type="event" x="16" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_bowie1"/>
     <property name="act2" value="add_monster tigrock,35,spyder_nimrod_bowie,5,10"/>
@@ -116,7 +116,7 @@
     <property name="cond1" value="not char_exists spyder_nimrod_tru"/>
    </properties>
   </object>
-  <object id="45" name="Talk Tru" type="event" x="16" y="304" width="16" height="16">
+  <object id="45" name="Talk Tru" type="event" x="96" y="240" width="16" height="16">
    <properties>
     <property name="act01" value="translated_dialog spyder_nimrod_tru1"/>
     <property name="act02" value="add_monster grimachin,20,spyder_nimrod_tru,5,10"/>
@@ -193,6 +193,27 @@
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
+  <object id="58" name="Post Talk Rebel" type="event" x="176" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_rebel2"/>
+    <property name="behav1" value="talk spyder_nimrod_rebel"/>
+    <property name="cond1" value="is variable_set nimrodrebel:yes"/>
+   </properties>
+  </object>
+  <object id="59" name="Post Talk Bowie" type="event" x="32" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_bowie2"/>
+    <property name="behav1" value="talk spyder_nimrod_bowie"/>
+    <property name="cond1" value="is variable_set nimrodbowie:yes"/>
+   </properties>
+  </object>
+  <object id="60" name="Post Talk Tru" type="event" x="96" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_tru3"/>
+    <property name="behav1" value="talk spyder_nimrod_tru"/>
+    <property name="cond1" value="is variable_set nimrodtru:yes"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="3" type="collision" x="0" y="0" width="288" height="32"/>
@@ -205,7 +226,7 @@
   <object id="13" type="collision" x="224" y="112" width="32" height="16"/>
   <object id="14" type="collision" x="16" y="80" width="112" height="32"/>
   <object id="17" type="collision" x="192" y="64" width="16" height="16"/>
-  <object id="18" type="collision" x="256" y="48" width="16" height="176"/>
+  <object id="18" type="collision" x="256" y="48" width="16" height="160"/>
   <object id="20" type="collision" x="80" y="48" width="16" height="32"/>
   <object id="21" type="collision" x="32" y="32" width="16" height="32"/>
   <object id="22" type="collision" x="224" y="32" width="16" height="32"/>

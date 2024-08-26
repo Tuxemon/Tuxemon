@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="72">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="78">
  <properties>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
@@ -202,7 +202,7 @@
     <property name="act3" value="add_monster cowpignon,50,spyder_walled_vanderbilt,5,10"/>
     <property name="act4" value="add_monster narcileaf,50,spyder_walled_vanderbilt,5,10"/>
     <property name="act5" value="start_battle player,spyder_walled_vanderbilt"/>
-    <property name="act6" value="translated_dialog spyder_walled_vanderbilt"/>
+    <property name="act6" value="translated_dialog spyder_walled_vanderbilt2"/>
     <property name="act7" value="set_variable walledvanderbilt:yes"/>
     <property name="cond1" value="not variable_set walledvanderbilt:yes"/>
     <property name="cond2" value="is char_at player"/>
@@ -230,7 +230,7 @@
     <property name="act3" value="add_monster cowpignon,50,spyder_walled_vanderbilt,5,10"/>
     <property name="act4" value="add_monster narcileaf,50,spyder_walled_vanderbilt,5,10"/>
     <property name="act5" value="start_battle player,spyder_walled_vanderbilt"/>
-    <property name="act6" value="translated_dialog spyder_walled_vanderbilt"/>
+    <property name="act6" value="translated_dialog spyder_walled_vanderbilt2"/>
     <property name="act7" value="set_variable walledvanderbilt:yes"/>
     <property name="cond1" value="not variable_set walledvanderbilt:yes"/>
     <property name="cond2" value="is char_at player"/>
@@ -255,6 +255,48 @@
     <property name="act7" value="set_variable walledastor:yes"/>
     <property name="cond1" value="not variable_set walledastor:yes"/>
     <property name="cond2" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="72" name="Post Talk astor" type="event" x="176" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_walled_astor2"/>
+    <property name="behav1" value="talk spyder_walled_astor"/>
+    <property name="cond1" value="is variable_set walledastor:yes"/>
+   </properties>
+  </object>
+  <object id="73" name="Post Talk girard" type="event" x="64" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_walled_girard2"/>
+    <property name="behav1" value="talk spyder_walled_girard"/>
+    <property name="cond1" value="is variable_set walledgirard:yes"/>
+   </properties>
+  </object>
+  <object id="74" name="Post Talk ford" type="event" x="64" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_walled_ford2"/>
+    <property name="behav1" value="talk spyder_walled_ford"/>
+    <property name="cond1" value="is variable_set walledford:yes"/>
+   </properties>
+  </object>
+  <object id="75" name="Post Talk vanderbilt" type="event" x="176" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_walled_vanderbilt2"/>
+    <property name="behav1" value="talk spyder_walled_vanderbilt"/>
+    <property name="cond1" value="is variable_set walledvanderbilt:yes"/>
+   </properties>
+  </object>
+  <object id="76" name="Post Talk fugger" type="event" x="176" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_walled_fugger2"/>
+    <property name="behav1" value="talk spyder_walled_fugger"/>
+    <property name="cond1" value="is variable_set walledfugger:yes"/>
+   </properties>
+  </object>
+  <object id="77" name="Post Talk carnegie" type="event" x="48" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_walled_carnegie2"/>
+    <property name="behav1" value="talk spyder_walled_carnegie"/>
+    <property name="cond1" value="is variable_set walledcarnegie:yes"/>
    </properties>
   </object>
  </objectgroup>

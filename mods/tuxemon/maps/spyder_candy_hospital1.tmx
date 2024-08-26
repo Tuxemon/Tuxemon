@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="99">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="105">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -288,6 +288,48 @@
     <property name="act4" value="quarantine out,1"/>
     <property name="behav1" value="talk spyder_hospital1_smith"/>
     <property name="cond1" value="not variable_set quarantine_garvan:yes"/>
+   </properties>
+  </object>
+  <object id="99" name="Talk Felu" type="event" x="48" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital1_felu2"/>
+    <property name="behav1" value="talk spyder_hospital1_felu"/>
+    <property name="cond1" value="is variable_set hospital1felu:yes"/>
+   </properties>
+  </object>
+  <object id="100" name="Post Talk Fring" type="event" x="32" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital1_fring2"/>
+    <property name="behav1" value="talk spyder_hospital1_fring"/>
+    <property name="cond1" value="is variable_set hospital1fring:yes"/>
+   </properties>
+  </object>
+  <object id="101" name="Post Talk Aurora" type="event" x="48" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital1_aurora2"/>
+    <property name="behav1" value="talk spyder_hospital1_aurora"/>
+    <property name="cond1" value="is variable_set hospital1aurora:yes"/>
+   </properties>
+  </object>
+  <object id="102" name="Post Talk Eleni" type="event" x="256" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital1_eleni2"/>
+    <property name="behav1" value="talk spyder_hospital1_eleni"/>
+    <property name="cond1" value="is variable_set hospital1eleni:yes"/>
+   </properties>
+  </object>
+  <object id="103" name="Post Talk Liane" type="event" x="256" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital1_liane2"/>
+    <property name="behav1" value="talk spyder_hospital1_liane"/>
+    <property name="cond1" value="is variable_set hospital1liane:yes"/>
+   </properties>
+  </object>
+  <object id="104" name="Post Talk Walt" type="event" x="272" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital1_walt2"/>
+    <property name="behav1" value="talk spyder_hospital1_walt"/>
+    <property name="cond1" value="is variable_set hospital1walt:yes"/>
    </properties>
   </object>
  </objectgroup>

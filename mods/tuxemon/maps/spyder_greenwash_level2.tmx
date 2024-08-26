@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="122">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="127">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -290,6 +290,41 @@
     <property name="act6" value="set_variable got_both_fossils:yes"/>
     <property name="cond1" value="is variable_set both_fossils:yes"/>
     <property name="cond2" value="not variable_set got_both_fossils:yes"/>
+   </properties>
+  </object>
+  <object id="122" name="Post Talk Moreau" type="event" x="192" y="400" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_moreau2"/>
+    <property name="behav1" value="talk spyder_greenwash_moreau"/>
+    <property name="cond1" value="is variable_set greenwashmoreau:yes"/>
+   </properties>
+  </object>
+  <object id="123" name="Post Talk Heidenstam" type="event" x="80" y="336" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_heidenstam2"/>
+    <property name="behav1" value="talk spyder_greenwash_heidenstam"/>
+    <property name="cond1" value="is variable_set greenwashheidenstam:yes"/>
+   </properties>
+  </object>
+  <object id="124" name="Post Talk Dempsey" type="event" x="48" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_dempsey1"/>
+    <property name="behav1" value="talk spyder_greenwash_dempsey"/>
+    <property name="cond1" value="is variable_set greenwashdempsey:yes"/>
+   </properties>
+  </object>
+  <object id="125" name="Post Talk Dippel" type="event" x="96" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_dippel2"/>
+    <property name="behav1" value="talk spyder_greenwash_dippel"/>
+    <property name="cond1" value="is variable_set greenwashdippel:yes"/>
+   </properties>
+  </object>
+  <object id="126" name="Post Talk Aissa" type="event" x="144" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_aissa2"/>
+    <property name="behav1" value="talk spyder_greenwash_aissa"/>
+    <property name="cond1" value="is variable_set greenwashaissa:yes"/>
    </properties>
   </object>
  </objectgroup>

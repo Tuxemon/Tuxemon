@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="708">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="713">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
@@ -358,13 +358,13 @@
     <property name="cond2" value="is char_moved player"/>
    </properties>
   </object>
-  <object id="611" name="Novak Enforcer" type="event" x="160" y="432" width="16" height="16">
+  <object id="611" name="Novak Enforcer" type="event" x="192" y="464" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_route3_novak,12,29"/>
-    <property name="cond1" value="not char_exists spyder_route3_weaver"/>
+    <property name="cond1" value="not char_exists spyder_route3_novak"/>
    </properties>
   </object>
-  <object id="612" name="Novak Talk" type="event" x="160" y="416" width="16" height="16">
+  <object id="612" name="Novak Talk" type="event" x="144" y="464" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_route3_novak1"/>
     <property name="act2" value="add_monster elofly,13,spyder_route3_novak,5,10"/>
@@ -739,6 +739,41 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_route3_boulder"/>
     <property name="behav1" value="talk spyder_boulder"/>
+   </properties>
+  </object>
+  <object id="708" name="Post Curie Talk" type="event" x="512" y="496" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route3_curie2"/>
+    <property name="behav1" value="talk spyder_route3_curie"/>
+    <property name="cond1" value="is variable_set route3curie:yes"/>
+   </properties>
+  </object>
+  <object id="709" name="Post Novak Talk" type="event" x="144" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route3_novak2"/>
+    <property name="behav1" value="talk spyder_route3_novak"/>
+    <property name="cond1" value="is variable_set route3novak:yes"/>
+   </properties>
+  </object>
+  <object id="710" name="Post Talk Wanda" type="event" x="480" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route3_wanda2"/>
+    <property name="behav1" value="talk spyder_route3_wanda"/>
+    <property name="cond1" value="is variable_set route3wanda:yes"/>
+   </properties>
+  </object>
+  <object id="711" name="Post Connor Talk" type="event" x="320" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route3_connor2"/>
+    <property name="behav1" value="talk spyder_route3_connor"/>
+    <property name="cond1" value="is variable_set route3connor:yes"/>
+   </properties>
+  </object>
+  <object id="712" name="Post Enforcer Talk" type="event" x="240" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route3_weaver2"/>
+    <property name="behav1" value="talk spyder_route3_weaver"/>
+    <property name="cond1" value="is variable_set route3weaver:yes"/>
    </properties>
   </object>
  </objectgroup>

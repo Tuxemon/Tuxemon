@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="282">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="294">
  <properties>
   <property name="east" value="paper_town"/>
   <property name="edges" value="clamped"/>
@@ -240,35 +240,6 @@
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
-  <object id="224" name="Talk Carstair" type="event" x="384" y="96" width="16" height="16">
-   <properties>
-    <property name="act0" value="pathfind_to_player spyder_searoutec_carstair"/>
-    <property name="act1" value="translated_dialog spyder_searoutec_carstair1"/>
-    <property name="act2" value="add_monster axylightl,24,spyder_searoutec_carstair,5,10"/>
-    <property name="act3" value="start_battle player,spyder_searoutec_carstair"/>
-    <property name="act4" value="translated_dialog spyder_searoutec_carstair2"/>
-    <property name="act6" value="set_variable searouteccarstair:yes"/>
-    <property name="cond1" value="not variable_set searouteccarstair:yes"/>
-    <property name="cond2" value="is char_at player"/>
-   </properties>
-  </object>
-  <object id="225" name="Talk Wade" type="event" x="224" y="192" width="16" height="16">
-   <properties>
-    <property name="act00" value="pathfind_to_player spyder_searoutec_wade"/>
-    <property name="act01" value="translated_dialog spyder_searoutec_wade1"/>
-    <property name="act02" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
-    <property name="act03" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
-    <property name="act04" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
-    <property name="act05" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
-    <property name="act06" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
-    <property name="act07" value="add_monster picc,20,spyder_searoutec_wade,5,10"/>
-    <property name="act08" value="start_battle player,spyder_searoutec_wade"/>
-    <property name="act09" value="translated_dialog spyder_searoutec_wade2"/>
-    <property name="act10" value="set_variable searoutecwade:yes"/>
-    <property name="cond1" value="not variable_set searoutecwade:yes"/>
-    <property name="cond2" value="is char_at player"/>
-   </properties>
-  </object>
   <object id="226" name="Talk Sandy" type="event" x="80" y="240" width="16" height="48">
    <properties>
     <property name="act0" value="pathfind_to_player spyder_searoutec_sandy"/>
@@ -480,6 +451,91 @@
     <property name="act2" value="char_face player,up"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="282" name="Post Talk Maurice" type="event" x="112" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_searoutec_maurice2"/>
+    <property name="behav1" value="talk spyder_searoutec_maurice"/>
+    <property name="cond1" value="is variable_set searoutecmaurice:yes"/>
+   </properties>
+  </object>
+  <object id="283" name="Post Talk Nigel" type="event" x="176" y="384" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_searoutec_nigel2"/>
+    <property name="behav1" value="talk spyder_searoutec_nigel"/>
+    <property name="cond1" value="is variable_set searoutecnigel:yes"/>
+    <property name="cond2" value="is variable_set hospitalcure:yes"/>
+   </properties>
+  </object>
+  <object id="284" name="Post Talk Sandy" type="event" x="112" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_searoutec_sandy2"/>
+    <property name="behav1" value="talk spyder_searoutec_sandy"/>
+    <property name="cond1" value="is variable_set searoutecsandy:yes"/>
+   </properties>
+  </object>
+  <object id="285" name="Post Talk Beech" type="event" x="128" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_searoutec_beech2"/>
+    <property name="behav1" value="talk spyder_searoutec_beech"/>
+    <property name="cond1" value="is variable_set searoutecbeech:yes"/>
+   </properties>
+  </object>
+  <object id="286" name="Post Talk River" type="event" x="144" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_searoutec_river2"/>
+    <property name="behav1" value="talk spyder_searoutec_river"/>
+    <property name="cond1" value="is variable_set searoutecriver:yes"/>
+   </properties>
+  </object>
+  <object id="287" name="Post Talk Wade" type="event" x="160" y="272" width="16" height="16">
+   <properties>
+    <property name="act01" value="translated_dialog spyder_searoutec_wade2"/>
+    <property name="behav1" value="talk spyder_searoutec_wade"/>
+    <property name="cond1" value="is variable_set searoutecwade:yes"/>
+   </properties>
+  </object>
+  <object id="288" name="Post Talk Stafford" type="event" x="416" y="544" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_searoutec_stafford2"/>
+    <property name="behav1" value="talk spyder_searoutec_stafford"/>
+    <property name="cond1" value="is variable_set searoutecstafford:yes"/>
+   </properties>
+  </object>
+  <object id="289" name="Post Talk Gil" type="event" x="128" y="288" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_searoutec_gil2"/>
+    <property name="behav1" value="talk spyder_searoutec_gil"/>
+    <property name="cond1" value="is variable_set searoutecgil:yes"/>
+   </properties>
+  </object>
+  <object id="290" name="Post Talk Carstair" type="event" x="144" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_searoutec_carstair2"/>
+    <property name="behav1" value="talk spyder_searoutec_carstair"/>
+    <property name="cond1" value="is variable_set searouteccarstair:yes"/>
+   </properties>
+  </object>
+  <object id="291" name="Post Talk Rutherford" type="event" x="432" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_searoutec_rutherford2"/>
+    <property name="behav1" value="talk spyder_searoutec_rutherford"/>
+    <property name="cond1" value="is variable_set searoutecrutherford:yes"/>
+   </properties>
+  </object>
+  <object id="292" name="Post Talk Leek" type="event" x="416" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_searoutec_leek2"/>
+    <property name="behav1" value="talk spyder_searoutec_leek"/>
+    <property name="cond1" value="is variable_set searoutecleek:yes"/>
+   </properties>
+  </object>
+  <object id="293" name="Post Talk More" type="event" x="512" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_searoutec_more2"/>
+    <property name="behav1" value="talk spyder_searoutec_more"/>
+    <property name="cond1" value="is variable_set searoutecmore:yes"/>
    </properties>
   </object>
  </objectgroup>

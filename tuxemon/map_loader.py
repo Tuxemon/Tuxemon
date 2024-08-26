@@ -163,17 +163,17 @@ class TMXMapLoader:
         )
         tile_size = (data.tilewidth, data.tileheight)
         data.tilewidth, data.tileheight = prepare.TILE_SIZE
-        events = list()
-        inits = list()
+        events = []
+        inits = []
         surface_map: dict[tuple[int, int], dict[str, float]] = {}
         collision_map: dict[tuple[int, int], Optional[RegionProperties]] = {}
         collision_lines_map = set()
         maps = data.properties
 
         # get all tiles which have properties and/or collisions
-        gids_with_props = dict()
-        gids_with_colliders = dict()
-        gids_with_surface = dict()
+        gids_with_props = {}
+        gids_with_colliders = {}
+        gids_with_surface = {}
         for gid, props in data.tile_properties.items():
             conds = extract_region_properties(props)
             gids_with_props[gid] = conds if conds else None
@@ -250,6 +250,7 @@ class TMXMapLoader:
         tiled_object: pytmx.TiledObject,
         tile_size: tuple[int, int],
     ) -> Generator[RegionTile, None, None]:
+        """ "Extract tile collisions from a Tiled object."""
         if getattr(tiled_object, "closed", True):
             yield from self.region_tiles(tiled_object, tile_size)
 
@@ -258,10 +259,12 @@ class TMXMapLoader:
         tiled_object: pytmx.TiledObject,
         tile_size: tuple[int, int],
     ) -> Generator[tuple[tuple[int, int], Direction], None, None]:
+        """Generate collision lines from a Tiled object."""
         # TODO: test dropping "collision_lines_map" and replacing with "enter/exit" tiles
         if not getattr(tiled_object, "closed", True):
-            for item in self.process_line(tiled_object, tile_size):
-                blocker0, blocker1, orientation = item
+            for blocker0, blocker1, orientation in self.process_line(
+                tiled_object, tile_size
+            ):
                 if orientation == Orientation.vertical:
                     yield blocker0, Direction.left
                     yield blocker1, Direction.right
@@ -269,7 +272,7 @@ class TMXMapLoader:
                     yield blocker1, Direction.down
                     yield blocker0, Direction.up
                 else:
-                    raise Exception(orientation)
+                    raise ValueError(f"Invalid orientation: {orientation}")
 
     def process_line(
         self,
@@ -280,19 +283,20 @@ class TMXMapLoader:
     ]:
         """Identify the tiles on either side of the line and block movement along it."""
         if len(line.points) < 2:
-            raise ValueError(
-                "Error: collision lines must be at least 2 points"
-            )
+            raise ValueError("Collision lines must have at least 2 points")
+
         for point_0, point_1 in zip(line.points, line.points[1:]):
             p0 = point_to_grid(point_0, tile_size)
             p1 = point_to_grid(point_1, tile_size)
             p0, p1 = sorted((p0, p1))
             angle = angle_of_points(p0, p1)
             orientation = orientation_by_angle(angle)
+
             for i in bresenham(p0[0], p0[1], p1[0], p1[1], include_end=False):
                 angle1 = angle - (pi / 2)
-                other = int(round(cos(angle1) + i[0])), int(
-                    round(sin(angle1) + i[1])
+                other = (
+                    int(round(cos(angle1) + i[0])),
+                    int(round(sin(angle1) + i[1])),
                 )
                 yield i, other, orientation
 
@@ -319,15 +323,15 @@ class TMXMapLoader:
             Tuples with form (tile position, properties).
         """
         region_conditions = copy_dict_with_keys(
-            region.properties,
-            region_properties,
+            region.properties, region_properties
         )
         rect = snap_rect(
-            Rect((region.x, region.y, region.width, region.height)),
-            grid_size,
+            Rect((region.x, region.y, region.width, region.height)), grid_size
         )
-        for tile_position in tiles_inside_rect(rect, grid_size):
-            yield tile_position, extract_region_properties(region_conditions)
+        for tile_x, tile_y in tiles_inside_rect(rect, grid_size):
+            yield (tile_x, tile_y), extract_region_properties(
+                region_conditions
+            )
 
     def load_event(
         self,
@@ -343,48 +347,39 @@ class TMXMapLoader:
 
         Returns:
             Loaded event.
-
         """
-        _id = uuid.uuid4().int
-        conds = []
-        acts = []
-        x = int(obj.x / tile_size[0])
-        y = int(obj.y / tile_size[1])
-        w = int(obj.width / tile_size[0])
-        h = int(obj.height / tile_size[1])
+        event_id = uuid.uuid4().int
+        conditions = []
+        actions = []
+        x, y, w, h = (
+            int(obj.x / tile_size[0]),
+            int(obj.y / tile_size[1]),
+            int(obj.width / tile_size[0]),
+            int(obj.height / tile_size[1]),
+        )
 
         properties = obj.properties
-        keys = natsorted(properties.keys())
-        # Conditions & actions are stored as Tiled properties.
-        # We need to sort them by name, so that "act1" comes before "act2" and so on...
-        for key in keys:
+        for key, value in natsorted(properties.items()):
             if not isinstance(key, str):
                 continue
-            value = properties[key]
             if key.startswith("cond"):
                 operator, cond_type, args = parse_condition_string(value)
-                condition = MapCondition(
-                    cond_type, args, x, y, w, h, operator, key
+                conditions.append(
+                    MapCondition(cond_type, args, x, y, w, h, operator, key)
                 )
-                conds.append(condition)
             elif key.startswith("act"):
                 act_type, args = parse_action_string(value)
-                action = MapAction(act_type, args, key)
-                acts.append(action)
-
-        for key in keys:
-            if not isinstance(key, str):
-                continue
-            if key.startswith("behav"):
-                behav_string = properties[key]
-                behav_type, args = parse_behav_string(behav_string)
-                _args = list(args)
-                _args.insert(0, behav_type)
-                conds.insert(
+                actions.append(MapAction(act_type, args, key))
+            elif key.startswith("behav"):
+                behav_type, args = parse_behav_string(value)
+                conditions.insert(
                     0,
-                    MapCondition("behav", _args, x, y, w, h, "is", key),
+                    MapCondition(
+                        "behav", [behav_type, *args], x, y, w, h, "is", key
+                    ),
                 )
-                _squeeze = [":".join(_args)]
-                acts.insert(0, MapAction("behav", _squeeze, key))
+                actions.insert(
+                    0, MapAction("behav", [":".join([behav_type, *args])], key)
+                )
 
-        return EventObject(_id, obj.name, x, y, w, h, conds, acts)
+        return EventObject(event_id, obj.name, x, y, w, h, conditions, actions)

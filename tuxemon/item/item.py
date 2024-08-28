@@ -36,8 +36,7 @@ class Item:
     conditions_classes: ClassVar[Mapping[str, type[ItemCondition]]] = {}
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
-        if save_data is None:
-            save_data = dict()
+        save_data = save_data or {}
 
         self.slug = ""
         self.name = ""
@@ -87,10 +86,10 @@ class Item:
             slug: The item slug to look up in the monster.item database.
 
         """
-        results = db.lookup(slug, table="item")
-
-        if results is None:
-            raise RuntimeError(f"item {slug} is not found")
+        try:
+            results = db.lookup(slug, table="item")
+        except KeyError:
+            raise RuntimeError(f"Item {slug} not found")
 
         self.slug = results.slug
         self.name = T.translate(self.slug)
@@ -136,22 +135,21 @@ class Item:
             Effects turned into a list of ItemEffect objects.
 
         """
-        ret = list()
+        effects = []
 
         for line in raw:
-            name = line.split()[0]
-            if len(line.split()) > 1:
-                params = line.split()[1].split(",")
-            else:
-                params = []
+            parts = line.split(maxsplit=1)
+            name = parts[0]
+            params = parts[1].split(",") if len(parts) > 1 else []
+
             try:
-                effect = Item.effects_classes[name]
+                effect_class = Item.effects_classes[name]
             except KeyError:
                 logger.error(f'Error: ItemEffect "{name}" not implemented')
             else:
-                ret.append(effect(*params))
+                effects.append(effect_class(*params))
 
-        return ret
+        return effects
 
     def parse_conditions(
         self,
@@ -170,29 +168,28 @@ class Item:
             Conditions turned into a list of ItemCondition objects.
 
         """
-        ret = list()
+        conditions = []
 
         for line in raw:
-            op = line.split()[0]
-            name = line.split()[1]
-            if len(line.split()) > 2:
-                params = line.split()[2].split(",")
-            else:
-                params = []
+            parts = line.split(maxsplit=2)
+            op = parts[0]
+            name = parts[1]
+            params = parts[2].split(",") if len(parts) > 2 else []
+
             try:
-                condition = Item.conditions_classes[name]
-                if op == "is":
-                    condition._op = True
-                elif op == "not":
-                    condition._op = False
-                else:
-                    raise ValueError(f"{op} must be 'is' or 'not'")
+                condition_class = Item.conditions_classes[name]
             except KeyError:
                 logger.error(f'Error: ItemCondition "{name}" not implemented')
-            else:
-                ret.append(condition(*params))
+                continue
 
-        return ret
+            if op not in ["is", "not"]:
+                raise ValueError(f"{op} must be 'is' or 'not'")
+
+            condition = condition_class(*params)
+            condition._op = op == "is"
+            conditions.append(condition)
+
+        return conditions
 
     def validate(self, target: Optional[Monster]) -> bool:
         """
@@ -210,15 +207,14 @@ class Item:
         if not target:
             return False
 
-        result = True
-
-        for condition in self.conditions:
-            if condition._op is True:
-                event = condition.test(target)
-            else:
-                event = not condition.test(target)
-            result = result and event
-        return result
+        return all(
+            (
+                condition.test(target)
+                if condition._op
+                else not condition.test(target)
+            )
+            for condition in self.conditions
+        )
 
     def use(self, user: NPC, target: Optional[Monster]) -> ItemEffectResult:
         """

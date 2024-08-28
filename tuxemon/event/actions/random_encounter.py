@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 import random
+from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import Optional, final
 
@@ -13,6 +14,8 @@ from tuxemon.db import EncounterItemModel, db
 from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
+
+encounter_cache: dict[str, Sequence[EncounterItemModel]] = {}
 
 
 @final
@@ -50,51 +53,60 @@ class RandomEncounterAction(EventAction):
         player = self.session.player
 
         if not check_battle_legal(player):
-            logger.warning("battle is not legal, won't start")
+            logger.error("Battle is not legal, won't start")
             return
 
         slug = self.encounter_slug
-        encounters = db.lookup(slug, table="encounter").monsters
-        filtered = list(encounters)
+        encounters = _get_encounters(slug)
 
-        for _meet in encounters:
-            if _meet.variable:
-                part = _meet.variable.split(":")
-                if player.game_variables[part[0]] != part[1]:
-                    filtered.remove(_meet)
+        filtered_encounters = [
+            _enc
+            for _enc in encounters
+            if not _enc.variable
+            or player.game_variables.get(_enc.variable.split(":")[0])
+            == _enc.variable.split(":")[1]
+        ]
 
-        if not filtered:
-            logger.error(f"no wild monsters, check encounter/{slug}.json")
+        if not filtered_encounters:
+            logger.error(f"No wild monsters, check 'encounter/{slug}.json'")
             return
 
-        meet = _choose_encounter(filtered, self.total_prob)
-
-        if meet:
+        encounter = _choose_encounter(filtered_encounters, self.total_prob)
+        if encounter:
             logger.info("Starting random encounter!")
-            level = _get_level(meet)
-            _env = player.game_variables.get("environment", "grass")
+            level = _get_level(encounter)
+            environment = player.game_variables.get("environment", "grass")
             rgb = self.rgb if self.rgb else None
-            params = [meet.monster, level, meet.exp_req_mod, None, _env, rgb]
-            client = self.session.client.event_engine
-            client.execute_action("wild_encounter", params, True)
+            params = [
+                encounter.monster,
+                level,
+                encounter.exp_req_mod,
+                None,
+                environment,
+                rgb,
+            ]
+            self.session.client.event_engine.execute_action(
+                "wild_encounter", params, True
+            )
 
 
 def _choose_encounter(
     encounters: list[EncounterItemModel],
     total_prob: Optional[float],
 ) -> Optional[EncounterItemModel]:
+    """Choose a random encounter based on encounter rates."""
+    if not encounters:
+        return None
+
+    total_prob = total_prob or 1.0
+    encounter_rate = prepare.CONFIG.encounter_rate_modifier
+    scale = float(total_prob) / sum(
+        encounter.encounter_rate for encounter in encounters
+    )
+    scale *= encounter_rate
+
     total = 0.0
     roll = random.random() * 100
-    if total_prob is not None:
-        current_total = sum(
-            encounter.encounter_rate for encounter in encounters
-        )
-        scale = float(total_prob) / current_total
-    else:
-        scale = 1
-
-    scale *= prepare.CONFIG.encounter_rate_modifier
-
     for encounter in encounters:
         total += encounter.encounter_rate * scale
         if total >= roll:
@@ -104,12 +116,22 @@ def _choose_encounter(
 
 
 def _get_level(encounter: EncounterItemModel) -> int:
+    """Get a random level for the encounter."""
     if len(encounter.level_range) > 1:
-        level = random.randrange(
-            encounter.level_range[0],
-            encounter.level_range[1],
+        return random.randint(
+            encounter.level_range[0], encounter.level_range[1] - 1
         )
     else:
-        level = encounter.level_range[0]
+        return encounter.level_range[0]
 
-    return level
+
+def _get_encounters(cache_key: str) -> Sequence[EncounterItemModel]:
+    if cache_key in encounter_cache:
+        return encounter_cache[cache_key]
+    else:
+        try:
+            encounters = db.lookup(cache_key, table="encounter").monsters
+            encounter_cache[cache_key] = encounters
+            return encounters
+        except KeyError:
+            raise RuntimeError(f"Encounter {cache_key} not found")

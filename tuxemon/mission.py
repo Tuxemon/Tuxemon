@@ -22,13 +22,12 @@ class Mission:
     """
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
-        if save_data is None:
-            save_data = dict()
+        save_data = save_data or {}
 
         self.slug: str = ""
         self.name: str = ""
         self.description: str = ""
-        self.status = MissionStatus.pending
+        self.status: MissionStatus = MissionStatus.pending
 
         self.set_state(save_data)
 
@@ -37,10 +36,10 @@ class Mission:
         Loads and sets mission from the db.
 
         """
-        results = db.lookup(slug, table="mission")
-
-        if results is None:
-            raise RuntimeError(f"mission {slug} is not found")
+        try:
+            results = db.lookup(slug, table="mission")
+        except KeyError:
+            raise RuntimeError(f"Mission {slug} not found")
 
         self.instance_id = uuid.uuid4()
         self.slug = results.slug
@@ -73,7 +72,9 @@ class Mission:
         self.load(save_data["slug"])
 
         for key, value in save_data.items():
-            if key in SIMPLE_PERSISTANCE_ATTRIBUTES:
+            if key == "instance_id" and value:
+                self.instance_id = uuid.UUID(value)
+            elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
                 setattr(self, key, value)
 
 

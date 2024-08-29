@@ -4,7 +4,7 @@
     "is current_hp >,0"
   ],
   "effects": [
-    "heal 200"
+    "heal 200,fixed"
   ],
   "slug": "mega_potion",
   "sort": "potion",

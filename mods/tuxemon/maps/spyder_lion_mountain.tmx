@@ -295,6 +295,10 @@
   <object id="422" name="Talk Nurse" type="event" x="160" y="1408" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_lionmountain_nurse1"/>
+    <property name="act2" value="translated_dialog spyder_generic_nurse"/>
+    <property name="act3" value="set_monster_health"/>
+    <property name="act4" value="set_monster_status"/>
+    <property name="act5" value="translated_dialog spyder_output_nurse7"/>
     <property name="behav1" value="talk spyder_lionmountain_nurse"/>
    </properties>
   </object>

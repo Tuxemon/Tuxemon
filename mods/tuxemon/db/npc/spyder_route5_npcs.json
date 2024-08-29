@@ -68,5 +68,15 @@
         "slug": "granny"
       }
   
+  },
+  {
+    "slug": "spyder_route5_nurse",
+    "template": 
+      {
+        "sprite_name": "nurse_blue",
+        "combat_front": "nurse",
+        "slug": "nurse"
+      }
+  
   }
 ]

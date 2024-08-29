@@ -78,5 +78,15 @@
         "slug": "interactive_obj"
       }
   
+  },
+  {
+    "slug": "spyder_tunnelb_nurse",
+    "template": 
+      {
+        "sprite_name": "nurse_red",
+        "combat_front": "nurse",
+        "slug": "nurse"
+      }
+  
   }
 ]

@@ -602,8 +602,8 @@ class CombatState(CombatAnimations):
         if not sprite:
             raise ValueError(f"Sprite not found for item {capture_device}")
 
-        self.animate_monster_release(player, monster, sprite)
         self.monsters_in_play[player].append(monster)
+        self.animate_monster_release(player, monster, sprite)
         self.update_hud(player)
 
         # Remove "bond" status from all active monsters

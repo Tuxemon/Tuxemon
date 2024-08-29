@@ -135,9 +135,15 @@ class CombatAnimations(ABC, Menu[None]):
         sprite: Sprite,
     ) -> None:
         # Calculate feet position
+        if npc.max_position > 1 and monster in self.monsters_in_play[npc]:
+            monster_index = str(self.monsters_in_play[npc].index(monster))
+        else:
+            monster_index = ""
+
         feet = (
-            self._layout[npc]["home"][0].center[0],
-            self._layout[npc]["home"][0].center[1] + tools.scale(11),
+            self._layout[npc][f"home{monster_index}"][0].center[0],
+            self._layout[npc][f"home{monster_index}"][0].center[1]
+            + tools.scale(11),
         )
 
         # Load and scale capture device sprite
@@ -387,7 +393,7 @@ class CombatAnimations(ABC, Menu[None]):
         """
         Builds the HUD for a monster.
 
-        Args:
+        Parameters:
             monster: The monster that needs to update the HUD.
             hud_position: The part of the layout where the HUD will be displayed (e.g. "hud0", etc.).
             animate: Whether the HUD should be animated (slide in) or not.
@@ -402,7 +408,7 @@ class CombatAnimations(ABC, Menu[None]):
             """
             Builds a HUD sprite for a monster.
 
-            Args:
+            Parameters:
                 hud: The HUD sprite to build.
                 is_player: Whether the HUD is for the player or not.
 
@@ -858,7 +864,7 @@ class CombatAnimations(ABC, Menu[None]):
 
         alive_members = alive_party(character)
         if len(monsters) > 1 and len(monsters) <= len(alive_members):
-            self.build_hud(monsters[0], "hud0", animate)
-            self.build_hud(monsters[1], "hud1", animate)
+            for i, monster in enumerate(monsters):
+                self.build_hud(monster, f"hud{i}", animate)
         else:
             self.build_hud(monsters[0], "hud", animate)

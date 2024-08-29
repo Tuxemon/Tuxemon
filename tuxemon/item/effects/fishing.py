@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
 from tuxemon import prepare
-from tuxemon.db import EvolutionStage, MonsterShape, db
+from tuxemon.db import EvolutionStage, MonsterModel, MonsterShape, db
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 
 if TYPE_CHECKING:
@@ -17,6 +17,9 @@ if TYPE_CHECKING:
 
 class FishingEffectResult(ItemEffectResult):
     pass
+
+
+lookup_cache: dict[str, MonsterModel] = {}
 
 
 @dataclass
@@ -39,55 +42,24 @@ class FishingEffect(ItemEffect):
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> FishingEffectResult:
-        # define random encounters
-        mon_slug: str = ""
-        level: int = 0
-        fishing: bool = False
-        bas: list[str] = []
-        adv: list[str] = []
-        pro: list[str] = []
-        monsters = list(db.database["monster"])
-        for mon in monsters:
-            results = db.lookup(mon, table="monster")
-            if results.txmn_id > 0:
-                if results.stage == EvolutionStage.basic:
-                    if (
-                        results.shape == MonsterShape.polliwog
-                        or results.shape == MonsterShape.piscine
-                    ):
-                        bas.append(results.slug)
-                if (
-                    results.stage == EvolutionStage.stage1
-                    or results.stage == EvolutionStage.basic
-                ):
-                    if (
-                        results.shape == MonsterShape.polliwog
-                        or results.shape == MonsterShape.piscine
-                    ):
-                        adv.append(results.slug)
-                if results.stage != EvolutionStage.basic:
-                    if (
-                        results.shape == MonsterShape.polliwog
-                        or results.shape == MonsterShape.piscine
-                        or results.shape == MonsterShape.leviathan
-                    ):
-                        pro.append(results.slug)
+        if not lookup_cache:
+            _lookup_monsters()
 
-        # bait probability
-        bait = random.random()
-        if item.slug == "fishing_rod" and bait <= self.bait:
-            mon_slug = random.choice(bas)
-            level = random.randint(self.lower_bound, self.upper_bound)
-            fishing = True
-        elif item.slug == "neptune" and bait <= self.bait:
-            mon_slug = random.choice(adv)
-            level = random.randint(self.lower_bound, self.upper_bound)
-            fishing = True
-        elif item.slug == "poseidon" and bait <= self.bait:
-            mon_slug = random.choice(pro)
-            level = random.randint(self.lower_bound, self.upper_bound)
-            fishing = True
+        monster_lists = {
+            "fishing_rod": _get_basic_monsters(),
+            "neptune": _get_advanced_monsters(),
+            "poseidon": _get_pro_monsters(),
+        }
 
+        if item.slug in monster_lists and random.random() <= self.bait:
+            mon_slug = random.choice(monster_lists[item.slug])
+            level = random.randint(self.lower_bound, self.upper_bound)
+            self._trigger_fishing_encounter(mon_slug, level)
+            return {"success": True, "num_shakes": 0, "extra": None}
+        return {"success": False, "num_shakes": 0, "extra": None}
+
+    def _trigger_fishing_encounter(self, mon_slug: str, level: int) -> None:
+        """Trigger a fishing encounter"""
         client = self.session.client
         player = self.session.player
         environment = (
@@ -97,10 +69,51 @@ class FishingEffect(ItemEffect):
         )
         blue = prepare.SEA_BLUE_COLOR
         rgb = ":".join(map(str, blue))
-        if fishing:
-            client.event_engine.execute_action(
-                "wild_encounter",
-                [mon_slug, level, None, None, environment, rgb],
-                True,
-            )
-        return {"success": fishing, "num_shakes": 0, "extra": None}
+        client.event_engine.execute_action(
+            "wild_encounter",
+            [mon_slug, level, None, None, environment, rgb],
+            True,
+        )
+
+
+def _get_basic_monsters() -> list[str]:
+    """Return a list of basic monster slugs"""
+    return [
+        mon.slug
+        for mon in lookup_cache.values()
+        if mon.stage == EvolutionStage.basic
+        and mon.shape in [MonsterShape.polliwog, MonsterShape.piscine]
+    ]
+
+
+def _get_advanced_monsters() -> list[str]:
+    """Return a list of advanced monster slugs"""
+    return [
+        mon.slug
+        for mon in lookup_cache.values()
+        if mon.stage in [EvolutionStage.stage1, EvolutionStage.basic]
+        and mon.shape in [MonsterShape.polliwog, MonsterShape.piscine]
+    ]
+
+
+def _get_pro_monsters() -> list[str]:
+    """Return a list of pro monster slugs"""
+    return [
+        mon.slug
+        for mon in lookup_cache.values()
+        if mon.stage != EvolutionStage.basic
+        and mon.shape
+        in [
+            MonsterShape.polliwog,
+            MonsterShape.piscine,
+            MonsterShape.leviathan,
+        ]
+    ]
+
+
+def _lookup_monsters() -> None:
+    monsters = list(db.database["monster"])
+    for mon in monsters:
+        results = db.lookup(mon, table="monster")
+        if results.txmn_id > 0:
+            lookup_cache[mon] = results

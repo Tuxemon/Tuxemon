@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="87">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="89">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="routee"/>
-  <property name="types" value="route"/>
+  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" source="../gfx/tilesets/core_set pieces.tsx"/>
@@ -102,7 +102,7 @@
     <property name="cond1" value="not char_exists spyder_routee_calliope"/>
    </properties>
   </object>
-  <object id="84" name="Battle Calliope" type="event" x="96" y="192" width="32" height="16">
+  <object id="84" name="Battle Calliope" type="event" x="96" y="208" width="32" height="16">
    <properties>
     <property name="act0" value="pathfind_to_player spyder_routee_calliope,down"/>
     <property name="act1" value="translated_dialog spyder_routee_calliope1"/>
@@ -111,8 +111,9 @@
     <property name="act6" value="start_battle player,spyder_routee_calliope"/>
     <property name="act7" value="translated_dialog spyder_routee_calliope2"/>
     <property name="act8" value="set_variable routeecalliope:yes"/>
-    <property name="cond1" value="is variable_set routeecalliope:yes"/>
-    <property name="cond2" value="is char_at player"/>
+    <property name="cond1" value="not variable_set routeecalliope:yes"/>
+    <property name="cond2" value="is variable_set kernelquestbegin:yes"/>
+    <property name="cond3" value="is char_at player"/>
    </properties>
   </object>
   <object id="87" name="Talk Calliope" type="event" x="96" y="192" width="32" height="16">
@@ -148,6 +149,20 @@
     <property name="act8" value="set_variable routeeaiolos:yes"/>
     <property name="cond1" value="not variable_set routeeaiolos:yes"/>
     <property name="cond2" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="87" name="Post Talk Calliope" type="event" x="128" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_routee_calliope2"/>
+    <property name="behav1" value="talk spyder_routee_calliope"/>
+    <property name="cond1" value="is variable_set routeecalliope:yes"/>
+   </properties>
+  </object>
+  <object id="88" name="Post Talk Aiolos" type="event" x="128" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_routee_aiolos2"/>
+    <property name="behav1" value="talk spyder_routee_aiolos"/>
+    <property name="cond1" value="is variable_set routeeaiolos:yes"/>
    </properties>
   </object>
  </objectgroup>

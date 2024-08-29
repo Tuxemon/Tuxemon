@@ -55,7 +55,10 @@ class ChoiceItem(PygameMenuState):
         super().__init__(width=width, height=height, **kwargs)
 
         for name, slug, callback in menu:
-            item = db.lookup(slug, table="item")
+            try:
+                item = db.lookup(slug, table="item")
+            except KeyError:
+                raise RuntimeError(f"Item {slug} not found")
             new_image = pygame_menu.BaseImage(
                 transform_resource_filename(item.sprite),
                 drawing_position=POSITION_CENTER,

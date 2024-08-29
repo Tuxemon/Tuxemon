@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="68">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="73">
  <properties>
   <property name="east" value="flower_city"/>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route5"/>
   <property name="south" value="timber_town"/>
-  <property name="types" value="route"/>
+  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
@@ -399,6 +399,41 @@
     <property name="act6" value="set_variable route5edith:yes"/>
     <property name="cond1" value="not variable_set route5edith:yes"/>
     <property name="cond2" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="68" name="Post Talk Sara" type="event" x="272" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route5_sara2"/>
+    <property name="behav1" value="talk spyder_route5_sara"/>
+    <property name="cond1" value="is variable_set route5sara:yes"/>
+   </properties>
+  </object>
+  <object id="69" name="Post Talk Edith" type="event" x="272" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route5_edith2"/>
+    <property name="behav1" value="talk spyder_route5_edith"/>
+    <property name="cond1" value="is variable_set route5edith:yes"/>
+   </properties>
+  </object>
+  <object id="70" name="Post Talk Tryphaena" type="event" x="256" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route5_tryphaena2"/>
+    <property name="behav1" value="talk spyder_route5_tryphaena"/>
+    <property name="cond1" value="is variable_set route5tryphaena:yes"/>
+   </properties>
+  </object>
+  <object id="71" name="Post Talk Cleo" type="event" x="256" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route5_cleo2"/>
+    <property name="behav1" value="talk spyder_route5_cleo"/>
+    <property name="cond1" value="is variable_set route5cleo:yes"/>
+   </properties>
+  </object>
+  <object id="72" name="Post Talk Hunter" type="event" x="32" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route5_hunter2"/>
+    <property name="behav1" value="talk spyder_route5_hunter"/>
+    <property name="cond1" value="is variable_set route5hunter:yes"/>
    </properties>
   </object>
  </objectgroup>

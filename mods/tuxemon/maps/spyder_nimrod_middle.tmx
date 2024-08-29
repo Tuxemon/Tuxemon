@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="45">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="50">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="nimrod_middle"/>
-  <property name="types" value="dungeon"/>
+  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_set pieces.tsx"/>
  <tileset firstgid="1551" source="../gfx/tilesets/core_outdoor.tsx"/>
@@ -287,6 +287,41 @@
     <property name="act6" value="set_variable nimrodantimony:yes"/>
     <property name="cond1" value="not variable_set nimrodantimony:yes"/>
     <property name="cond2" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="45" name="Post Talk Archer" type="event" x="64" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_archer2"/>
+    <property name="behav1" value="talk spyder_nimrod_archer"/>
+    <property name="cond1" value="is variable_set nimrodarcher:yes"/>
+   </properties>
+  </object>
+  <object id="46" name="Post Talk Antimony" type="event" x="80" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_antimony2"/>
+    <property name="behav1" value="talk spyder_nimrod_antimony"/>
+    <property name="cond1" value="is variable_set nimrodantimony:yes"/>
+   </properties>
+  </object>
+  <object id="47" name="Post Talk Argon" type="event" x="96" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_argon2"/>
+    <property name="behav1" value="talk spyder_nimrod_argon"/>
+    <property name="cond1" value="is variable_set nimrodargon:yes"/>
+   </properties>
+  </object>
+  <object id="48" name="Post Talk Thatcher" type="event" x="112" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_thatcher2"/>
+    <property name="behav1" value="talk spyder_nimrod_thatcher"/>
+    <property name="cond1" value="is variable_set nimrodthatcher:yes"/>
+   </properties>
+  </object>
+  <object id="49" name="Post Talk Honour" type="event" x="128" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_honour2"/>
+    <property name="behav1" value="talk spyder_nimrod_honour"/>
+    <property name="cond1" value="is variable_set nimrodhonour:yes"/>
    </properties>
   </object>
  </objectgroup>

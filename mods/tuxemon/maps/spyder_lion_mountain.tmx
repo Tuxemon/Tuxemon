@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="452">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="462">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="lion_mountain"/>
   <property name="south" value="park"/>
-  <property name="types" value="route"/>
+  <property name="map_type" value="route"/>
   <property name="west" value="crystal_town"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
@@ -565,6 +565,76 @@
     <property name="act20" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="452" name="Post Talk Emilio" type="event" x="416" y="1536" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_emilio2"/>
+    <property name="behav1" value="talk spyder_lionmountain_emilio"/>
+    <property name="cond1" value="is variable_set lionmountainemilio:yes"/>
+   </properties>
+  </object>
+  <object id="453" name="Post Talk Tom" type="event" x="496" y="1184" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_tom2"/>
+    <property name="behav1" value="talk spyder_lionmountain_tom"/>
+    <property name="cond1" value="is variable_set lionmountaintom:yes"/>
+   </properties>
+  </object>
+  <object id="454" name="Post Talk Chhurim" type="event" x="512" y="896" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_chhurim2"/>
+    <property name="behav1" value="talk spyder_lionmountain_chhurim"/>
+    <property name="cond1" value="is variable_set lionmountainchhurim:yes"/>
+   </properties>
+  </object>
+  <object id="455" name="Post Talk Kurt" type="event" x="496" y="656" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_kurt2"/>
+    <property name="behav1" value="talk spyder_lionmountain_kurt"/>
+    <property name="cond1" value="is variable_set lionmountainkurt:yes"/>
+   </properties>
+  </object>
+  <object id="456" name="Post Talk Conrad" type="event" x="432" y="512" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_conrad2"/>
+    <property name="behav1" value="talk spyder_lionmountain_conrad"/>
+    <property name="cond1" value="is variable_set lionmountainconrad:yes"/>
+   </properties>
+  </object>
+  <object id="457" name="Post Talk David" type="event" x="16" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_david2"/>
+    <property name="behav1" value="talk spyder_lionmountain_david"/>
+    <property name="cond1" value="is variable_set lionmountaindavid:yes"/>
+   </properties>
+  </object>
+  <object id="458" name="Post Talk Arlene" type="event" x="64" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_arlene2"/>
+    <property name="behav1" value="talk spyder_lionmountain_arlene"/>
+    <property name="cond1" value="is variable_set lionmountainarlene:yes"/>
+   </properties>
+  </object>
+  <object id="459" name="Post Talk Alexander" type="event" x="64" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_alexander2"/>
+    <property name="behav1" value="talk spyder_lionmountain_alexander"/>
+    <property name="cond1" value="is variable_set lionmountainalex:yes"/>
+   </properties>
+  </object>
+  <object id="460" name="Post Talk Adam" type="event" x="48" y="992" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_adam2"/>
+    <property name="behav1" value="talk spyder_lionmountain_adam"/>
+    <property name="cond1" value="is variable_set lionmountainadam:yes"/>
+   </properties>
+  </object>
+  <object id="461" name="Post Talk Jacques" type="event" x="32" y="1152" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_jacques2"/>
+    <property name="behav1" value="talk spyder_lionmountain_jacques"/>
+    <property name="cond1" value="is variable_set lionmountainjacques:yes"/>
    </properties>
   </object>
  </objectgroup>

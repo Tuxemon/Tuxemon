@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="293">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="296">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="citypark"/>
   <property name="south" value="route2"/>
-  <property name="types" value="route"/>
+  <property name="map_type" value="route"/>
   <property name="west" value="leather_town"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/Superpowers_Tilesheet.tsx"/>
@@ -585,6 +585,27 @@
     <property name="act2" value="set_monster_health"/>
     <property name="act3" value="set_monster_status"/>
     <property name="behav1" value="talk spyder_citypark_nurse"/>
+   </properties>
+  </object>
+  <object id="293" name="Post Talk Bobette" type="event" x="256" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_citypark_bobette2"/>
+    <property name="behav1" value="talk spyder_citypark_bobette"/>
+    <property name="cond1" value="is variable_set citypark_bobette:yes"/>
+   </properties>
+  </object>
+  <object id="294" name="Post Talk Frances" type="event" x="448" y="352" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_citypark_frances2"/>
+    <property name="behav1" value="talk spyder_citypark_frances"/>
+    <property name="cond1" value="is variable_set citypark_frances:yes"/>
+   </properties>
+  </object>
+  <object id="295" name="Post Talk Edith" type="event" x="624" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_citypark_edith2"/>
+    <property name="behav1" value="talk spyder_citypark_edith"/>
+    <property name="cond1" value="is variable_set citypark_edith:yes"/>
    </properties>
   </object>
  </objectgroup>

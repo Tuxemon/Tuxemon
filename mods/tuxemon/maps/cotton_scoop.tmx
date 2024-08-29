@@ -5,7 +5,7 @@
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="cotton_scoop"/>
-  <property name="types" value="shop"/>
+  <property name="map_type" value="shop"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
  <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_walls.tsx"/>

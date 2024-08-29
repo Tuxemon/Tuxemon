@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="75">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="78">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="tunnel_below"/>
-  <property name="types" value="dungeon"/>
+  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
@@ -215,6 +215,27 @@
     <property name="act3" value="remove_npc spyder_tunnelb_rhincus"/>
     <property name="act4" value="set_variable tunnelb_rhincus:yes"/>
     <property name="behav1" value="talk spyder_tunnelb_rhincus"/>
+   </properties>
+  </object>
+  <object id="75" name="Talk Beryll" type="event" x="160" y="496" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_tunnelb_beryll2"/>
+    <property name="behav1" value="talk spyder_tunnelb_beryll"/>
+    <property name="cond1" value="is variable_set tunnelbberyll:yes"/>
+   </properties>
+  </object>
+  <object id="76" name="Talk Lute" type="event" x="48" y="576" width="16" height="16">
+   <properties>
+    <property name="act01" value="translated_dialog spyder_tunnelb_lute2"/>
+    <property name="behav1" value="talk spyder_tunnelb_lute"/>
+    <property name="cond1" value="is variable_set tunnelblute:yes"/>
+   </properties>
+  </object>
+  <object id="77" name="Talk Meitner" type="event" x="256" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_tunnelb_meitner2"/>
+    <property name="behav1" value="talk spyder_tunnelb_meitner"/>
+    <property name="cond1" value="is variable_set tunnelbmeitner:yes"/>
    </properties>
   </object>
  </objectgroup>

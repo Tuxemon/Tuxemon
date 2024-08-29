@@ -3,7 +3,7 @@
  <properties>
   <property name="edges" value="clamped"/>
   <property name="slug" value="manhattan_beach"/>
-  <property name="types" value="notype"/>
+  <property name="map_type" value="notype"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>

@@ -7,7 +7,7 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route1"/>
   <property name="south" value="paper_town"/>
-  <property name="types" value="route"/>
+  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_set pieces.tsx"/>
  <tileset firstgid="1551" source="../gfx/tilesets/core_outdoor.tsx"/>

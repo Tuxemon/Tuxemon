@@ -5,7 +5,7 @@
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="leather_museum"/>
-  <property name="types" value="notype"/>
+  <property name="map_type" value="notype"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/Superpowers_Tilesheet.tsx"/>
  <tileset firstgid="1601" source="../gfx/tilesets/core_set pieces.tsx"/>

@@ -99,15 +99,22 @@ class ActionQueue:
 
     def __init__(self) -> None:
         self._action_queue: list[EnqueuedAction] = []
+        self._action_history: list[tuple[int, EnqueuedAction]] = []
 
     @property
     def queue(self) -> list[EnqueuedAction]:
         """Returns the current action queue."""
         return self._action_queue
 
-    def enqueue(self, action: EnqueuedAction) -> None:
-        """Adds an action to the end of the queue."""
+    @property
+    def history(self) -> list[tuple[int, EnqueuedAction]]:
+        """Returns the current action history."""
+        return self._action_history
+
+    def enqueue(self, action: EnqueuedAction, turn: int) -> None:
+        """Adds an action to the end of the queue and history."""
         self._action_queue.append(action)
+        self._action_history.append((turn, action))
 
     def dequeue(self, action: EnqueuedAction) -> None:
         """Removes an action from the queue if it exists."""
@@ -127,6 +134,10 @@ class ActionQueue:
     def clear_queue(self) -> None:
         """Clears the entire queue."""
         self._action_queue.clear()
+
+    def clear_history(self) -> None:
+        """Clears the entire history."""
+        self._action_history.clear()
 
     def sort(self) -> None:
         """

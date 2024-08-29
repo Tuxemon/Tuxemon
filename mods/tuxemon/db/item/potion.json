@@ -4,7 +4,7 @@
     "is current_hp >,0"
   ],
   "effects": [
-    "heal 20"
+    "heal 20,fixed"
   ],
   "slug": "potion",
   "sort": "potion",

@@ -7,21 +7,25 @@ import logging
 import math
 import random
 from collections.abc import Sequence
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from tuxemon import prepare as pre
 
 if TYPE_CHECKING:
+    from tuxemon.db import ElementType
     from tuxemon.element import Element
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
 
+multiplier_cache: dict[tuple[ElementType, ElementType], float] = {}
+
 
 def simple_damage_multiplier(
     attack_types: Sequence[Element],
     target_types: Sequence[Element],
+    additional_factors: Optional[dict[str, float]] = None,
 ) -> float:
     """
     Calculates damage multiplier based on strengths and weaknesses.
@@ -29,31 +33,71 @@ def simple_damage_multiplier(
     Parameters:
         attack_types: The types of the technique.
         target_types: The types of the target.
+        additional_factors: Optional dictionary of additional factors
+        that affect the damage multiplier. The keys of the dictionary
+        should be the names of the factors, and the values should be
+        the corresponding multipliers.
 
     Returns:
         The attack multiplier.
 
     """
-    m = 1.0
+    multiplier = 1.0
     for attack_type in attack_types:
         for target_type in target_types:
-            if target_type:
-                if (
-                    attack_type.slug == "aether"
-                    or target_type.slug == "aether"
-                ):
-                    continue
-                m = attack_type.lookup_multiplier(target_type.slug)
+            if target_type and not (
+                attack_type.slug == "aether" or target_type.slug == "aether"
+            ):
+                key = (attack_type.slug, target_type.slug)
+                if key in multiplier_cache:
+                    multiplier = multiplier_cache[key]
+                else:
+                    multiplier = attack_type.lookup_multiplier(
+                        target_type.slug
+                    )
+                    multiplier_cache[key] = multiplier
+                multiplier = min(
+                    pre.MULTIPLIER_RANGE[1],
+                    max(pre.MULTIPLIER_RANGE[0], multiplier),
+                )
+    # Apply additional factors
+    if additional_factors:
+        for _, multiplier_value in additional_factors.items():
+            multiplier *= multiplier_value
+    return multiplier
 
-    m = min(pre.MULTIPLIER_RANGE[1], m)
-    m = max(pre.MULTIPLIER_RANGE[0], m)
-    return m
+
+def calculate_multiplier(
+    monster_types: Sequence[Element], opponent_types: Sequence[Element]
+) -> float:
+    """
+    Calculate the multiplier for a monster's types against an opponent's types.
+
+    Parameters:
+        monster (Monster): The monster whose types are being used to
+        calculate it.
+        opponent (Monster): The opponent whose types are being used to
+        calculate it.
+
+    Returns:
+        float: The final multiplier that represents the effectiveness of
+        the monster'stypes against the opponent's types.
+    """
+    multiplier = 1.0
+    for _monster in monster_types:
+        for _opponent in opponent_types:
+            if _opponent and not (
+                _monster.slug == "aether" or _opponent.slug == "aether"
+            ):
+                multiplier *= _monster.lookup_multiplier(_opponent.slug)
+    return multiplier
 
 
 def simple_damage_calculate(
     technique: Technique,
     user: Monster,
     target: Monster,
+    additional_factors: Optional[dict[str, float]] = None,
 ) -> tuple[int, float]:
     """
     Calculates the damage of a technique based on stats and multiplier.
@@ -62,6 +106,10 @@ def simple_damage_calculate(
         technique: The technique to calculate for.
         user: The user of the technique.
         target: The one the technique is being used on.
+        additional_factors: Optional dictionary of additional factors
+        that affect the damage multiplier. The keys of the dictionary
+        should be the names of the factors, and the values should be
+        the corresponding multipliers.
 
     Returns:
         A tuple (damage, multiplier).
@@ -89,8 +137,7 @@ def simple_damage_calculate(
         )
 
     mult = simple_damage_multiplier(
-        (technique.types),
-        (target.types),
+        (technique.types), (target.types), additional_factors
     )
     move_strength = technique.power * mult
     damage = int(user_strength * move_strength / target_resist)

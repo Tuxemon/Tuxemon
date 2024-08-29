@@ -67,12 +67,14 @@
   </object>
   <object id="38" name="Heal Tuxemon" type="event" x="0" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="set_monster_health"/>
-    <property name="act2" value="set_monster_status"/>
+    <property name="act10" value="set_monster_health"/>
+    <property name="act11" value="set_monster_status"/>
     <property name="act20" value="translated_dialog okaythen"/>
+    <property name="act21" value="lock_controls"/>
     <property name="act30" value="char_face spyder_cottontown_barmaid,up"/>
     <property name="act40" value="wait 1"/>
     <property name="act50" value="char_face spyder_cottontown_barmaid,down"/>
+    <property name="act51" value="unlock_controls"/>
     <property name="act60" value="translated_dialog okaythen2"/>
     <property name="act70" value="set_variable chooses:none"/>
     <property name="act80" value="set_variable teleport_faint:spyder_candy_cafe.tmx 1 10"/>

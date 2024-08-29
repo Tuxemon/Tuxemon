@@ -25,7 +25,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   eAHtlj1uFEEQRjtywGIS2whMQGIkyySWSBASIoac0GZlJ3AFh/7BTvAV2DtwBQ7BFTgCAiTqg31yqVQ90+uZxRKipXb1Vn9V9aZ3qz2l/Nvj7aSUdzb/xvh8uxTqtdoPxnZps1UfdYs+F/VaLflb9VFH/H97vRNYu1XKus0Nm9cdX+13uazx1Lh2Lf+zAXywxd/20M/KKz49P3wPw11ADRi6bPxtD/0M353VKz75xAgXNbq4vJ64oZZ6Or8njo/zg4s66DOrGPRjWeqIT/euvl/Y/Hmgk69ropPt0mlvkbFnXPs239jUyOJXH/zZa/07Jp+vCZtsy/fqY+Oa+KE23n8w8juK+aMerugnfqj19wts/vxifukn7j6Cr+Zn/9MKq1Ja1qhreeHi/Lw+u8+VJ/MT98XxtayJO67khQtO9OJ4bed3atYP/Nzzfk/rn46vZa2Yl5My27Kpej6v/p/ABaf0GuI4sv1HkzJ9ZfO30/l9Hu2dz5/jntn7PXNzriWn5Z9ZnZnqxbxwwUmM+D6a3p5ras83jf6Y5/m8JhZ9Zl8EPmlO5vViXrjgJJ/4dJ+fhVz4Yx64sOTJbMZXywsXnPofrSE97xM6d4b345OFC+v34jrjU39Qz+vhgpM9ccT3Ce3V/HBhyZPZyEd/ZPXggpN84vDvE31+uLDoMxv56I+sHlxwkk98WT/V/HC9t7i+cZFo1B9ZPbjgJLc41L/Z/Sd/rT+IX9RSL+aFC07ySq/+ze4/3tPQynJ+3rfIWv2R5YULTnKKT/2U3X9Znx2Y/rAyN83fNeiPLC9ccJJHfOqn7P7L+oy4zMZ+iBr6w+flToMLTmLFRz992yjlu80fNr0fbZ/t41O8+oN6Ph9ccLK3Z3ret7fvlrJj87FN7699n/L70cLn8/pYuOD0e2Otu/j0DppNasMFJ/4xLXzqTz8yLu+TFi44fXzfWv3WMrL7WHGeJVurX+CCE0tdPt+0hRMLH59v2sbzga9mo37Zn+P51LjwR/2yP7c+P3yt+rF0rc8PX6t+LN0v0iN3lg==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">
@@ -581,9 +581,10 @@
   </object>
   <object id="292" name="Talk Nurse" type="event" x="128" y="480" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_citypark_nurse"/>
+    <property name="act1" value="translated_dialog spyder_generic_nurse"/>
     <property name="act2" value="set_monster_health"/>
     <property name="act3" value="set_monster_status"/>
+    <property name="act4" value="translated_dialog spyder_output_nurse1"/>
     <property name="behav1" value="talk spyder_citypark_nurse"/>
    </properties>
   </object>

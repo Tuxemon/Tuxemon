@@ -18,7 +18,7 @@
  </layer>
  <layer id="2" name="Tile Layer 4" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAGVkD8OAVEQxseuBgnRrSNQ6alxDZU/hQo1pYRjoHACJyB0i0THFVwA38SbZLL7lmeSL2923vebN7NE7nHziO5QUuSDz03ReNrK+ETt9YWtGbYKzxTcxLAFU1etnNO6Axv68Xa2WtxF9AA7TxNtVQ+u9aEy9qhAA3UX7bEBezX3QZaoBM3wzSdrYWFDyz9swNuEdvDvoQN0tLGqJjsKy7yohTwavJeE5K6scPoc4o0R1MkQdaEeNLa8y4zMqnnXXGZ19bNviTlWSuuEuWw9T/CelS5/sKkckafkI/8VbyRIKEc=
+   eAGVj0sOAUEQhsuMDRJiN47Ayp41rmHlsbDCmqWEY2DhBE5A2HkkdlzBBfBXdCWVmZ7RKvkyNd3/V91N5F53j+gB4ioffHeKJtNWwRfW3gluzbhVZKbwJsYtmHU1yrmtO7gnPzrOthZNET3hztNEWzWD1/qgjHdUwEDthWds4N7MfpAlKoEZ/vnLLBJcPauBbBPskN+DAzhaXP0u6cVlX2ihDxe/S0p6V1c8/R3ijBHoZIi6oAfGlnPZkbtq37WXu7rmObfEPVaKdcy9bDPPyF4U1z/cVI7IU/jof9UHbuwncw==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 5" width="15" height="16">
@@ -28,7 +28,7 @@
  </layer>
  <layer id="4" name="Above Player" width="15" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYBgF9A6BzUz0tnHUvuEaAgCjiQC2
+   eAFjYBgFoyEwGgJDNQQAA8AAAQ==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -55,7 +55,6 @@
   <object id="32" type="collision" x="32" y="240" width="16" height="16"/>
   <object id="41" type="collision" x="64" y="192" width="48" height="16"/>
   <object id="42" type="collision" x="80" y="208" width="32" height="16"/>
-  <object id="43" type="collision" x="48" y="112" width="16" height="16"/>
   <object id="44" type="collision-line" x="64" y="48">
    <polyline points="0,0 16,0"/>
   </object>
@@ -111,14 +110,17 @@
   </object>
   <object id="48" name="Heal Tuxemon" type="event" x="192" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="set_monster_health"/>
-    <property name="act2" value="set_monster_status"/>
+    <property name="act10" value="set_monster_health"/>
+    <property name="act11" value="set_monster_status"/>
     <property name="act20" value="translated_dialog okaythen"/>
+    <property name="act21" value="lock_controls"/>
     <property name="act30" value="char_face spyder_wayfarer1_norm,up"/>
     <property name="act40" value="wait 1"/>
     <property name="act50" value="char_face spyder_wayfarer1_norm,down"/>
+    <property name="act51" value="unlock_controls"/>
     <property name="act60" value="translated_dialog okaythen2"/>
     <property name="act70" value="set_variable chooses:none"/>
+    <property name="act80" value="set_variable teleport_faint:spyder_wayfarer_inn1.tmx 11 9"/>
     <property name="cond1" value="is variable_set chooses:yes"/>
    </properties>
   </object>

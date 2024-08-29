@@ -7888,8 +7888,29 @@ msgstr "Enjoy the flower display! It's the pride of Leather Town."
 msgid "spyder_citypark2_florist"
 msgstr "The flowers look okay, don't they? ... Ever since the mining began in Leather Town, the flowers have been under the weather!"
 
-msgid "spyder_citypark_nurse"
+msgid "spyder_generic_nurse"
 msgstr "Hey, you look tired. Let me help you feel better!"
+
+msgid "spyder_output_nurse1"
+msgstr "You should be good as new now! Just take it easy for a bit and you'll be back to your old self in no time."
+
+msgid "spyder_output_nurse2"
+msgstr "All better! I'm glad I could help. You were looking a bit rough there for a second."
+
+msgid "spyder_output_nurse3"
+msgstr "There we go! You're all fixed up. Don't worry about it, it's all part of the service."
+
+msgid "spyder_output_nurse4"
+msgstr "All healed up! Now, let's get you back on your feet and get you moving again."
+
+msgid "spyder_output_nurse5"
+msgstr "You're all patched up now, just take a load off and rest for a bit."
+
+msgid "spyder_output_nurse6"
+msgstr "Feeling better already? I'm glad I could lend a hand."
+
+msgid "spyder_output_nurse7"
+msgstr "All better now! You were a bit worse for wear, but you're good as new."
 
 msgid "spyder_route2_graf2"
 msgstr "I got served."

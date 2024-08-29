@@ -148,5 +148,15 @@
         "slug": "interactive_obj"
       }
   
+  },
+  {
+    "slug": "spyder_routea_nurse",
+    "template": 
+      {
+        "sprite_name": "nurse_blonde",
+        "combat_front": "nurse",
+        "slug": "nurse"
+      }
+  
   }
 ]

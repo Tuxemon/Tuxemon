@@ -159,11 +159,11 @@ class LocalPygameClient:
 
         # Check if the map type exists
         self.map_type = MapType.notype
-        if map_data.types in list(MapType):
-            self.map_type = MapType(map_data.types)
+        if map_data.map_type in list(MapType):
+            self.map_type = MapType(map_data.map_type)
         else:
             logger.warning(
-                f"The type '{map_data.types}' doesn't exist."
+                f"The type '{map_data.map_type}' doesn't exist."
                 f"By default assigned {MapType.notype}!"
             )
 

@@ -4,7 +4,7 @@
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="slug" value="downstairs"/>
-  <property name="types" value="notype"/>
+  <property name="map_type" value="notype"/>
  </properties>
  <tileset firstgid="1" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
   <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>

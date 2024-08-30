@@ -43,34 +43,33 @@ class AddMonsterAction(EventAction):
 
     def start(self) -> None:
         player = self.session.player
-        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
+        self.npc_slug = self.npc_slug or "player"
         trainer = get_npc(self.session, self.npc_slug)
-        assert trainer
+        if not trainer:
+            raise ValueError(f"NPC '{self.npc_slug}' not found")
 
-        # check monster existence
-        _mon: str = ""
-        verify = list(db.database["monster"])
-        if self.monster_slug not in verify:
+        if self.monster_slug not in db.database["monster"]:
             if self.monster_slug in player.game_variables:
-                _mon = player.game_variables[self.monster_slug]
+                monster_slug = player.game_variables[self.monster_slug]
             else:
                 raise ValueError(
-                    f"{self.monster_slug} doesn't exist (monster or variable)."
+                    f"{self.monster_slug} doesn't exist (monster or variable)"
                 )
         else:
-            _mon = self.monster_slug
+            monster_slug = self.monster_slug
 
-        _monster = Monster()
-        _monster.load_from_db(_mon)
-        _monster.set_level(self.monster_level)
-        _monster.set_moves(self.monster_level)
-        _monster.set_capture(formula.today_ordinal())
-        _monster.current_hp = _monster.hp
+        monster = Monster()
+        monster.load_from_db(monster_slug)
+        monster.set_level(self.monster_level)
+        monster.set_moves(self.monster_level)
+        monster.set_capture(formula.today_ordinal())
+        monster.current_hp = monster.hp
+
         if self.exp is not None:
-            _monster.experience_modifier = self.exp
+            monster.experience_modifier = self.exp
         if self.money is not None:
-            _monster.money_modifier = self.money
+            monster.money_modifier = self.money
 
-        trainer.add_monster(_monster, len(trainer.monsters))
-        trainer.tuxepedia[_monster.slug] = SeenStatus.caught
-        player.game_variables[self.name] = str(_monster.instance_id.hex)
+        trainer.add_monster(monster, len(trainer.monsters))
+        trainer.tuxepedia[monster.slug] = SeenStatus.caught
+        player.game_variables[self.name] = str(monster.instance_id.hex)

@@ -29,6 +29,17 @@ def fix_measure(measure: int, percentage: float) -> int:
     return round(measure * percentage)
 
 
+lookup_cache: dict[str, MonsterModel] = {}
+
+
+def _lookup_monsters() -> None:
+    monsters = list(db.database["monster"])
+    for mon in monsters:
+        results = db.lookup(mon, table="monster")
+        if results.txmn_id > 0:
+            lookup_cache[mon] = results
+
+
 class JournalState(PygameMenuState):
     """Shows journal (screen 2/3)."""
 
@@ -86,6 +97,8 @@ class JournalState(PygameMenuState):
                 )
 
     def __init__(self, **kwargs: Any) -> None:
+        if not lookup_cache:
+            _lookup_monsters()
         monsters: list[MonsterModel] = []
         page: int = 0
         for ele in kwargs.values():
@@ -146,14 +159,7 @@ class JournalState(PygameMenuState):
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         client = self.client
-
-        monsters = list(db.database["monster"])
-        box: list[MonsterModel] = []
-        for mov in monsters:
-            results = db.lookup(mov, table="monster")
-            if results.txmn_id > 0:
-                box.append(results)
-
+        box = list(lookup_cache.values())
         max_page = round(len(box) / MAX_PAGE)
         param: dict[str, Any] = {}
         param["monsters"] = box

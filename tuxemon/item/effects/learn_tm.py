@@ -32,15 +32,19 @@ class LearnTmEffect(ItemEffect):
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> LearnTmEffectResult:
-        learn: bool = False
-        moves = [tech.slug for tech in target.moves] if target else []
-        moves = list(set(moves))
-        client = self.session.client
-        if target and moves and self.technique not in moves:
+
+        target_moves = (
+            {tech.slug for tech in target.moves} if target else set()
+        )
+
+        if target and self.technique not in target_moves:
+            client = self.session.client
             var = f"{self.name}:{str(target.instance_id.hex)}"
             client.event_engine.execute_action("set_variable", [var], True)
             client.event_engine.execute_action(
                 "add_tech", [self.name, self.technique], True
             )
-            learn = True
-        return {"success": learn, "num_shakes": 0, "extra": None}
+
+            return {"success": True, "num_shakes": 0, "extra": None}
+
+        return {"success": False, "num_shakes": 0, "extra": None}

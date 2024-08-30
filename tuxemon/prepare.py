@@ -280,6 +280,10 @@ HUD_LT_LINE2: tuple[int, int] = (5, 13)  # position hp_bar
 RIGHT_COMBAT: dict[str, tuple[int, int, int, int]] = {}
 # where appears the monster (character right side)
 RIGHT_COMBAT["home"] = (0, 62, 95, 70)
+# 1st spot 2 vs 2
+RIGHT_COMBAT["home0"] = (15, 62, 95, 70)
+# 2nd spot 2 vs 2
+RIGHT_COMBAT["home1"] = (-15, 62, 95, 70)
 # name, level, etc.
 RIGHT_COMBAT["hud"] = (145, 45, 110, 50)
 # 1st spot 2 vs 2
@@ -292,6 +296,10 @@ RIGHT_COMBAT["party"] = (145, 57, 110, 50)
 LEFT_COMBAT: dict[str, tuple[int, int, int, int]] = {}
 # where appears the monster (character left side)
 LEFT_COMBAT["home"] = (140, 18, 95, 70)
+# 1st spot 2 vs 2
+LEFT_COMBAT["home0"] = (125, 18, 95, 70)
+# 2nd spot 2 vs 2
+LEFT_COMBAT["home1"] = (155, 18, 95, 70)
 # name, level, etc.
 LEFT_COMBAT["hud"] = (18, 0, 85, 30)
 # 1st spot 2 vs 2

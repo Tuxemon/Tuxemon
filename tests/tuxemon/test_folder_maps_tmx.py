@@ -8,6 +8,7 @@ from collections.abc import Generator
 from typing import Any
 
 from tuxemon import prepare
+from tuxemon.db import MapType
 from tuxemon.map_loader import region_properties
 
 # Constants
@@ -89,6 +90,15 @@ class TestTMXFiles(unittest.TestCase):
                 self.assertTrue(
                     _is_object_property(prop, "scenario", EXPECTED_SCENARIOS),
                     f"Scenario wrong name {to_basename(path)} ({EXPECTED_SCENARIOS})",
+                )
+
+    def test_top_level_properties_map_type(self) -> None:
+        for path, root in self.loaded_data.items():
+            prop = root.find("properties")
+            if prop is not None:
+                self.assertTrue(
+                    _is_object_property(prop, "map_type", list(MapType)),
+                    f"Map Type wrong name {to_basename(path)} ({list(MapType)})",
                 )
 
     def test_object_id(self) -> None:

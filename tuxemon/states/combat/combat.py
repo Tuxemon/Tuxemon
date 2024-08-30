@@ -43,7 +43,7 @@ from typing import Literal, Optional, Union
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import audio, graphics, prepare, state, tools
+from tuxemon import graphics, prepare, state, tools
 from tuxemon.ai import AI
 from tuxemon.animation import Animation, Task
 from tuxemon.combat import (
@@ -585,7 +585,7 @@ class CombatState(CombatAnimations):
         self,
         player: NPC,
         monster: Monster,
-        removed: Union[Monster, None] = None,
+        removed: Optional[Monster] = None,
     ) -> None:
         """
         Add a monster to the battleground.
@@ -593,32 +593,36 @@ class CombatState(CombatAnimations):
         Parameters:
             player: Player who adds the monster, if any.
             monster: Added monster.
+            removed: Monster that was previously in play, if any.
 
         """
-        item = Item()
-        item.load(monster.capture_device)
-        sprite = self._method_cache.get(item, False)
-        assert sprite
+        capture_device = Item()
+        capture_device.load(monster.capture_device)
+        sprite = self._method_cache.get(capture_device, False)
+        if not sprite:
+            raise ValueError(f"Sprite not found for item {capture_device}")
+
         self.animate_monster_release(player, monster, sprite)
         self.monsters_in_play[player].append(monster)
         self.update_hud(player)
 
-        # remove "bond" status (eg. lifeleech, etc.)
+        # Remove "bond" status from all active monsters
         for mon in self.active_monsters:
-            if any(sta.bond for sta in monster.status):
-                mon.status.clear()
+            mon.status = [sta for sta in mon.status if not sta.bond]
 
-        # TODO: not hardcode
-        message = None
-        if removed and removed.status:
+        # Handle removed monster's status effects
+        if removed is not None and removed.status:
             removed.status[0].combat_state = self
             removed.status[0].phase = "add_monster_into_play"
             removed.status[0].use(removed)
 
-        params = {"target": monster.name.upper(), "user": player.name.upper()}
+        # Create message for combat swap
+        format_params = {
+            "target": monster.name.upper(),
+            "user": player.name.upper(),
+        }
         if self._turn > 1:
-            message = T.format("combat_swap", params)
-        if message:
+            message = T.format("combat_swap", format_params)
             self.text_animations_queue.append(
                 (partial(self.alert, message), 0)
             )
@@ -846,8 +850,7 @@ class CombatState(CombatAnimations):
                     m = T.translate(result_tech["extra"])
                 message += "\n" + m
                 action_time += compute_text_animation_time(message)
-            # TODO: caching sounds
-            audio.load_sound(method.sfx, None).play()
+            self.play_sound_effect(method.sfx)
             # animation own monster, technique doesn't tackle
             hit_delay += 0.5
             if "own monster" in method.target:

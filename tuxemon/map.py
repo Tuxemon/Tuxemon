@@ -623,7 +623,7 @@ class TuxemonMap:
         _value = maps.get("scenario")
         self.scenario = None if _value is None else str(_value)
         # check type of location
-        self.types = maps.get("types")
+        self.map_type = maps.get("map_type")
 
     def set_cardinals(self, cardinal: str, maps: dict[str, str]) -> str:
         cardinals = str(maps.get(cardinal, "-")).split(",")

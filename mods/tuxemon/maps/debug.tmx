@@ -4,7 +4,7 @@
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="debug"/>
   <property name="slug" value="debug"/>
-  <property name="types" value="notype"/>
+  <property name="map_type" value="notype"/>
  </properties>
  <layer id="1" name="Tile Layer 1" width="8" height="8">
   <data encoding="base64" compression="zlib">

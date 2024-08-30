@@ -21,6 +21,14 @@ logger = logging.getLogger(__name__)
 
 multiplier_cache: dict[tuple[ElementType, ElementType], float] = {}
 
+range_map: dict[str, tuple[str, str]] = {
+    "melee": ("melee", "armour"),
+    "touch": ("melee", "dodge"),
+    "ranged": ("ranged", "dodge"),
+    "reach": ("ranged", "armour"),
+    "reliable": ("level", "resist"),
+}
+
 
 def simple_damage_multiplier(
     attack_types: Sequence[Element],
@@ -115,30 +123,24 @@ def simple_damage_calculate(
         A tuple (damage, multiplier).
 
     """
-    if technique.range == "melee":
-        user_strength = user.melee * (pre.COEFF_DAMAGE + user.level)
-        target_resist = target.armour
-    elif technique.range == "touch":
-        user_strength = user.melee * (pre.COEFF_DAMAGE + user.level)
-        target_resist = target.dodge
-    elif technique.range == "ranged":
-        user_strength = user.ranged * (pre.COEFF_DAMAGE + user.level)
-        target_resist = target.dodge
-    elif technique.range == "reach":
-        user_strength = user.ranged * (pre.COEFF_DAMAGE + user.level)
-        target_resist = target.armour
-    elif technique.range == "reliable":
+    if technique.range not in range_map:
+        raise RuntimeError(f"Unhandled damage category: {technique.range}")
+
+    user_stat, target_stat = range_map[technique.range]
+
+    if user_stat == "level":
         user_strength = pre.COEFF_DAMAGE + user.level
-        target_resist = 1
     else:
-        raise RuntimeError(
-            "unhandled damage category %s",
-            technique.range,
+        user_strength = getattr(user, user_stat) * (
+            pre.COEFF_DAMAGE + user.level
         )
 
-    mult = simple_damage_multiplier(
-        (technique.types), (target.types), additional_factors
-    )
+    if target_stat == "resist":
+        target_resist = 1
+    else:
+        target_resist = getattr(target, target_stat)
+
+    mult = simple_damage_multiplier((technique.types), (target.types))
     move_strength = technique.power * mult
     damage = int(user_strength * move_strength / target_resist)
     return damage, mult

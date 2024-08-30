@@ -11,7 +11,7 @@ from pygame_menu.locals import POSITION_CENTER
 
 from tuxemon import formula
 from tuxemon import prepare as pre
-from tuxemon.db import OutputBattle, SeenStatus, db
+from tuxemon.db import MonsterModel, OutputBattle, SeenStatus, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
@@ -22,10 +22,20 @@ from tuxemon.tools import transform_resource_filename
 
 MenuGameObj = Callable[[], object]
 
+lookup_cache: dict[str, MonsterModel] = {}
+
 
 def fix_measure(measure: int, percentage: float) -> int:
     """it returns the correct measure based on percentage"""
     return round(measure * percentage)
+
+
+def _lookup_monsters() -> None:
+    monsters = list(db.database["monster"])
+    for mon in monsters:
+        results = db.lookup(mon, table="monster")
+        if results.txmn_id > 0:
+            lookup_cache[mon] = results
 
 
 class CharacterState(PygameMenuState):
@@ -55,12 +65,7 @@ class CharacterState(PygameMenuState):
         player = "player" if self.char.isplayer else self.char.slug
 
         # tuxepedia data
-        monsters = list(db.database["monster"])
-        filters = []
-        for mon in monsters:
-            results = db.lookup(mon, table="monster")
-            if results.txmn_id > 0:
-                filters.append(results)
+        filters = list(lookup_cache.values())
         tuxepedia = list(self.char.tuxepedia.values())
         caught = tuxepedia.count(SeenStatus.caught)
         seen = tuxepedia.count(SeenStatus.seen) + caught
@@ -202,6 +207,8 @@ class CharacterState(PygameMenuState):
         )
 
     def __init__(self, **kwargs: Any) -> None:
+        if not lookup_cache:
+            _lookup_monsters()
         character: Optional[NPC] = None
         for element in kwargs.values():
             character = element["character"]

@@ -60,20 +60,23 @@ class AI:
         """
         Tracks next_use and recharge, if both unusable, skip.
         """
-        actions = []
-        # it chooses among the last 4 moves
-        for mov in self.monster.moves[-self.monster.max_moves :]:
-            if not recharging(mov):
-                for opponent in self.opponents:
-                    # it checks technique conditions
-                    if mov.validate(opponent):
-                        actions.append((mov, opponent))
-        if not actions:
+        # Filter out recharging moves and validate techniques against opponents
+        valid_actions = [
+            (mov, opponent)
+            for mov in self.monster.moves[-self.monster.max_moves :]
+            if not recharging(mov)
+            for opponent in self.opponents
+            if mov.validate(opponent)
+        ]
+
+        # If no valid actions, return a skip technique and a random opponent
+        if not valid_actions:
             skip = Technique()
             skip.load("skip")
             return skip, random.choice(self.opponents)
-        else:
-            return random.choice(actions)
+
+        # Otherwise, return a random valid action
+        return random.choice(valid_actions)
 
     def need_potion(self) -> bool:
         """

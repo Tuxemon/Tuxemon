@@ -53,9 +53,11 @@ class StartState(PygameMenuState):
         # If there is a save, then move the cursor to "Load game" first
         index = get_index_of_latest_save()
         self.menu._onclose = None
+        config = prepare.CONFIG
 
         def new_game() -> None:
-            map_path = prepare.fetch("maps", prepare.STARTING_MAP)
+            destination = f"{prepare.STARTING_MAP}{config.mods[0]}.tmx"
+            map_path = prepare.fetch("maps", destination)
             self.client.push_state("WorldState", map_name=map_path)
             game_var = local_session.player.game_variables
             game_var["date_start_game"] = formula.today_ordinal()
@@ -82,12 +84,13 @@ class StartState(PygameMenuState):
                 font_size=self.font_size_big,
                 button_id="menu_load",
             )
-        menu.add.button(
-            title=T.translate("menu_new_game"),
-            action=new_game,
-            font_size=self.font_size_big,
-            button_id="menu_new_game",
-        )
+        if len(config.mods) == 1:
+            menu.add.button(
+                title=T.translate("menu_new_game"),
+                action=new_game,
+                font_size=self.font_size_big,
+                button_id="menu_new_game",
+            )
         menu.add.button(
             title=T.translate("menu_minigame"),
             action=change_state("MinigameState"),

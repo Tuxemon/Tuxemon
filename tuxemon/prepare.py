@@ -52,7 +52,7 @@ config.generate_default_config()
 CONFIG = config.TuxemonConfig(paths.USER_CONFIG_PATH)
 
 # Starting map
-STARTING_MAP = "debug.tmx"
+STARTING_MAP = "start_"
 
 with open(paths.USER_CONFIG_PATH, "w") as fp:
     CONFIG.cfg.write(fp)

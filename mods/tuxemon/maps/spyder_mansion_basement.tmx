@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="65">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="70">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="mansion_basement"/>
-  <property name="types" value="dungeon"/>
+  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" source="../gfx/tilesets/core_indoor_floors.tsx"/>
@@ -68,9 +68,6 @@
   <object id="33" type="collision" x="352" y="176" width="16" height="16"/>
   <object id="34" type="collision-line" x="96" y="288">
    <polyline points="0,0 0,32"/>
-  </object>
-  <object id="38" type="collision-line" x="80" y="352">
-   <polyline points="0,0 288,0"/>
   </object>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
@@ -245,6 +242,34 @@
     <property name="act1" value="translated_dialog spyder_basement_josephine2"/>
     <property name="behav1" value="talk spyder_basement_josephine"/>
     <property name="cond1" value="is variable_set healed_josephine:yes"/>
+   </properties>
+  </object>
+  <object id="65" name="Post Talk Bobby" type="event" x="128" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_basement_bobby2"/>
+    <property name="behav1" value="talk spyder_basement_bobby"/>
+    <property name="cond1" value="is variable_set basementbobby:yes"/>
+   </properties>
+  </object>
+  <object id="67" name="Post Talk Coralli" type="event" x="320" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_basement_coralli2"/>
+    <property name="behav1" value="talk spyder_basement_coralli"/>
+    <property name="cond1" value="is variable_set basementcoralli:yes"/>
+   </properties>
+  </object>
+  <object id="68" name="Post Talk Catholi" type="event" x="176" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_basement_catholi2"/>
+    <property name="behav1" value="talk spyder_basement_catholi"/>
+    <property name="cond1" value="is variable_set basementcatholi:yes"/>
+   </properties>
+  </object>
+  <object id="69" name="Post Talk Roger" type="event" x="240" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_basement_roger2"/>
+    <property name="behav1" value="talk spyder_basement_roger"/>
+    <property name="cond1" value="is variable_set basementroger:yes"/>
    </properties>
   </object>
  </objectgroup>

@@ -53,7 +53,10 @@ class ChoiceMonster(PygameMenuState):
             action.execute_action("clear_tuxepedia", [monster.slug], True)
 
         for name, slug, callback in menu:
-            monster = db.lookup(slug, table="monster")
+            try:
+                monster = db.lookup(slug, table="monster")
+            except KeyError:
+                raise RuntimeError(f"Monster {slug} not found")
             path = f"gfx/sprites/battle/{monster.slug}-front.png"
             new_image = pygame_menu.BaseImage(
                 transform_resource_filename(path),

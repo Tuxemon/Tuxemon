@@ -4,7 +4,7 @@
     "is current_hp >,0"
   ],
   "effects": [
-    "heal 1.0",
+    "heal 1.0,percentage",
     "restore"
   ],
   "slug": "cureall",

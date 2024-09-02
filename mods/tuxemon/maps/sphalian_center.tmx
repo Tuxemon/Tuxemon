@@ -4,7 +4,7 @@
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="tobedefined"/>
   <property name="slug" value="sphalian_center"/>
-  <property name="types" value="center"/>
+  <property name="map_type" value="clinic"/>
  </properties>
  <tileset firstgid="1" name="floorsandwalls" tilewidth="16" tileheight="16" tilecount="88" columns="11">
   <image source="../gfx/tilesets/floorsandwalls.png" width="176" height="128"/>

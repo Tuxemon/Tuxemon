@@ -40,7 +40,7 @@ class RetaliateEffect(CondEffect):
         done: bool = False
         assert condition.combat_state
         combat = condition.combat_state
-        log = combat._log_action
+        log = combat._action_queue.history
         turn = combat._turn
         # check log actions
         attacker: Union[Monster, None] = None

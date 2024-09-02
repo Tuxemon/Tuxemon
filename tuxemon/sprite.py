@@ -236,17 +236,20 @@ class CaptureDeviceSprite(Sprite):
         """
         if self.state == "empty":
             self.sprite.image = self.empty_img
+            return "empty"
+
+        assert self.monster
+
+        if any(t.slug == "faint" for t in self.monster.status):
+            self.state = "faint"
+            self.sprite.image = self.faint_img
+        elif self.monster.status:
+            self.state = "effected"
+            self.sprite.image = self.effected_img
         else:
-            assert self.monster
-            if any(t for t in self.monster.status if t.slug == "faint"):
-                self.state = "faint"
-                self.sprite.image = self.faint_img
-            elif len(self.monster.status) > 0:
-                self.state = "effected"
-                self.sprite.image = self.effected_img
-            else:
-                self.state = "alive"
-                self.sprite.image = self.alive_img
+            self.state = "alive"
+            self.sprite.image = self.alive_img
+
         return self.state
 
     def animate_capture(

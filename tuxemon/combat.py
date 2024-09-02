@@ -154,39 +154,35 @@ def get_awake_monsters(
 
     Parameters:
         character: The character.
-        monsters: List of monsters in the battlefield.
-        turn: Turn of the battle.
-        method: Parameter change the monster.
+        monsters: List of monsters on the battlefield.
+        turn: Current turn of the battle.
+        method: Method to use when selecting a monster (default: None).
 
     Yields:
         Non-fainted monsters.
 
     """
-    mons = [
-        _mon
-        for _mon in character.monsters
-        if not fainted(_mon) and _mon not in monsters
+    awake_monsters = [
+        monster
+        for monster in character.monsters
+        if not fainted(monster) and monster not in monsters
     ]
-    if mons:
-        if len(mons) > 1:
-            if turn == 1:
-                yield from mons
-            else:
-                if method is None:
-                    yield from mons
-                else:
-                    mon = retrieve_from_party(mons, method)
-                    yield mon
+
+    if awake_monsters:
+        if len(awake_monsters) == 1:
+            yield awake_monsters[0]
         else:
-            yield mons[0]
+            if turn == 1 or method is None:
+                yield from awake_monsters
+            else:
+                yield retrieve_from_party(awake_monsters, method)
 
 
 def alive_party(character: NPC) -> list[Monster]:
     """
     Returns a list with all the monsters alive in the character's party.
     """
-    alive = [ele for ele in character.monsters if not fainted(ele)]
-    return alive
+    return [monster for monster in character.monsters if not fainted(monster)]
 
 
 def fainted_party(party: Sequence[Monster]) -> bool:
@@ -581,40 +577,41 @@ def build_hud_text(
 
 def retrieve_from_party(party: list[Monster], method: str) -> Monster:
     """
-    Who is the "method" monster in the party?
-    Picks the respective monster from the party.
+    Retrieves a monster from the party based on the specified method.
 
     Parameters:
-        party: List of monster.
-        method: Parameter to pick the monster (random, strongest, etc.)
+        party: List of monsters in the party.
+        method: Method to use when selecting a monster
+            (e.g., 'lv_highest', 'healthiest', etc.).
 
     Returns:
-        Monster.
+        Monster: The selected monster.
+
+    Notes:
+        If the method is not recognized, a random monster from
+        the party will be returned.
+
     """
-    if method == "lv_highest":
-        highest = max([m.level for m in party])
-        return next(mon for mon in party if mon.level == highest)
-    elif method == "lv_lowest":
-        lowest = min([m.level for m in party])
-        return next(mon for mon in party if mon.level == lowest)
-    elif method == "healthiest":
-        current_hp = max([m.current_hp for m in party])
-        return next(mon for mon in party if mon.current_hp == current_hp)
-    elif method in list(StatType):
-        stat = max([getattr(m, method) for m in party])
-        return next(mon for mon in party if getattr(mon, method) == stat)
-    else:
-        return random_from_party(party)
+    methods = {
+        "lv_highest": ("level", max),
+        "lv_lowest": ("level", min),
+        "healthiest": ("current_hp", max),
+        "weakest": ("current_hp", min),
+        "oldest": ("steps", max),
+        "newest": ("steps", min),
+    }
 
+    # eg. speed_max, armour_max, etc.
+    methods.update(
+        {f"{stat.value}_max": (stat.value, max) for stat in StatType}
+    )
+    # eg. speed_min, armour_min, etc.
+    methods.update(
+        {f"{stat.value}_min": (stat.value, min) for stat in StatType}
+    )
 
-def random_from_party(party: list[Monster]) -> Monster:
-    """
-    Picks a monster randomly from the party.
+    if method not in methods:
+        return random.choice(party)
 
-    Parameters:
-        party: List of monster.
-
-    Returns:
-        Monster.
-    """
-    return random.choice(party)
+    attr, func = methods[method]
+    return func(party, key=lambda m: getattr(m, attr))

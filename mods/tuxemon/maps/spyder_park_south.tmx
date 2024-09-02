@@ -6,7 +6,7 @@
   <property name="scenario" value="spyder"/>
   <property name="slug" value="park"/>
   <property name="south" value="route3,route4"/>
-  <property name="types" value="routea"/>
+  <property name="map_type" value="route"/>
   <property name="west" value="route7"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor_nature.tsx"/>

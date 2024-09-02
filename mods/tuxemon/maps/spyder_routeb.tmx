@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="185">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="190">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="routeb"/>
-  <property name="types" value="route"/>
+  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" source="../gfx/tilesets/core_set pieces.tsx"/>
@@ -205,6 +205,41 @@
     <property name="act99" value="unlock_controls"/>
     <property name="cond1" value="not variable_set routebbillie:yes"/>
     <property name="cond2" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="185" name="Post Talk Electra" type="event" x="240" y="560" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_routeb_electra2"/>
+    <property name="behav1" value="talk spyder_routeb_electra"/>
+    <property name="cond1" value="is variable_set routebelectra:yes"/>
+   </properties>
+  </object>
+  <object id="186" name="Post Talk Cytherea" type="event" x="240" y="416" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_routeb_cytherea2"/>
+    <property name="behav1" value="talk spyder_routeb_cytherea"/>
+    <property name="cond1" value="is variable_set routebcytherea:yes"/>
+   </properties>
+  </object>
+  <object id="187" name="Post Talk Nephthys" type="event" x="96" y="368" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_routeb_nephthys2"/>
+    <property name="behav1" value="talk spyder_routeb_nephthys"/>
+    <property name="cond1" value="is variable_set routebnephthys:yes"/>
+   </properties>
+  </object>
+  <object id="188" name="Post Talk Sedna" type="event" x="240" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_routeb_sedna2"/>
+    <property name="behav1" value="talk spyder_routeb_sedna"/>
+    <property name="cond1" value="is variable_set routebsedna:yes"/>
+   </properties>
+  </object>
+  <object id="189" name="Post Talk Calypso" type="event" x="48" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_routeb_calypso2"/>
+    <property name="behav1" value="talk spyder_routeb_calypso"/>
+    <property name="cond1" value="is variable_set routebcalypso:yes"/>
    </properties>
   </object>
  </objectgroup>

@@ -6,8 +6,10 @@ import random as rd
 from dataclasses import dataclass
 from typing import Union, final
 
-from tuxemon.db import EvolutionStage, MonsterShape, db
+from tuxemon.db import EvolutionStage, MonsterModel, MonsterShape, db
 from tuxemon.event.eventaction import EventAction
+
+lookup_cache: dict[str, MonsterModel] = {}
 
 
 @final
@@ -41,48 +43,37 @@ class RandomMonsterAction(EventAction):
     evo: Union[str, None] = None
 
     def start(self) -> None:
-        # check if shape is valid
-        if self.shape:
-            shapes = list(MonsterShape)
-            if self.shape not in shapes:
-                raise ValueError(f"{self.shape} isn't valid.")
-        # check if evolution stage is valid
-        if self.evo:
-            evos = list(EvolutionStage)
-            if self.evo not in evos:
-                raise ValueError(f"{self.evo} isn't valid.")
+        if not lookup_cache:
+            _lookup_monsters()
 
-        # list is required as choice expects a sequence
-        filters = []
-        monsters = list(db.database["monster"])
-        for mon in monsters:
-            results = db.lookup(mon, table="monster")
-            if results.txmn_id > 0 and results.randomly:
-                if not self.shape and not self.evo:
-                    filters.append(results.slug)
-                if self.shape and not self.evo:
-                    if results.shape == self.shape:
-                        filters.append(results.slug)
-                if self.evo and not self.shape:
-                    if results.stage == self.evo:
-                        filters.append(results.slug)
-                if self.evo and self.shape:
-                    if (
-                        results.stage == self.evo
-                        and results.shape == self.shape
-                    ):
-                        filters.append(results.slug)
+        valid_shapes = list(MonsterShape)
+        valid_evos = list(EvolutionStage)
+
+        if self.shape and self.shape not in valid_shapes:
+            raise ValueError(f"{self.shape} is not a valid shape.")
+        if self.evo and self.evo not in valid_evos:
+            raise ValueError(f"{self.evo} is not a valid evolution stage.")
+
+        filters = [
+            monster.slug
+            for monster in lookup_cache.values()
+            if monster.txmn_id > 0
+            and monster.randomly
+            and (not self.shape or monster.shape == self.shape)
+            and (not self.evo or monster.stage == self.evo)
+        ]
 
         if not filters:
             if self.shape and not self.evo:
-                raise ValueError(f"There are no monsters shape: {self.shape}")
-            if self.evo and not self.shape:
-                raise ValueError(f"There are no monsters stage: {self.evo}")
-            if self.evo and self.shape:
+                raise ValueError(f"No monsters found with shape: {self.shape}")
+            elif self.evo and not self.shape:
                 raise ValueError(
-                    f"There are no monsters {self.evo} ({self.shape}).\n"
-                    "Open an issue on Github, this will help us to create\n"
-                    "new monsters with above-mentioned characteristics."
+                    f"No monsters found with evolution stage: {self.evo}"
+                )
+            else:
+                raise ValueError(
+                    f"No monsters found with evolution stage: {self.evo} and shape: {self.shape}.\n"
+                    "Please open an issue on Github to request new monsters with these characteristics."
                 )
 
         monster_slug = rd.choice(filters)
@@ -98,3 +89,11 @@ class RandomMonsterAction(EventAction):
             ],
             True,
         )
+
+
+def _lookup_monsters() -> None:
+    monsters = list(db.database["monster"])
+    for mon in monsters:
+        results = db.lookup(mon, table="monster")
+        if results.txmn_id > 0:
+            lookup_cache[mon] = results

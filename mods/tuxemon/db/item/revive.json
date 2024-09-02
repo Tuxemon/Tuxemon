@@ -5,7 +5,7 @@
   ],
   "effects": [
     "restore",
-    "heal 20"
+    "heal 20,fixed"
   ],
   "slug": "revive",
   "sort": "food",

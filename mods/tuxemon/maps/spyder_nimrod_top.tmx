@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="47">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="51">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="nimrod_top"/>
-  <property name="types" value="dungeon"/>
+  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_walls.tsx"/>
  <tileset firstgid="3865" source="../gfx/tilesets/core_set pieces.tsx"/>
@@ -193,6 +193,34 @@
     <property name="act7" value="set_variable nimrodmace:yes"/>
     <property name="behav1" value="talk spyder_nimrod_mace"/>
     <property name="cond1" value="not variable_set nimrodmace:yes"/>
+   </properties>
+  </object>
+  <object id="47" name="Post Talk Justice" type="event" x="208" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_justice2"/>
+    <property name="behav1" value="talk spyder_nimrod_justice"/>
+    <property name="cond1" value="is variable_set nimrodjustice:yes"/>
+   </properties>
+  </object>
+  <object id="48" name="Post Talk Mace" type="event" x="224" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_mace2"/>
+    <property name="behav1" value="talk spyder_nimrod_mace"/>
+    <property name="cond1" value="is variable_set nimrodmace:yes"/>
+   </properties>
+  </object>
+  <object id="49" name="Post Talk Maverick" type="event" x="112" y="160" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_maverick2"/>
+    <property name="behav1" value="talk spyder_nimrod_maverick"/>
+    <property name="cond1" value="is variable_set nimrodmaverick:yes"/>
+   </properties>
+  </object>
+  <object id="50" name="Post Talk Zircon" type="event" x="176" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_zircon2"/>
+    <property name="behav1" value="talk spyder_nimrod_zircon"/>
+    <property name="cond1" value="is variable_set nimrodzircon:yes"/>
    </properties>
   </object>
  </objectgroup>

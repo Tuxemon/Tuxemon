@@ -27,6 +27,7 @@ from tuxemon.tools import scale, scale_sequence
 
 if TYPE_CHECKING:
     from tuxemon.animation import Animation
+    from tuxemon.audio import SoundProtocol
     from tuxemon.db import BattleGraphicsModel
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
@@ -80,6 +81,7 @@ class CombatAnimations(ABC, Menu[None]):
         self._text_animation_time_left: float = 0
         self._hp_bars: MutableMapping[Monster, HpBar] = {}
         self._exp_bars: MutableMapping[Monster, ExpBar] = {}
+        self._sound_cache: dict[str, SoundProtocol] = {}
         self._status_icons: defaultdict[Monster, list[Sprite]] = defaultdict(
             list
         )
@@ -111,28 +113,19 @@ class CombatAnimations(ABC, Menu[None]):
         self.animate_parties_in()
 
         for player, layout in self._layout.items():
-            _side = self.get_side(layout["party"][0])
-            if _side == "left":
-                if self.is_trainer_battle and player.max_position == 1:
-                    self.animate_party_hud_in(player, layout["party"][0])
-            else:
-                self.animate_party_hud_in(player, layout["party"][0])
+            self.animate_party_hud_in(player, layout["party"][0])
 
-        self.task(partial(self.animate_trainer_leave, self.players[0]), 3)
-
-        if self.is_trainer_battle:
-            self.task(partial(self.animate_trainer_leave, self.players[1]), 3)
+        for player in self.players[: 2 if self.is_trainer_battle else 1]:
+            self.task(partial(self.animate_trainer_leave, player), 3)
 
     def blink(self, sprite: Sprite) -> None:
         self.task(partial(toggle_visible, sprite), 0.20, 8)
 
     def animate_trainer_leave(self, trainer: Monster) -> None:
+        """Animate the trainer leaving the screen."""
         sprite = self._monster_sprite_map[trainer]
-        if self.get_side(sprite.rect) == "left":
-            x_diff = -scale(150)
-        else:
-            x_diff = scale(150)
-
+        side = self.get_side(sprite.rect)
+        x_diff = scale(-150 if side == "left" else 150)
         self.animate(sprite.rect, x=x_diff, relative=True, duration=0.8)
 
     def animate_monster_release(
@@ -141,33 +134,45 @@ class CombatAnimations(ABC, Menu[None]):
         monster: Monster,
         sprite: Sprite,
     ) -> None:
-        feet_list = list(self._layout[npc]["home"][0].center)
-        feet = (feet_list[0], feet_list[1] + tools.scale(11))
+        # Calculate feet position
+        if npc.max_position > 1 and monster in self.monsters_in_play[npc]:
+            monster_index = str(self.monsters_in_play[npc].index(monster))
+        else:
+            monster_index = ""
 
+        feet = (
+            self._layout[npc][f"home{monster_index}"][0].center[0],
+            self._layout[npc][f"home{monster_index}"][0].center[1]
+            + tools.scale(11),
+        )
+
+        # Load and scale capture device sprite
         capdev = self.load_sprite(f"gfx/items/{monster.capture_device}.png")
         graphics.scale_sprite(capdev, 0.4)
-        capdev.rect.center = feet[0], feet[1] - scale(60)
+        capdev.rect.center = (feet[0], feet[1] - tools.scale(60))
 
-        # animate the capdev falling
+        # Animate capture device falling
         fall_time = 0.7
-        animate = partial(
+        animate_fall = partial(
             self.animate,
             duration=fall_time,
             transition="out_quad",
         )
-        animate(capdev.rect, bottom=feet[1], transition="in_back")
-        animate(capdev, rotation=720, initial=0)
+        animate_fall(capdev.rect, bottom=feet[1], transition="in_back")
+        animate_fall(capdev, rotation=720, initial=0)
 
-        # animate the capdev fading away
+        # Animate capture device fading away
         delay = fall_time + 0.6
         fade_duration = 0.9
         h = capdev.rect.height
-        animate = partial(self.animate, duration=fade_duration, delay=delay)
-        animate(capdev, width=1, height=h * 1.5)
-        animate(capdev.rect, y=-scale(14), relative=True)
+        animate_fade = partial(
+            self.animate, duration=fade_duration, delay=delay
+        )
+        animate_fade(capdev, width=1, height=h * 1.5)
+        animate_fade(capdev.rect, y=-tools.scale(14), relative=True)
 
-        # convert the capdev sprite so we can fade it easily
-        def func() -> None:
+        # Convert capture device sprite for easy fading
+        def convert_sprite() -> None:
             capdev.image = graphics.convert_alpha_to_colorkey(capdev.image)
             self.animate(
                 capdev.image,
@@ -176,10 +181,10 @@ class CombatAnimations(ABC, Menu[None]):
                 duration=fade_duration,
             )
 
-        self.task(func, delay)
+        self.task(convert_sprite, delay)
         self.task(capdev.kill, fall_time + delay + fade_duration)
 
-        # load monster and set in final position
+        # Load monster sprite and set final position
         monster_sprite = monster.get_sprite(
             "back" if npc == self.players[0] else "front",
             midbottom=feet,
@@ -187,27 +192,24 @@ class CombatAnimations(ABC, Menu[None]):
         self.sprites.add(monster_sprite)
         self._monster_sprite_map[monster] = monster_sprite
 
-        # position monster_sprite off screen and set animation to move it
-        # back to final spot
+        # Position monster sprite off screen and animate it to final spot
         monster_sprite.rect.top = self.client.screen.get_height()
         self.animate(
             monster_sprite.rect,
             bottom=feet[1],
-            transition="out_back",
+            transition="out_quad",
             duration=0.9,
             delay=fall_time + 0.5,
         )
 
-        # capdev opening animation
+        # Play capture device opening animation
         assert sprite.animation
         sprite.rect.midbottom = feet
         self.task(sprite.animation.play, 1.3)
         self.task(partial(self.sprites.add, sprite), 1.3)
 
-        # attempt to load and queue up combat_call
-        call_sound = audio.load_sound(monster.combat_call, None)
-        if call_sound:
-            self.task(call_sound.play, 1.3)
+        # Load and play combat call sound
+        self.play_sound_effect(monster.combat_call, 1.3)
 
     def animate_sprite_spin(self, sprite: Sprite) -> None:
         self.animate(
@@ -242,26 +244,26 @@ class CombatAnimations(ABC, Menu[None]):
         )
 
     def animate_monster_faint(self, monster: Monster) -> None:
-        # TODO: rename to distinguish fainting/leaving
-        def kill() -> None:
+        """Animate a monster fainting and remove it."""
+
+        def kill_monster() -> None:
+            """Remove the monster's sprite and HUD elements."""
             self._monster_sprite_map[monster].kill()
             self.hud[monster].kill()
-            for sprite in self._status_icons[monster]:
-                sprite.kill()
+            for icon in self._status_icons[monster]:
+                icon.kill()
             self._status_icons[monster].clear()
             del self._monster_sprite_map[monster]
             del self.hud[monster]
 
         self.animate_monster_leave(monster)
-        self.task(kill, 2)
+        self.task(kill_monster, 2)
 
         for monsters in self.monsters_in_play.values():
-            try:
+            if monster in monsters:
                 monsters.remove(monster)
-            except ValueError:
-                pass
 
-        # update tuxemon balls to reflect fainted tuxemon
+        # Update the party HUD to reflect the fainted tuxemon
         self.animate_update_party_hud()
 
     def animate_sprite_take_damage(self, sprite: Sprite) -> None:
@@ -321,30 +323,30 @@ class CombatAnimations(ABC, Menu[None]):
 
     def get_side(self, rect: Rect) -> Literal["left", "right"]:
         """
-        [WIP] get 'side' of screen rect is in.
+        Determine the side of the screen where the rectangle is located and
+        return the side of the screen where the rectangle is located ("left"
+        or "right")
 
-        :type rect: Rect
-        :return: basestring
+        Parameters:
+            rect: The rectangle to check.
         """
         return "left" if rect.centerx < scale(100) else "right"
 
     def animate_monster_leave(self, monster: Monster) -> None:
         sprite = self._monster_sprite_map[monster]
-        if self.get_side(sprite.rect) == "left":
-            x_diff = -scale(150)
-        else:
-            x_diff = scale(150)
+        x_diff = (
+            -scale(150) if self.get_side(sprite.rect) == "left" else scale(150)
+        )
 
         cry = (
             monster.combat_call
             if monster.current_hp > 0
             else monster.faint_call
         )
-        sound = audio.load_sound(cry, None)
-        sound.play()
+        self.play_sound_effect(cry)
         self.animate(sprite.rect, x=x_diff, relative=True, duration=2)
-        for sprite in self._status_icons[monster]:
-            self.animate(sprite.image, initial=255, set_alpha=0, duration=2)
+        for icon in self._status_icons[monster]:
+            self.animate(icon.image, initial=255, set_alpha=0, duration=2)
 
     def check_hud(self, monster: Monster, filename: str) -> Sprite:
         """
@@ -374,78 +376,118 @@ class CombatAnimations(ABC, Menu[None]):
 
         """
         if is_right:
-            line1 = prepare.HUD_RT_LINE1
-            line2 = prepare.HUD_RT_LINE2
+            line1, line2 = prepare.HUD_RT_LINE1, prepare.HUD_RT_LINE2
         else:
-            line1 = prepare.HUD_LT_LINE1
-            line2 = prepare.HUD_LT_LINE2
+            line1, line2 = prepare.HUD_LT_LINE1, prepare.HUD_LT_LINE2
 
         labels = label.splitlines()
         if len(labels) > 1:
-            text = self.shadow_text(labels[0])
-            text1 = self.shadow_text(labels[1])
-            hud.image.blit(text, scale_sequence(line1))
-            hud.image.blit(text1, scale_sequence(line2))
+            hud.image.blit(self.shadow_text(labels[0]), scale_sequence(line1))
+            hud.image.blit(self.shadow_text(labels[1]), scale_sequence(line2))
         else:
-            text = self.shadow_text(labels[0])
-            hud.image.blit(text, scale_sequence(line1))
+            hud.image.blit(self.shadow_text(labels[0]), scale_sequence(line1))
 
     def build_hud(
-        self, monster: Monster, home: str, animate: bool = True
+        self, monster: Monster, hud_position: str, animate: bool = True
     ) -> None:
         """
-        Builds hud (where it appears name, level, etc.).
+        Builds the HUD for a monster.
 
         Parameters:
-            monster: Monster who needs to update the hud.
-            home: Which part of the layout hud0, hud1, hud, etc.
-            animate: Whether the hud is animated (slide in) or not.
+            monster: The monster that needs to update the HUD.
+            hud_position: The part of the layout where the HUD will be displayed (e.g. "hud0", etc.).
+            animate: Whether the HUD should be animated (slide in) or not.
 
         """
-        _trainer = self.is_trainer_battle
-        _menu = self.graphics.menu
+        trainer_battle = self.is_trainer_battle
+        menu = self.graphics.menu
         assert monster.owner
-        _home = self._layout[monster.owner][home][0]
+        hud_rect = self._layout[monster.owner][hud_position][0]
 
-        def build_left_hud(hud: Sprite) -> Sprite:
-            _symbol = self.players[0].tuxepedia.get(monster.slug)
-            label = build_hud_text(_menu, monster, False, _trainer, _symbol)
-            self.split_label(hud, label, False)
-            hud.rect.bottomright = 0, _home.bottom
-            hud.player = False
-            if animate:
-                _animate(hud.rect, right=_home.right)
-            else:
-                hud.rect.right = _home.right
-            return hud
+        def build_hud_sprite(hud: Sprite, is_player: bool) -> Sprite:
+            """
+            Builds a HUD sprite for a monster.
 
-        def build_right_hud(hud: Sprite) -> Sprite:
-            label = build_hud_text(_menu, monster, True, _trainer, None)
-            self.split_label(hud, label, True)
-            hud.rect.bottomleft = _home.right, _home.bottom
-            hud.player = True
-            if animate:
-                _animate(hud.rect, left=_home.left)
+            Parameters:
+                hud: The HUD sprite to build.
+                is_player: Whether the HUD is for the player or not.
+
+            Returns:
+                The built HUD sprite.
+            """
+            symbol = (
+                self.players[0].tuxepedia.get(monster.slug)
+                if not is_player
+                else None
+            )
+            label = build_hud_text(
+                menu, monster, is_player, trainer_battle, symbol
+            )
+            self.split_label(hud, label, is_player)
+            if is_player:
+                hud.rect.bottomleft = hud_rect.right, hud_rect.bottom
+                hud.player = True
+                if animate:
+                    animate_func(hud.rect, left=hud_rect.left)
+                else:
+                    hud.rect.left = hud_rect.left
             else:
-                hud.rect.left = _home.left
+                hud.rect.bottomright = 0, hud_rect.bottom
+                hud.player = False
+                if animate:
+                    animate_func(hud.rect, right=hud_rect.right)
+                else:
+                    hud.rect.right = hud_rect.right
             return hud
 
         if animate:
-            _animate = partial(self.animate, duration=2.0, delay=1.3)
-        if self.get_side(_home) == "right":
-            _hud_player = self.graphics.hud.hud_player
-            _hud_right = self.check_hud(monster, _hud_player)
-            hud = build_right_hud(_hud_right)
+            animate_func = partial(self.animate, duration=2.0, delay=1.3)
+
+        if self.get_side(hud_rect) == "right":
+            hud = build_hud_sprite(
+                self.check_hud(monster, self.graphics.hud.hud_player), True
+            )
         else:
-            _hud_opponent = self.graphics.hud.hud_opponent
-            _hud_left = self.check_hud(monster, _hud_opponent)
-            hud = build_left_hud(_hud_left)
+            hud = build_hud_sprite(
+                self.check_hud(monster, self.graphics.hud.hud_opponent), False
+            )
+
         self.hud[monster] = hud
 
         if animate:
             self.build_animate_hp_bar(monster)
             if hud.player:
                 self.build_animate_exp_bar(monster)
+
+    def _load_sprite(
+        self, sprite_type: str, position: dict[str, int]
+    ) -> Sprite:
+        return self.load_sprite(sprite_type, **position)
+
+    def animate_party_hud_left(
+        self, home: Rect
+    ) -> tuple[Optional[Sprite], int, int]:
+        if self.is_trainer_battle:
+            tray = self._load_sprite(
+                self.graphics.hud.tray_opponent,
+                {"bottom": home.bottom, "right": 0, "layer": hud_layer},
+            )
+            self.animate(tray.rect, right=home.right, duration=2, delay=1.5)
+        else:
+            tray = None
+        centerx = home.right - scale(13)
+        offset = scale(8)
+        return tray, centerx, offset
+
+    def animate_party_hud_right(self, home: Rect) -> tuple[Sprite, int, int]:
+        tray = self._load_sprite(
+            self.graphics.hud.tray_player,
+            {"bottom": home.bottom, "left": home.right, "layer": hud_layer},
+        )
+        self.animate(tray.rect, left=home.left, duration=2, delay=1.5)
+        centerx = home.left + scale(13)
+        offset = -scale(8)
+        return tray, centerx, offset
 
     def animate_party_hud_in(self, player: NPC, home: Rect) -> None:
         """
@@ -457,40 +499,22 @@ class CombatAnimations(ABC, Menu[None]):
 
         """
         if self.get_side(home) == "left":
-            if self.is_trainer_battle:
-                tray = self.load_sprite(
-                    self.graphics.hud.tray_opponent,
-                    bottom=home.bottom,
-                    right=0,
-                    layer=hud_layer,
-                )
-                self.animate(
-                    tray.rect, right=home.right, duration=2, delay=1.5
-                )
-                centerx = home.right - scale(13)
-                offset = scale(8)
-            else:
-                pass
-
+            tray, centerx, offset = self.animate_party_hud_left(home)
         else:
-            tray = self.load_sprite(
-                self.graphics.hud.tray_player,
-                bottom=home.bottom,
-                left=home.right,
-                layer=hud_layer,
-            )
-            self.animate(tray.rect, left=home.left, duration=2, delay=1.5)
-            centerx = home.left + scale(13)
-            offset = -scale(8)
+            tray, centerx, offset = self.animate_party_hud_right(home)
+
+        # If the tray is None (wild monster)
+        if tray is None:
+            return
 
         for index in range(player.party_limit):
-            # opponent is wild monster = no tuxeballs
+            # Skip if the opponent is a wild monster (no tuxeballs)
             if any(t for t in player.monsters if t.wild):
                 continue
             status = None
 
             monster: Optional[Monster]
-            # opponent tuxemon should order from left to right
+            # Determine the position of the monster in the party
             if self.get_side(home) == "left":
                 pos = len(player.monsters) - index - 1
             else:
@@ -499,37 +523,47 @@ class CombatAnimations(ABC, Menu[None]):
                 monster = player.monsters[index]
                 if fainted(monster):
                     status = "faint"
-                    sprite = self.load_sprite(
+                    sprite = self._load_sprite(
                         self.graphics.icons.icon_faint,
-                        top=tray.rect.top + scale(1),
-                        centerx=centerx - pos * offset,
-                        layer=hud_layer,
+                        {
+                            "top": tray.rect.top + scale(1),
+                            "centerx": centerx - pos * offset,
+                            "layer": hud_layer,
+                        },
                     )
                 elif len(monster.status) > 0:
                     status = "effected"
-                    sprite = self.load_sprite(
+                    sprite = self._load_sprite(
                         self.graphics.icons.icon_status,
-                        top=tray.rect.top + scale(1),
-                        centerx=centerx - pos * offset,
-                        layer=hud_layer,
+                        {
+                            "top": tray.rect.top + scale(1),
+                            "centerx": centerx - pos * offset,
+                            "layer": hud_layer,
+                        },
                     )
                 else:
                     status = "alive"
-                    sprite = self.load_sprite(
+                    sprite = self._load_sprite(
                         self.graphics.icons.icon_alive,
-                        top=tray.rect.top + scale(1),
-                        centerx=centerx - pos * offset,
-                        layer=hud_layer,
+                        {
+                            "top": tray.rect.top + scale(1),
+                            "centerx": centerx - pos * offset,
+                            "layer": hud_layer,
+                        },
                     )
             else:
                 status = "empty"
                 monster = None
-                sprite = self.load_sprite(
+                sprite = self._load_sprite(
                     self.graphics.icons.icon_empty,
-                    top=tray.rect.top + scale(1),
-                    centerx=centerx - index * offset,
-                    layer=hud_layer,
+                    {
+                        "top": tray.rect.top + scale(1),
+                        "centerx": centerx - index * offset,
+                        "layer": hud_layer,
+                    },
                 )
+
+            # Create a CaptureDeviceSprite object
             capdev = CaptureDeviceSprite(
                 sprite=sprite,
                 tray=tray,
@@ -560,26 +594,35 @@ class CombatAnimations(ABC, Menu[None]):
                 dev.animate_capture(animate)
 
     def animate_parties_in(self) -> None:
+        """Animate the parties entering the battle scene."""
         x, y, w, h = prepare.SCREEN_RECT
 
-        # Get background image if passed in
+        # Load background image
         self.background = self.load_sprite(self.graphics.background)
         assert self.background
 
+        # Get player and opponent
         player, opponent = self.players
         opp_mon = opponent.monsters[0]
         player_home = self._layout[player]["home"][0]
         opp_home = self._layout[opponent]["home"][0]
-        y_mod = scale(50)
-        duration = 3
 
+        # Define animation constants
+        y_mod = scale(50)
+
+        # Load island backgrounds
         back_island = self.load_sprite(
             self.graphics.island_back,
             bottom=opp_home.bottom + y_mod,
             right=0,
         )
+        front_island = self.load_sprite(
+            self.graphics.island_front,
+            bottom=player_home.bottom - y_mod,
+            left=w,
+        )
 
-        # animation, begin battle
+        # Load and animate opponent
         if self.is_trainer_battle:
             combat_front = opponent.template.combat_front
             enemy = self.load_sprite(
@@ -600,19 +643,7 @@ class CombatAnimations(ABC, Menu[None]):
 
         self.sprites.add(enemy)
 
-        if self.is_trainer_battle:
-            params = {"name": opponent.name.upper()}
-            self.alert(T.format("combat_trainer_appeared", params))
-        else:
-            params = {"name": opp_mon.name.upper()}
-            self.alert(T.format("combat_wild_appeared", params))
-
-        front_island = self.load_sprite(
-            self.graphics.island_front,
-            bottom=player_home.bottom - y_mod,
-            left=w,
-        )
-
+        # Load and animate player
         combat_back = player.template.combat_front
         filename = f"gfx/sprites/player/{combat_back}_back.png"
         try:
@@ -630,6 +661,15 @@ class CombatAnimations(ABC, Menu[None]):
             )
 
         self._monster_sprite_map[player] = player_back
+        self.flip_sprites(enemy, player_back)
+        self.animate_sprites(enemy, back_island, front_island, player_back)
+        if not self.is_trainer_battle:
+            sound = self.players[1].monsters[0].combat_call
+            self.play_sound_effect(sound, 1.5)
+        self.display_alert_message()
+
+    def flip_sprites(self, enemy: Sprite, player_back: Sprite) -> None:
+        """Flip the sprites horizontally."""
 
         def flip() -> None:
             enemy.image = pygame.transform.flip(enemy.image, True, False)
@@ -640,15 +680,25 @@ class CombatAnimations(ABC, Menu[None]):
         flip()
         self.task(flip, 1.5)
 
-        if not self.is_trainer_battle:
-            self.task(audio.load_sound(opp_mon.combat_call, None).play, 1.5)
-
+    def animate_sprites(
+        self,
+        enemy: Sprite,
+        back_island: Sprite,
+        front_island: Sprite,
+        player_back: Sprite,
+    ) -> None:
+        """Animate the sprites."""
+        y_mod = scale(50)
+        duration = 3
         animate = partial(
             self.animate, transition="out_quad", duration=duration
         )
 
-        # top trainer
-        animate(enemy.rect, back_island.rect, centerx=opp_home.centerx)
+        animate(
+            enemy.rect,
+            back_island.rect,
+            centerx=self._layout[self.players[1]]["home"][0].centerx,
+        )
         animate(
             enemy.rect,
             back_island.rect,
@@ -656,10 +706,10 @@ class CombatAnimations(ABC, Menu[None]):
             transition="out_back",
             relative=True,
         )
-
-        # bottom trainer
         animate(
-            player_back.rect, front_island.rect, centerx=player_home.centerx
+            player_back.rect,
+            front_island.rect,
+            centerx=self._layout[self.players[0]]["home"][0].centerx,
         )
         animate(
             player_back.rect,
@@ -668,6 +718,21 @@ class CombatAnimations(ABC, Menu[None]):
             transition="out_back",
             relative=True,
         )
+
+    def play_sound_effect(self, sound: str, value: float = 0.0) -> None:
+        """Play the sound effect."""
+        if sound not in self._sound_cache:
+            self._sound_cache[sound] = audio.load_sound(sound, None)
+        self.task(self._sound_cache[sound].play, value)
+
+    def display_alert_message(self) -> None:
+        """Display the alert message."""
+        if self.is_trainer_battle:
+            params = {"name": self.players[1].name.upper()}
+            self.alert(T.format("combat_trainer_appeared", params))
+        else:
+            params = {"name": self.players[1].monsters[0].name.upper()}
+            self.alert(T.format("combat_wild_appeared", params))
 
     def animate_capture_monster(
         self,
@@ -681,9 +746,11 @@ class CombatAnimations(ABC, Menu[None]):
         Animation for capturing monsters.
 
         Parameters:
-            is_captured: Whether the monster will be captured.
-            num_shakes: Number of shakes before animation ends.
-            monster: The monster to capture.
+            is_captured: Whether the monster will be successfully captured.
+            num_shakes: The number of times the capture device will shake.
+            monster: The monster being captured.
+            item: The capture device used to capture the monster.
+            sprite: The sprite to animate.
 
         """
         monster_sprite = self._monster_sprite_map[monster]
@@ -758,10 +825,7 @@ class CombatAnimations(ABC, Menu[None]):
 
             def show_monster(delay: float) -> None:
                 self.task(partial(toggle_visible, monster_sprite), delay)
-                self.task(
-                    audio.load_sound(monster.combat_call, None).play,
-                    delay,
-                )
+                self.play_sound_effect(monster.combat_call, delay)
 
             def capture_capsule(delay: float) -> None:
                 assert sprite.animation
@@ -800,7 +864,7 @@ class CombatAnimations(ABC, Menu[None]):
 
         alive_members = alive_party(character)
         if len(monsters) > 1 and len(monsters) <= len(alive_members):
-            self.build_hud(monsters[0], "hud0", animate)
-            self.build_hud(monsters[1], "hud1", animate)
+            for i, monster in enumerate(monsters):
+                self.build_hud(monster, f"hud{i}", animate)
         else:
             self.build_hud(monsters[0], "hud", animate)

@@ -132,6 +132,17 @@ class TestTilesInsideRect(unittest.TestCase):
         result = list(tiles_inside_rect(rect, grid_size))
         self.assertEqual(expected, result)
 
+    def test_invalid_grid_size(self):
+        rect = Rect(0, 0, 10, 10)
+        grid_size = (0, 2)
+        with self.assertRaises(ValueError):
+            list(tiles_inside_rect(rect, grid_size))
+
+    def test_rect_with_no_tiles(self):
+        rect = Rect(0, 0, 1, 1)
+        grid_size = (2, 2)
+        self.assertEqual(list(tiles_inside_rect(rect, grid_size)), [(0, 0)])
+
 
 class TestOrientationByAngle(unittest.TestCase):
     def test_vertical(self):

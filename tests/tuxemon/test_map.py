@@ -7,6 +7,7 @@ from tuxemon.compat import Rect
 from tuxemon.db import Direction, Orientation
 from tuxemon.map import (
     direction_to_list,
+    get_adjacent_position,
     get_coord_direction,
     get_coords,
     get_coords_ext,
@@ -414,6 +415,52 @@ class TestGetCoordDirection(unittest.TestCase):
             get_coord_direction(tile, Direction.up, (0, 0), radius)
         with self.assertRaises(ValueError):
             get_coord_direction(tile, Direction.down, (-1, 5), radius)
+
+
+class TestGetAdjacentPosition(unittest.TestCase):
+    def test_get_adjacent_position_up(self):
+        position = (0, 0)
+        direction = Direction.up
+        expected_neighbor = (0, -1)
+        self.assertEqual(
+            get_adjacent_position(position, direction), expected_neighbor
+        )
+
+    def test_get_adjacent_position_down(self):
+        position = (0, 0)
+        direction = Direction.down
+        expected_neighbor = (0, 1)
+        self.assertEqual(
+            get_adjacent_position(position, direction), expected_neighbor
+        )
+
+    def test_get_adjacent_position_left(self):
+        position = (0, 0)
+        direction = Direction.left
+        expected_neighbor = (-1, 0)
+        self.assertEqual(
+            get_adjacent_position(position, direction), expected_neighbor
+        )
+
+    def test_get_adjacent_position_right(self):
+        position = (0, 0)
+        direction = Direction.right
+        expected_neighbor = (1, 0)
+        self.assertEqual(
+            get_adjacent_position(position, direction), expected_neighbor
+        )
+
+    def test_get_adjacent_position_invalid_direction(self):
+        position = (0, 0)
+        direction = "InvalidDirection"
+        with self.assertRaises(KeyError):
+            get_adjacent_position(position, direction)
+
+    def test_get_adjacent_position_invalid_position(self):
+        position = "InvalidPosition"
+        direction = Direction.up
+        with self.assertRaises(ValueError):
+            get_adjacent_position(position, direction)
 
 
 class TestGetDirection(unittest.TestCase):

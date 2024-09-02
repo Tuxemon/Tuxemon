@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="89">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="95">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="greenwash"/>
-  <property name="types" value="dungeon"/>
+  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
   <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
@@ -54,10 +54,7 @@
   <object id="61" type="collision" x="16" y="176" width="80" height="16"/>
   <object id="62" type="collision" x="224" y="336" width="16" height="16"/>
   <object id="63" type="collision" x="224" y="288" width="16" height="16"/>
-  <object id="64" type="collision" x="32" y="272" width="32" height="16"/>
-  <object id="65" type="collision-line" x="16" y="288">
-   <polyline points="0,0 16,0"/>
-  </object>
+  <object id="64" type="collision" x="16" y="272" width="48" height="16"/>
   <object id="66" type="collision-line" x="16" y="96">
    <polyline points="0,0 16,0"/>
   </object>
@@ -226,6 +223,48 @@
     <property name="act6" value="set_variable greenwashmorehouse:yes"/>
     <property name="cond1" value="not variable_set greenwashmorehouse:yes"/>
     <property name="cond2" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="89" name="Post Talk Broer" type="event" x="160" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_broer2"/>
+    <property name="behav1" value="talk spyder_greenwash_broer"/>
+    <property name="cond1" value="is variable_set greenwashbroer:yes"/>
+   </properties>
+  </object>
+  <object id="90" name="Post Talk Clarence" type="event" x="176" y="112" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_clarence2"/>
+    <property name="behav1" value="talk spyder_greenwash_clarence"/>
+    <property name="cond1" value="is variable_set greenwashclarence:yes"/>
+   </properties>
+  </object>
+  <object id="91" name="Post Talk Lewie" type="event" x="144" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_lewie2"/>
+    <property name="behav1" value="talk spyder_greenwash_lewie"/>
+    <property name="cond1" value="is variable_set greenwashlewie:yes"/>
+   </properties>
+  </object>
+  <object id="92" name="Post Talk Chip" type="event" x="96" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_chip2"/>
+    <property name="behav1" value="talk spyder_greenwash_chip"/>
+    <property name="cond1" value="is variable_set greenwashchip:yes"/>
+   </properties>
+  </object>
+  <object id="93" name="Post Talk Morehouse" type="event" x="144" y="304" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_morehouse2"/>
+    <property name="behav1" value="talk spyder_greenwash_morehouse"/>
+    <property name="cond1" value="is variable_set greenwashmorehouse:yes"/>
+   </properties>
+  </object>
+  <object id="94" name="Post Talk Looten" type="event" x="144" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_greenwash_looten4"/>
+    <property name="behav1" value="talk spyder_greenwash_looten"/>
+    <property name="cond1" value="is variable_set gotaardant:yes"/>
    </properties>
   </object>
  </objectgroup>

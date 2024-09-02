@@ -28,6 +28,17 @@ def fix_measure(measure: int, percentage: float) -> int:
     return round(measure * percentage)
 
 
+lookup_cache: dict[str, MonsterModel] = {}
+
+
+def _lookup_monsters() -> None:
+    monsters = list(db.database["monster"])
+    for mon in monsters:
+        results = db.lookup(mon, table="monster")
+        if results.txmn_id > 0:
+            lookup_cache[mon] = results
+
+
 class MinigameState(PygameMenuState):
     """Menu for the Journal Info state.
 
@@ -38,14 +49,6 @@ class MinigameState(PygameMenuState):
         menu: pygame_menu.Menu,
     ) -> None:
         width, height = prepare.SCREEN_SIZE
-        # data
-        monsters = list(db.database["monster"])
-        data = []
-        for mon in monsters:
-            results = db.lookup(mon, table="monster")
-            if results.txmn_id > 0:
-                data.append(results)
-
         # name
         name = T.translate("who_is_that")
         menu.add.label(
@@ -56,6 +59,7 @@ class MinigameState(PygameMenuState):
             underline=True,
         )
         # image
+        data = list(lookup_cache.values())
         tuxemon: MonsterModel
         tuxemon = random.choice(data)
         self.tuxemon = tuxemon
@@ -101,6 +105,8 @@ class MinigameState(PygameMenuState):
             f.pack(choice, align=locals.ALIGN_CENTER)
 
     def __init__(self) -> None:
+        if not lookup_cache:
+            _lookup_monsters()
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(

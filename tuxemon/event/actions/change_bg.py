@@ -64,11 +64,9 @@ class ChangeBgAction(EventAction):
 
         # check self image
         if self.image:
-            monsters = list(db.database["monster"])
-            template = list(db.database["template"])
-            if self.image in monsters:
+            if self.image in db.database["monster"]:
                 self.image = f"gfx/sprites/battle/{self.image}-front.png"
-            elif self.image in template:
+            elif self.image in db.database["template"]:
                 self.image = f"gfx/sprites/player/{self.image}.png"
             else:
                 self.image = f"gfx/ui/background/{self.image}.png"

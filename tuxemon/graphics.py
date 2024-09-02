@@ -441,49 +441,45 @@ def capture_screenshot(game: LocalPygameClient) -> pygame.surface.Surface:
     return screenshot
 
 
-def get_avatar(
-    session: Session,
-    avatar: Union[str, int],
-) -> Optional[Sprite]:
+def get_avatar(session: Session, avatar: Union[str, int]) -> Optional[Sprite]:
     """
-    Gets the avatar sprite of a monster or NPC.
-
-    Used to parse the string values for dialog event actions.
-    If avatar is a number, we're referring to a monster slot in
-    the player's party.
-    If avatar is a string, we're referring to a monster by name.
+    Retrieves the avatar sprite of a monster or NPC.
 
     Parameters:
         session: Game session.
         avatar: The identifier of the avatar to be used.
 
     Returns:
-        The surface of the monster or NPC avatar sprite.
+        The surface of the monster or NPC avatar sprite, or None if not found.
 
     """
     if isinstance(avatar, int):
         try:
-            player = session.player
-            return player.monsters[avatar].get_sprite("menu")
+            return session.player.monsters[avatar].get_sprite("menu")
         except IndexError:
-            logger.debug("invalid avatar monster slot")
+            logger.debug(f"Invalid avatar monster slot: {avatar}")
             return None
-    else:
-        monsters = list(db.database["monster"])
-        npcs = list(db.database["npc"])
-        if avatar in monsters:
-            monster = db.lookup(avatar, table="monster")
-            assert monster.sprites
-            menu1 = transform_resource_filename(f"{monster.sprites.menu1}.png")
-            menu2 = transform_resource_filename(f"{monster.sprites.menu2}.png")
-            return load_animated_sprite([menu1, menu2], 0.25)
-        if avatar in npcs:
-            npc = db.lookup(avatar, table="npc")
-            path = f"gfx/sprites/player/{npc.template.combat_front}.png"
-            sprite = load_sprite(path)
-            scale_sprite(sprite, 0.5)
-            return sprite
-        return None
+
+    if avatar in db.database["monster"]:
+        monster = db.lookup(avatar, table="monster")
+        if not monster.sprites:
+            logger.warning(f"Monster '{avatar}' has no sprites")
+            return None
+        menu_sprites = [
+            transform_resource_filename(f"{monster.sprites.menu1}.png"),
+            transform_resource_filename(f"{monster.sprites.menu2}.png"),
+        ]
+        return load_animated_sprite(menu_sprites, 0.25)
+
+    if avatar in db.database["npc"]:
+        npc = db.lookup(avatar, table="npc")
+        path = f"gfx/sprites/player/{npc.template.combat_front}.png"
+        sprite = load_sprite(path)
+        scale_sprite(sprite, 0.5)
+        return sprite
+
+    logger.debug(f"Avatar '{avatar}' not found")
+    return None
 
 
 def string_to_colorlike(

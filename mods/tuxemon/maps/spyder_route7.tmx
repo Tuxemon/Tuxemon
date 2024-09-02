@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="260">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="272">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="north" value="crystal_town"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route7"/>
   <property name="south" value="routea"/>
-  <property name="types" value="route"/>
+  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <tileset firstgid="8193" source="../gfx/tilesets/core_set pieces.tsx"/>
@@ -475,6 +475,91 @@
     <property name="act17" value="set_variable route7conrad:yes"/>
     <property name="cond1" value="not variable_set route7conrad:yes"/>
     <property name="cond2" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="260" name="Post Talk Arnaut" type="event" x="32" y="320" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route7_arnaut2"/>
+    <property name="behav1" value="talk spyder_route7_arnaut"/>
+    <property name="cond1" value="is variable_set route7arnaut:yes"/>
+   </properties>
+  </object>
+  <object id="261" name="Post Talk Hugh" type="event" x="96" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route7_hugh2"/>
+    <property name="behav1" value="talk spyder_route7_hugh"/>
+    <property name="cond1" value="is variable_set route7hugh:yes"/>
+   </properties>
+  </object>
+  <object id="262" name="Post Talk Penitent" type="event" x="112" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route7_penitent2"/>
+    <property name="behav1" value="talk spyder_route7_penitent"/>
+    <property name="cond1" value="is variable_set route7penitent:yes"/>
+   </properties>
+  </object>
+  <object id="263" name="Post Talk Nino" type="event" x="256" y="416" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route7_nino2"/>
+    <property name="behav1" value="talk spyder_route7_nino"/>
+    <property name="cond1" value="is variable_set route7nino:yes"/>
+   </properties>
+  </object>
+  <object id="264" name="Post Talk Pia" type="event" x="288" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route7_pia2"/>
+    <property name="behav1" value="talk spyder_route7_pia"/>
+    <property name="cond1" value="is variable_set route7pia:yes"/>
+   </properties>
+  </object>
+  <object id="265" name="Post Talk Conrad" type="event" x="416" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route7_conrad2"/>
+    <property name="behav1" value="talk spyder_route7_conrad"/>
+    <property name="cond1" value="is variable_set route7conrad:yes"/>
+   </properties>
+  </object>
+  <object id="266" name="Post Talk Jacopo" type="event" x="432" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route7_jacopo2"/>
+    <property name="behav1" value="talk spyder_route7_jacopo"/>
+    <property name="cond1" value="is variable_set route7jacopo:yes"/>
+   </properties>
+  </object>
+  <object id="267" name="Post Talk Sordello" type="event" x="384" y="464" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route7_sordello2"/>
+    <property name="behav1" value="talk spyder_route7_sordello"/>
+    <property name="cond1" value="is variable_set route7sordello:yes"/>
+   </properties>
+  </object>
+  <object id="268" name="Post Talk Statius" type="event" x="560" y="496" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route7_statius2"/>
+    <property name="behav1" value="talk spyder_route7_statius"/>
+    <property name="cond1" value="is variable_set route7statius:yes"/>
+   </properties>
+  </object>
+  <object id="269" name="Post Talk Manfred" type="event" x="576" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route7_manfred2"/>
+    <property name="behav1" value="talk spyder_route7_manfred"/>
+    <property name="cond1" value="is variable_set route7manfred:yes"/>
+   </properties>
+  </object>
+  <object id="270" name="Create Nurse" type="event" x="48" y="576" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route7_nurse,3,36"/>
+    <property name="cond1" value="not char_exists spyder_route7_nurse"/>
+   </properties>
+  </object>
+  <object id="271" name="Talk Nurse" type="event" x="48" y="560" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_generic_nurse"/>
+    <property name="act2" value="set_monster_health"/>
+    <property name="act3" value="set_monster_status"/>
+    <property name="act4" value="translated_dialog spyder_output_nurse6"/>
+    <property name="behav1" value="talk spyder_route7_nurse"/>
    </properties>
   </object>
  </objectgroup>

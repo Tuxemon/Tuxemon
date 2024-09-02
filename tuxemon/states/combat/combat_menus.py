@@ -298,7 +298,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             # enqueue the technique
             target = menu_item.game_object
 
-            params = {"name": self.monster.name.upper()}
+            params = {"name": technique.name.upper()}
             # can be used the technique?
             if not technique.validate(target):
                 msg = T.format("cannot_use_tech_monster", params)

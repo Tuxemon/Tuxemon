@@ -89,8 +89,7 @@ class Monster:
     """
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
-        if save_data is None:
-            save_data = dict()
+        save_data = save_data or {}
 
         self.slug = ""
         self.name = ""
@@ -196,12 +195,11 @@ class Monster:
             slug: Slug to lookup.
 
         """
+        try:
+            results = db.lookup(slug, table="monster")
+        except KeyError:
+            raise RuntimeError(f"Monster {slug} not found")
 
-        # Look up the monster by name and set the attributes in this instance
-        results = db.lookup(slug, table="monster")
-
-        if results is None:
-            raise RuntimeError(f"monster {slug} is not found")
         self.level = random.randint(2, 5)
         self.slug = results.slug
         self.name = T.translate(results.slug)

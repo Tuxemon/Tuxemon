@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="361">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="366">
  <properties>
   <property name="east" value="route6"/>
   <property name="edges" value="clamped"/>
   <property name="north" value="timber_town"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="tunnel"/>
-  <property name="types" value="route"/>
+  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
@@ -221,6 +221,42 @@
     <property name="act1" value="set_variable environment:night_grass"/>
     <property name="cond1" value="not variable_set stage_of_day:night"/>
     <property name="cond2" value="not variable_set environment:night_grass"/>
+   </properties>
+  </object>
+  <object id="361" name="Post Talk Tommy" type="event" x="208" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_tunnelb_tommy2"/>
+    <property name="behav1" value="talk spyder_tunnelb_tommy"/>
+    <property name="cond1" value="is variable_set tunnelbtommy:yes"/>
+   </properties>
+  </object>
+  <object id="362" name="Post Talk Iris" type="event" x="176" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_tunnelb_iris2"/>
+    <property name="behav1" value="talk spyder_tunnelb_iris"/>
+    <property name="cond1" value="is variable_set tunnelbiris:yes"/>
+   </properties>
+  </object>
+  <object id="363" name="Post Talk Greta" type="event" x="192" y="560" width="16" height="16">
+   <properties>
+    <property name="act01" value="translated_dialog spyder_tunnelb_greta2"/>
+    <property name="behav1" value="talk spyder_tunnelb_greta"/>
+    <property name="cond1" value="is variable_set tunnelbgreta:yes"/>
+   </properties>
+  </object>
+  <object id="364" name="Create Nurse" type="event" x="272" y="512" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_tunnelb_nurse,17,32"/>
+    <property name="cond1" value="not char_exists spyder_tunnelb_nurse"/>
+   </properties>
+  </object>
+  <object id="365" name="Talk Nurse" type="event" x="288" y="512" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_generic_nurse"/>
+    <property name="act2" value="set_monster_health"/>
+    <property name="act3" value="set_monster_status"/>
+    <property name="act4" value="translated_dialog spyder_output_nurse3"/>
+    <property name="behav1" value="talk spyder_tunnelb_nurse"/>
    </properties>
   </object>
  </objectgroup>

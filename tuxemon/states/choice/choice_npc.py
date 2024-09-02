@@ -48,7 +48,10 @@ class ChoiceNpc(PygameMenuState):
         super().__init__(columns=columns, rows=rows, **kwargs)
 
         for name, slug, callback in menu:
-            npc = db.lookup(slug, table="npc")
+            try:
+                npc = db.lookup(slug, table="npc")
+            except KeyError:
+                raise RuntimeError(f"NPC {slug} not found")
             path = f"gfx/sprites/player/{npc.template.combat_front}.png"
             new_image = pygame_menu.BaseImage(
                 transform_resource_filename(path),

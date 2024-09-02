@@ -88,10 +88,10 @@ def get_coords(
     filtered out. If no valid coordinates, then it'll be raised a ValueError.
 
      -  | 1,0 |  -
-    0,1 | 1,1 | 2,1 |
+    0,1 |     | 2,1 |
      -  | 1,2 |  -
 
-    eg. radius = 1 (1,0),(0,1),(1,2),(2,1)
+    eg. origin (1,1), radius = 1 = (1,0),(0,1),(1,2),(2,1)
 
     Parameters:
         tile: Tile coordinates
@@ -101,19 +101,30 @@ def get_coords(
     Returns:
         List tile coordinates.
     """
-    coords: list[tuple[int, int]] = []
-    coords.append((tile[0], tile[1] + radius))  # down
-    coords.append((tile[0] + radius, tile[1]))  # right
-    coords.append((tile[0], tile[1] - radius))  # up
-    coords.append((tile[0] - radius, tile[1]))  # left
-    _coords = [
-        _tile
-        for _tile in coords
-        if map_size[0] >= _tile[0] >= 0 and map_size[1] >= _tile[1] >= 0
+    x, y = tile
+    width, height = map_size
+
+    coords = [
+        (x, y + radius),  # down
+        (x + radius, y),  # right
+        (x, y - radius),  # up
+        (x - radius, y),  # left
     ]
-    if not _coords:
-        raise ValueError(f"{coords} invalid coordinates")
-    return _coords
+
+    valid_coords = list(
+        {
+            coord
+            for coord in coords
+            if 0 <= coord[0] < width and 0 <= coord[1] < height
+        }
+    )
+
+    if not valid_coords:
+        raise ValueError(
+            f"No valid coordinates found for tile {tile} and radius {radius}"
+        )
+
+    return valid_coords
 
 
 def get_coord_direction(
@@ -136,21 +147,35 @@ def get_coord_direction(
     Returns:
         Tuple tile coordinates.
     """
-    _tile: tuple[int, int] = (0, 0)
-    if direction == Direction.down:
-        _tile = (tile[0], tile[1] + radius)
-    elif direction == Direction.right:
-        _tile = (tile[0] + radius, tile[1])
-    elif direction == Direction.up:
-        _tile = (tile[0], tile[1] - radius)
-    elif direction == Direction.left:
-        _tile = (tile[0] - radius, tile[1])
-    else:
-        raise ValueError(f"{direction} doesn't exist")
-    if map_size[0] >= _tile[0] >= 0 and map_size[1] >= _tile[1] >= 0:
+    dx, dy = dirs2[direction]
+    _tile = (
+        tile[0] + int(dx) * radius,
+        tile[1] + int(dy) * radius,
+    )
+
+    if 0 <= _tile[0] < map_size[0] and 0 <= _tile[1] < map_size[1]:
         return _tile
     else:
         raise ValueError(f"{_tile} invalid coordinates")
+
+
+def get_adjacent_position(
+    position: tuple[int, int],
+    direction: Direction,
+) -> tuple[int, int]:
+    """
+    Returns the adjacent position in the given direction.
+
+    Parameters:
+        position: The original position.
+        direction: The direction to move.
+
+    Returns:
+        The adjacent position.
+    """
+    dx, dy = dirs2[direction]
+    x, y = position
+    return (x + int(dx), y + int(dy))
 
 
 def get_direction(
@@ -192,16 +217,16 @@ def pairs(direction: Direction) -> Direction:
         Complimentary direction.
 
     """
-    if direction == Direction.up:
-        return Direction.down
-    elif direction == Direction.down:
-        return Direction.up
-    elif direction == Direction.left:
-        return Direction.right
-    elif direction == Direction.right:
-        return Direction.left
-    else:
+    opposites = {
+        Direction.up: Direction.down,
+        Direction.down: Direction.up,
+        Direction.left: Direction.right,
+        Direction.right: Direction.left,
+    }
+    opposite = opposites.get(direction)
+    if opposite is None:
         raise ValueError(f"{direction} doesn't exist.")
+    return opposite
 
 
 def proj(point: Vector3) -> Vector2:
@@ -397,43 +422,40 @@ def extract_region_properties(
         New dictionary for collision use.
 
     """
-    # this could use a rewrite or re-thinking...
     label = None
-    endure: list[Direction] = []
-    enters: list[Direction] = []
-    exits: list[Direction] = []
+    movement_properties: dict[str, list[Direction]] = {
+        "enter_from": [],
+        "exit_from": [],
+        "endure": [],
+    }
+
     has_movement_modifier = False
-    for key in properties:
-        if "enter_from" == key:
-            enters = direction_to_list(properties[key])
+
+    for key, value in properties.items():
+        if key in ["enter_from", "exit_from", "endure"]:
+            movement_properties[key] = direction_to_list(value)
             has_movement_modifier = True
-        elif "exit_from" == key:
-            exits = direction_to_list(properties[key])
+        elif key == "key":
+            label = value
             has_movement_modifier = True
-        elif "endure" == key:
-            endure = direction_to_list(properties[key])
-            has_movement_modifier = True
-        elif "key" == key:
-            label = properties[key]
-            has_movement_modifier = True
-    # if there is an exit, but no explicit enter, then
-    # allow entering from all sides except the exit side
-    if exits and not enters:
-        enters = list(Direction)
-        for _exit in exits:
-            enters.remove(_exit)
+
+    if (
+        movement_properties["exit_from"]
+        and not movement_properties["enter_from"]
+    ):
+        movement_properties["enter_from"] = [
+            d for d in Direction if d not in movement_properties["exit_from"]
+        ]
+
     if label == "slide":
-        enters = list(Direction)
-        exits = list(Direction)
-        endure = list(Direction)
+        movement_properties = {
+            "enter_from": list(Direction),
+            "exit_from": list(Direction),
+            "endure": list(Direction),
+        }
+
     if has_movement_modifier:
-        return RegionProperties(
-            enter_from=enters,
-            exit_from=exits,
-            endure=endure,
-            entity=None,
-            key=label,
-        )
+        return RegionProperties(**movement_properties, entity=None, key=label)
     else:
         return None
 
@@ -448,11 +470,10 @@ def get_coords_ext(
     filtered out. If no valid coordinates, then it'll be raised a ValueError.
 
     0,0 | 1,0 | 2,0 |
-    0,1 | 1,1 | 2,1 |
+    0,1 |     | 2,1 |
     0,2 | 1,2 | 2,2 |
 
-    eg. radius = 1
-    (0,0),(1,0),(2,0),(0,1),(1,1),(2,1),(0,2),(1,2),(2,2)
+    eg. origin (1,1), radius = 1 = (0,0),(1,0),(2,0),(0,1),(2,1),(0,2),(1,2),(2,2)
 
     Parameters:
         tile: Tile coordinates
@@ -462,23 +483,27 @@ def get_coords_ext(
     Returns:
         List tile coordinates.
     """
-    coords: list[tuple[int, int]] = []
-    coords.append((tile[0], tile[1] + radius))  # down
-    coords.append((tile[0] + radius, tile[1]))  # right
-    coords.append((tile[0], tile[1] - radius))  # up
-    coords.append((tile[0] - radius, tile[1]))  # left
-    coords.append((tile[0] - 1, tile[1] - 1))  # upper left
-    coords.append((tile[0] + 1, tile[1] - 1))  # upper right
-    coords.append((tile[0] - 1, tile[1] + 1))  # bottom left
-    coords.append((tile[0] + 1, tile[1] + 1))  # bottom right
-    _coords = [
-        _tile
-        for _tile in coords
-        if map_size[0] >= _tile[0] >= 0 and map_size[1] >= _tile[1] >= 0
-    ]
-    if not _coords:
-        raise ValueError(f"{coords} invalid coordinates")
-    return _coords
+    if radius < 0:
+        raise ValueError("Radius cannot be negative")
+
+    x, y = tile
+    width, height = map_size
+
+    coords = set()
+    for dx in range(-radius, radius + 1):
+        for dy in range(-radius, radius + 1):
+            new_x, new_y = x + dx, y + dy
+            if (
+                0 <= new_x < width
+                and 0 <= new_y < height
+                and (new_x, new_y) != (x, y)
+            ):
+                coords.add((new_x, new_y))
+
+    if not coords:
+        raise ValueError("No valid coordinates found")
+
+    return list(coords)
 
 
 def direction_to_list(direction: Optional[str]) -> list[Direction]:
@@ -493,13 +518,13 @@ def direction_to_list(direction: Optional[str]) -> list[Direction]:
 
     """
     if direction is None:
-        props = []
-    else:
-        props = direction.split(",")
-    result: list[Direction] = []
-    for _props in props:
-        result.append(Direction(_props))
-    return result
+        return []
+    return sorted(
+        [
+            Direction(d)
+            for d in {d.strip().lower() for d in direction.split(",")}
+        ]
+    )
 
 
 class PathfindNode:
@@ -611,7 +636,7 @@ class TuxemonMap:
         _value = maps.get("scenario")
         self.scenario = None if _value is None else str(_value)
         # check type of location
-        self.types = maps.get("types")
+        self.map_type = maps.get("map_type")
 
     def set_cardinals(self, cardinal: str, maps: dict[str, str]) -> str:
         cardinals = str(maps.get(cardinal, "-")).split(",")

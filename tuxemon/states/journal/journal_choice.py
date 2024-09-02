@@ -29,6 +29,17 @@ def fix_measure(measure: int, percentage: float) -> int:
     return round(measure * percentage)
 
 
+lookup_cache: dict[str, MonsterModel] = {}
+
+
+def _lookup_monsters() -> None:
+    monsters = list(db.database["monster"])
+    for mon in monsters:
+        results = db.lookup(mon, table="monster")
+        if results.txmn_id > 0:
+            lookup_cache[mon] = results
+
+
 class JournalChoice(PygameMenuState):
     """Shows journal (screen 1/3)."""
 
@@ -85,6 +96,8 @@ class JournalChoice(PygameMenuState):
                 )
 
     def __init__(self) -> None:
+        if not lookup_cache:
+            _lookup_monsters()
         width, height = prepare.SCREEN_SIZE
 
         background = pygame_menu.BaseImage(
@@ -100,13 +113,7 @@ class JournalChoice(PygameMenuState):
 
         columns = 2
 
-        monsters = list(db.database["monster"])
-        box: list[MonsterModel] = []
-        for mov in monsters:
-            results = db.lookup(mov, table="monster")
-            if results.txmn_id > 0:
-                box.append(results)
-
+        box = list(lookup_cache.values())
         diff = round(len(box) / MAX_PAGE) + 1
         rows = int(diff / columns) + 1
 

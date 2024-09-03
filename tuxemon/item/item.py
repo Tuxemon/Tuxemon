@@ -103,7 +103,7 @@ class Item:
 
         # misc attributes (not translated!)
         self.visible = results.visible
-        self.menu = results.menu
+        self.world_menu = results.world_menu
         self.sort = results.sort
         self.category = results.category or ItemCategory.none
         self.type = results.type or ItemType.consumable

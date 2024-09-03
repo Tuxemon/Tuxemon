@@ -84,10 +84,10 @@ class WorldMenuState(PygameMenuState):
         menu.append(("menu_options", change("ControlState")))
         menu.append(("exit", exit_game))
         for itm in player.items:
-            if itm.menu:
+            if itm.world_menu:
                 menu.insert(
-                    itm.menu[0],
-                    (itm.menu[1], change(itm.menu[2])),
+                    itm.world_menu[0],
+                    (itm.world_menu[1], change(itm.world_menu[2])),
                 )
         add_menu_items(self.menu, menu)
 

@@ -14,12 +14,11 @@ if TYPE_CHECKING:
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
 
+lookup_cache: dict[str, MonsterModel] = {}
+
 
 class FishingEffectResult(ItemEffectResult):
     pass
-
-
-lookup_cache: dict[str, MonsterModel] = {}
 
 
 @dataclass

@@ -21,7 +21,6 @@ from tuxemon.platform.events import PlayerInput
 from tuxemon.tools import transform_resource_filename
 
 MenuGameObj = Callable[[], object]
-
 lookup_cache: dict[str, MonsterModel] = {}
 
 
@@ -251,9 +250,8 @@ class CharacterState(PygameMenuState):
             params = {"party": party}
             self.client.replace_state("PartyState", kwargs=params)
         if (
-            event.button == buttons.BACK
-            or event.button == buttons.B
-            or event.button == buttons.A
-        ) and event.pressed:
+            event.button in (buttons.BACK, buttons.B, buttons.A)
+            and event.pressed
+        ):
             self.client.pop_state()
         return None

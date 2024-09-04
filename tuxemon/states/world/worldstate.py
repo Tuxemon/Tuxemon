@@ -867,11 +867,7 @@ class WorldState(state.State):
             ``None`` otherwise.
 
         """
-        pathnode = self.pathfind_r(
-            dest,
-            [PathfindNode(start)],
-            set(),
-        )
+        pathnode = self.pathfind_r(dest, [PathfindNode(start)], set())
 
         if pathnode:
             # traverse the node to get the path

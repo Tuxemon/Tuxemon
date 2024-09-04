@@ -6,6 +6,7 @@ from unittest import mock
 from tuxemon import prepare
 from tuxemon.client import LocalPygameClient
 from tuxemon.db import Direction, MissionModel, MissionStatus, db
+from tuxemon.event.actions.char_move import parse_path_parameters
 from tuxemon.player import Player
 from tuxemon.session import local_session
 
@@ -334,3 +335,65 @@ class TestCharacterActions(unittest.TestCase):
         self.player.facing = Direction.down
         self.action.execute_action("char_face", ["player", "up"])
         self.assertEqual(self.player.facing, Direction.up)
+
+
+class TestParsePathParameters(unittest.TestCase):
+    def test_single_move(self):
+        origin = (0, 0)
+        move_list = ["up"]
+        expected_path = [(0, -1)]
+        self.assertEqual(
+            list(parse_path_parameters(origin, move_list)), expected_path
+        )
+
+    def test_multiple_moves(self):
+        origin = (0, 0)
+        move_list = ["up", "right", "down"]
+        expected_path = [(0, -1), (1, -1), (1, 0)]
+        self.assertEqual(
+            list(parse_path_parameters(origin, move_list)), expected_path
+        )
+
+    def test_move_with_tiles(self):
+        origin = (0, 0)
+        move_list = ["up 2", "right 3"]
+        expected_path = [(0, -1), (0, -2), (1, -2), (2, -2), (3, -2)]
+        self.assertEqual(
+            list(parse_path_parameters(origin, move_list)), expected_path
+        )
+
+    def test_invalid_direction(self):
+        origin = (0, 0)
+        move_list = [" invalid"]
+        with self.assertRaises(ValueError):
+            list(parse_path_parameters(origin, move_list))
+
+    def test_empty_move_list(self):
+        origin = (0, 0)
+        move_list = []
+        expected_path = []
+        self.assertEqual(
+            list(parse_path_parameters(origin, move_list)), expected_path
+        )
+
+    def test_invalid_tiles(self):
+        origin = (0, 0)
+        move_list = ["up abc"]
+        with self.assertRaises(ValueError):
+            list(parse_path_parameters(origin, move_list))
+
+    def test_move_list_with_spaces(self):
+        origin = (0, 0)
+        move_list = ["up  ", " right 2"]
+        expected_path = [(0, -1), (1, -1), (2, -1)]
+        self.assertEqual(
+            list(parse_path_parameters(origin, move_list)), expected_path
+        )
+
+    def test_move_list_with_trailing_spaces(self):
+        origin = (0, 0)
+        move_list = ["up  ", " right 2  "]
+        expected_path = [(0, -1), (1, -1), (2, -1)]
+        self.assertEqual(
+            list(parse_path_parameters(origin, move_list)), expected_path
+        )

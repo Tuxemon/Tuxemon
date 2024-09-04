@@ -13,6 +13,10 @@
   "usable_in": [
     "WorldState"
   ],
+  "behaviors": {
+    "requires_monster_menu": false,
+    "show_dialog_on_success": false
+  },
   "use_failure": "fishing_rod_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

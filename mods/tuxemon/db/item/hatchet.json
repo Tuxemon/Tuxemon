@@ -13,6 +13,9 @@
   "usable_in": [
     "WorldState"
   ],
+  "behaviors": {
+    "requires_monster_menu": false
+  },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "spyder_successful_log"

@@ -215,6 +215,21 @@ State = Enum(
 )
 
 
+class ItemBehaviors(BaseModel):
+    visible: bool = Field(
+        True, description="Whether or not this item is visible."
+    )
+    requires_monster_menu: bool = Field(
+        True, description="Whether the monster menu is required to be open."
+    )
+    show_dialog_on_failure: bool = Field(
+        True, description="Whether to show a dialogue after a failed use."
+    )
+    show_dialog_on_success: bool = Field(
+        True, description="Whether to show a dialogue after a successful use."
+    )
+
+
 class ItemModel(BaseModel):
     model_config = ConfigDict(title="Item")
     slug: str = Field(..., description="Slug to use")
@@ -239,6 +254,7 @@ class ItemModel(BaseModel):
     usable_in: Sequence[State] = Field(
         ..., description="State(s) where this item can be used."
     )
+    behaviors: ItemBehaviors
     # TODO: We'll need some more advanced validation logic here to parse item
     # conditions and effects to ensure they are formatted properly.
     conditions: Sequence[str] = Field(
@@ -257,9 +273,6 @@ class ItemModel(BaseModel):
     world_menu: tuple[int, str, str] = Field(
         None,
         description="Item adds to World Menu a button (position, label -inside the PO -,state, eg. 3:nu_phone:PhoneState)",
-    )
-    visible: bool = Field(
-        True, description="Whether or not this item is visible."
     )
 
     # Validate fields that refer to translated text

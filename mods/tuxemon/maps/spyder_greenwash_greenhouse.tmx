@@ -216,13 +216,15 @@
   </object>
   <object id="89" name="Talk Gregor" type="event" x="352" y="32" width="16" height="48">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_greenwash_gregor"/>
-    <property name="act1" value="translated_dialog spyder_greenwash_gregor1"/>
-    <property name="act2" value="add_monster sclairus,22,spyder_greenwash_gregor,5,10"/>
-    <property name="act3" value="add_monster cateye,22,spyder_greenwash_gregor,5,10"/>
-    <property name="act4" value="start_battle player,spyder_greenwash_gregor"/>
-    <property name="act5" value="translated_dialog spyder_greenwash_gregor2"/>
-    <property name="act6" value="set_variable greenwashgregor:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_greenwash_gregor"/>
+    <property name="act3" value="translated_dialog spyder_greenwash_gregor1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster sclairus,22,spyder_greenwash_gregor,5,10"/>
+    <property name="act6" value="add_monster cateye,22,spyder_greenwash_gregor,5,10"/>
+    <property name="act7" value="start_battle player,spyder_greenwash_gregor"/>
+    <property name="act8" value="translated_dialog spyder_greenwash_gregor2"/>
+    <property name="act9" value="set_variable greenwashgregor:yes"/>
     <property name="cond1" value="not variable_set greenwashgregor:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -236,12 +238,14 @@
   </object>
   <object id="94" name="Talk Alex" type="event" x="144" y="224" width="16" height="32">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_greenwash_alex"/>
-    <property name="act1" value="translated_dialog spyder_greenwash_alex1"/>
-    <property name="act2" value="add_monster shybulb,25,spyder_greenwash_alex,5,10"/>
-    <property name="act3" value="start_battle player,spyder_greenwash_alex"/>
-    <property name="act4" value="translated_dialog spyder_greenwash_alex2"/>
-    <property name="act6" value="set_variable greenwashalex:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_greenwash_alex"/>
+    <property name="act3" value="translated_dialog spyder_greenwash_alex1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster shybulb,25,spyder_greenwash_alex,5,10"/>
+    <property name="act6" value="start_battle player,spyder_greenwash_alex"/>
+    <property name="act7" value="translated_dialog spyder_greenwash_alex2"/>
+    <property name="act8" value="set_variable greenwashalex:yes"/>
     <property name="cond1" value="not variable_set greenwashalex:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -255,26 +259,30 @@
   </object>
   <object id="96" name="Talk Hunt" type="event" x="336" y="192" width="16" height="64">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_greenwash_hunt"/>
-    <property name="act1" value="translated_dialog spyder_greenwash_hunt1"/>
-    <property name="act2" value="add_monster cateye,25,spyder_greenwash_hunt,5,10"/>
-    <property name="act3" value="add_monster propellercat,25,spyder_greenwash_hunt,5,10"/>
-    <property name="act4" value="start_battle player,spyder_greenwash_hunt"/>
-    <property name="act5" value="translated_dialog spyder_greenwash_hunt2"/>
-    <property name="act6" value="set_variable greenwashhunt:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_greenwash_hunt"/>
+    <property name="act3" value="translated_dialog spyder_greenwash_hunt1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster cateye,25,spyder_greenwash_hunt,5,10"/>
+    <property name="act6" value="add_monster propellercat,25,spyder_greenwash_hunt,5,10"/>
+    <property name="act7" value="start_battle player,spyder_greenwash_hunt"/>
+    <property name="act8" value="translated_dialog spyder_greenwash_hunt2"/>
+    <property name="act9" value="set_variable greenwashhunt:yes"/>
     <property name="cond1" value="not variable_set greenwashhunt:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="97" name="Talk Hunt" type="event" x="272" y="192" width="16" height="64">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_greenwash_hunt"/>
-    <property name="act1" value="translated_dialog spyder_greenwash_hunt1"/>
-    <property name="act2" value="add_monster cateye,25,spyder_greenwash_hunt,5,10"/>
-    <property name="act3" value="add_monster propellercat,25,spyder_greenwash_hunt,5,10"/>
-    <property name="act4" value="start_battle player,spyder_greenwash_hunt"/>
-    <property name="act5" value="translated_dialog spyder_greenwash_hunt2"/>
-    <property name="act6" value="set_variable greenwashhunt:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_greenwash_hunt"/>
+    <property name="act3" value="translated_dialog spyder_greenwash_hunt1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster cateye,25,spyder_greenwash_hunt,5,10"/>
+    <property name="act6" value="add_monster propellercat,25,spyder_greenwash_hunt,5,10"/>
+    <property name="act7" value="start_battle player,spyder_greenwash_hunt"/>
+    <property name="act8" value="translated_dialog spyder_greenwash_hunt2"/>
+    <property name="act9" value="set_variable greenwashhunt:yes"/>
     <property name="cond1" value="not variable_set greenwashhunt:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -288,24 +296,28 @@
   </object>
   <object id="99" name="Talk Lewis" type="event" x="336" y="144" width="16" height="32">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_greenwash_lewis"/>
-    <property name="act1" value="translated_dialog spyder_greenwash_lewis1"/>
-    <property name="act2" value="add_monster pharfan,24,spyder_greenwash_lewis,5,10"/>
-    <property name="act3" value="start_battle player,spyder_greenwash_lewis"/>
-    <property name="act4" value="translated_dialog spyder_greenwash_lewis2"/>
-    <property name="act6" value="set_variable greenwashlewis:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_greenwash_lewis"/>
+    <property name="act3" value="translated_dialog spyder_greenwash_lewis1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster pharfan,24,spyder_greenwash_lewis,5,10"/>
+    <property name="act6" value="start_battle player,spyder_greenwash_lewis"/>
+    <property name="act7" value="translated_dialog spyder_greenwash_lewis2"/>
+    <property name="act8" value="set_variable greenwashlewis:yes"/>
     <property name="cond1" value="not variable_set greenwashlewis:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="101" name="Talk Lewis" type="event" x="256" y="48" width="16" height="32">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_greenwash_lewis"/>
-    <property name="act1" value="translated_dialog spyder_greenwash_lewis1"/>
-    <property name="act2" value="add_monster pharfan,24,spyder_greenwash_lewis,5,10"/>
-    <property name="act3" value="start_battle player,spyder_greenwash_lewis"/>
-    <property name="act4" value="translated_dialog spyder_greenwash_lewis2"/>
-    <property name="act6" value="set_variable greenwashlewis:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_greenwash_lewis"/>
+    <property name="act3" value="translated_dialog spyder_greenwash_lewis1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster pharfan,24,spyder_greenwash_lewis,5,10"/>
+    <property name="act6" value="start_battle player,spyder_greenwash_lewis"/>
+    <property name="act7" value="translated_dialog spyder_greenwash_lewis2"/>
+    <property name="act8" value="set_variable greenwashlewis:yes"/>
     <property name="cond1" value="not variable_set greenwashlewis:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -319,12 +331,14 @@
   </object>
   <object id="103" name="Talk Louis" type="event" x="144" y="48" width="16" height="80">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_greenwash_louis"/>
-    <property name="act1" value="translated_dialog spyder_greenwash_louis1"/>
-    <property name="act2" value="add_monster cateye,24,spyder_greenwash_louis,5,10"/>
-    <property name="act3" value="start_battle player,spyder_greenwash_louis"/>
-    <property name="act4" value="translated_dialog spyder_greenwash_louis2"/>
-    <property name="act6" value="set_variable greenwashlouis:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_greenwash_louis"/>
+    <property name="act3" value="translated_dialog spyder_greenwash_louis1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster cateye,24,spyder_greenwash_louis,5,10"/>
+    <property name="act6" value="start_battle player,spyder_greenwash_louis"/>
+    <property name="act7" value="translated_dialog spyder_greenwash_louis2"/>
+    <property name="act8" value="set_variable greenwashlouis:yes"/>
     <property name="cond1" value="not variable_set greenwashlouis:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -351,24 +365,28 @@
   </object>
   <object id="107" name="Talk Gluck" type="event" x="448" y="192" width="16" height="64">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_greenwash_gluck"/>
-    <property name="act1" value="translated_dialog spyder_greenwash_gluck1"/>
-    <property name="act2" value="add_monster narcileaf,25,spyder_greenwash_gluck,5,10"/>
-    <property name="act3" value="start_battle player,spyder_greenwash_gluck"/>
-    <property name="act4" value="translated_dialog spyder_greenwash_gluck2"/>
-    <property name="act6" value="set_variable greenwashgluck:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_greenwash_gluck"/>
+    <property name="act3" value="translated_dialog spyder_greenwash_gluck1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster narcileaf,25,spyder_greenwash_gluck,5,10"/>
+    <property name="act6" value="start_battle player,spyder_greenwash_gluck"/>
+    <property name="act7" value="translated_dialog spyder_greenwash_gluck2"/>
+    <property name="act8" value="set_variable greenwashgluck:yes"/>
     <property name="cond1" value="not variable_set greenwashgluck:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="108" name="Talk Gluck" type="event" x="464" y="176" width="32" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_greenwash_gluck"/>
-    <property name="act1" value="translated_dialog spyder_greenwash_gluck1"/>
-    <property name="act2" value="add_monster narcileaf,25,spyder_greenwash_gluck,5,10"/>
-    <property name="act3" value="start_battle player,spyder_greenwash_gluck"/>
-    <property name="act4" value="translated_dialog spyder_greenwash_gluck2"/>
-    <property name="act6" value="set_variable greenwashgluck:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_greenwash_gluck"/>
+    <property name="act3" value="translated_dialog spyder_greenwash_gluck1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster narcileaf,25,spyder_greenwash_gluck,5,10"/>
+    <property name="act6" value="start_battle player,spyder_greenwash_gluck"/>
+    <property name="act7" value="translated_dialog spyder_greenwash_gluck2"/>
+    <property name="act8" value="set_variable greenwashgluck:yes"/>
     <property name="cond1" value="not variable_set greenwashgluck:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

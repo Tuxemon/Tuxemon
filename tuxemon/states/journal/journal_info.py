@@ -17,10 +17,20 @@ from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
 
+lookup_cache: dict[str, MonsterModel] = {}
+
 
 def fix_measure(measure: int, percentage: float) -> int:
     """it returns the correct measure based on percentage"""
     return round(measure * percentage)
+
+
+def _lookup_monsters() -> None:
+    monsters = list(db.database["monster"])
+    for mon in monsters:
+        results = db.lookup(mon, table="monster")
+        if results.txmn_id > 0:
+            lookup_cache[mon] = results
 
 
 class JournalInfoState(PygameMenuState):
@@ -224,6 +234,8 @@ class JournalInfoState(PygameMenuState):
         )
 
     def __init__(self, **kwargs: Any) -> None:
+        if not lookup_cache:
+            _lookup_monsters()
         monster: Optional[MonsterModel] = None
         for element in kwargs.values():
             monster = element["monster"]
@@ -259,34 +271,27 @@ class JournalInfoState(PygameMenuState):
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         client = self.client
         monsters = list(local_session.player.tuxepedia)
-        box: list[MonsterModel] = []
-        for mov in monsters:
-            results = db.lookup(mov, table="monster")
-            box.append(results)
-        box = sorted(box, key=lambda x: x.txmn_id)
-        param: dict[str, Any] = {}
-        if event.button == buttons.RIGHT and event.pressed and box:
-            slot = box.index(self._monster)
-            if slot < (len(box) - 1):
-                slot += 1
-                param["monster"] = box[slot]
-                client.replace_state("JournalInfoState", kwargs=param)
-            else:
-                param["monster"] = box[0]
-                client.replace_state("JournalInfoState", kwargs=param)
-        elif event.button == buttons.LEFT and event.pressed and box:
-            slot = box.index(self._monster)
-            if slot > 0:
-                slot -= 1
-                param["monster"] = box[slot]
-                client.replace_state("JournalInfoState", kwargs=param)
-            else:
-                param["monster"] = box[len(box) - 1]
-                client.replace_state("JournalInfoState", kwargs=param)
+        models = list(lookup_cache.values())
+        model_dict = {model.txmn_id: model for model in models}
+        monster_models = [model_dict[mov] for mov in monsters]
+        monster_models.sort(key=lambda x: x.txmn_id)
+
+        if event.button in (buttons.RIGHT, buttons.LEFT) and event.pressed:
+            current_monster_index = monster_models.index(self._monster)
+            new_index = (
+                (current_monster_index + 1) % len(monster_models)
+                if event.button == buttons.RIGHT
+                else (current_monster_index - 1) % len(monster_models)
+            )
+            client.replace_state(
+                "JournalInfoState",
+                kwargs={"monster": monster_models[new_index]},
+            )
+
         elif (
-            event.button == buttons.BACK
-            or event.button == buttons.B
-            or event.button == buttons.A
-        ) and event.pressed:
+            event.button in (buttons.BACK, buttons.B, buttons.A)
+            and event.pressed
+        ):
             client.pop_state()
+
         return None

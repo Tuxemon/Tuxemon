@@ -133,7 +133,7 @@ class TechniqueMenuState(Menu[Technique]):
         for tech in output:
             name = tech.name
             types = " ".join(map(lambda s: T.translate(s.slug), tech.types))
-            image = self.shadow_text(name, bg=(128, 128, 128))
+            image = self.shadow_text(name, bg=prepare.DIMGRAY_COLOR)
             if tech.counter == 0:
                 sus = 100
             else:

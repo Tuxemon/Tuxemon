@@ -156,6 +156,19 @@ class TestTMXFiles(unittest.TestCase):
                                 f"Invalid property value '{value}' for name '{name}' in object {obj} at {to_basename(path)}"
                             )
 
+    def test_object_property_name_duplicate(self):
+        for path, root in self.loaded_data.items():
+            for obj in root.findall(".//object"):
+                property_names = {}
+                for prop in obj.findall("properties/property"):
+                    if _is_valid_property_name(prop.attrib["name"]):
+                        if prop.attrib["name"] in property_names:
+                            self.fail(
+                                f"Duplicate property name '{prop.attrib['name']}' in object {obj} at {to_basename(path)}"
+                            )
+                        else:
+                            property_names[prop.attrib["name"]] = True
+
     def test_object_width(self):
         for path, root in self.loaded_data.items():
             for obj in root.findall(".//object"):

@@ -3,9 +3,9 @@
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="nimrod_middle"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_set pieces.tsx"/>
  <tileset firstgid="1551" source="../gfx/tilesets/core_outdoor.tsx"/>
@@ -23,7 +23,7 @@
  </layer>
  <layer id="3" name="Tile Layer 4" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFQxUcZcJO41ODDjyB4l4kYm8cZg0GwMtIHkbXOwroA17LUAcrizAwqACxuyxlOABoRqAI+f45KszAcEyY8nD5BDTjMxADAARJJqw=
+   eJxjYBgFQxUcZcJO41ODDjyB4l4kYm8cZg0GwMtIHkbXOwroA17LUAcrizAwqACxuyxlOABoRqAI+f5RBOpVokA/DPgBzfAHYgCZPiQg
   </data>
  </layer>
  <layer id="5" name="Tile Layer 4" width="18" height="20">
@@ -36,16 +36,7 @@
   <object id="4" type="collision" x="32" y="112" width="224" height="16"/>
   <object id="5" type="collision" x="0" y="0" width="288" height="32"/>
   <object id="6" type="collision" x="0" y="160" width="224" height="16"/>
-  <object id="11" type="collision-line" x="32" y="272">
-   <polyline points="0,0 0,32"/>
-  </object>
-  <object id="12" type="collision-line" x="256" y="304">
-   <polyline points="0,0 0,16"/>
-  </object>
   <object id="15" type="collision" x="240" y="160" width="48" height="16"/>
-  <object id="28" type="collision-line" x="32" y="288">
-   <polyline points="0,0 0,16"/>
-  </object>
   <object id="31" type="collision" x="48" y="96" width="16" height="16"/>
   <object id="32" type="collision" x="80" y="96" width="16" height="16"/>
   <object id="33" type="collision" x="112" y="96" width="16" height="16"/>
@@ -53,15 +44,15 @@
   <object id="35" type="collision" x="224" y="96" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
-  <object id="1" name="Teleport to Nimrod Bottom" type="event" x="256" y="288" width="32" height="32">
+  <object id="1" name="Teleport to Nimrod Bottom" type="event" x="256" y="288" width="16" height="32">
    <properties>
     <property name="act1" value="transition_teleport spyder_nimrod_bottom.tmx,16,19,0.3"/>
     <property name="act2" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,down"/>
+    <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
-  <object id="2" name="Teleport to Nimrod Top" type="event" x="0" y="272" width="32" height="32">
+  <object id="2" name="Teleport to Nimrod Top" type="event" x="0" y="288" width="32" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_nimrod_top.tmx,0,17,0.3"/>
     <property name="act2" value="char_face player,down"/>
@@ -214,77 +205,89 @@
   </object>
   <object id="37" name="Talk Argon" type="event" x="224" y="144" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_nimrod_argon"/>
-    <property name="act1" value="translated_dialog spyder_nimrod_argon1"/>
-    <property name="act2" value="add_monster chrome_robo,25,spyder_nimrod_argon,5,10"/>
-    <property name="act3" value="start_battle player,spyder_nimrod_argon"/>
-    <property name="act4" value="translated_dialog spyder_nimrod_argon2"/>
-    <property name="act6" value="set_variable nimrodargon:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_nimrod_argon"/>
+    <property name="act3" value="translated_dialog spyder_nimrod_argon1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster chrome_robo,25,spyder_nimrod_argon,5,10"/>
+    <property name="act6" value="start_battle player,spyder_nimrod_argon"/>
+    <property name="act7" value="translated_dialog spyder_nimrod_argon2"/>
+    <property name="act8" value="set_variable nimrodargon:yes"/>
     <property name="cond1" value="not variable_set nimrodargon:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="38" name="Talk Honour" type="event" x="192" y="64" width="48" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_nimrod_honour"/>
-    <property name="act1" value="translated_dialog spyder_nimrod_honour1"/>
-    <property name="act2" value="add_monster embazook,20,spyder_nimrod_honour,5,10"/>
-    <property name="act3" value="add_monster sharpfin,20,spyder_nimrod_honour,5,10"/>
-    <property name="act4" value="start_battle player,spyder_nimrod_honour"/>
-    <property name="act5" value="translated_dialog spyder_nimrod_honour2"/>
-    <property name="act6" value="set_variable nimrodhonour:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_nimrod_honour"/>
+    <property name="act3" value="translated_dialog spyder_nimrod_honour1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster embazook,20,spyder_nimrod_honour,5,10"/>
+    <property name="act6" value="add_monster sharpfin,20,spyder_nimrod_honour,5,10"/>
+    <property name="act7" value="start_battle player,spyder_nimrod_honour"/>
+    <property name="act8" value="translated_dialog spyder_nimrod_honour2"/>
+    <property name="act9" value="set_variable nimrodhonour:yes"/>
     <property name="cond1" value="not variable_set nimrodhonour:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="40" name="Talk Xeon" type="event" x="160" y="176" width="16" height="64">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_nimrod_xeon"/>
-    <property name="act1" value="translated_dialog spyder_nimrod_xeon1"/>
-    <property name="act2" value="add_monster xeon,20,spyder_nimrod_xeon,5,10"/>
-    <property name="act3" value="start_battle player,spyder_nimrod_xeon"/>
-    <property name="act4" value="translated_dialog spyder_nimrod_xeon2"/>
-    <property name="act6" value="set_variable nimrodxeon_middle:yes"/>
-    <property name="act7" value="remove_npc spyder_nimrod_xeon"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_nimrod_xeon"/>
+    <property name="act3" value="translated_dialog spyder_nimrod_xeon1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster xeon,20,spyder_nimrod_xeon,5,10"/>
+    <property name="act6" value="start_battle player,spyder_nimrod_xeon"/>
+    <property name="act7" value="translated_dialog spyder_nimrod_xeon2"/>
+    <property name="act8" value="set_variable nimrodxeon_middle:yes"/>
+    <property name="act9" value="remove_npc spyder_nimrod_xeon"/>
     <property name="cond1" value="not variable_set nimrodxeon_middle:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="41" name="Talk Chrome Robo" type="event" x="144" y="192" width="16" height="64">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_nimrod_chromerobo"/>
-    <property name="act1" value="translated_dialog spyder_nimrod_chromerobo1"/>
-    <property name="act2" value="add_monster chrome_robo,20,spyder_nimrod_chromerobo,5,10"/>
-    <property name="act3" value="start_battle player,spyder_nimrod_chromerobo"/>
-    <property name="act4" value="translated_dialog spyder_nimrod_chromerobo2"/>
-    <property name="act6" value="set_variable nimrodchromerobo_middle:yes"/>
-    <property name="act7" value="remove_npc spyder_nimrod_chromerobo"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_nimrod_chromerobo"/>
+    <property name="act3" value="translated_dialog spyder_nimrod_chromerobo1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster chrome_robo,20,spyder_nimrod_chromerobo,5,10"/>
+    <property name="act6" value="start_battle player,spyder_nimrod_chromerobo"/>
+    <property name="act7" value="translated_dialog spyder_nimrod_chromerobo2"/>
+    <property name="act8" value="set_variable nimrodchromerobo_middle:yes"/>
+    <property name="act9" value="remove_npc spyder_nimrod_chromerobo"/>
     <property name="cond1" value="not variable_set nimrodchromerobo_middle:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="42" name="Talk Archer" type="event" x="64" y="208" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_nimrod_archer"/>
-    <property name="act1" value="translated_dialog spyder_nimrod_archer1"/>
-    <property name="act2" value="add_monster sharpfin,20,spyder_nimrod_archer,5,10"/>
-    <property name="act3" value="add_monster av8r,20,spyder_nimrod_archer,5,10"/>
-    <property name="act4" value="add_monster grimachin,20,spyder_nimrod_archer,5,10"/>
-    <property name="act5" value="start_battle player,spyder_nimrod_archer"/>
-    <property name="act6" value="translated_dialog spyder_nimrod_archer2"/>
-    <property name="act7" value="set_variable nimrodarcher:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_nimrod_archer"/>
+    <property name="act03" value="translated_dialog spyder_nimrod_archer1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster sharpfin,20,spyder_nimrod_archer,5,10"/>
+    <property name="act06" value="add_monster av8r,20,spyder_nimrod_archer,5,10"/>
+    <property name="act07" value="add_monster grimachin,20,spyder_nimrod_archer,5,10"/>
+    <property name="act08" value="start_battle player,spyder_nimrod_archer"/>
+    <property name="act09" value="translated_dialog spyder_nimrod_archer2"/>
+    <property name="act10" value="set_variable nimrodarcher:yes"/>
     <property name="cond1" value="not variable_set nimrodarcher:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="43" name="Talk Antimony" type="event" x="64" y="192" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_nimrod_antimony"/>
-    <property name="act1" value="translated_dialog spyder_nimrod_antimony1"/>
-    <property name="act2" value="add_monster komodraw,30,spyder_nimrod_antimony,5,10"/>
-    <property name="act3" value="start_battle player,spyder_nimrod_antimony"/>
-    <property name="act4" value="translated_dialog spyder_nimrod_antimony2"/>
-    <property name="act6" value="set_variable nimrodantimony:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_nimrod_antimony"/>
+    <property name="act3" value="translated_dialog spyder_nimrod_antimony1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster komodraw,30,spyder_nimrod_antimony,5,10"/>
+    <property name="act6" value="start_battle player,spyder_nimrod_antimony"/>
+    <property name="act7" value="translated_dialog spyder_nimrod_antimony2"/>
+    <property name="act8" value="set_variable nimrodantimony:yes"/>
     <property name="cond1" value="not variable_set nimrodantimony:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

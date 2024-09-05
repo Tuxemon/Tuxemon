@@ -83,7 +83,7 @@
   <object id="41" name="Talk Rebel" type="event" x="192" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_rebel1"/>
-    <property name="act2" value="add_monster grimachin,30,spyder_nimrod_rebel,5,10"/>
+    <property name="act2" value="add_monster grimachin,25,spyder_nimrod_rebel,5,10"/>
     <property name="act3" value="start_battle player,spyder_nimrod_rebel"/>
     <property name="act4" value="translated_dialog spyder_nimrod_rebel2"/>
     <property name="act6" value="set_variable nimrodrebel:yes"/>
@@ -151,44 +151,50 @@
   </object>
   <object id="53" name="Talk Rebel" type="event" x="208" y="240" width="32" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_nimrod_rebel"/>
-    <property name="act1" value="translated_dialog spyder_nimrod_rebel1"/>
-    <property name="act2" value="add_monster grimachin,30,spyder_nimrod_rebel,5,10"/>
-    <property name="act3" value="start_battle player,spyder_nimrod_rebel"/>
-    <property name="act4" value="translated_dialog spyder_nimrod_rebel2"/>
-    <property name="act6" value="set_variable nimrodrebel:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_nimrod_rebel"/>
+    <property name="act3" value="translated_dialog spyder_nimrod_rebel1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster grimachin,25,spyder_nimrod_rebel,5,10"/>
+    <property name="act6" value="start_battle player,spyder_nimrod_rebel"/>
+    <property name="act7" value="translated_dialog spyder_nimrod_rebel2"/>
+    <property name="act8" value="set_variable nimrodrebel:yes"/>
     <property name="cond1" value="not variable_set nimrodrebel:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="54" name="Talk Tru" type="event" x="32" y="288" width="32" height="16">
    <properties>
-    <property name="act00" value="pathfind_to_player spyder_nimrod_tru"/>
-    <property name="act01" value="translated_dialog spyder_nimrod_tru1"/>
-    <property name="act02" value="add_monster grimachin,20,spyder_nimrod_tru,5,10"/>
-    <property name="act03" value="add_monster tigrock,25,spyder_nimrod_tru,5,10"/>
-    <property name="act04" value="add_monster komodraw,25,spyder_nimrod_tru,5,10"/>
-    <property name="act05" value="add_monster sharpfin,25,spyder_nimrod_tru,5,10"/>
-    <property name="act06" value="add_monster embazook,25,spyder_nimrod_tru,5,10"/>
-    <property name="act07" value="start_battle player,spyder_nimrod_tru"/>
-    <property name="act08" value="translated_dialog spyder_nimrod_tru2"/>
-    <property name="act09" value="translated_dialog spyder_nimrod_tru3"/>
-    <property name="act10" value="set_variable nimrodtru:yes"/>
-    <property name="act11" value="pathfind spyder_nimrod_jake,0,17"/>
-    <property name="act12" value="remove_npc spyder_nimrod_jake"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_nimrod_tru"/>
+    <property name="act03" value="translated_dialog spyder_nimrod_tru1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster grimachin,20,spyder_nimrod_tru,5,10"/>
+    <property name="act06" value="add_monster tigrock,25,spyder_nimrod_tru,5,10"/>
+    <property name="act07" value="add_monster komodraw,25,spyder_nimrod_tru,5,10"/>
+    <property name="act08" value="add_monster sharpfin,25,spyder_nimrod_tru,5,10"/>
+    <property name="act09" value="add_monster embazook,25,spyder_nimrod_tru,5,10"/>
+    <property name="act10" value="start_battle player,spyder_nimrod_tru"/>
+    <property name="act11" value="translated_dialog spyder_nimrod_tru2"/>
+    <property name="act12" value="translated_dialog spyder_nimrod_tru3"/>
+    <property name="act13" value="set_variable nimrodtru:yes"/>
+    <property name="act14" value="pathfind spyder_nimrod_jake,0,17"/>
+    <property name="act15" value="remove_npc spyder_nimrod_jake"/>
     <property name="cond1" value="not variable_set nimrodtru:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="55" name="Talk Bowie" type="event" x="16" y="256" width="16" height="32">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_nimrod_bowie"/>
-    <property name="act1" value="translated_dialog spyder_nimrod_bowie1"/>
-    <property name="act2" value="add_monster tigrock,35,spyder_nimrod_bowie,5,10"/>
-    <property name="act3" value="add_monster embazook,35,spyder_nimrod_bowie,5,10"/>
-    <property name="act4" value="start_battle player,spyder_nimrod_bowie"/>
-    <property name="act5" value="translated_dialog spyder_nimrod_bowie2"/>
-    <property name="act6" value="set_variable nimrodbowie:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_nimrod_bowie"/>
+    <property name="act3" value="translated_dialog spyder_nimrod_bowie1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster tigrock,35,spyder_nimrod_bowie,5,10"/>
+    <property name="act6" value="add_monster embazook,35,spyder_nimrod_bowie,5,10"/>
+    <property name="act7" value="start_battle player,spyder_nimrod_bowie"/>
+    <property name="act8" value="translated_dialog spyder_nimrod_bowie2"/>
+    <property name="act9" value="set_variable nimrodbowie:yes"/>
     <property name="cond1" value="not variable_set nimrodbowie:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

@@ -22,14 +22,12 @@ MAX_PAGE = 20
 
 
 MenuGameObj = Callable[[], object]
+lookup_cache: dict[str, MonsterModel] = {}
 
 
 def fix_measure(measure: int, percentage: float) -> int:
     """it returns the correct measure based on percentage"""
     return round(measure * percentage)
-
-
-lookup_cache: dict[str, MonsterModel] = {}
 
 
 def _lookup_monsters() -> None:
@@ -56,26 +54,25 @@ class JournalChoice(PygameMenuState):
             return partial(self.client.push_state, state, **kwargs)
 
         total_monster = len(monsters)
-        # defines number of pages based on the total nr of monsters
-        # it uses math.ceil because if the diff is < .5 , it must
-        # round up (eg. 11.49 > 12)
-        diff = math.ceil(total_monster / MAX_PAGE)
+        pages = math.ceil(total_monster / MAX_PAGE)
+
         menu._column_max_width = [
             fix_measure(width, 0.40),
             fix_measure(width, 0.40),
         ]
 
-        for page in range(diff):
-            maximum = (page * MAX_PAGE) + MAX_PAGE
-            minimum = page * MAX_PAGE
+        for page in range(pages):
+            start = page * MAX_PAGE
+            end = min(start + MAX_PAGE, total_monster)
             tuxepedia = [
                 mon
                 for mon in monsters
-                if minimum < mon.txmn_id <= maximum
-                and mon.slug in player.tuxepedia
+                if start < mon.txmn_id <= end and mon.slug in player.tuxepedia
             ]
-            _label = {"a": str(minimum), "b": str(maximum)}
-            label = T.format("page_tuxepedia", _label).upper()
+            label = T.format(
+                "page_tuxepedia", {"a": str(start), "b": str(end)}
+            ).upper()
+
             if tuxepedia:
                 param = {"monsters": monsters, "page": page}
                 menu.add.button(

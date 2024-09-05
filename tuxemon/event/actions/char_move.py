@@ -21,22 +21,23 @@ def simple_path(
     direction: Direction,
     tiles: int,
 ) -> Generator[tuple[int, int], None, None]:
+    """Generate a simple path in the given direction from the origin."""
     origin_vec = Vector2(origin)
     for _ in range(tiles):
         origin_vec += dirs2[direction]
-        yield (int(origin_vec[0]), int(origin_vec[1]))
+        yield (int(origin_vec.x), int(origin_vec.y))
 
 
 def parse_path_parameters(
     origin: tuple[int, int],
     move_list: Sequence[str],
 ) -> Generator[tuple[int, int], None, None]:
+    """Parse a list of move commands and generate the corresponding path."""
     for move in move_list:
         try:
             direction, tiles = move.strip().split()
         except ValueError:
             direction, tiles = move.strip(), "1"
-        assert direction in dirs2
         direction = Direction(direction)
         for point in simple_path(origin, direction, int(tiles)):
             yield point
@@ -78,22 +79,32 @@ class CharMoveAction(EventAction):
     # parameter checking not supported due to undefined number of parameters
 
     def start(self) -> None:
-        character = self.raw_parameters[0]
-        self.character = get_npc(self.session, character)
-
-        if self.character is None:
-            logger.error(f"{self.character} not found")
+        if len(self.raw_parameters) < 2:
+            logger.error("Insufficient parameters")
             return
 
-        path = list(
-            parse_path_parameters(
-                self.character.tile_pos,
-                self.raw_parameters[1:],
+        character_name = self.raw_parameters[0]
+        self.character = get_npc(self.session, character_name)
+
+        if self.character is None:
+            logger.error(f"Character '{character_name}' not found")
+            return
+
+        path_parameters = self.raw_parameters[1:]
+        try:
+            path = list(
+                parse_path_parameters(self.character.tile_pos, path_parameters)
             )
-        )
-        path.reverse()
-        self.character.path = path
-        self.character.next_waypoint()
+        except Exception as e:
+            logger.error(f"Failed to parse path parameters: {e}")
+            return
+
+        if path:
+            path.reverse()
+            self.character.path = path
+            self.character.next_waypoint()
+        else:
+            logger.error("No path found")
 
     def update(self) -> None:
         if self.character is None:

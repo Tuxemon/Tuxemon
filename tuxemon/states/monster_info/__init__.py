@@ -10,7 +10,7 @@ from pygame_menu import locals
 from pygame_menu.locals import POSITION_CENTER
 
 from tuxemon import formula, prepare, tools
-from tuxemon.db import db
+from tuxemon.db import MonsterModel, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
@@ -18,6 +18,16 @@ from tuxemon.monster import Monster
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
+
+lookup_cache: dict[str, MonsterModel] = {}
+
+
+def _lookup_monsters() -> None:
+    monsters = list(db.database["monster"])
+    for mon in monsters:
+        results = db.lookup(mon, table="monster")
+        if results.txmn_id > 0:
+            lookup_cache[mon] = results
 
 
 def find_box_name(instance_id: uuid.UUID) -> Optional[str]:
@@ -31,13 +41,12 @@ def find_box_name(instance_id: uuid.UUID) -> Optional[str]:
         Box name, or None.
 
     """
-    for box, monsters in local_session.player.monster_boxes.items():
-        monster = next(
-            (m for m in monsters if m.instance_id == instance_id), None
-        )
-        if monster is not None:
-            return box
-    return None
+    box_map = {
+        m.instance_id: box
+        for box, monsters in local_session.player.monster_boxes.items()
+        for m in monsters
+    }
+    return box_map.get(instance_id)
 
 
 def fix_measure(measure: int, percentage: float) -> int:
@@ -71,7 +80,10 @@ class MonsterInfoState(PygameMenuState):
         # types
         types = " ".join(map(lambda s: T.translate(s.slug), monster.types))
         # weight and height
-        results = db.lookup(monster.slug, table="monster")
+        models = list(lookup_cache.values())
+        results = next(
+            (model for model in models if model.slug == monster.slug), None
+        )
         diff_weight = formula.diff_percentage(monster.weight, results.weight)
         diff_height = formula.diff_percentage(monster.height, results.height)
         player = local_session.player
@@ -326,6 +338,8 @@ class MonsterInfoState(PygameMenuState):
         )
 
     def __init__(self, **kwargs: Any) -> None:
+        if not lookup_cache:
+            _lookup_monsters()
         monster: Optional[Monster] = None
         source = ""
         for element in kwargs.values():
@@ -360,43 +374,39 @@ class MonsterInfoState(PygameMenuState):
         theme.widget_alignment = locals.ALIGN_LEFT
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-        param: dict[str, Any] = {}
-        param["source"] = self._source
+        param: dict[str, Any] = {"source": self._source}
         client = self.client
-        if (
-            self._source == "WorldMenuState"
-            or self._source == "MonsterMenuState"
-            or self._source == "MonsterTakeState"
-        ):
-            if self._source == "MonsterTakeState":
-                box = find_box_name(self._monster.instance_id)
-                if box is None:
-                    raise ValueError("Box doesn't exist")
-                monsters = local_session.player.monster_boxes[box]
-                nr_monsters = len(monsters)
-                slot = monsters.index(self._monster)
-            else:
-                monsters = local_session.player.monsters
-                nr_monsters = len(monsters)
-                slot = monsters.index(self._monster)
+
+        if self._source in [
+            "WorldMenuState",
+            "MonsterMenuState",
+            "MonsterTakeState",
+        ]:
+            monsters = self._get_monsters()
+            slot = monsters.index(self._monster)
+
             if event.button == buttons.RIGHT and event.pressed:
-                if slot < (nr_monsters - 1):
-                    slot += 1
-                    param["monster"] = monsters[slot]
-                else:
-                    param["monster"] = monsters[0]
+                slot = (slot + 1) % len(monsters)
+                param["monster"] = monsters[slot]
                 client.replace_state("MonsterInfoState", kwargs=param)
             elif event.button == buttons.LEFT and event.pressed:
-                if slot > 0:
-                    slot -= 1
-                    param["monster"] = monsters[slot]
-                else:
-                    param["monster"] = monsters[nr_monsters - 1]
+                slot = (slot - 1) % len(monsters)
+                param["monster"] = monsters[slot]
                 client.replace_state("MonsterInfoState", kwargs=param)
+
         if (
-            event.button == buttons.BACK
-            or event.button == buttons.B
-            or event.button == buttons.A
-        ) and event.pressed:
+            event.button in (buttons.BACK, buttons.B, buttons.A)
+            and event.pressed
+        ):
             client.pop_state()
+
         return None
+
+    def _get_monsters(self):
+        if self._source == "MonsterTakeState":
+            box = find_box_name(self._monster.instance_id)
+            if box is None:
+                raise ValueError("Box doesn't exist")
+            return local_session.player.monster_boxes[box]
+        else:
+            return local_session.player.monsters

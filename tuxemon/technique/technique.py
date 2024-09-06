@@ -116,9 +116,7 @@ class Technique:
         self.counter = self.counter
         self.counter_success = self.counter_success
         # types
-        for _ele in results.types:
-            _element = Element(_ele)
-            self.types.append(_element)
+        self.types = [Element(ele) for ele in results.types]
         # technique stats
         self.accuracy = results.accuracy or self.accuracy
         self.potency = results.potency or self.potency

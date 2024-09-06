@@ -105,11 +105,6 @@ class ElementType(str, Enum):
     water = "water"
 
 
-class ItemType(str, Enum):
-    consumable = "Consumable"
-    key_item = "KeyItem"
-
-
 class ItemCategory(str, Enum):
     none = "none"
     badge = "badge"
@@ -216,6 +211,9 @@ State = Enum(
 
 
 class ItemBehaviors(BaseModel):
+    consumable: bool = Field(
+        True, description="Whether or not this item is consumable."
+    )
     visible: bool = Field(
         True, description="Whether or not this item is visible."
     )
@@ -247,7 +245,6 @@ class ItemModel(BaseModel):
     )
     sort: ItemSort = Field(..., description="The kind of item this is.")
     sprite: str = Field(..., description="The sprite to use")
-    type: ItemType = Field(..., description="The type of item this is")
     category: ItemCategory = Field(
         ..., description="The category of item this is"
     )

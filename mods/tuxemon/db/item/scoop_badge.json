@@ -8,7 +8,6 @@
   "sort": "utility",
   "sprite": "gfx/items/scoop_badge.png",
   "category": "badge",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],

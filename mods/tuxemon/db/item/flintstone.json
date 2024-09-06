@@ -10,7 +10,6 @@
   "sort": "utility",
   "sprite": "gfx/items/flintstone.png",
   "category": "morph",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],

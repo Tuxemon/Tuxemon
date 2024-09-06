@@ -12,7 +12,6 @@
   "sort": "utility",
   "sprite": "gfx/items/tm_water.png",
   "category": "technique",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],

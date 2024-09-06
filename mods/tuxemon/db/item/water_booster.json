@@ -10,7 +10,6 @@
   "sort": "utility",
   "sprite": "gfx/items/water_booster.png",
   "category": "morph",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],

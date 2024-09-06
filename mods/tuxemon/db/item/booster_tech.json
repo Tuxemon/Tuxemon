@@ -10,7 +10,6 @@
   "sort": "utility",
   "sprite": "gfx/items/booster_tech.png",
   "category": "morph",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],

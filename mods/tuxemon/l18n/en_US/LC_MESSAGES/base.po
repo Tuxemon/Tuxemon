@@ -2708,6 +2708,9 @@ msgstr "Tuxemon has too many techniques.\n"
 msgid "evolution_confirmation"
 msgstr "{name} is trying to evolve into {evolve}. Allow evolution?"
 
+msgid "evolution_ended"
+msgstr "{name} evolves into {evolve}!"
+
 msgid "no_signal"
 msgstr "No Signal"
 

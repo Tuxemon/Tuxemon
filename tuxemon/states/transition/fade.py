@@ -72,12 +72,11 @@ class FadeOutTransition(FadeTransitionBase):
         )
 
     def shutdown(self) -> None:
-        if self.client.current_music["previoussong"]:
-            self.client.event_engine.execute_action(
-                "play_music",
-                [self.client.current_music["previoussong"]],
+        if self.client.current_music.previous_song:
+            self.client.current_music.play(
+                self.client.current_music.previous_song
             )
-            self.client.current_music["previoussong"] = None
+            self.client.current_music.previous_song = None
         self.client.pop_state(self.caller)
 
 

@@ -8536,6 +8536,8 @@ msgstr "Remember, we had nothing to do with the disease getting out!"
 
 msgid "spyder_scoop_asta1"
 msgstr "Why yes, I am the inventor of the Extreme Restraints. \n What are they, I hear you ask? \n Only a set of manacles so powerful that even a dragon could not escape them. \n They are being used in the containment unit to make sure none of the infected tuxemon escape."
+msgid "spyder_scoop_asta2"
+msgstr "Are you sure you want to leave Scoop HQ?"
 
 msgid "spyder_scoop_alyssa1"
 msgstr "As soon as disease was detected, we moved the infected tuxemon to this containment unit."

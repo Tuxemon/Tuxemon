@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="8" height="5" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="15">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="8" height="5" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="15">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="scoop2"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
@@ -16,6 +16,7 @@
  <tileset firstgid="5415" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
   <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
  </tileset>
+ <tileset firstgid="8385" source="../gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="8" height="5">
   <data encoding="base64" compression="zlib">
    eAFjYICAL4IMDF+B+BsQIwOYmLAQA4MIEIsCMUwtSA4mZgQUNwZiEyCGqQXJwcQOszAwwDBMLUgOJoaLBgDlUxQW
@@ -23,7 +24,7 @@
  </layer>
  <layer id="4" name="Tile Layer 2" width="8" height="5">
   <data encoding="base64" compression="zlib">
-   eAFjYCAebBfAr/YaUJ5PAqIGl1prqDxILQjsJGAmADZLBJ0=
+   eAFjYCAebBfAr/YaUJ5PAqIGl1prqDxIrYIyA8NOAmYCAD+UBOA=
   </data>
  </layer>
  <objectgroup color="#ffff00" id="2" name="Events">
@@ -64,15 +65,6 @@
   <object id="5" type="collision" x="32" y="0" width="48" height="48"/>
   <object id="6" type="collision" x="80" y="16" width="32" height="48"/>
   <object id="7" type="collision" x="112" y="16" width="16" height="32"/>
-  <object id="8" type="collision-line" x="0" y="80">
-   <polyline points="0,0 128,0"/>
-  </object>
-  <object id="9" type="collision-line" x="0" y="64">
-   <polyline points="0,0 0,16"/>
-  </object>
-  <object id="10" type="collision-line" x="128" y="48">
-   <polyline points="0,0 0,32"/>
-  </object>
   <object id="13" type="collision-line" x="64" y="64">
    <polyline points="0,0 16,0"/>
   </object>

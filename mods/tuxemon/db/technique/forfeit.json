@@ -1,10 +1,7 @@
 {
 	"animation": null,
 	"accuracy": 0.0,
-	"conditions": [
-	  	"not status grabbed",
-	  	"not status stuck"
-	],
+	"conditions": [],
 	"effects": [
 		"forfeit"
 	],

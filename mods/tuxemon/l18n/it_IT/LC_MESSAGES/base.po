@@ -3274,11 +3274,6 @@ msgstr ""
 "Non puoi scappare.\n"
 "{monster} è {status}!"
 
-msgid "combat_player_forfeit_status"
-msgstr ""
-"Non puoi dare forfait.\n"
-"{monster} è {status}!"
-
 msgid "cannot_use_tech_monster"
 msgstr "{name} non può essere usato."
 

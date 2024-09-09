@@ -119,6 +119,7 @@ class MenuItem(Generic[T], Sprite):
         label: Optional[str],
         description: Optional[str],
         game_object: T,
+        enabled: bool = True,
     ):
         super().__init__()
         self.image = image
@@ -126,8 +127,8 @@ class MenuItem(Generic[T], Sprite):
         self.label = label
         self.description = description
         self.game_object = game_object
+        self.enabled = enabled
 
-        self.enabled = True
         self._in_focus = False
 
     def toggle_focus(self) -> None:
@@ -141,6 +142,9 @@ class MenuItem(Generic[T], Sprite):
     @in_focus.setter
     def in_focus(self, value: bool) -> None:
         self._in_focus = bool(value)
+
+    def __repr__(self) -> str:
+        return f"MenuItem({self.label}, {self.description}, image={self.image}, enabled={self.enabled})"
 
 
 class MenuCursor(Sprite):

@@ -3305,11 +3305,6 @@ msgstr "{target} está adormecido."
 msgid "combat_state_enraged_get"
 msgstr "{target} está enfurecido."
 
-msgid "combat_player_forfeit_status"
-msgstr ""
-"Não pode perder a partida.\n"
-"{monster} é {status}!"
-
 msgid "cannot_use_tech_monster"
 msgstr "{name} não pode ser usado."
 

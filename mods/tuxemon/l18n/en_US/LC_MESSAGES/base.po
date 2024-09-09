@@ -784,17 +784,11 @@ msgstr "You have forfeited!\n{npc} is disappointed."
 msgid "combat_cannot_run_away"
 msgstr "You can't run away!"
 
-msgid "combat_forfeit_trainer"
-msgstr "Can't forfeit!"
-
 msgid "combat_player_run"
 msgstr "You ran away!"
 
 msgid "combat_player_run_status"
 msgstr "Can't escape.\n{monster} is {status}!"
-
-msgid "combat_player_forfeit_status"
-msgstr "Can't forfeit the match.\n{monster} is {status}!"
 
 msgid "combat_player_swap_status"
 msgstr "Can't switch monsters.\n{monster} is {status}!"

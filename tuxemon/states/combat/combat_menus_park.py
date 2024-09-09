@@ -6,7 +6,6 @@ from collections.abc import Callable, Generator
 from typing import TYPE_CHECKING, Optional
 
 from tuxemon.db import ItemCategory
-from tuxemon.graphics import ColorLike
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -27,7 +26,6 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
 
     """
 
-    unavailable_color: ColorLike = (220, 220, 220)
     escape_key_exits = False
     columns = 2
 

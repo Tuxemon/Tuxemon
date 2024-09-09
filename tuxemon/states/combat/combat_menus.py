@@ -62,24 +62,28 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
     def initialize_items(self) -> Generator[MenuItem[MenuGameObj], None, None]:
         common_menu_items = (
-            ("menu_fight", self.open_technique_menu),
-            ("menu_monster", self.open_swap_menu),
-            ("menu_item", self.open_item_menu),
+            ("menu_fight", self.open_technique_menu, True),
+            ("menu_monster", self.open_swap_menu, True),
+            ("menu_item", self.open_item_menu, True),
         )
 
         if self.combat.is_trainer_battle:
             menu_items_map = common_menu_items + (
-                ("menu_forfeit", self.forfeit),
+                ("menu_forfeit", self.forfeit, self.enemy.forfeit),
             )
         else:
-            menu_items_map = common_menu_items + (("menu_run", self.run),)
+            menu_items_map = common_menu_items + (
+                ("menu_run", self.run, True),
+            )
 
-        for key, callback in menu_items_map:
+        for key, callback, enable in menu_items_map:
+            foreground = self.unavailable_color if not enable else None
             yield MenuItem(
-                self.shadow_text(T.translate(key).upper()),
+                self.shadow_text(T.translate(key).upper(), fg=foreground),
                 T.translate(key).upper(),
                 None,
                 callback,
+                enable,
             )
 
     def forfeit(self) -> None:
@@ -90,34 +94,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         forfeit = Technique()
         forfeit.load("menu_forfeit")
         forfeit.combat_state = self.combat
-        if not forfeit.validate(self.monster):
-            params = {
-                "monster": self.monster.name.upper(),
-                "status": self.monster.status[0].name.lower(),
-            }
-            msg = T.format("combat_player_forfeit_status", params)
-            tools.open_dialog(local_session, [msg])
-            return
         self.client.pop_state(self)
-        if not self.enemy.forfeit:
-
-            def open_menu() -> None:
-                self.combat.task(
-                    partial(
-                        self.combat.show_monster_action_menu,
-                        self.monster,
-                    ),
-                    1,
-                )
-
-            self.combat.alert(
-                T.translate("combat_forfeit_trainer"),
-                open_menu,
-            )
-        else:
-            player = self.party[0]
-            enemy = self.opponents[0]
-            self.combat.enqueue_action(player, forfeit, enemy)
+        self.combat.enqueue_action(self.party[0], forfeit, self.opponents[0])
 
     def run(self) -> None:
         """
@@ -136,9 +114,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             tools.open_dialog(local_session, [msg])
             return
         self.client.pop_state(self)
-        player = self.party[0]
-        enemy = self.opponents[0]
-        self.combat.enqueue_action(player, run, enemy)
+        self.combat.enqueue_action(self.party[0], run, self.opponents[0])
 
     def open_swap_menu(self) -> None:
         """Open menus to swap monsters in party."""

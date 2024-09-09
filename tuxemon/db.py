@@ -759,11 +759,20 @@ class TechniqueModel(BaseModel):
         cls: TechniqueModel, v: Range, info: ValidationInfo
     ) -> Range:
         # Special indicates that we are not doing damage
-        if v == Range.special and "damage" in info.data["effects"]:
+        if v == Range.special and any(
+            effect in info.data["effects"]
+            for effect in [
+                "damage",
+                "area",
+                "retaliate",
+                "revenge",
+                "money",
+                "splash",
+            ]
+        ):
             raise ValueError(
-                '"special" range cannot be used with effect "damage"'
+                '"special" range cannot be used with effects "damage", "area", "retaliate", "revenge", "money", or "splash"'
             )
-
         return v
 
     @field_validator("animation")

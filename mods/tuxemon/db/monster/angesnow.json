@@ -37,6 +37,10 @@
         {
             "mon_slug": "waysprite",
             "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "seraphice",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["humanoid", "extraplanar"],

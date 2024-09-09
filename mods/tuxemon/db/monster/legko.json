@@ -57,6 +57,10 @@
         {
             "mon_slug": "lambert",
             "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "moloch",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["serpent"],

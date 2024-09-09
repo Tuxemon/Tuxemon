@@ -1,6 +1,6 @@
 {
-    "slug": "axylightl",
-    "category": "inchoate",
+    "slug": "ampystoma",
+    "category": "lightning_salamander",
     "moveset": [
         {
             "level_learned": 2,
@@ -51,29 +51,24 @@
             "technique": "geyser"
         }
     ],
-    "evolutions": [
-        {
-            "at_level": 32,
-            "monster_slug": "ampystoma"
-        }
-    ],
+    "evolutions": [],
     "history": [
         {
-            "mon_slug": "ampystoma",
-            "evo_stage": "stage1"
+            "mon_slug": "axylightl",
+            "evo_stage": "basic"
         }
     ],
-    "tags": ["polliwog", "freshwater", "swamp"],
-    "shape": "polliwog",
-    "stage": "basic",
+    "tags": ["brute", "freshwater", "swamp"],
+    "shape": "brute",
+    "stage": "stage1",
     "types": [
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 101,
-    "height": 80,
-    "weight": 15,
-    "catch_rate": 100.0,
+    "txmn_id": 280,
+    "height": 180,
+    "weight": 80,
+    "catch_rate": 70.0,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05
 }

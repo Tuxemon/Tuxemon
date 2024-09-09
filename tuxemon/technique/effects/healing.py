@@ -54,7 +54,6 @@ class HealingEffect(TechEffect):
             heal = (COEFF_DAMAGE + mon.level) * tech.healing_power
         diff = mon.hp - mon.current_hp
         if hit:
-            tech.advance_counter_success()
             if diff > 0:
                 if heal >= diff:
                     mon.current_hp = mon.hp

@@ -4107,9 +4107,6 @@ msgstr "铬合金机器人"
 msgid "dark_robo"
 msgstr "黑暗机器人"
 
-msgid "birb_robo"
-msgstr "比尔布机器人"
-
 msgid "xeon"
 msgstr "至强"
 
@@ -6765,9 +6762,6 @@ msgstr "一个充满敌意的机器人."
 
 msgid "taba_house4_client1a"
 msgstr "我奶奶以前也做过类似的菜!"
-
-msgid "birb_robo_description"
-msgstr "一个敌对的机器人."
 
 msgid "mk01_alpha_description"
 msgstr "一个与龙融合的杀手机器人.不要问我们怎么做."

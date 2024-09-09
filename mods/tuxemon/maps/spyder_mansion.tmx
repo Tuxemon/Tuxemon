@@ -168,12 +168,12 @@
     <property name="act41" value="char_face spyder_mansion_rolo,right"/>
     <property name="act42" value="char_face spyder_mansion_drinkingbuddyb,left"/>
     <property name="act50" value="translated_dialog spyder_mansion_drinkingbuddya2"/>
-    <property name="act60" value="pathfind spyder_mansion_drinkingbuddya,12,9"/>
-    <property name="act70" value="pathfind spyder_mansion_drinkingbuddyb,12,8"/>
-    <property name="act80" value="pathfind spyder_mansion_rolo,11,8"/>
-    <property name="act90" value="remove_npc spyder_mansion_rolo"/>
-    <property name="act91" value="remove_npc spyder_mansion_drinkingbuddya"/>
-    <property name="act92" value="remove_npc spyder_mansion_drinkingbuddyb"/>
+    <property name="act60" value="pathfind spyder_mansion_drinkingbuddya,10,17"/>
+    <property name="act61" value="remove_npc spyder_mansion_drinkingbuddya"/>
+    <property name="act70" value="pathfind spyder_mansion_drinkingbuddyb,10,17"/>
+    <property name="act71" value="remove_npc spyder_mansion_drinkingbuddyb"/>
+    <property name="act80" value="pathfind spyder_mansion_rolo,10,17"/>
+    <property name="act81" value="remove_npc spyder_mansion_rolo"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is variable_set foundcaptain:yes"/>
     <property name="cond3" value="not variable_set captainreturns:yes"/>

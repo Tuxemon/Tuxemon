@@ -9188,6 +9188,8 @@ msgid "spyder_top_magician1"
 msgstr "Have you ever been to the Dojo in Flower City?\n No? A keen battler like you?"
 msgid "spyder_top_magician2"
 msgstr "Well, this should help."
+msgid "spyder_top_magician3"
+msgstr "Why not head to the Dojo in Flower City and see how your battling skills stack up against the best trainers in the region?"
 
 msgid "spyder_mansion_gillette"
 msgstr "Gillette"

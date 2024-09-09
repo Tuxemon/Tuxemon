@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="37">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="39">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="dojo3"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_walls.tsx"/>
  <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
@@ -238,9 +238,12 @@
     <property name="act15" value="add_monster graffiki,30,spyder_dojo_tu,5,10"/>
     <property name="act16" value="add_monster sludgehog,30,spyder_dojo_tu,5,10"/>
     <property name="act17" value="start_battle player,spyder_dojo_tu"/>
-    <property name="act18" value="set_variable dojotu:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
+    <property name="act31" value="lock_controls"/>
+    <property name="act32" value="pathfind spyder_dojo_tu,9,9"/>
+    <property name="act34" value="unlock_controls"/>
+    <property name="act35" value="set_variable dojotu:yes"/>
     <property name="behav1" value="talk spyder_dojo_tu"/>
     <property name="cond1" value="is variable_set tuintro:yes"/>
     <property name="cond2" value="is variable_set dojosaturn:yes"/>
@@ -284,6 +287,18 @@
     <property name="act1" value="translated_dialog spyder_dojo_ares2"/>
     <property name="behav1" value="talk spyder_dojo_ares"/>
     <property name="cond1" value="is variable_set dojoares:yes"/>
+   </properties>
+  </object>
+  <object id="37" name="Remove Tu" type="event" x="336" y="144" width="16" height="16">
+   <properties>
+    <property name="act1" value="remove_npc spyder_dojo_tu"/>
+    <property name="cond1" value="is variable_set dojotu:yes"/>
+   </properties>
+  </object>
+  <object id="38" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_dojo_theme"/>
+    <property name="cond1" value="not music_playing music_dojo_theme"/>
    </properties>
   </object>
  </objectgroup>

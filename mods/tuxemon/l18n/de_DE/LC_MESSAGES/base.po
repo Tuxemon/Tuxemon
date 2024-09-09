@@ -2568,9 +2568,6 @@ msgstr "Yiinaang"
 msgid "dark_robo"
 msgstr "Dark Robo"
 
-msgid "birb_robo"
-msgstr "Birb Robo"
-
 msgid "xeon"
 msgstr "Xeon"
 

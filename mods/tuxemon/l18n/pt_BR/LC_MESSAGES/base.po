@@ -1250,9 +1250,6 @@ msgstr ""
 msgid "nudiflot_male"
 msgstr "Nudiflot"
 
-msgid "birb_robo"
-msgstr "Birb Robo"
-
 msgid "horned_raptor"
 msgstr "Raptor Chifrudo"
 
@@ -2411,9 +2408,6 @@ msgid "mk01_proto"
 msgstr "Mk01 Proto"
 
 msgid "dark_robo_description"
-msgstr "Um robô hostil."
-
-msgid "birb_robo_description"
 msgstr "Um robô hostil."
 
 msgid "mk01_beta_description"

@@ -1821,9 +1821,6 @@ msgstr "Roboscuro"
 msgid "xeon_2"
 msgstr "Xeon-2"
 
-msgid "birb_robo"
-msgstr "Roboccellino"
-
 msgid "xeon"
 msgstr "Xeon"
 

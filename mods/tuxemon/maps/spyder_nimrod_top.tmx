@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="51">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="52">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -229,6 +229,12 @@
     <property name="act1" value="translated_dialog spyder_nimrod_zircon2"/>
     <property name="behav1" value="talk spyder_nimrod_zircon"/>
     <property name="cond1" value="is variable_set nimrodzircon:yes"/>
+   </properties>
+  </object>
+  <object id="51" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_10_empire"/>
+    <property name="cond1" value="not music_playing music_10_empire"/>
    </properties>
   </object>
  </objectgroup>

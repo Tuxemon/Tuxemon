@@ -424,6 +424,36 @@ msgid "cureall_description"
 msgstr "Heals your tuxemon to full health and removes any conditions."
 
 # TMs
+msgid "tm_all_in"
+msgstr "TM: All In"
+
+msgid "tm_all_in_description"
+msgstr "Technique Manual that teaches the All In technique."
+
+msgid "tm_blade"
+msgstr "TM: Blade"
+
+msgid "tm_blade_description"
+msgstr "Technique Manual that teaches the Blade technique."
+
+msgid "tm_panjandrum"
+msgstr "TM: Panjandrum"
+
+msgid "tm_panjandrum_description"
+msgstr "Technique Manual that teaches the Panjandrum technique."
+
+msgid "tm_scope"
+msgstr "TM: Scope"
+
+msgid "tm_scope_description"
+msgstr "Technique Manual that teaches the Scope technique."
+
+msgid "tm_shadow_boxing"
+msgstr "TM: Shadow Boxing"
+
+msgid "tm_shadow_boxing_description"
+msgstr "Technique Manual that teaches the Shadow Boxing technique."
+
 msgid "tm_avalanche"
 msgstr "TM: Avalanche"
 

@@ -424,6 +424,36 @@ msgid "cureall_description"
 msgstr "Heals your tuxemon to full health and removes any conditions."
 
 # TMs
+msgid "tm_all_in"
+msgstr "TM: All In"
+
+msgid "tm_all_in_description"
+msgstr "Technique Manual that teaches the All In technique."
+
+msgid "tm_blade"
+msgstr "TM: Blade"
+
+msgid "tm_blade_description"
+msgstr "Technique Manual that teaches the Blade technique."
+
+msgid "tm_panjandrum"
+msgstr "TM: Panjandrum"
+
+msgid "tm_panjandrum_description"
+msgstr "Technique Manual that teaches the Panjandrum technique."
+
+msgid "tm_scope"
+msgstr "TM: Scope"
+
+msgid "tm_scope_description"
+msgstr "Technique Manual that teaches the Scope technique."
+
+msgid "tm_shadow_boxing"
+msgstr "TM: Shadow Boxing"
+
+msgid "tm_shadow_boxing_description"
+msgstr "Technique Manual that teaches the Shadow Boxing technique."
+
 msgid "tm_avalanche"
 msgstr "TM: Avalanche"
 
@@ -10241,6 +10271,7 @@ msgid "spyder_dojo_zhu1"
 msgstr "Let me tell you how Tastes work."
 msgid "spyder_dojo_xiang1"
 msgstr "Let me tell you how Techniques work."
+
 msgid "spyder_dojo_fu2"
 msgstr "Throughout their lives, most monsters pass through different stages.\n For example, a Rockitten may become a Rockat and then a Jemuar. This is called Morphing.\n Most Morphing occurs because a monster reaches a certain level,\n but there are other ways that Morphing can occur,\n like Dollfin becoming Bigfin when exposed to Sweet Sand."
 msgid "spyder_dojo_yin2"
@@ -10249,10 +10280,34 @@ msgid "spyder_dojo_zhu2"
 msgstr "Every monster has two Tastes: Warm and Cold.\n A Warm Taste makes the monster 10 percent better in one Stat:\n Speed for Peppy Taste, Melee for Salty Taste, Armor for Hearty Taste,\n Ranged for Zesty Taste and Dodge for Refined Taste.\n A Cold Taste makes the monster 10 percent worse in one Stat:\n Speed for Mild Taste, Melee for Sweet Taste,\n Armor for Soft Taste, Ranged for Flakey Taste and Dodge for Dry Taste."
 msgid "spyder_dojo_xiang2"
 msgstr "In combat, monsters can choose from up to four techniques that they know.\n Techniques have an accuracy, which determines how likely they are to occur.\n If a technique has a Power, that determines how much Damage it does.\n Some techniques impose a condition on the user or the target,\n or both - and the technique's Potency determines how likely that is to occur.\n Some techniques, once used, take a while to become available again."
+
 msgid "spyder_dojo_fu3"
-msgstr "I have developed a potion that reverts a tuxemon back to its base form.\n Shall I give the Button Potion to one of your tuxemon?"
+msgstr "I have developed a potion that reverts a tuxemon back to its base form."
+msgid "spyder_dojo_fu3a"
+msgstr "I'm sorry, but I see you don't have any tuxemon that have evolved yet. This potion won't be of much use to you at the moment."
+msgid "spyder_dojo_fu3b"
+msgstr "Ah, I see you have a tuxemon that has reached its first evolution. Ask my student, if you're interested in the Button Potion.\n He's been studying the art of reversal."
+msgid "spyder_dojo_fu3c"
+msgstr "Impressive, you have a tuxemon that has reached its second evolution. Ask my student, if you're interested in the Button Potion.\n She's been researching the intricacies of advanced evolutions."
+msgid "spyder_dojo_fu3d"
+msgstr "Feel free to ask my students, if you're interested in the Button Potion. Both of them might have use for it, depending on their current research."
+
+msgid "spyder_dojo_fu_student1"
+msgstr "You're interested in using the Button Potion on one of your tuxemon? That'll be ${{currency}}500?, if you're willing to part with it."
+msgid "spyder_dojo_fu_student1a"
+msgstr "A small price to pay for the knowledge that will be gained from reversing a tuxemon that has reached its first evolution."
+msgid "spyder_dojo_fu_student1b"
+msgstr "The insights gained from reversing a tuxemon that has reached its second evolution will be invaluable to my research."
+msgid "spyder_dojo_fu_student1c"
+msgstr "I see. Well, if you're not interested or can't afford it, I won't pressure you. The Button Potion is a rare and valuable item, after all.\n Maybe another time, then?"
+msgid "spyder_dojo_fu_nochoice"
+msgstr "I'm ready to assist you, but please, choose the tuxemon that will undergo the reversal process."
+
 msgid "spyder_dojo_zhu3"
-msgstr "I have developed a potion that changes a tuxemon's taste.\n Shall I give the Taste-Changer Potion to one of your tuxemon for ${{currency}}50?"
+msgstr "I have developed a potion that changes a tuxemon's taste. Shall I give the Taste-Changer Potion to one of your tuxemon for ${{currency}}50?"
+msgid "spyder_dojo_zhu3a"
+msgstr "I'm afraid you don't have enough funds to afford the Taste-Changer Potion."
+
 msgid "spyder_dojo_xiang3"
 msgstr "I have developed a potion that allows a tuxemon to re-learn a technique that it has forgotten.\n Shall I give the Re-Learner Potion to one of your tuxemon?"
 

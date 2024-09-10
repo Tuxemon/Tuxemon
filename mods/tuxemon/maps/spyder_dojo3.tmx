@@ -144,6 +144,7 @@
     <property name="act18" value="set_variable dojosaturn:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
+    <property name="act40" value="add_item tm_all_in"/>
     <property name="behav1" value="talk spyder_dojo_saturn"/>
     <property name="cond1" value="not variable_set dojosaturn:yes"/>
    </properties>
@@ -160,6 +161,7 @@
     <property name="act18" value="set_variable dojohephastus:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
+    <property name="act40" value="add_item tm_blade"/>
     <property name="behav1" value="talk spyder_dojo_hephastus"/>
     <property name="cond1" value="not variable_set dojohephastus:yes"/>
    </properties>
@@ -176,6 +178,7 @@
     <property name="act18" value="set_variable dojohermes:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
+    <property name="act40" value="add_item tm_panjandrum"/>
     <property name="behav1" value="talk spyder_dojo_hermes"/>
     <property name="cond1" value="not variable_set dojohermes:yes"/>
    </properties>
@@ -192,6 +195,7 @@
     <property name="act18" value="set_variable dojoorion:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
+    <property name="act40" value="add_item tm_shadow_boxing"/>
     <property name="behav1" value="talk spyder_dojo_orion"/>
     <property name="cond1" value="not variable_set dojoorion:yes"/>
    </properties>
@@ -208,6 +212,7 @@
     <property name="act10" value="set_variable dojoares:yes"/>
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
+    <property name="act40" value="add_item tm_scope"/>
     <property name="behav1" value="talk spyder_dojo_ares"/>
     <property name="cond1" value="not variable_set dojoares:yes"/>
    </properties>

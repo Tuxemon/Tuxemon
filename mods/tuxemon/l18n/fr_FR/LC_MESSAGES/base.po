@@ -2577,9 +2577,6 @@ msgstr "Touche Retour"
 msgid "menu_secondary_select_key"
 msgstr "Touche Annuler"
 
-msgid "birb_robo"
-msgstr "Robot Neige"
-
 msgid "oopsie2"
 msgstr ""
 "Pourquoi n'attendrions pas que mes chevaliers reviennent. \n"
@@ -7815,9 +7812,6 @@ msgid "chrome_robo_description"
 msgstr "Un robot hostile."
 
 msgid "dark_robo_description"
-msgstr "Un robot hostile."
-
-msgid "birb_robo_description"
 msgstr "Un robot hostile."
 
 msgid "mk01_alpha_description"

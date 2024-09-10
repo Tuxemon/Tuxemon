@@ -367,16 +367,21 @@ def battlefield(
         players: All the remaining players.
 
     """
-    human = [player for player in players if player.isplayer]
-    for _human in human:
-        if monster not in _human.monsters:
-            set_var(session, "battle_last_monster_name", monster.name)
-            set_var(session, "battle_last_monster_level", str(monster.level))
-            set_var(session, "battle_last_monster_type", monster.types[0].slug)
-            set_var(session, "battle_last_monster_category", monster.category)
-            set_var(session, "battle_last_monster_shape", monster.shape)
-            # updates tuxepedia
-            set_tuxepedia(session, _human.slug, monster.slug, "seen")
+    eligible_players = [
+        p for p in players if p.isplayer and monster not in p.monsters
+    ]
+    if not eligible_players:
+        return
+
+    for player in eligible_players:
+        set_var(session, "battle_last_monster_name", monster.name)
+        set_var(session, "battle_last_monster_level", str(monster.level))
+        set_var(session, "battle_last_monster_type", monster.types[0].slug)
+        set_var(session, "battle_last_monster_category", monster.category)
+        set_var(session, "battle_last_monster_shape", monster.shape)
+
+        if monster.txmn_id > 0:
+            set_tuxepedia(session, player.slug, monster.slug, "seen")
 
 
 def set_tuxepedia(

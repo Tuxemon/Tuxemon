@@ -1,252 +1,210 @@
 [
   {
     "slug": "spyder_top_jackson",
-    "template": 
-      {
-        "sprite_name": "rogue_copper",
-        "combat_front": "rogue",
-        "slug": "rogue"
-      }
-  
+    "template": {
+      "sprite_name": "rogue_copper",
+      "combat_front": "rogue",
+      "slug": "rogue"
+    }
   },
   {
     "slug": "spyder_top_mickey",
-    "template": 
-      {
-        "sprite_name": "scientist_fiery",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_fiery",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_top_ricardo",
-    "template": 
-      {
-        "sprite_name": "rogue_red",
-        "combat_front": "rogue",
-        "slug": "rogue"
-      }
-  
+    "template": {
+      "sprite_name": "rogue_red",
+      "combat_front": "rogue",
+      "slug": "rogue"
+    }
   },
   {
     "slug": "spyder_top_russell",
-    "template": 
-      {
-        "sprite_name": "magician_fiery",
-        "combat_front": "mage",
-        "slug": "mage"
-      }
-  
+    "template": {
+      "sprite_name": "magician_fiery",
+      "combat_front": "mage",
+      "slug": "mage"
+    }
   },
   {
     "slug": "spyder_top_penelope",
-    "template": 
-      {
-        "sprite_name": "barmaid_red",
-        "combat_front": "barmaid",
-        "slug": "barmaid"
-      }
-  
+    "template": {
+      "sprite_name": "barmaid_red",
+      "combat_front": "barmaid",
+      "slug": "barmaid"
+    }
   },
   {
     "slug": "spyder_top_maura",
-    "template": 
-      {
-        "sprite_name": "barmaid_blonde",
-        "combat_front": "barmaid",
-        "slug": "barmaid"
-      }
-  
+    "template": {
+      "sprite_name": "barmaid_blonde",
+      "combat_front": "barmaid",
+      "slug": "barmaid"
+    }
   },
   {
     "slug": "spyder_top_lenny",
-    "template": 
-      {
-        "sprite_name": "magician",
-        "combat_front": "magician",
-        "slug": "magician"
-      }
-  
-  },  
+    "template": {
+      "sprite_name": "magician",
+      "combat_front": "magician",
+      "slug": "magician"
+    }
+  },
   {
     "slug": "spyder_mansion_drinkingbuddya",
-    "template": 
-      {
-        "sprite_name": "rogue_green",
-        "combat_front": "rogue",
-        "slug": "rogue"
-      }
-  
+    "template": {
+      "sprite_name": "rogue_green",
+      "combat_front": "rogue",
+      "slug": "rogue"
+    }
   },
   {
     "slug": "spyder_mansion_wayne",
-    "template": 
-      {
-        "sprite_name": "magician_black",
-        "combat_front": "magician",
-        "slug": "magician"
-      }
-  
+    "template": {
+      "sprite_name": "magician_black",
+      "combat_front": "magician",
+      "slug": "magician"
+    }
   },
   {
     "slug": "spyder_mansion_lyle",
-    "template": 
-      {
-        "sprite_name": "riverboatcaptain",
-        "combat_front": "pirate",
-        "slug": "pirate"
-      }
-  
+    "template": {
+      "sprite_name": "riverboatcaptain",
+      "combat_front": "pirate",
+      "slug": "pirate"
+    }
   },
   {
     "slug": "spyder_mansion_lucy",
-    "template": 
-      {
-        "sprite_name": "barmaid_red",
-        "combat_front": "barmaid",
-        "slug": "barmaid"
-      }
-  
+    "template": {
+      "sprite_name": "barmaid_red",
+      "combat_front": "barmaid",
+      "slug": "barmaid"
+    }
   },
   {
     "slug": "spyder_mansion_gillette",
-    "template": 
-      {
-        "sprite_name": "magician_brown",
-        "combat_front": "magician",
-        "slug": "magician"
-      }
-  
+    "template": {
+      "sprite_name": "magician_brown",
+      "combat_front": "magician",
+      "slug": "magician"
+    }
   },
   {
     "slug": "spyder_mansion_drinkingbuddyb",
-    "template": 
-      {
-        "sprite_name": "warrior",
-        "combat_front": "enforcer_rookie",
-        "slug": "warrior"
-      }
-  
+    "template": {
+      "sprite_name": "warrior",
+      "combat_front": "enforcer_rookie",
+      "slug": "warrior"
+    }
   },
   {
     "slug": "spyder_mansion_lainey",
-    "template": 
-      {
-        "sprite_name": "barmaid",
-        "combat_front": "barmaid",
-        "slug": "barmaid"
-      }
-  
+    "template": {
+      "sprite_name": "barmaid",
+      "combat_front": "barmaid",
+      "slug": "barmaid"
+    }
   },
   {
     "slug": "spyder_mansion_rolo",
-    "template": 
-      {
-        "sprite_name": "riverboatcaptain",
-        "combat_front": "enforcer_rookie",
-        "slug": "riverboatcaptain"
-      }
-  
+    "template": {
+      "sprite_name": "riverboatcaptain",
+      "combat_front": "enforcer_rookie",
+      "slug": "riverboatcaptain"
+    }
   },
   {
     "slug": "spyder_mansion_tamara",
-    "template": 
-      {
-        "sprite_name": "picnicker",
-        "combat_front": "picnicker",
-        "slug": "picnicker"
-      }
-  
+    "template": {
+      "sprite_name": "picnicker",
+      "combat_front": "picnicker",
+      "slug": "picnicker"
+    }
   },
   {
     "slug": "spyder_mansion_reed",
-    "template": 
-      {
-        "sprite_name": "magician_fiery",
-        "combat_front": "magician",
-        "slug": "magician"
-      }
-  
+    "template": {
+      "sprite_name": "magician_fiery",
+      "combat_front": "magician",
+      "slug": "magician"
+    }
+  },
+  {
+    "slug": "spyder_mansion_nurse",
+    "template": {
+      "sprite_name": "nurse_lapi",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   },
   {
     "slug": "spyder_basement_bobby",
-    "template": 
-      {
-        "sprite_name": "postboy",
-        "combat_front": "rocker",
-        "slug": "postboy"
-      }
-  
+    "template": {
+      "sprite_name": "postboy",
+      "combat_front": "rocker",
+      "slug": "postboy"
+    }
   },
   {
     "slug": "spyder_basement_catholi",
-    "template": 
-      {
-        "sprite_name": "disciple",
-        "combat_front": "healer",
-        "slug": "healer"
-      }
-  
+    "template": {
+      "sprite_name": "disciple",
+      "combat_front": "healer",
+      "slug": "healer"
+    }
   },
   {
     "slug": "spyder_basement_coralli",
-    "template": 
-      {
-        "sprite_name": "barmaid_blonde",
-        "combat_front": "dancer",
-        "slug": "dancer"
-      }
-  
+    "template": {
+      "sprite_name": "barmaid_blonde",
+      "combat_front": "dancer",
+      "slug": "dancer"
+    }
   },
   {
     "slug": "spyder_basement_josephine",
-    "template": 
-      {
-        "sprite_name": "disciple",
-        "combat_front": "healer",
-        "slug": "healer"
-      }
-  
+    "template": {
+      "sprite_name": "disciple",
+      "combat_front": "healer",
+      "slug": "healer"
+    }
   },
   {
     "slug": "spyder_basement_roger",
-    "template": 
-      {
-        "sprite_name": "tennisplayer_lapi",
-        "combat_front": "tennisplayer",
-        "slug": "tennisplayer"
-      }
-  
+    "template": {
+      "sprite_name": "tennisplayer_lapi",
+      "combat_front": "tennisplayer",
+      "slug": "tennisplayer"
+    }
   },
   {
     "slug": "spyder_basement_josh",
-    "template": 
-      {
-        "sprite_name": "boss_orange",
-        "combat_front": "baller",
-        "slug": "baller"
-      }
-  
+    "template": {
+      "sprite_name": "boss_orange",
+      "combat_front": "baller",
+      "slug": "baller"
+    }
   },
   {
     "slug": "spyder_basement_garret",
-    "template": 
-      {
-        "sprite_name": "rogue_green",
-        "combat_front": "rogue",
-        "slug": "rogue"
-      }
-  
+    "template": {
+      "sprite_name": "rogue_green",
+      "combat_front": "rogue",
+      "slug": "rogue"
+    }
   },
   {
     "slug": "spyder_basement_flick",
-    "template": 
-      {
-        "sprite_name": "riverboatcaptain",
-        "combat_front": "enforcer_rookie",
-        "slug": "riverboatcaptain"
-      }
-  
+    "template": {
+      "sprite_name": "riverboatcaptain",
+      "combat_front": "enforcer_rookie",
+      "slug": "riverboatcaptain"
+    }
   }
 ]

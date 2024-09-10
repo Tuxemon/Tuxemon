@@ -45,15 +45,14 @@ class JournalInfoState(PygameMenuState):
         height = menu._height
         menu._width = fix_measure(menu._width, 0.97)
 
-        # history
-        evo = ""
-        if monster.history:
-            if len(monster.history) == 1:
-                evo = T.translate("yes_evolution")
-            else:
-                evo = T.translate("yes_evolutions")
-        else:
-            evo = T.translate("no_evolution")
+        # evolutions
+        evo = T.translate("no_evolution")
+        if monster.evolutions:
+            evo = T.translate(
+                "yes_evolution"
+                if len(monster.evolutions) == 1
+                else "yes_evolutions"
+            )
         # types
         types = " ".join(map(lambda s: T.translate(s.name), monster.types))
         # weight and height
@@ -185,11 +184,11 @@ class JournalInfoState(PygameMenuState):
             float=True,
         )
         lab9.translate(fix_measure(width, 0.01), fix_measure(height, 0.56))
-        # history
+        # evolution
         evo = evo if self.caught else "-----"
         lab10: Any = menu.add.label(
             title=evo,
-            label_id="history",
+            label_id="evolution",
             font_size=self.font_size_small,
             wordwrap=True,
             align=locals.ALIGN_LEFT,
@@ -197,7 +196,7 @@ class JournalInfoState(PygameMenuState):
         )
         lab10.translate(fix_measure(width, 0.01), fix_measure(height, 0.76))
 
-        # history monsters
+        # evolution monsters
         if self.caught:
             f = menu.add.frame_h(
                 float=True,
@@ -207,9 +206,7 @@ class JournalInfoState(PygameMenuState):
             )
             f.translate(fix_measure(width, 0.02), fix_measure(height, 0.80))
             f._relax = True
-            elements = []
-            for ele in monster.history:
-                elements.append(ele.mon_slug)
+            elements = [ele.monster_slug for ele in monster.evolutions]
             labels = [
                 menu.add.label(
                     title=f"{T.translate(ele).upper()}",
@@ -272,9 +269,11 @@ class JournalInfoState(PygameMenuState):
         client = self.client
         monsters = list(local_session.player.tuxepedia)
         models = list(lookup_cache.values())
-        model_dict = {model.txmn_id: model for model in models}
-        monster_models = [model_dict[mov] for mov in monsters]
-        monster_models.sort(key=lambda x: x.txmn_id)
+        model_dict = {model.slug: model for model in models}
+        monster_models = sorted(
+            [model_dict[mov] for mov in monsters if mov in model_dict],
+            key=lambda x: x.txmn_id,
+        )
 
         if event.button in (buttons.RIGHT, buttons.LEFT) and event.pressed:
             current_monster_index = monster_models.index(self._monster)

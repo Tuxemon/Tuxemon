@@ -1697,9 +1697,6 @@ msgstr "Windeye"
 msgid "yiinaang"
 msgstr "Yiinaang"
 
-msgid "birb_robo"
-msgstr "Birb Robo"
-
 msgid "mk01_beta"
 msgstr "Mk01 Beta"
 

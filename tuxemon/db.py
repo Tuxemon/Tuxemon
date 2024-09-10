@@ -105,11 +105,6 @@ class ElementType(str, Enum):
     water = "water"
 
 
-class ItemType(str, Enum):
-    consumable = "Consumable"
-    key_item = "KeyItem"
-
-
 class ItemCategory(str, Enum):
     none = "none"
     badge = "badge"
@@ -194,6 +189,12 @@ class EntityFacing(str, Enum):
     right = "right"
 
 
+class MusicStatus(str, Enum):
+    playing = "playing"
+    paused = "paused"
+    stopped = "stopped"
+
+
 class Comparison(str, Enum):
     less_than = "less_than"
     less_or_equal = "less_or_equal"
@@ -215,6 +216,24 @@ State = Enum(
 )
 
 
+class ItemBehaviors(BaseModel):
+    consumable: bool = Field(
+        True, description="Whether or not this item is consumable."
+    )
+    visible: bool = Field(
+        True, description="Whether or not this item is visible."
+    )
+    requires_monster_menu: bool = Field(
+        True, description="Whether the monster menu is required to be open."
+    )
+    show_dialog_on_failure: bool = Field(
+        True, description="Whether to show a dialogue after a failed use."
+    )
+    show_dialog_on_success: bool = Field(
+        True, description="Whether to show a dialogue after a successful use."
+    )
+
+
 class ItemModel(BaseModel):
     model_config = ConfigDict(title="Item")
     slug: str = Field(..., description="Slug to use")
@@ -232,13 +251,13 @@ class ItemModel(BaseModel):
     )
     sort: ItemSort = Field(..., description="The kind of item this is.")
     sprite: str = Field(..., description="The sprite to use")
-    type: ItemType = Field(..., description="The type of item this is")
     category: ItemCategory = Field(
         ..., description="The category of item this is"
     )
     usable_in: Sequence[State] = Field(
         ..., description="State(s) where this item can be used."
     )
+    behaviors: ItemBehaviors
     # TODO: We'll need some more advanced validation logic here to parse item
     # conditions and effects to ensure they are formatted properly.
     conditions: Sequence[str] = Field(
@@ -257,9 +276,6 @@ class ItemModel(BaseModel):
     world_menu: tuple[int, str, str] = Field(
         None,
         description="Item adds to World Menu a button (position, label -inside the PO -,state, eg. 3:nu_phone:PhoneState)",
-    )
-    visible: bool = Field(
-        True, description="Whether or not this item is visible."
     )
 
     # Validate fields that refer to translated text
@@ -746,11 +762,20 @@ class TechniqueModel(BaseModel):
         cls: TechniqueModel, v: Range, info: ValidationInfo
     ) -> Range:
         # Special indicates that we are not doing damage
-        if v == Range.special and "damage" in info.data["effects"]:
+        if v == Range.special and any(
+            effect in info.data["effects"]
+            for effect in [
+                "damage",
+                "area",
+                "retaliate",
+                "revenge",
+                "money",
+                "splash",
+            ]
+        ):
             raise ValueError(
-                '"special" range cannot be used with effect "damage"'
+                '"special" range cannot be used with effects "damage", "area", "retaliate", "revenge", "money", or "splash"'
             )
-
         return v
 
     @field_validator("animation")

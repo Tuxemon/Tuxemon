@@ -2568,9 +2568,6 @@ msgstr "Yiinaang"
 msgid "dark_robo"
 msgstr "Dark Robo"
 
-msgid "birb_robo"
-msgstr "Birb Robo"
-
 msgid "xeon"
 msgstr "Xeon"
 
@@ -3741,11 +3738,6 @@ msgstr "{name} kann nicht benutzt werden."
 msgid "combat_player_run_status"
 msgstr ""
 "Kann nicht entkommen.\n"
-"{monster} ist {status}!"
-
-msgid "combat_player_forfeit_status"
-msgstr ""
-"Kann das Spiel nicht verlieren.\n"
 "{monster} ist {status}!"
 
 msgid "combat_player_swap_status"

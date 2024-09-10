@@ -11,7 +11,7 @@ import pygame
 
 from tuxemon import graphics, plugin, prepare
 from tuxemon.constants import paths
-from tuxemon.db import ItemCategory, ItemType, State, db
+from tuxemon.db import ItemCategory, State, db
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.locale import T
@@ -43,7 +43,6 @@ class Item:
         self.description = ""
         self.instance_id = uuid.uuid4()
         self.quantity = 1
-        self.type = ItemType.consumable
         self.animation: Optional[str] = None
         self.flip_axes = ""
         # The path to the sprite to load.
@@ -102,11 +101,10 @@ class Item:
         self.use_failure = T.translate(results.use_failure)
 
         # misc attributes (not translated!)
-        self.visible = results.visible
         self.world_menu = results.world_menu
+        self.behaviors = results.behaviors
         self.sort = results.sort
         self.category = results.category or ItemCategory.none
-        self.type = results.type or ItemType.consumable
         self.sprite = results.sprite
         self.usable_in = results.usable_in
         self.effects = self.parse_effects(results.effects)
@@ -245,7 +243,7 @@ class Item:
         # If this is a consumable item, remove it from the player's inventory.
         if (
             prepare.CONFIG.items_consumed_on_failure or meta_result["success"]
-        ) and self.type == "Consumable":
+        ) and self.behaviors.consumable:
             if self.quantity <= 1:
                 user.remove_item(self)
             else:

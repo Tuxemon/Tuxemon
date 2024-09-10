@@ -57,6 +57,10 @@
         {
             "mon_slug": "tweesher",
             "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "eaglace",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["flier", "boreal/snow", "grassland", "mountains"],

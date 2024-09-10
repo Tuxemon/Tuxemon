@@ -1955,9 +1955,6 @@ msgstr ""
 "Ingiere y almacena el veneno de las criaturas marinas que le sirven de "
 "alimento."
 
-msgid "birb_robo"
-msgstr "Robot Pajarito"
-
 msgid "firsts"
 msgstr ""
 "♪ Mira cómo me flagelo♪ \n"
@@ -3509,9 +3506,6 @@ msgid "Kennel"
 msgstr "refugio"
 
 msgid "dark_robo_description"
-msgstr "Un robot hostil."
-
-msgid "birb_robo_description"
 msgstr "Un robot hostil."
 
 msgid "mk01_delta_description"

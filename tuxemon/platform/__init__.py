@@ -8,8 +8,6 @@ import logging
 import os.path
 from collections.abc import Sequence
 
-import pygame
-
 __all__ = ("android", "init", "mixer", "get_user_storage_dir")
 
 logger = logging.getLogger(__name__)
@@ -17,23 +15,26 @@ logger = logging.getLogger(__name__)
 _pygame = False
 android = None
 
-# TODO: more graceful handling of android and pygame deps.
 try:
     import android
-    import android.mixer
+    import android.mixer as android_mixer
 
-    mixer = android.mixer
+    mixer = android_mixer
 except ImportError:
     pass
+else:
+    logger.info("Using Android mixer")
 
 if android is None:
     try:
-        import pygame.mixer
+        import pygame.mixer as pygame_mixer
 
-        mixer = pygame.mixer
+        mixer = pygame_mixer
         _pygame = True
     except ImportError:
-        pass
+        logger.error("Neither Android nor Pygame mixer found")
+    else:
+        logger.info("Using Pygame mixer")
 
 
 def init() -> None:

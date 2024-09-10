@@ -367,16 +367,21 @@ def battlefield(
         players: All the remaining players.
 
     """
-    human = [player for player in players if player.isplayer]
-    for _human in human:
-        if monster not in _human.monsters:
-            set_var(session, "battle_last_monster_name", monster.name)
-            set_var(session, "battle_last_monster_level", str(monster.level))
-            set_var(session, "battle_last_monster_type", monster.types[0].slug)
-            set_var(session, "battle_last_monster_category", monster.category)
-            set_var(session, "battle_last_monster_shape", monster.shape)
-            # updates tuxepedia
-            set_tuxepedia(session, _human.slug, monster.slug, "seen")
+    eligible_players = [
+        p for p in players if p.isplayer and monster not in p.monsters
+    ]
+    if not eligible_players:
+        return
+
+    for player in eligible_players:
+        set_var(session, "battle_last_monster_name", monster.name)
+        set_var(session, "battle_last_monster_level", str(monster.level))
+        set_var(session, "battle_last_monster_type", monster.types[0].slug)
+        set_var(session, "battle_last_monster_category", monster.category)
+        set_var(session, "battle_last_monster_shape", monster.shape)
+
+        if monster.txmn_id > 0:
+            set_tuxepedia(session, player.slug, monster.slug, "seen")
 
 
 def set_tuxepedia(
@@ -542,7 +547,6 @@ def build_hud_text(
 ) -> str:
     """
     Returns the text image for use on the callout of the monster.
-    eg. Rockitten Lv3
 
     Parameters:
         menu: Combat menu (eg. MainCombatMenuState).
@@ -551,28 +555,29 @@ def build_hud_text(
             right side (player), left side (opponent)
         is_trainer: Boolean battle (trainer: true, wild: false).
 
+    Returns:
+        A string representing the HUD text for the monster.
+
     """
-    trainer = monster.owner
-    icon: str = ""
-    if menu == "MainParkMenuState" and trainer and is_right:
+    if menu == "MainParkMenuState" and monster.owner and is_right:
+        # Special case for MainParkMenuState
         ball = T.translate("tuxeball_park")
-        item = trainer.find_item("tuxeball_park")
+        item = monster.owner.find_item("tuxeball_park")
         if item is None:
             return f"{ball.upper()}: 0"
         return f"{ball.upper()}: {item.quantity}"
-    else:
-        if monster.gender == GenderType.male:
-            icon += "♂"
-        if monster.gender == GenderType.female:
-            icon += "♀"
-        if not is_trainer:
-            # shows captured symbol (wild encounter)
-            symbol: str = ""
-            if is_status and is_status == SeenStatus.caught and not is_right:
-                symbol += "◉"
-            return f"{monster.name}{icon} Lv.{monster.level}{symbol}"
-        else:
-            return f"{monster.name}{icon} Lv.{monster.level}"
+
+    icon = ""
+    if monster.gender == GenderType.male:
+        icon = "♂"
+    elif monster.gender == GenderType.female:
+        icon = "♀"
+
+    symbol = ""
+    if not is_trainer and is_status == SeenStatus.caught and not is_right:
+        symbol = "◉"
+
+    return f"{monster.name}{icon} Lv.{monster.level}{symbol}"
 
 
 def retrieve_from_party(party: list[Monster], method: str) -> Monster:

@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
-from tuxemon.platform import mixer
 from tuxemon.session import Session
 
 
@@ -48,10 +47,7 @@ class MusicPlayingCondition(EventCondition):
         if not names.isdisjoint(combat_states):
             return True
 
-        if (
-            session.client.current_music["song"] == song
-            and mixer.music.get_busy()
-        ):
-            return True
-        else:
-            return False
+        return (
+            session.client.current_music.current_song == song
+            and session.client.current_music.is_playing()
+        )

@@ -7,9 +7,7 @@ from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon import prepare
-from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
-from tuxemon.platform import mixer
 
 logger = logging.getLogger(__name__)
 
@@ -23,19 +21,21 @@ class PlayMusicAction(EventAction):
     Script usage:
         .. code-block::
 
-            play_music <filename>[,volume][,loop]
+            play_music <filename>[,volume][,loop][,fade_ms]
 
     Script parameters:
-        filename: Music file to load.
-        volume: Number between 0.0 and 1.0.
-        loop: How many times loop, default forever.
+        filename: The name of the music file to play.
+        volume: A value between 0.0 and 1.0 that adjusts the music
+            volume.
+        loop: The number of times to loop the music. Default is to loop
+            forever.
+        fade_ms: The time in milliseconds to fade in the music before
+            reaching maximum volume.
 
-        Attention!
-        The volume will be based on the main value
-        in the options menu.
-        e.g. if you set volume = 0.5 here, but the
-        player has 0.5 among its options, then it'll
-        result into 0.25 (0.5*0.5)
+    Note:
+        The volume will be based on the main value in the options menu.
+        e.g. if you set volume = 0.5 here, but the player has 0.5 among
+        its options, then it'll result into 0.25 (0.5*0.5)
 
     """
 
@@ -43,11 +43,15 @@ class PlayMusicAction(EventAction):
     filename: str
     volume: Optional[float] = None
     loop: Optional[int] = None
+    fade_ms: Optional[int] = None
 
     def start(self) -> None:
         player = self.session.player
         client = self.session.client
-        loop = -1 if self.loop is None else self.loop
+        loop = prepare.MUSIC_LOOP if self.loop is None else self.loop
+        fade_ms = (
+            prepare.MUSIC_FADEIN if self.fade_ms is None else self.fade_ms
+        )
         _music = prepare.MUSIC_VOLUME
         music_volume = float(player.game_variables.get("music_volume", _music))
         if not self.volume:
@@ -60,19 +64,6 @@ class PlayMusicAction(EventAction):
                 raise ValueError(
                     f"{self.volume} must be between {lower} and {upper}",
                 )
-        try:
-            path = prepare.fetch(
-                "music", db.lookup_file("music", self.filename)
-            )
-            mixer.music.load(path)
-            mixer.music.set_volume(volume)
-            mixer.music.play(loop)
-        except Exception as e:
-            logger.error(e)
-            logger.error("unable to play music")
 
         # Keep track of what song we're currently playing
-        if client.current_music["song"]:
-            client.current_music["previoussong"] = client.current_music["song"]
-        client.current_music["status"] = "playing"
-        client.current_music["song"] = self.filename
+        client.current_music.play(self.filename, volume, loop, fade_ms)

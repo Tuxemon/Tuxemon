@@ -55,7 +55,7 @@
     "history": [],
     "tags": ["humanoid"],
     "shape": "humanoid",
-    "stage": "basic",
+    "stage": "standalone",
     "types": [
         "wood"
     ],

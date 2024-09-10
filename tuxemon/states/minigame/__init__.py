@@ -21,14 +21,12 @@ from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
 
 MenuGameObj = Callable[[], object]
+lookup_cache: dict[str, MonsterModel] = {}
 
 
 def fix_measure(measure: int, percentage: float) -> int:
     """it returns the correct measure based on percentage"""
     return round(measure * percentage)
-
-
-lookup_cache: dict[str, MonsterModel] = {}
 
 
 def _lookup_monsters() -> None:

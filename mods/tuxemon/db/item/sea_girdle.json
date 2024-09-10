@@ -10,10 +10,10 @@
   "sort": "utility",
   "sprite": "gfx/items/sea_girdle.png",
   "category": "morph",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],
+  "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

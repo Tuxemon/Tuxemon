@@ -65,6 +65,10 @@
         {
             "mon_slug": "slichen",
             "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "conglolem",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["blob"],

@@ -1250,9 +1250,6 @@ msgstr ""
 msgid "nudiflot_male"
 msgstr "Nudiflot"
 
-msgid "birb_robo"
-msgstr "Birb Robo"
-
 msgid "horned_raptor"
 msgstr "Raptor Chifrudo"
 
@@ -2413,9 +2410,6 @@ msgstr "Mk01 Proto"
 msgid "dark_robo_description"
 msgstr "Um robô hostil."
 
-msgid "birb_robo_description"
-msgstr "Um robô hostil."
-
 msgid "mk01_beta_description"
 msgstr "Um robô assassino fundido com um dragão. Não nos pergunte como."
 
@@ -3304,11 +3298,6 @@ msgstr "{target} está adormecido."
 
 msgid "combat_state_enraged_get"
 msgstr "{target} está enfurecido."
-
-msgid "combat_player_forfeit_status"
-msgstr ""
-"Não pode perder a partida.\n"
-"{monster} é {status}!"
 
 msgid "cannot_use_tech_monster"
 msgstr "{name} não pode ser usado."

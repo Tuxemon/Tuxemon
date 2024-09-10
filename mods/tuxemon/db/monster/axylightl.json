@@ -51,8 +51,18 @@
             "technique": "geyser"
         }
     ],
-    "evolutions": [],
-    "history": [],
+    "evolutions": [
+        {
+            "at_level": 32,
+            "monster_slug": "ampystoma"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "ampystoma",
+            "evo_stage": "stage1"
+        }
+    ],
     "tags": ["polliwog", "freshwater", "swamp"],
     "shape": "polliwog",
     "stage": "basic",

@@ -9,7 +9,6 @@ import os
 import sys
 from collections.abc import Mapping, Sequence
 from enum import Enum
-from operator import itemgetter
 from typing import Annotated, Any, Literal, Optional, Union, overload
 
 from PIL import Image
@@ -31,9 +30,6 @@ logger = logging.getLogger(__name__)
 # Load the default translator for data validation
 T.collect_languages(False)
 T.load_translator()
-
-# Target is a mapping of who this targets
-Target = Mapping[str, int]
 
 SurfaceKeys = prepare.SURFACE_KEYS
 
@@ -647,6 +643,40 @@ class ResponseCondition(str, Enum):
     removed = "removed"
 
 
+class TargetModel(BaseModel):
+    enemy_monster: bool = Field(
+        ..., description="Whether the enemy monster is the target."
+    )
+    enemy_team: bool = Field(
+        ..., description="Whether the enemy team is the target."
+    )
+    enemy_trainer: bool = Field(
+        ..., description="Whether the enemy trainer is the target."
+    )
+    own_monster: bool = Field(
+        ..., description="Whether the own monster is the target."
+    )
+    own_team: bool = Field(
+        ..., description="Whether the own team is the target."
+    )
+    own_trainer: bool = Field(
+        ..., description="Whether the own trainer is the target."
+    )
+
+    @field_validator(
+        "enemy_monster",
+        "enemy_team",
+        "enemy_trainer",
+        "own_monster",
+        "own_team",
+        "own_trainer",
+    )
+    def validate_bool_field(cls: TargetModel, v: bool) -> bool:
+        if not isinstance(v, bool):
+            raise ValueError(f"One of the targets {v} isn't a boolean")
+        return v
+
+
 class TechniqueModel(BaseModel):
     slug: str = Field(..., description="The slug of the technique")
     sort: TechSort = Field(..., description="The sort of technique this is")
@@ -661,9 +691,7 @@ class TechniqueModel(BaseModel):
         ...,
         description="Axes along which technique animation should be flipped",
     )
-    target: Target = Field(
-        ..., description="Target mapping of who this technique is used on"
-    )
+    target: TargetModel
     animation: Optional[str] = Field(
         None, description="Animation to play for this technique"
     )
@@ -808,9 +836,7 @@ class ConditionModel(BaseModel):
         ...,
         description="Axes along which condition animation should be flipped",
     )
-    target: Target = Field(
-        ..., description="Target mapping of who this condition is used on"
-    )
+    target: TargetModel
     animation: Optional[str] = Field(
         None, description="Animation to play for this condition"
     )
@@ -1323,33 +1349,6 @@ DataModel = Union[
     ConditionModel,
     TechniqueModel,
 ]
-
-
-def process_targets(json_targets: Target) -> Sequence[str]:
-    """Return values in order of preference for targeting things.
-
-    example: ["own monster", "enemy monster"]
-
-    Parameters:
-        json_targets: Dictionary of targets.
-
-    Returns:
-        Order of preference for targets.
-
-    """
-    return list(
-        map(
-            itemgetter(0),
-            filter(
-                itemgetter(1),
-                sorted(
-                    json_targets.items(),
-                    key=itemgetter(1),
-                    reverse=True,
-                ),
-            ),
-        )
-    )
 
 
 class JSONDatabase:

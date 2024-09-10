@@ -292,7 +292,9 @@ class ControlState(PygameMenuState):
             Updates the value.
             """
             if player:
-                player.game_variables["music_volume"] = round(val / 100, 1)
+                volume = round(val / 100, 1)
+                self.client.current_music.set_volume(volume)
+                player.game_variables["music_volume"] = volume
 
         def on_change_sound(val: int) -> None:
             """

@@ -1257,7 +1257,7 @@ class CombatState(CombatAnimations):
         self.clean_combat()
 
         # fade music out
-        self.client.event_engine.execute_action("fadeout_music", [1000])
+        self.client.current_music.stop()
 
         # remove any menus that may be on top of the combat state
         while self.client.current_state is not self:

@@ -189,6 +189,12 @@ class EntityFacing(str, Enum):
     right = "right"
 
 
+class MusicStatus(str, Enum):
+    playing = "playing"
+    paused = "paused"
+    stopped = "stopped"
+
+
 class Comparison(str, Enum):
     less_than = "less_than"
     less_or_equal = "less_or_equal"

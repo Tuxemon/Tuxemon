@@ -9,7 +9,6 @@
   "sort": "utility",
   "sprite": "gfx/items/cherry.png",
   "category": "elements",
-  "type": "Consumable",
   "usable_in": [
     "MainCombatMenuState"
   ],

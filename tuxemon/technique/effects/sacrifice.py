@@ -44,7 +44,6 @@ class SacrificeEffect(TechEffect):
         hit = tech.accuracy >= value
         tech.hit = hit
         if hit:
-            tech.advance_counter_success()
             damage = int(user.current_hp * self.multiplier)
             user.current_hp -= user.current_hp
             target.current_hp -= damage

@@ -49,6 +49,10 @@
         {
             "mon_slug": "nut",
             "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "arthrobolt",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["blob"],

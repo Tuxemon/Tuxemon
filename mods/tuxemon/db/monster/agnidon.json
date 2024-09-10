@@ -57,6 +57,10 @@
         {
             "mon_slug": "agnite",
             "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "agnigon",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["dragon", "coastal", "desert", "mountains"],

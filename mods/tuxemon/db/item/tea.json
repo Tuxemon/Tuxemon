@@ -7,7 +7,6 @@
   "sort": "potion",
   "sprite": "gfx/items/tea.png",
   "category": "none",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],

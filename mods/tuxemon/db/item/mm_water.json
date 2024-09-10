@@ -10,7 +10,6 @@
   "sort": "utility",
   "sprite": "gfx/items/mm_water.png",
   "category": "technique",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],

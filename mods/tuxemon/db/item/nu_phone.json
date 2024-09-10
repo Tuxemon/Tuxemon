@@ -4,11 +4,11 @@
   "sort": "utility",
   "sprite": "gfx/items/nu_phone.png",
   "category": "phone",
-  "type": "KeyItem",
   "usable_in": [
     "WorldState"
   ],
   "behaviors": {
+    "consumable": false,
     "visible": false
   },
   "world_menu": ["3","nu_phone","NuPhone"],

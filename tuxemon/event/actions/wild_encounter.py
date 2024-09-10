@@ -93,12 +93,7 @@ class WildEncounterAction(EventAction):
         if self.rgb:
             rgb = string_to_colorlike(self.rgb)
         self.session.client.push_state(FlashTransition(color=rgb))
-
-        filename = environment.battle_music
-        self.session.client.event_engine.execute_action(
-            "play_music",
-            [filename],
-        )
+        self.session.client.current_music.play(environment.battle_music)
 
     def update(self) -> None:
         try:

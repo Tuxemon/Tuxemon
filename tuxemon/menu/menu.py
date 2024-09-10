@@ -205,8 +205,8 @@ class Menu(Generic[T], state.State):
     font_color: ColorLike = prepare.FONT_COLOR
     font_shadow_color: ColorLike = prepare.FONT_SHADOW_COLOR
     # Font color when the action is unavailable
-    unavailable_color: ColorLike = (220, 220, 220)
-    unavailable_color_shop: ColorLike = (51, 51, 51)
+    unavailable_color: ColorLike = prepare.UNAVAILABLE_COLOR
+    unavailable_color_shop: ColorLike = prepare.UNAVAILABLE_COLOR_SHOP
     # File to load for image background
     background_filename: Optional[str] = None
     menu_select_sound_filename = "sound_menu_select"
@@ -439,15 +439,15 @@ class Menu(Generic[T], state.State):
         item = MenuItem(image, label, None, callback)
         self.add(item)
 
-    def add(self, item: MenuItem[T]) -> None:
+    def add(self, menu_item: MenuItem[T]) -> None:
         """
         Add a menu item.
 
         Parameters:
-            item: Menu item to add.
+            menu_item: Menu item to add.
 
         """
-        self.menu_items.add(item)
+        self.menu_items.add(menu_item)
         self._needs_refresh = True
 
     def clear(self) -> None:
@@ -650,6 +650,9 @@ class Menu(Generic[T], state.State):
         """
         Handles player input events.
 
+        Parameters:
+            event: A player input event, such as a key press or mouse click.
+
         This function is only called when the player provides input such
         as pressing a key or clicking the mouse.
 
@@ -760,23 +763,25 @@ class Menu(Generic[T], state.State):
         selected.in_focus = True
         self.on_menu_selection_change()
 
-    def search_items(self, game_object: Any) -> Optional[MenuItem[T]]:
+    def search_items(self, target_object: Any) -> Optional[MenuItem[T]]:
         """
         Non-optimised search through menu_items for a particular thing.
 
-        TODO: address the confusing name "game object".
-
         Parameters:
-            game_object: Object to search in the menu.
+            target_object: Object to search in the menu.
 
         Returns:
-            Menu item containing the object, if any.
+            Menu item containing the object, if found. Otherwise, None.
 
         """
-        for menu_item in self.menu_items:
-            if game_object == menu_item.game_object:
-                return menu_item
-        return None
+        return next(
+            (
+                menu_item
+                for menu_item in self.menu_items
+                if menu_item.game_object == target_object
+            ),
+            None,
+        )
 
     def trigger_cursor_update(
         self,
@@ -939,17 +944,24 @@ class Menu(Generic[T], state.State):
     def on_open(self) -> None:
         """Hook is called after opening animation has finished."""
 
-    def on_menu_selection(self, item: MenuItem[T]) -> None:
+    def on_menu_selection(self, selected_item: MenuItem[T]) -> None:
         """
         Hook for things to happen when player selects a menu option.
+
+        Parameters:
+            selected_item: The selected menu item.
 
         Override in subclass, if you want to.
 
         """
-        if item.enabled:
-            assert item.game_object is not None
-            assert callable(item.game_object)
-            item.game_object()
+        if selected_item.enabled:
+            if selected_item.game_object is None:
+                raise ValueError("Selected menu item has no game object")
+            if not callable(selected_item.game_object):
+                raise ValueError(
+                    "Selected menu item's game object is not callable"
+                )
+            selected_item.game_object()
 
     def on_menu_selection_change(self) -> None:
         """

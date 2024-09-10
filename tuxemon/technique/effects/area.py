@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
@@ -33,21 +32,17 @@ class AreaEffect(TechEffect):
         combat = tech.combat_state
         player = user.owner
         assert combat and player
-        value = combat._random_tech_hit.get(user, 0.0)
-        hit = tech.accuracy >= value
+        hit = tech.accuracy >= combat._random_tech_hit.get(user, 0.0)
         if hit:
-            tech.advance_counter_success()
             damage, mult = formula.simple_damage_calculate(tech, user, target)
-            # 2 vs 2, damage both monsters
+            # Apply the damage to all the monsters on the opposite side
             if player.max_position > 1:
-                monsters: Sequence[Monster] = []
-                _right = combat.monsters_in_play_right
-                _left = combat.monsters_in_play_left
-                if user in _right:
-                    monsters = _left
-                else:
-                    monsters = _right
-                for mon in monsters:
+                monsters_to_damage = (
+                    combat.monsters_in_play_left
+                    if user in combat.monsters_in_play_right
+                    else combat.monsters_in_play_right
+                )
+                for mon in monsters_to_damage:
                     mon.current_hp -= damage
                     combat.enqueue_damage(user, mon, damage)
             else:

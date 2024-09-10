@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import final
+from typing import Optional, final
 
+from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
-from tuxemon.platform import mixer
 
 logger = logging.getLogger(__name__)
 
@@ -21,7 +21,7 @@ class FadeoutMusicAction(EventAction):
     Script usage:
         .. code-block::
 
-            fadeout_music <duration>
+            fadeout_music [duration]
 
     Script parameters:
         duration: Number of milliseconds to fade out the music over.
@@ -29,11 +29,10 @@ class FadeoutMusicAction(EventAction):
     """
 
     name = "fadeout_music"
-    duration: int
+    duration: Optional[int] = None
 
     def start(self) -> None:
-        mixer.music.fadeout(self.duration)
-        if self.session.client.current_music["song"]:
-            self.session.client.current_music["status"] = "stopped"
-        else:
-            logger.warning("Music cannot be paused, none is playing.")
+        duration = (
+            prepare.MUSIC_FADEOUT if self.duration is None else self.duration
+        )
+        self.session.client.current_music.stop(duration)

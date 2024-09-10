@@ -93,10 +93,7 @@ class StartBattleAction(EventAction):
         )
         # music
         filename = env.battle_music if not self.music else self.music
-        self.session.client.event_engine.execute_action(
-            "play_music",
-            [filename],
-        )
+        self.session.client.current_music.play(filename)
 
     def update(self) -> None:
         try:

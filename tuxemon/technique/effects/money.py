@@ -42,7 +42,6 @@ class MoneyEffect(TechEffect):
         if hit:
             user.current_hp -= damage
         else:
-            tech.advance_counter_success()
             amount = int(damage * mult)
             recipient = "player" if player.isplayer else player.slug
             client = self.session.client.event_engine

@@ -7,7 +7,6 @@
   "sort": "utility",
   "sprite": "gfx/items/boost_melee.png",
   "category": "stats",
-  "type": "Consumable",
   "usable_in": [
     "MainCombatMenuState"
   ],

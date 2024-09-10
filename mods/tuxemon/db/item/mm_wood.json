@@ -10,7 +10,6 @@
   "sort": "utility",
   "sprite": "gfx/items/mm_wood.png",
   "category": "technique",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],

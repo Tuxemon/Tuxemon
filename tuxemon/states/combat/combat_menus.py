@@ -275,9 +275,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             if len(self.opponents) > 1:
                 state = self.client.push_state(
                     CombatTargetMenuState(
-                        cmb=self.combat,
+                        combat_state=self.combat,
                         monster=self.monster,
-                        tech=technique,
+                        technique=technique,
                     )
                 )
                 state.on_menu_selection = partial(enqueue_technique, technique)  # type: ignore[method-assign]
@@ -349,28 +349,84 @@ class CombatTargetMenuState(Menu[Monster]):
 
     def __init__(
         self,
-        cmb: CombatState,
+        combat_state: CombatState,
         monster: Monster,
-        tech: Technique,
+        technique: Technique,
     ) -> None:
+        """
+        Initializes the CombatTargetMenuState.
+
+        Parameters:
+            combat_state: The current combat state.
+            monster: The monster that is using the technique.
+            technique: The technique being used.
+        """
         super().__init__()
         assert monster.owner
         self.monster = monster
-        self.combat = cmb
+        self.combat_state = combat_state
         self.character = monster.owner
-        self.monster = monster
-        self.tech = tech
-        self.party = cmb.monsters_in_play[self.character]
-        if self.character == cmb.players[0]:
-            self.enemy = cmb.players[1]
-            self.opponents = cmb.monsters_in_play[self.enemy]
-        if self.character == cmb.players[1]:
-            self.enemy = cmb.players[0]
-            self.opponents = cmb.monsters_in_play[self.enemy]
+        self.technique = technique
+        self.party = combat_state.monsters_in_play[self.character]
+        self._determine_enemy_and_opponents()
+        self._create_menu()
 
-        # creates menu
+    def initialize_items(self) -> Generator[MenuItem[Monster], None, None]:
+        self.targeting_map: defaultdict[str, list[Monster]] = defaultdict(list)
+
+        if (
+            self.technique.has_type(ElementType.aether)
+            or self.technique.sort == TechSort.meta
+        ):
+            sprite = self.combat_state._monster_sprite_map[self.monster]
+            aet = MenuItem(self.surface, None, self.monster.name, self.monster)
+            aet.rect = sprite.rect.copy()
+            aet.rect.inflate_ip(tools.scale(8), tools.scale(8))
+            yield aet
+            return
+
+        for player, monsters in self.combat_state.monsters_in_play.items():
+            if len(monsters) == 2:
+                targeting_class = (
+                    "own monster"
+                    if player == self.character
+                    else "enemy monster"
+                )
+                self.targeting_map[targeting_class].extend(monsters)
+
+                if targeting_class not in self.technique.target:
+                    continue
+
+                for monster in monsters:
+                    sprite = self.combat_state._monster_sprite_map[monster]
+                    mon = MenuItem(self.surface, None, monster.name, monster)
+                    mon.rect = sprite.rect.copy()
+                    mon.rect.inflate_ip(tools.scale(8), tools.scale(8))
+                    if monster == monsters[0]:
+                        mon.rect.right = sprite.rect.right
+                    else:
+                        mon.rect.left = sprite.rect.left
+                    yield mon
+
+    def _determine_enemy_and_opponents(self) -> None:
+        """
+        Determines the enemy and opponents based on the character.
+        """
+        if self.character == self.combat_state.players[0]:
+            self.enemy = self.combat_state.players[1]
+            self.opponents = self.combat_state.monsters_in_play[self.enemy]
+        elif self.character == self.combat_state.players[1]:
+            self.enemy = self.combat_state.players[0]
+            self.opponents = self.combat_state.monsters_in_play[self.enemy]
+
+    def _create_menu(self) -> None:
+        """
+        Creates the menu.
+        """
         rect_screen = self.client.screen.get_rect()
-        rect = Rect(0, 0, rect_screen.w // 2, rect_screen.h // 4)
+        menu_width = rect_screen.w // 2
+        menu_height = rect_screen.h // 4
+        rect = Rect(0, 0, menu_width, menu_height)
         rect.bottomright = rect_screen.w, rect_screen.h
         border = graphics.load_and_scale(self.borders_filename)
         self.dialog_box = GraphicBox(border, None, self.background_color)
@@ -389,97 +445,60 @@ class CombatTargetMenuState(Menu[Monster]):
         rect = Rect((0, 0), self.rect.size)
         self.surface = pygame.Surface(rect.size, pygame.SRCALPHA)
 
-    def initialize_items(self) -> Generator[MenuItem[Monster], None, None]:
-        # TODO: trainer targeting
-        # TODO: cleanup how monster sprites and whatnot are managed
-        # TODO: This is going to work fine for simple matches, but controls
-        # will be wonky for parties
-        # TODO: (cont.) Need better handling of cursor keys for 2d layouts
-        # of menu items get all the monster positions
+    def determine_target(self) -> None:
+        """
+        Determines the optimal target.
+        """
+        for target_tag in self.technique.target:
+            for target in self.targeting_map[target_tag]:
+                menu_item = self.search_items(target)
+                if menu_item and menu_item.enabled:
+                    self._set_selected_index(menu_item)
 
-        # this is used to determine who owns what monsters and what not
-        # TODO: make less duplication of game data in memory, let combat
-        # state have more registers, etc
-        self.targeting_map: defaultdict[str, list[Monster]] = defaultdict(list)
-        # avoid choosing multiple targets (aether type tech)
-        if (
-            self.tech.has_type(ElementType.aether)
-            or self.tech.sort == TechSort.meta
-        ):
-            sprite = self.combat._monster_sprite_map[self.monster]
-            aet = MenuItem(self.surface, None, self.monster.name, self.monster)
-            aet.rect = sprite.rect.copy()
-            aet.rect.inflate_ip(tools.scale(8), tools.scale(8))
-            yield aet
-            return
-
-        for player, monsters in self.combat.monsters_in_play.items():
-            if len(monsters) == 2:
-                for monster in monsters:
-                    # allow choosing multiple targets
-                    if player == self.character:
-                        targeting_class = "own monster"
-                    else:
-                        targeting_class = "enemy monster"
-
-                    self.targeting_map[targeting_class].append(monster)
-
-                    # TODO: handle odd cases where a situation creates no valid
-                    # targets if this target type is not handled by this action,
-                    # then skip it
-                    if targeting_class not in self.tech.target:
-                        continue
-
-                    # inspect the monster sprite and make a border image for it
-                    sprite = self.combat._monster_sprite_map[monster]
-                    mon1 = MenuItem(
-                        self.surface, None, monsters[0].name, monsters[0]
-                    )
-                    mon1.rect = sprite.rect.copy()
-                    right = mon1.rect.right
-                    mon1.rect.inflate_ip(tools.scale(8), tools.scale(8))
-                    mon1.rect.right = right
-                    yield mon1
-                    mon2 = MenuItem(
-                        self.surface, None, monsters[1].name, monsters[1]
-                    )
-                    mon2.rect = sprite.rect.copy()
-                    left = mon2.rect.left
-                    mon2.rect.inflate_ip(tools.scale(8), tools.scale(8))
-                    mon2.rect.left = left
-                    yield mon2
+    def _set_selected_index(self, menu_item: MenuItem[Monster]) -> None:
+        """
+        Sets the selected index to the index of the given menu item.
+        """
+        try:
+            index = self.menu_items.sprites().index(menu_item)
+            self.selected_index = index
+        except ValueError:
+            # Handle the case where menu_item is not found in self.menu_items
+            raise ValueError(f"Menu item {menu_item} not found in menu items")
 
     def refresh_layout(self) -> None:
-        """Before refreshing the layout, determine the optimal target."""
-
-        def determine_target() -> None:
-            for tag in self.tech.target:
-                for target in self.targeting_map[tag]:
-                    menu_item = self.search_items(target)
-                    assert menu_item
-                    if menu_item.enabled:
-                        # TODO: some API for this mess
-                        # get the index of the menu_item
-                        # change it
-                        index = self.menu_items.sprites().index(menu_item)
-                        self.selected_index = index
-                        return
-
-        determine_target()
+        """
+        Refreshes the layout after determining the optimal target.
+        """
+        self.determine_target()
         super().refresh_layout()
 
-    def on_menu_selection_change(self) -> None:
-        """Draw borders around sprites when selection changes."""
-        # clear out the old borders
+    def _clear_old_borders(self) -> None:
+        """
+        Clears out the old borders.
+        """
         for sprite in self.menu_items:
+            sprite.image.fill((0, 0, 0, 0))
             sprite.remove()
 
-        # find the selected item and make a border for it
-        item = self.get_selected_item()
-        if item:
-            item.image = pygame.Surface(item.rect.size, pygame.SRCALPHA)
-            self.border.draw(item.image)
+    def _draw_new_border(self) -> None:
+        """
+        Draws a new border around the selected item.
+        """
+        selected_item = self.get_selected_item()
+        if selected_item:
+            selected_item.image = pygame.Surface(
+                selected_item.rect.size, pygame.SRCALPHA
+            )
+            self.border.draw(selected_item.image)
 
-            # show item description
-            if item.description:
-                self.alert(item.description)
+            # Show item description
+            if selected_item.description:
+                self.alert(selected_item.description)
+
+    def on_menu_selection_change(self) -> None:
+        """
+        Draws borders around sprites when selection changes.
+        """
+        self._clear_old_borders()
+        self._draw_new_border()

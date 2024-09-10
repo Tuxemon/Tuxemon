@@ -10,7 +10,6 @@
   "sort": "utility",
   "sprite": "gfx/items/ox_stick.png",
   "category": "morph",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],

@@ -10,7 +10,6 @@
   "sort": "utility",
   "sprite": "gfx/items/wood_booster.png",
   "category": "morph",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],

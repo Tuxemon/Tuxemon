@@ -10,7 +10,6 @@
   "sort": "utility",
   "sprite": "gfx/items/lucky_bamboo.png",
   "category": "morph",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],

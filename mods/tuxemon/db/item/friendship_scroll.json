@@ -4,11 +4,11 @@
   "sort": "utility",
   "sprite": "gfx/items/friendship_scroll.png",
   "category": "none",
-  "type": "KeyItem",
   "usable_in": [
     "WorldState"
   ],
   "behaviors": {
+    "consumable": false,
     "visible": false
   },
   "use_failure": "generic_failure",

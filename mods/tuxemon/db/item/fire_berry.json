@@ -9,7 +9,6 @@
   "sort": "utility",
   "sprite": "gfx/items/berry.png",
   "category": "elements",
-  "type": "Consumable",
   "usable_in": [
     "MainCombatMenuState"
   ],

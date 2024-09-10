@@ -146,11 +146,7 @@ class CaptureEffect(ItemEffect):
 
     def _handle_capture_failure(self, item: Item, target: Monster) -> None:
         assert item.combat_state
-        if item.slug == "tuxeball_hardened":
-            tuxeball = self.user.find_item(item.slug)
-            if tuxeball:
-                tuxeball.quantity += 1
-        elif item.slug == "tuxeball_park":
+        if item.slug == "tuxeball_park":
             empty = Technique()
             empty.load("empty")
             _wander = "spyder_park_wander"
@@ -162,6 +158,10 @@ class CaptureEffect(ItemEffect):
         assert item.combat_state
         if item.slug == "tuxeball_candy":
             target.level += 1
+        elif item.slug == "tuxeball_hardened":
+            tuxeball = self.user.find_item(item.slug)
+            if tuxeball:
+                tuxeball.quantity -= 1
 
         if (
             target.slug in self.user.tuxepedia

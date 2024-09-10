@@ -10,7 +10,6 @@
   "sort": "utility",
   "sprite": "gfx/items/miaow_milk.png",
   "category": "morph",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],

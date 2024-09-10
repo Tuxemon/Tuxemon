@@ -140,7 +140,9 @@ def simple_damage_calculate(
     else:
         target_resist = getattr(target, target_stat)
 
-    mult = simple_damage_multiplier((technique.types), (target.types))
+    mult = simple_damage_multiplier(
+        (technique.types), (target.types), additional_factors
+    )
     move_strength = technique.power * mult
     damage = int(user_strength * move_strength / target_resist)
     return damage, mult

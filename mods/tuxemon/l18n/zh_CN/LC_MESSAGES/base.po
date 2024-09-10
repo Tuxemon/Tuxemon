@@ -971,11 +971,6 @@ msgstr ""
 "不能逃跑.\n"
 "{monster}是{status}!"
 
-msgid "combat_player_forfeit_status"
-msgstr ""
-"不能放弃比赛.\n"
-"{monster}是{status}!"
-
 msgid "combat_player_swap_status"
 msgstr ""
 "不能更换精灵..\n"

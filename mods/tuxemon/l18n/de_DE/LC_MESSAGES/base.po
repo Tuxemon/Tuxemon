@@ -3740,11 +3740,6 @@ msgstr ""
 "Kann nicht entkommen.\n"
 "{monster} ist {status}!"
 
-msgid "combat_player_forfeit_status"
-msgstr ""
-"Kann das Spiel nicht verlieren.\n"
-"{monster} ist {status}!"
-
 msgid "combat_player_swap_status"
 msgstr ""
 "Monster können nicht gewechselt werden.\n"

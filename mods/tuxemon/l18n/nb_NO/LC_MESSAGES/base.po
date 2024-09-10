@@ -1350,11 +1350,6 @@ msgstr "Oidipus"
 msgid "xero_campaign"
 msgstr "Tuxemon: Xero"
 
-msgid "combat_player_forfeit_status"
-msgstr ""
-"Kan ikke tape kampen.\n"
-"{monster} er {status}!"
-
 msgid "combat_player_swap_status"
 msgstr ""
 "Kan ikke bytte monstre.\n"

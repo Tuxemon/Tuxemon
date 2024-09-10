@@ -6208,11 +6208,6 @@ msgstr ""
 "Vous ne pouvez pas fuir.\n"
 "{monster} est {status} !"
 
-msgid "combat_player_forfeit_status"
-msgstr ""
-"Vous ne pouvez pas abandonner le match.\n"
-"{monster} est {status} !"
-
 msgid "combat_player_swap_status"
 msgstr ""
 "Vous ne pouvez pas changer de monstre.\n"

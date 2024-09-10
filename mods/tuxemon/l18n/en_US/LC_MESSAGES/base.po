@@ -2936,6 +2936,9 @@ msgstr "Cancel Key"
 msgid "menu_back_key"
 msgstr "Back Key"
 
+msgid "menu_reset_default"
+msgstr "Reset Keys to Default"
+
 msgid "enable"
 msgstr "Enable"
 

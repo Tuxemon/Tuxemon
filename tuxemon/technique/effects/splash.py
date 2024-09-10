@@ -35,7 +35,6 @@ class SplashEffect(TechEffect):
         hit = tech.accuracy >= value
         tech.hit = hit
         damage, mult = formula.simple_damage_calculate(tech, user, target)
-        tech.advance_counter_success()
         if hit:
             target.current_hp -= damage
         else:

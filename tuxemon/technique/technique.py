@@ -24,7 +24,6 @@ logger = logging.getLogger(__name__)
 SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "slug",
     "counter",
-    "counter_success",
 )
 
 
@@ -42,7 +41,6 @@ class Technique:
 
         self.instance_id = uuid.uuid4()
         self.counter = 0
-        self.counter_success = 0
         self.tech_id = 0
         self.accuracy = 0.0
         self.animation: Optional[str] = None
@@ -114,7 +112,6 @@ class Technique:
 
         self.icon = results.icon
         self.counter = self.counter
-        self.counter_success = self.counter_success
         # types
         self.types = [Element(ele) for ele in results.types]
         # technique stats
@@ -224,13 +221,6 @@ class Technique:
 
         """
         self.counter += 1
-
-    def advance_counter_success(self) -> None:
-        """
-        Advance the counter for this technique if used successfully.
-
-        """
-        self.counter_success += 1
 
     def validate(self, target: Optional[Monster]) -> bool:
         """

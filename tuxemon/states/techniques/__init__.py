@@ -134,10 +134,6 @@ class TechniqueMenuState(Menu[Technique]):
             name = tech.name
             types = " ".join(map(lambda s: T.translate(s.slug), tech.types))
             image = self.shadow_text(name, bg=prepare.DIMGRAY_COLOR)
-            if tech.counter == 0:
-                sus = 100
-            else:
-                sus = int((tech.counter_success / tech.counter) * 100)
             label = T.format(
                 "technique_description",
                 {
@@ -147,7 +143,6 @@ class TechniqueMenuState(Menu[Technique]):
                     "pot": int(tech.potency * 100),
                     "pow": tech.power,
                     "rec": str(tech.recharge_length),
-                    "sus": sus,
                 },
             )
             desc: str = ""

@@ -55,7 +55,7 @@
     "history": [],
     "tags": ["brute"],
     "shape": "brute",
-    "stage": "basic",
+    "stage": "standalone",
     "types": [
         "wood"
     ],

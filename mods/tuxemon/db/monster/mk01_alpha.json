@@ -53,6 +53,14 @@
         {
             "mon_slug": "mk01_proto",
             "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "mk01_gamma",
+            "evo_stage": "stage2"
+        },
+        {
+            "mon_slug": "mk01_delta",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["dragon"],

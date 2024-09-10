@@ -57,6 +57,10 @@
         {
             "mon_slug": "flacono",
             "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "gryfix",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["flier", "desert", "grassland", "mountains", "woodland"],

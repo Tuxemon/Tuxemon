@@ -3118,6 +3118,12 @@ msgstr "The egg in its pouch does not hatch. Instead, it secretes a delicious dr
 msgid "ambuwl"
 msgstr "Ambuwl"
 
+msgid "ampystoma_description"
+msgstr "You would think AMPYSTOMA's warning coloration would make ambush impossible, but the murky waters it hunts in obscure it until it is ready to reveal itself. It likes to go on land during thunderstorms."
+
+msgid "ampystoma"
+msgstr "Ampystoma"
+
 msgid "angesnow_description"
 msgstr "Those who survive getting lost in hostile, icy conditions often mention a mysterious presence guiding them even when the snow is too heavy to see through."
 
@@ -5087,6 +5093,8 @@ msgid "cat_lamenting_emotion"
 msgstr "Lamenting Emotion"
 msgid "cat_light_fin"
 msgstr "Light Fin"
+msgid "cat_lightning_salamander"
+msgstr "Lightning Salamander"
 msgid "cat_lions_tooth"
 msgstr "Lion's Tooth"
 msgid "cat_lit"

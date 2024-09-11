@@ -4,9 +4,8 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import Optional, final
+from typing import final
 
-from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
@@ -21,18 +20,11 @@ class PauseMusicAction(EventAction):
     Script usage:
         .. code-block::
 
-            pause_music [duration]
-
-    Script parameters:
-        duration: Number of milliseconds to fade out the music over.
+            pause_music
 
     """
 
     name = "pause_music"
-    duration: Optional[int] = None
 
     def start(self) -> None:
-        duration = (
-            prepare.MUSIC_FADEOUT if self.duration is None else self.duration
-        )
-        self.session.client.current_music.pause(duration)
+        self.session.client.current_music.pause()

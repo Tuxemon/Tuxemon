@@ -58,12 +58,12 @@ class MusicPlayerState:
             self.cache[filename] = path
             return path
 
-    def pause(self, fadeout_time: int = prepare.MUSIC_FADEOUT) -> None:
+    def pause(self) -> None:
         if self.status == MusicStatus.playing:
-            if fadeout_time > 0:
-                self.fadeout(fadeout_time)
             self.status = MusicStatus.paused
             mixer2.music.pause()
+        elif self.status == MusicStatus.paused:
+            logger.warning("Music is already paused.")
         else:
             logger.warning("Music cannot be paused, none is playing.")
 
@@ -71,6 +71,8 @@ class MusicPlayerState:
         if self.status == MusicStatus.paused:
             self.status = MusicStatus.playing
             mixer2.music.unpause()
+        elif self.status == MusicStatus.stopped:
+            logger.warning("Music is stopped, cannot unpause.")
         else:
             logger.warning(
                 "Music cannot be unpaused, none is paused or not playing."

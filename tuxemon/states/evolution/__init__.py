@@ -103,6 +103,7 @@ class EvolutionTransition(State):
         phase_actions[self.phase]()
 
     def _phase1(self) -> None:
+        self.client.current_music.pause()
         self.original_sprite.image = self.original_sprite_copy
 
     def _phase2(self) -> None:
@@ -186,6 +187,7 @@ class EvolutionTransition(State):
                     self.total_seconds * 1000
                 )
             else:
+                self.client.current_music.unpause()
                 self.client.pop_state()
         return None
 

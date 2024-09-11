@@ -449,39 +449,45 @@
   </object>
   <object id="188" name="Talk roddick" type="event" x="80" y="64" width="16" height="80">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_route2_roddick"/>
-    <property name="act1" value="translated_dialog spyder_route2_roddick1"/>
-    <property name="act2" value="add_monster spighter,8,spyder_route2_roddick,5,10"/>
-    <property name="act3" value="start_battle player,spyder_route2_roddick"/>
-    <property name="act4" value="translated_dialog spyder_route2_roddick2"/>
-    <property name="act5" value="set_variable route2roddick:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_route2_roddick"/>
+    <property name="act3" value="translated_dialog spyder_route2_roddick1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster spighter,8,spyder_route2_roddick,5,10"/>
+    <property name="act6" value="start_battle player,spyder_route2_roddick"/>
+    <property name="act7" value="translated_dialog spyder_route2_roddick2"/>
+    <property name="act8" value="set_variable route2roddick:yes"/>
     <property name="cond1" value="not variable_set route2roddick:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="189" name="Talk marion" type="event" x="352" y="160" width="16" height="64">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_route2_marion"/>
-    <property name="act1" value="translated_dialog spyder_route2_marion1"/>
-    <property name="act2" value="add_monster aardorn,7,spyder_route2_marion,5,10"/>
-    <property name="act3" value="add_monster aardorn,7,spyder_route2_marion,5,10"/>
-    <property name="act4" value="start_battle player,spyder_route2_marion"/>
-    <property name="act5" value="translated_dialog spyder_route2_marion2"/>
-    <property name="act6" value="set_variable route2marion:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_route2_marion"/>
+    <property name="act3" value="translated_dialog spyder_route2_marion1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster aardorn,7,spyder_route2_marion,5,10"/>
+    <property name="act6" value="add_monster aardorn,7,spyder_route2_marion,5,10"/>
+    <property name="act7" value="start_battle player,spyder_route2_marion"/>
+    <property name="act8" value="translated_dialog spyder_route2_marion2"/>
+    <property name="act9" value="set_variable route2marion:yes"/>
     <property name="cond1" value="not variable_set route2marion:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="190" name="Talk graf" type="event" x="464" y="64" width="16" height="80">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_route2_graf"/>
-    <property name="act1" value="translated_dialog spyder_route2_graf1"/>
-    <property name="act2" value="add_monster cardiling,7,spyder_route2_graf,5,10"/>
-    <property name="act3" value="add_monster cataspike,5,spyder_route2_graf,5,10"/>
-    <property name="act4" value="add_monster cataspike,5,spyder_route2_graf,5,10"/>
-    <property name="act5" value="start_battle player,spyder_route2_graf"/>
-    <property name="act6" value="translated_dialog spyder_route2_graf2"/>
-    <property name="act7" value="set_variable route2graf:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_route2_graf"/>
+    <property name="act03" value="translated_dialog spyder_route2_graf1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster cardiling,7,spyder_route2_graf,5,10"/>
+    <property name="act06" value="add_monster cataspike,5,spyder_route2_graf,5,10"/>
+    <property name="act07" value="add_monster cataspike,5,spyder_route2_graf,5,10"/>
+    <property name="act08" value="start_battle player,spyder_route2_graf"/>
+    <property name="act09" value="translated_dialog spyder_route2_graf2"/>
+    <property name="act10" value="set_variable route2graf:yes"/>
     <property name="cond1" value="not variable_set route2graf:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

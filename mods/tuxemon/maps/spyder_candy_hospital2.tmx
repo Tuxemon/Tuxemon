@@ -140,13 +140,15 @@
   </object>
   <object id="98" name="Talk Luzia" type="event" x="176" y="80" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_hospital1_luzia"/>
-    <property name="act1" value="translated_dialog spyder_hospital1_luzia1"/>
-    <property name="act2" value="add_monster galnec,36,spyder_hospital1_luzia,5,10"/>
-    <property name="act3" value="add_monster exclawvate,36,spyder_hospital1_luzia,5,10"/>
-    <property name="act4" value="start_battle player,spyder_hospital1_luzia"/>
-    <property name="act5" value="translated_dialog spyder_hospital1_luzia2"/>
-    <property name="act6" value="set_variable hospital1luzia:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_hospital1_luzia"/>
+    <property name="act03" value="translated_dialog spyder_hospital1_luzia1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster galnec,36,spyder_hospital1_luzia,5,10"/>
+    <property name="act06" value="add_monster exclawvate,36,spyder_hospital1_luzia,5,10"/>
+    <property name="act07" value="start_battle player,spyder_hospital1_luzia"/>
+    <property name="act08" value="translated_dialog spyder_hospital1_luzia2"/>
+    <property name="act09" value="set_variable hospital1luzia:yes"/>
     <property name="cond1" value="not variable_set hospital1luzia:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -159,13 +161,15 @@
   </object>
   <object id="100" name="Talk Zekar" type="event" x="32" y="224" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_hospital1_zekar"/>
-    <property name="act1" value="translated_dialog spyder_hospital1_zekar1"/>
-    <property name="act2" value="add_monster selket,32,spyder_hospital1_zekar,5,10"/>
-    <property name="act3" value="add_monster taupypus,32,spyder_hospital1_zekar,5,10"/>
-    <property name="act4" value="start_battle player,spyder_hospital1_zekar"/>
-    <property name="act5" value="translated_dialog spyder_hospital1_zekar2"/>
-    <property name="act6" value="set_variable hospital1zekar:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_hospital1_zekar"/>
+    <property name="act03" value="translated_dialog spyder_hospital1_zekar1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster selket,32,spyder_hospital1_zekar,5,10"/>
+    <property name="act06" value="add_monster taupypus,32,spyder_hospital1_zekar,5,10"/>
+    <property name="act07" value="start_battle player,spyder_hospital1_zekar"/>
+    <property name="act08" value="translated_dialog spyder_hospital1_zekar2"/>
+    <property name="act09" value="set_variable hospital1zekar:yes"/>
     <property name="cond1" value="not variable_set hospital1zekar:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -192,13 +196,15 @@
   </object>
   <object id="104" name="Talk Rakez" type="event" x="16" y="80" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_hospital1_rakez"/>
-    <property name="act1" value="translated_dialog spyder_hospital1_rakez1"/>
-    <property name="act2" value="add_monster pipis,30,spyder_hospital1_rakez,5,10"/>
-    <property name="act3" value="add_monster strella,30,spyder_hospital1_rakez,5,10"/>
-    <property name="act4" value="start_battle player,spyder_hospital1_rakez"/>
-    <property name="act5" value="translated_dialog spyder_hospital1_rakez2"/>
-    <property name="act6" value="set_variable hospital1rakez:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_hospital1_rakez"/>
+    <property name="act03" value="translated_dialog spyder_hospital1_rakez1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster pipis,30,spyder_hospital1_rakez,5,10"/>
+    <property name="act06" value="add_monster strella,30,spyder_hospital1_rakez,5,10"/>
+    <property name="act07" value="start_battle player,spyder_hospital1_rakez"/>
+    <property name="act08" value="translated_dialog spyder_hospital1_rakez2"/>
+    <property name="act09" value="set_variable hospital1rakez:yes"/>
     <property name="cond1" value="not variable_set hospital1rakez:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -212,13 +218,15 @@
   </object>
   <object id="106" name="Talk Rhizome" type="event" x="256" y="32" width="16" height="64">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_hospital1_rhizome"/>
-    <property name="act1" value="translated_dialog spyder_hospital1_rhizome1"/>
-    <property name="act2" value="add_monster flacono,33,spyder_hospital1_rhizome,5,10"/>
-    <property name="act3" value="add_monster fancair,33,spyder_hospital1_rhizome,5,10"/>
-    <property name="act4" value="start_battle player,spyder_hospital1_rhizome"/>
-    <property name="act5" value="translated_dialog spyder_hospital1_rhizome2"/>
-    <property name="act6" value="set_variable hospital1rhizome:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_hospital1_rhizome"/>
+    <property name="act03" value="translated_dialog spyder_hospital1_rhizome1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster flacono,33,spyder_hospital1_rhizome,5,10"/>
+    <property name="act06" value="add_monster fancair,33,spyder_hospital1_rhizome,5,10"/>
+    <property name="act07" value="start_battle player,spyder_hospital1_rhizome"/>
+    <property name="act08" value="translated_dialog spyder_hospital1_rhizome2"/>
+    <property name="act09" value="set_variable hospital1rhizome:yes"/>
     <property name="cond1" value="not variable_set hospital1rhizome:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

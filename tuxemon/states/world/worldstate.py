@@ -6,11 +6,13 @@ import itertools
 import logging
 import os
 import uuid
+from collections import defaultdict
 from collections.abc import Mapping, MutableMapping, Sequence
 from functools import partial
 from typing import (
     TYPE_CHECKING,
     Any,
+    DefaultDict,
     NamedTuple,
     Optional,
     TypedDict,
@@ -30,6 +32,7 @@ from tuxemon.map import (
     RegionProperties,
     TuxemonMap,
     dirs2,
+    get_adjacent_position,
     pairs,
     proj,
 )
@@ -644,23 +647,17 @@ class WorldState(state.State):
             slug: The entity slug.
 
         """
-        for npc in self.npcs:
-            if npc.slug == slug:
-                return npc
-        return None
+        return next((npc for npc in self.npcs if npc.slug == slug), None)
 
     def get_entity_by_iid(self, iid: uuid.UUID) -> Optional[NPC]:
         """
         Get an entity from the world.
 
         Parameters:
-            iid: The entity iid.
+            iid: The entity instance ID.
 
         """
-        for npc in self.npcs:
-            if npc.instance_id == iid:
-                return npc
-        return None
+        return next((npc for npc in self.npcs if npc.instance_id == iid), None)
 
     def get_entity_pos(self, pos: tuple[int, int]) -> Optional[NPC]:
         """
@@ -670,10 +667,7 @@ class WorldState(state.State):
             pos: The entity position.
 
         """
-        for npc in self.npcs:
-            if npc.tile_pos == pos:
-                return npc
-        return None
+        return next((npc for npc in self.npcs if npc.tile_pos == pos), None)
 
     def remove_entity(self, slug: str) -> None:
         """
@@ -683,10 +677,10 @@ class WorldState(state.State):
             slug: The entity slug.
 
         """
-        for npc in self.npcs:
-            if npc.slug == slug:
-                npc.remove_collision(npc.tile_pos)
-                self.npcs.remove(npc)
+        npc = self.get_entity(slug)
+        if npc:
+            npc.remove_collision(npc.tile_pos)
+            self.npcs.remove(npc)
 
     def get_all_entities(self) -> Sequence[NPC]:
         """
@@ -706,83 +700,91 @@ class WorldState(state.State):
             The list of monsters in the map.
 
         """
-        monsters = []
-        for npc in self.npcs:
-            for monster in npc.monsters:
-                monsters.append(monster)
-        return monsters
+        return [monster for npc in self.npcs for monster in npc.monsters]
 
     def get_monster_by_iid(self, iid: uuid.UUID) -> Optional[Monster]:
         """
         Get a monster from the world.
 
         Parameters:
-            iid: The monster iid.
+            iid: The monster instance ID.
 
         """
-        for monster in self.get_all_monsters():
-            if monster.instance_id == iid:
-                return monster
-        return None
+        return next(
+            (
+                monster
+                for npc in self.npcs
+                for monster in npc.monsters
+                if monster.instance_id == iid
+            ),
+            None,
+        )
 
     def get_all_tile_properties(
         self,
-        map: MutableMapping[tuple[int, int], dict[str, float]],
+        surface_map: MutableMapping[tuple[int, int], dict[str, float]],
         label: str,
     ) -> list[tuple[int, int]]:
         """
-        Returns coords (tuple) of specific tile property.
+        Retrieves the coordinates of all tiles with a specific property.
 
         Parameters:
             map: The surface map.
             label: The label (SurfaceKeys).
 
         Returns:
-            The coordinates.
+            A list of coordinates (tuples) of tiles with the specified label.
 
         """
-        tiles = [coords for coords, props in map.items() if label in props]
-        return tiles
+        return [
+            coords for coords, props in surface_map.items() if label in props
+        ]
 
     def get_tile_moverate(
         self,
-        map: MutableMapping[tuple[int, int], dict[str, float]],
+        surface_map: MutableMapping[tuple[int, int], dict[str, float]],
         position: tuple[int, int],
     ) -> float:
         """
-        Returns moverate of a specific tile by looking in surface map.
+        Returns moverate of a specific tile from the surface map.
+
+        If the position is not found in the map, or if the tile has no
+        moverate value, returns 1.0 as the default moverate.
 
         Parameters:
-            map: The surface map.
-            position: The coordinate.
+            surface_map: The surface map.
+            position: The coordinate pf the tile.
 
         Returns:
-            Moverate (float), default 1.0
+            The moverate of the tile at the specified position.
 
         """
-        moverate = 1.0
-        for coord, props in map.items():
-            if coord == position:
-                moverate = float(next(iter(props.values())))
-        return moverate
+        tile_properties = surface_map.get(position, {})
+        return next(iter(tile_properties.values()), 1.0)
 
     def check_collision_zones(
         self,
-        map: MutableMapping[tuple[int, int], Optional[RegionProperties]],
+        collision_map: MutableMapping[
+            tuple[int, int], Optional[RegionProperties]
+        ],
         label: str,
     ) -> list[tuple[int, int]]:
         """
-        Returns coords (tuple) of specific collision zones.
+        Returns coordinates of specific collision zones.
+
+        Parameters:
+            collision_map: The collision map.
+            label: The label to filter collision zones by.
 
         Returns:
-            The coordinates.
+            A list of coordinates of collision zones with the specific label.
 
         """
-        tiles = []
-        for coords, props in map.items():
-            if props and props.key and props.key == label:
-                tiles.append(coords)
-        return tiles
+        return [
+            coords
+            for coords, props in collision_map.items()
+            if props and props.key == label
+        ]
 
     def get_collision_map(self) -> CollisionMap:
         """
@@ -799,56 +801,54 @@ class WorldState(state.State):
             A dictionary of collision tiles.
 
         """
-        # TODO: overlapping tiles/objects by returning a list
-        collision_dict: CollisionDict = {}
+        collision_dict: DefaultDict[
+            tuple[int, int], Optional[RegionProperties]
+        ] = defaultdict(lambda: RegionProperties([], [], [], None, None))
 
         # Get all the NPCs' tile positions
         for npc in self.get_all_entities():
-            region = self.collision_map.get(npc.tile_pos)
-            if region:
-                prop = RegionProperties(
+            collision_dict[npc.tile_pos] = self._get_region_properties(
+                npc.tile_pos, npc
+            )
+
+        # Add surface map entries to the collision dictionary
+        for coords, surface in self.surface_map.items():
+            for label, value in surface.items():
+                if float(value) == 0:
+                    collision_dict[coords] = self._get_region_properties(
+                        coords, label
+                    )
+
+        collision_dict.update({k: v for k, v in self.collision_map.items()})
+
+        return dict(collision_dict)
+
+    def _get_region_properties(
+        self, coords: tuple[int, int], entity_or_label: Union[NPC, str]
+    ) -> RegionProperties:
+        region = self.collision_map.get(coords)
+        if region:
+            if isinstance(entity_or_label, str):
+                return RegionProperties(
                     region.enter_from,
                     region.exit_from,
                     region.endure,
-                    npc,
-                    region.key,
+                    None,
+                    entity_or_label,
                 )
             else:
-                prop = RegionProperties(
-                    enter_from=[],
-                    exit_from=[],
-                    endure=[],
-                    entity=npc,
-                    key=None,
+                return RegionProperties(
+                    region.enter_from,
+                    region.exit_from,
+                    region.endure,
+                    entity_or_label,
+                    region.key,
                 )
-            collision_dict[npc.tile_pos] = prop
-
-        for coords, surface in self.surface_map.items():
-            region = self.collision_map.get(coords)
-            for label, value in surface.items():
-                if region:
-                    _prop = RegionProperties(
-                        region.enter_from,
-                        region.exit_from,
-                        region.endure,
-                        region.entity,
-                        label,
-                    )
-                else:
-                    _prop = RegionProperties(
-                        enter_from=[],
-                        exit_from=[],
-                        endure=[],
-                        entity=None,
-                        key=label,
-                    )
-                if float(value) == 0:
-                    collision_dict[coords] = _prop
-
-        # tile layout takes precedence
-        collision_dict.update(self.collision_map)
-
-        return collision_dict
+        else:
+            if isinstance(entity_or_label, str):
+                return RegionProperties([], [], [], None, entity_or_label)
+            else:
+                return RegionProperties([], [], [], entity_or_label, None)
 
     def pathfind(
         self,
@@ -867,11 +867,7 @@ class WorldState(state.State):
             ``None`` otherwise.
 
         """
-        pathnode = self.pathfind_r(
-            dest,
-            [PathfindNode(start)],
-            set(),
-        )
+        pathnode = self.pathfind_r(dest, [PathfindNode(start)], set())
 
         if pathnode:
             # traverse the node to get the path
@@ -914,6 +910,7 @@ class WorldState(state.State):
         # The collisions shouldn't have changed whilst we were calculating,
         # so it saves time to reuse the map.
         collision_map = self.get_collision_map()
+        known_nodes.add(queue[0].get_value())
         while queue:
             node = queue.pop(0)
             if node.get_value() == dest:
@@ -924,9 +921,9 @@ class WorldState(state.State):
                     collision_map,
                     known_nodes,
                 ):
-                    new_node = PathfindNode(adj_pos, node)
-                    known_nodes.add(new_node.get_value())
-                    queue.append(new_node)
+                    if adj_pos not in known_nodes:
+                        known_nodes.add(adj_pos)
+                        queue.append(PathfindNode(adj_pos, node))
 
         return None
 
@@ -949,36 +946,29 @@ class WorldState(state.State):
             skip_nodes: Set of nodes to skip.
 
         """
-        # Check if the players current position has any exit limitations.
-        # this check is for tiles which define the only way to exit.
-        # for instance, one-way tiles.
+        skip_nodes = skip_nodes or set()
 
-        # does the tile define continue movements?
         try:
+            # Check if the players current position has any exit limitations.
             if tile.endure:
-                _direction = (
+                direction = (
                     self.player.facing
                     if len(tile.endure) > 1 or not tile.endure
                     else tile.endure[0]
                 )
-                return [tuple(dirs2[_direction] + position)]
-            else:
-                pass
-        except KeyError:
-            pass
+                exit_position = tuple(dirs2[direction] + position)
+                if exit_position not in skip_nodes:
+                    return [exit_position]
 
-        # does the tile explicitly define exits?
-        try:
-            adjacent_tiles = list()
+            # Check if the tile explicitly defines exits.
             if tile.exit_from:
-                for direction in tile.exit_from:
-                    exit_tile = tuple(dirs2[direction] + position)
-                    if skip_nodes and exit_tile in skip_nodes:
-                        continue
-                    adjacent_tiles.append(exit_tile)
-                return adjacent_tiles
-        except KeyError:
-            pass
+                return [
+                    tuple(dirs2[direction] + position)
+                    for direction in tile.exit_from
+                    if tuple(dirs2[direction] + position) not in skip_nodes
+                ]
+        except (KeyError, TypeError):
+            return None
 
         return None
 
@@ -995,7 +985,7 @@ class WorldState(state.State):
         npcs, and collision lines, one-way tiles, etc.
 
         Parameters:
-            position: Original position.
+            position: The original position.
             collision_map: Mapping of collisions with entities and terrain.
             skip_nodes: Set of nodes to skip.
 
@@ -1005,11 +995,8 @@ class WorldState(state.State):
         """
         # TODO: rename this
         # get tile-level and npc/entity blockers
-        if collision_map is None:
-            collision_map = self.get_collision_map()
-
-        if skip_nodes is None:
-            skip_nodes = set()
+        collision_map = collision_map or self.get_collision_map()
+        skip_nodes = skip_nodes or set()
 
         # if there are explicit way to exit this position use that information,
         # handles 'continue' and 'exits'
@@ -1024,13 +1011,14 @@ class WorldState(state.State):
             exits = None
 
         # get exits by checking surrounding tiles
-        adjacent_tiles = list()
-        for direction, neighbor in (
-            (Direction.down, (position[0], position[1] + 1)),
-            (Direction.right, (position[0] + 1, position[1])),
-            (Direction.up, (position[0], position[1] - 1)),
-            (Direction.left, (position[0] - 1, position[1])),
-        ):
+        adjacent_tiles = set()
+        for direction in [
+            Direction.down,
+            Direction.right,
+            Direction.up,
+            Direction.left,
+        ]:
+            neighbor = get_adjacent_position(position, direction)
             # if exits are defined make sure the neighbor is present there
             if exits and neighbor not in exits:
                 continue
@@ -1070,9 +1058,9 @@ class WorldState(state.State):
                     continue
 
             # no tile data, so assume it is free to move into
-            adjacent_tiles.append(neighbor)
+            adjacent_tiles.add(neighbor)
 
-        return adjacent_tiles
+        return list(adjacent_tiles)
 
     ####################################################
     #              Character Movement                  #
@@ -1306,22 +1294,29 @@ class WorldState(state.State):
 
         """
         txmn_map = TMXMapLoader().load(path)
-        yaml_path = path[:-4] + ".yaml"
-        _paths = [yaml_path]
+        yaml_files = [f"{path[:-4]}.yaml"]
 
         if txmn_map.scenario:
-            _scenario = prepare.fetch("maps", txmn_map.scenario + ".yaml")
-            _paths.append(_scenario)
+            _scenario = prepare.fetch("maps", f"{txmn_map.scenario}.yaml")
+            yaml_files.append(_scenario)
 
         _events = list(txmn_map.events)
         _inits = list(txmn_map.inits)
-        for _path in _paths:
-            if os.path.exists(_path):
-                _events.extend(YAMLEventLoader().load_events(_path, "event"))
-                _inits.extend(YAMLEventLoader().load_events(_path, "init"))
+        events = {"event": _events, "init": _inits}
 
-        txmn_map.events = _events
-        txmn_map.inits = _inits
+        yaml_loader = YAMLEventLoader()
+
+        for yaml_file in yaml_files:
+            if os.path.exists(yaml_file):
+                yaml_data = yaml_loader.load_events(yaml_file, "event")
+                events["event"].extend(yaml_data["event"])
+                yaml_data = yaml_loader.load_events(yaml_file, "init")
+                events["init"].extend(yaml_data["init"])
+            else:
+                logger.warning(f"YAML file {yaml_file} not found")
+
+        txmn_map.events = events["event"]
+        txmn_map.inits = events["init"]
         return txmn_map
 
     @no_type_check  # only used by multiplayer which is disabled

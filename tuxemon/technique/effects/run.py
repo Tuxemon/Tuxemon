@@ -63,7 +63,7 @@ class RunEffect(TechEffect):
             target,
             attempts,
         ):
-            game_variables["run_attempts"] = attempts + 1
+            game_variables["run_attempts"] = 0
             ran = True
 
         # Trigger the run effect
@@ -75,6 +75,8 @@ class RunEffect(TechEffect):
                 combat.clean_combat()
                 del combat.monsters_in_play[remove]
                 combat.players.remove(remove)
+        else:
+            game_variables["run_attempts"] = attempts + 1
 
         return {
             "success": ran,

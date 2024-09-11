@@ -9,11 +9,11 @@
   "slug": "wood_booster",
   "sort": "utility",
   "sprite": "gfx/items/wood_booster.png",
-  "category": "booster",
-  "type": "Consumable",
+  "category": "morph",
   "usable_in": [
     "WorldState"
   ],
+  "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

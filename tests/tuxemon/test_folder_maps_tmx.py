@@ -15,7 +15,12 @@ from tuxemon.map_loader import region_properties
 FOLDER = "maps"
 MULTIPLIER = 16
 TMX_TYPES_PREFIXES = ("init", "collision", "event")
-EXPECTED_SCENARIOS = ["spyder", "xero", "debug", "tobedefined"]
+EXPECTED_SCENARIOS = ["spyder", "xero", "tobedefined"]
+
+
+def expand_expected_scenarios() -> None:
+    for mod in prepare.CONFIG.mods:
+        EXPECTED_SCENARIOS.append(f"{prepare.STARTING_MAP}{mod}")
 
 
 def get_tmx_files(folder_path: str) -> Generator[str, Any, None]:
@@ -82,6 +87,7 @@ class TestTMXFiles(unittest.TestCase):
     def setUp(self) -> None:
         self.folder_path = prepare.fetch(FOLDER)
         self.loaded_data = load_tmx_files(self.folder_path)
+        expand_expected_scenarios()
 
     def test_top_level_properties_scenario(self) -> None:
         for path, root in self.loaded_data.items():
@@ -149,6 +155,19 @@ class TestTMXFiles(unittest.TestCase):
                             self.fail(
                                 f"Invalid property value '{value}' for name '{name}' in object {obj} at {to_basename(path)}"
                             )
+
+    def test_object_property_name_duplicate(self):
+        for path, root in self.loaded_data.items():
+            for obj in root.findall(".//object"):
+                property_names = {}
+                for prop in obj.findall("properties/property"):
+                    if _is_valid_property_name(prop.attrib["name"]):
+                        if prop.attrib["name"] in property_names:
+                            self.fail(
+                                f"Duplicate property name '{prop.attrib['name']}' in object {obj} at {to_basename(path)}"
+                            )
+                        else:
+                            property_names[prop.attrib["name"]] = True
 
     def test_object_width(self):
         for path, root in self.loaded_data.items():

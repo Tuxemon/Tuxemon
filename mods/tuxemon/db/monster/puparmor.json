@@ -57,6 +57,10 @@
         {
             "mon_slug": "cataspike",
             "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "weavifly",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["blob"],

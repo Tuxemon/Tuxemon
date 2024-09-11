@@ -4,11 +4,13 @@
   "sort": "utility",
   "sprite": "gfx/items/app_map.png",
   "category": "phone",
-  "type": "KeyItem",
   "usable_in": [
     "WorldState"
   ],
-  "visible": false,
+  "behaviors": {
+    "consumable": false,
+    "visible": false
+  },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

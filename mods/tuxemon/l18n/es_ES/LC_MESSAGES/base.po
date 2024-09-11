@@ -4224,9 +4224,6 @@ msgstr "Windeye"
 msgid "chrome_robo"
 msgstr "Chrome Robo"
 
-msgid "birb_robo"
-msgstr "Birb Robo"
-
 msgid "mk01_alpha"
 msgstr "MK01 Alpha"
 
@@ -4590,9 +4587,6 @@ msgstr "Técnicas"
 
 msgid "move_to_kennel"
 msgstr "mover a {box}"
-
-msgid "birb_robo_description"
-msgstr "Un robot hostil."
 
 msgid "mk01_proto_description"
 msgstr "Un robot asesino fusionado con un dragón. No nos preguntes cómo."

@@ -4,12 +4,14 @@
   "sort": "utility",
   "sprite": "gfx/items/nu_phone.png",
   "category": "phone",
-  "type": "KeyItem",
   "usable_in": [
     "WorldState"
   ],
-  "menu": ["3","nu_phone","NuPhone"],
-  "visible": false,
+  "behaviors": {
+    "consumable": false,
+    "visible": false
+  },
+  "world_menu": ["3","nu_phone","NuPhone"],
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

@@ -720,6 +720,13 @@
             "width": 224,
             "x": 512,
             "y": -1376
+        },
+        {
+            "fileName": "spyder_dojo4.tmx",
+            "height": 192,
+            "width": 384,
+            "x": -576,
+            "y": 0
         }
     ],
     "onlyShowAdjacentMaps": false,

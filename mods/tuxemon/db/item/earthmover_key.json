@@ -4,10 +4,12 @@
   "sort": "utility",
   "sprite": "gfx/items/earthmover_key.png",
   "category": "none",
-  "type": "KeyItem",
   "usable_in": [
     "WorldState"
   ],
+  "behaviors": {
+    "consumable": false
+  },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

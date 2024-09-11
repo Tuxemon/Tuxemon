@@ -57,6 +57,10 @@
         {
             "mon_slug": "elofly",
             "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "elostorm",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["flier", "grassland", "jungle", "woodland"],

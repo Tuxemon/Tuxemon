@@ -424,6 +424,36 @@ msgid "cureall_description"
 msgstr "Heals your tuxemon to full health and removes any conditions."
 
 # TMs
+msgid "tm_all_in"
+msgstr "TM: All In"
+
+msgid "tm_all_in_description"
+msgstr "Technique Manual that teaches the All In technique."
+
+msgid "tm_blade"
+msgstr "TM: Blade"
+
+msgid "tm_blade_description"
+msgstr "Technique Manual that teaches the Blade technique."
+
+msgid "tm_panjandrum"
+msgstr "TM: Panjandrum"
+
+msgid "tm_panjandrum_description"
+msgstr "Technique Manual that teaches the Panjandrum technique."
+
+msgid "tm_scope"
+msgstr "TM: Scope"
+
+msgid "tm_scope_description"
+msgstr "Technique Manual that teaches the Scope technique."
+
+msgid "tm_shadow_boxing"
+msgstr "TM: Shadow Boxing"
+
+msgid "tm_shadow_boxing_description"
+msgstr "Technique Manual that teaches the Shadow Boxing technique."
+
 msgid "tm_avalanche"
 msgstr "TM: Avalanche"
 
@@ -704,7 +734,7 @@ msgid "item_no_available_target"
 msgstr "{name} cannot be used on any of your Tuxemon right now."
 
 msgid "technique_description"
-msgstr "ID.{id} ({types}) - Accuracy {acc}%, Potency {pot}%, Power {pow}/3, Recharge {rec} turns - Successful: {sus}%"
+msgstr "ID.{id} ({types}) - Accuracy {acc}%, Potency {pot}%, Power {pow}/3, Recharge {rec} turns"
 
 msgid "reg_papers"
 msgstr "Registration Papers"
@@ -784,17 +814,11 @@ msgstr "You have forfeited!\n{npc} is disappointed."
 msgid "combat_cannot_run_away"
 msgstr "You can't run away!"
 
-msgid "combat_forfeit_trainer"
-msgstr "Can't forfeit!"
-
 msgid "combat_player_run"
 msgstr "You ran away!"
 
 msgid "combat_player_run_status"
 msgstr "Can't escape.\n{monster} is {status}!"
-
-msgid "combat_player_forfeit_status"
-msgstr "Can't forfeit the match.\n{monster} is {status}!"
 
 msgid "combat_player_swap_status"
 msgstr "Can't switch monsters.\n{monster} is {status}!"
@@ -2909,6 +2933,9 @@ msgstr "Cancel Key"
 msgid "menu_back_key"
 msgstr "Back Key"
 
+msgid "menu_reset_default"
+msgstr "Reset Keys to Default"
+
 msgid "enable"
 msgstr "Enable"
 
@@ -3093,6 +3120,12 @@ msgstr "The egg in its pouch does not hatch. Instead, it secretes a delicious dr
 
 msgid "ambuwl"
 msgstr "Ambuwl"
+
+msgid "ampystoma_description"
+msgstr "You would think AMPYSTOMA's warning coloration would make ambush impossible, but the murky waters it hunts in obscure it until it is ready to reveal itself. It likes to go on land during thunderstorms."
+
+msgid "ampystoma"
+msgstr "Ampystoma"
 
 msgid "angesnow_description"
 msgstr "Those who survive getting lost in hostile, icy conditions often mention a mysterious presence guiding them even when the snow is too heavy to see through."
@@ -5063,6 +5096,8 @@ msgid "cat_lamenting_emotion"
 msgstr "Lamenting Emotion"
 msgid "cat_light_fin"
 msgstr "Light Fin"
+msgid "cat_lightning_salamander"
+msgstr "Lightning Salamander"
 msgid "cat_lions_tooth"
 msgstr "Lion's Tooth"
 msgid "cat_lit"
@@ -8539,6 +8574,8 @@ msgstr "Remember, we had nothing to do with the disease getting out!"
 
 msgid "spyder_scoop_asta1"
 msgstr "Why yes, I am the inventor of the Extreme Restraints. \n What are they, I hear you ask? \n Only a set of manacles so powerful that even a dragon could not escape them. \n They are being used in the containment unit to make sure none of the infected tuxemon escape."
+msgid "spyder_scoop_asta2"
+msgstr "Are you sure you want to leave Scoop HQ?"
 
 msgid "spyder_scoop_alyssa1"
 msgstr "As soon as disease was detected, we moved the infected tuxemon to this containment unit."
@@ -9191,6 +9228,8 @@ msgid "spyder_top_magician1"
 msgstr "Have you ever been to the Dojo in Flower City?\n No? A keen battler like you?"
 msgid "spyder_top_magician2"
 msgstr "Well, this should help."
+msgid "spyder_top_magician3"
+msgstr "Why not head to the Dojo in Flower City and see how your battling skills stack up against the best trainers in the region?"
 
 msgid "spyder_mansion_gillette"
 msgstr "Gillette"

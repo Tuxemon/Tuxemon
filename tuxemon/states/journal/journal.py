@@ -22,14 +22,12 @@ from tuxemon.session import local_session
 MAX_PAGE = 20
 
 MenuGameObj = Callable[[], object]
+lookup_cache: dict[str, MonsterModel] = {}
 
 
 def fix_measure(measure: int, percentage: float) -> int:
     """it returns the correct measure based on percentage"""
     return round(measure * percentage)
-
-
-lookup_cache: dict[str, MonsterModel] = {}
 
 
 def _lookup_monsters() -> None:
@@ -160,29 +158,22 @@ class JournalState(PygameMenuState):
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         client = self.client
         box = list(lookup_cache.values())
-        max_page = round(len(box) / MAX_PAGE)
-        param: dict[str, Any] = {}
-        param["monsters"] = box
-        if event.button == buttons.RIGHT and event.pressed:
-            if self._page < (max_page - 1):
-                self._page += 1
-                param["page"] = self._page
-                client.replace_state("JournalState", kwargs=param)
-            else:
-                param["page"] = 0
-                client.replace_state("JournalState", kwargs=param)
-        elif event.button == buttons.LEFT and event.pressed:
-            if self._page > 0:
-                self._page -= 1
-                param["page"] = self._page
-                client.replace_state("JournalState", kwargs=param)
-            else:
-                param["page"] = max_page - 1
-                client.replace_state("JournalState", kwargs=param)
-        elif (
-            event.button == buttons.BACK or event.button == buttons.B
-        ) and event.pressed:
+        max_page = (
+            len(box) + MAX_PAGE - 1
+        ) // MAX_PAGE  # calculate max_page correctly
+        param: dict[str, Any] = {"monsters": box}
+
+        if event.button in (buttons.RIGHT, buttons.LEFT) and event.pressed:
+            self._page = (
+                self._page + (1 if event.button == buttons.RIGHT else -1)
+            ) % max_page
+            param["page"] = self._page
+            client.replace_state("JournalState", kwargs=param)
+
+        elif event.button in (buttons.BACK, buttons.B) and event.pressed:
             client.pop_state()
+
         else:
             return super().process_event(event)
+
         return None

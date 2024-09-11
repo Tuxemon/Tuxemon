@@ -4,12 +4,14 @@
   "sort": "utility",
   "sprite": "gfx/items/app_tuxepedia.png",
   "category": "phone",
-  "type": "KeyItem",
   "usable_in": [
     "WorldState"
   ],
-  "menu": ["0","menu_tuxepedia","JournalChoice"],
-  "visible": false,
+  "behaviors": {
+    "consumable": false,
+    "visible": false
+  },
+  "world_menu": ["0","menu_tuxepedia","JournalChoice"],
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

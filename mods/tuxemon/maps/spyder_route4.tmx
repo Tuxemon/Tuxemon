@@ -376,53 +376,61 @@
   </object>
   <object id="82" name="Talk Marshall" type="event" x="48" y="464" width="48" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_route4_marshall"/>
-    <property name="act1" value="translated_dialog spyder_route4_marshall1"/>
-    <property name="act2" value="add_monster puparmor,16,spyder_route4_marshall,5,10"/>
-    <property name="act3" value="add_monster puparmor,16,spyder_route4_marshall,5,10"/>
-    <property name="act4" value="start_battle player,spyder_route4_marshall"/>
-    <property name="act5" value="translated_dialog spyder_route4_marshall2"/>
-    <property name="act6" value="set_variable route4marshall:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_route4_marshall"/>
+    <property name="act3" value="translated_dialog spyder_route4_marshall1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster puparmor,16,spyder_route4_marshall,5,10"/>
+    <property name="act6" value="add_monster puparmor,16,spyder_route4_marshall,5,10"/>
+    <property name="act7" value="start_battle player,spyder_route4_marshall"/>
+    <property name="act8" value="translated_dialog spyder_route4_marshall2"/>
+    <property name="act9" value="set_variable route4marshall:yes"/>
     <property name="cond1" value="not variable_set route4marshall:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="83" name="Talk Beck" type="event" x="64" y="320" width="32" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_route4_beck"/>
-    <property name="act1" value="translated_dialog spyder_route4_beck1"/>
-    <property name="act2" value="add_monster katapill,14,spyder_route4_beck,5,10"/>
-    <property name="act3" value="add_monster tumbleworm,12,spyder_route4_beck,5,10"/>
-    <property name="act4" value="add_monster spighter,12,spyder_route4_beck,5,10"/>
-    <property name="act5" value="start_battle player,spyder_route4_beck"/>
-    <property name="act6" value="translated_dialog spyder_route4_beck2"/>
-    <property name="act7" value="set_variable route4beck:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_route4_beck"/>
+    <property name="act03" value="translated_dialog spyder_route4_beck1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster katapill,14,spyder_route4_beck,5,10"/>
+    <property name="act06" value="add_monster tumbleworm,12,spyder_route4_beck,5,10"/>
+    <property name="act07" value="add_monster spighter,12,spyder_route4_beck,5,10"/>
+    <property name="act08" value="start_battle player,spyder_route4_beck"/>
+    <property name="act09" value="translated_dialog spyder_route4_beck2"/>
+    <property name="act10" value="set_variable route4beck:yes"/>
     <property name="cond1" value="not variable_set route4beck:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="84" name="Talk Wulf" type="event" x="32" y="208" width="16" height="48">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_route4_wulf"/>
-    <property name="act1" value="translated_dialog spyder_route4_wulf1"/>
-    <property name="act2" value="add_monster cowpignon,14,spyder_route4_wulf,5,10"/>
-    <property name="act3" value="add_monster cowpignon,14,spyder_route4_wulf,5,10"/>
-    <property name="act4" value="add_monster shybulb,14,spyder_route4_wulf,5,10"/>
-    <property name="act5" value="start_battle player,spyder_route4_wulf"/>
-    <property name="act6" value="translated_dialog spyder_route4_wulf2"/>
-    <property name="act7" value="set_variable route4wulf:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_route4_wulf"/>
+    <property name="act03" value="translated_dialog spyder_route4_wulf1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster cowpignon,14,spyder_route4_wulf,5,10"/>
+    <property name="act06" value="add_monster cowpignon,14,spyder_route4_wulf,5,10"/>
+    <property name="act07" value="add_monster shybulb,14,spyder_route4_wulf,5,10"/>
+    <property name="act08" value="start_battle player,spyder_route4_wulf"/>
+    <property name="act09" value="translated_dialog spyder_route4_wulf2"/>
+    <property name="act10" value="set_variable route4wulf:yes"/>
     <property name="cond1" value="not variable_set route4wulf:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="85" name="Talk Rosamund" type="event" x="192" y="496" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_route4_rosamund"/>
-    <property name="act1" value="translated_dialog spyder_route4_rosamund1"/>
-    <property name="act2" value="add_monster foofle,18,spyder_route4_rosamund,5,10"/>
-    <property name="act3" value="start_battle player,spyder_route4_rosamund"/>
-    <property name="act4" value="translated_dialog spyder_route4_rosamund2"/>
-    <property name="act6" value="set_variable route4rosamund:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_route4_rosamund"/>
+    <property name="act3" value="translated_dialog spyder_route4_rosamund1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster foofle,18,spyder_route4_rosamund,5,10"/>
+    <property name="act6" value="start_battle player,spyder_route4_rosamund"/>
+    <property name="act7" value="translated_dialog spyder_route4_rosamund2"/>
+    <property name="act8" value="set_variable route4rosamund:yes"/>
     <property name="cond1" value="not variable_set route4rosamund:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

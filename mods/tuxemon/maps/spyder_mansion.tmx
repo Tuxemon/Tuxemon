@@ -225,39 +225,45 @@
   </object>
   <object id="55" name="Talk Gillette" type="event" x="128" y="128" width="16" height="32">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_mansion_gillette"/>
-    <property name="act1" value="translated_dialog spyder_mansion_gillette1"/>
-    <property name="act2" value="add_monster djinnbo,22,spyder_mansion_gillette,5,10"/>
-    <property name="act3" value="add_monster ghosteeth,22,spyder_mansion_gillette,5,10"/>
-    <property name="act4" value="start_battle player,spyder_mansion_gillette"/>
-    <property name="act5" value="translated_dialog spyder_mansion_gillette2"/>
-    <property name="act6" value="set_variable mansiongillette:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_mansion_gillette"/>
+    <property name="act3" value="translated_dialog spyder_mansion_gillette1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster djinnbo,22,spyder_mansion_gillette,5,10"/>
+    <property name="act6" value="add_monster ghosteeth,22,spyder_mansion_gillette,5,10"/>
+    <property name="act7" value="start_battle player,spyder_mansion_gillette"/>
+    <property name="act8" value="translated_dialog spyder_mansion_gillette2"/>
+    <property name="act9" value="set_variable mansiongillette:yes"/>
     <property name="cond1" value="not variable_set mansiongillette:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="57" name="Talk Lucy" type="event" x="240" y="112" width="32" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_mansion_lucy"/>
-    <property name="act1" value="translated_dialog spyder_mansion_lucy1"/>
-    <property name="act2" value="add_monster elofly,15,spyder_mansion_lucy,5,10"/>
-    <property name="act3" value="add_monster budaye,15,spyder_mansion_lucy,5,10"/>
-    <property name="act4" value="start_battle player,spyder_mansion_lucy"/>
-    <property name="act5" value="translated_dialog spyder_mansion_lucy2"/>
-    <property name="act6" value="set_variable mansionlucy:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_mansion_lucy"/>
+    <property name="act3" value="translated_dialog spyder_mansion_lucy1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster elofly,15,spyder_mansion_lucy,5,10"/>
+    <property name="act6" value="add_monster budaye,15,spyder_mansion_lucy,5,10"/>
+    <property name="act7" value="start_battle player,spyder_mansion_lucy"/>
+    <property name="act8" value="translated_dialog spyder_mansion_lucy2"/>
+    <property name="act9" value="set_variable mansionlucy:yes"/>
     <property name="cond1" value="not variable_set mansionlucy:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="58" name="Talk Lyle" type="event" x="16" y="112" width="32" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_mansion_lyle"/>
-    <property name="act1" value="translated_dialog spyder_mansion_pirate1"/>
-    <property name="act2" value="add_monster foofle,20,spyder_mansion_lyle,5,10"/>
-    <property name="act3" value="add_monster shybulb,20,spyder_mansion_lyle,5,10"/>
-    <property name="act4" value="start_battle player,spyder_mansion_lyle"/>
-    <property name="act5" value="translated_dialog spyder_mansion_pirate2"/>
-    <property name="act6" value="set_variable mansionlyle:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_mansion_lyle"/>
+    <property name="act3" value="translated_dialog spyder_mansion_pirate1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster foofle,20,spyder_mansion_lyle,5,10"/>
+    <property name="act6" value="add_monster shybulb,20,spyder_mansion_lyle,5,10"/>
+    <property name="act7" value="start_battle player,spyder_mansion_lyle"/>
+    <property name="act8" value="translated_dialog spyder_mansion_pirate2"/>
+    <property name="act9" value="set_variable mansionlyle:yes"/>
     <property name="cond1" value="not variable_set mansionlyle:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

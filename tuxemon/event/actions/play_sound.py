@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon import audio, prepare
+from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 
 
@@ -51,5 +51,5 @@ class PlaySoundAction(EventAction):
                 raise ValueError(
                     f"{self.volume} must be between {lower} and {upper}",
                 )
-        sound = audio.load_sound(self.filename, volume)
-        sound.play()
+
+        self.session.client.sound_manager.play_sound(self.filename, volume)

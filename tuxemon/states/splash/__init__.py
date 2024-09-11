@@ -46,8 +46,7 @@ class SplashState(state.State):
             width - splash_border - cc.rect.width,
             height - splash_border - cc.rect.height,
         )
-
-        audio.load_sound("sound_ding", None).play()
+        self.client.sound_manager.play_sound("sound_ding")
 
     def resume(self) -> None:
         if self.triggered:

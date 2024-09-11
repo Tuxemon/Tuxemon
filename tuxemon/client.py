@@ -12,7 +12,7 @@ from typing import Any, Optional, TypeVar, Union, overload
 import pygame as pg
 
 from tuxemon import networking, prepare, rumble
-from tuxemon.audio import MusicPlayerState
+from tuxemon.audio import MusicPlayerState, SoundManager
 from tuxemon.cli.processor import CommandProcessor
 from tuxemon.config import TuxemonConfig
 from tuxemon.db import MapType
@@ -107,6 +107,7 @@ class LocalPygameClient:
 
         # Set up a variable that will keep track of currently playing music.
         self.current_music = MusicPlayerState()
+        self.sound_manager = SoundManager()
 
         if self.config.cli:
             # TODO: There is no protection for the main thread from the cli

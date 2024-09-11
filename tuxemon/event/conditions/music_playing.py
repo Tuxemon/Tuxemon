@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+from tuxemon.db import MusicStatus
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
@@ -47,7 +48,10 @@ class MusicPlayingCondition(EventCondition):
         if not names.isdisjoint(combat_states):
             return True
 
-        return (
-            session.client.current_music.current_song == song
-            and session.client.current_music.is_playing()
-        )
+        if session.client.current_music.status == MusicStatus.paused:
+            return True
+        else:
+            return (
+                session.client.current_music.current_song == song
+                and session.client.current_music.is_playing()
+            )

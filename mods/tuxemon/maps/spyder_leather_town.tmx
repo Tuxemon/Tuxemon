@@ -292,7 +292,7 @@
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act4" value="char_face player,up"/>
     <property name="act5" value="transition_teleport spyder_flower_city.tmx,17,30,0.3"/>
-    <property name="cond1" value="is variable_set rivergoto:flower"/>
+    <property name="cond1" value="is variable_set rivergoto:flower_city"/>
    </properties>
   </object>
   <object id="291" name="Destination - Leather" type="event" x="208" y="288" width="16" height="16">
@@ -300,7 +300,7 @@
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_leather_town.tmx,17,19,0.3"/>
     <property name="act4" value="char_face player,right"/>
-    <property name="cond1" value="is variable_set rivergoto:leather"/>
+    <property name="cond1" value="is variable_set rivergoto:leather_town"/>
    </properties>
   </object>
   <object id="292" name="Destination - Paper" type="event" x="192" y="272" width="16" height="16">
@@ -308,7 +308,7 @@
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_paper_town.tmx,4,13,0.3"/>
     <property name="act4" value="char_face player,up"/>
-    <property name="cond1" value="is variable_set rivergoto:paper"/>
+    <property name="cond1" value="is variable_set rivergoto:paper_town"/>
    </properties>
   </object>
   <object id="293" name="Talk Captain - Timber" type="event" x="256" y="256" width="16" height="16">
@@ -323,8 +323,9 @@
   <object id="294" name="Destination - Timber" type="event" x="176" y="288" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable rivergoto:nothing"/>
+    <property name="act2" value="transition_teleport spyder_timber_town.tmx,8,21,0.3"/>
     <property name="act4" value="char_face player,up"/>
-    <property name="cond1" value="is variable_set rivergoto:timber"/>
+    <property name="cond1" value="is variable_set rivergoto:timber_town"/>
    </properties>
   </object>
   <object id="295" name="Destination - Candy" type="event" x="160" y="272" width="16" height="16">
@@ -332,7 +333,7 @@
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_candy_port.tmx,37,13,0.3"/>
     <property name="act4" value="char_face player,down"/>
-    <property name="cond1" value="is variable_set rivergoto:candy"/>
+    <property name="cond1" value="is variable_set rivergoto:candy_port"/>
    </properties>
   </object>
   <object id="296" name="Talk Captain - Candy" type="event" x="272" y="256" width="16" height="16">

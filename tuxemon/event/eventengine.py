@@ -158,8 +158,7 @@ class EventEngine:
             that action is loaded. ``None`` otherwise.
 
         """
-        if parameters is None:
-            parameters = list()
+        parameters = parameters or []
 
         try:
             action = self.actions[name]
@@ -171,9 +170,14 @@ class EventEngine:
 
         try:
             return action(*parameters)
-        except Exception as e:
+        except TypeError as e:
             logger.warning(
-                f"Error running {name}. Could not instantiate {action} with parameters {parameters}: {e}"
+                f"Error instantiating {action} with parameters {parameters}: {e}"
+            )
+            return None
+        except Exception as e:
+            logger.error(
+                f"Unexpected error instantiating {action} with parameters {parameters}: {e}"
             )
             return None
 
@@ -265,8 +269,7 @@ class EventEngine:
             skip: Boolean for skipping the action.update().
 
         """
-        if parameters is None:
-            parameters = list()
+        parameters = parameters or []
 
         action = self.get_action(action_name, parameters)
         if action is None:
@@ -276,7 +279,11 @@ class EventEngine:
 
         action._skip = skip
 
-        return action.execute()
+        try:
+            return action.execute()
+        except Exception as e:
+            logger.error(f"Error executing action '{action_name}': {e}")
+            raise
 
     def start_event(self, map_event: EventObject) -> None:
         """

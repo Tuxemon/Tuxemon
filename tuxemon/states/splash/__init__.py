@@ -7,7 +7,7 @@ from typing import Optional
 
 import pygame
 
-from tuxemon import audio, prepare, state
+from tuxemon import prepare, state
 from tuxemon.platform.events import PlayerInput
 from tuxemon.states.transition.fade import FadeOutTransition
 

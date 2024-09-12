@@ -177,9 +177,10 @@ class SoundManager:
         try:
             sound = pygame.mixer.Sound(filename)
             sound.set_volume(value or self.sound_volume)
-            return SoundWrapper(sound)
-        except (MemoryError, pygame.error):
-            logger.error("unable to load sound")
+            self.sounds[slug] = SoundWrapper(sound)
+            return self.sounds[slug]
+        except (MemoryError, pygame.error) as e:
+            logger.error(f"Failed to load sound '{slug}': {e}")
             return SoundWrapper()
 
     def play_sound(

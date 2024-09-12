@@ -41,15 +41,17 @@ class PlaySoundAction(EventAction):
         player = self.session.player
         _sound = prepare.SOUND_VOLUME
         sound_volume = float(player.game_variables.get("sound_volume", _sound))
-        if not self.volume:
-            volume = sound_volume
-        else:
+
+        if self.volume is not None:
             lower, upper = prepare.SOUND_RANGE
-            if lower <= self.volume <= upper:
-                volume = self.volume * sound_volume
-            else:
+            if not (lower <= self.volume <= upper):
                 raise ValueError(
-                    f"{self.volume} must be between {lower} and {upper}",
+                    f"Volume must be between {lower} and {upper}",
                 )
+        volume = (
+            self.volume * sound_volume
+            if self.volume is not None
+            else sound_volume
+        )
 
         self.session.client.sound_manager.play_sound(self.filename, volume)

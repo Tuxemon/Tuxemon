@@ -17,7 +17,7 @@ from typing import TYPE_CHECKING, Literal, Optional
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import audio, graphics, prepare, tools
+from tuxemon import graphics, prepare, tools
 from tuxemon.combat import alive_party, build_hud_text, fainted
 from tuxemon.locale import T
 from tuxemon.menu.interface import ExpBar, HpBar
@@ -27,7 +27,6 @@ from tuxemon.tools import scale, scale_sequence
 
 if TYPE_CHECKING:
     from tuxemon.animation import Animation
-    from tuxemon.audio import SoundProtocol
     from tuxemon.db import BattleGraphicsModel
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
@@ -81,7 +80,6 @@ class CombatAnimations(ABC, Menu[None]):
         self._text_animation_time_left: float = 0
         self._hp_bars: MutableMapping[Monster, HpBar] = {}
         self._exp_bars: MutableMapping[Monster, ExpBar] = {}
-        self._sound_cache: dict[str, SoundProtocol] = {}
         self._status_icons: defaultdict[Monster, list[Sprite]] = defaultdict(
             list
         )
@@ -719,11 +717,11 @@ class CombatAnimations(ABC, Menu[None]):
             relative=True,
         )
 
-    def play_sound_effect(self, sound: str, value: float = 0.0) -> None:
+    def play_sound_effect(
+        self, sound: str, value: float = prepare.SOUND_VOLUME
+    ) -> None:
         """Play the sound effect."""
-        if sound not in self._sound_cache:
-            self._sound_cache[sound] = audio.load_sound(sound, None)
-        self.task(self._sound_cache[sound].play, value)
+        self.client.sound_manager.play_sound(sound, value)
 
     def display_alert_message(self) -> None:
         """Display the alert message."""

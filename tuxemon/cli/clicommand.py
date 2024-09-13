@@ -74,7 +74,7 @@ class CLICommand(ABC):
         for command in self.get_subcommands(ctx):
             if command.name == name:
                 return command
-        raise CommandNotFoundError
+        raise CommandNotFoundError(f"Command '{name}' not found")
 
     def resolve(self, ctx: InvokeContext, path: str) -> tuple[CLICommand, str]:
         """

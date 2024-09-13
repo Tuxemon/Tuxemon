@@ -11,7 +11,7 @@ from typing import Any, Generic, Literal, Optional, TypeVar, Union
 import pygame
 import pygame_menu
 
-from tuxemon import audio, graphics, prepare, state, tools
+from tuxemon import graphics, prepare, state, tools
 from tuxemon.animation import Animation
 from tuxemon.graphics import ColorLike
 from tuxemon.menu.events import playerinput_to_event
@@ -479,8 +479,8 @@ class Menu(Generic[T], state.State):
 
     def reload_sounds(self) -> None:
         """Reload sounds."""
-        self.menu_select_sound = audio.load_sound(
-            self.menu_select_sound_filename, None
+        self.menu_select_sound = self.client.sound_manager.load_sound(
+            self.menu_select_sound_filename
         )
 
     def shadow_text(

@@ -168,6 +168,9 @@ class EventEngine:
             logger.warning(error)
             return None
 
+        if parameters == [""]:
+            return action()
+
         try:
             return action(*parameters)
         except TypeError as e:

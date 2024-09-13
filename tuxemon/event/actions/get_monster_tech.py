@@ -67,6 +67,7 @@ class GetMonsterTechAction(EventAction):
             # filter slug
             if filter_name == "slug" and technique.slug == value_name:
                 self.result = True
+                return self.result
             # filter element / type
             if (
                 filter_name == "element"
@@ -74,6 +75,7 @@ class GetMonsterTechAction(EventAction):
                 and technique.has_type(ElementType(value_name))
             ):
                 self.result = True
+                return self.result
             # filter genders
             if (
                 filter_name == "range"
@@ -81,6 +83,7 @@ class GetMonsterTechAction(EventAction):
                 and technique.range == value_name
             ):
                 self.result = True
+                return self.result
             # filter numeric fields
             if self.extra is not None:
                 field = 0.0
@@ -91,7 +94,8 @@ class GetMonsterTechAction(EventAction):
                 extra = float(self.extra)
                 if value_name in list(Comparison):
                     self.result = compare(value_name, field, extra)
-        return self.result
+                    return self.result
+        return False
 
     def set_var(self, menu_item: MenuItem[Technique]) -> None:
         self.choose = True

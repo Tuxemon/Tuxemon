@@ -395,11 +395,11 @@ class Monster:
         """
         Apply updates to the monster's stats.
         """
-        self.armour += formula.update_armour(self)
-        self.dodge += formula.update_dodge(self)
-        self.melee += formula.update_melee(self)
-        self.ranged += formula.update_ranged(self)
-        self.speed += formula.update_speed(self)
+        self.armour += formula.update_stat(self, "armour")
+        self.dodge += formula.update_stat(self, "dodge")
+        self.melee += formula.update_stat(self, "melee")
+        self.ranged += formula.update_stat(self, "ranged")
+        self.speed += formula.update_stat(self, "speed")
 
     def set_stats(self) -> None:
         """

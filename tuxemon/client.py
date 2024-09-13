@@ -557,6 +557,10 @@ class LocalPygameClient:
         """Remove a state"""
         self.state_manager.remove_state(state)
 
+    def remove_state_by_name(self, state: str) -> None:
+        """Remove a state by name"""
+        self.state_manager.remove_state_by_name(state)
+
     @overload
     def push_state(self, state_name: str, **kwargs: Any) -> State:
         pass

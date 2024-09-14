@@ -65,7 +65,7 @@ events:
     type: "event"
   Teleport Exception 2:
     actions:
-    - transition_teleport spyder_scoop2.tmx,9,6,0.3
+    - transition_teleport spyder_scoop2.tmx,4,4,0.3
     - set_monster_health
     - set_monster_status
     - set_variable teleport_clinic:none

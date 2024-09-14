@@ -167,13 +167,15 @@
   </object>
   <object id="49" name="Talk Bravo" type="event" x="208" y="48" width="16" height="16">
    <properties>
-    <property name="act10" value="pathfind_to_player spyder_wayfarer1_bravo"/>
-    <property name="act11" value="translated_dialog spyder_wayfarer1_bravo1"/>
-    <property name="act13" value="add_monster elofly,12,spyder_wayfarer1_bravo,5,10"/>
-    <property name="act14" value="add_monster flacono,12,spyder_wayfarer1_bravo,5,10"/>
-    <property name="act15" value="start_battle player,spyder_wayfarer1_bravo"/>
-    <property name="act16" value="translated_dialog spyder_wayfarer1_bravo2"/>
-    <property name="act17" value="set_variable wayfarer1bravo:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_wayfarer1_bravo"/>
+    <property name="act03" value="translated_dialog spyder_wayfarer1_bravo1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster elofly,12,spyder_wayfarer1_bravo,5,10"/>
+    <property name="act06" value="add_monster flacono,12,spyder_wayfarer1_bravo,5,10"/>
+    <property name="act07" value="start_battle player,spyder_wayfarer1_bravo"/>
+    <property name="act08" value="translated_dialog spyder_wayfarer1_bravo2"/>
+    <property name="act09" value="set_variable wayfarer1bravo:yes"/>
     <property name="cond1" value="not variable_set wayfarer1bravo:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

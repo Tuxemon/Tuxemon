@@ -337,10 +337,9 @@ class MonsterMovesetItemModel(BaseModel):
         ..., description="Monster level in which this moveset is learned", gt=0
     )
     technique: str = Field(
-        ..., description="Name of the technique for this moveset item"
-    )
-    element: Optional[ElementType] = Field(
-        None, description="Element random technique"
+        ...,
+        description="Name of the technique for this moveset item",
+        json_schema_extra={"unique": True},
     )
 
     @field_validator("technique")
@@ -563,7 +562,7 @@ class MonsterModel(BaseModel, validate_assignment=True):
         le=prepare.CATCH_RESISTANCE_RANGE[1],
     )
     moveset: Sequence[MonsterMovesetItemModel] = Field(
-        [], description="The moveset of this monster"
+        [], description="The moveset of this monster", min_length=1
     )
     history: Sequence[MonsterHistoryItemModel] = Field(
         [], description="The evolution history of this monster"

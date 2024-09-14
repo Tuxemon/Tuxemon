@@ -104,13 +104,15 @@
   </object>
   <object id="84" name="Battle Calliope" type="event" x="96" y="208" width="32" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_routee_calliope,down"/>
-    <property name="act1" value="translated_dialog spyder_routee_calliope1"/>
-    <property name="act2" value="add_monster tumblebee,40,spyder_routee_calliope,5,10"/>
-    <property name="act3" value="add_monster windeye,35,spyder_routee_calliope,5,10"/>
-    <property name="act6" value="start_battle player,spyder_routee_calliope"/>
-    <property name="act7" value="translated_dialog spyder_routee_calliope2"/>
-    <property name="act8" value="set_variable routeecalliope:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_routee_calliope,down"/>
+    <property name="act3" value="translated_dialog spyder_routee_calliope1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster tumblebee,40,spyder_routee_calliope,5,10"/>
+    <property name="act6" value="add_monster windeye,35,spyder_routee_calliope,5,10"/>
+    <property name="act7" value="start_battle player,spyder_routee_calliope"/>
+    <property name="act8" value="translated_dialog spyder_routee_calliope2"/>
+    <property name="act9" value="set_variable routeecalliope:yes"/>
     <property name="cond1" value="not variable_set routeecalliope:yes"/>
     <property name="cond2" value="is variable_set kernelquestbegin:yes"/>
     <property name="cond3" value="is char_at player"/>
@@ -140,13 +142,15 @@
   </object>
   <object id="86" name="Talk Aiolos" type="event" x="96" y="256" width="32" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_routee_aiolos"/>
-    <property name="act1" value="translated_dialog spyder_routee_aiolos1"/>
-    <property name="act2" value="add_monster dune_pincher,35,spyder_routee_aiolos,5,10"/>
-    <property name="act3" value="add_monster dinoflop,40,spyder_routee_aiolos,5,10"/>
-    <property name="act6" value="start_battle player,spyder_routee_aiolos"/>
-    <property name="act7" value="translated_dialog spyder_routee_aiolos2"/>
-    <property name="act8" value="set_variable routeeaiolos:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_routee_aiolos"/>
+    <property name="act3" value="translated_dialog spyder_routee_aiolos1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster dune_pincher,35,spyder_routee_aiolos,5,10"/>
+    <property name="act6" value="add_monster dinoflop,40,spyder_routee_aiolos,5,10"/>
+    <property name="act7" value="start_battle player,spyder_routee_aiolos"/>
+    <property name="act8" value="translated_dialog spyder_routee_aiolos2"/>
+    <property name="act9" value="set_variable routeeaiolos:yes"/>
     <property name="cond1" value="not variable_set routeeaiolos:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

@@ -7,12 +7,10 @@ import os.path
 from typing import Optional, Protocol
 
 import pygame
-from pygame import mixer
 
 from tuxemon import prepare
 from tuxemon.db import MusicStatus, db
 from tuxemon.platform import mixer as mixer2
-from tuxemon.session import local_session
 from tuxemon.tools import transform_resource_filename
 
 logger = logging.getLogger(__name__)
@@ -92,7 +90,7 @@ class MusicPlayerState:
         mixer2.music.fadeout(time)
 
     def is_playing(self) -> bool:
-        return mixer2.music.get_busy()
+        return bool(mixer2.music.get_busy())
 
     def is_playing_same_song(self, song: str) -> bool:
         return self.status == MusicStatus.playing and self.current_song == song
@@ -128,78 +126,65 @@ class MusicPlayerState:
 
 
 class SoundProtocol(Protocol):
-    def play(self) -> object:
-        pass
-
-
-class DummySound:
     def play(self) -> None:
         pass
 
-
-def get_sound_filename(slug: Optional[str]) -> Optional[str]:
-    """
-    Get the filename of a sound slug.
-
-    Parameters:
-        slug: Slug of the file record.
-
-    Returns:
-        Filename if the sound is found.
-
-    """
-    if slug is None or slug == "":
-        return None
-
-    # Get the filename from the db
-    filename = db.lookup_file("sounds", slug)
-    filename = transform_resource_filename("sounds", filename)
-
-    # On some platforms, pygame will silently fail loading
-    # a sound if the filename is incorrect so we check here
-    if not os.path.exists(filename):
-        logger.error(f"audio file does not exist: {filename}")
-        return None
-
-    return filename
+    def set_volume(self, volume: float) -> None:
+        pass
 
 
-def load_sound(slug: Optional[str], value: Optional[float]) -> SoundProtocol:
-    """
-    Load a sound from disk, identified by its slug in the db.
+class SoundWrapper(SoundProtocol):
+    def __init__(self, sound: Optional[pygame.mixer.Sound] = None):
+        self.sound = sound
 
-    Parameters:
-        slug: Slug for the file record to load.
+    def play(self) -> None:
+        if self.sound:
+            self.sound.play()
 
-    Returns:
-        Loaded sound, or a placeholder silent sound if it is
-        not found.
+    def set_volume(self, volume: float) -> None:
+        if self.sound:
+            self.sound.set_volume(volume)
 
-    """
 
-    filename = get_sound_filename(slug)
-    if filename is None:
-        return DummySound()
-    volume = prepare.SOUND_VOLUME
-    if value is None:
-        if local_session.player:
-            player = local_session.player
-            volume = float(player.game_variables.get("sound_volume", volume))
-    else:
-        volume = value
-    try:
-        sound = mixer.Sound(filename)
-        mixer.Sound.set_volume(sound, volume)
-        return sound
-    except MemoryError:
-        # raised on some systems if there is no mixer
-        logger.error("memoryerror, unable to load sound")
-        return DummySound()
-    except pygame.error as e:
-        # pick one:
-        # * there is no mixer
-        # * sound has invalid path
-        # * mixer has no output (device ok, no speakers)
-        logger.error(e)
-        logger.error("unable to load sound")
-        return DummySound()
+class SoundManager:
+    def __init__(self, sound_volume: float = prepare.SOUND_VOLUME):
+        self.sound_volume = sound_volume
+        self.sounds: dict[str, SoundProtocol] = {}
+
+    def get_sound_filename(self, slug: str) -> Optional[str]:
+        if slug is None or slug == "":
+            return None
+
+        filename = db.lookup_file("sounds", slug)
+        filename = transform_resource_filename("sounds", filename)
+
+        if not os.path.exists(filename):
+            logger.error(f"audio file does not exist: {filename}")
+            return None
+
+        return filename
+
+    def load_sound(
+        self, slug: str, value: float = prepare.SOUND_VOLUME
+    ) -> SoundProtocol:
+        if slug in self.sounds:
+            return self.sounds[slug]
+
+        filename = self.get_sound_filename(slug)
+        if filename is None:
+            return SoundWrapper()
+
+        try:
+            sound = pygame.mixer.Sound(filename)
+            sound.set_volume(value or self.sound_volume)
+            self.sounds[slug] = SoundWrapper(sound)
+            return self.sounds[slug]
+        except (MemoryError, pygame.error) as e:
+            logger.error(f"Failed to load sound '{slug}': {e}")
+            return SoundWrapper()
+
+    def play_sound(
+        self, slug: str, value: float = prepare.SOUND_VOLUME
+    ) -> None:
+        sound = self.load_sound(slug, value)
+        sound.play()

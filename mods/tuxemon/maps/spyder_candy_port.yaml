@@ -96,7 +96,7 @@ events:
     - transition_teleport spyder_timber_town.tmx,8,21,0.3
     - char_face player,up
     conditions:
-    - is variable_set rivergoto:timber
+    - is variable_set rivergoto:timber_town
     type: "event"
   Destination - Flower:
     actions:
@@ -104,7 +104,7 @@ events:
     - char_face player,up
     - transition_teleport spyder_flower_city.tmx,17,30,0.3
     conditions:
-    - is variable_set rivergoto:flower
+    - is variable_set rivergoto:flower_city
     type: "event"
   Destination - Leather:
     actions:
@@ -112,7 +112,7 @@ events:
     - transition_teleport spyder_leather_town.tmx,17,19,0.3
     - char_face player,right
     conditions:
-    - is variable_set rivergoto:leather
+    - is variable_set rivergoto:leather_town
     type: "event"
   Destination - Paper:
     actions:
@@ -120,7 +120,7 @@ events:
     - transition_teleport spyder_paper_town.tmx,4,13,0.3
     - char_face player,up
     conditions:
-    - is variable_set rivergoto:paper
+    - is variable_set rivergoto:paper_town
     type: "event"
   Destination - Candy:
     actions:
@@ -128,7 +128,7 @@ events:
     - transition_teleport spyder_candy_port.tmx,37,13,0.3
     - char_face player,down
     conditions:
-    - is variable_set rivergoto:candy
+    - is variable_set rivergoto:candy_port
     type: "event"
   Create Monk:
     actions:

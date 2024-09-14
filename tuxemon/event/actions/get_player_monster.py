@@ -78,11 +78,13 @@ class GetPlayerMonsterAction(EventAction):
 
         if filter_name is None and value_name is None:
             self.result = True
+            return self.result
 
         if target:
             # filter slug
             if filter_name == "slug" and target.slug == value_name:
                 self.result = True
+                return self.result
             # filter genders
             if (
                 filter_name == "gender"
@@ -90,6 +92,7 @@ class GetPlayerMonsterAction(EventAction):
                 and target.gender == value_name
             ):
                 self.result = True
+                return self.result
             # filter evolution stages
             if (
                 filter_name == "evolution_stage"
@@ -97,6 +100,7 @@ class GetPlayerMonsterAction(EventAction):
                 and target.stage == value_name
             ):
                 self.result = True
+                return self.result
             # filter element / type
             if (
                 filter_name == "element"
@@ -104,6 +108,7 @@ class GetPlayerMonsterAction(EventAction):
                 and target.has_type(ElementType(value_name))
             ):
                 self.result = True
+                return self.result
             # filter shape
             if (
                 filter_name == "shape"
@@ -111,6 +116,7 @@ class GetPlayerMonsterAction(EventAction):
                 and target.shape == value_name
             ):
                 self.result = True
+                return self.result
             # filter taste warm
             if (
                 filter_name == "taste_warm"
@@ -118,6 +124,7 @@ class GetPlayerMonsterAction(EventAction):
                 and target.taste_warm == value_name
             ):
                 self.result = True
+                return self.result
             # filter taste cold
             if (
                 filter_name == "taste_cold"
@@ -125,6 +132,7 @@ class GetPlayerMonsterAction(EventAction):
                 and target.taste_cold == value_name
             ):
                 self.result = True
+                return self.result
 
             # filter numeric fields
             if self.extra is not None:
@@ -144,8 +152,9 @@ class GetPlayerMonsterAction(EventAction):
                 extra = int(self.extra)
                 if value_name in list(Comparison):
                     self.result = compare(value_name, field, extra)
+                    return self.result
 
-        return self.result
+        return False
 
     def set_var(self, menu_item: MenuItem[Monster]) -> None:
         self.choose = True

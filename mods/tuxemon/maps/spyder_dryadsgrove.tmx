@@ -666,42 +666,48 @@
   </object>
   <object id="220" name="Talk Aquemini" type="event" x="544" y="192" width="16" height="48">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_dryadsgrove_aquemini"/>
-    <property name="act1" value="translated_dialog spyder_dryadsgrove_aquemini1"/>
-    <property name="act2" value="add_monster vivitrans,50,spyder_dryadsgrove_aquemini,5,10"/>
-    <property name="act3" value="add_monster nudimind,50,spyder_dryadsgrove_aquemini,5,10"/>
-    <property name="act4" value="add_monster noctalo,50,spyder_dryadsgrove_aquemini,5,10"/>
-    <property name="act5" value="start_battle player,spyder_dryadsgrove_aquemini"/>
-    <property name="act6" value="translated_dialog spyder_dryadsgrove_aquemini2"/>
-    <property name="act7" value="set_variable dryadsgroveaquemini:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_dryadsgrove_aquemini"/>
+    <property name="act03" value="translated_dialog spyder_dryadsgrove_aquemini1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster vivitrans,50,spyder_dryadsgrove_aquemini,5,10"/>
+    <property name="act06" value="add_monster nudimind,50,spyder_dryadsgrove_aquemini,5,10"/>
+    <property name="act07" value="add_monster noctalo,50,spyder_dryadsgrove_aquemini,5,10"/>
+    <property name="act08" value="start_battle player,spyder_dryadsgrove_aquemini"/>
+    <property name="act09" value="translated_dialog spyder_dryadsgrove_aquemini2"/>
+    <property name="act10" value="set_variable dryadsgroveaquemini:yes"/>
     <property name="cond1" value="not variable_set dryadsgroveaquemini:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="221" name="Talk Ignatia" type="event" x="400" y="128" width="48" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_dryadsgrove_ignatia"/>
-    <property name="act1" value="translated_dialog spyder_dryadsgrove_ignatia1"/>
-    <property name="act2" value="add_monster vivicinder,50,spyder_dryadsgrove_ignatia,5,10"/>
-    <property name="act3" value="add_monster masknake,50,spyder_dryadsgrove_ignatia,5,10"/>
-    <property name="act4" value="add_monster criniotherme,50,spyder_dryadsgrove_ignatia,5,10"/>
-    <property name="act5" value="start_battle player,spyder_dryadsgrove_ignatia"/>
-    <property name="act6" value="translated_dialog spyder_dryadsgrove_ignatia2"/>
-    <property name="act7" value="set_variable dryadsgroveignatia:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_dryadsgrove_ignatia"/>
+    <property name="act03" value="translated_dialog spyder_dryadsgrove_ignatia1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster vivicinder,50,spyder_dryadsgrove_ignatia,5,10"/>
+    <property name="act06" value="add_monster masknake,50,spyder_dryadsgrove_ignatia,5,10"/>
+    <property name="act07" value="add_monster criniotherme,50,spyder_dryadsgrove_ignatia,5,10"/>
+    <property name="act08" value="start_battle player,spyder_dryadsgrove_ignatia"/>
+    <property name="act09" value="translated_dialog spyder_dryadsgrove_ignatia2"/>
+    <property name="act10" value="set_variable dryadsgroveignatia:yes"/>
     <property name="cond1" value="not variable_set dryadsgroveignatia:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="222" name="Talk Petra" type="event" x="240" y="96" width="16" height="32">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_dryadsgrove_petra"/>
-    <property name="act1" value="translated_dialog spyder_dryadsgrove_petra1"/>
-    <property name="act2" value="add_monster vivitron,50,spyder_dryadsgrove_petra,5,10"/>
-    <property name="act3" value="add_monster sumchon,50,spyder_dryadsgrove_petra,5,10"/>
-    <property name="act4" value="add_monster exapode,50,spyder_dryadsgrove_petra,5,10"/>
-    <property name="act5" value="start_battle player,spyder_dryadsgrove_petra"/>
-    <property name="act6" value="translated_dialog spyder_dryadsgrove_petra2"/>
-    <property name="act7" value="set_variable dryadsgrovepetra:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_dryadsgrove_petra"/>
+    <property name="act03" value="translated_dialog spyder_dryadsgrove_petra1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster vivitron,50,spyder_dryadsgrove_petra,5,10"/>
+    <property name="act06" value="add_monster sumchon,50,spyder_dryadsgrove_petra,5,10"/>
+    <property name="act07" value="add_monster exapode,50,spyder_dryadsgrove_petra,5,10"/>
+    <property name="act08" value="start_battle player,spyder_dryadsgrove_petra"/>
+    <property name="act09" value="translated_dialog spyder_dryadsgrove_petra2"/>
+    <property name="act10" value="set_variable dryadsgrovepetra:yes"/>
     <property name="cond1" value="not variable_set dryadsgrovepetra:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -728,14 +734,16 @@
   </object>
   <object id="227" name="Talk Ferris" type="event" x="592" y="112" width="16" height="32">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_dryadsgrove_ferris"/>
-    <property name="act1" value="translated_dialog spyder_dryadsgrove_ferris1"/>
-    <property name="act2" value="add_monster viviteel,50,spyder_dryadsgrove_ferris,5,10"/>
-    <property name="act3" value="add_monster allagon,50,spyder_dryadsgrove_ferris,5,10"/>
-    <property name="act4" value="add_monster araignee,50,spyder_dryadsgrove_ferris,5,10"/>
-    <property name="act5" value="start_battle player,spyder_dryadsgrove_ferris"/>
-    <property name="act6" value="translated_dialog spyder_dryadsgrove_ferris2"/>
-    <property name="act7" value="set_variable dryadsgroveferris:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_dryadsgrove_ferris"/>
+    <property name="act03" value="translated_dialog spyder_dryadsgrove_ferris1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster viviteel,50,spyder_dryadsgrove_ferris,5,10"/>
+    <property name="act06" value="add_monster allagon,50,spyder_dryadsgrove_ferris,5,10"/>
+    <property name="act07" value="add_monster araignee,50,spyder_dryadsgrove_ferris,5,10"/>
+    <property name="act08" value="start_battle player,spyder_dryadsgrove_ferris"/>
+    <property name="act09" value="translated_dialog spyder_dryadsgrove_ferris2"/>
+    <property name="act10" value="set_variable dryadsgroveferris:yes"/>
     <property name="cond1" value="not variable_set dryadsgroveferris:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

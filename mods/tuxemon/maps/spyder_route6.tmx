@@ -2,10 +2,10 @@
 <map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="244">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route6"/>
   <property name="south" value="candy_town"/>
-  <property name="map_type" value="route"/>
   <property name="west" value="tunnel"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
@@ -489,7 +489,7 @@
    <properties>
     <property name="act01" value="char_stop player"/>
     <property name="act02" value="lock_controls"/>
-    <property name="act03" value="create_npc spyder_billie,8,13"/>
+    <property name="act03" value="create_npc spyder_billie,0,14"/>
     <property name="act04" value="pathfind_to_player spyder_billie"/>
     <property name="act05" value="unlock_controls"/>
     <property name="act08" value="translated_dialog spyder_route6_billie1"/>
@@ -503,7 +503,7 @@
     <property name="act27" value="set_monster_attribute add_monster,gender,male"/>
     <property name="act30" value="start_battle player,spyder_billie"/>
     <property name="act71" value="translated_dialog spyder_route6_billie2"/>
-    <property name="act75" value="pathfind spyder_billie,8,13"/>
+    <property name="act75" value="pathfind spyder_billie,16,4"/>
     <property name="act80" value="remove_npc spyder_billie"/>
     <property name="act90" value="set_variable route6billie:yes"/>
     <property name="cond1" value="not variable_set route6billie:yes"/>
@@ -531,7 +531,7 @@
     <property name="act01" value="char_stop player"/>
     <property name="act02" value="lock_controls"/>
     <property name="act03" value="create_npc spyder_billie,4,3"/>
-    <property name="act04" value="pathfind spyder_billie,3,8"/>
+    <property name="act04" value="pathfind spyder_billie,4,8"/>
     <property name="act05" value="unlock_controls"/>
     <property name="act06" value="char_face spyder_billie,down"/>
     <property name="act07" value="char_face player,up"/>
@@ -546,7 +546,7 @@
     <property name="act27" value="set_monster_attribute add_monster,gender,male"/>
     <property name="act30" value="start_battle player,spyder_billie"/>
     <property name="act71" value="translated_dialog spyder_route6_billie2"/>
-    <property name="act75" value="pathfind spyder_billie,4,3"/>
+    <property name="act75" value="pathfind spyder_billie,16,4"/>
     <property name="act80" value="remove_npc spyder_billie"/>
     <property name="act90" value="set_variable route6billie:yes"/>
     <property name="cond1" value="not variable_set route6billie:yes"/>

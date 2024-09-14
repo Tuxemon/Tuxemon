@@ -18,6 +18,7 @@
 		"own trainer": 0
 	},
 	"tech_id": 0,
+	"tags": ["default"],
 	"types": [],
 	"use_failure": "combat_none",
 	"use_success": null,

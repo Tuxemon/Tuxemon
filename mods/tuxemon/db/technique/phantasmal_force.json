@@ -22,6 +22,7 @@
     "own team": 0,
     "own trainer": 0
   },
+  "tags": ["basic"],
   "types": [
     "wood"
   ],

@@ -24,6 +24,7 @@
 		"own trainer": 0
 	},
 	"tech_id": 0,
+	"tags": ["default"],
 	"types": [],
 	"use_failure": null,
 	"use_success": null,

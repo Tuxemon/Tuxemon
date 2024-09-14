@@ -21,6 +21,7 @@
 		"own team": 0,
 		"own trainer": 0
 	},
+	"tags": ["default"],
 	"tech_id": 0,
 	"use_failure": "generic_failure",
 	"use_success": null,

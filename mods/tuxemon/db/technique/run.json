@@ -24,6 +24,7 @@
 		"own team": 0,
 		"own trainer": 0
 	},
+	"tags": ["default"],
 	"tech_id": 0,
 	"use_failure": "combat_cannot_run_away",
 	"use_success": null,

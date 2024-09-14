@@ -161,6 +161,7 @@ class Learn(MonsterTestBase):
         sort="damage",
         target={},
         types=[],
+        tags=["animal"],
         use_tech="combat_used_x",
     )
 

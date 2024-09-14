@@ -26,6 +26,7 @@
     "own team": 0,
     "own trainer": 0
   },
+  "tags": ["default"],
   "types": [
     "wood",
     "earth"

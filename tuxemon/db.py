@@ -536,7 +536,9 @@ class MonsterModel(BaseModel, validate_assignment=True):
         Optional[MonsterSpritesModel], Field(validate_default=True)
     ] = None
     shape: MonsterShape = Field(..., description="The shape of the monster")
-    tags: Sequence[str] = Field(..., description="The tags of the monster")
+    tags: Sequence[str] = Field(
+        ..., description="The tags of the monster", min_length=1
+    )
     types: Sequence[ElementType] = Field(
         [], description="The type(s) of this monster"
     )
@@ -599,14 +601,6 @@ class MonsterModel(BaseModel, validate_assignment=True):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
-    @field_validator("tags")
-    def check_tags(cls: MonsterModel, v: list[str]) -> list[str]:
-        if v:
-            return v
-        raise ValueError(
-            f"there are no tags, insert at least the shape of the monster"
-        )
-
 
 class StatModel(BaseModel):
     value: float = Field(
@@ -653,6 +647,9 @@ class TechniqueModel(BaseModel):
     slug: str = Field(..., description="The slug of the technique")
     sort: TechSort = Field(..., description="The sort of technique this is")
     icon: str = Field(None, description="The icon to use for the technique")
+    tags: Sequence[str] = Field(
+        ..., description="The tags of the technique", min_length=1
+    )
     conditions: Sequence[str] = Field(
         [], description="Conditions that must be met"
     )

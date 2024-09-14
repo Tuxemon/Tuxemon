@@ -1248,10 +1248,16 @@ class WorldState(state.State):
     #             Map Change/Load Functions            #
     ####################################################
     def change_map(self, map_name: str) -> None:
+        """
+        Loads a new map and updates the game state accordingly.
+
+        Parameters:
+            map_name: The name of the map to load.
+        """
         # Set the currently loaded map. This is needed because the event
         # engine loads event conditions and event actions from the currently
         # loaded map. If we change maps, we need to update this.
-        logger.debug("Map was not preloaded. Loading from disk.")
+        logger.debug(f"Loading map '{map_name}' from disk.")
         map_data = self.load_map(map_name)
 
         self.current_map = map_data
@@ -1261,26 +1267,45 @@ class WorldState(state.State):
         self.map_size = map_data.size
         self.map_area = map_data.area
 
-        # The first coordinates that are out of bounds.
+        # Set invalid coordinates (out of bounds)
         self.invalid_x = (-1, self.map_size[0])
         self.invalid_y = (-1, self.map_size[1])
 
         self.client.load_map(map_data)
+        self.clear_npcs()
+        self.update_player_state()
 
-        # Clear out any existing NPCs
+    def clear_npcs(self) -> None:
+        """
+        Clears all existing NPCs from the game state.
+        """
         self.npcs = []
         self.npcs_off_map = []
-        self.add_player(local_session.player)
 
-        # reset controls and stop moving to prevent player from
-        # moving after the teleport and being out of game
-        self.stop_char(self.player)
+    def update_player_state(self) -> None:
+        """
+        Updates the player's state after changing maps.
 
-        # move to spawn position, if any
+        Parameters:
+            player: The player object to update.
+        """
+        player = local_session.player
+        self.add_player(player)
+        self.stop_char(player)
+        self.set_player_spawn_position(player)
+
+    def set_player_spawn_position(self, character: NPC) -> None:
+        """
+        Sets the player's position to the spawn point defined in the map events.
+
+        Parameters:
+            player: The player object to update.
+        """
         for eo in self.client.events:
             if eo.name.lower() == "player spawn":
-                self.player.set_position((eo.x, eo.y))
-                self.player.remove_collision((eo.x, eo.y))
+                character.set_position((eo.x, eo.y))
+                character.remove_collision((eo.x, eo.y))
+                break
 
     def load_map(self, path: str) -> TuxemonMap:
         """

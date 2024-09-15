@@ -7,7 +7,7 @@ events:
     type: "event"
   Spyder:
     actions:
-    - change_bg gradient_blue,choice_gender
+    - change_bg gradient_blue,choice_gender,image
     - translated_dialog_choice white_female:black_male:white_male:black_female:gender_enby:gender_whatever,race_choice
     - change_bg gradient_blue
     - transition_teleport spyder_bedroom.tmx,4,4,0.3
@@ -20,7 +20,7 @@ events:
     type: "event"
   Xero:
     actions:
-    - change_bg gradient_blue,choice_gender
+    - change_bg gradient_blue,choice_gender,image
     - translated_dialog_choice white_female:black_male:white_male:black_female:gender_enby:gender_whatever,race_choice
     - change_bg gradient_blue
     - transition_teleport player_house_bedroom.tmx,4,4,0.3

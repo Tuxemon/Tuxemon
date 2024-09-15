@@ -754,7 +754,6 @@ class NPC(Entity[NPCState]):
         if old_monster not in self.monsters:
             return
 
-        # TODO: implement an evolution animation
         slot = self.monsters.index(old_monster)
         new_monster = Monster()
         new_monster.load_from_db(evolution)
@@ -774,17 +773,18 @@ class NPC(Entity[NPCState]):
             if old_monster.name == T.translate(old_monster.slug)
             else old_monster.name
         )
+        # Copy flairs from old monster to new monster
+        for flair_category, new_flair in new_monster.flairs.items():
+            if flair_category in old_monster.flairs:
+                new_monster.flairs[flair_category] = old_monster.flairs[
+                    flair_category
+                ]
+
         self.remove_monster(old_monster)
         self.add_monster(new_monster, slot)
 
-        # set evolution as caught
+        # Set evolution as caught
         self.tuxepedia[evolution] = SeenStatus.caught
-
-        # If evolution has a flair matching, copy it
-        for new_flair in new_monster.flairs.values():
-            for old_flair in old_monster.flairs.values():
-                if new_flair.category == old_flair.category:
-                    new_monster.flairs[new_flair.category] = old_flair
 
     def remove_monster_from_storage(self, monster: Monster) -> None:
         """

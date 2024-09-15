@@ -58,23 +58,23 @@ events:
     type: "event"
   Spyder Intro:
     actions:
-    - change_bg gradient_blue,ceo
+    - change_bg gradient_blue,ceo,template
     - translated_dialog spyder_intro00
-    - change_bg gradient_blue,spyder_tumble
+    - change_bg gradient_blue,spyder_tumble,image
     - translated_dialog spyder_intro01
-    - change_bg gradient_blue,dollfin
+    - change_bg gradient_blue,dollfin,monster
     - translated_dialog dollfin
-    - change_bg gradient_blue,ignibus
+    - change_bg gradient_blue,ignibus,monster
     - translated_dialog ignibus
-    - change_bg gradient_blue,memnomnom
+    - change_bg gradient_blue,memnomnom,monster
     - translated_dialog memnomnom
-    - change_bg gradient_blue,budaye
+    - change_bg gradient_blue,budaye,monster
     - translated_dialog budaye
-    - change_bg gradient_blue,grintot
+    - change_bg gradient_blue,grintot,monster
     - translated_dialog grintot
-    - change_bg gradient_blue,spyder_monsters
+    - change_bg gradient_blue,spyder_monsters,image
     - translated_dialog spyder_intro02
-    - change_bg gradient_blue,spyder_morph
+    - change_bg gradient_blue,spyder_morph,image
     - translated_dialog spyder_intro03
     - set_variable spyder_intro:yes
     - transition_teleport spyder_paper_mart.tmx,4,8,0.3

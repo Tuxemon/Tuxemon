@@ -41,6 +41,7 @@ from tuxemon.math import Vector2
 from tuxemon.platform.const import buttons, events, intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
+from tuxemon.states.world.world_classes import BoundaryChecker
 from tuxemon.states.world.world_menus import WorldMenuState
 from tuxemon.surfanim import SurfaceAnimation
 
@@ -120,6 +121,7 @@ class WorldState(state.State):
 
         from tuxemon.player import Player
 
+        self.boundary_checker = BoundaryChecker()
         # Provide access to the screen surface
         self.screen = self.client.screen
         self.screen_rect = self.screen.get_rect()
@@ -1029,9 +1031,7 @@ class WorldState(state.State):
 
             # We only need to check the perimeter,
             # as there is no way to get further out of bounds
-            if not (
-                self.invalid_x[0] < neighbor[0] < self.invalid_x[1]
-            ) or not (self.invalid_y[0] < neighbor[1] < self.invalid_y[1]):
+            if not self.boundary_checker.is_within_boundaries(neighbor):
                 continue
 
             # check to see if this tile is separated by a wall
@@ -1267,9 +1267,7 @@ class WorldState(state.State):
         self.map_size = map_data.size
         self.map_area = map_data.area
 
-        # Set invalid coordinates (out of bounds)
-        self.invalid_x = (-1, self.map_size[0])
-        self.invalid_y = (-1, self.map_size[1])
+        self.boundary_checker.update_boundaries(self.map_size)
 
         self.client.load_map(map_data)
         self.clear_npcs()

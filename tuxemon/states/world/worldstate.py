@@ -24,6 +24,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import networking, prepare, state
+from tuxemon.camera import Camera, project
 from tuxemon.db import Direction
 from tuxemon.entity import Entity
 from tuxemon.graphics import ColorLike
@@ -180,6 +181,8 @@ class WorldState(state.State):
         if local_session.player is None:
             new_player = Player(prepare.PLAYER_NPC, world=self)
             local_session.player = new_player
+
+        self.camera = Camera(local_session.player)
 
         if map_name:
             self.change_map(map_name)
@@ -353,6 +356,7 @@ class WorldState(state.State):
         self.update_npcs(time_delta)
         for anim_data in self.map_animations.values():
             anim_data["animation"].update(time_delta)
+        self.camera.update()
 
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player.game_variables))
@@ -449,15 +453,18 @@ class WorldState(state.State):
         # moving direction to that direction
         direction = direction_map.get(event.button)
         if direction is not None:
-            if event.held:
-                self.wants_to_move_char[self.player.slug] = direction
-                if self.player.slug in self.allow_char_movement:
-                    self.move_char(self.player, direction)
-                return None
-            elif not event.pressed:
-                if self.player.slug in self.wants_to_move_char.keys():
-                    self.stop_char(self.player)
+            if self.camera.follows_player:
+                if event.held:
+                    self.wants_to_move_char[self.player.slug] = direction
+                    if self.player.slug in self.allow_char_movement:
+                        self.move_char(self.player, direction)
                     return None
+                elif not event.pressed:
+                    if self.player.slug in self.wants_to_move_char.keys():
+                        self.stop_char(self.player)
+                        return None
+            else:
+                return self.camera.handle_input(event)
 
         if prepare.DEV_TOOLS:
             if event.pressed and event.button == intentions.NOCLIP:
@@ -494,11 +501,7 @@ class WorldState(state.State):
             self.current_map.initialize_renderer()
 
         # get player coords to center map
-        cx, cy = self.project(self.player.position3)
-
-        # offset center point for player sprite
-        cx += prepare.TILE_SIZE[0] // 2
-        cy += prepare.TILE_SIZE[1] // 2
+        cx, cy = self.camera.position
 
         # center the map on center of player sprite
         # must center map before getting sprite coordinates
@@ -1139,19 +1142,10 @@ class WorldState(state.State):
         """
         assert self.current_map.renderer
         cx, cy = self.current_map.renderer.get_center_offset()
-        px, py = self.project(tile_position)
+        px, py = project(tile_position)
         x = px + cx
         y = py + cy
         return x, y
-
-    def project(
-        self,
-        position: Sequence[float],
-    ) -> tuple[int, int]:
-        return (
-            int(position[0] * self.tile_size[0]),
-            int(position[1] * self.tile_size[1]),
-        )
 
     def update_npcs(self, time_delta: float) -> None:
         """
@@ -1204,7 +1198,7 @@ class WorldState(state.State):
         for event in self.client.events:
             vector = Vector2(event.x, event.y)
             topleft = self.get_pos_from_tilepos(vector)
-            size = self.project((event.w, event.h))
+            size = project((event.w, event.h))
             rect = topleft, size
             box(surface, rect, (0, 255, 0, 128))
 

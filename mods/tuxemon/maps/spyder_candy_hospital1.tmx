@@ -191,8 +191,8 @@
     <property name="act02" value="pathfind_to_player spyder_hospital1_walt"/>
     <property name="act03" value="translated_dialog spyder_hospital1_walt1"/>
     <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster Anu,34,spyder_hospital1_walt,5,10"/>
-    <property name="act06" value="add_monster Taupypus,27,spyder_hospital1_walt,5,10"/>
+    <property name="act05" value="add_monster anu,34,spyder_hospital1_walt,5,10"/>
+    <property name="act06" value="add_monster taupypus,27,spyder_hospital1_walt,5,10"/>
     <property name="act07" value="start_battle player,spyder_hospital1_walt"/>
     <property name="act08" value="translated_dialog spyder_hospital1_walt2"/>
     <property name="act09" value="set_variable hospital1walt:yes"/>
@@ -280,8 +280,8 @@
     <property name="act02" value="pathfind_to_player spyder_hospital1_walt"/>
     <property name="act03" value="translated_dialog spyder_hospital1_walt1"/>
     <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="add_monster Anu,34,spyder_hospital1_walt,5,10"/>
-    <property name="act06" value="add_monster Taupypus,27,spyder_hospital1_walt,5,10"/>
+    <property name="act05" value="add_monster anu,34,spyder_hospital1_walt,5,10"/>
+    <property name="act06" value="add_monster taupypus,27,spyder_hospital1_walt,5,10"/>
     <property name="act07" value="start_battle player,spyder_hospital1_walt"/>
     <property name="act08" value="translated_dialog spyder_hospital1_walt2"/>
     <property name="act09" value="set_variable hospital1walt:yes"/>

@@ -84,6 +84,9 @@ class EvolutionAction(EventAction):
         self.client.pop_state()
         logger.info(f"{monster.name} evolves into {evolved.name}!")
         self.character.evolve_monster(monster, evolved.slug)
+        self.client.push_state(
+            "EvolutionTransition", original=monster.slug, evolved=evolved.slug
+        )
 
     def deny_evolution(self, monster: Monster) -> None:
         """Deny the evolution"""

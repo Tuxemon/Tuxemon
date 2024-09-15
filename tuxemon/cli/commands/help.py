@@ -34,9 +34,9 @@ class HelpCommand(CLICommand):
             print("Example:")
             print(f"  > {command.example}")
             print()
-        names = [p.name for p in command.get_parameters(ctx)]
-        if names:
-            names.sort()
+        parameters = command.get_parameters(ctx)
+        if parameters:
+            names = sorted([p.name for p in parameters])
             if isinstance(command, MetaCommand):
                 footer = "Enter 'help [command]' for more info."
             else:

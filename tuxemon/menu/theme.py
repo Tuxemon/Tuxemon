@@ -10,7 +10,7 @@ from pygame_menu.widgets.core.widget import Widget
 from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
 from tuxemon import prepare
-from tuxemon.audio import get_sound_filename
+from tuxemon.audio import SoundManager
 from tuxemon.tools import transform_resource_filename
 
 _theme: Optional[pygame_menu.Theme] = None
@@ -124,7 +124,7 @@ def get_sound_engine() -> pygame_menu.Sound:
     sound_engine = pygame_menu.Sound()
     sound_engine.set_sound(
         sound.SOUND_TYPE_WIDGET_SELECTION,
-        get_sound_filename("sound_menu_select"),
+        SoundManager().get_sound_filename("sound_menu_select"),
     )
 
     _sound_engine = sound_engine

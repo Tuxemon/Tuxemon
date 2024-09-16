@@ -727,6 +727,13 @@
             "width": 384,
             "x": -576,
             "y": 0
+        },
+        {
+            "fileName": "spyder_candy_cafe.tmx",
+            "height": 192,
+            "width": 192,
+            "x": 1024,
+            "y": 3200
         }
     ],
     "onlyShowAdjacentMaps": false,

@@ -168,6 +168,9 @@ class EventEngine:
             logger.warning(error)
             return None
 
+        if parameters == [""]:
+            return action()
+
         try:
             return action(*parameters)
         except TypeError as e:
@@ -206,15 +209,10 @@ class EventEngine:
         """
         # TODO: make generic
         try:
-            condition = self.conditions[name]
-
+            return self.conditions[name]()
         except KeyError:
-            error = f'Error: EventCondition "{name}" not implemented'
-            logger.warning(error)
+            logger.warning(f'EventCondition "{name}" not implemented')
             return None
-
-        else:
-            return condition()
 
     def get_conditions(self) -> list[type[EventCondition]]:
         """
@@ -289,20 +287,23 @@ class EventEngine:
         """
         Begins execution of action list. Conditions are not checked.
 
+        The event ID is used to prevent multiple copies of the same event from being started.
+
         Parameters:
             map_event: Event whose actions will be executed.
 
         """
-        # the event id is used to make sure multiple copies of the same event
-        # are not started.  If not checked, then the game would freeze while
-        # it tries to run unlimited copies of the same event, forever.
+        if map_event.id is None:
+            raise ValueError("Event ID is required")
+
         if map_event.id not in self.running_events:
-            logger.debug(f"starting map event: {map_event}")
+            logger.debug(f"Starting map event: {map_event.id}")
             logger.debug("Executing action list")
             logger.debug(map_event)
+
             token = RunningEvent(map_event)
-            assert map_event.id
             self.running_events[map_event.id] = token
+
             if map_event in self.session.client.inits:
                 self.session.client.inits.remove(map_event)
 
@@ -316,26 +317,17 @@ class EventEngine:
             map_event: Event to process.
 
         """
-        # debugging mode is slower and will check all conditions
         if prepare.CONFIG.collision_map:
-            # less optimal, debug
-            started = 0
-            conds = list()
-            for cond in map_event.conds:
-                # TODO: wrap with add_error_context
-                if self.check_condition(cond):
-                    conds.append((True, cond))
-                    started += 1
-                else:
-                    conds.append((False, cond))
-
-            if started == len(map_event.conds):
-                self.start_event(map_event)
-
+            # TODO: wrap with add_error_context
+            # Debug mode: check all conditions and store results (slower)
+            conds = [
+                (self.check_condition(cond), cond) for cond in map_event.conds
+            ]
             self.partial_events.append(conds)
-
+            if all(result for result, _ in conds):
+                self.start_event(map_event)
         else:
-            # optimal, less debug
+            # Optimal mode: start event if all conditions are met
             if all(self.check_condition(cond) for cond in map_event.conds):
                 self.start_event(map_event)
 
@@ -405,7 +397,7 @@ class EventEngine:
                 assert not self.running_events
                 return
 
-            while 1:
+            while True:
                 """
                 * if RunningEvent is currently running an action, then continue
                     to do so

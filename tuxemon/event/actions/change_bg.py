@@ -83,7 +83,11 @@ class ChangeBgAction(EventAction):
                 return
             if self.category == "image":
                 self.image = CATEGORY_PATHS[self.category].format(self.image)
-            elif self.image in db.database[self.category]:
+            elif self.image in db.database["monster"]:
+                self.image = CATEGORY_PATHS[self.category].format(self.image)
+            elif self.image in db.database["template"]:
+                self.image = CATEGORY_PATHS[self.category].format(self.image)
+            elif self.image in db.database["item"]:
                 self.image = CATEGORY_PATHS[self.category].format(self.image)
             else:
                 logger.error(

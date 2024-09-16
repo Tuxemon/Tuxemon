@@ -856,7 +856,7 @@ class CombatState(CombatAnimations):
             self.play_sound_effect(method.sfx)
             # animation own_monster, technique doesn't tackle
             hit_delay += 0.5
-            if method.target.own_monster:
+            if method.target["own_monster"]:
                 target_sprite = self._monster_sprite_map.get(user, None)
             # TODO: a real check or some params to test if should tackle, etc
             if result_tech["should_tackle"]:

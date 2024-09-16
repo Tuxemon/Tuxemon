@@ -2,9 +2,9 @@
 # Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+from tuxemon.db import MusicStatus
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
-from tuxemon.platform import mixer
 from tuxemon.session import Session
 
 
@@ -48,10 +48,10 @@ class MusicPlayingCondition(EventCondition):
         if not names.isdisjoint(combat_states):
             return True
 
-        if (
-            session.client.current_music["song"] == song
-            and mixer.music.get_busy()
-        ):
+        if session.client.current_music.status == MusicStatus.paused:
             return True
         else:
-            return False
+            return (
+                session.client.current_music.current_song == song
+                and session.client.current_music.is_playing()
+            )

@@ -101,11 +101,6 @@ class ElementType(str, Enum):
     water = "water"
 
 
-class ItemType(str, Enum):
-    consumable = "Consumable"
-    key_item = "KeyItem"
-
-
 class ItemCategory(str, Enum):
     none = "none"
     badge = "badge"
@@ -190,6 +185,12 @@ class EntityFacing(str, Enum):
     right = "right"
 
 
+class MusicStatus(str, Enum):
+    playing = "playing"
+    paused = "paused"
+    stopped = "stopped"
+
+
 class Comparison(str, Enum):
     less_than = "less_than"
     less_or_equal = "less_or_equal"
@@ -212,6 +213,9 @@ State = Enum(
 
 
 class ItemBehaviors(BaseModel):
+    consumable: bool = Field(
+        True, description="Whether or not this item is consumable."
+    )
     visible: bool = Field(
         True, description="Whether or not this item is visible."
     )
@@ -243,7 +247,6 @@ class ItemModel(BaseModel):
     )
     sort: ItemSort = Field(..., description="The kind of item this is.")
     sprite: str = Field(..., description="The sprite to use")
-    type: ItemType = Field(..., description="The type of item this is")
     category: ItemCategory = Field(
         ..., description="The category of item this is"
     )
@@ -330,10 +333,9 @@ class MonsterMovesetItemModel(BaseModel):
         ..., description="Monster level in which this moveset is learned", gt=0
     )
     technique: str = Field(
-        ..., description="Name of the technique for this moveset item"
-    )
-    element: Optional[ElementType] = Field(
-        None, description="Element random technique"
+        ...,
+        description="Name of the technique for this moveset item",
+        json_schema_extra={"unique": True},
     )
 
     @field_validator("technique")
@@ -556,7 +558,7 @@ class MonsterModel(BaseModel, validate_assignment=True):
         le=prepare.CATCH_RESISTANCE_RANGE[1],
     )
     moveset: Sequence[MonsterMovesetItemModel] = Field(
-        [], description="The moveset of this monster"
+        [], description="The moveset of this monster", min_length=1
     )
     history: Sequence[MonsterHistoryItemModel] = Field(
         [], description="The evolution history of this monster"
@@ -787,11 +789,20 @@ class TechniqueModel(BaseModel):
         cls: TechniqueModel, v: Range, info: ValidationInfo
     ) -> Range:
         # Special indicates that we are not doing damage
-        if v == Range.special and "damage" in info.data["effects"]:
+        if v == Range.special and any(
+            effect in info.data["effects"]
+            for effect in [
+                "damage",
+                "area",
+                "retaliate",
+                "revenge",
+                "money",
+                "splash",
+            ]
+        ):
             raise ValueError(
-                '"special" range cannot be used with effect "damage"'
+                '"special" range cannot be used with effects "damage", "area", "retaliate", "revenge", "money", or "splash"'
             )
-
         return v
 
     @field_validator("animation")

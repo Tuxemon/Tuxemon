@@ -11,7 +11,6 @@
   "sort": "food",
   "sprite": "gfx/items/revive.png",
   "category": "revive",
-  "type": "Consumable",
   "usable_in": [
     "MainCombatMenuState",
     "WorldState"

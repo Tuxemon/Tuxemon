@@ -9,11 +9,11 @@
   "sort": "utility",
   "sprite": "gfx/items/sledgehammer.png",
   "category": "destroy",
-  "type": "KeyItem",
   "usable_in": [
     "WorldState"
   ],
   "behaviors": {
+    "consumable": false,
     "requires_monster_menu": false
   },
   "use_failure": "generic_failure",

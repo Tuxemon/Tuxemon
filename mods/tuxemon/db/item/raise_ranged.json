@@ -7,7 +7,6 @@
   "sort": "utility",
   "sprite": "gfx/items/raise_ranged.png",
   "category": "stats",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],

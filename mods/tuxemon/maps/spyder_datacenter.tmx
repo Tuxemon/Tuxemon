@@ -181,16 +181,18 @@
   </object>
   <object id="82" name="Talk Fermi" type="event" x="128" y="224" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_datacenter_fermi"/>
-    <property name="act1" value="translated_dialog spyder_datacenter_fermi1"/>
-    <property name="act2" value="add_monster chromeye,35,spyder_datacenter_fermi,5,10"/>
-    <property name="act3" value="add_monster angrito,35,spyder_datacenter_fermi,5,10"/>
-    <property name="act4" value="add_monster sadito,35,spyder_datacenter_fermi,5,10"/>
-    <property name="act5" value="add_monster happito,35,spyder_datacenter_fermi,5,10"/>
-    <property name="act6" value="add_monster neutrito,35,spyder_datacenter_fermi,5,10"/>
-    <property name="act7" value="start_battle player,spyder_datacenter_fermi"/>
-    <property name="act8" value="translated_dialog spyder_datacenter_fermi2"/>
-    <property name="act9" value="set_variable datacenterfermi:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_datacenter_fermi"/>
+    <property name="act03" value="translated_dialog spyder_datacenter_fermi1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster chromeye,35,spyder_datacenter_fermi,5,10"/>
+    <property name="act06" value="add_monster angrito,35,spyder_datacenter_fermi,5,10"/>
+    <property name="act07" value="add_monster sadito,35,spyder_datacenter_fermi,5,10"/>
+    <property name="act08" value="add_monster happito,35,spyder_datacenter_fermi,5,10"/>
+    <property name="act09" value="add_monster neutrito,35,spyder_datacenter_fermi,5,10"/>
+    <property name="act10" value="start_battle player,spyder_datacenter_fermi"/>
+    <property name="act11" value="translated_dialog spyder_datacenter_fermi2"/>
+    <property name="act12" value="set_variable datacenterfermi:yes"/>
     <property name="cond1" value="not variable_set datacenterfermi:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -204,13 +206,15 @@
   </object>
   <object id="84" name="Talk Onnes" type="event" x="224" y="224" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_datacenter_onnes"/>
-    <property name="act1" value="translated_dialog spyder_datacenter_onnes1"/>
-    <property name="act2" value="add_monster ouroboutlet,45,spyder_datacenter_onnes,5,10"/>
-    <property name="act3" value="add_monster angrito,40,spyder_datacenter_onnes,5,10"/>
-    <property name="act6" value="start_battle player,spyder_datacenter_onnes"/>
-    <property name="act7" value="translated_dialog spyder_datacenter_onnes2"/>
-    <property name="act8" value="set_variable datacenteronnes:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_datacenter_onnes"/>
+    <property name="act03" value="translated_dialog spyder_datacenter_onnes1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster ouroboutlet,45,spyder_datacenter_onnes,5,10"/>
+    <property name="act06" value="add_monster angrito,40,spyder_datacenter_onnes,5,10"/>
+    <property name="act07" value="start_battle player,spyder_datacenter_onnes"/>
+    <property name="act08" value="translated_dialog spyder_datacenter_onnes2"/>
+    <property name="act09" value="set_variable datacenteronnes:yes"/>
     <property name="cond1" value="not variable_set datacenteronnes:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -224,13 +228,15 @@
   </object>
   <object id="86" name="Talk Bayliss" type="event" x="224" y="64" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_datacenter_bayliss"/>
-    <property name="act1" value="translated_dialog spyder_datacenter_bayliss1"/>
-    <property name="act2" value="add_monster sockeserp,45,spyder_datacenter_bayliss,5,10"/>
-    <property name="act3" value="add_monster sadito,40,spyder_datacenter_bayliss,5,10"/>
-    <property name="act6" value="start_battle player,spyder_datacenter_bayliss"/>
-    <property name="act7" value="translated_dialog spyder_datacenter_bayliss2"/>
-    <property name="act8" value="set_variable datacenterbayliss:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_datacenter_bayliss"/>
+    <property name="act03" value="translated_dialog spyder_datacenter_bayliss1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster sockeserp,45,spyder_datacenter_bayliss,5,10"/>
+    <property name="act06" value="add_monster sadito,40,spyder_datacenter_bayliss,5,10"/>
+    <property name="act07" value="start_battle player,spyder_datacenter_bayliss"/>
+    <property name="act08" value="translated_dialog spyder_datacenter_bayliss2"/>
+    <property name="act09" value="set_variable datacenterbayliss:yes"/>
     <property name="cond1" value="not variable_set datacenterbayliss:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -244,13 +250,15 @@
   </object>
   <object id="88" name="Talk Chomsky" type="event" x="128" y="64" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_datacenter_chomsky"/>
-    <property name="act1" value="translated_dialog spyder_datacenter_chomsky1"/>
-    <property name="act2" value="add_monster fancair,45,spyder_datacenter_chomsky,5,10"/>
-    <property name="act3" value="add_monster happito,40,spyder_datacenter_chomsky,5,10"/>
-    <property name="act6" value="start_battle player,spyder_datacenter_chomsky"/>
-    <property name="act7" value="translated_dialog spyder_datacenter_chomsky2"/>
-    <property name="act8" value="set_variable datacenterchomsky:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_datacenter_chomsky"/>
+    <property name="act03" value="translated_dialog spyder_datacenter_chomsky1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster fancair,45,spyder_datacenter_chomsky,5,10"/>
+    <property name="act06" value="add_monster happito,40,spyder_datacenter_chomsky,5,10"/>
+    <property name="act07" value="start_battle player,spyder_datacenter_chomsky"/>
+    <property name="act08" value="translated_dialog spyder_datacenter_chomsky2"/>
+    <property name="act09" value="set_variable datacenterchomsky:yes"/>
     <property name="cond1" value="not variable_set datacenterchomsky:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -264,13 +272,15 @@
   </object>
   <object id="90" name="Talk Lagrange" type="event" x="32" y="64" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_datacenter_lagrange"/>
-    <property name="act1" value="translated_dialog spyder_datacenter_lagrange1"/>
-    <property name="act2" value="add_monster windeye,45,spyder_datacenter_lagrange,5,10"/>
-    <property name="act3" value="add_monster neutrito,45,spyder_datacenter_lagrange,5,10"/>
-    <property name="act6" value="start_battle player,spyder_datacenter_lagrange"/>
-    <property name="act7" value="translated_dialog spyder_datacenter_lagrange2"/>
-    <property name="act8" value="set_variable datacenterlagrange:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_datacenter_lagrange"/>
+    <property name="act03" value="translated_dialog spyder_datacenter_lagrange1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster windeye,45,spyder_datacenter_lagrange,5,10"/>
+    <property name="act06" value="add_monster neutrito,45,spyder_datacenter_lagrange,5,10"/>
+    <property name="act07" value="start_battle player,spyder_datacenter_lagrange"/>
+    <property name="act08" value="translated_dialog spyder_datacenter_lagrange2"/>
+    <property name="act09" value="set_variable datacenterlagrange:yes"/>
     <property name="cond1" value="not variable_set datacenterlagrange:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

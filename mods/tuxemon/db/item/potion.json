@@ -10,7 +10,6 @@
   "sort": "potion",
   "sprite": "gfx/items/potion.png",
   "category": "potion",
-  "type": "Consumable",
   "usable_in": [
     "MainCombatMenuState",
     "WorldState"

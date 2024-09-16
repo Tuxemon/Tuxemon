@@ -68,15 +68,14 @@ class MonsterInfoState(PygameMenuState):
         width = menu._width
         height = menu._height
         menu._width = fix_measure(menu._width, 0.97)
-        # history
-        evo = ""
-        if monster.history:
-            if len(monster.history) == 1:
-                evo = T.translate("yes_evolution")
-            else:
-                evo = T.translate("yes_evolutions")
-        else:
-            evo = T.translate("no_evolution")
+        # evolutions
+        evo = T.translate("no_evolution")
+        if monster.evolutions:
+            evo = T.translate(
+                "yes_evolution"
+                if len(monster.evolutions) == 1
+                else "yes_evolutions"
+            )
         # types
         types = " ".join(map(lambda s: T.translate(s.slug), monster.types))
         # weight and height
@@ -84,6 +83,8 @@ class MonsterInfoState(PygameMenuState):
         results = next(
             (model for model in models if model.slug == monster.slug), None
         )
+        if results is None:
+            return
         diff_weight = formula.diff_percentage(monster.weight, results.weight)
         diff_height = formula.diff_percentage(monster.height, results.height)
         player = local_session.player
@@ -282,10 +283,10 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         lab17.translate(fix_measure(width, 0.01), fix_measure(height, 0.56))
-        # history
+        # evolution
         lab18: Any = menu.add.label(
             title=evo,
-            label_id="history",
+            label_id="evolution",
             font_size=self.font_size_small,
             wordwrap=True,
             align=locals.ALIGN_LEFT,
@@ -293,7 +294,7 @@ class MonsterInfoState(PygameMenuState):
         )
         lab18.translate(fix_measure(width, 0.01), fix_measure(height, 0.76))
 
-        # history monsters
+        # evolution monsters
         f = menu.add.frame_h(
             float=True,
             width=fix_measure(width, 0.95),
@@ -302,9 +303,7 @@ class MonsterInfoState(PygameMenuState):
         )
         f.translate(fix_measure(width, 0.02), fix_measure(height, 0.80))
         f._relax = True
-        elements = []
-        for ele in monster.history:
-            elements.append(ele.mon_slug)
+        elements = [ele.monster_slug for ele in monster.evolutions]
         labels = [
             menu.add.label(
                 title=f"{T.translate(ele).upper()}",
@@ -402,7 +401,7 @@ class MonsterInfoState(PygameMenuState):
 
         return None
 
-    def _get_monsters(self):
+    def _get_monsters(self) -> list[Monster]:
         if self._source == "MonsterTakeState":
             box = find_box_name(self._monster.instance_id)
             if box is None:

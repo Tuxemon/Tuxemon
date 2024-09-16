@@ -379,7 +379,7 @@
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act4" value="char_face player,up"/>
     <property name="act5" value="transition_teleport spyder_flower_city.tmx,17,30,0.3"/>
-    <property name="cond1" value="is variable_set rivergoto:flower"/>
+    <property name="cond1" value="is variable_set rivergoto:flower_city"/>
    </properties>
   </object>
   <object id="207" name="Destination - Leather" type="event" x="224" y="256" width="16" height="16">
@@ -387,7 +387,7 @@
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_leather_town.tmx,17,19,0.3"/>
     <property name="act4" value="char_face player,right"/>
-    <property name="cond1" value="is variable_set rivergoto:leather"/>
+    <property name="cond1" value="is variable_set rivergoto:leather_town"/>
    </properties>
   </object>
   <object id="208" name="Destination - Paper" type="event" x="192" y="256" width="16" height="16">
@@ -395,7 +395,7 @@
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_paper_town.tmx,4,13,0.3"/>
     <property name="act4" value="char_face player,up"/>
-    <property name="cond1" value="is variable_set rivergoto:paper"/>
+    <property name="cond1" value="is variable_set rivergoto:paper_town"/>
    </properties>
   </object>
   <object id="209" name="Destination - Candy" type="event" x="192" y="240" width="16" height="16">
@@ -403,7 +403,7 @@
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_candy_port.tmx,37,13,0.3"/>
     <property name="act4" value="char_face player,down"/>
-    <property name="cond1" value="is variable_set rivergoto:candy"/>
+    <property name="cond1" value="is variable_set rivergoto:candy_port"/>
    </properties>
   </object>
   <object id="210" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
@@ -427,7 +427,7 @@
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_timber_town.tmx,8,21,0.3"/>
     <property name="act4" value="char_face player,up"/>
-    <property name="cond1" value="is variable_set rivergoto:timber"/>
+    <property name="cond1" value="is variable_set rivergoto:timber_town"/>
    </properties>
   </object>
   <object id="213" name="Teleport to Manor" type="event" x="160" y="192" width="16" height="16">

@@ -36,7 +36,16 @@ class ActionParentCommand(CLICommand):
             line: Input text after the command name.
 
         """
-        print("need more arguments or syntax error", file=sys.stderr)
+        if not line:
+            print(
+                "Error: Please provide an action name or syntax.",
+                file=sys.stderr,
+            )
+        else:
+            print(
+                "Error: Invalid syntax. Please check the action name and arguments.",
+                file=sys.stderr,
+            )
 
     def get_subcommands(self, ctx: InvokeContext) -> Iterable[CLICommand]:
         """
@@ -75,9 +84,6 @@ class ActionCommand(CLICommand):
         name, args = parse_action_string(line)
         try:
             ctx.session.client.event_engine.execute_action(name, args)
-        except Exception:
+        except Exception as e:
+            print(f"Error executing action {e}", file=sys.stderr)
             traceback.print_exc()
-            print(
-                "Cannot execute action. Check the input and try again.",
-                file=sys.stderr,
-            )

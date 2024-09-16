@@ -29,6 +29,29 @@ range_map: dict[str, tuple[str, str]] = {
     "reliable": ("level", "resist"),
 }
 
+taste_maps: dict[str, dict[tuple[str, str], float]] = {
+    "armour": {
+        ("cold", "soft"): pre.TASTE_RANGE[0],
+        ("warm", "hearty"): pre.TASTE_RANGE[1],
+    },
+    "speed": {
+        ("cold", "mild"): pre.TASTE_RANGE[0],
+        ("warm", "peppy"): pre.TASTE_RANGE[1],
+    },
+    "melee": {
+        ("cold", "sweet"): pre.TASTE_RANGE[0],
+        ("warm", "salty"): pre.TASTE_RANGE[1],
+    },
+    "ranged": {
+        ("cold", "flakey"): pre.TASTE_RANGE[0],
+        ("warm", "zesty"): pre.TASTE_RANGE[1],
+    },
+    "dodge": {
+        ("cold", "dry"): pre.TASTE_RANGE[0],
+        ("warm", "refined"): pre.TASTE_RANGE[1],
+    },
+}
+
 
 def simple_damage_multiplier(
     attack_types: Sequence[Element],
@@ -124,7 +147,9 @@ def simple_damage_calculate(
 
     """
     if technique.range not in range_map:
-        raise RuntimeError(f"Unhandled damage category: {technique.range}")
+        raise RuntimeError(
+            f"Unhandled damage category for technique '{technique.name}': {technique.range}"
+        )
 
     user_stat, target_stat = range_map[technique.range]
 
@@ -140,7 +165,9 @@ def simple_damage_calculate(
     else:
         target_resist = getattr(target, target_stat)
 
-    mult = simple_damage_multiplier((technique.types), (target.types))
+    mult = simple_damage_multiplier(
+        (technique.types), (target.types), additional_factors
+    )
     move_strength = technique.power * mult
     damage = int(user_strength * move_strength / target_resist)
     return damage, mult
@@ -181,58 +208,19 @@ def simple_lifeleech(user: Monster, target: Monster, divisor: int) -> int:
     return heal
 
 
-def update_armour(mon: Monster) -> int:
+def update_stat(mon: Monster, stat_name: str) -> int:
     """
     It returns a bonus / malus of the stat based on additional parameters.
     """
-    # tastes - which gives the bonus and which the malus
-    _malus, _bonus = pre.TASTE_RANGE
-    malus = mon.armour * _malus if mon.taste_cold == "soft" else 0.0
-    bonus = mon.armour * _bonus if mon.taste_warm == "hearty" else 0.0
-    return int(bonus + malus)
-
-
-def update_speed(mon: Monster) -> int:
-    """
-    It returns a bonus / malus of the stat based on additional parameters.
-    """
-    # tastes - which gives the bonus and which the malus
-    _malus, _bonus = pre.TASTE_RANGE
-    malus = mon.speed * _malus if mon.taste_cold == "mild" else 0.0
-    bonus = mon.speed * _bonus if mon.taste_warm == "peppy" else 0.0
-    return int(bonus + malus)
-
-
-def update_melee(mon: Monster) -> int:
-    """
-    It returns a bonus / malus of the stat based on additional parameters.
-    """
-    # tastes - which gives the bonus and which the malus
-    _malus, _bonus = pre.TASTE_RANGE
-    malus = mon.melee * _malus if mon.taste_cold == "sweet" else 0.0
-    bonus = mon.melee * _bonus if mon.taste_warm == "salty" else 0.0
-    return int(bonus + malus)
-
-
-def update_ranged(mon: Monster) -> int:
-    """
-    It returns a bonus / malus of the stat based on additional parameters.
-    """
-    # tastes - which gives the bonus and which the malus
-    _malus, _bonus = pre.TASTE_RANGE
-    malus = mon.ranged * _malus if mon.taste_cold == "flakey" else 0.0
-    bonus = mon.ranged * _bonus if mon.taste_warm == "zesty" else 0.0
-    return int(bonus + malus)
-
-
-def update_dodge(mon: Monster) -> int:
-    """
-    It returns a bonus / malus of the stat based on additional parameters.
-    """
-    # tastes - which gives the bonus and which the malus
-    _malus, _bonus = pre.TASTE_RANGE
-    malus = mon.dodge * _malus if mon.taste_cold == "dry" else 0.0
-    bonus = mon.dodge * _bonus if mon.taste_warm == "refined" else 0.0
+    stat = getattr(mon, stat_name)
+    bonus = 0
+    malus = 0
+    for (taste_type, value), multiplier in taste_maps[stat_name].items():
+        if getattr(mon, f"taste_{taste_type}") == value:
+            if taste_type == "cold":
+                malus = stat * multiplier
+            else:
+                bonus = stat * multiplier
     return int(bonus + malus)
 
 

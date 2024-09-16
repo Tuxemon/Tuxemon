@@ -168,7 +168,9 @@ class CombatState(CombatAnimations):
         self._run: bool = False
         self._post_animation_task: Optional[Task] = None
         self._xp_message: Optional[str] = None
-        self._status_icon_cache: dict[str, Sprite] = {}
+        self._status_icon_cache: dict[
+            tuple[str, tuple[float, float]], Sprite
+        ] = {}
         self._random_tech_hit: dict[Monster, float] = {}
 
         super().__init__(players, graphics)
@@ -657,6 +659,7 @@ class CombatState(CombatAnimations):
 
         # add status icons
         for monster in self.active_monsters:
+            self._status_icons[monster] = []
             for status in monster.status:
                 if status.icon:
                     icon_position = (
@@ -668,13 +671,13 @@ class CombatState(CombatAnimations):
                             monster, self.monsters_in_play_right
                         )
                     )
-                    if status.icon not in self._status_icon_cache:
-                        self._status_icon_cache[status.icon] = (
-                            self.load_sprite(
-                                status.icon, layer=200, center=icon_position
-                            )
+                    cache_key = (status.icon, icon_position)
+                    if cache_key not in self._status_icon_cache:
+                        self._status_icon_cache[cache_key] = self.load_sprite(
+                            status.icon, layer=200, center=icon_position
                         )
-                    icon = self._status_icon_cache[status.icon]
+
+                    icon = self._status_icon_cache[cache_key]
                     self.sprites.add(icon, layer=200)
                     self._status_icons[monster].append(icon)
 
@@ -1254,7 +1257,7 @@ class CombatState(CombatAnimations):
         self.clean_combat()
 
         # fade music out
-        self.client.event_engine.execute_action("fadeout_music", [1000])
+        self.client.current_music.stop()
 
         # remove any menus that may be on top of the combat state
         while self.client.current_state is not self:

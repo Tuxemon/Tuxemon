@@ -35,4 +35,7 @@ class EvolveEffect(ItemEffect):
         else:
             evolution = random.choice(choices).monster_slug
         target.owner.evolve_monster(target, evolution)
+        self.session.client.push_state(
+            "EvolutionTransition", original=target.slug, evolved=evolution
+        )
         return {"success": True, "num_shakes": 0, "extra": None}

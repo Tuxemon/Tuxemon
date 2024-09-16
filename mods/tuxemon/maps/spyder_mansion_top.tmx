@@ -93,13 +93,15 @@
   </object>
   <object id="32" name="Talk Mickey" type="event" x="160" y="144" width="16" height="32">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_top_mickey"/>
-    <property name="act1" value="translated_dialog spyder_top_mickey1"/>
-    <property name="act2" value="add_monster gectile,25,spyder_top_mickey,5,10"/>
-    <property name="act3" value="add_monster cardiwing,25,spyder_top_mickey,5,10"/>
-    <property name="act4" value="start_battle player,spyder_top_mickey"/>
-    <property name="act5" value="translated_dialog spyder_top_mickey2"/>
-    <property name="act6" value="set_variable mansiontop_mickey:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_top_mickey"/>
+    <property name="act3" value="translated_dialog spyder_top_mickey1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster gectile,25,spyder_top_mickey,5,10"/>
+    <property name="act6" value="add_monster cardiwing,25,spyder_top_mickey,5,10"/>
+    <property name="act7" value="start_battle player,spyder_top_mickey"/>
+    <property name="act8" value="translated_dialog spyder_top_mickey2"/>
+    <property name="act9" value="set_variable mansiontop_mickey:yes"/>
     <property name="cond1" value="not variable_set mansiontop_mickey:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -142,39 +144,45 @@
   </object>
   <object id="41" name="Talk Russell" type="event" x="48" y="208" width="16" height="32">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_top_russell"/>
-    <property name="act1" value="translated_dialog spyder_top_russell1"/>
-    <property name="act2" value="add_monster av8r,22,spyder_top_russell,5,10"/>
-    <property name="act3" value="add_monster mrmoswitch,22,spyder_top_russell,5,10"/>
-    <property name="act4" value="add_monster k9,22,spyder_top_russell,5,10"/>
-    <property name="act5" value="start_battle player,spyder_top_russell"/>
-    <property name="act6" value="translated_dialog spyder_top_russell2"/>
-    <property name="act7" value="set_variable mansiontop_russell:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_top_russell"/>
+    <property name="act03" value="translated_dialog spyder_top_russell1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster av8r,22,spyder_top_russell,5,10"/>
+    <property name="act06" value="add_monster mrmoswitch,22,spyder_top_russell,5,10"/>
+    <property name="act07" value="add_monster k9,22,spyder_top_russell,5,10"/>
+    <property name="act08" value="start_battle player,spyder_top_russell"/>
+    <property name="act09" value="translated_dialog spyder_top_russell2"/>
+    <property name="act10" value="set_variable mansiontop_russell:yes"/>
     <property name="cond1" value="not variable_set mansiontop_russell:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="45" name="Talk Ricardo" type="event" x="240" y="96" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_top_ricardo"/>
-    <property name="act1" value="translated_dialog spyder_top_ricardo1"/>
-    <property name="act2" value="add_monster lapinou,22,spyder_top_ricardo,5,10"/>
-    <property name="act3" value="add_monster squabbit,22,spyder_top_ricardo,5,10"/>
-    <property name="act4" value="start_battle player,spyder_top_ricardo"/>
-    <property name="act5" value="translated_dialog spyder_top_ricardo2"/>
-    <property name="act6" value="set_variable mansiontop_ricardo:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_top_ricardo"/>
+    <property name="act3" value="translated_dialog spyder_top_ricardo1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster lapinou,22,spyder_top_ricardo,5,10"/>
+    <property name="act6" value="add_monster squabbit,22,spyder_top_ricardo,5,10"/>
+    <property name="act7" value="start_battle player,spyder_top_ricardo"/>
+    <property name="act8" value="translated_dialog spyder_top_ricardo2"/>
+    <property name="act9" value="set_variable mansiontop_ricardo:yes"/>
     <property name="cond1" value="not variable_set mansiontop_ricardo:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="48" name="Talk Jackson" type="event" x="176" y="208" width="80" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_top_jackson"/>
-    <property name="act1" value="translated_dialog spyder_top_jackson1"/>
-    <property name="act2" value="add_monster viviteel,26,spyder_top_jackson,5,10"/>
-    <property name="act4" value="start_battle player,spyder_top_jackson"/>
-    <property name="act5" value="translated_dialog spyder_top_jackson2"/>
-    <property name="act6" value="set_variable mansiontop_jackson:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_top_jackson"/>
+    <property name="act3" value="translated_dialog spyder_top_jackson1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster viviteel,26,spyder_top_jackson,5,10"/>
+    <property name="act6" value="start_battle player,spyder_top_jackson"/>
+    <property name="act7" value="translated_dialog spyder_top_jackson2"/>
+    <property name="act8" value="set_variable mansiontop_jackson:yes"/>
     <property name="cond1" value="not variable_set mansiontop_jackson:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -209,6 +217,7 @@
   <object id="54" name="Talk Magician2" type="event" x="96" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_top_magician2"/>
+    <property name="act2" value="translated_dialog spyder_top_magician3"/>
     <property name="behav1" value="talk spyder_top_lenny"/>
     <property name="cond1" value="is variable_set dojomagician:yes"/>
    </properties>

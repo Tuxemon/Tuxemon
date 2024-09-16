@@ -40,7 +40,7 @@ class TestMonsterActions(unittest.TestCase):
     _agnite = MonsterModel(
         slug="agnite",
         category="false_dragon",
-        moveset=[],
+        moveset=[{"level_learned": 1, "technique": "ram"}],
         evolutions=[],
         history=[],
         tags=["dragon", "coastal", "desert", "mountains"],
@@ -58,7 +58,7 @@ class TestMonsterActions(unittest.TestCase):
     _nut = MonsterModel(
         slug="nut",
         category="hardware",
-        moveset=[],
+        moveset=[{"level_learned": 1, "technique": "ram"}],
         evolutions=[],
         history=[],
         tags=["blob"],

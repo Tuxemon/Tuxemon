@@ -475,12 +475,14 @@
   </object>
   <object id="83" name="Talk Bobette" type="event" x="208" y="272" width="48" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_citypark_bobette"/>
-    <property name="act1" value="translated_dialog spyder_citypark_bobette1"/>
-    <property name="act2" value="add_monster aardorn,10,spyder_citypark_bobette,5,10"/>
-    <property name="act3" value="start_battle player,spyder_citypark_bobette"/>
-    <property name="act4" value="translated_dialog spyder_citypark_bobette2"/>
-    <property name="act5" value="set_variable citypark_bobette:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_citypark_bobette"/>
+    <property name="act3" value="translated_dialog spyder_citypark_bobette1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster aardorn,10,spyder_citypark_bobette,5,10"/>
+    <property name="act6" value="start_battle player,spyder_citypark_bobette"/>
+    <property name="act7" value="translated_dialog spyder_citypark_bobette2"/>
+    <property name="act8" value="set_variable citypark_bobette:yes"/>
     <property name="cond1" value="not variable_set citypark_bobette:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

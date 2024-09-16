@@ -45,7 +45,6 @@ class DamageEffect(TechEffect):
         hit = tech.accuracy >= value
         tech.hit = hit
         if hit and not target.out_of_range:
-            tech.advance_counter_success()
             damage, mult = formula.simple_damage_calculate(tech, user, target)
             target.current_hp -= damage
         else:

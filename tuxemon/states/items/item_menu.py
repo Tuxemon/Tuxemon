@@ -9,6 +9,7 @@ import pygame
 from tuxemon import prepare, tools
 from tuxemon.db import State
 from tuxemon.item.item import Item
+from tuxemon.item.itemeffect import ItemEffectResult
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
@@ -162,28 +163,34 @@ class ItemMenuState(Menu[Item]):
             item: Selected item.
         """
 
+        def show_item_result(item: Item, result: ItemEffectResult) -> None:
+            """Show the item result as a dialog if necessary."""
+            if (
+                item.behaviors.show_dialog_on_failure and not result["success"]
+            ) or (item.behaviors.show_dialog_on_success and result["success"]):
+                tools.show_item_result_as_dialog(local_session, item, result)
+
         def use_item_with_monster(menu_item: MenuItem[Monster]) -> None:
             """Use the item with a monster."""
             player = local_session.player
             monster = menu_item.game_object
             result = item.use(player, monster)
-            self.client.pop_state()  # pop the monster screen
-            self.client.pop_state()  # pop the item screen
-            tools.show_item_result_as_dialog(local_session, item, result)
+            self.client.remove_state_by_name("MonsterMenuState")
+            self.client.remove_state_by_name("ItemMenuState")
+            self.client.remove_state_by_name("WorldMenuState")
+            show_item_result(item, result)
 
         def use_item_without_monster() -> None:
             """Use the item without a monster."""
             player = local_session.player
-            self.client.pop_state()
+            self.client.remove_state_by_name("ItemMenuState")
+            self.client.remove_state_by_name("WorldMenuState")
             result = item.use(player, None)
-            if item.behaviors.show_dialog_on_failure and not result["success"]:
-                tools.show_item_result_as_dialog(local_session, item, result)
-            elif item.behaviors.show_dialog_on_success and result["success"]:
-                tools.show_item_result_as_dialog(local_session, item, result)
+            show_item_result(item, result)
 
         def confirm() -> None:
             """Confirm the use of the item."""
-            self.client.pop_state()  # close the confirm dialog
+            self.client.remove_state_by_name("ChoiceState")
             if item.behaviors.requires_monster_menu:
                 menu = self.client.push_state(MonsterMenuState())
                 menu.is_valid_entry = item.validate  # type: ignore[assignment]
@@ -193,7 +200,7 @@ class ItemMenuState(Menu[Item]):
 
         def cancel() -> None:
             """Cancel the use of the item."""
-            self.client.pop_state()  # close the use/cancel menu
+            self.client.remove_state_by_name("ChoiceState")
 
         def open_choice_menu() -> None:
             """Open the use/cancel menu."""

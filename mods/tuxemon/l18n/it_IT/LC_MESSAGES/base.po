@@ -1821,9 +1821,6 @@ msgstr "Roboscuro"
 msgid "xeon_2"
 msgstr "Xeon-2"
 
-msgid "birb_robo"
-msgstr "Roboccellino"
-
 msgid "xeon"
 msgstr "Xeon"
 
@@ -3272,11 +3269,6 @@ msgstr "no tipologia"
 msgid "combat_player_run_status"
 msgstr ""
 "Non puoi scappare.\n"
-"{monster} è {status}!"
-
-msgid "combat_player_forfeit_status"
-msgstr ""
-"Non puoi dare forfait.\n"
 "{monster} è {status}!"
 
 msgid "cannot_use_tech_monster"

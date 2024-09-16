@@ -292,27 +292,31 @@
   </object>
   <object id="71" name="Talk Morningstar" type="event" x="32" y="48" width="16" height="16">
    <properties>
-    <property name="act10" value="pathfind_to_player spyder_wayfarer1_morningstar"/>
-    <property name="act11" value="translated_dialog spyder_wayfarer1_morningstar1"/>
-    <property name="act12" value="char_plague infected,spyder_wayfarer1_morningstar"/>
-    <property name="act13" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,5,10"/>
-    <property name="act14" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,5,10"/>
-    <property name="act15" value="start_battle player,spyder_wayfarer1_morningstar"/>
-    <property name="act16" value="translated_dialog spyder_wayfarer1_morningstar2"/>
-    <property name="act17" value="set_variable wayfarer1morningstar:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_wayfarer1_morningstar"/>
+    <property name="act03" value="translated_dialog spyder_wayfarer1_morningstar1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="char_plague infected,spyder_wayfarer1_morningstar"/>
+    <property name="act06" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,5,10"/>
+    <property name="act07" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,5,10"/>
+    <property name="act08" value="start_battle player,spyder_wayfarer1_morningstar"/>
+    <property name="act09" value="translated_dialog spyder_wayfarer1_morningstar2"/>
+    <property name="act10" value="set_variable wayfarer1morningstar:yes"/>
     <property name="cond1" value="not variable_set wayfarer1morningstar:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="72" name="Talk Victor" type="event" x="176" y="32" width="32" height="16">
    <properties>
-    <property name="act10" value="pathfind_to_player spyder_wayfarer1_victor"/>
-    <property name="act11" value="translated_dialog spyder_wayfarer1_victor1"/>
-    <property name="act12" value="char_plague infected,spyder_wayfarer1_victor"/>
-    <property name="act13" value="add_monster squabbit,14,spyder_wayfarer1_victor,5,10"/>
-    <property name="act14" value="start_battle player,spyder_wayfarer1_victor"/>
-    <property name="act15" value="translated_dialog spyder_wayfarer1_victor2"/>
-    <property name="act16" value="set_variable wayfarer1victor:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_wayfarer1_victor"/>
+    <property name="act03" value="translated_dialog spyder_wayfarer1_victor1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="char_plague infected,spyder_wayfarer1_victor"/>
+    <property name="act06" value="add_monster squabbit,14,spyder_wayfarer1_victor,5,10"/>
+    <property name="act07" value="start_battle player,spyder_wayfarer1_victor"/>
+    <property name="act08" value="translated_dialog spyder_wayfarer1_victor2"/>
+    <property name="act09" value="set_variable wayfarer1victor:yes"/>
     <property name="cond1" value="not variable_set wayfarer1victor:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

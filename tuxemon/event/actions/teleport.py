@@ -46,6 +46,8 @@ class TeleportAction(EventAction):
             logger.error(f"{self.character} not found")
             return
 
+        self.session.client.current_music.stop()
+
         # Check to see if we're also performing a transition. If we are, wait
         # to perform the teleport at the apex of the transition
         # TODO: This only needs to happen once.

@@ -205,27 +205,33 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         """Open menus to choose a Technique to use."""
 
         def choose_technique() -> None:
+            available_techniques = [
+                tech
+                for tech in self.monster.moves
+                if not combat.recharging(tech)
+            ]
+
             # open menu to choose technique
             menu = self.client.push_state(Menu())
             menu.shrink_to_items = True
 
-            # add techniques to the menu
-            filter_moves = []
+            if not available_techniques:
+                skip = Technique()
+                skip.load("skip")
+                skip_image = self.shadow_text(skip.name)
+                tech_skip = MenuItem(skip_image, None, None, skip)
+                menu.add(tech_skip)
+
             for tech in self.monster.moves:
-                if not combat.recharging(tech):
-                    image = self.shadow_text(tech.name)
-                else:
-                    image = self.shadow_text(
-                        "%s %d" % (tech.name, abs(tech.next_use)),
-                        fg=self.unavailable_color,
-                    )
-                    filter_moves.append(tech)
-                # add skip move if both grey
-                if len(filter_moves) == len(self.monster.moves):
-                    skip = Technique()
-                    skip.load("skip")
-                    self.monster.moves.append(skip)
-                item = MenuItem(image, None, None, tech)
+                tech_name = tech.name
+                tech_color = None
+
+                if combat.recharging(tech):
+                    tech_name = f"{tech.name} ({abs(tech.next_use)})"
+                    tech_color = self.unavailable_color
+
+                tech_image = self.shadow_text(tech_name, fg=tech_color)
+                item = MenuItem(tech_image, None, None, tech)
                 menu.add(item)
 
             # position the new menu
@@ -274,9 +280,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             # enqueue the technique
             target = menu_item.game_object
 
-            params = {"name": technique.name.upper()}
-            # can be used the technique?
+            # Check if the technique can be used on the target
             if not technique.validate(target):
+                params = {"name": technique.name.upper()}
                 msg = T.format("cannot_use_tech_monster", params)
                 tools.open_dialog(local_session, [msg])
                 return
@@ -285,25 +291,25 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 combat.has_effect(technique, "damage")
                 and target == self.monster
             ):
+                params = {"name": technique.name.upper()}
                 msg = T.format("combat_target_itself", params)
                 tools.open_dialog(local_session, [msg])
                 return
-            else:
-                self.character.game_variables["action_tech"] = technique.slug
-                # pre checking (look for null actions)
-                technique = combat.pre_checking(
-                    self.monster, technique, target, self.combat
-                )
-                self.combat.enqueue_action(self.monster, technique, target)
-                # remove skip after using it
-                if technique.slug == "skip":
-                    self.monster.moves.pop()
 
-                # close all the open menus
-                if len(self.opponents) > 1:
-                    self.client.pop_state()  # close target chooser
-                self.client.pop_state()  # close technique menu
-                self.client.pop_state()  # close the monster action menu
+            # Pre-check the technique for validity
+            self.character.game_variables["action_tech"] = technique.slug
+            technique = combat.pre_checking(
+                self.monster, technique, target, self.combat
+            )
+
+            # Enqueue the action
+            self.combat.enqueue_action(self.monster, technique, target)
+
+            # close all the open menus
+            if len(self.opponents) > 1:
+                self.client.pop_state()  # close target chooser
+            self.client.pop_state()  # close technique menu
+            self.client.pop_state()  # close the monster action menu
 
         choose_technique()
 

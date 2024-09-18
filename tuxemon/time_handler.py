@@ -24,11 +24,11 @@ def calculate_day_night_cycle(time: datetime) -> str:
     """
     hour = time.hour
     if hour < 6:
-        return "night"
+        return "false"
     elif 6 <= hour < 18:
-        return "day"
+        return "true"
     else:
-        return "night"
+        return "false"
 
 
 def calculate_day_stage_of_day(time: datetime) -> str:

@@ -71,8 +71,8 @@ class Player(NPC):
         )
         self.game_variables["year"] = current_time.strftime("%Y")
         self.game_variables["weekday"] = current_time.strftime("%A")
-        self.game_variables["leap_year"] = time_handler.is_leap_year(
-            current_time.year
+        self.game_variables["leap_year"] = (
+            "true" if time_handler.is_leap_year(current_time.year) else "false"
         )
         self.game_variables["daytime"] = (
             time_handler.calculate_day_night_cycle(current_time)

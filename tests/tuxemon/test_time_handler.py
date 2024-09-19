@@ -21,10 +21,10 @@ class TestTimeFunctions(unittest.TestCase):
 
     def test_calculate_day_night_cycle(self):
         test_cases = [
-            (datetime(2022, 1, 1, 0, 0, 0), "night"),
-            (datetime(2022, 1, 1, 6, 0, 0), "day"),
-            (datetime(2022, 1, 1, 18, 0, 0), "night"),
-            (datetime(2022, 1, 1, 12, 0, 0), "day"),
+            (datetime(2022, 1, 1, 0, 0, 0), "false"),
+            (datetime(2022, 1, 1, 6, 0, 0), "true"),
+            (datetime(2022, 1, 1, 18, 0, 0), "false"),
+            (datetime(2022, 1, 1, 12, 0, 0), "true"),
         ]
         for time, expected in test_cases:
             self.assertEqual(calculate_day_night_cycle(time), expected)

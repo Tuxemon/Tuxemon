@@ -188,7 +188,7 @@ events:
     type: "event"
   Swim Encounters Day:
     actions:
-    - random_encounter routec,0.25
+    - random_encounter spyder_routec,0.25
     conditions:
     - is char_sprite player,swimmer
     - is current_state WorldState
@@ -197,7 +197,7 @@ events:
     type: "event"
   Swim Encounters Night:
     actions:
-    - random_encounter routec,0.75
+    - random_encounter spyder_routec,0.75
     conditions:
     - is char_sprite player,swimmer
     - is current_state WorldState

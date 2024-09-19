@@ -69,7 +69,7 @@
   </object>
   <object id="56" name="encounter 3" type="event" x="224" y="64" width="64" height="80">
    <properties>
-    <property name="act1" value="random_encounter routea,11"/>
+    <property name="act1" value="random_encounter spyder_routea,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -77,7 +77,7 @@
   </object>
   <object id="60" name="encounter 3" type="event" x="80" y="368" width="112" height="64">
    <properties>
-    <property name="act1" value="random_encounter routea,11"/>
+    <property name="act1" value="random_encounter spyder_routea,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -85,7 +85,7 @@
   </object>
   <object id="61" name="encounter 3" type="event" x="64" y="496" width="80" height="80">
    <properties>
-    <property name="act1" value="random_encounter routea,11"/>
+    <property name="act1" value="random_encounter spyder_routea,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -93,7 +93,7 @@
   </object>
   <object id="62" name="encounter 3" type="event" x="32" y="448" width="32" height="16">
    <properties>
-    <property name="act1" value="random_encounter routea,11"/>
+    <property name="act1" value="random_encounter spyder_routea,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -101,7 +101,7 @@
   </object>
   <object id="63" name="encounter 3" type="event" x="160" y="480" width="16" height="32">
    <properties>
-    <property name="act1" value="random_encounter routea,11"/>
+    <property name="act1" value="random_encounter spyder_routea,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -109,7 +109,7 @@
   </object>
   <object id="64" name="encounter 3" type="event" x="256" y="528" width="32" height="48">
    <properties>
-    <property name="act1" value="random_encounter routea,11"/>
+    <property name="act1" value="random_encounter spyder_routea,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -117,7 +117,7 @@
   </object>
   <object id="65" name="encounter 3" type="event" x="256" y="336" width="32" height="32">
    <properties>
-    <property name="act1" value="random_encounter routea,11"/>
+    <property name="act1" value="random_encounter spyder_routea,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>

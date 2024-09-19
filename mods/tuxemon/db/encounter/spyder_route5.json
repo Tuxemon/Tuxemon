@@ -1,10 +1,12 @@
 {
-  "slug": "route5",
+  "slug": "spyder_route5",
   "monsters": [
     {
       "monster": "foofle",
       "encounter_rate": 3,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         19,
@@ -14,7 +16,9 @@
     {
       "monster": "vamporm",
       "encounter_rate": 3,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         16,
@@ -24,7 +28,9 @@
     {
       "monster": "dracune",
       "encounter_rate": 1,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         18,
@@ -34,7 +40,9 @@
     {
       "monster": "anoleaf",
       "encounter_rate": 3,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         18,
@@ -44,7 +52,9 @@
     {
       "monster": "gectile",
       "encounter_rate": 1,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         22,

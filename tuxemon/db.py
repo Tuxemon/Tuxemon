@@ -1139,12 +1139,24 @@ class EnvironmentModel(BaseModel):
 
 class EncounterItemModel(BaseModel):
     monster: str = Field(..., description="Monster slug for this encounter")
-    encounter_rate: float = Field(..., description="Rate of this encounter")
-    level_range: Sequence[int] = Field(
-        ..., description="Level range to encounter"
+    encounter_rate: float = Field(
+        ..., description="Probability of encountering this monster."
     )
-    variable: Optional[str] = Field(None, description="Variable encounter")
-    exp_req_mod: int = Field(1, description="Exp modifier wild monster", gt=0)
+    level_range: Sequence[int] = Field(
+        ...,
+        description="Minimum and maximum levels at which this encounter can occur.",
+        max_length=2,
+    )
+    variables: Optional[Sequence[str]] = Field(
+        None,
+        description="List of variables that affect the encounter.",
+        min_length=1,
+    )
+    exp_req_mod: int = Field(
+        1,
+        description="Modifier for the experience points required to defeat this wild monster.",
+        gt=0,
+    )
 
     @field_validator("monster")
     def monster_exists(cls: EncounterItemModel, v: str) -> str:
@@ -1152,13 +1164,25 @@ class EncounterItemModel(BaseModel):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
-    @field_validator("variable")
+    @field_validator("variables")
     def variable_exists(
         cls: EncounterItemModel, v: Optional[str]
     ) -> Optional[str]:
-        if not v or v.find(":") > 1:
+        if v is None:
             return v
-        raise ValueError(f"the variable {v} isn't formatted correctly")
+        if len(v) != len(set(v)):
+            raise ValueError("The sequence contains duplicate variables")
+        for variable in v:
+            if (
+                not variable
+                or len(variable.split(":")) != 2
+                or variable[0] == ":"
+                or variable[-1] == ":"
+            ):
+                raise ValueError(
+                    f"the variable {variable} isn't formatted correctly"
+                )
+        return v
 
 
 class EncounterModel(BaseModel):

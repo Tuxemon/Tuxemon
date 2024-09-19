@@ -209,7 +209,7 @@
   <object id="7" name="Player Spawn" type="event" x="64" y="1440" width="16" height="16"/>
   <object id="230" name="Encounters" type="event" x="544" y="496" width="48" height="336">
    <properties>
-    <property name="act1" value="random_encounter lion_mountain"/>
+    <property name="act1" value="random_encounter spyder_lion_mountain"/>
     <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
     <property name="cond1" value="is char_moved player"/>
     <property name="cond2" value="is char_at player"/>
@@ -217,7 +217,7 @@
   </object>
   <object id="236" name="Encounters" type="event" x="80" y="608" width="192" height="64">
    <properties>
-    <property name="act1" value="random_encounter lion_mountain"/>
+    <property name="act1" value="random_encounter spyder_lion_mountain"/>
     <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
     <property name="cond1" value="is char_moved player"/>
     <property name="cond2" value="is char_at player"/>
@@ -225,7 +225,7 @@
   </object>
   <object id="238" name="Encounters" type="event" x="272" y="624" width="16" height="48">
    <properties>
-    <property name="act1" value="random_encounter lion_mountain"/>
+    <property name="act1" value="random_encounter spyder_lion_mountain"/>
     <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
     <property name="cond1" value="is char_moved player"/>
     <property name="cond2" value="is char_at player"/>
@@ -233,7 +233,7 @@
   </object>
   <object id="239" name="Encounters" type="event" x="288" y="656" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter lion_mountain"/>
+    <property name="act1" value="random_encounter spyder_lion_mountain"/>
     <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
     <property name="cond1" value="is char_moved player"/>
     <property name="cond2" value="is char_at player"/>
@@ -241,7 +241,7 @@
   </object>
   <object id="240" name="Encounters" type="event" x="96" y="592" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter lion_mountain"/>
+    <property name="act1" value="random_encounter spyder_lion_mountain"/>
     <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
     <property name="cond1" value="is char_moved player"/>
     <property name="cond2" value="is char_at player"/>
@@ -249,7 +249,7 @@
   </object>
   <object id="241" name="Encounters" type="event" x="224" y="592" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter lion_mountain"/>
+    <property name="act1" value="random_encounter spyder_lion_mountain"/>
     <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
     <property name="cond1" value="is char_moved player"/>
     <property name="cond2" value="is char_at player"/>
@@ -257,7 +257,7 @@
   </object>
   <object id="242" name="Encounters" type="event" x="112" y="560" width="64" height="16">
    <properties>
-    <property name="act1" value="random_encounter lion_mountain"/>
+    <property name="act1" value="random_encounter spyder_lion_mountain"/>
     <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
     <property name="cond1" value="is char_moved player"/>
     <property name="cond2" value="is char_at player"/>
@@ -265,7 +265,7 @@
   </object>
   <object id="246" name="Encounters" type="event" x="112" y="576" width="112" height="32">
    <properties>
-    <property name="act1" value="random_encounter lion_mountain"/>
+    <property name="act1" value="random_encounter spyder_lion_mountain"/>
     <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
     <property name="cond1" value="is char_moved player"/>
     <property name="cond2" value="is char_at player"/>

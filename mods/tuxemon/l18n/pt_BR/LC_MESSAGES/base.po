@@ -1063,9 +1063,6 @@ msgstr "{name} quer batalhar!"
 msgid "combat_capturing_success"
 msgstr "Você capturou {name}!"
 
-msgid "combat_recharging"
-msgstr "{name} precisa de uma folga antes de usar {move} novamente..."
-
 msgid "combat_replacement"
 msgstr "Escolha um substituto!"
 

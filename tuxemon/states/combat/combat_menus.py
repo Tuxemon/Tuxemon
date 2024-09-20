@@ -225,14 +225,23 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             for tech in self.monster.moves:
                 tech_name = tech.name
                 tech_color = None
+                tech_enabled = True
 
                 if combat.recharging(tech):
                     tech_name = f"{tech.name} ({abs(tech.next_use)})"
                     tech_color = self.unavailable_color
+                    tech_enabled = False
 
                 tech_image = self.shadow_text(tech_name, fg=tech_color)
-                item = MenuItem(tech_image, None, None, tech)
+                item = MenuItem(tech_image, None, None, tech, tech_enabled)
                 menu.add(item)
+
+            # Update selected_index to the first enabled item
+            enabled_items = [
+                i for i, item in enumerate(menu.menu_items) if item.enabled
+            ]
+            if enabled_items:
+                menu.selected_index = enabled_items[0]
 
             # position the new menu
             menu.anchor("bottom", self.rect.top)
@@ -244,14 +253,6 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         def choose_target(menu_item: MenuItem[Technique]) -> None:
             # open menu to choose target of technique
             technique = menu_item.game_object
-            if combat.recharging(technique):
-                params = {
-                    "move": technique.name.upper(),
-                    "name": self.monster.name.upper(),
-                }
-                msg = T.format("combat_recharging", params)
-                tools.open_dialog(local_session, [msg])
-                return
 
             # allow to choose target if 1 vs 2 or 2 vs 2
             if len(self.opponents) > 1:

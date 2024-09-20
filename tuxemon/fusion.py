@@ -12,12 +12,14 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, Optional
+from typing import Any, Optional, TypeAlias
+
+Image: TypeAlias = Any
 
 try:
     from PIL import Image
 except ImportError:
-    Image = Any
+    pass
 import json
 
 

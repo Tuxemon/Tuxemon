@@ -211,9 +211,6 @@ msgstr "你捉住了{name}!"
 msgid "combat_capturing_fail"
 msgstr "{name}冲出了精灵球!"
 
-msgid "combat_recharging"
-msgstr "{name}使用前需要休息一下才能再一次使用{move}..."
-
 msgid "combat_replacement"
 msgstr "选择下一个精灵!"
 

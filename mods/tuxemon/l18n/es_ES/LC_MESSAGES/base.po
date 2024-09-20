@@ -204,9 +204,6 @@ msgstr "¡Has capturado a {name}!"
 msgid "combat_capturing_fail"
 msgstr "¡{name} consiguió liberarse!"
 
-msgid "combat_recharging"
-msgstr "{name} necesita descansar antes de poder usar {move} de nuevo..."
-
 msgid "combat_replacement"
 msgstr "¡Escoge otro Tuxemon!"
 

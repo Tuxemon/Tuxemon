@@ -64,10 +64,8 @@ def simple_damage_multiplier(
     Parameters:
         attack_types: The types of the technique.
         target_types: The types of the target.
-        additional_factors: Optional dictionary of additional factors
-        that affect the damage multiplier. The keys of the dictionary
-        should be the names of the factors, and the values should be
-        the corresponding multipliers.
+        additional_factors: A dictionary of additional factors to apply to
+        the damage multiplier (default None)
 
     Returns:
         The attack multiplier.
@@ -93,8 +91,8 @@ def simple_damage_multiplier(
                 )
     # Apply additional factors
     if additional_factors:
-        for _, multiplier_value in additional_factors.items():
-            multiplier *= multiplier_value
+        factor_multiplier = math.prod(additional_factors.values())
+        multiplier *= factor_multiplier
     return multiplier
 
 
@@ -137,10 +135,8 @@ def simple_damage_calculate(
         technique: The technique to calculate for.
         user: The user of the technique.
         target: The one the technique is being used on.
-        additional_factors: Optional dictionary of additional factors
-        that affect the damage multiplier. The keys of the dictionary
-        should be the names of the factors, and the values should be
-        the corresponding multipliers.
+        additional_factors: A dictionary of additional factors to apply to
+        the damage multiplier (default None)
 
     Returns:
         A tuple (damage, multiplier).
@@ -171,6 +167,31 @@ def simple_damage_calculate(
     move_strength = technique.power * mult
     damage = int(user_strength * move_strength / target_resist)
     return damage, mult
+
+
+def simple_heal(
+    technique: Technique,
+    monster: Monster,
+    additional_factors: Optional[dict[str, float]] = None,
+) -> int:
+    """
+    Calculates the simple healing amount based on the technique's healing
+    power and the monster's level.
+
+    Parameters:
+        technique: The technique being used.
+        monster: The monster being healed.
+        additional_factors: A dictionary of additional factors to apply to
+        the healing amount (default None)
+
+    Returns:
+        int: The calculated healing amount.
+    """
+    base_heal = (pre.COEFF_DAMAGE + monster.level) * technique.healing_power
+    if additional_factors:
+        factor_multiplier = math.prod(additional_factors.values())
+        base_heal = int(base_heal * factor_multiplier)
+    return base_heal
 
 
 def simple_recover(target: Monster, divisor: int) -> int:

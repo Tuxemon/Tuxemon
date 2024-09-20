@@ -158,9 +158,6 @@ msgstr "Hva vil {name} gjøre?"
 msgid "combat_replacement"
 msgstr "Velg en erstatning!"
 
-msgid "combat_recharging"
-msgstr "{name} må ha en pause før bruk av {name} igjen…"
-
 msgid "combat_capturing_fail"
 msgstr "{name} kom seg fri!"
 

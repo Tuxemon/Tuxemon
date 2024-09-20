@@ -1949,6 +1949,15 @@ msgstr "The user creates an illusionary copy of itself that attacks the opponent
 msgid "phantasmal_force"
 msgstr "Phantasmal Force"
 
+msgid "solar_synthesis_description"
+msgstr "Heals the user's health by absorbing sunlight."
+
+msgid "solar_synthesis_fail"
+msgstr "The lack of sunlight prevents the healing."
+
+msgid "solar_synthesis"
+msgstr "Solar Synthesis"
+
 msgid "pit_description"
 msgstr "The user creates a pit beneath the opponent, causing them to fall and take damage."
 

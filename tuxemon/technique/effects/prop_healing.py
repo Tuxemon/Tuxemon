@@ -12,32 +12,32 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class PropDamageEffectResult(TechEffectResult):
+class PropHealingEffectResult(TechEffectResult):
     pass
 
 
 @dataclass
-class PropDamageEffect(TechEffect):
+class PropHealingEffect(TechEffect):
     """
-    Proportional Damage:
-    This effect does damage to the enemy equal
+    Proportional Healing:
+    This effect does healing to the user equal
     to % of the target's / user's maximum HP.
 
     Parameters:
         objective: User HP or target HP.
         proportional: The percentage of the max HP
 
-    eg prop_damage target,0.25 (1/4 max enemy HP)
+    eg prop_healing target,0.25 (1/4 max enemy HP)
 
     """
 
-    name = "prop_damage"
+    name = "prop_healing"
     objective: str
     proportional: float
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> PropDamageEffectResult:
+    ) -> PropHealingEffectResult:
         tech.hit = tech.accuracy >= (
             tech.combat_state._random_tech_hit.get(user, 0.0)
             if tech.combat_state
@@ -45,15 +45,13 @@ class PropDamageEffect(TechEffect):
         )
         if tech.hit:
             reference_hp = target.hp if self.objective == "target" else user.hp
-            amount = float(reference_hp) * self.proportional
-            target.current_hp -= int(amount)
-        else:
-            amount = 0
+            amount = (reference_hp) * self.proportional
+            user.current_hp += int(amount)
 
         return {
-            "damage": int(amount),
+            "damage": 0,
             "element_multiplier": 0.0,
-            "should_tackle": tech.hit,
+            "should_tackle": False,
             "success": tech.hit,
             "extra": None,
         }

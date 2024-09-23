@@ -8,13 +8,11 @@ from typing import Any
 
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.locals import POSITION_CENTER
 from pygame_menu.widgets.selection.highlight import HighlightSelection
 
-from tuxemon import prepare, tools
+from tuxemon import prepare
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 from tuxemon.tools import open_choice_dialog, open_dialog
 
@@ -165,15 +163,8 @@ class NuPhoneBanking(PygameMenuState):
     def __init__(self) -> None:
         width, height = prepare.SCREEN_SIZE
 
-        background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(
-                prepare.BG_PHONE_BANKING
-            ),
-            drawing_position=POSITION_CENTER,
-        )
-        theme = get_theme()
+        theme = self._setup_theme(prepare.BG_PHONE_BANKING)
         theme.scrollarea_position = locals.POSITION_EAST
-        theme.background_color = background
         theme.widget_alignment = locals.ALIGN_CENTER
 
         # menu
@@ -187,12 +178,4 @@ class NuPhoneBanking(PygameMenuState):
         )
 
         self.add_menu_items(self.menu)
-        self.repristinate()
-
-    def repristinate(self) -> None:
-        """Repristinate original theme (color, alignment, etc.)"""
-        theme = get_theme()
-        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = self.background_color
-        theme.widget_alignment = locals.ALIGN_LEFT
-        theme.title = False
+        self.reset_theme()

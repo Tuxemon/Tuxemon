@@ -6,8 +6,7 @@ import math
 from collections.abc import Callable, Sequence
 from typing import Any
 
-import pygame_menu
-from pygame_menu.locals import ALIGN_CENTER, POSITION_CENTER, POSITION_EAST
+from pygame_menu.locals import ALIGN_CENTER, POSITION_EAST
 from pygame_menu.widgets.selection.highlight import HighlightSelection
 
 from tuxemon import prepare
@@ -15,7 +14,6 @@ from tuxemon.animation import Animation
 from tuxemon.db import db
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
-from tuxemon.tools import transform_resource_filename
 
 ChoiceMenuGameObj = Callable[[], None]
 
@@ -53,10 +51,7 @@ class ChoiceNpc(PygameMenuState):
             except KeyError:
                 raise RuntimeError(f"NPC {slug} not found")
             path = f"gfx/sprites/player/{npc.template.combat_front}.png"
-            new_image = pygame_menu.BaseImage(
-                transform_resource_filename(path),
-                drawing_position=POSITION_CENTER,
-            )
+            new_image = self._create_image(path)
             new_image.scale(prepare.SCALE * 0.4, prepare.SCALE * 0.4)
             self.menu.add.image(
                 new_image,

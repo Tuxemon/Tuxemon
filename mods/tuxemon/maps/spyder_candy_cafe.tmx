@@ -99,7 +99,7 @@
   <object id="41" name="Box empty" type="event" x="112" y="32" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_barmaid_cafe3"/>
-    <property name="act40" value="add_monster nudiflot_male,10"/>
+    <property name="act40" value="add_monster nudiflot_male,25"/>
     <property name="act50" value="set_variable cafe_done:yes"/>
     <property name="act55" value="unlock_controls"/>
     <property name="act60" value="pathfind spyder_candycafe_nora,8,10"/>

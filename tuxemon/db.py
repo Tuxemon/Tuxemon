@@ -367,31 +367,84 @@ class MonsterEvolutionItemModel(BaseModel):
         ..., description="The monster slug that this evolution item applies to"
     )
     # optional fields
-    at_level: int = Field(
-        ..., description="The level at which this monster evolves", ge=0
+    at_level: Optional[int] = Field(
+        None,
+        description="The level at which the monster evolves.",
+        ge=0,
     )
     element: Optional[ElementType] = Field(
-        None, description="Element parameter"
+        None,
+        description="The element type that the monster must match to evolve.",
     )
-    gender: Optional[GenderType] = Field(None, description="Gender parameter")
-    item: Optional[str] = Field(None, description="Item parameter.")
+    gender: Optional[GenderType] = Field(
+        None,
+        description="The required gender of the monster for evolution.",
+    )
+    item: Optional[str] = Field(
+        None,
+        description="The item that the monster must have to evolve.",
+    )
     inside: bool = Field(
         None,
-        description="Location parameter: whether the monster is inside or not.",
+        description="Whether the monster must be inside to evolve.",
     )
     traded: bool = Field(
         None,
-        description="Traded parameter: whether the monster is traded or not.",
+        description="Whether the monster must have been traded to evolve.",
     )
-    variable: Optional[str] = Field(
-        None, description="Variable parameter based on game variables."
+    variables: Optional[Sequence[str]] = Field(
+        None,
+        description="The game variables that must exist and match a specific value for the monster to evolve.",
+        min_length=1,
     )
     stats: Optional[str] = Field(
-        None, description="Stat parameter stat1:more_than:stat2."
+        None,
+        description="The statistic comparison required for the monster to evolve (e.g., greater_than, less_than, etc.).",
     )
-    steps: Optional[int] = Field(None, description="Steps parameter 50 steps.")
-    tech: Optional[str] = Field(None, description="Technique parameter.")
-    bond: Optional[str] = Field(None, description="Bond parameter.")
+    steps: Optional[int] = Field(
+        None,
+        description="The minimum number of steps the monster must have walked to evolve.",
+    )
+    tech: Optional[str] = Field(
+        None,
+        description="The technique that a monster in the party must have for the evolution to occur.",
+    )
+    moves: Optional[Sequence[str]] = Field(
+        None,
+        description="The techniques that the monster must have learned for the evolution to occur.",
+        min_length=1,
+        max_length=prepare.MAX_MOVES,
+    )
+    bond: Optional[str] = Field(
+        None,
+        description="The bond value comparison required for the monster to evolve (e.g., greater_than, less_than, etc.).",
+    )
+    party: Optional[Sequence[str]] = Field(
+        None,
+        description="The slug of the monsters that must be in the party for the evolution to occur.",
+        min_length=1,
+        max_length=prepare.PARTY_LIMIT - 1,
+    )
+    taste_cold: Optional[TasteCold] = Field(
+        None,
+        description="The required taste cold value for the monster to evolve.",
+    )
+    taste_warm: Optional[TasteWarm] = Field(
+        None,
+        description="The required taste warm value for the monster to evolve.",
+    )
+
+    @field_validator("moves")
+    def move_exists(
+        cls: MonsterEvolutionItemModel, v: Optional[Sequence[str]]
+    ) -> Optional[Sequence[str]]:
+        if v:
+            for element in v:
+                if not has.db_entry("technique", element):
+                    raise ValueError(
+                        f"A technique {element} doesn't exist in the db"
+                    )
+        return v
 
     @field_validator("tech")
     def technique_exists(
@@ -407,6 +460,18 @@ class MonsterEvolutionItemModel(BaseModel):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
+    @field_validator("party")
+    def party_exists(
+        cls: MonsterEvolutionItemModel, v: Sequence[str]
+    ) -> Sequence[str]:
+        if v:
+            for element in v:
+                if not has.db_entry("monster", element):
+                    raise ValueError(
+                        f"A monster {element} doesn't exist in the db"
+                    )
+        return v
+
     @field_validator("item")
     def item_exists(
         cls: MonsterEvolutionItemModel, v: Optional[str]
@@ -415,13 +480,25 @@ class MonsterEvolutionItemModel(BaseModel):
             return v
         raise ValueError(f"the item {v} doesn't exist in the db")
 
-    @field_validator("variable")
-    def variable_exists(
-        cls: MonsterEvolutionItemModel, v: Optional[str]
-    ) -> Optional[str]:
-        if not v or v.find(":") > 1:
+    @field_validator("variables")
+    def variables_exists(
+        cls: MonsterEvolutionItemModel, v: Optional[Sequence[str]]
+    ) -> Optional[Sequence[str]]:
+        if v is None:
             return v
-        raise ValueError(f"the variable {v} isn't formatted correctly")
+        if len(v) != len(set(v)):
+            raise ValueError("The sequence contains duplicate variables")
+        for variable in v:
+            if (
+                not variable
+                or len(variable.split(":")) != 2
+                or variable[0] == ":"
+                or variable[-1] == ":"
+            ):
+                raise ValueError(
+                    f"the variable {variable} isn't formatted correctly"
+                )
+        return v
 
     @field_validator("stats")
     def stats_exists(

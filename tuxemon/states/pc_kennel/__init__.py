@@ -412,12 +412,22 @@ class MonsterDropOff(MonsterMenuState):
         super().__init__()
 
         self.box_name = box_name
+        self.player = local_session.player
+
+    def is_valid_entry(self, monster: Optional[Monster]) -> bool:
+        alive_monsters = [
+            mon
+            for mon in self.player.monsters
+            if not any("faint" in s.slug for s in mon.status)
+        ]
+        if monster is not None:
+            return len(alive_monsters) != 1 or monster not in alive_monsters
+        return True
 
     def on_menu_selection(
         self,
         menu_item: MenuItem[Optional[Monster]],
     ) -> None:
-        player = local_session.player
         monster = menu_item.game_object
         assert monster
         if monster.plague == PlagueType.infected:
@@ -426,6 +436,6 @@ class MonsterDropOff(MonsterMenuState):
                 [T.translate("menu_storage_infected_monster")],
             )
         else:
-            player.monster_boxes[self.box_name].append(monster)
-            player.remove_monster(monster)
+            self.player.monster_boxes[self.box_name].append(monster)
+            self.player.remove_monster(monster)
             self.client.pop_state(self)

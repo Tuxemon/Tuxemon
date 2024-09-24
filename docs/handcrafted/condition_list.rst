@@ -17,11 +17,12 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_world.CheckWorldCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.current_state.CurrentStateCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_bag.HasBagCondition
-.. autoscriptinfoclass:: tuxemon.event.conditions.has_box.HasBoxCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_item.HasItemCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.has_kennel.HasKennelCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_monster.HasMonsterCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_party_breeder.HasPartyBreederCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_tech.HasTechCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.kennel.KennelCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.location_inside.LocationInsideCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.location_name.LocationNameCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.location_type.LocationTypeCondition

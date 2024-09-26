@@ -1,6 +1,6 @@
 {
   "conditions": [
-    "is level >=,0",
+    "is can_evolve",
     "is has_path sea_girdle"
   ],
   "effects": [

@@ -626,6 +626,17 @@ class Range(str, Enum):
     reliable = "reliable"
 
 
+class TechCategory(str, Enum):
+    animal = "animal"
+    simple = "simple"
+    basic = "basic"
+    exotic = "exotic"
+    reserved = "reserved"
+    powerful = "powerful"
+    condition_imposer = "condition_imposer"
+    notype = "notype"
+
+
 # TechSort defines the sort of technique a technique is.
 class TechSort(str, Enum):
     damage = "damage"
@@ -647,6 +658,10 @@ class TechniqueModel(BaseModel):
     slug: str = Field(..., description="The slug of the technique")
     sort: TechSort = Field(..., description="The sort of technique this is")
     icon: str = Field(None, description="The icon to use for the technique")
+    category: TechCategory = Field(
+        ...,
+        description="The tags of the technique",
+    )
     tags: Sequence[str] = Field(
         ..., description="The tags of the technique", min_length=1
     )

@@ -1,14 +1,15 @@
 {
   "tech_id": 104,
-  "accuracy": 0.6,
+  "accuracy": 0.8,
   "animation": "x_attack",
   "effects": [
+    "give slow,target",
     "damage"
   ],
   "flip_axes": "",
-  "is_fast": false,
+  "is_fast": true,
   "potency": 0.6,
-  "power": 1.3,
+  "power": 2.5,
   "range": "ranged",
   "recharge": 3,
   "sfx": "sfx_blaster",
@@ -22,7 +23,8 @@
     "own team": 0,
     "own trainer": 0
   },
-  "tags": ["tobedefined"],
+  "category": "powerful",
+  "tags": ["Summoner", "Mental"],
   "types": [
     "metal"
   ],

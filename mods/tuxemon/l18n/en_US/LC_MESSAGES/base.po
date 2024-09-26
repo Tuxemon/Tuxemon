@@ -1602,7 +1602,7 @@ msgid "flamethrower"
 msgstr "Flamethrower"
 
 msgid "fledgling_description"
-msgstr "The user hurls a clump of hardened earth at the opponent."
+msgstr "The user hurls sharp feathers at the opponent."
 
 msgid "fledgling"
 msgstr "Fledgling"
@@ -1866,7 +1866,7 @@ msgid "negation"
 msgstr "Negation"
 
 msgid "nest_description"
-msgstr "The user constructs a protective nest around itself, using it as a defensive and offensive weapon."
+msgstr "The user constructs a protective nest around itself."
 
 msgid "nest"
 msgstr "Nest"
@@ -2196,7 +2196,7 @@ msgid "strike"
 msgstr "Strike"
 
 msgid "suck_poison_description"
-msgstr "The user drains the opponent's vitality, inflicting damage and poisoning them."
+msgstr "The user draws out the poison from their own body and infects their enemy with it."
 
 msgid "suck_poison"
 msgstr "Suck Poison"

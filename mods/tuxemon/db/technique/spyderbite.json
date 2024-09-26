@@ -20,7 +20,8 @@
     "own team": 0,
     "own trainer": 0
   },
-	"tags": ["default"],
+	"category": "notype",
+	"tags": ["NoType"],
   "tech_id": 0,
   "use_failure": "combat_miss",
   "use_success": null,

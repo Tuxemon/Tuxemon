@@ -26,7 +26,8 @@
     "own team": 0,
     "own trainer": 0
   },
-  "tags": ["default"],
+  "category": "notype",
+  "tags": ["Bird"],
   "types": [
     "wood",
     "earth"

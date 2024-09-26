@@ -23,7 +23,8 @@
     "own team": 0,
     "own trainer": 0
   },
-  "tags": ["condition_imposer"],
+  "category": "condition_imposer",
+  "tags": ["Speed", "Shapeshifter"],
   "types": [
     "aether"
   ],

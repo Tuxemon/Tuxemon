@@ -24,7 +24,8 @@
     "own team": 0,
     "own trainer": 0
   },
-  "tags": ["exotic"],
+  "category": "exotic",
+  "tags": ["Soldier", "Ice", "Shielded"],
   "types": [
     "water"
   ],

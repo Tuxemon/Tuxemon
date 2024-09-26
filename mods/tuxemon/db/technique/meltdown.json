@@ -1,6 +1,6 @@
 {
   "tech_id": 103,
-  "accuracy": 0.6,
+  "accuracy": 0.7,
   "animation": "meltdown",
   "effects": [
     "give festering,target",
@@ -8,7 +8,7 @@
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.1,
+  "potency": 0.2,
   "power": 2.8,
   "range": "reach",
   "recharge": 2,
@@ -23,7 +23,8 @@
     "own team": 0,
     "own trainer": 0
   },
-  "tags": ["tobedefined"],
+  "category": "powerful",
+  "tags": ["Bomber", "Calamity"],
   "types": [
     "earth",
     "metal"

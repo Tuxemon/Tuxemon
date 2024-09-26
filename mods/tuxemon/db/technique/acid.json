@@ -1,13 +1,13 @@
 {
   "tech_id": 119,
-  "accuracy": 0.6,
+  "accuracy": 0.8,
   "animation": "drip_orange",
   "effects": [
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.9,
+  "potency": 0.0,
   "power": 1.4,
   "range": "reliable",
   "recharge": 2,
@@ -22,7 +22,8 @@
     "own team": 0,
     "own trainer": 0
   },
-  "tags": ["tobedefined"],
+  "category": "basic",
+  "tags": ["Toxic"],
   "types": [
     "metal"
   ],

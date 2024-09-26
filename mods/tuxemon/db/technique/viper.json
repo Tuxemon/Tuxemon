@@ -22,7 +22,8 @@
     "own team": 0,
     "own trainer": 0
   },
-  "tags": ["powerful"],
+  "category": "powerful",
+  "tags": ["Toxic"],
   "types": [
     "metal"
   ],

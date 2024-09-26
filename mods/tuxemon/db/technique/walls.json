@@ -1,15 +1,16 @@
 {
   "tech_id": 156,
-  "accuracy": 0.6,
+  "accuracy": 0.8,
   "animation": "wall_wood",
   "effects": [
+    "give hardshell,user",
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.2,
+  "potency": 1.0,
   "power": 1,
-  "range": "ranged",
+  "range": "touch",
   "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "walls",
@@ -22,7 +23,8 @@
     "own team": 0,
     "own trainer": 0
   },
-  "tags": ["tobedefined"],
+  "category": "simple",
+  "tags": ["Summoner", "Shielded"],
   "types": [
     "wood"
   ],

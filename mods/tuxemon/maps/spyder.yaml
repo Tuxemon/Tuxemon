@@ -341,5 +341,5 @@ events:
     - remove_tech chosen_tech
     conditions:
     - is check_max_tech
-    - is current_state MainCombatMenuState
+    - is current_state MainCombatMenuState:WorldState
     type: "event"

@@ -1,7 +1,6 @@
 {
   "conditions": [
     "is type wood",
-    "is max_moves",
     "not has_tech blossom"
   ],
   "effects": [

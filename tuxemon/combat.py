@@ -86,10 +86,13 @@ def pre_checking(
 
     status = Technique()
     if monster.plague == PlagueType.infected:
-        value = random.randint(1, 8)
-        if value == 1:
-            status.load("spyderbite")
-            technique = status
+        if any(
+            technique.target.get(target, False)
+            for target in ["enemy_monster", "enemy_team", "enemy_trainer"]
+        ):
+            if random.randint(1, 8) == 1:
+                status.load("spyderbite")
+                technique = status
     return technique
 
 

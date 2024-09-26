@@ -4,10 +4,9 @@
   "animation": null,
   "effects": [
     "give noddingoff,user",
-    "healing user"
+    "prop_healing user,0.66"
   ],
   "flip_axes": "",
-  "healing_power": 8,
   "is_fast": false,
   "potency": 1,
   "power": 0,

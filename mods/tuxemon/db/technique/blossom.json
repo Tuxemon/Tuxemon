@@ -7,7 +7,7 @@
     "damage"
   ],
   "flip_axes": "",
-  "healing_power": 2,
+  "healing_power": 2.0,
   "is_fast": false,
   "potency": 1,
   "power": 1.25,

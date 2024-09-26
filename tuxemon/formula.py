@@ -187,11 +187,11 @@ def simple_heal(
     Returns:
         int: The calculated healing amount.
     """
-    base_heal = (pre.COEFF_DAMAGE + monster.level) * technique.healing_power
+    base_heal = pre.COEFF_DAMAGE + monster.level * technique.healing_power
     if additional_factors:
         factor_multiplier = math.prod(additional_factors.values())
-        base_heal = int(base_heal * factor_multiplier)
-    return base_heal
+        base_heal = base_heal * factor_multiplier
+    return int(base_heal)
 
 
 def simple_recover(target: Monster, divisor: int) -> int:

@@ -706,8 +706,8 @@ class TechniqueModel(BaseModel):
         True,
         description="Whether or not this technique will be picked by random",
     )
-    healing_power: int = Field(
-        0,
+    healing_power: float = Field(
+        0.0,
         description="Value of healing power.",
         ge=prepare.HEALING_POWER_RANGE[0],
         le=prepare.HEALING_POWER_RANGE[1],

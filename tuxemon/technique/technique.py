@@ -59,7 +59,7 @@ class Technique:
         self.potency = 0.0
         self.power = 1.0
         self.range = Range.melee
-        self.healing_power = 0
+        self.healing_power = 0.0
         self.recharge_length = 0
         self.sfx = ""
         self.sort = ""

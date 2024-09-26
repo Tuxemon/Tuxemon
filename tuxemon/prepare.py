@@ -272,7 +272,7 @@ RECHARGE_RANGE: tuple[int, int] = (0, 5)
 POTENCY_RANGE: tuple[float, float] = (0.0, 1.0)
 ACCURACY_RANGE: tuple[float, float] = (0.0, 1.0)
 POWER_RANGE: tuple[float, float] = (0.0, 3.0)
-HEALING_POWER_RANGE: tuple[int, int] = (0, 10)
+HEALING_POWER_RANGE: tuple[float, float] = (0.0, 3.0)
 
 # Combat
 # Hud right/left lines

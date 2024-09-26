@@ -7,7 +7,7 @@
     "healing target"
   ],
   "flip_axes": "",
-  "healing_power": 4,
+  "healing_power": 3.0,
   "is_fast": false,
   "potency": 1,
   "power": 0,

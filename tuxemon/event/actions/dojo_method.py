@@ -111,9 +111,11 @@ class DojoMethodAction(EventAction):
         except ValueError:
             self.stop()
 
-    def devolve(self, monster: Monster, devolution: str) -> None:
+    def devolve(self, monster: Monster, slug: str) -> None:
         """Deny the evolution"""
-        self.session.player.evolve_monster(monster, devolution)
+        devolution = Monster()
+        devolution.load_from_db(slug)
+        monster.evolution_handler.evolve_monster(devolution)
         logger.info(f"{monster.name}'s devolved!")
         self.client.sound_manager.play_sound("sound_confirm")
         self.client.pop_state()

@@ -1,0 +1,40 @@
+{
+    "slug": "weedsea",
+    "category": "seaweed",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "riposte"
+        },
+        {
+            "level_learned": 2,
+            "technique": "bullet"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 32,
+            "monster_slug": "weedlantis"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "weedlantis",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["blob", "coastal", "sea"],
+    "shape": "blob",
+    "stage": "basic",
+    "types": [
+        "water",
+        "wood"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 352,
+    "height": 100,
+    "weight": 10,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

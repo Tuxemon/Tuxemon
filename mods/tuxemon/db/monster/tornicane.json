@@ -1,0 +1,38 @@
+{
+    "slug": "tornicane",
+    "category": "water_sprite",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "seirein",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "spirain",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["sprite", "coastal", "swamp"],
+    "shape": "sprite",
+    "stage": "stage2",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 165,
+    "height": 300,
+    "weight": 0.1,
+    "catch_rate": 35.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

@@ -1,0 +1,34 @@
+{
+    "slug": "flummack",
+    "category": "cannibal_cake",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "flummby",
+            "evo_stage": "basic"
+        }
+    ],
+    "tags": ["sprite", "urban", "other"],
+    "shape": "sprite",
+    "stage": "stage1",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 308,
+    "height": 90,
+    "weight": 50,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

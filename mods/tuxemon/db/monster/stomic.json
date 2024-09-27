@@ -1,0 +1,39 @@
+{
+    "slug": "stomic",
+    "category": "radioactive",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 32,
+            "monster_slug": "gastronium"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "gastronium",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["blob"],
+    "shape": "blob",
+    "stage": "basic",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 338,
+    "height": 30,
+    "weight": 1,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

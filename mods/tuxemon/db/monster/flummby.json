@@ -1,0 +1,40 @@
+{
+    "slug": "flummby",
+    "category": "pastry",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 32,
+            "monster_slug": "flummack",
+            "item": "lima_pie"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "flummack",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["sprite", "urban", "other"],
+    "shape": "sprite",
+    "stage": "basic",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 307,
+    "height": 90,
+    "weight": 50,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

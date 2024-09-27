@@ -1,0 +1,39 @@
+{
+    "slug": "flounce",
+    "category": "firestarter",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 30,
+            "monster_slug": "knindling"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "knindling",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["hunter"],
+    "shape": "hunter",
+    "stage": "basic",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 329,
+    "height": 49,
+    "weight": 22,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

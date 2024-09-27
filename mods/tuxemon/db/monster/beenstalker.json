@@ -35,11 +35,20 @@
             "technique": "fluff_up"
         }
     ],
-    "evolutions": [],
+    "evolutions": [
+        {
+            "at_level": 32,
+            "monster_slug": "wendigger"
+        }
+    ],
     "history": [
         {
             "mon_slug": "turnipper",
             "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "wendigger",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["hunter", "grassland", "woodland"],

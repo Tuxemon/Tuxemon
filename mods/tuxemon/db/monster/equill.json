@@ -1,0 +1,43 @@
+{
+    "slug": "equill",
+    "category": "cave_dweller",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 55,
+            "monster_slug": "hoarseshoo"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "hoarse",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "hoarseshoo",
+            "evo_stage": "stage2"
+        }
+    ],
+    "tags": ["landrace"],
+    "shape": "landrace",
+    "stage": "stage1",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 310,
+    "height": 160,
+    "weight": 500,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

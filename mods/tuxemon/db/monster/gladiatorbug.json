@@ -1,0 +1,62 @@
+{
+    "slug": "gladiatorbug",
+    "category": "bustuarius",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 6,
+            "technique": "geyser"
+        },
+        {
+            "level_learned": 8,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 12,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 16,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 20,
+            "technique": "web"
+        },
+        {
+            "level_learned": 32,
+            "technique": "chill_mist"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "katapill",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "katacoon",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["humanoid", "urban", "woodland"],
+    "shape": "humanoid",
+    "stage": "stage2",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 60,
+    "height": 178,
+    "weight": 78,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.85,
+    "upper_catch_resistance": 1.1
+}

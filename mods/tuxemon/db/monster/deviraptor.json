@@ -1,0 +1,39 @@
+{
+    "slug": "deviraptor",
+    "category": "dog_toothed",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "devidin",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "devidra",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["dragon", "grassland", "jungle", "underground"],
+    "shape": "dragon",
+    "stage": "stage2",
+    "types": [
+        "earth",
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 294,
+    "height": 183,
+    "weight": 295,
+    "catch_rate": 35.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

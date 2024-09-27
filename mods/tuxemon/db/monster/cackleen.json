@@ -1,0 +1,45 @@
+{
+    "slug": "cackleen",
+    "category": "witch_spirit",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 16,
+            "monster_slug": "brumi",
+            "variable": "daytime:false"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "brumi",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "bewhich",
+            "evo_stage": "stage2"
+        }
+    ],
+    "tags": ["sprite", "any"],
+    "shape": "sprite",
+    "stage": "basic",
+    "types": [
+        "metal",
+        "wood"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 340,
+    "height": 91,
+    "weight": 40,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

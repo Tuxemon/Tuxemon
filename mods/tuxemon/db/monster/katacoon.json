@@ -37,6 +37,11 @@
             "at_level": 12,
             "monster_slug": "sumchon",
             "stats": "speed:greater_than:dodge"
+        },
+        {
+            "at_level": 12,
+            "monster_slug": "gladiatorbug",
+            "stats": "speed:equals:dodge"
         }
     ],
     "history": [
@@ -50,6 +55,10 @@
         },
         {
             "mon_slug": "sumchon",
+            "evo_stage": "stage2"
+        },
+        {
+            "mon_slug": "gladiatorbug",
             "evo_stage": "stage2"
         }
     ],

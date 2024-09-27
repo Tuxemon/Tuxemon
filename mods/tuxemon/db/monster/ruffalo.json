@@ -1,0 +1,29 @@
+{
+    "slug": "ruffalo",
+    "category": "buffalo",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "tags": ["landrace", "grassland", "woodland"],
+    "shape": "landrace",
+    "stage": "standalone",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 283,
+    "height": 180,
+    "weight": 350,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

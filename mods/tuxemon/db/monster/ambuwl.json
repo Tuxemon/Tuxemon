@@ -53,7 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["sprite"],
+    "tags": ["sprite", "desert", "woodland"],
     "shape": "sprite",
     "stage": "standalone",
     "types": [

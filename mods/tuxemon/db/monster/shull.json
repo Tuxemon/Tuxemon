@@ -1,0 +1,44 @@
+{
+    "slug": "shull",
+    "category": "myrmidon",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 20,
+            "monster_slug": "myrmison",
+            "variable": "daytime:false"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "scarlant",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "myrmison",
+            "evo_stage": "stage2"
+        }
+    ],
+    "tags": ["blob", "grassland", "jungle", "mountains", "swamp", "urban", "woodland"],
+    "shape": "blob",
+    "stage": "stage1",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 290,
+    "height": 40,
+    "weight": 55,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

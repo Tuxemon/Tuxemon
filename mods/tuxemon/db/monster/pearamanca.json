@@ -1,0 +1,29 @@
+{
+    "slug": "pearamanca",
+    "category": "biting_pear",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "tags": ["blob"],
+    "shape": "blob",
+    "stage": "standalone",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 284,
+    "height": 90,
+    "weight": 50,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

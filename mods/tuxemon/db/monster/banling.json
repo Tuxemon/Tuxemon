@@ -51,16 +51,30 @@
             "technique": "peck"
         }
     ],
-    "evolutions": [],
-    "history": [],
-    "tags": ["brute"],
+    "evolutions": [
+        {
+            "at_level": 18,
+            "monster_slug": "bansaken"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "bansaken",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "banvengeance",
+            "evo_stage": "stage2"
+        }
+    ],
+    "tags": ["brute", "jungle", "woodland"],
     "shape": "brute",
-    "stage": "standalone",
+    "stage": "basic",
     "types": [
         "wood"
     ],
     "possible_genders": ["neuter"],
-    "txmn_id": 200,
+    "txmn_id": 355,
     "height": 120,
     "weight": 180,
     "catch_rate": 100.0,

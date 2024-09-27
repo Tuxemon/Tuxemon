@@ -7,6 +7,9 @@ from typing import Any
 
 from tuxemon import prepare
 
+ALL_MONSTERS: int = 376
+MAX_TXMN_ID: int = 357
+
 
 def process_json_data(directory: str) -> list[dict[str, Any]]:
     data_list = []
@@ -34,7 +37,36 @@ class TestJSONProcessing(unittest.TestCase):
         self.data_list = process_json_data(sample_data)
 
     def test_nr_jsons(self) -> None:
-        self.assertEqual(len(self.data_list), 298)
+        self.assertEqual(len(self.data_list), ALL_MONSTERS)
+
+    def test_missing_txmn_ids(self) -> None:
+        numbers = []
+        for data in self.data_list:
+            txmn_id = data["txmn_id"]
+            if txmn_id > 0:
+                numbers.append(txmn_id)
+
+        all_numbers = set(range(1, MAX_TXMN_ID))
+        given_numbers = set(numbers)
+        missing = all_numbers - given_numbers
+        if missing:
+            self.fail(f"There are missing txmn_ids: {missing}")
+
+    def test_duplicate_txmn_ids(self) -> None:
+        numbers = []
+        for data in self.data_list:
+            txmn_id = data["txmn_id"]
+            if txmn_id > 0:
+                numbers.append(txmn_id)
+
+        duplicates = []
+        counts = [0] * (max(numbers) + 1)
+        for num in numbers:
+            counts[num] += 1
+            if counts[num] > 1:
+                duplicates.append(num)
+        if duplicates:
+            self.fail(f"There are duplicates txmn_ids: {duplicates}")
 
     def test_history_current_slug(self) -> None:
         missing_monsters = []

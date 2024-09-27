@@ -1,0 +1,29 @@
+{
+    "slug": "gliffary",
+    "category": "toothsome",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "tags": ["sprite"],
+    "shape": "sprite",
+    "stage": "standalone",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 315,
+    "height": 50,
+    "weight": 1.5,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

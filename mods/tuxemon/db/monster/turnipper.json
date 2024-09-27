@@ -33,6 +33,10 @@
         {
             "mon_slug": "beenstalker",
             "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "wendigger",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["hunter", "grassland", "woodland"],

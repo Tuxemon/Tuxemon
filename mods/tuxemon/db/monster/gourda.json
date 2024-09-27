@@ -1,0 +1,29 @@
+{
+    "slug": "gourda",
+    "category": "pumpkin",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "tags": ["blob"],
+    "shape": "blob",
+    "stage": "standalone",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 331,
+    "height": 40,
+    "weight": 28,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

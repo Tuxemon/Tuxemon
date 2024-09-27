@@ -45,6 +45,10 @@
         {
             "mon_slug": "sumchon",
             "evo_stage": "stage2"
+        },
+        {
+            "mon_slug": "gladiatorbug",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["grub", "woodland"],

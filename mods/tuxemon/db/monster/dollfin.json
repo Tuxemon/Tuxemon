@@ -43,6 +43,11 @@
             "at_level": 0,
             "monster_slug": "sharpfin",
             "item": "sea_girdle"
+        },
+        {
+            "at_level": 0,
+            "monster_slug": "delfeco",
+            "bond": "equals:100"
         }
     ],
     "history": [
@@ -53,6 +58,10 @@
         {
             "mon_slug": "sharpfin",
             "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "delfeco",
+            "evo_stage": "stage1"
         }
     ],
     "tags": ["leviathan", "coastal", "freshwater", "sea"],
@@ -62,7 +71,7 @@
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 24,
+    "txmn_id": 23,
     "height": 250,
     "weight": 190,
     "catch_rate": 100.0,

@@ -51,11 +51,25 @@
             "technique": "ants"
         }
     ],
-    "evolutions": [],
-    "history": [],
+    "evolutions": [
+        {
+            "at_level": 32,
+            "monster_slug": "toxiris"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "toxiris",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "ninjasmine",
+            "evo_stage": "stage2"
+        }
+    ],
     "tags": ["humanoid"],
     "shape": "humanoid",
-    "stage": "standalone",
+    "stage": "basic",
     "types": [
         "wood"
     ],

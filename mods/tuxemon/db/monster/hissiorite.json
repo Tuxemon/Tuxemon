@@ -1,0 +1,43 @@
+{
+    "slug": "hissiorite",
+    "category": "meteor_snake",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 18,
+            "monster_slug": "cobarett"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "cobarett",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "pythonova",
+            "evo_stage": "stage2"
+        }
+    ],
+    "tags": ["serpent", "coastal", "desert"],
+    "shape": "serpent",
+    "stage": "basic",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 322,
+    "height": 100,
+    "weight": 2,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

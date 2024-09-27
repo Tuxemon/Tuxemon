@@ -1,0 +1,43 @@
+{
+    "slug": "cocrune",
+    "category": "diptera",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 16,
+            "monster_slug": "runesquito"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "stonifly",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "runesquito",
+            "evo_stage": "stage2"
+        }
+    ],
+    "tags": ["blob", "freshwater", "ruins", "swamp"],
+    "shape": "blob",
+    "stage": "stage1",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 333,
+    "height": 33,
+    "weight": 20,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

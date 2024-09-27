@@ -1,0 +1,44 @@
+{
+    "slug": "brumi",
+    "category": "hexer",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 30,
+            "monster_slug": "bewhich",
+            "variable": "daytime:false"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "cackleen",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "bewhich",
+            "evo_stage": "stage2"
+        }
+    ],
+    "tags": ["sprite", "any"],
+    "shape": "sprite",
+    "stage": "stage1",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 341,
+    "height": 123,
+    "weight": 0.1,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

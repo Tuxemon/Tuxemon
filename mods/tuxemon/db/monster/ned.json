@@ -1,0 +1,29 @@
+{
+    "slug": "ned",
+    "category": "red_hands",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "tags": ["brute"],
+    "shape": "brute",
+    "stage": "standalone",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 313,
+    "height": 87,
+    "weight": 32,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

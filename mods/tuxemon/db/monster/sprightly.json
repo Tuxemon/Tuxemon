@@ -1,0 +1,39 @@
+{
+    "slug": "sprightly",
+    "category": "rootball",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 32,
+            "monster_slug": "uprout"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "uprout",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["blob", "grassland", "jungle", "woodland"],
+    "shape": "blob",
+    "stage": "basic",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 336,
+    "height": 30,
+    "weight": 9,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

@@ -1,0 +1,35 @@
+{
+    "slug": "weedlantis",
+    "category": "reef",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "riposte"
+        },
+        {
+            "level_learned": 2,
+            "technique": "bullet"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "weedsea",
+            "evo_stage": "basic"
+        }
+    ],
+    "tags": ["dragon", "coastal", "sea"],
+    "shape": "dragon",
+    "stage": "stage1",
+    "types": [
+        "water",
+        "wood"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 353,
+    "height": 185,
+    "weight": 120,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

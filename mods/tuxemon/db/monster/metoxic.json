@@ -1,0 +1,30 @@
+{
+    "slug": "metoxic",
+    "category": "toxic_flag",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "tags": ["blob", "coastal", "desert", "jungle"],
+    "shape": "blob",
+    "stage": "standalone",
+    "types": [
+        "metal",
+        "wood"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 312,
+    "height": 100,
+    "weight": 1,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

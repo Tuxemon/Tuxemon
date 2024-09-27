@@ -1,0 +1,38 @@
+{
+    "slug": "pythonova",
+    "category": "nova_snake",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "hissiorite",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "cobarett",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["serpent", "coastal", "desert"],
+    "shape": "serpent",
+    "stage": "stage2",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 324,
+    "height": 600,
+    "weight": 120,
+    "catch_rate": 35.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

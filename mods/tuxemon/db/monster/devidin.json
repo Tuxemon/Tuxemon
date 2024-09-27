@@ -1,0 +1,43 @@
+{
+    "slug": "devidin",
+    "category": "dog_toothed",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 18,
+            "monster_slug": "devidra"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "devidra",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "deviraptor",
+            "evo_stage": "stage2"
+        }
+    ],
+    "tags": ["landrace", "grassland", "jungle", "underground"],
+    "shape": "landrace",
+    "stage": "basic",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 292,
+    "height": 73,
+    "weight": 36,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

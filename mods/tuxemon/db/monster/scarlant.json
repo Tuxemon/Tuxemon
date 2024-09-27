@@ -1,0 +1,43 @@
+{
+    "slug": "scarlant",
+    "category": "myrmidon",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 8,
+            "monster_slug": "shull"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "shull",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "myrmison",
+            "evo_stage": "stage2"
+        }
+    ],
+    "tags": ["varmint", "grassland", "jungle", "mountains", "swamp", "urban", "woodland"],
+    "shape": "varmint",
+    "stage": "basic",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 289,
+    "height": 30,
+    "weight": 2,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

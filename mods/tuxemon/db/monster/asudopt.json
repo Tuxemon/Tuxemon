@@ -1,0 +1,30 @@
+{
+    "slug": "asudopt",
+    "category": "god_penguin",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "tags": ["flier", "other"],
+    "shape": "flier",
+    "stage": "standalone",
+    "types": [
+        "fire",
+        "water"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 300,
+    "height": 150,
+    "weight": 30,
+    "catch_rate": 5.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

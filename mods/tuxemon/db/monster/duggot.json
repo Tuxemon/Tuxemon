@@ -1,0 +1,40 @@
+{
+    "slug": "duggot",
+    "category": "unwelcome_mouthful",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 32,
+            "monster_slug": "breem"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "breem",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["varmint"],
+    "shape": "varmint",
+    "stage": "basic",
+    "types": [
+        "earth",
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 343,
+    "height": 12,
+    "weight": 0.5,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

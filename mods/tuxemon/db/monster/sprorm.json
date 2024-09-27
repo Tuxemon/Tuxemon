@@ -1,0 +1,39 @@
+{
+    "slug": "sprorm",
+    "category": "galvanised",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 32,
+            "monster_slug": "sphake"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "sphake",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["sprite"],
+    "shape": "sprite",
+    "stage": "basic",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 303,
+    "height": 30,
+    "weight": 10,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

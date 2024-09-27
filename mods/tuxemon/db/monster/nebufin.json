@@ -1,0 +1,44 @@
+{
+    "slug": "nebufin",
+    "category": "sea_angel",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 18,
+            "monster_slug": "galasces"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "galasces",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "novaquarius",
+            "evo_stage": "stage2"
+        }
+    ],
+    "tags": ["polliwog", "sea"],
+    "shape": "polliwog",
+    "stage": "basic",
+    "types": [
+        "metal",
+        "water"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 319,
+    "height": 20,
+    "weight": 0.5,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

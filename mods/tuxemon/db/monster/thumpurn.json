@@ -1,0 +1,39 @@
+{
+    "slug": "thumpurn",
+    "category": "lagomorph",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 20,
+            "monster_slug": "volconey"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "volconey",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["brute", "desert", "grassland", "woodland"],
+    "shape": "brute",
+    "stage": "basic",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 298,
+    "height": 65,
+    "weight": 23,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

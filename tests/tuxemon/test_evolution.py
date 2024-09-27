@@ -26,9 +26,18 @@ _ram = TechniqueModel(
     sfx="sfx_blaster",
     slug="ram",
     sort="damage",
-    target={},
+    target={
+        "enemy_monster": False,
+        "enemy_team": False,
+        "enemy_trainer": False,
+        "own_monster": False,
+        "own_team": False,
+        "own_trainer": False,
+    },
     types=[],
     use_tech="combat_used_x",
+    tags=["animal"],
+    category="simple",
 )
 
 _strike = TechniqueModel(
@@ -42,9 +51,18 @@ _strike = TechniqueModel(
     sfx="sfx_blaster",
     slug="strike",
     sort="damage",
-    target={},
+    target={
+        "enemy_monster": False,
+        "enemy_team": False,
+        "enemy_trainer": False,
+        "own_monster": False,
+        "own_team": False,
+        "own_trainer": False,
+    },
     types=[],
     use_tech="combat_used_x",
+    tags=["animal"],
+    category="simple",
 )
 
 

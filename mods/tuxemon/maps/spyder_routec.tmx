@@ -173,7 +173,7 @@
   <object id="214" name="Talk Carstair" type="event" x="400" y="80" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_searoutec_carstair1"/>
-    <property name="act2" value="add_monster axylightl,24,spyder_searoutec_carstair,5,10"/>
+    <property name="act2" value="add_monster axolightl,24,spyder_searoutec_carstair,5,10"/>
     <property name="act3" value="start_battle player,spyder_searoutec_carstair"/>
     <property name="act4" value="translated_dialog spyder_searoutec_carstair2"/>
     <property name="act6" value="set_variable searouteccarstair:yes"/>

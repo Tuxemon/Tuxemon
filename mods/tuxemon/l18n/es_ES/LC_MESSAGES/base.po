@@ -715,11 +715,11 @@ msgstr "Considera a las plantas que crecen cerca de él sus hermanos y hermanas.
 msgid "anoleaf"
 msgstr "Anoleaf"
 
-msgid "axylightl_description"
+msgid "axolightl_description"
 msgstr "Ilumina las aguas profundas con su cola, marcando un refugio seguro para peces."
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
 msgid "bamboon_description"
 msgstr "Lucha con su vara de bambú, que también usa para mantener el equilibrio."

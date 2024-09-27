@@ -134,9 +134,6 @@ msgstr "Chytil jsi {name}!"
 msgid "combat_capturing_fail"
 msgstr "{name} se vymanil!"
 
-msgid "combat_recharging"
-msgstr "{name} potřebuje přestávku, než znovu použije {move}..."
-
 msgid "combat_replacement"
 msgstr "Vyber náhradníka!"
 

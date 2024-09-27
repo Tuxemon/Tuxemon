@@ -1,10 +1,12 @@
 {
-  "slug": "mansion",
+  "slug": "spyder_mansion",
   "monsters": [
     {
       "monster": "cairfrey",
       "encounter_rate": 3,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         13,
@@ -14,7 +16,9 @@
     {
       "monster": "polyrock",
       "encounter_rate": 3,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         13,
@@ -24,7 +28,9 @@
     {
       "monster": "djinnbo",
       "encounter_rate": 1,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         14,
@@ -34,7 +40,9 @@
     {
       "monster": "pigabyte",
       "encounter_rate": 3,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         13,
@@ -44,7 +52,9 @@
     {
       "monster": "cairfrey",
       "encounter_rate": 3,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         14,
@@ -54,7 +64,9 @@
     {
       "monster": "polyrock",
       "encounter_rate": 3,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         14,
@@ -64,7 +76,9 @@
     {
       "monster": "djinnbo",
       "encounter_rate": 1,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         14,
@@ -74,7 +88,9 @@
     {
       "monster": "pigabyte",
       "encounter_rate": 3,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         14,

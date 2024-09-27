@@ -25,22 +25,18 @@
     ],
     "evolutions": [
         {
-            "at_level": 0,
             "monster_slug": "eruptibus",
             "item": "earth_booster"
         },
         {
-            "at_level": 0,
             "monster_slug": "eruptibus",
             "item": "tectonic_drill"
         },
         {
-            "at_level": 0,
             "monster_slug": "embazook",
             "item": "metal_booster"
         },
         {
-            "at_level": 0,
             "monster_slug": "embazook",
             "item": "stovepipe"
         }

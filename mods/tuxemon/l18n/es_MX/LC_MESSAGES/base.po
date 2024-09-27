@@ -134,9 +134,6 @@ msgstr "¡Has capturado a {name}!"
 msgid "combat_capturing_fail"
 msgstr "¡{name} se liberó!"
 
-msgid "combat_recharging"
-msgstr "{name} necesita un descanso antes de usar {move} nuevamente..."
-
 msgid "combat_replacement"
 msgstr "¡Selecciona un reemplazo!"
 

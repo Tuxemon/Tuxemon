@@ -1,10 +1,12 @@
 {
-  "slug": "route2",
+  "slug": "spyder_route2",
   "monsters": [
     {
       "monster": "cardiling",
       "encounter_rate": 2.5,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         3,
@@ -14,7 +16,9 @@
     {
       "monster": "aardorn",
       "encounter_rate": 2.5,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         3,
@@ -24,7 +28,9 @@
     {
       "monster": "eyenemy",
       "encounter_rate": 2.5,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         3,
@@ -34,7 +40,9 @@
     {
       "monster": "axylightl",
       "encounter_rate": 1,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         4,
@@ -44,7 +52,9 @@
     {
       "monster": "cataspike",
       "encounter_rate": 2.5,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         3,
@@ -54,7 +64,9 @@
     {
       "monster": "cardiling",
       "encounter_rate": 2.5,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         3,
@@ -64,7 +76,9 @@
     {
       "monster": "aardorn",
       "encounter_rate": 2.5,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         4,
@@ -74,7 +88,9 @@
     {
       "monster": "eyenemy",
       "encounter_rate": 2.5,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         4,
@@ -84,7 +100,9 @@
     {
       "monster": "axylightl",
       "encounter_rate": 1,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         5,
@@ -94,7 +112,9 @@
     {
       "monster": "cataspike",
       "encounter_rate": 2.5,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         4,

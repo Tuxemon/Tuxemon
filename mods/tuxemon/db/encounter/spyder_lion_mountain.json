@@ -1,10 +1,12 @@
 {
-  "slug": "lion_mountain",
+  "slug": "spyder_lion_mountain",
   "monsters": [
     {
       "monster": "snowrilla",
       "encounter_rate": 3.5,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         55,
@@ -14,7 +16,9 @@
     {
       "monster": "snowrilla",
       "encounter_rate": 3.5,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         65,
@@ -24,7 +28,9 @@
     {
       "monster": "tadcool",
       "encounter_rate": 3.5,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         55,
@@ -34,7 +40,9 @@
     {
       "monster": "bumbulus",
       "encounter_rate": 3.5,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         65,
@@ -44,7 +52,9 @@
     {
       "monster": "chillimp",
       "encounter_rate": 3.5,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         55,
@@ -54,7 +64,9 @@
     {
       "monster": "bumbulus",
       "encounter_rate": 3.5,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         65,
@@ -64,7 +76,9 @@
     {
       "monster": "tux",
       "encounter_rate": 3.5,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         55,
@@ -74,7 +88,9 @@
     {
       "monster": "tux",
       "encounter_rate": 3.5,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         65,

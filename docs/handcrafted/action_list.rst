@@ -24,6 +24,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.clear_tuxepedia.ClearTuxepediaAction
 .. autoscriptinfoclass:: tuxemon.event.actions.clear_variable.ClearVariableAction
 .. autoscriptinfoclass:: tuxemon.event.actions.copy_variable.CopyVariableAction
+.. autoscriptinfoclass:: tuxemon.event.actions.create_kennel.CreateKennelAction
 .. autoscriptinfoclass:: tuxemon.event.actions.create_npc.CreateNpcAction
 .. autoscriptinfoclass:: tuxemon.event.actions.delayed_teleport.DelayedTeleportAction
 .. autoscriptinfoclass:: tuxemon.event.actions.dojo_method.DojoMethodAction
@@ -76,7 +77,6 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_bubble.SetBubbleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_economy.SetEconomyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_kennel_visible.SetKennelVisibleAction
-.. autoscriptinfoclass:: tuxemon.event.actions.set_kennel.SetKennelAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_layer.SetLayerAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_mission.SetMissionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_money.SetMoneyAction

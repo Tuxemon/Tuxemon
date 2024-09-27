@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional
 
-from tuxemon.prepare import COEFF_DAMAGE
+from tuxemon import formula
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -36,31 +36,22 @@ class HealingEffect(TechEffect):
     ) -> HealingEffectResult:
         extra: Optional[str] = None
         done: bool = False
-        mon: Monster
-        heal: int = 0
-        combat = tech.combat_state
-        value = combat._random_tech_hit.get(user, 0.0) if combat else 0.0
-        hit = tech.accuracy >= value
-        tech.hit = hit
-        # define user or target
-        if self.objective == "user":
-            mon = user
-        elif self.objective == "target":
-            mon = target
-        else:
-            raise ValueError(f"{self.objective} must be user or target")
-        # check healing power
-        if isinstance(tech.healing_power, int):
-            heal = (COEFF_DAMAGE + mon.level) * tech.healing_power
-        diff = mon.hp - mon.current_hp
-        if hit:
-            if diff > 0:
-                if heal >= diff:
-                    mon.current_hp = mon.hp
-                else:
-                    mon.current_hp += heal
+
+        tech.hit = tech.accuracy >= (
+            tech.combat_state._random_tech_hit.get(user, 0.0)
+            if tech.combat_state
+            else 0.0
+        )
+
+        mon = user if self.objective == "user" else target
+
+        if tech.hit:
+            heal = formula.simple_heal(tech, mon)
+            if mon.current_hp < mon.hp:
+                heal_amount = min(heal, mon.hp - mon.current_hp)
+                mon.current_hp += heal_amount
                 done = True
-            else:
+            elif mon.current_hp == mon.hp:
                 extra = "combat_full_health"
         return {
             "success": done,

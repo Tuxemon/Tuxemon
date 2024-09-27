@@ -1,10 +1,12 @@
 {
-  "slug": "dryadsgrove",
+  "slug": "spyder_dryadsgrove",
   "monsters": [
     {
       "monster": "coleorus",
       "encounter_rate": 1,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         25,
@@ -14,7 +16,9 @@
     {
       "monster": "tourbidi",
       "encounter_rate": 1,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         20,
@@ -24,7 +28,9 @@
     {
       "monster": "shybulb",
       "encounter_rate": 3,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         25,
@@ -34,7 +40,9 @@
     {
       "monster": "narcileaf",
       "encounter_rate": 3,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         25,
@@ -44,7 +52,9 @@
     {
       "monster": "sapsnap",
       "encounter_rate": 3,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         28,
@@ -54,7 +64,9 @@
     {
       "monster": "lambert",
       "encounter_rate": 1,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         25,

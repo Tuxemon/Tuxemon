@@ -2093,6 +2093,15 @@ msgstr "The user undergoes a rapid transformation, striking the opponent with a 
 msgid "shapechange"
 msgstr "Shapechange"
 
+msgid "shooting_star_description"
+msgstr "Heals the user's health by harnessing the energy of a shooting star streaking across the night sky."
+
+msgid "shooting_star_fail"
+msgstr "The lack of starlight from the daytime sky prevents the healing."
+
+msgid "shooting_star"
+msgstr "Shooting Star"
+
 msgid "shrapnel_description"
 msgstr "The user unleashes a barrage of sharp fragments, causing widespread damage."
 

@@ -21,11 +21,14 @@ class PhotogenesisEffectResult(TechEffectResult):
 @dataclass
 class PhotogenesisEffect(TechEffect):
     """
-    Healing is based on healing power (photogenesis).
+    Healing effect based on photogenesis or not.
     """
 
     name = "photogenesis"
     objective: str
+    start_hour: int
+    peak_hour: int
+    end_hour: int
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
@@ -47,12 +50,12 @@ class PhotogenesisEffect(TechEffect):
         shape.load(mon.shape.value)
         max_multiplier = shape.hp / 2
 
-        multiplier = calculate_multiplier(
+        multiplier = formula.calculate_time_based_multiplier(
             hour=hour,
-            peak_hour=12,
+            peak_hour=self.peak_hour,
             max_multiplier=max_multiplier,
-            start=6,
-            end=18,
+            start=self.start_hour,
+            end=self.end_hour,
         )
 
         factors = {self.name: multiplier}
@@ -60,7 +63,7 @@ class PhotogenesisEffect(TechEffect):
         if tech.hit and not self.session.client.map_inside:
             heal = formula.simple_heal(tech, mon, factors)
             if heal == 0:
-                extra = "solar_synthesis_fail"
+                extra = tech.use_failure
             else:
                 if mon.current_hp < mon.hp:
                     heal_amount = min(heal, mon.hp - mon.current_hp)
@@ -75,42 +78,3 @@ class PhotogenesisEffect(TechEffect):
             "should_tackle": False,
             "extra": extra,
         }
-
-
-def calculate_multiplier(
-    hour: int,
-    peak_hour: int,
-    max_multiplier: float,
-    start: int,
-    end: int,
-) -> float:
-    """
-    Calculate the multiplier based on the given hour and peak hour.
-
-    Args:
-        hour: The current hour.
-        peak_hour: The peak hour.
-        max_multiplier: The maximum power.
-        start: The start hour of the period.
-        end: The end hour of the period.
-
-    Returns:
-        float: The calculated multiplier.
-    """
-    if end < start:
-        end += 24
-    if hour < start:
-        hour += 24
-    if peak_hour < start:
-        peak_hour += 24
-
-    if start <= hour < end:
-        distance_from_peak = abs(hour - peak_hour)
-        if distance_from_peak > (end - start) / 2:
-            distance_from_peak = (end - start) - distance_from_peak
-        weighted_power = max_multiplier * (
-            1 - (distance_from_peak / ((end - start) / 2)) ** 2
-        )
-        return max(weighted_power, 0.0)
-    else:
-        return 0.0

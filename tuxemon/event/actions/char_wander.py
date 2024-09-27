@@ -74,9 +74,11 @@ class CharWanderAction(EventAction):
                 return
 
             # Suspend wandering if a dialog window is open
-            for state in client.active_states:
-                if state.name == "WorldMenuState":
-                    return
+            if any(
+                state_name in ("WorldMenuState", "DialogState", "ChoiceState")
+                for state_name in self.session.client.active_state_names
+            ):
+                return
 
             # Choose a random direction that is free and walk toward it
             origin = (character.tile_pos[0], character.tile_pos[1])

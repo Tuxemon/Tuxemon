@@ -39,7 +39,8 @@ class CharDefeatedCondition(EventCondition):
             for mon in character.monsters:
                 if mon.current_hp <= 0 and not has_status(mon, "faint"):
                     mon.faint()
-                if "faint" not in (s.slug for s in mon.status):
-                    return False
-            return True
+            return all(
+                "faint" in (s.slug for s in mon.status)
+                for mon in character.monsters
+            )
         return False

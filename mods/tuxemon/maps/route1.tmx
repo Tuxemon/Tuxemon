@@ -89,7 +89,7 @@
   </object>
   <object id="36" name="random battle" type="event" x="624" y="464" width="160" height="32">
    <properties>
-    <property name="act10" value="random_encounter route1"/>
+    <property name="act10" value="random_encounter default_encounter"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
     <property name="cond30" value="is variable_set badge:yes"/>
@@ -122,7 +122,7 @@
   </object>
   <object id="91" name="random battle 2" type="event" x="624" y="592" width="160" height="32">
    <properties>
-    <property name="act10" value="random_encounter route1"/>
+    <property name="act10" value="random_encounter default_encounter"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
     <property name="cond30" value="is variable_set badge:yes"/>
@@ -144,7 +144,7 @@
   </object>
   <object id="105" name="random battle" type="event" x="592" y="64" width="144" height="48">
    <properties>
-    <property name="act10" value="random_encounter route1"/>
+    <property name="act10" value="random_encounter default_encounter"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
     <property name="cond30" value="is variable_set badge:yes"/>
@@ -152,7 +152,7 @@
   </object>
   <object id="106" name="random battle" type="event" x="688" y="128" width="32" height="48">
    <properties>
-    <property name="act10" value="random_encounter route1"/>
+    <property name="act10" value="random_encounter default_encounter"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_moved player"/>
     <property name="cond30" value="is variable_set badge:yes"/>

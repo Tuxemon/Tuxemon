@@ -154,23 +154,13 @@ events:
     - is char_in player,surfable
     - not char_sprite player,swimmer
     type: "event"
-  Not surfable Boy:
+  Not surfable:
     actions:
-    - set_template player,adventurer,adventurer
+    - set_template player,default
     - set_variable swimming:no
     conditions:
     - not char_in player,surfable
     - is char_sprite player,swimmer
-    - is variable_set gender_choice:gender_male
-    type: "event"
-  Not surfable Girl:
-    actions:
-    - set_template player,heroine,heroine
-    - set_variable swimming:no
-    conditions:
-    - not char_in player,surfable
-    - is char_sprite player,swimmer
-    - is variable_set gender_choice:gender_female
     type: "event"
   Allow Swim:
     actions:
@@ -188,7 +178,7 @@ events:
     type: "event"
   Swim Encounters Day:
     actions:
-    - random_encounter routec,0.25
+    - random_encounter spyder_routec,0.25
     conditions:
     - is char_sprite player,swimmer
     - is current_state WorldState
@@ -197,7 +187,7 @@ events:
     type: "event"
   Swim Encounters Night:
     actions:
-    - random_encounter routec,0.75
+    - random_encounter spyder_routec,0.75
     conditions:
     - is char_sprite player,swimmer
     - is current_state WorldState
@@ -342,4 +332,24 @@ events:
     conditions:
     - is check_max_tech
     - is current_state MainCombatMenuState
+    type: "event"
+  Create Quarantine Kennel:
+    actions:
+    - create_kennel quarantine
+    conditions:
+    - not kennel player,quarantine,exist
+    type: "event"
+  Hide Quarantine Kennel:
+    actions:
+    - set_kennel_visible quarantine,false
+    conditions:
+    - not variable_set hospitalcure:yes
+    - is kennel player,quarantine,visible
+    type: "event"
+  Show Quarantine Kennel:
+    actions:
+    - set_kennel_visible quarantine,true
+    conditions:
+    - is variable_set hospitalcure:yes
+    - is kennel player,quarantine,hidden
     type: "event"

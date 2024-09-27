@@ -1,10 +1,12 @@
 {
-  "slug": "route7",
+  "slug": "spyder_route7",
   "monsters": [
     {
       "monster": "pairagrim",
       "encounter_rate": 3.5,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         35,
@@ -14,7 +16,9 @@
     {
       "monster": "aardart",
       "encounter_rate": 3.5,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         35,
@@ -24,7 +28,9 @@
     {
       "monster": "weavifly",
       "encounter_rate": 3.5,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         35,
@@ -34,7 +40,9 @@
     {
       "monster": "pantherafira",
       "encounter_rate": 3.5,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         35,
@@ -44,7 +52,9 @@
     {
       "monster": "flacono",
       "encounter_rate": 3.5,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         35,
@@ -54,7 +64,9 @@
     {
       "monster": "slichen",
       "encounter_rate": 3.5,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         35,

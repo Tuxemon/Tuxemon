@@ -742,50 +742,6 @@ class NPC(Entity[NPCState]):
         if monster in self.monsters:
             self.monsters.remove(monster)
 
-    def evolve_monster(self, old_monster: Monster, evolution: str) -> None:
-        """
-        Evolve a monster from this npc's party.
-
-        Parameters:
-            old_monster: Monster to remove from the npc's party.
-            evolution: Monster to add to the npc's party.
-
-        """
-        if old_monster not in self.monsters:
-            return
-
-        slot = self.monsters.index(old_monster)
-        new_monster = Monster()
-        new_monster.load_from_db(evolution)
-        new_monster.set_level(old_monster.level)
-        new_monster.current_hp = min(old_monster.current_hp, new_monster.hp)
-        new_monster.moves = old_monster.moves
-        new_monster.status = old_monster.status
-        new_monster.instance_id = old_monster.instance_id
-        new_monster.gender = old_monster.gender
-        new_monster.capture = old_monster.capture
-        new_monster.capture_device = old_monster.capture_device
-        new_monster.taste_cold = old_monster.taste_cold
-        new_monster.taste_warm = old_monster.taste_warm
-        new_monster.plague = old_monster.plague
-        new_monster.name = (
-            new_monster.name
-            if old_monster.name == T.translate(old_monster.slug)
-            else old_monster.name
-        )
-        # Copy flairs from old monster to new monster
-        for flair_category, new_flair in new_monster.flairs.items():
-            if flair_category in old_monster.flairs:
-                new_monster.flairs[flair_category] = old_monster.flairs[
-                    flair_category
-                ]
-
-        self.remove_monster(old_monster)
-        self.add_monster(new_monster, slot)
-
-        # Set evolution as caught
-        self.tuxepedia[evolution] = SeenStatus.caught
-
     def remove_monster_from_storage(self, monster: Monster) -> None:
         """
         Removes the monster from the npc's storage.

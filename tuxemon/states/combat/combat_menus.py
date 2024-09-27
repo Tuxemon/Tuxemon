@@ -268,7 +268,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 player = self.party[0]
                 enemy = self.opponents[0]
                 surface = pygame.Surface(self.rect.size)
-                if "own monster" in technique.target:
+                if technique.target["own_monster"]:
                     mon = MenuItem(surface, None, None, player)
                 else:
                     mon = MenuItem(surface, None, None, enemy)
@@ -371,13 +371,16 @@ class CombatTargetMenuState(Menu[Monster]):
         for player, monsters in self.combat_state.monsters_in_play.items():
             if len(monsters) == 2:
                 targeting_class = (
-                    "own monster"
+                    "own_monster"
                     if player == self.character
-                    else "enemy monster"
+                    else "enemy_monster"
                 )
                 self.targeting_map[targeting_class].extend(monsters)
 
-                if targeting_class not in self.technique.target:
+                if (
+                    targeting_class not in self.technique.target
+                    or not self.technique.target[targeting_class]
+                ):
                     continue
 
                 for monster in monsters:
@@ -432,11 +435,12 @@ class CombatTargetMenuState(Menu[Monster]):
         """
         Determines the optimal target.
         """
-        for target_tag in self.technique.target:
-            for target in self.targeting_map[target_tag]:
-                menu_item = self.search_items(target)
-                if menu_item and menu_item.enabled:
-                    self._set_selected_index(menu_item)
+        for target_tag, target_value in self.technique.target.items():
+            if target_value:
+                for target in self.targeting_map.get(target_tag, []):
+                    menu_item = self.search_items(target)
+                    if menu_item and menu_item.enabled:
+                        self._set_selected_index(menu_item)
 
     def _set_selected_index(self, menu_item: MenuItem[Monster]) -> None:
         """

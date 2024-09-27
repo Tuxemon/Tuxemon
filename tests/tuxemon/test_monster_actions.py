@@ -79,7 +79,14 @@ class TestMonsterActions(unittest.TestCase):
         slug="faint",
         range="special",
         sort="meta",
-        target={},
+        target={
+            "enemy_monster": False,
+            "enemy_team": False,
+            "enemy_trainer": False,
+            "own_monster": False,
+            "own_team": False,
+            "own_trainer": False,
+        },
         cond_id=0,
     )
 

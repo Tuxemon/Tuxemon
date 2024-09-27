@@ -1,8 +1,5 @@
 {
-  "conditions": [
-    "is level >=,0",
-    "is has_path shaft_badge"
-  ],
+  "conditions": [],
   "effects": [],
   "slug": "shaft_badge",
   "sort": "utility",

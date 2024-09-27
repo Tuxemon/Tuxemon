@@ -31,6 +31,7 @@ from tuxemon.db import (
     db,
 )
 from tuxemon.element import Element
+from tuxemon.evolution import Evolution
 from tuxemon.locale import T
 from tuxemon.shape import Shape
 from tuxemon.sprite import Sprite
@@ -119,6 +120,7 @@ class Monster:
         self.moves: list[Technique] = []
         self.moveset: list[MonsterMovesetItemModel] = []
         self.evolutions: list[MonsterEvolutionItemModel] = []
+        self.evolution_handler = Evolution(self)
         self.history: list[MonsterHistoryItemModel] = []
         self.stage = EvolutionStage.standalone
         self.flairs: dict[str, Flair] = {}

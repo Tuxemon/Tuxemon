@@ -25,22 +25,18 @@
     ],
     "evolutions": [
         {
-            "at_level": 0,
             "monster_slug": "bigfin",
             "item": "water_booster"
         },
         {
-            "at_level": 0,
             "monster_slug": "bigfin",
             "item": "sweet_sand"
         },
         {
-            "at_level": 0,
             "monster_slug": "sharpfin",
             "item": "metal_booster"
         },
         {
-            "at_level": 0,
             "monster_slug": "sharpfin",
             "item": "sea_girdle"
         }

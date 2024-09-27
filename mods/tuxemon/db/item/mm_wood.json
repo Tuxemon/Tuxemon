@@ -1,7 +1,6 @@
 {
   "conditions": [
-    "is type wood",
-    "is max_moves"
+    "is type wood"
   ],
   "effects": [
     "learn_mm wood"

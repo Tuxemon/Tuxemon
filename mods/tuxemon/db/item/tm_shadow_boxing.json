@@ -1,6 +1,5 @@
 {
   "conditions": [
-    "is max_moves",
     "not has_tech shadow_boxing"
   ],
   "effects": [

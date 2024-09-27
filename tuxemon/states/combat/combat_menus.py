@@ -205,28 +205,43 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         """Open menus to choose a Technique to use."""
 
         def choose_technique() -> None:
+            available_techniques = [
+                tech
+                for tech in self.monster.moves
+                if not combat.recharging(tech)
+            ]
+
             # open menu to choose technique
             menu = self.client.push_state(Menu())
             menu.shrink_to_items = True
 
-            # add techniques to the menu
-            filter_moves = []
+            if not available_techniques:
+                skip = Technique()
+                skip.load("skip")
+                skip_image = self.shadow_text(skip.name)
+                tech_skip = MenuItem(skip_image, None, None, skip)
+                menu.add(tech_skip)
+
             for tech in self.monster.moves:
-                if not combat.recharging(tech):
-                    image = self.shadow_text(tech.name)
-                else:
-                    image = self.shadow_text(
-                        "%s %d" % (tech.name, abs(tech.next_use)),
-                        fg=self.unavailable_color,
-                    )
-                    filter_moves.append(tech)
-                # add skip move if both grey
-                if len(filter_moves) == len(self.monster.moves):
-                    skip = Technique()
-                    skip.load("skip")
-                    self.monster.moves.append(skip)
-                item = MenuItem(image, None, None, tech)
+                tech_name = tech.name
+                tech_color = None
+                tech_enabled = True
+
+                if combat.recharging(tech):
+                    tech_name = f"{tech.name} ({abs(tech.next_use)})"
+                    tech_color = self.unavailable_color
+                    tech_enabled = False
+
+                tech_image = self.shadow_text(tech_name, fg=tech_color)
+                item = MenuItem(tech_image, None, None, tech, tech_enabled)
                 menu.add(item)
+
+            # Update selected_index to the first enabled item
+            enabled_items = [
+                i for i, item in enumerate(menu.menu_items) if item.enabled
+            ]
+            if enabled_items:
+                menu.selected_index = enabled_items[0]
 
             # position the new menu
             menu.anchor("bottom", self.rect.top)
@@ -238,14 +253,6 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         def choose_target(menu_item: MenuItem[Technique]) -> None:
             # open menu to choose target of technique
             technique = menu_item.game_object
-            if combat.recharging(technique):
-                params = {
-                    "move": technique.name.upper(),
-                    "name": self.monster.name.upper(),
-                }
-                msg = T.format("combat_recharging", params)
-                tools.open_dialog(local_session, [msg])
-                return
 
             # allow to choose target if 1 vs 2 or 2 vs 2
             if len(self.opponents) > 1:
@@ -261,7 +268,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 player = self.party[0]
                 enemy = self.opponents[0]
                 surface = pygame.Surface(self.rect.size)
-                if "own monster" in technique.target:
+                if technique.target["own_monster"]:
                     mon = MenuItem(surface, None, None, player)
                 else:
                     mon = MenuItem(surface, None, None, enemy)
@@ -274,9 +281,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             # enqueue the technique
             target = menu_item.game_object
 
-            params = {"name": technique.name.upper()}
-            # can be used the technique?
+            # Check if the technique can be used on the target
             if not technique.validate(target):
+                params = {"name": technique.name.upper()}
                 msg = T.format("cannot_use_tech_monster", params)
                 tools.open_dialog(local_session, [msg])
                 return
@@ -285,25 +292,25 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 combat.has_effect(technique, "damage")
                 and target == self.monster
             ):
+                params = {"name": technique.name.upper()}
                 msg = T.format("combat_target_itself", params)
                 tools.open_dialog(local_session, [msg])
                 return
-            else:
-                self.character.game_variables["action_tech"] = technique.slug
-                # pre checking (look for null actions)
-                technique = combat.pre_checking(
-                    self.monster, technique, target, self.combat
-                )
-                self.combat.enqueue_action(self.monster, technique, target)
-                # remove skip after using it
-                if technique.slug == "skip":
-                    self.monster.moves.pop()
 
-                # close all the open menus
-                if len(self.opponents) > 1:
-                    self.client.pop_state()  # close target chooser
-                self.client.pop_state()  # close technique menu
-                self.client.pop_state()  # close the monster action menu
+            # Pre-check the technique for validity
+            self.character.game_variables["action_tech"] = technique.slug
+            technique = combat.pre_checking(
+                self.monster, technique, target, self.combat
+            )
+
+            # Enqueue the action
+            self.combat.enqueue_action(self.monster, technique, target)
+
+            # close all the open menus
+            if len(self.opponents) > 1:
+                self.client.pop_state()  # close target chooser
+            self.client.pop_state()  # close technique menu
+            self.client.pop_state()  # close the monster action menu
 
         choose_technique()
 
@@ -364,13 +371,16 @@ class CombatTargetMenuState(Menu[Monster]):
         for player, monsters in self.combat_state.monsters_in_play.items():
             if len(monsters) == 2:
                 targeting_class = (
-                    "own monster"
+                    "own_monster"
                     if player == self.character
-                    else "enemy monster"
+                    else "enemy_monster"
                 )
                 self.targeting_map[targeting_class].extend(monsters)
 
-                if targeting_class not in self.technique.target:
+                if (
+                    targeting_class not in self.technique.target
+                    or not self.technique.target[targeting_class]
+                ):
                     continue
 
                 for monster in monsters:
@@ -425,11 +435,12 @@ class CombatTargetMenuState(Menu[Monster]):
         """
         Determines the optimal target.
         """
-        for target_tag in self.technique.target:
-            for target in self.targeting_map[target_tag]:
-                menu_item = self.search_items(target)
-                if menu_item and menu_item.enabled:
-                    self._set_selected_index(menu_item)
+        for target_tag, target_value in self.technique.target.items():
+            if target_value:
+                for target in self.targeting_map.get(target_tag, []):
+                    menu_item = self.search_items(target)
+                    if menu_item and menu_item.enabled:
+                        self._set_selected_index(menu_item)
 
     def _set_selected_index(self, menu_item: MenuItem[Monster]) -> None:
         """

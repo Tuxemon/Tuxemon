@@ -610,3 +610,8 @@ class LocalPygameClient:
     def current_state(self) -> Optional[State]:
         """Current State object, or None"""
         return self.state_manager.current_state
+
+    @property
+    def active_state_names(self) -> Sequence[str]:
+        """List of names of active states"""
+        return self.state_manager.get_active_state_names()

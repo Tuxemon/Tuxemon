@@ -134,9 +134,6 @@ msgstr "{name} estas kaptita!"
 msgid "combat_capturing_fail"
 msgstr "{name} liberiĝis!"
 
-msgid "combat_recharging"
-msgstr ""
-
 msgid "combat_replacement"
 msgstr "Elektu anstataŭon!"
 

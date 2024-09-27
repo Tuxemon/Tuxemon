@@ -211,7 +211,7 @@
   </object>
   <object id="42" name="Threats" type="event" x="0" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter omnichannel,0.6"/>
+    <property name="act1" value="random_encounter spyder_omnichannel,0.6"/>
     <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
     <property name="cond2" value="is check_char_parameter player,moving,1"/>
    </properties>

@@ -38,14 +38,11 @@ class MusicPlayingCondition(EventCondition):
         """
         song = condition.parameters[0]
 
-        # currently no way to query the names of states in the state game
-        # stack.
-        # so we find names here.  possibly might make api to do this later.
-        names = {i.name for i in session.client.active_states}
         combat_states = {"FlashTransition", "CombatState"}
-
-        # means "if any element of combat_states is in names"
-        if not names.isdisjoint(combat_states):
+        if any(
+            state in combat_states
+            for state in session.client.active_state_names
+        ):
             return True
 
         if session.client.current_music.status == MusicStatus.paused:

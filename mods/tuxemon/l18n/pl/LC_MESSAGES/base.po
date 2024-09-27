@@ -258,9 +258,6 @@ msgstr "Ten potwór już został pokonany!"
 msgid "combat_replacement"
 msgstr "Wybierz zamiennik!"
 
-msgid "combat_recharging"
-msgstr "{name} potrzebuje przerwy przed ponownym użyciem ruchu {move}…"
-
 msgid "combat_capturing_fail"
 msgstr "{name} się wydostał!"
 

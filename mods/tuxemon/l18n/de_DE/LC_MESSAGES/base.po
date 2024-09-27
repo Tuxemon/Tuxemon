@@ -213,10 +213,6 @@ msgstr "Du hast {name} gefangen!"
 msgid "combat_capturing_fail"
 msgstr "{name} ist ausgebrochen!"
 
-msgid "combat_recharging"
-msgstr ""
-"{name} braucht eine Pause, bevor {move} wieder eingesetzt werden kann..."
-
 msgid "combat_replacement"
 msgstr "Wähle einen Ersatz!"
 

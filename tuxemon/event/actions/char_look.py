@@ -65,8 +65,8 @@ class CharLookAction(EventAction):
         def _look() -> None:
             # Suspend looking around if a dialog window is open
             if any(
-                state.name in ("WorldMenuState", "DialogState", "ChoiceState")
-                for state in self.session.client.active_states
+                state_name in ("WorldMenuState", "DialogState", "ChoiceState")
+                for state_name in self.session.client.active_state_names
             ):
                 return
 

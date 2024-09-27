@@ -7,10 +7,10 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
+from tuxemon.monster import Monster
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
-    from tuxemon.monster import Monster
 
 
 class EvolveEffectResult(ItemEffectResult):
@@ -34,8 +34,14 @@ class EvolveEffect(ItemEffect):
             evolution = choices[0].monster_slug
         else:
             evolution = random.choice(choices).monster_slug
-        target.owner.evolve_monster(target, evolution)
+
+        new_monster = Monster()
+        new_monster.load_from_db(evolution)
+        target.evolution_handler.evolve_monster(new_monster)
+
         self.session.client.push_state(
-            "EvolutionTransition", original=target.slug, evolved=evolution
+            "EvolutionTransition",
+            original=target.slug,
+            evolved=new_monster.slug,
         )
         return {"success": True, "num_shakes": 0, "extra": None}

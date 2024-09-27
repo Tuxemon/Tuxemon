@@ -3172,11 +3172,11 @@ msgstr "If the sun is out, it can fly as far or as high as it likes."
 msgid "av8r"
 msgstr "Av8r"
 
-msgid "axylightl_description"
+msgid "axolightl_description"
 msgstr "It lights the deep waters with its tail, marking a safe shelter for fish."
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
 msgid "b_ver_1_description"
 msgstr "It is designed for all those times you need something to be bitten by a robot."

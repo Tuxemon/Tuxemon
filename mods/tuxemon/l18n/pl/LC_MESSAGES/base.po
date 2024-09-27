@@ -1598,8 +1598,8 @@ msgstr "Zunna"
 msgid "araignee"
 msgstr "Araignee"
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
 #, fuzzy
 msgid "arthrobolt"

@@ -34,7 +34,7 @@ events:
     type: "event"
   Encounters 1:
     actions:
-    - random_encounter park
+    - random_encounter spyder_park
     - play_map_animation grass,0.1,noloop,player
     conditions:
     - is char_at player
@@ -47,7 +47,7 @@ events:
     type: "event"
   Encounters 2:
     actions:
-    - random_encounter park
+    - random_encounter spyder_park
     - play_map_animation grass,0.1,noloop,player
     conditions:
     - is char_at player
@@ -60,7 +60,7 @@ events:
     type: "event"
   Encounters 3:
     actions:
-    - random_encounter park
+    - random_encounter spyder_park
     - play_map_animation grass,0.1,noloop,player
     conditions:
     - is char_at player
@@ -73,7 +73,7 @@ events:
     type: "event"
   Encounters 4:
     actions:
-    - random_encounter park
+    - random_encounter spyder_park
     - play_map_animation grass,0.1,noloop,player
     conditions:
     - is char_at player
@@ -86,7 +86,7 @@ events:
     type: "event"
   Encounters 5:
     actions:
-    - random_encounter park
+    - random_encounter spyder_park
     - play_map_animation grass,0.1,noloop,player
     conditions:
     - is char_at player
@@ -99,7 +99,7 @@ events:
     type: "event"
   Encounters 6:
     actions:
-    - random_encounter park
+    - random_encounter spyder_park
     - play_map_animation grass,0.1,noloop,player
     conditions:
     - is char_at player
@@ -112,7 +112,7 @@ events:
     type: "event"
   Encounters 7:
     actions:
-    - random_encounter park
+    - random_encounter spyder_park
     - play_map_animation grass,0.1,noloop,player
     conditions:
     - is char_at player
@@ -125,7 +125,7 @@ events:
     type: "event"
   Encounters 8:
     actions:
-    - random_encounter park
+    - random_encounter spyder_park
     - play_map_animation grass_blue,0.1,noloop,player
     conditions:
     - is char_at player
@@ -138,7 +138,7 @@ events:
     type: "event"
   Encounters 9:
     actions:
-    - random_encounter park
+    - random_encounter spyder_park
     - play_map_animation grass,0.1,noloop,player
     conditions:
     - is char_at player
@@ -151,7 +151,7 @@ events:
     type: "event"
   Encounters 10:
     actions:
-    - random_encounter park
+    - random_encounter spyder_park
     - play_map_animation grass,0.1,noloop,player
     conditions:
     - is char_at player
@@ -174,7 +174,7 @@ events:
     type: "event"
   Encounters 11:
     actions:
-    - random_encounter park
+    - random_encounter spyder_park
     - play_map_animation grass,0.1,noloop,player
     conditions:
     - is char_at player
@@ -235,7 +235,7 @@ events:
     type: "event"
   Encounters 13:
     actions:
-    - random_encounter park
+    - random_encounter spyder_park
     - play_map_animation grass,0.1,noloop,player
     conditions:
     - is char_at player
@@ -248,7 +248,7 @@ events:
     type: "event"
   Encounters 14:
     actions:
-    - random_encounter park
+    - random_encounter spyder_park
     - play_map_animation grass,0.1,noloop,player
     conditions:
     - is char_at player
@@ -261,7 +261,7 @@ events:
     type: "event"
   Encounters 15:
     actions:
-    - random_encounter park
+    - random_encounter spyder_park
     - play_map_animation grass,0.1,noloop,player
     conditions:
     - is char_at player

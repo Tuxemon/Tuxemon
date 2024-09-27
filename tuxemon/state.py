@@ -716,3 +716,7 @@ class StateManager:
                 return queued_state
 
         raise ValueError(f"Missing queued state {state_name}")
+
+    def get_active_state_names(self) -> Sequence[str]:
+        """List of names of active states."""
+        return [state.name for state in self._state_stack]

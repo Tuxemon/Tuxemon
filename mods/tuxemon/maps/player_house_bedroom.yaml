@@ -55,7 +55,7 @@ events:
     type: "event"
   Intro:
     actions:
-    - change_bg gradient_blue,rockitten
+    - change_bg gradient_blue,rockitten,monster
     - translated_dialog xero_skip_question
     - translated_dialog_choice no:yes,question_xero
     conditions:
@@ -67,9 +67,9 @@ events:
   Intro Yes:
     actions:
     - translated_dialog xero_intro_1
-    - change_bg gradient_blue,ceo
+    - change_bg gradient_blue,ceo,template
     - translated_dialog xero_intro_2
-    - change_bg gradient_blue,rockitten
+    - change_bg gradient_blue,rockitten,monster
     - translated_dialog xero_intro_3
     - translated_dialog xero_intro_question
     - rename_player random

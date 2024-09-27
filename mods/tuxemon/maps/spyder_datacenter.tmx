@@ -351,7 +351,7 @@
   </object>
   <object id="102" name="Wild" type="event" x="304" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter datacenter,0.6"/>
+    <property name="act1" value="random_encounter spyder_datacenter,0.6"/>
     <property name="cond1" value="not variable_set kernelquest:done"/>
     <property name="cond2" value="is check_char_parameter player,moving,1"/>
    </properties>

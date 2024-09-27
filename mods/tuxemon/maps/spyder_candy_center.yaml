@@ -27,16 +27,7 @@ events:
     conditions:
     - not char_exists spyder_cathedral_nurse
     type: "event"
-  Elevator1a:
-    actions:
-    - translated_dialog_choice 1floor:2floor:no,choice_floor
-    conditions:
-    - is char_facing_tile player
-    - is button_pressed K_RETURN
-    x: 12
-    y: 4
-    type: "event"
-  Elevator2a:
+  Elevator1:
     actions:
     - translated_dialog_choice 1floor:2floor:no,choice_floor
     conditions:
@@ -44,16 +35,18 @@ events:
     - is button_pressed K_RETURN
     width: 2
     height: 1
-    x: 15
+    x: 13
     y: 4
     type: "event"
-  Elevator3a:
+  Elevator2:
     actions:
     - translated_dialog_choice 1floor:2floor:no,choice_floor
     conditions:
     - is char_facing_tile player
     - is button_pressed K_RETURN
-    x: 19
+    width: 2
+    height: 1
+    x: 17
     y: 4
     type: "event"
   Choice Floor 1st:

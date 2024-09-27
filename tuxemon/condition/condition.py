@@ -11,13 +11,7 @@ from tuxemon import plugin
 from tuxemon.condition.condcondition import CondCondition
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 from tuxemon.constants import paths
-from tuxemon.db import (
-    CategoryCondition,
-    Range,
-    ResponseCondition,
-    db,
-    process_targets,
-)
+from tuxemon.db import CategoryCondition, Range, ResponseCondition, db
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
@@ -71,7 +65,6 @@ class Condition:
         self.sfx = ""
         self.sort = ""
         self.slug = ""
-        self.target: Sequence[str] = []
         self.use_success = ""
         self.use_failure = ""
 
@@ -139,7 +132,7 @@ class Condition:
 
         self.conditions = self.parse_conditions(results.conditions)
         self.effects = self.parse_effects(results.effects)
-        self.target = process_targets(results.target)
+        self.target = results.target.model_dump()
 
         # Load the animation sprites that will be used for this condition
         self.animation = results.animation

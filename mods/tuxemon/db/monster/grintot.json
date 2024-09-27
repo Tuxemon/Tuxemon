@@ -25,22 +25,18 @@
     ],
     "evolutions": [
         {
-            "at_level": 0,
             "monster_slug": "grinflare",
             "item": "earth_booster"
         },
         {
-            "at_level": 0,
             "monster_slug": "grinflare",
             "item": "flintstone"
         },
         {
-            "at_level": 0,
             "monster_slug": "grintrock",
             "item": "metal_booster"
         },
         {
-            "at_level": 0,
             "monster_slug": "grintrock",
             "item": "thunderstone"
         }

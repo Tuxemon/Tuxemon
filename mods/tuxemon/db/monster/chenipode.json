@@ -37,7 +37,6 @@
     ],
     "evolutions": [
         {
-            "at_level": 0,
             "monster_slug": "exapode",
             "steps": "2500"
         }

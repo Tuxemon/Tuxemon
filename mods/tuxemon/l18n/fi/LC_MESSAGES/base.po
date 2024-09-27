@@ -69,9 +69,6 @@ msgstr "{user} enempää ei voida parantaa."
 msgid "combat_defeat"
 msgstr "Sinut päihitettiin!"
 
-msgid "combat_recharging"
-msgstr "{name} tarvitsee lepotauon ennen {move} uudelleen..."
-
 msgid "attack_resisted"
 msgstr "Hyökkäys torjuttiin!"
 

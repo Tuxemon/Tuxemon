@@ -1,8 +1,5 @@
 {
-  "conditions": [
-    "is level >=,0",
-    "is has_path nimrod_badge"
-  ],
+  "conditions": [],
   "effects": [],
   "slug": "nimrod_badge",
   "sort": "utility",

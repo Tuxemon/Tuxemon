@@ -52,17 +52,17 @@ class GetDefaultPriceAndCost(EconomyTestBase):
         inventory = economy.lookup_item_inventory("revive")
         self.assertEqual(inventory, -1)
 
-    def test_unknown_item_price(self):
+    def test_unknown_item_cost(self):
         economy = self.economy
         with self.assertRaises(RuntimeError):
-            cost = economy.lookup_item_cost("unknown_item")
+            economy.lookup_item_cost("unknown_item")
 
     def test_unknown_item_price(self):
         economy = self.economy
         with self.assertRaises(RuntimeError):
-            price = economy.lookup_item_price("unknown_item")
+            economy.lookup_item_price("unknown_item")
 
     def test_unknown_item_inventory(self):
         economy = self.economy
         with self.assertRaises(RuntimeError):
-            inventory = economy.lookup_item_inventory("unknown_item")
+            economy.lookup_item_inventory("unknown_item")

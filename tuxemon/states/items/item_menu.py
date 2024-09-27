@@ -106,7 +106,6 @@ class ItemMenuState(Menu[Item]):
             menu_item: Selected menu item.
         """
         item = menu_item.game_object
-        active_state_names = [a.name for a in self.client.active_states]
 
         # Check if the item can be used on any monster
         if not any(item.validate(m) for m in local_session.player.monsters):
@@ -114,7 +113,9 @@ class ItemMenuState(Menu[Item]):
             error_message = self.get_error_message(item)
             tools.open_dialog(local_session, [error_message])
         # Check if the item can be used in the current state
-        elif not any(s.name in active_state_names for s in item.usable_in):
+        elif not any(
+            s.name in self.client.active_state_names for s in item.usable_in
+        ):
             error_message = T.format(
                 "item_cannot_use_here", {"name": item.name}
             )

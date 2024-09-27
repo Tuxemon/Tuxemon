@@ -14,12 +14,12 @@
   "slug": "wild",
   "sort": "meta",
   "target": {
-    "enemy monster": 0,
-    "enemy team": 0,
-    "enemy trainer": 0,
-    "own monster": 0,
-    "own team": 0,
-    "own trainer": 0
+    "enemy_monster": false,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
   },
   "cond_id": 26,
   "use_failure": null,

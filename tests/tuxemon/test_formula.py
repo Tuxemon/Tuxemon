@@ -46,12 +46,12 @@ class TestUpdateStat(unittest.TestCase):
 
 
 class MockTechnique1:
-    def __init__(self, healing_power) -> None:
+    def __init__(self, healing_power: float) -> None:
         self.healing_power = healing_power
 
 
 class MockMonster2:
-    def __init__(self, level) -> None:
+    def __init__(self, level: int) -> None:
         self.level = level
 
 
@@ -60,10 +60,10 @@ class TestSimpleHeal(unittest.TestCase):
         technique = MockTechnique1(5)
         monster = MockMonster2(10)
         expected_heal = (
-            prepare.COEFF_DAMAGE + monster.level
-        ) * technique.healing_power
+            prepare.COEFF_DAMAGE + monster.level * technique.healing_power
+        )
         actual_heal = simple_heal(technique, monster)
-        self.assertEqual(expected_heal, actual_heal)
+        self.assertEqual(int(expected_heal), actual_heal)
 
     def test_simple_heal_with_factors(self):
         technique = MockTechnique1(3)
@@ -71,10 +71,8 @@ class TestSimpleHeal(unittest.TestCase):
         factors = {"boost": 1.2, "penalty": 0.8}
         expected_multiplier = math.prod(factors.values())
         expected_heal = (
-            (prepare.COEFF_DAMAGE + monster.level)
-            * technique.healing_power
-            * expected_multiplier
-        )
+            prepare.COEFF_DAMAGE + monster.level * technique.healing_power
+        ) * expected_multiplier
         actual_heal = simple_heal(technique, monster, factors)
         self.assertEqual(int(expected_heal), actual_heal)
 
@@ -83,8 +81,8 @@ class TestSimpleHeal(unittest.TestCase):
         monster = MockMonster2(20)
         factors = {}
         expected_heal = (
-            prepare.COEFF_DAMAGE + monster.level
-        ) * technique.healing_power
+            prepare.COEFF_DAMAGE + monster.level * technique.healing_power
+        )
         actual_heal = simple_heal(technique, monster, factors)
         self.assertEqual(int(expected_heal), actual_heal)
 

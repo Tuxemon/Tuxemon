@@ -54,7 +54,8 @@
     "evolutions": [
         {
             "at_level": 32,
-            "monster_slug": "regalance"
+            "monster_slug": "regalance",
+            "taste_warm": "hearty"
         }
     ],
     "history": [

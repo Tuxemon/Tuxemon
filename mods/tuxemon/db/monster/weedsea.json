@@ -13,8 +13,12 @@
     ],
     "evolutions": [
         {
-            "at_level": 32,
-            "monster_slug": "weedlantis"
+            "monster_slug": "weedlantis",
+            "party": ["shrab"]
+        },
+        {
+            "monster_slug": "weedlantis",
+            "party": ["lesmagu"]
         }
     ],
     "history": [

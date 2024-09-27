@@ -13,7 +13,6 @@
     ],
     "evolutions": [
         {
-            "at_level": 0,
             "monster_slug": "shrab",
             "bond": "greater_than:40"
         }

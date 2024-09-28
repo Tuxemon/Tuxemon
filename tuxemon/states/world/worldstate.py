@@ -129,9 +129,7 @@ class WorldState(state.State):
         self.resolution = prepare.SCREEN_SIZE
         self.tile_size = prepare.TILE_SIZE
         # default variables for layer
-        self.layer = pygame.Surface(
-            self.client.screen.get_size(), pygame.SRCALPHA
-        )
+        self.layer = pygame.Surface(self.screen.get_size(), pygame.SRCALPHA)
         self.layer_color: ColorLike = prepare.TRANSPARENT_COLOR
 
         #####################################################################
@@ -307,26 +305,6 @@ class WorldState(state.State):
         )
         self.transition_surface.fill(color)
 
-    def set_layer(self) -> None:
-        self.layer.fill(self.layer_color)
-        self.screen.blit(self.layer, (0, 0))
-
-    def set_bubble(
-        self, screen_surfaces: list[tuple[pygame.surface.Surface, Rect, int]]
-    ) -> None:
-        if self.bubble:
-            for npc, surface in self.bubble.items():
-                cx, cy = self.get_pos_from_tilepos(Vector2(npc.tile_pos))
-                bubble_rect = surface.get_rect()
-                bubble_rect.centerx = npc.rect.centerx
-                bubble_rect.bottom = npc.rect.top
-                bubble_rect.x = cx
-                bubble_rect.y = cy - (
-                    surface.get_height() + int(npc.rect.height / 10)
-                )
-                bubble = (surface, bubble_rect, 100)
-                screen_surfaces.append(bubble)
-
     def broadcast_player_teleport_change(self) -> None:
         """Tell clients/host that player has moved after teleport."""
         # Set the transition variable in event_data to false when we're done
@@ -485,99 +463,135 @@ class WorldState(state.State):
     ####################################################
     #                   Map Drawing                    #
     ####################################################
-    def map_drawing(self, surface: pygame.surface.Surface) -> None:
-        """
-        Draws the map tiles in a layered order.
-
-        Parameters:
-            surface: Surface to draw into.
-
-        """
-        # TODO: move all drawing into a "WorldView" widget
-        # interlace player sprites with tiles surfaces.
-        # eventually, maybe use pygame sprites or something similar
-        world_surfaces: list[WorldSurfaces] = []
-
-        # temporary
-        if self.current_map.renderer is None:
-            self.current_map.initialize_renderer()
-
-        # get player coords to center map
-        cx, cy = self.camera.position
-
-        # center the map on center of player sprite
-        # must center map before getting sprite coordinates
-        assert self.current_map.renderer
-        self.current_map.renderer.center((cx, cy))
-
-        # get npc surfaces/sprites
-        current_map = self.current_map.sprite_layer
+    def get_npc_surfaces(self, current_map: int) -> list[WorldSurfaces]:
+        """Get the NPC surfaces/sprites."""
+        npc_surfaces = []
         for npc in self.npcs:
-            world_surfaces.extend(self.get_sprites(npc, current_map))
+            npc_surfaces.extend(self.get_sprites(npc, current_map))
+        return npc_surfaces
 
-        # get map_animations
+    def get_map_animations(self) -> list[WorldSurfaces]:
+        """Get the map animations."""
+        map_animations = []
         for anim_data in self.map_animations.values():
             anim = anim_data["animation"]
             if not anim.is_finished() and anim.visibility:
-                _surface = anim.get_current_frame()
-                _vector = Vector2(anim_data["position"])
-                _layer = anim_data["layer"]
-                world_surface = WorldSurfaces(_surface, _vector, _layer)
-                world_surfaces.append(world_surface)
+                surface = anim.get_current_frame()
+                vector = Vector2(anim_data["position"])
+                layer = anim_data["layer"]
+                map_animation = WorldSurfaces(surface, vector, layer)
+                map_animations.append(map_animation)
+        return map_animations
 
-        # position the surfaces correctly
-        # pyscroll expects surfaces in screen coords, so they are
-        # converted from world to screen coords here
-        screen_surfaces = list()
-        for frame in world_surfaces:
-            s = frame.surface
-            c = frame.position3
-            l = frame.layer
+    def position_surfaces(
+        self, surfaces: list[WorldSurfaces]
+    ) -> list[tuple[pygame.surface.Surface, Rect, int]]:
+        """Position the surfaces correctly."""
+        screen_surfaces = []
+        for frame in surfaces:
+            surface = frame.surface
+            position = frame.position3
+            layer = frame.layer
 
-            # project to pixel/screen coords
-            _c = self.get_pos_from_tilepos(c)
+            # Project to pixel/screen coordinates
+            screen_position = self.get_pos_from_tilepos(position)
 
-            # TODO: better handling of tall sprites
-            # handle tall sprites
-            h = s.get_height()
-            if h > prepare.TILE_SIZE[1]:
-                # offset for center and image height
-                _c = (_c[0], _c[1] - h // 2)
+            # Handle tall sprites
+            height = surface.get_height()
+            if height > prepare.TILE_SIZE[1]:
+                screen_position = (
+                    screen_position[0],
+                    screen_position[1] - height // 2,
+                )
 
-            r = Rect(_c, s.get_size())
-            screen_surfaces.append((s, r, l))
+            rect = Rect(screen_position, surface.get_size())
+            screen_surfaces.append((surface, rect, layer))
+        return screen_surfaces
 
-        # Adds a bubble above player's head
-        self.set_bubble(screen_surfaces)
-
-        # draw the map and sprites
+    def draw_map_and_sprites(
+        self,
+        surface: pygame.surface.Surface,
+        screen_surfaces: list[tuple[pygame.surface.Surface, Rect, int]],
+    ) -> None:
+        """Draw the map and sprites."""
+        assert self.current_map.renderer
         self.rect = self.current_map.renderer.draw(
             surface, surface.get_rect(), screen_surfaces
         )
 
-        # If we want to draw the collision map for debug purposes
+    def apply_cinema_mode(self, surface: pygame.surface.Surface) -> None:
+        """Apply cinema mode if necessary."""
+        top_bar = pygame.Surface((self.resolution[0], self.resolution[1] / 6))
+        bottom_bar = pygame.Surface(
+            (self.resolution[0], self.resolution[1] / 6)
+        )
+        top_bar.fill(prepare.BLACK_COLOR)
+        bottom_bar.fill(prepare.BLACK_COLOR)
+        surface.blit(top_bar, (0, 0))
+        bottom = surface.get_rect().bottom - self.resolution[1] / 6
+        surface.blit(bottom_bar, (0, bottom))
+
+    def set_bubble(
+        self, screen_surfaces: list[tuple[pygame.surface.Surface, Rect, int]]
+    ) -> None:
+        if self.bubble:
+            for npc, surface in self.bubble.items():
+                cx, cy = self.get_pos_from_tilepos(Vector2(npc.tile_pos))
+                bubble_rect = surface.get_rect()
+                bubble_rect.centerx = npc.rect.centerx
+                bubble_rect.bottom = npc.rect.top
+                bubble_rect.x = cx
+                bubble_rect.y = cy - (
+                    surface.get_height() + int(npc.rect.height / 10)
+                )
+                bubble = (surface, bubble_rect, 100)
+                screen_surfaces.append(bubble)
+
+    def set_layer(self) -> None:
+        self.layer.fill(self.layer_color)
+        self.screen.blit(self.layer, (0, 0))
+
+    def map_drawing(self, surface: pygame.surface.Surface) -> None:
+        """Draw the map tiles in a layered order."""
+        # Ensure map renderer is initialized
+        if self.current_map.renderer is None:
+            self.current_map.initialize_renderer()
+
+        # Get player coordinates to center map
+        cx, cy = self.camera.position
+        assert self.current_map.renderer
+        self.current_map.renderer.center((cx, cy))
+
+        # Get NPC surfaces/sprites
+        current_map = self.current_map.sprite_layer
+        npc_surfaces = self.get_npc_surfaces(current_map)
+
+        # Get map animations
+        map_animations = self.get_map_animations()
+
+        # Combine NPC surfaces and map animations
+        surfaces = npc_surfaces + map_animations
+
+        # Position surfaces correctly
+        screen_surfaces = self.position_surfaces(surfaces)
+
+        # Add bubble above player's head
+        self.set_bubble(screen_surfaces)
+
+        # Draw the map and sprites
+        self.draw_map_and_sprites(surface, screen_surfaces)
+
+        # Add transparent layer
+        self.set_layer()
+
+        # Draw collision map for debug purposes
         if prepare.CONFIG.collision_map:
             self.debug_drawing(surface)
 
-        # If triggers night color only at night (2200-0400) outside
-        game_variable = self.player.game_variables
-
-        # Adds a transparent layer
-        self.set_layer()
-
-        if "cinema_mode" in game_variable:
-            if game_variable["cinema_mode"] == "on":
-                top_bar = pygame.Surface(
-                    (self.resolution[0], self.resolution[1] / 6)
-                )
-                bottom_bar = pygame.Surface(
-                    (self.resolution[0], self.resolution[1] / 6)
-                )
-                top_bar.fill(prepare.BLACK_COLOR)
-                bottom_bar.fill(prepare.BLACK_COLOR)
-                surface.blit(top_bar, (0, 0))
-                bottom = surface.get_rect().bottom - self.resolution[1] / 6
-                surface.blit(bottom_bar, (0, bottom))
+        # Apply cinema mode
+        cinema = self.player.game_variables.get("cinema_mode", "")
+        if cinema == "on":
+            self.apply_cinema_mode(surface)
 
     def get_sprites(self, npc: NPC, layer: int) -> list[WorldSurfaces]:
         """

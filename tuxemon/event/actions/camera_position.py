@@ -35,10 +35,10 @@ class CameraPosition(EventAction):
     roaming: Optional[str] = None
 
     def start(self) -> None:
+        world = self.session.client.get_state_by_name(WorldState)
         map_size = self.session.client.map_size
         roaming = False if self.roaming is None else True
-        if self.is_within_map_bounds(map_size):
-            world = self.session.client.get_state_by_name(WorldState)
+        if world.boundary_checker.is_within_boundaries((self.x, self.y)):
             if world.camera.follows_player:
                 world.camera.unfollow()
             world.camera.free_roaming_enabled = roaming
@@ -48,6 +48,3 @@ class CameraPosition(EventAction):
             logger.error(
                 f"Coordinate ({self.x, self.y}) is outside the map bounds {map_size}"
             )
-
-    def is_within_map_bounds(self, map_size: tuple[int, int]) -> bool:
-        return 0 <= self.x < map_size[0] and 0 <= self.y < map_size[1]

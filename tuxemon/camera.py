@@ -8,15 +8,16 @@ from typing import TYPE_CHECKING, Optional
 from tuxemon import prepare
 from tuxemon.math import Vector2
 from tuxemon.platform.const import intentions
-from tuxemon.platform.events import PlayerInput
+from tuxemon.session import local_session
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC
+    from tuxemon.platform.events import PlayerInput
 
-SPEED_UP: int = 5
-SPEED_DOWN: int = 5
-SPEED_LEFT: int = 5
-SPEED_RIGHT: int = 5
+SPEED_UP: int = 7
+SPEED_DOWN: int = 7
+SPEED_LEFT: int = 7
+SPEED_RIGHT: int = 7
 
 
 def project(position: Sequence[float]) -> tuple[int, int]:
@@ -116,6 +117,24 @@ class Camera:
         if x is not None and y is not None:
             self.position = self.get_center(Vector2(x, y))
         else:
+            new_x = self.position.x + dx
+            new_y = self.position.y + dy
+            map_size = local_session.client.map_size
+            min_x, _ = project((0, 0))
+            max_x, _ = project((map_size[0], 0))
+            _, min_y = project((0, 0))
+            _, max_y = project((0, map_size[1]))
+
+            if new_x < min_x:
+                dx = 0
+            elif new_x > max_x:
+                dx = 0
+
+            if new_y < min_y:
+                dy = 0
+            elif new_y > max_y:
+                dy = 0
+
             self.position.x += dx
             self.position.y += dy
 
@@ -137,8 +156,10 @@ class Camera:
 
     def reset_to_player_center(self) -> None:
         """
-        Resets the camera's position to the center of the player's tile and enables following the player.
+        Resets the camera's position to the center of the player's tile and
+        enables following the player.
         """
+        self.free_roaming_enabled = False
         self.position = self.get_player_center()
         if not self.follows_player:
             self.follow()

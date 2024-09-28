@@ -1,0 +1,15 @@
+[
+  {
+    "slug": "spyder_park",
+    "monsters": [
+      {
+        "monster": "pairagrim",
+        "encounter_rate": 3.5,
+        "level_range": [
+          5,
+          6
+        ]
+      }
+    ]
+  }
+]

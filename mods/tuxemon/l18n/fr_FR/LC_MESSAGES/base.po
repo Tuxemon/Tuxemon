@@ -134,9 +134,6 @@ msgstr "Tu as capturé {name} !"
 msgid "combat_capturing_fail"
 msgstr "{name} s'est libéré !"
 
-msgid "combat_recharging"
-msgstr "{name} a besoin d'une pause avant d'utiliser {move} à nouveau..."
-
 msgid "combat_replacement"
 msgstr "Choisis un remplaçant !"
 
@@ -388,10 +385,10 @@ msgid "anoleaf_description"
 msgstr ""
 "Il estime que les plantes qui poussent près de lui sont ses frères et sœurs."
 
-msgid "axylightl"
+msgid "axolightl"
 msgstr "Axolumière"
 
-msgid "axylightl_description"
+msgid "axolightl_description"
 msgstr ""
 "Il éclaire les eaux profondes avec sa queue, ce qui permet de protéger les "
 "poissons."

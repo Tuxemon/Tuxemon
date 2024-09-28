@@ -211,9 +211,6 @@ msgstr "你捉住了{name}!"
 msgid "combat_capturing_fail"
 msgstr "{name}冲出了精灵球!"
 
-msgid "combat_recharging"
-msgstr "{name}使用前需要休息一下才能再一次使用{move}..."
-
 msgid "combat_replacement"
 msgstr "选择下一个精灵!"
 
@@ -1627,10 +1624,10 @@ msgstr "螺孔兽"
 msgid "av8r_description"
 msgstr "如果太阳出来了,它可以飞得很远或很高."
 
-msgid "axylightl_description"
+msgid "axolightl_description"
 msgstr "它用尾巴照亮深海,为鱼儿标出一个安全的庇护所."
 
-msgid "axylightl"
+msgid "axolightl"
 msgstr "阿克西莱特尔"
 
 msgid "bamboon_description"

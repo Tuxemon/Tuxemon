@@ -9,7 +9,6 @@ import os
 import sys
 from collections.abc import Mapping, Sequence
 from enum import Enum
-from operator import itemgetter
 from typing import Annotated, Any, Literal, Optional, Union, overload
 
 from PIL import Image
@@ -31,9 +30,6 @@ logger = logging.getLogger(__name__)
 # Load the default translator for data validation
 T.collect_languages(False)
 T.load_translator()
-
-# Target is a mapping of who this targets
-Target = Mapping[str, int]
 
 SurfaceKeys = prepare.SURFACE_KEYS
 
@@ -367,31 +363,84 @@ class MonsterEvolutionItemModel(BaseModel):
         ..., description="The monster slug that this evolution item applies to"
     )
     # optional fields
-    at_level: int = Field(
-        ..., description="The level at which this monster evolves", ge=0
+    at_level: Optional[int] = Field(
+        None,
+        description="The level at which the monster evolves.",
+        ge=0,
     )
     element: Optional[ElementType] = Field(
-        None, description="Element parameter"
+        None,
+        description="The element type that the monster must match to evolve.",
     )
-    gender: Optional[GenderType] = Field(None, description="Gender parameter")
-    item: Optional[str] = Field(None, description="Item parameter.")
+    gender: Optional[GenderType] = Field(
+        None,
+        description="The required gender of the monster for evolution.",
+    )
+    item: Optional[str] = Field(
+        None,
+        description="The item that the monster must have to evolve.",
+    )
     inside: bool = Field(
         None,
-        description="Location parameter: whether the monster is inside or not.",
+        description="Whether the monster must be inside to evolve.",
     )
     traded: bool = Field(
         None,
-        description="Traded parameter: whether the monster is traded or not.",
+        description="Whether the monster must have been traded to evolve.",
     )
-    variable: Optional[str] = Field(
-        None, description="Variable parameter based on game variables."
+    variables: Optional[Sequence[str]] = Field(
+        None,
+        description="The game variables that must exist and match a specific value for the monster to evolve.",
+        min_length=1,
     )
     stats: Optional[str] = Field(
-        None, description="Stat parameter stat1:more_than:stat2."
+        None,
+        description="The statistic comparison required for the monster to evolve (e.g., greater_than, less_than, etc.).",
     )
-    steps: Optional[int] = Field(None, description="Steps parameter 50 steps.")
-    tech: Optional[str] = Field(None, description="Technique parameter.")
-    bond: Optional[str] = Field(None, description="Bond parameter.")
+    steps: Optional[int] = Field(
+        None,
+        description="The minimum number of steps the monster must have walked to evolve.",
+    )
+    tech: Optional[str] = Field(
+        None,
+        description="The technique that a monster in the party must have for the evolution to occur.",
+    )
+    moves: Optional[Sequence[str]] = Field(
+        None,
+        description="The techniques that the monster must have learned for the evolution to occur.",
+        min_length=1,
+        max_length=prepare.MAX_MOVES,
+    )
+    bond: Optional[str] = Field(
+        None,
+        description="The bond value comparison required for the monster to evolve (e.g., greater_than, less_than, etc.).",
+    )
+    party: Optional[Sequence[str]] = Field(
+        None,
+        description="The slug of the monsters that must be in the party for the evolution to occur.",
+        min_length=1,
+        max_length=prepare.PARTY_LIMIT - 1,
+    )
+    taste_cold: Optional[TasteCold] = Field(
+        None,
+        description="The required taste cold value for the monster to evolve.",
+    )
+    taste_warm: Optional[TasteWarm] = Field(
+        None,
+        description="The required taste warm value for the monster to evolve.",
+    )
+
+    @field_validator("moves")
+    def move_exists(
+        cls: MonsterEvolutionItemModel, v: Optional[Sequence[str]]
+    ) -> Optional[Sequence[str]]:
+        if v:
+            for element in v:
+                if not has.db_entry("technique", element):
+                    raise ValueError(
+                        f"A technique {element} doesn't exist in the db"
+                    )
+        return v
 
     @field_validator("tech")
     def technique_exists(
@@ -407,6 +456,18 @@ class MonsterEvolutionItemModel(BaseModel):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
+    @field_validator("party")
+    def party_exists(
+        cls: MonsterEvolutionItemModel, v: Sequence[str]
+    ) -> Sequence[str]:
+        if v:
+            for element in v:
+                if not has.db_entry("monster", element):
+                    raise ValueError(
+                        f"A monster {element} doesn't exist in the db"
+                    )
+        return v
+
     @field_validator("item")
     def item_exists(
         cls: MonsterEvolutionItemModel, v: Optional[str]
@@ -415,13 +476,25 @@ class MonsterEvolutionItemModel(BaseModel):
             return v
         raise ValueError(f"the item {v} doesn't exist in the db")
 
-    @field_validator("variable")
-    def variable_exists(
-        cls: MonsterEvolutionItemModel, v: Optional[str]
-    ) -> Optional[str]:
-        if not v or v.find(":") > 1:
+    @field_validator("variables")
+    def variables_exists(
+        cls: MonsterEvolutionItemModel, v: Optional[Sequence[str]]
+    ) -> Optional[Sequence[str]]:
+        if v is None:
             return v
-        raise ValueError(f"the variable {v} isn't formatted correctly")
+        if len(v) != len(set(v)):
+            raise ValueError("The sequence contains duplicate variables")
+        for variable in v:
+            if (
+                not variable
+                or len(variable.split(":")) != 2
+                or variable[0] == ":"
+                or variable[-1] == ":"
+            ):
+                raise ValueError(
+                    f"the variable {variable} isn't formatted correctly"
+                )
+        return v
 
     @field_validator("stats")
     def stats_exists(
@@ -649,6 +722,40 @@ class ResponseCondition(str, Enum):
     removed = "removed"
 
 
+class TargetModel(BaseModel):
+    enemy_monster: bool = Field(
+        ..., description="Whether the enemy monster is the target."
+    )
+    enemy_team: bool = Field(
+        ..., description="Whether the enemy team is the target."
+    )
+    enemy_trainer: bool = Field(
+        ..., description="Whether the enemy trainer is the target."
+    )
+    own_monster: bool = Field(
+        ..., description="Whether the own monster is the target."
+    )
+    own_team: bool = Field(
+        ..., description="Whether the own team is the target."
+    )
+    own_trainer: bool = Field(
+        ..., description="Whether the own trainer is the target."
+    )
+
+    @field_validator(
+        "enemy_monster",
+        "enemy_team",
+        "enemy_trainer",
+        "own_monster",
+        "own_team",
+        "own_trainer",
+    )
+    def validate_bool_field(cls: TargetModel, v: bool) -> bool:
+        if not isinstance(v, bool):
+            raise ValueError(f"One of the targets {v} isn't a boolean")
+        return v
+
+
 class TechniqueModel(BaseModel):
     slug: str = Field(..., description="The slug of the technique")
     sort: TechSort = Field(..., description="The sort of technique this is")
@@ -663,9 +770,7 @@ class TechniqueModel(BaseModel):
         ...,
         description="Axes along which technique animation should be flipped",
     )
-    target: Target = Field(
-        ..., description="Target mapping of who this technique is used on"
-    )
+    target: TargetModel
     animation: Optional[str] = Field(
         None, description="Animation to play for this technique"
     )
@@ -706,8 +811,8 @@ class TechniqueModel(BaseModel):
         True,
         description="Whether or not this technique will be picked by random",
     )
-    healing_power: int = Field(
-        0,
+    healing_power: float = Field(
+        0.0,
         description="Value of healing power.",
         ge=prepare.HEALING_POWER_RANGE[0],
         le=prepare.HEALING_POWER_RANGE[1],
@@ -819,9 +924,7 @@ class ConditionModel(BaseModel):
         ...,
         description="Axes along which condition animation should be flipped",
     )
-    target: Target = Field(
-        ..., description="Target mapping of who this condition is used on"
-    )
+    target: TargetModel
     animation: Optional[str] = Field(
         None, description="Animation to play for this condition"
     )
@@ -1139,12 +1242,24 @@ class EnvironmentModel(BaseModel):
 
 class EncounterItemModel(BaseModel):
     monster: str = Field(..., description="Monster slug for this encounter")
-    encounter_rate: float = Field(..., description="Rate of this encounter")
-    level_range: Sequence[int] = Field(
-        ..., description="Level range to encounter"
+    encounter_rate: float = Field(
+        ..., description="Probability of encountering this monster."
     )
-    variable: Optional[str] = Field(None, description="Variable encounter")
-    exp_req_mod: int = Field(1, description="Exp modifier wild monster", gt=0)
+    level_range: Sequence[int] = Field(
+        ...,
+        description="Minimum and maximum levels at which this encounter can occur.",
+        max_length=2,
+    )
+    variables: Optional[Sequence[str]] = Field(
+        None,
+        description="List of variables that affect the encounter.",
+        min_length=1,
+    )
+    exp_req_mod: int = Field(
+        1,
+        description="Modifier for the experience points required to defeat this wild monster.",
+        gt=0,
+    )
 
     @field_validator("monster")
     def monster_exists(cls: EncounterItemModel, v: str) -> str:
@@ -1152,13 +1267,25 @@ class EncounterItemModel(BaseModel):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
-    @field_validator("variable")
+    @field_validator("variables")
     def variable_exists(
         cls: EncounterItemModel, v: Optional[str]
     ) -> Optional[str]:
-        if not v or v.find(":") > 1:
+        if v is None:
             return v
-        raise ValueError(f"the variable {v} isn't formatted correctly")
+        if len(v) != len(set(v)):
+            raise ValueError("The sequence contains duplicate variables")
+        for variable in v:
+            if (
+                not variable
+                or len(variable.split(":")) != 2
+                or variable[0] == ":"
+                or variable[-1] == ":"
+            ):
+                raise ValueError(
+                    f"the variable {variable} isn't formatted correctly"
+                )
+        return v
 
 
 class EncounterModel(BaseModel):
@@ -1334,33 +1461,6 @@ DataModel = Union[
     ConditionModel,
     TechniqueModel,
 ]
-
-
-def process_targets(json_targets: Target) -> Sequence[str]:
-    """Return values in order of preference for targeting things.
-
-    example: ["own monster", "enemy monster"]
-
-    Parameters:
-        json_targets: Dictionary of targets.
-
-    Returns:
-        Order of preference for targets.
-
-    """
-    return list(
-        map(
-            itemgetter(0),
-            filter(
-                itemgetter(1),
-                sorted(
-                    json_targets.items(),
-                    key=itemgetter(1),
-                    reverse=True,
-                ),
-            ),
-        )
-    )
 
 
 class JSONDatabase:

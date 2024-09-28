@@ -1,10 +1,12 @@
 {
-  "slug": "citypark",
+  "slug": "spyder_citypark",
   "monsters": [
     {
       "monster": "cardiling",
       "encounter_rate": 3,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         5,
@@ -14,7 +16,9 @@
     {
       "monster": "cardiwing",
       "encounter_rate": 1,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         8,
@@ -24,7 +28,9 @@
     {
       "monster": "cataspike",
       "encounter_rate": 3,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         6,
@@ -34,7 +40,9 @@
     {
       "monster": "eyenemy",
       "encounter_rate": 3,
-      "variable": "daytime:true",
+      "variables": [
+        "daytime:true"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         5,
@@ -42,9 +50,11 @@
       ]
     },
     {
-      "monster": "axylightl",
+      "monster": "axolightl",
       "encounter_rate": 3,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         8,
@@ -54,7 +64,9 @@
     {
       "monster": "tourbidi",
       "encounter_rate": 1,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         8,
@@ -64,7 +76,9 @@
     {
       "monster": "squabbit",
       "encounter_rate": 3,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         8,
@@ -74,7 +88,9 @@
     {
       "monster": "puparmor",
       "encounter_rate": 1,
-      "variable": "daytime:false",
+      "variables": [
+        "daytime:false"
+      ],
       "exp_req_mod": 1,
       "level_range": [
         9,

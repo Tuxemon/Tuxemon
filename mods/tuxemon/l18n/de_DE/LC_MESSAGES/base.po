@@ -213,10 +213,6 @@ msgstr "Du hast {name} gefangen!"
 msgid "combat_capturing_fail"
 msgstr "{name} ist ausgebrochen!"
 
-msgid "combat_recharging"
-msgstr ""
-"{name} braucht eine Pause, bevor {move} wieder eingesetzt werden kann..."
-
 msgid "combat_replacement"
 msgstr "Wähle einen Ersatz!"
 
@@ -867,10 +863,10 @@ msgstr "Wenn die Sonne scheint kann es so hoch oder weit fliegen, wie es möchte
 msgid "av8r"
 msgstr "Av8r"
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
-msgid "axylightl_description"
+msgid "axolightl_description"
 msgstr "Mit seinem leuchtenden Schweif markiert es sichere Unterkünfte für Fische in tiefen Gewässern."
 
 msgid "b_ver_1_description"

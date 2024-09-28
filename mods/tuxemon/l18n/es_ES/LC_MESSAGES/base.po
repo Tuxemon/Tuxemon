@@ -204,9 +204,6 @@ msgstr "¡Has capturado a {name}!"
 msgid "combat_capturing_fail"
 msgstr "¡{name} consiguió liberarse!"
 
-msgid "combat_recharging"
-msgstr "{name} necesita descansar antes de poder usar {move} de nuevo..."
-
 msgid "combat_replacement"
 msgstr "¡Escoge otro Tuxemon!"
 
@@ -718,11 +715,11 @@ msgstr "Considera a las plantas que crecen cerca de él sus hermanos y hermanas.
 msgid "anoleaf"
 msgstr "Anoleaf"
 
-msgid "axylightl_description"
+msgid "axolightl_description"
 msgstr "Ilumina las aguas profundas con su cola, marcando un refugio seguro para peces."
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
 msgid "bamboon_description"
 msgstr "Lucha con su vara de bambú, que también usa para mantener el equilibrio."

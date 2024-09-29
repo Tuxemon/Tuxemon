@@ -44,6 +44,7 @@ from tuxemon.session import local_session
 from tuxemon.states.world.world_classes import BoundaryChecker
 from tuxemon.states.world.world_menus import WorldMenuState
 from tuxemon.surfanim import SurfaceAnimation
+from tuxemon.teleporter import Teleporter
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -122,6 +123,7 @@ class WorldState(state.State):
         from tuxemon.player import Player
 
         self.boundary_checker = BoundaryChecker()
+        self.teleporter = Teleporter()
         # Provide access to the screen surface
         self.screen = self.client.screen
         self.screen_rect = self.screen.get_rect()
@@ -159,19 +161,6 @@ class WorldState(state.State):
 
         # bubble above the player's head
         self.bubble: dict[NPC, pygame.surface.Surface] = {}
-
-        # The delayed teleport variable is used to perform a teleport in the
-        # middle of a transition. For example, fading to black, then
-        # teleporting the player, and fading back in again.
-        self.delayed_char: Optional[NPC] = None
-        self.delayed_teleport = False
-        self.delayed_mapname = ""
-        self.delayed_x = 0
-        self.delayed_y = 0
-
-        # The delayed facing variable used to change the player's facing in
-        # the middle of a transition.
-        self.delayed_facing: Optional[Direction] = None
 
         ######################################################################
         #                       Fullscreen Animations                        #
@@ -223,7 +212,12 @@ class WorldState(state.State):
         self.in_transition = True
         self.trigger_fade_out(duration, color)
 
-        task = self.task(self.handle_delayed_teleport, duration)
+        task = self.task(
+            partial(
+                self.teleporter.handle_delayed_teleport, self, self.player
+            ),
+            duration,
+        )
         task.chain(fade_in, duration + 0.5)
 
     def trigger_fade_in(self, duration: float, color: ColorLike) -> None:
@@ -266,37 +260,6 @@ class WorldState(state.State):
         )
         self.stop_char(self.player)
         self.lock_controls(self.player)
-
-    def handle_delayed_teleport(self) -> None:
-        """
-        Call to teleport player if delayed_teleport is set.
-
-        * Load a map
-        * Move player
-        * Send data to network about teleport
-
-        """
-        if self.delayed_teleport:
-            if self.delayed_char:
-                char = self.delayed_char
-            else:
-                char = self.player
-            self.stop_char(char)
-            self.lock_controls(char)
-
-            # check if map has changed, and if so, change it
-            map_name = prepare.fetch("maps", self.delayed_mapname)
-
-            if map_name != self.current_map.filename:
-                self.change_map(map_name)
-
-            char.set_position((self.delayed_x, self.delayed_y))
-
-            if self.delayed_facing:
-                char.facing = self.delayed_facing
-                self.delayed_facing = None
-
-            self.delayed_teleport = False
 
     def set_transition_surface(self, color: ColorLike) -> None:
         self.transition_surface = pygame.Surface(

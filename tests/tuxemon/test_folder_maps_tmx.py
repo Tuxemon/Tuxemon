@@ -10,6 +10,7 @@ from typing import Any
 from tuxemon import prepare
 from tuxemon.db import MapType
 from tuxemon.map_loader import region_properties
+from tuxemon.script.parser import parse_action_string
 
 # Constants
 FOLDER = "maps"
@@ -168,6 +169,19 @@ class TestTMXFiles(unittest.TestCase):
                             )
                         else:
                             property_names[prop.attrib["name"]] = True
+
+    def test_object_property_value_teleport(self):
+        for path, root in self.loaded_data.items():
+            for obj in root.findall(".//object"):
+                for prop in obj.findall("properties/property"):
+                    action, params = parse_action_string(prop.attrib["value"])
+                    if action == "transition_teleport":
+                        try:
+                            prepare.fetch(FOLDER, params[0])
+                        except OSError:
+                            self.fail(
+                                f"Map '{params[0]}' does not exist in object {obj} at {to_basename(path)}"
+                            )
 
     def test_object_width(self):
         for path, root in self.loaded_data.items():

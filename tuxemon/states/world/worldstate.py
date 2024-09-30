@@ -1249,16 +1249,28 @@ class WorldState(state.State):
     ####################################################
     def change_map(self, map_name: str) -> None:
         """
-        Loads a new map and updates the game state accordingly.
+        Changes the current map and updates the player state.
 
         Parameters:
             map_name: The name of the map to load.
         """
-        # Set the currently loaded map. This is needed because the event
-        # engine loads event conditions and event actions from the currently
-        # loaded map. If we change maps, we need to update this.
+        self.load_and_update_map(map_name)
+        self.update_player_state()
+
+    def load_and_update_map(self, map_name: str) -> None:
+        """
+        Loads a new map and updates the game state accordingly.
+
+        This method loads the map data, updates the game state, and notifies
+        the client and boundary checker. The currently loaded map is updated
+        because the event engine loads event conditions and event actions from
+        the currently loaded map. If we change maps, we need to update this.
+
+        Parameters:
+            map_name: The name of the map to load.
+        """
         logger.debug(f"Loading map '{map_name}' from disk.")
-        map_data = self.load_map(map_name)
+        map_data = self.load_map_data(map_name)
 
         self.current_map = map_data
         self.collision_map = map_data.collision_map
@@ -1268,10 +1280,8 @@ class WorldState(state.State):
         self.map_area = map_data.area
 
         self.boundary_checker.update_boundaries(self.map_size)
-
         self.client.load_map(map_data)
         self.clear_npcs()
-        self.update_player_state()
 
     def clear_npcs(self) -> None:
         """
@@ -1305,7 +1315,7 @@ class WorldState(state.State):
                 character.remove_collision((eo.x, eo.y))
                 break
 
-    def load_map(self, path: str) -> TuxemonMap:
+    def load_map_data(self, path: str) -> TuxemonMap:
         """
         Returns map data as a dictionary to be used for map changing.
 
@@ -1317,7 +1327,7 @@ class WorldState(state.State):
 
         """
         txmn_map = TMXMapLoader().load(path)
-        yaml_files = [f"{path[:-4]}.yaml"]
+        yaml_files = [path.replace(".tmx", ".yaml")]
 
         if txmn_map.scenario:
             _scenario = prepare.fetch("maps", f"{txmn_map.scenario}.yaml")

@@ -50,7 +50,7 @@
       ]
     },
     {
-      "monster": "axylightl",
+      "monster": "axolightl",
       "encounter_rate": 3,
       "variables": [
         "daytime:false"

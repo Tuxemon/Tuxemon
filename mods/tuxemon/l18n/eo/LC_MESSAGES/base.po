@@ -372,10 +372,10 @@ msgstr "Anoleaf"
 msgid "anoleaf_description"
 msgstr ""
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
-msgid "axylightl_description"
+msgid "axolightl_description"
 msgstr "Ĝi lumigas la profundajn akvojn per sia vosto, montrante sekuran ŝirmon por fiŝoj."
 
 msgid "bamboon"

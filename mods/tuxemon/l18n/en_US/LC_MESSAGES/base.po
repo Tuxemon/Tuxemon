@@ -1599,7 +1599,7 @@ msgid "flamethrower"
 msgstr "Flamethrower"
 
 msgid "fledgling_description"
-msgstr "The user hurls a clump of hardened earth at the opponent."
+msgstr "The user hurls sharp feathers at the opponent."
 
 msgid "fledgling"
 msgstr "Fledgling"
@@ -1863,7 +1863,7 @@ msgid "negation"
 msgstr "Negation"
 
 msgid "nest_description"
-msgstr "The user constructs a protective nest around itself, using it as a defensive and offensive weapon."
+msgstr "The user constructs a protective nest around itself."
 
 msgid "nest"
 msgstr "Nest"
@@ -2211,7 +2211,7 @@ msgid "strike"
 msgstr "Strike"
 
 msgid "suck_poison_description"
-msgstr "The user drains the opponent's vitality, inflicting damage and poisoning them."
+msgstr "The user draws out the poison from their own body and infects their enemy with it."
 
 msgid "suck_poison"
 msgstr "Suck Poison"
@@ -3190,11 +3190,11 @@ msgstr "If the sun is out, it can fly as far or as high as it likes."
 msgid "av8r"
 msgstr "Av8r"
 
-msgid "axylightl_description"
+msgid "axolightl_description"
 msgstr "It lights the deep waters with its tail, marking a safe shelter for fish."
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
 msgid "b_ver_1_description"
 msgstr "It is designed for all those times you need something to be bitten by a robot."
@@ -10338,7 +10338,15 @@ msgid "spyder_dojo_zhu3a"
 msgstr "I'm afraid you don't have enough funds to afford the Taste-Changer Potion."
 
 msgid "spyder_dojo_xiang3"
-msgstr "I have developed a potion that allows a tuxemon to re-learn a technique that it has forgotten.\n Shall I give the Re-Learner Potion to one of your tuxemon?"
+msgstr "I have developed a potion that allows a tuxemon to re-learn a technique that it has forgotten.\n Shall I give the Re-Learner Potion to one of your tuxemon for ${{currency}}200?"
+msgid "spyder_dojo_xiang3a"
+msgstr "Not enough to cover the cost of the Re-Learner Potion."
+msgid "spyder_dojo_xiang3b"
+msgstr "The Re-Learner Potion has taken effect, your tuxemon's forgotten technique has been restored."
+msgid "spyder_dojo_xiang3c"
+msgstr "Unfortunately, the Re-Learner Potion had an unexpected side effect, and your tuxemon has now forgotten one of its current techniques."
+msgid "spyder_dojo_xiang3d"
+msgstr "Be cautious, young trainer, for the Re-Learner Potion is potent and may have unintended consequences on tuxemon that have not learned many techniques yet.\n I advise using it only on those who have reached a high level of mastery."
 
 msgid "spyder_dojo_wan"
 msgstr "Master Wan"

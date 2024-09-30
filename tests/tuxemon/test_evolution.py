@@ -36,6 +36,8 @@ _ram = TechniqueModel(
     },
     types=[],
     use_tech="combat_used_x",
+    tags=["animal"],
+    category="simple",
 )
 
 _strike = TechniqueModel(
@@ -59,6 +61,8 @@ _strike = TechniqueModel(
     },
     types=[],
     use_tech="combat_used_x",
+    tags=["animal"],
+    category="simple",
 )
 
 

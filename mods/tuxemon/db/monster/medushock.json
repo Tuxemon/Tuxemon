@@ -4,19 +4,19 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "rock"
+            "technique": "lightning_spheres"
         },
         {
             "level_learned": 2,
-            "technique": "flood"
+            "technique": "rot"
         },
         {
             "level_learned": 6,
-            "technique": "midnight_mantle"
+            "technique": "flood"
         },
         {
             "level_learned": 8,
-            "technique": "magma"
+            "technique": "surge"
         },
         {
             "level_learned": 12,
@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "wall_fire"
+            "technique": "energy_claws"
         },
         {
             "level_learned": 20,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 24,
-            "technique": "supernova"
+            "technique": "thunderclap"
         },
         {
             "level_learned": 28,
@@ -48,7 +48,7 @@
         },
         {
             "level_learned": 40,
-            "technique": "sunburst"
+            "technique": "electrical_storm"
         }
     ],
     "evolutions": [],

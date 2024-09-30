@@ -1,7 +1,6 @@
 {
   "conditions": [
-    "is type earth",
-    "is max_moves"
+    "is type earth"
   ],
   "effects": [
     "learn_mm earth"

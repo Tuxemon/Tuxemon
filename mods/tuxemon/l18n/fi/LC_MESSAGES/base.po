@@ -788,8 +788,8 @@ msgstr "Baobaraffe"
 msgid "av8r"
 msgstr "Av8r"
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
 msgid "b_ver_1"
 msgstr "B-Ver.1"

@@ -24,6 +24,8 @@
 		"own_team": false,
 		"own_trainer": false
 	},
+	"category": "notype",
+	"tags": ["NoType"],
 	"tech_id": 0,
 	"use_failure": "combat_cannot_run_away",
 	"use_success": null,

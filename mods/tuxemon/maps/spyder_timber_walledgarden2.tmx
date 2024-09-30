@@ -47,7 +47,7 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="29" name="Go Outside" type="event" x="112" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_timber_walletgarden1.tmx,7,3,0.3"/>
+    <property name="act1" value="transition_teleport spyder_timber_walledgarden1.tmx,7,3,0.3"/>
     <property name="act2" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>
@@ -56,7 +56,7 @@
   <object id="28" name="Player Spawn" type="event" x="112" y="240" width="16" height="16"/>
   <object id="49" name="Room3" type="event" x="208" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_timber_walletgarden1.tmx,13,3,0.3"/>
+    <property name="act1" value="transition_teleport spyder_timber_walledgarden1.tmx,13,3,0.3"/>
     <property name="act2" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>
@@ -64,7 +64,7 @@
   </object>
   <object id="50" name="Go Outside" type="event" x="128" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_timber_walletgarden1.tmx,8,3,0.3"/>
+    <property name="act1" value="transition_teleport spyder_timber_walledgarden1.tmx,8,3,0.3"/>
     <property name="act2" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>
@@ -72,7 +72,7 @@
   </object>
   <object id="56" name="Room2" type="event" x="32" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_timber_walletgarden1.tmx,2,3,0.3"/>
+    <property name="act1" value="transition_teleport spyder_timber_walledgarden1.tmx,2,3,0.3"/>
     <property name="act2" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>

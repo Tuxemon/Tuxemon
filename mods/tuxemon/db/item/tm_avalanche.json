@@ -1,7 +1,6 @@
 {
   "conditions": [
     "is type earth:water",
-    "is max_moves",
     "not has_tech avalanche"
   ],
   "effects": [

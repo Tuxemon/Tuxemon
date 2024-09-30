@@ -4,10 +4,9 @@ from __future__ import annotations
 
 from typing import Optional
 
-import pygame_menu
-from pygame_menu.locals import ALIGN_CENTER, POSITION_CENTER
+from pygame_menu.locals import ALIGN_CENTER
 
-from tuxemon import prepare, tools
+from tuxemon import prepare
 from tuxemon.graphics import string_to_colorlike
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
@@ -32,10 +31,7 @@ class ColorState(PygameMenuState):
         native = prepare.NATIVE_RESOLUTION
 
         if image:
-            new_image = pygame_menu.BaseImage(
-                tools.transform_resource_filename(image),
-                drawing_position=POSITION_CENTER,
-            )
+            new_image = self._create_image(image)
             image_size = new_image.get_size()
             if image_size[0] > native[0] or image_size[1] > native[1]:
                 raise ValueError(

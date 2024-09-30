@@ -8,7 +8,10 @@ from typing import Any
 import yaml
 
 from tuxemon import prepare
+from tuxemon.script.parser import parse_action_string
 
+EXPECTED_SCENARIOS = ["spyder", "xero", "tobedefined"]
+FOLDER = "maps"
 EVENTS_KEY = "events"
 MAX_LENGTH_NAME = 30
 YAML_ATTR = [
@@ -22,6 +25,11 @@ YAML_ATTR = [
     "height",
 ]
 YAML_TYPES = ["init", "collision", "event"]
+
+
+def expand_expected_scenarios() -> None:
+    for mod in prepare.CONFIG.mods:
+        EXPECTED_SCENARIOS.append(f"{prepare.STARTING_MAP}{mod}")
 
 
 def get_yaml_files(folder_path: str) -> Generator[str, Any, None]:
@@ -43,8 +51,9 @@ def load_yaml_files(folder_path: str) -> dict[str, dict]:
 
 class TestYAMLFiles(unittest.TestCase):
     def setUp(self):
-        self.folder_path = prepare.fetch("maps")
+        self.folder_path = prepare.fetch(FOLDER)
         self.loaded_data = load_yaml_files(self.folder_path)
+        expand_expected_scenarios()
 
     def test_yaml_event_name_length(self):
         for path, data in self.loaded_data.items():
@@ -124,6 +133,20 @@ class TestYAMLFiles(unittest.TestCase):
                             str,
                             f"Action in event should be a string: {os.path.basename(path)}",
                         )
+
+    def test_actions_teleport(self):
+        for path, data in self.loaded_data.items():
+            for event_data in data[EVENTS_KEY].values():
+                if "actions" in event_data:
+                    for action in event_data["actions"]:
+                        command, params = parse_action_string(action)
+                        if command == "transition_teleport":
+                            try:
+                                prepare.fetch(FOLDER, params[0])
+                            except OSError:
+                                self.fail(
+                                    f"Map '{params[0]}' does not exist in object {action} at {os.path.basename(path)}"
+                                )
 
     def test_conditions_structure(self):
         for path, data in self.loaded_data.items():

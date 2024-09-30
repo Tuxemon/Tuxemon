@@ -581,8 +581,8 @@ msgstr "Chrome Robo"
 msgid "aardorn"
 msgstr "Aardorn"
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
 msgid "capiti"
 msgstr "Capiti"

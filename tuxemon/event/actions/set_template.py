@@ -67,7 +67,8 @@ class SetTemplateAction(EventAction):
             )
             if sprite_name:
                 character.template.sprite_name = sprite_name
-                character.template.combat_front = combat_front
+                if combat_front:
+                    character.template.combat_front = combat_front
         else:
             character.template.sprite_name = self.sprite
             logger.info(f"{character.name}'s sprite is {self.sprite}")

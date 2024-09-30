@@ -7,13 +7,11 @@ from typing import Any, Optional
 
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.locals import POSITION_CENTER
 
-from tuxemon import formula, prepare, tools
+from tuxemon import formula, prepare
 from tuxemon.db import MonsterModel, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.menu.theme import get_theme
 from tuxemon.monster import Monster
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
@@ -102,7 +100,7 @@ class MonsterInfoState(PygameMenuState):
         # name
         menu._auto_centering = False
         lab1: Any = menu.add.label(
-            title=str(monster.txmn_id) + ". " + monster.name.upper(),
+            title=f"{monster.txmn_id}. {monster.name.upper()}",
             label_id="name",
             font_size=self.font_size_small,
             align=locals.ALIGN_LEFT,
@@ -112,7 +110,7 @@ class MonsterInfoState(PygameMenuState):
         # level + exp
         exp = monster.total_experience
         lab2: Any = menu.add.label(
-            title="Lv. " + str(monster.level) + " - " + str(exp) + "px",
+            title=f"Lv. {monster.level} - {exp}px",
             label_id="level",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -132,12 +130,7 @@ class MonsterInfoState(PygameMenuState):
         lab3.translate(fix_measure(width, 0.50), fix_measure(height, 0.20))
         # weight
         lab4: Any = menu.add.label(
-            title=str(mon_weight)
-            + " "
-            + unit_weight
-            + " ("
-            + str(diff_weight)
-            + "%)",
+            title=f"{mon_weight} {unit_weight} ({diff_weight}%)",
             label_id="weight",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -146,12 +139,7 @@ class MonsterInfoState(PygameMenuState):
         lab4.translate(fix_measure(width, 0.50), fix_measure(height, 0.25))
         # height
         lab5: Any = menu.add.label(
-            title=str(mon_height)
-            + " "
-            + unit_height
-            + " ("
-            + str(diff_height)
-            + "%)",
+            title=f"{mon_height} {unit_height} ({diff_height}%)",
             label_id="height",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -186,11 +174,11 @@ class MonsterInfoState(PygameMenuState):
         )
         lab8.translate(fix_measure(width, 0.50), fix_measure(height, 0.40))
         # taste
-        tastes = T.translate("tastes") + ": "
-        cold = T.translate("taste_" + monster.taste_cold)
-        warm = T.translate("taste_" + monster.taste_warm)
+        tastes = T.translate("tastes")
+        cold = T.translate(f"taste_{monster.taste_cold}")
+        warm = T.translate(f"taste_{monster.taste_warm}")
         lab9: Any = menu.add.label(
-            title=tastes + cold + ", " + warm,
+            title=f"{tastes}: {cold}, {warm}",
             label_id="taste",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -221,7 +209,7 @@ class MonsterInfoState(PygameMenuState):
         lab10.translate(fix_measure(width, 0.50), fix_measure(height, 0.50))
         # hp
         lab11: Any = menu.add.label(
-            title=T.translate("short_hp") + ": " + str(monster.hp),
+            title=f"{T.translate('short_hp')}: {monster.hp}",
             label_id="hp",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -230,7 +218,7 @@ class MonsterInfoState(PygameMenuState):
         lab11.translate(fix_measure(width, 0.80), fix_measure(height, 0.15))
         # armour
         lab12: Any = menu.add.label(
-            title=T.translate("short_armour") + ": " + str(monster.armour),
+            title=f"{T.translate('short_armour')}: {monster.armour}",
             label_id="armour",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -239,7 +227,7 @@ class MonsterInfoState(PygameMenuState):
         lab12.translate(fix_measure(width, 0.80), fix_measure(height, 0.20))
         # dodge
         lab13: Any = menu.add.label(
-            title=T.translate("short_dodge") + ": " + str(monster.dodge),
+            title=f"{T.translate('short_dodge')}: {monster.dodge}",
             label_id="dodge",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -248,7 +236,7 @@ class MonsterInfoState(PygameMenuState):
         lab13.translate(fix_measure(width, 0.80), fix_measure(height, 0.25))
         # melee
         lab14: Any = menu.add.label(
-            title=T.translate("short_melee") + ": " + str(monster.melee),
+            title=f"{T.translate('short_melee')}: {monster.melee}",
             label_id="melee",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -257,7 +245,7 @@ class MonsterInfoState(PygameMenuState):
         lab14.translate(fix_measure(width, 0.80), fix_measure(height, 0.30))
         # ranged
         lab15: Any = menu.add.label(
-            title=T.translate("short_ranged") + ": " + str(monster.ranged),
+            title=f"{T.translate('short_ranged')}: {monster.ranged}",
             label_id="ranged",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -266,7 +254,7 @@ class MonsterInfoState(PygameMenuState):
         lab15.translate(fix_measure(width, 0.80), fix_measure(height, 0.35))
         # speed
         lab16: Any = menu.add.label(
-            title=T.translate("short_speed") + ": " + str(monster.speed),
+            title=f"{T.translate('short_speed')}: {monster.speed}",
             label_id="speed",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -315,9 +303,7 @@ class MonsterInfoState(PygameMenuState):
         for elements in labels:
             f.pack(elements)
         # image
-        new_image = pygame_menu.BaseImage(
-            tools.transform_resource_filename(monster.front_battle_sprite),
-        )
+        new_image = self._create_image(monster.front_battle_sprite)
         new_image.scale(prepare.SCALE, prepare.SCALE)
         image_widget = menu.add.image(image_path=new_image.copy())
         image_widget.set_float(origin_position=True)
@@ -325,10 +311,8 @@ class MonsterInfoState(PygameMenuState):
             fix_measure(width, 0.20), fix_measure(height, 0.05)
         )
         # tuxeball
-        tuxeball = pygame_menu.BaseImage(
-            tools.transform_resource_filename(
-                f"gfx/items/{monster.capture_device}.png"
-            ),
+        tuxeball = self._create_image(
+            f"gfx/items/{monster.capture_device}.png"
         )
         capture_device = menu.add.image(image_path=tuxeball)
         capture_device.set_float(origin_position=True)
@@ -348,29 +332,15 @@ class MonsterInfoState(PygameMenuState):
             raise ValueError("No monster")
         width, height = prepare.SCREEN_SIZE
 
-        background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(
-                prepare.BG_MONSTER_INFO
-            ),
-            drawing_position=POSITION_CENTER,
-        )
-        theme = get_theme()
+        theme = self._setup_theme(prepare.BG_MONSTER_INFO)
         theme.scrollarea_position = locals.POSITION_EAST
-        theme.background_color = background
         theme.widget_alignment = locals.ALIGN_CENTER
 
         super().__init__(height=height, width=width)
         self._source = source
         self._monster = monster
         self.add_menu_items(self.menu, monster)
-        self.repristinate()
-
-    def repristinate(self) -> None:
-        """Repristinate original theme (color, alignment, etc.)"""
-        theme = get_theme()
-        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = self.background_color
-        theme.widget_alignment = locals.ALIGN_LEFT
+        self.reset_theme()
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         param: dict[str, Any] = {"source": self._source}

@@ -85,7 +85,7 @@
   </object>
   <object id="16" type="event" x="160" y="528" width="16" height="16">
    <properties>
-    <property name="act10" value="transition_teleport tuxe_mart.tmx,11,4,0.3"/>
+    <property name="act10" value="transition_teleport city1_mart_junkyard.tmx,11,4,0.3"/>
     <property name="act20" value="char_face player,down"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,down"/>

@@ -11,7 +11,6 @@ from typing import TYPE_CHECKING, Any, Optional
 
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.locals import POSITION_CENTER
 from pygame_menu.widgets.selection.highlight import HighlightSelection
 
 from tuxemon import prepare
@@ -19,15 +18,10 @@ from tuxemon.db import PlagueType
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 from tuxemon.state import State
 from tuxemon.states.monster import MonsterMenuState
-from tuxemon.tools import (
-    open_choice_dialog,
-    open_dialog,
-    transform_resource_filename,
-)
+from tuxemon.tools import open_choice_dialog, open_dialog
 
 logger = logging.getLogger(__name__)
 
@@ -197,10 +191,7 @@ class MonsterTakeState(PygameMenuState):
         for monster in _sorted:
             label = T.translate(monster.name).upper()
             iid = monster.instance_id.hex
-            new_image = pygame_menu.BaseImage(
-                transform_resource_filename(monster.front_battle_sprite),
-                drawing_position=POSITION_CENTER,
-            )
+            new_image = self._create_image(monster.front_battle_sprite)
             new_image.scale(prepare.SCALE * 0.5, prepare.SCALE * 0.5)
             menu.add.banner(
                 new_image,
@@ -232,13 +223,8 @@ class MonsterTakeState(PygameMenuState):
     def __init__(self, box_name: str) -> None:
         width, height = prepare.SCREEN_SIZE
 
-        background = pygame_menu.BaseImage(
-            image_path=transform_resource_filename(prepare.BG_PC_KENNEL),
-            drawing_position=POSITION_CENTER,
-        )
-        theme = get_theme()
+        theme = self._setup_theme(prepare.BG_PC_KENNEL)
         theme.scrollarea_position = locals.POSITION_EAST
-        theme.background_color = background
         theme.widget_alignment = locals.ALIGN_CENTER
 
         # menu
@@ -269,15 +255,7 @@ class MonsterTakeState(PygameMenuState):
             menu_items_map.append(monster)
 
         self.add_menu_items(self.menu, menu_items_map)
-        self.repristinate()
-
-    def repristinate(self) -> None:
-        """Repristinate original theme (color, alignment, etc.)"""
-        theme = get_theme()
-        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = self.background_color
-        theme.widget_alignment = locals.ALIGN_LEFT
-        theme.title = False
+        self.reset_theme()
 
 
 class MonsterBoxState(PygameMenuState):

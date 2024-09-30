@@ -22,6 +22,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Update package list
+      run: |
+        sudo apt update
+
     # Command copied from flathub build process
     - name: Validate appdata file
       run: |

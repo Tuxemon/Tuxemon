@@ -25,6 +25,8 @@
     "own_team": false,
     "own_trainer": false
   },
+  "category": "reserved",
+  "tags": ["Reserved"],
   "types": [
     "earth"
   ],

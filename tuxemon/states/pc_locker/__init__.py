@@ -11,7 +11,6 @@ from typing import TYPE_CHECKING, Any, Optional
 
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.locals import POSITION_CENTER
 from pygame_menu.widgets.selection.highlight import HighlightSelection
 
 from tuxemon import prepare
@@ -20,15 +19,10 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.quantity import QuantityMenu
-from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 from tuxemon.state import State
 from tuxemon.states.items.item_menu import ItemMenuState
-from tuxemon.tools import (
-    open_choice_dialog,
-    open_dialog,
-    transform_resource_filename,
-)
+from tuxemon.tools import open_choice_dialog, open_dialog
 
 logger = logging.getLogger(__name__)
 
@@ -224,10 +218,7 @@ class ItemTakeState(PygameMenuState):
             sum_total.append(itm.quantity)
             label = T.translate(itm.name).upper() + " x" + str(itm.quantity)
             iid = itm.instance_id.hex
-            new_image = pygame_menu.BaseImage(
-                transform_resource_filename(itm.sprite),
-                drawing_position=POSITION_CENTER,
-            )
+            new_image = self._create_image(itm.sprite)
             new_image.scale(prepare.SCALE, prepare.SCALE)
             menu.add.banner(
                 new_image,
@@ -250,13 +241,8 @@ class ItemTakeState(PygameMenuState):
     def __init__(self, box_name: str) -> None:
         width, height = prepare.SCREEN_SIZE
 
-        background = pygame_menu.BaseImage(
-            image_path=transform_resource_filename(prepare.BG_PC_LOCKER),
-            drawing_position=POSITION_CENTER,
-        )
-        theme = get_theme()
+        theme = self._setup_theme(prepare.BG_PC_LOCKER)
         theme.scrollarea_position = locals.POSITION_EAST
-        theme.background_color = background
         theme.widget_alignment = locals.ALIGN_CENTER
 
         # menu
@@ -287,15 +273,7 @@ class ItemTakeState(PygameMenuState):
             menu_items_map.append(item)
 
         self.add_menu_items(self.menu, menu_items_map)
-        self.repristinate()
-
-    def repristinate(self) -> None:
-        """Repristinate original theme (color, alignment, etc.)"""
-        theme = get_theme()
-        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = self.background_color
-        theme.widget_alignment = locals.ALIGN_LEFT
-        theme.title = False
+        self.reset_theme()
 
 
 class ItemBoxState(PygameMenuState):

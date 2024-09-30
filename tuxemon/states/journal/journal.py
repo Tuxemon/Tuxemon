@@ -8,13 +8,11 @@ from typing import Any, Optional
 
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.locals import POSITION_CENTER
 
-from tuxemon import prepare, tools
+from tuxemon import prepare
 from tuxemon.db import MonsterModel, SeenStatus, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.menu.theme import get_theme
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
@@ -105,13 +103,8 @@ class JournalState(PygameMenuState):
 
         width, height = prepare.SCREEN_SIZE
 
-        background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(prepare.BG_JOURNAL),
-            drawing_position=POSITION_CENTER,
-        )
-        theme = get_theme()
+        theme = self._setup_theme(prepare.BG_JOURNAL)
         theme.scrollarea_position = locals.POSITION_EAST
-        theme.background_color = background
         theme.widget_alignment = locals.ALIGN_LEFT
 
         columns = 2
@@ -146,14 +139,7 @@ class JournalState(PygameMenuState):
         self._page = page
         self._monster_list = monster_list
         self.add_menu_items(self.menu, monster_list)
-        self.repristinate()
-
-    def repristinate(self) -> None:
-        """Repristinate original theme (color, alignment, etc.)"""
-        theme = get_theme()
-        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = self.background_color
-        theme.widget_alignment = locals.ALIGN_LEFT
+        self.reset_theme()
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         client = self.client

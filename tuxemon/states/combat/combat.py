@@ -245,28 +245,47 @@ class CombatState(CombatAnimations):
         self.draw_hp_bars()
         self.draw_exp_bars()
 
+    def create_rect_for_bar(
+        self, hud: Sprite, width: int, height: int, top_offset: int = 0
+    ) -> Rect:
+        """
+        Creates a Rect object for a bar.
+
+        Parameters:
+            hud: The HUD sprite.
+            width: The width of the bar.
+            height: The height of the bar.
+            top_offset: The top offset of the bar.
+
+        Returns:
+            A Rect object representing the bar.
+        """
+        rect = Rect(0, 0, tools.scale(width), tools.scale(height))
+        rect.right = hud.image.get_width() - tools.scale(8)
+        rect.top += tools.scale(top_offset)
+        return rect
+
     def draw_hp_bars(self) -> None:
         """Go through the HP bars and redraw them."""
-        draw: bool = False
+        show_player_hp = self.graphics.hud.hp_bar_player
+        show_opponent_hp = self.graphics.hud.hp_bar_opponent
+
         for monster, hud in self.hud.items():
-            rect = Rect(0, 0, tools.scale(70), tools.scale(8))
-            rect.right = hud.image.get_width() - tools.scale(8)
-            if hud.player and self.graphics.hud.hp_bar_player:
-                rect.top += tools.scale(18)
-                draw = True
-            elif not hud.player and self.graphics.hud.hp_bar_opponent:
-                rect.top += tools.scale(12)
-                draw = True
-            if draw:
-                self._hp_bars[monster].draw(hud.image, rect)
+            if hud.player and show_player_hp:
+                rect = self.create_rect_for_bar(hud, 70, 8, 18)
+            elif not hud.player and show_opponent_hp:
+                rect = self.create_rect_for_bar(hud, 70, 8, 12)
+            else:
+                continue
+            self._hp_bars[monster].draw(hud.image, rect)
 
     def draw_exp_bars(self) -> None:
         """Go through the EXP bars and redraw them."""
+        show_player_exp = self.graphics.hud.exp_bar_player
+
         for monster, hud in self.hud.items():
-            if hud.player and self.graphics.hud.exp_bar_player:
-                rect = Rect(0, 0, tools.scale(70), tools.scale(6))
-                rect.right = hud.image.get_width() - tools.scale(8)
-                rect.top += tools.scale(31)
+            if hud.player and show_player_exp:
+                rect = self.create_rect_for_bar(hud, 70, 6, 31)
                 self._exp_bars[monster].draw(hud.image, rect)
 
     def determine_phase(
@@ -714,14 +733,18 @@ class CombatState(CombatAnimations):
         params = {"name": monster.name, "player": name}
         message = T.format(self.graphics.msgid, params)
         self.text_animations_queue.append((partial(self.alert, message), 0))
-        rect_screen = self.client.screen.get_rect()
-        rect = Rect(0, 0, rect_screen.w // 2.5, rect_screen.h // 4)
-        rect.bottomright = rect_screen.w, rect_screen.h
-
         state = self.client.push_state(
             self.graphics.menu, cmb=self, monster=monster
         )
-        state.rect = rect
+        state.rect = self.calculate_menu_rectangle()
+
+    def calculate_menu_rectangle(self) -> Rect:
+        rect_screen = self.client.screen.get_rect()
+        menu_width = rect_screen.w // 2.5
+        menu_height = rect_screen.h // 4
+        rect = Rect(0, 0, menu_width, menu_height)
+        rect.bottomright = rect_screen.w, rect_screen.h
+        return rect
 
     def enqueue_damage(
         self, attacker: Monster, defender: Monster, damage: int
@@ -798,11 +821,23 @@ class CombatState(CombatAnimations):
         Perform the action.
 
         Parameters:
-            user: Monster that does the action.
+            user: Monster or NPC that does the action.
             method: Technique or item or condition used.
             target: Monster that receives the action.
-
         """
+        if isinstance(method, Technique) and isinstance(user, Monster):
+            self._handle_monster_technique(user, method, target)
+        if isinstance(method, Item) and isinstance(user, NPC):
+            self._handle_npc_item(user, method, target)
+        if isinstance(method, Condition):
+            self._handle_condition(method, target)
+
+    def _handle_monster_technique(
+        self,
+        user: Monster,
+        method: Technique,
+        target: Monster,
+    ) -> None:
         action_time = 0.0
         # action is performed, so now use sprites to animate it
         # this value will be None if the target is off screen
@@ -811,153 +846,91 @@ class CombatState(CombatAnimations):
         # is synchronized with the damage shake motion
         hit_delay = 0.0
         # monster uses move
-        if isinstance(method, Technique) and isinstance(user, Monster):
-            method.advance_round()
-            method.combat_state = self
-            result_tech = method.use(user, target)
-            context = {
-                "user": user.name,
-                "name": method.name,
-                "target": target.name,
-            }
-            message: str = ""
-            message += "\n" + T.format(method.use_tech, context)
-            # swapping monster
-            if method.slug == "swap":
-                params = {"name": target.name.upper()}
-                message = T.format("combat_call_tuxemon", params)
-            # check statuses
-            if user.status:
-                user.status[0].combat_state = self
-                user.status[0].phase = "perform_action_tech"
-                result_status = user.status[0].use(user)
-                if result_status["extra"]:
-                    message += "\n" + result_status["extra"]
-                if result_status["condition"]:
-                    user.apply_status(result_status["condition"])
-            # successful techniques
-            if result_tech["success"]:
-                m: Union[str, None] = None
-                # extra output
-                if result_tech["extra"]:
-                    m = T.translate(result_tech["extra"])
-                if m:
-                    message += "\n" + m
-                    action_time += compute_text_animation_time(message)
-            # not successful techniques
-            if not result_tech["success"]:
-                template = getattr(method, "use_failure")
-                m = T.format(template, context)
-                # extra output
-                if result_tech["extra"]:
-                    m = T.translate(result_tech["extra"])
+        method.advance_round()
+        method.combat_state = self
+        result_tech = method.use(user, target)
+        context = {
+            "user": user.name,
+            "name": method.name,
+            "target": target.name,
+        }
+        message: str = ""
+        message += "\n" + T.format(method.use_tech, context)
+        # swapping monster
+        if method.slug == "swap":
+            params = {"name": target.name.upper()}
+            message = T.format("combat_call_tuxemon", params)
+        # check statuses
+        if user.status:
+            user.status[0].combat_state = self
+            user.status[0].phase = "perform_action_tech"
+            result_status = user.status[0].use(user)
+            if result_status["extra"]:
+                message += "\n" + result_status["extra"]
+            if result_status["condition"]:
+                user.apply_status(result_status["condition"])
+        # successful techniques
+        if result_tech["success"]:
+            m: Union[str, None] = None
+            # extra output
+            if result_tech["extra"]:
+                m = T.translate(result_tech["extra"])
+            if m:
                 message += "\n" + m
                 action_time += compute_text_animation_time(message)
-            self.play_sound_effect(method.sfx)
-            # animation own_monster, technique doesn't tackle
-            hit_delay += 0.5
-            if method.target["own_monster"]:
-                target_sprite = self._monster_sprite_map.get(user, None)
-            # TODO: a real check or some params to test if should tackle, etc
-            if result_tech["should_tackle"]:
-                user_sprite = self._monster_sprite_map.get(user, None)
-                if user_sprite:
-                    self.animate_sprite_tackle(user_sprite)
+        # not successful techniques
+        if not result_tech["success"]:
+            template = getattr(method, "use_failure")
+            m = T.format(template, context)
+            # extra output
+            if result_tech["extra"]:
+                m = T.translate(result_tech["extra"])
+            message += "\n" + m
+            action_time += compute_text_animation_time(message)
+        self.play_sound_effect(method.sfx)
+        # animation own_monster, technique doesn't tackle
+        hit_delay += 0.5
+        if method.target["own_monster"]:
+            target_sprite = self._monster_sprite_map.get(user, None)
+        # TODO: a real check or some params to test if should tackle, etc
+        if result_tech["should_tackle"]:
+            user_sprite = self._monster_sprite_map.get(user, None)
+            if user_sprite:
+                self.animate_sprite_tackle(user_sprite)
 
-                if target_sprite:
-                    self.task(
-                        partial(
-                            self.animate_sprite_take_damage,
-                            target_sprite,
-                        ),
-                        hit_delay + 0.2,
-                    )
-                    self.task(
-                        partial(self.blink, target_sprite),
-                        hit_delay + 0.6,
-                    )
-
-                # Track damage
-                self.enqueue_damage(user, target, result_tech["damage"])
-
-                # monster infected
-                if user.plague == PlagueType.infected:
-                    params = {"target": user.name.upper()}
-                    m = T.format("combat_state_plague1", params)
-                    message += "\n" + m
-                # allows tackle to special range techniques too
-                if method.range != "special":
-                    element_damage_key = prepare.MULT_MAP.get(
-                        result_tech["element_multiplier"]
-                    )
-                    if element_damage_key:
-                        m = T.translate(element_damage_key)
-                        message += "\n" + m
-                        action_time += compute_text_animation_time(message)
-                else:
-                    msg_type = (
-                        "use_success"
-                        if result_tech["success"]
-                        else "use_failure"
-                    )
-                    context = {
-                        "user": getattr(user, "name", ""),
-                        "name": method.name,
-                        "target": target.name,
-                    }
-                    template = getattr(method, msg_type)
-                    tmpl = T.format(template, context)
-                    if template:
-                        message += "\n" + tmpl
-                        action_time += compute_text_animation_time(message)
-            self.text_animations_queue.append(
-                (partial(self.alert, message), action_time)
-            )
-
-            is_flipped = False
-            for trainer in self.ai_players:
-                if user in self.monsters_in_play[trainer]:
-                    is_flipped = True
-                    break
-            tech_sprite = self._method_cache.get(method, is_flipped)
-
-            if result_tech["success"] and target_sprite and tech_sprite:
-                tech_sprite.rect.center = target_sprite.rect.center
-                assert tech_sprite.animation
-                self.task(tech_sprite.animation.play, hit_delay)
+            if target_sprite:
                 self.task(
-                    partial(self.sprites.add, tech_sprite, layer=50),
-                    hit_delay,
+                    partial(
+                        self.animate_sprite_take_damage,
+                        target_sprite,
+                    ),
+                    hit_delay + 0.2,
                 )
-                self.task(tech_sprite.kill, action_time)
+                self.task(
+                    partial(self.blink, target_sprite),
+                    hit_delay + 0.6,
+                )
 
-        # player uses item
-        if isinstance(method, Item) and isinstance(user, NPC):
-            method.combat_state = self
-            result_item = method.use(user, target)
-            context = {
-                "user": user.name,
-                "name": method.name,
-                "target": target.name,
-            }
-            message = T.format(method.use_item, context)
-            # animation sprite
-            item_sprite = self._method_cache.get(method, False)
-            # handle the capture device
-            if method.category == ItemCategory.capture and item_sprite:
-                # retrieve tuxeball
-                message += "\n" + T.translate("attempting_capture")
-                action_time = result_item["num_shakes"] + 1.8
-                self.animate_capture_monster(
-                    result_item["success"],
-                    result_item["num_shakes"],
-                    target,
-                    method,
-                    item_sprite,
+            # Track damage
+            self.enqueue_damage(user, target, result_tech["damage"])
+
+            # monster infected
+            if user.plague == PlagueType.infected:
+                params = {"target": user.name.upper()}
+                m = T.format("combat_state_plague1", params)
+                message += "\n" + m
+            # allows tackle to special range techniques too
+            if method.range != "special":
+                element_damage_key = prepare.MULT_MAP.get(
+                    result_tech["element_multiplier"]
                 )
+                if element_damage_key:
+                    m = T.translate(element_damage_key)
+                    message += "\n" + m
+                    action_time += compute_text_animation_time(message)
             else:
                 msg_type = (
-                    "use_success" if result_item["success"] else "use_failure"
+                    "use_success" if result_tech["success"] else "use_failure"
                 )
                 context = {
                     "user": getattr(user, "name", ""),
@@ -966,70 +939,137 @@ class CombatState(CombatAnimations):
                 }
                 template = getattr(method, msg_type)
                 tmpl = T.format(template, context)
-                # extra output
-                if result_item["extra"]:
-                    tmpl = T.translate(result_item["extra"])
                 if template:
                     message += "\n" + tmpl
                     action_time += compute_text_animation_time(message)
+        self.text_animations_queue.append(
+            (partial(self.alert, message), action_time)
+        )
 
-                # item animation
-                if target_sprite and item_sprite:
-                    item_sprite.rect.center = target_sprite.rect.center
-                    assert item_sprite.animation
-                    self.task(item_sprite.animation.play, 0.6)
-                    self.task(
-                        partial(self.sprites.add, item_sprite, layer=50),
-                        0.6,
-                    )
-                    self.task(item_sprite.kill, action_time)
+        is_flipped = False
+        for trainer in self.ai_players:
+            if user in self.monsters_in_play[trainer]:
+                is_flipped = True
+                break
 
-            self.text_animations_queue.append(
-                (partial(self.alert, message), action_time)
+        if result_tech["success"]:
+            self.play_animation(
+                method, target, target_sprite, action_time, is_flipped
             )
-        # statuses / conditions
-        if isinstance(method, Condition):
-            method.combat_state = self
-            method.phase = "perform_action_status"
-            method.advance_round()
-            result = method.use(target)
+
+    def _handle_npc_item(
+        self,
+        user: NPC,
+        method: Item,
+        target: Monster,
+    ) -> None:
+        action_time = 0.0
+        method.combat_state = self
+        result_item = method.use(user, target)
+        context = {
+            "user": user.name,
+            "name": method.name,
+            "target": target.name,
+        }
+        message = T.format(method.use_item, context)
+        # animation sprite
+        item_sprite = self._method_cache.get(method, False)
+        # handle the capture device
+        if method.category == ItemCategory.capture and item_sprite:
+            # retrieve tuxeball
+            message += "\n" + T.translate("attempting_capture")
+            action_time = result_item["num_shakes"] + 1.8
+            self.animate_capture_monster(
+                result_item["success"],
+                result_item["num_shakes"],
+                target,
+                method,
+                item_sprite,
+            )
+        else:
+            msg_type = (
+                "use_success" if result_item["success"] else "use_failure"
+            )
             context = {
+                "user": getattr(user, "name", ""),
                 "name": method.name,
                 "target": target.name,
             }
-            cond_mex: str = ""
-            # successful conditions
-            if result["success"]:
-                if method.use_success:
-                    template = getattr(method, "use_success")
-                    cond_mex = T.format(template, context)
-                # first turn status
-                if method.nr_turn == 1 and method.gain_cond:
-                    first_turn = getattr(method, "gain_cond")
-                    first = T.format(first_turn, context)
-                    cond_mex = first + "\n" + cond_mex
-            # not successful conditions
-            if not result["success"]:
-                if method.use_failure:
-                    template = getattr(method, "use_failure")
-                    cond_mex = T.format(template, context)
-            action_time += compute_text_animation_time(cond_mex)
-            self.text_animations_queue.append(
-                (partial(self.alert, cond_mex), action_time)
-            )
+            template = getattr(method, msg_type)
+            tmpl = T.format(template, context)
+            # extra output
+            if result_item["extra"]:
+                tmpl = T.translate(result_item["extra"])
+            if template:
+                message += "\n" + tmpl
+                action_time += compute_text_animation_time(message)
+            self.play_animation(method, target, None, action_time)
 
-            # effect animation
-            is_flipped = False
-            tech_sprite = self._method_cache.get(method, is_flipped)
-            if target_sprite and tech_sprite:
-                tech_sprite.rect.center = target_sprite.rect.center
-                assert tech_sprite.animation
-                self.task(tech_sprite.animation.play, 0.6)
-                self.task(
-                    partial(self.sprites.add, tech_sprite, layer=50),
-                    0.6,
-                )
-                self.task(tech_sprite.kill, action_time)
+        self.text_animations_queue.append(
+            (partial(self.alert, message), action_time)
+        )
+
+    def _handle_condition(self, method: Condition, target: Monster) -> None:
+        action_time = 0.0
+        method.combat_state = self
+        method.phase = "perform_action_status"
+        method.advance_round()
+        result = method.use(target)
+        context = {
+            "name": method.name,
+            "target": target.name,
+        }
+        cond_mex: str = ""
+        # successful conditions
+        if result["success"]:
+            if method.use_success:
+                template = getattr(method, "use_success")
+                cond_mex = T.format(template, context)
+            # first turn status
+            if method.nr_turn == 1 and method.gain_cond:
+                first_turn = getattr(method, "gain_cond")
+                first = T.format(first_turn, context)
+                cond_mex = first + "\n" + cond_mex
+        # not successful conditions
+        if not result["success"]:
+            if method.use_failure:
+                template = getattr(method, "use_failure")
+                cond_mex = T.format(template, context)
+        action_time += compute_text_animation_time(cond_mex)
+        self.text_animations_queue.append(
+            (partial(self.alert, cond_mex), action_time)
+        )
+        self.play_animation(method, target, None, action_time)
+
+    def play_animation(
+        self,
+        method: Union[Technique, Condition, Item],
+        target: Monster,
+        target_sprite: Optional[Sprite],
+        action_time: float,
+        is_flipped: bool = False,
+    ) -> None:
+        """
+        Play an animation for the given method and target.
+
+        Parameters:
+            method: The method to play the animation for.
+            target: The target monster.
+            target_sprite: The sprite for the target monster.
+            action_time: The time to play the animation for.
+            is_flipped: Whether the animation should be flipped.
+        """
+        if target_sprite is None:
+            target_sprite = self._monster_sprite_map.get(target, None)
+
+        animation = self._method_cache.get(method, is_flipped)
+
+        if target_sprite and animation:
+            animation.rect.center = target_sprite.rect.center
+            assert animation.animation
+            self.task(animation.animation.play, 0.6)
+            self.task(partial(self.sprites.add, animation, layer=50), 0.6)
+            self.task(animation.kill, action_time)
 
     def faint_monster(self, monster: Monster) -> None:
         """

@@ -1,16 +1,14 @@
 {
   "tech_id": 58,
-  "accuracy": 0.8,
+  "accuracy": 1.0,
   "animation": "drip_green",
   "effects": [
-    "give poison,target",
-    "give focused,user",
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
   "potency": 1,
-  "power": 1.25,
+  "power": 2.0,
   "range": "melee",
   "recharge": 1,
   "sfx": "sfx_blaster",
@@ -24,6 +22,8 @@
     "own_team": false,
     "own_trainer": false
   },
+  "category": "reserved",
+  "tags": ["Reserved"],
   "types": [
     "water"
   ],

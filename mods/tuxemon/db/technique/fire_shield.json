@@ -24,6 +24,8 @@
     "own_team": false,
     "own_trainer": false
   },
+  "category": "exotic",
+  "tags": ["Soldier", "Shielded"],
   "types": [
     "aether"
   ],

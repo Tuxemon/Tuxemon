@@ -22,6 +22,8 @@
     "own_team": false,
     "own_trainer": false
   },
+  "category": "powerful",
+  "tags": ["Electricity", "Weather"],
   "types": [
     "fire",
     "earth"

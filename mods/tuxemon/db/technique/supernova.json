@@ -23,6 +23,8 @@
     "own_team": false,
     "own_trainer": false
   },
+  "category": "powerful",
+  "tags": ["Light", "Celestial"],
   "types": [
     "fire"
   ],

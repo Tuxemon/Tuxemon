@@ -12,7 +12,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import combat, graphics, tools
-from tuxemon.db import ElementType, ItemCategory, State, TechSort
+from tuxemon.db import ElementType, State, TechSort
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu, PopUpMenu
@@ -165,7 +165,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             item = menu_item.game_object
             self.client.pop_state()  # close the item menu
             if State["MainCombatMenuState"] in item.usable_in:
-                if item.category == ItemCategory.capture:
+                if item.behaviors.throwable:
                     enemy = self.opponents[0]
                     surface = pygame.Surface(self.rect.size)
                     mon = MenuItem(surface, None, None, enemy)
@@ -196,7 +196,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
             # close all the open menus
             self.client.pop_state()  # close target chooser
-            if item.category != ItemCategory.capture:
+            if not item.behaviors.throwable:
                 self.client.pop_state()  # close the monster action menu
 
         choose_item()

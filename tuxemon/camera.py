@@ -3,16 +3,16 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon import prepare
 from tuxemon.math import Vector2
 from tuxemon.platform.const import intentions
-from tuxemon.session import local_session
 
 if TYPE_CHECKING:
-    from tuxemon.npc import NPC
+    from tuxemon.entity import Entity
     from tuxemon.platform.events import PlayerInput
+    from tuxemon.states.world.world_classes import BoundaryChecker
 
 SPEED_UP: int = 7
 SPEED_DOWN: int = 7
@@ -27,43 +27,55 @@ def project(position: Sequence[float]) -> tuple[int, int]:
     )
 
 
+def unproject(position: Sequence[float]) -> tuple[int, int]:
+    return (
+        int(position[0] / prepare.TILE_SIZE[0]),
+        int(position[1] / prepare.TILE_SIZE[1]),
+    )
+
+
 class Camera:
     """
-    A camera class that follows a player object in a game or simulation.
+    A camera class that follows a entity object in a game or simulation.
 
     Attributes:
-        player: The player object that the camera follows.
+        entity: The entity object that the camera follows.
         tile_size: The size of the tiles in the game world.
         position: The current position of the camera.
-        follows_player: Whether the camera is currently following the player.
-        original_player: The original player object that the camera follows.
+        follows_entity: Whether the camera is currently following the entity.
+        original_entity: The original entity object that the camera follows.
+        boundary: A utility class for checking if a position is within a given
+            boundary.
     """
 
-    def __init__(self, player: NPC):
+    def __init__(self, entity: Entity[Any], boundary: BoundaryChecker):
         """
-        Initializes the camera with a reference to a player object.
+        Initializes the camera with a reference to a entity object.
 
         Parameters:
-            player: The player object that the camera follows.
+            entity: The entity object that the camera follows.
+            boundary: A utility class for checking if a position is within a
+                given boundary.
         """
-        self.player = player
-        self.original_player = player
+        self.entity = entity
+        self.original_entity = entity
         self.tile_size = prepare.TILE_SIZE
-        self.position = self.get_player_center()
-        self.follows_player = True
+        self.position = self.get_entity_center()
+        self.follows_entity = True
         self.free_roaming_enabled = False
+        self.boundary = boundary
 
     def follow(self) -> None:
         """
-        Start the camera following the current player.
+        Start the camera following the current entity.
         """
-        self.follows_player = True
+        self.follows_entity = True
 
     def unfollow(self) -> None:
         """
-        Stop the camera from following the current player.
+        Stop the camera from following the current entity.
         """
-        self.follows_player = False
+        self.follows_entity = False
 
     def get_center(self, position: Vector2) -> Vector2:
         """
@@ -80,23 +92,23 @@ class Camera:
             cx + self.tile_size[0] // 2, cy + self.tile_size[1] // 2
         )
 
-    def get_player_center(self) -> Vector2:
+    def get_entity_center(self) -> Vector2:
         """
-        Returns the center of the player's tile.
+        Returns the center of the entity's tile.
 
         Returns:
-            Vector2: The center of the player's tile.
+            Vector2: The center of the entity's tile.
         """
         return self.get_center(
-            Vector2(self.player.position3.x, self.player.position3.y)
+            Vector2(self.entity.position3.x, self.entity.position3.y)
         )
 
     def update(self) -> None:
         """
-        Updates the camera's position if it's set to follow the player.
+        Updates the camera's position if it's set to follow the entity.
         """
-        if self.follows_player:
-            self.position = self.get_player_center()
+        if self.follows_entity:
+            self.position = self.get_entity_center()
 
     def move(
         self,
@@ -117,78 +129,50 @@ class Camera:
         if x is not None and y is not None:
             self.position = self.get_center(Vector2(x, y))
         else:
-            new_x = self.position.x + dx
-            new_y = self.position.y + dy
-            map_size = local_session.client.map_size
-            min_x, _ = project((0, 0))
-            max_x, _ = project((map_size[0], 0))
-            _, min_y = project((0, 0))
-            _, max_y = project((0, map_size[1]))
-
-            if new_x < min_x:
-                dx = 0
-            elif new_x > max_x:
-                dx = 0
-
-            if new_y < min_y:
-                dy = 0
-            elif new_y > max_y:
-                dy = 0
-
+            tile_pos = unproject((self.position.x + dx, self.position.y + dy))
+            is_x_valid, is_y_valid = self.boundary.get_boundary_validity(
+                tile_pos
+            )
+            dx = dx if is_x_valid else 0
+            dy = dy if is_y_valid else 0
             self.position.x += dx
             self.position.y += dy
 
-    def move_up(self, speed: int = SPEED_UP) -> None:
-        """Moves the camera up by a certain speed."""
-        self.move(dy=-speed)
-
-    def move_down(self, speed: int = SPEED_DOWN) -> None:
-        """Moves the camera down by a certain speed."""
-        self.move(dy=speed)
-
-    def move_left(self, speed: int = SPEED_LEFT) -> None:
-        """Moves the camera left by a certain speed."""
-        self.move(dx=-speed)
-
-    def move_right(self, speed: int = SPEED_RIGHT) -> None:
-        """Moves the camera right by a certain speed."""
-        self.move(dx=speed)
-
-    def reset_to_player_center(self) -> None:
+    def reset_to_entity_center(self) -> None:
         """
-        Resets the camera's position to the center of the player's tile and
-        enables following the player.
+        Resets the camera's position to the center of the entity's tile and
+        enables following the entity.
         """
         self.free_roaming_enabled = False
-        self.position = self.get_player_center()
-        if not self.follows_player:
+        self.position = self.get_entity_center()
+        if not self.follows_entity:
             self.follow()
 
-    def switch_to_player(self, new_player: NPC) -> None:
+    def switch_to_entity(self, new_entity: Entity[Any]) -> None:
         """
-        Switch the camera to a new player.
+        Switch the camera to a new entity.
 
         Parameters:
-            new_player: The new player to focus on.
+            new_entity: The new entity to focus on.
         """
-        if new_player != self.player:
-            self.player = new_player
-            self.position = self.get_player_center()
-            self.follows_player = True
+        if new_entity != self.entity:
+            self.entity = new_entity
+            self.position = self.get_entity_center()
+            self.follows_entity = True
 
-    def switch_to_original_player(self) -> None:
+    def switch_to_original_entity(self) -> None:
         """
-        Switch the camera back to the original player.
+        Switch the camera back to the original entity.
         """
-        self.player = self.original_player
-        self.position = self.get_player_center()
-        self.follows_player = True
+        self.entity = self.original_entity
+        self.position = self.get_entity_center()
+        self.follows_entity = True
 
     def handle_input(self, event: PlayerInput) -> Optional[PlayerInput]:
-        """Handles player input events and updates the camera state accordingly."""
+        """Handles entity input events and updates the camera state accordingly."""
         if self.free_roaming_enabled:
             if event.held:
-                if not self.follows_player:
+                if not self.follows_entity:
                     self.move_camera(event.button)
             elif event.pressed:
                 self.move_camera(event.button)
@@ -201,10 +185,10 @@ class Camera:
         be one of the following: UP, DOWN, LEFT, or RIGHT.
         """
         if direction == intentions.UP:
-            self.move_up()
+            self.move(dy=-SPEED_UP)
         elif direction == intentions.DOWN:
-            self.move_down()
+            self.move(dy=SPEED_DOWN)
         elif direction == intentions.LEFT:
-            self.move_left()
+            self.move(dx=-SPEED_LEFT)
         elif direction == intentions.RIGHT:
-            self.move_right()
+            self.move(dx=SPEED_RIGHT)

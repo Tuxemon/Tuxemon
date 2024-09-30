@@ -15,22 +15,22 @@ logger = logging.getLogger(__name__)
 
 @final
 @dataclass
-class CameraChar(EventAction):
+class CameraAction(EventAction):
     """
-    Centers the camera on a specified NPC or the original player.
+    Centers the camera on a specified NPC or the original entity.
 
     Script usage:
         .. code-block::
 
-            camera_char [slug]
+            camera [slug]
 
     Script parameters:
         npc_slug: The slug of the character to center the camera on.
-        Defaults to None, which centers the camera on the original player.
+        Defaults to None, which centers the camera on the original entity.
 
     """
 
-    name = "camera_char"
+    name = "camera"
     npc_slug: Optional[str] = None
 
     def start(self) -> None:
@@ -39,8 +39,8 @@ class CameraChar(EventAction):
 
         world = self.session.client.get_state_by_name(WorldState)
         if character is None:
-            world.camera.switch_to_original_player()
-            logger.info("Camera has been reset to the original player.")
+            world.camera.switch_to_original_entity()
+            logger.info("Camera has been reset to the original entity.")
         else:
-            world.camera.switch_to_player(character)
+            world.camera.switch_to_entity(character)
             logger.info(f"Camera has been set on ({character.slug})")

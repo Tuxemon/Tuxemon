@@ -182,7 +182,7 @@ class WorldState(state.State):
             new_player = Player(prepare.PLAYER_NPC, world=self)
             local_session.player = new_player
 
-        self.camera = Camera(local_session.player)
+        self.camera = Camera(local_session.player, self.boundary_checker)
 
         if map_name:
             self.change_map(map_name)
@@ -433,7 +433,7 @@ class WorldState(state.State):
         # moving direction to that direction
         direction = direction_map.get(event.button)
         if direction is not None:
-            if self.camera.follows_player:
+            if self.camera.follows_entity:
                 if event.held:
                     self.wants_to_move_char[self.player.slug] = direction
                     if self.player.slug in self.allow_char_movement:

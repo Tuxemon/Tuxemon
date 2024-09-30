@@ -5,9 +5,8 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.add_tech.AddTechAction
 .. autoscriptinfoclass:: tuxemon.event.actions.breeding.BreedingAction
 .. autoscriptinfoclass:: tuxemon.event.actions.call_event.CallEventAction
-.. autoscriptinfoclass:: tuxemon.event.actions.camera_char.CameraChar
-.. autoscriptinfoclass:: tuxemon.event.actions.camera_position.CameraPosition
-.. autoscriptinfoclass:: tuxemon.event.actions.camera_reset.CameraReset
+.. autoscriptinfoclass:: tuxemon.event.actions.camera.CameraAction
+.. autoscriptinfoclass:: tuxemon.event.actions.camera_position.CameraPositionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_bg.ChangeBgAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_state.ChangeStateAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_taste.ChangeTasteAction

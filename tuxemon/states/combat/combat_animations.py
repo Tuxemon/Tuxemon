@@ -303,6 +303,8 @@ class CombatAnimations(ABC, Menu[None]):
         diff_value = monster.total_experience - target_previous
         diff_target = target_next - target_previous
         value = max(0, min(1, (diff_value) / (diff_target)))
+        if monster.levelling_up:
+            value = 1.0
         exp_bar = self._exp_bars[monster]
         self.animate(
             exp_bar,

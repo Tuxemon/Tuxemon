@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import logging
 import math
+import re
 from collections.abc import Callable, Generator, Iterable, Sequence
 from itertools import product
 from typing import Optional
@@ -39,9 +40,10 @@ class GraphicBox(Sprite):
 
     box = GraphicBox('border.png')
     box.draw(surface, rect)
-
     The border graphic must contain 9 tiles laid out in a box.
     """
+
+    TILE_GRID_SIZE = 3
 
     def __init__(
         self,
@@ -50,17 +52,36 @@ class GraphicBox(Sprite):
         color: Optional[ColorLike] = None,
         fill_tiles: bool = False,
     ) -> None:
+        """
+        Initializes the GraphicBox object.
+
+        Parameters:
+            border: The border image.
+            background: The background image.
+            color: The fill color.
+            fill_tiles: Whether to fill the box with tiles from the border image.
+        """
         super().__init__()
         self._background = background
         self._color = color
         self._fill_tiles = fill_tiles
         self._tiles: list[pygame.surface.Surface] = []
         self._tile_size = 0, 0
+        self._cached_surface: Optional[pygame.surface.Surface] = None
 
         if border:
             self._set_border(border)
 
     def calc_inner_rect(self, rect: Rect) -> Rect:
+        """
+        Calculates the inner rectangle of the box.
+
+        Parameters:
+            rect: The outer rectangle of the box.
+
+        Returns:
+            The inner rectangle of the box.
+        """
         if self._tiles:
             tw, th = self._tile_size
             return rect.inflate(-tw * 2, -th * 2)
@@ -68,8 +89,22 @@ class GraphicBox(Sprite):
             return rect
 
     def _set_border(self, image: pygame.surface.Surface) -> None:
+        """
+        Sets the border image and extracts the individual tiles.
+
+        Parameters:
+            image: The border image.
+        """
+        if (
+            image.get_width() % self.TILE_GRID_SIZE != 0
+            or image.get_height() % self.TILE_GRID_SIZE != 0
+        ):
+            raise ValueError(
+                "Border image must be a multiple of the tile grid size"
+            )
+
         iw, ih = image.get_size()
-        tw, th = iw // 3, ih // 3
+        tw, th = iw // self.TILE_GRID_SIZE, ih // self.TILE_GRID_SIZE
         self._tile_size = tw, th
         self._tiles = [
             image.subsurface((x, y, tw, th))
@@ -77,10 +112,19 @@ class GraphicBox(Sprite):
         ]
 
     def update_image(self) -> None:
-        rect = Rect((0, 0), self._rect.size)
-        surface = pygame.Surface(rect.size, pygame.SRCALPHA)
-        self._draw(surface, rect)
-        self.image = surface
+        """
+        Updates the object's image by drawing the box on a new surface.
+        """
+        if (
+            self._cached_surface is None
+            or self._cached_surface.get_size() != self._rect.size
+        ):
+            self._cached_surface = pygame.Surface(
+                self._rect.size, pygame.SRCALPHA
+            )
+            self._draw(self._cached_surface, self._rect)
+
+        self.image = self._cached_surface
 
     def _draw(
         self,
@@ -89,29 +133,21 @@ class GraphicBox(Sprite):
     ) -> Rect:
         inner = self.calc_inner_rect(rect)
 
-        # fill center with a _background surface
+        # Fill center
         if self._background:
             surface.blit(
-                pygame.transform.scale(self._background, inner.size),
-                inner,
+                pygame.transform.scale(self._background, inner.size), inner
             )
-
-        # fill center with solid _color
         elif self._color:
             surface.fill(self._color, inner)
-
-        # fill center with tiles from the border file
         elif self._fill_tiles:
             tw, th = self._tile_size
-            p = product(
-                range(inner.left, inner.right, tw),
-                range(inner.top, inner.bottom, th),
-            )
-            [surface.blit(self._tiles[4], pos) for pos in p]
+            for x in range(inner.left, inner.right, tw):
+                for y in range(inner.top, inner.bottom, th):
+                    surface.blit(self._tiles[4], (x, y))
 
-        # draw the border
+        # Draw border
         if self._tiles:
-            surface_blit = surface.blit
             (
                 tile_nw,
                 tile_w,
@@ -126,31 +162,29 @@ class GraphicBox(Sprite):
             left, top = rect.topleft
             tw, th = self._tile_size
 
-            # draw top and bottom tiles
-            area: Optional[tuple[int, int, int, int]]
-
+            # Draw top and bottom tiles
             for x in range(inner.left, inner.right, tw):
                 if x + tw >= inner.right:
-                    area = 0, 0, tw - (x + tw - inner.right), th
+                    area = (0, 0, tw - (x + tw - inner.right), th)
                 else:
                     area = None
-                surface_blit(tile_n, (x, top), area)
-                surface_blit(tile_s, (x, inner.bottom), area)
+                surface.blit(tile_n, (x, top), area)
+                surface.blit(tile_s, (x, inner.bottom), area)
 
-            # draw left and right tiles
+            # Draw left and right tiles
             for y in range(inner.top, inner.bottom, th):
                 if y + th >= inner.bottom:
-                    area = 0, 0, tw, th - (y + th - inner.bottom)
+                    area = (0, 0, tw, th - (y + th - inner.bottom))
                 else:
                     area = None
-                surface_blit(tile_w, (left, y), area)
-                surface_blit(tile_e, (inner.right, y), area)
+                surface.blit(tile_w, (left, y), area)
+                surface.blit(tile_e, (inner.right, y), area)
 
-            # draw corners
-            surface_blit(tile_nw, (left, top))
-            surface_blit(tile_sw, (left, inner.bottom))
-            surface_blit(tile_ne, (inner.right, top))
-            surface_blit(tile_se, (inner.right, inner.bottom))
+            # Draw corners
+            surface.blit(tile_nw, (left, top))
+            surface.blit(tile_sw, (left, inner.bottom))
+            surface.blit(tile_ne, (inner.right, top))
+            surface.blit(tile_se, (inner.right, inner.bottom))
 
         return rect
 
@@ -217,23 +251,24 @@ def constrain_width(
     font: pygame.font.Font,
     width: int,
 ) -> Generator[str, None, None]:
-    for line in iterate_word_lines(text):
-        scrap = None
-        for word in line:
-            if scrap:
-                test = scrap + " " + word
+    words = re.findall(r"\w+|[^\w\s]", text)
+    line = ""
+    for word in words:
+        if font.size(line + " " + word)[0] > width:
+            if font.size(word)[0] > width:
+                raise RuntimeError("message is too large for width", text)
+            if font.size(line)[0] > width:
+                yield line[:width]
+                line = word
             else:
-                test = word
-            token_width = font.size(test)[0]
-            if token_width >= width:
-                if scrap is None:
-                    raise RuntimeError("message is too large for width", text)
-                yield scrap
-                scrap = word
-            else:
-                scrap = test
-        else:  # executed when line is too large
-            yield scrap if scrap else ""
+                yield line
+                line = word
+        else:
+            if line:
+                line += " "
+            line += word
+    if line:
+        yield line
 
 
 def iterate_words(text: str) -> Generator[str, None, None]:
@@ -256,11 +291,20 @@ def blit_alpha(
     opacity: int,
 ) -> None:
     """
-    Blits a surface with alpha that can also have it's overall transparency
+    Blits a surface with alpha that can also have its overall transparency
     modified.
     Taken from http://nerdparadise.com/tech/python/pygame/blitopacity/
 
-    NOTE: This should be removed because of the performance implications.
+    Parameters:
+        target: The surface to blit onto.
+        source: The surface to blit.
+        location: The location to blit the source surface.
+        opacity: The overall transparency of the source surface, ranging
+            from 0 (fully transparent) to 255 (fully opaque).
+
+    Notes:
+        This function has performance implications due to the creation of
+        a temporary surface. It is recommended to use this function sparingly.
     """
 
     x = location[0]

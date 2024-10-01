@@ -945,7 +945,6 @@ class CombatState(CombatAnimations):
             item_sprite = self._method_cache.get(method, False)
             # handle the capture device
             if method.category == ItemCategory.capture and item_sprite:
-                # retrieve tuxeball
                 message += "\n" + T.translate("attempting_capture")
                 action_time = result_item["num_shakes"] + 1.8
                 self.animate_capture_monster(
@@ -956,6 +955,9 @@ class CombatState(CombatAnimations):
                     item_sprite,
                 )
             else:
+                if method.behaviors.throwable:
+                    item = self.animate_throwing(target, method)
+                    self.task(item.kill, 1.5)
                 msg_type = (
                     "use_success" if result_item["success"] else "use_failure"
                 )

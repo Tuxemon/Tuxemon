@@ -732,6 +732,33 @@ class CombatAnimations(ABC, Menu[None]):
             params = {"name": self.players[1].monsters[0].name.upper()}
             self.alert(T.format("combat_wild_appeared", params))
 
+    def animate_throwing(
+        self,
+        monster: Monster,
+        item: Item,
+    ) -> Sprite:
+        """
+        Animation for throwing the item.
+
+        Parameters:
+            monster: The monster being targeted.
+            item: The item thrown at the monster.
+
+        Returns:
+            The animated item sprite.
+
+        """
+        monster_sprite = self._monster_sprite_map[monster]
+        sprite = self.load_sprite(item.sprite)
+        animate = partial(
+            self.animate, sprite.rect, transition="in_quad", duration=1.0
+        )
+        graphics.scale_sprite(sprite, 0.4)
+        sprite.rect.center = scale(0), scale(0)
+        animate(x=monster_sprite.rect.centerx)
+        animate(y=monster_sprite.rect.centery)
+        return sprite
+
     def animate_capture_monster(
         self,
         is_captured: bool,
@@ -752,14 +779,10 @@ class CombatAnimations(ABC, Menu[None]):
 
         """
         monster_sprite = self._monster_sprite_map[monster]
-        capdev = self.load_sprite(item.sprite)
+        capdev = self.animate_throwing(monster, item)
         animate = partial(
             self.animate, capdev.rect, transition="in_quad", duration=1.0
         )
-        graphics.scale_sprite(capdev, 0.4)
-        capdev.rect.center = scale(0), scale(0)
-        animate(x=monster_sprite.rect.centerx)
-        animate(y=monster_sprite.rect.centery)
         self.task(partial(toggle_visible, monster_sprite), 1.0)
 
         # TODO: cache this sprite from the first time it's used.

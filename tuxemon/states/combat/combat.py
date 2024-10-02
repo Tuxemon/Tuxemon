@@ -929,6 +929,9 @@ class CombatState(CombatAnimations):
                     message += "\n" + m
                     action_time += compute_text_animation_time(message)
             else:
+                if method.behaviors.throwable:
+                    item = self.animate_throwing(target, method)
+                    self.task(item.kill, 1.5)
                 msg_type = (
                     "use_success" if result_tech["success"] else "use_failure"
                 )
@@ -987,6 +990,9 @@ class CombatState(CombatAnimations):
                 item_sprite,
             )
         else:
+            if method.behaviors.throwable:
+                item = self.animate_throwing(target, method)
+                self.task(item.kill, 1.5)
             msg_type = (
                 "use_success" if result_item["success"] else "use_failure"
             )

@@ -228,6 +228,9 @@ class ItemBehaviors(BaseModel):
     show_dialog_on_success: bool = Field(
         True, description="Whether to show a dialogue after a successful use."
     )
+    throwable: bool = Field(
+        False, description="Whether or not this item is throwable."
+    )
 
 
 class ItemModel(BaseModel):

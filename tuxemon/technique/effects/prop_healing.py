@@ -46,7 +46,7 @@ class PropHealingEffect(TechEffect):
         if tech.hit:
             reference_hp = target.hp if self.objective == "target" else user.hp
             amount = (reference_hp) * self.proportional
-            user.current_hp += int(amount)
+            user.current_hp = min(user.hp, user.current_hp + int(amount))
 
         return {
             "damage": 0,

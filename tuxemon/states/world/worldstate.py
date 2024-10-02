@@ -510,9 +510,9 @@ class WorldState(state.State):
                 bubble = (surface, bubble_rect, 100)
                 screen_surfaces.append(bubble)
 
-    def set_layer(self) -> None:
+    def set_layer(self, surface: pygame.surface.Surface) -> None:
         self.layer.fill(self.layer_color)
-        self.screen.blit(self.layer, (0, 0))
+        surface.blit(self.layer, (0, 0))
 
     def map_drawing(self, surface: pygame.surface.Surface) -> None:
         """Draw the map tiles in a layered order."""
@@ -545,7 +545,7 @@ class WorldState(state.State):
         self.draw_map_and_sprites(surface, screen_surfaces)
 
         # Add transparent layer
-        self.set_layer()
+        self.set_layer(surface)
 
         # Draw collision map for debug purposes
         if prepare.CONFIG.collision_map:

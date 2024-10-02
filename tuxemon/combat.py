@@ -202,20 +202,6 @@ def defeated(character: NPC) -> bool:
     return fainted_party(character.monsters)
 
 
-def check_moves(monster: Monster, levels: int) -> Optional[str]:
-    """
-    Checks if during the levelling up there is/are new tech/s to learn.
-    If there is/are new tech/s it returns the message, otherwise None.
-    """
-    techs = monster.update_moves(levels)
-    if techs:
-        tech_list = ", ".join(tech.name.upper() for tech in techs)
-        params = {"name": monster.name.upper(), "tech": tech_list}
-        message = T.format("tuxemon_new_tech", params)
-        return message
-    return None
-
-
 def award_money(loser: Monster, winner: Monster) -> int:
     """
     It calculates money to be awarded. It allows multiple methods.

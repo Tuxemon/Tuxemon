@@ -526,7 +526,8 @@ class Monster:
 
         """
         new_level = self.level - levels_earned
-        learned_techniques = []
+        new_moves = self.moves.copy()
+        new_techniques = []
         for move in self.moveset:
             if (
                 move.technique not in (m.slug for m in self.moves)
@@ -534,10 +535,11 @@ class Monster:
             ):
                 technique = Technique()
                 technique.load(move.technique)
-                learned_techniques.append(technique)
-                self.learn(technique)
+                new_moves.append(technique)
+                new_techniques.append(technique)
 
-        return learned_techniques
+        self.moves = new_moves
+        return new_techniques
 
     def experience_required(self, level_ofs: int = 0) -> int:
         """

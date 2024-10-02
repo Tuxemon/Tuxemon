@@ -304,7 +304,7 @@ events:
     actions:
     - set_party_status player
     conditions:
-    - is current_state MainCombatMenuState:WorldState
+    - is current_state MainCombatMenuState:WorldMenuState
     - is party_size player,greater_than,0
     type: "event"
   Cheat Code ApexPlayer:

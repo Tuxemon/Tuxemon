@@ -51,7 +51,6 @@ from tuxemon.combat import (
     award_experience,
     award_money,
     battlefield,
-    check_moves,
     defeated,
     fainted,
     get_awake_monsters,
@@ -929,9 +928,6 @@ class CombatState(CombatAnimations):
                     message += "\n" + m
                     action_time += compute_text_animation_time(message)
             else:
-                if method.behaviors.throwable:
-                    item = self.animate_throwing(target, method)
-                    self.task(item.kill, 1.5)
                 msg_type = (
                     "use_success" if result_tech["success"] else "use_failure"
                 )
@@ -1090,15 +1086,16 @@ class CombatState(CombatAnimations):
         label = f"{self.name.lower()}_faint"
         set_var(local_session, label, iid)
 
+    def award_experience_and_money(self, monster: Monster) -> None:
         """
-        Experience is earned when the target monster is fainted.
-        Any monsters who contributed any amount of damage will be awarded.
-        Experience is distributed evenly to all participants.
+        Award experience and money to the winners.
+
+        Parameters:
+            monster: Monster that was fainted.
+
         """
         winners = get_winners(monster, self._damage_map)
         if winners:
-            action_time = 0.0
-            self._xp_message = ""
             for winner in winners:
                 # Award money and experience
                 awarded_mon = award_money(monster, winner)
@@ -1113,31 +1110,44 @@ class CombatState(CombatAnimations):
                 else:
                     levels = 0
 
-                # Check for level up and update HUD
-                if winner in self.monsters_in_play_right and levels >= 1:
-                    mex = check_moves(winner, levels)
-                    if mex:
-                        self._xp_message += "\n" + mex
-                        action_time += compute_text_animation_time(
-                            self._xp_message
-                        )
-                    if winner.owner and winner.owner.isplayer:
-                        del self.hud[winner]
-                        self.update_hud(winner.owner, False)
-
+                # Log experience gain
                 if winner.owner and winner.owner.isplayer:
-                    # Log experience gain
                     params = {"name": winner.name.upper(), "xp": awarded_exp}
-                    self._xp_message += "\n" + T.format(
-                        "combat_gain_exp", params
-                    )
+                    if self._xp_message is not None:
+                        self._xp_message += "\n" + T.format(
+                            "combat_gain_exp", params
+                        )
+                    else:
+                        self._xp_message = T.format("combat_gain_exp", params)
 
-            # Remove monster from damage map
-            self._damage_map = [
-                element
-                for element in self._damage_map
-                if element.defense != monster and element.attack != monster
-            ]
+                # Update HUD and handle level up
+                self.update_hud_and_level_up(winner, levels)
+
+    def update_hud_and_level_up(self, winner: Monster, levels: int) -> None:
+        """
+        Update the HUD and handle level ups for the winner.
+
+        Parameters:
+            winner: Monster that won the battle.
+            levels: Number of levels gained.
+
+        """
+        if winner in self.monsters_in_play_right:
+            new_techniques = winner.update_moves(levels)
+            if new_techniques:
+                tech_list = ", ".join(
+                    tech.name.upper() for tech in new_techniques
+                )
+                params = {"name": winner.name.upper(), "tech": tech_list}
+                mex = T.format("tuxemon_new_tech", params)
+                if self._xp_message is not None:
+                    self._xp_message += "\n" + mex
+                else:
+                    self._xp_message = mex
+            if winner.owner and winner.owner.isplayer:
+                self.task(partial(self.animate_exp, winner), 2.5)
+                self.task(partial(self.delete_hud, winner), 3.2)
+                self.task(partial(self.update_hud, winner.owner, False), 3.2)
 
     def animate_party_status(self) -> None:
         """
@@ -1170,35 +1180,59 @@ class CombatState(CombatAnimations):
         """
         Apply status effects, then check HP, and party status.
 
+        This method iterates over all monsters in the game, both friendly
+        and enemy, and performs the following actions:
+        - Animates the monster's HP display
+        - Applies any status effects (e.g., poison, burn, etc.)
+        - Checks if the monster has fainted and removes it from the game
+            if so
+        - Updates the experience bar for the player's monsters if an enemy
+            monster has fainted
+
         * Monsters will be removed from play here
-
         """
-        for _, party in self.monsters_in_play.items():
-            for monster in party:
+        for monster_party in self.monsters_in_play.values():
+            for monster in monster_party:
                 self.animate_hp(monster)
-                # check statuses
-                if monster.status:
-                    monster.status[0].combat_state = self
-                    monster.status[0].phase = "check_party_hp"
-                    result_status = monster.status[0].use(monster)
-                    if result_status["extra"]:
-                        extra = result_status["extra"]
-                        action_time = compute_text_animation_time(extra)
-                        self.text_animations_queue.append(
-                            (partial(self.alert, extra), action_time)
-                        )
+                self.apply_status_effects(monster)
                 if fainted(monster):
-                    self.remove_monster_actions_from_queue(monster)
-                    self.faint_monster(monster)
+                    self.handle_monster_defeat(monster)
 
-                    # If a monster fainted, exp was given, thus the exp bar
-                    # should be updated
-                    # The exp bar must only be animated for the player's
-                    # monsters
-                    # Enemies don't have a bar, doing it for them will
-                    # cause a crash
-                    for monster in self.monsters_in_play_right:
-                        self.task(partial(self.animate_exp, monster), 2.5)
+    def apply_status_effects(self, monster: Monster) -> None:
+        """
+        Applies any status effects to the given monster.
+
+        Parameters:
+            monster: Monster that was defeated.
+        """
+        if monster.status:
+            monster.status[0].combat_state = self
+            monster.status[0].phase = "check_party_hp"
+            result_status = monster.status[0].use(monster)
+            if result_status["extra"]:
+                extra = result_status["extra"]
+                action_time = compute_text_animation_time(extra)
+                self.text_animations_queue.append(
+                    (partial(self.alert, extra), action_time)
+                )
+
+    def handle_monster_defeat(self, monster: Monster) -> None:
+        """
+        Handles the defeat of a monster, removing it from the game and
+        updating the experience bar if necessary.
+
+        Parameters:
+            monster: Monster that was defeated.
+        """
+        self.remove_monster_actions_from_queue(monster)
+        self.faint_monster(monster)
+        self.award_experience_and_money(monster)
+        # Remove monster from damage map
+        self._damage_map = [
+            element
+            for element in self._damage_map
+            if element.defense != monster and element.attack != monster
+        ]
 
     @property
     def active_players(self) -> Iterable[NPC]:

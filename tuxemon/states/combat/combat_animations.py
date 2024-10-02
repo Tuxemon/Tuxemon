@@ -252,7 +252,7 @@ class CombatAnimations(ABC, Menu[None]):
                 icon.kill()
             self._status_icons[monster].clear()
             del self._monster_sprite_map[monster]
-            del self.hud[monster]
+            self.delete_hud(monster)
 
         self.animate_monster_leave(monster)
         self.task(kill_monster, 2)
@@ -795,7 +795,7 @@ class CombatAnimations(ABC, Menu[None]):
             self._monster_sprite_map[monster].kill()
             self.hud[monster].kill()
             del self._monster_sprite_map[monster]
-            del self.hud[monster]
+            self.delete_hud(monster)
 
         def shake_ball(initial_delay: float) -> None:
             # Define reusable shake animation functions
@@ -869,6 +869,15 @@ class CombatAnimations(ABC, Menu[None]):
             capture_capsule(breakout_delay)
             blink_monster(breakout_delay)
             show_failure(breakout_delay)
+
+    def delete_hud(self, monster: Monster) -> None:
+        """
+        Removes the specified monster's entry from the HUD.
+
+        Parameters:
+            monster: The monster to remove from the HUD.
+        """
+        del self.hud[monster]
 
     def update_hud(self, character: NPC, animate: bool = True) -> None:
         """

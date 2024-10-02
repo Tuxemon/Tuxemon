@@ -7,13 +7,11 @@ from typing import Any, Optional
 
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.locals import POSITION_CENTER
 
-from tuxemon import prepare, tools
+from tuxemon import prepare
 from tuxemon.db import MissionStatus
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.menu.theme import get_theme
 from tuxemon.mission import Mission
 from tuxemon.npc import NPC
 
@@ -35,27 +33,15 @@ class MissionState(PygameMenuState):
         self.character = character
         width, height = prepare.SCREEN_SIZE
 
-        background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(prepare.BG_MISSIONS),
-            drawing_position=POSITION_CENTER,
-        )
-        theme = get_theme()
+        theme = self._setup_theme(prepare.BG_MISSIONS)
         theme.scrollarea_position = locals.POSITION_EAST
-        theme.background_color = background
         theme.widget_alignment = locals.ALIGN_CENTER
 
         width = int(0.8 * width)
         height = int(0.8 * height)
         super().__init__(height=height, width=width)
         self.initialize_items(self.menu)
-        self.repristinate()
-
-    def repristinate(self) -> None:
-        """Repristinate original theme (color, alignment, etc.)"""
-        theme = get_theme()
-        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = self.background_color
-        theme.widget_alignment = locals.ALIGN_LEFT
+        self.reset_theme()
 
     def initialize_items(
         self,

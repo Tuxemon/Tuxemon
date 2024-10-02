@@ -1599,7 +1599,7 @@ msgid "flamethrower"
 msgstr "Flamethrower"
 
 msgid "fledgling_description"
-msgstr "The user hurls a clump of hardened earth at the opponent."
+msgstr "The user hurls sharp feathers at the opponent."
 
 msgid "fledgling"
 msgstr "Fledgling"
@@ -1863,7 +1863,7 @@ msgid "negation"
 msgstr "Negation"
 
 msgid "nest_description"
-msgstr "The user constructs a protective nest around itself, using it as a defensive and offensive weapon."
+msgstr "The user constructs a protective nest around itself."
 
 msgid "nest"
 msgstr "Nest"
@@ -1945,6 +1945,15 @@ msgstr "The user creates an illusionary copy of itself that attacks the opponent
 
 msgid "phantasmal_force"
 msgstr "Phantasmal Force"
+
+msgid "solar_synthesis_description"
+msgstr "Heals the user's health by absorbing sunlight."
+
+msgid "solar_synthesis_fail"
+msgstr "The lack of sunlight prevents the healing."
+
+msgid "solar_synthesis"
+msgstr "Solar Synthesis"
 
 msgid "pit_description"
 msgstr "The user creates a pit beneath the opponent, causing them to fall and take damage."
@@ -2084,6 +2093,15 @@ msgstr "The user undergoes a rapid transformation, striking the opponent with a 
 msgid "shapechange"
 msgstr "Shapechange"
 
+msgid "shooting_star_description"
+msgstr "Heals the user's health by harnessing the energy of a shooting star streaking across the night sky."
+
+msgid "shooting_star_fail"
+msgstr "The lack of starlight from the daytime sky prevents the healing."
+
+msgid "shooting_star"
+msgstr "Shooting Star"
+
 msgid "shrapnel_description"
 msgstr "The user unleashes a barrage of sharp fragments, causing widespread damage."
 
@@ -2193,7 +2211,7 @@ msgid "strike"
 msgstr "Strike"
 
 msgid "suck_poison_description"
-msgstr "The user drains the opponent's vitality, inflicting damage and poisoning them."
+msgstr "The user draws out the poison from their own body and infects their enemy with it."
 
 msgid "suck_poison"
 msgstr "Suck Poison"

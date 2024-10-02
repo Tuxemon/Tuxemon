@@ -82,13 +82,7 @@ class SetKeyState(PygameMenuState):
         super().__init__(**kwargs)
         self.menu.add.label(T.translate("options_new_input_key0").upper())
         self.button = button
-        self.repristinate()
-
-    def repristinate(self) -> None:
-        """Repristinate original theme (color, alignment, etc.)"""
-        theme = get_theme()
-        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.widget_alignment = locals.ALIGN_LEFT
+        self.reset_theme()
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         invalid_keys = [
@@ -118,7 +112,7 @@ class SetKeyState(PygameMenuState):
             and pressed_key not in invalid_keys
         ):
             assert self.button and pressed_key
-            local_session.client.pop_state()
+            self.client.pop_state()
             pressed_key_str = pygame.key.name(pressed_key)
             if event.value == pressed_key_str:
                 # Update the configuration file with the new key
@@ -165,13 +159,7 @@ class ControlState(PygameMenuState):
         super().__init__(**kwargs)
         self.initialize_items(self.menu)
         self.reload_controls()
-        self.repristinate()
-
-    def repristinate(self) -> None:
-        """Repristinate original theme (color, alignment, etc.)"""
-        theme = get_theme()
-        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.widget_alignment = locals.ALIGN_LEFT
+        self.reset_theme()
 
     def initialize_items(
         self,

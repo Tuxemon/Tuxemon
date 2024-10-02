@@ -194,6 +194,47 @@ def simple_heal(
     return int(base_heal)
 
 
+def calculate_time_based_multiplier(
+    hour: int,
+    peak_hour: int,
+    max_multiplier: float,
+    start: int,
+    end: int,
+) -> float:
+    """
+    Calculate the multiplier based on the given hour and peak hour.
+
+    Parameters:
+        hour: The current hour.
+        peak_hour: The peak hour.
+        max_multiplier: The maximum power.
+        start: The start hour of the period.
+        end: The end hour of the period.
+
+    Returns:
+        float: The calculated multiplier.
+    """
+    if end < start:
+        end += 24
+    if hour < start:
+        hour += 24
+    if peak_hour < start:
+        peak_hour += 24
+    if (end or hour or peak_hour) > 47:
+        return 0.0
+
+    if start <= hour < end:
+        distance_from_peak = abs(hour - peak_hour)
+        if distance_from_peak > (end - start) / 2:
+            distance_from_peak = (end - start) - distance_from_peak
+        weighted_power = max_multiplier * (
+            1 - (distance_from_peak / ((end - start) / 2)) ** 2
+        )
+        return max(weighted_power, 0.0)
+    else:
+        return 0.0
+
+
 def simple_recover(target: Monster, divisor: int) -> int:
     """
     Simple recover based on target's full hp.

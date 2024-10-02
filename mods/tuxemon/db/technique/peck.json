@@ -9,7 +9,7 @@
   "is_fast": false,
   "potency": 0.0,
   "power": 1.25,
-  "range": "melee",
+  "range": "reach",
   "recharge": 1,
   "sfx": "sfx_blaster",
   "slug": "peck",
@@ -22,6 +22,8 @@
     "own_team": false,
     "own_trainer": false
   },
+  "category": "animal",
+  "tags": ["Bird"],
   "types": [
     "wood"
   ],

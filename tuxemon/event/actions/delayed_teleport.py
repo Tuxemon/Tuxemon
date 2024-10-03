@@ -44,7 +44,7 @@ class DelayedTeleportAction(EventAction):
     def start(self) -> None:
         world = self.session.client.get_state_by_name(WorldState)
 
-        if world.delayed_teleport:
+        if world.teleporter.delayed_teleport:
             logger.error("Stop, there is a teleport in progress")
             return
 
@@ -54,8 +54,8 @@ class DelayedTeleportAction(EventAction):
             return
 
         char.remove_collision(char.tile_pos)
-        world.delayed_char = char
-        world.delayed_teleport = True
-        world.delayed_mapname = self.map_name
-        world.delayed_x = self.position_x
-        world.delayed_y = self.position_y
+        world.teleporter.delayed_char = char
+        world.teleporter.delayed_teleport = True
+        world.teleporter.delayed_mapname = self.map_name
+        world.teleporter.delayed_x = self.position_x
+        world.teleporter.delayed_y = self.position_y

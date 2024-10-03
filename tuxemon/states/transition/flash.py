@@ -20,13 +20,26 @@ class FlashTransition(State):
 
     force_draw = True
 
-    def __init__(self, color: ColorLike = prepare.WHITE_COLOR) -> None:
+    def __init__(
+        self,
+        color: ColorLike = prepare.WHITE_COLOR,
+        flash_time: float = 0.2,
+        max_flash_count: int = 7,
+    ) -> None:
+        """
+        Parameters:
+            color: The color to use for the flash effect. Defaults to white.
+            flash_time: The time in seconds between flashes. Defaults to 0.2
+                seconds.
+            max_flash_count: The maximum number of times the flash effect will
+                repeat. Defaults to 7.
+        """
         super().__init__()
         logger.info("Initializing battle transition")
-        self.flash_time = 0.2  # Time in seconds between flashes
+        self.flash_time = flash_time
         self.flash_state = "up"
         self.transition_alpha = 0.0
-        self.max_flash_count = 7
+        self.max_flash_count = max_flash_count
         self.flash_count = 0
         self.client.rumble.rumble(-1, length=1.5)
         self.color = color
@@ -64,9 +77,7 @@ class FlashTransition(State):
 
         if self.flash_count > self.max_flash_count:
             logger.info(
-                "Flashed "
-                + str(self.flash_count)
-                + " times. Stopping transition.",
+                f"Flashed {self.flash_count} times. Stopping transition."
             )
             self.client.pop_state()
 

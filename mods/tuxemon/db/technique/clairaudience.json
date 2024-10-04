@@ -23,6 +23,8 @@
     "own_team": false,
     "own_trainer": false
   },
+  "category": "condition_imposer",
+  "tags": ["Mental"],
   "types": [
     "aether"
   ],

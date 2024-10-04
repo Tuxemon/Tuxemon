@@ -1,5 +1,5 @@
 {
-    "slug": "axylightl",
+    "slug": "axolightl",
     "category": "inchoate",
     "moveset": [
         {
@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 6,
-            "technique": "suck_poison"
+            "technique": "spit_poison"
         },
         {
             "level_learned": 8,

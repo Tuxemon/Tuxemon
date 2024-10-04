@@ -9,13 +9,11 @@ from typing import Any
 
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.locals import POSITION_CENTER
 
-from tuxemon import prepare, tools
+from tuxemon import prepare
 from tuxemon.db import MonsterModel, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
 
 MAX_PAGE = 20
@@ -97,15 +95,8 @@ class JournalChoice(PygameMenuState):
             _lookup_monsters()
         width, height = prepare.SCREEN_SIZE
 
-        background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(
-                prepare.BG_JOURNAL_CHOICE
-            ),
-            drawing_position=POSITION_CENTER,
-        )
-        theme = get_theme()
+        theme = self._setup_theme(prepare.BG_JOURNAL_CHOICE)
         theme.scrollarea_position = locals.POSITION_EAST
-        theme.background_color = background
         theme.widget_alignment = locals.ALIGN_LEFT
 
         columns = 2
@@ -119,11 +110,4 @@ class JournalChoice(PygameMenuState):
         )
 
         self.add_menu_items(self.menu, box)
-        self.repristinate()
-
-    def repristinate(self) -> None:
-        """Repristinate original theme (color, alignment, etc.)"""
-        theme = get_theme()
-        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = self.background_color
-        theme.widget_alignment = locals.ALIGN_LEFT
+        self.reset_theme()

@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "ice_claw"
+            "technique": "constrict"
         },
         {
             "level_learned": 2,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 12,
-            "technique": "frostbite"
+            "technique": "clamp_on"
         },
         {
             "level_learned": 16,
@@ -36,15 +36,15 @@
         },
         {
             "level_learned": 28,
-            "technique": "cavity"
+            "technique": "invictus"
         },
         {
             "level_learned": 32,
-            "technique": "sylvan"
+            "technique": "venomous_tentacle"
         },
         {
             "level_learned": 36,
-            "technique": "stone_rot"
+            "technique": "pit"
         },
         {
             "level_learned": 40,

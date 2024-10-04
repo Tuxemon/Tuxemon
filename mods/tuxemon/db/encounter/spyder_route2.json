@@ -38,7 +38,7 @@
       ]
     },
     {
-      "monster": "axylightl",
+      "monster": "axolightl",
       "encounter_rate": 1,
       "variables": [
         "daytime:true"
@@ -98,7 +98,7 @@
       ]
     },
     {
-      "monster": "axylightl",
+      "monster": "axolightl",
       "encounter_rate": 1,
       "variables": [
         "daytime:false"

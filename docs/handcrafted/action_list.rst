@@ -5,6 +5,8 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.add_tech.AddTechAction
 .. autoscriptinfoclass:: tuxemon.event.actions.breeding.BreedingAction
 .. autoscriptinfoclass:: tuxemon.event.actions.call_event.CallEventAction
+.. autoscriptinfoclass:: tuxemon.event.actions.camera.CameraAction
+.. autoscriptinfoclass:: tuxemon.event.actions.camera_position.CameraPositionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_bg.ChangeBgAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_state.ChangeStateAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_taste.ChangeTasteAction
@@ -27,6 +29,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.create_kennel.CreateKennelAction
 .. autoscriptinfoclass:: tuxemon.event.actions.create_npc.CreateNpcAction
 .. autoscriptinfoclass:: tuxemon.event.actions.delayed_teleport.DelayedTeleportAction
+.. autoscriptinfoclass:: tuxemon.event.actions.dojo_method.DojoMethodAction
 .. autoscriptinfoclass:: tuxemon.event.actions.evolution.EvolutionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.fadeout_music.FadeoutMusicAction
 .. autoscriptinfoclass:: tuxemon.event.actions.format_variable.FormatVariableAction

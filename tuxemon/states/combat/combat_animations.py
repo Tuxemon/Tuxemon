@@ -252,7 +252,7 @@ class CombatAnimations(ABC, Menu[None]):
                 icon.kill()
             self._status_icons[monster].clear()
             del self._monster_sprite_map[monster]
-            del self.hud[monster]
+            self.delete_hud(monster)
 
         self.animate_monster_leave(monster)
         self.task(kill_monster, 2)
@@ -303,6 +303,8 @@ class CombatAnimations(ABC, Menu[None]):
         diff_value = monster.total_experience - target_previous
         diff_target = target_next - target_previous
         value = max(0, min(1, (diff_value) / (diff_target)))
+        if monster.levelling_up:
+            value = 1.0
         exp_bar = self._exp_bars[monster]
         self.animate(
             exp_bar,
@@ -732,6 +734,33 @@ class CombatAnimations(ABC, Menu[None]):
             params = {"name": self.players[1].monsters[0].name.upper()}
             self.alert(T.format("combat_wild_appeared", params))
 
+    def animate_throwing(
+        self,
+        monster: Monster,
+        item: Item,
+    ) -> Sprite:
+        """
+        Animation for throwing the item.
+
+        Parameters:
+            monster: The monster being targeted.
+            item: The item thrown at the monster.
+
+        Returns:
+            The animated item sprite.
+
+        """
+        monster_sprite = self._monster_sprite_map[monster]
+        sprite = self.load_sprite(item.sprite)
+        animate = partial(
+            self.animate, sprite.rect, transition="in_quad", duration=1.0
+        )
+        graphics.scale_sprite(sprite, 0.4)
+        sprite.rect.center = scale(0), scale(0)
+        animate(x=monster_sprite.rect.centerx)
+        animate(y=monster_sprite.rect.centery)
+        return sprite
+
     def animate_capture_monster(
         self,
         is_captured: bool,
@@ -752,14 +781,10 @@ class CombatAnimations(ABC, Menu[None]):
 
         """
         monster_sprite = self._monster_sprite_map[monster]
-        capdev = self.load_sprite(item.sprite)
+        capdev = self.animate_throwing(monster, item)
         animate = partial(
             self.animate, capdev.rect, transition="in_quad", duration=1.0
         )
-        graphics.scale_sprite(capdev, 0.4)
-        capdev.rect.center = scale(0), scale(0)
-        animate(x=monster_sprite.rect.centerx)
-        animate(y=monster_sprite.rect.centery)
         self.task(partial(toggle_visible, monster_sprite), 1.0)
 
         # TODO: cache this sprite from the first time it's used.
@@ -772,7 +797,7 @@ class CombatAnimations(ABC, Menu[None]):
             self._monster_sprite_map[monster].kill()
             self.hud[monster].kill()
             del self._monster_sprite_map[monster]
-            del self.hud[monster]
+            self.delete_hud(monster)
 
         def shake_ball(initial_delay: float) -> None:
             # Define reusable shake animation functions
@@ -846,6 +871,15 @@ class CombatAnimations(ABC, Menu[None]):
             capture_capsule(breakout_delay)
             blink_monster(breakout_delay)
             show_failure(breakout_delay)
+
+    def delete_hud(self, monster: Monster) -> None:
+        """
+        Removes the specified monster's entry from the HUD.
+
+        Parameters:
+            monster: The monster to remove from the HUD.
+        """
+        del self.hud[monster]
 
     def update_hud(self, character: NPC, animate: bool = True) -> None:
         """

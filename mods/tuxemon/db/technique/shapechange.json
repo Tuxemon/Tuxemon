@@ -1,15 +1,16 @@
 {
   "tech_id": 160,
-  "accuracy": 0.6,
+  "accuracy": 0.7,
   "animation": "x_attack",
   "effects": [
+    "switch user,random",
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
   "potency": 0.7,
-  "power": 1.1,
-  "range": "touch",
+  "power": 2.2,
+  "range": "melee",
   "recharge": 3,
   "sfx": "sfx_blaster",
   "slug": "shapechange",
@@ -22,6 +23,8 @@
     "own_team": false,
     "own_trainer": false
   },
+  "category": "simple",
+  "tags": ["Shapeshifter"],
   "types": [
     "water"
   ],

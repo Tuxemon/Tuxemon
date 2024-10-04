@@ -373,10 +373,10 @@ msgid "anoleaf_description"
 msgstr ""
 "Rostliny, které rostou v jeho blízkosti, považuje za své bratry a sestry."
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
-msgid "axylightl_description"
+msgid "axolightl_description"
 msgstr "Pomocí svého ocasu osvětlí hluboké vody, odhalý bezpečný úkryt pro rybu."
 
 msgid "bamboon"

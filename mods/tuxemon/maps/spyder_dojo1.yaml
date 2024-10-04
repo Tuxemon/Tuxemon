@@ -284,10 +284,55 @@ events:
   Talk Xiang2:
     actions:
     - translated_dialog spyder_dojo_xiang3
+    - translated_dialog spyder_dojo_xiang3d
+    - translated_dialog_choice yes:no,xiang_yn
     behav:
     - talk spyder_dojo_xiang
     conditions:
     - is variable_set xiangfirsttime:yes
+    - not variable_set xiang_yn:yes
+    - is money_is player,greater_or_equal,200
+    type: "event"
+  Talk Xiang No Money:
+    actions:
+    - translated_dialog spyder_dojo_xiang3a
+    behav:
+    - talk spyder_dojo_xiang
+    conditions:
+    - is variable_set xiangfirsttime:yes
+    - not variable_set xiang_yn:yes
+    - not money_is player,greater_or_equal,200
+    type: "event"
+  Talk Xiang Potion:
+    actions:
+    - get_player_monster potion_xiang
+    - get_monster_tech forgot_tech,potion_xiang
+    - dojo_method potion_xiang,technique
+    - remove_tech forgot_tech
+    - set_variable xiang_potion_choice:yes
+    conditions:
+    - is variable_set xiang_yn:yes
+    - not variable_set xiang_potion_choice:yes
+    type: "event"
+  Talk Xiang Reset:
+    actions:
+    - modify_money player,-200
+    - translated_dialog spyder_dojo_xiang3b
+    - set_variable xiang_yn:null
+    - set_variable xiang_potion_choice:null
+    conditions:
+    - not variable_set dojo_notech
+    - is variable_set xiang_potion_choice:yes
+    type: "event"
+  Talk Xiang Wait:
+    actions:
+    - translated_dialog spyder_dojo_xiang3c
+    - set_variable xiang_yn:null
+    - set_variable xiang_potion_choice:null
+    - clear_variable dojo_notech
+    conditions:
+    - is variable_set dojo_notech
+    - is variable_set xiang_potion_choice:yes
     type: "event"
   Talk Zhao1:
     actions:
@@ -338,6 +383,7 @@ events:
   Talk Student1 Yes:
     actions:
     - get_player_monster dojo_stage,evolution_stage,stage2
+    - dojo_method dojo_stage,monster
     - clear_variable student1_yn
     - modify_money player,-500
     conditions:
@@ -346,6 +392,7 @@ events:
   Talk Student2 Yes:
     actions:
     - get_player_monster dojo_stage,evolution_stage,stage1
+    - dojo_method dojo_stage,monster
     - clear_variable student2_yn
     - modify_money player,-500
     conditions:

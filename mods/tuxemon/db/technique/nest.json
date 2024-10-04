@@ -3,13 +3,15 @@
   "accuracy": 0.8,
   "animation": "ruby_absorb",
   "effects": [
-    "damage"
+    "give sniping,user",
+    "healing user"
   ],
   "flip_axes": "",
   "is_fast": false,
   "potency": 0.9,
-  "power": 1.6,
-  "range": "ranged",
+  "power": 0.0,
+  "healing_power": 2.0,
+  "range": "special",
   "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "nest",
@@ -22,6 +24,8 @@
     "own_team": false,
     "own_trainer": false
   },
+  "category": "powerful",
+  "tags": ["Bird", "Healing"],
   "types": [
     "fire"
   ],

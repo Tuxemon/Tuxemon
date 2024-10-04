@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "suck_poison"
+            "technique": "spit_poison"
         },
         {
             "level_learned": 2,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 24,
-            "technique": "meltdown"
+            "technique": "nest"
         },
         {
             "level_learned": 28,
@@ -48,7 +48,7 @@
         },
         {
             "level_learned": 40,
-            "technique": "cavity"
+            "technique": "stonehenge"
         }
     ],
     "evolutions": [],

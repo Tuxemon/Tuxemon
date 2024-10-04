@@ -3,14 +3,15 @@
   "accuracy": 1,
   "animation": "green_circle",
   "effects": [
+    "give festering,target",
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
   "potency": 0.9,
-  "power": 1.5,
+  "power": 2.2,
   "range": "melee",
-  "recharge": 2,
+  "recharge": 3,
   "sfx": "sfx_blaster",
   "slug": "tip",
   "sort": "damage",
@@ -22,6 +23,8 @@
     "own_team": false,
     "own_trainer": false
   },
+  "category": "simple",
+  "tags": ["Sharp"],
   "types": [
     "earth"
   ],

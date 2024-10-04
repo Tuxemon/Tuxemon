@@ -380,10 +380,10 @@ msgid "anoleaf_description"
 msgstr ""
 "Considera a las plantas que crecen cerca de él como sus hermanos y hermanas."
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
-msgid "axylightl_description"
+msgid "axolightl_description"
 msgstr ""
 "Ilumina las aguas profundas con su cola, señalando un refugio seguro para "
 "los peces."

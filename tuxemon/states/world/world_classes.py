@@ -41,5 +41,23 @@ class BoundaryChecker:
             and self.invalid_y[0] < position[1] < self.invalid_y[1]
         )
 
+    def get_boundary_validity(
+        self, position: tuple[float, float]
+    ) -> tuple[bool, bool]:
+        """
+        Checks if a given position is within the valid boundaries.
+
+        Parameters:
+            position: The position to check (x, y).
+
+        Returns:
+            tuple[bool, bool]: A tuple of booleans indicating whether the position
+            is within the x and y boundaries.
+        """
+        return (
+            self.invalid_x[0] < position[0] < self.invalid_x[1],
+            self.invalid_y[0] < position[1] < self.invalid_y[1],
+        )
+
     def __repr__(self) -> str:
         return f"BoundaryChecker(invalid_x={self.invalid_x}, invalid_y={self.invalid_y})"

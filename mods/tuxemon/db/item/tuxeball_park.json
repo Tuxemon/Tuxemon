@@ -14,7 +14,9 @@
   "usable_in": [
     "MainParkMenuState"
   ],
-  "behaviors": {},
+  "behaviors": {
+    "throwable": true
+  },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

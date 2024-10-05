@@ -386,7 +386,9 @@ def process_translate_text(
     if "\n" in formatted_text:
         pages = formatted_text.split("\n")
     else:
-        pages = textwrap.wrap(formatted_text, prepare.WRAP_VALUE)
+        pages = textwrap.wrap(
+            formatted_text, prepare.WRAP_VALUE, fix_sentence_endings=True
+        )
 
     # Generate scrollable text
     return [replace_text(session, page) for page in pages]

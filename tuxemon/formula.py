@@ -21,6 +21,37 @@ logger = logging.getLogger(__name__)
 
 multiplier_cache: dict[tuple[ElementType, ElementType], float] = {}
 
+range_map: dict[str, tuple[str, str]] = {
+    "melee": ("melee", "armour"),
+    "touch": ("melee", "dodge"),
+    "ranged": ("ranged", "dodge"),
+    "reach": ("ranged", "armour"),
+    "reliable": ("level", "resist"),
+}
+
+taste_maps: dict[str, dict[tuple[str, str], float]] = {
+    "armour": {
+        ("cold", "soft"): pre.TASTE_RANGE[0],
+        ("warm", "hearty"): pre.TASTE_RANGE[1],
+    },
+    "speed": {
+        ("cold", "mild"): pre.TASTE_RANGE[0],
+        ("warm", "peppy"): pre.TASTE_RANGE[1],
+    },
+    "melee": {
+        ("cold", "sweet"): pre.TASTE_RANGE[0],
+        ("warm", "salty"): pre.TASTE_RANGE[1],
+    },
+    "ranged": {
+        ("cold", "flakey"): pre.TASTE_RANGE[0],
+        ("warm", "zesty"): pre.TASTE_RANGE[1],
+    },
+    "dodge": {
+        ("cold", "dry"): pre.TASTE_RANGE[0],
+        ("warm", "refined"): pre.TASTE_RANGE[1],
+    },
+}
+
 
 def simple_damage_multiplier(
     attack_types: Sequence[Element],
@@ -33,10 +64,8 @@ def simple_damage_multiplier(
     Parameters:
         attack_types: The types of the technique.
         target_types: The types of the target.
-        additional_factors: Optional dictionary of additional factors
-        that affect the damage multiplier. The keys of the dictionary
-        should be the names of the factors, and the values should be
-        the corresponding multipliers.
+        additional_factors: A dictionary of additional factors to apply to
+        the damage multiplier (default None)
 
     Returns:
         The attack multiplier.
@@ -62,8 +91,8 @@ def simple_damage_multiplier(
                 )
     # Apply additional factors
     if additional_factors:
-        for _, multiplier_value in additional_factors.items():
-            multiplier *= multiplier_value
+        factor_multiplier = math.prod(additional_factors.values())
+        multiplier *= factor_multiplier
     return multiplier
 
 
@@ -106,35 +135,31 @@ def simple_damage_calculate(
         technique: The technique to calculate for.
         user: The user of the technique.
         target: The one the technique is being used on.
-        additional_factors: Optional dictionary of additional factors
-        that affect the damage multiplier. The keys of the dictionary
-        should be the names of the factors, and the values should be
-        the corresponding multipliers.
+        additional_factors: A dictionary of additional factors to apply to
+        the damage multiplier (default None)
 
     Returns:
         A tuple (damage, multiplier).
 
     """
-    if technique.range == "melee":
-        user_strength = user.melee * (pre.COEFF_DAMAGE + user.level)
-        target_resist = target.armour
-    elif technique.range == "touch":
-        user_strength = user.melee * (pre.COEFF_DAMAGE + user.level)
-        target_resist = target.dodge
-    elif technique.range == "ranged":
-        user_strength = user.ranged * (pre.COEFF_DAMAGE + user.level)
-        target_resist = target.dodge
-    elif technique.range == "reach":
-        user_strength = user.ranged * (pre.COEFF_DAMAGE + user.level)
-        target_resist = target.armour
-    elif technique.range == "reliable":
+    if technique.range not in range_map:
+        raise RuntimeError(
+            f"Unhandled damage category for technique '{technique.name}': {technique.range}"
+        )
+
+    user_stat, target_stat = range_map[technique.range]
+
+    if user_stat == "level":
         user_strength = pre.COEFF_DAMAGE + user.level
+    else:
+        user_strength = getattr(user, user_stat) * (
+            pre.COEFF_DAMAGE + user.level
+        )
+
+    if target_stat == "resist":
         target_resist = 1
     else:
-        raise RuntimeError(
-            "unhandled damage category %s",
-            technique.range,
-        )
+        target_resist = getattr(target, target_stat)
 
     mult = simple_damage_multiplier(
         (technique.types), (target.types), additional_factors
@@ -142,6 +167,72 @@ def simple_damage_calculate(
     move_strength = technique.power * mult
     damage = int(user_strength * move_strength / target_resist)
     return damage, mult
+
+
+def simple_heal(
+    technique: Technique,
+    monster: Monster,
+    additional_factors: Optional[dict[str, float]] = None,
+) -> int:
+    """
+    Calculates the simple healing amount based on the technique's healing
+    power and the monster's level.
+
+    Parameters:
+        technique: The technique being used.
+        monster: The monster being healed.
+        additional_factors: A dictionary of additional factors to apply to
+        the healing amount (default None)
+
+    Returns:
+        int: The calculated healing amount.
+    """
+    base_heal = pre.COEFF_DAMAGE + monster.level * technique.healing_power
+    if additional_factors:
+        factor_multiplier = math.prod(additional_factors.values())
+        base_heal = base_heal * factor_multiplier
+    return int(base_heal)
+
+
+def calculate_time_based_multiplier(
+    hour: int,
+    peak_hour: int,
+    max_multiplier: float,
+    start: int,
+    end: int,
+) -> float:
+    """
+    Calculate the multiplier based on the given hour and peak hour.
+
+    Parameters:
+        hour: The current hour.
+        peak_hour: The peak hour.
+        max_multiplier: The maximum power.
+        start: The start hour of the period.
+        end: The end hour of the period.
+
+    Returns:
+        float: The calculated multiplier.
+    """
+    if end < start:
+        end += 24
+    if hour < start:
+        hour += 24
+    if peak_hour < start:
+        peak_hour += 24
+    if (end or hour or peak_hour) > 47:
+        return 0.0
+
+    if start <= hour < end:
+        distance_from_peak = abs(hour - peak_hour)
+        if distance_from_peak > (end - start) / 2:
+            distance_from_peak = (end - start) - distance_from_peak
+        weighted_power = max_multiplier * (
+            1 - (distance_from_peak / ((end - start) / 2)) ** 2
+        )
+        return max(weighted_power, 0.0)
+    else:
+        return 0.0
 
 
 def simple_recover(target: Monster, divisor: int) -> int:
@@ -179,58 +270,19 @@ def simple_lifeleech(user: Monster, target: Monster, divisor: int) -> int:
     return heal
 
 
-def update_armour(mon: Monster) -> int:
+def update_stat(mon: Monster, stat_name: str) -> int:
     """
     It returns a bonus / malus of the stat based on additional parameters.
     """
-    # tastes - which gives the bonus and which the malus
-    _malus, _bonus = pre.TASTE_RANGE
-    malus = mon.armour * _malus if mon.taste_cold == "soft" else 0.0
-    bonus = mon.armour * _bonus if mon.taste_warm == "hearty" else 0.0
-    return int(bonus + malus)
-
-
-def update_speed(mon: Monster) -> int:
-    """
-    It returns a bonus / malus of the stat based on additional parameters.
-    """
-    # tastes - which gives the bonus and which the malus
-    _malus, _bonus = pre.TASTE_RANGE
-    malus = mon.speed * _malus if mon.taste_cold == "mild" else 0.0
-    bonus = mon.speed * _bonus if mon.taste_warm == "peppy" else 0.0
-    return int(bonus + malus)
-
-
-def update_melee(mon: Monster) -> int:
-    """
-    It returns a bonus / malus of the stat based on additional parameters.
-    """
-    # tastes - which gives the bonus and which the malus
-    _malus, _bonus = pre.TASTE_RANGE
-    malus = mon.melee * _malus if mon.taste_cold == "sweet" else 0.0
-    bonus = mon.melee * _bonus if mon.taste_warm == "salty" else 0.0
-    return int(bonus + malus)
-
-
-def update_ranged(mon: Monster) -> int:
-    """
-    It returns a bonus / malus of the stat based on additional parameters.
-    """
-    # tastes - which gives the bonus and which the malus
-    _malus, _bonus = pre.TASTE_RANGE
-    malus = mon.ranged * _malus if mon.taste_cold == "flakey" else 0.0
-    bonus = mon.ranged * _bonus if mon.taste_warm == "zesty" else 0.0
-    return int(bonus + malus)
-
-
-def update_dodge(mon: Monster) -> int:
-    """
-    It returns a bonus / malus of the stat based on additional parameters.
-    """
-    # tastes - which gives the bonus and which the malus
-    _malus, _bonus = pre.TASTE_RANGE
-    malus = mon.dodge * _malus if mon.taste_cold == "dry" else 0.0
-    bonus = mon.dodge * _bonus if mon.taste_warm == "refined" else 0.0
+    stat = getattr(mon, stat_name)
+    bonus = 0
+    malus = 0
+    for (taste_type, value), multiplier in taste_maps[stat_name].items():
+        if getattr(mon, f"taste_{taste_type}") == value:
+            if taste_type == "cold":
+                malus = stat * multiplier
+            else:
+                bonus = stat * multiplier
     return int(bonus + malus)
 
 

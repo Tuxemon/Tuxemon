@@ -15,13 +15,15 @@
   "slug": "flood",
   "sort": "damage",
   "target": {
-    "enemy monster": 2,
-    "enemy team": 2,
-    "enemy trainer": 0,
-    "own monster": 0,
-    "own team": 0,
-    "own trainer": 0
+    "enemy_monster": true,
+    "enemy_team": true,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
   },
+  "category": "basic",
+  "tags": ["Water"],
   "types": [
     "water"
   ],

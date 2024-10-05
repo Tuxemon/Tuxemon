@@ -1,0 +1,81 @@
+events:
+  Scenario:
+    actions:
+    - translated_dialog_choice spyder_campaign:xero_campaign,scenario_choice
+    conditions:
+    - not variable_set scenario_choice
+    type: "event"
+  Spyder:
+    actions:
+    - change_bg gradient_blue,choice_gender,image
+    - translated_dialog_choice white_female:black_male:white_male:black_female:gender_enby:gender_whatever,race_choice
+    - change_bg gradient_blue
+    - transition_teleport spyder_bedroom.tmx,4,4,0.3
+    - set_money player,250
+    - set_variable spyder_starting_money:yes
+    conditions:
+    - is variable_set scenario_choice:spyder_campaign
+    - not variable_set spyder_starting_money
+    - not variable_set gender_choice
+    type: "event"
+  Xero:
+    actions:
+    - change_bg gradient_blue,choice_gender,image
+    - translated_dialog_choice white_female:black_male:white_male:black_female:gender_enby:gender_whatever,race_choice
+    - change_bg gradient_blue
+    - transition_teleport player_house_bedroom.tmx,4,4,0.3
+    - set_money player,500
+    - set_variable xero_starting_money:yes
+    conditions:
+    - is variable_set scenario_choice:xero_campaign
+    - not variable_set xero_starting_money
+    - not variable_set gender_choice
+    type: "event"
+  White Male:
+    actions:
+    - set_template player,adventurer,adventurer
+    - set_player_name m_default1:m_default2:m_default3
+    - set_variable gender_choice:gender_male
+    conditions:
+    - is variable_set race_choice:white_male
+    type: "event"
+  White Female:
+    actions:
+    - set_template player,heroine,heroine
+    - set_player_name f_default1:f_default2:f_default3
+    - set_variable gender_choice:gender_female
+    conditions:
+    - is variable_set race_choice:white_female
+    type: "event"
+  Black Male:
+    actions:
+    - set_template player,adventurerblack,adventurerblack
+    - set_player_name m_default1:m_default2:m_default3
+    - set_variable gender_choice:gender_male
+    conditions:
+    - is variable_set race_choice:black_male
+    type: "event"
+  Black Female:
+    actions:
+    - set_template player,brownheroine_brown,heroineblack
+    - set_player_name f_default1:f_default2:f_default3
+    - set_variable gender_choice:gender_female
+    conditions:
+    - is variable_set race_choice:black_female
+    type: "event"
+  Whatever Penguin:
+    actions:
+    - set_template player,penguin,penguin
+    - set_player_name cat_penguin:cat_pulsar:cat_pebble
+    - set_variable gender_choice:gender_enby
+    conditions:
+    - is variable_set race_choice:gender_whatever
+    type: "event"
+  Gender Enby:
+    actions:
+    - set_template player,enbyasian,enbyasian
+    - set_player_name npc_red:hunter:dragon
+    - set_variable gender_choice:gender_enby
+    conditions:
+    - is variable_set race_choice:gender_enby
+    type: "event"

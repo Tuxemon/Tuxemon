@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="45">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="45">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="notype"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="candy_cafe"/>
-  <property name="map_type" value="notype"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
  <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_walls.tsx"/>
@@ -27,7 +27,7 @@
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="1" type="collision" x="0" y="80" width="80" height="16"/>
-  <object id="2" type="collision" x="64" y="48" width="16" height="48"/>
+  <object id="2" type="collision" x="64" y="48" width="16" height="32"/>
   <object id="3" type="collision" x="0" y="0" width="192" height="48"/>
   <object id="5" type="collision" x="176" y="160" width="16" height="32"/>
   <object id="9" type="collision" x="32" y="128" width="64" height="48"/>
@@ -47,7 +47,7 @@
     <property name="act2" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>
-    <property name="cond3" value="is party_size player,less_than,1"/>
+    <property name="cond3" value="is party_size player,greater_than,1"/>
    </properties>
   </object>
   <object id="28" name="Player Spawn" type="event" x="176" y="0" width="16" height="16"/>
@@ -99,12 +99,12 @@
   <object id="41" name="Box empty" type="event" x="112" y="32" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_barmaid_cafe3"/>
-    <property name="act40" value="add_monster nudiflot_male,10"/>
+    <property name="act40" value="add_monster nudiflot_male,25"/>
     <property name="act50" value="set_variable cafe_done:yes"/>
     <property name="act55" value="unlock_controls"/>
     <property name="act60" value="pathfind spyder_candycafe_nora,8,10"/>
     <property name="act65" value="remove_npc spyder_candycafe_nora"/>
-    <property name="cond1" value="is has_box player,Kennel,less_than,1"/>
+    <property name="cond1" value="is has_kennel player,Kennel,less_than,1"/>
     <property name="cond2" value="is variable_set cafe_confiscation:yes"/>
     <property name="cond3" value="not variable_set cafe_done:yes"/>
    </properties>
@@ -112,11 +112,12 @@
   <object id="42" name="Box not empty" type="event" x="96" y="32" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_barmaid_cafe2"/>
+    <property name="act20" value="translated_dialog spyder_barmaid_cafe2a"/>
     <property name="act50" value="set_variable cafe_done:yes"/>
     <property name="act55" value="unlock_controls"/>
     <property name="act60" value="pathfind spyder_candycafe_nora,8,10"/>
     <property name="act65" value="remove_npc spyder_candycafe_nora"/>
-    <property name="cond1" value="is has_box player,Kennel,greater_or_equal,1"/>
+    <property name="cond1" value="is has_kennel player,Kennel,greater_or_equal,1"/>
     <property name="cond2" value="is variable_set cafe_confiscation:yes"/>
     <property name="cond3" value="not variable_set cafe_done:yes"/>
    </properties>

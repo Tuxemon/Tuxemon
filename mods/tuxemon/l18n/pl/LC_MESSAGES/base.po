@@ -258,9 +258,6 @@ msgstr "Ten potwór już został pokonany!"
 msgid "combat_replacement"
 msgstr "Wybierz zamiennik!"
 
-msgid "combat_recharging"
-msgstr "{name} potrzebuje przerwy przed ponownym użyciem ruchu {move}…"
-
 msgid "combat_capturing_fail"
 msgstr "{name} się wydostał!"
 
@@ -1582,9 +1579,6 @@ msgstr "Conifrost"
 msgid "corvix"
 msgstr "Corvix"
 
-msgid "birb_robo"
-msgstr "Birb Robo"
-
 msgid "mk01_beta"
 msgstr "Mk01 Beta"
 
@@ -1604,8 +1598,8 @@ msgstr "Zunna"
 msgid "araignee"
 msgstr "Araignee"
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
 #, fuzzy
 msgid "arthrobolt"

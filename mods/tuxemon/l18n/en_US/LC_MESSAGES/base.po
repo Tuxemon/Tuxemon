@@ -424,6 +424,36 @@ msgid "cureall_description"
 msgstr "Heals your tuxemon to full health and removes any conditions."
 
 # TMs
+msgid "tm_all_in"
+msgstr "TM: All In"
+
+msgid "tm_all_in_description"
+msgstr "Technique Manual that teaches the All In technique."
+
+msgid "tm_blade"
+msgstr "TM: Blade"
+
+msgid "tm_blade_description"
+msgstr "Technique Manual that teaches the Blade technique."
+
+msgid "tm_panjandrum"
+msgstr "TM: Panjandrum"
+
+msgid "tm_panjandrum_description"
+msgstr "Technique Manual that teaches the Panjandrum technique."
+
+msgid "tm_scope"
+msgstr "TM: Scope"
+
+msgid "tm_scope_description"
+msgstr "Technique Manual that teaches the Scope technique."
+
+msgid "tm_shadow_boxing"
+msgstr "TM: Shadow Boxing"
+
+msgid "tm_shadow_boxing_description"
+msgstr "Technique Manual that teaches the Shadow Boxing technique."
+
 msgid "tm_avalanche"
 msgstr "TM: Avalanche"
 
@@ -704,7 +734,7 @@ msgid "item_no_available_target"
 msgstr "{name} cannot be used on any of your Tuxemon right now."
 
 msgid "technique_description"
-msgstr "ID.{id} ({types}) - Accuracy {acc}%, Potency {pot}%, Power {pow}/3, Recharge {rec} turns - Successful: {sus}%"
+msgstr "ID.{id} ({types}) - Accuracy {acc}%, Potency {pot}%, Power {pow}/3, Recharge {rec} turns"
 
 msgid "reg_papers"
 msgstr "Registration Papers"
@@ -784,17 +814,11 @@ msgstr "You have forfeited!\n{npc} is disappointed."
 msgid "combat_cannot_run_away"
 msgstr "You can't run away!"
 
-msgid "combat_forfeit_trainer"
-msgstr "Can't forfeit!"
-
 msgid "combat_player_run"
 msgstr "You ran away!"
 
 msgid "combat_player_run_status"
 msgstr "Can't escape.\n{monster} is {status}!"
-
-msgid "combat_player_forfeit_status"
-msgstr "Can't forfeit the match.\n{monster} is {status}!"
 
 msgid "combat_player_swap_status"
 msgstr "Can't switch monsters.\n{monster} is {status}!"
@@ -861,9 +885,6 @@ msgstr "You captured {name}!"
 
 msgid "combat_capturing_fail"
 msgstr "{name} broke free!"
-
-msgid "combat_recharging"
-msgstr "{name} needs a break before using {move} again..."
 
 msgid "combat_replacement"
 msgstr "Choose a replacement!"
@@ -1578,7 +1599,7 @@ msgid "flamethrower"
 msgstr "Flamethrower"
 
 msgid "fledgling_description"
-msgstr "The user hurls a clump of hardened earth at the opponent."
+msgstr "The user hurls sharp feathers at the opponent."
 
 msgid "fledgling"
 msgstr "Fledgling"
@@ -1842,7 +1863,7 @@ msgid "negation"
 msgstr "Negation"
 
 msgid "nest_description"
-msgstr "The user constructs a protective nest around itself, using it as a defensive and offensive weapon."
+msgstr "The user constructs a protective nest around itself."
 
 msgid "nest"
 msgstr "Nest"
@@ -1924,6 +1945,15 @@ msgstr "The user creates an illusionary copy of itself that attacks the opponent
 
 msgid "phantasmal_force"
 msgstr "Phantasmal Force"
+
+msgid "solar_synthesis_description"
+msgstr "Heals the user's health by absorbing sunlight."
+
+msgid "solar_synthesis_fail"
+msgstr "The lack of sunlight prevents the healing."
+
+msgid "solar_synthesis"
+msgstr "Solar Synthesis"
 
 msgid "pit_description"
 msgstr "The user creates a pit beneath the opponent, causing them to fall and take damage."
@@ -2063,6 +2093,15 @@ msgstr "The user undergoes a rapid transformation, striking the opponent with a 
 msgid "shapechange"
 msgstr "Shapechange"
 
+msgid "shooting_star_description"
+msgstr "Heals the user's health by harnessing the energy of a shooting star streaking across the night sky."
+
+msgid "shooting_star_fail"
+msgstr "The lack of starlight from the daytime sky prevents the healing."
+
+msgid "shooting_star"
+msgstr "Shooting Star"
+
 msgid "shrapnel_description"
 msgstr "The user unleashes a barrage of sharp fragments, causing widespread damage."
 
@@ -2172,7 +2211,7 @@ msgid "strike"
 msgstr "Strike"
 
 msgid "suck_poison_description"
-msgstr "The user drains the opponent's vitality, inflicting damage and poisoning them."
+msgstr "The user draws out the poison from their own body and infects their enemy with it."
 
 msgid "suck_poison"
 msgstr "Suck Poison"
@@ -2708,6 +2747,9 @@ msgstr "Tuxemon has too many techniques.\n"
 msgid "evolution_confirmation"
 msgstr "{name} is trying to evolve into {evolve}. Allow evolution?"
 
+msgid "evolution_ended"
+msgstr "{name} evolves into {evolve}!"
+
 msgid "no_signal"
 msgstr "No Signal"
 
@@ -2906,6 +2948,9 @@ msgstr "Cancel Key"
 msgid "menu_back_key"
 msgstr "Back Key"
 
+msgid "menu_reset_default"
+msgstr "Reset Keys to Default"
+
 msgid "enable"
 msgstr "Enable"
 
@@ -3091,6 +3136,12 @@ msgstr "The egg in its pouch does not hatch. Instead, it secretes a delicious dr
 msgid "ambuwl"
 msgstr "Ambuwl"
 
+msgid "ampystoma_description"
+msgstr "You would think AMPYSTOMA's warning coloration would make ambush impossible, but the murky waters it hunts in obscure it until it is ready to reveal itself. It likes to go on land during thunderstorms."
+
+msgid "ampystoma"
+msgstr "Ampystoma"
+
 msgid "angesnow_description"
 msgstr "Those who survive getting lost in hostile, icy conditions often mention a mysterious presence guiding them even when the snow is too heavy to see through."
 
@@ -3139,11 +3190,11 @@ msgstr "If the sun is out, it can fly as far or as high as it likes."
 msgid "av8r"
 msgstr "Av8r"
 
-msgid "axylightl_description"
+msgid "axolightl_description"
 msgstr "It lights the deep waters with its tail, marking a safe shelter for fish."
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
 msgid "b_ver_1_description"
 msgstr "It is designed for all those times you need something to be bitten by a robot."
@@ -5060,6 +5111,8 @@ msgid "cat_lamenting_emotion"
 msgstr "Lamenting Emotion"
 msgid "cat_light_fin"
 msgstr "Light Fin"
+msgid "cat_lightning_salamander"
+msgstr "Lightning Salamander"
 msgid "cat_lions_tooth"
 msgstr "Lion's Tooth"
 msgid "cat_lit"
@@ -8138,6 +8191,8 @@ msgid "spyder_barmaid_cafe1"
 msgstr "Are you okay?\n I guess all your tuxemon were infected, so the Enforcers took them to the Hospital!"
 msgid "spyder_barmaid_cafe2"
 msgstr "You can use the PC to get out some non-infected tuxemon."
+msgid "spyder_barmaid_cafe2a"
+msgstr "Hold on, I'll lock the café door for a sec while you access the PC, don't want any unwanted Enforcers crashing the party.\n Once you've got your Tuxemon, I'll let the regulars back in."
 msgid "spyder_barmaid_cafe3"
 msgstr "Oh dear, you're totally out of tuxemon.\n Well, I have this Nudiflot I don't really want."
 msgid "spyder_enforcer_candy1"
@@ -8539,6 +8594,8 @@ msgstr "Remember, we had nothing to do with the disease getting out!"
 
 msgid "spyder_scoop_asta1"
 msgstr "Why yes, I am the inventor of the Extreme Restraints. \n What are they, I hear you ask? \n Only a set of manacles so powerful that even a dragon could not escape them. \n They are being used in the containment unit to make sure none of the infected tuxemon escape."
+msgid "spyder_scoop_asta2"
+msgstr "Are you sure you want to leave Scoop HQ?"
 
 msgid "spyder_scoop_alyssa1"
 msgstr "As soon as disease was detected, we moved the infected tuxemon to this containment unit."
@@ -9083,7 +9140,7 @@ msgstr "Quarantines have their use, especially for people who don't have tuxemon
 msgid "spyder_hospital1_scientist1"
 msgstr "We didn't want these tuxemon to be seized, but while they're here we're going to look after them."
 msgid "spyder_hospital1_scientist2"
-msgstr "This might help."
+msgstr "Let's make the most of the situation."
 msgid "spyder_hospital2_scientist2"
 msgstr "Psst! Look familiar?"
 msgid "spyder_hospital2_scientist1"
@@ -9191,6 +9248,8 @@ msgid "spyder_top_magician1"
 msgstr "Have you ever been to the Dojo in Flower City?\n No? A keen battler like you?"
 msgid "spyder_top_magician2"
 msgstr "Well, this should help."
+msgid "spyder_top_magician3"
+msgstr "Why not head to the Dojo in Flower City and see how your battling skills stack up against the best trainers in the region?"
 
 msgid "spyder_mansion_gillette"
 msgstr "Gillette"
@@ -10244,6 +10303,7 @@ msgid "spyder_dojo_zhu1"
 msgstr "Let me tell you how Tastes work."
 msgid "spyder_dojo_xiang1"
 msgstr "Let me tell you how Techniques work."
+
 msgid "spyder_dojo_fu2"
 msgstr "Throughout their lives, most monsters pass through different stages.\n For example, a Rockitten may become a Rockat and then a Jemuar. This is called Morphing.\n Most Morphing occurs because a monster reaches a certain level,\n but there are other ways that Morphing can occur,\n like Dollfin becoming Bigfin when exposed to Sweet Sand."
 msgid "spyder_dojo_yin2"
@@ -10252,12 +10312,44 @@ msgid "spyder_dojo_zhu2"
 msgstr "Every monster has two Tastes: Warm and Cold.\n A Warm Taste makes the monster 10 percent better in one Stat:\n Speed for Peppy Taste, Melee for Salty Taste, Armor for Hearty Taste,\n Ranged for Zesty Taste and Dodge for Refined Taste.\n A Cold Taste makes the monster 10 percent worse in one Stat:\n Speed for Mild Taste, Melee for Sweet Taste,\n Armor for Soft Taste, Ranged for Flakey Taste and Dodge for Dry Taste."
 msgid "spyder_dojo_xiang2"
 msgstr "In combat, monsters can choose from up to four techniques that they know.\n Techniques have an accuracy, which determines how likely they are to occur.\n If a technique has a Power, that determines how much Damage it does.\n Some techniques impose a condition on the user or the target,\n or both - and the technique's Potency determines how likely that is to occur.\n Some techniques, once used, take a while to become available again."
+
 msgid "spyder_dojo_fu3"
-msgstr "I have developed a potion that reverts a tuxemon back to its base form.\n Shall I give the Button Potion to one of your tuxemon?"
+msgstr "I have developed a potion that reverts a tuxemon back to its base form."
+msgid "spyder_dojo_fu3a"
+msgstr "I'm sorry, but I see you don't have any tuxemon that have evolved yet. This potion won't be of much use to you at the moment."
+msgid "spyder_dojo_fu3b"
+msgstr "Ah, I see you have a tuxemon that has reached its first evolution. Ask my student, if you're interested in the Button Potion.\n He's been studying the art of reversal."
+msgid "spyder_dojo_fu3c"
+msgstr "Impressive, you have a tuxemon that has reached its second evolution. Ask my student, if you're interested in the Button Potion.\n She's been researching the intricacies of advanced evolutions."
+msgid "spyder_dojo_fu3d"
+msgstr "Feel free to ask my students, if you're interested in the Button Potion. Both of them might have use for it, depending on their current research."
+
+msgid "spyder_dojo_fu_student1"
+msgstr "You're interested in using the Button Potion on one of your tuxemon? That'll be ${{currency}}500?, if you're willing to part with it."
+msgid "spyder_dojo_fu_student1a"
+msgstr "A small price to pay for the knowledge that will be gained from reversing a tuxemon that has reached its first evolution."
+msgid "spyder_dojo_fu_student1b"
+msgstr "The insights gained from reversing a tuxemon that has reached its second evolution will be invaluable to my research."
+msgid "spyder_dojo_fu_student1c"
+msgstr "I see. Well, if you're not interested or can't afford it, I won't pressure you. The Button Potion is a rare and valuable item, after all.\n Maybe another time, then?"
+msgid "spyder_dojo_fu_nochoice"
+msgstr "I'm ready to assist you, but please, choose the tuxemon that will undergo the reversal process."
+
 msgid "spyder_dojo_zhu3"
-msgstr "I have developed a potion that changes a tuxemon's taste.\n Shall I give the Taste-Changer Potion to one of your tuxemon for ${{currency}}50?"
+msgstr "I have developed a potion that changes a tuxemon's taste. Shall I give the Taste-Changer Potion to one of your tuxemon for ${{currency}}50?"
+msgid "spyder_dojo_zhu3a"
+msgstr "I'm afraid you don't have enough funds to afford the Taste-Changer Potion."
+
 msgid "spyder_dojo_xiang3"
-msgstr "I have developed a potion that allows a tuxemon to re-learn a technique that it has forgotten.\n Shall I give the Re-Learner Potion to one of your tuxemon?"
+msgstr "I have developed a potion that allows a tuxemon to re-learn a technique that it has forgotten.\n Shall I give the Re-Learner Potion to one of your tuxemon for ${{currency}}200?"
+msgid "spyder_dojo_xiang3a"
+msgstr "Not enough to cover the cost of the Re-Learner Potion."
+msgid "spyder_dojo_xiang3b"
+msgstr "The Re-Learner Potion has taken effect, your tuxemon's forgotten technique has been restored."
+msgid "spyder_dojo_xiang3c"
+msgstr "Unfortunately, the Re-Learner Potion had an unexpected side effect, and your tuxemon has now forgotten one of its current techniques."
+msgid "spyder_dojo_xiang3d"
+msgstr "Be cautious, young trainer, for the Re-Learner Potion is potent and may have unintended consequences on tuxemon that have not learned many techniques yet.\n I advise using it only on those who have reached a high level of mastery."
 
 msgid "spyder_dojo_wan"
 msgstr "Master Wan"

@@ -134,9 +134,6 @@ msgstr "Chytil jsi {name}!"
 msgid "combat_capturing_fail"
 msgstr "{name} se vymanil!"
 
-msgid "combat_recharging"
-msgstr "{name} potřebuje přestávku, než znovu použije {move}..."
-
 msgid "combat_replacement"
 msgstr "Vyber náhradníka!"
 
@@ -376,10 +373,10 @@ msgid "anoleaf_description"
 msgstr ""
 "Rostliny, které rostou v jeho blízkosti, považuje za své bratry a sestry."
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
-msgid "axylightl_description"
+msgid "axolightl_description"
 msgstr "Pomocí svého ocasu osvětlí hluboké vody, odhalý bezpečný úkryt pro rybu."
 
 msgid "bamboon"
@@ -1276,9 +1273,6 @@ msgstr "Chrome Robo"
 
 msgid "dark_robo"
 msgstr "Dark Robo"
-
-msgid "birb_robo"
-msgstr "Birb Robo"
 
 msgid "xeon"
 msgstr "Xeon"

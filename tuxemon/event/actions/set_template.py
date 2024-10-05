@@ -23,10 +23,9 @@ class SetTemplateAction(EventAction):
 
     Eg if you put xxx, it's going to be xxx_back.png
 
-    if you choose a feminine sprite, then it's advisable:
-        heroine
-    if you choose a masculine sprite, then it's advisable:
-        adventurer
+    By using default:
+        set_template player,default
+    it's going to reassign the default sprite
 
     Script usage:
         .. code-block::
@@ -35,7 +34,7 @@ class SetTemplateAction(EventAction):
 
     Script parameters:
         character: Either "player" or npc slug name (e.g. "npc_maple").
-        sprite: must be inside mods/tuxemon/sprites (default = original)
+        sprite: must be inside mods/tuxemon/sprites
         eg: adventurer_brown_back.png -> adventurer
         combat_front: must be inside mods/tuxemon/gfx/sprites/player
         eg: adventurer.png -> adventurer
@@ -53,9 +52,27 @@ class SetTemplateAction(EventAction):
             logger.error(f"{self.character} not found")
             return
 
-        character.template.sprite_name = self.sprite
-        logger.info(f"{character.name}'s sprite is {self.sprite}")
-        if self.combat_front:
-            character.template.combat_front = self.combat_front
-            logger.info(f"{character.name}'s front is {self.combat_front}")
+        if self.sprite == "default":
+            gender = character.game_variables.get("race_choice", "")
+            sprite_mapping = {
+                "gender_enby": ("enbyasian", "enbyasian"),
+                "gender_whatever": ("penguin", "penguin"),
+                "black_female": ("brownheroine_brown", "heroineblack"),
+                "black_male": ("adventurerblack", "adventurerblack"),
+                "white_female": ("heroine", "heroine"),
+                "white_male": ("adventurer", "adventurer"),
+            }
+            sprite_name, combat_front = sprite_mapping.get(
+                gender, (None, None)
+            )
+            if sprite_name:
+                character.template.sprite_name = sprite_name
+                if combat_front:
+                    character.template.combat_front = combat_front
+        else:
+            character.template.sprite_name = self.sprite
+            logger.info(f"{character.name}'s sprite is {self.sprite}")
+            if self.combat_front:
+                character.template.combat_front = self.combat_front
+                logger.info(f"{character.name}'s front is {self.combat_front}")
         character.load_sprites()

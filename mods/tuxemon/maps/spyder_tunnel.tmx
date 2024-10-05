@@ -162,17 +162,19 @@
   </object>
   <object id="341" name="Talk Greta" type="event" x="208" y="576" width="16" height="32">
    <properties>
-    <property name="act00" value="pathfind_to_player spyder_tunnelb_greta"/>
-    <property name="act01" value="translated_dialog spyder_tunnelb_greta1"/>
-    <property name="act02" value="add_monster foofle,16,spyder_tunnelb_greta,5,10"/>
-    <property name="act03" value="add_monster foofle,16,spyder_tunnelb_greta,5,10"/>
-    <property name="act04" value="add_monster foofle,16,spyder_tunnelb_greta,5,10"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_tunnelb_greta"/>
+    <property name="act03" value="translated_dialog spyder_tunnelb_greta1"/>
+    <property name="act04" value="unlock_controls"/>
     <property name="act05" value="add_monster foofle,16,spyder_tunnelb_greta,5,10"/>
     <property name="act06" value="add_monster foofle,16,spyder_tunnelb_greta,5,10"/>
     <property name="act07" value="add_monster foofle,16,spyder_tunnelb_greta,5,10"/>
-    <property name="act08" value="start_battle player,spyder_tunnelb_greta"/>
-    <property name="act09" value="translated_dialog spyder_tunnelb_greta2"/>
-    <property name="act10" value="set_variable tunnelbgreta:yes"/>
+    <property name="act08" value="add_monster foofle,16,spyder_tunnelb_greta,5,10"/>
+    <property name="act09" value="add_monster foofle,16,spyder_tunnelb_greta,5,10"/>
+    <property name="act10" value="add_monster foofle,16,spyder_tunnelb_greta,5,10"/>
+    <property name="act11" value="start_battle player,spyder_tunnelb_greta"/>
+    <property name="act12" value="translated_dialog spyder_tunnelb_greta2"/>
+    <property name="act13" value="set_variable tunnelbgreta:yes"/>
     <property name="cond1" value="not variable_set tunnelbgreta:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

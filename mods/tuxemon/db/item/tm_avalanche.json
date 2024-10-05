@@ -1,7 +1,6 @@
 {
   "conditions": [
     "is type earth:water",
-    "is max_moves",
     "not has_tech avalanche"
   ],
   "effects": [
@@ -11,10 +10,10 @@
   "sort": "utility",
   "sprite": "gfx/items/tm_earth.png",
   "category": "technique",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],
+  "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

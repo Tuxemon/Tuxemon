@@ -1,27 +1,30 @@
 {
   "tech_id": 160,
-  "accuracy": 0.6,
+  "accuracy": 0.7,
   "animation": "x_attack",
   "effects": [
+    "switch user,random",
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
   "potency": 0.7,
-  "power": 1.1,
-  "range": "touch",
+  "power": 2.2,
+  "range": "melee",
   "recharge": 3,
   "sfx": "sfx_blaster",
   "slug": "shapechange",
   "sort": "damage",
   "target": {
-    "enemy monster": 2,
-    "enemy team": 0,
-    "enemy trainer": 0,
-    "own monster": 0,
-    "own team": 0,
-    "own trainer": 0
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
   },
+  "category": "simple",
+  "tags": ["Shapeshifter"],
   "types": [
     "water"
   ],

@@ -7,7 +7,6 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.platform import mixer
 
 logger = logging.getLogger(__name__)
 
@@ -28,8 +27,4 @@ class PauseMusicAction(EventAction):
     name = "pause_music"
 
     def start(self) -> None:
-        mixer.music.pause()
-        if self.session.client.current_music["song"]:
-            self.session.client.current_music["status"] = "paused"
-        else:
-            logger.warning("Music cannot be paused, none is playing.")
+        self.session.client.current_music.pause()

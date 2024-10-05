@@ -27,12 +27,12 @@
         {
             "at_level": 14,
             "monster_slug": "angesnow",
-            "variable": "daytime:true"
+            "variables": ["daytime:true"]
         },
         {
             "at_level": 14,
             "monster_slug": "demosnow",
-            "variable": "daytime:false"
+            "variables": ["daytime:false"]
         }
     ],
     "history": [

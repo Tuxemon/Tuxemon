@@ -11,10 +11,13 @@ from typing import Optional, final
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.map import get_coords, get_direction
-from tuxemon.npc import NPC
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
+
+MIN_FREQUENCY = 0.5
+MAX_FREQUENCY = 5
+DEFAULT_FREQUENCY = 1
 
 
 @final
@@ -52,22 +55,14 @@ class CharWanderAction(EventAction):
         player = self.session.player
         client = self.session.client
         character = get_npc(self.session, self.character)
+        if character is None:
+            logger.error(f"{self.character} not found")
+            return
         world = client.get_state_by_name(WorldState)
 
-        # generate all the coordinates
-        output = None
-        top_bound = None
-        bottom_bound = None
-        if self.t_bound_x is not None and self.t_bound_y is not None:
-            top_bound = (self.t_bound_x, self.t_bound_y)
-        if self.b_bound_x is not None and self.b_bound_y is not None:
-            bottom_bound = (self.b_bound_x, self.b_bound_y)
-        if top_bound and bottom_bound:
-            x_coords = [x for x in range(top_bound[0], bottom_bound[0] + 1)]
-            y_coords = [y for y in range(top_bound[1], bottom_bound[1] + 1)]
-            output = list(itertools.product(x_coords, y_coords))
+        output = self.generate_coordinates()
 
-        def move(world: WorldState, character: NPC) -> None:
+        def move() -> None:
             # Don't interrupt existing movement
             if character.moving or character.path:
                 return
@@ -79,9 +74,11 @@ class CharWanderAction(EventAction):
                 return
 
             # Suspend wandering if a dialog window is open
-            for state in client.active_states:
-                if state.name == "WorldMenuState":
-                    return
+            if any(
+                state_name in ("WorldMenuState", "DialogState", "ChoiceState")
+                for state_name in self.session.client.active_state_names
+            ):
+                return
 
             # Choose a random direction that is free and walk toward it
             origin = (character.tile_pos[0], character.tile_pos[1])
@@ -93,24 +90,47 @@ class CharWanderAction(EventAction):
                     character.next_waypoint()
 
         def schedule() -> None:
-            # The timer is randomized between 0.5 and 1.0 of the frequency
-            # parameter
-            # Frequency can be set to 0 to indicate that we want to stop
-            # wandering
+            """
+            Schedules the next wandering action.
+
+            Notes:
+                The timer is randomized between 0.5 and 1.0 of the frequency parameter.
+                Frequency can be set to 0 to indicate that we want to stop wandering.
+            """
             world.remove_animations_of(schedule)
-            if character is None:
-                logger.error(f"{self.character} not found")
-                return
-            elif self.frequency == 0:
+            if self.frequency == 0:
                 return
             else:
-                frequency = 1.0
-                if self.frequency:
-                    frequency = min(5, max(0.5, self.frequency))
-                time = (0.5 + 0.5 * random.random()) * frequency
+                frequency = min(
+                    MAX_FREQUENCY,
+                    max(MIN_FREQUENCY, self.frequency or DEFAULT_FREQUENCY),
+                )
+                time = (
+                    MIN_FREQUENCY + MIN_FREQUENCY * random.random()
+                ) * frequency
                 world.task(schedule, time)
 
-            move(world, character)
+            move()
 
         # Schedule the first move
         schedule()
+
+    def generate_coordinates(self) -> list[tuple[int, int]]:
+        if not hasattr(self, "_coordinates"):
+            top_bound = (
+                (self.t_bound_x, self.t_bound_y)
+                if self.t_bound_x is not None and self.t_bound_y is not None
+                else None
+            )
+            bottom_bound = (
+                (self.b_bound_x, self.b_bound_y)
+                if self.b_bound_x is not None and self.b_bound_y is not None
+                else None
+            )
+            if top_bound and bottom_bound:
+                x_coords = range(top_bound[0], bottom_bound[0] + 1)
+                y_coords = range(top_bound[1], bottom_bound[1] + 1)
+                self._coordinates = list(itertools.product(x_coords, y_coords))
+            else:
+                self._coordinates = []
+        return self._coordinates

@@ -39,36 +39,60 @@ class ChangeStateAction(EventAction):
     optional: Optional[str] = None
 
     def start(self) -> None:
-        # Don't override previous state if we are still in the state.
-        client = self.session.client
-        action = client.event_engine
-        if client.current_state is None:
-            # obligatory "should not happen"
-            raise RuntimeError
-        if client.current_state.name != self.state_name:
-            if self.state_name == "JournalInfoState" and self.optional:
-                journal = db.lookup(self.optional, table="monster")
-                _set_tuxepedia = ["player", journal.slug, "caught"]
-                action.execute_action("set_tuxepedia", _set_tuxepedia, True)
-                params1 = {"monster": journal}
-                client.push_state(self.state_name, kwargs=params1)
-                action.execute_action("clear_tuxepedia", [journal.slug], True)
-            elif self.state_name == "MonsterInfoState" and self.optional:
-                monster = self.retrieve_monster(self.optional)
-                if monster is None:
-                    logger.error("Monster not found")
-                    return
-                params2 = {"monster": monster, "source": self.name}
-                client.push_state(self.state_name, kwargs=params2)
-            elif self.state_name == "CharacterState" and self.optional:
-                character = get_npc(self.session, self.optional)
-                if character is None:
-                    logger.error(f"{self.optional} not found")
-                    return
-                params3 = {"character": character}
-                client.push_state(self.state_name, kwargs=params3)
-            else:
-                client.push_state(self.state_name)
+        self.client = self.session.client
+        self.action = self.client.event_engine
+
+        if self.client.current_state is None:
+            raise RuntimeError("Current state is None")
+
+        if self.client.current_state.name == self.state_name:
+            return  # No need to change state if already in the target state
+
+        self._handle_state_transition()
+
+    def _handle_state_transition(self) -> None:
+        """Handle the state transition based on the target state."""
+        if self.state_name == "JournalInfoState" and self.optional:
+            self._handle_journal_info_state(self.optional)
+        elif self.state_name == "MonsterInfoState" and self.optional:
+            self._handle_monster_info_state(self.optional)
+        elif self.state_name == "CharacterState" and self.optional:
+            self._handle_character_state(self.optional)
+        else:
+            self.client.push_state(self.state_name)
+
+    def _handle_journal_info_state(self, optional: str) -> None:
+        """Handle the JournalInfoState transition."""
+        journal = db.lookup(optional, table="monster")
+        if journal is None:
+            logger.error("Journal not found")
+            return
+
+        _set_tuxepedia = ["player", journal.slug, "caught"]
+        self.action.execute_action("set_tuxepedia", _set_tuxepedia, True)
+        params = {"monster": journal}
+        self.client.push_state(self.state_name, kwargs=params)
+        self.action.execute_action("clear_tuxepedia", [journal.slug], True)
+
+    def _handle_monster_info_state(self, optional: str) -> None:
+        """Handle the MonsterInfoState transition."""
+        monster = self.retrieve_monster(optional)
+        if monster is None:
+            logger.error("Monster not found")
+            return
+
+        params = {"monster": monster, "source": self.name}
+        self.client.push_state(self.state_name, kwargs=params)
+
+    def _handle_character_state(self, optional: str) -> None:
+        """Handle the CharacterState transition."""
+        character = get_npc(self.session, optional)
+        if character is None:
+            logger.error(f"{self.optional} not found")
+            return
+
+        params = {"character": character}
+        self.client.push_state(self.state_name, kwargs=params)
 
     def update(self) -> None:
         try:
@@ -77,6 +101,7 @@ class ChangeStateAction(EventAction):
             self.stop()
 
     def retrieve_monster(self, variable: str) -> Optional[Monster]:
+        """Retrieve a monster from the game database."""
         player = self.session.player
         if variable not in player.game_variables:
             logger.error(f"Game variable {variable} not found")

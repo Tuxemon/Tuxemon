@@ -9,10 +9,13 @@
   "sort": "utility",
   "sprite": "gfx/items/hatchet.png",
   "category": "destroy",
-  "type": "KeyItem",
   "usable_in": [
     "WorldState"
   ],
+  "behaviors": {
+    "consumable": false,
+    "requires_monster_menu": false
+  },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "spyder_successful_log"

@@ -1,27 +1,30 @@
 {
   "tech_id": 104,
-  "accuracy": 0.6,
+  "accuracy": 0.8,
   "animation": "x_attack",
   "effects": [
+    "give slow,target",
     "damage"
   ],
   "flip_axes": "",
-  "is_fast": false,
+  "is_fast": true,
   "potency": 0.6,
-  "power": 1.3,
+  "power": 2.5,
   "range": "ranged",
   "recharge": 3,
   "sfx": "sfx_blaster",
   "slug": "time_crisis",
   "sort": "damage",
   "target": {
-    "enemy monster": 2,
-    "enemy team": 0,
-    "enemy trainer": 0,
-    "own monster": 0,
-    "own team": 0,
-    "own trainer": 0
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
   },
+  "category": "powerful",
+  "tags": ["Summoner", "Mental"],
   "types": [
     "metal"
   ],

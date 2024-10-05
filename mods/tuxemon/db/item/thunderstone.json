@@ -1,6 +1,6 @@
 {
   "conditions": [
-    "is level >=,0",
+    "is can_evolve",
     "is has_path thunderstone"
   ],
   "effects": [
@@ -10,10 +10,12 @@
   "sort": "utility",
   "sprite": "gfx/items/thunderstone.png",
   "category": "morph",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],
+  "behaviors": {
+    "show_dialog_on_success": false
+  },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

@@ -12,12 +12,10 @@ from typing import Any, Union
 import pygame
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.locals import POSITION_CENTER
 
-from tuxemon import formula, prepare, tools
+from tuxemon import formula, prepare
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.menu.theme import get_theme
 from tuxemon.save import get_index_of_latest_save
 from tuxemon.session import local_session
 from tuxemon.state import State
@@ -52,10 +50,11 @@ class StartState(PygameMenuState):
     ) -> None:
         # If there is a save, then move the cursor to "Load game" first
         index = get_index_of_latest_save()
-        self.menu._onclose = None
+        config = prepare.CONFIG
 
         def new_game() -> None:
-            map_path = prepare.fetch("maps", prepare.STARTING_MAP)
+            destination = f"{prepare.STARTING_MAP}{config.mods[0]}.tmx"
+            map_path = prepare.fetch("maps", destination)
             self.client.push_state("WorldState", map_name=map_path)
             game_var = local_session.player.game_variables
             game_var["date_start_game"] = formula.today_ordinal()
@@ -74,7 +73,6 @@ class StartState(PygameMenuState):
         def exit_game() -> None:
             self.client.exit = True
 
-        self.menu._last_selected_type
         if index is not None:
             menu.add.button(
                 title=T.translate("menu_load"),
@@ -82,12 +80,13 @@ class StartState(PygameMenuState):
                 font_size=self.font_size_big,
                 button_id="menu_load",
             )
-        menu.add.button(
-            title=T.translate("menu_new_game"),
-            action=new_game,
-            font_size=self.font_size_big,
-            button_id="menu_new_game",
-        )
+        if len(config.mods) == 1:
+            menu.add.button(
+                title=T.translate("menu_new_game"),
+                action=new_game,
+                font_size=self.font_size_big,
+                button_id="menu_new_game",
+            )
         menu.add.button(
             title=T.translate("menu_minigame"),
             action=change_state("MinigameState"),
@@ -104,25 +103,11 @@ class StartState(PygameMenuState):
     def __init__(self) -> None:
         width, height = prepare.SCREEN_SIZE
 
-        background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(
-                prepare.BG_START_SCREEN
-            ),
-            drawing_position=POSITION_CENTER,
-        )
-        theme = get_theme()
+        theme = self._setup_theme(prepare.BG_START_SCREEN)
         theme.scrollarea_position = locals.POSITION_EAST
-        theme.background_color = background
         theme.widget_alignment = locals.ALIGN_CENTER
 
         super().__init__(height=height, width=width)
 
         self.add_menu_items(self.menu)
-        self.repristinate()
-
-    def repristinate(self) -> None:
-        """Repristinate original theme (color, alignment, etc.)"""
-        theme = get_theme()
-        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = self.background_color
-        theme.widget_alignment = locals.ALIGN_LEFT
+        self.reset_theme()

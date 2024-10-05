@@ -86,10 +86,13 @@ def pre_checking(
 
     status = Technique()
     if monster.plague == PlagueType.infected:
-        value = random.randint(1, 8)
-        if value == 1:
-            status.load("spyderbite")
-            technique = status
+        if any(
+            technique.target.get(target, False)
+            for target in ["enemy_monster", "enemy_team", "enemy_trainer"]
+        ):
+            if random.randint(1, 8) == 1:
+                status.load("spyderbite")
+                technique = status
     return technique
 
 
@@ -154,39 +157,35 @@ def get_awake_monsters(
 
     Parameters:
         character: The character.
-        monsters: List of monsters in the battlefield.
-        turn: Turn of the battle.
-        method: Parameter change the monster.
+        monsters: List of monsters on the battlefield.
+        turn: Current turn of the battle.
+        method: Method to use when selecting a monster (default: None).
 
     Yields:
         Non-fainted monsters.
 
     """
-    mons = [
-        _mon
-        for _mon in character.monsters
-        if not fainted(_mon) and _mon not in monsters
+    awake_monsters = [
+        monster
+        for monster in character.monsters
+        if not fainted(monster) and monster not in monsters
     ]
-    if mons:
-        if len(mons) > 1:
-            if turn == 1:
-                yield from mons
-            else:
-                if method is None:
-                    yield from mons
-                else:
-                    mon = retrieve_from_party(mons, method)
-                    yield mon
+
+    if awake_monsters:
+        if len(awake_monsters) == 1:
+            yield awake_monsters[0]
         else:
-            yield mons[0]
+            if turn == 1 or method is None:
+                yield from awake_monsters
+            else:
+                yield retrieve_from_party(awake_monsters, method)
 
 
 def alive_party(character: NPC) -> list[Monster]:
     """
     Returns a list with all the monsters alive in the character's party.
     """
-    alive = [ele for ele in character.monsters if not fainted(ele)]
-    return alive
+    return [monster for monster in character.monsters if not fainted(monster)]
 
 
 def fainted_party(party: Sequence[Monster]) -> bool:
@@ -201,20 +200,6 @@ def defeated(character: NPC) -> bool:
     Whether all the character's party is fainted.
     """
     return fainted_party(character.monsters)
-
-
-def check_moves(monster: Monster, levels: int) -> Optional[str]:
-    """
-    Checks if during the levelling up there is/are new tech/s to learn.
-    If there is/are new tech/s it returns the message, otherwise None.
-    """
-    techs = monster.update_moves(levels)
-    if techs:
-        tech_list = ", ".join(tech.name.upper() for tech in techs)
-        params = {"name": monster.name.upper(), "tech": tech_list}
-        message = T.format("tuxemon_new_tech", params)
-        return message
-    return None
 
 
 def award_money(loser: Monster, winner: Monster) -> int:
@@ -371,16 +356,21 @@ def battlefield(
         players: All the remaining players.
 
     """
-    human = [player for player in players if player.isplayer]
-    for _human in human:
-        if monster not in _human.monsters:
-            set_var(session, "battle_last_monster_name", monster.name)
-            set_var(session, "battle_last_monster_level", str(monster.level))
-            set_var(session, "battle_last_monster_type", monster.types[0].slug)
-            set_var(session, "battle_last_monster_category", monster.category)
-            set_var(session, "battle_last_monster_shape", monster.shape)
-            # updates tuxepedia
-            set_tuxepedia(session, _human.slug, monster.slug, "seen")
+    eligible_players = [
+        p for p in players if p.isplayer and monster not in p.monsters
+    ]
+    if not eligible_players:
+        return
+
+    for player in eligible_players:
+        set_var(session, "battle_last_monster_name", monster.name)
+        set_var(session, "battle_last_monster_level", str(monster.level))
+        set_var(session, "battle_last_monster_type", monster.types[0].slug)
+        set_var(session, "battle_last_monster_category", monster.category)
+        set_var(session, "battle_last_monster_shape", monster.shape)
+
+        if monster.txmn_id > 0:
+            set_tuxepedia(session, player.slug, monster.slug, "seen")
 
 
 def set_tuxepedia(
@@ -546,7 +536,6 @@ def build_hud_text(
 ) -> str:
     """
     Returns the text image for use on the callout of the monster.
-    eg. Rockitten Lv3
 
     Parameters:
         menu: Combat menu (eg. MainCombatMenuState).
@@ -555,66 +544,68 @@ def build_hud_text(
             right side (player), left side (opponent)
         is_trainer: Boolean battle (trainer: true, wild: false).
 
+    Returns:
+        A string representing the HUD text for the monster.
+
     """
-    trainer = monster.owner
-    icon: str = ""
-    if menu == "MainParkMenuState" and trainer and is_right:
+    if menu == "MainParkMenuState" and monster.owner and is_right:
+        # Special case for MainParkMenuState
         ball = T.translate("tuxeball_park")
-        item = trainer.find_item("tuxeball_park")
+        item = monster.owner.find_item("tuxeball_park")
         if item is None:
             return f"{ball.upper()}: 0"
         return f"{ball.upper()}: {item.quantity}"
-    else:
-        if monster.gender == GenderType.male:
-            icon += "♂"
-        if monster.gender == GenderType.female:
-            icon += "♀"
-        if not is_trainer:
-            # shows captured symbol (wild encounter)
-            symbol: str = ""
-            if is_status and is_status == SeenStatus.caught and not is_right:
-                symbol += "◉"
-            return f"{monster.name}{icon} Lv.{monster.level}{symbol}"
-        else:
-            return f"{monster.name}{icon} Lv.{monster.level}"
+
+    icon = ""
+    if monster.gender == GenderType.male:
+        icon = "♂"
+    elif monster.gender == GenderType.female:
+        icon = "♀"
+
+    symbol = ""
+    if not is_trainer and is_status == SeenStatus.caught and not is_right:
+        symbol = "◉"
+
+    return f"{monster.name}{icon} Lv.{monster.level}{symbol}"
 
 
 def retrieve_from_party(party: list[Monster], method: str) -> Monster:
     """
-    Who is the "method" monster in the party?
-    Picks the respective monster from the party.
+    Retrieves a monster from the party based on the specified method.
 
     Parameters:
-        party: List of monster.
-        method: Parameter to pick the monster (random, strongest, etc.)
+        party: List of monsters in the party.
+        method: Method to use when selecting a monster
+            (e.g., 'lv_highest', 'healthiest', etc.).
 
     Returns:
-        Monster.
+        Monster: The selected monster.
+
+    Notes:
+        If the method is not recognized, a random monster from
+        the party will be returned.
+
     """
-    if method == "lv_highest":
-        highest = max([m.level for m in party])
-        return next(mon for mon in party if mon.level == highest)
-    elif method == "lv_lowest":
-        lowest = min([m.level for m in party])
-        return next(mon for mon in party if mon.level == lowest)
-    elif method == "healthiest":
-        current_hp = max([m.current_hp for m in party])
-        return next(mon for mon in party if mon.current_hp == current_hp)
-    elif method in list(StatType):
-        stat = max([getattr(m, method) for m in party])
-        return next(mon for mon in party if getattr(mon, method) == stat)
-    else:
-        return random_from_party(party)
+    methods = {
+        "lv_highest": ("level", max),
+        "lv_lowest": ("level", min),
+        "healthiest": ("current_hp", max),
+        "weakest": ("current_hp", min),
+        "oldest": ("steps", max),
+        "newest": ("steps", min),
+    }
 
+    # eg. speed_max, armour_max, etc.
+    methods.update(
+        {f"{stat.value}_max": (stat.value, max) for stat in StatType}
+    )
+    # eg. speed_min, armour_min, etc.
+    methods.update(
+        {f"{stat.value}_min": (stat.value, min) for stat in StatType}
+    )
 
-def random_from_party(party: list[Monster]) -> Monster:
-    """
-    Picks a monster randomly from the party.
+    if method not in methods:
+        return random.choice(party)
 
-    Parameters:
-        party: List of monster.
-
-    Returns:
-        Monster.
-    """
-    return random.choice(party)
+    attr, func = methods[method]
+    return func(party, key=lambda m: getattr(m, attr))

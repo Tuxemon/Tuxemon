@@ -1,0 +1,77 @@
+{
+  "slug": "spyder_routea",
+  "monsters": [
+    {
+      "monster": "shybulb",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        12,
+        15
+      ]
+    },
+    {
+      "monster": "katapill",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        12,
+        15
+      ]
+    },
+    {
+      "monster": "anoleaf",
+      "encounter_rate": 1.5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        12,
+        15
+      ]
+    },
+    {
+      "monster": "katapill",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        14,
+        18
+      ]
+    },
+    {
+      "monster": "vamporm",
+      "encounter_rate": 1.5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        14,
+        18
+      ]
+    },
+    {
+      "monster": "anoleaf",
+      "encounter_rate": 1.5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        14,
+        18
+      ]
+    }
+  ]
+}

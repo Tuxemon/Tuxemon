@@ -1,0 +1,420 @@
+events:
+  Music:
+    actions:
+    - play_music music_dojo_theme
+    conditions:
+    - not music_playing music_dojo_theme
+    type: "event"
+  Environment:
+    actions:
+    - set_variable environment:interior
+    conditions:
+    - not variable_set environment:interior
+    type: "event"
+  Player Spawn:
+    x: 5
+    y: 10
+    type: "event"
+  Teleport to Flower City:
+    actions:
+    - transition_teleport spyder_flower_city.tmx,34,18,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 11
+    y: 11
+    width: 2
+    height: 1
+    type: "event"
+  Teleport to Dojo 2:
+    actions:
+    - transition_teleport spyder_dojo2.tmx,10,9,0.3
+    - char_face player,right
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 12
+    y: 5
+    type: "event"
+  Board A:
+    actions:
+    - translated_dialog spyder_dojo_board_a
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 1
+    y: 1
+    width: 2
+    height: 1
+    type: "event"
+  Board B:
+    actions:
+    - translated_dialog spyder_dojo_board_b
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 6
+    y: 1
+    width: 2
+    height: 1
+    type: "event"
+  Board C:
+    actions:
+    - translated_dialog spyder_dojo_board_c
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 14
+    y: 1
+    width: 2
+    height: 1
+    type: "event"
+  Board D:
+    actions:
+    - translated_dialog spyder_dojo_board_d
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 19
+    y: 1
+    width: 2
+    height: 1
+    type: "event"
+  Create Fu:
+    actions:
+    - create_npc spyder_dojo_fu,3,2
+    conditions:
+    - not char_exists spyder_dojo_fu
+    type: "event"
+  Create Yin:
+    actions:
+    - create_npc spyder_dojo_yin,8,2
+    conditions:
+    - not char_exists spyder_dojo_yin
+    type: "event"
+  Create Zhu:
+    actions:
+    - create_npc spyder_dojo_zhu,16,2
+    conditions:
+    - not char_exists spyder_dojo_zhu
+    type: "event"
+  Create Xiang:
+    actions:
+    - create_npc spyder_dojo_xiang,21,2
+    conditions:
+    - not char_exists spyder_dojo_xiang
+    type: "event"
+  Create Zhao:
+    actions:
+    - create_npc spyder_dojo_zhao,10,9
+    - char_face spyder_dojo_zhao,right
+    conditions:
+    - not char_exists spyder_dojo_zhao
+    type: "event"
+  Create Fu Student1:
+    actions:
+    - create_npc spyder_dojo_fu_student1,1,7
+    - char_face spyder_dojo_fu_student1,up
+    conditions:
+    - not char_exists spyder_dojo_fu_student1
+    - is check_party_parameter player,stage,stage2,greater_than,0
+    type: "event"
+  Create Fu Student2:
+    actions:
+    - create_npc spyder_dojo_fu_student2,4,5
+    - char_face spyder_dojo_fu_student2,up
+    conditions:
+    - not char_exists spyder_dojo_fu_student2
+    - is check_party_parameter player,stage,stage1,greater_than,0
+    type: "event"
+  Talk Fu1:
+    actions:
+    - translated_dialog spyder_dojo_fu1
+    - translated_dialog spyder_dojo_fu2
+    - set_variable fufirsttime:yes
+    behav:
+    - talk spyder_dojo_fu
+    conditions:
+    - not variable_set fufirsttime:yes
+    type: "event"
+  Talk Fu2a:
+    actions:
+    - translated_dialog spyder_dojo_fu3
+    - translated_dialog spyder_dojo_fu3a
+    behav:
+    - talk spyder_dojo_fu
+    conditions:
+    - is variable_set fufirsttime:yes
+    - not check_party_parameter player,stage,stage1,greater_than,0
+    - not check_party_parameter player,stage,stage2,greater_than,0
+    type: "event"
+  Talk Fu2b:
+    actions:
+    - translated_dialog spyder_dojo_fu3
+    - translated_dialog spyder_dojo_fu3b
+    behav:
+    - talk spyder_dojo_fu
+    conditions:
+    - is variable_set fufirsttime:yes
+    - not check_party_parameter player,stage,stage1,greater_than,0
+    - is check_party_parameter player,stage,stage2,greater_than,0
+    type: "event"
+  Talk Fu2c:
+    actions:
+    - translated_dialog spyder_dojo_fu3
+    - translated_dialog spyder_dojo_fu3c
+    behav:
+    - talk spyder_dojo_fu
+    conditions:
+    - is variable_set fufirsttime:yes
+    - is check_party_parameter player,stage,stage1,greater_than,0
+    - not check_party_parameter player,stage,stage2,greater_than,0
+    type: "event"
+  Talk Fu2d:
+    actions:
+    - translated_dialog spyder_dojo_fu3
+    - translated_dialog spyder_dojo_fu3d
+    behav:
+    - talk spyder_dojo_fu
+    conditions:
+    - is variable_set fufirsttime:yes
+    - is check_party_parameter player,stage,stage1,greater_than,0
+    - is check_party_parameter player,stage,stage2,greater_than,0
+    type: "event"
+  Talk Yin1:
+    actions:
+    - translated_dialog spyder_dojo_yin1
+    - translated_dialog spyder_dojo_yin2
+    - set_variable yinfirsttime:yes
+    behav:
+    - talk spyder_dojo_yin
+    conditions:
+    - not variable_set yinfirsttime:yes
+    type: "event"
+  Talk Yin2:
+    actions:
+    - translated_dialog spyder_dojo_yin2
+    behav:
+    - talk spyder_dojo_yin
+    conditions:
+    - is variable_set yinfirsttime:yes
+    type: "event"
+  Talk Zhu1:
+    actions:
+    - translated_dialog spyder_dojo_zhu1
+    - translated_dialog spyder_dojo_zhu2
+    - set_variable zhufirsttime:yes
+    behav:
+    - talk spyder_dojo_zhu
+    conditions:
+    - not variable_set zhufirsttime:yes
+    type: "event"
+  Talk Zhu YN:
+    actions:
+    - translated_dialog spyder_dojo_zhu3
+    - translated_dialog_choice yes:no,zhu_yn
+    behav:
+    - talk spyder_dojo_zhu
+    conditions:
+    - is variable_set zhufirsttime:yes
+    - not variable_set zhu_yn:yes
+    - is money_is player,greater_or_equal,50
+    type: "event"
+  Talk Zhu No Money:
+    actions:
+    - translated_dialog spyder_dojo_zhu3a
+    behav:
+    - talk spyder_dojo_zhu
+    conditions:
+    - is variable_set zhufirsttime:yes
+    - not variable_set zhu_yn:yes
+    - not money_is player,greater_or_equal,50
+    type: "event"
+  Talk Zhu Taste:
+    actions:
+    - get_player_monster tasteful_zhu
+    - translated_dialog_choice taste_cold:taste_warm,which_taste
+    - set_variable zhu_taste_choice:yes
+    - modify_money player,-50
+    conditions:
+    - is variable_set zhu_yn:yes
+    - not variable_set zhu_taste_choice:yes
+    type: "event"
+  Talk Zhu Warm:
+    actions:
+    - change_taste tasteful_zhu,warm
+    - set_variable zhu_taste_done:yes
+    conditions:
+    - is variable_set which_taste:taste_warm
+    - not variable_set zhu_taste_done:yes
+    type: "event"
+  Talk Zhu Cold:
+    actions:
+    - change_taste tasteful_zhu,cold
+    - set_variable zhu_taste_done:yes
+    conditions:
+    - is variable_set which_taste:taste_cold
+    - not variable_set zhu_taste_done:yes
+    type: "event"
+  Talk Zhu End:
+    actions:
+    - set_variable zhu_taste_done:null
+    conditions:
+    - is variable_set zhu_taste_done:yes
+    type: "event"
+  Talk Zhu Reset:
+    actions:
+    - set_variable zhu_yn:null
+    - set_variable zhu_taste_choice:null
+    - set_variable which_taste:null
+    conditions:
+    - is variable_set zhu_taste_done:null
+    type: "event"
+  Talk Xiang1:
+    actions:
+    - translated_dialog spyder_dojo_xiang1
+    - translated_dialog spyder_dojo_xiang2
+    - set_variable xiangfirsttime:yes
+    behav:
+    - talk spyder_dojo_xiang
+    conditions:
+    - not variable_set xiangfirsttime:yes
+    type: "event"
+  Talk Xiang2:
+    actions:
+    - translated_dialog spyder_dojo_xiang3
+    - translated_dialog spyder_dojo_xiang3d
+    - translated_dialog_choice yes:no,xiang_yn
+    behav:
+    - talk spyder_dojo_xiang
+    conditions:
+    - is variable_set xiangfirsttime:yes
+    - not variable_set xiang_yn:yes
+    - is money_is player,greater_or_equal,200
+    type: "event"
+  Talk Xiang No Money:
+    actions:
+    - translated_dialog spyder_dojo_xiang3a
+    behav:
+    - talk spyder_dojo_xiang
+    conditions:
+    - is variable_set xiangfirsttime:yes
+    - not variable_set xiang_yn:yes
+    - not money_is player,greater_or_equal,200
+    type: "event"
+  Talk Xiang Potion:
+    actions:
+    - get_player_monster potion_xiang
+    - get_monster_tech forgot_tech,potion_xiang
+    - dojo_method potion_xiang,technique
+    - remove_tech forgot_tech
+    - set_variable xiang_potion_choice:yes
+    conditions:
+    - is variable_set xiang_yn:yes
+    - not variable_set xiang_potion_choice:yes
+    type: "event"
+  Talk Xiang Reset:
+    actions:
+    - modify_money player,-200
+    - translated_dialog spyder_dojo_xiang3b
+    - set_variable xiang_yn:null
+    - set_variable xiang_potion_choice:null
+    conditions:
+    - not variable_set dojo_notech
+    - is variable_set xiang_potion_choice:yes
+    type: "event"
+  Talk Xiang Wait:
+    actions:
+    - translated_dialog spyder_dojo_xiang3c
+    - set_variable xiang_yn:null
+    - set_variable xiang_potion_choice:null
+    - clear_variable dojo_notech
+    conditions:
+    - is variable_set dojo_notech
+    - is variable_set xiang_potion_choice:yes
+    type: "event"
+  Talk Zhao1:
+    actions:
+    - translated_dialog spyder_dojo_zhao1
+    behav:
+    - talk spyder_dojo_zhao
+    type: "event"
+  Talk Student1 Money:
+    actions:
+    - translated_dialog spyder_dojo_fu_student1
+    - translated_dialog spyder_dojo_fu_student1b
+    - translated_dialog_choice yes:no,student1_yn
+    behav:
+    - talk spyder_dojo_fu_student1
+    conditions:
+    - is money_is player,greater_or_equal,500
+    - not variable_set student1_yn
+    type: "event"
+  Talk Student2 Money:
+    actions:
+    - translated_dialog spyder_dojo_fu_student1
+    - translated_dialog spyder_dojo_fu_student1a
+    - translated_dialog_choice yes:no,student2_yn
+    behav:
+    - talk spyder_dojo_fu_student2
+    conditions:
+    - is money_is player,greater_or_equal,500
+    - not variable_set student2_yn
+    type: "event"
+  Talk Student1 No Money:
+    actions:
+    - translated_dialog spyder_dojo_fu_student1
+    - translated_dialog spyder_dojo_fu_student1c
+    behav:
+    - talk spyder_dojo_fu_student1
+    conditions:
+    - not money_is player,greater_or_equal,500
+    type: "event"
+  Talk Student2 No Money:
+    actions:
+    - translated_dialog spyder_dojo_fu_student1
+    - translated_dialog spyder_dojo_fu_student1c
+    behav:
+    - talk spyder_dojo_fu_student2
+    conditions:
+    - not money_is player,greater_or_equal,500
+    type: "event"
+  Talk Student1 Yes:
+    actions:
+    - get_player_monster dojo_stage,evolution_stage,stage2
+    - dojo_method dojo_stage,monster
+    - clear_variable student1_yn
+    - modify_money player,-500
+    conditions:
+    - is variable_set student1_yn:yes
+    type: "event"
+  Talk Student2 Yes:
+    actions:
+    - get_player_monster dojo_stage,evolution_stage,stage1
+    - dojo_method dojo_stage,monster
+    - clear_variable student2_yn
+    - modify_money player,-500
+    conditions:
+    - is variable_set student2_yn:yes
+    type: "event"
+  Talk Student1 No:
+    actions:
+    - clear_variable student1_yn
+    conditions:
+    - is variable_set student1_yn:no
+    type: "event"
+  Talk Student2 No:
+    actions:
+    - clear_variable student2_yn
+    conditions:
+    - is variable_set student2_yn:no
+    type: "event"
+  Talk No Choice:
+    actions:
+    - translated_dialog spyder_dojo_fu_nochoice
+    - clear_variable dojo_stage
+    - modify_money player,500
+    conditions:
+    - is variable_set dojo_stage:no_choice
+    type: "event"

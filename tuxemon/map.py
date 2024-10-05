@@ -147,22 +147,35 @@ def get_coord_direction(
     Returns:
         Tuple tile coordinates.
     """
-    offsets = {
-        Direction.down: (0, 1),
-        Direction.right: (1, 0),
-        Direction.up: (0, -1),
-        Direction.left: (-1, 0),
-    }
-
+    dx, dy = dirs2[direction]
     _tile = (
-        tile[0] + offsets[direction][0] * radius,
-        tile[1] + offsets[direction][1] * radius,
+        tile[0] + int(dx) * radius,
+        tile[1] + int(dy) * radius,
     )
 
     if 0 <= _tile[0] < map_size[0] and 0 <= _tile[1] < map_size[1]:
         return _tile
     else:
         raise ValueError(f"{_tile} invalid coordinates")
+
+
+def get_adjacent_position(
+    position: tuple[int, int],
+    direction: Direction,
+) -> tuple[int, int]:
+    """
+    Returns the adjacent position in the given direction.
+
+    Parameters:
+        position: The original position.
+        direction: The direction to move.
+
+    Returns:
+        The adjacent position.
+    """
+    dx, dy = dirs2[direction]
+    x, y = position
+    return (x + int(dx), y + int(dy))
 
 
 def get_direction(

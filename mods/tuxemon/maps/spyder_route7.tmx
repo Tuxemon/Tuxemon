@@ -106,7 +106,7 @@
   </object>
   <object id="10" name="Encounters" type="event" x="32" y="224" width="80" height="80">
    <properties>
-    <property name="act1" value="random_encounter route7"/>
+    <property name="act1" value="random_encounter spyder_route7"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -115,7 +115,7 @@
   <object id="6" name="Player Spawn" type="event" x="0" y="32" width="16" height="16"/>
   <object id="201" name="Encounters" type="event" x="32" y="112" width="112" height="64">
    <properties>
-    <property name="act1" value="random_encounter route7"/>
+    <property name="act1" value="random_encounter spyder_route7"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -123,7 +123,7 @@
   </object>
   <object id="202" name="Encounters" type="event" x="160" y="192" width="112" height="48">
    <properties>
-    <property name="act1" value="random_encounter route7"/>
+    <property name="act1" value="random_encounter spyder_route7"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -131,7 +131,7 @@
   </object>
   <object id="203" name="Encounters" type="event" x="368" y="240" width="192" height="64">
    <properties>
-    <property name="act1" value="random_encounter route7"/>
+    <property name="act1" value="random_encounter spyder_route7"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -139,7 +139,7 @@
   </object>
   <object id="204" name="Encounters" type="event" x="384" y="96" width="128" height="48">
    <properties>
-    <property name="act1" value="random_encounter route7"/>
+    <property name="act1" value="random_encounter spyder_route7"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -147,7 +147,7 @@
   </object>
   <object id="205" name="Encounters" type="event" x="368" y="336" width="96" height="96">
    <properties>
-    <property name="act1" value="random_encounter route7"/>
+    <property name="act1" value="random_encounter spyder_route7"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -155,7 +155,7 @@
   </object>
   <object id="206" name="Encounters" type="event" x="208" y="272" width="128" height="112">
    <properties>
-    <property name="act1" value="random_encounter route7"/>
+    <property name="act1" value="random_encounter spyder_route7"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -163,7 +163,7 @@
   </object>
   <object id="207" name="Encounters" type="event" x="112" y="576" width="448" height="32">
    <properties>
-    <property name="act1" value="random_encounter route7"/>
+    <property name="act1" value="random_encounter spyder_route7"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -179,7 +179,7 @@
   </object>
   <object id="209" name="Encounters" type="event" x="272" y="32" width="96" height="64">
    <properties>
-    <property name="act1" value="random_encounter route7"/>
+    <property name="act1" value="random_encounter spyder_route7"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -187,7 +187,7 @@
   </object>
   <object id="214" name="Encounters" type="event" x="288" y="112" width="64" height="80">
    <properties>
-    <property name="act1" value="random_encounter route7"/>
+    <property name="act1" value="random_encounter spyder_route7"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -202,7 +202,7 @@
   </object>
   <object id="229" name="Encounters" type="event" x="544" y="336" width="64" height="128">
    <properties>
-    <property name="act1" value="random_encounter route7"/>
+    <property name="act1" value="random_encounter spyder_route7"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -210,7 +210,7 @@
   </object>
   <object id="230" name="Encounters" type="event" x="160" y="480" width="80" height="48">
    <properties>
-    <property name="act1" value="random_encounter route7"/>
+    <property name="act1" value="random_encounter spyder_route7"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -240,14 +240,16 @@
   </object>
   <object id="235" name="Talk Arnaut" type="event" x="80" y="304" width="16" height="16">
    <properties>
+    <property name="act05" value="lock_controls"/>
     <property name="act10" value="pathfind_to_player spyder_route7_arnaut"/>
     <property name="act11" value="translated_dialog spyder_route7_arnaut1"/>
-    <property name="act12" value="add_monster fluttaflap,40,spyder_route7_arnaut,5,10"/>
-    <property name="act13" value="add_monster metesaur,30,spyder_route7_arnaut,5,10"/>
-    <property name="act14" value="add_monster heronquak,30,spyder_route7_arnaut,5,10"/>
-    <property name="act15" value="start_battle player,spyder_route7_arnaut"/>
-    <property name="act16" value="translated_dialog spyder_route7_arnaut2"/>
-    <property name="act17" value="set_variable route7arnaut:yes"/>
+    <property name="act12" value="unlock_controls"/>
+    <property name="act13" value="add_monster fluttaflap,40,spyder_route7_arnaut,5,10"/>
+    <property name="act14" value="add_monster metesaur,30,spyder_route7_arnaut,5,10"/>
+    <property name="act15" value="add_monster heronquak,30,spyder_route7_arnaut,5,10"/>
+    <property name="act16" value="start_battle player,spyder_route7_arnaut"/>
+    <property name="act17" value="translated_dialog spyder_route7_arnaut2"/>
+    <property name="act18" value="set_variable route7arnaut:yes"/>
     <property name="cond1" value="not variable_set route7arnaut:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -297,14 +299,16 @@
   </object>
   <object id="243" name="Talk Nino" type="event" x="224" y="400" width="16" height="16">
    <properties>
+    <property name="act05" value="lock_controls"/>
     <property name="act10" value="pathfind_to_player spyder_route7_nino"/>
     <property name="act11" value="translated_dialog spyder_route7_nino1"/>
-    <property name="act12" value="add_monster vividactil,40,spyder_route7_nino,5,10"/>
-    <property name="act13" value="add_monster fluttaflap,40,spyder_route7_nino,5,10"/>
-    <property name="act14" value="add_monster statursus,40,spyder_route7_nino,5,10"/>
-    <property name="act15" value="start_battle player,spyder_route7_nino"/>
-    <property name="act16" value="translated_dialog spyder_route7_nino2"/>
-    <property name="act17" value="set_variable route7nino:yes"/>
+    <property name="act12" value="unlock_controls"/>
+    <property name="act13" value="add_monster vividactil,40,spyder_route7_nino,5,10"/>
+    <property name="act14" value="add_monster fluttaflap,40,spyder_route7_nino,5,10"/>
+    <property name="act15" value="add_monster statursus,40,spyder_route7_nino,5,10"/>
+    <property name="act16" value="start_battle player,spyder_route7_nino"/>
+    <property name="act17" value="translated_dialog spyder_route7_nino2"/>
+    <property name="act18" value="set_variable route7nino:yes"/>
     <property name="cond1" value="not variable_set route7nino:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -318,16 +322,18 @@
   </object>
   <object id="245" name="Talk Sordello" type="event" x="400" y="448" width="16" height="16">
    <properties>
+    <property name="act05" value="lock_controls"/>
     <property name="act10" value="pathfind_to_player spyder_route7_sordello"/>
     <property name="act11" value="translated_dialog spyder_route7_sordello1"/>
-    <property name="act12" value="add_monster fuzzlet,30,spyder_route7_sordello,5,10"/>
-    <property name="act13" value="add_monster ziggurat,30,spyder_route7_sordello,5,10"/>
-    <property name="act14" value="add_monster woodoor,30,spyder_route7_sordello,5,10"/>
-    <property name="act15" value="add_monster potturmeist,30,spyder_route7_sordello,5,10"/>
-    <property name="act16" value="add_monster squink,30,spyder_route7_sordello,5,10"/>
-    <property name="act17" value="start_battle player,spyder_route7_sordello"/>
-    <property name="act18" value="translated_dialog spyder_route7_sordello2"/>
-    <property name="act19" value="set_variable route7sordello:yes"/>
+    <property name="act12" value="unlock_controls"/>
+    <property name="act13" value="add_monster fuzzlet,30,spyder_route7_sordello,5,10"/>
+    <property name="act14" value="add_monster ziggurat,30,spyder_route7_sordello,5,10"/>
+    <property name="act15" value="add_monster woodoor,30,spyder_route7_sordello,5,10"/>
+    <property name="act16" value="add_monster potturmeist,30,spyder_route7_sordello,5,10"/>
+    <property name="act17" value="add_monster squink,30,spyder_route7_sordello,5,10"/>
+    <property name="act18" value="start_battle player,spyder_route7_sordello"/>
+    <property name="act19" value="translated_dialog spyder_route7_sordello2"/>
+    <property name="act20" value="set_variable route7sordello:yes"/>
     <property name="cond1" value="not variable_set route7sordello:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -341,15 +347,17 @@
   </object>
   <object id="247" name="Talk Statius" type="event" x="544" y="480" width="16" height="16">
    <properties>
+    <property name="act05" value="lock_controls"/>
     <property name="act10" value="pathfind_to_player spyder_route7_statius"/>
     <property name="act11" value="translated_dialog spyder_route7_statius1"/>
-    <property name="act12" value="add_monster aardart,30,spyder_route7_statius,5,10"/>
-    <property name="act13" value="add_monster pairagrim,30,spyder_route7_statius,5,10"/>
-    <property name="act14" value="add_monster bolt,30,spyder_route7_statius,5,10"/>
-    <property name="act15" value="add_monster fribbit,30,spyder_route7_statius,5,10"/>
-    <property name="act16" value="start_battle player,spyder_route7_statius"/>
-    <property name="act17" value="translated_dialog spyder_route7_statius2"/>
-    <property name="act18" value="set_variable route7statius:yes"/>
+    <property name="act12" value="unlock_controls"/>
+    <property name="act13" value="add_monster aardart,30,spyder_route7_statius,5,10"/>
+    <property name="act14" value="add_monster pairagrim,30,spyder_route7_statius,5,10"/>
+    <property name="act15" value="add_monster bolt,30,spyder_route7_statius,5,10"/>
+    <property name="act16" value="add_monster fribbit,30,spyder_route7_statius,5,10"/>
+    <property name="act17" value="start_battle player,spyder_route7_statius"/>
+    <property name="act18" value="translated_dialog spyder_route7_statius2"/>
+    <property name="act19" value="set_variable route7statius:yes"/>
     <property name="cond1" value="not variable_set route7statius:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -363,15 +371,17 @@
   </object>
   <object id="249" name="Talk Jacopo" type="event" x="480" y="208" width="16" height="16">
    <properties>
+    <property name="act05" value="lock_controls"/>
     <property name="act10" value="pathfind_to_player spyder_route7_jacopo"/>
     <property name="act11" value="translated_dialog spyder_route7_jacopo1"/>
-    <property name="act12" value="add_monster shelagu,30,spyder_route7_jacopo,5,10"/>
-    <property name="act13" value="add_monster vivisource,30,spyder_route7_jacopo,5,10"/>
-    <property name="act14" value="add_monster statursus,30,spyder_route7_jacopo,5,10"/>
-    <property name="act15" value="add_monster statursus,35,spyder_route7_jacopo,5,10"/>
-    <property name="act16" value="start_battle player,spyder_route7_jacopo"/>
-    <property name="act17" value="translated_dialog spyder_route7_jacopo2"/>
-    <property name="act18" value="set_variable route7jacopo:yes"/>
+    <property name="act12" value="unlock_controls"/>
+    <property name="act13" value="add_monster shelagu,30,spyder_route7_jacopo,5,10"/>
+    <property name="act14" value="add_monster vivisource,30,spyder_route7_jacopo,5,10"/>
+    <property name="act15" value="add_monster statursus,30,spyder_route7_jacopo,5,10"/>
+    <property name="act16" value="add_monster statursus,35,spyder_route7_jacopo,5,10"/>
+    <property name="act17" value="start_battle player,spyder_route7_jacopo"/>
+    <property name="act18" value="translated_dialog spyder_route7_jacopo2"/>
+    <property name="act19" value="set_variable route7jacopo:yes"/>
     <property name="cond1" value="not variable_set route7jacopo:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -385,14 +395,16 @@
   </object>
   <object id="251" name="Talk Pia" type="event" x="304" y="224" width="16" height="16">
    <properties>
+    <property name="act05" value="lock_controls"/>
     <property name="act10" value="pathfind_to_player spyder_route7_pia"/>
     <property name="act11" value="translated_dialog spyder_route7_pia1"/>
-    <property name="act12" value="add_monster anoleaf,35,spyder_route7_pia,5,10"/>
-    <property name="act13" value="add_monster gectile,40,spyder_route7_pia,5,10"/>
-    <property name="act14" value="add_monster velocitile,45,spyder_route7_pia,5,10"/>
-    <property name="act15" value="start_battle player,spyder_route7_pia"/>
-    <property name="act16" value="translated_dialog spyder_route7_pia2"/>
-    <property name="act17" value="set_variable route7pia:yes"/>
+    <property name="act12" value="unlock_controls"/>
+    <property name="act13" value="add_monster anoleaf,35,spyder_route7_pia,5,10"/>
+    <property name="act14" value="add_monster gectile,40,spyder_route7_pia,5,10"/>
+    <property name="act15" value="add_monster velocitile,45,spyder_route7_pia,5,10"/>
+    <property name="act16" value="start_battle player,spyder_route7_pia"/>
+    <property name="act17" value="translated_dialog spyder_route7_pia2"/>
+    <property name="act18" value="set_variable route7pia:yes"/>
     <property name="cond1" value="not variable_set route7pia:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -405,14 +417,16 @@
   </object>
   <object id="253" name="Talk Penitent" type="event" x="176" y="128" width="16" height="16">
    <properties>
+    <property name="act05" value="lock_controls"/>
     <property name="act10" value="pathfind_to_player spyder_route7_penitent"/>
     <property name="act11" value="translated_dialog spyder_route7_penitent1"/>
-    <property name="act12" value="add_monster rhinocarpe,40,spyder_route7_penitent,5,10"/>
-    <property name="act13" value="add_monster bursa,30,spyder_route7_penitent,5,10"/>
-    <property name="act14" value="add_monster dandicub,30,spyder_route7_penitent,5,10"/>
-    <property name="act15" value="start_battle player,spyder_route7_penitent"/>
-    <property name="act16" value="translated_dialog spyder_route7_penitent2"/>
-    <property name="act17" value="set_variable route7penitent:yes"/>
+    <property name="act12" value="unlock_controls"/>
+    <property name="act13" value="add_monster rhinocarpe,40,spyder_route7_penitent,5,10"/>
+    <property name="act14" value="add_monster bursa,30,spyder_route7_penitent,5,10"/>
+    <property name="act15" value="add_monster dandicub,30,spyder_route7_penitent,5,10"/>
+    <property name="act16" value="start_battle player,spyder_route7_penitent"/>
+    <property name="act17" value="translated_dialog spyder_route7_penitent2"/>
+    <property name="act18" value="set_variable route7penitent:yes"/>
     <property name="cond1" value="not variable_set route7penitent:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -425,13 +439,15 @@
   </object>
   <object id="255" name="Talk Hugh" type="event" x="32" y="64" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_route7_hugh"/>
-    <property name="act1" value="translated_dialog spyder_route7_hugh1"/>
-    <property name="act2" value="add_monster qetzlrokilus,40,spyder_route7_hugh,5,10"/>
-    <property name="act3" value="add_monster velocitile,40,spyder_route7_hugh,5,10"/>
-    <property name="act4" value="start_battle player,spyder_route7_hugh"/>
-    <property name="act5" value="translated_dialog spyder_route7_hugh2"/>
-    <property name="act6" value="set_variable route7hugh:yes"/>
+    <property name="act05" value="lock_controls"/>
+    <property name="act10" value="pathfind_to_player spyder_route7_hugh"/>
+    <property name="act11" value="translated_dialog spyder_route7_hugh1"/>
+    <property name="act12" value="unlock_controls"/>
+    <property name="act13" value="add_monster qetzlrokilus,40,spyder_route7_hugh,5,10"/>
+    <property name="act14" value="add_monster velocitile,40,spyder_route7_hugh,5,10"/>
+    <property name="act15" value="start_battle player,spyder_route7_hugh"/>
+    <property name="act16" value="translated_dialog spyder_route7_hugh2"/>
+    <property name="act17" value="set_variable route7hugh:yes"/>
     <property name="cond1" value="not variable_set route7hugh:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -444,14 +460,16 @@
   </object>
   <object id="257" name="Talk Manfred" type="event" x="544" y="64" width="16" height="16">
    <properties>
+    <property name="act05" value="lock_controls"/>
     <property name="act10" value="pathfind_to_player spyder_route7_manfred"/>
     <property name="act11" value="translated_dialog spyder_route7_manfred1"/>
-    <property name="act12" value="add_monster chenipode,30,spyder_route7_manfred,5,10"/>
+    <property name="act12" value="unlock_controls"/>
     <property name="act13" value="add_monster chenipode,30,spyder_route7_manfred,5,10"/>
-    <property name="act14" value="add_monster exapode,40,spyder_route7_manfred,5,10"/>
-    <property name="act15" value="start_battle player,spyder_route7_manfred"/>
-    <property name="act16" value="translated_dialog spyder_route7_manfred2"/>
-    <property name="act17" value="set_variable route7manfred:yes"/>
+    <property name="act14" value="add_monster chenipode,30,spyder_route7_manfred,5,10"/>
+    <property name="act15" value="add_monster exapode,40,spyder_route7_manfred,5,10"/>
+    <property name="act16" value="start_battle player,spyder_route7_manfred"/>
+    <property name="act17" value="translated_dialog spyder_route7_manfred2"/>
+    <property name="act18" value="set_variable route7manfred:yes"/>
     <property name="cond1" value="not variable_set route7manfred:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -465,14 +483,16 @@
   </object>
   <object id="259" name="Talk Conrad" type="event" x="368" y="64" width="16" height="32">
    <properties>
+    <property name="act05" value="lock_controls"/>
     <property name="act10" value="pathfind_to_player spyder_route7_conrad"/>
     <property name="act11" value="translated_dialog spyder_route7_conrad1"/>
-    <property name="act12" value="add_monster tux,40,spyder_route7_conrad,5,10"/>
-    <property name="act13" value="add_monster snowrilla,40,spyder_route7_conrad,5,10"/>
-    <property name="act14" value="add_monster chillimp,30,spyder_route7_conrad,5,10"/>
-    <property name="act15" value="start_battle player,spyder_route7_conrad"/>
-    <property name="act16" value="translated_dialog spyder_route7_conrad2"/>
-    <property name="act17" value="set_variable route7conrad:yes"/>
+    <property name="act12" value="unlock_controls"/>
+    <property name="act13" value="add_monster tux,40,spyder_route7_conrad,5,10"/>
+    <property name="act14" value="add_monster snowrilla,40,spyder_route7_conrad,5,10"/>
+    <property name="act15" value="add_monster chillimp,30,spyder_route7_conrad,5,10"/>
+    <property name="act16" value="start_battle player,spyder_route7_conrad"/>
+    <property name="act17" value="translated_dialog spyder_route7_conrad2"/>
+    <property name="act18" value="set_variable route7conrad:yes"/>
     <property name="cond1" value="not variable_set route7conrad:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

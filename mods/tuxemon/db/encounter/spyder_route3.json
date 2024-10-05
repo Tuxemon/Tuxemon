@@ -1,0 +1,101 @@
+{
+  "slug": "spyder_route3",
+  "monsters": [
+    {
+      "monster": "cardiling",
+      "encounter_rate": 3,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        7,
+        10
+      ]
+    },
+    {
+      "monster": "elofly",
+      "encounter_rate": 3,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        7,
+        10
+      ]
+    },
+    {
+      "monster": "squabbit",
+      "encounter_rate": 1,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        8,
+        11
+      ]
+    },
+    {
+      "monster": "shybulb",
+      "encounter_rate": 3,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        7,
+        10
+      ]
+    },
+    {
+      "monster": "cardiling",
+      "encounter_rate": 3,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        9,
+        12
+      ]
+    },
+    {
+      "monster": "elofly",
+      "encounter_rate": 3,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        9,
+        12
+      ]
+    },
+    {
+      "monster": "squabbit",
+      "encounter_rate": 1,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        9,
+        12
+      ]
+    },
+    {
+      "monster": "shybulb",
+      "encounter_rate": 3,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        9,
+        12
+      ]
+    }
+  ]
+}

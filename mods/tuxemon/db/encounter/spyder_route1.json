@@ -1,0 +1,77 @@
+{
+  "slug": "spyder_route1",
+  "monsters": [
+    {
+      "monster": "pairagrin",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        2,
+        4
+      ]
+    },
+    {
+      "monster": "aardorn",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        2,
+        4
+      ]
+    },
+    {
+      "monster": "cataspike",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        2,
+        4
+      ]
+    },
+    {
+      "monster": "pairagrin",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        3,
+        5
+      ]
+    },
+    {
+      "monster": "aardorn",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        3,
+        5
+      ]
+    },
+    {
+      "monster": "cataspike",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        3,
+        5
+      ]
+    }
+  ]
+}

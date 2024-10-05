@@ -3,12 +3,13 @@
 from __future__ import annotations
 
 import logging
+import uuid
 from collections.abc import Callable
 from dataclasses import dataclass
 from functools import partial
-from typing import final
+from typing import Optional, final
 
-from tuxemon.event import get_npc
+from tuxemon.event import get_monster_by_iid, get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from tuxemon.monster import Monster
@@ -32,11 +33,16 @@ class EvolutionAction(EventAction):
 
     Script parameters:
         character: Either "player" or npc slug name (e.g. "npc_maple").
+        variable: Name of the variable where to store the monster id. If no
+            variable is specified, all monsters get experience.
+        evolution: Slug of the evolution.
 
     """
 
     name = "evolution"
     npc_slug: str
+    variable: Optional[str] = None
+    evolution: Optional[str] = None
 
     def start(self) -> None:
         client = self.session.client
@@ -51,7 +57,41 @@ class EvolutionAction(EventAction):
         if len(client.state_manager.active_states) > MAX_ACTIVE_STATES:
             return
 
-        self.process_pending_evolutions()
+        if self.variable is None and self.evolution is None:
+            self.process_pending_evolutions()
+        elif self.variable is not None and self.evolution is not None:
+            self.process_direct_evolutions(self.variable, self.evolution)
+        else:
+            raise ValueError(
+                "Both variable and evolution must be either None or not None"
+            )
+
+    def process_direct_evolutions(self, variable: str, evolution: str) -> None:
+        """Process direct evolutions for the character"""
+        if variable not in self.character.game_variables:
+            logger.error(f"Variable '{variable}' doesn't exist.")
+            return
+        monster_id = uuid.UUID(self.character.game_variables[variable])
+        monster = get_monster_by_iid(self.session, monster_id)
+        if monster is None:
+            logger.error(f"Monster '{monster_id}' doesn't exist.")
+            return
+        if not monster.evolution_handler.has_evolution_to(
+            evolution
+        ) and not monster.evolution_handler.has_history_to(evolution):
+            logger.error(
+                f"Monster '{evolution}' isn't in the evolutionary path."
+            )
+            return
+        else:
+            evolved = Monster()
+            evolved.load_from_db(evolution)
+            monster.evolution_handler.evolve_monster(evolved)
+            self.client.push_state(
+                "EvolutionTransition",
+                original=monster.slug,
+                evolved=evolved.slug,
+            )
 
     def process_pending_evolutions(self) -> None:
         """Process pending evolutions for the character"""
@@ -83,7 +123,10 @@ class EvolutionAction(EventAction):
         self.client.pop_state()
         self.client.pop_state()
         logger.info(f"{monster.name} evolves into {evolved.name}!")
-        self.character.evolve_monster(monster, evolved.slug)
+        monster.evolution_handler.evolve_monster(evolved)
+        self.client.push_state(
+            "EvolutionTransition", original=monster.slug, evolved=evolved.slug
+        )
 
     def deny_evolution(self, monster: Monster) -> None:
         """Deny the evolution"""

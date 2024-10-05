@@ -8,7 +8,7 @@
     "healing user"
   ],
   "flip_axes": "",
-  "healing_power": 4,
+  "healing_power": 3.0,
   "is_fast": false,
   "potency": 1,
   "power": 0,
@@ -18,13 +18,15 @@
   "slug": "mystic_blending",
   "sort": "damage",
   "target": {
-    "enemy monster": 2,
-    "enemy team": 0,
-    "enemy trainer": 0,
-    "own monster": 0,
-    "own team": 0,
-    "own trainer": 0
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
   },
+  "category": "exotic",
+  "tags": ["Healing", "Mental"],
   "types": [
     "earth"
   ],

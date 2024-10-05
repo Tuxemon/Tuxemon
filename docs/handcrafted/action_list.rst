@@ -5,6 +5,8 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.add_tech.AddTechAction
 .. autoscriptinfoclass:: tuxemon.event.actions.breeding.BreedingAction
 .. autoscriptinfoclass:: tuxemon.event.actions.call_event.CallEventAction
+.. autoscriptinfoclass:: tuxemon.event.actions.camera.CameraAction
+.. autoscriptinfoclass:: tuxemon.event.actions.camera_position.CameraPositionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_bg.ChangeBgAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_state.ChangeStateAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_taste.ChangeTasteAction
@@ -24,8 +26,10 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.clear_tuxepedia.ClearTuxepediaAction
 .. autoscriptinfoclass:: tuxemon.event.actions.clear_variable.ClearVariableAction
 .. autoscriptinfoclass:: tuxemon.event.actions.copy_variable.CopyVariableAction
+.. autoscriptinfoclass:: tuxemon.event.actions.create_kennel.CreateKennelAction
 .. autoscriptinfoclass:: tuxemon.event.actions.create_npc.CreateNpcAction
 .. autoscriptinfoclass:: tuxemon.event.actions.delayed_teleport.DelayedTeleportAction
+.. autoscriptinfoclass:: tuxemon.event.actions.dojo_method.DojoMethodAction
 .. autoscriptinfoclass:: tuxemon.event.actions.evolution.EvolutionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.fadeout_music.FadeoutMusicAction
 .. autoscriptinfoclass:: tuxemon.event.actions.format_variable.FormatVariableAction
@@ -75,7 +79,6 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_bubble.SetBubbleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_economy.SetEconomyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_kennel_visible.SetKennelVisibleAction
-.. autoscriptinfoclass:: tuxemon.event.actions.set_kennel.SetKennelAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_layer.SetLayerAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_mission.SetMissionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_money.SetMoneyAction
@@ -103,6 +106,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.transition_teleport.TransitionTeleportAction
 .. autoscriptinfoclass:: tuxemon.event.actions.translated_dialog_choice.TranslatedDialogChoiceAction
 .. autoscriptinfoclass:: tuxemon.event.actions.translated_dialog.TranslatedDialogAction
+.. autoscriptinfoclass:: tuxemon.event.actions.unpause_music.UnpauseMusicAction
 .. autoscriptinfoclass:: tuxemon.event.actions.update_tile_properties.UpdateTilePropertiesAction
 .. autoscriptinfoclass:: tuxemon.event.actions.variable_math.VariableMathAction
 .. autoscriptinfoclass:: tuxemon.event.actions.wait.WaitAction

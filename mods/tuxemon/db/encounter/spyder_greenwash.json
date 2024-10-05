@@ -1,0 +1,65 @@
+{
+  "slug": "spyder_greenwash",
+  "monsters": [
+    {
+      "monster": "cochini",
+      "encounter_rate": 5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        15,
+        25
+      ]
+    },
+    {
+      "monster": "cateye",
+      "encounter_rate": 5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        15,
+        25
+      ]
+    },
+    {
+      "monster": "sclairus",
+      "encounter_rate": 5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        15,
+        25
+      ]
+    },
+    {
+      "monster": "bursa",
+      "encounter_rate": 5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        20,
+        25
+      ]
+    },
+    {
+      "monster": "nut",
+      "encounter_rate": 5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        20,
+        25
+      ]
+    }
+  ]
+}

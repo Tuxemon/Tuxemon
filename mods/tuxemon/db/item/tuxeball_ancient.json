@@ -11,10 +11,12 @@
   "sort": "utility",
   "sprite": "gfx/items/tuxeball_ancient.png",
   "category": "capture",
-  "type": "Consumable",
   "usable_in": [
     "MainCombatMenuState"
   ],
+  "behaviors": {
+    "throwable": true
+  },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

@@ -1,17 +1,14 @@
 {
-  "conditions": [
-    "is level >=,0",
-    "is has_path greenwash_badge"
-  ],
+  "conditions": [],
   "effects": [],
   "slug": "greenwash_badge",
   "sort": "utility",
   "sprite": "gfx/items/greenwash_badge.png",
   "category": "badge",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],
+  "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

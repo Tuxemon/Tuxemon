@@ -1,0 +1,74 @@
+{
+    "slug": "ampystoma",
+    "category": "lightning_salamander",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        },
+        {
+            "level_learned": 6,
+            "technique": "spit_poison"
+        },
+        {
+            "level_learned": 8,
+            "technique": "frostbite"
+        },
+        {
+            "level_learned": 12,
+            "technique": "snowstorm"
+        },
+        {
+            "level_learned": 16,
+            "technique": "torch"
+        },
+        {
+            "level_learned": 20,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 24,
+            "technique": "ice_shield"
+        },
+        {
+            "level_learned": 28,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 32,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 36,
+            "technique": "proboscis"
+        },
+        {
+            "level_learned": 40,
+            "technique": "geyser"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "axolightl",
+            "evo_stage": "basic"
+        }
+    ],
+    "tags": ["brute", "freshwater", "swamp"],
+    "shape": "brute",
+    "stage": "stage1",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 280,
+    "height": 180,
+    "weight": 80,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

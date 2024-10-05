@@ -47,7 +47,7 @@
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="29" name="Go Outside" type="event" x="112" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_timber_walletgarden1.tmx,7,3,0.3"/>
+    <property name="act1" value="transition_teleport spyder_timber_walledgarden1.tmx,7,3,0.3"/>
     <property name="act2" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>
@@ -56,7 +56,7 @@
   <object id="28" name="Player Spawn" type="event" x="112" y="240" width="16" height="16"/>
   <object id="49" name="Room3" type="event" x="208" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_timber_walletgarden1.tmx,13,3,0.3"/>
+    <property name="act1" value="transition_teleport spyder_timber_walledgarden1.tmx,13,3,0.3"/>
     <property name="act2" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>
@@ -64,7 +64,7 @@
   </object>
   <object id="50" name="Go Outside" type="event" x="128" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_timber_walletgarden1.tmx,8,3,0.3"/>
+    <property name="act1" value="transition_teleport spyder_timber_walledgarden1.tmx,8,3,0.3"/>
     <property name="act2" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>
@@ -72,7 +72,7 @@
   </object>
   <object id="56" name="Room2" type="event" x="32" y="304" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_timber_walletgarden1.tmx,2,3,0.3"/>
+    <property name="act1" value="transition_teleport spyder_timber_walledgarden1.tmx,2,3,0.3"/>
     <property name="act2" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>
@@ -99,13 +99,15 @@
   </object>
   <object id="61" name="Talk osman" type="event" x="144" y="176" width="16" height="32">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_walled_osman"/>
-    <property name="act1" value="translated_dialog spyder_walled_osman1"/>
-    <property name="act2" value="add_monster miaownolith,50,spyder_walled_osman,5,10"/>
-    <property name="act3" value="add_monster pyraminx,50,spyder_walled_osman,5,10"/>
-    <property name="act4" value="start_battle player,spyder_walled_osman"/>
-    <property name="act5" value="translated_dialog spyder_walled_osman2"/>
-    <property name="act6" value="set_variable walledosman:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_walled_osman"/>
+    <property name="act03" value="translated_dialog spyder_walled_osman1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster miaownolith,50,spyder_walled_osman,5,10"/>
+    <property name="act06" value="add_monster pyraminx,50,spyder_walled_osman,5,10"/>
+    <property name="act07" value="start_battle player,spyder_walled_osman"/>
+    <property name="act08" value="translated_dialog spyder_walled_osman2"/>
+    <property name="act09" value="set_variable walledosman:yes"/>
     <property name="cond1" value="not variable_set walledosman:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -119,13 +121,15 @@
   </object>
   <object id="63" name="Talk Alexander" type="event" x="96" y="176" width="16" height="32">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_walled_alexander"/>
-    <property name="act1" value="translated_dialog spyder_walled_alexander1"/>
-    <property name="act2" value="add_monster embazook,50,spyder_walled_alexander,5,10"/>
-    <property name="act3" value="add_monster eruptibus,50,spyder_walled_alexander,5,10"/>
-    <property name="act4" value="start_battle player,spyder_walled_alexander"/>
-    <property name="act5" value="translated_dialog spyder_walled_alexander2"/>
-    <property name="act6" value="set_variable walledalexander:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_walled_alexander"/>
+    <property name="act03" value="translated_dialog spyder_walled_alexander1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster embazook,50,spyder_walled_alexander,5,10"/>
+    <property name="act06" value="add_monster eruptibus,50,spyder_walled_alexander,5,10"/>
+    <property name="act07" value="start_battle player,spyder_walled_alexander"/>
+    <property name="act08" value="translated_dialog spyder_walled_alexander2"/>
+    <property name="act09" value="set_variable walledalexander:yes"/>
     <property name="cond1" value="not variable_set walledalexander:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -146,26 +150,30 @@
   </object>
   <object id="66" name="Talk musa" type="event" x="176" y="128" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_walled_musa"/>
-    <property name="act1" value="translated_dialog spyder_walled_musa1"/>
-    <property name="act2" value="add_monster grintrock,50,spyder_walled_musa,5,10"/>
-    <property name="act3" value="add_monster grinflare,50,spyder_walled_musa,5,10"/>
-    <property name="act4" value="start_battle player,spyder_walled_musa"/>
-    <property name="act5" value="translated_dialog spyder_walled_musa2"/>
-    <property name="act6" value="set_variable walledmusa:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_walled_musa"/>
+    <property name="act03" value="translated_dialog spyder_walled_musa1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster grintrock,50,spyder_walled_musa,5,10"/>
+    <property name="act06" value="add_monster grinflare,50,spyder_walled_musa,5,10"/>
+    <property name="act07" value="start_battle player,spyder_walled_musa"/>
+    <property name="act08" value="translated_dialog spyder_walled_musa2"/>
+    <property name="act09" value="set_variable walledmusa:yes"/>
     <property name="cond1" value="not variable_set walledmusa:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="67" name="Talk augustus" type="event" x="64" y="128" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_walled_augustus"/>
-    <property name="act1" value="translated_dialog spyder_walled_augustus1"/>
-    <property name="act2" value="add_monster statursus,50,spyder_walled_augustus,5,10"/>
-    <property name="act3" value="add_monster spycozeus,50,spyder_walled_augustus,5,10"/>
-    <property name="act4" value="start_battle player,spyder_walled_augustus"/>
-    <property name="act5" value="translated_dialog spyder_walled_augustus2"/>
-    <property name="act6" value="set_variable walledaugustus:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_walled_augustus"/>
+    <property name="act03" value="translated_dialog spyder_walled_augustus1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster statursus,50,spyder_walled_augustus,5,10"/>
+    <property name="act06" value="add_monster spycozeus,50,spyder_walled_augustus,5,10"/>
+    <property name="act07" value="start_battle player,spyder_walled_augustus"/>
+    <property name="act08" value="translated_dialog spyder_walled_augustus2"/>
+    <property name="act09" value="set_variable walledaugustus:yes"/>
     <property name="cond1" value="not variable_set walledaugustus:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -179,13 +187,15 @@
   </object>
   <object id="69" name="Talk rufus" type="event" x="112" y="272" width="32" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_walled_rufus"/>
-    <property name="act1" value="translated_dialog spyder_walled_rufus1"/>
-    <property name="act2" value="add_monster bamboon,50,spyder_walled_rufus,5,10"/>
-    <property name="act3" value="add_monster frondly,50,spyder_walled_rufus,5,10"/>
-    <property name="act4" value="start_battle player,spyder_walled_rufus"/>
-    <property name="act5" value="translated_dialog spyder_walled_rufus2"/>
-    <property name="act6" value="set_variable walledrufus:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_walled_rufus"/>
+    <property name="act03" value="translated_dialog spyder_walled_rufus1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster bamboon,50,spyder_walled_rufus,5,10"/>
+    <property name="act06" value="add_monster frondly,50,spyder_walled_rufus,5,10"/>
+    <property name="act07" value="start_battle player,spyder_walled_rufus"/>
+    <property name="act08" value="translated_dialog spyder_walled_rufus2"/>
+    <property name="act09" value="set_variable walledrufus:yes"/>
     <property name="cond1" value="not variable_set walledrufus:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -199,13 +209,15 @@
   </object>
   <object id="71" name="Talk crassus" type="event" x="112" y="208" width="32" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_walled_crassus"/>
-    <property name="act1" value="translated_dialog spyder_walled_crassus1"/>
-    <property name="act2" value="add_monster bigfin,50,spyder_walled_crassus,5,10"/>
-    <property name="act3" value="add_monster sharpfin,50,spyder_walled_crassus,5,10"/>
-    <property name="act4" value="start_battle player,spyder_walled_crassus"/>
-    <property name="act5" value="translated_dialog spyder_walled_crassus2"/>
-    <property name="act6" value="set_variable walledcrassus:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_walled_crassus"/>
+    <property name="act03" value="translated_dialog spyder_walled_crassus1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster bigfin,50,spyder_walled_crassus,5,10"/>
+    <property name="act06" value="add_monster sharpfin,50,spyder_walled_crassus,5,10"/>
+    <property name="act07" value="start_battle player,spyder_walled_crassus"/>
+    <property name="act08" value="translated_dialog spyder_walled_crassus2"/>
+    <property name="act09" value="set_variable walledcrassus:yes"/>
     <property name="cond1" value="not variable_set walledcrassus:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

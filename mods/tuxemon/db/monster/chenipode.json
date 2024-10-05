@@ -37,14 +37,13 @@
     ],
     "evolutions": [
         {
-            "at_level": 0,
             "monster_slug": "exapode",
             "steps": "2500"
         }
     ],
     "history": [
         {
-            "mon_slug": "flambear",
+            "mon_slug": "exapode",
             "evo_stage": "stage1"
         }
     ],

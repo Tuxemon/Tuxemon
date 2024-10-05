@@ -69,9 +69,6 @@ msgstr "{user} enempää ei voida parantaa."
 msgid "combat_defeat"
 msgstr "Sinut päihitettiin!"
 
-msgid "combat_recharging"
-msgstr "{name} tarvitsee lepotauon ennen {move} uudelleen..."
-
 msgid "attack_resisted"
 msgstr "Hyökkäys torjuttiin!"
 
@@ -791,8 +788,8 @@ msgstr "Baobaraffe"
 msgid "av8r"
 msgstr "Av8r"
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
 msgid "b_ver_1"
 msgstr "B-Ver.1"
@@ -1039,9 +1036,6 @@ msgstr "Chrome Robo"
 
 msgid "dark_robo"
 msgstr "Dark Robo"
-
-msgid "birb_robo"
-msgstr "Birb Robo"
 
 msgid "xeon"
 msgstr "Xeon"

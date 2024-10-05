@@ -134,9 +134,6 @@ msgstr "¡Has capturado a {name}!"
 msgid "combat_capturing_fail"
 msgstr "¡{name} se liberó!"
 
-msgid "combat_recharging"
-msgstr "{name} necesita un descanso antes de usar {move} nuevamente..."
-
 msgid "combat_replacement"
 msgstr "¡Selecciona un reemplazo!"
 
@@ -383,10 +380,10 @@ msgid "anoleaf_description"
 msgstr ""
 "Considera a las plantas que crecen cerca de él como sus hermanos y hermanas."
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
-msgid "axylightl_description"
+msgid "axolightl_description"
 msgstr ""
 "Ilumina las aguas profundas con su cola, señalando un refugio seguro para "
 "los peces."
@@ -1955,9 +1952,6 @@ msgstr ""
 "Ingiere y almacena el veneno de las criaturas marinas que le sirven de "
 "alimento."
 
-msgid "birb_robo"
-msgstr "Robot Pajarito"
-
 msgid "firsts"
 msgstr ""
 "♪ Mira cómo me flagelo♪ \n"
@@ -3509,9 +3503,6 @@ msgid "Kennel"
 msgstr "refugio"
 
 msgid "dark_robo_description"
-msgstr "Un robot hostil."
-
-msgid "birb_robo_description"
 msgstr "Un robot hostil."
 
 msgid "mk01_delta_description"

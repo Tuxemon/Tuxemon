@@ -158,9 +158,6 @@ msgstr "Hva vil {name} gjøre?"
 msgid "combat_replacement"
 msgstr "Velg en erstatning!"
 
-msgid "combat_recharging"
-msgstr "{name} må ha en pause før bruk av {name} igjen…"
-
 msgid "combat_capturing_fail"
 msgstr "{name} kom seg fri!"
 
@@ -584,8 +581,8 @@ msgstr "Chrome Robo"
 msgid "aardorn"
 msgstr "Aardorn"
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
 msgid "capiti"
 msgstr "Capiti"
@@ -1325,9 +1322,6 @@ msgstr "Dark Robo"
 msgid "xeon_2"
 msgstr "Xeon-2"
 
-msgid "birb_robo"
-msgstr "Birb Robo"
-
 msgid "mk01_beta"
 msgstr "Mk01 Beta"
 
@@ -1352,11 +1346,6 @@ msgstr "Oidipus"
 # Default mod names on selection menu
 msgid "xero_campaign"
 msgstr "Tuxemon: Xero"
-
-msgid "combat_player_forfeit_status"
-msgstr ""
-"Kan ikke tape kampen.\n"
-"{monster} er {status}!"
 
 msgid "combat_player_swap_status"
 msgstr ""

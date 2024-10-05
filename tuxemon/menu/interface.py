@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import ClassVar, Generic, Optional, TypeVar
+from typing import Generic, Optional, TypeVar
 
 import pygame
 
@@ -14,63 +14,80 @@ from tuxemon.ui.draw import GraphicBox
 class Bar:
     """Common bar class for UI elements."""
 
-    border_filename: ClassVar[str]
-    border = None  # type: ClassVar[GraphicBox]
-    fg_color: ClassVar[graphics.ColorLike] = prepare.WHITE_COLOR
-    bg_color: ClassVar[Optional[graphics.ColorLike]] = prepare.BLACK_COLOR
+    _graphics_cache: dict[str, pygame.surface.Surface] = {}
 
-    def __init__(self, value: float = 1.0) -> None:
-        if self.border is None:
-            self.load_graphics()
+    def __init__(
+        self,
+        value: float,
+        border_filename: str,
+        fg_color: graphics.ColorLike = prepare.WHITE_COLOR,
+        bg_color: Optional[graphics.ColorLike] = prepare.BLACK_COLOR,
+    ) -> None:
+        """
+        Initializes the bar with a given value, border filename, foreground color, and background color.
 
+        Parameters:
+            value: The initial value of the bar.
+            border_filename: The filename of the border image.
+            fg_color: The foreground color of the bar.
+            bg_color: The background color of the bar.
+        """
         self.value = value
+        self.border_filename = border_filename
+        self.fg_color = fg_color
+        self.bg_color = bg_color
+        self.border: Optional[GraphicBox] = None
 
     def load_graphics(self) -> None:
         """
-        Load the border image.
-
-        Image become class attribute, so is shared.
-        Eventually, implement some game-wide image caching.
+        Loads the border image.
         """
-        image = graphics.load_and_scale(self.border_filename)
-        type(self).border = GraphicBox(image)
+        if self.border_filename in self._graphics_cache:
+            self.border = GraphicBox(
+                self._graphics_cache[self.border_filename]
+            )
+        else:
+            image = graphics.load_and_scale(self.border_filename)
+            self.border = GraphicBox(image)
+            self._graphics_cache[self.border_filename] = image
 
-    @staticmethod
-    def calc_inner_rect(rect: pygame.rect.Rect) -> pygame.rect.Rect:
+    def calc_inner_rect(self, rect: pygame.rect.Rect) -> pygame.rect.Rect:
         """
-        Calculate inner rectangle.
-
-        Calculate the inner rect to draw fg_color that fills bar
-        The values here are calculated based on game scale and
-        the content of the border image file.
+        Calculates the inner rectangle of the bar.
 
         Parameters:
-            rect: Outside rectangle.
+            rect: The outer rectangle of the bar.
 
         Returns:
-            Inner rectangle.
-
+            The inner rectangle of the bar.
         """
+        INNER_TOP_PADDING = tools.scale(2)
+        INNER_BOTTOM_PADDING = tools.scale(2)
+        INNER_LEFT_PADDING = tools.scale(9)
+        INNER_RIGHT_PADDING = tools.scale(2)
+
         inner = rect.copy()
-        inner.top += tools.scale(2)
-        inner.height -= tools.scale(4)
-        inner.left += tools.scale(9)
-        inner.width -= tools.scale(11)
+        inner.top += INNER_TOP_PADDING
+        inner.height -= INNER_TOP_PADDING + INNER_BOTTOM_PADDING
+        inner.left += INNER_LEFT_PADDING
+        inner.width -= INNER_LEFT_PADDING + INNER_RIGHT_PADDING
         return inner
 
     def draw(
-        self,
-        surface: pygame.surface.Surface,
-        rect: pygame.rect.Rect,
+        self, surface: pygame.surface.Surface, rect: pygame.rect.Rect
     ) -> None:
         """
-        Draws the bar.
+        Draws the bar on a given surface at a specified location and size.
 
         Parameters:
-            surface: Surface where to draw the bar.
-            rect: Location and size of the bar.
-
+            surface: The surface to draw the bar on.
+            rect: The location and size of the bar.
         """
+        if self.border is None:
+            self.load_graphics()
+            if self.border is None:
+                raise ValueError("Failed to load border graphics")
+
         inner = self.calc_inner_rect(rect)
         if self.bg_color is not None:
             pygame.draw.rect(surface, self.bg_color, inner)
@@ -79,23 +96,52 @@ class Bar:
             pygame.draw.rect(surface, self.fg_color, inner)
         self.border.draw(surface, rect)
 
+    def set_color(
+        self,
+        fg_color: graphics.ColorLike,
+        bg_color: Optional[graphics.ColorLike] = None,
+    ) -> None:
+        """
+        Sets the foreground and background colors of the bar.
+
+        Parameters:
+            fg_color: The new foreground color of the bar.
+            bg_color: The new background color of the bar. If None, the
+                background color remains unchanged.
+        """
+        self.fg_color = fg_color
+        if bg_color is not None:
+            self.bg_color = bg_color
+
 
 class HpBar(Bar):
     """HP bar for UI elements."""
 
-    border_filename = prepare.GFX_HP_BAR
-    border = None  # type: ClassVar[GraphicBox]
-    fg_color = prepare.HP_COLOR_FG
-    bg_color = prepare.HP_COLOR_BG
+    def __init__(self, value: float = 1.0) -> None:
+        """
+        Initializes the HP bar with a given value.
+
+        Parameters:
+            value: The initial value of the HP bar.
+        """
+        super().__init__(
+            value, prepare.GFX_HP_BAR, prepare.HP_COLOR_FG, prepare.HP_COLOR_BG
+        )
 
 
 class ExpBar(Bar):
     """EXP bar for UI elements."""
 
-    border_filename = prepare.GFX_XP_BAR
-    border = None  # type: ClassVar[GraphicBox]
-    fg_color = prepare.XP_COLOR_FG
-    bg_color = prepare.XP_COLOR_BG
+    def __init__(self, value: float = 1.0) -> None:
+        """
+        Initializes the EXP bar with a given value.
+
+        Parameters:
+            value: The initial value of the EXP bar.
+        """
+        super().__init__(
+            value, prepare.GFX_XP_BAR, prepare.XP_COLOR_FG, prepare.XP_COLOR_BG
+        )
 
 
 T = TypeVar("T", covariant=True)
@@ -119,6 +165,7 @@ class MenuItem(Generic[T], Sprite):
         label: Optional[str],
         description: Optional[str],
         game_object: T,
+        enabled: bool = True,
     ):
         super().__init__()
         self.image = image
@@ -126,8 +173,8 @@ class MenuItem(Generic[T], Sprite):
         self.label = label
         self.description = description
         self.game_object = game_object
+        self.enabled = enabled
 
-        self.enabled = True
         self._in_focus = False
 
     def toggle_focus(self) -> None:
@@ -141,6 +188,9 @@ class MenuItem(Generic[T], Sprite):
     @in_focus.setter
     def in_focus(self, value: bool) -> None:
         self._in_focus = bool(value)
+
+    def __repr__(self) -> str:
+        return f"MenuItem({self.label}, {self.description}, image={self.image}, enabled={self.enabled})"
 
 
 class MenuCursor(Sprite):

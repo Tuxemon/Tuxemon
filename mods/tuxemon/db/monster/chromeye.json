@@ -27,22 +27,22 @@
         {
             "at_level": 18,
             "monster_slug": "angrito",
-            "variable": "season:winter"
+            "variables": ["season:winter"]
         },
         {
             "at_level": 18,
             "monster_slug": "happito",
-            "variable": "season:summer"
+            "variables": ["season:summer"]
         },
         {
             "at_level": 18,
             "monster_slug": "neutrito",
-            "variable": "season:spring"
+            "variables": ["season:spring"]
         },
         {
             "at_level": 18,
             "monster_slug": "sadito",
-            "variable": "season:autumn"
+            "variables": ["season:autumn"]
         }
     ],
     "history": [

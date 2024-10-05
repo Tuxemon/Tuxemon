@@ -113,39 +113,45 @@
   </object>
   <object id="35" name="Talk Strauss" type="event" x="96" y="80" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_omnichannel_strauss"/>
-    <property name="act1" value="translated_dialog spyder_omnichannel_strauss1"/>
-    <property name="act2" value="add_monster budaye,36,spyder_omnichannel_strauss,5,10"/>
-    <property name="act3" value="add_monster frondly,40,spyder_omnichannel_strauss,5,10"/>
-    <property name="act4" value="start_battle player,spyder_omnichannel_strauss"/>
-    <property name="act5" value="translated_dialog spyder_omnichannel_strauss2"/>
-    <property name="act6" value="set_variable omnichannelstrauss:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_omnichannel_strauss"/>
+    <property name="act3" value="translated_dialog spyder_omnichannel_strauss1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster budaye,36,spyder_omnichannel_strauss,5,10"/>
+    <property name="act6" value="add_monster frondly,40,spyder_omnichannel_strauss,5,10"/>
+    <property name="act7" value="start_battle player,spyder_omnichannel_strauss"/>
+    <property name="act8" value="translated_dialog spyder_omnichannel_strauss2"/>
+    <property name="act9" value="set_variable omnichannelstrauss:yes"/>
     <property name="cond1" value="not variable_set omnichannelstrauss:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="36" name="Talk Carnegie" type="event" x="160" y="192" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_omnichannel_carnegie"/>
-    <property name="act1" value="translated_dialog spyder_omnichannel_carnegie1"/>
-    <property name="act2" value="add_monster elofly,38,spyder_omnichannel_carnegie,5,10"/>
-    <property name="act3" value="add_monster elostorm,38,spyder_omnichannel_carnegie,5,10"/>
-    <property name="act4" value="start_battle player,spyder_omnichannel_carnegie"/>
-    <property name="act5" value="translated_dialog spyder_omnichannel_carnegie2"/>
-    <property name="act6" value="set_variable omnichannelcarnegie:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_omnichannel_carnegie"/>
+    <property name="act3" value="translated_dialog spyder_omnichannel_carnegie1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster elofly,38,spyder_omnichannel_carnegie,5,10"/>
+    <property name="act6" value="add_monster elostorm,38,spyder_omnichannel_carnegie,5,10"/>
+    <property name="act7" value="start_battle player,spyder_omnichannel_carnegie"/>
+    <property name="act8" value="translated_dialog spyder_omnichannel_carnegie2"/>
+    <property name="act9" value="set_variable omnichannelcarnegie:yes"/>
     <property name="cond1" value="not variable_set omnichannelcarnegie:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="37" name="Talk Byrne" type="event" x="144" y="320" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_omnichannel_byrne"/>
-    <property name="act1" value="translated_dialog spyder_omnichannel_byrne1"/>
-    <property name="act2" value="add_monster rockat,36,spyder_omnichannel_byrne,5,10"/>
-    <property name="act3" value="add_monster jemuar,40,spyder_omnichannel_byrne,5,10"/>
-    <property name="act4" value="start_battle player,spyder_omnichannel_byrne"/>
-    <property name="act5" value="translated_dialog spyder_omnichannel_byrne2"/>
-    <property name="act6" value="set_variable omnichannelbyrne:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_omnichannel_byrne"/>
+    <property name="act3" value="translated_dialog spyder_omnichannel_byrne1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster rockat,36,spyder_omnichannel_byrne,5,10"/>
+    <property name="act6" value="add_monster jemuar,40,spyder_omnichannel_byrne,5,10"/>
+    <property name="act7" value="start_battle player,spyder_omnichannel_byrne"/>
+    <property name="act8" value="translated_dialog spyder_omnichannel_byrne2"/>
+    <property name="act9" value="set_variable omnichannelbyrne:yes"/>
     <property name="cond1" value="not variable_set omnichannelbyrne:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -164,7 +170,7 @@
   </object>
   <object id="50" name="Threats" type="event" x="0" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter omnichannel,0.6"/>
+    <property name="act1" value="random_encounter spyder_omnichannel,0.6"/>
     <property name="cond1" value="is variable_set omnichannel1wall:yes"/>
     <property name="cond2" value="is check_char_parameter player,moving,1"/>
    </properties>

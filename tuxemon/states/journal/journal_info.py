@@ -6,21 +6,29 @@ from typing import Any, Optional
 
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.locals import POSITION_CENTER
 
-from tuxemon import formula, prepare, tools
+from tuxemon import formula, prepare
 from tuxemon.db import MonsterModel, SeenStatus, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.menu.theme import get_theme
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
+
+lookup_cache: dict[str, MonsterModel] = {}
 
 
 def fix_measure(measure: int, percentage: float) -> int:
     """it returns the correct measure based on percentage"""
     return round(measure * percentage)
+
+
+def _lookup_monsters() -> None:
+    monsters = list(db.database["monster"])
+    for mon in monsters:
+        results = db.lookup(mon, table="monster")
+        if results.txmn_id > 0:
+            lookup_cache[mon] = results
 
 
 class JournalInfoState(PygameMenuState):
@@ -35,15 +43,14 @@ class JournalInfoState(PygameMenuState):
         height = menu._height
         menu._width = fix_measure(menu._width, 0.97)
 
-        # history
-        evo = ""
-        if monster.history:
-            if len(monster.history) == 1:
-                evo = T.translate("yes_evolution")
-            else:
-                evo = T.translate("yes_evolutions")
-        else:
-            evo = T.translate("no_evolution")
+        # evolutions
+        evo = T.translate("no_evolution")
+        if monster.evolutions:
+            evo = T.translate(
+                "yes_evolution"
+                if len(monster.evolutions) == 1
+                else "yes_evolutions"
+            )
         # types
         types = " ".join(map(lambda s: T.translate(s.name), monster.types))
         # weight and height
@@ -100,16 +107,11 @@ class JournalInfoState(PygameMenuState):
             float=True,
         )
         lab4.translate(fix_measure(width, 0.50), fix_measure(height, 0.30))
-        type_image_1 = pygame_menu.BaseImage(
-            tools.transform_resource_filename(
-                f"gfx/ui/icons/element/{monster.types[0].name}_type.png"
-            ),
-        )
+        path1 = f"gfx/ui/icons/element/{monster.types[0].name}_type.png"
+        type_image_1 = self._create_image(path1)
         if len(monster.types) > 1:
-            path = f"gfx/ui/icons/element/{monster.types[1].name}_type.png"
-            type_image_2 = pygame_menu.BaseImage(
-                tools.transform_resource_filename(path),
-            )
+            path2 = f"gfx/ui/icons/element/{monster.types[1].name}_type.png"
+            type_image_2 = self._create_image(path2)
             menu.add.image(type_image_1, float=True).translate(
                 fix_measure(width, 0.17), fix_measure(height, 0.29)
             )
@@ -175,11 +177,11 @@ class JournalInfoState(PygameMenuState):
             float=True,
         )
         lab9.translate(fix_measure(width, 0.01), fix_measure(height, 0.56))
-        # history
+        # evolution
         evo = evo if self.caught else "-----"
         lab10: Any = menu.add.label(
             title=evo,
-            label_id="history",
+            label_id="evolution",
             font_size=self.font_size_small,
             wordwrap=True,
             align=locals.ALIGN_LEFT,
@@ -187,7 +189,7 @@ class JournalInfoState(PygameMenuState):
         )
         lab10.translate(fix_measure(width, 0.01), fix_measure(height, 0.76))
 
-        # history monsters
+        # evolution monsters
         if self.caught:
             f = menu.add.frame_h(
                 float=True,
@@ -197,9 +199,7 @@ class JournalInfoState(PygameMenuState):
             )
             f.translate(fix_measure(width, 0.02), fix_measure(height, 0.80))
             f._relax = True
-            elements = []
-            for ele in monster.history:
-                elements.append(ele.mon_slug)
+            elements = [ele.monster_slug for ele in monster.evolutions]
             labels = [
                 menu.add.label(
                     title=f"{T.translate(ele).upper()}",
@@ -213,9 +213,7 @@ class JournalInfoState(PygameMenuState):
         # image
         _path = f"gfx/sprites/battle/{monster.slug}-front.png"
         _path = _path if self.caught else prepare.MISSING_IMAGE
-        new_image = pygame_menu.BaseImage(
-            tools.transform_resource_filename(_path),
-        )
+        new_image = self._create_image(_path)
         new_image.scale(prepare.SCALE, prepare.SCALE)
         image_widget = menu.add.image(image_path=new_image.copy())
         image_widget.set_float(origin_position=True)
@@ -224,21 +222,17 @@ class JournalInfoState(PygameMenuState):
         )
 
     def __init__(self, **kwargs: Any) -> None:
+        if not lookup_cache:
+            _lookup_monsters()
         monster: Optional[MonsterModel] = None
         for element in kwargs.values():
             monster = element["monster"]
         if monster is None:
             raise ValueError("No monster")
         width, height = prepare.SCREEN_SIZE
-        background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(
-                prepare.BG_JOURNAL_INFO
-            ),
-            drawing_position=POSITION_CENTER,
-        )
-        theme = get_theme()
+
+        theme = self._setup_theme(prepare.BG_JOURNAL_INFO)
         theme.scrollarea_position = locals.POSITION_EAST
-        theme.background_color = background
         theme.widget_alignment = locals.ALIGN_CENTER
 
         super().__init__(height=height, width=width)
@@ -247,46 +241,34 @@ class JournalInfoState(PygameMenuState):
         self.caught = True if checks == SeenStatus.caught else False
         self._monster = monster
         self.add_menu_items(self.menu, monster)
-        self.repristinate()
-
-    def repristinate(self) -> None:
-        """Repristinate original theme (color, alignment, etc.)"""
-        theme = get_theme()
-        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = self.background_color
-        theme.widget_alignment = locals.ALIGN_LEFT
+        self.reset_theme()
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         client = self.client
         monsters = list(local_session.player.tuxepedia)
-        box: list[MonsterModel] = []
-        for mov in monsters:
-            results = db.lookup(mov, table="monster")
-            box.append(results)
-        box = sorted(box, key=lambda x: x.txmn_id)
-        param: dict[str, Any] = {}
-        if event.button == buttons.RIGHT and event.pressed and box:
-            slot = box.index(self._monster)
-            if slot < (len(box) - 1):
-                slot += 1
-                param["monster"] = box[slot]
-                client.replace_state("JournalInfoState", kwargs=param)
-            else:
-                param["monster"] = box[0]
-                client.replace_state("JournalInfoState", kwargs=param)
-        elif event.button == buttons.LEFT and event.pressed and box:
-            slot = box.index(self._monster)
-            if slot > 0:
-                slot -= 1
-                param["monster"] = box[slot]
-                client.replace_state("JournalInfoState", kwargs=param)
-            else:
-                param["monster"] = box[len(box) - 1]
-                client.replace_state("JournalInfoState", kwargs=param)
+        models = list(lookup_cache.values())
+        model_dict = {model.slug: model for model in models}
+        monster_models = sorted(
+            [model_dict[mov] for mov in monsters if mov in model_dict],
+            key=lambda x: x.txmn_id,
+        )
+
+        if event.button in (buttons.RIGHT, buttons.LEFT) and event.pressed:
+            current_monster_index = monster_models.index(self._monster)
+            new_index = (
+                (current_monster_index + 1) % len(monster_models)
+                if event.button == buttons.RIGHT
+                else (current_monster_index - 1) % len(monster_models)
+            )
+            client.replace_state(
+                "JournalInfoState",
+                kwargs={"monster": monster_models[new_index]},
+            )
+
         elif (
-            event.button == buttons.BACK
-            or event.button == buttons.B
-            or event.button == buttons.A
-        ) and event.pressed:
+            event.button in (buttons.BACK, buttons.B, buttons.A)
+            and event.pressed
+        ):
             client.pop_state()
+
         return None

@@ -1,10 +1,7 @@
 {
 	"animation": null,
 	"accuracy": 0.0,
-	"conditions": [
-	  	"not status grabbed",
-	  	"not status stuck"
-	],
+	"conditions": [],
 	"effects": [
 		"forfeit"
 	],
@@ -17,13 +14,15 @@
 	"slug": "menu_forfeit",
 	"sort": "meta",
 	"target": {
-		"enemy monster": 0,
-		"enemy team": 0,
-		"enemy trainer": 0,
-		"own monster": 0,
-		"own team": 0,
-		"own trainer": 0
+		"enemy_monster": false,
+		"enemy_team": false,
+		"enemy_trainer": false,
+		"own_monster": false,
+		"own_team": false,
+		"own_trainer": false
 	},
+	"category": "notype",
+	"tags": ["NoType"],
 	"tech_id": 0,
 	"use_failure": "generic_failure",
 	"use_success": null,

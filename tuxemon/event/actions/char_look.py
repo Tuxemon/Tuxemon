@@ -10,10 +10,13 @@ from typing import Optional, final
 from tuxemon.db import Direction
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.npc import NPC
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
+
+MIN_FREQUENCY = 0.5
+MAX_FREQUENCY = 5
+DEFAULT_FREQUENCY = 1
 
 
 @final
@@ -48,49 +51,52 @@ class CharLookAction(EventAction):
     def start(self) -> None:
         character = get_npc(self.session, self.character)
         world = self.session.client.get_state_by_name(WorldState)
+
+        if not character:
+            logger.error(f"{self.character} not found")
+            return
+
         self.limit_direction: list[Direction] = []
         if self.directions:
-            _limit = self.directions.split(":")
-            for limit in _limit:
-                self.limit_direction.append(Direction(limit))
+            self.limit_direction = [
+                Direction(limit) for limit in self.directions.split(":")
+            ]
 
-        def _look(character: NPC) -> None:
-            directions = list(Direction)
+        def _look() -> None:
             # Suspend looking around if a dialog window is open
-            for state in self.session.client.active_states:
-                if state.name in (
-                    "WorldMenuState",
-                    "DialogState",
-                    "ChoiceState",
-                ):
-                    return
+            if any(
+                state_name in ("WorldMenuState", "DialogState", "ChoiceState")
+                for state_name in self.session.client.active_state_names
+            ):
+                return
 
             # Choose a random direction
-            if self.limit_direction:
-                directions = self.limit_direction
+            directions = self.limit_direction or list(Direction)
             direction = random.choice(directions)
             if direction != character.facing:
                 character.facing = direction
 
         def schedule() -> None:
-            # The timer is randomized between 0.5 and 1.0 of the frequency
-            # parameter
-            # Frequency can be set to 0 to indicate that we want to stop
-            # looking around
+            """
+            Schedules the next looking action.
+
+            Notes:
+                The timer is randomized between 0.5 and 1.0 of the frequency parameter.
+                Frequency can be set to 0 to indicate that we want to stop looking.
+            """
             world.remove_animations_of(schedule)
-            if character is None:
-                logger.error(f"{self.character} not found")
-                return
-            elif self.frequency == 0:
+            if self.frequency == 0:
                 return
             else:
-                frequency = 1.0
-                if self.frequency:
-                    frequency = min(5, max(0.5, self.frequency))
-                time = (0.5 + 0.5 * random.random()) * frequency
+                frequency = min(
+                    MAX_FREQUENCY,
+                    max(MIN_FREQUENCY, self.frequency or DEFAULT_FREQUENCY),
+                )
+                time = (
+                    MIN_FREQUENCY + MIN_FREQUENCY * random.random()
+                ) * frequency
                 world.task(schedule, time)
-
-            _look(character)
+                _look()
 
         # Schedule the first look
         schedule()

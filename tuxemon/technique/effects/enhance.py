@@ -40,8 +40,6 @@ class EnhanceEffect(TechEffect):
         value = combat._random_tech_hit.get(user, 0.0) if combat else 0.0
         hit = tech.accuracy >= value
         tech.hit = hit
-        if hit:
-            tech.advance_counter_success()
         return {
             "success": hit,
             "damage": 0,

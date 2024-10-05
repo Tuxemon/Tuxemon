@@ -3,25 +3,28 @@
   "accuracy": 1,
   "animation": "green_circle",
   "effects": [
+    "give festering,target",
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
   "potency": 0.9,
-  "power": 1.5,
+  "power": 2.2,
   "range": "melee",
-  "recharge": 2,
+  "recharge": 3,
   "sfx": "sfx_blaster",
   "slug": "tip",
   "sort": "damage",
   "target": {
-    "enemy monster": 2,
-    "enemy team": 0,
-    "enemy trainer": 0,
-    "own monster": 0,
-    "own team": 0,
-    "own trainer": 0
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
   },
+  "category": "simple",
+  "tags": ["Sharp"],
   "types": [
     "earth"
   ],

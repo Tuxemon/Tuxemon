@@ -437,7 +437,7 @@ msgstr ""
 msgid "anoleaf_description"
 msgstr "Considera as plantas que crescem perto de si como irmãos e irmãs."
 
-msgid "axylightl_description"
+msgid "axolightl_description"
 msgstr ""
 "Ilumina as águas profundas com sua cauda, tornando-as um ambiente de abrigo "
 "seguro aos peixes."
@@ -445,8 +445,8 @@ msgstr ""
 msgid "anoleaf"
 msgstr "Anoleaf"
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
 msgid "bamboon_description"
 msgstr "Luta com seu cajado de bambu que é usado, também, para se equilibrar."
@@ -1063,9 +1063,6 @@ msgstr "{name} quer batalhar!"
 msgid "combat_capturing_success"
 msgstr "Você capturou {name}!"
 
-msgid "combat_recharging"
-msgstr "{name} precisa de uma folga antes de usar {move} novamente..."
-
 msgid "combat_replacement"
 msgstr "Escolha um substituto!"
 
@@ -1249,9 +1246,6 @@ msgstr ""
 
 msgid "nudiflot_male"
 msgstr "Nudiflot"
-
-msgid "birb_robo"
-msgstr "Birb Robo"
 
 msgid "horned_raptor"
 msgstr "Raptor Chifrudo"
@@ -2413,9 +2407,6 @@ msgstr "Mk01 Proto"
 msgid "dark_robo_description"
 msgstr "Um robô hostil."
 
-msgid "birb_robo_description"
-msgstr "Um robô hostil."
-
 msgid "mk01_beta_description"
 msgstr "Um robô assassino fundido com um dragão. Não nos pergunte como."
 
@@ -3304,11 +3295,6 @@ msgstr "{target} está adormecido."
 
 msgid "combat_state_enraged_get"
 msgstr "{target} está enfurecido."
-
-msgid "combat_player_forfeit_status"
-msgstr ""
-"Não pode perder a partida.\n"
-"{monster} é {status}!"
 
 msgid "cannot_use_tech_monster"
 msgstr "{name} não pode ser usado."

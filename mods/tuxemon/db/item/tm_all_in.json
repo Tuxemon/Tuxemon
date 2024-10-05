@@ -1,0 +1,19 @@
+{
+  "conditions": [
+    "not has_tech all_in"
+  ],
+  "effects": [
+    "learn_tm all_in"
+  ],
+  "slug": "tm_all_in",
+  "sort": "utility",
+  "sprite": "gfx/items/tm_generic.png",
+  "category": "technique",
+  "usable_in": [
+    "WorldState"
+  ],
+  "behaviors": {},
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
+}

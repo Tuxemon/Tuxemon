@@ -57,6 +57,10 @@
         {
             "mon_slug": "fluoresfin",
             "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "lightmare",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["piscine", "sea"],

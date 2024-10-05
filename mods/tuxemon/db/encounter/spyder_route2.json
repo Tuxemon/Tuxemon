@@ -1,0 +1,125 @@
+{
+  "slug": "spyder_route2",
+  "monsters": [
+    {
+      "monster": "cardiling",
+      "encounter_rate": 2.5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        3,
+        6
+      ]
+    },
+    {
+      "monster": "aardorn",
+      "encounter_rate": 2.5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        3,
+        6
+      ]
+    },
+    {
+      "monster": "eyenemy",
+      "encounter_rate": 2.5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        3,
+        6
+      ]
+    },
+    {
+      "monster": "axolightl",
+      "encounter_rate": 1,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        4,
+        7
+      ]
+    },
+    {
+      "monster": "cataspike",
+      "encounter_rate": 2.5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        3,
+        6
+      ]
+    },
+    {
+      "monster": "cardiling",
+      "encounter_rate": 2.5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        3,
+        6
+      ]
+    },
+    {
+      "monster": "aardorn",
+      "encounter_rate": 2.5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        4,
+        8
+      ]
+    },
+    {
+      "monster": "eyenemy",
+      "encounter_rate": 2.5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        4,
+        8
+      ]
+    },
+    {
+      "monster": "axolightl",
+      "encounter_rate": 1,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        5,
+        8
+      ]
+    },
+    {
+      "monster": "cataspike",
+      "encounter_rate": 2.5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        4,
+        8
+      ]
+    }
+  ]
+}

@@ -1,27 +1,30 @@
 {
   "tech_id": 142,
-  "accuracy": 0.6,
+  "accuracy": 0.8,
   "animation": "x_attack",
   "effects": [
+    "give harpooned,target",
     "damage"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.1,
-  "power": 1.1,
+  "potency": 1.0,
+  "power": 2.1,
   "range": "touch",
   "recharge": 3,
   "sfx": "sfx_blaster",
   "slug": "pit",
   "sort": "damage",
   "target": {
-    "enemy monster": 2,
-    "enemy team": 0,
-    "enemy trainer": 0,
-    "own monster": 0,
-    "own team": 0,
-    "own trainer": 0
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
   },
+  "category": "simple",
+  "tags": ["Ground", "Summoner"],
   "types": [
     "earth"
   ],

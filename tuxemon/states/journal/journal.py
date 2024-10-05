@@ -8,13 +8,11 @@ from typing import Any, Optional
 
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.locals import POSITION_CENTER
 
-from tuxemon import prepare, tools
+from tuxemon import prepare
 from tuxemon.db import MonsterModel, SeenStatus, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.menu.theme import get_theme
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
@@ -22,11 +20,20 @@ from tuxemon.session import local_session
 MAX_PAGE = 20
 
 MenuGameObj = Callable[[], object]
+lookup_cache: dict[str, MonsterModel] = {}
 
 
 def fix_measure(measure: int, percentage: float) -> int:
     """it returns the correct measure based on percentage"""
     return round(measure * percentage)
+
+
+def _lookup_monsters() -> None:
+    monsters = list(db.database["monster"])
+    for mon in monsters:
+        results = db.lookup(mon, table="monster")
+        if results.txmn_id > 0:
+            lookup_cache[mon] = results
 
 
 class JournalState(PygameMenuState):
@@ -86,6 +93,8 @@ class JournalState(PygameMenuState):
                 )
 
     def __init__(self, **kwargs: Any) -> None:
+        if not lookup_cache:
+            _lookup_monsters()
         monsters: list[MonsterModel] = []
         page: int = 0
         for ele in kwargs.values():
@@ -94,13 +103,8 @@ class JournalState(PygameMenuState):
 
         width, height = prepare.SCREEN_SIZE
 
-        background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(prepare.BG_JOURNAL),
-            drawing_position=POSITION_CENTER,
-        )
-        theme = get_theme()
+        theme = self._setup_theme(prepare.BG_JOURNAL)
         theme.scrollarea_position = locals.POSITION_EAST
-        theme.background_color = background
         theme.widget_alignment = locals.ALIGN_LEFT
 
         columns = 2
@@ -135,48 +139,27 @@ class JournalState(PygameMenuState):
         self._page = page
         self._monster_list = monster_list
         self.add_menu_items(self.menu, monster_list)
-        self.repristinate()
-
-    def repristinate(self) -> None:
-        """Repristinate original theme (color, alignment, etc.)"""
-        theme = get_theme()
-        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = self.background_color
-        theme.widget_alignment = locals.ALIGN_LEFT
+        self.reset_theme()
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         client = self.client
+        box = list(lookup_cache.values())
+        max_page = (
+            len(box) + MAX_PAGE - 1
+        ) // MAX_PAGE  # calculate max_page correctly
+        param: dict[str, Any] = {"monsters": box}
 
-        monsters = list(db.database["monster"])
-        box: list[MonsterModel] = []
-        for mov in monsters:
-            results = db.lookup(mov, table="monster")
-            if results.txmn_id > 0:
-                box.append(results)
+        if event.button in (buttons.RIGHT, buttons.LEFT) and event.pressed:
+            self._page = (
+                self._page + (1 if event.button == buttons.RIGHT else -1)
+            ) % max_page
+            param["page"] = self._page
+            client.replace_state("JournalState", kwargs=param)
 
-        max_page = round(len(box) / MAX_PAGE)
-        param: dict[str, Any] = {}
-        param["monsters"] = box
-        if event.button == buttons.RIGHT and event.pressed:
-            if self._page < (max_page - 1):
-                self._page += 1
-                param["page"] = self._page
-                client.replace_state("JournalState", kwargs=param)
-            else:
-                param["page"] = 0
-                client.replace_state("JournalState", kwargs=param)
-        elif event.button == buttons.LEFT and event.pressed:
-            if self._page > 0:
-                self._page -= 1
-                param["page"] = self._page
-                client.replace_state("JournalState", kwargs=param)
-            else:
-                param["page"] = max_page - 1
-                client.replace_state("JournalState", kwargs=param)
-        elif (
-            event.button == buttons.BACK or event.button == buttons.B
-        ) and event.pressed:
+        elif event.button in (buttons.BACK, buttons.B) and event.pressed:
             client.pop_state()
+
         else:
             return super().process_event(event)
+
         return None

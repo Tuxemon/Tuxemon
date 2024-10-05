@@ -40,7 +40,7 @@ class TestMonsterActions(unittest.TestCase):
     _agnite = MonsterModel(
         slug="agnite",
         category="false_dragon",
-        moveset=[],
+        moveset=[{"level_learned": 1, "technique": "ram"}],
         evolutions=[],
         history=[],
         tags=["dragon", "coastal", "desert", "mountains"],
@@ -58,7 +58,7 @@ class TestMonsterActions(unittest.TestCase):
     _nut = MonsterModel(
         slug="nut",
         category="hardware",
-        moveset=[],
+        moveset=[{"level_learned": 1, "technique": "ram"}],
         evolutions=[],
         history=[],
         tags=["blob"],
@@ -79,7 +79,14 @@ class TestMonsterActions(unittest.TestCase):
         slug="faint",
         range="special",
         sort="meta",
-        target={},
+        target={
+            "enemy_monster": False,
+            "enemy_team": False,
+            "enemy_trainer": False,
+            "own_monster": False,
+            "own_team": False,
+            "own_trainer": False,
+        },
         cond_id=0,
     )
 

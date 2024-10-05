@@ -83,8 +83,6 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Beachgoer"](https://wiki.tuxemon.org/index.php?title=Beachgoer). Front sprites by tamashihoshi. Overland sprites by Catch Challenger. Face sprite by Superpowers Asset Packs.
 
-* ["Birb Robo"](https://wiki.tuxemon.org/index.php?title=Birb_Robo). Front sprite by FiveAsOne. Overland sprites by Catch Challenger.
-
 * ["Brute"](https://wiki.tuxemon.org/index.php?title=Brute). Overland sprites from the Superpowers Asset Packs.
 
 * ["Cat Girl"](https://wiki.tuxemon.org/index.php?title=Cat_Girl). Overland sprites by Pboop. Front sprites by Sanglorian and Tamashihoshi.
@@ -500,7 +498,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [Cavalcadeur](https://wiki.tuxemon.org/Cavalcadeur)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Axylightl"](http://forum.tuxemon.org/viewtopic.php?id=43) by
+* ["Axolightl"](http://forum.tuxemon.org/viewtopic.php?id=43) by
 [Cavalcadeur](https://wiki.tuxemon.org/Cavalcadeur) and
 [josepharaoh99](https://wiki.tuxemon.org/Josepharaoh99)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)

@@ -9,7 +9,7 @@ from typing import final
 
 from tuxemon import formula, prepare
 from tuxemon.combat import check_battle_legal
-from tuxemon.db import db
+from tuxemon.db import MonsterModel, NpcModel, db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
 from tuxemon.npc import NPC
@@ -17,6 +17,9 @@ from tuxemon.states.combat.combat import CombatState
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
+
+lookup_cache_mon: dict[str, MonsterModel] = {}
+lookup_cache_npc: dict[str, NpcModel] = {}
 
 
 @final
@@ -44,42 +47,32 @@ class RandomBattleAction(EventAction):
     max_level: int
 
     def start(self) -> None:
-        if self.nr_txmns > prepare.PARTY_LIMIT:
+        if not lookup_cache_npc or not lookup_cache_mon:
+            _lookup()
+
+        # Validate party size and max level
+        if not (1 <= self.nr_txmns <= prepare.PARTY_LIMIT):
             logger.error(
-                f"{self.nr_txmns} must be between 1 and {prepare.PARTY_LIMIT}"
+                f"Party size {self.nr_txmns} must be between 1 and {prepare.PARTY_LIMIT}"
             )
             return
-        if self.max_level > prepare.MAX_LEVEL:
+        if not (1 <= self.max_level <= prepare.MAX_LEVEL):
             logger.error(
-                f"{self.max_level} must be between 1 and {prepare.MAX_LEVEL}"
+                f"Max level {self.max_level} must be between 1 and {prepare.MAX_LEVEL}"
             )
             return
 
-        # random npc
-        npcs = list(db.database["npc"])
-        filters = []
-        for mov in npcs:
-            results = db.lookup(mov, table="npc")
-            if not results.monsters:
-                filters.append(results.slug)
-
-        opponent = random.choice(filters)
+        npc_filters = list(lookup_cache_npc.values())
+        opponent = random.choice(npc_filters)
         world = self.session.client.get_state_by_name(WorldState)
-        npc = NPC(opponent, world=world)
+        npc = NPC(opponent.slug, world=world)
 
-        # random monster
-        mons = list(db.database["monster"])
-        filtered = []
-        for mon in mons:
-            elements = db.lookup(mon, table="monster")
-            if elements.txmn_id > 0 and elements.randomly:
-                filtered.append(elements.slug)
-
-        output = random.sample(filtered, self.nr_txmns)
-        for monster in output:
+        monster_filters = list(lookup_cache_mon.values())
+        monsters = random.sample(monster_filters, self.nr_txmns)
+        for monster in monsters:
             level = random.randint(self.min_level, self.max_level)
             current_monster = Monster()
-            current_monster.load_from_db(monster)
+            current_monster.load_from_db(monster.slug)
             current_monster.set_level(level)
             current_monster.set_moves(level)
             current_monster.set_capture(formula.today_ordinal())
@@ -89,16 +82,13 @@ class RandomBattleAction(EventAction):
             npc.add_monster(current_monster, len(npc.monsters))
 
         player = self.session.player
-
-        # Lookup the environment
         env_slug = player.game_variables.get("environment", "grass")
         env = db.lookup(env_slug, table="environment")
 
-        if not check_battle_legal(player) or not check_battle_legal(npc):
-            logger.warning("battle is not legal, won't start")
+        if not (check_battle_legal(player) and check_battle_legal(npc)):
+            logger.warning("Battle is not legal, won't start")
             return
 
-        # Add our players and setup combat
         logger.info(f"Starting battle with '{npc.name}'!")
         self.session.client.push_state(
             CombatState(
@@ -108,15 +98,25 @@ class RandomBattleAction(EventAction):
             )
         )
 
-        # Start some music!
-        filename = env.battle_music
-        self.session.client.event_engine.execute_action(
-            "play_music",
-            [filename],
-        )
+        self.session.client.current_music.play(env.battle_music)
 
     def update(self) -> None:
         try:
             self.session.client.get_state_by_name(CombatState)
         except ValueError:
             self.stop()
+
+
+def _lookup() -> None:
+    monsters = list(db.database["monster"])
+    npcs = list(db.database["npc"])
+
+    for mon in monsters:
+        _mon = db.lookup(mon, table="monster")
+        if _mon.txmn_id > 0 and _mon.randomly:
+            lookup_cache_mon[mon] = _mon
+
+    for npc in npcs:
+        _npc = db.lookup(npc, table="npc")
+        if not _npc.monsters:
+            lookup_cache_npc[npc] = _npc

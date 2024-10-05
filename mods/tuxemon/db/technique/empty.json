@@ -12,14 +12,16 @@
 	"slug": "empty",
 	"sort": "meta",
 	"target": {
-		"enemy monster": 0,
-		"enemy team": 0,
-		"enemy trainer": 0,
-		"own monster": 2,
-		"own team": 0,
-		"own trainer": 0
+		"enemy_monster": false,
+		"enemy_team": false,
+		"enemy_trainer": false,
+		"own_monster": true,
+		"own_team": false,
+		"own_trainer": false
 	},
 	"tech_id": 0,
+	"category": "notype",
+	"tags": ["NoType"],
 	"types": [],
 	"use_failure": "combat_none",
 	"use_success": null,

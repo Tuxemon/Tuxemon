@@ -1,0 +1,19 @@
+{
+  "conditions": [
+    "not has_tech scope"
+  ],
+  "effects": [
+    "learn_tm scope"
+  ],
+  "slug": "tm_scope",
+  "sort": "utility",
+  "sprite": "gfx/items/tm_generic.png",
+  "category": "technique",
+  "usable_in": [
+    "WorldState"
+  ],
+  "behaviors": {},
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
+}

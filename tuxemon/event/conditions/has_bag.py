@@ -33,15 +33,14 @@ class HasBagCondition(EventCondition):
     name = "has_bag"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        _character, check, _number = condition.parameters[:3]
-        number = int(_number)
-        character = get_npc(session, _character)
+        character_name, check, number = condition.parameters[:3]
+        character = get_npc(session, character_name)
         if character is None:
-            logger.error(f"{_character} not found")
+            logger.error(f"Character '{character_name}' not found")
             return False
-        sum_total = []
-        for itm in character.items:
-            if itm.visible:
-                sum_total.append(itm.quantity)
-        bag_size = sum(sum_total)
-        return compare(check, bag_size, number)
+
+        visible_items = [
+            item for item in character.items if item.behaviors.visible
+        ]
+        bag_size = sum(item.quantity for item in visible_items)
+        return compare(check, bag_size, int(number))

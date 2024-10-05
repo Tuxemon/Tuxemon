@@ -10,8 +10,10 @@ from typing import Any, Generic, Literal, Optional, TypeVar, Union
 
 import pygame
 import pygame_menu
+from pygame_menu import baseimage, locals, themes
+from pygame_menu.widgets.core.widget import Widget
 
-from tuxemon import audio, graphics, prepare, state, tools
+from tuxemon import graphics, prepare, state, tools
 from tuxemon.animation import Animation
 from tuxemon.graphics import ColorLike
 from tuxemon.menu.events import playerinput_to_event
@@ -47,15 +49,21 @@ T = TypeVar("T", covariant=True)
 
 
 class PygameMenuState(state.State):
+    """
+    A Pygame menu state class.
+    """
+
     transparent = True
-    # colours
+
+    # Colors
     background_color = prepare.BACKGROUND_COLOR
     font_color = prepare.FONT_COLOR
     font_shadow_color = prepare.FONT_SHADOW_COLOR
     scrollbar_color = prepare.SCROLLBAR_COLOR
     scrollbar_slider_color = prepare.SCROLLBAR_SLIDER_COLOR
     transparent_color = prepare.TRANSPARENT_COLOR
-    # font size
+
+    # Font sizes
     font_size_smaller = tools.scale(prepare.FONT_SIZE_SMALLER)
     font_size_small = tools.scale(prepare.FONT_SIZE_SMALL)
     font_size = tools.scale(prepare.FONT_SIZE)
@@ -70,17 +78,28 @@ class PygameMenuState(state.State):
         **kwargs: Any,
     ) -> None:
         super().__init__()
-
         if theme is None:
             theme = get_theme()
 
+        self._initialize_attributes(theme)
+        self._create_menu(width, height, theme, **kwargs)
+
+    def _initialize_attributes(self, theme: pygame_menu.Theme) -> None:
+        """
+        Initializes the attributes of the menu state.
+
+        Parameters:
+            theme: The theme of the menu.
+        """
         self.open = False
         self.escape_key_exits = True
+        self.selected_widget: Optional[Widget] = None
 
-        # fonts
+        # Fonts
         theme.widget_font_size = self.font_size
         theme.title_font_size = self.font_size_big
-        # colors
+
+        # Colors
         theme.widget_font_color = self.font_color
         theme.selection_color = self.font_color
         theme.scrollbar_color = self.scrollbar_color
@@ -89,6 +108,17 @@ class PygameMenuState(state.State):
         theme.title_background_color = self.transparent_color
         theme.widget_font_shadow_color = self.font_shadow_color
 
+    def _create_menu(
+        self, width: int, height: int, theme: pygame_menu.Theme, **kwargs: Any
+    ) -> None:
+        """
+        Creates the Pygame menu.
+
+        Parameters:
+            width: The width of the menu.
+            height: The height of the menu.
+            theme: The theme of the menu.
+        """
         self.menu = pygame_menu.Menu(
             "",
             width,
@@ -105,29 +135,93 @@ class PygameMenuState(state.State):
         # work for controllers.
         self.menu._keyboard_ignore_nonphysical = False
 
+    def _setup_theme(
+        self, background: str, position: str = locals.POSITION_CENTER
+    ) -> themes.Theme:
+        """
+        Sets up a Pygame menu theme with a custom background image.
+
+        Parameters:
+            background: The path to the background image file.
+            position: The position of the background image.
+
+        Returns:
+            pygame_menu.Theme: The configured theme object.
+        """
+        base_image = self._create_image(background, position)
+        theme = get_theme()
+        theme.background_color = base_image
+        return theme
+
+    def _create_image(
+        self, path: str, position: str = locals.POSITION_CENTER
+    ) -> baseimage.BaseImage:
+        """
+        Creates a Pygame menu image.
+
+        Parameters:
+            path: The path to the background image file.
+            position: The position of the background image.
+
+        Returns:
+            pygame_menu.BaseImage: The created background image object.
+        """
+        return pygame_menu.BaseImage(
+            image_path=tools.transform_resource_filename(path),
+            drawing_position=position,
+        )
+
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+        """
+        Processes a player input event.
+
+        Parameters:
+            event: The player input event.
+
+        Returns:
+            Optional[PlayerInput]: The processed event or None if it's not handled.
+        """
         if (
             event.button in {buttons.B, buttons.BACK, intentions.MENU_CANCEL}
             and not self.escape_key_exits
         ):
             return None
 
-        pygame_event = playerinput_to_event(event)
-        if self.open is True and event.pressed and pygame_event is not None:
-            self.menu.update([pygame_event])
+        try:
+            pygame_event = playerinput_to_event(event)
+            if (
+                self.open is True
+                and event.pressed
+                and pygame_event is not None
+            ):
+                self.menu.update([pygame_event])
+                # Get the currently selected widget
+                self.selected_widget = self.menu.get_selected_widget()
+        except Exception as e:
+            # Handle the exception
+            pass
 
         return event if pygame_event is None else None
 
-    def draw(
-        self,
-        surface: pygame.surface.Surface,
-    ) -> None:
+    def draw(self, surface: pygame.surface.Surface) -> None:
+        """
+        Draws the menu on the given surface.
+
+        Parameters:
+            surface: The surface to draw on.
+        """
         self.menu.draw(surface)
 
     def _set_open(self) -> None:
+        """
+        Sets the menu as open.
+        """
         self.open = True
 
     def resume(self) -> None:
+        """
+        Resumes the menu.
+        """
         animation = self.animate_open()
         if animation:
             animation.callback = self._set_open
@@ -135,7 +229,11 @@ class PygameMenuState(state.State):
             self.open = True
 
     def _on_close(self) -> None:
+        """
+        Called when the menu is closed.
+        """
         self.open = False
+        self.reset_theme()
         self.menu.enable()
         animation = self.animate_close()
         if animation:
@@ -143,38 +241,29 @@ class PygameMenuState(state.State):
         else:
             self.client.pop_state()
 
+    def reset_theme(self) -> None:
+        """Reset to original theme (color, alignment, etc.)"""
+        theme = get_theme()
+        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
+        theme.background_color = self.background_color
+        theme.widget_alignment = locals.ALIGN_LEFT
+        theme.title = False
+
     def animate_open(self) -> Optional[Animation]:
         """
-        Called when menu is going to open.
-
-        Menu will not receive input during the animation.
-        Menu will only play this animation once.
-
-        Must return either an Animation or Task to attach callback.
-        Only modify state of the menu Rect.
-        Do not change important state attributes.
+        Animates the menu opening.
 
         Returns:
-            Open animation, if any.
-
+            Optional[Animation]: The animation or None if not implemented.
         """
         return None
 
     def animate_close(self) -> Optional[Animation]:
         """
-        Called when menu is going to open.
-
-        Menu will not receive input during the animation.
-        Menu will play animation only once.
-        Menu will be popped after animation finished.
-
-        Must return either an Animation or Task to attach callback.
-        Only modify state of the menu Rect.
-        Do not change important state attributes.
+        Animates the menu closing.
 
         Returns:
-            Close animation, if any.
-
+            Optional[Animation]: The animation or None if not implemented.
         """
         return None
 
@@ -205,8 +294,8 @@ class Menu(Generic[T], state.State):
     font_color: ColorLike = prepare.FONT_COLOR
     font_shadow_color: ColorLike = prepare.FONT_SHADOW_COLOR
     # Font color when the action is unavailable
-    unavailable_color: ColorLike = (220, 220, 220)
-    unavailable_color_shop: ColorLike = (51, 51, 51)
+    unavailable_color: ColorLike = prepare.UNAVAILABLE_COLOR
+    unavailable_color_shop: ColorLike = prepare.UNAVAILABLE_COLOR_SHOP
     # File to load for image background
     background_filename: Optional[str] = None
     menu_select_sound_filename = "sound_menu_select"
@@ -439,15 +528,15 @@ class Menu(Generic[T], state.State):
         item = MenuItem(image, label, None, callback)
         self.add(item)
 
-    def add(self, item: MenuItem[T]) -> None:
+    def add(self, menu_item: MenuItem[T]) -> None:
         """
         Add a menu item.
 
         Parameters:
-            item: Menu item to add.
+            menu_item: Menu item to add.
 
         """
-        self.menu_items.add(item)
+        self.menu_items.add(menu_item)
         self._needs_refresh = True
 
     def clear(self) -> None:
@@ -479,8 +568,8 @@ class Menu(Generic[T], state.State):
 
     def reload_sounds(self) -> None:
         """Reload sounds."""
-        self.menu_select_sound = audio.load_sound(
-            self.menu_select_sound_filename, None
+        self.menu_select_sound = self.client.sound_manager.load_sound(
+            self.menu_select_sound_filename
         )
 
     def shadow_text(
@@ -650,6 +739,9 @@ class Menu(Generic[T], state.State):
         """
         Handles player input events.
 
+        Parameters:
+            event: A player input event, such as a key press or mouse click.
+
         This function is only called when the player provides input such
         as pressing a key or clicking the mouse.
 
@@ -760,23 +852,25 @@ class Menu(Generic[T], state.State):
         selected.in_focus = True
         self.on_menu_selection_change()
 
-    def search_items(self, game_object: Any) -> Optional[MenuItem[T]]:
+    def search_items(self, target_object: Any) -> Optional[MenuItem[T]]:
         """
         Non-optimised search through menu_items for a particular thing.
 
-        TODO: address the confusing name "game object".
-
         Parameters:
-            game_object: Object to search in the menu.
+            target_object: Object to search in the menu.
 
         Returns:
-            Menu item containing the object, if any.
+            Menu item containing the object, if found. Otherwise, None.
 
         """
-        for menu_item in self.menu_items:
-            if game_object == menu_item.game_object:
-                return menu_item
-        return None
+        return next(
+            (
+                menu_item
+                for menu_item in self.menu_items
+                if menu_item.game_object == target_object
+            ),
+            None,
+        )
 
     def trigger_cursor_update(
         self,
@@ -939,17 +1033,24 @@ class Menu(Generic[T], state.State):
     def on_open(self) -> None:
         """Hook is called after opening animation has finished."""
 
-    def on_menu_selection(self, item: MenuItem[T]) -> None:
+    def on_menu_selection(self, selected_item: MenuItem[T]) -> None:
         """
         Hook for things to happen when player selects a menu option.
+
+        Parameters:
+            selected_item: The selected menu item.
 
         Override in subclass, if you want to.
 
         """
-        if item.enabled:
-            assert item.game_object is not None
-            assert callable(item.game_object)
-            item.game_object()
+        if selected_item.enabled:
+            if selected_item.game_object is None:
+                raise ValueError("Selected menu item has no game object")
+            if not callable(selected_item.game_object):
+                raise ValueError(
+                    "Selected menu item's game object is not callable"
+                )
+            selected_item.game_object()
 
     def on_menu_selection_change(self) -> None:
         """

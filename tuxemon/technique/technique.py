@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, Any, ClassVar, Optional
 
 from tuxemon import plugin
 from tuxemon.constants import paths
-from tuxemon.db import ElementType, Range, db, process_targets
+from tuxemon.db import ElementType, Range, db
 from tuxemon.element import Element
 from tuxemon.locale import T
 from tuxemon.technique.techcondition import TechCondition
@@ -24,7 +24,6 @@ logger = logging.getLogger(__name__)
 SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "slug",
     "counter",
-    "counter_success",
 )
 
 
@@ -42,7 +41,6 @@ class Technique:
 
         self.instance_id = uuid.uuid4()
         self.counter = 0
-        self.counter_success = 0
         self.tech_id = 0
         self.accuracy = 0.0
         self.animation: Optional[str] = None
@@ -61,12 +59,11 @@ class Technique:
         self.potency = 0.0
         self.power = 1.0
         self.range = Range.melee
-        self.healing_power = 0
+        self.healing_power = 0.0
         self.recharge_length = 0
         self.sfx = ""
         self.sort = ""
         self.slug = ""
-        self.target: Sequence[str] = []
         self.types: list[Element] = []
         self.usable_on = False
         self.use_success = ""
@@ -114,11 +111,8 @@ class Technique:
 
         self.icon = results.icon
         self.counter = self.counter
-        self.counter_success = self.counter_success
         # types
-        for _ele in results.types:
-            _element = Element(_ele)
-            self.types.append(_element)
+        self.types = [Element(ele) for ele in results.types]
         # technique stats
         self.accuracy = results.accuracy or self.accuracy
         self.potency = results.potency or self.potency
@@ -137,7 +131,7 @@ class Technique:
 
         self.conditions = self.parse_conditions(results.conditions)
         self.effects = self.parse_effects(results.effects)
-        self.target = process_targets(results.target)
+        self.target = results.target.model_dump()
         self.usable_on = results.usable_on or self.usable_on
 
         # Load the animation sprites that will be used for this technique
@@ -226,13 +220,6 @@ class Technique:
 
         """
         self.counter += 1
-
-    def advance_counter_success(self) -> None:
-        """
-        Advance the counter for this technique if used successfully.
-
-        """
-        self.counter_success += 1
 
     def validate(self, target: Optional[Monster]) -> bool:
         """

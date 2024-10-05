@@ -1,0 +1,173 @@
+{
+  "slug": "spyder_routec",
+  "monsters": [
+    {
+      "monster": "nudiflot_male",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        22,
+        26
+      ]
+    },
+    {
+      "monster": "nudiflot_female",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        22,
+        26
+      ]
+    },
+    {
+      "monster": "nudimind",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        22,
+        26
+      ]
+    },
+    {
+      "monster": "nudikill",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        22,
+        26
+      ]
+    },
+    {
+      "monster": "manosting",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        22,
+        26
+      ]
+    },
+    {
+      "monster": "tweesher",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        22,
+        26
+      ]
+    },
+    {
+      "monster": "nostray",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:true"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        22,
+        26
+      ]
+    },
+    {
+      "monster": "nudiflot_male",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        25,
+        29
+      ]
+    },
+    {
+      "monster": "nudiflot_female",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        25,
+        29
+      ]
+    },
+    {
+      "monster": "nudimind",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        25,
+        29
+      ]
+    },
+    {
+      "monster": "nudikill",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        25,
+        29
+      ]
+    },
+    {
+      "monster": "manosting",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        25,
+        29
+      ]
+    },
+    {
+      "monster": "tweesher",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        25,
+        29
+      ]
+    },
+    {
+      "monster": "nostray",
+      "encounter_rate": 3.5,
+      "variables": [
+        "daytime:false"
+      ],
+      "exp_req_mod": 1,
+      "level_range": [
+        25,
+        29
+      ]
+    }
+  ]
+}

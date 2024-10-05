@@ -6,7 +6,7 @@ import logging
 from dataclasses import dataclass
 from typing import Any, Optional, Union, final
 
-from tuxemon.db import db
+from tuxemon.db import DialogueModel, db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import get_avatar, string_to_colorlike
 from tuxemon.locale import process_translate_text
@@ -14,6 +14,8 @@ from tuxemon.states.dialog import DialogState
 from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
+
+style_cache: dict[str, DialogueModel] = {}
 
 
 @final
@@ -51,7 +53,7 @@ class TranslatedDialogAction(EventAction):
             avatar_sprite = get_avatar(self.session, self.avatar)
 
         dialogue = self.style if self.style else "default"
-        style = db.lookup(dialogue, table="dialogue")
+        style = _get_style(dialogue)
         colors: dict[str, Any] = {
             "bg_color": string_to_colorlike(style.bg_color),
             "font_color": string_to_colorlike(style.font_color),
@@ -71,3 +73,15 @@ class TranslatedDialogAction(EventAction):
             self.session.client.get_state_by_name(DialogState)
         except ValueError:
             self.stop()
+
+
+def _get_style(cache_key: str) -> DialogueModel:
+    if cache_key in style_cache:
+        return style_cache[cache_key]
+    else:
+        try:
+            style = db.lookup(cache_key, table="dialogue")
+            style_cache[cache_key] = style
+            return style
+        except KeyError:
+            raise RuntimeError(f"Dialogue {cache_key} not found")

@@ -9,7 +9,6 @@ import os
 import sys
 from collections.abc import Mapping, Sequence
 from enum import Enum
-from operator import itemgetter
 from typing import Annotated, Any, Literal, Optional, Union, overload
 
 from PIL import Image
@@ -31,9 +30,6 @@ logger = logging.getLogger(__name__)
 # Load the default translator for data validation
 T.collect_languages(False)
 T.load_translator()
-
-# Target is a mapping of who this targets
-Target = Mapping[str, int]
 
 SurfaceKeys = prepare.SURFACE_KEYS
 
@@ -105,15 +101,9 @@ class ElementType(str, Enum):
     water = "water"
 
 
-class ItemType(str, Enum):
-    consumable = "Consumable"
-    key_item = "KeyItem"
-
-
 class ItemCategory(str, Enum):
     none = "none"
     badge = "badge"
-    booster = "booster"
     elements = "elements"
     fossil = "fossil"
     morph = "morph"
@@ -195,6 +185,12 @@ class EntityFacing(str, Enum):
     right = "right"
 
 
+class MusicStatus(str, Enum):
+    playing = "playing"
+    paused = "paused"
+    stopped = "stopped"
+
+
 class Comparison(str, Enum):
     less_than = "less_than"
     less_or_equal = "less_or_equal"
@@ -216,6 +212,27 @@ State = Enum(
 )
 
 
+class ItemBehaviors(BaseModel):
+    consumable: bool = Field(
+        True, description="Whether or not this item is consumable."
+    )
+    visible: bool = Field(
+        True, description="Whether or not this item is visible."
+    )
+    requires_monster_menu: bool = Field(
+        True, description="Whether the monster menu is required to be open."
+    )
+    show_dialog_on_failure: bool = Field(
+        True, description="Whether to show a dialogue after a failed use."
+    )
+    show_dialog_on_success: bool = Field(
+        True, description="Whether to show a dialogue after a successful use."
+    )
+    throwable: bool = Field(
+        False, description="Whether or not this item is throwable."
+    )
+
+
 class ItemModel(BaseModel):
     model_config = ConfigDict(title="Item")
     slug: str = Field(..., description="Slug to use")
@@ -233,13 +250,13 @@ class ItemModel(BaseModel):
     )
     sort: ItemSort = Field(..., description="The kind of item this is.")
     sprite: str = Field(..., description="The sprite to use")
-    type: ItemType = Field(..., description="The type of item this is")
     category: ItemCategory = Field(
         ..., description="The category of item this is"
     )
     usable_in: Sequence[State] = Field(
         ..., description="State(s) where this item can be used."
     )
+    behaviors: ItemBehaviors
     # TODO: We'll need some more advanced validation logic here to parse item
     # conditions and effects to ensure they are formatted properly.
     conditions: Sequence[str] = Field(
@@ -255,12 +272,9 @@ class ItemModel(BaseModel):
     animation: Optional[str] = Field(
         None, description="Animation to play for this technique"
     )
-    menu: tuple[int, str, str] = Field(
+    world_menu: tuple[int, str, str] = Field(
         None,
-        description="Item has a menu (position, label -inside the PO -,state, eg. 3:nu_phone:PhoneState)",
-    )
-    visible: bool = Field(
-        True, description="Whether or not this item is visible."
+        description="Item adds to World Menu a button (position, label -inside the PO -,state, eg. 3:nu_phone:PhoneState)",
     )
 
     # Validate fields that refer to translated text
@@ -319,20 +333,13 @@ class ShapeModel(BaseModel):
 
 class MonsterMovesetItemModel(BaseModel):
     level_learned: int = Field(
-        ..., description="Monster level in which this moveset is learned"
+        ..., description="Monster level in which this moveset is learned", gt=0
     )
     technique: str = Field(
-        ..., description="Name of the technique for this moveset item"
+        ...,
+        description="Name of the technique for this moveset item",
+        json_schema_extra={"unique": True},
     )
-    element: Optional[ElementType] = Field(
-        None, description="Element random technique"
-    )
-
-    @field_validator("level_learned")
-    def valid_level(cls: MonsterMovesetItemModel, v: int) -> int:
-        if v < 0:
-            raise ValueError(f"invalid level learned: {v}")
-        return v
 
     @field_validator("technique")
     def technique_exists(cls: MonsterMovesetItemModel, v: str) -> str:
@@ -359,32 +366,84 @@ class MonsterEvolutionItemModel(BaseModel):
         ..., description="The monster slug that this evolution item applies to"
     )
     # optional fields
-    at_level: int = Field(
-        ...,
-        description="The level at which this monster evolves",
+    at_level: Optional[int] = Field(
+        None,
+        description="The level at which the monster evolves.",
+        ge=0,
     )
     element: Optional[ElementType] = Field(
-        None, description="Element parameter"
+        None,
+        description="The element type that the monster must match to evolve.",
     )
-    gender: Optional[GenderType] = Field(None, description="Gender parameter")
-    item: Optional[str] = Field(None, description="Item parameter.")
+    gender: Optional[GenderType] = Field(
+        None,
+        description="The required gender of the monster for evolution.",
+    )
+    item: Optional[str] = Field(
+        None,
+        description="The item that the monster must have to evolve.",
+    )
     inside: bool = Field(
         None,
-        description="Location parameter: whether the monster is inside or not.",
+        description="Whether the monster must be inside to evolve.",
     )
     traded: bool = Field(
         None,
-        description="Traded parameter: whether the monster is traded or not.",
+        description="Whether the monster must have been traded to evolve.",
     )
-    variable: Optional[str] = Field(
-        None, description="Variable parameter based on game variables."
+    variables: Optional[Sequence[str]] = Field(
+        None,
+        description="The game variables that must exist and match a specific value for the monster to evolve.",
+        min_length=1,
     )
     stats: Optional[str] = Field(
-        None, description="Stat parameter stat1:more_than:stat2."
+        None,
+        description="The statistic comparison required for the monster to evolve (e.g., greater_than, less_than, etc.).",
     )
-    steps: Optional[int] = Field(None, description="Steps parameter 50 steps.")
-    tech: Optional[str] = Field(None, description="Technique parameter.")
-    bond: Optional[str] = Field(None, description="Bond parameter.")
+    steps: Optional[int] = Field(
+        None,
+        description="The minimum number of steps the monster must have walked to evolve.",
+    )
+    tech: Optional[str] = Field(
+        None,
+        description="The technique that a monster in the party must have for the evolution to occur.",
+    )
+    moves: Optional[Sequence[str]] = Field(
+        None,
+        description="The techniques that the monster must have learned for the evolution to occur.",
+        min_length=1,
+        max_length=prepare.MAX_MOVES,
+    )
+    bond: Optional[str] = Field(
+        None,
+        description="The bond value comparison required for the monster to evolve (e.g., greater_than, less_than, etc.).",
+    )
+    party: Optional[Sequence[str]] = Field(
+        None,
+        description="The slug of the monsters that must be in the party for the evolution to occur.",
+        min_length=1,
+        max_length=prepare.PARTY_LIMIT - 1,
+    )
+    taste_cold: Optional[TasteCold] = Field(
+        None,
+        description="The required taste cold value for the monster to evolve.",
+    )
+    taste_warm: Optional[TasteWarm] = Field(
+        None,
+        description="The required taste warm value for the monster to evolve.",
+    )
+
+    @field_validator("moves")
+    def move_exists(
+        cls: MonsterEvolutionItemModel, v: Optional[Sequence[str]]
+    ) -> Optional[Sequence[str]]:
+        if v:
+            for element in v:
+                if not has.db_entry("technique", element):
+                    raise ValueError(
+                        f"A technique {element} doesn't exist in the db"
+                    )
+        return v
 
     @field_validator("tech")
     def technique_exists(
@@ -400,6 +459,18 @@ class MonsterEvolutionItemModel(BaseModel):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
+    @field_validator("party")
+    def party_exists(
+        cls: MonsterEvolutionItemModel, v: Sequence[str]
+    ) -> Sequence[str]:
+        if v:
+            for element in v:
+                if not has.db_entry("monster", element):
+                    raise ValueError(
+                        f"A monster {element} doesn't exist in the db"
+                    )
+        return v
+
     @field_validator("item")
     def item_exists(
         cls: MonsterEvolutionItemModel, v: Optional[str]
@@ -408,13 +479,25 @@ class MonsterEvolutionItemModel(BaseModel):
             return v
         raise ValueError(f"the item {v} doesn't exist in the db")
 
-    @field_validator("variable")
-    def variable_exists(
-        cls: MonsterEvolutionItemModel, v: Optional[str]
-    ) -> Optional[str]:
-        if not v or v.find(":") > 1:
+    @field_validator("variables")
+    def variables_exists(
+        cls: MonsterEvolutionItemModel, v: Optional[Sequence[str]]
+    ) -> Optional[Sequence[str]]:
+        if v is None:
             return v
-        raise ValueError(f"the variable {v} isn't formatted correctly")
+        if len(v) != len(set(v)):
+            raise ValueError("The sequence contains duplicate variables")
+        for variable in v:
+            if (
+                not variable
+                or len(variable.split(":")) != 2
+                or variable[0] == ":"
+                or variable[-1] == ":"
+            ):
+                raise ValueError(
+                    f"the variable {variable} isn't formatted correctly"
+                )
+        return v
 
     @field_validator("stats")
     def stats_exists(
@@ -514,8 +597,8 @@ class MonsterModel(BaseModel, validate_assignment=True):
     slug: str = Field(..., description="The slug of the monster")
     category: str = Field(..., description="The category of monster")
     txmn_id: int = Field(..., description="The id of the monster")
-    height: float = Field(..., description="The height of the monster")
-    weight: float = Field(..., description="The weight of the monster")
+    height: float = Field(..., description="The height of the monster", gt=0.0)
+    weight: float = Field(..., description="The weight of the monster", gt=0.0)
     stage: EvolutionStage = Field(
         ..., description="The evolution stage of the monster"
     )
@@ -529,22 +612,35 @@ class MonsterModel(BaseModel, validate_assignment=True):
         Optional[MonsterSpritesModel], Field(validate_default=True)
     ] = None
     shape: MonsterShape = Field(..., description="The shape of the monster")
-    tags: list[str] = Field(..., description="The tags of the monster")
+    tags: Sequence[str] = Field(
+        ..., description="The tags of the monster", min_length=1
+    )
     types: Sequence[ElementType] = Field(
         [], description="The type(s) of this monster"
     )
-    catch_rate: float = Field(..., description="The catch rate of the monster")
+    catch_rate: float = Field(
+        ...,
+        description="The catch rate of the monster",
+        ge=prepare.CATCH_RATE_RANGE[0],
+        le=prepare.CATCH_RATE_RANGE[1],
+    )
     possible_genders: Sequence[GenderType] = Field(
         [], description="Valid genders for the monster"
     )
     lower_catch_resistance: float = Field(
-        ..., description="The lower catch resistance of the monster"
+        ...,
+        description="The lower catch resistance of the monster",
+        ge=prepare.CATCH_RESISTANCE_RANGE[0],
+        le=prepare.CATCH_RESISTANCE_RANGE[1],
     )
     upper_catch_resistance: float = Field(
-        ..., description="The upper catch resistance of the monster"
+        ...,
+        description="The upper catch resistance of the monster",
+        ge=prepare.CATCH_RESISTANCE_RANGE[0],
+        le=prepare.CATCH_RESISTANCE_RANGE[1],
     )
     moveset: Sequence[MonsterMovesetItemModel] = Field(
-        [], description="The moveset of this monster"
+        [], description="The moveset of this monster", min_length=1
     )
     history: Sequence[MonsterHistoryItemModel] = Field(
         [], description="The evolution history of this monster"
@@ -581,41 +677,11 @@ class MonsterModel(BaseModel, validate_assignment=True):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
-    @field_validator("weight", "height")
-    def check_weight_and_height(cls: MonsterModel, v: float) -> float:
-        if v > 0.0:
-            return v
-        raise ValueError(f"The weight or height cannot be {v}. Use 0.1!")
-
-    @field_validator("catch_rate")
-    def check_catch_rate(cls: MonsterModel, v: float) -> float:
-        lower, upper = prepare.CATCH_RATE_RANGE
-        if lower <= v <= upper:
-            return v
-        raise ValueError(
-            f"the catch rate is between {lower} and {upper} ({v})"
-        )
-
-    @field_validator("lower_catch_resistance", "upper_catch_resistance")
-    def check_catch_resistance(cls: MonsterModel, v: float) -> float:
-        lower, upper = prepare.CATCH_RESISTANCE_RANGE
-        if lower <= v <= upper:
-            return v
-        raise ValueError(
-            f"the catch resistance is between {lower} and {upper} ({v})"
-        )
-
-    @field_validator("tags")
-    def check_tags(cls: MonsterModel, v: list[str]) -> list[str]:
-        if v:
-            return v
-        raise ValueError(
-            f"there are no tags, insert at least the shape of the monster"
-        )
-
 
 class StatModel(BaseModel):
-    value: float = Field(0.0, description="The value of the stat")
+    value: float = Field(
+        0.0, description="The value of the stat", ge=0.0, le=2.0
+    )
     max_deviation: int = Field(
         0, description="The maximum deviation of the stat"
     )
@@ -636,6 +702,17 @@ class Range(str, Enum):
     reliable = "reliable"
 
 
+class TechCategory(str, Enum):
+    animal = "animal"
+    simple = "simple"
+    basic = "basic"
+    exotic = "exotic"
+    reserved = "reserved"
+    powerful = "powerful"
+    condition_imposer = "condition_imposer"
+    notype = "notype"
+
+
 # TechSort defines the sort of technique a technique is.
 class TechSort(str, Enum):
     damage = "damage"
@@ -653,10 +730,51 @@ class ResponseCondition(str, Enum):
     removed = "removed"
 
 
+class TargetModel(BaseModel):
+    enemy_monster: bool = Field(
+        ..., description="Whether the enemy monster is the target."
+    )
+    enemy_team: bool = Field(
+        ..., description="Whether the enemy team is the target."
+    )
+    enemy_trainer: bool = Field(
+        ..., description="Whether the enemy trainer is the target."
+    )
+    own_monster: bool = Field(
+        ..., description="Whether the own monster is the target."
+    )
+    own_team: bool = Field(
+        ..., description="Whether the own team is the target."
+    )
+    own_trainer: bool = Field(
+        ..., description="Whether the own trainer is the target."
+    )
+
+    @field_validator(
+        "enemy_monster",
+        "enemy_team",
+        "enemy_trainer",
+        "own_monster",
+        "own_team",
+        "own_trainer",
+    )
+    def validate_bool_field(cls: TargetModel, v: bool) -> bool:
+        if not isinstance(v, bool):
+            raise ValueError(f"One of the targets {v} isn't a boolean")
+        return v
+
+
 class TechniqueModel(BaseModel):
     slug: str = Field(..., description="The slug of the technique")
     sort: TechSort = Field(..., description="The sort of technique this is")
     icon: str = Field(None, description="The icon to use for the technique")
+    category: TechCategory = Field(
+        ...,
+        description="The tags of the technique",
+    )
+    tags: Sequence[str] = Field(
+        ..., description="The tags of the technique", min_length=1
+    )
     conditions: Sequence[str] = Field(
         [], description="Conditions that must be met"
     )
@@ -667,9 +785,7 @@ class TechniqueModel(BaseModel):
         ...,
         description="Axes along which technique animation should be flipped",
     )
-    target: Target = Field(
-        ..., description="Target mapping of who this technique is used on"
-    )
+    target: TargetModel
     animation: Optional[str] = Field(
         None, description="Animation to play for this technique"
     )
@@ -697,7 +813,12 @@ class TechniqueModel(BaseModel):
         False,
         description="Whether or not the technique can be used outside of combat",
     )
-    power: float = Field(..., description="Power of the technique")
+    power: float = Field(
+        ...,
+        description="Power of the technique",
+        ge=prepare.POWER_RANGE[0],
+        le=prepare.POWER_RANGE[1],
+    )
     is_fast: bool = Field(
         False, description="Whether or not this is a fast technique"
     )
@@ -705,12 +826,32 @@ class TechniqueModel(BaseModel):
         True,
         description="Whether or not this technique will be picked by random",
     )
-    healing_power: int = Field(0, description="Value of healing power.")
-    recharge: int = Field(0, description="Recharge of this technique")
+    healing_power: float = Field(
+        0.0,
+        description="Value of healing power.",
+        ge=prepare.HEALING_POWER_RANGE[0],
+        le=prepare.HEALING_POWER_RANGE[1],
+    )
+    recharge: int = Field(
+        0,
+        description="Recharge of this technique",
+        ge=prepare.RECHARGE_RANGE[0],
+        le=prepare.RECHARGE_RANGE[1],
+    )
     range: Range = Field(..., description="The attack range of this technique")
     tech_id: int = Field(..., description="The id of this technique")
-    accuracy: float = Field(..., description="The accuracy of the technique")
-    potency: float = Field(..., description="How potent the technique is")
+    accuracy: float = Field(
+        ...,
+        description="The accuracy of the technique",
+        ge=prepare.ACCURACY_RANGE[0],
+        le=prepare.ACCURACY_RANGE[1],
+    )
+    potency: float = Field(
+        ...,
+        description="How potent the technique is",
+        ge=prepare.POTENCY_RANGE[0],
+        le=prepare.POTENCY_RANGE[1],
+    )
 
     # Validate resources that should exist
     @field_validator("icon")
@@ -740,11 +881,20 @@ class TechniqueModel(BaseModel):
         cls: TechniqueModel, v: Range, info: ValidationInfo
     ) -> Range:
         # Special indicates that we are not doing damage
-        if v == Range.special and "damage" in info.data["effects"]:
+        if v == Range.special and any(
+            effect in info.data["effects"]
+            for effect in [
+                "damage",
+                "area",
+                "retaliate",
+                "revenge",
+                "money",
+                "splash",
+            ]
+        ):
             raise ValueError(
-                '"special" range cannot be used with effect "damage"'
+                '"special" range cannot be used with effects "damage", "area", "retaliate", "revenge", "money", or "splash"'
             )
-
         return v
 
     @field_validator("animation")
@@ -768,43 +918,6 @@ class TechniqueModel(BaseModel):
             return v
         raise ValueError(f"the conditions {v} aren't correctly formatted")
 
-    @field_validator("recharge")
-    def check_recharge(cls: TechniqueModel, v: int) -> int:
-        lower, upper = prepare.RECHARGE_RANGE
-        if lower <= v <= upper:
-            return v
-        raise ValueError(f"the recharge is between {lower} and {upper} ({v})")
-
-    @field_validator("power")
-    def check_power(cls: TechniqueModel, v: float) -> float:
-        lower, upper = prepare.POWER_RANGE
-        if lower <= v <= upper:
-            return v
-        raise ValueError(f"the power is between {lower} and {upper} ({v})")
-
-    @field_validator("accuracy")
-    def check_accuracy(cls: TechniqueModel, v: float) -> float:
-        lower, upper = prepare.ACCURACY_RANGE
-        if lower <= v <= upper:
-            return v
-        raise ValueError(f"the accuracy is between {lower} and {upper} ({v})")
-
-    @field_validator("potency")
-    def check_potency(cls: TechniqueModel, v: float) -> float:
-        lower, upper = prepare.POTENCY_RANGE
-        if lower <= v <= upper:
-            return v
-        raise ValueError(f"the potency is between {lower} and {upper} ({v})")
-
-    @field_validator("healing_power")
-    def check_healing_power(cls: TechniqueModel, v: int) -> int:
-        lower, upper = prepare.HEALING_POWER_RANGE
-        if lower <= v <= upper:
-            return v
-        raise ValueError(
-            f"the healing power is between {lower} and {upper} ({v})"
-        )
-
     @field_validator("sfx")
     def sfx_tech_exists(cls: TechniqueModel, v: str) -> str:
         if has.db_entry("sounds", v):
@@ -826,9 +939,7 @@ class ConditionModel(BaseModel):
         ...,
         description="Axes along which condition animation should be flipped",
     )
-    target: Target = Field(
-        ..., description="Target mapping of who this condition is used on"
-    )
+    target: TargetModel
     animation: Optional[str] = Field(
         None, description="Animation to play for this condition"
     )
@@ -944,11 +1055,13 @@ class ConditionModel(BaseModel):
 
 class PartyMemberModel(BaseModel):
     slug: str = Field(..., description="Slug of the monster")
-    level: int = Field(..., description="Level of the monster")
+    level: int = Field(..., description="Level of the monster", gt=0)
     money_mod: int = Field(
-        ..., description="Modifier for money this monster gives"
+        ..., description="Modifier for money this monster gives", gt=0
     )
-    exp_req_mod: int = Field(..., description="Experience required modifier")
+    exp_req_mod: int = Field(
+        ..., description="Experience required modifier", gt=0
+    )
     gender: GenderType = Field(..., description="Gender of the monster")
 
     @field_validator("slug")
@@ -1144,12 +1257,24 @@ class EnvironmentModel(BaseModel):
 
 class EncounterItemModel(BaseModel):
     monster: str = Field(..., description="Monster slug for this encounter")
-    encounter_rate: float = Field(..., description="Rate of this encounter")
-    level_range: Sequence[int] = Field(
-        ..., description="Level range to encounter"
+    encounter_rate: float = Field(
+        ..., description="Probability of encountering this monster."
     )
-    variable: Optional[str] = Field(None, description="Variable encounter")
-    exp_req_mod: int = Field(1, description="Exp modifier wild monster")
+    level_range: Sequence[int] = Field(
+        ...,
+        description="Minimum and maximum levels at which this encounter can occur.",
+        max_length=2,
+    )
+    variables: Optional[Sequence[str]] = Field(
+        None,
+        description="List of variables that affect the encounter.",
+        min_length=1,
+    )
+    exp_req_mod: int = Field(
+        1,
+        description="Modifier for the experience points required to defeat this wild monster.",
+        gt=0,
+    )
 
     @field_validator("monster")
     def monster_exists(cls: EncounterItemModel, v: str) -> str:
@@ -1157,13 +1282,25 @@ class EncounterItemModel(BaseModel):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
-    @field_validator("variable")
+    @field_validator("variables")
     def variable_exists(
         cls: EncounterItemModel, v: Optional[str]
     ) -> Optional[str]:
-        if not v or v.find(":") > 1:
+        if v is None:
             return v
-        raise ValueError(f"the variable {v} isn't formatted correctly")
+        if len(v) != len(set(v)):
+            raise ValueError("The sequence contains duplicate variables")
+        for variable in v:
+            if (
+                not variable
+                or len(variable.split(":")) != 2
+                or variable[0] == ":"
+                or variable[-1] == ":"
+            ):
+                raise ValueError(
+                    f"the variable {variable} isn't formatted correctly"
+                )
+        return v
 
 
 class EncounterModel(BaseModel):
@@ -1339,33 +1476,6 @@ DataModel = Union[
     ConditionModel,
     TechniqueModel,
 ]
-
-
-def process_targets(json_targets: Target) -> Sequence[str]:
-    """Return values in order of preference for targeting things.
-
-    example: ["own monster", "enemy monster"]
-
-    Parameters:
-        json_targets: Dictionary of targets.
-
-    Returns:
-        Order of preference for targets.
-
-    """
-    return list(
-        map(
-            itemgetter(0),
-            filter(
-                itemgetter(1),
-                sorted(
-                    json_targets.items(),
-                    key=itemgetter(1),
-                    reverse=True,
-                ),
-            ),
-        )
-    )
 
 
 class JSONDatabase:

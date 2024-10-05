@@ -1,6 +1,6 @@
 {
   "tech_id": 103,
-  "accuracy": 0.6,
+  "accuracy": 0.7,
   "animation": "meltdown",
   "effects": [
     "give festering,target",
@@ -8,7 +8,7 @@
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.1,
+  "potency": 0.2,
   "power": 2.8,
   "range": "reach",
   "recharge": 2,
@@ -16,13 +16,15 @@
   "slug": "meltdown",
   "sort": "damage",
   "target": {
-    "enemy monster": 2,
-    "enemy team": 0,
-    "enemy trainer": 0,
-    "own monster": 0,
-    "own team": 0,
-    "own trainer": 0
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
   },
+  "category": "powerful",
+  "tags": ["Bomber", "Calamity"],
   "types": [
     "earth",
     "metal"

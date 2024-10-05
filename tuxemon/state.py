@@ -497,22 +497,50 @@ class StateManager:
             self._state_stack.remove(state)
             state.shutdown()
 
+    def remove_state_by_name(self, state_name: str) -> None:
+        """
+        Remove a state from the stack by its name.
+
+        Parameters:
+            state_name: The name of the state to remove.
+        """
+
+        try:
+            for index, state in enumerate(self._state_stack):
+                if state.name == state_name:
+                    if index == 0:
+                        self.pop_state()
+                    else:
+                        self._state_stack.remove(state)
+                        state.shutdown()
+                    return
+        except IndexError:
+            logger.critical(
+                "Attempted to remove state which is not in the stack",
+            )
+            raise RuntimeError
+
+        # If the state wasn't found, raise an error
+        raise ValueError(f"State with name '{state_name}' not found")
+
     @overload
-    def push_state(self, state_name: str, **kwargs: Any) -> State:
+    def push_state(
+        self, state_name: str, **kwargs: Optional[dict[str, Any]]
+    ) -> State:
         pass
 
     @overload
     def push_state(
         self,
         state_name: StateType,
-        **kwargs: Any,
+        **kwargs: Optional[dict[str, Any]],
     ) -> StateType:
         pass
 
     def push_state(
         self,
         state_name: Union[str, StateType],
-        **kwargs: Any,
+        **kwargs: Optional[dict[str, Any]],
     ) -> State:
         """
         Pause currently running state and start new one.
@@ -553,21 +581,23 @@ class StateManager:
         return instance
 
     @overload
-    def replace_state(self, state_name: str, **kwargs: Any) -> State:
+    def replace_state(
+        self, state_name: str, **kwargs: Optional[dict[str, Any]]
+    ) -> State:
         pass
 
     @overload
     def replace_state(
         self,
         state_name: StateType,
-        **kwargs: Any,
+        **kwargs: Optional[dict[str, Any]],
     ) -> StateType:
         pass
 
     def replace_state(
         self,
         state_name: Union[str, State],
-        **kwargs: Any,
+        **kwargs: Optional[dict[str, Any]],
     ) -> State:
         """
         Replace the currently running state with a new one.
@@ -686,3 +716,7 @@ class StateManager:
                 return queued_state
 
         raise ValueError(f"Missing queued state {state_name}")
+
+    def get_active_state_names(self) -> Sequence[str]:
+        """List of names of active states."""
+        return [state.name for state in self._state_stack]

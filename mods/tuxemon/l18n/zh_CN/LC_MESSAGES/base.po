@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Tuxemon\n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2023-01-18 01:47+0000\n"
-"Last-Translator: David Liang <2188741623@qq.com>\n"
+"Last-Translator: David Liang <2188741623@qq.com> cooollawf <3321548900@qq.com><cooollawf@gmail.com\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "tuxemon/tuxemon/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -118,10 +118,10 @@ msgid "combat_run"
 msgstr "{user}逃跑了!"
 
 msgid "combat_miss"
-msgstr "但是没打中..."
+msgstr "没打到！"
 
 msgid "combat_can't_run_from_trainer"
-msgstr "不能在与训练师的战斗中逃跑!"
+msgstr "不能和训练师战斗的时候逃跑!"
 
 msgid "combat_player_run"
 msgstr "你成功的逃跑了!"
@@ -2442,7 +2442,7 @@ msgid "vivipere"
 msgstr "维维帕雷"
 
 msgid "viviphyta_description"
-msgstr "它是蛇中之王--或者至少认为自己是这样的."
+msgstr "它是蛇中之王，或者至少认为自己是这样的."
 
 msgid "viviphyta"
 msgstr "维维弗塔"
@@ -2473,23 +2473,23 @@ msgstr "尖刺蜂"
 
 msgid "windeye_description"
 msgstr ""
-"像一棵强大的树,立扇兽将自己种植在山顶上,吸收阳光和风.充电后,它又离开,在"
-"天空下寻找另一个地方."
+"像一棵强大的树,立扇兽将自己种在山顶上,吸收阳光和风.充电后,它又离开,在"
+"天空下寻找另一个好地方."
 
 msgid "no"
-msgstr "否"
+msgstr "不对"
 
 msgid "hey"
 msgstr "嘿!"
 
 msgid "empty_pot"
-msgstr "这是一个空盆,也许有人会在这里种植一些东西."
+msgstr "这是一个空盆,也许有人会在这里种点植物."
 
 msgid "frost_ape"
 msgstr "霜冻之猿"
 
 msgid "wrougon_description"
-msgstr "每个钢铁龙出生时都有一块比其父母的锈斑更大的锈斑."
+msgstr "每个钢铁龙出生时都会有一块比父母的锈斑还大的锈斑."
 
 msgid "wrougon"
 msgstr "钢铁龙"
@@ -2506,7 +2506,7 @@ msgstr "兀术"
 # # DIALOG TRANSLATIONS ##
 # general dialogs
 msgid "haveagoodday"
-msgstr "祝你有个愉快的一天!"
+msgstr "祝你今天愉快!"
 
 msgid "firebird"
 msgstr "火鸟"
@@ -2599,7 +2599,7 @@ msgid "xerogrunt4"
 msgstr "Xero Grunt I团队"
 
 msgid "purple_flowers"
-msgstr "有人种下了一些香甜的紫色花朵!"
+msgstr "有人种下了一小片很香的紫色花朵，但不知道是什么。"
 
 msgid "xerogrunt6"
 msgstr "Xero Grunt I团队"

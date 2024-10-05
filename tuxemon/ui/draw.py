@@ -2,13 +2,13 @@ from __future__ import annotations
 
 import logging
 import math
-import re
 from collections.abc import Callable, Generator, Iterable, Sequence
 from itertools import product
 from typing import Optional
 
 import pygame
 from pygame.rect import Rect
+from pygame.surface import Surface
 
 from tuxemon import prepare
 from tuxemon.graphics import ColorLike
@@ -40,6 +40,7 @@ class GraphicBox(Sprite):
 
     box = GraphicBox('border.png')
     box.draw(surface, rect)
+
     The border graphic must contain 9 tiles laid out in a box.
     """
 
@@ -47,8 +48,8 @@ class GraphicBox(Sprite):
 
     def __init__(
         self,
-        border: Optional[pygame.surface.Surface] = None,
-        background: Optional[pygame.surface.Surface] = None,
+        border: Optional[Surface] = None,
+        background: Optional[Surface] = None,
         color: Optional[ColorLike] = None,
         fill_tiles: bool = False,
     ) -> None:
@@ -65,9 +66,8 @@ class GraphicBox(Sprite):
         self._background = background
         self._color = color
         self._fill_tiles = fill_tiles
-        self._tiles: list[pygame.surface.Surface] = []
+        self._tiles: list[Surface] = []
         self._tile_size = 0, 0
-        self._cached_surface: Optional[pygame.surface.Surface] = None
 
         if border:
             self._set_border(border)
@@ -88,21 +88,13 @@ class GraphicBox(Sprite):
         else:
             return rect
 
-    def _set_border(self, image: pygame.surface.Surface) -> None:
+    def _set_border(self, image: Surface) -> None:
         """
         Sets the border image and extracts the individual tiles.
 
         Parameters:
             image: The border image.
         """
-        if (
-            image.get_width() % self.TILE_GRID_SIZE != 0
-            or image.get_height() % self.TILE_GRID_SIZE != 0
-        ):
-            raise ValueError(
-                "Border image must be a multiple of the tile grid size"
-            )
-
         iw, ih = image.get_size()
         tw, th = iw // self.TILE_GRID_SIZE, ih // self.TILE_GRID_SIZE
         self._tile_size = tw, th
@@ -115,20 +107,14 @@ class GraphicBox(Sprite):
         """
         Updates the object's image by drawing the box on a new surface.
         """
-        if (
-            self._cached_surface is None
-            or self._cached_surface.get_size() != self._rect.size
-        ):
-            self._cached_surface = pygame.Surface(
-                self._rect.size, pygame.SRCALPHA
-            )
-            self._draw(self._cached_surface, self._rect)
-
-        self.image = self._cached_surface
+        rect = Rect((0, 0), self._rect.size)
+        surface = pygame.Surface(rect.size, pygame.SRCALPHA)
+        self._draw(surface, rect)
+        self.image = surface
 
     def _draw(
         self,
-        surface: pygame.surface.Surface,
+        surface: Surface,
         rect: Rect,
     ) -> Rect:
         inner = self.calc_inner_rect(rect)
@@ -141,52 +127,61 @@ class GraphicBox(Sprite):
         elif self._color:
             surface.fill(self._color, inner)
         elif self._fill_tiles:
-            tw, th = self._tile_size
-            for x in range(inner.left, inner.right, tw):
-                for y in range(inner.top, inner.bottom, th):
-                    surface.blit(self._tiles[4], (x, y))
+            self._draw_tiled_fill(surface, inner)
 
         # Draw border
         if self._tiles:
-            (
-                tile_nw,
-                tile_w,
-                tile_sw,
-                tile_n,
-                tile_c,
-                tile_s,
-                tile_ne,
-                tile_e,
-                tile_se,
-            ) = self._tiles
-            left, top = rect.topleft
-            tw, th = self._tile_size
-
-            # Draw top and bottom tiles
-            for x in range(inner.left, inner.right, tw):
-                if x + tw >= inner.right:
-                    area = (0, 0, tw - (x + tw - inner.right), th)
-                else:
-                    area = None
-                surface.blit(tile_n, (x, top), area)
-                surface.blit(tile_s, (x, inner.bottom), area)
-
-            # Draw left and right tiles
-            for y in range(inner.top, inner.bottom, th):
-                if y + th >= inner.bottom:
-                    area = (0, 0, tw, th - (y + th - inner.bottom))
-                else:
-                    area = None
-                surface.blit(tile_w, (left, y), area)
-                surface.blit(tile_e, (inner.right, y), area)
-
-            # Draw corners
-            surface.blit(tile_nw, (left, top))
-            surface.blit(tile_sw, (left, inner.bottom))
-            surface.blit(tile_ne, (inner.right, top))
-            surface.blit(tile_se, (inner.right, inner.bottom))
+            self._draw_border(surface, rect, inner)
 
         return rect
+
+    def _draw_tiled_fill(self, surface: Surface, inner: Rect) -> None:
+        tw, th = self._tile_size
+        for x in range(inner.left, inner.right, tw):
+            for y in range(inner.top, inner.bottom, th):
+                surface.blit(self._tiles[4], (x, y))
+
+    def _draw_border(self, surface: Surface, rect: Rect, inner: Rect) -> None:
+        (
+            tile_nw,
+            tile_w,
+            tile_sw,
+            tile_n,
+            tile_c,
+            tile_s,
+            tile_ne,
+            tile_e,
+            tile_se,
+        ) = self._tiles
+        left, top = rect.topleft
+        tw, th = self._tile_size
+        surface_blit = surface.blit  # cache the blit method
+
+        # Draw top and bottom tiles
+        for x in range(inner.left, inner.right, tw):
+            area = (
+                (0, 0, tw, th)
+                if x + tw < inner.right
+                else (0, 0, tw - (x + tw - inner.right), th)
+            )
+            surface_blit(tile_n, (x, top), area)
+            surface_blit(tile_s, (x, inner.bottom), area)
+
+        # Draw left and right tiles
+        for y in range(inner.top, inner.bottom, th):
+            area = (
+                (0, 0, tw, th)
+                if y + th < inner.bottom
+                else (0, 0, tw, th - (y + th - inner.bottom))
+            )
+            surface_blit(tile_w, (left, y), area)
+            surface_blit(tile_e, (inner.right, y), area)
+
+        # Draw corners
+        surface_blit(tile_nw, (left, top))
+        surface_blit(tile_sw, (left, inner.bottom))
+        surface_blit(tile_ne, (inner.right, top))
+        surface_blit(tile_se, (inner.right, inner.bottom))
 
 
 def guest_font_height(font: pygame.font.Font) -> int:
@@ -205,7 +200,7 @@ def shadow_text(
     fg: ColorLike,
     bg: ColorLike,
     text: str,
-) -> pygame.surface.Surface:
+) -> Surface:
     top = font.render(text, True, fg)
     shadow = font.render(text, True, bg)
 
@@ -224,7 +219,7 @@ def iter_render_text(
     fg: ColorLike,
     bg: ColorLike,
     rect: Rect,
-) -> Generator[tuple[Rect, pygame.surface.Surface], None, None]:
+) -> Generator[tuple[Rect, Surface], None, None]:
     line_height = guest_font_height(font)
     for line_index, line in enumerate(constrain_width(text, font, rect.width)):
         top = rect.top + line_index * line_height
@@ -251,24 +246,18 @@ def constrain_width(
     font: pygame.font.Font,
     width: int,
 ) -> Generator[str, None, None]:
-    words = re.findall(r"\w+|[^\w\s]", text)
-    line = ""
-    for word in words:
-        if font.size(line + " " + word)[0] > width:
-            if font.size(word)[0] > width:
-                raise RuntimeError("message is too large for width", text)
-            if font.size(line)[0] > width:
-                yield line[:width]
-                line = word
+    for line in iterate_word_lines(text):
+        scrap = ""
+        for word in line:
+            test = scrap + " " + word if scrap else word
+            if font.size(test)[0] >= width:
+                if not scrap:
+                    raise RuntimeError("message is too large for width", text)
+                yield scrap
+                scrap = word
             else:
-                yield line
-                line = word
-        else:
-            if line:
-                line += " "
-            line += word
-    if line:
-        yield line
+                scrap = test
+        yield scrap
 
 
 def iterate_words(text: str) -> Generator[str, None, None]:
@@ -285,8 +274,8 @@ def iterate_word_lines(text: str) -> Generator[Iterable[str], None, None]:
 
 
 def blit_alpha(
-    target: pygame.surface.Surface,
-    source: pygame.surface.Surface,
+    target: Surface,
+    source: Surface,
     location: tuple[int, int],
     opacity: int,
 ) -> None:

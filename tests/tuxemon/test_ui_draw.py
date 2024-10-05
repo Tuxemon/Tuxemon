@@ -32,7 +32,6 @@ class TestGraphicBox(unittest.TestCase):
         self.assertFalse(box._fill_tiles)
         self.assertEqual(box._tiles, [])
         self.assertEqual(box._tile_size, (0, 0))
-        self.assertIsNone(box._cached_surface)
 
     def test_set_border(self):
         image = pygame.Surface((12, 12))
@@ -209,7 +208,7 @@ class TestConstrainWidth(unittest.TestCase):
         text = ""
         width = 200
         lines = list(constrain_width(text, self.font, width))
-        self.assertEqual(len(lines), 0)
+        self.assertEqual(len(lines), 1)
 
     def test_constrain_width_single_word(self):
         text = "This"

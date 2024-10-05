@@ -7606,6 +7606,9 @@ msgstr "Hey! What do you think you're doing?\n It's not safe to go into the wild
 msgid "spyder_papertown_homemaker1"
 msgstr "How are you, ${{name}}? \n Quiet and solemn as always, I see."
 
+msgid "spyder_papertown_old_guy1"
+msgstr "Ah, you want to hear my story, eh? Well, I suppose it's not every day I get to share my tales with a young trainer like yourself. Let me tell you, I've been around the block a few times. I used to be a tuxemon researcher, back in the day. Spent years studying those creatures, trying to understand 'em. But it was all so... routine. Wake up, go to the lab, study some tuxemon, go home. I felt like I was just going through the motions, you know? I mean, I loved tuxemon, don't get me wrong, but it was all so... predictable. I wanted adventure, excitement! So, I left the lab and started traveling. Been all around the region, caught a few tuxemon of my own. Nothing too exciting, just your run-of-the-mill PAIRAGRIN and NUT. But it's been... comfortable, I suppose. I've got my routine down pat now. Wake up, have a cup of tea, go for a walk, maybe catch a few tuxemon if I'm feeling lucky. I've even got a little garden going on the side, grow my own herbs and whatnot. It's not the most thrilling life, but it's mine, and I'm content with it. Still, sometimes I think about what could've been... what if I'd become a great tuxemon trainer? What if I'd discovered some new species? Ah, but that's just the ramblings of an old man. Don't you worry about me, I'm happy enough."
+
 msgid "spyder_papertown_mom1"
 msgstr "Good morning sunshine! Rest here any time you like. \n Why am I saying that? You live here!"
 

@@ -90,6 +90,16 @@
   
   },
   {
+    "slug": "spyder_papertown_old_guy",
+    "template": 
+      {
+        "sprite_name": "maniac_green",
+        "combat_front": "maniac",
+        "slug": "maniac"
+      }
+  
+  },
+  {
     "slug": "spyder_papermanor_princeton",
     "template": 
       {

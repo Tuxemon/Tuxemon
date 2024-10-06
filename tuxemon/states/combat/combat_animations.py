@@ -247,7 +247,6 @@ class CombatAnimations(ABC, Menu[None]):
         def kill_monster() -> None:
             """Remove the monster's sprite and HUD elements."""
             self._monster_sprite_map[monster].kill()
-            self.hud[monster].kill()
             for icon in self._status_icons[monster]:
                 icon.kill()
             self._status_icons[monster].clear()
@@ -795,7 +794,6 @@ class CombatAnimations(ABC, Menu[None]):
 
         def kill_monster() -> None:
             self._monster_sprite_map[monster].kill()
-            self.hud[monster].kill()
             del self._monster_sprite_map[monster]
             self.delete_hud(monster)
 
@@ -879,7 +877,9 @@ class CombatAnimations(ABC, Menu[None]):
         Parameters:
             monster: The monster to remove from the HUD.
         """
-        del self.hud[monster]
+        if monster in self.hud:
+            self.hud[monster].kill()
+            del self.hud[monster]
 
     def update_hud(self, character: NPC, animate: bool = True) -> None:
         """

@@ -48,6 +48,7 @@ events:
     - format_variable cathedral_fee,int
     - modify_money bill_cathedral,,cathedral_fee
     conditions:
+    - is char_defeated player
     - is location_type clinic
     - is variable_set teleport_clinic:lost
     - is current_state WorldState

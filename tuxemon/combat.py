@@ -84,15 +84,21 @@ def pre_checking(
         if result_status["technique"]:
             technique = result_status["technique"]
 
-    status = Technique()
-    if monster.plague == PlagueType.infected:
-        if any(
-            technique.target.get(target, False)
-            for target in ["enemy_monster", "enemy_team", "enemy_trainer"]
-        ):
-            if random.randint(1, 8) == 1:
-                status.load("spyderbite")
-                technique = status
+    infected_slugs = [
+        slug
+        for slug, plague in monster.plague.items()
+        if plague == PlagueType.infected
+    ]
+    if infected_slugs and any(
+        technique.target.get(target_type, False)
+        for target_type in ["enemy_monster", "enemy_team", "enemy_trainer"]
+    ):
+        method = Technique()
+        slug = random.choice(infected_slugs)
+        method.load(slug)
+        result_method = method.use(monster, target)
+        if result_method["success"]:
+            technique = method
     return technique
 
 
@@ -387,19 +393,6 @@ def set_tuxepedia(
     """
     client = session.client.event_engine
     client.execute_action("set_tuxepedia", [character, monster, label], True)
-
-
-def plague(player: NPC) -> None:
-    """
-    Infects all the team if the trainer is infected.
-
-    Parameters:
-        player: All the remaining players.
-
-    """
-    if player.plague == PlagueType.infected:
-        for monster in player.monsters:
-            monster.plague = PlagueType.infected
 
 
 def track_battles(

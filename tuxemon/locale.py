@@ -7,6 +7,7 @@ import gettext
 import logging
 import os
 import os.path
+import textwrap
 from collections.abc import Callable, Generator, Iterable, Mapping, Sequence
 from typing import Any, Optional
 
@@ -364,32 +365,32 @@ def process_translate_text(
         parameters: A sequence of parameters in the format ``"key=value"`` used
             to format the string.
 
+    Returns:
+        A sequence of pages of translated text.
     """
     replace_values = {}
 
-    # extract INI-style params
-    for param in parameters:
-        key, value = param.split("=")
+    if parameters:
+        for param in parameters:
+            if "=" not in param:
+                raise ValueError(
+                    f"Invalid parameter format: {param}. Expected format is 'key=value'."
+                )
 
-        # TODO: is this code still valid? Translator class is NOT iterable
-        """
-        # Check to see if param_value is translatable
-        if value in translator:
-            value = trans(value)
-        """
-        # match special placeholders like ${{name}}
-        replace_values[key] = replace_text(session, value)
+            key, value = param.split("=")
+            replace_values[key] = replace_text(session, value)
 
-    # generate translation
-    text = T.format(text_slug, replace_values)
+    formatted_text = T.format(text_slug, replace_values).rstrip("\n")
 
-    # clear the terminal end-line symbol (multi-line translation records)
-    text = text.rstrip("\n")
+    # Check if the formatted text contains any newline characters
+    if "\n" in formatted_text:
+        pages = formatted_text.split("\n")
+    else:
+        pages = textwrap.wrap(
+            formatted_text, prepare.WRAP_VALUE, fix_sentence_endings=True
+        )
 
-    # split text into pages for scrolling
-    pages = text.split("\n")
-
-    # generate scrollable text
+    # Generate scrollable text
     return [replace_text(session, page) for page in pages]
 
 

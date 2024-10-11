@@ -12,6 +12,18 @@ from tuxemon.platform.const import buttons, events
 
 Animation.default_transition = "out_quint"
 
+layouts: dict[str, dict[str, int]] = {
+    "16:10": {"width": 1920, "height": 1200, "wrap": 0},
+    "16:9": {"width": 1920, "height": 1080, "wrap": 0},
+    "16:9 (HD)": {"width": 1280, "height": 720, "wrap": 145},
+    "16:9 (FHD)": {"width": 2560, "height": 1440, "wrap": 0},
+    "16:9 (QHD)": {"width": 3840, "height": 2160, "wrap": 0},
+    "5:4": {"width": 720, "height": 576, "wrap": 235},
+    "4:3": {"width": 1024, "height": 768, "wrap": 250},
+    "4:3 (SVGA)": {"width": 800, "height": 600, "wrap": 265},
+    "3:2": {"width": 720, "height": 480, "wrap": 170},
+}
+
 
 class TuxemonConfig:
     """
@@ -33,6 +45,7 @@ class TuxemonConfig:
         resolution_x = cfg.getint("display", "resolution_x")
         resolution_y = cfg.getint("display", "resolution_y")
         self.resolution = resolution_x, resolution_y
+        self.layout_screen = get_closest_layout(resolution_x, resolution_y)
         self.splash = cfg.getboolean("display", "splash")
         self.fullscreen = cfg.getboolean("display", "fullscreen")
         self.fps = cfg.getfloat("display", "fps")
@@ -111,6 +124,15 @@ class TuxemonConfig:
 
         # not configurable from the file yet
         self.mods = ["tuxemon"]
+
+
+def get_closest_layout(resolution_x: int, resolution_y: int) -> str:
+    closest_aspect_ratio = min(
+        layouts.keys(),
+        key=lambda x: abs(layouts[x]["width"] - resolution_x)
+        + abs(layouts[x]["height"] - resolution_y),
+    )
+    return closest_aspect_ratio
 
 
 def get_custom_pygame_keyboard_controls(

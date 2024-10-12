@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="30" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="55">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="30" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="62">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="notype"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="leather_museum"/>
-  <property name="map_type" value="notype"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/Superpowers_Tilesheet.tsx"/>
  <tileset firstgid="1601" source="../gfx/tilesets/core_set pieces.tsx"/>
@@ -24,7 +24,7 @@
  </layer>
  <layer id="3" name="Layer 3" width="30" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFpID77KSxqQX+sZPGJgbQwp3EAFLdOdTAAy4GBiZuCFuQiYEhmAXCVgfSflB2FZDmZ0LVd1SYgeEYEB8H4hNAfBKITwHxaWHi7P3PRZ57XwHNfw3Eb4D4LRC/A+L3QPyBxvbyizAwCACxIBALAbEwEIsAsagIbe0lBwAAVEcdJw==
+   eJxjYBgFpID77OSzKQH/2Mln4wLUchupgBi3DWXwgIuBgYkbwhZkYmAIZoGw1YG0H5RdBaT5mVD1HRVmYDgGxMeB+AQQnwTiU0B8Wpg4e/9zkefeV0DzXwPxGyB+C8TvgPg9EH+gsb38IgwMAkAsCMRCQCwMxCJALCpCW3vJAQAa4h8S
   </data>
  </layer>
  <layer id="5" name="Above Player" width="30" height="11">
@@ -42,241 +42,9 @@
   <object id="48" type="collision" x="144" y="112" width="32" height="16"/>
   <object id="49" type="collision" x="192" y="112" width="32" height="16"/>
   <object id="50" type="collision" x="288" y="112" width="80" height="32"/>
-  <object id="51" type="collision" x="0" y="0" width="480" height="64"/>
+  <object id="51" type="collision" x="0" y="48" width="480" height="16"/>
   <object id="52" type="collision" x="96" y="64" width="144" height="32"/>
   <object id="53" type="collision" x="48" y="112" width="16" height="64"/>
   <object id="54" type="collision" x="64" y="112" width="16" height="16"/>
- </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="13" name="Teleport to Leather Town" type="event" x="16" y="160" width="32" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_leather_town.tmx,25,15,0.3"/>
-    <property name="act2" value="char_face player,down"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,down"/>
-   </properties>
-  </object>
-  <object id="15" name="Play Music" type="event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="play_music music_cathedral_theme"/>
-    <property name="cond1" value="not music_playing music_cathedral_theme"/>
-   </properties>
-  </object>
-  <object id="17" name="Make Miner" type="event" x="416" y="144" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_leathermuseum_davie,23,9"/>
-    <property name="act2" value="char_wander spyder_leathermuseum_davie"/>
-    <property name="cond1" value="not char_exists spyder_leathermuseum_davie"/>
-   </properties>
-  </object>
-  <object id="21" name="Make Postboy" type="event" x="192" y="160" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_leathermuseum_kasey,12,10"/>
-    <property name="act2" value="char_wander spyder_leathermuseum_kasey"/>
-    <property name="cond1" value="not char_exists spyder_leathermuseum_kasey"/>
-   </properties>
-  </object>
-  <object id="22" name="Postboy Talk" type="event" x="208" y="144" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_museum_postboy1"/>
-    <property name="behav1" value="talk spyder_leathermuseum_kasey"/>
-   </properties>
-  </object>
-  <object id="26" name="Miner Talk" type="event" x="400" y="128" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_museum_miner1"/>
-    <property name="behav1" value="talk spyder_leathermuseum_davie"/>
-   </properties>
-  </object>
-  <object id="27" name="Make Shopkeeper" type="event" x="64" y="144" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_leathermuseum_giles,4,9"/>
-    <property name="act2" value="char_face spyder_leathermuseum_giles,left"/>
-    <property name="cond1" value="not char_exists spyder_leathermuseum_giles"/>
-   </properties>
-  </object>
-  <object id="28" name="Shopkeeper Talk" type="event" x="80" y="128" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_museum_shopkeeper_chat"/>
-    <property name="behav1" value="talk spyder_leathermuseum_giles"/>
-   </properties>
-  </object>
-  <object id="29" name="Pay Option" type="event" x="48" y="112" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_museum_entrance1"/>
-    <property name="act2" value="translated_dialog player_wallet"/>
-    <property name="act3" value="translated_dialog_choice yes:no,paymuseum"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,up"/>
-    <property name="cond3" value="not variable_set paymuseum:yes"/>
-    <property name="cond4" value="not variable_set paymuseum:no"/>
-    <property name="cond5" value="not variable_set notpaidmuseum:yes"/>
-   </properties>
-  </object>
-  <object id="30" name="Pay" type="event" x="16" y="48" width="16" height="16">
-   <properties>
-    <property name="act10" value="lock_controls"/>
-    <property name="act41" value="pathfind player,1,8"/>
-    <property name="act42" value="set_variable paymuseum:null"/>
-    <property name="act43" value="translated_dialog spyder_museum_entrance2"/>
-    <property name="act44" value="transfer_money player,50,spyder_leather_museum"/>
-    <property name="act90" value="unlock_controls"/>
-    <property name="cond1" value="is variable_set paymuseum:yes"/>
-    <property name="cond2" value="not variable_set notpaidmuseum:yes"/>
-    <property name="cond3" value="is money_is player,greater_or_equal,50"/>
-   </properties>
-  </object>
-  <object id="42" name="Cannot Afford 50" type="event" x="32" y="48" width="16" height="16">
-   <properties>
-    <property name="act10" value="lock_controls"/>
-    <property name="act41" value="pathfind player,1,10"/>
-    <property name="act43" value="set_variable paymuseum:null"/>
-    <property name="act44" value="set_variable notpaidmuseum:yes"/>
-    <property name="act50" value="unlock_controls"/>
-    <property name="cond1" value="is variable_set paymuseum:yes"/>
-    <property name="cond2" value="not variable_set notpaidmuseum:yes"/>
-    <property name="cond3" value="not money_is player,greater_or_equal,50"/>
-   </properties>
-  </object>
-  <object id="33" name="Cannot Afford 100" type="event" x="0" y="48" width="16" height="16">
-   <properties>
-    <property name="act10" value="lock_controls"/>
-    <property name="act41" value="pathfind player,1,10"/>
-    <property name="act43" value="set_variable paymuseum:null"/>
-    <property name="act50" value="unlock_controls"/>
-    <property name="cond1" value="is variable_set paymuseum:yes"/>
-    <property name="cond2" value="is variable_set notpaidmuseum:yes"/>
-    <property name="cond3" value="not money_is player,greater_or_equal,100"/>
-   </properties>
-  </object>
-  <object id="25" name="Pay (Required)" type="event" x="48" y="144" width="16" height="16">
-   <properties>
-    <property name="act10" value="lock_controls"/>
-    <property name="act41" value="pathfind player,1,8"/>
-    <property name="act42" value="set_variable paymuseum:null"/>
-    <property name="act43" value="translated_dialog spyder_museum_entrance2"/>
-    <property name="act44" value="transfer_money player,100,spyder_leather_museum"/>
-    <property name="act90" value="unlock_controls"/>
-    <property name="cond1" value="is variable_set paymuseum:yes"/>
-    <property name="cond2" value="is variable_set notpaidmuseum:yes"/>
-    <property name="cond3" value="is money_is player,greater_or_equal,100"/>
-   </properties>
-  </object>
-  <object id="31" name="No Pay (Required)" type="event" x="64" y="112" width="16" height="16">
-   <properties>
-    <property name="act10" value="lock_controls"/>
-    <property name="act41" value="pathfind player,1,10"/>
-    <property name="act42" value="set_variable paymuseum:null"/>
-    <property name="act43" value="transfer_money player,100,spyder_leather_museum"/>
-    <property name="act90" value="unlock_controls"/>
-    <property name="cond1" value="is variable_set paymuseum:no"/>
-    <property name="cond2" value="is variable_set notpaidmuseum:yes"/>
-    <property name="cond3" value="is money_is player,greater_or_equal,100"/>
-   </properties>
-  </object>
-  <object id="32" name="Pay Requirement" type="event" x="0" y="144" width="48" height="16">
-   <properties>
-    <property name="act10" value="char_stop player"/>
-    <property name="act11" value="lock_controls"/>
-    <property name="act14" value="translated_dialog spyder_museum_entrance3"/>
-    <property name="act16" value="translated_dialog player_wallet"/>
-    <property name="act20" value="translated_dialog_choice yes:no,paymuseum"/>
-    <property name="act90" value="unlock_controls"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,up"/>
-    <property name="cond3" value="not variable_set paymuseum:yes"/>
-    <property name="cond4" value="not variable_set paymuseum:no"/>
-    <property name="cond5" value="is variable_set notpaidmuseum:yes"/>
-   </properties>
-  </object>
-  <object id="34" name="No Pay (Not Required)" type="event" x="48" y="128" width="16" height="16">
-   <properties>
-    <property name="act10" value="char_stop player"/>
-    <property name="act11" value="lock_controls"/>
-    <property name="act42" value="pathfind player,1,10"/>
-    <property name="act43" value="set_variable paymuseum:null"/>
-    <property name="act44" value="set_variable notpaidmuseum:yes"/>
-    <property name="act50" value="unlock_controls"/>
-    <property name="cond1" value="is variable_set paymuseum:no"/>
-    <property name="cond2" value="not variable_set notpaidmuseum:yes"/>
-   </properties>
-  </object>
-  <object id="35" name="Plaque: Ruby" type="event" x="160" y="112" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_ruby_plaque"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="36" name="Plaque: Opal" type="event" x="112" y="112" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_opal_plaque"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="37" name="Plaque: Emerald" type="event" x="144" y="112" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_emerald_plaque"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="38" name="Plaque: Agate" type="event" x="96" y="112" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_agate_plaque"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="39" name="Plaque: Diamond" type="event" x="208" y="112" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_diamond_plaque"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="40" name="Plaque: Quartz" type="event" x="192" y="112" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_quartz_plaque"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="41" name="Plaque: Shaft" type="event" x="112" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_shaft_plaque"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="43" name="Plaque: Nimrod" type="event" x="256" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_nimrod_plaque"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="44" name="Plaque: Nimrod" type="event" x="304" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_nimrod2_plaque"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="45" name="Plaque: Nimrod" type="event" x="352" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_nimrod3_plaque"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="46" name="Plaque: Nimrod" type="event" x="400" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_nimrod4_plaque"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
  </objectgroup>
 </map>

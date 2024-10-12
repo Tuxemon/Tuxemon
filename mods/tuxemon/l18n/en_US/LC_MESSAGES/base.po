@@ -8941,12 +8941,25 @@ msgid "spyder_omnichannel_strauss1"
 msgstr "I have to shake a lot of hands in my line of work."
 msgid "spyder_omnichannel_strauss2"
 msgstr "Down low. Too slow!"
+
 msgid "spyder_omnichannel_billie1"
-msgstr "Not so fast, ${{name}}! We're not going to let you go in there \n ... by yourself! I'm coming too. \n When you cured my tuxemon, you made me do some serious thinking. \n We can't let them get away with stealing our tuxemon!"
+msgstr "Hey ${{name}}, hold up!\n I've been thinking a lot about what you did for my tuxemon, and I have to admit, it got me thinking about my own priorities.\n I realized I've been too focused on my own goals, and I haven't been doing enough to help others.\n That's why I'm coming with you to take down those tuxemon thieves.\n We owe it to ourselves, our tuxemon, and the entire community to put a stop to their nefarious plans."
+
+msgid "spyder_omnichannel_dante1"
+msgstr "I've been watching you from the shop, and I have to say, I'm impressed.\n You've come a long way since you first got your tuxemon.\n I've been feeling a bit guilty, I'm the one who helped you get that tuxemon, and I feel like I've got a responsibility to help you see this through.\n Plus, I've got to admit, I'm a bit curious to see how this all plays out. So, I'm coming with you to take down those tuxemon thieves.\n Let's do this!"
+
+msgid "spyder_omnichannel_billie2"
+msgstr "I'm proud of you, ${{name}}. You've come a long way since we first met.\n I think it's time for me to head back to Paper Town, but I'll never forget this adventure we shared."
+
+msgid "spyder_omnichannel_dante2"
+msgstr "That was a close one! I'm just glad we were able to take down those thieves.\n You've got a bright future ahead of you, ${{name}}. Don't forget about me when you're a famous tuxemon master, okay?"
+
 msgid "spyder_omnichannel_beaverbrook1"
 msgstr "Aha, it's too late for you! \n Just out of the birthing pit ... the perfect monsters! \n The genes of Drokoro incubated in dragon eggs dug up by Shaft \n ... and fused with three killer robos designed by Nimrod. \n The power of teamwork ... and it's in my hands. "
+
 msgid "spyder_omnichannel_beaverbrook2"
 msgstr "No. It's not possible. \n Two upstarts, one with off-brand tuxemon, defeating my perfect creations. \n If I can just make it to my live radio interview, I'll command my enforcers to complete the takeover."
+
 msgid "spyder_omnichannel_radioannounce"
 msgstr "This is FUD Radio, DJ Worm here and my co-host, \"The Duke of Dead Air\", broadcasting live from the Omnichannel Radio Studios. \n We've got a full hour of lolly-pop, soft rock and accessible hip hop for you - but first, an interview with the head of Omnichannel! \n Ah, it looks like Sir Beaverbrook couldn't make it, but in his place has sent a small child. Well, small child, what do you have to say? \n ... \n Speak up! You're on live radio! \n ... \n Huh, a conspiracy, you say? \n ... \n The Pillars were going to use Greenwash fusion technology, Nimrod killer robos and dragons dug up by Shaft ... \n And they were going to use those fusions to take control of the entire region? \n ... \n And they deliberately spread the Virus to everyone's tuxemon using food from Scoop? \n ... \n And the Enforcers are in on it? \n ... \n And Omnichannel was behind the whole thing, using the media to keep people confused and distracted? \n ... \n You know we work for Omnichannel, right? Doc, please tell me you stopped broadcasting. Doc?! \n ... \n Ouch! Man I really wish Radio FUD didn't go out live. \n I don't think people are going to be very happy with us."
 

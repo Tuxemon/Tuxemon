@@ -4,12 +4,12 @@
     "not category threat"
   ],
   "effects": [
-    "capture_combined monster,xero,0.3,1.4"
+    "capture"
   ],
   "animation": "capture_1",
-  "slug": "tuxeball_xero",
+  "slug": "tuxeball_majestic",
   "sort": "utility",
-  "sprite": "gfx/items/tuxeball_xero.png",
+  "sprite": "gfx/items/tuxeball_majestic.png",
   "category": "capture",
   "usable_in": [
     "MainCombatMenuState"

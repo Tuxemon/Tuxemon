@@ -3,9 +3,9 @@
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="radiotower"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
   <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
@@ -99,39 +99,42 @@
     <property name="cond2" value="not variable_set omnichannelbeaverbrook:yes"/>
    </properties>
   </object>
-  <object id="26" name="Talk Beaverbrook" type="event" x="144" y="176" width="16" height="16">
+  <object id="27" name="Stop!" type="event" x="16" y="256" width="192" height="16">
    <properties>
-    <property name="act1" value="translated_dialog spyder_omnichannel_beaverbrook1"/>
-    <property name="act2" value="add_monster mk01_alpha,55,spyder_omnichannel_beaverbrook,5,10"/>
-    <property name="act3" value="add_monster mk01_beta,55,spyder_omnichannel_beaverbrook,5,10"/>
-    <property name="act4" value="start_battle player,spyder_omnichannel_beaverbrook"/>
-    <property name="act5" value="translated_dialog spyder_omnichannel_beaverbrook2"/>
-    <property name="act6" value="set_variable omnichannelbeaverbrook:yes"/>
-    <property name="act7" value="set_variable kernelquest:yes"/>
-    <property name="behav1" value="talk spyder_omnichannel_beaverbrook"/>
-    <property name="cond1" value="not variable_set omnichannelbeaverbrook:yes"/>
-   </properties>
-  </object>
-  <object id="27" name="Stop!" type="event" x="16" y="256" width="208" height="16">
-   <properties>
-    <property name="act1" value="char_stop player"/>
-    <property name="act10" value="lock_controls"/>
-    <property name="act20" value="create_npc spyder_dante,3,18"/>
-    <property name="act30" value="create_npc spyder_billie,2,18"/>
-    <property name="act31" value="char_face spyder_dante,up"/>
-    <property name="act32" value="char_face spyder_billie,up"/>
-    <property name="act40" value="translated_dialog spyder_omnichannel_billie1"/>
-    <property name="act50" value="pathfind spyder_dante,11,15"/>
-    <property name="act60" value="pathfind spyder_billie,7,15"/>
-    <property name="act70" value="translated_dialog spyder_omnichannel_beaverbrook1"/>
-    <property name="act80" value="pathfind player,9,13"/>
-    <property name="act81" value="add_monster mk01_alpha,55,spyder_omnichannel_beaverbrook,5,10"/>
-    <property name="act82" value="add_monster mk01_beta,55,spyder_omnichannel_beaverbrook,5,10"/>
-    <property name="act90" value="start_battle player,spyder_omnichannel_beaverbrook"/>
-    <property name="act91" value="translated_dialog spyder_omnichannel_beaverbrook2"/>
-    <property name="act92" value="set_variable omnichannelbeaverbrook:yes"/>
-    <property name="act93" value="set_variable kernelquest:yes"/>
-    <property name="act94" value="unlock_controls"/>
+    <property name="act10" value="char_stop player"/>
+    <property name="act11" value="lock_controls"/>
+    <property name="act12" value="create_npc spyder_dante,3,18"/>
+    <property name="act13" value="create_npc spyder_billie,2,18"/>
+    <property name="act14" value="char_face spyder_dante,up"/>
+    <property name="act15" value="char_face spyder_billie,up"/>
+    <property name="act20" value="translated_dialog spyder_omnichannel_billie1"/>
+    <property name="act21" value="pathfind spyder_billie,7,15"/>
+    <property name="act22" value="char_face spyder_billie,up"/>
+    <property name="act23" value="translated_dialog spyder_omnichannel_dante1"/>
+    <property name="act24" value="pathfind spyder_dante,11,15"/>
+    <property name="act25" value="char_face spyder_dante,up"/>
+    <property name="act40" value="translated_dialog spyder_omnichannel_beaverbrook1"/>
+    <property name="act50" value="pathfind player,9,13"/>
+    <property name="act60" value="add_monster mk01_alpha,55,spyder_omnichannel_beaverbrook,5,10"/>
+    <property name="act61" value="add_monster mk01_beta,55,spyder_omnichannel_beaverbrook,5,10"/>
+    <property name="act62" value="start_battle player,spyder_omnichannel_beaverbrook"/>
+    <property name="act70" value="pathfind spyder_dante,9,14"/>
+    <property name="act71" value="char_face spyder_dante,up"/>
+    <property name="act72" value="char_face player,down"/>
+    <property name="act73" value="translated_dialog spyder_omnichannel_dante2"/>
+    <property name="act74" value="pathfind spyder_dante,3,18"/>
+    <property name="act75" value="remove_npc spyder_dante"/>
+    <property name="act76" value="pathfind spyder_billie,9,14"/>
+    <property name="act77" value="char_face spyder_billie,up"/>
+    <property name="act78" value="translated_dialog spyder_omnichannel_billie2"/>
+    <property name="act79" value="pathfind spyder_billie,2,18"/>
+    <property name="act80" value="remove_npc spyder_billie"/>
+    <property name="act85" value="char_face player,up"/>
+    <property name="act86" value="translated_dialog spyder_omnichannel_beaverbrook2"/>
+    <property name="act87" value="pathfind spyder_omnichannel_beaverbrook,9,4"/>
+    <property name="act90" value="set_variable omnichannelbeaverbrook:yes"/>
+    <property name="act91" value="set_variable kernelquest:yes"/>
+    <property name="act92" value="unlock_controls"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="not variable_set omnichannelbeaverbrook:yes"/>
    </properties>
@@ -148,16 +151,17 @@
     <property name="cond1" value="not char_exists spyder_omnichannel_thedukeofdeadair"/>
    </properties>
   </object>
-  <object id="31" name="Stop!" type="event" x="16" y="80" width="208" height="16">
+  <object id="31" name="Stop!" type="event" x="16" y="80" width="192" height="16">
    <properties>
-    <property name="act1" value="char_stop player"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="translated_dialog spyder_omnichannel_radioannounce"/>
-    <property name="act30" value="remove_npc spyder_omnichannel_beaverbrook"/>
-    <property name="act31" value="remove_npc spyder_scoop_donald"/>
-    <property name="act32" value="remove_npc spyder_route3_zoolander"/>
-    <property name="act92" value="set_variable omnichannelradioannounce:yes"/>
-    <property name="act93" value="unlock_controls"/>
+    <property name="act30" value="remove_npc spyder_scoop_donald"/>
+    <property name="act31" value="remove_npc spyder_route3_zoolander"/>
+    <property name="act32" value="pathfind spyder_omnichannel_beaverbrook,9,12"/>
+    <property name="act33" value="remove_npc spyder_omnichannel_beaverbrook"/>
+    <property name="act40" value="set_variable omnichannelradioannounce:yes"/>
+    <property name="act50" value="unlock_controls"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="not variable_set omnichannelradioannounce:yes"/>
    </properties>

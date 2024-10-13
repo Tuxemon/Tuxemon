@@ -8,9 +8,9 @@
     "heal 20,fixed"
   ],
   "slug": "revive",
-  "sort": "food",
+  "sort": "potion",
   "sprite": "gfx/items/revive.png",
-  "category": "revive",
+  "category": "potion",
   "usable_in": [
     "MainCombatMenuState",
     "WorldState"

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="51">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="51">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="omnichannel3"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
   <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
@@ -49,16 +49,16 @@
   <object id="47" type="collision" x="32" y="288" width="64" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="3" name="Events">
-  <object id="3" name="Teleport to Omnichannel 1" type="event" x="16" y="208" width="16" height="16">
+  <object id="3" name="Teleport to Omnichannel 2" type="event" x="16" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_omnichannel1.tmx,1,10,0.3"/>
+    <property name="act1" value="transition_teleport spyder_omnichannel2.tmx,1,10,0.3"/>
     <property name="act2" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
    </properties>
   </object>
-  <object id="4" name="Teleport to Omnichannel 1" type="event" x="32" y="208" width="16" height="16">
+  <object id="4" name="Teleport to Omnichannel 2" type="event" x="32" y="208" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_omnichannel1.tmx,2,10,0.3"/>
+    <property name="act1" value="transition_teleport spyder_omnichannel2.tmx,2,10,0.3"/>
     <property name="act2" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
    </properties>
@@ -158,7 +158,7 @@
   </object>
   <object id="48" name="Create Spyder Rookie" type="event" x="64" y="272" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_omnichannel_gore,12,11"/>
+    <property name="act1" value="create_npc spyder_omnichannel_gore,4,17"/>
     <property name="cond1" value="not char_exists spyder_omnichannel_gore"/>
    </properties>
   </object>

@@ -171,6 +171,12 @@ class PygameMenuState(state.State):
             drawing_position=position,
         )
 
+    def update_selected_widget(self) -> None:
+        """
+        Updates the currently selected widget based on the menu's selection.
+        """
+        self.selected_widget = self.menu.get_selected_widget()
+
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         """
         Processes a player input event.

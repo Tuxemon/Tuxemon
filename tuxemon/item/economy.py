@@ -3,9 +3,14 @@
 from __future__ import annotations
 
 import logging
-from typing import Optional
+from collections.abc import Sequence
+from typing import TYPE_CHECKING, Optional
 
-from tuxemon.db import db
+from tuxemon.db import EconomyItemModel, db
+from tuxemon.item.item import Item
+
+if TYPE_CHECKING:
+    from tuxemon.npc import NPC
 
 logger = logging.getLogger(__name__)
 
@@ -50,12 +55,7 @@ class Economy:
         Returns:
             Field of item for this economy.
         """
-        for item in self.items:
-            if item.item_name == item_slug and hasattr(item, field):
-                value = int(getattr(item, field))
-                return value
-
-        return None
+        return self.get_item_field(item_slug, field)
 
     def lookup_item(self, item_slug: str, field: str) -> int:
         """Looks up the item's field from this economy.
@@ -91,3 +91,62 @@ class Economy:
     def lookup_item_inventory(self, item_slug: str) -> int:
         """Looks up the item quantity from this economy."""
         return self.lookup_item(item_slug, "inventory")
+
+    def update_item_quantity(self, item_slug: str, quantity: int) -> None:
+        self.update_item_field(item_slug, "inventory", quantity)
+
+    def get_item(self, item_slug: str) -> Optional[EconomyItemModel]:
+        return next(
+            (item for item in self.items if item.item_name == item_slug), None
+        )
+
+    def get_item_field(self, item_slug: str, field: str) -> Optional[int]:
+        item = self.get_item(item_slug)
+        if item and hasattr(item, field):
+            return int(getattr(item, field))
+        return None
+
+    def update_item_field(
+        self, item_slug: str, field: str, value: int
+    ) -> None:
+        item = self.get_item(item_slug)
+        if item:
+            setattr(item, field, value)
+        else:
+            raise RuntimeError(
+                f"Item '{item_slug}' not found in economy '{self.slug}'"
+            )
+
+    def load_economy_items(self, character: NPC) -> list[Item]:
+        items: list[Item] = []
+        for item in self.items:
+            label = f"{self.slug}:{item.item_name}"
+            if label not in character.game_variables:
+                character.game_variables[label] = self.get_item_field(
+                    item.item_name, "inventory"
+                )
+
+            itm_in_shop = Item()
+            if item.variables:
+                if self.variable(item.variables, character):
+                    itm_in_shop.load(item.item_name)
+                    itm_in_shop.quantity = int(character.game_variables[label])
+                    items.append(itm_in_shop)
+            else:
+                itm_in_shop.load(item.item_name)
+                itm_in_shop.quantity = int(character.game_variables[label])
+                items.append(itm_in_shop)
+        return items
+
+    def variable(self, variables: Sequence[str], character: NPC) -> bool:
+        return all(
+            parts[1] == character.game_variables.get(parts[0])
+            for variable in variables
+            if (parts := variable.split(":")) and len(parts) == 2
+        )
+
+    def add_economy_items_to_npc(
+        self, character: NPC, items: list[Item]
+    ) -> None:
+        for item in items:
+            character.add_item(item)

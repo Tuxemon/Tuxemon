@@ -45,6 +45,7 @@ class QuarantineAction(EventAction):
             infect = PlagueType.infected
             plague = [mon for mon in player.monsters if mon.plague == infect]
             for _monster in plague:
+                _monster.plague = PlagueType.inoculated
                 player.monster_boxes[self.name].append(_monster)
                 player.remove_monster(_monster)
                 logger.info(f"{_monster} has been quarantined")

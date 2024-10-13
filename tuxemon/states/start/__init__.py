@@ -7,7 +7,7 @@ from __future__ import annotations
 import logging
 from collections.abc import Callable
 from functools import partial
-from typing import Any, Union
+from typing import Any, Optional, Union
 
 import pygame
 import pygame_menu
@@ -16,6 +16,8 @@ from pygame_menu import locals
 from tuxemon import formula, prepare
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
+from tuxemon.platform.const import buttons
+from tuxemon.platform.events import PlayerInput
 from tuxemon.save import get_index_of_latest_save
 from tuxemon.session import local_session
 from tuxemon.state import State
@@ -111,3 +113,12 @@ class StartState(PygameMenuState):
 
         self.add_menu_items(self.menu)
         self.reset_theme()
+
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+        if (
+            event.button in (buttons.HOME, buttons.BACK, buttons.B)
+            and event.pressed
+        ):
+            return None
+        else:
+            return super().process_event(event)

@@ -8,7 +8,6 @@ from typing import final
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.economy import Economy
-from tuxemon.item.item import Item
 
 
 @final
@@ -37,25 +36,6 @@ class SetEconomyAction(EventAction):
         npc = get_npc(self.session, self.npc_slug)
         assert npc
 
-        def variable(var: str) -> bool:
-            variables = var.split(":")
-            return variables[1] == player.game_variables.get(variables[0])
-
         npc.economy = Economy(self.economy_slug)
-
-        for itm in npc.economy.items:
-            label = f"{self.economy_slug}:{itm.item_name}"
-            # saving quantities inside variables
-            if label not in player.game_variables:
-                player.game_variables[label] = itm.inventory
-
-            itm_in_shop = Item()
-            if itm.variable:
-                if variable(itm.variable):
-                    itm_in_shop.load(itm.item_name)
-                    itm_in_shop.quantity = int(player.game_variables[label])
-                    npc.add_item(itm_in_shop)
-            else:
-                itm_in_shop.load(itm.item_name)
-                itm_in_shop.quantity = int(player.game_variables[label])
-                npc.add_item(itm_in_shop)
+        items = npc.economy.load_economy_items(player)
+        npc.economy.add_economy_items_to_npc(npc, items)

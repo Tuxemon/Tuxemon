@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="49">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="49">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="omnichannel2"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <tileset firstgid="2971" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
@@ -88,7 +88,7 @@
     <property name="cond1" value="not variable_set environment:interior"/>
    </properties>
   </object>
-  <object id="24" name="Create Bettger" type="event" x="192" y="176" width="16" height="16">
+  <object id="24" name="Create Bettger" type="event" x="192" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_bettger,12,10"/>
     <property name="cond1" value="not char_exists spyder_omnichannel_bettger"/>
@@ -110,7 +110,7 @@
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
-  <object id="29" name="Create Schwartz" type="event" x="192" y="192" width="16" height="16">
+  <object id="29" name="Create Schwartz" type="event" x="192" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_schwartz,12,11"/>
     <property name="act2" value="char_face spyder_omnichannel_schwartz,up"/>
@@ -157,7 +157,7 @@
   </object>
   <object id="36" name="Create Crane" type="event" x="176" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_omnichannel_crane,12,7"/>
+    <property name="act1" value="create_npc spyder_omnichannel_crane,11,3"/>
     <property name="act2" value="char_face spyder_omnichannel_crane,up"/>
     <property name="cond1" value="not char_exists spyder_omnichannel_crane"/>
     <property name="cond2" value="not variable_set omnichannel2crane:yes"/>

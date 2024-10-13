@@ -48,6 +48,7 @@ events:
     - format_variable cathedral_fee,int
     - modify_money bill_cathedral,,cathedral_fee
     conditions:
+    - is char_defeated player
     - is location_type clinic
     - is variable_set teleport_clinic:lost
     - is current_state WorldState
@@ -215,6 +216,7 @@ events:
     - set_layer 0:0:128:128
     conditions:
     - is variable_set stage_of_day:night
+    - not variable_set flashback:on
     - not location_inside
     - not check_world layer,0:0:128:128
     type: "event"
@@ -223,6 +225,7 @@ events:
     - set_layer
     conditions:
     - is variable_set stage_of_day:night
+    - not variable_set flashback:on
     - is location_inside
     - not check_world layer,255:255:255:0
     type: "event"
@@ -231,6 +234,7 @@ events:
     - set_layer
     conditions:
     - not variable_set stage_of_day:night
+    - not variable_set flashback:on
     - not location_inside
     - is check_world layer,0:0:128:128
     type: "event"

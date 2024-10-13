@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="63">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="66">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -21,7 +21,7 @@
  </layer>
  <layer id="2" name="Tile Layer 3" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJzVkzkOwjAQRaeApAOcBhrECYhLljPAMSIOxHIF4DaABHSRgAMkoQE6xgIr9sQOWxpG+nLi//1kW+OwDhAWoH6jGP1bzR2ABWrp5Oc6DGBiUcsD2OL6HWqPanrZTI89OAGOsUUJ0zmRITNSOKJWPsCaaOPrHJoRPuVEONfmAD5Px4RwRCb2dd/EGaA35Olo46j+t/uRnuD9sh/p2TgV9KpENa5zaEb4kjO29I7sC5Vj6rWpPI+ldwIDx9RrCcvvcxvHVvLtHPD7hDp+wBHn7D4lMxecv6GukN4bfV+UM1P+Sy5A2c3uMzK8L8o5v7gbtd69nzvo6Kyu
+   eJytkzsOwjAMhj1AuwHpAgviBLQjjzPAMSoOxOMKwG0ACdgqAQdoywJs2IKoqUnKK5Z+pc3vfkpcO6oDRBbUb9jRxgcrkVri1IJif+4ALFBLpzivIwAmBrU8gC1+v0PtUU3vNacnHpwQ18SgVOQ5sSZnpHAoVlinNRP9A5XDc8jnnBj32lgrP8jWlHEoJ/Hzvo4zQG8YZKuJo/q/nkd6xPvnPNIzcSroVZmot1QOzyFfcsaG3pF9oXJ0vTaV9zH0Tqjh6HotFcV9buKYQs7OAZ9PqOMXHLpn9ymZc8H9G+oKWd34fHHOTHkvuQBl9/WcsWa+OOf8pjZqfFqfO3DJrww=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 4" width="18" height="20">
@@ -67,7 +67,7 @@
     <property name="cond2" value="not variable_set nimrodtru:yes"/>
    </properties>
   </object>
-  <object id="39" name="Talk Guard" type="event" x="96" y="304" width="16" height="16">
+  <object id="39" name="Talk Guard" type="event" x="96" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_guard1"/>
     <property name="behav1" value="talk spyder_nimrod_jake"/>
@@ -142,7 +142,6 @@
     <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
-  <object id="49" type="collision" x="32" y="256" width="48" height="32"/>
   <object id="52" name="Environment" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:interior"/>
@@ -226,6 +225,55 @@
     <property name="cond1" value="not music_playing music_10_empire"/>
    </properties>
   </object>
+  <object id="64" name="Flashback Xeon" type="event" x="112" y="112" width="16" height="16">
+   <properties>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="set_template player,invisible"/>
+    <property name="act03" value="set_layer 102:51:0:128"/>
+    <property name="act04" value="create_npc spyder_nimrod_zircon,10,7"/>
+    <property name="act05" value="char_face spyder_nimrod_zircon,left"/>
+    <property name="act06" value="create_npc spyder_nimrod_argon,8,7"/>
+    <property name="act07" value="char_face spyder_nimrod_argon,right"/>
+    <property name="act08" value="create_npc spyder_nimrod_xeon,9,4"/>
+    <property name="act10" value="create_npc spyder_flower_lissa,9,8"/>
+    <property name="act11" value="char_face spyder_flower_lissa,up"/>
+    <property name="act20" value="translated_dialog xeon_creation_flashback_setting"/>
+    <property name="act21" value="translated_dialog xeon_creation_flashback1"/>
+    <property name="act22" value="translated_dialog xeon_creation_flashback2"/>
+    <property name="act30" value="pathfind spyder_nimrod_xeon,9,7"/>
+    <property name="act33" value="translated_dialog xeon_creation_flashback3"/>
+    <property name="act34" value="translated_dialog xeon_creation_flashback4"/>
+    <property name="act35" value="translated_dialog xeon_creation_flashback5"/>
+    <property name="act36" value="translated_dialog xeon_creation_flashback6"/>
+    <property name="act37" value="translated_dialog xeon_creation_flashback7"/>
+    <property name="act38" value="translated_dialog xeon_creation_flashback8"/>
+    <property name="act39" value="translated_dialog xeon_creation_flashback9"/>
+    <property name="act40" value="translated_dialog xeon_creation_flashback10"/>
+    <property name="act41" value="translated_dialog xeon_creation_flashback11"/>
+    <property name="act42" value="translated_dialog xeon_creation_flashback12"/>
+    <property name="act50" value="pathfind spyder_nimrod_argon,9,15"/>
+    <property name="act51" value="remove_npc spyder_nimrod_argon"/>
+    <property name="act52" value="pathfind spyder_nimrod_zircon,9,15"/>
+    <property name="act53" value="remove_npc spyder_nimrod_zircon"/>
+    <property name="act54" value="pathfind spyder_nimrod_xeon,9,4"/>
+    <property name="act55" value="remove_npc spyder_nimrod_xeon"/>
+    <property name="act56" value="pathfind spyder_flower_lissa,9,4"/>
+    <property name="act57" value="remove_npc spyder_flower_lissa"/>
+    <property name="act60" value="set_variable xeon_creation:done"/>
+    <property name="act61" value="set_layer"/>
+    <property name="act62" value="unlock_controls"/>
+    <property name="act63" value="set_variable flashback:off"/>
+    <property name="cond1" value="is variable_set xeon_creation:yes"/>
+   </properties>
+  </object>
+  <object id="65" name="Teleport to Nimrod Room" type="event" x="0" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_nimrod_room.tmx,8,3,0.3"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="3" type="collision" x="0" y="0" width="288" height="32"/>
@@ -248,5 +296,6 @@
   <object id="50" type="collision" x="240" y="256" width="16" height="48"/>
   <object id="51" type="collision" x="256" y="256" width="32" height="16"/>
   <object id="57" type="collision" x="112" y="272" width="16" height="32"/>
+  <object id="63" type="collision" x="32" y="256" width="48" height="32"/>
  </objectgroup>
 </map>

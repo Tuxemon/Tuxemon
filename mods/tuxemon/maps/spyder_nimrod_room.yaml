@@ -1,0 +1,267 @@
+events:
+  Environment:
+    actions:
+    - set_variable environment:interior
+    conditions:
+    - not variable_set environment:interior
+    type: "event"
+  Music:
+    actions:
+    - play_music music_10_empire
+    conditions:
+    - not music_playing music_10_empire
+    type: "event"
+  Go Outside:
+    actions:
+    - transition_teleport spyder_nimrod_bottom.tmx,0,3,0.3
+    - char_face player,right
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 8
+    y: 3
+  FlashBack Zircon and Argon:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_nimrod_argon,2,5
+    - char_face spyder_nimrod_argon,up
+    - create_npc spyder_nimrod_zircon,2,2
+    - char_face spyder_nimrod_zircon,down
+    - translated_dialog spyder_nimrod_flashback_setting
+    - pathfind spyder_nimrod_zircon,6,2
+    - translated_dialog spyder_nimrod_flashback1
+    - pathfind spyder_nimrod_zircon,2,2
+    - char_face spyder_nimrod_zircon,down
+    - translated_dialog spyder_nimrod_flashback2
+    - translated_dialog spyder_nimrod_flashback3
+    - translated_dialog spyder_nimrod_flashback4
+    - translated_dialog spyder_nimrod_flashback5
+    - translated_dialog spyder_nimrod_flashback6
+    - translated_dialog spyder_nimrod_flashback7
+    - translated_dialog spyder_nimrod_flashback8
+    - translated_dialog spyder_nimrod_flashback9
+    - translated_dialog spyder_nimrod_flashback10
+    - translated_dialog spyder_nimrod_flashback11
+    - pathfind spyder_nimrod_argon,8,3
+    - remove_npc spyder_nimrod_argon
+    - pathfind spyder_nimrod_zircon,8,3
+    - remove_npc spyder_nimrod_zircon
+    - set_variable zircon_argon:done
+    - set_variable flashback:off
+    - set_layer
+    - unlock_controls
+    conditions:
+    - is variable_set zircon_argon:yes
+    type: "event"
+  Enforcers Rapid Response:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_nimrod_thatcher,3,2
+    - char_face spyder_nimrod_thatcher,up
+    - create_npc spyder_routea_little,2,5
+    - char_face spyder_routea_little,up
+    - translated_dialog spyder_enforcershq_flashback_setting
+    - translated_dialog spyder_enforcershq_flashback1
+    - pathfind spyder_routea_little,2,2
+    - char_face spyder_routea_little,up
+    - translated_dialog spyder_enforcershq_flashback2
+    - char_face spyder_nimrod_thatcher,left
+    - translated_dialog spyder_enforcershq_flashback3
+    - char_face spyder_routea_little,right
+    - translated_dialog spyder_enforcershq_flashback4
+    - translated_dialog spyder_enforcershq_flashback5
+    - translated_dialog spyder_enforcershq_flashback6
+    - translated_dialog spyder_enforcershq_flashback7
+    - translated_dialog spyder_enforcershq_flashback8
+    - translated_dialog spyder_enforcershq_flashback9
+    - translated_dialog spyder_enforcershq_flashback10
+    - translated_dialog spyder_enforcershq_flashback11
+    - translated_dialog spyder_enforcershq_flashback12
+    - set_layer 0:0:0:255
+    - translated_dialog spyder_enforcershq_flashback13
+    - char_face spyder_nimrod_thatcher,down
+    - remove_npc spyder_routea_little
+    - create_npc spyder_nimrod_mace,3,5
+    - char_face spyder_nimrod_mace,up
+    - create_npc spyder_nimrod_honour,1,3
+    - char_face spyder_nimrod_honour,right
+    - create_npc spyder_nimrod_bowie,1,4
+    - char_face spyder_nimrod_bowie,right
+    - set_layer 102:51:0:128
+    - translated_dialog spyder_enforcershq_flashback14
+    - translated_dialog spyder_enforcershq_flashback15
+    - translated_dialog spyder_enforcershq_flashback16
+    - translated_dialog spyder_enforcershq_flashback17
+    - translated_dialog spyder_enforcershq_flashback18
+    - translated_dialog spyder_enforcershq_flashback19
+    - translated_dialog spyder_enforcershq_flashback20
+    - translated_dialog spyder_enforcershq_flashback21
+    - translated_dialog spyder_enforcershq_flashback22
+    - set_layer 0:0:0:255
+    - remove_npc spyder_nimrod_thatcher
+    - remove_npc spyder_nimrod_bowie
+    - remove_npc spyder_nimrod_honour
+    - remove_npc spyder_nimrod_mace
+    - translated_dialog spyder_enforcershq_flashback23
+    - translated_dialog spyder_enforcershq_flashback24
+    - set_layer 102:51:0:128
+    - set_variable enforcers_response:done
+    - set_variable flashback:off
+    - set_layer
+    - unlock_controls
+    conditions:
+    - is variable_set enforcers_response:yes
+    type: "event"
+  Enforcers Confiscation Order:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_routea_little,5,2
+    - char_face spyder_routea_little,up
+    - translated_dialog spyder_gunner_flashback_setting
+    - create_npc spyder_route6_gunner,8,3
+    - char_face spyder_route6_gunner,left
+    - translated_dialog spyder_gunner_flashback1
+    - wait 1
+    - pathfind spyder_route6_gunner,6,2
+    - wait 1
+    - char_face spyder_routea_little,right
+    - translated_dialog spyder_gunner_flashback2
+    - translated_dialog spyder_gunner_flashback3
+    - translated_dialog spyder_gunner_flashback4
+    - translated_dialog spyder_gunner_flashback5
+    - translated_dialog spyder_gunner_flashback6
+    - translated_dialog spyder_gunner_flashback7
+    - translated_dialog spyder_gunner_flashback8
+    - translated_dialog spyder_gunner_flashback9
+    - translated_dialog spyder_gunner_flashback10
+    - translated_dialog spyder_gunner_flashback11
+    - translated_dialog spyder_gunner_flashback12
+    - pathfind spyder_route6_gunner,8,3
+    - remove_npc spyder_route6_gunner
+    - wait 1
+    - pathfind spyder_routea_little,8,3
+    - remove_npc spyder_routea_little
+    - set_layer 102:51:0:128
+    - set_variable gunner_orders:done
+    - set_variable flashback:off
+    - set_layer
+    - unlock_controls
+    conditions:
+    - is variable_set gunner_orders:yes
+    type: "event"
+  FlashBack Zircon and Argon First Meeting:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_nimrod_argon,4,2
+    - char_face spyder_nimrod_argon,up
+    - create_npc spyder_nimrod_zircon,8,3
+    - char_face spyder_nimrod_zircon,left
+    - translated_dialog spyder_nimrod_meeting_setting
+    - pathfind spyder_nimrod_zircon,5,2
+    - translated_dialog spyder_nimrod_meeting1
+    - char_face spyder_nimrod_argon,right
+    - translated_dialog spyder_nimrod_meeting2
+    - translated_dialog spyder_nimrod_meeting3
+    - translated_dialog spyder_nimrod_meeting4
+    - translated_dialog spyder_nimrod_meeting5
+    - translated_dialog spyder_nimrod_meeting6
+    - translated_dialog spyder_nimrod_meeting7
+    - translated_dialog spyder_nimrod_meeting8
+    - pathfind spyder_nimrod_zircon,8,3
+    - remove_npc spyder_nimrod_zircon
+    - pathfind spyder_nimrod_argon,8,3
+    - remove_npc spyder_nimrod_argon
+    - set_variable zircon_argon_first:done
+    - set_variable flashback:off
+    - set_layer
+    - unlock_controls
+    conditions:
+    - is variable_set zircon_argon_first:yes
+    type: "event"
+  FlashBack Zircon and Argon Committee:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_nimrod_argon,1,3
+    - char_face spyder_nimrod_argon,right
+    - create_npc spyder_nimrod_zircon,7,3
+    - char_face spyder_nimrod_zircon,left
+    - create_npc spyder_hospital1_rhizome,4,2
+    - translated_dialog spyder_nimrod_committee_setting
+    - translated_dialog spyder_nimrod_committee1
+    - translated_dialog spyder_nimrod_committee2
+    - translated_dialog spyder_nimrod_committee3
+    - translated_dialog spyder_nimrod_committee4
+    - translated_dialog spyder_nimrod_committee5
+    - set_bubble spyder_hospital1_rhizome,exclamation
+    - translated_dialog spyder_nimrod_committee6
+    - set_bubble spyder_hospital1_rhizome
+    - translated_dialog spyder_nimrod_committee7
+    - translated_dialog spyder_nimrod_committee8
+    - translated_dialog spyder_nimrod_committee9
+    - translated_dialog spyder_nimrod_committee10
+    - translated_dialog spyder_nimrod_committee11
+    - translated_dialog spyder_nimrod_committee12
+    - pathfind spyder_nimrod_zircon,8,3
+    - remove_npc spyder_nimrod_zircon
+    - pathfind spyder_nimrod_argon,8,3
+    - remove_npc spyder_nimrod_argon
+    - pathfind spyder_hospital1_rhizome,8,3
+    - remove_npc spyder_hospital1_rhizome
+    - set_variable zircon_argon_committee:done
+    - set_variable flashback:off
+    - set_layer
+    - unlock_controls
+    conditions:
+    - is variable_set zircon_argon_committee:yes
+    type: "event"
+  FlashBack Zircon and Argon Shared Past:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_nimrod_argon,3,2
+    - create_npc spyder_nimrod_zircon,6,2
+    - translated_dialog spyder_nimrod_shared_setting
+    - char_face spyder_nimrod_zircon,left
+    - translated_dialog spyder_nimrod_shared1
+    - char_face spyder_nimrod_argon,right
+    - translated_dialog spyder_nimrod_shared2
+    - translated_dialog spyder_nimrod_shared3
+    - translated_dialog spyder_nimrod_shared4
+    - translated_dialog spyder_nimrod_shared5
+    - translated_dialog spyder_nimrod_shared6
+    - translated_dialog spyder_nimrod_shared7
+    - translated_dialog spyder_nimrod_shared8
+    - translated_dialog spyder_nimrod_shared9
+    - translated_dialog spyder_nimrod_shared10
+    - translated_dialog spyder_nimrod_shared11
+    - translated_dialog spyder_nimrod_shared12
+    - translated_dialog spyder_nimrod_shared13
+    - translated_dialog spyder_nimrod_shared14
+    - translated_dialog spyder_nimrod_shared15
+    - translated_dialog spyder_nimrod_shared16
+    - translated_dialog spyder_nimrod_shared17
+    - translated_dialog spyder_nimrod_shared18
+    - translated_dialog spyder_nimrod_shared19
+    - translated_dialog spyder_nimrod_shared20
+    - pathfind spyder_nimrod_zircon,8,3
+    - remove_npc spyder_nimrod_zircon
+    - pathfind spyder_nimrod_argon,8,3
+    - remove_npc spyder_nimrod_argon
+    - set_variable zircon_argon_shared:done
+    - set_variable flashback:off
+    - set_layer
+    - unlock_controls
+    conditions:
+    - is variable_set zircon_argon_shared:yes
+    type: "event"

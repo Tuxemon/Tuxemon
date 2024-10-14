@@ -220,7 +220,7 @@ msgid "tuxeball_grand_description"
 msgstr "Offers an even higher capture rate than the Lavish Tuxeball, increasing the chances of a successful catch."
 
 msgid "tuxeball_majestic"
-msgstr "Noble Tuxeball"
+msgstr "Majestic Tuxeball"
 
 msgid "tuxeball_majestic_description"
 msgstr "Boasts the highest capture rate of all, making it the ultimate choice for catching even the most elusive tuxemon."

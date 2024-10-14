@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="29">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="29">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -20,6 +20,11 @@
    eAFjYKAt4JJnYABhbiDmAeJ5ivjt0wSqAWEtINYG4r0E1KObdoeA+h9A+Z9A/AuKf6OrB/HRxdAtgfKZgOoeyDEwPARiRlx6kMwDqf8PVMsA9Bc29USZh+QWQuYhKYUz+RQYGECYHBDJzMAQBcTRQAwC24B+AQDOUxQ7
   </data>
  </layer>
+ <layer id="3" name="Tile Layer 3" width="12" height="12">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyFAfggAAAJAAAE=
+  </data>
+ </layer>
  <layer id="4" name="Above Player" width="12" height="12">
   <data encoding="base64" compression="zlib">
    eAFjYBje4KECAwMIEwMeI6l7hMRG1vsQKA7CIEBIPSF5iCkIklT1CJ3UYU2XI90cAIWiDM4=
@@ -28,8 +33,8 @@
  <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="1" type="collision" x="0" y="80" width="80" height="16"/>
   <object id="2" type="collision" x="64" y="48" width="16" height="32"/>
-  <object id="3" type="collision" x="0" y="0" width="192" height="48"/>
-  <object id="5" type="collision" x="176" y="160" width="16" height="32"/>
+  <object id="3" type="collision" x="0" y="32" width="192" height="16"/>
+  <object id="5" type="collision" x="176" y="176" width="16" height="16"/>
   <object id="9" type="collision" x="64" y="128" width="32" height="32"/>
   <object id="10" type="collision" x="128" y="96" width="32" height="32"/>
  </objectgroup>

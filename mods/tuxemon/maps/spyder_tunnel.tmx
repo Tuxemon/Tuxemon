@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="366">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="366">
  <properties>
   <property name="east" value="route6"/>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="north" value="timber_town"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="tunnel"/>
-  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
@@ -18,12 +18,17 @@
  </layer>
  <layer id="2" name="Obstacles" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAG1lkFOwzAQRV0EbLgIbS4BYk3FNdghQXewgZvBxZhP8uDLGicmBUvudz0z338yjuNSftp+M45BLHfTfPb/8qyUbXQQHyE8ILY5vtvg2kcHiXE+n2McIeUpdN6flHKo9OJzOB1H27Dvog8YjsQ6v4yuzrn28ef3F3z+/DK+14tS3qLTjtX3HlwfFR85gawlzPSdx/yVceCv2qqmxIDYhb5Glq/7kisxoPv4Gr18xIDFcvE1HiMX5Zo1cs1sPve9xjTZ0kiuHpuNXZ/sGV+vNsX36OvRhi5Q3GquT7rm3vuvgOkHXSA25+vRRRw4p28N35y+XSyq84s+xHip1fq0B3VeZvtQeje2dzPuWh8+/hyZ68m/1kfsWr7/1Mf3o/UNUX2WauL6shzJH1zi9OfXw/cQxHOcLX28a9m+EWer1i19+Lc0Y+c5gC19+P+WT7zcDzwWvtaZjR1dGWZ88vN54ni35/aPx3kNfR4+4XW8y7VO6qG9PLhzjPGFLzsL8CGUeiimdbeAjxih9tNzxLTubIrJ7haKzfhqXfLzVsdo/ZdYQ40zUeci3XXdJGei8znXyNj/Sz2cT7lk96EeVq8H/uJjnbVY62OdtfgJfDpNNg==
+   eAG1lsFOwzAQRF0EXPgR2vwEiDMVv8ENCXqDC/wZ/Bg7TR6MrHViAlgyY+yd8WzWcVPKd9tvxjHIyt00n/1/eVbKNjpIjBAdkLU5vdvQ2kcH4biezzEOSnkKn/cnpRwqv8QcTsfRNtZ30QcWfol1fplcnXMWw9xf6Pnzy/ReL0p5i05b8uf1zfTeQ+uj0oMDspcw83ce81emQbxqq5rCAVkX+h6ZP48lVzigx/gevXpwwGK5+B6PkYtyzRq5Zms+97XHNNnySK7OzcbuT+uZXq838Xv89XjDFyhtNfcnX3Pv/ZEw/cEXyJrr9fiCB875W6M3528Xm+r+og8xXmq1P51B3ZfZOZTfjZ3dTLv2R4w/R+Z68q/9wV2r95/++P1o/YaoPks1cX9ZjuQPLmn68+vRewjhOc2WP9617NxIs1Xrlj/iW55Z5zmALX/E/1RPunwfOBe91p3NOr4yzPQU5/PweLfnzo/zvIY+j57wOt7l2if10FkePDjGxKKX3QXEQKUe4rS+LdCDI9R5eg5O65tNnOzbQtxMr/alOG81R/u/xB5q3Im6F+nu6ya5E13PtUbF/r/Uw/WUS/Y91KPq9SBeeuyzFmt/7LMWPwGWmEzb
   </data>
  </layer>
  <layer id="3" name="Obstacles 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
    eAHtlWEOwiAMhdFE/3gSt0voDmC8i3ppvYTU7IVHZZEChj9bslAG/WjfCjjX99ke7OtfNrHPVfXj0e/epNZM8axMXiXF4/Ec++hzGuZ3JIedtx/GfMVdxwRkaZ6/eNb/evM57REUtaXxCUKY95kruoldoh2F8zGF24KjuTn955AzK8w5qVoPI8F6GZnBc7WWFLDW/xJn/e5cdBb6vVf78NlVc74gjhTvnLHv4K9bPrdaxIdalDhlq8u9MjbWUbglTNZJ3wGlTNaT/418t+oJ7cCs5YGD9l+8mvtuotpFfFbdkJ9uUdu97k8dz9rvq8AbErAWog==
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="20" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt0EENAEAIBLH94OXwbxBkXEgnGQNN9IPAq6R3ESBAgAABAgQIELgsMPITAFw=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">

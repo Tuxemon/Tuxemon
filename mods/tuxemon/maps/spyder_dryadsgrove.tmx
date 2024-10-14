@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="286">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="286">
  <properties>
   <property name="east" value="cotton_town"/>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="dryadsgrove"/>
-  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_water.tsx"/>
@@ -19,6 +19,11 @@
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eAHFmEluFEEURBPECvZMBwDRtoWQuAWIezAbwbkYdgzmHOxgCdiMa0Dih1xPDn0ys6qr23RKn8g/RUZnpQtllbLZcfX60fq7Nid66VQpl8M2hegAs44boe1m2KYQXWDWgd4PoVGWR47XatRDHMwx4mBeJ/voQq/66H0a5+BZGLEawkcPvpD6WqxWn+vkowudzvkttH0fzqrH1Zf5s+813utz1YwNdKFzSj81Qh/45MnV4sSoAXMvutCZ8/T9D2xp1tro7On7cnq6yh5PTwd9uYb9G1OwP1Fj5vd1mee1clw+uti/3DPmwylcnCllKywP5aYO+KhHFzqJ15BeX89jd0Lb3RX0weuc6EJnTRcx9T2w96HHmYOs1fKJC6kFPYcudHouz9WP5dwcHz1wgs6FLnR6rjeHC+zVes7/vtSrUeMghy50HnaM/wvno+F5T+lvvZ8eDhy1VeFFZ62mFkMfSD++9xADyeGDxB3hRafnNH8fz0BWG85b6yfPHsOhuAZ46P3rKw4vOqkVui6few3zWj85dOIvg/Ci03tdk8+p8XXpB6lx9HqPP4/z9yKsNuBDZ66Rrpo21bGekH4w8/T8H6HtZ0MffOjs8eScdF0LXiEDHpD4XIQHncvwsH/eAw/ouTlzeNA5h6PWA9+6EJ21tVox9s+RWvjWhfxO+KegdO3F+Xs7nEH5DPjWhfxO+Keg9PwObX8q+uBbBl9ul/Iq7HXYm7C9MPr5nT1d7BU1/lyZk4MPJN7Dj6HnU9jnsP2wgzD60dnrZ6+o+WX7lv8Pgw+kp/cuPrtTyrmw82EXwi6G0Y9OeKYge+ZIH3wg8d67mBpH+tHpuVXm8IFzuehH53FhSx/fUFr5KyfizhWGzuPC1vr+DUVaFsm2onExNPfObou/Fc/PoVXn8VuhrTZ2h+CyZ7fGRSw/h3fxrsymWo+N6dPdhTv2dtxjd4a7LHNyaAD92yyxOfg49u/JYLdPHs0VOxi+W3DHvhfa7g/6mJPzO9iYDt2XVxmcEzi+2vcV9o2co9d5fN1zzon2JOth37SmP3s0eL32H1/a5XMe5Ds/z8prWMN5qGM910OOfZLP81W9fK/X3dZ91Xi9fM/DS42fGa9Tn8ZfUsRfKQ==
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt0AENAAAAwqD3T20PBxEoDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQNfAwMZAAAB
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="40">

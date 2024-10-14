@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.5" orientation="orthogonal" renderorder="right-down" width="5" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="12">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="5" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="12">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -25,6 +25,16 @@
  <layer id="2" name="Tile Layer 2" width="5" height="10">
   <data encoding="base64" compression="zlib">
    eJxjYMAEIsIQ2lMOUy4ETewhCypNL2DLysCwUw5CgwAAoRQEJg==
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="5" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgeAAAAyAAB
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="5" height="10">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgeAAAAyAAB
   </data>
  </layer>
  <objectgroup color="#fffb00" id="4" name="Events">

@@ -592,8 +592,8 @@
             "fileName": "spyder_datacenter.tmx",
             "height": 320,
             "width": 320,
-            "x": -640,
-            "y": 2240
+            "x": -960,
+            "y": 2416
         },
         {
             "fileName": "spyder_park_entrance.tmx",
@@ -734,6 +734,13 @@
             "width": 192,
             "x": 1024,
             "y": 3200
+        },
+        {
+            "fileName": "spyder_datacenter_room.tmx",
+            "height": 160,
+            "width": 160,
+            "x": -640,
+            "y": 2416
         }
     ],
     "onlyShowAdjacentMaps": false,

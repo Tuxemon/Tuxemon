@@ -4,11 +4,23 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "starfall"
+            "technique": "midnight_mantle"
         },
         {
             "level_learned": 2,
-            "technique": "midnight_mantle"
+            "technique": "shooting_star"
+        },
+        {
+            "level_learned": 6,
+            "technique": "radiance"
+        },
+        {
+            "level_learned": 10,
+            "technique": "supernova"
+        },
+        {
+            "level_learned": 18,
+            "technique": "sunburst"
         }
     ],
     "evolutions": [],

@@ -4,11 +4,27 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "starfall"
+            "technique": "muddle"
         },
         {
             "level_learned": 2,
-            "technique": "midnight_mantle"
+            "technique": "phantasmal_force"
+        },
+        {
+            "level_learned": 6,
+            "technique": "mind_vise"
+        },
+        {
+            "level_learned": 10,
+            "technique": "changeling"
+        },
+        {
+            "level_learned": 14,
+            "technique": "terror"
+        },
+        {
+            "level_learned": 18,
+            "technique": "orbs"
         }
     ],
     "evolutions": [],

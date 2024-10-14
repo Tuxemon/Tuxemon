@@ -7,8 +7,8 @@ from typing import Any
 
 from tuxemon import prepare
 
-ALL_MONSTERS: int = 376
-MAX_TXMN_ID: int = 357
+ALL_MONSTERS: int = 377
+MAX_TXMN_ID: int = 359
 
 
 def process_json_data(directory: str) -> list[dict[str, Any]]:

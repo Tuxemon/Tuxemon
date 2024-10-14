@@ -1,6 +1,6 @@
 {
-    "slug": "statursus",
-    "category": "inner_fire",
+    "slug": "coaldiak",
+    "category": "ursus",
     "moveset": [
         {
             "level_learned": 2,
@@ -35,33 +35,28 @@
             "technique": "electrical_storm"
         }
     ],
-    "evolutions": [
-        {
-            "at_level": 36,
-            "monster_slug": "coaldiak"
-        }
-    ],
+    "evolutions": [],
     "history": [
         {
             "mon_slug": "furnursus",
             "evo_stage": "basic"
         },
         {
-            "mon_slug": "coaldiak",
-            "evo_stage": "stage2"
+            "mon_slug": "statursus",
+            "evo_stage": "stage1"
         }
     ],
-    "tags": ["humanoid"],
+    "tags": ["humanoid", "mountains"],
     "shape": "humanoid",
-    "stage": "stage1",
+    "stage": "stage2",
     "types": [
         "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 191,
-    "height": 190,
-    "weight": 160,
-    "catch_rate": 70.0,
+    "txmn_id": 359,
+    "height": 260,
+    "weight": 300,
+    "catch_rate": 35.0,
     "lower_catch_resistance": 0.9,
     "upper_catch_resistance": 1.15
 }

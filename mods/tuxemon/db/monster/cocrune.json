@@ -4,11 +4,27 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "starfall"
+            "technique": "boulder"
         },
         {
             "level_learned": 2,
-            "technique": "midnight_mantle"
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 6,
+            "technique": "petrify"
+        },
+        {
+            "level_learned": 10,
+            "technique": "stonehenge"
+        },
+        {
+            "level_learned": 14,
+            "technique": "take_cover"
+        },
+        {
+            "level_learned": 18,
+            "technique": "electroplate"
         }
     ],
     "evolutions": [

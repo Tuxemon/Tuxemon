@@ -4,11 +4,27 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "starfall"
+            "technique": "peck"
         },
         {
             "level_learned": 2,
-            "technique": "midnight_mantle"
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 6,
+            "technique": "wing_tip"
+        },
+        {
+            "level_learned": 10,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 14,
+            "technique": "whirlwind"
+        },
+        {
+            "level_learned": 18,
+            "technique": "flamethrower"
         }
     ],
     "evolutions": [],

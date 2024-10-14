@@ -4,11 +4,23 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "starfall"
+            "technique": "spit_poison"
         },
         {
             "level_learned": 2,
-            "technique": "midnight_mantle"
+            "technique": "venomous_tentacle"
+        },
+        {
+            "level_learned": 6,
+            "technique": "viper"
+        },
+        {
+            "level_learned": 10,
+            "technique": "poison_courtship"
+        },
+        {
+            "level_learned": 18,
+            "technique": "biting_winds"
         }
     ],
     "evolutions": [],

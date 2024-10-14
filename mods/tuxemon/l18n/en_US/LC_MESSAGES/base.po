@@ -3496,6 +3496,12 @@ msgstr "It is said that only one in a thousand can rule over the CLAYMORIOR as a
 msgid "claymorior"
 msgstr "Claymorior"
 
+msgid "coaldiak_description"
+msgstr "This bear can set fire to anywhere and draw blood from anything."
+
+msgid "coaldiak"
+msgstr "Coaldiak"
+
 msgid "cobarett_description"
 msgstr "It covers itself in thick, billowing smoke so that it can slide easily through thick brush. The source of the smoke is its molten body temperature, which is so hot that tongues of flame shoot from its mouth."
 
@@ -5891,6 +5897,8 @@ msgid "cat_unknown"
 msgstr "Unknown"
 msgid "cat_urchin"
 msgstr "Urchin"
+msgid "cat_ursus"
+msgstr "Ursus"
 msgid "cat_unwelcome_mouthful"
 msgstr "Unwelcome Mouthful"
 msgid "cat_vagrant"

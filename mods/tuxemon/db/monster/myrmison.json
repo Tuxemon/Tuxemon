@@ -4,11 +4,23 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "starfall"
+            "technique": "clamp_on"
         },
         {
             "level_learned": 2,
-            "technique": "midnight_mantle"
+            "technique": "energy_claws"
+        },
+        {
+            "level_learned": 6,
+            "technique": "ants"
+        },
+        {
+            "level_learned": 10,
+            "technique": "blood_nets"
+        },
+        {
+            "level_learned": 18,
+            "technique": "sting"
         }
     ],
     "evolutions": [],

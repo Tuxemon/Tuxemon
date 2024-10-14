@@ -4,11 +4,27 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "starfall"
+            "technique": "fire_claw"
         },
         {
             "level_learned": 2,
-            "technique": "midnight_mantle"
+            "technique": "wall_fire"
+        },
+        {
+            "level_learned": 6,
+            "technique": "venom"
+        },
+        {
+            "level_learned": 10,
+            "technique": "spit_poison"
+        },
+        {
+            "level_learned": 14,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 18,
+            "technique": "flamethrower"
         }
     ],
     "evolutions": [

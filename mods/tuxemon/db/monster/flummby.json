@@ -4,11 +4,23 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "starfall"
+            "technique": "overfeed"
         },
         {
             "level_learned": 2,
-            "technique": "midnight_mantle"
+            "technique": "bullet"
+        },
+        {
+            "level_learned": 6,
+            "technique": "ice_shield"
+        },
+        {
+            "level_learned": 10,
+            "technique": "fire_shield"
+        },
+        {
+            "level_learned": 18,
+            "technique": "take_cover"
         }
     ],
     "evolutions": [

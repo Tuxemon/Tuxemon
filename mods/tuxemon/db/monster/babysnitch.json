@@ -4,11 +4,23 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "riposte"
+            "technique": "assault"
         },
         {
             "level_learned": 2,
-            "technique": "bullet"
+            "technique": "berserk"
+        },
+        {
+            "level_learned": 6,
+            "technique": "canine"
+        },
+        {
+            "level_learned": 10,
+            "technique": "energy_claws"
+        },
+        {
+            "level_learned": 18,
+            "technique": "invictus"
         }
     ],
     "evolutions": [

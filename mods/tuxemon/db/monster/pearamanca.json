@@ -4,11 +4,23 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "starfall"
+            "technique": "energy_claws"
         },
         {
             "level_learned": 2,
-            "technique": "midnight_mantle"
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 6,
+            "technique": "changeling"
+        },
+        {
+            "level_learned": 10,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 18,
+            "technique": "overgrowth"
         }
     ],
     "evolutions": [],

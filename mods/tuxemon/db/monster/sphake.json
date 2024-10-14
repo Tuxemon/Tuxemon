@@ -4,11 +4,23 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "starfall"
+            "technique": "wall_of_steel"
         },
         {
             "level_learned": 2,
-            "technique": "midnight_mantle"
+            "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 6,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 10,
+            "technique": "take_cover"
+        },
+        {
+            "level_learned": 18,
+            "technique": "earthquake"
         }
     ],
     "evolutions": [],

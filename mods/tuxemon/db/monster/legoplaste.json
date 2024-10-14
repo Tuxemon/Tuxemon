@@ -4,11 +4,23 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "starfall"
+            "technique": "constrict"
         },
         {
             "level_learned": 2,
-            "technique": "midnight_mantle"
+            "technique": "venomous_tentacle"
+        },
+        {
+            "level_learned": 6,
+            "technique": "pseudopod"
+        },
+        {
+            "level_learned": 10,
+            "technique": "slime"
+        },
+        {
+            "level_learned": 18,
+            "technique": "kraken"
         }
     ],
     "evolutions": [],

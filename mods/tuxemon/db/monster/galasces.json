@@ -4,11 +4,23 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "starfall"
+            "technique": "flood"
         },
         {
             "level_learned": 2,
-            "technique": "midnight_mantle"
+            "technique": "rot"
+        },
+        {
+            "level_learned": 6,
+            "technique": "crystal"
+        },
+        {
+            "level_learned": 10,
+            "technique": "venomous_tentacle"
+        },
+        {
+            "level_learned": 18,
+            "technique": "spit_poison"
         }
     ],
     "evolutions": [

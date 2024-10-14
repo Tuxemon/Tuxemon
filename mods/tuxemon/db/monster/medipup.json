@@ -53,7 +53,7 @@
     ],
     "evolutions": [
         {
-            "at_level": 32,
+            "at_level": 24,
             "monster_slug": "doctsky"
         }
     ],

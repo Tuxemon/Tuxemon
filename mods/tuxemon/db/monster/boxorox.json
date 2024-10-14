@@ -4,11 +4,23 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "starfall"
+            "technique": "punch"
         },
         {
             "level_learned": 2,
-            "technique": "midnight_mantle"
+            "technique": "evasion"
+        },
+        {
+            "level_learned": 6,
+            "technique": "shadow_boxing"
+        },
+        {
+            "level_learned": 10,
+            "technique": "hammerhead"
+        },
+        {
+            "level_learned": 18,
+            "technique": "one_two"
         }
     ],
     "evolutions": [],

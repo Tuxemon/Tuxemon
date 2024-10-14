@@ -4,11 +4,23 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "starfall"
+            "technique": "sting"
         },
         {
             "level_learned": 2,
-            "technique": "midnight_mantle"
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 6,
+            "technique": "spit_poison"
+        },
+        {
+            "level_learned": 10,
+            "technique": "poison_courtship"
+        },
+        {
+            "level_learned": 18,
+            "technique": "viper"
         }
     ],
     "evolutions": [

@@ -4,11 +4,23 @@
     "moveset": [
         {
             "level_learned": 2,
-            "technique": "starfall"
+            "technique": "ice_claw"
         },
         {
             "level_learned": 2,
-            "technique": "midnight_mantle"
+            "technique": "ice_shield"
+        },
+        {
+            "level_learned": 6,
+            "technique": "canine"
+        },
+        {
+            "level_learned": 10,
+            "technique": "ice_storm"
+        },
+        {
+            "level_learned": 18,
+            "technique": "frostbite"
         }
     ],
     "evolutions": [],

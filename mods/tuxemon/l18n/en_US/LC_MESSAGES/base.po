@@ -8481,72 +8481,271 @@ msgid "spyder_flowerhouse1_firefighter"
 msgstr "The five Pillars are the only big companies in this region. They have a lot of sway."
 msgid "spyder_flowerhouse1_granny"
 msgstr "Scoop has managed to cut the price of beef yet again! I don't know how they do it. "
+
 msgid "spyder_nimrod_chromerobo1"
 msgstr "Boop beep"
+
 msgid "spyder_nimrod_chromerobo2"
 msgstr "Shoop dee doo woop"
+
 msgid "spyder_nimrod_xeon1"
 msgstr "Whoo ... burr ... target acquired"
+
 msgid "spyder_nimrod_xeon2"
 msgstr "... Daisy, Daisy, give me your answer do ..."
+
 msgid "spyder_nimrod_thatcher1"
 msgstr "Woo-wee. Look at that. Those protesters won't know what hit them."
+
 msgid "spyder_nimrod_thatcher2"
 msgstr "No comment. "
+
 msgid "spyder_nimrod_dirk1"
 msgstr "Are you here for the investor presentation? \n Nimrod shares are a great buy - armies always need weapons!"
+
 msgid "spyder_nimrod_honour1"
 msgstr "Don't you dare touch those prototypes! "
+
 msgid "spyder_nimrod_honour2"
 msgstr "Leave those prototypes alone!"
+
 msgid "spyder_nimrod_antimony1"
 msgstr "Oh god, you destroyed the prototypes. We were just about to start mass production."
+
 msgid "spyder_nimrod_antimony2"
 msgstr "Years of work, down the drain in minutes. "
+
 msgid "spyder_nimrod_berke1"
 msgstr "Don't hurt me, I just write the contracts! I haven't done anything wrong! \n ... \n I mean, no one has done anything wrong. This is all legal and above board."
+
 msgid "spyder_nimrod_rebel1"
 msgstr "Did the Cathedral send you for that new shipment of ... \n No? \n Oh."
+
 msgid "spyder_nimrod_rebel2"
 msgstr "The shipment I was asking about was full of... um ... teddybears."
+
 msgid "spyder_nimrod_maverick1"
 msgstr "At night I play guitar by myself."
+
 msgid "spyder_nimrod_maverick2"
 msgstr "I wish I knew someone I could play music with."
+
 msgid "spyder_nimrod_justice1"
 msgstr "Ask not for whom Ghosteeth tolls!"
+
 msgid "spyder_cotton_lazybrute"
 msgstr "Buzz off, this tunnel is still under construction."
+
 msgid "spyder_nimrod_justice2"
 msgstr "It tolls for me."
+
 msgid "spyder_nimrod_mace1"
 msgstr "I want to quit and become a musician."
+
 msgid "spyder_nimrod_mace2"
 msgstr "I'll call my band, \"Machine Gun Fellows\"."
+
 msgid "spyder_nimrod_argon1"
 msgstr "We fight wars with humans and tuxemon. Many dead, many more injured. \n Using robos instead is the only moral course of action."
+
 msgid "spyder_nimrod_argon2"
 msgstr "I knew I wouldn't be able to convince you."
+
 msgid "spyder_nimrod_zircon1"
 msgstr "If you truly loved tuxemon, you would support us replacing them in war with robos."
+
 msgid "spyder_nimrod_zircon2"
 msgstr "I wish I'd replaced my tuxemon with robos. "
+
 msgid "spyder_nimrod_archer1"
 msgstr "How's the fusion technology coming along? We ... Wait, you're not from Greenwash!"
+
 msgid "spyder_nimrod_archer2"
 msgstr "Keep your mouth shut, okay?"
+
 msgid "spyder_nimrod_bowie1"
 msgstr "Our law enforcement would be a lot easier with some military hardware, friend. ... Who are you? "
+
 msgid "spyder_nimrod_bowie2"
 msgstr "That military hardware question was hypothetical, okay?"
+
 msgid "spyder_nimrod_tru1"
 msgstr "My weapons have won wars and subdued revolts in every corner of the world, and you think you have a chance against me?"
+
 msgid "spyder_nimrod_tru2"
 msgstr "Guard, retrieve the prototypes in the testing room. At least we can salvage something! "
+
 msgid "spyder_nimrod_tru3"
 msgstr "If those imbeciles in Shaft hadn't lost my dragon, beating you would have been a piece of cake."
+
 msgid "spyder_nimrod_guard1"
 msgstr "Sorry bud, private meeting in progress. \n So buzz off!"
+
+msgid "spyder_nimrod_zircon3"
+msgstr "I see you've defeated Argon, I'm curious, how does it feel to win against an idealist?"
+
+msgid "spyder_nimrod_argon3"
+msgstr "Zircon, I.. I didn't think you'd show up here. What do you want?"
+
+msgid "spyder_nimrod_zircon4"
+msgstr "Oh, I just wanted to see how you're doing, Argon. And to remind you of our conversation a while back..."
+
+msgid "spyder_nimrod_zircon5"
+msgstr "I see you're still as idealistic as ever, Argon. But I've come to realize that the only way to truly make a difference is through power.\n And I'm willing to do whatever it takes to achieve that."
+
+msgid "spyder_nimrod_argon4"
+msgstr "I'm sorry, Zircon. I think you've lost your way."
+
+msgid "spyder_nimrod_zircon6"
+msgstr "Enough talk. Let's quickly recharge and settle this once and for all."
+
+msgid "spyder_nimrod_zircon_won"
+msgstr "Ha! I've proven my superiority once again. You're no match for me, Argon."
+
+msgid "spyder_nimrod_argon_won"
+msgstr "Zircon, I'm sorry it had to end like this. You were once a friend and a colleague."
+
+msgid "spyder_nimrod_zircon_lost"
+msgstr "You'll never understand, Argon. You'll never see the truth."
+
+msgid "spyder_nimrod_argon_lost"
+msgstr "Zircon, you've changed. I don't know what's happened to you."
+
+msgid "spyder_nimrod_zircon_draw"
+msgstr "It seems we're evenly matched, Argon. But this isn't the end."
+
+msgid "spyder_nimrod_argon_draw"
+msgstr "Indeed, Zircon. This is far from over."
+
+msgid "spyder_nimrod_pc_message1"
+msgstr "E-mail from Bowie to Tru\n 'I need your help in locating the missing prototype. It was last seen in the testing room.'"
+
+msgid "spyder_nimrod_pc_message2"
+msgstr "E-mail from Maverick to Tru\n 'Are you up for a guitar jam session tonight? I'll bring my axe and we can rock out.'"
+
+msgid "spyder_nimrod_pc_message3"
+msgstr "E-mail from Argon to Lab\n 'I've made some breakthroughs in my research on tuxemon behavior. I'd love to share my findings with you all.'"
+
+msgid "spyder_nimrod_pc_message4"
+msgstr "E-mail from Zircon to Lab\n 'I've published a new paper on advanced robotics. Check it out and let me know what you think.'"
+
+msgid "spyder_nimrod_note1"
+msgstr "Note\n 'I've received an inquiry from the military about our hardware. Let's discuss how to proceed.'"
+
+msgid "spyder_nimrod_note2"
+msgstr "Note\n 'We need to salvage what's left of the prototype and rebuild. Let's meet in the testing room to discuss.'"
+
+msgid "spyder_nimrod_flashback1"
+msgstr "Argon: Zircon, it's good to see you again. I was just reviewing your latest paper on advanced robotics. It's quite impressive."
+
+msgid "spyder_nimrod_flashback2"
+msgstr "Zircon: Ah, Argon. I'm glad to see that your passion for our work hasn't waned. I've heard about your recent accomplishments with the tuxemon behavioral studies.\n Quite fascinating."
+
+msgid "spyder_nimrod_flashback3"
+msgstr "Argon: I try to be. I believe that our work can make a real difference in the world."
+
+msgid "spyder_nimrod_flashback4"
+msgstr "Zircon: I used to think that way too, Argon. But after years of working in this field, I've come to realize that the world doesn't run on passion.\n It runs on results."
+
+msgid "spyder_nimrod_flashback5"
+msgstr "Argon: I understand that. But I also believe that our work should be guided by a sense of responsibility and compassion."
+
+msgid "spyder_nimrod_flashback6"
+msgstr "Zircon: Compassion? For what? The tuxemon? They're just machines. Tools to be used and discarded."
+
+msgid "spyder_nimrod_flashback7"
+msgstr "Argon: I know you don't see it that way.\n But I've spent a lot of time studying their behavior, and I'm convinced that they have a level of consciousness that we don't fully understand."
+
+msgid "spyder_nimrod_flashback8"
+msgstr "Zircon: Nonsense. The tuxemon are just complex machines, no different than a toaster or a computer."
+
+msgid "spyder_nimrod_flashback9"
+msgstr "Argon: I disagree. I think they're more like animals, with their own unique personalities and behaviors."
+
+msgid "spyder_nimrod_flashback10"
+msgstr "Zircon: You know, Argon, I used to think the same way you do.\n But then I joined the military and saw firsthand how technology can be used to save lives and protect our country.\n It's easy to get caught up in philosophical debates about the nature of consciousness, but at the end of the day, we have a job to do.\n And that job is to create machines that can help us win wars and keep our citizens safe."
+
+msgid "spyder_nimrod_flashback11"
+msgstr "Argon: I understand where you're coming from.\n But I still believe that we have a responsibility to consider the ethical implications of our work."
+
+msgid "spyder_nimrod_flashback12"
+msgstr "Zircon: And I respect that, Argon. But we can't let our emotions cloud our judgment.\n We have to make tough decisions sometimes, and that's just a fact of life."
+
+msgid "spyder_nimrod_flashback13"
+msgstr "Argon: I share that concern. That's why I believe that we have a responsibility to consider the consequences of our actions."
+
+msgid "spyder_nimrod_flashback14"
+msgstr "Zircon: I agree, Argon. But we can't let that fear hold us back. We must continue to innovate and push the boundaries of what's possible."
+
+msgid "spyder_xeon_creation1"
+msgstr "Dr. Elara: Ladies and gentlemen, I present to you: Xeon, a name that reflects the artificial yet distinct nature of this being.\n The term 'Xeon' is derived from the word 'xenos', meaning 'foreigner' or 'stranger'.\n This name acknowledges that Xeons are created by humans, yet they are a new and separate form of life, with their own unique skills and abilities."
+
+msgid "spyder_xeon_creation2"
+msgstr "Dr. Elara: As you can see, Xeon is a highly advanced artificial being, capable of complex thought and action.\n We've designed it to be a prototype for a new generation of intelligent machines."
+
+msgid "spyder_xeon_creation3"
+msgstr "Argon: This is incredible. How does it work?"
+
+msgid "spyder_xeon_creation4"
+msgstr "Dr. Elara: Xeon's neural network is based on advanced algorithms and machine learning techniques.\n It's capable of learning and adapting at an exponential rate, making it potentially more intelligent than any human."
+
+msgid "spyder_xeon_creation5"
+msgstr "Zircon: That's both exciting and terrifying. What kind of implications does this have for humanity?"
+
+msgid "spyder_xeon_creation6"
+msgstr "Dr. Elara: That's a good question. We're still exploring the possibilities and limitations of Xeon's capabilities.\n But we believe that it has the potential to revolutionize many industries and aspects of our lives."
+
+msgid "spyder_xeon_creation7"
+msgstr "Argon: But what about the risks? We've all heard warnings about the dangers of creating artificial intelligence that surpasses human capabilities."
+
+msgid "spyder_xeon_creation8"
+msgstr "Dr. Elara: We've taken every precaution to ensure that Xeon is safe and controllable.\n We've implemented strict safety protocols and guidelines for its use and development."
+
+msgid "spyder_xeon_creation9"
+msgstr "Zircon: I see. And what about the long-term implications? How do we ensure that Xeon doesn't become a threat to humanity in the future?"
+
+msgid "spyder_xeon_creation10"
+msgstr "Dr. Elara: That's a question we'll continue to grapple with as we move forward with Xeon's development.\n But for now, we're focused on exploring its potential and ensuring that it's used responsibly."
+
+msgid "spyder_xeon_creation11"
+msgstr "Argon: I think we're just starting to scratch the surface of what Xeon can do.\n I'm excited to see where this technology takes us."
+
+msgid "spyder_xeon_creation_trigger"
+msgstr "I was just thinking about Xeon's creation. I have to admit, I'm still trying to process everything that's happened.\n I would have never imagined that the real reason behind Xeon's financial support was to use him for...\n other purposes. I'm deeply disappointed, to say the least. Would you like to hear the story of how Xeon was officially presented?"
+
+msgid "spyder_xeon_creation_trigger_yes"
+msgstr "I was exactly in that spot when I first presented Xeon to the world."
+
+msgid "spyder_xeon_creation_trigger_no"
+msgstr "I understand. It's not an easy story to hear. I just wish things had turned out differently."
+
+msgid "spyder_xeon_creation_trigger_after"
+msgstr "I'm sorry you had to see that. It's hard for me to believe that my creation has been used for such... nefarious purposes.\n I can only hope that one day, Xeon will be able to fulfill his true potential, free from the influence of those who seek to exploit him."
+
+msgid "spyder_enforcershq_trigger"
+msgstr "A note from the Commander's office. Do you want to read it?"
+
+msgid "spyder_enforcershq_flashback1"
+msgstr "Commander: Look at this. A new disease has broken out at Scoop Farms. Multiple tuxemon are infected.\n We need to contain this before it spreads. And we need to find out what's causing it."
+
+msgid "spyder_enforcershq_flashback2"
+msgstr "Officer: Should we send a team immediately?"
+
+msgid "spyder_enforcershq_flashback3"
+msgstr "Commander: Yes. We need to move quickly. We have a confirmed outbreak of the Spyderbite at the Wayfarer Inn.\n We need to assess the situation on the ground first. Is there any chance of containment within the inn?"
+
+msgid "spyder_enforcershq_flashback4"
+msgstr "Doc: That's a possibility, but we need to be cautious.\n The inn is isolated, but we can't rule out the possibility of visitors coming or going."
+
+msgid "spyder_enforcershq_flashback5"
+msgstr "Commander: Then a full quarantine is necessary to prevent further spread.\n We'll provide all necessary supplies and medical care. We'll also need to deploy a team to enforce the quarantine and monitor the situation."
+
+msgid "spyder_enforcershq_flashback6"
+msgstr "Sergeant: I've already compiled a list of personnel who are trained in containment procedures and have experience dealing with diseases."
+
+msgid "spyder_enforcershq_flashback7"
+msgstr "Commander: Good. Dispatch them immediately. We can't afford to delay."
+
 msgid "spyder_route5_goliath1"
 msgstr "Hey, aren't you that meddlesome kid from the Wayfarer Inn?"
 msgid "spyder_route5_goliath2"

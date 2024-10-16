@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="8" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="11">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="8" height="8" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="11">
  <properties>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="notype"/>
   <property name="scenario" value="start_tuxemon"/>
   <property name="slug" value="start_tuxemon"/>
-  <property name="map_type" value="notype"/>
  </properties>
  <layer id="1" name="Tile Layer 1" width="8" height="8">
   <data encoding="base64" compression="zlib">
@@ -17,6 +17,11 @@
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="8" height="8">
+  <data encoding="base64" compression="zlib">
+   eAFjYBjZAAABAAAB
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="8" height="8">
   <data encoding="base64" compression="zlib">
    eAFjYBjZAAABAAAB
   </data>

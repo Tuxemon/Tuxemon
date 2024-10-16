@@ -1049,6 +1049,39 @@ msgstr "{target} is worn out."
 msgid "combat_state_tired_end"
 msgstr "{target} shakes off its tiredness."
 
+msgid "combat_state_disarmed_get"
+msgstr "{target}'s attacks are hindered."
+
+msgid "combat_state_dazed_get"
+msgstr "{target} is dazed and struggling to focus."
+
+msgid "combat_state_stumbled_get"
+msgstr "{target}'s footing is uncertain."
+
+msgid "combat_state_panicked_get"
+msgstr "{target} is panicked."
+
+msgid "combat_state_exposed_get"
+msgstr "{target} is vulnerable."
+
+msgid "combat_state_weakened_get"
+msgstr "{target}'s strength is failing."
+
+msgid "combat_state_duelist_get"
+msgstr "{target}'s combat prowess is elevated."
+
+msgid "combat_state_vanguard_get"
+msgstr "{target}'s presence on the battlefield is imposing."
+
+msgid "combat_state_siegebreaker_get"
+msgstr "{target}'s battlefield dominance is amplified."
+
+msgid "combat_state_fortified_get"
+msgstr "{target}'s defenses are fortified and resilient."
+
+msgid "combat_state_evasive_get"
+msgstr "{target}'s senses are heightened."
+
 msgid "combat_state_plague0"
 msgstr "{target} begins to sniffle."
 
@@ -1189,11 +1222,20 @@ msgstr "Charging"
 msgid "confused"
 msgstr "Confused"
 
+msgid "dazed"
+msgstr "Dazed"
+
 msgid "diehard"
 msgstr "Die Hard"
 
+msgid "disarmed"
+msgstr "Disarmed"
+
 msgid "dozing"
 msgstr "Dozing"
+
+msgid "duelist"
+msgstr "Duelist"
 
 msgid "elementalshield"
 msgstr "Elemental Shield"
@@ -1204,8 +1246,14 @@ msgstr "Eliminated"
 msgid "enraged"
 msgstr "Berserk"
 
+msgid "evasive"
+msgstr "Evasive"
+
 msgid "exhausted"
 msgstr "Exhausted"
+
+msgid "exposed"
+msgstr "Exposed"
 
 msgid "faint"
 msgstr "Faint"
@@ -1221,6 +1269,9 @@ msgstr "Flinching"
 
 msgid "focused"
 msgstr "Focused"
+
+msgid "fortified"
+msgstr "Fortified"
 
 msgid "grabbed"
 msgstr "Grabbed"
@@ -1240,6 +1291,9 @@ msgstr "Lockdown"
 msgid "noddingoff"
 msgstr "Nodding Off"
 
+msgid "panicked"
+msgstr "Panicked"
+
 msgid "poison"
 msgstr "Poison"
 
@@ -1254,6 +1308,9 @@ msgstr "Retaliate"
 
 msgid "revenge"
 msgstr "Revenge"
+
+msgid "siegebreaker"
+msgstr "Siegebreaker"
 
 msgid "slow"
 msgstr "Slow"
@@ -1270,11 +1327,20 @@ msgstr "Spyder Bite"
 msgid "stuck"
 msgstr "Stuck"
 
+msgid "stumbled"
+msgstr "Stumbled"
+
 msgid "tired"
 msgstr "Tired"
 
+msgid "vanguard"
+msgstr "Vanguard"
+
 msgid "wasting"
 msgstr "Wasting"
+
+msgid "weakened"
+msgstr "Weakened"
 
 msgid "wild"
 msgstr "Wild"

@@ -1,0 +1,27 @@
+{
+  "animation": null,
+  "category": "positive",
+  "effects": [
+    "statchange"
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_fortified.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "removed",
+  "sfx": "sfx_bite",
+  "slug": "fortified",
+  "sort": "meta",
+  "statarmour": {
+    "value": 1.5,
+    "operation": "*"
+  },
+  "statspeed": {
+    "value": 1.5,
+    "operation": "*"
+  },
+  "cond_id": 38,
+  "use_failure": null,
+  "use_success": "combat_state_fortified_get",
+  "gain_cond": null
+}

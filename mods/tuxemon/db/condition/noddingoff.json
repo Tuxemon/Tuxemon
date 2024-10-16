@@ -11,14 +11,6 @@
   "sfx": "sfx_pulse",
   "slug": "noddingoff",
   "sort": "meta",
-  "target": {
-    "enemy_monster": false,
-    "enemy_team": false,
-    "enemy_trainer": false,
-    "own_monster": false,
-    "own_team": false,
-    "own_trainer": false
-  },
   "cond_id": 6,
   "duration": 5,
   "use_failure": null,

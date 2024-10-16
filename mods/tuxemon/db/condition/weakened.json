@@ -1,0 +1,39 @@
+{
+  "animation": null,
+  "category": "negative",
+  "effects": [
+    "statchange"
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_weakened.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "weakened",
+  "sort": "meta",
+  "statarmour": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "statdodge": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "statmelee": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "statranged": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "statspeed": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "cond_id": 43,
+  "use_failure": null,
+  "use_success": "combat_state_weakened_get",
+  "gain_cond": null
+}

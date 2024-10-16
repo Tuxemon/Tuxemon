@@ -18,6 +18,8 @@
 		"own_trainer": false
 	},
 	"tech_id": 0,
+	"category": "notype",
+	"tags": ["NoType"],
 	"types": [],
 	"use_failure": "combat_none",
 	"use_success": null,

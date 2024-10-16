@@ -22,6 +22,8 @@
     "own_team": false,
     "own_trainer": false
   },
+  "category": "exotic",
+  "tags": ["Gadgets"],
   "types": [
     "earth"
   ],

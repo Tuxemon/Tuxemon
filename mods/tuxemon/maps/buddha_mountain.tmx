@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="227">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="100" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="227">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
@@ -31,6 +31,11 @@
  <layer id="3" name="Layer3 Extra Mountain" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eAHt2zFuwgAUREHSBO5/PZooVwj0cfqs24fEWHK1xYd5tS8XDwECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECBAgQIECAAAECZwL3s9FGgAABAgQIECBAgAABAgQIJAJfx9Xrx//vd/KL3vvoz/H3H+N9vjdN8u/1SNjnUT0mTTLokbDPo3pMmmTQI2GfR/WYNMmgR8I+j+oxaZJBj4R9HtVj0iSDHgn7PKrHpEkGPRL2eVSPSZMMeiTs86gekyYZ9EjY51E9Jk0y6JGwz6N6TJpk0CNhn0f1mDTJoEfCPo/qMWmSQY+EfR7VY9Ikgx4J+zyqx6RJBj0S9nlUj0mTDHok7POoHpMmGT7Ht1F/30zdjtdDgAABAgQIECBAgAABAgQIECBAgMBrCPwCN9n+rg==
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T+1lC4hAYcCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMDABwacQAAB
   </data>
  </layer>
  <objectgroup color="#ffff00" id="4" name="Events">

@@ -168,6 +168,8 @@ class Learn(MonsterTestBase):
             "own_trainer": False,
         },
         types=[],
+        category="simple",
+        tags=["animal"],
         use_tech="combat_used_x",
     )
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="101">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="101">
  <properties>
   <property name="east" value="route3"/>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route4"/>
-  <property name="map_type" value="route"/>
   <property name="west" value="flower_city"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
@@ -23,6 +23,11 @@
  <layer id="3" name="Tile Layer 3" width="20" height="40">
   <data encoding="base64" compression="zlib">
    eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwMCFwgouB4SQQUwu8BZr1jormUctdo+aMhsBoCCBCAACenwOV
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="20" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">

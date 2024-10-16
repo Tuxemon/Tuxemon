@@ -736,6 +736,18 @@ msgstr "{name} cannot be used on any of your Tuxemon right now."
 msgid "technique_description"
 msgstr "ID.{id} ({types}) - Accuracy {acc}%, Potency {pot}%, Power {pow}/3, Recharge {rec} turns"
 
+msgid "technique_id_types_recharge"
+msgstr "ID.{id} ({types}) - Recharge {rec} turns"
+
+msgid "technique_power"
+msgstr "Power"
+
+msgid "technique_accuracy"
+msgstr "Accuracy"
+
+msgid "technique_potency"
+msgstr "Potency"
+
 msgid "reg_papers"
 msgstr "Registration Papers"
 
@@ -1599,7 +1611,7 @@ msgid "flamethrower"
 msgstr "Flamethrower"
 
 msgid "fledgling_description"
-msgstr "The user hurls a clump of hardened earth at the opponent."
+msgstr "The user hurls sharp feathers at the opponent."
 
 msgid "fledgling"
 msgstr "Fledgling"
@@ -1863,7 +1875,7 @@ msgid "negation"
 msgstr "Negation"
 
 msgid "nest_description"
-msgstr "The user constructs a protective nest around itself, using it as a defensive and offensive weapon."
+msgstr "The user constructs a protective nest around itself."
 
 msgid "nest"
 msgstr "Nest"
@@ -1945,6 +1957,15 @@ msgstr "The user creates an illusionary copy of itself that attacks the opponent
 
 msgid "phantasmal_force"
 msgstr "Phantasmal Force"
+
+msgid "solar_synthesis_description"
+msgstr "Heals the user's health by absorbing sunlight."
+
+msgid "solar_synthesis_fail"
+msgstr "The lack of sunlight prevents the healing."
+
+msgid "solar_synthesis"
+msgstr "Solar Synthesis"
 
 msgid "pit_description"
 msgstr "The user creates a pit beneath the opponent, causing them to fall and take damage."
@@ -2084,6 +2105,15 @@ msgstr "The user undergoes a rapid transformation, striking the opponent with a 
 msgid "shapechange"
 msgstr "Shapechange"
 
+msgid "shooting_star_description"
+msgstr "Heals the user's health by harnessing the energy of a shooting star streaking across the night sky."
+
+msgid "shooting_star_fail"
+msgstr "The lack of starlight from the daytime sky prevents the healing."
+
+msgid "shooting_star"
+msgstr "Shooting Star"
+
 msgid "shrapnel_description"
 msgstr "The user unleashes a barrage of sharp fragments, causing widespread damage."
 
@@ -2193,7 +2223,7 @@ msgid "strike"
 msgstr "Strike"
 
 msgid "suck_poison_description"
-msgstr "The user drains the opponent's vitality, inflicting damage and poisoning them."
+msgstr "The user draws out the poison from their own body and infects their enemy with it."
 
 msgid "suck_poison"
 msgstr "Suck Poison"
@@ -7991,6 +8021,15 @@ msgstr "There used to be a whole section here on the history of our world! \n Bu
 msgid "spyder_museum_postboy1"
 msgstr "Did you know that the first spectacles were made of beryl, not glass? \n … \n I learned that last year from a guide at this museum! But there aren't any guides around this place any more."
 
+msgid "spyder_museum_visitor1"
+msgstr "I'm not sure I like this. I've seen it happen before - a big sponsor comes in, and suddenly the museum's focus changes.\n I hope they're not going to start prioritizing profit over preservation."
+
+msgid "spyder_museum_security1"
+msgstr "I've seen a lot of changes over the years, but this one feels different.\n I've worked with some great people who've left because of the new direction the museum is taking.\n It's hard to see the place I love changing in ways that don't feel right to me."
+
+msgid "spyder_museum_historian1"
+msgstr "I'm trying to research the history of our world, but it's like they're erasing it.\n I've been trying to get access to the archives for months, but Nimrod's people keep stonewalling me.\n I'm starting to feel like I'm running out of time."
+
 msgid "spyder_leather_maniac" 
 msgstr "How is your adventure so far? \n ... \n Wow, so talkative! You are really coming out of your shell." 
 
@@ -8923,12 +8962,25 @@ msgid "spyder_omnichannel_strauss1"
 msgstr "I have to shake a lot of hands in my line of work."
 msgid "spyder_omnichannel_strauss2"
 msgstr "Down low. Too slow!"
+
 msgid "spyder_omnichannel_billie1"
-msgstr "Not so fast, ${{name}}! We're not going to let you go in there \n ... by yourself! I'm coming too. \n When you cured my tuxemon, you made me do some serious thinking. \n We can't let them get away with stealing our tuxemon!"
+msgstr "Hey ${{name}}, hold up!\n I've been thinking a lot about what you did for my tuxemon, and I have to admit, it got me thinking about my own priorities.\n I realized I've been too focused on my own goals, and I haven't been doing enough to help others.\n That's why I'm coming with you to take down those tuxemon thieves.\n We owe it to ourselves, our tuxemon, and the entire community to put a stop to their nefarious plans."
+
+msgid "spyder_omnichannel_dante1"
+msgstr "I've been watching you from the shop, and I have to say, I'm impressed.\n You've come a long way since you first got your tuxemon.\n I've been feeling a bit guilty, I'm the one who helped you get that tuxemon, and I feel like I've got a responsibility to help you see this through.\n Plus, I've got to admit, I'm a bit curious to see how this all plays out. So, I'm coming with you to take down those tuxemon thieves.\n Let's do this!"
+
+msgid "spyder_omnichannel_billie2"
+msgstr "I'm proud of you, ${{name}}. You've come a long way since we first met.\n I think it's time for me to head back to Paper Town, but I'll never forget this adventure we shared."
+
+msgid "spyder_omnichannel_dante2"
+msgstr "That was a close one! I'm just glad we were able to take down those thieves.\n You've got a bright future ahead of you, ${{name}}. Don't forget about me when you're a famous tuxemon master, okay?"
+
 msgid "spyder_omnichannel_beaverbrook1"
 msgstr "Aha, it's too late for you! \n Just out of the birthing pit ... the perfect monsters! \n The genes of Drokoro incubated in dragon eggs dug up by Shaft \n ... and fused with three killer robos designed by Nimrod. \n The power of teamwork ... and it's in my hands. "
+
 msgid "spyder_omnichannel_beaverbrook2"
 msgstr "No. It's not possible. \n Two upstarts, one with off-brand tuxemon, defeating my perfect creations. \n If I can just make it to my live radio interview, I'll command my enforcers to complete the takeover."
+
 msgid "spyder_omnichannel_radioannounce"
 msgstr "This is FUD Radio, DJ Worm here and my co-host, \"The Duke of Dead Air\", broadcasting live from the Omnichannel Radio Studios. \n We've got a full hour of lolly-pop, soft rock and accessible hip hop for you - but first, an interview with the head of Omnichannel! \n Ah, it looks like Sir Beaverbrook couldn't make it, but in his place has sent a small child. Well, small child, what do you have to say? \n ... \n Speak up! You're on live radio! \n ... \n Huh, a conspiracy, you say? \n ... \n The Pillars were going to use Greenwash fusion technology, Nimrod killer robos and dragons dug up by Shaft ... \n And they were going to use those fusions to take control of the entire region? \n ... \n And they deliberately spread the Virus to everyone's tuxemon using food from Scoop? \n ... \n And the Enforcers are in on it? \n ... \n And Omnichannel was behind the whole thing, using the media to keep people confused and distracted? \n ... \n You know we work for Omnichannel, right? Doc, please tell me you stopped broadcasting. Doc?! \n ... \n Ouch! Man I really wish Radio FUD didn't go out live. \n I don't think people are going to be very happy with us."
 
@@ -10216,16 +10268,22 @@ msgstr "Giving a dog tuxemon to a Cat Girl"
 
 msgid "spyder_column1_sign" 
 msgstr "A rare ancient column. This was once part of a temple building." 
+
 msgid "spyder_column2_sign" 
 msgstr "A rare ancient column. Other ruins from the same culture can be found in Route 3. " 
+
 msgid "spyder_ruby_plaque" 
 msgstr "Ruby is just the term for any corundum that is red! \n When corundum comes in other colours like blue, pink and clear, it is called a sapphire. \n When tuxemon eat rubies, they become passionate and vigorous, making them better at physical attacks like slaps, claws and bites." 
+
 msgid "spyder_opal_plaque" 
 msgstr "Opals show flashes of coloured light. \n They form in fissues and dips in rock when water evaporates leaving behind silica. \n Tuxemon that eat opals benefit from its magical warding are better able to escape magical distant attacks like blasts, sprays and rays." 
+
 msgid "spyder_emerald_plaque" 
 msgstr "An emerald is a green variety of beryl. Beryl that is blue is called aquamarine instead. \n A one-carat emerald is larger but less dense than a one-carat diamond. \n Tuxemon that eat emeralds have their sight and intuition heighten, making their ranged attacks like shots, sprays and blasts more potent." 
+
 msgid "spyder_agate_plaque" 
 msgstr "Agate is a rock, often formed by volcanoes and often banded with parallel lines. \n It features a great variety of colours: browns, greys, creams, reds, oranges and even blues. \n Feeding agate to a tuxemon can increase its speed and agility, making it faster to react in battle." 
+
 msgid "spyder_diamond_plaque" 
 msgstr "Famously the hardest gemstone in the world, diamonds are great on necklaces, engagement rings and earrings! \n If your fiance doesn't buy a Shaft diamond ring for you, he doesn't love you! \n Feed diamonds to your tuxemon to harden their skin, making them better able to resist physical blows." 
 
@@ -10234,33 +10292,61 @@ msgstr "Quartz is one of the most abundant minerals on the planet. \n Some quart
 
 msgid "spyder_shaft_plaque"
 msgstr "Sponsored by Shaft. \"We dig it!\""
+
 msgid "spyder_nimrod_plaque"
 msgstr "Sponsored by Nimrod. \"If we didn't sell them, someone else would!\""
+
 msgid "spyder_nimrod2_plaque"
 msgstr "Tuxemon are powerful weapons that have fought alongside humans for as long as there has been war. \n Rock paintings found in caves show prehistoric humans training sabretoothed Rockats to fight wild Wolffsky."
+
 msgid "spyder_nimrod3_plaque"
 msgstr "The symbol of an ancient empire was the Eaglace, because when the empire invaded from the icy north their generals and scouts rode on Eaglace. \n Today, medic teams in our mighty republic are training with Agnidon for protection and transport. "
+
 msgid "spyder_nimrod4_plaque"
 msgstr "But soon, tuxemon and humans may be rendered obsolete. \n Our corporate sponsors Nimrod are developing robot technology that could make war a bloodless affair. \n In the meantime, sign up for the Nimrod Enforcers for good pay, free education and a life of adventure."
+
+msgid "spyder_nimrod5_plaque"
+msgstr "At Nimrod, we believe that technology has the power to transform the world for the better.\n Our unwavering commitment to innovation drives us to develop groundbreaking solutions that address the challenges of today and tomorrow.\n From advancing healthcare to protecting our planet, Nimrod is dedicated to creating a brighter future for all."
+
 msgid "spyder_shaft1_sign"
 msgstr "Shaft Headquarters: Mining Division"
+
 msgid "spyder_shaft2_sign"
 msgstr "Shaft Headquarters: Public Relations Division"
+
+msgid "spyder_leather_note1"
+msgstr "*rummages through the trash can, pulling out a banana peel with a few days' worth of mold on it* Ugh, wait, what's this? A leather notebook...\n Letter from Dr Henry, Former Nimrod Researcher\n I used to work for Nimrod, but I quit due to their priorities. They care more about profit and power than the well-being of tuxemon and their handlers.\n I've seen firsthand the devastating effects of Nimrod's tuxemon breeding programs.\n They're pushing these creatures to their limits, and it's only a matter of time before something goes terribly wrong."
+
+msgid "spyder_leather_note2"
+msgstr "*digs deeper into the trash can, pushing aside banana peels and broken pens* Gross. Okay, what's this? Another notebook...\n Field Notes of Dr Sophia, Conservation Biologist\n My team and I have been monitoring tuxemon populations in the wild, and our data suggests that their numbers are declining at an alarming rate.\n This is likely due to habitat destruction and fragmentation, as well as the increasing demand for tuxemon for military and commercial purposes.\n We've observed that tuxemon are playing a crucial role in maintaining ecosystem balance in certain regions.\n Their loss could have far-reaching consequences for the environment and human societies that depend on these ecosystems."
+
+msgid "spyder_leather_note3"
+msgstr "*pulls out a moldy pizza box and a stack of old newspapers* This trash can is a treasure trove of grossness. Oh, a journal...\n Journal of Dr John, Historian\n My research on the ancient empire's use of tuxemon has led me to question the official narrative.\n It appears that the empire's relationship with tuxemon was more complex and nuanced than previously thought...\n with evidence of both reverence and exploitation.\n I've discovered a series of ancient texts that suggest the empire's use of tuxemon was not solely for military purposes...\n but also for spiritual and ceremonial reasons.\n These texts, written in a long-forgotten language, offer a glimpse into a world where tuxemon were revered as sacred beings.\n As I delve deeper, I'm uncovering a rich tapestry of stories and legends... revealing the empire's profound connection to the tuxemon.\n Fascinating and unsettling, it raises more questions than answers about the empire's rulers."
+
+msgid "spyder_leather_note4"
+msgstr "*reaches to the bottom of the trash can, pulling out a soggy notebook* Ugh, I hope this one isn't ruined. Ah, it's still legible...\n Notebook of Dr Maria, Tuxemon Biologist\n Observations of tuxemon behavior in the wild suggest that they are highly social creatures...\n with complex communication patterns and a strong sense of hierarchy.\n This challenges the common assumption that tuxemon are simply tools for human use.\n Preliminary data suggests that tuxemon are capable of experiencing stress and anxiety when subjected to intense training regimens.\n Further research is needed to understand the long-term effects of this stress on tuxemon well-being."
+
 msgid "spyder_leathercafe_sign"
 msgstr "Open Air Cafe and Marketplace"
+
 msgid "spyder_leathercbd_sign"
 msgstr "Leather Town Business District"
 
 msgid "spyder_leatherhouse1_radio_morning"
 msgstr "An R&B song is playing. It's called \"Possessuns, Part I\"."
+
 msgid "spyder_leatherhouse1_radio"
 msgstr "An R&B song is playing. It's called \"Possessuns, Part II\"."
+
 msgid "spyder_leatherhouse1_radio_dusk"
 msgstr "An Electronic song is playing. It's called \"Beats Of BotBot\"."
+
 msgid "spyder_leatherhouse1_radio_dawn"
 msgstr "A Country song is playing. It's called \"Heavyhearted At Losing My Rockat\"."
+
 msgid "spyder_leatherhouse1_radio_night"
 msgstr "A song is playing. It's called \"Fondent Tango\"."
+
 msgid "spyder_flower_dojo_sign"
 msgstr "Dojo of the Five Elements: Master Tuxemon Battle"
 

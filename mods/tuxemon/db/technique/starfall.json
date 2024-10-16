@@ -24,6 +24,8 @@
     "own_team": false,
     "own_trainer": false
   },
+  "category": "simple",
+  "tags": ["Darkness", "Celestial", "Weather"],
   "types": [
     "water"
   ],

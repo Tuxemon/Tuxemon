@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="89">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="89">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="routee"/>
-  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" source="../gfx/tilesets/core_set pieces.tsx"/>
@@ -13,9 +13,19 @@
    eAErYGBgKCABJzIxMHxjgeBkIJsUvdjUEjLPFmgHPmyH5gZC5sHcjotG9xO9zWsH+gcdSzPjDnNC7iM1zCk1zx7oVuT4csDjdmxuA4khuwFXPIHE0eOKXua1YYkj9DgD8TvQ0iYu94HES4G4DIjLgRifOmLlZgHNmQ3Ec0aYeVyMkHAEhSUhjC+sYeEHCkNiMb6w3g805wCJ+CBQPbHxPVDqAPmY0yI=
   </data>
  </layer>
- <layer id="5" name="Tile Layer 2" width="20" height="20">
+ <layer id="2" name="Tile Layer 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAGtlFEKwkAMRPOh/vjtEYT2KoKeRm/gsXoDwQNUL+KfWewrMhjSlQ2E2UlmJ2Gh7dZmvWe3EC8rm6Oc9d7RfU6eS3E2mw567/w1T7WF63zVZH3V6/ysr/5w7sFB6iB1UOfD0cNB6iB1EF9F9FE96uOriD6qR32dD0efIXpQ58MzH/roQXwV0T+2Zvsf34Hq4fgq4je638H9tB9xfBXxezber/i13u++Mbt6ErvpXOrEzf8pJaJ3+HTNXr7fUJH6bnD8ajHbr9aPfVphtN+/9TedoVKH
+   eAGtlMEJAlEMRHNQL54tQVhbEbQa7cCy7ECwALURbya4b5HBkP26gTB/kvmT8GG3m5ttPLuReJzZEHHWezv32XuOxcGsP+i9w8c81QbX+aqp+qrX+a191Vfzta/z4fjCQeogdVD94ejhIHWQOoivIvqsnvXxVURfod7T+fDKhz56UP3h6O9Ls/WX7wCdIr6K+N3cb+t+2s+4+sPxe0y8X/hNvd91YXbyJFb9OerExf8pEdk7vLtmT9/v3JC8lyJ+rVjt1+qne/3Ls/1+rb8AUyRRdg==
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITAaAqMhQHoIAAAGQAAB
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFlISABisDgyYQo9OUmDmqdzQERkNgNASGQggAAFC9ARI=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">

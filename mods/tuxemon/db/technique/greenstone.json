@@ -7,7 +7,7 @@
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.4,
+  "potency": 0.0,
   "power": 2.5,
   "range": "touch",
   "recharge": 2,
@@ -22,6 +22,8 @@
     "own_team": false,
     "own_trainer": false
   },
+  "category": "powerful",
+  "tags": ["Gemstone"],
   "types": [
     "wood",
     "earth"

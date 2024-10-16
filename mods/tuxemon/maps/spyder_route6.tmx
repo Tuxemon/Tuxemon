@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="244">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="244">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="map_type" value="route"/>
@@ -16,9 +16,19 @@
    eAETYGNgEBjFVAsDUWBYitEJi5MRb1ZAPdZ0wjYUuK8VqDeBRrgN6n9K3EeOXmLzGSyOyLGDEr30cF88NE4TgTSx9pGqjpQwuMvOwEAOvgfUR6q7YOpJcd80LgYGdAwyB10Mnc/MMbjddx/oPmLDHT2sSQk/daA9xOLdQLXo4UgMHz2sKUnjsPoDW9nOSKb7iA1r9HAGpTP0umw1UAxUf2Arm9SoGNbY0jh6OIPU4KrLsLkPpJ5YTCisiXUfrjqM0vKP2LBGTtPYwo/Y8KCmOuQ0jhzOg8V9yOXLqPuIzzOwNEJK+AEALQmu5Q==
   </data>
  </layer>
- <layer id="2" name="Obstacles" width="40" height="20">
+ <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eAHNlT1ORDEMhENLRUENnAa4FXsWTrPcAg4AJVDiKT7JGuXHoXkbyZo4mbEnIW85X7f2FnG+UPwMX18Rl4p+b+2g4T7I/d4Osjf8++ETPMofffEB7twfmhXSK+PrTc7Gc/fjvcbK+jc0q7Hacz/u97e100/EdwS1XKP1l/jmGcx7PDhVdD+3qY9qPFy1033EXQQ1XSM/eBKH3Hnod3B1xp6/Xn08ZfTa5D39aG11xqo/1c/elHttcu3Nxnt8O5xlhOh3/KHZxd4b5ywjpMdzvLuniMf0/tirIOefcWd3gB6c1WHvo/jbJT7nR9vDmT/0YE+vNfyPMOvyO3R+5jGf+avoVQf/I6SXUP4Yzmc948yf691vNc/9NN/Rzd6413G/1dz9/Ve3quN+qzl1eXvkO3q4aIWsgdVzO0+18AZqzXmjPHM119D/Wuf/AS82cc0=
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">

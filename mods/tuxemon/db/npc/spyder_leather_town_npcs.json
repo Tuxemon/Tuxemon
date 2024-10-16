@@ -1,242 +1,218 @@
 [
   {
     "slug": "spyder_leathergym_chadine",
-    "template": 
-      {
-        "sprite_name": "barmaid_blonde",
-        "combat_front": "barmaid",
-        "slug": "barmaid"
-      }
-  
+    "template": {
+      "sprite_name": "barmaid_blonde",
+      "combat_front": "barmaid",
+      "slug": "barmaid"
+    }
   },
   {
     "slug": "spyder_leathergym_chadfort",
-    "template": 
-      {
-        "sprite_name": "soldier",
-        "combat_front": "soldier",
-        "slug": "soldier"
-      }
-  
+    "template": {
+      "sprite_name": "soldier",
+      "combat_front": "soldier",
+      "slug": "soldier"
+    }
   },
   {
     "slug": "spyder_leathergym_chad",
-    "template": 
-      {
-        "sprite_name": "magician_grey",
-        "combat_front": "magician",
-        "slug": "magician"
-      }
-  
+    "template": {
+      "sprite_name": "magician_grey",
+      "combat_front": "magician",
+      "slug": "magician"
+    }
   },
   {
     "slug": "spyder_leathergym_bradfort",
-    "template": 
-      {
-        "sprite_name": "postboy_green",
-        "combat_front": "adventurer",
-        "slug": "postboy"
-      }
-  
+    "template": {
+      "sprite_name": "postboy_green",
+      "combat_front": "adventurer",
+      "slug": "postboy"
+    }
   },
   {
     "slug": "spyder_leathergym_brad",
-    "template": 
-      {
-        "sprite_name": "magician_fiery",
-        "combat_front": "magician",
-        "slug": "magician"
-      }
-  
+    "template": {
+      "sprite_name": "magician_fiery",
+      "combat_front": "magician",
+      "slug": "magician"
+    }
   },
   {
     "slug": "spyder_leathergym_gigachad",
-    "template": 
-      {
-        "sprite_name": "magician_brown",
-        "combat_front": "magician",
-        "slug": "magician"
-      }
-  
+    "template": {
+      "sprite_name": "magician_brown",
+      "combat_front": "magician",
+      "slug": "magician"
+    }
   },
   {
     "slug": "spyder_leathergym_virgin",
-    "template": 
-      {
-        "sprite_name": "goth",
-        "combat_front": "adventurer",
-        "slug": "goth"
-      }
-  
+    "template": {
+      "sprite_name": "goth",
+      "combat_front": "adventurer",
+      "slug": "goth"
+    }
   },
   {
     "slug": "spyder_leather_eula",
-    "template": 
-      {
-        "sprite_name": "barmaid",
-        "combat_front": "barmaid",
-        "slug": "barmaid"
-      }
-  
+    "template": {
+      "sprite_name": "barmaid",
+      "combat_front": "barmaid",
+      "slug": "barmaid"
+    }
   },
   {
     "slug": "spyder_leatherhouse2_memphis",
-    "template": 
-      {
-        "sprite_name": "miner_blue",
-        "combat_front": "miner",
-        "slug": "miner"
-      }
-  
+    "template": {
+      "sprite_name": "miner_blue",
+      "combat_front": "miner",
+      "slug": "miner"
+    }
   },
   {
     "slug": "spyder_leathermuseum_davie",
-    "template": 
-      {
-        "sprite_name": "miner_green",
-        "combat_front": "miner",
-        "slug": "miner"
-      }
-  
+    "template": {
+      "sprite_name": "miner_green",
+      "combat_front": "miner",
+      "slug": "miner"
+    }
   },
   {
     "slug": "spyder_leathershaft1_cole",
-    "template": 
-      {
-        "sprite_name": "miner_red",
-        "combat_front": "miner",
-        "slug": "miner"
-      }
-  
+    "template": {
+      "sprite_name": "miner_red",
+      "combat_front": "miner",
+      "slug": "miner"
+    }
   },
   {
     "slug": "spyder_leathershaft1_rutherford",
-    "template": 
-      {
-        "sprite_name": "scientist_fiery",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_fiery",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_leathershaft1_beryll",
-    "template": 
-      {
-        "sprite_name": "scientist_fiery",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_fiery",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_leathershaft1_surat",
-    "template": 
-      {
-        "sprite_name": "miner_yellow",
-        "combat_front": "miner",
-        "slug": "miner"
-      }
-  
+    "template": {
+      "sprite_name": "miner_yellow",
+      "combat_front": "miner",
+      "slug": "miner"
+    }
   },
   {
     "slug": "spyder_leathershaft1_roxby",
-    "template": 
-      {
-        "sprite_name": "miner",
-        "combat_front": "miner",
-        "slug": "miner"
-      }
-  
+    "template": {
+      "sprite_name": "miner",
+      "combat_front": "miner",
+      "slug": "miner"
+    }
   },
   {
     "slug": "spyder_leathershaft2_colin",
-    "template": 
-      {
-        "sprite_name": "maniac",
-        "combat_front": "adventurer",
-        "slug": "maniac"
-      }
-  
+    "template": {
+      "sprite_name": "maniac",
+      "combat_front": "adventurer",
+      "slug": "maniac"
+    }
   },
   {
     "slug": "spyder_leatherhouse1_roger",
-    "template": 
-      {
-        "sprite_name": "tennisplayer",
-        "combat_front": "adventurer",
-        "slug": "tennisplayer"
-      }
-  
+    "template": {
+      "sprite_name": "tennisplayer",
+      "combat_front": "adventurer",
+      "slug": "tennisplayer"
+    }
   },
   {
     "slug": "spyder_leathermuseum_kasey",
-    "template": 
-      {
-        "sprite_name": "postboy_red",
-        "combat_front": "adventurer",
-        "slug": "postboy"
-      }
-  
+    "template": {
+      "sprite_name": "postboy_red",
+      "combat_front": "adventurer",
+      "slug": "postboy"
+    }
+  },
+  {
+    "slug": "spyder_leathermuseum_historian",
+    "template": {
+      "sprite_name": "professor_brown",
+      "combat_front": "professor",
+      "slug": "professor"
+    }
+  },
+  {
+    "slug": "spyder_leathermuseum_security",
+    "template": {
+      "sprite_name": "soldier",
+      "combat_front": "soldier",
+      "slug": "soldier"
+    }
+  },
+  {
+    "slug": "spyder_leathermuseum_visitor",
+    "template": {
+      "sprite_name": "florist_blue",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
   },
   {
     "slug": "spyder_leatherhouse1_gail",
-    "template": 
-      {
-        "sprite_name": "florist_fiery",
-        "combat_front": "florist",
-        "slug": "florist"
-      }
-  
+    "template": {
+      "sprite_name": "florist_fiery",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
   },
   {
     "slug": "spyder_leatherhouse2_elias",
-    "template": 
-      {
-        "sprite_name": "snugglepot",
-        "combat_front": "snugglepot",
-        "slug": "snugglepot"
-      }
-  
+    "template": {
+      "sprite_name": "snugglepot",
+      "combat_front": "snugglepot",
+      "slug": "snugglepot"
+    }
   },
   {
     "slug": "spyder_leatherhouse2_gabe",
-    "template": 
-      {
-        "sprite_name": "scientist_brown",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_brown",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_leather_filbur",
-    "template": 
-      {
-        "sprite_name": "maniac_violet",
-        "combat_front": "adventurer",
-        "slug": "maniac"
-      }
-  
+    "template": {
+      "sprite_name": "maniac_violet",
+      "combat_front": "adventurer",
+      "slug": "maniac"
+    }
   },
   {
     "slug": "spyder_leathermuseum_giles",
-    "template": 
-      {
-        "sprite_name": "maniac_rose",
-        "combat_front": "adventurer",
-        "slug": "maniac"
-      }
-  
+    "template": {
+      "sprite_name": "maniac_rose",
+      "combat_front": "adventurer",
+      "slug": "maniac"
+    }
   },
   {
     "slug": "spyder_leatherscoop_blake",
-    "template": 
-      {
-        "sprite_name": "shopkeeper",
-        "combat_front": "adventurer",
-        "slug": "shopkeeper"
-      }
-  
+    "template": {
+      "sprite_name": "shopkeeper",
+      "combat_front": "adventurer",
+      "slug": "shopkeeper"
+    }
   }
 ]

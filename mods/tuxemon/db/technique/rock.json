@@ -22,6 +22,8 @@
     "own_team": false,
     "own_trainer": false
   },
+  "category": "basic",
+  "tags": ["Rock"],
   "types": [
     "earth"
   ],

@@ -24,6 +24,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import networking, prepare, state
+from tuxemon.camera import Camera, project
 from tuxemon.db import Direction
 from tuxemon.entity import Entity
 from tuxemon.graphics import ColorLike
@@ -44,6 +45,7 @@ from tuxemon.session import local_session
 from tuxemon.states.world.world_classes import BoundaryChecker
 from tuxemon.states.world.world_menus import WorldMenuState
 from tuxemon.surfanim import SurfaceAnimation
+from tuxemon.teleporter import Teleporter
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -122,15 +124,14 @@ class WorldState(state.State):
         from tuxemon.player import Player
 
         self.boundary_checker = BoundaryChecker()
+        self.teleporter = Teleporter()
         # Provide access to the screen surface
         self.screen = self.client.screen
         self.screen_rect = self.screen.get_rect()
         self.resolution = prepare.SCREEN_SIZE
         self.tile_size = prepare.TILE_SIZE
         # default variables for layer
-        self.layer = pygame.Surface(
-            self.client.screen.get_size(), pygame.SRCALPHA
-        )
+        self.layer = pygame.Surface(self.screen.get_size(), pygame.SRCALPHA)
         self.layer_color: ColorLike = prepare.TRANSPARENT_COLOR
 
         #####################################################################
@@ -160,19 +161,6 @@ class WorldState(state.State):
         # bubble above the player's head
         self.bubble: dict[NPC, pygame.surface.Surface] = {}
 
-        # The delayed teleport variable is used to perform a teleport in the
-        # middle of a transition. For example, fading to black, then
-        # teleporting the player, and fading back in again.
-        self.delayed_char: Optional[NPC] = None
-        self.delayed_teleport = False
-        self.delayed_mapname = ""
-        self.delayed_x = 0
-        self.delayed_y = 0
-
-        # The delayed facing variable used to change the player's facing in
-        # the middle of a transition.
-        self.delayed_facing: Optional[Direction] = None
-
         ######################################################################
         #                       Fullscreen Animations                        #
         ######################################################################
@@ -182,6 +170,8 @@ class WorldState(state.State):
         if local_session.player is None:
             new_player = Player(prepare.PLAYER_NPC, world=self)
             local_session.player = new_player
+
+        self.camera = Camera(local_session.player, self.boundary_checker)
 
         if map_name:
             self.change_map(map_name)
@@ -223,7 +213,12 @@ class WorldState(state.State):
         self.in_transition = True
         self.trigger_fade_out(duration, color)
 
-        task = self.task(self.handle_delayed_teleport, duration)
+        task = self.task(
+            partial(
+                self.teleporter.handle_delayed_teleport, self, self.player
+            ),
+            duration,
+        )
         task.chain(fade_in, duration + 0.5)
 
     def trigger_fade_in(self, duration: float, color: ColorLike) -> None:
@@ -267,62 +262,11 @@ class WorldState(state.State):
         self.stop_char(self.player)
         self.lock_controls(self.player)
 
-    def handle_delayed_teleport(self) -> None:
-        """
-        Call to teleport player if delayed_teleport is set.
-
-        * Load a map
-        * Move player
-        * Send data to network about teleport
-
-        """
-        if self.delayed_teleport:
-            if self.delayed_char:
-                char = self.delayed_char
-            else:
-                char = self.player
-            self.stop_char(char)
-            self.lock_controls(char)
-
-            # check if map has changed, and if so, change it
-            map_name = prepare.fetch("maps", self.delayed_mapname)
-
-            if map_name != self.current_map.filename:
-                self.change_map(map_name)
-
-            char.set_position((self.delayed_x, self.delayed_y))
-
-            if self.delayed_facing:
-                char.facing = self.delayed_facing
-                self.delayed_facing = None
-
-            self.delayed_teleport = False
-
     def set_transition_surface(self, color: ColorLike) -> None:
         self.transition_surface = pygame.Surface(
             self.client.screen.get_size(), pygame.SRCALPHA
         )
         self.transition_surface.fill(color)
-
-    def set_layer(self) -> None:
-        self.layer.fill(self.layer_color)
-        self.screen.blit(self.layer, (0, 0))
-
-    def set_bubble(
-        self, screen_surfaces: list[tuple[pygame.surface.Surface, Rect, int]]
-    ) -> None:
-        if self.bubble:
-            for npc, surface in self.bubble.items():
-                cx, cy = self.get_pos_from_tilepos(Vector2(npc.tile_pos))
-                bubble_rect = surface.get_rect()
-                bubble_rect.centerx = npc.rect.centerx
-                bubble_rect.bottom = npc.rect.top
-                bubble_rect.x = cx
-                bubble_rect.y = cy - (
-                    surface.get_height() + int(npc.rect.height / 10)
-                )
-                bubble = (surface, bubble_rect, 100)
-                screen_surfaces.append(bubble)
 
     def broadcast_player_teleport_change(self) -> None:
         """Tell clients/host that player has moved after teleport."""
@@ -355,6 +299,7 @@ class WorldState(state.State):
         self.update_npcs(time_delta)
         for anim_data in self.map_animations.values():
             anim_data["animation"].update(time_delta)
+        self.camera.update()
 
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player.game_variables))
@@ -451,15 +396,18 @@ class WorldState(state.State):
         # moving direction to that direction
         direction = direction_map.get(event.button)
         if direction is not None:
-            if event.held:
-                self.wants_to_move_char[self.player.slug] = direction
-                if self.player.slug in self.allow_char_movement:
-                    self.move_char(self.player, direction)
-                return None
-            elif not event.pressed:
-                if self.player.slug in self.wants_to_move_char.keys():
-                    self.stop_char(self.player)
+            if self.camera.follows_entity:
+                if event.held:
+                    self.wants_to_move_char[self.player.slug] = direction
+                    if self.player.slug in self.allow_char_movement:
+                        self.move_char(self.player, direction)
                     return None
+                elif not event.pressed:
+                    if self.player.slug in self.wants_to_move_char.keys():
+                        self.stop_char(self.player)
+                        return None
+            else:
+                return self.camera.handle_input(event)
 
         if prepare.DEV_TOOLS:
             if event.pressed and event.button == intentions.NOCLIP:
@@ -478,103 +426,135 @@ class WorldState(state.State):
     ####################################################
     #                   Map Drawing                    #
     ####################################################
-    def map_drawing(self, surface: pygame.surface.Surface) -> None:
-        """
-        Draws the map tiles in a layered order.
-
-        Parameters:
-            surface: Surface to draw into.
-
-        """
-        # TODO: move all drawing into a "WorldView" widget
-        # interlace player sprites with tiles surfaces.
-        # eventually, maybe use pygame sprites or something similar
-        world_surfaces: list[WorldSurfaces] = []
-
-        # temporary
-        if self.current_map.renderer is None:
-            self.current_map.initialize_renderer()
-
-        # get player coords to center map
-        cx, cy = self.project(self.player.position3)
-
-        # offset center point for player sprite
-        cx += prepare.TILE_SIZE[0] // 2
-        cy += prepare.TILE_SIZE[1] // 2
-
-        # center the map on center of player sprite
-        # must center map before getting sprite coordinates
-        assert self.current_map.renderer
-        self.current_map.renderer.center((cx, cy))
-
-        # get npc surfaces/sprites
-        current_map = self.current_map.sprite_layer
+    def get_npc_surfaces(self, current_map: int) -> list[WorldSurfaces]:
+        """Get the NPC surfaces/sprites."""
+        npc_surfaces = []
         for npc in self.npcs:
-            world_surfaces.extend(self.get_sprites(npc, current_map))
+            npc_surfaces.extend(self.get_sprites(npc, current_map))
+        return npc_surfaces
 
-        # get map_animations
+    def get_map_animations(self) -> list[WorldSurfaces]:
+        """Get the map animations."""
+        map_animations = []
         for anim_data in self.map_animations.values():
             anim = anim_data["animation"]
             if not anim.is_finished() and anim.visibility:
-                _surface = anim.get_current_frame()
-                _vector = Vector2(anim_data["position"])
-                _layer = anim_data["layer"]
-                world_surface = WorldSurfaces(_surface, _vector, _layer)
-                world_surfaces.append(world_surface)
+                surface = anim.get_current_frame()
+                vector = Vector2(anim_data["position"])
+                layer = anim_data["layer"]
+                map_animation = WorldSurfaces(surface, vector, layer)
+                map_animations.append(map_animation)
+        return map_animations
 
-        # position the surfaces correctly
-        # pyscroll expects surfaces in screen coords, so they are
-        # converted from world to screen coords here
-        screen_surfaces = list()
-        for frame in world_surfaces:
-            s = frame.surface
-            c = frame.position3
-            l = frame.layer
+    def position_surfaces(
+        self, surfaces: list[WorldSurfaces]
+    ) -> list[tuple[pygame.surface.Surface, Rect, int]]:
+        """Position the surfaces correctly."""
+        screen_surfaces = []
+        for frame in surfaces:
+            surface = frame.surface
+            position = frame.position3
+            layer = frame.layer
 
-            # project to pixel/screen coords
-            _c = self.get_pos_from_tilepos(c)
+            # Project to pixel/screen coordinates
+            screen_position = self.get_pos_from_tilepos(position)
 
-            # TODO: better handling of tall sprites
-            # handle tall sprites
-            h = s.get_height()
-            if h > prepare.TILE_SIZE[1]:
-                # offset for center and image height
-                _c = (_c[0], _c[1] - h // 2)
+            # Handle tall sprites
+            height = surface.get_height()
+            if height > prepare.TILE_SIZE[1]:
+                screen_position = (
+                    screen_position[0],
+                    screen_position[1] - height // 2,
+                )
 
-            r = Rect(_c, s.get_size())
-            screen_surfaces.append((s, r, l))
+            rect = Rect(screen_position, surface.get_size())
+            screen_surfaces.append((surface, rect, layer))
+        return screen_surfaces
 
-        # Adds a bubble above player's head
-        self.set_bubble(screen_surfaces)
-
-        # draw the map and sprites
+    def draw_map_and_sprites(
+        self,
+        surface: pygame.surface.Surface,
+        screen_surfaces: list[tuple[pygame.surface.Surface, Rect, int]],
+    ) -> None:
+        """Draw the map and sprites."""
+        assert self.current_map.renderer
         self.rect = self.current_map.renderer.draw(
             surface, surface.get_rect(), screen_surfaces
         )
 
-        # If we want to draw the collision map for debug purposes
+    def apply_cinema_mode(self, surface: pygame.surface.Surface) -> None:
+        """Apply cinema mode if necessary."""
+        top_bar = pygame.Surface((self.resolution[0], self.resolution[1] / 6))
+        bottom_bar = pygame.Surface(
+            (self.resolution[0], self.resolution[1] / 6)
+        )
+        top_bar.fill(prepare.BLACK_COLOR)
+        bottom_bar.fill(prepare.BLACK_COLOR)
+        surface.blit(top_bar, (0, 0))
+        bottom = surface.get_rect().bottom - self.resolution[1] / 6
+        surface.blit(bottom_bar, (0, bottom))
+
+    def set_bubble(
+        self, screen_surfaces: list[tuple[pygame.surface.Surface, Rect, int]]
+    ) -> None:
+        if self.bubble:
+            for npc, surface in self.bubble.items():
+                cx, cy = self.get_pos_from_tilepos(Vector2(npc.tile_pos))
+                bubble_rect = surface.get_rect()
+                bubble_rect.centerx = npc.rect.centerx
+                bubble_rect.bottom = npc.rect.top
+                bubble_rect.x = cx
+                bubble_rect.y = cy - (
+                    surface.get_height() + int(npc.rect.height / 10)
+                )
+                bubble = (surface, bubble_rect, 100)
+                screen_surfaces.append(bubble)
+
+    def set_layer(self, surface: pygame.surface.Surface) -> None:
+        self.layer.fill(self.layer_color)
+        surface.blit(self.layer, (0, 0))
+
+    def map_drawing(self, surface: pygame.surface.Surface) -> None:
+        """Draw the map tiles in a layered order."""
+        # Ensure map renderer is initialized
+        if self.current_map.renderer is None:
+            self.current_map.initialize_renderer()
+
+        # Get player coordinates to center map
+        cx, cy = self.camera.position
+        assert self.current_map.renderer
+        self.current_map.renderer.center((cx, cy))
+
+        # Get NPC surfaces/sprites
+        current_map = self.current_map.sprite_layer
+        npc_surfaces = self.get_npc_surfaces(current_map)
+
+        # Get map animations
+        map_animations = self.get_map_animations()
+
+        # Combine NPC surfaces and map animations
+        surfaces = npc_surfaces + map_animations
+
+        # Position surfaces correctly
+        screen_surfaces = self.position_surfaces(surfaces)
+
+        # Add bubble above player's head
+        self.set_bubble(screen_surfaces)
+
+        # Draw the map and sprites
+        self.draw_map_and_sprites(surface, screen_surfaces)
+
+        # Add transparent layer
+        self.set_layer(surface)
+
+        # Draw collision map for debug purposes
         if prepare.CONFIG.collision_map:
             self.debug_drawing(surface)
 
-        # If triggers night color only at night (2200-0400) outside
-        game_variable = self.player.game_variables
-
-        # Adds a transparent layer
-        self.set_layer()
-
-        if "cinema_mode" in game_variable:
-            if game_variable["cinema_mode"] == "on":
-                top_bar = pygame.Surface(
-                    (self.resolution[0], self.resolution[1] / 6)
-                )
-                bottom_bar = pygame.Surface(
-                    (self.resolution[0], self.resolution[1] / 6)
-                )
-                top_bar.fill(prepare.BLACK_COLOR)
-                bottom_bar.fill(prepare.BLACK_COLOR)
-                surface.blit(top_bar, (0, 0))
-                bottom = surface.get_rect().bottom - self.resolution[1] / 6
-                surface.blit(bottom_bar, (0, bottom))
+        # Apply cinema mode
+        cinema = self.player.game_variables.get("cinema_mode", "")
+        if cinema == "on":
+            self.apply_cinema_mode(surface)
 
     def get_sprites(self, npc: NPC, layer: int) -> list[WorldSurfaces]:
         """
@@ -1139,19 +1119,10 @@ class WorldState(state.State):
         """
         assert self.current_map.renderer
         cx, cy = self.current_map.renderer.get_center_offset()
-        px, py = self.project(tile_position)
+        px, py = project(tile_position)
         x = px + cx
         y = py + cy
         return x, y
-
-    def project(
-        self,
-        position: Sequence[float],
-    ) -> tuple[int, int]:
-        return (
-            int(position[0] * self.tile_size[0]),
-            int(position[1] * self.tile_size[1]),
-        )
 
     def update_npcs(self, time_delta: float) -> None:
         """
@@ -1204,7 +1175,7 @@ class WorldState(state.State):
         for event in self.client.events:
             vector = Vector2(event.x, event.y)
             topleft = self.get_pos_from_tilepos(vector)
-            size = self.project((event.w, event.h))
+            size = project((event.w, event.h))
             rect = topleft, size
             box(surface, rect, (0, 255, 0, 128))
 
@@ -1249,16 +1220,28 @@ class WorldState(state.State):
     ####################################################
     def change_map(self, map_name: str) -> None:
         """
-        Loads a new map and updates the game state accordingly.
+        Changes the current map and updates the player state.
 
         Parameters:
             map_name: The name of the map to load.
         """
-        # Set the currently loaded map. This is needed because the event
-        # engine loads event conditions and event actions from the currently
-        # loaded map. If we change maps, we need to update this.
+        self.load_and_update_map(map_name)
+        self.update_player_state()
+
+    def load_and_update_map(self, map_name: str) -> None:
+        """
+        Loads a new map and updates the game state accordingly.
+
+        This method loads the map data, updates the game state, and notifies
+        the client and boundary checker. The currently loaded map is updated
+        because the event engine loads event conditions and event actions from
+        the currently loaded map. If we change maps, we need to update this.
+
+        Parameters:
+            map_name: The name of the map to load.
+        """
         logger.debug(f"Loading map '{map_name}' from disk.")
-        map_data = self.load_map(map_name)
+        map_data = self.load_map_data(map_name)
 
         self.current_map = map_data
         self.collision_map = map_data.collision_map
@@ -1268,10 +1251,8 @@ class WorldState(state.State):
         self.map_area = map_data.area
 
         self.boundary_checker.update_boundaries(self.map_size)
-
         self.client.load_map(map_data)
         self.clear_npcs()
-        self.update_player_state()
 
     def clear_npcs(self) -> None:
         """
@@ -1305,7 +1286,7 @@ class WorldState(state.State):
                 character.remove_collision((eo.x, eo.y))
                 break
 
-    def load_map(self, path: str) -> TuxemonMap:
+    def load_map_data(self, path: str) -> TuxemonMap:
         """
         Returns map data as a dictionary to be used for map changing.
 
@@ -1317,7 +1298,7 @@ class WorldState(state.State):
 
         """
         txmn_map = TMXMapLoader().load(path)
-        yaml_files = [f"{path[:-4]}.yaml"]
+        yaml_files = [path.replace(".tmx", ".yaml")]
 
         if txmn_map.scenario:
             _scenario = prepare.fetch("maps", f"{txmn_map.scenario}.yaml")

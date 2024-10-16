@@ -4,12 +4,10 @@ from __future__ import annotations
 
 from typing import Optional
 
-import pygame_menu
-from pygame_menu.locals import ALIGN_CENTER, POSITION_CENTER
+from pygame_menu.locals import ALIGN_CENTER
 
-from tuxemon import prepare, tools
+from tuxemon import prepare
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.menu.theme import get_theme
 from tuxemon.platform.events import PlayerInput
 
 
@@ -24,16 +22,10 @@ class ImageState(PygameMenuState):
 
     def __init__(self, background: str, image: Optional[str] = None) -> None:
         width, height = prepare.SCREEN_SIZE
-        image_path = tools.transform_resource_filename(
-            "gfx/ui/background/" + background + ".png"
-        )
-        theme = get_theme()
-        theme.background_color = pygame_menu.BaseImage(
-            image_path,
-            drawing_position=POSITION_CENTER,
-        )
+        image_path = f"gfx/ui/background/{background}.png"
         native = prepare.NATIVE_RESOLUTION
-        bg_size = theme.background_color.get_size()
+        self._setup_theme(image_path)
+        bg_size = self._create_image(image_path).get_size()
         if bg_size[0] != native[0] or bg_size[1] != native[1]:
             raise ValueError(
                 f"{image_path} {bg_size}: "
@@ -42,10 +34,7 @@ class ImageState(PygameMenuState):
         super().__init__(height=height, width=width)
 
         if image:
-            new_image = pygame_menu.BaseImage(
-                tools.transform_resource_filename(image),
-                drawing_position=POSITION_CENTER,
-            )
+            new_image = self._create_image(image)
             image_size = new_image.get_size()
             if image_size[0] > native[0] or image_size[1] > native[1]:
                 raise ValueError(

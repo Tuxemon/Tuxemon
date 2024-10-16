@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="49">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="49">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="omnichannel2"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <tileset firstgid="2971" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
@@ -24,9 +24,14 @@
    eAG9U8EJAkEMHBT8yJ5V2IJP7cQGtA1tQxvwqZ34Ff3YheCsODCGZffuYyAkIZkkm2QB4JaGMSEfmnTAEBaurzxMgSO5RSf24XQm5tIDdw04z1HTWzjNc8f80rN03MJ8qqVZ5jjpWTpubT7hlmNgRfa47Iu24iU3xGzJL+Z0irb7XJ/P3AKi/ev9v3UfAQ/ynu/zPTy5C1FpD4kz6b7z9D10NqfSHlQjWZzq1KRqeP4YH288+0v/I7611Evpf8Sbq/XivbVuzGNdb+HeArY4Iw==
   </data>
  </layer>
- <layer id="5" name="Tile Layer 3" width="14" height="21">
+ <layer id="3" name="Tile Layer 3" width="14" height="21">
   <data encoding="base64" compression="zlib">
    eAGlkzlOg0EMRs0iKJK07BSElrVCHCDJIaCEK7CEK7BegeUwQM3SJdQsggJoeZ80I/2y/AcRLD15xvY3nkVjZlarmd1VzO7hAR5B1qiaNeEWIptH90ztC7zCW9JtUL8JT0n3Tvwj5bTOOroBcoMwBMOpLvf4TvMR/KjLjaMdS0zgI5tBM+t0i9QuJJZKdNFa/43pbrdg2/VU/Jo93rh95n662zYcOJ3iHTTdEp3u9hTOnE7xTzRfJbrcV77itMVcr/Fcn7q1PnW99uJzO/TYhT3YD/rpPSI7JH4Ex3DiaqrM9R6RnRO/gEu4cjV15nqPbP5/5PhvPvof0ugskzAF04U+eb3ofyinsyzDCqwGuqz3XmdpQBNaf9D5dYrzH0tjJ98=
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="14" height="21">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITC4QgAABJgAAQ==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
@@ -88,7 +93,7 @@
     <property name="cond1" value="not variable_set environment:interior"/>
    </properties>
   </object>
-  <object id="24" name="Create Bettger" type="event" x="192" y="176" width="16" height="16">
+  <object id="24" name="Create Bettger" type="event" x="192" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_bettger,12,10"/>
     <property name="cond1" value="not char_exists spyder_omnichannel_bettger"/>
@@ -110,7 +115,7 @@
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
-  <object id="29" name="Create Schwartz" type="event" x="192" y="192" width="16" height="16">
+  <object id="29" name="Create Schwartz" type="event" x="192" y="176" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_omnichannel_schwartz,12,11"/>
     <property name="act2" value="char_face spyder_omnichannel_schwartz,up"/>
@@ -157,7 +162,7 @@
   </object>
   <object id="36" name="Create Crane" type="event" x="176" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_omnichannel_crane,12,7"/>
+    <property name="act1" value="create_npc spyder_omnichannel_crane,11,3"/>
     <property name="act2" value="char_face spyder_omnichannel_crane,up"/>
     <property name="cond1" value="not char_exists spyder_omnichannel_crane"/>
     <property name="cond2" value="not variable_set omnichannel2crane:yes"/>

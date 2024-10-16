@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="52">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="53">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -18,24 +18,42 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBg64I8AA8NdJPxXgHi9d5HU7kXT95sEc/ZSwZxdstQxhxrugYXpPQrNQddDS3PuEmHOHbS0gu5HckGcIANDPBAnAPEDQfLNmQPUOxeI5wHxfwrMGQXDGwAAX/olQA==
+   eJxjYBg64I8AA8NdJPxXgHi9d5HU7kXT95sEc/ZSwZxdstQxhxrugYXpPQrNQddDS3PuEmHOHbS0gu5HckGcIANDPBAnAPEDQfLNmQPUOxeI5wHxfwrMIQaoMUJoDUb86mSEGBjkhBB8ZX4GBhV+0u2zBpphi2SOE9AMZzLMGQUMDACl+SeS
   </data>
  </layer>
- <layer id="3" name="Tile Layer 4" width="18" height="20">
+ <layer id="3" name="Tile Layer 3" width="18" height="20">
   <data encoding="base64" compression="zlib">
    eJxjYBi+4K4AAiODvQLY1YOAEBYxZPW/8ehFBg5YxO4guQWfOchy2MzBpZZU95ADcJlDrDvoZQ6pYLCbIwDFwlBajREirsGIkEMXA6kVQTPnBBTbQumTUPHjSHLoYvZYxM2VGRgslCHmEAvssYilAM1IpYI5MJDNgAgPQjgXjznI4UEIn8RhBjUAAAjBKEE=
   </data>
  </layer>
- <layer id="7" name="Tile Layer 5" width="18" height="20">
+ <layer id="4" name="Above Player" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2BkgYOCA+2CUTAKiAMANsUA0w==
+   eJxjYBgFo2BkgYOCA+0C6gB1RuLE8IkjAxkhBgY5IQRfmZ+BQYWfsL4pQoTVjALyAAAdAwK0
   </data>
  </layer>
- <layer id="4" name="Tile Layer 4" width="18" height="20">
-  <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDEWgzkicmBojRFwDixwykBFiYJATQvCV+RkYVPgJu2OKECrfGsi3RRJzAprhTIQ5owATAAAGMANx
-  </data>
- </layer>
+ <objectgroup color="#ff0000" id="6" name="Collisions">
+  <object id="2" type="collision" x="0" y="16" width="288" height="16"/>
+  <object id="3" type="collision" x="224" y="48" width="16" height="160"/>
+  <object id="4" type="collision" x="272" y="208" width="16" height="32"/>
+  <object id="5" type="collision" x="224" y="208" width="32" height="32"/>
+  <object id="6" type="collision" x="208" y="256" width="16" height="16"/>
+  <object id="7" type="collision" x="32" y="272" width="192" height="32"/>
+  <object id="8" type="collision" x="32" y="240" width="16" height="32"/>
+  <object id="9" type="collision" x="0" y="208" width="80" height="32"/>
+  <object id="11" type="collision" x="96" y="208" width="64" height="32"/>
+  <object id="12" type="collision" x="176" y="208" width="48" height="48"/>
+  <object id="13" type="collision" x="96" y="176" width="48" height="32"/>
+  <object id="17" type="collision" x="176" y="32" width="16" height="128"/>
+  <object id="18" type="collision" x="112" y="32" width="64" height="16"/>
+  <object id="19" type="collision" x="112" y="48" width="16" height="128"/>
+  <object id="20" type="collision" x="32" y="160" width="80" height="16"/>
+  <object id="21" type="collision" x="32" y="112" width="16" height="48"/>
+  <object id="22" type="collision" x="48" y="112" width="32" height="16"/>
+  <object id="23" type="collision" x="64" y="48" width="16" height="64"/>
+  <object id="24" type="collision" x="16" y="48" width="48" height="16"/>
+  <object id="25" type="collision" x="16" y="64" width="16" height="32"/>
+  <object id="26" type="collision" x="32" y="80" width="16" height="16"/>
+ </objectgroup>
  <objectgroup color="#ffff00" id="5" name="Events">
   <object id="1" name="Teleport to Nimrod Middle" type="event" x="0" y="240" width="32" height="32">
    <properties>
@@ -237,29 +255,13 @@
     <property name="cond1" value="not music_playing music_10_empire"/>
    </properties>
   </object>
- </objectgroup>
- <objectgroup color="#ff0000" id="6" name="Collisions">
-  <object id="2" type="collision" x="0" y="0" width="288" height="32"/>
-  <object id="3" type="collision" x="224" y="48" width="16" height="160"/>
-  <object id="4" type="collision" x="272" y="208" width="16" height="32"/>
-  <object id="5" type="collision" x="224" y="208" width="32" height="32"/>
-  <object id="6" type="collision" x="208" y="256" width="16" height="16"/>
-  <object id="7" type="collision" x="32" y="272" width="192" height="32"/>
-  <object id="8" type="collision" x="32" y="240" width="16" height="32"/>
-  <object id="9" type="collision" x="0" y="208" width="80" height="32"/>
-  <object id="11" type="collision" x="96" y="208" width="64" height="32"/>
-  <object id="12" type="collision" x="176" y="208" width="48" height="48"/>
-  <object id="13" type="collision" x="96" y="176" width="64" height="16"/>
-  <object id="17" type="collision" x="176" y="32" width="16" height="128"/>
-  <object id="18" type="collision" x="112" y="32" width="64" height="16"/>
-  <object id="19" type="collision" x="112" y="48" width="16" height="128"/>
-  <object id="20" type="collision" x="32" y="160" width="80" height="16"/>
-  <object id="21" type="collision" x="32" y="112" width="16" height="48"/>
-  <object id="22" type="collision" x="48" y="112" width="32" height="16"/>
-  <object id="23" type="collision" x="64" y="48" width="16" height="64"/>
-  <object id="24" type="collision" x="16" y="48" width="48" height="16"/>
-  <object id="25" type="collision" x="16" y="64" width="16" height="32"/>
-  <object id="26" type="collision" x="32" y="80" width="16" height="16"/>
-  <object id="36" type="collision" x="96" y="192" width="48" height="16"/>
+  <object id="52" name="PC Email" type="event" x="176" y="240" width="32" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_pc_message3"/>
+    <property name="act2" value="translated_dialog spyder_nimrod_pc_message4"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

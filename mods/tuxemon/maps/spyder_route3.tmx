@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="713">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="714">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route3"/>
   <property name="south" value="leather_town"/>
-  <property name="map_type" value="route"/>
   <property name="west" value="route4"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
@@ -171,7 +171,7 @@
     <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
-  <object id="590" name="Shaft Plot Revealed" type="event" x="64" y="96" width="64" height="16">
+  <object id="590" name="Shaft Plot Revealed" type="event" x="64" y="96" width="32" height="16">
    <properties>
     <property name="act11" value="lock_controls"/>
     <property name="act14" value="remove_npc spyder_route3_zoolander"/>

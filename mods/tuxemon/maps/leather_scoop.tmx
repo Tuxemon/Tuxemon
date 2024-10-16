@@ -51,7 +51,6 @@
     <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="16" name="Player Spawn" type="event" x="96" y="96" width="16" height="16"/>
   <object id="19" name="employee" type="event" x="16" y="80" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc tuxemart_keeper,1,5,stand"/>

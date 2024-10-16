@@ -53,7 +53,6 @@
     <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="28" name="Player Spawn" type="event" x="112" y="240" width="16" height="16"/>
   <object id="49" name="Room3" type="event" x="208" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_walletgarden1.tmx,13,3,0.3"/>

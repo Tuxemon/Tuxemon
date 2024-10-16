@@ -67,7 +67,6 @@
     <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="150" name="Player Spawn" type="event" x="96" y="48" width="16" height="16"/>
  </objectgroup>
  <layer id="5" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">

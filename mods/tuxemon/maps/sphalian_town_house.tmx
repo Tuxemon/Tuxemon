@@ -81,6 +81,5 @@
     <property name="cond20" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="28" name="Player Spawn" type="event" x="80" y="80" width="16" height="16"/>
  </objectgroup>
 </map>

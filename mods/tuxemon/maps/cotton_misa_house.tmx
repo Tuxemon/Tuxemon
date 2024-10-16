@@ -85,7 +85,6 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="58" name="Player Spawn" type="event" x="112" y="80" width="16" height="16"/>
   <object id="61" name="Go Upstairs" type="event" x="64" y="16" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport cotton_misa_house_upstairs.tmx,8,2,0.3"/>

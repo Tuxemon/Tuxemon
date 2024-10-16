@@ -49,7 +49,6 @@
     <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="28" name="Player Spawn" type="event" x="176" y="0" width="16" height="16"/>
   <object id="34" name="Create Magician" type="event" x="80" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_timbercafe_grady,5,7"/>

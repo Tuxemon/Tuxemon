@@ -63,7 +63,6 @@
   <object id="465" type="collision" x="0" y="192" width="48" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
-  <object id="454" name="Player Spawn" type="event" x="224" y="64" width="16" height="16"/>
   <object id="458" name="Teleport to Forest Route 1" type="event" x="208" y="0" width="48" height="16">
    <properties>
     <property name="act1" value="transition_teleport tt_forest_route1.tmx,8,38,0.3"/>

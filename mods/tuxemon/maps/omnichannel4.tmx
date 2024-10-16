@@ -55,6 +55,5 @@
     <property name="cond10" value="not music_playing music_omnichannel"/>
    </properties>
   </object>
-  <object id="18" name="Player Spawn" type="event" x="32" y="160" width="16" height="16"/>
  </objectgroup>
 </map>

@@ -15,10 +15,6 @@ events:
     conditions:
     - not music_playing music_cathedral_theme
     type: "event"
-  Player Spawn:
-    x: 5
-    y: 2
-    type: "event"
   Create Jess:
     actions:
     - create_npc spyder_candyinn_jess,5,14

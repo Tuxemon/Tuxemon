@@ -47,7 +47,6 @@
     <property name="cond1" value="not music_playing lunar_joyride.mp3"/>
    </properties>
   </object>
-  <object id="150" name="Player Spawn" type="event" x="144" y="32" width="16" height="16"/>
   <object id="160" name="Teleport to Dryad 1" type="event" x="528" y="624" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_dryadsgrove.tmx,33,0,0.3"/>

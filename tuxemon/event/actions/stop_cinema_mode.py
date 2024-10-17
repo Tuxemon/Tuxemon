@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.states.world.worldstate import WorldState
 
 
 @final
@@ -24,5 +25,6 @@ class StopCinemaModeAction(EventAction):
     name = "stop_cinema_mode"
 
     def start(self) -> None:
-        player = self.session.player
-        player.game_variables["cinema_mode"] = "off"
+        world = self.session.client.get_state_by_name(WorldState)
+        world.cinema_x_ratio = None
+        world.cinema_y_ratio = None

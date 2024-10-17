@@ -91,7 +91,7 @@ class Teleporter:
         target_map = prepare.fetch("maps", map_name)
 
         logger.debug(f"Removing {character.slug}'s collision zone")
-        character.remove_collision(character.tile_pos)
+        character.remove_collision()
 
         if (
             world.current_map is None

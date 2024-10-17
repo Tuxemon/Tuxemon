@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import Union, final
+from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPC
@@ -22,13 +22,12 @@ class CreateNpcAction(EventAction):
     Script usage:
         .. code-block::
 
-            create_npc <npc_slug>,<tile_pos_x>,<tile_pos_y>[,<animations>][,<behavior>]
+            create_npc <npc_slug>,<tile_pos_x>,<tile_pos_y>[,<behavior>]
 
     Script parameters:
         npc_slug: NPC slug to look up in the NPC database.
         tile_pos_x: X position to place the NPC on.
         tile_pos_y: Y position to place the NPC on.
-        animations: Sprite of the NPC. Deprecated in favor of the JSON.
         behavior: Behavior of the NPC (e.g. "wander"). Unused for now.
 
     """
@@ -37,24 +36,25 @@ class CreateNpcAction(EventAction):
     npc_slug: str
     tile_pos_x: int
     tile_pos_y: int
-    behavior: Union[str, None] = None
+    behavior: Optional[str] = None
 
     def start(self) -> None:
-        # Get a copy of the world state.
         world = self.session.client.get_state_by_name(WorldState)
 
-        # Get the npc's parameters from the action
         slug = self.npc_slug
 
-        # Ensure that the NPC doesn't already exist on the map.
         for element in world.npcs:
             if element.slug == slug:
+                logger.error(
+                    f"'{slug}' already exists on the map. Skipping creation."
+                )
                 return
 
-        # Create a new NPC object
         npc = NPC(slug, world=world)
-        npc.set_position((self.tile_pos_x, self.tile_pos_y))
+        client = self.session.client.event_engine
+        client.execute_action(
+            "char_position", [slug, self.tile_pos_x, self.tile_pos_y], True
+        )
 
-        # Set the NPC object's variables
         npc.behavior = self.behavior
         npc.load_party()

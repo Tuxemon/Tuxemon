@@ -119,15 +119,11 @@ class Entity(Generic[SaveDict]):
         # Update collision map
         self.world.collision_map[coords] = prop
 
-    def remove_collision(self, pos: tuple[int, int]) -> None:
+    def remove_collision(self) -> None:
         """
         Remove the entity's wandering position from the collision zone.
-
-        Parameters:
-            pos: Position to be removed.
-
         """
-        region = self.world.collision_map.get(pos)
+        region = self.world.collision_map.get(self.tile_pos)
         if not region:
             return  # Nothing to remove
 
@@ -140,10 +136,10 @@ class Entity(Generic[SaveDict]):
                 None,
                 region.key,
             )
-            self.world.collision_map[pos] = prop
+            self.world.collision_map[self.tile_pos] = prop
         else:
             # Remove region
-            del self.world.collision_map[pos]
+            del self.world.collision_map[self.tile_pos]
 
     # === PHYSICS END =========================================================
 

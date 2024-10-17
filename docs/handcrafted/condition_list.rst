@@ -8,6 +8,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_facing_tile.CharFacingTileCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_in.CharInCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_moved.CharMovedCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.char_position.CharPositionCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_sprite.CharSpriteCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_char_parameter.CheckCharParameterCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_evolution.CheckEvolutionCondition

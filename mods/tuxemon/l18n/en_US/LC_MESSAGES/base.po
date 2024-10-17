@@ -151,7 +151,7 @@ msgid "tuxeball_lavish"
 msgstr "Lavish Tuxeball"
 
 msgid "tuxeball_lavish_description"
-msgstr "The capture has a higher chance of succeeding."
+msgstr "The ultimate capture tool, boasting a significantly higher capture rate than the Noble Tuxeball."
 
 msgid "tuxeball_ancient"
 msgstr "Ancient Tuxeball"
@@ -212,6 +212,42 @@ msgstr "Zesty Tuxeball"
 
 msgid "tuxeball_zesty_description"
 msgstr "Upon capture, the tuxemon's positive taste changes to zesty."
+
+msgid "tuxeball_grand"
+msgstr "Grand Tuxeball"
+
+msgid "tuxeball_grand_description"
+msgstr "Offers an even higher capture rate than the Lavish Tuxeball, increasing the chances of a successful catch."
+
+msgid "tuxeball_majestic"
+msgstr "Majestic Tuxeball"
+
+msgid "tuxeball_majestic_description"
+msgstr "Boasts the highest capture rate of all, making it the ultimate choice for catching even the most elusive tuxemon."
+
+msgid "tuxeball_noble"
+msgstr "Noble Tuxeball"
+
+msgid "tuxeball_noble_description"
+msgstr "A moderate upgrade to the standard Tuxeball, offering a reliable capture rate."
+
+msgid "tuxeball_diurnal"
+msgstr "Diurnal Tuxeball"
+
+msgid "tuxeball_diurnal_description"
+msgstr "Captures more easily during daytime, but its effectiveness is significantly reduced during the night."
+
+msgid "tuxeball_nocturnal"
+msgstr "Nocturnal Tuxeball"
+
+msgid "tuxeball_nocturnal_description"
+msgstr "Captures more easily during nighttime, but its effectiveness is significantly reduced during the day."
+
+msgid "tuxeball_gambler"
+msgstr "Gambler Tuxeball"
+
+msgid "tuxeball_gambler_description"
+msgstr "This tuxeball is known for its unpredictable nature. Its catch rate fluctuates wildly, with the chance of capturing a tuxemon ranging from extremely low to exceptionally high."
 
 msgid "boost_armour"
 msgstr "Boost Armour"

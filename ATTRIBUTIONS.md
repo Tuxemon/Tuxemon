@@ -884,35 +884,47 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Tea"](https://wiki.tuxemon.org/File:Tea_1.png) [https://opengameart.org/content/infusions-icons CC0]
 
-* ["Tuxeball Earth"](https://wiki.tuxemon.org/File:Capture_device_yellow.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Tuxeball Fire"](https://wiki.tuxemon.org/File:Capture_device_red.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Tuxeball Metal"](https://wiki.tuxemon.org/File:Capture_device_violet.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Tuxeball Wood"](https://wiki.tuxemon.org/File:Capture_device_green.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Tuxeball Water"](https://wiki.tuxemon.org/File:Tuxeball_water.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Tuxeball Female"](https://wiki.tuxemon.org/File:Tuxeball_female.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Tuxeball Park"](https://wiki.tuxemon.org/File:Tuxeball_park.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Tuxeball Male"](https://wiki.tuxemon.org/File:Tuxeball_male.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Tuxeball Neuter"](https://wiki.tuxemon.org/File:Tuxeball_neuter.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
 * ["Tuxeball Ancient"](https://wiki.tuxemon.org/File:Tuxeball_ancient.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Tuxeball Candy"](https://wiki.tuxemon.org/File:Tuxeball_candy.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Tuxeball Crusher"](https://wiki.tuxemon.org/File:Tuxeball_crusher.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Tuxeball Diurnal"](https://wiki.tuxemon.org/File:Tuxeball_diurnal.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Earth"](https://wiki.tuxemon.org/File:Capture_device_yellow.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Female"](https://wiki.tuxemon.org/File:Tuxeball_female.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Fire"](https://wiki.tuxemon.org/File:Capture_device_red.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Gambler"](https://wiki.tuxemon.org/File:Tuxeball_gambler.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Grand"](https://wiki.tuxemon.org/File:Tuxeball_grand.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 * ["Tuxeball Hardened"](https://wiki.tuxemon.org/File:Tuxeball_hardened.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Tuxeball Lavish"](https://wiki.tuxemon.org/File:Tuxeball_lavish.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Tuxeball Majestic"](https://wiki.tuxemon.org/File:Tuxeball_majestic.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Male"](https://wiki.tuxemon.org/File:Tuxeball_male.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Metal"](https://wiki.tuxemon.org/File:Capture_device_violet.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Neuter"](https://wiki.tuxemon.org/File:Tuxeball_neuter.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Noble"](https://wiki.tuxemon.org/File:Tuxeball_noble.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Nocturnal"](https://wiki.tuxemon.org/File:Tuxeball_nocturnal.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 * ["Tuxeball Omni"](https://wiki.tuxemon.org/File:Tuxeball_omni.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Park"](https://wiki.tuxemon.org/File:Tuxeball_park.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Water"](https://wiki.tuxemon.org/File:Tuxeball_water.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Wood"](https://wiki.tuxemon.org/File:Capture_device_green.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Tuxeball Xero"](https://wiki.tuxemon.org/File:Tuxeball_xero.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 

@@ -962,6 +962,9 @@ msgstr "{name} gets {symbol}{gold}!"
 msgid "combat_state_switch"
 msgstr "{target} is {types} type!"
 
+msgid "combat_state_switch_fail"
+msgstr "{target} is already {type}!"
+
 msgid "combat_state_switch_both"
 msgstr "{user} is {type1} type, while {target} is {type2} type!"
 

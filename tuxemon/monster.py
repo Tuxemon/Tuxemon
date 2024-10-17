@@ -317,7 +317,9 @@ class Monster:
         """
         Returns TRUE if there is the type among the types.
         """
-        return bool(element) and any(ele.slug == element for ele in self.types)
+        return element is not None and any(
+            ele.slug == element for ele in self.types
+        )
 
     def give_experience(self, amount: int = 1) -> int:
         """

@@ -17,21 +17,24 @@ logger = logging.getLogger(__name__)
 @dataclass
 class CharPlagueAction(EventAction):
     """
-    Set the character as infected, inoculated or healthy.
+    Set the entire party as infected or inoculated or healthy.
 
     Script usage:
         .. code-block::
 
-            char_plague <value>[,character]
+            char_plague <plague_slug>,<condition>[,character]
 
     Script parameters:
-        condition: Infected, inoculated or healthy
+        plague_slug: The slug of the plague to target.
+        condition: Infected, inoculated, or None (removes the plague from the
+            character, indicating a healthy state).
         character: Either "player" or character slug name (e.g. "npc_maple").
 
     """
 
     name = "char_plague"
-    value: str
+    plague_slug: str
+    condition: Optional[str] = None
     character: Optional[str] = None
 
     def start(self) -> None:
@@ -40,13 +43,15 @@ class CharPlagueAction(EventAction):
         if character is None:
             logger.error(f"{self.character} not found")
             return
-        if self.value == PlagueType.infected:
-            character.plague = PlagueType.infected
-        elif self.value == PlagueType.healthy:
-            character.plague = PlagueType.healthy
-        elif self.value == PlagueType.inoculated:
-            character.plague = PlagueType.inoculated
-        else:
-            raise ValueError(
-                f"{self.value} must be infected, inoculated or healthy."
-            )
+
+        for monster in character.monsters:
+            if self.condition is None:
+                monster.plague = {}
+            elif self.condition == "infected":
+                monster.plague[self.plague_slug] = PlagueType.infected
+            elif self.condition == "inoculated":
+                monster.plague[self.plague_slug] = PlagueType.inoculated
+            else:
+                raise ValueError(
+                    f"{self.condition} must be 'infected' or 'inoculated'."
+                )

@@ -1,0 +1,54 @@
+{
+    "slug": "pythonova",
+    "category": "nova_snake",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fire_claw"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wall_fire"
+        },
+        {
+            "level_learned": 6,
+            "technique": "venom"
+        },
+        {
+            "level_learned": 10,
+            "technique": "spit_poison"
+        },
+        {
+            "level_learned": 14,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 18,
+            "technique": "flamethrower"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "hissiorite",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "cobarett",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["serpent", "coastal", "desert"],
+    "shape": "serpent",
+    "stage": "stage2",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 324,
+    "height": 600,
+    "weight": 120,
+    "catch_rate": 35.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

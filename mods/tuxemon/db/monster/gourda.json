@@ -1,0 +1,45 @@
+{
+    "slug": "gourda",
+    "category": "pumpkin",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 2,
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 6,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 10,
+            "technique": "stabilo"
+        },
+        {
+            "level_learned": 14,
+            "technique": "overfeed"
+        },
+        {
+            "level_learned": 18,
+            "technique": "nest"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "tags": ["blob"],
+    "shape": "blob",
+    "stage": "standalone",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 331,
+    "height": 40,
+    "weight": 28,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

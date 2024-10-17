@@ -3232,6 +3232,12 @@ msgstr "It feels uncomfortable commanding its fellow NUT and BOLT, and usually r
 msgid "arthrobolt"
 msgstr "Arthrobolt"
 
+msgid "asudopt_description"
+msgstr "According to legend, ASUDOPT created the world and one day will destroy the world. In the meantime, it sets the world's universal laws."
+
+msgid "asudopt"
+msgstr "Asudopt"
+
 msgid "av8r_description"
 msgstr "If the sun is out, it can fly as far or as high as it likes."
 
@@ -3250,6 +3256,18 @@ msgstr "It is designed for all those times you need something to be bitten by a 
 msgid "b_ver_1"
 msgstr "B-Ver.1"
 
+msgid "babysnitch_description"
+msgstr "The fuming BABYSNITCH will throw itself into the attack, usually with little effect. But beware: if you laugh at its efforts, it will hunt you once it grows into a BADDRSCRATCH."
+
+msgid "babysnitch"
+msgstr "Babysnitch"
+
+msgid "baddrscratch_description"
+msgstr "The furious BADDRSCRATCH is a fearsome hunter, and it will not stop in its pursuit of its prey - even in the face of certain death."
+
+msgid "baddrscratch"
+msgstr "Baddrscratch"
+
 msgid "bamboon_description"
 msgstr "It fights with its bamboo staff, which it also uses for balance."
 
@@ -3261,6 +3279,18 @@ msgstr "Each BANLING is waiting for a homeless spirit to nestle in its branches.
 
 msgid "banling"
 msgstr "Banling"
+
+msgid "bansaken_description"
+msgstr "Each"
+
+msgid "bansaken"
+msgstr "As twilight hits, the spirits inside BANSAKEN come to life. They like to add naughty children who stay up too late to their number."
+
+msgid "banvengeance_description"
+msgstr "BANVENGEANCE seeks to make its own night by growing new trees from running roots to drown out the light, smothering competing plant life."
+
+msgid "banvengeance"
+msgstr "Banvengeance"
 
 msgid "baobaraffe_description"
 msgstr "It stores mass amounts of water in its huge body so that it can travel long distances across hot, dry deserts. It will also share water with thirsty creatures. When it has no water stored it is skinny."
@@ -3274,11 +3304,23 @@ msgstr "They travel from river to river in search of water to drink and store. T
 msgid "baoby"
 msgstr "Baoby"
 
+msgid "bedoo_description"
+msgstr "It swallows its victims whole, forcing them into a deep sleep for a few hours whilst it feasts on their dreams. Often, it will accidentally put their victims into a permanent sleep."
+
+msgid "bedoo"
+msgstr "Bedoo"
+
 msgid "beenstalker_description"
 msgstr "What BEENSTALKER lacks in sense and grace, it makes up for in sheer enthusiasm and goodwill. It delights in scaring off vermin, but never harming them."
 
 msgid "beenstalker"
 msgstr "Beenstalker"
+
+msgid "bewhich_description"
+msgstr "When BEWHICH holds its breath, it can appear as a beautiful - though sinister - human. "
+
+msgid "bewhich"
+msgstr "Bewhich"
 
 msgid "bigfin_description"
 msgstr "A whole ecosystem exists on its back, so it tries not to go underwater."
@@ -3322,6 +3364,24 @@ msgstr "With its long blue cape, BOXALI can glide above the ground - allowing it
 msgid "boxali"
 msgstr "Boxali"
 
+msgid "boxorox_description"
+msgstr "The dumber it gets, the harder its rocky body becomes."
+
+msgid "boxorox"
+msgstr "Boxorox"
+
+msgid "brachifor_description"
+msgstr "BRACHIFOR can go without eating if it stays perfectly still."
+
+msgid "brachifor"
+msgstr "Brachifor"
+
+msgid "breem_description"
+msgstr "It punctures fruit to place new DUGGOT in them by night. By day it pretends to be a normal bee."
+
+msgid "breem"
+msgstr "Breem"
+
 msgid "brewdin_description"
 msgstr "Born in neglected, once prized, pottery and similar treasures. Rumored to grants wishes to those who can make it smile."
 
@@ -3339,6 +3399,12 @@ msgstr "Be wary when kicking a BRICGARD's nest, because percussive force is the 
 
 msgid "brickhemoth"
 msgstr "Brickhemoth"
+
+msgid "brumi_description"
+msgstr "Neglected brooms may be stolen by BRUMI. "
+
+msgid "brumi"
+msgstr "Brumi"
 
 msgid "budaye_description"
 msgstr "It can convince any group to cooperate for the common good with some encouraging mewls and waves."
@@ -3358,11 +3424,29 @@ msgstr "BUMBULUS is a flying being that produces a cloud of smoke to disguise it
 msgid "bumbulus"
 msgstr "Bumbulus"
 
+msgid "burrlock_description"
+msgstr "BURRLOCK likes to stick to passerbys to help it spread from place to place."
+
+msgid "burrlock"
+msgstr "Burrlock"
+
 msgid "bursa_description"
 msgstr "It rejects fire as basic, and produces only the fire of the mind."
 
 msgid "bursa"
 msgstr "Bursa"
+
+msgid "cacaburr_description"
+msgstr "CACABURR supports many pollinators like TUMBLEBEE and seed lovers like CHICKADEE."
+
+msgid "cacaburr"
+msgstr "Cacaburr"
+
+msgid "cackleen_description"
+msgstr "Some say CACKLEEN is a possessed child, others that is the lost spirit of a girl. "
+
+msgid "cackleen"
+msgstr "Cackleen"
 
 msgid "cairfrey_description"
 msgstr "A jolly piece of furniture who awoke one morning and decided to explore."
@@ -3454,11 +3538,35 @@ msgstr "CHROMEYE was created to observe and learn how humans think and feel."
 msgid "chromeye"
 msgstr "Chromeye"
 
+msgid "claymorior_description"
+msgstr "It is said that only one in a thousand can rule over the CLAYMORIOR as a REGALANCE."
+
+msgid "claymorior"
+msgstr "Claymorior"
+
+msgid "coaldiak_description"
+msgstr "This bear can set fire to anywhere and draw blood from anything."
+
+msgid "coaldiak"
+msgstr "Coaldiak"
+
+msgid "cobarett_description"
+msgstr "It covers itself in thick, billowing smoke so that it can slide easily through thick brush. The source of the smoke is its molten body temperature, which is so hot that tongues of flame shoot from its mouth."
+
+msgid "cobarett"
+msgstr "Cobarett"
+
 msgid "cochini_description"
 msgstr "It is as intelligent and aware as a three-year old child. It tastes delicious."
 
 msgid "cochini"
 msgstr "Cochini"
+
+msgid "cocrune_description"
+msgstr "Whichever way it turns, the blood-red eye faces you."
+
+msgid "cocrune"
+msgstr "Cocrune"
 
 msgid "coleorus_description"
 msgstr "It has existed, unchanged, for millions of years."
@@ -3514,6 +3622,12 @@ msgstr "Its mane shines during the day, grows big and red at sunset, and blows a
 msgid "criniotherme"
 msgstr "Criniotherme"
 
+msgid "crustagu_description"
+msgstr "It fires piercing, poisonous spines from its claws to frighten away those who threaten its underwater colonies."
+
+msgid "crustagu"
+msgstr "Crustagu"
+
 msgid "dandicub_description"
 msgstr "After a litter is born, they float all over the world and never see their family again."
 
@@ -3532,11 +3646,35 @@ msgstr "A DANKUSH can stop itself from burning by holding its breath, causing pl
 msgid "dankush"
 msgstr "Dankush"
 
+msgid "delfeco_description"
+msgstr "DELFECO's streamlined body allows for swift navigation through water, and its intelligence is evident in its complex hunting strategies. Despite its size, it's known for its playful nature and strong bond with its trainer."
+
+msgid "delfeco"
+msgstr "Delfeco"
+
 msgid "demosnow_description"
 msgstr "DEMOSNOW delight in luring travelers deeper into the wilderness than is strictly safe, promising them glory and adventure."
 
 msgid "demosnow"
 msgstr "Demosnow"
+
+msgid "devidin_description"
+msgstr "A dicynodont that came back to life and decided to become the dinosaur everyone always mistakes it for."
+
+msgid "devidin"
+msgstr "Devidin"
+
+msgid "devidra_description"
+msgstr "Look closely, for ultra fine fur gives away it is devilishly pretending to be a dinosaur."
+
+msgid "devidra"
+msgstr "Devidra"
+
+msgid "deviraptor_description"
+msgstr "The single pair of feathers on its head are fakes, hinting at its devilish true identity."
+
+msgid "deviraptor"
+msgstr "Deviraptor"
 
 msgid "dinoflop_description"
 msgstr "DINOFLOP delights in quickly turning away from its attackers so their blows land on its shielded and spiny back."
@@ -3549,6 +3687,12 @@ msgstr "It is mistakenly believed that it is a human who died in a fire. Actuall
 
 msgid "djinnbo"
 msgstr "Djinnbo"
+
+msgid "doctsky_description"
+msgstr "The little hyena just wants to take care of others, but has a bad reputation after a movie with it as a villain came out."
+
+msgid "doctsky"
+msgstr "Doctsky"
 
 msgid "dollfin_description"
 msgstr "Each one follows a ship from place to place, exploring the world."
@@ -3579,6 +3723,12 @@ msgstr "Once it had a family, but it ate its parents, and it ate its children, a
 
 msgid "drokoro"
 msgstr "Drokoro"
+
+msgid "duggot_description"
+msgstr "When TUMBLEBEE tries to drink fruit juice, a DUGGOT may latch on and take over its brain."
+
+msgid "duggot"
+msgstr "Duggot"
 
 msgid "dune_pincher_description"
 msgstr "These hermits will wrap themselves in whatever is closest. In the desert, that is the burial shrouds of long-dead pharaohs."
@@ -3628,11 +3778,23 @@ msgstr "ENDUROS is an aggressive brawler that does not pull its blows. Out of th
 msgid "enduros"
 msgstr "Enduros"
 
+msgid "equill_description"
+msgstr "Its bitterness causes it to transform. It hides its ugliness in the dark."
+
+msgid "equill"
+msgstr "Equill"
+
 msgid "eruptibus_description"
 msgstr "Smiths work with it, heating up metals in its caldera."
 
 msgid "eruptibus"
 msgstr "Eruptibus"
+
+msgid "eskipup_description"
+msgstr "Even as a puppy, it can pull 1 ton loads."
+
+msgid "eskipup"
+msgstr "Eskipup"
 
 msgid "exapode_description"
 msgstr "It waves its legs to attract attention, but mostly people just run away."
@@ -3712,6 +3874,24 @@ msgstr "When one is in danger, all FOOFLE hear its cries, wherever they are."
 msgid "foofle"
 msgstr "Foofle"
 
+msgid "flounce_description"
+msgstr "FLOUNCE can be stubborn and solitary, flouncing all the rules unless given good motivation."
+
+msgid "flounce"
+msgstr "Flounce"
+
+msgid "flummack_description"
+msgstr "FLUMMACK no longer desires to be eaten, but to eat - even other FLUMMBY and FLUMMACK go down a treat."
+
+msgid "flummack"
+msgstr "Flummack"
+
+msgid "flummby_description"
+msgstr "FLUMMBY was invented by a scientist who thought food that wanted to be eaten would be more ethical. It leaps into the mouth of anyone who could eat it."
+
+msgid "flummby"
+msgstr "Flummby"
+
 msgid "fordin_description"
 msgstr "When threatened, it curls into a ball and bounces away."
 
@@ -3766,11 +3946,23 @@ msgstr "When a child is no longer around to play with their toys, they sometimes
 msgid "fuzzlet"
 msgstr "Fuzzlet"
 
+msgid "galasces_description"
+msgstr "GALASCES can distort its shape to engulf prey its own size."
+
+msgid "galasces"
+msgstr "Galasces"
+
 msgid "galnec_description"
 msgstr "GALNEC buries itself deep in the hot sands of the desert, only its stony tail above ground. In packs, they look like gardens of stone."
 
 msgid "galnec"
 msgstr "Galnec"
+
+msgid "gastronium_description"
+msgstr "GASTRONIUM can eat almost anything but prefers heavy, radioactive materials."
+
+msgid "gastronium"
+msgstr "Gastronium"
 
 msgid "gectile_description"
 msgstr "It is so quick and light that it can walk on leaves."
@@ -3784,11 +3976,29 @@ msgstr "It smiles because it knows how everyone it meets is going to die."
 msgid "ghosteeth"
 msgstr "Ghosteeth"
 
+msgid "gladiatorbug_description"
+msgstr "GLADIATORBUG is a massive insectoid tuxemon with a deep, armored exoskeleton and distinctive wings running along its back. Its mandibles can crush steel. "
+
+msgid "gladiatorbug"
+msgstr "Gladiatorbug"
+
+msgid "gliffary_description"
+msgstr "A mischievous fey creature that is rarely seen, it gathers by mushroom rings and melts iron zealously."
+
+msgid "gliffary"
+msgstr "Gliffary"
+
 msgid "glombroc_description"
 msgstr "It stores its memories in its rocky shell. If some fall off, it is forgetful."
 
 msgid "glombroc"
 msgstr "Glombroc"
+
+msgid "gourda_description"
+msgstr "Competitions to grow the largest GOURDA have resulted in some reaching one ton in weight, but normal GOURDA are much smaller."
+
+msgid "gourda"
+msgstr "Gourda"
 
 msgid "graffiki_description"
 msgstr "GRAFFIKI are as at home in cities as they are in the jungle, tagging their territory with elaborate paintings."
@@ -3862,11 +4072,35 @@ msgstr "The crystal on its chest is mistaken for a diamond by poachers. It melts
 msgid "heronquak"
 msgstr "Heronquak"
 
+msgid "hissiorite_description"
+msgstr "The base of its neck emits super-heated gas that envelopes its body and causes it to hover a few inches off the ground, similar to a hot air balloon. Because of this it can travel quickly, even over water."
+
+msgid "hissiorite"
+msgstr "Hissiorite"
+
+msgid "hoarse_description"
+msgstr "It appears to be a farm animal, but it was mistreated by its owner."
+
+msgid "hoarse"
+msgstr "Hoarse"
+
+msgid "hoarseshoo_description"
+msgstr "It is what is left when an EQUILL's shadow eats its body."
+
+msgid "hoarseshoo"
+msgstr "Hoarseshoo"
+
 msgid "hotline_description"
 msgstr "These curious creatures can leap great distances, letting out a strange, tinny cry that cannot be escaped however far their prey runs."
 
 msgid "hotline"
 msgstr "Hotline"
+
+msgid "houndice_description"
+msgstr "HOUNDICE loves sledding, but it can also sniff out lost hikers under snow."
+
+msgid "houndice"
+msgstr "Houndice"
 
 msgid "howl_description"
 msgstr "HOWL's foolish exterior hides deep wisdom - if only it could communicate it, but its words come out as hoots and howls."
@@ -3904,6 +4138,12 @@ msgstr "When a person rests their head on JELILLOW, its jelly-like skin causes t
 msgid "jelillow"
 msgstr "Jelillow"
 
+msgid "jeluna_description"
+msgstr "The moon exercises its strange influence on Jeluna, causing these aerial jellyfish to change their forms over the course of a month."
+
+msgid "jeluna"
+msgstr "Jeluna"
+
 msgid "jemuar_description"
 msgstr "The gems on its back are the type found when it was born. There are extensive ROCKITTEN breeding facilities over diamond veins."
 
@@ -3940,6 +4180,12 @@ msgstr "KERNEL is a core component of the monster system (kennel) and item syste
 msgid "kernel"
 msgstr "Kernel"
 
+msgid "knindling_description"
+msgstr "Any spark from a stone KNINDLING happily tenders into a fire."
+
+msgid "knindling"
+msgstr "Knindling"
+
 msgid "komodraw_description"
 msgstr "It uses its claws to carve its firearm out of wood, and uses it for powerful ranged attacks."
 
@@ -3951,6 +4197,12 @@ msgstr "Many a wrongdoer has fled town after seeing just the silhouette of an ap
 
 msgid "komoduel"
 msgstr "Komoduel"
+
+msgid "konuit_description"
+msgstr "In some places KONUIT is called 'drop bear' and believed to fall on unsuspecting heads below."
+
+msgid "konuit"
+msgstr "Konuit"
 
 msgid "lambert_description"
 msgstr "It is placed in its nut by its parent, who then sends it into the world."
@@ -3969,6 +4221,12 @@ msgstr "Long thought to be legless, its leaves are actually vestigial limbs."
 
 msgid "legko"
 msgstr "Legko"
+
+msgid "legoplaste_description"
+msgstr "It has a very fluid shape and may hunt by sending out random tendrils to sniff or touch nearby prey."
+
+msgid "legoplaste"
+msgstr "Legoplaste"
 
 msgid "lendos_description"
 msgstr "When two UNEYE become tangled, they form a single unified LENDOS."
@@ -4018,6 +4276,18 @@ msgstr "It floats across the tops of cities, contemplating sharks."
 msgid "manosting"
 msgstr "Manosting"
 
+msgid "marvantis_description"
+msgstr "When it evolves, the only trace of its original mimickry is its red ornaments."
+
+msgid "marvantis"
+msgstr "marvantis"
+
+msgid "marvillar_description"
+msgstr "MARVILLAR mimes an ant larvae using scent. It convinces SCARLANT and MYRMISON to feed it, eating skeptics."
+
+msgid "marvillar"
+msgstr "marvillar"
+
 msgid "masknake_description"
 msgstr "When frightened or aggressive, it flashes a beautiful pattern with its tail."
 
@@ -4030,11 +4300,23 @@ msgstr "MAUAI gives itself over to the spirits of lost warriors trapped inside i
 msgid "mauai"
 msgstr "Mauai"
 
+msgid "medipup_description"
+msgstr "When MEDIPUP sniff out sickness, they bounce over and nuzzle the affected creature. MEDIPUP's wet noses are effective, but some patients have been crushed under an overly enthusiastic pack."
+
+msgid "medipup"
+msgstr "Medipup"
+
 msgid "medushock_description"
 msgstr "Tend to stay away from shore and known to be aggressive to people. Stingers are used to stun its prey. Swim safely."
 
 msgid "medushock"
 msgstr "Medushock"
+
+msgid "megafruitera_description"
+msgstr "It has slightly better self control than its younger form, enlarging its nest first if it needs to for extra fruit."
+
+msgid "megafruitera"
+msgstr "Megafruitera"
 
 msgid "memnomnom_description"
 msgstr "It is said that each one's mask is the face of a different dead king."
@@ -4053,6 +4335,12 @@ msgstr "This Tuxemon would enjoy diving into the ground and leaving marks. Somet
 
 msgid "metesaur"
 msgstr "Metesaur"
+
+msgid "metoxic_description"
+msgstr "METOXIC sometimes acts as a flag for PAWSAND castles, spewing poisonous fumes everywhere."
+
+msgid "metoxic"
+msgstr "Metoxic"
 
 msgid "miaownolith_description"
 msgstr "It can speak the human tongue, but only to say cryptic riddles."
@@ -4078,6 +4366,12 @@ msgstr "These cheeky robots are used for their fine motor skills, but they love 
 msgid "mrmoswitch"
 msgstr "Mrmoswitch"
 
+msgid "myrmison_description"
+msgstr "MYRMISON queens will emerge on humid days to try to establish new colonies. This is a very dangerous time for them."
+
+msgid "myrmison"
+msgstr "Myrmison"
+
 msgid "mystikapi_description"
 msgstr "The MYSTIKAPI's saliva augments psychic powers. It licks its eyes and ears to heighten its senses."
 
@@ -4089,6 +4383,18 @@ msgstr "When a SHYBULB has restored a garden to glory, it morphs and proudly tak
 
 msgid "narcileaf"
 msgstr "Narcileaf"
+
+msgid "nebufin_description"
+msgstr "NEBUFIN's angelic appearance is deceptive, as the monster is predatory."
+
+msgid "nebufin"
+msgstr "Nebufin"
+
+msgid "ned_description"
+msgstr "NED has a rivalry with KONUIT, but KONUIT sleeps through most of their arguments."
+
+msgid "ned"
+msgstr "Ned"
 
 msgid "neutrito_description"
 msgstr "NEUTRITO feels nothing. The perfect machine?"
@@ -4102,6 +4408,12 @@ msgstr "NIMBULEX dresses itself in sparks and storm clouds to protect its delica
 msgid "nimbulex"
 msgstr "Nimbulex"
 
+msgid "ninjasmine_description"
+msgstr "NINJASMINE poisons his opponents quickly using his two poison swords."
+
+msgid "ninjasmine"
+msgstr "Ninjasmine"
+
 msgid "noctalo_description"
 msgstr "It inhabits only places abandoned by humans - castles, graveyards and sewers."
 
@@ -4109,7 +4421,7 @@ msgid "noctalo"
 msgstr "Noctalo"
 
 msgid "noctula_description"
-msgstr "It eats bugs and PIPIS eat fruit, so despite living in close proximity they do not compete."
+msgstr "It eats fruit and PIPIS eat bugs, so despite living in close proximity they do not compete."
 
 msgid "noctula"
 msgstr "Noctula"
@@ -4119,6 +4431,12 @@ msgstr "It can smell anything in the ocean, no matter how far away."
 
 msgid "nostray"
 msgstr "Nostray"
+
+msgid "novaquarius_description"
+msgstr "A NOVAQUARIUS sting sends the unwary to the hospital, but BUBBITOISE have developed immunity and will nibble on them."
+
+msgid "novaquarius"
+msgstr "Novaquarius"
 
 msgid "nudiflot_female_description"
 msgstr "It eats and stores the poison of the sea creatures that it feeds upon."
@@ -4185,6 +4503,12 @@ msgstr "Each member of the pride lights their mane from a shared bonfire. As lon
 
 msgid "pantherafira"
 msgstr "Pantherafira"
+
+msgid "pearamanca_description"
+msgstr "PEARAMANCA sells insurance to innocent people just trying to buy fruit, which makes it the most terrifying monster of all."
+
+msgid "pearamanca"
+msgstr "Pearamanca"
 
 msgid "pharfan_description"
 msgstr "At the watering hole it keeps its friends RINOCEREED and HAMPOTAMOS well watered."
@@ -4276,6 +4600,12 @@ msgstr "Using its shadow puppets, it can use them to fight its opponent with gre
 msgid "pythock"
 msgstr "Pythock"
 
+msgid "pythonova_description"
+msgstr "It is short tempered and when enraged, the flames on its back burn hotter and its smoke tail becomes thicker and longer. It uses its smoke tail to coil around and smother its target."
+
+msgid "pythonova"
+msgstr "Pythonova"
+
 msgid "pythwire_description"
 msgstr "Observations of wild PYTHWIRE inspired the inventor of the first electrical outlet."
 
@@ -4293,6 +4623,12 @@ msgstr "Its tunnels are extensive and wide, the site of tremendous wars between 
 
 msgid "rabbitosaur"
 msgstr "Rabbitosaur"
+
+msgid "regalance_description"
+msgstr "It can summon a halberd whenever it needs."
+
+msgid "regalance"
+msgstr "Regalance"
 
 msgid "rhincus_description"
 msgstr "It has some properties of a reptile and some of a bird."
@@ -4329,6 +4665,18 @@ msgstr "ROSARIN's love is incredible, he's only asking some affection."
 
 msgid "rosarin"
 msgstr "Rosarin"
+
+msgid "ruffalo_description"
+msgstr "RUFFALO possess incredible strength and can charge at high speeds, capable of knocking over trees and small buildings."
+
+msgid "ruffalo"
+msgstr "Ruffalo"
+
+msgid "runesquito_description"
+msgstr "The blood-red marking is RUNESQUITO. The rest is just a rocky shell it rides alongside."
+
+msgid "runesquito"
+msgstr "Runesquito"
 
 msgid "ruption_description"
 msgstr "Once EMBRA's flame becomes hot enough, it engulfs its entire body, essentially replacing it in the process."
@@ -4371,6 +4719,12 @@ msgstr "By night, SAURCHIN emerge from the coral reefs to hunt bigger prey on la
 
 msgid "saurchin"
 msgstr "Saurchin"
+
+msgid "scarlant_description"
+msgstr "Its worst enemy is MARVILLAR, which pretends to be its kin."
+
+msgid "scarlant"
+msgstr "Scarlant"
 
 msgid "sclairus_description"
 msgstr "When a crop is left unharvested - be it from laziness or disaster - its scarecrow becomes a dark and living creature."
@@ -4420,17 +4774,35 @@ msgstr "It wards off attackers by poisoning its spiky shell with goo spat from i
 msgid "shelagu"
 msgstr "Shelagu"
 
+msgid "sheye_description"
+msgstr "SHEYE are weighed down by heavy thoughts. Edgy trainers like them for their sinister appearance and solemn demeanor."
+
+msgid "sheye"
+msgstr "Sheye"
+
 msgid "shnark_description"
 msgstr "SHNARK wears its last meal's flesh as a disguise so it can get close to its trusting prey."
 
 msgid "shnark"
 msgstr "Shnark"
 
+msgid "shrab_description"
+msgstr "When a SHEYE frees its mind from always contemplating serious thoughts, it becomes a SHRAB, free in body to wander the world."
+
+msgid "shrab"
+msgstr "Shrab"
+
 msgid "shybulb_description"
 msgstr "When a garden is neglected, a SHYBULB moves in and quietly tends the droopy plants."
 
 msgid "shybulb"
 msgstr "Shybulb"
+
+msgid "shull_description"
+msgstr "SHULL doesn't need to eat or move, but it still enjoys treats and supplements from its favorite person, especially if it is regularly being sent into battle."
+
+msgid "shull"
+msgstr "Shull"
 
 msgid "skwib_description"
 msgstr "The SKWIB contentedly floats through the ocean, examining potential shell-homes. It has to fear for its life before it will finally make a choice."
@@ -4492,17 +4864,47 @@ msgstr "A villainous team is plotting to use SOLIGHT to create a miniature sun i
 msgid "solight"
 msgstr "Solight"
 
+msgid "spectera_description"
+msgstr "This leaf winged bat is omnivorous, but prefers fruit. Both the male and female look after young."
+
+msgid "spectera"
+msgstr "Spectera"
+
+msgid "sphake_description"
+msgstr "SPHAKE is sometimes responsible for small earthquakes that inconveniently vibrate books and cups off your shelves; it eats whatever falls down."
+
+msgid "sphake"
+msgstr "Sphake"
+
 msgid "spighter_description"
 msgstr "It's not fair that something so good at sneaking up on people, can't be snuck up on itself."
 
 msgid "spighter"
 msgstr "Spighter"
 
+msgid "spirain_description"
+msgstr "If a SEIREIN's inner fire dims, its water spirit nature turns it into SPIRAIN."
+
+msgid "spirain"
+msgstr "Spirain"
+
 msgid "spoilurm_description"
 msgstr "SPOILURM disguise themselves as apples, and wait in trees to eat the unexpecting."
 
 msgid "spoilurm"
 msgstr "Spoilurm"
+
+msgid "sprightly_description"
+msgstr "A timid plant, it pops its head aboveground to drink water and sunshine. "
+
+msgid "sprightly"
+msgstr "Sprightly"
+
+msgid "sprorm_description"
+msgstr "SPRORM is fed on by CARDINALE, which can melt it down."
+
+msgid "sprorm"
+msgstr "Sprorm"
 
 msgid "spycozeus_description"
 msgstr "The whispered communications of the forest are given physical form in SPYCOZEUS, which thinks like the trees."
@@ -4527,6 +4929,24 @@ msgstr "STATURSUS has learned to channel its emotions into a single pure flame. 
 
 msgid "statursus"
 msgstr "Statursus"
+
+msgid "stegofor_description"
+msgstr "When it comes time to morph, STEGOFOR migrates in great herds along ancient paths, stripping all vegetation from plants growing along the way."
+
+msgid "stegofor"
+msgstr "Stegofor"
+
+msgid "stomic_description"
+msgstr "STOMIC is radioactive, but radiation resistant bacteria like GLOMON still pose a threat to it."
+
+msgid "stomic"
+msgstr "Stomic"
+
+msgid "stonifly_description"
+msgstr "STONIFLY's sturdy, rock-hard exoskeleton is a natural armor, while its translucent wings allow for swift flight."
+
+msgid "stonifly"
+msgstr "Stonifly"
 
 msgid "strella_description"
 msgstr "Its tails are lures to convince bugs to bite them and be trapped."
@@ -4576,6 +4996,12 @@ msgstr "They absorb any information they come across. Their constant chatter com
 msgid "tetrchimp"
 msgstr "Tetrchimp"
 
+msgid "thumpurn_description"
+msgstr "They thump their enemies with their fists, and thump the ground to give warnings."
+
+msgid "thumpurn"
+msgstr "Thumpurn"
+
 msgid "tigrock_description"
 msgstr "It is said that it had to invent itself because an evolution was not designed."
 
@@ -4600,6 +5026,12 @@ msgstr "TOBISHIMI spawn eggs in vast numbers, and carry them about under their c
 msgid "tobishimi"
 msgstr "Tobishimi"
 
+msgid "tornicane_description"
+msgstr "TORNICANE harnesses the power of both tornado and hurricane. It is a living force of nature and may be savior or doom to those hoping for rain."
+
+msgid "tornicane"
+msgstr "Tornicane"
+
 msgid "toufigel_description"
 msgstr "It appears to be a fluffy insect, but it is actually a reptile coated in soft snow."
 
@@ -4611,6 +5043,12 @@ msgstr "If you find a circle of mushrooms or clover, it is a place where TOURBID
 
 msgid "tourbidi"
 msgstr "Tourbidi"
+
+msgid "toxiris_description"
+msgstr "TOXIRIS is extremely powerful, it violently poisons everything in his way."
+
+msgid "toxiris"
+msgstr "Toxiris"
 
 msgid "trapsnap_description"
 msgstr "Its head is the only part of its body that doesn't grow as it ages."
@@ -4683,6 +5121,12 @@ msgstr "Uneye lurks in the shadows, and on the edge of vision."
 
 msgid "uneye"
 msgstr "Uneye"
+
+msgid "uprout_description"
+msgstr "When it has grown, its ears peel away to show wings that it uses to fly into the trees above where it grew. "
+
+msgid "uprout"
+msgstr "Uprout"
 
 msgid "urcheedle_description"
 msgstr "It can't move or attack, so it sits still and prays that the opponent damages itself on its many needles."
@@ -4768,6 +5212,18 @@ msgstr "It is the spirit of a forest. Its hair changes with the seasons."
 msgid "volcoli"
 msgstr "Volcoli"
 
+msgid "volconey_description"
+msgstr "When VOLCONEY thump the earth with their gigantic feet, they call more and more THUMPURN and VOLCONEY to the warren. But when enough strike the earth at once, it is said to cause volcanic eruptions."
+
+msgid "volconey"
+msgstr "Volconey"
+
+msgid "vulpyre_description"
+msgstr "How it evolves and lives is very mysterious, but it is sometimes spotted near a volcano."
+
+msgid "vulpyre"
+msgstr "Vulpyre"
+
 msgid "waysprite_description"
 msgstr "WAYSPRITE are said to form when a person faces a difficult decision."
 
@@ -4779,6 +5235,24 @@ msgstr "When it is heavy with egg, it becomes unable to fly."
 
 msgid "weavifly"
 msgstr "Weavifly"
+
+msgid "weedlantis_description"
+msgstr "It is said an ancient civilization once used WEEDLANTIS as advisors, but it has since disappeared beneath the sea."
+
+msgid "weedlantis"
+msgstr "Weedlantis"
+
+msgid "weedsea_description"
+msgstr "Once a year, it is pollinated beneath the waves by aquatic tuxemon like Shrab."
+
+msgid "weedsea"
+msgstr "Weedsea"
+
+msgid "wendigger_description"
+msgstr "It is said corpses given an improper burial can grow into WENDIGGER."
+
+msgid "wendigger"
+msgstr "Wendigger"
 
 msgid "windeye_description"
 msgstr "Like a mighty tree, WINDEYE plants itself on the top of hills to soak in the sun and wind. Recharged, it then leaves to find another place under the sky."
@@ -4909,20 +5383,28 @@ msgid "xeon_2"
 msgstr "Xeon-2"
 
 # Monster categories
+msgid "cat_tobedefined"
+msgstr "To be defined"
 msgid "cat_aggregate"
 msgstr "Aggregate"
 msgid "cat_alarm"
 msgstr "Alarm"
 msgid "cat_alien"
 msgstr "Alien"
+msgid "cat_amoeba"
+msgstr "Amoeba"
 msgid "cat_amped"
 msgstr "Amped"
+msgid "cat_ant_mimic"
+msgstr "Ant Mimic"
 msgid "cat_anteater"
 msgstr "Anteater"
 msgid "cat_anubis"
 msgstr "Anubis"
 msgid "cat_athena"
 msgstr "Athena"
+msgid "cat_attercob"
+msgstr "Attercob"
 msgid "cat_balance"
 msgstr "Balance"
 msgid "cat_balloon"
@@ -4933,6 +5415,8 @@ msgid "cat_barbed"
 msgstr "Barbed"
 msgid "cat_beat"
 msgstr "Beat"
+msgid "cat_bed_trap"
+msgstr "Bed Trap"
 msgid "cat_big_frightfear"
 msgstr "Big Frightfear"
 msgid "cat_big_head"
@@ -4941,6 +5425,8 @@ msgid "cat_bird"
 msgstr "Bird"
 msgid "cat_bird_brain"
 msgstr "Bird Brain"
+msgid "cat_biting_pear"
+msgstr "Biting Pear"
 msgid "cat_bladder"
 msgstr "Bladder"
 msgid "cat_bonfire"
@@ -4955,14 +5441,22 @@ msgid "cat_brick_wall"
 msgstr "Brick Wall"
 msgid "cat_brood"
 msgstr "Brood"
+msgid "cat_buffalo"
+msgstr "Buffalo"
+msgid "cat_bustuarius"
+msgstr "Bustuarius"
 msgid "cat_buzzkill"
 msgstr "Buzzkill"
 msgid "cat_calf"
 msgstr "Calf"
 msgid "cat_calm_emotion"
 msgstr "Calm Emotion"
+msgid "cat_cannibal_cake"
+msgstr "Cannibal Cake"
 msgid "cat_carol"
 msgstr "Carol"
+msgid "cat_cave_dweller"
+msgstr "Cave-Dweller"
 msgid "cat_cheshire"
 msgstr "Cheshire"
 msgid "cat_chip"
@@ -4977,6 +5471,10 @@ msgid "cat_clot"
 msgstr "Clot"
 msgid "cat_cloudburst"
 msgstr "Cloudburst"
+msgid "cat_comet_snake"
+msgstr "Comet Snake"
+msgid "cat_crabby_mussel"
+msgstr "Crabby Mussel"
 msgid "cat_cranky"
 msgstr "Cranky"
 msgid "cat_crested"
@@ -5005,8 +5503,12 @@ msgid "cat_devil"
 msgstr "Devil"
 msgid "cat_digger"
 msgstr "Digger"
+msgid "cat_diptera"
+msgstr "Diptera"
 msgid "cat_disguised"
 msgstr "Disguised"
+msgid "cat_dog_toothed"
+msgstr "Dog-Toothed"
 msgid "cat_dragon"
 msgstr "Dragon"
 msgid "cat_dragon_bone"
@@ -5041,6 +5543,8 @@ msgid "cat_enhancement"
 msgstr "Enhancement"
 msgid "cat_enraged_emotion"
 msgstr "Enraged Emotion"
+msgid "cat_erythrocyte"
+msgstr "Erythrocyte"
 msgid "cat_ermine"
 msgstr "Ermine"
 msgid "cat_eureka"
@@ -5061,10 +5565,16 @@ msgid "cat_false_serpent"
 msgstr "False Serpent"
 msgid "cat_false_turnip"
 msgstr "False Turnip"
+msgid "cat_field_dweller"
+msgstr "Field-Dweller"
 msgid "cat_firebird"
 msgstr "Firebird"
+msgid "cat_firefox"
+msgstr "Firefox"
 msgid "cat_fireplace"
 msgstr "Fireplace"
+msgid "cat_firestarter"
+msgstr "Firestarter"
 msgid "cat_flatfoot"
 msgstr "Flatfoot"
 msgid "cat_flicker"
@@ -5075,6 +5585,8 @@ msgid "cat_floret"
 msgstr "Floret"
 msgid "cat_flotsam"
 msgstr "Flotsam"
+msgid "cat_flying_fox_bat"
+msgstr "Flying Fox Bat"
 msgid "cat_foreman"
 msgstr "Foreman"
 msgid "cat_fortified"
@@ -5083,6 +5595,10 @@ msgid "cat_fossil"
 msgstr "Fossil"
 msgid "cat_frost_ape"
 msgstr "Frost Ape"
+msgid "cat_frosty"
+msgstr "Frosty"
+msgid "cat_fuminous"
+msgstr "Fuminous"
 msgid "cat_galvanised"
 msgstr "Galvanised"
 msgid "cat_gamut"
@@ -5101,8 +5617,12 @@ msgid "cat_glitched"
 msgstr "Glitched"
 msgid "cat_gnawer"
 msgstr "Gnawer"
+msgid "cat_god_penguin"
+msgstr "God Penguin"
 msgid "cat_golem"
 msgstr "Golem"
+msgid "cat_grandfather"
+msgstr "Grandfather"
 msgid "cat_grasshopper"
 msgstr "Grasshopper"
 msgid "cat_gremlin"
@@ -5125,6 +5645,8 @@ msgid "cat_helping_hand"
 msgstr "Helping Hand"
 msgid "cat_hermit"
 msgstr "Hermit"
+msgid "cat_hexer"
+msgstr "Hexer"
 msgid "cat_honour"
 msgstr "Honour"
 msgid "cat_horned_raptor"
@@ -5153,8 +5675,12 @@ msgid "cat_jellyfish"
 msgstr "Jellyfish"
 msgid "cat_joyful"
 msgstr "Joyful"
+msgid "cat_joyful_dolphin"
+msgstr "Joyful Dolphin"
 msgid "cat_kid"
 msgstr "Kid"
+msgid "cat_lagomorph"
+msgstr "Lagomorph"
 msgid "cat_lamenting_emotion"
 msgstr "Lamenting Emotion"
 msgid "cat_light_fin"
@@ -5177,16 +5703,28 @@ msgid "cat_ma_bell"
 msgstr "Ma Bell"
 msgid "cat_macropod"
 msgstr "Macropod"
+msgid "cat_mantid"
+msgstr "Mantid"
+msgid "cat_marsupial"
+msgstr "Marsupial"
 msgid "cat_mazerunner"
 msgstr "Mazerunner"
 msgid "cat_mercury"
 msgstr "Mercury"
 msgid "cat_meteor"
 msgstr "Meteor"
+msgid "cat_meteor_snake"
+msgstr "Meteor Snake"
+msgid "cat_myrmidon"
+msgstr "Myrmidon"
 msgid "cat_missing_link"
 msgstr "Missing Link"
 msgid "cat_mixed_emotion"
 msgstr "Mixed Emotion"
+msgid "cat_moon_phase"
+msgstr "Moon Phase"
+msgid "cat_muscly_crab"
+msgstr "Muscly Crab"
 msgid "cat_mutual"
 msgstr "Mutual"
 msgid "cat_naive"
@@ -5199,12 +5737,18 @@ msgid "cat_ninth_circle"
 msgstr "Ninth Circle"
 msgid "cat_noble"
 msgstr "Noble"
+msgid "cat_nova_snake"
+msgstr "Nova Snake"
 msgid "cat_old_block"
 msgstr "Old Block"
 msgid "cat_oracle_bone"
 msgstr "Oracle Bone"
 msgid "cat_overseer"
 msgstr "Overseer"
+msgid "cat_parasitized"
+msgstr "Parasitized"
+msgid "cat_pastry"
+msgstr "Pastry"
 msgid "cat_patu"
 msgstr "Patu"
 msgid "cat_pebble"
@@ -5215,6 +5759,8 @@ msgid "cat_petrified"
 msgstr "Petrified"
 msgid "cat_pitcher"
 msgstr "Pitcher"
+msgid "cat_plutonium"
+msgstr "Plutonium"
 msgid "cat_pointy"
 msgstr "Pointy"
 msgid "cat_portal"
@@ -5237,8 +5783,12 @@ msgid "cat_prescient"
 msgstr "Prescient"
 msgid "cat_proboscis"
 msgstr "Proboscis"
+msgid "cat_pugilist"
+msgstr "Pugilist"
 msgid "cat_pulsar"
 msgstr "Pulsar"
+msgid "cat_pumpkin"
+msgstr "Pumpkin"
 msgid "cat_pupil"
 msgstr "Pupil"
 msgid "cat_puppet_master"
@@ -5251,6 +5801,12 @@ msgid "cat_quickdraw"
 msgstr "Quickdraw"
 msgid "cat_rabbit"
 msgstr "Rabbit"
+msgid "cat_radioactive"
+msgstr "Radioactive"
+msgid "cat_red_hands"
+msgstr "Red Hands"
+msgid "cat_reef"
+msgstr "Reef"
 msgid "cat_relic"
 msgstr "Relic"
 msgid "cat_restful"
@@ -5263,6 +5819,10 @@ msgid "cat_reverie"
 msgstr "Reverie"
 msgid "cat_rip"
 msgstr "Rip"
+msgid "cat_roaming"
+msgstr "Roaming"
+msgid "cat_rootball"
+msgstr "Rootball"
 msgid "cat_rueful"
 msgstr "Rueful"
 msgid "cat_sand_scorpion"
@@ -5277,6 +5837,10 @@ msgid "cat_screwdriver"
 msgstr "Screwdriver"
 msgid "cat_seasonal"
 msgstr "Seasonal"
+msgid "cat_seaweed"
+msgstr "Seaweed"
+msgid "cat_sea_angel"
+msgstr "Sea Angel"
 msgid "cat_sea_spray"
 msgstr "Sea Spray"
 msgid "cat_sea_storm"
@@ -5305,6 +5869,8 @@ msgid "cat_snout"
 msgstr "Snout"
 msgid "cat_snowball"
 msgstr "Snowball"
+msgid "cat_snowy"
+msgstr "Snowy"
 msgid "cat_sock"
 msgstr "Sock"
 msgid "cat_socket"
@@ -5337,10 +5903,16 @@ msgid "cat_temper"
 msgstr "Temper"
 msgid "cat_tempted"
 msgstr "Tempted"
+msgid "cat_terracotta"
+msgstr "Terracotta"
 msgid "cat_thirsty_okapi"
 msgstr "Thirsty Okapi"
+msgid "cat_thistle"
+msgstr "Thistle"
 msgid "cat_thlay"
 msgstr "Thlay"
+msgid "cat_thorn"
+msgstr "Thorn"
 msgid "cat_threat"
 msgstr "Threat"
 msgid "cat_thunderstone"
@@ -5353,8 +5925,12 @@ msgid "cat_too_hot"
 msgstr "Too Hot"
 msgid "cat_tool_maker"
 msgstr "Tool Maker"
+msgid "cat_toothsome"
+msgstr "Toothsome"
 msgid "cat_tower"
 msgstr "Tower"
+msgid "cat_toxic_flag"
+msgstr "Toxic Flag"
 msgid "cat_toy"
 msgstr "Toy"
 msgid "cat_trailing"
@@ -5369,6 +5945,10 @@ msgid "cat_unknown"
 msgstr "Unknown"
 msgid "cat_urchin"
 msgstr "Urchin"
+msgid "cat_ursus"
+msgstr "Ursus"
+msgid "cat_unwelcome_mouthful"
+msgstr "Unwelcome Mouthful"
 msgid "cat_vagrant"
 msgstr "Vagrant"
 msgid "cat_veiled"
@@ -5383,6 +5963,8 @@ msgid "cat_visitor"
 msgstr "Visitor"
 msgid "cat_volte-face"
 msgstr "Volte Face"
+msgid "cat_water_sprite"
+msgstr "Water Sprite"
 msgid "cat_wavering"
 msgstr "Wavering"
 msgid "cat_weaver"
@@ -5391,6 +5973,8 @@ msgid "cat_westerly"
 msgstr "Westerly"
 msgid "cat_willpower"
 msgstr "Willpower"
+msgid "cat_witch_spirit"
+msgstr "Witch Spirit"
 msgid "cat_woodwose"
 msgstr "Woodwose"
 msgid "cat_woolly"

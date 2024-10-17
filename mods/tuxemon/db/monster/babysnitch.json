@@ -1,0 +1,51 @@
+{
+    "slug": "babysnitch",
+    "category": "fuminous",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "assault"
+        },
+        {
+            "level_learned": 2,
+            "technique": "berserk"
+        },
+        {
+            "level_learned": 6,
+            "technique": "canine"
+        },
+        {
+            "level_learned": 10,
+            "technique": "energy_claws"
+        },
+        {
+            "level_learned": 18,
+            "technique": "invictus"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 20,
+            "monster_slug": "baddrscratch"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "baddrscratch",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["hunter", "boreal/snow", "mountains", "underground"],
+    "shape": "hunter",
+    "stage": "basic",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 350,
+    "height": 35,
+    "weight": 10,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

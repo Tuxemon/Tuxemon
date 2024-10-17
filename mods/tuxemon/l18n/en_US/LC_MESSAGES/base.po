@@ -8205,14 +8205,55 @@ msgid "spyder_route4_beck1"
 msgstr "Your serve!"
 msgid "spyder_route4_beck2"
 msgstr "Game, set, match."
+
+msgid "spyder_experiment_flashback1"
+msgstr "Looten: Alright, let's initiate the fusion sequence. This is it, team. We're on the cusp of a major breakthrough."
+
+msgid "spyder_experiment_flashback2"
+msgstr "Moreau: I've been running the simulations, Looten, and I'm still seeing a 3% chance of catastrophic failure.\n Are we really sure we can contain this?"
+
+msgid "spyder_experiment_flashback3"
+msgstr "Heidenstam: What if the containment field collapses?\n We could be looking at a chain reaction that destroys the entire facility."
+
+msgid "spyder_experiment_flashback4"
+msgstr "Looten: We've run the simulations, Moreau. We've accounted for every variable.\n The potential breakthroughs in energy production outweigh the risks.\n We have to take this chance."
+
+msgid "spyder_experiment_flashback5"
+msgstr "Heidenstam: It's not stabilizing! We're losing containment! The readings are off the charts!"
+
+msgid "spyder_experiment_flashback6"
+msgstr "Looten: Shut it down! Shut it down now!"
+
+msgid "spyder_experiment_flashback7"
+msgstr "Looten: Oh God... what have we done? This is... this is not what we intended."
+
+msgid "spyder_experiment_flashback8"
+msgstr "Heidenstam: This is just the beginning. We have no idea what we've unleashed."
+
+msgid "spyder_candy_cafe_trigger"
+msgstr "I've been having trouble sleeping, and it's all because of something I witnessed on a security monitor when I was working as a security officer.\n It's a story that's been weighing on my mind, and I'm not sure if I should share it.\n But if you're willing to listen, I'll tell you what happened."
+
+msgid "spyder_candy_cafe_trigger_yes"
+msgstr "I was working the night shift at Greenwash, and I saw something on the security cameras that I'll never forget.\n It was a moment that changed everything, and I'm still trying to process what I saw..."
+
+msgid "spyder_candy_cafe_trigger_no"
+msgstr "It's probably for the best. It's not a story I like to think about, and I'm not sure I'm ready to relive it."
+
+msgid "spyder_candy_cafe_trigger_after"
+msgstr "I'm glad I could share that with you. It's been a burden to carry this secret."
+
 msgid "spyder_barmaid_cafe1"
 msgstr "Are you okay?\n I guess all your tuxemon were infected, so the Enforcers took them to the Hospital!"
+
 msgid "spyder_barmaid_cafe2"
 msgstr "You can use the PC to get out some non-infected tuxemon."
+
 msgid "spyder_barmaid_cafe2a"
 msgstr "Hold on, I'll lock the café door for a sec while you access the PC, don't want any unwanted Enforcers crashing the party.\n Once you've got your Tuxemon, I'll let the regulars back in."
+
 msgid "spyder_barmaid_cafe3"
 msgstr "Oh dear, you're totally out of tuxemon.\n Well, I have this Nudiflot I don't really want."
+
 msgid "spyder_enforcer_candy1"
 msgstr "Stop right there!\n We are taking all infected tuxemon to the Hospital to be quarantined\n until Greenwash develops a cure for the virus."
 msgid "spyder_enforcer_candy2"
@@ -8295,8 +8336,51 @@ msgstr "The access is blocked. A landslide damaged the route."
 msgid "spyder_routea_firefighter"
 msgstr "It's so quiet here.\n It's a nice break from the noise of the city."
 
+msgid "spyder_timber_cafe_trigger"
+msgstr "I overheard something interesting today, would you like to know?"
+
+msgid "spyder_timber_cafe_trigger_yes"
+msgstr "Ah, I was sitting next to two florists and they were discussing something that caught my attention. It seems they're not too happy about..."
+
+msgid "spyder_timber_cafe_trigger_no"
+msgstr "No worries, it's not that important. Just some gossip about two florists."
+
+msgid "spyder_timber_cafe_trigger_after"
+msgstr "I'm glad I could share that with you. It's always interesting to see how people react to change."
+
+msgid "spyder_timber_cafe_flashback1"
+msgstr "Alex: I'm still fuming about what happened at Greenwash. I had to cancel a whole order of peonies because of the contamination.\n And now I'm worried that our customers will start to lose trust in us."
+
+msgid "spyder_timber_cafe_flashback2"
+msgstr "Gluck: I know, it's a nightmare. I've been trying to find alternative suppliers, but it's not easy.\n And to make matters worse, our orchid shipment was delayed again.\n I'm starting to think that we should just stick to locally-sourced flowers from now on."
+
+msgid "spyder_timber_cafe_flashback3"
+msgstr "Alex: But what's the point of having a flower that's just going to sit there and look pretty? Where's the soul in that?\n I'm trying to create arrangements that are more than just visually appealing, but it's hard when we're dealing with subpar flowers."
+
+msgid "spyder_timber_cafe_flashback4"
+msgstr "Gluck: Soul? You're talking about flowers, Alex! They're just plants. But I do agree that our new bouquet design is really taking off.\n I've had several customers ask for it by name."
+
+msgid "spyder_timber_cafe_flashback5"
+msgstr "Alex: But that's just it - flowers aren't just plants. They're a way to connect with people, to make them feel something.\n And when we're working with low-quality flowers, it's hard to create that connection."
+
+msgid "spyder_timber_cafe_flashback6"
+msgstr "Gluck: I see what you're saying, Alex. But I think we're just making progress.\n We're finding new ways to make flowers more resilient and beautiful. And that's something to be proud of."
+
+msgid "spyder_timber_cafe_flashback7"
+msgstr "Alex: I hope so, Gluck. But I still have my doubts. What if we're messing with nature in ways we don't understand?"
+
+msgid "spyder_timber_cafe_flashback8"
+msgstr "Gluck: Well, I think we're just trying to make the best of what we have.\n And if that means using a little bit of science to make our flowers more amazing, then so be it."
+
+msgid "spyder_timber_cafe_flashback9"
+msgstr "Alex: I just wish we could go back to the way things were. When flowers were simple, and beautiful, and didn't need all this fuss."
+
+msgid "spyder_timber_cafe_flashback10"
+msgstr "Gluck: I understand where you're coming from, Alex. But I think we have to move forward.\n We can't just stick our heads in the sand and pretend that the world isn't changing."
+
 msgid "spyder_magician_timber"
 msgstr "Hey, that's a nice phone you've got there ... Your mum made it for you? Heaps cool! \n Then you've gotta install my newest social media app. It's called Contacts App. \n It keeps track of all the people you meet and tells you what they're up to."
+
 msgid "spyder_candy_catgirl1"
 msgstr "You know, I'm just fascinated by fossils. You know - SHAMMER, RHINCUS, that kind of thing."
 msgid "spyder_candy_catgirl2"
@@ -10795,49 +10879,132 @@ msgstr "Heidenstam"
 
 msgid "spyder_greenwash_fossilisator1"
 msgstr "Hello there, I suppose you are here to see my finest invention - the De-Fossilator.\n ... No? You're here to investigate why the Greenwash staff went on strike\n and got locked out by the Enforcers?"
+
 msgid "spyder_greenwash_fossilisator2"
 msgstr "While you're here you might as well see the De-Fossilator in action."
+
 msgid "spyder_greenwash_fossilisator3"
 msgstr "Ah, I see you have a toothed bird fossil. Shall I de-fossilate it?"
+
 msgid "spyder_greenwash_fossilisator4"
 msgstr "It worked! The fossil turned into a Rhincus!"
+
 msgid "spyder_greenwash_fossilisator5"
 msgstr "Ah, I see you have an ancient dog fossil. Shall I de-fossilate it?"
+
 msgid "spyder_greenwash_fossilisator6"
 msgstr "It worked! The fossil turned into a Shammer!"
+
 msgid "spyder_greenwash_fossilisator7"
 msgstr "Maybe another time then."
+
 msgid "spyder_greenwash_fossilisator8"
 msgstr "Ah, I see you have two ancient fossils. Shall I de-fossilate both?"
+
 msgid "spyder_greenwash_fossilisator9"
 msgstr "It worked! The fossils turned into a Shammer and a Rhincus!"
 
 msgid "spyder_greenwash_looten1"
 msgstr "Prepare to face the power of my fusion tuxemon!"
+
 msgid "spyder_greenwash_looten2"
 msgstr "Well, I guess fusion technology isn't quite there yet.\n We've been working on it for years!"
+
 msgid "spyder_greenwash_looten3"
 msgstr "Here's the closest we've come -- it's a cute fusion of an ant and an Aardorn.\n Not exactly the ultimate killing machine Omnichannel wanted us to create.\n I mean … uh! You didn't hear that from me."
+
 msgid "spyder_greenwash_looten4"
 msgstr "The funny thing is, because of its fusion DNA, it makes DNA screeners behave all funny."
+
 msgid "spyder_greenwash_moreau1"
 msgstr "You shouldn't be here! "
+
 msgid "spyder_greenwash_moreau2"
 msgstr "The fusion experiment blew up!"
+
 msgid "spyder_greenwash_dippel1"
 msgstr "Maybe we went too far …"
+
 msgid "spyder_greenwash_dippel2"
 msgstr "Or not far enough! "
+
 msgid "spyder_greenwash_aissa1"
 msgstr "Stay out - Greenwash has this all under control."
+
 msgid "spyder_greenwash_aissa2"
 msgstr "We're all going to die!"
+
 msgid "spyder_greenwash_aissa"
 msgstr "Aissa"
+
 msgid "spyder_greenwash_dippel"
 msgstr "Dippel"
+
 msgid "spyder_greenwash_moreau"
 msgstr "Moreau"
+
+msgid "spyder_greenwash_note1"
+msgstr "Note from Dempsey\n 'Fusion experiment risks: unstable creatures, environmental damage, human casualties. Must convince Looten to shut down experiment.'"
+
+msgid "spyder_greenwash_pc_message1"
+msgstr "E-mail from Selby to Looten\n 'I've been thinking a lot about the De-Fossilator and I have to admit, I'm getting a bit uneasy about the whole thing.'"
+
+msgid "spyder_greenwash_pc_message2"
+msgstr "E-mail from Dempsey to Looten\n 'I've been reviewing the latest data from the fusion experiment and I have to say, I'm getting a bit worried.\n The creatures we're creating are not what I expected. They're... unstable.'"
+
+msgid "spyder_greenwash_pc_message3"
+msgstr "E-mail from Looten to Greenwash Staff\n As you are all aware, we are on the cusp of a major breakthrough with the fusion experiment.\n I want to assure you that everything is under control and we are making great progress.\n As you know, our previous test did not yield the results we had hoped for.\n We have learned from that experience and are preparing for a new test.\n It will incorporate the knowledge and insights we gained from the previous failure.\n We have made significant adjustments to the experiment's parameters and are confident that this new test will be a success.\n I want to assure you that we are taking all necessary precautions to ensure the safety of our staff and the success of the experiment.\n Please disregard any rumors or concerns you may have heard.\n Keep up the good work, and let's make this next test a success!'"
+
+msgid "spyder_pc_recorded_conversation"
+msgstr "Found a recorded conversation on PC. Play back?"
+
+msgid "spyder_fossilator_flashback1"
+msgstr "Selby: I've done it! I've created a device that can reverse the fossilization process. It's a breakthrough, a scientific miracle."
+
+msgid "spyder_fossilator_flashback2"
+msgstr "Looten: Incredible! This could be a game-changer. Imagine the possibilities. We could bring extinct creatures back to life.\n We could study them, learn from them, and even use them for our own purposes."
+
+msgid "spyder_fossilator_flashback3"
+msgstr "Chip: But what about the ethical implications? Should we really be interfering with the natural order of things?\n What if these creatures can't adapt to the modern world?"
+
+msgid "spyder_fossilator_flashback4"
+msgstr "Looten: Ethics? We're scientists. Our job is to push the boundaries, to explore the unknown. And besides, this could be a lucrative venture.\n We can charge a premium for de-fossilating rare and valuable creatures."
+
+msgid "spyder_fossilator_flashback5"
+msgstr "Selby: I understand your concerns, but I believe this technology could be used for good.\n We could use it to study extinct ecosystems, to learn about climate change, and even to help endangered species."
+
+msgid "spyder_fossilator_flashback6"
+msgstr "Looten: That's a noble goal. But for now, let's focus on the potential profits.\n We can charge a premium for de-fossilating rare and valuable creatures. People will pay top dollar to have their own personal dinosaur."
+
+msgid "spyder_fossilator_flashback7"
+msgstr "Selby: I just hope we're making the right decision."
+
+msgid "spyder_dempsey_flashback1"
+msgstr "Dempsey: I'm starting to think this whole thing is a bit out of control. The city's in chaos, and people are getting hurt."
+
+msgid "spyder_dempsey_flashback2"
+msgstr "Looten: Out of control? What are you talking about? We're making progress. The fusion experiment is almost ready."
+
+msgid "spyder_dempsey_flashback3"
+msgstr "Dempsey: At what cost? The city's in chaos, and people are getting hurt. And what about the ethics of it all?\n Creating creatures that could potentially harm humans and the environment?"
+
+msgid "spyder_dempsey_flashback4"
+msgstr "Looten: Ethics? In the grand scheme of things, a few casualties are a small price to pay for scientific advancement.\n We're pushing the boundaries of what's possible."
+
+msgid "spyder_dempsey_flashback5"
+msgstr "Dempsey: I don't agree. We're playing God here. We're meddling with nature in ways we don't fully understand."
+
+msgid "spyder_dempsey_flashback6"
+msgstr "Looten: And what's wrong with that? We have the power to create life, to shape the future. We're not just scientists; we're pioneers."
+
+msgid "spyder_dempsey_flashback7"
+msgstr "Dempsey: Pioneers? Or mad scientists? We're crossing a line."
+
+msgid "spyder_dempsey_flashback8"
+msgstr "Looten: You're just a pessimist. You'll see the benefits eventually.\n The creatures we create will revolutionize society."
+
+msgid "spyder_dempsey_flashback9"
+msgstr "Dempsey: I hope you're right. But I'm starting to doubt it."
 
 msgid "spyder_leathergym_board"
 msgstr "Chad ${{var:chad_points}} vs Brad ${{var:brad_points}}"

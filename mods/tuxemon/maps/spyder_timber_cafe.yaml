@@ -1,0 +1,146 @@
+events:
+  Route Music:
+    actions:
+    - play_music music_home
+    conditions:
+    - not music_playing music_home
+    type: "event"
+  Go Outside:
+    actions:
+    - transition_teleport spyder_timber_town.tmx,11,19,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 8
+    y: 11
+    type: "event"
+  Create Magician:
+    actions:
+    - create_npc spyder_timbercafe_grady,5,7
+    conditions:
+    - not char_exists spyder_timbercafe_grady
+    type: "event"
+  Create Owner:
+    actions:
+    - create_npc spyder_cottontown_barmaid,1,4
+    conditions:
+    - not char_exists spyder_cottontown_barmaid
+    type: "event"
+  Create Florist:
+    actions:
+    - create_npc spyder_cottoncafe_hillary,10,4
+    - char_face spyder_cottoncafe_hillary,up
+    conditions:
+    - not char_exists spyder_cottoncafe_hillary
+    type: "event"
+  Talk Magician:
+    actions:
+    - translated_dialog spyder_magician_timber
+    behav:
+    - talk spyder_timbercafe_grady
+    type: "event"
+  Talk Barmaid:
+    actions:
+    - translated_dialog spyder_cottoncafe_barmaid
+    - translated_dialog_choice yes:no,chooses
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 1
+    y: 5
+    type: "event"
+  Talk Florist 1:
+    actions:
+    - translated_dialog spyder_timber_cafe_trigger
+    - translated_dialog_choice no:yes,florists_cafe
+    behav:
+    - talk spyder_cottoncafe_hillary
+    conditions:
+    - not variable_set florists_cafe
+    type: "event"
+  Talk Florist No:
+    actions:
+    - translated_dialog spyder_timber_cafe_trigger_no
+    behav:
+    - talk spyder_cottoncafe_hillary
+    conditions:
+    - is variable_set florists_cafe:no
+    type: "event"
+  Talk Florist Yes:
+    actions:
+    - translated_dialog spyder_timber_cafe_trigger_after
+    behav:
+    - talk spyder_cottoncafe_hillary
+    conditions:
+    - is variable_set florists_cafe:done
+    type: "event"
+  Heal Tuxemon:
+    actions:
+    - set_monster_health
+    - set_monster_status
+    - translated_dialog okaythen
+    - lock_controls
+    - char_face spyder_cottontown_barmaid,up
+    - wait 1
+    - char_face spyder_cottontown_barmaid,down
+    - unlock_controls
+    - translated_dialog okaythen2
+    - set_variable chooses:none
+    - set_variable teleport_faint:spyder_timber_cafe.tmx 1 10
+    conditions:
+    - is variable_set chooses:yes
+    type: "event"
+  Use Computer Kernel:
+    actions:
+    - translated_dialog spyder_pc_alert
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - is variable_set kernelquest:yes
+    x: 10
+    y: 3
+    type: "event"
+  Use Computer:
+    actions:
+    - change_state PCState
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - not variable_set kernelquest:yes
+    x: 10
+    y: 3
+    type: "event"
+  Flashback:
+    actions:
+    - lock_controls
+    - set_layer 102:51:0:128
+    - pathfind spyder_cottoncafe_hillary,9,5
+    - char_face spyder_cottoncafe_hillary,down
+    - translated_dialog spyder_timber_cafe_trigger_yes
+    - create_npc spyder_greenwash_gluck,7,6
+    - char_face spyder_greenwash_gluck,right
+    - create_npc spyder_greenwash_alex,8,5
+    - translated_dialog spyder_timber_cafe_flashback1
+    - translated_dialog spyder_timber_cafe_flashback2
+    - translated_dialog spyder_timber_cafe_flashback3
+    - translated_dialog spyder_timber_cafe_flashback4
+    - translated_dialog spyder_timber_cafe_flashback5
+    - translated_dialog spyder_timber_cafe_flashback6
+    - translated_dialog spyder_timber_cafe_flashback7
+    - translated_dialog spyder_timber_cafe_flashback8
+    - translated_dialog spyder_timber_cafe_flashback9
+    - translated_dialog spyder_timber_cafe_flashback10
+    - pathfind spyder_greenwash_gluck,8,11
+    - remove_npc spyder_greenwash_gluck
+    - pathfind spyder_greenwash_alex,8,11
+    - remove_npc spyder_greenwash_alex
+    - set_variable florists_cafe:done
+    - set_layer
+    - unlock_controls
+    - set_variable flashback:off
+    - pathfind spyder_cottoncafe_hillary,10,4
+    - char_face spyder_cottoncafe_hillary,up
+    conditions:
+    - is variable_set florists_cafe:yes
+    type: "event"

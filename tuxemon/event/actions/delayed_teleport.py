@@ -53,7 +53,6 @@ class DelayedTeleportAction(EventAction):
             logger.error(f"{self.character} not found")
             return
 
-        char.remove_collision(char.tile_pos)
         world.teleporter.delayed_char = char
         world.teleporter.delayed_teleport = True
         world.teleporter.delayed_mapname = self.map_name

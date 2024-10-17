@@ -160,6 +160,8 @@ class WorldState(state.State):
 
         # bubble above the player's head
         self.bubble: dict[NPC, pygame.surface.Surface] = {}
+        self.cinema_x_ratio: Optional[float] = None
+        self.cinema_y_ratio: Optional[float] = None
 
         ######################################################################
         #                       Fullscreen Animations                        #
@@ -482,17 +484,43 @@ class WorldState(state.State):
             surface, surface.get_rect(), screen_surfaces
         )
 
-    def apply_cinema_mode(self, surface: pygame.surface.Surface) -> None:
-        """Apply cinema mode if necessary."""
-        top_bar = pygame.Surface((self.resolution[0], self.resolution[1] / 6))
-        bottom_bar = pygame.Surface(
-            (self.resolution[0], self.resolution[1] / 6)
-        )
-        top_bar.fill(prepare.BLACK_COLOR)
-        bottom_bar.fill(prepare.BLACK_COLOR)
-        surface.blit(top_bar, (0, 0))
-        bottom = surface.get_rect().bottom - self.resolution[1] / 6
-        surface.blit(bottom_bar, (0, bottom))
+    def apply_vertical_bars(
+        self, surface: pygame.surface.Surface, aspect_ratio: float
+    ) -> None:
+        """
+        Add vertical black bars to the top and bottom of the screen
+        to achieve a cinematic aspect ratio.
+        """
+        screen_aspect_ratio = self.resolution[0] / self.resolution[1]
+        if screen_aspect_ratio < aspect_ratio:
+            bar_height = int(
+                self.resolution[1]
+                * (1 - screen_aspect_ratio / aspect_ratio)
+                / 2
+            )
+            bar = pygame.Surface((self.resolution[0], bar_height))
+            bar.fill(prepare.BLACK_COLOR)
+            surface.blit(bar, (0, 0))
+            surface.blit(bar, (0, self.resolution[1] - bar_height))
+
+    def apply_horizontal_bars(
+        self, surface: pygame.surface.Surface, aspect_ratio: float
+    ) -> None:
+        """
+        Add horizontal black bars to the left and right of the screen
+        to achieve a cinematic aspect ratio.
+        """
+        screen_aspect_ratio = self.resolution[1] / self.resolution[0]
+        if screen_aspect_ratio < aspect_ratio:
+            bar_width = int(
+                self.resolution[0]
+                * (1 - screen_aspect_ratio / aspect_ratio)
+                / 2
+            )
+            bar = pygame.Surface((bar_width, self.resolution[1]))
+            bar.fill(prepare.BLACK_COLOR)
+            surface.blit(bar, (0, 0))
+            surface.blit(bar, (self.resolution[0] - bar_width, 0))
 
     def set_bubble(
         self, screen_surfaces: list[tuple[pygame.surface.Surface, Rect, int]]
@@ -552,9 +580,10 @@ class WorldState(state.State):
             self.debug_drawing(surface)
 
         # Apply cinema mode
-        cinema = self.player.game_variables.get("cinema_mode", "")
-        if cinema == "on":
-            self.apply_cinema_mode(surface)
+        if self.cinema_x_ratio is not None:
+            self.apply_horizontal_bars(surface, self.cinema_x_ratio)
+        if self.cinema_y_ratio is not None:
+            self.apply_vertical_bars(surface, self.cinema_y_ratio)
 
     def get_sprites(self, npc: NPC, layer: int) -> list[WorldSurfaces]:
         """

@@ -87,7 +87,6 @@
     <property name="cond1" value="not music_playing music_cathedral_theme"/>
    </properties>
   </object>
-  <object id="32" name="Player Spawn" type="event" x="80" y="32" width="16" height="16"/>
   <object id="35" name="Create Granny" type="event" x="80" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_wayfarer2_gae,4,15"/>

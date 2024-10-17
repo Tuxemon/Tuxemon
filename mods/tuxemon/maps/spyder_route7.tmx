@@ -117,7 +117,6 @@
     <property name="cond2" value="is char_moved player"/>
    </properties>
   </object>
-  <object id="6" name="Player Spawn" type="event" x="0" y="32" width="16" height="16"/>
   <object id="201" name="Encounters" type="event" x="32" y="112" width="112" height="64">
    <properties>
     <property name="act1" value="random_encounter spyder_route7"/>

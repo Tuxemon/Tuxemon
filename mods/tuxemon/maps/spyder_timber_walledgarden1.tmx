@@ -56,7 +56,6 @@
     <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="28" name="Player Spawn" type="event" x="176" y="0" width="16" height="16"/>
   <object id="47" name="Room2" type="event" x="112" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_walledgarden2.tmx,7,19,0.3"/>

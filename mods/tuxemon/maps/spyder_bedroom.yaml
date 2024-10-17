@@ -28,10 +28,6 @@ events:
     x: 3
     y: 1
     type: "event"
-  Player Spawn:
-    x: 3
-    y: 4
-    type: "event"
   Resting in Bed:
     actions:
     - screen_transition 1

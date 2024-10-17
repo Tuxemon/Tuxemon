@@ -111,7 +111,6 @@
     <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="41" name="Player Spawn" type="event" x="160" y="32" width="16" height="16"/>
   <object id="43" name="Create Beryll" type="event" x="144" y="496" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_tunnelb_beryll,9,31"/>

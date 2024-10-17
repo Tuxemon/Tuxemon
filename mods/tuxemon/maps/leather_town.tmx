@@ -185,7 +185,6 @@
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="92" name="Player Spawn" type="event" x="32" y="528" width="16" height="16"/>
   <object id="93" name="Teleport to City Park" type="event" x="0" y="480" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport citypark.tmx,39,10,0.3"/>

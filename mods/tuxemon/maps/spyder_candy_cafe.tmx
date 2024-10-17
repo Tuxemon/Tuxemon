@@ -50,6 +50,7 @@
     <property name="cond3" value="is party_size player,greater_than,1"/>
    </properties>
   </object>
+  <object id="28" name="Player Spawn" type="event" x="176" y="0" width="16" height="16"/>
   <object id="36" name="Create Owner" type="event" x="16" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottontown_barmaid,1,4"/>

@@ -1271,20 +1271,6 @@ class WorldState(state.State):
         player = local_session.player
         self.add_player(player)
         self.stop_char(player)
-        self.set_player_spawn_position(player)
-
-    def set_player_spawn_position(self, character: NPC) -> None:
-        """
-        Sets the player's position to the spawn point defined in the map events.
-
-        Parameters:
-            player: The player object to update.
-        """
-        for eo in self.client.events:
-            if eo.name.lower() == "player spawn":
-                character.set_position((eo.x, eo.y))
-                character.remove_collision((eo.x, eo.y))
-                break
 
     def load_map_data(self, path: str) -> TuxemonMap:
         """

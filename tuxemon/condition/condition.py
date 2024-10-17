@@ -271,7 +271,15 @@ class Condition:
         # Loop through all the effects of this condition and execute the effect's function.
         for effect in self.effects:
             result = effect.apply(self, target)
-            meta_result.update(result)
+            meta_result["success"] = (
+                meta_result["success"] or result["success"]
+            )
+            if result["condition"] is not None:
+                meta_result["condition"] = result["condition"]
+            if result["technique"] is not None:
+                meta_result["technique"] = result["technique"]
+            if result["extra"] is not None:
+                meta_result["extra"] = result["extra"]
 
         return meta_result
 

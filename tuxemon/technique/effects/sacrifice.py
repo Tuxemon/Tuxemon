@@ -39,13 +39,14 @@ class SacrificeEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> SacrificeEffectResult:
-        combat = tech.combat_state
-        value = combat._random_tech_hit.get(user, 0.0) if combat else 0.0
-        hit = tech.accuracy >= value
-        tech.hit = hit
-        if hit:
+        tech.hit = tech.accuracy >= (
+            tech.combat_state._random_tech_hit.get(user, 0.0)
+            if tech.combat_state
+            else 0.0
+        )
+        if tech.hit:
             damage = int(user.current_hp * self.multiplier)
-            user.current_hp -= user.current_hp
+            user.current_hp = 0
             target.current_hp -= damage
         else:
             damage = 0
@@ -53,7 +54,7 @@ class SacrificeEffect(TechEffect):
         return {
             "damage": damage,
             "element_multiplier": 0.0,
-            "should_tackle": bool(damage),
-            "success": bool(damage),
+            "should_tackle": tech.hit,
+            "success": tech.hit,
             "extra": None,
         }

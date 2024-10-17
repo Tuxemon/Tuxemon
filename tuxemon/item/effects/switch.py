@@ -39,17 +39,13 @@ class SwitchEffect(ItemEffect):
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> SwitchEffectResult:
-        done: bool = False
         elements = list(ElementType)
         if target:
             if self.element != "random":
                 ele = Element(self.element)
                 if ele not in target.types:
                     target.types = [ele]
-                    done = True
             else:
-                _target = random.choice(elements)
-                ele = Element(_target)
-                target.types = [ele]
-                done = True
-        return {"success": done, "num_shakes": 0, "extra": None}
+                random_target_element = random.choice(elements)
+                target.types = [Element(random_target_element)]
+        return {"success": target is not None, "num_shakes": 0, "extra": None}

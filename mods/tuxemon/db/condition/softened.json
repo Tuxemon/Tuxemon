@@ -20,14 +20,6 @@
     "value": 0.5,
     "operation": "*"
   },
-  "target": {
-    "enemy_monster": false,
-    "enemy_team": false,
-    "enemy_trainer": false,
-    "own_monster": false,
-    "own_team": false,
-    "own_trainer": false
-  },
   "cond_id": 16,
   "use_failure": null,
   "use_success": "combat_state_softened_get",

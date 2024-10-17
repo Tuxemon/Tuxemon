@@ -43,5 +43,5 @@ class CharPositionAction(EventAction):
             raise ValueError(
                 f"Character is outside the boundaries of the map at ({position[0]}, {position[1]})"
             )
-
+        character.remove_collision()
         character.set_position(position)

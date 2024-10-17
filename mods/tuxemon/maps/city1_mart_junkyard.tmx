@@ -215,6 +215,5 @@
     <property name="cond20" value="not variable_set fanatics_in_junkyard4:true"/>
    </properties>
   </object>
-  <object id="45" name="Player Spawn" type="event" x="160" y="480" width="16" height="16"/>
  </objectgroup>
 </map>

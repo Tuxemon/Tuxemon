@@ -4,7 +4,7 @@
     "not category threat"
   ],
   "effects": [
-    "capture"
+    "capture_combined monster,omni,0.3,1.4"
   ],
   "animation": "capture_1",
   "slug": "tuxeball_omni",

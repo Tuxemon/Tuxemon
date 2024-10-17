@@ -51,11 +51,21 @@
             "technique": "tinder"
         }
     ],
-    "evolutions": [],
-    "history": [],
+    "evolutions": [
+        {
+            "at_level": 30,
+            "monster_slug": "vulpyre"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "vulpyre",
+            "evo_stage": "stage1"
+        }
+    ],
     "tags": ["varmint"],
     "shape": "varmint",
-    "stage": "standalone",
+    "stage": "basic",
     "types": [
         "fire"
     ],

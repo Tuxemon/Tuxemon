@@ -55,7 +55,6 @@ from tuxemon.combat import (
     fainted,
     get_awake_monsters,
     get_winners,
-    plague,
     set_var,
     track_battles,
 )
@@ -405,13 +404,11 @@ class CombatState(CombatAnimations):
             # fill all battlefield positions, but on round 1, don't ask
             self.fill_battlefield_positions(ask=self._turn > 1)
 
-            # plague
             # record the useful properties of the last monster we fought
             for player in self.remaining_players:
                 if self.monsters_in_play[player]:
                     mon = self.monsters_in_play[player][0]
                     battlefield(local_session, mon, self.remaining_players)
-                plague(player)
 
         elif phase == "decision phase":
             self.reset_status_icons()
@@ -914,7 +911,7 @@ class CombatState(CombatAnimations):
             self.enqueue_damage(user, target, result_tech["damage"])
 
             # monster infected
-            if user.plague == PlagueType.infected:
+            if PlagueType.infected in user.plague.values():
                 params = {"target": user.name.upper()}
                 m = T.format("combat_state_plague1", params)
                 message += "\n" + m

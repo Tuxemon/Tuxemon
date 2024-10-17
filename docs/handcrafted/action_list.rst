@@ -87,6 +87,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_flair.SetMonsterFlairAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_health.SetMonsterHealthAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_level.SetMonsterLevelAction
+.. autoscriptinfoclass:: tuxemon.event.actions.set_monster_plague.SetMonsterPlagueAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_status.SetMonsterStatusAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_party_attribute.SetPartyAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_party_status.SetPartyStatusAction

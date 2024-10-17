@@ -59,7 +59,6 @@
     <property name="behav1" value="talk cotton_misa_bro"/>
    </properties>
   </object>
-  <object id="58" name="Player Spawn" type="event" x="128" y="32" width="16" height="16"/>
   <object id="60" name="Go Downstairs" type="event" x="112" y="32" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport cotton_misa_house.tmx,4,2,0.3"/>

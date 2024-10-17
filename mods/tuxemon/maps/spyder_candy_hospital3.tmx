@@ -139,7 +139,7 @@
     <property name="act58" value="set_monster_attribute add_monster,gender,male"/>
     <property name="act60" value="start_battle player,spyder_billie"/>
     <property name="act61" value="translated_dialog spyder_hospital_billie2"/>
-    <property name="act62" value="set_party_attribute player,plague,inoculated"/>
+    <property name="act62" value="char_plague spyderbite,inoculated"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="not variable_set hospitalcure:yes"/>

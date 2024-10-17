@@ -216,7 +216,6 @@
     <property name="cond2" value="not variable_set environment:night_snow"/>
    </properties>
   </object>
-  <object id="7" name="Player Spawn" type="event" x="64" y="1440" width="16" height="16"/>
   <object id="230" name="Encounters" type="event" x="544" y="496" width="48" height="336">
    <properties>
     <property name="act1" value="random_encounter spyder_lion_mountain"/>

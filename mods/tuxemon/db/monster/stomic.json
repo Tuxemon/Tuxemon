@@ -1,0 +1,51 @@
+{
+    "slug": "stomic",
+    "category": "radioactive",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "venomous_tentacle"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 6,
+            "technique": "viper"
+        },
+        {
+            "level_learned": 10,
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 18,
+            "technique": "rust_bomb"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 24,
+            "monster_slug": "gastronium"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "gastronium",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["blob"],
+    "shape": "blob",
+    "stage": "basic",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 338,
+    "height": 30,
+    "weight": 1,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

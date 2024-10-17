@@ -1,0 +1,55 @@
+{
+    "slug": "sprightly",
+    "category": "rootball",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 2,
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 6,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 10,
+            "technique": "stabilo"
+        },
+        {
+            "level_learned": 14,
+            "technique": "life_surge"
+        },
+        {
+            "level_learned": 18,
+            "technique": "nest"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 32,
+            "monster_slug": "uprout"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "uprout",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["blob", "grassland", "jungle", "woodland"],
+    "shape": "blob",
+    "stage": "basic",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 336,
+    "height": 30,
+    "weight": 9,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

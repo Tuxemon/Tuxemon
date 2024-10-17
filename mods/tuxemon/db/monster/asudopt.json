@@ -1,0 +1,46 @@
+{
+    "slug": "asudopt",
+    "category": "god_penguin",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "peck"
+        },
+        {
+            "level_learned": 2,
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 6,
+            "technique": "wing_tip"
+        },
+        {
+            "level_learned": 10,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 14,
+            "technique": "whirlwind"
+        },
+        {
+            "level_learned": 18,
+            "technique": "flamethrower"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "tags": ["flier", "other"],
+    "shape": "flier",
+    "stage": "standalone",
+    "types": [
+        "fire",
+        "water"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 300,
+    "height": 150,
+    "weight": 30,
+    "catch_rate": 5.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

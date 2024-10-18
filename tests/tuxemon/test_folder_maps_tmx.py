@@ -15,6 +15,7 @@ from tuxemon.script.parser import parse_action_string
 # Constants
 FOLDER = "maps"
 MULTIPLIER = 16
+MIN_LAYERS = 4
 TMX_TYPES_PREFIXES = ("init", "collision", "event")
 EXPECTED_SCENARIOS = ["spyder", "xero", "tobedefined"]
 
@@ -251,6 +252,20 @@ class TestTMXFiles(unittest.TestCase):
                     f"Source '{merged_path}' doesn't exist {to_basename(path)}"
                 )
                 self.assertTrue(os.path.isfile(merged_path), msg)
+
+    def test_layer_number(self) -> None:
+        missing_layers = []
+        for path, root in self.loaded_data.items():
+            layer_elements = root.findall(".//layer")
+            if len(layer_elements) < MIN_LAYERS:
+                missing_layers.append((to_basename(path)))
+        if missing_layers:
+            print(
+                f"The following files TMX don't have at least {MIN_LAYERS} layers:"
+            )
+            for layer in missing_layers:
+                print(layer)
+            self.fail(f"File TMX must contain at least {MIN_LAYERS} layers.")
 
     def test_object_bounds(self) -> None:
         for path, root in self.loaded_data.items():

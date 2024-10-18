@@ -295,12 +295,12 @@ class Technique:
             "extra": None,
         }
 
+        self.next_use = self.recharge_length
+
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:
             result = effect.apply(self, user, target)
             meta_result.update(result)
-
-        self.next_use = self.recharge_length
 
         return meta_result
 

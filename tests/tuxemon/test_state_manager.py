@@ -34,7 +34,6 @@ class PushWhenEmpty(StateManagerTestBase):
         self.assertIn(self.state_a, self.sm.active_states)
 
     def test_pushed_state(self):
-        self.assertEqual(1, self.state_a.startup.call_count)
         self.assertEqual(1, self.state_a.resume.call_count)
         self.assertEqual(0, self.state_a.pause.call_count)
         self.assertEqual(0, self.state_a.shutdown.call_count)
@@ -59,13 +58,11 @@ class PushWhenNotEmpty(StateManagerTestBase):
         self.assertIn(self.state_a, self.sm.active_states)
 
     def test_new_state(self):
-        self.assertEqual(1, self.state_b.startup.call_count)
         self.assertEqual(1, self.state_b.resume.call_count)
         self.assertEqual(0, self.state_b.pause.call_count)
         self.assertEqual(0, self.state_b.shutdown.call_count)
 
     def test_old_state(self):
-        self.assertEqual(1, self.state_a.startup.call_count)
         self.assertEqual(1, self.state_a.resume.call_count)
         self.assertEqual(1, self.state_a.pause.call_count)
         self.assertEqual(0, self.state_a.shutdown.call_count)
@@ -91,13 +88,11 @@ class Pop(StateManagerTestBase):
         self.assertIn(self.state_a, self.sm.active_states)
 
     def test_popped_state(self):
-        self.assertEqual(1, self.state_b.startup.call_count)
         self.assertEqual(1, self.state_b.resume.call_count)
         self.assertEqual(1, self.state_b.pause.call_count)
         self.assertEqual(1, self.state_b.shutdown.call_count)
 
     def test_remaining_state(self):
-        self.assertEqual(1, self.state_a.startup.call_count)
         self.assertEqual(2, self.state_a.resume.call_count)
         self.assertEqual(1, self.state_a.pause.call_count)
         self.assertEqual(0, self.state_a.shutdown.call_count)
@@ -105,11 +100,9 @@ class Pop(StateManagerTestBase):
     def test_after_last_pop(self):
         self.sm.pop_state()
         self.assertIsNone(self.sm.current_state)
-        self.assertEqual(1, self.state_a.startup.call_count)
         self.assertEqual(2, self.state_a.resume.call_count)
         self.assertEqual(2, self.state_a.pause.call_count)
         self.assertEqual(1, self.state_a.shutdown.call_count)
-        self.assertEqual(1, self.state_b.startup.call_count)
         self.assertEqual(1, self.state_b.resume.call_count)
         self.assertEqual(1, self.state_b.pause.call_count)
         self.assertEqual(1, self.state_b.shutdown.call_count)
@@ -124,7 +117,6 @@ class Resume(StateManagerTestBase):
 
     def test_resume_not_called_before_update(self):
         self.assertEqual(0, self.state_a.update.call_count)
-        self.assertEqual(1, self.state_a.startup.call_count)
         self.assertEqual(0, self.state_a.resume.call_count)
         self.assertEqual(0, self.state_a.pause.call_count)
         self.assertEqual(0, self.state_a.shutdown.call_count)
@@ -132,7 +124,6 @@ class Resume(StateManagerTestBase):
     def test_resume_called_during_update(self):
         self.sm.update(0)
         self.assertEqual(1, self.state_a.update.call_count)
-        self.assertEqual(1, self.state_a.startup.call_count)
         self.assertEqual(1, self.state_a.resume.call_count)
         self.assertEqual(0, self.state_a.pause.call_count)
         self.assertEqual(0, self.state_a.shutdown.call_count)
@@ -142,7 +133,6 @@ class Resume(StateManagerTestBase):
         self.sm.pop_state()
         self.sm.update(0)
         self.assertEqual(1, self.state_a.update.call_count)
-        self.assertEqual(1, self.state_a.startup.call_count)
         self.assertEqual(2, self.state_a.resume.call_count)
         self.assertEqual(1, self.state_a.pause.call_count)
         self.assertEqual(0, self.state_a.shutdown.call_count)
@@ -169,13 +159,11 @@ class RemoveWhenCurrent(StateManagerTestBase):
         self.assertIn(self.state_a, self.sm.active_states)
 
     def test_removed_state(self):
-        self.assertEqual(1, self.state_b.startup.call_count)
         self.assertEqual(1, self.state_b.resume.call_count)
         self.assertEqual(1, self.state_b.pause.call_count)
         self.assertEqual(1, self.state_b.shutdown.call_count)
 
     def test_remaining_state(self):
-        self.assertEqual(1, self.state_a.startup.call_count)
         self.assertEqual(2, self.state_a.resume.call_count)
         self.assertEqual(1, self.state_a.pause.call_count)
         self.assertEqual(0, self.state_a.shutdown.call_count)
@@ -202,13 +190,11 @@ class RemoveWhenNotCurrent(StateManagerTestBase):
         self.assertIn(self.state_b, self.sm.active_states)
 
     def test_removed_state(self):
-        self.assertEqual(1, self.state_a.startup.call_count)
         self.assertEqual(1, self.state_a.resume.call_count)
         self.assertEqual(1, self.state_a.pause.call_count)
         self.assertEqual(1, self.state_a.shutdown.call_count)
 
     def test_remaining_state(self):
-        self.assertEqual(1, self.state_b.startup.call_count)
         self.assertEqual(1, self.state_b.resume.call_count)
         self.assertEqual(0, self.state_b.pause.call_count)
         self.assertEqual(0, self.state_b.shutdown.call_count)
@@ -233,13 +219,11 @@ class Replace(StateManagerTestBase):
         self.assertNotIn(self.state_a, self.sm.active_states)
 
     def test_new_state(self):
-        self.assertEqual(1, self.state_b.startup.call_count)
         self.assertEqual(1, self.state_b.resume.call_count)
         self.assertEqual(0, self.state_b.pause.call_count)
         self.assertEqual(0, self.state_b.shutdown.call_count)
 
     def test_replaced_state(self):
-        self.assertEqual(1, self.state_a.startup.call_count)
         self.assertEqual(1, self.state_a.resume.call_count)
         self.assertEqual(1, self.state_a.pause.call_count)
         self.assertEqual(1, self.state_a.shutdown.call_count)

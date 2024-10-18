@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="285">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="287">
  <properties>
   <property name="east" value="brideswood"/>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="town"/>
   <property name="north" value="route1"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="paper_town"/>
-  <property name="map_type" value="town"/>
   <property name="west" value="routec"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
@@ -192,7 +192,7 @@
     <property name="cond2" value="not char_exists spyder_papertown_silver"/>
    </properties>
   </object>
-  <object id="163" name="Talk homemaker" type="event" x="400" y="112" width="16" height="16">
+  <object id="163" name="Talk homemaker" type="event" x="256" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_papertown_homemaker1"/>
     <property name="behav1" value="talk spyder_papertown_silver"/>
@@ -576,6 +576,19 @@
     <property name="act2" value="char_face player,right"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,right"/>
+   </properties>
+  </object>
+  <object id="285" name="Talk old guy" type="event" x="272" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_papertown_old_guy1"/>
+    <property name="behav1" value="talk spyder_papertown_old_guy"/>
+   </properties>
+  </object>
+  <object id="286" name="Create Old Guy" type="event" x="400" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_papertown_old_guy,25,5"/>
+    <property name="act2" value="char_face spyder_papertown_old_guy,up"/>
+    <property name="cond2" value="not char_exists spyder_papertown_old_guy"/>
    </properties>
   </object>
  </objectgroup>

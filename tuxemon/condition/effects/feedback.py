@@ -12,10 +12,6 @@ from tuxemon.monster import Monster
 from tuxemon.technique.technique import Technique
 
 
-class FeedBackEffectResult(CondEffectResult):
-    pass
-
-
 @dataclass
 class FeedBackEffect(CondEffect):
     """
@@ -33,9 +29,7 @@ class FeedBackEffect(CondEffect):
     divisor: int
     ranges: str
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> FeedBackEffectResult:
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         done: bool = False
         assert condition.combat_state
         combat = condition.combat_state
@@ -68,9 +62,10 @@ class FeedBackEffect(CondEffect):
         ):
             attacker.current_hp -= target.hp // self.divisor
             done = True
-        return {
-            "success": done,
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+        return CondEffectResult(
+            name=condition.name,
+            success=done,
+            condition=[],
+            technique=[],
+            extra=[],
+        )

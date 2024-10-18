@@ -861,10 +861,19 @@ class CombatState(CombatAnimations):
             user.status[0].combat_state = self
             user.status[0].phase = "perform_action_tech"
             result_status = user.status[0].use(user)
-            if result_status["extra"]:
-                message += "\n" + result_status["extra"]
-            if result_status["condition"]:
-                user.apply_status(result_status["condition"])
+            if result_status.extra:
+                templates = [
+                    T.translate(extra) for extra in result_status.extra
+                ]
+                template = "\n".join(templates)
+                message += "\n" + template
+            if result_status.condition:
+                if len(result_status.condition) > 1:
+                    status = random.choice(result_status.condition)
+                    user.apply_status(status)
+                else:
+                    status = result_status.condition[0]
+                    user.apply_status(status)
         # successful techniques
         if result_tech["success"]:
             m: Union[str, None] = None
@@ -1020,7 +1029,7 @@ class CombatState(CombatAnimations):
         }
         cond_mex: str = ""
         # successful conditions
-        if result["success"]:
+        if result.success:
             if method.use_success:
                 template = getattr(method, "use_success")
                 cond_mex = T.format(template, context)
@@ -1030,7 +1039,7 @@ class CombatState(CombatAnimations):
                 first = T.format(first_turn, context)
                 cond_mex = first + "\n" + cond_mex
         # not successful conditions
-        if not result["success"]:
+        if not result.success:
             if method.use_failure:
                 template = getattr(method, "use_failure")
                 cond_mex = T.format(template, context)
@@ -1206,8 +1215,11 @@ class CombatState(CombatAnimations):
             monster.status[0].combat_state = self
             monster.status[0].phase = "check_party_hp"
             result_status = monster.status[0].use(monster)
-            if result_status["extra"]:
-                extra = result_status["extra"]
+            if result_status.extra:
+                templates = [
+                    T.translate(extra) for extra in result_status.extra
+                ]
+                extra = "\n".join(templates)
                 action_time = compute_text_animation_time(extra)
                 self.text_animations_queue.append(
                     (partial(self.alert, extra), action_time)

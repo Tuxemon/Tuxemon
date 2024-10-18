@@ -1,0 +1,27 @@
+{
+  "animation": null,
+  "category": "positive",
+  "effects": [
+    "statchange"
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_vanguard.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "removed",
+  "sfx": "sfx_bite",
+  "slug": "vanguard",
+  "sort": "meta",
+  "statarmour": {
+    "value": 1.5,
+    "operation": "*"
+  },
+  "statmelee": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "cond_id": 40,
+  "use_failure": null,
+  "use_success": "combat_state_vanguard_get",
+  "gain_cond": null
+}

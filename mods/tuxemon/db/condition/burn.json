@@ -12,14 +12,6 @@
   "sfx": "sfx_pulse",
   "slug": "burn",
   "sort": "meta",
-  "target": {
-    "enemy_monster": false,
-    "enemy_team": false,
-    "enemy_trainer": false,
-    "own_monster": false,
-    "own_team": false,
-    "own_trainer": false
-  },
   "cond_id": 22,
   "use_failure": "generic_failure",
   "use_success": "combat_state_burn_end",

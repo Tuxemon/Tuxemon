@@ -132,7 +132,6 @@ class Condition:
 
         self.conditions = self.parse_conditions(results.conditions)
         self.effects = self.parse_effects(results.effects)
-        self.target = results.target.model_dump()
 
         # Load the animation sprites that will be used for this condition
         self.animation = results.animation

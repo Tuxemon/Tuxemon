@@ -1,0 +1,27 @@
+{
+  "animation": null,
+  "category": "positive",
+  "effects": [
+    "statchange"
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_duelist.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "removed",
+  "sfx": "sfx_bite",
+  "slug": "duelist",
+  "sort": "meta",
+  "statmelee": {
+    "value": 1.5,
+    "operation": "*"
+  },
+  "statdodge": {
+    "value": 1.5,
+    "operation": "*"
+  },
+  "cond_id": 35,
+  "use_failure": null,
+  "use_success": "combat_state_duelist_get",
+  "gain_cond": null
+}

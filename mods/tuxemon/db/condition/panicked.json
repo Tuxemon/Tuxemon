@@ -1,0 +1,27 @@
+{
+  "animation": null,
+  "category": "negative",
+  "effects": [
+    "statchange"
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_panicked.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "panicked",
+  "sort": "meta",
+  "statranged": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "statspeed": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "cond_id": 39,
+  "use_failure": null,
+  "use_success": "combat_state_panicked_get",
+  "gain_cond": null
+}

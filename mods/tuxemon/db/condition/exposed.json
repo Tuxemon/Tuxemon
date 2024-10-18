@@ -1,0 +1,27 @@
+{
+  "animation": null,
+  "category": "negative",
+  "effects": [
+    "statchange"
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_exposed.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "exposed",
+  "sort": "meta",
+  "statdodge": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "statarmour": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "cond_id": 37,
+  "use_failure": null,
+  "use_success": "combat_state_exposed_get",
+  "gain_cond": null
+}

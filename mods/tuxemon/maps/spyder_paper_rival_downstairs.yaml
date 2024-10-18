@@ -1,0 +1,84 @@
+events:
+  Route Music:
+    actions:
+    - play_music music_home
+    conditions:
+    - not music_playing music_home
+    type: "event"
+  Go Outside:
+    actions:
+    - transition_teleport spyder_paper_town.tmx,32,6,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 1
+    y: 11
+    type: "event"
+  Go Bedroom:
+    actions:
+    - transition_teleport spyder_paper_rival_bedroom.tmx,0,3,0.3
+    - char_face player,right
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 3
+    y: 3
+    type: "event"
+  Go Office:
+    actions:
+    - transition_teleport spyder_paper_rival_office.tmx,6,3,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 3
+    type: "event"
+  TV:
+    actions:
+    - translated_dialog spyder_rivaldownstairs_tv
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    width: 2
+    height: 1
+    x: 4
+    y: 7
+    type: "event"
+  Flashback:
+    actions:
+    - translated_dialog spyder_rivaldownstairs_package
+    - translated_dialog spyder_billie_flashback_trigger
+    - translated_dialog_choice no:yes,billie_grandma
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - not variable_set billie_grandma
+    x: 8
+    y: 9
+    type: "event"
+  Flashback Yes:
+    actions:
+    - transition_teleport spyder_paper_daycare.tmx,0,3
+    - set_variable flashback:on
+    conditions:
+    - is variable_set billie_grandma:yes
+    type: "event"
+  Package:
+    actions:
+    - translated_dialog spyder_rivaldownstairs_package
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - is variable_set billie_grandma
+    x: 8
+    y: 9
+    type: "event"
+  Default Template:
+    actions:
+    - set_template player,default
+    conditions:
+    - is char_sprite player,invisible
+    - is variable_set billie_grandma:done
+    type: "event"

@@ -1,0 +1,26 @@
+events:
+  Route Music:
+    actions:
+    - play_music music_home
+    conditions:
+    - not music_playing music_home
+    type: "event"
+  Go Downstairs:
+    actions:
+    - transition_teleport spyder_paper_rival_downstairs.tmx,0,3,0.3
+    - char_face player,right
+    conditions:
+    - is char_at player
+    - is char_facing player,right
+    x: 6
+    y: 3
+    type: "event"
+  Haiku:
+    actions:
+    - translated_dialog spyder_rivaloffice_haiku
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 2
+    y: 4
+    type: "event"

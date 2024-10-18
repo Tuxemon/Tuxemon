@@ -13,10 +13,6 @@ if TYPE_CHECKING:
     from tuxemon.item.item import Item
 
 
-class EvolveEffectResult(ItemEffectResult):
-    pass
-
-
 @dataclass
 class EvolveEffect(ItemEffect):
     """This effect evolves the target into the monster in the parameters."""
@@ -25,10 +21,12 @@ class EvolveEffect(ItemEffect):
 
     def apply(
         self, item: Item, target: Union[Monster, None]
-    ) -> EvolveEffectResult:
+    ) -> ItemEffectResult:
         assert target and target.owner
         if not target.evolutions:
-            return {"success": False, "num_shakes": 0, "extra": None}
+            return ItemEffectResult(
+                name=item.name, success=False, num_shakes=0, extra=[]
+            )
         choices = [d for d in target.evolutions if d.item == item.slug]
         if len(choices) == 1:
             evolution = choices[0].monster_slug
@@ -44,4 +42,6 @@ class EvolveEffect(ItemEffect):
             original=target.slug,
             evolved=new_monster.slug,
         )
-        return {"success": True, "num_shakes": 0, "extra": None}
+        return ItemEffectResult(
+            name=item.name, success=True, num_shakes=0, extra=[]
+        )

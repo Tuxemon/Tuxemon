@@ -167,9 +167,11 @@ class ItemMenuState(Menu[Item]):
         def show_item_result(item: Item, result: ItemEffectResult) -> None:
             """Show the item result as a dialog if necessary."""
             if (
-                item.behaviors.show_dialog_on_failure and not result["success"]
-            ) or (item.behaviors.show_dialog_on_success and result["success"]):
-                tools.show_item_result_as_dialog(local_session, item, result)
+                item.behaviors.show_dialog_on_failure and not result.success
+            ) or (item.behaviors.show_dialog_on_success and result.success):
+                tools.show_item_result_as_dialog(
+                    local_session, item, result.success
+                )
 
         def use_item_with_monster(menu_item: MenuItem[Monster]) -> None:
             """Use the item with a monster."""

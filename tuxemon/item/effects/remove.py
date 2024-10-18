@@ -14,10 +14,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class RemoveEffectResult(ItemEffectResult):
-    pass
-
-
 @dataclass
 class RemoveEffect(ItemEffect):
     """
@@ -28,7 +24,7 @@ class RemoveEffect(ItemEffect):
 
     def apply(
         self, item: Item, target: Union[Monster, None]
-    ) -> RemoveEffectResult:
+    ) -> ItemEffectResult:
         remove: bool = False
         client = self.session.client
         player = self.session.player
@@ -45,4 +41,6 @@ class RemoveEffect(ItemEffect):
                     player.game_variables[npc.slug] = self.name
                     remove = True
 
-        return {"success": remove, "num_shakes": 0, "extra": None}
+        return ItemEffectResult(
+            name=item.name, success=remove, num_shakes=0, extra=[]
+        )

@@ -14,10 +14,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class LearnMmEffectResult(ItemEffectResult):
-    pass
-
-
 lookup_cache: dict[str, TechniqueModel] = {}
 
 
@@ -36,7 +32,7 @@ class LearnMmEffect(ItemEffect):
 
     def apply(
         self, item: Item, target: Union[Monster, None]
-    ) -> LearnMmEffectResult:
+    ) -> ItemEffectResult:
         if not lookup_cache:
             _lookup_techniques(self.element)
 
@@ -54,9 +50,13 @@ class LearnMmEffect(ItemEffect):
                 "add_tech", [self.name, tech_slug], True
             )
 
-            return {"success": True, "num_shakes": 0, "extra": None}
+            return ItemEffectResult(
+                name=item.name, success=True, num_shakes=0, extra=[]
+            )
 
-        return {"success": False, "num_shakes": 0, "extra": None}
+        return ItemEffectResult(
+            name=item.name, success=False, num_shakes=0, extra=[]
+        )
 
 
 def _lookup_techniques(element: str) -> None:

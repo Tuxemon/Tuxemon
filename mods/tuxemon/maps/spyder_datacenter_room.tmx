@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="124">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
+  <property name="scenario" value="spyder"/>
+  <property name="slug" value="datacenter"/>
+ </properties>
+ <tileset firstgid="1" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
+  <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
+ </tileset>
+ <tileset firstgid="2593" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="6457" source="../gfx/tilesets/core_indoor_floors.tsx"/>
+ <tileset firstgid="10321" source="../gfx/tilesets/core_set pieces.tsx"/>
+ <layer id="7" name="Tile Layer 1" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eAHz5mNg8CYCVwLVEIOXA9URg89IMzCMYswwAACX2079
+  </data>
+ </layer>
+ <layer id="8" name="Tile Layer 2" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eAFjYCAO1DAxMBCDe4DqiMEgW6s0GBiqgRgfGyJLXXIg7BXQIs4PACqbElE=
+  </data>
+ </layer>
+ <layer id="9" name="Tile Layer 3" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFgykEAAGQAAE=
+  </data>
+ </layer>
+ <layer id="10" name="Above Player" width="10" height="10">
+  <data encoding="base64" compression="zlib">
+   eAFjYKA+iNZgYIgBYhDAxYbIUpfEZReyOHVtpL5pANOjBis=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="Collisions">
+  <object id="32" type="collision" x="0" y="0" width="160" height="48"/>
+  <object id="49" type="collision" x="16" y="96" width="32" height="16"/>
+  <object id="50" type="collision" x="112" y="96" width="32" height="16"/>
+  <object id="51" type="collision" x="64" y="48" width="32" height="16"/>
+  <object id="57" type="collision" x="112" y="48" width="32" height="16"/>
+  <object id="59" type="collision" x="16" y="48" width="32" height="16"/>
+  <object id="123" type="collision" x="64" y="96" width="32" height="16"/>
+ </objectgroup>
+</map>

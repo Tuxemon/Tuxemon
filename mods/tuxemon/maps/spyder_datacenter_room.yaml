@@ -1,0 +1,52 @@
+events:
+  Environment:
+    actions:
+    - set_variable environment:interior
+    conditions:
+    - not variable_set environment:interior
+    type: "event"
+  Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: "event"
+  Teleport Datacenter:
+    actions:
+    - transition_teleport spyder_datacenter.tmx,19,9,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 9
+    type: "event"
+  Flashback Kernel:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_cottontunnel_professor,1,4
+    - char_face spyder_cottontunnel_professor,up
+    - create_npc spyder_cottontunnel_shopassistant,4,7
+    - char_face spyder_cottontunnel_shopassistant,up
+    - create_npc spyder_cottontunnel_carlos,7,7
+    - char_face spyder_cottontunnel_carlos,up
+    - create_npc spyder_crystal_magician_fiery,7,4
+    - char_face spyder_crystal_magician_fiery,up
+    - translated_dialog spyder_datacenter_flashback1
+    - translated_dialog spyder_datacenter_flashback2
+    - translated_dialog spyder_datacenter_flashback3
+    - translated_dialog spyder_datacenter_flashback4
+    - translated_dialog spyder_datacenter_flashback5
+    - remove_npc spyder_cottontunnel_professor
+    - remove_npc spyder_cottontunnel_shopassistant
+    - remove_npc spyder_cottontunnel_carlos
+    - remove_npc spyder_crystal_magician_fiery
+    - set_variable goodchat_kernel:done
+    - set_variable flashback:off
+    - set_layer
+    - unlock_controls
+    conditions:
+    - is variable_set goodchat_kernel:yes
+    type: "event"

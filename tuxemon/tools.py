@@ -341,7 +341,7 @@ def cast_dataclass_parameters(self: Any) -> None:
 def show_item_result_as_dialog(
     session: Session,
     item: Item,
-    result: Mapping[str, Any],
+    result: bool,
 ) -> None:
     """
     Show generic dialog if item was used or not.
@@ -349,10 +349,10 @@ def show_item_result_as_dialog(
     Parameters:
         session: Game session.
         item: Item object.
-        result: A dict with a ``success`` key indicating success or failure.
+        result: Boolean indicating success or failure.
 
     """
-    msg_type = "use_success" if result["success"] else "use_failure"
+    msg_type = "use_success" if result else "use_failure"
     template = getattr(item, msg_type)
     if template:
         message = T.translate(replace_text(session, template))

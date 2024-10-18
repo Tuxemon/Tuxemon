@@ -19,10 +19,6 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-class CaptureEffectResult(ItemEffectResult):
-    pass
-
-
 @dataclass
 class CaptureEffect(ItemEffect):
     """Attempts to capture the target."""
@@ -31,7 +27,7 @@ class CaptureEffect(ItemEffect):
 
     def apply(
         self, item: Item, target: Union[Monster, None]
-    ) -> CaptureEffectResult:
+    ) -> ItemEffectResult:
         assert target
 
         # Calculate status modifier
@@ -48,12 +44,16 @@ class CaptureEffect(ItemEffect):
 
         if not capture:
             self._handle_capture_failure(item, target)
-            return {"success": False, "num_shakes": shakes, "extra": None}
+            return ItemEffectResult(
+                name=item.name, success=False, num_shakes=shakes, extra=[]
+            )
 
         # Apply capture effects
         self._apply_capture_effects(item, target)
 
-        return {"success": True, "num_shakes": shakes, "extra": None}
+        return ItemEffectResult(
+            name=item.name, success=True, num_shakes=shakes, extra=[]
+        )
 
     def _calculate_status_modifier(self, target: Monster) -> float:
         status_modifier = prepare.STATUS_MODIFIER

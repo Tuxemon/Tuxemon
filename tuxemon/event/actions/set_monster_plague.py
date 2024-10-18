@@ -26,8 +26,7 @@ class SetMonsterPlagueAction(EventAction):
             set_monster_plague <variable>,<plague_slug>,<condition>
 
     Script parameters:
-        variable: Name of the variable where to store the monster id. If no
-            variable is specified, all monsters are changed.
+        variable: Name of the variable where to store the monster id.
         plague_slug: The slug of the plague to target.
         condition: Infected, inoculated, or None (removes the plague from the
             character, indicating a healthy state).

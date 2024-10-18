@@ -14,6 +14,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.char_look.CharLookAction
 .. autoscriptinfoclass:: tuxemon.event.actions.char_move.CharMoveAction
 .. autoscriptinfoclass:: tuxemon.event.actions.char_plague.CharPlagueAction
+.. autoscriptinfoclass:: tuxemon.event.actions.char_position.CharPositionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.char_run.CharRunAction
 .. autoscriptinfoclass:: tuxemon.event.actions.char_speed.CharSpeedAction
 .. autoscriptinfoclass:: tuxemon.event.actions.char_stop.CharStopAction

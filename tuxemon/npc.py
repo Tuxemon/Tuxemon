@@ -530,7 +530,7 @@ class NPC(Entity[NPCState]):
             self.surface_animations.play()
             self.path_origin = self.tile_pos
             self.velocity3 = moverate * dirs3[direction]
-            self.remove_collision(self.path_origin)
+            self.remove_collision()
         else:
             # the target is blocked now
             self.stop_moving()

@@ -83,7 +83,7 @@
   </object>
   <object id="40" name="Quarantine" type="event" x="80" y="48" width="16" height="16">
    <properties>
-    <property name="act10" value="quarantine in"/>
+    <property name="act10" value="quarantine spyderbite,in"/>
     <property name="act11" value="char_face player,right"/>
     <property name="act12" value="char_stop player"/>
     <property name="act13" value="lock_controls"/>

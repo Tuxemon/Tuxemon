@@ -53,14 +53,14 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["humanoid"],
+    "tags": ["humanoid", "mountains", "ruins"],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [
         "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 170,
+    "txmn_id": 335,
     "height": 110,
     "weight": 60,
     "catch_rate": 100.0,

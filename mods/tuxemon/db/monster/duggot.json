@@ -1,0 +1,52 @@
+{
+    "slug": "duggot",
+    "category": "unwelcome_mouthful",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 2,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 6,
+            "technique": "spit_poison"
+        },
+        {
+            "level_learned": 10,
+            "technique": "poison_courtship"
+        },
+        {
+            "level_learned": 18,
+            "technique": "viper"
+        }
+    ],
+    "evolutions": [
+        {
+            "monster_slug": "breem",
+            "party": ["tumbleworm"]
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "breem",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["varmint"],
+    "shape": "varmint",
+    "stage": "basic",
+    "types": [
+        "earth",
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 343,
+    "height": 12,
+    "weight": 0.5,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

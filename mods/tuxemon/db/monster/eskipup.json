@@ -1,0 +1,51 @@
+{
+    "slug": "eskipup",
+    "category": "frosty",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 2,
+            "technique": "ice_shield"
+        },
+        {
+            "level_learned": 6,
+            "technique": "canine"
+        },
+        {
+            "level_learned": 10,
+            "technique": "ice_storm"
+        },
+        {
+            "level_learned": 18,
+            "technique": "frostbite"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 30,
+            "monster_slug": "houndice"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "houndice",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["hunter", "Boreal/Snow"],
+    "shape": "hunter",
+    "stage": "basic",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 327,
+    "height": 56,
+    "weight": 24,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

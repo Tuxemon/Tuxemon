@@ -15,10 +15,6 @@ events:
     conditions:
     - not music_playing music_home
     type: "event"
-  Player Spawn:
-    x: 11
-    y: 0
-    type: "event"
   Create Maniac:
     actions:
     - create_npc spyder_crystal_maniac_green,8,5

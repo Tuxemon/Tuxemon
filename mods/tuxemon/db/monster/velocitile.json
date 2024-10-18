@@ -58,7 +58,7 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["humanoid"],
+    "tags": ["humanoid", "grassland", "jungle", "woodland"],
     "shape": "humanoid",
     "stage": "stage2",
     "types": [

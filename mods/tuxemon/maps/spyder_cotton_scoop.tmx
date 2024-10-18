@@ -52,7 +52,6 @@
     <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="16" name="Player Spawn" type="event" x="80" y="112" width="16" height="16"/>
   <object id="20" name="Create Shopkeeper" type="event" x="0" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottonscoop_joe,1,6"/>

@@ -60,7 +60,6 @@
     <property name="cond20" value="is char_facing player,left"/>
    </properties>
   </object>
-  <object id="226" name="Player Spawn" type="event" x="64" y="1440" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="4" type="collision" x="400" y="1296" width="80" height="16"/>

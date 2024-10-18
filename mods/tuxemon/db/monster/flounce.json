@@ -1,0 +1,51 @@
+{
+    "slug": "flounce",
+    "category": "firestarter",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fire_claw"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wall_fire"
+        },
+        {
+            "level_learned": 6,
+            "technique": "canine"
+        },
+        {
+            "level_learned": 10,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 18,
+            "technique": "flamethrower"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 30,
+            "monster_slug": "knindling"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "knindling",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["hunter"],
+    "shape": "hunter",
+    "stage": "basic",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 329,
+    "height": 49,
+    "weight": 22,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

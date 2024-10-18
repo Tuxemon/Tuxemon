@@ -1,0 +1,59 @@
+{
+    "slug": "cobarett",
+    "category": "comet_snake",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "fire_claw"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wall_fire"
+        },
+        {
+            "level_learned": 6,
+            "technique": "venom"
+        },
+        {
+            "level_learned": 10,
+            "technique": "spit_poison"
+        },
+        {
+            "level_learned": 14,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 18,
+            "technique": "flamethrower"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 36,
+            "monster_slug": "pythonova"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "hissiorite",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "pythonova",
+            "evo_stage": "stage2"
+        }
+    ],
+    "tags": ["serpent", "coastal", "desert"],
+    "shape": "serpent",
+    "stage": "stage1",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 323,
+    "height": 300,
+    "weight": 12,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

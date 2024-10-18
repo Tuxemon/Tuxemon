@@ -1,0 +1,83 @@
+{
+    "slug": "toxiris",
+    "category": "every_thorn",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 6,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 8,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 12,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 16,
+            "technique": "stabilo"
+        },
+        {
+            "level_learned": 20,
+            "technique": "clairaudience"
+        },
+        {
+            "level_learned": 24,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 28,
+            "technique": "radiance"
+        },
+        {
+            "level_learned": 32,
+            "technique": "poison_courtship"
+        },
+        {
+            "level_learned": 36,
+            "technique": "assault"
+        },
+        {
+            "level_learned": 40,
+            "technique": "ants"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 30,
+            "monster_slug": "ninjasmine"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "rosarin",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "ninjasmine",
+            "evo_stage": "stage2"
+        }
+    ],
+    "tags": ["humanoid", "jungle", "woodland"],
+    "shape": "humanoid",
+    "stage": "stage1",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 205,
+    "height": 100,
+    "weight": 25,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

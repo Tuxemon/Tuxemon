@@ -51,11 +51,20 @@
             "technique": "poison_courtship"
         }
     ],
-    "evolutions": [],
+    "evolutions": [
+        {
+            "at_level": 36,
+            "monster_slug": "crustagu"
+        }
+    ],
     "history": [
         {
             "mon_slug": "lesmagu",
             "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "crustagu",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["polliwog", "coastal", "sea"],
@@ -65,7 +74,7 @@
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 221,
+    "txmn_id": 278,
     "height": 60,
     "weight": 4,
     "catch_rate": 70.0,

@@ -48,6 +48,5 @@
   </object>
  </objectgroup>
  <objectgroup id="5" name="Events">
-  <object id="7" name="Player Spawn" type="event" x="256" y="48" width="16" height="16"/>
  </objectgroup>
 </map>

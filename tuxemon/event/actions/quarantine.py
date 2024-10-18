@@ -17,23 +17,22 @@ logger = logging.getLogger(__name__)
 @dataclass
 class QuarantineAction(EventAction):
     """
-    Quarantine infected monsters.
-    Amount works only for "out", it takes out the amount in a random way.
+    Quarantine or release monsters infected with a specific plague.
 
-    Script usage:
-        .. code-block::
+    Usage:
+        quarantine <plague_slug>,<value>[,amount]
 
-            quarantine <value>[,amount]
+    Parameters:
+        plague_slug: The slug of the plague to target.
+        value: "in" to quarantine infected monsters, "out" to release them.
+        amount: (Optional, only for "out") The number of monsters to release
+            randomly.
 
-    Script parameters:
-        value: in or out
-        amount: number of monsters
-
-    e.g. "quarantine out,5" (5 monsters out by random)
-
+    Example: "quarantine out,5" (Release 5 infected monsters randomly)
     """
 
     name = "quarantine"
+    plague_slug: str
     value: str
     amount: Union[int, None] = None
 
@@ -43,29 +42,43 @@ class QuarantineAction(EventAction):
             player.monster_boxes[self.name] = []
         if self.value == "in":
             infect = PlagueType.infected
-            plague = [mon for mon in player.monsters if mon.plague == infect]
+            plague = [
+                mon
+                for mon in player.monsters
+                if self.plague_slug in mon.plague
+                and mon.plague[self.plague_slug] == infect
+            ]
             for _monster in plague:
-                _monster.plague = PlagueType.inoculated
+                _monster.plague[self.plague_slug] = PlagueType.inoculated
                 player.monster_boxes[self.name].append(_monster)
                 player.remove_monster(_monster)
                 logger.info(f"{_monster} has been quarantined")
         elif self.value == "out":
-            box = [mon for mon in player.monster_boxes[self.name]]
+            if self.name not in player.monster_boxes:
+                logger.info(f"Box {self.name} does not exist")
+                return
+            box = [
+                mon
+                for mon in player.monster_boxes[self.name]
+                if self.plague_slug in mon.plague
+            ]
             if not box:
                 logger.info(f"Box {self.name} is empty")
                 return
             if self.amount is None or self.amount >= len(box):
                 for _monster in box:
-                    _monster.plague = PlagueType.inoculated
+                    _monster.plague[self.plague_slug] = PlagueType.inoculated
+                    player.add_monster(_monster, len(player.monsters))
+                    player.monster_boxes[self.name].remove(_monster)
+                    logger.info(f"{_monster} has been inoculated")
+            elif self.amount > 0 and self.amount <= len(box):
+                sample = random.sample(box, self.amount)
+                for _monster in sample:
+                    _monster.plague[self.plague_slug] = PlagueType.inoculated
                     player.add_monster(_monster, len(player.monsters))
                     player.monster_boxes[self.name].remove(_monster)
                     logger.info(f"{_monster} has been inoculated")
             else:
-                sample = random.sample(box, self.amount)
-                for _monster in sample:
-                    _monster.plague = PlagueType.inoculated
-                    player.add_monster(_monster, len(player.monsters))
-                    player.monster_boxes[self.name].remove(_monster)
-                    logger.info(f"{_monster} has been inoculated")
+                logger.info(f"Invalid sample size")
         else:
             raise ValueError(f"{self.value} must be in or out")

@@ -169,7 +169,6 @@
     <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="205" name="Player Spawn" type="event" x="32" y="80" width="16" height="16"/>
   <object id="207" name="Sign: Flower Scoop" type="event" x="272" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog Cotton_Mart"/>

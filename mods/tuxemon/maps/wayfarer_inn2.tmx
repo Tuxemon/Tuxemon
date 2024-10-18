@@ -67,7 +67,6 @@
     <property name="cond10" value="not music_playing music_cathedral_theme"/>
    </properties>
   </object>
-  <object id="32" name="Player Spawn" type="event" x="80" y="32" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ff0000" id="7" name="Collisions">
   <object id="2" type="collision" x="0" y="0" width="16" height="256"/>

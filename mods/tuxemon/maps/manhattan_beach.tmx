@@ -198,7 +198,6 @@
   <object id="32" type="collision" x="416" y="0" width="64" height="592"/>
  </objectgroup>
  <objectgroup color="#aaff00" id="7" name="Events">
-  <object id="21" name="Player Spawn" type="event" x="240" y="16" width="16" height="16"/>
   <object id="22" name="talk to liela" type="event" x="304" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog liela_goes_to_battle"/>

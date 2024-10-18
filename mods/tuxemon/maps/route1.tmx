@@ -103,7 +103,6 @@
     <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="84" name="Player Spawn" type="event" x="528" y="96" width="16" height="16"/>
   <object id="85" name="Teleport to route1a" type="event" x="512" y="64" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport route1_sanglorian.tmx,24,19"/>

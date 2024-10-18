@@ -92,7 +92,6 @@
     <property name="cond20" value="is char_facing player,right"/>
    </properties>
   </object>
-  <object id="36" name="Player Spawn" type="event" x="272" y="48" width="16" height="16"/>
   <object id="37" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>

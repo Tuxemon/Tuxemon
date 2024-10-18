@@ -95,7 +95,6 @@
     <property name="cond5" value="is variable_set gettuxemon:now"/>
    </properties>
   </object>
-  <object id="93" name="Player Spawn" type="event" x="96" y="240" width="16" height="16"/>
   <object id="95" name="createprofessor" type="event" x="0" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc professor,4,6,stand"/>

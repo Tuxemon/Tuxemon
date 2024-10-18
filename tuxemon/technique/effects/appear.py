@@ -12,44 +12,44 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class LandEffectResult(TechEffectResult):
+class AppearEffectResult(TechEffectResult):
     pass
 
 
 @dataclass
-class LandEffect(TechEffect):
+class AppearEffect(TechEffect):
     """
-    Tuxemon lands.
+    Tuxemon re-appears, it follows "disappear".
 
     """
 
-    name = "land"
+    name = "appear"
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> LandEffectResult:
+    ) -> AppearEffectResult:
         combat = tech.combat_state
         assert combat
-        # Check if the user is flying
+        # Check if the user is disappeared
         user_sprite = combat._monster_sprite_map.get(user, None)
         if user_sprite and not user_sprite.visible:
-            # Make the user land
+            # Make the user appear
             user_sprite.visible = True
             user.out_of_range = False
 
-        # Check if the target is flying
+        # Check if the target is disappeared
         target_sprite = combat._monster_sprite_map.get(target, None)
         if target_sprite and not target_sprite.visible:
-            # If the target is flying, don't tackle
-            target_is_flying = True
+            # If the target is disappeared, don't tackle
+            target_is_disappeared = True
         else:
-            target_is_flying = False
+            target_is_disappeared = False
 
         # Return the result
         return {
-            "success": not target_is_flying,
+            "success": not target_is_disappeared,
             "damage": 0,
             "element_multiplier": 0.0,
-            "should_tackle": not target_is_flying,
+            "should_tackle": not target_is_disappeared,
             "extra": None,
         }

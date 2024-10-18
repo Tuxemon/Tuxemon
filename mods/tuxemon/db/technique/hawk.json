@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "slash_power",
   "effects": [
-    "land",
+    "appear",
     "damage"
   ],
   "flip_axes": "",

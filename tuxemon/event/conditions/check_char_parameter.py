@@ -42,6 +42,4 @@ class CheckCharParameterCondition(EventCondition):
         if character is None:
             logger.error(f"{_character} not found")
             return False
-        return CommonCondition.check_character_parameter(
-            character, _parameter, _value
-        )
+        return CommonCondition.check_parameter(character, _parameter, _value)

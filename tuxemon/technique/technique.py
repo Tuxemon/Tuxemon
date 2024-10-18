@@ -295,6 +295,8 @@ class Technique:
             "extra": None,
         }
 
+        self.next_use = self.recharge_length
+
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:
             result = effect.apply(self, user, target)
@@ -308,8 +310,6 @@ class Technique:
             meta_result["element_multiplier"] *= result["element_multiplier"]
             if result["extra"] is not None:
                 meta_result["extra"] = result["extra"]
-
-        self.next_use = self.recharge_length
 
         return meta_result
 

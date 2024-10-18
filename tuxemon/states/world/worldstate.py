@@ -661,7 +661,7 @@ class WorldState(state.State):
         """
         npc = self.get_entity(slug)
         if npc:
-            npc.remove_collision(npc.tile_pos)
+            npc.remove_collision()
             self.npcs.remove(npc)
 
     def get_all_entities(self) -> Sequence[NPC]:

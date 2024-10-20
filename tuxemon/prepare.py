@@ -390,7 +390,8 @@ else:
 WRAP_VALUE: int = config.layouts.get(LAYOUT_SCREEN, {}).get("wrap", 0)
 if WRAP_VALUE == 0:
     logger.warning(
-        f"Layout '{LAYOUT_SCREEN}' is missing a 'wrap' value, which may cause issues with dialogue text wrapping."
+        f"Layout '{LAYOUT_SCREEN}' is missing a 'wrap' value, which may cause"
+        "issues with dialogue text wrapping."
     )
 
 # Reference user save dir

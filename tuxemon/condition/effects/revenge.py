@@ -16,10 +16,6 @@ if TYPE_CHECKING:
     from tuxemon.condition.condition import Condition
 
 
-class RevengeEffectResult(CondEffectResult):
-    pass
-
-
 @dataclass
 class RevengeEffect(CondEffect):
     """
@@ -33,9 +29,7 @@ class RevengeEffect(CondEffect):
 
     name = "revenge"
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> RevengeEffectResult:
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         done: bool = False
         assert condition.combat_state
         combat = condition.combat_state
@@ -73,9 +67,10 @@ class RevengeEffect(CondEffect):
             attacker.current_hp -= damage
             target.current_hp += damage
             done = True
-        return {
-            "success": done,
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+        return CondEffectResult(
+            name=condition.name,
+            success=done,
+            condition=[],
+            technique=[],
+            extra=[],
+        )

@@ -13,10 +13,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class HarpoonedEffectResult(CondEffectResult):
-    pass
-
-
 @dataclass
 class HarpoonedEffect(CondEffect):
     """
@@ -30,16 +26,15 @@ class HarpoonedEffect(CondEffect):
     name = "harpooned"
     divisor: int
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> HarpoonedEffectResult:
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         if condition.phase == "add_monster_into_play":
             target.current_hp -= target.hp // self.divisor
             if fainted(target):
                 target.faint()
-        return {
-            "success": True,
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+        return CondEffectResult(
+            name=condition.name,
+            success=True,
+            condition=[],
+            technique=[],
+            extra=[],
+        )

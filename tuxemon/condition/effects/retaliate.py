@@ -17,10 +17,6 @@ if TYPE_CHECKING:
     from tuxemon.condition.condition import Condition
 
 
-class RetaliateEffectResult(CondEffectResult):
-    pass
-
-
 @dataclass
 class RetaliateEffect(CondEffect):
     """
@@ -34,9 +30,7 @@ class RetaliateEffect(CondEffect):
 
     name = "retaliate"
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> RetaliateEffectResult:
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         done: bool = False
         assert condition.combat_state
         combat = condition.combat_state
@@ -73,9 +67,10 @@ class RetaliateEffect(CondEffect):
         ):
             attacker.current_hp -= damage
             done = True
-        return {
-            "success": done,
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+        return CondEffectResult(
+            name=condition.name,
+            success=done,
+            condition=[],
+            technique=[],
+            extra=[],
+        )

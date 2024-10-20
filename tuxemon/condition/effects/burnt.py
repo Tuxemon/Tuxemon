@@ -12,10 +12,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class BurntEffectResult(CondEffectResult):
-    pass
-
-
 @dataclass
 class BurntEffect(CondEffect):
     """
@@ -29,17 +25,16 @@ class BurntEffect(CondEffect):
     name = "burnt"
     divisor: int
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> BurntEffectResult:
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         burnt: bool = False
         if condition.phase == "perform_action_status":
             target.current_hp -= target.hp // self.divisor
             burnt = True
 
-        return {
-            "success": burnt,
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+        return CondEffectResult(
+            name=condition.name,
+            success=burnt,
+            condition=[],
+            technique=[],
+            extra=[],
+        )

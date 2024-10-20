@@ -7,7 +7,7 @@
 	  	"not status stuck"
 	],
 	"effects": [
-		"fly_off hawk"
+		"disappear hawk"
 	],
   "flip_axes": "",
   "is_fast": true,
@@ -32,7 +32,7 @@
     "wood",
     "earth"
   ],
-  "use_failure": "combat_miss",
-  "use_success": null,
+  "use_failure": "altitude_fail",
+  "use_success": "altitude_success",
   "use_tech": "combat_used_x"
 }

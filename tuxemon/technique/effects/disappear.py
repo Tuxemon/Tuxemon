@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.locale import T
 from tuxemon.states.combat.combat_classes import EnqueuedAction
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
@@ -14,34 +13,32 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class FlyOffEffectResult(TechEffectResult):
+class DisappearEffectResult(TechEffectResult):
     pass
 
 
 @dataclass
-class FlyOffEffect(TechEffect):
+class DisappearEffect(TechEffect):
     """
-    Tuxemon flies off.
+    Tuxemon disappears. It's followed by "appear".
 
     Parameters:
         attack: slug technique (attack when lands).
-
     """
 
-    name = "fly_off"
+    name = "disappear"
     attack: str
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> FlyOffEffectResult:
-        user_is_flying = False
+    ) -> DisappearEffectResult:
         combat = tech.combat_state
         assert combat
 
         # Get the user's sprite
         user_sprite = combat._monster_sprite_map.get(user, None)
         if user_sprite and user_sprite.visible:
-            # Make the user fly
+            # Make the user disappear
             user_sprite.visible = False
             user.out_of_range = True
             # Create a new technique to land the user
@@ -50,17 +47,11 @@ class FlyOffEffect(TechEffect):
             # Add the land action to the pending queue
             land_action = EnqueuedAction(user, land_technique, target)
             combat._pending_queue.append(land_action)
-        else:
-            # If the user is already flying, don't do anything
-            user_is_flying = True
-
-        params = {"name": user.name.upper()}
-        extra = T.format("combat_fly", params)
 
         return {
-            "success": not user_is_flying,
+            "success": user.out_of_range,
             "damage": 0,
             "element_multiplier": 0.0,
             "should_tackle": False,
-            "extra": extra,
+            "extra": None,
         }

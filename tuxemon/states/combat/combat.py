@@ -863,30 +863,29 @@ class CombatState(CombatAnimations):
                 message += "\n" + result_status["extra"]
             if result_status["condition"]:
                 user.apply_status(result_status["condition"])
-        # successful techniques
-        if result_tech["success"]:
-            m: Union[str, None] = None
-            # extra output
-            if result_tech["extra"]:
-                m = T.translate(result_tech["extra"])
-            if m:
-                message += "\n" + m
-                action_time += compute_text_animation_time(message)
-        # not successful techniques
-        if not result_tech["success"]:
+
+        if result_tech["success"] and method.use_success:
+            template = getattr(method, "use_success")
+            m = T.format(template, context)
+        elif not result_tech["success"] and method.use_failure:
             template = getattr(method, "use_failure")
             m = T.format(template, context)
-            # extra output
-            if result_tech["extra"]:
-                m = T.translate(result_tech["extra"])
+        else:
+            m = None
+
+        if result_tech["extra"]:
+            m = (m or "") + "\n" + T.translate(result_tech["extra"])
+
+        if m:
             message += "\n" + m
             action_time += compute_text_animation_time(message)
+
         self.play_sound_effect(method.sfx)
         # animation own_monster, technique doesn't tackle
         hit_delay += 0.5
         if method.target["own_monster"]:
             target_sprite = self._monster_sprite_map.get(user, None)
-        # TODO: a real check or some params to test if should tackle, etc
+
         if result_tech["should_tackle"]:
             user_sprite = self._monster_sprite_map.get(user, None)
             if user_sprite:
@@ -905,15 +904,13 @@ class CombatState(CombatAnimations):
                     hit_delay + 0.6,
                 )
 
-            # Track damage
             self.enqueue_damage(user, target, result_tech["damage"])
 
-            # monster infected
             if PlagueType.infected in user.plague.values():
                 params = {"target": user.name.upper()}
                 m = T.format("combat_state_plague1", params)
                 message += "\n" + m
-            # allows tackle to special range techniques too
+
             if method.range != "special":
                 element_damage_key = prepare.MULT_MAP.get(
                     result_tech["element_multiplier"]
@@ -922,20 +919,7 @@ class CombatState(CombatAnimations):
                     m = T.translate(element_damage_key)
                     message += "\n" + m
                     action_time += compute_text_animation_time(message)
-            else:
-                msg_type = (
-                    "use_success" if result_tech["success"] else "use_failure"
-                )
-                context = {
-                    "user": getattr(user, "name", ""),
-                    "name": method.name,
-                    "target": target.name,
-                }
-                template = getattr(method, msg_type)
-                tmpl = T.format(template, context)
-                if template:
-                    message += "\n" + tmpl
-                    action_time += compute_text_animation_time(message)
+
         self.text_animations_queue.append(
             (partial(self.alert, message), action_time)
         )
@@ -985,11 +969,6 @@ class CombatState(CombatAnimations):
                 item = self.animate_throwing(target, method)
                 self.task(item.kill, 1.5)
             msg_type = "use_success" if result_item.success else "use_failure"
-            context = {
-                "user": getattr(user, "name", ""),
-                "name": method.name,
-                "target": target.name,
-            }
             template = getattr(method, msg_type)
             tmpl = T.format(template, context)
             # extra output

@@ -59,6 +59,7 @@ with open(paths.USER_CONFIG_PATH, "w") as fp:
 
 # Set up the screen size and caption
 SCREEN_SIZE = CONFIG.resolution
+LAYOUT_SCREEN = CONFIG.layout_screen
 
 # Surface Keys (tilesets)
 SURFACE_KEYS: list[str] = ["surfable", "walkable", "climbable"]
@@ -383,6 +384,14 @@ elif CONFIG.scaling:
     TILE_SIZE = (TILE_SIZE[0] * SCALE, TILE_SIZE[1] * SCALE)
 else:
     SCALE = 1
+
+
+WRAP_VALUE: int = config.layouts.get(LAYOUT_SCREEN, {}).get("wrap", 0)
+if WRAP_VALUE == 0:
+    logger.warning(
+        f"Layout '{LAYOUT_SCREEN}' is missing a 'wrap' value, which may cause"
+        "issues with dialogue text wrapping."
+    )
 
 # Reference user save dir
 SAVE_PATH = os.path.join(paths.USER_GAME_SAVE_DIR, "slot")

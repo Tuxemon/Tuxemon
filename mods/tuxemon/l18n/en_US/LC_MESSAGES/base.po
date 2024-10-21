@@ -8448,9 +8448,6 @@ msgstr "Welcome master."
 msgid "spyder_drinking_trigger"
 msgstr "Yesterday night, something incredible happened.\n I'm still trying to process it all. Would you like to hear about it?"
 
-msgid "spyder_drinking_flashback_setting"
-msgstr "Scoop - Flower City\n Yesterday Night\n O Captain! My Captain!"
-
 msgid "spyder_drinking_flashback1"
 msgstr "Captain: I'm off, guys! I'm going on an adventure! I'm going to find the... the... treasure of the mansion!"
 

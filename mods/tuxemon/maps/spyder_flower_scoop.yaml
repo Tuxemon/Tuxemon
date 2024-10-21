@@ -67,7 +67,6 @@ events:
     - char_face spyder_mansion_drinkingbuddyb,left
     - create_npc spyder_mansion_rolo,8,4
     - char_face spyder_mansion_rolo,down
-    - translated_dialog spyder_drinking_flashback_setting
     - translated_dialog spyder_drinking_flashback1
     - translated_dialog spyder_drinking_flashback2
     - translated_dialog spyder_drinking_flashback3

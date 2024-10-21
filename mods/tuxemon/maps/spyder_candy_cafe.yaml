@@ -1,5 +1,5 @@
 events:
-  Route Music:
+  Play Music:
     actions:
     - play_music music_home
     conditions:
@@ -70,7 +70,7 @@ events:
     type: "event"
   Quarantine:
     actions:
-    - quarantine in
+    - quarantine spyderbite,in
     - char_face player,right
     - char_stop player
     - lock_controls

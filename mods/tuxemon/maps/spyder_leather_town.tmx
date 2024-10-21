@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="325">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="330">
  <properties>
   <property name="east" value="citypark"/>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="town"/>
   <property name="north" value="route3"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="leather_town"/>
-  <property name="map_type" value="town"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" source="../gfx/tilesets/Superpowers_Tilesheet.tsx"/>
@@ -21,7 +21,7 @@
  </layer>
  <layer id="2" name="Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHtmF1KA0EMgPOojz4JglIQfPMPvIOCZ2jVE3gFD2J/vI8KvrutRzGhG0xDZiazfywygTAzmUzyNTth2wLYMr0EmKE+oJIszgCWqGOROXItUJc13xrZNi35Tq4BcjRWC80X8/Xuxdg4hvRhmzUy3wrrR8+5jdIdOc6sHXHGhPnoGbdVviOyNjzXDGxP8VXItc7Qp/pzPBpnNmgjkTmZY7vzt8d26cs+bUauN9fKiiVzSo7Q3IrR1OblC7GwnfPTepK4g+zrGT18Vhzm0qPl67HdHm69pninZE+/1fdP9zv1bkwkF/nJNc2bCtcr1dux+0i5NY9c/1w1pQOosC6yv0P9y70byiR59Dx0pomdeVM8OrZmkmvt2+V67wBgHzUlkofndIbmfco5sl2MmM/72blm1uiN0aefxcW2PvN6YzOLNXpjDOV3KhLNeu4PkWpnGuvre/Sc1N53O6e6Xzwf2TFTfU1cso52lGGtVDcpei33/tN8bL85dW27+M2pY5b1+CrwCfDygfqOmqL7cvikYpT9/ArE3jv50bo/kXrvdJ+xRPRUYMh7E/pOchP4rkL85d54nmLxyanAK/5PPm/5X3lOvlzfb2SrBuL7BVXVnM0=
+   eAHtWF1KxEAMzpPoo/ggCMqC4Iv4B95BwTPsqifwCh7E3dX7qOC73fUoJrTBbJifTKcdijQQOslkkq9fE7pbALdMLwBmqPeoJIsTgCXqUGSOuBaoywbfCrGtM/EdXQGkaIgLjS8Ua90LYeMcMoZ9rivje0X+6DnnKPXIYSJ3hDMkjI+eca5yj0hueK0xsD+Gr0JcqwR9bO7jwXFmjT4SWZNx1Dt/e+yXsRyTc2W+mStXLllT4vCtXTna+qz4fFjYz/XJnkR6kGMtVws+Vx7Gpa+uWIvvZr+OmmJPyZl+a/pPzzvNbkgkLoqTNq3bCvMVm+1QP1JtjUfaP5dt0QFUyIucb9/88uzqSlt7tUfi0Wt9JsdmvD48OvdpYXy6/vYuwA6qT0L80Rnisk85Q2znAXwh/ghX3/is9657TtrWHH3GSTx63Wdda26NSdrWHKXijkWhWc/zIUptLENzfYeRkyb6duNU98bTgTtnbK4Jl+TRnaWsl3iTom2595/WQ/vPqbnt4j+nzjnaw2PgE+D5A/UdNYbuyxATyzHupzMQeu+kZ+v+ROy9033FMaOFgZJ94/tNcu35rUL4x76xPMUxJoWBF/xOPs/8Vp5SLzX2G7FVhfD9ApwenXs=
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="40" height="40">
@@ -462,6 +462,34 @@
   <object id="324" name="Door locked" type="event" x="208" y="544" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_door_locked"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="326" name="Notes1" type="event" x="480" y="224" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leather_note1"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="327" name="Notes2" type="event" x="480" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leather_note2"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="328" name="Notes3" type="event" x="480" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leather_note3"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="329" name="Notes4" type="event" x="480" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leather_note4"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

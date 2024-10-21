@@ -14,6 +14,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.char_look.CharLookAction
 .. autoscriptinfoclass:: tuxemon.event.actions.char_move.CharMoveAction
 .. autoscriptinfoclass:: tuxemon.event.actions.char_plague.CharPlagueAction
+.. autoscriptinfoclass:: tuxemon.event.actions.char_position.CharPositionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.char_run.CharRunAction
 .. autoscriptinfoclass:: tuxemon.event.actions.char_speed.CharSpeedAction
 .. autoscriptinfoclass:: tuxemon.event.actions.char_stop.CharStopAction
@@ -86,6 +87,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_flair.SetMonsterFlairAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_health.SetMonsterHealthAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_level.SetMonsterLevelAction
+.. autoscriptinfoclass:: tuxemon.event.actions.set_monster_plague.SetMonsterPlagueAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_status.SetMonsterStatusAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_party_attribute.SetPartyAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_party_status.SetPartyStatusAction

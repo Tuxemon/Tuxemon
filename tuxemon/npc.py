@@ -12,14 +12,7 @@ from typing import TYPE_CHECKING, Any, Optional, TypedDict
 from tuxemon import prepare, surfanim
 from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.compat import Rect
-from tuxemon.db import (
-    Direction,
-    ElementType,
-    EntityFacing,
-    PlagueType,
-    SeenStatus,
-    db,
-)
+from tuxemon.db import Direction, ElementType, EntityFacing, SeenStatus, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import Item, decode_items, encode_items
@@ -58,7 +51,6 @@ class NPCState(TypedDict):
     monsters: Sequence[Mapping[str, Any]]
     player_name: str
     player_steps: float
-    plague: PlagueType
     monster_boxes: dict[str, Sequence[Mapping[str, Any]]]
     item_boxes: dict[str, Sequence[Mapping[str, Any]]]
     tile_pos: tuple[int, int]
@@ -124,8 +116,6 @@ class NPC(Entity[NPCState]):
         self.items: list[Item] = []
         self.missions: list[Mission] = []
         self.economy: Optional[Economy] = None
-        # related to spyderbite (PlagueType)
-        self.plague = PlagueType.healthy
         # Variables for long-term item and monster storage
         # Keeping these separate so other code can safely
         # assume that all values are lists
@@ -212,7 +202,6 @@ class NPC(Entity[NPCState]):
             "monster_boxes": dict(),
             "item_boxes": dict(),
             "tile_pos": self.tile_pos,
-            "plague": self.plague,
         }
 
         for monsterkey, monstervalue in self.monster_boxes.items():
@@ -251,7 +240,6 @@ class NPC(Entity[NPCState]):
             self.missions.append(mission)
         self.name = save_data["player_name"]
         self.steps = save_data["player_steps"]
-        self.plague = save_data["plague"]
         for monsterkey, monstervalue in save_data["monster_boxes"].items():
             self.monster_boxes[monsterkey] = decode_monsters(monstervalue)
         for itemkey, itemvalue in save_data["item_boxes"].items():
@@ -542,7 +530,7 @@ class NPC(Entity[NPCState]):
             self.surface_animations.play()
             self.path_origin = self.tile_pos
             self.velocity3 = moverate * dirs3[direction]
-            self.remove_collision(self.path_origin)
+            self.remove_collision()
         else:
             # the target is blocked now
             self.stop_moving()

@@ -1,0 +1,41 @@
+{
+    "slug": "jeluna",
+    "category": "moon_phase",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        },
+        {
+            "level_learned": 2,
+            "technique": "shooting_star"
+        },
+        {
+            "level_learned": 6,
+            "technique": "radiance"
+        },
+        {
+            "level_learned": 10,
+            "technique": "supernova"
+        },
+        {
+            "level_learned": 18,
+            "technique": "sunburst"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "tags": ["blob", "boreal/snow", "extraterrestrial", "ruins", "sea"],
+    "shape": "blob",
+    "stage": "standalone",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 305,
+    "height": 30,
+    "weight": 2,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

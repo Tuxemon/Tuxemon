@@ -42,7 +42,7 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["humanoid"],
+    "tags": ["humanoid", "desert", "extraplanar", "ruins"],
     "shape": "humanoid",
     "stage": "stage1",
     "types": [

@@ -68,7 +68,6 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "mod_ranged",
     "mod_speed",
     "mod_hp",
-    "plague",
 )
 
 
@@ -144,7 +143,7 @@ class Monster:
         self.wild = False
 
         self.status: list[Condition] = []
-        self.plague = PlagueType.healthy
+        self.plague: dict[str, PlagueType] = {}
         self.taste_cold = TasteCold.tasteless
         self.taste_warm = TasteWarm.tasteless
 
@@ -208,7 +207,6 @@ class Monster:
         self.description = T.translate(f"{results.slug}_description")
         self.cat = results.category
         self.category = T.translate(f"cat_{self.cat}")
-        self.plague = self.plague
         self.shape = results.shape or MonsterShape.default
         self.stage = results.stage or EvolutionStage.standalone
         self.taste_cold = self.set_taste_cold(self.taste_cold)
@@ -317,7 +315,9 @@ class Monster:
         """
         Returns TRUE if there is the type among the types.
         """
-        return bool(element) and any(ele.slug == element for ele in self.types)
+        return element is not None and any(
+            ele.slug == element for ele in self.types
+        )
 
     def give_experience(self, amount: int = 1) -> int:
         """
@@ -526,7 +526,8 @@ class Monster:
 
         """
         new_level = self.level - levels_earned
-        learned_techniques = []
+        new_moves = self.moves.copy()
+        new_techniques = []
         for move in self.moveset:
             if (
                 move.technique not in (m.slug for m in self.moves)
@@ -534,10 +535,11 @@ class Monster:
             ):
                 technique = Technique()
                 technique.load(move.technique)
-                learned_techniques.append(technique)
-                self.learn(technique)
+                new_moves.append(technique)
+                new_techniques.append(technique)
 
-        return learned_techniques
+        self.moves = new_moves
+        return new_techniques
 
     def experience_required(self, level_ofs: int = 0) -> int:
         """
@@ -672,6 +674,7 @@ class Monster:
         }
 
         save_data["instance_id"] = str(self.instance_id.hex)
+        save_data["plague"] = self.plague
 
         body = self.body.get_state()
         if body:
@@ -694,6 +697,7 @@ class Monster:
             return
 
         self.load_from_db(save_data["slug"])
+        self.plague = save_data["plague"]
 
         self.moves = []
         for move in decode_moves(save_data.get("moves")):

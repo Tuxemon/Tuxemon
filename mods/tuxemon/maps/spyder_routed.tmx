@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="179">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="179">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="routed"/>
-  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
@@ -13,12 +13,17 @@
    eAHtWNsNwjAMjIApYBVeqyAW6BSUifkm/bCwLPvSPFElf0RxHWqfL+eoYQohTGw8diF8Dr/xjM98/d+246vbj978naNeLhlD6qk3Phmfa12zU/hue7vea0HvtMan1US+kt6W+I6x/jnWaY0Uf4RFm1vgy40h69NwkQ/FtvrgHvmi95cZxZDcLc8vwPUpI/baOnPxaZjJJ3Oi2PK3nDNuoxiUd+0sc6LelvvIMXG7Jz6eJ2VbffouOKMsPiV/KUx8vSVPW8WHets6X8nfch8t/txf9+3l/Dl/rgHXgGvANeAacA2M0IB1D6X/aEZgQDlSdwb07oi1LeHT7ngjOEI5OH8j7ngIi7bm+OrO4a3z9wX8Ihbk
   </data>
  </layer>
- <layer id="5" name="Tile Layer 2" width="40" height="40">
+ <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eAHtlrENAkEQA1cgIhqBYp6aoDPojE0msTiJ6NaBT1pZ+4nnJjh9VU4MxEAMxEAMxEAMxEAMxMC/Bm6XqnuPax7N9uhxTVdvcLl6gwtO14TTNV29weXqDS44XRNO13T1BperN7jgnMrVf8LzWvXqgXMqV3zvZvv0THmjd8XH9ylv9MKxSu4xlcqlHNxjKpVPOZR396582q+8u3fl037l3b0rn/Yr7+793G8c5/TjPf4CEozQyg==
   </data>
  </layer>
- <layer id="2" name="Tile Layer 3" width="40" height="40">
+ <layer id="3" name="Tile Layer 3" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt0AENAAAAwqD3T20PBxEoDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQNfAwMZAAAB
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="40" height="40">
   <data encoding="base64" compression="zlib">
    eAHt0AENAAAAwqD3T20PBxEoDBgwYMCAAQMGDBgwYMCAAQMGDBgwYMCAAQNfAwMZAAAB
   </data>
@@ -47,7 +52,6 @@
     <property name="cond1" value="not music_playing lunar_joyride.mp3"/>
    </properties>
   </object>
-  <object id="150" name="Player Spawn" type="event" x="144" y="32" width="16" height="16"/>
   <object id="160" name="Teleport to Dryad 1" type="event" x="528" y="624" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_dryadsgrove.tmx,33,0,0.3"/>

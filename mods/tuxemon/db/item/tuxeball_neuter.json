@@ -4,7 +4,7 @@
     "not category threat"
   ],
   "effects": [
-    "capture"
+    "capture_combined gender,neuter,0.2,1.5"
   ],
   "animation": "capture_1",
   "slug": "tuxeball_neuter",

@@ -11,10 +11,6 @@ events:
     conditions:
     - not variable_set environment:interior
     type: "event"
-  Player Spawn:
-    x: 5
-    y: 10
-    type: "event"
   Teleport to Flower City:
     actions:
     - transition_teleport spyder_flower_city.tmx,34,18,0.3

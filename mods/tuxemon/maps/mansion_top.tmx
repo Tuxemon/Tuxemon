@@ -67,7 +67,6 @@
     <property name="cond10" value="not music_playing music_mansion_theme"/>
    </properties>
   </object>
-  <object id="28" name="Player Spawn" type="event" x="32" y="224" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="1" type="collision" x="0" y="0" width="16" height="304"/>

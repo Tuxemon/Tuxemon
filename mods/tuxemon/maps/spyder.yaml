@@ -48,6 +48,7 @@ events:
     - format_variable cathedral_fee,int
     - modify_money bill_cathedral,,cathedral_fee
     conditions:
+    - is char_defeated player
     - is location_type clinic
     - is variable_set teleport_clinic:lost
     - is current_state WorldState
@@ -215,6 +216,7 @@ events:
     - set_layer 0:0:128:128
     conditions:
     - is variable_set stage_of_day:night
+    - not variable_set flashback:on
     - not location_inside
     - not check_world layer,0:0:128:128
     type: "event"
@@ -223,6 +225,7 @@ events:
     - set_layer
     conditions:
     - is variable_set stage_of_day:night
+    - not variable_set flashback:on
     - is location_inside
     - not check_world layer,255:255:255:0
     type: "event"
@@ -231,6 +234,7 @@ events:
     - set_layer
     conditions:
     - not variable_set stage_of_day:night
+    - not variable_set flashback:on
     - not location_inside
     - is check_world layer,0:0:128:128
     type: "event"
@@ -304,7 +308,7 @@ events:
     actions:
     - set_party_status player
     conditions:
-    - is current_state MainCombatMenuState:WorldState
+    - is current_state MainCombatMenuState:WorldMenuState
     - is party_size player,greater_than,0
     type: "event"
   Cheat Code ApexPlayer:
@@ -316,7 +320,7 @@ events:
     - add_monster arthrobolt,100
     - add_monster eaglace,100
     - add_monster agnigon,100
-    - set_party_attribute player,plague,inoculated
+    - char_plague spyderbite,inoculated
     - set_variable cheat_apex:enabled
     conditions:
     - is check_char_parameter player,name,ApexPlayer

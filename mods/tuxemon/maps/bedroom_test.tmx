@@ -81,6 +81,5 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="26" name="Player Spawn" type="event" x="64" y="80" width="16" height="16"/>
  </objectgroup>
 </map>

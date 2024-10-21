@@ -1,0 +1,51 @@
+{
+    "slug": "weedlantis",
+    "category": "reef",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 2,
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 6,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 10,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 14,
+            "technique": "stabilo"
+        },
+        {
+            "level_learned": 18,
+            "technique": "nest"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "weedsea",
+            "evo_stage": "basic"
+        }
+    ],
+    "tags": ["dragon", "coastal", "sea"],
+    "shape": "dragon",
+    "stage": "stage1",
+    "types": [
+        "water",
+        "wood"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 353,
+    "height": 185,
+    "weight": 120,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

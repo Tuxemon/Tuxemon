@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="89">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="15" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="92">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="wayfarer_inn1"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_set pieces.tsx"/>
  <tileset firstgid="1551" source="../gfx/tilesets/core_indoor_floors.tsx"/>
@@ -101,7 +101,6 @@
     <property name="cond1" value="not music_playing music_cathedral_theme"/>
    </properties>
   </object>
-  <object id="46" name="Player Spawn" type="event" x="176" y="144" width="16" height="16"/>
   <object id="47" name="Make Shopkeeper" type="event" x="176" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_wayfarer1_norm,11,6"/>
@@ -165,7 +164,7 @@
     <property name="act1" value="translated_dialog spyder_wayfarer1_maniac1"/>
     <property name="act2" value="add_monster botbot,10"/>
     <property name="act3" value="set_variable gotbotbot:yes"/>
-    <property name="act4" value="set_party_attribute player,plague,infected"/>
+    <property name="act4" value="char_plague spyderbite,infected"/>
     <property name="cond1" value="is variable_set wayfarer1_botbot:yes"/>
     <property name="cond2" value="is variable_set quebotbot:yes"/>
     <property name="cond3" value="not variable_set gotbotbot:yes"/>
@@ -206,7 +205,7 @@
   <object id="56" name="Talk Morton" type="event" x="64" y="96" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_wayfarer1_morton1"/>
-    <property name="act11" value="char_plague infected,spyder_wayfarer1_morton"/>
+    <property name="act11" value="char_plague spyderbite,infected,spyder_wayfarer1_morton"/>
     <property name="act12" value="add_monster mrmoswitch,14,spyder_wayfarer1_morton,5,10"/>
     <property name="act13" value="start_battle player,spyder_wayfarer1_morton"/>
     <property name="act14" value="translated_dialog spyder_wayfarer1_morton2"/>
@@ -225,7 +224,7 @@
   <object id="58" name="Talk Jessie" type="event" x="64" y="240" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_wayfarer1_jessie1"/>
-    <property name="act11" value="char_plague infected,spyder_wayfarer1_jessie"/>
+    <property name="act11" value="char_plague spyderbite,infected,spyder_wayfarer1_jessie"/>
     <property name="act12" value="add_monster lapinou,12,spyder_wayfarer1_jessie,5,10"/>
     <property name="act13" value="add_monster cairfrey,12,spyder_wayfarer1_jessie,5,10"/>
     <property name="act14" value="start_battle player,spyder_wayfarer1_jessie"/>
@@ -244,7 +243,7 @@
   <object id="60" name="Talk Nightshade" type="event" x="48" y="208" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_wayfarer1_nightshade1"/>
-    <property name="act11" value="char_plague infected,spyder_wayfarer1_nightshade"/>
+    <property name="act11" value="char_plague spyderbite,infected,spyder_wayfarer1_nightshade"/>
     <property name="act12" value="add_monster lapinou,12,spyder_wayfarer1_nightshade,5,10"/>
     <property name="act13" value="add_monster elofly,12,spyder_wayfarer1_nightshade,5,10"/>
     <property name="act14" value="start_battle player,spyder_wayfarer1_nightshade"/>
@@ -280,7 +279,7 @@
   <object id="64" name="Talk Morningstar" type="event" x="16" y="32" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_wayfarer1_morningstar1"/>
-    <property name="act11" value="char_plague infected,spyder_wayfarer1_morningstar"/>
+    <property name="act11" value="char_plague spyderbite,infected,spyder_wayfarer1_morningstar"/>
     <property name="act12" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,5,10"/>
     <property name="act13" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,5,10"/>
     <property name="act14" value="start_battle player,spyder_wayfarer1_morningstar"/>
@@ -296,7 +295,7 @@
     <property name="act02" value="pathfind_to_player spyder_wayfarer1_morningstar"/>
     <property name="act03" value="translated_dialog spyder_wayfarer1_morningstar1"/>
     <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="char_plague infected,spyder_wayfarer1_morningstar"/>
+    <property name="act05" value="char_plague spyderbite,infected,spyder_wayfarer1_morningstar"/>
     <property name="act06" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,5,10"/>
     <property name="act07" value="add_monster cairfrey,12,spyder_wayfarer1_morningstar,5,10"/>
     <property name="act08" value="start_battle player,spyder_wayfarer1_morningstar"/>
@@ -312,7 +311,7 @@
     <property name="act02" value="pathfind_to_player spyder_wayfarer1_victor"/>
     <property name="act03" value="translated_dialog spyder_wayfarer1_victor1"/>
     <property name="act04" value="unlock_controls"/>
-    <property name="act05" value="char_plague infected,spyder_wayfarer1_victor"/>
+    <property name="act05" value="char_plague spyderbite,infected,spyder_wayfarer1_victor"/>
     <property name="act06" value="add_monster squabbit,14,spyder_wayfarer1_victor,5,10"/>
     <property name="act07" value="start_battle player,spyder_wayfarer1_victor"/>
     <property name="act08" value="translated_dialog spyder_wayfarer1_victor2"/>
@@ -337,7 +336,7 @@
   <object id="77" name="Talk Ratcher" type="event" x="80" y="112" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_wayfarer1_ratcher1"/>
-    <property name="act11" value="char_plague infected,spyder_wayfarer1_ratcher"/>
+    <property name="act11" value="char_plague spyderbite,infected,spyder_wayfarer1_ratcher"/>
     <property name="act12" value="add_monster lapinou,14,spyder_wayfarer1_ratcher,5,10"/>
     <property name="act13" value="start_battle player,spyder_wayfarer1_ratcher"/>
     <property name="act14" value="translated_dialog spyder_wayfarer1_ratcher2"/>
@@ -356,7 +355,7 @@
   <object id="79" name="Talk Bismuth" type="event" x="16" y="224" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog spyder_wayfarer1_bismuth1"/>
-    <property name="act11" value="char_plague infected,spyder_wayfarer1_bismuth"/>
+    <property name="act11" value="char_plague spyderbite,infected,spyder_wayfarer1_bismuth"/>
     <property name="act12" value="add_monster hydrone,14,spyder_wayfarer1_bismuth,5,10"/>
     <property name="act13" value="start_battle player,spyder_wayfarer1_bismuth"/>
     <property name="act14" value="translated_dialog spyder_wayfarer1_bismuth2"/>
@@ -412,6 +411,27 @@
     <property name="act1" value="translated_dialog spyder_wayfarer1_victor2"/>
     <property name="behav1" value="talk spyder_wayfarer1_victor"/>
     <property name="cond1" value="is variable_set wayfarer1victor:yes"/>
+   </properties>
+  </object>
+  <object id="89" name="Guestbook" type="event" x="160" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_enforcershq_trigger"/>
+    <property name="act2" value="translated_dialog_choice no:yes,enforcers_response"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="90" name="Trigger Flashback" type="event" x="160" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_nimrod_room.tmx,8,6"/>
+    <property name="cond1" value="is variable_set enforcers_response:yes"/>
+   </properties>
+  </object>
+  <object id="91" name="Default Template" type="event" x="144" y="80" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_template player,default"/>
+    <property name="cond1" value="is char_sprite player,invisible"/>
+    <property name="cond2" value="is variable_set enforcers_response:done"/>
    </properties>
   </object>
  </objectgroup>

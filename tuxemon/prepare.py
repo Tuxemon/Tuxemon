@@ -338,7 +338,6 @@ MULT_MAP = {
 SORT_ORDER: list[str] = [
     "potion",
     "utility",
-    "food",
     "quest",
     "meta",
     "damage",

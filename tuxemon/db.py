@@ -48,14 +48,12 @@ class Orientation(str, Enum):
 
 # ItemSort defines the sort of item an item is.
 class ItemSort(str, Enum):
-    food = "food"
     potion = "potion"
     utility = "utility"
     quest = "quest"
 
 
 class PlagueType(str, Enum):
-    healthy = "healthy"
     inoculated = "inoculated"
     infected = "infected"
 
@@ -107,7 +105,6 @@ class ItemCategory(str, Enum):
     elements = "elements"
     fossil = "fossil"
     morph = "morph"
-    revive = "revive"
     potion = "potion"
     technique = "technique"
     phone = "phone"
@@ -485,19 +482,7 @@ class MonsterEvolutionItemModel(BaseModel):
     ) -> Optional[Sequence[str]]:
         if v is None:
             return v
-        if len(v) != len(set(v)):
-            raise ValueError("The sequence contains duplicate variables")
-        for variable in v:
-            if (
-                not variable
-                or len(variable.split(":")) != 2
-                or variable[0] == ":"
-                or variable[-1] == ":"
-            ):
-                raise ValueError(
-                    f"the variable {variable} isn't formatted correctly"
-                )
-        return v
+        return has.validate_variables(v)
 
     @field_validator("stats")
     def stats_exists(
@@ -939,7 +924,6 @@ class ConditionModel(BaseModel):
         ...,
         description="Axes along which condition animation should be flipped",
     )
-    target: TargetModel
     animation: Optional[str] = Field(
         None, description="Animation to play for this condition"
     )
@@ -1283,24 +1267,12 @@ class EncounterItemModel(BaseModel):
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
     @field_validator("variables")
-    def variable_exists(
-        cls: EncounterItemModel, v: Optional[str]
-    ) -> Optional[str]:
+    def variables_exists(
+        cls: EncounterItemModel, v: Optional[Sequence[str]]
+    ) -> Optional[Sequence[str]]:
         if v is None:
             return v
-        if len(v) != len(set(v)):
-            raise ValueError("The sequence contains duplicate variables")
-        for variable in v:
-            if (
-                not variable
-                or len(variable.split(":")) != 2
-                or variable[0] == ":"
-                or variable[-1] == ":"
-            ):
-                raise ValueError(
-                    f"the variable {variable} isn't formatted correctly"
-                )
-        return v
+        return has.validate_variables(v)
 
 
 class EncounterModel(BaseModel):
@@ -1363,7 +1335,11 @@ class EconomyItemModel(BaseModel):
     price: int = Field(0, description="Price of the item")
     cost: int = Field(0, description="Cost of the item")
     inventory: int = Field(-1, description="Quantity of the item")
-    variable: Optional[str] = Field(None, description="Variable of the item")
+    variables: Optional[Sequence[str]] = Field(
+        None,
+        description="List of variables that affect the item in the economy.",
+        min_length=1,
+    )
 
     @field_validator("item_name")
     def item_exists(cls: EconomyItemModel, v: str) -> str:
@@ -1371,13 +1347,13 @@ class EconomyItemModel(BaseModel):
             return v
         raise ValueError(f"the item {v} doesn't exist in the db")
 
-    @field_validator("variable")
-    def variable_exists(
-        cls: EconomyItemModel, v: Optional[str]
-    ) -> Optional[str]:
-        if not v or v.find(":") > 1:
+    @field_validator("variables")
+    def variables_exists(
+        cls: EconomyItemModel, v: Optional[Sequence[str]]
+    ) -> Optional[Sequence[str]]:
+        if v is None:
             return v
-        raise ValueError(f"the variable {v} isn't formatted correctly")
+        return has.validate_variables(v)
 
 
 class EconomyModel(BaseModel):
@@ -1997,6 +1973,35 @@ class Validator:
         if slug in self.db.preloaded[table]:
             return True
         return False
+
+    def validate_variables(self, variables: Sequence[str]) -> Sequence[str]:
+        """
+        Validates a sequence of variables.
+
+        Parameters:
+        variables: A sequence of variables, where each variable is a string
+            in the format "key:value".
+
+        Returns:
+            The input sequence if it is valid.
+
+        Raises:
+        ValueError: If the sequence contains duplicate variables or if any variable
+                    is not in the correct format.
+        """
+        if len(variables) != len(set(variables)):
+            raise ValueError("The sequence contains duplicate variables")
+        for variable in variables:
+            if (
+                not variable
+                or len(variable.split(":")) != 2
+                or variable[0] == ":"
+                or variable[-1] == ":"
+            ):
+                raise ValueError(
+                    f"the variable {variable} isn't formatted correctly"
+                )
+        return variables
 
 
 # Validator container

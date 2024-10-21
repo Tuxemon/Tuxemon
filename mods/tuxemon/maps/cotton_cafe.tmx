@@ -56,7 +56,6 @@
     <property name="cond20" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="14" name="Player Spawn" type="event" x="112" y="144" width="16" height="16"/>
   <object id="15" name="Go Basement" type="event" x="0" y="160" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport cotton_cafe_basement.tmx,1,10,0.3"/>

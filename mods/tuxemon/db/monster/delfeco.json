@@ -1,0 +1,58 @@
+{
+    "slug": "delfeco",
+    "category": "joyful_dolphin",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "goad"
+        },
+        {
+            "level_learned": 2,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 6,
+            "technique": "geyser"
+        },
+        {
+            "level_learned": 8,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 12,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 16,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 20,
+            "technique": "web"
+        },
+        {
+            "level_learned": 32,
+            "technique": "chill_mist"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "dollfin",
+            "evo_stage": "basic"
+        }
+    ],
+    "tags": ["piscine", "coastal", "freshwater", "sea"],
+    "shape": "piscine",
+    "stage": "stage1",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 24,
+    "height": 200,
+    "weight": 150,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.85,
+    "upper_catch_resistance": 1.1
+}

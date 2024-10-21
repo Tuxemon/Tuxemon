@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="272">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="272">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="north" value="crystal_town"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route7"/>
   <property name="south" value="routea"/>
-  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <tileset firstgid="8193" source="../gfx/tilesets/core_set pieces.tsx"/>
@@ -20,9 +20,14 @@
    eAHVlb2OFDEQhIcVxGSQ8hLLny5DIuRtnCCiAUEGTzMJIocInmYSIrq4/Xbr+vyzc4g/S3Vtu6u7y23vXLkzTWUjnk1Xx9Z4+C/uTdOj3TQ9DjwJfIi18ND21tAmLAnsY93/NuS9O2B363osXGJb9v1BD7qyfRo6ib3akdN+y18OPVcv5waIbdmRvpe/oI+aPX3L4E5G+j6GPnJs7d85+pTz4vYpMzFY6XsVbr9XX38Pfbyjz8HTXO9JA93Yy93TX2r0+ndiX87Ihf0a+r4dcPf+ac6ebAmNAsPfPtpdNzz0OZ8zEqezzhHQA/mw5fCusWtoE3o5pD9/U9BH3hyv/L3ewiceS96jjdojffJnfcvh7ZOXeljlP0dfyf2K9VGb5mfq0z3m++vdI/rQ37JLaKgBjUvoEzh3zcqvcRG2VFDrk/L72+Qs2fJ7vKxw+ou+Wo7cJ8/BedzW9KknvfFJ5wzO8wZJ8QL9EF9DPcLiq9WfgwQ4Yz5X7pXWftY16hMrXy1+DT1CbeAb6eMc5GBds8rFUH9ao6h3ATTQC7f4RvqWOJ/AYF2z9KvWK++vevsTkXcNzJE8g/zkVLzQyu3753ybcz31i/4uMRekraWPfsiW4AHfr83FG/U8a9Na/VIv/JzSJtT4Xhtei+vx4txUHzVL5BCUS5jDkQFXFl6L67Hi3ESf7pOxRA5BuYTRgCc7B7kHcc59s3rPGbX7LZETSCtz7Bp+0NMmn3iKaw35MjIX/xLcDHHz3ho8MIe/hxEPv9ucD1/urdbeX631rYAvm3PlNdy8zxq/W3zYoy/qrwmxPO5dxJvVWz/yd39WX4neZEgfezV98vsoodnBWehFtvjdtjjocKvarNG3hAbg2jT3Oj7PNVk7hzk+LPvocKuarKUvfyv8jeptLrs6qJUttd22OOhw6/ry22QtTks7vylxasN1Mb+pPtftc9VFa7a8iZo27S27629iq7593FsPquN6fS69/iZG3yv1MA/66nmZZ67W+Xxaw69Z76nifa3vlXroEMeHfNI4yk1e6cnYD3qMX3W9jvdWb9V/b6z53Xlcb561ab1leG7O7Fa5fK0ea3hcby6ux2+Zn1Mnc17HxptATdN+8D+lFtPby7Wdq1pC5nB+ceFgvzy4vqd4/FttL1Y+Rqn0RXutUXtzv3Pvf9fHnf8tW+vf3u5X838NPwCXAiT8
   </data>
  </layer>
- <layer id="6" name="Tile Layer 3" width="40" height="40">
+ <layer id="3" name="Tile Layer 3" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   eAHt0LENACAIBEDiJE7hzm7iWBYsQIeJR03y/xfRd2tk9p59HSrJ5/F+lQ1+CBAgQIAAAQIECBAgQIAAAQIECBAgQIDATwIXUQwB6g==
+   eAHt0DENAEAMA7HqkRRF+Y8Pqxg6ZXHmkyK5Krd5ue/L8+9LrSVAgAABAgQIECBAgAABAgQIECBAgAABAgTSAgsWswEh
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="40" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt0AENAAAIw7BLwT4ukfGEdAqWJv12+g8OCBAgQIAAAQIECBAgQIAAAQIECBAgQIAAgT8CB1NZAMo=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
@@ -112,7 +117,6 @@
     <property name="cond2" value="is char_moved player"/>
    </properties>
   </object>
-  <object id="6" name="Player Spawn" type="event" x="0" y="32" width="16" height="16"/>
   <object id="201" name="Encounters" type="event" x="32" y="112" width="112" height="64">
    <properties>
     <property name="act1" value="random_encounter spyder_route7"/>

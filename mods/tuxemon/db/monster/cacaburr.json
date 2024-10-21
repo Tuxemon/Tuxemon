@@ -1,0 +1,46 @@
+{
+    "slug": "cacaburr",
+    "category": "biting_pear",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "saber"
+        },
+        {
+            "level_learned": 2,
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 6,
+            "technique": "tip"
+        },
+        {
+            "level_learned": 10,
+            "technique": "stabilo"
+        },
+        {
+            "level_learned": 18,
+            "technique": "perfect_cut"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "burrlock",
+            "evo_stage": "basic"
+        }
+    ],
+    "tags": ["blob"],
+    "shape": "blob",
+    "stage": "stage1",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 326,
+    "height": 90,
+    "weight": 50,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

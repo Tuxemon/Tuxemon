@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="54">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="54">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="omnichannel1"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
   <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
@@ -27,9 +27,14 @@
    eAFjYGBg+CeOipdKoPLR5YFawEANqA4Zf0XjI8uB2LgASB85YLDqg4XXEqi/iHUnLLxg6mE0obDJ42dgyAdiWUmISmL1zQbqmQPErlB92kD3gtzOhhQfYVAxkDguEAxUA3J7KJI+mBi+eMdlHrXEBYB+EwTiZUh+gMUNjIbFEbKdtkA9dkAMCkeQ+7FhbGEMM1MXKRyQzQWxsemDmY8cfsToQ1cD4p9FshsUd/jcgqwf2V2guMPnFlz6kMUJsZHtw6YWANasPHw=
   </data>
  </layer>
- <layer id="5" name="Tile Layer 3" width="14" height="21">
+ <layer id="3" name="Tile Layer 3" width="14" height="21">
   <data encoding="base64" compression="zlib">
    eAHNkjtuAjEQhicsSEC6UHIUHneAcAcCXQScACREUiXQIppchSYcIIkUIBwAkHi2+SxsyVq87BYUjPTJ43/mH1uWRUS+7kS+4QcaoCLmiXjwy34KM5jr2qlDZMl+BWvo6doDngxs2G9hB3v4BBNeTCQOCRhZuqon0VKQhnv489XNjLD1EOLrMHsAJtpWbjTX+kbfB7xr+hF9rlm3oiVC3ironlmfz55j50F+o9tz7NzUr7HmGJKHAhRB/ceJ7/7IZ1FCKcMjVED9x0UEX5XeJ6hBHdR/PEbw0XrVeHac2eCElqbpOG0cF+k6fD16XzUvDp+Shg5fQOtF+R9TICXb
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="14" height="21">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITC4QgAABJgAAQ==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">

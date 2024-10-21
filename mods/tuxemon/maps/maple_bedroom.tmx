@@ -48,7 +48,6 @@
     <property name="cond20" value="is char_facing player,left"/>
    </properties>
   </object>
-  <object id="30" name="Player Spawn" type="event" x="48" y="64" width="16" height="16"/>
   <object id="31" name="Use Computer" type="event" x="64" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="change_state PCState"/>

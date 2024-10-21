@@ -79,7 +79,6 @@
     <property name="cond30" value="not variable_set scene:yes"/>
    </properties>
   </object>
-  <object id="28" name="Player Spawn" type="event" x="64" y="48" width="16" height="16"/>
   <object id="29" name="create mom" type="event" x="0" y="32" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc npc_mom,8,3,stand"/>

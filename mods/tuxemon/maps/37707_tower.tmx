@@ -64,7 +64,6 @@
     <property name="cond30" value="not variable_set 37707_tower:activated"/>
    </properties>
   </object>
-  <object id="28" name="Player Spawn" type="event" x="192" y="336" width="16" height="16"/>
   <object id="53" name="Change" type="event" x="192" y="32" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog 37707_computer"/>

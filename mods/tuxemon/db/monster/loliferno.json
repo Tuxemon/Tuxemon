@@ -42,8 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["blob"],
-    "shape": "blob",
+    "tags": ["humanoid", "swamp"],
+    "shape": "humanoid",
     "stage": "stage1",
     "types": [
         "fire"

@@ -1,0 +1,41 @@
+{
+    "slug": "legoplaste",
+    "category": "amoeba",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "constrict"
+        },
+        {
+            "level_learned": 2,
+            "technique": "venomous_tentacle"
+        },
+        {
+            "level_learned": 6,
+            "technique": "pseudopod"
+        },
+        {
+            "level_learned": 10,
+            "technique": "slime"
+        },
+        {
+            "level_learned": 18,
+            "technique": "kraken"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "tags": ["blob", "any"],
+    "shape": "blob",
+    "stage": "standalone",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 314,
+    "height": 100,
+    "weight": 60,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

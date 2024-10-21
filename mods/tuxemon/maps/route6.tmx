@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="77">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="77">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="route6"/>
-  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
@@ -15,9 +15,19 @@
    eAHtltsNwjAMRYOQAPHVH2AD2AHYBRiGFRgCRmAWYBVstVcylqO8aFQkPqy4idNcnzybiXONsNHMucu8tTH5W2rbke1FjIyv7f/1fc5XKn/N70DzeiQ7DXB+X7T+HtM2Xy599uxiUlkgfkG5Lz2GGJSSH/YJt8G3St5H6J9TYg/yPtSm/5ejD5x9fGW9xRr6zqSP15I0rW9NLDbKOEbX3SnGYhmqs1iXrHGsjRVplLlYnEPauD2FNXOXY1o+2Ovz2eKsGeM7lzXnY2mSdT59Mibk57KupS+FNZijDOX+DX6hMXxrPNSP22voKxmjpG9M/qUMoO9KLH13UGn9jf6d+4aDPn3v9PGtz7AY/jjb5Z3Tlz+UN1IMl1+JeQPfhq1W
   </data>
  </layer>
- <layer id="2" name="Obstacles" width="40" height="20">
+ <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eAG9lMFNBDEMRc0VgQQNACVQBdAVxdAMSFAE4gxH4Ii/xFtZVtZOFnYjWY6d/D8vs5k1M3s/NvvwePR48pgZeS919lqt8clZTHhVfOjY+981vjnznIptdAZ80FHf+++goM7roxqGmJlHn+czsxcPjU+PL49vFc3ACzYy/Ua+OQssysyj9uTc7NRD4+LI7NLjyqMbeGUu+p1+tK7voTrfLB8esClHLtZHDFVP3230yXtn+SoPeeb11+v8pHHdnWuWb+w+163ueD5Xdrzxe3frcTdx/7J2tu7ewegd/vX9x3vYcXZ83Tus/KOWc0Y25pVHxYdnpe/W8IAVJvrU8qEXPUd87MOTOupm53hoPz5ioq85fXrRe3TH875cR/3KHB94yPRXvKRFv6LT3ofm/wse8qq/9kuLflfOXZ5bad5+zw0PGc5Ke8g1eMhwHpKhe5aY4NrGyXrOeNPfRy2mzLWtpk+Ga9/1DwZ1BeU=
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">
@@ -168,7 +178,6 @@
     <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="70" name="Player Spawn" type="event" x="144" y="32" width="16" height="16"/>
   <object id="71" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>

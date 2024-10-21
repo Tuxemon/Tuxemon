@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="30">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="30">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="scoop4"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" name="core_set pieces" tilewidth="16" tileheight="16" tilecount="1550" columns="31">
@@ -32,6 +32,11 @@
    eAFjYBhYIA+0HoRBYJ0shCaWvE2iemLNHVU39ELAa+g5eUi4GABnPwJM
   </data>
  </layer>
+ <layer id="4" name="Above Player" width="12" height="22">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjIYA9BAAEIAAB
+  </data>
+ </layer>
  <objectgroup color="#ffff00" id="6" name="Event">
   <object id="1" name="Play Music" type="event" x="0" y="0" width="16" height="16"/>
   <object id="2" name="Teleport to Scoop 3" type="event" x="144" y="336" width="16" height="16">
@@ -50,7 +55,6 @@
     <property name="cond20" value="is char_facing player,right"/>
    </properties>
   </object>
-  <object id="29" name="Player Spawn" type="event" x="160" y="320" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ff0000" id="7" name="Collisions">
   <object id="4" type="collision" x="0" y="0" width="192" height="48"/>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="20">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="20">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="dojo3"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
  <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
@@ -20,7 +20,12 @@
    eAFjYBhYsEKageGQFHaMLncYqI5UcA1ofhUOjC73kUjzeVkYGPhIxPxA9cSabw1Ua0MitqXAfFxhiuwGkPmy0LgiFA/o7ifW/EpoPOEKJ1i4I7uLFDYozvDFA7q78ZkN8hM2eXzxgMt8FSFMs6hpPjZ34hIjx/24zMImjm4+APBYO3Y=
   </data>
  </layer>
- <layer id="3" name="Above Player" width="24" height="12">
+ <layer id="3" name="Tile Layer 3" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITAwIQAABIAAAQ==
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="24" height="12">
   <data encoding="base64" compression="zlib">
    eAFjYBgFoyEwGgKjITAwIQAABIAAAQ==
   </data>
@@ -40,7 +45,6 @@
     <property name="cond20" value="is char_facing player,left"/>
    </properties>
   </object>
-  <object id="19" name="Player Spawn" type="event" x="176" y="144" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="1" type="collision" x="32" y="80" width="16" height="112"/>

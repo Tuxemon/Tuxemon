@@ -37,17 +37,29 @@
     ],
     "evolutions": [
         {
-            "at_level": 18,
-            "monster_slug": "loliferno"
+            "monster_slug": "loliferno",
+            "item": "flintstone"
+        },
+        {
+            "at_level": 20,
+            "monster_slug": "spirain"
         }
     ],
     "history": [
         {
             "mon_slug": "loliferno",
             "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "spirain",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "tornicane",
+            "evo_stage": "stage2"
         }
     ],
-    "tags": ["blob"],
+    "tags": ["blob", "swamp"],
     "shape": "blob",
     "stage": "basic",
     "types": [

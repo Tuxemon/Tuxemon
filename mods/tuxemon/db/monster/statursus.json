@@ -35,11 +35,20 @@
             "technique": "electrical_storm"
         }
     ],
-    "evolutions": [],
+    "evolutions": [
+        {
+            "at_level": 36,
+            "monster_slug": "coaldiak"
+        }
+    ],
     "history": [
         {
             "mon_slug": "furnursus",
             "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "coaldiak",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["humanoid"],

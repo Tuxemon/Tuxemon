@@ -45,6 +45,7 @@ from tuxemon.session import local_session
 from tuxemon.states.world.world_classes import BoundaryChecker
 from tuxemon.states.world.world_menus import WorldMenuState
 from tuxemon.surfanim import SurfaceAnimation
+from tuxemon.teleporter import Teleporter
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -123,6 +124,7 @@ class WorldState(state.State):
         from tuxemon.player import Player
 
         self.boundary_checker = BoundaryChecker()
+        self.teleporter = Teleporter()
         # Provide access to the screen surface
         self.screen = self.client.screen
         self.screen_rect = self.screen.get_rect()
@@ -158,19 +160,8 @@ class WorldState(state.State):
 
         # bubble above the player's head
         self.bubble: dict[NPC, pygame.surface.Surface] = {}
-
-        # The delayed teleport variable is used to perform a teleport in the
-        # middle of a transition. For example, fading to black, then
-        # teleporting the player, and fading back in again.
-        self.delayed_char: Optional[NPC] = None
-        self.delayed_teleport = False
-        self.delayed_mapname = ""
-        self.delayed_x = 0
-        self.delayed_y = 0
-
-        # The delayed facing variable used to change the player's facing in
-        # the middle of a transition.
-        self.delayed_facing: Optional[Direction] = None
+        self.cinema_x_ratio: Optional[float] = None
+        self.cinema_y_ratio: Optional[float] = None
 
         ######################################################################
         #                       Fullscreen Animations                        #
@@ -224,7 +215,12 @@ class WorldState(state.State):
         self.in_transition = True
         self.trigger_fade_out(duration, color)
 
-        task = self.task(self.handle_delayed_teleport, duration)
+        task = self.task(
+            partial(
+                self.teleporter.handle_delayed_teleport, self, self.player
+            ),
+            duration,
+        )
         task.chain(fade_in, duration + 0.5)
 
     def trigger_fade_in(self, duration: float, color: ColorLike) -> None:
@@ -267,37 +263,6 @@ class WorldState(state.State):
         )
         self.stop_char(self.player)
         self.lock_controls(self.player)
-
-    def handle_delayed_teleport(self) -> None:
-        """
-        Call to teleport player if delayed_teleport is set.
-
-        * Load a map
-        * Move player
-        * Send data to network about teleport
-
-        """
-        if self.delayed_teleport:
-            if self.delayed_char:
-                char = self.delayed_char
-            else:
-                char = self.player
-            self.stop_char(char)
-            self.lock_controls(char)
-
-            # check if map has changed, and if so, change it
-            map_name = prepare.fetch("maps", self.delayed_mapname)
-
-            if map_name != self.current_map.filename:
-                self.change_map(map_name)
-
-            char.set_position((self.delayed_x, self.delayed_y))
-
-            if self.delayed_facing:
-                char.facing = self.delayed_facing
-                self.delayed_facing = None
-
-            self.delayed_teleport = False
 
     def set_transition_surface(self, color: ColorLike) -> None:
         self.transition_surface = pygame.Surface(
@@ -519,17 +484,43 @@ class WorldState(state.State):
             surface, surface.get_rect(), screen_surfaces
         )
 
-    def apply_cinema_mode(self, surface: pygame.surface.Surface) -> None:
-        """Apply cinema mode if necessary."""
-        top_bar = pygame.Surface((self.resolution[0], self.resolution[1] / 6))
-        bottom_bar = pygame.Surface(
-            (self.resolution[0], self.resolution[1] / 6)
-        )
-        top_bar.fill(prepare.BLACK_COLOR)
-        bottom_bar.fill(prepare.BLACK_COLOR)
-        surface.blit(top_bar, (0, 0))
-        bottom = surface.get_rect().bottom - self.resolution[1] / 6
-        surface.blit(bottom_bar, (0, bottom))
+    def apply_vertical_bars(
+        self, surface: pygame.surface.Surface, aspect_ratio: float
+    ) -> None:
+        """
+        Add vertical black bars to the top and bottom of the screen
+        to achieve a cinematic aspect ratio.
+        """
+        screen_aspect_ratio = self.resolution[0] / self.resolution[1]
+        if screen_aspect_ratio < aspect_ratio:
+            bar_height = int(
+                self.resolution[1]
+                * (1 - screen_aspect_ratio / aspect_ratio)
+                / 2
+            )
+            bar = pygame.Surface((self.resolution[0], bar_height))
+            bar.fill(prepare.BLACK_COLOR)
+            surface.blit(bar, (0, 0))
+            surface.blit(bar, (0, self.resolution[1] - bar_height))
+
+    def apply_horizontal_bars(
+        self, surface: pygame.surface.Surface, aspect_ratio: float
+    ) -> None:
+        """
+        Add horizontal black bars to the left and right of the screen
+        to achieve a cinematic aspect ratio.
+        """
+        screen_aspect_ratio = self.resolution[1] / self.resolution[0]
+        if screen_aspect_ratio < aspect_ratio:
+            bar_width = int(
+                self.resolution[0]
+                * (1 - screen_aspect_ratio / aspect_ratio)
+                / 2
+            )
+            bar = pygame.Surface((bar_width, self.resolution[1]))
+            bar.fill(prepare.BLACK_COLOR)
+            surface.blit(bar, (0, 0))
+            surface.blit(bar, (self.resolution[0] - bar_width, 0))
 
     def set_bubble(
         self, screen_surfaces: list[tuple[pygame.surface.Surface, Rect, int]]
@@ -547,9 +538,9 @@ class WorldState(state.State):
                 bubble = (surface, bubble_rect, 100)
                 screen_surfaces.append(bubble)
 
-    def set_layer(self) -> None:
+    def set_layer(self, surface: pygame.surface.Surface) -> None:
         self.layer.fill(self.layer_color)
-        self.screen.blit(self.layer, (0, 0))
+        surface.blit(self.layer, (0, 0))
 
     def map_drawing(self, surface: pygame.surface.Surface) -> None:
         """Draw the map tiles in a layered order."""
@@ -582,16 +573,17 @@ class WorldState(state.State):
         self.draw_map_and_sprites(surface, screen_surfaces)
 
         # Add transparent layer
-        self.set_layer()
+        self.set_layer(surface)
 
         # Draw collision map for debug purposes
         if prepare.CONFIG.collision_map:
             self.debug_drawing(surface)
 
         # Apply cinema mode
-        cinema = self.player.game_variables.get("cinema_mode", "")
-        if cinema == "on":
-            self.apply_cinema_mode(surface)
+        if self.cinema_x_ratio is not None:
+            self.apply_horizontal_bars(surface, self.cinema_x_ratio)
+        if self.cinema_y_ratio is not None:
+            self.apply_vertical_bars(surface, self.cinema_y_ratio)
 
     def get_sprites(self, npc: NPC, layer: int) -> list[WorldSurfaces]:
         """
@@ -698,7 +690,7 @@ class WorldState(state.State):
         """
         npc = self.get_entity(slug)
         if npc:
-            npc.remove_collision(npc.tile_pos)
+            npc.remove_collision()
             self.npcs.remove(npc)
 
     def get_all_entities(self) -> Sequence[NPC]:
@@ -1308,20 +1300,6 @@ class WorldState(state.State):
         player = local_session.player
         self.add_player(player)
         self.stop_char(player)
-        self.set_player_spawn_position(player)
-
-    def set_player_spawn_position(self, character: NPC) -> None:
-        """
-        Sets the player's position to the spawn point defined in the map events.
-
-        Parameters:
-            player: The player object to update.
-        """
-        for eo in self.client.events:
-            if eo.name.lower() == "player spawn":
-                character.set_position((eo.x, eo.y))
-                character.remove_collision((eo.x, eo.y))
-                break
 
     def load_map_data(self, path: str) -> TuxemonMap:
         """

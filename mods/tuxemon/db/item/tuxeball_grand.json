@@ -1,0 +1,23 @@
+{
+  "conditions": [
+    "is wild_monster",
+    "not category threat"
+  ],
+  "effects": [
+    "capture"
+  ],
+  "animation": "capture_1",
+  "slug": "tuxeball_grand",
+  "sort": "utility",
+  "sprite": "gfx/items/tuxeball_grand.png",
+  "category": "capture",
+  "usable_in": [
+    "MainCombatMenuState"
+  ],
+  "behaviors": {
+    "throwable": true
+  },
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
+}

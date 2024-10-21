@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from tuxemon.db import ElementType
 from tuxemon.element import Element
@@ -39,61 +39,82 @@ class SwitchEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> SwitchEffectResult:
-        extra: Optional[str] = None
-        done: bool = False
+        if self.objective not in ("user", "target", "both"):
+            raise ValueError(
+                f"{self.objective} must be 'user', 'target' or 'both'"
+            )
+
         elements = list(ElementType)
-        if self.element != "random":
-            ele = Element(self.element)
-            if ele not in target.types:
-                if self.objective == "user":
-                    user.types = [ele]
-                    done = True
-                elif self.objective == "target":
-                    target.types = [ele]
-                    done = True
-                elif self.objective == "both":
-                    user.types = [ele]
-                    target.types = [ele]
-                    done = True
+
+        if self.element == "random":
+            user_element = Element(random.choice(elements))
+            target_element = Element(random.choice(elements))
         else:
-            _user = random.choice(elements)
-            _target = random.choice(elements)
-            ele_u = Element(_user)
-            ele_t = Element(_target)
-            if self.objective == "user":
-                user.types = [ele_u]
-                done = True
-            elif self.objective == "target":
-                target.types = [ele_t]
-                done = True
-            elif self.objective == "both":
-                user.types = [ele_u]
-                target.types = [ele_t]
-                done = True
-        if done:
-            _type: str = ""
-            _monster: str = ""
-            if self.objective == "both":
-                params = {
-                    "user": user.name.upper(),
-                    "type1": T.translate(user.types[0].slug),
-                    "target": target.name.upper(),
-                    "type2": T.translate(target.types[0].slug),
-                }
-                extra = T.format("combat_state_switch_both", params)
+            user_element = Element(self.element)
+            target_element = Element(self.element)
+
+        extra = None
+        if self.objective == "both":
+            if user.has_type(user_element.slug):
+                extra = get_failure_message(user, user_element)
+            elif target.has_type(target_element.slug):
+                extra = get_failure_message(target, target_element)
             else:
-                if self.objective == "target":
-                    _monster = target.name.upper()
-                    _type = T.translate(target.types[0].slug)
-                if self.objective == "user":
-                    _monster = user.name.upper()
-                    _type = T.translate(user.types[0].slug)
-                params = {"target": _monster, "types": _type}
-                extra = T.format("combat_state_switch", params)
+                user.types = [user_element]
+                target.types = [target_element]
+                extra = get_extra_message_both(user, target, user_element)
+        else:
+            monster = "user" if self.objective == "user" else "target"
+            monster_element = (
+                user_element if monster == "user" else target_element
+            )
+            if (monster == "user" and user.has_type(monster_element.slug)) or (
+                monster == "target" and target.has_type(monster_element.slug)
+            ):
+                extra = get_failure_message(
+                    (user if monster == "user" else target), monster_element
+                )
+            else:
+                if monster == "user":
+                    user.types = [monster_element]
+                else:
+                    target.types = [monster_element]
+                extra = get_failure_message(
+                    (user if monster == "user" else target), monster_element
+                )
+
         return {
-            "success": done,
+            "success": True,
             "damage": 0,
             "element_multiplier": 0.0,
             "should_tackle": False,
             "extra": extra,
         }
+
+
+def get_extra_message_both(
+    user: Monster, target: Monster, new_type: Element
+) -> str:
+    params = {
+        "user": user.name.upper(),
+        "type1": T.translate(new_type.slug).upper(),
+        "target": target.name.upper(),
+        "type2": T.translate(new_type.slug).upper(),
+    }
+    return T.format("combat_state_switch_both", params)
+
+
+def get_extra_message(monster: Monster, new_type: Element) -> str:
+    params = {
+        "target": monster.name.upper(),
+        "types": T.translate(new_type.slug).upper(),
+    }
+    return T.format("combat_state_switch", params)
+
+
+def get_failure_message(monster: Monster, new_type: Element) -> str:
+    params = {
+        "target": monster.name.upper(),
+        "type": T.translate(new_type.slug).upper(),
+    }
+    return T.format("combat_state_switch_fail", params)

@@ -1,0 +1,59 @@
+{
+    "slug": "stonifly",
+    "category": "diptera",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 2,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 6,
+            "technique": "petrify"
+        },
+        {
+            "level_learned": 10,
+            "technique": "stonehenge"
+        },
+        {
+            "level_learned": 14,
+            "technique": "take_cover"
+        },
+        {
+            "level_learned": 18,
+            "technique": "electroplate"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 10,
+            "monster_slug": "cocrune"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "cocrune",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "runesquito",
+            "evo_stage": "stage2"
+        }
+    ],
+    "tags": ["grub"],
+    "shape": "grub",
+    "stage": "basic",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 332,
+    "height": 30,
+    "weight": 16,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

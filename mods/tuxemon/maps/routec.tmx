@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="151">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="151">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="routec"/>
-  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" name="Basic_Buch_Tiles_Compiled" tilewidth="16" tileheight="16" tilecount="448" columns="32">
@@ -15,9 +15,19 @@
    eAHtVkkOgzAM5ETv3V7AD3gL7f+/0O3MjFRLwQVDIMFIBcnKong8GccJVVkUFYzfDa1lXMO1HnY+/HLTnK9Y48GNMS+I/UT7Uho+MOa8J7dQE63j0dDsDd4fWOhv9U/AivXReKIjNbN0Y5wGFqur7D9mX5rj2Fi4WdoOYXD/rME5vkOYel40jtVOcOhPX+Zb5lK3fdhLz1ZqjiGe5HyupiFWjr7kLAd2Csy+fKfA/VcMnsca9ZnznluirdzDDXiOcfSoe/Kb+nZ71NbaMbd8nsjt/jW+m1u7S5gr8uN52t+H7j9DC4zPnnk=
   </data>
  </layer>
- <layer id="2" width="40" height="20">
+ <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
    eAFjYICAq6xQBh7qOhFq8GinSOor0O5vULwF6o7NSGIgue9QcYosooJmkFvD2AbWPX6MDAz+QDxYQRnQbeWD2H2DNdxG3TUaAqMhMBoCoyEwGgKjITAaAkM9BADqoQ3l
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHVlk0KAjEMheNG96JzAr2Aegx1dh5FL+PPlRQv4dq/tS80gVCEcaTgM5BmOu2Qb0LzqEg7O3TS/hHiGL61+RKxhpdeb0eXdu/AMYcv4Gp7xDV8Y/PS616DlC2NF8sV3/3iWf+d2fzcsDLGc8PI6P3GyOZM2m+s5jrGyhd1TBkfXZFpT+SJyGC59g3AdgVbhchiroFauxm4+kRsUf+0diswMvFF/Rsa3wSR5fzl+qeMN9TwDmdhfKd/ysnQI/+mfyyaEjm8h/0sek1dG0+2+WgxX2/6/tt1TffJ3Vf3nXWAlb4bN+V/AQ9ePjQ=
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="40" height="20">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
@@ -67,11 +77,5 @@
     <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="150" name="Player Spawn" type="event" x="96" y="48" width="16" height="16"/>
  </objectgroup>
- <layer id="5" name="Tile Layer 2" width="40" height="20">
-  <data encoding="base64" compression="zlib">
-   eAHVlk0KAjEMheNG96JzAr2Aegx1dh5FL+PPlRQv4dq/tS80gVCEcaTgM5BmOu2Qb0LzqEg7O3TS/hHiGL61+RKxhpdeb0eXdu/AMYcv4Gp7xDV8Y/PS616DlC2NF8sV3/3iWf+d2fzcsDLGc8PI6P3GyOZM2m+s5jrGyhd1TBkfXZFpT+SJyGC59g3AdgVbhchiroFauxm4+kRsUf+0diswMvFF/Rsa3wSR5fzl+qeMN9TwDmdhfKd/ysnQI/+mfyyaEjm8h/0sek1dG0+2+WgxX2/6/tt1TffJ3Vf3nXWAlb4bN+V/AQ9ePjQ=
-  </data>
- </layer>
 </map>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="35" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="312">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="35" height="13" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="312">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="park_cave"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" source="../gfx/tilesets/core_city_and_country.tsx"/>
@@ -19,7 +19,12 @@
    eAGtk9ENwkAMQ/sH/LAKZQLGAKaBbWBMYoknWVZzaqVWOoXmHMeJy3yepledx+C8627+n8T63RLG71Xr7+A9Xgszei6mJbHcucan8XGvfqr1d9fAb/gPhT3GkcZv5RzrOLjF4XnxLNWChy8jWhKnWW9FKP/Yrc/m99oF9eyIWvx3TGrgvdNCXvPRx7V8qr/vkf1lHszJ9NI7Iz3pxz35Tgu4tdHn6GromVqYT1qYeQ2f98Ev+SSP7nXwjIj/quu0wOO+r/HctYg7v2n3zHeuOs2vh9nhYi/UEhMHfimO9tjtYIlnj9yeWvAJb7fGkadb9wK+8xzfRrHzFO78z3R+dN9Sh9+ST+4fRNlzCA==
   </data>
  </layer>
- <layer id="6" name="Tile Layer 3" width="35" height="13">
+ <layer id="3" name="Tile Layer 3" width="35" height="13">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCyCEAAAccAAE=
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="35" height="13">
   <data encoding="base64" compression="zlib">
    eAFjYBgFoyEwGgKjITAaAqMhMBoCyCEAAAccAAE=
   </data>

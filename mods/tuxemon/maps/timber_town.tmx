@@ -145,7 +145,6 @@
     <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="181" name="Player Spawn" type="event" x="560" y="48" width="16" height="16"/>
   <object id="184" name="Sign: Timber Town" type="event" x="32" y="448" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog flower_city"/>

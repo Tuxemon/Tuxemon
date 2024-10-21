@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any
 
+from tuxemon import db
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
@@ -55,6 +56,7 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
 
     """
     _handle_change_monster_name(save_data)
+    _handle_change_plague(save_data)
 
     if isinstance(save_data["template"], list):
         _npc = {
@@ -73,6 +75,30 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
             _transfer_storage_boxes(save_data)
 
     return save_data  # type: ignore[return-value]
+
+
+def _handle_change_plague(save_data: dict[str, Any]) -> None:
+    """
+    Updates monster plague field in the save data.
+    """
+
+    def change_plague(monster: dict[str, Any]) -> None:
+        if not isinstance(monster["plague"], dict):
+            if monster["plague"] == "infected":
+                monster["plague"] = {"spyderbite": db.PlagueType.infected}
+            elif monster["plague"] == "inoculated":
+                monster["plague"] = {"spyderbite": db.PlagueType.inoculated}
+            else:
+                monster["plague"] = {}
+
+    # Update monsters in the save data
+    for monster in save_data["monsters"]:
+        change_plague(monster)
+
+    # Update monsters in the monster boxes
+    for value in save_data["monster_boxes"].values():
+        for element in value:
+            change_plague(element)
 
 
 def _handle_change_monster_name(save_data: dict[str, Any]) -> None:

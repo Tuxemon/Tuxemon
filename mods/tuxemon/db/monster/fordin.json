@@ -51,11 +51,25 @@
             "technique": "venom"
         }
     ],
-    "evolutions": [],
-    "history": [],
+    "evolutions": [
+        {
+            "at_level": 32,
+            "monster_slug": "stegofor"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "stegofor",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "brachifor",
+            "evo_stage": "stage2"
+        }
+    ],
     "tags": ["leviathan", "jungle", "woodland"],
     "shape": "leviathan",
-    "stage": "standalone",
+    "stage": "basic",
     "types": [
         "wood"
     ],

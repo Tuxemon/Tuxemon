@@ -1,0 +1,54 @@
+{
+    "slug": "runesquito",
+    "category": "diptera",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 2,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 6,
+            "technique": "petrify"
+        },
+        {
+            "level_learned": 10,
+            "technique": "stonehenge"
+        },
+        {
+            "level_learned": 14,
+            "technique": "take_cover"
+        },
+        {
+            "level_learned": 18,
+            "technique": "electroplate"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "stonifly",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "cocrune",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["flier", "freshwater", "ruins", "swamp"],
+    "shape": "flier",
+    "stage": "stage2",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 334,
+    "height": 66,
+    "weight": 6,
+    "catch_rate": 35.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

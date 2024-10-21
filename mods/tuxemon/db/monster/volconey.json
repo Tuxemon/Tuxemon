@@ -1,0 +1,50 @@
+{
+    "slug": "volconey",
+    "category": "roaming",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "breathe_fire"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fire_ball"
+        },
+        {
+            "level_learned": 6,
+            "technique": "fire_claw"
+        },
+        {
+            "level_learned": 10,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 14,
+            "technique": "earthquake"
+        },
+        {
+            "level_learned": 18,
+            "technique": "flamethrower"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "thumpurn",
+            "evo_stage": "basic"
+        }
+    ],
+    "tags": ["varmint", "desert", "grassland", "woodland"],
+    "shape": "varmint",
+    "stage": "stage1",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 299,
+    "height": 85,
+    "weight": 32,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

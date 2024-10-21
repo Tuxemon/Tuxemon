@@ -741,6 +741,13 @@
             "width": 256,
             "x": -896,
             "y": 2688
+        },
+        {
+            "fileName": "spyder_nimrod_room.tmx",
+            "height": 112,
+            "width": 144,
+            "x": -144,
+            "y": 320
         }
     ],
     "onlyShowAdjacentMaps": false,

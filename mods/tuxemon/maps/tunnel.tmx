@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="115">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="115">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="tunnel"/>
-  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_water.tsx"/>
@@ -19,9 +19,14 @@
    eAGVllty1EAMRZ1UwQcryWMThG+Yyjb4JtlA2FnYTYA90CfxoW5U6p6ZrpqR3ZKOr+R221cftu16/K6K3cq4vti2m/jdjuNufBucw/hVW/MPJf9+Z1cu2hxq5PzHiP9+uW0Pw34c5x2POLg50OZQo+daWDPezQiiD19ujT5uVzyzq07nOwuP+qnboS600cNzeXDgPo26fpbaYK143hftxZ4P73kc/zqT533RWiu8HNwDbufjEX3kqM18e+j6gcMxLMas3t+f3vxqezt7v17QK0e/vNTxsrOMSZ8160trzcxVHRlXfbV/xqqN89wL9M/sTGPyci+YcXIeja4f55OXPdK/smhkn8hnJXm1RytW+rKXyTunfzPeZTwvp/av7q+BeLeWT+kf/c/61FmfEeZP7V/Hy755jdzvnessvKx5tuflft9xnIOXGtHW6Tulf+ii/5VX92iufax/soiF190DfGpdrT9Z9g2N5sHI4fxq/aFHprnkoXH2zK36By975j73X8vwO5xb9a/yzNHmtZxbrb+Op0Z04ffZldetv8+j8a/v6T0nazJPXvo47vpnHd29kNf54HX9k6cljrpgycN3xwLaB2ubZ7DrnxytOZXn/NPg8g2Cv+ufHK15M97zYPENonbi/+zvXuqSw7vC7wFikte965JH/N+dKY85hufJY767Xn33dXHm1e8eamHk9Vwv1Wbca9L+V2vKOHyul2qJQ9fXYfNXv4OM81vrH7WWY+g=
   </data>
  </layer>
- <layer id="6" name="Tile Layer 3" width="20" height="40">
+ <layer id="3" name="Tile Layer 3" width="20" height="40">
   <data encoding="base64" compression="zlib">
    eAFjYBgFoyEwGgIjIQSctUeCL0f9OBoCoyEwGgKjITAaAqMhMNhDAAC8GgBv
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="20" height="40">
+  <data encoding="base64" compression="zlib">
+   eAHt0DEBAAAAwqD1T20LL4hAYcCAAQMGDBgwYMCAgc/AAAyAAAE=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -144,7 +149,6 @@
     <property name="cond20" value="is char_facing player,left"/>
    </properties>
   </object>
-  <object id="102" name="Player Spawn" type="event" x="112" y="64" width="16" height="16"/>
   <object id="107" name="Environment Day" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>

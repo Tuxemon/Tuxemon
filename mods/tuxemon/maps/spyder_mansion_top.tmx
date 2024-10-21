@@ -84,7 +84,6 @@
     <property name="cond1" value="not music_playing music_mansion_theme"/>
    </properties>
   </object>
-  <object id="28" name="Player Spawn" type="event" x="32" y="224" width="16" height="16"/>
   <object id="29" name="Environment" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:interior"/>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="78">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="78">
  <properties>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="walled_garden1"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
  <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_walls.tsx"/>
@@ -20,9 +20,14 @@
    eAGtkNEJg2AQg++tPlkHkOIItWOo87hQ2z3abmC7R1EnMAEDx6HwP3gQQj5z/HL92examNXQDeqRKbE9ru4D3SfEucOZPdvj6n7R/637A5zZM+5vcTF+P3peJ7MPpIlZnK57ef9jd4TEYhan617e1ReLWZyue3lXXyxmcfrWlJnZhP9/r5rhF7DUadBtg7rE/bxKfeWY3gLDa0ZY
   </data>
  </layer>
- <layer id="4" name="Above Player" width="16" height="12">
+ <layer id="3" name="Tile Layer 3" width="16" height="12">
   <data encoding="base64" compression="zlib">
    eAFjYGBgYFICEkg0MWyYHpBaRah+GI0shouNrBakZrgA5HABsdH52Px5UJGB4RAQHwZi5HABsdH5yGpBZp0E6jkCxEeB+BgQg/i4ADa1L4DqHwPxEyB+CsQgPi5AilpcZgw2cQCW5xyn
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="16" height="12">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwckMAAAMAAAE=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
@@ -51,7 +56,6 @@
     <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="28" name="Player Spawn" type="event" x="176" y="0" width="16" height="16"/>
   <object id="47" name="Room2" type="event" x="112" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_walledgarden2.tmx,7,19,0.3"/>

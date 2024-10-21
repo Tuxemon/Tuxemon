@@ -1,0 +1,55 @@
+{
+    "slug": "bewhich",
+    "category": "hexer",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 2,
+            "technique": "mind_vise"
+        },
+        {
+            "level_learned": 6,
+            "technique": "terror"
+        },
+        {
+            "level_learned": 10,
+            "technique": "time_crisis"
+        },
+        {
+            "level_learned": 14,
+            "technique": "phantasmal_force"
+        },
+        {
+            "level_learned": 18,
+            "technique": "changeling"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "cackleen",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "brumi",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["humanoid", "any"],
+    "shape": "humanoid",
+    "stage": "stage2",
+    "types": [
+        "metal",
+        "wood"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 342,
+    "height": 152,
+    "weight": 0.1,
+    "catch_rate": 35.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

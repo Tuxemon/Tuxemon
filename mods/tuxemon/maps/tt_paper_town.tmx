@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="468">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="22" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="468">
  <properties>
   <property name="edges" value="clamped"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/prototyping_outdoor.tsx"/>
- <layer id="9" name="PTT" width="40" height="22">
+ <layer id="1" name="PTT" width="40" height="22">
   <data encoding="base64" compression="zlib">
    eAGtlD1uFEEQhccL8cJiAzFzAMCsDTFwhN01pIiEHEMGAcRExg6RvHsEsEMkzx7B/IbYR+Av5Xtinmi1uj0ts8Gn6q6prnpTM12DqqouwKDQnieuDig9d9q4VWrdgFJ7PdAmnaXnThs3oEaqf4f4c4T9y8XcXqqqOwnu4tP5XN3Yn3uv3HdU7l2Ywgy22nqhZq0f4H+U4GEbn6sb+2O93ue+o2ofQANz0P7zmar6EvCVdZPQJr3W5zpddpX8qf8v7t+w1ZLSN0LPGCYtG9hU70J9ubqxP6df/Uv1JdY3pCeH6PkAH1s+YV/gT/ESv3Lk6sb+WK/3ypHqS6xPe9G01vucXen9jXedLjsgr+5vKl+qL4o7gAau0IspVmjvdWxnPKtbXK/UWr/Px7YJcvuZ9S2h74jnXRwHOVyv1Po9XHuXXNOAJljbX6NL/jnUkJuBJX7Xz1m/h+oI9aarL71I33fuww/4Cb/gN7zp/fumzv0M33OwXSaP6+es5oi1K4/0zSG+u5pvmmuOadq4NWosn62qFbgIl+AyvEeHYk9C+lw7Z3Xe2rW2vvDuerZprjmmafWNqTFEzxqsw024Ban+6azR85L+9TlzLjhnfbq7nmeebZpryq+YBuawib4ResYwgQ24B1390/OS/l2lxiuwTtUO58aUvbTIGt+PXNyM2Br8n2mdoqR/65yVRnENvsHRf3LM+ZSe2Ffav1Cfckx6ZflL5kdXjP/9nLU2WX/nEfr67MP/0u/+mH9wE57AU8jdu0X5Q31e30ef1vre1mW7habXsA07kHvvRfm30bAD1hZa97PPc/MWTe9gD/ZhUX3K5dmj9j7onpyE48K5o3mzqD7l8vwBJcUWNQ==
   </data>
  </layer>
- <layer id="10" name="PTT2" width="40" height="22">
+ <layer id="2" name="PTT2" width="40" height="22">
   <data encoding="base64" compression="zlib">
    eAFjYBgFgzEErgEdhQvT273lzAwMFUi4EsjGBcQYcckMDnFquo+UcCHW99R0H7F2YlOHK+2BxEcyMB7k6Xskxw0pfkfPu6DyDV+5RorZpKgVIEXxAKg1GAA7SbXSkgQNA5F/SXEfCV4ZVTqEQgCUzwci7REbRIM5n4PyTyQQRxHrmRGkDgC7VBYk
+  </data>
+ </layer>
+ <layer id="3" name="PTT3" width="40" height="22">
+  <data encoding="base64" compression="zlib">
+   eAHt0AENAAAAwqD3T20ON4hAYcCAAQMGDBgwYMCAAQMPAwMNwAAB
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="40" height="22">
+  <data encoding="base64" compression="zlib">
+   eAHt0AENAAAAwqD3T20ON4hAYcCAAQMGDBgwYMCAAQMPAwMNwAAB
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">
@@ -63,7 +73,6 @@
   <object id="465" type="collision" x="0" y="192" width="48" height="32"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
-  <object id="454" name="Player Spawn" type="event" x="224" y="64" width="16" height="16"/>
   <object id="458" name="Teleport to Forest Route 1" type="event" x="208" y="0" width="48" height="16">
    <properties>
     <property name="act1" value="transition_teleport tt_forest_route1.tmx,8,38,0.3"/>

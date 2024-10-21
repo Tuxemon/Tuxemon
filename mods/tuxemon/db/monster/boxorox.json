@@ -1,0 +1,41 @@
+{
+    "slug": "boxorox",
+    "category": "pugilist",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "punch"
+        },
+        {
+            "level_learned": 2,
+            "technique": "evasion"
+        },
+        {
+            "level_learned": 6,
+            "technique": "shadow_boxing"
+        },
+        {
+            "level_learned": 10,
+            "technique": "hammerhead"
+        },
+        {
+            "level_learned": 18,
+            "technique": "one_two"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "tags": ["humanoid"],
+    "shape": "humanoid",
+    "stage": "standalone",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 316,
+    "height": 187,
+    "weight": 154,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

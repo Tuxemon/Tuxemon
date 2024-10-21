@@ -62,7 +62,7 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["dragon"],
+    "tags": ["dragon", "ruins", "underground"],
     "shape": "dragon",
     "stage": "stage2",
     "types": [

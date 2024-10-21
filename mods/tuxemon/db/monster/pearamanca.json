@@ -1,0 +1,41 @@
+{
+    "slug": "pearamanca",
+    "category": "biting_pear",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "energy_claws"
+        },
+        {
+            "level_learned": 2,
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 6,
+            "technique": "changeling"
+        },
+        {
+            "level_learned": 10,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 18,
+            "technique": "overgrowth"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "tags": ["blob"],
+    "shape": "blob",
+    "stage": "standalone",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 284,
+    "height": 90,
+    "weight": 50,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

@@ -1,0 +1,45 @@
+{
+    "slug": "gliffary",
+    "category": "toothsome",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 2,
+            "technique": "phantasmal_force"
+        },
+        {
+            "level_learned": 6,
+            "technique": "mind_vise"
+        },
+        {
+            "level_learned": 10,
+            "technique": "changeling"
+        },
+        {
+            "level_learned": 14,
+            "technique": "terror"
+        },
+        {
+            "level_learned": 18,
+            "technique": "orbs"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "tags": ["sprite"],
+    "shape": "sprite",
+    "stage": "standalone",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 315,
+    "height": 50,
+    "weight": 1.5,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

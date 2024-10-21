@@ -16,14 +16,6 @@
     "value": 1.5,
     "operation": "*"
   },
-  "target": {
-    "enemy_monster": false,
-    "enemy_team": false,
-    "enemy_trainer": false,
-    "own_monster": false,
-    "own_team": false,
-    "own_trainer": false
-  },
   "cond_id": 14,
   "use_failure": null,
   "use_success": "combat_state_focused_get",

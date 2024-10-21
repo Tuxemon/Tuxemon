@@ -1,0 +1,78 @@
+{
+    "slug": "crustagu",
+    "category": "grandfather",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "font"
+        },
+        {
+            "level_learned": 2,
+            "technique": "midnight_mantle"
+        },
+        {
+            "level_learned": 6,
+            "technique": "flow"
+        },
+        {
+            "level_learned": 8,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 12,
+            "technique": "starfall"
+        },
+        {
+            "level_learned": 16,
+            "technique": "ice_claw"
+        },
+        {
+            "level_learned": 20,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 24,
+            "technique": "snowstorm"
+        },
+        {
+            "level_learned": 28,
+            "technique": "mobbing"
+        },
+        {
+            "level_learned": 32,
+            "technique": "orbs"
+        },
+        {
+            "level_learned": 36,
+            "technique": "kraken"
+        },
+        {
+            "level_learned": 40,
+            "technique": "poison_courtship"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "lesmagu",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "shelagu",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["polliwog", "coastal", "sea"],
+    "shape": "polliwog",
+    "stage": "stage2",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 279,
+    "height": 90,
+    "weight": 45,
+    "catch_rate": 35.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

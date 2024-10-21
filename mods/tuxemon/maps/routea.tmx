@@ -110,7 +110,6 @@
     <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="55" name="Player Spawn" type="event" x="176" y="608" width="16" height="16"/>
   <object id="56" name="Teleport to Flower City" type="event" x="176" y="624" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport flower_city.tmx,11,0,0.3"/>

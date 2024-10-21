@@ -1,0 +1,41 @@
+{
+    "slug": "ned",
+    "category": "red_hands",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "punch"
+        },
+        {
+            "level_learned": 2,
+            "technique": "hammerhead"
+        },
+        {
+            "level_learned": 6,
+            "technique": "invictus"
+        },
+        {
+            "level_learned": 10,
+            "technique": "shadow_boxing"
+        },
+        {
+            "level_learned": 18,
+            "technique": "one_two"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "tags": ["brute"],
+    "shape": "brute",
+    "stage": "standalone",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 313,
+    "height": 87,
+    "weight": 32,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

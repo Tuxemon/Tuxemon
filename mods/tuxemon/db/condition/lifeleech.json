@@ -16,14 +16,6 @@
   "sfx": "sfx_bite",
   "slug": "lifeleech",
   "sort": "meta",
-  "target": {
-    "enemy_monster": false,
-    "enemy_team": false,
-    "enemy_trainer": false,
-    "own_monster": false,
-    "own_team": false,
-    "own_trainer": false
-  },
   "cond_id": 3,
   "use_failure": null,
   "use_success": "combat_state_lifeleech_end",

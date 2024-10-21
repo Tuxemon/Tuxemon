@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="85">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="85">
  <properties>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="walled_garden2"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
  <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_walls.tsx"/>
@@ -17,22 +17,27 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="16" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYKA+iFHGbmYSDnHsqkeu6CM5BoZnaPgxkE8sYJRnYGBFw0xAPi3BSUWE6Q+AbpUH2oeMHyK5H1ktTNcLJP3/gWrtgPqRMQOS+5HVwvSPdHoaUvgSCgtsareSoJ8UtYTcMtDyANAlFIA=
+   eAFjYKA+iFHGbmYSDnHsqkeu6CM5BoZnaPgxkE8sYJRnYGBFw0xAPr3AA6Bb5YH2IeOHBNz/QhHhuv9AtXZA/ciYAcn9yGoRukY2axqB8EUOHWxqt5KgnxS1yPYORjYAAAMSrA==
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="16" height="20">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgLDLQROKiJ8hMxGiOJnvUDSj8zGr2voyQIA6rUD5w==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="16" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgLDLQROKiJ8hMxGiOJnvUDSj8zGr2voyQIA6rUD5w==
+   eAFjYBgFoyFAeQicVCTeDFLUEm/qqMrRECA9BADVIgHV
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="1" type="collision" x="0" y="208" width="96" height="64"/>
   <object id="2" type="collision" x="160" y="208" width="96" height="64"/>
-  <object id="3" type="collision" x="32" y="144" width="16" height="32"/>
+  <object id="3" type="collision" x="32" y="160" width="16" height="16"/>
   <object id="5" type="collision" x="80" y="144" width="96" height="32"/>
   <object id="9" type="collision" x="80" y="112" width="96" height="16"/>
   <object id="10" type="collision" x="160" y="272" width="32" height="48"/>
-  <object id="43" type="collision" x="208" y="144" width="16" height="32"/>
+  <object id="43" type="collision" x="208" y="160" width="16" height="16"/>
   <object id="46" type="collision" x="0" y="0" width="256" height="112"/>
   <object id="51" type="collision" x="64" y="272" width="32" height="48"/>
   <object id="52" type="collision" x="0" y="272" width="16" height="48"/>
@@ -53,7 +58,6 @@
     <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="28" name="Player Spawn" type="event" x="112" y="240" width="16" height="16"/>
   <object id="49" name="Room3" type="event" x="208" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_timber_walledgarden1.tmx,13,3,0.3"/>

@@ -200,7 +200,7 @@
     <property name="act60" value="remove_npc spyder_candy_henrik"/>
     <property name="cond1" value="is variable_set confiscation_candy:yes"/>
     <property name="cond2" value="not variable_set party_all_sick:yes"/>
-    <property name="cond3" value="is party_infected player,all"/>
+    <property name="cond3" value="is party_infected player,spyderbite,all"/>
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
    </properties>
   </object>
@@ -213,7 +213,7 @@
     <property name="act40" value="set_variable confiscation_done:yes"/>
     <property name="act50" value="remove_npc spyder_candy_henrik"/>
     <property name="cond1" value="is variable_set confiscation_candy:yes"/>
-    <property name="cond3" value="is party_infected player,none"/>
+    <property name="cond3" value="is party_infected player,spyderbite,none"/>
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
     <property name="cond5" value="not variable_set party_sick:yes"/>
     <property name="cond6" value="is variable_set confiscation_location:river"/>
@@ -226,14 +226,14 @@
     <property name="act15" value="wait 1"/>
     <property name="act20" value="translated_dialog spyder_enforcer_candy4"/>
     <property name="act25" value="wait 1"/>
-    <property name="act30" value="quarantine in"/>
+    <property name="act30" value="quarantine spyderbite,in"/>
     <property name="act40" value="set_variable party_sick:yes"/>
     <property name="act45" value="pathfind spyder_candy_henrik,35,10"/>
     <property name="act50" value="set_variable confiscation_done:yes"/>
     <property name="act60" value="remove_npc spyder_candy_henrik"/>
     <property name="cond1" value="is variable_set confiscation_candy:yes"/>
     <property name="cond2" value="not variable_set party_sick:yes"/>
-    <property name="cond3" value="is party_infected player,some"/>
+    <property name="cond3" value="is party_infected player,spyderbite,some"/>
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
     <property name="cond5" value="is variable_set confiscation_location:river"/>
    </properties>
@@ -447,7 +447,7 @@
     <property name="act40" value="set_variable confiscation_done:yes"/>
     <property name="act50" value="remove_npc spyder_candy_henrik"/>
     <property name="cond1" value="is variable_set confiscation_candy:yes"/>
-    <property name="cond3" value="is party_infected player,none"/>
+    <property name="cond3" value="is party_infected player,spyderbite,none"/>
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
     <property name="cond5" value="not variable_set party_sick:yes"/>
     <property name="cond6" value="is variable_set confiscation_location:land1"/>
@@ -460,14 +460,14 @@
     <property name="act15" value="wait 1"/>
     <property name="act20" value="translated_dialog spyder_enforcer_candy4"/>
     <property name="act25" value="wait 1"/>
-    <property name="act30" value="quarantine in"/>
+    <property name="act30" value="quarantine spyderbite,in"/>
     <property name="act40" value="set_variable party_sick:yes"/>
     <property name="act45" value="pathfind spyder_candy_henrik,21,5"/>
     <property name="act50" value="set_variable confiscation_done:yes"/>
     <property name="act60" value="remove_npc spyder_candy_henrik"/>
     <property name="cond1" value="is variable_set confiscation_candy:yes"/>
     <property name="cond2" value="not variable_set party_sick:yes"/>
-    <property name="cond3" value="is party_infected player,some"/>
+    <property name="cond3" value="is party_infected player,spyderbite,some"/>
     <property name="cond4" value="not variable_set confiscation_done:yes"/>
     <property name="cond5" value="is variable_set confiscation_location:land1"/>
    </properties>

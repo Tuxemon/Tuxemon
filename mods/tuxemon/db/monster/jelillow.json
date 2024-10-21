@@ -51,11 +51,21 @@
             "technique": "goad"
         }
     ],
-    "evolutions": [],
-    "history": [],
+    "evolutions": [
+        {
+            "at_level": 40,
+            "monster_slug": "bedoo"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "bedoo",
+            "evo_stage": "stage1"
+        }
+    ],
     "tags": ["blob"],
     "shape": "blob",
-    "stage": "standalone",
+    "stage": "basic",
     "types": [
         "water"
     ],

@@ -75,7 +75,6 @@
     <property name="cond10" value="not music_playing music_the_wild_places"/>
    </properties>
   </object>
-  <object id="19" name="Player Spawn" type="event" x="32" y="240" width="16" height="16"/>
   <object id="20" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>

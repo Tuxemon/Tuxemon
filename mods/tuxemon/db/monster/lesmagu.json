@@ -61,6 +61,10 @@
         {
             "mon_slug": "shelagu",
             "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "crustagu",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["polliwog", "coastal", "sea"],

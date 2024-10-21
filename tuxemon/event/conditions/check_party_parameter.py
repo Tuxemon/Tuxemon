@@ -7,9 +7,10 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event import MapCondition, get_npc
-from tuxemon.event.conditions.common_party import CommonPartyCondition
+from tuxemon.event.conditions.common import CommonCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
+from tuxemon.tools import compare
 
 logger = logging.getLogger(__name__)
 
@@ -58,6 +59,10 @@ class CheckPartyParameterCondition(EventCondition):
             return False
         party = len(character.monsters)
         times = party if int(_times) > party else int(_times)
-        return CommonPartyCondition.check_party_parameter(
-            character.monsters, _attribute, _value, _operator, times
+
+        count = sum(
+            1
+            for monster in character.monsters
+            if CommonCondition.check_parameter(monster, _attribute, _value)
         )
+        return compare(_operator, count, times)

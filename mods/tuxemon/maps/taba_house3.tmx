@@ -56,7 +56,6 @@
     <property name="cond20" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="36" name="Player Spawn" type="event" x="112" y="80" width="16" height="16"/>
   <object id="48" name="Create Owner" type="event" x="160" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc taba_house3_owner,10,3"/>

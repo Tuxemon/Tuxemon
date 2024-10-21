@@ -53,14 +53,14 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["varmint"],
+    "tags": ["varmint", "desert", "extraplanar"],
     "shape": "varmint",
     "stage": "standalone",
     "types": [
         "metal"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 171,
+    "txmn_id": 61,
     "height": 100,
     "weight": 10,
     "catch_rate": 100.0,

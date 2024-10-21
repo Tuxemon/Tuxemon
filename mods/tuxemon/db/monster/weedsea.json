@@ -1,0 +1,60 @@
+{
+    "slug": "weedsea",
+    "category": "seaweed",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 2,
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 6,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 10,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 14,
+            "technique": "stabilo"
+        },
+        {
+            "level_learned": 18,
+            "technique": "nest"
+        }
+    ],
+    "evolutions": [
+        {
+            "monster_slug": "weedlantis",
+            "party": ["shrab"]
+        },
+        {
+            "monster_slug": "weedlantis",
+            "party": ["lesmagu"]
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "weedlantis",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["blob", "coastal", "sea"],
+    "shape": "blob",
+    "stage": "basic",
+    "types": [
+        "water",
+        "wood"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 352,
+    "height": 100,
+    "weight": 10,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

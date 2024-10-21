@@ -1,0 +1,62 @@
+{
+    "slug": "wendigger",
+    "category": "scarytale",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 6,
+            "technique": "sylvan"
+        },
+        {
+            "level_learned": 8,
+            "technique": "pseudopod"
+        },
+        {
+            "level_learned": 12,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 24,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 28,
+            "technique": "invictus"
+        },
+        {
+            "level_learned": 32,
+            "technique": "fluff_up"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "turnipper",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "beenstalker",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["brute", "boreal/snow", "underground", "woodland"],
+    "shape": "brute",
+    "stage": "stage2",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 200,
+    "height": 210,
+    "weight": 75,
+    "catch_rate": 35.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

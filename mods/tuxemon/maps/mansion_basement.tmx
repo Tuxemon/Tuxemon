@@ -104,6 +104,5 @@
     <property name="cond10" value="not music_playing music_mansion_theme"/>
    </properties>
   </object>
-  <object id="39" name="Player Spawn" type="event" x="96" y="336" width="16" height="16"/>
  </objectgroup>
 </map>

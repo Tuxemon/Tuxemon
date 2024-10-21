@@ -97,7 +97,6 @@
   <object id="178" type="collision" x="432" y="256" width="48" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
-  <object id="124" name="Player Spawn" type="event" x="384" y="448" width="16" height="16"/>
   <object id="173" name="Teleport to Back" type="event" x="384" y="464" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport 37707_town.tmx,35,1,0.5"/>

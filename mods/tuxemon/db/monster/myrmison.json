@@ -1,0 +1,51 @@
+{
+    "slug": "myrmison",
+    "category": "myrmidon",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "energy_claws"
+        },
+        {
+            "level_learned": 6,
+            "technique": "ants"
+        },
+        {
+            "level_learned": 10,
+            "technique": "blood_nets"
+        },
+        {
+            "level_learned": 18,
+            "technique": "sting"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "scarlant",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "shull",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["humanoid", "grassland", "jungle", "mountains", "swamp", "urban", "woodland"],
+    "shape": "humanoid",
+    "stage": "stage2",
+    "types": [
+        "fire",
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 291,
+    "height": 120,
+    "weight": 50,
+    "catch_rate": 35.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

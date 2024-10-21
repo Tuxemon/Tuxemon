@@ -55,7 +55,6 @@
     <property name="cond10" value="not music_playing music_cathedral_theme"/>
    </properties>
   </object>
-  <object id="25" name="Player Spawn" type="event" x="96" y="112" width="16" height="16"/>
   <object id="26" name="create npcs" type="event" x="32" y="0" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc tabanurse,5,4,stand"/>

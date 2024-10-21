@@ -1,0 +1,47 @@
+{
+    "slug": "breem",
+    "category": "parasitized",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 2,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 6,
+            "technique": "spit_poison"
+        },
+        {
+            "level_learned": 10,
+            "technique": "poison_courtship"
+        },
+        {
+            "level_learned": 18,
+            "technique": "viper"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "duggot",
+            "evo_stage": "basic"
+        }
+    ],
+    "tags": ["flier"],
+    "shape": "flier",
+    "stage": "stage1",
+    "types": [
+        "earth",
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 344,
+    "height": 100,
+    "weight": 25,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

@@ -45,6 +45,10 @@
         {
             "mon_slug": "statursus",
             "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "coaldiak",
+            "evo_stage": "stage2"
         }
     ],
     "tags": ["humanoid"],

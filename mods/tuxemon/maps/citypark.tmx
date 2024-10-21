@@ -333,7 +333,6 @@
     <property name="cond20" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="103" name="Player Spawn" type="event" x="80" y="592" width="16" height="16"/>
   <object id="111" name="ripjimmy" type="event" x="32" y="384" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog ripjimmy"/>

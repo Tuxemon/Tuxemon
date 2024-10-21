@@ -54,7 +54,6 @@ class ItemSort(str, Enum):
 
 
 class PlagueType(str, Enum):
-    healthy = "healthy"
     inoculated = "inoculated"
     infected = "infected"
 
@@ -925,7 +924,6 @@ class ConditionModel(BaseModel):
         ...,
         description="Axes along which condition animation should be flipped",
     )
-    target: TargetModel
     animation: Optional[str] = Field(
         None, description="Animation to play for this condition"
     )

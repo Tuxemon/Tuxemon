@@ -75,7 +75,6 @@
     <property name="cond10" value="not music_playing music_omnichannel"/>
    </properties>
   </object>
-  <object id="23" name="Player Spawn" type="event" x="32" y="176" width="16" height="16"/>
   <object id="24" name="Teleport to Omnichannel 0" type="event" x="16" y="64" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport omnichannel0.tmx,1,10,0.3"/>

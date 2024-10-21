@@ -1,0 +1,52 @@
+{
+    "slug": "marvillar",
+    "category": "ant_mimic",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "changeling"
+        },
+        {
+            "level_learned": 6,
+            "technique": "ants"
+        },
+        {
+            "level_learned": 10,
+            "technique": "blood_nets"
+        },
+        {
+            "level_learned": 18,
+            "technique": "energy_claws"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 16,
+            "monster_slug": "marvantis"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "marvantis",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["grub"],
+    "shape": "grub",
+    "stage": "basic",
+    "types": [
+        "fire",
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 287,
+    "height": 30,
+    "weight": 2,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

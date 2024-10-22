@@ -28,7 +28,8 @@ class HarpoonedEffect(CondEffect):
 
     def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         if condition.phase == "add_monster_into_play":
-            target.current_hp -= target.hp // self.divisor
+            damage = target.hp // self.divisor
+            target.current_hp = max(0, target.current_hp - damage)
             if fainted(target):
                 target.faint()
         return CondEffectResult(

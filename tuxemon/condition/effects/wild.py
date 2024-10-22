@@ -41,7 +41,8 @@ class WildEffect(CondEffect):
             skip.load(empty)
             tech = [skip]
             if not fainted(user):
-                user.current_hp -= user.hp // self.divisor
+                damage = user.hp // self.divisor
+                user.current_hp = max(0, user.current_hp - damage)
         return CondEffectResult(
             name=condition.name,
             success=True,

@@ -31,7 +31,7 @@ class WastingEffect(CondEffect):
         done: bool = False
         if condition.phase == "perform_action_status" and not fainted(target):
             damage = (target.hp // self.divisor) * condition.nr_turn
-            target.current_hp -= damage
+            target.current_hp = max(0, target.current_hp - damage)
             done = True
         return CondEffectResult(
             name=condition.name,

@@ -34,7 +34,7 @@ class RecoverEffect(CondEffect):
             user = condition.link
             assert user
             heal = simple_recover(user, self.divisor)
-            user.current_hp += heal
+            user.current_hp = min(user.hp, user.current_hp + heal)
             healing = bool(heal)
         # check for recover (completely healed)
         if (

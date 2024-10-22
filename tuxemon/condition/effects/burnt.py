@@ -28,7 +28,8 @@ class BurntEffect(CondEffect):
     def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         burnt: bool = False
         if condition.phase == "perform_action_status":
-            target.current_hp -= target.hp // self.divisor
+            damage = target.hp // self.divisor
+            target.current_hp = max(0, target.current_hp - damage)
             burnt = True
 
         return CondEffectResult(

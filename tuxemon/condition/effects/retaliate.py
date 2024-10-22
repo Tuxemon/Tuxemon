@@ -65,7 +65,7 @@ class RetaliateEffect(CondEffect):
             and hit
             and not fainted(attacker)
         ):
-            attacker.current_hp -= damage
+            attacker.current_hp = max(0, attacker.current_hp - damage)
             done = True
         return CondEffectResult(
             name=condition.name,

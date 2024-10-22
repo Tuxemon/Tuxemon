@@ -35,8 +35,8 @@ class LifeLeechEffect(CondEffect):
         assert user
         if condition.phase == "perform_action_status" and not fainted(user):
             damage = simple_lifeleech(user, target, self.divisor)
-            target.current_hp -= damage
-            user.current_hp += damage
+            target.current_hp = max(0, target.current_hp - damage)
+            user.current_hp = min(user.hp, user.current_hp + damage)
             lifeleech = True
         if fainted(user):
             target.status.clear()

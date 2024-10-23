@@ -861,10 +861,19 @@ class CombatState(CombatAnimations):
             user.status[0].combat_state = self
             user.status[0].phase = "perform_action_tech"
             result_status = user.status[0].use(user)
-            if result_status["extra"]:
-                message += "\n" + result_status["extra"]
-            if result_status["condition"]:
-                user.apply_status(result_status["condition"])
+            if result_status.extra:
+                templates = [
+                    T.translate(extra) for extra in result_status.extra
+                ]
+                template = "\n".join(templates)
+                message += "\n" + template
+            if result_status.condition:
+                if len(result_status.condition) > 1:
+                    status = random.choice(result_status.condition)
+                    user.apply_status(status)
+                else:
+                    status = result_status.condition[0]
+                    user.apply_status(status)
 
         if result_tech["success"] and method.use_success:
             template = getattr(method, "use_success")
@@ -991,37 +1000,37 @@ class CombatState(CombatAnimations):
             (partial(self.alert, message), action_time)
         )
 
-    def _handle_condition(self, method: Condition, target: Monster) -> None:
+    def _handle_condition(self, condition: Condition, target: Monster) -> None:
         action_time = 0.0
-        method.combat_state = self
-        method.phase = "perform_action_status"
-        method.advance_round()
-        result = method.use(target)
+        condition.combat_state = self
+        condition.phase = "perform_action_status"
+        condition.advance_round()
+        result = condition.use(target)
         context = {
-            "name": method.name,
+            "name": condition.name,
             "target": target.name,
         }
-        cond_mex: str = ""
+        message: str = ""
         # successful conditions
-        if result["success"]:
-            if method.use_success:
-                template = getattr(method, "use_success")
-                cond_mex = T.format(template, context)
+        if result.success:
+            if condition.use_success:
+                template = getattr(condition, "use_success")
+                message = T.format(template, context)
             # first turn status
-            if method.nr_turn == 1 and method.gain_cond:
-                first_turn = getattr(method, "gain_cond")
+            if condition.nr_turn == 1 and condition.gain_cond:
+                first_turn = getattr(condition, "gain_cond")
                 first = T.format(first_turn, context)
-                cond_mex = first + "\n" + cond_mex
+                message = first + "\n" + message
         # not successful conditions
-        if not result["success"]:
-            if method.use_failure:
-                template = getattr(method, "use_failure")
-                cond_mex = T.format(template, context)
-        action_time += compute_text_animation_time(cond_mex)
+        if not result.success:
+            if condition.use_failure:
+                template = getattr(condition, "use_failure")
+                message = T.format(template, context)
+        action_time += compute_text_animation_time(message)
         self.text_animations_queue.append(
-            (partial(self.alert, cond_mex), action_time)
+            (partial(self.alert, message), action_time)
         )
-        self.play_animation(method, target, None, action_time)
+        self.play_animation(condition, target, None, action_time)
 
     def play_animation(
         self,
@@ -1188,8 +1197,11 @@ class CombatState(CombatAnimations):
             monster.status[0].combat_state = self
             monster.status[0].phase = "check_party_hp"
             result_status = monster.status[0].use(monster)
-            if result_status["extra"]:
-                extra = result_status["extra"]
+            if result_status.extra:
+                templates = [
+                    T.translate(extra) for extra in result_status.extra
+                ]
+                extra = "\n".join(templates)
                 action_time = compute_text_animation_time(extra)
                 self.text_animations_queue.append(
                     (partial(self.alert, extra), action_time)

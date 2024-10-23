@@ -3,23 +3,23 @@
     "category": "sea_spray",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "goad"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "flood"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "geyser"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "tonguespear"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "flow"
         },
         {
@@ -27,15 +27,15 @@
             "technique": "icicle_spear"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "starfall"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "tsunami"
         },
         {
-            "level_learned": 36,
+            "level_learned": 37,
             "technique": "ice_storm"
         }
     ],

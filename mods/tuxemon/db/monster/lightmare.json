@@ -3,27 +3,27 @@
     "category": "nightmare_fuel",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "flow"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "sudden_glow"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "grinding"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "geyser"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "glower"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "goad"
         },
         {
@@ -31,7 +31,7 @@
             "technique": "starfall"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "flood"
         },
         {
@@ -39,11 +39,11 @@
             "technique": "static_field"
         },
         {
-            "level_learned": 44,
+            "level_learned": 43,
             "technique": "icicle_spear"
         },
         {
-            "level_learned": 48,
+            "level_learned": 46,
             "technique": "proboscis"
         }
     ],

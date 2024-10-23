@@ -3,23 +3,23 @@
     "category": "woodwose",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "punch"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "fluff_up"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "sting"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "overgrowth"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "walls"
         },
         {
@@ -27,11 +27,11 @@
             "technique": "orbs"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "changeling"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "phantasmal_force"
         },
         {
@@ -39,11 +39,11 @@
             "technique": "clairaudience"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "splinter"
         },
         {
-            "level_learned": 36,
+            "level_learned": 37,
             "technique": "one_two"
         },
         {
@@ -51,11 +51,11 @@
             "technique": "blossom"
         },
         {
-            "level_learned": 44,
+            "level_learned": 43,
             "technique": "pseudopod"
         },
         {
-            "level_learned": 48,
+            "level_learned": 46,
             "technique": "sylvan"
         },
         {

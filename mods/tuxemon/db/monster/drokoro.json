@@ -3,23 +3,23 @@
     "category": "dragon",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "tinder"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "berserk"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "breathe_fire"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "fire_shield"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "firestorm"
         },
         {
@@ -27,11 +27,11 @@
             "technique": "give_all"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "one_two"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "all_in"
         },
         {
@@ -39,11 +39,11 @@
             "technique": "chameleon"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "muddle"
         },
         {
-            "level_learned": 36,
+            "level_learned": 37,
             "technique": "supernova"
         },
         {

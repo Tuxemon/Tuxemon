@@ -3,23 +3,23 @@
     "category": "purified",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "stone_rot"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "hammerhead"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "quicksand"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "spit_poison"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "wallow"
         },
         {
@@ -27,11 +27,11 @@
             "technique": "flood"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "chill_mist"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "goad"
         }
     ],

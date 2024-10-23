@@ -3,23 +3,23 @@
     "category": "long_winged",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "peck"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "kindling_flame"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "sand_spray"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "stampede"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "fire_shield"
         },
         {
@@ -27,15 +27,15 @@
             "technique": "arcane_eye"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "breathe_fire"
         },
         {
-            "level_learned": 44,
+            "level_learned": 43,
             "technique": "peregrine"
         },
         {
-            "level_learned": 48,
+            "level_learned": 46,
             "technique": "all_in"
         },
         {

@@ -3,31 +3,31 @@
     "category": "helping_hand",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "muddle"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "clamp_on"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "poison_courtship"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "stabilo"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "ram"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "fester"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "splinter"
         },
         {

@@ -3,15 +3,15 @@
     "category": "myrmidon",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "clamp_on"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "energy_claws"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "ants"
         },
         {
@@ -19,7 +19,7 @@
             "technique": "blood_nets"
         },
         {
-            "level_learned": 18,
+            "level_learned": 19,
             "technique": "sting"
         }
     ],

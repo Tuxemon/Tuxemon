@@ -3,27 +3,27 @@
     "category": "restless",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "sting"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "feint"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "assault"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "chameleon"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "whirlwind"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "splinter"
         },
         {
@@ -31,7 +31,7 @@
             "technique": "peregrine"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "pseudopod"
         },
         {
@@ -39,11 +39,11 @@
             "technique": "wing_tip"
         },
         {
-            "level_learned": 44,
+            "level_learned": 43,
             "technique": "all_in"
         },
         {
-            "level_learned": 48,
+            "level_learned": 46,
             "technique": "invictus"
         }
     ],

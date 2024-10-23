@@ -3,23 +3,23 @@
     "category": "pitcher",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "solar_synthesis"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "pseudopod"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "overgrowth"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "assault"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "wing_tip"
         },
         {
@@ -27,11 +27,11 @@
             "technique": "sting"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "sylvan"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "assault"
         },
         {
@@ -39,11 +39,11 @@
             "technique": "all_in"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "chameleon"
         },
         {
-            "level_learned": 36,
+            "level_learned": 37,
             "technique": "shadow_boxing"
         },
         {

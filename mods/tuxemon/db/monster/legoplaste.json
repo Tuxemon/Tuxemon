@@ -3,15 +3,15 @@
     "category": "amoeba",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "constrict"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "venomous_tentacle"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "pseudopod"
         },
         {
@@ -19,7 +19,7 @@
             "technique": "slime"
         },
         {
-            "level_learned": 18,
+            "level_learned": 19,
             "technique": "kraken"
         }
     ],

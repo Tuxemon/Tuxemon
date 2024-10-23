@@ -3,23 +3,23 @@
     "category": "dragon",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "perfect_cut"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "shrapnel"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "viper"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "insanity"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "undertaker"
         },
         {
@@ -31,15 +31,15 @@
             "technique": "rust_bomb"
         },
         {
-            "level_learned": 44,
+            "level_learned": 43,
             "technique": "shuriken"
         },
         {
-            "level_learned": 48,
+            "level_learned": 46,
             "technique": "wall_of_steel"
         },
         {
-            "level_learned": 60,
+            "level_learned": 61,
             "technique": "amnesia"
         },
         {
@@ -47,7 +47,7 @@
             "technique": "muddle"
         },
         {
-            "level_learned": 68,
+            "level_learned": 70,
             "technique": "bullet"
         }
     ],

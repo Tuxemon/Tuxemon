@@ -3,11 +3,11 @@
     "category": "cloaked",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "proboscis"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "spit_poison"
         },
         {
@@ -15,15 +15,15 @@
             "technique": "refresh"
         },
         {
-            "level_learned": 6,
+            "level_learned": 7,
             "technique": "font"
         },
         {
-            "level_learned": 8,
+            "level_learned": 10,
             "technique": "hibernate"
         },
         {
-            "level_learned": 10,
+            "level_learned": 13,
             "technique": "goad"
         },
         {
@@ -31,11 +31,11 @@
             "technique": "geyser"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "sleeping_powder"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "venomous_tentacle"
         },
         {

@@ -3,23 +3,23 @@
     "category": "aggregate",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "all_in"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "fester"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "sylvan"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "stonehenge"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "clairaudience"
         },
         {
@@ -27,7 +27,7 @@
             "technique": "negation"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "greenstone"
         },
         {
@@ -35,7 +35,7 @@
             "technique": "breath"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "lantern"
         },
         {
@@ -43,7 +43,7 @@
             "technique": "surge"
         },
         {
-            "level_learned": 38,
+            "level_learned": 37,
             "technique": "mudslide"
         },
         {
@@ -51,7 +51,7 @@
             "technique": "earthquake"
         },
         {
-            "level_learned": 56,
+            "level_learned": 55,
             "technique": "thunderball"
         }
     ],

@@ -3,23 +3,23 @@
     "category": "glitched",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "ram"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "boulder"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "thunderball"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "lust"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "thunderclap"
         },
         {
@@ -27,11 +27,11 @@
             "technique": "fester"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "crystal"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "cavity"
         },
         {
@@ -39,11 +39,11 @@
             "technique": "tsunami"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "meltdown"
         },
         {
-            "level_learned": 36,
+            "level_learned": 37,
             "technique": "pit"
         },
         {

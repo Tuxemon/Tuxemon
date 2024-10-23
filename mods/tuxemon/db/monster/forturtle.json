@@ -3,31 +3,31 @@
     "category": "oracle_bone",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "rock"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "energy_field"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "tinder"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "muck"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "sleep_bomb"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "thunderclap"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "shadow_boxing"
         },
         {

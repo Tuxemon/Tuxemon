@@ -3,23 +3,23 @@
     "category": "glitched",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "fluff_up"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "sting"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "splinter"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "chameleon"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "spit_poison"
         },
         {
@@ -27,11 +27,11 @@
             "technique": "shadow_boxing"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "stabilo"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "walls"
         },
         {
@@ -39,11 +39,11 @@
             "technique": "pseudopod"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "air_chain"
         },
         {
-            "level_learned": 36,
+            "level_learned": 37,
             "technique": "feline"
         },
         {

@@ -3,23 +3,23 @@
     "category": "gnawer",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "beam"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "levitate"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "strike"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "radiance"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "battery_discharge"
         },
         {
@@ -27,11 +27,11 @@
             "technique": "wall_of_steel"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "glower"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "shrapnel"
         }
     ],

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="23" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="38">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="23" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="38">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="town"/>
   <property name="scenario" value="tobedefined"/>
   <property name="slug" value="sphalian_town"/>
-  <property name="map_type" value="town"/>
  </properties>
  <tileset firstgid="1" name="Sand_n_water" tilewidth="16" tileheight="16" tilecount="104" columns="8">
   <image source="../gfx/tilesets/Sand_n_water.png" width="128" height="208"/>
@@ -29,6 +29,16 @@
  <layer id="2" name="Tile Layer 2" width="23" height="25">
   <data encoding="base64" compression="zlib">
    eAHVlUsyQ0EUhlskCisw8Jp7rcJrxCC5yQAjDL3mXqvw2gF2QNgBYQEZWIKyAN/hdtWJOi190QNd9aVvUn2+/m/fk6TtnGsn4hVvKnTm4bJzIzAKYzAOLz1sbgxdZ11Lic48i2sO5mEBFuEt4Ja6UsW5XihDBfpA+3SkLVzbsAO7sAcht9RN4JqEKZiGGdD3oN0nuE7hDM7hAgZLekXndRVXDTKoQwN07irLaxFkndqPd/u4DuAQjuAYdO4VVq1GsMaay37nrnKuma2hcxdxN/Hd5dwH3LKfz17ELZlj3D57EXdsbp89lVuyp3JnA7Z7iT2XQfeP9ImcyQ3c5ufue8aapY+s3HU8jYD7gZrH3O2fqzVLH1lunddf+9za80R9iOdfuL/rb27Zhc7bZ9Xz19zd3PL9+emZdHP/VQ9a/yn/Ibc8Oz+G+M2XUTR3S/Wc9FjzU2O+ynmvw0YEm6Yh/KHkTjUk9zvwUe9d
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="23" height="25">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCoyEwckIAAAj8AAE=
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="23" height="25">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCQzUEVg5Vhw+guwHUUACq
   </data>
  </layer>
  <objectgroup color="#ffff00" id="3" name="Events">
@@ -81,13 +91,7 @@
     <property name="cond20" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="37" name="Player Spawn" type="event" x="320" y="224" width="16" height="16"/>
  </objectgroup>
- <layer id="4" name="Above Player" width="23" height="25">
-  <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgKjITAaAqMhMBoCQzUEVg5Vhw+guwHUUACq
-  </data>
- </layer>
  <objectgroup color="#ff0000" id="5" name="Collision">
   <object id="7" type="collision" x="0" y="96" width="160" height="272"/>
   <object id="12" type="collision" x="272" y="320" width="48" height="48"/>

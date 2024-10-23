@@ -1,0 +1,51 @@
+{
+    "slug": "sprorm",
+    "category": "galvanised",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 2,
+            "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 6,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 10,
+            "technique": "take_cover"
+        },
+        {
+            "level_learned": 18,
+            "technique": "earthquake"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 32,
+            "monster_slug": "sphake"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "sphake",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["sprite"],
+    "shape": "sprite",
+    "stage": "basic",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 303,
+    "height": 30,
+    "weight": 10,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

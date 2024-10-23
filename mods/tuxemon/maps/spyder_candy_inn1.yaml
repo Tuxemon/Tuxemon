@@ -15,10 +15,6 @@ events:
     conditions:
     - not music_playing music_cathedral_theme
     type: "event"
-  Player Spawn:
-    x: 11
-    y: 9
-    type: "event"
   Teleport to Port:
     actions:
     - transition_teleport spyder_candy_port.tmx,22,5,0.3

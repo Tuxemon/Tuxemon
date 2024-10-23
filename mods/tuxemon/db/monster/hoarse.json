@@ -1,0 +1,55 @@
+{
+    "slug": "hoarse",
+    "category": "field_dweller",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "stampede"
+        },
+        {
+            "level_learned": 2,
+            "technique": "wallow"
+        },
+        {
+            "level_learned": 6,
+            "technique": "hibernate"
+        },
+        {
+            "level_learned": 10,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 18,
+            "technique": "earthquake"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 30,
+            "monster_slug": "equill"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "equill",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "hoarseshoo",
+            "evo_stage": "stage2"
+        }
+    ],
+    "tags": ["landrace"],
+    "shape": "landrace",
+    "stage": "basic",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 309,
+    "height": 130,
+    "weight": 130,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

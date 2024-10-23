@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.prepare import TRANS_TIME
+from tuxemon.prepare import TRANS_TIME, fetch
 from tuxemon.states.world.worldstate import WorldState
 
 
@@ -43,7 +43,9 @@ class TransitionTeleportAction(EventAction):
     def start(self) -> None:
         self.world = self.session.client.get_state_by_name(WorldState)
 
-        if self.world.npcs:
+        target_map = fetch("maps", self.map_name)
+
+        if self.world.npcs and self.world.current_map.filename != target_map:
             for _npc in self.world.npcs:
                 if _npc.moving or _npc.path:
                     self.world.npcs.remove(_npc)

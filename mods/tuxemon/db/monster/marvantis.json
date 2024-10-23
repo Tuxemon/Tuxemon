@@ -1,0 +1,47 @@
+{
+    "slug": "marvantis",
+    "category": "mantid",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 2,
+            "technique": "changeling"
+        },
+        {
+            "level_learned": 6,
+            "technique": "ants"
+        },
+        {
+            "level_learned": 10,
+            "technique": "blood_nets"
+        },
+        {
+            "level_learned": 18,
+            "technique": "energy_claws"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "marvillar",
+            "evo_stage": "basic"
+        }
+    ],
+    "tags": ["grub", "grassland", "woodland"],
+    "shape": "grub",
+    "stage": "stage1",
+    "types": [
+        "fire",
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 288,
+    "height": 214,
+    "weight": 270,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

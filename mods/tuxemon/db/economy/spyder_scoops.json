@@ -1,0 +1,208 @@
+[
+  {
+    "slug": "spyder_paper_mart",
+    "items": [
+      {
+        "item_name": "potion",
+        "price": 20,
+        "cost": 5
+      },
+      {
+        "item_name": "revive",
+        "price": 100,
+        "cost": 20
+      },
+      {
+        "item_name": "tuxeball",
+        "price": 50,
+        "cost": 10
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cotton_scoop",
+    "items": [
+      {
+        "item_name": "potion",
+        "price": 20,
+        "cost": 5
+      },
+      {
+        "item_name": "revive",
+        "price": 100,
+        "cost": 20
+      },
+      {
+        "item_name": "tm_avalanche",
+        "price": 2000,
+        "cost": 400,
+        "inventory": 20
+      },
+      {
+        "item_name": "tm_blossom",
+        "price": 1000,
+        "cost": 200,
+        "inventory": 20
+      },
+      {
+        "item_name": "tuxeball",
+        "price": 50,
+        "cost": 10
+      }
+    ]
+  },
+  {
+    "slug": "spyder_leather_scoop",
+    "items": [
+      {
+        "item_name": "super_potion",
+        "price": 50,
+        "cost": 10
+      },
+      {
+        "item_name": "revive",
+        "price": 100,
+        "cost": 20
+      },
+      {
+        "item_name": "cureall",
+        "price": 250,
+        "cost": 50
+      },
+      {
+        "item_name": "tuxeball_noble",
+        "price": 150,
+        "cost": 30
+      },
+      {
+        "item_name": "tuxeball_lavish",
+        "price": 200,
+        "cost": 40
+      }
+    ]
+  },
+  {
+    "slug": "spyder_flower_scoop",
+    "items": [
+      {
+        "item_name": "super_potion",
+        "price": 50,
+        "cost": 10
+      },
+      {
+        "item_name": "mega_potion",
+        "price": 200,
+        "cost": 50
+      },
+      {
+        "item_name": "revive",
+        "price": 100,
+        "cost": 20
+      },
+      {
+        "item_name": "cureall",
+        "price": 250,
+        "cost": 50
+      },
+      {
+        "item_name": "tuxeball_lavish",
+        "price": 200,
+        "cost": 40
+      },
+      {
+        "item_name": "tuxeball_grand",
+        "price": 250,
+        "cost": 50
+      }
+    ]
+  },
+  {
+    "slug": "spyder_timber_scoop",
+    "items": [
+      {
+        "item_name": "super_potion",
+        "price": 50,
+        "cost": 10
+      },
+      {
+        "item_name": "mega_potion",
+        "price": 200,
+        "cost": 50
+      },
+      {
+        "item_name": "revive",
+        "price": 100,
+        "cost": 20
+      },
+      {
+        "item_name": "cureall",
+        "price": 250,
+        "cost": 50
+      },
+      {
+        "item_name": "tuxeball_grand",
+        "price": 250,
+        "cost": 50
+      },
+      {
+        "item_name": "tuxeball_majestic",
+        "price": 400,
+        "cost": 80
+      },
+      {
+        "item_name": "tuxeball_diurnal",
+        "price": 300,
+        "cost": 60,
+        "variables": ["daytime:true"]
+      },
+      {
+        "item_name": "tuxeball_nocturnal",
+        "price": 300,
+        "cost": 60,
+        "variables": ["daytime:false"]
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candy_scoop",
+    "items": [
+      {
+        "item_name": "mega_potion",
+        "price": 200,
+        "cost": 50
+      },
+      {
+        "item_name": "imperial_potion",
+        "price": 500,
+        "cost": 100
+      },
+      {
+        "item_name": "revive",
+        "price": 100,
+        "cost": 20
+      },
+      {
+        "item_name": "cureall",
+        "price": 250,
+        "cost": 50
+      },
+      {
+        "item_name": "tuxeball_majestic",
+        "price": 400,
+        "cost": 80
+      },
+      {
+        "item_name": "tuxeball_diurnal",
+        "price": 300,
+        "cost": 60,
+        "variables": ["daytime:true"]
+      },
+      {
+        "item_name": "tuxeball_nocturnal",
+        "price": 300,
+        "cost": 60,
+        "variables": ["daytime:false"]
+      }
+    ]
+  }
+]

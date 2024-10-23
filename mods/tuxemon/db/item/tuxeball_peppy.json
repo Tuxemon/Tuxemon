@@ -4,7 +4,7 @@
     "not category threat"
   ],
   "effects": [
-    "capture"
+    "capture_combined taste_warm,peppy,1,1"
   ],
   "animation": "capture_1",
   "slug": "tuxeball_peppy",

@@ -15,7 +15,6 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.session import local_session
-from tuxemon.states.techniques import TechniqueMenuState
 from tuxemon.tools import open_choice_dialog, open_dialog
 
 if TYPE_CHECKING:
@@ -185,7 +184,8 @@ class WorldMenuState(PygameMenuState):
         def monster_techs(monster: Monster) -> None:
             """Show techniques."""
             self.client.pop_state()
-            self.client.push_state(TechniqueMenuState(monster=monster))
+            params = {"monster": monster, "source": self.name}
+            self.client.push_state("MonsterMovesState", kwargs=params)
 
         def open_monster_submenu(
             menu_item: MenuItem[WorldMenuGameObj],

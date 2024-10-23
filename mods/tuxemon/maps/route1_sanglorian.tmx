@@ -163,7 +163,6 @@
     <property name="cond20" value="is char_at player"/>
    </properties>
   </object>
-  <object id="159" name="Player Spawn" type="event" x="400" y="272" width="16" height="16"/>
   <object id="160" name="Teleport to Route1" type="event" x="384" y="304" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport route1.tmx,32,4,0.3"/>

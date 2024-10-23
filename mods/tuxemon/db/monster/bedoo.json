@@ -1,0 +1,74 @@
+{
+    "slug": "bedoo",
+    "category": "bed_trap",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "whirlwind"
+        },
+        {
+            "level_learned": 2,
+            "technique": "hibernate"
+        },
+        {
+            "level_learned": 6,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 8,
+            "technique": "tonguespear"
+        },
+        {
+            "level_learned": 12,
+            "technique": "chill_mist"
+        },
+        {
+            "level_learned": 16,
+            "technique": "frostbite"
+        },
+        {
+            "level_learned": 20,
+            "technique": "orbs"
+        },
+        {
+            "level_learned": 24,
+            "technique": "biting_winds"
+        },
+        {
+            "level_learned": 28,
+            "technique": "mobbing"
+        },
+        {
+            "level_learned": 32,
+            "technique": "shapechange"
+        },
+        {
+            "level_learned": 36,
+            "technique": "muck"
+        },
+        {
+            "level_learned": 40,
+            "technique": "goad"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "jelillow",
+            "evo_stage": "basic"
+        }
+    ],
+    "tags": ["blob", "mountains", "woodland"],
+    "shape": "blob",
+    "stage": "stage1",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 208,
+    "height": 200,
+    "weight": 15,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

@@ -1,0 +1,74 @@
+{
+    "slug": "doctsky",
+    "category": "erythrocyte",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "barking"
+        },
+        {
+            "level_learned": 2,
+            "technique": "ram"
+        },
+        {
+            "level_learned": 6,
+            "technique": "revenge_stance"
+        },
+        {
+            "level_learned": 8,
+            "technique": "canine"
+        },
+        {
+            "level_learned": 12,
+            "technique": "hibernate"
+        },
+        {
+            "level_learned": 16,
+            "technique": "mystic_blending"
+        },
+        {
+            "level_learned": 20,
+            "technique": "take_cover"
+        },
+        {
+            "level_learned": 24,
+            "technique": "life_surge"
+        },
+        {
+            "level_learned": 28,
+            "technique": "sand_spray"
+        },
+        {
+            "level_learned": 32,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 36,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 40,
+            "technique": "saber"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "medipup",
+            "evo_stage": "basic"
+        }
+    ],
+    "tags": ["hunter", "urban"],
+    "shape": "hunter",
+    "stage": "stage1",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 282,
+    "height": 94,
+    "weight": 30,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

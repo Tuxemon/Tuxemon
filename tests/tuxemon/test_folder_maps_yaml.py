@@ -13,7 +13,7 @@ from tuxemon.script.parser import parse_action_string
 EXPECTED_SCENARIOS = ["spyder", "xero", "tobedefined"]
 FOLDER = "maps"
 EVENTS_KEY = "events"
-MAX_LENGTH_NAME = 30
+MAX_LENGTH_NAME = 50
 YAML_ATTR = [
     "actions",
     "conditions",

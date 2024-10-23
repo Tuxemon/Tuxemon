@@ -110,6 +110,5 @@
     <property name="cond10" value="not music_playing music_cathedral_theme"/>
    </properties>
   </object>
-  <object id="46" name="Player Spawn" type="event" x="176" y="144" width="16" height="16"/>
  </objectgroup>
 </map>

@@ -49,7 +49,6 @@
     <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="14" name="Player Spawn" type="event" x="112" y="160" width="16" height="16"/>
   <object id="15" name="Create Hacker" type="event" x="160" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_cottontown_hacker,10,4"/>

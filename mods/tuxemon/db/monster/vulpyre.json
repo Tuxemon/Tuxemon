@@ -1,0 +1,74 @@
+{
+    "slug": "vulpyre",
+    "category": "firefox",
+    "moveset": [
+        {
+            "level_learned": 2,
+            "technique": "give_all"
+        },
+        {
+            "level_learned": 2,
+            "technique": "fume"
+        },
+        {
+            "level_learned": 6,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 8,
+            "technique": "breathe_fire"
+        },
+        {
+            "level_learned": 12,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 16,
+            "technique": "torch"
+        },
+        {
+            "level_learned": 20,
+            "technique": "lava"
+        },
+        {
+            "level_learned": 24,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 28,
+            "technique": "invictus"
+        },
+        {
+            "level_learned": 32,
+            "technique": "electrical_storm"
+        },
+        {
+            "level_learned": 36,
+            "technique": "supernova"
+        },
+        {
+            "level_learned": 40,
+            "technique": "tinder"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "foxfire",
+            "evo_stage": "basic"
+        }
+    ],
+    "tags": ["hunter", "desert", "grassland"],
+    "shape": "hunter",
+    "stage": "stage1",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 150,
+    "height": 100,
+    "weight": 50,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

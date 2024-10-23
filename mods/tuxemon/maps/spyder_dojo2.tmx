@@ -74,7 +74,6 @@
     <property name="cond2" value="is char_facing player,right"/>
    </properties>
   </object>
-  <object id="19" name="Player Spawn" type="event" x="176" y="176" width="16" height="16"/>
   <object id="20" name="Environment" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:interior"/>

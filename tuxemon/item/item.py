@@ -238,7 +238,12 @@ class Item:
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:
             result = effect.apply(self, target)
-            meta_result.update(result)
+            meta_result["success"] = (
+                meta_result["success"] or result["success"]
+            )
+            meta_result["num_shakes"] += result["num_shakes"]
+            if result["extra"] is not None:
+                meta_result["extra"] = result["extra"]
 
         # If this is a consumable item, remove it from the player's inventory.
         if (

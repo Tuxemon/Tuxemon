@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "shadow_boxing"
+            "technique": "solar_synthesis"
         },
         {
             "level_learned": 20,
@@ -51,11 +51,25 @@
             "technique": "clairaudience"
         }
     ],
-    "evolutions": [],
-    "history": [],
+    "evolutions": [
+        {
+            "at_level": 18,
+            "monster_slug": "megafruitera"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "megafruitera",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "spectera",
+            "evo_stage": "stage2"
+        }
+    ],
     "tags": ["flier"],
     "shape": "flier",
-    "stage": "standalone",
+    "stage": "basic",
     "types": [
         "wood"
     ],

@@ -1,0 +1,312 @@
+events:
+  Play Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: "event"
+  Teleport to Leather Town:
+    actions:
+    - transition_teleport spyder_leather_town.tmx,25,15,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    height: 1
+    width: 2
+    x: 1
+    y: 10
+    type: "event"
+  Create Miner:
+    actions:
+    - create_npc spyder_leathermuseum_davie,23,9
+    - char_wander spyder_leathermuseum_davie
+    conditions:
+    - not char_exists spyder_leathermuseum_davie
+    type: "event"
+  Create Postboy:
+    actions:
+    - create_npc spyder_leathermuseum_kasey,12,10
+    - char_wander spyder_leathermuseum_kasey
+    conditions:
+    - not char_exists spyder_leathermuseum_kasey
+    type: "event"
+  Create Shopkeeper:
+    actions:
+    - create_npc spyder_leathermuseum_giles,4,9
+    - char_face spyder_leathermuseum_giles,left
+    conditions:
+    - not char_exists spyder_leathermuseum_giles
+    type: "event"
+  Create Security:
+    actions:
+    - create_npc spyder_leathermuseum_security,15,5
+    - char_wander spyder_leathermuseum_security
+    conditions:
+    - not char_exists spyder_leathermuseum_security
+    type: "event"
+  Create Historian:
+    actions:
+    - create_npc spyder_leathermuseum_historian,26,5
+    - char_wander spyder_leathermuseum_historian
+    conditions:
+    - not char_exists spyder_leathermuseum_historian
+    type: "event"
+  Create Visitor:
+    actions:
+    - create_npc spyder_leathermuseum_visitor,19,10
+    - char_wander spyder_leathermuseum_visitor
+    conditions:
+    - not char_exists spyder_leathermuseum_visitor
+    type: "event"
+  Talk PostBoy:
+    actions:
+    - translated_dialog spyder_museum_postboy1
+    behav:
+    - talk spyder_leathermuseum_kasey    
+    type: "event"
+  Talk Miner:
+    actions:
+    - translated_dialog spyder_museum_miner1
+    behav:
+    - talk spyder_leathermuseum_davie      
+    type: "event"
+  Talk Shopkeeper:
+    actions: 
+    - translated_dialog spyder_museum_shopkeeper_chat
+    behav:
+    - talk spyder_leathermuseum_giles    
+    type: "event"
+  Talk Visitor:
+    actions: 
+    - translated_dialog spyder_museum_visitor1
+    behav:
+    - talk spyder_leathermuseum_visitor      
+    type: "event"
+  Talk Security:
+    actions:  
+    - translated_dialog spyder_museum_security1
+    behav:
+    - talk spyder_leathermuseum_security  
+    type: "event"
+  Talk Historian:
+    actions: 
+    - translated_dialog spyder_museum_historian1
+    behav:
+    - talk spyder_leathermuseum_historian       
+    type: "event"
+  Pay Option:
+    actions:
+    - translated_dialog spyder_museum_entrance1
+    - translated_dialog player_wallet
+    - translated_dialog_choice yes:no,paymuseum
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    - not variable_set paymuseum:yes
+    - not variable_set paymuseum:no
+    - not variable_set notpaidmuseum:yes
+    height: 1
+    width: 3
+    x: 0
+    y: 9
+    type: "event"  
+  Pay:
+    actions: 
+    - lock_controls
+    - pathfind player,1,8
+    - set_variable paymuseum:null
+    - translated_dialog spyder_museum_entrance2
+    - transfer_money player,50,spyder_leather_museum
+    - unlock_controls
+    conditions:
+    - is variable_set paymuseum:yes
+    - not variable_set notpaidmuseum:yes
+    - is money_is player,greater_or_equal,50    
+    type: "event"
+  Cannot Afford 50:
+    actions: 
+    - lock_controls
+    - pathfind player,1,10
+    - set_variable paymuseum:null
+    - set_variable notpaidmuseum:yes
+    - unlock_controls
+    conditions:
+    - is variable_set paymuseum:yes
+    - not variable_set notpaidmuseum:yes
+    - not money_is player,greater_or_equal,50  
+    type: "event"  
+  Cannot Afford 100:
+    actions:  
+    - lock_controls
+    - pathfind player,1,10
+    - set_variable paymuseum:null
+    - unlock_controls
+    conditions:
+    - is variable_set paymuseum:yes
+    - is variable_set notpaidmuseum:yes
+    - not money_is player,greater_or_equal,100   
+    type: "event" 
+  Pay (Required):
+    actions: 
+    - lock_controls
+    - pathfind player,1,8
+    - set_variable paymuseum:null
+    - translated_dialog spyder_museum_entrance2
+    - transfer_money player,100,spyder_leather_museum
+    - unlock_controls
+    conditions:
+    - is variable_set paymuseum:yes
+    - is variable_set notpaidmuseum:yes
+    - is money_is player,greater_or_equal,100    
+    type: "event"
+  No Pay (Required):
+    actions: 
+    - lock_controls
+    - pathfind player,1,10
+    - set_variable paymuseum:null
+    - unlock_controls
+    conditions:
+    - is variable_set paymuseum:no
+    - is variable_set notpaidmuseum:yes
+    - is money_is player,greater_or_equal,100  
+    type: "event"  
+  Pay Requirement:
+    actions: 
+    - char_stop player
+    - lock_controls
+    - translated_dialog spyder_museum_entrance3
+    - translated_dialog player_wallet
+    - translated_dialog_choice yes:no,paymuseum
+    - unlock_controls
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    - not variable_set paymuseum:yes
+    - not variable_set paymuseum:no
+    - is variable_set notpaidmuseum:yes
+    height: 1
+    width: 3
+    x: 0
+    y: 9
+    type: "event"
+  No Pay (Not Required):
+    actions: 
+    - char_stop player
+    - lock_controls
+    - pathfind player,1,10
+    - set_variable paymuseum:null
+    - set_variable notpaidmuseum:yes
+    - unlock_controls
+    conditions:
+    - is variable_set paymuseum:no
+    - not variable_set notpaidmuseum:yes   
+    type: "event"
+  Plaque - Ruby:
+    actions:
+    - translated_dialog spyder_ruby_plaque
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 10
+    y: 7
+    type: "event" 
+  Plaque - Opal:
+    actions:
+    - translated_dialog spyder_opal_plaque
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 7
+    y: 7
+    type: "event" 
+  Plaque - Emerald:
+    actions:
+    - translated_dialog spyder_emerald_plaque
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 9
+    y: 7
+    type: "event" 
+  Plaque - Agate:
+    actions:
+    - translated_dialog spyder_agate_plaque
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 6
+    y: 7
+    type: "event" 
+  Plaque - Diamond:
+    actions:
+    - translated_dialog spyder_diamond_plaque
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 13
+    y: 7
+    type: "event"
+  Plaque - Quartz:
+    actions:
+    - translated_dialog spyder_quartz_plaque
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 12
+    y: 7
+    type: "event"
+  Plaque - Shaft:
+    actions:
+    - translated_dialog spyder_shaft_plaque
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 7
+    y: 5
+    type: "event"
+  Plaque - Nimrod1:
+    actions:
+    - translated_dialog spyder_nimrod_plaque
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 16
+    y: 3
+    type: "event"
+  Plaque - Nimrod2:
+    actions:
+    - translated_dialog spyder_nimrod2_plaque
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 19
+    y: 3
+    type: "event"
+  Plaque - Nimrod3:
+    actions:
+    - translated_dialog spyder_nimrod3_plaque
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 22
+    y: 3
+    type: "event"
+  Plaque - Nimrod4:
+    actions:
+    - translated_dialog spyder_nimrod4_plaque
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 25
+    y: 3
+    type: "event"
+  Plaque - Nimrod5:
+    actions:
+    - translated_dialog spyder_nimrod5_plaque
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 28
+    y: 3
+    type: "event"

@@ -28,10 +28,6 @@ events:
     x: 55
     y: 5
     type: "event"
-  Player Spawn:
-    x: 57
-    y: 3
-    type: "event"
   Encounters 1:
     actions:
     - random_encounter spyder_park

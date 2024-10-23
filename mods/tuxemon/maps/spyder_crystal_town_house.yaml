@@ -15,10 +15,6 @@ events:
     conditions:
     - not music_playing music_home
     type: "event"
-  Player Spawn:
-    x: 8
-    y: 0
-    type: "event"
   Watch TV:
     actions:
     - translated_dialog spyder_crystal_tvwatch

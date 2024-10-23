@@ -938,22 +938,22 @@ class CombatState(CombatAnimations):
     def _handle_npc_item(
         self,
         user: NPC,
-        method: Item,
+        item: Item,
         target: Monster,
     ) -> None:
         action_time = 0.0
-        method.combat_state = self
-        result_item = method.use(user, target)
+        item.combat_state = self
+        result_item = item.use(user, target)
         context = {
             "user": user.name,
-            "name": method.name,
+            "name": item.name,
             "target": target.name,
         }
-        message = T.format(method.use_item, context)
+        message = T.format(item.use_item, context)
         # animation sprite
-        item_sprite = self._method_cache.get(method, False)
+        item_sprite = self._method_cache.get(item, False)
         # handle the capture device
-        if method.category == ItemCategory.capture and item_sprite:
+        if item.category == ItemCategory.capture and item_sprite:
             # retrieve tuxeball
             message += "\n" + T.translate("attempting_capture")
             action_time = result_item.num_shakes + 1.8
@@ -961,15 +961,15 @@ class CombatState(CombatAnimations):
                 result_item.success,
                 result_item.num_shakes,
                 target,
-                method,
+                item,
                 item_sprite,
             )
         else:
-            if method.behaviors.throwable:
-                item = self.animate_throwing(target, method)
-                self.task(item.kill, 1.5)
+            if item.behaviors.throwable:
+                sprite = self.animate_throwing(target, item)
+                self.task(sprite.kill, 1.5)
             msg_type = "use_success" if result_item.success else "use_failure"
-            template = getattr(method, msg_type)
+            template = getattr(item, msg_type)
             tmpl = T.format(template, context)
             # extra output
             if result_item.extra:
@@ -980,7 +980,7 @@ class CombatState(CombatAnimations):
             if template:
                 message += "\n" + tmpl
                 action_time += compute_text_animation_time(message)
-            self.play_animation(method, target, None, action_time)
+            self.play_animation(item, target, None, action_time)
 
         self.text_animations_queue.append(
             (partial(self.alert, message), action_time)

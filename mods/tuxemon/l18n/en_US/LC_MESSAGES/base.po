@@ -9954,17 +9954,23 @@ msgstr "Note from Researcher 2\n 'Dr. Lee, I've found a potential combination of
 msgid "spyder_hospital_pc_message3"
 msgstr "Simulation results from Researcher 2\n 'The enzyme-antibody combination shows promising results. We might have a cure on our hands.'"
 
+msgid "spyder_hospital_pc_message_rivalry1"
+msgstr "E-mail from Researcher 1\n 'Researcher 2, I'm not sure I agree with your approach. We need to be more careful and methodical in our research.\n Your simulations are promising, but we can't rush into conclusions.'"
+
+msgid "spyder_hospital_pc_message_rivalry2"
+msgstr "E-mail from Researcher 2\n 'Researcher 1, you're always so cautious and slow. We need to take risks and push the boundaries of what's possible.\n Our research is too important to be held back by your fear of failure.'"
+
 msgid "spyder_hospital_pc_message4"
-msgstr "E-mail from Enforcer\n 'Dr. Lee, we have reason to believe that you have been conducting unauthorized research.\n We are at your location and require you to come with us.'"
+msgstr "E-mail from Enforcer\n 'Dr. Lee, we have reason to believe that you have been conducting unauthorized research. We are at your location and require you to come with us.'"
 
 msgid "spyder_hospital_pc_message5"
-msgstr "E-mail from Dr. Lee to Dr. Chen, Mentor\n 'They are destroying my door, they want to arrest me because of unauthorized research.\n I can't let them take this away from me. This is a breakthrough, a real cure. I need to share it with the world.'"
+msgstr "E-mail from Dr. Lee to Dr. Chen, Mentor\n 'They are destroying my door, they want to arrest me because of unauthorized research. I can't let them take this away from me.\n This is a breakthrough, a real cure. I need to share it with the world.'"
 
 msgid "spyder_hospital_pc_message6"
 msgstr "E-mail from Researcher 1\n 'Dr. Lee, I've managed to isolate a new strain of the virus that seems susceptible to our current treatments.\n However, I'm concerned about the security implications of this discovery. We need to be extra cautious about who knows about this.'"
 
 msgid "spyder_hospital_pc_message7"
-msgstr "E-mail from Enforcer\n 'Dr Lee, we have received intelligence indicating that you're conducting unauthorized research within the company.\n We have reason to believe that your work poses a significant threat to our organization.\n You're hereby ordered to cease all research immediately and report to the security office.'"
+msgstr "E-mail from Enforcer: 'Dr Lee\n we have received intelligence indicating that you're conducting unauthorized research within the company.\n We have reason to believe that your work poses a significant threat to our organization.\n You're hereby ordered to cease all research immediately and report to the security office.'"
 
 msgid "spyder_hospital_pc_message8"
 msgstr "E-mail from Mysterious Informant\n 'There are people who want to see you fail. They will stop at nothing to destroy your work. Be careful.'"

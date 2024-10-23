@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "x_attack",
   "effects": [
-    "give slow,target",
+    "give slow,enemy_monster",
     "damage"
   ],
   "flip_axes": "",

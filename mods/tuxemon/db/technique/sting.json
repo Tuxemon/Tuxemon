@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "pound",
   "effects": [
-    "give poison,target",
+    "give poison,enemy_monster",
     "damage"
   ],
   "flip_axes": "",

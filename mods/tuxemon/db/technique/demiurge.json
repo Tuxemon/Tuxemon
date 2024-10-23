@@ -3,8 +3,8 @@
   "accuracy": 0.8,
   "animation": "demiurge",
   "effects": [
-    "give recover,user",
-    "give confused,target",
+    "give recover,own_monster",
+    "give confused,enemy_monster",
     "damage"
   ],
   "flip_axes": "",

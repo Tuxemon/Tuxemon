@@ -3,8 +3,8 @@
   "accuracy": 0.8,
   "animation": "shield_lava",
   "effects": [
-    "give burn,both",
-    "area"
+    "give burn,own_team:enemy_team",
+    "damage"
   ],
   "flip_axes": "",
   "is_fast": false,

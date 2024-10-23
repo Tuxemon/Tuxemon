@@ -59,7 +59,12 @@ from tuxemon.combat import (
     track_battles,
 )
 from tuxemon.condition.condition import Condition
-from tuxemon.db import BattleGraphicsModel, ItemCategory, PlagueType
+from tuxemon.db import (
+    BattleGraphicsModel,
+    ItemCategory,
+    PlagueType,
+    TargetType,
+)
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -1240,7 +1245,6 @@ class CombatState(CombatAnimations):
 
         Returns:
             Sequence of active monsters.
-
         """
         return list(chain.from_iterable(self.monsters_in_play.values()))
 
@@ -1248,7 +1252,6 @@ class CombatState(CombatAnimations):
     def monsters_in_play_right(self) -> Sequence[Monster]:
         """
         List of any monsters in battle (right side).
-
         """
         return self.monsters_in_play[self.players[0]]
 
@@ -1256,15 +1259,35 @@ class CombatState(CombatAnimations):
     def monsters_in_play_left(self) -> Sequence[Monster]:
         """
         List of any monsters in battle (left side).
-
         """
         return self.monsters_in_play[self.players[1]]
+
+    @property
+    def all_monsters_right(self) -> Sequence[Monster]:
+        """
+        List of all monsters on the right side of the battle that have not fainted.
+        """
+        return [
+            monster
+            for monster in self.players[0].monsters
+            if not fainted(monster)
+        ]
+
+    @property
+    def all_monsters_left(self) -> Sequence[Monster]:
+        """
+        List of all monsters on the left side of the battle that have not fainted.
+        """
+        return [
+            monster
+            for monster in self.players[1].monsters
+            if not fainted(monster)
+        ]
 
     @property
     def defeated_players(self) -> Sequence[NPC]:
         """
         List of defeated players/trainers.
-
         """
         return [p for p in self.players if defeated(p)]
 
@@ -1282,11 +1305,105 @@ class CombatState(CombatAnimations):
 
         Returns:
             Sequence of remaining players.
-
         """
         # TODO: perhaps change this to remaining "parties", or "teams",
         # instead of player/trainer
         return [p for p in self.players if not defeated(p)]
+
+    def get_targets_from_map(
+        self, target_type: str, user: Monster, target: Monster
+    ) -> list[Monster]:
+        """
+        Get the targets from the target map.
+
+        Parameters:
+            target_type: The type of target (e.g. "own_monster", etc.)
+            user: The Monster object that used the technique.
+            target: The Monster object being targeted by the technique.
+        Returns:
+            A list of Monster objects.
+        """
+        target_map = {
+            "enemy_monster": [target],
+            "enemy_team": self.get_own_monsters(target),
+            "enemy_trainer": self.get_party(target),
+            "own_monster": [user],
+            "own_team": self.get_own_monsters(user),
+            "own_trainer": self.get_party(user),
+        }
+
+        return list(target_map.get(target_type, []))
+
+    def get_targets(
+        self, tech: Technique, user: Monster, target: Monster
+    ) -> list[Monster]:
+        """
+        Get the targets.
+
+        Parameters:
+            tech: The Technique object that is being applied.
+            user: The Monster object that used the technique.
+            target: The Monster object being targeted by the technique.
+
+        Returns:
+            A list of Monster objects.
+        """
+        targets: set[Monster] = set()
+        for target_type in list(TargetType):
+            if tech.target[target_type]:
+                targets.update(
+                    self.get_targets_from_map(target_type, user, target)
+                )
+
+        if not targets:
+            logger.error(f"{tech.name} has all its targets set to False")
+
+        return list(targets)
+
+    def get_opponent_monsters(self, monster: Monster) -> Sequence[Monster]:
+        """
+        Get the sequence of the monster's opponent side.
+
+        Parameters:
+            monster: The Monster object.
+
+        Returns:
+            A sequence of Monster objects.
+        """
+        if monster in self.monsters_in_play_right:
+            return self.monsters_in_play_left
+        else:
+            return self.monsters_in_play_right
+
+    def get_own_monsters(self, monster: Monster) -> Sequence[Monster]:
+        """
+        Get the sequence of the monster's own side.
+
+        Parameters:
+            monster: The Monster object.
+
+        Returns:
+            A sequence of Monster objects.
+        """
+        if monster in self.monsters_in_play_right:
+            return self.monsters_in_play_right
+        else:
+            return self.monsters_in_play_left
+
+    def get_party(self, monster: Monster) -> Sequence[Monster]:
+        """
+        Get the sequence of the not fainted monster's own party.
+
+        Parameters:
+            monster: The Monster object.
+
+        Returns:
+            A sequence of Monster objects.
+        """
+        if monster in self.monsters_in_play_right:
+            return self.all_monsters_right
+        else:
+            return self.all_monsters_left
 
     def clean_combat(self) -> None:
         """Clean combat."""

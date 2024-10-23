@@ -3,7 +3,7 @@
   "accuracy": 0.7,
   "animation": "pulse",
   "effects": [
-    "give flinching,target",
+    "give flinching,enemy_monster",
     "damage"
   ],
   "flip_axes": "",

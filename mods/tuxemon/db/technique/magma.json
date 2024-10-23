@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "flameball_red",
   "effects": [
-    "area"
+    "damage"
   ],
   "flip_axes": "",
   "is_fast": false,

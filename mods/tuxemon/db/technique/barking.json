@@ -3,8 +3,7 @@
   "accuracy": 1,
   "animation": "pound",
   "effects": [
-    "give flinching,target",
-    "enhance"
+    "give flinching,enemy_monster"
   ],
   "flip_axes": "",
   "is_fast": false,

@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "snake_right",
   "effects": [
-    "give blinded,target",
+    "give blinded,enemy_monster",
     "damage"
   ],
   "flip_axes": "x",

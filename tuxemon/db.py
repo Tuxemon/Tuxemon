@@ -197,6 +197,15 @@ class Comparison(str, Enum):
     not_equals = "not_equals"
 
 
+class TargetType(str, Enum):
+    enemy_monster = "enemy_monster"
+    own_monster = "own_monster"
+    enemy_team = "enemy_team"
+    own_team = "own_team"
+    enemy_trainer = "enemy_trainer"
+    own_trainer = "own_trainer"
+
+
 # TODO: Automatically generate state enum through discovery
 State = Enum(
     "State",
@@ -859,28 +868,6 @@ class TechniqueModel(BaseModel):
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
-
-    # Custom validation for range
-    @field_validator("range")
-    def range_validation(
-        cls: TechniqueModel, v: Range, info: ValidationInfo
-    ) -> Range:
-        # Special indicates that we are not doing damage
-        if v == Range.special and any(
-            effect in info.data["effects"]
-            for effect in [
-                "damage",
-                "area",
-                "retaliate",
-                "revenge",
-                "money",
-                "splash",
-            ]
-        ):
-            raise ValueError(
-                '"special" range cannot be used with effects "damage", "area", "retaliate", "revenge", "money", or "splash"'
-            )
-        return v
 
     @field_validator("animation")
     def animation_exists(

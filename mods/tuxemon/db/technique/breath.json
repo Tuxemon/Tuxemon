@@ -3,8 +3,7 @@
   "accuracy": 1,
   "animation": "crystal_radiate",
   "effects": [
-    "give noddingoff,target",
-    "enhance"
+    "give noddingoff,enemy_monster"
   ],
   "flip_axes": "",
   "is_fast": false,

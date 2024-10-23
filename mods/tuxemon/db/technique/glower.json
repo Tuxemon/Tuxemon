@@ -3,8 +3,7 @@
   "accuracy": 1,
   "animation": "green_circle",
   "effects": [
-    "give softened,target",
-    "enhance"
+    "give softened,enemy_monster"
   ],
   "flip_axes": "",
   "is_fast": true,

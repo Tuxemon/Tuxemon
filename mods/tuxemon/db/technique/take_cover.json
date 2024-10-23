@@ -3,8 +3,7 @@
   "accuracy": 1,
   "animation": "smokebomb",
   "effects": [
-    "give sniping,user",
-    "enhance"
+    "give sniping,own_monster"
   ],
   "flip_axes": "",
   "is_fast": false,

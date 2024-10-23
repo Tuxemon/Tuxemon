@@ -3,8 +3,7 @@
   "accuracy": 1,
   "animation": "ubuntu",
   "effects": [
-    "enhance",
-    "switch target,random"
+    "switch enemy_monster,random"
   ],
   "flip_axes": "",
   "is_fast": false,

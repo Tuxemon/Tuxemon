@@ -3,7 +3,7 @@
   "accuracy": 0.75,
   "animation": "bomb_bright",
   "effects": [
-    "give grabbed,both",
+    "give grabbed,enemy_monster:own_monster",
     "damage"
   ],
   "flip_axes": "",

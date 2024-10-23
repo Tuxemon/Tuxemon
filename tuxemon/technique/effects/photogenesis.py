@@ -22,10 +22,16 @@ class PhotogenesisEffectResult(TechEffectResult):
 class PhotogenesisEffect(TechEffect):
     """
     Healing effect based on photogenesis or not.
+
+    Parameters:
+        start_hour: The hour when the effect starts healing.
+        peak_hour: The hour when the effect heals (maximum)
+        end_hour: The hour when the effect stops healing.
+
+    eg "photogenesis 18,0,6"
     """
 
     name = "photogenesis"
-    objective: str
     start_hour: int
     peak_hour: int
     end_hour: int
@@ -44,10 +50,9 @@ class PhotogenesisEffect(TechEffect):
             else 0.0
         )
 
-        mon = user if self.objective == "user" else target
         hour = int(player.game_variables.get("hour", 0))
         shape = Shape()
-        shape.load(mon.shape.value)
+        shape.load(user.shape.value)
         max_multiplier = shape.hp / 2
 
         multiplier = formula.calculate_time_based_multiplier(
@@ -61,15 +66,15 @@ class PhotogenesisEffect(TechEffect):
         factors = {self.name: multiplier}
 
         if tech.hit and not self.session.client.map_inside:
-            heal = formula.simple_heal(tech, mon, factors)
+            heal = formula.simple_heal(tech, user, factors)
             if heal == 0:
                 extra = tech.use_failure
             else:
-                if mon.current_hp < mon.hp:
-                    heal_amount = min(heal, mon.hp - mon.current_hp)
-                    mon.current_hp += heal_amount
+                if user.current_hp < user.hp:
+                    heal_amount = min(heal, user.hp - user.current_hp)
+                    user.current_hp += heal_amount
                     done = True
-                elif mon.current_hp == mon.hp:
+                elif user.current_hp == user.hp:
                     extra = "combat_full_health"
         return {
             "success": done,

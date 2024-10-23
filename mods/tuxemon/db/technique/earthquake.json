@@ -3,7 +3,7 @@
   "accuracy": 0.7,
   "animation": "rockfall_264",
   "effects": [
-    "area"
+    "damage"
   ],
   "flip_axes": "",
   "is_fast": false,

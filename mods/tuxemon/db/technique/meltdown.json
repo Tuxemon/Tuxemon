@@ -3,7 +3,7 @@
   "accuracy": 0.7,
   "animation": "meltdown",
   "effects": [
-    "give festering,target",
+    "give festering,enemy_monster",
     "damage"
   ],
   "flip_axes": "",

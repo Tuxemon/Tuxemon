@@ -3,8 +3,8 @@
   "accuracy": 0.75,
   "animation": "triforce_163",
   "effects": [
-    "give enraged,user",
-    "give grabbed,target",
+    "give enraged,own_monster",
+    "give grabbed,enemy_monster",
     "damage"
   ],
   "flip_axes": "xy",

@@ -3,9 +3,9 @@
   "accuracy": 1,
   "animation": "heal_burst_120",
   "effects": [
-    "give focused,target",
-    "give recover,user",
-    "healing user"
+    "give focused,enemy_monster",
+    "give recover,own_monster",
+    "healing"
   ],
   "flip_axes": "",
   "healing_power": 2.0,

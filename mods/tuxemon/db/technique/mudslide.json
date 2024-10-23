@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "spikes_rock",
   "effects": [
-    "give softened,target",
+    "give softened,enemy_monster",
     "damage"
   ],
   "flip_axes": "",

@@ -3,8 +3,8 @@
   "accuracy": 0.85,
   "animation": "gloop_orange",
   "effects": [
-    "healing user",
-    "damage"
+    "damage",
+    "prop_healing own_monster,0.2"
   ],
   "flip_axes": "",
   "healing_power": 2.0,

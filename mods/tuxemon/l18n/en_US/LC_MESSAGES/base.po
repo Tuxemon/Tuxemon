@@ -9085,52 +9085,103 @@ msgid "spyder_hospital1_rakez"
 msgstr "Rakez"
 msgid "spyder_hospital1_rhizome"
 msgstr "Rhizome"
+
+msgid "spyder_hospital_pc_message1"
+msgstr "E-mail from Researcher 1\n 'Dr. Lee, I've been analyzing the virus samples, and I think we should try a different strain.\n It might trigger a new reaction in the antibodies.'"
+
+msgid "spyder_hospital_pc_message2"
+msgstr "Note from Researcher 2\n 'Dr. Lee, I've found a potential combination of enzymes and antibodies that could slow down the mutation rate.\n I'm running simulations now.'"
+
+msgid "spyder_hospital_pc_message3"
+msgstr "Simulation results from Researcher 2\n 'The enzyme-antibody combination shows promising results. We might have a cure on our hands.'"
+
+msgid "spyder_hospital_pc_message4"
+msgstr "E-mail from Enforcer\n 'Dr. Lee, we have reason to believe that you have been conducting unauthorized research.\n We are at your location and require you to come with us.'"
+
+msgid "spyder_hospital_pc_message5"
+msgstr "E-mail from Dr. Lee to Dr. Chen, Mentor\n 'They are destroying my door, they want to arrest me because of unauthorized research.\n I can't let them take this away from me. This is a breakthrough, a real cure. I need to share it with the world.'"
+
+msgid "spyder_hospital_pc_message6"
+msgstr "E-mail from Researcher 1\n 'Dr. Lee, I've managed to isolate a new strain of the virus that seems susceptible to our current treatments.\n However, I'm concerned about the security implications of this discovery. We need to be extra cautious about who knows about this.'"
+
+msgid "spyder_hospital_pc_message7"
+msgstr "E-mail from Enforcer\n 'Dr Lee, we have received intelligence indicating that you're conducting unauthorized research within the company.\n We have reason to believe that your work poses a significant threat to our organization.\n You're hereby ordered to cease all research immediately and report to the security office.'"
+
+msgid "spyder_hospital_pc_message8"
+msgstr "E-mail from Mysterious Informant\n 'There are people who want to see you fail. They will stop at nothing to destroy your work. Be careful.'"
+
+msgid "spyder_hospital_pc_message9"
+msgstr "E-mail from Robot Assistant\n 'I have detected unauthorized access to your research files. Please investigate immediately.'"
+
 msgid "spyder_hospital1_aurora1"
 msgstr "You will quickly learn that you have chosen for your sparring partner\n the most skilled trainer in the building."
+
 msgid "spyder_hospital1_aurora2"
 msgstr "Not too shabby. I don't suppose I could recruit you for Spyder?"
+
 msgid "spyder_hospital1_eleni1"
 msgstr "Salutations. Test your puissance against my menagerie."
+
 msgid "spyder_hospital1_eleni2"
 msgstr "Bollocks."
+
 msgid "spyder_hospital1_felu1"
 msgstr "You look like you could use a challenge."
+
 msgid "spyder_hospital1_felu2"
 msgstr "Well, I didn't say it would be me."
+
 msgid "spyder_hospital1_fring1"
 msgstr "Boss says we can't help ourselves to the stashed tuxemon ... yet."
+
 msgid "spyder_hospital1_fring2"
 msgstr "This would have been a lot easier with a Moloch or two!"
+
 msgid "spyder_hospital1_liane1"
 msgstr "You wouldn't believe the powerful mons these suckers have handed over."
+
 msgid "spyder_hospital1_liane2"
 msgstr "You may have beaten me, but you'll never stop Spyder."
+
 msgid "spyder_hospital1_luzia1"
 msgstr "Like taking candy from a baby."
+
 msgid "spyder_hospital1_luzia2"
 msgstr "Waa!\n What's the point of having so many of us stationed here.\n No one will get through the DNA blocker."
+
 msgid "spyder_hospital1_pem1"
 msgstr "I don't recognize you from the induction."
+
 msgid "spyder_hospital1_rea1"
 msgstr "Confiscating all the tuxemon was a waste of time.\n No trainer can stop the super-monsters that Spyder is breeding. "
+
 msgid "spyder_hospital1_walt1"
 msgstr "What happened to your uniform? Wait, imposter! Stop right there!"
+
 msgid "spyder_hospital1_walt2"
 msgstr "I'm going to have to report this to head office.\n Thanks for nothing."
+
 msgid "spyder_hospital1_zekar1"
 msgstr "Oi! Stop right there!"
+
 msgid "spyder_hospital1_zekar2"
 msgstr "You may have beaten me, but there's no way you'll beat what they have cooking at HQ."
+
 msgid "spyder_hospital1_rakez1"
 msgstr "I just got involved for the paycheck.\n Is that so wrong?"
+
 msgid "spyder_hospital1_rakez2"
 msgstr "Alright, alright, you've made your point."
+
 msgid "spyder_hospital1_rhizome1"
 msgstr "Stop right there!\n What you are looking at is the intellectual property of Omnichannel!"
+
 msgid "spyder_hospital1_rhizome2"
 msgstr "You might be able to defeat me, but you'll never beat the patent lawyers."
+
 msgid "spyder_hospital1_nurse1"
 msgstr "You have to stop them!\n These villains have taken over the hospital,\n and they're stopping us from releasing the cure."
+
 msgid "spyder_hospital2_nurse1"
 msgstr "Quarantines have their use, especially for people who don't have tuxemon to heal them,\n but Spyder have used this one very cynically."
 
@@ -10697,7 +10748,7 @@ msgid "spyder_greenwash_heidenstam1"
 msgstr "This has been one heck of a work experience placement."
 msgid "spyder_greenwash_heidenstam2"
 msgstr "Gee, thanks a bunch."
-    
+
 msgid "spyder_greenwash_louis"
 msgstr "Louis"
 msgid "spyder_greenwash_clarence"

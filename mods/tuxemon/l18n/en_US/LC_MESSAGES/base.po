@@ -10230,8 +10230,53 @@ msgstr "Night: A Techno song is playing. It's called \"Bot Revolution: Rise of t
 msgid "spyder_rivaldownstairs_tv"
 msgstr "A group of schoolboys stranded on a deserted island, and of their struggles to overcome adversity."
 
+msgid "spyder_rivaldownstairs_package"
+msgstr "For Billie, from Grandma. Memories of Grandpa Bernard."
+
 msgid "spyder_rivaloffice_haiku"
 msgstr "It's a haiku: From Rock to Kitten, Evolution's dance unfolds, Transformation blooms."
+
+msgid "spyder_billie_flashback_trigger"
+msgstr "Do you want to uncover a piece of Billie's backstory?"
+
+msgid "spyder_billie_flashback1"
+msgstr "Granny: You look upset, dear. Is everything alright?"
+
+msgid "spyder_billie_flashback2"
+msgstr "I don't know, Grandma. My parents are always arguing about me."
+
+msgid "spyder_billie_flashback3"
+msgstr "Granny: Oh, honey. That must be hard. But remember, you don't have to agree with everything they say."
+
+msgid "spyder_billie_flashback4"
+msgstr "But they're my parents. I'm supposed to respect them."
+
+msgid "spyder_billie_flashback5"
+msgstr "Granny: Of course, you should. But respect doesn't mean obedience. It means understanding and valuing their love for you."
+
+msgid "spyder_billie_flashback6"
+msgstr "I know, but it's so hard."
+
+msgid "spyder_billie_flashback7"
+msgstr "Granny: Life is full of challenges, dear. But remember, you're not alone. I'm always here for you."
+
+msgid "spyder_billie_flashback8"
+msgstr "I just wish they could understand me."
+
+msgid "spyder_billie_flashback9"
+msgstr "Granny: Sometimes, it takes time for people to see things from a different perspective.\n But in the meantime, you can focus on what you can control. What makes you happy?"
+
+msgid "spyder_billie_flashback10"
+msgstr "Spending time with my friends, training my Tuxemon, and exploring new places."
+
+msgid "spyder_billie_flashback11"
+msgstr "Granny: Remember, it's okay to pursue your own passions, even if they don't always align with your parents' expectations."
+
+msgid "spyder_billie_flashback12"
+msgstr "Thank you, Grandma. I needed to hear that."
+
+msgid "spyder_billie_flashback_end"
+msgstr "Oh dear, how much I would like you to be close to me, Bernard...\n I remember when you were first diagnosed, and you said, 'We'll face this together, as a team.'\n Sometimes it feels like it was just yesterday that you were here with me.\n I see so much of you in Billie... it's like you're still with me, guiding me through her."
 
 msgid "spyder_papertown_restinbed"
 msgstr "You awake fully rested!"

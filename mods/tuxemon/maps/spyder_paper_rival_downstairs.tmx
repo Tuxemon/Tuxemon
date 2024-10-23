@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="11" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="66">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="11" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="67">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="notype"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="rival_downstairs"/>
-  <property name="map_type" value="notype"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <tileset firstgid="2971" source="../gfx/tilesets/core_indoor_floors.tsx"/>
@@ -23,7 +23,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="11" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyGACAEAAhAAAQ==
+   eAFjYBgFQyUEQrVo71IAM4IAgA==
   </data>
  </layer>
  <layer id="4" name="Above player" width="11" height="12">
@@ -39,44 +39,6 @@
   <object id="59" type="collision" x="0" y="0" width="176" height="48"/>
   <object id="62" type="collision" x="64" y="144" width="32" height="16"/>
   <object id="63" type="collision" x="64" y="112" width="32" height="16"/>
- </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="56" name="Go Outside" type="event" x="16" y="176" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_paper_town.tmx,32,6,0.3"/>
-    <property name="act2" value="char_face player,down"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,down"/>
-   </properties>
-  </object>
-  <object id="58" name="Play Music" type="event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="play_music music_home"/>
-    <property name="cond1" value="not music_playing music_home"/>
-   </properties>
-  </object>
-  <object id="60" name="Go Bedroom" type="event" x="48" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_paper_rival_bedroom.tmx,0,3,0.3"/>
-    <property name="act2" value="char_face player,right"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,right"/>
-   </properties>
-  </object>
-  <object id="64" name="Go Office" type="event" x="0" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_paper_rival_office.tmx,6,3,0.3"/>
-    <property name="act2" value="char_face player,left"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,left"/>
-   </properties>
-  </object>
-  <object id="65" name="TV" type="event" x="64" y="112" width="32" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_rivaldownstairs_tv"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
+  <object id="66" type="collision" x="64" y="48" width="16" height="16"/>
  </objectgroup>
 </map>

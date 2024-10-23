@@ -881,7 +881,11 @@ class CombatState(CombatAnimations):
             m = None
 
         if result_tech["extra"]:
-            m = (m or "") + "\n" + T.translate(result_tech["extra"])
+            m = (
+                (m or "")
+                + ("\n" if m else "")
+                + T.translate(result_tech["extra"])
+            )
 
         if m:
             message += "\n" + m
@@ -1077,6 +1081,7 @@ class CombatState(CombatAnimations):
         """
         winners = get_winners(monster, self._damage_map)
         if winners:
+            new_techniques = []
             for winner in winners:
                 # Award money and experience
                 awarded_mon = award_money(monster, winner)
@@ -1086,10 +1091,9 @@ class CombatState(CombatAnimations):
 
                 if winner.owner and winner.owner.isplayer:
                     levels = winner.give_experience(awarded_exp)
+                    new_techniques = winner.update_moves(levels)
                     if self.is_trainer_battle:
                         self._prize += awarded_mon
-                else:
-                    levels = 0
 
                 # Log experience gain
                 if winner.owner and winner.owner.isplayer:
@@ -1102,23 +1106,22 @@ class CombatState(CombatAnimations):
                         self._xp_message = T.format("combat_gain_exp", params)
 
                 # Update HUD and handle level up
-                self.update_hud_and_level_up(winner, levels)
+                self.update_hud_and_level_up(winner, new_techniques)
 
-    def update_hud_and_level_up(self, winner: Monster, levels: int) -> None:
+    def update_hud_and_level_up(
+        self, winner: Monster, techniques: list[Technique]
+    ) -> None:
         """
         Update the HUD and handle level ups for the winner.
 
         Parameters:
             winner: Monster that won the battle.
-            levels: Number of levels gained.
+            techniques: List of learned techniques.
 
         """
         if winner in self.monsters_in_play_right:
-            new_techniques = winner.update_moves(levels)
-            if new_techniques:
-                tech_list = ", ".join(
-                    tech.name.upper() for tech in new_techniques
-                )
+            if techniques:
+                tech_list = ", ".join(tech.name.upper() for tech in techniques)
                 params = {"name": winner.name.upper(), "tech": tech_list}
                 mex = T.format("tuxemon_new_tech", params)
                 if self._xp_message is not None:
@@ -1422,8 +1425,8 @@ class CombatState(CombatAnimations):
         # clear action queue
         self._action_queue.clear_queue()
         self._action_queue.clear_history()
-        self._pending_queue = list()
-        self._damage_map = list()
+        self._pending_queue = []
+        self._damage_map = []
 
     def end_combat(self) -> None:
         """End the combat."""

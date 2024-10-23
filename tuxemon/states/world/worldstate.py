@@ -240,7 +240,7 @@ class WorldState(state.State):
             duration=duration,
             round_values=True,
         )
-        self.task(partial(self.unlock_controls, self.player), duration - 0.5)
+        self.task(partial(self.unlock_controls, self.player), max(duration, 0))
 
     def trigger_fade_out(self, duration: float, color: ColorLike) -> None:
         """

@@ -194,25 +194,22 @@ class CombatState(CombatAnimations):
             return task.is_finish()
         return True
 
-    def update(self, time_delta: float) -> None:
+    def update_text_animation(self) -> None:
         """
-        Update the combat state.  State machine is checked.
-
-        General operation:
-        * determine what phase to update
-        * if new phase, then run transition into new one
-        * update the new phase, or the current one
+        Update the text animation.
         """
-        super().update(time_delta)
-        self._text_animation_time_left -= time_delta
-        if self.no_ongoing_text_animation() and self.text_animations_queue:
+        if self._text_animation_time_left <= 0 and self.text_animations_queue:
             (
                 next_animation,
                 self._text_animation_time_left,
             ) = self.text_animations_queue.pop(0)
             next_animation()
 
-        if self.no_ongoing_text_animation() and all(
+    def update_combat_phase(self) -> None:
+        """
+        Update the combat phase.
+        """
+        if self._text_animation_time_left <= 0 and all(
             map(self.is_task_finished, self.animations)
         ):
             new_phase = self.determine_phase(self.phase)
@@ -221,15 +218,16 @@ class CombatState(CombatAnimations):
                 self.transition_phase(new_phase)
             self.update_phase()
 
-    def no_ongoing_text_animation(self) -> bool:
+    def update(self, time_delta: float) -> None:
         """
-        Return True if there is no current text animation.
-        Return False otherwise.
+        Update the combat state.
 
-        Returns:
-            Whether there is no current text animation or not.
+        This method is responsible for updating the text animation and the combat phase.
         """
-        return self._text_animation_time_left <= 0
+        super().update(time_delta)
+        self._text_animation_time_left -= time_delta
+        self.update_text_animation()
+        self.update_combat_phase()
 
     def draw(self, surface: pygame.surface.Surface) -> None:
         """
@@ -944,48 +942,49 @@ class CombatState(CombatAnimations):
     def _handle_npc_item(
         self,
         user: NPC,
-        method: Item,
+        item: Item,
         target: Monster,
     ) -> None:
         action_time = 0.0
-        method.combat_state = self
-        result_item = method.use(user, target)
+        item.combat_state = self
+        result_item = item.use(user, target)
         context = {
             "user": user.name,
-            "name": method.name,
+            "name": item.name,
             "target": target.name,
         }
-        message = T.format(method.use_item, context)
+        message = T.format(item.use_item, context)
         # animation sprite
-        item_sprite = self._method_cache.get(method, False)
+        item_sprite = self._method_cache.get(item, False)
         # handle the capture device
-        if method.category == ItemCategory.capture and item_sprite:
+        if item.category == ItemCategory.capture and item_sprite:
             # retrieve tuxeball
             message += "\n" + T.translate("attempting_capture")
-            action_time = result_item["num_shakes"] + 1.8
+            action_time = result_item.num_shakes + 1.8
             self.animate_capture_monster(
-                result_item["success"],
-                result_item["num_shakes"],
+                result_item.success,
+                result_item.num_shakes,
                 target,
-                method,
+                item,
                 item_sprite,
             )
         else:
-            if method.behaviors.throwable:
-                item = self.animate_throwing(target, method)
-                self.task(item.kill, 1.5)
-            msg_type = (
-                "use_success" if result_item["success"] else "use_failure"
-            )
-            template = getattr(method, msg_type)
+            if item.behaviors.throwable:
+                sprite = self.animate_throwing(target, item)
+                self.task(sprite.kill, 1.5)
+            msg_type = "use_success" if result_item.success else "use_failure"
+            template = getattr(item, msg_type)
             tmpl = T.format(template, context)
             # extra output
-            if result_item["extra"]:
-                tmpl = T.translate(result_item["extra"])
+            if result_item.extra:
+                extra_tmpls = [
+                    T.translate(extra) for extra in result_item.extra
+                ]
+                tmpl = "\n".join(extra_tmpls)
             if template:
                 message += "\n" + tmpl
                 action_time += compute_text_animation_time(message)
-            self.play_animation(method, target, None, action_time)
+            self.play_animation(item, target, None, action_time)
 
         self.text_animations_queue.append(
             (partial(self.alert, message), action_time)

@@ -12,10 +12,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class LearnTmEffectResult(ItemEffectResult):
-    pass
-
-
 @dataclass
 class LearnTmEffect(ItemEffect):
     """
@@ -31,7 +27,7 @@ class LearnTmEffect(ItemEffect):
 
     def apply(
         self, item: Item, target: Union[Monster, None]
-    ) -> LearnTmEffectResult:
+    ) -> ItemEffectResult:
 
         target_moves = (
             {tech.slug for tech in target.moves} if target else set()
@@ -45,6 +41,10 @@ class LearnTmEffect(ItemEffect):
                 "add_tech", [self.name, self.technique], True
             )
 
-            return {"success": True, "num_shakes": 0, "extra": None}
+            return ItemEffectResult(
+                name=item.name, success=True, num_shakes=0, extra=[]
+            )
 
-        return {"success": False, "num_shakes": 0, "extra": None}
+        return ItemEffectResult(
+            name=item.name, success=False, num_shakes=0, extra=[]
+        )

@@ -64,10 +64,14 @@ class CombatAnimations(ABC, Menu[None]):
         self,
         players: tuple[NPC, NPC],
         graphics: BattleGraphicsModel,
+        battle_mode: Literal["single", "double"],
     ) -> None:
         super().__init__()
         self.players = list(players)
         self.graphics = graphics
+        self.battle_mode = battle_mode
+        self.is_double = battle_mode == "double"
+        self.max_positions: dict[NPC, int] = {}
 
         self.monsters_in_play: defaultdict[NPC, list[Monster]] = defaultdict(
             list
@@ -103,6 +107,10 @@ class CombatAnimations(ABC, Menu[None]):
             player: layout[index] for index, player in enumerate(self.players)
         }
 
+    @property
+    def num_monsters(self) -> int:
+        return 2 if self.battle_mode == "double" else 1
+
     def animate_open(self) -> None:
         self.transition_none_normal()
 
@@ -133,7 +141,7 @@ class CombatAnimations(ABC, Menu[None]):
         sprite: Sprite,
     ) -> None:
         # Calculate feet position
-        if npc.max_position > 1 and monster in self.monsters_in_play[npc]:
+        if self.is_double and monster in self.monsters_in_play[npc]:
             monster_index = str(self.monsters_in_play[npc].index(monster))
         else:
             monster_index = ""

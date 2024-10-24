@@ -267,31 +267,24 @@
       "slug": "interactive_obj"
     },
     {
-      "slug": "battle_pair",
-      "double": true
+      "slug": "battle_pair"
     },
     {
-      "slug": "business_pair",
-      "double": true
+      "slug": "business_pair"
     },
     {
-      "slug": "little_pair",
-      "double": true
+      "slug": "little_pair"
     },
     {
-      "slug": "med_pair",
-      "double": true
+      "slug": "med_pair"
     },
     {
-      "slug": "spyder_pair",
-      "double": true
+      "slug": "spyder_pair"
     },
     {
-      "slug": "enthusiast_pair",
-      "double": true
+      "slug": "enthusiast_pair"
     },
     {
-      "slug": "villain_pair",
-      "double": true
+      "slug": "villain_pair"
     }
   ]

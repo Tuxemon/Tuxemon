@@ -3,8 +3,7 @@
   "accuracy": 1,
   "animation": "emerald",
   "effects": [
-    "enhance",
-    "switch target,wood"
+    "switch enemy_monster,wood"
   ],
   "flip_axes": "",
   "is_fast": false,

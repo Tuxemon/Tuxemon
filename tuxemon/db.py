@@ -197,6 +197,15 @@ class Comparison(str, Enum):
     not_equals = "not_equals"
 
 
+class TargetType(str, Enum):
+    enemy_monster = "enemy_monster"
+    own_monster = "own_monster"
+    enemy_team = "enemy_team"
+    own_team = "own_team"
+    enemy_trainer = "enemy_trainer"
+    own_trainer = "own_trainer"
+
+
 # TODO: Automatically generate state enum through discovery
 State = Enum(
     "State",

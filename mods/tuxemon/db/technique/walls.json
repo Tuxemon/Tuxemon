@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "wall_wood",
   "effects": [
-    "give hardshell,user",
+    "give hardshell,own_monster",
     "damage"
   ],
   "flip_axes": "",

@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "lance_ice",
   "effects": [
-    "give poison,target",
+    "give poison,enemy_monster",
     "splash 2"
   ],
   "flip_axes": "xy",

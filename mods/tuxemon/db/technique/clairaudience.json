@@ -3,8 +3,7 @@
   "accuracy": 1,
   "animation": "metallic_radiate",
   "effects": [
-    "give feedback,user",
-    "enhance"
+    "give feedback,own_monster"
   ],
   "flip_axes": "",
   "is_fast": false,

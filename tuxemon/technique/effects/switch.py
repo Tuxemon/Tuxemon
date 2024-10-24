@@ -6,6 +6,7 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from tuxemon.combat import get_target_monsters
 from tuxemon.db import ElementType
 from tuxemon.element import Element
 from tuxemon.locale import T
@@ -24,84 +25,64 @@ class SwitchEffectResult(TechEffectResult):
 class SwitchEffect(TechEffect):
     """
     Changes monster type.
-    "switch user,wood"
-    "switch target,fire"
-    "switch both,random"
-    if "switch target,random"
-    then the type is chosen randomly.
 
+    Parameters:
+        objectives: The targets (e.g. own_monster, enemy_monster, etc.), if
+            single "enemy_monster" or "enemy_monster:own_monster"
+        element: The element (e.g. wood, fire, etc.) or random.
+
+    eg switch enemy_monster,wood
+    eg switch enemy_monster:own_monster,fire
+    eg switch own_monster,random
     """
 
     name = "switch"
-    objective: str
+    objectives: str
     element: str
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> SwitchEffectResult:
-        if self.objective not in ("user", "target", "both"):
-            raise ValueError(
-                f"{self.objective} must be 'user', 'target' or 'both'"
-            )
 
         elements = list(ElementType)
+        combat = tech.combat_state
+        assert combat
+
+        tech.hit = tech.accuracy >= combat._random_tech_hit.get(user, 0.0)
+
+        if not tech.hit:
+            return {
+                "success": tech.hit,
+                "damage": 0,
+                "element_multiplier": 0.0,
+                "should_tackle": False,
+                "extra": None,
+            }
+
+        objectives = self.objectives.split(":")
+        monsters = get_target_monsters(objectives, tech, user, target)
 
         if self.element == "random":
-            user_element = Element(random.choice(elements))
-            target_element = Element(random.choice(elements))
+            new_type = Element(random.choice(elements))
         else:
-            user_element = Element(self.element)
-            target_element = Element(self.element)
+            new_type = Element(self.element)
 
-        extra = None
-        if self.objective == "both":
-            if user.has_type(user_element.slug):
-                extra = get_failure_message(user, user_element)
-            elif target.has_type(target_element.slug):
-                extra = get_failure_message(target, target_element)
+        messages = []
+        for monster in monsters:
+            if monster.has_type(new_type.slug):
+                messages.append(get_failure_message(monster, new_type))
             else:
-                user.types = [user_element]
-                target.types = [target_element]
-                extra = get_extra_message_both(user, target, user_element)
-        else:
-            monster = "user" if self.objective == "user" else "target"
-            monster_element = (
-                user_element if monster == "user" else target_element
-            )
-            if (monster == "user" and user.has_type(monster_element.slug)) or (
-                monster == "target" and target.has_type(monster_element.slug)
-            ):
-                extra = get_failure_message(
-                    (user if monster == "user" else target), monster_element
-                )
-            else:
-                if monster == "user":
-                    user.types = [monster_element]
-                else:
-                    target.types = [monster_element]
-                extra = get_failure_message(
-                    (user if monster == "user" else target), monster_element
-                )
+                monster.types = [new_type]
+                messages.append(get_extra_message(monster, new_type))
 
+        extra = "\n".join(messages)
         return {
-            "success": True,
+            "success": tech.hit,
             "damage": 0,
             "element_multiplier": 0.0,
             "should_tackle": False,
             "extra": extra,
         }
-
-
-def get_extra_message_both(
-    user: Monster, target: Monster, new_type: Element
-) -> str:
-    params = {
-        "user": user.name.upper(),
-        "type1": T.translate(new_type.slug).upper(),
-        "target": target.name.upper(),
-        "type2": T.translate(new_type.slug).upper(),
-    }
-    return T.format("combat_state_switch_both", params)
 
 
 def get_extra_message(monster: Monster, new_type: Element) -> str:

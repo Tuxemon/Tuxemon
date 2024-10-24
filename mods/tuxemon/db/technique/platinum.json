@@ -3,8 +3,8 @@
   "accuracy": 0.7,
   "animation": "blue_circle",
   "effects": [
-    "give focused,user",
-    "give softened,target",
+    "give focused,own_monster",
+    "give softened,enemy_monster",
     "damage"
   ],
   "flip_axes": "",

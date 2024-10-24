@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "constantburn",
   "effects": [
-    "give enraged,user",
+    "give enraged,own_monster",
     "damage"
   ],
   "flip_axes": "",

@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "explosion_dusty_96",
   "effects": [
-    "give tired,user",
+    "give tired,own_monster",
     "damage"
   ],
   "flip_axes": "",

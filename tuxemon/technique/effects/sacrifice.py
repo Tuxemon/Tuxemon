@@ -39,15 +39,14 @@ class SacrificeEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> SacrificeEffectResult:
-        tech.hit = tech.accuracy >= (
-            tech.combat_state._random_tech_hit.get(user, 0.0)
-            if tech.combat_state
-            else 0.0
-        )
+        combat = tech.combat_state
+        assert combat
+        tech.hit = tech.accuracy >= combat._random_tech_hit.get(user, 0.0)
+
         if tech.hit:
             damage = int(user.current_hp * self.multiplier)
             user.current_hp = 0
-            target.current_hp -= damage
+            target.current_hp = max(0, target.current_hp - damage)
         else:
             damage = 0
 

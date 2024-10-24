@@ -3,10 +3,9 @@
   "accuracy": 1,
   "animation": null,
   "effects": [
-    "remove all,user",
-    "remove all,target",
-    "reverse both",
-    "enhance"
+    "remove all,own_monster",
+    "remove all,enemy_monster",
+    "reverse enemy_team:own_team"
   ],
   "flip_axes": "",
   "is_fast": true,

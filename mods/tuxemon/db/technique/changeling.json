@@ -3,8 +3,7 @@
   "accuracy": 1,
   "animation": "amethyst",
   "effects": [
-    "give recover,user",
-    "enhance"
+    "give recover,own_monster"
   ],
   "flip_axes": "",
   "is_fast": false,

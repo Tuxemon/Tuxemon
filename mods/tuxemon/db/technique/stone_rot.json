@@ -3,8 +3,7 @@
   "accuracy": 0.9,
   "animation": "drip_green",
   "effects": [
-    "give poison,target",
-    "enhance"
+    "give poison,enemy_monster"
   ],
   "flip_axes": "",
   "is_fast": true,

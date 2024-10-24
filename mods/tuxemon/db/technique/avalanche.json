@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "rockfall_193",
   "effects": [
-    "give exhausted,target",
+    "give exhausted,enemy_monster",
     "splash 2"
   ],
   "flip_axes": "",

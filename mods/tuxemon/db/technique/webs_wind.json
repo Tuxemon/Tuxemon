@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "tornado_bulk",
   "effects": [
-    "give slow,target",
+    "give slow,enemy_monster",
     "multiattack 5",
     "damage"
   ],

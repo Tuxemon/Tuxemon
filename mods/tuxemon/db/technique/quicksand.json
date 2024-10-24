@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "spikes_rock",
   "effects": [
-    "give stuck,target",
+    "give stuck,enemy_monster",
     "damage"
   ],
   "flip_axes": "",

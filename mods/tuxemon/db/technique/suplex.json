@@ -3,8 +3,8 @@
   "accuracy": 0.95,
   "animation": "amethyst_radiate",
   "effects": [
-    "give diehard,user",
-    "give exhausted,target",
+    "give diehard,own_monster",
+    "give exhausted,enemy_monster",
     "damage"
   ],
   "flip_axes": "",

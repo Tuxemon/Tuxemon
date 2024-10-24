@@ -31,15 +31,22 @@ class SplashEffect(TechEffect):
         self, tech: Technique, user: Monster, target: Monster
     ) -> SplashEffectResult:
         combat = tech.combat_state
-        value = combat._random_tech_hit.get(user, 0.0) if combat else 0.0
-        hit = tech.accuracy >= value
-        tech.hit = hit
+        assert combat
+        tech.hit = tech.accuracy >= combat._random_tech_hit.get(user, 0.0)
+
         damage, mult = formula.simple_damage_calculate(tech, user, target)
-        if hit:
-            target.current_hp -= damage
-        else:
+        targets = combat.get_targets(tech, user, target)
+
+        if not tech.hit:
             damage //= self.divisor
-            target.current_hp -= damage
+
+        if targets:
+            for monster in targets:
+                monster.current_hp = max(0, monster.current_hp - damage)
+                # to avoid double registration in the self._damage_map
+                if monster != target:
+                    combat.enqueue_damage(user, monster, damage)
+
         return {
             "success": bool(damage),
             "damage": damage,

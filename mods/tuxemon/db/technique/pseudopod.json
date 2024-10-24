@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "snake_right",
   "effects": [
-    "give festering,target",
+    "give festering,enemy_monster",
     "damage"
   ],
   "flip_axes": "x",

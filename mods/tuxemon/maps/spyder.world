@@ -736,6 +736,13 @@
             "y": 3200
         },
         {
+            "fileName": "spyder_greenwash_level3.tmx",
+            "height": 224,
+            "width": 256,
+            "x": -896,
+            "y": 2688
+        },
+        {
             "fileName": "spyder_nimrod_room.tmx",
             "height": 112,
             "width": 144,

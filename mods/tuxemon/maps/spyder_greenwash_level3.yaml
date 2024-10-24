@@ -1,0 +1,162 @@
+events:
+  Teleport to Level 2a:
+    actions:
+    - transition_teleport spyder_greenwash_level2.tmx,4,4,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 1
+    y: 2
+    width: 1
+    height: 2
+    type: "event"
+  Teleport to Level 2b:
+    actions:
+    - transition_teleport spyder_greenwash_level2.tmx,5,4,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 2
+    y: 2
+    width: 1
+    height: 2
+    type: "event"
+  PC1:
+    actions:
+    - translated_dialog spyder_greenwash_pc_message3
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 7
+    y: 3
+    type: "event"
+  PC2:
+    actions:
+    - translated_dialog spyder_greenwash_pc_message2
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 9
+    y: 3
+    type: "event"
+  PC3:
+    actions:
+    - translated_dialog spyder_greenwash_pc_message1
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 10
+    y: 10
+    type: "event"
+  Note:
+    actions:
+    - translated_dialog spyder_greenwash_note1
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 8
+    y: 3
+    type: "event"
+  FlashBack Incident:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_greenwash_heidenstam,9,4
+    - char_face spyder_greenwash_heidenstam,up
+    - create_npc spyder_greenwash_moreau,7,4
+    - char_face spyder_greenwash_moreau,up
+    - create_npc spyder_greenwash_looten,8,2
+    - char_face spyder_greenwash_looten,up
+    - translated_dialog spyder_candy_cafe_trigger_yes
+    - translated_dialog spyder_experiment_flashback1
+    - translated_dialog spyder_experiment_flashback2
+    - translated_dialog spyder_experiment_flashback3
+    - translated_dialog spyder_experiment_flashback4
+    - set_bubble spyder_greenwash_heidenstam,exclamation
+    - translated_dialog spyder_experiment_flashback5
+    - set_bubble spyder_greenwash_heidenstam
+    - set_bubble spyder_greenwash_looten,exclamation
+    - translated_dialog spyder_experiment_flashback6
+    - set_bubble spyder_greenwash_looten
+    - set_layer 0:0:0:255
+    - remove_npc spyder_greenwash_heidenstam
+    - remove_npc spyder_greenwash_looten
+    - remove_npc spyder_greenwash_moreau
+    - translated_dialog spyder_experiment_flashback7
+    - translated_dialog spyder_experiment_flashback8
+    - set_variable incident_greenwash:done
+    - unlock_controls
+    - set_variable flashback:off
+    - set_layer
+    - transition_teleport spyder_candy_cafe.tmx,4,7
+    - char_face player,left
+    conditions:
+    - is variable_set incident_greenwash:yes
+    type: "event"
+  Flashback Fossilator:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_greenwash_looten,9,11
+    - char_face spyder_greenwash_looten,up
+    - create_npc spyder_greenwash_selby,10,11
+    - char_face spyder_greenwash_selby,up
+    - create_npc spyder_greenwash_chip,11,11
+    - char_face spyder_greenwash_chip,up
+    - translated_dialog spyder_fossilator_flashback1
+    - translated_dialog spyder_fossilator_flashback2
+    - translated_dialog spyder_fossilator_flashback3
+    - translated_dialog spyder_fossilator_flashback4
+    - translated_dialog spyder_fossilator_flashback5
+    - translated_dialog spyder_fossilator_flashback6
+    - translated_dialog spyder_fossilator_flashback7
+    - pathfind spyder_greenwash_looten,4,4
+    - remove_npc spyder_greenwash_looten
+    - pathfind spyder_greenwash_chip,4,4
+    - remove_npc spyder_greenwash_chip
+    - remove_npc spyder_greenwash_selby
+    - set_variable unveildefossilator:done
+    - set_layer
+    - unlock_controls
+    - set_variable flashback:off
+    - transition_teleport spyder_greenwash_level2.tmx,9,2
+    - char_face player,up
+    conditions:
+    - is variable_set unveildefossilator:yes
+    type: "event"
+  Flashback Dempsey:
+    actions:
+    - camera_position 3,4
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_greenwash_dempsey,3,4
+    - char_face spyder_greenwash_dempsey,right
+    - create_npc spyder_greenwash_looten,4,4
+    - char_face spyder_greenwash_looten,left
+    - translated_dialog spyder_dempsey_flashback1
+    - translated_dialog spyder_dempsey_flashback2
+    - translated_dialog spyder_dempsey_flashback3
+    - translated_dialog spyder_dempsey_flashback4
+    - translated_dialog spyder_dempsey_flashback5
+    - translated_dialog spyder_dempsey_flashback6
+    - translated_dialog spyder_dempsey_flashback7
+    - translated_dialog spyder_dempsey_flashback8
+    - translated_dialog spyder_dempsey_flashback9
+    - pathfind spyder_greenwash_dempsey,2,4
+    - remove_npc spyder_greenwash_dempsey
+    - pathfind spyder_greenwash_looten,2,4
+    - remove_npc spyder_greenwash_looten
+    - set_variable dempsey_flashback:done
+    - set_layer
+    - unlock_controls
+    - set_variable flashback:off
+    - transition_teleport spyder_greenwash_level2.tmx,13,2
+    - char_face player,up
+    conditions:
+    - is variable_set dempsey_flashback:yes
+    type: "event"

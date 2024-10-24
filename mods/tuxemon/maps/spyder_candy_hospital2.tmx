@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="115">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="117">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="hospital2"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
   <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
  </tileset>
  <tileset firstgid="2593" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
   <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
+ </tileset>
+ <tileset firstgid="4353" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+  <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
  </tileset>
  <layer id="7" name="Tile Layer 1" width="20" height="20">
   <data encoding="base64" compression="zlib">
@@ -20,17 +23,17 @@
  </layer>
  <layer id="8" name="Tile Layer 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYKAMmAG1mwOxBRBbUmYUWLcbkHQHYg8g9gSLjBKjITD4QqCSj4FBAweuAIqTCjbx4taxHo8cLl3UNm8H0A0dOHAGGe57ANSzAQeeQIZ5uMJhVJy2IQAA0ocR9A==
+   eAFjYKAMmAG1mwOxBRBbEjDqriADwz0gxgfcgJLuQOwBxJ74FALlPgPN+kLAPAJGjEqPhgBZIVDJx8CggQNXAMVJBZt4cetYj0cOly5qm7cD6IYOHDiDDPc9AOrZgANPIMM8XOEwKk7bEAAA4WUV2g==
   </data>
  </layer>
  <layer id="9" name="Tile Layer 3" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtkkcOwjAQRZ0gARvKBSh3BfaUsKddCDgBfU1oK8qz5JEsKzFChB0jPX0Pf+YnClYq25oXlFrAEuw60sdwsn5Pm7X3VsyvYWPtaT8oKhVCDqTSZsUXbbHTho7ZdXuZ0+rzZG5ATgRDk+f2MqfV59lzWZ+75vs98yRzvqMPcFV8UXmPmMMJdiZnZLSCVqEE5QQVX1TnbZkLA/47uHC2q0HfhBrUE1R8Ub17Zu5fv/0CvVCpPgwgArf/9OljMiYwhRm4vS9P7rJv5p0nGXvujtzldzs+X2cc4JrhXbxlmOV792+8F70tOw0=
+   eAHtks1OwlAQhYeSCBtBHgD1VY26V1vDlkJfwMQXUdcu/MO9LbBC+G68k9zcNNMY646bfDkzPTOnTXNF7HM2sv3YfeiJPMITxOeZrEmQZ83q7gs5r/BWk1eSVQV51qzmOT3vi+RQgPYX1Je+/3na7Olcyt4d3Pt912dw63udc2p54Vzb9ZX/f9sDkqk36DfEqr6qfscXRQkfPmfqdYgewSEMalR9VZf3zlzSEenCkjo8J/SnMIbjGlVf1e1WzO3P//6B60TkBlLIIO5/+/acjBnMoYC4t/L0LlszTZ5mLLg7epebdizfZXzCqsW7uG4xy/r2v3g7a/g8rQ==
   </data>
  </layer>
  <layer id="10" name="Tile Layer 4" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgKjIUDfEDjKhLBvK5CNzkfIjrIGcwgAAC5bAv0=
+   eAFjYBgaoFGQuu6cTmXzqOu6UdNGQ2B4h8BRJoT/tgLZ6HyE7ChrMIcAANaDBDc=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
@@ -285,6 +288,27 @@
     <property name="act1" value="translated_dialog spyder_hospital1_rhizome2"/>
     <property name="behav1" value="talk spyder_hospital1_rhizome"/>
     <property name="cond1" value="is variable_set hospital1rhizome:yes"/>
+   </properties>
+  </object>
+  <object id="115" name="PC Dr Lee 1" type="event" x="32" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital_pc_message1"/>
+    <property name="act2" value="translated_dialog spyder_hospital_pc_message2"/>
+    <property name="act3" value="translated_dialog spyder_hospital_pc_message3"/>
+    <property name="act4" value="translated_dialog spyder_hospital_pc_message6"/>
+    <property name="act5" value="translated_dialog spyder_hospital_pc_message9"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="116" name="PC Dr Lee 2" type="event" x="128" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital_pc_message4"/>
+    <property name="act2" value="translated_dialog spyder_hospital_pc_message5"/>
+    <property name="act3" value="translated_dialog spyder_hospital_pc_message7"/>
+    <property name="act4" value="translated_dialog spyder_hospital_pc_message8"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

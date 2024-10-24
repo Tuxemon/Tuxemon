@@ -9112,49 +9112,109 @@ msgid "spyder_timber_firefighter_nochillimp"
 msgstr "Last week a Tikoal almost burnt down its owner's house!"
 msgid "spyder_timber_firefighter_willtrade"
 msgstr "Hey, do you want a TIKOAL? I could really do with a CHILLIMP, if you've got one."
+
 msgid "spyder_flower_mieke1"
 msgstr "It's exciting for us to visit the region of Fondant! You have such unique tuxemon here ... \n Hey, do you want to trade? My Conileaf for a creature that we don't have back home ... \n How about Budaye?"
+
 msgid "spyder_flower_mieke_nobudaye"
 msgstr "Oh it doesn't matter - I can see you don't have a Budaye."
+
 msgid "spyder_flower_mieke_willtrade"
 msgstr "Well, great! Here you go."
+
 msgid "spyder_flower_fez1"
 msgstr "Everyone in our region has to pick from one of the same five boring tuxemon. \n I know like a hundred people with a Foxfire ... \n Hey, do you want to trade? My Foxfire for an Ignibus?"
+
 msgid "spyder_flower_fez_noignibus"
 msgstr "Oh it doesn't matter - I can see you don't have an Ignibus."
+
 msgid "spyder_flower_fez_willtrade"
 msgstr "Well, great! Here you go."
+
 msgid "spyder_flower_cady1"
 msgstr "Oh I'd just love to have a souvenier to take back home with me. \n I just adore those sweet little Grintot. Could you get me one? \n I could give you my Hampotamos in exchange?"
+
 msgid "spyder_flower_cady_nogrintot"
 msgstr "Oh it doesn't matter - I can see you don't have a Grintot. "
+
 msgid "spyder_flower_sandy1"
 msgstr "This Pharfan keeps spraying me with water. What a drag! \n Hey, do you want it? You'd have to give me a Tweesher in return."
+
 msgid "spyder_flower_sandy_notweesher"
 msgstr "Oh it doesn't matter - I can see you don't have a Tweesher."
+
 msgid "spyder_flower_cady_willtrade"
 msgstr "Well, great! Here you go."
+
 msgid "spyder_flower_teach1"
 msgstr "Oh where has my other student gotten to?"
+
 msgid "spyder_flower_monk1"
 msgstr "I'm sorry, only experienced trainers are allowed past this point."
+
 msgid "spyder_flower_monk2"
 msgstr "Welcome master."
 
+msgid "spyder_drinking_trigger"
+msgstr "Yesterday night, something incredible happened.\n I'm still trying to process it all. Would you like to hear about it?"
 
+msgid "spyder_drinking_flashback1"
+msgstr "Captain: I'm off, guys! I'm going on an adventure! I'm going to find the... the... treasure of the mansion!"
+
+msgid "spyder_drinking_flashback2"
+msgstr "Drinking Buddy 1: Dude, you're not even making sense! Sit back down and finish your drink!\n We're in the middle of a sale at Scoop, and I'm not leaving until I get my hands on that new collectible."
+
+msgid "spyder_drinking_flashback3"
+msgstr "Drinking Buddy 2: Yeah, you're not even going to make it out of the shop, let alone find any treasure!"
+
+msgid "spyder_drinking_flashback4"
+msgstr "Captain: No, no, no! I'm a... a... a treasure hunter! I'm going to find it, I'm going to find it! I'll show you, I'll show you all!\n That mansion's been abandoned for years, but I know it's still got secrets. Old Man Jenkins built it, you know.\n He was a rich man, made his fortune in... in... something.\n Don't remember what, but he was rich, I know that much. And then he lost it all, and the mansion fell into ruin.\n But I know it's still got treasure hidden somewhere.\n I've heard stories, you know. Whispers of a hidden room, deep in the basement. And I'm going to find it!"
+
+msgid "spyder_drinking_flashback5"
+msgstr "Drinking Buddy 1: Dude, you're not even making sense! You're just making this up as you go along!"
+
+msgid "spyder_drinking_flashback6"
+msgstr "Drinking Buddy 2: Yeah, and what's with the mansion? You've been talking about that place for years, but you've never even been inside!"
+
+msgid "spyder_drinking_flashback7"
+msgstr "Captain: That's not true! I've been inside, I've explored it! Well, not really explored it, but I've been in the garden.\n And I've seen the tower, the one with the broken clock. It's a sign, I tell you!\n A sign that the treasure is still there, waiting for me to find it!"
+
+msgid "spyder_drinking_flashback8"
+msgstr "Drinking Buddy 1: Dude, you're going to get yourself killed! That place is a death trap!"
+
+msgid "spyder_drinking_flashback9"
+msgstr "Drinking Buddy 2: Yeah, and what about the rumors? You know, the ones about the mansion being haunted?"
+
+msgid "spyder_drinking_flashback10"
+msgstr "Captain: Pfft, don't be ridiculous! I don't believe in ghosts! I'm a... a... a treasure hunter! I'm not afraid of anything!\n I'll show you, I'll show you all!"
+
+msgid "spyder_drinking_flashback11"
+msgstr "Drinking Buddy 1: Well, I guess we'll just have to wait and see if he makes it back in one piece!"
+
+msgid "spyder_drinking_flashback12"
+msgstr "Drinking Buddy 2: Yeah, or if he even remembers where he lives! Poor guy's going to have a killer hangover tomorrow!"
+
+msgid "spyder_drinking_flashback13"
+msgstr "Captain: Treasure... mansion... adventure! I'm going to find it, I'm going to find it!"
 
 msgid "spyder_flower_petshopassistant"
 msgstr "Hello - we are the Pet Shop Boys. Are you interested in buying a tuxemon?"
+
 msgid "spyder_flower_petshopassistant1"
 msgstr "Each for ${{currency}}500"
+
 msgid "spyder_flower_petshopkeeper1"
 msgstr "I found these eggs in the bough of a tree, and hatched them! \n They appear to be a previously unknown tuxemon. \n I call them Vivipere! I wonder what they morph into."
+
 msgid "spyder_flower_petshopkeeper2"
 msgstr "Tell you what, why don't I give you one and you can come back and tell me what it morphs into!"
+
 msgid "spyder_flower_petshopkeeper3"
 msgstr "Did you get Vivipere to morph yet?"
+
 msgid "spyder_flower_petshopkeeper4"
 msgstr "You got it to morph? \n ... \n And you did it in that particular way? \n I see. Hmmm, I don't really like the look of that morph. \n If I give you another Vivipere, can you bring it back if it ever morphs into something different?"
+
 msgid "spyder_route1_beachcomber"
 msgstr "To run, just hold down the SHIFT key. \n Look! I'm free as an ELOFLY!"
 msgid "spyder_cottonhouse1_homemaker"

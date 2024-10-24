@@ -38,27 +38,4 @@
   <object id="5" type="collision" x="80" y="80" width="32" height="32"/>
   <object id="6" type="collision" x="16" y="64" width="64" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="9" name="Go Downstairs" type="event" x="96" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_paper_rival_downstairs.tmx,0,3,0.3"/>
-    <property name="act2" value="char_face player,right"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,right"/>
-   </properties>
-  </object>
-  <object id="33" name="Play Music" type="event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="act10" value="play_music music_home"/>
-    <property name="cond10" value="not music_playing music_home"/>
-   </properties>
-  </object>
-  <object id="37" name="Haiku" type="event" x="32" y="64" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_rivaloffice_haiku"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
- </objectgroup>
 </map>

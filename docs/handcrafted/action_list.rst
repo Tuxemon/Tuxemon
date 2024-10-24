@@ -99,6 +99,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.spawn_monster.SpawnMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.start_battle.StartBattleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.start_cinema_mode.StartCinemaModeAction
+.. autoscriptinfoclass:: tuxemon.event.actions.start_double_battle.StartDoubleBattleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.stop_cinema_mode.StopCinemaModeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.store_monster.StoreMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.teleport_faint.TeleportFaintAction

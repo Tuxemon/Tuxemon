@@ -84,6 +84,7 @@ class WildEncounterAction(EventAction):
             players=(player, npc),
             combat_type="monster",
             graphics=environment.battle_graphics,
+            battle_mode="single",
         )
 
         self.world.lock_controls(player)

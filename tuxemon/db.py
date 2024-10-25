@@ -860,28 +860,6 @@ class TechniqueModel(BaseModel):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
-    # Custom validation for range
-    @field_validator("range")
-    def range_validation(
-        cls: TechniqueModel, v: Range, info: ValidationInfo
-    ) -> Range:
-        # Special indicates that we are not doing damage
-        if v == Range.special and any(
-            effect in info.data["effects"]
-            for effect in [
-                "damage",
-                "area",
-                "retaliate",
-                "revenge",
-                "money",
-                "splash",
-            ]
-        ):
-            raise ValueError(
-                '"special" range cannot be used with effects "damage", "area", "retaliate", "revenge", "money", or "splash"'
-            )
-        return v
-
     @field_validator("animation")
     def animation_exists(
         cls: TechniqueModel, v: Optional[str]

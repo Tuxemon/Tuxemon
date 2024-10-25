@@ -38,8 +38,8 @@ class QuarantineAction(EventAction):
 
     def start(self) -> None:
         player = self.session.player
-        if self.name not in player.monster_boxes.keys():
-            player.monster_boxes[self.name] = []
+        if not player.monster_boxes.has_box(self.name):
+            player.monster_boxes.create_box(self.name)
         if self.value == "in":
             infect = PlagueType.infected
             plague = [
@@ -50,16 +50,16 @@ class QuarantineAction(EventAction):
             ]
             for _monster in plague:
                 _monster.plague[self.plague_slug] = PlagueType.inoculated
-                player.monster_boxes[self.name].append(_monster)
+                player.monster_boxes.add_monster(self.name, _monster)
                 player.remove_monster(_monster)
                 logger.info(f"{_monster} has been quarantined")
         elif self.value == "out":
-            if self.name not in player.monster_boxes:
+            if not player.monster_boxes.has_box(self.name):
                 logger.info(f"Box {self.name} does not exist")
                 return
             box = [
                 mon
-                for mon in player.monster_boxes[self.name]
+                for mon in player.monster_boxes.get_monsters(self.name)
                 if self.plague_slug in mon.plague
             ]
             if not box:
@@ -69,14 +69,18 @@ class QuarantineAction(EventAction):
                 for _monster in box:
                     _monster.plague[self.plague_slug] = PlagueType.inoculated
                     player.add_monster(_monster, len(player.monsters))
-                    player.monster_boxes[self.name].remove(_monster)
+                    player.monster_boxes.remove_monster_from(
+                        self.name, _monster
+                    )
                     logger.info(f"{_monster} has been inoculated")
             elif self.amount > 0 and self.amount <= len(box):
                 sample = random.sample(box, self.amount)
                 for _monster in sample:
                     _monster.plague[self.plague_slug] = PlagueType.inoculated
                     player.add_monster(_monster, len(player.monsters))
-                    player.monster_boxes[self.name].remove(_monster)
+                    player.monster_boxes.remove_monster_from(
+                        self.name, _monster
+                    )
                     logger.info(f"{_monster} has been inoculated")
             else:
                 logger.info(f"Invalid sample size")

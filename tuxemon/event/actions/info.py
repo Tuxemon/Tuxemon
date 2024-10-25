@@ -52,7 +52,7 @@ class InfoAction(EventAction):
         monster_id = uuid.UUID(player.game_variables[variable])
         monster = get_monster_by_iid(self.session, monster_id)
         if monster is None:
-            monster = player.find_monster_in_storage(monster_id)
+            monster = player.monster_boxes.get_monsters_by_iid(monster_id)
             if monster is None:
                 logger.error("Monster not found")
                 return

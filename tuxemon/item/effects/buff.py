@@ -13,10 +13,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class BuffEffectResult(ItemEffectResult):
-    pass
-
-
 @dataclass
 class BuffEffect(ItemEffect):
     """
@@ -34,7 +30,7 @@ class BuffEffect(ItemEffect):
 
     def apply(
         self, item: Item, target: Union[Monster, None]
-    ) -> BuffEffectResult:
+    ) -> ItemEffectResult:
         assert target
 
         if self.statistic not in list(StatType):
@@ -50,4 +46,6 @@ class BuffEffect(ItemEffect):
         target.speed += value if self.statistic == StatType.speed else 0
         target.ranged += value if self.statistic == StatType.ranged else 0
 
-        return {"success": True, "num_shakes": 0, "extra": None}
+        return ItemEffectResult(
+            name=item.name, success=True, num_shakes=0, extra=[]
+        )

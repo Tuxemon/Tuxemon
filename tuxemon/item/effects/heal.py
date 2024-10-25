@@ -15,10 +15,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class HealEffectResult(ItemEffectResult):
-    pass
-
-
 @dataclass
 class HealEffect(ItemEffect):
     """
@@ -40,17 +36,18 @@ class HealEffect(ItemEffect):
 
     def apply(
         self, item: Item, target: Union[Monster, None]
-    ) -> HealEffectResult:
+    ) -> ItemEffectResult:
         if not target:
             raise ValueError("Target cannot be None")
 
         category = ItemCategory.potion
         if has_status(target, "festering") and item.category == category:
-            return {
-                "success": False,
-                "num_shakes": 0,
-                "extra": T.translate("combat_state_festering_item"),
-            }
+            return ItemEffectResult(
+                name=item.name,
+                success=False,
+                num_shakes=0,
+                extra=[T.translate("combat_state_festering_item")],
+            )
 
         if self.heal_type == "fixed":
             healing_amount = int(self.amount)
@@ -62,4 +59,6 @@ class HealEffect(ItemEffect):
             )
         target.current_hp = min(target.hp, target.current_hp + healing_amount)
 
-        return {"success": True, "num_shakes": 0, "extra": None}
+        return ItemEffectResult(
+            name=item.name, success=True, num_shakes=0, extra=[]
+        )

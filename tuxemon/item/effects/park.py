@@ -14,10 +14,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class ParkEffectResult(ItemEffectResult):
-    pass
-
-
 @dataclass
 class ParkEffect(ItemEffect):
     """
@@ -33,7 +29,7 @@ class ParkEffect(ItemEffect):
 
     def apply(
         self, item: Item, target: Union[Monster, None]
-    ) -> ParkEffectResult:
+    ) -> ItemEffectResult:
         assert target
 
         if self.method == "capture":
@@ -51,4 +47,6 @@ class ParkEffect(ItemEffect):
         else:
             raise ValueError(f"Must be capture, doll or food")
 
-        return {"success": True, "num_shakes": 0, "extra": None}
+        return ItemEffectResult(
+            name=item.name, success=True, num_shakes=0, extra=[]
+        )

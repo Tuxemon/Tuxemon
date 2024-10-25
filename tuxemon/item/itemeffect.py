@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, ClassVar, TypedDict, Union
+from typing import TYPE_CHECKING, ClassVar, Union
 
 from tuxemon.session import Session, local_session
 from tuxemon.tools import cast_dataclass_parameters
@@ -16,10 +16,12 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-class ItemEffectResult(TypedDict):
+@dataclass
+class ItemEffectResult:
+    name: str
     success: bool
     num_shakes: int
-    extra: Union[str, None]
+    extra: list[str]
 
 
 @dataclass
@@ -75,4 +77,6 @@ class ItemEffect:
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> ItemEffectResult:
-        return {"success": True, "num_shakes": 0, "extra": None}
+        return ItemEffectResult(
+            name=item.name, success=True, num_shakes=0, extra=[]
+        )

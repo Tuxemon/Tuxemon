@@ -111,7 +111,12 @@ class State:
         self.animations.add(ani)
         return ani
 
-    def task(self, *args: Any, **kwargs: Any) -> Task:
+    def task(
+        self,
+        *args: Any,
+        callback: Optional[Callable[..., Any]] = None,
+        **kwargs: Any,
+    ) -> Task:
         """
         Create a task for this state.
 
@@ -120,14 +125,24 @@ class State:
 
         Parameters:
             args: Function to be called.
+            callback: Function to be called when the task finishes.
             kwargs: Keyword parameters passed to the task.
 
         Returns:
             The created task.
 
         """
+        if not args:
+            raise ValueError("Must provide a function to be called")
+
         task = Task(*args, **kwargs)
         self.animations.add(task)
+
+        if callback is not None:
+            if not callable(callback):
+                raise ValueError("Callback must be a callable function")
+            task.schedule(callback, "on finish")
+
         return task
 
     def remove_animations_of(self, target: Any) -> None:
@@ -188,29 +203,12 @@ class State:
 
         """
 
-    def startup(self, **kwargs: Any) -> None:
-        """
-        DEPRECATED - Use __init__ instead.
-
-        Called when scene is added to the state stack.
-
-        This will be called:
-        * after state is pushed and before next update
-        * just once during the life of a state
-
-        Example uses: loading images, configuration, sounds, etc.
-
-        Parameters:
-            kwargs: Configuration options.
-
-        """
-
     def resume(self) -> None:
         """
         Called before update when state is newly in focus.
 
         This will be called:
-        * after startup and before next update
+        * before next update
         * after a pop operation which causes this state to be in focus
 
         After being called, state will begin to receive player input.
@@ -268,9 +266,9 @@ class StateManager:
         self.package = package
         # TODO: consider API for handling hooks
         self._on_state_change_hook = on_state_change
-        self._state_queue: list[tuple[str, Mapping[str, Any]]] = list()
-        self._state_stack: list[State] = list()
-        self._state_dict: dict[str, type[State]] = dict()
+        self._state_queue: list[tuple[str, Mapping[str, Any]]] = []
+        self._state_stack: list[State] = []
+        self._state_dict: dict[str, type[State]] = {}
         self._resume_set: set[State] = set()
 
     def auto_state_discovery(self) -> None:
@@ -571,7 +569,6 @@ class StateManager:
             )
             instance = state_name(**kwargs) if kwargs else state_name()
 
-        instance.startup(**kwargs)
         self._resume_set.add(instance)
         self._state_stack.insert(0, instance)
 

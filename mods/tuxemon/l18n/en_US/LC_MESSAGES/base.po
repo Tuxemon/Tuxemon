@@ -11397,6 +11397,39 @@ msgstr "*pulls out a moldy pizza box and a stack of old newspapers* This trash c
 msgid "spyder_leather_note4"
 msgstr "*reaches to the bottom of the trash can, pulling out a soggy notebook* Ugh, I hope this one isn't ruined. Ah, it's still legible...\n Notebook of Dr Maria, Tuxemon Biologist\n Observations of tuxemon behavior in the wild suggest that they are highly social creatures...\n with complex communication patterns and a strong sense of hierarchy.\n This challenges the common assumption that tuxemon are simply tools for human use.\n Preliminary data suggests that tuxemon are capable of experiencing stress and anxiety when subjected to intense training regimens.\n Further research is needed to understand the long-term effects of this stress on tuxemon well-being."
 
+msgid "spyder_leather_sarah_greeting"
+msgstr "Hey, what's up? I've been worried about my girlfriend lately. She's been acting really strange.\n Do you want to know what's been going on with her?"
+
+msgid "spyder_leather_sarah_yes"
+msgstr "Okay, I'll tell you. I was there..."
+
+msgid "spyder_leather_sarah_no"
+msgstr "No problem. I just thought you should know."
+
+msgid "spyder_leather_sarah_after"
+msgstr "I'm worried. What if we can't fix this? What if it's too late?"
+
+msgid "spyder_leather_sarah1"
+msgstr "I don't know, Sarah. I'm feeling really conflicted about the mine right now. We've been getting some...\n unusual requests from our investors. Changes in our priorities."
+
+msgid "spyder_leather_sarah2"
+msgstr "What's going on? You've been distant lately. Is everything okay? What kind of requests?"
+
+msgid "spyder_leather_sarah3"
+msgstr "I'm not supposed to say. But let's just say that our investors are very interested in the history of this place.\n I think they're looking for something specific. Something that could change everything."
+
+msgid "spyder_leather_sarah4"
+msgstr "But what about the mine? What about the people who work here? You didn't know what would happen. You didn't know about the eggs."
+
+msgid "spyder_leather_sarah5"
+msgstr "That's no excuse. I should have known better. I should have thought about the consequences.\n I'm one of the ones who proposed diverting the river and draining the lake. I'm one of the ones who made this happen."
+
+msgid "spyder_leather_sarah6"
+msgstr "You're doing the right thing now. You're trying to make it right. I'm here for you. We'll get through this together."
+
+msgid "spyder_leather_sarah7"
+msgstr "I hope so. I really do. But it's hard to shake off the feeling of guilt. It's hard to forget what we've done."
+
 msgid "spyder_leathercafe_sign"
 msgstr "Open Air Cafe and Marketplace"
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="330">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="339">
  <properties>
   <property name="east" value="citypark"/>
   <property name="edges" value="clamped"/>
@@ -492,6 +492,62 @@
     <property name="act1" value="translated_dialog spyder_leather_note4"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="334" name="Create Sarah" type="event" x="160" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_leathermuseum_visitor,10,2"/>
+    <property name="cond1" value="not char_exists spyder_leathermuseum_visitor"/>
+   </properties>
+  </object>
+  <object id="335" name="Talk Sarah" type="event" x="160" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leather_sarah_greeting"/>
+    <property name="act2" value="translated_dialog_choice no:yes,sarah_flashback"/>
+    <property name="behav1" value="talk spyder_leathermuseum_visitor"/>
+    <property name="cond1" value="not variable_set sarah_flashback"/>
+   </properties>
+  </object>
+  <object id="336" name="Flashback" type="event" x="176" y="16" width="16" height="16">
+   <properties>
+    <property name="act10" value="lock_controls"/>
+    <property name="act11" value="set_layer 102:51:0:128"/>
+    <property name="act12" value="translated_dialog spyder_leather_sarah_yes"/>
+    <property name="act13" value="pathfind spyder_leathermuseum_visitor,7,3"/>
+    <property name="act14" value="char_face spyder_leathermuseum_visitor,up"/>
+    <property name="act15" value="wait 1"/>
+    <property name="act16" value="create_npc spyder_route3_zoolander,7,0"/>
+    <property name="act17" value="pathfind spyder_route3_zoolander,7,2"/>
+    <property name="act18" value="translated_dialog spyder_leather_sarah1"/>
+    <property name="act19" value="translated_dialog spyder_leather_sarah2"/>
+    <property name="act20" value="translated_dialog spyder_leather_sarah3"/>
+    <property name="act21" value="translated_dialog spyder_leather_sarah4"/>
+    <property name="act22" value="translated_dialog spyder_leather_sarah5"/>
+    <property name="act23" value="translated_dialog spyder_leather_sarah6"/>
+    <property name="act24" value="translated_dialog spyder_leather_sarah7"/>
+    <property name="act25" value="pathfind spyder_route3_zoolander,7,0"/>
+    <property name="act26" value="remove_npc spyder_route3_zoolander"/>
+    <property name="act29" value="set_variable sarah_flashback:done"/>
+    <property name="act30" value="set_layer"/>
+    <property name="act31" value="unlock_controls"/>
+    <property name="act32" value="set_variable flashback:off"/>
+    <property name="act33" value="pathfind spyder_leathermuseum_visitor,10,2"/>
+    <property name="act34" value="char_face spyder_leathermuseum_visitor,down"/>
+    <property name="cond1" value="is variable_set sarah_flashback:yes"/>
+   </properties>
+  </object>
+  <object id="337" name="Talk Sarah Yes" type="event" x="192" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leather_sarah_after"/>
+    <property name="behav1" value="talk spyder_leathermuseum_visitor"/>
+    <property name="cond1" value="is variable_set sarah_flashback:done"/>
+   </properties>
+  </object>
+  <object id="338" name="Talk Sarah No" type="event" x="192" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_leather_sarah_no"/>
+    <property name="behav1" value="talk spyder_leathermuseum_visitor"/>
+    <property name="cond1" value="is variable_set sarah_flashback:no"/>
    </properties>
   </object>
  </objectgroup>

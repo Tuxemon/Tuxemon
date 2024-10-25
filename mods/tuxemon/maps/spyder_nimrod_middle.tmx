@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="51">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="59">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -16,17 +16,17 @@
    eJwzVWZgMKUCnkglbMM0ikfxwGPZUTykMAwMFnOohQHoh003
   </data>
  </layer>
- <layer id="2" name="Tile Layer 3" width="18" height="20">
+ <layer id="2" name="Tile Layer 2" width="18" height="20">
   <data encoding="base64" compression="zlib">
    eJxjYBgFQxU8YcJO41NDK3PageIdJOJOPG4aBUMPLOIbaBcMPwAAYFwROQ==
   </data>
  </layer>
- <layer id="3" name="Tile Layer 4" width="18" height="20">
+ <layer id="3" name="Tile Layer 3" width="18" height="20">
   <data encoding="base64" compression="zlib">
    eJxjYBgFQxUcZcJO41ODDjyB4l4kYm8cZg0GwMtIHkbXOwroA17LUAcrizAwqACxuyxlOABoRqAI+f5RBOpVokA/DPgBzfAHYgCZPiQg
   </data>
  </layer>
- <layer id="5" name="Tile Layer 4" width="18" height="20">
+ <layer id="4" name="Above Player" width="18" height="20">
   <data encoding="base64" compression="zlib">
    eJxjYBgF9AbLmLDT+NQMd/COTIyudxSMguEEAFWiExc=
   </data>
@@ -34,7 +34,7 @@
  <objectgroup color="#ff0000" id="6" name="Collisions">
   <object id="3" type="collision" x="0" y="256" width="288" height="32"/>
   <object id="4" type="collision" x="32" y="112" width="224" height="16"/>
-  <object id="5" type="collision" x="0" y="0" width="288" height="32"/>
+  <object id="5" type="collision" x="0" y="16" width="288" height="16"/>
   <object id="6" type="collision" x="0" y="160" width="224" height="16"/>
   <object id="15" type="collision" x="240" y="160" width="48" height="16"/>
   <object id="31" type="collision" x="48" y="96" width="16" height="16"/>
@@ -331,6 +331,100 @@
    <properties>
     <property name="act1" value="play_music music_10_empire"/>
     <property name="cond1" value="not music_playing music_10_empire"/>
+   </properties>
+  </object>
+  <object id="51" name="Zircon Back" type="event" x="240" y="16" width="16" height="16">
+   <properties>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="create_npc spyder_nimrod_zircon,16,3"/>
+    <property name="act03" value="pathfind spyder_nimrod_zircon,15,9"/>
+    <property name="act04" value="char_face spyder_nimrod_zircon,left"/>
+    <property name="act05" value="char_face spyder_nimrod_argon,right"/>
+    <property name="act06" value="translated_dialog spyder_nimrod_zircon3"/>
+    <property name="act07" value="pathfind player,14,10"/>
+    <property name="act08" value="char_face player,up"/>
+    <property name="act09" value="pathfind spyder_nimrod_zircon,14,9"/>
+    <property name="act10" value="translated_dialog spyder_nimrod_argon3"/>
+    <property name="act11" value="translated_dialog spyder_nimrod_zircon4"/>
+    <property name="act12" value="translated_dialog_choice no:yes,zircon_argon"/>
+    <property name="act13" value="unlock_controls"/>
+    <property name="act14" value="get_party_monster spyder_nimrod_argon"/>
+    <property name="act15" value="remove_monster iid_slot_0"/>
+    <property name="cond1" value="is variable_set nimrodargon:yes"/>
+    <property name="cond2" value="not variable_set zircon_argon"/>
+   </properties>
+  </object>
+  <object id="52" name="Flashback Trigger Yes" type="event" x="256" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_nimrod_room.tmx,8,6"/>
+    <property name="cond1" value="is variable_set zircon_argon:yes"/>
+   </properties>
+  </object>
+  <object id="53" name="Post Flashback" type="event" x="272" y="16" width="16" height="16">
+   <properties>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="create_npc spyder_nimrod_zircon,14,9"/>
+    <property name="act03" value="add_monster dark_robo,25,spyder_nimrod_zircon,5,10"/>
+    <property name="act04" value="add_monster chrome_robo,25,spyder_nimrod_argon,5,10"/>
+    <property name="act05" value="char_face spyder_nimrod_zircon,left"/>
+    <property name="act06" value="char_face player,up"/>
+    <property name="act07" value="translated_dialog spyder_nimrod_zircon5"/>
+    <property name="act08" value="translated_dialog spyder_nimrod_argon4"/>
+    <property name="act09" value="translated_dialog spyder_nimrod_zircon6"/>
+    <property name="act10" value="start_battle spyder_nimrod_zircon,spyder_nimrod_argon"/>
+    <property name="act11" value="set_variable zircon_vs_argon:yes"/>
+    <property name="act12" value="unlock_controls"/>
+    <property name="cond1" value="is variable_set zircon_argon:done"/>
+    <property name="cond2" value="not variable_set zircon_vs_argon:yes"/>
+    <property name="cond3" value="not variable_set zircon_vs_argon:done"/>
+   </properties>
+  </object>
+  <object id="54" name="Flashback Trigger No" type="event" x="224" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable zircon_argon:done"/>
+    <property name="cond1" value="is variable_set zircon_argon:no"/>
+   </properties>
+  </object>
+  <object id="55" name="Default Template" type="event" x="208" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_template player,default"/>
+    <property name="cond1" value="is char_sprite player,invisible"/>
+    <property name="cond2" value="is variable_set zircon_argon:done"/>
+   </properties>
+  </object>
+  <object id="56" name="Draw" type="event" x="160" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable zircon_vs_argon:done"/>
+    <property name="act2" value="translated_dialog spyder_nimrod_zircon_draw"/>
+    <property name="act3" value="translated_dialog spyder_nimrod_argon_draw"/>
+    <property name="act4" value="pathfind spyder_nimrod_zircon,16,3"/>
+    <property name="act5" value="remove_npc spyder_nimrod_zircon"/>
+    <property name="cond1" value="is variable_set zircon_vs_argon:yes"/>
+    <property name="cond2" value="is variable_set battle_last_result:draw"/>
+   </properties>
+  </object>
+  <object id="57" name="Argon Win" type="event" x="176" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable zircon_vs_argon:done"/>
+    <property name="act2" value="translated_dialog spyder_nimrod_argon_won"/>
+    <property name="act3" value="translated_dialog spyder_nimrod_zircon_lost"/>
+    <property name="act4" value="pathfind spyder_nimrod_zircon,16,3"/>
+    <property name="act5" value="remove_npc spyder_nimrod_zircon"/>
+    <property name="cond1" value="is variable_set zircon_vs_argon:yes"/>
+    <property name="cond2" value="is variable_set battle_last_result:won"/>
+    <property name="cond3" value="is variable_set battle_last_winner:spyder_nimrod_argon"/>
+   </properties>
+  </object>
+  <object id="58" name="Zircon Win" type="event" x="192" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_variable zircon_vs_argon:done"/>
+    <property name="act2" value="translated_dialog spyder_nimrod_zircon_won"/>
+    <property name="act3" value="translated_dialog spyder_nimrod_argon_lost"/>
+    <property name="act4" value="pathfind spyder_nimrod_zircon,16,3"/>
+    <property name="act5" value="remove_npc spyder_nimrod_zircon"/>
+    <property name="cond1" value="is variable_set zircon_vs_argon:yes"/>
+    <property name="cond2" value="is variable_set battle_last_result:won"/>
+    <property name="cond3" value="is variable_set battle_last_winner:spyder_nimrod_zircon"/>
    </properties>
   </object>
  </objectgroup>

@@ -8831,14 +8831,55 @@ msgid "spyder_route4_beck1"
 msgstr "Your serve!"
 msgid "spyder_route4_beck2"
 msgstr "Game, set, match."
+
+msgid "spyder_experiment_flashback1"
+msgstr "Looten: Alright, let's initiate the fusion sequence. This is it, team. We're on the cusp of a major breakthrough."
+
+msgid "spyder_experiment_flashback2"
+msgstr "Moreau: I've been running the simulations, Looten, and I'm still seeing a 3% chance of catastrophic failure.\n Are we really sure we can contain this?"
+
+msgid "spyder_experiment_flashback3"
+msgstr "Heidenstam: What if the containment field collapses?\n We could be looking at a chain reaction that destroys the entire facility."
+
+msgid "spyder_experiment_flashback4"
+msgstr "Looten: We've run the simulations, Moreau. We've accounted for every variable.\n The potential breakthroughs in energy production outweigh the risks.\n We have to take this chance."
+
+msgid "spyder_experiment_flashback5"
+msgstr "Heidenstam: It's not stabilizing! We're losing containment! The readings are off the charts!"
+
+msgid "spyder_experiment_flashback6"
+msgstr "Looten: Shut it down! Shut it down now!"
+
+msgid "spyder_experiment_flashback7"
+msgstr "Looten: Oh God... what have we done? This is... this is not what we intended."
+
+msgid "spyder_experiment_flashback8"
+msgstr "Heidenstam: This is just the beginning. We have no idea what we've unleashed."
+
+msgid "spyder_candy_cafe_trigger"
+msgstr "I've been having trouble sleeping, and it's all because of something I witnessed on a security monitor when I was working as a security officer.\n It's a story that's been weighing on my mind, and I'm not sure if I should share it.\n But if you're willing to listen, I'll tell you what happened."
+
+msgid "spyder_candy_cafe_trigger_yes"
+msgstr "I was working the night shift at Greenwash, and I saw something on the security cameras that I'll never forget.\n It was a moment that changed everything, and I'm still trying to process what I saw..."
+
+msgid "spyder_candy_cafe_trigger_no"
+msgstr "It's probably for the best. It's not a story I like to think about, and I'm not sure I'm ready to relive it."
+
+msgid "spyder_candy_cafe_trigger_after"
+msgstr "I'm glad I could share that with you. It's been a burden to carry this secret."
+
 msgid "spyder_barmaid_cafe1"
 msgstr "Are you okay?\n I guess all your tuxemon were infected, so the Enforcers took them to the Hospital!"
+
 msgid "spyder_barmaid_cafe2"
 msgstr "You can use the PC to get out some non-infected tuxemon."
+
 msgid "spyder_barmaid_cafe2a"
 msgstr "Hold on, I'll lock the café door for a sec while you access the PC, don't want any unwanted Enforcers crashing the party.\n Once you've got your Tuxemon, I'll let the regulars back in."
+
 msgid "spyder_barmaid_cafe3"
 msgstr "Oh dear, you're totally out of tuxemon.\n Well, I have this Nudiflot I don't really want."
+
 msgid "spyder_enforcer_candy1"
 msgstr "Stop right there!\n We are taking all infected tuxemon to the Hospital to be quarantined\n until Greenwash develops a cure for the virus."
 msgid "spyder_enforcer_candy2"
@@ -8921,8 +8962,51 @@ msgstr "The access is blocked. A landslide damaged the route."
 msgid "spyder_routea_firefighter"
 msgstr "It's so quiet here.\n It's a nice break from the noise of the city."
 
+msgid "spyder_timber_cafe_trigger"
+msgstr "I overheard something interesting today, would you like to know?"
+
+msgid "spyder_timber_cafe_trigger_yes"
+msgstr "Ah, I was sitting next to two florists and they were discussing something that caught my attention. It seems they're not too happy about..."
+
+msgid "spyder_timber_cafe_trigger_no"
+msgstr "No worries, it's not that important. Just some gossip about two florists."
+
+msgid "spyder_timber_cafe_trigger_after"
+msgstr "I'm glad I could share that with you. It's always interesting to see how people react to change."
+
+msgid "spyder_timber_cafe_flashback1"
+msgstr "Alex: I'm still fuming about what happened at Greenwash. I had to cancel a whole order of peonies because of the contamination.\n And now I'm worried that our customers will start to lose trust in us."
+
+msgid "spyder_timber_cafe_flashback2"
+msgstr "Gluck: I know, it's a nightmare. I've been trying to find alternative suppliers, but it's not easy.\n And to make matters worse, our orchid shipment was delayed again.\n I'm starting to think that we should just stick to locally-sourced flowers from now on."
+
+msgid "spyder_timber_cafe_flashback3"
+msgstr "Alex: But what's the point of having a flower that's just going to sit there and look pretty? Where's the soul in that?\n I'm trying to create arrangements that are more than just visually appealing, but it's hard when we're dealing with subpar flowers."
+
+msgid "spyder_timber_cafe_flashback4"
+msgstr "Gluck: Soul? You're talking about flowers, Alex! They're just plants. But I do agree that our new bouquet design is really taking off.\n I've had several customers ask for it by name."
+
+msgid "spyder_timber_cafe_flashback5"
+msgstr "Alex: But that's just it - flowers aren't just plants. They're a way to connect with people, to make them feel something.\n And when we're working with low-quality flowers, it's hard to create that connection."
+
+msgid "spyder_timber_cafe_flashback6"
+msgstr "Gluck: I see what you're saying, Alex. But I think we're just making progress.\n We're finding new ways to make flowers more resilient and beautiful. And that's something to be proud of."
+
+msgid "spyder_timber_cafe_flashback7"
+msgstr "Alex: I hope so, Gluck. But I still have my doubts. What if we're messing with nature in ways we don't understand?"
+
+msgid "spyder_timber_cafe_flashback8"
+msgstr "Gluck: Well, I think we're just trying to make the best of what we have.\n And if that means using a little bit of science to make our flowers more amazing, then so be it."
+
+msgid "spyder_timber_cafe_flashback9"
+msgstr "Alex: I just wish we could go back to the way things were. When flowers were simple, and beautiful, and didn't need all this fuss."
+
+msgid "spyder_timber_cafe_flashback10"
+msgstr "Gluck: I understand where you're coming from, Alex. But I think we have to move forward.\n We can't just stick our heads in the sand and pretend that the world isn't changing."
+
 msgid "spyder_magician_timber"
 msgstr "Hey, that's a nice phone you've got there ... Your mum made it for you? Heaps cool! \n Then you've gotta install my newest social media app. It's called Contacts App. \n It keeps track of all the people you meet and tells you what they're up to."
+
 msgid "spyder_candy_catgirl1"
 msgstr "You know, I'm just fascinated by fossils. You know - SHAMMER, RHINCUS, that kind of thing."
 msgid "spyder_candy_catgirl2"
@@ -9028,49 +9112,109 @@ msgid "spyder_timber_firefighter_nochillimp"
 msgstr "Last week a Tikoal almost burnt down its owner's house!"
 msgid "spyder_timber_firefighter_willtrade"
 msgstr "Hey, do you want a TIKOAL? I could really do with a CHILLIMP, if you've got one."
+
 msgid "spyder_flower_mieke1"
 msgstr "It's exciting for us to visit the region of Fondant! You have such unique tuxemon here ... \n Hey, do you want to trade? My Conileaf for a creature that we don't have back home ... \n How about Budaye?"
+
 msgid "spyder_flower_mieke_nobudaye"
 msgstr "Oh it doesn't matter - I can see you don't have a Budaye."
+
 msgid "spyder_flower_mieke_willtrade"
 msgstr "Well, great! Here you go."
+
 msgid "spyder_flower_fez1"
 msgstr "Everyone in our region has to pick from one of the same five boring tuxemon. \n I know like a hundred people with a Foxfire ... \n Hey, do you want to trade? My Foxfire for an Ignibus?"
+
 msgid "spyder_flower_fez_noignibus"
 msgstr "Oh it doesn't matter - I can see you don't have an Ignibus."
+
 msgid "spyder_flower_fez_willtrade"
 msgstr "Well, great! Here you go."
+
 msgid "spyder_flower_cady1"
 msgstr "Oh I'd just love to have a souvenier to take back home with me. \n I just adore those sweet little Grintot. Could you get me one? \n I could give you my Hampotamos in exchange?"
+
 msgid "spyder_flower_cady_nogrintot"
 msgstr "Oh it doesn't matter - I can see you don't have a Grintot. "
+
 msgid "spyder_flower_sandy1"
 msgstr "This Pharfan keeps spraying me with water. What a drag! \n Hey, do you want it? You'd have to give me a Tweesher in return."
+
 msgid "spyder_flower_sandy_notweesher"
 msgstr "Oh it doesn't matter - I can see you don't have a Tweesher."
+
 msgid "spyder_flower_cady_willtrade"
 msgstr "Well, great! Here you go."
+
 msgid "spyder_flower_teach1"
 msgstr "Oh where has my other student gotten to?"
+
 msgid "spyder_flower_monk1"
 msgstr "I'm sorry, only experienced trainers are allowed past this point."
+
 msgid "spyder_flower_monk2"
 msgstr "Welcome master."
 
+msgid "spyder_drinking_trigger"
+msgstr "Yesterday night, something incredible happened.\n I'm still trying to process it all. Would you like to hear about it?"
 
+msgid "spyder_drinking_flashback1"
+msgstr "Captain: I'm off, guys! I'm going on an adventure! I'm going to find the... the... treasure of the mansion!"
+
+msgid "spyder_drinking_flashback2"
+msgstr "Drinking Buddy 1: Dude, you're not even making sense! Sit back down and finish your drink!\n We're in the middle of a sale at Scoop, and I'm not leaving until I get my hands on that new collectible."
+
+msgid "spyder_drinking_flashback3"
+msgstr "Drinking Buddy 2: Yeah, you're not even going to make it out of the shop, let alone find any treasure!"
+
+msgid "spyder_drinking_flashback4"
+msgstr "Captain: No, no, no! I'm a... a... a treasure hunter! I'm going to find it, I'm going to find it! I'll show you, I'll show you all!\n That mansion's been abandoned for years, but I know it's still got secrets. Old Man Jenkins built it, you know.\n He was a rich man, made his fortune in... in... something.\n Don't remember what, but he was rich, I know that much. And then he lost it all, and the mansion fell into ruin.\n But I know it's still got treasure hidden somewhere.\n I've heard stories, you know. Whispers of a hidden room, deep in the basement. And I'm going to find it!"
+
+msgid "spyder_drinking_flashback5"
+msgstr "Drinking Buddy 1: Dude, you're not even making sense! You're just making this up as you go along!"
+
+msgid "spyder_drinking_flashback6"
+msgstr "Drinking Buddy 2: Yeah, and what's with the mansion? You've been talking about that place for years, but you've never even been inside!"
+
+msgid "spyder_drinking_flashback7"
+msgstr "Captain: That's not true! I've been inside, I've explored it! Well, not really explored it, but I've been in the garden.\n And I've seen the tower, the one with the broken clock. It's a sign, I tell you!\n A sign that the treasure is still there, waiting for me to find it!"
+
+msgid "spyder_drinking_flashback8"
+msgstr "Drinking Buddy 1: Dude, you're going to get yourself killed! That place is a death trap!"
+
+msgid "spyder_drinking_flashback9"
+msgstr "Drinking Buddy 2: Yeah, and what about the rumors? You know, the ones about the mansion being haunted?"
+
+msgid "spyder_drinking_flashback10"
+msgstr "Captain: Pfft, don't be ridiculous! I don't believe in ghosts! I'm a... a... a treasure hunter! I'm not afraid of anything!\n I'll show you, I'll show you all!"
+
+msgid "spyder_drinking_flashback11"
+msgstr "Drinking Buddy 1: Well, I guess we'll just have to wait and see if he makes it back in one piece!"
+
+msgid "spyder_drinking_flashback12"
+msgstr "Drinking Buddy 2: Yeah, or if he even remembers where he lives! Poor guy's going to have a killer hangover tomorrow!"
+
+msgid "spyder_drinking_flashback13"
+msgstr "Captain: Treasure... mansion... adventure! I'm going to find it, I'm going to find it!"
 
 msgid "spyder_flower_petshopassistant"
 msgstr "Hello - we are the Pet Shop Boys. Are you interested in buying a tuxemon?"
+
 msgid "spyder_flower_petshopassistant1"
 msgstr "Each for ${{currency}}500"
+
 msgid "spyder_flower_petshopkeeper1"
 msgstr "I found these eggs in the bough of a tree, and hatched them! \n They appear to be a previously unknown tuxemon. \n I call them Vivipere! I wonder what they morph into."
+
 msgid "spyder_flower_petshopkeeper2"
 msgstr "Tell you what, why don't I give you one and you can come back and tell me what it morphs into!"
+
 msgid "spyder_flower_petshopkeeper3"
 msgstr "Did you get Vivipere to morph yet?"
+
 msgid "spyder_flower_petshopkeeper4"
 msgstr "You got it to morph? \n ... \n And you did it in that particular way? \n I see. Hmmm, I don't really like the look of that morph. \n If I give you another Vivipere, can you bring it back if it ever morphs into something different?"
+
 msgid "spyder_route1_beachcomber"
 msgstr "To run, just hold down the SHIFT key. \n Look! I'm free as an ELOFLY!"
 msgid "spyder_cottonhouse1_homemaker"
@@ -9107,72 +9251,271 @@ msgid "spyder_flowerhouse1_firefighter"
 msgstr "The five Pillars are the only big companies in this region. They have a lot of sway."
 msgid "spyder_flowerhouse1_granny"
 msgstr "Scoop has managed to cut the price of beef yet again! I don't know how they do it. "
+
 msgid "spyder_nimrod_chromerobo1"
 msgstr "Boop beep"
+
 msgid "spyder_nimrod_chromerobo2"
 msgstr "Shoop dee doo woop"
+
 msgid "spyder_nimrod_xeon1"
 msgstr "Whoo ... burr ... target acquired"
+
 msgid "spyder_nimrod_xeon2"
 msgstr "... Daisy, Daisy, give me your answer do ..."
+
 msgid "spyder_nimrod_thatcher1"
 msgstr "Woo-wee. Look at that. Those protesters won't know what hit them."
+
 msgid "spyder_nimrod_thatcher2"
 msgstr "No comment. "
+
 msgid "spyder_nimrod_dirk1"
 msgstr "Are you here for the investor presentation? \n Nimrod shares are a great buy - armies always need weapons!"
+
 msgid "spyder_nimrod_honour1"
 msgstr "Don't you dare touch those prototypes! "
+
 msgid "spyder_nimrod_honour2"
 msgstr "Leave those prototypes alone!"
+
 msgid "spyder_nimrod_antimony1"
 msgstr "Oh god, you destroyed the prototypes. We were just about to start mass production."
+
 msgid "spyder_nimrod_antimony2"
 msgstr "Years of work, down the drain in minutes. "
+
 msgid "spyder_nimrod_berke1"
 msgstr "Don't hurt me, I just write the contracts! I haven't done anything wrong! \n ... \n I mean, no one has done anything wrong. This is all legal and above board."
+
 msgid "spyder_nimrod_rebel1"
 msgstr "Did the Cathedral send you for that new shipment of ... \n No? \n Oh."
+
 msgid "spyder_nimrod_rebel2"
 msgstr "The shipment I was asking about was full of... um ... teddybears."
+
 msgid "spyder_nimrod_maverick1"
 msgstr "At night I play guitar by myself."
+
 msgid "spyder_nimrod_maverick2"
 msgstr "I wish I knew someone I could play music with."
+
 msgid "spyder_nimrod_justice1"
 msgstr "Ask not for whom Ghosteeth tolls!"
+
 msgid "spyder_cotton_lazybrute"
 msgstr "Buzz off, this tunnel is still under construction."
+
 msgid "spyder_nimrod_justice2"
 msgstr "It tolls for me."
+
 msgid "spyder_nimrod_mace1"
 msgstr "I want to quit and become a musician."
+
 msgid "spyder_nimrod_mace2"
 msgstr "I'll call my band, \"Machine Gun Fellows\"."
+
 msgid "spyder_nimrod_argon1"
 msgstr "We fight wars with humans and tuxemon. Many dead, many more injured. \n Using robos instead is the only moral course of action."
+
 msgid "spyder_nimrod_argon2"
 msgstr "I knew I wouldn't be able to convince you."
+
 msgid "spyder_nimrod_zircon1"
 msgstr "If you truly loved tuxemon, you would support us replacing them in war with robos."
+
 msgid "spyder_nimrod_zircon2"
 msgstr "I wish I'd replaced my tuxemon with robos. "
+
 msgid "spyder_nimrod_archer1"
 msgstr "How's the fusion technology coming along? We ... Wait, you're not from Greenwash!"
+
 msgid "spyder_nimrod_archer2"
 msgstr "Keep your mouth shut, okay?"
+
 msgid "spyder_nimrod_bowie1"
 msgstr "Our law enforcement would be a lot easier with some military hardware, friend. ... Who are you? "
+
 msgid "spyder_nimrod_bowie2"
 msgstr "That military hardware question was hypothetical, okay?"
+
 msgid "spyder_nimrod_tru1"
 msgstr "My weapons have won wars and subdued revolts in every corner of the world, and you think you have a chance against me?"
+
 msgid "spyder_nimrod_tru2"
 msgstr "Guard, retrieve the prototypes in the testing room. At least we can salvage something! "
+
 msgid "spyder_nimrod_tru3"
 msgstr "If those imbeciles in Shaft hadn't lost my dragon, beating you would have been a piece of cake."
+
 msgid "spyder_nimrod_guard1"
 msgstr "Sorry bud, private meeting in progress. \n So buzz off!"
+
+msgid "spyder_nimrod_zircon3"
+msgstr "I see you've defeated Argon, I'm curious, how does it feel to win against an idealist?"
+
+msgid "spyder_nimrod_argon3"
+msgstr "Zircon, I.. I didn't think you'd show up here. What do you want?"
+
+msgid "spyder_nimrod_zircon4"
+msgstr "Oh, I just wanted to see how you're doing, Argon. And to remind you of our conversation a while back..."
+
+msgid "spyder_nimrod_zircon5"
+msgstr "I see you're still as idealistic as ever, Argon. But I've come to realize that the only way to truly make a difference is through power.\n And I'm willing to do whatever it takes to achieve that."
+
+msgid "spyder_nimrod_argon4"
+msgstr "I'm sorry, Zircon. I think you've lost your way."
+
+msgid "spyder_nimrod_zircon6"
+msgstr "Enough talk. Let's quickly recharge and settle this once and for all."
+
+msgid "spyder_nimrod_zircon_won"
+msgstr "Ha! I've proven my superiority once again. You're no match for me, Argon."
+
+msgid "spyder_nimrod_argon_won"
+msgstr "Zircon, I'm sorry it had to end like this. You were once a friend and a colleague."
+
+msgid "spyder_nimrod_zircon_lost"
+msgstr "You'll never understand, Argon. You'll never see the truth."
+
+msgid "spyder_nimrod_argon_lost"
+msgstr "Zircon, you've changed. I don't know what's happened to you."
+
+msgid "spyder_nimrod_zircon_draw"
+msgstr "It seems we're evenly matched, Argon. But this isn't the end."
+
+msgid "spyder_nimrod_argon_draw"
+msgstr "Indeed, Zircon. This is far from over."
+
+msgid "spyder_nimrod_pc_message1"
+msgstr "E-mail from Bowie to Tru\n 'I need your help in locating the missing prototype. It was last seen in the testing room.'"
+
+msgid "spyder_nimrod_pc_message2"
+msgstr "E-mail from Maverick to Tru\n 'Are you up for a guitar jam session tonight? I'll bring my axe and we can rock out.'"
+
+msgid "spyder_nimrod_pc_message3"
+msgstr "E-mail from Argon to Lab\n 'I've made some breakthroughs in my research on tuxemon behavior. I'd love to share my findings with you all.'"
+
+msgid "spyder_nimrod_pc_message4"
+msgstr "E-mail from Zircon to Lab\n 'I've published a new paper on advanced robotics. Check it out and let me know what you think.'"
+
+msgid "spyder_nimrod_note1"
+msgstr "Note\n 'I've received an inquiry from the military about our hardware. Let's discuss how to proceed.'"
+
+msgid "spyder_nimrod_note2"
+msgstr "Note\n 'We need to salvage what's left of the prototype and rebuild. Let's meet in the testing room to discuss.'"
+
+msgid "spyder_nimrod_flashback1"
+msgstr "Argon: Zircon, it's good to see you again. I was just reviewing your latest paper on advanced robotics. It's quite impressive."
+
+msgid "spyder_nimrod_flashback2"
+msgstr "Zircon: Ah, Argon. I'm glad to see that your passion for our work hasn't waned. I've heard about your recent accomplishments with the tuxemon behavioral studies.\n Quite fascinating."
+
+msgid "spyder_nimrod_flashback3"
+msgstr "Argon: I try to be. I believe that our work can make a real difference in the world."
+
+msgid "spyder_nimrod_flashback4"
+msgstr "Zircon: I used to think that way too, Argon. But after years of working in this field, I've come to realize that the world doesn't run on passion.\n It runs on results."
+
+msgid "spyder_nimrod_flashback5"
+msgstr "Argon: I understand that. But I also believe that our work should be guided by a sense of responsibility and compassion."
+
+msgid "spyder_nimrod_flashback6"
+msgstr "Zircon: Compassion? For what? The tuxemon? They're just machines. Tools to be used and discarded."
+
+msgid "spyder_nimrod_flashback7"
+msgstr "Argon: I know you don't see it that way.\n But I've spent a lot of time studying their behavior, and I'm convinced that they have a level of consciousness that we don't fully understand."
+
+msgid "spyder_nimrod_flashback8"
+msgstr "Zircon: Nonsense. The tuxemon are just complex machines, no different than a toaster or a computer."
+
+msgid "spyder_nimrod_flashback9"
+msgstr "Argon: I disagree. I think they're more like animals, with their own unique personalities and behaviors."
+
+msgid "spyder_nimrod_flashback10"
+msgstr "Zircon: You know, Argon, I used to think the same way you do.\n But then I joined the military and saw firsthand how technology can be used to save lives and protect our country.\n It's easy to get caught up in philosophical debates about the nature of consciousness, but at the end of the day, we have a job to do.\n And that job is to create machines that can help us win wars and keep our citizens safe."
+
+msgid "spyder_nimrod_flashback11"
+msgstr "Argon: I understand where you're coming from.\n But I still believe that we have a responsibility to consider the ethical implications of our work."
+
+msgid "spyder_nimrod_flashback12"
+msgstr "Zircon: And I respect that, Argon. But we can't let our emotions cloud our judgment.\n We have to make tough decisions sometimes, and that's just a fact of life."
+
+msgid "spyder_nimrod_flashback13"
+msgstr "Argon: I share that concern. That's why I believe that we have a responsibility to consider the consequences of our actions."
+
+msgid "spyder_nimrod_flashback14"
+msgstr "Zircon: I agree, Argon. But we can't let that fear hold us back. We must continue to innovate and push the boundaries of what's possible."
+
+msgid "spyder_xeon_creation1"
+msgstr "Dr. Elara: Ladies and gentlemen, I present to you: Xeon, a name that reflects the artificial yet distinct nature of this being.\n The term 'Xeon' is derived from the word 'xenos', meaning 'foreigner' or 'stranger'.\n This name acknowledges that Xeons are created by humans, yet they are a new and separate form of life, with their own unique skills and abilities."
+
+msgid "spyder_xeon_creation2"
+msgstr "Dr. Elara: As you can see, Xeon is a highly advanced artificial being, capable of complex thought and action.\n We've designed it to be a prototype for a new generation of intelligent machines."
+
+msgid "spyder_xeon_creation3"
+msgstr "Argon: This is incredible. How does it work?"
+
+msgid "spyder_xeon_creation4"
+msgstr "Dr. Elara: Xeon's neural network is based on advanced algorithms and machine learning techniques.\n It's capable of learning and adapting at an exponential rate, making it potentially more intelligent than any human."
+
+msgid "spyder_xeon_creation5"
+msgstr "Zircon: That's both exciting and terrifying. What kind of implications does this have for humanity?"
+
+msgid "spyder_xeon_creation6"
+msgstr "Dr. Elara: That's a good question. We're still exploring the possibilities and limitations of Xeon's capabilities.\n But we believe that it has the potential to revolutionize many industries and aspects of our lives."
+
+msgid "spyder_xeon_creation7"
+msgstr "Argon: But what about the risks? We've all heard warnings about the dangers of creating artificial intelligence that surpasses human capabilities."
+
+msgid "spyder_xeon_creation8"
+msgstr "Dr. Elara: We've taken every precaution to ensure that Xeon is safe and controllable.\n We've implemented strict safety protocols and guidelines for its use and development."
+
+msgid "spyder_xeon_creation9"
+msgstr "Zircon: I see. And what about the long-term implications? How do we ensure that Xeon doesn't become a threat to humanity in the future?"
+
+msgid "spyder_xeon_creation10"
+msgstr "Dr. Elara: That's a question we'll continue to grapple with as we move forward with Xeon's development.\n But for now, we're focused on exploring its potential and ensuring that it's used responsibly."
+
+msgid "spyder_xeon_creation11"
+msgstr "Argon: I think we're just starting to scratch the surface of what Xeon can do.\n I'm excited to see where this technology takes us."
+
+msgid "spyder_xeon_creation_trigger"
+msgstr "I was just thinking about Xeon's creation. I have to admit, I'm still trying to process everything that's happened.\n I would have never imagined that the real reason behind Xeon's financial support was to use him for...\n other purposes. I'm deeply disappointed, to say the least. Would you like to hear the story of how Xeon was officially presented?"
+
+msgid "spyder_xeon_creation_trigger_yes"
+msgstr "I was exactly in that spot when I first presented Xeon to the world."
+
+msgid "spyder_xeon_creation_trigger_no"
+msgstr "I understand. It's not an easy story to hear. I just wish things had turned out differently."
+
+msgid "spyder_xeon_creation_trigger_after"
+msgstr "I'm sorry you had to see that. It's hard for me to believe that my creation has been used for such... nefarious purposes.\n I can only hope that one day, Xeon will be able to fulfill his true potential, free from the influence of those who seek to exploit him."
+
+msgid "spyder_enforcershq_trigger"
+msgstr "A note from the Commander's office. Do you want to read it?"
+
+msgid "spyder_enforcershq_flashback1"
+msgstr "Commander: Look at this. A new disease has broken out at Scoop Farms. Multiple tuxemon are infected.\n We need to contain this before it spreads. And we need to find out what's causing it."
+
+msgid "spyder_enforcershq_flashback2"
+msgstr "Officer: Should we send a team immediately?"
+
+msgid "spyder_enforcershq_flashback3"
+msgstr "Commander: Yes. We need to move quickly. We have a confirmed outbreak of the Spyderbite at the Wayfarer Inn.\n We need to assess the situation on the ground first. Is there any chance of containment within the inn?"
+
+msgid "spyder_enforcershq_flashback4"
+msgstr "Doc: That's a possibility, but we need to be cautious.\n The inn is isolated, but we can't rule out the possibility of visitors coming or going."
+
+msgid "spyder_enforcershq_flashback5"
+msgstr "Commander: Then a full quarantine is necessary to prevent further spread.\n We'll provide all necessary supplies and medical care. We'll also need to deploy a team to enforce the quarantine and monitor the situation."
+
+msgid "spyder_enforcershq_flashback6"
+msgstr "Sergeant: I've already compiled a list of personnel who are trained in containment procedures and have experience dealing with diseases."
+
+msgid "spyder_enforcershq_flashback7"
+msgstr "Commander: Good. Dispatch them immediately. We can't afford to delay."
+
 msgid "spyder_route5_goliath1"
 msgstr "Hey, aren't you that meddlesome kid from the Wayfarer Inn?"
 msgid "spyder_route5_goliath2"
@@ -9745,52 +10088,109 @@ msgid "spyder_hospital1_rakez"
 msgstr "Rakez"
 msgid "spyder_hospital1_rhizome"
 msgstr "Rhizome"
+
+msgid "spyder_hospital_pc_message1"
+msgstr "E-mail from Researcher 1\n 'Dr. Lee, I've been analyzing the virus samples, and I think we should try a different strain.\n It might trigger a new reaction in the antibodies.'"
+
+msgid "spyder_hospital_pc_message2"
+msgstr "Note from Researcher 2\n 'Dr. Lee, I've found a potential combination of enzymes and antibodies that could slow down the mutation rate.\n I'm running simulations now.'"
+
+msgid "spyder_hospital_pc_message3"
+msgstr "Simulation results from Researcher 2\n 'The enzyme-antibody combination shows promising results. We might have a cure on our hands.'"
+
+msgid "spyder_hospital_pc_message_rivalry1"
+msgstr "E-mail from Researcher 1\n 'Researcher 2, I'm not sure I agree with your approach. We need to be more careful and methodical in our research.\n Your simulations are promising, but we can't rush into conclusions.'"
+
+msgid "spyder_hospital_pc_message_rivalry2"
+msgstr "E-mail from Researcher 2\n 'Researcher 1, you're always so cautious and slow. We need to take risks and push the boundaries of what's possible.\n Our research is too important to be held back by your fear of failure.'"
+
+msgid "spyder_hospital_pc_message4"
+msgstr "E-mail from Enforcer\n 'Dr. Lee, we have reason to believe that you have been conducting unauthorized research. We are at your location and require you to come with us.'"
+
+msgid "spyder_hospital_pc_message5"
+msgstr "E-mail from Dr. Lee to Dr. Chen, Mentor\n 'They are destroying my door, they want to arrest me because of unauthorized research. I can't let them take this away from me.\n This is a breakthrough, a real cure. I need to share it with the world.'"
+
+msgid "spyder_hospital_pc_message6"
+msgstr "E-mail from Researcher 1\n 'Dr. Lee, I've managed to isolate a new strain of the virus that seems susceptible to our current treatments.\n However, I'm concerned about the security implications of this discovery. We need to be extra cautious about who knows about this.'"
+
+msgid "spyder_hospital_pc_message7"
+msgstr "E-mail from Enforcer: 'Dr Lee\n we have received intelligence indicating that you're conducting unauthorized research within the company.\n We have reason to believe that your work poses a significant threat to our organization.\n You're hereby ordered to cease all research immediately and report to the security office.'"
+
+msgid "spyder_hospital_pc_message8"
+msgstr "E-mail from Mysterious Informant\n 'There are people who want to see you fail. They will stop at nothing to destroy your work. Be careful.'"
+
+msgid "spyder_hospital_pc_message9"
+msgstr "E-mail from Robot Assistant\n 'I have detected unauthorized access to your research files. Please investigate immediately.'"
+
 msgid "spyder_hospital1_aurora1"
 msgstr "You will quickly learn that you have chosen for your sparring partner\n the most skilled trainer in the building."
+
 msgid "spyder_hospital1_aurora2"
 msgstr "Not too shabby. I don't suppose I could recruit you for Spyder?"
+
 msgid "spyder_hospital1_eleni1"
 msgstr "Salutations. Test your puissance against my menagerie."
+
 msgid "spyder_hospital1_eleni2"
 msgstr "Bollocks."
+
 msgid "spyder_hospital1_felu1"
 msgstr "You look like you could use a challenge."
+
 msgid "spyder_hospital1_felu2"
 msgstr "Well, I didn't say it would be me."
+
 msgid "spyder_hospital1_fring1"
 msgstr "Boss says we can't help ourselves to the stashed tuxemon ... yet."
+
 msgid "spyder_hospital1_fring2"
 msgstr "This would have been a lot easier with a Moloch or two!"
+
 msgid "spyder_hospital1_liane1"
 msgstr "You wouldn't believe the powerful mons these suckers have handed over."
+
 msgid "spyder_hospital1_liane2"
 msgstr "You may have beaten me, but you'll never stop Spyder."
+
 msgid "spyder_hospital1_luzia1"
 msgstr "Like taking candy from a baby."
+
 msgid "spyder_hospital1_luzia2"
 msgstr "Waa!\n What's the point of having so many of us stationed here.\n No one will get through the DNA blocker."
+
 msgid "spyder_hospital1_pem1"
 msgstr "I don't recognize you from the induction."
+
 msgid "spyder_hospital1_rea1"
 msgstr "Confiscating all the tuxemon was a waste of time.\n No trainer can stop the super-monsters that Spyder is breeding. "
+
 msgid "spyder_hospital1_walt1"
 msgstr "What happened to your uniform? Wait, imposter! Stop right there!"
+
 msgid "spyder_hospital1_walt2"
 msgstr "I'm going to have to report this to head office.\n Thanks for nothing."
+
 msgid "spyder_hospital1_zekar1"
 msgstr "Oi! Stop right there!"
+
 msgid "spyder_hospital1_zekar2"
 msgstr "You may have beaten me, but there's no way you'll beat what they have cooking at HQ."
+
 msgid "spyder_hospital1_rakez1"
 msgstr "I just got involved for the paycheck.\n Is that so wrong?"
+
 msgid "spyder_hospital1_rakez2"
 msgstr "Alright, alright, you've made your point."
+
 msgid "spyder_hospital1_rhizome1"
 msgstr "Stop right there!\n What you are looking at is the intellectual property of Omnichannel!"
+
 msgid "spyder_hospital1_rhizome2"
 msgstr "You might be able to defeat me, but you'll never beat the patent lawyers."
+
 msgid "spyder_hospital1_nurse1"
 msgstr "You have to stop them!\n These villains have taken over the hospital,\n and they're stopping us from releasing the cure."
+
 msgid "spyder_hospital2_nurse1"
 msgstr "Quarantines have their use, especially for people who don't have tuxemon to heal them,\n but Spyder have used this one very cynically."
 
@@ -10856,8 +11256,53 @@ msgstr "Night: A Techno song is playing. It's called \"Bot Revolution: Rise of t
 msgid "spyder_rivaldownstairs_tv"
 msgstr "A group of schoolboys stranded on a deserted island, and of their struggles to overcome adversity."
 
+msgid "spyder_rivaldownstairs_package"
+msgstr "For Billie, from Grandma. Memories of Grandpa Bernard."
+
 msgid "spyder_rivaloffice_haiku"
 msgstr "It's a haiku: From Rock to Kitten, Evolution's dance unfolds, Transformation blooms."
+
+msgid "spyder_billie_flashback_trigger"
+msgstr "Do you want to uncover a piece of Billie's backstory?"
+
+msgid "spyder_billie_flashback1"
+msgstr "Granny: You look upset, dear. Is everything alright?"
+
+msgid "spyder_billie_flashback2"
+msgstr "I don't know, Grandma. My parents are always arguing about me."
+
+msgid "spyder_billie_flashback3"
+msgstr "Granny: Oh, honey. That must be hard. But remember, you don't have to agree with everything they say."
+
+msgid "spyder_billie_flashback4"
+msgstr "But they're my parents. I'm supposed to respect them."
+
+msgid "spyder_billie_flashback5"
+msgstr "Granny: Of course, you should. But respect doesn't mean obedience. It means understanding and valuing their love for you."
+
+msgid "spyder_billie_flashback6"
+msgstr "I know, but it's so hard."
+
+msgid "spyder_billie_flashback7"
+msgstr "Granny: Life is full of challenges, dear. But remember, you're not alone. I'm always here for you."
+
+msgid "spyder_billie_flashback8"
+msgstr "I just wish they could understand me."
+
+msgid "spyder_billie_flashback9"
+msgstr "Granny: Sometimes, it takes time for people to see things from a different perspective.\n But in the meantime, you can focus on what you can control. What makes you happy?"
+
+msgid "spyder_billie_flashback10"
+msgstr "Spending time with my friends, training my Tuxemon, and exploring new places."
+
+msgid "spyder_billie_flashback11"
+msgstr "Granny: Remember, it's okay to pursue your own passions, even if they don't always align with your parents' expectations."
+
+msgid "spyder_billie_flashback12"
+msgstr "Thank you, Grandma. I needed to hear that."
+
+msgid "spyder_billie_flashback_end"
+msgstr "Oh dear, how much I would like you to be close to me, Bernard...\n I remember when you were first diagnosed, and you said, 'We'll face this together, as a team.'\n Sometimes it feels like it was just yesterday that you were here with me.\n I see so much of you in Billie... it's like you're still with me, guiding me through her."
 
 msgid "spyder_papertown_restinbed"
 msgstr "You awake fully rested!"
@@ -11391,7 +11836,7 @@ msgid "spyder_greenwash_heidenstam1"
 msgstr "This has been one heck of a work experience placement."
 msgid "spyder_greenwash_heidenstam2"
 msgstr "Gee, thanks a bunch."
-    
+
 msgid "spyder_greenwash_louis"
 msgstr "Louis"
 msgid "spyder_greenwash_clarence"
@@ -11421,49 +11866,132 @@ msgstr "Heidenstam"
 
 msgid "spyder_greenwash_fossilisator1"
 msgstr "Hello there, I suppose you are here to see my finest invention - the De-Fossilator.\n ... No? You're here to investigate why the Greenwash staff went on strike\n and got locked out by the Enforcers?"
+
 msgid "spyder_greenwash_fossilisator2"
 msgstr "While you're here you might as well see the De-Fossilator in action."
+
 msgid "spyder_greenwash_fossilisator3"
 msgstr "Ah, I see you have a toothed bird fossil. Shall I de-fossilate it?"
+
 msgid "spyder_greenwash_fossilisator4"
 msgstr "It worked! The fossil turned into a Rhincus!"
+
 msgid "spyder_greenwash_fossilisator5"
 msgstr "Ah, I see you have an ancient dog fossil. Shall I de-fossilate it?"
+
 msgid "spyder_greenwash_fossilisator6"
 msgstr "It worked! The fossil turned into a Shammer!"
+
 msgid "spyder_greenwash_fossilisator7"
 msgstr "Maybe another time then."
+
 msgid "spyder_greenwash_fossilisator8"
 msgstr "Ah, I see you have two ancient fossils. Shall I de-fossilate both?"
+
 msgid "spyder_greenwash_fossilisator9"
 msgstr "It worked! The fossils turned into a Shammer and a Rhincus!"
 
 msgid "spyder_greenwash_looten1"
 msgstr "Prepare to face the power of my fusion tuxemon!"
+
 msgid "spyder_greenwash_looten2"
 msgstr "Well, I guess fusion technology isn't quite there yet.\n We've been working on it for years!"
+
 msgid "spyder_greenwash_looten3"
 msgstr "Here's the closest we've come -- it's a cute fusion of an ant and an Aardorn.\n Not exactly the ultimate killing machine Omnichannel wanted us to create.\n I mean … uh! You didn't hear that from me."
+
 msgid "spyder_greenwash_looten4"
 msgstr "The funny thing is, because of its fusion DNA, it makes DNA screeners behave all funny."
+
 msgid "spyder_greenwash_moreau1"
 msgstr "You shouldn't be here! "
+
 msgid "spyder_greenwash_moreau2"
 msgstr "The fusion experiment blew up!"
+
 msgid "spyder_greenwash_dippel1"
 msgstr "Maybe we went too far …"
+
 msgid "spyder_greenwash_dippel2"
 msgstr "Or not far enough! "
+
 msgid "spyder_greenwash_aissa1"
 msgstr "Stay out - Greenwash has this all under control."
+
 msgid "spyder_greenwash_aissa2"
 msgstr "We're all going to die!"
+
 msgid "spyder_greenwash_aissa"
 msgstr "Aissa"
+
 msgid "spyder_greenwash_dippel"
 msgstr "Dippel"
+
 msgid "spyder_greenwash_moreau"
 msgstr "Moreau"
+
+msgid "spyder_greenwash_note1"
+msgstr "Note from Dempsey\n 'Fusion experiment risks: unstable creatures, environmental damage, human casualties. Must convince Looten to shut down experiment.'"
+
+msgid "spyder_greenwash_pc_message1"
+msgstr "E-mail from Selby to Looten\n 'I've been thinking a lot about the De-Fossilator and I have to admit, I'm getting a bit uneasy about the whole thing.'"
+
+msgid "spyder_greenwash_pc_message2"
+msgstr "E-mail from Dempsey to Looten\n 'I've been reviewing the latest data from the fusion experiment and I have to say, I'm getting a bit worried.\n The creatures we're creating are not what I expected. They're... unstable.'"
+
+msgid "spyder_greenwash_pc_message3"
+msgstr "E-mail from Looten to Greenwash Staff\n As you are all aware, we are on the cusp of a major breakthrough with the fusion experiment.\n I want to assure you that everything is under control and we are making great progress.\n As you know, our previous test did not yield the results we had hoped for.\n We have learned from that experience and are preparing for a new test.\n It will incorporate the knowledge and insights we gained from the previous failure.\n We have made significant adjustments to the experiment's parameters and are confident that this new test will be a success.\n I want to assure you that we are taking all necessary precautions to ensure the safety of our staff and the success of the experiment.\n Please disregard any rumors or concerns you may have heard.\n Keep up the good work, and let's make this next test a success!'"
+
+msgid "spyder_pc_recorded_conversation"
+msgstr "Found a recorded conversation on PC. Play back?"
+
+msgid "spyder_fossilator_flashback1"
+msgstr "Selby: I've done it! I've created a device that can reverse the fossilization process. It's a breakthrough, a scientific miracle."
+
+msgid "spyder_fossilator_flashback2"
+msgstr "Looten: Incredible! This could be a game-changer. Imagine the possibilities. We could bring extinct creatures back to life.\n We could study them, learn from them, and even use them for our own purposes."
+
+msgid "spyder_fossilator_flashback3"
+msgstr "Chip: But what about the ethical implications? Should we really be interfering with the natural order of things?\n What if these creatures can't adapt to the modern world?"
+
+msgid "spyder_fossilator_flashback4"
+msgstr "Looten: Ethics? We're scientists. Our job is to push the boundaries, to explore the unknown. And besides, this could be a lucrative venture.\n We can charge a premium for de-fossilating rare and valuable creatures."
+
+msgid "spyder_fossilator_flashback5"
+msgstr "Selby: I understand your concerns, but I believe this technology could be used for good.\n We could use it to study extinct ecosystems, to learn about climate change, and even to help endangered species."
+
+msgid "spyder_fossilator_flashback6"
+msgstr "Looten: That's a noble goal. But for now, let's focus on the potential profits.\n We can charge a premium for de-fossilating rare and valuable creatures. People will pay top dollar to have their own personal dinosaur."
+
+msgid "spyder_fossilator_flashback7"
+msgstr "Selby: I just hope we're making the right decision."
+
+msgid "spyder_dempsey_flashback1"
+msgstr "Dempsey: I'm starting to think this whole thing is a bit out of control. The city's in chaos, and people are getting hurt."
+
+msgid "spyder_dempsey_flashback2"
+msgstr "Looten: Out of control? What are you talking about? We're making progress. The fusion experiment is almost ready."
+
+msgid "spyder_dempsey_flashback3"
+msgstr "Dempsey: At what cost? The city's in chaos, and people are getting hurt. And what about the ethics of it all?\n Creating creatures that could potentially harm humans and the environment?"
+
+msgid "spyder_dempsey_flashback4"
+msgstr "Looten: Ethics? In the grand scheme of things, a few casualties are a small price to pay for scientific advancement.\n We're pushing the boundaries of what's possible."
+
+msgid "spyder_dempsey_flashback5"
+msgstr "Dempsey: I don't agree. We're playing God here. We're meddling with nature in ways we don't fully understand."
+
+msgid "spyder_dempsey_flashback6"
+msgstr "Looten: And what's wrong with that? We have the power to create life, to shape the future. We're not just scientists; we're pioneers."
+
+msgid "spyder_dempsey_flashback7"
+msgstr "Dempsey: Pioneers? Or mad scientists? We're crossing a line."
+
+msgid "spyder_dempsey_flashback8"
+msgstr "Looten: You're just a pessimist. You'll see the benefits eventually.\n The creatures we create will revolutionize society."
+
+msgid "spyder_dempsey_flashback9"
+msgstr "Dempsey: I hope you're right. But I'm starting to doubt it."
 
 msgid "spyder_leathergym_board"
 msgstr "Chad ${{var:chad_points}} vs Brad ${{var:brad_points}}"

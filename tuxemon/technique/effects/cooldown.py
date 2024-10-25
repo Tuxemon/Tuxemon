@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from tuxemon.db import ElementType
 from tuxemon.event.conditions.common import CommonCondition
 from tuxemon.prepare import RECHARGE_RANGE
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -75,13 +76,20 @@ class CoolDownEffect(TechEffect):
             )
             moves_to_update = [move for mon in monsters for move in mon.moves]
 
-        moves_to_update = [
-            move
-            for move in moves_to_update
-            if not CommonCondition().check_parameter(
-                move, self.parameter, self.value
-            )
-        ]
+        if self.parameter == "types":
+            moves_to_update = [
+                move
+                for move in moves_to_update
+                if move.has_type(ElementType(self.value))
+            ]
+        else:
+            moves_to_update = [
+                move
+                for move in moves_to_update
+                if not CommonCondition().check_parameter(
+                    move, self.parameter, self.value
+                )
+            ]
 
         _update_moves(moves_to_update, self.next_use)
         if self.next_use > 0:

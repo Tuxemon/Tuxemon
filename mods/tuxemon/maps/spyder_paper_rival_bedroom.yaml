@@ -1,0 +1,76 @@
+events:
+  Route Music:
+    actions:
+    - play_music music_home
+    conditions:
+    - not music_playing music_home
+    type: "event"
+  Go Downstairs:
+    actions:
+    - transition_teleport spyder_paper_rival_downstairs.tmx,3,3,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 3
+    type: "event"
+  Use Computer:
+    actions:
+    - change_state PCState
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 2
+    y: 3
+    type: "event"
+  Radio Dawn:
+    actions:
+    - translated_dialog spyder_rivalbedroom_radio_dawn
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - is variable_set stage_of_day:dawn
+    x: 0
+    y: 5
+    type: "event"
+  Radio Dusk:
+    actions:
+    - translated_dialog spyder_rivalbedroom_radio_dusk
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - is variable_set stage_of_day:dusk
+    x: 0
+    y: 5
+    type: "event"
+  Radio Afternoon:
+    actions:
+    - translated_dialog spyder_rivalbedroom_radio_afternoon
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - is variable_set stage_of_day:afternoon
+    x: 0
+    y: 5
+    type: "event"
+  Radio Night:
+    actions:
+    - translated_dialog spyder_rivalbedroom_radio_night
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - is variable_set stage_of_day:night
+    x: 0
+    y: 5
+    type: "event"
+  Radio Morning:
+    actions:
+    - translated_dialog spyder_rivalbedroom_radio_morning
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - is variable_set stage_of_day:morning
+    x: 0
+    y: 5
+    type: "event"

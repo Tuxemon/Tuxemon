@@ -175,8 +175,8 @@ class MonsterInfoState(PygameMenuState):
         lab8.translate(fix_measure(width, 0.50), fix_measure(height, 0.40))
         # taste
         tastes = T.translate("tastes")
-        cold = T.translate(f"taste_{monster.taste_cold}")
-        warm = T.translate(f"taste_{monster.taste_warm}")
+        cold = T.translate(f"taste_{monster.taste_cold.lower()}")
+        warm = T.translate(f"taste_{monster.taste_warm.lower()}")
         lab9: Any = menu.add.label(
             title=f"{tastes}: {cold}, {warm}",
             label_id="taste",

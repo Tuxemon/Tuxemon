@@ -13,10 +13,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class RestoreEffectResult(ItemEffectResult):
-    pass
-
-
 @dataclass
 class RestoreEffect(ItemEffect):
     """
@@ -37,7 +33,7 @@ class RestoreEffect(ItemEffect):
 
     def apply(
         self, item: Item, target: Union[Monster, None]
-    ) -> RestoreEffectResult:
+    ) -> ItemEffectResult:
         assert target
         if self.category:
             if (
@@ -61,4 +57,6 @@ class RestoreEffect(ItemEffect):
         else:
             target.status.clear()
 
-        return {"success": True, "num_shakes": 0, "extra": None}
+        return ItemEffectResult(
+            name=item.name, success=True, num_shakes=0, extra=[]
+        )

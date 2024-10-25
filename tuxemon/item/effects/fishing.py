@@ -17,10 +17,6 @@ if TYPE_CHECKING:
 lookup_cache: dict[str, MonsterModel] = {}
 
 
-class FishingEffectResult(ItemEffectResult):
-    pass
-
-
 @dataclass
 class FishingEffect(ItemEffect):
     """
@@ -40,7 +36,7 @@ class FishingEffect(ItemEffect):
 
     def apply(
         self, item: Item, target: Union[Monster, None]
-    ) -> FishingEffectResult:
+    ) -> ItemEffectResult:
         if not lookup_cache:
             _lookup_monsters()
 
@@ -54,8 +50,12 @@ class FishingEffect(ItemEffect):
             mon_slug = random.choice(monster_lists[item.slug])
             level = random.randint(self.lower_bound, self.upper_bound)
             self._trigger_fishing_encounter(mon_slug, level)
-            return {"success": True, "num_shakes": 0, "extra": None}
-        return {"success": False, "num_shakes": 0, "extra": None}
+            return ItemEffectResult(
+                name=item.name, success=True, num_shakes=0, extra=[]
+            )
+        return ItemEffectResult(
+            name=item.name, success=False, num_shakes=0, extra=[]
+        )
 
     def _trigger_fishing_encounter(self, mon_slug: str, level: int) -> None:
         """Trigger a fishing encounter"""

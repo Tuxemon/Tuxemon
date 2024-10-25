@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="129">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="137">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -18,23 +18,28 @@
  </tileset>
  <tileset firstgid="4881" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <tileset firstgid="7851" source="../gfx/tilesets/core_outdoor.tsx"/>
- <layer id="7" name="Tile Layer 1" width="16" height="32">
+ <layer id="1" name="Tile Layer 1" width="16" height="32">
   <data encoding="base64" compression="zlib">
    eAEr52FgmMELwfJAugLIx4crofIgugqI5wPxOSjOB+pfCGUTQy8Cqj0OxCDQJMjAMB2oH0QTi09B9a8E6lkFxPuB+kE0sRhdP7H6YOpG9UPiDxb+sHAhlh4NP9LDb60QIn2Phh/p4YecNod6+MHKT3Lz30DrpzT8Ye6/qMbAgI6R4xkXG2Y/ul4QH5ceZHGYfnLDfzDoBwCttnew
   </data>
  </layer>
- <layer id="11" name="Tile Layer 2" width="16" height="32">
+ <layer id="2" name="Tile Layer 2" width="16" height="32">
   <data encoding="base64" compression="zlib">
-   eAHNlc0OATEUhe/C0srCI3gY1ngUNuJpsPL3FiwQbFjyEiydJm5yUnV7JzMJTU6mnfb0tt/cTkXSpVsX6UNcNjWRLeQpI3jHb/8Nhjt0gfcKaVvnaTdFOhAX9j/Q8aTOuD2Ad2j4yequcny3iQZOsPdZxI+6s9UdvIcS/myACgf0sE6v5o3PwFP4vUox3cPv1T8zXYBNjmOKnxINObvCHBbLFD/2hzNrsbT4lT0zVfiXxNBipXvmZzizym6NefT/xWOsejizyq6KvRSNz2sL8ZmF5pWXSfCncsnKnzh+Kpes/En5+d23+gnf6hypCP9jSyTWr/1F7o947aHtvT9e4WV5fQ==
+   eAHNVc0OAUEM7sHRScILEA/DhQMehYt4Gpz8vQUHBBeOPIR19JVt0jSjdmWDJt/OdHe+zvTbdpcobK08UQfQtswRrQDPrkWiCOiDO4j5ZxAuwBHcEyC+xKmViOoAWxljBdD8CPdvj6fPi/W7WN+L+Q2MTcNX1MRTvT+TpgWiNvLR8IINsXYc58/r2B8ZePw11m4Vn/2Ngcf/5jOtybv5BDpas7p4vtZU4lhdPF9rKvx/GUM1ZvUM6Sfn55qdQ9+0+mk+9+yn+tmekbhJxyz4M9WnnlahM+keXSCOfL9Ca0P3dI9mkUva/fWZeH+thdRRUk2YH6qlUP/pfWUu+dtaStp/wpd43rjHuzoYpOHvqkQWv+bb/4eXvz07+/b/8Yp/BzoahtY=
   </data>
  </layer>
- <layer id="12" name="Tile Layer 3" width="16" height="32">
+ <layer id="3" name="Tile Layer 3" width="16" height="32">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITAaAqMhMBoCIy0EAAgAAAE=
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="16" height="32">
   <data encoding="base64" compression="zlib">
    eAFjYCAMwoBKwpGUofORpLAyc4CiuUgy6HwkKazMJqBoM5IMOh9JapQ5BENAkIeBQQiIhYFYBIgJ8dG9qAjUowTEykCsAsSE+Oj6hyufl5OBgQ+IyQWyQL1yQNzJxcDQBcSkAl2gXj0gngnUO4sM/aTah0/9b3YGhj9ATC7g5mBg4AHiUUB6CCSyMDAkAfFmYBrYQkY6KATqLQLiw0C9R8jQT7qLR44OAGkNEwA=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
-  <object id="47" type="collision" x="0" y="0" width="240" height="32"/>
+  <object id="47" type="collision" x="0" y="16" width="240" height="16"/>
   <object id="48" type="collision" x="0" y="32" width="16" height="480"/>
   <object id="49" type="collision" x="240" y="0" width="16" height="512"/>
   <object id="95" type="collision" x="96" y="32" width="32" height="80"/>
@@ -46,6 +51,7 @@
   <object id="102" type="collision" x="96" y="352" width="32" height="16"/>
   <object id="103" type="collision" x="48" y="272" width="32" height="32"/>
   <object id="128" type="collision" x="48" y="32" width="16" height="32"/>
+  <object id="129" type="collision" x="160" y="64" width="80" height="48"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="51" name="Fall to Lower Floor" type="event" x="16" y="432" width="16" height="16">
@@ -96,9 +102,9 @@
     <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="86" name="Create Aissa" type="event" x="80" y="32" width="16" height="16">
+  <object id="86" name="Create Aissa" type="event" x="128" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_greenwash_aissa,5,2"/>
+    <property name="act1" value="create_npc spyder_greenwash_aissa,8,3"/>
     <property name="cond1" value="not char_exists spyder_greenwash_aissa"/>
    </properties>
   </object>
@@ -116,7 +122,7 @@
     <property name="cond1" value="not char_exists spyder_greenwash_dippel"/>
    </properties>
   </object>
-  <object id="92" name="Talk Aissa" type="event" x="64" y="64" width="32" height="16">
+  <object id="92" name="Talk Aissa" type="event" x="128" y="96" width="32" height="16">
    <properties>
     <property name="act1" value="lock_controls"/>
     <property name="act2" value="pathfind_to_player spyder_greenwash_aissa"/>
@@ -335,6 +341,56 @@
     <property name="act2" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="130" name="Teleport to Level 3" type="event" x="80" y="32" width="16" height="32">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_greenwash_level3.tmx,2,4,0.3"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="131" name="Teleport to Level 3" type="event" x="64" y="32" width="16" height="32">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_greenwash_level3.tmx,1,4,0.3"/>
+    <property name="act2" value="char_face player,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+   </properties>
+  </object>
+  <object id="132" name="Flashback Fossilator" type="event" x="144" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_pc_recorded_conversation"/>
+    <property name="act2" value="translated_dialog_choice no:yes,unveildefossilator"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="133" name="Flashback Dempsey" type="event" x="208" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_pc_recorded_conversation"/>
+    <property name="act2" value="translated_dialog_choice no:yes,dempsey_flashback"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="134" name="Trigger Fossilator" type="event" x="160" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_greenwash_level3.tmx,1,5"/>
+    <property name="cond1" value="is variable_set unveildefossilator:yes"/>
+   </properties>
+  </object>
+  <object id="135" name="Trigger Dempsey" type="event" x="224" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_greenwash_level3.tmx,11,3"/>
+    <property name="cond1" value="is variable_set dempsey_flashback:yes"/>
+   </properties>
+  </object>
+  <object id="136" name="Default" type="event" x="176" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_template player,default"/>
+    <property name="cond1" value="is char_sprite player,invisible"/>
    </properties>
   </object>
  </objectgroup>

@@ -601,6 +601,14 @@ class LocalPygameClient:
         """Replace current state with new one"""
         return self.state_manager.replace_state(state_name, **kwargs)
 
+    def push_state_with_timeout(
+        self,
+        state_name: Union[str, StateType],
+        updates: int = 1,
+    ) -> None:
+        """Push new state, by name, by with timeout"""
+        self.state_manager.push_state_with_timeout(state_name, updates)
+
     @property
     def active_states(self) -> Sequence[State]:
         """List of active states"""

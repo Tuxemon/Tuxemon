@@ -624,6 +624,21 @@ class StateManager:
         self.remove_state(previous)
         return instance
 
+    def push_state_with_timeout(
+        self, state_name: Union[str, StateType], updates: int = 1
+    ) -> None:
+        """
+        Push a state onto the stack and schedule it to be destroyed after
+        a specified number of updates.
+
+        Parameters:
+            state_name: The state to push onto the stack.
+            updates: The number of updates after which the state will be
+                destroyed.
+        """
+        state = self.push_state(state_name)
+        state.task(lambda: self.pop_state(state), times=updates)
+
     @property
     def current_state(self) -> Optional[State]:
         """

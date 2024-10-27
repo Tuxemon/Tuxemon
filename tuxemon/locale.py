@@ -8,6 +8,7 @@ import logging
 import os
 import os.path
 from collections.abc import Callable, Generator, Iterable, Mapping, Sequence
+from gettext import GNUTranslations
 from typing import Any, Optional
 
 from babel.messages.mofile import write_mo
@@ -21,6 +22,7 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 FALLBACK_LOCALE = "en_US"
+LOCALE_DIR = "l18n"
 
 
 @dataclasses.dataclass(frozen=True, order=True)
@@ -33,31 +35,29 @@ class LocaleInfo:
     path: str
 
 
-class TranslatorPo:
+class LocaleFinder:
     """
-    gettext-based translator class.
+    A class used to find and manage locales.
 
-    po files are read and compiled into mo files by gettext.
-    the mo files are saved in ~/.tuxemon/cache/l18n.
-
+    This class is responsible for searching for locales in a given directory
+    and providing information about the found locales.
     """
 
-    def __init__(self) -> None:
-        self.translate: Callable[[str], str] = lambda x: x
+    def __init__(self, root_dir: str) -> None:
+        self.root_dir = root_dir
+        self.locale_names: set[str] = set()
 
-    @staticmethod
-    def search_locales() -> Generator[LocaleInfo, None, None]:
+    def search_locales(self) -> Generator[LocaleInfo, Any, None]:
         """
-        Search local folder and return LocaleInfo objects.
+        Searches for locales in the given directory.
 
         Yields:
-            The information of each locale.
-
+            LocaleInfo: Information about each found locale.
         """
         logger.debug("searching locales...")
-        root = prepare.fetch("l18n")
-        for locale in os.listdir(root):
-            locale_path = os.path.join(root, locale)
+        for locale in os.listdir(self.root_dir):
+            self.locale_names.add(locale)
+            locale_path = os.path.join(self.root_dir, locale)
             if os.path.isdir(locale_path):
                 for category in os.listdir(locale_path):
                     category_path = os.path.join(locale_path, category)
@@ -67,13 +67,85 @@ class TranslatorPo:
                             if os.path.isfile(path) and name.endswith(".po"):
                                 domain = name[:-3]
                                 info = LocaleInfo(
-                                    locale,
-                                    category,
-                                    domain,
-                                    path,
+                                    locale, category, domain, path
                                 )
                                 logger.debug("found: %s", info)
                                 yield info
+
+    def has_locale(self, locale_name: str) -> bool:
+        """
+        Checks if a locale with the given name exists.
+
+        Parameters:
+            locale_name: The name of the locale to check.
+
+        Returns:
+            bool: True if the locale exists, False otherwise.
+        """
+        return locale_name in self.locale_names
+
+
+class GettextCompiler:
+    """
+    A class used to compile gettext translation files.
+
+    This class is responsible for compiling gettext translation files (.po)
+    into binary format (.mo) that can be used by gettext.
+    """
+
+    def __init__(self, cache_dir: str) -> None:
+        self.cache_dir = cache_dir
+
+    def compile_gettext(self, po_path: str, mo_path: str) -> None:
+        """
+        Compiles a gettext translation file.
+
+        Parameters:
+            po_path: The path to the gettext translation file (.po) to compile.
+            mo_path: The path to store the compiled translation file (.mo).
+        """
+        mofolder = os.path.dirname(mo_path)
+        os.makedirs(mofolder, exist_ok=True)
+        with open(po_path, encoding="UTF8") as po_file:
+            catalog = read_po(po_file)
+        with open(mo_path, "wb") as mo_file:
+            write_mo(mo_file, catalog)
+            logger.debug("writing l18n mo: %s", mo_path)
+
+    def get_mo_path(self, locale: str, category: str, domain: str) -> str:
+        """
+        Returns the path to the MO file.
+
+        Parameters:
+            locale: The locale of the MO file.
+            category: The category of the MO file.
+            domain: The domain of the MO file.
+
+        Returns:
+            The path to the MO file.
+            l18n/locale/LC_category/domain_name.mo
+        """
+        return os.path.join(
+            self.cache_dir, LOCALE_DIR, locale, category, domain + ".mo"
+        )
+
+
+class TranslatorPo:
+    """
+    A class used to translate text using gettext.
+
+    This class is responsible for loading and managing translations, as well as
+    providing methods for translating text.
+    """
+
+    def __init__(
+        self, locale_finder: LocaleFinder, gettext_compiler: GettextCompiler
+    ) -> None:
+        self.locale_finder = locale_finder
+        self.gettext_compiler = gettext_compiler
+        self.locale_name: str = prepare.CONFIG.locale
+        self.translate: Callable[[str], str] = lambda x: x
+        self.language_changed_callbacks: list[Callable[[str], None]] = []
 
     def collect_languages(self, recompile_translations: bool = False) -> None:
         """
@@ -86,7 +158,7 @@ class TranslatorPo:
 
         """
         self.build_translations(recompile_translations)
-        self.load_translator(prepare.CONFIG.locale)
+        self.load_translator(self.locale_name)
 
     def build_translations(self, recompile_translations: bool = False) -> None:
         """
@@ -98,40 +170,30 @@ class TranslatorPo:
                 translations).
 
         """
-        # l18n/locale/LC_category/domain_name.mo
-        cache = os.path.join(paths.CACHE_DIR, "l18n")
-        for info in self.search_locales():
-            mo_path = os.path.join(
-                cache,
-                info.locale,
-                info.category,
-                info.domain + ".mo",
+        for info in self.locale_finder.search_locales():
+            mo_path = self.gettext_compiler.get_mo_path(
+                info.locale, info.category, info.domain
             )
             if recompile_translations or not os.path.exists(mo_path):
-                self.compile_gettext(info.path, mo_path)
+                self.gettext_compiler.compile_gettext(info.path, mo_path)
+                logger.info(f"Built translation file: {mo_path}")
+        logger.info("Translation files built successfully")
 
-    @staticmethod
-    def compile_gettext(po_path: str, mo_path: str) -> None:
+    def _get_translation(
+        self, locale_name: str, domain: str, localedir: str
+    ) -> Optional[GNUTranslations]:
         """
-        Compile po file into mo file.
-
-        Parameters:
-            po_path: Path of the po file.
-            mo_path: Path of the mo file.
-
+        Gets all translators for the given locale and domain.
         """
-        mofolder = os.path.dirname(mo_path)
-        os.makedirs(mofolder, exist_ok=True)
-        with open(po_path, encoding="UTF8") as po_file:
-            catalog = read_po(po_file)
-        with open(mo_path, "wb") as mo_file:
-            write_mo(mo_file, catalog)
-            logger.debug("writing l18n mo: %s", mo_path)
+        for info in self.locale_finder.search_locales():
+            if info.locale == locale_name and info.domain == domain:
+                return gettext.translation(
+                    info.domain, localedir, [locale_name]
+                )
+        return None
 
     def load_translator(
-        self,
-        locale_name: str = "en_US",
-        domain: str = "base",
+        self, locale_name: str = prepare.CONFIG.locale, domain: str = "base"
     ) -> None:
         """
         Load a selected locale for translation.
@@ -142,23 +204,66 @@ class TranslatorPo:
 
         """
         logger.debug("loading translator for: %s", locale_name)
-        localedir = os.path.join(paths.CACHE_DIR, "l18n")
+        localedir = os.path.join(paths.CACHE_DIR, LOCALE_DIR)
         fallback = gettext.translation("base", localedir, [FALLBACK_LOCALE])
+        trans = (
+            self._get_translation(locale_name, domain, localedir) or fallback
+        )
 
-        for info in self.search_locales():
-            if info.locale == locale_name and info.domain == domain:
-                trans = gettext.translation(
-                    info.domain,
-                    localedir,
-                    [locale_name],
-                )
-                trans.add_fallback(fallback)
-                break
-        else:
+        if trans is fallback:
             logger.warning("Locale %s not found. Using fallback.", locale_name)
-            trans = fallback
+
+        trans.add_fallback(fallback)
         trans.install()
         self.translate = trans.gettext
+        self.locale_name = locale_name
+
+    def get_current_language(self) -> str:
+        """
+        Returns the current language.
+
+        Returns:
+            The current language.
+        """
+        return self.locale_name
+
+    def is_language_supported(self, locale_name: str) -> bool:
+        """
+        Checks if a language is supported.
+
+        Parameters:
+            locale_name: The name of the language to check.
+
+        Returns:
+            True if the language is supported, False otherwise.
+        """
+        return self.locale_finder.has_locale(locale_name)
+
+    def change_language(self, locale_name: str) -> None:
+        """
+        Changes the current language to the specified locale.
+
+        Parameters:
+            locale_name: The name of the locale to switch to.
+        """
+        if self.is_language_supported(locale_name):
+            self.load_translator(locale_name)
+            self.language_changed(locale_name)
+        else:
+            logger.warning(f"Language {locale_name} is not supported")
+
+    def language_changed(self, locale_name: str) -> None:
+        """
+        Notifies all registered callbacks that the language has changed.
+
+        Parameters:
+            locale_name: The new language.
+        """
+        if self.is_language_supported(locale_name):
+            for callback in self.language_changed_callbacks:
+                callback(locale_name)
+        else:
+            logger.warning(f"Language {locale_name} is not supported")
 
     def format(
         self,
@@ -393,4 +498,7 @@ def process_translate_text(
     return [replace_text(session, page) for page in pages]
 
 
-T = TranslatorPo()
+locale_finder = LocaleFinder(prepare.fetch("l18n"))
+gettext_compiler = GettextCompiler(paths.CACHE_DIR)
+T = TranslatorPo(locale_finder, gettext_compiler)
+T.collect_languages()

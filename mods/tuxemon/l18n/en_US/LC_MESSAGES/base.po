@@ -2939,18 +2939,6 @@ msgstr "New Game"
 msgid "menu_options"
 msgstr "Options"
 
-msgid "menu_missions"
-msgstr "Missions"
-
-msgid "completed"
-msgstr "Completed"
-
-msgid "pending"
-msgstr "Pending"
-
-msgid "failed"
-msgstr "Failed"
-
 msgid "menu_minigame"
 msgstr "Minigame"
 
@@ -11333,9 +11321,6 @@ msgstr "How are you getting along with the Book of Wishes? Tell me of your achie
 
 msgid "spyder_citypark_house_maniac5"
 msgstr "How are you getting along with the Book of Wishes? Tell me of your achievements ..."
-
-msgid "spyder_maniac_achievement1"
-msgstr "Giving a dog tuxemon to a Cat Girl"
 
 msgid "spyder_column1_sign" 
 msgstr "A rare ancient column. This was once part of a temple building." 

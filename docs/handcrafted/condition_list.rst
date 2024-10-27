@@ -13,7 +13,6 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_char_parameter.CheckCharParameterCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_evolution.CheckEvolutionCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_max_tech.CheckMaxTechCondition
-.. autoscriptinfoclass:: tuxemon.event.conditions.check_mission.CheckMissionCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_party_parameter.CheckPartyParameterCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_world.CheckWorldCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.current_state.CurrentStateCondition

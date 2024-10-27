@@ -20,7 +20,6 @@ from tuxemon.item.item import Item, decode_items, encode_items
 from tuxemon.locale import T
 from tuxemon.map import dirs2, dirs3, get_coords_ext, get_direction, proj
 from tuxemon.math import Vector2
-from tuxemon.mission import Mission, decode_mission, encode_mission
 from tuxemon.monster import Monster, decode_monsters, encode_monsters
 from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
@@ -47,7 +46,6 @@ class NPCState(TypedDict):
     contacts: dict[str, str]
     money: dict[str, int]
     template: dict[str, Any]
-    missions: Sequence[Mapping[str, Any]]
     items: Sequence[Mapping[str, Any]]
     monsters: Sequence[Mapping[str, Any]]
     player_name: str
@@ -110,12 +108,10 @@ class NPC(Entity[NPCState]):
         self.menu_player: bool = True
         self.menu_monsters: bool = True
         self.menu_bag: bool = True
-        self.menu_missions: bool = True
         # This is a list of tuxemon the npc has. Do not modify directly
         self.monsters: list[Monster] = []
         # The player's items.
         self.items: list[Item] = []
-        self.missions: list[Mission] = []
         self.economy: Optional[Economy] = None
         # Variables for long-term item and monster storage
         # Keeping these separate so other code can safely
@@ -196,7 +192,6 @@ class NPC(Entity[NPCState]):
             "money": self.money,
             "items": encode_items(self.items),
             "template": self.template.model_dump(),
-            "missions": encode_mission(self.missions),
             "monsters": encode_monsters(self.monsters),
             "player_name": self.name,
             "player_steps": self.steps,
@@ -233,9 +228,6 @@ class NPC(Entity[NPCState]):
         self.monsters = []
         for monster in decode_monsters(save_data.get("monsters")):
             self.add_monster(monster, len(self.monsters))
-        self.missions = []
-        for mission in decode_mission(save_data.get("missions")):
-            self.missions.append(mission)
         self.name = save_data["player_name"]
         self.steps = save_data["player_steps"]
         self.monster_boxes.load(save_data)
@@ -819,36 +811,6 @@ class NPC(Entity[NPCState]):
         return next(
             (m for m in self.items if m.instance_id == instance_id), None
         )
-
-    ####################################################
-    #                    Missions                      #
-    ####################################################
-
-    def add_mission(self, mission: Mission) -> None:
-        """
-        Adds a mission to the npc's missions.
-
-        """
-        self.missions.append(mission)
-
-    def remove_mission(self, mission: Mission) -> None:
-        """
-        Removes a mission from this npc's missions.
-
-        """
-        if mission in self.missions:
-            self.missions.remove(mission)
-
-    def find_mission(self, mission: str) -> Optional[Mission]:
-        """
-        Finds a mission in the npc's missions.
-
-        """
-        for mis in self.missions:
-            if mis.slug == mission:
-                return mis
-
-        return None
 
     def speed_test(self, action: EnqueuedAction) -> int:
         return self.speed

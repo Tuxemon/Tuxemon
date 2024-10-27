@@ -5,7 +5,7 @@ from unittest import mock
 
 from tuxemon import prepare
 from tuxemon.client import LocalPygameClient
-from tuxemon.db import Direction, MissionModel, MissionStatus, db
+from tuxemon.db import Direction, db
 from tuxemon.event.actions.char_move import parse_path_parameters
 from tuxemon.player import Player
 from tuxemon.session import local_session
@@ -225,78 +225,6 @@ class TestBattleActions(unittest.TestCase):
         _params = ["figher", "jimmy", "opponent"]
         with self.assertRaises(ValueError):
             self.action.execute_action("set_battle", _params)
-
-
-class TestMissionActions(unittest.TestCase):
-    _mission = MissionModel(slug="no_type")
-    _pending = MissionStatus.pending
-    _failed = MissionStatus.failed
-    _completed = MissionStatus.completed
-
-    def setUp(self):
-        with mock.patch.object(Player, "__init__", mockPlayer):
-            local_session.client = LocalPygameClient(prepare.CONFIG)
-            self.action = local_session.client.event_engine
-            local_session.player = Player()
-            self.player = local_session.player
-            self.player.missions = []
-            self._mission_model = {"no_type": self._mission}
-            db.database["mission"] = self._mission_model
-
-    def test_set_mission_add_success(self):
-        _params = ["player", "no_type", "add"]
-        self.action.execute_action("set_mission", _params)
-        self.assertEqual(len(self.player.missions), 1)
-        self.assertEqual(self.player.missions[0].slug, "no_type")
-        self.assertEqual(self.player.missions[0].status, self._pending)
-
-    def test_set_mission_add_fail(self):
-        _params = ["player", "no_type", "jimmy"]
-        with self.assertRaises(ValueError):
-            self.action.execute_action("set_mission", _params)
-        self.assertEqual(len(self.player.missions), 0)
-
-    def test_set_mission_add_multiple(self):
-        self._mission_model["town"] = MissionModel(slug="town")
-        self._mission_model["route"] = MissionModel(slug="route")
-        for slug in self._mission_model.keys():
-            _params = ["player", slug, "add"]
-            self.action.execute_action("set_mission", _params)
-        self.assertEqual(len(self.player.missions), 3)
-
-    def test_set_mission_add_status_success(self):
-        _params = ["player", "no_type", "add", "completed"]
-        self.action.execute_action("set_mission", _params)
-        self.assertEqual(len(self.player.missions), 1)
-        self.assertEqual(self.player.missions[0].status, self._completed)
-
-    def test_set_mission_add_status_fail(self):
-        _params = ["player", "no_type", "add", "jimmy"]
-        with self.assertRaises(ValueError):
-            self.action.execute_action("set_mission", _params)
-        self.assertEqual(len(self.player.missions), 0)
-
-    def test_set_mission_change_success(self):
-        _params = ["player", "no_type", "add"]
-        self.action.execute_action("set_mission", _params)
-        _params = ["player", "no_type", "change", "failed"]
-        self.action.execute_action("set_mission", _params)
-        self.assertEqual(self.player.missions[0].status, self._failed)
-
-    def test_set_mission_change_fail(self):
-        _params = ["player", "no_type", "add"]
-        self.action.execute_action("set_mission", _params)
-        _params = ["player", "no_type", "change", "jimmy"]
-        with self.assertRaises(ValueError):
-            self.action.execute_action("set_mission", _params)
-        self.assertEqual(len(self.player.missions), 1)
-
-    def test_set_mission_remove_success(self):
-        _params = ["player", "no_type", "add"]
-        self.action.execute_action("set_mission", _params)
-        _params = ["player", "no_type", "remove"]
-        self.action.execute_action("set_mission", _params)
-        self.assertEqual(len(self.player.missions), 0)
 
 
 class TestCharacterActions(unittest.TestCase):

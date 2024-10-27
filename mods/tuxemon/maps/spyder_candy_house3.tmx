@@ -105,7 +105,6 @@
     <property name="act2" value="get_player_monster shammer,slug,shammer"/>
     <property name="act3" value="trading shammer,propellercat"/>
     <property name="act4" value="set_variable catgirl_candy_hastraded:yes"/>
-    <property name="act5" value="set_mission player,spyder_maniac_achievement1,change,completed"/>
     <property name="cond1" value="is has_monster player,shammer"/>
     <property name="cond2" value="not has_monster player,rhincus"/>
     <property name="cond3" value="is variable_set catgirl_candy_willtrade:yes"/>

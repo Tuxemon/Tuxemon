@@ -169,12 +169,6 @@ class EvolutionStage(str, Enum):
     stage2 = "stage2"
 
 
-class MissionStatus(str, Enum):
-    pending = "pending"
-    completed = "completed"
-    failed = "failed"
-
-
 class EntityFacing(str, Enum):
     front = "front"
     back = "back"
@@ -1346,16 +1340,6 @@ class TemplateModel(BaseModel):
     double: bool = Field(False, description="Whether triggers 2vs2 or not")
 
 
-class MissionModel(BaseModel):
-    slug: str = Field(..., description="Slug uniquely identifying the mission")
-
-    @field_validator("slug")
-    def translation_exists_mission(cls: MissionModel, v: str) -> str:
-        if has.translation(v):
-            return v
-        raise ValueError(f"no translation exists with msgid: {v}")
-
-
 class MusicModel(BaseModel):
     slug: str = Field(..., description="Unique slug for the music")
     file: str = Field(..., description="File for the music")
@@ -1398,7 +1382,6 @@ TableName = Literal[
     "element",
     "shape",
     "template",
-    "mission",
     "encounter",
     "dialogue",
     "environment",
@@ -1417,7 +1400,6 @@ DataModel = Union[
     ElementModel,
     ShapeModel,
     TemplateModel,
-    MissionModel,
     EncounterModel,
     DialogueModel,
     EnvironmentModel,
@@ -1457,7 +1439,6 @@ class JSONDatabase:
             "element",
             "shape",
             "template",
-            "mission",
         ]
         self.preloaded: dict[TableName, dict[str, Any]] = {}
         self.database: dict[TableName, dict[str, Any]] = {}
@@ -1607,9 +1588,6 @@ class JSONDatabase:
             elif table == "template":
                 template = TemplateModel(**item)
                 self.database[table][template.slug] = template
-            elif table == "mission":
-                mission = MissionModel(**item)
-                self.database[table][mission.slug] = mission
             elif table == "encounter":
                 encounter = EncounterModel(**item)
                 self.database[table][encounter.slug] = encounter
@@ -1696,10 +1674,6 @@ class JSONDatabase:
 
     @overload
     def lookup(self, slug: str, table: Literal["template"]) -> TemplateModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["mission"]) -> MissionModel:
         pass
 
     @overload
@@ -1794,7 +1768,6 @@ class JSONDatabase:
             "element",
             "shape",
             "template",
-            "mission",
             "encounter",
             "dialogue",
             "environment",

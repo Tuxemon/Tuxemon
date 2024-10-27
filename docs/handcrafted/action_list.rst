@@ -81,7 +81,6 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_economy.SetEconomyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_kennel_visible.SetKennelVisibleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_layer.SetLayerAction
-.. autoscriptinfoclass:: tuxemon.event.actions.set_mission.SetMissionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_money.SetMoneyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_attribute.SetMonsterAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_monster_flair.SetMonsterFlairAction

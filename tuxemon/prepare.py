@@ -161,7 +161,6 @@ ITEM_MENU: str = "gfx/ui/item/item_menu_bg.png"
 
 # background per state
 BG_MINIGAME: str = GRAD_BLUE
-BG_MISSIONS: str = GRAD_BLUE
 BG_PC_KENNEL: str = GRAD_BLUE
 BG_PC_LOCKER: str = GRAD_BLUE
 BG_PHONE: str = GRAD_BLUE

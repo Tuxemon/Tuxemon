@@ -10539,7 +10539,10 @@ msgid "spyder_data_pc10"
 msgstr "11000001"
 
 msgid "spyder_scoop_welcome"
-msgstr "Welcome!"
+msgstr "Welcome to the Scoop Store!"
+
+msgid "spyder_tech_welcome"
+msgstr "Welcome to the Tech Shop!"
 
 msgid "spyder_scoop_sign"
 msgstr "Scoop HQ: Almost good enough to eat!"

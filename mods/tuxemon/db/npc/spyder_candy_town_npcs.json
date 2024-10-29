@@ -90,6 +90,26 @@
   
   },
   {
+    "slug": "spyder_candyscoop_techie",
+    "template": 
+      {
+        "sprite_name": "postboy",
+        "combat_front": "adventurer",
+        "slug": "postboy"
+      }
+  
+  },
+  {
+    "slug": "spyder_cottonscoop_techie",
+    "template": 
+      {
+        "sprite_name": "postboy",
+        "combat_front": "adventurer",
+        "slug": "postboy"
+      }
+  
+  },
+  {
     "slug": "spyder_candyinn_cott",
     "template": 
       {

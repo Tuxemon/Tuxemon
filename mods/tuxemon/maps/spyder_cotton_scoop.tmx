@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="36">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="39">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="shop"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="cotton_scoop"/>
-  <property name="map_type" value="shop"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" source="../gfx/tilesets/core_indoor_floors.tsx"/>
@@ -18,7 +18,7 @@
  </layer>
  <layer id="2" name="Layer 2" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYICAIjUGhmI1BqwAl9xEoNgkHHrQ5eSh9C4VCL0KSK8G4jUquNnuQHVKQHwTquckkD4FxKdVcLNBwAtJDymAEj3+GhAcAKVBAMaG8UFAVJWBQVwVv5mJQDOTSHCLPFBtAxA3qkDY6MCci4HBAootuRB65gPxAqieDnVUPalAdWlQnM6F3V4AfHomoQ==
+   eJxjYICAIjUGhmI1BqwAl9xEoNgkHHrQ5eSh9C4VCL0KSK8G4jUquNnuUD03oXpOAulTQHxaBTebAU0PKYASPf4aEBwApUEAxobxRVUh6sVV8ZuZCFSTRIJb5IFqG4C4UQXCRgfmXAwMFlBsyYXQMx+IF0D1dKij6kkFqkuD4nQu7PYCAKgSJzI=
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="13" height="11">
@@ -28,7 +28,7 @@
  </layer>
  <layer id="5" name="Above Player" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYKAveKlKuh4ONeq7Ax8w0IBgQygNAjA2jA8C1SoMDPNU6Os2XMBbHcHOVMetjpoAAKSpBgo=
+   eJxjYKAveKlKuh4ONdL1zFMhXQ8MGGhAsCGUBgEYG8avBppfo0K6PbMpcBc+4K2OYGeq41ZHTQAA7NMIKw==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">
@@ -37,7 +37,7 @@
   <object id="14" type="collision" x="64" y="48" width="144" height="16"/>
   <object id="18" type="collision" x="16" y="112" width="16" height="16"/>
   <object id="19" type="collision" x="0" y="0" width="32" height="64"/>
-  <object id="27" type="collision" x="16" y="64" width="16" height="16"/>
+  <object id="27" type="collision" x="0" y="112" width="16" height="16"/>
   <object id="32" type="collision" x="0" y="160" width="16" height="16"/>
   <object id="33" type="collision" x="64" y="96" width="64" height="16"/>
   <object id="34" type="collision" x="144" y="96" width="48" height="16"/>
@@ -141,6 +141,30 @@
     <property name="act3" value="open_shop spyder_cottonscoop_joe"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="36" name="Open Tech Shop" type="event" x="32" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_face spyder_cottonscoop_techie,right"/>
+    <property name="act2" value="translated_dialog spyder_tech_welcome"/>
+    <property name="act3" value="open_shop spyder_cottonscoop_techie"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="37" name="Create Techie" type="event" x="16" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottonscoop_techie,1,6"/>
+    <property name="act2" value="char_face spyder_cottonscoop_techie,right"/>
+    <property name="act3" value="set_economy spyder_cottonscoop_techie,spyder_cotton_tech"/>
+    <property name="cond1" value="not char_exists spyder_cottonscoop_techie"/>
+   </properties>
+  </object>
+  <object id="38" name="Talk/Open Tech Shop" type="event" x="0" y="48" width="16" height="16">
+   <properties>
+    <property name="act2" value="translated_dialog spyder_scoop_tech_welcome"/>
+    <property name="act3" value="open_shop spyder_candyscoop_techie"/>
+    <property name="behav1" value="talk spyder_candyscoop_techie"/>
    </properties>
   </object>
  </objectgroup>

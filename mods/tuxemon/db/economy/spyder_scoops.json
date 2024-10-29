@@ -33,24 +33,44 @@
         "cost": 20
       },
       {
-        "item_name": "tm_avalanche",
-        "price": 2000,
-        "cost": 400,
-        "inventory": 20
-      },
-      {
-        "item_name": "tm_blossom",
-        "price": 1000,
-        "cost": 200,
-        "inventory": 20
-      },
-      {
         "item_name": "tuxeball",
         "price": 50,
         "cost": 10
       }
     ]
   },
+  {
+    "slug": "spyder_cotton_tech",
+    "items": [
+      {
+        "item_name": "miaow_milk",
+        "price": 2000,
+        "cost": 400
+      },
+      {
+        "item_name": "pyramidion",
+        "price": 2000,
+        "cost": 400
+      },
+	  {
+        "item_name": "ox_stick",
+        "price": 2000,
+        "cost": 400
+      },
+      {
+        "item_name": "tm_avalanche",
+        "price": 2000,
+        "cost": 400,
+        "inventory": 1
+      },
+      {
+        "item_name": "tm_blossom",
+        "price": 1000,
+        "cost": 200,
+        "inventory": 1
+      }
+    ]
+  },  
   {
     "slug": "spyder_leather_scoop",
     "items": [
@@ -202,6 +222,45 @@
         "price": 300,
         "cost": 60,
         "variables": ["daytime:false"]
+      }
+    ]
+  }
+    {
+    "slug": "spyder_candy_tech",
+    "items": [
+      {
+        "item_name": "peace_lily",
+        "price": 2000,
+        "cost": 400
+      },
+      {
+        "item_name": "lucky_bamboo",
+        "price": 2000,
+        "cost": 400
+      },
+      {
+        "item_name": "tm_frostbite",
+        "price": 2000,
+        "cost": 400,
+		"inventory": 1
+      },
+      {
+        "item_name": "tm_supernova",
+        "price": 2000,
+        "cost": 400,
+		"inventory": 1
+      },
+      {
+        "item_name": "tm_vorpal",
+        "price": 2000,
+        "cost": 400,
+        "inventory": 1
+      },
+      {
+        "item_name": "tm_cavity",
+        "price": 2000,
+        "cost": 400,
+		"inventory": 1
       }
     ]
   }

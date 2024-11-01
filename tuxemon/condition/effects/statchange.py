@@ -75,7 +75,7 @@ class StatChangeEffect(CondEffect):
         return CondEffectResult(
             name=condition.name,
             success=bool(newstatvalue),
-            condition=[],
-            technique=[],
-            extra=[],
+            conditions=[],
+            techniques=[],
+            extras=[],
         )

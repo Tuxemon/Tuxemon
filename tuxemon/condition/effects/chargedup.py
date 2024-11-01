@@ -24,7 +24,7 @@ class ChargedUpEffect(CondEffect):
     def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         player = target.owner
         assert player
-        _condition: list[Condition] = []
+        _conditions: list[Condition] = []
         if condition.phase == "perform_action_tech":
             target.status.clear()
             if condition.repl_tech:
@@ -32,11 +32,11 @@ class ChargedUpEffect(CondEffect):
                 cond.load(condition.repl_tech)
                 cond.steps = player.steps
                 cond.link = target
-                _condition = [cond]
+                _conditions = [cond]
         return CondEffectResult(
             name=condition.name,
             success=True,
-            condition=_condition,
-            technique=[],
-            extra=[],
+            conditions=_conditions,
+            techniques=[],
+            extras=[],
         )

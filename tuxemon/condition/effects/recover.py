@@ -51,7 +51,7 @@ class RecoverEffect(CondEffect):
         return CondEffectResult(
             name=condition.name,
             success=healing,
-            condition=[],
-            technique=[],
-            extra=extra,
+            conditions=[],
+            techniques=[],
+            extras=extra,
         )

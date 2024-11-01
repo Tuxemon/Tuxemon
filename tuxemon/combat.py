@@ -81,11 +81,8 @@ def pre_checking(
         monster.status[0].combat_state = combat
         monster.status[0].phase = "pre_checking"
         result_status = monster.status[0].use(target)
-        if result_status.technique:
-            if len(result_status.technique) > 1:
-                technique = random.choice(result_status.technique)
-            else:
-                technique = result_status.technique[0]
+        if result_status.techniques:
+            technique = random.choice(result_status.techniques)
 
     infected_slugs = [
         slug

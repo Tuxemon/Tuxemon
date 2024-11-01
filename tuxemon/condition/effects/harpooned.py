@@ -35,7 +35,7 @@ class HarpoonedEffect(CondEffect):
         return CondEffectResult(
             name=condition.name,
             success=True,
-            condition=[],
-            technique=[],
-            extra=[],
+            conditions=[],
+            techniques=[],
+            extras=[],
         )

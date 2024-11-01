@@ -18,9 +18,9 @@ if TYPE_CHECKING:
 class CondEffectResult:
     name: str
     success: bool
-    condition: list[Condition]
-    technique: list[Technique]
-    extra: list[str]
+    conditions: list[Condition]
+    techniques: list[Technique]
+    extras: list[str]
 
 
 @dataclass
@@ -41,7 +41,7 @@ class CondEffect:
         return CondEffectResult(
             name=condition.name,
             success=True,
-            condition=[],
-            technique=[],
-            extra=[],
+            conditions=[],
+            techniques=[],
+            extras=[],
         )

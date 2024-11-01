@@ -44,7 +44,7 @@ class LifeLeechEffect(CondEffect):
         return CondEffectResult(
             name=condition.name,
             success=lifeleech,
-            condition=[],
-            technique=[],
-            extra=[],
+            conditions=[],
+            techniques=[],
+            extras=[],
         )

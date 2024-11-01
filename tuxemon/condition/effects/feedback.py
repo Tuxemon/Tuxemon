@@ -66,7 +66,7 @@ class FeedBackEffect(CondEffect):
         return CondEffectResult(
             name=condition.name,
             success=done,
-            condition=[],
-            technique=[],
-            extra=[],
+            conditions=[],
+            techniques=[],
+            extras=[],
         )

@@ -187,9 +187,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 target.status[0].combat_state = self.combat
                 target.status[0].phase = "enqueue_item"
                 result_status = target.status[0].use(target)
-                if result_status.extra:
+                if result_status.extras:
                     templates = [
-                        T.translate(extra) for extra in result_status.extra
+                        T.translate(extra) for extra in result_status.extras
                     ]
                     template = "\n".join(templates)
                     tools.open_dialog(local_session, [template])

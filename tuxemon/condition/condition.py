@@ -261,18 +261,18 @@ class Condition:
         meta_result = CondEffectResult(
             name=self.name,
             success=False,
-            condition=[],
-            technique=[],
-            extra=[],
+            conditions=[],
+            techniques=[],
+            extras=[],
         )
 
         for effect in self.effects:
             result = effect.apply(self, target)
             meta_result.name = result.name
             meta_result.success = meta_result.success or result.success
-            meta_result.condition.extend(result.condition)
-            meta_result.technique.extend(result.technique)
-            meta_result.extra.extend(result.extra)
+            meta_result.conditions.extend(result.conditions)
+            meta_result.techniques.extend(result.techniques)
+            meta_result.extras.extend(result.extras)
 
         return meta_result
 

@@ -35,7 +35,7 @@ class PoisonedEffect(CondEffect):
         return CondEffectResult(
             name=condition.name,
             success=poisoned,
-            condition=[],
-            technique=[],
-            extra=[],
+            conditions=[],
+            techniques=[],
+            extras=[],
         )

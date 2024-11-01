@@ -29,7 +29,7 @@ class LockdownEffect(CondEffect):
         return CondEffectResult(
             name=condition.name,
             success=True,
-            condition=[],
-            technique=[],
-            extra=extra,
+            conditions=[],
+            techniques=[],
+            extras=extra,
         )

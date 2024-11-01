@@ -859,19 +859,15 @@ class CombatState(CombatAnimations):
             user.status[0].combat_state = self
             user.status[0].phase = "perform_action_tech"
             result_status = user.status[0].use(user)
-            if result_status.extra:
+            if result_status.extras:
                 templates = [
-                    T.translate(extra) for extra in result_status.extra
+                    T.translate(extra) for extra in result_status.extras
                 ]
                 template = "\n".join(templates)
                 message += "\n" + template
-            if result_status.condition:
-                if len(result_status.condition) > 1:
-                    status = random.choice(result_status.condition)
-                    user.apply_status(status)
-                else:
-                    status = result_status.condition[0]
-                    user.apply_status(status)
+            if result_status.conditions:
+                status = random.choice(result_status.conditions)
+                user.apply_status(status)
 
         if result_tech["success"] and method.use_success:
             template = getattr(method, "use_success")
@@ -1196,9 +1192,9 @@ class CombatState(CombatAnimations):
             monster.status[0].combat_state = self
             monster.status[0].phase = "check_party_hp"
             result_status = monster.status[0].use(monster)
-            if result_status.extra:
+            if result_status.extras:
                 templates = [
-                    T.translate(extra) for extra in result_status.extra
+                    T.translate(extra) for extra in result_status.extras
                 ]
                 extra = "\n".join(templates)
                 action_time = compute_text_animation_time(extra)

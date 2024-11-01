@@ -41,7 +41,7 @@ class FlinchingEffect(CondEffect):
         return CondEffectResult(
             name=condition.name,
             success=True,
-            condition=[],
-            technique=tech,
-            extra=[],
+            conditions=[],
+            techniques=tech,
+            extras=[],
         )

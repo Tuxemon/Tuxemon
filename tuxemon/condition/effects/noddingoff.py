@@ -50,9 +50,9 @@ class NoddingOffEffect(CondEffect):
         return CondEffectResult(
             name=condition.name,
             success=True,
-            condition=[],
-            technique=tech,
-            extra=extra,
+            conditions=[],
+            techniques=tech,
+            extras=extra,
         )
 
     def wake_up(self, condition: Condition) -> bool:

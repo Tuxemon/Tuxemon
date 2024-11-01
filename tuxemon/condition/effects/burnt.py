@@ -35,7 +35,7 @@ class BurntEffect(CondEffect):
         return CondEffectResult(
             name=condition.name,
             success=burnt,
-            condition=[],
-            technique=[],
-            extra=[],
+            conditions=[],
+            techniques=[],
+            extras=[],
         )

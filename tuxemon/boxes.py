@@ -17,293 +17,463 @@ if TYPE_CHECKING:
     from tuxemon.npc import NPCState
 
 
-class ItemBoxes:
-    """
-    A class to manage a collection of item boxes.
-    """
-
+class BoxCollection:
     def __init__(self) -> None:
-        self.boxes: dict[str, list[Item]] = {}
+        """
+        Initializes a new BoxCollection instance.
+        """
+        self.item_boxes: dict[str, list[Item]] = {}
+        self.monster_boxes: dict[str, list[Monster]] = {}
 
-    def create_box(self, box_id: str) -> None:
+    def create_box(self, box_id: str, box_type: str) -> None:
         """
-        Creates a new item box with the given ID.
+        Creates a new box with the given ID and type.
+
+        Parameters:
+            box_id: The ID of the box to create.
+            box_type: The type of the box to create (either "item" or
+                "monster").
         """
-        self.boxes[box_id] = []
+        if box_type == "item":
+            self.item_boxes[box_id] = []
+        elif box_type == "monster":
+            self.monster_boxes[box_id] = []
 
     def add_item(self, box_id: str, item: Item) -> None:
         """
-        Adds an item to a box with the given ID.
-        If the box does not exist, it will be created.
+        Adds an item to the box with the given ID.
+
+        Parameters:
+            box_id: The ID of the box to add the item to.
+            item: The item to add to the box.
         """
-        if box_id not in self.boxes:
-            self.create_box(box_id)
-        self.boxes[box_id].append(item)
+        if box_id not in self.item_boxes:
+            self.create_box(box_id, "item")
+        self.item_boxes[box_id].append(item)
+
+    def add_monster(self, box_id: str, monster: Monster) -> None:
+        """
+        Adds a monster to the box with the given ID.
+
+        Parameters:
+            box_id: The ID of the box to add the monster to.
+            monster: The monster to add to the box.
+        """
+        if box_id not in self.monster_boxes:
+            self.create_box(box_id, "monster")
+        self.monster_boxes[box_id].append(monster)
 
     def remove_item(self, item: Item) -> None:
         """
-        Removes an item from all boxes.
+        Removes the given item from all boxes.
+
+        Parameters:
+            item: The item to remove from all boxes.
         """
-        for box in self.boxes.values():
+        for box in self.item_boxes.values():
             if item in box:
                 box.remove(item)
                 return
 
+    def remove_monster(self, monster: Monster) -> None:
+        """
+        Removes the given monster from all boxes.
+
+        Parameters:
+            monster: The monster to remove from all boxes.
+        """
+        for box in self.monster_boxes.values():
+            if monster in box:
+                box.remove(monster)
+                return
+
     def remove_item_from(self, box_id: str, item: Item) -> None:
         """
-        Removes an item from a box with the given ID.
+        Removes the given item from the box with the given ID.
+
+        Parameters:
+            box_id: The ID of the box to remove the item from.
+            item: The item to remove from the box.
         """
-        if box_id in self.boxes:
-            self.boxes[box_id].remove(item)
+        if box_id in self.item_boxes:
+            self.item_boxes[box_id].remove(item)
+
+    def remove_monster_from(self, box_id: str, monster: Monster) -> None:
+        """
+        Removes the given monster from the box with the given ID.
+
+        Parameters:
+            box_id: The ID of the box to remove the monster from.
+            monster: The monster to remove from the box.
+        """
+        if box_id in self.monster_boxes:
+            self.monster_boxes[box_id].remove(monster)
 
     def get_items_by_iid(self, instance_id: uuid.UUID) -> Optional[Item]:
         """
-        Gets an item by its instance ID.
+        Retrieves an item by its instance ID.
+
+        Parameters:
+            instance_id: The instance ID of the item to retrieve.
+
+        Returns:
+            The item with the given instance ID, or None if not found.
         """
         return next(
             (
                 m
-                for box in self.boxes.values()
+                for box in self.item_boxes.values()
                 for m in box
                 if m.instance_id == instance_id
             ),
             None,
         )
 
-    def save(self, state: NPCState) -> None:
+    def get_monsters_by_iid(self, instance_id: uuid.UUID) -> Optional[Monster]:
         """
-        Saves the state of the item boxes.
-        """
-        state["item_boxes"] = {}
-        for box_id, items in self.boxes.items():
-            state["item_boxes"][box_id] = encode_items(items)
+        Retrieves a monster by its instance ID.
 
-    def load(self, save_data: NPCState) -> None:
+        Parameters:
+            instance_id: The instance ID of the monster to retrieve.
+
+        Returns:
+            The monster with the given instance ID, or None if not found.
         """
-        Loads the state of the item boxes from a saved state.
+        return next(
+            (
+                m
+                for box in self.monster_boxes.values()
+                for m in box
+                if m.instance_id == instance_id
+            ),
+            None,
+        )
+
+    def get_items(self, box_id: str) -> list[Item]:
         """
-        self.boxes = {}
-        for box_id, encoded_items in save_data["item_boxes"].items():
-            self.boxes[box_id] = decode_items(encoded_items)
+        Retrieves all items in the box with the given ID.
+
+        Parameters:
+            box_id: The ID of the box to retrieve items from.
+
+        Returns:
+            A list of all items in the box with the given ID.
+        """
+        return self.item_boxes.get(box_id, [])
+
+    def get_monsters(self, box_id: str) -> list[Monster]:
+        """
+        Retrieves all monsters in the box with the given ID.
+
+        Parameters:
+            box_id: The ID of the box to retrieve monsters from.
+
+        Returns:
+            A list of all monsters in the box with the given ID.
+        """
+        return self.monster_boxes.get(box_id, [])
+
+    def get_box_size(self, box_id: str, box_type: str) -> int:
+        """
+        Retrieves the size of the box with the given ID and type.
+
+        Parameters:
+            box_id: The ID of the box to retrieve the size of.
+            box_type: The type of the box to retrieve the size of (either
+                "item" or "monster").
+
+        Returns:
+            The size of the box with the given ID and type.
+        """
+        if box_type == "item":
+            return len(self.get_items(box_id))
+        elif box_type == "monster":
+            return len(self.get_monsters(box_id))
+        else:
+            raise ValueError(f"{box_type} must be 'item' or 'monster'")
+
+    def has_box(self, box_id: str, box_type: str) -> bool:
+        """
+        Checks if a box with the given ID and type exists.
+
+        Parameters:
+            box_id: The ID of the box to check for.
+            box_type: The type of the box to check for (either "item"
+                or "monster").
+
+        Returns:
+            True if the box with the given ID and type exists, False
+                otherwise.
+        """
+        if box_type == "item":
+            return box_id in self.item_boxes
+        elif box_type == "monster":
+            return box_id in self.monster_boxes
+        else:
+            raise ValueError(f"{box_type} must be 'item' or 'monster'")
+
+    def get_all_items(self) -> list[Item]:
+        """
+        Retrieves all items in all boxes.
+
+        Returns:
+            A list of all items in all boxes.
+        """
+        return [item for box in self.item_boxes.values() for item in box]
+
+    def get_all_monsters(self) -> list[Monster]:
+        """
+        Retrieves all monsters in all boxes.
+
+        Returns:
+            A list of all monsters in all boxes.
+        """
+        return [
+            monster for box in self.monster_boxes.values() for monster in box
+        ]
+
+    def get_all_items_hidden(self) -> list[Item]:
+        """
+        Retrieves all hidden items in all boxes.
+
+        Returns:
+            A list of all hidden items in all boxes.
+        """
+        return [
+            item
+            for key, box in self.item_boxes.items()
+            if key in HIDDEN_LIST_LOCKER
+            for item in box
+        ]
+
+    def get_all_monsters_hidden(self) -> list[Monster]:
+        """
+        Retrieves all hidden monsters in all boxes.
+
+        Returns:
+            A list of all hidden monsters in all boxes.
+        """
+        return [
+            monster
+            for key, box in self.monster_boxes.items()
+            if key in HIDDEN_LIST
+            for monster in box
+        ]
+
+    def get_all_items_visible(self) -> list[Item]:
+        """
+        Retrieves all visible items in all boxes.
+
+        Returns:
+            A list of all visible items in all boxes.
+        """
+        return [
+            item
+            for key, box in self.item_boxes.items()
+            if key not in HIDDEN_LIST_LOCKER
+            for item in box
+        ]
+
+    def get_all_monsters_visible(self) -> list[Monster]:
+        """
+        Retrieves all visible monsters in all boxes.
+
+        Returns:
+            A list of all visible monsters in all boxes.
+        """
+        return [
+            monster
+            for key, box in self.monster_boxes.items()
+            if key not in HIDDEN_LIST
+            for monster in box
+        ]
 
     def move_item(
         self, source_box_id: str, target_box_id: str, item: Item
     ) -> None:
         """
         Moves an item from one box to another.
+
+        Parameters:
+            source_box_id: The ID of the box to move the item from.
+            target_box_id: The ID of the box to move the item to.
+            item: The item to move.
         """
-        if source_box_id in self.boxes and item in self.boxes[source_box_id]:
+        if (
+            source_box_id in self.item_boxes
+            and item in self.item_boxes[source_box_id]
+        ):
             self.remove_item_from(source_box_id, item)
             self.add_item(target_box_id, item)
-
-    def get_items(self, box_id: str) -> list[Item]:
-        """
-        Gets all items in a box with the given ID.
-        """
-        return self.boxes.get(box_id, [])
-
-    def get_box_size(self, box_id: str) -> int:
-        """
-        Gets the number of items in a box with the given ID.
-        """
-        return len(self.get_items(box_id))
-
-    def has_box(self, box_id: str) -> bool:
-        """
-        Checks if a box with the given ID exists.
-        """
-        return box_id in self.boxes
-
-    def get_all_items(self) -> list[Item]:
-        """
-        Gets all items in all boxes.
-        """
-        return [item for box in self.boxes.values() for item in box]
-
-    def get_all_items_hidden(self) -> list[Item]:
-        """
-        Gets all items in hidden boxes.
-        """
-        return [
-            item
-            for key, box in self.boxes.items()
-            if key in HIDDEN_LIST_LOCKER
-            for item in box
-        ]
-
-    def get_all_items_visible(self) -> list[Item]:
-        """
-        Gets all items in visible boxes.
-        """
-        return [
-            item
-            for key, box in self.boxes.items()
-            if key not in HIDDEN_LIST_LOCKER
-            for item in box
-        ]
-
-
-class MonsterBoxes:
-    """
-    A class to manage a collection of monster boxes.
-    """
-
-    def __init__(self) -> None:
-        self.boxes: dict[str, list[Monster]] = {}
-
-    def create_box(self, box_id: str) -> None:
-        """
-        Creates a new monster box with the given ID.
-        """
-        self.boxes[box_id] = []
-
-    def remove_box(self, box_id: str) -> None:
-        """
-        Removes a monster box with the given ID.
-        """
-        if box_id in self.boxes:
-            del self.boxes[box_id]
-
-    def add_monster(self, box_id: str, monster: Monster) -> None:
-        """
-        Adds a monster to a box with the given ID.
-        If the box does not exist, it will be created.
-        """
-        if box_id not in self.boxes:
-            self.create_box(box_id)
-        self.boxes[box_id].append(monster)
-
-    def remove_monster(self, monster: Monster) -> None:
-        """
-        Removes a monster from all boxes.
-        """
-        for box in self.boxes.values():
-            if monster in box:
-                box.remove(monster)
-                return
-
-    def remove_monster_from(self, box_id: str, monster: Monster) -> None:
-        """
-        Removes a monster from a box with the given ID.
-        """
-        if box_id in self.boxes:
-            self.boxes[box_id].remove(monster)
-
-    def get_monsters_by_iid(self, instance_id: uuid.UUID) -> Optional[Monster]:
-        """
-        Gets a monster by its instance ID.
-        """
-        return next(
-            (
-                m
-                for box in self.boxes.values()
-                for m in box
-                if m.instance_id == instance_id
-            ),
-            None,
-        )
-
-    def get_monsters(self, box_id: str) -> list[Monster]:
-        """
-        Gets all monsters in a box with the given ID.
-        """
-        return self.boxes.get(box_id, [])
-
-    def has_box(self, box_id: str) -> bool:
-        """
-        Checks if a box with the given ID exists.
-        """
-        return box_id in self.boxes
-
-    def get_box_ids(self) -> list[str]:
-        """
-        Gets all box IDs.
-        """
-        return list(self.boxes.keys())
-
-    def get_box_size(self, box_id: str) -> int:
-        """
-        Gets the number of monsters in a box with the given ID.
-        """
-        return len(self.get_monsters(box_id))
-
-    def get_box_name(self, instance_id: uuid.UUID) -> Optional[str]:
-        """
-        Gets the ID of the box that contains a monster with the given instance ID.
-        """
-        return next(
-            (
-                box
-                for box, monsters in self.boxes.items()
-                for m in monsters
-                if m.instance_id == instance_id
-            ),
-            None,
-        )
-
-    def get_all_monsters(self) -> list[Monster]:
-        """
-        Gets all monsters in all boxes.
-        """
-        return [monster for box in self.boxes.values() for monster in box]
-
-    def get_all_monsters_hidden(self) -> list[Monster]:
-        """
-        Gets all monsters in hidden boxes.
-        """
-        return [
-            monster
-            for key, box in self.boxes.items()
-            if key in HIDDEN_LIST
-            for monster in box
-        ]
-
-    def get_all_monsters_visible(self) -> list[Monster]:
-        """
-        Gets all monsters in visible boxes.
-        """
-        return [
-            monster
-            for key, box in self.boxes.items()
-            if key not in HIDDEN_LIST
-            for monster in box
-        ]
-
-    def is_box_full(
-        self, box_id: str, max_capacity: int = prepare.MAX_KENNEL
-    ) -> bool:
-        """
-        Checks if a box is full.
-        """
-        return box_id in self.boxes and len(self.boxes[box_id]) >= max_capacity
 
     def move_monster(
         self, source_box_id: str, target_box_id: str, monster: Monster
     ) -> None:
         """
         Moves a monster from one box to another.
+
+        Parameters:
+            source_box_id: The ID of the box to move the monster from.
+            target_box_id: The ID of the box to move the monster to.
+            monster: The monster to move.
         """
         if (
-            source_box_id in self.boxes
-            and monster in self.boxes[source_box_id]
+            source_box_id in self.monster_boxes
+            and monster in self.monster_boxes[source_box_id]
         ):
             self.remove_monster_from(source_box_id, monster)
             self.add_monster(target_box_id, monster)
+        else:
+            raise ValueError(
+                f"{source_box_id} doesn't exist or {monster.slug} isn't in the {source_box_id} box"
+            )
+
+    def save(self, state: NPCState) -> None:
+        """
+        Saves the current state of the box collection.
+
+        Parameters:
+            state: The state to save the box collection to.
+        """
+        state["item_boxes"] = {}
+        state["monster_boxes"] = {}
+        for box_id, items in self.item_boxes.items():
+            state["item_boxes"][box_id] = encode_items(items)
+        for box_id, monsters in self.monster_boxes.items():
+            state["monster_boxes"][box_id] = encode_monsters(monsters)
+
+    def load(self, save_data: NPCState) -> None:
+        """
+        Loads the box collection from a saved state.
+
+        Parameters:
+            save_data: The saved state to load the box collection from.
+        """
+        self.item_boxes = {}
+        self.monster_boxes = {}
+        for box_id, encoded_items in save_data["item_boxes"].items():
+            self.item_boxes[box_id] = decode_items(encoded_items)
+        for box_id, encoded_monsters in save_data["monster_boxes"].items():
+            self.monster_boxes[box_id] = decode_monsters(encoded_monsters)
+
+
+class ItemBoxes(BoxCollection):
+    def __init__(self) -> None:
+        """
+        Initializes a new ItemBoxes instance.
+        """
+        super().__init__()
+
+    def save(self, state: NPCState) -> None:
+        """
+        Saves the current state of the item boxes.
+
+        Parameters:
+            state: The state to save the item boxes to.
+        """
+        super().save(state)
+
+    def load(self, save_data: NPCState) -> None:
+        """
+        Loads the item boxes from a saved state.
+
+        Parameters:
+            save_data: The saved state to load the item boxes from.
+        """
+        super().load(save_data)
+
+
+class MonsterBoxes(BoxCollection):
+    def __init__(self) -> None:
+        """
+        Initializes a new MonsterBoxes instance.
+        """
+        super().__init__()
+
+    def remove_box(self, box_id: str) -> None:
+        """
+        Removes a monster box with the given ID.
+
+        Parameters:
+            box_id: The ID of the box to remove.
+        """
+        if box_id in self.monster_boxes:
+            del self.monster_boxes[box_id]
+        else:
+            raise ValueError(f"{box_id} doesn't exist.")
+
+    def get_box_ids(self) -> list[str]:
+        """
+        Retrieves a list of all monster box IDs.
+
+        Returns:
+            A list of all monster box IDs.
+        """
+        return list(self.monster_boxes.keys())
+
+    def get_box_name(self, instance_id: uuid.UUID) -> Optional[str]:
+        """
+        Retrieves the name of the monster box that contains the monster
+        with the given instance ID.
+
+        Parameters:
+            instance_id: The instance ID of the monster to find the box for.
+
+        Returns:
+            The name of the monster box that contains the monster, or None
+            if not found.
+        """
+        return next(
+            (
+                box
+                for box, monsters in self.monster_boxes.items()
+                for m in monsters
+                if m.instance_id == instance_id
+            ),
+            None,
+        )
+
+    def is_box_full(
+        self, box_id: str, max_capacity: int = prepare.MAX_KENNEL
+    ) -> bool:
+        """
+        Checks if a monster box is full.
+
+        Parameters:
+            box_id: The ID of the box to check.
+            max_capacity: The maximum capacity of the box (default is
+                prepare.MAX_KENNEL).
+
+        Returns:
+            True if the box is full, False otherwise.
+        """
+        return (
+            box_id in self.monster_boxes
+            and len(self.monster_boxes[box_id]) >= max_capacity
+        )
 
     def merge_boxes(self, source_box_id: str, target_box_id: str) -> None:
         """
-        Merge the contents of two boxes into a single box.
+        Merges two monster boxes.
+
+        Parameters:
+            source_box_id: The ID of the box to merge from.
+            target_box_id: The ID of the box to merge to.
         """
-        if target_box_id not in self.boxes:
-            self.create_box(target_box_id)
-        if source_box_id in self.boxes:
-            self.boxes[target_box_id].extend(self.boxes[source_box_id])
-            del self.boxes[source_box_id]
+        if target_box_id not in self.monster_boxes:
+            self.create_box(target_box_id, "monster")
+        if source_box_id in self.monster_boxes:
+            self.monster_boxes[target_box_id].extend(
+                self.monster_boxes[source_box_id]
+            )
+            del self.monster_boxes[source_box_id]
 
     def create_and_merge_box(self, box_id: str) -> None:
         """
-        Moves the content of the given box into a new box with an
-        incremented label (e.g., Kennel0 -> Kennel1).
+        Creates a new monster box and merges it with an existing box.
+
+        Parameters:
+            box_id: The ID of the box to create and merge.
         """
         i = (
             len(
@@ -318,7 +488,7 @@ class MonsterBoxes:
             + 1
         )
         new_box_id = f"{box_id}{i}"
-        self.create_box(new_box_id)
+        self.create_box(new_box_id, "monster")
         self.merge_boxes(box_id, new_box_id)
 
     def swap_with_external_monster(
@@ -326,8 +496,16 @@ class MonsterBoxes:
     ) -> Monster:
         """
         Swaps a monster in a box with an external monster.
+
+        Parameters:
+            box_id: The ID of the box to swap the monster in.
+            monster_in_box: The monster in the box to swap.
+            external_monster: The external monster to swap with.
+
+        Returns:
+            The monster that was swapped out of the box.
         """
-        if box_id in self.boxes:
+        if box_id in self.monster_boxes:
             self.remove_monster_from(box_id, monster_in_box)
             self.add_monster(box_id, external_monster)
             return monster_in_box
@@ -339,6 +517,13 @@ class MonsterBoxes:
     ) -> Monster:
         """
         Swaps a monster in a box with an external monster by instance ID.
+
+        Parameters:
+            instance_id: The instance ID of the monster to swap.
+            external_monster: The external monster to swap with.
+
+        Returns:
+            The monster that was swapped out of the box.
         """
         monster = self.get_monsters_by_iid(instance_id)
         box_id = self.get_box_name(instance_id)
@@ -351,16 +536,18 @@ class MonsterBoxes:
 
     def save(self, state: NPCState) -> None:
         """
-        Saves the state of the monster boxes.
+        Saves the current state of the monster boxes.
+
+        Parameters:
+            state: The state to save the monster boxes to.
         """
-        state["monster_boxes"] = {}
-        for box_id, monsters in self.boxes.items():
-            state["monster_boxes"][box_id] = encode_monsters(monsters)
+        super().save(state)
 
     def load(self, save_data: NPCState) -> None:
         """
-        Loads the state of the monster boxes from a saved state.
+        Loads the monster boxes from a saved state.
+
+        Parameters:
+            save_data: The saved state to load the monster boxes from.
         """
-        self.boxes = {}
-        for box_id, encoded_monsters in save_data["monster_boxes"].items():
-            self.boxes[box_id] = decode_monsters(encoded_monsters)
+        super().load(save_data)

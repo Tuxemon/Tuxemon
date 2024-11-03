@@ -21,18 +21,24 @@ class TestBoxes(unittest.TestCase):
 
     def test_add_monster(self):
         self.monster_boxes.add_monster(self.box_id1, self.monster1)
-        self.assertIn(self.box_id1, self.monster_boxes.boxes)
-        self.assertIn(self.monster1, self.monster_boxes.boxes[self.box_id1])
+        self.assertIn(self.box_id1, self.monster_boxes.monster_boxes)
+        self.assertIn(
+            self.monster1, self.monster_boxes.monster_boxes[self.box_id1]
+        )
 
     def test_remove_monster(self):
         self.monster_boxes.add_monster(self.box_id1, self.monster1)
         self.monster_boxes.remove_monster(self.monster1)
-        self.assertNotIn(self.monster1, self.monster_boxes.boxes[self.box_id1])
+        self.assertNotIn(
+            self.monster1, self.monster_boxes.monster_boxes[self.box_id1]
+        )
 
     def test_remove_monster_from(self):
         self.monster_boxes.add_monster(self.box_id1, self.monster1)
         self.monster_boxes.remove_monster_from(self.box_id1, self.monster1)
-        self.assertNotIn(self.monster1, self.monster_boxes.boxes[self.box_id1])
+        self.assertNotIn(
+            self.monster1, self.monster_boxes.monster_boxes[self.box_id1]
+        )
 
     def test_get_monsters_by_iid(self):
         self.monster_boxes.add_monster(self.box_id1, self.monster1)
@@ -51,7 +57,7 @@ class TestBoxes(unittest.TestCase):
 
     def test_has_box(self):
         self.monster_boxes.add_monster(self.box_id1, self.monster1)
-        self.assertTrue(self.monster_boxes.has_box(self.box_id1))
+        self.assertTrue(self.monster_boxes.has_box(self.box_id1, "monster"))
 
     def test_get_box_ids(self):
         self.monster_boxes.add_monster(self.box_id1, self.monster1)
@@ -63,7 +69,9 @@ class TestBoxes(unittest.TestCase):
     def test_get_box_size(self):
         self.monster_boxes.add_monster(self.box_id1, self.monster1)
         self.monster_boxes.add_monster(self.box_id1, self.monster2)
-        self.assertEqual(self.monster_boxes.get_box_size(self.box_id1), 2)
+        self.assertEqual(
+            self.monster_boxes.get_box_size(self.box_id1, "monster"), 2
+        )
 
     def test_get_box_name(self):
         self.monster_boxes.add_monster(self.box_id1, self.monster1)
@@ -111,7 +119,9 @@ class TestBoxes(unittest.TestCase):
         self.monster_boxes.move_monster(
             self.box_id1, self.box_id2, self.monster1
         )
-        self.assertIn(self.monster1, self.monster_boxes.boxes[self.box_id2])
+        self.assertIn(
+            self.monster1, self.monster_boxes.monster_boxes[self.box_id2]
+        )
 
     def test_merge_boxes(self):
         self.monster_boxes.add_monster(self.box_id1, self.monster1)
@@ -124,13 +134,13 @@ class TestBoxes(unittest.TestCase):
         )
 
     def test_create_box(self):
-        self.monster_boxes.create_box(self.box_id1)
-        self.assertIn(self.box_id1, self.monster_boxes.boxes)
+        self.monster_boxes.create_box(self.box_id1, "monster")
+        self.assertIn(self.box_id1, self.monster_boxes.monster_boxes)
 
     def test_remove_box(self):
         self.monster_boxes.add_monster(self.box_id1, self.monster1)
         self.monster_boxes.remove_box(self.box_id1)
-        self.assertNotIn(self.box_id1, self.monster_boxes.boxes)
+        self.assertNotIn(self.box_id1, self.monster_boxes.monster_boxes)
 
     def test_swap_with_external_monster(self):
         self.monster_boxes.add_monster(self.box_id1, self.monster1)

@@ -47,7 +47,7 @@ class ClearKennelAction(EventAction):
                 f"{kennel} cannot be cleared.",
             )
         else:
-            if player.monster_boxes.has_box(kennel):
+            if player.monster_boxes.has_box(kennel, "monster"):
                 if transfer is None:
                     player.monster_boxes.remove_box(kennel)
                 else:

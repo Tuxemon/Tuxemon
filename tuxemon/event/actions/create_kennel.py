@@ -34,5 +34,5 @@ class CreateKennelAction(EventAction):
 
     def start(self) -> None:
         player = self.session.player
-        if not player.monster_boxes.has_box(self.kennel):
-            player.monster_boxes.create_box(self.kennel)
+        if not player.monster_boxes.has_box(self.kennel, "monster"):
+            player.monster_boxes.create_box(self.kennel, "monster")

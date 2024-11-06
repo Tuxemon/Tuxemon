@@ -253,6 +253,9 @@ class JournalInfoState(PygameMenuState):
             key=lambda x: x.txmn_id,
         )
 
+        if not monster_models:
+            return None
+
         if event.button in (buttons.RIGHT, buttons.LEFT) and event.pressed:
             current_monster_index = monster_models.index(self._monster)
             new_index = (

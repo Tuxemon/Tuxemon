@@ -981,9 +981,9 @@ class CombatState(CombatAnimations):
             template = getattr(item, msg_type)
             tmpl = T.format(template, context)
             # extra output
-            if result_item.extra:
+            if result_item.extras:
                 extra_tmpls = [
-                    T.translate(extra) for extra in result_item.extra
+                    T.translate(extra) for extra in result_item.extras
                 ]
                 tmpl = "\n".join(extra_tmpls)
             if template:

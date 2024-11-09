@@ -45,14 +45,14 @@ class CaptureEffect(ItemEffect):
         if not capture:
             self._handle_capture_failure(item, target)
             return ItemEffectResult(
-                name=item.name, success=False, num_shakes=shakes, extra=[]
+                name=item.name, success=False, num_shakes=shakes, extras=[]
             )
 
         # Apply capture effects
         self._apply_capture_effects(item, target)
 
         return ItemEffectResult(
-            name=item.name, success=True, num_shakes=shakes, extra=[]
+            name=item.name, success=True, num_shakes=shakes, extras=[]
         )
 
     def _calculate_status_modifier(self, target: Monster) -> float:

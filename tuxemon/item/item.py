@@ -232,7 +232,7 @@ class Item:
             name=self.name,
             success=False,
             num_shakes=0,
-            extra=[],
+            extras=[],
         )
 
         # Loop through all the effects of this technique and execute the effect's function.
@@ -241,7 +241,7 @@ class Item:
             meta_result.name = result.name
             meta_result.success = meta_result.success or result.success
             meta_result.num_shakes += result.num_shakes
-            meta_result.extra.extend(result.extra)
+            meta_result.extras.extend(result.extras)
 
         # If this is a consumable item, remove it from the player's inventory.
         if (

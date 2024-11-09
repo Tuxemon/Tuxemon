@@ -45,5 +45,5 @@ class SwitchEffect(ItemEffect):
                 random_target_element = random.choice(elements)
                 target.types = [Element(random_target_element)]
         return ItemEffectResult(
-            name=item.name, success=target is not None, num_shakes=0, extra=[]
+            name=item.name, success=target is not None, num_shakes=0, extras=[]
         )

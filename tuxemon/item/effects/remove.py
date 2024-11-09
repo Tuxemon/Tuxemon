@@ -42,5 +42,5 @@ class RemoveEffect(ItemEffect):
                     remove = True
 
         return ItemEffectResult(
-            name=item.name, success=remove, num_shakes=0, extra=[]
+            name=item.name, success=remove, num_shakes=0, extras=[]
         )

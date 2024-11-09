@@ -51,10 +51,10 @@ class FishingEffect(ItemEffect):
             level = random.randint(self.lower_bound, self.upper_bound)
             self._trigger_fishing_encounter(mon_slug, level)
             return ItemEffectResult(
-                name=item.name, success=True, num_shakes=0, extra=[]
+                name=item.name, success=True, num_shakes=0, extras=[]
             )
         return ItemEffectResult(
-            name=item.name, success=False, num_shakes=0, extra=[]
+            name=item.name, success=False, num_shakes=0, extras=[]
         )
 
     def _trigger_fishing_encounter(self, mon_slug: str, level: int) -> None:

@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Union
 
 from tuxemon.combat import fainted
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
@@ -15,14 +14,12 @@ from tuxemon.technique.technique import Technique
 @dataclass
 class PricklyBackEffect(CondEffect):
     """
-
-    Prickly:
-    Each time you are hit by a Physical move
-    the attacker takes 1/8th your maximum HP in damage
+    Each time you are hit by a Physical move the attacker takes damage equal to
+    your maximum HP divided by the divisor.
 
     Parameters:
-        divisor: The divisor.
-
+        divisor: The divisor used to calculate the damage.
+        ranges: The ranges of moves that trigger the effect.
     """
 
     name = "prickly"
@@ -31,38 +28,31 @@ class PricklyBackEffect(CondEffect):
 
     def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         done: bool = False
+        ranges = self.ranges.split(":")
         assert condition.combat_state
         combat = condition.combat_state
-        log = combat._action_queue.history
+        log = combat._action_queue
         turn = combat._turn
-        ranges = self.ranges.split(":")
-        # check log actions
-        attacker: Union[Monster, None] = None
-        hit: bool = False
-        for ele in log:
-            _turn, action = ele
-            if _turn == turn:
-                method = action.method
-                # progress
-                if (
-                    isinstance(method, Technique)
-                    and isinstance(action.user, Monster)
-                    and method.hit
-                    and method.range in ranges
-                    and action.target.instance_id == target.instance_id
-                ):
-                    attacker = action.user
-                    hit = True
+        action = log.get_last_action(turn, target, "target")
 
         if (
-            condition.phase == "perform_action_status"
-            and attacker
-            and hit
-            and not fainted(attacker)
+            action
+            and isinstance(action.method, Technique)
+            and isinstance(action.user, Monster)
         ):
-            damage = target.hp // self.divisor
-            attacker.current_hp = max(0, attacker.current_hp - damage)
-            done = True
+            method = action.method
+            attacker = action.user
+
+            if (
+                condition.phase == "perform_action_status"
+                and method.hit
+                and method.range in ranges
+                and action.target.instance_id == target.instance_id
+                and not fainted(attacker)
+            ):
+                damage = target.hp // self.divisor
+                attacker.current_hp = max(0, attacker.current_hp - damage)
+                done = True
         return CondEffectResult(
             name=condition.name,
             success=done,

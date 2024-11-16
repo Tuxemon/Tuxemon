@@ -8,14 +8,13 @@ import os
 import uuid
 from collections import defaultdict
 from collections.abc import Mapping, MutableMapping, Sequence
+from dataclasses import dataclass
 from functools import partial
 from typing import (
     TYPE_CHECKING,
     Any,
     DefaultDict,
-    NamedTuple,
     Optional,
-    TypedDict,
     Union,
     no_type_check,
 )
@@ -78,13 +77,15 @@ animation_mapping = {
 }
 
 
-class WorldSurfaces(NamedTuple):
+@dataclass
+class WorldSurfaces:
     surface: pygame.surface.Surface
     position3: Vector2
     layer: int
 
 
-class AnimationInfo(TypedDict):
+@dataclass
+class AnimationInfo:
     animation: SurfaceAnimation
     position: tuple[int, int]
     layer: int
@@ -300,7 +301,7 @@ class WorldState(state.State):
         super().update(time_delta)
         self.update_npcs(time_delta)
         for anim_data in self.map_animations.values():
-            anim_data["animation"].update(time_delta)
+            anim_data.animation.update(time_delta)
         self.camera.update()
 
         logger.debug("*** Game Loop Started ***")
@@ -439,11 +440,11 @@ class WorldState(state.State):
         """Get the map animations."""
         map_animations = []
         for anim_data in self.map_animations.values():
-            anim = anim_data["animation"]
+            anim = anim_data.animation
             if not anim.is_finished() and anim.visibility:
                 surface = anim.get_current_frame()
-                vector = Vector2(anim_data["position"])
-                layer = anim_data["layer"]
+                vector = Vector2(anim_data.position)
+                layer = anim_data.layer
                 map_animation = WorldSurfaces(surface, vector, layer)
                 map_animations.append(map_animation)
         return map_animations

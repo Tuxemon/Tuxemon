@@ -5,9 +5,9 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import final
 
+from tuxemon.economy import Economy
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.item.economy import Economy
 
 
 @final
@@ -38,4 +38,4 @@ class SetEconomyAction(EventAction):
 
         npc.economy = Economy(self.economy_slug)
         items = npc.economy.load_economy_items(player)
-        npc.economy.add_economy_items_to_npc(npc, items)
+        npc.economy.add_economy_to_npc(npc, items)

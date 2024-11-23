@@ -1,0 +1,123 @@
+events:
+  Route Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: "event"
+  Teleport to Flower City:
+    actions:
+    - transition_teleport spyder_flower_city.tmx,25,24,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 5
+    y: 10
+    height: 1
+    width: 2
+    type: "event"
+  Create Shopkeeper:
+    actions:
+    - create_npc spyder_flowerscoop_jarod,1,6
+    - char_face spyder_flowerscoop_jarod,right
+    - set_economy spyder_flowerscoop_jarod,spyder_flower_scoop
+    conditions:
+    - not char_exists spyder_flowerscoop_jarod
+    type: "event"
+  Open Shop 1:
+    actions:
+    - char_face spyder_flowerscoop_jarod,right
+    - translated_dialog spyder_scoop_welcome
+    - open_shop spyder_flowerscoop_jarod
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 2
+    y: 6
+    type: "event"
+  Open Shop 2:
+    actions:
+    - char_face spyder_flowerscoop_jarod,down
+    - translated_dialog spyder_scoop_welcome
+    - open_shop spyder_flowerscoop_jarod
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 1
+    y: 7
+    type: "event"
+  Talk/Open Shop:
+    actions:
+    - translated_dialog spyder_scoop_welcome
+    - open_shop spyder_flowerscoop_jarod
+    behav:
+    - talk spyder_flowerscoop_jarod
+    type: "event"
+  Flashback:
+    actions:
+    - lock_controls
+    - screen_transition 1
+    - camera_position 8,4
+    - set_variable flashback:on
+    - set_layer 102:51:0:128
+    - create_npc spyder_mansion_drinkingbuddya,7,4
+    - char_face spyder_mansion_drinkingbuddya,right
+    - create_npc spyder_mansion_drinkingbuddyb,9,4
+    - char_face spyder_mansion_drinkingbuddyb,left
+    - create_npc spyder_mansion_rolo,8,4
+    - char_face spyder_mansion_rolo,down
+    - translated_dialog spyder_drinking_flashback1
+    - translated_dialog spyder_drinking_flashback2
+    - translated_dialog spyder_drinking_flashback3
+    - pathfind spyder_mansion_rolo,8,6
+    - char_face spyder_mansion_rolo,up
+    - translated_dialog spyder_drinking_flashback4
+    - translated_dialog spyder_drinking_flashback5
+    - translated_dialog spyder_drinking_flashback6
+    - pathfind spyder_mansion_rolo,8,4
+    - char_face spyder_mansion_rolo,down
+    - translated_dialog spyder_drinking_flashback7
+    - translated_dialog spyder_drinking_flashback8
+    - translated_dialog spyder_drinking_flashback9
+    - pathfind spyder_mansion_rolo,8,6
+    - char_face spyder_mansion_rolo,up
+    - translated_dialog spyder_drinking_flashback10
+    - translated_dialog spyder_drinking_flashback11
+    - translated_dialog spyder_drinking_flashback12
+    - pathfind spyder_mansion_rolo,8,4
+    - char_face spyder_mansion_rolo,down
+    - translated_dialog spyder_drinking_flashback13
+    - pathfind spyder_mansion_rolo,6,10
+    - remove_npc spyder_mansion_rolo
+    - pathfind spyder_mansion_drinkingbuddya,6,10
+    - remove_npc spyder_mansion_drinkingbuddya
+    - pathfind spyder_mansion_drinkingbuddyb,6,10
+    - remove_npc spyder_mansion_drinkingbuddyb
+    - set_variable ocaptain:done
+    - set_variable flashback:off
+    - screen_transition 1
+    - set_layer
+    - unlock_controls
+    - camera_position
+    - pathfind spyder_flowerscoop_jarod,1,6
+    - char_face spyder_flowerscoop_jarod,right
+    conditions:
+    - is variable_set ocaptain:yes
+    type: "event"
+  Trigger Flashback:
+    actions:
+    - lock_controls
+    - pathfind spyder_flowerscoop_jarod,3,8
+    - char_face spyder_flowerscoop_jarod,right
+    - translated_dialog spyder_drinking_trigger
+    - translated_dialog_choice no:yes,ocaptain
+    - unlock_controls
+    conditions:
+    - is char_at player
+    - not variable_set ocaptain
+    x: 4
+    y: 7
+    height: 4
+    width: 1
+    type: "event"

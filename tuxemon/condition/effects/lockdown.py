@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 from tuxemon.locale import T
@@ -11,10 +11,6 @@ from tuxemon.locale import T
 if TYPE_CHECKING:
     from tuxemon.condition.condition import Condition
     from tuxemon.monster import Monster
-
-
-class LockdownEffectResult(CondEffectResult):
-    pass
 
 
 @dataclass
@@ -25,16 +21,15 @@ class LockdownEffect(CondEffect):
 
     name = "lockdown"
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> LockdownEffectResult:
-        extra: Optional[str] = None
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
+        extra: list[str] = []
         if condition.phase == "enqueue_item":
             params = {"target": target.name.upper()}
-            extra = T.format("combat_state_lockdown_item", params)
-        return {
-            "success": True,
-            "condition": None,
-            "technique": None,
-            "extra": extra,
-        }
+            extra = [T.format("combat_state_lockdown_item", params)]
+        return CondEffectResult(
+            name=condition.name,
+            success=True,
+            conditions=[],
+            techniques=[],
+            extras=extra,
+        )

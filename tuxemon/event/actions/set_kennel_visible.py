@@ -47,7 +47,7 @@ class SetKennelVisibleAction(EventAction):
                 f"{kennel} cannot be made invisible.",
             )
         else:
-            if kennel in player.monster_boxes:
+            if player.monster_boxes.has_box(kennel, "monster"):
                 if visible == "true":
                     if kennel in HIDDEN_LIST:
                         HIDDEN_LIST.remove(kennel)

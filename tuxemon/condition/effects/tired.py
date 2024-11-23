@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 from tuxemon.locale import T
@@ -11,10 +11,6 @@ from tuxemon.locale import T
 if TYPE_CHECKING:
     from tuxemon.condition.condition import Condition
     from tuxemon.monster import Monster
-
-
-class TiredEffectResult(CondEffectResult):
-    pass
 
 
 @dataclass
@@ -26,17 +22,16 @@ class TiredEffect(CondEffect):
 
     name = "tired"
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> TiredEffectResult:
-        extra: Optional[str] = None
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
+        extra: list[str] = []
         if condition.phase == "perform_action_tech":
             params = {"target": target.name.upper()}
-            extra = T.format("combat_state_tired_end", params)
+            extra = [T.format("combat_state_tired_end", params)]
             target.status.clear()
-        return {
-            "success": True,
-            "condition": None,
-            "technique": None,
-            "extra": extra,
-        }
+        return CondEffectResult(
+            name=condition.name,
+            success=True,
+            conditions=[],
+            techniques=[],
+            extras=extra,
+        )

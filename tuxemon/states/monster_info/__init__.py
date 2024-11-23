@@ -28,25 +28,6 @@ def _lookup_monsters() -> None:
             lookup_cache[mon] = results
 
 
-def find_box_name(instance_id: uuid.UUID) -> Optional[str]:
-    """
-    Finds a monster in the npc's storage boxes and return the box name.
-
-    Parameters:
-        instance_id: The instance_id of the monster.
-
-    Returns:
-        Box name, or None.
-
-    """
-    box_map = {
-        m.instance_id: box
-        for box, monsters in local_session.player.monster_boxes.items()
-        for m in monsters
-    }
-    return box_map.get(instance_id)
-
-
 def fix_measure(measure: int, percentage: float) -> int:
     """it returns the correct measure based on percentage"""
     return round(measure * percentage)
@@ -175,8 +156,8 @@ class MonsterInfoState(PygameMenuState):
         lab8.translate(fix_measure(width, 0.50), fix_measure(height, 0.40))
         # taste
         tastes = T.translate("tastes")
-        cold = T.translate(f"taste_{monster.taste_cold}")
-        warm = T.translate(f"taste_{monster.taste_warm}")
+        cold = T.translate(f"taste_{monster.taste_cold.lower()}")
+        warm = T.translate(f"taste_{monster.taste_warm.lower()}")
         lab9: Any = menu.add.label(
             title=f"{tastes}: {cold}, {warm}",
             label_id="taste",
@@ -291,7 +272,8 @@ class MonsterInfoState(PygameMenuState):
         )
         f.translate(fix_measure(width, 0.02), fix_measure(height, 0.80))
         f._relax = True
-        elements = [ele.monster_slug for ele in monster.evolutions]
+        slugs = [ele.monster_slug for ele in monster.evolutions]
+        elements = list(dict.fromkeys(slugs))
         labels = [
             menu.add.label(
                 title=f"{T.translate(ele).upper()}",
@@ -373,9 +355,11 @@ class MonsterInfoState(PygameMenuState):
 
     def _get_monsters(self) -> list[Monster]:
         if self._source == "MonsterTakeState":
-            box = find_box_name(self._monster.instance_id)
+            box = local_session.player.monster_boxes.get_box_name(
+                self._monster.instance_id
+            )
             if box is None:
                 raise ValueError("Box doesn't exist")
-            return local_session.player.monster_boxes[box]
+            return local_session.player.monster_boxes.get_monsters(box)
         else:
             return local_session.player.monsters

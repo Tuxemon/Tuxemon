@@ -46,11 +46,11 @@ class WithdrawMonsterAction(EventAction):
             return
 
         monster_id = uuid.UUID(player.game_variables[self.variable])
-        monster = player.find_monster_in_storage(monster_id)
+        monster = player.monster_boxes.get_monsters_by_iid(monster_id)
         if monster is None:
             logger.error("Monster not found")
             return
-        player.remove_monster_from_storage(monster)
+        player.monster_boxes.remove_monster(monster)
 
         character = get_npc(self.session, self.character)
         if character is None:

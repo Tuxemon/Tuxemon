@@ -3,23 +3,23 @@
     "category": "thlay",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "invictus"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "wall_of_steel"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "perfect_cut"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "rust_bomb"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "ruby"
         },
         {
@@ -27,11 +27,11 @@
             "technique": "sunburst"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "bubble_trap"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "time_crisis"
         },
         {
@@ -39,11 +39,11 @@
             "technique": "platinum"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "beam"
         },
         {
-            "level_learned": 36,
+            "level_learned": 37,
             "technique": "negation"
         },
         {

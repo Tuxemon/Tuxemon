@@ -95,7 +95,7 @@ jobs:
 
       - name: Install nsis
         run: |
-          Invoke-WebRequest -Uri "https://sourceforge.net/projects/nsis/files/NSIS%203/3.09/nsis-3.09-setup.exe" -OutFile "nsis.exe"
+          Invoke-WebRequest -Uri "https://sourceforge.net/projects/nsis/files/NSIS%203/3.10/nsis-3.10-setup.exe" -OutFile "nsis.exe"
 
       - name: Build Installer
         run: |
@@ -149,7 +149,7 @@ jobs:
     if: ${{ github.ref == 'refs/heads/development' || (github.event_name == 'push' && github.ref_type == 'tag' && startswith(github.ref_name, 'v'))  }}
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v4.1.7 # must stick at v3 until flatpak-github-actions/flatpak-builder updates also to v4!
+        uses: actions/download-artifact@v4
         with:
           path: artifacts
 

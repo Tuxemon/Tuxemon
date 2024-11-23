@@ -50,7 +50,7 @@ class KennelCondition(EventCondition):
         elif option == "hidden":
             return kennel_name in HIDDEN_LIST
         elif option == "exist":
-            return kennel_name in character.monster_boxes.keys()
+            return character.monster_boxes.has_box(kennel_name, "monster")
         else:
             logger.error(f"The option {option} must be among {OPTIONS}")
             return False

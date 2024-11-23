@@ -12,10 +12,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class PoisonedEffectResult(CondEffectResult):
-    pass
-
-
 @dataclass
 class PoisonedEffect(CondEffect):
     """
@@ -29,17 +25,17 @@ class PoisonedEffect(CondEffect):
     name = "poisoned"
     divisor: int
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> PoisonedEffectResult:
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         poisoned: bool = False
         if condition.phase == "perform_action_status":
-            target.current_hp -= target.hp // self.divisor
+            damage = target.hp // self.divisor
+            target.current_hp = max(0, target.current_hp - damage)
             poisoned = True
 
-        return {
-            "success": poisoned,
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+        return CondEffectResult(
+            name=condition.name,
+            success=poisoned,
+            conditions=[],
+            techniques=[],
+            extras=[],
+        )

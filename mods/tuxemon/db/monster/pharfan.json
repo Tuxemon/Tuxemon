@@ -3,23 +3,23 @@
     "category": "little_elephant",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "wallow"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "flow"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "stampede"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "goad"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "tonguespear"
         },
         {
@@ -27,11 +27,11 @@
             "technique": "geyser"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "spit_poison"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "biting_winds"
         },
         {
@@ -39,11 +39,11 @@
             "technique": "ice_claw"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "chill_mist"
         },
         {
-            "level_learned": 36,
+            "level_learned": 37,
             "technique": "tsunami"
         },
         {

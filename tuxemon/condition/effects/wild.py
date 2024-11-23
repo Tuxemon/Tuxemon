@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from tuxemon.combat import fainted
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
@@ -13,10 +13,6 @@ from tuxemon.technique.technique import Technique
 if TYPE_CHECKING:
     from tuxemon.condition.condition import Condition
     from tuxemon.monster import Monster
-
-
-class WildEffectResult(CondEffectResult):
-    pass
 
 
 @dataclass
@@ -35,19 +31,22 @@ class WildEffect(CondEffect):
     chance: float
     divisor: int
 
-    def apply(self, condition: Condition, target: Monster) -> WildEffectResult:
-        skip: Optional[Technique] = None
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
+        tech: list[Technique] = []
         if condition.phase == "pre_checking" and random.random() > self.chance:
             user = condition.link
             empty = condition.repl_tech
             assert user and empty
             skip = Technique()
             skip.load(empty)
+            tech = [skip]
             if not fainted(user):
-                user.current_hp -= user.hp // self.divisor
-        return {
-            "success": True,
-            "condition": None,
-            "technique": skip,
-            "extra": None,
-        }
+                damage = user.hp // self.divisor
+                user.current_hp = max(0, user.current_hp - damage)
+        return CondEffectResult(
+            name=condition.name,
+            success=True,
+            conditions=[],
+            techniques=tech,
+            extras=[],
+        )

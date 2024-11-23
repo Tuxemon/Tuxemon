@@ -3,17 +3,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 from tuxemon.condition.condition import Condition
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
-
-
-class ChargedUpEffectResult(CondEffectResult):
-    pass
 
 
 @dataclass
@@ -25,12 +21,10 @@ class ChargedUpEffect(CondEffect):
 
     name = "chargedup"
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> ChargedUpEffectResult:
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         player = target.owner
         assert player
-        cond: Optional[Condition] = None
+        _conditions: list[Condition] = []
         if condition.phase == "perform_action_tech":
             target.status.clear()
             if condition.repl_tech:
@@ -38,9 +32,11 @@ class ChargedUpEffect(CondEffect):
                 cond.load(condition.repl_tech)
                 cond.steps = player.steps
                 cond.link = target
-        return {
-            "success": True,
-            "condition": cond,
-            "technique": None,
-            "extra": None,
-        }
+                _conditions = [cond]
+        return CondEffectResult(
+            name=condition.name,
+            success=True,
+            conditions=_conditions,
+            techniques=[],
+            extras=[],
+        )

@@ -97,7 +97,6 @@ class TestMonsterActions(unittest.TestCase):
             local_session.player = Player()
             self.player = local_session.player
             self.player.monsters = []
-            self.player.monster_boxes = {}
             self._monster_model = {"agnite": self._agnite}
             self._monster_model["nut"] = self._nut
             self._shape_model = {"dragon": self._dragon}

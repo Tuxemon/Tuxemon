@@ -6,9 +6,9 @@ from dataclasses import dataclass
 from functools import partial
 from typing import Optional, final
 
+from tuxemon.economy import Economy
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.item.economy import Economy
 from tuxemon.locale import T
 from tuxemon.npc import NPC
 from tuxemon.states.choice.choice_state import ChoiceState

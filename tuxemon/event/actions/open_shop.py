@@ -6,13 +6,13 @@ from dataclasses import dataclass
 from functools import partial
 from typing import Optional, final
 
+from tuxemon.economy import Economy
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.item.economy import Economy
 from tuxemon.locale import T
 from tuxemon.npc import NPC
 from tuxemon.states.choice.choice_state import ChoiceState
-from tuxemon.states.items.shop_menu import ShopBuyMenuState, ShopSellMenuState
+from tuxemon.states.items.shop_menu import ShopMenuState
 
 
 @final
@@ -47,7 +47,7 @@ class OpenShopAction(EventAction):
 
         def push_buy_menu(npc: NPC) -> None:
             self.session.client.push_state(
-                ShopBuyMenuState(
+                ShopMenuState(
                     buyer=self.session.player,
                     seller=npc,
                     economy=economy,
@@ -56,7 +56,7 @@ class OpenShopAction(EventAction):
 
         def push_sell_menu(npc: NPC) -> None:
             self.session.client.push_state(
-                ShopSellMenuState(
+                ShopMenuState(
                     buyer=npc,
                     seller=self.session.player,
                     economy=economy,

@@ -30,7 +30,7 @@ from tuxemon.tools import vector2_to_tile_pos
 if TYPE_CHECKING:
     import pygame
 
-    from tuxemon.item.economy import Economy
+    from tuxemon.economy import Economy
     from tuxemon.states.combat.combat_classes import EnqueuedAction
     from tuxemon.states.world.worldstate import WorldState
 

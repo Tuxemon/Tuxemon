@@ -1,18 +1,19 @@
 {
   "slug": "leather_scoop",
+  "monsters": [],
   "items": [
     {
-      "item_name": "potion",
+      "name": "potion",
       "price": 20,
       "cost": 5
     },
     {
-      "item_name": "revive",
+      "name": "revive",
       "price": 100,
       "cost": 20
     },
     {
-      "item_name": "tuxeball",
+      "name": "tuxeball",
       "price": 50,
       "cost": 10
     }

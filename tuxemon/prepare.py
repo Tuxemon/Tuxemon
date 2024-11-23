@@ -182,7 +182,6 @@ BG_PARTY: str = "gfx/ui/background/player_info2.png"
 BG_ITEMS: str = ITEM_MENU
 BG_ITEMS_BACKPACK: str = "gfx/ui/item/backpack.png"
 BG_MOVES: str = ITEM_MENU
-BG_SHOP: str = ITEM_MENU
 BG_MONSTERS: str = "gfx/ui/monster/monster_menu_bg.png"
 
 # Native resolution is similar to the old gameboy resolution. This is

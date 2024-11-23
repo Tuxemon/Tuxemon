@@ -57,10 +57,15 @@ class ShopMenuState(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
         menu._width = int(width * 0.9)
 
+        shop_name = T.translate(economy.model.slug)
+        menu.add.label(shop_name, selectable=True)
+        menu.add.vertical_margin(25)
         if buyer.isplayer:
             self.add_buy_menu_items(menu, buyer, seller, economy)
         elif seller.isplayer:
             self.add_sell_menu_items(menu, buyer, seller, economy)
+        menu.add.vertical_margin(25)
+        menu.add.label(shop_name, selectable=True)
 
     def add_buy_menu_items(
         self, menu: pygame_menu.Menu, buyer: NPC, seller: NPC, economy: Economy

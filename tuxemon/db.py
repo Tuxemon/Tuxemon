@@ -1358,6 +1358,12 @@ class EconomyModel(BaseModel):
     items: Sequence[EconomyItemModel]
     monsters: Sequence[EconomyMonsterModel]
 
+    @field_validator("slug")
+    def translation_exists_economy(cls: EconomyModel, v: str) -> str:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
     @field_validator("background")
     def background_exists(cls: EconomyModel, v: str) -> str:
         if has.file(v) and has.size(v, prepare.NATIVE_RESOLUTION):

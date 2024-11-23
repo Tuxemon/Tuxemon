@@ -6260,6 +6260,15 @@ msgstr "Taba Nurse"
 msgid "tuxemart_keeper"
 msgstr "Tuxemart Shopkeeper"
 
+msgid "tuxe_mart_taba"
+msgstr "Tuxemart Taba"
+
+msgid "leather_scoop"
+msgstr "Leather Scoop"
+
+msgid "cotton_scoop"
+msgstr "Cotton Scoop"
+
 msgid "tuxemart_aide"
 msgstr "Tuxemart Employee"
 
@@ -8313,6 +8322,30 @@ msgstr "Please, now return the form to the Shop Assistant, so we can give you th
 
 msgid "spyder_intro_shopkeeper4"
 msgstr "I'm sorry, you are not a Gold member. This offer is for Gold members only."
+
+msgid "spyder_paper_mart"
+msgstr "Paper Scoop Store"
+
+msgid "spyder_cotton_scoop"
+msgstr "Cotton Scoop Store"
+
+msgid "spyder_cotton_tech"
+msgstr "Cotton Tech Shop"
+
+msgid "spyder_leather_scoop"
+msgstr "Leather Scoop Store"
+
+msgid "spyder_flower_scoop"
+msgstr "Flower Scoop Store"
+
+msgid "spyder_timber_scoop"
+msgstr "Timber Scoop Store"
+
+msgid "spyder_candy_scoop"
+msgstr "Candy Scoop Store"
+
+msgid "spyder_candy_tech"
+msgstr "Candy Tech Shop"
 
 # spyder dialogs
 msgid "spyder_papertown_stopthere"

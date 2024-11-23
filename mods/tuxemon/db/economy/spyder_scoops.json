@@ -71,11 +71,6 @@
         "price": 1000,
         "cost": 200,
         "inventory": 1
-      },
-      {
-        "name": "tuxeball",
-        "price": 50,
-        "cost": 10
       }
     ]
   },

@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING, Optional, Union
 from tuxemon.db import EconomyItemModel, EconomyModel, EconomyMonsterModel, db
 from tuxemon.item.item import Item
 from tuxemon.monster import Monster
+from tuxemon.prepare import GRAD_BLUE
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC
@@ -22,10 +23,9 @@ class Economy:
     """
 
     def __init__(self, slug: Optional[str] = None) -> None:
-        bg = "gfx/ui/item/item_menu_bg.png"
         if slug:
             self.model = EconomyModel(
-                slug=slug, background=bg, items=[], monsters=[]
+                slug=slug, background=GRAD_BLUE, items=[], monsters=[]
             )
             self.load(slug)
 

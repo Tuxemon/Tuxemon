@@ -14,7 +14,7 @@ class GetDefaultPriceAndCost(EconomyTestBase):
     def setUp(self):
         self.economy = Economy()
         self.economy.model = EconomyModel(
-            slug="test_economy",
+            slug="empty",
             items=[
                 EconomyItemModel(
                     name="potion",

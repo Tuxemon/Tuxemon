@@ -58,7 +58,7 @@ class StoreMonsterAction(EventAction):
         if box is None:
             store = KENNEL
         else:
-            if not player.monster_boxes.has_box(self.name):
+            if not player.monster_boxes.has_box(self.name, "monster"):
                 logger.error(f"No box found with name {box}")
                 return
             else:

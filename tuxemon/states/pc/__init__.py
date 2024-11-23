@@ -44,10 +44,10 @@ class PCState(PygameMenuState):
         player = local_session.player
 
         # it creates the kennel and locker (new players)
-        if not player.monster_boxes.has_box(kennel):
-            player.monster_boxes.create_box(kennel)
-        if not player.item_boxes.has_box(locker):
-            player.item_boxes.create_box(locker)
+        if not player.monster_boxes.has_box(kennel, "monster"):
+            player.monster_boxes.create_box(kennel, "monster")
+        if not player.item_boxes.has_box(locker, "item"):
+            player.item_boxes.create_box(locker, "item")
 
         def change_state(state: str, **kwargs: Any) -> partial[State]:
             return partial(self.client.replace_state, state, **kwargs)

@@ -254,31 +254,25 @@ class Condition:
             target: Monster object that we are using this condition on.
 
         Returns:
-            A dictionary with the effect name, success and misc properties.
+            An CondEffectResult object containing the result of the condition's
+                effect.
 
         """
-        # Defaults for the return. items can override these values in their
-        # return.
-        meta_result: CondEffectResult = {
-            "name": self.name,
-            "success": False,
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+        meta_result = CondEffectResult(
+            name=self.name,
+            success=False,
+            conditions=[],
+            techniques=[],
+            extras=[],
+        )
 
-        # Loop through all the effects of this condition and execute the effect's function.
         for effect in self.effects:
             result = effect.apply(self, target)
-            meta_result["success"] = (
-                meta_result["success"] or result["success"]
-            )
-            if result["condition"] is not None:
-                meta_result["condition"] = result["condition"]
-            if result["technique"] is not None:
-                meta_result["technique"] = result["technique"]
-            if result["extra"] is not None:
-                meta_result["extra"] = result["extra"]
+            meta_result.name = result.name
+            meta_result.success = meta_result.success or result.success
+            meta_result.conditions.extend(result.conditions)
+            meta_result.techniques.extend(result.techniques)
+            meta_result.extras.extend(result.extras)
 
         return meta_result
 

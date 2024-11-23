@@ -21,7 +21,7 @@ class ItemEffectResult:
     name: str
     success: bool
     num_shakes: int
-    extra: list[str]
+    extras: list[str]
 
 
 @dataclass
@@ -78,5 +78,5 @@ class ItemEffect:
         self, item: Item, target: Union[Monster, None]
     ) -> ItemEffectResult:
         return ItemEffectResult(
-            name=item.name, success=True, num_shakes=0, extra=[]
+            name=item.name, success=True, num_shakes=0, extras=[]
         )

@@ -12,10 +12,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class FesteringEffectResult(CondEffectResult):
-    pass
-
-
 @dataclass
 class FesteringEffect(CondEffect):
     """
@@ -24,12 +20,11 @@ class FesteringEffect(CondEffect):
 
     name = "festering"
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> FesteringEffectResult:
-        return {
-            "success": True,
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
+        return CondEffectResult(
+            name=condition.name,
+            success=True,
+            conditions=[],
+            techniques=[],
+            extras=[],
+        )

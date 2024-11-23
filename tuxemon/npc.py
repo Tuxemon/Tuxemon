@@ -784,8 +784,8 @@ class NPC(Entity[NPCState]):
         """
         locker = prepare.LOCKER
         # it creates the locker
-        if not self.item_boxes.has_box(locker):
-            self.item_boxes.create_box(locker)
+        if not self.item_boxes.has_box(locker, "item"):
+            self.item_boxes.create_box(locker, "item")
 
         if len(self.items) >= prepare.MAX_TYPES_BAG:
             self.item_boxes.add_item(locker, item)

@@ -9,7 +9,7 @@ from typing import Optional, final
 from tuxemon.animation_entity import AnimationEntity
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.states.world.worldstate import WorldState
+from tuxemon.states.world.worldstate import AnimationInfo, WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -77,15 +77,12 @@ class PlayMapAnimationAction(EventAction):
         animations = world_state.map_animations
         if animation_name in animations:
             logger.debug(f"{animation_name} loaded")
-            animations[animation_name]["position"] = position
-            animations[animation_name]["animation"].play()
+            animations[animation_name].position = position
+            animations[animation_name].animation.play()
         else:
             logger.debug(f"{animation_name} not loaded, loading")
 
-            animations[animation_name] = {
-                "animation": _animation.play,
-                "position": position,
-                "layer": 4,
-            }
-
+            animations[animation_name] = AnimationInfo(
+                _animation.play, position, 4
+            )
             _animation.play.play()

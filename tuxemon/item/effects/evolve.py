@@ -25,7 +25,7 @@ class EvolveEffect(ItemEffect):
         assert target and target.owner
         if not target.evolutions:
             return ItemEffectResult(
-                name=item.name, success=False, num_shakes=0, extra=[]
+                name=item.name, success=False, num_shakes=0, extras=[]
             )
         choices = [d for d in target.evolutions if d.item == item.slug]
         if len(choices) == 1:
@@ -43,5 +43,5 @@ class EvolveEffect(ItemEffect):
             evolved=new_monster.slug,
         )
         return ItemEffectResult(
-            name=item.name, success=True, num_shakes=0, extra=[]
+            name=item.name, success=True, num_shakes=0, extras=[]
         )

@@ -38,8 +38,8 @@ class QuarantineAction(EventAction):
 
     def start(self) -> None:
         player = self.session.player
-        if not player.monster_boxes.has_box(self.name):
-            player.monster_boxes.create_box(self.name)
+        if not player.monster_boxes.has_box(self.name, "monster"):
+            player.monster_boxes.create_box(self.name, "monster")
         if self.value == "in":
             infect = PlagueType.infected
             plague = [
@@ -54,7 +54,7 @@ class QuarantineAction(EventAction):
                 player.remove_monster(_monster)
                 logger.info(f"{_monster} has been quarantined")
         elif self.value == "out":
-            if not player.monster_boxes.has_box(self.name):
+            if not player.monster_boxes.has_box(self.name, "monster"):
                 logger.info(f"Box {self.name} does not exist")
                 return
             box = [

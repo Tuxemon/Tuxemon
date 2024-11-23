@@ -12,10 +12,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class EnragedEffectResult(CondEffectResult):
-    pass
-
-
 @dataclass
 class EnragedEffect(CondEffect):
     """
@@ -25,14 +21,13 @@ class EnragedEffect(CondEffect):
 
     name = "enraged"
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> EnragedEffectResult:
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         if condition.phase == "perform_action_tech":
             target.status.clear()
-        return {
-            "success": True,
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+        return CondEffectResult(
+            name=condition.name,
+            success=True,
+            conditions=[],
+            techniques=[],
+            extras=[],
+        )

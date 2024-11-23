@@ -51,11 +51,11 @@ class LearnMmEffect(ItemEffect):
             )
 
             return ItemEffectResult(
-                name=item.name, success=True, num_shakes=0, extra=[]
+                name=item.name, success=True, num_shakes=0, extras=[]
             )
 
         return ItemEffectResult(
-            name=item.name, success=False, num_shakes=0, extra=[]
+            name=item.name, success=False, num_shakes=0, extras=[]
         )
 
 

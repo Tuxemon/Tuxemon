@@ -35,16 +35,42 @@
         "cost": 20
       },
       {
+        "name": "tuxeball",
+        "price": 50,
+        "cost": 10
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cotton_tech",
+    "monsters": [],
+    "items": [
+      {
+        "name": "miaow_milk",
+        "price": 2000,
+        "cost": 400
+      },
+      {
+        "name": "pyramidion",
+        "price": 2000,
+        "cost": 400
+      },
+      {
+        "name": "ox_stick",
+        "price": 2000,
+        "cost": 400
+      },
+      {
         "name": "tm_avalanche",
         "price": 2000,
         "cost": 400,
-        "inventory": 20
+        "inventory": 1
       },
       {
         "name": "tm_blossom",
         "price": 1000,
         "cost": 200,
-        "inventory": 20
+        "inventory": 1
       },
       {
         "name": "tuxeball",
@@ -158,13 +184,17 @@
         "name": "tuxeball_diurnal",
         "price": 300,
         "cost": 60,
-        "variables": ["daytime:true"]
+        "variables": [
+          "daytime:true"
+        ]
       },
       {
         "name": "tuxeball_nocturnal",
         "price": 300,
         "cost": 60,
-        "variables": ["daytime:false"]
+        "variables": [
+          "daytime:false"
+        ]
       }
     ]
   },
@@ -201,13 +231,57 @@
         "name": "tuxeball_diurnal",
         "price": 300,
         "cost": 60,
-        "variables": ["daytime:true"]
+        "variables": [
+          "daytime:true"
+        ]
       },
       {
         "name": "tuxeball_nocturnal",
         "price": 300,
         "cost": 60,
-        "variables": ["daytime:false"]
+        "variables": [
+          "daytime:false"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candy_tech",
+    "monsters": [],
+    "items": [
+      {
+        "name": "peace_lily",
+        "price": 2000,
+        "cost": 400
+      },
+      {
+        "name": "lucky_bamboo",
+        "price": 2000,
+        "cost": 400
+      },
+      {
+        "name": "tm_frostbite",
+        "price": 2000,
+        "cost": 400,
+        "inventory": 1
+      },
+      {
+        "name": "tm_supernova",
+        "price": 2000,
+        "cost": 400,
+        "inventory": 1
+      },
+      {
+        "name": "tm_vorpal",
+        "price": 2000,
+        "cost": 400,
+        "inventory": 1
+      },
+      {
+        "name": "tm_cavity",
+        "price": 2000,
+        "cost": 400,
+        "inventory": 1
       }
     ]
   }

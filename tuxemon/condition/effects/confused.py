@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from tuxemon.combat import has_effect_param, recharging
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
@@ -16,10 +16,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class ConfusedEffectResult(CondEffectResult):
-    pass
-
-
 @dataclass
 class ConfusedEffect(CondEffect):
     """
@@ -28,51 +24,73 @@ class ConfusedEffect(CondEffect):
     chosen) 50% of the time.
 
     Parameters:
-        chance: The chance.
+        chance: The chance of the confused effect occurring (float between 0 and 1).
 
     """
 
     name = "confused"
     chance: float
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> ConfusedEffectResult:
-        extra: Optional[str] = None
-        skip: Optional[Technique] = None
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
+        CONFUSED_KEY = self.name
+
+        if not _validate_chance(self.chance):
+            raise ValueError("Chance must be a float between 0 and 1")
+
+        extra: list[str] = []
+        tech: list[Technique] = []
         player = target.owner
         assert player
-        if "confused" in player.game_variables:
-            player.game_variables["confused"] = "off"
+        if CONFUSED_KEY in player.game_variables:
+            player.game_variables[CONFUSED_KEY] = "off"
+
         if condition.phase == "pre_checking" and random.random() > self.chance:
             user = condition.link
             assert user
-            player.game_variables["confused"] = "on"
-            confused = [
-                ele
-                for ele in user.moves
-                if not recharging(ele)
-                and not has_effect_param(ele, "confused", "give", "condition")
-            ]
-            if confused:
-                skip = random.choice(confused)
-            if not confused and condition.repl_tech:
-                skip = Technique()
-                skip.load(condition.repl_tech)
+            player.game_variables[CONFUSED_KEY] = "on"
+            available_techniques = _get_available_techniques(user)
+            if available_techniques:
+                chosen_technique = random.choice(available_techniques)
+                tech = [chosen_technique]
+            elif condition.repl_tech:
+                replacement_technique = Technique()
+                replacement_technique.load(condition.repl_tech)
+                tech = [replacement_technique]
+
         if (
             condition.phase == "perform_action_tech"
-            and player.game_variables["confused"] == "on"
+            and player.game_variables[CONFUSED_KEY] == "on"
         ):
-            _tech = Technique()
-            _tech.load(player.game_variables["action_tech"])
-            params = {
-                "target": target.name.upper(),
-                "name": _tech.name.upper(),
-            }
-            extra = T.format("combat_state_confused_tech", params)
-        return {
-            "success": True,
-            "condition": None,
-            "technique": skip,
-            "extra": extra,
-        }
+            replacement = Technique()
+            slug = player.game_variables.get("action_tech", "skip")
+            replacement.load(slug)
+            extra = _get_extra_message(target, replacement)
+
+        return CondEffectResult(
+            name=condition.name,
+            success=True,
+            conditions=[],
+            techniques=tech,
+            extras=extra,
+        )
+
+
+def _validate_chance(chance: float) -> bool:
+    return 0 <= chance <= 1
+
+
+def _get_available_techniques(user: Monster) -> list[Technique]:
+    return [
+        move
+        for move in user.moves
+        if not recharging(move)
+        and not has_effect_param(move, "confused", "give", "condition")
+    ]
+
+
+def _get_extra_message(target: Monster, technique: Technique) -> list[str]:
+    params = {
+        "target": target.name.upper(),
+        "name": technique.name.upper(),
+    }
+    return [T.format("combat_state_confused_tech", params)]

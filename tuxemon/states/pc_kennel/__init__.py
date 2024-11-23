@@ -66,7 +66,7 @@ class MonsterTakeState(PygameMenuState):
 
             kennels = [
                 key
-                for key, value in self.monster_boxes.boxes.items()
+                for key, value in self.monster_boxes.monster_boxes.items()
                 if len(value) < MAX_BOX
                 and key not in HIDDEN_LIST
                 and key != self.box_name
@@ -74,7 +74,7 @@ class MonsterTakeState(PygameMenuState):
 
             box_ids = [
                 key
-                for key, value in self.monster_boxes.boxes.items()
+                for key, value in self.monster_boxes.monster_boxes.items()
                 if len(value) < MAX_BOX and key not in HIDDEN_LIST
             ]
 
@@ -262,7 +262,7 @@ class MonsterBoxState(PygameMenuState):
         menu.add.vertical_fill()
         for key, callback in items:
             player = local_session.player
-            num_mons = player.monster_boxes.get_box_size(key)
+            num_mons = player.monster_boxes.get_box_size(key, "monster")
             label = T.format(
                 f"{T.translate(key).upper()}: {num_mons}/{MAX_BOX}"
             )
@@ -328,7 +328,7 @@ class MonsterStorageState(MonsterBoxState):
     def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         player = local_session.player
         menu_items_map = []
-        for box_name, monsters in player.monster_boxes.boxes.items():
+        for box_name, monsters in player.monster_boxes.monster_boxes.items():
             if box_name not in HIDDEN_LIST:
                 if not monsters:
                     menu_callback = partial(
@@ -350,7 +350,7 @@ class MonsterDropOffState(MonsterBoxState):
     def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         player = local_session.player
         menu_items_map = []
-        for box_name, monsters in player.monster_boxes.boxes.items():
+        for box_name, monsters in player.monster_boxes.monster_boxes.items():
             if box_name not in HIDDEN_LIST:
                 if len(monsters) < MAX_BOX:
                     menu_callback = self.change_state(

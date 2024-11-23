@@ -66,22 +66,22 @@ class SurfaceAnimation:
         # The time that the pause() function was last called.
         self._paused_start_time = 0.0
 
-        self.num_frames = len(frames)
-        assert self.num_frames > 0, "Must contain at least one frame."
+        if not frames:
+            raise ValueError("Must contain at least one frame.")
 
         # Load each frame of animation into _images
-        for i in range(self.num_frames):
-            frame = frames[i]
-            assert (
-                isinstance(frame, tuple) and len(frame) == 2
-            ), f"Frame {i} has incorrect format."
-            assert type(frame[0]) in (
-                str,
-                pygame.Surface,
-            ), f"Frame {i} image must be a string filename or a pygame.Surface"
-            assert (
-                frame[1] > 0
-            ), f"Frame {i} duration must be greater than zero."
+        for i, frame in enumerate(frames):
+            if not isinstance(frame, tuple) or len(frame) != 2:
+                raise ValueError(f"Frame {i} has incorrect format.")
+            if not isinstance(frame[0], (str, pygame.Surface)):
+                raise ValueError(
+                    f"Frame {i} image must be a string filename or a pygame.Surface"
+                )
+            if frame[1] <= 0:
+                raise ValueError(
+                    f"Frame {i} duration must be greater than zero."
+                )
+
             frame_img = (
                 pygame.image.load(frame[0])
                 if isinstance(frame[0], str)
@@ -94,7 +94,7 @@ class SurfaceAnimation:
         # will always be one more than len(self._images), because the last
         # number will be when the last frame ends, rather than when it starts.
         # The values are in seconds.
-        # So self._start_times[-1] tells you the length of the entire
+        # So self.duration tells you the length of the entire
         # animation. e.g. if _durations is [1, 1, 2.5], then _start_times will
         # be [0, 1, 2, 4.5]
         self._start_times = (0.0,) + tuple(
@@ -112,11 +112,11 @@ class SurfaceAnimation:
 
     def get_current_frame(self) -> pygame.surface.Surface:
         """Return the current frame."""
-        return self.get_frame(self.current_frame_num)
+        return self.get_frame(self.frames_played)
 
     def is_finished(self) -> bool:
         """Return ``True`` if this animation has finished playing."""
-        return not self.loop and self.elapsed >= self._start_times[-1]
+        return not self.loop and self.elapsed >= self.duration
 
     def play(self, start_time: Optional[float] = None) -> None:
         """Start playing the animation."""
@@ -301,9 +301,9 @@ class SurfaceAnimation:
                 self._paused_start_time - self._playing_start_time
             ) * self.rate
         if self._loop:
-            elapsed = elapsed % self._start_times[-1]
+            elapsed = elapsed % self.duration
         else:
-            elapsed = clip(elapsed, 0, self._start_times[-1])
+            elapsed = clip(elapsed, 0, self.duration)
         elapsed += 0.00001  # done to compensate for rounding errors
         return elapsed
 
@@ -317,9 +317,9 @@ class SurfaceAnimation:
 
         # Set the elapsed time to a specific value.
         if self._loop:
-            elapsed = elapsed % self._start_times[-1]
+            elapsed = elapsed % self.duration
         else:
-            elapsed = clip(elapsed, 0, self._start_times[-1])
+            elapsed = clip(elapsed, 0, self.duration)
 
         rightNow = self._internal_clock
         self._playing_start_time = rightNow - (elapsed * self.rate)
@@ -329,19 +329,35 @@ class SurfaceAnimation:
             self._paused_start_time = rightNow
 
     @property
-    def current_frame_num(self) -> int:
-        # Return the frame number of the frame that will be currently
-        # displayed if the animation object were drawn right now.
+    def progress(self) -> float:
+        """Get the progress of the animation."""
+        if self.duration == 0:
+            return 0
+        return self.elapsed / self.duration
+
+    @property
+    def frames_played(self) -> int:
+        """Get the number of frames that have been played."""
         return bisect.bisect(self._start_times, self.elapsed) - 1
 
-    @current_frame_num.setter
-    def current_frame_num(self, frame_num: int) -> None:
-        # Change the elapsed time to the beginning of a specific frame.
+    @frames_played.setter
+    def frames_played(self, frame_num: int) -> None:
+        """Change the elapsed time to the beginning of a specific frame."""
         if self.loop:
             frame_num = frame_num % len(self._images)
         else:
             frame_num = clip(frame_num, 0, len(self._images) - 1)
         self.elapsed = self._start_times[frame_num]
+
+    @property
+    def frames_remaining(self) -> int:
+        """Get the number of frames remaining to be played."""
+        return len(self._images) - self.frames_played - 1
+
+    @property
+    def duration(self) -> float:
+        """Get the total duration of the animation."""
+        return self._start_times[-1]
 
 
 class SurfaceAnimationCollection:
@@ -354,8 +370,7 @@ class SurfaceAnimationCollection:
         ],
     ) -> None:
         self._animations: list[SurfaceAnimation] = []
-        if animations:
-            self.add(*animations)
+        self.add(*animations)
         self._state: State = STOPPED
 
     def add(
@@ -366,17 +381,21 @@ class SurfaceAnimationCollection:
             Mapping[Any, SurfaceAnimation],
         ],
     ) -> None:
-        if isinstance(animations[0], Mapping):
-            for k in animations[0].keys():
-                self._animations.append(animations[0][k])
-        elif isinstance(animations[0], Sequence):
-            for i in range(len(animations[0])):
-                self._animations.append(animations[0][i])
-        else:
-            for i in range(len(animations)):
-                anim = animations[i]
-                assert isinstance(anim, SurfaceAnimation)
-                self._animations.append(anim)
+        for animation in animations:
+            if isinstance(animation, SurfaceAnimation):
+                self._animations.append(animation)
+            elif isinstance(animation, Sequence):
+                self._animations.extend(animation)
+            elif isinstance(animation, Mapping):
+                self._animations.extend(animation.values())
+            else:
+                raise ValueError("Invalid animation type")
+
+    def remove(self, animation: SurfaceAnimation) -> None:
+        self._animations.remove(animation)
+
+    def clear(self) -> None:
+        self._animations.clear()
 
     @property
     def animations(self) -> Sequence[SurfaceAnimation]:

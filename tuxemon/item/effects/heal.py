@@ -46,7 +46,7 @@ class HealEffect(ItemEffect):
                 name=item.name,
                 success=False,
                 num_shakes=0,
-                extra=[T.translate("combat_state_festering_item")],
+                extras=[T.translate("combat_state_festering_item")],
             )
 
         if self.heal_type == "fixed":
@@ -60,5 +60,5 @@ class HealEffect(ItemEffect):
         target.current_hp = min(target.hp, target.current_hp + healing_amount)
 
         return ItemEffectResult(
-            name=item.name, success=True, num_shakes=0, extra=[]
+            name=item.name, success=True, num_shakes=0, extras=[]
         )

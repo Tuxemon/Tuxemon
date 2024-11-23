@@ -496,6 +496,30 @@ msgstr "TM: Avalanche"
 msgid "tm_avalanche_description"
 msgstr "Technique Manual that teaches a Water or Earth Tuxemon the Avalanche technique."
 
+msgid "tm_cavity"
+msgstr "TM: Cavity"
+
+msgid "tm_cavity_description"
+msgstr "Technique Manual that teaches the Cavity technique."
+
+msgid "tm_frostbite"
+msgstr "TM: Frostbite"
+
+msgid "tm_frostbite_description"
+msgstr "Technique Manual that teaches the Frostbite technique."
+
+msgid "tm_supernova"
+msgstr "TM: Supernova"
+
+msgid "tm_supernova_description"
+msgstr "Technique Manual that teaches the Supernova technique."
+
+msgid "tm_vorpal"
+msgstr "TM: Vorpal"
+
+msgid "tm_vorpal_description"
+msgstr "Technique Manual that teaches the Vorpal technique."
+
 msgid "tm_blossom"
 msgstr "TM: Blossom"
 

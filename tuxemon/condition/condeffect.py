@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, ClassVar, TypedDict, Union
+from typing import TYPE_CHECKING, ClassVar
 
 from tuxemon.session import Session, local_session
 from tuxemon.tools import cast_dataclass_parameters
@@ -14,11 +14,13 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class CondEffectResult(TypedDict):
+@dataclass
+class CondEffectResult:
+    name: str
     success: bool
-    condition: Union[Condition, None]
-    technique: Union[Technique, None]
-    extra: Union[str, None]
+    conditions: list[Condition]
+    techniques: list[Technique]
+    extras: list[str]
 
 
 @dataclass
@@ -35,10 +37,11 @@ class CondEffect:
         self.session = local_session
         cast_dataclass_parameters(self)
 
-    def apply(self, cond: Condition, target: Monster) -> CondEffectResult:
-        return {
-            "success": True,
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
+        return CondEffectResult(
+            name=condition.name,
+            success=True,
+            conditions=[],
+            techniques=[],
+            extras=[],
+        )

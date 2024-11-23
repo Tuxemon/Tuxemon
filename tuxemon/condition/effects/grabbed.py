@@ -12,10 +12,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class GrabbedEffectResult(CondEffectResult):
-    pass
-
-
 @dataclass
 class GrabbedEffect(CondEffect):
     """
@@ -33,9 +29,7 @@ class GrabbedEffect(CondEffect):
     divisor: float
     ranges: str
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> GrabbedEffectResult:
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         done: bool = False
         ranges = self.ranges.split(":")
         moves = [tech for tech in target.moves if tech.range in ranges]
@@ -46,9 +40,10 @@ class GrabbedEffect(CondEffect):
             for move in moves:
                 move.potency = move.default_potency / self.divisor
                 move.power = move.default_power / self.divisor
-        return {
-            "success": done,
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+        return CondEffectResult(
+            name=condition.name,
+            success=done,
+            conditions=[],
+            techniques=[],
+            extras=[],
+        )

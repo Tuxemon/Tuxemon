@@ -14,7 +14,7 @@ def mockNPC(self) -> None:
     self.isplayer = True
     self.game_variables = {}
     self.monster_boxes = MonsterBoxes()
-    self.monster_boxes.create_box(KENNEL)
+    self.monster_boxes.create_box(KENNEL, "monster")
 
 
 class TestCatchTuxemon(unittest.TestCase):
@@ -25,7 +25,9 @@ class TestCatchTuxemon(unittest.TestCase):
 
     def test_release_one(self):
         self.assertEqual(len(self.npc.monsters), 0)
-        self.assertEqual(self.npc.monster_boxes.get_box_size(KENNEL), 0)
+        self.assertEqual(
+            self.npc.monster_boxes.get_box_size(KENNEL, "monster"), 0
+        )
 
         monster = Monster()
         self.npc.add_monster(monster, len(self.npc.monsters))
@@ -72,9 +74,13 @@ class TestCatchTuxemon(unittest.TestCase):
         monsterF = Monster()
         self.npc.add_monster(monsterF, len(self.npc.monsters))
         self.assertEqual(len(self.npc.monsters), PARTY_LIMIT)
-        self.assertEqual(self.npc.monster_boxes.get_box_size(KENNEL), 0)
+        self.assertEqual(
+            self.npc.monster_boxes.get_box_size(KENNEL, "monster"), 0
+        )
 
         monsterG = Monster()
         self.npc.add_monster(monsterG, len(self.npc.monsters))
         self.assertEqual(len(self.npc.monsters), PARTY_LIMIT)
-        self.assertEqual(self.npc.monster_boxes.get_box_size(KENNEL), 1)
+        self.assertEqual(
+            self.npc.monster_boxes.get_box_size(KENNEL, "monster"), 1
+        )

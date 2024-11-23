@@ -64,6 +64,14 @@ class Sprite(DirtySprite):
         self.player: bool = False
 
     def update(self, time_delta: float = 0, *args: Any, **kwargs: Any) -> None:
+        """
+        Update the sprite.
+
+        Parameters:
+            time_delta: The time delta since the last update. Defaults to 0.
+            args: Additional arguments.
+            kwargs: Additional keyword arguments.
+        """
         super().update(time_delta, *args, **kwargs)
 
         if self.animation is not None:
@@ -81,12 +89,11 @@ class Sprite(DirtySprite):
         the size of the area passed.
 
         Parameters:
-            surface: Surface to be drawn on.
-            rect: Area to contain the sprite.
+            surface: The surface to draw on.
+            rect: The area to contain the sprite. Defaults to None.
 
         Returns:
-            Area of the surface that was modified.
-
+            The area of the surface that was modified.
         """
         # should draw to surface without generating a cached copy
         if rect is None:
@@ -98,14 +105,36 @@ class Sprite(DirtySprite):
         surface: Surface,
         rect: Rect,
     ) -> Rect:
+        """
+        Draw the sprite to the surface.
+
+        Parameters:
+            surface: The surface to draw on.
+            rect: The area to contain the sprite.
+
+        Returns:
+            The area of the surface that was modified.
+        """
         return surface.blit(self.image, rect)
 
     @property
     def rect(self) -> Rect:
+        """
+        Get the rectangle of the sprite.
+
+        Returns:
+            The rectangle of the sprite.
+        """
         return self._rect
 
     @rect.setter
     def rect(self, rect: Optional[Rect]) -> None:
+        """
+        Set the rectangle of the sprite.
+
+        Parameters:
+            rect: The new rectangle of the sprite.
+        """
         if rect is None:
             rect = Rect(0, 0, 0, 0)
 
@@ -115,6 +144,12 @@ class Sprite(DirtySprite):
 
     @property
     def image(self) -> Surface:
+        """
+        Get the image of the sprite.
+
+        Returns:
+            The image of the sprite.
+        """
         # should always be a cached copy
         if self.animation is not None:
             return self.animation.get_current_frame()
@@ -127,6 +162,12 @@ class Sprite(DirtySprite):
 
     @image.setter
     def image(self, image: Optional[Surface]) -> None:
+        """
+        Set the image of the sprite.
+
+        Parameters:
+            image: The new image of the sprite.
+        """
         if image is not None:
             self.animation = None
             rect = image.get_rect()
@@ -138,16 +179,31 @@ class Sprite(DirtySprite):
 
     @property
     def animation(self) -> Optional[SurfaceAnimation]:
+        """
+        Get the animation of the sprite.
+
+        Returns:
+            The animation of the sprite.
+        """
         return self._animation
 
     @animation.setter
     def animation(self, animation: Optional[SurfaceAnimation]) -> None:
+        """
+        Set the animation of the sprite.
+
+        Parameters:
+            animation: The new animation of the sprite.
+        """
         self._animation = animation
         if animation is not None:
             self.image = None
             self.rect.size = animation.get_rect().size
 
     def update_image(self) -> None:
+        """
+        Update the image of the sprite.
+        """
         image: Optional[Surface]
         if self._original_image is not None and self._needs_rescale:
             w = self.rect.width if self._width is None else self._width
@@ -168,26 +224,48 @@ class Sprite(DirtySprite):
         self._width, self._height = self.rect.size
         self._image = image
 
-    # width and height are API that may not stay
     @property
     def width(self) -> int:
+        """
+        Get the width of the sprite.
+
+        Returns:
+            The width of the sprite.
+        """
         return self._width
 
     @width.setter
     def width(self, width: int) -> None:
+        """
+        Set the width of the sprite.
+
+        Parameters:
+            width: The new width of the sprite.
+        """
         width = int(round(width, 0))
         if not width == self._width:
             self._width = width
             self._needs_rescale = True
             self._needs_update = True
 
-    # width and height are API that may not stay
     @property
     def height(self) -> int:
+        """
+        Get the height of the sprite.
+
+        Returns:
+            The height of the sprite.
+        """
         return self._height
 
     @height.setter
     def height(self, height: int) -> None:
+        """
+        Set the height of the sprite.
+
+        Parameters:
+            height: The new height of the sprite.
+        """
         height = int(round(height, 0))
         if not height == self._height:
             self._height = height
@@ -196,14 +274,73 @@ class Sprite(DirtySprite):
 
     @property
     def rotation(self) -> int:
+        """
+        Get the rotation of the sprite.
+
+        Returns:
+            The rotation of the sprite.
+        """
         return self._rotation
 
     @rotation.setter
     def rotation(self, value: float) -> None:
+        """
+        Set the rotation of the sprite.
+
+        Parameters:
+            value: The new rotation of the sprite.
+        """
         value = int(round(value, 0)) % 360
         if not value == self._rotation:
             self._rotation = value
             self._needs_update = True
+
+    def get_size(self) -> tuple[int, int]:
+        """
+        Get the size of the sprite.
+
+        Returns:
+            The size of the sprite.
+        """
+        return self._width, self._height
+
+    def set_position(self, x: int, y: int) -> None:
+        """
+        Set the position of the sprite.
+
+        Parameters:
+            x: The new x-coordinate of the sprite.
+            y: The new y-coordinate of the sprite.
+        """
+        self.rect.x = x
+        self.rect.y = y
+
+    def get_position(self) -> tuple[int, int]:
+        """
+        Get the position of the sprite.
+
+        Returns:
+            The position of the sprite.
+        """
+        return self.rect.x, self.rect.y
+
+    def is_visible(self) -> bool:
+        """
+        Check if the sprite is visible.
+
+        Returns:
+            Whether the sprite is visible.
+        """
+        return self.visible
+
+    def toggle_visible(sprite: Sprite) -> None:
+        """
+        Toggles the visibility of a sprite.
+
+        Parameters:
+            sprite: The sprite to toggle visibility for.
+        """
+        sprite.visible = not sprite.visible
 
 
 class CaptureDeviceSprite(Sprite):

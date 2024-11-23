@@ -38,7 +38,7 @@ import random
 from collections.abc import Iterable, MutableMapping, Sequence
 from functools import partial
 from itertools import chain
-from typing import Literal, Optional, Union
+from typing import Any, Literal, Optional, Union
 
 import pygame
 from pygame.rect import Rect
@@ -170,6 +170,7 @@ class CombatState(CombatAnimations):
             tuple[str, tuple[float, float]], Sprite
         ] = {}
         self._random_tech_hit: dict[Monster, float] = {}
+        self._combat_variables: dict[str, Any] = {}
 
         super().__init__(players, graphics)
         self.is_trainer_battle = combat_type == "trainer"
@@ -1317,6 +1318,7 @@ class CombatState(CombatAnimations):
         self._action_queue.clear_history()
         self._pending_queue = []
         self._damage_map = []
+        self._combat_variables = {}
 
     def end_combat(self) -> None:
         """End the combat."""

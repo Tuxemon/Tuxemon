@@ -302,7 +302,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 return
 
             # Pre-check the technique for validity
-            self.character.game_variables["action_tech"] = technique.slug
+            self.combat._combat_variables["action_tech"] = technique.slug
             technique = combat.pre_checking(
                 self.monster, technique, target, self.combat
             )

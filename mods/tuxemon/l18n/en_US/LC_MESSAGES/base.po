@@ -6417,11 +6417,11 @@ msgstr "I have been observing you for a while now, I'm glad my followers managed
 "What was your name again? \n"
 "....  .....  ....\n"
 "${{name}}?\n"
-"Not much of a name for someone who illegally owns a Tuxemon.\n"
+"Not much of a name for someone who illegally owns a Tuxemon."
 
 msgid "oops"
 msgstr "Oh. I guess you didn't know that...\n"
-"You shouldn't be afraid, having a Tuxemon by your side is the best thing ever to happen to you.\n"
+"You shouldn't be afraid, having a Tuxemon by your side is the best thing ever to happen to you."
 
 msgid "backstory"
 msgstr "About thirty years ago, a group called Omnichannel started controlling the media.\n"
@@ -6439,7 +6439,7 @@ msgstr "About thirty years ago, a group called Omnichannel started controlling t
 "But only if you agree to help us against Omnichannel.\n"
 "Otherwise, we will report you to Omnichannel ourselves. \n"
 "And you will lose everything. \n"
-"We are always watching.\n"
+"We are always watching."
 
 msgid "backstory9"
 msgstr "What do you say? Will you help us?"
@@ -6453,7 +6453,7 @@ msgstr "???: What do you want? ... ... ... Well too bad. You're not getting in h
 "Allie: Yes, this is the Omnichannel, I'm just a lowly guard though. Who are you?\n"
 "${{name}}...\n"
 "Hmm. A strong name. My house is not too far, maybe... after work... you could show me your strength?\n" 
-"... ... No! what do you mean no? Unless... ... You're Jess's new boyfriend aren't you! She played me this whole time!\n"
+"... ... No! what do you mean no? Unless... ... You're Jess's new boyfriend aren't you! She played me this whole time!"
 
 msgid "mwah2"
 msgstr "JESS!!!"
@@ -6486,7 +6486,7 @@ msgstr "I'm sorry about that scene, Allie is sometimes hard to deal with, unlike
 "Now, outside of a few stragglers in the wild, this generation only interacts with Tuxemon when they work for us.\n"
 "The birthrate is at an all time high, and approval of the Omnichannel has not fallen since the year before the restrictions.\n"
 "Wild Tuxemon were a pervasive curse, threatening to destroying humanity. Omnichannel has fixed that and imposed order.\n"
-"Unchecked, Tuxemon are a force of destruction and anyone who says otherwise is lying. Sorry, I must head to work.\n"
+"Unchecked, Tuxemon are a force of destruction and anyone who says otherwise is lying. Sorry, I must head to work."
 
 msgid "liela_goes_to_battle"
 msgstr "If you are going to disturb me while I pick berries, I'm just going to have to challenge you!"
@@ -6499,7 +6499,7 @@ msgstr "Get the scoop at the Scoop Store!"
 
 msgid "Cotton_Town_Sign"
 msgstr "Welcome to Cotton Town: A Growing Force\n" 
-"↑ Cotton Town --- Route 1 ↓\n"
+"↑ Cotton Town --- Route 1 ↓"
 
 msgid "taba_town_sign"
 msgstr "Taba Town - A peaceful refuge"
@@ -6518,12 +6518,12 @@ msgstr "EEK!!!"
 
 msgid "route2speech2"
 msgstr "Oh. It's just you ${{name}}...\n"
-"Be more considerate the next time you push someone. The cliff is higher than it looks...\n"
+"Be more considerate the next time you push someone. The cliff is higher than it looks..."
 
 msgid "route2speech3"
 msgstr "Although that may not be a bad thing...\n"
 "I know, everyone needs me to lead, but with everything going on...\n"
-"But you don't want to listen to me... do you?\n"
+"But you don't want to listen to me... do you?"
 
 msgid "yestalk"
 msgstr "Really? Thanks..."
@@ -6533,7 +6533,7 @@ msgstr "How insensitive of you! Too bad, you'll have to listen to me anyway!"
 
 msgid "spillit"
 msgstr "You know that I am the leader of the Xero institute and that I recruited you to fight them. But you don't know something else.\n"
-"Allie, who you met before... What? I told you we would be watching, you don't have to be surprised by it.\n"
+"Allie, who you met before... What? I told you we would be watching, you don't have to be surprised by it."
 
 msgid "spillit3"
 msgstr "Whatever... Allie is my sister and means the world to me, so it destroyed me when I found out he had taken her to HQ."
@@ -8060,7 +8060,7 @@ msgid "old_sphalian_center02"
 msgstr "It says that it is under repair"
 
 msgid "old_sphalian_town01"
-msgstr "Sphalian Town - a quiet\, peaceful place"
+msgstr "Sphalian Town - a quiet, peaceful place"
 
 msgid "rubberduck_cave_01"
 msgstr "A good place to hide an item"
@@ -8368,9 +8368,6 @@ msgstr "Dearie, I can't take your only tuxemon! Come back when you have another.
 
 msgid "spyder_papertown_grannypiper10"
 msgstr "It looks like a business plan."
-
-msgid "spyder_papertown_danteshop"
-msgstr "I'm working, boss, I'm working! \n Oh, it's just you. You know, we throw out so much of our stock. \n It's such a terrible waste. It all goes into the bins behind the back of the Store."
 
 msgid "spyder_papertown_myfirstmon"
 msgstr "Hey, you came! That's great.\n When the fancy new tuxemon come through from the Cathedral, we just threw all our old ones in the bin!\n It seems like such a waste, especially when kids like you don't have any!"
@@ -10607,9 +10604,6 @@ msgstr "Granny Piper"
 msgid "spyder_papertown_shopkeeper"
 msgstr "Shopkeeper"
 
-msgid "spyder_instore_dante"
-msgstr "Dante"
-
 msgid "spyder_billie"
 msgstr "Billie"
 
@@ -12205,7 +12199,7 @@ msgstr "Professor:\n"
 "I've heard that you want to learn about Tuxemon.\n"
 "Tuxemon are little animals, some call them monsters, that we befriend and use to battle other Tuxemon.\n"
 "I was wondering, I just received three new Tuxemon for research and I would like to give you one.\n"
-"Which one would you like?\n"
+"Which one would you like?"
 
 msgid "professor_dialog6.1"
 msgstr "Professor: An excellent choice! Hydrone is a water Tuxemon."

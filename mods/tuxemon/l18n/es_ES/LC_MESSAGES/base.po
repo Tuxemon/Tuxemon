@@ -1466,11 +1466,11 @@ msgstr ""
 "....  .....  ....\n"
 "¿${{name}}?\n"
 "Misa: Parece un buen nombre para alguien que posee un Tuxemon de forma "
-"ilegal.\n"
+"ilegal."
 
 msgid "oops"
 msgstr "Oh. Supongo que no lo sabías...\n"
-"No debes tener miedo, tener un Tuxemon de tu parte es la mejor cosa que te ha pasado nunca.\n"
+"No debes tener miedo, tener un Tuxemon de tu parte es la mejor cosa que te ha pasado nunca."
 
 msgid "backstory"
 msgstr "Unos treinta años atrás, un grupo llamado Omnichannel comenzó a controlar los medios de comunicación\n"
@@ -1488,7 +1488,7 @@ msgstr "Unos treinta años atrás, un grupo llamado Omnichannel comenzó a contr
 "Pero solo si aceptas ayudarnos contra Omnichannel.\n"
 "De lo contrario, te denunciaremos ante Omnichannel nosotros mismos. \n"
 "Y en ese caso lo perderás todo.\n"
-"Siempre estamos vigilando.\n"
+"Siempre estamos vigilando."
 
 msgid "backstory9"
 msgstr "¿Qué dices? ¿Nos ayudarás?"
@@ -1502,7 +1502,7 @@ msgstr "???: ¿Qué quieres? ... ... ... Bueno, pues no. No vas a entrar aquí, 
 "Allie: Sí, esto es el Omnichannel, pero yo soy solo una humilde guardia. ¿Quién eres tú?\n"
 "${{name}}...\n"
 "Mmm. Un nombre potente. Mi casa no está muy lejos, quizás... después del trabajo... ¿podrías enseñarme lo fuerte que eres?\n"
-"... ... ¡No! ¿Cómo que no? Salvo que... ... ¡Tú eres el nuevo novio de Jess, ¿no?! ¡Ha estado jugando conmigo todo este tiempo!\n"
+"... ... ¡No! ¿Cómo que no? Salvo que... ... ¡Tú eres el nuevo novio de Jess, ¿no?! ¡Ha estado jugando conmigo todo este tiempo!"
 
 msgid "mwah2"
 msgstr "¡¡¡JESS!!!"
@@ -1551,7 +1551,7 @@ msgstr ""
 "Los Tuxemon son una maldición penetrante que destruye a la humanidad. "
 "Omnichannel ha arreglado esto y ha impuesto orden.\n"
 "Los Tuxemon destruyen y cualquiera que diga lo contrario miente. Lo siento, "
-"pero debo volver al trabajo.\n"
+"pero debo volver al trabajo."
 
 msgid "liela_goes_to_battle"
 msgstr "¡Si vas a molestarme mientras recojo bayas, me veo obligado a retarte!"
@@ -1564,7 +1564,7 @@ msgstr "¡Obtén la novedad en la Tienda de Novedades!"
 
 msgid "Cotton_Town_Sign"
 msgstr "Bienvenidos a Pueblo Algodón: Una Fuerza en Crecimiento\n"
-"↑ Pueblo Algodón --- Ruta 1 ↓\n"
+"↑ Pueblo Algodón --- Ruta 1 ↓"
 
 msgid "column1"
 msgstr "Una columna rara y antigua. Esto solía ser parte de un templo."
@@ -1574,19 +1574,19 @@ msgstr "Una columna rara y antigua. Otras ruinas de la misma civilización se pu
 
 msgid "cityparksign"
 msgstr "Bienvenido al Parque de la Ciudad: Una muestra del mundo silvestre\n"
-"↑ Parque de la Ciudad --- Ruta 2 ↓\n"
+"↑ Parque de la Ciudad --- Ruta 2 ↓"
 
 msgid "route2speech"
 msgstr "¡¡¡Ehhhh!!!"
 
 msgid "route2speech2"
 msgstr "Oh. Solo eres tú, ${{name}}...\n"
-"Sé más considerado la siguiente vez que empujes a alguien. El barranco es más profundo de lo que parece...\n"
+"Sé más considerado la siguiente vez que empujes a alguien. El barranco es más profundo de lo que parece..."
 
 msgid "route2speech3"
 msgstr "Aunque realmente puede que no sea algo malo...\n"
 "Lo sé, todo el mundo necesita que yo lidere, pero con todo lo que está pasando...\n"
-"Pero tú no quieres escucharme... ¿verdad?\n"
+"Pero tú no quieres escucharme... ¿verdad?"
 
 msgid "yestalk"
 msgstr "¿En serio? Gracias..."
@@ -1596,7 +1596,7 @@ msgstr "¡Cómo puedes ser tan insensible! ¡Pues me vas a escuchar de todos mod
 
 msgid "spillit"
 msgstr "Ya sabes que soy el líder del instituto Xero y que te he reclutado para luchar contra ellos. Pero hay algo que no sabes.\n"
-"Allie, a la que conociste anteriormente... ¿Qué? Te dije que estaríamos vigilando, no deberías sorprenderte.\n"
+"Allie, a la que conociste anteriormente... ¿Qué? Te dije que estaríamos vigilando, no deberías sorprenderte."
 
 msgid "spillit3"
 msgstr "Lo que sea... Allie es mi hermana y lo significa todo para mí, así que me destrozó enterarme de que se la han llevado al cuartel general."
@@ -1640,7 +1640,7 @@ msgstr "No me queda mucho tiempo. Omnichannel está viniendo...\n"
 
 msgid "quicklyknight2"
 msgstr ""
-"Dos personas controlan Omnichannel. La junta de dirección es un chiste.\n"
+"Dos personas controlan Omnichannel. La junta de dirección es un chiste."
 
 msgid "quicklyknight3"
 msgstr "Allie. Allie es la que no quiere que lo sepas."
@@ -1777,7 +1777,7 @@ msgid "itsmyaurababe3"
 msgstr "Espero que nos volvamos a encontrar. "
 
 msgid "maamnothing"
-msgstr "Señora...\n"
+msgstr "Señora..."
 
 msgid "maamnothing2"
 msgstr "¡Maldita sea, John! ¡Has interrumpido nuestro momento!\n"
@@ -1840,7 +1840,7 @@ msgstr "Gracias. Yo también os quiero.\n"
 
 msgid "announcement4"
 msgstr "A TODOS los ciudadanos de la región Fondent y más allá que estáis viendo este programa, os doy la bienvenida.\n"
-"¡Mi nombre es Aeble, deletreado A-E-B-L-E para aquellos que se lo pregunten, y soy el CEO de Omnichannel!\n"
+"¡Mi nombre es Aeble, deletreado A-E-B-L-E para aquellos que se lo pregunten, y soy el CEO de Omnichannel!"
 
 msgid "whythecheering"
 msgstr "Toda esa gente de Omnichannel le está vitoreando mucho. ¿Me pregunto por qué?"
@@ -1880,7 +1880,7 @@ msgstr "¡Bienvenido al Centro Tuxemon de Pueblo Algodón!"
 msgid "tabanurse_dialog"
 msgstr ""
 "¡Bienvenido al Centro Tuxemon de ${{map_name}}!\n"
-"¿Deseas curar tus Tuxemon?\n"
+"¿Deseas curar tus Tuxemon?"
 
 msgid "okaythen"
 msgstr "¡De acuerdo! ¡Solo dame un segundo y curaré tus Tuxemon!"
@@ -2120,14 +2120,6 @@ msgstr ""
 "viejos a la basura!\n"
 "¡Parece mucho gasto, especialmente cuando niños como tú no tienen ninguno!"
 
-msgid "spyder_papertown_danteshop"
-msgstr ""
-"¡Estoy trabajando, jefe, estoy trabajando!\n"
-"Oh, si eres tú. Ya sabes, acabamos tirando gran parte de nuestros productos."
-"\n"
-"Es un gasto terrible. Todo acaba en las papeleras de la parte trasera de la "
-"tienda."
-
 msgid "spyder_papertown_grannypiper2"
 msgstr ""
 "Ya sabes, ¡los Pipers hicimos nuestra fortuna en el negocio de las "
@@ -2283,9 +2275,6 @@ msgstr "Hacker"
 
 msgid "spyder_billie"
 msgstr "Billie"
-
-msgid "spyder_instore_dante"
-msgstr "Dante"
 
 msgid "spyder_papertown_shopkeeper"
 msgstr "Tendero"
@@ -2561,7 +2550,7 @@ msgid "hey"
 msgstr "¡Hola!"
 
 msgid "moreannouncement"
-msgstr "¡ATENCIÓN, TODOS LOS CIUDADANOS DE LA REGIÓN FONDENT!\n"
+msgstr "¡ATENCIÓN, TODOS LOS CIUDADANOS DE LA REGIÓN FONDENT!"
 
 msgid "theanthemishere"
 msgstr ""
@@ -2810,7 +2799,7 @@ msgid "tuxemontime3.1"
 msgstr ""
 "Aquí están tus papeles de registro. Tendrás que presentarlos en la primera "
 "Área de Batalla para que te den una medalla de Entrenador.\n"
-"No los necesitarás después de eso.\n"
+"No los necesitarás después de eso."
 
 msgid "tuxemontime3"
 msgstr "¡Allá vamos!"
@@ -3257,7 +3246,7 @@ msgstr ""
 "Déjame curar tus Tuxemon rápidamente…\n"
 "Y… ¡ya está! ¡Todo listo!\n"
 "Con un poco más de práctica, y quizás algunos Tuxemon más, seguro que podrás "
-"realizar el Desafío.\n"
+"realizar el Desafío."
 
 msgid "tuxemontime1.5"
 msgstr "¿Supongo que esto significa que has decidido unirte al Desafío?"

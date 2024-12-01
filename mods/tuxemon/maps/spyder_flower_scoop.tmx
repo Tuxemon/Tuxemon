@@ -18,7 +18,7 @@
  </layer>
  <layer id="2" name="Layer 2" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYICAIjUGhmI1BqwAl9xEoNgkHHrQ5eSh9C4VCL0KSK8G4jUquNnuQHVKQHwTquckkD4FxKdVcLNBwAtJDymAEj3+GhAcAKVBAMaG8UFAVJWBQVwVv5mJQDOTSHCLPFBtAxA3qkDY6MCci4HBAootuRB65gPxAqieDnVUPalAdWlQnM6F3V4AfHomoQ==
+   eJxjYICAIjUGhmI1BqwAl9xEoNgkHHrQ5eSh9C4VCL0KSK8G4jUquNnuUD03oXpOAulTQHxaBTebAU0PKYAUPdUqqHr8NSA4AEqDAIwN44uqMjDMBqoXV8VvdiJQTRIJbpEHqm0A4kYVCBsdmHMxMFhAsSUXQs98IF4A1dOhjqonFaguDYrTubDbCwAYESeT
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="13" height="11">
@@ -28,16 +28,14 @@
  </layer>
  <layer id="5" name="Above Player" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eJxjYKAveKlKuh4ONeq7Ax8w0IBgQygNAjA2jA8C1SoMDPNU6Os2XMBbHcHOVMetjpoAAKSpBgo=
+   eJxjYKAveKlKuh4ONdL1zFMhXQ8MGGhAsCGUBgEYG8YHgRoVyuyhJvBWR7Az1XGroyYAALNcBs0=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">
   <object id="10" type="collision" x="32" y="48" width="16" height="80"/>
-  <object id="11" type="collision" x="48" y="32" width="160" height="16"/>
+  <object id="11" type="collision" x="48" y="32" width="16" height="16"/>
   <object id="14" type="collision" x="64" y="48" width="144" height="16"/>
-  <object id="18" type="collision" x="16" y="112" width="16" height="16"/>
-  <object id="19" type="collision" x="0" y="48" width="32" height="16"/>
-  <object id="27" type="collision" x="16" y="64" width="16" height="16"/>
+  <object id="18" type="collision" x="0" y="112" width="32" height="16"/>
   <object id="32" type="collision" x="64" y="96" width="64" height="16"/>
   <object id="33" type="collision" x="144" y="96" width="48" height="16"/>
   <object id="34" type="collision" x="160" y="128" width="32" height="32"/>

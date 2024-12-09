@@ -196,10 +196,9 @@
    <properties>
     <property name="act10" value="translated_dialog acolyte1loss"/>
     <property name="act20" value="wait 0.5"/>
-    <property name="act21" value="screen_transition 3"/>
-    <property name="act30" value="teleport_faint"/>
-    <property name="act40" value="set_variable redo:please"/>
-    <property name="act50" value="unlock_controls"/>
+    <property name="act21" value="teleport_faint"/>
+    <property name="act30" value="set_variable redo:please"/>
+    <property name="act40" value="unlock_controls"/>
     <property name="cond1" value="is variable_set battle_last_result:lost"/>
     <property name="cond2" value="is variable_set battle_last_trainer:acolyte"/>
     <property name="cond4" value="not variable_set redo:please"/>

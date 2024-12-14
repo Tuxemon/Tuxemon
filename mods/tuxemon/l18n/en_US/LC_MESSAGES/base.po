@@ -9579,72 +9579,136 @@ msgid "spyder_timber_dante1"
 msgstr "Hey buddy! Cool to see you again. "
 msgid "spyder_timber_dante2"
 msgstr "Hey buddy! \n Are you planning to break into these HQ? Cool! \n Make sure you're well prepared before you do, because it's difficult to get out once you're inside! \n You'll need to call your mom to let her know you're safe. Use this app!"
+
 msgid "spyder_scoop_lanth1"
 msgstr "Look how happy the tuxemon are, living so close to one another!"
+
 msgid "spyder_scoop_lanth2"
 msgstr "Typical activist troublemaker. "
+
 msgid "spyder_scoop_paine1"
 msgstr "I feel so terrible that the disease got out. "
+
 msgid "spyder_scoop_paine2"
 msgstr "If those Enforcers hadn't come in and exposed their pet tuxemon to the disease, it would never have left the facility!"
+
 msgid "spyder_scoop_rubid1"
 msgstr "This is actually the most humane way to keep tuxemon."
+
 msgid "spyder_scoop_rubid2"
 msgstr "Studies show that tuxemon find battling more stressful than living in these conditions. "
+
 msgid "spyder_scoop_berys1"
 msgstr "You will notice that none of the tuxemon out here are sick - they were all kept in the containment unit."
+
 msgid "spyder_scoop_berys2"
 msgstr "Scoop did not release the disease! I promise you. "
+
 msgid "spyder_scoop_turner1"
 msgstr "Some of these people will tell you that Enforcers let the disease get out. Don't believe them!"
+
 msgid "spyder_scoop_turner2"
 msgstr "Remember, we had nothing to do with the disease getting out!"
 
 msgid "spyder_scoop_asta1"
 msgstr "Why yes, I am the inventor of the Extreme Restraints. \n What are they, I hear you ask? \n Only a set of manacles so powerful that even a dragon could not escape them. \n They are being used in the containment unit to make sure none of the infected tuxemon escape."
+
 msgid "spyder_scoop_asta2"
 msgstr "Are you sure you want to leave Scoop HQ?"
 
+msgid "spyder_scoop_cctv"
+msgstr "The PC contains a file named 'CCTV'. Would you like to watch it?"
+
+msgid "spyder_scoop_arachne_flashback1"
+msgstr "Nash: The Extreme Restraints are our most secure containment system yet.\n With these manacles, even the strongest tuxemon won't be able to break free from the containment unit."
+
+msgid "spyder_scoop_arachne_flashback2"
+msgstr "Reese: Good. We can't afford any more escapes, not with this disease outbreak spiraling out of control.\n These Restraints better be as effective as you claim."
+
+msgid "spyder_scoop_arachne_flashback3"
+msgstr "Nash: I guarantee it. The materials and design are impenetrable.\n As long as we keep the tuxemon locked up tight in these Restraints, the disease won't be going anywhere."
+
+msgid "spyder_scoop_arachne_flashback4"
+msgstr "Arachne: What do we have here? Looks like you've got quite the fancy set of restraints, don't you?"
+
+msgid "spyder_scoop_arachne_flashback5"
+msgstr "Nash: Who are you? How did you get in here?"
+
+msgid "spyder_scoop_arachne_flashback6"
+msgstr "Arachne: I'm here to relieve you of those lovely Extreme Restraints you've got. They'll make a fine addition to my collection."
+
+msgid "spyder_scoop_arachne_flashback7"
+msgstr "Reese: Stop right there! Those Restraints are crucial to containing the tuxemon outbreak.\n You have no idea what kind of damage you could cause if you take them."
+
+msgid "spyder_scoop_arachne_flashback8"
+msgstr "Arachne: Oh, I think I have a pretty good idea. And I don't really care about your little tuxemon problem. These Restraints are mine now."
+
+msgid "spyder_scoop_arachne_flashback9"
+msgstr "Nash: No, come back! We can't let those Restraints fall into the wrong hands!"
+
+msgid "spyder_scoop_arachne_flashback10"
+msgstr "Reese: This is a disaster - without the Extreme Restraints, the containment unit is useless.\n The tuxemon could break free at any moment!"
+
 msgid "spyder_scoop_alyssa1"
 msgstr "As soon as disease was detected, we moved the infected tuxemon to this containment unit."
+
 msgid "spyder_scoop_alyssa2"
 msgstr "I'm telling you, we kept the disease under control!"
+
 msgid "spyder_scoop_taggart1"
 msgstr "Someone stole the Extreme Restraints we invented to keep tuxemon in the containment unit! Was it you?"
+
 msgid "spyder_scoop_taggart2"
 msgstr "If you didn't steal the Extreme Restraints, who did? "
+
 msgid "spyder_scoop_donald1"
 msgstr "The sick tuxemon we were keeping here in quarantine got out and broke into the storeroom beyond! How will we secure the storeroom?"
+
 msgid "spyder_scoop_donald2"
 msgstr "You might just be strong enough to contain the escaped tuxemon. Please - do it for us. "
+
 msgid "spyder_scoop_orba1"
 msgstr "Yikes! What are you doing here?"
+
 msgid "spyder_scoop_orba2"
 msgstr "What am I doing here, for that matter?"
+
 msgid "spyder_scoop_haf1"
 msgstr "I chased the people who stole the Restraints into this room. But then the sick tuxemon got in, and now we're all stuck!"
+
 msgid "spyder_scoop_weaver1"
 msgstr "I would never have taken the Restraints off those coughing tuxemon if I knew they'd chase us in here!"
+
 msgid "spyder_scoop_weaver2"
 msgstr "Yikes! It turns out crime doesn't pay!"
+
 msgid "spyder_scoop_arachne1"
 msgstr "Oi! Can't you see we're in the middle of a villainous scheme?"
+
 msgid "spyder_scoop_arachne2"
 msgstr "It's too late! I have the Extreme Restraints and there's nothing you can do about it. "
+
 msgid "spyder_scoop_landrace1"
 msgstr "Graar!"
+
 msgid "spyder_scoop_landrace2"
 msgstr "Ufff."
+
 msgid "spyder_scoop_landrace3"
 msgstr "Thanks for getting rid of that brute that was blocking the way! \n Now we can escape with the Extreme Restraints! "
+
 msgid "spyder_scoop_cochini1"
 msgstr "Oink! Oink! "
+
 msgid "spyder_scoop_cochini2"
 msgstr "Oink."
+
 msgid "spyder_scoop_lapinou1"
 msgstr "Aiya!"
+
 msgid "spyder_scoop_lapinou2"
 msgstr "Mhm ah!"
+
 msgid "spyder_tunnelb_beryll1"
 msgstr "I love collecting rocks and stones."
 msgid "spyder_tunnelb_beryll2"

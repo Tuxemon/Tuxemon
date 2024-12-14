@@ -163,7 +163,7 @@ msgid "tuxeball_crusher"
 msgstr "Crusher Tuxeball"
 
 msgid "tuxeball_crusher_description"
-msgstr "This Tuxeball breaks through defenses and increases the catch rate the higher the opposing Tuxemon's defense is. It will fail to catch if a protection move is used."
+msgstr "This Tuxeball breaks through defenses and increases the catch rate the higher the opposing Tuxemon's defense is. It will fail to catch if a protective condition is in place."
 
 msgid "tuxeball_xero"
 msgstr "Xero Tuxeball"

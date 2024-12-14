@@ -11,6 +11,7 @@
   "sort": "potion",
   "sprite": "gfx/items/orange.png",
   "category": "potion",
+  "cost": 1500,
   "usable_in": [
     "MainCombatMenuState",
     "WorldState"

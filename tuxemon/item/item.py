@@ -60,6 +60,7 @@ class Item:
         self.use_success = ""
         self.use_failure = ""
         self.usable_in: Sequence[State] = []
+        self.cost: Optional[int] = None
 
         # load effect and condition plugins if it hasn't been done already
         if not Item.effects_classes:
@@ -103,6 +104,7 @@ class Item:
         # misc attributes (not translated!)
         self.world_menu = results.world_menu
         self.behaviors = results.behaviors
+        self.cost = results.cost
         self.sort = results.sort
         self.category = results.category or ItemCategory.none
         self.sprite = results.sprite

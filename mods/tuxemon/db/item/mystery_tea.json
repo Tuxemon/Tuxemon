@@ -7,6 +7,7 @@
   "sort": "potion",
   "sprite": "gfx/items/mystery_tea.png",
   "category": "none",
+  "cost": 1050,
   "usable_in": [
     "WorldState"
   ],

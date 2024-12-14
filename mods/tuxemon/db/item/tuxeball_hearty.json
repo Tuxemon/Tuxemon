@@ -11,6 +11,7 @@
   "sort": "utility",
   "sprite": "gfx/items/tuxeball_hearty.png",
   "category": "capture",
+  "cost": 450,
   "usable_in": [
     "MainCombatMenuState"
   ],

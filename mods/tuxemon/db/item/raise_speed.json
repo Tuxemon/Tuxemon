@@ -7,6 +7,7 @@
   "sort": "utility",
   "sprite": "gfx/items/raise_speed.png",
   "category": "stats",
+  "cost": 10000,
   "usable_in": [
     "WorldState"
   ],

@@ -10,6 +10,7 @@
   "sort": "utility",
   "sprite": "gfx/items/sea_girdle.png",
   "category": "morph",
+  "cost": 2000,
   "usable_in": [
     "WorldState"
   ],

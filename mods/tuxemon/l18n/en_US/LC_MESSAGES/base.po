@@ -8314,6 +8314,30 @@ msgstr "Please, now return the form to the Shop Assistant, so we can give you th
 msgid "spyder_intro_shopkeeper4"
 msgstr "I'm sorry, you are not a Gold member. This offer is for Gold members only."
 
+msgid "spyder_preintro00"
+msgstr "Alright, let's get this over with. This is the tenth take. Can we please just nail this already?"
+
+msgid "spyder_preintro01"
+msgstr "I swear, if I have to say 'deluxe Tuxemon' one more time, I'm going to lose it. Can't we come up with something more original?"
+
+msgid "spyder_preintro02"
+msgstr "We're just going to end up with a bunch of cheesy, over-the-top marketing nonsense. Can't we aim higher than that?"
+
+msgid "spyder_preintro03"
+msgstr "I'm starting to think that our marketing team has no idea what they're doing. 'Deluxe Tuxemon'? That's the best we can come up with?"
+
+msgid "spyder_preintro04"
+msgstr "Okay, fine. Let's just get this done. But can we please, for the love of all things, try to sound at least somewhat sincere?"
+
+msgid "spyder_postintro00"
+msgstr "Well, that's a wrap. I hope that spot will bring in the sales we need.\n To be honest, I'm not entirely convinced that this 'deluxe Tuxemon' angle is going to fly.\n I mean, are people really going to pay a premium for a creature that can evolve instantly?\n And what's to stop them from just buying the tokens and evolving their own Tuxemon?"
+
+msgid "spyder_postintro01"
+msgstr "And, the Tuxemon themselves are just a bunch of cute, marketable creatures designed to separate kids from their parents' money.\n I mean, we're creating a whole ecosystem around these things, and it's all just a big cash grab.\n We're exploiting people's desire for novelty and their willingness to spend money on anything that's trendy."
+
+msgid "spyder_postintro02"
+msgstr "But hey, it's a lucrative business, and we're just giving people what they want."
+
 # spyder dialogs
 msgid "spyder_papertown_stopthere"
 msgstr "Hey! What do you think you're doing?\n It's not safe to go into the wilds unless you have a tuxemon.\n Come buy one from our shop."
@@ -11656,8 +11680,12 @@ msgstr "Billie has added their tuxemon data to TUXEPEDIA."
 
 msgid "spyder_wayfarerinn_sign"
 msgstr "Welcome to the Wayfarer Inn! "
+
 msgid "spyder_omnichannel_note"
 msgstr "Haha, suckers - you'll never find me. \n It's on the Omnichannel CEO's letterhead."
+
+msgid "spyder_omnichannel_intro"
+msgstr "The PC contains a file named 'Cut Intro'. Would you like to watch the cut scenes?"
 
 msgid "spyder_walled_osman"
 msgstr "Osman"

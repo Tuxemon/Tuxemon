@@ -3,27 +3,27 @@
     "category": "cloudburst",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "goad"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "biting_winds"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "shapechange"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "chill_mist"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "fume"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "altitude"
         },
         {
@@ -31,15 +31,15 @@
             "technique": "flood"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "flow"
         },
         {
-            "level_learned": 44,
+            "level_learned": 43,
             "technique": "ten_thousand_feathers"
         },
         {
-            "level_learned": 48,
+            "level_learned": 46,
             "technique": "thunderclap"
         },
         {

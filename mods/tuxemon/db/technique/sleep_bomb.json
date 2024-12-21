@@ -3,7 +3,7 @@
   "accuracy": 0.75,
   "animation": "sparks_white",
   "effects": [
-    "give noddingoff,both",
+    "give noddingoff,own_team:enemy_team",
     "damage"
   ],
   "flip_axes": "",

@@ -47,17 +47,11 @@ class ClearKennelAction(EventAction):
                 f"{kennel} cannot be cleared.",
             )
         else:
-            if kennel in player.monster_boxes:
-                monsters_kennel = player.monster_boxes[kennel]
+            if player.monster_boxes.has_box(kennel, "monster"):
                 if transfer is None:
-                    player.monster_boxes.pop(kennel)
+                    player.monster_boxes.remove_box(kennel)
                 else:
-                    if transfer in player.monster_boxes:
-                        for mon in monsters_kennel:
-                            player.monster_boxes[transfer].append(mon)
-                            player.monster_boxes.pop(kennel)
-                    else:
-                        player.monster_boxes[transfer] = monsters_kennel
-                        player.monster_boxes.pop(kennel)
+                    player.monster_boxes.merge_boxes(kennel, transfer)
+                    player.monster_boxes.remove_box(kennel)
             else:
                 return

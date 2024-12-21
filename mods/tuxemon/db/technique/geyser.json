@@ -3,8 +3,7 @@
   "accuracy": 1,
   "animation": "smokebomb_plume",
   "effects": [
-    "enhance",
-    "switch target,water"
+    "switch enemy_monster,water"
   ],
   "flip_axes": "",
   "is_fast": false,

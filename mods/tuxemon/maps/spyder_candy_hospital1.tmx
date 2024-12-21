@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="105">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="107">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="hospital1"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" name="Interiors_16x16" tilewidth="16" tileheight="16" tilecount="2592" columns="16">
   <image source="../gfx/tilesets/Interiors_16x16.png" width="256" height="2592"/>
  </tileset>
  <tileset firstgid="2593" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
   <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
+ </tileset>
+ <tileset firstgid="4353" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
+  <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
  </tileset>
  <layer id="7" name="Tile Layer 1" width="20" height="20">
   <data encoding="base64" compression="zlib">
@@ -20,12 +23,12 @@
  </layer>
  <layer id="8" name="Tile Layer 2" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFoyEwGgKkhkAlHwODBg5cARQnFWzixa1jPR45XLqobd4OoBs6cOAMMtz3AKhnAw48gQzzcIXDqDhtQwAAT1IP+A==
+   eAFjYKAdaGNnYGgHYmIBIfXTgGZNJ8E8UtUT685RdaMhUMnHwKCBA1cAxUkFm3hx61iPRw6XLmqbtwPohg4cOIMM9z0A6tmAA08gwzxc4TAqTtsQAACXcBSk
   </data>
  </layer>
  <layer id="9" name="Tile Layer 3" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eAHtUksOAUEQLRbYsGHLhhtwA27ADbgJ9pixN2YuICy4AeEGXIV4lXQllU6bD7NUyUt3vffqzaS7iYieJaIX8G3Z89UyUQ3gGlaIRgBXF2vP7LnXWh18w2h6nn1NZLVM3hieifH1sQ7Mnn1aa4PvGE3Ps8+uKXwBEBm/1kNwM2Du0LRP7z14d8DBMbMH5wNrh6Yz8t4vzPlx7rFIdAKE0/fHnOjyD+KTnteNyjsj6wIIp++POdFlXnzSJ61J95c0/9d/P4El7ncFeIAP2H3WLwTI2AIhEAF2H5fneo9xfpemM7K+R1deHhmuXJu7FohuQFKl9d2R9UiR98n3BkVLMcA=
+   eAHtUksOAUEQLRbYkDgAl+AG3IAbcBHBHjNia8xcQFhwA8INuArxKlRS6dT8wlIlb7rr1Xuvk+4hInqUiJ4A16j+XrN+Wa/97KuWiWoA10rltSpEbUCqh31f9cyzXvuZayCr+cnjXqoDb1f5B9gPVS+6OL/Mx/AEQGR4Q3ATYGrMxO+uHrRbYG94duB8YGnM3Jxf9jN1f4ci0REQTr8fczKX80UnPa9rlXdC1hkQTr8fczIXv+ikT1vT3i/N/59/fwNzvO8C8AAfcPu8JwTI2AAhEAFun5Rn/Y9JemumM/L+j1beLzKsXJe7FIiuQFpl1d2Qdc+QF6d7AeOVMhg=
   </data>
  </layer>
  <layer id="10" name="Tile Layer 4" width="20" height="20">
@@ -346,6 +349,20 @@
     <property name="act1" value="translated_dialog spyder_hospital1_walt2"/>
     <property name="behav1" value="talk spyder_hospital1_walt"/>
     <property name="cond1" value="is variable_set hospital1walt:yes"/>
+   </properties>
+  </object>
+  <object id="105" name="PC Researcher 1" type="event" x="64" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital_pc_message_rivalry1"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="106" name="PC Researcher 2" type="event" x="256" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_hospital_pc_message_rivalry2"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
  </objectgroup>

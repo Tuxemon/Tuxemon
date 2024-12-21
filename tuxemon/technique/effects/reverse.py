@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from tuxemon.combat import get_target_monsters
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -21,26 +22,39 @@ class ReverseEffect(TechEffect):
     """
     Reverse "Switch" effect:
     it returns the original monster type.
-    "reverse user"
-    "reverse target"
-    "reverse both"
+
+    Parameters:
+        objectives: The targets (e.g. own_monster, enemy_monster, etc.), if
+            single "enemy_monster" or "enemy_monster:own_monster"
+
+    eg reverse enemy_monster
+    eg reverse enemy_monster:own_monster
     """
 
     name = "reverse"
-    objective: str
+    objectives: str
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> ReverseEffectResult:
-        if self.objective not in ("user", "target", "both"):
-            raise ValueError(
-                f"{self.objective} must be 'user', 'target' or 'both'"
-            )
+        combat = tech.combat_state
+        assert combat
 
-        if self.objective in ["user", "both"]:
-            user.reset_types()
-        if self.objective in ["target", "both"]:
-            target.reset_types()
+        tech.hit = tech.accuracy >= combat._random_tech_hit.get(user, 0.0)
+
+        if not tech.hit:
+            return {
+                "success": tech.hit,
+                "damage": 0,
+                "element_multiplier": 0.0,
+                "should_tackle": False,
+                "extra": None,
+            }
+
+        objectives = self.objectives.split(":")
+        monsters = get_target_monsters(objectives, tech, user, target)
+        for monster in monsters:
+            monster.reset_types()
 
         return {
             "success": True,

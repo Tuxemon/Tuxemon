@@ -25,36 +25,34 @@ class HealingEffect(TechEffect):
     Healing power indicates that the technique heals its user an
     amount equal to the damage done by a reliable technique of
     the same power.
-
     """
 
     name = "healing"
-    objective: str
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> HealingEffectResult:
+        targets: list[Monster] = []
+        heal = 0
         extra: Optional[str] = None
-        done: bool = False
 
-        tech.hit = tech.accuracy >= (
-            tech.combat_state._random_tech_hit.get(user, 0.0)
-            if tech.combat_state
-            else 0.0
-        )
-
-        mon = user if self.objective == "user" else target
+        combat = tech.combat_state
+        assert combat
+        tech.hit = tech.accuracy >= combat._random_tech_hit.get(user, 0.0)
 
         if tech.hit:
-            heal = formula.simple_heal(tech, mon)
-            if mon.current_hp < mon.hp:
-                heal_amount = min(heal, mon.hp - mon.current_hp)
-                mon.current_hp += heal_amount
-                done = True
-            elif mon.current_hp == mon.hp:
-                extra = "combat_full_health"
+            targets = combat.get_targets(tech, user, target)
+
+        if targets:
+            for monster in targets:
+                heal = formula.simple_heal(tech, monster)
+                if monster.current_hp < monster.hp:
+                    heal_amount = min(heal, monster.hp - monster.current_hp)
+                    monster.current_hp += heal_amount
+                elif monster.current_hp == monster.hp:
+                    extra = "combat_full_health"
         return {
-            "success": done,
+            "success": bool(heal),
             "damage": 0,
             "element_multiplier": 0.0,
             "should_tackle": False,

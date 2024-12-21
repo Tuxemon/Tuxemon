@@ -11,6 +11,7 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
+    from tuxemon.npc import NPC
     from tuxemon.technique.technique import Technique
 
 
@@ -21,10 +22,11 @@ class MoneyEffectResult(TechEffectResult):
 @dataclass
 class MoneyEffect(TechEffect):
     """
-    If it fails, then the monster is damaged.
-    If it works, then the player gets money.
-    quantity damage = quantity money
+    A tech effect that rewards the player with money if successful,
+    or damages the monster if it fails.
 
+    The amount of money rewarded or damage dealt is equal to the
+    calculated damage.
     """
 
     name = "money"
@@ -36,23 +38,27 @@ class MoneyEffect(TechEffect):
         player = user.owner
         combat = tech.combat_state
         assert combat and player
-        value = combat._random_tech_hit.get(user, 0.0)
+        tech.hit = tech.accuracy >= combat._random_tech_hit.get(user, 0.0)
+
         damage, mult = formula.simple_damage_calculate(tech, user, target)
-        hit = tech.accuracy >= value
-        if hit:
-            user.current_hp -= damage
-        else:
+
+        if tech.hit:
             amount = int(damage * mult)
-            recipient = "player" if player.isplayer else player.slug
-            client = self.session.client.event_engine
-            var = [recipient, amount]
-            client.execute_action("modify_money", var, True)
+            self._give_money(player, amount)
             params = {"name": user.name.upper(), "symbol": "$", "gold": amount}
             extra = T.format("combat_state_gold", params)
+        else:
+            user.current_hp = max(0, user.current_hp - damage)
         return {
-            "success": hit,
+            "success": tech.hit,
             "damage": 0,
             "element_multiplier": 0.0,
-            "should_tackle": False,
+            "should_tackle": tech.hit,
             "extra": extra,
         }
+
+    def _give_money(self, character: NPC, amount: int) -> None:
+        recipient = "player" if character.isplayer else character.slug
+        client = self.session.client.event_engine
+        var = [recipient, amount]
+        client.execute_action("modify_money", var, True)

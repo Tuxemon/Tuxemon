@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": "waterspurt",
   "effects": [
-    "give focused,user",
-    "healing user"
+    "give focused,own_monster",
+    "healing"
   ],
   "flip_axes": "",
   "healing_power": 2.0,

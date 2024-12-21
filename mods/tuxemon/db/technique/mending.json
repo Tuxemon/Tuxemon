@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "x_attack",
   "effects": [
-    "healing user"
+    "healing"
   ],
   "flip_axes": "",
   "healing_power": 2.0,

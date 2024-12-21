@@ -171,16 +171,19 @@ class Task(TaskBase):
         times: int = 1,
     ) -> None:
         if not callable(callback):
-            raise ValueError
+            raise ValueError("callback must be callable")
 
-        if times == 0:
-            raise ValueError
+        if interval < 0:
+            raise ValueError("interval must be non negative")
+
+        if times <= 0:
+            raise ValueError("times must be positive")
 
         super().__init__()
         self._interval = interval
         self._loops = times
         self._duration: float = 0
-        self._chain: list[Task] = list()
+        self._chain: list[Task] = []
         self._state = ANIMATION_RUNNING
         self.schedule(callback)
 

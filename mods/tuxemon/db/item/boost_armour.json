@@ -7,6 +7,7 @@
   "sort": "utility",
   "sprite": "gfx/items/boost_armour.png",
   "category": "stats",
+  "cost": 550,
   "usable_in": [
     "MainCombatMenuState"
   ],

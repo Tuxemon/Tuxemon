@@ -3,27 +3,27 @@
     "category": "nightcrawler",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "midnight_mantle"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "rot"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "goad"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "font"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "take_cover"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "starfall"
         },
         {
@@ -31,7 +31,7 @@
             "technique": "font"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "chill_mist"
         }
     ],

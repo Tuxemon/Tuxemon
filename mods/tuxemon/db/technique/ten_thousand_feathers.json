@@ -3,7 +3,7 @@
   "accuracy": 0.9,
   "animation": "amethyst",
   "effects": [
-    "give charging,user",
+    "give charging,own_monster",
     "damage"
   ],
   "flip_axes": "",

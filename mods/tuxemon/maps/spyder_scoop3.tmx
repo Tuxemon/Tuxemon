@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="30">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="35">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="scoop3"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" source="../gfx/tilesets/core_indoor_floors.tsx"/>
@@ -17,7 +17,7 @@
  </layer>
  <layer id="2" name="Tile Layer 4" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eAGVjjsOgzAQREfKGSCXCTScIn3gOiko+BwEko6GezErPBQrkM1IzyOvn1YGgIpY1PttPzVT27QNgrp7Aj35Es3UQT3KnInMRLHZnbweQEFKYhkyYCRX+dCrSRP8H92/82M7/O6zHd5Jua/8Rwq2y7yULImednn/nesl3hsCHRui
+   eAGNjsENgkAURCehBcFmlItVcEfb4cBBoBDEmwnaiDTC/LBjNhuBneQxy9/HDwBwIRb18rY8NVPbtHaC+n4EGlIRzdRO/ZU5PXkQxWbjAXiTrZwTICcn8qU7Ob9NgY6EudK7kZL4Geg+A39th/+df/63w7+PPX/4HzHYPvNi8or0tCv0i0w3+z0D4mQfPg==
   </data>
  </layer>
  <layer id="3" name="Tile Layer 2" width="12" height="12">
@@ -39,6 +39,7 @@
   <object id="10" type="collision" x="0" y="128" width="160" height="16"/>
   <object id="11" type="collision" x="176" y="128" width="16" height="16"/>
   <object id="12" type="collision" x="144" y="144" width="16" height="32"/>
+  <object id="30" type="collision" x="160" y="48" width="32" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="5" name="Event">
   <properties>
@@ -157,6 +158,56 @@
     <property name="act10" value="set_variable scoopdonald:yes"/>
     <property name="cond1" value="not variable_set scoopdonald:yes"/>
     <property name="cond2" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="33" name="Intro" type="event" x="160" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_scoop_cctv"/>
+    <property name="act2" value="translated_dialog_choice yes:no,cctv_scoop"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set cctv_scoop:yes"/>
+   </properties>
+  </object>
+  <object id="34" name="Watch" type="event" x="160" y="32" width="16" height="16">
+   <properties>
+    <property name="act10" value="set_template player,invisible"/>
+    <property name="act11" value="lock_controls"/>
+    <property name="act12" value="set_layer 102:51:0:128"/>
+    <property name="act13" value="create_npc spyder_scoop_nash,5,4"/>
+    <property name="act14" value="char_face spyder_scoop_nash,right"/>
+    <property name="act15" value="create_npc spyder_scoop_reese,6,4"/>
+    <property name="act16" value="char_face spyder_scoop_reese,left"/>
+    <property name="act20" value="translated_dialog spyder_scoop_arachne_flashback1"/>
+    <property name="act21" value="translated_dialog spyder_scoop_arachne_flashback2"/>
+    <property name="act22" value="translated_dialog spyder_scoop_arachne_flashback3"/>
+    <property name="act23" value="create_npc spyder_scoop_arachne,6,3"/>
+    <property name="act24" value="char_face spyder_scoop_arachne,down"/>
+    <property name="act25" value="translated_dialog spyder_scoop_arachne_flashback4"/>
+    <property name="act26" value="char_face spyder_scoop_reese,up"/>
+    <property name="act27" value="char_face spyder_scoop_nash,up"/>
+    <property name="act28" value="translated_dialog spyder_scoop_arachne_flashback5"/>
+    <property name="act29" value="translated_dialog spyder_scoop_arachne_flashback6"/>
+    <property name="act30" value="translated_dialog spyder_scoop_arachne_flashback7"/>
+    <property name="act31" value="translated_dialog spyder_scoop_arachne_flashback8"/>
+    <property name="act32" value="add_monster cardiwing,35,spyder_scoop_arachne,5,10"/>
+    <property name="act33" value="add_monster spighter,35,spyder_scoop_arachne,5,10"/>
+    <property name="act34" value="add_monster abesnaki,35,spyder_scoop_arachne,5,10"/>
+    <property name="act35" value="add_monster rockat,35,spyder_scoop_reese,5,10"/>
+    <property name="act37" value="start_battle spyder_scoop_reese,spyder_scoop_arachne"/>
+    <property name="act38" value="char_face spyder_scoop_arachne,up"/>
+    <property name="act39" value="remove_npc spyder_scoop_arachne"/>
+    <property name="act40" value="translated_dialog spyder_scoop_arachne_flashback9"/>
+    <property name="act41" value="translated_dialog spyder_scoop_arachne_flashback10"/>
+    <property name="act42" value="pathfind spyder_scoop_reese,6,3"/>
+    <property name="act43" value="pathfind spyder_scoop_nash,5,3"/>
+    <property name="act44" value="remove_npc spyder_scoop_reese"/>
+    <property name="act45" value="remove_npc spyder_scoop_nash"/>
+    <property name="act51" value="set_variable cctv_scoop:null"/>
+    <property name="act52" value="set_layer"/>
+    <property name="act53" value="unlock_controls"/>
+    <property name="act54" value="set_template player,default"/>
+    <property name="cond1" value="is variable_set cctv_scoop:yes"/>
    </properties>
   </object>
  </objectgroup>

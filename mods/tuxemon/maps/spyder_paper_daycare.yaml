@@ -175,3 +175,39 @@ events:
     x: 8
     y: 5
     type: "event"
+  FlashBack Billie Grandma:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_billie,13,7
+    - char_face spyder_billie,left
+    - pathfind spyder_billie,4,6
+    - char_face spyder_billie,left
+    - translated_dialog spyder_billie_flashback1
+    - translated_dialog spyder_billie_flashback2
+    - translated_dialog spyder_billie_flashback3
+    - translated_dialog spyder_billie_flashback4
+    - translated_dialog spyder_billie_flashback5
+    - translated_dialog spyder_billie_flashback6
+    - translated_dialog spyder_billie_flashback7
+    - translated_dialog spyder_billie_flashback8
+    - translated_dialog spyder_billie_flashback9
+    - translated_dialog spyder_billie_flashback10
+    - translated_dialog spyder_billie_flashback11
+    - translated_dialog spyder_billie_flashback12
+    - pathfind spyder_billie,3,8
+    - remove_npc spyder_billie
+    - char_face spyder_grannypiper,down
+    - pathfind spyder_grannypiper,2,3
+    - char_face spyder_grannypiper,up
+    - translated_dialog spyder_billie_flashback_end
+    - set_variable billie_grandma:done
+    - set_layer
+    - unlock_controls
+    - set_variable flashback:off
+    - transition_teleport spyder_paper_rival_downstairs.tmx,7,9
+    - char_face player,right
+    conditions:
+    - is variable_set billie_grandma:yes
+    type: "event"

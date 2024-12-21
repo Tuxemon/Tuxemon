@@ -14,10 +14,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class LifeLeechEffectResult(CondEffectResult):
-    pass
-
-
 @dataclass
 class LifeLeechEffect(CondEffect):
     """
@@ -33,23 +29,22 @@ class LifeLeechEffect(CondEffect):
     name = "lifeleech"
     divisor: int
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> LifeLeechEffectResult:
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         lifeleech: bool = False
         user = condition.link
         assert user
         if condition.phase == "perform_action_status" and not fainted(user):
             damage = simple_lifeleech(user, target, self.divisor)
-            target.current_hp -= damage
-            user.current_hp += damage
+            target.current_hp = max(0, target.current_hp - damage)
+            user.current_hp = min(user.hp, user.current_hp + damage)
             lifeleech = True
         if fainted(user):
             target.status.clear()
 
-        return {
-            "success": lifeleech,
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+        return CondEffectResult(
+            name=condition.name,
+            success=lifeleech,
+            conditions=[],
+            techniques=[],
+            extras=[],
+        )

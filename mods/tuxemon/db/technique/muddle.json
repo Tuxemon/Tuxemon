@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "sparks_white",
   "effects": [
-    "give focused,both",
+    "give focused,own_team:enemy_team",
     "damage"
   ],
   "flip_axes": "",

@@ -11,6 +11,7 @@
   "sort": "utility",
   "sprite": "gfx/items/tuxeball_grand.png",
   "category": "capture",
+  "cost": 500,
   "usable_in": [
     "MainCombatMenuState"
   ],

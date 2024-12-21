@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 from tuxemon.locale import T
@@ -13,10 +13,6 @@ from tuxemon.technique.technique import Technique
 if TYPE_CHECKING:
     from tuxemon.condition.condition import Condition
     from tuxemon.monster import Monster
-
-
-class NoddingOffEffectResult(CondEffectResult):
-    pass
 
 
 @dataclass
@@ -36,28 +32,28 @@ class NoddingOffEffect(CondEffect):
     name = "noddingoff"
     chance: float
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> NoddingOffEffectResult:
-        extra: Optional[str] = None
-        skip: Optional[Technique] = None
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
+        extra: list[str] = []
+        tech: list[Technique] = []
 
         if condition.phase == "pre_checking" and condition.repl_tech:
             skip = Technique()
             skip.load(condition.repl_tech)
+            tech = [skip]
 
         if condition.phase == "perform_action_tech" and self.wake_up(
             condition
         ):
             params = {"target": target.name.upper()}
-            extra = T.format("combat_state_dozing_end", params)
+            extra = [T.format("combat_state_dozing_end", params)]
             target.status.clear()
-        return {
-            "success": True,
-            "condition": None,
-            "technique": skip,
-            "extra": extra,
-        }
+        return CondEffectResult(
+            name=condition.name,
+            success=True,
+            conditions=[],
+            techniques=tech,
+            extras=extra,
+        )
 
     def wake_up(self, condition: Condition) -> bool:
         if (

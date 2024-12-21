@@ -11,6 +11,7 @@
   "sort": "utility",
   "sprite": "gfx/items/tuxeball_diurnal.png",
   "category": "capture",
+  "cost": 350,
   "usable_in": [
     "MainCombatMenuState"
   ],

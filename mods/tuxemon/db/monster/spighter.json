@@ -3,23 +3,23 @@
     "category": "eyerachnid",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "fluff_up"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "sting"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "splinter"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "blossom"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "overgrowth"
         },
         {
@@ -27,11 +27,11 @@
             "technique": "shadow_boxing"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "wing_tip"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "pseudopod"
         },
         {
@@ -39,11 +39,11 @@
             "technique": "whirlwind"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "phantasmal_force"
         },
         {
-            "level_learned": 36,
+            "level_learned": 37,
             "technique": "poison_courtship"
         },
         {

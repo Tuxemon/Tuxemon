@@ -18,7 +18,7 @@ from tuxemon.sprite import Sprite
 from tuxemon.ui.text import TextArea
 
 if TYPE_CHECKING:
-    from tuxemon.item.economy import Economy
+    from tuxemon.economy import Economy
     from tuxemon.npc import NPC
 
 INFINITE_ITEMS = prepare.INFINITE_ITEMS
@@ -80,8 +80,8 @@ class ShopMenuState(Menu[Item]):
             inventory = [
                 item
                 for item in self.seller.items
-                for t in self.economy.items
-                if item.slug == t.item_name
+                for t in self.economy.model.items
+                if item.slug == t.name
             ]
 
         # required because the max() below will fail if inv empty
@@ -103,7 +103,7 @@ class ShopMenuState(Menu[Item]):
             # buying
             if self.buyer.isplayer:
                 # recall variable quantity
-                key = f"{self.economy.slug}:{itm.slug}"
+                key = f"{self.economy.model.slug}:{itm.slug}"
                 self.qty = self.buyer.game_variables[key]
 
                 fg = None
@@ -165,7 +165,7 @@ class ShopBuyMenuState(ShopMenuState):
         """
         item = menu_item.game_object
         price = self.economy.lookup_item_price(item.slug)
-        label = f"{self.economy.slug}:{item.slug}"
+        label = f"{self.economy.model.slug}:{item.slug}"
 
         def buy_item(itm: Item, quantity: int) -> None:
             if not quantity:

@@ -11,6 +11,7 @@
   "sort": "utility",
   "sprite": "gfx/items/tuxeball_crusher.png",
   "category": "capture",
+  "cost": 400,
   "usable_in": [
     "MainCombatMenuState"
   ],

@@ -40,7 +40,9 @@ class HasKennelCondition(EventCondition):
         if character is None:
             logger.error(f"{_character} not found")
             return False
-        if kennel_name not in character.monster_boxes.keys():
+        if not character.monster_boxes.has_box(kennel_name, "monster"):
             raise ValueError(f"{kennel_name} doesn't exist.")
-        party_size = len(character.monster_boxes[kennel_name])
+        party_size = character.monster_boxes.get_box_size(
+            kennel_name, "monster"
+        )
         return compare(check, party_size, number)

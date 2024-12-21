@@ -14,10 +14,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class StatChangeEffectResult(CondEffectResult):
-    pass
-
-
 @dataclass
 class StatChangeEffect(CondEffect):
     """
@@ -37,9 +33,7 @@ class StatChangeEffect(CondEffect):
 
     name = "statchange"
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> StatChangeEffectResult:
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         statsmaster = [
             condition.statspeed,
             condition.stathp,
@@ -78,9 +72,10 @@ class StatChangeEffect(CondEffect):
                 if newstatvalue <= 0:
                     newstatvalue = 1
                 setattr(target, slugdata, newstatvalue)
-        return {
-            "success": bool(newstatvalue),
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+        return CondEffectResult(
+            name=condition.name,
+            success=bool(newstatvalue),
+            conditions=[],
+            techniques=[],
+            extras=[],
+        )

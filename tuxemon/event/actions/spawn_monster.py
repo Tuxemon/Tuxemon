@@ -55,14 +55,14 @@ class SpawnMonsterAction(EventAction):
 
         mother = get_monster_by_iid(
             self.session, mother_id
-        ) or player.find_monster_in_storage(mother_id)
+        ) or player.monster_boxes.get_monsters_by_iid(mother_id)
         if mother is None:
             logger.debug(f"Mother {mother_id} not found.")
             return
 
         father = get_monster_by_iid(
             self.session, father_id
-        ) or player.find_monster_in_storage(father_id)
+        ) or player.monster_boxes.get_monsters_by_iid(father_id)
         if father is None:
             logger.debug(f"Father {father_id} not found.")
             return

@@ -44,10 +44,10 @@ class PCState(PygameMenuState):
         player = local_session.player
 
         # it creates the kennel and locker (new players)
-        if kennel not in player.monster_boxes.keys():
-            player.monster_boxes[kennel] = []
-        if locker not in player.item_boxes.keys():
-            player.item_boxes[locker] = []
+        if not player.monster_boxes.has_box(kennel, "monster"):
+            player.monster_boxes.create_box(kennel, "monster")
+        if not player.item_boxes.has_box(locker, "item"):
+            player.item_boxes.create_box(locker, "item")
 
         def change_state(state: str, **kwargs: Any) -> partial[State]:
             return partial(self.client.replace_state, state, **kwargs)
@@ -78,18 +78,8 @@ class PCState(PygameMenuState):
 
         multiplayer = change_state("MultiplayerMenu")
 
-        _nr_monsters = [
-            len(mons)
-            for box, mons in player.monster_boxes.items()
-            if box not in HIDDEN_LIST
-        ]
-        nr_monsters = sum(_nr_monsters)
-        _nr_items = [
-            len(itm)
-            for box, itm in player.item_boxes.items()
-            if box not in HIDDEN_LIST_LOCKER
-        ]
-        nr_items = sum(_nr_items)
+        nr_monsters = len(player.monster_boxes.get_all_monsters_visible())
+        nr_items = len(player.item_boxes.get_all_items_visible())
 
         menu: list[tuple[str, MenuGameObj]] = []
         if nr_monsters > 0:

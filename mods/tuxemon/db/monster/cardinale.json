@@ -3,27 +3,27 @@
     "category": "firebird",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "breathe_fire"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "give_all"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "one_two"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "saber"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "fire_claw"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "kindling_flame"
         },
         {
@@ -39,11 +39,11 @@
             "technique": "berserk"
         },
         {
-            "level_learned": 44,
+            "level_learned": 43,
             "technique": "all_in"
         },
         {
-            "level_learned": 48,
+            "level_learned": 46,
             "technique": "flamethrower"
         }
     ],

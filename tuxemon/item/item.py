@@ -60,6 +60,7 @@ class Item:
         self.use_success = ""
         self.use_failure = ""
         self.usable_in: Sequence[State] = []
+        self.cost: Optional[int] = None
 
         # load effect and condition plugins if it hasn't been done already
         if not Item.effects_classes:
@@ -103,6 +104,7 @@ class Item:
         # misc attributes (not translated!)
         self.world_menu = results.world_menu
         self.behaviors = results.behaviors
+        self.cost = results.cost
         self.sort = results.sort
         self.category = results.category or ItemCategory.none
         self.sprite = results.sprite
@@ -224,30 +226,28 @@ class Item:
             target: The monster or object that we are using this item on.
 
         Returns:
-            A dictionary with various effect result properties
+            An ItemEffectResult object containing the result of the item's effect.
 
         """
         # defaults for the return. items can override these values.
-        meta_result: ItemEffectResult = {
-            "name": self.name,
-            "num_shakes": 0,
-            "success": False,
-            "extra": None,
-        }
+        meta_result = ItemEffectResult(
+            name=self.name,
+            success=False,
+            num_shakes=0,
+            extras=[],
+        )
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:
             result = effect.apply(self, target)
-            meta_result["success"] = (
-                meta_result["success"] or result["success"]
-            )
-            meta_result["num_shakes"] += result["num_shakes"]
-            if result["extra"] is not None:
-                meta_result["extra"] = result["extra"]
+            meta_result.name = result.name
+            meta_result.success = meta_result.success or result.success
+            meta_result.num_shakes += result.num_shakes
+            meta_result.extras.extend(result.extras)
 
         # If this is a consumable item, remove it from the player's inventory.
         if (
-            prepare.CONFIG.items_consumed_on_failure or meta_result["success"]
+            prepare.CONFIG.items_consumed_on_failure or meta_result.success
         ) and self.behaviors.consumable:
             if self.quantity <= 1:
                 user.remove_item(self)

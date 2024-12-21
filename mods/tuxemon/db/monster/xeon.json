@@ -3,23 +3,23 @@
     "category": "threat",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "electrical_storm"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "wall_of_steel"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "shrapnel"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "peregrine"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "crystal"
         },
         {
@@ -27,11 +27,11 @@
             "technique": "muddle"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "strike"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "shadow_boxing"
         },
         {
@@ -39,11 +39,11 @@
             "technique": "whirlwind"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "lightning_spheres"
         },
         {
-            "level_learned": 36,
+            "level_learned": 37,
             "technique": "undertaker"
         },
         {

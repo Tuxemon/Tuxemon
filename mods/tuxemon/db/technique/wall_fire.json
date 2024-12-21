@@ -3,8 +3,8 @@
   "accuracy": 0.8,
   "animation": "wall_fire",
   "effects": [
-    "give elementalshield,user",
-    "give burn,target",
+    "give elementalshield,own_monster",
+    "give burn,enemy_monster",
     "damage"
   ],
   "flip_axes": "",

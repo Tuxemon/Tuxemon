@@ -35,25 +35,6 @@ def _lookup_monsters() -> None:
             lookup_cache[mon] = results
 
 
-def find_box_name(instance_id: uuid.UUID) -> Optional[str]:
-    """
-    Finds a monster in the npc's storage boxes and return the box name.
-
-    Parameters:
-        instance_id: The instance_id of the monster.
-
-    Returns:
-        Box name, or None.
-
-    """
-    box_map = {
-        m.instance_id: box
-        for box, monsters in local_session.player.monster_boxes.items()
-        for m in monsters
-    }
-    return box_map.get(instance_id)
-
-
 def fix_measure(measure: int, percentage: float) -> int:
     """it returns the correct measure based on percentage"""
     return round(measure * percentage)
@@ -308,9 +289,11 @@ class MonsterMovesState(PygameMenuState):
 
     def _get_monsters(self) -> list[Monster]:
         if self._source == "MonsterTakeState":
-            box = find_box_name(self._monster.instance_id)
+            box = local_session.player.monster_boxes.get_box_name(
+                self._monster.instance_id
+            )
             if box is None:
                 raise ValueError("Box doesn't exist")
-            return local_session.player.monster_boxes[box]
+            return local_session.player.monster_boxes.get_monsters(box)
         else:
             return local_session.player.monsters

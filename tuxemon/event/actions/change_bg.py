@@ -97,8 +97,9 @@ class ChangeBgAction(EventAction):
 
         if client.current_state.name != str(ImageState):
             if self.background is None:
-                client.pop_state()
-                return
+                if len(client.state_manager.active_states) > 2:
+                    client.pop_state()
+                    return
             else:
                 _background = self.background.split(":")
                 if len(_background) == 1:

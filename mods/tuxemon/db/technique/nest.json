@@ -3,8 +3,8 @@
   "accuracy": 0.8,
   "animation": "ruby_absorb",
   "effects": [
-    "give sniping,user",
-    "healing user"
+    "give sniping,own_monster",
+    "healing"
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -17,10 +17,10 @@
   "slug": "nest",
   "sort": "damage",
   "target": {
-    "enemy_monster": true,
+    "enemy_monster": false,
     "enemy_team": false,
     "enemy_trainer": false,
-    "own_monster": false,
+    "own_monster": true,
     "own_team": false,
     "own_trainer": false
   },

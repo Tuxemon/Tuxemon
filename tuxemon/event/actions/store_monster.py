@@ -58,11 +58,15 @@ class StoreMonsterAction(EventAction):
         if box is None:
             store = KENNEL
         else:
-            if box not in character.monster_boxes.keys():
+            if not player.monster_boxes.has_box(self.name, "monster"):
                 logger.error(f"No box found with name {box}")
                 return
             else:
                 store = box
         logger.info(f"{monster.name} stored in {store} box!")
-        character.monster_boxes[store].append(monster)
-        character.remove_monster(monster)
+        if not character.monster_boxes.is_box_full(store):
+            logger.error(f"Box {store} is full.")
+            return
+        else:
+            character.monster_boxes.add_monster(store, monster)
+            character.remove_monster(monster)

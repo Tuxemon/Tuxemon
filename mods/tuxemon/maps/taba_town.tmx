@@ -106,6 +106,7 @@
   <object id="193" type="collision" x="928" y="496" width="32" height="96"/>
   <object id="194" type="collision" x="960" y="752" width="32" height="64"/>
   <object id="195" type="collision" x="928" y="784" width="32" height="64"/>
+  <object id="199" type="collision" x="352" y="352" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="67" name="Go to Player's house" type="event" x="688" y="720" width="16" height="16">
@@ -281,7 +282,9 @@
     <property name="act20" value="create_npc nurse2,38,39,stand"/>
     <property name="act30" value="char_face nurse1,down"/>
     <property name="act40" value="char_face nurse2,down"/>
-    <property name="cond10" value="not variable_set thewifedidspeak:yes"/>
+    <property name="cond10" value="not char_exists nurse1"/>
+    <property name="cond20" value="not char_exists nurse2"/>
+    <property name="cond30" value="not variable_set thewifedidspeak:yes"/>
    </properties>
   </object>
   <object id="126" name="nopenotyet" type="event" x="592" y="640" width="32" height="16">
@@ -566,9 +569,9 @@
     <property name="cond1" value="is variable_set comeinside:yes"/>
    </properties>
   </object>
-  <object id="150" name="create traveler" type="event" x="336" y="368" width="16" height="16">
+  <object id="150" name="create traveler" type="event" x="352" y="368" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc xerogrund1,22,23,stand"/>
+    <property name="act1" value="create_npc xerogrund1,22,23"/>
     <property name="act2" value="char_face xerogrund1,right"/>
     <property name="cond1" value="not char_exists xerogrund1"/>
    </properties>
@@ -699,13 +702,6 @@
     <property name="act3" value="set_variable comeinside:stahp"/>
     <property name="act4" value="set_variable backhome:no"/>
     <property name="cond1" value="is variable_set comeinside:dope"/>
-   </properties>
-  </object>
-  <object id="132" name="martgreeter" type="event" x="336" y="208" width="16" height="16">
-   <properties>
-    <property name="act10" value="create_npc taba_greeter,29,12,stand"/>
-    <property name="act20" value="char_face taba_greeter,down"/>
-    <property name="cond1" value="not char_exists taba_greeter"/>
    </properties>
   </object>
   <object id="147" name="mydogishurt" type="event" x="672" y="608" width="16" height="16">

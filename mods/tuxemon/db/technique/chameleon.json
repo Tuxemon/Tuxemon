@@ -3,9 +3,8 @@
   "accuracy": 1,
   "animation": "red_circle",
   "effects": [
-    "give hardshell,user",
-    "enhance",
-    "switch user,wood"
+    "give hardshell,own_monster",
+    "switch own_monster,wood"
   ],
   "flip_axes": "",
   "is_fast": false,

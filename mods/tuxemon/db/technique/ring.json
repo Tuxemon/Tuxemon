@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "pulse_absorb",
   "effects": [
-    "give recover,user",
+    "give recover,own_monster",
     "splash 2"
   ],
   "flip_axes": "",

@@ -3,27 +3,27 @@
     "category": "hydra",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "venomous_tentacle"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "biting_winds"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "goad"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "flood"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "midnight_mantle"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "tonguespear"
         },
         {
@@ -31,7 +31,7 @@
             "technique": "icicle_spear"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "chill_mist"
         }
     ],

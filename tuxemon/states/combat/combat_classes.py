@@ -174,6 +174,50 @@ class ActionQueue:
         new_action = EnqueuedAction(user, method, target)
         self._action_queue[index] = new_action
 
+    def get_last_action(
+        self, turn: int, monster: Monster, field: str
+    ) -> Optional[EnqueuedAction]:
+        """
+        Retrieves the last action involving the specified monster in the given turn.
+
+        Parameters:
+            turn: The turn number to search in.
+            monster: The monster to search for.
+            field: The field to search in ('user' or 'target').
+
+        Returns:
+            The last matching action, or None if not found.
+        """
+
+        if field not in ("user", "target"):
+            raise ValueError(f"{field} must be 'user' or 'target'")
+
+        for _turn, action in reversed(self._action_history):
+            if _turn == turn and (
+                field == "user"
+                and action.user == monster
+                or field == "target"
+                and action.target == monster
+            ):
+                return action
+
+        return None
+
+    def get_all_actions_by_turn(self, turn: int) -> list[EnqueuedAction]:
+        """
+        Retrieves all actions that occurred in the specified turn.
+
+        Parameters:
+            turn: The turn number to retrieve actions for.
+
+        Returns:
+            A list of actions that occurred in the specified turn.
+        """
+
+        return [
+            action for _turn, action in self._action_history if _turn == turn
+        ]
+
 
 class DamageReport(NamedTuple):
     attack: Monster

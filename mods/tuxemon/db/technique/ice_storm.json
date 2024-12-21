@@ -3,7 +3,7 @@
   "accuracy": 0.6,
   "animation": "ice_storm",
   "effects": [
-    "area"
+    "damage"
   ],
   "flip_axes": "",
   "is_fast": false,

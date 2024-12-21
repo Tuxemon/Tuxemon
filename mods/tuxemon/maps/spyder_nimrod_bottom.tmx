@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="63">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="18" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="72">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -19,16 +19,44 @@
    eJxjYBhcQExvFI/iUTyKRzEIAwBczlYR
   </data>
  </layer>
- <layer id="2" name="Tile Layer 3" width="18" height="20">
+ <layer id="2" name="Tile Layer 2" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJzVkzkOwjAQRaeApAOcBhrECYhLljPAMSIOxHIF4DaABHSRgAMkoQE6xgIr9sQOWxpG+nLi//1kW+OwDhAWoH6jGP1bzR2ABWrp5Oc6DGBiUcsD2OL6HWqPanrZTI89OAGOsUUJ0zmRITNSOKJWPsCaaOPrHJoRPuVEONfmAD5Px4RwRCb2dd/EGaA35Olo46j+t/uRnuD9sh/p2TgV9KpENa5zaEb4kjO29I7sC5Vj6rWpPI+ldwIDx9RrCcvvcxvHVvLtHPD7hDp+wBHn7D4lMxecv6GukN4bfV+UM1P+Sy5A2c3uMzK8L8o5v7gbtd69nzvo6Kyu
+   eJyllEFOwkAUht8C2x0Cm3ZDPIHtEm16BDxGI+EengD1CsqWk6iJumsUDtDWjbDjPZiXmT5m0lYn+fPa+X8+ptM3zQOAHHWnalvJfBIetTKu20jm3yI4jK8AOg2ZrxQnDfVcMmzmcJ6zg/g0MzM4Tx7AM2rp2f+DsxOs90KpqhcjgHf8/QfqEzUeaY81V5wMa+lQNaxzCkvm1uDQeMF9ehWid2ByZIZ8ySlw7hL3Kop1rQSHMmVU922cKXo3sa4ujun/dT3sEe8/62HPxemjdy5EvWVyZIZ85iws/UO6Vr7JsfXaAz+Po3cyC8fWa1XDGXJxXIPPzjdeb1DrDhx6zislzvzi/A61Bb1v8nxJzqNx3/MBzvzTdRaW8yU5Py2+Lzza7s8eElyzMg==
   </data>
  </layer>
- <layer id="3" name="Tile Layer 4" width="18" height="20">
+ <layer id="3" name="Tile Layer 3" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYICAVnEGosA9cQjGpX4TkeZYSUAwLvUPiDSHkHobCSQ7BQmbA1OPT20GHjl0ffjU2pAgl4XGL9bH1IMuho2P7p5JQLFwJHUl+hAxdDUWULFwqDw+f5ECRs2hjzlTqWTOUADhjAwMEYyk6alTZmCoV0YVywWakUeiOauBZqxRJqyOWAAA9Dca3A==
+   eJxjYBgFIxlM0mdgCNdH8Ev0IWLoaiygYuFY5EfBKKAUsDMyMKgC6XUDZH+dMgNDvTKqWC7QTXmMpJmzGmjGGmXC6ogFAJDpCbM=
   </data>
  </layer>
+ <layer id="4" name="Above Player" width="18" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFQxEU6xMWI8QfBaOAWmDGQDsACYQzMjBEMA60K6gDAPxIA9I=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="5" name="Collisions">
+  <object id="3" type="collision" x="0" y="0" width="288" height="32"/>
+  <object id="6" type="collision" x="16" y="208" width="96" height="32"/>
+  <object id="7" type="collision" x="96" y="240" width="16" height="64"/>
+  <object id="8" type="collision" x="176" y="208" width="16" height="112"/>
+  <object id="9" type="collision" x="192" y="208" width="80" height="32"/>
+  <object id="11" type="collision" x="176" y="80" width="80" height="32"/>
+  <object id="12" type="collision" x="176" y="112" width="32" height="16"/>
+  <object id="13" type="collision" x="224" y="112" width="32" height="16"/>
+  <object id="14" type="collision" x="16" y="80" width="112" height="32"/>
+  <object id="17" type="collision" x="192" y="64" width="16" height="16"/>
+  <object id="18" type="collision" x="256" y="48" width="16" height="160"/>
+  <object id="20" type="collision" x="80" y="48" width="16" height="32"/>
+  <object id="21" type="collision" x="32" y="32" width="16" height="32"/>
+  <object id="22" type="collision" x="224" y="32" width="16" height="32"/>
+  <object id="23" type="collision" x="32" y="112" width="32" height="16"/>
+  <object id="24" type="collision" x="96" y="112" width="32" height="16"/>
+  <object id="46" type="collision" x="0" y="80" width="16" height="160"/>
+  <object id="50" type="collision" x="240" y="256" width="16" height="48"/>
+  <object id="51" type="collision" x="256" y="256" width="32" height="16"/>
+  <object id="57" type="collision" x="112" y="272" width="16" height="32"/>
+  <object id="63" type="collision" x="32" y="256" width="48" height="32"/>
+ </objectgroup>
  <objectgroup color="#ffff00" id="4" name="Events">
   <object id="1" name="Teleport to Flower City" type="event" x="128" y="304" width="48" height="16">
    <properties>
@@ -67,7 +95,7 @@
     <property name="cond2" value="not variable_set nimrodtru:yes"/>
    </properties>
   </object>
-  <object id="39" name="Talk Guard" type="event" x="96" y="304" width="16" height="16">
+  <object id="39" name="Talk Guard" type="event" x="96" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_nimrod_guard1"/>
     <property name="behav1" value="talk spyder_nimrod_jake"/>
@@ -142,7 +170,6 @@
     <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
-  <object id="49" type="collision" x="32" y="256" width="48" height="32"/>
   <object id="52" name="Environment" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:interior"/>
@@ -226,27 +253,99 @@
     <property name="cond1" value="not music_playing music_10_empire"/>
    </properties>
   </object>
- </objectgroup>
- <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="3" type="collision" x="0" y="0" width="288" height="32"/>
-  <object id="6" type="collision" x="16" y="208" width="96" height="32"/>
-  <object id="7" type="collision" x="96" y="240" width="16" height="64"/>
-  <object id="8" type="collision" x="176" y="208" width="16" height="112"/>
-  <object id="9" type="collision" x="192" y="208" width="80" height="32"/>
-  <object id="11" type="collision" x="176" y="80" width="80" height="32"/>
-  <object id="12" type="collision" x="176" y="112" width="32" height="16"/>
-  <object id="13" type="collision" x="224" y="112" width="32" height="16"/>
-  <object id="14" type="collision" x="16" y="80" width="112" height="32"/>
-  <object id="17" type="collision" x="192" y="64" width="16" height="16"/>
-  <object id="18" type="collision" x="256" y="48" width="16" height="160"/>
-  <object id="20" type="collision" x="80" y="48" width="16" height="32"/>
-  <object id="21" type="collision" x="32" y="32" width="16" height="32"/>
-  <object id="22" type="collision" x="224" y="32" width="16" height="32"/>
-  <object id="23" type="collision" x="32" y="112" width="32" height="16"/>
-  <object id="24" type="collision" x="96" y="112" width="32" height="16"/>
-  <object id="46" type="collision" x="0" y="80" width="16" height="160"/>
-  <object id="50" type="collision" x="240" y="256" width="16" height="48"/>
-  <object id="51" type="collision" x="256" y="256" width="32" height="16"/>
-  <object id="57" type="collision" x="112" y="272" width="16" height="32"/>
+  <object id="64" name="Flashback Xeon" type="event" x="112" y="112" width="16" height="16">
+   <properties>
+    <property name="act01" value="lock_controls"/>
+    <property name="act03" value="set_layer 102:51:0:128"/>
+    <property name="act04" value="translated_dialog spyder_xeon_creation_trigger_yes"/>
+    <property name="act05" value="camera_position 9,8"/>
+    <property name="act10" value="pathfind spyder_nimrod_elara,9,8"/>
+    <property name="act11" value="char_face spyder_nimrod_elara,up"/>
+    <property name="act12" value="create_npc spyder_nimrod_zircon,10,15"/>
+    <property name="act13" value="pathfind spyder_nimrod_zircon,10,7"/>
+    <property name="act14" value="char_face spyder_nimrod_zircon,left"/>
+    <property name="act15" value="create_npc spyder_nimrod_argon,8,15"/>
+    <property name="act16" value="pathfind spyder_nimrod_argon,8,7"/>
+    <property name="act17" value="char_face spyder_nimrod_argon,right"/>
+    <property name="act18" value="create_npc spyder_nimrod_xeon,9,3"/>
+    <property name="act19" value="translated_dialog spyder_xeon_creation1"/>
+    <property name="act20" value="pathfind spyder_nimrod_xeon,9,7"/>
+    <property name="act32" value="translated_dialog spyder_xeon_creation2"/>
+    <property name="act33" value="translated_dialog spyder_xeon_creation3"/>
+    <property name="act34" value="translated_dialog spyder_xeon_creation4"/>
+    <property name="act35" value="translated_dialog spyder_xeon_creation5"/>
+    <property name="act36" value="translated_dialog spyder_xeon_creation6"/>
+    <property name="act37" value="translated_dialog spyder_xeon_creation7"/>
+    <property name="act38" value="translated_dialog spyder_xeon_creation8"/>
+    <property name="act39" value="translated_dialog spyder_xeon_creation9"/>
+    <property name="act40" value="translated_dialog spyder_xeon_creation10"/>
+    <property name="act41" value="translated_dialog spyder_xeon_creation11"/>
+    <property name="act50" value="pathfind spyder_nimrod_argon,8,15"/>
+    <property name="act51" value="remove_npc spyder_nimrod_argon"/>
+    <property name="act52" value="pathfind spyder_nimrod_zircon,10,15"/>
+    <property name="act53" value="remove_npc spyder_nimrod_zircon"/>
+    <property name="act54" value="pathfind spyder_nimrod_xeon,9,3"/>
+    <property name="act55" value="remove_npc spyder_nimrod_xeon"/>
+    <property name="act56" value="pathfind spyder_nimrod_elara,4,11"/>
+    <property name="act60" value="set_variable xeon_creation:done"/>
+    <property name="act61" value="set_layer"/>
+    <property name="act62" value="unlock_controls"/>
+    <property name="act63" value="set_variable flashback:off"/>
+    <property name="act64" value="camera_position"/>
+    <property name="cond1" value="is variable_set xeon_creation:yes"/>
+   </properties>
+  </object>
+  <object id="65" name="Teleport to Nimrod Room" type="event" x="0" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_nimrod_room.tmx,8,3,0.3"/>
+    <property name="act2" value="char_face player,left"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="66" name="Create Dr Elara" type="event" x="64" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_nimrod_elara,4,11"/>
+    <property name="cond1" value="not char_exists spyder_nimrod_elara"/>
+   </properties>
+  </object>
+  <object id="67" name="Talk Elara" type="event" x="80" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_xeon_creation_trigger"/>
+    <property name="act2" value="translated_dialog_choice no:yes,xeon_creation"/>
+    <property name="behav1" value="talk spyder_nimrod_elara"/>
+    <property name="cond1" value="not variable_set xeon_creation"/>
+   </properties>
+  </object>
+  <object id="68" name="Talk Elara Yes" type="event" x="96" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_xeon_creation_trigger_after"/>
+    <property name="behav1" value="talk spyder_nimrod_elara"/>
+    <property name="cond1" value="is variable_set xeon_creation:done"/>
+   </properties>
+  </object>
+  <object id="69" name="Talk Elara No" type="event" x="64" y="208" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_xeon_creation_trigger_no"/>
+    <property name="behav1" value="talk spyder_nimrod_elara"/>
+    <property name="cond1" value="is variable_set xeon_creation:no"/>
+   </properties>
+  </object>
+  <object id="70" name="PC Email" type="event" x="64" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_pc_message1"/>
+    <property name="act2" value="translated_dialog spyder_nimrod_pc_message2"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="71" name="Notes" type="event" x="32" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_nimrod_note1"/>
+    <property name="act2" value="translated_dialog spyder_nimrod_note2"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

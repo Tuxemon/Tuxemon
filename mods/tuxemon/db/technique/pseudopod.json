@@ -3,12 +3,12 @@
   "accuracy": 1,
   "animation": "snake_right",
   "effects": [
-    "give festering,target",
+    "give festering,enemy_monster",
     "damage"
   ],
   "flip_axes": "x",
   "is_fast": false,
-  "potency": 0.0,
+  "potency": 0.7,
   "power": 1.25,
   "range": "reach",
   "recharge": 1,

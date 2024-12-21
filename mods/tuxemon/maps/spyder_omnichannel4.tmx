@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="46">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="14" height="21" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="50">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="omnichannel4"/>
-  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" name="Office_interiors_shadowless_16x16" tilewidth="16" tileheight="16" tilecount="528" columns="22">
   <image source="../gfx/tilesets/Office_interiors_shadowless_16x16.png" width="352" height="384"/>
@@ -29,7 +29,7 @@
  </layer>
  <layer id="5" name="Tile Layer 3" width="14" height="21">
   <data encoding="base64" compression="zlib">
-   eAG9kr1qQkEQhdc/tE1SKOQJzCtETR4gChprITbeiCHetDGFhVprY5XHSWNvGfAVJGKdb8gsDHK3UDADhzN77jmzd9l1LlzpjHMZEKpyyrkbIJXPOlcAUpdkrsBa16J9mf6OzL3miugl8028oWqSaWku5EnSe2SiE3K3DKuAKqjp4Hd4pH2ImnxogUfQVtMcXmgvlON/Bpz7xZy9hx6BZ9AHtqrpv9U1uRGZD5Ozvob6vOZzfm35Aa9Hx/Si1Q/m2Ny5+lcGx4rhEZtM8M4U0yNy57Ruef+rhDcXqzY2mz9xl129zxS8ScjN0L7JLE0uxvumuQt4j0felS/pP8EPws6LAZZ35cv2Xvtv/gXUmh65
+   eAG9k71qAlEUhK9/mFYtFHyC5BWixgeIgj91IGk0aeLamsZCrWNj5ePY2FsKvoIo1n4Hz4WD2RUM6IFx5s7O3N3i6Fz0xBPOJUDUPMacewIy6aRzD0AmSycHVnoWb2H0C52q9vL4BfNMslHToNPUXlQmzO/Q6f6j98xlJVAGFb14AP+otjQ0hwa6CVqgrf4vPFUtlOJ71vDMeB10F3yCL+OLLMdPRpHeDrk/Hf/81jXnH/ieP1t+JevxZrR4tbN7bO9W+puLA0XvipeMyE4U4yt6t4xu2f9lyM4F6g3Ny9/Z/w/9D8TgTUhvgne+LwHZvvYy8IGM7JUf0XNwaV98VvbKj9XeuzcfAd/cILM=
   </data>
  </layer>
  <layer id="6" name="Tile Layer 4" width="14" height="21">
@@ -139,6 +139,48 @@
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
     <property name="cond3" value="is has_item player,spyder_pass"/>
+   </properties>
+  </object>
+  <object id="46" name="Intro 2" type="event" x="192" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_omnichannel_intro"/>
+    <property name="act2" value="translated_dialog_choice yes:no,cut_scenes2"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set cut_scenes2:yes"/>
+   </properties>
+  </object>
+  <object id="47" name="Watch 2" type="event" x="176" y="256" width="16" height="16">
+   <properties>
+    <property name="act10" value="change_bg gradient_blue,ceo,template"/>
+    <property name="act25" value="translated_dialog spyder_postintro00"/>
+    <property name="act26" value="translated_dialog spyder_postintro01"/>
+    <property name="act27" value="translated_dialog spyder_postintro02"/>
+    <property name="act30" value="change_bg"/>
+    <property name="act31" value="set_variable cut_scenes2:null"/>
+    <property name="cond1" value="is variable_set cut_scenes2:yes"/>
+   </properties>
+  </object>
+  <object id="48" name="Intro 1" type="event" x="192" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_omnichannel_intro"/>
+    <property name="act2" value="translated_dialog_choice yes:no,cut_scenes1"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set cut_scenes1:yes"/>
+   </properties>
+  </object>
+  <object id="49" name="Watch 1" type="event" x="176" y="96" width="16" height="16">
+   <properties>
+    <property name="act10" value="change_bg gradient_blue,ceo,template"/>
+    <property name="act20" value="translated_dialog spyder_preintro00"/>
+    <property name="act21" value="translated_dialog spyder_preintro01"/>
+    <property name="act22" value="translated_dialog spyder_preintro02"/>
+    <property name="act23" value="translated_dialog spyder_preintro03"/>
+    <property name="act24" value="translated_dialog spyder_preintro04"/>
+    <property name="act30" value="change_bg"/>
+    <property name="act31" value="set_variable cut_scenes1:null"/>
+    <property name="cond1" value="is variable_set cut_scenes1:yes"/>
    </properties>
   </object>
  </objectgroup>

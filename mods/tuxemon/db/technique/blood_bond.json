@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "sparks_red",
   "effects": [
-    "give lifeleech,both",
+    "give lifeleech,enemy_monster:own_monster",
     "damage"
   ],
   "flip_axes": "",

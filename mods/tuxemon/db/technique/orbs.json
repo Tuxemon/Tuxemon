@@ -4,7 +4,7 @@
   "animation": "metallic_absorb",
   "effects": [
     "damage",
-    "switch target,random"
+    "switch enemy_monster,random"
   ],
   "flip_axes": "",
   "is_fast": false,

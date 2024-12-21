@@ -13,10 +13,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class WastingEffectResult(CondEffectResult):
-    pass
-
-
 @dataclass
 class WastingEffect(CondEffect):
     """
@@ -31,17 +27,16 @@ class WastingEffect(CondEffect):
     name = "wasting"
     divisor: int
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> WastingEffectResult:
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         done: bool = False
         if condition.phase == "perform_action_status" and not fainted(target):
             damage = (target.hp // self.divisor) * condition.nr_turn
-            target.current_hp -= damage
+            target.current_hp = max(0, target.current_hp - damage)
             done = True
-        return {
-            "success": done,
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+        return CondEffectResult(
+            name=condition.name,
+            success=done,
+            conditions=[],
+            techniques=[],
+            extras=[],
+        )

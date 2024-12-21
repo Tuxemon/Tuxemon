@@ -11,6 +11,7 @@
   "sort": "utility",
   "sprite": "gfx/items/tuxeball_water.png",
   "category": "capture",
+  "cost": 250,
   "usable_in": [
     "MainCombatMenuState"
   ],

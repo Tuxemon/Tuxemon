@@ -3,19 +3,19 @@
     "category": "threat",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "electrical_storm"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "wall_of_steel"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "shrapnel"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "amnesia"
         }
     ],

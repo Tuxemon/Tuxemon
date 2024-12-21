@@ -3,15 +3,15 @@
     "category": "comet_snake",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "fire_claw"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "wall_fire"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "venom"
         },
         {
@@ -19,11 +19,11 @@
             "technique": "spit_poison"
         },
         {
-            "level_learned": 14,
+            "level_learned": 13,
             "technique": "fire_ball"
         },
         {
-            "level_learned": 18,
+            "level_learned": 19,
             "technique": "flamethrower"
         }
     ],

@@ -171,12 +171,7 @@ class ShopMenuState(PygameMenuState):
     def add_sell_menu_items(
         self, menu: pygame_menu.Menu, buyer: NPC, seller: NPC, economy: Economy
     ) -> None:
-        inventory = [
-            item
-            for item in seller.items
-            for t in economy.model.items
-            if item.slug == t.name
-        ]
+        inventory = [item for item in seller.items if item.cost is not None]
 
         # required because the max() below will fail if inv empty
         if not inventory:
@@ -184,11 +179,12 @@ class ShopMenuState(PygameMenuState):
 
         # when the player sells, sort based on cost
         inventory = sorted(
-            inventory, key=lambda x: economy.lookup_item_cost(x.slug)
+            inventory, key=lambda x: x.cost if x.cost is not None else 0
         )
 
         for item in inventory:
-            self.cost = self.economy.lookup_item_cost(item.slug)
+            assert item.cost
+            self.cost = item.cost
             if item.quantity != INFINITE_ITEMS:
                 label = f"${self.cost:3} {item.name} x {item.quantity}"
             else:
@@ -202,12 +198,6 @@ class ShopMenuState(PygameMenuState):
                 font_size=self.font_size_small,
                 align=locals.ALIGN_CENTER,
                 selection_effect=HighlightSelection(),
-            )
-            menu.add.label(
-                item.description,
-                font_size=self.font_size_small,
-                align=locals.ALIGN_CENTER,
-                wordwrap=True,
             )
 
     def on_buy(self, item: Item) -> None:

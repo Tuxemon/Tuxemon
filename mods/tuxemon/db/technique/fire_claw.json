@@ -3,7 +3,7 @@
   "accuracy": 0.75,
   "animation": "slash_power",
   "effects": [
-    "give burn,target",
+    "give burn,enemy_monster",
     "damage"
   ],
   "flip_axes": "x",

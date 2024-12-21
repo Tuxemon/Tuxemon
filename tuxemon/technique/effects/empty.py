@@ -12,36 +12,28 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class EnhanceEffectResult(TechEffectResult):
+class EmptyEffectResult(TechEffectResult):
     pass
 
 
 @dataclass
-class EnhanceEffect(TechEffect):
+class EmptyEffect(TechEffect):
     """
-    Apply "damage" for special range. Allows to show the animation and
-    avoids a constant failure.
-
-    Parameters:
-        user: The Monster object that used this technique.
-        target: The Monster object that we are using this technique on.
-
-    Returns:
-        Dict summarizing the result.
-
+    "This effect lets the technique show the animation, but it also prevents
+    the technique from failing. Without it, the technique would automatically
+    fail, because the effect list is empty [] and success is False by default.
     """
 
-    name = "enhance"
+    name = "empty"
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> EnhanceEffectResult:
+    ) -> EmptyEffectResult:
         combat = tech.combat_state
-        value = combat._random_tech_hit.get(user, 0.0) if combat else 0.0
-        hit = tech.accuracy >= value
-        tech.hit = hit
+        assert combat
+        tech.hit = tech.accuracy >= combat._random_tech_hit.get(user, 0.0)
         return {
-            "success": hit,
+            "success": tech.hit,
             "damage": 0,
             "element_multiplier": 0.0,
             "should_tackle": False,

@@ -39,15 +39,15 @@ class ConfusedEffect(CondEffect):
 
         extra: list[str] = []
         tech: list[Technique] = []
-        player = target.owner
-        assert player
-        if CONFUSED_KEY in player.game_variables:
-            player.game_variables[CONFUSED_KEY] = "off"
+        combat = condition.combat_state
+        assert combat
+        if CONFUSED_KEY in combat._combat_variables:
+            combat._combat_variables[CONFUSED_KEY] = "off"
 
         if condition.phase == "pre_checking" and random.random() > self.chance:
             user = condition.link
             assert user
-            player.game_variables[CONFUSED_KEY] = "on"
+            combat._combat_variables[CONFUSED_KEY] = "on"
             available_techniques = _get_available_techniques(user)
             if available_techniques:
                 chosen_technique = random.choice(available_techniques)
@@ -59,10 +59,10 @@ class ConfusedEffect(CondEffect):
 
         if (
             condition.phase == "perform_action_tech"
-            and player.game_variables[CONFUSED_KEY] == "on"
+            and combat._combat_variables[CONFUSED_KEY] == "on"
         ):
             replacement = Technique()
-            slug = player.game_variables.get("action_tech", "skip")
+            slug = combat._combat_variables.get("action_tech", "skip")
             replacement.load(slug)
             extra = _get_extra_message(target, replacement)
 

@@ -10,6 +10,7 @@
   "sort": "utility",
   "sprite": "gfx/items/peace_lily.png",
   "category": "morph",
+  "cost": 2000,
   "usable_in": [
     "WorldState"
   ],

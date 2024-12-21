@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from tuxemon.combat import get_target_monsters
 from tuxemon.db import ElementType
 from tuxemon.event.conditions.common import CommonCondition
 from tuxemon.prepare import RECHARGE_RANGE
@@ -24,17 +25,18 @@ class CoolDownEffect(TechEffect):
     """
     CoolDown is an effect that modifies the next_use value of a monster's
     techniques, delaying their availability within a specified recharge range.
-    This effect can be applied to either the user's monster or the target
-    monster, depending on the objective.
 
-    The effect targets specific techniques based on the provided parameter
-    and value, where the parameter is a Technique attribute (e.g., category,
-    range) and the value is the corresponding attribute value (e.g., 'animal'
-    for category, 'special' for sort).
+    Parameters:
+        objectives: The targets (e.g. own_monster, enemy_monster, etc.), if
+            single "enemy_monster" or "enemy_monster:own_monster"
+        next_use: The Monster object that we are using this technique on.
+        parameter: The Technique attribute to check (e.g. category, range, etc.)
+        value: The value is the corresponding attribute value (e.g. animal for
+            category)
     """
 
     name = "cooldown"
-    objective: str
+    objectives: str
     next_use: int
     parameter: str
     value: str
@@ -48,11 +50,9 @@ class CoolDownEffect(TechEffect):
                 f"{self.name}: {self.next_use} must be between {RECHARGE_RANGE}"
             )
 
-        tech.hit = tech.accuracy >= (
-            tech.combat_state._random_tech_hit.get(user, 0.0)
-            if tech.combat_state
-            else 0.0
-        )
+        combat = tech.combat_state
+        assert combat
+        tech.hit = tech.accuracy >= combat._random_tech_hit.get(user, 0.0)
         if not tech.hit:
             return {
                 "success": False,
@@ -62,19 +62,9 @@ class CoolDownEffect(TechEffect):
                 "extra": None,
             }
 
-        monster = user if self.objective == "user" else target
-        moves_to_update = monster.moves
-        combat = tech.combat_state
-        character = monster.owner
-        assert combat and character
-
-        if character.max_position > 1 and tech.target["enemy_team"]:
-            monsters = (
-                combat.monsters_in_play_left
-                if monster in combat.monsters_in_play_right
-                else combat.monsters_in_play_right
-            )
-            moves_to_update = [move for mon in monsters for move in mon.moves]
+        objectives = self.objectives.split(":")
+        monsters = get_target_monsters(objectives, tech, user, target)
+        moves_to_update = [move for mon in monsters for move in mon.moves]
 
         if self.parameter == "types":
             moves_to_update = [

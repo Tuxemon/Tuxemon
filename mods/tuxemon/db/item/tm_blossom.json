@@ -10,6 +10,7 @@
   "sort": "utility",
   "sprite": "gfx/items/tm_wood.png",
   "category": "technique",
+  "cost": 2500,
   "usable_in": [
     "WorldState"
   ],

@@ -3,7 +3,7 @@
   "accuracy": 0.75,
   "animation": "fireball_114",
   "effects": [
-    "give chargedup,target",
+    "give chargedup,enemy_monster",
     "damage"
   ],
   "flip_axes": "x",

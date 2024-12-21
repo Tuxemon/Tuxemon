@@ -11,6 +11,7 @@
   "sort": "utility",
   "sprite": "gfx/items/tuxeball_xero.png",
   "category": "capture",
+  "cost": 300,
   "usable_in": [
     "MainCombatMenuState"
   ],

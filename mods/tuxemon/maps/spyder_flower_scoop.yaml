@@ -47,13 +47,6 @@ events:
     x: 1
     y: 7
     type: "event"
-  Talk/Open Shop:
-    actions:
-    - translated_dialog spyder_scoop_welcome
-    - open_shop spyder_flowerscoop_jarod
-    behav:
-    - talk spyder_flowerscoop_jarod
-    type: "event"
   Flashback:
     actions:
     - lock_controls

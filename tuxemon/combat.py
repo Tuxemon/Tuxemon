@@ -21,6 +21,7 @@ from tuxemon.db import (
     PlagueType,
     SeenStatus,
     StatType,
+    TargetType,
 )
 from tuxemon.locale import T
 from tuxemon.technique.technique import Technique
@@ -348,6 +349,34 @@ def get_winners(loser: Monster, damages: list[DamageReport]) -> set[Monster]:
             if method == "xp_transmitter":
                 return set(alive_party(trainer))
     return winners
+
+
+def get_target_monsters(
+    targets: list[str], technique: Technique, user: Monster, target: Monster
+) -> list[Monster]:
+    """
+    Retrieves a list of monsters based on the provided targets and combat state.
+
+    Parameters:
+        targets: A list of targets to retrieve monsters for (own_monster, etc.).
+        technique: The technique object containing the combat state.
+        user: The monster initiating the combat.
+        target: The target monster in the combat.
+
+    Returns:
+        A list of monsters matching the provided targets.
+
+    Raises:
+        ValueError: If an objective is not a valid TargetType.
+    """
+    combat = technique.combat_state
+    assert combat
+    monsters = []
+    for objective in targets:
+        if objective not in list(TargetType):
+            raise ValueError(f"{objective} isn't among {list(TargetType)}")
+        monsters.extend(combat.get_targets_from_map(objective, user, target))
+    return monsters
 
 
 def battlefield(

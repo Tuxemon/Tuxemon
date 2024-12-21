@@ -3,9 +3,8 @@
   "accuracy": 0.6,
   "animation": "shield_fire",
   "effects": [
-    "give elementalshield,user",
-    "give burn,target",
-    "enhance"
+    "give elementalshield,own_monster",
+    "give burn,enemy_monster"
   ],
   "flip_axes": "",
   "is_fast": false,

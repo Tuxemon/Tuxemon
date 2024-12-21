@@ -197,6 +197,15 @@ class Comparison(str, Enum):
     not_equals = "not_equals"
 
 
+class TargetType(str, Enum):
+    enemy_monster = "enemy_monster"
+    own_monster = "own_monster"
+    enemy_team = "enemy_team"
+    own_team = "own_team"
+    enemy_trainer = "enemy_trainer"
+    own_trainer = "own_trainer"
+
+
 # TODO: Automatically generate state enum through discovery
 State = Enum(
     "State",
@@ -232,7 +241,7 @@ class ItemBehaviors(BaseModel):
 
 class ItemModel(BaseModel):
     model_config = ConfigDict(title="Item")
-    slug: str = Field(..., description="Slug to use")
+    slug: str = Field(..., description="The slug of the item")
     use_item: str = Field(
         ...,
         description="Slug to determine which text is displayed when this item is used",
@@ -264,14 +273,19 @@ class ItemModel(BaseModel):
     )
     flip_axes: Literal["", "x", "y", "xy"] = Field(
         "",
-        description="Axes along which technique animation should be flipped",
+        description="Axes along which item animation should be flipped",
     )
     animation: Optional[str] = Field(
-        None, description="Animation to play for this technique"
+        None, description="Animation to play for this item"
     )
     world_menu: tuple[int, str, str] = Field(
         None,
         description="Item adds to World Menu a button (position, label -inside the PO -,state, eg. 3:nu_phone:PhoneState)",
+    )
+    cost: Optional[int] = Field(
+        None,
+        description="The standard cost of the item.",
+        gt=0,
     )
 
     # Validate fields that refer to translated text

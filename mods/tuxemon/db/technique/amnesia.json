@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "sparks_gold_alt",
   "effects": [
-    "give exhausted,both",
+    "give exhausted,enemy_monster:own_monster",
     "damage"
   ],
   "flip_axes": "",

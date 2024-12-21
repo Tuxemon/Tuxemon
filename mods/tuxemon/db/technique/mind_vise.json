@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "amethyst",
   "effects": [
-    "give stuck,target",
+    "give stuck,enemy_monster",
     "damage"
   ],
   "flip_axes": "",

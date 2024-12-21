@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="27">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="13" height="11" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="28">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="shop"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="leather_scoop"/>
-  <property name="map_type" value="shop"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" source="../gfx/tilesets/core_indoor_floors.tsx"/>
@@ -28,19 +28,20 @@
  </layer>
  <layer id="4" name="Above Player" width="13" height="11">
   <data encoding="base64" compression="zlib">
-   eAFjYKAveKVKun2caqTrobYOb3VME2tUGBjmATElAJu5lJgH0quEhCk1C59+AIjjA+s=
+   eAFjYKAveKVKun2caqTrmadCuh58OrzVMWVrgHZQag82czFtIk1ECagchknTSZpqAJaWBK0=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
   <object id="12" type="collision" x="0" y="160" width="64" height="16"/>
-  <object id="13" type="collision" x="0" y="0" width="48" height="128"/>
-  <object id="14" type="collision" x="48" y="0" width="160" height="48"/>
+  <object id="13" type="collision" x="32" y="48" width="16" height="80"/>
+  <object id="14" type="collision" x="48" y="32" width="16" height="16"/>
   <object id="18" type="collision" x="128" y="160" width="16" height="16"/>
   <object id="22" type="collision" x="80" y="112" width="32" height="32"/>
   <object id="23" type="collision" x="144" y="80" width="32" height="32"/>
   <object id="24" type="collision" x="160" y="128" width="32" height="32"/>
   <object id="25" type="collision" x="64" y="48" width="96" height="16"/>
   <object id="26" type="collision" x="176" y="48" width="32" height="16"/>
+  <object id="27" type="collision" x="0" y="112" width="32" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="15" name="Teleport to Leather Town" type="event" x="80" y="160" width="32" height="16">

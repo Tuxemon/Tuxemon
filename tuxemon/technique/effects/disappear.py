@@ -37,9 +37,9 @@ class DisappearEffect(TechEffect):
 
         # Get the user's sprite
         user_sprite = combat._monster_sprite_map.get(user, None)
-        if user_sprite and user_sprite.visible:
+        if user_sprite and user_sprite.is_visible():
             # Make the user disappear
-            user_sprite.visible = False
+            user_sprite.toggle_visible()
             user.out_of_range = True
             # Create a new technique to land the user
             land_technique = Technique()

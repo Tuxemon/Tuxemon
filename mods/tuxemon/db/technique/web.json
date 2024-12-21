@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "snake_right",
   "effects": [
-    "give grabbed,target",
+    "give grabbed,enemy_monster",
     "damage"
   ],
   "flip_axes": "x",

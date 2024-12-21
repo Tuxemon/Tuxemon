@@ -3,8 +3,7 @@
   "accuracy": 1,
   "animation": "x_attack",
   "effects": [
-    "give lockdown,target",
-    "enhance"
+    "give lockdown,enemy_monster"
   ],
   "flip_axes": "",
   "is_fast": false,

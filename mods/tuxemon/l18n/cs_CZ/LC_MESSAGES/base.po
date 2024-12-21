@@ -1054,7 +1054,7 @@ msgstr "Profesor: Hurá. Přesně ten člověk se kterým jsem se chtěl setkat.
 "Slyšel jsem že se chceš učit o Tuxemonech.\n"
 "Tuxemoni jsou malá zvířata, někteří je nazývají monstry, se kterými se přátelíme a používáme je k boji s dalšími Tuxemony.\n"
 "Napadlo mě, že jsem zrovna získal tři nové Tuxemony pro svůj výzkum. Jednoho bych ti rád dal.\n"
-"Který by se ti líbil?\n"
+"Který by se ti líbil?"
 
 msgid "professor_dialog6.1"
 msgstr "Profesor: Skvělá volba! Hydrone je vodní tuxemon"
@@ -1147,7 +1147,7 @@ msgstr "Získejte kopeček v obchodě Scoop!"
 
 msgid "Cotton_Town_Sign"
 msgstr "Welcome to Cotton Town: A Growing Force\n"
-"^ Cotton Town --- Route 1 v\n"
+"^ Cotton Town --- Route 1 v"
 
 msgid "column1"
 msgstr "Vzácný a starobylý sloup. To bývalo součástí chrámu."
@@ -1158,7 +1158,7 @@ msgstr ""
 
 msgid "cityparksign"
 msgstr "Welcome to City Park: A Taste of the Wild\n"
-"^ City Park --- Route 2 v\n"
+"^ City Park --- Route 2 v"
 
 msgid "route2speech"
 msgstr "EEK!!!"
@@ -1209,14 +1209,14 @@ msgid "iamknight3"
 msgstr "What are you doing here? You know that only knights are allowed through city park.\n"
 "... ... ... Hmm... So you're trying to get to Leather Town...\n"
 "Well, I guess you could enter the challenge if you want. The only problem is that you'll need a Tuxemon...\n"
-"I'm sure we can lend you one. Are you up for the challenge?\n"
+"I'm sure we can lend you one. Are you up for the challenge?"
 
 msgid "sorry"
 msgstr "Okay, well... when you're ready, I'll still be here..."
 
 msgid "splendid"
 msgstr "You will? Splendid! Now, to find you a suitable Tuxemon...\n"
-"... ... You already have a Tuxemon? Well, I'm sure that you'd be able to handle yourself well...\n"
+"... ... You already have a Tuxemon? Well, I'm sure that you'd be able to handle yourself well..."
 
 msgid "cottonnurse_dialog"
 msgstr "Welcome to the Cotton Town Tuxecenter!"
@@ -1224,7 +1224,7 @@ msgstr "Welcome to the Cotton Town Tuxecenter!"
 msgid "tabanurse_dialog"
 msgstr ""
 "Vítejte v ${{map_name}} Tuxecenter!\n"
-"Chcete vyléčit své Tuxemon?\n"
+"Chcete vyléčit své Tuxemon?"
 
 msgid "okaythen"
 msgstr "OK! Jen mi dej vteřinu a já uzdravím tvé Tuxemon!"
@@ -1818,7 +1818,7 @@ msgstr ""
 "DĚKUJEME, ŽE JSTE SI NALADILI TOTO POVINNÉ OZNÁMENÍ."
 
 msgid "quicklyknight2"
-msgstr "Omnichannel ovládají dva lidé. Deska je vtip.\n"
+msgstr "Omnichannel ovládají dva lidé. Deska je vtip."
 
 msgid "yesmaam"
 msgstr "Ano, madam."

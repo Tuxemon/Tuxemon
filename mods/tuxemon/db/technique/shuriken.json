@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "explosion_small",
   "effects": [
-    "give diehard,user",
+    "give diehard,own_monster",
     "damage"
   ],
   "flip_axes": "",

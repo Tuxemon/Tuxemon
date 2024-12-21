@@ -40,7 +40,7 @@ TimedCallable = tuple[partial[None], float]
 
 
 def toggle_visible(sprite: Sprite) -> None:
-    sprite.visible = not sprite.visible
+    sprite.toggle_visible()
 
 
 def scale_area(area: tuple[int, int, int, int]) -> Rect:

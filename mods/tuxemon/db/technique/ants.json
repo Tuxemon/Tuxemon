@@ -3,8 +3,7 @@
   "accuracy": 1,
   "animation": "slash_power",
   "effects": [
-    "enhance",
-    "switch target,earth"
+    "switch enemy_monster,earth"
   ],
   "flip_axes": "",
   "is_fast": false,

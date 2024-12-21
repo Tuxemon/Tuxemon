@@ -3,7 +3,7 @@
   "accuracy": 0.6,
   "animation": "smokebomb_puff_128",
   "effects": [
-    "give poison,target",
+    "give poison,enemy_monster",
     "splash 2"
   ],
   "flip_axes": "",

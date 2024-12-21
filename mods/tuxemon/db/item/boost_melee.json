@@ -7,6 +7,7 @@
   "sort": "utility",
   "sprite": "gfx/items/boost_melee.png",
   "category": "stats",
+  "cost": 550,
   "usable_in": [
     "MainCombatMenuState"
   ],

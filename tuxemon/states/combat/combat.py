@@ -172,6 +172,7 @@ class CombatState(CombatAnimations):
         self._run: bool = False
         self._post_animation_task: Optional[Task] = None
         self._xp_message: Optional[str] = None
+        self._max_positions: dict[NPC, int] = {}
         self._status_icon_cache: dict[
             tuple[str, tuple[float, float]], Sprite
         ] = {}
@@ -322,14 +323,7 @@ class CombatState(CombatAnimations):
         elif phase == "housekeeping phase":
             # this will wait for players to fill battleground positions
             for player in self.active_players:
-                if len(alive_party(player)) == 1:
-                    self.battle_mode = "single"
-                else:
-                    self.battle_mode = "double"
-                self.max_positions[player] = self.num_monsters
-                positions_available = self.max_positions[player] - len(
-                    self.monsters_in_play[player]
-                )
+                positions_available = self.update_player_positions(player)
                 if positions_available:
                     return None
             return "decision phase"
@@ -578,6 +572,37 @@ class CombatState(CombatAnimations):
         state.on_menu_selection = add  # type: ignore[assignment]
         state.escape_key_exits = False
 
+    def update_player_positions(self, player: NPC) -> int:
+        """
+        Updates the maximum positions for a player and returns the number of
+        available positions.
+
+        This function checks if the player has only one monster in their party,
+        and if so, sets the maximum positions to 1. If the player has more than
+        one monster in their party, it sets the maximum positions to 2 if the
+        battle is a double battle, and 1 otherwise. It also updates the feet
+        position of the monster if the battle is a double battle and the player
+        has only one monster in play.
+
+        Parameters:
+            player: The player to update the positions for.
+
+        Returns:
+            The number of available positions for the player.
+        """
+        if len(alive_party(player)) == 1:
+            self._max_positions[player] = 1
+            if self.is_double:
+                monster = self.monsters_in_play[player][0]
+                new_feet = self.get_feet_position(player, monster, False)
+                self.update_monster_feet(monster, new_feet)
+        else:
+            if self.is_double:
+                self._max_positions[player] = 2
+            else:
+                self._max_positions[player] = 1
+        return self._max_positions[player] - len(self.monsters_in_play[player])
+
     def fill_battlefield_positions(self, ask: bool = False) -> None:
         """
         Check the battlefield for unfilled positions and send out monsters.
@@ -591,14 +616,7 @@ class CombatState(CombatAnimations):
 
         # TODO: integrate some values for different match types
         for player in self.active_players:
-            if len(alive_party(player)) == 1:
-                self.battle_mode = "single"
-            else:
-                self.battle_mode = "double"
-            self.max_positions[player] = self.num_monsters
-            positions_available = self.max_positions[player] - len(
-                self.monsters_in_play[player]
-            )
+            positions_available = self.update_player_positions(player)
             if positions_available:
                 available = get_awake_monsters(
                     player, self.monsters_in_play[player], self._turn
@@ -1426,7 +1444,6 @@ class CombatState(CombatAnimations):
     def clean_combat(self) -> None:
         """Clean combat."""
         for player in self.players:
-            self.battle_mode = "single"
             for mon in player.monsters:
                 # reset status stats
                 mon.set_stats()

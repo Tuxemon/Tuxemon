@@ -697,7 +697,6 @@ class Monster:
             return
 
         self.load_from_db(save_data["slug"])
-        self.plague = save_data["plague"]
 
         self.moves = []
         for move in decode_moves(save_data.get("moves")):
@@ -713,6 +712,8 @@ class Monster:
                 self.instance_id = uuid.UUID(value)
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
                 setattr(self, key, value)
+            elif key == "plague" and value:
+                self.plague = value
 
         self.load_sprites()
 

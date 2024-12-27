@@ -1039,6 +1039,11 @@ class PartyMemberModel(BaseModel):
         ..., description="Experience required modifier", gt=0
     )
     gender: GenderType = Field(..., description="Gender of the monster")
+    variables: Optional[list[str]] = Field(
+        None,
+        description="List of variables that affect the presence of the monster.",
+        min_length=1,
+    )
 
     @field_validator("slug")
     def monster_exists(cls: PartyMemberModel, v: str) -> str:
@@ -1046,16 +1051,37 @@ class PartyMemberModel(BaseModel):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
+    @field_validator("variables")
+    def variables_exists(
+        cls: PartyMemberModel, v: Optional[Sequence[str]]
+    ) -> Optional[Sequence[str]]:
+        if v is None:
+            return v
+        return has.validate_variables(v)
+
 
 class BagItemModel(BaseModel):
     slug: str = Field(..., description="Slug of the item")
     quantity: int = Field(..., description="Quantity of the item")
+    variables: Optional[Sequence[str]] = Field(
+        None,
+        description="List of variables that affect the item.",
+        min_length=1,
+    )
 
     @field_validator("slug")
     def item_exists(cls: BagItemModel, v: str) -> str:
         if has.db_entry("item", v):
             return v
         raise ValueError(f"the item {v} doesn't exist in the db")
+
+    @field_validator("variables")
+    def variables_exists(
+        cls: BagItemModel, v: Optional[Sequence[str]]
+    ) -> Optional[Sequence[str]]:
+        if v is None:
+            return v
+        return has.validate_variables(v)
 
 
 class NpcTemplateModel(BaseModel):

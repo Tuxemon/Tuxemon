@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="18" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="76">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="18" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="88">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -24,7 +24,7 @@
  </layer>
  <layer id="3" name="Tile Layer 3" width="18" height="18">
   <data encoding="base64" compression="zlib">
-   eAHFlM0uBFEQhWtpNTObyYiwGWuEVyCWLHgDa54BQyJsRezQJJ5AvIfIvAJhgQVrX9GVnFRu+0kkKjnpqup7vr7VubndjtnKnNkqumub3f9Qj7LOiC6cTRhb6COfIEfbaA+d8j70NG72jF7QqPR75O6N8HyAdwftokuk0aJuow5yTkSJU7HmHF2gHFP0ptEMcs7hyKdKnOxtqr/bT5Mv97/izMvM4buR3kJhVl+X5zoRT3DOpLcmHO1nTnh/+/xvzhLzLcuMY8yez2GeaVH+j7/zeh3GRs3xM5/ncuYRZ16jShyv9/Ee1Bw/8yXOVeIosyn/C84x3y1xbtN+HrgfNHKtnNdZszek/zy8uZfra9lPn7tnsr5/wh/P7Mv1sOa8A+OsPww=
+   eAHFlDFqQkEQhqdMp40ook08gV7BYKmF3iB1PEPUBMS0Iumiz0BOIN4jhFwhEgu10Dr/mDfwM6w+BcGBn92d2f97O49lM2mRZkWkBf2kRBYnakn7BJEB5xGMDrSfFzGHulAfGqNuWhVE1tAGylE+i7l6LXTeg/cJeoY+IA6uKccixIngnULvjqEerilnePOvEMe+kTQmnSfJb/VjnCr1bPs/KXcX6FX3+b7eyGOcCeXuicN5zzHvueO1OXX016Ae8+jd30PfU43+j9Z0/QBGO+bonfd9KXOEO88ROY6uB/C+xBy98yHOzHGYeWh+Cc4rvhvifLnz/OJ94PBr5mzLIjuI/7l5fc6v53SeW7w9pfj9Mb+N3ufX3zHnD1UIQco=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="18" height="18">
@@ -351,6 +351,96 @@
     <property name="act3" value="set_monster_status"/>
     <property name="act4" value="translated_dialog spyder_output_nurse6"/>
     <property name="behav1" value="talk spyder_mansion_nurse"/>
+   </properties>
+  </object>
+  <object id="76" name="Letter 1" type="event" x="64" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_letter"/>
+    <property name="act2" value="translated_dialog_choice yes:no,mansion_letter1"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="77" name="Letter 2" type="event" x="80" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_letter"/>
+    <property name="act2" value="translated_dialog_choice yes:no,mansion_letter2"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="78" name="Letter 3" type="event" x="96" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_letter"/>
+    <property name="act2" value="translated_dialog_choice yes:no,mansion_letter3"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="79" name="Letter 4" type="event" x="176" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_letter"/>
+    <property name="act2" value="translated_dialog_choice yes:no,mansion_letter4"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="80" name="Letter 5" type="event" x="192" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_letter"/>
+    <property name="act2" value="translated_dialog_choice yes:no,mansion_letter5"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="81" name="Letter 6" type="event" x="208" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_letter"/>
+    <property name="act2" value="translated_dialog_choice yes:no,mansion_letter6"/>
+    <property name="cond1" value="is char_facing_tile player"/>
+    <property name="cond2" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="82" name="Letter 1 Yes" type="event" x="64" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_letter1"/>
+    <property name="act2" value="clear_variable mansion_letter1"/>
+    <property name="cond1" value="is variable_set mansion_letter1:yes"/>
+   </properties>
+  </object>
+  <object id="83" name="Letter 2 Yes" type="event" x="80" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_letter2"/>
+    <property name="act2" value="clear_variable mansion_letter2"/>
+    <property name="cond1" value="is variable_set mansion_letter2:yes"/>
+   </properties>
+  </object>
+  <object id="84" name="Letter 3 Yes" type="event" x="96" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_letter3"/>
+    <property name="act2" value="clear_variable mansion_letter3"/>
+    <property name="cond1" value="is variable_set mansion_letter3:yes"/>
+   </properties>
+  </object>
+  <object id="85" name="Letter 4 Yes" type="event" x="176" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_letter4"/>
+    <property name="act2" value="clear_variable mansion_letter4"/>
+    <property name="cond1" value="is variable_set mansion_letter4:yes"/>
+   </properties>
+  </object>
+  <object id="86" name="Letter 5 Yes" type="event" x="192" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_letter5"/>
+    <property name="act2" value="clear_variable mansion_letter5"/>
+    <property name="cond1" value="is variable_set mansion_letter5:yes"/>
+   </properties>
+  </object>
+  <object id="87" name="Letter 6 Yes" type="event" x="208" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_mansion_letter6"/>
+    <property name="act2" value="clear_variable mansion_letter6"/>
+    <property name="cond1" value="is variable_set mansion_letter6:yes"/>
    </properties>
   </object>
  </objectgroup>

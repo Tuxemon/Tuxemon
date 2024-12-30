@@ -29,13 +29,16 @@ class TranslatedDialogAction(EventAction):
     Script usage:
         .. code-block::
 
-            translated_dialog <text>[,avatar][,style]
+            translated_dialog <text>[,avatar][,position][,style]
 
     Script parameters:
         text: Text of the dialog.
         avatar: Monster avatar. If it is a number, the monster is the
             corresponding monster slot in the player's party.
             If it is a string, we're referring to a monster by name.
+        position: Position of the dialog box. Can be 'top', 'bottom', 'center',
+            'topleft', 'topright', 'bottomleft', 'bottomright', 'right', 'left'.
+            Default 'bottom'.
         style: a predefined style in db/dialogue/dialogue.json
 
     """
@@ -43,6 +46,7 @@ class TranslatedDialogAction(EventAction):
     name = "translated_dialog"
     raw_parameters: str
     avatar: Union[int, str, None] = None
+    position: Optional[str] = None
     style: Optional[str] = None
 
     def start(self) -> None:
@@ -60,12 +64,14 @@ class TranslatedDialogAction(EventAction):
             "font_shadow": string_to_colorlike(style.font_shadow_color),
             "border": style.border_path,
         }
+        position = self.position if self.position else "bottom"
 
         open_dialog(
             session=self.session,
             text=key,
             avatar=avatar_sprite,
             colors=colors,
+            position=position,
         )
 
     def update(self) -> None:

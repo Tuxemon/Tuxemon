@@ -232,6 +232,8 @@ MAX_LOCKER: int = 30  # nr max of pc items
 # Items
 INFINITE_ITEMS: int = -1
 MAX_TYPES_BAG: int = 99  # eg 5 capture devices, 1 type and 5 items
+# Items menu
+MAX_MENU_ITEMS: int = 11
 
 # Monsters
 MAX_LEVEL: int = 999

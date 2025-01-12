@@ -8513,6 +8513,15 @@ msgstr "I fell down a crack in the Dragon's Cave and wound up here somehow.\n Sh
 msgid "spyder_cottontunnel_carlos2"
 msgstr "Hmm, perhaps I could have phrased that more nicely."
 
+msgid "spyder_cottontunnel_benden_nocap"
+msgstr "It... escaped! Drokoro is free! Perhaps...\n Perhaps it'll find a place where it can grow strong, where it can truly be itself. There is still hope."
+
+msgid "spyder_cottontunnel_benden_cap"
+msgstr "You... You captured it. Know this, though: the path to becoming a true Dragonrider has begun.\n You'll face many challenges, many trials.\n But if you're worthy, you'll find your own path to balance, your own way to protect this land."
+
+msgid "spyder_cottontunnel_benden1"
+msgstr "We, the Dragonriders, will retreat to Lion Mountain.\n There, we'll watch over this land from afar, hoping that the balance can somehow be restored."
+
 msgid "spyder_cottoncafe_hackerchat"
 msgstr "It's so cool that you're helping with Tuxepedia.\n  ... \n Is there a prize for adding all the tuxemon? \n Only the satisfaction of helping the human race, buddy."
 
@@ -10064,50 +10073,73 @@ msgstr "This is FUD Radio, DJ Worm here and my co-host, \"The Duke of Dead Air\"
 
 msgid "spyder_dragonscave_benden3"
 msgstr "What is this? These villains are trying to steal Drokoro! But why?"
+
 msgid "spyder_dragonscave_mallory3"
 msgstr "The Drokoro is ours! \n We got Shaft to dig it up from beneath Route 3, and we would have kept it if that infuriating kid hadn't interrupted our plans. \n It is time for the Pillars to combine their strength and rule this region outright! \n Too long have we let the Cathedral and the public tell us what can and cannot be done with Tuxemon. \n When we use Greenwash's fusion technology to combine this Drokoro with the killer robots built by Nimrod, we will be unstoppable! \n And the best part is, Omnichannel will tell the public that this is all in their best interests - and the public will believe them!"
+
 msgid "spyder_dragonscave_benden4"
 msgstr "Please, ${{name}}. If you can't stop these villains, all is lost."
+
 msgid "spyder_dragonscave_tomas1"
 msgstr "Once we each rode a dragon. That was long ago. But just recently a new-born dragon appeared above this island, and crawled into this cave."
+
 msgid "spyder_dragonscave_tomas2"
 msgstr "As you can see, the age of the dragons has passed. The hatchling dragon is our last hope."
+
 msgid "spyder_dragonscave_lessa1"
 msgstr "We stand guard over this, the last dragon. We don't know where it came from or why it hatched. We thought all dragons had hatched long ago."
+
 msgid "spyder_dragonscave_lessa2"
 msgstr "Maybe someone will come who has the power to defeat it."
+
 msgid "spyder_dragonscave_cailin1"
 msgstr "This is our last duty. Dragarbor is so very tired."
+
 msgid "spyder_dragonscave_cailin2"
 msgstr "Thank you."
+
 msgid "spyder_dragonscave_griffin1"
 msgstr "I wonder what it would be like to be swallowed by a dragon ..."
+
 msgid "spyder_dragonscave_griffin2"
 msgstr "Oh well - pobody's nerfect!"
+
 msgid "spyder_dragonscave_daenny1"
 msgstr "Prepare to be defeated!"
+
 msgid "spyder_dragonscave_daenny2"
 msgstr "You may have bested me, but you'll never best Benden."
+
 msgid "spyder_dragonscave_benden1"
 msgstr "I am the last and most powerful of the dragonriders."
+
 msgid "spyder_dragonscave_benden2"
 msgstr "You have proven yourself a worthy opponent for Drokoro. \n I will show you to the sacred inner chamber - after I heal you."
+
 msgid "spyder_dragonscave_mal1"
 msgstr "You have gotten in our way too many times!"
+
 msgid "spyder_dragonscave_mal2"
 msgstr "Ah ha, you fell right into my trap!"
+
 msgid "spyder_dragonscave_ray1"
 msgstr "All we want to do is create a mega-corporation that takes over the government. Is that so wrong?"
+
 msgid "spyder_dragonscave_ray2"
 msgstr "You're taking away my freedoms."
+
 msgid "spyder_dragonscave_lucille1"
 msgstr "The Pillars are the only way we'll get anything done around here."
+
 msgid "spyder_dragonscave_lucille2"
 msgstr "You'll regret this."
+
 msgid "spyder_dragonscave_tru1"
 msgstr "This is for your own good, okay?"
+
 msgid "spyder_dragonscave_tru2"
 msgstr "Whatever. We already took the DNA sample. \n We just wanted to capture Drokoro as a backup. \n You'll never stop them back at Omnichannel HQ."
+
 msgid "spyder_dragonscave_drokoro1"
 msgstr "Rawr!"
 

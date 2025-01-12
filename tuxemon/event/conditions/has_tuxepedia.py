@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 
+from tuxemon.db import SeenStatus
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
@@ -11,29 +12,28 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 
-class HasMonsterCondition(EventCondition):
+class HasTuxepediaCondition(EventCondition):
     """
-    Check to see if a character has a monster in its party.
+    Check if a monster is registered in Tuxepedia.
 
     Script usage:
         .. code-block::
 
-            is has_monster <character>,<monster>
+            is has_tuxepedia <character>,<monster>,<label>
 
     Script parameters:
         character: Either "player" or npc slug name (e.g. "npc_maple").
         monster: Monster slug name (e.g. "rockitten").
-
+        label: Either "seen" or "caught".
     """
 
-    name = "has_monster"
+    name = "has_tuxepedia"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        _character, _monster = condition.parameters[:2]
-        character = get_npc(session, _character)
+        character, monster, label = condition.parameters
+
+        character = get_npc(session, character)
         if character is None:
-            logger.error(f"{_character} not found")
-            return False
-        if character.find_monster(_monster):
-            return True
-        return False
+            raise ValueError(f"{character} not found")
+
+        return (monster, SeenStatus(label)) in character.tuxepedia.items()

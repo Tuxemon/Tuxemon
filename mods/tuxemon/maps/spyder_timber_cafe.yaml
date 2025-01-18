@@ -144,3 +144,41 @@ events:
     conditions:
     - is variable_set florists_cafe:yes
     type: "event"
+  Create Trigger:
+    actions:
+    - create_npc spyder_cottoncafe_juliana,3,8
+    - char_face spyder_cottoncafe_juliana,right
+    conditions:
+    - not char_exists spyder_cottoncafe_juliana
+    type: "event"
+  Talk Trigger 1:
+    actions:
+    - translated_dialog spyder_tuxepedia_trigger1
+    - translated_dialog_choice yes:no,tuxepedia_idea
+    behav:
+    - talk spyder_cottoncafe_juliana
+    conditions:
+    - not variable_set tuxepedia_idea:done
+    type: "event"
+  Talk Trigger 2:
+    actions:
+    - translated_dialog spyder_tuxepedia_ending1
+    behav:
+    - talk spyder_cottoncafe_juliana
+    conditions:
+    - is variable_set tuxepedia_idea:done
+    type: "event"
+  Flashback Yes:
+    actions:
+    - transition_teleport spyder_leather_scoop.tmx,10,7
+    - set_variable flashback:on
+    conditions:
+    - is variable_set tuxepedia_idea:yes
+    type: "event"
+  Default Template:
+    actions:
+    - set_template player,default
+    conditions:
+    - is char_sprite player,invisible
+    - is variable_set tuxepedia_idea:done
+    type: "event"

@@ -1,0 +1,203 @@
+events:
+  Route Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: "event"
+  Teleport to Leather Town:
+    actions:
+    - transition_teleport spyder_leather_town.tmx,15,10,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 5
+    y: 10
+    height: 1
+    width: 2
+    type: "event"
+  Create Shopkeeper:
+    actions:
+    - create_npc spyder_leatherscoop_blake,1,6
+    - char_face spyder_leatherscoop_blake,right
+    - set_economy spyder_leatherscoop_blake,spyder_leather_scoop
+    conditions:
+    - not char_exists spyder_leatherscoop_blake
+    type: "event"
+  Open Shop 1:
+    actions:
+    - char_face spyder_leatherscoop_blake,right
+    - translated_dialog spyder_scoop_welcome
+    - open_shop spyder_leatherscoop_blake
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 2
+    y: 6
+    type: "event"
+  Open Shop 2:
+    actions:
+    - char_face spyder_leatherscoop_blake,down
+    - translated_dialog spyder_scoop_welcome
+    - open_shop spyder_leatherscoop_blake
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 1
+    y: 7
+    type: "event"
+  Tuxepedia Idea:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_cottoncafe_hillary,8,6
+    - create_npc spyder_cottoncafe_wilford,8,5
+    - create_npc spyder_cottoncafe_cayden,11,6
+    - create_npc spyder_cottoncafe_juliana,11,5
+    - char_face spyder_cottoncafe_hillary,right
+    - char_face spyder_cottoncafe_wilford,right
+    - char_face spyder_cottoncafe_cayden,left
+    - char_face spyder_cottoncafe_juliana,left
+    - wait 1
+    - translated_dialog spyder_tuxepedia_idea1,,bottomleft
+    - translated_dialog spyder_tuxepedia_idea2,,topleft
+    - translated_dialog spyder_tuxepedia_idea3,,topright
+    - translated_dialog spyder_tuxepedia_idea4,,bottomleft
+    - translated_dialog spyder_tuxepedia_idea5,,bottomright
+    - translated_dialog spyder_tuxepedia_idea6,,topleft
+    - translated_dialog spyder_tuxepedia_idea7,,topright
+    - translated_dialog spyder_tuxepedia_idea8,,bottomleft
+    - translated_dialog spyder_tuxepedia_idea9,,bottomright
+    - translated_dialog spyder_tuxepedia_idea10,,topleft
+    - translated_dialog spyder_tuxepedia_idea11,,topright
+    - translated_dialog spyder_tuxepedia_idea12,,bottomleft
+    - wait 1
+    - set_variable tuxepedia_idea:done
+    - set_layer
+    - unlock_controls
+    - set_variable flashback:off
+    - remove_npc spyder_cottoncafe_hillary
+    - remove_npc spyder_cottoncafe_wilford
+    - remove_npc spyder_cottoncafe_cayden
+    - remove_npc spyder_cottoncafe_juliana
+    - transition_teleport spyder_timber_cafe.tmx,3,9
+    - char_face player,up
+    conditions:
+    - is variable_set tuxepedia_idea:yes
+    type: "event"
+  Tuxepedia Project:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_cottoncafe_hillary,8,6
+    - create_npc spyder_cottoncafe_wilford,8,5
+    - create_npc spyder_cottoncafe_cayden,11,6
+    - create_npc spyder_cottoncafe_juliana,11,5
+    - char_face spyder_cottoncafe_hillary,right
+    - char_face spyder_cottoncafe_wilford,right
+    - char_face spyder_cottoncafe_cayden,left
+    - char_face spyder_cottoncafe_juliana,left
+    - wait 1
+    - translated_dialog spyder_tuxepedia_project1,,bottomleft
+    - translated_dialog spyder_tuxepedia_project2,,topleft
+    - translated_dialog spyder_tuxepedia_project3,,bottomleft
+    - translated_dialog spyder_tuxepedia_project4,,topleft
+    - translated_dialog spyder_tuxepedia_project5,,topright
+    - translated_dialog spyder_tuxepedia_project6,,bottomright
+    - translated_dialog spyder_tuxepedia_project7,,topleft
+    - translated_dialog spyder_tuxepedia_project8,,topright
+    - translated_dialog spyder_tuxepedia_project9,,bottomleft
+    - translated_dialog spyder_tuxepedia_project10,,bottomright
+    - wait 1
+    - remove_npc spyder_cottoncafe_hillary
+    - remove_npc spyder_cottoncafe_wilford
+    - remove_npc spyder_cottoncafe_cayden
+    - remove_npc spyder_cottoncafe_juliana
+    - set_variable tuxepedia_project:done
+    - set_layer
+    - unlock_controls
+    - set_variable flashback:off
+    - transition_teleport spyder_leather_town.tmx,3,16
+    - char_face player,right
+    conditions:
+    - is variable_set tuxepedia_project:yes
+    type: "event"
+  Tuxepedia Issues:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_cottoncafe_hillary,8,6
+    - create_npc spyder_cottoncafe_wilford,8,5
+    - create_npc spyder_cottoncafe_cayden,11,6
+    - create_npc spyder_cottoncafe_juliana,11,5
+    - char_face spyder_cottoncafe_hillary,right
+    - char_face spyder_cottoncafe_wilford,right
+    - char_face spyder_cottoncafe_cayden,left
+    - char_face spyder_cottoncafe_juliana,left
+    - wait 1
+    - translated_dialog spyder_tuxepedia_issues1,,topleft
+    - translated_dialog spyder_tuxepedia_issues2,,bottomleft
+    - translated_dialog spyder_tuxepedia_issues3,,bottomright
+    - translated_dialog spyder_tuxepedia_issues4,,topright
+    - translated_dialog spyder_tuxepedia_issues5,,topleft
+    - translated_dialog spyder_tuxepedia_issues6,,bottomleft
+    - translated_dialog spyder_tuxepedia_issues7,,bottomright
+    - translated_dialog spyder_tuxepedia_issues8,,topright
+    - translated_dialog spyder_tuxepedia_issues9,,topleft
+    - translated_dialog spyder_tuxepedia_issues10,,bottomleft
+    - wait 1
+    - remove_npc spyder_cottoncafe_hillary
+    - remove_npc spyder_cottoncafe_wilford
+    - remove_npc spyder_cottoncafe_cayden
+    - remove_npc spyder_cottoncafe_juliana
+    - set_variable tuxepedia_issues:done
+    - set_layer
+    - unlock_controls
+    - set_variable flashback:off
+    - transition_teleport spyder_flower_petshop.tmx,2,3
+    - char_face player,left
+    conditions:
+    - is variable_set tuxepedia_issues:yes
+    type: "event"
+  Tuxepedia Launch:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - set_layer 102:51:0:128
+    - create_npc spyder_cottoncafe_hillary,8,6
+    - create_npc spyder_cottoncafe_wilford,8,5
+    - create_npc spyder_cottoncafe_cayden,11,6
+    - create_npc spyder_cottoncafe_juliana,11,5
+    - char_face spyder_cottoncafe_hillary,right
+    - char_face spyder_cottoncafe_wilford,right
+    - char_face spyder_cottoncafe_cayden,left
+    - char_face spyder_cottoncafe_juliana,left
+    - wait 1
+    - translated_dialog spyder_tuxepedia_launch1,,topleft
+    - translated_dialog spyder_tuxepedia_launch2,,bottomleft
+    - translated_dialog spyder_tuxepedia_launch3,,topright
+    - translated_dialog spyder_tuxepedia_launch4,,bottomright
+    - translated_dialog spyder_tuxepedia_launch5,,topleft
+    - translated_dialog spyder_tuxepedia_launch6,,bottomleft
+    - translated_dialog spyder_tuxepedia_launch7,,topright
+    - translated_dialog spyder_tuxepedia_launch8,,bottomright
+    - translated_dialog spyder_tuxepedia_launch9,,topleft
+    - translated_dialog spyder_tuxepedia_launch10,,bottomleft
+    - wait 1
+    - remove_npc spyder_cottoncafe_hillary
+    - remove_npc spyder_cottoncafe_wilford
+    - remove_npc spyder_cottoncafe_cayden
+    - remove_npc spyder_cottoncafe_juliana
+    - set_variable tuxepedia_launch:done
+    - set_layer
+    - unlock_controls
+    - set_variable flashback:off
+    - transition_teleport spyder_candy_cafe.tmx,1,9
+    - char_face player,right
+    conditions:
+    - is variable_set tuxepedia_launch:yes
+    type: "event"

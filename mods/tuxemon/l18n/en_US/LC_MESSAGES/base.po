@@ -11536,6 +11536,156 @@ msgstr "You're doing the right thing now. You're trying to make it right. I'm he
 msgid "spyder_leather_sarah7"
 msgstr "I hope so. I really do. But it's hard to shake off the feeling of guilt. It's hard to forget what we've done."
 
+msgid "spyder_tuxepedia_trigger1"
+msgstr "Sorry, I was lost in thought.\n The idea of Tuxepedia has come a long way, but I still remember how it all started.\n Would you like to hear about it?"
+
+msgid "spyder_tuxepedia_trigger2"
+msgstr "I was thinking about the early days of the Tuxepedia project. We were all so excited to start building something that could change the world.\n Want to hear about it?"
+
+msgid "spyder_tuxepedia_trigger3"
+msgstr "We faced some tough challenges when we were building the Tuxepedia.\n The Pillars were trying to stop us, and we had to find creative ways to overcome the obstacles.\n Would you like to hear about how we managed to stay one step ahead?"
+
+msgid "spyder_tuxepedia_trigger4"
+msgstr "The launch of the Tuxepedia was a huge milestone for us.\n We finally had a working database, and we were able to share it with the world.\n It's a great story - would you like to hear about it?"
+
+msgid "spyder_tuxepedia_ending1"
+msgstr "Ah, I think I've told you enough about the Tuxepedia's past for now."
+
+msgid "spyder_tuxepedia_ending2"
+msgstr "Now that you know the story!"
+
+msgid "spyder_tuxepedia_ending3"
+msgstr "I think I've shared enough of our early struggles with you."
+
+msgid "spyder_tuxepedia_ending4"
+msgstr "Now that the Tuxepedia is up and running, I'm excited to see how it will continue to grow and evolve."
+
+msgid "spyder_tuxepedia_idea1"
+msgstr "Evelyn: We need a way to catalog all the tuxemon out there. Something that's accessible to everyone, not just the Pillars."
+
+msgid "spyder_tuxepedia_idea2"
+msgstr "Liam: I've been thinking about that. What if we create a database that's open-source? Anyone can contribute, anyone can access it."
+
+msgid "spyder_tuxepedia_idea3"
+msgstr "Maya: But how do we make sure the information is accurate? We can't just let anyone add whatever they want."
+
+msgid "spyder_tuxepedia_idea4"
+msgstr "Evelyn: We can create a system of moderators, people who are experts in their field.\n They can review and verify the information before it's added to the database."
+
+msgid "spyder_tuxepedia_idea5"
+msgstr "Julian: And what about the Pillars? They're not going to be happy about us creating something that undermines their control."
+
+msgid "spyder_tuxepedia_idea6"
+msgstr "Liam: We'll just have to be careful. We can start small, build a community of supporters.\n Once we have enough momentum, the Pillars won't be able to stop us."
+
+msgid "spyder_tuxepedia_idea7"
+msgstr "Maya: I like it. But what are we going to call this thing?"
+
+msgid "spyder_tuxepedia_idea8"
+msgstr "Evelyn: How about 'Tuxepedia'? It's a play on 'encyclopedia' and 'tuxemon'."
+
+msgid "spyder_tuxepedia_idea9"
+msgstr "Julian: One more thing, I've always thought of it as 'Tuxepedia' rather than 'The Tuxepedia'."
+
+msgid "spyder_tuxepedia_idea10"
+msgstr "Liam: Ah, I see what you mean. But I think 'The Tuxepedia' sounds more formal and official."
+
+msgid "spyder_tuxepedia_idea11"
+msgstr "Maya: Yeah, I agree with Evelyn. 'The Tuxepedia' it is, then."
+
+msgid "spyder_tuxepedia_idea12"
+msgstr "Evelyn: Alright, let's get to work. We've got a lot of ground to cover before we can make this a reality."
+
+msgid "spyder_tuxepedia_project1"
+msgstr "Evelyn: I've been working on a new algorithm called 'TuxemonNet'.\n A neural network that can analyze tuxemon characteristics and automatically categorize them.\n This is more than just a tool; it's a key to unlocking the true potential of tuxemon research.\n This algorithm will be open-source, allowing other researchers to build upon it and contribute to the project.\n I think I've finally cracked it!\n I was up all night testing it, and the algorithm identified 95% of the tuxemon in the test dataset, even those with subtle variations."
+
+msgid "spyder_tuxepedia_project2"
+msgstr "Liam: That's amazing! Let me take a look. How does it handle the different types of tuxemon?"
+
+msgid "spyder_tuxepedia_project3"
+msgstr "Evelyn: I've been testing it with a small dataset, and it's working beautifully.\n We can use this to create a robust and scalable database.\n I've also been thinking about how we can use machine learning to improve the algorithm over time."
+
+msgid "spyder_tuxepedia_project4"
+msgstr "Liam: This is exactly what we needed. We can finally start building the Tuxepedia.\n I've been working on the user interface, and I think we can make it really intuitive and user-friendly."
+
+msgid "spyder_tuxepedia_project5"
+msgstr "Maya: I'm so excited to see this come together. We're going to change the way people think about tuxemon.\n I've been talking to some of the other researchers, and they're all really interested in what we're doing."
+
+msgid "spyder_tuxepedia_project6"
+msgstr "Julian: I've already started working on the backend. We'll need to make sure it's secure and can handle a large volume of data.\n I've been looking into some of the latest security protocols, and I think we can make it really robust."
+
+msgid "spyder_tuxepedia_project7"
+msgstr "Liam: I'll start reaching out to other tuxemon enthusiasts and researchers. We'll need to build a community around this project.\n I've already started talking to some of the online forums, and there's a lot of interest."
+
+msgid "spyder_tuxepedia_project8"
+msgstr "Maya: This is it. We're finally making progress. Let's keep pushing forward! We can make this happen, and it's going to be amazing."
+
+msgid "spyder_tuxepedia_project9"
+msgstr "Evelyn: I've been thinking about how we can use this to help the tuxemon community.\n We can create a platform for people to share their knowledge and research, and really advance the field."
+
+msgid "spyder_tuxepedia_project10"
+msgstr "Julian: We're going to make this happen. We're going to create something amazing, and it's going to change the world."
+
+msgid "spyder_tuxepedia_issues1"
+msgstr "Liam: We've got a problem.\n One of our informants within the Pillars told us they're spreading rumors that our research could destabilize the tuxemon ecosystem.\n They're saying that our project is a threat to their control, and they're going to do everything they can to stop us."
+
+msgid "spyder_tuxepedia_issues2"
+msgstr "Evelyn: We can't let them stop us. We have to find a way to keep going. We've come too far to give up now."
+
+msgid "spyder_tuxepedia_issues3"
+msgstr "Julian: I think our strength lies in the community itself. The Tuxepedia is a collective effort, and that's what makes it resilient.\n If the Pillars try to sabotage it, they'll be up against the entire community."
+
+msgid "spyder_tuxepedia_issues4"
+msgstr "Maya: But what if they try to insert false information or manipulate the data?\n How can we trust that the information on The Tuxepedia is accurate?"
+
+msgid "spyder_tuxepedia_issues5"
+msgstr "Liam: That's the beauty of it. With so many eyes on The Tuxepedia, any falsehoods or inaccuracies will be quickly corrected.\n The community will self-regulate and ensure the information is trustworthy."
+
+msgid "spyder_tuxepedia_issues6"
+msgstr "Evelyn: And it's not just about the information itself, but also about the people who contribute to it.\n We have a diverse group of contributors from all over, and that diversity is what makes The Tuxepedia strong."
+
+msgid "spyder_tuxepedia_issues7"
+msgstr "Julian: Exactly.\n The Pillars might try to infiltrate our community, but they'll be hard-pressed to manipulate the collective effort of so many people.\n We're not just a single entity that can be taken down - we're a network of individuals working together."
+
+msgid "spyder_tuxepedia_issues8"
+msgstr "Maya: I think that's what makes The Tuxepedia so powerful.\n It's not just a repository of information - it's a symbol of what can be achieved when people work together towards a common goal."
+
+msgid "spyder_tuxepedia_issues9"
+msgstr "Liam: We're not going to let the Pillars stop us.\n We're going to keep pushing forward, and we're going to make this happen. Together, we can achieve something amazing."
+
+msgid "spyder_tuxepedia_issues10"
+msgstr "Evelyn: We're in this together, and together, we're unstoppable."
+
+msgid "spyder_tuxepedia_launch1"
+msgstr "Liam: It's finally here. The first version of the Tuxepedia is live! We did it, guys. We actually did it."
+
+msgid "spyder_tuxepedia_launch2"
+msgstr "Evelyn: We did it! We actually did it! I'm so proud of us. We've worked so hard to get to this point.\n Now, let's see if we can keep it running. We need to anticipate their next move. They won't let this go easily."
+
+msgid "spyder_tuxepedia_launch3"
+msgstr "Maya: My heart is pounding. I can't believe we actually did it. We're going to change the way people think about tuxemon.\n I've been talking to some of the other researchers, and they're all really interested in what we're doing. This is just the beginning.\n Imagine a world where every tuxemon trainer has access to this vast repository of knowledge."
+
+msgid "spyder_tuxepedia_launch4"
+msgstr "Julian: And it's just the beginning. We've got so much more to do.\n We can add more features, more data... the possibilities are endless."
+
+msgid "spyder_tuxepedia_launch5"
+msgstr "Liam: I've already started thinking about the next version.\n We can add more advanced search features, and maybe even integrate with some of the other tuxemon databases."
+
+msgid "spyder_tuxepedia_launch6"
+msgstr "Evelyn: Let's not get ahead of ourselves. We need to celebrate this achievement first. We've earned it."
+
+msgid "spyder_tuxepedia_launch7"
+msgstr "Maya: I've got champagne. Let's pop the cork and celebrate! We can toast to the Tuxepedia, and to the future of tuxemon research."
+
+msgid "spyder_tuxepedia_launch8"
+msgstr "Julian: To the Tuxepedia! May it bring knowledge and power to the people! And to the future of tuxemon research, may it be bright and exciting!"
+
+msgid "spyder_tuxepedia_launch9"
+msgstr "Liam: Cheers to that! We did it, guys. We actually did it."
+
+msgid "spyder_tuxepedia_launch10"
+msgstr "Evelyn: We're just getting started. This is just the beginning.\n Imagine a world where every tuxemon trainer has access to this vast repository of knowledge."
+
 msgid "spyder_leathercafe_sign"
 msgstr "Open Air Cafe and Marketplace"
 

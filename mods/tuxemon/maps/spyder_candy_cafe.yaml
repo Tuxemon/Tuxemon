@@ -156,3 +156,41 @@ events:
     - is char_sprite player,invisible
     - is variable_set incident_greenwash:done
     type: "event"
+  Create Trigger:
+    actions:
+    - create_npc spyder_cottoncafe_hillary,1,8
+    - char_face spyder_cottoncafe_hillary,right
+    conditions:
+    - not char_exists spyder_cottoncafe_hillary
+    type: "event"
+  Talk Trigger 1:
+    actions:
+    - translated_dialog spyder_tuxepedia_trigger4
+    - translated_dialog_choice yes:no,tuxepedia_launch
+    behav:
+    - talk spyder_cottoncafe_hillary
+    conditions:
+    - not variable_set tuxepedia_launch:done
+    type: "event"
+  Talk Trigger 2:
+    actions:
+    - translated_dialog spyder_tuxepedia_ending4
+    behav:
+    - talk spyder_cottoncafe_hillary
+    conditions:
+    - is variable_set tuxepedia_launch:done
+    type: "event"
+  Flashback Yes:
+    actions:
+    - transition_teleport spyder_leather_scoop.tmx,10,7
+    - set_variable flashback:on
+    conditions:
+    - is variable_set tuxepedia_launch:yes
+    type: "event"
+  Default Template:
+    actions:
+    - set_template player,default
+    conditions:
+    - is char_sprite player,invisible
+    - is variable_set tuxepedia_launch:done
+    type: "event"

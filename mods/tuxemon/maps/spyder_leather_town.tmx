@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="339">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="344">
  <properties>
   <property name="east" value="citypark"/>
   <property name="edges" value="clamped"/>
@@ -548,6 +548,42 @@
     <property name="act1" value="translated_dialog spyder_leather_sarah_no"/>
     <property name="behav1" value="talk spyder_leathermuseum_visitor"/>
     <property name="cond1" value="is variable_set sarah_flashback:no"/>
+   </properties>
+  </object>
+  <object id="339" name="Talk Trigger 1" type="event" x="16" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_tuxepedia_trigger2"/>
+    <property name="act2" value="translated_dialog_choice yes:no,tuxepedia_project"/>
+    <property name="behav1" value="talk spyder_cottoncafe_wilford"/>
+    <property name="cond1" value="not variable_set tuxepedia_project:done"/>
+   </properties>
+  </object>
+  <object id="340" name="Talk Trigger 2" type="event" x="16" y="256" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_tuxepedia_ending2"/>
+    <property name="behav1" value="talk spyder_cottoncafe_wilford"/>
+    <property name="cond1" value="is variable_set tuxepedia_project:done"/>
+   </properties>
+  </object>
+  <object id="341" name="Flashback Yes" type="event" x="16" y="272" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport spyder_leather_scoop.tmx,10,7"/>
+    <property name="act2" value="set_variable flashback:on"/>
+    <property name="cond1" value="is variable_set tuxepedia_project:yes"/>
+   </properties>
+  </object>
+  <object id="342" name="Create Trigger" type="event" x="48" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_cottoncafe_wilford,3,15"/>
+    <property name="act2" value="char_face spyder_cottoncafe_wilford,right"/>
+    <property name="cond1" value="not char_exists spyder_cottoncafe_wilford"/>
+   </properties>
+  </object>
+  <object id="343" name="Default Template" type="event" x="16" y="288" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_template player,default"/>
+    <property name="cond1" value="is char_sprite player,invisible"/>
+    <property name="cond2" value="is variable_set tuxepedia_project:done"/>
    </properties>
   </object>
  </objectgroup>

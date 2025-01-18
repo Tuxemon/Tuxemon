@@ -9262,40 +9262,78 @@ msgstr "You got it to morph? \n ... \n And you did it in that particular way? \n
 
 msgid "spyder_route1_beachcomber"
 msgstr "To run, just hold down the SHIFT key. \n Look! I'm free as an ELOFLY!"
+
 msgid "spyder_cottonhouse1_homemaker"
 msgstr "I feel so safe seeing all the Enforcers around. You can never be too careful. \n The newspapers are always reporting terrible crimes in this very region!"
+
 msgid "spyder_cottonhouse1_firefighter"
 msgstr "Did you know it's possible for tuxemon to have two elements? \n Even a technique can belong to two elements at one."
+
 msgid "spyder_cottonhouse2_magician"
 msgstr "Some conditions replace one another. \n Learning how conditions interact is key to becoming a master of tuxemon fighting."
+
 msgid "spyder_cottonhouse2_catgirl"
 msgstr "Have you met the old man in City Park? He's obsessed with breaking records!"
+
 msgid "spyder_cottonhouse2_shopkeeper"
 msgstr "I don't have a problem with people from other regions. \n Just don't come after my job, alright?"
+
 msgid "spyder_route5_granny"
 msgstr "This park is much more salubrious with the Nimrod construction keeping the Flower City riff-raff out. "
+
 msgid "spyder_leatherhouse1_florist"
 msgstr "There used to be several TV and radio stations operating, but Omnichannel ran them out of business. \n Now we don't have to worry about different journalists contradicting each other."
+
 msgid "spyder_leatherhouse2_tv"
 msgstr "A little green mon is lifting a ship out of a swamp."
+
 msgid "spyder_leatherhouse2_scientist"
 msgstr "I work for Shaft. \n ... \n Where's my helmet? I don't need one, I control the truck remotely from our offices. \n Pretty soon, most jobs in the mines will be automated. "
+
 msgid "spyder_leatherhouse2_miner"
 msgstr "You won't believe what they're digging up in Route 3. \n I've never seen an egg that big. \n Oops, I've said too much. "
+
 msgid "spyder_route1_routesign"
 msgstr "Route 1. Take care!"
+
 msgid "spyder_flowerhouse1_tv"
 msgstr "Two mons are having a fight. \"I'm not your friend, Budaye\", one says."
+
 msgid "spyder_flowerhouse2_soldier"
 msgstr "I worked for Nimrod during the war. \n Not that I got a medal. Or a parade. \n They don't hand those out to mercenaries."
+
+msgid "spyder_flowerhouse2_soldier1"
+msgstr "I worked in the shadows, ensuring the real heroes had access to cutting-edge tools."
+
+msgid "spyder_flowerhouse2_soldier2"
+msgstr "I've seen it in action; it executes complex maneuvers with precision, almost dancing through chaos.\n Yet, beneath its elegance lies a darker side—the potential for destruction is real."
+
+msgid "spyder_flowerhouse2_soldier3"
+msgstr "This technology is both a marvel and a menace, blurring the line between art and weaponry."
+
+msgid "spyder_flowerhouse2_soldier4"
+msgstr "Keep an eye out, and if you encounter Dr. Elara, let me know."
+
+msgid "spyder_flowerhouse2_soldier5"
+msgstr "You met Dr. Elara? Damn it...\n Xeon isn't just a machine; it's a threat that could haunt us all.\n I need to visit some old friends."
+
 msgid "spyder_flowerhouse2_scientist"
 msgstr "Radio FUD wakes me up every morning. \n Not sure I care for their politics, but at least they call it how they see it!"
+
 msgid "spyder_flower_florist"
 msgstr "There used to be a riverboat captain here who could take you up and down the river. \n But I haven't seen him for a few days. "
+
 msgid "spyder_flowerhouse1_firefighter"
 msgstr "The five Pillars are the only big companies in this region. They have a lot of sway."
+
 msgid "spyder_flowerhouse1_granny"
 msgstr "Scoop has managed to cut the price of beef yet again! I don't know how they do it. "
+
+msgid "spyder_nimrod_papers1"
+msgstr "Subject - Soldier #### by Dr. Elara - Mental Health Assessment\n 'The soldier has shown a significant decline in mental health, frequently expressing guilt and remorse over past missions.\n He reports hearing voices of those lost during operations, indicating unresolved trauma and survivor's guilt.\n His fixation on the potential dangers of our technology suggests growing paranoia.\n In summary, the soldier's mental health is precarious, and immediate action is necessary to support him.'"
+
+msgid "spyder_nimrod_papers2"
+msgstr "Subject - Overseer #### by Dr. Orion - Mental Health Assessment\n 'The overseer is exhibiting signs of significant emotional distress, grappling with ethical dilemmas and the weight of recent operational decisions.\n She reports a growing sense of isolation and anxiety, particularly concerning the evolving demands from investors that have necessitated a shift in project priorities.\n Her fixation on the environmental impact of the river diversion project, including the draining of the lake, suggests a profound sense of responsibility and potential moral conflict.'"
 
 msgid "spyder_nimrod_chromerobo1"
 msgstr "Boop beep"
@@ -9563,28 +9601,40 @@ msgstr "Commander: Good. Dispatch them immediately. We can't afford to delay."
 
 msgid "spyder_route5_goliath1"
 msgstr "Hey, aren't you that meddlesome kid from the Wayfarer Inn?"
+
 msgid "spyder_route5_goliath2"
 msgstr "Quit ruining our plans!"
+
 msgid "spyder_route5_sara1"
 msgstr "My Capiti looks cute and all, but I can't wait until it grows into an adult!"
+
 msgid "spyder_route5_sara2"
 msgstr "Oh well, not today!"
+
 msgid "spyder_route5_hunter1"
 msgstr "It takes a lot to hold a team together."
+
 msgid "spyder_route5_hunter2"
 msgstr "We'll be back."
+
 msgid "spyder_route5_edith1"
 msgstr "Woohoo! Our millionth ant! ... Uhm, I didn't think anyone would hear that."
+
 msgid "spyder_route5_edith2"
 msgstr "Let's see if you're so cocky after Aardart eats her two-millionth ant!"
+
 msgid "spyder_route5_cleo1"
 msgstr "Mother says you can trace our bloodline back to the kings who once ruled this country."
+
 msgid "spyder_route5_cleo2"
 msgstr "Oh ancestors, I've failed you!"
+
 msgid "spyder_route5_tryphaena1"
 msgstr "You know, we're descended from ... You've already heard it? Oh."
+
 msgid "spyder_route5_tryphaena2"
 msgstr "Well, might makes right."
+
 msgid "spyder_timber_mom1"
 msgstr "Hey bojo, your BOARD doesn't work on water. Unless you've got power."
 msgid "spyder_outsidewalled_rogue1"

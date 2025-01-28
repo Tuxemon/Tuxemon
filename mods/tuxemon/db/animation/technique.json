@@ -662,5 +662,41 @@
     {
         "slug" : "yellow_circle",
         "file" : "technique"
+    },
+    {
+        "slug" : "divinity_beam",
+        "file" : "technique"
+    },
+    {
+        "slug" : "energy_beam",
+        "file" : "technique"
+    },
+    {
+        "slug" : "shadow_blast",
+        "file" : "technique"
+    },
+    {
+        "slug" : "egg_crack",
+        "file" : "technique"
+    },
+    {
+        "slug" : "needle",
+        "file" : "technique"
+    },
+    {
+        "slug" : "rollingball",
+        "file" : "technique"
+    },
+    {
+        "slug" : "tail",
+        "file" : "technique"
+    },
+    {
+        "slug" : "woodsmash",
+        "file" : "technique"
+    },
+    {
+        "slug" : "beam",
+        "file" : "technique"
     }
 ]

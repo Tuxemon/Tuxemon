@@ -51,11 +51,21 @@
             "technique": "kraken"
         }
     ],
-    "evolutions": [],
-    "history": [],
-    "tags": ["landrace"],
+    "evolutions": [
+        {
+            "at_level": 24,
+            "monster_slug": "pharavion"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "pharavion",
+            "evo_stage": "stage1"
+        }
+    ],
+    "tags": ["landrace", "megafauna", "water", "pseudopod"],
     "shape": "landrace",
-    "stage": "standalone",
+    "stage": "basic",
     "types": [
         "water"
     ],

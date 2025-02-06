@@ -94,7 +94,7 @@ events:
     type: "event"
   Petrified Dung:
     actions:
-    - translated_dialog petrified_dung
+    - translated_dialog petrified_dung,,center
     - add_item petrified_dung
     - remove_npc spyder_cottontunnel_box1
     - set_variable cottontunnel_dung:yes
@@ -110,7 +110,7 @@ events:
     type: "event"
   Candy Tuxeball:
     actions:
-    - translated_dialog tuxeball_candy
+    - translated_dialog tuxeball_candy,,center
     - add_item tuxeball_candy
     - remove_npc spyder_cottontunnel_box2
     - set_variable cottontunnel_candy:yes
@@ -126,7 +126,7 @@ events:
     type: "event"
   Imperial Tea:
     actions:
-    - translated_dialog imperial_tea
+    - translated_dialog imperial_tea,,center
     - add_item imperial_tea
     - remove_npc spyder_cottontunnel_box3
     - set_variable cottontunnel_tea:yes
@@ -142,7 +142,7 @@ events:
     type: "event"
   Imperial Potion:
     actions:
-    - translated_dialog imperial_potion
+    - translated_dialog imperial_potion,,center
     - add_item imperial_potion
     - remove_npc spyder_cottontunnel_box4
     - set_variable cottontunnel_potion:yes
@@ -158,7 +158,7 @@ events:
     type: "event"
   Cureall:
     actions:
-    - translated_dialog cureall
+    - translated_dialog cureall,,center
     - add_item cureall
     - remove_npc spyder_cottontunnel_box5
     - set_variable cottontunnel_cureall:yes
@@ -174,7 +174,7 @@ events:
     type: "event"
   Raise Melee:
     actions:
-    - translated_dialog raise_melee
+    - translated_dialog raise_melee,,center
     - add_item raise_melee
     - remove_npc spyder_cottontunnel_box6
     - set_variable cottontunnel_melee:yes

@@ -120,24 +120,6 @@ class OutputBattle(str, Enum):
     draw = "draw"
 
 
-class MonsterShape(str, Enum):
-    default = "default"
-    blob = "blob"
-    brute = "brute"
-    dragon = "dragon"
-    flier = "flier"
-    grub = "grub"
-    humanoid = "humanoid"
-    hunter = "hunter"
-    landrace = "landrace"
-    leviathan = "leviathan"
-    piscine = "piscine"
-    polliwog = "polliwog"
-    serpent = "serpent"
-    sprite = "sprite"
-    varmint = "varmint"
-
-
 class SeenStatus(str, Enum):
     unseen = "unseen"
     seen = "seen"
@@ -327,7 +309,7 @@ class ItemModel(BaseModel):
 
 
 class ShapeModel(BaseModel):
-    slug: MonsterShape = Field(..., description="Slug of the shape")
+    slug: str = Field(..., description="Slug of the shape")
     armour: int = Field(..., description="Armour value")
     dodge: int = Field(..., description="Dodge value")
     hp: int = Field(..., description="HP value")
@@ -610,7 +592,7 @@ class MonsterModel(BaseModel, validate_assignment=True):
     sprites: Annotated[
         Optional[MonsterSpritesModel], Field(validate_default=True)
     ] = None
-    shape: MonsterShape = Field(..., description="The shape of the monster")
+    shape: str = Field(..., description="The shape of the monster")
     tags: Sequence[str] = Field(
         ..., description="The tags of the monster", min_length=1
     )
@@ -675,6 +657,12 @@ class MonsterModel(BaseModel, validate_assignment=True):
         if has.translation(f"cat_{v}"):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
+
+    @field_validator("shape")
+    def shape_exists(cls: MonsterModel, v: str) -> str:
+        if has.db_entry("shape", v):
+            return v
+        raise ValueError(f"the shape {v} doesn't exist in the db")
 
 
 class StatModel(BaseModel):

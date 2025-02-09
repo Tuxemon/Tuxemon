@@ -13,10 +13,6 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class PropHealingEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class PropHealingEffect(TechEffect):
     """
@@ -38,7 +34,7 @@ class PropHealingEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> PropHealingEffectResult:
+    ) -> TechEffectResult:
 
         if not 0 <= self.proportional <= 1:
             raise ValueError(f"{self.proportional} must be between 0 and 1")
@@ -61,10 +57,11 @@ class PropHealingEffect(TechEffect):
                     monster.hp, monster.current_hp + amount
                 )
 
-        return {
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "success": tech.hit,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            success=tech.hit,
+            extras=[],
+        )

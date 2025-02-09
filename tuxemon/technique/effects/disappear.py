@@ -13,10 +13,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class DisappearEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class DisappearEffect(TechEffect):
     """
@@ -31,7 +27,7 @@ class DisappearEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> DisappearEffectResult:
+    ) -> TechEffectResult:
         combat = tech.combat_state
         assert combat
 
@@ -48,10 +44,11 @@ class DisappearEffect(TechEffect):
             land_action = EnqueuedAction(user, land_technique, target)
             combat._pending_queue.append(land_action)
 
-        return {
-            "success": user.out_of_range,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            success=user.out_of_range,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=[],
+        )

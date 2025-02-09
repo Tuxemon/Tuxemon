@@ -12,10 +12,6 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class SacrificeEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class SacrificeEffect(TechEffect):
     """
@@ -38,7 +34,7 @@ class SacrificeEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> SacrificeEffectResult:
+    ) -> TechEffectResult:
         combat = tech.combat_state
         assert combat
         tech.hit = tech.accuracy >= combat._random_tech_hit.get(user, 0.0)
@@ -50,10 +46,11 @@ class SacrificeEffect(TechEffect):
         else:
             damage = 0
 
-        return {
-            "damage": damage,
-            "element_multiplier": 0.0,
-            "should_tackle": tech.hit,
-            "success": tech.hit,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            damage=damage,
+            element_multiplier=0.0,
+            should_tackle=tech.hit,
+            success=tech.hit,
+            extras=[],
+        )

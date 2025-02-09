@@ -13,10 +13,6 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class PropDamageEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class PropDamageEffect(TechEffect):
     """
@@ -38,7 +34,7 @@ class PropDamageEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> PropDamageEffectResult:
+    ) -> TechEffectResult:
 
         if not 0 <= self.proportional <= 1:
             raise ValueError(f"{self.proportional} must be between 0 and 1")
@@ -63,10 +59,11 @@ class PropDamageEffect(TechEffect):
                 if monster != target:
                     combat.enqueue_damage(user, monster, damage)
 
-        return {
-            "damage": damage,
-            "element_multiplier": 0.0,
-            "should_tackle": tech.hit,
-            "success": tech.hit,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            damage=damage,
+            element_multiplier=0.0,
+            should_tackle=tech.hit,
+            success=tech.hit,
+            extras=[],
+        )

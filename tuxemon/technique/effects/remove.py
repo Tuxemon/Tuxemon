@@ -14,10 +14,6 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class RemoveEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class RemoveEffect(TechEffect):
     """
@@ -38,7 +34,7 @@ class RemoveEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> RemoveEffectResult:
+    ) -> TechEffectResult:
         monsters: list[Monster] = []
         combat = tech.combat_state
         assert combat
@@ -58,10 +54,11 @@ class RemoveEffect(TechEffect):
                     if has_status(monster, self.condition):
                         monster.status.clear()
 
-        return {
-            "success": bool(monsters),
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            success=bool(monsters),
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=[],
+        )

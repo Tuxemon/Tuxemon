@@ -13,10 +13,6 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class ReverseEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class ReverseEffect(TechEffect):
     """
@@ -36,30 +32,32 @@ class ReverseEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> ReverseEffectResult:
+    ) -> TechEffectResult:
         combat = tech.combat_state
         assert combat
 
         tech.hit = tech.accuracy >= combat._random_tech_hit.get(user, 0.0)
 
         if not tech.hit:
-            return {
-                "success": tech.hit,
-                "damage": 0,
-                "element_multiplier": 0.0,
-                "should_tackle": False,
-                "extra": None,
-            }
+            return TechEffectResult(
+                name=tech.name,
+                success=tech.hit,
+                damage=0,
+                element_multiplier=0.0,
+                should_tackle=False,
+                extras=[],
+            )
 
         objectives = self.objectives.split(":")
         monsters = get_target_monsters(objectives, tech, user, target)
         for monster in monsters:
             monster.reset_types()
 
-        return {
-            "success": True,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            success=True,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=[],
+        )

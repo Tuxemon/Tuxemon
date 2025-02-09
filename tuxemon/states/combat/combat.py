@@ -875,21 +875,19 @@ class CombatState(CombatAnimations):
                 status = random.choice(result_status.conditions)
                 user.apply_status(status)
 
-        if result_tech["success"] and method.use_success:
+        if result_tech.success and method.use_success:
             template = getattr(method, "use_success")
             m = T.format(template, context)
-        elif not result_tech["success"] and method.use_failure:
+        elif not result_tech.success and method.use_failure:
             template = getattr(method, "use_failure")
             m = T.format(template, context)
         else:
             m = None
 
-        if result_tech["extra"]:
-            m = (
-                (m or "")
-                + ("\n" if m else "")
-                + T.translate(result_tech["extra"])
-            )
+        if result_tech.extras:
+            extra_tmpls = [T.translate(extra) for extra in result_tech.extras]
+            tmpl = "\n".join(extra_tmpls)
+            m = (m or "") + ("\n" + tmpl if m else tmpl)
 
         if m:
             message += "\n" + m
@@ -901,7 +899,7 @@ class CombatState(CombatAnimations):
         if method.target["own_monster"]:
             target_sprite = self._monster_sprite_map.get(user, None)
 
-        if result_tech["should_tackle"]:
+        if result_tech.should_tackle:
             user_sprite = self._monster_sprite_map.get(user, None)
             if user_sprite:
                 self.animate_sprite_tackle(user_sprite)
@@ -919,7 +917,7 @@ class CombatState(CombatAnimations):
                     hit_delay + 0.6,
                 )
 
-            self.enqueue_damage(user, target, result_tech["damage"])
+            self.enqueue_damage(user, target, result_tech.damage)
 
             if PlagueType.infected in user.plague.values():
                 params = {"target": user.name.upper()}
@@ -928,7 +926,7 @@ class CombatState(CombatAnimations):
 
             if method.range != "special":
                 element_damage_key = prepare.MULT_MAP.get(
-                    result_tech["element_multiplier"]
+                    result_tech.element_multiplier
                 )
                 if element_damage_key:
                     m = T.translate(element_damage_key)
@@ -945,7 +943,7 @@ class CombatState(CombatAnimations):
                 is_flipped = True
                 break
 
-        if result_tech["success"]:
+        if result_tech.success:
             self.play_animation(
                 method, target, target_sprite, action_time, is_flipped
             )

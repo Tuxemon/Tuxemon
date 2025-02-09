@@ -13,10 +13,6 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class MultiAttackEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class MultiAttackEffect(TechEffect):
     """
@@ -34,7 +30,7 @@ class MultiAttackEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> MultiAttackEffectResult:
+    ) -> TechEffectResult:
         assert tech.combat_state
         combat = tech.combat_state
         value = random.random()
@@ -58,10 +54,11 @@ class MultiAttackEffect(TechEffect):
         if done and hit:
             combat.enqueue_action(user, tech, target)
 
-        return {
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": done,
-            "success": done,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=done,
+            success=done,
+            extras=[],
+        )

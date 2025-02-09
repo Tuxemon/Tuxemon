@@ -53,11 +53,11 @@ class GiveEffect(TechEffect):
             status = Condition()
             status.load(self.condition)
             status.steps = player.steps
+            status.link = user
 
             monsters = get_target_monsters(objectives, tech, user, target)
             if monsters:
                 for monster in monsters:
-                    status.link = monster
                     monster.apply_status(status)
                 combat.reset_status_icons()
 

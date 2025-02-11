@@ -36,7 +36,7 @@
         },
         {
             "level_learned": 40,
-            "technique": "wing_tip"
+            "technique": "needle"
         },
         {
             "level_learned": 43,
@@ -63,7 +63,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["varmint", "grassland", "jungle", "woodland"],
+    "terrains": ["grassland", "jungle", "woodland"],
+    "tags": ["plant"],
     "shape": "varmint",
     "stage": "basic",
     "types": [

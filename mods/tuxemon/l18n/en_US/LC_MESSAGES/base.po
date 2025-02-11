@@ -1490,14 +1490,32 @@ msgstr "The user creates a large bubble that traps both itself and the opponent.
 msgid "bubble_trap"
 msgstr "Bubble Trap"
 
+msgid "bubbles_description"
+msgstr "The user blows a wide jet of bubbles at the target, weak but difficult to avoid."
+
+msgid "bubbles"
+msgstr "Bubbles"
+
 msgid "bullet_description"
 msgstr "A piece of metal is flung at the target with great alacrity."
 
 msgid "bullet"
 msgstr "Bullet"
 
+msgid "burrow_blast_description"
+msgstr "The user digs underground and reappear at a different location, striking the opponent with a burst of dirt and debris."
+
+msgid "burrow_blast_success"
+msgstr "{user} digs a hole and hides!"
+
+msgid "burrow_blast_fail"
+msgstr "{user} fails to dig a hole!"
+
+msgid "burrow_blast"
+msgstr "Burrow Blast"
+
 msgid "buzz_description"
-msgstr "A close ranged electric melee attack."
+msgstr "The user generates a close-ranged blast of electromagnetic energy from its body, striking the opponent with a burst of electric force, dealing damage."
 
 msgid "buzz"
 msgstr "Buzz"
@@ -1574,6 +1592,12 @@ msgstr "The user wraps its body around the opponent, squeezing tightly."
 msgid "constrict"
 msgstr "Constrict"
 
+msgid "crushing_bite_description"
+msgstr "The user bites down with bone-crushing force. May leave the target unable to act."
+
+msgid "crushing_bite"
+msgstr "Crushing Bite"
+
 msgid "crystal_description"
 msgstr "The user fires a sharp, crystalline projectile at the opponent."
 
@@ -1586,17 +1610,41 @@ msgstr "The user undergoes a transformation, healing itself and confusing the op
 msgid "demiurge"
 msgstr "Demiurge"
 
+msgid "depth_charge_description"
+msgstr "The user dives underwater and then explode upwards, dealing damage to the opponent."
+
+msgid "depth_charge_success"
+msgstr "{user} dives underwater!"
+
+msgid "depth_charge_fail"
+msgstr "{user} fails to submerge!"
+
+msgid "depth_charge"
+msgstr "Depth Charge"
+
 msgid "divinity_beam_description"
 msgstr "A ray of divinity blinds those who look upon it."
 
 msgid "divinity_beam"
 msgstr "Divinity Beam"
 
+msgid "dreamwalk_description"
+msgstr "Allows the user to enter the dreams of sleeping opponents, potentially dealing damage."
+
+msgid "dreamwalk"
+msgstr "Dreamwalk"
+
 msgid "earthquake_description"
 msgstr "The ground shakes violently as the user unleashes a powerful ground attack."
 
 msgid "earthquake"
 msgstr "Earthquake"
+
+msgid "electric_multibite_description"
+msgstr "The user bites repeatedly while channeling electricity. May shock the target."
+
+msgid "electric_multibite"
+msgstr "Electric Multibite"
 
 msgid "electrical_storm_description"
 msgstr "The user summons a raging thunderstorm, striking the opponent with lightning bolts."
@@ -1754,6 +1802,12 @@ msgstr "At the user's glare, the target grows weak and vulnerable."
 msgid "glower"
 msgstr "Glower"
 
+msgid "gnaw_description"
+msgstr "The user nibbles at the target, dealing a small amount of damage. A weak but fast and consistent attack."
+
+msgid "gnaw"
+msgstr "Gnaw"
+
 msgid "goad_description"
 msgstr "The user taunts the opponent, causing them to become enraged."
 
@@ -1773,7 +1827,7 @@ msgid "greenstone"
 msgstr "Greenstone"
 
 msgid "grinding_description"
-msgstr "The user grinds its opponent down with a relentless attack."
+msgstr "The user relentlessly batters the opponent with a barrage of grinding blows, wearing them down with sustained pressure."
 
 msgid "grinding"
 msgstr "Grinding"
@@ -1826,6 +1880,12 @@ msgstr "The user launches a volley of sharp ice shards at the opponent."
 msgid "icicle_spear"
 msgstr "Icicle Spear"
 
+msgid "infectious_bite_description"
+msgstr "A sharp fast bite that injects a festering toxin. May leave the target with a lingering injury."
+
+msgid "infectious_bite"
+msgstr "Infectious Bite"
+
 msgid "insanity_description"
 msgstr "The user becomes consumed by rage, increasing its power."
 
@@ -1867,6 +1927,12 @@ msgstr "Combatants float into the air, giving them a vantage point but leaving b
 
 msgid "levitate"
 msgstr "Levitate"
+
+msgid "lick_lash_description"
+msgstr "The user lashes out with its tongue, dealing damage and possibly leaving the opponent stunned."
+
+msgid "lick_lash"
+msgstr "Lick Lash"
 
 msgid "life_surge_description"
 msgstr "An eruption of life charges the monster, but at the expense of healing its opponent."
@@ -2066,6 +2132,12 @@ msgstr "The user emits a seductive aura laces with toxins, charming the opponent
 msgid "poison_courtship"
 msgstr "Poison Courtship"
 
+msgid "pollen_blast_description"
+msgstr "Releases a cloud of pollen, dealing damage to opponents and potentially causing them to become disoriented."
+
+msgid "pollen_blast"
+msgstr "Pollen Blast"
+
 msgid "pouch_description"
 msgstr "The user refreshes themselves with a tasty morsel from a pouch or bag."
 
@@ -2089,6 +2161,12 @@ msgstr "A classic, powerful strike with the user's fist."
 
 msgid "punch"
 msgstr "Punch"
+
+msgid "pyrokinesis_description"
+msgstr "The user unleashes a wave of intense heat and flames that can scorch its opponents."
+
+msgid "pyrokinesis"
+msgstr "Pyrokinesis"
 
 msgid "quicksand_description"
 msgstr "The user creates a treacherous patch of quicksand, trapping and damaging the opponent."
@@ -2119,6 +2197,18 @@ msgstr "The user adopts a defensive posture, provoking the opponent into attacki
 
 msgid "revenge_stance"
 msgstr "Revenge Stance"
+
+msgid "rift_dash_description"
+msgstr "The user creates a temporary rift in space and dash through it, reappearing at a different location and striking the opponent with a swift attack."
+
+msgid "rift_dash_success"
+msgstr "{user} teleports behind its opponent!"
+
+msgid "rift_dash_fail"
+msgstr "{user} fails to teleport, leaving itself open to attack!"
+
+msgid "rift_dash"
+msgstr "Rift Dash"
 
 msgid "ring_description"
 msgstr "The user conjures a ring that expands, engulfing the opponent."
@@ -2265,7 +2355,7 @@ msgid "solar_synthesis"
 msgstr "Solar Synthesis"
 
 msgid "spiky_strike_description"
-msgstr "They use a spiky spine or quills to strike a foe."
+msgstr "The user lashes out with its sharp spines or quills, striking the opponent with a flurry of piercing blows, inflicting pain and damage."
 
 msgid "spiky_strike"
 msgstr "Spiky Strike"
@@ -2288,6 +2378,12 @@ msgstr "The user summons a barrage of sharp wooden splinters that pierce the opp
 msgid "stabilo"
 msgstr "Stabilo"
 
+msgid "staff_smash_description"
+msgstr "The user delivers a powerful blow with its staff."
+
+msgid "staff_smash"
+msgstr "Staff Smash"
+
 msgid "stampede_description"
 msgstr "A powerful, overwhelming charge that inflicts heavy physical damage."
 
@@ -2305,6 +2401,12 @@ msgstr "The user generates a static electric field around itself, granting it in
 
 msgid "static_field"
 msgstr "Static Field"
+
+msgid "steel_jaws_description"
+msgstr "The user clamps down with jaws reinforced by metal. A powerful biting attack."
+
+msgid "steel_jaws"
+msgstr "Steel Jaws"
 
 msgid "sting_description"
 msgstr "The user inflicts a painful sting, injecting poison into the opponent's body."
@@ -2409,7 +2511,7 @@ msgid "terror"
 msgstr "Terror"
 
 msgid "thorn_burst_description"
-msgstr "A rain of thorns bursts out."
+msgstr "The user unleashes a rain of thorns, shooting a cloud of sharp, piercing projectiles at the opponent, dealing damage and potentially causing the opponent to become stuck, immobilized by the thorny barrage."
 
 msgid "thorn_burst"
 msgstr "Thorn Burst"
@@ -2457,10 +2559,16 @@ msgid "torch"
 msgstr "Torch"
 
 msgid "tornado_description"
-msgstr "The user releases a tornado."
+msgstr "The user summons a swirling vortex of air, unleashing a devastating tornado that lifts the opponent off the ground and deals damage."
 
 msgid "tornado"
 msgstr "Tornado"
+
+msgid "trample_description"
+msgstr "The user charges at the opponent with a powerful shoulder tackle, knocking them to the ground and then quickly moving away, leaving the target stuck in place."
+
+msgid "trample"
+msgstr "Trample"
 
 msgid "tsunami_description"
 msgstr "The user summons a colossal wave that crashes down upon the opponent."
@@ -2535,10 +2643,16 @@ msgid "walls"
 msgstr "Walls"
 
 msgid "water_blast_description"
-msgstr "A blast of water."
+msgstr "The user unleashes a powerful blast of water, striking the opponent with a torrent of liquid force, dealing damage."
 
 msgid "water_blast"
 msgstr "Water Blast"
+
+msgid "water_bullet_description"
+msgstr "A mouthful of water is flung at the target with great alacrity."
+
+msgid "water_bullet"
+msgstr "Water Bullet"
 
 msgid "web_description"
 msgstr "A sticky web is shot at the opponent, trapping them and inflicting damage."
@@ -2558,6 +2672,15 @@ msgstr "The user creates a powerful vortex of wind that sweeps the opponent away
 msgid "whirlwind"
 msgstr "Whirlwind"
 
+msgid "wiggle_description"
+msgstr "The user shakes their body back and forth, creating a silly, attention-grabbing display that doesn't do any damage but might be entertaining to watch."
+
+msgid "wiggle_success"
+msgstr "{user} wiggled its body!"
+
+msgid "wiggle"
+msgstr "Wiggle"
+
 msgid "wing_tip_description"
 msgstr "The user delivers a sharp, cutting attack with the tip of its wing."
 
@@ -2565,7 +2688,7 @@ msgid "wing_tip"
 msgstr "Wing Tip"
 
 msgid "woodsmash_description"
-msgstr "Wood is smashed against the foe."
+msgstr "The user slams into the opponent with a powerful wooden strike, dealing damage and potentially knocking them back."
 
 msgid "woodsmash"
 msgstr "Woodsmash"

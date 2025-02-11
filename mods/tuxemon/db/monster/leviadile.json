@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "water_blast"
+            "technique": "water_bullet"
         },
         {
             "level_learned": 4,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "tonguespear"
+            "technique": "water_blast"
         },
         {
             "level_learned": 19,
@@ -58,7 +58,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["leviathan", "sea", "ice", "water", "bite", "toxic", "fury"],
+    "terrains": ["sea"],
+    "tags": ["ice", "water", "bite", "toxic", "fury"],
     "shape": "leviathan",
     "stage": "stage2",
     "types": [

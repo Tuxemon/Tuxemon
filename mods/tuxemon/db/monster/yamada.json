@@ -45,7 +45,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["sprite", "extraplanar", "ruins", "ghost", "soldier", "sharp", "leadership", "darkness"],
+    "terrains": ["extraplanar", "ruins"],
+    "tags": ["ghost", "soldier", "sharp", "leadership", "darkness"],
     "shape": "sprite",
     "stage": "standalone",
     "types": [

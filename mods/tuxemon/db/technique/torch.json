@@ -24,9 +24,9 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Flame", "Gadgets"],
+  "tags": ["flame", "gadgets"],
   "types": [
-    "water"
+    "fire"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

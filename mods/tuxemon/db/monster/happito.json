@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "perfect_cut"
+            "technique": "buzz"
         },
         {
             "level_learned": 1,
-            "technique": "shrapnel"
+            "technique": "bullet"
         },
         {
             "level_learned": 4,
@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["blob", "extraplanar", "urban"],
+    "terrains": ["extraplanar", "urban"],
+    "tags": ["mental", "machine", "healing", "light"],
     "shape": "blob",
     "stage": "stage1",
     "types": [

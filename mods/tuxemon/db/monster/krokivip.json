@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "water_blast"
+            "technique": "water_bullet"
         },
         {
             "level_learned": 4,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "tonguespear"
+            "technique": "water_blast"
         },
         {
             "level_learned": 19,
@@ -31,12 +31,20 @@
             "technique": "tsunami"
         },
         {
+            "level_learned": 31,
+            "technique": "kraken"
+        },
+        {
             "level_learned": 37,
             "technique": "frostbite"
         },
         {
             "level_learned": 40,
             "technique": "viper"
+        },
+        {
+            "level_learned": 55,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [
@@ -55,7 +63,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["leviathan", "coastal", "swamp", "bite", "water", "amphibian", "fury"],
+    "terrains": ["coastal", "swamp"],
+    "tags": ["bite", "water", "amphibian", "fury"],
     "shape": "leviathan",
     "stage": "stage1",
     "types": [

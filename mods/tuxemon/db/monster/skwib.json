@@ -51,7 +51,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["polliwog"],
+    "terrains": [],
+    "tags": ["pseudopod"],
     "shape": "polliwog",
     "stage": "basic",
     "types": [

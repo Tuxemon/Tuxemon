@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "overgrowth"
+            "technique": "solar_synthesis"
         },
         {
             "level_learned": 4,
@@ -19,8 +19,20 @@
             "technique": "poison_courtship"
         },
         {
+            "level_learned": 16,
+            "technique": "buzz"
+        },
+        {
             "level_learned": 19,
+            "technique": "needle"
+        },
+        {
+            "level_learned": 25,
             "technique": "viper"
+        },
+        {
+            "level_learned": 34,
+            "technique": "thorn_burst"
         }
     ],
     "evolutions": [],
@@ -30,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["flier"],
+    "terrains": [],
+    "tags": ["plant", "toxic", "bug", "sharp"],
     "shape": "flier",
     "stage": "stage1",
     "types": [

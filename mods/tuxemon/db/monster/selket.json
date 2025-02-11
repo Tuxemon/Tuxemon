@@ -47,7 +47,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["grub"],
+    "terrains": [],
+    "tags": ["ground", "toxic", "rock"],
     "shape": "grub",
     "stage": "basic",
     "types": [

@@ -63,7 +63,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["sprite", "ruins", "urban"],
+    "terrains": ["ruins", "urban"],
+    "tags": ["fists", "rock", "fury", "shielded"],
     "shape": "sprite",
     "stage": "basic",
     "types": [

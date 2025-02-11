@@ -8,11 +8,11 @@
         },
         {
             "level_learned": 1,
-            "technique": "flow"
+            "technique": "water_bullet"
         },
         {
             "level_learned": 4,
-            "technique": "stampede"
+            "technique": "flow"
         },
         {
             "level_learned": 7,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "tonguespear"
+            "technique": "stampede"
         },
         {
             "level_learned": 16,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "biting_winds"
+            "technique": "water_blast"
         },
         {
             "level_learned": 28,
@@ -62,7 +62,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["landrace", "jungle", "megafauna", "leadership", "water", "mental", "pseudopod"],
+    "terrains": ["jungle"],
+    "tags": ["megafauna", "leadership", "water", "mental", "pseudopod"],
     "shape": "landrace",
     "stage": "stage1",
     "types": [

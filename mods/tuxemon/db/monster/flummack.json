@@ -30,7 +30,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["sprite", "urban", "other"],
+    "terrains": ["urban", "other"],
+    "tags": ["food", "soldier"],
     "shape": "sprite",
     "stage": "stage1",
     "types": [

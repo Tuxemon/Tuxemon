@@ -50,7 +50,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["humanoid", "coastal", "desert", "ground", "water", "sharp"],
+    "terrains": ["coastal", "desert"],
+    "tags": ["ground", "water", "sharp"],
     "shape": "humanoid",
     "stage": "stage1",
     "types": [

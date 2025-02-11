@@ -46,7 +46,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["varmint", "urban", "bomber", "gadgets", "claws", "darkness"],
+    "terrains": ["urban"],
+    "tags": ["bomber", "gadgets", "claws", "darkness"],
     "shape": "varmint",
     "stage": "stage1",
     "types": [

@@ -25,7 +25,7 @@
 	},
 	"tech_id": 0,
 	"category": "notype",
-	"tags": ["NoType"],
+	"tags": ["notype"],
 	"types": [],
 	"use_failure": null,
 	"use_success": null,

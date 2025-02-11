@@ -32,7 +32,11 @@
         },
         {
             "level_learned": 28,
-            "technique": "strike"
+            "technique": "staff_smash"
+        },
+        {
+            "level_learned": 40,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [],
@@ -42,7 +46,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["humanoid"],
+    "terrains": [],
+    "tags": ["ground", "claws", "summoner", "ghost", "darkness", "staff"],
     "shape": "humanoid",
     "stage": "stage1",
     "types": [

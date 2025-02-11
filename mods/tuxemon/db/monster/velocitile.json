@@ -36,7 +36,7 @@
         },
         {
             "level_learned": 40,
-            "technique": "wing_tip"
+            "technique": "needle"
         },
         {
             "level_learned": 43,
@@ -58,7 +58,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["humanoid", "grassland", "jungle", "woodland"],
+    "terrains": ["grassland", "jungle", "woodland"],
+    "tags": ["plant", "speed"],
     "shape": "humanoid",
     "stage": "stage2",
     "types": [

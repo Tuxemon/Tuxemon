@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "clamp_on"
+            "technique": "gnaw"
         },
         {
             "level_learned": 1,
@@ -19,8 +19,12 @@
             "technique": "blood_nets"
         },
         {
-            "level_learned": 19,
+            "level_learned": 16,
             "technique": "sting"
+        },
+        {
+            "level_learned": 19,
+            "technique": "energy_claws"
         }
     ],
     "evolutions": [
@@ -40,7 +44,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["blob", "grassland", "jungle", "mountains", "swamp", "urban", "woodland"],
+    "terrains": ["grassland", "jungle", "mountains", "swamp", "urban", "woodland"],
+    "tags": ["bug", "bite", "shielded"],
     "shape": "blob",
     "stage": "stage1",
     "types": [

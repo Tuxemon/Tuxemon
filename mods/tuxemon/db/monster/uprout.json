@@ -34,7 +34,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["blob", "grassland", "jungle", "woodland"],
+    "terrains": ["grassland", "jungle", "woodland"],
+    "tags": ["plant"],
     "shape": "blob",
     "stage": "stage1",
     "types": [

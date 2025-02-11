@@ -67,7 +67,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["piscine", "freshwater", "sea"],
+    "terrains": ["freshwater", "sea"],
+    "tags": ["flame", "water"],
     "shape": "piscine",
     "stage": "basic",
     "types": [

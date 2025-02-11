@@ -67,7 +67,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["flier"],
+    "terrains": [],
+    "tags": ["plant", "food"],
     "shape": "flier",
     "stage": "basic",
     "types": [

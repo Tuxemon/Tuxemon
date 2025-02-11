@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "mudslide"
+            "technique": "hammerhead"
         },
         {
             "level_learned": 1,
@@ -49,7 +49,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["dragon", "bite", "amphibian", "megafauna", "fury", "coastal", "jungle"],
+    "terrains": ["coastal", "jungle"],
+    "tags": ["bite", "amphibian", "megafauna", "fury"],
     "shape": "dragon",
     "stage": "standalone",
     "types": [

@@ -55,7 +55,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["machine", "bomber", "gadgets", "light"],
     "shape": "blob",
     "stage": "basic",
     "types": [

@@ -75,7 +75,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["hunter", "urban"],
+    "terrains": ["urban"],
+    "tags": ["healing", "bite", "darkness", "gadgets"],
     "shape": "hunter",
     "stage": "stage1",
     "types": [

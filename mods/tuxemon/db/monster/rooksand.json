@@ -50,7 +50,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["blob", "coastal", "desert", "fists", "ground", "water"],
+    "terrains": ["coastal", "desert"],
+    "tags": ["fists", "ground", "water"],
     "shape": "blob",
     "stage": "stage1",
     "types": [

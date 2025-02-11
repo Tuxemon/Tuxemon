@@ -58,7 +58,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["dragon", "sea", "urban"],
+    "terrains": ["sea", "urban"],
+    "tags": ["food", "celestial", "shielded"],
     "shape": "dragon",
     "stage": "stage2",
     "types": [

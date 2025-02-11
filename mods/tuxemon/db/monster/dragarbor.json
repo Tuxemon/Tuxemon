@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "all_in"
+            "technique": "ram"
         },
         {
             "level_learned": 1,
@@ -49,6 +49,10 @@
         {
             "level_learned": 64,
             "technique": "shadow_boxing"
+        },
+        {
+            "level_learned": 70,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [],
@@ -62,7 +66,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["dragon", "jungle"],
+    "terrains": ["jungle"],
+    "tags": ["plant", "bite", "sharp"],
     "shape": "dragon",
     "stage": "stage2",
     "types": [

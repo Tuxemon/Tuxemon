@@ -47,7 +47,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["hunter", "urban", "woodland", "gadgets", "claws", "fists"],
+    "terrains": ["urban", "woodland"],
+    "tags": ["gadgets", "claws", "fists"],
     "shape": "hunter",
     "stage": "basic",
     "types": [

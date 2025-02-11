@@ -47,13 +47,13 @@
             "technique": "sleep_bomb"
         },
         {
-            "level_learned": 43,
-            "technique": "peregrine"
+            "level_learned": 40,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [
         {
-            "at_level": 40,
+            "at_level": 38,
             "monster_slug": "lendos"
         }
     ],
@@ -63,7 +63,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["gaze", "darkness", "mental"],
     "shape": "blob",
     "stage": "basic",
     "types": [

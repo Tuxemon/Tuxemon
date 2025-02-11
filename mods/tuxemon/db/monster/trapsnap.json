@@ -47,7 +47,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["brute"],
+    "terrains": [],
+    "tags": ["plant", "sharp", "fury"],
     "shape": "brute",
     "stage": "basic",
     "types": [

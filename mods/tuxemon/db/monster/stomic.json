@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "venomous_tentacle"
+            "technique": "acid"
         },
         {
             "level_learned": 1,
@@ -21,6 +21,10 @@
         {
             "level_learned": 19,
             "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 40,
+            "technique": "earthquake"
         }
     ],
     "evolutions": [
@@ -35,7 +39,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["steel", "toxic", "bomber"],
     "shape": "blob",
     "stage": "basic",
     "types": [

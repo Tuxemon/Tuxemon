@@ -25,7 +25,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["humanoid"],
+    "terrains": [],
+    "tags": ["rock", "fists"],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [

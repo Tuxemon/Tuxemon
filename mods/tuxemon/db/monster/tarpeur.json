@@ -47,7 +47,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["grub"],
+    "terrains": [],
+    "tags": ["bite", "plant"],
     "shape": "grub",
     "stage": "basic",
     "types": [

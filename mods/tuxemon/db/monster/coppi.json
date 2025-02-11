@@ -63,7 +63,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["blob", "woodland", "plant", "food"],
+    "terrains": ["woodland"],
+    "tags": ["plant", "food"],
     "shape": "blob",
     "stage": "stage1",
     "types": [

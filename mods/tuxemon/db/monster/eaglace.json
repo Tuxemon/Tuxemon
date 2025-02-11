@@ -45,6 +45,10 @@
         {
             "level_learned": 52,
             "technique": "snowstorm"
+        },
+        {
+            "level_learned": 61,
+            "technique": "tornado"
         }
     ],
     "evolutions": [],
@@ -58,7 +62,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["flier", "boreal/snow", "grassland", "mountains"],
+    "terrains": ["boreal/snow", "grassland", "mountains"],
+    "tags": ["gemstone", "ice", "bird", "weather"],
     "shape": "flier",
     "stage": "stage2",
     "types": [

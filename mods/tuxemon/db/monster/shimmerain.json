@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "bubble_trap"
+            "technique": "bubbles"
         },
         {
             "level_learned": 4,
@@ -41,7 +41,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["piscine", "coastal", "freshwater", "sea", "weather", "water", "speed"],
+    "terrains": ["coastal", "freshwater", "sea"],
+    "tags": ["weather", "water", "speed"],
     "shape": "piscine",
     "stage": "standalone",
     "types": [

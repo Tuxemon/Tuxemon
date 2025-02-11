@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["serpent", "grassland", "jungle", "mountains", "ruins", "underground", "woodland"],
+    "terrains": ["grassland", "jungle", "mountains", "ruins", "underground", "woodland"],
+    "tags": ["shapeshifter", "bite", "electricity"],
     "shape": "serpent",
     "stage": "stage1",
     "types": [

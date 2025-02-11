@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["hunter", "boreal/snow", "woodland"],
+    "terrains": ["boreal/snow", "woodland"],
+    "tags": ["bite", "ice", "darkness"],
     "shape": "hunter",
     "stage": "standalone",
     "types": [

@@ -30,7 +30,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["hunter"],
+    "terrains": [],
+    "tags": ["flame", "bite", "electricity"],
     "shape": "hunter",
     "stage": "stage1",
     "types": [

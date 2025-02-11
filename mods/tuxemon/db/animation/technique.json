@@ -698,5 +698,29 @@
     {
         "slug" : "beam",
         "file" : "technique"
+    },
+    {
+        "slug" : "bubbleattack",
+        "file" : "technique"
+    },
+    {
+        "slug" : "gnaw",
+        "file" : "technique"
+    },
+    {
+        "slug" : "pollenbullet",
+        "file" : "technique"
+    },
+    {
+        "slug" : "staffstrike",
+        "file" : "technique"
+    },
+    {
+        "slug" : "tonguelash",
+        "file" : "technique"
+    },
+    {
+        "slug" : "waterbullet",
+        "file" : "technique"
     }
 ]

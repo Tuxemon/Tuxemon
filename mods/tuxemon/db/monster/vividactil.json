@@ -33,6 +33,10 @@
         {
             "level_learned": 25,
             "technique": "frostbite"
+        },
+        {
+            "level_learned": 55,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [],
@@ -42,7 +46,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["flier", "other"],
+    "terrains": ["other"],
+    "tags": ["shapeshifter", "bite", "rock", "healing"],
     "shape": "flier",
     "stage": "stage1",
     "types": [

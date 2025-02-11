@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "berserk"
+            "technique": "peck"
         },
         {
             "level_learned": 4,
@@ -44,7 +44,7 @@
         },
         {
             "level_learned": 46,
-            "technique": "blade"
+            "technique": "tornado"
         }
     ],
     "evolutions": [
@@ -63,7 +63,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["flier", "desert", "grassland", "mountains", "woodland"],
+    "terrains": ["desert", "grassland", "mountains", "woodland"],
+    "tags": ["bird", "sharp"],
     "shape": "flier",
     "stage": "basic",
     "types": [

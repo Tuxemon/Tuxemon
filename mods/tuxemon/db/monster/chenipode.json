@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "avalanche"
+            "technique": "tonguespear"
         },
         {
             "level_learned": 28,
@@ -47,7 +47,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["grub"],
+    "terrains": [],
+    "tags": ["bug"],
     "shape": "grub",
     "stage": "basic",
     "types": [

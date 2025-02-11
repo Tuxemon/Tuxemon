@@ -63,7 +63,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["ghost", "love", "healing", "soldier"],
     "shape": "blob",
     "stage": "basic",
     "types": [

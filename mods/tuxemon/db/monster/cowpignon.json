@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["sprite", "grassland", "woodland"],
+    "terrains": ["grassland", "woodland"],
+    "tags": ["plant", "love", "mental", "food"],
     "shape": "sprite",
     "stage": "standalone",
     "types": [

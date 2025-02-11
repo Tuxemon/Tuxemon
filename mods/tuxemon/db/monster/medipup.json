@@ -75,7 +75,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["varmint", "urban"],
+    "terrains": ["urban"],
+    "tags": ["healing"],
     "shape": "varmint",
     "stage": "basic",
     "types": [

@@ -8,19 +8,19 @@
         },
         {
             "level_learned": 1,
-            "technique": "berserk"
+            "technique": "slice"
         },
         {
             "level_learned": 4,
-            "technique": "amnesia"
+            "technique": "strike"
         },
         {
             "level_learned": 7,
-            "technique": "all_in"
+            "technique": "berserk"
         },
         {
             "level_learned": 13,
-            "technique": "one_two"
+            "technique": "amnesia"
         },
         {
             "level_learned": 16,
@@ -32,11 +32,11 @@
         },
         {
             "level_learned": 25,
-            "technique": "slice"
+            "technique": "blade"
         },
         {
             "level_learned": 28,
-            "technique": "blade"
+            "technique": "all_in"
         },
         {
             "level_learned": 31,
@@ -44,7 +44,7 @@
         },
         {
             "level_learned": 37,
-            "technique": "strike"
+            "technique": "one_two"
         },
         {
             "level_learned": 40,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["flier", "urban", "woodland"],
+    "terrains": ["urban", "woodland"],
+    "tags": ["love", "darkness", "food"],
     "shape": "flier",
     "stage": "standalone",
     "types": [

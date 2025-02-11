@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "icicle_spear"
+            "technique": "solar_synthesis"
         },
         {
             "level_learned": 4,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "ram"
+            "technique": "icicle_spear"
         },
         {
             "level_learned": 19,
@@ -59,7 +59,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["sprite", "boreal/snow", "grassland", "woodland"],
+    "terrains": ["boreal/snow", "grassland", "woodland"],
+    "tags": ["plant", "ice"],
     "shape": "sprite",
     "stage": "basic",
     "types": [

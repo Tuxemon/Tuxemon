@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 4,
-            "technique": "venomous_tentacle"
+            "technique": "roll"
         },
         {
             "level_learned": 7,
@@ -53,7 +53,8 @@
     ],  
     "evolutions": [],
     "history": [],
-    "tags": ["piscine", "coastal", "freshwater", "sea"],
+    "terrains": ["coastal", "freshwater", "sea"],
+    "tags": ["water"],
     "shape": "piscine",
     "stage": "standalone",
     "types": [

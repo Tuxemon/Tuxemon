@@ -63,7 +63,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["polliwog", "freshwater", "swamp"],
+    "terrains": ["freshwater", "swamp"],
+    "tags": ["light"],
     "shape": "polliwog",
     "stage": "basic",
     "types": [

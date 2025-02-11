@@ -54,7 +54,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["flier", "grassland, woodland", "bird", "bite"],
+    "terrains": ["grassland", "woodland"],
+    "tags": ["bird", "bite"],
     "shape": "flier",
     "stage": "stage1",
     "types": [

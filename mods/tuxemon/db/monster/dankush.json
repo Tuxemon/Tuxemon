@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["sprite", "grassland"],
+    "terrains": ["grassland"],
+    "tags": ["plant", "flame", "mental", "healing", "summoner"],
     "shape": "sprite",
     "stage": "standalone",
     "types": [

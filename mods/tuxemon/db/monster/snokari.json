@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "venomous_tentacle"
+            "technique": "water_bullet"
         },
         {
             "level_learned": 1,
-            "technique": "biting_winds"
+            "technique": "gnaw"
         },
         {
             "level_learned": 4,
@@ -24,15 +24,19 @@
         },
         {
             "level_learned": 25,
-            "technique": "tonguespear"
+            "technique": "water_blast"
         },
         {
             "level_learned": 28,
-            "technique": "icicle_spear"
+            "technique": "viper"
         },
         {
             "level_learned": 31,
-            "technique": "chill_mist"
+            "technique": "electric_multibite"
+        },
+        {
+            "level_learned": 40,
+            "technique": "tsunami"
         }
     ],
     "evolutions": [],
@@ -42,7 +46,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["serpent"],
+    "terrains": [],
+    "tags": ["toxic", "bite"],
     "shape": "serpent",
     "stage": "stage1",
     "types": [

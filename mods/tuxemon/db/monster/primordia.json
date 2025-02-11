@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "breathe_fire"
+            "technique": "acid"
         },
         {
             "level_learned": 4,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "acid"
+            "technique": "breathe_fire"
         },
         {
             "level_learned": 19,
@@ -41,7 +41,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["blob", "water", "pseudopod", "fire", "amphibian", "coastal", "extraterrestrial", "other"],
+    "terrains": ["coastal", "extraterrestrial", "other"],
+    "tags": ["water", "pseudopod", "fire", "amphibian"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

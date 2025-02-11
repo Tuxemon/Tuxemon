@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "electrical_storm"
+            "technique": "sunburst"
         },
         {
             "level_learned": 1,
@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "shuriken"
+            "technique": "electroplate"
         },
         {
             "level_learned": 19,
@@ -40,20 +40,21 @@
         },
         {
             "level_learned": 31,
-            "technique": "wing_tip"
+            "technique": "rift_dash"
         },
         {
             "level_learned": 37,
-            "technique": "terror"
+            "technique": "battery_acid"
         },
         {
             "level_learned": 40,
-            "technique": "sunburst"
+            "technique": "electrical_storm"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["megafauna", "machine", "food"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

@@ -63,7 +63,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["flier", "jungle", "bird", "claws", "bite"],
+    "terrains": ["jungle"],
+    "tags": ["bird", "claws", "bite"],
     "shape": "flier",
     "stage": "basic",
     "types": [

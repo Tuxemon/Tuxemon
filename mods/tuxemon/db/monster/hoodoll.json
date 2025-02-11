@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "breathe_fire"
+            "technique": "spit_poison"
         },
         {
             "level_learned": 16,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "spit_poison"
+            "technique": "staff_smash"
         },
         {
             "level_learned": 28,
@@ -59,7 +59,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["blob", "desert", "sharp", "plant", "toxic"],
+    "terrains": ["desert"],
+    "tags": ["sharp", "plant", "toxic", "staff"],
     "shape": "blob",
     "stage": "basic",
     "types": [

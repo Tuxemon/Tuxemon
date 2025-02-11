@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["flier", "urban"],
+    "terrains": ["urban"],
+    "tags": ["machine", "bird"],
     "shape": "flier",
     "stage": "stage1",
     "types": [

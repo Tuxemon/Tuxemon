@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["leviathan"],
+    "terrains": [],
+    "tags": [],
     "shape": "leviathan",
     "stage": "standalone",
     "types": [

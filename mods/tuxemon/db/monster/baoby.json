@@ -51,7 +51,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["landrace"],
+    "terrains": [],
+    "tags": ["plant", "water"],
     "shape": "landrace",
     "stage": "basic",
     "types": [

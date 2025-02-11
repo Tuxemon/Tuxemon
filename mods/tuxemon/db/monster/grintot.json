@@ -51,7 +51,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["brute"],
+    "terrains": [],
+    "tags": ["rock", "ground", "fists"],
     "shape": "brute",
     "stage": "basic",
     "types": [

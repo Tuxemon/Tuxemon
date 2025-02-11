@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "perfect_cut"
+            "technique": "strike"
         },
         {
             "level_learned": 1,
-            "technique": "shrapnel"
+            "technique": "wall_of_steel"
         },
         {
             "level_learned": 4,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "wall_of_steel"
+            "technique": "shrapnel"
         },
         {
             "level_learned": 16,
@@ -28,7 +28,7 @@
         },
         {
             "level_learned": 19,
-            "technique": "strike"
+            "technique": "perfect_cut"
         },
         {
             "level_learned": 25,
@@ -41,6 +41,10 @@
         {
             "level_learned": 31,
             "technique": "crystal"
+        },
+        {
+            "level_learned": 40,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [
@@ -55,7 +59,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["sprite", "ruins", "urban"],
+    "terrains": ["ruins", "urban"],
+    "tags": ["bite", "plant", "ghost", "shielded"],
     "shape": "sprite",
     "stage": "basic",
     "types": [

@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "breathe_fire"
+            "technique": "spit_poison"
         },
         {
             "level_learned": 16,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "spit_poison"
+            "technique": "staff_smash"
         },
         {
             "level_learned": 28,
@@ -54,7 +54,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["humanoid", "desert", "sharp", "plant"],
+    "terrains": ["desert"],
+    "tags": ["sharp", "plant", "staff"],
     "shape": "humanoid",
     "stage": "stage1",
     "types": [

@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "berserk"
+            "technique": "gnaw"
         },
         {
             "level_learned": 4,
@@ -49,11 +49,16 @@
         {
             "level_learned": 40,
             "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 55,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["dragon"],
+    "terrains": [],
+    "tags": ["flame", "bite", "fury"],
     "shape": "dragon",
     "stage": "standalone",
     "types": [

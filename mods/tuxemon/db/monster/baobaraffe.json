@@ -37,6 +37,10 @@
         {
             "level_learned": 28,
             "technique": "pseudopod"
+        },
+        {
+            "level_learned": 55,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [],
@@ -46,7 +50,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["landrace"],
+    "terrains": [],
+    "tags": ["plant", "water", "megafauna"],
     "shape": "landrace",
     "stage": "stage1",
     "types": [

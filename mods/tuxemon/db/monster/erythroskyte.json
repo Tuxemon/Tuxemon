@@ -66,7 +66,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["hunter", "urban", "grassland", "healing", "gadgets", "bite", "love", "steel"],
+    "terrains": ["urban", "grassland"],
+    "tags": ["healing", "gadgets", "bite", "love", "steel"],
     "shape": "hunter",
     "stage": "stage2",
     "types": [

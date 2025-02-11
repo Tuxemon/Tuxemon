@@ -13,7 +13,7 @@
   "is_fast": true,
   "potency": 1,
   "power": 1,
-  "range": "touch",
+  "range": "melee",
   "recharge": 4,
   "sfx": "sfx_blaster",
   "slug": "altitude",
@@ -26,8 +26,8 @@
     "own_team": false,
     "own_trainer": false
   },
-  "category": "notype",
-  "tags": ["Bird"],
+  "category": "simple",
+  "tags": ["bird"],
   "types": [
     "wood",
     "earth"

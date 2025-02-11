@@ -25,7 +25,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Bug", "Plant", "Healing"],
+  "tags": ["bug", "Plant", "healing"],
   "types": [
     "wood"
   ],

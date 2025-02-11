@@ -49,6 +49,10 @@
         {
             "level_learned": 40,
             "technique": "clairaudience"
+        },
+        {
+            "level_learned": 55,
+            "technique": "tornado"
         }
     ],
     "evolutions": [],
@@ -62,7 +66,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["flier", "jungle"],
+    "terrains": ["jungle"],
+    "tags": ["plant", "food"],
     "shape": "flier",
     "stage": "stage2",
     "types": [

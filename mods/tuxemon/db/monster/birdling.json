@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "wing_tip"
+            "technique": "roll"
         },
         {
             "level_learned": 1,
@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["flier", "grassland", "jungle", "woodland"],
+    "terrains": ["grassland", "jungle", "woodland"],
+    "tags": ["bird"],
     "shape": "flier",
     "stage": "stage1",
     "types": [

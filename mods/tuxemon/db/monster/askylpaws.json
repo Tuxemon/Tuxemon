@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "life_surge"
+            "technique": "staff_smash"
         },
         {
             "level_learned": 28,
@@ -70,7 +70,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["hunter", "urban", "healing", "bite", "darkness", "gadgets", "toxic", "celestial"],
+    "terrains": ["urban"],
+    "tags": ["healing", "bite", "darkness", "gadgets", "toxic", "celestial", "staff"],
     "shape": "hunter",
     "stage": "stage2",
     "types": [

@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["ice", "plant"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

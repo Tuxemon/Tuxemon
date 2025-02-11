@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "muck"
+            "technique": "bubbles"
         },
         {
             "level_learned": 1,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["blob", "ruins", "urban", "fists", "gaze", "water", "rock"],
+    "terrains": ["ruins", "urban"],
+    "tags": ["fists", "gaze", "water", "rock"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["serpent", "freshwater", "grassland", "jungle", "ruins"],
+    "terrains": ["freshwater", "grassland", "jungle", "ruins"],
+    "tags": ["shapeshifter", "bite", "water", "toxic"],
     "shape": "serpent",
     "stage": "stage1",
     "types": [

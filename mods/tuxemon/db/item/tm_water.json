@@ -1,6 +1,10 @@
 {
   "conditions": [
-    "is type water"
+    {
+      "type": "type",
+      "parameters": ["water"],
+      "operator": "is"
+    }
   ],
   "effects": [],
   "slug": "tm_water",

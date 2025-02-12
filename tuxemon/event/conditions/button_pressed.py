@@ -27,17 +27,6 @@ class ButtonPressedCondition(EventCondition):
     name = "button_pressed"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """
-        Check to see if a particular key was pressed.
-
-        Parameters:
-            session: The session object
-            condition: The map condition object.
-
-        Returns:
-            Whether the key was pressed or not.
-
-        """
         button = str(condition.parameters[0])
 
         # TODO: workaround for old maps.  eventually need to decide on a scheme

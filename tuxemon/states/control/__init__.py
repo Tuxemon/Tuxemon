@@ -372,7 +372,9 @@ class ControlState(PygameMenuState):
         prepare.CONFIG = tuxe_config
         local_session.client.config = tuxe_config
         keyboard = PygameKeyboardInput(tuxe_config.keyboard_button_map)
-        local_session.client.input_manager.set_input(0, 0, keyboard)
+        local_session.client.input_manager.event_queue.set_input(
+            0, 0, keyboard
+        )
         local_session.client.event_engine = EventEngine(local_session)
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:

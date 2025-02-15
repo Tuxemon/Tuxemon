@@ -593,15 +593,19 @@ class NPC(Entity[NPCState]):
 
     def network_notify_start_moving(self, direction: Direction) -> None:
         r"""WIP guesswork ¯\_(ツ)_/¯"""
-        if self.world.client.isclient or self.world.client.ishost:
-            self.world.client.client.update_player(
+        self.network = self.world.client.network_manager
+        if self.network.isclient or self.network.ishost:
+            assert self.network.client
+            self.network.client.update_player(
                 direction, event_type="CLIENT_MOVE_START"
             )
 
     def network_notify_stop_moving(self) -> None:
         r"""WIP guesswork ¯\_(ツ)_/¯"""
-        if self.world.client.isclient or self.world.client.ishost:
-            self.world.client.client.update_player(
+        self.network = self.world.client.network_manager
+        if self.network.isclient or self.network.ishost:
+            assert self.network.client
+            self.network.client.update_player(
                 self.facing, event_type="CLIENT_MOVE_COMPLETE"
             )
 

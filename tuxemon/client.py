@@ -91,10 +91,8 @@ class LocalPygameClient:
         self.save_to_disk = False
 
         # Set up our networking for multiplayer.
-        self.server = networking.TuxemonServer(self)
-        self.client = networking.TuxemonClient(self)
-        self.ishost = False
-        self.isclient = False
+        self.network_manager = networking.NetworkManager(self)
+        self.network_manager.initialize()
 
         # Set up our combat engine and router.
         # self.combat_engine = CombatEngine(self)
@@ -322,11 +320,7 @@ class LocalPygameClient:
 
         """
         # Update our networking
-        if self.client.listening:
-            self.client.update(time_delta)
-            self.add_clients_to_map(self.client.client.registry)
-        if self.server.listening:
-            self.server.update()
+        self.network_manager.update(time_delta)
 
         # get all the input waiting for use
         events = self.input_manager.process_events()

@@ -277,9 +277,11 @@ class WorldState(state.State):
         self.client.event_data["transition"] = False
 
         # Update the server/clients of our new map and populate any other players.
-        if self.client.isclient or self.client.ishost:
-            self.client.add_clients_to_map(self.client.client.client.registry)
-            self.client.client.update_player(self.player.facing)
+        self.network = self.client.network_manager
+        if self.network.isclient or self.network.ishost:
+            assert self.network.client
+            self.client.add_clients_to_map(self.network.client.client.registry)
+            self.network.client.update_player(self.player.facing)
 
         # Update the location of the npcs. Doesn't send network data.
         for npc in self.npcs:

@@ -209,6 +209,7 @@ class Monster:
         self.category = T.translate(f"cat_{self.cat}")
         self.shape = results.shape or MonsterShape.default
         self.stage = results.stage or EvolutionStage.standalone
+        self.tags = results.tags
         self.taste_cold = self.set_taste_cold(self.taste_cold)
         self.taste_warm = self.set_taste_warm(self.taste_warm)
         self.steps = self.steps

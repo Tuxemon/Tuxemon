@@ -74,19 +74,12 @@ class TestMonsterActions(unittest.TestCase):
         upper_catch_resistance=1.25,
     )
     _faint = ConditionModel(
+        damage_modifiers=[],
         flip_axes="",
         sfx="sfx_faint",
         slug="faint",
         range="special",
         sort="meta",
-        target={
-            "enemy_monster": False,
-            "enemy_team": False,
-            "enemy_trainer": False,
-            "own_monster": False,
-            "own_team": False,
-            "own_trainer": False,
-        },
         cond_id=0,
     )
 

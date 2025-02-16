@@ -1,5 +1,6 @@
 {
   "animation": null,
+  "damage_modifiers": [],
   "category": "negative",
   "effects": [
     "flinching 0.5"

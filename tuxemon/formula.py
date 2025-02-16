@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING, Optional
 from tuxemon import prepare as pre
 
 if TYPE_CHECKING:
-    from tuxemon.db import ElementType
+    from tuxemon.db import DamageModifier, ElementType
     from tuxemon.element import Element
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
@@ -167,6 +167,37 @@ def simple_damage_calculate(
     move_strength = technique.power * mult
     damage = int(user_strength * move_strength / target_resist)
     return damage, mult
+
+
+def condition_weakest_link(
+    damage_modifiers: list[DamageModifier], monster: Monster
+) -> float:
+    """
+    Returns the smallest damage multiplier that applies to the given monster.
+
+    This function iterates over the damage modifiers and checks if the monster's type
+    matches any of the modifier's values. If a match is found, the function updates the
+    multiplier to the smallest value found.
+
+    Parameters:
+        damage_modifiers: A list of damage modifiers.
+        monster: The monster to check.
+
+    Returns:
+        The smallest damage multiplier that applies to the monster.
+    """
+    multiplier: float = 1.0
+    if damage_modifiers:
+        for modifier in damage_modifiers:
+            if modifier.attribute == "type":
+                if any(t.name in modifier.values for t in monster.types):
+                    multiplier = min(multiplier, modifier.multiplier)
+            elif modifier.attribute == "tag":
+                if any(t in modifier.values for t in monster.tags):
+                    multiplier = min(multiplier, modifier.multiplier)
+            else:
+                raise ValueError(f"{modifier.attribute} isn't implemented.")
+    return multiplier
 
 
 def simple_heal(

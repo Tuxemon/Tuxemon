@@ -1,5 +1,12 @@
 {
   "animation": "drip_green",
+  "damage_modifiers": [
+    {
+      "attribute": "type",
+      "values": ["venom"],
+      "multiplier": 0.0
+    }
+  ],
   "category": "negative",
   "effects": [
     "poisoned 8"

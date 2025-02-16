@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
+from tuxemon.formula import condition_weakest_link
 
 if TYPE_CHECKING:
     from tuxemon.condition.condition import Condition
@@ -28,8 +29,10 @@ class BurntEffect(CondEffect):
     def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         burnt: bool = False
         if condition.phase == "perform_action_status":
-            damage = target.hp // self.divisor
-            target.current_hp = max(0, target.current_hp - damage)
+            damage = target.hp / self.divisor
+            mult = condition_weakest_link(condition.damage_modifiers, target)
+            damage *= mult
+            target.current_hp = max(0, target.current_hp - int(damage))
             burnt = True
 
         return CondEffectResult(

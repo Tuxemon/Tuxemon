@@ -13,7 +13,7 @@ from tuxemon import prepare, surfanim
 from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.boxes import ItemBoxes, MonsterBoxes
 from tuxemon.compat import Rect
-from tuxemon.db import Direction, ElementType, EntityFacing, SeenStatus, db
+from tuxemon.db import Direction, ElementType, EntityFacing, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import Item, decode_items, encode_items
@@ -26,6 +26,7 @@ from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
 from tuxemon.technique.technique import Technique
 from tuxemon.tools import vector2_to_tile_pos
+from tuxemon.tuxepedia import Tuxepedia, decode_tuxepedia, encode_tuxepedia
 
 if TYPE_CHECKING:
     import pygame
@@ -43,7 +44,7 @@ class NPCState(TypedDict):
     facing: Direction
     game_variables: dict[str, Any]
     battles: Sequence[Mapping[str, Any]]
-    tuxepedia: dict[str, SeenStatus]
+    tuxepedia: Mapping[str, Any]
     contacts: dict[str, str]
     money: dict[str, int]
     template: dict[str, Any]
@@ -99,7 +100,7 @@ class NPC(Entity[NPCState]):
         self.battles: list[Battle] = []  # Tracks the battles
         self.forfeit: bool = False
         # Tracks Tuxepedia (monster seen or caught)
-        self.tuxepedia: dict[str, SeenStatus] = {}
+        self.tuxepedia = Tuxepedia()
         self.contacts: dict[str, str] = {}
         self.money: dict[str, int] = {}  # Tracks money
         # list of ways player can interact with the Npc
@@ -191,7 +192,7 @@ class NPC(Entity[NPCState]):
             "facing": self.facing,
             "game_variables": self.game_variables,
             "battles": encode_battle(self.battles),
-            "tuxepedia": self.tuxepedia,
+            "tuxepedia": encode_tuxepedia(self.tuxepedia),
             "contacts": self.contacts,
             "money": self.money,
             "items": encode_items(self.items),
@@ -221,7 +222,7 @@ class NPC(Entity[NPCState]):
         """
         self.facing = save_data.get("facing", Direction.down)
         self.game_variables = save_data["game_variables"]
-        self.tuxepedia = save_data["tuxepedia"]
+        self.tuxepedia = decode_tuxepedia(save_data["tuxepedia"])
         self.contacts = save_data["contacts"]
         self.money = save_data["money"]
         self.battles = []

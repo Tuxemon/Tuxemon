@@ -8,7 +8,7 @@ import pygame_menu
 from pygame_menu import locals
 
 from tuxemon import formula, prepare
-from tuxemon.db import MonsterModel, SeenStatus, db
+from tuxemon.db import MonsterModel, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const import buttons
@@ -165,6 +165,18 @@ class JournalInfoState(PygameMenuState):
             float=True,
         )
         lab8.translate(fix_measure(width, 0.50), fix_measure(height, 0.10))
+        # appeared
+        checks = local_session.player.tuxepedia.get_appearance(monster.slug)
+        base = T.translate("scan_count")
+        appeared = f"{base}: {checks}"
+        lab8a: Any = menu.add.label(
+            title=appeared,
+            label_id="number",
+            font_size=self.font_size_small,
+            align=locals.ALIGN_LEFT,
+            float=True,
+        )
+        lab8a.translate(fix_measure(width, 0.75), fix_measure(height, 0.10))
         # description
         desc = T.translate(f"{monster.slug}_description")
         desc = desc if self.caught else "-----"
@@ -238,15 +250,15 @@ class JournalInfoState(PygameMenuState):
 
         super().__init__(height=height, width=width)
 
-        checks = local_session.player.tuxepedia.get(monster.slug)
-        self.caught = True if checks == SeenStatus.caught else False
+        checks = local_session.player.tuxepedia.is_caught(monster.slug)
+        self.caught = checks
         self._monster = monster
         self.add_menu_items(self.menu, monster)
         self.reset_theme()
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         client = self.client
-        monsters = list(local_session.player.tuxepedia)
+        monsters = local_session.player.tuxepedia.get_monsters()
         models = list(lookup_cache.values())
         model_dict = {model.slug: model for model in models}
         monster_models = sorted(

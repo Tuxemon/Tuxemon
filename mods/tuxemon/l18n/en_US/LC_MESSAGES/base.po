@@ -2850,10 +2850,10 @@ msgid "tuxepedia_progress"
 msgstr "Tuxepedia: {value}%!"
 
 msgid "tuxepedia_data_seen"
-msgstr "Seen {param} out of {all} Tuxemon"
+msgstr "Seen {param} out of {all}"
 
 msgid "tuxepedia_data_caught"
-msgstr "Caught {param} out of {all} Tuxemon"
+msgstr "Caught {param} out of {all}"
 
 msgid "player_start_adventure_today"
 msgstr "The adventure began today."
@@ -2871,6 +2871,9 @@ msgstr "Battles: {tot} (W{won} D{draw} L{lost})"
 
 msgid "page_tuxepedia"
 msgstr "From id {a} to id {b}"
+
+msgid "scan_count"
+msgstr "Scan"
 
 msgid "no_evolution"
 msgstr "No evolution"

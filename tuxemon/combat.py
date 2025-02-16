@@ -19,7 +19,6 @@ from tuxemon.db import (
     GenderType,
     OutputBattle,
     PlagueType,
-    SeenStatus,
     StatType,
     TargetType,
 )
@@ -379,9 +378,7 @@ def get_target_monsters(
     return monsters
 
 
-def battlefield(
-    session: Session, monster: Monster, players: Sequence[NPC]
-) -> None:
+def battlefield(session: Session, monster: Monster) -> None:
     """
     Record the useful properties of the last monster fought.
 
@@ -391,37 +388,11 @@ def battlefield(
         players: All the remaining players.
 
     """
-    eligible_players = [
-        p for p in players if p.isplayer and monster not in p.monsters
-    ]
-    if not eligible_players:
-        return
-
-    for player in eligible_players:
-        set_var(session, "battle_last_monster_name", monster.name)
-        set_var(session, "battle_last_monster_level", str(monster.level))
-        set_var(session, "battle_last_monster_type", monster.types[0].slug)
-        set_var(session, "battle_last_monster_category", monster.category)
-        set_var(session, "battle_last_monster_shape", monster.shape)
-
-        if monster.txmn_id > 0:
-            set_tuxepedia(session, player.slug, monster.slug, "seen")
-
-
-def set_tuxepedia(
-    session: Session, character: str, monster: str, label: str
-) -> None:
-    """
-    Registers monster in Tuxepedia.
-
-    Parameters:
-        character: Character slug.
-        monster: The key game variable.
-        value: The value game variable.
-
-    """
-    client = session.client.event_engine
-    client.execute_action("set_tuxepedia", [character, monster, label], True)
+    set_var(session, "battle_last_monster_name", monster.name)
+    set_var(session, "battle_last_monster_level", str(monster.level))
+    set_var(session, "battle_last_monster_type", monster.types[0].slug)
+    set_var(session, "battle_last_monster_category", monster.category)
+    set_var(session, "battle_last_monster_shape", monster.shape)
 
 
 def track_battles(
@@ -617,7 +588,7 @@ def build_hud_text(
     monster: Monster,
     is_right: bool,
     is_trainer: bool,
-    is_status: Optional[SeenStatus] = None,
+    is_status: bool,
 ) -> str:
     """
     Returns the text image for use on the callout of the monster.
@@ -648,7 +619,7 @@ def build_hud_text(
         icon = "♀"
 
     symbol = ""
-    if not is_trainer and is_status == SeenStatus.caught and not is_right:
+    if not is_trainer and is_status and not is_right:
         symbol = "◉"
 
     return f"{monster.name}{icon} Lv.{monster.level}{symbol}"

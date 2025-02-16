@@ -412,7 +412,7 @@ class CombatState(CombatAnimations):
             for player in self.remaining_players:
                 if self.monsters_in_play[player]:
                     mon = self.monsters_in_play[player][0]
-                    battlefield(local_session, mon, self.remaining_players)
+                    battlefield(local_session, mon)
 
         elif phase == "decision phase":
             self.reset_status_icons()

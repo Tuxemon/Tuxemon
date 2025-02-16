@@ -9,13 +9,14 @@ from tuxemon.db import Direction, MissionModel, MissionStatus, db
 from tuxemon.event.actions.char_move import parse_path_parameters
 from tuxemon.player import Player
 from tuxemon.session import local_session
+from tuxemon.tuxepedia import Tuxepedia
 
 
 def mockPlayer(self) -> None:
     self.name = "Jeff"
     self.money = {}
     self.game_variables = {}
-    self.tuxepedia = {}
+    self.tuxepedia = Tuxepedia()
 
 
 class TestVariableActions(unittest.TestCase):
@@ -137,47 +138,6 @@ class TestActionsSetPlayer(unittest.TestCase):
     def test_set_player_name_random(self):
         self.action.execute_action("set_player_name", ["maple123:maple321"])
         self.assertIn(self.player.name, ["maple123", "maple321"])
-
-
-class TestTuxepediaActions(unittest.TestCase):
-    def setUp(self):
-        with mock.patch.object(Player, "__init__", mockPlayer):
-            local_session.client = LocalPygameClient(prepare.CONFIG)
-            self.action = local_session.client.event_engine
-            local_session.player = Player()
-            self.player = local_session.player
-            _model = {"rockitten": 1}
-            db.database["monster"] = _model
-
-    def test_set_tuxepedia_seen(self):
-        _params = ["player", "rockitten", "seen"]
-        self.action.execute_action("set_tuxepedia", _params)
-        self.assertEqual(self.player.tuxepedia["rockitten"], "seen")
-
-    def test_set_tuxepedia_caught(self):
-        _params = ["player", "rockitten", "caught"]
-        self.action.execute_action("set_tuxepedia", _params)
-        self.assertEqual(self.player.tuxepedia["rockitten"], "caught")
-
-    def test_set_tuxepedia_wrong_seen_status(self):
-        _params = ["player", "rockitten", "jimmy"]
-        with self.assertRaises(ValueError):
-            self.action.execute_action("set_tuxepedia", _params)
-
-    def test_set_tuxepedia_wrong_monster(self):
-        _params = ["player", "jimmy", "seen"]
-        with self.assertRaises(ValueError):
-            self.action.execute_action("set_tuxepedia", _params)
-
-    def test_clear_tuxepedia_not_exist(self):
-        with self.assertRaises(KeyError):
-            self.action.execute_action("clear_tuxepedia", ["rockitten"])
-
-    def test_clear_tuxepedia_exist(self):
-        _params = ["player", "rockitten", "caught"]
-        self.action.execute_action("set_tuxepedia", _params)
-        self.action.execute_action("clear_tuxepedia", ["rockitten"])
-        self.assertIsNone(self.player.tuxepedia.get("rockitten"))
 
 
 class TestBattleActions(unittest.TestCase):

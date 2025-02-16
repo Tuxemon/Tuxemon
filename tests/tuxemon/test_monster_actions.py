@@ -15,13 +15,14 @@ from tuxemon.db import (
 )
 from tuxemon.player import Player
 from tuxemon.session import local_session
+from tuxemon.tuxepedia import Tuxepedia
 
 
 def mockPlayer(self) -> None:
     self.name = "Jeff"
     self.money = {}
     self.game_variables = {}
-    self.tuxepedia = {}
+    self.tuxepedia = Tuxepedia()
 
 
 class TestMonsterActions(unittest.TestCase):

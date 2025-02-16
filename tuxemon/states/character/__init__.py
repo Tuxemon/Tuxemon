@@ -10,7 +10,7 @@ from pygame_menu import locals
 
 from tuxemon import formula
 from tuxemon import prepare as pre
-from tuxemon.db import MonsterModel, OutputBattle, SeenStatus, db
+from tuxemon.db import MonsterModel, OutputBattle, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.npc import NPC
@@ -62,14 +62,14 @@ class CharacterState(PygameMenuState):
 
         # tuxepedia data
         filters = list(lookup_cache.values())
-        tuxepedia = list(self.char.tuxepedia.values())
-        caught = tuxepedia.count(SeenStatus.caught)
-        seen = tuxepedia.count(SeenStatus.seen) + caught
-        percentage = round((seen / len(filters)) * 100, 1)
+        completeness = self.char.tuxepedia.get_completeness(len(filters))
+        percentage = round(completeness * 100, 1)
+        seen = self.char.tuxepedia.get_seen_count()
+        caught = self.char.tuxepedia.get_caught_count()
 
         _msg_progress = {"value": str(percentage)}
         msg_progress = T.format("tuxepedia_progress", _msg_progress)
-        _msg_seen = {"param": str(seen), "all": str(len(filters))}
+        _msg_seen = {"param": str(seen + caught), "all": str(len(filters))}
         msg_seen = T.format("tuxepedia_data_seen", _msg_seen)
         _msg_caught = {"param": str(caught), "all": str(len(filters))}
         msg_caught = T.format("tuxepedia_data_caught", _msg_caught)
@@ -138,23 +138,41 @@ class CharacterState(PygameMenuState):
         )
         lab2.translate(fix_measure(width, 0.45), fix_measure(height, 0.25))
         # seen
-        lab3: Any = menu.add.label(
-            title=msg_seen,
-            label_id="seen",
-            font_size=self.font_size_smaller,
-            align=locals.ALIGN_LEFT,
-            float=True,
-        )
-        lab3.translate(fix_measure(width, 0.45), fix_measure(height, 0.30))
+        if self.char.tuxepedia.entries:
+            lab3: Any = menu.add.label(
+                title=msg_seen,
+                label_id="seen",
+                font_size=self.font_size_smaller,
+                align=locals.ALIGN_LEFT,
+                float=True,
+            )
+            lab3.translate(fix_measure(width, 0.45), fix_measure(height, 0.75))
         # caught
-        lab4: Any = menu.add.label(
-            title=msg_caught,
-            label_id="caught",
-            font_size=self.font_size_smaller,
-            align=locals.ALIGN_LEFT,
-            float=True,
+        if self.char.tuxepedia.entries:
+            lab4: Any = menu.add.label(
+                title=msg_caught,
+                label_id="caught",
+                font_size=self.font_size_smaller,
+                align=locals.ALIGN_LEFT,
+                float=True,
+            )
+            lab4.translate(fix_measure(width, 0.45), fix_measure(height, 0.80))
+        # top 3
+        top3 = self.char.tuxepedia.get_most_frequent_monsters(3)
+        msg_top3 = ", ".join(
+            f"{T.translate(monster)} {count}" for monster, count in top3
         )
-        lab4.translate(fix_measure(width, 0.45), fix_measure(height, 0.35))
+        if self.char.tuxepedia.entries:
+            lab4a: Any = menu.add.label(
+                title=msg_top3,
+                label_id="top3",
+                font_size=self.font_size_smaller,
+                align=locals.ALIGN_LEFT,
+                float=True,
+            )
+            lab4a.translate(
+                fix_measure(width, 0.45), fix_measure(height, 0.85)
+            )
         # begin adventure
         lab5: Any = menu.add.label(
             title=msg_begin,
@@ -163,7 +181,7 @@ class CharacterState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         )
-        lab5.translate(fix_measure(width, 0.45), fix_measure(height, 0.40))
+        lab5.translate(fix_measure(width, 0.45), fix_measure(height, 0.30))
         # walked
         if steps > 0.0:
             lab6: Any = menu.add.label(
@@ -173,7 +191,7 @@ class CharacterState(PygameMenuState):
                 align=locals.ALIGN_LEFT,
                 float=True,
             )
-            lab6.translate(fix_measure(width, 0.45), fix_measure(height, 0.45))
+            lab6.translate(fix_measure(width, 0.45), fix_measure(height, 0.35))
         # battles
         lab7: Any = menu.add.label(
             title=msg_battles,
@@ -182,16 +200,17 @@ class CharacterState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=True,
         )
-        lab7.translate(fix_measure(width, 0.45), fix_measure(height, 0.50))
+        lab7.translate(fix_measure(width, 0.45), fix_measure(height, 0.40))
         # % tuxepedia
-        lab8: Any = menu.add.label(
-            title=msg_progress,
-            label_id="progress",
-            font_size=self.font_size_smaller,
-            align=locals.ALIGN_LEFT,
-            float=True,
-        )
-        lab8.translate(fix_measure(width, 0.45), fix_measure(height, 0.10))
+        if self.char.tuxepedia.entries:
+            lab8: Any = menu.add.label(
+                title=msg_progress,
+                label_id="progress",
+                font_size=self.font_size_smaller,
+                align=locals.ALIGN_LEFT,
+                float=True,
+            )
+            lab8.translate(fix_measure(width, 0.45), fix_measure(height, 0.10))
         # image
         combat_front = self.char.template.combat_front
         _path = f"gfx/sprites/player/{combat_front}.png"

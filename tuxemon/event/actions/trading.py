@@ -93,8 +93,8 @@ def _switch_monsters(removed: Monster, added: Monster) -> None:
 
     giver.remove_monster(removed)
     receiver.add_monster(added, slot_removed)
-    receiver.tuxepedia[added.slug] = SeenStatus.caught
+    receiver.tuxepedia.update_entry(added.slug, SeenStatus.caught)
 
     receiver.remove_monster(added)
     giver.add_monster(removed, slot_added)
-    giver.tuxepedia[removed.slug] = SeenStatus.caught
+    giver.tuxepedia.update_entry(removed.slug, SeenStatus.caught)

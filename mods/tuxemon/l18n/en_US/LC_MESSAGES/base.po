@@ -11426,6 +11426,15 @@ msgstr "Home sweet home!"
 msgid "spyder_papertown_rival"
 msgstr "Billie's House"
 
+msgid "spyder_rivalbedroom_bed"
+msgstr "Bed is messy, but it looks like she's been sleeping well. There's a tuxemon plushie on her pillow."
+
+msgid "spyder_rivalbedroom_bookshelf"
+msgstr "The bookshelf is filled with tuxemon strategy guides and training manuals."
+
+msgid "spyder_rivalbedroom_weights"
+msgstr "There's a diagram on the wall nearby that shows how to use the weight to train a tuxemon's strength."
+
 msgid "spyder_rivalbedroom_radio_morning"
 msgstr "Morning: A Pop song is playing. It's called \"Omni Love: A Journey Through Channels of the Heart\"."
 
@@ -11449,6 +11458,33 @@ msgstr "For Billie, from Grandma. Memories of Grandpa Bernard."
 
 msgid "spyder_rivaloffice_haiku"
 msgstr "It's a haiku: From Rock to Kitten, Evolution's dance unfolds, Transformation blooms."
+
+msgid "spyder_billie_tv_flashback_trigger"
+msgstr "Watch something else? A recorded episode of Tuxemon League is available."
+
+msgid "spyder_billie_tv_flashback1"
+msgstr "Reporter: Wow, what a clash! Crimson's Agnigon is really putting the pressure on Sapphire's Fribbit!\n Look at that! Agnigon unleashed a devastating Breathe Fire!"
+
+msgid "spyder_billie_tv_flashback2"
+msgstr "Billie: Overrated. Agnigon's moves are predictable. Any decent trainer could see that coming."
+
+msgid "spyder_billie_tv_flashback3"
+msgstr "Reporter: Fribbit is taking a beating! But look at that! Fribbit counters with a powerful Ice Storm! It's a direct hit!"
+
+msgid "spyder_billie_tv_flashback4"
+msgstr "Billie: Ice Storm? Weak."
+
+msgid "spyder_billie_tv_flashback5"
+msgstr "Reporter: This is getting intense! Agnigon is down! Fribbit wins! What a stunning upset!"
+
+msgid "spyder_billie_tv_flashback6"
+msgstr "Billie: Amateur. Agnigon should have used Supernova. A direct hit would have ended the fight in seconds."
+
+msgid "spyder_billie_tv_flashback7"
+msgstr "Reporter: This was an incredible display of skill and strategy from Sapphire."
+
+msgid "spyder_billie_tv_flashback8"
+msgstr "Billie: Skill? Luck. Any decent trainer could have predicted Agnigon's downfall."
 
 msgid "spyder_billie_flashback_trigger"
 msgstr "Do you want to uncover a piece of Billie's backstory?"

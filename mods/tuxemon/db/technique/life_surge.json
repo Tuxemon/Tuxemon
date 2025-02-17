@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": "heal_burst_120",
   "effects": [
-    "give chargedup,target",
-    "healing target"
+    "give chargedup,own_monster",
+    "healing"
   ],
   "flip_axes": "",
   "healing_power": 3.0,

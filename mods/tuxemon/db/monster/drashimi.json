@@ -3,27 +3,27 @@
     "category": "dragon_roll",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "spit_poison"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "flow"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "grinding"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "muck"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "flood"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "icicle_spear"
         },
         {
@@ -31,7 +31,7 @@
             "technique": "font"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "starfall"
         },
         {
@@ -39,11 +39,11 @@
             "technique": "ice_claw"
         },
         {
-            "level_learned": 44,
+            "level_learned": 43,
             "technique": "chill_mist"
         },
         {
-            "level_learned": 48,
+            "level_learned": 46,
             "technique": "frostbite"
         }
     ],

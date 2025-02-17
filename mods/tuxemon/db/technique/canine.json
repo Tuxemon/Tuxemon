@@ -3,8 +3,7 @@
   "accuracy": 1,
   "animation": "claws_twice_blue",
   "effects": [
-    "give wild,target",
-    "enhance"
+    "give wild,enemy_monster"
   ],
   "flip_axes": "",
   "is_fast": false,

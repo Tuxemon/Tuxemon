@@ -1,9 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Union
 
 from tuxemon.combat import fainted
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
@@ -12,65 +11,52 @@ from tuxemon.monster import Monster
 from tuxemon.technique.technique import Technique
 
 
-class FeedBackEffectResult(CondEffectResult):
-    pass
-
-
 @dataclass
 class FeedBackEffect(CondEffect):
     """
-
-    Feedback:
-    Each time you are hit by a Special move
-    the attacker takes 1/8th your maximum HP in damage
+    Each time you are hit by a Special move the attacker takes damage equal to
+    your maximum HP divided by the divisor.
 
     Parameters:
-        divisor: The divisor.
-
+        divisor: The divisor used to calculate the damage.
+        ranges: The ranges of moves that trigger the effect.
     """
 
     name = "feedback"
     divisor: int
     ranges: str
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> FeedBackEffectResult:
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         done: bool = False
+        ranges = self.ranges.split(":")
         assert condition.combat_state
         combat = condition.combat_state
-        log = combat._action_queue.history
+        log = combat._action_queue
         turn = combat._turn
-        ranges = self.ranges.split(":")
-        # check log actions
-        attacker: Union[Monster, None] = None
-        hit: bool = False
-        for ele in log:
-            _turn, action = ele
-            if _turn == turn:
-                method = action.method
-                # progress
-                if (
-                    isinstance(method, Technique)
-                    and isinstance(action.user, Monster)
-                    and method.hit
-                    and method.range in ranges
-                    and action.target.instance_id == target.instance_id
-                ):
-                    attacker = action.user
-                    hit = True
+        action = log.get_last_action(turn, target, "target")
 
         if (
-            condition.phase == "perform_action_status"
-            and attacker
-            and hit
-            and not fainted(attacker)
+            action
+            and isinstance(action.method, Technique)
+            and isinstance(action.user, Monster)
         ):
-            attacker.current_hp -= target.hp // self.divisor
-            done = True
-        return {
-            "success": done,
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+            method = action.method
+            attacker = action.user
+
+            if (
+                condition.phase == "perform_action_status"
+                and method.hit
+                and method.range in ranges
+                and action.target.instance_id == target.instance_id
+                and not fainted(attacker)
+            ):
+                damage = target.hp // self.divisor
+                attacker.current_hp = max(0, attacker.current_hp - damage)
+                done = True
+        return CondEffectResult(
+            name=condition.name,
+            success=done,
+            conditions=[],
+            techniques=[],
+            extras=[],
+        )

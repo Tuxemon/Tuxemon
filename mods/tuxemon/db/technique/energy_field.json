@@ -3,9 +3,8 @@
   "accuracy": 1,
   "animation": "screen",
   "effects": [
-    "give charging,user",
-    "give exhausted,target",
-    "enhance"
+    "give charging,own_monster",
+    "give exhausted,enemy_monster"
   ],
   "flip_axes": "x",
   "is_fast": true,

@@ -3,7 +3,7 @@
   "accuracy": 0.95,
   "animation": "thunderstrike",
   "effects": [
-    "give exhausted,target",
+    "give exhausted,enemy_monster",
     "damage"
   ],
   "flip_axes": "",

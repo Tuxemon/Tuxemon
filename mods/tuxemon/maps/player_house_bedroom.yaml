@@ -23,7 +23,7 @@ events:
     - is char_facing_tile player
     - is button_pressed K_RETURN
     x: 3
-    y: 1
+    y: 2
     type: "event"
   Resting in Bed:
     actions:

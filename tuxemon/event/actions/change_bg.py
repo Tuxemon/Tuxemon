@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -97,8 +97,9 @@ class ChangeBgAction(EventAction):
 
         if client.current_state.name != str(ImageState):
             if self.background is None:
-                client.pop_state()
-                return
+                if len(client.state_manager.active_states) > 2:
+                    client.pop_state()
+                    return
             else:
                 _background = self.background.split(":")
                 if len(_background) == 1:

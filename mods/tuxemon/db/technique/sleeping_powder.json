@@ -3,12 +3,11 @@
   "accuracy": 1,
   "animation": "explosion_dusty_96",
   "effects": [
-    "give noddingoff,target",
-    "enhance"
+    "give noddingoff,enemy_team"
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 1,
+  "potency": 0.8,
   "power": 0,
   "range": "special",
   "recharge": 3,

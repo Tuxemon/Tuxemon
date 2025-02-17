@@ -3,23 +3,23 @@
     "category": "devil",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "sting"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "blossom"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "poison_courtship"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "splinter"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "boulder"
         },
         {
@@ -27,7 +27,7 @@
             "technique": "overgrowth"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "peregrine"
         },
         {
@@ -35,11 +35,11 @@
             "technique": "spit_poison"
         },
         {
-            "level_learned": 44,
+            "level_learned": 43,
             "technique": "thunderball"
         },
         {
-            "level_learned": 48,
+            "level_learned": 46,
             "technique": "shadow_boxing"
         },
         {

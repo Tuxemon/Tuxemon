@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -187,8 +187,12 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 target.status[0].combat_state = self.combat
                 target.status[0].phase = "enqueue_item"
                 result_status = target.status[0].use(target)
-                if result_status["extra"]:
-                    tools.open_dialog(local_session, [result_status["extra"]])
+                if result_status.extras:
+                    templates = [
+                        T.translate(extra) for extra in result_status.extras
+                    ]
+                    template = "\n".join(templates)
+                    tools.open_dialog(local_session, [template])
                     return
 
             # enqueue the item
@@ -298,7 +302,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 return
 
             # Pre-check the technique for validity
-            self.character.game_variables["action_tech"] = technique.slug
+            self.combat._combat_variables["action_tech"] = technique.slug
             technique = combat.pre_checking(
                 self.monster, technique, target, self.combat
             )

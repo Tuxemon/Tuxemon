@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -11,10 +11,6 @@ from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 if TYPE_CHECKING:
     from tuxemon.condition.condition import Condition
     from tuxemon.monster import Monster
-
-
-class HarpoonedEffectResult(CondEffectResult):
-    pass
 
 
 @dataclass
@@ -30,16 +26,16 @@ class HarpoonedEffect(CondEffect):
     name = "harpooned"
     divisor: int
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> HarpoonedEffectResult:
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         if condition.phase == "add_monster_into_play":
-            target.current_hp -= target.hp // self.divisor
+            damage = target.hp // self.divisor
+            target.current_hp = max(0, target.current_hp - damage)
             if fainted(target):
                 target.faint()
-        return {
-            "success": True,
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+        return CondEffectResult(
+            name=condition.name,
+            success=True,
+            conditions=[],
+            techniques=[],
+            extras=[],
+        )

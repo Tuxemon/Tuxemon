@@ -36,46 +36,4 @@
   <object id="64" type="collision" x="0" y="32" width="64" height="16"/>
   <object id="65" type="collision" x="80" y="32" width="80" height="16"/>
  </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="59" name="Go outside" type="event" x="80" y="112" width="48" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_flower_city.tmx,15,22,0.3"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,down"/>
-   </properties>
-  </object>
-  <object id="60" name="TV" type="event" x="80" y="32" width="32" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_flowerhouse1_tv"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="68" name="Create Firefighter" type="event" x="16" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_flowerhouse1_willie,1,5"/>
-    <property name="act2" value="char_face spyder_flowerhouse1_willie,right"/>
-    <property name="cond1" value="not char_exists spyder_flowerhouse1_willie"/>
-   </properties>
-  </object>
-  <object id="69" name="Talk Firefighter" type="event" x="16" y="64" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_flowerhouse1_firefighter"/>
-    <property name="behav1" value="talk spyder_flowerhouse1_willie"/>
-   </properties>
-  </object>
-  <object id="70" name="Create Granny" type="event" x="128" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_flowerhouse1_jonette,8,5"/>
-    <property name="act2" value="char_face spyder_flowerhouse1_jonette,left"/>
-    <property name="cond1" value="not char_exists spyder_flowerhouse1_jonette"/>
-   </properties>
-  </object>
-  <object id="71" name="Talk Granny" type="event" x="128" y="64" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_flowerhouse1_granny"/>
-    <property name="behav1" value="talk spyder_flowerhouse1_jonette"/>
-   </properties>
-  </object>
- </objectgroup>
 </map>

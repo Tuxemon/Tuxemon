@@ -3,9 +3,8 @@
   "accuracy": 1,
   "animation": "disintegrate_83",
   "effects": [
-    "give exhausted,target",
-    "give hardshell,user",
-    "enhance"
+    "give exhausted,enemy_monster",
+    "give hardshell,own_monster"
   ],
   "flip_axes": "",
   "is_fast": false,

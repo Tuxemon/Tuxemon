@@ -3,8 +3,8 @@
   "accuracy": 1,
   "animation": null,
   "effects": [
-    "give noddingoff,user",
-    "prop_healing user,0.66"
+    "give noddingoff,own_monster",
+    "prop_healing own_monster,0.66"
   ],
   "flip_axes": "",
   "is_fast": false,

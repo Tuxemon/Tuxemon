@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING
 
 from tuxemon.combat import fainted
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
@@ -17,65 +17,49 @@ if TYPE_CHECKING:
     from tuxemon.condition.condition import Condition
 
 
-class RetaliateEffectResult(CondEffectResult):
-    pass
-
-
 @dataclass
 class RetaliateEffect(CondEffect):
     """
-
     Retaliate:
-    Keep track of all damage you take between entering
-    this state and next doing damage. You do additional
-    damage equal to damage taken.
+    Accumulate all damage taken between entering this state and next dealing
+    damage. The accumulated damage is then added to your next attack, dealing
+    additional damage to the target.
 
+    Note: The accumulated damage is reset after the next attack.
     """
 
     name = "retaliate"
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> RetaliateEffectResult:
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         done: bool = False
         assert condition.combat_state
         combat = condition.combat_state
-        log = combat._action_queue.history
+        log = combat._action_queue
         turn = combat._turn
-        # check log actions
-        attacker: Union[Monster, None] = None
-        damage: int = 0
-        hit: bool = False
-        for ele in log:
-            _turn, action = ele
-            if _turn == turn:
-                method = action.method
-                # progress
-                if (
-                    isinstance(method, Technique)
-                    and isinstance(action.user, Monster)
-                    and method.hit
-                    and action.target.instance_id == target.instance_id
-                    and method.range != Range.special
-                ):
-                    attacker = action.user
-                    hit = True
-                    dam, mul = simple_damage_calculate(
-                        method, attacker, target
-                    )
-                    damage = dam
+        action = log.get_last_action(turn, target, "target")
 
         if (
-            condition.phase == "perform_action_status"
-            and attacker
-            and hit
-            and not fainted(attacker)
+            action
+            and isinstance(action.method, Technique)
+            and isinstance(action.user, Monster)
         ):
-            attacker.current_hp -= damage
-            done = True
-        return {
-            "success": done,
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+            method = action.method
+            attacker = action.user
+            dam, mul = simple_damage_calculate(method, attacker, target)
+
+            if (
+                condition.phase == "perform_action_status"
+                and method.hit
+                and action.target.instance_id == target.instance_id
+                and method.range != Range.special
+                and not fainted(attacker)
+            ):
+                attacker.current_hp = max(0, attacker.current_hp - dam)
+                done = True
+        return CondEffectResult(
+            name=condition.name,
+            success=done,
+            conditions=[],
+            techniques=[],
+            extras=[],
+        )

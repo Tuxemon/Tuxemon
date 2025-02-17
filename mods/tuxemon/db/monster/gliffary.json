@@ -3,15 +3,15 @@
     "category": "toothsome",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "muddle"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "phantasmal_force"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "mind_vise"
         },
         {
@@ -19,11 +19,11 @@
             "technique": "changeling"
         },
         {
-            "level_learned": 14,
+            "level_learned": 13,
             "technique": "terror"
         },
         {
-            "level_learned": 18,
+            "level_learned": 19,
             "technique": "orbs"
         }
     ],

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
@@ -51,10 +51,10 @@ class FishingEffect(ItemEffect):
             level = random.randint(self.lower_bound, self.upper_bound)
             self._trigger_fishing_encounter(mon_slug, level)
             return ItemEffectResult(
-                name=item.name, success=True, num_shakes=0, extra=[]
+                name=item.name, success=True, num_shakes=0, extras=[]
             )
         return ItemEffectResult(
-            name=item.name, success=False, num_shakes=0, extra=[]
+            name=item.name, success=False, num_shakes=0, extras=[]
         )
 
     def _trigger_fishing_encounter(self, mon_slug: str, level: int) -> None:

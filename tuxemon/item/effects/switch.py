@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
@@ -45,5 +45,5 @@ class SwitchEffect(ItemEffect):
                 random_target_element = random.choice(elements)
                 target.types = [Element(random_target_element)]
         return ItemEffectResult(
-            name=item.name, success=target is not None, num_shakes=0, extra=[]
+            name=item.name, success=target is not None, num_shakes=0, extras=[]
         )

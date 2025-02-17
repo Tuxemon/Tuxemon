@@ -11,6 +11,7 @@
   "sort": "utility",
   "sprite": "gfx/items/tm_water.png",
   "category": "technique",
+  "cost": 2500,
   "usable_in": [
     "WorldState"
   ],

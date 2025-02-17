@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """
 
 Combat related code that can be independent of the combat state.
@@ -21,6 +21,7 @@ from tuxemon.db import (
     PlagueType,
     SeenStatus,
     StatType,
+    TargetType,
 )
 from tuxemon.locale import T
 from tuxemon.technique.technique import Technique
@@ -81,8 +82,8 @@ def pre_checking(
         monster.status[0].combat_state = combat
         monster.status[0].phase = "pre_checking"
         result_status = monster.status[0].use(target)
-        if result_status["technique"]:
-            technique = result_status["technique"]
+        if result_status.techniques:
+            technique = random.choice(result_status.techniques)
 
     infected_slugs = [
         slug
@@ -348,6 +349,34 @@ def get_winners(loser: Monster, damages: list[DamageReport]) -> set[Monster]:
             if method == "xp_transmitter":
                 return set(alive_party(trainer))
     return winners
+
+
+def get_target_monsters(
+    targets: list[str], technique: Technique, user: Monster, target: Monster
+) -> list[Monster]:
+    """
+    Retrieves a list of monsters based on the provided targets and combat state.
+
+    Parameters:
+        targets: A list of targets to retrieve monsters for (own_monster, etc.).
+        technique: The technique object containing the combat state.
+        user: The monster initiating the combat.
+        target: The target monster in the combat.
+
+    Returns:
+        A list of monsters matching the provided targets.
+
+    Raises:
+        ValueError: If an objective is not a valid TargetType.
+    """
+    combat = technique.combat_state
+    assert combat
+    monsters = []
+    for objective in targets:
+        if objective not in list(TargetType):
+            raise ValueError(f"{objective} isn't among {list(TargetType)}")
+        monsters.extend(combat.get_targets_from_map(objective, user, target))
+    return monsters
 
 
 def battlefield(

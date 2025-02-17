@@ -3,8 +3,7 @@
   "accuracy": 1,
   "animation": "buff_rage",
   "effects": [
-    "give enraged,user",
-    "enhance"
+    "give enraged,own_monster"
   ],
   "flip_axes": "",
   "is_fast": false,

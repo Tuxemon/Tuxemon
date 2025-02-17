@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "sparks_gold_alt",
   "effects": [
-    "give recover,user",
+    "give recover,own_monster",
     "damage"
   ],
   "flip_axes": "",

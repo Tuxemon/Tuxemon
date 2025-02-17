@@ -3,9 +3,8 @@
   "accuracy": 1,
   "animation": "wall_ice",
   "effects": [
-    "give elementalshield,user",
-    "give slow,target",
-    "enhance"
+    "give elementalshield,own_monster",
+    "give slow,enemy_monster"
   ],
   "flip_axes": "",
   "is_fast": false,

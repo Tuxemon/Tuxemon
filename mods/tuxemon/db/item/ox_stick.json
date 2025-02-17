@@ -10,6 +10,7 @@
   "sort": "utility",
   "sprite": "gfx/items/ox_stick.png",
   "category": "morph",
+  "cost": 2000,
   "usable_in": [
     "WorldState"
   ],

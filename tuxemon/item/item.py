@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -60,6 +60,7 @@ class Item:
         self.use_success = ""
         self.use_failure = ""
         self.usable_in: Sequence[State] = []
+        self.cost: Optional[int] = None
 
         # load effect and condition plugins if it hasn't been done already
         if not Item.effects_classes:
@@ -103,6 +104,7 @@ class Item:
         # misc attributes (not translated!)
         self.world_menu = results.world_menu
         self.behaviors = results.behaviors
+        self.cost = results.cost
         self.sort = results.sort
         self.category = results.category or ItemCategory.none
         self.sprite = results.sprite
@@ -232,7 +234,7 @@ class Item:
             name=self.name,
             success=False,
             num_shakes=0,
-            extra=[],
+            extras=[],
         )
 
         # Loop through all the effects of this technique and execute the effect's function.
@@ -241,7 +243,7 @@ class Item:
             meta_result.name = result.name
             meta_result.success = meta_result.success or result.success
             meta_result.num_shakes += result.num_shakes
-            meta_result.extra.extend(result.extra)
+            meta_result.extras.extend(result.extras)
 
         # If this is a consumable item, remove it from the player's inventory.
         if (

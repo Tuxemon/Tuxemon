@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
@@ -48,5 +48,5 @@ class ParkEffect(ItemEffect):
             raise ValueError(f"Must be capture, doll or food")
 
         return ItemEffectResult(
-            name=item.name, success=True, num_shakes=0, extra=[]
+            name=item.name, success=True, num_shakes=0, extras=[]
         )

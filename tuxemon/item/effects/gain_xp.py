@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -35,5 +35,5 @@ class GainXpEffect(ItemEffect):
         _params = [self.name, self.amount]
         client.execute_action("give_experience", _params, True)
         return ItemEffectResult(
-            name=item.name, success=True, num_shakes=0, extra=[]
+            name=item.name, success=True, num_shakes=0, extras=[]
         )

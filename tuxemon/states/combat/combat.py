@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """
 
 General guidelines of the combat module
@@ -15,7 +15,7 @@ example, is (pseudo code):
 
 if monster.status == "confused":
     message("Monster is confused!")
-    
+
 Interactions like this should be handled in an abstract way.  If we keep
 adding highly specific behaviours in this class, then it will be really
 hard to modify and will conflict with the JSON files.
@@ -28,7 +28,7 @@ the class with hardcoded references to techniques/statuses.
 
 There is already existing code like this, but it is not a validation to
 add new code like it.  Consider it a priority to remove it when you are
-able to. 
+able to.
 
 """
 from __future__ import annotations
@@ -38,7 +38,7 @@ import random
 from collections.abc import Iterable, MutableMapping, Sequence
 from functools import partial
 from itertools import chain
-from typing import Literal, Optional, Union
+from typing import Any, Literal, Optional, Union
 
 import pygame
 from pygame.rect import Rect
@@ -59,7 +59,12 @@ from tuxemon.combat import (
     track_battles,
 )
 from tuxemon.condition.condition import Condition
-from tuxemon.db import BattleGraphicsModel, ItemCategory, PlagueType
+from tuxemon.db import (
+    BattleGraphicsModel,
+    ItemCategory,
+    PlagueType,
+    TargetType,
+)
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -170,6 +175,7 @@ class CombatState(CombatAnimations):
             tuple[str, tuple[float, float]], Sprite
         ] = {}
         self._random_tech_hit: dict[Monster, float] = {}
+        self._combat_variables: dict[str, Any] = {}
 
         super().__init__(players, graphics)
         self.is_trainer_battle = combat_type == "trainer"
@@ -859,10 +865,15 @@ class CombatState(CombatAnimations):
             user.status[0].combat_state = self
             user.status[0].phase = "perform_action_tech"
             result_status = user.status[0].use(user)
-            if result_status["extra"]:
-                message += "\n" + result_status["extra"]
-            if result_status["condition"]:
-                user.apply_status(result_status["condition"])
+            if result_status.extras:
+                templates = [
+                    T.translate(extra) for extra in result_status.extras
+                ]
+                template = "\n".join(templates)
+                message += "\n" + template
+            if result_status.conditions:
+                status = random.choice(result_status.conditions)
+                user.apply_status(status)
 
         if result_tech["success"] and method.use_success:
             template = getattr(method, "use_success")
@@ -976,9 +987,9 @@ class CombatState(CombatAnimations):
             template = getattr(item, msg_type)
             tmpl = T.format(template, context)
             # extra output
-            if result_item.extra:
+            if result_item.extras:
                 extra_tmpls = [
-                    T.translate(extra) for extra in result_item.extra
+                    T.translate(extra) for extra in result_item.extras
                 ]
                 tmpl = "\n".join(extra_tmpls)
             if template:
@@ -990,37 +1001,37 @@ class CombatState(CombatAnimations):
             (partial(self.alert, message), action_time)
         )
 
-    def _handle_condition(self, method: Condition, target: Monster) -> None:
+    def _handle_condition(self, condition: Condition, target: Monster) -> None:
         action_time = 0.0
-        method.combat_state = self
-        method.phase = "perform_action_status"
-        method.advance_round()
-        result = method.use(target)
+        condition.combat_state = self
+        condition.phase = "perform_action_status"
+        condition.advance_round()
+        result = condition.use(target)
         context = {
-            "name": method.name,
+            "name": condition.name,
             "target": target.name,
         }
-        cond_mex: str = ""
+        message: str = ""
         # successful conditions
-        if result["success"]:
-            if method.use_success:
-                template = getattr(method, "use_success")
-                cond_mex = T.format(template, context)
+        if result.success:
+            if condition.use_success:
+                template = getattr(condition, "use_success")
+                message = T.format(template, context)
             # first turn status
-            if method.nr_turn == 1 and method.gain_cond:
-                first_turn = getattr(method, "gain_cond")
+            if condition.nr_turn == 1 and condition.gain_cond:
+                first_turn = getattr(condition, "gain_cond")
                 first = T.format(first_turn, context)
-                cond_mex = first + "\n" + cond_mex
+                message = first + "\n" + message
         # not successful conditions
-        if not result["success"]:
-            if method.use_failure:
-                template = getattr(method, "use_failure")
-                cond_mex = T.format(template, context)
-        action_time += compute_text_animation_time(cond_mex)
+        if not result.success:
+            if condition.use_failure:
+                template = getattr(condition, "use_failure")
+                message = T.format(template, context)
+        action_time += compute_text_animation_time(message)
         self.text_animations_queue.append(
-            (partial(self.alert, cond_mex), action_time)
+            (partial(self.alert, message), action_time)
         )
-        self.play_animation(method, target, None, action_time)
+        self.play_animation(condition, target, None, action_time)
 
     def play_animation(
         self,
@@ -1187,8 +1198,11 @@ class CombatState(CombatAnimations):
             monster.status[0].combat_state = self
             monster.status[0].phase = "check_party_hp"
             result_status = monster.status[0].use(monster)
-            if result_status["extra"]:
-                extra = result_status["extra"]
+            if result_status.extras:
+                templates = [
+                    T.translate(extra) for extra in result_status.extras
+                ]
+                extra = "\n".join(templates)
                 action_time = compute_text_animation_time(extra)
                 self.text_animations_queue.append(
                     (partial(self.alert, extra), action_time)
@@ -1242,7 +1256,6 @@ class CombatState(CombatAnimations):
 
         Returns:
             Sequence of active monsters.
-
         """
         return list(chain.from_iterable(self.monsters_in_play.values()))
 
@@ -1250,7 +1263,6 @@ class CombatState(CombatAnimations):
     def monsters_in_play_right(self) -> Sequence[Monster]:
         """
         List of any monsters in battle (right side).
-
         """
         return self.monsters_in_play[self.players[0]]
 
@@ -1258,15 +1270,35 @@ class CombatState(CombatAnimations):
     def monsters_in_play_left(self) -> Sequence[Monster]:
         """
         List of any monsters in battle (left side).
-
         """
         return self.monsters_in_play[self.players[1]]
+
+    @property
+    def all_monsters_right(self) -> Sequence[Monster]:
+        """
+        List of all monsters on the right side of the battle that have not fainted.
+        """
+        return [
+            monster
+            for monster in self.players[0].monsters
+            if not fainted(monster)
+        ]
+
+    @property
+    def all_monsters_left(self) -> Sequence[Monster]:
+        """
+        List of all monsters on the left side of the battle that have not fainted.
+        """
+        return [
+            monster
+            for monster in self.players[1].monsters
+            if not fainted(monster)
+        ]
 
     @property
     def defeated_players(self) -> Sequence[NPC]:
         """
         List of defeated players/trainers.
-
         """
         return [p for p in self.players if defeated(p)]
 
@@ -1284,11 +1316,105 @@ class CombatState(CombatAnimations):
 
         Returns:
             Sequence of remaining players.
-
         """
         # TODO: perhaps change this to remaining "parties", or "teams",
         # instead of player/trainer
         return [p for p in self.players if not defeated(p)]
+
+    def get_targets_from_map(
+        self, target_type: str, user: Monster, target: Monster
+    ) -> list[Monster]:
+        """
+        Get the targets from the target map.
+
+        Parameters:
+            target_type: The type of target (e.g. "own_monster", etc.)
+            user: The Monster object that used the technique.
+            target: The Monster object being targeted by the technique.
+        Returns:
+            A list of Monster objects.
+        """
+        target_map = {
+            "enemy_monster": [target],
+            "enemy_team": self.get_own_monsters(target),
+            "enemy_trainer": self.get_party(target),
+            "own_monster": [user],
+            "own_team": self.get_own_monsters(user),
+            "own_trainer": self.get_party(user),
+        }
+
+        return list(target_map.get(target_type, []))
+
+    def get_targets(
+        self, tech: Technique, user: Monster, target: Monster
+    ) -> list[Monster]:
+        """
+        Get the targets.
+
+        Parameters:
+            tech: The Technique object that is being applied.
+            user: The Monster object that used the technique.
+            target: The Monster object being targeted by the technique.
+
+        Returns:
+            A list of Monster objects.
+        """
+        targets: set[Monster] = set()
+        for target_type in list(TargetType):
+            if tech.target[target_type]:
+                targets.update(
+                    self.get_targets_from_map(target_type, user, target)
+                )
+
+        if not targets:
+            logger.error(f"{tech.name} has all its targets set to False")
+
+        return list(targets)
+
+    def get_opponent_monsters(self, monster: Monster) -> Sequence[Monster]:
+        """
+        Get the sequence of the monster's opponent side.
+
+        Parameters:
+            monster: The Monster object.
+
+        Returns:
+            A sequence of Monster objects.
+        """
+        if monster in self.monsters_in_play_right:
+            return self.monsters_in_play_left
+        else:
+            return self.monsters_in_play_right
+
+    def get_own_monsters(self, monster: Monster) -> Sequence[Monster]:
+        """
+        Get the sequence of the monster's own side.
+
+        Parameters:
+            monster: The Monster object.
+
+        Returns:
+            A sequence of Monster objects.
+        """
+        if monster in self.monsters_in_play_right:
+            return self.monsters_in_play_right
+        else:
+            return self.monsters_in_play_left
+
+    def get_party(self, monster: Monster) -> Sequence[Monster]:
+        """
+        Get the sequence of the not fainted monster's own party.
+
+        Parameters:
+            monster: The Monster object.
+
+        Returns:
+            A sequence of Monster objects.
+        """
+        if monster in self.monsters_in_play_right:
+            return self.all_monsters_right
+        else:
+            return self.all_monsters_left
 
     def clean_combat(self) -> None:
         """Clean combat."""
@@ -1309,6 +1435,7 @@ class CombatState(CombatAnimations):
         self._action_queue.clear_history()
         self._pending_queue = []
         self._damage_map = []
+        self._combat_variables = {}
 
     def end_combat(self) -> None:
         """End the combat."""

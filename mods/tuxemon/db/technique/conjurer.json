@@ -3,8 +3,7 @@
   "accuracy": 1,
   "animation": "pound_bright",
   "effects": [
-    "give grabbed,target",
-    "enhance"
+    "give grabbed,enemy_monster"
   ],
   "flip_axes": "",
   "is_fast": false,

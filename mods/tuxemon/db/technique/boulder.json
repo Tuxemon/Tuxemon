@@ -3,8 +3,7 @@
   "accuracy": 1,
   "animation": "shield_rock",
   "effects": [
-    "give hardshell,user",
-    "enhance"
+    "give hardshell,own_monster"
   ],
   "flip_axes": "",
   "is_fast": false,

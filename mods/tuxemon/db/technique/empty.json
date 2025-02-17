@@ -2,7 +2,7 @@
 	"animation": null,
 	"accuracy": 0.0,
 	"effects": [
-	  "enhance"
+	  "empty"
 	],
 	"flip_axes": "",
 	"potency": 0.0,

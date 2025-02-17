@@ -3,9 +3,9 @@
   "accuracy": 1,
   "animation": "drip_green",
   "effects": [
-    "give poison,user",
-    "give festering,target",
-    "area"
+    "give poison,own_monster",
+    "give festering,enemy_monster",
+    "damage"
   ],
   "flip_axes": "",
   "is_fast": false,

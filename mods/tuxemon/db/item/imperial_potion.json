@@ -10,6 +10,7 @@
   "sort": "potion",
   "sprite": "gfx/items/imperial_potion.png",
   "category": "potion",
+  "cost": 1000,
   "usable_in": [
     "MainCombatMenuState",
     "WorldState"

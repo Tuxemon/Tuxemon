@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """
 There are quite a few hacks in here to get this working for single player only
 notably, the use of self.game
@@ -40,7 +40,7 @@ TimedCallable = tuple[partial[None], float]
 
 
 def toggle_visible(sprite: Sprite) -> None:
-    sprite.visible = not sprite.visible
+    sprite.toggle_visible()
 
 
 def scale_area(area: tuple[int, int, int, int]) -> Rect:

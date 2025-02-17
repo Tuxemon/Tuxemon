@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -67,13 +67,13 @@ class ItemTakeState(PygameMenuState):
 
             lockers = [
                 key
-                for key, _ in self.item_boxes.boxes.items()
+                for key, _ in self.item_boxes.item_boxes.items()
                 if key not in HIDDEN_LIST_LOCKER and key != self.box_name
             ]
 
             box_ids = [
                 key
-                for key, value in self.item_boxes.boxes.items()
+                for key, value in self.item_boxes.item_boxes.items()
                 if key not in HIDDEN_LIST_LOCKER
             ]
 
@@ -337,7 +337,7 @@ class ItemStorageState(ItemBoxState):
     def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         player = local_session.player
         menu_items_map = []
-        for box_name, items in player.item_boxes.boxes.items():
+        for box_name, items in player.item_boxes.item_boxes.items():
             if box_name not in HIDDEN_LIST_LOCKER:
                 if not items:
                     menu_callback = partial(
@@ -359,7 +359,7 @@ class ItemDropOffState(ItemBoxState):
     def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
         player = local_session.player
         menu_items_map = []
-        for box_name, items in player.item_boxes.boxes.items():
+        for box_name, items in player.item_boxes.item_boxes.items():
             if box_name not in HIDDEN_LIST_LOCKER:
                 menu_callback = self.change_state(
                     "ItemDropOff", box_name=box_name

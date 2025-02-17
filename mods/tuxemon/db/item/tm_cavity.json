@@ -1,0 +1,20 @@
+{
+  "conditions": [
+    "not has_tech cavity"
+  ],
+  "effects": [
+    "learn_tm cavity"
+  ],
+  "slug": "tm_cavity",
+  "sort": "utility",
+  "sprite": "gfx/items/tm_generic.png",
+  "category": "technique",
+  "cost": 2500,
+  "usable_in": [
+    "WorldState"
+  ],
+  "behaviors": {},
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
+}

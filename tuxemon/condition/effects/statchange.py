@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
@@ -12,10 +12,6 @@ from tuxemon.tools import ops_dict
 if TYPE_CHECKING:
     from tuxemon.condition.condition import Condition
     from tuxemon.monster import Monster
-
-
-class StatChangeEffectResult(CondEffectResult):
-    pass
 
 
 @dataclass
@@ -37,9 +33,7 @@ class StatChangeEffect(CondEffect):
 
     name = "statchange"
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> StatChangeEffectResult:
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
         statsmaster = [
             condition.statspeed,
             condition.stathp,
@@ -78,9 +72,10 @@ class StatChangeEffect(CondEffect):
                 if newstatvalue <= 0:
                     newstatvalue = 1
                 setattr(target, slugdata, newstatvalue)
-        return {
-            "success": bool(newstatvalue),
-            "condition": None,
-            "technique": None,
-            "extra": None,
-        }
+        return CondEffectResult(
+            name=condition.name,
+            success=bool(newstatvalue),
+            conditions=[],
+            techniques=[],
+            extras=[],
+        )

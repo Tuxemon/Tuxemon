@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -47,7 +47,7 @@ class SetKennelVisibleAction(EventAction):
                 f"{kennel} cannot be made invisible.",
             )
         else:
-            if player.monster_boxes.has_box(kennel):
+            if player.monster_boxes.has_box(kennel, "monster"):
                 if visible == "true":
                     if kennel in HIDDEN_LIST:
                         HIDDEN_LIST.remove(kennel)

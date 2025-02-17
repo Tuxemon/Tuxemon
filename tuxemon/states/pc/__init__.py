@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from collections.abc import Callable
@@ -44,10 +44,10 @@ class PCState(PygameMenuState):
         player = local_session.player
 
         # it creates the kennel and locker (new players)
-        if not player.monster_boxes.has_box(kennel):
-            player.monster_boxes.create_box(kennel)
-        if not player.item_boxes.has_box(locker):
-            player.item_boxes.create_box(locker)
+        if not player.monster_boxes.has_box(kennel, "monster"):
+            player.monster_boxes.create_box(kennel, "monster")
+        if not player.item_boxes.has_box(locker, "item"):
+            player.item_boxes.create_box(locker, "item")
 
         def change_state(state: str, **kwargs: Any) -> partial[State]:
             return partial(self.client.replace_state, state, **kwargs)

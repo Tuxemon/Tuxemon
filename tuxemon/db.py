@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import difflib
@@ -197,6 +197,15 @@ class Comparison(str, Enum):
     not_equals = "not_equals"
 
 
+class TargetType(str, Enum):
+    enemy_monster = "enemy_monster"
+    own_monster = "own_monster"
+    enemy_team = "enemy_team"
+    own_team = "own_team"
+    enemy_trainer = "enemy_trainer"
+    own_trainer = "own_trainer"
+
+
 # TODO: Automatically generate state enum through discovery
 State = Enum(
     "State",
@@ -232,7 +241,7 @@ class ItemBehaviors(BaseModel):
 
 class ItemModel(BaseModel):
     model_config = ConfigDict(title="Item")
-    slug: str = Field(..., description="Slug to use")
+    slug: str = Field(..., description="The slug of the item")
     use_item: str = Field(
         ...,
         description="Slug to determine which text is displayed when this item is used",
@@ -264,14 +273,19 @@ class ItemModel(BaseModel):
     )
     flip_axes: Literal["", "x", "y", "xy"] = Field(
         "",
-        description="Axes along which technique animation should be flipped",
+        description="Axes along which item animation should be flipped",
     )
     animation: Optional[str] = Field(
-        None, description="Animation to play for this technique"
+        None, description="Animation to play for this item"
     )
     world_menu: tuple[int, str, str] = Field(
         None,
         description="Item adds to World Menu a button (position, label -inside the PO -,state, eg. 3:nu_phone:PhoneState)",
+    )
+    cost: Optional[int] = Field(
+        None,
+        description="The standard cost of the item.",
+        gt=0,
     )
 
     # Validate fields that refer to translated text
@@ -1025,6 +1039,11 @@ class PartyMemberModel(BaseModel):
         ..., description="Experience required modifier", gt=0
     )
     gender: GenderType = Field(..., description="Gender of the monster")
+    variables: Optional[list[str]] = Field(
+        None,
+        description="List of variables that affect the presence of the monster.",
+        min_length=1,
+    )
 
     @field_validator("slug")
     def monster_exists(cls: PartyMemberModel, v: str) -> str:
@@ -1032,16 +1051,37 @@ class PartyMemberModel(BaseModel):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
+    @field_validator("variables")
+    def variables_exists(
+        cls: PartyMemberModel, v: Optional[Sequence[str]]
+    ) -> Optional[Sequence[str]]:
+        if v is None:
+            return v
+        return has.validate_variables(v)
+
 
 class BagItemModel(BaseModel):
     slug: str = Field(..., description="Slug of the item")
     quantity: int = Field(..., description="Quantity of the item")
+    variables: Optional[Sequence[str]] = Field(
+        None,
+        description="List of variables that affect the item.",
+        min_length=1,
+    )
 
     @field_validator("slug")
     def item_exists(cls: BagItemModel, v: str) -> str:
         if has.db_entry("item", v):
             return v
         raise ValueError(f"the item {v} doesn't exist in the db")
+
+    @field_validator("variables")
+    def variables_exists(
+        cls: BagItemModel, v: Optional[Sequence[str]]
+    ) -> Optional[Sequence[str]]:
+        if v is None:
+            return v
+        return has.validate_variables(v)
 
 
 class NpcTemplateModel(BaseModel):
@@ -1308,35 +1348,50 @@ class ElementModel(BaseModel):
         raise ValueError(f"the icon {v} doesn't exist in the db")
 
 
-class EconomyItemModel(BaseModel):
-    item_name: str = Field(..., description="Name of the item")
-    price: int = Field(0, description="Price of the item")
-    cost: int = Field(0, description="Cost of the item")
-    inventory: int = Field(-1, description="Quantity of the item")
+class EconomyEntityModel(BaseModel):
+    name: str = Field(..., description="Name of the entity")
+    price: int = Field(0, description="Price of the entity")
+    cost: int = Field(0, description="Cost of the entity")
+    inventory: int = Field(-1, description="Quantity of the entity")
     variables: Optional[Sequence[str]] = Field(
         None,
-        description="List of variables that affect the item in the economy.",
+        description="List of variables that affect the entity in the economy.",
         min_length=1,
     )
 
-    @field_validator("item_name")
-    def item_exists(cls: EconomyItemModel, v: str) -> str:
-        if has.db_entry("item", v):
-            return v
-        raise ValueError(f"the item {v} doesn't exist in the db")
-
     @field_validator("variables")
     def variables_exists(
-        cls: EconomyItemModel, v: Optional[Sequence[str]]
+        cls: EconomyEntityModel, v: Optional[Sequence[str]]
     ) -> Optional[Sequence[str]]:
         if v is None:
             return v
         return has.validate_variables(v)
 
 
+class EconomyItemModel(EconomyEntityModel):
+    name: str = Field(..., description="Name of the entity")
+
+    @field_validator("name")
+    def item_exists(cls: EconomyEntityModel, v: str) -> str:
+        if has.db_entry("item", v):
+            return v
+        raise ValueError(f"the item {v} doesn't exist in the db")
+
+
+class EconomyMonsterModel(EconomyEntityModel):
+    name: str = Field(..., description="Name of the entity")
+
+    @field_validator("name")
+    def monster_exists(cls: EconomyEntityModel, v: str) -> str:
+        if has.db_entry("monster", v):
+            return v
+        raise ValueError(f"the monster {v} doesn't exist in the db")
+
+
 class EconomyModel(BaseModel):
     slug: str = Field(..., description="Slug uniquely identifying the economy")
     items: Sequence[EconomyItemModel]
+    monsters: Sequence[EconomyMonsterModel]
 
 
 class TemplateModel(BaseModel):

@@ -11,6 +11,7 @@
   "sort": "utility",
   "sprite": "gfx/items/tuxeball_lavish.png",
   "category": "capture",
+  "cost": 300,
   "usable_in": [
     "MainCombatMenuState"
   ],

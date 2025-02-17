@@ -163,7 +163,7 @@ msgid "tuxeball_crusher"
 msgstr "Crusher Tuxeball"
 
 msgid "tuxeball_crusher_description"
-msgstr "This Tuxeball breaks through defenses and increases the catch rate the higher the opposing Tuxemon's defense is. It will fail to catch if a protection move is used."
+msgstr "This Tuxeball breaks through defenses and increases the catch rate the higher the opposing Tuxemon's defense is. It will fail to catch if a protective condition is in place."
 
 msgid "tuxeball_xero"
 msgstr "Xero Tuxeball"
@@ -495,6 +495,30 @@ msgstr "TM: Avalanche"
 
 msgid "tm_avalanche_description"
 msgstr "Technique Manual that teaches a Water or Earth Tuxemon the Avalanche technique."
+
+msgid "tm_cavity"
+msgstr "TM: Cavity"
+
+msgid "tm_cavity_description"
+msgstr "Technique Manual that teaches the Cavity technique."
+
+msgid "tm_frostbite"
+msgstr "TM: Frostbite"
+
+msgid "tm_frostbite_description"
+msgstr "Technique Manual that teaches the Frostbite technique."
+
+msgid "tm_supernova"
+msgstr "TM: Supernova"
+
+msgid "tm_supernova_description"
+msgstr "Technique Manual that teaches the Supernova technique."
+
+msgid "tm_vorpal"
+msgstr "TM: Vorpal"
+
+msgid "tm_vorpal_description"
+msgstr "Technique Manual that teaches the Vorpal technique."
 
 msgid "tm_blossom"
 msgstr "TM: Blossom"
@@ -6393,11 +6417,11 @@ msgstr "I have been observing you for a while now, I'm glad my followers managed
 "What was your name again? \n"
 "....  .....  ....\n"
 "${{name}}?\n"
-"Not much of a name for someone who illegally owns a Tuxemon.\n"
+"Not much of a name for someone who illegally owns a Tuxemon."
 
 msgid "oops"
 msgstr "Oh. I guess you didn't know that...\n"
-"You shouldn't be afraid, having a Tuxemon by your side is the best thing ever to happen to you.\n"
+"You shouldn't be afraid, having a Tuxemon by your side is the best thing ever to happen to you."
 
 msgid "backstory"
 msgstr "About thirty years ago, a group called Omnichannel started controlling the media.\n"
@@ -6415,7 +6439,7 @@ msgstr "About thirty years ago, a group called Omnichannel started controlling t
 "But only if you agree to help us against Omnichannel.\n"
 "Otherwise, we will report you to Omnichannel ourselves. \n"
 "And you will lose everything. \n"
-"We are always watching.\n"
+"We are always watching."
 
 msgid "backstory9"
 msgstr "What do you say? Will you help us?"
@@ -6429,7 +6453,7 @@ msgstr "???: What do you want? ... ... ... Well too bad. You're not getting in h
 "Allie: Yes, this is the Omnichannel, I'm just a lowly guard though. Who are you?\n"
 "${{name}}...\n"
 "Hmm. A strong name. My house is not too far, maybe... after work... you could show me your strength?\n" 
-"... ... No! what do you mean no? Unless... ... You're Jess's new boyfriend aren't you! She played me this whole time!\n"
+"... ... No! what do you mean no? Unless... ... You're Jess's new boyfriend aren't you! She played me this whole time!"
 
 msgid "mwah2"
 msgstr "JESS!!!"
@@ -6462,7 +6486,7 @@ msgstr "I'm sorry about that scene, Allie is sometimes hard to deal with, unlike
 "Now, outside of a few stragglers in the wild, this generation only interacts with Tuxemon when they work for us.\n"
 "The birthrate is at an all time high, and approval of the Omnichannel has not fallen since the year before the restrictions.\n"
 "Wild Tuxemon were a pervasive curse, threatening to destroying humanity. Omnichannel has fixed that and imposed order.\n"
-"Unchecked, Tuxemon are a force of destruction and anyone who says otherwise is lying. Sorry, I must head to work.\n"
+"Unchecked, Tuxemon are a force of destruction and anyone who says otherwise is lying. Sorry, I must head to work."
 
 msgid "liela_goes_to_battle"
 msgstr "If you are going to disturb me while I pick berries, I'm just going to have to challenge you!"
@@ -6475,7 +6499,7 @@ msgstr "Get the scoop at the Scoop Store!"
 
 msgid "Cotton_Town_Sign"
 msgstr "Welcome to Cotton Town: A Growing Force\n" 
-"↑ Cotton Town --- Route 1 ↓\n"
+"↑ Cotton Town --- Route 1 ↓"
 
 msgid "taba_town_sign"
 msgstr "Taba Town - A peaceful refuge"
@@ -6494,12 +6518,12 @@ msgstr "EEK!!!"
 
 msgid "route2speech2"
 msgstr "Oh. It's just you ${{name}}...\n"
-"Be more considerate the next time you push someone. The cliff is higher than it looks...\n"
+"Be more considerate the next time you push someone. The cliff is higher than it looks..."
 
 msgid "route2speech3"
 msgstr "Although that may not be a bad thing...\n"
 "I know, everyone needs me to lead, but with everything going on...\n"
-"But you don't want to listen to me... do you?\n"
+"But you don't want to listen to me... do you?"
 
 msgid "yestalk"
 msgstr "Really? Thanks..."
@@ -6509,7 +6533,7 @@ msgstr "How insensitive of you! Too bad, you'll have to listen to me anyway!"
 
 msgid "spillit"
 msgstr "You know that I am the leader of the Xero institute and that I recruited you to fight them. But you don't know something else.\n"
-"Allie, who you met before... What? I told you we would be watching, you don't have to be surprised by it.\n"
+"Allie, who you met before... What? I told you we would be watching, you don't have to be surprised by it."
 
 msgid "spillit3"
 msgstr "Whatever... Allie is my sister and means the world to me, so it destroyed me when I found out he had taken her to HQ."
@@ -8036,7 +8060,7 @@ msgid "old_sphalian_center02"
 msgstr "It says that it is under repair"
 
 msgid "old_sphalian_town01"
-msgstr "Sphalian Town - a quiet\, peaceful place"
+msgstr "Sphalian Town - a quiet, peaceful place"
 
 msgid "rubberduck_cave_01"
 msgstr "A good place to hide an item"
@@ -8290,6 +8314,30 @@ msgstr "Please, now return the form to the Shop Assistant, so we can give you th
 msgid "spyder_intro_shopkeeper4"
 msgstr "I'm sorry, you are not a Gold member. This offer is for Gold members only."
 
+msgid "spyder_preintro00"
+msgstr "Alright, let's get this over with. This is the tenth take. Can we please just nail this already?"
+
+msgid "spyder_preintro01"
+msgstr "I swear, if I have to say 'deluxe Tuxemon' one more time, I'm going to lose it. Can't we come up with something more original?"
+
+msgid "spyder_preintro02"
+msgstr "We're just going to end up with a bunch of cheesy, over-the-top marketing nonsense. Can't we aim higher than that?"
+
+msgid "spyder_preintro03"
+msgstr "I'm starting to think that our marketing team has no idea what they're doing. 'Deluxe Tuxemon'? That's the best we can come up with?"
+
+msgid "spyder_preintro04"
+msgstr "Okay, fine. Let's just get this done. But can we please, for the love of all things, try to sound at least somewhat sincere?"
+
+msgid "spyder_postintro00"
+msgstr "Well, that's a wrap. I hope that spot will bring in the sales we need.\n To be honest, I'm not entirely convinced that this 'deluxe Tuxemon' angle is going to fly.\n I mean, are people really going to pay a premium for a creature that can evolve instantly?\n And what's to stop them from just buying the tokens and evolving their own Tuxemon?"
+
+msgid "spyder_postintro01"
+msgstr "And, the Tuxemon themselves are just a bunch of cute, marketable creatures designed to separate kids from their parents' money.\n I mean, we're creating a whole ecosystem around these things, and it's all just a big cash grab.\n We're exploiting people's desire for novelty and their willingness to spend money on anything that's trendy."
+
+msgid "spyder_postintro02"
+msgstr "But hey, it's a lucrative business, and we're just giving people what they want."
+
 # spyder dialogs
 msgid "spyder_papertown_stopthere"
 msgstr "Hey! What do you think you're doing?\n It's not safe to go into the wilds unless you have a tuxemon.\n Come buy one from our shop."
@@ -8344,9 +8392,6 @@ msgstr "Dearie, I can't take your only tuxemon! Come back when you have another.
 
 msgid "spyder_papertown_grannypiper10"
 msgstr "It looks like a business plan."
-
-msgid "spyder_papertown_danteshop"
-msgstr "I'm working, boss, I'm working! \n Oh, it's just you. You know, we throw out so much of our stock. \n It's such a terrible waste. It all goes into the bins behind the back of the Store."
 
 msgid "spyder_papertown_myfirstmon"
 msgstr "Hey, you came! That's great.\n When the fancy new tuxemon come through from the Cathedral, we just threw all our old ones in the bin!\n It seems like such a waste, especially when kids like you don't have any!"
@@ -8467,6 +8512,15 @@ msgstr "I fell down a crack in the Dragon's Cave and wound up here somehow.\n Sh
 
 msgid "spyder_cottontunnel_carlos2"
 msgstr "Hmm, perhaps I could have phrased that more nicely."
+
+msgid "spyder_cottontunnel_benden_nocap"
+msgstr "It... escaped! Drokoro is free! Perhaps...\n Perhaps it'll find a place where it can grow strong, where it can truly be itself. There is still hope."
+
+msgid "spyder_cottontunnel_benden_cap"
+msgstr "You... You captured it. Know this, though: the path to becoming a true Dragonrider has begun.\n You'll face many challenges, many trials.\n But if you're worthy, you'll find your own path to balance, your own way to protect this land."
+
+msgid "spyder_cottontunnel_benden1"
+msgstr "We, the Dragonriders, will retreat to Lion Mountain.\n There, we'll watch over this land from afar, hoping that the balance can somehow be restored."
 
 msgid "spyder_cottoncafe_hackerchat"
 msgstr "It's so cool that you're helping with Tuxepedia.\n  ... \n Is there a prize for adding all the tuxemon? \n Only the satisfaction of helping the human race, buddy."
@@ -9217,40 +9271,78 @@ msgstr "You got it to morph? \n ... \n And you did it in that particular way? \n
 
 msgid "spyder_route1_beachcomber"
 msgstr "To run, just hold down the SHIFT key. \n Look! I'm free as an ELOFLY!"
+
 msgid "spyder_cottonhouse1_homemaker"
 msgstr "I feel so safe seeing all the Enforcers around. You can never be too careful. \n The newspapers are always reporting terrible crimes in this very region!"
+
 msgid "spyder_cottonhouse1_firefighter"
 msgstr "Did you know it's possible for tuxemon to have two elements? \n Even a technique can belong to two elements at one."
+
 msgid "spyder_cottonhouse2_magician"
 msgstr "Some conditions replace one another. \n Learning how conditions interact is key to becoming a master of tuxemon fighting."
+
 msgid "spyder_cottonhouse2_catgirl"
 msgstr "Have you met the old man in City Park? He's obsessed with breaking records!"
+
 msgid "spyder_cottonhouse2_shopkeeper"
 msgstr "I don't have a problem with people from other regions. \n Just don't come after my job, alright?"
+
 msgid "spyder_route5_granny"
 msgstr "This park is much more salubrious with the Nimrod construction keeping the Flower City riff-raff out. "
+
 msgid "spyder_leatherhouse1_florist"
 msgstr "There used to be several TV and radio stations operating, but Omnichannel ran them out of business. \n Now we don't have to worry about different journalists contradicting each other."
+
 msgid "spyder_leatherhouse2_tv"
 msgstr "A little green mon is lifting a ship out of a swamp."
+
 msgid "spyder_leatherhouse2_scientist"
 msgstr "I work for Shaft. \n ... \n Where's my helmet? I don't need one, I control the truck remotely from our offices. \n Pretty soon, most jobs in the mines will be automated. "
+
 msgid "spyder_leatherhouse2_miner"
 msgstr "You won't believe what they're digging up in Route 3. \n I've never seen an egg that big. \n Oops, I've said too much. "
+
 msgid "spyder_route1_routesign"
 msgstr "Route 1. Take care!"
+
 msgid "spyder_flowerhouse1_tv"
 msgstr "Two mons are having a fight. \"I'm not your friend, Budaye\", one says."
+
 msgid "spyder_flowerhouse2_soldier"
 msgstr "I worked for Nimrod during the war. \n Not that I got a medal. Or a parade. \n They don't hand those out to mercenaries."
+
+msgid "spyder_flowerhouse2_soldier1"
+msgstr "I worked in the shadows, ensuring the real heroes had access to cutting-edge tools."
+
+msgid "spyder_flowerhouse2_soldier2"
+msgstr "I've seen it in action; it executes complex maneuvers with precision, almost dancing through chaos.\n Yet, beneath its elegance lies a darker side—the potential for destruction is real."
+
+msgid "spyder_flowerhouse2_soldier3"
+msgstr "This technology is both a marvel and a menace, blurring the line between art and weaponry."
+
+msgid "spyder_flowerhouse2_soldier4"
+msgstr "Keep an eye out, and if you encounter Dr. Elara, let me know."
+
+msgid "spyder_flowerhouse2_soldier5"
+msgstr "You met Dr. Elara? Damn it...\n Xeon isn't just a machine; it's a threat that could haunt us all.\n I need to visit some old friends."
+
 msgid "spyder_flowerhouse2_scientist"
 msgstr "Radio FUD wakes me up every morning. \n Not sure I care for their politics, but at least they call it how they see it!"
+
 msgid "spyder_flower_florist"
 msgstr "There used to be a riverboat captain here who could take you up and down the river. \n But I haven't seen him for a few days. "
+
 msgid "spyder_flowerhouse1_firefighter"
 msgstr "The five Pillars are the only big companies in this region. They have a lot of sway."
+
 msgid "spyder_flowerhouse1_granny"
 msgstr "Scoop has managed to cut the price of beef yet again! I don't know how they do it. "
+
+msgid "spyder_nimrod_papers1"
+msgstr "Subject - Soldier #### by Dr. Elara - Mental Health Assessment\n 'The soldier has shown a significant decline in mental health, frequently expressing guilt and remorse over past missions.\n He reports hearing voices of those lost during operations, indicating unresolved trauma and survivor's guilt.\n His fixation on the potential dangers of our technology suggests growing paranoia.\n In summary, the soldier's mental health is precarious, and immediate action is necessary to support him.'"
+
+msgid "spyder_nimrod_papers2"
+msgstr "Subject - Overseer #### by Dr. Orion - Mental Health Assessment\n 'The overseer is exhibiting signs of significant emotional distress, grappling with ethical dilemmas and the weight of recent operational decisions.\n She reports a growing sense of isolation and anxiety, particularly concerning the evolving demands from investors that have necessitated a shift in project priorities.\n Her fixation on the environmental impact of the river diversion project, including the draining of the lake, suggests a profound sense of responsibility and potential moral conflict.'"
 
 msgid "spyder_nimrod_chromerobo1"
 msgstr "Boop beep"
@@ -9518,28 +9610,40 @@ msgstr "Commander: Good. Dispatch them immediately. We can't afford to delay."
 
 msgid "spyder_route5_goliath1"
 msgstr "Hey, aren't you that meddlesome kid from the Wayfarer Inn?"
+
 msgid "spyder_route5_goliath2"
 msgstr "Quit ruining our plans!"
+
 msgid "spyder_route5_sara1"
 msgstr "My Capiti looks cute and all, but I can't wait until it grows into an adult!"
+
 msgid "spyder_route5_sara2"
 msgstr "Oh well, not today!"
+
 msgid "spyder_route5_hunter1"
 msgstr "It takes a lot to hold a team together."
+
 msgid "spyder_route5_hunter2"
 msgstr "We'll be back."
+
 msgid "spyder_route5_edith1"
 msgstr "Woohoo! Our millionth ant! ... Uhm, I didn't think anyone would hear that."
+
 msgid "spyder_route5_edith2"
 msgstr "Let's see if you're so cocky after Aardart eats her two-millionth ant!"
+
 msgid "spyder_route5_cleo1"
 msgstr "Mother says you can trace our bloodline back to the kings who once ruled this country."
+
 msgid "spyder_route5_cleo2"
 msgstr "Oh ancestors, I've failed you!"
+
 msgid "spyder_route5_tryphaena1"
 msgstr "You know, we're descended from ... You've already heard it? Oh."
+
 msgid "spyder_route5_tryphaena2"
 msgstr "Well, might makes right."
+
 msgid "spyder_timber_mom1"
 msgstr "Hey bojo, your BOARD doesn't work on water. Unless you've got power."
 msgid "spyder_outsidewalled_rogue1"
@@ -9558,72 +9662,136 @@ msgid "spyder_timber_dante1"
 msgstr "Hey buddy! Cool to see you again. "
 msgid "spyder_timber_dante2"
 msgstr "Hey buddy! \n Are you planning to break into these HQ? Cool! \n Make sure you're well prepared before you do, because it's difficult to get out once you're inside! \n You'll need to call your mom to let her know you're safe. Use this app!"
+
 msgid "spyder_scoop_lanth1"
 msgstr "Look how happy the tuxemon are, living so close to one another!"
+
 msgid "spyder_scoop_lanth2"
 msgstr "Typical activist troublemaker. "
+
 msgid "spyder_scoop_paine1"
 msgstr "I feel so terrible that the disease got out. "
+
 msgid "spyder_scoop_paine2"
 msgstr "If those Enforcers hadn't come in and exposed their pet tuxemon to the disease, it would never have left the facility!"
+
 msgid "spyder_scoop_rubid1"
 msgstr "This is actually the most humane way to keep tuxemon."
+
 msgid "spyder_scoop_rubid2"
 msgstr "Studies show that tuxemon find battling more stressful than living in these conditions. "
+
 msgid "spyder_scoop_berys1"
 msgstr "You will notice that none of the tuxemon out here are sick - they were all kept in the containment unit."
+
 msgid "spyder_scoop_berys2"
 msgstr "Scoop did not release the disease! I promise you. "
+
 msgid "spyder_scoop_turner1"
 msgstr "Some of these people will tell you that Enforcers let the disease get out. Don't believe them!"
+
 msgid "spyder_scoop_turner2"
 msgstr "Remember, we had nothing to do with the disease getting out!"
 
 msgid "spyder_scoop_asta1"
 msgstr "Why yes, I am the inventor of the Extreme Restraints. \n What are they, I hear you ask? \n Only a set of manacles so powerful that even a dragon could not escape them. \n They are being used in the containment unit to make sure none of the infected tuxemon escape."
+
 msgid "spyder_scoop_asta2"
 msgstr "Are you sure you want to leave Scoop HQ?"
 
+msgid "spyder_scoop_cctv"
+msgstr "The PC contains a file named 'CCTV'. Would you like to watch it?"
+
+msgid "spyder_scoop_arachne_flashback1"
+msgstr "Nash: The Extreme Restraints are our most secure containment system yet.\n With these manacles, even the strongest tuxemon won't be able to break free from the containment unit."
+
+msgid "spyder_scoop_arachne_flashback2"
+msgstr "Reese: Good. We can't afford any more escapes, not with this disease outbreak spiraling out of control.\n These Restraints better be as effective as you claim."
+
+msgid "spyder_scoop_arachne_flashback3"
+msgstr "Nash: I guarantee it. The materials and design are impenetrable.\n As long as we keep the tuxemon locked up tight in these Restraints, the disease won't be going anywhere."
+
+msgid "spyder_scoop_arachne_flashback4"
+msgstr "Arachne: What do we have here? Looks like you've got quite the fancy set of restraints, don't you?"
+
+msgid "spyder_scoop_arachne_flashback5"
+msgstr "Nash: Who are you? How did you get in here?"
+
+msgid "spyder_scoop_arachne_flashback6"
+msgstr "Arachne: I'm here to relieve you of those lovely Extreme Restraints you've got. They'll make a fine addition to my collection."
+
+msgid "spyder_scoop_arachne_flashback7"
+msgstr "Reese: Stop right there! Those Restraints are crucial to containing the tuxemon outbreak.\n You have no idea what kind of damage you could cause if you take them."
+
+msgid "spyder_scoop_arachne_flashback8"
+msgstr "Arachne: Oh, I think I have a pretty good idea. And I don't really care about your little tuxemon problem. These Restraints are mine now."
+
+msgid "spyder_scoop_arachne_flashback9"
+msgstr "Nash: No, come back! We can't let those Restraints fall into the wrong hands!"
+
+msgid "spyder_scoop_arachne_flashback10"
+msgstr "Reese: This is a disaster - without the Extreme Restraints, the containment unit is useless.\n The tuxemon could break free at any moment!"
+
 msgid "spyder_scoop_alyssa1"
 msgstr "As soon as disease was detected, we moved the infected tuxemon to this containment unit."
+
 msgid "spyder_scoop_alyssa2"
 msgstr "I'm telling you, we kept the disease under control!"
+
 msgid "spyder_scoop_taggart1"
 msgstr "Someone stole the Extreme Restraints we invented to keep tuxemon in the containment unit! Was it you?"
+
 msgid "spyder_scoop_taggart2"
 msgstr "If you didn't steal the Extreme Restraints, who did? "
+
 msgid "spyder_scoop_donald1"
 msgstr "The sick tuxemon we were keeping here in quarantine got out and broke into the storeroom beyond! How will we secure the storeroom?"
+
 msgid "spyder_scoop_donald2"
 msgstr "You might just be strong enough to contain the escaped tuxemon. Please - do it for us. "
+
 msgid "spyder_scoop_orba1"
 msgstr "Yikes! What are you doing here?"
+
 msgid "spyder_scoop_orba2"
 msgstr "What am I doing here, for that matter?"
+
 msgid "spyder_scoop_haf1"
 msgstr "I chased the people who stole the Restraints into this room. But then the sick tuxemon got in, and now we're all stuck!"
+
 msgid "spyder_scoop_weaver1"
 msgstr "I would never have taken the Restraints off those coughing tuxemon if I knew they'd chase us in here!"
+
 msgid "spyder_scoop_weaver2"
 msgstr "Yikes! It turns out crime doesn't pay!"
+
 msgid "spyder_scoop_arachne1"
 msgstr "Oi! Can't you see we're in the middle of a villainous scheme?"
+
 msgid "spyder_scoop_arachne2"
 msgstr "It's too late! I have the Extreme Restraints and there's nothing you can do about it. "
+
 msgid "spyder_scoop_landrace1"
 msgstr "Graar!"
+
 msgid "spyder_scoop_landrace2"
 msgstr "Ufff."
+
 msgid "spyder_scoop_landrace3"
 msgstr "Thanks for getting rid of that brute that was blocking the way! \n Now we can escape with the Extreme Restraints! "
+
 msgid "spyder_scoop_cochini1"
 msgstr "Oink! Oink! "
+
 msgid "spyder_scoop_cochini2"
 msgstr "Oink."
+
 msgid "spyder_scoop_lapinou1"
 msgstr "Aiya!"
+
 msgid "spyder_scoop_lapinou2"
 msgstr "Mhm ah!"
+
 msgid "spyder_tunnelb_beryll1"
 msgstr "I love collecting rocks and stones."
 msgid "spyder_tunnelb_beryll2"
@@ -9955,50 +10123,73 @@ msgstr "This is FUD Radio, DJ Worm here and my co-host, \"The Duke of Dead Air\"
 
 msgid "spyder_dragonscave_benden3"
 msgstr "What is this? These villains are trying to steal Drokoro! But why?"
+
 msgid "spyder_dragonscave_mallory3"
 msgstr "The Drokoro is ours! \n We got Shaft to dig it up from beneath Route 3, and we would have kept it if that infuriating kid hadn't interrupted our plans. \n It is time for the Pillars to combine their strength and rule this region outright! \n Too long have we let the Cathedral and the public tell us what can and cannot be done with Tuxemon. \n When we use Greenwash's fusion technology to combine this Drokoro with the killer robots built by Nimrod, we will be unstoppable! \n And the best part is, Omnichannel will tell the public that this is all in their best interests - and the public will believe them!"
+
 msgid "spyder_dragonscave_benden4"
 msgstr "Please, ${{name}}. If you can't stop these villains, all is lost."
+
 msgid "spyder_dragonscave_tomas1"
 msgstr "Once we each rode a dragon. That was long ago. But just recently a new-born dragon appeared above this island, and crawled into this cave."
+
 msgid "spyder_dragonscave_tomas2"
 msgstr "As you can see, the age of the dragons has passed. The hatchling dragon is our last hope."
+
 msgid "spyder_dragonscave_lessa1"
 msgstr "We stand guard over this, the last dragon. We don't know where it came from or why it hatched. We thought all dragons had hatched long ago."
+
 msgid "spyder_dragonscave_lessa2"
 msgstr "Maybe someone will come who has the power to defeat it."
+
 msgid "spyder_dragonscave_cailin1"
 msgstr "This is our last duty. Dragarbor is so very tired."
+
 msgid "spyder_dragonscave_cailin2"
 msgstr "Thank you."
+
 msgid "spyder_dragonscave_griffin1"
 msgstr "I wonder what it would be like to be swallowed by a dragon ..."
+
 msgid "spyder_dragonscave_griffin2"
 msgstr "Oh well - pobody's nerfect!"
+
 msgid "spyder_dragonscave_daenny1"
 msgstr "Prepare to be defeated!"
+
 msgid "spyder_dragonscave_daenny2"
 msgstr "You may have bested me, but you'll never best Benden."
+
 msgid "spyder_dragonscave_benden1"
 msgstr "I am the last and most powerful of the dragonriders."
+
 msgid "spyder_dragonscave_benden2"
 msgstr "You have proven yourself a worthy opponent for Drokoro. \n I will show you to the sacred inner chamber - after I heal you."
+
 msgid "spyder_dragonscave_mal1"
 msgstr "You have gotten in our way too many times!"
+
 msgid "spyder_dragonscave_mal2"
 msgstr "Ah ha, you fell right into my trap!"
+
 msgid "spyder_dragonscave_ray1"
 msgstr "All we want to do is create a mega-corporation that takes over the government. Is that so wrong?"
+
 msgid "spyder_dragonscave_ray2"
 msgstr "You're taking away my freedoms."
+
 msgid "spyder_dragonscave_lucille1"
 msgstr "The Pillars are the only way we'll get anything done around here."
+
 msgid "spyder_dragonscave_lucille2"
 msgstr "You'll regret this."
+
 msgid "spyder_dragonscave_tru1"
 msgstr "This is for your own good, okay?"
+
 msgid "spyder_dragonscave_tru2"
 msgstr "Whatever. We already took the DNA sample. \n We just wanted to capture Drokoro as a backup. \n You'll never stop them back at Omnichannel HQ."
+
 msgid "spyder_dragonscave_drokoro1"
 msgstr "Rawr!"
 
@@ -10582,9 +10773,6 @@ msgstr "Granny Piper"
 
 msgid "spyder_papertown_shopkeeper"
 msgstr "Shopkeeper"
-
-msgid "spyder_instore_dante"
-msgstr "Dante"
 
 msgid "spyder_billie"
 msgstr "Billie"
@@ -11238,6 +11426,15 @@ msgstr "Home sweet home!"
 msgid "spyder_papertown_rival"
 msgstr "Billie's House"
 
+msgid "spyder_rivalbedroom_bed"
+msgstr "Bed is messy, but it looks like she's been sleeping well. There's a tuxemon plushie on her pillow."
+
+msgid "spyder_rivalbedroom_bookshelf"
+msgstr "The bookshelf is filled with tuxemon strategy guides and training manuals."
+
+msgid "spyder_rivalbedroom_weights"
+msgstr "There's a diagram on the wall nearby that shows how to use the weight to train a tuxemon's strength."
+
 msgid "spyder_rivalbedroom_radio_morning"
 msgstr "Morning: A Pop song is playing. It's called \"Omni Love: A Journey Through Channels of the Heart\"."
 
@@ -11261,6 +11458,33 @@ msgstr "For Billie, from Grandma. Memories of Grandpa Bernard."
 
 msgid "spyder_rivaloffice_haiku"
 msgstr "It's a haiku: From Rock to Kitten, Evolution's dance unfolds, Transformation blooms."
+
+msgid "spyder_billie_tv_flashback_trigger"
+msgstr "Watch something else? A recorded episode of Tuxemon League is available."
+
+msgid "spyder_billie_tv_flashback1"
+msgstr "Reporter: Wow, what a clash! Crimson's Agnigon is really putting the pressure on Sapphire's Fribbit!\n Look at that! Agnigon unleashed a devastating Breathe Fire!"
+
+msgid "spyder_billie_tv_flashback2"
+msgstr "Billie: Overrated. Agnigon's moves are predictable. Any decent trainer could see that coming."
+
+msgid "spyder_billie_tv_flashback3"
+msgstr "Reporter: Fribbit is taking a beating! But look at that! Fribbit counters with a powerful Ice Storm! It's a direct hit!"
+
+msgid "spyder_billie_tv_flashback4"
+msgstr "Billie: Ice Storm? Weak."
+
+msgid "spyder_billie_tv_flashback5"
+msgstr "Reporter: This is getting intense! Agnigon is down! Fribbit wins! What a stunning upset!"
+
+msgid "spyder_billie_tv_flashback6"
+msgstr "Billie: Amateur. Agnigon should have used Supernova. A direct hit would have ended the fight in seconds."
+
+msgid "spyder_billie_tv_flashback7"
+msgstr "Reporter: This was an incredible display of skill and strategy from Sapphire."
+
+msgid "spyder_billie_tv_flashback8"
+msgstr "Billie: Skill? Luck. Any decent trainer could have predicted Agnigon's downfall."
 
 msgid "spyder_billie_flashback_trigger"
 msgstr "Do you want to uncover a piece of Billie's backstory?"
@@ -11396,6 +11620,39 @@ msgstr "*pulls out a moldy pizza box and a stack of old newspapers* This trash c
 
 msgid "spyder_leather_note4"
 msgstr "*reaches to the bottom of the trash can, pulling out a soggy notebook* Ugh, I hope this one isn't ruined. Ah, it's still legible...\n Notebook of Dr Maria, Tuxemon Biologist\n Observations of tuxemon behavior in the wild suggest that they are highly social creatures...\n with complex communication patterns and a strong sense of hierarchy.\n This challenges the common assumption that tuxemon are simply tools for human use.\n Preliminary data suggests that tuxemon are capable of experiencing stress and anxiety when subjected to intense training regimens.\n Further research is needed to understand the long-term effects of this stress on tuxemon well-being."
+
+msgid "spyder_leather_sarah_greeting"
+msgstr "Hey, what's up? I've been worried about my girlfriend lately. She's been acting really strange.\n Do you want to know what's been going on with her?"
+
+msgid "spyder_leather_sarah_yes"
+msgstr "Okay, I'll tell you. I was there..."
+
+msgid "spyder_leather_sarah_no"
+msgstr "No problem. I just thought you should know."
+
+msgid "spyder_leather_sarah_after"
+msgstr "I'm worried. What if we can't fix this? What if it's too late?"
+
+msgid "spyder_leather_sarah1"
+msgstr "I don't know, Sarah. I'm feeling really conflicted about the mine right now. We've been getting some...\n unusual requests from our investors. Changes in our priorities."
+
+msgid "spyder_leather_sarah2"
+msgstr "What's going on? You've been distant lately. Is everything okay? What kind of requests?"
+
+msgid "spyder_leather_sarah3"
+msgstr "I'm not supposed to say. But let's just say that our investors are very interested in the history of this place.\n I think they're looking for something specific. Something that could change everything."
+
+msgid "spyder_leather_sarah4"
+msgstr "But what about the mine? What about the people who work here? You didn't know what would happen. You didn't know about the eggs."
+
+msgid "spyder_leather_sarah5"
+msgstr "That's no excuse. I should have known better. I should have thought about the consequences.\n I'm one of the ones who proposed diverting the river and draining the lake. I'm one of the ones who made this happen."
+
+msgid "spyder_leather_sarah6"
+msgstr "You're doing the right thing now. You're trying to make it right. I'm here for you. We'll get through this together."
+
+msgid "spyder_leather_sarah7"
+msgstr "I hope so. I really do. But it's hard to shake off the feeling of guilt. It's hard to forget what we've done."
 
 msgid "spyder_leathercafe_sign"
 msgstr "Open Air Cafe and Marketplace"
@@ -11599,8 +11856,12 @@ msgstr "Billie has added their tuxemon data to TUXEPEDIA."
 
 msgid "spyder_wayfarerinn_sign"
 msgstr "Welcome to the Wayfarer Inn! "
+
 msgid "spyder_omnichannel_note"
 msgstr "Haha, suckers - you'll never find me. \n It's on the Omnichannel CEO's letterhead."
+
+msgid "spyder_omnichannel_intro"
+msgstr "The PC contains a file named 'Cut Intro'. Would you like to watch the cut scenes?"
 
 msgid "spyder_walled_osman"
 msgstr "Osman"
@@ -12148,7 +12409,7 @@ msgstr "Professor:\n"
 "I've heard that you want to learn about Tuxemon.\n"
 "Tuxemon are little animals, some call them monsters, that we befriend and use to battle other Tuxemon.\n"
 "I was wondering, I just received three new Tuxemon for research and I would like to give you one.\n"
-"Which one would you like?\n"
+"Which one would you like?"
 
 msgid "professor_dialog6.1"
 msgstr "Professor: An excellent choice! Hydrone is a water Tuxemon."

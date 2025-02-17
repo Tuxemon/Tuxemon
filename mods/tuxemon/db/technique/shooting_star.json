@@ -3,7 +3,7 @@
   "accuracy": 1,
   "animation": "blue_circle",
   "effects": [
-    "photogenesis user,18,0,6"
+    "photogenesis 18,0,6"
   ],
   "flip_axes": "",
   "healing_power": 2,

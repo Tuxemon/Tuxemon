@@ -3,9 +3,9 @@
   "accuracy": 1,
   "animation": "sparks_blue",
   "effects": [
-    "give recover,user",
-    "give focused,target",
-    "healing user"
+    "give recover,own_monster",
+    "give focused,enemy_monster",
+    "healing"
   ],
   "flip_axes": "",
   "healing_power": 3.0,
@@ -18,10 +18,10 @@
   "slug": "mystic_blending",
   "sort": "damage",
   "target": {
-    "enemy_monster": true,
+    "enemy_monster": false,
     "enemy_team": false,
     "enemy_trainer": false,
-    "own_monster": false,
+    "own_monster": true,
     "own_team": false,
     "own_trainer": false
   },

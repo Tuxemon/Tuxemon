@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 from tuxemon.technique.technique import Technique
@@ -12,10 +12,6 @@ from tuxemon.technique.technique import Technique
 if TYPE_CHECKING:
     from tuxemon.condition.condition import Condition
     from tuxemon.monster import Monster
-
-
-class FlinchingEffectResult(CondEffectResult):
-    pass
 
 
 @dataclass
@@ -32,20 +28,20 @@ class FlinchingEffect(CondEffect):
     name = "flinching"
     chance: float
 
-    def apply(
-        self, condition: Condition, target: Monster
-    ) -> FlinchingEffectResult:
-        skip: Optional[Technique] = None
+    def apply(self, condition: Condition, target: Monster) -> CondEffectResult:
+        tech: list[Technique] = []
         if condition.phase == "pre_checking" and random.random() > self.chance:
             user = condition.link
             empty = condition.repl_tech
             assert user and empty
             skip = Technique()
             skip.load(empty)
+            tech = [skip]
             user.status.clear()
-        return {
-            "success": True,
-            "condition": None,
-            "technique": skip,
-            "extra": None,
-        }
+        return CondEffectResult(
+            name=condition.name,
+            success=True,
+            conditions=[],
+            techniques=tech,
+            extras=[],
+        )

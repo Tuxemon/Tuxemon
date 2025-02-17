@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import uuid
@@ -272,7 +272,8 @@ class MonsterInfoState(PygameMenuState):
         )
         f.translate(fix_measure(width, 0.02), fix_measure(height, 0.80))
         f._relax = True
-        elements = [ele.monster_slug for ele in monster.evolutions]
+        slugs = [ele.monster_slug for ele in monster.evolutions]
+        elements = list(dict.fromkeys(slugs))
         labels = [
             menu.add.label(
                 title=f"{T.translate(ele).upper()}",

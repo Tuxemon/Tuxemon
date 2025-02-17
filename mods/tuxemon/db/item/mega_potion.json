@@ -10,6 +10,7 @@
   "sort": "potion",
   "sprite": "gfx/items/mega_potion.png",
   "category": "potion",
+  "cost": 400,
   "usable_in": [
     "MainCombatMenuState",
     "WorldState"

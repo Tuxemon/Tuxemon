@@ -3,7 +3,7 @@
   "accuracy": 0.8,
   "animation": "slash_power",
   "effects": [
-    "give sniping,user",
+    "give sniping,own_monster",
     "damage"
   ],
   "flip_axes": "x",

@@ -4,7 +4,7 @@
   "animation": "x_attack",
   "effects": [
     "damage",
-    "switch user,random"
+    "switch own_monster,random"
   ],
   "flip_axes": "",
   "is_fast": false,

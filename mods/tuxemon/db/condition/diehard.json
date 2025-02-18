@@ -3,7 +3,10 @@
   "modifiers": [],
   "category": "positive",
   "effects": [
-    "diehard 1"
+    {
+      "type": "diehard",
+      "parameters": ["1"]
+    }
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_diehard.png",

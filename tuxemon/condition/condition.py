@@ -11,7 +11,14 @@ from tuxemon import plugin
 from tuxemon.condition.condcondition import CondCondition
 from tuxemon.condition.condeffect import CondEffect, CondEffectResult
 from tuxemon.constants import paths
-from tuxemon.db import CategoryCondition, Range, ResponseCondition, db
+from tuxemon.db import (
+    CategoryCondition,
+    CommonCondition,
+    CommonEffect,
+    Range,
+    ResponseCondition,
+    db,
+)
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
@@ -46,9 +53,7 @@ class Condition:
         self.animation: Optional[str] = None
         self.category: Optional[CategoryCondition] = None
         self.combat_state: Optional[CombatState] = None
-        self.conditions: Sequence[CondCondition] = []
         self.description = ""
-        self.effects: Sequence[CondEffect] = []
         self.flip_axes = ""
         self.gain_cond = ""
         self.icon = ""
@@ -142,7 +147,7 @@ class Condition:
 
     def parse_effects(
         self,
-        raw: Sequence[str],
+        raw: Sequence[CommonEffect],
     ) -> Sequence[CondEffect]:
         """
         Convert effect strings to effect objects.
@@ -158,24 +163,18 @@ class Condition:
 
         """
         effects = []
-
-        for line in raw:
-            parts = line.split(maxsplit=1)
-            name = parts[0]
-            params = parts[1].split(",") if len(parts) > 1 else []
-
+        for effect in raw:
             try:
-                effect_class = Condition.effects_classes[name]
+                effect_class = Condition.effects_classes[effect.type]
             except KeyError:
-                logger.error(f'Error: CondEffect "{name}" not implemented')
+                logger.error(f'ItemEffect "{effect.type}" not implemented')
             else:
-                effects.append(effect_class(*params))
-
+                effects.append(effect_class(*effect.parameters))
         return effects
 
     def parse_conditions(
         self,
-        raw: Sequence[str],
+        raw: Sequence[CommonCondition],
     ) -> Sequence[CondCondition]:
         """
         Convert condition strings to condition objects.
@@ -191,25 +190,18 @@ class Condition:
 
         """
         conditions = []
-
-        for line in raw:
-            parts = line.split(maxsplit=2)
-            op = parts[0]
-            name = parts[1]
-            params = parts[2].split(",") if len(parts) > 2 else []
-
+        for condition in raw:
             try:
-                condition_class = Condition.conditions_classes[name]
+                condition_class = Condition.conditions_classes[condition.type]
             except KeyError:
-                logger.error(f'Error: CondCondition "{name}" not implemented')
+                logger.error(
+                    f'ItemCondition "{condition.type}" not implemented'
+                )
                 continue
 
-            if op not in ["is", "not"]:
-                raise ValueError(f"{op} must be 'is' or 'not'")
-
-            condition = condition_class(*params)
-            condition._op = op == "is"
-            conditions.append(condition)
+            condition_obj = condition_class(*condition.parameters)
+            condition_obj._op = condition.operator == "is"
+            conditions.append(condition_obj)
 
         return conditions
 

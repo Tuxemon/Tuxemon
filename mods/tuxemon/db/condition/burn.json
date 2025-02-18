@@ -14,7 +14,10 @@
   ],
   "category": "negative",
   "effects": [
-    "burnt 8"
+    {
+      "type": "burnt",
+      "parameters": ["8"]
+    }
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_burn.png",

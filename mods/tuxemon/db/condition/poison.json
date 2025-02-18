@@ -9,7 +9,10 @@
   ],
   "category": "negative",
   "effects": [
-    "poisoned 8"
+    {
+      "type": "poisoned",
+      "parameters": ["8"]
+    }
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_poison.png",

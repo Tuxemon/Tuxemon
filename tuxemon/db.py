@@ -919,10 +919,10 @@ class ConditionModel(BaseModel):
     slug: str = Field(..., description="The slug of the condition")
     sort: TechSort = Field(..., description="The sort of condition this is")
     icon: str = Field(None, description="The icon to use for the condition")
-    conditions: Sequence[str] = Field(
+    conditions: Sequence[CommonCondition] = Field(
         [], description="Conditions that must be met"
     )
-    effects: Sequence[str] = Field(
+    effects: Sequence[CommonEffect] = Field(
         [], description="Effects this condition uses"
     )
     flip_axes: Literal["", "x", "y", "xy"] = Field(
@@ -1026,14 +1026,6 @@ class ConditionModel(BaseModel):
         ):
             return v
         raise ValueError(f"the status {v} doesn't exist in the db")
-
-    @field_validator("conditions")
-    def check_conditions(
-        cls: ConditionModel, v: Sequence[str]
-    ) -> Sequence[str]:
-        if not v or has.check_conditions(v):
-            return v
-        raise ValueError(f"the conditions {v} aren't correctly formatted")
 
     @field_validator("sfx")
     def sfx_cond_exists(cls: ConditionModel, v: str) -> str:

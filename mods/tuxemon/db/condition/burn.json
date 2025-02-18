@@ -1,6 +1,6 @@
 {
   "animation": null,
-  "damage_modifiers": [
+  "modifiers": [
     {
       "attribute": "type",
       "values": ["fire"],

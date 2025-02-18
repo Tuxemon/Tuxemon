@@ -1,6 +1,6 @@
 {
   "animation": null,
-  "damage_modifiers": [],
+  "modifiers": [],
   "category": "neutral",
   "effects": [],
   "flip_axes": "",

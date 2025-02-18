@@ -1,6 +1,6 @@
 {
   "animation": "drip_green",
-  "damage_modifiers": [
+  "modifiers": [
     {
       "attribute": "type",
       "values": ["venom"],

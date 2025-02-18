@@ -1154,6 +1154,9 @@ msgstr "{target} is harmful to make contact with."
 msgid "combat_state_feedback_get"
 msgstr "{target} is turning ranged attacks back on the attacker."
 
+msgid "combat_state_immune"
+msgstr "{target} is immune to {method}"
+
 # Generic notifications
 msgid "empty_slot"
 msgstr "Empty Slot"

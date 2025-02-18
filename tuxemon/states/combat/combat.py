@@ -1027,6 +1027,9 @@ class CombatState(CombatAnimations):
             if condition.use_failure:
                 template = getattr(condition, "use_failure")
                 message = T.format(template, context)
+        if result.extras:
+            templates = [T.translate(extra) for extra in result.extras]
+            message = message + "\n" + "\n".join(templates)
         action_time += compute_text_animation_time(message)
         self.text_animations_queue.append(
             (partial(self.alert, message), action_time)

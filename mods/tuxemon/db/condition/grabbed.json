@@ -1,6 +1,6 @@
 {
   "animation": null,
-  "damage_modifiers": [],
+  "modifiers": [],
   "category": "negative",
 	"conditions": [
 	  	"is current_hp >,0"

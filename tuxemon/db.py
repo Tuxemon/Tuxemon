@@ -725,12 +725,15 @@ class TechCategory(str, Enum):
     notype = "notype"
 
 
-class DamageModifier(BaseModel):
-    attribute: str = Field(..., description="Condition, type, tag, etc.")
-    values: Sequence[str] = Field([], description="Values (eg. fire, etc)")
-    multiplier: float = Field(
-        1.0, description="Damage multiplier", ge=0.0, le=2.0
+class Modifier(BaseModel):
+    attribute: str = Field(
+        ..., description="Attribute being modified (type, etc.)"
     )
+    values: Sequence[str] = Field(
+        [],
+        description="Values associated with the modification (eg. fire, etc.)",
+    )
+    multiplier: float = Field(1.0, description="Multiplier", ge=0.0, le=2.0)
 
 
 class TechSort(str, Enum):
@@ -949,9 +952,7 @@ class ConditionModel(BaseModel):
     duration: int = Field(
         0, description="How many turns the condition is supposed to last"
     )
-    damage_modifiers: list[DamageModifier] = Field(
-        ..., description="Damage multipliers"
-    )
+    modifiers: list[Modifier] = Field(..., description="Damage multipliers")
 
     # Optional fields
     category: Optional[CategoryCondition] = Field(

@@ -1,6 +1,6 @@
 {
   "animation": null,
-  "damage_modifiers": [],
+  "modifiers": [],
   "effects": [],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_eliminated.png",

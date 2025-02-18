@@ -1,6 +1,6 @@
 {
   "animation": null,
-  "damage_modifiers": [],
+  "modifiers": [],
   "category": "positive",
   "effects": [
     "feedback 8,ranged:reach"

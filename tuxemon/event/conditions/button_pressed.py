@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from tuxemon.event import MapCondition
@@ -27,17 +27,6 @@ class ButtonPressedCondition(EventCondition):
     name = "button_pressed"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """
-        Check to see if a particular key was pressed.
-
-        Parameters:
-            session: The session object
-            condition: The map condition object.
-
-        Returns:
-            Whether the key was pressed or not.
-
-        """
         button = str(condition.parameters[0])
 
         # TODO: workaround for old maps.  eventually need to decide on a scheme

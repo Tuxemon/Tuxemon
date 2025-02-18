@@ -496,7 +496,7 @@
   </object>
   <object id="86" name="Box1" type="event" x="240" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog potion"/>
+    <property name="act1" value="translated_dialog potion,,center"/>
     <property name="act2" value="add_item potion"/>
     <property name="act3" value="remove_npc spyder_citypark_potion1"/>
     <property name="act4" value="set_variable citypark_potion1:yes"/>
@@ -512,7 +512,7 @@
   </object>
   <object id="88" name="Box2" type="event" x="288" y="240" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog potion"/>
+    <property name="act1" value="translated_dialog potion,,center"/>
     <property name="act2" value="add_item potion"/>
     <property name="act3" value="remove_npc spyder_citypark_potion2"/>
     <property name="act4" value="set_variable citypark_potion2:yes"/>
@@ -528,7 +528,7 @@
   </object>
   <object id="90" name="Box3" type="event" x="16" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog restoration"/>
+    <property name="act1" value="translated_dialog restoration,,center"/>
     <property name="act2" value="add_item restoration"/>
     <property name="act3" value="remove_npc spyder_citypark_restoration"/>
     <property name="act4" value="set_variable citypark_restoration:yes"/>
@@ -544,7 +544,7 @@
   </object>
   <object id="92" name="Box4" type="event" x="16" y="256" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog tuxeball"/>
+    <property name="act1" value="translated_dialog tuxeball,,center"/>
     <property name="act2" value="add_item tuxeball"/>
     <property name="act3" value="remove_npc spyder_citypark_cd1"/>
     <property name="act4" value="set_variable citypark_cd1:yes"/>
@@ -560,7 +560,7 @@
   </object>
   <object id="94" name="Box5" type="event" x="96" y="384" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog tuxeball"/>
+    <property name="act1" value="translated_dialog tuxeball,,center"/>
     <property name="act2" value="add_item tuxeball"/>
     <property name="act3" value="remove_npc spyder_citypark_cd2"/>
     <property name="act4" value="set_variable citypark_cd2:yes"/>

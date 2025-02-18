@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """
 
 General guidelines of the combat module
@@ -15,7 +15,7 @@ example, is (pseudo code):
 
 if monster.status == "confused":
     message("Monster is confused!")
-    
+
 Interactions like this should be handled in an abstract way.  If we keep
 adding highly specific behaviours in this class, then it will be really
 hard to modify and will conflict with the JSON files.
@@ -28,7 +28,7 @@ the class with hardcoded references to techniques/statuses.
 
 There is already existing code like this, but it is not a validation to
 add new code like it.  Consider it a priority to remove it when you are
-able to. 
+able to.
 
 """
 from __future__ import annotations

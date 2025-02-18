@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """This module contains the Options state"""
 from __future__ import annotations
 
@@ -231,9 +231,22 @@ class ControlState(PygameMenuState):
             ),
             font_size=self.font_size_small,
         )
+
         menu.add.button(
             title=T.translate("menu_reset_default").upper(),
             action=reset_config_to_default,
+            font_size=self.font_size_small,
+        )
+
+        def mute_music() -> None:
+            if player:
+                player.game_variables["music_volume"] = 0
+                self.client.current_music.set_volume(0)
+                music.set_value(0)
+
+        menu.add.button(
+            title=T.translate("menu_mute_music").upper(),
+            action=mute_music,
             font_size=self.font_size_small,
         )
 
@@ -372,7 +385,9 @@ class ControlState(PygameMenuState):
         prepare.CONFIG = tuxe_config
         local_session.client.config = tuxe_config
         keyboard = PygameKeyboardInput(tuxe_config.keyboard_button_map)
-        local_session.client.input_manager.set_input(0, 0, keyboard)
+        local_session.client.input_manager.event_queue.set_input(
+            0, 0, keyboard
+        )
         local_session.client.event_engine = EventEngine(local_session)
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:

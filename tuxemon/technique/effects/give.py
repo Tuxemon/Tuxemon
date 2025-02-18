@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
@@ -49,11 +49,11 @@ class GiveEffect(TechEffect):
             status = Condition()
             status.load(self.condition)
             status.steps = player.steps
+            status.link = user
 
             monsters = get_target_monsters(objectives, tech, user, target)
             if monsters:
                 for monster in monsters:
-                    status.link = monster
                     monster.apply_status(status)
                 combat.reset_status_icons()
 

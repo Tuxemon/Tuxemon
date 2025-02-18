@@ -23,6 +23,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_monster.HasMonsterCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_party_breeder.HasPartyBreederCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_tech.HasTechCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.has_tuxepedia.HasTuxepediaCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.kennel.KennelCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.location_inside.LocationInsideCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.location_name.LocationNameCondition

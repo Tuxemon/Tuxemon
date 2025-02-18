@@ -77,6 +77,7 @@
     <property name="act23" value="translated_dialog spyder_greenwash_looten4"/>
     <property name="act40" value="set_variable gotaardant:yes"/>
     <property name="act50" value="add_item aardant"/>
+    <property name="act51" value="translated_dialog aardant,,center"/>
     <property name="behav1" value="talk spyder_greenwash_looten"/>
     <property name="cond1" value="not variable_set gotaardant:yes"/>
    </properties>
@@ -174,15 +175,16 @@
   </object>
   <object id="81" name="Talk Broer" type="event" x="112" y="96" width="48" height="16">
    <properties>
-    <property name="act1" value="lock_controls"/>
-    <property name="act2" value="pathfind_to_player spyder_greenwash_broer"/>
-    <property name="act3" value="translated_dialog spyder_greenwash_broer1"/>
-    <property name="act4" value="unlock_controls"/>
-    <property name="act5" value="add_monster coleorus,26,spyder_greenwash_broer,5,10"/>
-    <property name="act6" value="start_battle player,spyder_greenwash_broer"/>
-    <property name="act7" value="translated_dialog spyder_greenwash_broer2"/>
-    <property name="act8" value="add_item potion"/>
-    <property name="act9" value="set_variable greenwashbroer:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_greenwash_broer"/>
+    <property name="act03" value="translated_dialog spyder_greenwash_broer1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster coleorus,26,spyder_greenwash_broer,5,10"/>
+    <property name="act06" value="start_battle player,spyder_greenwash_broer"/>
+    <property name="act07" value="translated_dialog spyder_greenwash_broer2"/>
+    <property name="act08" value="add_item potion"/>
+    <property name="act09" value="translated_dialog potion,,center"/>
+    <property name="act10" value="set_variable greenwashbroer:yes"/>
     <property name="cond1" value="not variable_set greenwashbroer:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>

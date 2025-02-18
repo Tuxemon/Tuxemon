@@ -1,7 +1,10 @@
 {
   "conditions": [],
   "effects": [
-    "buff melee,0.2"
+    {
+      "type": "buff",
+      "parameters": ["melee","0.2"]
+    }
   ],
   "slug": "boost_melee",
   "sort": "utility",

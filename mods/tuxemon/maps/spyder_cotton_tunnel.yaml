@@ -1,0 +1,291 @@
+events:
+  Teleport to Cotton Town:
+    actions:
+    - transition_teleport spyder_cotton_town.tmx,2,36,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 35
+    y: 3
+    type: "event"
+  Teleport to Dragon's Cave:
+    actions:
+    - transition_teleport spyder_dragonscave.tmx,16,5,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    - is variable_set dragonscavedrokoro:yes
+    x: 3
+    y: 16
+    type: "event"
+  Reject Teleport to Dragon's Cave:
+    actions:
+    - translated_dialog spyder_dragonscave_blocked
+    - pathfind player,3,14
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    - not variable_set dragonscavedrokoro:yes
+    x: 3
+    y: 16
+    type: "event"
+  Create Angry Brute:
+    actions:
+    - create_npc spyder_dragonscave_angrybrute,10,3
+    - char_face spyder_dragonscave_angrybrute,right
+    conditions:
+    - not char_exists spyder_dragonscave_angrybrute
+    - is variable_set dragonscavedrokoro:yes
+    type: "event"
+  Talk Angry Brute:
+    actions:
+    - translated_dialog spyder_dragonscave_angrybrute1
+    behav:
+    - talk spyder_dragonscave_angrybrute
+    type: "event"
+  Create Lazy Brute:
+    actions:
+    - create_npc spyder_dragonscave_lazybrute,12,6
+    - char_face spyder_dragonscave_lazybrute,up
+    conditions:
+    - not char_exists spyder_dragonscave_lazybrute
+    - is variable_set dragonscavedrokoro:yes
+    type: "event"
+  Talk Lazy Brute:
+    actions:
+    - translated_dialog spyder_dragonscave_lazybrute1
+    behav:
+    - talk spyder_dragonscave_lazybrute
+    type: "event"
+  Create Concerned Brute:
+    actions:
+    - create_npc spyder_dragonscave_concernedbrute,13,4
+    - char_face spyder_dragonscave_concernedbrute,left
+    conditions:
+    - not char_exists spyder_dragonscave_concernedbrute
+    - is variable_set dragonscavedrokoro:yes
+    type: "event"
+  Talk Concerned Brute:
+    actions:
+    - translated_dialog spyder_dragonscave_concernedbrute1
+    behav:
+    - talk spyder_dragonscave_concernedbrute
+    type: "event"
+  Environment:
+    actions:
+    - set_variable environment:cave
+    conditions:
+    - not variable_set environment:cave
+    type: "event"
+  Encounters:
+    actions:
+    - random_encounter spyder_cotton_tunnel,0.6
+    conditions:
+    - is check_char_parameter player,moving,1
+    type: "event"
+  Create Petrified Dung:
+    actions:
+    - create_npc spyder_cottontunnel_box1,24,15
+    conditions:
+    - not char_exists spyder_cottontunnel_box1
+    - not variable_set cottontunnel_dung:yes
+    type: "event"
+  Petrified Dung:
+    actions:
+    - translated_dialog petrified_dung,,center
+    - add_item petrified_dung
+    - remove_npc spyder_cottontunnel_box1
+    - set_variable cottontunnel_dung:yes
+    behav:
+    - talk spyder_cottontunnel_box1
+    type: "event"
+  Create Candy Tuxeball:
+    actions:
+    - create_npc spyder_cottontunnel_box2,7,18
+    conditions:
+    - not char_exists spyder_cottontunnel_box2
+    - not variable_set cottontunnel_candy:yes
+    type: "event"
+  Candy Tuxeball:
+    actions:
+    - translated_dialog tuxeball_candy,,center
+    - add_item tuxeball_candy
+    - remove_npc spyder_cottontunnel_box2
+    - set_variable cottontunnel_candy:yes
+    behav:
+    - talk spyder_cottontunnel_box2
+    type: "event"
+  Create Imperial Tea:
+    actions:
+    - create_npc spyder_cottontunnel_box3,31,17
+    conditions:
+    - not char_exists spyder_cottontunnel_box3
+    - not variable_set cottontunnel_tea:yes
+    type: "event"
+  Imperial Tea:
+    actions:
+    - translated_dialog imperial_tea,,center
+    - add_item imperial_tea
+    - remove_npc spyder_cottontunnel_box3
+    - set_variable cottontunnel_tea:yes
+    behav:
+    - talk spyder_cottontunnel_box3
+    type: "event"
+  Create Imperial Potion:
+    actions:
+    - create_npc spyder_cottontunnel_box4,8,10
+    conditions:
+    - not char_exists spyder_cottontunnel_box4
+    - not variable_set cottontunnel_potion:yes
+    type: "event"
+  Imperial Potion:
+    actions:
+    - translated_dialog imperial_potion,,center
+    - add_item imperial_potion
+    - remove_npc spyder_cottontunnel_box4
+    - set_variable cottontunnel_potion:yes
+    behav:
+    - talk spyder_cottontunnel_box4
+    type: "event"
+  Create Cureall:
+    actions:
+    - create_npc spyder_cottontunnel_box5,32,3
+    conditions:
+    - not char_exists spyder_cottontunnel_box5
+    - not variable_set cottontunnel_cureall:yes
+    type: "event"
+  Cureall:
+    actions:
+    - translated_dialog cureall,,center
+    - add_item cureall
+    - remove_npc spyder_cottontunnel_box5
+    - set_variable cottontunnel_cureall:yes
+    behav:
+    - talk spyder_cottontunnel_box5
+    type: "event"
+  Create Raise Melee:
+    actions:
+    - create_npc spyder_cottontunnel_box6,1,3
+    conditions:
+    - not char_exists spyder_cottontunnel_box6
+    - not variable_set cottontunnel_melee:yes
+    type: "event"
+  Raise Melee:
+    actions:
+    - translated_dialog raise_melee,,center
+    - add_item raise_melee
+    - remove_npc spyder_cottontunnel_box6
+    - set_variable cottontunnel_melee:yes
+    behav:
+    - talk spyder_cottontunnel_box6
+    type: "event"
+  Create Professor:
+    actions:
+    - create_npc spyder_cottontunnel_professor,0,19
+    - char_face spyder_cottontunnel_professor,left
+    conditions:
+    - not char_exists spyder_cottontunnel_professor
+    - is variable_set dragonscavedrokoro:yes
+    type: "event"
+  Talk Professor:
+    actions:
+    - translated_dialog spyder_cottontunnel_professor1
+    behav:
+    - talk spyder_cottontunnel_professor
+    type: "event"
+  Create ShopAssistant:
+    actions:
+    - create_npc spyder_cottontunnel_shopassistant,22,15
+    - char_face spyder_cottontunnel_shopassistant,up
+    conditions:
+    - not char_exists spyder_cottontunnel_shopassistant
+    - is variable_set dragonscavedrokoro:yes
+    type: "event"
+  Talk ShopAssistant:
+    actions:
+    - translated_dialog spyder_cottontunnel_shopassistant1
+    behav:
+    - talk spyder_cottontunnel_shopassistant
+    type: "event"
+  Create Carlos:
+    actions:
+    - create_npc spyder_cottontunnel_carlos,37,9
+    conditions:
+    - not char_exists spyder_cottontunnel_carlos
+    - is variable_set dragonscavedrokoro:yes
+    type: "event"
+  Talk Carlos:
+    actions:
+    - lock_controls
+    - pathfind_to_player spyder_cottontunnel_carlos
+    - translated_dialog spyder_cottontunnel_carlos1
+    - unlock_controls
+    - add_monster agnidon,35,spyder_cottontunnel_carlos,5,10
+    - add_monster legko,35,spyder_cottontunnel_carlos,5,10
+    - start_battle player,spyder_cottontunnel_carlos
+    - translated_dialog spyder_cottontunnel_carlos2
+    - set_variable cottontunnelcarlos:yes
+    conditions:
+    - not variable_set cottontunnelcarlos:yes
+    - is char_at player
+    - is variable_set dragonscavedrokoro:yes
+    x: 37
+    y: 14
+    type: "event"
+  Teleport to Dryad's Grove:
+    actions:
+    - transition_teleport spyder_dryadsgrove.tmx,36,36,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 31
+    y: 3
+    type: "event"
+  Post Talk Carlos:
+    actions:
+    - translated_dialog spyder_cottontunnel_carlos2
+    behav:
+    - talk spyder_cottontunnel_carlos
+    conditions:
+    - is variable_set cottontunnelcarlos:yes
+    - is variable_set dragonscavedrokoro:yes
+    type: "event"
+  Create Benden:
+    actions:
+    - create_npc spyder_dragonscave_benden,3,12
+    conditions:
+    - not char_exists spyder_dragonscave_benden
+    - is variable_set dragonscavedrokoro:yes
+    - not variable_set cottontunnelbenden:yes
+    type: "event"
+  Talk Benden Captured:
+    actions:
+    - lock_controls
+    - translated_dialog spyder_cottontunnel_benden_cap
+    - translated_dialog spyder_cottontunnel_benden1
+    - set_variable cottontunnelbenden:yes
+    - pathfind spyder_dragonscave_benden,2,8
+    - remove_npc spyder_dragonscave_benden
+    - unlock_controls
+    behav:
+    - talk spyder_dragonscave_benden
+    conditions:
+    - is has_tuxepedia player,drokoro,caught
+    type: "event"
+  Talk Benden Not Captured:
+    actions:
+    - lock_controls
+    - translated_dialog spyder_cottontunnel_benden_nocap
+    - translated_dialog spyder_cottontunnel_benden1
+    - set_variable cottontunnelbenden:yes
+    - pathfind spyder_dragonscave_benden,2,8
+    - remove_npc spyder_dragonscave_benden
+    - unlock_controls
+    behav:
+    - talk spyder_dragonscave_benden
+    conditions:
+    - not has_tuxepedia player,drokoro,caught
+    type: "event"

@@ -26,17 +26,6 @@ class MonsterFlairCondition(EventCondition):
     name = "monster_flair"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """
-        Check to see if the given monster flair matches the expected value.
-
-        Parameters:
-            session: The session object
-            condition: The map condition object.
-
-        Returns:
-            Whether the monster flair matches the expected value.
-
-        """
         slot = int(condition.parameters[0])
         category = condition.parameters[1]
         name = condition.parameters[2]

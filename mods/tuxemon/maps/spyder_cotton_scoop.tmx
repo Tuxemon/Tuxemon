@@ -94,19 +94,20 @@
   </object>
   <object id="26" name="Receive capture device" type="event" x="32" y="32" width="16" height="16">
    <properties>
-    <property name="act1" value="char_stop player"/>
+    <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act20" value="pathfind spyder_cottonscoop_joe,5,9"/>
     <property name="act21" value="char_face spyder_cottonscoop_joe,down"/>
     <property name="act22" value="translated_dialog spyder_cottonscoop_deviceoffer"/>
     <property name="act23" value="translated_dialog_choice yes:no,heardcapture"/>
-    <property name="act3" value="add_item tuxeball"/>
+    <property name="act30" value="add_item tuxeball"/>
     <property name="act31" value="add_item tuxeball"/>
     <property name="act32" value="add_item tuxeball"/>
-    <property name="act4" value="add_item tuxeball"/>
-    <property name="act5" value="add_item tuxeball"/>
-    <property name="act7" value="set_variable visitcottonmart:yes"/>
-    <property name="act71" value="unlock_controls"/>
+    <property name="act33" value="add_item tuxeball"/>
+    <property name="act34" value="add_item tuxeball"/>
+    <property name="act35" value="translated_dialog tuxeball,,center"/>
+    <property name="act40" value="set_variable visitcottonmart:yes"/>
+    <property name="act41" value="unlock_controls"/>
     <property name="cond4" value="not variable_set visitcottonmart:yes"/>
    </properties>
   </object>

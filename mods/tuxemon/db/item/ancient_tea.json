@@ -1,7 +1,10 @@
 {
   "conditions": [],
   "effects": [
-    "gain_xp 1277"
+    {
+      "type": "gain_xp",
+      "parameters": ["1277"]
+    }
   ],
   "slug": "ancient_tea",
   "sort": "potion",

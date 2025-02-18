@@ -199,7 +199,7 @@
   </object>
   <object id="55" name="Shammer" type="event" x="48" y="608" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog shammer_fossil"/>
+    <property name="act1" value="translated_dialog shammer_fossil,,center"/>
     <property name="act2" value="add_item shammer_fossil"/>
     <property name="act3" value="remove_npc spyder_tunnelb_shammer"/>
     <property name="act4" value="set_variable tunnelb_shammer:yes"/>
@@ -215,7 +215,7 @@
   </object>
   <object id="57" name="Rhincus" type="event" x="256" y="512" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog rhincus_fossil"/>
+    <property name="act1" value="translated_dialog rhincus_fossil,,center"/>
     <property name="act2" value="add_item rhincus_fossil"/>
     <property name="act3" value="remove_npc spyder_tunnelb_rhincus"/>
     <property name="act4" value="set_variable tunnelb_rhincus:yes"/>

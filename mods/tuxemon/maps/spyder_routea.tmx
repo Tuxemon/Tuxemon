@@ -489,7 +489,7 @@
   </object>
   <object id="114" name="Super Potion" type="event" x="144" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog super_potion"/>
+    <property name="act1" value="translated_dialog super_potion,,center"/>
     <property name="act2" value="add_item super_potion"/>
     <property name="act3" value="remove_npc spyder_routea_super"/>
     <property name="act4" value="set_variable routea_super:yes"/>
@@ -505,7 +505,7 @@
   </object>
   <object id="116" name="Tea" type="event" x="224" y="368" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog tea"/>
+    <property name="act1" value="translated_dialog tea,,center"/>
     <property name="act2" value="add_item tea"/>
     <property name="act3" value="remove_npc spyder_routea_tea"/>
     <property name="act4" value="set_variable routea_tea:yes"/>
@@ -521,7 +521,7 @@
   </object>
   <object id="118" name="Cureall" type="event" x="64" y="464" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog cureall"/>
+    <property name="act1" value="translated_dialog cureall,,center"/>
     <property name="act2" value="add_item cureall"/>
     <property name="act3" value="remove_npc spyder_routea_cureall"/>
     <property name="act4" value="set_variable routea_cureall:yes"/>

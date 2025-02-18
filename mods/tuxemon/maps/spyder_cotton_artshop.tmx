@@ -212,9 +212,10 @@
    <properties>
     <property name="act1" value="set_variable has_sold_painting:yes"/>
     <property name="act2" value="add_item p_monsters_eyes"/>
-    <property name="act3" value="set_variable bought_monsters_eyes:yes"/>
-    <property name="act4" value="modify_money player,-1000"/>
-    <property name="act5" value="remove_noc p_one"/>
+    <property name="act3" value="translated_dialog p_monsters_eyes,,center"/>
+    <property name="act4" value="set_variable bought_monsters_eyes:yes"/>
+    <property name="act5" value="modify_money player,-1000"/>
+    <property name="act6" value="remove_noc p_one"/>
     <property name="cond1" value="is variable_set barmaid_monsters:yes"/>
     <property name="cond2" value="not variable_set bought_monsters_eyes:yes"/>
    </properties>
@@ -223,9 +224,10 @@
    <properties>
     <property name="act1" value="set_variable has_sold_painting:yes"/>
     <property name="act2" value="add_item p_starry_night"/>
-    <property name="act3" value="set_variable bought_starry:yes"/>
-    <property name="act4" value="modify_money player,-1000"/>
-    <property name="act5" value="remove_noc p_two"/>
+    <property name="act3" value="translated_dialog p_starry_night,,center"/>
+    <property name="act4" value="set_variable bought_starry:yes"/>
+    <property name="act5" value="modify_money player,-1000"/>
+    <property name="act6" value="remove_noc p_two"/>
     <property name="cond1" value="is variable_set barmaid_starry:yes"/>
     <property name="cond2" value="not variable_set bought_starry:yes"/>
    </properties>
@@ -234,19 +236,23 @@
    <properties>
     <property name="act1" value="set_variable has_sold_painting:yes"/>
     <property name="act2" value="add_item p_trepidation"/>
-    <property name="act3" value="set_variable bought_trepidation:yes"/>
-    <property name="act4" value="modify_money player,-1000"/>
-    <property name="act5" value="remove_noc p_three"/>
+    <property name="act3" value="translated_dialog p_trepidation,,center"/>
+    <property name="act4" value="set_variable bought_trepidation:yes"/>
+    <property name="act5" value="modify_money player,-1000"/>
+    <property name="act6" value="remove_noc p_three"/>
     <property name="cond1" value="is variable_set barmaid_trepidation:yes"/>
     <property name="cond2" value="not variable_set bought_trepidation:yes"/>
    </properties>
   </object>
   <object id="42" name="Barmaid Sell Bundle" type="event" x="112" y="0" width="16" height="16">
    <properties>
-    <property name="act05" value="set_variable has_sold_paintings:yes"/>
-    <property name="act10" value="add_item p_starry_night"/>
-    <property name="act11" value="add_item p_trepidation"/>
-    <property name="act12" value="add_item p_monsters_eyes"/>
+    <property name="act01" value="set_variable has_sold_paintings:yes"/>
+    <property name="act02" value="add_item p_starry_night"/>
+    <property name="act03" value="translated_dialog p_starry_night,,center"/>
+    <property name="act04" value="add_item p_trepidation"/>
+    <property name="act05" value="translated_dialog p_trepidation,,center"/>
+    <property name="act06" value="add_item p_monsters_eyes"/>
+    <property name="act07" value="translated_dialog p_monsters_eyes,,center"/>
     <property name="act15" value="remove_npc p_one"/>
     <property name="act16" value="remove_npc p_two"/>
     <property name="act17" value="remove_npc p_three"/>

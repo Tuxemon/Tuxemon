@@ -5,6 +5,7 @@ from typing import NamedTuple, Optional, Union
 from tuxemon import prepare
 from tuxemon.animation_entity import AnimationEntity
 from tuxemon.condition.condition import Condition
+from tuxemon.formula import speed_monster
 from tuxemon.item.item import Item
 from tuxemon.monster import Monster
 from tuxemon.npc import NPC
@@ -92,7 +93,19 @@ def get_action_sort_key(action: EnqueuedAction) -> tuple[int, int]:
             if action.user is None:
                 return 0, 0
             else:
-                return primary_order, -action.user.speed_test(action)
+                return primary_order, -speed_test(action)
+
+
+def speed_test(action: EnqueuedAction) -> int:
+    """
+    Calculate the speed modifier for the given action.
+    """
+    if isinstance(action.user, Monster):
+        if isinstance(action.method, Technique):
+            return speed_monster(action.user, action.method)
+    if isinstance(action.user, NPC):
+        return 10
+    return 0
 
 
 class ActionQueue:

@@ -16,15 +16,14 @@ if TYPE_CHECKING:
 class SacrificeEffect(TechEffect):
     """
     Sacrifice:
-    Monster takes damage equal to its current HP,
-    and does damage equal to double that amount.
+    Monster takes damage equal to its current (or part) HP,
 
     Parameters:
         multiplier: The percentage of the current HP
 
     eg user 35/50 HP uses:
-        sacrifice 2
-    inflicts a damage of 70 HP (enemy)
+        sacrifice 1
+    inflicts a damage of 35 HP (enemy)
     inflicts a damage of 35 HP (user) > faints
 
     """
@@ -35,6 +34,10 @@ class SacrificeEffect(TechEffect):
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
+
+        if not 0 <= self.multiplier <= 1:
+            raise ValueError("Multiplier must be a float between 0 and 1")
+
         combat = tech.combat_state
         assert combat
         tech.hit = tech.accuracy >= combat._random_tech_hit.get(user, 0.0)

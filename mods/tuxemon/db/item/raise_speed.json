@@ -1,7 +1,10 @@
 {
   "conditions": [],
   "effects": [
-    "change_stat speed,0.05"
+    {
+      "type": "change_stat",
+      "parameters": ["speed","0.05"]
+    }
   ],
   "slug": "raise_speed",
   "sort": "utility",

@@ -1,5 +1,6 @@
 {
   "animation": null,
+  "modifiers": [],
   "category": "positive",
   "effects": [
     "elemental_shield 16,special"

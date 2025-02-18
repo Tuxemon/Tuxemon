@@ -1,5 +1,17 @@
 {
   "animation": null,
+  "modifiers": [
+    {
+      "attribute": "type",
+      "values": ["fire"],
+      "multiplier": 0.0
+    },
+    {
+      "attribute": "type",
+      "values": ["frost"],
+      "multiplier": 2.0
+    }
+  ],
   "category": "negative",
   "effects": [
     "burnt 8"

@@ -95,6 +95,12 @@ class StartState(PygameMenuState):
             button_id="menu_minigame",
         )
         menu.add.button(
+            title=T.translate("menu_options"),
+            action=change_state("ControlState", main_menu=True),
+            font_size=self.font_size_big,
+            button_id="menu_options",
+        )
+        menu.add.button(
             title=T.translate("exit"),
             action=exit_game,
             font_size=self.font_size_big,

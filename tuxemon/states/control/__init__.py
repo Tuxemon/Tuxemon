@@ -156,6 +156,8 @@ class ControlState(PygameMenuState):
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
         theme.widget_alignment = locals.ALIGN_CENTER
+        self.main_menu = "main_menu" in kwargs and kwargs["main_menu"]
+        kwargs.pop("main_menu", None)
         super().__init__(**kwargs)
         self.initialize_items(self.menu)
         self.reload_controls()
@@ -238,116 +240,126 @@ class ControlState(PygameMenuState):
             font_size=self.font_size_small,
         )
 
-        def mute_music() -> None:
+        if not self.main_menu:
+
+            def mute_music() -> None:
+                if player:
+                    player.game_variables["music_volume"] = 0
+                    self.client.current_music.set_volume(0)
+                    music.set_value(0)
+
+            menu.add.button(
+                title=T.translate("menu_mute_music").upper(),
+                action=mute_music,
+                font_size=self.font_size_small,
+            )
+
+            default_music = prepare.MUSIC_VOLUME
+            default_sound = prepare.SOUND_VOLUME
+            _unit: int = 0
+            _hemi: int = 0
             if player:
-                player.game_variables["music_volume"] = 0
-                self.client.current_music.set_volume(0)
-                music.set_value(0)
+                _music = player.game_variables.get(
+                    "music_volume", default_music
+                )
+                default_music = int(float(_music) * 100)
+                _sound = player.game_variables.get(
+                    "sound_volume", default_sound
+                )
+                default_sound = int(float(_sound) * 100)
 
-        menu.add.button(
-            title=T.translate("menu_mute_music").upper(),
-            action=mute_music,
-            font_size=self.font_size_small,
-        )
+                unit = player.game_variables.get(
+                    "unit_measure", prepare.METRIC
+                )
+                _unit = 0 if str(unit) == prepare.METRIC else 1
 
-        default_music = prepare.MUSIC_VOLUME
-        default_sound = prepare.SOUND_VOLUME
-        _unit: int = 0
-        _hemi: int = 0
-        if player:
-            _music = player.game_variables.get("music_volume", default_music)
-            default_music = int(float(_music) * 100)
-            _sound = player.game_variables.get("sound_volume", default_sound)
-            default_sound = int(float(_sound) * 100)
+                hemi = player.game_variables.get(
+                    "hemisphere", prepare.NORTHERN
+                )
+                _hemi = 0 if str(hemi) == prepare.NORTHERN else 1
+            else:
+                default_music *= 100
+                default_sound *= 100
 
-            unit = player.game_variables.get("unit_measure", prepare.METRIC)
-            _unit = 0 if str(unit) == prepare.METRIC else 1
+            music = menu.add.range_slider(
+                title=T.translate("menu_music_volume").upper(),
+                default=default_music,
+                range_values=(0, 100),
+                increment=10,
+                rangeslider_id="menu_music_volume",
+                value_format=lambda x: str(int(x)),
+                font_size=self.font_size_small,
+            )
+            sound = menu.add.range_slider(
+                title=T.translate("menu_sound_volume").upper(),
+                default=default_sound,
+                range_values=(0, 100),
+                increment=10,
+                rangeslider_id="menu_sound_volume",
+                value_format=lambda x: str(int(x)),
+                font_size=self.font_size_small,
+            )
 
-            hemi = player.game_variables.get("hemisphere", prepare.NORTHERN)
-            _hemi = 0 if str(hemi) == prepare.NORTHERN else 1
-        else:
-            default_music *= 100
-            default_sound *= 100
+            def on_change_music(val: int) -> None:
+                """
+                Updates the value.
+                """
+                if player:
+                    volume = round(val / 100, 1)
+                    self.client.current_music.set_volume(volume)
+                    player.game_variables["music_volume"] = volume
 
-        music = menu.add.range_slider(
-            title=T.translate("menu_music_volume").upper(),
-            default=default_music,
-            range_values=(0, 100),
-            increment=10,
-            rangeslider_id="menu_music_volume",
-            value_format=lambda x: str(int(x)),
-            font_size=self.font_size_small,
-        )
-        sound = menu.add.range_slider(
-            title=T.translate("menu_sound_volume").upper(),
-            default=default_sound,
-            range_values=(0, 100),
-            increment=10,
-            rangeslider_id="menu_sound_volume",
-            value_format=lambda x: str(int(x)),
-            font_size=self.font_size_small,
-        )
+            def on_change_sound(val: int) -> None:
+                """
+                Updates the value.
+                """
+                if player:
+                    player.game_variables["sound_volume"] = round(val / 100, 1)
 
-        def on_change_music(val: int) -> None:
-            """
-            Updates the value.
-            """
-            if player:
-                volume = round(val / 100, 1)
-                self.client.current_music.set_volume(volume)
-                player.game_variables["music_volume"] = volume
+            music.set_onchange(on_change_music)
+            sound.set_onchange(on_change_sound)
 
-        def on_change_sound(val: int) -> None:
-            """
-            Updates the value.
-            """
-            if player:
-                player.game_variables["sound_volume"] = round(val / 100, 1)
+            def on_change_units(value: Any, label: str) -> None:
+                """
+                Updates the value.
+                """
+                if player:
+                    player.game_variables["unit_measure"] = label
 
-        music.set_onchange(on_change_music)
-        sound.set_onchange(on_change_sound)
+            metric = T.translate("menu_units_metric")
+            imperial = T.translate("menu_units_imperial")
+            units: list[tuple[Any, ...]] = []
+            units = [(metric, metric), (imperial, imperial)]
+            menu.add.selector(
+                title=T.translate("menu_units").upper(),
+                items=units,
+                selector_id="unit",
+                default=_unit,
+                style="fancy",
+                onchange=on_change_units,
+                font_size=self.font_size_small,
+            )
 
-        def on_change_units(value: Any, label: str) -> None:
-            """
-            Updates the value.
-            """
-            if player:
-                player.game_variables["unit_measure"] = label
+            def on_change_hemisphere(value: Any, label: str) -> None:
+                """
+                Updates the value.
+                """
+                if player:
+                    player.game_variables["hemisphere"] = label
 
-        metric = T.translate("menu_units_metric")
-        imperial = T.translate("menu_units_imperial")
-        units: list[tuple[Any, ...]] = []
-        units = [(metric, metric), (imperial, imperial)]
-        menu.add.selector(
-            title=T.translate("menu_units").upper(),
-            items=units,
-            selector_id="unit",
-            default=_unit,
-            style="fancy",
-            onchange=on_change_units,
-            font_size=self.font_size_small,
-        )
-
-        def on_change_hemisphere(value: Any, label: str) -> None:
-            """
-            Updates the value.
-            """
-            if player:
-                player.game_variables["hemisphere"] = label
-
-        north_hemi = T.translate("menu_hemisphere_north")
-        south_hemi = T.translate("menu_hemisphere_south")
-        hemispheres: list[tuple[Any, ...]] = []
-        hemispheres = [(north_hemi, north_hemi), (south_hemi, south_hemi)]
-        menu.add.selector(
-            title=T.translate("menu_hemisphere").upper(),
-            items=hemispheres,
-            selector_id="hemisphere",
-            default=_hemi,
-            style="fancy",
-            onchange=on_change_hemisphere,
-            font_size=self.font_size_small,
-        )
+            north_hemi = T.translate("menu_hemisphere_north")
+            south_hemi = T.translate("menu_hemisphere_south")
+            hemispheres: list[tuple[Any, ...]] = []
+            hemispheres = [(north_hemi, north_hemi), (south_hemi, south_hemi)]
+            menu.add.selector(
+                title=T.translate("menu_hemisphere").upper(),
+                items=hemispheres,
+                selector_id="hemisphere",
+                default=_hemi,
+                style="fancy",
+                onchange=on_change_hemisphere,
+                font_size=self.font_size_small,
+            )
 
     def update_animation_size(self) -> None:
         width, height = prepare.SCREEN_SIZE
@@ -393,6 +405,7 @@ class ControlState(PygameMenuState):
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         if event.button == buttons.BACK:
             self.reload_controls()
-            self.client.pop_state()
+            if not self.main_menu:
+                self.client.pop_state()
 
         return super().process_event(event)

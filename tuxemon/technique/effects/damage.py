@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -11,10 +11,6 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
-
-
-class DamageEffectResult(TechEffectResult):
-    pass
 
 
 @dataclass
@@ -31,7 +27,7 @@ class DamageEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> DamageEffectResult:
+    ) -> TechEffectResult:
         damage = 0
         mult = 1.0
         targets: list[Monster] = []
@@ -51,10 +47,11 @@ class DamageEffect(TechEffect):
                 if monster != target:
                     combat.enqueue_damage(user, monster, damage)
 
-        return {
-            "damage": damage,
-            "element_multiplier": mult,
-            "should_tackle": bool(damage),
-            "success": bool(damage),
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            damage=damage,
+            element_multiplier=mult,
+            should_tackle=bool(damage),
+            success=bool(damage),
+            extras=[],
+        )

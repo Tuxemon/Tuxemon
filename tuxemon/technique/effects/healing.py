@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from tuxemon import formula
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -11,10 +11,6 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
-
-
-class HealingEffectResult(TechEffectResult):
-    pass
 
 
 @dataclass
@@ -31,10 +27,10 @@ class HealingEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> HealingEffectResult:
+    ) -> TechEffectResult:
         targets: list[Monster] = []
-        heal = 0
-        extra: Optional[str] = None
+        extra: list[str] = []
+        done: bool = False
 
         combat = tech.combat_state
         assert combat
@@ -49,12 +45,14 @@ class HealingEffect(TechEffect):
                 if monster.current_hp < monster.hp:
                     heal_amount = min(heal, monster.hp - monster.current_hp)
                     monster.current_hp += heal_amount
+                    done = True
                 elif monster.current_hp == monster.hp:
-                    extra = "combat_full_health"
-        return {
-            "success": bool(heal),
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": extra,
-        }
+                    extra = ["combat_full_health"]
+        return TechEffectResult(
+            name=tech.name,
+            success=done,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=extra,
+        )

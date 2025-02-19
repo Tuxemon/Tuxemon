@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """
 
 Combat related code that can be independent of the combat state.
@@ -98,7 +98,7 @@ def pre_checking(
         slug = random.choice(infected_slugs)
         method.load(slug)
         result_method = method.use(monster, target)
-        if result_method["success"]:
+        if result_method.success:
             technique = method
     return technique
 

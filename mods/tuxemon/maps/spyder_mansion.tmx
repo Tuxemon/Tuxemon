@@ -310,7 +310,8 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_mansion_lucy3"/>
     <property name="act2" value="add_item mystery_tea"/>
-    <property name="act3" value="set_variable tealucy:yes"/>
+    <property name="act3" value="translated_dialog mystery_tea,,center"/>
+    <property name="act4" value="set_variable tealucy:yes"/>
     <property name="behav1" value="talk spyder_mansion_lucy"/>
     <property name="cond1" value="is variable_set mansionlucy:yes"/>
     <property name="cond2" value="not variable_set tealucy:yes"/>

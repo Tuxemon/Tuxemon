@@ -98,6 +98,7 @@
     <property name="act11" value="translated_dialog spyder_dojo_strength"/>
     <property name="act15" value="set_variable dojothrimonster:yes"/>
     <property name="act30" value="add_monster sampsack,35"/>
+    <property name="act31" value="translated_dialog sampsack,,center"/>
     <property name="cond1" value="is variable_set thriquestion:strength"/>
     <property name="cond2" value="not variable_set dojothrimonster:yes"/>
     <property name="cond3" value="not variable_set thriquestion:strategy"/>
@@ -108,6 +109,7 @@
     <property name="act11" value="translated_dialog spyder_dojo_strategy"/>
     <property name="act15" value="set_variable dojothrimonster:yes"/>
     <property name="act30" value="add_monster sampsage,35"/>
+    <property name="act31" value="translated_dialog sampsage,,center"/>
     <property name="cond1" value="is variable_set thriquestion:strategy"/>
     <property name="cond2" value="not variable_set dojothrimonster:yes"/>
     <property name="cond3" value="not variable_set thriquestion:strength"/>

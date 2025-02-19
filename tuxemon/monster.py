@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -41,7 +41,6 @@ if TYPE_CHECKING:
     import pygame
 
     from tuxemon.npc import NPC
-    from tuxemon.states.combat.combat_classes import EnqueuedAction
 
 logger = logging.getLogger(__name__)
 
@@ -697,7 +696,6 @@ class Monster:
             return
 
         self.load_from_db(save_data["slug"])
-        self.plague = save_data["plague"]
 
         self.moves = []
         for move in decode_moves(save_data.get("moves")):
@@ -713,6 +711,8 @@ class Monster:
                 self.instance_id = uuid.UUID(value)
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
                 setattr(self, key, value)
+            elif key == "plague" and value:
+                self.plague = value
 
         self.load_sprites()
 
@@ -738,29 +738,6 @@ class Monster:
             self.faint()
         else:
             self.status = []
-
-    def speed_test(self, action: EnqueuedAction) -> int:
-        """
-        Calculate the speed modifier for the given action.
-        """
-        assert isinstance(action.method, Technique)
-        technique = action.method
-        multiplier_speed = prepare.MULTIPLIER_SPEED
-        base_speed = float(self.speed)
-        base_speed_bonus = multiplier_speed if technique.is_fast else 1.0
-        speed_modifier = base_speed * base_speed_bonus
-
-        # Add a controlled random element
-        speed_offset = prepare.SPEED_OFFSET
-        random_offset = random.uniform(-speed_offset, speed_offset)
-        speed_modifier += random_offset
-
-        # Ensure the speed modifier is not negative
-        speed_modifier = max(speed_modifier, 1)
-        # Use dodge as a tiebreaker
-        speed_modifier += float(self.dodge) * 0.01
-
-        return int(speed_modifier)
 
     def find_tech_by_id(self, instance_id: uuid.UUID) -> Optional[Technique]:
         """

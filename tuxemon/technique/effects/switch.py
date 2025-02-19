@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
@@ -15,10 +15,6 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
-
-
-class SwitchEffectResult(TechEffectResult):
-    pass
 
 
 @dataclass
@@ -42,7 +38,7 @@ class SwitchEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> SwitchEffectResult:
+    ) -> TechEffectResult:
 
         elements = list(ElementType)
         combat = tech.combat_state
@@ -51,13 +47,14 @@ class SwitchEffect(TechEffect):
         tech.hit = tech.accuracy >= combat._random_tech_hit.get(user, 0.0)
 
         if not tech.hit:
-            return {
-                "success": tech.hit,
-                "damage": 0,
-                "element_multiplier": 0.0,
-                "should_tackle": False,
-                "extra": None,
-            }
+            return TechEffectResult(
+                name=tech.name,
+                success=tech.hit,
+                damage=0,
+                element_multiplier=0.0,
+                should_tackle=False,
+                extras=[],
+            )
 
         objectives = self.objectives.split(":")
         monsters = get_target_monsters(objectives, tech, user, target)
@@ -75,14 +72,15 @@ class SwitchEffect(TechEffect):
                 monster.types = [new_type]
                 messages.append(get_extra_message(monster, new_type))
 
-        extra = "\n".join(messages)
-        return {
-            "success": tech.hit,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": extra,
-        }
+        extra = ["\n".join(messages)]
+        return TechEffectResult(
+            name=tech.name,
+            success=tech.hit,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=extra,
+        )
 
 
 def get_extra_message(monster: Monster, new_type: Element) -> str:

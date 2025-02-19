@@ -38,6 +38,9 @@ events:
   TV:
     actions:
     - translated_dialog spyder_rivaldownstairs_tv
+    - translated_dialog spyder_billie_tv_flashback_trigger
+    - translated_dialog_choice no:yes,billie_tv
+    - set_variable flashback:on
     conditions:
     - is char_facing_tile player
     - is button_pressed K_RETURN
@@ -45,6 +48,34 @@ events:
     height: 1
     x: 4
     y: 7
+    type: "event"
+  TV Yes:
+    actions:
+    - lock_controls
+    - set_template player,invisible
+    - char_position player,6,8
+    - char_face player,left
+    - set_layer 102:51:0:128
+    - create_npc spyder_billie,4,8
+    - char_face spyder_billie,up
+    - wait 1
+    - translated_dialog spyder_billie_tv_flashback1,,top
+    - translated_dialog spyder_billie_tv_flashback2
+    - translated_dialog spyder_billie_tv_flashback3,,top
+    - translated_dialog spyder_billie_tv_flashback4
+    - translated_dialog spyder_billie_tv_flashback5,,top
+    - translated_dialog spyder_billie_tv_flashback6
+    - translated_dialog spyder_billie_tv_flashback7,,top
+    - translated_dialog spyder_billie_tv_flashback8
+    - wait 1
+    - remove_npc spyder_billie
+    - set_layer
+    - unlock_controls
+    - set_template player,default
+    - set_variable flashback:off
+    - clear_variable billie_tv
+    conditions:
+    - is variable_set billie_tv:yes
     type: "event"
   Flashback:
     actions:

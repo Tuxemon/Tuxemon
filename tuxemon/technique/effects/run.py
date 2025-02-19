@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from tuxemon import formula
 from tuxemon.combat import set_var
@@ -13,10 +13,6 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
-
-
-class RunEffectResult(TechEffectResult):
-    pass
 
 
 @dataclass
@@ -30,8 +26,8 @@ class RunEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> RunEffectResult:
-        extra: Optional[str] = None
+    ) -> TechEffectResult:
+        extra: list[str] = []
         ran: bool = False
         combat = tech.combat_state
         player = user.owner
@@ -48,13 +44,14 @@ class RunEffect(TechEffect):
         elif user in combat.monsters_in_play_left:
             escape_method = escape_ai_method
         else:
-            return {
-                "success": True,
-                "damage": 0,
-                "element_multiplier": 0.0,
-                "should_tackle": False,
-                "extra": None,
-            }
+            return TechEffectResult(
+                name=tech.name,
+                success=True,
+                damage=0,
+                element_multiplier=0.0,
+                should_tackle=False,
+                extras=[],
+            )
 
         # Attempt to escape
         if formula.attempt_escape(
@@ -69,7 +66,7 @@ class RunEffect(TechEffect):
         # Trigger the run effect
         if ran:
             combat._run = True
-            extra = T.translate("combat_player_run")
+            extra = [T.translate("combat_player_run")]
             set_var(self.session, "battle_last_result", self.name)
             for remove in combat.players:
                 combat.clean_combat()
@@ -78,10 +75,11 @@ class RunEffect(TechEffect):
         else:
             game_variables["run_attempts"] = attempts + 1
 
-        return {
-            "success": ran,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": extra,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            success=ran,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=extra,
+        )

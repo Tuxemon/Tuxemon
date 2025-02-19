@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from typing import Optional
@@ -29,17 +29,6 @@ class VariableSetCondition(EventCondition):
     name = "variable_set"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """
-        Check to see if a player game variable has a particular value.
-
-        Parameters:
-            session: The session object
-            condition: The map condition object.
-
-        Returns:
-            Whether the variable exists and has that value.
-
-        """
         player = session.player
 
         parts = condition.parameters[0].split(":")

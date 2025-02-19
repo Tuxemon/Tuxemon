@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -13,10 +13,6 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class ScopeEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class ScopeEffect(TechEffect):
     """
@@ -28,7 +24,7 @@ class ScopeEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> ScopeEffectResult:
+    ) -> TechEffectResult:
         params = {
             "AR": target.armour,
             "DE": target.dodge,
@@ -36,11 +32,12 @@ class ScopeEffect(TechEffect):
             "RD": target.ranged,
             "SD": target.speed,
         }
-        extra = T.format("combat_scope", params)
-        return {
-            "success": True,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": extra,
-        }
+        extra = [T.format("combat_scope", params)]
+        return TechEffectResult(
+            name=tech.name,
+            success=True,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=extra,
+        )

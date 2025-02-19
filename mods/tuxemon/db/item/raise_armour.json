@@ -1,7 +1,10 @@
 {
   "conditions": [],
   "effects": [
-    "change_stat armour,0.05"
+    {
+      "type": "change_stat",
+      "parameters": ["armour","0.05"]
+    }
   ],
   "slug": "raise_armour",
   "sort": "utility",

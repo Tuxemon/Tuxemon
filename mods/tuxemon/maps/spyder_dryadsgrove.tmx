@@ -832,9 +832,10 @@
     <property name="act1" value="translated_dialog spyder_dryadsgrove_boy_yes"/>
     <property name="act2" value="set_variable ruff:proceed"/>
     <property name="act3" value="add_monster wolffsky,10"/>
-    <property name="act4" value="set_monster_attribute add_monster,name,RUFF"/>
-    <property name="act5" value="set_monster_attribute add_monster,gender,male"/>
-    <property name="act6" value="set_monster_attribute add_monster,traded,1"/>
+    <property name="act4" value="translated_dialog wolffsky,,center"/>
+    <property name="act5" value="set_monster_attribute add_monster,name,RUFF"/>
+    <property name="act6" value="set_monster_attribute add_monster,gender,male"/>
+    <property name="act7" value="set_monster_attribute add_monster,traded,1"/>
     <property name="cond1" value="is variable_set ruff:yes"/>
    </properties>
   </object>

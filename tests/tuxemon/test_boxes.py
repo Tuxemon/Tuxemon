@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
+from unittest.mock import MagicMock
 from uuid import uuid4
 
 from tuxemon.boxes import MonsterBoxes
@@ -12,9 +13,9 @@ class TestBoxes(unittest.TestCase):
 
     def setUp(self):
         self.monster_boxes = MonsterBoxes()
-        self.monster1 = Monster()
+        self.monster1 = MagicMock(spec=Monster)
         self.monster1.instance_id = uuid4()
-        self.monster2 = Monster()
+        self.monster2 = MagicMock(spec=Monster)
         self.monster2.instance_id = uuid4()
         self.box_id1 = "box1"
         self.box_id2 = "box2"

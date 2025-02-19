@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """
 
 General "tools" code for pygame graphics operations that don't
@@ -252,7 +252,7 @@ def animation_frame_files(
     * each filename will have the format: animation_name[0-9]*\..*
     * will be returned in sorted order
 
-    For example, water00.png, water01.png, water02.png.
+    For example, water_00.png, water_01.png, water_02.png.
 
     Parameters:
         directory: Directory where the frames are located.
@@ -262,13 +262,12 @@ def animation_frame_files(
         Sequence of filenames.
 
     """
-    frames = list()
     pattern = re.compile(rf"{name}\.?_?[0-9]+\.png")
-    # might be slow on large folders
-    for filename in os.listdir(directory):
-        if pattern.match(filename):
-            frames.append(os.path.join(directory, filename))
-    frames.sort()
+    frames = [
+        os.path.join(directory, filename)
+        for filename in sorted(os.listdir(directory))
+        if pattern.match(filename)
+    ]
     return frames
 
 

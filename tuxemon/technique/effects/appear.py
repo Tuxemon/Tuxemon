@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -10,10 +10,6 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
-
-
-class AppearEffectResult(TechEffectResult):
-    pass
 
 
 @dataclass
@@ -27,7 +23,7 @@ class AppearEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> AppearEffectResult:
+    ) -> TechEffectResult:
         combat = tech.combat_state
         assert combat
         # Check if the user is disappeared
@@ -46,10 +42,11 @@ class AppearEffect(TechEffect):
             target_is_disappeared = False
 
         # Return the result
-        return {
-            "success": not target_is_disappeared,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": not target_is_disappeared,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            success=not target_is_disappeared,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=not target_is_disappeared,
+            extras=[],
+        )

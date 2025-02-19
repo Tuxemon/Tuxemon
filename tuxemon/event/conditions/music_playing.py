@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from tuxemon.db import MusicStatus
@@ -25,17 +25,6 @@ class MusicPlayingCondition(EventCondition):
     name = "music_playing"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """
-        Check to see if a particular piece of music is playing or not.
-
-        Parameters:
-            session: The session object
-            condition: The map condition object.
-
-        Returns:
-            Whether the chosen music is playing.
-
-        """
         song = condition.parameters[0]
 
         combat_states = {"FlashTransition", "CombatState"}

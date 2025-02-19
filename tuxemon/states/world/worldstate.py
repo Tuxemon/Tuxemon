@@ -38,8 +38,9 @@ from tuxemon.map import (
 )
 from tuxemon.map_loader import TMXMapLoader, YAMLEventLoader
 from tuxemon.math import Vector2
-from tuxemon.platform.const import buttons, events, intentions
+from tuxemon.platform.const import intentions
 from tuxemon.platform.events import PlayerInput
+from tuxemon.platform.tools import translate_input_event
 from tuxemon.session import local_session
 from tuxemon.states.world.world_classes import BoundaryChecker
 from tuxemon.states.world.world_menus import WorldMenuState
@@ -104,17 +105,6 @@ CollisionMap = Mapping[
 
 class WorldState(state.State):
     """The state responsible for the world game play"""
-
-    keymap = {
-        buttons.UP: intentions.UP,
-        buttons.DOWN: intentions.DOWN,
-        buttons.LEFT: intentions.LEFT,
-        buttons.RIGHT: intentions.RIGHT,
-        buttons.A: intentions.INTERACT,
-        buttons.B: intentions.RUN,
-        buttons.START: intentions.WORLD_MENU,
-        buttons.BACK: intentions.WORLD_MENU,
-    }
 
     def __init__(
         self,
@@ -321,32 +311,6 @@ class WorldState(state.State):
         self.map_drawing(surface)
         self.fullscreen_animations(surface)
 
-    def translate_input_event(self, event: PlayerInput) -> PlayerInput:
-        try:
-            return PlayerInput(
-                self.keymap[event.button],
-                event.value,
-                event.hold_time,
-            )
-        except KeyError:
-            pass
-
-        if event.button == events.UNICODE:
-            if event.value == "n":
-                return PlayerInput(
-                    intentions.NOCLIP,
-                    event.value,
-                    event.hold_time,
-                )
-            if event.value == "r":
-                return PlayerInput(
-                    intentions.RELOAD_MAP,
-                    event.value,
-                    event.hold_time,
-                )
-
-        return event
-
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         """
         Handles player input events.
@@ -369,7 +333,7 @@ class WorldState(state.State):
             otherwise.
 
         """
-        event = self.translate_input_event(event)
+        event = translate_input_event(event)
 
         if event.button == intentions.WORLD_MENU:
             if event.pressed:

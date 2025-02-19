@@ -4,7 +4,7 @@
   "animation": "x_attack",
   "effects": [
     "give prickly,enemy_monster",
-    "sacrifice 2"
+    "sacrifice 1"
   ],
   "flip_axes": "",
   "is_fast": false,

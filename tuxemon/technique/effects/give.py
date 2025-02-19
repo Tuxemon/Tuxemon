@@ -15,10 +15,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class GiveEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class GiveEffect(TechEffect):
     """
@@ -38,7 +34,7 @@ class GiveEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> GiveEffectResult:
+    ) -> TechEffectResult:
         monsters: list[Monster] = []
         combat = tech.combat_state
         player = user.owner
@@ -53,18 +49,19 @@ class GiveEffect(TechEffect):
             status = Condition()
             status.load(self.condition)
             status.steps = player.steps
+            status.link = user
 
             monsters = get_target_monsters(objectives, tech, user, target)
             if monsters:
                 for monster in monsters:
-                    status.link = monster
                     monster.apply_status(status)
                 combat.reset_status_icons()
 
-        return {
-            "success": bool(monsters),
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            success=bool(monsters),
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=[],
+        )

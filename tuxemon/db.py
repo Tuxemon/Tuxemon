@@ -218,6 +218,27 @@ State = Enum(
 )
 
 
+class CommonCondition(BaseModel):
+    type: str = Field(..., description="The name of the condition")
+    parameters: Sequence[str] = Field(
+        [], description="The parameters that must be met"
+    )
+    operator: str = Field(..., description="The operator 'is' or 'not'.")
+
+    @field_validator("operator")
+    def operator_must_be_is_or_not(cls: CommonCondition, v: str) -> str:
+        if v not in ["is", "not"]:
+            raise ValueError('operator must be either "is" or "not"')
+        return v
+
+
+class CommonEffect(BaseModel):
+    type: str = Field(..., description="The name of the condition")
+    parameters: Sequence[str] = Field(
+        [], description="The parameters that must be met"
+    )
+
+
 class ItemBehaviors(BaseModel):
     consumable: bool = Field(
         True, description="Whether or not this item is consumable."
@@ -263,12 +284,10 @@ class ItemModel(BaseModel):
         ..., description="State(s) where this item can be used."
     )
     behaviors: ItemBehaviors
-    # TODO: We'll need some more advanced validation logic here to parse item
-    # conditions and effects to ensure they are formatted properly.
-    conditions: Sequence[str] = Field(
+    conditions: Sequence[CommonCondition] = Field(
         [], description="Conditions that must be met"
     )
-    effects: Sequence[str] = Field(
+    effects: Sequence[CommonEffect] = Field(
         [], description="Effects this item will have"
     )
     flip_axes: Literal["", "x", "y", "xy"] = Field(
@@ -318,12 +337,6 @@ class ItemModel(BaseModel):
         ):
             return v
         raise ValueError(f"the animation {v} doesn't exist in the db")
-
-    @field_validator("conditions")
-    def check_conditions(cls: ItemModel, v: Sequence[str]) -> Sequence[str]:
-        if not v or has.check_conditions(v):
-            return v
-        raise ValueError(f"the conditions {v} aren't correctly formatted")
 
 
 class ShapeModel(BaseModel):

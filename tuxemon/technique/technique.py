@@ -286,30 +286,28 @@ class Technique:
 
         # Defaults for the return. items can override these values in their
         # return.
-        meta_result: TechEffectResult = {
-            "name": self.name,
-            "success": False,
-            "should_tackle": False,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "extra": None,
-        }
+        meta_result = TechEffectResult(
+            name=self.name,
+            success=False,
+            should_tackle=False,
+            damage=0,
+            element_multiplier=0.0,
+            extras=[],
+        )
 
         self.next_use = self.recharge_length
 
         # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:
             result = effect.apply(self, user, target)
-            meta_result["success"] = (
-                meta_result["success"] or result["success"]
+            meta_result.name = result.name
+            meta_result.success = meta_result.success or result.success
+            meta_result.should_tackle = (
+                meta_result.should_tackle or result.should_tackle
             )
-            meta_result["should_tackle"] = (
-                meta_result["should_tackle"] or result["should_tackle"]
-            )
-            meta_result["damage"] += result["damage"]
-            meta_result["element_multiplier"] *= result["element_multiplier"]
-            if result["extra"] is not None:
-                meta_result["extra"] = result["extra"]
+            meta_result.damage += result.damage
+            meta_result.element_multiplier += result.element_multiplier
+            meta_result.extras.extend(result.extras)
 
         return meta_result
 

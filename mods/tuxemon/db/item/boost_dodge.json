@@ -1,7 +1,10 @@
 {
   "conditions": [],
   "effects": [
-    "buff dodge,0.2"
+    {
+      "type": "buff",
+      "parameters": ["dodge","0.2"]
+    }
   ],
   "slug": "boost_dodge",
   "sort": "utility",

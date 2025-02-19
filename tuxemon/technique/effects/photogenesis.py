@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from tuxemon import formula
 from tuxemon.shape import Shape
@@ -12,10 +12,6 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
-
-
-class PhotogenesisEffectResult(TechEffectResult):
-    pass
 
 
 @dataclass
@@ -38,9 +34,9 @@ class PhotogenesisEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> PhotogenesisEffectResult:
+    ) -> TechEffectResult:
         player = user.owner
-        extra: Optional[str] = None
+        extra: list[str] = []
         done: bool = False
         assert player
 
@@ -68,18 +64,19 @@ class PhotogenesisEffect(TechEffect):
         if tech.hit and not self.session.client.map_inside:
             heal = formula.simple_heal(tech, user, factors)
             if heal == 0:
-                extra = tech.use_failure
+                extra = [tech.use_failure]
             else:
                 if user.current_hp < user.hp:
                     heal_amount = min(heal, user.hp - user.current_hp)
                     user.current_hp += heal_amount
                     done = True
                 elif user.current_hp == user.hp:
-                    extra = "combat_full_health"
-        return {
-            "success": done,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": extra,
-        }
+                    extra = ["combat_full_health"]
+        return TechEffectResult(
+            name=tech.name,
+            success=done,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=extra,
+        )

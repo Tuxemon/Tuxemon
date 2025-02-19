@@ -1,7 +1,10 @@
 {
   "conditions": [],
   "effects": [
-    "change_stat ranged,0.05"
+    {
+      "type": "change_stat",
+      "parameters": ["ranged","0.05"]
+    }
   ],
   "slug": "raise_ranged",
   "sort": "utility",

@@ -29,17 +29,6 @@ class VariableSetCondition(EventCondition):
     name = "variable_set"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """
-        Check to see if a player game variable has a particular value.
-
-        Parameters:
-            session: The session object
-            condition: The map condition object.
-
-        Returns:
-            Whether the variable exists and has that value.
-
-        """
         player = session.player
 
         parts = condition.parameters[0].split(":")

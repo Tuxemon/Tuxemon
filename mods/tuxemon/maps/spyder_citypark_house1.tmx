@@ -65,6 +65,7 @@
     <property name="act1" value="set_mission player,spyder_maniac_achievement1,add"/>
     <property name="act2" value="set_variable maniac_help:yes"/>
     <property name="act3" value="add_item book_wishes"/>
+    <property name="act4" value="translated_dialog book_wishes,,center"/>
     <property name="cond1" value="is variable_set maniac_achievements:yes"/>
     <property name="cond2" value="not variable_set maniac_help:yes"/>
    </properties>

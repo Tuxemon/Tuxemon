@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from tuxemon import formula
 from tuxemon.locale import T
@@ -13,10 +13,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
     from tuxemon.technique.technique import Technique
-
-
-class MoneyEffectResult(TechEffectResult):
-    pass
 
 
 @dataclass
@@ -33,8 +29,8 @@ class MoneyEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> MoneyEffectResult:
-        extra: Optional[str] = None
+    ) -> TechEffectResult:
+        extra: list[str] = []
         player = user.owner
         combat = tech.combat_state
         assert combat and player
@@ -46,16 +42,17 @@ class MoneyEffect(TechEffect):
             amount = int(damage * mult)
             self._give_money(player, amount)
             params = {"name": user.name.upper(), "symbol": "$", "gold": amount}
-            extra = T.format("combat_state_gold", params)
+            extra = [T.format("combat_state_gold", params)]
         else:
             user.current_hp = max(0, user.current_hp - damage)
-        return {
-            "success": tech.hit,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": tech.hit,
-            "extra": extra,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            success=tech.hit,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=tech.hit,
+            extras=extra,
+        )
 
     def _give_money(self, character: NPC, amount: int) -> None:
         recipient = "player" if character.isplayer else character.slug

@@ -21,6 +21,24 @@ events:
     x: 8
     y: 3
     type: "event"
+  Papers 1:
+    actions:
+    - translated_dialog spyder_nimrod_papers1
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 6
+    y: 3
+    type: "event"
+  Papers 2:
+    actions:
+    - translated_dialog spyder_nimrod_papers2
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 3
+    y: 3
+    type: "event"
   FlashBack Zircon and Argon:
     actions:
     - lock_controls

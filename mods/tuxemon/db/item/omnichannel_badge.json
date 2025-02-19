@@ -1,7 +1,14 @@
 {
   "conditions": [
-    "is can_evolve",
-    "is has_path omnichannel_badge"
+    {
+      "type": "can_evolve",
+      "operator": "is"
+    },
+    {
+      "type": "has_path",
+      "parameters": ["omnichannel_badge"],
+      "operator": "is"
+    }
   ],
   "effects": [],
   "slug": "omnichannel_badge",

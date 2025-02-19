@@ -1,7 +1,10 @@
 {
   "conditions": [],
   "effects": [
-    "gain_xp 437"
+    {
+      "type": "gain_xp",
+      "parameters": ["437"]
+    }
   ],
   "slug": "mystery_tea",
   "sort": "potion",

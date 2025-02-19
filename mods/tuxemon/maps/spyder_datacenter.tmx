@@ -296,7 +296,8 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_box_goldpass1"/>
     <property name="act2" value="add_item gold_pass"/>
-    <property name="act3" value="remove_npc spyder_box_goldpass"/>
+    <property name="act3" value="translated_dialog gold_pass,,center"/>
+    <property name="act4" value="remove_npc spyder_box_goldpass"/>
     <property name="behav1" value="talk spyder_box_goldpass"/>
    </properties>
   </object>

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
@@ -12,10 +12,6 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
-
-
-class RemoveEffectResult(TechEffectResult):
-    pass
 
 
 @dataclass
@@ -38,7 +34,7 @@ class RemoveEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> RemoveEffectResult:
+    ) -> TechEffectResult:
         monsters: list[Monster] = []
         combat = tech.combat_state
         assert combat
@@ -58,10 +54,11 @@ class RemoveEffect(TechEffect):
                     if has_status(monster, self.condition):
                         monster.status.clear()
 
-        return {
-            "success": bool(monsters),
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            success=bool(monsters),
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=[],
+        )

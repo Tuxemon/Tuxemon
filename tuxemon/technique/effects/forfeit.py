@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -16,10 +16,6 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class ForfeitEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class ForfeitEffect(TechEffect):
     """
@@ -31,7 +27,7 @@ class ForfeitEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> ForfeitEffectResult:
+    ) -> TechEffectResult:
         combat = tech.combat_state
         player = user.owner
         assert combat and player
@@ -39,19 +35,20 @@ class ForfeitEffect(TechEffect):
         set_var(self.session, "teleport_clinic", OutputBattle.lost.value)
         combat._run = True
         params = {"npc": combat.players[1].name.upper()}
-        extra = T.format("combat_forfeit", params)
+        extra = [T.format("combat_forfeit", params)]
         self._clean_combat_state(combat)
         # Faint all player monsters
         for mon in player.monsters:
             mon.faint()
 
-        return {
-            "success": True,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": extra,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            success=True,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=extra,
+        )
 
     def _clean_combat_state(self, combat: CombatState) -> None:
         """

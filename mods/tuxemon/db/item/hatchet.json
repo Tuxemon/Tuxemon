@@ -1,9 +1,15 @@
 {
   "conditions": [
-    "is facing_sprite log"
+    {
+      "type": "facing_sprite",
+      "parameters": ["log"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "remove"
+    {
+      "type": "remove"
+    }
   ],
   "slug": "hatchet",
   "sort": "utility",

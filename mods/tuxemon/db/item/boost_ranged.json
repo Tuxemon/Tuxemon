@@ -1,7 +1,10 @@
 {
   "conditions": [],
   "effects": [
-    "buff ranged,0.2"
+    {
+      "type": "buff",
+      "parameters": ["ranged","0.2"]
+    }
   ],
   "slug": "boost_ranged",
   "sort": "utility",

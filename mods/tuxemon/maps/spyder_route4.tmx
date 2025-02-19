@@ -474,7 +474,7 @@
   </object>
   <object id="90" name="Super Potion" type="event" x="272" y="512" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog super_potion"/>
+    <property name="act1" value="translated_dialog super_potion,,center"/>
     <property name="act2" value="add_item super_potion"/>
     <property name="act3" value="remove_npc spyder_route4_super"/>
     <property name="act4" value="set_variable route4_super:yes"/>
@@ -490,7 +490,7 @@
   </object>
   <object id="92" name="Boost Ranged" type="event" x="16" y="48" width="16" height="16">
    <properties>
-    <property name="act1" value="translated_dialog boost_ranged"/>
+    <property name="act1" value="translated_dialog boost_ranged,,center"/>
     <property name="act2" value="add_item boost_ranged"/>
     <property name="act3" value="remove_npc spyder_route4_boost"/>
     <property name="act4" value="set_variable route4_boost:yes"/>

@@ -13,10 +13,6 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class TransferEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class TransferEffect(TechEffect):
     """
@@ -31,7 +27,7 @@ class TransferEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> TransferEffectResult:
+    ) -> TechEffectResult:
         tech.hit = tech.accuracy >= (
             tech.combat_state._random_tech_hit.get(user, 0.0)
             if tech.combat_state
@@ -42,10 +38,11 @@ class TransferEffect(TechEffect):
             target.status = user.status
             user.status = []
             done = True
-        return {
-            "success": done,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            success=done,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=[],
+        )

@@ -140,7 +140,7 @@
     <property name="act27" value="translated_dialog spyder_candy_eliane4"/>
     <property name="act30" value="set_variable giveegg:yes"/>
     <property name="act31" value="add_item ancient_egg"/>
-    <property name="act32" value="translated_dialog ancient_egg"/>
+    <property name="act32" value="translated_dialog ancient_egg,,center"/>
     <property name="act40" value="pathfind spyder_candy_eliane,3,1"/>
     <property name="act41" value="remove_npc spyder_candy_eliane"/>
     <property name="act50" value="unlock_controls"/>

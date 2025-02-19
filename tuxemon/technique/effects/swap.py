@@ -13,10 +13,6 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class SwapEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class SwapEffect(TechEffect):
     """
@@ -33,7 +29,7 @@ class SwapEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> SwapEffectResult:
+    ) -> TechEffectResult:
         # TODO: implement actions as events, so that combat state can find them
         # TODO: relies on setting "combat_state" attribute.  maybe clear it up
         # later
@@ -55,10 +51,11 @@ class SwapEffect(TechEffect):
         # give a slight delay
         combat_state.task(partial(swap_add, user), 0.75)
 
-        return {
-            "success": True,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            success=True,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=[],
+        )

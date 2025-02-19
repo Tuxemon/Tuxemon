@@ -511,3 +511,25 @@ def attempt_escape(
         raise ValueError(f"A formula for {method} doesn't exist.")
 
     return methods[method]()
+
+
+def speed_monster(monster: Monster, technique: Technique) -> int:
+    """
+    Calculate the speed modifier for the given monster / technique.
+    """
+    multiplier_speed = pre.MULTIPLIER_SPEED
+    base_speed = float(monster.speed)
+    base_speed_bonus = multiplier_speed if technique.is_fast else 1.0
+    speed_modifier = base_speed * base_speed_bonus
+
+    # Add a controlled random element
+    speed_offset = pre.SPEED_OFFSET
+    random_offset = random.uniform(-speed_offset, speed_offset)
+    speed_modifier += random_offset
+
+    # Ensure the speed modifier is not negative
+    speed_modifier = max(speed_modifier, 1)
+    # Use dodge as a tiebreaker
+    speed_modifier += float(monster.dodge) * 0.01
+
+    return int(speed_modifier)

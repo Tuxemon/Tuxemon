@@ -98,7 +98,7 @@ def pre_checking(
         slug = random.choice(infected_slugs)
         method.load(slug)
         result_method = method.use(monster, target)
-        if result_method["success"]:
+        if result_method.success:
             technique = method
     return technique
 

@@ -28,17 +28,6 @@ class CurrentStateCondition(EventCondition):
     name = "current_state"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """
-        Check to see if the state has been started or not.
-
-        Parameters:
-            session: The session object
-            condition: The map condition object.
-
-        Returns:
-            Whether a combat has started or not.
-
-        """
         current_state = session.client.current_state
         assert current_state
         states = condition.parameters[0].split(":")

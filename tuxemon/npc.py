@@ -13,7 +13,7 @@ from tuxemon import prepare, surfanim
 from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.boxes import ItemBoxes, MonsterBoxes
 from tuxemon.compat import Rect
-from tuxemon.db import Direction, ElementType, EntityFacing, SeenStatus, db
+from tuxemon.db import Direction, EntityFacing, SeenStatus, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import Item, decode_items, encode_items
@@ -720,18 +720,13 @@ class NPC(Entity[NPCState]):
                     return True
         return False
 
-    def has_type(self, element: Optional[ElementType]) -> bool:
+    def has_type(self, element: Optional[str]) -> bool:
         """
         Returns TRUE if there is the type in the party.
         """
-        ret: bool = False
         if element:
-            eles = []
-            for mon in self.monsters:
-                eles = [ele for ele in mon.types if ele.slug == element]
-            if eles:
-                ret = True
-        return ret
+            return any(mon.has_type(element) for mon in self.monsters)
+        return False
 
     ####################################################
     #                      Items                       #

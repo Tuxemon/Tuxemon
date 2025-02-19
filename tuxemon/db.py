@@ -90,15 +90,6 @@ class TasteCold(str, Enum):
     dry = "dry"
 
 
-class ElementType(str, Enum):
-    aether = "aether"
-    wood = "wood"
-    fire = "fire"
-    earth = "earth"
-    metal = "metal"
-    water = "water"
-
-
 class ItemCategory(str, Enum):
     none = "none"
     badge = "badge"
@@ -382,7 +373,7 @@ class MonsterEvolutionItemModel(BaseModel):
         description="The level at which the monster evolves.",
         ge=0,
     )
-    element: Optional[ElementType] = Field(
+    element: Optional[str] = Field(
         None,
         description="The element type that the monster must match to evolve.",
     )
@@ -463,6 +454,14 @@ class MonsterEvolutionItemModel(BaseModel):
         if not v or has.db_entry("technique", v):
             return v
         raise ValueError(f"the technique {v} doesn't exist in the db")
+
+    @field_validator("element")
+    def element_exists(
+        cls: MonsterEvolutionItemModel, v: Optional[str]
+    ) -> Optional[str]:
+        if not v or has.db_entry("element", v):
+            return v
+        raise ValueError(f"the element {v} doesn't exist in the db")
 
     @field_validator("monster_slug")
     def monster_exists(cls: MonsterEvolutionItemModel, v: str) -> str:
@@ -614,9 +613,7 @@ class MonsterModel(BaseModel, validate_assignment=True):
     tags: Sequence[str] = Field(
         ..., description="The tags of the monster", min_length=1
     )
-    types: Sequence[ElementType] = Field(
-        [], description="The type(s) of this monster"
-    )
+    types: Sequence[str] = Field([], description="The type(s) of this monster")
     catch_rate: float = Field(
         ...,
         description="The catch rate of the monster",
@@ -675,6 +672,18 @@ class MonsterModel(BaseModel, validate_assignment=True):
         if has.translation(f"cat_{v}"):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
+
+    @field_validator("types")
+    def element_exists(
+        cls: MonsterModel, elements: Sequence[str]
+    ) -> Sequence[str]:
+        if elements:
+            for element in elements:
+                if not has.db_entry("element", element):
+                    raise ValueError(
+                        f"element '{element}' doesn't exist in the db"
+                    )
+        return elements
 
 
 class StatModel(BaseModel):
@@ -805,9 +814,7 @@ class TechniqueModel(BaseModel):
         None,
         description="Slug of what string to display when technique fails",
     )
-    types: Sequence[ElementType] = Field(
-        [], description="Type(s) of the technique"
-    )
+    types: Sequence[str] = Field([], description="Type(s) of the technique")
     usable_on: bool = Field(
         False,
         description="Whether or not the technique can be used outside of combat",
@@ -900,6 +907,18 @@ class TechniqueModel(BaseModel):
         if has.db_entry("sounds", v):
             return v
         raise ValueError(f"the sound {v} doesn't exist in the db")
+
+    @field_validator("types")
+    def element_exists(
+        cls: TechniqueModel, elements: Sequence[str]
+    ) -> Sequence[str]:
+        if elements:
+            for element in elements:
+                if not has.db_entry("element", element):
+                    raise ValueError(
+                        f"element '{element}' doesn't exist in the db"
+                    )
+        return elements
 
 
 class ConditionModel(BaseModel):
@@ -1322,21 +1341,23 @@ class DialogueModel(BaseModel):
 
 
 class ElementItemModel(BaseModel):
-    against: ElementType = Field(..., description="Name of the type")
+    against: str = Field(..., description="Name of the type")
     multiplier: float = Field(1.0, description="Multiplier against the type")
+
+    @field_validator("against")
+    def element_exists(cls: ElementItemModel, v: str) -> str:
+        if not v or has.db_entry("element", v):
+            return v
+        raise ValueError(f"the element {v} doesn't exist in the db")
 
 
 class ElementModel(BaseModel):
-    slug: ElementType = Field(
-        ..., description="Slug uniquely identifying the type"
-    )
+    slug: str = Field(..., description="Slug uniquely identifying the type")
     icon: str = Field(..., description="The icon to use for the type")
     types: Sequence[ElementItemModel]
 
     @field_validator("slug")
-    def translation_exists_element(
-        cls: ElementModel, v: ElementType
-    ) -> ElementType:
+    def translation_exists_element(cls: ElementModel, v: str) -> str:
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")

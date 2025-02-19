@@ -52,7 +52,7 @@ class JournalInfoState(PygameMenuState):
                 else "yes_evolutions"
             )
         # types
-        types = " ".join(map(lambda s: T.translate(s.name), monster.types))
+        types = " ".join(map(lambda s: T.translate(s), monster.types))
         # weight and height
         player = local_session.player
         unit = player.game_variables.get("unit_measure", prepare.METRIC)
@@ -107,10 +107,10 @@ class JournalInfoState(PygameMenuState):
             float=True,
         )
         lab4.translate(fix_measure(width, 0.50), fix_measure(height, 0.30))
-        path1 = f"gfx/ui/icons/element/{monster.types[0].name}_type.png"
+        path1 = f"gfx/ui/icons/element/{monster.types[0]}_type.png"
         type_image_1 = self._create_image(path1)
         if len(monster.types) > 1:
-            path2 = f"gfx/ui/icons/element/{monster.types[1].name}_type.png"
+            path2 = f"gfx/ui/icons/element/{monster.types[1]}_type.png"
             type_image_2 = self._create_image(path2)
             menu.add.image(type_image_1, float=True).translate(
                 fix_measure(width, 0.17), fix_measure(height, 0.29)

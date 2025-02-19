@@ -6,7 +6,7 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
-from tuxemon.db import ElementType, TechniqueModel, db
+from tuxemon.db import TechniqueModel, db
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 
 if TYPE_CHECKING:
@@ -60,9 +60,8 @@ class LearnMmEffect(ItemEffect):
 
 
 def _lookup_techniques(element: str) -> None:
-    _element = ElementType(element)
     monsters = list(db.database["technique"])
     for mon in monsters:
         results = db.lookup(mon, table="technique")
-        if results.randomly and _element in results.types:
+        if results.randomly and element in results.types:
             lookup_cache[mon] = results

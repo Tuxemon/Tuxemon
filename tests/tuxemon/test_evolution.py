@@ -4,12 +4,14 @@ import unittest
 from unittest import mock
 
 from tuxemon.db import (
+    ElementModel,
     MonsterEvolutionItemModel,
     TasteCold,
     TasteWarm,
     TechniqueModel,
     db,
 )
+from tuxemon.element import Element
 from tuxemon.monster import Monster
 from tuxemon.player import Player
 from tuxemon.session import local_session
@@ -65,10 +67,16 @@ _strike = TechniqueModel(
     category="simple",
 )
 
+_metal = ElementModel(
+    slug="metal", icon="gfx/ui/icons/element/metal_type.png", types=[]
+)
+
 
 def mockPlayer(self) -> None:
     _tech_model = {"ram": _ram, "strike": _strike}
+    _element_model = {"metal": _metal}
     db.database["technique"] = _tech_model
+    db.database["element"] = _element_model
     self.name = "Jeff"
     self.game_variables = {}
     member1 = Monster()
@@ -333,6 +341,20 @@ class TestCanEvolve(unittest.TestCase):
             monster_slug="botbot", item="booster_tech"
         )
         context = {"map_inside": True, "use_item": False}
+        self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
+
+    def test_element_match(self):
+        self.mon.owner = self.player
+        self.mon.types = [Element("metal")]
+        evo = MonsterEvolutionItemModel(monster_slug="botbot", element="metal")
+        context = {"map_inside": True}
+        self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
+
+    def test_element_mismatch(self):
+        self.mon.owner = self.player
+        self.mon.types = [Element("metal")]
+        evo = MonsterEvolutionItemModel(monster_slug="botbot", element="water")
+        context = {"map_inside": True}
         self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
 
     def test_moves_match(self):

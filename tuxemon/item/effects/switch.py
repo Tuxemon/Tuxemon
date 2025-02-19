@@ -6,7 +6,7 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
-from tuxemon.db import ElementType
+from tuxemon.db import db
 from tuxemon.element import Element
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 
@@ -35,7 +35,7 @@ class SwitchEffect(ItemEffect):
     def apply(
         self, item: Item, target: Union[Monster, None]
     ) -> ItemEffectResult:
-        elements = list(ElementType)
+        elements = list(db.database["element"])
         if target:
             if self.element != "random":
                 ele = Element(self.element)

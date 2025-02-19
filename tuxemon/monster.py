@@ -16,7 +16,6 @@ from tuxemon.condition.condition import (
 )
 from tuxemon.db import (
     CategoryCondition,
-    ElementType,
     EvolutionStage,
     GenderType,
     MonsterEvolutionItemModel,
@@ -256,12 +255,12 @@ class Monster:
         self.combat_call = (
             results.sounds.combat_call
             if results.sounds
-            else f"sound_{self.types[0].name}_call"
+            else f"sound_{self.types[0].slug}_call"
         )
         self.faint_call = (
             results.sounds.faint_call
             if results.sounds
-            else f"sound_{self.types[0].name}_faint"
+            else f"sound_{self.types[0].slug}_faint"
         )
 
     def learn(
@@ -311,12 +310,14 @@ class Monster:
 
         return stat_map.get(stat, 0)
 
-    def has_type(self, element: Optional[ElementType]) -> bool:
+    def has_type(self, type_slug: Optional[str]) -> bool:
         """
         Returns TRUE if there is the type among the types.
         """
-        return element is not None and any(
-            ele.slug == element for ele in self.types
+        return (
+            type_slug in [type_obj.slug for type_obj in self.types]
+            if type_slug
+            else False
         )
 
     def give_experience(self, amount: int = 1) -> int:

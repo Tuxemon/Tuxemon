@@ -12,14 +12,13 @@ from typing import TYPE_CHECKING, Optional
 from tuxemon import prepare as pre
 
 if TYPE_CHECKING:
-    from tuxemon.db import ElementType
     from tuxemon.element import Element
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
 
-multiplier_cache: dict[tuple[ElementType, ElementType], float] = {}
+multiplier_cache: dict[tuple[str, str], float] = {}
 
 range_map: dict[str, tuple[str, str]] = {
     "melee": ("melee", "armour"),

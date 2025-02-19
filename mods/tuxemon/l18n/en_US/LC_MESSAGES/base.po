@@ -1067,6 +1067,12 @@ msgstr "{target}'s lifeforce is being leeched."
 msgid "combat_state_lifeleech_end"
 msgstr "{target} is having their lifeforce stolen."
 
+msgid "combat_state_lifegift_get"
+msgstr "{target}'s energy is being restored."
+
+msgid "combat_state_lifegift_end"
+msgstr "{target} has been infused with lifeforce."
+
 msgid "combat_state_noddingoff_get"
 msgstr "{target} is nodding off to sleep."
 
@@ -1293,6 +1299,9 @@ msgstr "Harpooned"
 
 msgid "lifeleech"
 msgstr "Lifeleech"
+
+msgid "lifegift"
+msgstr "Life Gift"
 
 msgid "lockdown"
 msgstr "Lockdown"

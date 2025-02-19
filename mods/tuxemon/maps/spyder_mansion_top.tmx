@@ -196,7 +196,8 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_top_magician1"/>
     <property name="act2" value="add_item dojo_pass"/>
-    <property name="act3" value="set_variable dojomagician:yes"/>
+    <property name="act3" value="translated_dialog dojo_pass,,center"/>
+    <property name="act4" value="set_variable dojomagician:yes"/>
     <property name="behav1" value="talk spyder_top_lenny"/>
     <property name="cond1" value="not variable_set dojomagician:yes"/>
    </properties>

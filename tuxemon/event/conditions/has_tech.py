@@ -24,17 +24,6 @@ class HasTechCondition(EventCondition):
     name = "has_tech"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """
-        Check to see if the player has a technique in his party.
-
-        Parameters:
-            session: The session object
-            condition: The map condition object.
-
-        Returns:
-            Whether the player has a technique in his party.
-
-        """
         player = session.player
         tech = condition.parameters[0]
         if player.has_tech(tech):

@@ -1,6 +1,10 @@
 {
   "conditions": [
-    "is type wood"
+    {
+      "type": "type",
+      "parameters": ["wood"],
+      "operator": "is"
+    }
   ],
   "effects": [],
   "slug": "tm_wood",

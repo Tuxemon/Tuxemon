@@ -371,7 +371,7 @@
   <object id="194" name="Get cureall" type="event" x="144" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_candy_eliane3"/>
-    <property name="act2" value="translated_dialog cureall"/>
+    <property name="act2" value="translated_dialog cureall,,center"/>
     <property name="act3" value="add_item elianeoutput"/>
     <property name="act4" value="set_variable elianeoutput:none"/>
     <property name="cond1" value="is variable_set elianeoutput:cureall"/>
@@ -380,7 +380,7 @@
   <object id="192" name="Get restoration" type="event" x="128" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_candy_eliane3"/>
-    <property name="act2" value="translated_dialog restoration"/>
+    <property name="act2" value="translated_dialog restoration,,center"/>
     <property name="act3" value="add_item elianeoutput"/>
     <property name="act4" value="set_variable elianeoutput:none"/>
     <property name="cond1" value="is variable_set elianeoutput:restoration"/>
@@ -389,7 +389,7 @@
   <object id="173" name="Get potion" type="event" x="112" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_candy_eliane3"/>
-    <property name="act2" value="translated_dialog potion"/>
+    <property name="act2" value="translated_dialog potion,,center"/>
     <property name="act3" value="add_item elianeoutput"/>
     <property name="act4" value="set_variable elianeoutput:none"/>
     <property name="cond1" value="is variable_set elianeoutput:potion"/>
@@ -398,7 +398,7 @@
   <object id="181" name="Get tea" type="event" x="96" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_candy_eliane3"/>
-    <property name="act2" value="translated_dialog tea"/>
+    <property name="act2" value="translated_dialog tea,,center"/>
     <property name="act3" value="add_item elianeoutput"/>
     <property name="act4" value="set_variable elianeoutput:none"/>
     <property name="cond1" value="is variable_set elianeoutput:tea"/>

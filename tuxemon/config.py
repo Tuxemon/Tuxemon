@@ -59,6 +59,7 @@ class TuxemonConfig:
             "net_controller_enabled",
         )
         self.locale = cfg.get("game", "locale")
+        self.translation_mode = cfg.get("game", "translation_mode")
         self.dev_tools = cfg.getboolean("game", "dev_tools")
         self.recompile_translations = cfg.getboolean(
             "game",
@@ -212,6 +213,7 @@ def get_defaults() -> Mapping[str, Any]:
                         ("cli_enabled", "False"),
                         ("net_controller_enabled", "False"),
                         ("locale", "en_US"),
+                        ("translation_mode", "none"),
                         ("dev_tools", "False"),
                         ("recompile_translations", "True"),
                         ("compress_save", "None"),

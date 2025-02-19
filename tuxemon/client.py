@@ -20,13 +20,7 @@ from tuxemon.event import EventObject
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.map import TuxemonMap
 from tuxemon.platform.events import PlayerInput
-from tuxemon.platform.platform_pygame.events import (
-    PygameEventQueueHandler,
-    PygameGamepadInput,
-    PygameKeyboardInput,
-    PygameMouseInput,
-    PygameTouchOverlayInput,
-)
+from tuxemon.platform.input_manager import InputManager
 from tuxemon.session import local_session
 from tuxemon.state import State, StateManager
 from tuxemon.states.world.worldstate import WorldState
@@ -68,23 +62,7 @@ class LocalPygameClient:
         self.inits: list[EventObject] = []
 
         # setup controls
-        keyboard = PygameKeyboardInput(config.keyboard_button_map)
-        gamepad = PygameGamepadInput(
-            config.gamepad_button_map,
-            config.gamepad_deadzone,
-        )
-        self.input_manager = PygameEventQueueHandler()
-        self.input_manager.add_input(0, keyboard)
-        self.input_manager.add_input(0, gamepad)
-        self.controller_overlay = None
-        if config.controller_overlay:
-            self.controller_overlay = PygameTouchOverlayInput(
-                config.controller_transparency,
-            )
-            self.controller_overlay.load()
-            self.input_manager.add_input(0, self.controller_overlay)
-        if not config.hide_mouse:
-            self.input_manager.add_input(0, PygameMouseInput())
+        self.input_manager = InputManager(config)
 
         # movie creation
         self.frame_number = 0
@@ -300,8 +278,8 @@ class LocalPygameClient:
             if time_since_draw >= frame_length:
                 time_since_draw -= frame_length
                 draw(screen)
-                if self.controller_overlay:
-                    self.controller_overlay.draw(screen)
+                if self.input_manager.controller_overlay:
+                    self.input_manager.controller_overlay.draw(screen)
                 flip()
                 frames += 1
 
@@ -329,7 +307,7 @@ class LocalPygameClient:
             self.server.update()
 
         # get all the input waiting for use
-        events = self.input_manager.process_events()
+        events = self.input_manager.event_queue.process_events()
 
         # process the events and collect the unused ones
         key_events = list(self.process_events(events))
@@ -359,7 +337,7 @@ class LocalPygameClient:
         Use to prevent player from holding buttons while state changes.
 
         """
-        events = self.input_manager.release_controls()
+        events = self.input_manager.event_queue.release_controls()
         self.key_events = list(self.process_events(events))
 
     def update_states(self, time_delta: float) -> None:

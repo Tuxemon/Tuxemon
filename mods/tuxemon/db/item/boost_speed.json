@@ -1,7 +1,10 @@
 {
   "conditions": [],
   "effects": [
-    "buff speed,0.2"
+    {
+      "type": "buff",
+      "parameters": ["speed","0.2"]
+    }
   ],
   "slug": "boost_speed",
   "sort": "utility",

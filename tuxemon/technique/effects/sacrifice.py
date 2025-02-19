@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -12,23 +12,18 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class SacrificeEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class SacrificeEffect(TechEffect):
     """
     Sacrifice:
-    Monster takes damage equal to its current HP,
-    and does damage equal to double that amount.
+    Monster takes damage equal to its current (or part) HP,
 
     Parameters:
         multiplier: The percentage of the current HP
 
     eg user 35/50 HP uses:
-        sacrifice 2
-    inflicts a damage of 70 HP (enemy)
+        sacrifice 1
+    inflicts a damage of 35 HP (enemy)
     inflicts a damage of 35 HP (user) > faints
 
     """
@@ -38,7 +33,11 @@ class SacrificeEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> SacrificeEffectResult:
+    ) -> TechEffectResult:
+
+        if not 0 <= self.multiplier <= 1:
+            raise ValueError("Multiplier must be a float between 0 and 1")
+
         combat = tech.combat_state
         assert combat
         tech.hit = tech.accuracy >= combat._random_tech_hit.get(user, 0.0)
@@ -50,10 +49,11 @@ class SacrificeEffect(TechEffect):
         else:
             damage = 0
 
-        return {
-            "damage": damage,
-            "element_multiplier": 0.0,
-            "should_tackle": tech.hit,
-            "success": tech.hit,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            damage=damage,
+            element_multiplier=0.0,
+            should_tackle=tech.hit,
+            success=tech.hit,
+            extras=[],
+        )

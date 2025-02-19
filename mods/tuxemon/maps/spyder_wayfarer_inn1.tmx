@@ -176,6 +176,7 @@
     <property name="act1" value="translated_dialog spyder_wayfarer1_maniac1"/>
     <property name="act2" value="add_monster botbot,10"/>
     <property name="act3" value="set_variable gotbotbot:yes"/>
+    <property name="act4" value="translated_dialog botbot,,center"/>
     <property name="cond1" value="is variable_set wayfarer1_botbot:yes"/>
     <property name="cond2" value="is variable_set quebotbot:yes"/>
     <property name="cond3" value="not variable_set gotbotbot:yes"/>

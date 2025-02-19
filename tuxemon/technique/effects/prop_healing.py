@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -11,10 +11,6 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
-
-
-class PropHealingEffectResult(TechEffectResult):
-    pass
 
 
 @dataclass
@@ -38,7 +34,7 @@ class PropHealingEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> PropHealingEffectResult:
+    ) -> TechEffectResult:
 
         if not 0 <= self.proportional <= 1:
             raise ValueError(f"{self.proportional} must be between 0 and 1")
@@ -61,10 +57,11 @@ class PropHealingEffect(TechEffect):
                     monster.hp, monster.current_hp + amount
                 )
 
-        return {
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "success": tech.hit,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            success=tech.hit,
+            extras=[],
+        )

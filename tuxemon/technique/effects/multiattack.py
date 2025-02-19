@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
@@ -11,10 +11,6 @@ from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.technique.technique import Technique
-
-
-class MultiAttackEffectResult(TechEffectResult):
-    pass
 
 
 @dataclass
@@ -34,7 +30,7 @@ class MultiAttackEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> MultiAttackEffectResult:
+    ) -> TechEffectResult:
         assert tech.combat_state
         combat = tech.combat_state
         value = random.random()
@@ -58,10 +54,11 @@ class MultiAttackEffect(TechEffect):
         if done and hit:
             combat.enqueue_action(user, tech, target)
 
-        return {
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": done,
-            "success": done,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=done,
+            success=done,
+            extras=[],
+        )

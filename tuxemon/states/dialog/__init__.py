@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from collections.abc import Sequence
@@ -17,6 +17,10 @@ if TYPE_CHECKING:
     from tuxemon.sprite import Sprite
 
 
+DEFAULT_CHARACTER_DELAY: float = 0.05
+CHARACTER_DELAY: float = 0.001
+
+
 class DialogState(PopUpMenu[None]):
     """
     Game state with a graphic box and some text in it.
@@ -28,8 +32,6 @@ class DialogState(PopUpMenu[None]):
 
     """
 
-    default_character_delay = 0.05
-
     def __init__(
         self,
         text: Sequence[str] = (),
@@ -40,24 +42,27 @@ class DialogState(PopUpMenu[None]):
         super().__init__(**kwargs)
         self.text_queue = list(text)
         self.avatar = avatar
+        self.character_delay = DEFAULT_CHARACTER_DELAY
 
-        bg_color = self.background_color
-        font_color = self.font_color
-        font_shadow = self.font_shadow_color
-        border = self.borders_filename
+        default_colors: dict[str, Any] = {
+            "bg_color": self.background_color,
+            "font_color": self.font_color,
+            "font_shadow": self.font_shadow_color,
+            "border": self.borders_filename,
+        }
+        colors = colors or {}
+        final_colors = default_colors.copy()
+        final_colors.update(colors)
 
-        bg_color = colors["bg_color"] if colors else bg_color
-        font_color = colors["font_color"] if colors else font_color
-        font_shadow = colors["font_shadow"] if colors else font_shadow
-        border = colors["border"] if colors else border
-
-        _border = load_and_scale(border)
+        _border = load_and_scale(final_colors["border"])
         self.window._set_border(_border)
+        self.window._color = final_colors["bg_color"]
 
-        self.dialog_box = TextArea(self.font, font_color, font_shadow)
+        self.dialog_box = TextArea(
+            self.font, final_colors["font_color"], final_colors["font_shadow"]
+        )
         self.dialog_box.rect = self.calc_internal_rect()
         self.sprites.add(self.dialog_box)
-        self.window._color = bg_color
 
         if self.avatar:
             avatar_rect = self.calc_final_rect()
@@ -70,17 +75,20 @@ class DialogState(PopUpMenu[None]):
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         if event.pressed and event.button == buttons.A:
             if self.dialog_box.drawing_text:
-                self.character_delay = 0.001
-
-            elif self.next_text() is None:
-                self.client.pop_state(self)
+                self.character_delay = CHARACTER_DELAY
+            elif not self.dialog_box.drawing_text:
+                self.next_text()
 
         return None
 
     def next_text(self) -> Optional[str]:
+        if self.dialog_box.drawing_text:
+            return None
+
         try:
             text = self.text_queue.pop(0)
             self.alert(text)
             return text
         except IndexError:
+            self.client.pop_state(self)
             return None

@@ -136,14 +136,15 @@
   </object>
   <object id="329" name="Stop! - Scoop" type="event" x="464" y="368" width="16" height="16">
    <properties>
-    <property name="act1" value="char_stop player"/>
-    <property name="act3" value="pathfind spyder_dante,29,25"/>
-    <property name="act4" value="translated_dialog spyder_timber_dante2"/>
-    <property name="act5" value="add_item app_contacts"/>
-    <property name="act6" value="add_contacts spyder_papertown_mom,000"/>
-    <property name="act7" value="add_contacts professor,111"/>
-    <property name="act8" value="pathfind spyder_dante,24,31"/>
-    <property name="act9" value="set_variable timberdantewarn:yes"/>
+    <property name="act01" value="char_stop player"/>
+    <property name="act03" value="pathfind spyder_dante,29,25"/>
+    <property name="act04" value="translated_dialog spyder_timber_dante2"/>
+    <property name="act05" value="add_item app_contacts"/>
+    <property name="act06" value="translated_dialog app_contacts,,center"/>
+    <property name="act07" value="add_contacts spyder_papertown_mom,000"/>
+    <property name="act08" value="add_contacts professor,111"/>
+    <property name="act09" value="pathfind spyder_dante,24,31"/>
+    <property name="act10" value="set_variable timberdantewarn:yes"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="not variable_set timberdantewarn:yes"/>
    </properties>
@@ -356,10 +357,11 @@
     <property name="act07" value="char_face spyder_papertown_mom,up"/>
     <property name="act08" value="translated_dialog spyder_timber_mom1"/>
     <property name="act09" value="add_item surfboard"/>
-    <property name="act10" value="translated_dialog spyder_timber_mom2"/>
-    <property name="act11" value="pathfind spyder_papertown_mom,26,23"/>
-    <property name="act12" value="remove_npc spyder_papertown_mom"/>
-    <property name="act13" value="set_variable timbermom:yes"/>
+    <property name="act10" value="translated_dialog surfboard,,center"/>
+    <property name="act11" value="translated_dialog spyder_timber_mom2"/>
+    <property name="act12" value="pathfind spyder_papertown_mom,26,23"/>
+    <property name="act13" value="remove_npc spyder_papertown_mom"/>
+    <property name="act14" value="set_variable timbermom:yes"/>
     <property name="cond1" value="not variable_set timbermom:yes"/>
     <property name="cond2" value="is variable_set scooparachne:yes"/>
    </properties>

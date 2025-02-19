@@ -1,9 +1,16 @@
 {
   "conditions": [
-    "not has_tech scope"
+    {
+      "type": "has_tech",
+      "parameters": ["scope"],
+      "operator": "not"
+    }
   ],
   "effects": [
-    "learn_tm scope"
+    {
+      "type": "learn_tm",
+      "parameters": ["scope"]
+    }
   ],
   "slug": "tm_scope",
   "sort": "utility",

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -31,7 +31,6 @@ if TYPE_CHECKING:
     import pygame
 
     from tuxemon.economy import Economy
-    from tuxemon.states.combat.combat_classes import EnqueuedAction
     from tuxemon.states.world.worldstate import WorldState
 
 
@@ -125,7 +124,6 @@ class NPC(Entity[NPCState]):
         self.pending_evolutions: list[tuple[Monster, Monster]] = []
         # nr tuxemon fight
         self.max_position: int = 1
-        self.speed = 10  # To determine combat order (not related to movement!)
         self.moves: Sequence[Technique] = []  # list of techniques
         self.steps: float = 0.0
 
@@ -707,44 +705,6 @@ class NPC(Entity[NPCState]):
             self.monsters[index_1],
         )
 
-    def load_party(self) -> None:
-        """Loads the party of this npc from their npc.json entry."""
-        for monster in self.monsters:
-            self.remove_monster(monster)
-
-        self.monsters = []
-
-        # Look up the NPC's details from our NPC database
-        npc_details = db.lookup(self.slug, "npc")
-        self.forfeit = npc_details.forfeit
-        npc_party = npc_details.monsters
-        for npc_monster_details in npc_party:
-            # This seems slightly wrong. The only usable element in
-            # npc_monsters_details, which is a PartyMemberModel, is "slug"
-            monster = Monster(save_data=npc_monster_details.model_dump())
-            monster.money_modifier = npc_monster_details.money_mod
-            monster.experience_modifier = npc_monster_details.exp_req_mod
-            monster.set_level(npc_monster_details.level)
-            monster.set_moves(npc_monster_details.level)
-            monster.current_hp = monster.hp
-            monster.gender = npc_monster_details.gender
-
-            # Add our monster to the NPC's party
-            self.add_monster(monster, len(npc_party))
-
-        # load NPC bag
-        for item in self.items:
-            self.remove_item(item)
-        self.items = []
-        npc_bag = npc_details.items
-        for npc_itm_details in npc_bag:
-            itm = Item(save_data=npc_itm_details.model_dump())
-            itm.quantity = npc_itm_details.quantity
-
-        # load NPC template
-        self.template = npc_details.template
-        self.load_sprites()
-
     def has_tech(self, tech: Optional[str]) -> bool:
         """
         Returns TRUE if there is the technique in the party.
@@ -849,6 +809,3 @@ class NPC(Entity[NPCState]):
                 return mis
 
         return None
-
-    def speed_test(self, action: EnqueuedAction) -> int:
-        return self.speed

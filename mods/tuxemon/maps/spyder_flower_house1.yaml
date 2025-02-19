@@ -1,0 +1,56 @@
+events:
+  Route Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: "event"
+  Teleport to Flower City:
+    actions:
+    - transition_teleport spyder_flower_city.tmx,15,22,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 6
+    y: 7
+    height: 1
+    width: 1
+    type: "event"
+  Create Firefighter:
+    actions:
+    - create_npc spyder_flowerhouse1_willie,1,5
+    - char_face spyder_flowerhouse1_willie,right
+    conditions:
+    - not char_exists spyder_flowerhouse1_willie
+    type: "event"
+  Talk Firefighter:
+    actions:
+    - translated_dialog spyder_flowerhouse1_firefighter
+    behav:
+    - talk spyder_flowerhouse1_willie
+    type: "event"
+  Create Granny:
+    actions:
+    - create_npc spyder_flowerhouse1_jonette,8,5
+    - char_face spyder_flowerhouse1_jonette,left
+    conditions:
+    - not char_exists spyder_flowerhouse1_jonette
+    type: "event"
+  Talk Granny:
+    actions:
+    - translated_dialog spyder_flowerhouse1_granny
+    behav:
+    - talk spyder_flowerhouse1_jonette
+    type: "event"
+  TV:
+    actions:
+    - translated_dialog spyder_flowerhouse1_tv
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 5
+    y: 2
+    height: 1
+    width: 2
+    type: "event"

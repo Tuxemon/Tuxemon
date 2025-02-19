@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import os
@@ -123,10 +123,10 @@ class CommandProcessor:
 
         """
         pm = PluginManager()
-        pm.setPluginPlaces([folder])
+        pm.set_plugin_places([folder])
         pm.include_patterns = ["commands"]
         pm.exclude_classes = ["CLICommand"]
-        pm.collectPlugins()
+        pm.collect_plugins()
         for cmd_class in get_available_classes(pm, interface=CLICommand):
             if cmd_class.usable_from_root:
                 yield cmd_class()

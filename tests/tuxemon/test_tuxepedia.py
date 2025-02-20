@@ -86,18 +86,6 @@ class TestTuxepedia(unittest.TestCase):
         )
         self.assertEqual(tuxepedia.entries["rockitten"].appearance_count, 1)
 
-    def test_update_entry(self):
-        tuxepedia = Tuxepedia()
-        tuxepedia.add_entry("rockitten")
-        tuxepedia.update_entry("rockitten", status=SeenStatus.caught)
-        self.assertEqual(
-            tuxepedia.entries["rockitten"].status, SeenStatus.caught
-        )
-        tuxepedia.update_appearance("rockitten")
-        self.assertEqual(tuxepedia.entries["rockitten"].appearance_count, 2)
-        tuxepedia.update_appearance("rockitten", 2)
-        self.assertEqual(tuxepedia.entries["rockitten"].appearance_count, 4)
-
     def test_get_total_monsters(self):
         tuxepedia = Tuxepedia()
         tuxepedia.add_entry("rockitten")
@@ -120,7 +108,7 @@ class TestTuxepedia(unittest.TestCase):
         tuxepedia = Tuxepedia()
         tuxepedia.add_entry("rockitten")
         tuxepedia.add_entry("nut")
-        tuxepedia.update_appearance("rockitten")
+        tuxepedia.add_entry("rockitten")
         self.assertEqual(
             tuxepedia.get_most_frequent_monsters(1), [("rockitten", 2)]
         )
@@ -189,6 +177,6 @@ class TestTuxepedia(unittest.TestCase):
         tuxepedia.add_entry("nut")
         self.assertTrue(tuxepedia.is_seen("nut"))
         self.assertFalse(tuxepedia.is_seen("rockitten"))
-        tuxepedia.update_entry("nut", status=SeenStatus.caught)
+        tuxepedia.add_entry("nut", status=SeenStatus.caught)
         self.assertFalse(tuxepedia.is_seen("nut"))
         self.assertTrue(tuxepedia.is_caught("nut"))

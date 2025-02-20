@@ -2872,9 +2872,6 @@ msgstr "Battles: {tot} (W{won} D{draw} L{lost})"
 msgid "page_tuxepedia"
 msgstr "From id {a} to id {b}"
 
-msgid "scan_count"
-msgstr "Scan"
-
 msgid "no_evolution"
 msgstr "No evolution"
 

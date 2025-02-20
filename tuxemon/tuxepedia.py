@@ -29,14 +29,13 @@ class MonsterEntry:
         """
         Updates the status of the monster entry.
 
-        If the current status is SeenStatus.caught and the new status is SeenStatus.seen, the update is ignored.
+        If the current status is SeenStatus.caught and the new status is
+        SeenStatus.seen, the update is ignored.
 
         Parameters:
             status: The new status of the monster.
         """
-        if self.status == SeenStatus.caught and status == SeenStatus.seen:
-            return
-        else:
+        if self.status != SeenStatus.caught or status != SeenStatus.seen:
             self.status = status
 
     def increment_appearance(self, count: int = 1) -> None:
@@ -50,14 +49,16 @@ class MonsterEntry:
 
     def reset_entry(self) -> None:
         """
-        Resets the monster entry to its initial state, with the status set to SeenStatus.seen and the appearance count set to 1.
+        Resets the monster entry to its initial state, with the status set
+        to SeenStatus.seen and the appearance count set to 1.
         """
         self.status = SeenStatus.seen
         self.appearance_count = 1
 
     def get_state(self) -> dict[str, Any]:
         """
-        Returns a dictionary representing the state of the monster entry, including its status and appearance count.
+        Returns a dictionary representing the state of the monster entry,
+        including its status and appearance count.
 
         Returns:
             A dictionary representing the state of the monster entry.
@@ -75,7 +76,8 @@ class Tuxepedia:
 
     def __init__(self) -> None:
         """
-        Initializes a new Tuxepedia object, which is an empty collection of monster entries.
+        Initializes a new Tuxepedia object, which is an empty collection of
+        monster entries.
         """
         self.entries: dict[str, MonsterEntry] = {}
 
@@ -83,48 +85,25 @@ class Tuxepedia:
         self, monster_slug: str, status: SeenStatus = SeenStatus.seen
     ) -> None:
         """
-        Adds a new monster entry to the Tuxepedia. If the monster is already in the Tuxepedia, its status is updated.
+        Adds a new monster entry to the Tuxepedia. If the monster is already
+        in the Tuxepedia, its status is updated.
 
         Parameters:
             monster_slug: The slug of the monster to add.
-            status: The status of the monster (seen or caught). Defaults to SeenStatus.seen.
-        """
-        if monster_slug in self.entries:
-            self.update_entry(monster_slug, status)
-        else:
-            self.entries[monster_slug] = MonsterEntry(status)
-
-    def update_entry(self, monster_slug: str, status: SeenStatus) -> None:
-        """
-        Updates the status of a monster entry in the Tuxepedia. If the monster is not in the Tuxepedia, a ValueError is raised.
-
-        Parameters:
-            monster_slug: The slug of the monster to update.
-            status: The new status of the monster.
+            status: The status of the monster (seen or caught). Defaults
+            to SeenStatus.seen.
         """
         if monster_slug in self.entries:
             entry = self.entries[monster_slug]
             entry.update_status(status)
+            entry.increment_appearance()
         else:
-            raise ValueError("Monster not found in Tuxepedia")
-
-    def update_appearance(self, monster_slug: str, count: int = 1) -> None:
-        """
-        Increments the appearance count of a monster entry in the Tuxepedia. If the monster is not in the Tuxepedia, a ValueError is raised.
-
-        Parameters:
-            monster_slug: The slug of the monster to update.
-            count: The new status of the monster.
-        """
-        if monster_slug in self.entries:
-            entry = self.entries[monster_slug]
-            entry.increment_appearance(count)
-        else:
-            raise ValueError("Monster not found in Tuxepedia")
+            self.entries[monster_slug] = MonsterEntry(status)
 
     def remove_entry(self, monster_slug: str) -> None:
         """
-        Removes a monster entry from the Tuxepedia. If the monster is not in the Tuxepedia, a ValueError is raised.
+        Removes a monster entry from the Tuxepedia. If the monster is not
+        in the Tuxepedia, a ValueError is raised.
 
         Parameters:
             monster_slug: The slug of the monster to remove.
@@ -145,7 +124,8 @@ class Tuxepedia:
 
     def get_seen_count(self) -> int:
         """
-        Returns the number of monsters in the Tuxepedia that have been seen (i.e., their status is SeenStatus.seen).
+        Returns the number of monsters in the Tuxepedia that have been seen
+        (i.e., their status is SeenStatus.seen).
 
         Returns:
             The number of monsters in the Tuxepedia that have been seen.
@@ -158,7 +138,8 @@ class Tuxepedia:
 
     def get_caught_count(self) -> int:
         """
-        Returns the number of monsters in the Tuxepedia that have been caught (i.e., their status is SeenStatus.caught).
+        Returns the number of monsters in the Tuxepedia that have been caught
+        (i.e., their status is SeenStatus.caught).
 
         Returns:
             The number of monsters in the Tuxepedia that have been caught.
@@ -171,7 +152,8 @@ class Tuxepedia:
 
     def get_appearance(self, monster_slug: str) -> int:
         """
-        Returns the appearance count of a monster entry in the Tuxepedia. If the monster is not in the Tuxepedia, 0 is returned.
+        Returns the appearance count of a monster entry in the Tuxepedia.
+        If the monster is not in the Tuxepedia, 0 is returned.
 
         Parameters:
             monster_slug: The slug of the monster to get the appearance count for.
@@ -185,10 +167,12 @@ class Tuxepedia:
 
     def get_most_frequent_monster(self) -> Optional[str]:
         """
-        Returns the slug of the most frequently appearing monster in the Tuxepedia, or None if the Tuxepedia is empty.
+        Returns the slug of the most frequently appearing monster in the Tuxepedia,
+        or None if the Tuxepedia is empty.
 
         Returns:
-            The slug of the most frequently appearing monster, or None if the Tuxepedia is empty.
+            The slug of the most frequently appearing monster, or None if the
+            Tuxepedia is empty.
         """
         if not self.entries:
             return None
@@ -198,13 +182,16 @@ class Tuxepedia:
 
     def get_most_frequent_monsters(self, n: int = 5) -> list[tuple[str, int]]:
         """
-        Returns a list of the n most frequently appearing monsters in the Tuxepedia, along with their appearance counts. If the Tuxepedia is empty, an empty list is returned.
+        Returns a list of the n most frequently appearing monsters in the Tuxepedia,
+        along with their appearance counts. If the Tuxepedia is empty, an empty list
+        is returned.
 
         Parameters:
             n: The number of most frequent monsters to return. Defaults to 5.
 
         Returns:
-            A list of the n most frequently appearing monsters, along with their appearance counts.
+            A list of the n most frequently appearing monsters, along with their
+            appearance counts.
         """
         if not self.entries:
             return []
@@ -219,7 +206,8 @@ class Tuxepedia:
 
     def get_monster_status_distribution(self) -> dict[SeenStatus, int]:
         """
-        Returns a dictionary representing the distribution of monster statuses in the Tuxepedia.
+        Returns a dictionary representing the distribution of monster statuses in
+        the Tuxepedia.
 
         Returns:
             A dictionary representing the distribution of monster statuses.
@@ -231,7 +219,8 @@ class Tuxepedia:
 
     def get_completeness(self, total_monsters: int) -> float:
         """
-        Returns the completeness of the Tuxepedia, which is the ratio of the number of monsters in the Tuxepedia to the total number of monsters.
+        Returns the completeness of the Tuxepedia, which is the ratio of the number
+        of monsters in the Tuxepedia to the total number of monsters.
 
         Parameters:
             total_monsters: The total number of monsters.
@@ -245,7 +234,8 @@ class Tuxepedia:
 
     def is_caught(self, monster_slug: str) -> bool:
         """
-        Returns True if the monster with the given slug has been caught, False otherwise.
+        Returns True if the monster with the given slug has been caught, False
+        otherwise.
 
         Parameters:
             monster_slug: The slug of the monster to check.
@@ -259,7 +249,8 @@ class Tuxepedia:
 
     def is_seen(self, monster_slug: str) -> bool:
         """
-        Returns True if the monster with the given slug has been seen, False otherwise.
+        Returns True if the monster with the given slug has been seen, False
+        otherwise.
 
         Parameters:
             monster_slug: The slug of the monster to check.
@@ -273,7 +264,8 @@ class Tuxepedia:
 
     def is_registered(self, monster_slug: str) -> bool:
         """
-        Returns True if the monster with the given slug is in the Tuxepedia, False otherwise.
+        Returns True if the monster with the given slug is in the Tuxepedia, False
+        otherwise.
 
         Parameters:
             monster_slug: The slug of the monster to check.
@@ -291,6 +283,16 @@ class Tuxepedia:
             A list of the slugs of all monsters in the Tuxepedia.
         """
         return list(self.entries.keys())
+
+    def reset(self) -> None:
+        """
+        Reset Tuxepedia by removing all the monsters SeenStatus.seen.
+        """
+        self.entries = {
+            entry: monster
+            for entry, monster in self.entries.items()
+            if monster.status != SeenStatus.seen
+        }
 
 
 def decode_tuxepedia(json_data: Optional[Mapping[str, Any]]) -> Tuxepedia:

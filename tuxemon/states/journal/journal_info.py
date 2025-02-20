@@ -165,18 +165,6 @@ class JournalInfoState(PygameMenuState):
             float=True,
         )
         lab8.translate(fix_measure(width, 0.50), fix_measure(height, 0.10))
-        # appeared
-        checks = local_session.player.tuxepedia.get_appearance(monster.slug)
-        base = T.translate("scan_count")
-        appeared = f"{base}: {checks}"
-        lab8a: Any = menu.add.label(
-            title=appeared,
-            label_id="number",
-            font_size=self.font_size_small,
-            align=locals.ALIGN_LEFT,
-            float=True,
-        )
-        lab8a.translate(fix_measure(width, 0.75), fix_measure(height, 0.10))
         # description
         desc = T.translate(f"{monster.slug}_description")
         desc = desc if self.caught else "-----"

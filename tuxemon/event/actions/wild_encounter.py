@@ -80,7 +80,6 @@ class WildEncounterAction(EventAction):
         environment = db.lookup(env, table="environment")
 
         player.tuxepedia.add_entry(current_monster.slug)
-        player.tuxepedia.update_appearance(current_monster.slug)
 
         self.session.client.queue_state(
             "CombatState",

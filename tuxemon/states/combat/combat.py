@@ -408,9 +408,9 @@ class CombatState(CombatAnimations):
 
             # record the useful properties of the last monster we fought
             for player in self.remaining_players:
-                if self.monsters_in_play[player]:
-                    mon = self.monsters_in_play[player][0]
-                    battlefield(local_session, mon)
+                if self.monsters_in_play[player] and not player.isplayer:
+                    for mon in self.monsters_in_play[player]:
+                        battlefield(local_session, mon)
 
         elif phase == "decision phase":
             self.reset_status_icons()
@@ -625,7 +625,23 @@ class CombatState(CombatAnimations):
                     if player in humans and ask:
                         self.ask_player_for_monster(player)
                     else:
-                        self.add_monster_into_play(player, next(available))
+                        monster = next(available)
+                        self.add_monster_into_play(player, monster)
+                        self.update_tuxepedia(player, monster)
+
+    def update_tuxepedia(self, player: NPC, monster: Monster) -> None:
+        """
+        Updates the tuxepedia for human players when a monster is encountered.
+
+        Parameters:
+            player: The player who encountered the monster.
+            monster: The monster that was encountered.
+        """
+        for other_player in self.players:
+            if other_player.isplayer and other_player != player:
+                if monster.slug not in self._combat_variables:
+                    other_player.tuxepedia.add_entry(monster.slug)
+                    self._combat_variables[monster.slug] = True
 
     def add_monster_into_play(
         self,

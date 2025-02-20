@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import has_status
+from tuxemon.combat import fainted
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -14,19 +14,16 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class TransferEffect(TechEffect):
+class LifeSwapEffect(TechEffect):
     """
-    Transfers a specified condition from one entity to another.
+    Swaps the current HP amounts of the two monsters.
 
-    The direction of the transfer is determined by the `direction` attribute,
-    which can be either "user_to_target" or "target_to_user".
-    If the source entity has the specified condition, it is removed from the
-    source and applied to the target.
+    Swaps the current HP amounts of the two monsters. The user receives
+    the target's HP (up to the user's max HP), and the target receives
+    the user's HP (up to the target's max HP).
     """
 
-    name = "transfer"
-    condition: str
-    direction: str
+    name = "life_swap"
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
@@ -38,14 +35,10 @@ class TransferEffect(TechEffect):
         )
         done = False
         if tech.hit:
-            source, dest = (
-                (user, target)
-                if self.direction == "user_to_target"
-                else (target, user)
-            )
-            if has_status(source, self.condition):
-                dest.status = source.status
-                source.status = []
+            if not fainted(user) and not fainted(target):
+                hp_user, hp_target = user.current_hp, target.current_hp
+                user.current_hp = min(user.hp, hp_target)
+                target.current_hp = min(target.hp, hp_user)
                 done = True
         return TechEffectResult(
             name=tech.name,

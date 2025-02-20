@@ -155,6 +155,7 @@ class CombatState(CombatAnimations):
         players: tuple[NPC, NPC],
         graphics: BattleGraphicsModel,
         combat_type: Literal["monster", "trainer"],
+        battle_mode: Literal["single", "double"],
     ) -> None:
         self.phase: Optional[CombatPhase] = None
         self._damage_map: list[DamageReport] = []
@@ -171,13 +172,14 @@ class CombatState(CombatAnimations):
         self._run: bool = False
         self._post_animation_task: Optional[Task] = None
         self._xp_message: Optional[str] = None
+        self._max_positions: dict[NPC, int] = {}
         self._status_icon_cache: dict[
             tuple[str, tuple[float, float]], Sprite
         ] = {}
         self._random_tech_hit: dict[Monster, float] = {}
         self._combat_variables: dict[str, Any] = {}
 
-        super().__init__(players, graphics)
+        super().__init__(players, graphics, battle_mode)
         self.is_trainer_battle = combat_type == "trainer"
         self.show_combat_dialog()
         self.transition_phase("begin")
@@ -321,11 +323,7 @@ class CombatState(CombatAnimations):
         elif phase == "housekeeping phase":
             # this will wait for players to fill battleground positions
             for player in self.active_players:
-                if len(alive_party(player)) == 1:
-                    player.max_position = 1
-                positions_available = player.max_position - len(
-                    self.monsters_in_play[player]
-                )
+                positions_available = self.update_player_positions(player)
                 if positions_available:
                     return None
             return "decision phase"
@@ -574,6 +572,37 @@ class CombatState(CombatAnimations):
         state.on_menu_selection = add  # type: ignore[assignment]
         state.escape_key_exits = False
 
+    def update_player_positions(self, player: NPC) -> int:
+        """
+        Updates the maximum positions for a player and returns the number of
+        available positions.
+
+        This function checks if the player has only one monster in their party,
+        and if so, sets the maximum positions to 1. If the player has more than
+        one monster in their party, it sets the maximum positions to 2 if the
+        battle is a double battle, and 1 otherwise. It also updates the feet
+        position of the monster if the battle is a double battle and the player
+        has only one monster in play.
+
+        Parameters:
+            player: The player to update the positions for.
+
+        Returns:
+            The number of available positions for the player.
+        """
+        if len(alive_party(player)) == 1:
+            self._max_positions[player] = 1
+            if self.is_double:
+                monster = self.monsters_in_play[player][0]
+                new_feet = self.get_feet_position(player, monster, False)
+                self.update_monster_feet(monster, new_feet)
+        else:
+            if self.is_double:
+                self._max_positions[player] = 2
+            else:
+                self._max_positions[player] = 1
+        return self._max_positions[player] - len(self.monsters_in_play[player])
+
     def fill_battlefield_positions(self, ask: bool = False) -> None:
         """
         Check the battlefield for unfilled positions and send out monsters.
@@ -587,11 +616,7 @@ class CombatState(CombatAnimations):
 
         # TODO: integrate some values for different match types
         for player in self.active_players:
-            if len(alive_party(player)) == 1:
-                player.max_position = 1
-            positions_available = player.max_position - len(
-                self.monsters_in_play[player]
-            )
+            positions_available = self.update_player_positions(player)
             if positions_available:
                 available = get_awake_monsters(
                     player, self.monsters_in_play[player], self._turn
@@ -1417,7 +1442,6 @@ class CombatState(CombatAnimations):
     def clean_combat(self) -> None:
         """Clean combat."""
         for player in self.players:
-            player.max_position = 1
             for mon in player.monsters:
                 # reset status stats
                 mon.set_stats()

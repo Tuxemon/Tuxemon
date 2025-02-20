@@ -23,9 +23,7 @@ logger = logging.getLogger(__name__)
 log_hdlr = logging.StreamHandler(sys.stdout)
 log_hdlr.setLevel(logging.DEBUG)
 log_hdlr.setFormatter(
-    logging.Formatter(
-        "%(asctime)s - %(name)s - " "%(levelname)s - %(message)s",
-    ),
+    logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s"),
 )
 
 
@@ -50,10 +48,8 @@ class Plugin(Generic[T]):
 class PluginManager:
     """Yapsy semi-compatible plugin manager."""
 
-    def __init__(
-        self,
-    ) -> None:
-        self.folders: Sequence[str] = []
+    def __init__(self) -> None:
+        self.folders: list[str] = []
         self.modules: list[str] = []
         self.file_extension = (".py", ".pyc")
         self.exclude_classes = ["IPlugin"]
@@ -68,78 +64,71 @@ class PluginManager:
             "condition.conditions",
         ]
 
-    def setPluginPlaces(self, plugin_folders: Sequence[str]) -> None:
-        """
-        Set the locations where to look for plugins.
+    def set_plugin_places(self, plugin_folders: Sequence[str]) -> None:
+        """Set plugin search locations."""
+        self.folders = list(plugin_folders)
 
-        Parameters:
-            plugin_folders: Sequence of folders that might contain plugins.
-
-        """
-        self.folders = plugin_folders
-
-    def collectPlugins(self) -> None:
-        """Collect the plugins from the folders."""
+    def collect_plugins(self) -> None:
+        """Collect plugins from the specified folders."""
         for folder in self.folders:
-            logger.debug("searching for plugins: %s", folder)
+            logger.debug(f"Searching for plugins: {folder}")
+            if not os.path.exists(folder):
+                logger.warning(f"Folder {folder} does not exist")
+                continue
+
             folder = folder.replace("\\", "/")
-            # Take the plugin folder and create a base module path based on it.
             match = folder[folder.rfind("tuxemon") :]
-            if len(match) == 0:
+            if not match:
                 raise RuntimeError(
-                    "Unable to determine plugin module path for: %s", folder
+                    f"Unable to determine plugin module path for: {folder}"
                 )
+
             module_path = match.replace("/", ".")
-            # Look for a ".plugin" in the plugin folder to create a list
-            # of modules to import.
-            modules = []
             for f in os.listdir(folder):
                 if f.endswith(self.file_extension):
-                    modules.append(module_path + "." + os.path.splitext(f)[0])
-            self.modules += modules
-        logger.debug("Modules to load: " + str(self.modules))
+                    module_name = os.path.splitext(f)[0]
+                    self.modules.append(f"{module_path}.{module_name}")
 
-    def getAllPlugins(
-        self,
-        *,
-        interface: type[InterfaceValue],
+        logger.debug(f"Modules to load: {self.modules}")
+
+    def get_all_plugins(
+        self, *, interface: type[InterfaceValue]
     ) -> Sequence[Plugin[type[InterfaceValue]]]:
-        """
-        Get a sequence of loaded plugins.
+        """Get all loaded plugins implementing the given interface."""
 
-        Parameters:
-            interface: Superclass or protocol of the returned classes.
+        if not isinstance(interface, type):
+            raise TypeError("interface must be a type")
 
-        Returns:
-            Sequence of plugins loaded.
+        imported_modules: list[Plugin[type[InterfaceValue]]] = []
+        for module_name in self.modules:
+            logger.debug(f"Searching module: {module_name}")
+            try:
+                module = importlib.import_module(module_name)
+            except ImportError as e:
+                logger.error(f"Failed to import module {module_name}: {e}")
+                continue
 
-        """
-        imported_modules = []
-        for module in self.modules:
-            logger.debug("Searching module: " + str(module))
-            m = importlib.import_module(module)
-            for c in self._getClassesFromModule(m, interface=interface):
-                class_name = c[0]
-                class_obj = c[1]
-                for pattern in self.include_patterns:
-                    if class_name in self.exclude_classes:
-                        logger.debug("Skipping " + str(module))
-                        continue
+            for class_name, class_obj in self._get_classes_from_module(
+                module, interface
+            ):
+                if class_name in self.exclude_classes:
+                    logger.debug(f"Skipping {module_name}")
+                    continue
 
-                    # Only import modules from the list of parent modules
-                    if pattern in str(class_obj):
-                        logger.debug("Importing: " + str(class_name))
-                        imported_modules.append(
-                            Plugin(module + "." + class_name, class_obj),
-                        )
+                if any(
+                    pattern in str(class_obj)
+                    for pattern in self.include_patterns
+                ):
+                    logger.debug(f"Importing: {class_name}")
+                    imported_modules.append(
+                        Plugin(f"{module_name}.{class_name}", class_obj)
+                    )
 
         return imported_modules
 
-    def _getClassesFromModule(
-        self,
-        module: ModuleType,
-        interface: type[InterfaceValue],
-    ) -> Iterable[tuple[str, type[InterfaceValue]]]:
+    def _get_classes_from_module(
+        self, module: ModuleType, interface: type
+    ) -> Iterable[tuple[str, type]]:
         # This is required because of
         # https://github.com/python/typing/issues/822
         #
@@ -150,36 +139,30 @@ class PluginManager:
             if interface is PluginObject
             else lambda c: inspect.isclass(c) and issubclass(c, interface)
         )
-
-        members = inspect.getmembers(module, predicate=predicate)
-        return members
+        return inspect.getmembers(module, predicate=predicate)
 
 
 def load_directory(plugin_folder: str) -> PluginManager:
     """
-    Loads and imports a directory of plugins.
+    Load plugins from a directory.
 
     Parameters:
         plugin_folder: The folder where to look for plugin files.
 
     Returns:
         A plugin manager, with the modules already loaded.
-
     """
     manager = PluginManager()
-    manager.setPluginPlaces([plugin_folder])
-    manager.collectPlugins()
-
+    manager.set_plugin_places([plugin_folder])
+    manager.collect_plugins()
     return manager
 
 
 def get_available_classes(
-    plugin_manager: PluginManager,
-    *,
-    interface: type[InterfaceValue],
+    plugin_manager: PluginManager, *, interface: type[InterfaceValue]
 ) -> Sequence[type[InterfaceValue]]:
     """
-    Gets the available classes in a plugin manager.
+    Get available classes from a plugin manager.
 
     Parameter:
         plugin_manager: Plugin manager with modules already loaded.
@@ -187,13 +170,11 @@ def get_available_classes(
 
     Returns:
         Sequence of loaded classes.
-
     """
-    classes = []
-    for plugin in plugin_manager.getAllPlugins(interface=interface):
-        classes.append(plugin.plugin_object)
-
-    return classes
+    return [
+        plugin.plugin_object
+        for plugin in plugin_manager.get_all_plugins(interface=interface)
+    ]
 
 
 # Overloads until https://github.com/python/mypy/issues/3737 is fixed
@@ -201,8 +182,7 @@ def get_available_classes(
 
 @overload
 def load_plugins(
-    path: str,
-    category: str = "plugins",
+    path: str, category: str = "plugins"
 ) -> Mapping[str, type[PluginObject]]:
     pass
 
@@ -221,7 +201,7 @@ def load_plugins(
     interface: Union[type[InterfaceValue], type[PluginObject]] = PluginObject,
 ) -> Mapping[str, Union[type[InterfaceValue], type[PluginObject]]]:
     """
-    Load classes using plugin system.
+    Load plugins from a directory and return them by name.
 
     Parameters:
         path: Location of the modules to load.
@@ -232,15 +212,17 @@ def load_plugins(
     Returns:
         A dictionary mapping the `name` attribute of each class to the class
         itself.
-
     """
-    classes = dict()
+    classes: dict[str, Union[type[InterfaceValue], type[PluginObject]]] = {}
     plugins = load_directory(path)
 
     for cls in get_available_classes(plugins, interface=interface):
-        name = getattr(cls, "name", None)
-        if name is None:
-            logger.error(f"found incomplete {category}: {cls.__name__}")
+        try:
+            name = cls.name
+        except AttributeError:
+            logger.error(
+                f"Class {cls.__name__} does not have a `name` attribute"
+            )
             continue
         classes[name] = cls
         logger.info(f"loaded {category}: {cls.name}")

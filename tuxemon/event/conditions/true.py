@@ -21,15 +21,4 @@ class TrueCondition(EventCondition):
     name = "true"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        """
-        This function always returns true.
-
-        Parameters:
-            session: The session object
-            condition: The map condition object.
-
-        Returns:
-            Always ``True``.
-
-        """
         return True

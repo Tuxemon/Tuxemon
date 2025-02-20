@@ -41,7 +41,6 @@ if TYPE_CHECKING:
     import pygame
 
     from tuxemon.npc import NPC
-    from tuxemon.states.combat.combat_classes import EnqueuedAction
 
 logger = logging.getLogger(__name__)
 
@@ -739,29 +738,6 @@ class Monster:
             self.faint()
         else:
             self.status = []
-
-    def speed_test(self, action: EnqueuedAction) -> int:
-        """
-        Calculate the speed modifier for the given action.
-        """
-        assert isinstance(action.method, Technique)
-        technique = action.method
-        multiplier_speed = prepare.MULTIPLIER_SPEED
-        base_speed = float(self.speed)
-        base_speed_bonus = multiplier_speed if technique.is_fast else 1.0
-        speed_modifier = base_speed * base_speed_bonus
-
-        # Add a controlled random element
-        speed_offset = prepare.SPEED_OFFSET
-        random_offset = random.uniform(-speed_offset, speed_offset)
-        speed_modifier += random_offset
-
-        # Ensure the speed modifier is not negative
-        speed_modifier = max(speed_modifier, 1)
-        # Use dodge as a tiebreaker
-        speed_modifier += float(self.dodge) * 0.01
-
-        return int(speed_modifier)
 
     def find_tech_by_id(self, instance_id: uuid.UUID) -> Optional[Technique]:
         """

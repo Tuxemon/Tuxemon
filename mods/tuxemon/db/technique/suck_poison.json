@@ -3,6 +3,7 @@
   "accuracy": 1.0,
   "animation": "drip_green",
   "effects": [
+    "transfer poison,user_to_target",
     "damage"
   ],
   "flip_axes": "",

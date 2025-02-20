@@ -1,7 +1,14 @@
 {
   "conditions": [
-    "is can_evolve",
-    "is has_path scoop_badge"
+    {
+      "type": "can_evolve",
+      "operator": "is"
+    },
+    {
+      "type": "has_path",
+      "parameters": ["scoop_badge"],
+      "operator": "is"
+    }
   ],
   "effects": [],
   "slug": "scoop_badge",

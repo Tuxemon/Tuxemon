@@ -15,10 +15,6 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class PlagueEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class PlagueEffect(TechEffect):
     """
@@ -36,7 +32,7 @@ class PlagueEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> PlagueEffectResult:
+    ) -> TechEffectResult:
 
         if random.random() < self.spreadness and (
             self.plague_slug not in target.plague
@@ -49,19 +45,22 @@ class PlagueEffect(TechEffect):
 
         params = {"target": target.name.upper()}
         plague_status = target.plague.get(self.plague_slug, None)
-        extra = T.format(
-            (
-                "combat_state_plague3"
-                if plague_status == PlagueType.infected
-                else "combat_state_plague0"
-            ),
-            params,
-        )
+        extra = [
+            T.format(
+                (
+                    "combat_state_plague3"
+                    if plague_status == PlagueType.infected
+                    else "combat_state_plague0"
+                ),
+                params,
+            )
+        ]
 
-        return {
-            "success": success,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": extra,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            success=success,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=extra,
+        )

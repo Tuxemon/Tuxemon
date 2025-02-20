@@ -24,11 +24,12 @@ class StartBattleAction(EventAction):
     Script usage:
         .. code-block::
 
-            start_battle <character1>,<character2>[,]
+            start_battle <character1>,<character2>[,music]
 
     Script parameters:
         character1: Either "player" or character slug name (e.g. "npc_maple").
         character2: Either "player" or character slug name (e.g. "npc_maple").
+        music: The name of the music file to play (Optional).
 
     """
 
@@ -54,17 +55,6 @@ class StartBattleAction(EventAction):
             logger.warning("Battle is not legal, won't start")
             return
 
-        # double (2 vs 2)
-        template1 = db.lookup(character1.template.slug, table="template")
-        template2 = db.lookup(character2.template.slug, table="template")
-
-        if (template1 and template1.double) or (
-            template2 and template2.double
-        ):
-            character1.max_position = 2
-            character2.max_position = 2
-
-        # environment
         env_slug = "grass"
         for fighter in [character1, character2]:
             if fighter.isplayer:
@@ -76,11 +66,10 @@ class StartBattleAction(EventAction):
 
         env = db.lookup(env_slug, table="environment")
 
-        # sort fighters
         fighters = sorted(
             [character1, character2], key=lambda x: not x.isplayer
         )
-        # start the battle
+
         logger.info(
             f"Starting battle between {fighters[0].name} and {fighters[1].name}!"
         )
@@ -89,9 +78,10 @@ class StartBattleAction(EventAction):
                 players=(fighters[0], fighters[1]),
                 combat_type="trainer",
                 graphics=env.battle_graphics,
+                battle_mode="single",
             )
         )
-        # music
+
         filename = env.battle_music if not self.music else self.music
         self.session.client.current_music.play(filename)
 

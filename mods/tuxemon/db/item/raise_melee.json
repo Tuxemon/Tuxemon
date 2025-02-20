@@ -1,7 +1,10 @@
 {
   "conditions": [],
   "effects": [
-    "change_stat melee,0.05"
+    {
+      "type": "change_stat",
+      "parameters": ["melee","0.05"]
+    }
   ],
   "slug": "raise_melee",
   "sort": "utility",

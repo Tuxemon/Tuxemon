@@ -32,7 +32,6 @@ if TYPE_CHECKING:
     import pygame
 
     from tuxemon.economy import Economy
-    from tuxemon.states.combat.combat_classes import EnqueuedAction
     from tuxemon.states.world.worldstate import WorldState
 
 
@@ -124,9 +123,6 @@ class NPC(Entity[NPCState]):
         self.monster_boxes = MonsterBoxes()
         self.item_boxes = ItemBoxes()
         self.pending_evolutions: list[tuple[Monster, Monster]] = []
-        # nr tuxemon fight
-        self.max_position: int = 1
-        self.speed = 10  # To determine combat order (not related to movement!)
         self.moves: Sequence[Technique] = []  # list of techniques
         self.steps: float = 0.0
 
@@ -812,6 +808,3 @@ class NPC(Entity[NPCState]):
                 return mis
 
         return None
-
-    def speed_test(self, action: EnqueuedAction) -> int:
-        return self.speed

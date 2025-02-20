@@ -7,6 +7,7 @@ from tuxemon import prepare
 from tuxemon.client import LocalPygameClient
 from tuxemon.db import Direction, MissionModel, MissionStatus, db
 from tuxemon.event.actions.char_move import parse_path_parameters
+from tuxemon.mission import MissionManager
 from tuxemon.player import Player
 from tuxemon.session import local_session
 
@@ -239,22 +240,23 @@ class TestMissionActions(unittest.TestCase):
             self.action = local_session.client.event_engine
             local_session.player = Player()
             self.player = local_session.player
-            self.player.missions = []
+            self.player.mission_manager = MissionManager()
             self._mission_model = {"no_type": self._mission}
             db.database["mission"] = self._mission_model
+            self.missions = self.player.mission_manager.missions
 
     def test_set_mission_add_success(self):
         _params = ["player", "no_type", "add"]
         self.action.execute_action("set_mission", _params)
-        self.assertEqual(len(self.player.missions), 1)
-        self.assertEqual(self.player.missions[0].slug, "no_type")
-        self.assertEqual(self.player.missions[0].status, self._pending)
+        self.assertEqual(len(self.missions), 1)
+        self.assertEqual(self.missions[0].slug, "no_type")
+        self.assertEqual(self.missions[0].status, self._pending)
 
     def test_set_mission_add_fail(self):
         _params = ["player", "no_type", "jimmy"]
         with self.assertRaises(ValueError):
             self.action.execute_action("set_mission", _params)
-        self.assertEqual(len(self.player.missions), 0)
+        self.assertEqual(len(self.missions), 0)
 
     def test_set_mission_add_multiple(self):
         self._mission_model["town"] = MissionModel(slug="town")
@@ -262,26 +264,26 @@ class TestMissionActions(unittest.TestCase):
         for slug in self._mission_model.keys():
             _params = ["player", slug, "add"]
             self.action.execute_action("set_mission", _params)
-        self.assertEqual(len(self.player.missions), 3)
+        self.assertEqual(len(self.missions), 3)
 
     def test_set_mission_add_status_success(self):
         _params = ["player", "no_type", "add", "completed"]
         self.action.execute_action("set_mission", _params)
-        self.assertEqual(len(self.player.missions), 1)
-        self.assertEqual(self.player.missions[0].status, self._completed)
+        self.assertEqual(len(self.missions), 1)
+        self.assertEqual(self.missions[0].status, self._completed)
 
     def test_set_mission_add_status_fail(self):
         _params = ["player", "no_type", "add", "jimmy"]
         with self.assertRaises(ValueError):
             self.action.execute_action("set_mission", _params)
-        self.assertEqual(len(self.player.missions), 0)
+        self.assertEqual(len(self.missions), 0)
 
     def test_set_mission_change_success(self):
         _params = ["player", "no_type", "add"]
         self.action.execute_action("set_mission", _params)
         _params = ["player", "no_type", "change", "failed"]
         self.action.execute_action("set_mission", _params)
-        self.assertEqual(self.player.missions[0].status, self._failed)
+        self.assertEqual(self.missions[0].status, self._failed)
 
     def test_set_mission_change_fail(self):
         _params = ["player", "no_type", "add"]
@@ -289,14 +291,14 @@ class TestMissionActions(unittest.TestCase):
         _params = ["player", "no_type", "change", "jimmy"]
         with self.assertRaises(ValueError):
             self.action.execute_action("set_mission", _params)
-        self.assertEqual(len(self.player.missions), 1)
+        self.assertEqual(len(self.missions), 1)
 
     def test_set_mission_remove_success(self):
         _params = ["player", "no_type", "add"]
         self.action.execute_action("set_mission", _params)
         _params = ["player", "no_type", "remove"]
         self.action.execute_action("set_mission", _params)
-        self.assertEqual(len(self.player.missions), 0)
+        self.assertEqual(len(self.missions), 0)
 
 
 class TestCharacterActions(unittest.TestCase):

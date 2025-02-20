@@ -317,7 +317,7 @@ code in this project is licenced under [the GPLv3](https://www.gnu.org/licenses/
 
 GPL v3+
 
-Copyright (C) 2014-2024 William Edwards <shadowapex@gmail.com>,
+Copyright (C) 2014-2025 William Edwards <shadowapex@gmail.com>,
 Benjamin Bean <superman2k5@gmail.com>
 
 This software is distributed under the GNU General Public Licence as

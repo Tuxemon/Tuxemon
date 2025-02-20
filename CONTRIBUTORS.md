@@ -1,7 +1,7 @@
 Tuxemon
 =========
 
-Copyright (C) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+Copyright (C) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 
 Programming
 ------------

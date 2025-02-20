@@ -95,6 +95,7 @@ class RandomBattleAction(EventAction):
                 players=(player, npc),
                 combat_type="trainer",
                 graphics=env.battle_graphics,
+                battle_mode="single",
             )
         )
 

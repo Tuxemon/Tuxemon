@@ -248,9 +248,9 @@ class TestSpeedTestFunction(unittest.TestCase):
         technique.is_fast = True
 
         results1 = [
-            speed_monster(self.monster1, technique) for _ in range(1000)
+            speed_monster(self.monster1, technique) for _ in range(10000)
         ]
-        results4 = [speed_monster(monster4, technique) for _ in range(1000)]
+        results4 = [speed_monster(monster4, technique) for _ in range(10000)]
 
         with self.subTest("Comparing different dodge values"):
             self.assertGreaterEqual(min(results1), 1)

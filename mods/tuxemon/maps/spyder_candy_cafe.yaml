@@ -12,7 +12,7 @@ events:
     conditions:
     - is char_at player
     - is char_facing player,down
-    - is party_size player,greater_than,1
+    - is party_size player,greater_than,0
     x: 8
     y: 11
     type: "event"

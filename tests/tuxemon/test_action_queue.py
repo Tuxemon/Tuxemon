@@ -6,10 +6,7 @@ from unittest.mock import MagicMock
 from tuxemon import prepare
 from tuxemon.formula import speed_monster
 from tuxemon.monster import Monster
-from tuxemon.states.combat.combat_classes import (
-    EnqueuedAction,
-    get_action_sort_key,
-)
+from tuxemon.states.combat.combat_classes import EnqueuedAction, SortManager
 from tuxemon.technique.technique import Technique
 
 
@@ -23,36 +20,73 @@ class TestGetActionSortKey(unittest.TestCase):
         self.tech.sort = "damage"
 
     def test_none_method(self):
-        action = EnqueuedAction(user=None, method=None, target=None)
-        self.assertEqual(get_action_sort_key(action), (0, 0))
+        action = EnqueuedAction(user=None, method=None, target=self.monster)
+        self.assertEqual(SortManager.get_action_sort_key(action), (0, 0))
 
     def test_none_user(self):
-        action = EnqueuedAction(user=None, method=self.tech, target=None)
-        self.assertEqual(get_action_sort_key(action), (0, 0))
+        action = EnqueuedAction(
+            user=None, method=self.tech, target=self.monster
+        )
+        self.assertEqual(SortManager.get_action_sort_key(action), (0, 0))
 
     def test_meta_action(self):
         self.tech.sort = "meta"
-        action = EnqueuedAction(user=None, method=self.tech, target=None)
+        action = EnqueuedAction(
+            user=self.monster, method=self.tech, target=self.monster
+        )
         self.assertEqual(
-            get_action_sort_key(action), (prepare.SORT_ORDER.index("meta"), 0)
+            SortManager.get_action_sort_key(action),
+            (SortManager.SORT_ORDER.index("meta"), 0),
         )
 
     def test_potion_action(self):
         self.tech.sort = "potion"
-        action = EnqueuedAction(user=None, method=self.tech, target=None)
-        self.assertEqual(
-            get_action_sort_key(action),
-            (prepare.SORT_ORDER.index("potion"), 0),
+        action = EnqueuedAction(
+            user=self.monster, method=self.tech, target=self.monster
         )
+        self.assertEqual(
+            SortManager.get_action_sort_key(action),
+            (SortManager.SORT_ORDER.index("potion"), 0),
+        )
+
+    def test_potion_action_with_none_user(self):
+        self.tech.sort = "potion"
+        action = EnqueuedAction(
+            user=None, method=self.tech, target=self.monster
+        )
+        self.assertEqual(SortManager.get_action_sort_key(action), (0, 0))
 
     def test_damage_action(self):
         self.tech.sort = "damage"
         action = EnqueuedAction(
-            user=self.monster, method=self.tech, target=None
+            user=self.monster, method=self.tech, target=self.monster
         )
         self.assertGreaterEqual(
-            get_action_sort_key(action),
-            (prepare.SORT_ORDER.index("potion"), 0),
+            SortManager.get_action_sort_key(action),
+            (SortManager.SORT_ORDER.index("potion"), 0),
+        )
+
+    def test_get_sort_index(self):
+        self.assertEqual(SortManager.get_sort_index("potion"), 0)
+        self.assertEqual(SortManager.get_sort_index("utility"), 1)
+        self.assertEqual(SortManager.get_sort_index("quest"), 2)
+        self.assertEqual(SortManager.get_sort_index("meta"), 3)
+        self.assertEqual(SortManager.get_sort_index("damage"), 4)
+        self.assertEqual(SortManager.get_sort_index("unknown"), 5)
+
+        class TestSortManager(SortManager):
+            SORT_ORDER = []
+
+        self.assertEqual(TestSortManager.get_sort_index("unknown"), 0)
+
+    def test_get_sort_index_empty_string(self):
+        self.assertEqual(
+            SortManager.get_sort_index(""), len(SortManager.SORT_ORDER)
+        )
+
+    def test_get_sort_index_whitespace_string(self):
+        self.assertEqual(
+            SortManager.get_sort_index("   "), len(SortManager.SORT_ORDER)
         )
 
 

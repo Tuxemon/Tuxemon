@@ -122,8 +122,6 @@ class NPC(Entity[NPCState]):
         self.monster_boxes = MonsterBoxes()
         self.item_boxes = ItemBoxes()
         self.pending_evolutions: list[tuple[Monster, Monster]] = []
-        # nr tuxemon fight
-        self.max_position: int = 1
         self.moves: Sequence[Technique] = []  # list of techniques
         self.steps: float = 0.0
 

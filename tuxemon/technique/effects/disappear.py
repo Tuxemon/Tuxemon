@@ -42,7 +42,7 @@ class DisappearEffect(TechEffect):
             land_technique.load(self.attack)
             # Add the land action to the pending queue
             land_action = EnqueuedAction(user, land_technique, target)
-            combat._pending_queue.append(land_action)
+            combat._action_queue.add_pending(land_action, combat._turn)
 
         return TechEffectResult(
             name=tech.name,

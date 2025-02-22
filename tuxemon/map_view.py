@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import logging
 import os
-from collections.abc import Mapping
 from typing import TYPE_CHECKING, Union
 
 import pygame
@@ -20,14 +19,14 @@ if TYPE_CHECKING:
     from tuxemon.npc import NPC
 
 SpriteMap = Union[
-    Mapping[str, pygame.surface.Surface],
-    Mapping[str, SurfaceAnimation],
+    dict[str, SurfaceAnimation], dict[str, pygame.surface.Surface]
 ]
 
 
 class SpriteRenderer:
-    """A class for rendering sprites."""
-    animation_mapping = {
+    """A class for rendering NPC sprites."""
+
+    ANIMATION_MAPPING = {
         "walking": {
             "up": "back_walk",
             "down": "front_walk",
@@ -43,71 +42,82 @@ class SpriteRenderer:
     }
 
     def __init__(self, npc: NPC) -> None:
+        """Initialize the SpriteRenderer."""
         self.npc = npc
-        self.standing: dict[str, pygame.surface.Surface] = {}
-        self.sprite: dict[str, surfanim.SurfaceAnimation] = {}
+        self.standing: dict[
+            Union[EntityFacing, str], pygame.surface.Surface
+        ] = {}
+        self.sprite: dict[str, SurfaceAnimation] = {}
         self.surface_animations = surfanim.SurfaceAnimationCollection()
-        self.playerWidth = 0
-        self.playerHeight = 0
+        self.player_width = 0
+        self.player_height = 0
         self.rect = pygame.rect.Rect(0, 0, 0, 0)
-        self.load_sprites()
+        self._load_sprites()
 
-    def load_sprites(self) -> None:
-        """Load sprite graphics."""
-        self.interactive_obj: bool = False
-        if self.npc.template.slug == "interactive_obj":
-            self.interactive_obj = True
+    def _load_sprites(self) -> None:
+        """Load sprite graphics based on NPC type."""
+        is_interactive_object = self.npc.template.slug == "interactive_obj"
 
-        self.standing = {}
-        for standing_type in list(EntityFacing):
-            if self.interactive_obj:
-                filename = f"{self.npc.template.sprite_name}.png"
-                path = os.path.join("sprites_obj", filename)
-            else:
-                filename = f"{self.npc.template.sprite_name}_{standing_type.value}.png"
-                path = os.path.join("sprites", filename)
-            self.standing[standing_type] = load_and_scale(path)
+        for facing in EntityFacing:
+            filename = (
+                f"{self.npc.template.sprite_name}.png"
+                if is_interactive_object
+                else f"{self.npc.template.sprite_name}_{facing.value}.png"
+            )
+            path = os.path.join(
+                "sprites_obj" if is_interactive_object else "sprites", filename
+            )
+            self.standing[facing] = load_and_scale(path)
 
-        self.playerWidth, self.playerHeight = self.standing[
+        self.player_width, self.player_height = self.standing[
             EntityFacing.front
         ].get_size()
 
-        n_frames = 3
-        frame_duration = (
-            (1000 / prepare.CONFIG.player_walkrate) / n_frames / 1000 * 2
-        )
+        if not is_interactive_object:
+            self._load_walking_animations()
 
-        anim_types = list(EntityFacing)
-        for anim_type in anim_types:
-            if not self.interactive_obj:
-                images: list[str] = []
-                anim_0 = f"sprites/{self.npc.template.sprite_name}_{anim_type.value}_walk"
-                anim_1 = f"sprites/{self.npc.template.sprite_name}_{anim_type.value}.png"
-                images.append(f"{anim_0}.{str(0).zfill(3)}.png")
-                images.append(anim_1)
-                images.append(f"{anim_0}.{str(1).zfill(3)}.png")
-                images.append(anim_1)
-
-                frames: list[tuple[pygame.surface.Surface, float]] = []
-                for image in images:
-                    surface = load_and_scale(image)
-                    frames.append((surface, frame_duration))
-
-                _surfanim = surfanim.SurfaceAnimation(frames, loop=True)
-                self.sprite[f"{anim_type.value}_walk"] = _surfanim
-
-        self.surface_animations.add(self.sprite)
         self.rect = pygame.rect.Rect(
             (
                 self.npc.tile_pos[0],
                 self.npc.tile_pos[1],
-                self.playerWidth,
-                self.playerHeight,
+                self.player_width,
+                self.player_height,
             )
         )
 
+    def _load_walking_animations(self) -> None:
+        """Load walking animation sprites."""
+        frame_duration = self._calculate_frame_duration()
+
+        for facing in EntityFacing:
+            images: list[str] = []
+            anim_0 = (
+                f"sprites/{self.npc.template.sprite_name}_{facing.value}_walk"
+            )
+            anim_1 = (
+                f"sprites/{self.npc.template.sprite_name}_{facing.value}.png"
+            )
+            images.append(f"{anim_0}.{str(0).zfill(3)}.png")
+            images.append(anim_1)
+            images.append(f"{anim_0}.{str(1).zfill(3)}.png")
+            images.append(anim_1)
+
+            frames: list[tuple[pygame.surface.Surface, float]] = []
+            for image in images:
+                surface = load_and_scale(image)
+                frames.append((surface, frame_duration))
+
+            _surfanim = surfanim.SurfaceAnimation(frames, loop=True)
+            self.sprite[f"{facing.value}_walk"] = _surfanim
+
+        self.surface_animations.add(self.sprite)
+
+    def _calculate_frame_duration(self) -> float:
+        """Calculate the frame duration for walking animations."""
+        return (1000 / prepare.CONFIG.player_walkrate) / 3 / 1000 * 2
+
     def update(self, time_delta: float) -> None:
-        """Update the sprite animation."""
+        """Update the sprite animation and position."""
         self.surface_animations.update(time_delta)
         self.rect.topleft = self.npc.tile_pos
 
@@ -116,10 +126,10 @@ class SpriteRenderer:
         frame_dict: SpriteMap = (
             self.sprite if self.npc.moving else self.standing
         )
-        frame = frame_dict[ani]
-        if isinstance(frame, SurfaceAnimation):
-            surface = frame.get_current_frame()
-            frame.rate = self.npc.moverate / prepare.CONFIG.player_walkrate
-            return surface
-        else:
+        if ani in frame_dict:
+            frame = frame_dict[ani]
+            if isinstance(frame, SurfaceAnimation):
+                frame.rate = self.npc.moverate / prepare.CONFIG.player_walkrate
+                return frame.get_current_frame()
             return frame
+        raise ValueError(f"Animation '{ani}' not found.")

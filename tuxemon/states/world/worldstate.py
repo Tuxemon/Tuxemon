@@ -550,7 +550,7 @@ class WorldState(state.State):
         """
         sprite_renderer = npc.sprite_renderer
         moving = "walking" if npc.moving else "idle"
-        state = sprite_renderer.animation_mapping[moving][npc.facing.value]
+        state = sprite_renderer.ANIMATION_MAPPING[moving][npc.facing.value]
         frame = sprite_renderer.get_frame(state)
         world = WorldSurfaces(frame, proj(npc.position3), layer)
         return [world]

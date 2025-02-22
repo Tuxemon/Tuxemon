@@ -221,7 +221,7 @@ class NPC(Entity[NPCState]):
         self.template.slug = _template["slug"]
         self.template.sprite_name = _template["sprite_name"]
         self.template.combat_front = _template["combat_front"]
-        self.sprite_renderer.load_sprites()
+        self.sprite_renderer._load_sprites()
 
     def pathfind(self, destination: tuple[int, int]) -> None:
         """

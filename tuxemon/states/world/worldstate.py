@@ -62,21 +62,6 @@ direction_map: Mapping[int, Direction] = {
     intentions.RIGHT: Direction.right,
 }
 
-SpriteMap = Union[
-    Mapping[str, pygame.surface.Surface],
-    Mapping[str, SurfaceAnimation],
-]
-
-animation_mapping = {
-    "walking": {
-        "up": "back_walk",
-        "down": "front_walk",
-        "left": "left_walk",
-        "right": "right_walk",
-    },
-    "idle": {"up": "back", "down": "front", "left": "left", "right": "right"},
-}
-
 
 @dataclass
 class WorldSurfaces:
@@ -494,11 +479,12 @@ class WorldState(state.State):
             for npc, surface in self.bubble.items():
                 cx, cy = self.get_pos_from_tilepos(Vector2(npc.tile_pos))
                 bubble_rect = surface.get_rect()
-                bubble_rect.centerx = npc.rect.centerx
-                bubble_rect.bottom = npc.rect.top
+                bubble_rect.centerx = npc.sprite_renderer.rect.centerx
+                bubble_rect.bottom = npc.sprite_renderer.rect.top
                 bubble_rect.x = cx
                 bubble_rect.y = cy - (
-                    surface.get_height() + int(npc.rect.height / 10)
+                    surface.get_height()
+                    + int(npc.sprite_renderer.rect.height / 10)
                 )
                 bubble = (surface, bubble_rect, 100)
                 screen_surfaces.append(bubble)
@@ -562,22 +548,11 @@ class WorldState(state.State):
             position of the NPC and the layer.
 
         """
-
-        def get_frame(d: SpriteMap, ani: str) -> pygame.surface.Surface:
-            frame = d[ani]
-            if isinstance(frame, SurfaceAnimation):
-                surface = frame.get_current_frame()
-                frame.rate = npc.moverate / prepare.CONFIG.player_walkrate
-                return surface
-            else:
-                return frame
-
-        frame_dict: SpriteMap = npc.sprite if npc.moving else npc.standing
+        sprite_renderer = npc.sprite_renderer
         moving = "walking" if npc.moving else "idle"
-        state = animation_mapping[moving][npc.facing]
-        world = WorldSurfaces(
-            get_frame(frame_dict, state), proj(npc.position3), layer
-        )
+        state = sprite_renderer.animation_mapping[moving][npc.facing.value]
+        frame = sprite_renderer.get_frame(state)
+        world = WorldSurfaces(frame, proj(npc.position3), layer)
         return [world]
 
     ####################################################

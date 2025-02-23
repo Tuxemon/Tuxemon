@@ -9,7 +9,8 @@ from typing import Optional, final
 from tuxemon.animation_entity import AnimationEntity
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
-from tuxemon.states.world.worldstate import AnimationInfo, WorldState
+from tuxemon.map_view import AnimationInfo
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -74,7 +75,7 @@ class PlayMapAnimationAction(EventAction):
                 return
             position = ((int(self.tile_pos_x)), (self.tile_pos_y))
 
-        animations = world_state.map_animations
+        animations = world_state.map_renderer.map_animations
         if animation_name in animations:
             logger.debug(f"{animation_name} loaded")
             animations[animation_name].position = position

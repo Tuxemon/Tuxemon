@@ -41,5 +41,5 @@ class StartCinemaModeAction(EventAction):
 
     def start(self) -> None:
         world = self.session.client.get_state_by_name(WorldState)
-        world.cinema_y_ratio = self.aspect_y_ratio
-        world.cinema_x_ratio = self.aspect_x_ratio
+        world.map_renderer.cinema_y_ratio = self.aspect_y_ratio
+        world.map_renderer.cinema_x_ratio = self.aspect_x_ratio

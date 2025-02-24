@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 7,
-            "technique": "stampede"
+            "technique": "egg_smash"
         },
         {
             "level_learned": 13,
@@ -54,7 +54,7 @@
     "evolutions": [],
     "history": [],
     "terrains": ["desert", "woodland"],
-    "tags": ["food", "healing", "light"],
+    "tags": ["food", "healing", "light", "bird"],
     "shape": "sprite",
     "stage": "standalone",
     "types": [

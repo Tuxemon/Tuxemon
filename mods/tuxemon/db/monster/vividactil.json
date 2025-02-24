@@ -28,11 +28,15 @@
         },
         {
             "level_learned": 19,
-            "technique": "peck"
+            "technique": "crushing_bite"
         },
         {
             "level_learned": 25,
             "technique": "frostbite"
+        },
+        {
+            "level_learned": 31,
+            "technique": "burrow_blast"
         },
         {
             "level_learned": 55,

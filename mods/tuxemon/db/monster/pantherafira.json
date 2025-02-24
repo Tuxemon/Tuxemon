@@ -47,7 +47,7 @@
             "evo_stage": "stage1"
         }
     ],
-    "terrains": [],
+    "terrains": ["desert", "grassland"],
     "tags": ["flame", "bite", "light"],
     "shape": "hunter",
     "stage": "basic",

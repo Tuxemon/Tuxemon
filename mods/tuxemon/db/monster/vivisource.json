@@ -32,7 +32,11 @@
         },
         {
             "level_learned": 25,
-            "technique": "goad"
+            "technique": "water_blast"
+        },
+        {
+            "level_learned": 31,
+            "technique": "depth_charge"
         }
     ],
     "evolutions": [],

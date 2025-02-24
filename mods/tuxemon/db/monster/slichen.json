@@ -71,7 +71,7 @@
             "evo_stage": "stage2"
         }
     ],
-    "terrains": [],
+    "terrains": ["swamp", "underground"],
     "tags": ["plant", "rock", "ground", "toxic"],
     "shape": "blob",
     "stage": "basic",

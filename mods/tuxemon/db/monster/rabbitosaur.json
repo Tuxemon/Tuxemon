@@ -35,7 +35,11 @@
             "technique": "snowstorm"
         },
         {
-            "level_learned": 40,
+            "level_learned": 37,
+            "technique": "burrow_blast"
+        },
+        {
+            "level_learned": 43,
             "technique": "energy_beam"
         }
     ],

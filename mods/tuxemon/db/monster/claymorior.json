@@ -47,8 +47,12 @@
             "technique": "shuriken"
         },
         {
-            "level_learned": 40,
+            "level_learned": 43,
             "technique": "earthquake"
+        },
+        {
+            "level_learned": 55,
+            "technique": "rocky_barrage"
         }
     ],
     "evolutions": [

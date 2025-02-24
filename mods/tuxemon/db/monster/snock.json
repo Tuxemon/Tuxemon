@@ -51,7 +51,7 @@
             "evo_stage": "stage1"
         }
     ],
-    "terrains": [],
+    "terrains": ["urban"],
     "tags": ["darkness", "pseudopod", "ghost", "shapeshifter"],
     "shape": "serpent",
     "stage": "basic",

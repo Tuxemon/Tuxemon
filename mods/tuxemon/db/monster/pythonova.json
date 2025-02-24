@@ -25,6 +25,14 @@
         {
             "level_learned": 19,
             "technique": "flamethrower"
+        },
+        {
+            "level_learned": 25,
+            "technique": "strangulation"
+        },
+        {
+            "level_learned": 31,
+            "technique": "oven"
         }
     ],
     "evolutions": [],

@@ -1604,6 +1604,12 @@ msgstr "The user fires a sharp, crystalline projectile at the opponent."
 msgid "crystal"
 msgstr "Crystal"
 
+msgid "cutting_leaves_description"
+msgstr "They charge into the opponent with cutting, sharp leaves that may snag against the foe."
+
+msgid "cutting_leaves"
+msgstr "Cutting Leaves"
+
 msgid "demiurge_description"
 msgstr "The user undergoes a transformation, healing itself and confusing the opponent."
 
@@ -1622,6 +1628,12 @@ msgstr "{user} fails to submerge!"
 msgid "depth_charge"
 msgstr "Depth Charge"
 
+msgid "diet_description"
+msgstr "They go on a diet of healthy food only, making them healthy and harder to kill."
+
+msgid "diet"
+msgstr "Diet"
+
 msgid "divinity_beam_description"
 msgstr "A ray of divinity blinds those who look upon it."
 
@@ -1639,6 +1651,12 @@ msgstr "The ground shakes violently as the user unleashes a powerful ground atta
 
 msgid "earthquake"
 msgstr "Earthquake"
+
+msgid "egg_smash_description"
+msgstr "The user throws an egg or part of an egg to smash into the opponent."
+
+msgid "egg_smash"
+msgstr "Egg Smash"
 
 msgid "electric_multibite_description"
 msgstr "The user bites repeatedly while channeling electricity. May shock the target."
@@ -1760,6 +1778,18 @@ msgstr "The user channels a powerful water stream."
 msgid "flow"
 msgstr "Flow"
 
+msgid "flower_armor_description"
+msgstr "The user creates an armor out of flowers."
+
+msgid "flower_armor"
+msgstr "Flower Armor"
+
+msgid "flower_bloom_description"
+msgstr "A hard to evade massive bloom of flower petals blasts like a blizzard across the landscape."
+
+msgid "flower_bloom"
+msgstr "Flower Bloom"
+
 msgid "fluff_up_description"
 msgstr "The user's body puffs up, healing its wounds."
 
@@ -1772,6 +1802,12 @@ msgstr "The user draws energy from a mystical font to heal itself."
 msgid "font"
 msgstr "Font"
 
+msgid "food_fight_description"
+msgstr "A weak but fast attack of throwing food at the opponent."
+
+msgid "food_fight"
+msgstr "Food Fight"
+
 msgid "frostbite_description"
 msgstr "The user shoots a freezing blast that inflicts poison on the opponent."
 
@@ -1783,6 +1819,12 @@ msgstr "The user becomes enraged."
 
 msgid "fume"
 msgstr "Fume"
+
+msgid "fungal_spore_description"
+msgstr "On touch, the user explodes with spores. These have a small chance of infecting the target and leeching life from them."
+
+msgid "fungal_spore"
+msgstr "Fungal Spore"
 
 msgid "geyser_description"
 msgstr "The user erupts with a powerful water spout, changing the opponent's type to Water."
@@ -1820,6 +1862,12 @@ msgstr "The user digs into the ground, finding treasure or attacking itself."
 msgid "gold_digger"
 msgstr "Gold Digger"
 
+msgid "gourmet_description"
+msgstr "Healing move by devouring food."
+
+msgid "gourmet"
+msgstr "Gourmet"
+
 msgid "greenstone_description"
 msgstr "The user strikes with the force of a falling stone."
 
@@ -1838,6 +1886,12 @@ msgstr "The user creates a powerful wind that blows the opponent back."
 msgid "gust"
 msgstr "Gust"
 
+msgid "hallucinogen_spore_description"
+msgstr "The user releases a cloud of hallucinogenic spores, disorienting the opponent and altering their perception of reality."
+
+msgid "hallucinogen_spore"
+msgstr "Hallucinogen Spore"
+
 msgid "hammerhead_description"
 msgstr "The user charges forward, striking the opponent with its head."
 
@@ -1849,6 +1903,12 @@ msgstr "The user soars high into the air before diving down with a powerful atta
 
 msgid "hawk"
 msgstr "Hawk"
+
+msgid "heavenly_desserts_description"
+msgstr "A bizarre move that can both heal you and send you to heaven by how good it tastes."
+
+msgid "heavenly_desserts"
+msgstr "Heavenly Desserts"
 
 msgid "hibernate_description"
 msgstr "The user falls into a restorative sleep."
@@ -1898,6 +1958,12 @@ msgstr "The user enters a berserker state, attacking with relentless fury and tr
 msgid "invictus"
 msgstr "Invictus"
 
+msgid "just_desserts_description"
+msgstr "Revenge is a dish best served with poisoned sweets."
+
+msgid "just_desserts"
+msgstr "Just Desserts"
+
 msgid "kindling_flame_description"
 msgstr "The user ignites with inner fire, increasing its attack power."
 
@@ -1916,11 +1982,29 @@ msgstr "The user creates a bright light that illuminates the battlefield, boosts
 msgid "lantern"
 msgstr "Lantern"
 
+msgid "laser_beam_description"
+msgstr "A powerful ranged energy attack that may blind that goes at the speed of light."
+
+msgid "laser_beam"
+msgstr "Laser Beam"
+
 msgid "lava_description"
 msgstr "The user erupts with molten lava, burning both itself and the opponent."
 
 msgid "lava"
 msgstr "Lava"
+
+msgid "leaf_barrage_description"
+msgstr "Barrage the opponent with a series of leaves."
+
+msgid "leaf_barrage"
+msgstr "Leaf Barrage"
+
+msgid "leaf_stab_description"
+msgstr "The user throws a prickly sharp leaf, which induces a burning feeling on contact as the stab wound bleeds."
+
+msgid "leaf_stab"
+msgstr "Leaf Stab"
 
 msgid "levitate_description"
 msgstr "Combatants float into the air, giving them a vantage point but leaving both struggling to connect with their hand-to-hand attacks."
@@ -1964,6 +2048,12 @@ msgstr "The user erupts with a torrent of molten rock."
 msgid "magma"
 msgstr "Magma"
 
+msgid "magnetic_body_description"
+msgstr "They create a powerful magnet, sending even the tiniest bits of metal ricocheting across the field."
+
+msgid "magnetic_body"
+msgstr "Magnetic Body"
+
 msgid "meltdown_description"
 msgstr "The user unleashes a corrosive attack that damages the opponent."
 
@@ -1981,6 +2071,12 @@ msgstr "The user shrouds itself in a cloak of darkness, striking out with shadow
 
 msgid "midnight_mantle"
 msgstr "Midnight Mantle"
+
+msgid "mind_explosion_description"
+msgstr "A powerful psychic or mushroom hallucinogen attack."
+
+msgid "mind_explosion"
+msgstr "Mind Explosion"
 
 msgid "mind_vise_description"
 msgstr "The user traps the opponent's mind, preventing them from acting."
@@ -2066,6 +2162,12 @@ msgstr "The user fires off an energy ball that causes a mystical transformation 
 msgid "orbs"
 msgstr "Orbs"
 
+msgid "oven_description"
+msgstr "The user throws themselves into a fiery oven or pyre, then re-emerges to attack."
+
+msgid "oven"
+msgstr "Oven"
+
 msgid "overfeed_description"
 msgstr "The user overloads the opponent with energy, slowing them down."
 
@@ -2114,6 +2216,12 @@ msgstr "The user creates an illusionary copy of itself that attacks the opponent
 msgid "phantasmal_force"
 msgstr "Phantasmal Force"
 
+msgid "piece_of_cake_description"
+msgstr "They charge up so everything is as easy as cake, and heal a tiny bit."
+
+msgid "piece_of_cake"
+msgstr "Piece of Cake"
+
 msgid "pit_description"
 msgstr "The user creates a pit beneath the opponent, causing them to fall and take damage."
 
@@ -2137,6 +2245,12 @@ msgstr "Releases a cloud of pollen, dealing damage to opponents and potentially 
 
 msgid "pollen_blast"
 msgstr "Pollen Blast"
+
+msgid "potluck_description"
+msgstr "An exchange of gifts."
+
+msgid "potluck"
+msgstr "Potluck"
 
 msgid "pouch_description"
 msgstr "The user refreshes themselves with a tasty morsel from a pouch or bag."
@@ -2227,6 +2341,12 @@ msgstr "A heavy rock falls on the target."
 
 msgid "rock"
 msgstr "Rock"
+
+msgid "rocky_barrage_description"
+msgstr "They throw a powerful barrage of rocks."
+
+msgid "rocky_barrage"
+msgstr "Rocky Barrage"
 
 msgid "roll_description"
 msgstr "The user curls into a ball and rolls over or against the opponent."
@@ -2407,6 +2527,12 @@ msgstr "The user clamps down with jaws reinforced by metal. A powerful biting at
 
 msgid "steel_jaws"
 msgstr "Steel Jaws"
+
+msgid "stick_description"
+msgstr "The user uses a stick, plant part or twig to poke or smack the opponent."
+
+msgid "stick"
+msgstr "Stick"
 
 msgid "sting_description"
 msgstr "The user inflicts a painful sting, injecting poison into the opponent's body."

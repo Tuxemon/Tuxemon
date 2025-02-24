@@ -33,6 +33,14 @@
         {
             "level_learned": 31,
             "technique": "blossom"
+        },
+        {
+            "level_learned": 40,
+            "technique": "flower_armor"
+        },
+        {
+            "level_learned": 52,
+            "technique": "flower_bloom"
         }
     ],
     "evolutions": [],

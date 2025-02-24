@@ -53,7 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
-    "terrains": [],
+    "terrains": ["desert"],
     "tags": ["ground", "rock"],
     "shape": "hunter",
     "stage": "standalone",

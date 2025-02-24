@@ -36,7 +36,7 @@
         },
         {
             "level_learned": 28,
-            "technique": "greenstone"
+            "technique": "trample"
         },
         {
             "level_learned": 31,
@@ -44,7 +44,7 @@
         },
         {
             "level_learned": 40,
-            "technique": "thorn_burst"
+            "technique": "cutting_leaves"
         }
     ],
     "evolutions": [

@@ -25,6 +25,26 @@
         {
             "level_learned": 13,
             "technique": "sting"
+        },
+        {
+            "level_learned": 16,
+            "technique": "shuriken"
+        },
+        {
+            "level_learned": 19,
+            "technique": "steel_jaws"
+        },
+        {
+            "level_learned": 25,
+            "technique": "riposte"
+        },
+        {
+            "level_learned": 31,
+            "technique": "give_all"
+        },
+        {
+            "level_learned": 37,
+            "technique": "magnetic_body"
         }
     ],
     "evolutions": [],

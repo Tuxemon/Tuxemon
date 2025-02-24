@@ -48,7 +48,7 @@
         },
         {
             "level_learned": 40,
-            "technique": "ants"
+            "technique": "flower_bloom"
         }
     ],
     "evolutions": [
@@ -67,7 +67,7 @@
             "evo_stage": "stage2"
         }
     ],
-    "terrains": [],
+    "terrains": ["grassland", "jungle", "woodland"],
     "tags": ["love", "plant", "toxic"],
     "shape": "humanoid",
     "stage": "basic",

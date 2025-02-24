@@ -39,12 +39,12 @@
             "technique": "thunderclap"
         },
         {
-            "level_learned": 40,
-            "technique": "shadow_blast"
+            "level_learned": 37,
+            "technique": "magnetic_body"
         },
         {
-            "level_learned": 55,
-            "technique": "energy_beam"
+            "level_learned": 43,
+            "technique": "laser_beam"
         }
     ],
     "evolutions": [],

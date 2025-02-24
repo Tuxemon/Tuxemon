@@ -28,7 +28,7 @@
         },
         {
             "level_learned": 19,
-            "technique": "all_in"
+            "technique": "phantasmal_force"
         },
         {
             "level_learned": 25,
@@ -48,7 +48,7 @@
         },
         {
             "level_learned": 40,
-            "technique": "phantasmal_force"
+            "technique": "all_in"
         }
     ],
     "evolutions": [],

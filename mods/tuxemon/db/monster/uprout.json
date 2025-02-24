@@ -25,6 +25,22 @@
         {
             "level_learned": 19,
             "technique": "nest"
+        },
+        {
+            "level_learned": 25,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 28,
+            "technique": "potluck"
+        },
+        {
+            "level_learned": 31,
+            "technique": "leaf_barrage"
+        },
+        {
+            "level_learned": 37,
+            "technique": "cutting_leaves"
         }
     ],
     "evolutions": [],
@@ -35,7 +51,7 @@
         }
     ],
     "terrains": ["grassland", "jungle", "woodland"],
-    "tags": ["plant"],
+    "tags": ["plant", "bird"],
     "shape": "blob",
     "stage": "stage1",
     "types": [

@@ -39,7 +39,7 @@
         }
     ],
     "terrains": ["boreal/snow", "mountains", "underground"],
-    "tags": ["bite", "claws", "fury"],
+    "tags": ["bite", "claws", "fury", "ground", "darkness"],
     "shape": "hunter",
     "stage": "stage1",
     "types": [

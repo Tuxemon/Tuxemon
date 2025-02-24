@@ -28,7 +28,7 @@
         },
         {
             "level_learned": 19,
-            "technique": "strangulation"
+            "technique": "grinding"
         },
         {
             "level_learned": 25,
@@ -48,7 +48,7 @@
         },
         {
             "level_learned": 40,
-            "technique": "grinding"
+            "technique": "strangulation"
         }
     ],
     "evolutions": [],

@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
+import os
 import uuid
 from collections.abc import Generator
 from math import cos, pi, sin
@@ -46,6 +47,45 @@ region_properties = [
     "endure",
     "key",
 ]
+
+
+class MapLoader:
+    @staticmethod
+    def load_map_data(path: str) -> TuxemonMap:
+        """
+        Returns map data as a dictionary to be used for map changing.
+
+        Parameters:
+            path: Path of the map to load.
+
+        Returns:
+            Loaded map.
+        """
+        txmn_map = TMXMapLoader().load(path)
+        yaml_files = [path.replace(".tmx", ".yaml")]
+
+        if txmn_map.scenario:
+            _scenario = prepare.fetch("maps", f"{txmn_map.scenario}.yaml")
+            yaml_files.append(_scenario)
+
+        _events = list(txmn_map.events)
+        _inits = list(txmn_map.inits)
+        events = {"event": _events, "init": _inits}
+
+        yaml_loader = YAMLEventLoader()
+
+        for yaml_file in yaml_files:
+            if os.path.exists(yaml_file):
+                yaml_data = yaml_loader.load_events(yaml_file, "event")
+                events["event"].extend(yaml_data["event"])
+                yaml_data = yaml_loader.load_events(yaml_file, "init")
+                events["init"].extend(yaml_data["init"])
+            else:
+                logger.warning(f"YAML file {yaml_file} not found")
+
+        txmn_map.events = events["event"]
+        txmn_map.inits = events["init"]
+        return txmn_map
 
 
 class YAMLEventLoader:

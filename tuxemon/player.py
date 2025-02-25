@@ -3,16 +3,33 @@
 from __future__ import annotations
 
 import logging
+from typing import TYPE_CHECKING
 
 from tuxemon import prepare, time_handler
 from tuxemon.map import proj
 from tuxemon.npc import NPC
-from tuxemon.states.world.worldstate import WorldState
+from tuxemon.session import local_session
+
+if TYPE_CHECKING:
+    from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
 
-# Class definition for the player.
+class PlayerManager:
+    @staticmethod
+    def initialize_player(world_state: WorldState) -> None:
+        if local_session.player is None:
+            new_player = Player(prepare.PLAYER_NPC, world=world_state)
+            local_session.player = new_player
+
+    @staticmethod
+    def update_player_state(world_state: WorldState) -> None:
+        player = local_session.player
+        world_state.add_player(player)
+        world_state.stop_char(player)
+
+
 class Player(NPC):
     """Object for Players. WIP."""
 

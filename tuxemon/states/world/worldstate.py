@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import itertools
 import logging
-import os
 import uuid
 from collections import defaultdict
 from collections.abc import Mapping, MutableMapping, Sequence
@@ -36,11 +35,12 @@ from tuxemon.map import (
     pairs,
     proj,
 )
-from tuxemon.map_loader import TMXMapLoader, YAMLEventLoader
+from tuxemon.map_loader import MapLoader
 from tuxemon.math import Vector2
 from tuxemon.platform.const import intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event
+from tuxemon.player import PlayerManager
 from tuxemon.session import local_session
 from tuxemon.states.world.world_classes import BoundaryChecker
 from tuxemon.states.world.world_menus import WorldMenuState
@@ -112,8 +112,6 @@ class WorldState(state.State):
     ) -> None:
         super().__init__()
 
-        from tuxemon.player import Player
-
         self.boundary_checker = BoundaryChecker()
         self.teleporter = Teleporter()
         # Provide access to the screen surface
@@ -160,9 +158,7 @@ class WorldState(state.State):
 
         self.map_animations: dict[str, AnimationInfo] = {}
 
-        if local_session.player is None:
-            new_player = Player(prepare.PLAYER_NPC, world=self)
-            local_session.player = new_player
+        PlayerManager.initialize_player(self)
 
         self.camera = Camera(local_session.player, self.boundary_checker)
 
@@ -1220,7 +1216,7 @@ class WorldState(state.State):
             map_name: The name of the map to load.
         """
         self.load_and_update_map(map_name)
-        self.update_player_state()
+        PlayerManager.update_player_state(self)
 
     def load_and_update_map(self, map_name: str) -> None:
         """
@@ -1235,7 +1231,7 @@ class WorldState(state.State):
             map_name: The name of the map to load.
         """
         logger.debug(f"Loading map '{map_name}' from disk.")
-        map_data = self.load_map_data(map_name)
+        map_data = MapLoader.load_map_data(map_name)
 
         self.current_map = map_data
         self.collision_map = map_data.collision_map
@@ -1254,54 +1250,6 @@ class WorldState(state.State):
         """
         self.npcs = []
         self.npcs_off_map = []
-
-    def update_player_state(self) -> None:
-        """
-        Updates the player's state after changing maps.
-
-        Parameters:
-            player: The player object to update.
-        """
-        player = local_session.player
-        self.add_player(player)
-        self.stop_char(player)
-
-    def load_map_data(self, path: str) -> TuxemonMap:
-        """
-        Returns map data as a dictionary to be used for map changing.
-
-        Parameters:
-            path: Path of the map to load.
-
-        Returns:
-            Loaded map.
-
-        """
-        txmn_map = TMXMapLoader().load(path)
-        yaml_files = [path.replace(".tmx", ".yaml")]
-
-        if txmn_map.scenario:
-            _scenario = prepare.fetch("maps", f"{txmn_map.scenario}.yaml")
-            yaml_files.append(_scenario)
-
-        _events = list(txmn_map.events)
-        _inits = list(txmn_map.inits)
-        events = {"event": _events, "init": _inits}
-
-        yaml_loader = YAMLEventLoader()
-
-        for yaml_file in yaml_files:
-            if os.path.exists(yaml_file):
-                yaml_data = yaml_loader.load_events(yaml_file, "event")
-                events["event"].extend(yaml_data["event"])
-                yaml_data = yaml_loader.load_events(yaml_file, "init")
-                events["init"].extend(yaml_data["init"])
-            else:
-                logger.warning(f"YAML file {yaml_file} not found")
-
-        txmn_map.events = events["event"]
-        txmn_map.inits = events["init"]
-        return txmn_map
 
     @no_type_check  # only used by multiplayer which is disabled
     def check_interactable_space(self) -> bool:

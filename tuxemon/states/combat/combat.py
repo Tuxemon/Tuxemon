@@ -163,7 +163,9 @@ class CombatState(CombatAnimations):
         self._action_queue = ActionQueue()
         self._decision_queue: list[Monster] = []
         self._pending_queue: list[EnqueuedAction] = []
-        self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
+        self._monster_sprite_map: MutableMapping[
+            Union[NPC, Monster], Sprite
+        ] = {}
         self._layout = dict()  # player => home areas on screen
         self._turn: int = 0
         self._prize: int = 0
@@ -246,51 +248,7 @@ class CombatState(CombatAnimations):
 
         """
         super().draw(surface)
-        self.draw_hp_bars()
-        self.draw_exp_bars()
-
-    def create_rect_for_bar(
-        self, hud: Sprite, width: int, height: int, top_offset: int = 0
-    ) -> Rect:
-        """
-        Creates a Rect object for a bar.
-
-        Parameters:
-            hud: The HUD sprite.
-            width: The width of the bar.
-            height: The height of the bar.
-            top_offset: The top offset of the bar.
-
-        Returns:
-            A Rect object representing the bar.
-        """
-        rect = Rect(0, 0, tools.scale(width), tools.scale(height))
-        rect.right = hud.image.get_width() - tools.scale(8)
-        rect.top += tools.scale(top_offset)
-        return rect
-
-    def draw_hp_bars(self) -> None:
-        """Go through the HP bars and redraw them."""
-        show_player_hp = self.graphics.hud.hp_bar_player
-        show_opponent_hp = self.graphics.hud.hp_bar_opponent
-
-        for monster, hud in self.hud.items():
-            if hud.player and show_player_hp:
-                rect = self.create_rect_for_bar(hud, 70, 8, 18)
-            elif not hud.player and show_opponent_hp:
-                rect = self.create_rect_for_bar(hud, 70, 8, 12)
-            else:
-                continue
-            self._hp_bars[monster].draw(hud.image, rect)
-
-    def draw_exp_bars(self) -> None:
-        """Go through the EXP bars and redraw them."""
-        show_player_exp = self.graphics.hud.exp_bar_player
-
-        for monster, hud in self.hud.items():
-            if hud.player and show_player_exp:
-                rect = self.create_rect_for_bar(hud, 70, 6, 31)
-                self._exp_bars[monster].draw(hud.image, rect)
+        self.ui.draw_all_ui(self.graphics, self.hud)
 
     def determine_phase(
         self,

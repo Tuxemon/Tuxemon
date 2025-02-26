@@ -70,6 +70,7 @@ class State:
 
         # TODO: fix local session
         self.client = local_session.client
+        self._hooks: dict[str, list[Callable[..., None]]] = {}
 
     @property
     def name(self) -> str:
@@ -189,6 +190,7 @@ class State:
         """
         self.animations.update(time_delta)
         self.sprites.update(time_delta)
+        self.trigger_hook("update", time_delta)
 
     def draw(self, surface: pygame.surface.Surface) -> None:
         """
@@ -202,6 +204,7 @@ class State:
             surface: Surface to be rendered onto.
 
         """
+        self.trigger_hook("draw", surface)
 
     def resume(self) -> None:
         """
@@ -218,6 +221,7 @@ class State:
         timers, etc.
 
         """
+        self.trigger_hook("resume")
 
     def pause(self) -> None:
         """
@@ -234,6 +238,7 @@ class State:
         graphics dim, etc.
 
         """
+        self.trigger_hook("pause")
 
     def shutdown(self) -> None:
         """
@@ -245,6 +250,28 @@ class State:
         Make sure to release any references to objects that may cause
         cyclical dependencies.
         """
+        self.trigger_hook("shutdown")
+
+    def register_hook(
+        self, hook_name: str, callback: Callable[..., None]
+    ) -> None:
+        if hook_name not in self._hooks:
+            self._hooks[hook_name] = []
+        self._hooks[hook_name].append(callback)
+
+    def unregister_hook(
+        self, hook_name: str, callback: Callable[..., None]
+    ) -> None:
+        if hook_name in self._hooks:
+            try:
+                self._hooks[hook_name].remove(callback)
+            except ValueError:
+                pass
+
+    def trigger_hook(self, hook_name: str, *args: Any, **kwargs: Any) -> None:
+        if hook_name in self._hooks:
+            for callback in self._hooks[hook_name]:
+                callback(*args, **kwargs)
 
 
 class StateManager:
@@ -264,12 +291,84 @@ class StateManager:
         on_state_change: Optional[Callable[[], None]] = None,
     ) -> None:
         self.package = package
-        # TODO: consider API for handling hooks
-        self._on_state_change_hook = on_state_change
         self._state_queue: list[tuple[str, Mapping[str, Any]]] = []
         self._state_stack: list[State] = []
         self._state_dict: dict[str, type[State]] = {}
         self._resume_set: set[State] = set()
+        self._global_hooks: dict[str, list[Callable[..., None]]] = {}
+        if on_state_change:
+            self.register_global_hook("on_state_change", on_state_change)
+        self.register_global_hook("pre_state_update", lambda time_delta: None)
+        self.register_global_hook("post_state_update", lambda time_delta: None)
+
+    def register_global_hook(
+        self, hook_name: str, callback: Callable[..., None]
+    ) -> None:
+        """
+        Registers a callback function for a specific hook name.
+
+        Parameters:
+            hook_name: The name of the hook.
+            callback: The callback function to register.
+        """
+        if not isinstance(hook_name, str) or not hook_name:
+            raise ValueError(f"Hook '{hook_name}' must be a non-empty string")
+        if not callable(callback):
+            raise ValueError("Callback must be a callable function")
+        if hook_name not in self._global_hooks:
+            self._global_hooks[hook_name] = []
+        self._global_hooks[hook_name].append(callback)
+
+    def unregister_global_hook(
+        self, hook_name: str, callback: Callable[..., None]
+    ) -> None:
+        """
+        Unregisters a previously registered callback function for a
+        specific hook name.
+
+        Parameters:
+            hook_name: The name of the hook.
+            callback: The callback function to unregister.
+        """
+        if hook_name not in self._global_hooks:
+            raise ValueError(f"Hook '{hook_name}' not found")
+        try:
+            self._global_hooks[hook_name].remove(callback)
+        except ValueError:
+            raise ValueError("Callback not found for hook")
+
+    def trigger_global_hook(
+        self, hook_name: str, *args: Any, **kwargs: Any
+    ) -> None:
+        """
+        Triggers all registered callback functions for a specific hook
+        name, passing in any additional arguments.
+
+        Parameters:
+            hook_name: The name of the hook.
+            *args: Additional positional arguments to pass to the callbacks.
+            **kwargs: Additional keyword arguments to pass to the callbacks.
+        """
+        if hook_name not in self._global_hooks:
+            raise ValueError(f"Hook name '{hook_name}' not found")
+        for callback in self._global_hooks[hook_name]:
+            callback(*args, **kwargs)
+
+    def is_hook_registered(self, hook_name: str) -> bool:
+        """
+        Checks if a hook with the given name is registered.
+        """
+        return hook_name in self._global_hooks
+
+    def debug_hooks(self) -> None:
+        """
+        Prints out all registered hooks and their callback functions for
+        debugging purposes.
+        """
+        for hook_name, callbacks in self._global_hooks.items():
+            logger.debug(f"Hook: {hook_name}")
+            for i, callback in enumerate(callbacks):
+                logger.debug(f"  Callback {i+1}: {callback.__name__}")
 
     def auto_state_discovery(self) -> None:
         """
@@ -372,9 +471,11 @@ class StateManager:
 
         """
         logger.debug("updating states")
+        self.trigger_global_hook("pre_state_update", time_delta)
         for state in self.active_states:
             self._check_resume(state)
             state.update(time_delta)
+        self.trigger_global_hook("post_state_update", time_delta)
 
     def _check_resume(self, state: State) -> None:
         """
@@ -465,8 +566,8 @@ class StateManager:
             state.shutdown()
             if self._state_stack:
                 self._resume_set.add(self._state_stack[0])
-            if self._on_state_change_hook:
-                self._on_state_change_hook()
+            if self.is_hook_registered("on_state_change"):
+                self.trigger_global_hook("on_state_change")
         else:
             logger.debug("pop-remove state: %s", state.name)
             self._state_stack.remove(state)
@@ -572,8 +673,8 @@ class StateManager:
         self._resume_set.add(instance)
         self._state_stack.insert(0, instance)
 
-        if self._on_state_change_hook:
-            self._on_state_change_hook()
+        if self.is_hook_registered("on_state_change"):
+            self.trigger_global_hook("on_state_change")
 
         return instance
 

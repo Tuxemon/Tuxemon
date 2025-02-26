@@ -28,7 +28,6 @@ from tuxemon.db import Direction
 from tuxemon.entity import Entity
 from tuxemon.graphics import ColorLike
 from tuxemon.map import (
-    PathfindNode,
     RegionProperties,
     TuxemonMap,
     dirs2,
@@ -38,6 +37,7 @@ from tuxemon.map import (
 )
 from tuxemon.map_loader import TMXMapLoader, YAMLEventLoader
 from tuxemon.math import Vector2
+from tuxemon.movement import PathfindNode
 from tuxemon.platform.const import intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event

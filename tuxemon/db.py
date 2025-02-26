@@ -260,6 +260,12 @@ class ItemBehaviors(BaseModel):
     )
 
 
+class WorldMenuEntry(BaseModel):
+    position: int
+    label_key: str
+    state: str
+
+
 class ItemModel(BaseModel):
     model_config = ConfigDict(title="Item")
     slug: str = Field(..., description="The slug of the item")
@@ -297,7 +303,7 @@ class ItemModel(BaseModel):
     animation: Optional[str] = Field(
         None, description="Animation to play for this item"
     )
-    world_menu: tuple[int, str, str] = Field(
+    world_menu: Optional[WorldMenuEntry] = Field(
         None,
         description="Item adds to World Menu a button (position, label -inside the PO -,state, eg. 3:nu_phone:PhoneState)",
     )

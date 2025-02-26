@@ -401,10 +401,8 @@ class LocalPygameClient:
         Compute and print the frames per second.
 
         This function only prints FPS if that option has been set in the
-        config.
-        In order to have a long enough time interval to accurately compute the
-        FPS, it only prints the FPS if at least one second has elapsed since
-        last time it printed them.
+        config. It only prints the FPS if at least one second has elapsed
+        since the last time it printed them.
 
         Parameters:
             clock_tick: Seconds elapsed since the last ``update`` call.
@@ -415,18 +413,19 @@ class LocalPygameClient:
 
         Returns:
             Updated values of ``fps_timer`` and ``frames``. They will be the
-            same as the valued passed unless the FPS are printed, in which case
+            same as the values passed unless the FPS are printed, in which case
             they are reset to 0.
-
         """
-        if self.show_fps:
-            fps_timer += clock_tick
-            if fps_timer >= 1:
-                with_fps = f"{self.caption} - {frames / fps_timer:.2f} FPS"
-                pg.display.set_caption(with_fps)
-                return 0, 0
+        if not self.show_fps:
             return fps_timer, frames
-        return 0, 0
+
+        fps_timer += clock_tick
+        if fps_timer >= 1:
+            with_fps = f"{self.caption} - {frames / fps_timer:.2f} FPS"
+            pg.display.set_caption(with_fps)
+            return 0, 0
+
+        return fps_timer, frames
 
     def add_clients_to_map(self, registry: Mapping[str, Any]) -> None:
         """

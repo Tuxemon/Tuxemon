@@ -8317,6 +8317,66 @@ msgstr "Please, now return the form to the Shop Assistant, so we can give you th
 msgid "spyder_intro_shopkeeper4"
 msgstr "I'm sorry, you are not a Gold member. This offer is for Gold members only."
 
+msgid "spyder_trainer1_dante1"
+msgstr "I expect only the best. I've heard these tuxemon are quite exceptional."
+
+msgid "spyder_trainer1_dante2"
+msgstr "Indeed, these are exceptional tuxemon. I'm sure you'll find it to your liking."
+
+msgid "spyder_trainer1_dante3"
+msgstr "Yes, yes, very good. Now, let's see if it lives up to the hype."
+
+msgid "spyder_trainer1_dante4"
+msgstr "I trust it will. However, even the most powerful tuxemon require a skilled trainer."
+
+msgid "spyder_trainer2_dante1"
+msgstr "Here's my form! I can't wait to see which tuxemon I get. I've been training for this moment!"
+
+msgid "spyder_trainer2_dante2"
+msgstr "I can see your excitement! I hope your tuxemon lives up to your expectations."
+
+msgid "spyder_trainer2_dante3"
+msgstr "Alright! Let's see if this one has the stats to beat everyone else!"
+
+msgid "spyder_trainer2_dante4"
+msgstr "A competitive spirit is always good. Just remember to treat your tuxemon with respect."
+
+msgid "spyder_trainer3_dante1"
+msgstr "Um, here's my form. I hope everything's alright."
+
+msgid "spyder_trainer3_dante2"
+msgstr "There's no need to worry. I'm sure you'll do just fine."
+
+msgid "spyder_trainer3_dante3"
+msgstr "Oh, wow... It's really... mine? I hope I can train it well."
+
+msgid "spyder_trainer3_dante4"
+msgstr "Every trainer starts somewhere. With patience and dedication, you'll both grow stronger."
+
+msgid "spyder_trainer4_dante1"
+msgstr "Hi! I'm so excited! These tuxemon sound amazing. Thank you for this opportunity!"
+
+msgid "spyder_trainer4_dante2"
+msgstr "It's a pleasure to see such enthusiasm! I'm glad you're excited."
+
+msgid "spyder_trainer4_dante3"
+msgstr "Oh! It's so cute! I can't wait to see how strong it is."
+
+msgid "spyder_trainer4_dante4"
+msgstr "They are indeed! I hope you have many wonderful adventures together."
+
+msgid "spyder_trainer5_dante1"
+msgstr "Form."
+
+msgid "spyder_trainer5_dante2"
+msgstr "A focused approach is admirable."
+
+msgid "spyder_trainer5_dante3"
+msgstr "This will be a strong partner."
+
+msgid "spyder_trainer5_dante4"
+msgstr "I have no doubts. Treat it well."
+
 msgid "spyder_preintro00"
 msgstr "Alright, let's get this over with. This is the tenth take. Can we please just nail this already?"
 

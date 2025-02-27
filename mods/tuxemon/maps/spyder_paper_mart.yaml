@@ -84,18 +84,53 @@ events:
     - lock_controls
     - translated_dialog spyder_intro_shopkeeper3
     - pathfind spyder_billie,6,7
+    - char_face spyder_billie,right
+    - translated_dialog spyder_trainer1_dante1,,top
+    - translated_dialog spyder_trainer1_dante2
+    - wait 1
+    - char_face spyder_billie,down
+    - translated_dialog spyder_trainer1_dante3,,top
+    - translated_dialog spyder_trainer1_dante4
     - pathfind spyder_billie,6,10
     - remove_npc spyder_billie
     - pathfind spyder_papermart_harith,6,7
+    - char_face spyder_papermart_harith,right
+    - translated_dialog spyder_trainer2_dante1,,top
+    - translated_dialog spyder_trainer2_dante2
+    - wait 1
+    - char_face spyder_papermart_harith,down
+    - translated_dialog spyder_trainer2_dante3,,top
+    - translated_dialog spyder_trainer2_dante4
     - pathfind spyder_papermart_harith,6,10
     - remove_npc spyder_papermart_harith
     - pathfind spyder_route2_roddick,6,7
+    - char_face spyder_route2_roddick,right
+    - translated_dialog spyder_trainer3_dante1,,top
+    - translated_dialog spyder_trainer3_dante2
+    - wait 1
+    - char_face spyder_route2_roddick,down
+    - translated_dialog spyder_trainer3_dante3,,top
+    - translated_dialog spyder_trainer3_dante4
     - pathfind spyder_route2_roddick,6,10
     - remove_npc spyder_route2_roddick
     - pathfind spyder_papermart_shirley,6,7
+    - char_face spyder_papermart_shirley,right
+    - translated_dialog spyder_trainer4_dante1,,top
+    - translated_dialog spyder_trainer4_dante2
+    - wait 1
+    - char_face spyder_papermart_shirley,down
+    - translated_dialog spyder_trainer4_dante3,,top
+    - translated_dialog spyder_trainer4_dante4
     - pathfind spyder_papermart_shirley,6,10
     - remove_npc spyder_papermart_shirley
     - pathfind spyder_papermart_miles,6,7
+    - char_face spyder_papermart_miles,right
+    - translated_dialog spyder_trainer5_dante1,,top
+    - translated_dialog spyder_trainer5_dante2
+    - wait 1
+    - char_face spyder_papermart_miles,down
+    - translated_dialog spyder_trainer5_dante3,,top
+    - translated_dialog spyder_trainer5_dante4
     - pathfind spyder_papermart_miles,6,10
     - remove_npc spyder_papermart_miles
     - pathfind player,6,7

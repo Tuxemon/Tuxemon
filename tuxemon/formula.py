@@ -143,9 +143,10 @@ def simple_damage_calculate(
 
     """
     if technique.range not in range_map:
-        raise RuntimeError(
+        logger.error(
             f"Unhandled damage category for technique '{technique.name}': {technique.range}"
         )
+        return 0, 0.0
 
     user_stat, target_stat = range_map[technique.range]
 

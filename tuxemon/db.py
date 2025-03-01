@@ -678,14 +678,20 @@ class MonsterModel(BaseModel, validate_assignment=True):
     def element_exists(
         cls: MonsterModel, elements: Sequence[str]
     ) -> Sequence[str]:
-      if not elements:
-          return elements
+        if not elements:
+            return elements
 
-      invalid_elements = [element for element in elements if not has.db_entry("element", element)]
-      if invalid_elements:
-          raise ValueError(f"elements {', '.join(invalid_elements)} don't exist in the db")
+        invalid_elements = [
+            element
+            for element in elements
+            if not has.db_entry("element", element)
+        ]
+        if invalid_elements:
+            raise ValueError(
+                f"elements {', '.join(invalid_elements)} don't exist in the db"
+            )
 
-      return elements
+        return elements
 
     @field_validator("shape")
     def shape_exists(cls: MonsterModel, v: str) -> str:
@@ -930,12 +936,19 @@ class TechniqueModel(BaseModel):
     def element_exists(
         cls: TechniqueModel, elements: Sequence[str]
     ) -> Sequence[str]:
-        if elements:
-            for element in elements:
-                if not has.db_entry("element", element):
-                    raise ValueError(
-                        f"element '{element}' doesn't exist in the db"
-                    )
+        if not elements:
+            return elements
+
+        invalid_elements = [
+            element
+            for element in elements
+            if not has.db_entry("element", element)
+        ]
+        if invalid_elements:
+            raise ValueError(
+                f"elements {', '.join(invalid_elements)} don't exist in the db"
+            )
+
         return elements
 
 

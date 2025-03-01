@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 from typing import Any
 
 from tuxemon.event import MapCondition
@@ -12,6 +13,7 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 
+@dataclass
 class VariableLowestCondition(EventCondition):
     """
     Check if a specific variable is the lowest among the others.

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 
 from tuxemon.event import MapCondition, collide, get_npc
 from tuxemon.event.eventcondition import EventCondition
@@ -10,9 +11,6 @@ from tuxemon.npc import NPC
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
-
-
-from dataclasses import dataclass
 
 
 @dataclass

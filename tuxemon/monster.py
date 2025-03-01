@@ -22,7 +22,6 @@ from tuxemon.db import (
     MonsterEvolutionItemModel,
     MonsterHistoryItemModel,
     MonsterMovesetItemModel,
-    MonsterShape,
     PlagueType,
     ResponseCondition,
     StatType,
@@ -133,7 +132,7 @@ class Monster:
 
         self.types: list[Element] = []
         self.default_types: list[Element] = []
-        self.shape = MonsterShape.default
+        self.shape = ""
         self.randomly = True
         self.out_of_range = False
         self.got_experience = False
@@ -206,8 +205,9 @@ class Monster:
         self.description = T.translate(f"{results.slug}_description")
         self.cat = results.category
         self.category = T.translate(f"cat_{self.cat}")
-        self.shape = results.shape or MonsterShape.default
+        self.shape = results.shape
         self.stage = results.stage or EvolutionStage.standalone
+        self.tags = results.tags
         self.taste_cold = self.set_taste_cold(self.taste_cold)
         self.taste_warm = self.set_taste_warm(self.taste_warm)
         self.steps = self.steps

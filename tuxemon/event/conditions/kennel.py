@@ -14,6 +14,10 @@ logger = logging.getLogger(__name__)
 OPTIONS: list[str] = ["visible", "hidden", "exist"]
 
 
+from dataclasses import dataclass
+
+
+@dataclass
 class KennelCondition(EventCondition):
     """
     Check if a kennel is hidden or visible.

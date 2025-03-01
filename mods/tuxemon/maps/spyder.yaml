@@ -22,8 +22,8 @@ events:
     - modify_money bill_cathedral,,battle_last_prize
     - set_variable battle_last_prize:0
     conditions:
-    - is variable_set battle_last_result,_won
-    - is variable_set battle_last_winner,player
+    - is variable_set battle_last_result:won
+    - is variable_set battle_last_winner:player
     - is money_is bill_cathedral,greater_than,0
     - is variable_is battle_last_prize,greater_than,0
     type: "event"

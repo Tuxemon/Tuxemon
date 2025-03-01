@@ -52,6 +52,59 @@ class EventData(TypedDict, total=False):
     target: str
 
 
+class NetworkManager:
+    def __init__(self, parent: LocalPygameClient) -> None:
+        self.parent = parent
+        self.server: Optional[TuxemonServer] = None
+        self.client: Optional[TuxemonClient] = None
+        self.ishost = False
+        self.isclient = False
+        self._was_host = False
+        self._was_client = False
+
+    def initialize(self) -> None:
+        self.server = TuxemonServer(self.parent)
+        self.client = TuxemonClient(self.parent)
+
+    def update(self, time_delta: float) -> None:
+        if self.client and self.client.listening:
+            self.client.update(time_delta)
+            self.parent.add_clients_to_map(self.client.client.registry)
+
+        if self.server and self.server.listening:
+            self.server.update()
+
+        is_currently_host = bool(self.server and self.server.listening)
+        is_currently_client = bool(self.client and self.client.listening)
+
+        if is_currently_host != self._was_host:
+            self.ishost = is_currently_host
+            self._was_host = is_currently_host
+            if self.ishost:
+                logger.info("NetworkManager: Host connection just established")
+            else:
+                logger.info("NetworkManager: Host connection just lost")
+
+        if is_currently_client != self._was_client:
+            self.isclient = is_currently_client
+            self._was_client = is_currently_client
+            if self.isclient:
+                logger.info(
+                    "NetworkManager: Client connection just established"
+                )
+            else:
+                logger.info("NetworkManager: Client connection just lost")
+
+    def is_host(self) -> bool:
+        return self.ishost
+
+    def is_client(self) -> bool:
+        return self.isclient
+
+    def is_connected(self) -> bool:
+        return self.client is not None and self.client.listening
+
+
 class TuxemonServer:
     """Server class for multiplayer games. Creates a netaria server and
     synchronizes the local game with all client states.
@@ -375,7 +428,7 @@ class TuxemonClient:
             self.join_multiplayer(time_delta)
 
         if self.client.registered and not self.populated:
-            self.game.isclient = True
+            self.game.network_manager.isclient = True
             self.populate_player()
 
         if self.ping_time >= 2:
@@ -480,7 +533,7 @@ class TuxemonClient:
 
         """
         # Don't allow player to join another game if they are hosting.
-        if self.game.ishost:
+        if self.game.network_manager.ishost:
             self.enable_join_multiplayer = False
             return False
 
@@ -644,7 +697,10 @@ class TuxemonClient:
 
         if event_type and kb_key:
             if event_type == "CLIENT_FACING":
-                if self.game.isclient or self.game.ishost:
+                if (
+                    self.game.network_manager.isclient
+                    or self.game.network_manager.ishost
+                ):
                     event_data = {
                         "type": event_type,
                         "event_number": self.event_list[event_type],

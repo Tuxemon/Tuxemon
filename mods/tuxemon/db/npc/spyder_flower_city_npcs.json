@@ -1,142 +1,114 @@
 [
   {
     "slug": "spyder_flower_cady",
-    "template": 
-      {
-        "sprite_name": "snugglepot",
-        "combat_front": "yellowbelt",
-        "slug": "snugglepot"
-      }
-  
+    "template": {
+      "sprite_name": "snugglepot",
+      "combat_front": "yellowbelt",
+      "slug": "snugglepot"
+    }
   },
   {
     "slug": "spyder_flower_fez",
-    "template": 
-      {
-        "sprite_name": "beachcomber_copper",
-        "combat_front": "yellowbelt",
-        "slug": "beachcomber"
-      }
-  
+    "template": {
+      "sprite_name": "beachcomber_copper",
+      "combat_front": "yellowbelt",
+      "slug": "beachcomber"
+    }
   },
   {
     "slug": "spyder_flower_mieke",
-    "template": 
-      {
-        "sprite_name": "catgirl_blue",
-        "combat_front": "catgirl",
-        "slug": "catgirl"
-      }
-  
+    "template": {
+      "sprite_name": "catgirl_blue",
+      "combat_front": "catgirl",
+      "slug": "catgirl"
+    }
   },
   {
     "slug": "spyder_flower_sandy",
-    "template": 
-      {
-        "sprite_name": "childactor",
-        "combat_front": "yellowbelt",
-        "slug": "childactor"
-      }
-  
+    "template": {
+      "sprite_name": "childactor",
+      "combat_front": "yellowbelt",
+      "slug": "childactor"
+    }
   },
   {
     "slug": "spyder_flower_teach",
-    "template": 
-      {
-        "sprite_name": "picnicker",
-        "combat_front": "picnicker",
-        "slug": "picnicker"
-      }
-  
+    "template": {
+      "sprite_name": "picnicker",
+      "combat_front": "picnicker",
+      "slug": "picnicker"
+    }
   },
   {
     "slug": "spyder_flower_monk",
-    "template": 
-      {
-        "sprite_name": "monk_blue",
-        "combat_front": "monk",
-        "slug": "monk"
-      }
-  
+    "template": {
+      "sprite_name": "monk_blue",
+      "combat_front": "monk",
+      "slug": "monk"
+    }
   },
   {
     "slug": "spyder_flowerhouse1_willie",
-    "template": 
-      {
-        "sprite_name": "firefighter",
-        "combat_front": "firefighter",
-        "slug": "firefighter"
-      }
-  
+    "template": {
+      "sprite_name": "firefighter",
+      "combat_front": "firefighter",
+      "slug": "firefighter"
+    }
   },
   {
     "slug": "spyder_flowerhouse2_pip",
-    "template": 
-      {
-        "sprite_name": "soldier",
-        "combat_front": "soldier",
-        "slug": "soldier"
-      }
-  
+    "template": {
+      "sprite_name": "soldier",
+      "combat_front": "soldier",
+      "slug": "soldier"
+    }
   },
   {
     "slug": "spyder_flowerhouse1_jonette",
-    "template": 
-      {
-        "sprite_name": "granny",
-        "combat_front": "adventurer",
-        "slug": "granny"
-      }
-  
+    "template": {
+      "sprite_name": "granny",
+      "combat_front": "adventurer",
+      "slug": "granny"
+    }
   },
   {
     "slug": "spyder_flower_lissa",
-    "template": 
-      {
-        "sprite_name": "florist",
-        "combat_front": "florist",
-        "slug": "florist"
-      }
-  
+    "template": {
+      "sprite_name": "florist",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
   },
   {
     "slug": "spyder_flowerhouse2_bruce",
-    "template": 
-      {
-        "sprite_name": "scientist_black",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_black",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_flowerpetshop_denzel",
-    "template": 
-      {
-        "sprite_name": "shopkeeper_blonde",
-        "combat_front": "adventurer",
-        "slug": "shopkeeper"
-      }
-  
+    "template": {
+      "sprite_name": "shopkeeper_blonde",
+      "combat_front": "adventurer",
+      "slug": "shopkeeper"
+    }
   },
   {
     "slug": "spyder_flowerpetshop_titus",
-    "template": 
-      {
-        "sprite_name": "shopassistant_grey",
-        "combat_front": "shopassistant",
-        "slug": "shopassistant"
-      }
-  
+    "template": {
+      "sprite_name": "shopassistant_grey",
+      "combat_front": "shopassistant",
+      "slug": "shopassistant"
+    }
   },
   {
     "slug": "spyder_flowerscoop_jarod",
-    "template": 
-      {
-        "sprite_name": "shopkeeper",
-        "combat_front": "adventurer",
-        "slug": "shopkeeper"
-      }
-  
+    "template": {
+      "sprite_name": "shopkeeper",
+      "combat_front": "adventurer",
+      "slug": "shopkeeper"
+    }
   }
 ]

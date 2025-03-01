@@ -518,13 +518,13 @@
     <property name="act15" value="wait 1"/>
     <property name="act16" value="create_npc spyder_route3_zoolander,7,0"/>
     <property name="act17" value="pathfind spyder_route3_zoolander,7,2"/>
-    <property name="act18" value="translated_dialog spyder_leather_sarah1"/>
+    <property name="act18" value="translated_dialog spyder_leather_sarah1,,top"/>
     <property name="act19" value="translated_dialog spyder_leather_sarah2"/>
-    <property name="act20" value="translated_dialog spyder_leather_sarah3"/>
+    <property name="act20" value="translated_dialog spyder_leather_sarah3,,top"/>
     <property name="act21" value="translated_dialog spyder_leather_sarah4"/>
-    <property name="act22" value="translated_dialog spyder_leather_sarah5"/>
+    <property name="act22" value="translated_dialog spyder_leather_sarah5,,top"/>
     <property name="act23" value="translated_dialog spyder_leather_sarah6"/>
-    <property name="act24" value="translated_dialog spyder_leather_sarah7"/>
+    <property name="act24" value="translated_dialog spyder_leather_sarah7,,top"/>
     <property name="act25" value="pathfind spyder_route3_zoolander,7,0"/>
     <property name="act26" value="remove_npc spyder_route3_zoolander"/>
     <property name="act29" value="set_variable sarah_flashback:done"/>

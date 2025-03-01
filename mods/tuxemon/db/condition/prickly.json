@@ -1,8 +1,12 @@
 {
   "animation": null,
+  "modifiers": [],
   "category": "positive",
   "effects": [
-    "prickly 8,touch:melee"
+    {
+      "type": "prickly",
+      "parameters": ["8","touch:melee"]
+    }
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_prickly.png",

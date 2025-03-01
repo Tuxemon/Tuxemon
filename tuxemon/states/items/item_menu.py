@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Generator, Sequence
+from typing import Optional
 
 import pygame
 
@@ -14,6 +15,8 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.monster import Monster
+from tuxemon.platform.const import buttons
+from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
 from tuxemon.states.monster import MonsterMenuState
@@ -64,6 +67,8 @@ class ItemMenuState(Menu[Item]):
         self.sprites.add(self.item_sprite)
 
         self.menu_items.line_spacing = tools.scale(7)
+        self.current_page = 0
+        self.total_pages = 0
 
         # this is the area where the item description is displayed
         rect = self.client.screen.get_rect()
@@ -223,7 +228,18 @@ class ItemMenuState(Menu[Item]):
         if not inventory:
             return
 
-        for obj in sort_inventory(inventory):
+        page_size = prepare.MAX_MENU_ITEMS
+        self.total_pages = -(-len(inventory) // page_size)
+
+        self.current_page = max(
+            0, min(self.current_page, self.total_pages - 1)
+        )
+
+        start_index = self.current_page * page_size
+        end_index = (self.current_page + 1) * page_size
+        page_items = inventory[start_index:end_index]
+
+        for obj in sort_inventory(page_items):
             label = f"{obj.name} x {obj.quantity}"
             image = self.shadow_text(label, bg=prepare.DIMGRAY_COLOR)
             yield MenuItem(image, obj.name, obj.description, obj)
@@ -266,3 +282,76 @@ class ItemMenuState(Menu[Item]):
         """Show the description of the selected item."""
         if item.description:
             self.alert(item.description)
+
+    def get_current_page_number(self) -> int:
+        """
+        Returns the current page number.
+        """
+        return self.current_page
+
+    def prev_page(self) -> None:
+        """
+        Goes to the previous page.
+
+        This method clears the current page, decrements the current page number,
+        and then adds the items from the previous page to the menu.
+        """
+        state = self.determine_state_called_from()
+        inventory = self.get_inventory(state)
+        page_size = prepare.MAX_MENU_ITEMS
+        if self.current_page > 0:
+            self.current_page -= 1
+            self.clear()
+            page_items = inventory[
+                self.current_page
+                * page_size : (self.current_page + 1)
+                * page_size
+            ]
+            for obj in sort_inventory(page_items):
+                label = f"{obj.name} x {obj.quantity}"
+                image = self.shadow_text(label, bg=prepare.DIMGRAY_COLOR)
+                self.add(MenuItem(image, obj.name, obj.description, obj))
+
+    def next_page(self) -> None:
+        """
+        Goes to the next page.
+
+        This method clears the current page, increments the current page number,
+        and then adds the items from the next page to the menu.
+        """
+        state = self.determine_state_called_from()
+        inventory = self.get_inventory(state)
+        page_size = prepare.MAX_MENU_ITEMS
+        total_pages = -(-len(inventory) // page_size)
+        if self.current_page < total_pages - 1:
+            self.current_page += 1
+            self.clear()
+            page_items = inventory[
+                self.current_page
+                * page_size : (self.current_page + 1)
+                * page_size
+            ]
+            for obj in sort_inventory(page_items):
+                label = f"{obj.name} x {obj.quantity}"
+                image = self.shadow_text(label, bg=prepare.DIMGRAY_COLOR)
+                self.add(MenuItem(image, obj.name, obj.description, obj))
+
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+        """
+        Processes a player input event.
+
+        Parameters:
+            event: The player input event.
+
+        Returns:
+            Optional[PlayerInput]: The processed event or None if it's not handled.
+        """
+        if event.button == buttons.RIGHT and event.pressed:
+            if self.current_page <= self.total_pages:
+                self.next_page()
+        elif event.button == buttons.LEFT and event.pressed:
+            if self.current_page >= 0:
+                self.prev_page()
+        else:
+            return super().process_event(event)
+        return None

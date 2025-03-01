@@ -271,15 +271,15 @@
     <property name="act19" value="translated_dialog spyder_xeon_creation1"/>
     <property name="act20" value="pathfind spyder_nimrod_xeon,9,7"/>
     <property name="act32" value="translated_dialog spyder_xeon_creation2"/>
-    <property name="act33" value="translated_dialog spyder_xeon_creation3"/>
+    <property name="act33" value="translated_dialog spyder_xeon_creation3,,bottomleft"/>
     <property name="act34" value="translated_dialog spyder_xeon_creation4"/>
-    <property name="act35" value="translated_dialog spyder_xeon_creation5"/>
+    <property name="act35" value="translated_dialog spyder_xeon_creation5,,bottomright"/>
     <property name="act36" value="translated_dialog spyder_xeon_creation6"/>
-    <property name="act37" value="translated_dialog spyder_xeon_creation7"/>
+    <property name="act37" value="translated_dialog spyder_xeon_creation7,,bottomleft"/>
     <property name="act38" value="translated_dialog spyder_xeon_creation8"/>
-    <property name="act39" value="translated_dialog spyder_xeon_creation9"/>
+    <property name="act39" value="translated_dialog spyder_xeon_creation9,,bottomright"/>
     <property name="act40" value="translated_dialog spyder_xeon_creation10"/>
-    <property name="act41" value="translated_dialog spyder_xeon_creation11"/>
+    <property name="act41" value="translated_dialog spyder_xeon_creation11,,bottomleft"/>
     <property name="act50" value="pathfind spyder_nimrod_argon,8,15"/>
     <property name="act51" value="remove_npc spyder_nimrod_argon"/>
     <property name="act52" value="pathfind spyder_nimrod_zircon,10,15"/>

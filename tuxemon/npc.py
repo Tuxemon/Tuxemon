@@ -126,10 +126,7 @@ class NPC(Entity[NPCState]):
         self.pathfinding: Optional[tuple[int, int]] = None
         self.path: list[tuple[int, int]] = []
         # Stores the final destination sent from a client
-        self.final_move_dest = [
-            0,
-            0,
-        ]
+        self.final_move_dest = [0, 0]
 
         # This is used to 'set back' when lost, and make movement robust.
         # If entity falls off of map due to a bug, it can be returned to this value.

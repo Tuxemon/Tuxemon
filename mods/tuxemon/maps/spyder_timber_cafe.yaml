@@ -121,16 +121,16 @@ events:
     - create_npc spyder_greenwash_gluck,7,6
     - char_face spyder_greenwash_gluck,right
     - create_npc spyder_greenwash_alex,8,5
-    - translated_dialog spyder_timber_cafe_flashback1
-    - translated_dialog spyder_timber_cafe_flashback2
-    - translated_dialog spyder_timber_cafe_flashback3
-    - translated_dialog spyder_timber_cafe_flashback4
-    - translated_dialog spyder_timber_cafe_flashback5
-    - translated_dialog spyder_timber_cafe_flashback6
-    - translated_dialog spyder_timber_cafe_flashback7
-    - translated_dialog spyder_timber_cafe_flashback8
-    - translated_dialog spyder_timber_cafe_flashback9
-    - translated_dialog spyder_timber_cafe_flashback10
+    - translated_dialog spyder_timber_cafe_flashback1,,bottomright
+    - translated_dialog spyder_timber_cafe_flashback2,,bottomleft
+    - translated_dialog spyder_timber_cafe_flashback3,,bottomright
+    - translated_dialog spyder_timber_cafe_flashback4,,bottomleft
+    - translated_dialog spyder_timber_cafe_flashback5,,bottomright
+    - translated_dialog spyder_timber_cafe_flashback6,,bottomleft
+    - translated_dialog spyder_timber_cafe_flashback7,,bottomright
+    - translated_dialog spyder_timber_cafe_flashback8,,bottomleft
+    - translated_dialog spyder_timber_cafe_flashback9,,bottomright
+    - translated_dialog spyder_timber_cafe_flashback10,,bottomleft
     - pathfind spyder_greenwash_gluck,8,11
     - remove_npc spyder_greenwash_gluck
     - pathfind spyder_greenwash_alex,8,11

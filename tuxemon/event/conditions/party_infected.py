@@ -12,6 +12,10 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 
+from dataclasses import dataclass
+
+
+@dataclass
 class PartyInfectedCondition(EventCondition):
     """
     Check to see how many monster are infected in the character's party.

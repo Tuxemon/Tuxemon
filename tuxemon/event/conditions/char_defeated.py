@@ -12,6 +12,10 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 
+from dataclasses import dataclass
+
+
+@dataclass
 class CharDefeatedCondition(EventCondition):
     """
     Check to see the character has at least one tuxemon, and all tuxemon in their

@@ -74,3 +74,34 @@ events:
     x: 0
     y: 5
     type: "event"
+  Bookshelf:
+    actions:
+    - translated_dialog spyder_rivalbedroom_bookshelf
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 5
+    y: 2
+    width: 2
+    height: 1
+    type: "event"
+  Weights:
+    actions:
+    - translated_dialog spyder_rivalbedroom_weights
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 1
+    y: 6
+    type: "event"
+  Bed:
+    actions:
+    - translated_dialog spyder_rivalbedroom_bed
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 5
+    y: 5
+    width: 2
+    height: 2
+    type: "event"

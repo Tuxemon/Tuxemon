@@ -1,9 +1,16 @@
 {
   "conditions": [
-    "not has_tech supernova"
+    {
+      "type": "has_tech",
+      "parameters": ["supernova"],
+      "operator": "not"
+    }
   ],
   "effects": [
-    "learn_tm supernova"
+    {
+      "type": "learn_tm",
+      "parameters": ["supernova"]
+    }
   ],
   "slug": "tm_supernova",
   "sort": "utility",

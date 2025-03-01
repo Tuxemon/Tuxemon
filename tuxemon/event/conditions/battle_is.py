@@ -12,6 +12,10 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 
+from dataclasses import dataclass
+
+
+@dataclass
 class BattleIsCondition(EventCondition):
     """
     Check to see if a character has fought against another one

@@ -111,24 +111,6 @@ class OutputBattle(str, Enum):
     draw = "draw"
 
 
-class MonsterShape(str, Enum):
-    default = "default"
-    blob = "blob"
-    brute = "brute"
-    dragon = "dragon"
-    flier = "flier"
-    grub = "grub"
-    humanoid = "humanoid"
-    hunter = "hunter"
-    landrace = "landrace"
-    leviathan = "leviathan"
-    piscine = "piscine"
-    polliwog = "polliwog"
-    serpent = "serpent"
-    sprite = "sprite"
-    varmint = "varmint"
-
-
 class SeenStatus(str, Enum):
     unseen = "unseen"
     seen = "seen"
@@ -209,6 +191,27 @@ State = Enum(
 )
 
 
+class CommonCondition(BaseModel):
+    type: str = Field(..., description="The name of the condition")
+    parameters: Sequence[str] = Field(
+        [], description="The parameters that must be met"
+    )
+    operator: str = Field(..., description="The operator 'is' or 'not'.")
+
+    @field_validator("operator")
+    def operator_must_be_is_or_not(cls: CommonCondition, v: str) -> str:
+        if v not in ["is", "not"]:
+            raise ValueError('operator must be either "is" or "not"')
+        return v
+
+
+class CommonEffect(BaseModel):
+    type: str = Field(..., description="The name of the condition")
+    parameters: Sequence[str] = Field(
+        [], description="The parameters that must be met"
+    )
+
+
 class ItemBehaviors(BaseModel):
     consumable: bool = Field(
         True, description="Whether or not this item is consumable."
@@ -228,6 +231,12 @@ class ItemBehaviors(BaseModel):
     throwable: bool = Field(
         False, description="Whether or not this item is throwable."
     )
+
+
+class WorldMenuEntry(BaseModel):
+    position: int
+    label_key: str
+    state: str
 
 
 class ItemModel(BaseModel):
@@ -254,12 +263,10 @@ class ItemModel(BaseModel):
         ..., description="State(s) where this item can be used."
     )
     behaviors: ItemBehaviors
-    # TODO: We'll need some more advanced validation logic here to parse item
-    # conditions and effects to ensure they are formatted properly.
-    conditions: Sequence[str] = Field(
+    conditions: Sequence[CommonCondition] = Field(
         [], description="Conditions that must be met"
     )
-    effects: Sequence[str] = Field(
+    effects: Sequence[CommonEffect] = Field(
         [], description="Effects this item will have"
     )
     flip_axes: Literal["", "x", "y", "xy"] = Field(
@@ -269,7 +276,7 @@ class ItemModel(BaseModel):
     animation: Optional[str] = Field(
         None, description="Animation to play for this item"
     )
-    world_menu: tuple[int, str, str] = Field(
+    world_menu: Optional[WorldMenuEntry] = Field(
         None,
         description="Item adds to World Menu a button (position, label -inside the PO -,state, eg. 3:nu_phone:PhoneState)",
     )
@@ -310,15 +317,9 @@ class ItemModel(BaseModel):
             return v
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
-    @field_validator("conditions")
-    def check_conditions(cls: ItemModel, v: Sequence[str]) -> Sequence[str]:
-        if not v or has.check_conditions(v):
-            return v
-        raise ValueError(f"the conditions {v} aren't correctly formatted")
-
 
 class ShapeModel(BaseModel):
-    slug: MonsterShape = Field(..., description="Slug of the shape")
+    slug: str = Field(..., description="Slug of the shape")
     armour: int = Field(..., description="Armour value")
     dodge: int = Field(..., description="Dodge value")
     hp: int = Field(..., description="HP value")
@@ -609,7 +610,7 @@ class MonsterModel(BaseModel, validate_assignment=True):
     sprites: Annotated[
         Optional[MonsterSpritesModel], Field(validate_default=True)
     ] = None
-    shape: MonsterShape = Field(..., description="The shape of the monster")
+    shape: str = Field(..., description="The shape of the monster")
     tags: Sequence[str] = Field(
         ..., description="The tags of the monster", min_length=1
     )
@@ -677,13 +678,20 @@ class MonsterModel(BaseModel, validate_assignment=True):
     def element_exists(
         cls: MonsterModel, elements: Sequence[str]
     ) -> Sequence[str]:
-        if elements:
-            for element in elements:
-                if not has.db_entry("element", element):
-                    raise ValueError(
-                        f"element '{element}' doesn't exist in the db"
-                    )
-        return elements
+      if not elements:
+          return elements
+
+      invalid_elements = [element for element in elements if not has.db_entry("element", element)]
+      if invalid_elements:
+          raise ValueError(f"elements {', '.join(invalid_elements)} don't exist in the db")
+
+      return elements
+
+    @field_validator("shape")
+    def shape_exists(cls: MonsterModel, v: str) -> str:
+        if has.db_entry("shape", v):
+            return v
+        raise ValueError(f"the shape {v} doesn't exist in the db")
 
 
 class StatModel(BaseModel):
@@ -721,7 +729,17 @@ class TechCategory(str, Enum):
     notype = "notype"
 
 
-# TechSort defines the sort of technique a technique is.
+class Modifier(BaseModel):
+    attribute: str = Field(
+        ..., description="Attribute being modified (type, etc.)"
+    )
+    values: Sequence[str] = Field(
+        [],
+        description="Values associated with the modification (eg. fire, etc.)",
+    )
+    multiplier: float = Field(1.0, description="Multiplier", ge=0.0, le=2.0)
+
+
 class TechSort(str, Enum):
     damage = "damage"
     meta = "meta"
@@ -925,10 +943,10 @@ class ConditionModel(BaseModel):
     slug: str = Field(..., description="The slug of the condition")
     sort: TechSort = Field(..., description="The sort of condition this is")
     icon: str = Field(None, description="The icon to use for the condition")
-    conditions: Sequence[str] = Field(
+    conditions: Sequence[CommonCondition] = Field(
         [], description="Conditions that must be met"
     )
-    effects: Sequence[str] = Field(
+    effects: Sequence[CommonEffect] = Field(
         [], description="Effects this condition uses"
     )
     flip_axes: Literal["", "x", "y", "xy"] = Field(
@@ -948,6 +966,7 @@ class ConditionModel(BaseModel):
     duration: int = Field(
         0, description="How many turns the condition is supposed to last"
     )
+    modifiers: list[Modifier] = Field(..., description="Damage multipliers")
 
     # Optional fields
     category: Optional[CategoryCondition] = Field(
@@ -1032,14 +1051,6 @@ class ConditionModel(BaseModel):
         ):
             return v
         raise ValueError(f"the status {v} doesn't exist in the db")
-
-    @field_validator("conditions")
-    def check_conditions(
-        cls: ConditionModel, v: Sequence[str]
-    ) -> Sequence[str]:
-        if not v or has.check_conditions(v):
-            return v
-        raise ValueError(f"the conditions {v} aren't correctly formatted")
 
     @field_validator("sfx")
     def sfx_cond_exists(cls: ConditionModel, v: str) -> str:
@@ -1419,7 +1430,6 @@ class TemplateModel(BaseModel):
     slug: str = Field(
         ..., description="Slug uniquely identifying the template"
     )
-    double: bool = Field(False, description="Whether triggers 2vs2 or not")
 
 
 class MissionModel(BaseModel):

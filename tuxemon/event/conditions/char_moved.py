@@ -12,6 +12,10 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 
+from dataclasses import dataclass
+
+
+@dataclass
 class CharMovedCondition(EventCondition):
     """
     Check to see the player has just moved into this tile.

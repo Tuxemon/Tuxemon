@@ -1,11 +1,19 @@
 {
   "animation": null,
+  "modifiers": [],
   "category": "negative",
 	"conditions": [
-	  	"is current_hp >,0"
+    {
+      "type": "current_hp",
+      "parameters": [">", "0"],
+      "operator": "is"
+    }
 	],
   "effects": [
-    "grabbed 2,ranged:reach"
+    {
+      "type": "grabbed",
+      "parameters": ["2", "ranged:reach"]
+    }
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_grabbed.png",

@@ -10,7 +10,6 @@ from tuxemon.db import (
     Comparison,
     EvolutionStage,
     GenderType,
-    MonsterShape,
     StatType,
     TasteCold,
     TasteWarm,
@@ -105,11 +104,7 @@ class GetPlayerMonsterAction(EventAction):
                 self.result = True
                 return self.result
             # filter shape
-            if (
-                filter_name == "shape"
-                and value_name in list(MonsterShape)
-                and target.shape == value_name
-            ):
+            if filter_name == "shape" and target.shape == value_name:
                 self.result = True
                 return self.result
             # filter taste warm

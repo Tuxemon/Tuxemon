@@ -15,10 +15,6 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class CoolDownEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class CoolDownEffect(TechEffect):
     """
@@ -42,7 +38,7 @@ class CoolDownEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> CoolDownEffectResult:
+    ) -> TechEffectResult:
 
         if not _is_next_use_valid(self.next_use):
             raise ValueError(
@@ -53,13 +49,14 @@ class CoolDownEffect(TechEffect):
         assert combat
         tech.hit = tech.accuracy >= combat._random_tech_hit.get(user, 0.0)
         if not tech.hit:
-            return {
-                "success": False,
-                "damage": 0,
-                "element_multiplier": 0.0,
-                "should_tackle": False,
-                "extra": None,
-            }
+            return TechEffectResult(
+                name=tech.name,
+                success=False,
+                damage=0,
+                element_multiplier=0.0,
+                should_tackle=False,
+                extras=[],
+            )
 
         objectives = self.objectives.split(":")
         monsters = get_target_monsters(objectives, tech, user, target)
@@ -82,13 +79,14 @@ class CoolDownEffect(TechEffect):
         if self.next_use > 0:
             tech.next_use -= 1
 
-        return {
-            "success": True,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            success=True,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=[],
+        )
 
 
 def _is_next_use_valid(next_use: int) -> bool:

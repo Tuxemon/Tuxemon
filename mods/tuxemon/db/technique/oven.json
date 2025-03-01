@@ -27,7 +27,7 @@
   "types": [
     "fire"
   ],
-  "use_failure": "combat_miss",
-  "use_success": null,
+  "use_failure": "oven_fail",
+  "use_success": "oven_success",
   "use_tech": "combat_used_x"
 }

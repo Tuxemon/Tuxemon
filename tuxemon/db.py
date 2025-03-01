@@ -613,6 +613,7 @@ class MonsterModel(BaseModel, validate_assignment=True):
     ] = None
     terrains: Sequence[str] = Field(
         ..., description="The terrains of the monster"
+    )
     shape: str = Field(..., description="The shape of the monster")
     tags: Sequence[str] = Field(..., description="The tags of the monster")
     types: Sequence[ElementType] = Field(

@@ -1632,7 +1632,7 @@ msgid "depth_charge"
 msgstr "Depth Charge"
 
 msgid "diet_description"
-msgstr "They go on a diet of healthy food only, making them healthy and harder to kill."
+msgstr "The user fuels their body with healthy foods, enhancing their physical resilience and making them more resistant to damage."
 
 msgid "diet"
 msgstr "Diet"
@@ -1656,7 +1656,7 @@ msgid "earthquake"
 msgstr "Earthquake"
 
 msgid "egg_smash_description"
-msgstr "The user throws an egg or part of an egg to smash into the opponent."
+msgstr "The user hurls an egg or egg fragment at the opponent, striking them with a messy and disorienting blow."
 
 msgid "egg_smash"
 msgstr "Egg Smash"
@@ -1806,7 +1806,7 @@ msgid "font"
 msgstr "Font"
 
 msgid "food_fight_description"
-msgstr "A weak but fast attack of throwing food at the opponent."
+msgstr "The user initiates a frantic food fight, rapidly throwing edible projectiles at the opponent with reckless abandon."
 
 msgid "food_fight"
 msgstr "Food Fight"
@@ -1866,7 +1866,7 @@ msgid "gold_digger"
 msgstr "Gold Digger"
 
 msgid "gourmet_description"
-msgstr "Healing move by devouring food."
+msgstr "The user devours a nourishing meal, restoring their vitality and rejuvenating their spirits."
 
 msgid "gourmet"
 msgstr "Gourmet"
@@ -1962,7 +1962,7 @@ msgid "invictus"
 msgstr "Invictus"
 
 msgid "just_desserts_description"
-msgstr "Revenge is a dish best served with poisoned sweets."
+msgstr "The user offers the opponent a poisoned treat, exacting a sweet revenge as they succumb to the toxic effects."
 
 msgid "just_desserts"
 msgstr "Just Desserts"
@@ -2052,7 +2052,7 @@ msgid "magma"
 msgstr "Magma"
 
 msgid "magnetic_body_description"
-msgstr "They create a powerful magnet, sending even the tiniest bits of metal ricocheting across the field."
+msgstr "A powerful magnetic field is generated, sending metal objects flying wildly across the battlefield and disrupting the opponent's movements."
 
 msgid "magnetic_body"
 msgstr "Magnetic Body"
@@ -2168,6 +2168,12 @@ msgstr "Orbs"
 msgid "oven_description"
 msgstr "The user throws themselves into a fiery oven or pyre, then re-emerges to attack."
 
+msgid "oven_success"
+msgstr "{user} jumps into the fiery oven, embracing the flames!"
+
+msgid "oven_fail"
+msgstr "{user} hesitates and does not jump into the oven!"
+
 msgid "oven"
 msgstr "Oven"
 
@@ -2220,7 +2226,7 @@ msgid "phantasmal_force"
 msgstr "Phantasmal Force"
 
 msgid "piece_of_cake_description"
-msgstr "They charge up so everything is as easy as cake, and heal a tiny bit."
+msgstr "The user enters a state of effortless ease, healing their wounds and restoring their vitality as everything becomes as simple as enjoying a delicious cake."
 
 msgid "piece_of_cake"
 msgstr "Piece of Cake"
@@ -2250,7 +2256,7 @@ msgid "pollen_blast"
 msgstr "Pollen Blast"
 
 msgid "potluck_description"
-msgstr "An exchange of gifts."
+msgstr "The user and opponent engage in a mutual exchange of gifts, fostering a brief moment of camaraderie in the midst of battle."
 
 msgid "potluck"
 msgstr "Potluck"
@@ -2346,7 +2352,7 @@ msgid "rock"
 msgstr "Rock"
 
 msgid "rocky_barrage_description"
-msgstr "They throw a powerful barrage of rocks."
+msgstr "The user unleashes a furious barrage of rocks, threatening to overwhelm the opponent with a crushing avalanche of stone."
 
 msgid "rocky_barrage"
 msgstr "Rocky Barrage"

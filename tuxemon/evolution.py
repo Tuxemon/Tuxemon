@@ -86,7 +86,9 @@ class Evolution:
 
     def update_tuxepedia(self, new_monster: Monster) -> None:
         assert self.monster.owner
-        self.monster.owner.tuxepedia[new_monster.slug] = SeenStatus.caught
+        self.monster.owner.tuxepedia.add_entry(
+            new_monster.slug, SeenStatus.caught
+        )
 
     def can_evolve(
         self,

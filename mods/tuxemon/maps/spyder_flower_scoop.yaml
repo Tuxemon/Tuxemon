@@ -61,23 +61,23 @@ events:
     - create_npc spyder_mansion_rolo,8,4
     - char_face spyder_mansion_rolo,down
     - translated_dialog spyder_drinking_flashback1
-    - translated_dialog spyder_drinking_flashback2
-    - translated_dialog spyder_drinking_flashback3
+    - translated_dialog spyder_drinking_flashback2,,bottomleft
+    - translated_dialog spyder_drinking_flashback3,,bottomright
     - pathfind spyder_mansion_rolo,8,6
     - char_face spyder_mansion_rolo,up
     - translated_dialog spyder_drinking_flashback4
-    - translated_dialog spyder_drinking_flashback5
-    - translated_dialog spyder_drinking_flashback6
+    - translated_dialog spyder_drinking_flashback5,,bottomleft
+    - translated_dialog spyder_drinking_flashback6,,bottomright
     - pathfind spyder_mansion_rolo,8,4
     - char_face spyder_mansion_rolo,down
     - translated_dialog spyder_drinking_flashback7
-    - translated_dialog spyder_drinking_flashback8
-    - translated_dialog spyder_drinking_flashback9
+    - translated_dialog spyder_drinking_flashback8,,bottomleft
+    - translated_dialog spyder_drinking_flashback9,,bottomright
     - pathfind spyder_mansion_rolo,8,6
     - char_face spyder_mansion_rolo,up
     - translated_dialog spyder_drinking_flashback10
-    - translated_dialog spyder_drinking_flashback11
-    - translated_dialog spyder_drinking_flashback12
+    - translated_dialog spyder_drinking_flashback11,,bottomleft
+    - translated_dialog spyder_drinking_flashback12,,bottomright
     - pathfind spyder_mansion_rolo,8,4
     - char_face spyder_mansion_rolo,down
     - translated_dialog spyder_drinking_flashback13

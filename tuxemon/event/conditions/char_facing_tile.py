@@ -14,6 +14,10 @@ from tuxemon.states.world.worldstate import WorldState
 logger = logging.getLogger(__name__)
 
 
+from dataclasses import dataclass
+
+
+@dataclass
 class CharFacingTileCondition(EventCondition):
     """
     Check to see if a character is facing a tile position.

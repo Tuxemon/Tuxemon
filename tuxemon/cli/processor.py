@@ -123,10 +123,10 @@ class CommandProcessor:
 
         """
         pm = PluginManager()
-        pm.setPluginPlaces([folder])
-        pm.include_patterns = ["commands"]
-        pm.exclude_classes = ["CLICommand"]
-        pm.collectPlugins()
+        pm.set_plugin_places([folder])
+        pm.INCLUDE_PATTERNS = ["commands"]
+        pm.EXCLUDE_CLASSES = ["CLICommand"]
+        pm.collect_plugins()
         for cmd_class in get_available_classes(pm, interface=CLICommand):
             if cmd_class.usable_from_root:
                 yield cmd_class()

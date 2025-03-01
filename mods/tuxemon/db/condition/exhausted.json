@@ -1,9 +1,14 @@
 {
   "animation": null,
+  "modifiers": [],
   "category": "negative",
   "effects": [
-    "statchange",
-    "exhausted"
+    {
+      "type": "statchange"
+    },
+    {
+      "type": "exhausted"
+    }
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_exhausted.png",

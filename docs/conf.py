@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.abspath('../'))
 from typing import Any
 
 project = 'Tuxemon'
-copyright = '2015-2024, William Edwards'
+copyright = '2015-2025, William Edwards'
 author = 'William Edwards'
 
 # The full version, including alpha/beta/rc tags

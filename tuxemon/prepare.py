@@ -232,6 +232,8 @@ MAX_LOCKER: int = 30  # nr max of pc items
 # Items
 INFINITE_ITEMS: int = -1
 MAX_TYPES_BAG: int = 99  # eg 5 capture devices, 1 type and 5 items
+# Items menu
+MAX_MENU_ITEMS: int = 11
 
 # Monsters
 MAX_LEVEL: int = 999
@@ -275,6 +277,7 @@ POWER_RANGE: tuple[float, float] = (0.0, 3.0)
 HEALING_POWER_RANGE: tuple[float, float] = (0.0, 3.0)
 
 # Combat
+MONSTERS_DOUBLE: int = 3  # 3 monsters to trigger 1vs2 or viceversa
 # Hud right/left lines
 HUD_RT_LINE1: tuple[int, int] = (12, 11)  # monster, lv, etc.
 HUD_RT_LINE2: tuple[int, int] = (12, 19)  # position hp_bar

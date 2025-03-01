@@ -1,8 +1,12 @@
 {
   "animation": null,
+  "modifiers": [],
   "category": "positive",
   "effects": [
-    "recover 16"
+    {
+      "type": "recover",
+      "parameters": ["16"]
+    }
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_recover.png",

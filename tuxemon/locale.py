@@ -14,7 +14,7 @@ from typing import Any, Optional
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
 
-from tuxemon import db, prepare
+from tuxemon import prepare
 from tuxemon.constants import paths
 from tuxemon.formula import convert_ft, convert_km, convert_lbs, convert_mi
 from tuxemon.session import Session
@@ -265,6 +265,55 @@ class TranslatorPo:
         else:
             logger.warning(f"Language {locale_name} is not supported")
 
+    def has_translation(self, locale_name: str, msgid: str) -> bool:
+        """
+        Checks if a translation exists for a certain language.
+
+        Parameters:
+            locale_name: The name of the language to check.
+            msgid: The msgid of the translation to check.
+
+        Returns:
+            True if the translation exists, False otherwise.
+        """
+        localedir = os.path.join(paths.CACHE_DIR, LOCALE_DIR)
+        trans = self._get_translation(locale_name, "base", localedir)
+        if trans is None:
+            return False
+        return trans.gettext(msgid) != msgid
+
+    def _print_translation_error(self, locale_name: str, msgid: str) -> None:
+        """Prints an error message when a translation is missing."""
+        print(f"Translation doesn't exist for '{locale_name}': {msgid}")
+
+    def check_translation(self, message_id: str) -> None:
+        """
+        Checks if a translation exists for a certain message_id in all existing locales.
+
+        Parameters:
+            message_id: The message_id of the translation to check.
+        """
+        _locale = prepare.CONFIG.translation_mode
+        if _locale == "none":
+            return
+        else:
+            if _locale == "all":
+                locale_names = self.locale_finder.locale_names.copy()
+                locale_names.remove("README.md")
+                for locale_name in locale_names:
+                    if (
+                        locale_name
+                        and message_id
+                        and not self.has_translation(locale_name, message_id)
+                    ):
+                        self._print_translation_error(locale_name, message_id)
+            else:
+                if self.is_language_supported(_locale):
+                    if not self.has_translation(_locale, message_id):
+                        self._print_translation_error(_locale, message_id)
+                else:
+                    raise ValueError(f"Locale '{_locale}' doesn't exist.")
+
     def format(
         self,
         text: str,
@@ -325,20 +374,8 @@ def replace_text(session: Session, text: str) -> str:
         "${{NAME}}": player.name.upper(),
         "${{currency}}": "$",
         "${{money}}": str(player.money.get("player", 0)),
-        "${{tuxepedia_seen}}": str(
-            sum(
-                1
-                for status in player.tuxepedia.values()
-                if status in (db.SeenStatus.caught, db.SeenStatus.seen)
-            )
-        ),
-        "${{tuxepedia_caught}}": str(
-            sum(
-                1
-                for status in player.tuxepedia.values()
-                if status == db.SeenStatus.caught
-            )
-        ),
+        "${{tuxepedia_seen}}": str(player.tuxepedia.get_seen_count()),
+        "${{tuxepedia_caught}}": str(player.tuxepedia.get_caught_count()),
         "${{map_name}}": client.map_name,
         "${{map_desc}}": client.map_desc,
         "${{north}}": client.map_north,
@@ -471,6 +508,7 @@ def process_translate_text(
 
     """
     replace_values = {}
+    T.check_translation(text_slug)
 
     # extract INI-style params
     for param in parameters:

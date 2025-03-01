@@ -65,7 +65,8 @@ class JournalChoice(PygameMenuState):
             tuxepedia = [
                 mon
                 for mon in monsters
-                if start < mon.txmn_id <= end and mon.slug in player.tuxepedia
+                if start < mon.txmn_id <= end
+                and player.tuxepedia.is_registered(mon.slug)
             ]
             label = T.format(
                 "page_tuxepedia", {"a": str(start), "b": str(end)}

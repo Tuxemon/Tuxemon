@@ -12,6 +12,10 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 
+from dataclasses import dataclass
+
+
+@dataclass
 class CharFacingCharCondition(EventCondition):
     """
     Check to see the character is next to and facing a particular character.

@@ -13,6 +13,10 @@ from tuxemon.states.world.worldstate import WorldState
 logger = logging.getLogger(__name__)
 
 
+from dataclasses import dataclass
+
+
+@dataclass
 class CharInCondition(EventCondition):
     """
     Check to see if the character is on a specific set of tiles.

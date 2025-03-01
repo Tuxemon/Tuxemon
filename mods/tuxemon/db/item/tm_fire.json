@@ -1,6 +1,10 @@
 {
   "conditions": [
-    "is type fire"
+    {
+      "type": "type",
+      "parameters": ["fire"],
+      "operator": "is"
+    }
   ],
   "effects": [],
   "slug": "tm_fire",

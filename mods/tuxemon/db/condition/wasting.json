@@ -1,8 +1,12 @@
 {
   "animation": null,
+  "modifiers": [],
   "category": "negative",
   "effects": [
-    "wasting 16"
+    {
+      "type": "wasting",
+      "parameters": ["16"]
+    }
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_wasting.png",

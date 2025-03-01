@@ -13,10 +13,6 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class DamageEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class DamageEffect(TechEffect):
     """
@@ -31,7 +27,7 @@ class DamageEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> DamageEffectResult:
+    ) -> TechEffectResult:
         damage = 0
         mult = 1.0
         targets: list[Monster] = []
@@ -51,10 +47,11 @@ class DamageEffect(TechEffect):
                 if monster != target:
                     combat.enqueue_damage(user, monster, damage)
 
-        return {
-            "damage": damage,
-            "element_multiplier": mult,
-            "should_tackle": bool(damage),
-            "success": bool(damage),
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            damage=damage,
+            element_multiplier=mult,
+            should_tackle=bool(damage),
+            success=bool(damage),
+            extras=[],
+        )

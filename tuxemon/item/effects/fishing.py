@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
 from tuxemon import prepare
-from tuxemon.db import EvolutionStage, MonsterModel, MonsterShape, db
+from tuxemon.db import EvolutionStage, MonsterModel, db
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 
 if TYPE_CHECKING:
@@ -81,7 +81,7 @@ def _get_basic_monsters() -> list[str]:
         mon.slug
         for mon in lookup_cache.values()
         if mon.stage == EvolutionStage.basic
-        and mon.shape in [MonsterShape.polliwog, MonsterShape.piscine]
+        and mon.shape in ["polliwog", "piscine"]
     ]
 
 
@@ -91,7 +91,7 @@ def _get_advanced_monsters() -> list[str]:
         mon.slug
         for mon in lookup_cache.values()
         if mon.stage in [EvolutionStage.stage1, EvolutionStage.basic]
-        and mon.shape in [MonsterShape.polliwog, MonsterShape.piscine]
+        and mon.shape in ["polliwog", "piscine"]
     ]
 
 
@@ -103,9 +103,9 @@ def _get_pro_monsters() -> list[str]:
         if mon.stage != EvolutionStage.basic
         and mon.shape
         in [
-            MonsterShape.polliwog,
-            MonsterShape.piscine,
-            MonsterShape.leviathan,
+            "polliwog",
+            "piscine",
+            "leviathan",
         ]
     ]
 

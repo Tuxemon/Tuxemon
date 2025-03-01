@@ -10,6 +10,10 @@ from tuxemon.tools import compare
 logger = logging.getLogger(__name__)
 
 
+from dataclasses import dataclass
+
+
+@dataclass
 class HasItemCondition(EventCondition):
     """
     Check to see if a character inventory contains something.

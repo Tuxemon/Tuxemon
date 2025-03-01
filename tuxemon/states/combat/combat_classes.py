@@ -70,30 +70,40 @@ class EnqueuedAction(NamedTuple):
     target: Monster
 
 
-def get_action_sort_key(action: EnqueuedAction) -> tuple[int, int]:
-    """
-    Returns a tuple representing the sort key for the given action.
+class SortManager:
+    SORT_ORDER = prepare.SORT_ORDER
 
-    The sort key is a tuple of two integers: the primary order and the secondary order.
-    The primary order is determined by the action's sort type, and the secondary order
-    is determined by the user's speed test result (if applicable).
+    @classmethod
+    def get_sort_index(cls, action_sort_type: str) -> int:
+        """Returns the index of the action sort type in the SORT_ORDER list."""
+        try:
+            return cls.SORT_ORDER.index(action_sort_type)
+        except ValueError:
+            return len(cls.SORT_ORDER)
 
-    If the action's method is None, or if the action's user is None, the function returns
-    a default sort key of (0, 0).
-    """
-    if action.method is None:
-        return 0, 0
-    else:
+    @classmethod
+    def get_action_sort_key(cls, action: EnqueuedAction) -> tuple[int, int]:
+        """
+        Returns a tuple representing the sort key for the given action.
+
+        The sort key is a tuple of two integers: the primary order and the
+        secondary order. The primary order is determined by the action's sort
+        type, and the secondary order is determined by the user's speed test
+        result (if applicable).
+
+        If the action's method is None, or if the action's user is None, the
+        function returns a default sort key of (0, 0).
+        """
+        if action.method is None or action.user is None:
+            return 0, 0
+
         action_sort_type = action.method.sort
-        primary_order = prepare.SORT_ORDER.index(action_sort_type)
+        primary_order = cls.get_sort_index(action_sort_type)
 
         if action_sort_type in ["meta", "potion"]:
             return primary_order, 0
         else:
-            if action.user is None:
-                return 0, 0
-            else:
-                return primary_order, -speed_test(action)
+            return primary_order, -speed_test(action)
 
 
 def speed_test(action: EnqueuedAction) -> int:
@@ -160,7 +170,9 @@ class ActionQueue:
         * Actions are ordered from lowest to highest priority, with the highest priority
         actions last in the queue.
         """
-        self._action_queue.sort(key=get_action_sort_key, reverse=True)
+        self._action_queue.sort(
+            key=SortManager.get_action_sort_key, reverse=True
+        )
 
     def swap(self, old: Monster, new: Monster) -> None:
         """Swaps the target of all actions in the queue from old to new."""

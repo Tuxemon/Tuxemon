@@ -15,6 +15,39 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
 )
 
 
+class MissionManager:
+    def __init__(self) -> None:
+        self.missions: list[Mission] = []
+
+    def add_mission(self, mission: Mission) -> None:
+        """
+        Adds a mission.
+        """
+        self.missions.append(mission)
+
+    def remove_mission(self, mission: Mission) -> None:
+        """
+        Removes a mission.
+        """
+        self.missions.remove(mission)
+
+    def find_mission(self, mission: str) -> Optional[Mission]:
+        """
+        Finds a mission.
+        """
+        return next(
+            (mis for mis in self.missions if mis.slug == mission), None
+        )
+
+    def encode_missions(self) -> Sequence[Mapping[str, Any]]:
+        return encode_mission(self.missions)
+
+    def load_missions(
+        self, save_data: Optional[Sequence[Mapping[str, Any]]]
+    ) -> None:
+        self.missions = decode_mission(save_data)
+
+
 class Mission:
     """
     Tuxemon mission.
@@ -45,6 +78,12 @@ class Mission:
         self.slug = results.slug
         self.name = T.translate(results.slug)
         self.status = self.status
+
+    def update_status(self, new_status: MissionStatus) -> None:
+        """
+        Updates the mission's status.
+        """
+        self.status = new_status
 
     def get_state(self) -> Mapping[str, Any]:
         """

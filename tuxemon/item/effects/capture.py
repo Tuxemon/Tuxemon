@@ -112,12 +112,9 @@ class CaptureEffect(ItemEffect):
             if tuxeball:
                 tuxeball.quantity -= 1
 
-        if (
-            target.slug in self.user.tuxepedia
-            and self.user.tuxepedia[target.slug] == SeenStatus.seen
-        ):
+        if self.user.tuxepedia.is_seen(target.slug):
             item.combat_state._new_tuxepedia = True
-        self.user.tuxepedia[target.slug] = SeenStatus.caught
+        self.user.tuxepedia.add_entry(target.slug, SeenStatus.caught)
         target.capture_device = item.slug
         target.wild = False
         self.user.add_monster(target, len(self.user.monsters))

@@ -1,8 +1,12 @@
 {
   "animation": null,
+  "modifiers": [],
   "category": "positive",
   "effects": [
-    "elemental_shield 16,special"
+    {
+      "type": "elemental_shield",
+      "parameters": ["16","special"]
+    }
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_elementalshield.png",

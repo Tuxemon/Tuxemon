@@ -13,19 +13,20 @@ from tuxemon import prepare, surfanim
 from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.boxes import ItemBoxes, MonsterBoxes
 from tuxemon.compat import Rect
-from tuxemon.db import Direction, ElementType, EntityFacing, SeenStatus, db
+from tuxemon.db import Direction, ElementType, EntityFacing, db
 from tuxemon.entity import Entity
 from tuxemon.graphics import load_and_scale
 from tuxemon.item.item import Item, decode_items, encode_items
 from tuxemon.locale import T
 from tuxemon.map import dirs2, dirs3, get_coords_ext, get_direction, proj
 from tuxemon.math import Vector2
-from tuxemon.mission import Mission, decode_mission, encode_mission
+from tuxemon.mission import MissionManager
 from tuxemon.monster import Monster, decode_monsters, encode_monsters
 from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
 from tuxemon.technique.technique import Technique
 from tuxemon.tools import vector2_to_tile_pos
+from tuxemon.tuxepedia import Tuxepedia, decode_tuxepedia, encode_tuxepedia
 
 if TYPE_CHECKING:
     import pygame
@@ -42,7 +43,7 @@ class NPCState(TypedDict):
     facing: Direction
     game_variables: dict[str, Any]
     battles: Sequence[Mapping[str, Any]]
-    tuxepedia: dict[str, SeenStatus]
+    tuxepedia: Mapping[str, Any]
     contacts: dict[str, str]
     money: dict[str, int]
     template: dict[str, Any]
@@ -98,7 +99,7 @@ class NPC(Entity[NPCState]):
         self.battles: list[Battle] = []  # Tracks the battles
         self.forfeit: bool = False
         # Tracks Tuxepedia (monster seen or caught)
-        self.tuxepedia: dict[str, SeenStatus] = {}
+        self.tuxepedia = Tuxepedia()
         self.contacts: dict[str, str] = {}
         self.money: dict[str, int] = {}  # Tracks money
         # list of ways player can interact with the Npc
@@ -114,7 +115,7 @@ class NPC(Entity[NPCState]):
         self.monsters: list[Monster] = []
         # The player's items.
         self.items: list[Item] = []
-        self.missions: list[Mission] = []
+        self.mission_manager = MissionManager()
         self.economy: Optional[Economy] = None
         # Variables for long-term item and monster storage
         # Keeping these separate so other code can safely
@@ -187,12 +188,12 @@ class NPC(Entity[NPCState]):
             "facing": self.facing,
             "game_variables": self.game_variables,
             "battles": encode_battle(self.battles),
-            "tuxepedia": self.tuxepedia,
+            "tuxepedia": encode_tuxepedia(self.tuxepedia),
             "contacts": self.contacts,
             "money": self.money,
             "items": encode_items(self.items),
             "template": self.template.model_dump(),
-            "missions": encode_mission(self.missions),
+            "missions": self.mission_manager.encode_missions(),
             "monsters": encode_monsters(self.monsters),
             "player_name": self.name,
             "player_steps": self.steps,
@@ -217,7 +218,7 @@ class NPC(Entity[NPCState]):
         """
         self.facing = save_data.get("facing", Direction.down)
         self.game_variables = save_data["game_variables"]
-        self.tuxepedia = save_data["tuxepedia"]
+        self.tuxepedia = decode_tuxepedia(save_data["tuxepedia"])
         self.contacts = save_data["contacts"]
         self.money = save_data["money"]
         self.battles = []
@@ -229,9 +230,7 @@ class NPC(Entity[NPCState]):
         self.monsters = []
         for monster in decode_monsters(save_data.get("monsters")):
             self.add_monster(monster, len(self.monsters))
-        self.missions = []
-        for mission in decode_mission(save_data.get("missions")):
-            self.missions.append(mission)
+        self.mission_manager.load_missions(save_data.get("missions"))
         self.name = save_data["player_name"]
         self.steps = save_data["player_steps"]
         self.monster_boxes.load(save_data)
@@ -589,15 +588,19 @@ class NPC(Entity[NPCState]):
 
     def network_notify_start_moving(self, direction: Direction) -> None:
         r"""WIP guesswork ¯\_(ツ)_/¯"""
-        if self.world.client.isclient or self.world.client.ishost:
-            self.world.client.client.update_player(
+        self.network = self.world.client.network_manager
+        if self.network.isclient or self.network.ishost:
+            assert self.network.client
+            self.network.client.update_player(
                 direction, event_type="CLIENT_MOVE_START"
             )
 
     def network_notify_stop_moving(self) -> None:
         r"""WIP guesswork ¯\_(ツ)_/¯"""
-        if self.world.client.isclient or self.world.client.ishost:
-            self.world.client.client.update_player(
+        self.network = self.world.client.network_manager
+        if self.network.isclient or self.network.ishost:
+            assert self.network.client
+            self.network.client.update_player(
                 self.facing, event_type="CLIENT_MOVE_COMPLETE"
             )
 
@@ -777,33 +780,3 @@ class NPC(Entity[NPCState]):
         return next(
             (m for m in self.items if m.instance_id == instance_id), None
         )
-
-    ####################################################
-    #                    Missions                      #
-    ####################################################
-
-    def add_mission(self, mission: Mission) -> None:
-        """
-        Adds a mission to the npc's missions.
-
-        """
-        self.missions.append(mission)
-
-    def remove_mission(self, mission: Mission) -> None:
-        """
-        Removes a mission from this npc's missions.
-
-        """
-        if mission in self.missions:
-            self.missions.remove(mission)
-
-    def find_mission(self, mission: str) -> Optional[Mission]:
-        """
-        Finds a mission in the npc's missions.
-
-        """
-        for mis in self.missions:
-            if mis.slug == mission:
-                return mis
-
-        return None

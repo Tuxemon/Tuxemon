@@ -444,11 +444,11 @@ class CombatAnimations(ABC, Menu[None]):
             Returns:
                 The built HUD sprite.
             """
-            symbol = (
-                self.players[0].tuxepedia.get(monster.slug)
-                if not is_player
-                else None
-            )
+            symbol = False
+            if not is_player and self.players[0].tuxepedia.is_caught(
+                monster.slug
+            ):
+                symbol = True
             label = build_hud_text(
                 menu, monster, is_player, trainer_battle, symbol
             )

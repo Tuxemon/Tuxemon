@@ -47,6 +47,7 @@ class RunningEvent:
         "action_index",
         "current_action",
         "current_map_action",
+        "cancelled",
     )
 
     def __init__(self, map_event: EventObject) -> None:
@@ -55,6 +56,7 @@ class RunningEvent:
         self.action_index = 0
         self.current_action: Optional[EventAction] = None
         self.current_map_action = None
+        self.cancelled = False
 
     def get_next_action(self) -> Optional[MapAction]:
         """
@@ -81,6 +83,10 @@ class RunningEvent:
 
     def advance(self) -> None:
         self.action_index += 1
+
+    def cancel(self) -> None:
+        """Cancels the event."""
+        self.cancelled = True
 
 
 class EventEngine:
@@ -277,6 +283,10 @@ class EventEngine:
 
         action._skip = skip
 
+        if action.cancelled:
+            logger.debug(f"Action '{action_name}' is cancelled, not executing")
+            return
+
         try:
             return action.execute()
         except Exception as e:
@@ -373,6 +383,16 @@ class EventEngine:
         # process any other events
         self.process_map_events(self.session.client.events)
 
+    def cancel_event(self, event_id: int) -> None:
+        """Cancels the event with the given ID."""
+        if event_id in self.running_events:
+            self.running_events[event_id].cancel()
+
+    def cancel_all_events(self) -> None:
+        """Cancels all currently running events."""
+        for event in self.running_events.values():
+            event.cancel()
+
     def update_running_events(self, dt: float) -> None:
         """
         Update the events that are running.
@@ -396,6 +416,11 @@ class EventEngine:
                 # emptied.
                 assert not self.running_events
                 return
+
+            # Check for cancellation
+            if e.cancelled:
+                to_remove.add(i)
+                continue
 
             while True:
                 """
@@ -453,6 +478,11 @@ class EventEngine:
 
                 # update the action
                 action = e.current_action
+                if action.cancelled:
+                    logger.debug(f"Action is cancelled, not updating")
+                    e.advance()
+                    e.current_action = None
+                    continue
                 # with add_error_context(e.map_event, e.current_map_action,
                 # self.session):
                 action.update()

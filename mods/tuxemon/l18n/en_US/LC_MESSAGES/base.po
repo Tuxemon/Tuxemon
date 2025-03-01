@@ -1154,6 +1154,9 @@ msgstr "{target} is harmful to make contact with."
 msgid "combat_state_feedback_get"
 msgstr "{target} is turning ranged attacks back on the attacker."
 
+msgid "combat_state_immune"
+msgstr "{target} is immune to {method}"
+
 # Generic notifications
 msgid "empty_slot"
 msgstr "Empty Slot"
@@ -3177,10 +3180,10 @@ msgid "tuxepedia_progress"
 msgstr "Tuxepedia: {value}%!"
 
 msgid "tuxepedia_data_seen"
-msgstr "Seen {param} out of {all} Tuxemon"
+msgstr "Seen {param} out of {all}"
 
 msgid "tuxepedia_data_caught"
-msgstr "Caught {param} out of {all} Tuxemon"
+msgstr "Caught {param} out of {all}"
 
 msgid "player_start_adventure_today"
 msgstr "The adventure began today."
@@ -9827,8 +9830,11 @@ msgstr "Drinking Buddy 2: Yeah, or if he even remembers where he lives! Poor guy
 msgid "spyder_drinking_flashback13"
 msgstr "Captain: Treasure... mansion... adventure! I'm going to find it, I'm going to find it!"
 
+msgid "spyder_flower_petshopassistant_welcome"
+msgstr "Hello - we are the Pet Shop Boys."
+
 msgid "spyder_flower_petshopassistant"
-msgstr "Hello - we are the Pet Shop Boys. Are you interested in buying a tuxemon?"
+msgstr "Are you interested in buying a tuxemon?"
 
 msgid "spyder_flower_petshopassistant1"
 msgstr "Each for ${{currency}}500"
@@ -10077,7 +10083,7 @@ msgid "spyder_nimrod_flashback1"
 msgstr "Argon: Zircon, it's good to see you again. I was just reviewing your latest paper on advanced robotics. It's quite impressive."
 
 msgid "spyder_nimrod_flashback2"
-msgstr "Zircon: Ah, Argon. I'm glad to see that your passion for our work hasn't waned. I've heard about your recent accomplishments with the tuxemon behavioral studies.\n Quite fascinating."
+msgstr "Zircon: Ah, Argon. I'm glad to see that your passion for our work hasn't waned.\n I've heard about your recent accomplishments with the tuxemon behavioral studies.\n Quite fascinating."
 
 msgid "spyder_nimrod_flashback3"
 msgstr "Argon: I try to be. I believe that our work can make a real difference in the world."

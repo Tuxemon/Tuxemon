@@ -4941,10 +4941,11 @@ msgstr "Ça ne fait rien - et puis tu n'as pas de Tweesher."
 msgid "spyder_flower_teach1"
 msgstr "Oh ! mais où est passé mon autre étudiant ?"
 
+msgid "spyder_flower_petshopassistant_welcome"
+msgstr "Bonjour - vous êtes au Pet Shop Boys."
+
 msgid "spyder_flower_petshopassistant"
-msgstr ""
-"Bonjour - vous êtes au Pet Shop Boys. Êtes-vous intéressé par l'achat d'un "
-"Tuxemon ?"
+msgstr "Êtes-vous intéressé par l'achat d'un Tuxemon ?"
 
 msgid "spyder_cottonhouse1_homemaker"
 msgstr ""

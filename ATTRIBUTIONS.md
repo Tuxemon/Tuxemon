@@ -1056,7 +1056,7 @@ By JaskRendix
 * ["Appearance"](https://wiki.tuxemon.org/File:Appearance.gif)
 Animation by Tamashihoshi and created for the Tuxemon project.
 
-* ["Beam"](https://wiki.tuxemon.org/images/f/f8/Beam.gif)
+* ["Beam"](https://wiki.tuxemon.org/File:Beam.gif)
 Animation by HippasusTwo
 
 * ["Beartrap"](https://wiki.tuxemon.org/File:Beartrap.gif)
@@ -1101,6 +1101,9 @@ Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel
 
 * ["Buff Ranged"](https://wiki.tuxemon.org/File:Buff_ranged.gif)
 Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Cake Chomp"](https://wiki.tuxemon.org/File:Cakechomp.gif)
+Modified from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule. Animated by HippasusTwo for the purpose of food themed moves.
 
 * ["Calling"](https://wiki.tuxemon.org/File:Calling.gif)
 By JaskRendix
@@ -1262,6 +1265,12 @@ Animation by Tamashihoshi and created for the Tuxemon project.
 * ["Flameball Red"](https://wiki.tuxemon.org/File:Flameball_red.gif)
 Adapted and resized by JaskRendix (Flameball Blue) [https://opengameart.org/content/bosses-and-monsters-spritesheets-ars-notoria CC BY 3.0 on OGA]
 
+* ["Flower"](https://wiki.tuxemon.org/File:Flower.gif)
+Animation by HippasusTwo
+
+* ["Food Throw"](https://wiki.tuxemon.org/File:Foodthrow.gif)
+Modified from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule. Animated by HippasusTwo for the purpose of food themed moves.
+
 * ["Gloop Blue"](https://wiki.tuxemon.org/File:Gloop_blue.gif)
 Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 
@@ -1312,6 +1321,9 @@ From the Superpowers Asset Packs.
 
 * ["Lance Ice"](https://wiki.tuxemon.org/File:Lance_ice.gif)
 Resized by Sanglorian from the Superpowers Asset Packs.
+
+* ["Leafstab"](https://wiki.tuxemon.org/File:Leafstab.gif)
+Animation by HippasusTwo
 
 * ["Lightning Bolt"](https://wiki.tuxemon.org/File:Lightning_bolt_138.gif)
 From the Superpowers Asset Packs.

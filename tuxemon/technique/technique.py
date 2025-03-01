@@ -114,25 +114,25 @@ class Technique:
         # types
         self.types = [Element(ele) for ele in results.types]
         # technique stats
-        self.accuracy = results.accuracy or self.accuracy
-        self.potency = results.potency or self.potency
-        self.power = results.power or self.power
+        self.accuracy = results.accuracy
+        self.potency = results.potency
+        self.power = results.power
 
-        self.default_potency = results.potency or self.potency
-        self.default_power = results.power or self.power
+        self.default_potency = results.potency
+        self.default_power = results.power
 
         self.hit = self.hit
-        self.is_fast = results.is_fast or self.is_fast
-        self.randomly = results.randomly or self.randomly
-        self.healing_power = results.healing_power or self.healing_power
-        self.recharge_length = results.recharge or self.recharge_length
+        self.is_fast = results.is_fast
+        self.randomly = results.randomly
+        self.healing_power = results.healing_power
+        self.recharge_length = results.recharge
         self.range = results.range or Range.melee
-        self.tech_id = results.tech_id or self.tech_id
+        self.tech_id = results.tech_id
 
         self.conditions = self.parse_conditions(results.conditions)
         self.effects = self.parse_effects(results.effects)
         self.target = results.target.model_dump()
-        self.usable_on = results.usable_on or self.usable_on
+        self.usable_on = results.usable_on
 
         # Load the animation sprites that will be used for this technique
         self.animation = results.animation

@@ -11,6 +11,10 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 
+from dataclasses import dataclass
+
+
+@dataclass
 class CharAtCondition(EventCondition):
     """
     Check to see if the character is at the condition position on the map.

@@ -48,21 +48,22 @@ class Plugin(Generic[T]):
 class PluginManager:
     """Yapsy semi-compatible plugin manager."""
 
+    FILE_EXTENSIONS = (".py", ".pyc")
+    EXCLUDE_CLASSES = ["IPlugin"]
+    INCLUDE_PATTERNS = [
+        "event.actions",
+        "event.conditions",
+        "item.effects",
+        "item.conditions",
+        "technique.effects",
+        "technique.conditions",
+        "condition.effects",
+        "condition.conditions",
+    ]
+
     def __init__(self) -> None:
         self.folders: list[str] = []
         self.modules: list[str] = []
-        self.file_extension = (".py", ".pyc")
-        self.exclude_classes = ["IPlugin"]
-        self.include_patterns = [
-            "event.actions",
-            "event.conditions",
-            "item.effects",
-            "item.conditions",
-            "technique.effects",
-            "technique.conditions",
-            "condition.effects",
-            "condition.conditions",
-        ]
 
     def set_plugin_places(self, plugin_folders: Sequence[str]) -> None:
         """Set plugin search locations."""
@@ -76,20 +77,23 @@ class PluginManager:
                 logger.warning(f"Folder {folder} does not exist")
                 continue
 
-            folder = folder.replace("\\", "/")
-            match = folder[folder.rfind("tuxemon") :]
-            if not match:
-                raise RuntimeError(
-                    f"Unable to determine plugin module path for: {folder}"
-                )
-
-            module_path = match.replace("/", ".")
-            for f in os.listdir(folder):
-                if f.endswith(self.file_extension):
-                    module_name = os.path.splitext(f)[0]
+            module_path = self._get_module_path(folder)
+            for file_name in os.listdir(folder):
+                if file_name.endswith(self.FILE_EXTENSIONS):
+                    module_name = os.path.splitext(file_name)[0]
                     self.modules.append(f"{module_path}.{module_name}")
 
         logger.debug(f"Modules to load: {self.modules}")
+
+    def _get_module_path(self, folder: str) -> str:
+        """Converts a folder path to a module path."""
+        folder = folder.replace("\\", "/")
+        match = folder[folder.rfind("tuxemon") :]
+        if not match:
+            raise RuntimeError(
+                f"Unable to determine plugin module path for: {folder}"
+            )
+        return match.replace("/", ".")
 
     def get_all_plugins(
         self, *, interface: type[InterfaceValue]
@@ -99,32 +103,42 @@ class PluginManager:
         if not isinstance(interface, type):
             raise TypeError("interface must be a type")
 
-        imported_modules: list[Plugin[type[InterfaceValue]]] = []
+        imported_plugins: list[Plugin[type[InterfaceValue]]] = []
         for module_name in self.modules:
-            logger.debug(f"Searching module: {module_name}")
             try:
                 module = importlib.import_module(module_name)
+                imported_plugins.extend(
+                    self._get_plugins_from_module(
+                        module, module_name, interface
+                    )
+                )
             except ImportError as e:
                 logger.error(f"Failed to import module {module_name}: {e}")
+        return imported_plugins
+
+    def _get_plugins_from_module(
+        self, module: ModuleType, module_name: str, interface: type
+    ) -> list[Plugin[type[InterfaceValue]]]:
+        """
+        Retrieves plugins from a given module, filtering by a specific interface
+        and inclusion patterns.
+        """
+        plugins: list[Plugin[type[InterfaceValue]]] = []
+        for class_name, class_obj in self._get_classes_from_module(
+            module, interface
+        ):
+            if class_name in self.EXCLUDE_CLASSES:
+                logger.debug(f"Skipping {module_name}.{class_name}")
                 continue
 
-            for class_name, class_obj in self._get_classes_from_module(
-                module, interface
+            if any(
+                pattern in str(class_obj) for pattern in self.INCLUDE_PATTERNS
             ):
-                if class_name in self.exclude_classes:
-                    logger.debug(f"Skipping {module_name}")
-                    continue
-
-                if any(
-                    pattern in str(class_obj)
-                    for pattern in self.include_patterns
-                ):
-                    logger.debug(f"Importing: {class_name}")
-                    imported_modules.append(
-                        Plugin(f"{module_name}.{class_name}", class_obj)
-                    )
-
-        return imported_modules
+                logger.debug(f"Importing: {module_name}.{class_name}")
+                plugins.append(
+                    Plugin(f"{module_name}.{class_name}", class_obj)
+                )
+        return plugins
 
     def _get_classes_from_module(
         self, module: ModuleType, interface: type

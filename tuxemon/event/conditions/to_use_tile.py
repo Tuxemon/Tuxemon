@@ -2,6 +2,8 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+from dataclasses import dataclass
+
 from tuxemon.event import MapCondition
 from tuxemon.event.conditions.button_pressed import ButtonPressedCondition
 from tuxemon.event.conditions.char_facing_tile import CharFacingTileCondition
@@ -9,6 +11,7 @@ from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
 
+@dataclass
 class ToUseTileCondition(EventCondition):
     """
     Check if we are attempting to interact with a map condition tile.

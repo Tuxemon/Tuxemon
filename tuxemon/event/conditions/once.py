@@ -2,12 +2,15 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+from dataclasses import dataclass
+
 from tuxemon import formula
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 
 
+@dataclass
 class OnceCondition(EventCondition):
     """
     Checks the date saved in the variables with today's date.

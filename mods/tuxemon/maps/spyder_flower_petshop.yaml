@@ -1,0 +1,238 @@
+events:
+  Route Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: "event"
+  Teleport to Flower City:
+    actions:
+    - transition_teleport spyder_flower_city.tmx,10,28,0.3
+    - set_variable check_vivipere_morph:no
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 9
+    y: 8
+    height: 1
+    width: 2
+    type: "event"
+  Teleport Outside:
+    actions:
+    - transition_teleport spyder_flower_city.tmx,7,25,0.3
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 6
+    type: "event"
+  Create Shop Assistant:
+    actions:
+    - create_npc spyder_flowerpetshop_titus,7,4
+    conditions:
+    - not char_exists spyder_flowerpetshop_titus
+    type: "event"
+  Create Shop Keeper:
+    actions:
+    - create_npc spyder_flowerpetshop_denzel,2,5
+    - char_wander spyder_flowerpetshop_denzel
+    conditions:
+    - not char_exists spyder_flowerpetshop_denzel
+    type: "event"
+  Talk Shop Assistant3:
+    actions:
+    - char_face spyder_flowerpetshop_titus,down
+    - translated_dialog spyder_flower_petshopassistant_welcome
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - not money_is player,greater_or_equal,500
+    x: 7
+    y: 5
+    type: "event"
+  Talk Shop Keeper - First Time:
+    actions:
+    - translated_dialog spyder_flower_petshopkeeper1
+    - translated_dialog spyder_flower_petshopkeeper2
+    - add_monster vivipere,5
+    - set_variable flower_talkedpetshop:yes
+    behav:
+    - talk spyder_flowerpetshop_denzel
+    conditions:
+    - not variable_set flower_talkedpetshop:yes
+    type: "event"
+  Talk Shop Keeper - Later Times:
+    actions:
+    - translated_dialog spyder_flower_petshopkeeper3
+    - set_variable check_vivipere_morph:yes
+    behav:
+    - talk spyder_flowerpetshop_denzel
+    conditions:
+    - is variable_set flower_talkedpetshop:yes
+    type: "event"
+  Talk Shop Keeper - Check Vivicinder:
+    actions:
+    - translated_dialog spyder_flower_petshopkeeper4
+    - add_monster vivipere,5
+    - set_variable shows_vivicinder:yes
+    - set_variable check_vivipere_morph:no
+    conditions:
+    - is variable_set check_vivipere_morph:yes
+    - is has_monster player,vivicinder
+    - not variable_set shows_vivicinder:yes
+    type: "event"
+  Talk Shop Keeper - Check Vividactil:
+    actions:
+    - translated_dialog spyder_flower_petshopkeeper4
+    - add_monster vivipere,5
+    - set_variable shows_vividactil:yes
+    - set_variable check_vivipere_morph:no
+    conditions:
+    - is variable_set check_vividactil_morph:yes
+    - is has_monster player,vividactil
+    - not variable_set shows_vividactil:yes
+    type: "event"
+  Talk Shop Keeper - Check Viviphyta:
+    actions:
+    - translated_dialog spyder_flower_petshopkeeper4
+    - add_monster vivipere,5
+    - set_variable shows_viviphyta:yes
+    - set_variable check_vivipere_morph:no
+    conditions:
+    - is variable_set check_viviphyta_morph:yes
+    - is has_monster player,viviphyta
+    - not variable_set shows_viviphyta:yes
+    type: "event"
+  Talk Shop Keeper - Check Vivisource:
+    actions:
+    - translated_dialog spyder_flower_petshopkeeper4
+    - add_monster vivipere,5
+    - set_variable shows_vivisource:yes
+    conditions:
+    - is variable_set check_vivisource_morph:yes
+    - is has_monster player,vivisource
+    - not variable_set shows_vivisource:yes
+    type: "event"
+  Talk Shop Keeper - Check Viviteel:
+    actions:
+    - translated_dialog spyder_flower_petshopkeeper4
+    - add_monster vivipere,5
+    - set_variable shows_viviteel:yes
+    - set_variable check_vivipere_morph:no
+    conditions:
+    - is variable_set check_viviteel_morph:yes
+    - is has_monster player,viviteel
+    - not variable_set shows_viviteel:yes
+    type: "event"
+  Talk Shop Keeper - Check Vivitrans:
+    actions:
+    - translated_dialog spyder_flower_petshopkeeper4
+    - add_monster vivipere,5
+    - set_variable shows_vivitrans:yes
+    - set_variable check_vivipere_morph:no
+    conditions:
+    - is variable_set check_vivitrans_morph:yes
+    - is has_monster player,vivitrans
+    - not variable_set shows_vivitrans:yes
+    type: "event"
+  Talk Shop Keeper - Check Vivitron:
+    actions:
+    - translated_dialog spyder_flower_petshopkeeper4
+    - add_monster vivipere,5
+    - set_variable shows_vivitron:yes
+    - set_variable check_vivipere_morph:no
+    conditions:
+    - is variable_set check_vivitron_morph:yes
+    - is has_monster player,vivitron
+    - not variable_set shows_vivitron:yes
+    type: "event"
+  Talk Shop Assistant4:
+    actions:
+    - char_face spyder_flowerpetshop_titus,right
+    - translated_dialog spyder_flower_petshopassistant_welcome
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - not money_is player,greater_or_equal,500
+    x: 8
+    y: 4
+    type: "event"
+  Talk Shop Assistant1:
+    actions:
+    - char_face spyder_flowerpetshop_titus,down
+    - translated_dialog spyder_flower_petshopassistant_welcome
+    - translated_dialog spyder_flower_petshopassistant
+    - translated_dialog spyder_flower_petshopassistant1
+    - translated_dialog player_wallet
+    - translated_dialog_choice ziggurat:woodoor:fuzzlet:potturmeist:squink:no,petshopbuy
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - not variable_set chooses:yes
+    - is money_is player,greater_or_equal,500
+    x: 7
+    y: 5
+    type: "event"
+  Talk Shop Assistant2:
+    actions:
+    - char_face spyder_flowerpetshop_titus,right
+    - translated_dialog spyder_flower_petshopassistant_welcome
+    - translated_dialog spyder_flower_petshopassistant
+    - translated_dialog spyder_flower_petshopassistant1
+    - translated_dialog player_wallet
+    - translated_dialog_choice ziggurat:woodoor:fuzzlet:potturmeist:squink:no,petshopbuy
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    - not variable_set chooses:yes
+    - is money_is player,greater_or_equal,500
+    x: 8
+    y: 4
+    type: "event"
+  Buy squink:
+    actions:
+    - translated_dialog squink
+    - add_monster squink,10
+    - clear_variable petshopbuy
+    - modify_money player,-500
+    conditions:
+    - is variable_set petshopbuy:squink
+    type: "event"
+  Buy potturmeist:
+    actions:
+    - translated_dialog potturmeist
+    - add_monster potturmeist,10
+    - clear_variable petshopbuy
+    - modify_money player,-500
+    conditions:
+    - is variable_set petshopbuy:potturmeist
+    type: "event"
+  Buy fuzzlet:
+    actions:
+    - translated_dialog fuzzlet
+    - add_monster fuzzlet,10
+    - clear_variable petshopbuy
+    - modify_money player,-500
+    conditions:
+    - is variable_set petshopbuy:fuzzlet
+    type: "event"
+  Buy woodoor:
+    actions:
+    - translated_dialog woodoor
+    - add_monster woodoor,10
+    - clear_variable petshopbuy
+    - modify_money player,-500
+    conditions:
+    - is variable_set petshopbuy:woodoor
+    type: "event"
+  Buy ziggurat:
+    actions:
+    - translated_dialog ziggurat
+    - add_monster ziggurat,10
+    - clear_variable petshopbuy
+    - modify_money player,-500
+    conditions:
+    - is variable_set petshopbuy:ziggurat
+    type: "event"
+
+

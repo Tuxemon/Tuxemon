@@ -1,9 +1,14 @@
 {
   "animation": null,
+  "modifiers": [],
   "category": "positive",
   "effects": [
-    "statchange",
-    "enraged"
+    {
+      "type": "statchange"
+    },
+    {
+      "type": "enraged"
+    }
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_enraged.png",

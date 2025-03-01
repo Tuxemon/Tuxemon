@@ -722,5 +722,21 @@
     {
         "slug" : "waterbullet",
         "file" : "technique"
+    },
+    {
+        "slug" : "flower",
+        "file" : "technique"
+    },
+    {
+        "slug" : "leafstab",
+        "file" : "technique"
+    },
+    {
+        "slug" : "cakechomp",
+        "file" : "technique"
+    },
+    {
+        "slug" : "foodthrow",
+        "file" : "technique"
     }
 ]

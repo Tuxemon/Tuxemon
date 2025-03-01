@@ -6977,10 +6977,10 @@ msgid "tuxepedia_progress"
 msgstr "精灵百科完成度: {value}%!"
 
 msgid "tuxepedia_data_seen"
-msgstr "看到了{param}只精灵,共有{all}只精灵"
+msgstr "看到了{param}只精灵,共有{all}"
 
 msgid "tuxepedia_data_caught"
-msgstr "捉住了{param}只精灵,共有{all}只精灵"
+msgstr "捉住了{param}只精灵,共有{all}"
 
 msgid "player_start_adventure"
 msgstr "冒险开始了{date}天."

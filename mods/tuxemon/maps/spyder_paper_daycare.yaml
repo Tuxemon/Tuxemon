@@ -184,18 +184,18 @@ events:
     - char_face spyder_billie,left
     - pathfind spyder_billie,4,6
     - char_face spyder_billie,left
-    - translated_dialog spyder_billie_flashback1
+    - translated_dialog spyder_billie_flashback1,,top
     - translated_dialog spyder_billie_flashback2
-    - translated_dialog spyder_billie_flashback3
+    - translated_dialog spyder_billie_flashback3,,top
     - translated_dialog spyder_billie_flashback4
-    - translated_dialog spyder_billie_flashback5
+    - translated_dialog spyder_billie_flashback5,,top
     - translated_dialog spyder_billie_flashback6
-    - translated_dialog spyder_billie_flashback7
+    - translated_dialog spyder_billie_flashback7,,top
     - translated_dialog spyder_billie_flashback8
-    - translated_dialog spyder_billie_flashback9
+    - translated_dialog spyder_billie_flashback9,,top
     - translated_dialog spyder_billie_flashback10
-    - translated_dialog spyder_billie_flashback11
-    - translated_dialog spyder_billie_flashback12
+    - translated_dialog spyder_billie_flashback11,,top
+    - translated_dialog spyder_billie_flashback12,,top
     - pathfind spyder_billie,3,8
     - remove_npc spyder_billie
     - char_face spyder_grannypiper,down

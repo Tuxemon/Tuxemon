@@ -4,10 +4,13 @@ import logging
 from typing import Any, Optional, Union
 
 logger = logging.getLogger(__name__)
+from dataclasses import dataclass
+
 from tuxemon.db import Comparison
 from tuxemon.tools import compare
 
 
+@dataclass
 class CommonCondition:
     name = "Common"
 

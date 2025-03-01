@@ -55,6 +55,7 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
         Modified save data.
 
     """
+    _handle_change_tuxepedia(save_data)
     _handle_change_monster_name(save_data)
     _handle_change_plague(save_data)
 
@@ -75,6 +76,18 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
             _transfer_storage_boxes(save_data)
 
     return save_data  # type: ignore[return-value]
+
+
+def _handle_change_tuxepedia(save_data: dict[str, Any]) -> None:
+    """
+    Updates tuxepedia field in the save data.
+    """
+    for entry, value in save_data["tuxepedia"].items():
+        if value in ("seen", "caught"):
+            save_data["tuxepedia"][entry] = {
+                "status": value,
+                "appearance_count": 1,
+            }
 
 
 def _handle_change_plague(save_data: dict[str, Any]) -> None:
@@ -123,7 +136,10 @@ def _handle_change_monster_name(save_data: dict[str, Any]) -> None:
 
     # Update monster names in the tuxepedia
     save_data["tuxepedia"] = {
-        MONSTER_RENAMES.get(entry, entry): value
+        MONSTER_RENAMES.get(entry, entry): {
+            "status": value.get("status", value),
+            "appearance_count": value.get("appearance_count", 1),
+        }
         for entry, value in save_data["tuxepedia"].items()
     }
 

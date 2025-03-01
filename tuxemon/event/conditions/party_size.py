@@ -12,6 +12,10 @@ from tuxemon.tools import compare
 logger = logging.getLogger(__name__)
 
 
+from dataclasses import dataclass
+
+
+@dataclass
 class PartySizeCondition(EventCondition):
     """
     Check the character's party size.

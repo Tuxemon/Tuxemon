@@ -12,10 +12,6 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class EmptyEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class EmptyEffect(TechEffect):
     """
@@ -28,14 +24,15 @@ class EmptyEffect(TechEffect):
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> EmptyEffectResult:
+    ) -> TechEffectResult:
         combat = tech.combat_state
         assert combat
         tech.hit = tech.accuracy >= combat._random_tech_hit.get(user, 0.0)
-        return {
-            "success": tech.hit,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            success=tech.hit,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=[],
+        )

@@ -69,7 +69,7 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
 
 
 def upgrade_npc_state(npc_state: dict[str, Any]) -> dict[str, Any]:
-
+    _handle_change_tuxepedia(npc_state)
     _handle_change_monster_name(npc_state)
     _handle_change_plague(npc_state)
 
@@ -99,6 +99,16 @@ def update_save_data(old_save_data: dict[str, Any]) -> dict[str, Any]:
 
     return new_save_data
 
+def _handle_change_tuxepedia(save_data: dict[str, Any]) -> None:
+    """
+    Updates tuxepedia field in the save data.
+    """
+    for entry, value in save_data["tuxepedia"].items():
+        if value in ("seen", "caught"):
+            save_data["tuxepedia"][entry] = {
+                "status": value,
+                "appearance_count": 1,
+            }
 
 def _handle_change_plague(save_data: dict[str, Any]) -> None:
     """
@@ -146,7 +156,10 @@ def _handle_change_monster_name(save_data: dict[str, Any]) -> None:
 
     # Update monster names in the tuxepedia
     save_data["tuxepedia"] = {
-        MONSTER_RENAMES.get(entry, entry): value
+        MONSTER_RENAMES.get(entry, entry): {
+            "status": value.get("status", value),
+            "appearance_count": value.get("appearance_count", 1),
+        }
         for entry, value in save_data["tuxepedia"].items()
     }
 

@@ -12,6 +12,10 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 
+from dataclasses import dataclass
+
+
+@dataclass
 class HasPartyBreederCondition(EventCondition):
     """
     Check to see if the character has a male and female

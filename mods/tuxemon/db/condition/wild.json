@@ -1,8 +1,12 @@
 {
   "animation": null,
+  "modifiers": [],
   "category": "negative",
   "effects": [
-    "wild 0.25,8"
+    {
+      "type": "wild",
+      "parameters": ["0.25", "8"]
+    }
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_wild.png",

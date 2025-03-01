@@ -17,10 +17,10 @@ class TestPluginManager(unittest.TestCase):
         manager = PluginManager()
         self.assertEqual(manager.folders, [])
         self.assertEqual(manager.modules, [])
-        self.assertEqual(manager.file_extension, (".py", ".pyc"))
-        self.assertEqual(manager.exclude_classes, ["IPlugin"])
+        self.assertEqual(manager.FILE_EXTENSIONS, (".py", ".pyc"))
+        self.assertEqual(manager.EXCLUDE_CLASSES, ["IPlugin"])
         self.assertEqual(
-            manager.include_patterns,
+            manager.INCLUDE_PATTERNS,
             [
                 "event.actions",
                 "event.conditions",

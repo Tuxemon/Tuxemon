@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import final
+from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
 
@@ -12,7 +12,12 @@ from tuxemon.event.eventaction import EventAction
 @dataclass
 class ClearTuxepediaAction(EventAction):
     """
-    Clear the key and value in the Tuxepedia dictionary.
+    Clear the key and value in the Tuxepedia dictionary. If the
+    monster_slug parameter is missing, this action will completely
+    reset the Tuxepedia dictionary by removing all seen monsters.
+
+    If the monster_slug parameter is provided, this action will remove
+    the specified monster from the Tuxepedia dictionary.
 
     Script usage:
         .. code-block::
@@ -25,8 +30,11 @@ class ClearTuxepediaAction(EventAction):
     """
 
     name = "clear_tuxepedia"
-    monster_key: str
+    monster_key: Optional[str] = None
 
     def start(self) -> None:
         player = self.session.player
-        player.tuxepedia.pop(self.monster_key)
+        if self.monster_key is None:
+            player.tuxepedia.reset()
+        else:
+            player.tuxepedia.remove_entry(self.monster_key)

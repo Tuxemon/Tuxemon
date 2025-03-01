@@ -79,11 +79,14 @@ class WildEncounterAction(EventAction):
         env = env_var if self.env is None else self.env
         environment = db.lookup(env, table="environment")
 
+        player.tuxepedia.add_entry(current_monster.slug)
+
         self.session.client.queue_state(
             "CombatState",
             players=(player, npc),
             combat_type="monster",
             graphics=environment.battle_graphics,
+            battle_mode="single",
         )
 
         self.world.lock_controls(player)

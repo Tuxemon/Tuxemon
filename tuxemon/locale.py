@@ -14,7 +14,7 @@ from typing import Any, Optional
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
 
-from tuxemon import db, prepare
+from tuxemon import prepare
 from tuxemon.constants import paths
 from tuxemon.formula import convert_ft, convert_km, convert_lbs, convert_mi
 from tuxemon.session import Session
@@ -374,20 +374,8 @@ def replace_text(session: Session, text: str) -> str:
         "${{NAME}}": player.name.upper(),
         "${{currency}}": "$",
         "${{money}}": str(player.money.get("player", 0)),
-        "${{tuxepedia_seen}}": str(
-            sum(
-                1
-                for status in player.tuxepedia.values()
-                if status in (db.SeenStatus.caught, db.SeenStatus.seen)
-            )
-        ),
-        "${{tuxepedia_caught}}": str(
-            sum(
-                1
-                for status in player.tuxepedia.values()
-                if status == db.SeenStatus.caught
-            )
-        ),
+        "${{tuxepedia_seen}}": str(player.tuxepedia.get_seen_count()),
+        "${{tuxepedia_caught}}": str(player.tuxepedia.get_caught_count()),
         "${{map_name}}": client.map_name,
         "${{map_desc}}": client.map_desc,
         "${{north}}": client.map_north,

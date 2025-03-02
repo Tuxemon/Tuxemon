@@ -23,7 +23,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import networking, prepare, state
-from tuxemon.camera import Camera, project
+from tuxemon.camera import Camera, CameraManager, project
 from tuxemon.db import Direction
 from tuxemon.entity import Entity
 from tuxemon.graphics import ColorLike
@@ -165,6 +165,8 @@ class WorldState(state.State):
             local_session.player = new_player
 
         self.camera = Camera(local_session.player, self.boundary_checker)
+        self.camera_manager = CameraManager()
+        self.camera_manager.add_camera(self.camera)
 
         if map_name:
             self.change_map(map_name)
@@ -375,7 +377,7 @@ class WorldState(state.State):
                         self.stop_char(self.player)
                         return None
             else:
-                return self.camera.handle_input(event)
+                return self.camera_manager.handle_input(event)
 
         if prepare.DEV_TOOLS:
             if event.pressed and event.button == intentions.NOCLIP:

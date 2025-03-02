@@ -15,13 +15,14 @@ from tuxemon.db import (
 )
 from tuxemon.player import Player
 from tuxemon.session import local_session
+from tuxemon.tuxepedia import Tuxepedia
 
 
 def mockPlayer(self) -> None:
     self.name = "Jeff"
     self.money = {}
     self.game_variables = {}
-    self.tuxepedia = {}
+    self.tuxepedia = Tuxepedia()
 
 
 class TestMonsterActions(unittest.TestCase):
@@ -43,7 +44,8 @@ class TestMonsterActions(unittest.TestCase):
         moveset=[{"level_learned": 1, "technique": "ram"}],
         evolutions=[],
         history=[],
-        tags=["dragon", "coastal", "desert", "mountains"],
+        tags=[],
+        terrains=["coastal", "desert", "mountains"],
         shape="dragon",
         stage="basic",
         types=["fire"],
@@ -61,7 +63,8 @@ class TestMonsterActions(unittest.TestCase):
         moveset=[{"level_learned": 1, "technique": "ram"}],
         evolutions=[],
         history=[],
-        tags=["blob"],
+        tags=[],
+        terrains=[],
         shape="blob",
         stage="basic",
         types=["metal"],
@@ -74,19 +77,12 @@ class TestMonsterActions(unittest.TestCase):
         upper_catch_resistance=1.25,
     )
     _faint = ConditionModel(
+        modifiers=[],
         flip_axes="",
         sfx="sfx_faint",
         slug="faint",
         range="special",
         sort="meta",
-        target={
-            "enemy_monster": False,
-            "enemy_team": False,
-            "enemy_trainer": False,
-            "own_monster": False,
-            "own_team": False,
-            "own_trainer": False,
-        },
         cond_id=0,
     )
 

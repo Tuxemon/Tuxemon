@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "perfect_cut"
+            "technique": "rock"
         },
         {
             "level_learned": 1,
@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 4,
-            "technique": "rock"
+            "technique": "strike"
         },
         {
             "level_learned": 7,
@@ -47,8 +47,12 @@
             "technique": "shuriken"
         },
         {
-            "level_learned": 40,
+            "level_learned": 43,
             "technique": "earthquake"
+        },
+        {
+            "level_learned": 55,
+            "technique": "rocky_barrage"
         }
     ],
     "evolutions": [],
@@ -58,7 +62,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["humanoid", "ruins", "urban"],
+    "terrains": ["ruins", "urban"],
+    "tags": ["soldier", "sharp", "ground", "rock", "gadgets", "leadership", "gemstone"],
     "shape": "humanoid",
     "stage": "stage1",
     "types": [

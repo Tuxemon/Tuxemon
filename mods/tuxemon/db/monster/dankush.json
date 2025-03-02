@@ -40,7 +40,7 @@
         },
         {
             "level_learned": 31,
-            "technique": "salamander"
+            "technique": "tinder"
         },
         {
             "level_learned": 37,
@@ -48,12 +48,13 @@
         },
         {
             "level_learned": 40,
-            "technique": "tinder"
+            "technique": "mind_explosion"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["sprite", "grassland"],
+    "terrains": ["grassland"],
+    "tags": ["plant", "flame", "mental", "healing", "summoner"],
     "shape": "sprite",
     "stage": "standalone",
     "types": [

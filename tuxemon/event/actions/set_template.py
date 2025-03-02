@@ -75,4 +75,4 @@ class SetTemplateAction(EventAction):
             if self.combat_front:
                 character.template.combat_front = self.combat_front
                 logger.info(f"{character.name}'s front is {self.combat_front}")
-        character.load_sprites()
+        character.sprite_renderer._load_sprites()

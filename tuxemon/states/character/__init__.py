@@ -10,7 +10,7 @@ from pygame_menu import locals
 
 from tuxemon import formula
 from tuxemon import prepare as pre
-from tuxemon.db import MonsterModel, OutputBattle, SeenStatus, db
+from tuxemon.db import MonsterModel, OutputBattle, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.npc import NPC
@@ -62,16 +62,22 @@ class CharacterState(PygameMenuState):
 
         # tuxepedia data
         filters = list(lookup_cache.values())
-        tuxepedia = list(self.char.tuxepedia.values())
-        caught = tuxepedia.count(SeenStatus.caught)
-        seen = tuxepedia.count(SeenStatus.seen) + caught
-        percentage = round((seen / len(filters)) * 100, 1)
+        completeness = self.char.tuxepedia.get_completeness(len(filters))
+        percentage = round(completeness * 100, 1)
+        seen = self.char.tuxepedia.get_seen_count()
+        caught = self.char.tuxepedia.get_caught_count()
 
-        _msg_progress = {"value": str(percentage)}
+        if self.char.tuxepedia.entries:
+            _msg_progress = {"value": str(percentage)}
+            _msg_seen = {"param": str(seen + caught), "all": str(len(filters))}
+            _msg_caught = {"param": str(caught), "all": str(len(filters))}
+        else:
+            _msg_progress = {"value": "-"}
+            _msg_seen = {"param": "-", "all": "-"}
+            _msg_caught = {"param": "-", "all": "-"}
+
         msg_progress = T.format("tuxepedia_progress", _msg_progress)
-        _msg_seen = {"param": str(seen), "all": str(len(filters))}
         msg_seen = T.format("tuxepedia_data_seen", _msg_seen)
-        _msg_caught = {"param": str(caught), "all": str(len(filters))}
         msg_caught = T.format("tuxepedia_data_caught", _msg_caught)
 
         today = formula.today_ordinal()

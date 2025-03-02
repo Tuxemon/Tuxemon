@@ -23,7 +23,7 @@
     "own_trainer": false
   },
   "category": "exotic",
-  "tags": ["Machine", "Shielded"],
+  "tags": ["machine", "shielded"],
   "types": [
     "aether"
   ],

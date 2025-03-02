@@ -43,7 +43,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["serpent", "urban"],
+    "terrains": ["urban"],
+    "tags": ["electricity"],
     "shape": "serpent",
     "stage": "basic",
     "types": [

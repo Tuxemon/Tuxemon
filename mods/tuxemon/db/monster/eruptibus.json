@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["landrace", "desert", "mountains"],
+    "terrains": ["desert", "mountains"],
+    "tags": ["flame", "bite", "rock", "bomber", "calamity"],
     "shape": "landrace",
     "stage": "stage1",
     "types": [

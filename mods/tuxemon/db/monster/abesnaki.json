@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["serpent", "desert", "grassland", "ruins", "swamp"],
+    "terrains": ["desert", "grassland", "ruins", "swamp"],
+    "tags": ["summoner", "mental", "gaze"],
     "shape": "serpent",
     "stage": "standalone",
     "types": [

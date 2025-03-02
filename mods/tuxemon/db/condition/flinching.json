@@ -1,8 +1,12 @@
 {
   "animation": null,
+  "modifiers": [],
   "category": "negative",
   "effects": [
-    "flinching 0.5"
+    {
+      "type": "flinching",
+      "parameters": ["0.5"]
+    }
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_flinching.png",

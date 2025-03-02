@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "sting"
+            "technique": "hammerhead"
         },
         {
             "level_learned": 4,
@@ -20,11 +20,11 @@
         },
         {
             "level_learned": 13,
-            "technique": "fluff_up"
+            "technique": "diet"
         },
         {
             "level_learned": 25,
-            "technique": "hammerhead"
+            "technique": "hallucinogen_spore"
         },
         {
             "level_learned": 28,
@@ -33,6 +33,10 @@
         {
             "level_learned": 31,
             "technique": "life_surge"
+        },
+        {
+            "level_learned": 37,
+            "technique": "rocky_barrage"
         }
     ],
     "evolutions": [],
@@ -42,7 +46,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["brute"],
+    "terrains": [],
+    "tags": ["bite", "plant", "fists", "rock"],
     "shape": "brute",
     "stage": "stage1",
     "types": [

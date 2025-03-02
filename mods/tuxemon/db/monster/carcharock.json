@@ -1,0 +1,67 @@
+{
+    "slug": "carcharock",
+    "category": "fossil",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "hammerhead"
+        },
+        {
+            "level_learned": 1,
+            "technique": "slice"
+        },
+        {
+            "level_learned": 4,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 10,
+            "technique": "ram"
+        },
+        {
+            "level_learned": 13,
+            "technique": "breathe_fire"
+        },
+        {
+            "level_learned": 19,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 25,
+            "technique": "berserk"
+        },
+        {
+            "level_learned": 28,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 34,
+            "technique": "wallow"
+        },
+        {
+            "level_learned": 40,
+            "technique": "earthquake"
+        },
+        {
+            "level_learned": 55,
+            "technique": "energy_beam"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "terrains": ["coastal", "jungle"],
+    "tags": ["bite", "amphibian", "megafauna", "fury"],
+    "shape": "dragon",
+    "stage": "standalone",
+    "types": [
+        "fire"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 385,
+    "height": 120,
+    "weight": 45,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

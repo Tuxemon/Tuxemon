@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "avalanche"
+            "technique": "air_chain"
         },
         {
             "level_learned": 1,
-            "technique": "peck"
+            "technique": "buzz"
         },
         {
             "level_learned": 4,
@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 7,
-            "technique": "peck"
+            "technique": "battery_discharge"
         },
         {
             "level_learned": 13,
@@ -36,7 +36,7 @@
         },
         {
             "level_learned": 28,
-            "technique": "air_chain"
+            "technique": "avalanche"
         },
         {
             "level_learned": 31,
@@ -44,7 +44,7 @@
         },
         {
             "level_learned": 37,
-            "technique": "barking"
+            "technique": "needle"
         },
         {
             "level_learned": 40,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["sprite", "desert", "grassland", "woodland"],
+    "terrains": ["desert", "grassland", "woodland"],
+    "tags": ["sharp", "rock", "bug"],
     "shape": "sprite",
     "stage": "standalone",
     "types": [

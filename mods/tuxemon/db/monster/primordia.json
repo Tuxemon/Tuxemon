@@ -1,0 +1,59 @@
+{
+    "slug": "primordia",
+    "category": "microbe",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "wallow"
+        },
+        {
+            "level_learned": 1,
+            "technique": "acid"
+        },
+        {
+            "level_learned": 4,
+            "technique": "fire_claw"
+        },
+        {
+            "level_learned": 10,
+            "technique": "amnesia"
+        },
+        {
+            "level_learned": 13,
+            "technique": "breathe_fire"
+        },
+        {
+            "level_learned": 19,
+            "technique": "water_blast"
+        },
+        {
+            "level_learned": 28,
+            "technique": "firestorm"
+        },
+        {
+            "level_learned": 34,
+            "technique": "snowstorm"
+        },
+        {
+            "level_learned": 40,
+            "technique": "shooting_star"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "terrains": ["coastal", "extraterrestrial", "other"],
+    "tags": ["water", "pseudopod", "fire", "amphibian"],
+    "shape": "blob",
+    "stage": "standalone",
+    "types": [
+        "fire", "water"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 386,
+    "height": 1,
+    "weight": 0.1,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 
 from tuxemon.db import SurfaceKeys
 from tuxemon.event import MapCondition, get_npc
@@ -13,6 +14,7 @@ from tuxemon.states.world.worldstate import WorldState
 logger = logging.getLogger(__name__)
 
 
+@dataclass
 class CharInCondition(EventCondition):
     """
     Check to see if the character is on a specific set of tiles.

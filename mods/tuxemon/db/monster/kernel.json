@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "electrical_storm"
+            "technique": "gold_digger"
         },
         {
             "level_learned": 1,
@@ -36,7 +36,7 @@
         },
         {
             "level_learned": 28,
-            "technique": "gold_digger"
+            "technique": "electrical_storm"
         },
         {
             "level_learned": 31,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["sprite", "extraplanar"],
+    "terrains": ["extraplanar"],
+    "tags": ["gadgets", "machine", "mental", "summoner"],
     "shape": "sprite",
     "stage": "standalone",
     "types": [

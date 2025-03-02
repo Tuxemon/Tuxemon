@@ -24,12 +24,11 @@ from pygame.rect import Rect
 
 from tuxemon import networking, prepare, state
 from tuxemon.boundary import BoundaryChecker
-from tuxemon.camera import Camera, project
+from tuxemon.camera import Camera, CameraManager, project
 from tuxemon.db import Direction
 from tuxemon.entity import Entity
 from tuxemon.graphics import ColorLike
 from tuxemon.map import (
-    PathfindNode,
     RegionProperties,
     TuxemonMap,
     dirs2,
@@ -39,6 +38,7 @@ from tuxemon.map import (
 )
 from tuxemon.map_loader import TMXMapLoader, YAMLEventLoader
 from tuxemon.math import Vector2
+from tuxemon.movement import PathfindNode
 from tuxemon.platform.const import intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event
@@ -60,21 +60,6 @@ direction_map: Mapping[int, Direction] = {
     intentions.DOWN: Direction.down,
     intentions.LEFT: Direction.left,
     intentions.RIGHT: Direction.right,
-}
-
-SpriteMap = Union[
-    Mapping[str, pygame.surface.Surface],
-    Mapping[str, SurfaceAnimation],
-]
-
-animation_mapping = {
-    "walking": {
-        "up": "back_walk",
-        "down": "front_walk",
-        "left": "left_walk",
-        "right": "right_walk",
-    },
-    "idle": {"up": "back", "down": "front", "left": "left", "right": "right"},
 }
 
 
@@ -165,6 +150,8 @@ class WorldState(state.State):
             local_session.player = new_player
 
         self.camera = Camera(local_session.player, self.boundary_checker)
+        self.camera_manager = CameraManager()
+        self.camera_manager.add_camera(self.camera)
 
         if map_name:
             self.change_map(map_name)
@@ -267,9 +254,11 @@ class WorldState(state.State):
         self.client.event_data["transition"] = False
 
         # Update the server/clients of our new map and populate any other players.
-        if self.client.isclient or self.client.ishost:
-            self.client.add_clients_to_map(self.client.client.client.registry)
-            self.client.client.update_player(self.player.facing)
+        self.network = self.client.network_manager
+        if self.network.isclient or self.network.ishost:
+            assert self.network.client
+            self.client.add_clients_to_map(self.network.client.client.registry)
+            self.network.client.update_player(self.player.facing)
 
         # Update the location of the npcs. Doesn't send network data.
         for npc in self.npcs:
@@ -297,7 +286,6 @@ class WorldState(state.State):
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player.game_variables))
         logger.debug("Money:" + str(self.player.money))
-        logger.debug("Tuxepedia:" + str(self.player.tuxepedia))
 
     def draw(self, surface: pygame.surface.Surface) -> None:
         """
@@ -374,7 +362,7 @@ class WorldState(state.State):
                         self.stop_char(self.player)
                         return None
             else:
-                return self.camera.handle_input(event)
+                return self.camera_manager.handle_input(event)
 
         if prepare.DEV_TOOLS:
             if event.pressed and event.button == intentions.NOCLIP:
@@ -494,11 +482,12 @@ class WorldState(state.State):
             for npc, surface in self.bubble.items():
                 cx, cy = self.get_pos_from_tilepos(Vector2(npc.tile_pos))
                 bubble_rect = surface.get_rect()
-                bubble_rect.centerx = npc.rect.centerx
-                bubble_rect.bottom = npc.rect.top
+                bubble_rect.centerx = npc.sprite_renderer.rect.centerx
+                bubble_rect.bottom = npc.sprite_renderer.rect.top
                 bubble_rect.x = cx
                 bubble_rect.y = cy - (
-                    surface.get_height() + int(npc.rect.height / 10)
+                    surface.get_height()
+                    + int(npc.sprite_renderer.rect.height / 10)
                 )
                 bubble = (surface, bubble_rect, 100)
                 screen_surfaces.append(bubble)
@@ -562,22 +551,11 @@ class WorldState(state.State):
             position of the NPC and the layer.
 
         """
-
-        def get_frame(d: SpriteMap, ani: str) -> pygame.surface.Surface:
-            frame = d[ani]
-            if isinstance(frame, SurfaceAnimation):
-                surface = frame.get_current_frame()
-                frame.rate = npc.moverate / prepare.CONFIG.player_walkrate
-                return surface
-            else:
-                return frame
-
-        frame_dict: SpriteMap = npc.sprite if npc.moving else npc.standing
+        sprite_renderer = npc.sprite_renderer
         moving = "walking" if npc.moving else "idle"
-        state = animation_mapping[moving][npc.facing]
-        world = WorldSurfaces(
-            get_frame(frame_dict, state), proj(npc.position3), layer
-        )
+        state = sprite_renderer.ANIMATION_MAPPING[moving][npc.facing.value]
+        frame = sprite_renderer.get_frame(state)
+        world = WorldSurfaces(frame, proj(npc.position3), layer)
         return [world]
 
     ####################################################

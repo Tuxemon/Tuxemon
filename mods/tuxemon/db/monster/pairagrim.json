@@ -37,6 +37,10 @@
         {
             "level_learned": 40,
             "technique": "one_two"
+        },
+        {
+            "level_learned": 55,
+            "technique": "ten_thousand_feathers"
         }
     ],
     "evolutions": [],
@@ -46,7 +50,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["flier"],
+    "terrains": [],
+    "tags": ["bird"],
     "shape": "flier",
     "stage": "stage1",
     "types": [

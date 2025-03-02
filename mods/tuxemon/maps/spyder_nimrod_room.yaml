@@ -52,19 +52,19 @@ events:
     - translated_dialog spyder_nimrod_flashback1
     - pathfind spyder_nimrod_zircon,2,2
     - char_face spyder_nimrod_zircon,down
-    - translated_dialog spyder_nimrod_flashback2
+    - translated_dialog spyder_nimrod_flashback2,,top
     - translated_dialog spyder_nimrod_flashback3
-    - translated_dialog spyder_nimrod_flashback4
+    - translated_dialog spyder_nimrod_flashback4,,top
     - translated_dialog spyder_nimrod_flashback5
-    - translated_dialog spyder_nimrod_flashback6
+    - translated_dialog spyder_nimrod_flashback6,,top
     - translated_dialog spyder_nimrod_flashback7
-    - translated_dialog spyder_nimrod_flashback8
+    - translated_dialog spyder_nimrod_flashback8,,top
     - translated_dialog spyder_nimrod_flashback9
-    - translated_dialog spyder_nimrod_flashback10
+    - translated_dialog spyder_nimrod_flashback10,,top
     - translated_dialog spyder_nimrod_flashback11
-    - translated_dialog spyder_nimrod_flashback12
+    - translated_dialog spyder_nimrod_flashback12,,top
     - translated_dialog spyder_nimrod_flashback13
-    - translated_dialog spyder_nimrod_flashback14
+    - translated_dialog spyder_nimrod_flashback14,,top
     - pathfind spyder_nimrod_argon,8,3
     - remove_npc spyder_nimrod_argon
     - pathfind spyder_nimrod_zircon,8,3
@@ -90,18 +90,18 @@ events:
     - char_face spyder_nimrod_honour,right
     - create_npc spyder_nimrod_bowie,1,4
     - char_face spyder_nimrod_bowie,right
-    - translated_dialog spyder_enforcershq_flashback1
+    - translated_dialog spyder_enforcershq_flashback1,,top
     - char_face spyder_nimrod_bowie,up
     - char_face spyder_nimrod_honour,up
-    - translated_dialog spyder_enforcershq_flashback2
+    - translated_dialog spyder_enforcershq_flashback2,,topleft
     - char_face spyder_nimrod_thatcher,down
     - char_face spyder_nimrod_bowie,right
     - char_face spyder_nimrod_honour,right
-    - translated_dialog spyder_enforcershq_flashback3
+    - translated_dialog spyder_enforcershq_flashback3,,top
     - translated_dialog spyder_enforcershq_flashback4
-    - translated_dialog spyder_enforcershq_flashback5
-    - translated_dialog spyder_enforcershq_flashback6
-    - translated_dialog spyder_enforcershq_flashback7
+    - translated_dialog spyder_enforcershq_flashback5,,top
+    - translated_dialog spyder_enforcershq_flashback6,,bottomleft
+    - translated_dialog spyder_enforcershq_flashback7,,top
     - pathfind spyder_nimrod_bowie,8,3
     - remove_npc spyder_nimrod_bowie
     - pathfind spyder_nimrod_honour,8,3

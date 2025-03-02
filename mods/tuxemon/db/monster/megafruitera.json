@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "sting"
+            "technique": "leaf_stab"
         },
         {
             "level_learned": 4,
@@ -36,7 +36,7 @@
         },
         {
             "level_learned": 28,
-            "technique": "greenstone"
+            "technique": "leaf_barrage"
         },
         {
             "level_learned": 31,
@@ -67,7 +67,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["flier"],
+    "terrains": [],
+    "tags": ["plant", "food"],
     "shape": "flier",
     "stage": "stage1",
     "types": [

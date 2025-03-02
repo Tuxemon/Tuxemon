@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "muddle"
+            "technique": "invictus"
         },
         {
             "level_learned": 1,
@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 10,
-            "technique": "invictus"
+            "technique": "breathe_fire"
         },
         {
             "level_learned": 13,
@@ -25,6 +25,22 @@
         {
             "level_learned": 19,
             "technique": "terror"
+        },
+        {
+            "level_learned": 25,
+            "technique": "earthquake"
+        },
+        {
+            "level_learned": 31,
+            "technique": "flamethrower"
+        },
+        {
+            "level_learned": 40,
+            "technique": "energy_beam"
+        },
+        {
+            "level_learned": 55,
+            "technique": "supernova"
         }
     ],
     "evolutions": [
@@ -43,7 +59,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["landrace", "grassland", "jungle", "underground"],
+    "terrains": ["grassland", "jungle", "underground"],
+    "tags": ["ghost", "rock", "bite", "shapeshifter", "darkness"],
     "shape": "landrace",
     "stage": "basic",
     "types": [

@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "amnesia"
+            "technique": "bullet"
         },
         {
             "level_learned": 1,
@@ -36,7 +36,7 @@
         },
         {
             "level_learned": 28,
-            "technique": "bullet"
+            "technique": "amnesia"
         },
         {
             "level_learned": 31,
@@ -48,12 +48,13 @@
         },
         {
             "level_learned": 40,
-            "technique": "platinum"
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["hunter"],
+    "terrains": [],
+    "tags": ["gaze", "claws"],
     "shape": "hunter",
     "stage": "standalone",
     "types": [

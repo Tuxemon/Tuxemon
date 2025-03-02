@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "breathe_fire"
+            "technique": "fire_claw"
         },
         {
             "level_learned": 1,
-            "technique": "give_all"
+            "technique": "wing_tip"
         },
         {
             "level_learned": 4,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "fire_claw"
+            "technique": "breathe_fire"
         },
         {
             "level_learned": 25,
@@ -58,7 +58,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["flier", "grassland", "jungle", "woodland"],
+    "terrains": ["grassland", "jungle", "woodland"],
+    "tags": ["flame", "bird", "bomber"],
     "shape": "flier",
     "stage": "stage2",
     "types": [

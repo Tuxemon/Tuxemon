@@ -33,6 +33,14 @@
         {
             "level_learned": 25,
             "technique": "refresh"
+        },
+        {
+            "level_learned": 31,
+            "technique": "fire_shield"
+        },
+        {
+            "level_learned": 40,
+            "technique": "firestorm"
         }
     ],
     "evolutions": [],
@@ -42,7 +50,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["serpent", "ruins", "underground", "urban"],
+    "terrains": ["ruins", "underground", "urban"],
+    "tags": ["shapeshifter", "bite", "flame"],
     "shape": "serpent",
     "stage": "stage1",
     "types": [

@@ -16,16 +16,33 @@
         },
         {
             "level_learned": 10,
-            "technique": "supernova"
+            "technique": "roll"
         },
         {
             "level_learned": 19,
             "technique": "sunburst"
+        },
+        {
+            "level_learned": 22,
+            "technique": "roll"
+        },
+        {
+            "level_learned": 40,
+            "technique": "supernova"
+        },
+        {
+            "level_learned": 46,
+            "technique": "tsunami"
+        },
+        {
+            "level_learned": 55,
+            "technique": "tornado"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["blob", "boreal/snow", "extraterrestrial", "ruins", "sea"],
+    "terrains": ["boreal/snow", "extraterrestrial", "ruins", "sea"],
+    "tags": ["celestial", "light", "darkness"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "fester"
+            "technique": "spit_poison"
         },
         {
             "level_learned": 1,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "spit_poison"
+            "technique": "fester"
         },
         {
             "level_learned": 16,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "peck"
+            "technique": "tonguespear"
         },
         {
             "level_learned": 28,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["serpent"],
+    "terrains": [],
+    "tags": ["bug", "toxic"],
     "shape": "serpent",
     "stage": "standalone",
     "types": [

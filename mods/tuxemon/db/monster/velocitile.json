@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "sting"
+            "technique": "leaf_stab"
         },
         {
             "level_learned": 1,
@@ -28,15 +28,15 @@
         },
         {
             "level_learned": 28,
-            "technique": "peregrine"
+            "technique": "revenge_stance"
         },
         {
             "level_learned": 31,
-            "technique": "pseudopod"
+            "technique": "leaf_barrage"
         },
         {
             "level_learned": 40,
-            "technique": "wing_tip"
+            "technique": "needle"
         },
         {
             "level_learned": 43,
@@ -44,7 +44,7 @@
         },
         {
             "level_learned": 46,
-            "technique": "invictus"
+            "technique": "thorn_burst"
         }
     ],
     "evolutions": [],
@@ -58,7 +58,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["humanoid", "grassland", "jungle", "woodland"],
+    "terrains": ["grassland", "jungle", "woodland"],
+    "tags": ["plant", "speed"],
     "shape": "humanoid",
     "stage": "stage2",
     "types": [

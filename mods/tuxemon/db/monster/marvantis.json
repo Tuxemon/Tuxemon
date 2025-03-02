@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "clamp_on"
+            "technique": "fire_claw"
         },
         {
             "level_learned": 1,
@@ -15,12 +15,28 @@
             "technique": "ants"
         },
         {
-            "level_learned": 10,
+            "level_learned": 7,
             "technique": "blood_nets"
         },
         {
-            "level_learned": 19,
+            "level_learned": 13,
             "technique": "energy_claws"
+        },
+        {
+            "level_learned": 16,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 25,
+            "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 31,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 40,
+            "technique": "tornado"
         }
     ],
     "evolutions": [],
@@ -30,7 +46,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["grub", "grassland", "woodland"],
+    "terrains": ["grassland", "woodland"],
+    "tags": ["bug", "shapeshifter", "bite"],
     "shape": "grub",
     "stage": "stage1",
     "types": [

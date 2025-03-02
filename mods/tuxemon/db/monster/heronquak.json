@@ -63,7 +63,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["flier", "boreal/snow", "grassland", "mountains"],
+    "terrains": ["boreal/snow", "grassland", "mountains"],
+    "tags": ["gemstone", "ice", "bird"],
     "shape": "flier",
     "stage": "stage1",
     "types": [

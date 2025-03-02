@@ -37,6 +37,14 @@
         {
             "level_learned": 25,
             "technique": "thunderclap"
+        },
+        {
+            "level_learned": 37,
+            "technique": "magnetic_body"
+        },
+        {
+            "level_learned": 43,
+            "technique": "laser_beam"
         }
     ],
     "evolutions": [],
@@ -50,7 +58,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["humanoid"],
+    "terrains": [],
+    "tags": ["machine", "bomber", "gadgets", "light", "electricity"],
     "shape": "humanoid",
     "stage": "stage2",
     "types": [

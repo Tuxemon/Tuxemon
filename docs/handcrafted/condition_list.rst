@@ -38,5 +38,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.to_use_tile.ToUseTileCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.true.TrueCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.tuxepedia.TuxepediaCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.variable_highest.VariableHighestCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.variable_is.VariableIsCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.variable_lowest.VariableLowestCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.variable_set.VariableSetCondition

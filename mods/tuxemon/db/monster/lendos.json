@@ -47,8 +47,8 @@
             "technique": "sleep_bomb"
         },
         {
-            "level_learned": 43,
-            "technique": "peregrine"
+            "level_learned": 40,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [],
@@ -58,7 +58,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["gaze", "darkness", "mental"],
     "shape": "blob",
     "stage": "stage1",
     "types": [

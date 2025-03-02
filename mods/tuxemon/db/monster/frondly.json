@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "muddle"
+            "technique": "tail_lash"
         },
         {
             "level_learned": 1,
@@ -33,6 +33,14 @@
         {
             "level_learned": 28,
             "technique": "blossom"
+        },
+        {
+            "level_learned": 40,
+            "technique": "woodsmash"
+        },
+        {
+            "level_learned": 55,
+            "technique": "divinity_beam"
         }
     ],
     "evolutions": [],
@@ -42,7 +50,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["sprite", "jungle"],
+    "terrains": ["jungle"],
+    "tags": ["plant", "leadership", "food", "love", "pseudopod", "tail"],
     "shape": "sprite",
     "stage": "stage1",
     "types": [

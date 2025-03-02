@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "all_in"
+            "technique": "invictus"
         },
         {
             "level_learned": 4,
@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 7,
-            "technique": "invictus"
+            "technique": "constrict"
         },
         {
             "level_learned": 13,
@@ -28,7 +28,7 @@
         },
         {
             "level_learned": 19,
-            "technique": "constrict"
+            "technique": "platinum"
         },
         {
             "level_learned": 25,
@@ -44,7 +44,7 @@
         },
         {
             "level_learned": 37,
-            "technique": "platinum"
+            "technique": "all_in"
         },
         {
             "level_learned": 40,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["brute", "urban"],
+    "terrains": ["urban"],
+    "tags": ["fists", "fury"],
     "shape": "brute",
     "stage": "standalone",
     "types": [

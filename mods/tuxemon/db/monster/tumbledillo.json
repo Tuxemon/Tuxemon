@@ -16,11 +16,11 @@
         },
         {
             "level_learned": 7,
-            "technique": "frostbite"
+            "technique": "roll"
         },
         {
             "level_learned": 13,
-            "technique": "electrical_storm"
+            "technique": "shrapnel"
         },
         {
             "level_learned": 16,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "evasion"
+            "technique": "needle"
         },
         {
             "level_learned": 28,
@@ -48,7 +48,7 @@
         },
         {
             "level_learned": 40,
-            "technique": "cloud_aether"
+            "technique": "thorn_burst"
         }
     ],
     "evolutions": [],
@@ -58,7 +58,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["varmint"],
+    "terrains": [],
+    "tags": ["ground", "sharp", "bite"],
     "shape": "varmint",
     "stage": "stage1",
     "types": [

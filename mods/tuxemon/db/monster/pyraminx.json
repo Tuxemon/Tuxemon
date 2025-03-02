@@ -33,6 +33,10 @@
         {
             "level_learned": 28,
             "technique": "bullet"
+        },
+        {
+            "level_learned": 40,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [],
@@ -42,7 +46,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["hunter"],
+    "terrains": [],
+    "tags": ["ground", "claws", "summoner", "ghost", "water"],
     "shape": "hunter",
     "stage": "stage1",
     "types": [

@@ -43,7 +43,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["serpent", "coastal", "desert"],
+    "terrains": ["coastal", "desert"],
+    "tags": ["flame", "toxic"],
     "shape": "serpent",
     "stage": "basic",
     "types": [

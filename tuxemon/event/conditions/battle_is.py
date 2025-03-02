@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 
 from tuxemon.db import OutputBattle
 from tuxemon.event import MapCondition
@@ -12,6 +13,7 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 
+@dataclass
 class BattleIsCondition(EventCondition):
     """
     Check to see if a character has fought against another one

@@ -63,7 +63,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["serpent"],
+    "terrains": [],
+    "tags": ["bite", "plant"],
     "shape": "serpent",
     "stage": "stage1",
     "types": [

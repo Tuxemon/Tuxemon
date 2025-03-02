@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "fester"
+            "technique": "sting"
         },
         {
             "level_learned": 1,
-            "technique": "venomous_tentacle"
+            "technique": "pseudopod"
         },
         {
             "level_learned": 4,
@@ -28,7 +28,7 @@
         },
         {
             "level_learned": 19,
-            "technique": "frostbite"
+            "technique": "needle"
         },
         {
             "level_learned": 25,
@@ -48,12 +48,13 @@
         },
         {
             "level_learned": 40,
-            "technique": "tsunami"
+            "technique": "thorn_burst"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["landrace"],
+    "terrains": [],
+    "tags": ["sharp", "food", "toxic", "ground", "megafauna"],
     "shape": "landrace",
     "stage": "standalone",
     "types": [

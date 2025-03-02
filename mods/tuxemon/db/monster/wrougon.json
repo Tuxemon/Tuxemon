@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "perfect_cut"
+            "technique": "tail_lash"
         },
         {
             "level_learned": 1,
-            "technique": "shrapnel"
+            "technique": "bullet"
         },
         {
             "level_learned": 4,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "undertaker"
+            "technique": "muddle"
         },
         {
             "level_learned": 16,
@@ -44,11 +44,11 @@
         },
         {
             "level_learned": 64,
-            "technique": "muddle"
+            "technique": "undertaker"
         },
         {
             "level_learned": 70,
-            "technique": "bullet"
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [
@@ -67,7 +67,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["dragon"],
+    "terrains": ["ruins", "underground"],
+    "tags": ["steel", "soldier", "tail"],
     "shape": "dragon",
     "stage": "basic",
     "types": [

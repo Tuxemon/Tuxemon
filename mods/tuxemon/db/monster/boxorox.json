@@ -21,11 +21,16 @@
         {
             "level_learned": 19,
             "technique": "one_two"
+        },
+        {
+            "level_learned": 25,
+            "technique": "rocky_barrage"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["humanoid"],
+    "terrains": [],
+    "tags": ["rock", "fists"],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [

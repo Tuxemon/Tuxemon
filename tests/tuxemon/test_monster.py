@@ -3,14 +3,7 @@
 import unittest
 
 from tuxemon import formula, prepare
-from tuxemon.db import (
-    MonsterShape,
-    ShapeModel,
-    TasteCold,
-    TasteWarm,
-    TechniqueModel,
-    db,
-)
+from tuxemon.db import ShapeModel, TasteCold, TasteWarm, TechniqueModel, db
 from tuxemon.monster import Monster
 from tuxemon.prepare import MAX_LEVEL
 from tuxemon.technique.technique import Technique
@@ -79,7 +72,7 @@ class SetStats(MonsterTestBase):
         self.assertEqual(self.mon.hp, self.value)
 
     def test_set_stats_shape(self):
-        self.mon.shape = MonsterShape.dragon
+        self.mon.shape = "dragon"
         self.mon.set_stats()
         _shape = self._shape
         self.assertEqual(self.mon.armour, _shape.armour * self.value)

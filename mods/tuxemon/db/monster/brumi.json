@@ -25,6 +25,10 @@
         {
             "level_learned": 19,
             "technique": "changeling"
+        },
+        {
+            "level_learned": 40,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [
@@ -44,7 +48,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["sprite", "any"],
+    "terrains": ["any"],
+    "tags": ["ghost", "shapeshifter", "darkness", "mental", "gemstone"],
     "shape": "sprite",
     "stage": "stage1",
     "types": [

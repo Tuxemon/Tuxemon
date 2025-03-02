@@ -15,12 +15,32 @@
             "technique": "canine"
         },
         {
-            "level_learned": 10,
-            "technique": "fire_ball"
+            "level_learned": 7,
+            "technique": "fiery"
         },
         {
-            "level_learned": 19,
+            "level_learned": 13,
             "technique": "flamethrower"
+        },
+        {
+            "level_learned": 16,
+            "technique": "diet"
+        },
+        {
+            "level_learned": 25,
+            "technique": "kindling_flame"
+        },
+        {
+            "level_learned": 28,
+            "technique": "strangulation"
+        },
+        {
+            "level_learned": 31,
+            "technique": "oven"
+        },
+        {
+            "level_learned": 37,
+            "technique": "magnetic_body"
         }
     ],
     "evolutions": [
@@ -35,7 +55,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["hunter"],
+    "terrains": [],
+    "tags": ["flame", "bite", "electricity"],
     "shape": "hunter",
     "stage": "basic",
     "types": [

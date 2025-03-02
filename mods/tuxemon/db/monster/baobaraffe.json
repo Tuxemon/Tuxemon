@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "sting"
+            "technique": "stick"
         },
         {
             "level_learned": 4,
@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "invictus"
+            "technique": "trample"
         },
         {
             "level_learned": 19,
@@ -36,7 +36,11 @@
         },
         {
             "level_learned": 28,
-            "technique": "pseudopod"
+            "technique": "cutting_leaves"
+        },
+        {
+            "level_learned": 55,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [],
@@ -46,7 +50,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["landrace"],
+    "terrains": [],
+    "tags": ["plant", "water", "megafauna"],
     "shape": "landrace",
     "stage": "stage1",
     "types": [

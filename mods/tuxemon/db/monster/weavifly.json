@@ -8,11 +8,11 @@
         },
         {
             "level_learned": 1,
-            "technique": "shuriken"
+            "technique": "wallow"
         },
         {
             "level_learned": 4,
-            "technique": "wallow"
+            "technique": "buzz"
         },
         {
             "level_learned": 7,
@@ -36,15 +36,15 @@
         },
         {
             "level_learned": 22,
-            "technique": "muddle"
+            "technique": "shuriken"
         },
         {
             "level_learned": 25,
             "technique": "eyebite"
         },
         {
-            "level_learned": 28,
-            "technique": "constrict"
+            "level_learned": 55,
+            "technique": "tornado"
         }
     ],
     "evolutions": [],
@@ -58,7 +58,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["grub"],
+    "terrains": [],
+    "tags": ["sharp", "bug", "bomber"],
     "shape": "grub",
     "stage": "stage2",
     "types": [

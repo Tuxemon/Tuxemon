@@ -49,11 +49,16 @@
         {
             "level_learned": 40,
             "technique": "tsunami"
+        },
+        {
+            "level_learned": 55,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["hunter"],
+    "terrains": [],
+    "tags": ["celestial", "healing"],
     "shape": "hunter",
     "stage": "standalone",
     "types": [

@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 7,
-            "technique": "blossom"
+            "technique": "solar_synthesis"
         },
         {
             "level_learned": 13,
@@ -32,7 +32,15 @@
         },
         {
             "level_learned": 31,
-            "technique": "solar_synthesis"
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 40,
+            "technique": "flower_armor"
+        },
+        {
+            "level_learned": 52,
+            "technique": "flower_bloom"
         }
     ],
     "evolutions": [],
@@ -42,7 +50,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["plant", "mental"],
     "shape": "blob",
     "stage": "stage1",
     "types": [

@@ -21,6 +21,18 @@
         {
             "level_learned": 13,
             "technique": "font"
+        },
+        {
+            "level_learned": 22,
+            "technique": "midnight_mantle"
+        },
+        {
+            "level_learned": 25,
+            "technique": "needle"
+        },
+        {
+            "level_learned": 28,
+            "technique": "chill_mist"
         }
     ],
     "evolutions": [
@@ -35,7 +47,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["grub", "coastal"],
+    "terrains": ["coastal"],
+    "tags": ["sharp", "toxic"],
     "shape": "grub",
     "stage": "basic",
     "types": [

@@ -4,18 +4,22 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "sleep_bomb"
+            "technique": "strike"
         },
         {
             "level_learned": 1,
-            "technique": "shrapnel"
+            "technique": "tail_lash"
         },
         {
             "level_learned": 4,
-            "technique": "terror"
+            "technique": "constrict"
         },
         {
             "level_learned": 7,
+            "technique": "terror"
+        },
+        {
+            "level_learned": 10,
             "technique": "insanity"
         },
         {
@@ -24,11 +28,11 @@
         },
         {
             "level_learned": 19,
-            "technique": "strike"
+            "technique": "sleep_bomb"
         },
         {
             "level_learned": 25,
-            "technique": "constrict"
+            "technique": "shrapnel"
         },
         {
             "level_learned": 28,
@@ -47,7 +51,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["humanoid"],
+    "terrains": [],
+    "tags": ["mental", "gadgets", "tail"],
     "shape": "humanoid",
     "stage": "basic",
     "types": [

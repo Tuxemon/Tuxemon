@@ -43,6 +43,7 @@ class WorldSurfaces:
     layer: int
 
 
+
 class SpriteRenderer:
     """A class for rendering NPC sprites."""
 
@@ -342,3 +343,4 @@ class MapRenderer:
             bar.fill(prepare.BLACK_COLOR)
             screen.blit(bar, (0, 0))
             screen.blit(bar, (prepare.SCREEN_SIZE[0] - bar_width, 0))
+

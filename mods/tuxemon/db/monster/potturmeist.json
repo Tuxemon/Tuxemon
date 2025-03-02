@@ -4,43 +4,47 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "perfect_cut"
-        },
-        {
-            "level_learned": 1,
-            "technique": "shrapnel"
-        },
-        {
-            "level_learned": 4,
             "technique": "bullet"
         },
         {
-            "level_learned": 7,
+            "level_learned": 1,
             "technique": "muddle"
         },
         {
-            "level_learned": 13,
+            "level_learned": 4,
             "technique": "wall_of_steel"
         },
         {
-            "level_learned": 16,
+            "level_learned": 7,
             "technique": "lineage"
         },
         {
-            "level_learned": 19,
+            "level_learned": 13,
             "technique": "ruby"
         },
         {
-            "level_learned": 25,
+            "level_learned": 16,
             "technique": "terror"
         },
         {
-            "level_learned": 28,
+            "level_learned": 19,
+            "technique": "crystal"
+        },
+        {
+            "level_learned": 25,
             "technique": "phantasmal_force"
         },
         {
+            "level_learned": 28,
+            "technique": "perfect_cut"
+        },
+        {
             "level_learned": 31,
-            "technique": "crystal"
+            "technique": "shrapnel"
+        },
+        {
+            "level_learned": 40,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [
@@ -55,7 +59,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["ghost", "shielded", "shapeshifter"],
     "shape": "blob",
     "stage": "basic",
     "types": [

@@ -120,24 +120,6 @@ class OutputBattle(str, Enum):
     draw = "draw"
 
 
-class MonsterShape(str, Enum):
-    default = "default"
-    blob = "blob"
-    brute = "brute"
-    dragon = "dragon"
-    flier = "flier"
-    grub = "grub"
-    humanoid = "humanoid"
-    hunter = "hunter"
-    landrace = "landrace"
-    leviathan = "leviathan"
-    piscine = "piscine"
-    polliwog = "polliwog"
-    serpent = "serpent"
-    sprite = "sprite"
-    varmint = "varmint"
-
-
 class SeenStatus(str, Enum):
     unseen = "unseen"
     seen = "seen"
@@ -260,6 +242,12 @@ class ItemBehaviors(BaseModel):
     )
 
 
+class WorldMenuEntry(BaseModel):
+    position: int
+    label_key: str
+    state: str
+
+
 class ItemModel(BaseModel):
     model_config = ConfigDict(title="Item")
     slug: str = Field(..., description="The slug of the item")
@@ -297,7 +285,7 @@ class ItemModel(BaseModel):
     animation: Optional[str] = Field(
         None, description="Animation to play for this item"
     )
-    world_menu: tuple[int, str, str] = Field(
+    world_menu: Optional[WorldMenuEntry] = Field(
         None,
         description="Item adds to World Menu a button (position, label -inside the PO -,state, eg. 3:nu_phone:PhoneState)",
     )
@@ -340,7 +328,7 @@ class ItemModel(BaseModel):
 
 
 class ShapeModel(BaseModel):
-    slug: MonsterShape = Field(..., description="Slug of the shape")
+    slug: str = Field(..., description="Slug of the shape")
     armour: int = Field(..., description="Armour value")
     dodge: int = Field(..., description="Dodge value")
     hp: int = Field(..., description="HP value")
@@ -623,10 +611,11 @@ class MonsterModel(BaseModel, validate_assignment=True):
     sprites: Annotated[
         Optional[MonsterSpritesModel], Field(validate_default=True)
     ] = None
-    shape: MonsterShape = Field(..., description="The shape of the monster")
-    tags: Sequence[str] = Field(
-        ..., description="The tags of the monster", min_length=1
+    terrains: Sequence[str] = Field(
+        ..., description="The terrains of the monster"
     )
+    shape: str = Field(..., description="The shape of the monster")
+    tags: Sequence[str] = Field(..., description="The tags of the monster")
     types: Sequence[ElementType] = Field(
         [], description="The type(s) of this monster"
     )
@@ -689,6 +678,12 @@ class MonsterModel(BaseModel, validate_assignment=True):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
+    @field_validator("shape")
+    def shape_exists(cls: MonsterModel, v: str) -> str:
+        if has.db_entry("shape", v):
+            return v
+        raise ValueError(f"the shape {v} doesn't exist in the db")
+
 
 class StatModel(BaseModel):
     value: float = Field(
@@ -725,7 +720,17 @@ class TechCategory(str, Enum):
     notype = "notype"
 
 
-# TechSort defines the sort of technique a technique is.
+class Modifier(BaseModel):
+    attribute: str = Field(
+        ..., description="Attribute being modified (type, etc.)"
+    )
+    values: Sequence[str] = Field(
+        [],
+        description="Values associated with the modification (eg. fire, etc.)",
+    )
+    multiplier: float = Field(1.0, description="Multiplier", ge=0.0, le=2.0)
+
+
 class TechSort(str, Enum):
     damage = "damage"
     meta = "meta"
@@ -919,10 +924,10 @@ class ConditionModel(BaseModel):
     slug: str = Field(..., description="The slug of the condition")
     sort: TechSort = Field(..., description="The sort of condition this is")
     icon: str = Field(None, description="The icon to use for the condition")
-    conditions: Sequence[str] = Field(
+    conditions: Sequence[CommonCondition] = Field(
         [], description="Conditions that must be met"
     )
-    effects: Sequence[str] = Field(
+    effects: Sequence[CommonEffect] = Field(
         [], description="Effects this condition uses"
     )
     flip_axes: Literal["", "x", "y", "xy"] = Field(
@@ -942,6 +947,7 @@ class ConditionModel(BaseModel):
     duration: int = Field(
         0, description="How many turns the condition is supposed to last"
     )
+    modifiers: list[Modifier] = Field(..., description="Damage multipliers")
 
     # Optional fields
     category: Optional[CategoryCondition] = Field(
@@ -1026,14 +1032,6 @@ class ConditionModel(BaseModel):
         ):
             return v
         raise ValueError(f"the status {v} doesn't exist in the db")
-
-    @field_validator("conditions")
-    def check_conditions(
-        cls: ConditionModel, v: Sequence[str]
-    ) -> Sequence[str]:
-        if not v or has.check_conditions(v):
-            return v
-        raise ValueError(f"the conditions {v} aren't correctly formatted")
 
     @field_validator("sfx")
     def sfx_cond_exists(cls: ConditionModel, v: str) -> str:

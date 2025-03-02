@@ -8,11 +8,11 @@
         },
         {
             "level_learned": 1,
-            "technique": "give_all"
+            "technique": "fire_ball"
         },
         {
             "level_learned": 4,
-            "technique": "flamethrower"
+            "technique": "fire_claw"
         },
         {
             "level_learned": 7,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "fire_claw"
+            "technique": "nest"
         },
         {
             "level_learned": 16,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "fire_ball"
+            "technique": "give_all"
         },
         {
             "level_learned": 28,
@@ -44,16 +44,21 @@
         },
         {
             "level_learned": 37,
-            "technique": "nest"
+            "technique": "flamethrower"
         },
         {
             "level_learned": 40,
             "technique": "thunderclap"
+        },
+        {
+            "level_learned": 40,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["humanoid", "extraplanar", "ruins"],
+    "terrains": ["extraplanar", "ruins"],
+    "tags": ["flame", "ghost", "fury"],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [

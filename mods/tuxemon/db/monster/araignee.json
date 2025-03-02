@@ -48,12 +48,13 @@
         },
         {
             "level_learned": 40,
-            "technique": "radiance"
+            "technique": "needle"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["grub"],
+    "terrains": ["jungle", "ruins", "underground", "urban", "woodland"],
+    "tags": ["toxic"],
     "shape": "grub",
     "stage": "standalone",
     "types": [

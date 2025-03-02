@@ -22,7 +22,7 @@
 		"own_trainer": false
 	},
 	"category": "notype",
-	"tags": ["NoType"],
+	"tags": ["notype"],
 	"tech_id": 0,
 	"use_failure": "generic_failure",
 	"use_success": null,

@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 4,
-            "technique": "riposte"
+            "technique": "crystal"
         },
         {
             "level_learned": 7,
@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "all_in"
+            "technique": "riposte"
         },
         {
             "level_learned": 19,
@@ -44,16 +44,17 @@
         },
         {
             "level_learned": 37,
-            "technique": "blade"
+            "technique": "pouch"
         },
         {
             "level_learned": 40,
-            "technique": "crystal"
+            "technique": "all_in"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["brute", "desert", "grassland"],
+    "terrains": ["desert", "grassland"],
+    "tags": ["fists", "claws", "soldier"],
     "shape": "brute",
     "stage": "standalone",
     "types": [

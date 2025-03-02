@@ -21,11 +21,20 @@
         {
             "level_learned": 19,
             "technique": "one_two"
+        },
+        {
+            "level_learned": 25,
+            "technique": "pouch"
+        },
+        {
+            "level_learned": 40,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["brute"],
+    "terrains": [],
+    "tags": ["fists"],
     "shape": "brute",
     "stage": "standalone",
     "types": [

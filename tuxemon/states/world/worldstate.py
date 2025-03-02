@@ -22,12 +22,11 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import networking, prepare, state
-from tuxemon.camera import Camera, project
+from tuxemon.camera import Camera, CameraManager, project
 from tuxemon.db import Direction
 from tuxemon.entity import Entity
 from tuxemon.graphics import ColorLike
 from tuxemon.map import (
-    PathfindNode,
     RegionProperties,
     TuxemonMap,
     dirs2,
@@ -38,6 +37,7 @@ from tuxemon.map import (
 from tuxemon.map_loader import TMXMapLoader, YAMLEventLoader
 from tuxemon.map_view import MapRenderer
 from tuxemon.math import Vector2
+from tuxemon.movement import PathfindNode
 from tuxemon.platform.const import intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event
@@ -60,6 +60,7 @@ direction_map: Mapping[int, Direction] = {
     intentions.LEFT: Direction.left,
     intentions.RIGHT: Direction.right,
 }
+
 
 
 CollisionDict = dict[
@@ -120,6 +121,8 @@ class WorldState(state.State):
 
         self.camera = Camera(local_session.player, self.boundary_checker)
         self.map_renderer = MapRenderer(self, self.screen, self.camera)
+        self.camera_manager = CameraManager()
+        self.camera_manager.add_camera(self.camera)
 
         if map_name:
             self.change_map(map_name)
@@ -222,9 +225,11 @@ class WorldState(state.State):
         self.client.event_data["transition"] = False
 
         # Update the server/clients of our new map and populate any other players.
-        if self.client.isclient or self.client.ishost:
-            self.client.add_clients_to_map(self.client.client.client.registry)
-            self.client.client.update_player(self.player.facing)
+        self.network = self.client.network_manager
+        if self.network.isclient or self.network.ishost:
+            assert self.network.client
+            self.client.add_clients_to_map(self.network.client.client.registry)
+            self.network.client.update_player(self.player.facing)
 
         # Update the location of the npcs. Doesn't send network data.
         for npc in self.npcs:
@@ -251,7 +256,6 @@ class WorldState(state.State):
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player.game_variables))
         logger.debug("Money:" + str(self.player.money))
-        logger.debug("Tuxepedia:" + str(self.player.tuxepedia))
 
     def draw(self, surface: pygame.surface.Surface) -> None:
         """
@@ -328,7 +332,7 @@ class WorldState(state.State):
                         self.stop_char(self.player)
                         return None
             else:
-                return self.camera.handle_input(event)
+                return self.camera_manager.handle_input(event)
 
         if prepare.DEV_TOOLS:
             if event.pressed and event.button == intentions.NOCLIP:

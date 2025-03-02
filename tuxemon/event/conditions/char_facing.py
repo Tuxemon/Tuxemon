@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
@@ -11,6 +12,7 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 
+@dataclass
 class CharFacingCondition(EventCondition):
     """
     Check to see where a character is facing.

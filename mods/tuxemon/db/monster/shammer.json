@@ -4,19 +4,19 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "hammerhead"
+            "technique": "boulder"
         },
         {
             "level_learned": 1,
-            "technique": "mudslide"
+            "technique": "hammerhead"
         },
         {
             "level_learned": 4,
-            "technique": "quicksand"
+            "technique": "gnaw"
         },
         {
             "level_learned": 7,
-            "technique": "ice_claw"
+            "technique": "quicksand"
         },
         {
             "level_learned": 13,
@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "avalanche"
+            "technique": "crushing_bite"
         },
         {
             "level_learned": 19,
@@ -44,16 +44,17 @@
         },
         {
             "level_learned": 37,
-            "technique": "blood_nets"
+            "technique": "steel_jaws"
         },
         {
             "level_learned": 40,
-            "technique": "tsunami"
+            "technique": "earthquake"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["hunter"],
+    "terrains": [],
+    "tags": ["rock", "bite"],
     "shape": "hunter",
     "stage": "standalone",
     "types": [

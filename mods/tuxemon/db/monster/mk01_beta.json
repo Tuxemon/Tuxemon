@@ -63,7 +63,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["dragon"],
+    "terrains": [],
+    "tags": [],
     "shape": "dragon",
     "stage": "stage1",
     "types": [

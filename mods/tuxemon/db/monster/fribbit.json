@@ -50,7 +50,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["polliwog"],
+    "terrains": [],
+    "tags": ["ice", "ghost"],
     "shape": "polliwog",
     "stage": "stage1",
     "types": [

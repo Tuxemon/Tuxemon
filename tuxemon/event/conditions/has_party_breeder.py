@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 
 from tuxemon.db import EvolutionStage, GenderType
 from tuxemon.event import MapCondition, get_npc
@@ -12,6 +13,7 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 
+@dataclass
 class HasPartyBreederCondition(EventCondition):
     """
     Check to see if the character has a male and female

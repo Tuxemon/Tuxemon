@@ -30,7 +30,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["hunter", "Boreal/Snow"],
+    "terrains": ["boreal/snow"],
+    "tags": ["ice", "bite"],
     "shape": "hunter",
     "stage": "stage1",
     "types": [

@@ -46,7 +46,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["humanoid", "mountains"],
+    "terrains": ["mountains"],
+    "tags": ["flame", "mental"],
     "shape": "humanoid",
     "stage": "stage2",
     "types": [

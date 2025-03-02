@@ -1,0 +1,76 @@
+{
+    "slug": "hoodoll",
+    "category": "old_man",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 1,
+            "technique": "revenge_stance"
+        },
+        {
+            "level_learned": 4,
+            "technique": "sand_spray"
+        },
+        {
+            "level_learned": 7,
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 13,
+            "technique": "spit_poison"
+        },
+        {
+            "level_learned": 16,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 19,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 25,
+            "technique": "staff_smash"
+        },
+        {
+            "level_learned": 28,
+            "technique": "needle"
+        },
+        {
+            "level_learned": 40,
+            "technique": "woodsmash"
+        },
+        {
+            "level_learned": 55,
+            "technique": "thorn_burst"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 20,
+            "monster_slug": "wolololl"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "wolololl",
+            "evo_stage": "stage1"
+        }
+    ],
+    "terrains": ["desert"],
+    "tags": ["sharp", "plant", "toxic", "staff"],
+    "shape": "blob",
+    "stage": "basic",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 389,
+    "height": 80,
+    "weight": 6,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

@@ -47,8 +47,7 @@ class PhotogenesisEffect(TechEffect):
         )
 
         hour = int(player.game_variables.get("hour", 0))
-        shape = Shape()
-        shape.load(user.shape.value)
+        shape = Shape(user.shape)
         max_multiplier = shape.hp / 2
 
         multiplier = formula.calculate_time_based_multiplier(

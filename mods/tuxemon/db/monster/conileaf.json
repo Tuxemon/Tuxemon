@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "wing_tip"
+            "technique": "leaf_stab"
         },
         {
             "level_learned": 16,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "assault"
+            "technique": "leaf_barrage"
         },
         {
             "level_learned": 28,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["plant", "food"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

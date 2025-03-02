@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import final
 
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.conditions.common import CommonCondition
@@ -14,7 +13,6 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 
-@final
 @dataclass
 class CheckCharParameterCondition(EventCondition):
     """

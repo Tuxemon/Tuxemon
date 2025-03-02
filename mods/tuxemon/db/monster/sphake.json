@@ -7,10 +7,6 @@
             "technique": "wall_of_steel"
         },
         {
-            "level_learned": 1,
-            "technique": "rust_bomb"
-        },
-        {
             "level_learned": 4,
             "technique": "mudslide"
         },
@@ -19,7 +15,15 @@
             "technique": "take_cover"
         },
         {
+            "level_learned": 16,
+            "technique": "roll"
+        },
+        {
             "level_learned": 19,
+            "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 28,
             "technique": "earthquake"
         }
     ],
@@ -30,7 +34,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["sprite"],
+    "terrains": [],
+    "tags": ["steel", "ground", "calamity"],
     "shape": "sprite",
     "stage": "stage1",
     "types": [

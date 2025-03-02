@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "sleep_bomb"
+            "technique": "punch"
         },
         {
             "level_learned": 1,
-            "technique": "bubble_trap"
+            "technique": "mind_vise"
         },
         {
             "level_learned": 4,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["humanoid", "urban"],
+    "terrains": ["urban"],
+    "tags": ["mental"],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [

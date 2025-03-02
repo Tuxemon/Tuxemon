@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "tonguespear"
+            "technique": "spiky_strike"
         },
         {
             "level_learned": 1,
@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 7,
-            "technique": "frostbite"
+            "technique": "roll"
         },
         {
             "level_learned": 13,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "grinding"
+            "technique": "needle"
         },
         {
             "level_learned": 28,
@@ -48,12 +48,13 @@
         },
         {
             "level_learned": 40,
-            "technique": "orbs"
+            "technique": "thorn_burst"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["blob"],
+    "terrains": ["sea"],
+    "tags": ["sharp", "toxic", "water"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

@@ -58,7 +58,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["brute"],
+    "terrains": [],
+    "tags": ["flame"],
     "shape": "brute",
     "stage": "stage1",
     "types": [

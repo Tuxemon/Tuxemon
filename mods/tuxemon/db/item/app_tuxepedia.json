@@ -11,7 +11,11 @@
     "consumable": false,
     "visible": false
   },
-  "world_menu": ["0","menu_tuxepedia","JournalChoice"],
+  "world_menu": {
+    "position": 0,
+    "label_key": "menu_tuxepedia",
+    "state": "JournalChoice"
+  },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

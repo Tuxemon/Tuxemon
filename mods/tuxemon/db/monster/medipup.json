@@ -49,6 +49,10 @@
         {
             "level_learned": 40,
             "technique": "saber"
+        },
+        {
+            "level_learned": 49,
+            "technique": "needle"
         }
     ],
     "evolutions": [
@@ -61,9 +65,18 @@
         {
             "mon_slug": "doctsky",
             "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "askylpaws",
+            "evo_stage": "stage2"
+        },
+        {
+            "mon_slug": "erythroskyte",
+            "evo_stage": "stage2"
         }
     ],
-    "tags": ["varmint", "urban"],
+    "terrains": ["urban"],
+    "tags": ["healing"],
     "shape": "varmint",
     "stage": "basic",
     "types": [

@@ -49,6 +49,10 @@
         {
             "level_learned": 40,
             "technique": "geyser"
+        },
+        {
+            "level_learned": 55,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [],
@@ -58,7 +62,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["brute", "freshwater", "swamp"],
+    "terrains": ["freshwater", "swamp"],
+    "tags": ["light", "weather", "water", "electricity"],
     "shape": "brute",
     "stage": "stage1",
     "types": [

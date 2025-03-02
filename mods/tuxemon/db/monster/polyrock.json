@@ -8,11 +8,11 @@
         },
         {
             "level_learned": 1,
-            "technique": "all_in"
+            "technique": "hammerhead"
         },
         {
             "level_learned": 4,
-            "technique": "one_two"
+            "technique": "invictus"
         },
         {
             "level_learned": 7,
@@ -44,16 +44,17 @@
         },
         {
             "level_learned": 37,
-            "technique": "hammerhead"
+            "technique": "all_in"
         },
         {
             "level_learned": 40,
-            "technique": "invictus"
+            "technique": "one_two"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["brute"],
+    "terrains": [],
+    "tags": ["rock", "fists", "shapeshifter"],
     "shape": "brute",
     "stage": "standalone",
     "types": [

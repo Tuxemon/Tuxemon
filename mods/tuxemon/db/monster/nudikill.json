@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "suck_poison"
+            "technique": "flood"
         },
         {
             "level_learned": 1,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "flood"
+            "technique": "suck_poison"
         },
         {
             "level_learned": 19,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 28,
-            "technique": "biting_winds"
+            "technique": "venom"
         }
     ],
     "evolutions": [],
@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["polliwog", "coastal", "freshwater", "sea"],
+    "terrains": ["coastal", "freshwater", "sea"],
+    "tags": ["toxic", "darkness", "mental"],
     "shape": "polliwog",
     "stage": "stage1",
     "types": [

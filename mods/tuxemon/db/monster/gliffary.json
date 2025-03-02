@@ -25,11 +25,16 @@
         {
             "level_learned": 19,
             "technique": "orbs"
+        },
+        {
+            "level_learned": 40,
+            "technique": "divinity_beam"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["sprite"],
+    "terrains": [],
+    "tags": ["mental", "summoner", "shapeshifter", "bite"],
     "shape": "sprite",
     "stage": "standalone",
     "types": [

@@ -33,6 +33,14 @@
         {
             "level_learned": 25,
             "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 31,
+            "technique": "crushing_bite"
+        },
+        {
+            "level_learned": 37,
+            "technique": "steel_jaws"
         }
     ],
     "evolutions": [],
@@ -42,7 +50,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["serpent", "grassland", "mountains", "ruins", "underground"],
+    "terrains": ["grassland", "mountains", "ruins", "underground"],
+    "tags": ["shapeshifter", "bite", "steel"],
     "shape": "serpent",
     "stage": "stage1",
     "types": [

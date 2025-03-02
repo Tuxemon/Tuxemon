@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "icicle_spear"
+            "technique": "ice_claw"
         },
         {
             "level_learned": 1,
@@ -20,11 +20,11 @@
         },
         {
             "level_learned": 13,
-            "technique": "ice_claw"
+            "technique": "icicle_spear"
         },
         {
             "level_learned": 16,
-            "technique": "snowstorm"
+            "technique": "biting_winds"
         },
         {
             "level_learned": 19,
@@ -36,7 +36,7 @@
         },
         {
             "level_learned": 28,
-            "technique": "flood"
+            "technique": "water_blast"
         },
         {
             "level_learned": 31,
@@ -48,12 +48,13 @@
         },
         {
             "level_learned": 40,
-            "technique": "biting_winds"
+            "technique": "snowstorm"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["varmint"],
+    "terrains": [],
+    "tags": ["ice", "love", "toxic"],
     "shape": "varmint",
     "stage": "standalone",
     "types": [

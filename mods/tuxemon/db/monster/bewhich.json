@@ -25,6 +25,10 @@
         {
             "level_learned": 19,
             "technique": "changeling"
+        },
+        {
+            "level_learned": 40,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [],
@@ -38,7 +42,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["humanoid", "any"],
+    "terrains": ["any"],
+    "tags": ["ghost", "shapeshifter", "darkness", "mental", "gemstone"],
     "shape": "humanoid",
     "stage": "stage2",
     "types": [

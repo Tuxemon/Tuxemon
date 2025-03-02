@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "muddle"
+            "technique": "tail_lash"
         },
         {
             "level_learned": 1,
@@ -28,11 +28,11 @@
         },
         {
             "level_learned": 25,
-            "technique": "peck"
+            "technique": "staff_smash"
         },
         {
             "level_learned": 28,
-            "technique": "splinter"
+            "technique": "woodsmash"
         }
     ],
     "evolutions": [],
@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["sprite", "grassland", "jungle"],
+    "terrains": ["grassland", "jungle"],
+    "tags": ["plant", "leadership", "food", "soldier", "tail", "staff"],
     "shape": "sprite",
     "stage": "stage1",
     "types": [

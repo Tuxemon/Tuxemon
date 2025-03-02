@@ -62,7 +62,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["dragon"],
+    "terrains": [],
+    "tags": [],
     "shape": "dragon",
     "stage": "stage2",
     "types": [

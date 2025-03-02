@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["flier"],
+    "terrains": [],
+    "tags": ["bug"],
     "shape": "flier",
     "stage": "stage1",
     "types": [

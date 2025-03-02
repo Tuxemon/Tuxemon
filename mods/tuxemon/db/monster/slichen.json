@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "all_in"
+            "technique": "solar_synthesis"
         },
         {
             "level_learned": 1,
-            "technique": "fester"
+            "technique": "slime"
         },
         {
             "level_learned": 4,
@@ -36,7 +36,7 @@
         },
         {
             "level_learned": 31,
-            "technique": "lantern"
+            "technique": "all_in"
         },
         {
             "level_learned": 34,
@@ -71,7 +71,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["blob"],
+    "terrains": ["swamp", "underground"],
+    "tags": ["plant", "rock", "ground", "toxic"],
     "shape": "blob",
     "stage": "basic",
     "types": [

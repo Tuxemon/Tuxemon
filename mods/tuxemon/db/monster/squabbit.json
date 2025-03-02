@@ -33,6 +33,10 @@
         {
             "level_learned": 31,
             "technique": "snowstorm"
+        },
+        {
+            "level_learned": 40,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [
@@ -47,7 +51,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["varmint"],
+    "terrains": [],
+    "tags": ["soldier", "fists", "ground"],
     "shape": "varmint",
     "stage": "basic",
     "types": [

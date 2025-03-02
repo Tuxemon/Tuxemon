@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "pseudopod"
+            "technique": "pollen_blast"
         },
         {
             "level_learned": 1,
-            "technique": "overgrowth"
+            "technique": "solar_synthesis"
         },
         {
             "level_learned": 4,
@@ -47,7 +47,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["plant", "bite"],
     "shape": "blob",
     "stage": "basic",
     "types": [

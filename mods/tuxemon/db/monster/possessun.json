@@ -58,7 +58,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["mental", "megafauna", "ghost"],
     "shape": "blob",
     "stage": "stage1",
     "types": [

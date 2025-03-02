@@ -28,7 +28,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "geyser"
+            "technique": "tonguespear"
         },
         {
             "level_learned": 19,
@@ -41,6 +41,10 @@
         {
             "level_learned": 28,
             "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 55,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [],
@@ -54,7 +58,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["grub"],
+    "terrains": [],
+    "tags": ["bite", "healing", "bug", "darkness"],
     "shape": "grub",
     "stage": "stage2",
     "types": [

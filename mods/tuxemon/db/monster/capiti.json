@@ -55,7 +55,7 @@
             "technique": "pseudopod"
         },
         {
-            "level_learned": 46,
+            "level_learned": 49,
             "technique": "sylvan"
         },
         {
@@ -75,7 +75,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["sprite"],
+    "terrains": [],
+    "tags": ["fists", "rock"],
     "shape": "sprite",
     "stage": "basic",
     "types": [

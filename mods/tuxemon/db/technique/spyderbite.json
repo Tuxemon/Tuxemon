@@ -21,7 +21,7 @@
     "own_trainer": false
   },
 	"category": "notype",
-	"tags": ["NoType"],
+	"tags": ["notype"],
   "tech_id": 0,
   "use_failure": "combat_miss",
   "use_success": null,

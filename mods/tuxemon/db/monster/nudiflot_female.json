@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "suck_poison"
+            "technique": "flood"
         },
         {
             "level_learned": 1,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "flood"
+            "technique": "suck_poison"
         },
         {
             "level_learned": 19,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 28,
-            "technique": "biting_winds"
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [
@@ -47,7 +47,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["polliwog", "freshwater"],
+    "terrains": [],
+    "tags": ["freshwater", "mental"],
     "shape": "polliwog",
     "stage": "basic",
     "types": [

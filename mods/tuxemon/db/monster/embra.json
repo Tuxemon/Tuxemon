@@ -63,7 +63,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["flame"],
     "shape": "blob",
     "stage": "basic",
     "types": [

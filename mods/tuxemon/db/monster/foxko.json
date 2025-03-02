@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["serpent"],
+    "terrains": [],
+    "tags": [],
     "shape": "serpent",
     "stage": "standalone",
     "types": [

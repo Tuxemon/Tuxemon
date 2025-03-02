@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "venomous_tentacle"
+            "technique": "sting"
         },
         {
             "level_learned": 1,
-            "technique": "whirlwind"
+            "technique": "water_bullet"
         },
         {
             "level_learned": 4,
@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 7,
-            "technique": "tonguespear"
+            "technique": "flow"
         },
         {
             "level_learned": 13,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "flow"
+            "technique": "water_blast"
         },
         {
             "level_learned": 28,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["polliwog"],
+    "terrains": [],
+    "tags": ["toxic", "pseudopod"],
     "shape": "polliwog",
     "stage": "standalone",
     "types": [

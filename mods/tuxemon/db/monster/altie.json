@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "demiurge"
+            "technique": "tail_lash"
         },
         {
             "level_learned": 1,
-            "technique": "perfect_cut"
+            "technique": "mind_vise"
         },
         {
             "level_learned": 4,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "muddle"
+            "technique": "perfect_cut"
         },
         {
             "level_learned": 28,
@@ -40,7 +40,7 @@
         },
         {
             "level_learned": 31,
-            "technique": "ruby"
+            "technique": "demiurge"
         },
         {
             "level_learned": 37,
@@ -49,11 +49,16 @@
         {
             "level_learned": 40,
             "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 55,
+            "technique": "divinity_beam"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["humanoid", "extraterrestrial", "ruins"],
+    "terrains": ["extraterrestrial", "ruins"],
+    "tags": ["summoner", "mental", "weather", "celestial", "darkness", "tail"],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [

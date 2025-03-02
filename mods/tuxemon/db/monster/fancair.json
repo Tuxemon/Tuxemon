@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "perfect_cut"
+            "technique": "whirlwind"
         },
         {
             "level_learned": 1,
-            "technique": "shrapnel"
+            "technique": "slice"
         },
         {
             "level_learned": 4,
@@ -43,7 +43,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["sprite"],
+    "terrains": [],
+    "tags": ["machine", "weather", "electricity", "steel", "sharp"],
     "shape": "sprite",
     "stage": "basic",
     "types": [

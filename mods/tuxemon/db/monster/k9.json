@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["hunter", "urban"],
+    "terrains": ["urban"],
+    "tags": ["machine", "bite"],
     "shape": "hunter",
     "stage": "stage1",
     "types": [

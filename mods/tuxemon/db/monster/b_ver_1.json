@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["varmint", "urban"],
+    "terrains": ["urban"],
+    "tags": ["machine", "bite"],
     "shape": "varmint",
     "stage": "stage1",
     "types": [

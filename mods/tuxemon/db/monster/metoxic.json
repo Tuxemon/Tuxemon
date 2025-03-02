@@ -8,11 +8,11 @@
         },
         {
             "level_learned": 1,
-            "technique": "venomous_tentacle"
+            "technique": "acid"
         },
         {
             "level_learned": 4,
-            "technique": "viper"
+            "technique": "stone_rot"
         },
         {
             "level_learned": 10,
@@ -21,11 +21,20 @@
         {
             "level_learned": 19,
             "technique": "biting_winds"
+        },
+        {
+            "level_learned": 25,
+            "technique": "venomous_tentacle"
+        },
+        {
+            "level_learned": 31,
+            "technique": "viper"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["blob", "coastal", "desert", "jungle"],
+    "terrains": ["coastal", "desert", "jungle"],
+    "tags": ["toxic", "weather", "leadership", "summoner"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

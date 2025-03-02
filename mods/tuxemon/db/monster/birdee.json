@@ -1,0 +1,72 @@
+{
+    "slug": "birdee",
+    "category": "chickenhawk",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "peck"
+        },
+        {
+            "level_learned": 1,
+            "technique": "whirlwind"
+        },
+        {
+            "level_learned": 4,
+            "technique": "energy_claws"
+        },
+        {
+            "level_learned": 7,
+            "technique": "negation"
+        },
+        {
+            "level_learned": 10,
+            "technique": "gust"
+        },
+        {
+            "level_learned": 16,
+            "technique": "fledgling"
+        },
+        {
+            "level_learned": 22,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 25,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 28,
+            "technique": "berserk"
+        },
+        {
+            "level_learned": 40,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 55,
+            "technique": "tornado"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "chickadee",
+            "evo_stage": "basic"
+        }
+    ],
+    "terrains": ["grassland", "woodland"],
+    "tags": ["bird", "bite"],
+    "shape": "flier",
+    "stage": "stage1",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 366,
+    "height": 26,
+    "weight": 2,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

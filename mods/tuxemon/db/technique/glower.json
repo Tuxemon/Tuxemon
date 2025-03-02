@@ -23,7 +23,7 @@
     "own_trainer": false
   },
   "category": "condition_imposer",
-  "tags": ["Gaze", "Fury"],
+  "tags": ["gaze", "fury"],
   "types": [
     "aether"
   ],

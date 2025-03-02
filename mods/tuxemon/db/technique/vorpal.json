@@ -25,9 +25,9 @@
     "own_trainer": false
   },
   "category": "reserved",
-  "tags": ["Reserved"],
+  "tags": ["reserved"],
   "types": [
-    "earth"
+    "metal"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

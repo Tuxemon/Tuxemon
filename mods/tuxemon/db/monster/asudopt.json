@@ -25,11 +25,28 @@
         {
             "level_learned": 19,
             "technique": "flamethrower"
+        },
+        {
+            "level_learned": 25,
+            "technique": "tornado"
+        },
+        {
+            "level_learned": 31,
+            "technique": "energy_beam"
+        },
+        {
+            "level_learned": 40,
+            "technique": "frostbite"
+        },
+        {
+            "level_learned": 55,
+            "technique": "divinity_beam"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["flier", "other"],
+    "terrains": ["other"],
+    "tags": ["amphibian", "bird", "bite", "bomber", "bug", "calamity", "celestial", "claws", "darkness", "electricity", "fists", "flame", "food", "fury", "gadgets", "gaze", "gemstone", "ghost", "ground", "healing", "ice", "leadership", "light", "love", "machine", "megafauna", "mental", "plant", "pseudopod", "rock", "shapeshifter", "sharp", "shielded", "soldier", "speed", "steel", "summoner", "toxic", "universal", "weather", "water"],
     "shape": "flier",
     "stage": "standalone",
     "types": [

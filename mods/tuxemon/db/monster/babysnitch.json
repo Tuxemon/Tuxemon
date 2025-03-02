@@ -8,11 +8,15 @@
         },
         {
             "level_learned": 1,
-            "technique": "berserk"
+            "technique": "invictus"
         },
         {
             "level_learned": 4,
             "technique": "canine"
+        },
+        {
+            "level_learned": 7,
+            "technique": "rock"
         },
         {
             "level_learned": 10,
@@ -20,7 +24,11 @@
         },
         {
             "level_learned": 19,
-            "technique": "invictus"
+            "technique": "berserk"
+        },
+        {
+            "level_learned": 40,
+            "technique": "earthquake"
         }
     ],
     "evolutions": [
@@ -35,7 +43,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["hunter", "boreal/snow", "mountains", "underground"],
+    "terrains": ["boreal/snow", "mountains", "underground"],
+    "tags": ["bite", "claws", "fury", "ground"],
     "shape": "hunter",
     "stage": "basic",
     "types": [

@@ -33,6 +33,10 @@
         {
             "level_learned": 31,
             "technique": "chill_mist"
+        },
+        {
+            "level_learned": 55,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [],
@@ -42,7 +46,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["flier"],
+    "terrains": [],
+    "tags": ["darkness"],
     "shape": "flier",
     "stage": "stage1",
     "types": [

@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "all_in"
+            "technique": "gnaw"
         },
         {
             "level_learned": 1,
@@ -44,7 +44,7 @@
         },
         {
             "level_learned": 37,
-            "technique": "invictus"
+            "technique": "steel_jaws"
         },
         {
             "level_learned": 40,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["landrace", "grassland", "jungle"],
+    "terrains": ["grassland", "jungle"],
+    "tags": ["plant", "megafauna", "bite"],
     "shape": "landrace",
     "stage": "standalone",
     "types": [

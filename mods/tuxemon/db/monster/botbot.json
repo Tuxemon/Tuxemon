@@ -67,7 +67,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["grub", "urban"],
+    "terrains": ["urban"],
+    "tags": ["machine"],
     "shape": "grub",
     "stage": "basic",
     "types": [

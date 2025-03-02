@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 40,
-            "technique": "sting"
+            "technique": "cutting_leaves"
         }
     ],
     "evolutions": [],
@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["brute"],
+    "terrains": [],
+    "tags": ["plant", "sharp", "fury"],
     "shape": "brute",
     "stage": "stage1",
     "types": [

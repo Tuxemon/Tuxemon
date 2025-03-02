@@ -28,11 +28,27 @@
         },
         {
             "level_learned": 19,
-            "technique": "web"
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 25,
+            "technique": "water_blast"
         },
         {
             "level_learned": 31,
             "technique": "chill_mist"
+        },
+        {
+            "level_learned": 40,
+            "technique": "tsunami"
+        },
+        {
+            "level_learned": 46,
+            "technique": "snowstorm"
+        },
+        {
+            "level_learned": 55,
+            "technique": "blossom"
         }
     ],
     "evolutions": [],
@@ -42,7 +58,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["piscine", "coastal", "freshwater", "sea"],
+    "terrains": ["coastal", "freshwater", "sea"],
+    "tags": ["water", "plant", "weather"],
     "shape": "piscine",
     "stage": "stage1",
     "types": [

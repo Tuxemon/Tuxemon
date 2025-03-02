@@ -33,6 +33,10 @@
         {
             "level_learned": 31,
             "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 55,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [],
@@ -42,7 +46,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["dragon"],
+    "terrains": [],
+    "tags": ["ground", "steel", "machine", "megafauna", "gadgets"],
     "shape": "dragon",
     "stage": "stage1",
     "types": [

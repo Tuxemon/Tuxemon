@@ -2,6 +2,8 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+from dataclasses import dataclass
+
 from tuxemon.db import MonsterModel, db
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
@@ -9,9 +11,6 @@ from tuxemon.session import Session
 from tuxemon.tools import compare
 
 lookup_cache: dict[str, MonsterModel] = {}
-
-
-from dataclasses import dataclass
 
 
 @dataclass

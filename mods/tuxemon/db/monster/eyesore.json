@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "amnesia"
+            "technique": "bullet"
         },
         {
             "level_learned": 1,
@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 4,
-            "technique": "ruby"
+            "technique": "amnesia"
         },
         {
             "level_learned": 7,
@@ -28,11 +28,15 @@
         },
         {
             "level_learned": 28,
-            "technique": "bullet"
+            "technique": "breath"
         },
         {
             "level_learned": 31,
-            "technique": "strike"
+            "technique": "dreamwalk"
+        },
+        {
+            "level_learned": 55,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [],
@@ -42,7 +46,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["serpent"],
+    "terrains": [],
+    "tags": ["gaze", "mental"],
     "shape": "serpent",
     "stage": "stage1",
     "types": [

@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "one_two"
+            "technique": "walls"
         },
         {
             "level_learned": 1,
-            "technique": "overgrowth"
+            "technique": "splinter"
         },
         {
             "level_learned": 4,
@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 7,
-            "technique": "sting"
+            "technique": "leaf_stab"
         },
         {
             "level_learned": 13,
@@ -28,7 +28,7 @@
         },
         {
             "level_learned": 19,
-            "technique": "splinter"
+            "technique": "solar_synthesis"
         },
         {
             "level_learned": 25,
@@ -36,11 +36,11 @@
         },
         {
             "level_learned": 28,
-            "technique": "whirlwind"
+            "technique": "cutting_leaves"
         },
         {
             "level_learned": 31,
-            "technique": "walls"
+            "technique": "overgrowth"
         },
         {
             "level_learned": 37,
@@ -48,7 +48,11 @@
         },
         {
             "level_learned": 40,
-            "technique": "solar_synthesis"
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 55,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [
@@ -67,7 +71,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["brute", "jungle", "woodland"],
+    "terrains": ["jungle", "woodland"],
+    "tags": ["plant", "ghost", "darkness"],
     "shape": "brute",
     "stage": "stage1",
     "types": [

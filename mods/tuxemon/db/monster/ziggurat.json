@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 4,
-            "technique": "strangulation"
+            "technique": "muck"
         },
         {
             "level_learned": 7,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "biting_winds"
+            "technique": "infectious_bite"
         },
         {
             "level_learned": 16,
@@ -28,15 +28,15 @@
         },
         {
             "level_learned": 19,
-            "technique": "stampede"
+            "technique": "grinding"
         },
         {
             "level_learned": 25,
-            "technique": "mending"
+            "technique": "gourmet"
         },
         {
             "level_learned": 28,
-            "technique": "muck"
+            "technique": "strangulation"
         },
         {
             "level_learned": 31,
@@ -44,7 +44,7 @@
         },
         {
             "level_learned": 37,
-            "technique": "electrical_storm"
+            "technique": "burrow_blast"
         },
         {
             "level_learned": 40,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["varmint"],
+    "terrains": [],
+    "tags": ["ground", "toxic", "food", "claws"],
     "shape": "varmint",
     "stage": "standalone",
     "types": [

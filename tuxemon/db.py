@@ -610,11 +610,12 @@ class MonsterModel(BaseModel, validate_assignment=True):
     sprites: Annotated[
         Optional[MonsterSpritesModel], Field(validate_default=True)
     ] = None
-    shape: str = Field(..., description="The shape of the monster")
-    tags: Sequence[str] = Field(
-        ..., description="The tags of the monster", min_length=1
+    terrains: Sequence[str] = Field(
+        ..., description="The terrains of the monster"
     )
     types: Sequence[str] = Field([], description="The type(s) of this monster")
+    shape: str = Field(..., description="The shape of the monster")
+    tags: Sequence[str] = Field(..., description="The tags of the monster")
     catch_rate: float = Field(
         ...,
         description="The catch rate of the monster",

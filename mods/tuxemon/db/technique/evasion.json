@@ -23,7 +23,7 @@
     "own_trainer": false
   },
   "category": "condition_imposer",
-  "tags": ["Bug", "Speed"],
+  "tags": ["bug", "speed"],
   "types": [
     "earth"
   ],

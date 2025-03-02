@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "breathe_fire"
+            "technique": "gnaw"
         },
         {
             "level_learned": 1,
@@ -34,7 +34,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["varmint", "desert", "grassland", "woodland"],
+    "terrains": ["desert", "grassland", "woodland"],
+    "tags": ["flame", "ground", "calamity"],
     "shape": "varmint",
     "stage": "stage1",
     "types": [

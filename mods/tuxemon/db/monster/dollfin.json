@@ -59,7 +59,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["leviathan", "coastal", "freshwater", "sea"],
+    "terrains": ["coastal", "freshwater", "sea"],
+    "tags": ["water"],
     "shape": "leviathan",
     "stage": "basic",
     "types": [

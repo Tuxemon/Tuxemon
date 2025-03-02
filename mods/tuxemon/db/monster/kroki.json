@@ -1,0 +1,81 @@
+{
+    "slug": "kroki",
+    "category": "crocodile",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "ice_shield"
+        },
+        {
+            "level_learned": 1,
+            "technique": "water_bullet"
+        },
+        {
+            "level_learned": 4,
+            "technique": "slice"
+        },
+        {
+            "level_learned": 7,
+            "technique": "geyser"
+        },
+        {
+            "level_learned": 13,
+            "technique": "water_blast"
+        },
+        {
+            "level_learned": 19,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 25,
+            "technique": "tsunami"
+        },
+        {
+            "level_learned": 31,
+            "technique": "kraken"
+        },
+        {
+            "level_learned": 37,
+            "technique": "frostbite"
+        },
+        {
+            "level_learned": 40,
+            "technique": "viper"
+        },
+        {
+            "level_learned": 55,
+            "technique": "energy_beam"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 15,
+            "monster_slug": "krokivip"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "krokivip",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "leviadile",
+            "evo_stage": "stage2"
+        }
+    ],
+    "terrains": ["swamp"],
+    "tags": ["amphibian", "bite", "water"],
+    "shape": "leviathan",
+    "stage": "basic",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 369,
+    "height": 30,
+    "weight": 10,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

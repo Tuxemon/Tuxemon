@@ -1,0 +1,72 @@
+{
+    "slug": "wolololl",
+    "category": "cactus",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 1,
+            "technique": "revenge_stance"
+        },
+        {
+            "level_learned": 4,
+            "technique": "sand_spray"
+        },
+        {
+            "level_learned": 7,
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 13,
+            "technique": "spit_poison"
+        },
+        {
+            "level_learned": 16,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 19,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 25,
+            "technique": "staff_smash"
+        },
+        {
+            "level_learned": 28,
+            "technique": "needle"
+        },
+        {
+            "level_learned": 40,
+            "technique": "venom"
+        },
+        {
+            "level_learned": 55,
+            "technique": "thorn_burst"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "hoodoll",
+            "evo_stage": "basic"
+        }
+    ],
+    "terrains": ["desert"],
+    "tags": ["sharp", "plant", "staff"],
+    "shape": "humanoid",
+    "stage": "stage1",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 390,
+    "height": 130,
+    "weight": 40,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

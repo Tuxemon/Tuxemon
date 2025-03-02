@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["flier"],
+    "terrains": [],
+    "tags": [],
     "shape": "flier",
     "stage": "standalone",
     "types": [

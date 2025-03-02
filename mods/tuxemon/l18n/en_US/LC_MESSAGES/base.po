@@ -1067,6 +1067,12 @@ msgstr "{target}'s lifeforce is being leeched."
 msgid "combat_state_lifeleech_end"
 msgstr "{target} is having their lifeforce stolen."
 
+msgid "combat_state_lifegift_get"
+msgstr "{target}'s energy is being restored."
+
+msgid "combat_state_lifegift_end"
+msgstr "{target} has been infused with lifeforce."
+
 msgid "combat_state_noddingoff_get"
 msgstr "{target} is nodding off to sleep."
 
@@ -1297,6 +1303,9 @@ msgstr "Harpooned"
 msgid "lifeleech"
 msgstr "Lifeleech"
 
+msgid "lifegift"
+msgstr "Life Gift"
+
 msgid "lockdown"
 msgstr "Lockdown"
 
@@ -1493,11 +1502,35 @@ msgstr "The user creates a large bubble that traps both itself and the opponent.
 msgid "bubble_trap"
 msgstr "Bubble Trap"
 
+msgid "bubbles_description"
+msgstr "The user blows a wide jet of bubbles at the target, weak but difficult to avoid."
+
+msgid "bubbles"
+msgstr "Bubbles"
+
 msgid "bullet_description"
 msgstr "A piece of metal is flung at the target with great alacrity."
 
 msgid "bullet"
 msgstr "Bullet"
+
+msgid "burrow_blast_description"
+msgstr "The user digs underground and reappear at a different location, striking the opponent with a burst of dirt and debris."
+
+msgid "burrow_blast_success"
+msgstr "{user} digs a hole and hides!"
+
+msgid "burrow_blast_fail"
+msgstr "{user} fails to dig a hole!"
+
+msgid "burrow_blast"
+msgstr "Burrow Blast"
+
+msgid "buzz_description"
+msgstr "The user generates a close-ranged blast of electromagnetic energy from its body, striking the opponent with a burst of electric force, dealing damage."
+
+msgid "buzz"
+msgstr "Buzz"
 
 msgid "canine_description"
 msgstr "The user unleashes a primal, ferocious attack that sends the opponent into a frenzy."
@@ -1571,11 +1604,23 @@ msgstr "The user wraps its body around the opponent, squeezing tightly."
 msgid "constrict"
 msgstr "Constrict"
 
+msgid "crushing_bite_description"
+msgstr "The user bites down with bone-crushing force. May leave the target unable to act."
+
+msgid "crushing_bite"
+msgstr "Crushing Bite"
+
 msgid "crystal_description"
 msgstr "The user fires a sharp, crystalline projectile at the opponent."
 
 msgid "crystal"
 msgstr "Crystal"
+
+msgid "cutting_leaves_description"
+msgstr "They charge into the opponent with cutting, sharp leaves that may snag against the foe."
+
+msgid "cutting_leaves"
+msgstr "Cutting Leaves"
 
 msgid "demiurge_description"
 msgstr "The user undergoes a transformation, healing itself and confusing the opponent."
@@ -1583,11 +1628,53 @@ msgstr "The user undergoes a transformation, healing itself and confusing the op
 msgid "demiurge"
 msgstr "Demiurge"
 
+msgid "depth_charge_description"
+msgstr "The user dives underwater and then explode upwards, dealing damage to the opponent."
+
+msgid "depth_charge_success"
+msgstr "{user} dives underwater!"
+
+msgid "depth_charge_fail"
+msgstr "{user} fails to submerge!"
+
+msgid "depth_charge"
+msgstr "Depth Charge"
+
+msgid "diet_description"
+msgstr "The user fuels their body with healthy foods, enhancing their physical resilience and making them more resistant to damage."
+
+msgid "diet"
+msgstr "Diet"
+
+msgid "divinity_beam_description"
+msgstr "A ray of divinity blinds those who look upon it."
+
+msgid "divinity_beam"
+msgstr "Divinity Beam"
+
+msgid "dreamwalk_description"
+msgstr "Allows the user to enter the dreams of sleeping opponents, potentially dealing damage."
+
+msgid "dreamwalk"
+msgstr "Dreamwalk"
+
 msgid "earthquake_description"
 msgstr "The ground shakes violently as the user unleashes a powerful ground attack."
 
 msgid "earthquake"
 msgstr "Earthquake"
+
+msgid "egg_smash_description"
+msgstr "The user hurls an egg or egg fragment at the opponent, striking them with a messy and disorienting blow."
+
+msgid "egg_smash"
+msgstr "Egg Smash"
+
+msgid "electric_multibite_description"
+msgstr "The user bites repeatedly while channeling electricity. May shock the target."
+
+msgid "electric_multibite"
+msgstr "Electric Multibite"
 
 msgid "electrical_storm_description"
 msgstr "The user summons a raging thunderstorm, striking the opponent with lightning bolts."
@@ -1600,6 +1687,12 @@ msgstr "Electricity causes the target to be coated in metal, changing its type."
 
 msgid "electroplate"
 msgstr "Electroplate"
+
+msgid "energy_beam_description"
+msgstr "The user fires a beam of energy that burns all in its path."
+
+msgid "energy_beam"
+msgstr "Energy Beam"
 
 msgid "energy_claws_description"
 msgstr "The user's claws glow with energy as it delivers a powerful, focused attack."
@@ -1697,6 +1790,18 @@ msgstr "The user channels a powerful water stream."
 msgid "flow"
 msgstr "Flow"
 
+msgid "flower_armor_description"
+msgstr "The user creates an armor out of flowers."
+
+msgid "flower_armor"
+msgstr "Flower Armor"
+
+msgid "flower_bloom_description"
+msgstr "A hard to evade massive bloom of flower petals blasts like a blizzard across the landscape."
+
+msgid "flower_bloom"
+msgstr "Flower Bloom"
+
 msgid "fluff_up_description"
 msgstr "The user's body puffs up, healing its wounds."
 
@@ -1709,6 +1814,12 @@ msgstr "The user draws energy from a mystical font to heal itself."
 msgid "font"
 msgstr "Font"
 
+msgid "food_fight_description"
+msgstr "The user initiates a frantic food fight, rapidly throwing edible projectiles at the opponent with reckless abandon."
+
+msgid "food_fight"
+msgstr "Food Fight"
+
 msgid "frostbite_description"
 msgstr "The user shoots a freezing blast that inflicts poison on the opponent."
 
@@ -1720,6 +1831,12 @@ msgstr "The user becomes enraged."
 
 msgid "fume"
 msgstr "Fume"
+
+msgid "fungal_spore_description"
+msgstr "On touch, the user explodes with spores. These have a small chance of infecting the target and leeching life from them."
+
+msgid "fungal_spore"
+msgstr "Fungal Spore"
 
 msgid "geyser_description"
 msgstr "The user erupts with a powerful water spout, changing the opponent's type to Water."
@@ -1739,6 +1856,12 @@ msgstr "At the user's glare, the target grows weak and vulnerable."
 msgid "glower"
 msgstr "Glower"
 
+msgid "gnaw_description"
+msgstr "The user nibbles at the target, dealing a small amount of damage. A weak but fast and consistent attack."
+
+msgid "gnaw"
+msgstr "Gnaw"
+
 msgid "goad_description"
 msgstr "The user taunts the opponent, causing them to become enraged."
 
@@ -1751,6 +1874,12 @@ msgstr "The user digs into the ground, finding treasure or attacking itself."
 msgid "gold_digger"
 msgstr "Gold Digger"
 
+msgid "gourmet_description"
+msgstr "The user devours a nourishing meal, restoring their vitality and rejuvenating their spirits."
+
+msgid "gourmet"
+msgstr "Gourmet"
+
 msgid "greenstone_description"
 msgstr "The user strikes with the force of a falling stone."
 
@@ -1758,7 +1887,7 @@ msgid "greenstone"
 msgstr "Greenstone"
 
 msgid "grinding_description"
-msgstr "The user grinds its opponent down with a relentless attack."
+msgstr "The user relentlessly batters the opponent with a barrage of grinding blows, wearing them down with sustained pressure."
 
 msgid "grinding"
 msgstr "Grinding"
@@ -1768,6 +1897,12 @@ msgstr "The user creates a powerful wind that blows the opponent back."
 
 msgid "gust"
 msgstr "Gust"
+
+msgid "hallucinogen_spore_description"
+msgstr "The user releases a cloud of hallucinogenic spores, disorienting the opponent and altering their perception of reality."
+
+msgid "hallucinogen_spore"
+msgstr "Hallucinogen Spore"
 
 msgid "hammerhead_description"
 msgstr "The user charges forward, striking the opponent with its head."
@@ -1780,6 +1915,12 @@ msgstr "The user soars high into the air before diving down with a powerful atta
 
 msgid "hawk"
 msgstr "Hawk"
+
+msgid "heavenly_desserts_description"
+msgstr "A bizarre move that can both heal you and send you to heaven by how good it tastes."
+
+msgid "heavenly_desserts"
+msgstr "Heavenly Desserts"
 
 msgid "hibernate_description"
 msgstr "The user falls into a restorative sleep."
@@ -1811,6 +1952,12 @@ msgstr "The user launches a volley of sharp ice shards at the opponent."
 msgid "icicle_spear"
 msgstr "Icicle Spear"
 
+msgid "infectious_bite_description"
+msgstr "A sharp fast bite that injects a festering toxin. May leave the target with a lingering injury."
+
+msgid "infectious_bite"
+msgstr "Infectious Bite"
+
 msgid "insanity_description"
 msgstr "The user becomes consumed by rage, increasing its power."
 
@@ -1822,6 +1969,12 @@ msgstr "The user enters a berserker state, attacking with relentless fury and tr
 
 msgid "invictus"
 msgstr "Invictus"
+
+msgid "just_desserts_description"
+msgstr "The user offers the opponent a poisoned treat, exacting a sweet revenge as they succumb to the toxic effects."
+
+msgid "just_desserts"
+msgstr "Just Desserts"
 
 msgid "kindling_flame_description"
 msgstr "The user ignites with inner fire, increasing its attack power."
@@ -1841,17 +1994,41 @@ msgstr "The user creates a bright light that illuminates the battlefield, boosts
 msgid "lantern"
 msgstr "Lantern"
 
+msgid "laser_beam_description"
+msgstr "A powerful ranged energy attack that may blind that goes at the speed of light."
+
+msgid "laser_beam"
+msgstr "Laser Beam"
+
 msgid "lava_description"
 msgstr "The user erupts with molten lava, burning both itself and the opponent."
 
 msgid "lava"
 msgstr "Lava"
 
+msgid "leaf_barrage_description"
+msgstr "Barrage the opponent with a series of leaves."
+
+msgid "leaf_barrage"
+msgstr "Leaf Barrage"
+
+msgid "leaf_stab_description"
+msgstr "The user throws a prickly sharp leaf, which induces a burning feeling on contact as the stab wound bleeds."
+
+msgid "leaf_stab"
+msgstr "Leaf Stab"
+
 msgid "levitate_description"
 msgstr "Combatants float into the air, giving them a vantage point but leaving both struggling to connect with their hand-to-hand attacks."
 
 msgid "levitate"
 msgstr "Levitate"
+
+msgid "lick_lash_description"
+msgstr "The user lashes out with its tongue, dealing damage and possibly leaving the opponent stunned."
+
+msgid "lick_lash"
+msgstr "Lick Lash"
 
 msgid "life_surge_description"
 msgstr "An eruption of life charges the monster, but at the expense of healing its opponent."
@@ -1883,6 +2060,12 @@ msgstr "The user erupts with a torrent of molten rock."
 msgid "magma"
 msgstr "Magma"
 
+msgid "magnetic_body_description"
+msgstr "A powerful magnetic field is generated, sending metal objects flying wildly across the battlefield and disrupting the opponent's movements."
+
+msgid "magnetic_body"
+msgstr "Magnetic Body"
+
 msgid "meltdown_description"
 msgstr "The user unleashes a corrosive attack that damages the opponent."
 
@@ -1900,6 +2083,12 @@ msgstr "The user shrouds itself in a cloak of darkness, striking out with shadow
 
 msgid "midnight_mantle"
 msgstr "Midnight Mantle"
+
+msgid "mind_explosion_description"
+msgstr "A powerful psychic or mushroom hallucinogen attack."
+
+msgid "mind_explosion"
+msgstr "Mind Explosion"
 
 msgid "mind_vise_description"
 msgstr "The user traps the opponent's mind, preventing them from acting."
@@ -1936,6 +2125,12 @@ msgstr "The user becomes one with its surroundings, healing itself."
 
 msgid "mystic_blending"
 msgstr "Mystic Blending"
+
+msgid "needle_description"
+msgstr "The user stabs the target rapidly with a needle or thorns."
+
+msgid "needle"
+msgstr "Needle"
 
 msgid "negation_description"
 msgstr "The user cancels out the effects of the opponent's healing."
@@ -1978,6 +2173,18 @@ msgstr "The user fires off an energy ball that causes a mystical transformation 
 
 msgid "orbs"
 msgstr "Orbs"
+
+msgid "oven_description"
+msgstr "The user throws themselves into a fiery oven or pyre, then re-emerges to attack."
+
+msgid "oven_success"
+msgstr "{user} jumps into the fiery oven, embracing the flames!"
+
+msgid "oven_fail"
+msgstr "{user} hesitates and does not jump into the oven!"
+
+msgid "oven"
+msgstr "Oven"
 
 msgid "overfeed_description"
 msgstr "The user overloads the opponent with energy, slowing them down."
@@ -2027,14 +2234,11 @@ msgstr "The user creates an illusionary copy of itself that attacks the opponent
 msgid "phantasmal_force"
 msgstr "Phantasmal Force"
 
-msgid "solar_synthesis_description"
-msgstr "Heals the user's health by absorbing sunlight."
+msgid "piece_of_cake_description"
+msgstr "The user enters a state of effortless ease, healing their wounds and restoring their vitality as everything becomes as simple as enjoying a delicious cake."
 
-msgid "solar_synthesis_fail"
-msgstr "The lack of sunlight prevents the healing."
-
-msgid "solar_synthesis"
-msgstr "Solar Synthesis"
+msgid "piece_of_cake"
+msgstr "Piece of Cake"
 
 msgid "pit_description"
 msgstr "The user creates a pit beneath the opponent, causing them to fall and take damage."
@@ -2054,6 +2258,24 @@ msgstr "The user emits a seductive aura laces with toxins, charming the opponent
 msgid "poison_courtship"
 msgstr "Poison Courtship"
 
+msgid "pollen_blast_description"
+msgstr "Releases a cloud of pollen, dealing damage to opponents and potentially causing them to become disoriented."
+
+msgid "pollen_blast"
+msgstr "Pollen Blast"
+
+msgid "potluck_description"
+msgstr "The user and opponent engage in a mutual exchange of gifts, fostering a brief moment of camaraderie in the midst of battle."
+
+msgid "potluck"
+msgstr "Potluck"
+
+msgid "pouch_description"
+msgstr "The user refreshes themselves with a tasty morsel from a pouch or bag."
+
+msgid "pouch"
+msgstr "Pouch"
+
 msgid "proboscis_description"
 msgstr "The user extends a long, proboscis-like appendage, draining the opponent's life force while inflicting damage."
 
@@ -2071,6 +2293,12 @@ msgstr "A classic, powerful strike with the user's fist."
 
 msgid "punch"
 msgstr "Punch"
+
+msgid "pyrokinesis_description"
+msgstr "The user unleashes a wave of intense heat and flames that can scorch its opponents."
+
+msgid "pyrokinesis"
+msgstr "Pyrokinesis"
 
 msgid "quicksand_description"
 msgstr "The user creates a treacherous patch of quicksand, trapping and damaging the opponent."
@@ -2102,6 +2330,18 @@ msgstr "The user adopts a defensive posture, provoking the opponent into attacki
 msgid "revenge_stance"
 msgstr "Revenge Stance"
 
+msgid "rift_dash_description"
+msgstr "The user creates a temporary rift in space and dash through it, reappearing at a different location and striking the opponent with a swift attack."
+
+msgid "rift_dash_success"
+msgstr "{user} teleports behind its opponent!"
+
+msgid "rift_dash_fail"
+msgstr "{user} fails to teleport, leaving itself open to attack!"
+
+msgid "rift_dash"
+msgstr "Rift Dash"
+
 msgid "ring_description"
 msgstr "The user conjures a ring that expands, engulfing the opponent."
 
@@ -2119,6 +2359,18 @@ msgstr "A heavy rock falls on the target."
 
 msgid "rock"
 msgstr "Rock"
+
+msgid "rocky_barrage_description"
+msgstr "The user unleashes a furious barrage of rocks, threatening to overwhelm the opponent with a crushing avalanche of stone."
+
+msgid "rocky_barrage"
+msgstr "Rocky Barrage"
+
+msgid "roll_description"
+msgstr "The user curls into a ball and rolls over or against the opponent."
+
+msgid "roll"
+msgstr "Roll"
 
 msgid "rot_description"
 msgstr "A sickness befalls the target."
@@ -2161,6 +2413,12 @@ msgstr "Identifies an opponent's strengths and weaknesses."
 
 msgid "scope"
 msgstr "Scope"
+
+msgid "shadow_blast_description"
+msgstr "The user releases a blast of negative energy, sucking life from other beings."
+
+msgid "shadow_blast"
+msgstr "Shadow Blast"
 
 msgid "shadow_boxing_description"
 msgstr "A flurry of punches strikes the target."
@@ -2225,6 +2483,21 @@ msgstr "A blizzard engulfs the opponent, inflicting cold damage and leaving them
 msgid "snowstorm"
 msgstr "Snowstorm"
 
+msgid "solar_synthesis_description"
+msgstr "Heals the user's health by absorbing sunlight."
+
+msgid "solar_synthesis_fail"
+msgstr "The lack of sunlight prevents the healing."
+
+msgid "solar_synthesis"
+msgstr "Solar Synthesis"
+
+msgid "spiky_strike_description"
+msgstr "The user lashes out with its sharp spines or quills, striking the opponent with a flurry of piercing blows, inflicting pain and damage."
+
+msgid "spiky_strike"
+msgstr "Spiky Strike"
+
 msgid "spit_poison_description"
 msgstr "Liquid death sprays from the user's venom sacs."
 
@@ -2243,6 +2516,12 @@ msgstr "The user summons a barrage of sharp wooden splinters that pierce the opp
 msgid "stabilo"
 msgstr "Stabilo"
 
+msgid "staff_smash_description"
+msgstr "The user delivers a powerful blow with its staff."
+
+msgid "staff_smash"
+msgstr "Staff Smash"
+
 msgid "stampede_description"
 msgstr "A powerful, overwhelming charge that inflicts heavy physical damage."
 
@@ -2260,6 +2539,18 @@ msgstr "The user generates a static electric field around itself, granting it in
 
 msgid "static_field"
 msgstr "Static Field"
+
+msgid "steel_jaws_description"
+msgstr "The user clamps down with jaws reinforced by metal. A powerful biting attack."
+
+msgid "steel_jaws"
+msgstr "Steel Jaws"
+
+msgid "stick_description"
+msgstr "The user uses a stick, plant part or twig to poke or smack the opponent."
+
+msgid "stick"
+msgstr "Stick"
 
 msgid "sting_description"
 msgstr "The user inflicts a painful sting, injecting poison into the opponent's body."
@@ -2339,6 +2630,12 @@ msgstr "The user summons the power of nature, transforming the opponent into a w
 msgid "sylvan"
 msgstr "Sylvan"
 
+msgid "tail_lash_description"
+msgstr "The user lashes out with their tail or tail like appendage."
+
+msgid "tail_lash"
+msgstr "Tail Lash"
+
 msgid "take_cover_description"
 msgstr "The user assumes a defensive stance, increasing its accuracy."
 
@@ -2356,6 +2653,12 @@ msgstr "The target is shaking with fear, unable to pick up or use items."
 
 msgid "terror"
 msgstr "Terror"
+
+msgid "thorn_burst_description"
+msgstr "The user unleashes a rain of thorns, shooting a cloud of sharp, piercing projectiles at the opponent, dealing damage and potentially causing the opponent to become stuck, immobilized by the thorny barrage."
+
+msgid "thorn_burst"
+msgstr "Thorn Burst"
 
 msgid "thunderball_description"
 msgstr "With a rumbling like thunder, a hard ball of rock strikes the target."
@@ -2398,6 +2701,18 @@ msgstr "A projectile that strikes the opponent."
 
 msgid "torch"
 msgstr "Torch"
+
+msgid "tornado_description"
+msgstr "The user summons a swirling vortex of air, unleashing a devastating tornado that lifts the opponent off the ground and deals damage."
+
+msgid "tornado"
+msgstr "Tornado"
+
+msgid "trample_description"
+msgstr "The user charges at the opponent with a powerful shoulder tackle, knocking them to the ground and then quickly moving away, leaving the target stuck in place."
+
+msgid "trample"
+msgstr "Trample"
 
 msgid "tsunami_description"
 msgstr "The user summons a colossal wave that crashes down upon the opponent."
@@ -2471,6 +2786,18 @@ msgstr "The user constructs sturdy walls of earth or rock to create a defensive 
 msgid "walls"
 msgstr "Walls"
 
+msgid "water_blast_description"
+msgstr "The user unleashes a powerful blast of water, striking the opponent with a torrent of liquid force, dealing damage."
+
+msgid "water_blast"
+msgstr "Water Blast"
+
+msgid "water_bullet_description"
+msgstr "A mouthful of water is flung at the target with great alacrity."
+
+msgid "water_bullet"
+msgstr "Water Bullet"
+
 msgid "web_description"
 msgstr "A sticky web is shot at the opponent, trapping them and inflicting damage."
 
@@ -2489,11 +2816,26 @@ msgstr "The user creates a powerful vortex of wind that sweeps the opponent away
 msgid "whirlwind"
 msgstr "Whirlwind"
 
+msgid "wiggle_description"
+msgstr "The user shakes their body back and forth, creating a silly, attention-grabbing display that doesn't do any damage but might be entertaining to watch."
+
+msgid "wiggle_success"
+msgstr "{user} wiggled its body!"
+
+msgid "wiggle"
+msgstr "Wiggle"
+
 msgid "wing_tip_description"
 msgstr "The user delivers a sharp, cutting attack with the tip of its wing."
 
 msgid "wing_tip"
 msgstr "Wing Tip"
+
+msgid "woodsmash_description"
+msgstr "The user slams into the opponent with a powerful wooden strike, dealing damage and potentially knocking them back."
+
+msgid "woodsmash"
+msgstr "Woodsmash"
 
 ## MAP ##
 
@@ -3268,6 +3610,12 @@ msgstr "It feels uncomfortable commanding its fellow NUT and BOLT, and usually r
 msgid "arthrobolt"
 msgstr "Arthrobolt"
 
+msgid "askylpaws_description"
+msgstr "It is an omen of disaster, often appearing in times of great trouble. This has caused others to sometimes blame it for the misfortune."
+
+msgid "askylpaws"
+msgstr "Askylpaws"
+
 msgid "asudopt_description"
 msgstr "According to legend, ASUDOPT created the world and one day will destroy the world. In the meantime, it sets the world's universal laws."
 
@@ -3364,11 +3712,23 @@ msgstr "A whole ecosystem exists on its back, so it tries not to go underwater."
 msgid "bigfin"
 msgstr "Bigfin"
 
+msgid "birdee_description"
+msgstr "It is omnivorous, but whether it prefers meat or seed depends on its experiences when young."
+
+msgid "birdee"
+msgstr "Birdee"
+
 msgid "birdling_description"
 msgstr "The ignorant believe that it carries its own egg upon its back. It is the guard for a far more important egg than that."
 
 msgid "birdling"
 msgstr "Birdling"
+
+msgid "bishosand_description"
+msgstr "BISHOSAND is fascinated by religious or spiritual symbols it sees and likes to collect them, but is believed to not understand any of them."
+
+msgid "bishosand"
+msgstr "Bishosand"
 
 msgid "blasdoor_description"
 msgstr "BLASDOOR shield those they care about behind their impenetrable bulk, but macerate unwanted intruders and scrap machines between their steel teeth."
@@ -3508,6 +3868,12 @@ msgstr "It looks like a baby, but some specimens have been found that are hundre
 msgid "capiti"
 msgstr "Capiti"
 
+msgid "carcharock_description"
+msgstr "CARCHAROCK's ancient instincts are at odds with the modern world, where the scent of PHARFAN and the roar of PANTHERAFIRA have replaced the familiar sounds of its homeland."
+
+msgid "carcharock"
+msgstr "Carcharock"
+
 msgid "cardiling_description"
 msgstr "One wouldn't expect it to breathe fire, until it does."
 
@@ -3555,6 +3921,12 @@ msgstr "It is found in forests and fields, where it is often mistaken for a turn
 
 msgid "chibiro"
 msgstr "Chibiro"
+
+msgid "chickadee_description"
+msgstr "CHICKADEE gives longer repeated cries of 'dees' if the danger it senses seems lesser than another."
+
+msgid "chickadee"
+msgstr "Chickadee"
 
 msgid "chillimp_description"
 msgstr "It is rumoured to live atop snowy mountains, but no clear photo of it has ever been taken."
@@ -3604,6 +3976,12 @@ msgstr "Whichever way it turns, the blood-red eye faces you."
 msgid "cocrune"
 msgstr "Cocrune"
 
+msgid "cohldrabi_description"
+msgstr "It is born underground in cold, snowy areas, and learns how to fly within a few weeks."
+
+msgid "cohldrabi"
+msgstr "Cohldrabi"
+
 msgid "coleorus_description"
 msgstr "It has existed, unchanged, for millions of years."
 
@@ -3627,6 +4005,12 @@ msgstr "Foods placed in its pitcher are blended and pickled. They are used to st
 
 msgid "conileaf"
 msgstr "Conileaf"
+
+msgid "coppi_description"
+msgstr "COPPI's flowers are surprisingly bitter and smelly, but they are useful in beer brewing and medicine."
+
+msgid "coppi"
+msgstr "Coppi"
 
 msgid "coproblight_description"
 msgstr "Born from the feces of prehistoric Tuxemon, it used the shards of bone within itself for defense."
@@ -3826,6 +4210,12 @@ msgstr "Smiths work with it, heating up metals in its caldera."
 msgid "eruptibus"
 msgstr "Eruptibus"
 
+msgid "erythroskyte_description"
+msgstr "It has a friendly demeanor, but its giant syringe tail nonetheless scares many away."
+
+msgid "erythroskyte"
+msgstr "Erythroskyte"
+
 msgid "eskipup_description"
 msgstr "Even as a puppy, it can pull 1 ton loads."
 
@@ -3958,6 +4348,12 @@ msgstr "It can do anything with its prehensile tail, even shake hands and pick f
 msgid "frondly"
 msgstr "Frondly"
 
+msgid "frostuce_description"
+msgstr "One rarely expects to see green waltzing around in a snowstorm."
+
+msgid "frostuce"
+msgstr "Frostuce"
+
 msgid "fruitera_description"
 msgstr "FRUITERA is greedy for fruit, and carries as much as it can. When startled, it drops all its fruit, gathers it all up again, and only then runs away."
 
@@ -4030,6 +4426,18 @@ msgstr "It stores its memories in its rocky shell. If some fall off, it is forge
 msgid "glombroc"
 msgstr "Glombroc"
 
+msgid "glomon_description"
+msgstr "A colony of bacteria that became new life in a discarded medical glove. It can see out of the back of its body."
+
+msgid "glomon"
+msgstr "Glomon"
+
+msgid "golnagi_description"
+msgstr "GOLNAGI's scales glow, making it almost invisible in the water during dawn and dusk - its preferred times for hunting."
+
+msgid "golnagi"
+msgstr "Golnagi"
+
 msgid "gourda_description"
 msgstr "Competitions to grow the largest GOURDA have resulted in some reaching one ton in weight, but normal GOURDA are much smaller."
 
@@ -4078,6 +4486,18 @@ msgstr "Bone armor protects GRYFIX from all but the most powerful of attacks."
 msgid "gryfix"
 msgstr "Gryfix"
 
+msgid "gupphire_description"
+msgstr "GUPPHIRE's scales sparkle, making it a stunning sight to behold. Fishers who see a GUPPHIRE believe it means they will have good luck all year."
+
+msgid "gupphire"
+msgstr "gupphire"
+
+msgid "gupphish_description"
+msgstr "GUPPHISH loves to swim in schools, making it a popular choice for trainers who value teamwork."
+
+msgid "gupphish"
+msgstr "gupphish"
+
 msgid "hampotamos_description"
 msgstr "It nibbles on RINOCEREED, clearing away dead skin, moss and weeds."
 
@@ -4102,6 +4522,12 @@ msgstr "When it inflates its dome, it floats to the top of oceans, or even throu
 msgid "hectapod"
 msgstr "Hectapod"
 
+msgid "helipi_description"
+msgstr "It flies farther with one wing by rotating than with two, but sacrifices the ability to easily aim."
+
+msgid "helipi"
+msgstr "Helipi"
+
 msgid "heronquak_description"
 msgstr "The crystal on its chest is mistaken for a diamond by poachers. It melts when it is removed from HERONQUAK's body."
 
@@ -4125,6 +4551,12 @@ msgstr "It is what is left when an EQUILL's shadow eats its body."
 
 msgid "hoarseshoo"
 msgstr "Hoarseshoo"
+
+msgid "hoodoll_description"
+msgstr "It sometimes sticks a pin in itself to curse its foes, but no one can tell the difference after."
+
+msgid "hoodoll"
+msgstr "Hoodoll"
 
 msgid "hotline_description"
 msgstr "These curious creatures can leap great distances, letting out a strange, tinny cry that cannot be escaped however far their prey runs."
@@ -4216,6 +4648,12 @@ msgstr "KERNEL is a core component of the monster system (kennel) and item syste
 msgid "kernel"
 msgstr "Kernel"
 
+msgid "knightsand_description"
+msgstr "KNIGHTSAND patrols around sand castles inhabits by PAWSAND, but is terrible at building them."
+
+msgid "knightsand"
+msgstr "Knightsand"
+
 msgid "knindling_description"
 msgstr "Any spark from a stone KNINDLING happily tenders into a fire."
 
@@ -4239,6 +4677,18 @@ msgstr "In some places KONUIT is called 'drop bear' and believed to fall on unsu
 
 msgid "konuit"
 msgstr "Konuit"
+
+msgid "kroki_description"
+msgstr "KROKI spends most of its time in shallow waters, using its powerful jaws to snap at prey."
+
+msgid "kroki"
+msgstr "Kroki"
+
+msgid "krokivip_description"
+msgstr "This venomous crocodilian enjoys ambushing from the water. As it grows closer to evolution, it seeks out larger bodies of water."
+
+msgid "krokivip"
+msgstr "Krokivip"
 
 msgid "lambert_description"
 msgstr "It is placed in its nut by its parent, who then sends it into the world."
@@ -4275,6 +4725,18 @@ msgstr "It oozes along the sea floor, looking for hard nooks and crannies to hid
 
 msgid "lesmagu"
 msgstr "Lesmagu"
+
+msgid "lettice_description"
+msgstr "Cold weather concentrates the power and vitality of LETTICE."
+
+msgid "lettice"
+msgstr "Lettice"
+
+msgid "leviadile_description"
+msgstr "With its immense size and powerful venomous jaws, LEVIADILE is a dominant predator of the deep sea."
+
+msgid "leviadile"
+msgstr "Leviadile"
 
 msgid "lightmare_description"
 msgstr "It lurks in the depths of the ocean, luring any unsuspecting prey using its light right into its large, gaping mouth."
@@ -4540,11 +5002,29 @@ msgstr "Each member of the pride lights their mane from a shared bonfire. As lon
 msgid "pantherafira"
 msgstr "Pantherafira"
 
+msgid "parappi_description"
+msgstr "When cut PARAPPI oozes syrup that seals and hardens over its enemies, turning them to amber."
+
+msgid "parappi"
+msgstr "Parappi"
+
+msgid "pawsand_description"
+msgstr "PAWSAND inhabits sand castles and sand temples made by BISHOSAND and ROOKSAND, some of which are actually ROOKSAND itself."
+
+msgid "pawsand"
+msgstr "Pawsand"
+
 msgid "pearamanca_description"
 msgstr "PEARAMANCA sells insurance to innocent people just trying to buy fruit, which makes it the most terrifying monster of all."
 
 msgid "pearamanca"
 msgstr "Pearamanca"
+
+msgid "pharavion_description"
+msgstr "After great effort, a trainer may evolve a clumsy PHARFAN calf into its adult form, which gracefully floats despite its huge size."
+
+msgid "pharavion"
+msgstr "Pharavion"
 
 msgid "pharfan_description"
 msgstr "At the watering hole it keeps its friends RINOCEREED and HAMPOTAMOS well watered."
@@ -4557,6 +5037,12 @@ msgstr "It accompanies divers, providing much needed oxygen."
 
 msgid "picc"
 msgstr "Picc"
+
+msgid "pickoon_description"
+msgstr "It enjoys picking things up and stuffing them discreetly into its scarf."
+
+msgid "pickoon"
+msgstr "Pickoon"
 
 msgid "pigabyte_description"
 msgstr "Scientists found that the best computers have organic implants."
@@ -4605,6 +5091,12 @@ msgstr "By the time a POTTURMEIST has reached its maturity, its protective urn h
 
 msgid "potturney"
 msgstr "Potturney"
+
+msgid "primordia_description"
+msgstr "It is rumored to be the ancestor of all tuxemon."
+
+msgid "primordia"
+msgstr "Primordia"
 
 msgid "propellercat_description"
 msgstr "Is it a new species, or just the pet of an inventor?"
@@ -4660,6 +5152,18 @@ msgstr "Its tunnels are extensive and wide, the site of tremendous wars between 
 msgid "rabbitosaur"
 msgstr "Rabbitosaur"
 
+msgid "raccscal_description"
+msgstr "It has a baglike tail on its back that it can open and close, and even detach and throw at enemies."
+
+msgid "raccscal"
+msgstr "Raccscal"
+
+msgid "raptoucan_description"
+msgstr "It is formidable and aggressive, but only eats fruit."
+
+msgid "raptoucan"
+msgstr "Raptoucan"
+
 msgid "regalance_description"
 msgstr "It can summon a halberd whenever it needs."
 
@@ -4695,6 +5199,12 @@ msgstr "It uses its tiny rock ears for snuggling."
 
 msgid "rockitten"
 msgstr "Rockitten"
+
+msgid "rooksand_description"
+msgstr "ROOKSAND sometimes allows those it deems worthy to live inside its sandcastle, and crushes all others."
+
+msgid "rooksand"
+msgstr "Rooksand"
 
 msgid "rosarin_description"
 msgstr "ROSARIN's love is incredible, he's only asking some affection."
@@ -4815,6 +5325,12 @@ msgstr "SHEYE are weighed down by heavy thoughts. Edgy trainers like them for th
 
 msgid "sheye"
 msgstr "Sheye"
+
+msgid "shimmerain_description"
+msgstr "They say that when a rainbow appears over water, the SHIMMERAIN are spawning."
+
+msgid "shimmerain"
+msgstr "Shimmerain"
 
 msgid "shnark_description"
 msgstr "SHNARK wears its last meal's flesh as a disguise so it can get close to its trusting prey."
@@ -5068,6 +5584,12 @@ msgstr "TORNICANE harnesses the power of both tornado and hurricane. It is a liv
 msgid "tornicane"
 msgstr "Tornicane"
 
+msgid "toucanary_description"
+msgstr "TOUCANARY only has bright feathers because it grew up surrounded by flowers."
+
+msgid "toucanary"
+msgstr "Toucanary"
+
 msgid "toufigel_description"
 msgstr "It appears to be a fluffy insect, but it is actually a reptile coated in soft snow."
 
@@ -5091,6 +5613,12 @@ msgstr "Its head is the only part of its body that doesn't grow as it ages."
 
 msgid "trapsnap"
 msgstr "Trapsnap"
+
+msgid "trojerror_description"
+msgstr "TROJERROR is a tuxemon that disguises itself as legitimate code or software. Once inside the network, TROJERRORS are able to carry out any action that a legitimate user could perform (deposit, withdrawn and delete)."
+
+msgid "trojerror"
+msgstr "Trojerror"
 
 msgid "tsushimi_description"
 msgstr "While sometimes referred to as its armor, the fleshy plates on TSUSHIMI are softer than its skin. Their purpose remains unknown."
@@ -5193,6 +5721,12 @@ msgstr "VIGUEUR compete to see who can lift the heaviest rocks. When they lift o
 
 msgid "vigueur"
 msgstr "Vigueur"
+
+msgid "virware_description"
+msgstr "VIRWARE is usually dormant until the victim activates it, either through downloading a corrupt app or clicking an infected link. Once activated, VIRWARE may complete any number of tasks."
+
+msgid "virware"
+msgstr "Virware"
 
 msgid "vivicinder_description"
 msgstr "It makes its nest in long-burning fires, either of its own creation or in memorials, smithies and glassworks."
@@ -5302,6 +5836,12 @@ msgstr "This tuxemon is very friendly. It is common to go hunting with the help 
 msgid "wolffsky"
 msgstr "Wolffsky"
 
+msgid "wolololl_description"
+msgstr "WOLOLOLL's sharp spines are tipped with a deadly venom."
+
+msgid "wolololl"
+msgstr "Wolololl"
+
 msgid "woodoor_description"
 msgstr "When a haunted house burns to the ground, sometimes all that is left is the front door. It hops away to find its next home."
 
@@ -5316,6 +5856,12 @@ msgstr "Wrougon"
 
 msgid "yiinaang_description"
 msgstr "It was born the first time a star fell into a black hole."
+
+msgid "yamada"
+msgstr "Yamada"
+
+msgid "yamada_description"
+msgstr "While ghosts are known for being tricksters, YAMADA tend to take the law seriously, even seeing good behavior as more important than physical might."
 
 msgid "yiinaang"
 msgstr "Yiinaang"
@@ -5441,6 +5987,8 @@ msgid "cat_athena"
 msgstr "Athena"
 msgid "cat_attercob"
 msgstr "Attercob"
+msgid "cat_bacteria"
+msgstr "Bacteria"
 msgid "cat_balance"
 msgstr "Balance"
 msgid "cat_balloon"
@@ -5465,6 +6013,8 @@ msgid "cat_biting_pear"
 msgstr "Biting Pear"
 msgid "cat_bladder"
 msgstr "Bladder"
+msgid "cat_boiling_goldfish"
+msgstr "Boiling Goldfish"
 msgid "cat_bonfire"
 msgstr "Bonfire"
 msgid "cat_brains"
@@ -5483,6 +6033,8 @@ msgid "cat_bustuarius"
 msgstr "Bustuarius"
 msgid "cat_buzzkill"
 msgstr "Buzzkill"
+msgid "cat_cactus"
+msgstr "Cactus"
 msgid "cat_calf"
 msgstr "Calf"
 msgid "cat_calm_emotion"
@@ -5495,6 +6047,10 @@ msgid "cat_cave_dweller"
 msgstr "Cave-Dweller"
 msgid "cat_cheshire"
 msgstr "Cheshire"
+msgid "cat_chickadee"
+msgstr "Chickadee"
+msgid "cat_chickenhawk"
+msgstr "Chickenhawk"
 msgid "cat_chip"
 msgstr "Chip"
 msgid "cat_cirrus"
@@ -5515,6 +6071,8 @@ msgid "cat_cranky"
 msgstr "Cranky"
 msgid "cat_crested"
 msgstr "Crested"
+msgid "cat_crocodile"
+msgstr "Crocodile"
 msgid "cat_cute"
 msgstr "Cute"
 msgid "cat_cute_boulder"
@@ -5629,10 +6187,14 @@ msgid "cat_fortified"
 msgstr "Fortified"
 msgid "cat_fossil"
 msgstr "Fossil"
+msgid "cat_freezerburn"
+msgstr "Freezerburn"
 msgid "cat_frost_ape"
 msgstr "Frost Ape"
 msgid "cat_frosty"
 msgstr "Frosty"
+msgid "cat_frozen_produce"
+msgstr "Frozen Produce"
 msgid "cat_fuminous"
 msgstr "Fuminous"
 msgid "cat_galvanised"
@@ -5753,6 +6315,8 @@ msgid "cat_meteor_snake"
 msgstr "Meteor Snake"
 msgid "cat_myrmidon"
 msgstr "Myrmidon"
+msgid "cat_microbe"
+msgstr "Microbe"
 msgid "cat_missing_link"
 msgstr "Missing Link"
 msgid "cat_mixed_emotion"
@@ -5777,6 +6341,8 @@ msgid "cat_nova_snake"
 msgstr "Nova Snake"
 msgid "cat_old_block"
 msgstr "Old Block"
+msgid "cat_old_man"
+msgstr "Old Man"
 msgid "cat_oracle_bone"
 msgstr "Oracle Bone"
 msgid "cat_overseer"
@@ -5791,6 +6357,8 @@ msgid "cat_pebble"
 msgstr "Pebble"
 msgid "cat_penguin"
 msgstr "Penguin"
+msgid "cat_percomorph_fish"
+msgstr "Percomorph Fish"
 msgid "cat_petrified"
 msgstr "Petrified"
 msgid "cat_pitcher"
@@ -5837,6 +6405,8 @@ msgid "cat_quickdraw"
 msgstr "Quickdraw"
 msgid "cat_rabbit"
 msgstr "Rabbit"
+msgid "cat_raccoon"
+msgstr "Raccoon"
 msgid "cat_radioactive"
 msgstr "Radioactive"
 msgid "cat_red_hands"
@@ -5861,6 +6431,18 @@ msgid "cat_rootball"
 msgstr "Rootball"
 msgid "cat_rueful"
 msgstr "Rueful"
+msgid "cat_samsara"
+msgstr "Samsara"
+msgid "cat_samurai_ghost"
+msgstr "Samurai Ghost"
+msgid "cat_sand_bishop"
+msgstr "Sand Bishop"
+msgid "cat_sand_knight"
+msgstr "Sand Knight"
+msgid "cat_sand_pawn"
+msgstr "Sand Pawn"
+msgid "cat_sand_rock"
+msgstr "Sand Rock"
 msgid "cat_sand_scorpion"
 msgstr "Sand Scorpion"
 msgid "cat_sand_steed"
@@ -5919,6 +6501,10 @@ msgid "cat_spiked"
 msgstr "Spiked"
 msgid "cat_spiny"
 msgstr "Spiny"
+msgid "cat_spinning_seed"
+msgstr "Spinning Seed"
+msgid "cat_spirit_elephant"
+msgstr "Spirit Elephant"
 msgid "cat_spirit_fire"
 msgstr "Spirit Fire"
 msgid "cat_spook"
@@ -5977,6 +6563,8 @@ msgid "cat_travel_bug"
 msgstr "Travel Bug"
 msgid "cat_tree_giraffe"
 msgstr "Tree Giraffe"
+msgid "cat_tropical"
+msgstr "Tropical"
 msgid "cat_unknown"
 msgstr "Unknown"
 msgid "cat_urchin"

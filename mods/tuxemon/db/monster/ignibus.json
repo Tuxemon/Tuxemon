@@ -51,7 +51,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["polliwog", "desert", "mountains"],
+    "terrains": ["desert", "mountains"],
+    "tags": ["flame", "rock", "bite", "bomber"],
     "shape": "polliwog",
     "stage": "basic",
     "types": [

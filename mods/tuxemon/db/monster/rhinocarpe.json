@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "starfall"
+            "technique": "flood"
         },
         {
             "level_learned": 19,
@@ -40,7 +40,7 @@
         },
         {
             "level_learned": 31,
-            "technique": "flood"
+            "technique": "needle"
         },
         {
             "level_learned": 37,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["piscine", "coastal", "freshwater", "sea"],
+    "terrains": ["coastal", "freshwater", "sea"],
+    "tags": ["water", "fury"],
     "shape": "piscine",
     "stage": "standalone",
     "types": [

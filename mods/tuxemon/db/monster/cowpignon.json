@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "hammerhead"
+            "technique": "fungal_spore"
         },
         {
             "level_learned": 1,
@@ -28,7 +28,7 @@
         },
         {
             "level_learned": 19,
-            "technique": "whirlwind"
+            "technique": "hallucinogen_spore"
         },
         {
             "level_learned": 25,
@@ -48,12 +48,13 @@
         },
         {
             "level_learned": 40,
-            "technique": "chameleon"
+            "technique": "mind_explosion"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["sprite", "grassland", "woodland"],
+    "terrains": ["grassland", "woodland"],
+    "tags": ["plant", "love", "mental", "food"],
     "shape": "sprite",
     "stage": "standalone",
     "types": [

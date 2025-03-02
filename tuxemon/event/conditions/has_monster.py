@@ -11,6 +11,10 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 
+from dataclasses import dataclass
+
+
+@dataclass
 class HasMonsterCondition(EventCondition):
     """
     Check to see if a character has a monster in its party.

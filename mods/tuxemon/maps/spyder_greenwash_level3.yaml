@@ -72,11 +72,11 @@ events:
     - char_face spyder_greenwash_looten,up
     - translated_dialog spyder_candy_cafe_trigger_yes
     - translated_dialog spyder_experiment_flashback1
-    - translated_dialog spyder_experiment_flashback2
-    - translated_dialog spyder_experiment_flashback3
+    - translated_dialog spyder_experiment_flashback2,,bottomleft
+    - translated_dialog spyder_experiment_flashback3,,bottomright
     - translated_dialog spyder_experiment_flashback4
     - set_bubble spyder_greenwash_heidenstam,exclamation
-    - translated_dialog spyder_experiment_flashback5
+    - translated_dialog spyder_experiment_flashback5,,bottomright
     - set_bubble spyder_greenwash_heidenstam
     - set_bubble spyder_greenwash_looten,exclamation
     - translated_dialog spyder_experiment_flashback6
@@ -86,7 +86,7 @@ events:
     - remove_npc spyder_greenwash_looten
     - remove_npc spyder_greenwash_moreau
     - translated_dialog spyder_experiment_flashback7
-    - translated_dialog spyder_experiment_flashback8
+    - translated_dialog spyder_experiment_flashback8,,bottomright
     - set_variable incident_greenwash:done
     - unlock_controls
     - set_variable flashback:off
@@ -108,11 +108,11 @@ events:
     - create_npc spyder_greenwash_chip,11,11
     - char_face spyder_greenwash_chip,up
     - translated_dialog spyder_fossilator_flashback1
-    - translated_dialog spyder_fossilator_flashback2
-    - translated_dialog spyder_fossilator_flashback3
-    - translated_dialog spyder_fossilator_flashback4
+    - translated_dialog spyder_fossilator_flashback2,,bottomright
+    - translated_dialog spyder_fossilator_flashback3,,bottomleft
+    - translated_dialog spyder_fossilator_flashback4,,bottomright
     - translated_dialog spyder_fossilator_flashback5
-    - translated_dialog spyder_fossilator_flashback6
+    - translated_dialog spyder_fossilator_flashback6,,bottomright
     - translated_dialog spyder_fossilator_flashback7
     - pathfind spyder_greenwash_looten,4,4
     - remove_npc spyder_greenwash_looten
@@ -138,15 +138,15 @@ events:
     - char_face spyder_greenwash_dempsey,right
     - create_npc spyder_greenwash_looten,4,4
     - char_face spyder_greenwash_looten,left
-    - translated_dialog spyder_dempsey_flashback1
-    - translated_dialog spyder_dempsey_flashback2
-    - translated_dialog spyder_dempsey_flashback3
-    - translated_dialog spyder_dempsey_flashback4
-    - translated_dialog spyder_dempsey_flashback5
-    - translated_dialog spyder_dempsey_flashback6
-    - translated_dialog spyder_dempsey_flashback7
-    - translated_dialog spyder_dempsey_flashback8
-    - translated_dialog spyder_dempsey_flashback9
+    - translated_dialog spyder_dempsey_flashback1,,bottomleft
+    - translated_dialog spyder_dempsey_flashback2,,bottomright
+    - translated_dialog spyder_dempsey_flashback3,,bottomleft
+    - translated_dialog spyder_dempsey_flashback4,,bottomright
+    - translated_dialog spyder_dempsey_flashback5,,bottomleft
+    - translated_dialog spyder_dempsey_flashback6,,bottomright
+    - translated_dialog spyder_dempsey_flashback7,,bottomleft
+    - translated_dialog spyder_dempsey_flashback8,,bottomright
+    - translated_dialog spyder_dempsey_flashback9,,bottomleft
     - pathfind spyder_greenwash_dempsey,2,4
     - remove_npc spyder_greenwash_dempsey
     - pathfind spyder_greenwash_looten,2,4

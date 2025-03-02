@@ -11,6 +11,10 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 
+from dataclasses import dataclass
+
+
+@dataclass
 class CharSpriteCondition(EventCondition):
     """
     Check the character's sprite

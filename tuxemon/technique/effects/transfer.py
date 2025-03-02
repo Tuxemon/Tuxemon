@@ -16,14 +16,17 @@ if TYPE_CHECKING:
 @dataclass
 class TransferEffect(TechEffect):
     """
-    Transfers the condition from the user to the target.
+    Transfers a specified condition from one entity to another.
 
-    If the user has the condition, they lose that condition and the target
-    gains it.
+    The direction of the transfer is determined by the `direction` attribute,
+    which can be either "user_to_target" or "target_to_user".
+    If the source entity has the specified condition, it is removed from the
+    source and applied to the target.
     """
 
     name = "transfer"
     condition: str
+    direction: str
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
@@ -34,10 +37,16 @@ class TransferEffect(TechEffect):
             else 0.0
         )
         done = False
-        if tech.hit and has_status(user, self.condition):
-            target.status = user.status
-            user.status = []
-            done = True
+        if tech.hit:
+            source, dest = (
+                (user, target)
+                if self.direction == "user_to_target"
+                else (target, user)
+            )
+            if has_status(source, self.condition):
+                dest.status = source.status
+                source.status = []
+                done = True
         return TechEffectResult(
             name=tech.name,
             success=done,

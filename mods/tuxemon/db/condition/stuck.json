@@ -1,11 +1,19 @@
 {
   "animation": null,
+  "modifiers": [],
   "category": "negative",
 	"conditions": [
-	  	"is current_hp >,0"
+    {
+      "type": "current_hp",
+      "parameters": [">", "0"],
+      "operator": "is"
+    }
 	],
   "effects": [
-    "stuck 2,melee:touch"
+    {
+      "type": "stuck",
+      "parameters": ["2", "melee:touch"]
+    }
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_stuck.png",

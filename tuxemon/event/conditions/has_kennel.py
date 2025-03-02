@@ -12,6 +12,10 @@ from tuxemon.tools import compare
 logger = logging.getLogger(__name__)
 
 
+from dataclasses import dataclass
+
+
+@dataclass
 class HasKennelCondition(EventCondition):
     """
     Check to see how many monsters are in the character's kennel.

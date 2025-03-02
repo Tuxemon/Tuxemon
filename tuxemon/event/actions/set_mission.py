@@ -61,10 +61,10 @@ class SetMissionAction(EventAction):
         mission = Mission()
         mission.load(self.slug)
         mission.status = _status
-        existing = character.find_mission(self.slug)
+        existing = character.mission_manager.find_mission(self.slug)
         if self.operation == "add" and existing is None:
-            character.add_mission(mission)
+            character.mission_manager.add_mission(mission)
         if self.operation == "remove" and existing:
-            character.remove_mission(existing)
+            character.mission_manager.remove_mission(existing)
         if self.operation == "change" and existing:
             existing.status = _status

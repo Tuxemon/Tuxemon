@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import final
 
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
@@ -15,7 +14,9 @@ from tuxemon.states.world.worldstate import WorldState
 logger = logging.getLogger(__name__)
 
 
-@final
+from dataclasses import dataclass
+
+
 @dataclass
 class CheckWorldCondition(EventCondition):
     """

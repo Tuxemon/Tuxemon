@@ -28,7 +28,6 @@ from tuxemon.db import Direction
 from tuxemon.entity import Entity
 from tuxemon.graphics import ColorLike
 from tuxemon.map import (
-    PathfindNode,
     RegionProperties,
     TuxemonMap,
     dirs2,
@@ -38,6 +37,7 @@ from tuxemon.map import (
 )
 from tuxemon.map_loader import TMXMapLoader, YAMLEventLoader
 from tuxemon.math import Vector2
+from tuxemon.movement import PathfindNode
 from tuxemon.platform.const import intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event
@@ -267,9 +267,11 @@ class WorldState(state.State):
         self.client.event_data["transition"] = False
 
         # Update the server/clients of our new map and populate any other players.
-        if self.client.isclient or self.client.ishost:
-            self.client.add_clients_to_map(self.client.client.client.registry)
-            self.client.client.update_player(self.player.facing)
+        self.network = self.client.network_manager
+        if self.network.isclient or self.network.ishost:
+            assert self.network.client
+            self.client.add_clients_to_map(self.network.client.client.registry)
+            self.network.client.update_player(self.player.facing)
 
         # Update the location of the npcs. Doesn't send network data.
         for npc in self.npcs:
@@ -297,7 +299,6 @@ class WorldState(state.State):
         logger.debug("*** Game Loop Started ***")
         logger.debug("Player Variables:" + str(self.player.game_variables))
         logger.debug("Money:" + str(self.player.money))
-        logger.debug("Tuxepedia:" + str(self.player.tuxepedia))
 
     def draw(self, surface: pygame.surface.Surface) -> None:
         """

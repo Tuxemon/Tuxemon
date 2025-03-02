@@ -23,6 +23,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import networking, prepare, state
+from tuxemon.boundary import BoundaryChecker
 from tuxemon.camera import Camera, project
 from tuxemon.db import Direction
 from tuxemon.entity import Entity
@@ -42,7 +43,6 @@ from tuxemon.platform.const import intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event
 from tuxemon.session import local_session
-from tuxemon.states.world.world_classes import BoundaryChecker
 from tuxemon.states.world.world_menus import WorldMenuState
 from tuxemon.surfanim import SurfaceAnimation
 from tuxemon.teleporter import Teleporter

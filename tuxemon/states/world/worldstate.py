@@ -62,7 +62,6 @@ direction_map: Mapping[int, Direction] = {
 }
 
 
-
 CollisionDict = dict[
     tuple[int, int],
     Optional[RegionProperties],

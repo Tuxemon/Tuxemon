@@ -23,6 +23,7 @@
   "usable_in": [
     "MainCombatMenuState"
   ],
+  "modifiers": [],
   "behaviors": {
     "throwable": true
   },

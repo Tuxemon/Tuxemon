@@ -6,6 +6,7 @@
   "usable_in": [
     ""
   ],
+  "modifiers": [],
   "behaviors": {
     "consumable": false
   },

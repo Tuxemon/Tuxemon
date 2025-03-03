@@ -19,6 +19,7 @@
   "usable_in": [
     "MainParkMenuState"
   ],
+  "modifiers": [],
   "behaviors": {
     "throwable": true
   },

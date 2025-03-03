@@ -294,6 +294,7 @@ class ItemModel(BaseModel):
         description="The standard cost of the item.",
         gt=0,
     )
+    modifiers: list[Modifier] = Field(..., description="Various modifiers")
 
     # Validate fields that refer to translated text
     @field_validator("use_item", "use_success", "use_failure")

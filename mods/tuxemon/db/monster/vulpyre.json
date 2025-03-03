@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "give_all"
+            "technique": "fire_ball"
         },
         {
             "level_learned": 1,
@@ -40,7 +40,7 @@
         },
         {
             "level_learned": 31,
-            "technique": "electrical_storm"
+            "technique": "give_all"
         },
         {
             "level_learned": 37,
@@ -48,7 +48,7 @@
         },
         {
             "level_learned": 40,
-            "technique": "tinder"
+            "technique": "flamethrower"
         }
     ],
     "evolutions": [],
@@ -58,7 +58,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["hunter", "desert", "grassland"],
+    "terrains": ["desert", "grassland"],
+    "tags": ["flame", "calamity", "claws"],
     "shape": "hunter",
     "stage": "stage1",
     "types": [

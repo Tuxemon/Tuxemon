@@ -1,0 +1,81 @@
+{
+    "slug": "toucanary",
+    "category": "tropical",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "peck"
+        },
+        {
+            "level_learned": 1,
+            "technique": "gust"
+        },
+        {
+            "level_learned": 4,
+            "technique": "whirlwind"
+        },
+        {
+            "level_learned": 7,
+            "technique": "proboscis"
+        },
+        {
+            "level_learned": 13,
+            "technique": "panjandrum"
+        },
+        {
+            "level_learned": 16,
+            "technique": "sylvan"
+        },
+        {
+            "level_learned": 19,
+            "technique": "energy_claws"
+        },
+        {
+            "level_learned": 25,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 28,
+            "technique": "nest"
+        },
+        {
+            "level_learned": 31,
+            "technique": "one_million_talons"
+        },
+        {
+            "level_learned": 40,
+            "technique": "ten_thousand_feathers"
+        },
+        {
+            "level_learned": 55,
+            "technique": "fluff_up"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 20,
+            "monster_slug": "raptoucan"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "raptoucan",
+            "evo_stage": "stage1"
+        }
+    ],
+    "terrains": ["jungle"],
+    "tags": ["bird", "claws", "bite"],
+    "shape": "flier",
+    "stage": "basic",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 387,
+    "height": 12,
+    "weight": 1,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

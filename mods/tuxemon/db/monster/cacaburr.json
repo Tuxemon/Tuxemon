@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "saber"
+            "technique": "pollen_blast"
         },
         {
             "level_learned": 1,
@@ -21,6 +21,18 @@
         {
             "level_learned": 19,
             "technique": "perfect_cut"
+        },
+        {
+            "level_learned": 28,
+            "technique": "needle"
+        },
+        {
+            "level_learned": 40,
+            "technique": "woodsmash"
+        },
+        {
+            "level_learned": 55,
+            "technique": "thorn_burst"
         }
     ],
     "evolutions": [],
@@ -30,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["plant", "sharp"],
     "shape": "blob",
     "stage": "stage1",
     "types": [

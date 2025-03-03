@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "thunderball"
+            "technique": "gnaw"
         },
         {
             "level_learned": 1,
@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 7,
-            "technique": "blossom"
+            "technique": "invictus"
         },
         {
             "level_learned": 13,
@@ -44,16 +44,21 @@
         },
         {
             "level_learned": 37,
-            "technique": "wing_tip"
+            "technique": "strangulation"
         },
         {
             "level_learned": 40,
-            "technique": "ubuntu"
+            "technique": "steel_jaws"
+        },
+        {
+            "level_learned": 55,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["brute"],
+    "terrains": [],
+    "tags": ["fists", "fury", "bite", "soldier"],
     "shape": "brute",
     "stage": "standalone",
     "types": [

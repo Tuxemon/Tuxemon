@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["brute"],
+    "terrains": [],
+    "tags": [],
     "shape": "brute",
     "stage": "standalone",
     "types": [

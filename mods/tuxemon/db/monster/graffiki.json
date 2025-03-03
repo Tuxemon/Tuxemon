@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "shrapnel"
+            "technique": "tail_lash"
         },
         {
             "level_learned": 1,
-            "technique": "bubble_trap"
+            "technique": "goad"
         },
         {
             "level_learned": 4,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["humanoid"],
+    "terrains": [],
+    "tags": ["soldier", "bomber", "gadgets", "summoner", "shapeshifter", "tail"],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [

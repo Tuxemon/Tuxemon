@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "blossom"
+            "technique": "water_bullet"
         },
         {
             "level_learned": 1,
@@ -25,6 +25,26 @@
         {
             "level_learned": 19,
             "technique": "nest"
+        },
+        {
+            "level_learned": 25,
+            "technique": "water_blast"
+        },
+        {
+            "level_learned": 31,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 37,
+            "technique": "energy_field"
+        },
+        {
+            "level_learned": 40,
+            "technique": "woodsmash"
+        },
+        {
+            "level_learned": 55,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [],
@@ -34,7 +54,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["dragon", "coastal", "sea"],
+    "terrains": ["coastal", "sea"],
+    "tags": ["plant", "water", "rock", "calamity", "leadership"],
     "shape": "dragon",
     "stage": "stage1",
     "types": [

@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["dragon"],
+    "terrains": [],
+    "tags": ["sharp", "shielded"],
     "shape": "dragon",
     "stage": "standalone",
     "types": [

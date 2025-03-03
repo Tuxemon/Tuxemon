@@ -51,7 +51,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["hunter"],
+    "terrains": [],
+    "tags": ["machine", "gadgets"],
     "shape": "hunter",
     "stage": "basic",
     "types": [

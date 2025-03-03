@@ -24,7 +24,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Bug", "Toxic"],
+  "tags": ["bug", "toxic"],
   "types": [
     "wood"
   ],

@@ -21,11 +21,16 @@
         {
             "level_learned": 19,
             "technique": "kraken"
+        },
+        {
+            "level_learned": 40,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["blob", "any"],
+    "terrains": ["any"],
+    "tags": ["pseudopod"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

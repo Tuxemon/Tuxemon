@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 4,
-            "technique": "venomous_tentacle"
+            "technique": "roll"
         },
         {
             "level_learned": 7,
@@ -48,7 +48,7 @@
         },
         {
             "level_learned": 40,
-            "technique": "tsunami"
+            "technique": "tornado"
         }
     ],
     "evolutions": [],
@@ -58,7 +58,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["water", "weather", "light", "electricity", "calamity"],
     "shape": "blob",
     "stage": "stage1",
     "types": [

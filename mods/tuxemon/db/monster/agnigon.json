@@ -45,6 +45,10 @@
         {
             "level_learned": 52,
             "technique": "supernova"
+        },
+        {
+            "level_learned": 61,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [],
@@ -58,7 +62,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["dragon", "coastal", "desert", "mountains"],
+    "terrains": ["coastal", "desert", "mountains"],
+    "tags": ["flame", "bite", "claws", "ground", "bird", "darkness"],
     "shape": "dragon",
     "stage": "stage2",
     "types": [

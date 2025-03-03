@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "mudslide"
+            "technique": "rock"
         },
         {
             "level_learned": 1,
@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 4,
-            "technique": "rock"
+            "technique": "mudslide"
         },
         {
             "level_learned": 7,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["hunter"],
+    "terrains": ["desert"],
+    "tags": ["ground", "rock"],
     "shape": "hunter",
     "stage": "standalone",
     "types": [

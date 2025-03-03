@@ -1,0 +1,68 @@
+{
+    "slug": "knightsand",
+    "category": "sand_knight",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 1,
+            "technique": "sand_spray"
+        },
+        {
+            "level_learned": 4,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 7,
+            "technique": "blade"
+        },
+        {
+            "level_learned": 13,
+            "technique": "avalanche"
+        },
+        {
+            "level_learned": 19,
+            "technique": "muck"
+        },
+        {
+            "level_learned": 22,
+            "technique": "saber"
+        },
+        {
+            "level_learned": 25,
+            "technique": "lineage"
+        },
+        {
+            "level_learned": 31,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 55,
+            "technique": "earthquake"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "pawsand",
+            "evo_stage": "basic"
+        }
+    ],
+    "terrains": ["coastal", "desert"],
+    "tags": ["ground", "water", "sharp"],
+    "shape": "humanoid",
+    "stage": "stage1",
+    "types": [
+        "earth", "metal"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 374,
+    "height": 180,
+    "weight": 140,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

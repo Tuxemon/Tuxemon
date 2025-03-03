@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "berserk"
+            "technique": "buzz"
         },
         {
             "level_learned": 1,
@@ -49,11 +49,16 @@
         {
             "level_learned": 40,
             "technique": "flamethrower"
+        },
+        {
+            "level_learned": 55,
+            "technique": "electrical_storm"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["varmint"],
+    "terrains": [],
+    "tags": ["electricity", "food"],
     "shape": "varmint",
     "stage": "standalone",
     "types": [

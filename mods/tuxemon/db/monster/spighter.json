@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["grub"],
+    "terrains": [],
+    "tags": ["gaze", "darkness"],
     "shape": "grub",
     "stage": "standalone",
     "types": [

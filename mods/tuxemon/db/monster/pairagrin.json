@@ -51,7 +51,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["flier"],
+    "terrains": ["woodland"],
+    "tags": ["bird"],
     "shape": "flier",
     "stage": "basic",
     "types": [

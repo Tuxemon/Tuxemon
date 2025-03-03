@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "overgrowth"
+            "technique": "solar_synthesis"
         },
         {
             "level_learned": 4,
@@ -17,10 +17,6 @@
         {
             "level_learned": 10,
             "technique": "poison_courtship"
-        },
-        {
-            "level_learned": 19,
-            "technique": "viper"
         }
     ],
     "evolutions": [
@@ -35,7 +31,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["varmint"],
+    "terrains": [],
+    "tags": ["plant", "toxic", "bug"],
     "shape": "varmint",
     "stage": "basic",
     "types": [

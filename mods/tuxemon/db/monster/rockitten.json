@@ -63,7 +63,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["hunter", "mountains", "urban"],
+    "terrains": ["mountains", "urban"],
+    "tags": ["rock", "love", "claws", "bite"],
     "shape": "hunter",
     "stage": "basic",
     "types": [

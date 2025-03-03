@@ -1,0 +1,81 @@
+{
+    "slug": "helipi",
+    "category": "samsara",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 1,
+            "technique": "roll"
+        },
+        {
+            "level_learned": 4,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 7,
+            "technique": "assault"
+        },
+        {
+            "level_learned": 13,
+            "technique": "wing_tip"
+        },
+        {
+            "level_learned": 16,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 19,
+            "technique": "sylvan"
+        },
+        {
+            "level_learned": 28,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 31,
+            "technique": "chameleon"
+        },
+        {
+            "level_learned": 37,
+            "technique": "shadow_boxing"
+        },
+        {
+            "level_learned": 40,
+            "technique": "stabilo"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 15,
+            "monster_slug": "coppi"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "coppi",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "parappi",
+            "evo_stage": "stage2"
+        }
+    ],
+    "terrains": ["grassland", "urban", "woodland"],
+    "tags": ["plant", "food"],
+    "shape": "blob",
+    "stage": "basic",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 376,
+    "height": 30,
+    "weight": 4,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

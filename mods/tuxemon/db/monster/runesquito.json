@@ -8,11 +8,15 @@
         },
         {
             "level_learned": 1,
-            "technique": "grinding"
+            "technique": "buzz"
         },
         {
             "level_learned": 4,
             "technique": "petrify"
+        },
+        {
+            "level_learned": 7,
+            "technique": "rock"
         },
         {
             "level_learned": 10,
@@ -25,6 +29,10 @@
         {
             "level_learned": 19,
             "technique": "electroplate"
+        },
+        {
+            "level_learned": 40,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [],
@@ -38,7 +46,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["flier", "freshwater", "ruins", "swamp"],
+    "terrains": ["freshwater", "ruins", "swamp"],
+    "tags": ["rock", "shielded", "bug", "summoner", "mental", "shapeshifter", "darkness"],
     "shape": "flier",
     "stage": "stage2",
     "types": [

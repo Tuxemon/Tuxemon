@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "shrapnel"
+            "technique": "roll"
         },
         {
             "level_learned": 16,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "wing_tip"
+            "technique": "shrapnel"
         },
         {
             "level_learned": 28,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["food"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

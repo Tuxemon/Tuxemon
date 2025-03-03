@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "frostbite"
+            "technique": "ice_claw"
         },
         {
             "level_learned": 1,
@@ -25,6 +25,22 @@
         {
             "level_learned": 28,
             "technique": "chill_mist"
+        },
+        {
+            "level_learned": 34,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 43,
+            "technique": "tsunami"
+        },
+        {
+            "level_learned": 46,
+            "technique": "snowstorm"
+        },
+        {
+            "level_learned": 52,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [
@@ -43,7 +59,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["sprite", "extraplanar"],
+    "terrains": ["extraplanar"],
+    "tags": ["ice", "leadership", "weather", "darkness", "flame"],
     "shape": "sprite",
     "stage": "stage1",
     "types": [

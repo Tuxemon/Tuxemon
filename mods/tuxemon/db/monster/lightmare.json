@@ -58,7 +58,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["leviathan", "sea"],
+    "terrains": ["sea"],
+    "tags": ["water", "light", "bite"],
     "shape": "leviathan",
     "stage": "stage2",
     "types": [

@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "supernova"
+            "technique": "fire_ball"
         },
         {
             "level_learned": 1,
@@ -28,11 +28,15 @@
         },
         {
             "level_learned": 28,
-            "technique": "rock"
+            "technique": "water_blast"
         },
         {
             "level_learned": 31,
-            "technique": "fire_ball"
+            "technique": "breathe_fire"
+        },
+        {
+            "level_learned": 40,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [],
@@ -46,7 +50,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["sprite", "coastal", "swamp"],
+    "terrains": ["coastal", "swamp"],
+    "tags": ["water", "darkness", "ghost", "weather"],
     "shape": "sprite",
     "stage": "stage2",
     "types": [

@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "breathe_fire"
+            "technique": "gnaw"
         },
         {
             "level_learned": 1,
@@ -39,7 +39,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["brute", "desert", "grassland", "woodland"],
+    "terrains": ["desert", "grassland", "woodland"],
+    "tags": ["flame", "ground"],
     "shape": "brute",
     "stage": "basic",
     "types": [

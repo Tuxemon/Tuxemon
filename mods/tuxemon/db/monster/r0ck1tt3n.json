@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["hunter"],
+    "terrains": [],
+    "tags": [],
     "shape": "hunter",
     "stage": "standalone",
     "types": [

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
@@ -12,9 +13,6 @@ from tuxemon.states.pc_kennel import HIDDEN_LIST
 logger = logging.getLogger(__name__)
 
 OPTIONS: list[str] = ["visible", "hidden", "exist"]
-
-
-from dataclasses import dataclass
 
 
 @dataclass

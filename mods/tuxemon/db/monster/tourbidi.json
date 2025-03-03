@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "ring"
+            "technique": "solar_synthesis"
         },
         {
             "level_learned": 1,
-            "technique": "midnight_mantle"
+            "technique": "pollen_blast"
         },
         {
             "level_learned": 4,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "peregrine"
+            "technique": "midnight_mantle"
         },
         {
             "level_learned": 16,
@@ -28,11 +28,11 @@
         },
         {
             "level_learned": 19,
-            "technique": "all_in"
+            "technique": "phantasmal_force"
         },
         {
             "level_learned": 25,
-            "technique": "whirlwind"
+            "technique": "ring"
         },
         {
             "level_learned": 28,
@@ -48,12 +48,13 @@
         },
         {
             "level_learned": 40,
-            "technique": "phantasmal_force"
+            "technique": "all_in"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["humanoid"],
+    "terrains": [],
+    "tags": ["light", "plant", "healing"],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [

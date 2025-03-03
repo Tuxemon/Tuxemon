@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "sting"
+            "technique": "leaf_stab"
         },
         {
             "level_learned": 4,
@@ -36,7 +36,7 @@
         },
         {
             "level_learned": 28,
-            "technique": "greenstone"
+            "technique": "leaf_barrage"
         },
         {
             "level_learned": 31,
@@ -49,6 +49,10 @@
         {
             "level_learned": 40,
             "technique": "clairaudience"
+        },
+        {
+            "level_learned": 55,
+            "technique": "tornado"
         }
     ],
     "evolutions": [],
@@ -62,7 +66,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["flier", "jungle"],
+    "terrains": ["jungle"],
+    "tags": ["plant", "food"],
     "shape": "flier",
     "stage": "stage2",
     "types": [

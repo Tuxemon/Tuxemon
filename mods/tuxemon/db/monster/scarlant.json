@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "energy_claws"
+            "technique": "gnaw"
         },
         {
             "level_learned": 4,
@@ -19,8 +19,12 @@
             "technique": "blood_nets"
         },
         {
-            "level_learned": 19,
+            "level_learned": 16,
             "technique": "sting"
+        },
+        {
+            "level_learned": 19,
+            "technique": "energy_claws"
         }
     ],
     "evolutions": [
@@ -39,7 +43,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["varmint", "grassland", "jungle", "mountains", "swamp", "urban", "woodland"],
+    "terrains": ["grassland", "jungle", "mountains", "swamp", "urban", "woodland"],
+    "tags": ["bug", "bite"],
     "shape": "varmint",
     "stage": "basic",
     "types": [

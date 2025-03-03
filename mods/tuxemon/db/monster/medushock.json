@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["polliwog", "freshwater"],
+    "terrains": ["freshwater"],
+    "tags": ["electricity", "toxic", "sharp"],
     "shape": "polliwog",
     "stage": "standalone",
     "types": [

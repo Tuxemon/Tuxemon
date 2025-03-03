@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "kindling_flame"
+            "technique": "fire_ball"
         },
         {
             "level_learned": 4,
@@ -41,6 +41,10 @@
         {
             "level_learned": 52,
             "technique": "flamethrower"
+        },
+        {
+            "level_learned": 55,
+            "technique": "tornado"
         }
     ],
     "evolutions": [
@@ -55,7 +59,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["flier", "jungle", "mountains"],
+    "terrains": ["jungle", "mountains"],
+    "tags": ["rock", "flame", "bird"],
     "shape": "flier",
     "stage": "basic",
     "types": [

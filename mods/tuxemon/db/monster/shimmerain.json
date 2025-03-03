@@ -1,0 +1,59 @@
+{
+    "slug": "shimmerain",
+    "category": "percomorph_fish",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "biting_winds"
+        },
+        {
+            "level_learned": 1,
+            "technique": "bubbles"
+        },
+        {
+            "level_learned": 4,
+            "technique": "water_blast"
+        },
+        {
+            "level_learned": 10,
+            "technique": "ice_storm"
+        },
+        {
+            "level_learned": 16,
+            "technique": "surf"
+        },
+        {
+            "level_learned": 25,
+            "technique": "tsunami"
+        },
+        {
+            "level_learned": 28,
+            "technique": "ice_shield"
+        },
+        {
+            "level_learned": 34,
+            "technique": "snowstorm"
+        },
+        {
+            "level_learned": 40,
+            "technique": "electrical_storm"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "terrains": ["coastal", "freshwater", "sea"],
+    "tags": ["weather", "water", "speed"],
+    "shape": "piscine",
+    "stage": "standalone",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 364,
+    "height": 80,
+    "weight": 20,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

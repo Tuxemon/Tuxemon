@@ -33,6 +33,10 @@
         {
             "level_learned": 40,
             "technique": "flamethrower"
+        },
+        {
+            "level_learned": 55,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [],
@@ -42,7 +46,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["plant", "flame", "summoner"],
     "shape": "blob",
     "stage": "stage1",
     "types": [

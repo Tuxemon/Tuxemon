@@ -3,7 +3,10 @@
   "accuracy": 1,
   "animation": "blue_circle",
   "effects": [
-    "photogenesis 18,0,6"
+    {
+      "type": "photogenesis",
+      "parameters": ["18", "0", "6"]
+    }
   ],
   "flip_axes": "",
   "healing_power": 2,
@@ -15,6 +18,7 @@
   "sfx": "sfx_blaster",
   "slug": "shooting_star",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

@@ -3,8 +3,13 @@
   "accuracy": 0.99,
   "animation": "foodthrow",
   "effects": [
-    "damage",
-    "prop_healing own_monster,0.2"
+    {
+      "type": "damage"
+    },
+    {
+      "type": "prop_healing",
+      "parameters": ["own_monster", "0.2"]
+    }
   ],
   "flip_axes": "",
   "healing_power": 0.1,
@@ -16,6 +21,7 @@
   "sfx": "sfx_blaster",
   "slug": "food_fight",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

@@ -3,10 +3,16 @@
   "accuracy": 1.0,
   "animation": "debian_64",
 	"conditions": [
-	  	"is status noddingoff"
+    {
+      "type": "status",
+      "parameters": ["noddingoff"],
+      "operator": "is"
+    }
 	],
   "effects": [
-    "damage"
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -17,6 +23,7 @@
   "sfx": "sfx_blaster",
   "slug": "dreamwalk",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

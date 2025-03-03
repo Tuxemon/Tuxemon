@@ -3,8 +3,13 @@
   "accuracy": 0.95,
   "animation": "snake_right",
   "effects": [
-    "give festering,enemy_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["festering", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": true,
@@ -15,6 +20,7 @@
   "sfx": "sfx_blaster",
   "slug": "infectious_bite",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

@@ -3,7 +3,10 @@
   "accuracy": 1.0,
   "animation": "flower",
   "effects": [
-    "give elementalshield,own_monster"
+    {
+      "type": "give",
+      "parameters": ["elementalshield", "own_monster"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "flower_armor",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

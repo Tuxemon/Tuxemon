@@ -3,9 +3,13 @@
   "accuracy": 1.0,
   "animation": "disintegrate_83",
   "effects": [
-    "give grabbed,own_monster",
-    "give grabbed,enemy_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["grabbed", "own_monster:enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -16,6 +20,7 @@
   "sfx": "sfx_blaster",
   "slug": "magnetic_body",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

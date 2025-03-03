@@ -149,7 +149,8 @@ class TestTechniqueJSON(unittest.TestCase):
             potency = data["potency"]
             if effects:
                 for effect in effects:
-                    if effect.startswith("give") and potency == 0.0:
+                    root = effect.get("type", "")
+                    if root == "give" and potency == 0.0:
                         techniques.append(f"{slug}'s potency is {potency}")
         if techniques:
             print("The following techniques:")

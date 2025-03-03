@@ -3,7 +3,10 @@
   "accuracy": 1,
   "animation": "amethyst",
   "effects": [
-    "give retaliate,own_monster"
+    {
+      "type": "give",
+      "parameters": ["retaliate", "own_monster"]
+    }
   ],
   "flip_axes": "",
   "is_fast": true,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "riposte",
   "sort": "meta",
+  "modifiers": [],
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

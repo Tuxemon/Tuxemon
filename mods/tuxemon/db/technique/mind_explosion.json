@@ -3,9 +3,17 @@
   "accuracy": 1.0,
   "animation": "explosion_mushroom_128",
   "effects": [
-    "give exhausted,own_monster",
-    "give confused,enemy_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["exhausted", "own_monster"]
+    },
+    {
+      "type": "give",
+      "parameters": ["confused", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -16,6 +24,7 @@
   "sfx": "sfx_blaster",
   "slug": "mind_explosion",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

@@ -3,7 +3,9 @@
   "accuracy": 1.0,
   "animation": "gnaw",
   "effects": [
-    "damage"
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": true,
@@ -14,6 +16,7 @@
   "sfx": "sfx_blaster",
   "slug": "gnaw",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

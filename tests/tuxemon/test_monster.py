@@ -164,6 +164,8 @@ class Learn(MonsterTestBase):
         category="simple",
         tags=["animal"],
         use_tech="combat_used_x",
+        effects=[],
+        modifiers=[],
     )
 
     def setUp(self):

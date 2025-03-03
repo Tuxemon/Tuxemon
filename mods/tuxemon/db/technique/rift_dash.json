@@ -3,11 +3,22 @@
   "accuracy": 0.8,
 	"animation": null,
 	"conditions": [
-	  	"not status grabbed",
-	  	"not status stuck"
+    {
+      "type": "status",
+      "parameters": ["grabbed"],
+      "operator": "not"
+    },
+    {
+      "type": "status",
+      "parameters": ["stuck"],
+      "operator": "not"
+    }
 	],
 	"effects": [
-		"disappear strike"
+    {
+      "type": "disappear",
+      "parameters": ["strike"]
+    }
 	],
   "flip_axes": "",
   "is_fast": true,
@@ -18,6 +29,7 @@
   "sfx": "sfx_blaster",
   "slug": "rift_dash",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

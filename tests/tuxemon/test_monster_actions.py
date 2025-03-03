@@ -77,6 +77,7 @@ class TestMonsterActions(unittest.TestCase):
         upper_catch_resistance=1.25,
     )
     _faint = ConditionModel(
+        effects=[],
         modifiers=[],
         flip_axes="",
         sfx="sfx_faint",

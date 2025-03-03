@@ -3,8 +3,13 @@
   "accuracy": 0.9,
   "animation": "pollenbullet",
   "effects": [
-    "give confused,enemy_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["confused", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +20,7 @@
   "sfx": "sfx_blaster",
   "slug": "hallucinogen_spore",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

@@ -10,9 +10,9 @@ from tuxemon.math import Vector2
 from tuxemon.platform.const import intentions
 
 if TYPE_CHECKING:
+    from tuxemon.boundary import BoundaryChecker
     from tuxemon.entity import Entity
     from tuxemon.platform.events import PlayerInput
-    from tuxemon.states.world.world_classes import BoundaryChecker
 
 SPEED_UP: int = 7
 SPEED_DOWN: int = 7

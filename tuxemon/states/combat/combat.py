@@ -162,11 +162,12 @@ class CombatState(CombatAnimations):
         self._method_cache = MethodAnimationCache()
         self._action_queue = ActionQueue()
         self._decision_queue: list[Monster] = []
+        # player => home areas on screen
+        self._layout: dict[NPC, dict[str, list[Rect]]] = {}
         self._pending_queue: list[EnqueuedAction] = []
         self._monster_sprite_map: MutableMapping[
             Union[NPC, Monster], Sprite
         ] = {}
-        self._layout = dict()  # player => home areas on screen
         self._turn: int = 0
         self._prize: int = 0
         self._captured_mon: Optional[Monster] = None
@@ -388,22 +389,14 @@ class CombatState(CombatAnimations):
             self._action_queue.sort()
 
         elif phase == "post action phase":
-            # remove actions from fainted users from the pending queue
-            self._pending_queue = [
-                pend
-                for pend in self._pending_queue
-                if pend.user
-                and isinstance(pend.user, Monster)
-                and not (fainted(pend.user) or fainted(pend.target))
-            ]
+            # Check if there are pending actions (e.g. counterattacks)
+            if self._action_queue.pending:
+                self._action_queue.autoclean_pending()
+            if self._action_queue.pending:
+                self._action_queue.from_pending_to_action(self._turn)
 
             # apply condition effects to the monsters
             for monster in self.active_monsters:
-                # Check if there are pending actions (e.g. counterattacks)
-                while self._pending_queue:
-                    pend = self._pending_queue.pop(0)
-                    self.enqueue_action(pend.user, pend.method, pend.target)
-
                 for condition in monster.status:
                     # validate condition
                     if condition.validate(monster):
@@ -1432,7 +1425,7 @@ class CombatState(CombatAnimations):
         # clear action queue
         self._action_queue.clear_queue()
         self._action_queue.clear_history()
-        self._pending_queue = []
+        self._action_queue.clear_pending()
         self._damage_map = []
         self._combat_variables = {}
 

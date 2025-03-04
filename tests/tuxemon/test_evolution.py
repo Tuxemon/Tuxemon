@@ -40,6 +40,8 @@ _ram = TechniqueModel(
     use_tech="combat_used_x",
     tags=["animal"],
     category="simple",
+    effects=[],
+    modifiers=[],
 )
 
 _strike = TechniqueModel(
@@ -65,6 +67,8 @@ _strike = TechniqueModel(
     use_tech="combat_used_x",
     tags=["animal"],
     category="simple",
+    effects=[],
+    modifiers=[],
 )
 
 _metal = ElementModel(

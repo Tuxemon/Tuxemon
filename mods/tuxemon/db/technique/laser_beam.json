@@ -3,8 +3,13 @@
   "accuracy": 1.0,
   "animation": "energy_beam",
   "effects": [
-    "give blinded,enemy_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["blinded", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": true,
@@ -15,6 +20,7 @@
   "sfx": "sfx_blaster",
   "slug": "laser_beam",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

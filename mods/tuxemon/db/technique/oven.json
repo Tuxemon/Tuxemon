@@ -2,8 +2,23 @@
   "tech_id": 236,
   "accuracy": 0.8,
 	"animation": null,
+	"conditions": [
+    {
+      "type": "status",
+      "parameters": ["grabbed"],
+      "operator": "not"
+    },
+    {
+      "type": "status",
+      "parameters": ["stuck"],
+      "operator": "not"
+    }
+	],
   "effects": [
-		"disappear fireball"
+    {
+      "type": "disappear",
+      "parameters": ["fireball"]
+    }
   ],
   "flip_axes": "",
   "is_fast": true,
@@ -14,6 +29,7 @@
   "sfx": "sfx_blaster",
   "slug": "oven",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

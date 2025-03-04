@@ -3,9 +3,17 @@
   "accuracy": 0.7,
   "animation": "foodthrow",
   "effects": [
-    "give revenge,own_monster",
-    "give poison,enemy_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["revenge", "own_monster"]
+    },
+    {
+      "type": "give",
+      "parameters": ["poison", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -16,6 +24,7 @@
   "sfx": "sfx_blaster",
   "slug": "just_desserts",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

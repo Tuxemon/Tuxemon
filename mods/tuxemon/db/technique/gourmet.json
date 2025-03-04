@@ -3,8 +3,13 @@
   "accuracy": 1.0,
   "animation": "cakechomp",
   "effects": [
-    "give recover,own_monster",
-    "healing"
+    {
+      "type": "give",
+      "parameters": ["recover", "own_monster"]
+    },
+    {
+      "type": "healing"
+    }
   ],
   "flip_axes": "",
   "healing_power": 3.0,
@@ -16,6 +21,7 @@
   "sfx": "sfx_blaster",
   "slug": "gourmet",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

@@ -3,8 +3,13 @@
   "accuracy": 0.95,
   "animation": "leafstab",
   "effects": [
-    "multiattack 2",
-    "damage"
+    {
+      "type": "multiattack",
+      "parameters": ["2"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +20,7 @@
   "sfx": "sfx_blaster",
   "slug": "leaf_barrage",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

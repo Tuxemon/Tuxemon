@@ -3,7 +3,10 @@
   "accuracy": 1,
   "animation": "egg_crack",
   "effects": [
-    "cooldown user,0,sort,damage"
+    {
+      "type": "cooldown",
+      "parameters": ["user","0","sort","damage"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "pouch",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

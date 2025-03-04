@@ -39,4 +39,4 @@ class SetLayerAction(EventAction):
         transparent = prepare.TRANSPARENT_COLOR
         rgb = string_to_colorlike(self.rgb) if self.rgb else transparent
         world = self.session.client.get_state_by_name(WorldState)
-        world.layer_color = rgb
+        world.map_renderer.layer_color = rgb

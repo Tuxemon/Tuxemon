@@ -123,6 +123,7 @@ class ActionQueue:
     def __init__(self) -> None:
         self._action_queue: list[EnqueuedAction] = []
         self._action_history: list[tuple[int, EnqueuedAction]] = []
+        self._pending_queue: list[tuple[int, EnqueuedAction]] = []
 
     @property
     def queue(self) -> list[EnqueuedAction]:
@@ -134,10 +135,46 @@ class ActionQueue:
         """Returns the current action history."""
         return self._action_history
 
+    @property
+    def pending(self) -> list[tuple[int, EnqueuedAction]]:
+        """Returns the pending actions."""
+        return self._pending_queue
+
     def enqueue(self, action: EnqueuedAction, turn: int) -> None:
         """Adds an action to the end of the queue and history."""
         self._action_queue.append(action)
         self._action_history.append((turn, action))
+
+    def add_pending(self, action: EnqueuedAction, turn: int) -> None:
+        """Adds an action to the end of the pending queue."""
+        self._pending_queue.append((turn, action))
+
+    def autoclean_pending(self) -> None:
+        """Removes actions from the pending queue under certain conditions."""
+        remaining_pending = []
+        for turn, pend in self._pending_queue:
+            if not (
+                (
+                    pend.user
+                    and isinstance(pend.user, Monster)
+                    and pend.user.current_hp <= 0
+                )
+                or pend.target.current_hp <= 0
+            ):
+                remaining_pending.append((turn, pend))
+        self._pending_queue = remaining_pending
+
+    def from_pending_to_action(self, turn: int) -> None:
+        """
+        Removes actions from the pending queue and implements it in the
+        action queue.
+        """
+        self._action_queue.extend(
+            pend for _turn, pend in self._pending_queue if _turn == turn
+        )
+        self._pending_queue = [
+            (t, p) for t, p in self._pending_queue if t != turn
+        ]
 
     def dequeue(self, action: EnqueuedAction) -> None:
         """Removes an action from the queue if it exists."""
@@ -161,6 +198,10 @@ class ActionQueue:
     def clear_history(self) -> None:
         """Clears the entire history."""
         self._action_history.clear()
+
+    def clear_pending(self) -> None:
+        """Clears the entire pending queue."""
+        self._pending_queue.clear()
 
     def sort(self) -> None:
         """

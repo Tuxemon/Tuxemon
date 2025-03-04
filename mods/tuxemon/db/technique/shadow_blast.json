@@ -3,8 +3,13 @@
   "accuracy": 0.99,
   "animation": "shadow_blast",
   "effects": [
-    "damage",
-    "prop_healing own_monster,0.2"
+    {
+      "type": "prop_healing",
+      "parameters": ["own_monster","0.2"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "healing_power": 0.2,
@@ -16,6 +21,7 @@
   "sfx": "sfx_blaster",
   "slug": "shadow_blast",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,

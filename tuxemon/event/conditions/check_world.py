@@ -42,11 +42,11 @@ class CheckWorldCondition(EventCondition):
         params = condition.parameters
         if params[0] == "layer":
             rgb = string_to_colorlike(params[1])
-            return world.layer_color == rgb
+            return world.map_renderer.layer_color == rgb
         if params[0] == "bubble":
             char = get_npc(session, params[1])
             if char is None:
                 logger.error(f"{params[1]} not found")
                 return False
-            return char in world.bubble
+            return char in world.map_renderer.bubble
         return False

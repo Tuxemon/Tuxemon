@@ -47,12 +47,12 @@ class SetBubbleAction(EventAction):
         filename = f"gfx/bubbles/{self.bubble}.png"
 
         if self.bubble is None:
-            if npc in world.bubble:
-                del world.bubble[npc]
+            if npc in world.map_renderer.bubble:
+                del world.map_renderer.bubble[npc]
         else:
             try:
                 surface = load_and_scale(filename)
             except:
                 raise ValueError(f"gfx/bubbles/{self.bubble}.png not found")
             else:
-                world.bubble[npc] = surface
+                world.map_renderer.bubble[npc] = surface

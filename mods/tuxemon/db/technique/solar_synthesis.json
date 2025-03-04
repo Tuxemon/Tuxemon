@@ -3,7 +3,10 @@
   "accuracy": 1,
   "animation": "green_circle",
   "effects": [
-    "photogenesis 6,12,18"
+    {
+      "type": "photogenesis",
+      "parameters": ["6", "12", "18"]
+    }
   ],
   "flip_axes": "",
   "healing_power": 2,
@@ -15,6 +18,7 @@
   "sfx": "sfx_blaster",
   "slug": "solar_synthesis",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

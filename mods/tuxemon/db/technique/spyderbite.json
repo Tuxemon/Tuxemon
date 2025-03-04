@@ -2,7 +2,10 @@
   "animation": null,
   "accuracy": 0.0,
   "effects": [
-    "plague spyderbite,0.125"
+    {
+      "type": "plague",
+      "parameters": ["spyderbite","0.125"]
+    }
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_spyderbite.png",
@@ -12,6 +15,7 @@
   "sfx": "sfx_pulse",
   "slug": "spyderbite",
   "sort": "meta",
+  "modifiers": [],
   "target": {
     "enemy_monster": false,
     "enemy_team": false,

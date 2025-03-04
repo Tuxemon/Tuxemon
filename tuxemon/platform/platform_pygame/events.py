@@ -4,7 +4,6 @@ from collections import defaultdict
 from collections.abc import Generator, Mapping
 from typing import Any, ClassVar, Optional, TypedDict
 
-import pygame
 import pygame as pg
 from pygame.rect import Rect
 
@@ -17,6 +16,9 @@ from tuxemon.platform.events import (
 )
 from tuxemon.session import local_session
 from tuxemon.ui.draw import blit_alpha
+
+HORIZONTAL_AXIS = 0
+VERTICAL_AXIS = 1
 
 
 class PygameEventQueueHandler(EventQueueHandler):
@@ -68,7 +70,7 @@ class PygameEventQueueHandler(EventQueueHandler):
                 yield from player_input.get_events()
 
 
-class PygameEventHandler(InputHandler[pygame.event.Event]):
+class PygameEventHandler(InputHandler[pg.event.Event]):
     """
     Input handler of Pygame events.
     """
@@ -115,63 +117,111 @@ class PygameGamepadInput(PygameEventHandler):
         super().__init__(event_map)
         self.deadzone = deadzone
 
-    def process_event(self, input_event: pygame.event.Event) -> None:
+    def is_within_deadzone(self, value: float) -> bool:
+        """
+        Checks if the axis value is within the deadzone.
+
+        Parameters:
+            value: The axis value.
+
+        Returns:
+            True if the value is within the deadzone, False otherwise.
+        """
+        return abs(value) < self.deadzone
+
+    def handle_button(
+        self, button: int, pressed: bool, value: float = 0.0
+    ) -> None:
+        """
+        Handles button press or release events.
+
+        Parameters:
+            button: The button identifier.
+            pressed: True if the button is pressed, False if released.
+            value: The analog value of the button (optional, defaults to 0.0).
+        """
+        if pressed:
+            self.press(button, value)
+        else:
+            self.release(button)
+
+    def process_event(self, input_event: pg.event.Event) -> None:
+        """
+        Processes a pygame event.
+
+        Parameters:
+            input_event: The pygame event.
+        """
         self.check_button(input_event)
         self.check_hat(input_event)
         self.check_axis(input_event)
 
-    def check_button(self, pg_event: pygame.event.Event) -> None:
+    def check_button(self, pg_event: pg.event.Event) -> None:
+        """
+        Checks for button press/release events.
+
+        Parameters:
+            pg_event: The pygame event.
+        """
         try:
             button = self.event_map[pg_event.button]
-            if pg_event.type == pg.JOYBUTTONDOWN:
-                self.press(button)
-            elif pg_event.type == pg.JOYBUTTONUP:
-                self.release(button)
+            self.handle_button(button, pg_event.type == pg.JOYBUTTONDOWN)
         except (KeyError, AttributeError):
             pass
 
-    def check_hat(self, pg_event: pygame.event.Event) -> None:
+    def check_hat(self, pg_event: pg.event.Event) -> None:
+        """
+        Checks for hat switch motion events.
+
+        Parameters:
+            pg_event: The pygame event.
+        """
         if pg_event.type == pg.JOYHATMOTION:
             x, y = pg_event.value
-            if x == -1:
-                self.press(buttons.LEFT, value=x * -1)
-            elif x == 0:
-                self.release(buttons.LEFT)
-                self.release(buttons.RIGHT)
-            elif x == 1:
-                self.press(buttons.RIGHT)
+            self.handle_button(buttons.LEFT, x == -1)
+            self.handle_button(buttons.RIGHT, x == 1)
+            # Note: y axis is inverted
+            self.handle_button(buttons.DOWN, y == 1)
+            # Note: y axis is inverted
+            self.handle_button(buttons.UP, y == -1)
+            if x == 0:
+                self.handle_button(buttons.LEFT, False)
+                self.handle_button(buttons.RIGHT, False)
+            if y == 0:
+                self.handle_button(buttons.UP, False)
+                self.handle_button(buttons.DOWN, False)
 
-            if y == -1:
-                self.press(buttons.DOWN, value=y * -1)
-            elif y == 0:
-                self.release(buttons.DOWN)
-                self.release(buttons.UP)
-            elif y == 1:
-                self.press(buttons.UP)
+    def check_axis(self, pg_event: pg.event.Event) -> None:
+        """
+        Checks for axis motion events.
 
-    def check_axis(self, pg_event: pygame.event.Event) -> None:
+        Parameters:
+            pg_event: The pygame event.
+        """
         if pg_event.type == pg.JOYAXISMOTION:
             value = pg_event.value
 
-            if pg_event.axis == 0:
-                if abs(value) >= self.deadzone:
-                    if value < 0:
-                        self.press(buttons.LEFT, value * -1)
-                    else:
-                        self.press(buttons.RIGHT, value)
+            if pg_event.axis == HORIZONTAL_AXIS:
+                if not self.is_within_deadzone(value):
+                    self.handle_button(
+                        buttons.RIGHT if value > 0 else buttons.LEFT,
+                        True,
+                        abs(value),
+                    )
                 else:
-                    self.release(buttons.LEFT)
-                    self.release(buttons.RIGHT)
+                    self.handle_button(buttons.LEFT, False)
+                    self.handle_button(buttons.RIGHT, False)
 
-            elif pg_event.axis == 1:
-                if abs(value) >= self.deadzone:
-                    if value < 0:
-                        self.press(buttons.UP, value * -1)
-                    else:
-                        self.press(buttons.DOWN, value)
+            elif pg_event.axis == VERTICAL_AXIS:
+                if not self.is_within_deadzone(value):
+                    self.handle_button(
+                        buttons.DOWN if value > 0 else buttons.UP,
+                        True,
+                        abs(value),
+                    )
                 else:
-                    self.release(buttons.UP)
-                    self.release(buttons.DOWN)
+                    self.handle_button(buttons.UP, False)
+                    self.handle_button(buttons.DOWN, False)
 
 
 class PygameKeyboardInput(PygameEventHandler):
@@ -196,7 +246,7 @@ class PygameKeyboardInput(PygameEventHandler):
         None: events.UNICODE,
     }
 
-    def process_event(self, input_event: pygame.event.Event) -> None:
+    def process_event(self, input_event: pg.event.Event) -> None:
         pressed = input_event.type == pg.KEYDOWN
         released = input_event.type == pg.KEYUP
 
@@ -233,13 +283,13 @@ class DPadRectsInfo(TypedDict):
 
 
 class DPadInfo(TypedDict):
-    surface: pygame.surface.Surface
+    surface: pg.surface.Surface
     position: tuple[int, int]
     rect: DPadRectsInfo
 
 
 class DPadButtonInfo(TypedDict):
-    surface: pygame.surface.Surface
+    surface: pg.surface.Surface
     position: tuple[int, int]
     rect: Rect
 
@@ -269,7 +319,7 @@ class PygameTouchOverlayInput(PygameEventHandler):
         self.buttons[buttons.A] = PlayerInput(buttons.A)
         self.buttons[buttons.B] = PlayerInput(buttons.B)
 
-    def process_event(self, input_event: pygame.event.Event) -> None:
+    def process_event(self, input_event: pg.event.Event) -> None:
         """
         Process a Pygame event.
 
@@ -389,7 +439,7 @@ class PygameTouchOverlayInput(PygameEventHandler):
             self.b_button["surface"].get_height(),
         )
 
-    def draw(self, screen: pygame.surface.Surface) -> None:
+    def draw(self, screen: pg.surface.Surface) -> None:
         """
         Draws the controller overlay to the screen.
 
@@ -431,7 +481,7 @@ class PygameMouseInput(PygameEventHandler):
         pg.MOUSEBUTTONUP: buttons.MOUSELEFT,
     }
 
-    def process_event(self, pg_event: pygame.event.Event) -> None:
+    def process_event(self, pg_event: pg.event.Event) -> None:
         if pg_event.type == pg.MOUSEBUTTONDOWN:
             self.press(buttons.MOUSELEFT, pg_event.pos)
         elif pg_event.type == pg.MOUSEBUTTONUP:

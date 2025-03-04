@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "whirlwind"
+            "technique": "water_bullet"
         },
         {
             "level_learned": 1,
@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 7,
-            "technique": "tonguespear"
+            "technique": "ice_shield"
         },
         {
             "level_learned": 13,
@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "frostbite"
+            "technique": "water_blast"
         },
         {
             "level_learned": 19,
@@ -44,11 +44,15 @@
         },
         {
             "level_learned": 37,
-            "technique": "muck"
+            "technique": "frostbite"
         },
         {
             "level_learned": 40,
-            "technique": "goad"
+            "technique": "breath"
+        },
+        {
+            "level_learned": 55,
+            "technique": "dreamwalk"
         }
     ],
     "evolutions": [
@@ -63,7 +67,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["mental"],
     "shape": "blob",
     "stage": "basic",
     "types": [

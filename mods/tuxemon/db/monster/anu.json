@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "perfect_cut"
+            "technique": "tail_lash"
         },
         {
             "level_learned": 1,
-            "technique": "shrapnel"
+            "technique": "slice"
         },
         {
             "level_learned": 4,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "slice"
+            "technique": "shrapnel"
         },
         {
             "level_learned": 28,
@@ -40,20 +40,25 @@
         },
         {
             "level_learned": 31,
-            "technique": "lightning_spheres"
+            "technique": "breath"
         },
         {
             "level_learned": 37,
-            "technique": "peregrine"
+            "technique": "dreamwalk"
         },
         {
             "level_learned": 40,
             "technique": "undertaker"
+        },
+        {
+            "level_learned": 55,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["varmint", "desert", "extraplanar"],
+    "terrains": ["desert", "extraplanar"],
+    "tags": ["mental", "summoner", "tail"],
     "shape": "varmint",
     "stage": "standalone",
     "types": [

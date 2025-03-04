@@ -1,9 +1,16 @@
 {
   "conditions": [
-    "is type earth"
+    {
+      "type": "type",
+      "parameters": ["earth"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "learn_mm earth"
+    {
+      "type": "learn_mm",
+      "parameters": ["earth"]
+    }
   ],
   "slug": "mm_earth",
   "sort": "utility",
@@ -13,6 +20,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

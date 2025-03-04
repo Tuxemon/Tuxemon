@@ -12,7 +12,7 @@ from abc import ABC
 from collections import defaultdict
 from collections.abc import MutableMapping
 from functools import partial
-from typing import TYPE_CHECKING, Literal, Optional
+from typing import TYPE_CHECKING, Literal, Optional, Union
 
 import pygame
 from pygame.rect import Rect
@@ -24,6 +24,8 @@ from tuxemon.menu.interface import ExpBar, HpBar
 from tuxemon.menu.menu import Menu
 from tuxemon.sprite import CaptureDeviceSprite, Sprite
 from tuxemon.tools import scale, scale_sequence
+
+from .combat_ui import CombatUI
 
 if TYPE_CHECKING:
     from tuxemon.animation import Animation
@@ -64,22 +66,25 @@ class CombatAnimations(ABC, Menu[None]):
         self,
         players: tuple[NPC, NPC],
         graphics: BattleGraphicsModel,
+        battle_mode: Literal["single", "double"],
     ) -> None:
         super().__init__()
         self.players = list(players)
         self.graphics = graphics
+        self.is_double = battle_mode == "double"
 
         self.monsters_in_play: defaultdict[NPC, list[Monster]] = defaultdict(
             list
         )
-        self._monster_sprite_map: MutableMapping[Monster, Sprite] = {}
+        self._monster_sprite_map: MutableMapping[
+            Union[NPC, Monster], Sprite
+        ] = {}
         self.hud: MutableMapping[Monster, Sprite] = {}
         self.is_trainer_battle = False
         self.capdevs: list[CaptureDeviceSprite] = []
         self.text_animations_queue: list[TimedCallable] = []
         self._text_animation_time_left: float = 0
-        self._hp_bars: MutableMapping[Monster, HpBar] = {}
-        self._exp_bars: MutableMapping[Monster, ExpBar] = {}
+        self.ui = CombatUI()
         self._status_icons: defaultdict[Monster, list[Sprite]] = defaultdict(
             list
         )
@@ -119,7 +124,7 @@ class CombatAnimations(ABC, Menu[None]):
     def blink(self, sprite: Sprite) -> None:
         self.task(partial(toggle_visible, sprite), 0.20, 8)
 
-    def animate_trainer_leave(self, trainer: Monster) -> None:
+    def animate_trainer_leave(self, trainer: Union[NPC, Monster]) -> None:
         """Animate the trainer leaving the screen."""
         sprite = self._monster_sprite_map[trainer]
         side = self.get_side(sprite.rect)
@@ -132,17 +137,14 @@ class CombatAnimations(ABC, Menu[None]):
         monster: Monster,
         sprite: Sprite,
     ) -> None:
-        # Calculate feet position
-        if npc.max_position > 1 and monster in self.monsters_in_play[npc]:
-            monster_index = str(self.monsters_in_play[npc].index(monster))
-        else:
-            monster_index = ""
+        """
+        Animates the release of a monster from a capture device.
 
-        feet = (
-            self._layout[npc][f"home{monster_index}"][0].center[0],
-            self._layout[npc][f"home{monster_index}"][0].center[1]
-            + tools.scale(11),
-        )
+        This function coordinates the animation of the capture device falling, the
+        monster sprite moving into position, and the capture device opening animation.
+        It also plays the combat call sound.
+        """
+        feet = self.get_feet_position(npc, monster, self.is_double)
 
         # Load and scale capture device sprite
         capdev = self.load_sprite(f"gfx/items/{monster.capture_device}.png")
@@ -208,6 +210,37 @@ class CombatAnimations(ABC, Menu[None]):
 
         # Load and play combat call sound
         self.play_sound_effect(monster.combat_call, 1.3)
+
+    def get_feet_position(
+        self, npc: NPC, monster: Monster, is_double: bool
+    ) -> tuple[int, int]:
+        """
+        Calculates the feet position of the monster.
+
+        This function determines the feet position of the monster based on its
+        index in the list of monsters in play.
+
+        Returns:
+            The x and y coordinates of the feet position.
+        """
+        if is_double and monster in self.monsters_in_play[npc]:
+            monster_index = str(self.monsters_in_play[npc].index(monster))
+        else:
+            monster_index = ""
+
+        center = self._layout[npc][f"home{monster_index}"][0].center
+        return center[0], center[1] + tools.scale(11)
+
+    def update_monster_feet(
+        self, monster: Monster, new_feet: tuple[int, int]
+    ) -> None:
+        """
+        Updates the feet position of a monster sprite.
+
+        This function updates the position of a monster sprite to match the
+        new feet position.
+        """
+        self._monster_sprite_map[monster].rect.midbottom = new_feet
 
     def animate_sprite_spin(self, sprite: Sprite) -> None:
         self.animate(
@@ -280,7 +313,7 @@ class CombatAnimations(ABC, Menu[None]):
 
     def animate_hp(self, monster: Monster) -> None:
         value = monster.current_hp / monster.hp
-        hp_bar = self._hp_bars[monster]
+        hp_bar = self.ui._hp_bars[monster]
         self.animate(
             hp_bar,
             value=value,
@@ -293,7 +326,7 @@ class CombatAnimations(ABC, Menu[None]):
         monster: Monster,
         initial: int = 0,
     ) -> None:
-        self._hp_bars[monster] = HpBar(initial)
+        self.ui._hp_bars[monster] = HpBar(initial)
         self.animate_hp(monster)
 
     def animate_exp(self, monster: Monster) -> None:
@@ -304,7 +337,7 @@ class CombatAnimations(ABC, Menu[None]):
         value = max(0, min(1, (diff_value) / (diff_target)))
         if monster.levelling_up:
             value = 1.0
-        exp_bar = self._exp_bars[monster]
+        exp_bar = self.ui._exp_bars[monster]
         self.animate(
             exp_bar,
             value=value,
@@ -317,7 +350,7 @@ class CombatAnimations(ABC, Menu[None]):
         monster: Monster,
         initial: int = 0,
     ) -> None:
-        self._exp_bars[monster] = ExpBar(initial)
+        self.ui._exp_bars[monster] = ExpBar(initial)
         self.animate_exp(monster)
 
     def get_side(self, rect: Rect) -> Literal["left", "right"]:
@@ -414,11 +447,11 @@ class CombatAnimations(ABC, Menu[None]):
             Returns:
                 The built HUD sprite.
             """
-            symbol = (
-                self.players[0].tuxepedia.get(monster.slug)
-                if not is_player
-                else None
-            )
+            symbol = False
+            if not is_player and self.players[0].tuxepedia.is_caught(
+                monster.slug
+            ):
+                symbol = True
             label = build_hud_text(
                 menu, monster, is_player, trainer_battle, symbol
             )
@@ -466,7 +499,7 @@ class CombatAnimations(ABC, Menu[None]):
     def animate_party_hud_left(
         self, home: Rect
     ) -> tuple[Optional[Sprite], int, int]:
-        if self.is_trainer_battle:
+        if self.is_trainer_battle and not self.is_double:
             tray = self._load_sprite(
                 self.graphics.hud.tray_opponent,
                 {"bottom": home.bottom, "right": 0, "layer": hud_layer},

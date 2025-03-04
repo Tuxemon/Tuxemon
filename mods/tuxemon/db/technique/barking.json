@@ -3,7 +3,10 @@
   "accuracy": 1,
   "animation": "pound",
   "effects": [
-    "give flinching,enemy_monster"
+    {
+      "type": "give",
+      "parameters": ["flinching", "enemy_monster"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "barking",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +27,7 @@
     "own_trainer": false
   },
   "category": "condition_imposer",
-  "tags": ["Shapeshifter", "Fury"],
+  "tags": ["shapeshifter", "fury"],
   "types": [
     "aether"
   ],

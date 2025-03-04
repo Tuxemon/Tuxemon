@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["varmint"],
+    "terrains": [],
+    "tags": ["plant", "ground"],
     "shape": "varmint",
     "stage": "standalone",
     "types": [

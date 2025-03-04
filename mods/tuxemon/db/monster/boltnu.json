@@ -47,7 +47,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["blob", "ruins", "urban"],
+    "terrains": ["ruins", "urban"],
+    "tags": ["ground", "steel", "machine"],
     "shape": "blob",
     "stage": "basic",
     "types": [

@@ -1,10 +1,19 @@
 {
   "conditions": [
-    "is can_evolve",
-    "is has_path lima_pie"
+    {
+      "type": "can_evolve",
+      "operator": "is"
+    },
+    {
+      "type": "has_path",
+      "parameters": ["lima_pie"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "evolve"
+    {
+      "type": "evolve"
+    }
   ],
   "slug": "lima_pie",
   "sort": "utility",
@@ -14,6 +23,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {
     "show_dialog_on_success": false
   },

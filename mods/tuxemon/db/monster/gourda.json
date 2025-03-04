@@ -29,7 +29,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["plant", "food", "healing"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

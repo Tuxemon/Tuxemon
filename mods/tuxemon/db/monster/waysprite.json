@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "frostbite"
+            "technique": "ice_claw"
         },
         {
             "level_learned": 1,
@@ -53,7 +53,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["sprite", "extraplanar"],
+    "terrains": ["extraplanar"],
+    "tags": ["ice", "leadership", "weather"],
     "shape": "sprite",
     "stage": "basic",
     "types": [

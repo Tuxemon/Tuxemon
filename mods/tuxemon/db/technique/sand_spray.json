@@ -3,8 +3,13 @@
   "accuracy": 0.8,
   "animation": "explosion_dusty_96",
   "effects": [
-    "give blinded,enemy_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["blinded", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +20,7 @@
   "sfx": "sfx_blaster",
   "slug": "sand_spray",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -24,7 +30,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Ground"],
+  "tags": ["ground"],
   "types": [
     "earth"
   ],

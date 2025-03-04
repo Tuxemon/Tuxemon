@@ -52,7 +52,7 @@ class MissionState(PygameMenuState):
         for status in statuses:
             missions = [
                 mission
-                for mission in self.character.missions
+                for mission in self.character.mission_manager.missions
                 if mission.status == status
             ]
             _status = T.translate(status)

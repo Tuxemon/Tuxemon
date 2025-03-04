@@ -1,7 +1,10 @@
 {
   "conditions": [],
   "effects": [
-    "change_stat dodge,0.05"
+    {
+      "type": "change_stat",
+      "parameters": ["dodge","0.05"]
+    }
   ],
   "slug": "raise_dodge",
   "sort": "utility",
@@ -11,6 +14,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

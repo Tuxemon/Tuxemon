@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 
-from tuxemon.db import SeenStatus
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
@@ -12,6 +12,7 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 
+@dataclass
 class HasTuxepediaCondition(EventCondition):
     """
     Check if a monster is registered in Tuxepedia.
@@ -30,10 +31,15 @@ class HasTuxepediaCondition(EventCondition):
     name = "has_tuxepedia"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        character, monster, label = condition.parameters
+        _character, _monster, _label = condition.parameters
 
-        character = get_npc(session, character)
+        character = get_npc(session, _character)
         if character is None:
-            raise ValueError(f"{character} not found")
+            raise ValueError(f"{_character} not found")
 
-        return (monster, SeenStatus(label)) in character.tuxepedia.items()
+        if _label == "seen":
+            return character.tuxepedia.is_seen(_monster)
+        elif _label == "caught":
+            return character.tuxepedia.is_caught(_monster)
+        else:
+            raise ValueError(f"{_label} must be 'seen' or 'caught'")

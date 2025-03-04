@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "electrical_storm"
+            "technique": "bullet"
         },
         {
             "level_learned": 1,
@@ -12,7 +12,7 @@
         },
         {
             "level_learned": 4,
-            "technique": "shrapnel"
+            "technique": "tinder"
         },
         {
             "level_learned": 7,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "bullet"
+            "technique": "electrical_storm"
         },
         {
             "level_learned": 28,
@@ -40,7 +40,7 @@
         },
         {
             "level_learned": 31,
-            "technique": "tinder"
+            "technique": "shrapnel"
         },
         {
             "level_learned": 37,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["sprite", "urban"],
+    "terrains": ["urban"],
+    "tags": ["love", "steel", "machine", "gadgets"],
     "shape": "sprite",
     "stage": "standalone",
     "types": [

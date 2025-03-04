@@ -18,3 +18,18 @@ LEFT = 30008
 RIGHT = 30009
 BACK = 30010
 RELOAD_MAP = 30011
+
+constants = {
+    "RUN": 30000,
+    "WORLD_MENU": 30001,
+    "MENU_CANCEL": 30002,
+    "INTERACT": 30003,
+    "SELECT": 30004,
+    "NOCLIP": 30005,
+    "UP": 30006,
+    "DOWN": 30007,
+    "LEFT": 30008,
+    "RIGHT": 30009,
+    "BACK": 30010,
+    "RELOAD_MAP": 30011,
+}

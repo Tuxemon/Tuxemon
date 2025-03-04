@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "wing_tip"
+            "technique": "roll"
         },
         {
             "level_learned": 1,
@@ -12,11 +12,11 @@
         },
         {
             "level_learned": 4,
-            "technique": "air_chain"
+            "technique": "whirlwind"
         },
         {
             "level_learned": 7,
-            "technique": "altitude"
+            "technique": "egg_smash"
         },
         {
             "level_learned": 13,
@@ -24,14 +24,18 @@
         },
         {
             "level_learned": 25,
-            "technique": "peregrine"
+            "technique": "altitude"
         },
         {
             "level_learned": 28,
-            "technique": "whirlwind"
+            "technique": "peregrine"
         },
         {
             "level_learned": 31,
+            "technique": "air_chain"
+        },
+        {
+            "level_learned": 34,
             "technique": "one_two"
         }
     ],
@@ -47,7 +51,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["flier", "grassland", "jungle", "woodland"],
+    "terrains": ["grassland", "jungle", "woodland"],
+    "tags": ["bird"],
     "shape": "flier",
     "stage": "basic",
     "types": [

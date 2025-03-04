@@ -3,8 +3,13 @@
   "accuracy": 0.8,
   "animation": "waterspurt",
   "effects": [
-    "give recover,own_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["recover", "own_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +20,7 @@
   "sfx": "sfx_blaster",
   "slug": "font",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -24,7 +30,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Water", "Healing"],
+  "tags": ["water", "healing"],
   "types": [
     "water"
   ],

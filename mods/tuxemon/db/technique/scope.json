@@ -3,7 +3,9 @@
   "accuracy": 1,
   "animation": "meltdown",
   "effects": [
-    "scope"
+    {
+      "type": "scope"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +16,7 @@
   "sfx": "sfx_blaster",
   "slug": "scope",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +26,7 @@
     "own_trainer": false
   },
   "category": "exotic",
-  "tags": ["Universal"],
+  "tags": ["universal"],
   "types": [
     "aether"
   ],

@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "supernova"
+            "technique": "gust"
         },
         {
             "level_learned": 1,
@@ -48,12 +48,17 @@
         },
         {
             "level_learned": 40,
-            "technique": "gust"
+            "technique": "supernova"
+        },
+        {
+            "level_learned": 55,
+            "technique": "divinity_beam"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["celestial", "healing", "light", "darkness"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

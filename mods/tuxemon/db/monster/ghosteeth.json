@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "fester"
+            "technique": "midnight_mantle"
         },
         {
             "level_learned": 1,
@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 7,
-            "technique": "whirlwind"
+            "technique": "mind_vise"
         },
         {
             "level_learned": 13,
@@ -28,7 +28,7 @@
         },
         {
             "level_learned": 19,
-            "technique": "wing_tip"
+            "technique": "phantasmal_force"
         },
         {
             "level_learned": 25,
@@ -49,11 +49,16 @@
         {
             "level_learned": 40,
             "technique": "blade"
+        },
+        {
+            "level_learned": 55,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["ghost", "bite", "mental", "darkness"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

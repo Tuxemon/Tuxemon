@@ -2,12 +2,15 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+from dataclasses import dataclass
+
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.prepare import MAX_MOVES
 from tuxemon.session import Session
 
 
+@dataclass
 class CheckMaxTechCondition(EventCondition):
     """
     Check to see the player has at least one tuxemon with more

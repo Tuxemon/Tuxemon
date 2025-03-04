@@ -5,7 +5,8 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.add_tech.AddTechAction
 .. autoscriptinfoclass:: tuxemon.event.actions.breeding.BreedingAction
 .. autoscriptinfoclass:: tuxemon.event.actions.call_event.CallEventAction
-.. autoscriptinfoclass:: tuxemon.event.actions.camera.CameraAction
+.. autoscriptinfoclass:: tuxemon.event.actions.camera_follow.CameraFollowAction
+.. autoscriptinfoclass:: tuxemon.event.actions.camera_mode.CameraModeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.camera_position.CameraPositionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_bg.ChangeBgAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_state.ChangeStateAction
@@ -99,6 +100,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.spawn_monster.SpawnMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.start_battle.StartBattleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.start_cinema_mode.StartCinemaModeAction
+.. autoscriptinfoclass:: tuxemon.event.actions.start_double_battle.StartDoubleBattleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.stop_cinema_mode.StopCinemaModeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.store_monster.StoreMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.teleport_faint.TeleportFaintAction

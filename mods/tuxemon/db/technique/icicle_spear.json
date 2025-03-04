@@ -3,7 +3,10 @@
   "accuracy": 0.75,
   "animation": "lance_ice",
   "effects": [
-    "splash 2"
+    {
+      "type": "splash",
+      "parameters": ["2"]
+    }
   ],
   "flip_axes": "xy",
   "is_fast": false,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "icicle_spear",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +27,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Ice"],
+  "tags": ["ice"],
   "types": [
     "earth",
     "water"

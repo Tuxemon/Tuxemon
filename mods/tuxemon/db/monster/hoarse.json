@@ -39,7 +39,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["landrace"],
+    "terrains": [],
+    "tags": ["megafauna"],
     "shape": "landrace",
     "stage": "basic",
     "types": [

@@ -3,7 +3,9 @@
   "accuracy": 0.8,
   "animation": "firelion_right",
   "effects": [
-    "damage"
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "x",
   "is_fast": false,
@@ -14,6 +16,7 @@
   "sfx": "sfx_flames2",
   "slug": "breathe_fire",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +26,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Flame"],
+  "tags": ["flame"],
   "types": [
     "fire"
   ],

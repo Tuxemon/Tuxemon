@@ -1,8 +1,11 @@
 {
   "animation": null,
+  "modifiers": [],
   "category": "negative",
   "effects": [
-    "lockdown"
+    {
+      "type": "lockdown"
+    }
   ],
   "flip_axes": "",
   "icon": "gfx/ui/icons/status/icon_lockdown.png",

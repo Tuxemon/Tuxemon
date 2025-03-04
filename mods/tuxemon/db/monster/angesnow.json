@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "frostbite"
+            "technique": "ice_claw"
         },
         {
             "level_learned": 1,
@@ -25,6 +25,22 @@
         {
             "level_learned": 28,
             "technique": "fiery"
+        },
+        {
+            "level_learned": 34,
+            "technique": "sudden_glow"
+        },
+        {
+            "level_learned": 43,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 46,
+            "technique": "snowstorm"
+        },
+        {
+            "level_learned": 52,
+            "technique": "divinity_beam"
         }
     ],
     "evolutions": [
@@ -43,7 +59,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["humanoid", "extraplanar"],
+    "terrains": ["extraplanar"],
+    "tags": ["ice", "leadership", "weather", "light", "healing"],
     "shape": "humanoid",
     "stage": "stage1",
     "types": [

@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "shrapnel"
+            "technique": "midnight_mantle"
         },
         {
             "level_learned": 1,
-            "technique": "perfect_cut"
+            "technique": "shadow_boxing"
         },
         {
             "level_learned": 4,
@@ -49,11 +49,16 @@
         {
             "level_learned": 40,
             "technique": "muddle"
+        },
+        {
+            "level_learned": 55,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["varmint", "ruins", "urban"],
+    "terrains": ["ruins", "urban"],
+    "tags": ["ghost", "shielded", "water", "flame"],
     "shape": "varmint",
     "stage": "standalone",
     "types": [

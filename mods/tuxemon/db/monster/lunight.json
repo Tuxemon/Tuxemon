@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["sprite", "extraplanar", "ruins"],
+    "terrains": ["extraplanar", "ruins"],
+    "tags": ["darkness", "celestial", "steel", "calamity"],
     "shape": "sprite",
     "stage": "standalone",
     "types": [

@@ -41,6 +41,7 @@ class RevengeEffect(CondEffect):
             action
             and isinstance(action.method, Technique)
             and isinstance(action.user, Monster)
+            and action.method.range != Range.special
         ):
             method = action.method
             attacker = action.user

@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "avalanche"
+            "technique": "solar_synthesis"
         },
         {
             "level_learned": 1,
-            "technique": "peck"
+            "technique": "pollen_blast"
         },
         {
             "level_learned": 4,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "whirlwind"
+            "technique": "sylvan"
         },
         {
             "level_learned": 16,
@@ -28,7 +28,7 @@
         },
         {
             "level_learned": 19,
-            "technique": "air_chain"
+            "technique": "overgrowth"
         },
         {
             "level_learned": 25,
@@ -48,12 +48,13 @@
         },
         {
             "level_learned": 40,
-            "technique": "clock"
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["plant", "darkness", "summoner"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

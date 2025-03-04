@@ -1,9 +1,16 @@
 {
   "conditions": [
-    "not has_tech cavity"
+    {
+      "type": "has_tech",
+      "parameters": ["cavity"],
+      "operator": "not"
+    }
   ],
   "effects": [
-    "learn_tm cavity"
+    {
+      "type": "learn_tm",
+      "parameters": ["cavity"]
+    }
   ],
   "slug": "tm_cavity",
   "sort": "utility",
@@ -13,6 +20,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

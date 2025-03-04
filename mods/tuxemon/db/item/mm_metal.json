@@ -1,9 +1,16 @@
 {
   "conditions": [
-    "is type metal"
+    {
+      "type": "type",
+      "parameters": ["metal"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "learn_mm metal"
+    {
+      "type": "learn_mm",
+      "parameters": ["metal"]
+    }
   ],
   "slug": "mm_metal",
   "sort": "utility",
@@ -13,6 +20,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

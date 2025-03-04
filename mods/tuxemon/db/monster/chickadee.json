@@ -1,0 +1,69 @@
+{
+    "slug": "chickadee",
+    "category": "chickadee",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "peck"
+        },
+        {
+            "level_learned": 1,
+            "technique": "whirlwind"
+        },
+        {
+            "level_learned": 4,
+            "technique": "energy_claws"
+        },
+        {
+            "level_learned": 7,
+            "technique": "negation"
+        },
+        {
+            "level_learned": 13,
+            "technique": "egg_smash"
+        },
+        {
+            "level_learned": 16,
+            "technique": "fledgling"
+        },
+        {
+            "level_learned": 31,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 37,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 40,
+            "technique": "one_two"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 15,
+            "monster_slug": "birdee"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "birdee",
+            "evo_stage": "stage1"
+        }
+    ],
+    "terrains": ["woodland"],
+    "tags": ["bird", "weak", "food"],
+    "shape": "flier",
+    "stage": "basic",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 365,
+    "height": 12,
+    "weight": 1,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

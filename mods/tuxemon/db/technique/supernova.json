@@ -3,8 +3,13 @@
   "accuracy": 0.75,
   "animation": "fireball_114",
   "effects": [
-    "give chargedup,enemy_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["chargedup", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "x",
   "is_fast": false,
@@ -15,6 +20,7 @@
   "sfx": "sfx_blaster",
   "slug": "supernova",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -24,7 +30,7 @@
     "own_trainer": false
   },
   "category": "powerful",
-  "tags": ["Light", "Celestial"],
+  "tags": ["light", "celestial"],
   "types": [
     "fire"
   ],

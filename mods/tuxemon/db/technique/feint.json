@@ -3,9 +3,17 @@
   "accuracy": 1,
   "animation": "lightning_bolt_138",
   "effects": [
-    "give focused,own_monster",
-    "give tired,enemy_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["focused", "own_monster"]
+    },
+    {
+      "type": "give",
+      "parameters": ["tired", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -16,6 +24,7 @@
   "sfx": "sfx_blaster",
   "slug": "feint",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -25,7 +34,7 @@
     "own_trainer": false
   },
   "category": "condition_imposer",
-  "tags": ["Sharp"],
+  "tags": ["sharp"],
   "types": [
     "aether"
   ],

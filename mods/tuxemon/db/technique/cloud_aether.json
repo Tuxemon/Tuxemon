@@ -3,7 +3,10 @@
   "accuracy": 1,
   "animation": "sparks_blue_alt",
   "effects": [
-    "switch enemy_team:own_team,random"
+    {
+      "type": "switch",
+      "parameters": ["enemy_team:own_team", "random"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "cloud_aether",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +27,7 @@
     "own_trainer": false
   },
   "category": "exotic",
-  "tags": ["Weather", "Shapeshifter"],
+  "tags": ["weather", "shapeshifter"],
   "types": [
     "aether"
   ],

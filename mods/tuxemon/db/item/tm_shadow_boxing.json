@@ -1,9 +1,16 @@
 {
   "conditions": [
-    "not has_tech shadow_boxing"
+    {
+      "type": "has_tech",
+      "parameters": ["shadow_boxing"],
+      "operator": "not"
+    }
   ],
   "effects": [
-    "learn_tm shadow_boxing"
+    {
+      "type": "learn_tm",
+      "parameters": ["shadow_boxing"]
+    }
   ],
   "slug": "tm_shadow_boxing",
   "sort": "utility",
@@ -13,6 +20,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

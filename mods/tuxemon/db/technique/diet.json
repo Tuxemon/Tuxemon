@@ -1,0 +1,37 @@
+{
+  "tech_id": 231,
+  "accuracy": 1.0,
+  "animation": "egg_crack",
+  "effects": [
+    {
+      "type": "give",
+      "parameters": ["diehard", "own_monster"]
+    }
+  ],
+  "flip_axes": "",
+  "is_fast": false,
+  "potency": 1.0,
+  "power": 0.0,
+  "range": "special",
+  "recharge": 3,
+  "sfx": "sfx_blaster",
+  "slug": "diet",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": false,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": true,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "animal",
+  "tags": ["food", "soldier"],
+  "types": [
+    "aether"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

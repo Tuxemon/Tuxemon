@@ -1,6 +1,10 @@
 {
   "conditions": [
-    "is type earth"
+    {
+      "type": "type",
+      "parameters": ["earth"],
+      "operator": "is"
+    }
   ],
   "effects": [],
   "slug": "tm_earth",
@@ -11,6 +15,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

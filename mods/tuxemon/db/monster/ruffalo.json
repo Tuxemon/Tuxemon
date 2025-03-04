@@ -25,7 +25,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["landrace", "grassland", "woodland"],
+    "terrains": ["grassland", "woodland"],
+    "tags": ["megafauna", "sharp"],
     "shape": "landrace",
     "stage": "standalone",
     "types": [

@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "lantern"
+            "technique": "staff_smash"
         },
         {
             "level_learned": 28,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["humanoid"],
+    "terrains": [],
+    "tags": ["ground", "soldier", "staff"],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [

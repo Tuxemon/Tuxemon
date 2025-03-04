@@ -3,9 +3,17 @@
   "accuracy": 0.8,
   "animation": "demiurge",
   "effects": [
-    "give recover,own_monster",
-    "give confused,enemy_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["recover", "own_monster"]
+    },
+    {
+      "type": "give",
+      "parameters": ["confused", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -17,6 +25,7 @@
   "sfx": "sfx_blaster",
   "slug": "demiurge",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -26,7 +35,7 @@
     "own_trainer": false
   },
   "category": "reserved",
-  "tags": ["Reserved"],
+  "tags": ["reserved"],
   "types": [
     "earth"
   ],

@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "kindling_flame"
+            "technique": "fire_claw"
         },
         {
             "level_learned": 4,
@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "fire_claw"
+            "technique": "kindling_flame"
         },
         {
             "level_learned": 25,
@@ -54,7 +54,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["dragon"],
+    "terrains": [],
+    "tags": ["bug", "bite", "bird"],
     "shape": "dragon",
     "stage": "stage1",
     "types": [

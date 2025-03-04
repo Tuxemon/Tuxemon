@@ -3,7 +3,10 @@
   "accuracy": 1,
   "animation": "explosion_dusty_96",
   "effects": [
-    "give noddingoff,enemy_team"
+    {
+      "type": "give",
+      "parameters": ["noddingoff", "enemy_team"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "sleeping_powder",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -23,7 +27,7 @@
     "own_trainer": false
   },
   "category": "condition_imposer",
-  "tags": ["Bug"],
+  "tags": ["bug"],
   "types": [
     "aether"
   ],

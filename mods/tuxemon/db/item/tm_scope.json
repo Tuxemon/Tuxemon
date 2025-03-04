@@ -1,9 +1,16 @@
 {
   "conditions": [
-    "not has_tech scope"
+    {
+      "type": "has_tech",
+      "parameters": ["scope"],
+      "operator": "not"
+    }
   ],
   "effects": [
-    "learn_tm scope"
+    {
+      "type": "learn_tm",
+      "parameters": ["scope"]
+    }
   ],
   "slug": "tm_scope",
   "sort": "utility",
@@ -13,6 +20,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

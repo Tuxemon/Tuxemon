@@ -3,7 +3,10 @@
   "accuracy": 0.75,
   "animation": "lightning_claw",
   "effects": [
-    "splash 2"
+    {
+      "type": "splash",
+      "parameters": ["2"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +17,7 @@
   "sfx": "sfx_lightning2",
   "slug": "electrical_storm",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +27,7 @@
     "own_trainer": false
   },
   "category": "powerful",
-  "tags": ["Electricity", "Weather"],
+  "tags": ["electricity", "weather"],
   "types": [
     "fire",
     "earth"

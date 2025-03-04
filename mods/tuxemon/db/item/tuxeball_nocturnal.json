@@ -1,10 +1,20 @@
 {
   "conditions": [
-    "is wild_monster",
-    "not category threat"
+    {
+      "type": "wild_monster",
+      "operator": "is"
+    },
+    {
+      "type": "category",
+      "parameters": ["threat"],
+      "operator": "not"
+    }
   ],
   "effects": [
-    "capture_combined variable,daytime:false,0.2,1.5"
+    {
+      "type": "capture_combined",
+      "parameters": ["variable","daytime:false","0.2","1.5"]
+    }
   ],
   "animation": "capture_1",
   "slug": "tuxeball_nocturnal",
@@ -15,6 +25,7 @@
   "usable_in": [
     "MainCombatMenuState"
   ],
+  "modifiers": [],
   "behaviors": {
     "throwable": true
   },

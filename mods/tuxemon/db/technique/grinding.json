@@ -3,17 +3,20 @@
   "accuracy": 0.75,
   "animation": "bite_zombie",
   "effects": [
-    "damage"
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
   "potency": 0.0,
-  "power": 2.5,
+  "power": 2.2,
   "range": "melee",
   "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "grinding",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,9 +26,9 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Rock"],
+  "tags": ["rock"],
   "types": [
-    "water"
+    "earth", "metal"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

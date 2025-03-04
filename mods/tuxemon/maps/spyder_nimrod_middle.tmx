@@ -340,12 +340,12 @@
     <property name="act03" value="pathfind spyder_nimrod_zircon,15,9"/>
     <property name="act04" value="char_face spyder_nimrod_zircon,left"/>
     <property name="act05" value="char_face spyder_nimrod_argon,right"/>
-    <property name="act06" value="translated_dialog spyder_nimrod_zircon3"/>
+    <property name="act06" value="translated_dialog spyder_nimrod_zircon3,,bottomright"/>
     <property name="act07" value="pathfind player,14,10"/>
     <property name="act08" value="char_face player,up"/>
     <property name="act09" value="pathfind spyder_nimrod_zircon,14,9"/>
-    <property name="act10" value="translated_dialog spyder_nimrod_argon3"/>
-    <property name="act11" value="translated_dialog spyder_nimrod_zircon4"/>
+    <property name="act10" value="translated_dialog spyder_nimrod_argon3,,bottomleft"/>
+    <property name="act11" value="translated_dialog spyder_nimrod_zircon4,,bottomright"/>
     <property name="act12" value="translated_dialog_choice no:yes,zircon_argon"/>
     <property name="act13" value="unlock_controls"/>
     <property name="act14" value="get_party_monster spyder_nimrod_argon"/>
@@ -368,9 +368,9 @@
     <property name="act04" value="add_monster chrome_robo,25,spyder_nimrod_argon,5,10"/>
     <property name="act05" value="char_face spyder_nimrod_zircon,left"/>
     <property name="act06" value="char_face player,up"/>
-    <property name="act07" value="translated_dialog spyder_nimrod_zircon5"/>
-    <property name="act08" value="translated_dialog spyder_nimrod_argon4"/>
-    <property name="act09" value="translated_dialog spyder_nimrod_zircon6"/>
+    <property name="act07" value="translated_dialog spyder_nimrod_zircon5,,bottomright"/>
+    <property name="act08" value="translated_dialog spyder_nimrod_argon4,,bottomleft"/>
+    <property name="act09" value="translated_dialog spyder_nimrod_zircon6,,bottomright"/>
     <property name="act10" value="start_battle spyder_nimrod_zircon,spyder_nimrod_argon"/>
     <property name="act11" value="set_variable zircon_vs_argon:yes"/>
     <property name="act12" value="unlock_controls"/>
@@ -395,8 +395,8 @@
   <object id="56" name="Draw" type="event" x="160" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable zircon_vs_argon:done"/>
-    <property name="act2" value="translated_dialog spyder_nimrod_zircon_draw"/>
-    <property name="act3" value="translated_dialog spyder_nimrod_argon_draw"/>
+    <property name="act2" value="translated_dialog spyder_nimrod_zircon_draw,,bottomright"/>
+    <property name="act3" value="translated_dialog spyder_nimrod_argon_draw,,bottomleft"/>
     <property name="act4" value="pathfind spyder_nimrod_zircon,16,3"/>
     <property name="act5" value="remove_npc spyder_nimrod_zircon"/>
     <property name="cond1" value="is variable_set zircon_vs_argon:yes"/>
@@ -406,8 +406,8 @@
   <object id="57" name="Argon Win" type="event" x="176" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable zircon_vs_argon:done"/>
-    <property name="act2" value="translated_dialog spyder_nimrod_argon_won"/>
-    <property name="act3" value="translated_dialog spyder_nimrod_zircon_lost"/>
+    <property name="act2" value="translated_dialog spyder_nimrod_argon_won,,bottomleft"/>
+    <property name="act3" value="translated_dialog spyder_nimrod_zircon_lost,,bottomright"/>
     <property name="act4" value="pathfind spyder_nimrod_zircon,16,3"/>
     <property name="act5" value="remove_npc spyder_nimrod_zircon"/>
     <property name="cond1" value="is variable_set zircon_vs_argon:yes"/>
@@ -418,8 +418,8 @@
   <object id="58" name="Zircon Win" type="event" x="192" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable zircon_vs_argon:done"/>
-    <property name="act2" value="translated_dialog spyder_nimrod_zircon_won"/>
-    <property name="act3" value="translated_dialog spyder_nimrod_argon_lost"/>
+    <property name="act2" value="translated_dialog spyder_nimrod_zircon_won,,bottomright"/>
+    <property name="act3" value="translated_dialog spyder_nimrod_argon_lost,,bottomleft"/>
     <property name="act4" value="pathfind spyder_nimrod_zircon,16,3"/>
     <property name="act5" value="remove_npc spyder_nimrod_zircon"/>
     <property name="cond1" value="is variable_set zircon_vs_argon:yes"/>

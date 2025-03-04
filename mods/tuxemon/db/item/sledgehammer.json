@@ -1,9 +1,15 @@
 {
   "conditions": [
-    "is facing_sprite boulder"
+    {
+      "type": "facing_sprite",
+      "parameters": ["boulder"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "remove"
+    {
+      "type": "remove"
+    }
   ],
   "slug": "sledgehammer",
   "sort": "utility",
@@ -12,6 +18,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {
     "consumable": false,
     "requires_monster_menu": false

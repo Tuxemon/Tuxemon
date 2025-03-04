@@ -3,7 +3,10 @@
   "accuracy": 0.75,
   "animation": "explosion_mushroom_128",
   "effects": [
-    "prop_damage enemy_monster,0.25"
+    {
+      "type": "prop_damage",
+      "parameters": ["enemy_monster", "0.25"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "panjandrum",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +27,7 @@
     "own_trainer": false
   },
   "category": "exotic",
-  "tags": ["Gadgets"],
+  "tags": ["gadgets"],
   "types": [
     "earth"
   ],

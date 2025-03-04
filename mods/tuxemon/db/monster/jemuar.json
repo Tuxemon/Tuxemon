@@ -45,6 +45,10 @@
         {
             "level_learned": 52,
             "technique": "biting_winds"
+        },
+        {
+            "level_learned": 61,
+            "technique": "divinity_beam"
         }
     ],
     "evolutions": [],
@@ -58,7 +62,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["hunter", "mountains", "urban"],
+    "terrains": ["mountains", "urban"],
+    "tags": ["rock", "love", "claws", "bite", "gemstone"],
     "shape": "hunter",
     "stage": "stage2",
     "types": [

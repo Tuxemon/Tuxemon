@@ -1,11 +1,24 @@
 {
   "conditions": [
-    "is current_hp ==,0",
-    "is status faint"
+    {
+      "type": "current_hp",
+      "parameters": ["==", "0"],
+      "operator": "is"
+    },
+    {
+      "type": "status",
+      "parameters": ["faint"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "restore",
-    "heal 20,fixed"
+    {
+      "type": "restore"
+    },
+    {
+      "type": "heal",
+      "parameters": ["20","fixed"]
+    }
   ],
   "slug": "revive",
   "sort": "potion",
@@ -16,6 +29,7 @@
     "MainCombatMenuState",
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

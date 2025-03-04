@@ -3,7 +3,10 @@
   "accuracy": 0.9,
   "animation": "drip_green",
   "effects": [
-    "give poison,enemy_monster"
+    {
+      "type": "give",
+      "parameters": ["poison", "enemy_monster"]
+    }
   ],
   "flip_axes": "",
   "is_fast": true,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "stone_rot",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +27,7 @@
     "own_trainer": false
   },
   "category": "condition_imposer",
-  "tags": ["Toxic"],
+  "tags": ["toxic"],
   "types": [
     "aether"
   ],

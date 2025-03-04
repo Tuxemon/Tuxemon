@@ -31,8 +31,20 @@
             "technique": "web"
         },
         {
+            "level_learned": 25,
+            "technique": "water_blast"
+        },
+        {
             "level_learned": 31,
             "technique": "chill_mist"
+        },
+        {
+            "level_learned": 40,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 55,
+            "technique": "frostbite"
         }
     ],
     "evolutions": [],
@@ -42,7 +54,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["piscine", "coastal", "freshwater", "sea"],
+    "terrains": ["coastal", "freshwater", "sea"],
+    "tags": ["water", "bite", "sharp", "plant"],
     "shape": "piscine",
     "stage": "stage1",
     "types": [

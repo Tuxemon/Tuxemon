@@ -4,15 +4,15 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "bubble_trap"
+            "technique": "fire_ball"
         },
         {
             "level_learned": 1,
-            "technique": "amnesia"
+            "technique": "muddle"
         },
         {
             "level_learned": 4,
-            "technique": "muddle"
+            "technique": "amnesia"
         },
         {
             "level_learned": 7,
@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "fire_ball"
+            "technique": "bubble_trap"
         },
         {
             "level_learned": 31,
@@ -36,7 +36,7 @@
         },
         {
             "level_learned": 40,
-            "technique": "breathe_fire"
+            "technique": "pyrokinesis"
         }
     ],
     "evolutions": [],
@@ -46,7 +46,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["brute", "mountains", "woodland"],
+    "terrains": ["mountains", "woodland"],
+    "tags": ["mental", "flame", "food"],
     "shape": "brute",
     "stage": "stage1",
     "types": [

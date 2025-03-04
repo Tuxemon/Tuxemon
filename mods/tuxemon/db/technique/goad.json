@@ -3,8 +3,13 @@
   "accuracy": 0.8,
   "animation": "buff_rage",
   "effects": [
-    "give enraged,enemy_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["enraged", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": true,
@@ -15,6 +20,7 @@
   "sfx": "sfx_blaster",
   "slug": "goad",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -24,7 +30,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Speed", "Shielded"],
+  "tags": ["speed", "shielded"],
   "types": [
     "water"
   ],

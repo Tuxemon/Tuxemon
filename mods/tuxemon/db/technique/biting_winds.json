@@ -3,8 +3,13 @@
   "accuracy": 0.8,
   "animation": "explosion_ice_112",
   "effects": [
-    "give softened,enemy_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["softened", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +20,7 @@
   "sfx": "sfx_tornado",
   "slug": "biting_winds",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -24,7 +30,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Weather"],
+  "tags": ["weather"],
   "types": [
     "earth",
     "water"

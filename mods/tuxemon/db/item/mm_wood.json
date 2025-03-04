@@ -1,9 +1,16 @@
 {
   "conditions": [
-    "is type wood"
+    {
+      "type": "type",
+      "parameters": ["wood"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "learn_mm wood"
+    {
+      "type": "learn_mm",
+      "parameters": ["wood"]
+    }
   ],
   "slug": "mm_wood",
   "sort": "utility",
@@ -13,6 +20,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

@@ -3,8 +3,14 @@
   "accuracy": 1,
   "animation": "x_attack",
   "effects": [
-    "give prickly,enemy_monster",
-    "sacrifice 2"
+    {
+      "type": "give",
+      "parameters": ["prickly", "enemy_monster"]
+    },
+    {
+      "type": "sacrifice",
+      "parameters": ["1"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +21,7 @@
   "sfx": "sfx_blaster",
   "slug": "undertaker",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -24,7 +31,7 @@
     "own_trainer": false
   },
   "category": "exotic",
-  "tags": ["Ghost", "Ground"],
+  "tags": ["ghost", "ground"],
   "types": [
     "earth"
   ],

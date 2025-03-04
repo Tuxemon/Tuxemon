@@ -3,8 +3,13 @@
   "accuracy": 0.8,
   "animation": "disintegrate_83",
   "effects": [
-    "damage",
-    "prop_healing own_monster,0.2"
+    {
+      "type": "damage"
+    },
+    {
+      "type": "prop_healing",
+      "parameters": ["own_monster", "0.2"]
+    }
   ],
   "flip_axes": "",
   "healing_power": 3.0,
@@ -16,6 +21,7 @@
   "sfx": "sfx_lightning1",
   "slug": "battery_discharge",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -25,7 +31,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Machine"],
+  "tags": ["machine"],
   "types": [
     "metal"
   ],

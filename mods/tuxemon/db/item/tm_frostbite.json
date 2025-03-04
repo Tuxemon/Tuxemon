@@ -1,9 +1,16 @@
 {
   "conditions": [
-    "not has_tech frostbite"
+    {
+      "type": "has_tech",
+      "parameters": ["frostbite"],
+      "operator": "not"
+    }
   ],
   "effects": [
-    "learn_tm frostbite"
+    {
+      "type": "learn_tm",
+      "parameters": ["frostbite"]
+    }
   ],
   "slug": "tm_frostbite",
   "sort": "utility",
@@ -13,6 +20,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

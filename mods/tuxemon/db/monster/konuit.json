@@ -21,11 +21,20 @@
         {
             "level_learned": 19,
             "technique": "nest"
+        },
+        {
+            "level_learned": 25,
+            "technique": "pouch"
+        },
+        {
+            "level_learned": 40,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["humanoid"],
+    "terrains": [],
+    "tags": ["plant"],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
@@ -12,6 +13,7 @@ from tuxemon.tools import compare
 logger = logging.getLogger(__name__)
 
 
+@dataclass
 class PartySizeCondition(EventCondition):
     """
     Check the character's party size.

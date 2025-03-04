@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "tonguespear"
+            "technique": "water_blast"
         },
         {
             "level_learned": 28,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["piscine", "coastal", "sea"],
+    "terrains": ["coastal", "sea"],
+    "tags": ["bird", "water"],
     "shape": "piscine",
     "stage": "standalone",
     "types": [

@@ -3,9 +3,17 @@
   "accuracy": 0.75,
   "animation": "triforce_163",
   "effects": [
-    "give enraged,own_monster",
-    "give grabbed,enemy_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["enraged", "own_monster"]
+    },
+    {
+      "type": "give",
+      "parameters": ["grabbed", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "xy",
   "is_fast": false,
@@ -16,6 +24,7 @@
   "sfx": "sfx_blaster",
   "slug": "invictus",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -25,7 +34,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Bite", "Fists", "Leadership", "Fury"],
+  "tags": ["bite", "fists", "leadership", "fury"],
   "types": [
     "fire",
     "wood"

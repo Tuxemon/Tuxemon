@@ -1,10 +1,19 @@
 {
   "conditions": [
-    "is can_evolve",
-    "is has_path earth_booster"
+    {
+      "type": "can_evolve",
+      "operator": "is"
+    },
+    {
+      "type": "has_path",
+      "parameters": ["earth_booster"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "evolve"
+    {
+      "type": "evolve"
+    }
   ],
   "slug": "earth_booster",
   "sort": "utility",
@@ -13,6 +22,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {
     "show_dialog_on_success": false
   },

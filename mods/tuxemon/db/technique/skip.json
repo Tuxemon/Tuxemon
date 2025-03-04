@@ -1,7 +1,7 @@
 {
 	"animation": null,
-	"accuracy": 0.0,
 	"effects": [],
+	"accuracy": 0.0,
 	"flip_axes": "",
 	"potency": 0.0,
 	"power": 0,
@@ -9,6 +9,7 @@
 	"sfx": "sfx_blaster",
 	"slug": "skip",
 	"sort": "meta",
+	"modifiers": [],
 	"target": {
 		"enemy_monster": false,
 		"enemy_team": false,
@@ -19,7 +20,7 @@
 	},
 	"tech_id": 0,
 	"category": "notype",
-	"tags": ["NoType"],
+	"tags": ["notype"],
 	"types": [],
 	"use_failure": "combat_none",
 	"use_success": null,

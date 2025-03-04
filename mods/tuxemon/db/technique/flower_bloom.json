@@ -1,0 +1,37 @@
+{
+  "tech_id": 227,
+  "accuracy": 0.99,
+  "animation": "flower",
+  "effects": [
+    {
+      "type": "splash",
+      "parameters": ["2"]
+    }
+  ],
+  "flip_axes": "",
+  "is_fast": false,
+  "potency": 0.0,
+  "power": 3.0,
+  "range": "ranged",
+  "recharge": 3,
+  "sfx": "sfx_blaster",
+  "slug": "flower_bloom",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "powerful",
+  "tags": ["plant"],
+  "types": [
+    "wood"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

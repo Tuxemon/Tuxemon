@@ -3,7 +3,13 @@
   "accuracy": 1.0,
   "animation": "drip_green",
   "effects": [
-    "damage"
+    {
+      "type": "transfer",
+      "parameters": ["poison", "user_to_target"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +20,7 @@
   "sfx": "sfx_blaster",
   "slug": "suck_poison",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +30,7 @@
     "own_trainer": false
   },
   "category": "reserved",
-  "tags": ["Reserved"],
+  "tags": ["reserved"],
   "types": [
     "water"
   ],

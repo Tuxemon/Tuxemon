@@ -3,17 +3,24 @@
   "accuracy": 0.9,
   "animation": "explosion_sun_32",
   "effects": [
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["blinded", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
-  "potency": 0.0,
+  "potency": 0.9,
   "power": 1.1,
   "range": "ranged",
   "recharge": 1,
   "sfx": "sfx_blaster",
   "slug": "sunburst",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +30,7 @@
     "own_trainer": false
   },
   "category": "basic",
-  "tags": ["Flame", "Celestial"],
+  "tags": ["flame", "celestial"],
   "types": [
     "fire",
     "metal"

@@ -3,7 +3,10 @@
   "accuracy": 1,
   "animation": "smokebomb",
   "effects": [
-    "give sniping,own_monster"
+    {
+      "type": "give",
+      "parameters": ["sniping", "own_monster"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "take_cover",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -23,7 +27,7 @@
     "own_trainer": false
   },
   "category": "condition_imposer",
-  "tags": ["Bug", "Leadership", "Shielded"],
+  "tags": ["bug", "leadership", "shielded"],
   "types": [
     "aether"
   ],

@@ -3,8 +3,14 @@
   "accuracy": 0.6,
   "animation": "shield_fire",
   "effects": [
-    "give elementalshield,own_monster",
-    "give burn,enemy_monster"
+    {
+      "type": "give",
+      "parameters": ["elementalshield", "own_monster"]
+    },
+    {
+      "type": "give",
+      "parameters": ["burn", "enemy_monster"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +21,7 @@
   "sfx": "sfx_blaster",
   "slug": "fire_shield",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -24,7 +31,7 @@
     "own_trainer": false
   },
   "category": "exotic",
-  "tags": ["Soldier", "Shielded"],
+  "tags": ["soldier", "shielded"],
   "types": [
     "aether"
   ],

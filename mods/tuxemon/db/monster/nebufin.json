@@ -39,7 +39,8 @@
             "evo_stage": "stage2"
         }
     ],
-    "tags": ["polliwog", "sea"],
+    "terrains": ["sea"],
+    "tags": ["celestial", "water", "toxic", "gemstone"],
     "shape": "polliwog",
     "stage": "basic",
     "types": [

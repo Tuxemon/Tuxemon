@@ -1,10 +1,21 @@
 {
   "conditions": [
-    "is type earth:water",
-    "not has_tech avalanche"
+    {
+      "type": "type",
+      "parameters": ["earth:water"],
+      "operator": "is"
+    },
+    {
+      "type": "has_tech",
+      "parameters": ["avalanche"],
+      "operator": "not"
+    }
   ],
   "effects": [
-    "learn_tm avalanche"
+    {
+      "type": "learn_tm",
+      "parameters": ["avalanche"]
+    }
   ],
   "slug": "tm_avalanche",
   "sort": "utility",
@@ -14,6 +25,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

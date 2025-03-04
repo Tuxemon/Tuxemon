@@ -3,7 +3,10 @@
   "accuracy": 0.6,
   "animation": "explosion_small",
   "effects": [
-    "splash 2"
+    {
+      "type": "splash",
+      "parameters": ["2"]
+    }
   ],
   "flip_axes": "",
   "is_fast": true,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "shrapnel",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +27,7 @@
     "own_trainer": false
   },
   "category": "powerful",
-  "tags": ["Bomber", "Steel"],
+  "tags": ["bomber", "steel"],
   "types": [
     "metal"
   ],

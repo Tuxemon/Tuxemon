@@ -1,7 +1,10 @@
 {
   "conditions": [],
   "effects": [
-    "buff melee,0.2"
+    {
+      "type": "buff",
+      "parameters": ["melee","0.2"]
+    }
   ],
   "slug": "boost_melee",
   "sort": "utility",
@@ -11,6 +14,7 @@
   "usable_in": [
     "MainCombatMenuState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

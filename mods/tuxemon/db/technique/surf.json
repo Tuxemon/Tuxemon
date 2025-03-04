@@ -3,7 +3,10 @@
   "accuracy": 0.6,
   "animation": "waterfall",
   "effects": [
-    "splash 2"
+    {
+      "type": "splash",
+      "parameters": ["2"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +18,7 @@
   "sfx": "sfx_bubbles",
   "slug": "surf",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": true,
@@ -24,7 +28,7 @@
     "own_trainer": false
   },
   "category": "powerful",
-  "tags": ["Water"],
+  "tags": ["water"],
   "types": [
     "water"
   ],

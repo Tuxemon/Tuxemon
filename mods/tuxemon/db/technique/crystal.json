@@ -3,7 +3,9 @@
   "accuracy": 0.9,
   "animation": "crystal",
   "effects": [
-    "damage"
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +16,7 @@
   "sfx": "sfx_blaster",
   "slug": "crystal",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +26,7 @@
     "own_trainer": false
   },
   "category": "basic",
-  "tags": ["Gemstone"],
+  "tags": ["gemstone"],
   "types": [
     "earth",
     "metal"

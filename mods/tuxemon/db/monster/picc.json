@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["piscine", "freshwater"],
+    "terrains": ["freshwater"],
+    "tags": ["machine", "water"],
     "shape": "piscine",
     "stage": "stage1",
     "types": [

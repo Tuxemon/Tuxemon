@@ -1,10 +1,21 @@
 {
   "conditions": [
-    "is current_hp <,1.0",
-    "is current_hp >,0"
+    {
+      "type": "current_hp",
+      "parameters": ["<", "1.0"],
+      "operator": "is"
+    },
+    {
+      "type": "current_hp",
+      "parameters": [">", "0"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "heal 50,fixed"
+    {
+      "type": "heal",
+      "parameters": ["50","fixed"]
+    }
   ],
   "slug": "super_potion",
   "sort": "potion",
@@ -14,6 +25,7 @@
     "MainCombatMenuState",
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

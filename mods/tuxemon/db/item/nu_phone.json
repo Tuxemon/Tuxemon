@@ -7,11 +7,16 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {
     "consumable": false,
     "visible": false
   },
-  "world_menu": ["3","nu_phone","NuPhone"],
+  "world_menu": {
+    "position": 3,
+    "label_key": "nu_phone",
+    "state": "NuPhone"
+  },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

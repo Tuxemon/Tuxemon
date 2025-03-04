@@ -3,8 +3,13 @@
   "accuracy": 1,
   "animation": "metallic_absorb",
   "effects": [
-    "damage",
-    "switch enemy_monster,random"
+    {
+      "type": "damage"
+    },
+    {
+      "type": "switch",
+      "parameters": ["enemy_monster", "random"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +20,7 @@
   "sfx": "sfx_blaster",
   "slug": "orbs",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -24,7 +30,7 @@
     "own_trainer": false
   },
   "category": "exotic",
-  "tags": ["Summoner"],
+  "tags": ["summoner"],
   "types": [
     "aether"
   ],

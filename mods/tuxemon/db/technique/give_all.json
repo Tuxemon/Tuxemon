@@ -3,8 +3,13 @@
   "accuracy": 1,
   "animation": "firelion_front",
   "effects": [
-    "give exhausted,own_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["exhausted", "own_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +20,7 @@
   "sfx": "sfx_blaster",
   "slug": "give_all",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -24,7 +30,7 @@
     "own_trainer": false
   },
   "category": "powerful",
-  "tags": ["Leadership", "Fury"],
+  "tags": ["leadership", "fury"],
   "types": [
     "fire"
   ],

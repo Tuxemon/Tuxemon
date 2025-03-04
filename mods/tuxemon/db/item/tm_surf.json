@@ -1,11 +1,26 @@
 {
   "conditions": [
-    "is type water",
-    "is shape piscine:polliwog:leviathan",
-    "not has_tech surf"
+    {
+      "type": "type",
+      "parameters": ["water"],
+      "operator": "is"
+    },
+    {
+      "type": "shape",
+      "parameters": ["piscine:polliwog:leviathan"],
+      "operator": "is"
+    },
+    {
+      "type": "has_tech",
+      "parameters": ["surf"],
+      "operator": "not"
+    }
   ],
   "effects": [
-    "learn_tm surf"
+    {
+      "type": "learn_tm",
+      "parameters": ["surf"]
+    }
   ],
   "slug": "tm_surf",
   "sort": "utility",
@@ -15,6 +30,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

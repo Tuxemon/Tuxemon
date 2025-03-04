@@ -1,7 +1,10 @@
 {
   "conditions": [],
   "effects": [
-    "gain_xp 107"
+    {
+      "type": "gain_xp",
+      "parameters": ["107"]
+    }
   ],
   "slug": "tea",
   "sort": "potion",
@@ -11,6 +14,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

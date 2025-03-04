@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "one_two"
+            "technique": "stampede"
         },
         {
             "level_learned": 1,
@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["hunter"],
+    "terrains": [],
+    "tags": ["flame", "bite", "light", "darkness"],
     "shape": "hunter",
     "stage": "stage1",
     "types": [

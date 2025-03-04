@@ -1,10 +1,19 @@
 {
   "conditions": [
-    "is wild_monster",
-    "not category threat"
+    {
+      "type": "wild_monster",
+      "operator": "is"
+    },
+    {
+      "type": "category",
+      "parameters": ["threat"],
+      "operator": "not"
+    }
   ],
   "effects": [
-    "capture"
+    {
+      "type": "capture"
+    }
   ],
   "animation": "capture_1",
   "slug": "tuxeball_candy",
@@ -15,6 +24,7 @@
   "usable_in": [
     "MainCombatMenuState"
   ],
+  "modifiers": [],
   "behaviors": {
     "throwable": true
   },

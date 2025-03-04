@@ -1,9 +1,16 @@
 {
   "conditions": [
-    "is facing_tile surfable"
+    {
+      "type": "facing_tile",
+      "parameters": ["surfable"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "fishing 0.35,5,15"
+    {
+      "type": "fishing",
+      "parameters": ["0.35","5","15"]
+    }
   ],
   "slug": "fishing_rod",
   "sort": "utility",
@@ -12,6 +19,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {
     "consumable": false,
     "requires_monster_menu": false,

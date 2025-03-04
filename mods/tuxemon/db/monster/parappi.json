@@ -1,0 +1,80 @@
+{
+    "slug": "parappi",
+    "category": "spinning_seed",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 1,
+            "technique": "roll"
+        },
+        {
+            "level_learned": 4,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 7,
+            "technique": "assault"
+        },
+        {
+            "level_learned": 13,
+            "technique": "wing_tip"
+        },
+        {
+            "level_learned": 16,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 19,
+            "technique": "sylvan"
+        },
+        {
+            "level_learned": 28,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 31,
+            "technique": "chameleon"
+        },
+        {
+            "level_learned": 37,
+            "technique": "flower_bloom"
+        },
+        {
+            "level_learned": 40,
+            "technique": "stabilo"
+        },
+        {
+            "level_learned": 55,
+            "technique": "tornado"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "helipi",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "coppi",
+            "evo_stage": "stage1"
+        }
+    ],
+    "terrains": ["woodland"],
+    "tags": ["plant", "food"],
+    "shape": "blob",
+    "stage": "stage2",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 378,
+    "height": 120,
+    "weight": 20,
+    "catch_rate": 35.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

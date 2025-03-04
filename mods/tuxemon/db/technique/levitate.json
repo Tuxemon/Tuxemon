@@ -3,7 +3,10 @@
   "accuracy": 1,
   "animation": null,
   "effects": [
-    "give sniping,own_team:enemy_team"
+    {
+      "type": "give",
+      "parameters": ["sniping", "own_team:enemy_team"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "levitate",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -23,7 +27,7 @@
     "own_trainer": false
   },
   "category": "exotic",
-  "tags": ["Bird", "Mental"],
+  "tags": ["bird", "mental"],
   "types": [
     "aether"
   ],

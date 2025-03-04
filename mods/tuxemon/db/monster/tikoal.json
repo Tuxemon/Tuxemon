@@ -47,7 +47,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["plant", "flame", "summoner"],
     "shape": "blob",
     "stage": "basic",
     "types": [

@@ -3,7 +3,12 @@
   "accuracy": 1,
   "animation": "slash_power",
   "effects": [
-    "damage"
+    {
+      "type": "appear"
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "x",
   "is_fast": false,
@@ -14,6 +19,7 @@
   "sfx": "sfx_blaster",
   "slug": "strike",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +29,7 @@
     "own_trainer": false
   },
   "category": "animal",
-  "tags": ["NoType"],
+  "tags": ["fists"],
   "types": [
     "metal"
   ],

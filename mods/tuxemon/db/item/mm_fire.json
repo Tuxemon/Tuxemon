@@ -1,9 +1,16 @@
 {
   "conditions": [
-    "is type fire"
+    {
+      "type": "type",
+      "parameters": ["fire"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "learn_mm fire"
+    {
+      "type": "learn_mm",
+      "parameters": ["fire"]
+    }
   ],
   "slug": "mm_fire",
   "sort": "utility",
@@ -13,6 +20,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

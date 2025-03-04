@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
 
-from tuxemon.map import PathfindNode
+from tuxemon.movement import PathfindNode
 
 
 class TestPathfindNode(unittest.TestCase):

@@ -3,7 +3,9 @@
   "accuracy": 0.85,
   "animation": "slash_power",
   "effects": [
-    "damage"
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "x",
   "is_fast": true,
@@ -14,6 +16,7 @@
   "sfx": "sfx_blaster",
   "slug": "blade",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +26,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Sharp", "Steel"],
+  "tags": ["sharp", "steel"],
   "types": [
     "metal"
   ],

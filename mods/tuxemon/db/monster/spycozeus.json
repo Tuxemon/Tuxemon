@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "perfect_cut"
+            "technique": "splinter"
         },
         {
             "level_learned": 4,
@@ -20,7 +20,7 @@
         },
         {
             "level_learned": 13,
-            "technique": "slice"
+            "technique": "arcane_eye"
         },
         {
             "level_learned": 16,
@@ -28,7 +28,7 @@
         },
         {
             "level_learned": 19,
-            "technique": "wing_tip"
+            "technique": "overgrowth"
         },
         {
             "level_learned": 25,
@@ -36,24 +36,25 @@
         },
         {
             "level_learned": 28,
-            "technique": "lineage"
+            "technique": "amnesia"
         },
         {
             "level_learned": 31,
-            "technique": "lightning_spheres"
+            "technique": "negation"
         },
         {
             "level_learned": 37,
-            "technique": "sunburst"
+            "technique": "breath"
         },
         {
             "level_learned": 40,
-            "technique": "radiance"
+            "technique": "dreamwalk"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["varmint"],
+    "terrains": [],
+    "tags": ["plant", "mental", "leadership"],
     "shape": "varmint",
     "stage": "standalone",
     "types": [

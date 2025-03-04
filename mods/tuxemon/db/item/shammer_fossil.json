@@ -1,10 +1,19 @@
 {
   "conditions": [
-    "is can_evolve",
-    "is has_path shammer_fossil"
+    {
+      "type": "can_evolve",
+      "operator": "is"
+    },
+    {
+      "type": "has_path",
+      "parameters": ["shammer_fossil"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "evolve"
+    {
+      "type": "evolve"
+    }
   ],
   "slug": "shammer_fossil",
   "sort": "utility",
@@ -13,6 +22,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {
     "show_dialog_on_success": false
   },

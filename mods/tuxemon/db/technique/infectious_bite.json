@@ -1,0 +1,40 @@
+{
+  "tech_id": 218,
+  "accuracy": 0.95,
+  "animation": "snake_right",
+  "effects": [
+    {
+      "type": "give",
+      "parameters": ["festering", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
+  ],
+  "flip_axes": "",
+  "is_fast": true,
+  "potency": 0.3,
+  "power": 1.0,
+  "range": "touch",
+  "recharge": 2,
+  "sfx": "sfx_blaster",
+  "slug": "infectious_bite",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "condition_imposer",
+  "tags": ["bite"],
+  "types": [
+    "wood"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

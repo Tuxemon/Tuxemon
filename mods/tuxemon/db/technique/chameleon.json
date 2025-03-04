@@ -3,8 +3,14 @@
   "accuracy": 1,
   "animation": "red_circle",
   "effects": [
-    "give hardshell,own_monster",
-    "switch own_monster,wood"
+    {
+      "type": "give",
+      "parameters": ["hardshell", "own_monster"]
+    },
+    {
+      "type": "switch",
+      "parameters": ["own_monster", "wood"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +21,7 @@
   "sfx": "sfx_blaster",
   "slug": "chameleon",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -24,7 +31,7 @@
     "own_trainer": false
   },
   "category": "condition_imposer",
-  "tags": ["Shapeshifter"],
+  "tags": ["shapeshifter"],
   "types": [
     "wood",
     "fire"

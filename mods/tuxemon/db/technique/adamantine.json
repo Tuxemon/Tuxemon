@@ -3,7 +3,9 @@
   "accuracy": 1,
   "animation": "amethyst",
   "effects": [
-    "damage"
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "adamantine",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -24,7 +27,7 @@
     "own_trainer": false
   },
   "category": "reserved",
-  "tags": ["Reserved"],
+  "tags": ["reserved"],
   "types": [
     "fire"
   ],

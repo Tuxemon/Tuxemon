@@ -1,10 +1,19 @@
 {
   "conditions": [
-    "is can_evolve",
-    "is has_path sea_girdle"
+    {
+      "type": "can_evolve",
+      "operator": "is"
+    },
+    {
+      "type": "has_path",
+      "parameters": ["sea_girdle"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "evolve"
+    {
+      "type": "evolve"
+    }
   ],
   "slug": "sea_girdle",
   "sort": "utility",
@@ -14,6 +23,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {
     "show_dialog_on_success": false
   },

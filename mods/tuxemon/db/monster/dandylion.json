@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "pseudopod"
+            "technique": "pollen_blast"
         },
         {
             "level_learned": 1,
-            "technique": "overgrowth"
+            "technique": "solar_synthesis"
         },
         {
             "level_learned": 4,
@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["hunter"],
+    "terrains": [],
+    "tags": ["plant", "bite", "light"],
     "shape": "hunter",
     "stage": "stage1",
     "types": [

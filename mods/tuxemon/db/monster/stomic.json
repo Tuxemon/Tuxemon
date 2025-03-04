@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "venomous_tentacle"
+            "technique": "acid"
         },
         {
             "level_learned": 1,
@@ -15,12 +15,32 @@
             "technique": "viper"
         },
         {
-            "level_learned": 10,
+            "level_learned": 7,
             "technique": "shrapnel"
+        },
+        {
+            "level_learned": 13,
+            "technique": "slime"
+        },
+        {
+            "level_learned": 16,
+            "technique": "radiance"
         },
         {
             "level_learned": 19,
             "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 25,
+            "technique": "meltdown"
+        },
+        {
+            "level_learned": 31,
+            "technique": "magnetic_body"
+        },
+        {
+            "level_learned": 37,
+            "technique": "gourmet"
         }
     ],
     "evolutions": [
@@ -35,7 +55,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["steel", "toxic", "bomber"],
     "shape": "blob",
     "stage": "basic",
     "types": [

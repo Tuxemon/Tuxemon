@@ -3,7 +3,9 @@
   "accuracy": 0.8,
   "animation": "ruby",
   "effects": [
-    "damage"
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +16,7 @@
   "sfx": "sfx_blaster",
   "slug": "ruby",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +26,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Gemstone"],
+  "tags": ["gemstone"],
   "types": [
     "metal"
   ],

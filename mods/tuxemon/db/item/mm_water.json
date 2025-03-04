@@ -1,9 +1,16 @@
 {
   "conditions": [
-    "is type water"
+    {
+      "type": "type",
+      "parameters": ["water"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "learn_mm water"
+    {
+      "type": "learn_mm",
+      "parameters": ["water"]
+    }
   ],
   "slug": "mm_water",
   "sort": "utility",
@@ -13,6 +20,7 @@
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

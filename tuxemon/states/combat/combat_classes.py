@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-from typing import NamedTuple, Optional, Union
+from dataclasses import dataclass
+from typing import Optional, Union
 
 from tuxemon import prepare
 from tuxemon.animation_entity import AnimationEntity
@@ -11,6 +12,26 @@ from tuxemon.monster import Monster
 from tuxemon.npc import NPC
 from tuxemon.sprite import Sprite
 from tuxemon.technique.technique import Technique
+
+
+@dataclass
+class EnqueuedAction:
+    user: Union[Monster, NPC, None]
+    method: Union[Technique, Item, Condition, None]
+    target: Monster
+
+    def __repr__(self) -> str:
+        return f"EnqueuedAction(user={self.user}, method={self.method}, target={self.target})"
+
+
+@dataclass
+class DamageReport:
+    attack: Monster
+    defense: Monster
+    damage: int
+
+    def __repr__(self) -> str:
+        return f"DamageReport(attack={self.attack}, defense={self.defense}, damage={self.damage})"
 
 
 class MethodAnimationCache:
@@ -64,12 +85,6 @@ class MethodAnimationCache:
         return Sprite(animation=ani.play)
 
 
-class EnqueuedAction(NamedTuple):
-    user: Union[Monster, NPC, None]
-    method: Union[Technique, Item, Condition, None]
-    target: Monster
-
-
 class SortManager:
     SORT_ORDER = prepare.SORT_ORDER
 
@@ -118,12 +133,54 @@ def speed_test(action: EnqueuedAction) -> int:
     return 0
 
 
-class ActionQueue:
+class ActionHistory:
+    def __init__(self) -> None:
+        self.history: list[tuple[int, EnqueuedAction]] = []
 
+    def add_action(self, turn: int, action: EnqueuedAction) -> None:
+        self.history.append((turn, action))
+
+    def get_actions_by_turn(self, turn: int) -> list[EnqueuedAction]:
+        return [action for _turn, action in self.history if _turn == turn]
+
+    def clear(self) -> None:
+        """Clears the entire action history."""
+        self.history.clear()
+
+    def get_actions_by_turn_range(
+        self, start_turn: int, end_turn: int
+    ) -> list[EnqueuedAction]:
+        """Retrieves all actions that occurred between the specified turn range."""
+        return [
+            action
+            for _turn, action in self.history
+            if start_turn <= _turn <= end_turn
+        ]
+
+    def count_actions(self) -> int:
+        """Returns the total number of actions recorded in history."""
+        return len(self.history)
+
+    def get_last_action(self) -> Optional[EnqueuedAction]:
+        """Retrieves the last action recorded in history."""
+        return self.history[-1][1] if self.history else None
+
+    def __repr__(self) -> str:
+        """Returns a string representation of the ActionHistory."""
+        action_count = len(self.history)
+        # Get the last 3 actions for the sample
+        sample_actions = self.history[-3:]
+        sample_repr = ", ".join(
+            f"({turn}, {action})" for turn, action in sample_actions
+        )
+        return f"ActionHistory(count={action_count}, sample=[{sample_repr}])"
+
+
+class ActionQueue:
     def __init__(self) -> None:
         self._action_queue: list[EnqueuedAction] = []
-        self._action_history: list[tuple[int, EnqueuedAction]] = []
         self._pending_queue: list[tuple[int, EnqueuedAction]] = []
+        self._action_history = ActionHistory()
 
     @property
     def queue(self) -> list[EnqueuedAction]:
@@ -131,7 +188,7 @@ class ActionQueue:
         return self._action_queue
 
     @property
-    def history(self) -> list[tuple[int, EnqueuedAction]]:
+    def history(self) -> ActionHistory:
         """Returns the current action history."""
         return self._action_history
 
@@ -143,7 +200,7 @@ class ActionQueue:
     def enqueue(self, action: EnqueuedAction, turn: int) -> None:
         """Adds an action to the end of the queue and history."""
         self._action_queue.append(action)
-        self._action_history.append((turn, action))
+        self._action_history.add_action(turn, action)
 
     def add_pending(self, action: EnqueuedAction, turn: int) -> None:
         """Adds an action to the end of the pending queue."""
@@ -151,8 +208,9 @@ class ActionQueue:
 
     def autoclean_pending(self) -> None:
         """Removes actions from the pending queue under certain conditions."""
-        remaining_pending = []
-        for turn, pend in self._pending_queue:
+        self._pending_queue = [
+            (turn, pend)
+            for turn, pend in self._pending_queue
             if not (
                 (
                     pend.user
@@ -160,21 +218,18 @@ class ActionQueue:
                     and pend.user.current_hp <= 0
                 )
                 or pend.target.current_hp <= 0
-            ):
-                remaining_pending.append((turn, pend))
-        self._pending_queue = remaining_pending
+            )
+        ]
 
     def from_pending_to_action(self, turn: int) -> None:
         """
-        Removes actions from the pending queue and implements it in the
+        Removes actions from the pending queue and implements them in the
         action queue.
         """
-        self._action_queue.extend(
-            pend for _turn, pend in self._pending_queue if _turn == turn
-        )
-        self._pending_queue = [
-            (t, p) for t, p in self._pending_queue if t != turn
-        ]
+        for _turn, pend in self._pending_queue[:]:
+            if _turn == turn:
+                self.enqueue(pend, turn)
+                self._pending_queue.remove((turn, pend))
 
     def dequeue(self, action: EnqueuedAction) -> None:
         """Removes an action from the queue if it exists."""
@@ -254,16 +309,13 @@ class ActionQueue:
         Returns:
             The last matching action, or None if not found.
         """
-
         if field not in ("user", "target"):
             raise ValueError(f"{field} must be 'user' or 'target'")
 
-        for _turn, action in reversed(self._action_history):
+        for _turn, action in reversed(self._action_history.history):
             if _turn == turn and (
-                field == "user"
-                and action.user == monster
-                or field == "target"
-                and action.target == monster
+                (field == "user" and action.user == monster)
+                or (field == "target" and action.target == monster)
             ):
                 return action
 
@@ -279,13 +331,4 @@ class ActionQueue:
         Returns:
             A list of actions that occurred in the specified turn.
         """
-
-        return [
-            action for _turn, action in self._action_history if _turn == turn
-        ]
-
-
-class DamageReport(NamedTuple):
-    attack: Monster
-    defense: Monster
-    damage: int
+        return self._action_history.get_actions_by_turn(turn)

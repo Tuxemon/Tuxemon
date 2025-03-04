@@ -35,16 +35,14 @@ class MultiAttackEffect(TechEffect):
         combat = tech.combat_state
         value = random.random()
         combat._random_tech_hit[user] = value
-        log = combat._action_queue.history
-        turn = combat._turn
         # Track previous actions with the same technique, user, and target
+        log = combat._action_queue.history.get_actions_by_turn(combat._turn)
         track = [
             action
             for action in log
-            if action[0] == turn
-            and action[1].method == tech
-            and action[1].user == user
-            and action[1].target == target
+            if action.method == tech
+            and action.user == user
+            and action.target == target
         ]
         # Check if the technique has been used the maximum number of times
         done = len(track) < self.times

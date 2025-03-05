@@ -8,6 +8,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.camera_follow.CameraFollowAction
 .. autoscriptinfoclass:: tuxemon.event.actions.camera_mode.CameraModeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.camera_position.CameraPositionAction
+.. autoscriptinfoclass:: tuxemon.event.actions.camera_shake.CameraShakeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_bg.ChangeBgAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_state.ChangeStateAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_taste.ChangeTasteAction

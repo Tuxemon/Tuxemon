@@ -46,19 +46,19 @@ class CameraPositionAction(EventAction):
             return
         camera = world.camera_manager.get_active_camera()
         if camera is None:
-            logger.warning("No active camera found.")
+            logger.error("No active camera found.")
             return
 
         if camera.follows_entity:
             camera.unfollow()
 
-        camera.move(self.x, self.y)
+        camera.set_position(x, y)
         logger.info(f"Camera has been set to ({x, y})")
 
     def _reset_camera(self, world: WorldState) -> None:
         camera = world.camera_manager.get_active_camera()
         if camera is None:
-            logger.warning("No active camera found.")
+            logger.error("No active camera found.")
             return
         camera.reset_to_entity_center()
         logger.info("Camera has been reset to entity's center")

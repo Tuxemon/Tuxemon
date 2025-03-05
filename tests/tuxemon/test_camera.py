@@ -66,7 +66,7 @@ class TestCamera(unittest.TestCase):
         self.assertNotEqual(self.camera.position, Vector2(88, 88))
 
     def test_move_absolute(self):
-        self.camera.move(x=10.0, y=10.0)
+        self.camera.set_position(x=10.0, y=10.0)
         self.assertEqual(self.camera.position, Vector2(168, 168))
 
     def test_move_relative_valid(self):

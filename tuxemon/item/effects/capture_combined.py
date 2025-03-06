@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, Union
 
 from tuxemon import formula, prepare
 from tuxemon.db import CategoryCondition as Category
-from tuxemon.db import GenderType, SeenStatus, TasteWarm
+from tuxemon.db import GenderType, SeenStatus
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 
 if TYPE_CHECKING:
@@ -94,7 +94,7 @@ class CaptureCombinedEffect(ItemEffect):
                 item, target
             )
         else:  # Flavored-based tuxeball
-            target.taste_warm = TasteWarm(self.label)
+            target.taste_warm = self.label
 
         return tuxeball_modifier
 

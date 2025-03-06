@@ -252,8 +252,6 @@ COEFF_EXP: int = 3
 # weight and height (min and max) = -/+ 10%
 WEIGHT_RANGE: tuple[float, float] = (-0.1, 0.1)
 HEIGHT_RANGE: tuple[float, float] = (-0.1, 0.1)
-# tastes (malus and bonus)
-TASTE_RANGE: tuple[float, float] = (-0.1, 0.1)
 
 # Capture
 TOTAL_SHAKES: int = 4

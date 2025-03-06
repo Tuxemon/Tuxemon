@@ -72,24 +72,6 @@ class SkinSprite(str, Enum):
     orc = "orc"
 
 
-class TasteWarm(str, Enum):
-    tasteless = "tasteless"
-    peppy = "peppy"
-    salty = "salty"
-    hearty = "hearty"
-    zesty = "zesty"
-    refined = "refined"
-
-
-class TasteCold(str, Enum):
-    tasteless = "tasteless"
-    mild = "mild"
-    sweet = "sweet"
-    soft = "soft"
-    flakey = "flakey"
-    dry = "dry"
-
-
 class ElementType(str, Enum):
     aether = "aether"
     wood = "wood"
@@ -437,11 +419,11 @@ class MonsterEvolutionItemModel(BaseModel):
         min_length=1,
         max_length=prepare.PARTY_LIMIT - 1,
     )
-    taste_cold: Optional[TasteCold] = Field(
+    taste_cold: Optional[str] = Field(
         None,
         description="The required taste cold value for the monster to evolve.",
     )
-    taste_warm: Optional[TasteWarm] = Field(
+    taste_warm: Optional[str] = Field(
         None,
         description="The required taste warm value for the monster to evolve.",
     )
@@ -465,6 +447,14 @@ class MonsterEvolutionItemModel(BaseModel):
         if not v or has.db_entry("technique", v):
             return v
         raise ValueError(f"the technique {v} doesn't exist in the db")
+
+    @field_validator("taste_cold", "taste_warm")
+    def taste_exists(
+        cls: MonsterEvolutionItemModel, v: Optional[str]
+    ) -> Optional[str]:
+        if not v or has.db_entry("taste", v):
+            return v
+        raise ValueError(f"the taste {v} doesn't exist in the db")
 
     @field_validator("monster_slug")
     def monster_exists(cls: MonsterEvolutionItemModel, v: str) -> str:
@@ -1353,6 +1343,23 @@ class ElementModel(BaseModel):
         raise ValueError(f"the icon {v} doesn't exist in the db")
 
 
+class TasteModel(BaseModel):
+    slug: str = Field(..., description="Slug of the taste")
+    name: str = Field(..., description="Name of the taste")
+    taste_type: Literal["warm", "cold"] = Field(
+        ..., description="Type of taste: 'cold' or 'warm'"
+    )
+    modifiers: Sequence[Modifier] = Field(
+        ..., description="Modifiers associated with the taste"
+    )
+
+    @field_validator("name")
+    def translation_exists_taste(cls: TasteModel, v: str) -> str:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+
 class EconomyEntityModel(BaseModel):
     name: str = Field(..., description="Name of the entity")
     price: int = Field(0, description="Price of the entity")
@@ -1455,6 +1462,7 @@ class AnimationModel(BaseModel):
 TableName = Literal[
     "economy",
     "element",
+    "taste",
     "shape",
     "template",
     "mission",
@@ -1474,6 +1482,7 @@ TableName = Literal[
 DataModel = Union[
     EconomyModel,
     ElementModel,
+    TasteModel,
     ShapeModel,
     TemplateModel,
     MissionModel,
@@ -1514,6 +1523,7 @@ class JSONDatabase:
             "animation",
             "economy",
             "element",
+            "taste",
             "shape",
             "template",
             "mission",
@@ -1660,6 +1670,9 @@ class JSONDatabase:
             elif table == "element":
                 element = ElementModel(**item)
                 self.database[table][element.slug] = element
+            elif table == "taste":
+                taste = TasteModel(**item)
+                self.database[table][taste.slug] = taste
             elif table == "shape":
                 shape = ShapeModel(**item)
                 self.database[table][shape.slug] = shape
@@ -1747,6 +1760,10 @@ class JSONDatabase:
 
     @overload
     def lookup(self, slug: str, table: Literal["element"]) -> ElementModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["taste"]) -> TasteModel:
         pass
 
     @overload
@@ -1850,6 +1867,7 @@ class JSONDatabase:
         self,
         table: Literal[
             "economy",
+            "taste",
             "element",
             "shape",
             "template",

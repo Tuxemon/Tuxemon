@@ -12,8 +12,6 @@ from tuxemon.db import (
     EvolutionStage,
     GenderType,
     StatType,
-    TasteCold,
-    TasteWarm,
 )
 from tuxemon.event.eventaction import EventAction
 from tuxemon.menu.interface import MenuItem
@@ -113,19 +111,11 @@ class GetPlayerMonsterAction(EventAction):
                 self.result = True
                 return self.result
             # filter taste warm
-            if (
-                filter_name == "taste_warm"
-                and value_name in list(TasteWarm)
-                and target.taste_warm == value_name
-            ):
+            if filter_name == "taste_warm" and target.taste_warm == value_name:
                 self.result = True
                 return self.result
             # filter taste cold
-            if (
-                filter_name == "taste_cold"
-                and value_name in list(TasteCold)
-                and target.taste_cold == value_name
-            ):
+            if filter_name == "taste_cold" and target.taste_cold == value_name:
                 self.result = True
                 return self.result
 

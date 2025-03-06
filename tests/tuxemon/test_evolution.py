@@ -3,13 +3,7 @@
 import unittest
 from unittest import mock
 
-from tuxemon.db import (
-    MonsterEvolutionItemModel,
-    TasteCold,
-    TasteWarm,
-    TechniqueModel,
-    db,
-)
+from tuxemon.db import MonsterEvolutionItemModel, TechniqueModel, db
 from tuxemon.monster import Monster
 from tuxemon.player import Player
 from tuxemon.session import local_session
@@ -199,36 +193,36 @@ class TestCanEvolve(unittest.TestCase):
 
     def test_taste_cold_match(self):
         self.mon.owner = self.player
-        self.mon.taste_cold = TasteCold.flakey
+        self.mon.taste_cold = "flakey"
         evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", taste_cold=TasteCold.flakey
+            monster_slug="rockat", taste_cold="flakey"
         )
         context = {"map_inside": True}
         self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
 
     def test_taste_cold_mismatch(self):
         self.mon.owner = self.player
-        self.mon.taste_cold = TasteCold.mild
+        self.mon.taste_cold = "mild"
         evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", taste_cold=TasteCold.flakey
+            monster_slug="rockat", taste_cold="flakey"
         )
         context = {"map_inside": True}
         self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
 
     def test_taste_warm_match(self):
         self.mon.owner = self.player
-        self.mon.taste_warm = TasteWarm.peppy
+        self.mon.taste_warm = "peppy"
         evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", taste_warm=TasteWarm.peppy
+            monster_slug="rockat", taste_warm="peppy"
         )
         context = {"map_inside": True}
         self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
 
     def test_taste_warm_mismatch(self):
         self.mon.owner = self.player
-        self.mon.taste_warm = TasteWarm.peppy
+        self.mon.taste_warm = "peppy"
         evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", taste_warm=TasteWarm.salty
+            monster_slug="rockat", taste_warm="salty"
         )
         context = {"map_inside": True}
         self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))

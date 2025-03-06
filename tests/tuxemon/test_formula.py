@@ -23,6 +23,7 @@ from tuxemon.formula import (
     weakest_link,
 )
 from tuxemon.monster import Monster
+from tuxemon.taste import Taste
 from tuxemon.technique.technique import Technique
 
 
@@ -32,20 +33,45 @@ class TestUpdateStat(unittest.TestCase):
         self.monster.melee = 10.0
         self.monster.ranged = 10.0
         self.monster.dodge = 10.0
-        self.monster.taste_warm = "salty"
-        self.monster.taste_cold = "flakey"
+
+        self.salty_modifier = MagicMock(spec=Modifier)
+        self.salty_modifier.attribute = "stat"
+        self.salty_modifier.values = ["melee"]
+        self.salty_modifier.multiplier = 1.1
+
+        self.flakey_modifier = MagicMock(spec=Modifier)
+        self.flakey_modifier.attribute = "stat"
+        self.flakey_modifier.values = ["ranged"]
+        self.flakey_modifier.multiplier = 0.9
+
+        self.salty = MagicMock(spec=Taste)
+        self.salty.slug = "salty"
+        self.salty.modifiers = [self.salty_modifier]
+
+        self.flakey = MagicMock(spec=Taste)
+        self.flakey.slug = "flakey"
+        self.flakey.modifiers = [self.flakey_modifier]
+
+        self.monster.taste_warm = self.salty
+        self.monster.taste_cold = self.flakey
 
     def test_update_stat_matching_taste_bonus(self):
-        bonus = update_stat(self.monster, "melee")
-        self.assertEqual(bonus, 1)
+        expected_bonus = int(
+            self.monster.melee * self.salty_modifier.multiplier
+        )
+        bonus = update_stat("melee", self.monster.melee, self.salty, None)
+        self.assertEqual(bonus, expected_bonus)
 
     def test_update_stat_matching_taste_malus(self):
-        malus = update_stat(self.monster, "ranged")
-        self.assertEqual(malus, -1)
+        expected_malus = int(
+            self.monster.ranged * self.flakey_modifier.multiplier
+        )
+        malus = update_stat("ranged", self.monster.ranged, None, self.flakey)
+        self.assertEqual(malus, expected_malus)
 
     def test_update_stat_matching_taste_neuter(self):
-        neuter = update_stat(self.monster, "dodge")
-        self.assertEqual(neuter, 0)
+        neuter = update_stat("dodge", self.monster.dodge, None, None)
+        self.assertEqual(neuter, self.monster.dodge)
 
 
 class TestSimpleHeal(unittest.TestCase):

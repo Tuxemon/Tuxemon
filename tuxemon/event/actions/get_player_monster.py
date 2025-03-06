@@ -6,12 +6,7 @@ import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon.db import (
-    Comparison,
-    EvolutionStage,
-    GenderType,
-    StatType,
-)
+from tuxemon.db import Comparison, EvolutionStage, GenderType, StatType
 from tuxemon.event.eventaction import EventAction
 from tuxemon.menu.interface import MenuItem
 from tuxemon.monster import Monster

@@ -3,7 +3,12 @@
 import unittest
 from unittest import mock
 
-from tuxemon.db import MonsterEvolutionItemModel, TechniqueModel, db
+from tuxemon.db import (
+    ElementModel,
+    MonsterEvolutionItemModel,
+    TechniqueModel,
+    db,
+)
 from tuxemon.element import Element
 from tuxemon.monster import Monster
 from tuxemon.player import Player

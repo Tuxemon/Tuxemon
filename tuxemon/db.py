@@ -447,7 +447,7 @@ class MonsterEvolutionItemModel(BaseModel):
             return v
         raise ValueError(f"the taste {v} doesn't exist in the db")
 
-        @field_validator("element")
+    @field_validator("element")
     def element_exists(
         cls: MonsterEvolutionItemModel, v: Optional[str]
     ) -> Optional[str]:

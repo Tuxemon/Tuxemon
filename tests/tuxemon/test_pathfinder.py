@@ -3,12 +3,12 @@
 import unittest
 from unittest.mock import MagicMock
 
+from tuxemon.boundary import BoundaryChecker
 from tuxemon.db import Direction
 from tuxemon.map import RegionProperties
 from tuxemon.movement import Pathfinder, PathfindNode
 from tuxemon.npc import NPC
 from tuxemon.prepare import CONFIG
-from tuxemon.states.world.world_classes import BoundaryChecker
 from tuxemon.states.world.worldstate import WorldState
 
 

@@ -6,10 +6,10 @@ import logging
 from collections.abc import Sequence
 from typing import TYPE_CHECKING, Optional
 
+from tuxemon.boundary import BoundaryChecker
 from tuxemon.db import Direction
 from tuxemon.map import get_adjacent_position, get_coords_ext, pairs
 from tuxemon.prepare import CONFIG
-from tuxemon.states.world.world_classes import BoundaryChecker
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC

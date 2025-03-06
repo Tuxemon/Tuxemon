@@ -12,7 +12,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import combat, graphics, tools
-from tuxemon.db import ElementType, State, TechSort
+from tuxemon.db import State, TechSort
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu, PopUpMenu
@@ -362,7 +362,7 @@ class CombatTargetMenuState(Menu[Monster]):
         self.targeting_map: defaultdict[str, list[Monster]] = defaultdict(list)
 
         if (
-            self.technique.has_type(ElementType.aether)
+            self.technique.has_type("aether")
             or self.technique.sort == TechSort.meta
         ):
             sprite = self.combat_state._monster_sprite_map[self.monster]

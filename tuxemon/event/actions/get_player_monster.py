@@ -8,7 +8,6 @@ from typing import Optional, final
 
 from tuxemon.db import (
     Comparison,
-    ElementType,
     EvolutionStage,
     GenderType,
     StatType,
@@ -99,11 +98,7 @@ class GetPlayerMonsterAction(EventAction):
                 self.result = True
                 return self.result
             # filter element / type
-            if (
-                filter_name == "element"
-                and value_name in list(ElementType)
-                and target.has_type(ElementType(value_name))
-            ):
+            if filter_name == "element" and target.has_type(value_name):
                 self.result = True
                 return self.result
             # filter shape

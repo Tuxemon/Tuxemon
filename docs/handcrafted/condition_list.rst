@@ -1,5 +1,6 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.battle_is.BattleIsCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.button_pressed.ButtonPressedCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.camera_position.CameraPositionCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_at.CharAtCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_defeated.CharDefeatedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_exists.CharExistsCondition

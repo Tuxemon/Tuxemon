@@ -30,8 +30,7 @@ class CameraModeAction(EventAction):
             camera_mode <mode>
 
     Script parameters:
-        npc_slug: The slug of the character to center the camera on.
-
+        mode: The mode of the camera: 'free_roaming' or 'fixed'.
     """
 
     name = "camera_mode"

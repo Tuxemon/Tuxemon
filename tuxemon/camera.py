@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import random
 from collections.abc import Sequence
 from typing import TYPE_CHECKING, Any, Optional
 
@@ -10,9 +11,9 @@ from tuxemon.math import Vector2
 from tuxemon.platform.const import intentions
 
 if TYPE_CHECKING:
+    from tuxemon.boundary import BoundaryChecker
     from tuxemon.entity import Entity
     from tuxemon.platform.events import PlayerInput
-    from tuxemon.states.world.world_classes import BoundaryChecker
 
 SPEED_UP: int = 7
 SPEED_DOWN: int = 7
@@ -155,6 +156,8 @@ class Camera:
             boundary.
     """
 
+    FRAME_RATE: int = 60
+
     def __init__(self, entity: Entity[Any], boundary: BoundaryChecker):
         """
         Initializes the camera with a reference to a entity object.
@@ -171,6 +174,8 @@ class Camera:
         self.follows_entity = True
         self.free_roaming_enabled = False
         self.boundary = boundary
+        self.shake_intensity = 0.0
+        self.shake_duration = 0.0
 
     def follow(self) -> None:
         """
@@ -216,33 +221,35 @@ class Camera:
         """
         if self.follows_entity:
             self.position = self.get_entity_center()
+        self.handle_shake()
 
-    def move(
-        self,
-        x: Optional[float] = None,
-        y: Optional[float] = None,
-        dx: int = 0,
-        dy: int = 0,
-    ) -> None:
+    def set_position(self, x: float, y: float) -> None:
         """
-        Moves the camera to a new position or by a certain offset.
+        Moves the camera to a new position.
 
         Parameters:
             x: The new x-coordinate. Defaults to None.
             y: The new y-coordinate. Defaults to None.
+        """
+        self.position = self.get_center(Vector2(x, y))
+
+    def move(self, dx: int = 0, dy: int = 0) -> None:
+        """
+        Moves the camera by a certain offset.
+
+        Parameters:
             dx: The x-offset. Defaults to 0.
             dy: The y-offset. Defaults to 0.
         """
-        if x is not None and y is not None:
-            self.position = self.get_center(Vector2(x, y))
-        else:
-            tile_pos = unproject((self.position.x + dx, self.position.y + dy))
-            is_x_valid, is_y_valid = self.boundary.get_boundary_validity(
-                tile_pos
-            )
-            dx = dx if is_x_valid else 0
-            dy = dy if is_y_valid else 0
+        if dx == 0 and dy == 0:
+            return
+
+        tile_pos = unproject((self.position.x + dx, self.position.y + dy))
+        is_x_valid, is_y_valid = self.boundary.get_boundary_validity(tile_pos)
+
+        if is_x_valid:
             self.position.x += dx
+        if is_y_valid:
             self.position.y += dy
 
     def reset_to_entity_center(self) -> None:
@@ -286,3 +293,32 @@ class Camera:
 
     def move_right(self) -> None:
         self.move(dx=SPEED_RIGHT)
+
+    def shake(self, intensity: float, duration: float) -> None:
+        """
+        Initiates a shake effect with the specified intensity and duration.
+
+        Parameters:
+            intensity: The magnitude of the shake effect.
+            duration: The length of time (in seconds) that the shake effect should last.
+        """
+        self.shake_intensity = intensity
+        self.shake_duration = duration
+
+    def handle_shake(self) -> None:
+        """
+        Applies the shake effect to the camera's position if the shake duration is active.
+        """
+        if self.shake_duration > 0:
+            original_position = Vector2(self.position.x, self.position.y)
+            self.position.x += random.uniform(
+                -self.shake_intensity, self.shake_intensity
+            )
+            self.position.y += random.uniform(
+                -self.shake_intensity, self.shake_intensity
+            )
+
+            self.shake_duration -= 1 / self.FRAME_RATE
+            if self.shake_duration <= 0:
+                self.shake_duration = 0
+                self.position = original_position

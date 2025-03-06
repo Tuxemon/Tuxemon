@@ -27,7 +27,6 @@ class CameraFollowAction(EventAction):
     Script parameters:
         npc_slug: The slug of the character to center the camera on.
         Defaults to None, which centers the camera on the original entity.
-
     """
 
     name = "camera_follow"

@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import get_target_monsters
-from tuxemon.db import ElementType
+from tuxemon.db import db
 from tuxemon.element import Element
 from tuxemon.locale import T
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -40,7 +40,7 @@ class SwitchEffect(TechEffect):
         self, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
 
-        elements = list(ElementType)
+        elements = list(db.database["element"])
         combat = tech.combat_state
         assert combat
 

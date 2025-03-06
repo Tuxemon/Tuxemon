@@ -9,7 +9,7 @@ from typing import TYPE_CHECKING, Any, ClassVar, Optional
 
 from tuxemon import plugin
 from tuxemon.constants import paths
-from tuxemon.db import CommonCondition, CommonEffect, ElementType, Range, db
+from tuxemon.db import CommonCondition, CommonEffect, Range, db
 from tuxemon.element import Element
 from tuxemon.locale import T
 from tuxemon.technique.techcondition import TechCondition
@@ -297,12 +297,14 @@ class Technique:
 
         return meta_result
 
-    def has_type(self, element: Optional[ElementType]) -> bool:
+    def has_type(self, type_slug: Optional[str]) -> bool:
         """
         Returns TRUE if there is the type among the types.
         """
         return (
-            element in [ele.slug for ele in self.types] if element else False
+            type_slug in [type_obj.slug for type_obj in self.types]
+            if type_slug
+            else False
         )
 
     def set_stats(self) -> None:

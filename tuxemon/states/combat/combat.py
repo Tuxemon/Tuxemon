@@ -164,7 +164,6 @@ class CombatState(CombatAnimations):
         self._decision_queue: list[Monster] = []
         # player => home areas on screen
         self._layout: dict[NPC, dict[str, list[Rect]]] = {}
-        self._pending_queue: list[EnqueuedAction] = []
         self._monster_sprite_map: MutableMapping[
             Union[NPC, Monster], Sprite
         ] = {}
@@ -489,7 +488,7 @@ class CombatState(CombatAnimations):
         """Take one action from the queue and do it."""
         if not self._action_queue.is_empty():
             action = self._action_queue.pop()
-            self.perform_action(*action)
+            self.perform_action(action.user, action.method, action.target)
             self.task(self.check_party_hp, 1)
             self.task(self.animate_party_status, 3)
             self.task(self.animate_xp_message, 3)

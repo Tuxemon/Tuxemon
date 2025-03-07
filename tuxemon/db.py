@@ -395,8 +395,8 @@ class MonsterEvolutionItemModel(BaseModel):
         None,
         description="Whether the monster must have been traded to evolve.",
     )
-    variables: Optional[Sequence[str]] = Field(
-        None,
+    variables: Sequence[dict[str, str]] = Field(
+        [],
         description="The game variables that must exist and match a specific value for the monster to evolve.",
         min_length=1,
     )
@@ -412,8 +412,8 @@ class MonsterEvolutionItemModel(BaseModel):
         None,
         description="The technique that a monster in the party must have for the evolution to occur.",
     )
-    moves: Optional[Sequence[str]] = Field(
-        None,
+    moves: Sequence[str] = Field(
+        [],
         description="The techniques that the monster must have learned for the evolution to occur.",
         min_length=1,
         max_length=prepare.MAX_MOVES,
@@ -422,8 +422,8 @@ class MonsterEvolutionItemModel(BaseModel):
         None,
         description="The bond value comparison required for the monster to evolve (e.g., greater_than, less_than, etc.).",
     )
-    party: Optional[Sequence[str]] = Field(
-        None,
+    party: Sequence[str] = Field(
+        [],
         description="The slug of the monsters that must be in the party for the evolution to occur.",
         min_length=1,
         max_length=prepare.PARTY_LIMIT - 1,
@@ -439,8 +439,8 @@ class MonsterEvolutionItemModel(BaseModel):
 
     @field_validator("moves")
     def move_exists(
-        cls: MonsterEvolutionItemModel, v: Optional[Sequence[str]]
-    ) -> Optional[Sequence[str]]:
+        cls: MonsterEvolutionItemModel, v: Sequence[str]
+    ) -> Sequence[str]:
         if v:
             for element in v:
                 if not has.db_entry("technique", element):
@@ -490,14 +490,6 @@ class MonsterEvolutionItemModel(BaseModel):
         if not v or has.db_entry("item", v):
             return v
         raise ValueError(f"the item {v} doesn't exist in the db")
-
-    @field_validator("variables")
-    def variables_exists(
-        cls: MonsterEvolutionItemModel, v: Optional[Sequence[str]]
-    ) -> Optional[Sequence[str]]:
-        if v is None:
-            return v
-        return has.validate_variables(v)
 
     @field_validator("stats")
     def stats_exists(
@@ -1077,9 +1069,9 @@ class PartyMemberModel(BaseModel):
         ..., description="Experience required modifier", gt=0
     )
     gender: GenderType = Field(..., description="Gender of the monster")
-    variables: Optional[list[str]] = Field(
-        None,
-        description="List of variables that affect the presence of the monster.",
+    variables: Sequence[dict[str, str]] = Field(
+        [],
+        description="Sequence of variables that affect the presence of the monster.",
         min_length=1,
     )
 
@@ -1089,20 +1081,12 @@ class PartyMemberModel(BaseModel):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
-    @field_validator("variables")
-    def variables_exists(
-        cls: PartyMemberModel, v: Optional[Sequence[str]]
-    ) -> Optional[Sequence[str]]:
-        if v is None:
-            return v
-        return has.validate_variables(v)
-
 
 class BagItemModel(BaseModel):
     slug: str = Field(..., description="Slug of the item")
     quantity: int = Field(..., description="Quantity of the item")
-    variables: Optional[Sequence[str]] = Field(
-        None,
+    variables: Sequence[dict[str, str]] = Field(
+        [],
         description="List of variables that affect the item.",
         min_length=1,
     )
@@ -1112,14 +1096,6 @@ class BagItemModel(BaseModel):
         if has.db_entry("item", v):
             return v
         raise ValueError(f"the item {v} doesn't exist in the db")
-
-    @field_validator("variables")
-    def variables_exists(
-        cls: BagItemModel, v: Optional[Sequence[str]]
-    ) -> Optional[Sequence[str]]:
-        if v is None:
-            return v
-        return has.validate_variables(v)
 
 
 class NpcTemplateModel(BaseModel):
@@ -1305,8 +1281,8 @@ class EncounterItemModel(BaseModel):
         description="Minimum and maximum levels at which this encounter can occur.",
         max_length=2,
     )
-    variables: Optional[Sequence[str]] = Field(
-        None,
+    variables: Sequence[dict[str, str]] = Field(
+        [],
         description="List of variables that affect the encounter.",
         min_length=1,
     )
@@ -1321,14 +1297,6 @@ class EncounterItemModel(BaseModel):
         if has.db_entry("monster", v):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
-
-    @field_validator("variables")
-    def variables_exists(
-        cls: EncounterItemModel, v: Optional[Sequence[str]]
-    ) -> Optional[Sequence[str]]:
-        if v is None:
-            return v
-        return has.validate_variables(v)
 
 
 class EncounterModel(BaseModel):
@@ -1393,19 +1361,11 @@ class EconomyEntityModel(BaseModel):
     price: int = Field(0, description="Price of the entity")
     cost: int = Field(0, description="Cost of the entity")
     inventory: int = Field(-1, description="Quantity of the entity")
-    variables: Optional[Sequence[str]] = Field(
-        None,
+    variables: Sequence[dict[str, str]] = Field(
+        [],
         description="List of variables that affect the entity in the economy.",
         min_length=1,
     )
-
-    @field_validator("variables")
-    def variables_exists(
-        cls: EconomyEntityModel, v: Optional[Sequence[str]]
-    ) -> Optional[Sequence[str]]:
-        if v is None:
-            return v
-        return has.validate_variables(v)
 
 
 class EconomyItemModel(EconomyEntityModel):
@@ -2011,35 +1971,6 @@ class Validator:
         if slug in self.db.preloaded[table]:
             return True
         return False
-
-    def validate_variables(self, variables: Sequence[str]) -> Sequence[str]:
-        """
-        Validates a sequence of variables.
-
-        Parameters:
-        variables: A sequence of variables, where each variable is a string
-            in the format "key:value".
-
-        Returns:
-            The input sequence if it is valid.
-
-        Raises:
-        ValueError: If the sequence contains duplicate variables or if any variable
-                    is not in the correct format.
-        """
-        if len(variables) != len(set(variables)):
-            raise ValueError("The sequence contains duplicate variables")
-        for variable in variables:
-            if (
-                not variable
-                or len(variable.split(":")) != 2
-                or variable[0] == ":"
-                or variable[-1] == ":"
-            ):
-                raise ValueError(
-                    f"the variable {variable} isn't formatted correctly"
-                )
-        return variables
 
 
 # Validator container

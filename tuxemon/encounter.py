@@ -51,9 +51,11 @@ class Encounter:
             for _enc in self.encounter_cache[self.encounter_data.slug]
             if not _enc.variables
             or all(
-                character.game_variables.get(var.split(":")[0])
-                == var.split(":")[1]
-                for var in _enc.variables
+                all(
+                    character.game_variables.get(key) == value
+                    for key, value in variable.items()
+                )
+                for variable in _enc.variables
             )
         ]
 

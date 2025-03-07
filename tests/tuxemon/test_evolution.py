@@ -265,7 +265,7 @@ class TestCanEvolve(unittest.TestCase):
         self.mon.owner = self.player
         self.player.game_variables["var"] = "val"
         evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", variables=["var:val"]
+            monster_slug="rockat", variables=[{"var": "val"}]
         )
         context = {"map_inside": True}
         self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
@@ -274,7 +274,7 @@ class TestCanEvolve(unittest.TestCase):
         self.mon.owner = self.player
         self.player.game_variables["var"] = "other_val"
         evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", variables=["var:val"]
+            monster_slug="rockat", variables=[{"var": "val"}]
         )
         context = {"map_inside": True}
         self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))
@@ -284,7 +284,7 @@ class TestCanEvolve(unittest.TestCase):
         self.player.game_variables["var1"] = "val"
         self.player.game_variables["var2"] = "val"
         evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", variables=["var1:val", "var2:val"]
+            monster_slug="rockat", variables=[{"var1": "val"}, {"var2": "val"}]
         )
         context = {"map_inside": True}
         self.assertTrue(self.mon.evolution_handler.can_evolve(evo, context))
@@ -294,7 +294,8 @@ class TestCanEvolve(unittest.TestCase):
         self.player.game_variables["var1"] = "val"
         self.player.game_variables["var2"] = "val"
         evo = MonsterEvolutionItemModel(
-            monster_slug="rockat", variables=["var1:val", "var2:other_val"]
+            monster_slug="rockat",
+            variables=[{"var1": "val"}, {"var2": "other_val"}],
         )
         context = {"map_inside": True}
         self.assertFalse(self.mon.evolution_handler.can_evolve(evo, context))

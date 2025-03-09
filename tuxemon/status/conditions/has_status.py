@@ -5,22 +5,23 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.technique.techcondition import TechCondition
+from tuxemon.status.statuscondition import StatusCondition
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
 @dataclass
-class CurrentStatusCondition(TechCondition):
+class HasStatusCondition(StatusCondition):
     """
-    Checks against the creature's current statuses.
+    Checks if the creature has a status or not.
+
     """
 
-    name = "status"
-    expected: str
+    name = "has_status"
 
     def test(self, target: Monster) -> bool:
-        return self.expected in [
-            x.slug for x in target.status if hasattr(x, "slug")
-        ]
+        if target.status:
+            return True
+        else:
+            return False

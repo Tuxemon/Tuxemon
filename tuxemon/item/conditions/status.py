@@ -12,12 +12,9 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class StatusCondition(ItemCondition):
+class CurrentStatusCondition(ItemCondition):
     """
     Checks against the creature's current statuses.
-
-    Accepts a single parameter and returns whether it is applied.
-
     """
 
     name = "status"

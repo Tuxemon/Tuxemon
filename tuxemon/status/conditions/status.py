@@ -5,14 +5,14 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.technique.techcondition import TechCondition
+from tuxemon.status.statuscondition import StatusCondition
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
 @dataclass
-class CurrentStatusCondition(TechCondition):
+class CurrentStatusCondition(StatusCondition):
     """
     Checks against the creature's current statuses.
     """

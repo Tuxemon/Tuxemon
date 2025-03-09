@@ -6,11 +6,11 @@ from unittest import mock
 from tuxemon import prepare
 from tuxemon.client import LocalPygameClient
 from tuxemon.db import (
-    ConditionModel,
     ElementModel,
     EvolutionStage,
     MonsterModel,
     ShapeModel,
+    StatusModel,
     db,
 )
 from tuxemon.player import Player
@@ -76,10 +76,11 @@ class TestMonsterActions(unittest.TestCase):
         lower_catch_resistance=0.95,
         upper_catch_resistance=1.25,
     )
-    _faint = ConditionModel(
+    _faint = StatusModel(
         effects=[],
         modifiers=[],
         flip_axes="",
+        icon="gfx/ui/icons/status/icon_faint.png",
         sfx="sfx_faint",
         slug="faint",
         range="special",
@@ -104,7 +105,7 @@ class TestMonsterActions(unittest.TestCase):
             db.database["monster"] = self._monster_model
             db.database["shape"] = self._shape_model
             db.database["element"] = self._element_model
-            db.database["condition"] = self._condition_model
+            db.database["status"] = self._condition_model
 
     def test_add_monster(self):
         _params = ["agnite", 5]

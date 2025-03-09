@@ -735,13 +735,13 @@ class TechSort(str, Enum):
     meta = "meta"
 
 
-class CategoryCondition(str, Enum):
+class CategoryStatus(str, Enum):
     negative = "negative"
     positive = "positive"
     neutral = "neutral"
 
 
-class ResponseCondition(str, Enum):
+class ResponseStatus(str, Enum):
     replaced = "replaced"
     removed = "removed"
 
@@ -929,43 +929,43 @@ class TechniqueModel(BaseModel):
         return elements
 
 
-class ConditionModel(BaseModel):
-    slug: str = Field(..., description="The slug of the condition")
-    sort: TechSort = Field(..., description="The sort of condition this is")
-    icon: str = Field(None, description="The icon to use for the condition")
+class StatusModel(BaseModel):
+    slug: str = Field(..., description="The slug of the status")
+    sort: TechSort = Field(..., description="The sort of status this is")
+    icon: str = Field(..., description="The icon to use for the condition")
     conditions: Sequence[CommonCondition] = Field(
         [], description="Conditions that must be met"
     )
     effects: Sequence[CommonEffect] = Field(
-        ..., description="Effects this condition uses"
+        ..., description="Effects this status uses"
     )
     flip_axes: Literal["", "x", "y", "xy"] = Field(
         ...,
-        description="Axes along which condition animation should be flipped",
+        description="Axes along which status animation should be flipped",
     )
     animation: Optional[str] = Field(
-        None, description="Animation to play for this condition"
+        None, description="Animation to play for this status"
     )
     sfx: str = Field(
-        ..., description="Sound effect to play when this condition is used"
+        ..., description="Sound effect to play when this status is used"
     )
     bond: bool = Field(
         False,
         description="Whether or not there is a bond between attacker and defender",
     )
     duration: int = Field(
-        0, description="How many turns the condition is supposed to last"
+        0, description="How many turns the status is supposed to last"
     )
     modifiers: list[Modifier] = Field(..., description="Various modifiers")
 
     # Optional fields
-    category: Optional[CategoryCondition] = Field(
+    category: Optional[CategoryStatus] = Field(
         None, description="Category status: positive or negative"
     )
-    repl_pos: Optional[ResponseCondition] = Field(
+    repl_pos: Optional[ResponseStatus] = Field(
         None, description="How to reply to a positive status"
     )
-    repl_neg: Optional[ResponseCondition] = Field(
+    repl_neg: Optional[ResponseStatus] = Field(
         None, description="How to reply to a negative status"
     )
     repl_tech: Optional[str] = Field(
@@ -978,18 +978,18 @@ class ConditionModel(BaseModel):
     )
     gain_cond: Optional[str] = Field(
         None,
-        description="Slug of what string to display when condition is gained",
+        description="Slug of what string to display when status is gained",
     )
     use_success: Optional[str] = Field(
         None,
-        description="Slug of what string to display when condition succeeds",
+        description="Slug of what string to display when status succeeds",
     )
     use_failure: Optional[str] = Field(
         None,
-        description="Slug of what string to display when condition fails",
+        description="Slug of what string to display when status fails",
     )
-    range: Range = Field(..., description="The attack range of this condition")
-    cond_id: int = Field(..., description="The id of this condition")
+    range: Range = Field(..., description="The attack range of this status")
+    cond_id: int = Field(..., description="The id of this status")
     statspeed: Optional[StatModel] = Field(None)
     stathp: Optional[StatModel] = Field(None)
     statarmour: Optional[StatModel] = Field(None)
@@ -999,7 +999,7 @@ class ConditionModel(BaseModel):
 
     # Validate resources that should exist
     @field_validator("icon")
-    def file_exists(cls: ConditionModel, v: str) -> str:
+    def file_exists(cls: StatusModel, v: str) -> str:
         if has.file(v) and has.size(v, prepare.STATUS_ICON_SIZE):
             return v
         raise ValueError(f"the icon {v} doesn't exist in the db")
@@ -1007,22 +1007,20 @@ class ConditionModel(BaseModel):
     # Validate fields that refer to translated text
     @field_validator("gain_cond", "use_success", "use_failure")
     def translation_exists(
-        cls: ConditionModel, v: Optional[str]
+        cls: StatusModel, v: Optional[str]
     ) -> Optional[str]:
         if not v or has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
     @field_validator("slug")
-    def translation_exists_cond(cls: ConditionModel, v: str) -> str:
+    def translation_exists_cond(cls: StatusModel, v: str) -> str:
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
     @field_validator("animation")
-    def animation_exists(
-        cls: ConditionModel, v: Optional[str]
-    ) -> Optional[str]:
+    def animation_exists(cls: StatusModel, v: Optional[str]) -> Optional[str]:
         file: str = f"animations/technique/{v}_00.png"
         if (
             not v
@@ -1033,17 +1031,13 @@ class ConditionModel(BaseModel):
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
     @field_validator("repl_tech", "repl_item")
-    def status_exists(cls: ConditionModel, v: Optional[str]) -> Optional[str]:
-        if (
-            not v
-            or has.db_entry("condition", v)
-            or has.db_entry("technique", v)
-        ):
+    def status_exists(cls: StatusModel, v: Optional[str]) -> Optional[str]:
+        if not v or has.db_entry("status", v) or has.db_entry("technique", v):
             return v
         raise ValueError(f"the status {v} doesn't exist in the db")
 
     @field_validator("sfx")
-    def sfx_cond_exists(cls: ConditionModel, v: str) -> str:
+    def sfx_cond_exists(cls: StatusModel, v: str) -> str:
         if has.db_entry("sounds", v):
             return v
         raise ValueError(f"the sound {v} doesn't exist in the db")
@@ -1470,7 +1464,7 @@ TableName = Literal[
     "animation",
     "npc",
     "sounds",
-    "condition",
+    "status",
     "technique",
 ]
 
@@ -1490,7 +1484,7 @@ DataModel = Union[
     AnimationModel,
     NpcModel,
     SoundModel,
-    ConditionModel,
+    StatusModel,
     TechniqueModel,
 ]
 
@@ -1508,7 +1502,7 @@ class JSONDatabase:
             "item",
             "monster",
             "npc",
-            "condition",
+            "status",
             "technique",
             "encounter",
             "dialogue",
@@ -1704,8 +1698,8 @@ class JSONDatabase:
             elif table == "sounds":
                 sfx = SoundModel(**item)
                 self.database[table][sfx.slug] = sfx
-            elif table == "condition":
-                cond = ConditionModel(**item)
+            elif table == "status":
+                cond = StatusModel(**item)
                 self.database[table][cond.slug] = cond
             elif table == "technique":
                 teq = TechniqueModel(**item)
@@ -1726,7 +1720,7 @@ class JSONDatabase:
         pass
 
     @overload
-    def lookup(self, slug: str, table: Literal["condition"]) -> ConditionModel:
+    def lookup(self, slug: str, table: Literal["status"]) -> StatusModel:
         pass
 
     @overload
@@ -1876,7 +1870,7 @@ class JSONDatabase:
             "animation",
             "npc",
             "sounds",
-            "condition",
+            "status",
             "technique",
         ],
         slug: str,

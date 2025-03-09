@@ -5,7 +5,9 @@
       "monster": "cardiling",
       "encounter_rate": 2.5,
       "variables": [
-        "daytime:true"
+        {
+          "daytime": "true"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [
@@ -17,7 +19,9 @@
       "monster": "aardorn",
       "encounter_rate": 2.5,
       "variables": [
-        "daytime:true"
+        {
+          "daytime": "true"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [
@@ -29,7 +33,9 @@
       "monster": "eyenemy",
       "encounter_rate": 2.5,
       "variables": [
-        "daytime:true"
+        {
+          "daytime": "true"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [
@@ -41,7 +47,9 @@
       "monster": "axolightl",
       "encounter_rate": 1,
       "variables": [
-        "daytime:true"
+        {
+          "daytime": "true"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [
@@ -53,7 +61,9 @@
       "monster": "cataspike",
       "encounter_rate": 2.5,
       "variables": [
-        "daytime:true"
+        {
+          "daytime": "true"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [
@@ -65,7 +75,9 @@
       "monster": "cardiling",
       "encounter_rate": 2.5,
       "variables": [
-        "daytime:false"
+        {
+          "daytime": "false"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [
@@ -77,7 +89,9 @@
       "monster": "aardorn",
       "encounter_rate": 2.5,
       "variables": [
-        "daytime:false"
+        {
+          "daytime": "false"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [
@@ -89,7 +103,9 @@
       "monster": "eyenemy",
       "encounter_rate": 2.5,
       "variables": [
-        "daytime:false"
+        {
+          "daytime": "false"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [
@@ -101,7 +117,9 @@
       "monster": "axolightl",
       "encounter_rate": 1,
       "variables": [
-        "daytime:false"
+        {
+          "daytime": "false"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [
@@ -113,7 +131,9 @@
       "monster": "cataspike",
       "encounter_rate": 2.5,
       "variables": [
-        "daytime:false"
+        {
+          "daytime": "false"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [

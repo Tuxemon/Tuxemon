@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from tuxemon.db import Modifier
     from tuxemon.element import Element
     from tuxemon.monster import Monster
+    from tuxemon.taste import Taste
     from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
@@ -27,29 +28,6 @@ range_map: dict[str, tuple[str, str]] = {
     "ranged": ("ranged", "dodge"),
     "reach": ("ranged", "armour"),
     "reliable": ("level", "resist"),
-}
-
-taste_maps: dict[str, dict[tuple[str, str], float]] = {
-    "armour": {
-        ("cold", "soft"): pre.TASTE_RANGE[0],
-        ("warm", "hearty"): pre.TASTE_RANGE[1],
-    },
-    "speed": {
-        ("cold", "mild"): pre.TASTE_RANGE[0],
-        ("warm", "peppy"): pre.TASTE_RANGE[1],
-    },
-    "melee": {
-        ("cold", "sweet"): pre.TASTE_RANGE[0],
-        ("warm", "salty"): pre.TASTE_RANGE[1],
-    },
-    "ranged": {
-        ("cold", "flakey"): pre.TASTE_RANGE[0],
-        ("warm", "zesty"): pre.TASTE_RANGE[1],
-    },
-    "dodge": {
-        ("cold", "dry"): pre.TASTE_RANGE[0],
-        ("warm", "refined"): pre.TASTE_RANGE[1],
-    },
 }
 
 
@@ -435,20 +413,34 @@ def simple_lifeleech(user: Monster, target: Monster, divisor: int) -> int:
     return heal
 
 
-def update_stat(mon: Monster, stat_name: str) -> int:
+def update_stat(
+    stat_name: str,
+    stat_value: int,
+    taste_warm: Optional[Taste],
+    taste_cold: Optional[Taste],
+) -> int:
     """
     It returns a bonus / malus of the stat based on additional parameters.
     """
-    stat = getattr(mon, stat_name)
-    bonus = 0
-    malus = 0
-    for (taste_type, value), multiplier in taste_maps[stat_name].items():
-        if getattr(mon, f"taste_{taste_type}") == value:
-            if taste_type == "cold":
-                malus = stat * multiplier
-            else:
-                bonus = stat * multiplier
-    return int(bonus + malus)
+    modified_stat = float(stat_value)
+
+    if taste_cold:
+        for modifier in taste_cold.modifiers:
+            if stat_name in modifier.values:
+                logger.debug(
+                    f"Applying modifier: {modifier.multiplier} for {stat_name}"
+                )
+                modified_stat *= modifier.multiplier
+
+    if taste_warm:
+        for modifier in taste_warm.modifiers:
+            if stat_name in modifier.values:
+                logger.debug(
+                    f"Applying modifier: {modifier.multiplier} for {stat_name}"
+                )
+                modified_stat *= modifier.multiplier
+
+    return int(modified_stat)
 
 
 def today_ordinal() -> int:

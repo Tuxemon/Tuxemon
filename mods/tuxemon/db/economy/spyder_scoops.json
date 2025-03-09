@@ -180,7 +180,9 @@
         "price": 300,
         "cost": 60,
         "variables": [
-          "daytime:true"
+          {
+            "daytime": "true"
+          }
         ]
       },
       {
@@ -188,7 +190,9 @@
         "price": 300,
         "cost": 60,
         "variables": [
-          "daytime:false"
+          {
+            "daytime": "false"
+          }
         ]
       }
     ]
@@ -227,7 +231,9 @@
         "price": 300,
         "cost": 60,
         "variables": [
-          "daytime:true"
+          {
+            "daytime": "true"
+          }
         ]
       },
       {
@@ -235,7 +241,9 @@
         "price": 300,
         "cost": 60,
         "variables": [
-          "daytime:false"
+          {
+            "daytime": "false"
+          }
         ]
       }
     ]

@@ -72,24 +72,6 @@ class SkinSprite(str, Enum):
     orc = "orc"
 
 
-class TasteWarm(str, Enum):
-    tasteless = "tasteless"
-    peppy = "peppy"
-    salty = "salty"
-    hearty = "hearty"
-    zesty = "zesty"
-    refined = "refined"
-
-
-class TasteCold(str, Enum):
-    tasteless = "tasteless"
-    mild = "mild"
-    sweet = "sweet"
-    soft = "soft"
-    flakey = "flakey"
-    dry = "dry"
-
-
 class ItemCategory(str, Enum):
     none = "none"
     badge = "badge"
@@ -395,8 +377,8 @@ class MonsterEvolutionItemModel(BaseModel):
         None,
         description="Whether the monster must have been traded to evolve.",
     )
-    variables: Optional[Sequence[str]] = Field(
-        None,
+    variables: Sequence[dict[str, str]] = Field(
+        [],
         description="The game variables that must exist and match a specific value for the monster to evolve.",
         min_length=1,
     )
@@ -412,8 +394,8 @@ class MonsterEvolutionItemModel(BaseModel):
         None,
         description="The technique that a monster in the party must have for the evolution to occur.",
     )
-    moves: Optional[Sequence[str]] = Field(
-        None,
+    moves: Sequence[str] = Field(
+        [],
         description="The techniques that the monster must have learned for the evolution to occur.",
         min_length=1,
         max_length=prepare.MAX_MOVES,
@@ -422,25 +404,25 @@ class MonsterEvolutionItemModel(BaseModel):
         None,
         description="The bond value comparison required for the monster to evolve (e.g., greater_than, less_than, etc.).",
     )
-    party: Optional[Sequence[str]] = Field(
-        None,
+    party: Sequence[str] = Field(
+        [],
         description="The slug of the monsters that must be in the party for the evolution to occur.",
         min_length=1,
         max_length=prepare.PARTY_LIMIT - 1,
     )
-    taste_cold: Optional[TasteCold] = Field(
+    taste_cold: Optional[str] = Field(
         None,
         description="The required taste cold value for the monster to evolve.",
     )
-    taste_warm: Optional[TasteWarm] = Field(
+    taste_warm: Optional[str] = Field(
         None,
         description="The required taste warm value for the monster to evolve.",
     )
 
     @field_validator("moves")
     def move_exists(
-        cls: MonsterEvolutionItemModel, v: Optional[Sequence[str]]
-    ) -> Optional[Sequence[str]]:
+        cls: MonsterEvolutionItemModel, v: Sequence[str]
+    ) -> Sequence[str]:
         if v:
             for element in v:
                 if not has.db_entry("technique", element):
@@ -456,6 +438,14 @@ class MonsterEvolutionItemModel(BaseModel):
         if not v or has.db_entry("technique", v):
             return v
         raise ValueError(f"the technique {v} doesn't exist in the db")
+
+    @field_validator("taste_cold", "taste_warm")
+    def taste_exists(
+        cls: MonsterEvolutionItemModel, v: Optional[str]
+    ) -> Optional[str]:
+        if not v or has.db_entry("taste", v):
+            return v
+        raise ValueError(f"the taste {v} doesn't exist in the db")
 
     @field_validator("element")
     def element_exists(
@@ -490,14 +480,6 @@ class MonsterEvolutionItemModel(BaseModel):
         if not v or has.db_entry("item", v):
             return v
         raise ValueError(f"the item {v} doesn't exist in the db")
-
-    @field_validator("variables")
-    def variables_exists(
-        cls: MonsterEvolutionItemModel, v: Optional[Sequence[str]]
-    ) -> Optional[Sequence[str]]:
-        if v is None:
-            return v
-        return has.validate_variables(v)
 
     @field_validator("stats")
     def stats_exists(
@@ -1077,9 +1059,9 @@ class PartyMemberModel(BaseModel):
         ..., description="Experience required modifier", gt=0
     )
     gender: GenderType = Field(..., description="Gender of the monster")
-    variables: Optional[list[str]] = Field(
-        None,
-        description="List of variables that affect the presence of the monster.",
+    variables: Sequence[dict[str, str]] = Field(
+        [],
+        description="Sequence of variables that affect the presence of the monster.",
         min_length=1,
     )
 
@@ -1089,20 +1071,12 @@ class PartyMemberModel(BaseModel):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
 
-    @field_validator("variables")
-    def variables_exists(
-        cls: PartyMemberModel, v: Optional[Sequence[str]]
-    ) -> Optional[Sequence[str]]:
-        if v is None:
-            return v
-        return has.validate_variables(v)
-
 
 class BagItemModel(BaseModel):
     slug: str = Field(..., description="Slug of the item")
     quantity: int = Field(..., description="Quantity of the item")
-    variables: Optional[Sequence[str]] = Field(
-        None,
+    variables: Sequence[dict[str, str]] = Field(
+        [],
         description="List of variables that affect the item.",
         min_length=1,
     )
@@ -1112,14 +1086,6 @@ class BagItemModel(BaseModel):
         if has.db_entry("item", v):
             return v
         raise ValueError(f"the item {v} doesn't exist in the db")
-
-    @field_validator("variables")
-    def variables_exists(
-        cls: BagItemModel, v: Optional[Sequence[str]]
-    ) -> Optional[Sequence[str]]:
-        if v is None:
-            return v
-        return has.validate_variables(v)
 
 
 class NpcTemplateModel(BaseModel):
@@ -1305,8 +1271,8 @@ class EncounterItemModel(BaseModel):
         description="Minimum and maximum levels at which this encounter can occur.",
         max_length=2,
     )
-    variables: Optional[Sequence[str]] = Field(
-        None,
+    variables: Sequence[dict[str, str]] = Field(
+        [],
         description="List of variables that affect the encounter.",
         min_length=1,
     )
@@ -1321,14 +1287,6 @@ class EncounterItemModel(BaseModel):
         if has.db_entry("monster", v):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
-
-    @field_validator("variables")
-    def variables_exists(
-        cls: EncounterItemModel, v: Optional[Sequence[str]]
-    ) -> Optional[Sequence[str]]:
-        if v is None:
-            return v
-        return has.validate_variables(v)
 
 
 class EncounterModel(BaseModel):
@@ -1388,24 +1346,33 @@ class ElementModel(BaseModel):
         raise ValueError(f"the icon {v} doesn't exist in the db")
 
 
+class TasteModel(BaseModel):
+    slug: str = Field(..., description="Slug of the taste")
+    name: str = Field(..., description="Name of the taste")
+    taste_type: Literal["warm", "cold"] = Field(
+        ..., description="Type of taste: 'cold' or 'warm'"
+    )
+    modifiers: Sequence[Modifier] = Field(
+        ..., description="Modifiers associated with the taste"
+    )
+
+    @field_validator("name")
+    def translation_exists_taste(cls: TasteModel, v: str) -> str:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+
 class EconomyEntityModel(BaseModel):
     name: str = Field(..., description="Name of the entity")
     price: int = Field(0, description="Price of the entity")
     cost: int = Field(0, description="Cost of the entity")
     inventory: int = Field(-1, description="Quantity of the entity")
-    variables: Optional[Sequence[str]] = Field(
-        None,
+    variables: Sequence[dict[str, str]] = Field(
+        [],
         description="List of variables that affect the entity in the economy.",
         min_length=1,
     )
-
-    @field_validator("variables")
-    def variables_exists(
-        cls: EconomyEntityModel, v: Optional[Sequence[str]]
-    ) -> Optional[Sequence[str]]:
-        if v is None:
-            return v
-        return has.validate_variables(v)
 
 
 class EconomyItemModel(EconomyEntityModel):
@@ -1490,6 +1457,7 @@ class AnimationModel(BaseModel):
 TableName = Literal[
     "economy",
     "element",
+    "taste",
     "shape",
     "template",
     "mission",
@@ -1509,6 +1477,7 @@ TableName = Literal[
 DataModel = Union[
     EconomyModel,
     ElementModel,
+    TasteModel,
     ShapeModel,
     TemplateModel,
     MissionModel,
@@ -1549,6 +1518,7 @@ class JSONDatabase:
             "animation",
             "economy",
             "element",
+            "taste",
             "shape",
             "template",
             "mission",
@@ -1695,6 +1665,9 @@ class JSONDatabase:
             elif table == "element":
                 element = ElementModel(**item)
                 self.database[table][element.slug] = element
+            elif table == "taste":
+                taste = TasteModel(**item)
+                self.database[table][taste.slug] = taste
             elif table == "shape":
                 shape = ShapeModel(**item)
                 self.database[table][shape.slug] = shape
@@ -1782,6 +1755,10 @@ class JSONDatabase:
 
     @overload
     def lookup(self, slug: str, table: Literal["element"]) -> ElementModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["taste"]) -> TasteModel:
         pass
 
     @overload
@@ -1885,6 +1862,7 @@ class JSONDatabase:
         self,
         table: Literal[
             "economy",
+            "taste",
             "element",
             "shape",
             "template",
@@ -2011,35 +1989,6 @@ class Validator:
         if slug in self.db.preloaded[table]:
             return True
         return False
-
-    def validate_variables(self, variables: Sequence[str]) -> Sequence[str]:
-        """
-        Validates a sequence of variables.
-
-        Parameters:
-        variables: A sequence of variables, where each variable is a string
-            in the format "key:value".
-
-        Returns:
-            The input sequence if it is valid.
-
-        Raises:
-        ValueError: If the sequence contains duplicate variables or if any variable
-                    is not in the correct format.
-        """
-        if len(variables) != len(set(variables)):
-            raise ValueError("The sequence contains duplicate variables")
-        for variable in variables:
-            if (
-                not variable
-                or len(variable.split(":")) != 2
-                or variable[0] == ":"
-                or variable[-1] == ":"
-            ):
-                raise ValueError(
-                    f"the variable {variable} isn't formatted correctly"
-                )
-        return variables
 
 
 # Validator container

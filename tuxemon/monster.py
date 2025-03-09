@@ -24,8 +24,6 @@ from tuxemon.db import (
     PlagueType,
     ResponseCondition,
     StatType,
-    TasteCold,
-    TasteWarm,
     db,
 )
 from tuxemon.element import Element
@@ -33,6 +31,7 @@ from tuxemon.evolution import Evolution
 from tuxemon.locale import T
 from tuxemon.shape import Shape
 from tuxemon.sprite import Sprite
+from tuxemon.taste import Taste
 from tuxemon.technique.technique import Technique, decode_moves, encode_moves
 
 if TYPE_CHECKING:
@@ -141,8 +140,8 @@ class Monster:
 
         self.status: list[Condition] = []
         self.plague: dict[str, PlagueType] = {}
-        self.taste_cold = TasteCold.tasteless
-        self.taste_warm = TasteWarm.tasteless
+        self.taste_cold: str = "tasteless"
+        self.taste_warm: str = "tasteless"
 
         self.max_moves = prepare.MAX_MOVES
         self.txmn_id = 0
@@ -397,11 +396,23 @@ class Monster:
         """
         Apply updates to the monster's stats.
         """
-        self.armour += formula.update_stat(self, "armour")
-        self.dodge += formula.update_stat(self, "dodge")
-        self.melee += formula.update_stat(self, "melee")
-        self.ranged += formula.update_stat(self, "ranged")
-        self.speed += formula.update_stat(self, "speed")
+        taste_cold = Taste.get_taste(self.taste_cold)
+        taste_warm = Taste.get_taste(self.taste_warm)
+        self.armour = formula.update_stat(
+            "armour", self.armour, taste_cold, taste_warm
+        )
+        self.dodge = formula.update_stat(
+            "dodge", self.dodge, taste_cold, taste_warm
+        )
+        self.melee = formula.update_stat(
+            "melee", self.melee, taste_cold, taste_warm
+        )
+        self.ranged = formula.update_stat(
+            "ranged", self.ranged, taste_cold, taste_warm
+        )
+        self.speed = formula.update_stat(
+            "speed", self.speed, taste_cold, taste_warm
+        )
 
     def set_stats(self) -> None:
         """
@@ -414,28 +425,48 @@ class Monster:
         self.calculate_base_stats()
         self.apply_stat_updates()
 
-    def set_taste_cold(self, taste_cold: TasteCold) -> TasteCold:
-        """
-        It returns the cold taste.
-        """
-        if taste_cold.tasteless:
-            self.taste_cold = random.choice(
-                [t for t in TasteCold if t != TasteCold.tasteless]
-            )
+    def set_taste_cold(self, taste_slug: str = "tasteless") -> str:
+        """Sets the cold taste of the monster."""
+
+        if taste_slug == "tasteless":
+            cold_tastes = [
+                taste.slug
+                for taste in Taste.get_all_tastes().values()
+                if taste.taste_type == "cold" and taste.slug != "tasteless"
+            ]
+            if cold_tastes:
+                self.taste_cold = random.choice(cold_tastes)
+            else:
+                self.taste_cold = taste_slug
         else:
-            self.taste_cold = taste_cold
+            taste = Taste.get_taste(taste_slug)
+            if taste is None:
+                self.taste_cold = taste_slug
+            else:
+                self.taste_cold = taste.slug
+
         return self.taste_cold
 
-    def set_taste_warm(self, taste_warm: TasteWarm) -> TasteWarm:
-        """
-        It returns the warm taste.
-        """
-        if taste_warm.tasteless:
-            self.taste_warm = random.choice(
-                [t for t in TasteWarm if t != TasteWarm.tasteless]
-            )
+    def set_taste_warm(self, taste_slug: str = "tasteless") -> str:
+        """Sets the warm taste of the monster."""
+
+        if taste_slug == "tasteless":
+            warm_tastes = [
+                taste.slug
+                for taste in Taste.get_all_tastes().values()
+                if taste.taste_type == "warm" and taste.slug != "tasteless"
+            ]
+            if warm_tastes:
+                self.taste_warm = random.choice(warm_tastes)
+            else:
+                self.taste_warm = taste_slug
         else:
-            self.taste_warm = taste_warm
+            taste = Taste.get_taste(taste_slug)
+            if taste is None:
+                self.taste_warm = taste_slug
+            else:
+                self.taste_warm = taste.slug
+
         return self.taste_warm
 
     def set_capture(self, amount: int) -> int:

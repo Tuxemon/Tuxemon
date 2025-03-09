@@ -1,0 +1,122 @@
+[
+  {
+    "slug": "mild",
+    "name": "taste_mild",
+    "taste_type": "cold",
+    "modifiers": [
+      {
+        "attribute": "stat",
+        "values": ["speed"],
+        "multiplier": 0.9
+      }
+    ]
+  },
+  {
+    "slug": "sweet",
+    "name": "taste_sweet",
+    "taste_type": "cold",
+    "modifiers": [
+      {
+        "attribute": "stat",
+        "values": ["melee"],
+        "multiplier": 0.9
+      }
+    ]
+  },
+  {
+    "slug": "soft",
+    "name": "taste_soft",
+    "taste_type": "cold",
+    "modifiers": [
+      {
+        "attribute": "stat",
+        "values": ["armour"],
+        "multiplier": 0.9
+      }
+    ]
+  },
+  {
+    "slug": "flakey",
+    "name": "taste_flakey",
+    "taste_type": "cold",
+    "modifiers": [
+      {
+        "attribute": "stat",
+        "values": ["ranged"],
+        "multiplier": 0.9
+      }
+    ]
+  },
+  {
+    "slug": "dry",
+    "name": "taste_dry",
+    "taste_type": "cold",
+    "modifiers": [
+      {
+        "attribute": "stat",
+        "values": ["dodge"],
+        "multiplier": 0.9
+      }
+    ]
+  },
+  {
+    "slug": "peppy",
+    "name": "taste_peppy",
+    "taste_type": "warm",
+    "modifiers": [
+      {
+        "attribute": "stat",
+        "values": ["speed"],
+        "multiplier": 1.1
+      }
+    ]
+  },
+  {
+    "slug": "salty",
+    "name": "taste_salty",
+    "taste_type": "warm",
+    "modifiers": [
+      {
+        "attribute": "stat",
+        "values": ["melee"],
+        "multiplier": 1.1
+      }
+    ]
+  },
+  {
+    "slug": "hearty",
+    "name": "taste_hearty",
+    "taste_type": "warm",
+    "modifiers": [
+      {
+        "attribute": "stat",
+        "values": ["armour"],
+        "multiplier": 1.1
+      }
+    ]
+  },
+  {
+    "slug": "zesty",
+    "name": "taste_zesty",
+    "taste_type": "warm",
+    "modifiers": [
+      {
+        "attribute": "stat",
+        "values": ["ranged"],
+        "multiplier": 1.1
+      }
+    ]
+  },
+  {
+    "slug": "refined",
+    "name": "taste_refined",
+    "taste_type": "warm",
+    "modifiers": [
+      {
+        "attribute": "stat",
+        "values": ["dodge"],
+        "multiplier": 1.1
+      }
+    ]
+  }
+]

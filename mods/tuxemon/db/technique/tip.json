@@ -3,8 +3,13 @@
   "accuracy": 1,
   "animation": "green_circle",
   "effects": [
-    "give festering,enemy_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["festering", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +20,7 @@
   "sfx": "sfx_blaster",
   "slug": "tip",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -24,7 +30,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Sharp"],
+  "tags": ["sharp"],
   "types": [
     "earth"
   ],

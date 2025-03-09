@@ -6,15 +6,7 @@ import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon.db import (
-    Comparison,
-    ElementType,
-    EvolutionStage,
-    GenderType,
-    StatType,
-    TasteCold,
-    TasteWarm,
-)
+from tuxemon.db import Comparison, EvolutionStage, GenderType, StatType
 from tuxemon.event.eventaction import EventAction
 from tuxemon.menu.interface import MenuItem
 from tuxemon.monster import Monster
@@ -101,11 +93,7 @@ class GetPlayerMonsterAction(EventAction):
                 self.result = True
                 return self.result
             # filter element / type
-            if (
-                filter_name == "element"
-                and value_name in list(ElementType)
-                and target.has_type(ElementType(value_name))
-            ):
+            if filter_name == "element" and target.has_type(value_name):
                 self.result = True
                 return self.result
             # filter shape
@@ -113,19 +101,11 @@ class GetPlayerMonsterAction(EventAction):
                 self.result = True
                 return self.result
             # filter taste warm
-            if (
-                filter_name == "taste_warm"
-                and value_name in list(TasteWarm)
-                and target.taste_warm == value_name
-            ):
+            if filter_name == "taste_warm" and target.taste_warm == value_name:
                 self.result = True
                 return self.result
             # filter taste cold
-            if (
-                filter_name == "taste_cold"
-                and value_name in list(TasteCold)
-                and target.taste_cold == value_name
-            ):
+            if filter_name == "taste_cold" and target.taste_cold == value_name:
                 self.result = True
                 return self.result
 

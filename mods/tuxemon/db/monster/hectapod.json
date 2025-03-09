@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 7,
-            "technique": "tonguespear"
+            "technique": "icicle_spear"
         },
         {
             "level_learned": 13,
@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "icicle_spear"
+            "technique": "water_blast"
         },
         {
             "level_learned": 25,
@@ -46,7 +46,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["polliwog"],
+    "terrains": [],
+    "tags": ["water", "weather"],
     "shape": "polliwog",
     "stage": "stage1",
     "types": [

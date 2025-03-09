@@ -3,8 +3,13 @@
   "accuracy": 1,
   "animation": "heal_burst_120",
   "effects": [
-    "give recover,own_monster",
-    "healing"
+    {
+      "type": "give",
+      "parameters": ["recover", "own_monster"]
+    },
+    {
+      "type": "healing"
+    }
   ],
   "flip_axes": "",
   "healing_power": 3.0,
@@ -16,6 +21,7 @@
   "sfx": "sfx_blaster",
   "slug": "refresh",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -25,7 +31,7 @@
     "own_trainer": false
   },
   "category": "powerful",
-  "tags": ["Universal", "Healing"],
+  "tags": ["universal", "healing"],
   "types": [
     "aether"
   ],

@@ -3,8 +3,14 @@
   "accuracy": 0.6,
   "animation": "smokebomb_puff_128",
   "effects": [
-    "give poison,enemy_monster",
-    "splash 2"
+    {
+      "type": "give",
+      "parameters": ["poison", "enemy_monster"]
+    },
+    {
+      "type": "splash",
+      "parameters": ["2"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +21,7 @@
   "sfx": "sfx_blaster",
   "slug": "rust_bomb",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -24,7 +31,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Bomber", "Steel"],
+  "tags": ["bomber", "steel"],
   "types": [
     "metal"
   ],

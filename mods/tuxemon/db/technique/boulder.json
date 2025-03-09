@@ -3,7 +3,10 @@
   "accuracy": 1,
   "animation": "shield_rock",
   "effects": [
-    "give hardshell,own_monster"
+    {
+      "type": "give",
+      "parameters": ["hardshell", "own_monster"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +17,7 @@
   "sfx": "sfx_crumble2",
   "slug": "boulder",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -23,7 +27,7 @@
     "own_trainer": false
   },
   "category": "condition_imposer",
-  "tags": ["Rock", "Bug", "Shielded"],
+  "tags": ["rock", "bug", "shielded"],
   "types": [
     "aether"
   ],

@@ -51,14 +51,32 @@
             "technique": "saber"
         }
     ],
-    "evolutions": [],
+    "evolutions": [
+        {
+            "monster_slug": "askylpaws",
+            "item": "ox_stick"
+        },
+        {
+            "monster_slug": "erythroskyte",
+            "item": "peace_lily"
+        }
+    ],
     "history": [
         {
             "mon_slug": "medipup",
             "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "askylpaws",
+            "evo_stage": "stage2"
+        },
+        {
+            "mon_slug": "erythroskyte",
+            "evo_stage": "stage2"
         }
     ],
-    "tags": ["hunter", "urban"],
+    "terrains": ["urban"],
+    "tags": ["healing", "bite", "darkness", "gadgets"],
     "shape": "hunter",
     "stage": "stage1",
     "types": [

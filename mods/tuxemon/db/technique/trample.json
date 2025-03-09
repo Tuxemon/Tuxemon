@@ -1,0 +1,40 @@
+{
+  "tech_id": 219,
+  "accuracy": 0.9,
+  "animation": "triple_whammy_80",
+  "effects": [
+    {
+      "type": "give",
+      "parameters": ["stuck", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
+  ],
+  "flip_axes": "",
+  "is_fast": true,
+  "potency": 0.8,
+  "power": 2.5,
+  "range": "melee",
+  "recharge": 3,
+  "sfx": "sfx_blaster",
+  "slug": "trample",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "powerful",
+  "tags": ["megafauna", "fury"],
+  "types": [
+    "earth"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

@@ -1,0 +1,85 @@
+{
+    "slug": "virware",
+    "category": "virtual",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "bullet"
+        },
+        {
+            "level_learned": 1,
+            "technique": "wall_of_steel"
+        },
+        {
+            "level_learned": 4,
+            "technique": "buzz"
+        },
+        {
+            "level_learned": 7,
+            "technique": "sleep_bomb"
+        },
+        {
+            "level_learned": 13,
+            "technique": "meltdown"
+        },
+        {
+            "level_learned": 16,
+            "technique": "shuriken"
+        },
+        {
+            "level_learned": 19,
+            "technique": "beam"
+        },
+        {
+            "level_learned": 25,
+            "technique": "terror"
+        },
+        {
+            "level_learned": 28,
+            "technique": "bubble_trap"
+        },
+        {
+            "level_learned": 31,
+            "technique": "electroplate"
+        },
+        {
+            "level_learned": 37,
+            "technique": "electrical_storm"
+        },
+        {
+            "level_learned": 40,
+            "technique": "magnetic_body"
+        },
+        {
+            "level_learned": 55,
+            "technique": "energy_beam"
+        }
+    ],
+    "evolutions": [
+        {
+            "monster_slug": "trojerror",
+            "item": "metal_booster"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "trojerror",
+            "evo_stage": "stage1"
+        }
+    ],
+    "terrains": ["extraplanar"],
+    "tags": ["machine", "steel"],
+    "shape": "sprite",
+    "stage": "basic",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 379,
+    "height": 30,
+    "weight": 0.1,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

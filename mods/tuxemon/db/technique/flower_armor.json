@@ -1,0 +1,37 @@
+{
+  "tech_id": 226,
+  "accuracy": 1.0,
+  "animation": "flower",
+  "effects": [
+    {
+      "type": "give",
+      "parameters": ["elementalshield", "own_monster"]
+    }
+  ],
+  "flip_axes": "",
+  "is_fast": false,
+  "potency": 1.0,
+  "power": 0.0,
+  "range": "special",
+  "recharge": 1,
+  "sfx": "sfx_blaster",
+  "slug": "flower_armor",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": false,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": true,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "condition_imposer",
+  "tags": ["plant"],
+  "types": [
+    "wood"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

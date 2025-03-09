@@ -3,21 +3,33 @@
   "accuracy": 0.8,
 	"animation": null,
 	"conditions": [
-	  	"not status grabbed",
-	  	"not status stuck"
+    {
+      "type": "status",
+      "parameters": ["grabbed"],
+      "operator": "not"
+    },
+    {
+      "type": "status",
+      "parameters": ["stuck"],
+      "operator": "not"
+    }
 	],
 	"effects": [
-		"disappear hawk"
+    {
+      "type": "disappear",
+      "parameters": ["hawk"]
+    }
 	],
   "flip_axes": "",
   "is_fast": true,
   "potency": 1,
   "power": 1,
-  "range": "touch",
+  "range": "melee",
   "recharge": 4,
   "sfx": "sfx_blaster",
   "slug": "altitude",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -26,8 +38,8 @@
     "own_team": false,
     "own_trainer": false
   },
-  "category": "notype",
-  "tags": ["Bird"],
+  "category": "simple",
+  "tags": ["bird"],
   "types": [
     "wood",
     "earth"

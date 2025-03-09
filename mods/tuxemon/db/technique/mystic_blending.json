@@ -3,9 +3,17 @@
   "accuracy": 1,
   "animation": "sparks_blue",
   "effects": [
-    "give recover,own_monster",
-    "give focused,enemy_monster",
-    "healing"
+    {
+      "type": "give",
+      "parameters": ["recover", "own_monster"]
+    },
+    {
+      "type": "give",
+      "parameters": ["focused", "enemy_monster"]
+    },
+    {
+      "type": "healing"
+    }
   ],
   "flip_axes": "",
   "healing_power": 3.0,
@@ -17,6 +25,7 @@
   "sfx": "sfx_blaster",
   "slug": "mystic_blending",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -26,7 +35,7 @@
     "own_trainer": false
   },
   "category": "exotic",
-  "tags": ["Healing", "Mental"],
+  "tags": ["healing", "mental"],
   "types": [
     "earth"
   ],

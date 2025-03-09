@@ -3,9 +3,17 @@
   "accuracy": 1,
   "animation": "tornado_bulk",
   "effects": [
-    "give slow,enemy_monster",
-    "multiattack 5",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["slow", "enemy_monster"]
+    },
+    {
+      "type": "multiattack",
+      "parameters": ["5"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -17,6 +25,7 @@
   "sfx": "sfx_blaster",
   "slug": "webs_wind",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -26,7 +35,7 @@
     "own_trainer": false
   },
   "category": "reserved",
-  "tags": ["Reserved"],
+  "tags": ["reserved"],
   "types": [
     "earth",
     "wood"

@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "kindling_flame"
+            "technique": "fire_claw"
         },
         {
             "level_learned": 4,
@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "fire_claw"
+            "technique": "kindling_flame"
         },
         {
             "level_learned": 28,
@@ -55,7 +55,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["varmint"],
+    "terrains": [],
+    "tags": ["bug"],
     "shape": "varmint",
     "stage": "basic",
     "types": [

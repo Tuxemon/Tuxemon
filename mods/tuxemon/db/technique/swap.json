@@ -2,11 +2,21 @@
 	"animation": null,
 	"accuracy": 0.0,
 	"conditions": [
-	  	"not status grabbed",
-	  	"not status stuck"
+    {
+      "type": "status",
+      "parameters": ["grabbed"],
+      "operator": "not"
+    },
+    {
+      "type": "status",
+      "parameters": ["stuck"],
+      "operator": "not"
+    }
 	],
 	"effects": [
-		"swap"
+    {
+      "type": "swap"
+    }
 	],
 	"flip_axes": "",
 	"potency": 0.0,
@@ -15,6 +25,7 @@
 	"sfx": "sfx_blaster",
 	"slug": "swap",
 	"sort": "meta",
+	"modifiers": [],
 	"target": {
 		"enemy_monster": false,
 		"enemy_team": false,
@@ -25,7 +36,7 @@
 	},
 	"tech_id": 0,
 	"category": "notype",
-	"tags": ["NoType"],
+	"tags": ["notype"],
 	"types": [],
 	"use_failure": null,
 	"use_success": null,

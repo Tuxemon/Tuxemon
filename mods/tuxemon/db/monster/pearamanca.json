@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "energy_claws"
+            "technique": "splinter"
         },
         {
             "level_learned": 1,
@@ -16,16 +16,37 @@
         },
         {
             "level_learned": 10,
-            "technique": "blossom"
+            "technique": "roll"
         },
         {
             "level_learned": 19,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 25,
+            "technique": "sylvan"
+        },
+        {
+            "level_learned": 28,
             "technique": "overgrowth"
+        },
+        {
+            "level_learned": 34,
+            "technique": "terror"
+        },
+        {
+            "level_learned": 40,
+            "technique": "rot"
+        },
+        {
+            "level_learned": 46,
+            "technique": "undertaker"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["bite", "plant", "shapeshifter"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

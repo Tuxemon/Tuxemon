@@ -3,7 +3,10 @@
   "accuracy": 1,
   "animation": "slash_power",
   "effects": [
-    "switch enemy_monster,earth"
+    {
+      "type": "switch",
+      "parameters": ["enemy_monster", "earth"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "ants",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +27,7 @@
     "own_trainer": false
   },
   "category": "exotic",
-  "tags": ["Bug", "Shapeshifter"],
+  "tags": ["bug", "shapeshifter"],
   "types": [
     "aether"
   ],

@@ -8,19 +8,19 @@
         },
         {
             "level_learned": 1,
-            "technique": "shrapnel"
+            "technique": "buzz"
         },
         {
             "level_learned": 4,
             "technique": "splinter"
         },
         {
-            "level_learned": 4,
+            "level_learned": 7,
             "technique": "font"
         },
         {
-            "level_learned": 7,
-            "technique": "peregrine"
+            "level_learned": 10,
+            "technique": "evasion"
         },
         {
             "level_learned": 13,
@@ -58,7 +58,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["brute", "woodland"],
+    "terrains": ["woodland"],
+    "tags": ["fists", "bug"],
     "shape": "brute",
     "stage": "stage2",
     "types": [

@@ -1,0 +1,40 @@
+{
+  "tech_id": 200,
+  "accuracy": 0.95,
+  "animation": "needle",
+  "effects": [
+    {
+      "type": "give",
+      "parameters": ["stuck", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
+  ],
+  "flip_axes": "",
+  "is_fast": false,
+  "potency": 0.8,
+  "power": 3,
+  "range": "ranged",
+  "recharge": 3,
+  "sfx": "sfx_blaster",
+  "slug": "thorn_burst",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "powerful",
+  "tags": ["plant"],
+  "types": [
+    "wood"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

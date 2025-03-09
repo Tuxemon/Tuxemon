@@ -44,7 +44,8 @@ class TestMonsterActions(unittest.TestCase):
         moveset=[{"level_learned": 1, "technique": "ram"}],
         evolutions=[],
         history=[],
-        tags=["dragon", "coastal", "desert", "mountains"],
+        tags=[],
+        terrains=["coastal", "desert", "mountains"],
         shape="dragon",
         stage="basic",
         types=["fire"],
@@ -62,7 +63,8 @@ class TestMonsterActions(unittest.TestCase):
         moveset=[{"level_learned": 1, "technique": "ram"}],
         evolutions=[],
         history=[],
-        tags=["blob"],
+        tags=[],
+        terrains=[],
         shape="blob",
         stage="basic",
         types=["metal"],
@@ -75,6 +77,7 @@ class TestMonsterActions(unittest.TestCase):
         upper_catch_resistance=1.25,
     )
     _faint = ConditionModel(
+        effects=[],
         modifiers=[],
         flip_axes="",
         sfx="sfx_faint",

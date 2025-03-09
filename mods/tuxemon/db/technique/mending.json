@@ -3,7 +3,9 @@
   "accuracy": 1,
   "animation": "x_attack",
   "effects": [
-    "healing"
+    {
+      "type": "healing"
+    }
   ],
   "flip_axes": "",
   "healing_power": 2.0,
@@ -15,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "mending",
   "sort": "meta",
+  "modifiers": [],
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -24,7 +27,7 @@
     "own_trainer": false
   },
   "category": "condition_imposer",
-  "tags": ["Leadership"],
+  "tags": ["leadership"],
   "types": [
     "earth"
   ],

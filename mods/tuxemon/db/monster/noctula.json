@@ -47,7 +47,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["flier"],
+    "terrains": [],
+    "tags": ["darkness"],
     "shape": "flier",
     "stage": "basic",
     "types": [

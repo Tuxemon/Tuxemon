@@ -16,7 +16,7 @@
         },
         {
             "level_learned": 7,
-            "technique": "tip"
+            "technique": "hammerhead"
         },
         {
             "level_learned": 13,
@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 25,
-            "technique": "avalanche"
+            "technique": "tonguespear"
         },
         {
             "level_learned": 28,
@@ -32,7 +32,7 @@
         },
         {
             "level_learned": 31,
-            "technique": "hammerhead"
+            "technique": "rocky_barrage"
         }
     ],
     "evolutions": [
@@ -47,7 +47,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["grub"],
+    "terrains": [],
+    "tags": ["bug"],
     "shape": "grub",
     "stage": "basic",
     "types": [

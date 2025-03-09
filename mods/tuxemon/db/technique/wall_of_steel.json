@@ -3,8 +3,13 @@
   "accuracy": 0.75,
   "animation": "screen",
   "effects": [
-    "give hardshell,own_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["hardshell", "own_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "x",
   "is_fast": true,
@@ -15,6 +20,7 @@
   "sfx": "sfx_blaster",
   "slug": "wall_of_steel",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -24,7 +30,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Summoner"],
+  "tags": ["summoner"],
   "types": [
     "metal"
   ],

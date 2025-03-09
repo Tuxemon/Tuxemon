@@ -1,0 +1,36 @@
+{
+  "tech_id": 195,
+  "accuracy": 1,
+  "animation": "beam",
+  "effects": [
+    {
+      "type": "damage"
+    }
+  ],
+  "flip_axes": "",
+  "is_fast": false,
+  "potency": 0.0,
+  "power": 2.3,
+  "range": "ranged",
+  "recharge": 1,
+  "sfx": "sfx_blaster",
+  "slug": "water_blast",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "simple",
+  "tags": ["water"],
+  "types": [
+    "water"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

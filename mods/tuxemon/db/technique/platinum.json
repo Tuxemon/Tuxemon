@@ -3,9 +3,17 @@
   "accuracy": 0.7,
   "animation": "blue_circle",
   "effects": [
-    "give focused,own_monster",
-    "give softened,enemy_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["focused", "own_monster"]
+    },
+    {
+      "type": "give",
+      "parameters": ["softened", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -16,6 +24,7 @@
   "sfx": "sfx_blaster",
   "slug": "platinum",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -25,7 +34,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Gemstone", "Machine", "Shielded", "Steel"],
+  "tags": ["gemstone", "machine", "shielded", "steel"],
   "types": [
     "metal",
     "earth"

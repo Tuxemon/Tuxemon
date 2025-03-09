@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "muddle"
+            "technique": "tail_lash"
         },
         {
             "level_learned": 1,
@@ -51,7 +51,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["sprite", "jungle"],
+    "terrains": ["jungle"],
+    "tags": ["plant", "leadership", "food", "tail"],
     "shape": "sprite",
     "stage": "basic",
     "types": [

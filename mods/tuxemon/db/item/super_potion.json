@@ -25,6 +25,7 @@
     "MainCombatMenuState",
     "WorldState"
   ],
+  "modifiers": [],
   "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

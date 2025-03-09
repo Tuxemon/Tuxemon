@@ -34,7 +34,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["polliwog", "coastal", "freshwater", "sea"],
+    "terrains": ["coastal", "freshwater", "sea"],
+    "tags": ["mental", "bite", "shielded"],
     "shape": "polliwog",
     "stage": "stage1",
     "types": [

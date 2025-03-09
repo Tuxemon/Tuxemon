@@ -44,7 +44,7 @@
         },
         {
             "level_learned": 52,
-            "technique": "mudslide"
+            "technique": "rocky_barrage"
         }
     ],
     "evolutions": [],
@@ -58,7 +58,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["brute", "ruins", "urban"],
+    "terrains": ["ruins", "urban"],
+    "tags": ["fists", "rock", "fury", "shielded"],
     "shape": "brute",
     "stage": "stage2",
     "types": [

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 
 from tuxemon.db import SurfaceKeys
 from tuxemon.event import MapCondition, get_npc
@@ -12,9 +13,6 @@ from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
-
-
-from dataclasses import dataclass
 
 
 @dataclass

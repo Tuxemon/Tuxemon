@@ -1,29 +1,34 @@
 {
 	"animation": null,
-	"accuracy": 0.0,
+	"accuracy": 0,
 	"effects": [
-	  "empty"
+	  {
+		"type": "empty"
+	  }
 	],
 	"flip_axes": "",
-	"potency": 0.0,
+	"potency": 0,
 	"power": 0,
 	"range": "special",
 	"sfx": "sfx_blaster",
 	"slug": "empty",
 	"sort": "meta",
+	"modifiers": [],
 	"target": {
-		"enemy_monster": false,
-		"enemy_team": false,
-		"enemy_trainer": false,
-		"own_monster": true,
-		"own_team": false,
-		"own_trainer": false
+	  "enemy_monster": false,
+	  "enemy_team": false,
+	  "enemy_trainer": false,
+	  "own_monster": true,
+	  "own_team": false,
+	  "own_trainer": false
 	},
 	"tech_id": 0,
 	"category": "notype",
-	"tags": ["NoType"],
+	"tags": [
+	  "notype"
+	],
 	"types": [],
 	"use_failure": "combat_none",
 	"use_success": null,
 	"use_tech": "combat_skip"
-}
+  }

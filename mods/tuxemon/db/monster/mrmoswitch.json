@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["sprite", "urban"],
+    "terrains": ["urban"],
+    "tags": ["machine", "light"],
     "shape": "sprite",
     "stage": "stage1",
     "types": [

@@ -2,68 +2,85 @@
     "slug": "waysprite",
     "category": "wavering",
     "moveset": [
-        {
-            "level_learned": 1,
-            "technique": "frostbite"
-        },
-        {
-            "level_learned": 1,
-            "technique": "goad"
-        },
-        {
-            "level_learned": 4,
-            "technique": "beam"
-        },
-        {
-            "level_learned": 7,
-            "technique": "orbs"
-        },
-        {
-            "level_learned": 13,
-            "technique": "neutralize"
-        }
+      {
+        "level_learned": 1,
+        "technique": "ice_claw"
+      },
+      {
+        "level_learned": 1,
+        "technique": "goad"
+      },
+      {
+        "level_learned": 4,
+        "technique": "beam"
+      },
+      {
+        "level_learned": 7,
+        "technique": "orbs"
+      },
+      {
+        "level_learned": 13,
+        "technique": "neutralize"
+      }
     ],
     "evolutions": [
-        {
-            "at_level": 14,
-            "monster_slug": "angesnow",
-            "variables": ["daytime:true"]
-        },
-        {
-            "at_level": 14,
-            "monster_slug": "demosnow",
-            "variables": ["daytime:false"]
-        }
+      {
+        "at_level": 14,
+        "monster_slug": "angesnow",
+        "variables": [
+          {
+            "daytime": "true"
+          }
+        ]
+      },
+      {
+        "at_level": 14,
+        "monster_slug": "demosnow",
+        "variables": [
+          {
+            "daytime": "false"
+          }
+        ]
+      }
     ],
     "history": [
-        {
-            "mon_slug": "angesnow",
-            "evo_stage": "stage1"
-        },
-        {
-            "mon_slug": "demosnow",
-            "evo_stage": "stage1"
-        },
-        {
-            "mon_slug": "lucifice",
-            "evo_stage": "stage2"
-        },
-        {
-            "mon_slug": "seraphice",
-            "evo_stage": "stage2"
-        }
+      {
+        "mon_slug": "angesnow",
+        "evo_stage": "stage1"
+      },
+      {
+        "mon_slug": "demosnow",
+        "evo_stage": "stage1"
+      },
+      {
+        "mon_slug": "lucifice",
+        "evo_stage": "stage2"
+      },
+      {
+        "mon_slug": "seraphice",
+        "evo_stage": "stage2"
+      }
     ],
-    "tags": ["sprite", "extraplanar"],
+    "terrains": [
+      "extraplanar"
+    ],
+    "tags": [
+      "ice",
+      "leadership",
+      "weather"
+    ],
     "shape": "sprite",
     "stage": "basic",
     "types": [
-        "water"
+      "water"
     ],
-    "possible_genders": ["neuter"],
+    "possible_genders": [
+      "neuter"
+    ],
     "txmn_id": 262,
     "height": 15,
     "weight": 1,
-    "catch_rate": 100.0,
+    "catch_rate": 100,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.25
-}
+  }

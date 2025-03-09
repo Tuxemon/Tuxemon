@@ -68,7 +68,7 @@ class CreateNpcAction(EventAction):
             load_party_monsters(npc, npc_details, game_variables)
         if npc_details.items:
             load_party_items(npc, npc_details, game_variables)
-        npc.load_sprites()
+        npc.sprite_renderer._load_sprites()
 
 
 lookup_cache: dict[str, NpcModel] = {}
@@ -124,10 +124,12 @@ def load_party_items(
 
 
 def check_variables(
-    npc_vars: Sequence[str], game_variables: dict[str, Any]
+    npc_vars: Sequence[dict[str, str]], game_variables: dict[str, Any]
 ) -> bool:
     return all(
-        key in game_variables and game_variables[key] == value
+        all(
+            key in game_variables and game_variables[key] == value
+            for key, value in variable.items()
+        )
         for variable in npc_vars
-        for key, value in [variable.split(":")]
     )

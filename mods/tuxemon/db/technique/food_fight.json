@@ -1,0 +1,41 @@
+{
+  "tech_id": 229,
+  "accuracy": 0.99,
+  "animation": "foodthrow",
+  "effects": [
+    {
+      "type": "damage"
+    },
+    {
+      "type": "prop_healing",
+      "parameters": ["own_monster", "0.2"]
+    }
+  ],
+  "flip_axes": "",
+  "healing_power": 0.1,
+  "is_fast": true,
+  "potency": 0.0,
+  "power": 0.4,
+  "range": "ranged",
+  "recharge": 1,
+  "sfx": "sfx_blaster",
+  "slug": "food_fight",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "exotic",
+  "tags": ["food"],
+  "types": [
+    "earth"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

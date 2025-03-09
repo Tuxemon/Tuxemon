@@ -168,7 +168,7 @@ class Condition:
             try:
                 effect_class = Condition.effects_classes[effect.type]
             except KeyError:
-                logger.error(f'ItemEffect "{effect.type}" not implemented')
+                logger.error(f'CondEffect "{effect.type}" not implemented')
             else:
                 effects.append(effect_class(*effect.parameters))
         return effects
@@ -196,7 +196,7 @@ class Condition:
                 condition_class = Condition.conditions_classes[condition.type]
             except KeyError:
                 logger.error(
-                    f'ItemCondition "{condition.type}" not implemented'
+                    f'CondCondition "{condition.type}" not implemented'
                 )
                 continue
 

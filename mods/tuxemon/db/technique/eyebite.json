@@ -3,7 +3,10 @@
   "accuracy": 1,
   "animation": "bite",
   "effects": [
-    "give exhausted,enemy_monster"
+    {
+      "type": "give",
+      "parameters": ["exhausted", "enemy_monster"]
+    }
   ],
   "flip_axes": "",
   "is_fast": true,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "eyebite",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +27,7 @@
     "own_trainer": false
   },
   "category": "exotic",
-  "tags": ["Gaze"],
+  "tags": ["gaze"],
   "types": [
     "aether"
   ],

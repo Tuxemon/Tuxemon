@@ -3,8 +3,13 @@
   "accuracy": 0.7,
   "animation": "pulse",
   "effects": [
-    "give flinching,enemy_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["flinching", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +20,7 @@
   "sfx": "sfx_blaster",
   "slug": "torch",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -24,9 +30,9 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Flame", "Gadgets"],
+  "tags": ["flame", "gadgets"],
   "types": [
-    "water"
+    "fire"
   ],
   "use_failure": "combat_miss",
   "use_success": null,

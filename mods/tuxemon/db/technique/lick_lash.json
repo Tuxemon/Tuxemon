@@ -1,0 +1,40 @@
+{
+  "tech_id": 209,
+  "accuracy": 0.8,
+  "animation": "pound",
+  "effects": [
+    {
+      "type": "give",
+      "parameters": ["flinching", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
+  ],
+  "flip_axes": "",
+  "is_fast": false,
+  "potency": 0.4,
+  "power": 1.5,
+  "range": "melee",
+  "recharge": 1,
+  "sfx": "sfx_blaster",
+  "slug": "lick_lash",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "animal",
+  "tags": ["tongue"],
+  "types": [
+    "earth"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

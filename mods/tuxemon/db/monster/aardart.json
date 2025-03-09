@@ -4,7 +4,7 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "tonguespear"
+            "technique": "lick_lash"
         },
         {
             "level_learned": 1,
@@ -17,6 +17,10 @@
         {
             "level_learned": 7,
             "technique": "stampede"
+        },
+        {
+            "level_learned": 10,
+            "technique": "tonguespear"
         },
         {
             "level_learned": 13,
@@ -46,7 +50,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["varmint", "grassland", "jungle", "woodland"],
+    "terrains": ["grassland", "jungle", "woodland"],
+    "tags": ["ground", "food", "claws", "tongue"],
     "shape": "varmint",
     "stage": "stage1",
     "types": [

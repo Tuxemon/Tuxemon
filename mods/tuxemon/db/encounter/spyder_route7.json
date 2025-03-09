@@ -5,7 +5,9 @@
       "monster": "pairagrim",
       "encounter_rate": 3.5,
       "variables": [
-        "daytime:true"
+        {
+          "daytime": "true"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [
@@ -17,7 +19,9 @@
       "monster": "aardart",
       "encounter_rate": 3.5,
       "variables": [
-        "daytime:true"
+        {
+          "daytime": "true"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [
@@ -29,7 +33,9 @@
       "monster": "weavifly",
       "encounter_rate": 3.5,
       "variables": [
-        "daytime:true"
+        {
+          "daytime": "true"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [
@@ -41,7 +47,9 @@
       "monster": "pantherafira",
       "encounter_rate": 3.5,
       "variables": [
-        "daytime:false"
+        {
+          "daytime": "false"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [
@@ -53,7 +61,9 @@
       "monster": "flacono",
       "encounter_rate": 3.5,
       "variables": [
-        "daytime:false"
+        {
+          "daytime": "false"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [
@@ -65,7 +75,9 @@
       "monster": "slichen",
       "encounter_rate": 3.5,
       "variables": [
-        "daytime:false"
+        {
+          "daytime": "false"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [

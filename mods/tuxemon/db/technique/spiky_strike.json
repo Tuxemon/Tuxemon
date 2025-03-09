@@ -1,0 +1,36 @@
+{
+  "tech_id": 199,
+  "accuracy": 0.95,
+  "animation": "needle",
+  "effects": [
+    {
+      "type": "damage"
+    }
+  ],
+  "flip_axes": "",
+  "is_fast": false,
+  "potency": 0.0,
+  "power": 1.5,
+  "range": "reach",
+  "recharge": 1,
+  "sfx": "sfx_blaster",
+  "slug": "spiky_strike",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "basic",
+  "tags": ["sharp"],
+  "types": [
+    "wood", "earth"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

@@ -92,6 +92,7 @@ class Item:
         self.name = T.translate(self.slug)
         self.description = T.translate(f"{self.slug}_description")
         self.quantity = 1
+        self.modifiers = results.modifiers
 
         # item use notifications (translated!)
         self.use_item = T.translate(results.use_item)

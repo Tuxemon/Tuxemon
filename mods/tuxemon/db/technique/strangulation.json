@@ -3,7 +3,9 @@
   "accuracy": 0.8,
   "animation": "x_attack",
   "effects": [
-    "damage"
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +16,7 @@
   "sfx": "sfx_blaster",
   "slug": "strangulation",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -22,8 +25,8 @@
     "own_team": false,
     "own_trainer": false
   },
-  "category": "simple",
-  "tags": ["Fury"],
+  "category": "powerful",
+  "tags": ["fury"],
   "types": [
     "earth"
   ],

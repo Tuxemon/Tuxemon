@@ -3,7 +3,10 @@
   "accuracy": 1,
   "animation": "crystal_absorb",
   "effects": [
-    "give elementalshield,own_monster"
+    {
+      "type": "give",
+      "parameters": ["elementalshield", "own_monster"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "arcane_eye",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -23,7 +27,7 @@
     "own_trainer": false
   },
   "category": "condition_imposer",
-  "tags": ["Gaze", "Summoner"],
+  "tags": ["gaze", "summoner"],
   "types": [
     "aether"
   ],

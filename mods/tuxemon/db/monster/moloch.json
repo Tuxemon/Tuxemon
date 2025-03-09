@@ -45,6 +45,10 @@
         {
             "level_learned": 52,
             "technique": "invictus"
+        },
+        {
+            "level_learned": 55,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [],
@@ -58,7 +62,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["brute"],
+    "terrains": [],
+    "tags": ["claws", "bite", "megafauna", "plant"],
     "shape": "brute",
     "stage": "stage2",
     "types": [

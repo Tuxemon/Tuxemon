@@ -3,7 +3,10 @@
   "accuracy": 1,
   "animation": "x_attack",
   "effects": [
-    "give focused,own_monster"
+    {
+      "type": "give",
+      "parameters": ["focused", "own_monster"]
+    }
   ],
   "flip_axes": "",
   "is_fast": true,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "evasion",
   "sort": "meta",
+  "modifiers": [],
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -23,7 +27,7 @@
     "own_trainer": false
   },
   "category": "condition_imposer",
-  "tags": ["Bug", "Speed"],
+  "tags": ["bug", "speed"],
   "types": [
     "earth"
   ],

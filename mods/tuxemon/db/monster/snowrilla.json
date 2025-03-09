@@ -8,11 +8,11 @@
         },
         {
             "level_learned": 1,
-            "technique": "icicle_spear"
+            "technique": "punch"
         },
         {
             "level_learned": 4,
-            "technique": "punch"
+            "technique": "chill_mist"
         },
         {
             "level_learned": 7,
@@ -28,10 +28,10 @@
         },
         {
             "level_learned": 28,
-            "technique": "chill_mist"
+            "technique": "icicle_spear"
         },
         {
-            "level_learned": 31,
+            "level_learned": 40,
             "technique": "frostbite"
         }
     ],
@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["brute"],
+    "terrains": ["boreal/snow", "mountains"],
+    "tags": ["ice", "fists"],
     "shape": "brute",
     "stage": "stage1",
     "types": [

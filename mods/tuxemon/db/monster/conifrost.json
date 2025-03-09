@@ -24,11 +24,11 @@
         },
         {
             "level_learned": 16,
-            "technique": "frostbite"
+            "technique": "leaf_barrage"
         },
         {
             "level_learned": 19,
-            "technique": "snowstorm"
+            "technique": "mobbing"
         },
         {
             "level_learned": 25,
@@ -44,16 +44,17 @@
         },
         {
             "level_learned": 37,
-            "technique": "tonguespear"
+            "technique": "snowstorm"
         },
         {
-            "level_learned": 40,
-            "technique": "mobbing"
+            "level_learned": 43,
+            "technique": "frostbite"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["ice", "plant"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

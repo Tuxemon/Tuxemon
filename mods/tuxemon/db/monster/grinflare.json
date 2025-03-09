@@ -42,7 +42,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["brute"],
+    "terrains": [],
+    "tags": ["rock", "ground", "fists", "flame", "gemstone"],
     "shape": "brute",
     "stage": "stage1",
     "types": [

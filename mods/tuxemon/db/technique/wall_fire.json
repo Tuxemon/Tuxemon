@@ -3,9 +3,17 @@
   "accuracy": 0.8,
   "animation": "wall_fire",
   "effects": [
-    "give elementalshield,own_monster",
-    "give burn,enemy_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["elementalshield", "own_monster"]
+    },
+    {
+      "type": "give",
+      "parameters": ["burn", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -16,6 +24,7 @@
   "sfx": "sfx_blaster",
   "slug": "wall_fire",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -25,7 +34,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Summoner", "Shielded"],
+  "tags": ["summoner", "shielded"],
   "types": [
     "fire"
   ],

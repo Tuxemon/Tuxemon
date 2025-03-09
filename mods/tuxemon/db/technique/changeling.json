@@ -3,7 +3,10 @@
   "accuracy": 1,
   "animation": "amethyst",
   "effects": [
-    "give recover,own_monster"
+    {
+      "type": "give",
+      "parameters": ["recover", "own_monster"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "changeling",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +27,7 @@
     "own_trainer": false
   },
   "category": "condition_imposer",
-  "tags": ["Shapeshifter"],
+  "tags": ["shapeshifter"],
   "types": [
     "wood"
   ],

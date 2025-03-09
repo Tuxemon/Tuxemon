@@ -3,8 +3,13 @@
   "accuracy": 0.8,
   "animation": "shield_lava",
   "effects": [
-    "give burn,own_team:enemy_team",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["burn", "own_team:enemy_team"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +20,7 @@
   "sfx": "sfx_blaster",
   "slug": "lava",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": true,
@@ -24,7 +30,7 @@
     "own_trainer": false
   },
   "category": "powerful",
-  "tags": ["Calamity"],
+  "tags": ["calamity"],
   "types": [
     "fire"
   ],

@@ -33,6 +33,14 @@
         {
             "level_learned": 25,
             "technique": "battery_acid"
+        },
+        {
+            "level_learned": 31,
+            "technique": "rift_dash"
+        },
+        {
+            "level_learned": 40,
+            "technique": "electric_multibite"
         }
     ],
     "evolutions": [],
@@ -42,7 +50,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["serpent", "grassland", "jungle", "mountains", "ruins", "underground", "woodland"],
+    "terrains": ["grassland", "jungle", "mountains", "ruins", "underground", "woodland"],
+    "tags": ["shapeshifter", "bite", "electricity"],
     "shape": "serpent",
     "stage": "stage1",
     "types": [

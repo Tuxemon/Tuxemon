@@ -1,0 +1,41 @@
+{
+  "tech_id": 234,
+  "accuracy": 1.0,
+  "animation": "cakechomp",
+  "effects": [
+    {
+      "type": "give",
+      "parameters": ["recover", "own_monster"]
+    },
+    {
+      "type": "healing"
+    }
+  ],
+  "flip_axes": "",
+  "healing_power": 3.0,
+  "is_fast": false,
+  "potency": 1.0,
+  "power": 0.0,
+  "range": "special",
+  "recharge": 3,
+  "sfx": "sfx_blaster",
+  "slug": "gourmet",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": false,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": true,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "condition_imposer",
+  "tags": ["food"],
+  "types": [
+    "metal"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

@@ -21,6 +21,14 @@
         {
             "level_learned": 19,
             "technique": "earthquake"
+        },
+        {
+            "level_learned": 31,
+            "technique": "energy_beam"
+        },
+        {
+            "level_learned": 40,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [],
@@ -34,7 +42,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["blob"],
+    "terrains": [],
+    "tags": ["megafauna", "darkness", "toxic"],
     "shape": "blob",
     "stage": "stage2",
     "types": [

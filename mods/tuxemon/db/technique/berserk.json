@@ -3,8 +3,13 @@
   "accuracy": 0.8,
   "animation": "constantburn",
   "effects": [
-    "give enraged,own_monster",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["enraged", "own_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +20,7 @@
   "sfx": "sfx_growl",
   "slug": "berserk",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -24,7 +30,7 @@
     "own_trainer": false
   },
   "category": "simple",
-  "tags": ["Fury"],
+  "tags": ["fury"],
   "types": [
     "fire"
   ],

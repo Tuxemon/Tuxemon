@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import get_target_monsters
-from tuxemon.db import ElementType
 from tuxemon.event.conditions.common import CommonCondition
 from tuxemon.prepare import RECHARGE_RANGE
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -65,9 +64,7 @@ class CoolDownEffect(TechEffect):
 
         if self.parameter == "types":
             moves_to_update = [
-                move
-                for move in moves_to_update
-                if move.has_type(ElementType(self.value))
+                move for move in moves_to_update if move.has_type(self.value)
             ]
         else:
             moves_to_update = [

@@ -132,7 +132,7 @@ class TechniqueMenuState(Menu[Technique]):
 
         for tech in output:
             name = tech.name
-            types = " ".join(map(lambda s: T.translate(s.slug), tech.types))
+            types = " ".join(map(lambda s: (s.name), tech.types))
             image = self.shadow_text(name, bg=prepare.DIMGRAY_COLOR)
             label = T.format(
                 "technique_description",

@@ -26,5 +26,5 @@ class StopCinemaModeAction(EventAction):
 
     def start(self) -> None:
         world = self.session.client.get_state_by_name(WorldState)
-        world.cinema_x_ratio = None
-        world.cinema_y_ratio = None
+        world.map_renderer.cinema_x_ratio = None
+        world.map_renderer.cinema_y_ratio = None

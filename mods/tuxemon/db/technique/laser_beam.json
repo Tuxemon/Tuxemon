@@ -1,0 +1,40 @@
+{
+  "tech_id": 238,
+  "accuracy": 1.0,
+  "animation": "energy_beam",
+  "effects": [
+    {
+      "type": "give",
+      "parameters": ["blinded", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
+  ],
+  "flip_axes": "",
+  "is_fast": true,
+  "potency": 0.3,
+  "power": 3.0,
+  "range": "ranged",
+  "recharge": 4,
+  "sfx": "sfx_blaster",
+  "slug": "laser_beam",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "powerful",
+  "tags": ["machine","electricity"],
+  "types": [
+    "metal"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

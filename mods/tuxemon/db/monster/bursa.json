@@ -4,15 +4,15 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "bubble_trap"
+            "technique": "fire_ball"
         },
         {
             "level_learned": 1,
-            "technique": "amnesia"
+            "technique": "muddle"
         },
         {
             "level_learned": 4,
-            "technique": "muddle"
+            "technique": "amnesia"
         },
         {
             "level_learned": 7,
@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "fire_ball"
+            "technique": "bubble_trap"
         },
         {
             "level_learned": 31,
@@ -51,7 +51,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["humanoid", "mountains", "woodland"],
+    "terrains": ["mountains", "woodland"],
+    "tags": ["mental", "flame", "food"],
     "shape": "humanoid",
     "stage": "basic",
     "types": [

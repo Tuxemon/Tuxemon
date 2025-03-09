@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 19,
-            "technique": "thunderclap"
+            "technique": "staff_smash"
         },
         {
             "level_learned": 25,
@@ -33,6 +33,10 @@
         {
             "level_learned": 28,
             "technique": "flamethrower"
+        },
+        {
+            "level_learned": 55,
+            "technique": "divinity_beam"
         }
     ],
     "evolutions": [],
@@ -42,7 +46,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["humanoid", "desert", "jungle", "ruins"],
+    "terrains": ["desert", "jungle", "ruins"],
+    "tags": ["flame", "mental", "celestial", "staff"],
     "shape": "humanoid",
     "stage": "stage1",
     "types": [

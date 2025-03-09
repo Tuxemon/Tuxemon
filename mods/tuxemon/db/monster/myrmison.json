@@ -8,7 +8,7 @@
         },
         {
             "level_learned": 1,
-            "technique": "energy_claws"
+            "technique": "gnaw"
         },
         {
             "level_learned": 4,
@@ -19,8 +19,28 @@
             "technique": "blood_nets"
         },
         {
-            "level_learned": 19,
+            "level_learned": 16,
             "technique": "sting"
+        },
+        {
+            "level_learned": 19,
+            "technique": "energy_claws"
+        },
+        {
+            "level_learned": 25,
+            "technique": "hibernate"
+        },
+        {
+            "level_learned": 31,
+            "technique": "flamethrower"
+        },
+        {
+            "level_learned": 40,
+            "technique": "earthquake"
+        },
+        {
+            "level_learned": 46,
+            "technique": "all_in"
         }
     ],
     "evolutions": [],
@@ -34,7 +54,8 @@
             "evo_stage": "stage1"
         }
     ],
-    "tags": ["humanoid", "grassland", "jungle", "mountains", "swamp", "urban", "woodland"],
+    "terrains": ["grassland", "jungle", "mountains", "swamp", "urban", "woodland"],
+    "tags": ["bug", "bite", "shielded", "sharp"],
     "shape": "humanoid",
     "stage": "stage2",
     "types": [

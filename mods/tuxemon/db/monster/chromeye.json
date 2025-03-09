@@ -2,78 +2,103 @@
     "slug": "chromeye",
     "category": "mixed_emotion",
     "moveset": [
-        {
-            "level_learned": 1,
-            "technique": "perfect_cut"
-        },
-        {
-            "level_learned": 1,
-            "technique": "shrapnel"
-        },
-        {
-            "level_learned": 4,
-            "technique": "blade"
-        },
-        {
-            "level_learned": 7,
-            "technique": "strike"
-        },
-        {
-            "level_learned": 13,
-            "technique": "wall_of_steel"
-        }
+      {
+        "level_learned": 1,
+        "technique": "buzz"
+      },
+      {
+        "level_learned": 1,
+        "technique": "bullet"
+      },
+      {
+        "level_learned": 4,
+        "technique": "blade"
+      },
+      {
+        "level_learned": 7,
+        "technique": "strike"
+      },
+      {
+        "level_learned": 13,
+        "technique": "wall_of_steel"
+      }
     ],
     "evolutions": [
-        {
-            "at_level": 18,
-            "monster_slug": "angrito",
-            "variables": ["season:winter"]
-        },
-        {
-            "at_level": 18,
-            "monster_slug": "happito",
-            "variables": ["season:summer"]
-        },
-        {
-            "at_level": 18,
-            "monster_slug": "neutrito",
-            "variables": ["season:spring"]
-        },
-        {
-            "at_level": 18,
-            "monster_slug": "sadito",
-            "variables": ["season:autumn"]
-        }
+      {
+        "at_level": 18,
+        "monster_slug": "angrito",
+        "variables": [
+          {
+            "season": "winter"
+          }
+        ]
+      },
+      {
+        "at_level": 18,
+        "monster_slug": "happito",
+        "variables": [
+          {
+            "season": "summer"
+          }
+        ]
+      },
+      {
+        "at_level": 18,
+        "monster_slug": "neutrito",
+        "variables": [
+          {
+            "season": "spring"
+          }
+        ]
+      },
+      {
+        "at_level": 18,
+        "monster_slug": "sadito",
+        "variables": [
+          {
+            "season": "autumn"
+          }
+        ]
+      }
     ],
     "history": [
-        {
-            "mon_slug": "sadito",
-            "evo_stage": "stage1"
-        },
-        {
-            "mon_slug": "neutrito",
-            "evo_stage": "stage1"
-        },
-        {
-            "mon_slug": "happito",
-            "evo_stage": "stage1"
-        },
-        {
-            "mon_slug": "angrito",
-            "evo_stage": "stage1"
-        }
+      {
+        "mon_slug": "sadito",
+        "evo_stage": "stage1"
+      },
+      {
+        "mon_slug": "neutrito",
+        "evo_stage": "stage1"
+      },
+      {
+        "mon_slug": "happito",
+        "evo_stage": "stage1"
+      },
+      {
+        "mon_slug": "angrito",
+        "evo_stage": "stage1"
+      }
     ],
-    "tags": ["blob", "extraplanar", "urban"],
+    "terrains": [
+      "extraplanar",
+      "urban"
+    ],
+    "tags": [
+      "mental",
+      "machine"
+    ],
     "shape": "blob",
     "stage": "basic",
     "types": [
-        "metal"
+      "metal"
     ],
-    "possible_genders": ["neuter"],
+    "possible_genders": [
+      "neuter"
+    ],
     "txmn_id": 174,
     "height": 38,
     "weight": 3.5,
-    "catch_rate": 100.0,
+    "catch_rate": 100,
     "lower_catch_resistance": 0.95,
     "upper_catch_resistance": 1.05
-}
+  }

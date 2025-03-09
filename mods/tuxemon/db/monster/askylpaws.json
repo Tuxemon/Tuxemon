@@ -1,0 +1,88 @@
+{
+    "slug": "askylpaws",
+    "category": "erythrocyte",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "barking"
+        },
+        {
+            "level_learned": 1,
+            "technique": "ram"
+        },
+        {
+            "level_learned": 4,
+            "technique": "revenge_stance"
+        },
+        {
+            "level_learned": 7,
+            "technique": "canine"
+        },
+        {
+            "level_learned": 13,
+            "technique": "hibernate"
+        },
+        {
+            "level_learned": 16,
+            "technique": "mystic_blending"
+        },
+        {
+            "level_learned": 19,
+            "technique": "take_cover"
+        },
+        {
+            "level_learned": 25,
+            "technique": "staff_smash"
+        },
+        {
+            "level_learned": 28,
+            "technique": "venom"
+        },
+        {
+            "level_learned": 31,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 37,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 40,
+            "technique": "viper"
+        },
+        {
+            "level_learned": 55,
+            "technique": "divinity_beam"
+        },
+        {
+            "level_learned": 61,
+            "technique": "shadow_blast"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "medipup",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "doctsky",
+            "evo_stage": "stage1"
+        }
+    ],
+    "terrains": ["urban"],
+    "tags": ["healing", "bite", "darkness", "gadgets", "toxic", "celestial", "staff"],
+    "shape": "hunter",
+    "stage": "stage2",
+    "types": [
+        "metal", "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 360,
+    "height": 200,
+    "weight": 80,
+    "catch_rate": 35.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

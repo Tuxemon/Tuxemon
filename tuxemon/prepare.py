@@ -252,8 +252,6 @@ COEFF_EXP: int = 3
 # weight and height (min and max) = -/+ 10%
 WEIGHT_RANGE: tuple[float, float] = (-0.1, 0.1)
 HEIGHT_RANGE: tuple[float, float] = (-0.1, 0.1)
-# tastes (malus and bonus)
-TASTE_RANGE: tuple[float, float] = (-0.1, 0.1)
 
 # Capture
 TOTAL_SHAKES: int = 4
@@ -268,6 +266,9 @@ TUXEBALL_MODIFIER: float = 1.0
 STATUS_POSITIVE: float = 1.0
 # if the status is negative
 STATUS_NEGATIVE: float = 1.2
+
+# Camera
+CAMERA_SHAKE_RANGE: tuple[float, float] = (0.0, 3.0)
 
 # Techniques
 RECHARGE_RANGE: tuple[int, int] = (0, 5)

@@ -3,8 +3,14 @@
   "accuracy": 1,
   "animation": "disintegrate_83",
   "effects": [
-    "give exhausted,enemy_monster",
-    "give hardshell,own_monster"
+    {
+      "type": "give",
+      "parameters": ["exhausted", "enemy_monster"]
+    },
+    {
+      "type": "give",
+      "parameters": ["hardshell", "own_monster"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +21,7 @@
   "sfx": "sfx_blaster",
   "slug": "static_field",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": false,
     "enemy_team": false,
@@ -24,7 +31,7 @@
     "own_trainer": false
   },
   "category": "powerful",
-  "tags": ["Shielded"],
+  "tags": ["shielded"],
   "types": [
     "aether"
   ],

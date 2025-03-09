@@ -5,7 +5,9 @@
       "monster": "dinoflop",
       "encounter_rate": 3.5,
       "variables": [
-        "daytime:false"
+        {
+          "daytime": "false"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [
@@ -17,7 +19,9 @@
       "monster": "furnursus",
       "encounter_rate": 3.5,
       "variables": [
-        "daytime:false"
+        {
+          "daytime": "false"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [
@@ -29,7 +33,9 @@
       "monster": "boltnu",
       "encounter_rate": 3.5,
       "variables": [
-        "daytime:true"
+        {
+          "daytime": "true"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [
@@ -41,7 +47,9 @@
       "monster": "metesaur",
       "encounter_rate": 3.5,
       "variables": [
-        "daytime:true"
+        {
+          "daytime": "true"
+        }
       ],
       "exp_req_mod": 1,
       "level_range": [

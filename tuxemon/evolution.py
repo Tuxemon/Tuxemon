@@ -136,21 +136,16 @@ class Evolution:
             conditions.append(self.monster.owner.has_tech(evolution_item.tech))
         if evolution_item.traded is not None:
             conditions.append(evolution_item.traded == self.monster.traded)
-        if evolution_item.moves is not None:
-            if evolution_item.moves:
-                moves_slugs = {mov.slug for mov in self.monster.moves}
-                conditions.extend(
-                    monster in moves_slugs for monster in evolution_item.moves
-                )
-        if evolution_item.party is not None:
-            if evolution_item.party:
-                monster_slugs = {
-                    mon.slug for mon in self.monster.owner.monsters
-                }
-                conditions.extend(
-                    monster in monster_slugs
-                    for monster in evolution_item.party
-                )
+        if evolution_item.moves:
+            moves_slugs = {mov.slug for mov in self.monster.moves}
+            conditions.extend(
+                monster in moves_slugs for monster in evolution_item.moves
+            )
+        if evolution_item.party:
+            monster_slugs = {mon.slug for mon in self.monster.owner.monsters}
+            conditions.extend(
+                monster in monster_slugs for monster in evolution_item.party
+            )
         if evolution_item.taste_cold is not None:
             conditions.append(
                 self.monster.taste_cold == evolution_item.taste_cold
@@ -169,13 +164,13 @@ class Evolution:
             conditions.append(compare(operator, stat1, stat2))
 
         # Check if the monster's game variables meet the evolution conditions
-        if evolution_item.variables is not None:
+        if evolution_item.variables:
             for variable in evolution_item.variables:
-                key, value = variable.split(":")
-                conditions.append(
-                    key in self.monster.owner.game_variables
-                    and self.monster.owner.game_variables[key] == value
-                )
+                for key, value in variable.items():
+                    conditions.append(
+                        key in self.monster.owner.game_variables
+                        and self.monster.owner.game_variables[key] == value
+                    )
 
         # Check if the monster has taken the required number of steps
         if evolution_item.steps is not None:

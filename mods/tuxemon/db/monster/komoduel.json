@@ -49,6 +49,10 @@
         {
             "level_learned": 40,
             "technique": "energy_claws"
+        },
+        {
+            "level_learned": 55,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [],
@@ -58,7 +62,8 @@
             "evo_stage": "basic"
         }
     ],
-    "tags": ["humanoid", "desert", "grassland", "urban"],
+    "terrains": ["desert", "grassland", "urban"],
+    "tags": ["bomber", "soldier", "gadgets"],
     "shape": "humanoid",
     "stage": "stage1",
     "types": [

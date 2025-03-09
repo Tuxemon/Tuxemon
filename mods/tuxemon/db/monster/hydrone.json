@@ -4,15 +4,15 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "electrical_storm"
+            "technique": "slice"
         },
         {
             "level_learned": 1,
-            "technique": "perfect_cut"
+            "technique": "lightning_spheres"
         },
         {
             "level_learned": 4,
-            "technique": "shrapnel"
+            "technique": "crystal"
         },
         {
             "level_learned": 7,
@@ -24,7 +24,7 @@
         },
         {
             "level_learned": 16,
-            "technique": "lightning_spheres"
+            "technique": "perfect_cut"
         },
         {
             "level_learned": 19,
@@ -40,11 +40,11 @@
         },
         {
             "level_learned": 31,
-            "technique": "crystal"
+            "technique": "shrapnel"
         },
         {
             "level_learned": 37,
-            "technique": "slice"
+            "technique": "electrical_storm"
         },
         {
             "level_learned": 40,
@@ -53,7 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["humanoid"],
+    "terrains": [],
+    "tags": ["machine", "water", "gadgets", "electricity"],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [

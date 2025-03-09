@@ -3,7 +3,10 @@
   "accuracy": 1,
   "animation": "ubuntu",
   "effects": [
-    "switch enemy_monster,random"
+    {
+      "type": "switch",
+      "parameters": ["enemy_monster", "random"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -14,6 +17,7 @@
   "sfx": "sfx_blaster",
   "slug": "ubuntu",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -23,7 +27,7 @@
     "own_trainer": false
   },
   "category": "exotic",
-  "tags": ["Shapeshifter"],
+  "tags": ["shapeshifter"],
   "types": [
     "aether"
   ],

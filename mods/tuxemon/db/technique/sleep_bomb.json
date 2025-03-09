@@ -3,8 +3,13 @@
   "accuracy": 0.75,
   "animation": "sparks_white",
   "effects": [
-    "give noddingoff,own_team:enemy_team",
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["noddingoff", "own_team:enemy_team"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,6 +20,7 @@
   "sfx": "sfx_blaster",
   "slug": "sleep_bomb",
   "sort": "damage",
+  "modifiers": [],
   "target": {
     "enemy_monster": true,
     "enemy_team": false,
@@ -24,7 +30,7 @@
     "own_trainer": false
   },
   "category": "exotic",
-  "tags": ["Bomber"],
+  "tags": ["bomber"],
   "types": [
     "fire",
     "metal"

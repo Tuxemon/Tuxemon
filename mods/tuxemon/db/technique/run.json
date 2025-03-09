@@ -2,11 +2,21 @@
 	"animation": null,
 	"accuracy": 0.0,
 	"conditions": [
-	  	"not status grabbed",
-	  	"not status stuck"
+		{
+		  "type": "status",
+		  "parameters": ["grabbed"],
+		  "operator": "not"
+		},
+		{
+		  "type": "status",
+		  "parameters": ["stuck"],
+		  "operator": "not"
+		}
 	],
 	"effects": [
-		"run"
+    {
+      "type": "run"
+    }
 	],
 	"flip_axes": "",
 	"is_fast": true,
@@ -16,6 +26,7 @@
 	"sfx": "sfx_blaster",
 	"slug": "menu_run",
 	"sort": "meta",
+	"modifiers": [],
 	"target": {
 		"enemy_monster": false,
 		"enemy_team": false,
@@ -25,7 +36,7 @@
 		"own_trainer": false
 	},
 	"category": "notype",
-	"tags": ["NoType"],
+	"tags": ["notype"],
 	"tech_id": 0,
 	"use_failure": "combat_cannot_run_away",
 	"use_success": null,

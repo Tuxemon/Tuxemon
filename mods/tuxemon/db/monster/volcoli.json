@@ -4,11 +4,11 @@
     "moveset": [
         {
             "level_learned": 1,
-            "technique": "supernova"
+            "technique": "fire_claw"
         },
         {
             "level_learned": 1,
-            "technique": "flamethrower"
+            "technique": "fire_shield"
         },
         {
             "level_learned": 4,
@@ -20,11 +20,11 @@
         },
         {
             "level_learned": 13,
-            "technique": "fire_claw"
+            "technique": "arcane_eye"
         },
         {
             "level_learned": 16,
-            "technique": "fire_shield"
+            "technique": "conjurer"
         },
         {
             "level_learned": 19,
@@ -44,16 +44,17 @@
         },
         {
             "level_learned": 37,
-            "technique": "conjurer"
+            "technique": "flamethrower"
         },
         {
             "level_learned": 40,
-            "technique": "arcane_eye"
+            "technique": "supernova"
         }
     ],
     "evolutions": [],
     "history": [],
-    "tags": ["humanoid"],
+    "terrains": [],
+    "tags": ["plant", "shapeshifter"],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [

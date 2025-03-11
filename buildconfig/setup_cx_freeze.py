@@ -10,34 +10,56 @@ To build the package on Windows, run the following command on Windows:
 
 DO NOT RUN FROM A VENV.  YOU WILL BE MET WITH INSURMOUNTABLE SORROW.
 """
+import logging
 import os
 import sys
-from cx_Freeze import setup, Executable
+
+import yaml
+from cx_Freeze import Executable, setup
 
 # required so that the tuxemon folder can be found
 # when run from the buildconfig folder
 sys.path.append(os.getcwd())
 
+logger = logging.getLogger(__name__)
+
 # prevent SDL from opening a window
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 os.environ["SDL_AUDIODRIVER"] = "disk"
 
-build_exe_options = {
-    "packages": ["pytmx", "pyscroll", "pygame", "neteria", "natsort", "tuxemon"],
-    "excludes": ["tkinter", "pyglet"],
-    "includes": ["importlib.resources"],
-    "include_files": ["mods", "LICENSE"],
-}
+def load_config(config_file="build_config.yaml"):
+    try:
+        with open(config_file) as f:
+            config = yaml.safe_load(f)
+        return config
+    except FileNotFoundError:
+        logger.error(f"Configuration file not found: {config_file}")
+        sys.exit(1)
+    except yaml.YAMLError as e:
+        logger.error(f"Error parsing YAML file: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
+    config = load_config()
+
+    build_exe_options = {
+        "packages": config["packages"],
+        "excludes": config["excludes"],
+        "includes": config["includes"],
+        "include_files": config["include_files"],
+    }
+
     setup(
-        name="Tuxemon",
-        version="0.4.26",
+        name=config["name"],
+        version=config["version"],
         options={"build_exe": build_exe_options},
-        description="Open source RPG",
+        description=config["description"],
         executables=[
             Executable(
-                "run_tuxemon.py", base="Win32GUI", icon="mods/tuxemon/gfx/icon.ico"
+                config["executable"],
+                base=config["base"],
+                icon=config["icon"],
             )
         ],
     )
+    logger.info("Build completed successfully.")

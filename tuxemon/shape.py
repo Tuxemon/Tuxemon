@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from typing import Optional
 
-from tuxemon.db import db
+from tuxemon.db import AttributesModel, db
 
 logger = logging.getLogger(__name__)
 
@@ -17,12 +17,9 @@ class Shape:
 
     def __init__(self, slug: Optional[str] = None) -> None:
         self.slug = slug
-        self.armour: int = 1
-        self.dodge: int = 1
-        self.hp: int = 1
-        self.melee: int = 1
-        self.ranged: int = 1
-        self.speed: int = 1
+        self.attributes = AttributesModel(
+            armour=1, dodge=1, hp=1, melee=1, ranged=1, speed=1
+        )
 
         if self.slug:
             self.load(self.slug)
@@ -33,12 +30,7 @@ class Shape:
         if slug in Shape._shapes:
             cached_shape = Shape._shapes[slug]
             self.slug = slug
-            self.armour = cached_shape.armour
-            self.dodge = cached_shape.dodge
-            self.hp = cached_shape.hp
-            self.melee = cached_shape.melee
-            self.ranged = cached_shape.ranged
-            self.speed = cached_shape.speed
+            self.attributes = cached_shape.attributes
             return
 
         try:
@@ -46,12 +38,7 @@ class Shape:
         except KeyError:
             raise RuntimeError(f"Shape {slug} not found")
 
-        self.armour = results.armour
-        self.dodge = results.dodge
-        self.hp = results.hp
-        self.melee = results.melee
-        self.ranged = results.ranged
-        self.speed = results.speed
+        self.attributes = results.attributes
 
         Shape._shapes[slug] = self
 
@@ -96,7 +83,4 @@ class Shape:
         cls._shapes.clear()
 
     def __repr__(self) -> str:
-        return (
-            f"Shape(slug={self.slug}, armour={self.armour}, dodge={self.dodge}, "
-            f"hp={self.hp}, melee={self.melee}, ranged={self.ranged}, speed={self.speed})"
-        )
+        return f"Shape(slug={self.slug}, attributes={self.attributes})"

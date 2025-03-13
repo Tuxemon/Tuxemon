@@ -301,14 +301,22 @@ class ItemModel(BaseModel):
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
 
-class ShapeModel(BaseModel):
-    slug: str = Field(..., description="Slug of the shape")
+class AttributesModel(BaseModel):
     armour: int = Field(..., description="Armour value")
     dodge: int = Field(..., description="Dodge value")
-    hp: int = Field(..., description="HP value")
+    hp: int = Field(..., description="HP (Hit Points) value")
     melee: int = Field(..., description="Melee value")
     ranged: int = Field(..., description="Ranged value")
     speed: int = Field(..., description="Speed value")
+
+
+class ShapeModel(BaseModel):
+    slug: str = Field(
+        ..., description="Slug of the shape, used as a unique identifier."
+    )
+    attributes: AttributesModel = Field(
+        ..., description="Statistical attributes of the shape."
+    )
 
     @field_validator("slug")
     def translation_exists_shape(cls: ShapeModel, v: str) -> str:

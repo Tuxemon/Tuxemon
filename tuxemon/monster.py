@@ -384,7 +384,7 @@ class Monster:
         """
         level = self.level
         multiplier = level + prepare.COEFF_STATS
-        shape = Shape(self.shape)
+        shape = Shape(self.shape).attributes
         self.armour = (shape.armour * multiplier) + self.mod_armour
         self.dodge = (shape.dodge * multiplier) + self.mod_dodge
         self.hp = (shape.hp * multiplier) + self.mod_hp

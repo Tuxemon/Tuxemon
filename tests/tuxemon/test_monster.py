@@ -4,7 +4,13 @@ import unittest
 from unittest.mock import MagicMock
 
 from tuxemon import formula, prepare
-from tuxemon.db import Modifier, ShapeModel, TechniqueModel, db
+from tuxemon.db import (
+    AttributesModel,
+    Modifier,
+    ShapeModel,
+    TechniqueModel,
+    db,
+)
 from tuxemon.monster import Monster
 from tuxemon.prepare import MAX_LEVEL
 from tuxemon.taste import Taste
@@ -50,9 +56,10 @@ class SetCapture(MonsterTestBase):
 
 
 class SetStats(MonsterTestBase):
-    _shape = ShapeModel(
-        slug="dragon", armour=7, dodge=5, hp=6, melee=6, ranged=6, speed=6
+    _shape_attr = AttributesModel(
+        armour=7, dodge=5, hp=6, melee=6, ranged=6, speed=6
     )
+    _shape = ShapeModel(slug="dragon", attributes=_shape_attr)
 
     def setUp(self):
         self.mon = Monster()
@@ -119,7 +126,7 @@ class SetStats(MonsterTestBase):
     def test_set_stats_shape(self):
         self.mon.shape = "dragon"
         self.mon.set_stats()
-        _shape = self._shape
+        _shape = self._shape.attributes
         self.assertEqual(self.mon.armour, _shape.armour * self.value)
         self.assertEqual(self.mon.dodge, _shape.dodge * self.value)
         self.assertEqual(self.mon.melee, _shape.melee * self.value)

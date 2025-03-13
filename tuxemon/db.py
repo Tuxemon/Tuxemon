@@ -1454,11 +1454,21 @@ class AnimationModel(BaseModel):
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
 
+class TerrainModel(BaseModel):
+    slug: str = Field(..., description="Slug of the terrain")
+
+
+class WeatherModel(BaseModel):
+    slug: str = Field(..., description="Slug of the weather")
+
+
 TableName = Literal[
     "economy",
     "element",
     "taste",
     "shape",
+    "terrain",
+    "weather",
     "template",
     "mission",
     "encounter",
@@ -1479,6 +1489,8 @@ DataModel = Union[
     ElementModel,
     TasteModel,
     ShapeModel,
+    TerrainModel,
+    WeatherModel,
     TemplateModel,
     MissionModel,
     EncounterModel,
@@ -1520,6 +1532,8 @@ class JSONDatabase:
             "element",
             "taste",
             "shape",
+            "terrain",
+            "weather",
             "template",
             "mission",
         ]
@@ -1671,6 +1685,12 @@ class JSONDatabase:
             elif table == "shape":
                 shape = ShapeModel(**item)
                 self.database[table][shape.slug] = shape
+            elif table == "terrain":
+                terrain = TerrainModel(**item)
+                self.database[table][terrain.slug] = terrain
+            elif table == "weather":
+                weather = WeatherModel(**item)
+                self.database[table][weather.slug] = weather
             elif table == "template":
                 template = TemplateModel(**item)
                 self.database[table][template.slug] = template
@@ -1763,6 +1783,14 @@ class JSONDatabase:
 
     @overload
     def lookup(self, slug: str, table: Literal["shape"]) -> ShapeModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["terrain"]) -> TerrainModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["weather"]) -> WeatherModel:
         pass
 
     @overload
@@ -1865,6 +1893,8 @@ class JSONDatabase:
             "taste",
             "element",
             "shape",
+            "terrain",
+            "weather",
             "template",
             "mission",
             "encounter",

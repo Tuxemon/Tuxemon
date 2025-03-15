@@ -1,7 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
-from unittest import mock
+from unittest.mock import MagicMock, patch
+
+import pygame
 
 from tuxemon import prepare
 from tuxemon.client import LocalPygameClient
@@ -88,8 +90,11 @@ class TestMonsterActions(unittest.TestCase):
     )
 
     def setUp(self):
-        with mock.patch.object(Player, "__init__", mockPlayer):
-            local_session.client = LocalPygameClient(prepare.CONFIG)
+        self.mock_screen = MagicMock()
+        with patch.object(Player, "__init__", mockPlayer):
+            local_session.client = LocalPygameClient(
+                prepare.CONFIG, self.mock_screen
+            )
             self.action = local_session.client.event_engine
             local_session.player = Player()
             self.player = local_session.player
@@ -105,6 +110,9 @@ class TestMonsterActions(unittest.TestCase):
             db.database["shape"] = self._shape_model
             db.database["element"] = self._element_model
             db.database["condition"] = self._condition_model
+
+    def tearDown(self):
+        pygame.quit()
 
     def test_add_monster(self):
         _params = ["agnite", 5]

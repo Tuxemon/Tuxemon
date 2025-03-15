@@ -369,11 +369,11 @@ class MonsterEvolutionItemModel(BaseModel):
         None,
         description="The item that the monster must have to evolve.",
     )
-    inside: bool = Field(
+    inside: Optional[bool] = Field(
         None,
         description="Whether the monster must be inside to evolve.",
     )
-    traded: bool = Field(
+    traded: Optional[bool] = Field(
         None,
         description="Whether the monster must have been traded to evolve.",
     )
@@ -783,7 +783,6 @@ class TargetModel(BaseModel):
 class TechniqueModel(BaseModel):
     slug: str = Field(..., description="The slug of the technique")
     sort: TechSort = Field(..., description="The sort of technique this is")
-    icon: str = Field(None, description="The icon to use for the technique")
     category: TechCategory = Field(
         ...,
         description="The tags of the technique",
@@ -868,14 +867,6 @@ class TechniqueModel(BaseModel):
         le=prepare.POTENCY_RANGE[1],
     )
 
-    # Validate resources that should exist
-    @field_validator("icon")
-    def file_exists(cls: TechniqueModel, v: str) -> str:
-        if v and has.file(v) and has.size(v, prepare.TECH_ICON_SIZE):
-            return v
-        raise ValueError(f"the icon {v} doesn't exist in the db")
-
-    # Validate fields that refer to translated text
     @field_validator("use_tech", "use_success", "use_failure")
     def translation_exists(
         cls: TechniqueModel, v: Optional[str]

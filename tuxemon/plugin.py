@@ -20,6 +20,8 @@ from typing import (
     runtime_checkable,
 )
 
+from tuxemon.constants.paths import PLUGIN_INCLUDE_PATTERNS
+
 logger = logging.getLogger(__name__)
 log_hdlr = logging.StreamHandler(sys.stdout)
 log_hdlr.setLevel(logging.DEBUG)
@@ -126,16 +128,7 @@ class PluginManager:
     """Yapsy semi-compatible plugin manager."""
 
     EXCLUDE_CLASSES = ["IPlugin"]
-    INCLUDE_PATTERNS = [
-        "event.actions",
-        "event.conditions",
-        "item.effects",
-        "item.conditions",
-        "technique.effects",
-        "technique.conditions",
-        "condition.effects",
-        "condition.conditions",
-    ]
+    INCLUDE_PATTERNS = PLUGIN_INCLUDE_PATTERNS
 
     def __init__(
         self, discovery: PluginDiscovery, loader: PluginLoader

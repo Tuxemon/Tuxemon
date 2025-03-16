@@ -5,11 +5,11 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon import formula
 from tuxemon.db import SeenStatus, db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
+from tuxemon.time_handler import today_ordinal
 
 
 @final
@@ -62,7 +62,7 @@ class AddMonsterAction(EventAction):
         monster.load_from_db(monster_slug)
         monster.set_level(self.monster_level)
         monster.set_moves(self.monster_level)
-        monster.set_capture(formula.today_ordinal())
+        monster.set_capture(today_ordinal())
         monster.current_hp = monster.hp
 
         if self.exp is not None:

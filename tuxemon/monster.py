@@ -33,6 +33,7 @@ from tuxemon.shape import Shape
 from tuxemon.sprite import Sprite
 from tuxemon.taste import Taste
 from tuxemon.technique.technique import Technique, decode_moves, encode_moves
+from tuxemon.time_handler import today_ordinal
 
 if TYPE_CHECKING:
     import pygame
@@ -473,7 +474,7 @@ class Monster:
         """
         It returns the capture date.
         """
-        self.capture = formula.today_ordinal() if amount == 0 else amount
+        self.capture = today_ordinal() if amount == 0 else amount
         return self.capture
 
     def set_char_weight(self, value: float) -> float:

@@ -13,6 +13,13 @@ def get_current_time() -> datetime:
     return dt.datetime.now()
 
 
+def today_ordinal() -> int:
+    """
+    It gives today's proleptic Gregorian ordinal.
+    """
+    return dt.date.today().toordinal()
+
+
 def calculate_day_night_cycle(time: datetime) -> str:
     """Calculates the current day/night cycle based on the time provided.
 

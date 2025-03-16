@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from tuxemon import formula
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
+from tuxemon.time_handler import today_ordinal
 
 
 @dataclass
@@ -32,10 +32,16 @@ class OnceCondition(EventCondition):
         timeframe = int(condition.parameters[0])
         variable = condition.parameters[1]
         player = session.player
-        if variable in player.game_variables:
-            today = int(player.game_variables[variable])
-            if today + timeframe <= formula.today_ordinal():
-                return True
-            else:
-                return False
-        return True
+
+        if variable not in player.game_variables:
+            player.game_variables[variable] = today_ordinal()
+            return True
+
+        last_occurrence_day = int(player.game_variables[variable])
+        current_day = today_ordinal()
+
+        if current_day - last_occurrence_day > timeframe:
+            player.game_variables[variable] = current_day
+            return True
+
+        return False

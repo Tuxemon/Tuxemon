@@ -7,6 +7,8 @@ from collections import OrderedDict
 from collections.abc import Mapping
 from typing import Any, Optional
 
+import pygame
+
 from tuxemon.animation import Animation
 from tuxemon.platform.const import buttons, events
 
@@ -24,6 +26,7 @@ class TuxemonConfig:
         # load default config
         cfg = generate_default_config()
         self.cfg = cfg
+        self.config_path = config_path
 
         # update with customized values
         if config_path:
@@ -40,15 +43,6 @@ class TuxemonConfig:
         self.scaling = cfg.getboolean("display", "scaling")
         self.collision_map = cfg.getboolean("display", "collision_map")
         self.large_gui = cfg.getboolean("display", "large_gui")
-        self.controller_overlay = cfg.getboolean(
-            "display",
-            "controller_overlay",
-        )
-        self.controller_transparency = cfg.getint(
-            "display",
-            "controller_transparency",
-        )
-        self.hide_mouse = cfg.getboolean("display", "hide_mouse")
         self.window_caption = cfg.get("display", "window_caption")
 
         # [game]
@@ -58,8 +52,6 @@ class TuxemonConfig:
             "game",
             "net_controller_enabled",
         )
-        self.locale = cfg.get("game", "locale")
-        self.translation_mode = cfg.get("game", "translation_mode")
         self.dev_tools = cfg.getboolean("game", "dev_tools")
         self.recompile_translations = cfg.getboolean(
             "game",
@@ -91,6 +83,109 @@ class TuxemonConfig:
         self.player_walkrate = cfg.getfloat("player", "player_walkrate")
         self.player_runrate = cfg.getfloat("player", "player_runrate")
 
+        self.input = InputConfig(self.cfg)
+        self.controller = ControllerConfig(self.cfg)
+        self.logging = LoggingConfig(cfg)
+        self.locale = LocaleConfig(cfg)
+
+        # not configurable from the file yet
+        self.mods = ["tuxemon"]
+
+    def save_config(self) -> None:
+        assert self.config_path
+        with open(self.config_path, "w") as fp:
+            self.cfg.write(fp)
+
+    def reload_config(self) -> None:
+        assert self.config_path
+        self.cfg.read(self.config_path)
+        self.input.cfg = self.cfg
+        self.input.reload_input_map()
+
+    def update_control(self, value: str, key: int) -> None:
+        self.input.update_key(value, pygame.key.name(key))
+        self.save_config()
+        self.reload_config()
+
+    def reset_controls_to_default(self) -> None:
+        self.input.reset_to_default()
+        self.save_config()
+        self.reload_config()
+
+
+class ControllerConfig:
+    """Handles controller-related configurations."""
+
+    def __init__(self, cfg: configparser.ConfigParser) -> None:
+        self.overlay = cfg.getboolean("display", "controller_overlay")
+        self.transparency = cfg.getint("display", "controller_transparency")
+        self.hide_mouse = cfg.getboolean("display", "hide_mouse")
+
+
+class LocaleConfig:
+    """Handles locale-related configurations."""
+
+    def __init__(self, cfg: configparser.ConfigParser) -> None:
+        self.slug = cfg.get("game", "locale")
+        self.translation_mode = cfg.get("game", "translation_mode")
+
+
+class InputConfig:
+    """Handles input-related configurations."""
+
+    def __init__(self, cfg: configparser.ConfigParser) -> None:
+        self.cfg = cfg
+        self.gamepad_deadzone = 0.25
+        self.gamepad_button_map = None
+        self.keyboard_button_map = self._get_custom_pygame_keyboard_controls()
+
+    def _get_custom_pygame_keyboard_controls(self) -> Mapping[int | None, int]:
+        """
+        Returns a dictionary mapping pygame key constants to custom button values.
+        """
+        custom_controls: dict[int | None, int] = {None: events.UNICODE}
+        for key, values in self.cfg.items("controls"):
+            key = key.upper()
+            button_value: Optional[int] = getattr(buttons, key, None)
+            event_value: Optional[int] = getattr(events, key, None)
+            for each in values.split(", "):
+                each = each.lower() if len(each) == 1 else each.upper()
+                pygame_value: Optional[int] = getattr(
+                    pygame, "K_" + each, None
+                )
+                if pygame_value is not None and button_value is not None:
+                    custom_controls[pygame_value] = button_value
+                elif pygame_value is not None and event_value is not None:
+                    custom_controls[pygame_value] = event_value
+        return custom_controls
+
+    def update_key(self, value: str, key_name: str) -> None:
+        self.cfg.set("controls", value, key_name)
+        self.reload_input_map()
+
+    def reload_input_map(self) -> None:
+        self.keyboard_button_map = self._get_custom_pygame_keyboard_controls()
+
+    def reset_to_default(self) -> None:
+        default_controls = {
+            "up": "up",
+            "down": "down",
+            "left": "left",
+            "right": "right",
+            "a": "return",
+            "b": "rshift, lshift",
+            "back": "escape",
+            "backspace": "backspace",
+        }
+        for button, key in default_controls.items():
+            self.cfg.set("controls", button, key)
+        self.reload_input_map()
+
+
+class LoggingConfig:
+    """Handles logging-related configurations."""
+
+    def __init__(self, cfg: configparser.ConfigParser) -> None:
         # [logging]
         # Log levels can be: debug, info, warning, error, or critical
         # Setting loggers to "all" will enable debug logging for all modules.
@@ -104,72 +199,6 @@ class TuxemonConfig:
         self.debug_level = cfg.get("logging", "debug_level")
         self.log_to_file = cfg.getboolean("logging", "dump_to_file")
         self.log_keep_max = cfg.getint("logging", "file_keep_max")
-
-        # input config (None means use default for the platform)
-        self.gamepad_deadzone = 0.25
-        self.gamepad_button_map = None
-        self.keyboard_button_map = get_custom_pygame_keyboard_controls(cfg)
-
-        # not configurable from the file yet
-        self.mods = ["tuxemon"]
-
-
-def get_custom_pygame_keyboard_controls(
-    cfg: configparser.ConfigParser,
-) -> Mapping[Optional[int], int]:
-    """
-    Parameters:
-        cfg: Config parser.
-
-    """
-    import pygame.locals
-
-    custom_controls: dict[Optional[int], int] = {None: events.UNICODE}
-    for key, values in cfg.items("controls"):
-        key = key.upper()
-        button_value: Optional[int] = getattr(buttons, key, None)
-        event_value: Optional[int] = getattr(events, key, None)
-        for each in values.split(", "):
-            # used in case of multiple keys assigned to 1 method
-            # pygame.locals uses all caps for constants except for letters
-            each = each.lower() if len(each) == 1 else each.upper()
-            pygame_value: Optional[int] = getattr(
-                pygame.locals, "K_" + each, None
-            )
-            if pygame_value is not None and button_value is not None:
-                custom_controls[pygame_value] = button_value
-            elif pygame_value is not None and event_value is not None:
-                custom_controls[pygame_value] = event_value
-
-    return custom_controls
-
-
-def get_custom_pygame_keyboard_controls_names(
-    cfg: configparser.ConfigParser,
-) -> Mapping[Optional[str], int]:
-    """
-    Basically the same thing as `get_custom_pygame_keyboard_controls()`, but
-    returns with the key's string value instead of int
-
-    Parameters:
-        cfg: Config parser.
-
-    """
-    custom_controls: dict[Optional[str], int] = {None: events.UNICODE}
-    for key, values in cfg.items("controls"):
-        key = key.upper()
-        button_value: Optional[int] = getattr(buttons, key, None)
-        event_value: Optional[int] = getattr(events, key, None)
-        # used incase of multiple keys assigned to 1 method
-        # pygame.locals uses all caps for constants except for letters
-        for each in values.split(", "):
-            each = each.lower() if len(each) == 1 else each.upper()
-            if each is not None and button_value is not None:
-                custom_controls[each] = button_value
-            elif each is not None and event_value is not None:
-                custom_controls[each] = event_value
-
-    return custom_controls
 
 
 def get_defaults() -> Mapping[str, Any]:

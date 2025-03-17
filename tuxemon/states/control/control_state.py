@@ -97,6 +97,13 @@ class ControlState(PygameMenuState):
             font_size=self.font_size_small,
         )
 
+        language = T.translate("menu_language").upper()
+        menu.add.button(
+            title=f"{language}: {self.client.config.locale.slug}",
+            action=change_state("SetLanguage", main_menu=self.main_menu),
+            font_size=self.font_size_small,
+        )
+
         if not self.main_menu:
 
             def mute_music() -> None:

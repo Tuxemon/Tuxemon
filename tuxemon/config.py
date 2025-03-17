@@ -107,6 +107,12 @@ class TuxemonConfig:
         self.save_config()
         self.reload_config()
 
+    def update_locale(self, value: str) -> None:
+        self.cfg.set("game", "locale", value)
+        self.locale.slug = value
+        self.save_config()
+        self.reload_config()
+
     def reset_controls_to_default(self) -> None:
         self.input.reset_to_default()
         self.save_config()

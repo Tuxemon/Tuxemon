@@ -253,6 +253,12 @@ class TranslatorPo:
         else:
             logger.warning(f"Language {locale_name} is not supported")
 
+    def get_available_languages(self) -> list[str]:
+        """
+        Returns a list of all available languages.
+        """
+        return sorted(list(self.locale_finder.locale_names))
+
     def language_changed(self, locale_name: str) -> None:
         """
         Notifies all registered callbacks that the language has changed.

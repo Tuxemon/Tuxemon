@@ -32,12 +32,13 @@ def main(
     log.configure()
     prepare.init()
     config = prepare.CONFIG
+    screen = prepare.SCREEN
 
     import pygame
 
     from tuxemon.client import LocalPygameClient
 
-    client = LocalPygameClient(config)
+    client = LocalPygameClient(config, screen)
 
     # global/singleton hack for now
     setattr(prepare, "GLOBAL_CONTROL", client)

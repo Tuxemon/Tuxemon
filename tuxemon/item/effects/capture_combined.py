@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
 from tuxemon import formula, prepare
-from tuxemon.db import CategoryCondition as Category
+from tuxemon.db import CategoryStatus as Category
 from tuxemon.db import GenderType, SeenStatus
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 

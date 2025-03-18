@@ -7,7 +7,7 @@ import random
 from dataclasses import dataclass
 from typing import final
 
-from tuxemon import formula, prepare
+from tuxemon import prepare
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import MonsterModel, NpcModel, db
 from tuxemon.event.eventaction import EventAction
@@ -15,6 +15,7 @@ from tuxemon.monster import Monster
 from tuxemon.npc import NPC
 from tuxemon.states.combat.combat import CombatState
 from tuxemon.states.world.worldstate import WorldState
+from tuxemon.time_handler import today_ordinal
 
 logger = logging.getLogger(__name__)
 
@@ -75,7 +76,7 @@ class RandomBattleAction(EventAction):
             current_monster.load_from_db(monster.slug)
             current_monster.set_level(level)
             current_monster.set_moves(level)
-            current_monster.set_capture(formula.today_ordinal())
+            current_monster.set_capture(today_ordinal())
             current_monster.current_hp = current_monster.hp
             current_monster.money_modifier = level
             current_monster.experience_modifier = level

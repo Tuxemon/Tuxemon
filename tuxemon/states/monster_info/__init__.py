@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import uuid
 from typing import Any, Optional
 
 import pygame_menu
@@ -16,6 +15,7 @@ from tuxemon.monster import Monster
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
+from tuxemon.time_handler import today_ordinal
 
 lookup_cache: dict[str, MonsterModel] = {}
 
@@ -167,7 +167,7 @@ class MonsterInfoState(PygameMenuState):
         )
         lab9.translate(fix_measure(width, 0.50), fix_measure(height, 0.45))
         # capture
-        doc = formula.today_ordinal() - monster.capture
+        doc = today_ordinal() - monster.capture
         if doc >= 1:
             ref = (
                 T.format("tuxepedia_trade", {"doc": doc})

@@ -3,12 +3,13 @@
 import unittest
 from unittest.mock import MagicMock
 
-from tuxemon import formula, prepare
+from tuxemon import prepare
 from tuxemon.db import Modifier, ShapeModel, TechniqueModel, db
 from tuxemon.monster import Monster
 from tuxemon.prepare import MAX_LEVEL
 from tuxemon.taste import Taste
 from tuxemon.technique.technique import Technique
+from tuxemon.time_handler import today_ordinal
 
 
 class MonsterTestBase(unittest.TestCase):
@@ -38,11 +39,11 @@ class SetCapture(MonsterTestBase):
     def setUp(self):
         self.mon = Monster()
         self.mon.name = "agnite"
-        self.mon.set_capture(formula.today_ordinal())
+        self.mon.set_capture(today_ordinal())
 
     def test_set_capture_zero(self):
         self.mon.set_capture(0)
-        self.assertEqual(self.mon.capture, formula.today_ordinal())
+        self.assertEqual(self.mon.capture, today_ordinal())
 
     def test_set_capture_amount(self):
         self.mon.set_capture(5)

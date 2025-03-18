@@ -5,19 +5,19 @@ from typing import Optional, Union
 
 from tuxemon import prepare
 from tuxemon.animation_entity import AnimationEntity
-from tuxemon.condition.condition import Condition
 from tuxemon.formula import speed_monster
 from tuxemon.item.item import Item
 from tuxemon.monster import Monster
 from tuxemon.npc import NPC
 from tuxemon.sprite import Sprite
+from tuxemon.status.status import Status
 from tuxemon.technique.technique import Technique
 
 
 @dataclass
 class EnqueuedAction:
     user: Union[Monster, NPC, None]
-    method: Union[Technique, Item, Condition, None]
+    method: Union[Technique, Item, Status, None]
     target: Monster
 
     def __repr__(self) -> str:
@@ -37,14 +37,14 @@ class DamageReport:
 class MethodAnimationCache:
     def __init__(self) -> None:
         self._sprites: dict[
-            Union[Technique, Condition, Item], Optional[Sprite]
+            Union[Technique, Status, Item], Optional[Sprite]
         ] = {}
 
     def get(
-        self, method: Union[Technique, Condition, Item], is_flipped: bool
+        self, method: Union[Technique, Status, Item], is_flipped: bool
     ) -> Optional[Sprite]:
         """
-        Return a sprite usable as a method (technique, item, condition) animation.
+        Return a sprite usable as a method (technique, item, status) animation.
 
         Parameters:
             method: Whose sprite is requested.
@@ -63,10 +63,10 @@ class MethodAnimationCache:
 
     @staticmethod
     def load_method_animation(
-        method: Union[Technique, Condition, Item], is_flipped: bool
+        method: Union[Technique, Status, Item], is_flipped: bool
     ) -> Optional[Sprite]:
         """
-        Return animated sprite from a technique, condition or item.
+        Return animated sprite from a technique, status or item.
 
         Parameters:
             method: Whose sprite is requested.
@@ -277,7 +277,7 @@ class ActionQueue:
                 self.__replace(index, action.user, action.method, new)
 
     def rewrite(
-        self, monster: Monster, method: Union[Technique, Item, Condition]
+        self, monster: Monster, method: Union[Technique, Item, Status]
     ) -> None:
         """Rewrites the method of all actions in the queue for the given monster."""
         for index, action in enumerate(self._action_queue):
@@ -288,7 +288,7 @@ class ActionQueue:
         self,
         index: int,
         user: Union[Monster, NPC, None],
-        method: Union[Technique, Item, Condition, None],
+        method: Union[Technique, Item, Status, None],
         target: Monster,
     ) -> None:
         """Replaces an action in the queue at the given index."""

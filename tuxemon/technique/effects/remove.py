@@ -20,7 +20,7 @@ class RemoveEffect(TechEffect):
     This effect has a chance to remove a status effect.
 
     Parameters:
-        condition: The Condition slug (e.g. enraged).
+        status: The Status slug (e.g. enraged).
         objectives: The targets (e.g. own_monster, enemy_monster, etc.), if
             single "enemy_monster" or "enemy_monster:own_monster"
 
@@ -29,7 +29,7 @@ class RemoveEffect(TechEffect):
     """
 
     name = "remove"
-    condition: str
+    status: str
     objectives: str
 
     def apply(
@@ -46,12 +46,12 @@ class RemoveEffect(TechEffect):
 
         if success:
             monsters = get_target_monsters(objectives, tech, user, target)
-            if self.condition == "all":
+            if self.status == "all":
                 for monster in monsters:
                     monster.status.clear()
             else:
                 for monster in monsters:
-                    if has_status(monster, self.condition):
+                    if has_status(monster, self.status):
                         monster.status.clear()
 
         return TechEffectResult(

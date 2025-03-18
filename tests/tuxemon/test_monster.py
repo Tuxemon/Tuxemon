@@ -4,7 +4,13 @@ import unittest
 from unittest.mock import MagicMock
 
 from tuxemon import prepare
-from tuxemon.db import Modifier, ShapeModel, TechniqueModel, db
+from tuxemon.db import (
+    AttributesModel,
+    Modifier,
+    ShapeModel,
+    TechniqueModel,
+    db,
+)
 from tuxemon.monster import Monster
 from tuxemon.prepare import MAX_LEVEL
 from tuxemon.taste import Taste

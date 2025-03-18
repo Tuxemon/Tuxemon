@@ -9,7 +9,6 @@ from tuxemon import prepare
 from tuxemon.client import LocalPygameClient
 from tuxemon.db import (
     AttributesModel,
-    ConditionModel,
     ElementModel,
     EvolutionStage,
     MonsterModel,

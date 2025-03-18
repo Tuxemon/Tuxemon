@@ -27,18 +27,11 @@ from tuxemon.camera import Camera, CameraManager, project
 from tuxemon.db import Direction
 from tuxemon.entity import Entity
 from tuxemon.graphics import ColorLike
-from tuxemon.map import (
-    RegionProperties,
-    TuxemonMap,
-    dirs2,
-    get_adjacent_position,
-    pairs,
-    proj,
-)
+from tuxemon.map import RegionProperties, TuxemonMap, dirs2, proj
 from tuxemon.map_loader import TMXMapLoader, YAMLEventLoader
 from tuxemon.map_view import MapRenderer
 from tuxemon.math import Vector2
-from tuxemon.movement import PathfindNode
+from tuxemon.movement import Pathfinder
 from tuxemon.platform.const import intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event
@@ -86,6 +79,7 @@ class WorldState(state.State):
 
         self.boundary_checker = BoundaryChecker()
         self.teleporter = Teleporter()
+        self.pathfinder = Pathfinder(self, self.boundary_checker)
         # Provide access to the screen surface
         self.screen = self.client.screen
         self.tile_size = prepare.TILE_SIZE
@@ -483,28 +477,6 @@ class WorldState(state.State):
             coords for coords, props in surface_map.items() if label in props
         ]
 
-    def get_tile_moverate(
-        self,
-        surface_map: MutableMapping[tuple[int, int], dict[str, float]],
-        position: tuple[int, int],
-    ) -> float:
-        """
-        Returns moverate of a specific tile from the surface map.
-
-        If the position is not found in the map, or if the tile has no
-        moverate value, returns 1.0 as the default moverate.
-
-        Parameters:
-            surface_map: The surface map.
-            position: The coordinate pf the tile.
-
-        Returns:
-            The moverate of the tile at the specified position.
-
-        """
-        tile_properties = surface_map.get(position, {})
-        return next(iter(tile_properties.values()), 1.0)
-
     def check_collision_zones(
         self,
         collision_map: MutableMapping[
@@ -598,84 +570,14 @@ class WorldState(state.State):
         start: tuple[int, int],
         dest: tuple[int, int],
     ) -> Optional[Sequence[tuple[int, int]]]:
-        """
-        Pathfind.
-
-        Parameters:
-            start: Initial tile position.
-            dest: Target tile position.
-
-        Returns:
-            Sequence of tile positions of the steps, if a path exists.
-            ``None`` otherwise.
-
-        """
-        pathnode = self.pathfind_r(dest, [PathfindNode(start)], set())
-
-        if pathnode:
-            # traverse the node to get the path
-            path = []
-            while pathnode:
-                path.append(pathnode.get_value())
-                pathnode = pathnode.get_parent()
-
-            return path[:-1]
-
-        else:
-            character = self.get_entity_pos(start)
-            assert character
-            logger.error(
-                f"{character.name}'s pathfinding failed to find a path from "
-                + f"{str(start)} to {str(dest)} in {self.current_map.filename}. "
-                + "Are you sure that an obstacle-free path exists?"
-            )
-
-            return None
-
-    def pathfind_r(
-        self,
-        dest: tuple[int, int],
-        queue: list[PathfindNode],
-        known_nodes: set[tuple[int, int]],
-    ) -> Optional[PathfindNode]:
-        """
-        Breadth first search algorithm.
-
-        Parameters:
-            dest: Target tile position.
-            queue: Queue of nodes to explore.
-            known_nodes: Already explored nodes.
-
-        Returns:
-            A node with the path if it exist. ``None`` otherwise.
-
-        """
-        # The collisions shouldn't have changed whilst we were calculating,
-        # so it saves time to reuse the map.
-        collision_map = self.get_collision_map()
-        known_nodes.add(queue[0].get_value())
-        while queue:
-            node = queue.pop(0)
-            if node.get_value() == dest:
-                return node
-            else:
-                for adj_pos in self.get_exits(
-                    node.get_value(),
-                    collision_map,
-                    known_nodes,
-                ):
-                    if adj_pos not in known_nodes:
-                        known_nodes.add(adj_pos)
-                        queue.append(PathfindNode(adj_pos, node))
-
-        return None
+        return self.pathfinder.pathfind(start, dest)
 
     def get_explicit_tile_exits(
         self,
         position: tuple[int, int],
         tile: RegionProperties,
         skip_nodes: Optional[set[tuple[int, int]]] = None,
-    ) -> Optional[list[tuple[float, ...]]]:
+    ) -> list[tuple[float, ...]]:
         """
         Check for exits from tile which are defined in the map.
 
@@ -690,9 +592,10 @@ class WorldState(state.State):
 
         """
         skip_nodes = skip_nodes or set()
+        exits: list[tuple[float, ...]] = []
 
         try:
-            # Check if the players current position has any exit limitations.
+            # Check if the player's current position has any exit limitations.
             if tile.endure:
                 direction = (
                     self.player.facing
@@ -701,107 +604,19 @@ class WorldState(state.State):
                 )
                 exit_position = tuple(dirs2[direction] + position)
                 if exit_position not in skip_nodes:
-                    return [exit_position]
+                    exits.append(exit_position)
 
             # Check if the tile explicitly defines exits.
             if tile.exit_from:
-                return [
+                exits.extend(
                     tuple(dirs2[direction] + position)
                     for direction in tile.exit_from
                     if tuple(dirs2[direction] + position) not in skip_nodes
-                ]
+                )
         except (KeyError, TypeError):
-            return None
+            return []
 
-        return None
-
-    def get_exits(
-        self,
-        position: tuple[int, int],
-        collision_map: Optional[CollisionMap] = None,
-        skip_nodes: Optional[set[tuple[int, int]]] = None,
-    ) -> Sequence[tuple[int, int]]:
-        """
-        Return list of tiles which can be moved into.
-
-        This checks for adjacent tiles while checking for walls,
-        npcs, and collision lines, one-way tiles, etc.
-
-        Parameters:
-            position: The original position.
-            collision_map: Mapping of collisions with entities and terrain.
-            skip_nodes: Set of nodes to skip.
-
-        Returns:
-            Sequence of adjacent and traversable tile positions.
-
-        """
-        # TODO: rename this
-        # get tile-level and npc/entity blockers
-        collision_map = collision_map or self.get_collision_map()
-        skip_nodes = skip_nodes or set()
-
-        # if there are explicit way to exit this position use that information,
-        # handles 'continue' and 'exits'
-        tile_data = collision_map.get(position)
-        if tile_data:
-            exits = self.get_explicit_tile_exits(
-                position,
-                tile_data,
-                skip_nodes,
-            )
-        else:
-            exits = None
-
-        # get exits by checking surrounding tiles
-        adjacent_tiles = set()
-        for direction in [
-            Direction.down,
-            Direction.right,
-            Direction.up,
-            Direction.left,
-        ]:
-            neighbor = get_adjacent_position(position, direction)
-            # if exits are defined make sure the neighbor is present there
-            if exits and neighbor not in exits:
-                continue
-
-            # check if the neighbor region is present in skipped nodes
-            if neighbor in skip_nodes:
-                continue
-
-            # We only need to check the perimeter,
-            # as there is no way to get further out of bounds
-            if not self.boundary_checker.is_within_boundaries(neighbor):
-                continue
-
-            # check to see if this tile is separated by a wall
-            if (position, direction) in self.collision_lines_map:
-                # there is a wall so stop checking this direction
-                continue
-
-            # test if this tile has special movement handling
-            # NOTE: Do not refact. into a dict.get(xxxxx, None) style check
-            # NOTE: None has special meaning in this check
-            try:
-                tile_data = collision_map[neighbor]
-            except KeyError:
-                pass
-            else:
-                # None means tile is blocked with no specific data
-                if tile_data is None:
-                    continue
-
-                try:
-                    if pairs(direction) not in tile_data.enter_from:
-                        continue
-                except KeyError:
-                    continue
-
-            # no tile data, so assume it is free to move into
-            adjacent_tiles.add(neighbor)
-
-        return list(adjacent_tiles)
+        return exits
 
     ####################################################
     #              Character Movement                  #

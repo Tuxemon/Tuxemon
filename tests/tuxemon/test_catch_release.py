@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
-from unittest import mock
+from unittest.mock import patch
 
 from tuxemon.boxes import MonsterBoxes
 from tuxemon.monster import Monster
@@ -20,7 +20,7 @@ def mockNPC(self) -> None:
 class TestCatchTuxemon(unittest.TestCase):
     # Can't release Tuxemon if it is the only one in the party.
     def setUp(self):
-        with mock.patch.object(NPC, "__init__", mockNPC):
+        with patch.object(NPC, "__init__", mockNPC):
             self.npc = NPC()
 
     def test_release_one(self):

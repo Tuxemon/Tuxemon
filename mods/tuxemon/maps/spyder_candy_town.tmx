@@ -354,9 +354,8 @@
   <object id="222" name="Talk Eliane 1" type="event" x="96" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_candy_eliane1"/>
-    <property name="act2" value="set_variable elianeflower:today"/>
-    <property name="act3" value="set_random_variable elianeoutput,cureall:restoration:potion:tea"/>
-    <property name="act4" value="random_integer luckgiveegg,1,10"/>
+    <property name="act2" value="set_random_variable elianeoutput,cureall:restoration:potion:tea"/>
+    <property name="act3" value="random_integer luckgiveegg,1,10"/>
     <property name="behav1" value="talk spyder_candy_eliane"/>
     <property name="cond1" value="is once 1,elianeflower"/>
    </properties>

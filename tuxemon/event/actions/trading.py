@@ -7,11 +7,11 @@ import uuid
 from dataclasses import dataclass
 from typing import final
 
-from tuxemon import formula
 from tuxemon.db import SeenStatus, db
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
+from tuxemon.time_handler import today_ordinal
 
 logger = logging.getLogger(__name__)
 
@@ -71,7 +71,7 @@ def _create_traded_monster(removed: Monster, added: str) -> Monster:
     new.load_from_db(added)
     new.set_level(removed.level)
     new.set_moves(removed.level)
-    new.set_capture(formula.today_ordinal())
+    new.set_capture(today_ordinal())
     new.current_hp = new.hp
     new.traded = True
     return new

@@ -1,0 +1,53 @@
+[
+  {
+    "slug": "underground"
+  },
+  {
+    "slug": "swamp"
+  },
+  {
+    "slug": "sea"
+  },
+  {
+    "slug": "ruins"
+  },
+  {
+    "slug": "mountains"
+  },
+  {
+    "slug": "jungle"
+  },
+  {
+    "slug": "grassland"
+  },
+  {
+    "slug": "freshwater"
+  },
+  {
+    "slug": "extraterrestrial"
+  },
+  {
+    "slug": "extraplanar"
+  },
+  {
+    "slug": "desert"
+  },
+  {
+    "slug": "coastal"
+  },
+  {
+    "slug": "boreal_snow"
+  },
+  {
+    "slug": "any"
+  },
+  {
+    "slug": "urban"
+  },
+  {
+    "slug": "woodland"
+  },
+  {
+    "slug": "other"
+  }
+]

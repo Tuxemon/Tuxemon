@@ -1,0 +1,16 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "neutral",
+  "effects": [],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_faint.png",
+  "sfx": "sfx_faint",
+  "slug": "faint",
+  "range": "special",
+  "sort": "meta",
+  "cond_id": 0,
+  "use_failure": null,
+  "use_success": null,
+  "gain_cond": null
+}

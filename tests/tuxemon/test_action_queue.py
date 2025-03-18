@@ -105,10 +105,11 @@ class TestSpeedTestFunction(unittest.TestCase):
         self.monster2.speed = 15.0
         self.monster2.dodge = 3.0
 
+        self.tech = MagicMock(spec=Technique)
+
     def test_speed_modifier_fast_technique(self):
-        technique = MagicMock(spec=Technique)
-        technique.is_fast = True
-        results = [speed_monster(self.monster, technique) for _ in range(1000)]
+        self.tech.is_fast = True
+        results = [speed_monster(self.monster, self.tech) for _ in range(1000)]
         self.assertGreaterEqual(min(results), 1)
         self.assertLessEqual(
             max(results),
@@ -118,9 +119,8 @@ class TestSpeedTestFunction(unittest.TestCase):
         )
 
     def test_speed_modifier_normal_technique(self):
-        technique = MagicMock(spec=Technique)
-        technique.is_fast = False
-        results = [speed_monster(self.monster, technique) for _ in range(1000)]
+        self.tech.is_fast = False
+        results = [speed_monster(self.monster, self.tech) for _ in range(1000)]
         self.assertGreaterEqual(min(results), 1)
         self.assertLessEqual(
             max(results),
@@ -130,9 +130,8 @@ class TestSpeedTestFunction(unittest.TestCase):
         )
 
     def test_speed_modifier_with_random_offset(self):
-        technique = MagicMock(spec=Technique)
-        technique.is_fast = True
-        results = [speed_monster(self.monster, technique) for _ in range(1000)]
+        self.tech.is_fast = True
+        results = [speed_monster(self.monster, self.tech) for _ in range(1000)]
         self.assertGreaterEqual(min(results), 1)
         self.assertLessEqual(
             max(results),
@@ -142,9 +141,8 @@ class TestSpeedTestFunction(unittest.TestCase):
         )
 
     def test_speed_modifier_with_dodge(self):
-        technique = MagicMock(spec=Technique)
-        technique.is_fast = False
-        results = [speed_monster(self.monster, technique) for _ in range(1000)]
+        self.tech.is_fast = False
+        results = [speed_monster(self.monster, self.tech) for _ in range(1000)]
         expected_dodge_contribution = self.monster.dodge * 0.01
         self.assertGreaterEqual(
             min(results),
@@ -161,23 +159,20 @@ class TestSpeedTestFunction(unittest.TestCase):
 
     def test_zero_speed(self):
         self.monster.speed = 0.0
-        technique = MagicMock(spec=Technique)
-        technique.is_fast = True
-        results = [speed_monster(self.monster, technique) for _ in range(1000)]
+        self.tech.is_fast = True
+        results = [speed_monster(self.monster, self.tech) for _ in range(1000)]
         self.assertGreaterEqual(min(results), 1)
 
     def test_negative_speed(self):
         self.monster.speed = -5.0
-        technique = MagicMock(spec=Technique)
-        technique.is_fast = True
-        results = [speed_monster(self.monster, technique) for _ in range(1000)]
+        self.tech.is_fast = True
+        results = [speed_monster(self.monster, self.tech) for _ in range(1000)]
         self.assertGreaterEqual(min(results), 1)
 
     def test_zero_dodge(self):
         self.monster.dodge = 0.0
-        technique = MagicMock(spec=Technique)
-        technique.is_fast = False
-        results = [speed_monster(self.monster, technique) for _ in range(1000)]
+        self.tech.is_fast = False
+        results = [speed_monster(self.monster, self.tech) for _ in range(1000)]
         self.assertGreaterEqual(min(results), 1)
         self.assertLessEqual(
             max(results), self.monster.speed + prepare.SPEED_OFFSET
@@ -186,9 +181,8 @@ class TestSpeedTestFunction(unittest.TestCase):
     def test_high_values(self):
         self.monster.speed = 1e6
         self.monster.dodge = 1e6
-        technique = MagicMock(spec=Technique)
-        technique.is_fast = True
-        results = [speed_monster(self.monster, technique) for _ in range(1000)]
+        self.tech.is_fast = True
+        results = [speed_monster(self.monster, self.tech) for _ in range(1000)]
         self.assertGreaterEqual(min(results), 1)
         self.assertLessEqual(
             max(results),
@@ -198,9 +192,8 @@ class TestSpeedTestFunction(unittest.TestCase):
         )
 
     def test_randomness_effect(self):
-        technique = MagicMock(spec=Technique)
-        technique.is_fast = True
-        results = [speed_monster(self.monster, technique) for _ in range(1000)]
+        self.tech.is_fast = True
+        results = [speed_monster(self.monster, self.tech) for _ in range(1000)]
         self.assertGreaterEqual(min(results), 1)
         self.assertLessEqual(
             max(results),
@@ -210,14 +203,13 @@ class TestSpeedTestFunction(unittest.TestCase):
         )
 
     def test_speed_comparison_between_monsters(self):
-        technique = MagicMock(spec=Technique)
-        technique.is_fast = True
+        self.tech.is_fast = True
 
         results1 = [
-            speed_monster(self.monster1, technique) for _ in range(1000)
+            speed_monster(self.monster1, self.tech) for _ in range(1000)
         ]
         results2 = [
-            speed_monster(self.monster2, technique) for _ in range(1000)
+            speed_monster(self.monster2, self.tech) for _ in range(1000)
         ]
 
         with self.subTest("Comparing speed modifiers"):
@@ -245,13 +237,12 @@ class TestSpeedTestFunction(unittest.TestCase):
         monster3.speed = 20.0
         monster3.dodge = 5.0
 
-        technique = MagicMock(spec=Technique)
-        technique.is_fast = True
+        self.tech.is_fast = True
 
         results1 = [
-            speed_monster(self.monster1, technique) for _ in range(1000)
+            speed_monster(self.monster1, self.tech) for _ in range(1000)
         ]
-        results3 = [speed_monster(monster3, technique) for _ in range(1000)]
+        results3 = [speed_monster(monster3, self.tech) for _ in range(1000)]
 
         with self.subTest("Comparing different speed values"):
             self.assertGreaterEqual(min(results1), 1)
@@ -278,13 +269,12 @@ class TestSpeedTestFunction(unittest.TestCase):
         monster4.speed = 10.0
         monster4.dodge = 10.0
 
-        technique = MagicMock(spec=Technique)
-        technique.is_fast = True
+        self.tech.is_fast = True
 
         results1 = [
-            speed_monster(self.monster1, technique) for _ in range(10000)
+            speed_monster(self.monster1, self.tech) for _ in range(10000)
         ]
-        results4 = [speed_monster(monster4, technique) for _ in range(10000)]
+        results4 = [speed_monster(monster4, self.tech) for _ in range(10000)]
 
         with self.subTest("Comparing different dodge values"):
             self.assertGreaterEqual(min(results1), 1)
@@ -312,13 +302,12 @@ class TestSpeedTestFunction(unittest.TestCase):
         monster5.speed = 1e6
         monster5.dodge = 1.0
 
-        technique = MagicMock(spec=Technique)
-        technique.is_fast = True
+        self.tech.is_fast = True
 
         results1 = [
-            speed_monster(self.monster1, technique) for _ in range(1000)
+            speed_monster(self.monster1, self.tech) for _ in range(1000)
         ]
-        results5 = [speed_monster(monster5, technique) for _ in range(1000)]
+        results5 = [speed_monster(monster5, self.tech) for _ in range(1000)]
 
         with self.subTest("Comparing extreme speed and dodge values"):
             self.assertGreaterEqual(min(results1), 1)
@@ -345,13 +334,12 @@ class TestSpeedTestFunction(unittest.TestCase):
         monster6.speed = 10.0
         monster6.dodge = 5.0
 
-        technique = MagicMock(spec=Technique)
-        technique.is_fast = True
+        self.tech.is_fast = True
 
         results1 = [
-            speed_monster(self.monster1, technique) for _ in range(1000)
+            speed_monster(self.monster1, self.tech) for _ in range(1000)
         ]
-        results6 = [speed_monster(monster6, technique) for _ in range(1000)]
+        results6 = [speed_monster(monster6, self.tech) for _ in range(1000)]
 
         with self.subTest("Comparing equal speed and dodge"):
             self.assertGreaterEqual(min(results1), 1)
@@ -378,10 +366,9 @@ class TestSpeedTestFunction(unittest.TestCase):
             )
 
     def test_fast_vs_normal_technique(self):
-        technique_fast = MagicMock(spec=Technique)
-        technique_fast.is_fast = True
+        self.tech.is_fast = True
         results1_fast = [
-            speed_monster(self.monster1, technique_fast) for _ in range(1000)
+            speed_monster(self.monster1, self.tech) for _ in range(1000)
         ]
 
         technique_normal1 = MagicMock(spec=Technique)
@@ -392,7 +379,7 @@ class TestSpeedTestFunction(unittest.TestCase):
         ]
 
         results2_fast = [
-            speed_monster(self.monster2, technique_fast) for _ in range(1000)
+            speed_monster(self.monster2, self.tech) for _ in range(1000)
         ]
 
         results2_normal = [
@@ -418,11 +405,11 @@ class TestActionQueue(unittest.TestCase):
         self.queue = MagicMock()
         self.monster1 = MagicMock(name="Monster1", current_hp=100)
         self.monster2 = MagicMock(name="Monster2", current_hp=100)
-        self.technique1 = MagicMock(name="Technique1")
+        self.tech1 = MagicMock(name="Technique1")
         self.item1 = MagicMock(name="Item1")
         self.condition1 = MagicMock(name="Condition1")
         self.action1 = MagicMock(
-            user=self.monster1, method=self.technique1, target=self.monster2
+            user=self.monster1, method=self.tech1, target=self.monster2
         )
         self.action2 = MagicMock(
             user=self.monster2, method=self.item1, target=self.monster1
@@ -469,10 +456,8 @@ class TestActionQueue(unittest.TestCase):
         self.queue.swap.assert_called_once_with(self.monster2, self.monster1)
 
     def test_rewrite(self):
-        self.queue.rewrite(self.monster1, self.technique1)
-        self.queue.rewrite.assert_called_once_with(
-            self.monster1, self.technique1
-        )
+        self.queue.rewrite(self.monster1, self.tech1)
+        self.queue.rewrite.assert_called_once_with(self.monster1, self.tech1)
 
     def test_get_last_action_user(self):
         self.queue.get_last_action(2, self.monster2, "user")
@@ -532,9 +517,9 @@ class TestActionHistory(unittest.TestCase):
         self.history = MagicMock()
         self.monster1 = MagicMock(name="Monster1")
         self.monster2 = MagicMock(name="Monster2")
-        self.technique1 = MagicMock(name="Technique1")
+        self.tech1 = MagicMock(name="Technique1")
         self.action1 = MagicMock(
-            user=self.monster1, method=self.technique1, target=self.monster2
+            user=self.monster1, method=self.tech1, target=self.monster2
         )
         self.action2 = MagicMock(
             user=self.monster2,

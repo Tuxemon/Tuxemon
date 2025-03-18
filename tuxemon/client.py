@@ -42,7 +42,9 @@ class LocalPygameClient:
 
     """
 
-    def __init__(self, config: TuxemonConfig) -> None:
+    def __init__(
+        self, config: TuxemonConfig, screen: pg.surface.Surface
+    ) -> None:
         self.config = config
 
         self.state_manager = StateManager(
@@ -50,7 +52,7 @@ class LocalPygameClient:
             on_state_change=self.on_state_change,
         )
         self.state_manager.auto_state_discovery()
-        self.screen = pg.display.get_surface()
+        self.screen = screen
         self.caption = config.window_caption
         self.done = False
         self.fps = config.fps

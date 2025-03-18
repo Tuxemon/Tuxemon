@@ -6,7 +6,6 @@ import random
 from dataclasses import dataclass
 from typing import final
 
-from tuxemon import formula
 from tuxemon.event.eventaction import EventAction
 
 
@@ -44,10 +43,6 @@ class SetRandomVariableAction(EventAction):
             value = random.choice(values)
         else:
             value = self.var_value
-
-        # replaces today value with ordinal
-        if value == "today":
-            value = str(formula.today_ordinal())
 
         # Append the game_variables dictionary with the key: value pair
         player.game_variables[self.var_key] = value

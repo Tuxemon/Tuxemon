@@ -104,3 +104,9 @@ ignored-argument-names = "_.*"
 
 [tool.pylint.deprecated_builtins]
 bad-functions = ["map", "filter", "apply", "input"]
+
+[tool.flake8]
+ignore = []
+max-line-length = 79
+exclude = [".env/*", ".git"]
+max-complexity = 10

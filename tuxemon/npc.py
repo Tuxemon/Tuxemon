@@ -19,6 +19,7 @@ from tuxemon.map import dirs2, dirs3, get_coords_ext, get_direction, proj
 from tuxemon.map_view import SpriteRenderer
 from tuxemon.math import Vector2
 from tuxemon.mission import MissionManager
+from tuxemon.money import MoneyManager, decode_money, encode_money
 from tuxemon.monster import Monster, decode_monsters, encode_monsters
 from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
@@ -41,7 +42,7 @@ class NPCState(TypedDict):
     battles: Sequence[Mapping[str, Any]]
     tuxepedia: Mapping[str, Any]
     contacts: dict[str, str]
-    money: dict[str, int]
+    money: Mapping[str, Any]
     template: dict[str, Any]
     missions: Sequence[Mapping[str, Any]]
     items: Sequence[Mapping[str, Any]]
@@ -97,7 +98,7 @@ class NPC(Entity[NPCState]):
         # Tracks Tuxepedia (monster seen or caught)
         self.tuxepedia = Tuxepedia()
         self.contacts: dict[str, str] = {}
-        self.money: dict[str, int] = {}  # Tracks money
+        self.money_manager = MoneyManager()
         # list of ways player can interact with the Npc
         self.interactions: Sequence[str] = []
         # menu labels (world menu)
@@ -167,7 +168,7 @@ class NPC(Entity[NPCState]):
             "battles": encode_battle(self.battles),
             "tuxepedia": encode_tuxepedia(self.tuxepedia),
             "contacts": self.contacts,
-            "money": self.money,
+            "money": encode_money(self.money_manager),
             "items": encode_items(self.items),
             "template": self.template.model_dump(),
             "missions": self.mission_manager.encode_missions(),
@@ -197,7 +198,7 @@ class NPC(Entity[NPCState]):
         self.game_variables = save_data["game_variables"]
         self.tuxepedia = decode_tuxepedia(save_data["tuxepedia"])
         self.contacts = save_data["contacts"]
-        self.money = save_data["money"]
+        self.money_manager = decode_money(save_data["money"])
         self.battles = []
         for battle in decode_battle(save_data.get("battles")):
             self.battles.append(battle)

@@ -107,7 +107,7 @@ class ShopMenuState(Menu[Item]):
                 self.qty = self.buyer.game_variables[key]
 
                 fg = None
-                self.wallet = self.buyer.money["player"]
+                self.wallet = self.buyer.money_manager.get_money()
                 self.price = self.economy.lookup_item_price(itm.slug)
                 if self.price > self.wallet:
                     fg = self.unavailable_color_shop
@@ -186,14 +186,15 @@ class ShopBuyMenuState(ShopMenuState):
                 new_buy.load(itm.slug)
                 new_buy.quantity = quantity
                 self.buyer.add_item(new_buy)
-            self.buyer.money["player"] -= quantity * price
+            amount = quantity * price
+            self.buyer.money_manager.remove_money(amount)
 
             self.reload_items()
             if item not in self.seller.items:
                 # We're pointing at a new item
                 self.on_menu_selection_change()
 
-        money = self.buyer.money["player"]
+        money = self.buyer.money_manager.get_money()
         qty_can_afford = int(money / price)
         inventory = self.buyer.game_variables[label]
         _inventory = 99999 if inventory == INFINITE_ITEMS else inventory
@@ -236,8 +237,8 @@ class ShopSellMenuState(ShopMenuState):
             else:
                 itm.quantity = diff
 
-            if self.seller.money.get("player") is not None:
-                self.seller.money["player"] += quantity * cost
+            amount = quantity * cost
+            self.seller.money_manager.add_money(amount)
 
             self.reload_items()
             if item not in self.seller.items:

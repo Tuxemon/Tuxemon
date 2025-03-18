@@ -8,33 +8,36 @@ from typing import Optional, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.locale import T
 
 logger = logging.getLogger(__name__)
 
 
 @final
 @dataclass
-class ModifyMoneyAction(EventAction):
+class ModifyBillAction(EventAction):
     """
-    Add or remove an amount of money for a wallet (slug).
+    Add or remove an amount of money from a bill (slug).
 
     Script usage:
         .. code-block::
 
-            modify_money <slug>,[amount][,variable]
+            modify_bill <slug>,<bill_slug>,[amount][,variable]
 
     Script parameters:
         slug: Either "player" or character slug name (e.g. "npc_maple").
+        bill_slug: Slug of the bill.
         amount: Amount of money to add/remove (-/+)
         variable: Name of the variable where to store the amount.
 
-    eg. "modify_money player,-50"
-    eg. "modify_money player,,name_variable"
+    eg. "modify_bill player,bill_slug,-50"
+    eg. "modify_bill player,bill_slug,,name_variable"
 
     """
 
-    name = "modify_money"
+    name = "modify_bill"
     character: str
+    bill_slug: str
     amount: Optional[int] = None
     variable: Optional[str] = None
 
@@ -53,8 +56,8 @@ class ModifyMoneyAction(EventAction):
                     amount = int(_amount)
                 elif isinstance(_amount, float):
                     _value = float(_amount)
-                    _wallet = player.money_manager.get_money()
-                    amount = int(_wallet * _value)
+                    _wallet = character.money_manager.get_bill(self.bill_slug)
+                    amount = int(_wallet.amount * _value)
                 else:
                     raise ValueError("It must be float or int")
             else:
@@ -62,5 +65,14 @@ class ModifyMoneyAction(EventAction):
         else:
             amount = self.amount
 
-        player.money_manager.add_money(amount)
-        logger.info(f"{character.name}'s money changed by {amount}")
+        if not T.has_translation("en_US", self.bill_slug):
+            logger.error(f"Please add {self.bill_slug} to the en_US base.po")
+
+        bill_amount = character.money_manager.get_bill(self.bill_slug).amount
+        if bill_amount <= 0:
+            logger.error(f"Bill '{self.bill_slug}' doesn't exist")
+            return
+        if amount >= 0:
+            character.money_manager.add_bill(self.bill_slug, amount)
+        else:
+            character.money_manager.remove_bill(self.bill_slug, amount)

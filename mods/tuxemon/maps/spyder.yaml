@@ -1,7 +1,7 @@
 events:
   Cathedral:
     actions:
-    - set_money bill_cathedral
+    - set_bill player,bill_cathedral
     - set_variable cathedral_share:0.5
     - format_variable cathedral_share,float
     - set_variable cathedral_interest:0.1
@@ -19,12 +19,12 @@ events:
     - variable_math battle_last_prize,*,cathedral_share
     - format_variable battle_last_prize,-int
     - modify_money player,,battle_last_prize
-    - modify_money bill_cathedral,,battle_last_prize
+    - modify_bill player,bill_cathedral,,battle_last_prize
     - set_variable battle_last_prize:0
     conditions:
     - is variable_set battle_last_result:won
     - is variable_set battle_last_winner:player
-    - is money_is bill_cathedral,greater_than,0
+    - is bill_is player,bill_cathedral,greater_than,0
     - is variable_is battle_last_prize,greater_than,0
     type: "event"
   Teleport Faint:
@@ -46,7 +46,7 @@ events:
     - set_monster_status
     - set_variable teleport_clinic:none
     - format_variable cathedral_fee,int
-    - modify_money bill_cathedral,,cathedral_fee
+    - modify_bill player,bill_cathedral,,cathedral_fee
     conditions:
     - is char_defeated player
     - is location_type clinic

@@ -58,6 +58,7 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
     _handle_change_tuxepedia(save_data)
     _handle_change_monster_name(save_data)
     _handle_change_plague(save_data)
+    _handle_change_money(save_data)
 
     if isinstance(save_data["template"], list):
         _npc = {
@@ -88,6 +89,28 @@ def _handle_change_tuxepedia(save_data: dict[str, Any]) -> None:
                 "status": value,
                 "appearance_count": 1,
             }
+
+
+def _handle_change_money(save_data: dict[str, Any]) -> None:
+    """
+    Updates money field in the save data.
+    """
+    new_money: dict[str, Any] = {"money": 0, "bank_account": 0, "bills": {}}
+    if "bills" in save_data["money"] and isinstance(
+        save_data["money"]["bills"], dict
+    ):
+        return
+    else:
+        for entry, value in save_data["money"].items():
+            if entry == "player":
+                new_money["money"] = value
+            elif entry == "bank_account":
+                new_money["bank_account"] = value
+            elif entry.startswith("bill_"):
+                new_money["bills"][entry] = {
+                    "amount": value,
+                }
+        save_data["money"] = new_money
 
 
 def _handle_change_plague(save_data: dict[str, Any]) -> None:

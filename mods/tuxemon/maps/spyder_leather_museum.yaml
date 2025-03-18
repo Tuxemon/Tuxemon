@@ -117,7 +117,7 @@ events:
     - pathfind player,1,8
     - set_variable paymuseum:null
     - translated_dialog spyder_museum_entrance2
-    - transfer_money player,50,spyder_leather_museum
+    - modify_money player,-50
     - unlock_controls
     conditions:
     - is variable_set paymuseum:yes
@@ -153,7 +153,7 @@ events:
     - pathfind player,1,8
     - set_variable paymuseum:null
     - translated_dialog spyder_museum_entrance2
-    - transfer_money player,100,spyder_leather_museum
+    - modify_money player,-100
     - unlock_controls
     conditions:
     - is variable_set paymuseum:yes

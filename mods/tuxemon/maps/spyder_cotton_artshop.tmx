@@ -138,7 +138,7 @@
    <properties>
     <property name="act1" value="pathfind player,2,8"/>
     <property name="act2" value="set_variable paygallery:null"/>
-    <property name="act3" value="transfer_money player,50,spyder_cotton_artshop"/>
+    <property name="act3" value="modify_money player,-50"/>
     <property name="cond1" value="is variable_set paygallery:yes"/>
     <property name="cond2" value="is money_is player,greater_or_equal,50"/>
    </properties>

@@ -94,7 +94,7 @@ class QuantityMenu(Menu[None]):
         yield MenuItem(image, label, None, None)
 
     def show_money(self) -> Generator[MenuItem[None], None, None]:
-        money = local_session.player.money["player"]
+        money = local_session.player.money_manager.get_money()
         label = f"{T.translate('wallet')}: {money}"
         image_money = self.shadow_text(label)
         yield MenuItem(image_money, label, None, None)

@@ -14,32 +14,33 @@ logger = logging.getLogger(__name__)
 
 
 @dataclass
-class MoneyIsCondition(EventCondition):
+class BillIsCondition(EventCondition):
     """
-    Check to see if the character has a certain amount of money (pocket).
+    Check to see if a bill exists and has a certain amount.
 
     Script usage:
         .. code-block::
 
-            is money_is <character>,<operator>,<amount>
+            is bill_is <character>,<operator>,<bill_slug>,<amount>
 
     Script parameters:
         character: Either "player" or npc slug name (e.g. "npc_maple").
+        bill_slug: The slug of the bill
         operator: Numeric comparison operator. Accepted values are "less_than",
             "less_or_equal", "greater_than", "greater_or_equal", "equals"
             and "not_equals".
         amount: Amount of money or value stored in variable
 
-    eg. "is money_is player,equals,50"
-    eg. "is money_is player,equals,name_variable" (name_variable:75)
+    eg. "is bill_is player,bill_slug,equals,50"
+    eg. "is bill_is player,bill_slug,equals,name_variable" (name_variable:75)
 
     """
 
-    name = "money_is"
+    name = "bill_is"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
         player = session.player
-        character_name, operator, _amount = condition.parameters[:3]
+        character_name, _bill, operator, _amount = condition.parameters[:4]
         character = get_npc(session, character_name)
         if character is None:
             logger.error(f"Character '{character_name}' not found")
@@ -52,5 +53,8 @@ class MoneyIsCondition(EventCondition):
         else:
             amount = int(_amount)
 
-        money_amount = character.money_manager.get_money()
-        return compare(operator, money_amount, amount)
+        bill_amount = character.money_manager.get_bill(_bill).amount
+        if bill_amount == 0:
+            return False
+        else:
+            return compare(operator, bill_amount, amount)

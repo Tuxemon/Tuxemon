@@ -45,6 +45,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.load_game.LoadGameAction
 .. autoscriptinfoclass:: tuxemon.event.actions.load_yaml.LoadYamlAction
 .. autoscriptinfoclass:: tuxemon.event.actions.menu.MenuAction
+.. autoscriptinfoclass:: tuxemon.event.actions.modify_bill.ModifyBillAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_char_attribute.ModifyCharAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_money.ModifyMoneyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_monster_bond.ModifyMonsterBondAction
@@ -78,6 +79,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.save_game.SaveGameAction
 .. autoscriptinfoclass:: tuxemon.event.actions.screen_transition.ScreenTransitionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_battle.SetBattleAction
+.. autoscriptinfoclass:: tuxemon.event.actions.set_bill.SetBillAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_char_attribute.SetCharAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_bubble.SetBubbleAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_economy.SetEconomyAction

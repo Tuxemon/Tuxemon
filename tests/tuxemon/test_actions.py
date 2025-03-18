@@ -14,7 +14,6 @@ from tuxemon.tuxepedia import Tuxepedia
 
 def mockPlayer(self) -> None:
     self.name = "Jeff"
-    self.money = {}
     self.game_variables = {}
     self.tuxepedia = Tuxepedia()
 

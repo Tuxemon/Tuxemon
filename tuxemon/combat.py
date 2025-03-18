@@ -104,7 +104,7 @@ def pre_checking(
 
 def has_status(monster: Monster, status_name: str) -> bool:
     """
-    Checks to see if the monster has a specific status/condition.
+    Checks to see if the monster has a specific status.
     """
     return any(t for t in monster.status if t.slug == status_name)
 

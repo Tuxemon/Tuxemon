@@ -58,7 +58,6 @@ from tuxemon.combat import (
     set_var,
     track_battles,
 )
-from tuxemon.condition.condition import Condition
 from tuxemon.db import (
     BattleGraphicsModel,
     ItemCategory,
@@ -76,6 +75,7 @@ from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.states.transition.fade import FadeOutTransition
+from tuxemon.status.status import Status
 from tuxemon.technique.technique import Technique
 from tuxemon.tools import assert_never
 from tuxemon.ui.draw import GraphicBox
@@ -394,16 +394,16 @@ class CombatState(CombatAnimations):
             if self._action_queue.pending:
                 self._action_queue.from_pending_to_action(self._turn)
 
-            # apply condition effects to the monsters
+            # apply status effects to the monsters
             for monster in self.active_monsters:
-                for condition in monster.status:
-                    # validate condition
-                    if condition.validate(monster):
-                        condition.combat_state = self
+                for status in monster.status:
+                    # validate status
+                    if status.validate(monster):
+                        status.combat_state = self
                         # update counter nr turns
-                        condition.nr_turn += 1
-                        self.enqueue_action(None, condition, monster)
-                    # avoid multiple effect condition
+                        status.nr_turn += 1
+                        self.enqueue_action(None, status, monster)
+                    # avoid multiple effect status
                     monster.set_stats()
 
         elif phase == "resolve match" or phase == "ran away":
@@ -755,7 +755,7 @@ class CombatState(CombatAnimations):
     def enqueue_action(
         self,
         user: Union[NPC, Monster, None],
-        technique: Union[Item, Technique, Condition, None],
+        technique: Union[Item, Technique, Status, None],
         target: Monster,
     ) -> None:
         """
@@ -805,7 +805,7 @@ class CombatState(CombatAnimations):
     def perform_action(
         self,
         user: Union[Monster, NPC, None],
-        method: Union[Technique, Item, Condition, None],
+        method: Union[Technique, Item, Status, None],
         target: Monster,
     ) -> None:
         """
@@ -813,15 +813,15 @@ class CombatState(CombatAnimations):
 
         Parameters:
             user: Monster or NPC that does the action.
-            method: Technique or item or condition used.
+            method: Technique or item or status used.
             target: Monster that receives the action.
         """
         if isinstance(method, Technique) and isinstance(user, Monster):
             self._handle_monster_technique(user, method, target)
         if isinstance(method, Item) and isinstance(user, NPC):
             self._handle_npc_item(user, method, target)
-        if isinstance(method, Condition):
-            self._handle_condition(method, target)
+        if isinstance(method, Status):
+            self._handle_status(method, target)
 
     def _handle_monster_technique(
         self,
@@ -862,8 +862,8 @@ class CombatState(CombatAnimations):
                 ]
                 template = "\n".join(templates)
                 message += "\n" + template
-            if result_status.conditions:
-                status = random.choice(result_status.conditions)
+            if result_status.statuses:
+                status = random.choice(result_status.statuses)
                 user.apply_status(status)
 
         if result_tech.success and method.use_success:
@@ -990,31 +990,31 @@ class CombatState(CombatAnimations):
             (partial(self.alert, message), action_time)
         )
 
-    def _handle_condition(self, condition: Condition, target: Monster) -> None:
+    def _handle_status(self, status: Status, target: Monster) -> None:
         action_time = 0.0
-        condition.combat_state = self
-        condition.phase = "perform_action_status"
-        condition.advance_round()
-        result = condition.use(target)
+        status.combat_state = self
+        status.phase = "perform_action_status"
+        status.advance_round()
+        result = status.use(target)
         context = {
-            "name": condition.name,
+            "name": status.name,
             "target": target.name,
         }
         message: str = ""
-        # successful conditions
+        # successful statuses
         if result.success:
-            if condition.use_success:
-                template = getattr(condition, "use_success")
+            if status.use_success:
+                template = getattr(status, "use_success")
                 message = T.format(template, context)
             # first turn status
-            if condition.nr_turn == 1 and condition.gain_cond:
-                first_turn = getattr(condition, "gain_cond")
+            if status.nr_turn == 1 and status.gain_cond:
+                first_turn = getattr(status, "gain_cond")
                 first = T.format(first_turn, context)
                 message = first + "\n" + message
-        # not successful conditions
+        # not successful statuses
         if not result.success:
-            if condition.use_failure:
-                template = getattr(condition, "use_failure")
+            if status.use_failure:
+                template = getattr(status, "use_failure")
                 message = T.format(template, context)
         if result.extras:
             templates = [T.translate(extra) for extra in result.extras]
@@ -1023,11 +1023,11 @@ class CombatState(CombatAnimations):
         self.text_animations_queue.append(
             (partial(self.alert, message), action_time)
         )
-        self.play_animation(condition, target, None, action_time)
+        self.play_animation(status, target, None, action_time)
 
     def play_animation(
         self,
-        method: Union[Technique, Condition, Item],
+        method: Union[Technique, Status, Item],
         target: Monster,
         target_sprite: Optional[Sprite],
         action_time: float,

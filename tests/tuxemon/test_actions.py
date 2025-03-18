@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
-from unittest import mock
+from unittest.mock import MagicMock, patch
 
 from tuxemon import prepare
 from tuxemon.client import LocalPygameClient
@@ -21,8 +21,11 @@ def mockPlayer(self) -> None:
 
 class TestVariableActions(unittest.TestCase):
     def setUp(self):
-        with mock.patch.object(Player, "__init__", mockPlayer):
-            local_session.client = LocalPygameClient(prepare.CONFIG)
+        self.mock_screen = MagicMock()
+        with patch.object(Player, "__init__", mockPlayer):
+            local_session.client = LocalPygameClient(
+                prepare.CONFIG, self.mock_screen
+            )
             self.action = local_session.client.event_engine
             local_session.player = Player()
             self.player = local_session.player
@@ -125,8 +128,11 @@ class TestVariableActions(unittest.TestCase):
 
 class TestActionsSetPlayer(unittest.TestCase):
     def setUp(self):
-        with mock.patch.object(Player, "__init__", mockPlayer):
-            local_session.client = LocalPygameClient(prepare.CONFIG)
+        self.mock_screen = MagicMock()
+        with patch.object(Player, "__init__", mockPlayer):
+            local_session.client = LocalPygameClient(
+                prepare.CONFIG, self.mock_screen
+            )
             self.action = local_session.client.event_engine
             local_session.player = Player()
             self.player = local_session.player
@@ -142,8 +148,11 @@ class TestActionsSetPlayer(unittest.TestCase):
 
 class TestBattleActions(unittest.TestCase):
     def setUp(self):
-        with mock.patch.object(Player, "__init__", mockPlayer):
-            local_session.client = LocalPygameClient(prepare.CONFIG)
+        self.mock_screen = MagicMock()
+        with patch.object(Player, "__init__", mockPlayer):
+            local_session.client = LocalPygameClient(
+                prepare.CONFIG, self.mock_screen
+            )
             self.action = local_session.client.event_engine
             local_session.player = Player()
             self.player = local_session.player
@@ -189,8 +198,11 @@ class TestBattleActions(unittest.TestCase):
 
 class TestCharacterActions(unittest.TestCase):
     def setUp(self):
-        with mock.patch.object(Player, "__init__", mockPlayer):
-            local_session.client = LocalPygameClient(prepare.CONFIG)
+        self.mock_screen = MagicMock()
+        with patch.object(Player, "__init__", mockPlayer):
+            local_session.client = LocalPygameClient(
+                prepare.CONFIG, self.mock_screen
+            )
             self.action = local_session.client.event_engine
             local_session.player = Player()
             self.player = local_session.player

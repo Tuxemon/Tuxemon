@@ -9,20 +9,15 @@ from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon import formula, fusion, graphics, prepare, tools
-from tuxemon.condition.condition import (
-    Condition,
-    decode_condition,
-    encode_condition,
-)
 from tuxemon.db import (
-    CategoryCondition,
+    CategoryStatus,
     EvolutionStage,
     GenderType,
     MonsterEvolutionItemModel,
     MonsterHistoryItemModel,
     MonsterMovesetItemModel,
     PlagueType,
-    ResponseCondition,
+    ResponseStatus,
     StatType,
     db,
 )
@@ -31,8 +26,14 @@ from tuxemon.evolution import Evolution
 from tuxemon.locale import T
 from tuxemon.shape import Shape
 from tuxemon.sprite import Sprite
+from tuxemon.status.status import (
+    Status,
+    decode_status,
+    encode_status,
+)
 from tuxemon.taste import Taste
 from tuxemon.technique.technique import Technique, decode_moves, encode_moves
+from tuxemon.time_handler import today_ordinal
 
 if TYPE_CHECKING:
     import pygame
@@ -138,7 +139,7 @@ class Monster:
         self.traded = False
         self.wild = False
 
-        self.status: list[Condition] = []
+        self.status: list[Status] = []
         self.plague: dict[str, PlagueType] = {}
         self.taste_cold: str = "tasteless"
         self.taste_warm: str = "tasteless"
@@ -346,13 +347,13 @@ class Monster:
             levels += 1
         return levels
 
-    def apply_status(self, status: Condition) -> None:
+    def apply_status(self, status: Status) -> None:
         """
         Apply a status to the monster by replacing or removing
         the previous status.
 
         Parameters:
-            status: The status condition.
+            status: The status.
 
         """
         if not self.status:
@@ -365,15 +366,15 @@ class Monster:
         self.status[0].nr_turn = 0
         status.nr_turn = 1
 
-        if self.status[0].category == CategoryCondition.positive:
-            if status.repl_pos == ResponseCondition.replaced:
+        if self.status[0].category == CategoryStatus.positive:
+            if status.repl_pos == ResponseStatus.replaced:
                 self.status = [status]
-            elif status.repl_pos == ResponseCondition.removed:
+            elif status.repl_pos == ResponseStatus.removed:
                 self.status.clear()
-        elif self.status[0].category == CategoryCondition.negative:
-            if status.repl_neg == ResponseCondition.replaced:
+        elif self.status[0].category == CategoryStatus.negative:
+            if status.repl_neg == ResponseStatus.replaced:
                 self.status = [status]
-            elif status.repl_pos == ResponseCondition.removed:
+            elif status.repl_pos == ResponseStatus.removed:
                 self.status.clear()
         else:
             self.status = [status]
@@ -473,7 +474,7 @@ class Monster:
         """
         It returns the capture date.
         """
-        self.capture = formula.today_ordinal() if amount == 0 else amount
+        self.capture = today_ordinal() if amount == 0 else amount
         return self.capture
 
     def set_char_weight(self, value: float) -> float:
@@ -711,7 +712,7 @@ class Monster:
         if body:
             save_data["body"] = body
 
-        save_data["condition"] = encode_condition(self.status)
+        save_data["status"] = encode_status(self.status)
         save_data["moves"] = encode_moves(self.moves)
 
         return save_data
@@ -733,7 +734,7 @@ class Monster:
         for move in decode_moves(save_data.get("moves")):
             self.moves.append(move)
         self.status = []
-        for cond in decode_condition(save_data.get("condition")):
+        for cond in decode_status(save_data.get("status")):
             self.status.append(cond)
 
         for key, value in save_data.items():
@@ -752,7 +753,7 @@ class Monster:
         """
         Kills the monster, sets 0 HP and applies faint status.
         """
-        faint = Condition()
+        faint = Status()
         faint.load("faint")
         self.current_hp = 0
         self.status.clear()

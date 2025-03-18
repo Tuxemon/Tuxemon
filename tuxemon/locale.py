@@ -23,6 +23,7 @@ logger = logging.getLogger(__name__)
 
 FALLBACK_LOCALE = "en_US"
 LOCALE_DIR = "l18n"
+LOCALE_CONFIG = prepare.CONFIG.locale
 
 
 @dataclasses.dataclass(frozen=True, order=True)
@@ -143,7 +144,7 @@ class TranslatorPo:
     ) -> None:
         self.locale_finder = locale_finder
         self.gettext_compiler = gettext_compiler
-        self.locale_name: str = prepare.CONFIG.locale
+        self.locale_name: str = LOCALE_CONFIG.slug
         self.translate: Callable[[str], str] = lambda x: x
         self.language_changed_callbacks: list[Callable[[str], None]] = []
 
@@ -193,7 +194,7 @@ class TranslatorPo:
         return None
 
     def load_translator(
-        self, locale_name: str = prepare.CONFIG.locale, domain: str = "base"
+        self, locale_name: str = LOCALE_CONFIG.slug, domain: str = "base"
     ) -> None:
         """
         Load a selected locale for translation.
@@ -293,7 +294,7 @@ class TranslatorPo:
         Parameters:
             message_id: The message_id of the translation to check.
         """
-        _locale = prepare.CONFIG.translation_mode
+        _locale = prepare.CONFIG.locale.translation_mode
         if _locale == "none":
             return
         else:

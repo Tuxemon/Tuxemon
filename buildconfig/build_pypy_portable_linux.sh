@@ -3,43 +3,86 @@
 ###############  NOTICE  ################
 # Tested with a debian bookworm container
 # Depends on coreutils, curl and tar
+PYPY_VERSION="pypy3.9"
+PYPY_BUILD="pypy3.9-v7.3.13-linux64"
+PYGAME_VERSION="2.2.0"
+ROOT_FOLDER="$(dirname "$(readlink -f "$0")")/../"
+BUILD_DIR="build/pypy-linux-64bit"
+PYPY_ARCHIVE="$PYPY_BUILD.tar.bz2"
 
+# Dependency Check
+command -v curl >/dev/null 2>&1 || { echo >&2 "curl is required but not installed. Aborting."; exit 1; }
+command -v tar >/dev/null 2>&1 || { echo >&2 "tar is required but not installed. Aborting."; exit 1; }
+
+# Download function with error handling
 download () {
-  command curl -L -o $1 $2
+  curl -L -o "$1" "$2"
+  if [ $? -ne 0 ]; then
+    echo "Error: Failed to download $1 from $2"
+    exit 1
+  fi
 }
 
-root_folder="$(dirname $(readlink -f $0))/../"
-pypy_vers="pypy3.9"
-pypy_build="pypy3.9-v7.3.13-linux64"
-pypy_archive="$pypy_build.tar.bz2"
+# Clean and create build directory
+if [[ -e "$BUILD_DIR" ]]; then
+  rm -rf "$BUILD_DIR"
+fi
+mkdir -p "$BUILD_DIR"
+cd "$BUILD_DIR"
 
-if [[ -e build/pypy-linux-64bit ]]; then rm -rf build/pypy-linux-64bit; fi
-mkdir -p build/pypy-linux-64bit
-cd build
-
-if ! [[ -e pypy_archive ]]; then
-  download $pypy_archive "https://downloads.python.org/pypy/$pypy_archive"
+# Download PyPy archive
+if ! [[ -e "$PYPY_ARCHIVE" ]]; then
+  download "$PYPY_ARCHIVE" "https://downloads.python.org/pypy/$PYPY_ARCHIVE"
 fi
 
-cd pypy-linux-64bit
-tar -xf ../$pypy_archive
-mv $pypy_build pypy
+# Extract PyPy archive
+tar -xf "../$PYPY_ARCHIVE"
+if [ $? -ne 0 ]; then
+  echo "Error: Failed to extract $PYPY_ARCHIVE"
+  exit 1
+fi
+mv "$PYPY_BUILD" pypy
 
-cp -a $root_folder/tuxemon pypy/lib/$pypy_vers/tuxemon
-cp -a $root_folder/mods .
+# Copy project files
+cp -a "$ROOT_FOLDER/tuxemon" "pypy/lib/$PYPY_VERSION/tuxemon"
+cp -a "$ROOT_FOLDER/mods" .
+
+# Install dependencies with PyPy
 pypy/bin/pypy -m ensurepip
-pypy/bin/pypy -m pip install pygame-ce==2.2.0
-pypy/bin/pypy -m pip install -r "$root_folder/requirements.txt"
-cp $root_folder/LICENSE .
-cp $root_folder/run_tuxemon.py .
-cp $root_folder/CONTRIBUTING.md .
-cp $root_folder/CONTRIBUTORS.md .
-cp $root_folder/ATTRIBUTIONS.md .
-cp $root_folder/README.md .
-cp $root_folder/SPYDER_README.md .
-find . -name "*pyc" -delete
+if [ $? -ne 0 ]; then
+  echo "Error: ensurepip failed."
+  exit 1
+fi
 
-cat << EOF >> Tuxemon.sh
+pypy/bin/pypy -m pip install "pygame-ce==$PYGAME_VERSION"
+if [ $? -ne 0 ]; then
+  echo "Error: Failed to install pygame-ce."
+  exit 1
+fi
+
+pypy/bin/pypy -m pip install -r "$ROOT_FOLDER/requirements.txt"
+if [ $? -ne 0 ]; then
+  echo "Error: Failed to install requirements."
+  exit 1
+fi
+
+cp "$ROOT_FOLDER/LICENSE" .
+cp "$ROOT_FOLDER/run_tuxemon.py" .
+cp "$ROOT_FOLDER/CONTRIBUTING.md" .
+cp "$ROOT_FOLDER/CONTRIBUTORS.md" .
+cp "$ROOT_FOLDER/ATTRIBUTIONS.md" .
+cp "$ROOT_FOLDER/README.md" .
+cp "$ROOT_FOLDER/SPYDER_README.md" .
+
+# Clean up .pyc files
+find . -name "*.pyc" -delete
+if [ $? -ne 0 ]; then
+  echo "Error: Failed to delete .pyc files."
+  exit 1
+fi
+
+# Create Tuxemon.sh
+cat << EOF > Tuxemon.sh
 #!/bin/bash
 FWD=\$(dirname \$(readlink -f \$0))
 \$FWD/pypy/bin/pypy \$FWD/run_tuxemon.py
@@ -47,3 +90,6 @@ EOF
 
 chmod a+x Tuxemon.sh
 
+echo "Linux PyPy build complete."
+
+exit 0

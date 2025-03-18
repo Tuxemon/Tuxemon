@@ -72,9 +72,9 @@ def get_theme() -> pygame_menu.Theme:
     if _theme is not None:
         return _theme
 
-    if prepare.CONFIG.locale == "zh_CN":
+    if prepare.CONFIG.locale.slug == "zh_CN":
         font_filename = prepare.fetch("font", prepare.FONT_CHINESE)
-    elif prepare.CONFIG.locale == "ja":
+    elif prepare.CONFIG.locale.slug == "ja":
         font_filename = prepare.fetch("font", prepare.FONT_JAPANESE)
     else:
         font_filename = prepare.fetch("font", prepare.FONT_BASIC)

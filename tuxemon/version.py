@@ -77,11 +77,11 @@ class Version:
             return self.patch < other.patch
         return self.pre_release < other.pre_release
 
-    def __gt__(self, other: "Version") -> bool:
+    def __gt__(self, other: Version) -> bool:
         """Compares two Version instances for greater than."""
         return not (self < other or self == other)
 
-    def __ge__(self, other: "Version") -> bool:
+    def __ge__(self, other: Version) -> bool:
         """Compares two Version instances for greater than or equal to."""
         return self > other or self == other
 

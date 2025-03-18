@@ -15,8 +15,8 @@ PLUGIN_INCLUDE_PATTERNS = [
     "item.conditions",
     "technique.effects",
     "technique.conditions",
-    "condition.effects",
-    "condition.conditions",
+    "status.effects",
+    "status.conditions",
 ]
 
 # --- Core Game Paths ---
@@ -25,9 +25,11 @@ PLUGIN_INCLUDE_PATTERNS = [
 LIBDIR = os.path.normpath(
     os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 )
+logger.debug(f"libdir: {LIBDIR}")
 
 # BASEDIR is where tuxemon was launched from
 BASEDIR = os.path.normpath(sys.path[0])
+logger.debug(f"basedir: {BASEDIR}")
 
 # mods
 mods_folder = os.path.normpath(os.path.join(LIBDIR, "..", "mods"))
@@ -45,9 +47,9 @@ TECH_CONDITION_PATH = os.path.normpath(
     os.path.join(LIBDIR, "technique/conditions")
 )
 
-COND_EFFECT_PATH = os.path.normpath(os.path.join(LIBDIR, "condition/effects"))
-COND_CONDITION_PATH = os.path.normpath(
-    os.path.join(LIBDIR, "condition/conditions")
+STATUS_EFFECT_PATH = os.path.normpath(os.path.join(LIBDIR, "status/effects"))
+STATUS_CONDITION_PATH = os.path.normpath(
+    os.path.join(LIBDIR, "status/conditions")
 )
 
 # --- User Data Paths ---

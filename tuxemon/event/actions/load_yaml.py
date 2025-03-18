@@ -23,13 +23,12 @@ class LoadYamlAction(EventAction):
     Script usage:
         .. code-block::
 
-            load_game file
+            load_yaml file
 
     Script parameters:
         file: File to load.
 
     eg: "load_yaml file_yaml"
-
     """
 
     name = "load_yaml"

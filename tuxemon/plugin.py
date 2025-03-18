@@ -133,8 +133,8 @@ class PluginManager:
         "item.conditions",
         "technique.effects",
         "technique.conditions",
-        "condition.effects",
-        "condition.conditions",
+        "status.effects",
+        "status.conditions",
     ]
 
     def __init__(

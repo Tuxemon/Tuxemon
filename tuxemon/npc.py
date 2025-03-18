@@ -15,7 +15,7 @@ from tuxemon.db import Direction, db
 from tuxemon.entity import Entity
 from tuxemon.item.item import Item, decode_items, encode_items
 from tuxemon.locale import T
-from tuxemon.map import dirs2, dirs3, get_coords_ext, get_direction, proj
+from tuxemon.map import dirs2, dirs3, get_direction, proj
 from tuxemon.map_view import SpriteRenderer
 from tuxemon.math import Vector2
 from tuxemon.mission import MissionManager
@@ -380,36 +380,6 @@ class NPC(Entity[NPCState]):
             vector2_to_tile_pos(Vector2(self.tile_pos) + dirs2[direction])
         )
 
-    def valid_movement(self, tile: tuple[int, int]) -> bool:
-        """
-        Check the game map to determine if a tile can be moved into.
-
-        * Only checks adjacent tiles
-        * Uses all advanced tile movements, like continue tiles
-
-        Parameters:
-            tile: Coordinates of the tile.
-
-        Returns:
-            If the tile can be moved into.
-
-        """
-        _map_size = self.world.map_size
-        _exit = tile in self.world.get_exits(self.tile_pos)
-
-        _direction = []
-        for neighbor in get_coords_ext(tile, _map_size):
-            char = self.world.get_entity_pos(neighbor)
-            if (
-                char
-                and char.moving
-                and char.moverate == CONFIG.player_walkrate
-                and self.facing != char.facing
-            ):
-                _direction.append(char)
-
-        return _exit and not _direction or self.ignore_collisions
-
     @property
     def move_destination(self) -> Optional[tuple[int, int]]:
         """Only used for the char_moved condition."""
@@ -430,8 +400,8 @@ class NPC(Entity[NPCState]):
         target = self.path[-1]
         direction = get_direction(proj(self.position3), target)
         self.facing = direction
-        if self.valid_movement(target):
-            moverate = self.check_moverate(target)
+        if self.world.pathfinder.is_tile_traversable(self, target):
+            moverate = self.world.pathfinder.get_tile_moverate(self, target)
             # surfanim has horrible clock drift.  even after one animation
             # cycle, the time will be off.  drift causes the walking steps to not
             # align with tiles and some frames will only last one game frame.
@@ -469,17 +439,6 @@ class NPC(Entity[NPCState]):
             else:
                 # give up and wait until the target is clear again
                 pass
-
-    def check_moverate(self, destination: tuple[int, int]) -> float:
-        """
-        Check character moverate and adapt it, since there could be some
-        tiles where the coefficient is different (by default 1).
-
-        """
-        surface_map = self.world.surface_map
-        rate = self.world.get_tile_moverate(surface_map, destination)
-        _moverate = self.moverate * rate
-        return _moverate
 
     def check_waypoint(self) -> None:
         """

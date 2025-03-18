@@ -5,8 +5,9 @@ Put platform specific fixes here
 from __future__ import annotations
 
 import logging
-import os.path
+import os
 from collections.abc import Sequence
+from pathlib import Path
 
 __all__ = ("android", "init", "mixer", "get_user_storage_dir")
 
@@ -43,54 +44,85 @@ def init() -> None:
     # but these values are more acceptable for faster computers
     if _pygame:
         logger.debug("pre-init pygame mixer")
-        mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=1024)
+        try:
+            mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=1024)
+        except Exception as e:
+            logger.error(f"Failed to initialize Pygame mixer: {e}")
 
 
 def get_user_storage_dir() -> str:
     """
-
+    Returns the user storage directory.
     Mutable storage for things like config, save games, mods, cache.
-
     """
-    if android:
-        from android import storage
+    if is_android():
+        paths = _get_android_storage_paths()
+        if paths:
+            return paths[0]
+    return str(Path.home() / ".tuxemon")
 
-        return storage.app_storage_path()
+
+def is_android() -> bool:
+    """Checks if the platform is Android."""
+    try:
+        import android
+
+        return True
+    except ImportError:
+        return False
+
+
+def _get_android_storage_paths() -> list[str]:
+    """Helper function to get Android storage paths."""
+    paths: list[str] = []
+
+    if is_android():
+        paths.extend(_get_android_storage_paths())
     else:
-        return os.path.join(os.path.expanduser("~"), ".tuxemon")
+        paths.append("/usr/share/tuxemon/")
+        paths.append("/usr/local/share/tuxemon/")
+        try:
+            xdg_data_dirs = os.environ.get("XDG_DATA_DIRS", "")
+            if xdg_data_dirs:
+                for data_dir in xdg_data_dirs.split(":"):
+                    path = Path(data_dir) / "tuxemon"
+                    if path.exists():
+                        paths.append(str(path))
+                    else:
+                        logger.debug(f"Checking XDG data directory: {path}")
+
+        except Exception as e:
+            logger.error(f"Error handling XDG_DATA_DIRS: {e}")
+
+    return paths
 
 
 def get_system_storage_dirs() -> Sequence[str]:
     """
-
+    Returns a sequence of system storage directories.
     Should be immutable storage for things like system installed code/mods.
-
     Android storage is still WIP.  should be immutable, but it's not...
-
     The primary user of this storage are packages for operating systems
     that will install the mods into a folder like /usr/share/tuxemon.
-
     """
-    if android:
-        from android import storage
+    paths: list[str] = []
 
-        paths = list()
-        for root in filter(
-            None,
-            [
-                storage.primary_external_storage_path(),
-                storage.secondary_external_storage_path(),
-            ],
-        ):
-            path = os.path.join(root, "Tuxemon")
-            paths.append(path)
-
-        # try to guess sd cards
-        blacklist = "emulated"
-        for name in os.listdir("/storage"):
-            if name not in blacklist:
-                path = os.path.join("storage", name, "Tuxemon")
-                paths.append(path)
-        return paths
+    if is_android():
+        paths.extend(_get_android_storage_paths())
     else:
-        return ["/usr/share/tuxemon/"]
+        paths.append("/usr/share/tuxemon/")
+        paths.append("/usr/local/share/tuxemon/")
+        try:
+            xdg_data_dirs = os.environ.get("XDG_DATA_DIRS", "")
+            if xdg_data_dirs:
+                for data_dir in xdg_data_dirs.split(":"):
+                    path = Path(data_dir) / "tuxemon"
+                    if path.exists():
+                        paths.append(str(path))
+                    else:
+                        logger.debug(f"Checking XDG data directory: {path}")
+
+        except Exception as e:
+            logger.error(f"Error handling XDG_DATA_DIRS: {e}")
+
+    return paths

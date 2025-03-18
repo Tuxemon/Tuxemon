@@ -31,7 +31,8 @@ class InputManager:
         Initializes the input manager with the given config.
         """
         self.event_queue = PygameEventQueueHandler()
-        self.config = config
+        self.controller = config.controller
+        self.input = config.input
         self.controller_overlay: Optional[PygameTouchOverlayInput] = None
         self.setup_inputs()
 
@@ -52,8 +53,8 @@ class InputManager:
         """
         Sets up the keyboard input device.
         """
-        if self.config.keyboard_button_map:
-            keyboard = PygameKeyboardInput(self.config.keyboard_button_map)
+        if self.input.keyboard_button_map:
+            keyboard = PygameKeyboardInput(self.input.keyboard_button_map)
             self.event_queue.add_input(0, keyboard)
             logger.info("Keyboard set up successfully")
 
@@ -61,9 +62,9 @@ class InputManager:
         """
         Sets up the gamepad input device.
         """
-        if self.config.gamepad_button_map:
+        if self.input.gamepad_button_map:
             gamepad = PygameGamepadInput(
-                self.config.gamepad_button_map, self.config.gamepad_deadzone
+                self.input.gamepad_button_map, self.input.gamepad_deadzone
             )
             self.event_queue.add_input(0, gamepad)
             logger.info("Gamepad set up successfully")
@@ -72,9 +73,9 @@ class InputManager:
         """
         Sets up the controller overlay input device.
         """
-        if self.config.controller_overlay:
+        if self.controller.overlay:
             self.controller_overlay = PygameTouchOverlayInput(
-                self.config.controller_transparency
+                self.controller.transparency
             )
             self.controller_overlay.load()
             self.event_queue.add_input(0, self.controller_overlay)
@@ -84,7 +85,7 @@ class InputManager:
         """
         Sets up the mouse input device.
         """
-        if not self.config.hide_mouse:
+        if not self.controller.hide_mouse:
             self.event_queue.add_input(0, PygameMouseInput())
             logger.info("Mouse set up successfully")
 

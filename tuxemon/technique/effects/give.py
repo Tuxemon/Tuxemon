@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import get_target_monsters
-from tuxemon.condition.condition import Condition
+from tuxemon.status.status import Status
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
@@ -21,7 +21,7 @@ class GiveEffect(TechEffect):
     This effect has a chance to give a status effect.
 
     Parameters:
-        condition: The Condition slug (e.g. enraged).
+        condition: The Status slug (e.g. enraged).
         objectives: The targets (e.g. own_monster, enemy_monster, etc.), if
             single "enemy_monster" or "enemy_monster:own_monster"
 
@@ -46,7 +46,7 @@ class GiveEffect(TechEffect):
         success = tech.potency >= potency and tech.accuracy >= value
 
         if success:
-            status = Condition()
+            status = Status()
             status.load(self.condition)
             status.steps = player.steps
             status.link = user

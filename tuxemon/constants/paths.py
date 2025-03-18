@@ -63,5 +63,5 @@ TECH_EFFECT_PATH = os.path.join(LIBDIR, "technique/effects")
 TECH_CONDITION_PATH = os.path.join(LIBDIR, "technique/conditions")
 
 # condition effects/conditions
-COND_EFFECT_PATH = os.path.join(LIBDIR, "condition/effects")
-COND_CONDITION_PATH = os.path.join(LIBDIR, "condition/conditions")
+STATUS_EFFECT_PATH = os.path.join(LIBDIR, "status/effects")
+STATUS_CONDITION_PATH = os.path.join(LIBDIR, "status/conditions")

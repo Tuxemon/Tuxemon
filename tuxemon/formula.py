@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import datetime as dt
 import logging
 import math
 import random
@@ -441,13 +440,6 @@ def update_stat(
                 modified_stat *= modifier.multiplier
 
     return int(modified_stat)
-
-
-def today_ordinal() -> int:
-    """
-    It gives today's proleptic Gregorian ordinal.
-    """
-    return dt.date.today().toordinal()
 
 
 def set_weight(kg: float) -> float:

@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
-from unittest import mock
+from unittest.mock import MagicMock, patch
 
 from tuxemon.db import (
     ElementModel,
@@ -94,7 +94,7 @@ def mockPlayer(self) -> None:
 class TestCanEvolve(unittest.TestCase):
     def setUp(self):
         self.mon = Monster()
-        with mock.patch.object(Player, "__init__", mockPlayer):
+        with patch.object(Player, "__init__", mockPlayer):
             local_session.player = Player()
             self.player = local_session.player
 

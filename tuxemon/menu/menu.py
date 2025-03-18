@@ -305,9 +305,9 @@ class Menu(Generic[T], state.State):
     # File to load for image background
     background_filename: Optional[str] = None
     menu_select_sound_filename = "sound_menu_select"
-    if prepare.CONFIG.locale == "zh_CN":
+    if prepare.CONFIG.locale.slug == "zh_CN":
         font_filename = prepare.FONT_CHINESE
-    elif prepare.CONFIG.locale == "ja":
+    elif prepare.CONFIG.locale.slug == "ja":
         font_filename = prepare.FONT_JAPANESE
     else:
         font_filename = prepare.FONT_BASIC

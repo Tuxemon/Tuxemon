@@ -12,10 +12,9 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class StatusCondition(TechCondition):
+class CurrentStatusCondition(TechCondition):
     """
     Checks against the creature's current statuses.
-
     """
 
     name = "status"

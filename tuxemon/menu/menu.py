@@ -583,6 +583,7 @@ class Menu(Generic[T], state.State):
         text: str,
         bg: ColorLike = font_shadow_color,
         fg: Optional[ColorLike] = None,
+        offset: tuple[float, float] = (0.5, 0.5),
     ) -> pygame.surface.Surface:
         """
         Draw shadowed text.
@@ -591,10 +592,11 @@ class Menu(Generic[T], state.State):
             text: Text to draw.
             bg: Font shadow color.
             fg: Font color.
+            offset: Offset of the shadow from the text.
+                Defaults to (0.5, 0.5).
 
         Returns:
             Surface with the drawn text.
-
         """
         if not fg:
             fg = self.font_color
@@ -602,14 +604,14 @@ class Menu(Generic[T], state.State):
         font_color = self.font.render(text, True, fg)
         shadow_color = self.font.render(text, True, bg)
 
-        offset = layout((0.5, 0.5))
+        _offset = layout(offset)
         size = [
             int(math.ceil(a + b))
-            for a, b in zip(offset, font_color.get_size())
+            for a, b in zip(_offset, font_color.get_size())
         ]
         image = pygame.Surface(size, pygame.SRCALPHA)
 
-        image.blit(shadow_color, tuple(offset))
+        image.blit(shadow_color, tuple(_offset))
         image.blit(font_color, (0, 0))
         return image
 
@@ -1105,18 +1107,29 @@ class Menu(Generic[T], state.State):
 class PopUpMenu(Menu[T]):
     """Menu with "pop up" style animation."""
 
+    ANIMATION_DURATION = 0.20
+
+    def __init__(self, initial_scale: float = 0.1, **kwargs: Any):
+        super().__init__(**kwargs)
+        self.initial_scale = initial_scale
+
+    def _calculate_initial_rect(self, final_rect: pygame.Rect) -> pygame.Rect:
+        """
+        Calculates the initial rectangle for the animation.
+        """
+        initial_rect = final_rect.copy()
+        initial_rect.width = int(final_rect.width * self.initial_scale)
+        initial_rect.height = int(final_rect.height * self.initial_scale)
+        initial_rect.center = final_rect.center
+        return initial_rect
+
     def animate_open(self) -> Animation:
         # anchor the center of the popup
-        rect = self.client.screen.get_rect()
-        self.anchor("center", rect.center)
-
-        rect = self.calc_final_rect()
+        final_rect = self.calc_final_rect()
+        self.anchor("center", self.client.screen.get_rect().center)
 
         # set rect to a small size for the initial values of the animation
-        self.rect = self.rect.copy()  # required.  do not remove.
-        self.rect.height = int(rect.height * 0.1)
-        self.rect.width = int(rect.width * 0.1)
-        self.rect.center = rect.center
+        self.rect = self._calculate_initial_rect(final_rect)
 
         # if this statement were removed, then the menu would
         # refresh and the size animation would be lost
@@ -1125,9 +1138,11 @@ class PopUpMenu(Menu[T]):
         # create animation to open window with
         ani = self.animate(
             self.rect,
-            height=rect.height,
-            width=rect.width,
-            duration=0.20,
+            height=final_rect.height,
+            width=final_rect.width,
+            duration=self.ANIMATION_DURATION,
         )
-        ani.update_callback = lambda: setattr(self.rect, "center", rect.center)
+        ani.update_callback = lambda: setattr(
+            self.rect, "center", final_rect.center
+        )
         return ani

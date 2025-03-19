@@ -38,7 +38,7 @@
             "evo_stage": "basic"
         }
     ],
-    "terrains": ["boreal/snow", "mountains", "underground"],
+    "terrains": ["boreal_snow", "mountains", "underground"],
     "tags": ["bite", "claws", "fury", "ground", "darkness"],
     "shape": "hunter",
     "stage": "stage1",

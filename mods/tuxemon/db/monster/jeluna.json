@@ -41,7 +41,7 @@
     ],
     "evolutions": [],
     "history": [],
-    "terrains": ["boreal/snow", "extraterrestrial", "ruins", "sea"],
+    "terrains": ["boreal_snow", "extraterrestrial", "ruins", "sea"],
     "tags": ["celestial", "light", "darkness"],
     "shape": "blob",
     "stage": "standalone",

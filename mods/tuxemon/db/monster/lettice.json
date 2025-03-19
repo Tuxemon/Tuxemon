@@ -59,7 +59,7 @@
             "evo_stage": "stage2"
         }
     ],
-    "terrains": ["mountains", "boreal/snow", "grassland", "woodland"],
+    "terrains": ["mountains", "boreal_snow", "grassland", "woodland"],
     "tags": ["plant", "ice"],
     "shape": "humanoid",
     "stage": "stage1",

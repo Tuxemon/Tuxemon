@@ -47,7 +47,7 @@
             "evo_stage": "stage1"
         }
     ],
-    "terrains": ["boreal/snow", "mountains"],
+    "terrains": ["boreal_snow", "mountains"],
     "tags": ["ice", "fists"],
     "shape": "brute",
     "stage": "basic",

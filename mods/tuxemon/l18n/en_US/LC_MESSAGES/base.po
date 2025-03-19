@@ -6710,6 +6710,91 @@ msgstr "Refined"
 msgid "taste_dry"
 msgstr "Dry"
 
+# Terrains
+
+msgid "terrain_freshwater"
+msgstr "Freshwater"
+
+msgid "terrain_grassland"
+msgstr "Grassland"
+
+msgid "terrain_jungle"
+msgstr "Jungle"
+
+msgid "terrain_mountains"
+msgstr "Mountains"
+
+msgid "terrain_ruins"
+msgstr "Ruins"
+
+msgid "terrain_sea"
+msgstr "Sea"
+
+msgid "terrain_swamp"
+msgstr "Swamp"
+
+msgid "terrain_underground"
+msgstr "Underground"
+
+msgid "terrain_extraterrestrial"
+msgstr "Extraterrestrial"
+
+msgid "terrain_extraplanar"
+msgstr "Extraplanar"
+
+msgid "terrain_desert"
+msgstr "Desert"
+
+msgid "terrain_coastal"
+msgstr "Coastal"
+
+msgid "terrain_any"
+msgstr "Any"
+
+msgid "terrain_boreal_snow"
+msgstr "Boreal / Snow"
+
+msgid "terrain_urban"
+msgstr "Urban"
+
+msgid "terrain_woodland"
+msgstr "Woodland"
+
+msgid "terrain_other"
+msgstr "Other"
+
+# Weathers
+
+msgid "weather_misty"
+msgstr "Misty"
+
+msgid "weather_windy"
+msgstr "Windy"
+
+msgid "weather_freezing"
+msgstr "Freezing"
+
+msgid "weather_hot"
+msgstr "Hot"
+
+msgid "weather_cloudy"
+msgstr "Cloudy"
+
+msgid "weather_foggy"
+msgstr "Foggy"
+
+msgid "weather_thunderstorm"
+msgstr "Thunderstorm"
+
+msgid "weather_snow"
+msgstr "Snow"
+
+msgid "weather_rain"
+msgstr "Rain"
+
+msgid "weather_sunny"
+msgstr "Sunny"
+
 # STAT TYPES
 
 msgid "armour"

@@ -53,7 +53,7 @@
     ],
     "evolutions": [],
     "history": [],
-    "terrains": ["boreal/snow", "coastal"],
+    "terrains": ["boreal_snow", "coastal"],
     "tags": ["water", "ice", "leadership", "rock"],
     "shape": "flier",
     "stage": "standalone",

@@ -66,8 +66,8 @@ events:
     - translated_dialog spyder_billing_cathedral5
     - set_variable billcathedral:null
     - format_variable party_lost_hp,int
-    - modify_money bill_cathedral,,party_lost_hp
-    - modify_money bill_cathedral,,cathedral_interest
+    - modify_bill player,bill_cathedral,,party_lost_hp
+    - modify_bill player,bill_cathedral,,cathedral_interest
     - set_monster_health
     - set_monster_status
     - char_face spyder_cathedral_nurse,up
@@ -100,7 +100,7 @@ events:
     - char_face spyder_shady,left
     conditions:
     - not char_exists spyder_shady
-    - is money_is bill_cathedral,greater_than,0
+    - is bill_is player,bill_cathedral,greater_than,0
     - is party_size player,greater_than,1
     type: "event"
   Talk Shady Guy:
@@ -110,7 +110,7 @@ events:
     behav:
     - talk spyder_shady
     conditions:
-    - is money_is bill_cathedral,greater_than,0
+    - is bill_is player,bill_cathedral,greater_than,0
     type: "event"
   Selling Yes:
     actions:
@@ -143,7 +143,7 @@ events:
     actions:
     - remove_monster sold
     - format_variable scoop_price,-int
-    - modify_money bill_cathedral,,scoop_price
+    - modify_bill player,bill_cathedral,,scoop_price
     - set_variable selltuxemon:null
     - set_variable isitok:null
     - translated_dialog spyder_scoop_tuxemon5

@@ -15,10 +15,11 @@ from tuxemon.db import Direction, db
 from tuxemon.entity import Entity
 from tuxemon.item.item import Item, decode_items, encode_items
 from tuxemon.locale import T
-from tuxemon.map import dirs2, dirs3, get_coords_ext, get_direction, proj
+from tuxemon.map import dirs2, dirs3, get_direction, proj
 from tuxemon.map_view import SpriteRenderer
 from tuxemon.math import Vector2
 from tuxemon.mission import MissionManager
+from tuxemon.money import MoneyManager, decode_money, encode_money
 from tuxemon.monster import Monster, decode_monsters, encode_monsters
 from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
@@ -41,7 +42,7 @@ class NPCState(TypedDict):
     battles: Sequence[Mapping[str, Any]]
     tuxepedia: Mapping[str, Any]
     contacts: dict[str, str]
-    money: dict[str, int]
+    money: Mapping[str, Any]
     template: dict[str, Any]
     missions: Sequence[Mapping[str, Any]]
     items: Sequence[Mapping[str, Any]]
@@ -97,7 +98,7 @@ class NPC(Entity[NPCState]):
         # Tracks Tuxepedia (monster seen or caught)
         self.tuxepedia = Tuxepedia()
         self.contacts: dict[str, str] = {}
-        self.money: dict[str, int] = {}  # Tracks money
+        self.money_manager = MoneyManager()
         # list of ways player can interact with the Npc
         self.interactions: Sequence[str] = []
         # menu labels (world menu)
@@ -167,7 +168,7 @@ class NPC(Entity[NPCState]):
             "battles": encode_battle(self.battles),
             "tuxepedia": encode_tuxepedia(self.tuxepedia),
             "contacts": self.contacts,
-            "money": self.money,
+            "money": encode_money(self.money_manager),
             "items": encode_items(self.items),
             "template": self.template.model_dump(),
             "missions": self.mission_manager.encode_missions(),
@@ -197,7 +198,7 @@ class NPC(Entity[NPCState]):
         self.game_variables = save_data["game_variables"]
         self.tuxepedia = decode_tuxepedia(save_data["tuxepedia"])
         self.contacts = save_data["contacts"]
-        self.money = save_data["money"]
+        self.money_manager = decode_money(save_data["money"])
         self.battles = []
         for battle in decode_battle(save_data.get("battles")):
             self.battles.append(battle)
@@ -380,36 +381,6 @@ class NPC(Entity[NPCState]):
             vector2_to_tile_pos(Vector2(self.tile_pos) + dirs2[direction])
         )
 
-    def valid_movement(self, tile: tuple[int, int]) -> bool:
-        """
-        Check the game map to determine if a tile can be moved into.
-
-        * Only checks adjacent tiles
-        * Uses all advanced tile movements, like continue tiles
-
-        Parameters:
-            tile: Coordinates of the tile.
-
-        Returns:
-            If the tile can be moved into.
-
-        """
-        _map_size = self.world.map_size
-        _exit = tile in self.world.get_exits(self.tile_pos)
-
-        _direction = []
-        for neighbor in get_coords_ext(tile, _map_size):
-            char = self.world.get_entity_pos(neighbor)
-            if (
-                char
-                and char.moving
-                and char.moverate == CONFIG.player_walkrate
-                and self.facing != char.facing
-            ):
-                _direction.append(char)
-
-        return _exit and not _direction or self.ignore_collisions
-
     @property
     def move_destination(self) -> Optional[tuple[int, int]]:
         """Only used for the char_moved condition."""
@@ -430,8 +401,8 @@ class NPC(Entity[NPCState]):
         target = self.path[-1]
         direction = get_direction(proj(self.position3), target)
         self.facing = direction
-        if self.valid_movement(target):
-            moverate = self.check_moverate(target)
+        if self.world.pathfinder.is_tile_traversable(self, target):
+            moverate = self.world.pathfinder.get_tile_moverate(self, target)
             # surfanim has horrible clock drift.  even after one animation
             # cycle, the time will be off.  drift causes the walking steps to not
             # align with tiles and some frames will only last one game frame.
@@ -469,17 +440,6 @@ class NPC(Entity[NPCState]):
             else:
                 # give up and wait until the target is clear again
                 pass
-
-    def check_moverate(self, destination: tuple[int, int]) -> float:
-        """
-        Check character moverate and adapt it, since there could be some
-        tiles where the coefficient is different (by default 1).
-
-        """
-        surface_map = self.world.surface_map
-        rate = self.world.get_tile_moverate(surface_map, destination)
-        _moverate = self.moverate * rate
-        return _moverate
 
     def check_waypoint(self) -> None:
         """

@@ -2,12 +2,15 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 
-from tuxemon.event import MapCondition
+from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 from tuxemon.tools import compare
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -36,7 +39,11 @@ class MoneyIsCondition(EventCondition):
 
     def test(self, session: Session, condition: MapCondition) -> bool:
         player = session.player
-        wallet, operator, _amount = condition.parameters[:3]
+        character_name, operator, _amount = condition.parameters[:3]
+        character = get_npc(session, character_name)
+        if character is None:
+            logger.error(f"Character '{character_name}' not found")
+            return False
 
         if not _amount.isdigit():
             amount = 0
@@ -45,7 +52,5 @@ class MoneyIsCondition(EventCondition):
         else:
             amount = int(_amount)
 
-        # Check if the condition is true
-        if wallet in player.money:
-            return compare(operator, player.money[wallet], amount)
-        return False
+        money_amount = character.money_manager.get_money()
+        return compare(operator, money_amount, amount)

@@ -301,14 +301,22 @@ class ItemModel(BaseModel):
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
 
-class ShapeModel(BaseModel):
-    slug: str = Field(..., description="Slug of the shape")
+class AttributesModel(BaseModel):
     armour: int = Field(..., description="Armour value")
     dodge: int = Field(..., description="Dodge value")
-    hp: int = Field(..., description="HP value")
+    hp: int = Field(..., description="HP (Hit Points) value")
     melee: int = Field(..., description="Melee value")
     ranged: int = Field(..., description="Ranged value")
     speed: int = Field(..., description="Speed value")
+
+
+class ShapeModel(BaseModel):
+    slug: str = Field(
+        ..., description="Slug of the shape, used as a unique identifier."
+    )
+    attributes: AttributesModel = Field(
+        ..., description="Statistical attributes of the shape."
+    )
 
     @field_validator("slug")
     def translation_exists_shape(cls: ShapeModel, v: str) -> str:
@@ -369,11 +377,11 @@ class MonsterEvolutionItemModel(BaseModel):
         None,
         description="The item that the monster must have to evolve.",
     )
-    inside: bool = Field(
+    inside: Optional[bool] = Field(
         None,
         description="Whether the monster must be inside to evolve.",
     )
-    traded: bool = Field(
+    traded: Optional[bool] = Field(
         None,
         description="Whether the monster must have been traded to evolve.",
     )
@@ -735,13 +743,13 @@ class TechSort(str, Enum):
     meta = "meta"
 
 
-class CategoryCondition(str, Enum):
+class CategoryStatus(str, Enum):
     negative = "negative"
     positive = "positive"
     neutral = "neutral"
 
 
-class ResponseCondition(str, Enum):
+class ResponseStatus(str, Enum):
     replaced = "replaced"
     removed = "removed"
 
@@ -783,7 +791,6 @@ class TargetModel(BaseModel):
 class TechniqueModel(BaseModel):
     slug: str = Field(..., description="The slug of the technique")
     sort: TechSort = Field(..., description="The sort of technique this is")
-    icon: str = Field(None, description="The icon to use for the technique")
     category: TechCategory = Field(
         ...,
         description="The tags of the technique",
@@ -868,14 +875,6 @@ class TechniqueModel(BaseModel):
         le=prepare.POTENCY_RANGE[1],
     )
 
-    # Validate resources that should exist
-    @field_validator("icon")
-    def file_exists(cls: TechniqueModel, v: str) -> str:
-        if v and has.file(v) and has.size(v, prepare.TECH_ICON_SIZE):
-            return v
-        raise ValueError(f"the icon {v} doesn't exist in the db")
-
-    # Validate fields that refer to translated text
     @field_validator("use_tech", "use_success", "use_failure")
     def translation_exists(
         cls: TechniqueModel, v: Optional[str]
@@ -929,43 +928,43 @@ class TechniqueModel(BaseModel):
         return elements
 
 
-class ConditionModel(BaseModel):
-    slug: str = Field(..., description="The slug of the condition")
-    sort: TechSort = Field(..., description="The sort of condition this is")
-    icon: str = Field(None, description="The icon to use for the condition")
+class StatusModel(BaseModel):
+    slug: str = Field(..., description="The slug of the status")
+    sort: TechSort = Field(..., description="The sort of status this is")
+    icon: str = Field(..., description="The icon to use for the condition")
     conditions: Sequence[CommonCondition] = Field(
         [], description="Conditions that must be met"
     )
     effects: Sequence[CommonEffect] = Field(
-        ..., description="Effects this condition uses"
+        ..., description="Effects this status uses"
     )
     flip_axes: Literal["", "x", "y", "xy"] = Field(
         ...,
-        description="Axes along which condition animation should be flipped",
+        description="Axes along which status animation should be flipped",
     )
     animation: Optional[str] = Field(
-        None, description="Animation to play for this condition"
+        None, description="Animation to play for this status"
     )
     sfx: str = Field(
-        ..., description="Sound effect to play when this condition is used"
+        ..., description="Sound effect to play when this status is used"
     )
     bond: bool = Field(
         False,
         description="Whether or not there is a bond between attacker and defender",
     )
     duration: int = Field(
-        0, description="How many turns the condition is supposed to last"
+        0, description="How many turns the status is supposed to last"
     )
     modifiers: list[Modifier] = Field(..., description="Various modifiers")
 
     # Optional fields
-    category: Optional[CategoryCondition] = Field(
+    category: Optional[CategoryStatus] = Field(
         None, description="Category status: positive or negative"
     )
-    repl_pos: Optional[ResponseCondition] = Field(
+    repl_pos: Optional[ResponseStatus] = Field(
         None, description="How to reply to a positive status"
     )
-    repl_neg: Optional[ResponseCondition] = Field(
+    repl_neg: Optional[ResponseStatus] = Field(
         None, description="How to reply to a negative status"
     )
     repl_tech: Optional[str] = Field(
@@ -978,18 +977,18 @@ class ConditionModel(BaseModel):
     )
     gain_cond: Optional[str] = Field(
         None,
-        description="Slug of what string to display when condition is gained",
+        description="Slug of what string to display when status is gained",
     )
     use_success: Optional[str] = Field(
         None,
-        description="Slug of what string to display when condition succeeds",
+        description="Slug of what string to display when status succeeds",
     )
     use_failure: Optional[str] = Field(
         None,
-        description="Slug of what string to display when condition fails",
+        description="Slug of what string to display when status fails",
     )
-    range: Range = Field(..., description="The attack range of this condition")
-    cond_id: int = Field(..., description="The id of this condition")
+    range: Range = Field(..., description="The attack range of this status")
+    cond_id: int = Field(..., description="The id of this status")
     statspeed: Optional[StatModel] = Field(None)
     stathp: Optional[StatModel] = Field(None)
     statarmour: Optional[StatModel] = Field(None)
@@ -999,7 +998,7 @@ class ConditionModel(BaseModel):
 
     # Validate resources that should exist
     @field_validator("icon")
-    def file_exists(cls: ConditionModel, v: str) -> str:
+    def file_exists(cls: StatusModel, v: str) -> str:
         if has.file(v) and has.size(v, prepare.STATUS_ICON_SIZE):
             return v
         raise ValueError(f"the icon {v} doesn't exist in the db")
@@ -1007,22 +1006,20 @@ class ConditionModel(BaseModel):
     # Validate fields that refer to translated text
     @field_validator("gain_cond", "use_success", "use_failure")
     def translation_exists(
-        cls: ConditionModel, v: Optional[str]
+        cls: StatusModel, v: Optional[str]
     ) -> Optional[str]:
         if not v or has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
     @field_validator("slug")
-    def translation_exists_cond(cls: ConditionModel, v: str) -> str:
+    def translation_exists_cond(cls: StatusModel, v: str) -> str:
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
     @field_validator("animation")
-    def animation_exists(
-        cls: ConditionModel, v: Optional[str]
-    ) -> Optional[str]:
+    def animation_exists(cls: StatusModel, v: Optional[str]) -> Optional[str]:
         file: str = f"animations/technique/{v}_00.png"
         if (
             not v
@@ -1033,17 +1030,13 @@ class ConditionModel(BaseModel):
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
     @field_validator("repl_tech", "repl_item")
-    def status_exists(cls: ConditionModel, v: Optional[str]) -> Optional[str]:
-        if (
-            not v
-            or has.db_entry("condition", v)
-            or has.db_entry("technique", v)
-        ):
+    def status_exists(cls: StatusModel, v: Optional[str]) -> Optional[str]:
+        if not v or has.db_entry("status", v) or has.db_entry("technique", v):
             return v
         raise ValueError(f"the status {v} doesn't exist in the db")
 
     @field_validator("sfx")
-    def sfx_cond_exists(cls: ConditionModel, v: str) -> str:
+    def sfx_cond_exists(cls: StatusModel, v: str) -> str:
         if has.db_entry("sounds", v):
             return v
         raise ValueError(f"the sound {v} doesn't exist in the db")
@@ -1454,11 +1447,21 @@ class AnimationModel(BaseModel):
         raise ValueError(f"the animation {v} doesn't exist in the db")
 
 
+class TerrainModel(BaseModel):
+    slug: str = Field(..., description="Slug of the terrain")
+
+
+class WeatherModel(BaseModel):
+    slug: str = Field(..., description="Slug of the weather")
+
+
 TableName = Literal[
     "economy",
     "element",
     "taste",
     "shape",
+    "terrain",
+    "weather",
     "template",
     "mission",
     "encounter",
@@ -1470,7 +1473,7 @@ TableName = Literal[
     "animation",
     "npc",
     "sounds",
-    "condition",
+    "status",
     "technique",
 ]
 
@@ -1479,6 +1482,8 @@ DataModel = Union[
     ElementModel,
     TasteModel,
     ShapeModel,
+    TerrainModel,
+    WeatherModel,
     TemplateModel,
     MissionModel,
     EncounterModel,
@@ -1490,7 +1495,7 @@ DataModel = Union[
     AnimationModel,
     NpcModel,
     SoundModel,
-    ConditionModel,
+    StatusModel,
     TechniqueModel,
 ]
 
@@ -1508,7 +1513,7 @@ class JSONDatabase:
             "item",
             "monster",
             "npc",
-            "condition",
+            "status",
             "technique",
             "encounter",
             "dialogue",
@@ -1520,6 +1525,8 @@ class JSONDatabase:
             "element",
             "taste",
             "shape",
+            "terrain",
+            "weather",
             "template",
             "mission",
         ]
@@ -1671,6 +1678,12 @@ class JSONDatabase:
             elif table == "shape":
                 shape = ShapeModel(**item)
                 self.database[table][shape.slug] = shape
+            elif table == "terrain":
+                terrain = TerrainModel(**item)
+                self.database[table][terrain.slug] = terrain
+            elif table == "weather":
+                weather = WeatherModel(**item)
+                self.database[table][weather.slug] = weather
             elif table == "template":
                 template = TemplateModel(**item)
                 self.database[table][template.slug] = template
@@ -1704,8 +1717,8 @@ class JSONDatabase:
             elif table == "sounds":
                 sfx = SoundModel(**item)
                 self.database[table][sfx.slug] = sfx
-            elif table == "condition":
-                cond = ConditionModel(**item)
+            elif table == "status":
+                cond = StatusModel(**item)
                 self.database[table][cond.slug] = cond
             elif table == "technique":
                 teq = TechniqueModel(**item)
@@ -1726,7 +1739,7 @@ class JSONDatabase:
         pass
 
     @overload
-    def lookup(self, slug: str, table: Literal["condition"]) -> ConditionModel:
+    def lookup(self, slug: str, table: Literal["status"]) -> StatusModel:
         pass
 
     @overload
@@ -1763,6 +1776,14 @@ class JSONDatabase:
 
     @overload
     def lookup(self, slug: str, table: Literal["shape"]) -> ShapeModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["terrain"]) -> TerrainModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["weather"]) -> WeatherModel:
         pass
 
     @overload
@@ -1865,6 +1886,8 @@ class JSONDatabase:
             "taste",
             "element",
             "shape",
+            "terrain",
+            "weather",
             "template",
             "mission",
             "encounter",
@@ -1876,7 +1899,7 @@ class JSONDatabase:
             "animation",
             "npc",
             "sounds",
-            "condition",
+            "status",
             "technique",
         ],
         slug: str,
@@ -1900,11 +1923,10 @@ class JSONDatabase:
 class Validator:
     """
     Helper class for validating resources exist.
-
     """
 
-    def __init__(self) -> None:
-        self.db = JSONDatabase()
+    def __init__(self, database: JSONDatabase) -> None:
+        self.db = database
         self.db.preload()
 
     def translation(self, msgid: str) -> bool:
@@ -1917,7 +1939,6 @@ class Validator:
 
         Returns:
             True if translation exists
-
         """
         return T.translate(msgid) != msgid
 
@@ -1930,7 +1951,6 @@ class Validator:
 
         Returns:
             True if file exists
-
         """
 
         try:
@@ -1949,25 +1969,22 @@ class Validator:
 
         Returns:
             True if file respects
-
         """
         path = prepare.fetch(file)
-        sprite = Image.open(path)
-        native = prepare.NATIVE_RESOLUTION
-        if size == native:
-            if sprite.size[0] > size[0] or sprite.size[1] > size[1]:
-                sprite.close()
-                raise ValueError(
-                    f"{file} {sprite.size}: "
-                    f"It must be less than the native resolution {native}"
-                )
-        else:
-            if sprite.size[0] != size[0] or sprite.size[1] != size[1]:
-                sprite.close()
-                raise ValueError(
-                    f"{file} {sprite.size}: It must be equal to {size}"
-                )
-        sprite.close()
+        with Image.open(path) as sprite:
+            native = prepare.NATIVE_RESOLUTION
+            if size == native:
+                if not (
+                    sprite.size[0] <= size[0] and sprite.size[1] <= size[1]
+                ):
+                    raise ValueError(
+                        f"{file} has size {sprite.size}, but must be less than or equal to {native}"
+                    )
+            else:
+                if sprite.size != size:
+                    raise ValueError(
+                        f"{file} has size {sprite.size}, but must be {size}"
+                    )
         return True
 
     def db_entry(self, table: TableName, slug: str) -> bool:
@@ -1983,16 +2000,11 @@ class Validator:
 
         Returns:
             True if entry exists
-
         """
+        return slug in self.db.preloaded[table]
 
-        if slug in self.db.preloaded[table]:
-            return True
-        return False
-
-
-# Validator container
-has = Validator()
 
 # Global database container
 db = JSONDatabase()
+# Validator container
+has = Validator(db)

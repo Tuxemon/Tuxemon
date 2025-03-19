@@ -6,6 +6,7 @@ import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
@@ -23,7 +24,7 @@ class ModifyMoneyAction(EventAction):
             modify_money <slug>,[amount][,variable]
 
     Script parameters:
-        slug: Slug name (e.g. player or NPC, etc.).
+        slug: Either "player" or character slug name (e.g. "npc_maple").
         amount: Amount of money to add/remove (-/+)
         variable: Name of the variable where to store the amount.
 
@@ -33,14 +34,18 @@ class ModifyMoneyAction(EventAction):
     """
 
     name = "modify_money"
-    wallet: str
+    character: str
     amount: Optional[int] = None
     variable: Optional[str] = None
 
     def start(self) -> None:
-        client = self.session.client
+        character = get_npc(self.session, self.character)
+
+        if character is None:
+            logger.error(f"Character '{self.character}' not found")
+            return
+
         player = self.session.player
-        wallet = self.wallet
         if self.amount is None:
             if self.variable:
                 _amount = player.game_variables.get(self.variable, 0)
@@ -48,7 +53,7 @@ class ModifyMoneyAction(EventAction):
                     amount = int(_amount)
                 elif isinstance(_amount, float):
                     _value = float(_amount)
-                    _wallet = player.money.get(wallet, 0)
+                    _wallet = player.money_manager.get_money()
                     amount = int(_wallet * _value)
                 else:
                     raise ValueError("It must be float or int")
@@ -56,12 +61,6 @@ class ModifyMoneyAction(EventAction):
                 amount = 0
         else:
             amount = self.amount
-        if wallet not in player.money:
-            logger.info(f"{wallet} has no wallet, setting it.")
-            client.event_engine.execute_action("set_money", [wallet], True)
 
-        if amount < 0 and abs(amount) > player.money[wallet]:
-            player.money[wallet] = 0
-        else:
-            player.money[wallet] += amount
-            logger.info(f"{wallet}'s money changed by {amount}")
+        player.money_manager.add_money(amount)
+        logger.info(f"{character.name}'s money changed by {amount}")

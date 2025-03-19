@@ -468,6 +468,15 @@ class SpriteGroup(LayeredUpdates, Generic[_GroupElement]):
         else:
             return sprites[0].rect.unionall([s.rect for s in sprites[1:]])
 
+    def swap(
+        self, original_sprite: _GroupElement, new_sprite: _GroupElement
+    ) -> None:
+        """
+        Swap the positions of two sprites in the group.
+        """
+        self.remove(original_sprite)
+        self.add(new_sprite)
+
 
 _MenuElement = TypeVar("_MenuElement", bound="MenuItem[Any]")
 

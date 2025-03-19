@@ -16,6 +16,7 @@ from tuxemon.menu.menu import PygameMenuState
 from tuxemon.npc import NPC
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
+from tuxemon.time_handler import today_ordinal
 
 MenuGameObj = Callable[[], object]
 lookup_cache: dict[str, MonsterModel] = {}
@@ -80,7 +81,7 @@ class CharacterState(PygameMenuState):
         msg_seen = T.format("tuxepedia_data_seen", _msg_seen)
         msg_caught = T.format("tuxepedia_data_caught", _msg_caught)
 
-        today = formula.today_ordinal()
+        today = today_ordinal()
         date = self.char.game_variables.get("date_start_game", today)
         date_begin = today - int(date)
         msg_begin = (
@@ -134,7 +135,7 @@ class CharacterState(PygameMenuState):
         )
         lab1.translate(fix_measure(width, 0.45), fix_measure(height, 0.15))
         # money
-        money = self.char.money.get(player, 0)
+        money = self.char.money_manager.get_money()
         lab2: Any = menu.add.label(
             title=f"{T.translate('wallet')}: {money}",
             label_id="money",

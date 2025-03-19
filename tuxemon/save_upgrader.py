@@ -53,29 +53,50 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
 
     Returns:
         Modified save data.
-
     """
-    _handle_change_tuxepedia(save_data)
-    _handle_change_monster_name(save_data)
-    _handle_change_plague(save_data)
+    if "npc_state" not in save_data:
+        save_data = update_save_data(save_data)
 
-    if isinstance(save_data["template"], list):
-        _npc = {
-            "sprite_name": save_data["template"][0]["sprite_name"],
-            "combat_front": save_data["template"][0]["combat_front"],
-            "slug": save_data["template"][0]["slug"],
-        }
-        save_data["template"] = _npc
+    save_data["npc_state"] = upgrade_npc_state(save_data["npc_state"])
 
-    version = save_data.get("version", 0)
-    for i in range(version, SAVE_VERSION):
-        _update_current_map(i, save_data)
-        if i == 0:
-            _remove_slug_prefixes(save_data)
-        if i == 1:
-            _transfer_storage_boxes(save_data)
+    # version = save_data.get("version", 0)
+    # for i in range(version, SAVE_VERSION):
+    #    _update_current_map(i, save_data)
 
     return save_data  # type: ignore[return-value]
+
+
+def upgrade_npc_state(npc_state: dict[str, Any]) -> dict[str, Any]:
+    _handle_change_tuxepedia(npc_state)
+    _handle_change_monster_name(npc_state)
+    _handle_change_plague(npc_state)
+    _handle_change_money(npc_state)
+
+    return npc_state
+
+
+def update_save_data(old_save_data: dict[str, Any]) -> dict[str, Any]:
+    new_save_data: dict[str, Any] = {
+        "screenshot": old_save_data["screenshot"],
+        "screenshot_width": old_save_data["screenshot_width"],
+        "screenshot_height": old_save_data["screenshot_height"],
+        "time": old_save_data["time"],
+        "version": old_save_data["version"],
+        "npc_state": {},
+    }
+
+    # Move NPC state information inside the "npc_state" key
+    for key, value in old_save_data.items():
+        if key not in [
+            "screenshot",
+            "screenshot_width",
+            "screenshot_height",
+            "time",
+            "version",
+        ]:
+            new_save_data["npc_state"][key] = value
+
+    return new_save_data
 
 
 def _handle_change_tuxepedia(save_data: dict[str, Any]) -> None:
@@ -88,6 +109,28 @@ def _handle_change_tuxepedia(save_data: dict[str, Any]) -> None:
                 "status": value,
                 "appearance_count": 1,
             }
+
+
+def _handle_change_money(save_data: dict[str, Any]) -> None:
+    """
+    Updates money field in the save data.
+    """
+    new_money: dict[str, Any] = {"money": 0, "bank_account": 0, "bills": {}}
+    if "bills" in save_data["money"] and isinstance(
+        save_data["money"]["bills"], dict
+    ):
+        return
+    else:
+        for entry, value in save_data["money"].items():
+            if entry == "player":
+                new_money["money"] = value
+            elif entry == "bank_account":
+                new_money["bank_account"] = value
+            elif entry.startswith("bill_"):
+                new_money["bills"][entry] = {
+                    "amount": value,
+                }
+        save_data["money"] = new_money
 
 
 def _handle_change_plague(save_data: dict[str, Any]) -> None:
@@ -157,52 +200,3 @@ def _update_current_map(version: int, save_data: dict[str, Any]) -> None:
         new_name = MAP_RENAMES[version].get(save_data["current_map"])
         if new_name:
             save_data["current_map"] = new_name
-
-
-def _remove_slug_prefixes(save_data: dict[str, Any]) -> None:
-    """
-    Fixes slug names in old saves.
-
-    Slugs used to be prefixed by their type.
-    Before: item_potion, txmn_rockitten.
-    After: potion, rockitten.
-
-    Parameters:
-        save_data: The save data.
-
-    """
-
-    def fix_items(data: dict[str, Any]) -> dict[str, Any]:
-        return {key.partition("_")[2]: num for key, num in data.items()}
-
-    chest = save_data.get("storage", {})
-    save_data["inventory"] = fix_items(save_data.get("inventory", {}))
-    chest["items"] = fix_items(chest.get("items", {}))
-
-    for mons in save_data.get("monsters", []), chest.get("monsters", []):
-        for mon in mons:
-            mon["slug"] = mon["slug"].partition("_")[2]
-
-
-def _transfer_storage_boxes(save_data: dict[str, Any]) -> None:
-    """
-    Fixes storage boxes in old saves.
-
-    Item and monster storage used to be handled in a single
-    dictionary, with "item" and "monster" keys. Now they're two
-    dictionaries where the keys are "boxes", like in other popular
-    games of the genre. This also allows "hidden" boxes for scripts
-    to move items and monsters around.
-
-    Parameters:
-        save_data: The save data.
-
-    """
-    locker = save_data.get("storage", {}).get("items", {})
-    kennel = save_data.get("storage", {}).get("monsters", {})
-
-    save_data["monster_boxes"] = dict()
-    save_data["item_boxes"] = dict()
-
-    save_data["monster_boxes"]["Kennel"] = kennel
-    save_data["item_boxes"]["Locker"] = locker

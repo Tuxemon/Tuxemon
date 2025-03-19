@@ -47,7 +47,6 @@ class Technique:
         self.combat_state: Optional[CombatState] = None
         self.description = ""
         self.flip_axes = ""
-        self.icon = ""
         self.hit = False
         self.is_fast = False
         self.randomly = True
@@ -107,7 +106,6 @@ class Technique:
         self.use_success = T.maybe_translate(results.use_success)
         self.use_failure = T.maybe_translate(results.use_failure)
 
-        self.icon = results.icon
         self.counter = self.counter
         # types
         self.types = [Element(ele) for ele in results.types]

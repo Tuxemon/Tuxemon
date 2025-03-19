@@ -86,11 +86,12 @@ jobs:
         run: python3 -m pip install -r requirements.txt
 
       - name: Install cx-freeze
-        run: python3 -m pip install cx-freeze
+        run: python3 -m pip install cx-freeze pyyaml
 
       - name: Build
         run: |
           copy buildconfig/setup_cx_freeze.py setup_cx_freeze.py
+          copy buildconfig/build_config.yaml build_config.yaml
           python setup_cx_freeze.py build
 
       - name: Install nsis

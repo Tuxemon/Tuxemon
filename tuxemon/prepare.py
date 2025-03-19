@@ -207,19 +207,13 @@ MOVERATE_RANGE: tuple[float, float] = (0.0, 20.0)
 TRANS_TIME: float = 0.3  # transition time
 
 # PC
-METRIC: str = "Metric"
-IMPERIAL: str = "Imperial"
-NORTHERN: str = "Northern"
-SOUTHERN: str = "Southern"
 U_KM: str = "km"
 U_MI: str = "mi"
 U_KG: str = "kg"
 U_LB: str = "lb"
 U_CM: str = "cm"
 U_FT: str = "ft"
-MUSIC_VOLUME: float = 0.5
 MUSIC_RANGE: tuple[float, float] = (0.0, 1.0)
-SOUND_VOLUME: float = 0.2
 SOUND_RANGE: tuple[float, float] = (0.0, 1.0)
 MUSIC_LOOP: int = -1
 MUSIC_FADEIN: int = 1000  # milliseconds
@@ -372,11 +366,6 @@ ICON_OPPONENT_SLOT: tuple[float, float] = (
     SCREEN_SIZE[0] * 0.06,
     SCREEN_SIZE[1] * 0.26,
 )
-
-# Fonts
-FONT_BASIC: str = "PressStart2P.ttf"
-FONT_CHINESE: str = "SourceHanSerifCN-Bold.otf"
-FONT_JAPANESE: str = "SourceHanSerifJP-Bold.otf"
 
 # If scaling is enabled, scale the tiles based on the resolution
 if CONFIG.large_gui:

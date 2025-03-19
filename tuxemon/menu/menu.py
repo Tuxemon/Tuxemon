@@ -107,6 +107,9 @@ class PygameMenuState(state.State):
         theme.title_font_color = self.font_color
         theme.title_background_color = self.transparent_color
         theme.widget_font_shadow_color = self.font_shadow_color
+        font = prepare.fetch("font", prepare.CONFIG.locale.font_file)
+        theme.title_font = font
+        theme.widget_font = font
 
     def _create_menu(
         self, width: int, height: int, theme: pygame_menu.Theme, **kwargs: Any
@@ -128,7 +131,11 @@ class PygameMenuState(state.State):
             onclose=self._on_close,
             **kwargs,
         )
-        self.menu.set_sound(get_sound_engine())
+        sound_file = self.client.sound_manager.get_sound_filename(
+            "sound_menu_select"
+        )
+        sound_volume = self.client.config.sound_volume
+        self.menu.set_sound(get_sound_engine(sound_volume, sound_file))
         # If we 'ignore nonphysical keyboard', pygame_menu will check the
         # pygame event queue to make sure there is an actual keyboard event
         # being pressed right now, and ignore the event if not, hence it won't
@@ -305,12 +312,7 @@ class Menu(Generic[T], state.State):
     # File to load for image background
     background_filename: Optional[str] = None
     menu_select_sound_filename = "sound_menu_select"
-    if prepare.CONFIG.locale.slug == "zh_CN":
-        font_filename = prepare.FONT_CHINESE
-    elif prepare.CONFIG.locale.slug == "ja":
-        font_filename = prepare.FONT_JAPANESE
-    else:
-        font_filename = prepare.FONT_BASIC
+    font_filename = prepare.CONFIG.locale.font_file
     borders_filename = "gfx/borders/borders.png"
     cursor_filename = "gfx/arrow.png"
     cursor_move_duration = 0.20

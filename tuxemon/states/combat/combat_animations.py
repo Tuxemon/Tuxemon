@@ -752,7 +752,7 @@ class CombatAnimations(ABC, Menu[None]):
         )
 
     def play_sound_effect(
-        self, sound: str, value: float = prepare.SOUND_VOLUME
+        self, sound: str, value: float = prepare.CONFIG.sound_volume
     ) -> None:
         """Play the sound effect."""
         self.client.sound_manager.play_sound(sound, value)

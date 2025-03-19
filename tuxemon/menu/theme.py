@@ -9,8 +9,6 @@ from pygame_menu.widgets.core.selection import Selection
 from pygame_menu.widgets.core.widget import Widget
 from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
-from tuxemon import prepare
-from tuxemon.audio import SoundManager
 from tuxemon.tools import transform_resource_filename
 
 _theme: Optional[pygame_menu.Theme] = None
@@ -72,12 +70,6 @@ def get_theme() -> pygame_menu.Theme:
     if _theme is not None:
         return _theme
 
-    if prepare.CONFIG.locale.slug == "zh_CN":
-        font_filename = prepare.fetch("font", prepare.FONT_CHINESE)
-    elif prepare.CONFIG.locale.slug == "ja":
-        font_filename = prepare.fetch("font", prepare.FONT_JAPANESE)
-    else:
-        font_filename = prepare.fetch("font", prepare.FONT_BASIC)
     tuxemon_border = pygame_menu.BaseImage(
         image_path=transform_resource_filename("gfx/borders/borders.png"),
     ).scale(5, 5, smooth=False)
@@ -94,8 +86,6 @@ def get_theme() -> pygame_menu.Theme:
 
     theme = pygame_menu.Theme(
         background_color=tuxemon_background,
-        title_font=font_filename,
-        widget_font=font_filename,
         widget_alignment=locals.ALIGN_LEFT,
         title=False,
         widget_selection_effect=TuxemonArrowSelection(),
@@ -114,7 +104,9 @@ def get_theme() -> pygame_menu.Theme:
 _sound_engine: Optional[pygame_menu.Sound] = None
 
 
-def get_sound_engine() -> pygame_menu.Sound:
+def get_sound_engine(
+    volume: float, filename: Optional[str]
+) -> pygame_menu.Sound:
     """Get Tuxemon default sound engine."""
     global _sound_engine
 
@@ -123,8 +115,9 @@ def get_sound_engine() -> pygame_menu.Sound:
 
     sound_engine = pygame_menu.Sound()
     sound_engine.set_sound(
-        sound.SOUND_TYPE_WIDGET_SELECTION,
-        SoundManager().get_sound_filename("sound_menu_select"),
+        sound_type=sound.SOUND_TYPE_WIDGET_SELECTION,
+        sound_file=filename,
+        volume=float(volume),
     )
 
     _sound_engine = sound_engine

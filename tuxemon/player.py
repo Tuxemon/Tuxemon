@@ -82,5 +82,5 @@ class Player(NPC):
         )
         self.game_variables["season"] = time_handler.determine_season(
             current_time,
-            self.game_variables.get("hemisphere", prepare.NORTHERN),
+            prepare.CONFIG.hemisphere,
         )

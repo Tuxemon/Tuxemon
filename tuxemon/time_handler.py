@@ -63,7 +63,7 @@ def calculate_day_stage_of_day(time: datetime) -> str:
 
 
 def determine_season(
-    time: datetime, hemisphere: str = prepare.NORTHERN
+    time: datetime, hemisphere: str = prepare.CONFIG.hemisphere
 ) -> str:
     """Determines the current season based on the time and hemisphere.
 
@@ -75,7 +75,7 @@ def determine_season(
         A string (winter, spring, summer or autumn).
     """
     day_of_year = time.timetuple().tm_yday
-    if hemisphere == prepare.NORTHERN:
+    if hemisphere == "northern":
         if day_of_year < 81:
             return "winter"
         elif 81 <= day_of_year < 173:
@@ -86,7 +86,7 @@ def determine_season(
             return "autumn"
         else:
             return "winter"
-    elif hemisphere == prepare.SOUTHERN:
+    elif hemisphere == "southern":
         if day_of_year < 81:
             return "summer"
         elif 81 <= day_of_year < 173:

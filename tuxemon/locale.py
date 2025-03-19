@@ -374,7 +374,7 @@ def replace_text(session: Session, text: str) -> str:
     """
     player = session.player
     client = session.client
-    unit_measure = player.game_variables.get("unit_measure", prepare.METRIC)
+    unit_measure = prepare.CONFIG.unit_measure
 
     replacements = {
         "${{name}}": player.name,
@@ -392,7 +392,7 @@ def replace_text(session: Session, text: str) -> str:
     }
 
     # Add unit-specific replacements
-    if unit_measure == prepare.METRIC:
+    if unit_measure == "metric":
         replacements.update(
             {
                 "${{length}}": prepare.U_KM,
@@ -443,7 +443,7 @@ def replace_text(session: Session, text: str) -> str:
         }
 
         # Add unit-specific monster replacements
-        if unit_measure == prepare.METRIC:
+        if unit_measure == "metric":
             monster_replacements.update(
                 {
                     "${{monster_"

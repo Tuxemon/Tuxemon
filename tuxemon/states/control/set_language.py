@@ -52,7 +52,7 @@ class SetLanguage(PygameMenuState):
         for language in languages:
             if language != "README.md" and language != used:
                 menu.add.button(
-                    title=language.upper(),
+                    title=T.translate(f"language_{language.lower()}"),
                     action=partial(self.change_language, language),
                     font_size=self.font_size_small,
                 )

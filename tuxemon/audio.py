@@ -37,7 +37,7 @@ class MusicPlayerState:
     def play(
         self,
         song: str,
-        volume: float = prepare.MUSIC_VOLUME,
+        volume: float = prepare.CONFIG.music_volume,
         loop: int = prepare.MUSIC_LOOP,
         fade_ms: int = prepare.MUSIC_FADEIN,
     ) -> None:
@@ -121,6 +121,13 @@ class MusicPlayerState:
                 "Music is not playing, volume adjustment not applied."
             )
 
+    def get_volume(self) -> Optional[float]:
+        if self.status == MusicStatus.playing:
+            return float(mixer2.music.get_volume())
+        else:
+            logger.warning("Music is not playing, cannot get volume.")
+            return None
+
     def __repr__(self) -> str:
         return f"MusicPlayerState(status={self.status}, current_song={self.current_song}, previous_song={self.previous_song})"
 
@@ -147,8 +154,7 @@ class SoundWrapper(SoundProtocol):
 
 
 class SoundManager:
-    def __init__(self, sound_volume: float = prepare.SOUND_VOLUME):
-        self.sound_volume = sound_volume
+    def __init__(self) -> None:
         self.sounds: dict[str, SoundProtocol] = {}
 
     def get_sound_filename(self, slug: str) -> Optional[str]:
@@ -165,7 +171,7 @@ class SoundManager:
         return filename
 
     def load_sound(
-        self, slug: str, value: float = prepare.SOUND_VOLUME
+        self, slug: str, value: float = prepare.CONFIG.sound_volume
     ) -> SoundProtocol:
         if slug in self.sounds:
             return self.sounds[slug]
@@ -176,7 +182,7 @@ class SoundManager:
 
         try:
             sound = pygame.mixer.Sound(filename)
-            sound.set_volume(value or self.sound_volume)
+            sound.set_volume(value)
             self.sounds[slug] = SoundWrapper(sound)
             return self.sounds[slug]
         except (MemoryError, pygame.error) as e:
@@ -184,7 +190,7 @@ class SoundManager:
             return SoundWrapper()
 
     def play_sound(
-        self, slug: str, value: float = prepare.SOUND_VOLUME
+        self, slug: str, value: float = prepare.CONFIG.sound_volume
     ) -> None:
         sound = self.load_sound(slug, value)
         sound.play()

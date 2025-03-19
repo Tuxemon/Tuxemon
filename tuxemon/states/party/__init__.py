@@ -135,8 +135,8 @@ class PartyState(PygameMenuState):
             _sorted = sorted(monsters, key=lambda x: x.steps, reverse=True)
             for monster in _sorted:
                 steps = monster.steps
-                unit = game_variables.get("unit_measure", prepare.METRIC)
-                if unit == prepare.METRIC:
+                unit = self.client.config.unit_measure
+                if unit == "metric":
                     walked = formula.convert_km(steps)
                     unit_walked = prepare.U_KM
                 else:

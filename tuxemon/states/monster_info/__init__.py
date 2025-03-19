@@ -66,9 +66,8 @@ class MonsterInfoState(PygameMenuState):
             return
         diff_weight = formula.diff_percentage(monster.weight, results.weight)
         diff_height = formula.diff_percentage(monster.height, results.height)
-        player = local_session.player
-        unit = player.game_variables.get("unit_measure", prepare.METRIC)
-        if unit == prepare.METRIC:
+        unit = self.client.config.unit_measure
+        if unit == "metric":
             mon_weight = monster.weight
             mon_height = monster.height
             unit_weight = prepare.U_KG

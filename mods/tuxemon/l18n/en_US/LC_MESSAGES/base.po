@@ -3377,6 +3377,45 @@ msgstr "Reset Keys to Default"
 msgid "menu_language"
 msgstr "Language"
 
+msgid "language_cs_cz"
+msgstr "Czech"
+
+msgid "language_de_de"
+msgstr "German"
+
+msgid "language_eo"
+msgstr "Esperanto"
+
+msgid "language_es_es"
+msgstr "Spanish"
+
+msgid "language_es_mx"
+msgstr "Mexican Spanish"
+
+msgid "language_fi"
+msgstr "Finnish"
+
+msgid "language_fr_fr"
+msgstr "French"
+
+msgid "language_it_it"
+msgstr "Italian"
+
+msgid "language_ja"
+msgstr "Japanese"
+
+msgid "language_nb_no"
+msgstr "Norwegian Bokmål"
+
+msgid "language_pl"
+msgstr "Polish"
+
+msgid "language_pt_br"
+msgstr "Brazilian Portuguese"
+
+msgid "language_zh_cn"
+msgstr "Simplified Chinese"
+
 msgid "enable"
 msgstr "Enable"
 

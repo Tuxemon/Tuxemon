@@ -79,6 +79,8 @@ class ItemMenuState(Menu[Item]):
         self.text_area = TextArea(self.font, self.font_color, (96, 96, 128))
         self.text_area.rect = rect
         self.sprites.add(self.text_area, layer=100)
+        self.page_number_display = TextArea(self.font, self.font_color)
+        self.sprites.add(self.page_number_display, layer=100)
 
         # load the backpack icon
         self.backpack_center = self.rect.width * 0.16, self.rect.height * 0.45
@@ -283,12 +285,6 @@ class ItemMenuState(Menu[Item]):
         if item.description:
             self.alert(item.description)
 
-    def get_current_page_number(self) -> int:
-        """
-        Returns the current page number.
-        """
-        return self.current_page
-
     def prev_page(self) -> None:
         """
         Goes to the previous page.
@@ -296,21 +292,9 @@ class ItemMenuState(Menu[Item]):
         This method clears the current page, decrements the current page number,
         and then adds the items from the previous page to the menu.
         """
-        state = self.determine_state_called_from()
-        inventory = self.get_inventory(state)
-        page_size = prepare.MAX_MENU_ITEMS
         if self.current_page > 0:
             self.current_page -= 1
-            self.clear()
-            page_items = inventory[
-                self.current_page
-                * page_size : (self.current_page + 1)
-                * page_size
-            ]
-            for obj in sort_inventory(page_items):
-                label = f"{obj.name} x {obj.quantity}"
-                image = self.shadow_text(label, bg=prepare.DIMGRAY_COLOR)
-                self.add(MenuItem(image, obj.name, obj.description, obj))
+            self.reload_items()
 
     def next_page(self) -> None:
         """
@@ -325,16 +309,30 @@ class ItemMenuState(Menu[Item]):
         total_pages = -(-len(inventory) // page_size)
         if self.current_page < total_pages - 1:
             self.current_page += 1
-            self.clear()
-            page_items = inventory[
-                self.current_page
-                * page_size : (self.current_page + 1)
-                * page_size
-            ]
-            for obj in sort_inventory(page_items):
-                label = f"{obj.name} x {obj.quantity}"
-                image = self.shadow_text(label, bg=prepare.DIMGRAY_COLOR)
-                self.add(MenuItem(image, obj.name, obj.description, obj))
+            self.reload_items()
+
+    def reload_items(self) -> None:
+        self.clear()
+        state = self.determine_state_called_from()
+        inventory = self.get_inventory(state)
+        page_size = prepare.MAX_MENU_ITEMS
+        page_items = inventory[
+            self.current_page * page_size : (self.current_page + 1) * page_size
+        ]
+        for obj in sort_inventory(page_items):
+            label = f"{obj.name} x {obj.quantity}"
+            image = self.shadow_text(label, bg=prepare.DIMGRAY_COLOR)
+            self.add(MenuItem(image, obj.name, obj.description, obj))
+
+        # Adjust selected_index if it's out of bounds after reloading
+        if self.menu_items:
+            self.selected_index = min(
+                self.selected_index, len(self.menu_items) - 1
+            )
+        else:
+            self.selected_index = -1
+        self.update_page_number_display(len(inventory))
+        self.on_menu_selection_change()
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         """
@@ -355,3 +353,12 @@ class ItemMenuState(Menu[Item]):
         else:
             return super().process_event(event)
         return None
+
+    def update_page_number_display(self, total_items: int) -> None:
+        internal_rect = self.calc_internal_rect()
+        page_size = prepare.MAX_MENU_ITEMS
+        total_pages = (total_items + page_size - 1) // page_size
+        page_text = f"{self.current_page + 1}/{total_pages}"
+        image = self.shadow_text(page_text)
+        self.page_number_display.image = image
+        self.page_number_display.rect.bottomright = internal_rect.bottomright

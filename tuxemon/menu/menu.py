@@ -23,7 +23,6 @@ from tuxemon.platform.const import buttons, intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.prepare import CONFIG
 from tuxemon.sprite import (
-    MenuSpriteGroup,
     RelativeGroup,
     SpriteGroup,
     VisualSpriteList,
@@ -349,7 +348,7 @@ class Menu(Generic[T], state.State):
 
         """
         # contains the selectable elements of the menu
-        self.menu_items: MenuSpriteGroup[MenuItem[T]] = VisualSpriteList(
+        self.menu_items: VisualSpriteList[MenuItem[T]] = VisualSpriteList(
             parent=self.calc_menu_items_rect,
         )
         self.menu_items.columns = self.columns

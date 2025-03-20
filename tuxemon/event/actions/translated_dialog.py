@@ -3,16 +3,14 @@
 from __future__ import annotations
 
 import logging
-import re
-from dataclasses import dataclass, field
-from typing import Any, Optional, Union, final, List
+from dataclasses import dataclass
+from typing import Any, Optional, Union, final
 
 from tuxemon.db import DialogueModel, db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import get_avatar, string_to_colorlike
-from tuxemon.locale import T, process_translate_text
+from tuxemon.locale import process_translate_text
 from tuxemon.states.dialog import DialogState
-from tuxemon.states.world.worldstate import WorldState
 from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
@@ -44,6 +42,7 @@ class TranslatedDialogAction(EventAction):
         style: a predefined style in db/dialogue/dialogue.json
 
     """
+
     name = "translated_dialog"
     raw_parameters: str
     avatar: Union[int, str, None] = None
@@ -51,16 +50,7 @@ class TranslatedDialogAction(EventAction):
     style: Optional[str] = None
 
     def start(self) -> None:
-
-        params = self.raw_parameters.split("_")
-        npc_slug = params[0].strip()
-        npc_name = T.translate(npc_slug)
-        raw_key = process_translate_text(self.session, self.raw_parameters, [])
-        
-        pending = list(raw_key)
-        if pending:
-            pending[0] = f"{npc_name}: {pending[0]}"
-        key = tuple(pending)
+        key = process_translate_text(self.session, self.raw_parameters, [])
 
         avatar_sprite = None
         if self.avatar:
@@ -101,4 +91,3 @@ def _get_style(cache_key: str) -> DialogueModel:
             return style
         except KeyError:
             raise RuntimeError(f"Dialogue {cache_key} not found")
-

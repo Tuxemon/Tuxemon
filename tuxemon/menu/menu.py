@@ -23,7 +23,6 @@ from tuxemon.platform.const import buttons, intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.prepare import CONFIG
 from tuxemon.sprite import (
-    MenuSpriteGroup,
     RelativeGroup,
     SpriteGroup,
     VisualSpriteList,
@@ -107,6 +106,9 @@ class PygameMenuState(state.State):
         theme.title_font_color = self.font_color
         theme.title_background_color = self.transparent_color
         theme.widget_font_shadow_color = self.font_shadow_color
+        font = prepare.fetch("font", prepare.CONFIG.locale.font_file)
+        theme.title_font = font
+        theme.widget_font = font
 
     def _create_menu(
         self, width: int, height: int, theme: pygame_menu.Theme, **kwargs: Any
@@ -128,7 +130,11 @@ class PygameMenuState(state.State):
             onclose=self._on_close,
             **kwargs,
         )
-        self.menu.set_sound(get_sound_engine())
+        sound_file = self.client.sound_manager.get_sound_filename(
+            "sound_menu_select"
+        )
+        sound_volume = self.client.config.sound_volume
+        self.menu.set_sound(get_sound_engine(sound_volume, sound_file))
         # If we 'ignore nonphysical keyboard', pygame_menu will check the
         # pygame event queue to make sure there is an actual keyboard event
         # being pressed right now, and ignore the event if not, hence it won't
@@ -305,12 +311,7 @@ class Menu(Generic[T], state.State):
     # File to load for image background
     background_filename: Optional[str] = None
     menu_select_sound_filename = "sound_menu_select"
-    if prepare.CONFIG.locale.slug == "zh_CN":
-        font_filename = prepare.FONT_CHINESE
-    elif prepare.CONFIG.locale.slug == "ja":
-        font_filename = prepare.FONT_JAPANESE
-    else:
-        font_filename = prepare.FONT_BASIC
+    font_filename = prepare.CONFIG.locale.font_file
     borders_filename = "gfx/borders/borders.png"
     cursor_filename = "gfx/arrow.png"
     cursor_move_duration = 0.20
@@ -349,7 +350,7 @@ class Menu(Generic[T], state.State):
 
         """
         # contains the selectable elements of the menu
-        self.menu_items: MenuSpriteGroup[MenuItem[T]] = VisualSpriteList(
+        self.menu_items: VisualSpriteList[MenuItem[T]] = VisualSpriteList(
             parent=self.calc_menu_items_rect,
         )
         self.menu_items.columns = self.columns
@@ -583,6 +584,7 @@ class Menu(Generic[T], state.State):
         text: str,
         bg: ColorLike = font_shadow_color,
         fg: Optional[ColorLike] = None,
+        offset: tuple[float, float] = (0.5, 0.5),
     ) -> pygame.surface.Surface:
         """
         Draw shadowed text.
@@ -591,10 +593,11 @@ class Menu(Generic[T], state.State):
             text: Text to draw.
             bg: Font shadow color.
             fg: Font color.
+            offset: Offset of the shadow from the text.
+                Defaults to (0.5, 0.5).
 
         Returns:
             Surface with the drawn text.
-
         """
         if not fg:
             fg = self.font_color
@@ -602,14 +605,14 @@ class Menu(Generic[T], state.State):
         font_color = self.font.render(text, True, fg)
         shadow_color = self.font.render(text, True, bg)
 
-        offset = layout((0.5, 0.5))
+        _offset = layout(offset)
         size = [
             int(math.ceil(a + b))
-            for a, b in zip(offset, font_color.get_size())
+            for a, b in zip(_offset, font_color.get_size())
         ]
         image = pygame.Surface(size, pygame.SRCALPHA)
 
-        image.blit(shadow_color, tuple(offset))
+        image.blit(shadow_color, tuple(_offset))
         image.blit(font_color, (0, 0))
         return image
 
@@ -1105,18 +1108,29 @@ class Menu(Generic[T], state.State):
 class PopUpMenu(Menu[T]):
     """Menu with "pop up" style animation."""
 
+    ANIMATION_DURATION = 0.20
+
+    def __init__(self, initial_scale: float = 0.1, **kwargs: Any):
+        super().__init__(**kwargs)
+        self.initial_scale = initial_scale
+
+    def _calculate_initial_rect(self, final_rect: pygame.Rect) -> pygame.Rect:
+        """
+        Calculates the initial rectangle for the animation.
+        """
+        initial_rect = final_rect.copy()
+        initial_rect.width = int(final_rect.width * self.initial_scale)
+        initial_rect.height = int(final_rect.height * self.initial_scale)
+        initial_rect.center = final_rect.center
+        return initial_rect
+
     def animate_open(self) -> Animation:
         # anchor the center of the popup
-        rect = self.client.screen.get_rect()
-        self.anchor("center", rect.center)
-
-        rect = self.calc_final_rect()
+        final_rect = self.calc_final_rect()
+        self.anchor("center", self.client.screen.get_rect().center)
 
         # set rect to a small size for the initial values of the animation
-        self.rect = self.rect.copy()  # required.  do not remove.
-        self.rect.height = int(rect.height * 0.1)
-        self.rect.width = int(rect.width * 0.1)
-        self.rect.center = rect.center
+        self.rect = self._calculate_initial_rect(final_rect)
 
         # if this statement were removed, then the menu would
         # refresh and the size animation would be lost
@@ -1125,9 +1139,11 @@ class PopUpMenu(Menu[T]):
         # create animation to open window with
         ani = self.animate(
             self.rect,
-            height=rect.height,
-            width=rect.width,
-            duration=0.20,
+            height=final_rect.height,
+            width=final_rect.width,
+            duration=self.ANIMATION_DURATION,
         )
-        ani.update_callback = lambda: setattr(self.rect, "center", rect.center)
+        ani.update_callback = lambda: setattr(
+            self.rect, "center", final_rect.center
+        )
         return ani

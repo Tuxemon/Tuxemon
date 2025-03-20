@@ -76,6 +76,14 @@ class TuxemonConfig:
             "dialog_speed",
         )
         assert self.dialog_speed in ("slow", "max")
+        self.unit_measure = cfg.get("gameplay", "unit_measure")
+        assert self.unit_measure in ("metric", "imperial")
+        self.hemisphere = cfg.get("gameplay", "hemisphere")
+        assert self.hemisphere in ("northern", "southern")
+        sound_volume = cfg.getfloat("gameplay", "sound_volume")
+        self.sound_volume = max(0.0, min(sound_volume, 1.0))
+        music_volume = cfg.getfloat("gameplay", "music_volume")
+        self.music_volume = max(0.0, min(music_volume, 1.0))
 
         # [player]
         self.player_animation_speed = cfg.getfloat("player", "animation_speed")
@@ -102,8 +110,37 @@ class TuxemonConfig:
         self.input.cfg = self.cfg
         self.input.reload_input_map()
 
+    def update_attribute(
+        self, section: str, attribute: str, value: str
+    ) -> None:
+        """
+        Updates the attribute's value in the tuxemon.cfg.
+
+        Parameters:
+            section: the section (eg. gameplay)
+            attribute: the attribute (eg. dialog_speed)
+            value: the value (eg slow or max)
+        """
+        self.cfg.set(section, attribute, value)
+        setattr(self, attribute, value)
+        self.save_config()
+        self.reload_config()
+
     def update_control(self, value: str, key: int) -> None:
         self.input.update_key(value, pygame.key.name(key))
+        self.save_config()
+        self.reload_config()
+
+    def update_locale(self, value: str) -> None:
+        self.cfg.set("game", "locale", value)
+        self.locale.slug = value
+        if value == "zh_CN":
+            self.locale.font_file = "SourceHanSerifCN-Bold.otf"
+        elif value == "ja":
+            self.locale.font_file = "SourceHanSerifJP-Bold.otf"
+        else:
+            self.locale.font_file = "PressStart2P.ttf"
+        self.cfg.set("game", "language_font", self.locale.font_file)
         self.save_config()
         self.reload_config()
 
@@ -128,6 +165,7 @@ class LocaleConfig:
     def __init__(self, cfg: configparser.ConfigParser) -> None:
         self.slug = cfg.get("game", "locale")
         self.translation_mode = cfg.get("game", "translation_mode")
+        self.font_file = cfg.get("game", "font_file")
 
 
 class InputConfig:
@@ -243,6 +281,7 @@ def get_defaults() -> Mapping[str, Any]:
                         ("net_controller_enabled", "False"),
                         ("locale", "en_US"),
                         ("translation_mode", "none"),
+                        ("font_file", "PressStart2P.ttf"),
                         ("dev_tools", "False"),
                         ("recompile_translations", "True"),
                         ("compress_save", "None"),
@@ -256,6 +295,10 @@ def get_defaults() -> Mapping[str, Any]:
                         ("items_consumed_on_failure", "True"),
                         ("encounter_rate_modifier", "1.0"),
                         ("dialog_speed", "slow"),
+                        ("unit_measure", "metric"),
+                        ("hemisphere", "northern"),
+                        ("sound_volume", "0.2"),
+                        ("music_volume", "0.5"),
                     )
                 ),
             ),

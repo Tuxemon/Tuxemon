@@ -14,6 +14,8 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.menu.quantity import QuantityAndCostMenu, QuantityAndPriceMenu
+from tuxemon.platform.const import buttons
+from tuxemon.platform.events import PlayerInput
 from tuxemon.sprite import Sprite
 from tuxemon.ui.text import TextArea
 
@@ -43,6 +45,9 @@ class ShopMenuState(Menu[Item]):
         self.sprites.add(self.item_sprite)
 
         self.menu_items.line_spacing = tools.scale(7)
+        self.current_page = 0
+        self.total_pages = 0
+        self.inventory: list[Item] = []
 
         # this is the area where the item description is displayed
         rect = self.client.screen.get_rect()
@@ -99,7 +104,20 @@ class ShopMenuState(Menu[Item]):
                 inventory, key=lambda x: self.economy.lookup_item_cost(x.slug)
             )
 
-        for itm in inventory:
+        self.inventory = inventory
+
+        page_size = prepare.MAX_MENU_ITEMS
+        self.total_pages = -(-len(inventory) // page_size)
+
+        self.current_page = max(
+            0, min(self.current_page, self.total_pages - 1)
+        )
+
+        start_index = self.current_page * page_size
+        end_index = (self.current_page + 1) * page_size
+        page_items = inventory[start_index:end_index]
+
+        for itm in page_items:
             # buying
             if self.buyer.isplayer:
                 # recall variable quantity
@@ -148,6 +166,99 @@ class ShopMenuState(Menu[Item]):
             self.item_sprite.rect = image.get_rect(center=self.image_center)
             if item.description:
                 self.alert(item.description)
+
+    def get_current_page_number(self) -> int:
+        """
+        Returns the current page number.
+        """
+        return self.current_page
+
+    def prev_page(self) -> None:
+        """
+        Goes to the previous page.
+
+        This method clears the current page, decrements the current page number,
+        and then adds the items from the previous page to the menu.
+        """
+        if self.current_page > 0:
+            self.current_page -= 1
+            self.reload_shop()
+
+    def next_page(self) -> None:
+        """
+        Goes to the next page.
+
+        This method clears the current page, increments the current page number,
+        and then adds the items from the next page to the menu.
+        """
+        page_size = prepare.MAX_MENU_ITEMS
+        total_pages = -(-len(self.inventory) // page_size)
+        if self.current_page < total_pages - 1:
+            self.current_page += 1
+            self.reload_shop()
+
+    def reload_shop(self) -> None:
+        self.clear()
+        page_size = prepare.MAX_MENU_ITEMS
+        start_index = self.current_page * page_size
+        end_index = (self.current_page + 1) * page_size
+        page_items = self.inventory[start_index:end_index]
+
+        for itm in page_items:
+            if self.buyer.isplayer:
+                key = f"{self.economy.model.slug}:{itm.slug}"
+                self.qty = self.buyer.game_variables[key]
+                fg = None
+                self.wallet = self.buyer.money_manager.get_money()
+                self.price = self.economy.lookup_item_price(itm.slug)
+                if self.price > self.wallet:
+                    fg = self.unavailable_color_shop
+                if itm.quantity != INFINITE_ITEMS:
+                    if self.qty == 0:
+                        label = f"${self.price:4} {T.translate('shop_buy_soldout')}"
+                    else:
+                        label = f"${self.price:4} {itm.name} x {self.qty}"
+                else:
+                    label = f"${self.price:4} {itm.name}"
+                image = self.shadow_text(label, fg=fg)
+                self.add(MenuItem(image, itm.name, itm.description, itm))
+            if self.seller.isplayer:
+                self.cost = self.economy.lookup_item_cost(itm.slug)
+                if itm.quantity != INFINITE_ITEMS:
+                    label = f"${self.cost:3} {itm.name} x {itm.quantity}"
+                else:
+                    label = f"${self.cost:3} {itm.name}"
+                image = self.shadow_text(label)
+                self.add(MenuItem(image, itm.name, itm.description, itm))
+
+        # Adjust selected_index if it's out of bounds after reloading
+        if self.menu_items:
+            self.selected_index = min(
+                self.selected_index, len(self.menu_items) - 1
+            )
+        else:
+            self.selected_index = -1
+        self.on_menu_selection_change()
+
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+        """
+        Processes a player input event.
+
+        Parameters:
+            event: The player input event.
+
+        Returns:
+            Optional[PlayerInput]: The processed event or None if it's not handled.
+        """
+        if event.button == buttons.RIGHT and event.pressed:
+            if self.current_page <= self.total_pages:
+                self.next_page()
+        elif event.button == buttons.LEFT and event.pressed:
+            if self.current_page >= 0:
+                self.prev_page()
+        else:
+            return super().process_event(event)
+        return None
 
 
 class ShopBuyMenuState(ShopMenuState):

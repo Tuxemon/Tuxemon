@@ -50,7 +50,7 @@
             "evo_stage": "stage1"
         }
     ],
-    "terrains": ["boreal/snow", "underground", "woodland"],
+    "terrains": ["boreal_snow", "underground", "woodland"],
     "tags": ["plant", "ground", "bite", "ice", "darkness", "ghost"],
     "shape": "brute",
     "stage": "stage2",

@@ -691,6 +691,16 @@ class MonsterModel(BaseModel, validate_assignment=True):
             return v
         raise ValueError(f"the shape {v} doesn't exist in the db")
 
+    @field_validator("terrains")
+    def terrain_exists(cls: MonsterModel, v: Sequence[str]) -> Sequence[str]:
+        if v:
+            for terrain in v:
+                if not has.db_entry("terrain", terrain):
+                    raise ValueError(
+                        f"the terrain '{terrain}' doesn't exist in the db"
+                    )
+        return v
+
 
 class StatModel(BaseModel):
     value: float = Field(
@@ -1449,10 +1459,31 @@ class AnimationModel(BaseModel):
 
 class TerrainModel(BaseModel):
     slug: str = Field(..., description="Slug of the terrain")
+    name: str = Field(..., description="Name of the terrain condition")
+    element_modifier: dict[str, float] = Field(
+        ..., description="Modifiers for elemental techniques in this terrain"
+    )
+
+    @field_validator("name")
+    def translation_exists_item(cls: TerrainModel, v: str) -> str:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
 
 
 class WeatherModel(BaseModel):
     slug: str = Field(..., description="Slug of the weather")
+    name: str = Field(..., description="Name of the weather condition")
+    element_modifier: dict[str, float] = Field(
+        ...,
+        description="Modifiers for elemental techniques during this weather",
+    )
+
+    @field_validator("name")
+    def translation_exists_item(cls: WeatherModel, v: str) -> str:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
 
 
 TableName = Literal[

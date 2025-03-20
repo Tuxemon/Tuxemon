@@ -59,7 +59,7 @@
             "evo_stage": "stage2"
         }
     ],
-    "terrains": ["boreal/snow", "grassland", "woodland"],
+    "terrains": ["boreal_snow", "grassland", "woodland"],
     "tags": ["plant", "ice"],
     "shape": "sprite",
     "stage": "basic",

@@ -608,6 +608,7 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         self._needs_arrange = False
         self._columns = 1
         self.line_spacing: Optional[int] = None
+        self.max_width_per_column: Optional[int] = None
 
     @property
     def columns(self) -> int:
@@ -623,11 +624,7 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
             self.arrange_menu_items()
         return super().calc_bounding_rect()
 
-    def add(
-        self,
-        *sprites: Union[PySprite, Any],
-        **kwargs: Any,
-    ) -> None:
+    def add(self, *sprites: Union[PySprite, Any], **kwargs: Any) -> None:
         """
         Add something to the stacker.
 
@@ -639,10 +636,7 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         super().add(*sprites, **kwargs)
         self._needs_arrange = True
 
-    def remove(
-        self,
-        *items: Union[PySprite, Any],
-    ) -> None:
+    def remove(self, *items: Union[PySprite, Any]) -> None:
         super().remove(*items)
         self._needs_arrange = True
 
@@ -653,10 +647,7 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
             super().remove(i)
         self._needs_arrange = True
 
-    def draw(
-        self,
-        surface: Surface,
-    ) -> list[Rect]:
+    def draw(self, surface: Surface) -> list[Rect]:
         if self._needs_arrange:
             self.arrange_menu_items()
         dirty = super().draw(surface)
@@ -680,7 +671,10 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         self.update_rect_from_parent()
         width, height = self.rect.size
 
-        items_per_column = math.ceil(len(self) / self.columns)
+        if self.max_width_per_column is not None:
+            self._columns = max(1, width // max(1, self.max_width_per_column))
+
+        items_per_column = math.ceil(len(self) / self._columns)
 
         if self.expand:
             logger.debug("expanding menu...")
@@ -689,12 +683,12 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         else:
             line_spacing = int(max_height * 1.2)
 
-        column_spacing = width // self.columns
+        column_spacing = width // self._columns
 
         # TODO: pagination API
 
         for index, item in enumerate(self.sprites()):
-            oy, ox = divmod(index, self.columns)
+            oy, ox = divmod(index, self._columns)
             item.rect.topleft = ox * column_spacing, oy * line_spacing
 
         self._needs_arrange = False

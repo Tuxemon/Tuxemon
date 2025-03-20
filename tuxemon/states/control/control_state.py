@@ -52,7 +52,6 @@ class ControlState(PygameMenuState):
                 self.client.push_state, state, **change_state_kwargs
             )
 
-        player = local_session.player
         menu.select_widget(None)
 
         menu.add.button(
@@ -97,46 +96,39 @@ class ControlState(PygameMenuState):
             font_size=self.font_size_small,
         )
 
+        language = T.translate("menu_language").upper()
+        menu.add.button(
+            title=f"{language}: {self.client.config.locale.slug}",
+            action=change_state("SetLanguage", main_menu=self.main_menu),
+            font_size=self.font_size_small,
+        )
+
         if not self.main_menu:
 
             def mute_music() -> None:
-                if player:
-                    player.game_variables["music_volume"] = 0
-                    self.client.current_music.set_volume(0)
-                    music.set_value(0)
-
-            menu.add.button(
-                title=T.translate("menu_mute_music").upper(),
-                action=mute_music,
-                font_size=self.font_size_small,
-            )
-
-            default_music = prepare.MUSIC_VOLUME
-            default_sound = prepare.SOUND_VOLUME
-            _unit: int = 0
-            _hemi: int = 0
-            if player:
-                _music = player.game_variables.get(
-                    "music_volume", default_music
+                self.client.config.update_attribute(
+                    "gameplay", "music_volume", str(0)
                 )
-                default_music = int(float(_music) * 100)
-                _sound = player.game_variables.get(
-                    "sound_volume", default_sound
-                )
-                default_sound = int(float(_sound) * 100)
+                self.client.current_music.set_volume(0)
 
-                unit = player.game_variables.get(
-                    "unit_measure", prepare.METRIC
+            _volume = self.client.current_music.get_volume()
+            if _volume and _volume > 0.0:
+                menu.add.button(
+                    title=T.translate("menu_mute_music").upper(),
+                    action=mute_music,
+                    font_size=self.font_size_small,
                 )
-                _unit = 0 if str(unit) == prepare.METRIC else 1
 
-                hemi = player.game_variables.get(
-                    "hemisphere", prepare.NORTHERN
-                )
-                _hemi = 0 if str(hemi) == prepare.NORTHERN else 1
-            else:
-                default_music *= 100
-                default_sound *= 100
+            _music = self.client.config.music_volume
+            default_music = int(float(_music) * 100)
+            _sound = self.client.config.sound_volume
+            default_sound = int(float(_sound) * 100)
+
+            unit = self.client.config.unit_measure
+            _unit = 0 if str(unit) == "metric" else 1
+
+            hemi = self.client.config.hemisphere
+            _hemi = 0 if str(hemi) == "northern" else 1
 
             music = menu.add.range_slider(
                 title=T.translate("menu_music_volume").upper(),
@@ -161,17 +153,20 @@ class ControlState(PygameMenuState):
                 """
                 Updates the value.
                 """
-                if player:
-                    volume = round(val / 100, 1)
-                    self.client.current_music.set_volume(volume)
-                    player.game_variables["music_volume"] = volume
+                volume = round(val / 100, 1)
+                self.client.config.update_attribute(
+                    "gameplay", "music_volume", str(volume)
+                )
+                self.client.current_music.set_volume(volume)
 
             def on_change_sound(val: int) -> None:
                 """
                 Updates the value.
                 """
-                if player:
-                    player.game_variables["sound_volume"] = round(val / 100, 1)
+                volume = round(val / 100, 1)
+                self.client.config.update_attribute(
+                    "gameplay", "sound_volume", str(volume)
+                )
 
             music.set_onchange(on_change_music)
             sound.set_onchange(on_change_sound)
@@ -180,8 +175,9 @@ class ControlState(PygameMenuState):
                 """
                 Updates the value.
                 """
-                if player:
-                    player.game_variables["unit_measure"] = label
+                self.client.config.update_attribute(
+                    "gameplay", "unit_measure", label.lower()
+                )
 
             metric = T.translate("menu_units_metric")
             imperial = T.translate("menu_units_imperial")
@@ -201,8 +197,9 @@ class ControlState(PygameMenuState):
                 """
                 Updates the value.
                 """
-                if player:
-                    player.game_variables["hemisphere"] = label
+                self.client.config.update_attribute(
+                    "gameplay", "hemisphere", label.lower()
+                )
 
             north_hemi = T.translate("menu_hemisphere_north")
             south_hemi = T.translate("menu_hemisphere_south")

@@ -3374,6 +3374,48 @@ msgstr "Back Key"
 msgid "menu_reset_default"
 msgstr "Reset Keys to Default"
 
+msgid "menu_language"
+msgstr "Language"
+
+msgid "language_cs_cz"
+msgstr "Czech"
+
+msgid "language_de_de"
+msgstr "German"
+
+msgid "language_eo"
+msgstr "Esperanto"
+
+msgid "language_es_es"
+msgstr "Spanish"
+
+msgid "language_es_mx"
+msgstr "Mexican Spanish"
+
+msgid "language_fi"
+msgstr "Finnish"
+
+msgid "language_fr_fr"
+msgstr "French"
+
+msgid "language_it_it"
+msgstr "Italian"
+
+msgid "language_ja"
+msgstr "Japanese"
+
+msgid "language_nb_no"
+msgstr "Norwegian Bokmål"
+
+msgid "language_pl"
+msgstr "Polish"
+
+msgid "language_pt_br"
+msgstr "Brazilian Portuguese"
+
+msgid "language_zh_cn"
+msgstr "Simplified Chinese"
+
 msgid "enable"
 msgstr "Enable"
 
@@ -6709,6 +6751,91 @@ msgstr "Refined"
 
 msgid "taste_dry"
 msgstr "Dry"
+
+# Terrains
+
+msgid "terrain_freshwater"
+msgstr "Freshwater"
+
+msgid "terrain_grassland"
+msgstr "Grassland"
+
+msgid "terrain_jungle"
+msgstr "Jungle"
+
+msgid "terrain_mountains"
+msgstr "Mountains"
+
+msgid "terrain_ruins"
+msgstr "Ruins"
+
+msgid "terrain_sea"
+msgstr "Sea"
+
+msgid "terrain_swamp"
+msgstr "Swamp"
+
+msgid "terrain_underground"
+msgstr "Underground"
+
+msgid "terrain_extraterrestrial"
+msgstr "Extraterrestrial"
+
+msgid "terrain_extraplanar"
+msgstr "Extraplanar"
+
+msgid "terrain_desert"
+msgstr "Desert"
+
+msgid "terrain_coastal"
+msgstr "Coastal"
+
+msgid "terrain_any"
+msgstr "Any"
+
+msgid "terrain_boreal_snow"
+msgstr "Boreal / Snow"
+
+msgid "terrain_urban"
+msgstr "Urban"
+
+msgid "terrain_woodland"
+msgstr "Woodland"
+
+msgid "terrain_other"
+msgstr "Other"
+
+# Weathers
+
+msgid "weather_misty"
+msgstr "Misty"
+
+msgid "weather_windy"
+msgstr "Windy"
+
+msgid "weather_freezing"
+msgstr "Freezing"
+
+msgid "weather_hot"
+msgstr "Hot"
+
+msgid "weather_cloudy"
+msgstr "Cloudy"
+
+msgid "weather_foggy"
+msgstr "Foggy"
+
+msgid "weather_thunderstorm"
+msgstr "Thunderstorm"
+
+msgid "weather_snow"
+msgstr "Snow"
+
+msgid "weather_rain"
+msgstr "Rain"
+
+msgid "weather_sunny"
+msgstr "Sunny"
 
 # STAT TYPES
 

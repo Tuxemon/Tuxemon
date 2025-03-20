@@ -12,6 +12,8 @@ from tuxemon.graphics import get_avatar, string_to_colorlike
 from tuxemon.locale import process_translate_text
 from tuxemon.states.dialog import DialogState
 from tuxemon.tools import open_dialog
+from tuxemon.locale import T, process_translate_text
+from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +52,16 @@ class TranslatedDialogAction(EventAction):
     style: Optional[str] = None
 
     def start(self) -> None:
-        key = process_translate_text(self.session, self.raw_parameters, [])
+
+        params = self.raw_parameters.split("_")
+        npc_slug = params[0].strip()
+        npc_name = T.translate(npc_slug)
+        raw_key = process_translate_text(self.session, self.raw_parameters, [])
+
+        pending = list(raw_key)
+        if pending:
+            pending[0] = f"{npc_name}: {pending[0]}"
+        key = tuple(pending)
 
         avatar_sprite = None
         if self.avatar:

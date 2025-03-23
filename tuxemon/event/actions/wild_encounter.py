@@ -98,8 +98,8 @@ class WildEncounterAction(EventAction):
         self.session.client.push_state(FlashTransition(color=rgb))
 
         self.session.client.event_engine.execute_action(
-                "play_music", [environment.battle_music], True
-            )
+            "play_music", [environment.battle_music], True
+        )
 
     def update(self) -> None:
         try:

@@ -46,7 +46,7 @@ class TuxemonConfig:
         assert self.config_path
         with open(self.config_path, "w") as fp:
             self.cfg.write(fp)
-    
+
     def load_config(self) -> None:
         # [display]
         resolution_x = self.cfg.getint("display", "resolution_x")
@@ -74,7 +74,9 @@ class TuxemonConfig:
             "recompile_translations",
         )
         self.skip_titlescreen = self.cfg.getboolean("game", "skip_titlescreen")
-        self.compress_save: Optional[str] = self.cfg.get("game", "compress_save")
+        self.compress_save: Optional[str] = self.cfg.get(
+            "game", "compress_save"
+        )
         if self.compress_save == "None":
             self.compress_save = None
 
@@ -102,7 +104,9 @@ class TuxemonConfig:
         self.music_volume = max(0.0, min(music_volume, 1.0))
 
         # [player]
-        self.player_animation_speed = self.cfg.getfloat("player", "animation_speed")
+        self.player_animation_speed = self.cfg.getfloat(
+            "player", "animation_speed"
+        )
         self.player_npc = self.cfg.get("player", "player_npc")
         self.player_walkrate = self.cfg.getfloat("player", "player_walkrate")
         self.player_runrate = self.cfg.getfloat("player", "player_runrate")

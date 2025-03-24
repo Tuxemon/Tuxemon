@@ -49,6 +49,7 @@ class ModifyBillAction(EventAction):
             return
 
         player = self.session.player
+        money_manager = character.money_controller.money_manager
         if self.amount is None:
             if self.variable:
                 _amount = player.game_variables.get(self.variable, 0)
@@ -56,7 +57,7 @@ class ModifyBillAction(EventAction):
                     amount = int(_amount)
                 elif isinstance(_amount, float):
                     _value = float(_amount)
-                    _wallet = character.money_manager.get_bill(self.bill_slug)
+                    _wallet = money_manager.get_bill(self.bill_slug)
                     amount = int(_wallet.amount * _value)
                 else:
                     raise ValueError("It must be float or int")
@@ -68,11 +69,11 @@ class ModifyBillAction(EventAction):
         if not T.has_translation("en_US", self.bill_slug):
             logger.error(f"Please add {self.bill_slug} to the en_US base.po")
 
-        bill_amount = character.money_manager.get_bill(self.bill_slug).amount
+        bill_amount = money_manager.get_bill(self.bill_slug).amount
         if bill_amount <= 0:
             logger.error(f"Bill '{self.bill_slug}' doesn't exist")
             return
         if amount >= 0:
-            character.money_manager.add_bill(self.bill_slug, amount)
+            money_manager.add_bill(self.bill_slug, amount)
         else:
-            character.money_manager.remove_bill(self.bill_slug, amount)
+            money_manager.remove_bill(self.bill_slug, amount)

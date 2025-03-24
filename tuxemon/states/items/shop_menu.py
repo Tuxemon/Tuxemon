@@ -64,6 +64,8 @@ class ShopMenuState(Menu[Item]):
         self.seller = seller
         self.buyer_purge = buyer_purge
         self.economy = economy
+        self.buyer_manager = self.buyer.money_controller.money_manager
+        self.seller_manager = self.seller.money_controller.money_manager
 
     def calc_internal_rect(self) -> pygame.rect.Rect:
         # area in the screen where the item list is
@@ -125,7 +127,7 @@ class ShopMenuState(Menu[Item]):
                 self.qty = self.buyer.game_variables[key]
 
                 fg = None
-                self.wallet = self.buyer.money_manager.get_money()
+                self.wallet = self.buyer_manager.get_money()
                 self.price = self.economy.lookup_item_price(itm.slug)
                 if self.price > self.wallet:
                     fg = self.unavailable_color_shop
@@ -209,7 +211,7 @@ class ShopMenuState(Menu[Item]):
                 key = f"{self.economy.model.slug}:{itm.slug}"
                 self.qty = self.buyer.game_variables[key]
                 fg = None
-                self.wallet = self.buyer.money_manager.get_money()
+                self.wallet = self.buyer_manager.get_money()
                 self.price = self.economy.lookup_item_price(itm.slug)
                 if self.price > self.wallet:
                     fg = self.unavailable_color_shop
@@ -298,14 +300,14 @@ class ShopBuyMenuState(ShopMenuState):
                 new_buy.quantity = quantity
                 self.buyer.add_item(new_buy)
             amount = quantity * price
-            self.buyer.money_manager.remove_money(amount)
+            self.buyer_manager.remove_money(amount)
 
             self.reload_items()
             if item not in self.seller.items:
                 # We're pointing at a new item
                 self.on_menu_selection_change()
 
-        money = self.buyer.money_manager.get_money()
+        money = self.buyer_manager.get_money()
         qty_can_afford = int(money / price)
         inventory = self.buyer.game_variables[label]
         _inventory = 99999 if inventory == INFINITE_ITEMS else inventory
@@ -349,7 +351,7 @@ class ShopSellMenuState(ShopMenuState):
                 itm.quantity = diff
 
             amount = quantity * cost
-            self.seller.money_manager.add_money(amount)
+            self.seller_manager.add_money(amount)
 
             self.reload_items()
             if item not in self.seller.items:

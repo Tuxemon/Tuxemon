@@ -45,14 +45,16 @@ class TransferMoneyAction(EventAction):
             logger.error(f"Character not found in map: {_char}")
             return
 
+        money_manager = character1.money_controller.money_manager
+
         if self.amount < 0:
             raise AttributeError(f"Value {self.amount} must be >= 0")
-        if self.amount > character1.money_manager.get_money():
+        if self.amount > money_manager.get_money():
             raise AttributeError(
                 f"{self.slug1}'s wallet doesn't have {self.amount}"
             )
 
-        character1.money_manager.transfer_npc_bank(self.amount, character2)
+        character1.money_controller.transfer_money_to(self.amount, character2)
         logger.info(
             f"{character1.name} transfer {self.amount} to {character2.name}"
         )

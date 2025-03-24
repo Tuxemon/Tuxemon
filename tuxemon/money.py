@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from tuxemon.npc import NPC
+    from tuxemon.npc import NPC, NPCState
 
 logger = logging.getLogger(__name__)
 
@@ -21,6 +21,30 @@ class BillEntry:
         return {
             "amount": self.amount,
         }
+
+
+class MoneyController:
+    """Manages the money for an NPC."""
+
+    def __init__(self, npc: NPC) -> None:
+        self.npc = npc
+        self.money_manager = MoneyManager()
+
+    def save(self) -> Mapping[str, Any]:
+        """Prepares a dictionary of the money manager to be saved to a file."""
+        return encode_money(self.money_manager)
+
+    def load(self, save_data: NPCState) -> None:
+        """Recreates money manager from saved data."""
+        self.money_manager = decode_money(save_data["money"])
+
+    def transfer_money_to(self, amount: int, recipient: NPC) -> None:
+        self.money_manager.remove_money(amount)
+        recipient.money_controller.money_manager.add_money(amount)
+
+    def transfer_bank_to(self, amount: int, recipient: NPC) -> None:
+        self.money_manager.withdraw_from_bank(amount)
+        recipient.money_controller.money_manager.deposit_to_bank(amount)
 
 
 class MoneyManager:
@@ -41,14 +65,6 @@ class MoneyManager:
 
     def get_money(self) -> int:
         return self.money
-
-    def transfer_npc_money(self, amount: int, recipient: NPC) -> None:
-        self.remove_money(amount)
-        recipient.money_manager.add_money(amount)
-
-    def transfer_npc_bank(self, amount: int, recipient: NPC) -> None:
-        self.withdraw_from_bank(amount)
-        recipient.money_manager.deposit_to_bank(amount)
 
     def deposit_to_bank(self, amount: int) -> None:
         self.bank_account += amount

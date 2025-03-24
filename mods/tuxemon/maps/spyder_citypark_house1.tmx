@@ -62,7 +62,7 @@
   </object>
   <object id="74" name="Transfer Missions" type="event" x="16" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="set_mission player,spyder_maniac_achievement1,add"/>
+    <property name="act1" value="set_mission player"/>
     <property name="act2" value="set_variable maniac_help:yes"/>
     <property name="act3" value="add_item book_wishes"/>
     <property name="act4" value="translated_dialog book_wishes,,center"/>

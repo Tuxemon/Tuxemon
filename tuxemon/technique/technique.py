@@ -5,11 +5,11 @@ from __future__ import annotations
 import logging
 import uuid
 from collections.abc import Mapping, Sequence
-from typing import TYPE_CHECKING, Any, ClassVar, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
-from tuxemon import plugin
 from tuxemon.constants import paths
-from tuxemon.db import CommonCondition, CommonEffect, Range, db
+from tuxemon.core_manager import ConditionManager, EffectManager
+from tuxemon.db import Range, db
 from tuxemon.element import Element
 from tuxemon.locale import T
 from tuxemon.technique.techcondition import TechCondition
@@ -32,9 +32,6 @@ class Technique:
     Particular skill that tuxemon monsters can use in battle.
 
     """
-
-    effects_classes: ClassVar[Mapping[str, type[TechEffect]]] = {}
-    conditions_classes: ClassVar[Mapping[str, type[TechCondition]]] = {}
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         save_data = save_data or {}
@@ -67,18 +64,10 @@ class Technique:
         self.use_failure = ""
         self.use_tech = ""
 
-        # load effect and condition plugins if it hasn't been done already
-        if not Technique.effects_classes:
-            Technique.effects_classes = plugin.load_plugins(
-                paths.TECH_EFFECT_PATH,
-                "effects",
-                interface=TechEffect,
-            )
-            Technique.conditions_classes = plugin.load_plugins(
-                paths.TECH_CONDITION_PATH,
-                "conditions",
-                interface=TechCondition,
-            )
+        self.effect_manager = EffectManager(TechEffect, paths.TECH_EFFECT_PATH)
+        self.condition_manager = ConditionManager(
+            TechCondition, paths.TECH_CONDITION_PATH
+        )
 
         self.set_state(save_data)
 
@@ -125,8 +114,10 @@ class Technique:
         self.range = results.range or Range.melee
         self.tech_id = results.tech_id
 
-        self.conditions = self.parse_conditions(results.conditions)
-        self.effects = self.parse_effects(results.effects)
+        self.effects = self.effect_manager.parse_effects(results.effects)
+        self.conditions = self.condition_manager.parse_conditions(
+            results.conditions
+        )
         self.target = results.target.model_dump()
         self.usable_on = results.usable_on
         self.modifiers = results.modifiers
@@ -137,66 +128,6 @@ class Technique:
 
         # Load the sound effect for this technique
         self.sfx = results.sfx
-
-    def parse_effects(
-        self,
-        raw: Sequence[CommonEffect],
-    ) -> Sequence[TechEffect]:
-        """
-        Convert effect strings to effect objects.
-
-        Takes raw effects list from the technique's json and parses it into a
-        form more suitable for the engine.
-
-        Parameters:
-            raw: The raw effects list pulled from the technique's db entry.
-
-        Returns:
-            Effects turned into a list of TechEffect objects.
-
-        """
-        effects = []
-        for effect in raw:
-            try:
-                effect_class = Technique.effects_classes[effect.type]
-            except KeyError:
-                logger.error(f'TechEffect "{effect.type}" not implemented')
-            else:
-                effects.append(effect_class(*effect.parameters))
-        return effects
-
-    def parse_conditions(
-        self,
-        raw: Sequence[CommonCondition],
-    ) -> Sequence[TechCondition]:
-        """
-        Convert condition strings to condition objects.
-
-        Takes raw condition list from the technique's json and parses it into a
-        form more suitable for the engine.
-
-        Parameters:
-            raw: The raw conditions list pulled from the technique's db entry.
-
-        Returns:
-            Conditions turned into a list of TechCondition objects.
-
-        """
-        conditions = []
-        for condition in raw:
-            try:
-                condition_class = Technique.conditions_classes[condition.type]
-            except KeyError:
-                logger.error(
-                    f'TechCondition "{condition.type}" not implemented'
-                )
-                continue
-
-            condition_obj = condition_class(*condition.parameters)
-            condition_obj._op = condition.operator == "is"
-            conditions.append(condition_obj)
-
-        return conditions
 
     def advance_round(self) -> None:
         """
@@ -224,8 +155,12 @@ class Technique:
         return all(
             (
                 condition.test(target)
-                if condition._op
-                else not condition.test(target)
+                if isinstance(condition, (TechCondition)) and condition._op
+                else (
+                    not condition.test(target)
+                    if isinstance(condition, (TechCondition))
+                    else False
+                )
             )
             for condition in self.conditions
         )
@@ -281,17 +216,21 @@ class Technique:
 
         self.next_use = self.recharge_length
 
-        # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:
-            result = effect.apply(self, user, target)
-            meta_result.name = result.name
-            meta_result.success = meta_result.success or result.success
-            meta_result.should_tackle = (
-                meta_result.should_tackle or result.should_tackle
-            )
-            meta_result.damage += result.damage
-            meta_result.element_multiplier += result.element_multiplier
-            meta_result.extras.extend(result.extras)
+            if isinstance(effect, TechEffect):
+                result = effect.apply(self, user, target)
+                meta_result.name = result.name
+                meta_result.success = meta_result.success or result.success
+                meta_result.should_tackle = (
+                    meta_result.should_tackle or result.should_tackle
+                )
+                meta_result.damage += result.damage
+                meta_result.element_multiplier += result.element_multiplier
+                meta_result.extras.extend(result.extras)
+            else:
+                logger.warning(
+                    f"Effect {effect} is not a valid StatusEffect. Skipping..."
+                )
 
         return meta_result
 

@@ -1,11 +1,18 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-import unittest
+from unittest import TestCase
+from unittest.mock import MagicMock
 
-from tuxemon.money import BillEntry, MoneyManager, decode_money, encode_money
+from tuxemon.money import (
+    BillEntry,
+    MoneyController,
+    MoneyManager,
+    decode_money,
+    encode_money,
+)
 
 
-class TestMoneyManager(unittest.TestCase):
+class TestMoneyManager(TestCase):
 
     def test_init(self):
         money_manager = MoneyManager()
@@ -35,29 +42,31 @@ class TestMoneyManager(unittest.TestCase):
         money_manager.add_money(100)
         self.assertEqual(money_manager.get_money(), 100)
 
-    def test_transfer_npc_money(self):
-        class NPC:
-            def __init__(self):
-                self.money_manager = MoneyManager()
+    def test_transfer_money_to(self):
+        npc1 = MagicMock()
+        npc1.money_controller = MoneyController(npc1)
+        npc1.money_controller.money_manager = MoneyManager()
+        npc2 = MagicMock()
+        npc2.money_controller = MoneyController(npc2)
+        npc2.money_controller.money_manager = MoneyManager()
 
-        money_manager = MoneyManager()
-        money_manager.add_money(100)
-        npc = NPC()
-        money_manager.transfer_npc_money(50, npc)
-        self.assertEqual(money_manager.money, 50)
-        self.assertEqual(npc.money_manager.money, 50)
+        npc1.money_controller.money_manager.add_money(100)
+        npc1.money_controller.transfer_money_to(50, npc2)
+        self.assertEqual(npc1.money_controller.money_manager.money, 50)
+        self.assertEqual(npc2.money_controller.money_manager.money, 50)
 
-    def test_transfer_npc_bank(self):
-        class NPC:
-            def __init__(self):
-                self.money_manager = MoneyManager()
+    def test_transfer_bank_to(self):
+        npc1 = MagicMock()
+        npc1.money_controller = MoneyController(npc1)
+        npc1.money_controller.money_manager = MoneyManager()
+        npc2 = MagicMock()
+        npc2.money_controller = MoneyController(npc2)
+        npc2.money_controller.money_manager = MoneyManager()
 
-        money_manager = MoneyManager()
-        money_manager.deposit_to_bank(100)
-        npc = NPC()
-        money_manager.transfer_npc_bank(50, npc)
-        self.assertEqual(money_manager.bank_account, 50)
-        self.assertEqual(npc.money_manager.bank_account, 50)
+        npc1.money_controller.money_manager.deposit_to_bank(100)
+        npc1.money_controller.transfer_bank_to(50, npc2)
+        self.assertEqual(npc1.money_controller.money_manager.bank_account, 50)
+        self.assertEqual(npc2.money_controller.money_manager.bank_account, 50)
 
     def test_deposit_to_bank(self):
         money_manager = MoneyManager()

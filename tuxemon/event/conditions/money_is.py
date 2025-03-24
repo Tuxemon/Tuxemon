@@ -52,5 +52,6 @@ class MoneyIsCondition(EventCondition):
         else:
             amount = int(_amount)
 
-        money_amount = character.money_manager.get_money()
+        money_manager = character.money_controller.money_manager
+        money_amount = money_manager.get_money()
         return compare(operator, money_amount, amount)

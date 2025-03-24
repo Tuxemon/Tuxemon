@@ -59,5 +59,5 @@ class TeleportAction(EventAction):
         else:
             # Teleport the character immediately
             world.teleporter.teleport_character(
-                world, char, self.map_name, self.x, self.y
+                char, self.map_name, self.x, self.y
             )

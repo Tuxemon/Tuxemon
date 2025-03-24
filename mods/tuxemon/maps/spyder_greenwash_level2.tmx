@@ -274,6 +274,7 @@
     <property name="act3" value="translated_dialog shammer,,center"/>
     <property name="act4" value="add_item shammer_fossil,-1"/>
     <property name="act5" value="set_variable got_shammer:yes"/>
+    <property name="act6" value="set_mission player"/>
     <property name="cond1" value="is variable_set shammer_choice:yes"/>
     <property name="cond2" value="not variable_set got_shammer:yes"/>
    </properties>
@@ -300,6 +301,7 @@
     <property name="act6" value="add_item shammer_fossil,-1"/>
     <property name="act7" value="add_item rhincus_fossil,-1"/>
     <property name="act8" value="set_variable got_both_fossils:yes"/>
+    <property name="act9" value="set_mission player"/>
     <property name="cond1" value="is variable_set both_fossils:yes"/>
     <property name="cond2" value="not variable_set got_both_fossils:yes"/>
    </properties>

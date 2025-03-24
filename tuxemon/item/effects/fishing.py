@@ -70,7 +70,7 @@ class FishingEffect(ItemEffect):
         rgb = ":".join(map(str, blue))
         client.event_engine.execute_action(
             "wild_encounter",
-            [mon_slug, level, None, None, environment, rgb],
+            [mon_slug, level, None, None, environment, rgb, None],
             True,
         )
 

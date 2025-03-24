@@ -18,7 +18,7 @@ from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu, PopUpMenu
 from tuxemon.monster import Monster
 from tuxemon.session import local_session
-from tuxemon.sprite import MenuSpriteGroup, SpriteGroup
+from tuxemon.sprite import SpriteGroup, VisualSpriteList
 from tuxemon.states.items.item_menu import ItemMenuState
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.technique.technique import Technique
@@ -331,7 +331,7 @@ class CombatTargetMenuState(Menu[Monster]):
 
     def create_new_menu_items_group(self) -> None:
         # these groups will not automatically position the sprites
-        self.menu_items = MenuSpriteGroup()
+        self.menu_items = VisualSpriteList()
         self.menu_sprites = SpriteGroup()
 
     def __init__(

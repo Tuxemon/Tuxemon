@@ -6,11 +6,12 @@ import difflib
 import json
 import logging
 import os
-import sys
 from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
 from enum import Enum
 from typing import Annotated, Any, Literal, Optional, Union, overload
 
+import yaml
 from PIL import Image
 from pydantic import (
     BaseModel,
@@ -22,7 +23,7 @@ from pydantic import (
 )
 
 from tuxemon import prepare
-from tuxemon.constants import paths
+from tuxemon.constants.paths import mods_folder
 from tuxemon.locale import T
 
 logger = logging.getLogger(__name__)
@@ -128,6 +129,7 @@ class MissionStatus(str, Enum):
     pending = "pending"
     completed = "completed"
     failed = "failed"
+    removed = "removed"
 
 
 class EntityFacing(str, Enum):
@@ -212,6 +214,9 @@ class ItemBehaviors(BaseModel):
     )
     throwable: bool = Field(
         False, description="Whether or not this item is throwable."
+    )
+    holdable: bool = Field(
+        False, description="Whether or not this item is holdable."
     )
 
 
@@ -1269,6 +1274,9 @@ class EncounterItemModel(BaseModel):
     encounter_rate: float = Field(
         ..., description="Probability of encountering this monster."
     )
+    held_items: Sequence[str] = Field(
+        [], description="A list of items that will be held."
+    )
     level_range: Sequence[int] = Field(
         ...,
         description="Minimum and maximum levels at which this encounter can occur.",
@@ -1290,6 +1298,18 @@ class EncounterItemModel(BaseModel):
         if has.db_entry("monster", v):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
+
+    @field_validator("held_items")
+    def item_exists(
+        cls: EncounterItemModel, v: Sequence[str]
+    ) -> Sequence[str]:
+        if v:
+            for item in v:
+                if not has.db_entry("item", item):
+                    raise ValueError(
+                        f"the item '{item}' doesn't exist in the db"
+                    )
+        return v
 
 
 class EncounterModel(BaseModel):
@@ -1410,14 +1430,72 @@ class TemplateModel(BaseModel):
     )
 
 
+class ProgressModel(BaseModel):
+    game_variables: dict[str, Any] = Field(
+        ...,
+        description="Dictionary of game variables tracking the mission's progress",
+    )
+    completion_percentage: float = Field(
+        ..., ge=0.0, le=100.0, description="Percentage of mission completed"
+    )
+
+
 class MissionModel(BaseModel):
     slug: str = Field(..., description="Slug uniquely identifying the mission")
+    description: str = Field(
+        ..., description="Detailed description of the mission objectives"
+    )
+    prerequisites: Sequence[dict[str, Any]] = Field(
+        ...,
+        description="List of prerequisite missions and their game variables",
+    )
+    connected_missions: Sequence[dict[str, Any]] = Field(
+        ...,
+        description="List of missions accessible once this mission is complete",
+    )
+    progress: Sequence[ProgressModel] = Field(
+        ..., description="List of progress tracking entries for the mission"
+    )
+    required_items: Sequence[str] = Field(
+        ..., description="List of items required to start the mission"
+    )
+    required_monsters: Sequence[str] = Field(
+        ..., description="List of monsters required to start the mission"
+    )
+    required_missions: Sequence[str] = Field(
+        ...,
+        description="List of mission slugs that must be completed before this mission",
+    )
 
     @field_validator("slug")
     def translation_exists_mission(cls: MissionModel, v: str) -> str:
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
+
+    @field_validator("description")
+    def translation_exists_desc(cls: MissionModel, v: str) -> str:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+    @field_validator("required_items")
+    def item_exists(cls: MissionModel, v: Sequence[str]) -> Sequence[str]:
+        for item_slug in v:
+            if not has.db_entry("item", item_slug):
+                raise ValueError(
+                    f"The item '{item_slug}' doesn't exist in the db"
+                )
+        return v
+
+    @field_validator("required_monsters")
+    def monster_exists(cls: MissionModel, v: Sequence[str]) -> Sequence[str]:
+        for monster_slug in v:
+            if not has.db_entry("monster", monster_slug):
+                raise ValueError(
+                    f"The monster '{monster_slug}' doesn't exist in the db"
+                )
+        return v
 
 
 class MusicModel(BaseModel):
@@ -1531,44 +1609,107 @@ DataModel = Union[
 ]
 
 
-class JSONDatabase:
-    """
-    Handles connecting to the game database for resources.
+@dataclass
+class DatabaseConfig:
+    active_mods: list[str]
+    mod_versions: dict[str, str]
+    mod_table_exclusions: dict[str, list[str]]
+    mod_activation: dict[str, bool]
+    mod_tables: dict[str, list[TableName]]
 
-    Examples of such resources include monsters, stats, etc.
 
-    """
+class EntryNotFoundError(Exception):
+    pass
 
-    def __init__(self, dir: str = "all") -> None:
-        self._tables: list[TableName] = [
-            "item",
-            "monster",
-            "npc",
-            "status",
-            "technique",
-            "encounter",
-            "dialogue",
-            "environment",
-            "sounds",
-            "music",
-            "animation",
-            "economy",
-            "element",
-            "taste",
-            "shape",
-            "terrain",
-            "weather",
-            "template",
-            "mission",
-        ]
+
+class DataLoader:
+    def __init__(self, path: str, config: DatabaseConfig):
+        self.path = path
+        self.config = config
+
+    def load_files(self, directory: TableName) -> dict[str, Any]:
+        preloaded_data: dict[str, Any] = {}
+        for entry in os.scandir(os.path.join(self.path, directory)):
+            if entry.is_file() and (
+                entry.name.endswith(".json") or entry.name.endswith(".yaml")
+            ):
+                try:
+                    with open(entry.path) as fp:
+                        if entry.name.endswith(".json"):
+                            item = json.load(fp)
+                        else:
+                            item = yaml.safe_load(fp)
+                    if isinstance(item, list):
+                        for sub_item in item:
+                            self._load_dict(
+                                sub_item, entry.path, preloaded_data
+                            )
+                    else:
+                        self._load_dict(item, entry.path, preloaded_data)
+                except (
+                    json.JSONDecodeError,
+                    yaml.YAMLError,
+                    FileNotFoundError,
+                ) as e:
+                    logger.error(f"Error loading file '{entry.path}': {e}")
+        return preloaded_data
+
+    def _load_dict(
+        self,
+        item: Mapping[str, Any],
+        path: str,
+        preloaded_data: dict[str, Any],
+    ) -> None:
+        if item["slug"] in preloaded_data:
+            if path in preloaded_data[item["slug"]].get("paths", []):
+                logger.error(
+                    f"Error: Item with slug {item['slug']} was already loaded from this path ({path})."
+                )
+                return
+            else:
+                preloaded_data[item["slug"]]["paths"].append(path)
+        else:
+            preloaded_data[item["slug"]] = item
+            preloaded_data[item["slug"]]["paths"] = [path]
+
+
+class ModData:
+    model_map: dict[TableName, type[DataModel]] = {
+        "economy": EconomyModel,
+        "element": ElementModel,
+        "taste": TasteModel,
+        "shape": ShapeModel,
+        "template": TemplateModel,
+        "mission": MissionModel,
+        "encounter": EncounterModel,
+        "dialogue": DialogueModel,
+        "environment": EnvironmentModel,
+        "item": ItemModel,
+        "monster": MonsterModel,
+        "music": MusicModel,
+        "animation": AnimationModel,
+        "npc": NpcModel,
+        "sounds": SoundModel,
+        "status": StatusModel,
+        "technique": TechniqueModel,
+        "terrain": TerrainModel,
+        "weather": WeatherModel,
+    }
+
+    def __init__(self, config: DatabaseConfig) -> None:
+        self.config = config
         self.preloaded: dict[TableName, dict[str, Any]] = {}
-        self.database: dict[TableName, dict[str, Any]] = {}
+        self.database: dict[TableName, dict[str, DataModel]] = {}
+        self.mod_metadata: dict[str, dict[str, Any]] = {}
+        self._load_mod_metadata()
         self.path = ""
-        for table in self._tables:
-            self.preloaded[table] = {}
-            self.database[table] = {}
-
-        # self.load(dir)
+        if self.config.mod_tables:
+            for mod, tables in self.config.mod_tables.items():
+                if mod in self.config.active_mods:
+                    for table in tables:
+                        if table not in self.preloaded:
+                            self.preloaded[table] = {}
+                            self.database[table] = {}
 
     def preload(
         self, directory: Union[TableName, Literal["all"]] = "all"
@@ -1580,100 +1721,117 @@ class JSONDatabase:
         Parameters:
             directory: The directory under mods/tuxemon/db/ to load. Defaults
                 to "all".
-
         """
         if directory == "all":
-            for table in self._tables:
-                self.load_json(table)
+            if self.config.mod_tables:
+                for mod, tables in self.config.mod_tables.items():
+                    if mod in self.config.active_mods:
+                        for table in tables:
+                            self._preload_table(table)
+            else:
+                logger.warning("No mod tables specified in config.")
         else:
-            self.load_json(directory)
+            self._preload_table(directory)
+
+    def _preload_table(self, table: TableName) -> None:
+        active_mods = [
+            mod
+            for mod in self.config.active_mods
+            if not self.config.mod_activation
+            or self.config.mod_activation.get(mod, True)
+        ]
+        for mod_directory in active_mods:
+            self.path = os.path.join("mods", mod_directory, "db")
+            if (
+                self.config.mod_versions
+                and mod_directory in self.config.mod_versions
+            ):
+                logger.info(
+                    f"Loading mod '{mod_directory}' version {self.config.mod_versions[mod_directory]}"
+                )
+            if not os.path.exists(self.path):
+                logger.warning(f"Mod directory '{self.path}' not found.")
+                continue
+            db_path = os.path.join(self.path, table)
+            if (
+                self.config.mod_table_exclusions
+                and mod_directory in self.config.mod_table_exclusions
+                and table in self.config.mod_table_exclusions[mod_directory]
+            ):
+                logger.info(
+                    f"Table '{table}' excluded by mod '{mod_directory}'."
+                )
+                continue
+            if os.path.exists(db_path):
+                data_loader = DataLoader(self.path, self.config)
+                self.preloaded[table] = data_loader.load_files(table)
+            else:
+                logger.warning(f"Database directory '{db_path}' not found.")
+
+    def _load_mod_metadata(self) -> None:
+        """Loads mod metadata from mod.json files."""
+        for mod_directory in self.config.active_mods:
+            mod_path = os.path.join("mods", mod_directory, "mod.json")
+            if os.path.exists(mod_path):
+                try:
+                    with open(mod_path) as f:
+                        metadata = json.load(f)
+
+                    self.mod_metadata[mod_directory] = metadata
+                except json.JSONDecodeError as e:
+                    logger.error(
+                        f"Error loading mod metadata for '{mod_directory}': {e}"
+                    )
+            else:
+                logger.error(f"File 'mod.json' missing: '{mod_path}'")
 
     def load(
         self,
         directory: Union[TableName, Literal["all"]] = "all",
-        validate: bool = False,
+        validate: bool = True,
     ) -> None:
         """
         Loads all data from JSON files located under our data path.
-
         Parameters:
             directory: The directory under mods/tuxemon/db/ to load. Defaults
                 to "all".
             validate: Whether or not we should raise an exception if validation
                 fails
-
         """
-        self.preload(directory)
-        for table, entries in self.preloaded.items():
-            for slug, item in entries.items():
-                self.load_model(item, table, validate)
-        self.preloaded.clear()
-
-    def _load_json_files(self, directory: TableName) -> None:
-        for json_item in os.listdir(os.path.join(self.path, directory)):
-            # Only load .json files.
-            if not json_item.endswith(".json"):
-                continue
-
-            # Load our json as a dictionary.
-            with open(os.path.join(self.path, directory, json_item)) as fp:
-                try:
-                    item = json.load(fp)
-                except ValueError as e:
-                    logger.error(f"Invalid JSON {json_item}: {e}")
-                    continue
-
-            if type(item) is list:
-                for sub in item:
-                    self.load_dict(
-                        sub, directory, os.path.join(self.path, directory)
-                    )
+        if directory == "all":
+            if self.config.mod_tables:
+                for mod, tables in self.config.mod_tables.items():
+                    if mod in self.config.active_mods:
+                        for table in tables:
+                            self._load_models_from_preloaded(table, validate)
             else:
-                self.load_dict(
-                    item, directory, os.path.join(self.path, directory)
-                )
-
-    def load_json(self, directory: TableName, validate: bool = False) -> None:
-        """
-        Loads all JSON items under a specified path.
-
-        Parameters:
-            directory: The directory under mods/mod_name/db/ to look in.
-            validate: Whether or not we should raise an exception if validation
-                fails
-
-        """
-        for mod_directory in prepare.CONFIG.mods:
-            self.path = os.path.join(paths.mods_folder, mod_directory, "db")
-            if os.path.exists(self.path) and os.path.exists(
-                os.path.join(self.path, directory)
-            ):
-                self._load_json_files(directory)
-
-    def load_dict(
-        self, item: Mapping[str, Any], table: TableName, path: str
-    ) -> None:
-        """
-        Loads a single json object and adds it to the appropriate preload db
-        table.
-
-        Parameters:
-            item: The json object to load in.
-            table: The db table to load the object into.
-            path: The path from which the item was loaded.
-
-        """
-        if item["slug"] in self.preloaded[table]:
-            if path in self.preloaded[table][item["slug"]].get("paths", []):
-                logger.warning(
-                    f"Error: Item with slug {item['slug']} was already loaded from this path ({path}).",
-                )
-                return
-            else:
-                self.preloaded[table][item["slug"]]["paths"].append(path)
+                logger.debug("No mod tables specified in config.")
         else:
-            self.preloaded[table][item["slug"]] = item
-            self.preloaded[table][item["slug"]]["paths"] = [path]
+            self._load_models_from_preloaded(directory, validate)
+
+    def _load_models_from_preloaded(
+        self, table: TableName, validate: bool
+    ) -> None:
+        for item in self.preloaded[table].values():
+            if "paths" in item:
+                del item["paths"]
+            self.load_model(item, table, validate)
+
+    def _validate_data(
+        self, item: Mapping[str, Any], table: TableName
+    ) -> DataModel:
+        """Validates the given data."""
+        try:
+            model_class = self.model_map.get(table)
+            if model_class:
+                return model_class(**item)
+            else:
+                raise ValueError(f"Unexpected table: {table}")
+        except ValidationError as e:
+            logger.error(
+                f"Validation failed for '{item['slug']}' in table '{table}': {e}"
+            )
+            raise e
 
     def load_model(
         self, item: Mapping[str, Any], table: TableName, validate: bool = False
@@ -1687,77 +1845,22 @@ class JSONDatabase:
             table: The db table to load the object into.
             validate: Whether or not we should raise an exception if validation
                 fails
-
         """
-        if item["slug"] in self.database[table]:
-            logger.warning(
-                "Error: Item with slug %s was already loaded.",
-                item,
-            )
-            return
-
         try:
-            if table == "economy":
-                economy = EconomyModel(**item)
-                self.database[table][economy.slug] = economy
-            elif table == "element":
-                element = ElementModel(**item)
-                self.database[table][element.slug] = element
-            elif table == "taste":
-                taste = TasteModel(**item)
-                self.database[table][taste.slug] = taste
-            elif table == "shape":
-                shape = ShapeModel(**item)
-                self.database[table][shape.slug] = shape
-            elif table == "terrain":
-                terrain = TerrainModel(**item)
-                self.database[table][terrain.slug] = terrain
-            elif table == "weather":
-                weather = WeatherModel(**item)
-                self.database[table][weather.slug] = weather
-            elif table == "template":
-                template = TemplateModel(**item)
-                self.database[table][template.slug] = template
-            elif table == "mission":
-                mission = MissionModel(**item)
-                self.database[table][mission.slug] = mission
-            elif table == "encounter":
-                encounter = EncounterModel(**item)
-                self.database[table][encounter.slug] = encounter
-            elif table == "dialogue":
-                dialogue = DialogueModel(**item)
-                self.database[table][dialogue.slug] = dialogue
-            elif table == "environment":
-                env = EnvironmentModel(**item)
-                self.database[table][env.slug] = env
-            elif table == "item":
-                itm = ItemModel(**item)
-                self.database[table][itm.slug] = itm
-            elif table == "monster":
-                mon = MonsterModel(**item)
-                self.database[table][mon.slug] = mon
-            elif table == "music":
-                music = MusicModel(**item)
-                self.database[table][music.slug] = music
-            elif table == "animation":
-                animation = AnimationModel(**item)
-                self.database[table][animation.slug] = animation
-            elif table == "npc":
-                npc = NpcModel(**item)
-                self.database[table][npc.slug] = npc
-            elif table == "sounds":
-                sfx = SoundModel(**item)
-                self.database[table][sfx.slug] = sfx
-            elif table == "status":
-                cond = StatusModel(**item)
-                self.database[table][cond.slug] = cond
-            elif table == "technique":
-                teq = TechniqueModel(**item)
-                self.database[table][teq.slug] = teq
+            if validate:
+                model = self._validate_data(item, table)
             else:
-                raise ValueError(f"Unexpected {table =}")
-        except (ValidationError, ValueError) as e:
-            logger.error(f"validation failed for '{item['slug']}': {e}")
+                model_class = self.model_map.get(table)
+                if model_class:
+                    model = model_class(**item)
+                else:
+                    raise ValueError(f"Unexpected table: {table}")
+
+            self.database[table][model.slug] = model
+        except ValidationError as e:
+            logger.error(
+                f"Validation failed for '{item['slug']}' in table '{table}': {e}"
+            )
             if validate:
                 raise e
 
@@ -1826,38 +1929,26 @@ class JSONDatabase:
         pass
 
     @overload
-    def lookup(
-        self,
-        slug: str,
-        table: Literal["music"],
-    ) -> MusicModel:
+    def lookup(self, slug: str, table: Literal["music"]) -> MusicModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["animation"]) -> AnimationModel:
+        pass
+
+    @overload
+    def lookup(self, slug: str, table: Literal["sounds"]) -> SoundModel:
         pass
 
     @overload
     def lookup(
-        self,
-        slug: str,
-        table: Literal["animation"],
-    ) -> AnimationModel:
-        pass
-
-    @overload
-    def lookup(
-        self,
-        slug: str,
-        table: Literal["sounds"],
-    ) -> SoundModel:
-        pass
-
-    @overload
-    def lookup(
-        self,
-        slug: str,
-        table: Literal["environment"],
+        self, slug: str, table: Literal["environment"]
     ) -> EnvironmentModel:
         pass
 
-    def lookup(self, slug: str, table: TableName) -> DataModel:
+    def lookup(
+        self, slug: str, table: Optional[TableName] = None
+    ) -> DataModel:
         """
         Looks up a monster, technique, item, npc, etc based on slug.
 
@@ -1868,16 +1959,28 @@ class JSONDatabase:
 
         Returns:
             A pydantic.BaseModel from the resulting lookup.
-
         """
-        table_entry = self.database[table]
+        if table is None:
+            table = "monster"
+        table_entry = self.database.get(table)
         if not table_entry:
-            logger.exception(f"{table} table wasn't loaded")
-            sys.exit()
+            raise ValueError(f"{table} table wasn't loaded")
         if slug not in table_entry:
-            self.log_missing_entry_and_exit(table, slug)
-        else:
-            return table_entry[slug]
+            self.log_missing_entry_and_raise(table, slug)
+        return table_entry[slug]
+
+    def log_missing_entry_and_raise(self, table: TableName, slug: str) -> None:
+        """Logs a missing entry and raises EntryNotFoundError."""
+        options = difflib.get_close_matches(slug, self.database[table].keys())
+        options_str = ", ".join(repr(s) for s in options)
+        hint = (
+            f"Did you mean {options_str}?"
+            if options
+            else "No similar slugs found."
+        )
+        raise EntryNotFoundError(
+            f"Lookup failed for unknown {table} '{slug}'. {hint}"
+        )
 
     def lookup_file(self, table: TableName, slug: str) -> str:
         """
@@ -1892,63 +1995,48 @@ class JSONDatabase:
         Returns:
             The 'file' property of the resulting dictionary OR the slug if it
             doesn't exist.
-
         """
-
-        filename = self.database[table][slug].file or slug
-        if filename == slug:
-            logger.debug(
-                f"Could not find a file record for slug {slug}, did you remember to create a database record?"
+        entry = self.database[table].get(slug)
+        if entry:
+            file_name = getattr(entry, "file", None)
+            if file_name:
+                return str(file_name)
+            else:
+                return slug
+        else:
+            raise EntryNotFoundError(
+                f"Entry {slug} not found in table '{table}'."
             )
-
-        return filename
 
     def has_entry(self, slug: str, table: TableName) -> bool:
         table_entry = self.database[table]
         if not table_entry:
-            logger.exception(f"{table} table wasn't loaded")
-            sys.exit()
+            raise ValueError(f"{table} table wasn't loaded")
         return slug in table_entry
 
-    def log_missing_entry_and_exit(
-        self,
-        table: Literal[
-            "economy",
-            "taste",
-            "element",
-            "shape",
-            "terrain",
-            "weather",
-            "template",
-            "mission",
-            "encounter",
-            "dialogue",
-            "environment",
-            "item",
-            "monster",
-            "music",
-            "animation",
-            "npc",
-            "sounds",
-            "status",
-            "technique",
-        ],
-        slug: str,
-    ) -> None:
-        options = difflib.get_close_matches(slug, self.database[table].keys())
-        options = [repr(s) for s in options]
-        if len(options) >= 2:
-            options_string = ", ".join(
-                (*options[:-2], options[-2] + " or " + options[-1])
-            )
-            hint = f"Did you mean {options_string}?"
-        elif len(options) == 1:
-            options_string = options[0]
-            hint = f"Did you mean {options_string}?"
-        else:
-            hint = "No similar slugs. Are you sure it's in the DB?"
-        logger.exception(f"Lookup failed for unknown {table} '{slug}'. {hint}")
-        sys.exit()
+    def reload(self, table: TableName, validate: bool = True) -> None:
+        """Reloads the data for a specific table."""
+        if table not in self.database:
+            logger.error(f"Table '{table}' not loaded.")
+            return
+        self.preloaded[table] = {}
+        self.database[table] = {}
+        self._preload_table(table)
+        self._load_models_from_preloaded(table, validate)
+
+
+def load_config(config_path: str) -> DatabaseConfig:
+    """Loads configuration from a JSON file."""
+    try:
+        with open(config_path) as f:
+            data = json.load(f)
+        return DatabaseConfig(**data)
+    except FileNotFoundError:
+        raise FileNotFoundError(
+            f"Configuration file '{config_path}' not found."
+        )
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Invalid JSON in '{config_path}': {e}")
 
 
 class Validator:
@@ -1956,7 +2044,7 @@ class Validator:
     Helper class for validating resources exist.
     """
 
-    def __init__(self, database: JSONDatabase) -> None:
+    def __init__(self, database: ModData) -> None:
         self.db = database
         self.db.preload()
 
@@ -2035,7 +2123,9 @@ class Validator:
         return slug in self.db.preloaded[table]
 
 
+path = prepare.fetch(mods_folder, "db_config.json")
+config = load_config(path)
 # Global database container
-db = JSONDatabase()
+db = ModData(config)
 # Validator container
 has = Validator(db)

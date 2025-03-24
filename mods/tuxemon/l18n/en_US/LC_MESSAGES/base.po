@@ -1176,6 +1176,12 @@ msgstr "Use"
 msgid "item_confirm_cancel"
 msgstr "Cancel"
 
+msgid "generic_remove"
+msgstr "Remove"
+
+msgid "generic_add"
+msgstr "Add"
+
 msgid "generic_success"
 msgstr "It worked!"
 
@@ -3126,6 +3132,9 @@ msgstr "Move"
 msgid "monster_menu_tech"
 msgstr "Techniques"
 
+msgid "monster_menu_item"
+msgstr "Held Item"
+
 msgid "monster_menu_desc"
 msgstr "Description"
 
@@ -3189,6 +3198,9 @@ msgstr "{name} has too many techniques.\n"
 msgid "uninstall_app"
 msgstr "Unable to uninstall the app."
 
+msgid "mission_deletion"
+msgstr "Do you want to delete this mission?"
+
 # Player State
 
 msgid "tuxepedia_progress"
@@ -3240,6 +3252,9 @@ msgstr "Traded {doc} days ago"
 
 msgid "tuxepedia_exp"
 msgstr "{exp_lv}xp to Lv {lv}"
+
+msgid "no_held_item"
+msgstr "No held item"
 
 # Menu notifications
 msgid "log_off"
@@ -3707,10 +3722,10 @@ msgid "banling"
 msgstr "Banling"
 
 msgid "bansaken_description"
-msgstr "Each"
+msgstr "As twilight hits, the spirits inside BANSAKEN come to life. They like to add naughty children who stay up too late to their number."
 
 msgid "bansaken"
-msgstr "As twilight hits, the spirits inside BANSAKEN come to life. They like to add naughty children who stay up too late to their number."
+msgstr "Bansaken"
 
 msgid "banvengeance_description"
 msgstr "BANVENGEANCE seeks to make its own night by growing new trees from running roots to drown out the light, smothering competing plant life."
@@ -12283,6 +12298,9 @@ msgid "spyder_citypark_house_maniac5"
 msgstr "How are you getting along with the Book of Wishes? Tell me of your achievements ..."
 
 msgid "spyder_maniac_achievement1"
+msgstr "Book Wishes 1"
+
+msgid "spyder_maniac_achievement2"
 msgstr "Giving a dog tuxemon to a Cat Girl"
 
 msgid "spyder_column1_sign" 

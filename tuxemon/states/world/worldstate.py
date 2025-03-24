@@ -78,7 +78,7 @@ class WorldState(state.State):
         from tuxemon.player import Player
 
         self.boundary_checker = BoundaryChecker()
-        self.teleporter = Teleporter()
+        self.teleporter = Teleporter(self)
         self.pathfinder = Pathfinder(self, self.boundary_checker)
         # Provide access to the screen surface
         self.screen = self.client.screen
@@ -131,70 +131,17 @@ class WorldState(state.State):
         self.lock_controls(self.player)
         self.stop_char(self.player)
 
-    def fade_and_teleport(self, duration: float, color: ColorLike) -> None:
-        """
-        Fade out, teleport, fade in.
-
-        Parameters:
-            duration: Duration of the fade out. The fade in is slightly larger.
-            color: Fade's color.
-
-        """
-
-        def cleanup() -> None:
-            self.in_transition = False
-
-        def fade_in() -> None:
-            self.trigger_fade_in(duration, color)
-            self.task(cleanup, duration)
-
-        # cancel any fades that may be going one
-        self.remove_animations_of(self)
-        self.remove_animations_of(cleanup)
-
-        self.stop_and_reset_char(self.player)
-
-        self.in_transition = True
-        self.trigger_fade_out(duration, color)
-
-        task = self.task(
-            partial(
-                self.teleporter.handle_delayed_teleport, self, self.player
-            ),
-            duration,
+    def set_transition_surface(self, color: ColorLike) -> None:
+        self.transition_surface = pygame.Surface(
+            self.client.screen.get_size(), pygame.SRCALPHA
         )
-        task.chain(fade_in, duration + 0.5)
+        self.transition_surface.fill(color)
 
-    def trigger_fade_in(self, duration: float, color: ColorLike) -> None:
-        """
-        World state has own fade code b/c moving maps doesn't change state.
+    def set_transition_state(self, in_transition: bool) -> None:
+        """Update the transition state."""
+        self.in_transition = in_transition
 
-        Parameters:
-            duration: Duration of the fade in.
-            color: Fade's color.
-
-        """
-        self.set_transition_surface(color)
-        self.animate(
-            self,
-            transition_alpha=0,
-            initial=255,
-            duration=duration,
-            round_values=True,
-        )
-        self.task(partial(self.unlock_controls, self.player), max(duration, 0))
-
-    def trigger_fade_out(self, duration: float, color: ColorLike) -> None:
-        """
-        World state has own fade code b/c moving maps doesn't change state.
-
-        * Will cause player to teleport if set somewhere else.
-
-        Parameters:
-            duration: Duration of the fade out.
-            color: Fade's color.
-
-        """
+    def fade_out(self, duration: float, color: ColorLike) -> None:
         self.set_transition_surface(color)
         self.animate(
             self,
@@ -206,11 +153,19 @@ class WorldState(state.State):
         self.stop_char(self.player)
         self.lock_controls(self.player)
 
-    def set_transition_surface(self, color: ColorLike) -> None:
-        self.transition_surface = pygame.Surface(
-            self.client.screen.get_size(), pygame.SRCALPHA
+    def fade_in(self, duration: float, color: ColorLike) -> None:
+        self.set_transition_surface(color)
+        self.animate(
+            self,
+            transition_alpha=0,
+            initial=255,
+            duration=duration,
+            round_values=True,
         )
-        self.transition_surface.fill(color)
+        self.task(
+            partial(self.unlock_controls, self.player),
+            max(duration, 0),
+        )
 
     def broadcast_player_teleport_change(self) -> None:
         """Tell clients/host that player has moved after teleport."""
@@ -247,8 +202,6 @@ class WorldState(state.State):
         self.camera_manager.update()
 
         logger.debug("*** Game Loop Started ***")
-        logger.debug("Player Variables:" + str(self.player.game_variables))
-        logger.debug("Money:" + str(self.player.money_manager.get_money()))
 
     def draw(self, surface: pygame.surface.Surface) -> None:
         """

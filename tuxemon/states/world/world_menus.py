@@ -73,7 +73,8 @@ class WorldMenuState(PygameMenuState):
         if player.menu_player:
             CharacterState = change("CharacterState", kwargs=param)
             menu.append(("menu_player", CharacterState))
-        if player.mission_manager.missions:
+        mission = player.mission_manager.get_missions_with_met_prerequisites()
+        if mission:
             MissionState = change("MissionState", kwargs=param)
             menu.append(("menu_missions", MissionState))
         if player.menu_save:
@@ -145,6 +146,12 @@ class WorldMenuState(PygameMenuState):
             params = {"monster": monster, "source": self.name}
             self.client.push_state("MonsterInfoState", kwargs=params)
 
+        def monster_item(monster: Monster) -> None:
+            """Show monster item."""
+            self.client.pop_state()
+            params = {"monster": monster, "source": self.name}
+            self.client.push_state("MonsterItemState", kwargs=params)
+
         def positive_answer(monster: Monster) -> None:
             success = False
             player = local_session.player
@@ -193,6 +200,7 @@ class WorldMenuState(PygameMenuState):
             original = monster_menu.get_selected_item()
             _info = T.translate("monster_menu_info").upper()
             _tech = T.translate("monster_menu_tech").upper()
+            _item = T.translate("monster_menu_item").upper()
             _move = T.translate("monster_menu_move").upper()
             _release = T.translate("monster_menu_release").upper()
             if original and original.game_object:
@@ -202,6 +210,7 @@ class WorldMenuState(PygameMenuState):
                     menu=(
                         ("info", _info, partial(monster_stats, mon)),
                         ("tech", _tech, partial(monster_techs, mon)),
+                        ("item", _item, partial(monster_item, mon)),
                         ("move", _move, partial(select_monster, mon)),
                         ("release", _release, partial(release_monster, mon)),
                     ),

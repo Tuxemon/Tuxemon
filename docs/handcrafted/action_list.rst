@@ -1,5 +1,6 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.add_collision.AddCollisionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.add_contacts.AddContactsAction
+.. autoscriptinfoclass:: tuxemon.event.actions.add_held_item.AddHeldItemction
 .. autoscriptinfoclass:: tuxemon.event.actions.add_item.AddItemAction
 .. autoscriptinfoclass:: tuxemon.event.actions.add_monster.AddMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.add_tech.AddTechAction
@@ -69,6 +70,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.random_monster.RandomMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_collision.RemoveCollisionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_contacts.RemoveContactsAction
+.. autoscriptinfoclass:: tuxemon.event.actions.remove_held_item.RemoveHeldItemction
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_monster.RemoveMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_npc.RemoveNpcAction
 .. autoscriptinfoclass:: tuxemon.event.actions.remove_state.RemoveStateAction

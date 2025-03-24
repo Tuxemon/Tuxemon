@@ -19,7 +19,7 @@ from tuxemon.map import dirs2, dirs3, get_direction, proj
 from tuxemon.map_view import SpriteRenderer
 from tuxemon.math import Vector2
 from tuxemon.mission import MissionManager
-from tuxemon.money import MoneyManager, decode_money, encode_money
+from tuxemon.money import MoneyController
 from tuxemon.monster import Monster, decode_monsters, encode_monsters
 from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
@@ -98,7 +98,7 @@ class NPC(Entity[NPCState]):
         # Tracks Tuxepedia (monster seen or caught)
         self.tuxepedia = Tuxepedia()
         self.contacts: dict[str, str] = {}
-        self.money_manager = MoneyManager()
+        self.money_controller = MoneyController(self)
         # list of ways player can interact with the Npc
         self.interactions: Sequence[str] = []
         # menu labels (world menu)
@@ -112,7 +112,7 @@ class NPC(Entity[NPCState]):
         self.monsters: list[Monster] = []
         # The player's items.
         self.items: list[Item] = []
-        self.mission_manager = MissionManager()
+        self.mission_manager = MissionManager(self)
         self.economy: Optional[Economy] = None
         # Variables for long-term item and monster storage
         # Keeping these separate so other code can safely
@@ -168,7 +168,7 @@ class NPC(Entity[NPCState]):
             "battles": encode_battle(self.battles),
             "tuxepedia": encode_tuxepedia(self.tuxepedia),
             "contacts": self.contacts,
-            "money": encode_money(self.money_manager),
+            "money": dict(),
             "items": encode_items(self.items),
             "template": self.template.model_dump(),
             "missions": self.mission_manager.encode_missions(),
@@ -182,6 +182,7 @@ class NPC(Entity[NPCState]):
 
         self.monster_boxes.save(state)
         self.item_boxes.save(state)
+        state["money"] = self.money_controller.save()
 
         return state
 
@@ -198,7 +199,6 @@ class NPC(Entity[NPCState]):
         self.game_variables = save_data["game_variables"]
         self.tuxepedia = decode_tuxepedia(save_data["tuxepedia"])
         self.contacts = save_data["contacts"]
-        self.money_manager = decode_money(save_data["money"])
         self.battles = []
         for battle in decode_battle(save_data.get("battles")):
             self.battles.append(battle)
@@ -211,6 +211,7 @@ class NPC(Entity[NPCState]):
         self.mission_manager.load_missions(save_data.get("missions"))
         self.name = save_data["player_name"]
         self.steps = save_data["player_steps"]
+        self.money_controller.load(save_data)
         self.monster_boxes.load(save_data)
         self.item_boxes.load(save_data)
 

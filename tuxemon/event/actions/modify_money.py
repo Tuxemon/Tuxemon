@@ -46,6 +46,7 @@ class ModifyMoneyAction(EventAction):
             return
 
         player = self.session.player
+        money_manager = character.money_controller.money_manager
         if self.amount is None:
             if self.variable:
                 _amount = player.game_variables.get(self.variable, 0)
@@ -53,7 +54,7 @@ class ModifyMoneyAction(EventAction):
                     amount = int(_amount)
                 elif isinstance(_amount, float):
                     _value = float(_amount)
-                    _wallet = player.money_manager.get_money()
+                    _wallet = money_manager.get_money()
                     amount = int(_wallet * _value)
                 else:
                     raise ValueError("It must be float or int")
@@ -62,5 +63,5 @@ class ModifyMoneyAction(EventAction):
         else:
             amount = self.amount
 
-        player.money_manager.add_money(amount)
+        money_manager.add_money(amount)
         logger.info(f"{character.name}'s money changed by {amount}")

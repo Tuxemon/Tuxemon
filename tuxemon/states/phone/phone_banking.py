@@ -29,8 +29,9 @@ class NuPhoneBanking(PygameMenuState):
         self,
         menu: pygame_menu.Menu,
     ) -> None:
-        bank_account = self.player.money_manager.get_bank_balance()
-        wallet_player = self.player.money_manager.get_money()
+        money_manager = self.player.money_controller.money_manager
+        bank_account = money_manager.get_bank_balance()
+        wallet_player = money_manager.get_money()
 
         _wallet = f"{T.translate('wallet')}: {wallet_player}"
         menu.add.label(
@@ -45,7 +46,7 @@ class NuPhoneBanking(PygameMenuState):
             font_size=self.font_size_small,
         )
 
-        for key, entry in self.player.money_manager.bills.items():
+        for key, entry in money_manager.bills.items():
             if entry.amount > 0:
                 _cathedral = f"{T.translate(key)}: {entry.amount}"
                 menu.add.label(
@@ -99,7 +100,7 @@ class NuPhoneBanking(PygameMenuState):
 
         def bill(op: str) -> None:
             var_menu = []
-            for key, entry in self.player.money_manager.bills.items():
+            for key, entry in money_manager.bills.items():
                 _key = T.translate(key)
                 if entry.amount > 0:
                     _param = (_key, _key, partial(bill_manager, op, key))
@@ -114,24 +115,24 @@ class NuPhoneBanking(PygameMenuState):
         def deposit(amount: int) -> None:
             self.client.pop_state()
             self.client.pop_state()
-            self.player.money_manager.deposit_to_bank(amount)
-            self.player.money_manager.remove_money(amount)
+            money_manager.deposit_to_bank(amount)
+            money_manager.remove_money(amount)
 
         def withdraw(amount: int) -> None:
             self.client.pop_state()
             self.client.pop_state()
-            self.player.money_manager.withdraw_from_bank(amount)
-            self.player.money_manager.add_money(amount)
+            money_manager.withdraw_from_bank(amount)
+            money_manager.add_money(amount)
 
         def pay(amount: int, bill_name: str) -> None:
             self.client.pop_state()
             self.client.pop_state()
-            self.player.money_manager.pay_bill_with_money(bill_name, amount)
+            money_manager.pay_bill_with_money(bill_name, amount)
 
         def e_pay(amount: int, bill_name: str) -> None:
             self.client.pop_state()
             self.client.pop_state()
-            self.player.money_manager.pay_bill_with_deposit(bill_name, amount)
+            money_manager.pay_bill_with_deposit(bill_name, amount)
 
         if wallet_player > 0:
             menu.add.vertical_margin(25)
@@ -154,7 +155,7 @@ class NuPhoneBanking(PygameMenuState):
 
         _payment = False
         _e_payment = False
-        for key, entry in self.player.money_manager.bills.items():
+        for key, entry in money_manager.bills.items():
             if entry.amount > 0 and wallet_player > 0:
                 _payment = True
             if entry.amount > 0 and bank_account > 0:

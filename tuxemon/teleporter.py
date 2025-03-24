@@ -32,7 +32,8 @@ class Teleporter:
 
     """
 
-    def __init__(self) -> None:
+    def __init__(self, world: WorldState) -> None:
+        self.world = world
         self.delayed_teleport = False
         self.delayed_char: Optional[NPC] = None
         self.delayed_mapname = ""
@@ -40,9 +41,7 @@ class Teleporter:
         self.delayed_y = 0
         self.delayed_facing: Optional[Direction] = None
 
-    def handle_delayed_teleport(
-        self, world: WorldState, character: NPC
-    ) -> None:
+    def handle_delayed_teleport(self, character: NPC) -> None:
         """
         Handle a delayed teleportation during a screen transition.
 
@@ -53,7 +52,6 @@ class Teleporter:
         """
         if self.delayed_teleport:
             self.teleport_character(
-                world,
                 self.delayed_char or character,
                 self.delayed_mapname,
                 self.delayed_x,
@@ -66,7 +64,6 @@ class Teleporter:
 
     def teleport_character(
         self,
-        world: WorldState,
         character: NPC,
         map_name: str,
         x: int,
@@ -85,8 +82,8 @@ class Teleporter:
         Raises:
             ValueError: If the character is outside the boundaries of the new map.
         """
-        world.stop_char(character)
-        world.lock_controls(character)
+        self.world.stop_char(character)
+        self.world.lock_controls(character)
 
         target_map = prepare.fetch("maps", map_name)
 
@@ -94,13 +91,13 @@ class Teleporter:
         character.remove_collision()
 
         if (
-            world.current_map is None
-            or target_map != world.current_map.filename
+            self.world.current_map is None
+            or target_map != self.world.current_map.filename
         ):
-            world.change_map(target_map)
+            self.world.change_map(target_map)
             logger.debug(f"Loaded map '{target_map}'")
 
-            if not world.boundary_checker.is_within_boundaries((x, y)):
+            if not self.world.boundary_checker.is_within_boundaries((x, y)):
                 raise ValueError(
                     f"Character is outside the boundaries of the map at ({x}, {y})"
                 )
@@ -112,4 +109,4 @@ class Teleporter:
         character.set_position((x, y))
 
         logger.debug(f"Unlocking {character.slug}'s controls")
-        world.unlock_controls(character)
+        self.world.unlock_controls(character)

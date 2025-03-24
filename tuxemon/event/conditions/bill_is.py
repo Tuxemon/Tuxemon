@@ -53,7 +53,8 @@ class BillIsCondition(EventCondition):
         else:
             amount = int(_amount)
 
-        bill_amount = character.money_manager.get_bill(_bill).amount
+        money_manager = character.money_controller.money_manager
+        bill_amount = money_manager.get_bill(_bill).amount
         if bill_amount == 0:
             return False
         else:

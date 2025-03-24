@@ -1,5 +1,8 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.battle_is.BattleIsCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.bill_is.BillIsCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.button_combo.ButtonComboCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.button_count.ButtonCountCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.button_held.ButtonHeldCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.button_pressed.ButtonPressedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.camera_position.CameraPositionCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_at.CharAtCondition

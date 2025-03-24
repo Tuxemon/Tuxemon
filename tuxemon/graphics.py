@@ -114,7 +114,9 @@ def cursor_from_image(image: pygame.surface.Surface) -> Sequence[str]:
     return icon_string
 
 
-def load_and_scale(filename: str) -> pygame.surface.Surface:
+def load_and_scale(
+    filename: str, scale: float = prepare.SCALE
+) -> pygame.surface.Surface:
     """
     Load an image and scale it according to game settings.
 
@@ -129,7 +131,7 @@ def load_and_scale(filename: str) -> pygame.surface.Surface:
         Loaded and scaled image.
 
     """
-    return scale_surface(load_image(filename), prepare.SCALE)
+    return scale_surface(load_image(filename), scale)
 
 
 def load_image(filename: str) -> pygame.surface.Surface:

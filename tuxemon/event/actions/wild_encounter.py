@@ -11,6 +11,7 @@ from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import ColorLike, string_to_colorlike
+from tuxemon.item.item import Item
 from tuxemon.npc import NPC
 from tuxemon.states.combat.combat import CombatState
 from tuxemon.states.transition.flash import FlashTransition
@@ -28,7 +29,8 @@ class WildEncounterAction(EventAction):
     Script usage:
         .. code-block::
 
-            wild_encounter <monster_slug>,<monster_level>[,exp_mod][,mon_mod][,env][,rgb]
+            wild_encounter <monster_slug>,<monster_level>[,exp_mod]
+                            [,mon_mod][,env][,rgb][,held_item]
 
     Script parameters:
         monster_slug: Monster slug.
@@ -37,6 +39,7 @@ class WildEncounterAction(EventAction):
         mon_mod: Money modifier.
         env: Environment (grass default)
         rgb: color (eg red > 255,0,0 > 255:0:0) - default rgb(255,255,255)
+        held_item: item held by the monster
 
     """
 
@@ -47,6 +50,7 @@ class WildEncounterAction(EventAction):
     money: Optional[int] = None
     env: Optional[str] = None
     rgb: Optional[str] = None
+    held_item: Optional[str] = None
 
     def start(self) -> None:
         player = self.session.player
@@ -67,6 +71,13 @@ class WildEncounterAction(EventAction):
             current_monster.experience_modifier = self.exp
         if self.money is not None:
             current_monster.money_modifier = self.money
+        if self.held_item is not None:
+            item = Item()
+            item.load(self.held_item)
+            if item.behaviors.holdable:
+                current_monster.held_item.set_item(item)
+            else:
+                logger.error(f"{item.name} isn't 'holdable'")
         current_monster.wild = True
 
         self.world = self.session.client.get_state_by_name(WorldState)

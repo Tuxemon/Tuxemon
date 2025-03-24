@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import random
 from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import Optional, final
@@ -69,6 +70,11 @@ class RandomEncounterAction(EventAction):
             filtered_encounters, self.total_prob
         )
         if encounter:
+            held_item = (
+                random.choice(encounter.held_items)
+                if encounter.held_items
+                else None
+            )
             logger.info("Starting random encounter!")
             level = self.encounter.get_level(encounter)
             environment = player.game_variables.get("environment", "grass")
@@ -80,6 +86,7 @@ class RandomEncounterAction(EventAction):
                 None,
                 environment,
                 rgb,
+                held_item,
             ]
             self.session.client.event_engine.execute_action(
                 "wild_encounter", params, True

@@ -22,7 +22,7 @@ style_cache: dict[str, DialogueModel] = {}
 
 @final
 @dataclass
-class TranslatedDialogAction(EventAction):
+class TranslatedDialogActionNPC(EventAction):
     """
     Open a dialog window with translated text according to the passed
     translation key. Parameters passed to the translation string will also
@@ -45,7 +45,8 @@ class TranslatedDialogAction(EventAction):
 
     """
 
-    name = "translated_dialog"
+    name = "new_translated_dialog_action"
+    npc_slug: str
     raw_parameters: str
     avatar: Union[int, str, None] = None
     position: Optional[str] = None
@@ -55,13 +56,22 @@ class TranslatedDialogAction(EventAction):
 
         params = self.raw_parameters.split("_")
         npc_slug = params[0].strip()
-        npc_name = T.translate(npc_slug)
-        raw_key = process_translate_text(self.session, self.raw_parameters, [])
+        world = self.session.client.get_state_by_name(WorldState)
+        npc = None
+        for element in world.npcs:
+            if element.slug == npc_slug:
+                npc = element
+                npc_name = T.translate(npc_slug)
+                raw_key = process_translate_text(self.session, self.raw_parameters, [])
 
-        pending = list(raw_key)
-        if pending:
-            pending[0] = f"{npc_name}: {pending[0]}"
-        key = tuple(pending)
+                pending = list(raw_key)
+                if pending:
+                    pending[0] = f"{npc_name}: {pending[0]}"
+                raw_key = tuple(pending)
+                break
+        
+        if npc is None:
+            raw_key = process_translate_text(self.session, self.raw_parameters, [])
 
         avatar_sprite = None
         if self.avatar:
@@ -79,7 +89,7 @@ class TranslatedDialogAction(EventAction):
 
         open_dialog(
             session=self.session,
-            text=key,
+            text=raw_key,
             avatar=avatar_sprite,
             colors=colors,
             position=position,
@@ -90,7 +100,6 @@ class TranslatedDialogAction(EventAction):
             self.session.client.get_state_by_name(DialogState)
         except ValueError:
             self.stop()
-
 
 def _get_style(cache_key: str) -> DialogueModel:
     if cache_key in style_cache:

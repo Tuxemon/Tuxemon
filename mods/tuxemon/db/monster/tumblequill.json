@@ -3,52 +3,52 @@
     "category": "urchin",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "shadow_boxing"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "ice_claw"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "icicle_spear"
         },
         {
-            "level_learned": 8,
-            "technique": "frostbite"
+            "level_learned": 7,
+            "technique": "roll"
         },
         {
-            "level_learned": 12,
-            "technique": "electrical_storm"
+            "level_learned": 13,
+            "technique": "shrapnel"
         },
         {
             "level_learned": 16,
             "technique": "surge"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "fester"
         },
         {
-            "level_learned": 24,
-            "technique": "evasion"
+            "level_learned": 25,
+            "technique": "needle"
         },
         {
             "level_learned": 28,
             "technique": "mending"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "quicksand"
         },
         {
-            "level_learned": 36,
+            "level_learned": 37,
             "technique": "electroplate"
         },
         {
             "level_learned": 40,
-            "technique": "cloud_aether"
+            "technique": "thorn_burst"
         }
     ],
     "evolutions": [
@@ -63,6 +63,8 @@
             "evo_stage": "stage1"
         }
     ],
+    "terrains": [],
+    "tags": ["ground", "sharp"],
     "shape": "varmint",
     "stage": "basic",
     "types": [

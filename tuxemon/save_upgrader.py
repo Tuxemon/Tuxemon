@@ -1,14 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import random
 from collections.abc import Mapping
 from typing import TYPE_CHECKING, Any
 
-from tuxemon import formula
-from tuxemon.db import PlagueType, SeenStatus
-from tuxemon.technique.technique import Technique
+from tuxemon import db
+from tuxemon.locale import T
 
 if TYPE_CHECKING:
     from tuxemon.save import SaveData
@@ -41,6 +39,8 @@ MAP_RENAMES: Mapping[int, Mapping[str, str]] = {
     # 0: {'before1.tmx': 'after1.tmx', 'before2.tmx': 'after2.tmx'},
 }
 
+MONSTER_RENAMES: dict[str, str] = {"axylightl": "axolightl"}  # old: new
+
 
 def upgrade_save(save_data: dict[str, Any]) -> SaveData:
     """
@@ -53,186 +53,138 @@ def upgrade_save(save_data: dict[str, Any]) -> SaveData:
 
     Returns:
         Modified save data.
-
     """
+    if "npc_state" not in save_data:
+        save_data = update_save_data(save_data)
 
-    if isinstance(save_data["template"], list):
-        _npc = {
-            "sprite_name": save_data["template"][0]["sprite_name"],
-            "combat_front": save_data["template"][0]["combat_front"],
-            "slug": save_data["template"][0]["slug"],
-        }
-        save_data["template"] = _npc
+    save_data["npc_state"] = upgrade_npc_state(save_data["npc_state"])
 
-    starter = ["budaye", "dollfin", "grintot", "ignibus", "memnomnom"]
-    if "firstfightdue" in save_data["game_variables"]:
-        if "billie_choice" not in save_data["game_variables"]:
-            save_data["game_variables"]["billie_choice"] = random.choice(
-                starter
-            )
-    if "cathedral_ads" not in save_data["game_variables"]:
-        save_data["game_variables"]["cathedral_ads"] = 0
-    if "music_volume" not in save_data["game_variables"]:
-        save_data["game_variables"]["music_volume"] = 0.5
-    if "sound_volume" not in save_data["game_variables"]:
-        save_data["game_variables"]["sound_volume"] = 0.2
-    if "unit_measure" not in save_data["game_variables"]:
-        save_data["game_variables"]["unit_measure"] = "Metric"
-    if "hemisphere" not in save_data["game_variables"]:
-        save_data["game_variables"]["hemisphere"] = "Northern"
-    if "gender_choice" not in save_data["game_variables"]:
-        save_data["game_variables"]["gender_choice"] = "gender_male"
-    if "date_start_game" not in save_data["game_variables"]:
-        save_data["game_variables"][
-            "date_start_game"
-        ] = formula.today_ordinal()
-
-    save_data["money"] = save_data.get("money", {})
-    save_data["tuxepedia"] = save_data.get("tuxepedia", {})
-    save_data["contacts"] = save_data.get("contacts", {})
-    save_data["items"] = save_data.get("items", [])
-    save_data["missions"] = save_data.get("missions", [])
-    save_data["battles"] = save_data.get("battles", [])
-    save_data["plague"] = save_data.get("plague", PlagueType.healthy)
-
-    # upgrade data moves
-    for ele1 in save_data["monsters"]:
-        if ele1["moves"]:
-            backup_moves = []
-            for mov in ele1["moves"]:
-                if isinstance(mov, str):
-                    backup_moves.append(mov)
-            if backup_moves:
-                for tech in backup_moves:
-                    t = Technique()
-                    t.load(tech)
-                    ele1["moves"].remove(t.slug)
-                    ele1["moves"].append(
-                        {
-                            "slug": t.slug,
-                            "power": t.power,
-                            "potency": t.potency,
-                            "accuracy": t.accuracy,
-                        }
-                    )
-
-    for key, value in save_data["monster_boxes"].items():
-        for ele2 in value:
-            if ele2["moves"]:
-                backup_tech = []
-                for mov in ele2["moves"]:
-                    if isinstance(mov, str):
-                        backup_tech.append(mov)
-                if backup_tech:
-                    for tech in backup_tech:
-                        t = Technique()
-                        t.load(tech)
-                        ele2["moves"].remove(t.slug)
-                        ele2["moves"].append(
-                            {
-                                "slug": t.slug,
-                                "power": t.power,
-                                "potency": t.potency,
-                                "accuracy": t.accuracy,
-                            }
-                        )
-
-    # upgrade data battle_history
-    if "battle_history" in save_data:
-        for key, value in save_data["battle_history"].items():
-            output, date = value
-            save_data["battles"].append(
-                {"opponent": key, "outcome": output, "date": date}
-            )
-
-    # fix name capture device -> tuxeball
-    capture_device = [
-        element
-        for element in save_data["items"]
-        if element["slug"] == "capture_device"
-    ]
-    if capture_device:
-        for capture in save_data["items"]:
-            if capture["slug"] == "capture_device":
-                save_data["items"].append(
-                    {
-                        "slug": "tuxeball",
-                        "quantity": capture["quantity"],
-                        "instance_id": capture["instance_id"],
-                    }
-                )
-                save_data["items"].remove(capture)
-
-    # trasfer data from "inventory" to "items"
-    if "inventory" in save_data:
-        for key, value in save_data["inventory"].items():
-            save_data["items"].append({"slug": key, "quantity": value})
-
-    # set as captured the party monsters
-    if not save_data["tuxepedia"]:
-        for mons in save_data.get("monsters", []):
-            save_data["tuxepedia"][mons["slug"]] = SeenStatus.caught
-        for monsters in save_data.get("monster_boxes", {}).values():
-            for monster in monsters:
-                save_data["tuxepedia"][monster["slug"]] = SeenStatus.caught
-
-    # move steps from variable to field
-    if "steps" in save_data["game_variables"]:
-        steps = save_data["game_variables"]["steps"]
-        save_data["player_steps"] = save_data.get("player_steps", steps)
-        del save_data["game_variables"]["steps"]
-
-    # set money old savegames and avoid getting the starter
-    if not save_data["money"]:
-        save_data["money"]["player"] = 10000
-        save_data["game_variables"]["xero_starting_money"] = "yes"
-        save_data["game_variables"]["spyder_starting_money"] = "yes"
-    # set phone old savegames
-    if "visitedcottoncafe" in save_data["game_variables"]:
-        if save_data["game_variables"]["visitedcottoncafe"] == "yes":
-            checking = [
-                element
-                for element in save_data["items"]
-                if element["slug"] == "nu_phone"
-            ]
-            if not checking:
-                save_data["items"].append({"slug": "nu_phone", "quantity": 1})
-                save_data["items"].append(
-                    {"slug": "app_banking", "quantity": 1}
-                )
-                save_data["items"].append({"slug": "app_map", "quantity": 1})
-                save_data["items"].append(
-                    {"slug": "app_tuxepedia", "quantity": 1}
-                )
-    if "timberdantewarn" in save_data["game_variables"]:
-        if save_data["game_variables"]["timberdantewarn"] == "yes":
-            checking = [
-                element
-                for element in save_data["items"]
-                if element["slug"] == "nu_phone"
-            ]
-            if not checking:
-                save_data["items"].append({"slug": "nu_phone", "quantity": 1})
-                save_data["items"].append(
-                    {"slug": "app_banking", "quantity": 1}
-                )
-                save_data["items"].append({"slug": "app_map", "quantity": 1})
-                save_data["items"].append(
-                    {"slug": "app_tuxepedia", "quantity": 1}
-                )
-                save_data["items"].append(
-                    {"slug": "app_contacts", "quantity": 1}
-                )
-
-    version = save_data.get("version", 0)
-    for i in range(version, SAVE_VERSION):
-        _update_current_map(i, save_data)
-        if i == 0:
-            _remove_slug_prefixes(save_data)
-        if i == 1:
-            _transfer_storage_boxes(save_data)
+    # version = save_data.get("version", 0)
+    # for i in range(version, SAVE_VERSION):
+    #    _update_current_map(i, save_data)
 
     return save_data  # type: ignore[return-value]
+
+
+def upgrade_npc_state(npc_state: dict[str, Any]) -> dict[str, Any]:
+    _handle_change_tuxepedia(npc_state)
+    _handle_change_monster_name(npc_state)
+    _handle_change_plague(npc_state)
+    _handle_change_money(npc_state)
+
+    return npc_state
+
+
+def update_save_data(old_save_data: dict[str, Any]) -> dict[str, Any]:
+    new_save_data: dict[str, Any] = {
+        "screenshot": old_save_data["screenshot"],
+        "screenshot_width": old_save_data["screenshot_width"],
+        "screenshot_height": old_save_data["screenshot_height"],
+        "time": old_save_data["time"],
+        "version": old_save_data["version"],
+        "npc_state": {},
+    }
+
+    # Move NPC state information inside the "npc_state" key
+    for key, value in old_save_data.items():
+        if key not in [
+            "screenshot",
+            "screenshot_width",
+            "screenshot_height",
+            "time",
+            "version",
+        ]:
+            new_save_data["npc_state"][key] = value
+
+    return new_save_data
+
+
+def _handle_change_tuxepedia(save_data: dict[str, Any]) -> None:
+    """
+    Updates tuxepedia field in the save data.
+    """
+    for entry, value in save_data["tuxepedia"].items():
+        if value in ("seen", "caught"):
+            save_data["tuxepedia"][entry] = {
+                "status": value,
+                "appearance_count": 1,
+            }
+
+
+def _handle_change_money(save_data: dict[str, Any]) -> None:
+    """
+    Updates money field in the save data.
+    """
+    new_money: dict[str, Any] = {"money": 0, "bank_account": 0, "bills": {}}
+    if "bills" in save_data["money"] and isinstance(
+        save_data["money"]["bills"], dict
+    ):
+        return
+    else:
+        for entry, value in save_data["money"].items():
+            if entry == "player":
+                new_money["money"] = value
+            elif entry == "bank_account":
+                new_money["bank_account"] = value
+            elif entry.startswith("bill_"):
+                new_money["bills"][entry] = {
+                    "amount": value,
+                }
+        save_data["money"] = new_money
+
+
+def _handle_change_plague(save_data: dict[str, Any]) -> None:
+    """
+    Updates monster plague field in the save data.
+    """
+
+    def change_plague(monster: dict[str, Any]) -> None:
+        if not isinstance(monster["plague"], dict):
+            if monster["plague"] == "infected":
+                monster["plague"] = {"spyderbite": db.PlagueType.infected}
+            elif monster["plague"] == "inoculated":
+                monster["plague"] = {"spyderbite": db.PlagueType.inoculated}
+            else:
+                monster["plague"] = {}
+
+    # Update monsters in the save data
+    for monster in save_data["monsters"]:
+        change_plague(monster)
+
+    # Update monsters in the monster boxes
+    for value in save_data["monster_boxes"].values():
+        for element in value:
+            change_plague(element)
+
+
+def _handle_change_monster_name(save_data: dict[str, Any]) -> None:
+    """
+    Updates monster names and slugs in the save data based on the MONSTER_RENAMES dictionary.
+    """
+
+    def update_monster(monster: dict[str, Any]) -> None:
+        if monster["slug"] in MONSTER_RENAMES:
+            new_name = MONSTER_RENAMES[monster["slug"]]
+            monster["name"] = T.translate(new_name)
+            monster["slug"] = new_name
+
+    # Update monsters in the save data
+    for monster in save_data["monsters"]:
+        update_monster(monster)
+
+    # Update monsters in the monster boxes
+    for value in save_data["monster_boxes"].values():
+        for element in value:
+            update_monster(element)
+
+    # Update monster names in the tuxepedia
+    save_data["tuxepedia"] = {
+        MONSTER_RENAMES.get(entry, entry): {
+            "status": value.get("status", value),
+            "appearance_count": value.get("appearance_count", 1),
+        }
+        for entry, value in save_data["tuxepedia"].items()
+    }
 
 
 def _update_current_map(version: int, save_data: dict[str, Any]) -> None:
@@ -248,52 +200,3 @@ def _update_current_map(version: int, save_data: dict[str, Any]) -> None:
         new_name = MAP_RENAMES[version].get(save_data["current_map"])
         if new_name:
             save_data["current_map"] = new_name
-
-
-def _remove_slug_prefixes(save_data: dict[str, Any]) -> None:
-    """
-    Fixes slug names in old saves.
-
-    Slugs used to be prefixed by their type.
-    Before: item_potion, txmn_rockitten.
-    After: potion, rockitten.
-
-    Parameters:
-        save_data: The save data.
-
-    """
-
-    def fix_items(data: dict[str, Any]) -> dict[str, Any]:
-        return {key.partition("_")[2]: num for key, num in data.items()}
-
-    chest = save_data.get("storage", {})
-    save_data["inventory"] = fix_items(save_data.get("inventory", {}))
-    chest["items"] = fix_items(chest.get("items", {}))
-
-    for mons in save_data.get("monsters", []), chest.get("monsters", []):
-        for mon in mons:
-            mon["slug"] = mon["slug"].partition("_")[2]
-
-
-def _transfer_storage_boxes(save_data: dict[str, Any]) -> None:
-    """
-    Fixes storage boxes in old saves.
-
-    Item and monster storage used to be handled in a single
-    dictionary, with "item" and "monster" keys. Now they're two
-    dictionaries where the keys are "boxes", like in other popular
-    games of the genre. This also allows "hidden" boxes for scripts
-    to move items and monsters around.
-
-    Parameters:
-        save_data: The save data.
-
-    """
-    locker = save_data.get("storage", {}).get("items", {})
-    kennel = save_data.get("storage", {}).get("monsters", {})
-
-    save_data["monster_boxes"] = dict()
-    save_data["item_boxes"] = dict()
-
-    save_data["monster_boxes"]["Kennel"] = kennel
-    save_data["item_boxes"]["Locker"] = locker

@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, ClassVar, TypedDict, Union
+from typing import TYPE_CHECKING, ClassVar
 
 from tuxemon.session import Session, local_session
 from tuxemon.tools import cast_dataclass_parameters
@@ -13,12 +13,14 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class TechEffectResult(TypedDict):
+@dataclass
+class TechEffectResult:
+    name: str
     success: bool
     damage: int
     element_multiplier: float
     should_tackle: bool
-    extra: Union[str, None]
+    extras: list[str]
 
 
 @dataclass
@@ -73,10 +75,11 @@ class TechEffect:
     def apply(
         self, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-        return {
-            "success": True,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": None,
-        }
+        return TechEffectResult(
+            name=tech.name,
+            success=True,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=[],
+        )

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="326">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="326">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="routeh"/>
-  <property name="types" value="route"/>
+  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
@@ -37,7 +37,7 @@
   <object id="281" type="collision" x="0" y="0" width="352" height="112"/>
   <object id="282" type="collision" x="0" y="208" width="352" height="16"/>
   <object id="283" type="collision" x="352" y="192" width="96" height="64"/>
-  <object id="284" type="collision" x="512" y="7.10543e-15" width="64" height="160"/>
+  <object id="284" type="collision" x="512" y="0" width="64" height="160"/>
   <object id="285" type="collision" x="608" y="0" width="32" height="640"/>
   <object id="286" type="collision" x="512" y="192" width="96" height="96"/>
   <object id="287" type="collision" x="480" y="320" width="96" height="96"/>

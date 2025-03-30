@@ -1,5 +1,6 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
 "PO-Revision-Date: 2023-02-03 04:41+0000\n"
 "Last-Translator: Betsy <betsymaxx@gmailvn.net>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/tuxemon/tuxemon/"
@@ -81,7 +82,7 @@ msgstr "ビグフィン"
 msgid "bamboon"
 msgstr "バンボオン"
 
-msgid "axylightl"
+msgid "axolightl"
 msgstr "アクシィリグトル"
 
 msgid "anoleaf"
@@ -782,9 +783,6 @@ msgstr "ゥロウゴン"
 
 msgid "dark_robo"
 msgstr "ダルク ロボ"
-
-msgid "birb_robo"
-msgstr "ビルブ ロボ"
 
 msgid "mk01_beta"
 msgstr "ンク01 ベタ"

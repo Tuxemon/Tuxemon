@@ -1,18 +1,21 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 import random
+from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon import prepare
 from tuxemon.combat import check_battle_legal
-from tuxemon.db import EncounterItemModel, db
+from tuxemon.db import EncounterItemModel
+from tuxemon.encounter import Encounter, EncounterData
 from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
+
+encounter_cache: dict[str, Sequence[EncounterItemModel]] = {}
 
 
 @final
@@ -50,66 +53,41 @@ class RandomEncounterAction(EventAction):
         player = self.session.player
 
         if not check_battle_legal(player):
-            logger.warning("battle is not legal, won't start")
+            logger.error("Battle is not legal, won't start")
             return
 
-        slug = self.encounter_slug
-        encounters = db.lookup(slug, table="encounter").monsters
-        filtered = list(encounters)
+        encounter_data = EncounterData(self.encounter_slug)
+        self.encounter = Encounter(encounter_data)
+        filtered_encounters = self.encounter.get_valid_encounters(player)
 
-        for _meet in encounters:
-            if _meet.variable:
-                part = _meet.variable.split(":")
-                if player.game_variables[part[0]] != part[1]:
-                    filtered.remove(_meet)
-
-        if not filtered:
-            logger.error(f"no wild monsters, check encounter/{slug}.json")
+        if not filtered_encounters:
+            logger.error(
+                f"No wild monsters, check 'encounter/{self.encounter_slug}.json'"
+            )
             return
 
-        meet = _choose_encounter(filtered, self.total_prob)
-
-        if meet:
+        encounter = self.encounter.choose_encounter(
+            filtered_encounters, self.total_prob
+        )
+        if encounter:
+            held_item = (
+                random.choice(encounter.held_items)
+                if encounter.held_items
+                else None
+            )
             logger.info("Starting random encounter!")
-            level = _get_level(meet)
-            _env = player.game_variables.get("environment", "grass")
+            level = self.encounter.get_level(encounter)
+            environment = player.game_variables.get("environment", "grass")
             rgb = self.rgb if self.rgb else None
-            params = [meet.monster, level, meet.exp_req_mod, None, _env, rgb]
-            client = self.session.client.event_engine
-            client.execute_action("wild_encounter", params, True)
-
-
-def _choose_encounter(
-    encounters: list[EncounterItemModel],
-    total_prob: Optional[float],
-) -> Optional[EncounterItemModel]:
-    total = 0.0
-    roll = random.random() * 100
-    if total_prob is not None:
-        current_total = sum(
-            encounter.encounter_rate for encounter in encounters
-        )
-        scale = float(total_prob) / current_total
-    else:
-        scale = 1
-
-    scale *= prepare.CONFIG.encounter_rate_modifier
-
-    for encounter in encounters:
-        total += encounter.encounter_rate * scale
-        if total >= roll:
-            return encounter
-
-    return None
-
-
-def _get_level(encounter: EncounterItemModel) -> int:
-    if len(encounter.level_range) > 1:
-        level = random.randrange(
-            encounter.level_range[0],
-            encounter.level_range[1],
-        )
-    else:
-        level = encounter.level_range[0]
-
-    return level
+            params = [
+                encounter.monster,
+                level,
+                encounter.exp_req_mod,
+                None,
+                environment,
+                rgb,
+                held_item,
+            ]
+            self.session.client.event_engine.execute_action(
+                "wild_encounter", params, True
+            )

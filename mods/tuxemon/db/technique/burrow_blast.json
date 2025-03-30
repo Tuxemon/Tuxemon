@@ -1,0 +1,49 @@
+{
+  "tech_id": 204,
+  "accuracy": 0.8,
+	"animation": null,
+	"conditions": [
+    {
+      "type": "status",
+      "parameters": ["grabbed"],
+      "operator": "not"
+    },
+    {
+      "type": "status",
+      "parameters": ["stuck"],
+      "operator": "not"
+    }
+	],
+	"effects": [
+    {
+      "type": "disappear",
+      "parameters": ["strike"]
+    }
+	],
+  "flip_axes": "",
+  "is_fast": true,
+  "potency": 1,
+  "power": 1,
+  "range": "melee",
+  "recharge": 4,
+  "sfx": "sfx_blaster",
+  "slug": "burrow_blast",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "simple",
+  "tags": ["ground"],
+  "types": [
+    "earth"
+  ],
+  "use_failure": "burrow_blast_fail",
+  "use_success": "burrow_blast_success",
+  "use_tech": "combat_used_x"
+}

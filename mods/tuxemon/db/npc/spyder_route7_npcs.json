@@ -128,5 +128,15 @@
         "slug": "coach"
       }
   
+  },
+  {
+    "slug": "spyder_route7_nurse",
+    "template": 
+      {
+        "sprite_name": "nurse_lapi",
+        "combat_front": "nurse",
+        "slug": "nurse"
+      }
+  
   }
 ]

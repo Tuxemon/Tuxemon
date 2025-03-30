@@ -1,29 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="452">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="100" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="462">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="lion_mountain"/>
   <property name="south" value="park"/>
-  <property name="types" value="route"/>
   <property name="west" value="crystal_town"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
  <tileset firstgid="10968" source="../gfx/tilesets/core_set pieces.tsx"/>
  <tileset firstgid="12518" source="../gfx/tilesets/core_buildings.tsx"/>
- <layer id="1" name="Layer1 Mountain Terrain" width="40" height="100">
+ <layer id="1" name="Tile Layer 1" width="40" height="100">
   <data encoding="base64" compression="zlib">
    eAHtm82y3DQQhecZIFQBT5E/sgBeKolXwDNRwOyAh7o3JECRLNAZ/Jlz+0qWbMvOUGGh6lZL7v58WvbM5Of2o9PptuN4+vH9fIoxVIs9xHzu6/J/2zheh3ujlt8zHM8++YfdrXyfRz7NXy1kdKbIQy3ng4G9bmF3LtbJ8Tjp74xenz1uncF9r+H7YaCuW9b8WtbJIT4N5g8f/Nv3P8yH269332uQi1iJoxT36yOfr7kPC5bauT0xVuIoxf36/wLfi9TflzbO5hMfxjPwPvRzPWv+0XxRO/SKFk3R8SbpKV9We7XOmu6RuGJPx6G4fGwpXtOoZd3r5Paz7iz42BpfSaMYz82HpAMalviihnBha3y5vEtirlG8zmvDE63vIRdWe3O6LIkN41lSLrQ6p5hyaM1r4buV73PliZ9JivUY1PFcHsN3K9/nkW+JVrW9Q6qFhuz1mHzVdx75Pvd1v89ePrU8X4wxl2U4F+uKcZ8t9pzy1fYNaY9rqGtiTHN4xKLB3K38PQb1PHcpVuOr6bFmfRj1iHyuq/JqX43Pc+zpO4fX8bh8rWHl1/Q5p2tqe1rWh1GrkobO5Xx+L3v7qpurTSzaFv1atKntOY89GGY0vAb9YECn2C/i2Jp+3HdNnyXrJQ2VQ2vcQ2Q/ci59XKNY29eW3PvavbeJ5ya9K3h2pZMYmMe8Wof5cp2u3XHo96HyX5jGOvJ97vWfpd/cV8WXWF1D18/j57DP19b66u0d/cYaYkA/LBoeqZ/YnM9Z8LE5vrW6xOvOoy4eR7sXaU3rQxrOgo/N8XFvrF1sphZ1p2ex4Xly7cjvLPhY9nh/c3xxP9fJSotWVuX2/bpuSOOSz/xYr8iXrrmTo6KRas/pKT6/N/cnJuNkvcQ3XVPhIo8s+uQ4W/hyNbN8mftwjpqf07Ib30Y22COPmDmrZ/P9DNX0U44hDWpsscqV6/Nczhrf3LVr1lyzKmtBGz9/axhar3HW2F/vccx3FF+s2zqv8f3w2en04wHjp1Qjx1zju0nX/ZnebXuPVx8w38/pO+4vafyaxlqdj9ZvKXMvvqV10fOvdIbfZsa78Wz34qPeUvtlev9+lRlfp5hy9eRDQ525OEpn8Ei+pdpp/zdJp28z4zvT7/Hn99+Be73/0LikZ7xH9Vefc7nPPsU1cu/vnu/nyOzz0vlzJn2W+fziVz4/vEbUZMm8he8eWzo3PfWb4z2SD01bn21xb+Er1VtSP2rnOfUMie9lsnPjQ+lv1Io5mvHO0Rx/bX8fpnfmo43jeboexpJdy5ftuZ7rJaPyjhJzK5/0WlS7hXPk837GXrfw8RuLz5jqb8IWNu3pqJ+0+yKdW7eb9dyRr0e/W56x3HeXki6u3/efnk4apb294voeVXo3vxn7SS349J2t2xmsnFXxUT/auAaf9rkfr+s5178jKeWb45OG+m7IMy1/D00jg7PGNddMPn9/g/V1z7PFFwPn703o9bXwcX+RJ85dH/qrnub06/H+EZczuB/XNM89t95nmHueRWdyP8eXY3Q+dJRF6606OpP7Jb7IKM38GUY711KxtcP/3LuVLzJq7kPaoZ/Ht/pL+FQrdx4VvxY+GOkd72fx0V8se3L23Nh/77VqRz0Vmxv0FKu97s9du2ZtLR+aSc9r4uM88p4Rm/PBnetxSyyeg9jvlh6Ix/mcifPZkmevPa4hbHwGupZ71W/JCyN70RTell7W9nivqbPEulbw0Xe3S3JOe9MZmvzKO6W0z/l66Tad3858pXuIcdfV/WkfXNiV2imf6zfl35DvkgMu7IZ8uZ5ypmF/nerw3b3FPuG3Uge+Wc3G/L9bnSWsE+cG/Up84pjyG9+N+zvULfHEuPj0/+XUz4lTPFfCV+T4n6/tnW46+TNxp9c7nr9H6TufRjx3mt95Nt7TmZvji2fP3y+5+zk8Zr291I7zlX19kvpVG033GnnifCXf38lHazM=
   </data>
  </layer>
- <layer id="2" name="Layer2 Signs, Plants, Statues" width="40" height="100">
+ <layer id="2" name="Tile Layer 2" width="40" height="100">
   <data encoding="base64" compression="zlib">
    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
   </data>
  </layer>
+ <layer id="3" name="Tile Layer 3" width="40" height="100">
+  <data encoding="base64" compression="zlib">
+   eAHt0IEAAAAAgKD9qRcphAoDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMFADPoAAAQ==
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="40" height="100">
+  <data encoding="base64" compression="zlib">
+   eAHt0IEAAAAAgKD9qRcphAoDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMGDAgAEDBgwYMFADPoAAAQ==
+  </data>
+ </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="4" type="collision" x="560" y="1296" width="80" height="16"/>
+  <object id="4" type="collision" x="560" y="1296" width="48" height="16"/>
   <object id="8" type="collision" x="288" y="1296" width="256" height="16"/>
   <object id="25" type="collision" x="288" y="1344" width="304" height="16"/>
   <object id="26" type="collision" x="256" y="1376" width="288" height="16"/>
@@ -51,8 +61,8 @@
   <object id="57" type="collision" x="240" y="1312" width="64" height="16"/>
   <object id="58" type="collision" x="368" y="768" width="112" height="64"/>
   <object id="61" type="collision" x="544" y="832" width="96" height="16"/>
-  <object id="105" type="collision" x="608" y="240" width="32" height="192"/>
-  <object id="111" type="collision" x="608" y="16" width="32" height="192"/>
+  <object id="105" type="collision" x="608" y="240" width="16" height="192"/>
+  <object id="111" type="collision" x="608" y="16" width="16" height="192"/>
   <object id="113" type="collision" x="16" y="512" width="176" height="32"/>
   <object id="115" type="collision" x="192" y="544" width="48" height="16"/>
   <object id="121" type="collision" x="240" y="560" width="16" height="16"/>
@@ -76,7 +86,7 @@
   <object id="161" type="collision" x="208" y="1184" width="16" height="64"/>
   <object id="216" type="collision" x="0" y="1456" width="16" height="144"/>
   <object id="218" type="collision" x="0" y="0" width="640" height="16"/>
-  <object id="220" type="collision" x="288" y="1568" width="352" height="32"/>
+  <object id="220" type="collision" x="288" y="1568" width="320" height="16"/>
   <object id="221" type="collision" x="0" y="16" width="16" height="1408"/>
   <object id="267" type="collision" x="624" y="208" width="16" height="32"/>
   <object id="271" type="collision" x="144" y="1200" width="48" height="16"/>
@@ -86,7 +96,7 @@
   <object id="275" type="collision" x="512" y="1104" width="48" height="48"/>
   <object id="276" type="collision" x="512" y="1152" width="16" height="48"/>
   <object id="277" type="collision" x="496" y="832" width="32" height="256"/>
-  <object id="278" type="collision" x="608" y="1312" width="32" height="256"/>
+  <object id="278" type="collision" x="608" y="1312" width="16" height="256"/>
   <object id="279" type="collision" x="528" y="912" width="112" height="32"/>
   <object id="280" type="collision" x="528" y="1056" width="112" height="32"/>
   <object id="282" type="collision" x="608" y="1088" width="16" height="208"/>
@@ -127,7 +137,7 @@
   <object id="371" type="collision" x="448" y="32" width="128" height="32"/>
   <object id="372" type="collision" x="480" y="192" width="32" height="32"/>
   <object id="374" type="collision" x="432" y="64" width="16" height="16"/>
-  <object id="375" type="collision" x="510.5" y="257" width="16" height="16"/>
+  <object id="375" type="collision" x="512" y="256" width="16" height="16"/>
   <object id="376" type="collision" x="576" y="288" width="32" height="32"/>
   <object id="377" type="collision" x="544" y="64" width="32" height="352"/>
   <object id="378" type="collision" x="368" y="608" width="48" height="16"/>
@@ -206,10 +216,9 @@
     <property name="cond2" value="not variable_set environment:night_snow"/>
    </properties>
   </object>
-  <object id="7" name="Player Spawn" type="event" x="64" y="1440" width="16" height="16"/>
   <object id="230" name="Encounters" type="event" x="544" y="496" width="48" height="336">
    <properties>
-    <property name="act1" value="random_encounter lion_mountain"/>
+    <property name="act1" value="random_encounter spyder_lion_mountain"/>
     <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
     <property name="cond1" value="is char_moved player"/>
     <property name="cond2" value="is char_at player"/>
@@ -217,7 +226,7 @@
   </object>
   <object id="236" name="Encounters" type="event" x="80" y="608" width="192" height="64">
    <properties>
-    <property name="act1" value="random_encounter lion_mountain"/>
+    <property name="act1" value="random_encounter spyder_lion_mountain"/>
     <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
     <property name="cond1" value="is char_moved player"/>
     <property name="cond2" value="is char_at player"/>
@@ -225,7 +234,7 @@
   </object>
   <object id="238" name="Encounters" type="event" x="272" y="624" width="16" height="48">
    <properties>
-    <property name="act1" value="random_encounter lion_mountain"/>
+    <property name="act1" value="random_encounter spyder_lion_mountain"/>
     <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
     <property name="cond1" value="is char_moved player"/>
     <property name="cond2" value="is char_at player"/>
@@ -233,7 +242,7 @@
   </object>
   <object id="239" name="Encounters" type="event" x="288" y="656" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter lion_mountain"/>
+    <property name="act1" value="random_encounter spyder_lion_mountain"/>
     <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
     <property name="cond1" value="is char_moved player"/>
     <property name="cond2" value="is char_at player"/>
@@ -241,7 +250,7 @@
   </object>
   <object id="240" name="Encounters" type="event" x="96" y="592" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter lion_mountain"/>
+    <property name="act1" value="random_encounter spyder_lion_mountain"/>
     <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
     <property name="cond1" value="is char_moved player"/>
     <property name="cond2" value="is char_at player"/>
@@ -249,7 +258,7 @@
   </object>
   <object id="241" name="Encounters" type="event" x="224" y="592" width="16" height="16">
    <properties>
-    <property name="act1" value="random_encounter lion_mountain"/>
+    <property name="act1" value="random_encounter spyder_lion_mountain"/>
     <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
     <property name="cond1" value="is char_moved player"/>
     <property name="cond2" value="is char_at player"/>
@@ -257,7 +266,7 @@
   </object>
   <object id="242" name="Encounters" type="event" x="112" y="560" width="64" height="16">
    <properties>
-    <property name="act1" value="random_encounter lion_mountain"/>
+    <property name="act1" value="random_encounter spyder_lion_mountain"/>
     <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
     <property name="cond1" value="is char_moved player"/>
     <property name="cond2" value="is char_at player"/>
@@ -265,7 +274,7 @@
   </object>
   <object id="246" name="Encounters" type="event" x="112" y="576" width="112" height="32">
    <properties>
-    <property name="act1" value="random_encounter lion_mountain"/>
+    <property name="act1" value="random_encounter spyder_lion_mountain"/>
     <property name="act2" value="play_map_animation grass_blue,0.1,noloop,player"/>
     <property name="cond1" value="is char_moved player"/>
     <property name="cond2" value="is char_at player"/>
@@ -295,6 +304,10 @@
   <object id="422" name="Talk Nurse" type="event" x="160" y="1408" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_lionmountain_nurse1"/>
+    <property name="act2" value="translated_dialog spyder_generic_nurse"/>
+    <property name="act3" value="set_monster_health"/>
+    <property name="act4" value="set_monster_status"/>
+    <property name="act5" value="translated_dialog spyder_output_nurse7"/>
     <property name="behav1" value="talk spyder_lionmountain_nurse"/>
    </properties>
   </object>
@@ -345,13 +358,15 @@
   </object>
   <object id="429" name="Talk Jacques" type="event" x="48" y="1152" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_lionmountain_jacques"/>
-    <property name="act1" value="translated_dialog spyder_lionmountain_jacques1"/>
-    <property name="act2" value="add_monster jemuar,60,spyder_lionmountain_jacques,5,10"/>
-    <property name="act3" value="add_monster heronquak,55,spyder_lionmountain_jacques,5,10"/>
-    <property name="act4" value="start_battle player,spyder_lionmountain_jacques"/>
-    <property name="act5" value="translated_dialog spyder_lionmountain_jacques2"/>
-    <property name="act6" value="set_variable lionmountainjacques:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_lionmountain_jacques"/>
+    <property name="act3" value="translated_dialog spyder_lionmountain_jacques1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster jemuar,60,spyder_lionmountain_jacques,5,10"/>
+    <property name="act6" value="add_monster heronquak,55,spyder_lionmountain_jacques,5,10"/>
+    <property name="act7" value="start_battle player,spyder_lionmountain_jacques"/>
+    <property name="act8" value="translated_dialog spyder_lionmountain_jacques2"/>
+    <property name="act9" value="set_variable lionmountainjacques:yes"/>
     <property name="cond1" value="not variable_set lionmountainjacques:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -364,14 +379,16 @@
   </object>
   <object id="431" name="Talk Adam" type="event" x="32" y="992" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_lionmountain_adam"/>
-    <property name="act1" value="translated_dialog spyder_lionmountain_adam1"/>
-    <property name="act2" value="add_monster tikoal,50,spyder_lionmountain_adam,5,10"/>
-    <property name="act3" value="add_monster tikorch,55,spyder_lionmountain_adam,5,10"/>
-    <property name="act4" value="add_monster loliferno,55,spyder_lionmountain_adam,5,10"/>
-    <property name="act5" value="start_battle player,spyder_lionmountain_adam"/>
-    <property name="act6" value="translated_dialog spyder_lionmountain_adam2"/>
-    <property name="act7" value="set_variable lionmountainadam:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_lionmountain_adam"/>
+    <property name="act03" value="translated_dialog spyder_lionmountain_adam1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster tikoal,50,spyder_lionmountain_adam,5,10"/>
+    <property name="act06" value="add_monster tikorch,55,spyder_lionmountain_adam,5,10"/>
+    <property name="act07" value="add_monster loliferno,55,spyder_lionmountain_adam,5,10"/>
+    <property name="act08" value="start_battle player,spyder_lionmountain_adam"/>
+    <property name="act09" value="translated_dialog spyder_lionmountain_adam2"/>
+    <property name="act10" value="set_variable lionmountainadam:yes"/>
     <property name="cond1" value="not variable_set lionmountainadam:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -384,14 +401,16 @@
   </object>
   <object id="433" name="Talk Emilio" type="event" x="432" y="1552" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_lionmountain_emilio"/>
-    <property name="act1" value="translated_dialog spyder_lionmountain_emilio1"/>
-    <property name="act2" value="add_monster bumbulus,50,spyder_lionmountain_emilio,5,10"/>
-    <property name="act3" value="add_monster glombroc,50,spyder_lionmountain_emilio,5,10"/>
-    <property name="act4" value="add_monster tikorch,30,spyder_lionmountain_emilio,5,10"/>
-    <property name="act5" value="start_battle player,spyder_lionmountain_emilio"/>
-    <property name="act6" value="translated_dialog spyder_lionmountain_emilio2"/>
-    <property name="act7" value="set_variable lionmountainemilio:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_lionmountain_emilio"/>
+    <property name="act03" value="translated_dialog spyder_lionmountain_emilio1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster bumbulus,50,spyder_lionmountain_emilio,5,10"/>
+    <property name="act06" value="add_monster glombroc,50,spyder_lionmountain_emilio,5,10"/>
+    <property name="act07" value="add_monster tikorch,30,spyder_lionmountain_emilio,5,10"/>
+    <property name="act08" value="start_battle player,spyder_lionmountain_emilio"/>
+    <property name="act09" value="translated_dialog spyder_lionmountain_emilio2"/>
+    <property name="act10" value="set_variable lionmountainemilio:yes"/>
     <property name="cond1" value="not variable_set lionmountainemilio:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -404,14 +423,16 @@
   </object>
   <object id="435" name="Talk Chhurim" type="event" x="528" y="848" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_lionmountain_chhurim"/>
-    <property name="act1" value="translated_dialog spyder_lionmountain_chhurim1"/>
-    <property name="act2" value="add_monster fribbit,50,spyder_lionmountain_chhurim,5,10"/>
-    <property name="act3" value="add_monster propellercat,50,spyder_lionmountain_chhurim,5,10"/>
-    <property name="act4" value="add_monster agnigon,50,spyder_lionmountain_chhurim,5,10"/>
-    <property name="act5" value="start_battle player,spyder_lionmountain_chhurim"/>
-    <property name="act6" value="translated_dialog spyder_lionmountain_chhurim2"/>
-    <property name="act7" value="set_variable lionmountainchhurim:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_lionmountain_chhurim"/>
+    <property name="act03" value="translated_dialog spyder_lionmountain_chhurim1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster fribbit,50,spyder_lionmountain_chhurim,5,10"/>
+    <property name="act06" value="add_monster propellercat,50,spyder_lionmountain_chhurim,5,10"/>
+    <property name="act07" value="add_monster agnigon,50,spyder_lionmountain_chhurim,5,10"/>
+    <property name="act08" value="start_battle player,spyder_lionmountain_chhurim"/>
+    <property name="act09" value="translated_dialog spyder_lionmountain_chhurim2"/>
+    <property name="act10" value="set_variable lionmountainchhurim:yes"/>
     <property name="cond1" value="not variable_set lionmountainchhurim:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -425,12 +446,14 @@
   </object>
   <object id="437" name="Talk Tom" type="event" x="496" y="1088" width="16" height="16">
    <properties>
-    <property name="act1" value="pathfind_to_player spyder_lionmountain_tom"/>
-    <property name="act2" value="translated_dialog spyder_lionmountain_tom1"/>
-    <property name="act3" value="add_monster vivicinder,50,spyder_lionmountain_tom,5,10"/>
-    <property name="act4" value="start_battle player,spyder_lionmountain_tom"/>
-    <property name="act5" value="translated_dialog spyder_lionmountain_tom2"/>
-    <property name="act6" value="set_variable lionmountaintom:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_lionmountain_tom"/>
+    <property name="act3" value="translated_dialog spyder_lionmountain_tom1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster vivicinder,50,spyder_lionmountain_tom,5,10"/>
+    <property name="act6" value="start_battle player,spyder_lionmountain_tom"/>
+    <property name="act7" value="translated_dialog spyder_lionmountain_tom2"/>
+    <property name="act8" value="set_variable lionmountaintom:yes"/>
     <property name="cond1" value="not variable_set lionmountaintom:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -443,14 +466,16 @@
   </object>
   <object id="439" name="Talk Conrad" type="event" x="416" y="496" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_lionmountain_conrad"/>
-    <property name="act1" value="translated_dialog spyder_lionmountain_conrad1"/>
-    <property name="act2" value="add_monster cardinale,50,spyder_lionmountain_conrad,5,10"/>
-    <property name="act3" value="add_monster snaki,50,spyder_lionmountain_conrad,5,10"/>
-    <property name="act4" value="add_monster slichen,50,spyder_lionmountain_conrad,5,10"/>
-    <property name="act5" value="start_battle player,spyder_lionmountain_conrad"/>
-    <property name="act6" value="translated_dialog spyder_lionmountain_conrad2"/>
-    <property name="act7" value="set_variable lionmountainconrad:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_lionmountain_conrad"/>
+    <property name="act03" value="translated_dialog spyder_lionmountain_conrad1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster cardinale,50,spyder_lionmountain_conrad,5,10"/>
+    <property name="act06" value="add_monster snaki,50,spyder_lionmountain_conrad,5,10"/>
+    <property name="act07" value="add_monster slichen,50,spyder_lionmountain_conrad,5,10"/>
+    <property name="act08" value="start_battle player,spyder_lionmountain_conrad"/>
+    <property name="act09" value="translated_dialog spyder_lionmountain_conrad2"/>
+    <property name="act10" value="set_variable lionmountainconrad:yes"/>
     <property name="cond1" value="not variable_set lionmountainconrad:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -464,14 +489,16 @@
   </object>
   <object id="441" name="Talk Kurt" type="event" x="416" y="640" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_lionmountain_kurt"/>
-    <property name="act1" value="translated_dialog spyder_lionmountain_kurt1"/>
-    <property name="act2" value="add_monster rosarin,50,spyder_lionmountain_kurt,5,10"/>
-    <property name="act3" value="add_monster anu,50,spyder_lionmountain_kurt,5,10"/>
-    <property name="act4" value="add_monster cardinale,50,spyder_lionmountain_kurt,5,10"/>
-    <property name="act5" value="start_battle player,spyder_lionmountain_kurt"/>
-    <property name="act6" value="translated_dialog spyder_lionmountain_kurt2"/>
-    <property name="act7" value="set_variable lionmountainkurt:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_lionmountain_kurt"/>
+    <property name="act03" value="translated_dialog spyder_lionmountain_kurt1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster rosarin,50,spyder_lionmountain_kurt,5,10"/>
+    <property name="act06" value="add_monster anu,50,spyder_lionmountain_kurt,5,10"/>
+    <property name="act07" value="add_monster cardinale,50,spyder_lionmountain_kurt,5,10"/>
+    <property name="act08" value="start_battle player,spyder_lionmountain_kurt"/>
+    <property name="act09" value="translated_dialog spyder_lionmountain_kurt2"/>
+    <property name="act10" value="set_variable lionmountainkurt:yes"/>
     <property name="cond1" value="not variable_set lionmountainkurt:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -485,14 +512,16 @@
   </object>
   <object id="443" name="Talk Arlene" type="event" x="176" y="256" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_lionmountain_arlene"/>
-    <property name="act1" value="translated_dialog spyder_lionmountain_arlene1"/>
-    <property name="act2" value="add_monster tadcool,45,spyder_lionmountain_arlene,5,10"/>
-    <property name="act3" value="add_monster fribbit,55,spyder_lionmountain_arlene,5,10"/>
-    <property name="act4" value="add_monster fribbit,55,spyder_lionmountain_arlene,5,10"/>
-    <property name="act5" value="start_battle player,spyder_lionmountain_arlene"/>
-    <property name="act6" value="translated_dialog spyder_lionmountain_arlene2"/>
-    <property name="act7" value="set_variable lionmountainarlene:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_lionmountain_arlene"/>
+    <property name="act03" value="translated_dialog spyder_lionmountain_arlene1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster tadcool,45,spyder_lionmountain_arlene,5,10"/>
+    <property name="act06" value="add_monster fribbit,55,spyder_lionmountain_arlene,5,10"/>
+    <property name="act07" value="add_monster fribbit,55,spyder_lionmountain_arlene,5,10"/>
+    <property name="act08" value="start_battle player,spyder_lionmountain_arlene"/>
+    <property name="act09" value="translated_dialog spyder_lionmountain_arlene2"/>
+    <property name="act10" value="set_variable lionmountainarlene:yes"/>
     <property name="cond1" value="not variable_set lionmountainarlene:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -506,14 +535,16 @@
   </object>
   <object id="445" name="Talk David" type="event" x="64" y="160" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_lionmountain_david"/>
-    <property name="act1" value="translated_dialog spyder_lionmountain_david1"/>
-    <property name="act2" value="add_monster polyrock,55,spyder_lionmountain_david,5,10"/>
-    <property name="act3" value="add_monster slichen,50,spyder_lionmountain_david,5,10"/>
-    <property name="act4" value="add_monster glombroc,55,spyder_lionmountain_david,5,10"/>
-    <property name="act5" value="start_battle player,spyder_lionmountain_david"/>
-    <property name="act6" value="translated_dialog spyder_lionmountain_david2"/>
-    <property name="act7" value="set_variable lionmountaindavid:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_lionmountain_david"/>
+    <property name="act03" value="translated_dialog spyder_lionmountain_david1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster polyrock,55,spyder_lionmountain_david,5,10"/>
+    <property name="act06" value="add_monster slichen,50,spyder_lionmountain_david,5,10"/>
+    <property name="act07" value="add_monster glombroc,55,spyder_lionmountain_david,5,10"/>
+    <property name="act08" value="start_battle player,spyder_lionmountain_david"/>
+    <property name="act09" value="translated_dialog spyder_lionmountain_david2"/>
+    <property name="act10" value="set_variable lionmountaindavid:yes"/>
     <property name="cond1" value="not variable_set lionmountaindavid:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -527,14 +558,16 @@
   </object>
   <object id="447" name="Talk Alexander" type="event" x="48" y="464" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_lionmountain_alexander"/>
-    <property name="act1" value="translated_dialog spyder_lionmountain_alexander1"/>
-    <property name="act2" value="add_monster weavifly,50,spyder_lionmountain_alexander,5,10"/>
-    <property name="act3" value="add_monster bumbulus,50,spyder_lionmountain_alexander,5,10"/>
-    <property name="act4" value="add_monster nimbulex,55,spyder_lionmountain_alexander,5,10"/>
-    <property name="act5" value="start_battle player,spyder_lionmountain_alexander"/>
-    <property name="act6" value="translated_dialog spyder_lionmountain_alexander2"/>
-    <property name="act7" value="set_variable lionmountainalex:yes"/>
+    <property name="act01" value="lock_controls"/>
+    <property name="act02" value="pathfind_to_player spyder_lionmountain_alexander"/>
+    <property name="act03" value="translated_dialog spyder_lionmountain_alexander1"/>
+    <property name="act04" value="unlock_controls"/>
+    <property name="act05" value="add_monster weavifly,50,spyder_lionmountain_alexander,5,10"/>
+    <property name="act06" value="add_monster bumbulus,50,spyder_lionmountain_alexander,5,10"/>
+    <property name="act07" value="add_monster nimbulex,55,spyder_lionmountain_alexander,5,10"/>
+    <property name="act08" value="start_battle player,spyder_lionmountain_alexander"/>
+    <property name="act09" value="translated_dialog spyder_lionmountain_alexander2"/>
+    <property name="act10" value="set_variable lionmountainalex:yes"/>
     <property name="cond1" value="not variable_set lionmountainalex:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
@@ -565,6 +598,76 @@
     <property name="act20" value="char_face player,down"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,down"/>
+   </properties>
+  </object>
+  <object id="452" name="Post Talk Emilio" type="event" x="416" y="1536" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_emilio2"/>
+    <property name="behav1" value="talk spyder_lionmountain_emilio"/>
+    <property name="cond1" value="is variable_set lionmountainemilio:yes"/>
+   </properties>
+  </object>
+  <object id="453" name="Post Talk Tom" type="event" x="496" y="1184" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_tom2"/>
+    <property name="behav1" value="talk spyder_lionmountain_tom"/>
+    <property name="cond1" value="is variable_set lionmountaintom:yes"/>
+   </properties>
+  </object>
+  <object id="454" name="Post Talk Chhurim" type="event" x="512" y="896" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_chhurim2"/>
+    <property name="behav1" value="talk spyder_lionmountain_chhurim"/>
+    <property name="cond1" value="is variable_set lionmountainchhurim:yes"/>
+   </properties>
+  </object>
+  <object id="455" name="Post Talk Kurt" type="event" x="496" y="656" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_kurt2"/>
+    <property name="behav1" value="talk spyder_lionmountain_kurt"/>
+    <property name="cond1" value="is variable_set lionmountainkurt:yes"/>
+   </properties>
+  </object>
+  <object id="456" name="Post Talk Conrad" type="event" x="432" y="512" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_conrad2"/>
+    <property name="behav1" value="talk spyder_lionmountain_conrad"/>
+    <property name="cond1" value="is variable_set lionmountainconrad:yes"/>
+   </properties>
+  </object>
+  <object id="457" name="Post Talk David" type="event" x="16" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_david2"/>
+    <property name="behav1" value="talk spyder_lionmountain_david"/>
+    <property name="cond1" value="is variable_set lionmountaindavid:yes"/>
+   </properties>
+  </object>
+  <object id="458" name="Post Talk Arlene" type="event" x="64" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_arlene2"/>
+    <property name="behav1" value="talk spyder_lionmountain_arlene"/>
+    <property name="cond1" value="is variable_set lionmountainarlene:yes"/>
+   </properties>
+  </object>
+  <object id="459" name="Post Talk Alexander" type="event" x="64" y="480" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_alexander2"/>
+    <property name="behav1" value="talk spyder_lionmountain_alexander"/>
+    <property name="cond1" value="is variable_set lionmountainalex:yes"/>
+   </properties>
+  </object>
+  <object id="460" name="Post Talk Adam" type="event" x="48" y="992" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_adam2"/>
+    <property name="behav1" value="talk spyder_lionmountain_adam"/>
+    <property name="cond1" value="is variable_set lionmountainadam:yes"/>
+   </properties>
+  </object>
+  <object id="461" name="Post Talk Jacques" type="event" x="32" y="1152" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_lionmountain_jacques2"/>
+    <property name="behav1" value="talk spyder_lionmountain_jacques"/>
+    <property name="cond1" value="is variable_set lionmountainjacques:yes"/>
    </properties>
   </object>
  </objectgroup>

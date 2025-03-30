@@ -3,36 +3,40 @@
     "category": "pupil",
     "moveset": [
         {
-            "level_learned": 2,
-            "technique": "amnesia"
+            "level_learned": 1,
+            "technique": "bullet"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "spit_poison"
         },
         {
-            "level_learned": 6,
-            "technique": "ruby"
+            "level_learned": 4,
+            "technique": "amnesia"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "sleep_bomb"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "glower"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "eyebite"
         },
         {
             "level_learned": 28,
-            "technique": "bullet"
+            "technique": "breath"
         },
         {
-            "level_learned": 32,
-            "technique": "strike"
+            "level_learned": 31,
+            "technique": "dreamwalk"
+        },
+        {
+            "level_learned": 55,
+            "technique": "energy_beam"
         }
     ],
     "evolutions": [
@@ -47,6 +51,8 @@
             "evo_stage": "stage1"
         }
     ],
+    "terrains": [],
+    "tags": ["gaze", "mental"],
     "shape": "serpent",
     "stage": "basic",
     "types": [

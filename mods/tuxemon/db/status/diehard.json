@@ -1,0 +1,23 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "positive",
+  "effects": [
+    {
+      "type": "diehard",
+      "parameters": ["1"]
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_diehard.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "diehard",
+  "sort": "meta",
+  "cond_id": 4,
+  "use_failure": null,
+  "use_success": "combat_state_diehard_get",
+  "gain_cond": null
+}

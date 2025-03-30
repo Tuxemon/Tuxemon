@@ -4,7 +4,7 @@
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="route3"/>
-  <property name="types" value="route"/>
+  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
@@ -170,7 +170,6 @@
     <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="177" name="Player Spawn" type="event" x="512" y="608" width="16" height="16"/>
   <object id="178" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:grass"/>

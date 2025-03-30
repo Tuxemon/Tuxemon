@@ -1,123 +1,150 @@
 [
-    {
-      "slug": "blob",
+  {
+    "slug": "blob",
+    "attributes": {
       "armour": 8,
       "dodge": 4,
       "hp": 8,
       "melee": 4,
       "ranged": 8,
       "speed": 4
-    },
-    {
-      "slug": "brute",
+    }
+  },
+  {
+    "slug": "brute",
+    "attributes": {
       "armour": 7,
       "dodge": 5,
       "hp": 7,
       "melee": 8,
       "ranged": 4,
       "speed": 5
-    },
-    {
-      "slug": "dragon",
+    }
+  },
+  {
+    "slug": "dragon",
+    "attributes": {
       "armour": 7,
       "dodge": 5,
       "hp": 6,
       "melee": 6,
       "ranged": 6,
       "speed": 6
-    },
-    {
-      "slug": "flier",
+    }
+  },
+  {
+    "slug": "flier",
+    "attributes": {
       "armour": 5,
       "dodge": 7,
       "hp": 4,
       "melee": 8,
       "ranged": 4,
       "speed": 8
-    },
-    {
-      "slug": "grub",
+    }
+  },
+  {
+    "slug": "grub",
+    "attributes": {
       "armour": 7,
       "dodge": 5,
       "hp": 7,
       "melee": 4,
       "ranged": 8,
       "speed": 5
-    },
-    {
-      "slug": "humanoid",
+    }
+  },
+  {
+    "slug": "humanoid",
+    "attributes": {
       "armour": 5,
       "dodge": 7,
       "hp": 4,
       "melee": 4,
       "ranged": 8,
       "speed": 8
-    },
-    {
-      "slug": "hunter",
+    }
+  },
+  {
+    "slug": "hunter",
+    "attributes": {
       "armour": 4,
       "dodge": 8,
       "hp": 5,
       "melee": 8,
       "ranged": 4,
       "speed": 7
-    },
-    {
-      "slug": "landrace",
+    }
+  },
+  {
+    "slug": "landrace",
+    "attributes": {
       "armour": 8,
       "dodge": 4,
       "hp": 8,
       "melee": 8,
       "ranged": 4,
       "speed": 4
-    },
-    {
-      "slug": "leviathan",
+    }
+  },
+  {
+    "slug": "leviathan",
+    "attributes": {
       "armour": 8,
       "dodge": 4,
       "hp": 8,
       "melee": 6,
       "ranged": 6,
       "speed": 4
-    },
-    {
-      "slug": "piscine",
+    }
+  },
+  {
+    "slug": "piscine",
+    "attributes": {
       "armour": 6,
       "dodge": 6,
       "hp": 8,
       "melee": 6,
       "ranged": 6,
       "speed": 4
-    },
-    {
-      "slug": "polliwog",
+    }
+  },
+  {
+    "slug": "polliwog",
+    "attributes": {
       "armour": 4,
       "dodge": 8,
       "hp": 5,
       "melee": 4,
       "ranged": 8,
       "speed": 7
-    },
-    {
-      "slug": "serpent",
+    }
+  },
+  {
+    "slug": "serpent",
+    "attributes": {
       "armour": 6,
       "dodge": 6,
       "hp": 6,
       "melee": 4,
       "ranged": 8,
       "speed": 6
-    },
-    {
-      "slug": "sprite",
+    }
+  },
+  {
+    "slug": "sprite",
+    "attributes": {
       "armour": 6,
       "dodge": 6,
       "hp": 4,
       "melee": 6,
       "ranged": 6,
       "speed": 8
-    },
-    {
-      "slug": "varmint",
+    }
+  },
+  {
+    "slug": "varmint",
+    "attributes": {
       "armour": 6,
       "dodge": 6,
       "hp": 6,
@@ -125,4 +152,5 @@
       "ranged": 4,
       "speed": 6
     }
-  ]
+  }
+]

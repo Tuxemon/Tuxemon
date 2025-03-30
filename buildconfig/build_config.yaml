@@ -1,0 +1,21 @@
+name: Tuxemon
+version: 0.4.35
+description: Open source RPG
+executable: run_tuxemon.py
+icon: mods/tuxemon/gfx/icon.ico
+packages:
+  - pytmx
+  - pyscroll
+  - pygame
+  - neteria
+  - natsort
+  - tuxemon
+excludes:
+  - tkinter
+  - pyglet
+includes:
+  - importlib.resources
+include_files:
+  - mods
+  - LICENSE
+base: Win32GUI

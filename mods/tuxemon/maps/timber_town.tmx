@@ -4,7 +4,7 @@
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="timber_town"/>
-  <property name="types" value="town"/>
+  <property name="map_type" value="town"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" name="Superpowers_Tilesheet" tilewidth="16" tileheight="16" tilecount="1600" columns="40">
@@ -145,7 +145,6 @@
     <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="181" name="Player Spawn" type="event" x="560" y="48" width="16" height="16"/>
   <object id="184" name="Sign: Timber Town" type="event" x="32" y="448" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog flower_city"/>

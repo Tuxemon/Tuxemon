@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -64,6 +64,14 @@ class Sprite(DirtySprite):
         self.player: bool = False
 
     def update(self, time_delta: float = 0, *args: Any, **kwargs: Any) -> None:
+        """
+        Update the sprite.
+
+        Parameters:
+            time_delta: The time delta since the last update. Defaults to 0.
+            args: Additional arguments.
+            kwargs: Additional keyword arguments.
+        """
         super().update(time_delta, *args, **kwargs)
 
         if self.animation is not None:
@@ -81,12 +89,11 @@ class Sprite(DirtySprite):
         the size of the area passed.
 
         Parameters:
-            surface: Surface to be drawn on.
-            rect: Area to contain the sprite.
+            surface: The surface to draw on.
+            rect: The area to contain the sprite. Defaults to None.
 
         Returns:
-            Area of the surface that was modified.
-
+            The area of the surface that was modified.
         """
         # should draw to surface without generating a cached copy
         if rect is None:
@@ -98,14 +105,36 @@ class Sprite(DirtySprite):
         surface: Surface,
         rect: Rect,
     ) -> Rect:
+        """
+        Draw the sprite to the surface.
+
+        Parameters:
+            surface: The surface to draw on.
+            rect: The area to contain the sprite.
+
+        Returns:
+            The area of the surface that was modified.
+        """
         return surface.blit(self.image, rect)
 
     @property
     def rect(self) -> Rect:
+        """
+        Get the rectangle of the sprite.
+
+        Returns:
+            The rectangle of the sprite.
+        """
         return self._rect
 
     @rect.setter
     def rect(self, rect: Optional[Rect]) -> None:
+        """
+        Set the rectangle of the sprite.
+
+        Parameters:
+            rect: The new rectangle of the sprite.
+        """
         if rect is None:
             rect = Rect(0, 0, 0, 0)
 
@@ -115,6 +144,12 @@ class Sprite(DirtySprite):
 
     @property
     def image(self) -> Surface:
+        """
+        Get the image of the sprite.
+
+        Returns:
+            The image of the sprite.
+        """
         # should always be a cached copy
         if self.animation is not None:
             return self.animation.get_current_frame()
@@ -127,6 +162,12 @@ class Sprite(DirtySprite):
 
     @image.setter
     def image(self, image: Optional[Surface]) -> None:
+        """
+        Set the image of the sprite.
+
+        Parameters:
+            image: The new image of the sprite.
+        """
         if image is not None:
             self.animation = None
             rect = image.get_rect()
@@ -138,16 +179,31 @@ class Sprite(DirtySprite):
 
     @property
     def animation(self) -> Optional[SurfaceAnimation]:
+        """
+        Get the animation of the sprite.
+
+        Returns:
+            The animation of the sprite.
+        """
         return self._animation
 
     @animation.setter
     def animation(self, animation: Optional[SurfaceAnimation]) -> None:
+        """
+        Set the animation of the sprite.
+
+        Parameters:
+            animation: The new animation of the sprite.
+        """
         self._animation = animation
         if animation is not None:
             self.image = None
             self.rect.size = animation.get_rect().size
 
     def update_image(self) -> None:
+        """
+        Update the image of the sprite.
+        """
         image: Optional[Surface]
         if self._original_image is not None and self._needs_rescale:
             w = self.rect.width if self._width is None else self._width
@@ -168,26 +224,48 @@ class Sprite(DirtySprite):
         self._width, self._height = self.rect.size
         self._image = image
 
-    # width and height are API that may not stay
     @property
     def width(self) -> int:
+        """
+        Get the width of the sprite.
+
+        Returns:
+            The width of the sprite.
+        """
         return self._width
 
     @width.setter
     def width(self, width: int) -> None:
+        """
+        Set the width of the sprite.
+
+        Parameters:
+            width: The new width of the sprite.
+        """
         width = int(round(width, 0))
         if not width == self._width:
             self._width = width
             self._needs_rescale = True
             self._needs_update = True
 
-    # width and height are API that may not stay
     @property
     def height(self) -> int:
+        """
+        Get the height of the sprite.
+
+        Returns:
+            The height of the sprite.
+        """
         return self._height
 
     @height.setter
     def height(self, height: int) -> None:
+        """
+        Set the height of the sprite.
+
+        Parameters:
+            height: The new height of the sprite.
+        """
         height = int(round(height, 0))
         if not height == self._height:
             self._height = height
@@ -196,14 +274,73 @@ class Sprite(DirtySprite):
 
     @property
     def rotation(self) -> int:
+        """
+        Get the rotation of the sprite.
+
+        Returns:
+            The rotation of the sprite.
+        """
         return self._rotation
 
     @rotation.setter
     def rotation(self, value: float) -> None:
+        """
+        Set the rotation of the sprite.
+
+        Parameters:
+            value: The new rotation of the sprite.
+        """
         value = int(round(value, 0)) % 360
         if not value == self._rotation:
             self._rotation = value
             self._needs_update = True
+
+    def get_size(self) -> tuple[int, int]:
+        """
+        Get the size of the sprite.
+
+        Returns:
+            The size of the sprite.
+        """
+        return self._width, self._height
+
+    def set_position(self, x: int, y: int) -> None:
+        """
+        Set the position of the sprite.
+
+        Parameters:
+            x: The new x-coordinate of the sprite.
+            y: The new y-coordinate of the sprite.
+        """
+        self.rect.x = x
+        self.rect.y = y
+
+    def get_position(self) -> tuple[int, int]:
+        """
+        Get the position of the sprite.
+
+        Returns:
+            The position of the sprite.
+        """
+        return self.rect.x, self.rect.y
+
+    def is_visible(self) -> bool:
+        """
+        Check if the sprite is visible.
+
+        Returns:
+            Whether the sprite is visible.
+        """
+        return self.visible
+
+    def toggle_visible(sprite: Sprite) -> None:
+        """
+        Toggles the visibility of a sprite.
+
+        Parameters:
+            sprite: The sprite to toggle visibility for.
+        """
+        sprite.visible = not sprite.visible
 
 
 class CaptureDeviceSprite(Sprite):
@@ -236,17 +373,20 @@ class CaptureDeviceSprite(Sprite):
         """
         if self.state == "empty":
             self.sprite.image = self.empty_img
+            return "empty"
+
+        assert self.monster
+
+        if any(t.slug == "faint" for t in self.monster.status):
+            self.state = "faint"
+            self.sprite.image = self.faint_img
+        elif self.monster.status:
+            self.state = "effected"
+            self.sprite.image = self.effected_img
         else:
-            assert self.monster
-            if any(t for t in self.monster.status if t.slug == "faint"):
-                self.state = "faint"
-                self.sprite.image = self.faint_img
-            elif len(self.monster.status) > 0:
-                self.state = "effected"
-                self.sprite.image = self.effected_img
-            else:
-                self.state = "alive"
-                self.sprite.image = self.alive_img
+            self.state = "alive"
+            self.sprite.image = self.alive_img
+
         return self.state
 
     def animate_capture(
@@ -327,6 +467,15 @@ class SpriteGroup(LayeredUpdates, Generic[_GroupElement]):
             return Rect(sprites[0].rect)
         else:
             return sprites[0].rect.unionall([s.rect for s in sprites[1:]])
+
+    def swap(
+        self, original_sprite: _GroupElement, new_sprite: _GroupElement
+    ) -> None:
+        """
+        Swap the positions of two sprites in the group.
+        """
+        self.remove(original_sprite)
+        self.add(new_sprite)
 
 
 _MenuElement = TypeVar("_MenuElement", bound="MenuItem[Any]")
@@ -459,6 +608,7 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         self._needs_arrange = False
         self._columns = 1
         self.line_spacing: Optional[int] = None
+        self.max_width_per_column: Optional[int] = None
 
     @property
     def columns(self) -> int:
@@ -474,11 +624,7 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
             self.arrange_menu_items()
         return super().calc_bounding_rect()
 
-    def add(
-        self,
-        *sprites: Union[PySprite, Any],
-        **kwargs: Any,
-    ) -> None:
+    def add(self, *sprites: Union[PySprite, Any], **kwargs: Any) -> None:
         """
         Add something to the stacker.
 
@@ -490,10 +636,7 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         super().add(*sprites, **kwargs)
         self._needs_arrange = True
 
-    def remove(
-        self,
-        *items: Union[PySprite, Any],
-    ) -> None:
+    def remove(self, *items: Union[PySprite, Any]) -> None:
         super().remove(*items)
         self._needs_arrange = True
 
@@ -504,10 +647,7 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
             super().remove(i)
         self._needs_arrange = True
 
-    def draw(
-        self,
-        surface: Surface,
-    ) -> list[Rect]:
+    def draw(self, surface: Surface) -> list[Rect]:
         if self._needs_arrange:
             self.arrange_menu_items()
         dirty = super().draw(surface)
@@ -531,7 +671,10 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         self.update_rect_from_parent()
         width, height = self.rect.size
 
-        items_per_column = math.ceil(len(self) / self.columns)
+        if self.max_width_per_column is not None:
+            self._columns = max(1, width // max(1, self.max_width_per_column))
+
+        items_per_column = math.ceil(len(self) / self._columns)
 
         if self.expand:
             logger.debug("expanding menu...")
@@ -540,12 +683,12 @@ class VisualSpriteList(RelativeGroup[_MenuElement]):
         else:
             line_spacing = int(max_height * 1.2)
 
-        column_spacing = width // self.columns
+        column_spacing = width // self._columns
 
         # TODO: pagination API
 
         for index, item in enumerate(self.sprites()):
-            oy, ox = divmod(index, self.columns)
+            oy, ox = divmod(index, self._columns)
             item.rect.topleft = ox * column_spacing, oy * line_spacing
 
         self._needs_arrange = False

@@ -1,20 +1,28 @@
 {
   "conditions": [
-    "is wild_monster"
+    {
+      "type": "wild_monster",
+      "operator": "is"
+    }
   ],
   "effects": [
-    "park capture",
-    "capture"
+    {
+      "type": "park",
+      "parameters": ["capture"]
+    }
   ],
   "animation": "capture_1",
   "slug": "tuxeball_park",
   "sort": "utility",
   "sprite": "gfx/items/tuxeball_park.png",
   "category": "capture",
-  "type": "Consumable",
   "usable_in": [
     "MainParkMenuState"
   ],
+  "modifiers": [],
+  "behaviors": {
+    "throwable": true
+  },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

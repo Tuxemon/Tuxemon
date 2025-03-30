@@ -1,0 +1,29 @@
+{
+  "animation": "drip_green",
+  "modifiers": [
+    {
+      "attribute": "type",
+      "values": ["venom"],
+      "multiplier": 0.0
+    }
+  ],
+  "category": "negative",
+  "effects": [
+    {
+      "type": "poisoned",
+      "parameters": ["8"]
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_poison.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "poison",
+  "sort": "meta",
+  "cond_id": 2,
+  "use_failure": null,
+  "use_success": "combat_state_poison_end",
+  "gain_cond": "combat_state_poison_get"
+}

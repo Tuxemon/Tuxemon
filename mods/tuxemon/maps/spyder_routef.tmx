@@ -4,7 +4,7 @@
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="routef"/>
-  <property name="types" value="route"/>
+  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="2776" source="../gfx/tilesets/core_outdoor_nature.tsx"/>
@@ -36,7 +36,7 @@
   <object id="281" type="collision" x="0" y="192" width="64" height="96"/>
   <object id="282" type="collision" x="64" y="288" width="544" height="16"/>
   <object id="283" type="collision" x="608" y="0" width="32" height="288"/>
-  <object id="284" type="collision" x="386" y="128" width="160" height="96"/>
+  <object id="284" type="collision" x="384" y="128" width="160" height="96"/>
   <object id="285" type="collision" x="448" y="0" width="160" height="64"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="7" name="Events">

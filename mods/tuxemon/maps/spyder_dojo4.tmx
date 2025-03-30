@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="34">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="35">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="dojo4"/>
-  <property name="types" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
  <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <tileset firstgid="6835" source="../gfx/tilesets/core_indoor_walls.tsx"/>
  <layer id="1" name="Tile Layer 1" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYKAvOCjFwHAICVPb9vdAs6ukEZgW5h9mYWAgBxPjFpD7QWaDAIyG8PCThNTCwl0eGDbIam2AduHDMFuR9cDEkGlYuFejmQ9SQy3zQW6AYWS7sdmBLg/Th8sfyOGOrhedj+wfdDlqmo9uNohPDfOxmQsTo6X5ILPRzQcA1BozmA==
+   eAFjYKAvOCjFwHAICVPb9vdAs6ukEZgW5h9mYWAgBxPjFpD7QWaTCgjpgYW7PDBsCKnFZjchPbBwr6ah+SA3wDA2N+ITg+nD5Q9ywx3dzlHz0UMElY8ePgDn6CwK
   </data>
  </layer>
  <layer id="2" name="Tile Layer 2" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYBhYsEKageGQFHaMLncYqI5UcA1ofhUOjC73kUjzeVkYGPhIxPxA9cSabw1Ua0MitqXAfFxhiuwGkPmy0LgiFA/o7ifW/EpoPOEKJ1i4I7uLFDYozvDFA7q78ZkN8hM2eXzxgMt8FSFMs6hpPjZ34hIjx/24zMImjm4+APBYO3Y=
+   eAFjYBhYsEKageGQFHaMLncYqI5UcA1ofhUOjC73kUjzeVkYGPhIxPxA9cSabw1Ua0MitqWD+bLQuCIUD+S6vxIaT7jCCRbupIYNTD0ozvDFAznuhpkNo/HFAy7zVYSIj29yzIe5jRia3uYDAEKYPvY=
   </data>
  </layer>
- <layer id="3" name="Above Player" width="24" height="12">
+ <layer id="3" name="Tile Layer 3" width="24" height="12">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgFoyEwGgKjITAwIQAABIAAAQ==
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="24" height="12">
   <data encoding="base64" compression="zlib">
    eAFjYBgFoyEwGgKjITAwIQAABIAAAQ==
   </data>
@@ -52,7 +57,6 @@
     <property name="cond2" value="is char_facing player,left"/>
    </properties>
   </object>
-  <object id="19" name="Player Spawn" type="event" x="224" y="144" width="16" height="16"/>
   <object id="20" name="Environment" type="event" x="16" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="set_variable environment:interior"/>
@@ -94,6 +98,7 @@
     <property name="act11" value="translated_dialog spyder_dojo_strength"/>
     <property name="act15" value="set_variable dojothrimonster:yes"/>
     <property name="act30" value="add_monster sampsack,35"/>
+    <property name="act31" value="translated_dialog sampsack,,center"/>
     <property name="cond1" value="is variable_set thriquestion:strength"/>
     <property name="cond2" value="not variable_set dojothrimonster:yes"/>
     <property name="cond3" value="not variable_set thriquestion:strategy"/>
@@ -104,6 +109,7 @@
     <property name="act11" value="translated_dialog spyder_dojo_strategy"/>
     <property name="act15" value="set_variable dojothrimonster:yes"/>
     <property name="act30" value="add_monster sampsage,35"/>
+    <property name="act31" value="translated_dialog sampsage,,center"/>
     <property name="cond1" value="is variable_set thriquestion:strategy"/>
     <property name="cond2" value="not variable_set dojothrimonster:yes"/>
     <property name="cond3" value="not variable_set thriquestion:strength"/>
@@ -118,9 +124,13 @@
     <property name="act05" value="unlock_controls"/>
     <property name="act08" value="translated_dialog spyder_dojo_billie1"/>
     <property name="act20" value="add_monster billie_choice,35,spyder_billie,5,10"/>
-    <property name="act21" value="add_monster eyesore,35,spyder_billie,5,10"/>
-    <property name="act22" value="add_monster cardiwing,35,spyder_billie,5,10"/>
-    <property name="act23" value="add_monster viviphyta,35,spyder_billie,5,10"/>
+    <property name="act21" value="set_monster_attribute add_monster,gender,male"/>
+    <property name="act22" value="add_monster eyesore,35,spyder_billie,5,10"/>
+    <property name="act23" value="set_monster_attribute add_monster,gender,female"/>
+    <property name="act24" value="add_monster cardiwing,35,spyder_billie,5,10"/>
+    <property name="act25" value="set_monster_attribute add_monster,gender,female"/>
+    <property name="act26" value="add_monster viviphyta,35,spyder_billie,5,10"/>
+    <property name="act27" value="set_monster_attribute add_monster,gender,male"/>
     <property name="act30" value="start_battle player,spyder_billie"/>
     <property name="act40" value="translated_dialog spyder_dojo_billie2"/>
     <property name="act50" value="pathfind spyder_billie,10,9"/>
@@ -167,6 +177,12 @@
    <properties>
     <property name="act1" value="set_variable billie_choice:miaownolith"/>
     <property name="cond1" value="is variable_set billie_choice:memnomnom"/>
+   </properties>
+  </object>
+  <object id="34" name="Play Music" type="event" x="0" y="0" width="16" height="16">
+   <properties>
+    <property name="act1" value="play_music music_dojo_theme"/>
+    <property name="cond1" value="not music_playing music_dojo_theme"/>
    </properties>
   </object>
  </objectgroup>

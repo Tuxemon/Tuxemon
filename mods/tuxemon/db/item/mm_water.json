@@ -1,19 +1,27 @@
 {
   "conditions": [
-    "is type water",
-    "is max_moves"
+    {
+      "type": "type",
+      "parameters": ["water"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "learn_mm water"
+    {
+      "type": "learn_mm",
+      "parameters": ["water"]
+    }
   ],
   "slug": "mm_water",
   "sort": "utility",
   "sprite": "gfx/items/mm_water.png",
   "category": "technique",
-  "type": "Consumable",
+  "cost": 1000,
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
+  "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from collections.abc import Generator
@@ -132,12 +132,8 @@ class TechniqueMenuState(Menu[Technique]):
 
         for tech in output:
             name = tech.name
-            types = " ".join(map(lambda s: T.translate(s.slug), tech.types))
-            image = self.shadow_text(name, bg=(128, 128, 128))
-            if tech.counter == 0:
-                sus = 100
-            else:
-                sus = int((tech.counter_success / tech.counter) * 100)
+            types = " ".join(map(lambda s: (s.name), tech.types))
+            image = self.shadow_text(name, bg=prepare.DIMGRAY_COLOR)
             label = T.format(
                 "technique_description",
                 {
@@ -147,7 +143,6 @@ class TechniqueMenuState(Menu[Technique]):
                     "pot": int(tech.potency * 100),
                     "pow": tech.power,
                     "rec": str(tech.recharge_length),
-                    "sus": sus,
                 },
             )
             desc: str = ""

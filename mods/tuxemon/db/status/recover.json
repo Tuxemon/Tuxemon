@@ -1,0 +1,23 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "positive",
+  "effects": [
+    {
+      "type": "recover",
+      "parameters": ["16"]
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_recover.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_bite",
+  "slug": "recover",
+  "sort": "meta",
+  "cond_id": 15,
+  "use_failure": null,
+  "use_success": "combat_state_recover_end",
+  "gain_cond": "combat_state_recover_get"
+}

@@ -5,7 +5,7 @@
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="taba_house2"/>
-  <property name="types" value="notype"/>
+  <property name="map_type" value="notype"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
  <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_walls.tsx"/>
@@ -32,7 +32,7 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="29" type="collision" x="1.42109e-14" y="32" width="64" height="16"/>
+  <object id="29" type="collision" x="0" y="32" width="64" height="16"/>
   <object id="39" type="collision" x="96" y="48" width="48" height="16"/>
   <object id="40" type="collision" x="0" y="64" width="64" height="32"/>
   <object id="59" type="collision" x="96" y="16" width="48" height="16"/>
@@ -55,7 +55,6 @@
     <property name="cond20" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="36" name="Player Spawn" type="event" x="112" y="80" width="16" height="16"/>
   <object id="43" name="Create Owner" type="event" x="128" y="32" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc taba_house2_owner,8,2"/>

@@ -2,6 +2,9 @@
 ; The name of the installer
 Name "Tuxemon"
 
+; Set the icon for the installer
+Icon "../mods/tuxemon/gfx/icon.ico"
+
 ; The file to write
 OutFile "tuxemon-installer.exe"
 
@@ -20,62 +23,64 @@ InstallDirRegKey HKLM "Software\Tuxemon" "Install_Dir"
 
 ;--------------------------------
 
-;Include Modern UI
+; Include Modern UI
+!include "MUI2.nsh"
 
-;  !include "MUI2.nsh"
+; MUI Settings
+!define MUI_ABORTWARNING
 
 ; Pages
+!insertmacro MUI_PAGE_WELCOME
+!insertmacro MUI_PAGE_LICENSE "$%TXMNBuildDir%\LICENSE"
+!insertmacro MUI_PAGE_COMPONENTS
+!insertmacro MUI_PAGE_DIRECTORY
+!insertmacro MUI_PAGE_INSTFILES
+!insertmacro MUI_PAGE_FINISH
 
+!insertmacro MUI_UNPAGE_CONFIRM
+!insertmacro MUI_UNPAGE_INSTFILES
 
-;  !insertmacro MUI_PAGE_WELCOME
-;  !insertmacro MUI_PAGE_LICENSE "$%TXMNBuildDir%\LICENSE"
-;  !insertmacro MUI_PAGE_COMPONENTS
-;  !insertmacro MUI_PAGE_DIRECTORY
-;  !insertmacro MUI_PAGE_INSTFILES
-;  !insertmacro MUI_PAGE_FINISH
-
-; non modernUI
-Page license
-Page components
-Page directory
-Page instfiles
-
-UninstPage uninstConfirm
-UninstPage instfiles
+; Languages
+!insertmacro MUI_LANGUAGE "English"
 
 ;--------------------------------
 LicenseData "$%TXMNBuildDir%\LICENSE"
-;--------------------------------
+
+!define VERSION "0.4.35.0"
+VIProductVersion "${VERSION}"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "ProductName" "Tuxemon"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "FileVersion" "${VERSION}"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "FileDescription" "Tuxemon is a free, open source monster-fighting RPG."
+VIAddVersionKey /LANG=${LANG_ENGLISH} "LegalCopyright" "GNU GPL v3"
 
 ; The stuff to install
 Section "Tuxemon (required)"
 
   SectionIn RO
-  
+
   ; Set output path to the installation directory.
   SetOutPath $INSTDIR
-  
+
   ; Put file there
   File "$%TXMNBuildDir%\run_tuxemon.exe"
   File /r "$%TXMNBuildDir%\*"
 
   ; Write the installation path into the registry
   WriteRegStr HKLM SOFTWARE\Tuxemon "Install_Dir" "$INSTDIR"
-  
+
   ; Write the uninstall keys for Windows
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Tuxemon" "DisplayName" "Tuxemon"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Tuxemon" "UninstallString" '"$INSTDIR\uninstall.exe"'
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Tuxemon" "NoModify" 1
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Tuxemon" "NoRepair" 1
   WriteUninstaller "$INSTDIR\uninstall.exe"
-  
+
 SectionEnd
 
 ; Optional section (can be disabled by the user)
 Section "Start Menu Shortcuts"
 
   CreateDirectory "$SMPROGRAMS\Tuxemon"
-  ; To remove: CreateShortcut "$SMPROGRAMS\Tuxemon\Uninstall.lnk" "$INSTDIR\uninstall.exe"
   CreateShortcut "$SMPROGRAMS\Tuxemon\Tuxemon.lnk" "$INSTDIR\Tuxemon.nsi"
 
 SectionEnd
@@ -85,7 +90,7 @@ SectionEnd
 ; Uninstaller
 
 Section "Uninstall"
-  
+
   ; Remove registry keys
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Tuxemon"
   DeleteRegKey HKLM SOFTWARE\NSIS_Tuxemon

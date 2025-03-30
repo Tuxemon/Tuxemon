@@ -3,50 +3,68 @@
     "category": "spirit_fire",
     "moveset": [
         {
-            "level_learned": 2,
-            "technique": "supernova"
+            "level_learned": 1,
+            "technique": "fire_ball"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "chill_mist"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "muddle"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "invictus"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "midnight_mantle"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "flamethrower"
         },
         {
             "level_learned": 28,
-            "technique": "rock"
+            "technique": "water_blast"
         },
         {
-            "level_learned": 32,
-            "technique": "fire_ball"
+            "level_learned": 31,
+            "technique": "breathe_fire"
+        },
+        {
+            "level_learned": 40,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [
         {
-            "at_level": 18,
-            "monster_slug": "loliferno"
+            "monster_slug": "loliferno",
+            "item": "flintstone"
+        },
+        {
+            "at_level": 20,
+            "monster_slug": "spirain"
         }
     ],
     "history": [
         {
             "mon_slug": "loliferno",
             "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "spirain",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "tornicane",
+            "evo_stage": "stage2"
         }
     ],
+    "terrains": ["swamp"],
+    "tags": ["flame", "light"],
     "shape": "blob",
     "stage": "basic",
     "types": [

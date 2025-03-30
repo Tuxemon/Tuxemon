@@ -3,31 +3,31 @@
     "category": "dragon_moth",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "fire_ball"
         },
         {
-            "level_learned": 2,
-            "technique": "kindling_flame"
+            "level_learned": 1,
+            "technique": "fire_claw"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "muddle"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "breathe_fire"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "chameleon"
         },
         {
             "level_learned": 16,
-            "technique": "fire_claw"
+            "technique": "kindling_flame"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "webs_wind"
         },
         {
@@ -35,11 +35,11 @@
             "technique": "sunburst"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "magma"
         },
         {
-            "level_learned": 36,
+            "level_learned": 37,
             "technique": "arcane_eye"
         },
         {
@@ -54,13 +54,15 @@
             "evo_stage": "basic"
         }
     ],
+    "terrains": [],
+    "tags": ["bug", "bite", "bird"],
     "shape": "dragon",
     "stage": "stage1",
     "types": [
         "fire"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 245,
+    "txmn_id": 210,
     "height": 183,
     "weight": 30,
     "catch_rate": 70.0,

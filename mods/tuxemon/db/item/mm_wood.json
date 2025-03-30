@@ -1,19 +1,27 @@
 {
   "conditions": [
-    "is type wood",
-    "is max_moves"
+    {
+      "type": "type",
+      "parameters": ["wood"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "learn_mm wood"
+    {
+      "type": "learn_mm",
+      "parameters": ["wood"]
+    }
   ],
   "slug": "mm_wood",
   "sort": "utility",
   "sprite": "gfx/items/mm_wood.png",
   "category": "technique",
-  "type": "Consumable",
+  "cost": 1000,
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
+  "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

@@ -1,21 +1,36 @@
 {
   "conditions": [
-    "is has_status",
-    "is current_hp <,1.0",
-    "is current_hp >,0"
+    {
+      "type": "has_status",
+      "operator": "is"
+    },
+    {
+      "type": "current_hp",
+      "parameters": ["<", "1.0"],
+      "operator": "is"
+    },
+    {
+      "type": "current_hp",
+      "parameters": [">", "0"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "restore"
+    {
+      "type": "restore"
+    }
   ],
   "slug": "restoration",
   "sort": "potion",
   "sprite": "gfx/items/apple.png",
   "category": "potion",
-  "type": "Consumable",
+  "cost": 700,
   "usable_in": [
     "MainCombatMenuState",
     "WorldState"
   ],
+  "modifiers": [],
+  "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

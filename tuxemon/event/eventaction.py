@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -84,6 +84,7 @@ class EventAction(ABC):
     session: Session = field(init=False, repr=False)
     _done: bool = field(default=False, init=False)
     _skip: bool = field(default=False, init=False)
+    cancelled: bool = field(default=False, init=False)
 
     def __post_init__(self) -> None:
         self.session = local_session
@@ -96,6 +97,9 @@ class EventAction(ABC):
         Context Protocol.
 
         """
+        if self.cancelled:
+            logger.warning("Event is cancelled, not starting")
+            return
         self.start()
 
     def __exit__(
@@ -110,6 +114,9 @@ class EventAction(ABC):
         Context Protocol.
 
         """
+        if self.cancelled:
+            logger.warning("Event is cancelled, not cleaning up")
+            return
         self.cleanup()
 
     def stop(self) -> None:
@@ -132,8 +139,15 @@ class EventAction(ABC):
         changes.
 
         """
-        with self:
-            self.run()
+        if self.cancelled:
+            logger.debug(f"Action is cancelled, not executing")
+            return
+        try:
+            with self:
+                self.run()
+        except Exception as e:
+            logger.error(f"Error executing action: {e}")
+            raise
 
     def run(self) -> None:
         """
@@ -145,11 +159,18 @@ class EventAction(ABC):
         changes.
 
         """
-        while not self.done:
-            if self._skip:
-                return
-            else:
-                self.update()
+        if self.cancelled:
+            logger.debug(f"Action is cancelled, not running")
+            return
+        try:
+            while not self.done and not self.cancelled:
+                if self._skip:
+                    return
+                else:
+                    self.update()
+        except Exception as e:
+            logger.error(f"Error running action: {e}")
+            raise
 
     @property
     def done(self) -> bool:
@@ -174,7 +195,16 @@ class EventAction(ABC):
         the update method.
 
         """
-        raise NotImplementedError
+        if self.cancelled:
+            logger.debug(f"Action is cancelled, not starting")
+            self.stop()
+            return
+        try:
+            # start the action
+            pass
+        except Exception as e:
+            logger.error(f"Error starting action: {e}")
+            raise
 
     def update(self) -> None:
         """
@@ -191,7 +221,23 @@ class EventAction(ABC):
         to run until the parent EventEngine is stopped.
 
         """
-        self.stop()
+        if self.cancelled:
+            logger.debug(f"Action is cancelled, not updating")
+            return
+        try:
+            self.stop()
+        except Exception as e:
+            logger.error(f"Error updating action: {e}")
+            raise
+
+    def cancel(self) -> None:
+        """
+        Cancels the action.
+
+        This method sets the `cancelled` attribute to `True`, which will prevent
+        the action from being executed.
+        """
+        self.cancelled = True
 
     def cleanup(self) -> None:
         """
@@ -201,3 +247,12 @@ class EventAction(ABC):
         actions which require special handling before they are closed.
 
         """
+        if self.cancelled:
+            logger.debug(f"Action is cancelled, not cleaning up")
+            return
+        try:
+            # clean up the action
+            pass
+        except Exception as e:
+            logger.error(f"Error cleaning up action: {e}")
+            raise

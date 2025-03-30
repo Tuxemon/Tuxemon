@@ -1,0 +1,75 @@
+{
+    "slug": "brachifor",
+    "category": "petrified",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "spiky_strike"
+        },
+        {
+            "level_learned": 1,
+            "technique": "tip"
+        },
+        {
+            "level_learned": 4,
+            "technique": "needle"
+        },
+        {
+            "level_learned": 7,
+            "technique": "pseudopod"
+        },
+        {
+            "level_learned": 13,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 16,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 19,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 25,
+            "technique": "sylvan"
+        },
+        {
+            "level_learned": 28,
+            "technique": "trample"
+        },
+        {
+            "level_learned": 31,
+            "technique": "woodsmash"
+        },
+        {
+            "level_learned": 40,
+            "technique": "cutting_leaves"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "fordin",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "stegofor",
+            "evo_stage": "stage1"
+        }
+    ],
+    "terrains": ["jungle", "woodland"],
+    "tags": ["plant", "shielded", "healing", "megafauna"],
+    "shape": "landrace",
+    "stage": "stage2",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 213,
+    "height": 2000,
+    "weight": 40000,
+    "catch_rate": 35.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

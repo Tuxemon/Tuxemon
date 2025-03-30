@@ -11,7 +11,6 @@
   <object id="9" type="collision" x="288" y="16" width="32" height="320"/>
   <object id="10" type="collision" x="0" y="304" width="320" height="32"/>
   <object id="11" type="collision" x="0" y="16" width="32" height="320"/>
-  <object id="26" name="Player Spawn" type="event" x="48" y="272" width="16" height="16"/>
   <object id="12" type="collision" x="32" y="240" width="96" height="16"/>
   <object id="13" type="collision" x="256" y="240" width="16" height="16"/>
  </objectgroup>

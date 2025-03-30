@@ -1,0 +1,23 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "negative",
+  "effects": [
+    {
+      "type": "wasting",
+      "parameters": ["16"]
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_wasting.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "wasting",
+  "sort": "meta",
+  "cond_id": 24,
+  "use_failure": null,
+  "use_success": "combat_state_wasting_end",
+  "gain_cond": "combat_state_wasting_get"
+}

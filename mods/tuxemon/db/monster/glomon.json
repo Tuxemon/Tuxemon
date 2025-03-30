@@ -1,0 +1,71 @@
+{
+    "slug": "glomon",
+    "category": "bacteria",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "bubbles"
+        },
+        {
+            "level_learned": 1,
+            "technique": "muddle"
+        },
+        {
+            "level_learned": 7,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 10,
+            "technique": "glower"
+        },
+        {
+            "level_learned": 16,
+            "technique": "hallucinogen_spore"
+        },
+        {
+            "level_learned": 19,
+            "technique": "walls"
+        },
+        {
+            "level_learned": 25,
+            "technique": "slime"
+        },
+        {
+            "level_learned": 31,
+            "technique": "rust_bomb"
+        },
+        {
+            "level_learned": 34,
+            "technique": "tsunami"
+        },
+        {
+            "level_learned": 40,
+            "technique": "arcane_eye"
+        },
+        {
+            "level_learned": 46,
+            "technique": "one_two"
+        },
+        {
+            "level_learned": 55,
+            "technique": "earthquake"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "terrains": ["ruins", "urban"],
+    "tags": ["fists", "gaze", "water", "rock"],
+    "shape": "blob",
+    "stage": "standalone",
+    "types": [
+        "earth", "water"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 381,
+    "height": 150,
+    "weight": 20,
+    "catch_rate": 50.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

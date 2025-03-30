@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from collections.abc import Generator
@@ -9,6 +9,7 @@ import pygame
 from pygame.rect import Rect
 
 from tuxemon import graphics, prepare, tools
+from tuxemon.locale import T
 from tuxemon.menu.interface import ExpBar, HpBar, MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.monster import Monster
@@ -35,6 +36,7 @@ class MonsterMenuState(Menu[Optional[Monster]]):
         self.text_area = TextArea(self.font, self.font_color, (96, 96, 96))
         self.text_area.rect = Rect(tools.scale_sequence((20, 80, 80, 100)))
         self.sprites.add(self.text_area, layer=100)
+        self.held_item_display = HeldItemDisplay(self)
 
         # Set up the border images used for the monster slots
         self.monster_slot_border = {}
@@ -236,6 +238,44 @@ class MonsterMenuState(Menu[Optional[Monster]]):
             monster = local_session.player.monsters[self.selected_index]
             image = monster.sprites["front"]
         except IndexError:
+            monster = None
             image = pygame.Surface((1, 1), pygame.SRCALPHA)
+        self.held_item_display.update(monster)
         self.monster_portrait.image = image
         self.refresh_menu_items()
+
+
+class HeldItemDisplay:
+    def __init__(self, menu_state: MonsterMenuState) -> None:
+        self.menu_state = menu_state
+        self.sprite = TextArea(
+            self.menu_state.font, self.menu_state.font_color
+        )
+        self.menu_state.sprites.add(self.sprite)
+
+    def update(self, monster: Optional[Monster]) -> None:
+        text = ""
+        if monster:
+            stats = [
+                (
+                    T.translate("short_hp"),
+                    f"{monster.current_hp}/{monster.hp}",
+                ),
+                (T.translate("armour"), monster.armour),
+                (T.translate("dodge"), monster.dodge),
+                (T.translate("melee"), monster.melee),
+                (T.translate("ranged"), monster.ranged),
+                (T.translate("speed"), monster.speed),
+            ]
+            if monster.held_item.item:
+                stats.append((T.translate("menu_item"), T.translate("yes")))
+            else:
+                stats.append((T.translate("menu_item"), T.translate("no")))
+
+            max_len = max(len(stat[0]) for stat in stats)
+            for stat in stats:
+                text += f"{stat[0]:<{max_len}}: {stat[1]}\n"
+        image = self.menu_state.shadow_text(text)
+        self.sprite.image = image
+        width, height = prepare.SCREEN_SIZE
+        self.sprite.rect.topleft = (width // 10, height // 2 + 50)

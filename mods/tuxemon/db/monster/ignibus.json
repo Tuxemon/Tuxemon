@@ -3,44 +3,40 @@
     "category": "hot_rock",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "fire_ball"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "boulder"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "one_two"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "fire_claw"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "tinder"
         }
     ],
     "evolutions": [
         {
-            "at_level": 0,
             "monster_slug": "eruptibus",
             "item": "earth_booster"
         },
         {
-            "at_level": 0,
             "monster_slug": "eruptibus",
             "item": "tectonic_drill"
         },
         {
-            "at_level": 0,
             "monster_slug": "embazook",
             "item": "metal_booster"
         },
         {
-            "at_level": 0,
             "monster_slug": "embazook",
             "item": "stovepipe"
         }
@@ -55,6 +51,8 @@
             "evo_stage": "stage1"
         }
     ],
+    "terrains": ["desert", "mountains"],
+    "tags": ["flame", "rock", "bite", "bomber"],
     "shape": "polliwog",
     "stage": "basic",
     "types": [

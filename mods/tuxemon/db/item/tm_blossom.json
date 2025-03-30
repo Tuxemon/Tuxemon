@@ -1,20 +1,32 @@
 {
   "conditions": [
-    "is type wood",
-    "is max_moves",
-    "not has_tech blossom"
+    {
+      "type": "type",
+      "parameters": ["wood"],
+      "operator": "is"
+    },
+    {
+      "type": "has_tech",
+      "parameters": ["blossom"],
+      "operator": "not"
+    }
   ],
   "effects": [
-    "learn_tm blossom"
+    {
+      "type": "learn_tm",
+      "parameters": ["blossom"]
+    }
   ],
   "slug": "tm_blossom",
   "sort": "utility",
   "sprite": "gfx/items/tm_wood.png",
   "category": "technique",
-  "type": "Consumable",
+  "cost": 2500,
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
+  "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

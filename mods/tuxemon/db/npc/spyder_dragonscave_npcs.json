@@ -1,142 +1,122 @@
 [
   {
     "slug": "spyder_dragonscave_angrybrute",
-    "template": 
-      {
-        "sprite_name": "knight",
-        "combat_front": "enforcer_rookie",
-        "slug": "enforcer_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_rookie",
+      "slug": "enforcer_rookie"
+    }
   },
   {
     "slug": "spyder_dragonscave_benden",
-    "template": 
-      {
-        "sprite_name": "dragonrider_black",
-        "combat_front": "dragonrider",
-        "slug": "dragonrider"
-      }
-  
+    "template": {
+      "sprite_name": "dragonrider_black",
+      "combat_front": "dragonrider",
+      "slug": "dragonrider"
+    }
   },
   {
     "slug": "spyder_dragonscave_cailin",
-    "template": 
-      {
-        "sprite_name": "dragonrider_blue",
-        "combat_front": "dragonrider",
-        "slug": "dragonrider"
-      }
-  
+    "template": {
+      "sprite_name": "dragonrider_blue",
+      "combat_front": "dragonrider",
+      "slug": "dragonrider"
+    }
   },
   {
     "slug": "spyder_dragonscave_concernedbrute",
-    "template": 
-      {
-        "sprite_name": "knight",
-        "combat_front": "enforcer_rookie",
-        "slug": "enforcer_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_rookie",
+      "slug": "enforcer_rookie"
+    }
   },
   {
     "slug": "spyder_dragonscave_daenny",
-    "template": 
-      {
-        "sprite_name": "dragonrider",
-        "combat_front": "dragonrider",
-        "slug": "dragonrider"
-      }
-  
+    "template": {
+      "sprite_name": "dragonrider",
+      "combat_front": "dragonrider",
+      "slug": "dragonrider"
+    }
   },
   {
     "slug": "spyder_dragonscave_griffin",
-    "template": 
-      {
-        "sprite_name": "dragonrider_fiery",
-        "combat_front": "dragonrider",
-        "slug": "dragonrider"
-      }
-  
+    "template": {
+      "sprite_name": "dragonrider_fiery",
+      "combat_front": "dragonrider",
+      "slug": "dragonrider"
+    }
   },
   {
     "slug": "spyder_dragonscave_lazybrute",
-    "template": 
-      {
-        "sprite_name": "knight",
-        "combat_front": "enforcer_rookie",
-        "slug": "enforcer_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_rookie",
+      "slug": "enforcer_rookie"
+    }
   },
   {
     "slug": "spyder_dragonscave_lessa",
-    "template": 
-      {
-        "sprite_name": "dragonrider_black",
-        "combat_front": "dragonrider",
-        "slug": "dragonrider"
-      }
-  
+    "template": {
+      "sprite_name": "dragonrider_black",
+      "combat_front": "dragonrider",
+      "slug": "dragonrider"
+    }
   },
   {
     "slug": "spyder_dragonscave_lucille",
-    "template": 
-      {
-        "sprite_name": "knight",
-        "combat_front": "enforcer_agent",
-        "slug": "enforcer_agent"
-      }
-  
+    "template": {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_agent",
+      "slug": "enforcer_agent"
+    }
   },
   {
     "slug": "spyder_dragonscave_mal",
-    "template": 
-      {
-        "sprite_name": "spyderboss_fiery",
-        "combat_front": "spyder_boss",
-        "slug": "spyder_boss"
-      }
-  
+    "template": {
+      "sprite_name": "spyderboss_fiery",
+      "combat_front": "spyder_boss",
+      "slug": "spyder_boss"
+    }
   },
   {
     "slug": "spyder_dragonscave_ray",
-    "template": 
-      {
-        "sprite_name": "spyderrookie",
-        "combat_front": "spyder_rookie",
-        "slug": "spyder_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
   },
   {
     "slug": "spyder_dragonscave_tomas",
-    "template": 
-      {
-        "sprite_name": "dragonrider_green",
-        "combat_front": "dragonrider",
-        "slug": "dragonrider"
-      }
-  
+    "template": {
+      "sprite_name": "dragonrider_green",
+      "combat_front": "dragonrider",
+      "slug": "dragonrider"
+    }
   },
   {
     "slug": "spyder_dragonscave_tru",
-    "template": 
-      {
-        "sprite_name": "knight",
-        "combat_front": "knightlord",
-        "slug": "knightlord"
-      }
-  
+    "template": {
+      "sprite_name": "knight",
+      "combat_front": "knightlord",
+      "slug": "knightlord"
+    }
   },
   {
     "slug": "spyder_drokoro",
-    "template": 
-      {
-        "sprite_name": "drokoro",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "drokoro",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
+  },
+  {
+    "slug": "spyder_dragonscave_nurse",
+    "template": {
+      "sprite_name": "nurse_green",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   }
 ]

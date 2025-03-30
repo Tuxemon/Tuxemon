@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """
 
 General "tools" code for pygame graphics operations that don't
@@ -114,7 +114,9 @@ def cursor_from_image(image: pygame.surface.Surface) -> Sequence[str]:
     return icon_string
 
 
-def load_and_scale(filename: str) -> pygame.surface.Surface:
+def load_and_scale(
+    filename: str, scale: float = prepare.SCALE
+) -> pygame.surface.Surface:
     """
     Load an image and scale it according to game settings.
 
@@ -129,7 +131,7 @@ def load_and_scale(filename: str) -> pygame.surface.Surface:
         Loaded and scaled image.
 
     """
-    return scale_surface(load_image(filename), prepare.SCALE)
+    return scale_surface(load_image(filename), scale)
 
 
 def load_image(filename: str) -> pygame.surface.Surface:
@@ -252,7 +254,7 @@ def animation_frame_files(
     * each filename will have the format: animation_name[0-9]*\..*
     * will be returned in sorted order
 
-    For example, water00.png, water01.png, water02.png.
+    For example, water_00.png, water_01.png, water_02.png.
 
     Parameters:
         directory: Directory where the frames are located.
@@ -262,13 +264,12 @@ def animation_frame_files(
         Sequence of filenames.
 
     """
-    frames = list()
     pattern = re.compile(rf"{name}\.?_?[0-9]+\.png")
-    # might be slow on large folders
-    for filename in os.listdir(directory):
-        if pattern.match(filename):
-            frames.append(os.path.join(directory, filename))
-    frames.sort()
+    frames = [
+        os.path.join(directory, filename)
+        for filename in sorted(os.listdir(directory))
+        if pattern.match(filename)
+    ]
     return frames
 
 
@@ -441,49 +442,45 @@ def capture_screenshot(game: LocalPygameClient) -> pygame.surface.Surface:
     return screenshot
 
 
-def get_avatar(
-    session: Session,
-    avatar: Union[str, int],
-) -> Optional[Sprite]:
+def get_avatar(session: Session, avatar: Union[str, int]) -> Optional[Sprite]:
     """
-    Gets the avatar sprite of a monster or NPC.
-
-    Used to parse the string values for dialog event actions.
-    If avatar is a number, we're referring to a monster slot in
-    the player's party.
-    If avatar is a string, we're referring to a monster by name.
+    Retrieves the avatar sprite of a monster or NPC.
 
     Parameters:
         session: Game session.
         avatar: The identifier of the avatar to be used.
 
     Returns:
-        The surface of the monster or NPC avatar sprite.
+        The surface of the monster or NPC avatar sprite, or None if not found.
 
     """
     if isinstance(avatar, int):
         try:
-            player = session.player
-            return player.monsters[avatar].get_sprite("menu")
+            return session.player.monsters[avatar].get_sprite("menu")
         except IndexError:
-            logger.debug("invalid avatar monster slot")
+            logger.debug(f"Invalid avatar monster slot: {avatar}")
             return None
-    else:
-        monsters = list(db.database["monster"])
-        npcs = list(db.database["npc"])
-        if avatar in monsters:
-            monster = db.lookup(avatar, table="monster")
-            assert monster.sprites
-            menu1 = transform_resource_filename(f"{monster.sprites.menu1}.png")
-            menu2 = transform_resource_filename(f"{monster.sprites.menu2}.png")
-            return load_animated_sprite([menu1, menu2], 0.25)
-        if avatar in npcs:
-            npc = db.lookup(avatar, table="npc")
-            path = f"gfx/sprites/player/{npc.template.combat_front}.png"
-            sprite = load_sprite(path)
-            scale_sprite(sprite, 0.5)
-            return sprite
-        return None
+
+    if avatar in db.database["monster"]:
+        monster = db.lookup(avatar, table="monster")
+        if not monster.sprites:
+            logger.warning(f"Monster '{avatar}' has no sprites")
+            return None
+        menu_sprites = [
+            transform_resource_filename(f"{monster.sprites.menu1}.png"),
+            transform_resource_filename(f"{monster.sprites.menu2}.png"),
+        ]
+        return load_animated_sprite(menu_sprites, 0.25)
+
+    if avatar in db.database["npc"]:
+        npc = db.lookup(avatar, table="npc")
+        path = f"gfx/sprites/player/{npc.template.combat_front}.png"
+        sprite = load_sprite(path)
+        scale_sprite(sprite, 0.5)
+        return sprite
+
+    logger.debug(f"Avatar '{avatar}' not found")
+    return None
 
 
 def string_to_colorlike(

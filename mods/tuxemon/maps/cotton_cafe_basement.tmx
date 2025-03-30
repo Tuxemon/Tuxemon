@@ -5,7 +5,7 @@
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="cotton_cafe_basement"/>
-  <property name="types" value="notype"/>
+  <property name="map_type" value="notype"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
  <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_walls.tsx"/>
@@ -41,7 +41,7 @@
   <object id="15" type="collision" x="32" y="64" width="32" height="32"/>
   <object id="16" type="collision" x="144" y="64" width="32" height="16"/>
   <object id="17" type="collision" x="144" y="80" width="16" height="16"/>
-  <object id="19" type="collision" x="95.5581" y="16.3863" width="16" height="16"/>
+  <object id="19" type="collision" x="96" y="16" width="16" height="16"/>
  </objectgroup>
  <objectgroup color="#ffff00" id="6" name="Events">
   <object id="12" name="Play Music" type="event" x="0" y="0" width="16" height="16">
@@ -58,7 +58,6 @@
     <property name="cond20" value="is char_facing player,left"/>
    </properties>
   </object>
-  <object id="14" name="Player Spawn" type="event" x="16" y="160" width="16" height="16"/>
   <object id="18" name="Teleport to Cafe Basement" type="event" x="96" y="32" width="16" height="16">
    <properties>
     <property name="act10" value="transition_teleport cotton_underground.tmx,10,16,0.3"/>

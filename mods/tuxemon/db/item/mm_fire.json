@@ -1,19 +1,27 @@
 {
   "conditions": [
-    "is type fire",
-    "is max_moves"
+    {
+      "type": "type",
+      "parameters": ["fire"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "learn_mm fire"
+    {
+      "type": "learn_mm",
+      "parameters": ["fire"]
+    }
   ],
   "slug": "mm_fire",
   "sort": "utility",
   "sprite": "gfx/items/mm_fire.png",
   "category": "technique",
-  "type": "Consumable",
+  "cost": 1000,
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
+  "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

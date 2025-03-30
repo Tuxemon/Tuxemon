@@ -1,0 +1,72 @@
+{
+    "slug": "frostuce",
+    "category": "freezerburn",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "ice_shield"
+        },
+        {
+            "level_learned": 1,
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 4,
+            "technique": "poison_courtship"
+        },
+        {
+            "level_learned": 7,
+            "technique": "stabilo"
+        },
+        {
+            "level_learned": 13,
+            "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 19,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 25,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 28,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 40,
+            "technique": "snowstorm"
+        },
+        {
+            "level_learned": 55,
+            "technique": "woodsmash"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "cohldrabi",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "lettice",
+            "evo_stage": "stage1"
+        }
+    ],
+    "terrains": ["boreal_snow"],
+    "tags": ["plant", "ice"],
+    "shape": "humanoid",
+    "stage": "stage2",
+    "types": [
+        "water", "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 384,
+    "height": 100,
+    "weight": 18,
+    "catch_rate": 35.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

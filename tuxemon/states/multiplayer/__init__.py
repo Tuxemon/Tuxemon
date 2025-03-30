@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from collections.abc import Callable, Generator
@@ -36,6 +36,7 @@ class MultiplayerMenu(PygameMenuState):
 
     def __init__(self) -> None:
         super().__init__()
+        self.network = self.client.network_manager
 
         menu: list[tuple[str, MenuGameObj]] = []
         menu.append(("multiplayer_host_game", self.host_game))
@@ -68,29 +69,31 @@ class MultiplayerMenu(PygameMenuState):
 
     def host_game(self) -> None:
         # check if server is already hosting a game
-        if self.client.server.listening:
+        assert self.network.client
+        assert self.network.server
+        if self.network.server.listening:
             self.client.pop_state(self)
             open_dialog(
                 local_session, [T.translate("multiplayer_already_hosting")]
             )
 
         # not hosting, so start the process
-        elif not self.client.isclient:
+        elif not self.network.isclient:
             # Configure this game to host
-            self.client.ishost = True
-            self.client.server.server.listen()
-            self.client.server.listening = True
+            self.network.ishost = True
+            self.network.server.server.listen()
+            self.network.server.listening = True
 
             # Enable the game, so we can connect to self
-            self.client.client.enable_join_multiplayer = True
-            self.client.client.client.listen()
-            self.client.client.listening = True
+            self.network.client.enable_join_multiplayer = True
+            self.network.client.client.listen()
+            self.network.client.listening = True
 
             # connect to self
-            while not self.client.client.client.registered:
-                self.client.client.client.autodiscover(autoregister=False)
-                for game in self.client.client.client.discovered_servers:
-                    self.client.client.client.register(game)
+            while not self.network.client.client.registered:
+                self.network.client.client.autodiscover(autoregister=False)
+                for game in self.network.client.client.discovered_servers:
+                    self.network.client.client.register(game)
 
             # close this menu
             self.client.pop_state(self)
@@ -102,10 +105,11 @@ class MultiplayerMenu(PygameMenuState):
 
     def scan_for_games(self) -> None:
         # start the game scanner
-        if not self.client.ishost:
-            self.client.client.enable_join_multiplayer = True
-            self.client.client.listening = True
-            self.client.client.client.listen()
+        assert self.network.client
+        if not self.network.ishost:
+            self.network.client.enable_join_multiplayer = True
+            self.network.client.listening = True
+            self.network.client.client.listen()
 
         # open menu to select games
         self.client.push_state(MultiplayerSelect())
@@ -116,12 +120,13 @@ class MultiplayerMenu(PygameMenuState):
         )
 
     def join(self) -> None:
-        if self.client.ishost:
+        assert self.network.client
+        if self.network.ishost:
             return
         else:
-            self.client.client.enable_join_multiplayer = True
-            self.client.client.listening = True
-            # self.client.client.game.listen()  # "LocalPygameClient" has no attribute "listen"
+            self.network.client.enable_join_multiplayer = True
+            self.network.client.listening = True
+            # network.client.game.listen()  # "LocalPygameClient" has no attribute "listen"
 
 
 class MultiplayerSelect(PopUpMenu[None]):
@@ -131,12 +136,14 @@ class MultiplayerSelect(PopUpMenu[None]):
 
     def __init__(self) -> None:
         super().__init__()
+        self.network = self.client.network_manager
 
         # make a timer to refresh the menu items every second
         self.task(self.reload_items, 1, -1)
 
     def initialize_items(self) -> Generator[MenuItem[None], None, None]:
-        servers = self.client.client.server_list
+        assert self.network.client
+        servers = self.network.client.server_list
         if servers:
             for server in servers:
                 label = self.shadow_text(server)

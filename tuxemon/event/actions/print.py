@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class PrintAction(EventAction):
     """
-    Print the current value of a game variable to the console.
+    Print the current value of one or more game variables to the console.
 
     If no variable is specified, print out values of all game variables.
 
@@ -23,24 +23,28 @@ class PrintAction(EventAction):
         .. code-block::
 
             print
-            print <variable>
+            print <variables>
 
         Script parameters:
-            variable: Optional, prints out the value of this variable.
-
+            variables: Optional, prints out the value of this/these variable/s,
+                multiple variables separated by ':'.
     """
 
     name = "print"
-    variable: Optional[str] = None
+    variables: Optional[str] = None
 
     def start(self) -> None:
         player = self.session.player
 
-        variable = self.variable
-        if variable:
-            if variable in player.game_variables:
-                print(f"{variable}: {player.game_variables[variable]}")
-            else:
-                print(f"'{variable}' has not been set yet by map actions.")
+        if self.variables:
+            variables = [var for var in self.variables.split(":") if var]
+            for variable in variables:
+                if player.game_variables and variable in player.game_variables:
+                    print(f"{variable}: {player.game_variables[variable]}")
+                else:
+                    print(f"'{variable}' has not been set yet by map actions.")
         else:
-            print(player.game_variables)
+            if player.game_variables:
+                print(player.game_variables)
+            else:
+                print("No game variables have been set.")

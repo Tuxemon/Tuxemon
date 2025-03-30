@@ -3,27 +3,35 @@
   "accuracy": 1,
   "animation": "waterspurt",
   "effects": [
-    "give focused,user",
-    "healing user"
+    {
+      "type": "give",
+      "parameters": ["focused", "own_monster"]
+    },
+    {
+      "type": "healing"
+    }
   ],
   "flip_axes": "",
-  "healing_power": 4,
+  "healing_power": 2.0,
   "is_fast": false,
-  "potency": 1,
+  "potency": 0.9,
   "power": 0,
   "range": "special",
-  "recharge": 1,
+  "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "wallow",
   "sort": "damage",
+  "modifiers": [],
   "target": {
-    "enemy monster": 0,
-    "enemy team": 0,
-    "enemy trainer": 0,
-    "own monster": 2,
-    "own team": 0,
-    "own trainer": 0
+    "enemy_monster": false,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": true,
+    "own_team": false,
+    "own_trainer": false
   },
+  "category": "condition_imposer",
+  "tags": ["megafauna"],
   "types": [
     "aether"
   ],

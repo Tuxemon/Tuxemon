@@ -1,0 +1,36 @@
+{
+  "tech_id": 210,
+  "accuracy": 1.0,
+  "animation": "tail",
+	"effects": [
+    {
+      "type": "empty"
+    }
+	],
+  "flip_axes": "",
+  "is_fast": true,
+  "potency": 0.0,
+  "power": 0,
+  "range": "special",
+  "recharge": 1,
+  "sfx": "sfx_blaster",
+  "slug": "wiggle",
+  "sort": "meta",
+  "modifiers": [],
+  "target": {
+		"enemy_monster": false,
+		"enemy_team": false,
+		"enemy_trainer": false,
+		"own_monster": true,
+		"own_team": false,
+		"own_trainer": false
+  },
+  "category": "animal",
+  "tags": ["weak"],
+  "types": [
+    "aether"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "wiggle_success"
+}

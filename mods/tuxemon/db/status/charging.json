@@ -1,0 +1,23 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "positive",
+  "effects": [
+    {
+      "type": "charging"
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_charging.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_tech": "chargedup",
+  "repl_item": "chargedup",
+  "sfx": "sfx_pulse",
+  "slug": "charging",
+  "sort": "meta",
+  "cond_id": 8,
+  "use_failure": null,
+  "use_success": "combat_state_charging_get",
+  "gain_cond": null
+}

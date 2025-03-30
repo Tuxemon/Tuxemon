@@ -3,34 +3,32 @@
     "category": "potentia",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "stone_rot"
         },
         {
-            "level_learned": 2,
-            "technique": "headbutt"
+            "level_learned": 1,
+            "technique": "hammerhead"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "quicksand"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "spit_poison"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "wallow"
         }
     ],
     "evolutions": [
         {
-            "at_level": 0,
             "monster_slug": "vivicinder",
             "tech": "flamethrower"
         },
         {
-            "at_level": 0,
             "monster_slug": "viviphyta",
             "element": "wood"
         },
@@ -40,7 +38,6 @@
             "gender": "female"
         },
         {
-            "at_level": 0,
             "monster_slug": "vivitrans",
             "inside": true
         },
@@ -49,17 +46,14 @@
             "monster_slug": "vivitron"
         },
         {
-            "at_level": 0,
             "monster_slug": "vividactil",
             "item": "petrified_dung"
         },
         {
-            "at_level": 0,
             "monster_slug": "vividactil",
             "item": "shammer_fossil"
         },
         {
-            "at_level": 0,
             "monster_slug": "vividactil",
             "item": "rhincus_fossil"
         },
@@ -99,6 +93,8 @@
             "evo_stage": "stage1"
         }
     ],
+    "terrains": ["grassland", "jungle", "mountains", "ruins", "underground", "woodland"],
+    "tags": ["shapeshifter", "bite"],
     "shape": "serpent",
     "stage": "basic",
     "types": [

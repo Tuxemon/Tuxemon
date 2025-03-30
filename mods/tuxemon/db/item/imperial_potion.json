@@ -1,20 +1,33 @@
 {
   "conditions": [
-    "is current_hp <,1.0",
-    "is current_hp >,0"
+    {
+      "type": "current_hp",
+      "parameters": ["<", "1.0"],
+      "operator": "is"
+    },
+    {
+      "type": "current_hp",
+      "parameters": [">", "0"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "heal 500"
+    {
+      "type": "heal",
+      "parameters": ["500","fixed"]
+    }
   ],
   "slug": "imperial_potion",
   "sort": "potion",
   "sprite": "gfx/items/imperial_potion.png",
   "category": "potion",
-  "type": "Consumable",
+  "cost": 1000,
   "usable_in": [
     "MainCombatMenuState",
     "WorldState"
   ],
+  "modifiers": [],
+  "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

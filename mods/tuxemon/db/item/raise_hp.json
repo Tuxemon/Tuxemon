@@ -1,16 +1,21 @@
 {
   "conditions": [],
   "effects": [
-    "change_stat hp,0.05"
+    {
+      "type": "change_stat",
+      "parameters": ["hp","0.05"]
+    }
   ],
   "slug": "raise_hp",
   "sort": "utility",
   "sprite": "gfx/items/raise_hp.png",
   "category": "stats",
-  "type": "Consumable",
+  "cost": 10000,
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
+  "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

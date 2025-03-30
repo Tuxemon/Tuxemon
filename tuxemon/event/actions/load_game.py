@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -48,7 +48,7 @@ class LoadGameAction(EventAction):
 
         logger.info("Loading!")
         save_data = save.load(index)
-        if save_data and "error" not in save_data:
+        if save_data and "error" not in save_data["npc_state"]:
             try:
                 old_world = client.get_state_by_name(WorldState)
                 # when game is loaded from world menu
@@ -62,7 +62,9 @@ class LoadGameAction(EventAction):
                 if self.index is not None:
                     client.pop_state()
 
-            map_path = prepare.fetch("maps", save_data["current_map"])
+            map_path = prepare.fetch(
+                "maps", save_data["npc_state"]["current_map"]
+            )
             client.push_state(
                 WorldState(
                     map_name=map_path,
@@ -71,10 +73,15 @@ class LoadGameAction(EventAction):
 
             # TODO: Get player from whatever place and use self.client in
             # order to build a Session
-            self.session.player.set_state(self.session, save_data)
+            self.session.player.set_state(self.session, save_data["npc_state"])
 
             # teleport the player to the correct position using an event
             # engine action
-            tele_x, tele_y = save_data["tile_pos"]
-            params = ["player", save_data["current_map"], tele_x, tele_y]
+            tele_x, tele_y = save_data["npc_state"]["tile_pos"]
+            params = [
+                "player",
+                save_data["npc_state"]["current_map"],
+                tele_x,
+                tele_y,
+            ]
             client.event_engine.execute_action("teleport", params)

@@ -3,46 +3,46 @@
     "category": "joyful",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "goad"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "flood"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "geyser"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "grinding"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "flow"
         }
     ],
     "evolutions": [
         {
-            "at_level": 0,
             "monster_slug": "bigfin",
             "item": "water_booster"
         },
         {
-            "at_level": 0,
             "monster_slug": "bigfin",
             "item": "sweet_sand"
         },
         {
-            "at_level": 0,
             "monster_slug": "sharpfin",
             "item": "metal_booster"
         },
         {
-            "at_level": 0,
             "monster_slug": "sharpfin",
             "item": "sea_girdle"
+        },
+        {
+            "monster_slug": "delfeco",
+            "bond": "equals:100"
         }
     ],
     "history": [
@@ -53,15 +53,21 @@
         {
             "mon_slug": "sharpfin",
             "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "delfeco",
+            "evo_stage": "stage1"
         }
     ],
+    "terrains": ["coastal", "freshwater", "sea"],
+    "tags": ["water"],
     "shape": "leviathan",
     "stage": "basic",
     "types": [
         "water"
     ],
     "possible_genders": ["male", "female"],
-    "txmn_id": 24,	
+    "txmn_id": 23,
     "height": 250,
     "weight": 190,
     "catch_rate": 100.0,

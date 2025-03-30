@@ -1,30 +1,46 @@
 {
     "slug": "demosnow",
-    "category": "tempted",	
+    "category": "tempted",
     "moveset": [
         {
-            "level_learned": 2,
-            "technique": "frostbite"
+            "level_learned": 1,
+            "technique": "ice_claw"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "goad"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "torch"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "orbs"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "muck"
         },
         {
             "level_learned": 28,
             "technique": "chill_mist"
+        },
+        {
+            "level_learned": 34,
+            "technique": "grinding"
+        },
+        {
+            "level_learned": 43,
+            "technique": "tsunami"
+        },
+        {
+            "level_learned": 46,
+            "technique": "snowstorm"
+        },
+        {
+            "level_learned": 52,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [
@@ -37,8 +53,14 @@
         {
             "mon_slug": "waysprite",
             "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "lucifice",
+            "evo_stage": "stage2"
         }
     ],
+    "terrains": ["extraplanar"],
+    "tags": ["ice", "leadership", "weather", "darkness", "flame"],
     "shape": "sprite",
     "stage": "stage1",
     "types": [

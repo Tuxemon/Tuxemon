@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -12,12 +12,9 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class StatusCondition(ItemCondition):
+class CurrentStatusCondition(ItemCondition):
     """
     Checks against the creature's current statuses.
-
-    Accepts a single parameter and returns whether it is applied.
-
     """
 
     name = "status"

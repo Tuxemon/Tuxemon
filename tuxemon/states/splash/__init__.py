@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -7,7 +7,7 @@ from typing import Optional
 
 import pygame
 
-from tuxemon import audio, prepare, state
+from tuxemon import prepare, state
 from tuxemon.platform.events import PlayerInput
 from tuxemon.states.transition.fade import FadeOutTransition
 
@@ -46,8 +46,7 @@ class SplashState(state.State):
             width - splash_border - cc.rect.width,
             height - splash_border - cc.rect.height,
         )
-
-        audio.load_sound("sound_ding", None).play()
+        self.client.sound_manager.play_sound("sound_ding")
 
     def resume(self) -> None:
         if self.triggered:

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -12,6 +12,7 @@ from typing import Any, Optional, TypeVar, Union, overload
 import pygame as pg
 
 from tuxemon import networking, prepare, rumble
+from tuxemon.audio import MusicPlayerState, SoundManager
 from tuxemon.cli.processor import CommandProcessor
 from tuxemon.config import TuxemonConfig
 from tuxemon.db import MapType
@@ -19,13 +20,7 @@ from tuxemon.event import EventObject
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.map import TuxemonMap
 from tuxemon.platform.events import PlayerInput
-from tuxemon.platform.platform_pygame.events import (
-    PygameEventQueueHandler,
-    PygameGamepadInput,
-    PygameKeyboardInput,
-    PygameMouseInput,
-    PygameTouchOverlayInput,
-)
+from tuxemon.platform.input_manager import InputManager
 from tuxemon.session import local_session
 from tuxemon.state import State, StateManager
 from tuxemon.states.world.worldstate import WorldState
@@ -47,7 +42,9 @@ class LocalPygameClient:
 
     """
 
-    def __init__(self, config: TuxemonConfig) -> None:
+    def __init__(
+        self, config: TuxemonConfig, screen: pg.surface.Surface
+    ) -> None:
         self.config = config
 
         self.state_manager = StateManager(
@@ -55,7 +52,7 @@ class LocalPygameClient:
             on_state_change=self.on_state_change,
         )
         self.state_manager.auto_state_discovery()
-        self.screen = pg.display.get_surface()
+        self.screen = screen
         self.caption = config.window_caption
         self.done = False
         self.fps = config.fps
@@ -67,33 +64,15 @@ class LocalPygameClient:
         self.inits: list[EventObject] = []
 
         # setup controls
-        keyboard = PygameKeyboardInput(config.keyboard_button_map)
-        gamepad = PygameGamepadInput(
-            config.gamepad_button_map,
-            config.gamepad_deadzone,
-        )
-        self.input_manager = PygameEventQueueHandler()
-        self.input_manager.add_input(0, keyboard)
-        self.input_manager.add_input(0, gamepad)
-        self.controller_overlay = None
-        if config.controller_overlay:
-            self.controller_overlay = PygameTouchOverlayInput(
-                config.controller_transparency,
-            )
-            self.controller_overlay.load()
-            self.input_manager.add_input(0, self.controller_overlay)
-        if not config.hide_mouse:
-            self.input_manager.add_input(0, PygameMouseInput())
+        self.input_manager = InputManager(config)
 
         # movie creation
         self.frame_number = 0
         self.save_to_disk = False
 
         # Set up our networking for multiplayer.
-        self.server = networking.TuxemonServer(self)
-        self.client = networking.TuxemonClient(self)
-        self.ishost = False
-        self.isclient = False
+        self.network_manager = networking.NetworkManager(self)
+        self.network_manager.initialize()
 
         # Set up our combat engine and router.
         # self.combat_engine = CombatEngine(self)
@@ -105,11 +84,8 @@ class LocalPygameClient:
         self.event_persist: dict[str, dict[str, Any]] = {}
 
         # Set up a variable that will keep track of currently playing music.
-        self.current_music = {
-            "status": "stopped",
-            "song": None,
-            "previoussong": None,
-        }
+        self.current_music = MusicPlayerState()
+        self.sound_manager = SoundManager()
 
         if self.config.cli:
             # TODO: There is no protection for the main thread from the cli
@@ -159,11 +135,11 @@ class LocalPygameClient:
 
         # Check if the map type exists
         self.map_type = MapType.notype
-        if map_data.types in list(MapType):
-            self.map_type = MapType(map_data.types)
+        if map_data.map_type in list(MapType):
+            self.map_type = MapType(map_data.map_type)
         else:
             logger.warning(
-                f"The type '{map_data.types}' doesn't exist."
+                f"The type '{map_data.map_type}' doesn't exist."
                 f"By default assigned {MapType.notype}!"
             )
 
@@ -302,8 +278,8 @@ class LocalPygameClient:
             if time_since_draw >= frame_length:
                 time_since_draw -= frame_length
                 draw(screen)
-                if self.controller_overlay:
-                    self.controller_overlay.draw(screen)
+                if self.input_manager.controller_overlay:
+                    self.input_manager.controller_overlay.draw(screen)
                 flip()
                 frames += 1
 
@@ -324,11 +300,7 @@ class LocalPygameClient:
 
         """
         # Update our networking
-        if self.client.listening:
-            self.client.update(time_delta)
-            self.add_clients_to_map(self.client.client.registry)
-        if self.server.listening:
-            self.server.update()
+        self.network_manager.update(time_delta)
 
         # get all the input waiting for use
         events = self.input_manager.process_events()
@@ -361,7 +333,7 @@ class LocalPygameClient:
         Use to prevent player from holding buttons while state changes.
 
         """
-        events = self.input_manager.release_controls()
+        events = self.input_manager.event_queue.release_controls()
         self.key_events = list(self.process_events(events))
 
     def update_states(self, time_delta: float) -> None:
@@ -425,10 +397,8 @@ class LocalPygameClient:
         Compute and print the frames per second.
 
         This function only prints FPS if that option has been set in the
-        config.
-        In order to have a long enough time interval to accurately compute the
-        FPS, it only prints the FPS if at least one second has elapsed since
-        last time it printed them.
+        config. It only prints the FPS if at least one second has elapsed
+        since the last time it printed them.
 
         Parameters:
             clock_tick: Seconds elapsed since the last ``update`` call.
@@ -439,18 +409,19 @@ class LocalPygameClient:
 
         Returns:
             Updated values of ``fps_timer`` and ``frames``. They will be the
-            same as the valued passed unless the FPS are printed, in which case
+            same as the values passed unless the FPS are printed, in which case
             they are reset to 0.
-
         """
-        if self.show_fps:
-            fps_timer += clock_tick
-            if fps_timer >= 1:
-                with_fps = f"{self.caption} - {frames / fps_timer:.2f} FPS"
-                pg.display.set_caption(with_fps)
-                return 0, 0
+        if not self.show_fps:
             return fps_timer, frames
-        return 0, 0
+
+        fps_timer += clock_tick
+        if fps_timer >= 1:
+            with_fps = f"{self.caption} - {frames / fps_timer:.2f} FPS"
+            pg.display.set_caption(with_fps)
+            return 0, 0
+
+        return fps_timer, frames
 
     def add_clients_to_map(self, registry: Mapping[str, Any]) -> None:
         """
@@ -559,6 +530,10 @@ class LocalPygameClient:
         """Remove a state"""
         self.state_manager.remove_state(state)
 
+    def remove_state_by_name(self, state: str) -> None:
+        """Remove a state by name"""
+        self.state_manager.remove_state_by_name(state)
+
     @overload
     def push_state(self, state_name: str, **kwargs: Any) -> State:
         pass
@@ -599,6 +574,14 @@ class LocalPygameClient:
         """Replace current state with new one"""
         return self.state_manager.replace_state(state_name, **kwargs)
 
+    def push_state_with_timeout(
+        self,
+        state_name: Union[str, StateType],
+        updates: int = 1,
+    ) -> None:
+        """Push new state, by name, by with timeout"""
+        self.state_manager.push_state_with_timeout(state_name, updates)
+
     @property
     def active_states(self) -> Sequence[State]:
         """List of active states"""
@@ -608,3 +591,8 @@ class LocalPygameClient:
     def current_state(self) -> Optional[State]:
         """Current State object, or None"""
         return self.state_manager.current_state
+
+    @property
+    def active_state_names(self) -> Sequence[str]:
+        """List of names of active states"""
+        return self.state_manager.get_active_state_names()

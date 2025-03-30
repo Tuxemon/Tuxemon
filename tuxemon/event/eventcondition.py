@@ -1,18 +1,17 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+from dataclasses import dataclass
 from typing import Any, ClassVar
 
 from tuxemon.event import MapCondition
 from tuxemon.session import Session
 
 
+@dataclass
 class EventCondition:
-    name: ClassVar[str] = "GenericCondition"
-
-    def __init__(self) -> None:
-        pass
+    name: ClassVar[str]
 
     def test(self, session: Session, condition: MapCondition) -> bool:
         """
@@ -24,23 +23,18 @@ class EventCondition:
 
         Returns:
             Value of the condition.
-
         """
         return True
 
     def get_persist(self, session: Session) -> dict[str, Any]:
         """
         Return dictionary for this event class's data.
-
-        * This dictionary will be shared across all conditions
-        * This dictionary will be saved when game is saved
+        This dictionary will track movement and be shared across all
+        conditions. It will be saved when the game is saved.
 
         Returns:
             Dictionary with the persisting information.
-
         """
-        # Create a dictionary that will track movement
-
         try:
             return session.client.event_persist[self.name]
         except KeyError:

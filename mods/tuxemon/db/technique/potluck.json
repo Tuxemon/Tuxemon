@@ -1,0 +1,45 @@
+{
+  "tech_id": 235,
+  "accuracy": 0.9,
+  "animation": "cakechomp",
+  "effects": [
+    {
+      "type": "give",
+      "parameters": ["exhausted", "own_monster"]
+    },
+    {
+      "type": "give",
+      "parameters": ["noddingoff", "enemy_monster"]
+    },
+    {
+      "type": "healing"
+    }
+  ],
+  "flip_axes": "",
+  "healing_power": 1.0,
+  "is_fast": false,
+  "potency": 0.9,
+  "power": 0.0,
+  "range": "special",
+  "recharge": 1,
+  "sfx": "sfx_blaster",
+  "slug": "potluck",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "condition_imposer",
+  "tags": ["food"],
+  "types": [
+    "aether"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

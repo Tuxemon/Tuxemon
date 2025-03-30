@@ -1,0 +1,45 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "positive",
+  "effects": [
+    {
+      "type": "statchange"
+    },
+    {
+      "type": "chargedup"
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_chargedup.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_tech": "exhausted",
+  "sfx": "sfx_pulse",
+  "slug": "chargedup",
+  "sort": "meta",
+  "statarmour": {
+    "value": 2,
+    "operation": "*"
+  },
+  "statdodge": {
+    "value": 2,
+    "operation": "*"
+  },
+  "statmelee": {
+    "value": 2,
+    "operation": "*"
+  },
+  "statranged": {
+    "value": 2,
+    "operation": "*"
+  },
+  "statspeed": {
+    "value": 2,
+    "operation": "*"
+  },
+  "cond_id": 9,
+  "use_failure": null,
+  "use_success": "combat_state_chargedup_get",
+  "gain_cond": null
+}

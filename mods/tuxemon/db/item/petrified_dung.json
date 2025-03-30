@@ -1,19 +1,31 @@
 {
   "conditions": [
-    "is level >=,0",
-    "is has_path petrified_dung"
+    {
+      "type": "can_evolve",
+      "operator": "is"
+    },
+    {
+      "type": "has_path",
+      "parameters": ["petrified_dung"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "evolve"
+    {
+      "type": "evolve"
+    }
   ],
   "slug": "petrified_dung",
   "sort": "utility",
   "sprite": "gfx/items/petrified_dung.png",
   "category": "morph",
-  "type": "Consumable",
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
+  "behaviors": {
+    "show_dialog_on_success": false
+  },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

@@ -1,0 +1,33 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "positive",
+  "effects": [
+    {
+      "type": "statchange"
+    },
+    {
+      "type": "enraged"
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_enraged.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "enraged",
+  "sort": "meta",
+  "statmelee": {
+    "value": 2,
+    "operation": "*"
+  },
+  "statranged": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "cond_id": 12,
+  "use_failure": null,
+  "use_success": "combat_state_enraged_get",
+  "gain_cond": null
+}

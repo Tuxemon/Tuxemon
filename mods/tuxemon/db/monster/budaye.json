@@ -3,44 +3,40 @@
     "category": "mutual",
     "moveset": [
         {
-            "level_learned": 2,
-            "technique": "muddle"
+            "level_learned": 1,
+            "technique": "tail_lash"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "clamp_on"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "poison_courtship"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "stabilo"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "ram"
         }
     ],
     "evolutions": [
         {
-            "at_level": 0,
             "monster_slug": "bamboon",
             "item": "wood_booster"
         },
         {
-            "at_level": 0,
             "monster_slug": "bamboon",
             "item": "lucky_bamboo"
         },
         {
-            "at_level": 0,
             "monster_slug": "frondly",
             "item": "water_booster"
         },
         {
-            "at_level": 0,
             "monster_slug": "frondly",
             "item": "peace_lily"
         }
@@ -55,6 +51,8 @@
             "evo_stage": "stage1"
         }
     ],
+    "terrains": ["jungle"],
+    "tags": ["plant", "leadership", "food", "tail"],
     "shape": "sprite",
     "stage": "basic",
     "types": [

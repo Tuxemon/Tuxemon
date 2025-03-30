@@ -1,0 +1,26 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "positive",
+  "effects": [
+    {
+      "type": "statchange"
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_focused.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "removed",
+  "sfx": "sfx_pulse",
+  "slug": "focused",
+  "sort": "meta",
+  "statdodge": {
+    "value": 1.5,
+    "operation": "*"
+  },
+  "cond_id": 14,
+  "use_failure": null,
+  "use_success": "combat_state_focused_get",
+  "gain_cond": null
+}

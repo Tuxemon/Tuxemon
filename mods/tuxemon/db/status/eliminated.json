@@ -1,0 +1,15 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "effects": [],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_eliminated.png",
+  "range": "special",
+  "sfx": "sfx_pulse",
+  "slug": "eliminated",
+  "sort": "meta",
+  "cond_id": 0,
+  "use_failure": null,
+  "use_success": null,
+  "gain_cond": null
+}

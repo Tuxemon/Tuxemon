@@ -3,23 +3,23 @@
     "category": "cypselurus",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "flow"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "proboscis"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "goad"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "ice_claw"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "grinding"
         },
         {
@@ -27,23 +27,23 @@
             "technique": "blood_bond"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "geyser"
         },
         {
-            "level_learned": 24,
-            "technique": "tonguespear"
+            "level_learned": 25,
+            "technique": "water_blast"
         },
         {
             "level_learned": 28,
             "technique": "frostbite"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "venomous_tentacle"
         },
         {
-            "level_learned": 36,
+            "level_learned": 37,
             "technique": "flood"
         },
         {
@@ -53,6 +53,8 @@
     ],
     "evolutions": [],
     "history": [],
+    "terrains": ["coastal", "sea"],
+    "tags": ["bird", "water"],
     "shape": "piscine",
     "stage": "standalone",
     "types": [

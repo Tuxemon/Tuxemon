@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -94,8 +94,8 @@ class QuantityMenu(Menu[None]):
         yield MenuItem(image, label, None, None)
 
     def show_money(self) -> Generator[MenuItem[None], None, None]:
-        money = local_session.player.money["player"]
-        label = f"{T.translate('wallet')}: {money}"
+        money_manager = local_session.player.money_controller.money_manager
+        label = f"{T.translate('wallet')}: {money_manager.get_money()}"
         image_money = self.shadow_text(label)
         yield MenuItem(image_money, label, None, None)
 

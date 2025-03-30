@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -32,12 +32,13 @@ def main(
     log.configure()
     prepare.init()
     config = prepare.CONFIG
+    screen = prepare.SCREEN
 
     import pygame
 
     from tuxemon.client import LocalPygameClient
 
-    client = LocalPygameClient(config)
+    client = LocalPygameClient(config, screen)
 
     # global/singleton hack for now
     setattr(prepare, "GLOBAL_CONTROL", client)
@@ -62,8 +63,9 @@ def main(
         client.push_state(SplashState(parent=client.state_manager))
         client.push_state(FadeInTransition())
 
-    if config.skip_titlescreen:
-        map_name = prepare.fetch("maps", prepare.STARTING_MAP)
+    if config.skip_titlescreen and len(config.mods) == 1:
+        destination = f"{prepare.STARTING_MAP}{config.mods[0]}.tmx"
+        map_name = prepare.fetch("maps", destination)
         client.push_state(WorldState(map_name=map_name))
 
     # block of code useful for testing

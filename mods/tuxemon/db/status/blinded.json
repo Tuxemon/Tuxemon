@@ -1,0 +1,30 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "negative",
+  "effects": [
+    {
+      "type": "statchange"
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_blinded.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "blinded",
+  "sort": "meta",
+  "statdodge": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "statspeed": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "cond_id": 17,
+  "use_failure": null,
+  "use_success": "combat_state_blinded_get",
+  "gain_cond": null
+}

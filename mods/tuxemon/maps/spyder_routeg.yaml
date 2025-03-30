@@ -1,0 +1,201 @@
+events:
+  Teleport to Route3a:
+    actions:
+    - transition_teleport spyder_route3.tmx,39,8,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 8
+    type: "event"
+  Teleport to Route3b:
+    actions:
+    - transition_teleport spyder_route3.tmx,39,9,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 9
+    type: "event"
+  Teleport to Route3c:
+    actions:
+    - transition_teleport spyder_route3.tmx,39,10,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 10
+    type: "event"
+  Teleport to Route3d:
+    actions:
+    - transition_teleport spyder_route3.tmx,39,11,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 11
+    type: "event"
+  Teleport to Route3e:
+    actions:
+    - transition_teleport spyder_route3.tmx,39,15,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 15
+    type: "event"
+  Teleport to Route3f:
+    actions:
+    - transition_teleport spyder_route3.tmx,39,33,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 33
+    type: "event"
+  Teleport to Route3g:
+    actions:
+    - transition_teleport spyder_route3.tmx,39,34,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 34
+    type: "event"
+  Teleport to Route3h:
+    actions:
+    - transition_teleport spyder_route3.tmx,39,35,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 35
+    type: "event"
+  Teleport to Route3i:
+    actions:
+    - transition_teleport spyder_route3.tmx,39,36,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 36
+    type: "event"
+  Teleport to Route3l:
+    actions:
+    - transition_teleport spyder_route3.tmx,39,37,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    x: 0
+    y: 37
+    type: "event"
+  Teleport to Routeh1:
+    actions:
+    - transition_teleport spyder_routeh.tmx,23,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 23
+    y: 0
+    type: "event"
+  Teleport to Routeh2:
+    actions:
+    - transition_teleport spyder_routeh.tmx,24,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 24
+    y: 0
+    type: "event"
+  Teleport to Routeh3:
+    actions:
+    - transition_teleport spyder_routeh.tmx,25,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 25
+    y: 0
+    type: "event"
+  Teleport to Routeh4:
+    actions:
+    - transition_teleport spyder_routeh.tmx,26,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 26
+    y: 0
+    type: "event"
+  Teleport to Routeh5:
+    actions:
+    - transition_teleport spyder_routeh.tmx,36,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 36
+    y: 0
+    type: "event"
+  Teleport to Routeh6:
+    actions:
+    - transition_teleport spyder_routeh.tmx,37,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    x: 37
+    y: 0
+    type: "event"
+  Teleport to Routef1:
+    actions:
+    - transition_teleport spyder_routef.tmx,24,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 24
+    y: 39
+    type: "event"
+  Teleport to Routef2:
+    actions:
+    - transition_teleport spyder_routef.tmx,25,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 25
+    y: 39
+    type: "event"
+  Teleport to Routef3:
+    actions:
+    - transition_teleport spyder_routef.tmx,26,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 26
+    y: 39
+    type: "event"
+  Teleport to Routef4:
+    actions:
+    - transition_teleport spyder_routef.tmx,27,0,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 27
+    y: 39
+    type: "event"

@@ -1,0 +1,37 @@
+{
+  "tech_id": 198,
+  "accuracy": 1,
+  "animation": "egg_crack",
+  "effects": [
+    {
+      "type": "cooldown",
+      "parameters": ["user","0","sort","damage"]
+    }
+  ],
+  "flip_axes": "",
+  "is_fast": false,
+  "potency": 1,
+  "power": 0,
+  "range": "special",
+  "recharge": 2,
+  "sfx": "sfx_blaster",
+  "slug": "pouch",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": false,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": true,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "animal",
+  "tags": ["food"],
+  "types": [
+    "aether"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

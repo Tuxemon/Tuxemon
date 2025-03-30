@@ -3,23 +3,23 @@
     "category": "precious_boulder",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "ram"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "boulder"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "mudslide"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "assault"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "thunderball"
         },
         {
@@ -27,7 +27,7 @@
             "technique": "glower"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "ice_claw"
         },
         {
@@ -35,16 +35,20 @@
             "technique": "surge"
         },
         {
-            "level_learned": 44,
+            "level_learned": 43,
             "technique": "stampede"
         },
         {
-            "level_learned": 48,
+            "level_learned": 46,
             "technique": "earthquake"
         },
         {
             "level_learned": 52,
             "technique": "biting_winds"
+        },
+        {
+            "level_learned": 61,
+            "technique": "divinity_beam"
         }
     ],
     "evolutions": [],
@@ -58,6 +62,8 @@
             "evo_stage": "stage1"
         }
     ],
+    "terrains": ["mountains", "urban"],
+    "tags": ["rock", "love", "claws", "bite", "gemstone"],
     "shape": "hunter",
     "stage": "stage2",
     "types": [

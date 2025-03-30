@@ -1,43 +1,31 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import uuid
 from typing import Any, Optional
 
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.locals import POSITION_CENTER
 
-from tuxemon import formula, prepare, tools
-from tuxemon.db import db
+from tuxemon import formula, prepare
+from tuxemon.db import MonsterModel, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.menu.theme import get_theme
 from tuxemon.monster import Monster
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
+from tuxemon.time_handler import today_ordinal
+
+lookup_cache: dict[str, MonsterModel] = {}
 
 
-def find_box_name(instance_id: uuid.UUID) -> Optional[str]:
-    """
-    Finds a monster in the npc's storage boxes and return the box name.
-
-    Parameters:
-        instance_id: The instance_id of the monster.
-
-    Returns:
-        Box name, or None.
-
-    """
-    for box, monsters in local_session.player.monster_boxes.items():
-        monster = next(
-            (m for m in monsters if m.instance_id == instance_id), None
-        )
-        if monster is not None:
-            return box
-    return None
+def _lookup_monsters() -> None:
+    monsters = list(db.database["monster"])
+    for mon in monsters:
+        results = db.lookup(mon, table="monster")
+        if results.txmn_id > 0:
+            lookup_cache[mon] = results
 
 
 def fix_measure(measure: int, percentage: float) -> int:
@@ -59,36 +47,40 @@ class MonsterInfoState(PygameMenuState):
         width = menu._width
         height = menu._height
         menu._width = fix_measure(menu._width, 0.97)
-        # history
-        evo = ""
-        if monster.history:
-            if len(monster.history) == 1:
-                evo = T.translate("yes_evolution")
-            else:
-                evo = T.translate("yes_evolutions")
-        else:
-            evo = T.translate("no_evolution")
+        # evolutions
+        evo = T.translate("no_evolution")
+        if monster.evolutions:
+            evo = T.translate(
+                "yes_evolution"
+                if len(monster.evolutions) == 1
+                else "yes_evolutions"
+            )
         # types
         types = " ".join(map(lambda s: T.translate(s.slug), monster.types))
         # weight and height
-        results = db.lookup(monster.slug, table="monster")
+        models = list(lookup_cache.values())
+        results = next(
+            (model for model in models if model.slug == monster.slug), None
+        )
+        if results is None:
+            return
         diff_weight = formula.diff_percentage(monster.weight, results.weight)
         diff_height = formula.diff_percentage(monster.height, results.height)
-        unit = local_session.player.game_variables["unit_measure"]
-        if unit == "Metric":
+        unit = self.client.config.unit_measure
+        if unit == "metric":
             mon_weight = monster.weight
             mon_height = monster.height
-            unit_weight = "kg"
-            unit_height = "cm"
+            unit_weight = prepare.U_KG
+            unit_height = prepare.U_CM
         else:
             mon_weight = formula.convert_lbs(monster.weight)
             mon_height = formula.convert_ft(monster.height)
-            unit_weight = "lb"
-            unit_height = "ft"
+            unit_weight = prepare.U_LB
+            unit_height = prepare.U_FT
         # name
         menu._auto_centering = False
         lab1: Any = menu.add.label(
-            title=str(monster.txmn_id) + ". " + monster.name.upper(),
+            title=f"{monster.txmn_id}. {monster.name.upper()}",
             label_id="name",
             font_size=self.font_size_small,
             align=locals.ALIGN_LEFT,
@@ -98,7 +90,7 @@ class MonsterInfoState(PygameMenuState):
         # level + exp
         exp = monster.total_experience
         lab2: Any = menu.add.label(
-            title="Lv. " + str(monster.level) + " - " + str(exp) + "px",
+            title=f"Lv. {monster.level} - {exp}px",
             label_id="level",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -118,12 +110,7 @@ class MonsterInfoState(PygameMenuState):
         lab3.translate(fix_measure(width, 0.50), fix_measure(height, 0.20))
         # weight
         lab4: Any = menu.add.label(
-            title=str(mon_weight)
-            + " "
-            + unit_weight
-            + " ("
-            + str(diff_weight)
-            + "%)",
+            title=f"{mon_weight} {unit_weight} ({diff_weight}%)",
             label_id="weight",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -132,12 +119,7 @@ class MonsterInfoState(PygameMenuState):
         lab4.translate(fix_measure(width, 0.50), fix_measure(height, 0.25))
         # height
         lab5: Any = menu.add.label(
-            title=str(mon_height)
-            + " "
-            + unit_height
-            + " ("
-            + str(diff_height)
-            + "%)",
+            title=f"{mon_height} {unit_height} ({diff_height}%)",
             label_id="height",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -172,11 +154,11 @@ class MonsterInfoState(PygameMenuState):
         )
         lab8.translate(fix_measure(width, 0.50), fix_measure(height, 0.40))
         # taste
-        tastes = T.translate("tastes") + ": "
-        cold = T.translate("taste_" + monster.taste_cold)
-        warm = T.translate("taste_" + monster.taste_warm)
+        tastes = T.translate("tastes")
+        cold = T.translate(f"taste_{monster.taste_cold.lower()}")
+        warm = T.translate(f"taste_{monster.taste_warm.lower()}")
         lab9: Any = menu.add.label(
-            title=tastes + cold + ", " + warm,
+            title=f"{tastes}: {cold}, {warm}",
             label_id="taste",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -184,7 +166,7 @@ class MonsterInfoState(PygameMenuState):
         )
         lab9.translate(fix_measure(width, 0.50), fix_measure(height, 0.45))
         # capture
-        doc = formula.today_ordinal() - monster.capture
+        doc = today_ordinal() - monster.capture
         if doc >= 1:
             ref = (
                 T.format("tuxepedia_trade", {"doc": doc})
@@ -207,7 +189,7 @@ class MonsterInfoState(PygameMenuState):
         lab10.translate(fix_measure(width, 0.50), fix_measure(height, 0.50))
         # hp
         lab11: Any = menu.add.label(
-            title=T.translate("short_hp") + ": " + str(monster.hp),
+            title=f"{T.translate('short_hp')}: {monster.hp}",
             label_id="hp",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -216,7 +198,7 @@ class MonsterInfoState(PygameMenuState):
         lab11.translate(fix_measure(width, 0.80), fix_measure(height, 0.15))
         # armour
         lab12: Any = menu.add.label(
-            title=T.translate("short_armour") + ": " + str(monster.armour),
+            title=f"{T.translate('short_armour')}: {monster.armour}",
             label_id="armour",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -225,7 +207,7 @@ class MonsterInfoState(PygameMenuState):
         lab12.translate(fix_measure(width, 0.80), fix_measure(height, 0.20))
         # dodge
         lab13: Any = menu.add.label(
-            title=T.translate("short_dodge") + ": " + str(monster.dodge),
+            title=f"{T.translate('short_dodge')}: {monster.dodge}",
             label_id="dodge",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -234,7 +216,7 @@ class MonsterInfoState(PygameMenuState):
         lab13.translate(fix_measure(width, 0.80), fix_measure(height, 0.25))
         # melee
         lab14: Any = menu.add.label(
-            title=T.translate("short_melee") + ": " + str(monster.melee),
+            title=f"{T.translate('short_melee')}: {monster.melee}",
             label_id="melee",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -243,7 +225,7 @@ class MonsterInfoState(PygameMenuState):
         lab14.translate(fix_measure(width, 0.80), fix_measure(height, 0.30))
         # ranged
         lab15: Any = menu.add.label(
-            title=T.translate("short_ranged") + ": " + str(monster.ranged),
+            title=f"{T.translate('short_ranged')}: {monster.ranged}",
             label_id="ranged",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -252,7 +234,7 @@ class MonsterInfoState(PygameMenuState):
         lab15.translate(fix_measure(width, 0.80), fix_measure(height, 0.35))
         # speed
         lab16: Any = menu.add.label(
-            title=T.translate("short_speed") + ": " + str(monster.speed),
+            title=f"{T.translate('short_speed')}: {monster.speed}",
             label_id="speed",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -269,10 +251,10 @@ class MonsterInfoState(PygameMenuState):
             float=True,
         )
         lab17.translate(fix_measure(width, 0.01), fix_measure(height, 0.56))
-        # history
+        # evolution
         lab18: Any = menu.add.label(
             title=evo,
-            label_id="history",
+            label_id="evolution",
             font_size=self.font_size_small,
             wordwrap=True,
             align=locals.ALIGN_LEFT,
@@ -280,7 +262,7 @@ class MonsterInfoState(PygameMenuState):
         )
         lab18.translate(fix_measure(width, 0.01), fix_measure(height, 0.76))
 
-        # history monsters
+        # evolution monsters
         f = menu.add.frame_h(
             float=True,
             width=fix_measure(width, 0.95),
@@ -289,9 +271,8 @@ class MonsterInfoState(PygameMenuState):
         )
         f.translate(fix_measure(width, 0.02), fix_measure(height, 0.80))
         f._relax = True
-        elements = []
-        for ele in monster.history:
-            elements.append(ele.mon_slug)
+        slugs = [ele.monster_slug for ele in monster.evolutions]
+        elements = list(dict.fromkeys(slugs))
         labels = [
             menu.add.label(
                 title=f"{T.translate(ele).upper()}",
@@ -303,9 +284,7 @@ class MonsterInfoState(PygameMenuState):
         for elements in labels:
             f.pack(elements)
         # image
-        new_image = pygame_menu.BaseImage(
-            tools.transform_resource_filename(monster.front_battle_sprite),
-        )
+        new_image = self._create_image(monster.front_battle_sprite)
         new_image.scale(prepare.SCALE, prepare.SCALE)
         image_widget = menu.add.image(image_path=new_image.copy())
         image_widget.set_float(origin_position=True)
@@ -313,10 +292,8 @@ class MonsterInfoState(PygameMenuState):
             fix_measure(width, 0.20), fix_measure(height, 0.05)
         )
         # tuxeball
-        tuxeball = pygame_menu.BaseImage(
-            tools.transform_resource_filename(
-                f"gfx/items/{monster.capture_device}.png"
-            ),
+        tuxeball = self._create_image(
+            f"gfx/items/{monster.capture_device}.png"
         )
         capture_device = menu.add.image(image_path=tuxeball)
         capture_device.set_float(origin_position=True)
@@ -325,6 +302,8 @@ class MonsterInfoState(PygameMenuState):
         )
 
     def __init__(self, **kwargs: Any) -> None:
+        if not lookup_cache:
+            _lookup_monsters()
         monster: Optional[Monster] = None
         source = ""
         for element in kwargs.values():
@@ -334,68 +313,52 @@ class MonsterInfoState(PygameMenuState):
             raise ValueError("No monster")
         width, height = prepare.SCREEN_SIZE
 
-        background = pygame_menu.BaseImage(
-            image_path=tools.transform_resource_filename(
-                prepare.BG_MONSTER_INFO
-            ),
-            drawing_position=POSITION_CENTER,
-        )
-        theme = get_theme()
+        theme = self._setup_theme(prepare.BG_MONSTER_INFO)
         theme.scrollarea_position = locals.POSITION_EAST
-        theme.background_color = background
         theme.widget_alignment = locals.ALIGN_CENTER
 
         super().__init__(height=height, width=width)
         self._source = source
         self._monster = monster
         self.add_menu_items(self.menu, monster)
-        self.repristinate()
-
-    def repristinate(self) -> None:
-        """Repristinate original theme (color, alignment, etc.)"""
-        theme = get_theme()
-        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = self.background_color
-        theme.widget_alignment = locals.ALIGN_LEFT
+        self.reset_theme()
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-        param: dict[str, Any] = {}
-        param["source"] = self._source
+        param: dict[str, Any] = {"source": self._source}
         client = self.client
-        if (
-            self._source == "WorldMenuState"
-            or self._source == "MonsterMenuState"
-            or self._source == "MonsterTakeState"
-        ):
-            if self._source == "MonsterTakeState":
-                box = find_box_name(self._monster.instance_id)
-                if box is None:
-                    raise ValueError("Box doesn't exist")
-                monsters = local_session.player.monster_boxes[box]
-                nr_monsters = len(monsters)
-                slot = monsters.index(self._monster)
-            else:
-                monsters = local_session.player.monsters
-                nr_monsters = len(monsters)
-                slot = monsters.index(self._monster)
+
+        if self._source in [
+            "WorldMenuState",
+            "MonsterMenuState",
+            "MonsterTakeState",
+        ]:
+            monsters = self._get_monsters()
+            slot = monsters.index(self._monster)
+
             if event.button == buttons.RIGHT and event.pressed:
-                if slot < (nr_monsters - 1):
-                    slot += 1
-                    param["monster"] = monsters[slot]
-                else:
-                    param["monster"] = monsters[0]
+                slot = (slot + 1) % len(monsters)
+                param["monster"] = monsters[slot]
                 client.replace_state("MonsterInfoState", kwargs=param)
             elif event.button == buttons.LEFT and event.pressed:
-                if slot > 0:
-                    slot -= 1
-                    param["monster"] = monsters[slot]
-                else:
-                    param["monster"] = monsters[nr_monsters - 1]
+                slot = (slot - 1) % len(monsters)
+                param["monster"] = monsters[slot]
                 client.replace_state("MonsterInfoState", kwargs=param)
+
         if (
-            event.button == buttons.BACK
-            or event.button == buttons.B
-            or event.button == buttons.A
-        ) and event.pressed:
+            event.button in (buttons.BACK, buttons.B, buttons.A)
+            and event.pressed
+        ):
             client.pop_state()
+
         return None
+
+    def _get_monsters(self) -> list[Monster]:
+        if self._source == "MonsterTakeState":
+            box = local_session.player.monster_boxes.get_box_name(
+                self._monster.instance_id
+            )
+            if box is None:
+                raise ValueError("Box doesn't exist")
+            return local_session.player.monster_boxes.get_monsters(box)
+        else:
+            return local_session.player.monsters

@@ -1,0 +1,24 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "negative",
+  "effects": [
+    {
+      "type": "flinching",
+      "parameters": ["0.5"]
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_flinching.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "repl_tech": "empty",
+  "sfx": "sfx_pulse",
+  "slug": "flinching",
+  "sort": "meta",
+  "cond_id": 25,
+  "use_failure": null,
+  "use_success": "combat_state_flinching_get",
+  "gain_cond": null
+}

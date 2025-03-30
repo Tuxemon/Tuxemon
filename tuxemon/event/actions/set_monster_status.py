@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -7,10 +7,10 @@ import uuid
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon.condition.condition import Condition
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
+from tuxemon.status.status import Status
 
 logger = logging.getLogger(__name__)
 
@@ -45,7 +45,7 @@ class SetMonsterStatusAction(EventAction):
         if not value:
             monster.status = list()
         else:
-            status = Condition()
+            status = Status()
             status.load(value)
             status.steps = steps
             status.link = monster

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -9,6 +9,7 @@ from typing import Optional, final
 from tuxemon.animation_entity import AnimationEntity
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.map_view import AnimationInfo
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
@@ -74,18 +75,15 @@ class PlayMapAnimationAction(EventAction):
                 return
             position = ((int(self.tile_pos_x)), (self.tile_pos_y))
 
-        animations = world_state.map_animations
+        animations = world_state.map_renderer.map_animations
         if animation_name in animations:
             logger.debug(f"{animation_name} loaded")
-            animations[animation_name]["position"] = position
-            animations[animation_name]["animation"].play()
+            animations[animation_name].position = position
+            animations[animation_name].animation.play()
         else:
             logger.debug(f"{animation_name} not loaded, loading")
 
-            animations[animation_name] = {
-                "animation": _animation.play,
-                "position": position,
-                "layer": 4,
-            }
-
+            animations[animation_name] = AnimationInfo(
+                _animation.play, position, 4
+            )
             _animation.play.play()

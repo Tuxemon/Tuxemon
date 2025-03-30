@@ -1,0 +1,44 @@
+{
+  "tech_id": 230,
+  "accuracy": 0.7,
+  "animation": "foodthrow",
+  "effects": [
+    {
+      "type": "give",
+      "parameters": ["revenge", "own_monster"]
+    },
+    {
+      "type": "give",
+      "parameters": ["poison", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
+  ],
+  "flip_axes": "",
+  "is_fast": false,
+  "potency": 1.0,
+  "power": 2.0,
+  "range": "ranged",
+  "recharge": 2,
+  "sfx": "sfx_blaster",
+  "slug": "just_desserts",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "exotic",
+  "tags": ["food"],
+  "types": [
+    "metal", "earth"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

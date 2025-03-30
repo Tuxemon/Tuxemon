@@ -131,7 +131,7 @@ make BACKEND=LINUX; sudo make install BACKEND=LINUX
 ### Fedora Linux
 
 ```shell
-sudo dnf install SDL*-devel freetype-devel libjpeg-devel portmidi-devel python3-devel virtualenv venv
+sudo dnf install SDL2*-devel freetype-devel libjpeg-devel portmidi-devel python3-devel
 git clone https://github.com/Tuxemon/Tuxemon.git
 python3 -m venv venv
 source venv/bin/activate
@@ -317,7 +317,7 @@ code in this project is licenced under [the GPLv3](https://www.gnu.org/licenses/
 
 GPL v3+
 
-Copyright (C) 2014-2024 William Edwards <shadowapex@gmail.com>,
+Copyright (C) 2014-2025 William Edwards <shadowapex@gmail.com>,
 Benjamin Bean <superman2k5@gmail.com>
 
 This software is distributed under the GNU General Public Licence as

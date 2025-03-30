@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="21" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="71">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="21" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="76">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="scoop1"/>
-  <property name="types" value="dungeon"/>
+  <property name="map_type" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/Superpowers_Tilesheet.tsx"/>
  <tileset firstgid="1601" source="../gfx/tilesets/core_indoor_floors.tsx"/>
@@ -102,14 +102,14 @@
     <property name="cond1" value="not variable_set scooppaine:yes"/>
    </properties>
   </object>
-  <object id="51" name="Create Rubid" type="event" x="224" y="160" width="16" height="16">
+  <object id="51" name="Create Rubid" type="event" x="208" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_scoop_rubid,13,10"/>
     <property name="act2" value="char_face spyder_scoop_rubid,left"/>
     <property name="cond1" value="not char_exists spyder_scoop_rubid"/>
    </properties>
   </object>
-  <object id="52" name="Talk Rubid" type="event" x="208" y="160" width="16" height="16">
+  <object id="52" name="Talk Rubid" type="event" x="224" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_scoop_rubid1"/>
     <property name="act2" value="add_monster birdling,35,spyder_scoop_rubid,5,10"/>
@@ -189,67 +189,112 @@
   </object>
   <object id="65" name="Talk Lanth" type="event" x="0" y="80" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_scoop_lanth"/>
-    <property name="act1" value="translated_dialog spyder_scoop_lanth1"/>
-    <property name="act2" value="add_monster mrmoswitch,35,spyder_scoop_lanth,5,10"/>
-    <property name="act3" value="add_monster picc,35,spyder_scoop_lanth,5,10"/>
-    <property name="act4" value="start_battle player,spyder_scoop_lanth"/>
-    <property name="act5" value="translated_dialog spyder_scoop_lanth2"/>
-    <property name="act6" value="set_variable scooplanth:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_scoop_lanth"/>
+    <property name="act3" value="translated_dialog spyder_scoop_lanth1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster mrmoswitch,35,spyder_scoop_lanth,5,10"/>
+    <property name="act6" value="add_monster picc,35,spyder_scoop_lanth,5,10"/>
+    <property name="act7" value="start_battle player,spyder_scoop_lanth"/>
+    <property name="act8" value="translated_dialog spyder_scoop_lanth2"/>
+    <property name="act9" value="set_variable scooplanth:yes"/>
     <property name="cond1" value="not variable_set scooplanth:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="66" name="Talk Berys" type="event" x="272" y="64" width="32" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_scoop_berys"/>
-    <property name="act1" value="translated_dialog spyder_scoop_berys1"/>
-    <property name="act2" value="add_monster propellercat,40,spyder_scoop_berys,5,10"/>
-    <property name="act3" value="add_monster embazook,35,spyder_scoop_berys,5,10"/>
-    <property name="act4" value="start_battle player,spyder_scoop_berys"/>
-    <property name="act5" value="translated_dialog spyder_scoop_berys2"/>
-    <property name="act6" value="set_variable scoopberys:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_scoop_berys"/>
+    <property name="act3" value="translated_dialog spyder_scoop_berys1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster propellercat,40,spyder_scoop_berys,5,10"/>
+    <property name="act6" value="add_monster embazook,35,spyder_scoop_berys,5,10"/>
+    <property name="act7" value="start_battle player,spyder_scoop_berys"/>
+    <property name="act8" value="translated_dialog spyder_scoop_berys2"/>
+    <property name="act9" value="set_variable scoopberys:yes"/>
     <property name="cond1" value="not variable_set scoopberys:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="67" name="Talk Turner" type="event" x="16" y="160" width="16" height="48">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_scoop_turner"/>
-    <property name="act1" value="translated_dialog spyder_scoop_turner1"/>
-    <property name="act2" value="add_monster flacono,30,spyder_scoop_turner,5,10"/>
-    <property name="act3" value="add_monster squabbit,30,spyder_scoop_turner,5,10"/>
-    <property name="act4" value="start_battle player,spyder_scoop_turner"/>
-    <property name="act5" value="translated_dialog spyder_scoop_turner2"/>
-    <property name="act6" value="set_variable scoopturner:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_scoop_turner"/>
+    <property name="act3" value="translated_dialog spyder_scoop_turner1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster flacono,30,spyder_scoop_turner,5,10"/>
+    <property name="act6" value="add_monster squabbit,30,spyder_scoop_turner,5,10"/>
+    <property name="act7" value="start_battle player,spyder_scoop_turner"/>
+    <property name="act8" value="translated_dialog spyder_scoop_turner2"/>
+    <property name="act9" value="set_variable scoopturner:yes"/>
     <property name="cond1" value="not variable_set scoopturner:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="68" name="Talk Paine" type="event" x="96" y="64" width="16" height="32">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_scoop_paine"/>
-    <property name="act1" value="translated_dialog spyder_scoop_paine1"/>
-    <property name="act2" value="add_monster possessun,35,spyder_scoop_paine,5,10"/>
-    <property name="act3" value="add_monster cairfrey,30,spyder_scoop_paine,5,10"/>
-    <property name="act4" value="start_battle player,spyder_scoop_paine"/>
-    <property name="act5" value="translated_dialog spyder_scoop_paine2"/>
-    <property name="act6" value="set_variable scooppaine:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_scoop_paine"/>
+    <property name="act3" value="translated_dialog spyder_scoop_paine1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster possessun,35,spyder_scoop_paine,5,10"/>
+    <property name="act6" value="add_monster cairfrey,30,spyder_scoop_paine,5,10"/>
+    <property name="act7" value="start_battle player,spyder_scoop_paine"/>
+    <property name="act8" value="translated_dialog spyder_scoop_paine2"/>
+    <property name="act9" value="set_variable scooppaine:yes"/>
     <property name="cond1" value="not variable_set scooppaine:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="69" name="Talk Rubid" type="event" x="192" y="160" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_scoop_rubid"/>
-    <property name="act1" value="translated_dialog spyder_scoop_rubid1"/>
-    <property name="act2" value="add_monster birdling,35,spyder_scoop_rubid,5,10"/>
-    <property name="act3" value="add_monster hatchling,30,spyder_scoop_rubid,5,10"/>
-    <property name="act4" value="start_battle player,spyder_scoop_rubid"/>
-    <property name="act5" value="translated_dialog spyder_scoop_rubid2"/>
-    <property name="act6" value="set_variable scooprubid:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_scoop_rubid"/>
+    <property name="act3" value="translated_dialog spyder_scoop_rubid1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster birdling,35,spyder_scoop_rubid,5,10"/>
+    <property name="act6" value="add_monster hatchling,30,spyder_scoop_rubid,5,10"/>
+    <property name="act7" value="start_battle player,spyder_scoop_rubid"/>
+    <property name="act8" value="translated_dialog spyder_scoop_rubid2"/>
+    <property name="act9" value="set_variable scooprubid:yes"/>
     <property name="cond1" value="not variable_set scooprubid:yes"/>
     <property name="cond2" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="71" name="Post Talk Turner" type="event" x="32" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_scoop_turner2"/>
+    <property name="behav1" value="talk spyder_scoop_turner"/>
+    <property name="cond1" value="is variable_set scoopturner:yes"/>
+   </properties>
+  </object>
+  <object id="72" name="Post Talk Lanth" type="event" x="32" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_scoop_lanth2"/>
+    <property name="behav1" value="talk spyder_scoop_lanth"/>
+    <property name="cond1" value="is variable_set scooplanth:yes"/>
+   </properties>
+  </object>
+  <object id="73" name="Post Talk Paine" type="event" x="96" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_scoop_paine2"/>
+    <property name="behav1" value="talk spyder_scoop_paine"/>
+    <property name="cond1" value="is variable_set scooppaine:yes"/>
+   </properties>
+  </object>
+  <object id="74" name="Post Talk Rubid" type="event" x="224" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_scoop_rubid2"/>
+    <property name="behav1" value="talk spyder_scoop_rubid"/>
+    <property name="cond1" value="is variable_set scooprubid:yes"/>
+   </properties>
+  </object>
+  <object id="75" name="Post Talk Berys" type="event" x="320" y="96" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_scoop_berys2"/>
+    <property name="behav1" value="talk spyder_scoop_berys"/>
+    <property name="cond1" value="is variable_set scoopberys:yes"/>
    </properties>
   </object>
  </objectgroup>

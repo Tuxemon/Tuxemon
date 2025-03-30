@@ -1,19 +1,31 @@
 {
   "conditions": [
-    "is level >=,0",
-    "is has_path shammer_fossil"
+    {
+      "type": "can_evolve",
+      "operator": "is"
+    },
+    {
+      "type": "has_path",
+      "parameters": ["shammer_fossil"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "evolve"
+    {
+      "type": "evolve"
+    }
   ],
   "slug": "shammer_fossil",
   "sort": "utility",
   "sprite": "gfx/items/shammer_fossil.png",
   "category": "fossil",
-  "type": "KeyItem",
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
+  "behaviors": {
+    "show_dialog_on_success": false
+  },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

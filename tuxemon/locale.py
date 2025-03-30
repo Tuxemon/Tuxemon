@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import dataclasses
@@ -8,6 +8,7 @@ import logging
 import os
 import os.path
 from collections.abc import Callable, Generator, Iterable, Mapping, Sequence
+from gettext import GNUTranslations
 from typing import Any, Optional
 
 from babel.messages.mofile import write_mo
@@ -15,12 +16,14 @@ from babel.messages.pofile import read_po
 
 from tuxemon import prepare
 from tuxemon.constants import paths
-from tuxemon.formula import convert_km, convert_mi
+from tuxemon.formula import convert_ft, convert_km, convert_lbs, convert_mi
 from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
 FALLBACK_LOCALE = "en_US"
+LOCALE_DIR = "l18n"
+LOCALE_CONFIG = prepare.CONFIG.locale
 
 
 @dataclasses.dataclass(frozen=True, order=True)
@@ -33,31 +36,29 @@ class LocaleInfo:
     path: str
 
 
-class TranslatorPo:
+class LocaleFinder:
     """
-    gettext-based translator class.
+    A class used to find and manage locales.
 
-    po files are read and compiled into mo files by gettext.
-    the mo files are saved in ~/.tuxemon/cache/l18n.
-
+    This class is responsible for searching for locales in a given directory
+    and providing information about the found locales.
     """
 
-    def __init__(self) -> None:
-        self.translate: Callable[[str], str] = lambda x: x
+    def __init__(self, root_dir: str) -> None:
+        self.root_dir = root_dir
+        self.locale_names: set[str] = set()
 
-    @staticmethod
-    def search_locales() -> Generator[LocaleInfo, None, None]:
+    def search_locales(self) -> Generator[LocaleInfo, Any, None]:
         """
-        Search local folder and return LocaleInfo objects.
+        Searches for locales in the given directory.
 
         Yields:
-            The information of each locale.
-
+            LocaleInfo: Information about each found locale.
         """
         logger.debug("searching locales...")
-        root = prepare.fetch("l18n")
-        for locale in os.listdir(root):
-            locale_path = os.path.join(root, locale)
+        for locale in os.listdir(self.root_dir):
+            self.locale_names.add(locale)
+            locale_path = os.path.join(self.root_dir, locale)
             if os.path.isdir(locale_path):
                 for category in os.listdir(locale_path):
                     category_path = os.path.join(locale_path, category)
@@ -67,13 +68,85 @@ class TranslatorPo:
                             if os.path.isfile(path) and name.endswith(".po"):
                                 domain = name[:-3]
                                 info = LocaleInfo(
-                                    locale,
-                                    category,
-                                    domain,
-                                    path,
+                                    locale, category, domain, path
                                 )
                                 logger.debug("found: %s", info)
                                 yield info
+
+    def has_locale(self, locale_name: str) -> bool:
+        """
+        Checks if a locale with the given name exists.
+
+        Parameters:
+            locale_name: The name of the locale to check.
+
+        Returns:
+            bool: True if the locale exists, False otherwise.
+        """
+        return locale_name in self.locale_names
+
+
+class GettextCompiler:
+    """
+    A class used to compile gettext translation files.
+
+    This class is responsible for compiling gettext translation files (.po)
+    into binary format (.mo) that can be used by gettext.
+    """
+
+    def __init__(self, cache_dir: str) -> None:
+        self.cache_dir = cache_dir
+
+    def compile_gettext(self, po_path: str, mo_path: str) -> None:
+        """
+        Compiles a gettext translation file.
+
+        Parameters:
+            po_path: The path to the gettext translation file (.po) to compile.
+            mo_path: The path to store the compiled translation file (.mo).
+        """
+        mofolder = os.path.dirname(mo_path)
+        os.makedirs(mofolder, exist_ok=True)
+        with open(po_path, encoding="UTF8") as po_file:
+            catalog = read_po(po_file)
+        with open(mo_path, "wb") as mo_file:
+            write_mo(mo_file, catalog)
+            logger.debug("writing l18n mo: %s", mo_path)
+
+    def get_mo_path(self, locale: str, category: str, domain: str) -> str:
+        """
+        Returns the path to the MO file.
+
+        Parameters:
+            locale: The locale of the MO file.
+            category: The category of the MO file.
+            domain: The domain of the MO file.
+
+        Returns:
+            The path to the MO file.
+            l18n/locale/LC_category/domain_name.mo
+        """
+        return os.path.join(
+            self.cache_dir, LOCALE_DIR, locale, category, domain + ".mo"
+        )
+
+
+class TranslatorPo:
+    """
+    A class used to translate text using gettext.
+
+    This class is responsible for loading and managing translations, as well as
+    providing methods for translating text.
+    """
+
+    def __init__(
+        self, locale_finder: LocaleFinder, gettext_compiler: GettextCompiler
+    ) -> None:
+        self.locale_finder = locale_finder
+        self.gettext_compiler = gettext_compiler
+        self.locale_name: str = LOCALE_CONFIG.slug
+        self.translate: Callable[[str], str] = lambda x: x
+        self.language_changed_callbacks: list[Callable[[str], None]] = []
 
     def collect_languages(self, recompile_translations: bool = False) -> None:
         """
@@ -86,7 +159,7 @@ class TranslatorPo:
 
         """
         self.build_translations(recompile_translations)
-        self.load_translator(prepare.CONFIG.locale)
+        self.load_translator(self.locale_name)
 
     def build_translations(self, recompile_translations: bool = False) -> None:
         """
@@ -98,40 +171,30 @@ class TranslatorPo:
                 translations).
 
         """
-        # l18n/locale/LC_category/domain_name.mo
-        cache = os.path.join(paths.CACHE_DIR, "l18n")
-        for info in self.search_locales():
-            mo_path = os.path.join(
-                cache,
-                info.locale,
-                info.category,
-                info.domain + ".mo",
+        for info in self.locale_finder.search_locales():
+            mo_path = self.gettext_compiler.get_mo_path(
+                info.locale, info.category, info.domain
             )
             if recompile_translations or not os.path.exists(mo_path):
-                self.compile_gettext(info.path, mo_path)
+                self.gettext_compiler.compile_gettext(info.path, mo_path)
+                logger.info(f"Built translation file: {mo_path}")
+        logger.info("Translation files built successfully")
 
-    @staticmethod
-    def compile_gettext(po_path: str, mo_path: str) -> None:
+    def _get_translation(
+        self, locale_name: str, domain: str, localedir: str
+    ) -> Optional[GNUTranslations]:
         """
-        Compile po file into mo file.
-
-        Parameters:
-            po_path: Path of the po file.
-            mo_path: Path of the mo file.
-
+        Gets all translators for the given locale and domain.
         """
-        mofolder = os.path.dirname(mo_path)
-        os.makedirs(mofolder, exist_ok=True)
-        with open(po_path, encoding="UTF8") as po_file:
-            catalog = read_po(po_file)
-        with open(mo_path, "wb") as mo_file:
-            write_mo(mo_file, catalog)
-            logger.debug("writing l18n mo: %s", mo_path)
+        for info in self.locale_finder.search_locales():
+            if info.locale == locale_name and info.domain == domain:
+                return gettext.translation(
+                    info.domain, localedir, [locale_name]
+                )
+        return None
 
     def load_translator(
-        self,
-        locale_name: str = "en_US",
-        domain: str = "base",
+        self, locale_name: str = LOCALE_CONFIG.slug, domain: str = "base"
     ) -> None:
         """
         Load a selected locale for translation.
@@ -142,23 +205,121 @@ class TranslatorPo:
 
         """
         logger.debug("loading translator for: %s", locale_name)
-        localedir = os.path.join(paths.CACHE_DIR, "l18n")
+        localedir = os.path.join(paths.CACHE_DIR, LOCALE_DIR)
         fallback = gettext.translation("base", localedir, [FALLBACK_LOCALE])
+        trans = (
+            self._get_translation(locale_name, domain, localedir) or fallback
+        )
 
-        for info in self.search_locales():
-            if info.locale == locale_name and info.domain == domain:
-                trans = gettext.translation(
-                    info.domain,
-                    localedir,
-                    [locale_name],
-                )
-                trans.add_fallback(fallback)
-                break
-        else:
+        if trans is fallback:
             logger.warning("Locale %s not found. Using fallback.", locale_name)
-            trans = fallback
+
+        trans.add_fallback(fallback)
         trans.install()
         self.translate = trans.gettext
+        self.locale_name = locale_name
+
+    def get_current_language(self) -> str:
+        """
+        Returns the current language.
+
+        Returns:
+            The current language.
+        """
+        return self.locale_name
+
+    def is_language_supported(self, locale_name: str) -> bool:
+        """
+        Checks if a language is supported.
+
+        Parameters:
+            locale_name: The name of the language to check.
+
+        Returns:
+            True if the language is supported, False otherwise.
+        """
+        return self.locale_finder.has_locale(locale_name)
+
+    def change_language(self, locale_name: str) -> None:
+        """
+        Changes the current language to the specified locale.
+
+        Parameters:
+            locale_name: The name of the locale to switch to.
+        """
+        if self.is_language_supported(locale_name):
+            self.load_translator(locale_name)
+            self.language_changed(locale_name)
+        else:
+            logger.warning(f"Language {locale_name} is not supported")
+
+    def get_available_languages(self) -> list[str]:
+        """
+        Returns a list of all available languages.
+        """
+        return sorted(list(self.locale_finder.locale_names))
+
+    def language_changed(self, locale_name: str) -> None:
+        """
+        Notifies all registered callbacks that the language has changed.
+
+        Parameters:
+            locale_name: The new language.
+        """
+        if self.is_language_supported(locale_name):
+            for callback in self.language_changed_callbacks:
+                callback(locale_name)
+        else:
+            logger.warning(f"Language {locale_name} is not supported")
+
+    def has_translation(self, locale_name: str, msgid: str) -> bool:
+        """
+        Checks if a translation exists for a certain language.
+
+        Parameters:
+            locale_name: The name of the language to check.
+            msgid: The msgid of the translation to check.
+
+        Returns:
+            True if the translation exists, False otherwise.
+        """
+        localedir = os.path.join(paths.CACHE_DIR, LOCALE_DIR)
+        trans = self._get_translation(locale_name, "base", localedir)
+        if trans is None:
+            return False
+        return trans.gettext(msgid) != msgid
+
+    def _print_translation_error(self, locale_name: str, msgid: str) -> None:
+        """Prints an error message when a translation is missing."""
+        print(f"Translation doesn't exist for '{locale_name}': {msgid}")
+
+    def check_translation(self, message_id: str) -> None:
+        """
+        Checks if a translation exists for a certain message_id in all existing locales.
+
+        Parameters:
+            message_id: The message_id of the translation to check.
+        """
+        _locale = prepare.CONFIG.locale.translation_mode
+        if _locale == "none":
+            return
+        else:
+            if _locale == "all":
+                locale_names = self.locale_finder.locale_names.copy()
+                locale_names.remove("README.md")
+                for locale_name in locale_names:
+                    if (
+                        locale_name
+                        and message_id
+                        and not self.has_translation(locale_name, message_id)
+                    ):
+                        self._print_translation_error(locale_name, message_id)
+            else:
+                if self.is_language_supported(_locale):
+                    if not self.has_translation(_locale, message_id):
+                        self._print_translation_error(_locale, message_id)
+                else:
+                    raise ValueError(f"Locale '{_locale}' doesn't exist.")
 
     def format(
         self,
@@ -213,63 +374,127 @@ def replace_text(session: Session, text: str) -> str:
     """
     player = session.player
     client = session.client
-    text = text.replace("${{name}}", player.name)
-    text = text.replace("${{currency}}", "$")
-    text = text.replace(r"\n", "\n")
-    text = text.replace("${{money}}", str(player.money["player"]))
-    # replace variables
-    for key, value in player.game_variables.items():
-        text = text.replace("${{var:" + str(key) + "}}", str(value))
-    # distance (metric / imperial)
-    if player.game_variables["unit_measure"] == "Metric":
-        text = text.replace("${{length}}", "km")
-        text = text.replace("${{weight}}", "kg")
-        text = text.replace("${{height}}", "cm")
-        text = text.replace(
-            "${{steps}}",
-            str(convert_km(player.steps)),
+    unit_measure = prepare.CONFIG.unit_measure
+
+    replacements = {
+        "${{name}}": player.name,
+        "${{NAME}}": player.name.upper(),
+        "${{currency}}": "$",
+        "${{money}}": str(player.money_controller.money_manager.get_money()),
+        "${{tuxepedia_seen}}": str(player.tuxepedia.get_seen_count()),
+        "${{tuxepedia_caught}}": str(player.tuxepedia.get_caught_count()),
+        "${{map_name}}": client.map_name,
+        "${{map_desc}}": client.map_desc,
+        "${{north}}": client.map_north,
+        "${{south}}": client.map_south,
+        "${{east}}": client.map_east,
+        "${{west}}": client.map_west,
+    }
+
+    # Add unit-specific replacements
+    if unit_measure == "metric":
+        replacements.update(
+            {
+                "${{length}}": prepare.U_KM,
+                "${{weight}}": prepare.U_KG,
+                "${{height}}": prepare.U_CM,
+                "${{steps}}": str(convert_km(player.steps)),
+            }
         )
     else:
-        text = text.replace("${{length}}", "mi")
-        text = text.replace("${{weight}}", "lb")
-        text = text.replace("${{height}}", "ft")
-        text = text.replace(
-            "${{steps}}",
-            str(convert_mi(player.steps)),
+        replacements.update(
+            {
+                "${{length}}": prepare.U_MI,
+                "${{weight}}": prepare.U_LB,
+                "${{height}}": prepare.U_FT,
+                "${{steps}}": str(convert_mi(player.steps)),
+            }
         )
-    # maps
-    text = text.replace("${{map_name}}", client.map_name)
-    text = text.replace("${{map_desc}}", client.map_desc)
-    text = text.replace("${{north}}", client.map_north)
-    text = text.replace("${{south}}", client.map_south)
-    text = text.replace("${{east}}", client.map_east)
-    text = text.replace("${{west}}", client.map_west)
 
-    for i in range(len(player.monsters)):
-        monster = player.monsters[i]
-        text = text.replace("${{monster_" + str(i) + "_name}}", monster.name)
-        text = text.replace(
-            "${{monster_" + str(i) + "_desc}}",
-            monster.description,
+    # Add monster-specific replacements
+    for i, monster in enumerate(player.monsters):
+        monster_replacements = {
+            "${{monster_" + str(i) + "_name}}": monster.name,
+            "${{monster_" + str(i) + "_desc}}": monster.description,
+            "${{monster_"
+            + str(i)
+            + "_types}}": " - ".join(
+                T.translate(_type.name) for _type in monster.types
+            ),
+            "${{monster_" + str(i) + "_category}}": monster.category,
+            "${{monster_" + str(i) + "_shape}}": T.translate(monster.shape),
+            "${{monster_" + str(i) + "_hp}}": str(monster.current_hp),
+            "${{monster_" + str(i) + "_hp_max}}": str(monster.hp),
+            "${{monster_" + str(i) + "_level}}": str(monster.level),
+            "${{monster_"
+            + str(i)
+            + "_gender}}": T.translate(f"gender_{monster.gender}"),
+            "${{monster_" + str(i) + "_bond}}": str(monster.bond),
+            "${{monster_" + str(i) + "_txmn_id}}": str(monster.txmn_id),
+            "${{monster_"
+            + str(i)
+            + "_warm}}": T.translate(f"taste_{monster.taste_warm}"),
+            "${{monster_"
+            + str(i)
+            + "_cold}}": T.translate(f"taste_{monster.taste_cold}"),
+            "${{monster_"
+            + str(i)
+            + "_moves}}": " - ".join(_move.name for _move in monster.moves),
+        }
+
+        # Add unit-specific monster replacements
+        if unit_measure == "metric":
+            monster_replacements.update(
+                {
+                    "${{monster_"
+                    + str(i)
+                    + "_steps}}": str(convert_km(monster.steps)),
+                    "${{monster_" + str(i) + "_weight}}": str(monster.weight),
+                    "${{monster_" + str(i) + "_height}}": str(monster.height),
+                }
+            )
+        else:
+            monster_replacements.update(
+                {
+                    "${{monster_"
+                    + str(i)
+                    + "_steps}}": str(convert_mi(monster.steps)),
+                    "${{monster_"
+                    + str(i)
+                    + "_weight}}": str(convert_lbs(monster.weight)),
+                    "${{monster_"
+                    + str(i)
+                    + "_height}}": str(convert_ft(monster.height)),
+                }
+            )
+
+        monster_replacements.update(
+            {
+                "${{monster_" + str(i) + "_armour}}": str(monster.armour),
+                "${{monster_" + str(i) + "_dodge}}": str(monster.dodge),
+                "${{monster_" + str(i) + "_melee}}": str(monster.melee),
+                "${{monster_" + str(i) + "_ranged}}": str(monster.ranged),
+                "${{monster_" + str(i) + "_speed}}": str(monster.speed),
+            }
         )
-        text = text.replace("${{monster_" + str(i) + "_type}}", monster.slug)
-        text = text.replace(
-            "${{monster_" + str(i) + "_category}}",
-            monster.category,
+
+        replacements.update(monster_replacements)
+
+    # Add game variable replacements
+    for key, value in player.game_variables.items():
+        replacements.update(
+            {
+                "${{var:" + str(key) + "}}": str(value),
+                "${{msgid:" + str(key) + "}}": T.translate(str(value)),
+            }
         )
-        text = text.replace("${{monster_" + str(i) + "_shape}}", monster.shape)
-        text = text.replace(
-            "${{monster_" + str(i) + "_hp}}",
-            str(monster.current_hp),
-        )
-        text = text.replace(
-            "${{monster_" + str(i) + "_hp_max}}",
-            str(monster.hp),
-        )
-        text = text.replace(
-            "${{monster_" + str(i) + "_level}}",
-            str(monster.level),
-        )
+
+    # Replace placeholders in the text
+    for placeholder, replacement in replacements.items():
+        text = text.replace(placeholder, replacement)
+
+    # Replace newline characters
+    text = text.replace(r"\n", "\n")
 
     return text
 
@@ -290,6 +515,7 @@ def process_translate_text(
 
     """
     replace_values = {}
+    T.check_translation(text_slug)
 
     # extract INI-style params
     for param in parameters:
@@ -317,4 +543,7 @@ def process_translate_text(
     return [replace_text(session, page) for page in pages]
 
 
-T = TranslatorPo()
+locale_finder = LocaleFinder(prepare.fetch("l18n"))
+gettext_compiler = GettextCompiler(paths.CACHE_DIR)
+T = TranslatorPo(locale_finder, gettext_compiler)
+T.collect_languages()

@@ -1,18 +1,27 @@
 {
   "conditions": [
-    "not type metal"
+    {
+      "type": "type",
+      "parameters": ["metal"],
+      "operator": "not"
+    }
   ],
   "effects": [
-    "switch metal"
+    {
+      "type": "switch",
+      "parameters": ["metal"]
+    }
   ],
   "slug": "metal_cherry",
   "sort": "utility",
   "sprite": "gfx/items/cherry.png",
   "category": "elements",
-  "type": "Consumable",
+  "cost": 450,
   "usable_in": [
     "MainCombatMenuState"
   ],
+  "modifiers": [],
+  "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

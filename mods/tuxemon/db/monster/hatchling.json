@@ -3,35 +3,39 @@
     "category": "egg",
     "moveset": [
         {
-            "level_learned": 2,
-            "technique": "wing_tip"
+            "level_learned": 1,
+            "technique": "roll"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "peck"
         },
         {
-            "level_learned": 6,
-            "technique": "air_chain"
-        },
-        {
-            "level_learned": 8,
-            "technique": "altitude"
-        },
-        {
-            "level_learned": 12,
-            "technique": "fluff_up"
-        },
-        {
-            "level_learned": 24,
-            "technique": "peregrine"
-        },
-        {
-            "level_learned": 28,
+            "level_learned": 4,
             "technique": "whirlwind"
         },
         {
-            "level_learned": 32,
+            "level_learned": 7,
+            "technique": "egg_smash"
+        },
+        {
+            "level_learned": 13,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 25,
+            "technique": "altitude"
+        },
+        {
+            "level_learned": 28,
+            "technique": "peregrine"
+        },
+        {
+            "level_learned": 31,
+            "technique": "air_chain"
+        },
+        {
+            "level_learned": 34,
             "technique": "one_two"
         }
     ],
@@ -47,6 +51,8 @@
             "evo_stage": "stage1"
         }
     ],
+    "terrains": ["grassland", "jungle", "woodland"],
+    "tags": ["bird"],
     "shape": "flier",
     "stage": "basic",
     "types": [

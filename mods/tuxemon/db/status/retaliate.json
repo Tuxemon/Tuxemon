@@ -1,0 +1,22 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "positive",
+  "effects": [
+    {
+      "type": "retaliate"
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_retaliate.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "retaliate",
+  "sort": "meta",
+  "cond_id": 31,
+  "use_failure": null,
+  "use_success": "combat_state_retaliate_get",
+  "gain_cond": null
+}

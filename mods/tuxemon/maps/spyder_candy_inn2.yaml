@@ -15,10 +15,6 @@ events:
     conditions:
     - not music_playing music_cathedral_theme
     type: "event"
-  Player Spawn:
-    x: 5
-    y: 2
-    type: "event"
   Create Jess:
     actions:
     - create_npc spyder_candyinn_jess,5,14
@@ -155,9 +151,9 @@ events:
   Bee Event Stung Item:
     actions:
     - add_item cureall
-    - translated_dialog cureall
+    - translated_dialog cureall,,center
     - add_item restoration
-    - translated_dialog restoration
+    - translated_dialog restoration,,center
     - set_variable beeevent:end
     conditions:
     - is variable_set beeevent:done

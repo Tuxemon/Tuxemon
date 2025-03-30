@@ -1,11 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import final
 
-from tuxemon import formula
 from tuxemon.event.eventaction import EventAction
 
 
@@ -23,8 +22,6 @@ class SetVariableAction(EventAction):
     Script parameters:
         variable: Name of the variable.
         value: Value of the variable
-            (if value "today" = today's date)
-
     """
 
     name = "set_variable"
@@ -38,8 +35,5 @@ class SetVariableAction(EventAction):
         var_key = str(var_list[0])
         var_value = str(var_list[1])
 
-        # replaces today value with ordinal
-        if var_value == "today":
-            var_value = str(formula.today_ordinal())
         # Append the game_variables dictionary with the key: value pair
         player.game_variables[var_key] = var_value

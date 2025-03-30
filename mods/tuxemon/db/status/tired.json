@@ -1,0 +1,22 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "negative",
+  "effects": [
+    {
+      "type": "tired"
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_tired.png",
+  "range": "special",
+  "repl_pos": "removed",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "tired",
+  "sort": "meta",
+  "cond_id": 10,
+  "use_failure": null,
+  "use_success": "combat_state_tired_get",
+  "gain_cond": null
+}

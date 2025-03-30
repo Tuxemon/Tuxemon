@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -8,9 +8,9 @@ import uuid
 from dataclasses import dataclass
 from typing import final
 
-from tuxemon.db import TasteCold, TasteWarm
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
+from tuxemon.taste import Taste
 
 logger = logging.getLogger(__name__)
 
@@ -50,17 +50,25 @@ class ChangeTasteAction(EventAction):
             return
 
         if self.taste == "warm":
-            warm = list(TasteWarm)
-            warm.remove(TasteWarm.tasteless)
-            warm.remove(monster.taste_warm)
+            warm = [
+                taste.slug
+                for taste in Taste.get_all_tastes().values()
+                if taste.taste_type == "warm"
+                and taste.slug != monster.taste_warm
+                and taste.slug != "tasteless"
+            ]
             warmer = random.choice(warm)
             logger.info(f"{monster.name}'s {self.taste} taste is {warmer}!")
             monster.taste_warm = warmer
             monster.set_stats()
         elif self.taste == "cold":
-            cold = list(TasteCold)
-            cold.remove(TasteCold.tasteless)
-            cold.remove(monster.taste_cold)
+            cold = [
+                taste.slug
+                for taste in Taste.get_all_tastes().values()
+                if taste.taste_type == "cold"
+                and taste.slug != monster.taste_cold
+                and taste.slug != "tasteless"
+            ]
             colder = random.choice(cold)
             logger.info(f"{monster.name}'s {self.taste} taste is {colder}!")
             monster.taste_cold = colder

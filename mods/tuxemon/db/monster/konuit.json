@@ -1,0 +1,50 @@
+{
+    "slug": "konuit",
+    "category": "marsupial",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "blossom"
+        },
+        {
+            "level_learned": 1,
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 4,
+            "technique": "overgrowth"
+        },
+        {
+            "level_learned": 10,
+            "technique": "stabilo"
+        },
+        {
+            "level_learned": 19,
+            "technique": "nest"
+        },
+        {
+            "level_learned": 25,
+            "technique": "pouch"
+        },
+        {
+            "level_learned": 40,
+            "technique": "energy_beam"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "terrains": [],
+    "tags": ["plant"],
+    "shape": "humanoid",
+    "stage": "standalone",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 306,
+    "height": 65,
+    "weight": 14,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

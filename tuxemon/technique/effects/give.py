@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
-from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.condition.condition import Condition
+from tuxemon.combat import get_target_monsters
+from tuxemon.status.status import Status
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
@@ -15,81 +15,53 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class GiveEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class GiveEffect(TechEffect):
     """
     This effect has a chance to give a status effect.
+
+    Parameters:
+        condition: The Status slug (e.g. enraged).
+        objectives: The targets (e.g. own_monster, enemy_monster, etc.), if
+            single "enemy_monster" or "enemy_monster:own_monster"
+
+    eg "give enraged,own_monster"
     """
 
     name = "give"
     condition: str
-    objective: str
+    objectives: str
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> GiveEffectResult:
-        done: bool = False
+    ) -> TechEffectResult:
+        monsters: list[Monster] = []
         combat = tech.combat_state
         player = user.owner
         assert combat and player
+
+        objectives = self.objectives.split(":")
         potency = random.random()
-        value = combat._random_tech_hit
+        value = combat._random_tech_hit.get(user, 0.0)
         success = tech.potency >= potency and tech.accuracy >= value
+
         if success:
-            status = Condition()
+            status = Status()
             status.load(self.condition)
             status.steps = player.steps
-            # 2 vs 2, give status both monsters
-            area = [ele for ele in tech.effects if ele.name == "area"]
-            if player.max_position > 1 and area:
-                monsters: Sequence[Monster] = []
-                both = combat.active_monsters
-                _right = combat.monsters_in_play_right
-                _left = combat.monsters_in_play_left
-                if user in _right:
-                    if self.objective == "user":
-                        monsters = _right
-                        for m in monsters:
-                            status.link = m
-                    elif self.objective == "target":
-                        monsters = _left
-                    else:
-                        monsters = both
-                else:
-                    if self.objective == "user":
-                        monsters = _left
-                        for m in monsters:
-                            status.link = m
-                    elif self.objective == "target":
-                        monsters = _right
-                    else:
-                        monsters = both
-                for mon in monsters:
-                    mon.apply_status(status)
-                    done = True
-            else:
-                status.link = user
-                if self.objective == "user":
-                    user.apply_status(status)
-                    done = True
-                elif self.objective == "target":
-                    target.apply_status(status)
-                    done = True
-                elif self.objective == "both":
-                    user.apply_status(status)
-                    target.apply_status(status)
-                    done = True
-        # show icons
-        if done:
-            combat.reset_status_icons()
-        return {
-            "success": done,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": None,
-        }
+            status.link = user
+
+            monsters = get_target_monsters(objectives, tech, user, target)
+            if monsters:
+                for monster in monsters:
+                    monster.apply_status(status)
+                combat.reset_status_icons()
+
+        return TechEffectResult(
+            name=tech.name,
+            success=bool(monsters),
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=[],
+        )

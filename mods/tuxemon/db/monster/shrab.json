@@ -1,0 +1,51 @@
+{
+    "slug": "shrab",
+    "category": "muscly_crab",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 1,
+            "technique": "ice_shield"
+        },
+        {
+            "level_learned": 4,
+            "technique": "terror"
+        },
+        {
+            "level_learned": 10,
+            "technique": "phantasmal_force"
+        },
+        {
+            "level_learned": 13,
+            "technique": "mind_vise"
+        },
+        {
+            "level_learned": 19,
+            "technique": "flow"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "sheye",
+            "evo_stage": "basic"
+        }
+    ],
+    "terrains": ["coastal", "freshwater", "sea"],
+    "tags": ["mental", "bite", "shielded"],
+    "shape": "polliwog",
+    "stage": "stage1",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 286,
+    "height": 100,
+    "weight": 100,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

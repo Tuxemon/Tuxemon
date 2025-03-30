@@ -4,7 +4,7 @@
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
   <property name="slug" value="bedroom"/>
-  <property name="types" value="notype"/>
+  <property name="map_type" value="notype"/>
  </properties>
  <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
@@ -60,7 +60,7 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="16" name="Lord Lampy" type="interact" x="16" y="16" width="16" height="16">
+  <object id="16" name="Lord Lampy" type="event" x="16" y="16" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog test_lamp"/>
     <property name="cond1" value="is char_facing_tile player"/>
@@ -81,6 +81,5 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="26" name="Player Spawn" type="event" x="64" y="80" width="16" height="16"/>
  </objectgroup>
 </map>

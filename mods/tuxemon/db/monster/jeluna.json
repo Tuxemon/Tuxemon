@@ -1,0 +1,58 @@
+{
+    "slug": "jeluna",
+    "category": "moon_phase",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "midnight_mantle"
+        },
+        {
+            "level_learned": 1,
+            "technique": "shooting_star"
+        },
+        {
+            "level_learned": 4,
+            "technique": "radiance"
+        },
+        {
+            "level_learned": 10,
+            "technique": "roll"
+        },
+        {
+            "level_learned": 19,
+            "technique": "sunburst"
+        },
+        {
+            "level_learned": 22,
+            "technique": "roll"
+        },
+        {
+            "level_learned": 40,
+            "technique": "supernova"
+        },
+        {
+            "level_learned": 46,
+            "technique": "tsunami"
+        },
+        {
+            "level_learned": 55,
+            "technique": "tornado"
+        }
+    ],
+    "evolutions": [],
+    "history": [],
+    "terrains": ["boreal_snow", "extraterrestrial", "ruins", "sea"],
+    "tags": ["celestial", "light", "darkness"],
+    "shape": "blob",
+    "stage": "standalone",
+    "types": [
+        "water"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 305,
+    "height": 30,
+    "weight": 2,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

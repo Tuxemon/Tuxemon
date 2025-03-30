@@ -1,13 +1,19 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from tuxemon.event import MapCondition
+import logging
+from dataclasses import dataclass
+
+from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 from tuxemon.tools import compare
 
+logger = logging.getLogger(__name__)
 
+
+@dataclass
 class MoneyIsCondition(EventCondition):
     """
     Check to see if the character has a certain amount of money (pocket).
@@ -33,7 +39,11 @@ class MoneyIsCondition(EventCondition):
 
     def test(self, session: Session, condition: MapCondition) -> bool:
         player = session.player
-        wallet, operator, _amount = condition.parameters[:3]
+        character_name, operator, _amount = condition.parameters[:3]
+        character = get_npc(session, character_name)
+        if character is None:
+            logger.error(f"Character '{character_name}' not found")
+            return False
 
         if not _amount.isdigit():
             amount = 0
@@ -42,7 +52,6 @@ class MoneyIsCondition(EventCondition):
         else:
             amount = int(_amount)
 
-        # Check if the condition is true
-        if wallet in player.money:
-            return compare(operator, player.money[wallet], amount)
-        return False
+        money_manager = character.money_controller.money_manager
+        money_amount = money_manager.get_money()
+        return compare(operator, money_amount, amount)

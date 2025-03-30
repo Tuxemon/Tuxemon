@@ -1,0 +1,31 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "negative",
+	"conditions": [
+    {
+      "type": "current_hp",
+      "parameters": [">", "0"],
+      "operator": "is"
+    }
+	],
+  "effects": [
+    {
+      "type": "lifeleech",
+      "parameters": ["16"]
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_lifeleech.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "bond": true,
+  "sfx": "sfx_bite",
+  "slug": "lifeleech",
+  "sort": "meta",
+  "cond_id": 3,
+  "use_failure": null,
+  "use_success": "combat_state_lifeleech_end",
+  "gain_cond": "combat_state_lifeleech_get"
+}

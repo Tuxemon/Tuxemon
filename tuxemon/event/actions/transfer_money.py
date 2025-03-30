@@ -1,11 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
 from typing import final
 
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
@@ -16,7 +17,6 @@ logger = logging.getLogger(__name__)
 class TransferMoneyAction(EventAction):
     """
     Transfer money between entities.
-    Both entities needs to have a wallet.
 
     Script usage:
         .. code-block::
@@ -24,12 +24,11 @@ class TransferMoneyAction(EventAction):
             transfer_money <slug1>,<amount>,<slug2>
 
     Script parameters:
-        slug1: Slug name (e.g. NPC, etc.)
+        slug1: Either "player" or character slug name (e.g. "npc_maple").
         amount: amount of money.
-        slug2: Slug name (e.g. NPC, etc.)
+        slug2: Either "player" or character slug name (e.g. "npc_maple").
 
     eg: player,100,mom (player transfer 100 to mom)
-
     """
 
     name = "transfer_money"
@@ -38,28 +37,24 @@ class TransferMoneyAction(EventAction):
     slug2: str
 
     def start(self) -> None:
-        client = self.session.client
-        player = self.session.player
-        wallet_char1 = player.money.get(self.slug1)
-        wallet_char2 = player.money.get(self.slug2)
+        character1 = get_npc(self.session, self.slug1)
+        character2 = get_npc(self.session, self.slug2)
 
-        if wallet_char1 is None:
-            raise AttributeError(f"{self.slug1} has no wallet")
-        if wallet_char2 is None:
-            logger.info(f"{self.slug2} has no wallet, setting it.")
-            client.event_engine.execute_action("set_money", [self.slug2], True)
+        if not character1 or not character2:
+            _char = self.slug1 if not character1 else self.slug2
+            logger.error(f"Character not found in map: {_char}")
+            return
+
+        money_manager = character1.money_controller.money_manager
+
         if self.amount < 0:
             raise AttributeError(f"Value {self.amount} must be >= 0")
-        if self.amount > wallet_char1:
+        if self.amount > money_manager.get_money():
             raise AttributeError(
                 f"{self.slug1}'s wallet doesn't have {self.amount}"
             )
 
-        _negative = -abs(self.amount)
-        _positive = self.amount
-
-        giver = [self.slug1, _negative]
-        receiver = [self.slug2, _positive]
-        client.event_engine.execute_action("modify_money", giver, True)
-        client.event_engine.execute_action("modify_money", receiver, True)
-        logger.info(f"{self.slug1} transfer {self.amount} to {self.slug2}")
+        character1.money_controller.transfer_money_to(self.amount, character2)
+        logger.info(
+            f"{character1.name} transfer {self.amount} to {character2.name}"
+        )

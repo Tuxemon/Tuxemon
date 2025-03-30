@@ -1,12 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
 from dataclasses import dataclass
 from typing import final
 
-from tuxemon import formula
 from tuxemon.event.eventaction import EventAction
 
 
@@ -44,10 +43,6 @@ class SetRandomVariableAction(EventAction):
             value = random.choice(values)
         else:
             value = self.var_value
-
-        # replaces today value with ordinal
-        if value == "today":
-            value = str(formula.today_ordinal())
 
         # Append the game_variables dictionary with the key: value pair
         player.game_variables[self.var_key] = value

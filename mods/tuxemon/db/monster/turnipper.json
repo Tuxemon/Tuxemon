@@ -3,24 +3,40 @@
     "category": "scarytale",
     "moveset": [
         {
-            "level_learned": 2,
-            "technique": "peregrine"
+            "level_learned": 1,
+            "technique": "solar_synthesis"
         },
         {
-            "level_learned": 2,
-            "technique": "fester"
+            "level_learned": 1,
+            "technique": "leaf_stab"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "sylvan"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "pseudopod"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
+            "technique": "invictus"
+        },
+        {
+            "level_learned": 25,
+            "technique": "fester"
+        },
+        {
+            "level_learned": 28,
             "technique": "one_two"
+        },
+        {
+            "level_learned": 31,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 40,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [
@@ -33,8 +49,14 @@
         {
             "mon_slug": "beenstalker",
             "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "wendigger",
+            "evo_stage": "stage2"
         }
     ],
+    "terrains": ["grassland", "woodland"],
+    "tags": ["plant", "ground", "bite"],
     "shape": "hunter",
     "stage": "basic",
     "types": [

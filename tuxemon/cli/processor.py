@@ -1,11 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import os
 import sys
-from collections.abc import Iterable
-from typing import Any
+from collections.abc import Iterable, Sequence
 
 from prompt_toolkit import PromptSession
 
@@ -13,7 +12,12 @@ from tuxemon.cli.clicommand import CLICommand
 from tuxemon.cli.context import InvokeContext
 from tuxemon.cli.exceptions import CommandNotFoundError, ParseError
 from tuxemon.cli.formatter import Formatter
-from tuxemon.plugin import PluginManager, get_available_classes
+from tuxemon.plugin import (
+    DefaultPluginLoader,
+    FileSystemPluginDiscovery,
+    PluginManager,
+    get_available_classes,
+)
 from tuxemon.session import Session
 
 
@@ -29,7 +33,7 @@ class MetaCommand(CLICommand):
     name = "Meta Command"
     description = "Used as the primary command."
 
-    def __init__(self, commands: Any) -> None:
+    def __init__(self, commands: Sequence[CLICommand]) -> None:
         self._commands = commands
 
     def invoke(self, ctx: InvokeContext, line: str) -> None:
@@ -41,7 +45,9 @@ class MetaCommand(CLICommand):
             line: Input text after the command name.
 
         """
-        print("???", file=sys.stderr)
+        print("No command provided. Available commands:", file=sys.stderr)
+        for command in self._commands:
+            print(f"- {command.name}: {command.description}", file=sys.stderr)
 
     def get_subcommands(self, ctx: InvokeContext) -> Iterable[CLICommand]:
         """
@@ -51,7 +57,7 @@ class MetaCommand(CLICommand):
             ctx: Contains references to parts of the game and CLI interface.
 
         """
-        return list(self._commands)
+        return self._commands
 
 
 class CommandProcessor:
@@ -88,25 +94,24 @@ class CommandProcessor:
 
         while True:
             try:
-                try:
-                    ctx.current_command = self.root_command
-                    line = session.prompt(self.prompt)
-                except EOFError:
-                    break
-
+                line = session.prompt(self.prompt)
                 if line:
                     try:
                         command, tail = self.root_command.resolve(ctx, line)
                         ctx.current_command = command
                         command.invoke(ctx, tail)
-                    except ParseError:
-                        print(f"Unknown syntax: {line}", file=sys.stderr)
-                    except CommandNotFoundError:
+                    except ParseError as e:
                         print(
-                            f"Cannot determine the command for: {line}",
+                            f"Unknown syntax: {line} - {str(e)}",
                             file=sys.stderr,
                         )
-
+                    except CommandNotFoundError as e:
+                        print(
+                            f"Cannot determine the command for: {line} - {str(e)}",
+                            file=sys.stderr,
+                        )
+            except EOFError:
+                break
             except KeyboardInterrupt:
                 print("Got KeyboardInterrupt")
                 print("Press CTRL-D to quit.")
@@ -122,11 +127,12 @@ class CommandProcessor:
             folder: Folder to search.
 
         """
-        pm = PluginManager()
-        pm.setPluginPlaces([folder])
-        pm.include_patterns = ["commands"]
-        pm.exclude_classes = ["CLICommand"]
-        pm.collectPlugins()
+        discovery = FileSystemPluginDiscovery([folder])
+        loader = DefaultPluginLoader()
+        pm = PluginManager(discovery, loader)
+        pm.INCLUDE_PATTERNS = ["commands"]
+        pm.EXCLUDE_CLASSES = ["CLICommand"]
+        pm.collect_plugins()
         for cmd_class in get_available_classes(pm, interface=CLICommand):
             if cmd_class.usable_from_root:
                 yield cmd_class()

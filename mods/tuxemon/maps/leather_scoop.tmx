@@ -5,7 +5,7 @@
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="leather_scoop"/>
-  <property name="types" value="shop"/>
+  <property name="map_type" value="shop"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" source="../gfx/tilesets/core_indoor_floors.tsx"/>
@@ -51,7 +51,6 @@
     <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
-  <object id="16" name="Player Spawn" type="event" x="96" y="96" width="16" height="16"/>
   <object id="19" name="employee" type="event" x="16" y="80" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc tuxemart_keeper,1,5,stand"/>

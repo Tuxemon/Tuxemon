@@ -3,24 +3,24 @@
     "category": "dragon",
     "moveset": [
         {
-            "level_learned": 2,
-            "technique": "perfect_cut"
+            "level_learned": 1,
+            "technique": "tail_lash"
         },
         {
-            "level_learned": 2,
-            "technique": "shrapnel"
+            "level_learned": 1,
+            "technique": "bullet"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "viper"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "insanity"
         },
         {
-            "level_learned": 12,
-            "technique": "undertaker"
+            "level_learned": 13,
+            "technique": "muddle"
         },
         {
             "level_learned": 16,
@@ -31,24 +31,24 @@
             "technique": "rust_bomb"
         },
         {
-            "level_learned": 44,
+            "level_learned": 43,
             "technique": "shuriken"
         },
         {
-            "level_learned": 48,
+            "level_learned": 46,
             "technique": "wall_of_steel"
         },
         {
-            "level_learned": 60,
+            "level_learned": 61,
             "technique": "amnesia"
         },
         {
             "level_learned": 64,
-            "technique": "muddle"
+            "technique": "undertaker"
         },
         {
-            "level_learned": 68,
-            "technique": "bullet"
+            "level_learned": 70,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [
@@ -61,8 +61,14 @@
         {
             "mon_slug": "wrougon",
             "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "ferricran",
+            "evo_stage": "stage2"
         }
     ],
+    "terrains": ["ruins", "underground"],
+    "tags": ["steel", "soldier", "sharp", "tail"],
     "shape": "dragon",
     "stage": "stage1",
     "types": [

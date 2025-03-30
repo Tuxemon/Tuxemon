@@ -1,20 +1,34 @@
 {
   "conditions": [
-    "is wild_monster",
-    "not category threat"
+    {
+      "type": "wild_monster",
+      "operator": "is"
+    },
+    {
+      "type": "category",
+      "parameters": ["threat"],
+      "operator": "not"
+    }
   ],
   "effects": [
-    "capture"
+    {
+      "type": "capture_combined",
+      "parameters": ["taste_warm","hearty","1","1"]
+    }
   ],
   "animation": "capture_1",
   "slug": "tuxeball_hearty",
   "sort": "utility",
   "sprite": "gfx/items/tuxeball_hearty.png",
   "category": "capture",
-  "type": "Consumable",
+  "cost": 450,
   "usable_in": [
     "MainCombatMenuState"
   ],
+  "modifiers": [],
+  "behaviors": {
+    "throwable": true
+  },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

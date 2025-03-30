@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -7,7 +7,7 @@ import uuid
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon.db import Comparison, ElementType, Range
+from tuxemon.db import Comparison, Range
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.menu.interface import MenuItem
@@ -63,17 +63,16 @@ class GetMonsterTechAction(EventAction):
         value_name = self.value_name
         if filter_name is None and value_name is None:
             self.result = True
+            return self.result
         if filter_name and value_name and technique:
             # filter slug
             if filter_name == "slug" and technique.slug == value_name:
                 self.result = True
+                return self.result
             # filter element / type
-            if (
-                filter_name == "element"
-                and value_name in list(ElementType)
-                and technique.has_type(ElementType(value_name))
-            ):
+            if filter_name == "element" and technique.has_type(value_name):
                 self.result = True
+                return self.result
             # filter genders
             if (
                 filter_name == "range"
@@ -81,6 +80,7 @@ class GetMonsterTechAction(EventAction):
                 and technique.range == value_name
             ):
                 self.result = True
+                return self.result
             # filter numeric fields
             if self.extra is not None:
                 field = 0.0
@@ -91,7 +91,8 @@ class GetMonsterTechAction(EventAction):
                 extra = float(self.extra)
                 if value_name in list(Comparison):
                     self.result = compare(value_name, field, extra)
-        return self.result
+                    return self.result
+        return False
 
     def set_var(self, menu_item: MenuItem[Technique]) -> None:
         self.choose = True

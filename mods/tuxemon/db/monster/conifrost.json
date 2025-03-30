@@ -3,35 +3,35 @@
     "category": "taiga",
     "moveset": [
         {
-            "level_learned": 2,
-            "technique": "font"
+            "level_learned": 1,
+            "technique": "solar_synthesis"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "chill_mist"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "whirlwind"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "icicle_spear"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "starfall"
         },
         {
             "level_learned": 16,
-            "technique": "frostbite"
+            "technique": "leaf_barrage"
         },
         {
-            "level_learned": 20,
-            "technique": "snowstorm"
+            "level_learned": 19,
+            "technique": "mobbing"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "geyser"
         },
         {
@@ -39,20 +39,22 @@
             "technique": "biting_winds"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "goad"
         },
         {
-            "level_learned": 36,
-            "technique": "tonguespear"
+            "level_learned": 37,
+            "technique": "snowstorm"
         },
         {
-            "level_learned": 40,
-            "technique": "mobbing"
+            "level_learned": 43,
+            "technique": "frostbite"
         }
     ],
     "evolutions": [],
     "history": [],
+    "terrains": [],
+    "tags": ["ice", "plant"],
     "shape": "blob",
     "stage": "standalone",
     "types": [

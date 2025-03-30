@@ -151,7 +151,7 @@ msgid "tuxeball_lavish"
 msgstr "Lavish Tuxeball"
 
 msgid "tuxeball_lavish_description"
-msgstr "The capture has a higher chance of succeeding."
+msgstr "The ultimate capture tool, boasting a significantly higher capture rate than the Noble Tuxeball."
 
 msgid "tuxeball_ancient"
 msgstr "Ancient Tuxeball"
@@ -163,7 +163,7 @@ msgid "tuxeball_crusher"
 msgstr "Crusher Tuxeball"
 
 msgid "tuxeball_crusher_description"
-msgstr "This Tuxeball breaks through defenses and increases the catch rate the higher the opposing Tuxemon's defense is. It will fail to catch if a protection move is used."
+msgstr "This Tuxeball breaks through defenses and increases the catch rate the higher the opposing Tuxemon's defense is. It will fail to catch if a protective condition is in place."
 
 msgid "tuxeball_xero"
 msgstr "Xero Tuxeball"
@@ -212,6 +212,42 @@ msgstr "Zesty Tuxeball"
 
 msgid "tuxeball_zesty_description"
 msgstr "Upon capture, the tuxemon's positive taste changes to zesty."
+
+msgid "tuxeball_grand"
+msgstr "Grand Tuxeball"
+
+msgid "tuxeball_grand_description"
+msgstr "Offers an even higher capture rate than the Lavish Tuxeball, increasing the chances of a successful catch."
+
+msgid "tuxeball_majestic"
+msgstr "Majestic Tuxeball"
+
+msgid "tuxeball_majestic_description"
+msgstr "Boasts the highest capture rate of all, making it the ultimate choice for catching even the most elusive tuxemon."
+
+msgid "tuxeball_noble"
+msgstr "Noble Tuxeball"
+
+msgid "tuxeball_noble_description"
+msgstr "A moderate upgrade to the standard Tuxeball, offering a reliable capture rate."
+
+msgid "tuxeball_diurnal"
+msgstr "Diurnal Tuxeball"
+
+msgid "tuxeball_diurnal_description"
+msgstr "Captures more easily during daytime, but its effectiveness is significantly reduced during the night."
+
+msgid "tuxeball_nocturnal"
+msgstr "Nocturnal Tuxeball"
+
+msgid "tuxeball_nocturnal_description"
+msgstr "Captures more easily during nighttime, but its effectiveness is significantly reduced during the day."
+
+msgid "tuxeball_gambler"
+msgstr "Gambler Tuxeball"
+
+msgid "tuxeball_gambler_description"
+msgstr "This tuxeball is known for its unpredictable nature. Its catch rate fluctuates wildly, with the chance of capturing a tuxemon ranging from extremely low to exceptionally high."
 
 msgid "boost_armour"
 msgstr "Boost Armour"
@@ -424,11 +460,65 @@ msgid "cureall_description"
 msgstr "Heals your tuxemon to full health and removes any conditions."
 
 # TMs
+msgid "tm_all_in"
+msgstr "TM: All In"
+
+msgid "tm_all_in_description"
+msgstr "Technique Manual that teaches the All In technique."
+
+msgid "tm_blade"
+msgstr "TM: Blade"
+
+msgid "tm_blade_description"
+msgstr "Technique Manual that teaches the Blade technique."
+
+msgid "tm_panjandrum"
+msgstr "TM: Panjandrum"
+
+msgid "tm_panjandrum_description"
+msgstr "Technique Manual that teaches the Panjandrum technique."
+
+msgid "tm_scope"
+msgstr "TM: Scope"
+
+msgid "tm_scope_description"
+msgstr "Technique Manual that teaches the Scope technique."
+
+msgid "tm_shadow_boxing"
+msgstr "TM: Shadow Boxing"
+
+msgid "tm_shadow_boxing_description"
+msgstr "Technique Manual that teaches the Shadow Boxing technique."
+
 msgid "tm_avalanche"
 msgstr "TM: Avalanche"
 
 msgid "tm_avalanche_description"
 msgstr "Technique Manual that teaches a Water or Earth Tuxemon the Avalanche technique."
+
+msgid "tm_cavity"
+msgstr "TM: Cavity"
+
+msgid "tm_cavity_description"
+msgstr "Technique Manual that teaches the Cavity technique."
+
+msgid "tm_frostbite"
+msgstr "TM: Frostbite"
+
+msgid "tm_frostbite_description"
+msgstr "Technique Manual that teaches the Frostbite technique."
+
+msgid "tm_supernova"
+msgstr "TM: Supernova"
+
+msgid "tm_supernova_description"
+msgstr "Technique Manual that teaches the Supernova technique."
+
+msgid "tm_vorpal"
+msgstr "TM: Vorpal"
+
+msgid "tm_vorpal_description"
+msgstr "Technique Manual that teaches the Vorpal technique."
 
 msgid "tm_blossom"
 msgstr "TM: Blossom"
@@ -704,7 +794,19 @@ msgid "item_no_available_target"
 msgstr "{name} cannot be used on any of your Tuxemon right now."
 
 msgid "technique_description"
-msgstr "ID.{id} ({types}) - Accuracy {acc}%, Potency {pot}%, Power {pow}/3, Recharge {rec} turns - Successful: {sus}%"
+msgstr "ID.{id} ({types}) - Accuracy {acc}%, Potency {pot}%, Power {pow}/3, Recharge {rec} turns"
+
+msgid "technique_id_types_recharge"
+msgstr "ID.{id} ({types}) - Recharge {rec} turns"
+
+msgid "technique_power"
+msgstr "Power"
+
+msgid "technique_accuracy"
+msgstr "Accuracy"
+
+msgid "technique_potency"
+msgstr "Potency"
 
 msgid "reg_papers"
 msgstr "Registration Papers"
@@ -757,9 +859,6 @@ msgstr "Phone keeps ringing but no answer!"
 
 ## NOTIFICATION TRANSLATIONS ##
 # Combat notifications
-msgid "combat_fly"
-msgstr "{name} flies up high!"
-
 msgid "combat_scope"
 msgstr "AR:{AR} DE:{DE} ME:{ME} RD:{RD} SD:{SD}"
 
@@ -784,17 +883,11 @@ msgstr "You have forfeited!\n{npc} is disappointed."
 msgid "combat_cannot_run_away"
 msgstr "You can't run away!"
 
-msgid "combat_forfeit_trainer"
-msgstr "Can't forfeit!"
-
 msgid "combat_player_run"
 msgstr "You ran away!"
 
 msgid "combat_player_run_status"
 msgstr "Can't escape.\n{monster} is {status}!"
-
-msgid "combat_player_forfeit_status"
-msgstr "Can't forfeit the match.\n{monster} is {status}!"
 
 msgid "combat_player_swap_status"
 msgstr "Can't switch monsters.\n{monster} is {status}!"
@@ -862,9 +955,6 @@ msgstr "You captured {name}!"
 msgid "combat_capturing_fail"
 msgstr "{name} broke free!"
 
-msgid "combat_recharging"
-msgstr "{name} needs a break before using {move} again..."
-
 msgid "combat_replacement"
 msgstr "Choose a replacement!"
 
@@ -929,6 +1019,9 @@ msgstr "{name} gets {symbol}{gold}!"
 msgid "combat_state_switch"
 msgstr "{target} is {types} type!"
 
+msgid "combat_state_switch_fail"
+msgstr "{target} is already {type}!"
+
 msgid "combat_state_switch_both"
 msgstr "{user} is {type1} type, while {target} is {type2} type!"
 
@@ -973,6 +1066,12 @@ msgstr "{target}'s lifeforce is being leeched."
 
 msgid "combat_state_lifeleech_end"
 msgstr "{target} is having their lifeforce stolen."
+
+msgid "combat_state_lifegift_get"
+msgstr "{target}'s energy is being restored."
+
+msgid "combat_state_lifegift_end"
+msgstr "{target} has been infused with lifeforce."
 
 msgid "combat_state_noddingoff_get"
 msgstr "{target} is nodding off to sleep."
@@ -1061,6 +1160,9 @@ msgstr "{target} is harmful to make contact with."
 msgid "combat_state_feedback_get"
 msgstr "{target} is turning ranged attacks back on the attacker."
 
+msgid "combat_state_immune"
+msgstr "{target} is immune to {method}"
+
 # Generic notifications
 msgid "empty_slot"
 msgstr "Empty Slot"
@@ -1073,6 +1175,12 @@ msgstr "Use"
 
 msgid "item_confirm_cancel"
 msgstr "Cancel"
+
+msgid "generic_remove"
+msgstr "Remove"
+
+msgid "generic_add"
+msgstr "Add"
 
 msgid "generic_success"
 msgstr "It worked!"
@@ -1201,6 +1309,9 @@ msgstr "Harpooned"
 msgid "lifeleech"
 msgstr "Lifeleech"
 
+msgid "lifegift"
+msgstr "Life Gift"
+
 msgid "lockdown"
 msgstr "Lockdown"
 
@@ -1248,19 +1359,19 @@ msgstr "Wild"
 
 ## TECHNIQUE TRANSLATIONS ##
 msgid "acid_description"
-msgstr ""
+msgstr "A corrosive liquid is ejected from the user's mouth, burning the opponent."
 
 msgid "acid"
 msgstr "Acid"
 
 msgid "adamantine_description"
-msgstr ""
+msgstr "The user's body glows intensely before it delivers a crushing blow."
 
 msgid "adamantine"
 msgstr "Adamantine"
 
 msgid "air_chain_description"
-msgstr ""
+msgstr "The user rapidly strikes the air, creating a series of powerful gusts that hit the opponent."
 
 msgid "air_chain"
 msgstr "Air Chain"
@@ -1274,6 +1385,12 @@ msgstr "All In"
 msgid "altitude_description"
 msgstr "Fly high out of reach, then dive with a powerful attack."
 
+msgid "altitude_success"
+msgstr "{user} flies up high!"
+
+msgid "altitude_fail"
+msgstr "{user} fails to gain altitude!"
+
 msgid "altitude"
 msgstr "Altitude"
 
@@ -1284,7 +1401,7 @@ msgid "amnesia"
 msgstr "Amnesia"
 
 msgid "ants_description"
-msgstr ""
+msgstr "The user summons a swarm of ants that crawl over the opponent, changing their type to Earth."
 
 msgid "ants"
 msgstr "Ants"
@@ -1296,43 +1413,43 @@ msgid "arcane_eye"
 msgstr "Arcane Eye"
 
 msgid "assault_description"
-msgstr ""
+msgstr "The user unleashes a flurry of rapid, powerful attacks."
 
 msgid "assault"
 msgstr "Assault"
 
 msgid "avalanche_description"
-msgstr ""
+msgstr "The user gathers momentum before unleashing a devastating avalanche of ice and rock."
 
 msgid "avalanche"
 msgstr "Avalanche"
 
 msgid "barking_description"
-msgstr ""
+msgstr "The user lets out a powerful, intimidating roar that makes the opponent flinch."
 
 msgid "barking"
 msgstr "Barking"
 
 msgid "battery_acid_description"
-msgstr ""
+msgstr "A corrosive liquid is ejected from the user's body, poisoning the opponent."
 
 msgid "battery_acid"
 msgstr "Battery Acid"
 
 msgid "battery_discharge_description"
-msgstr ""
+msgstr "The user's body emits a bright light as it restores its own health."
 
 msgid "battery_discharge"
 msgstr "Battery Discharge"
 
 msgid "beam_description"
-msgstr ""
+msgstr "A concentrated beam of energy is fired from the user's eyes, blinding the opponent."
 
 msgid "beam"
 msgstr "Beam"
 
 msgid "berserk_description"
-msgstr ""
+msgstr "The user enters a frenzied state, attacking with reckless abandon."
 
 msgid "berserk"
 msgstr "Berserk"
@@ -1356,7 +1473,7 @@ msgid "blood_bond"
 msgstr "Blood Bond"
 
 msgid "blood_nets_description"
-msgstr ""
+msgstr "A web of sticky, blood-red substance is shot from the user's body, draining the opponent's life force."
 
 msgid "blood_nets"
 msgstr "Blood Nets"
@@ -1374,7 +1491,7 @@ msgid "boulder"
 msgstr "Boulder"
 
 msgid "breath_description"
-msgstr ""
+msgstr "The user exhales a cloud of sleep-inducing gas."
 
 msgid "breath"
 msgstr "Breath"
@@ -1386,10 +1503,16 @@ msgid "breathe_fire"
 msgstr "Breathe Fire"
 
 msgid "bubble_trap_description"
-msgstr ""
+msgstr "The user creates a large bubble that traps both itself and the opponent."
 
 msgid "bubble_trap"
 msgstr "Bubble Trap"
+
+msgid "bubbles_description"
+msgstr "The user blows a wide jet of bubbles at the target, weak but difficult to avoid."
+
+msgid "bubbles"
+msgstr "Bubbles"
 
 msgid "bullet_description"
 msgstr "A piece of metal is flung at the target with great alacrity."
@@ -1397,110 +1520,188 @@ msgstr "A piece of metal is flung at the target with great alacrity."
 msgid "bullet"
 msgstr "Bullet"
 
+msgid "burrow_blast_description"
+msgstr "The user digs underground and reappear at a different location, striking the opponent with a burst of dirt and debris."
+
+msgid "burrow_blast_success"
+msgstr "{user} digs a hole and hides!"
+
+msgid "burrow_blast_fail"
+msgstr "{user} fails to dig a hole!"
+
+msgid "burrow_blast"
+msgstr "Burrow Blast"
+
+msgid "buzz_description"
+msgstr "The user generates a close-ranged blast of electromagnetic energy from its body, striking the opponent with a burst of electric force, dealing damage."
+
+msgid "buzz"
+msgstr "Buzz"
+
 msgid "canine_description"
-msgstr ""
+msgstr "The user unleashes a primal, ferocious attack that sends the opponent into a frenzy."
 
 msgid "canine"
 msgstr "Canine"
 
 msgid "cat_calling_description"
-msgstr ""
+msgstr "The user emits a high-pitched cry that distracts the opponent."
 
 msgid "cat_calling"
 msgstr "Cat Calling"
 
 msgid "cavity_description"
-msgstr ""
+msgstr "The user strikes with pinpoint accuracy, targeting the opponent's weak points."
 
 msgid "cavity"
 msgstr "Cavity"
 
 msgid "chameleon_description"
-msgstr ""
+msgstr "The user changes its type to Wood, while also creating a protective shell around itself."
 
 msgid "chameleon"
 msgstr "Chameleon"
 
 msgid "changeling_description"
-msgstr ""
+msgstr "The user undergoes a transformation, healing its wounds in the process."
 
 msgid "changeling"
 msgstr "Changeling"
 
 msgid "chill_mist_description"
-msgstr ""
+msgstr "The user releases a freezing mist that lowers the opponent's stats."
 
 msgid "chill_mist"
 msgstr "Chill Mist"
 
 msgid "clairaudience_description"
-msgstr ""
+msgstr "The user attunes its senses, anticipating the opponent's next move and preparing a counterattack."
 
 msgid "clairaudience"
 msgstr "Clairaudience"
 
 msgid "clamp_on_description"
-msgstr ""
+msgstr "The user latches onto the opponent with its powerful jaws."
 
 msgid "clamp_on"
 msgstr "Clamp On"
 
 msgid "clock_description"
-msgstr ""
+msgstr "The user creates a swirling vortex that confuses the opponent."
 
 msgid "clock"
 msgstr "Clock"
 
 msgid "cloud_aether_description"
-msgstr ""
+msgstr "The user is enveloped in a swirling cloud, causing both it and the opponent to change types randomly."
 
 msgid "cloud_aether"
 msgstr "Cloud Aether"
 
 msgid "conjurer_description"
-msgstr ""
+msgstr "The user conjures a force field that traps the opponent."
 
 msgid "conjurer"
 msgstr "Conjurer"
 
 msgid "constrict_description"
-msgstr ""
+msgstr "The user wraps its body around the opponent, squeezing tightly."
 
 msgid "constrict"
 msgstr "Constrict"
 
+msgid "crushing_bite_description"
+msgstr "The user bites down with bone-crushing force. May leave the target unable to act."
+
+msgid "crushing_bite"
+msgstr "Crushing Bite"
+
 msgid "crystal_description"
-msgstr ""
+msgstr "The user fires a sharp, crystalline projectile at the opponent."
 
 msgid "crystal"
 msgstr "Crystal"
 
+msgid "cutting_leaves_description"
+msgstr "They charge into the opponent with cutting, sharp leaves that may snag against the foe."
+
+msgid "cutting_leaves"
+msgstr "Cutting Leaves"
+
 msgid "demiurge_description"
-msgstr ""
+msgstr "The user undergoes a transformation, healing itself and confusing the opponent."
 
 msgid "demiurge"
 msgstr "Demiurge"
 
+msgid "depth_charge_description"
+msgstr "The user dives underwater and then explode upwards, dealing damage to the opponent."
+
+msgid "depth_charge_success"
+msgstr "{user} dives underwater!"
+
+msgid "depth_charge_fail"
+msgstr "{user} fails to submerge!"
+
+msgid "depth_charge"
+msgstr "Depth Charge"
+
+msgid "diet_description"
+msgstr "The user fuels their body with healthy foods, enhancing their physical resilience and making them more resistant to damage."
+
+msgid "diet"
+msgstr "Diet"
+
+msgid "divinity_beam_description"
+msgstr "A ray of divinity blinds those who look upon it."
+
+msgid "divinity_beam"
+msgstr "Divinity Beam"
+
+msgid "dreamwalk_description"
+msgstr "Allows the user to enter the dreams of sleeping opponents, potentially dealing damage."
+
+msgid "dreamwalk"
+msgstr "Dreamwalk"
+
 msgid "earthquake_description"
-msgstr ""
+msgstr "The ground shakes violently as the user unleashes a powerful ground attack."
 
 msgid "earthquake"
 msgstr "Earthquake"
 
+msgid "egg_smash_description"
+msgstr "The user hurls an egg or egg fragment at the opponent, striking them with a messy and disorienting blow."
+
+msgid "egg_smash"
+msgstr "Egg Smash"
+
+msgid "electric_multibite_description"
+msgstr "The user bites repeatedly while channeling electricity. May shock the target."
+
+msgid "electric_multibite"
+msgstr "Electric Multibite"
+
 msgid "electrical_storm_description"
-msgstr ""
+msgstr "The user summons a raging thunderstorm, striking the opponent with lightning bolts."
 
 msgid "electrical_storm"
 msgstr "Electrical Storm"
 
 msgid "electroplate_description"
-msgstr ""
+msgstr "Electricity causes the target to be coated in metal, changing its type."
 
 msgid "electroplate"
 msgstr "Electroplate"
 
+msgid "energy_beam_description"
+msgstr "The user fires a beam of energy that burns all in its path."
+
+msgid "energy_beam"
+msgstr "Energy Beam"
+
 msgid "energy_claws_description"
-msgstr ""
+msgstr "The user's claws glow with energy as it delivers a powerful, focused attack."
 
 msgid "energy_claws"
 msgstr "Energy Claws"
@@ -1512,7 +1713,7 @@ msgid "energy_field"
 msgstr "Energy Field"
 
 msgid "evasion_description"
-msgstr ""
+msgstr "The user becomes a blur of motion, making it difficult in the next round to miss."
 
 msgid "evasion"
 msgstr "Evasion"
@@ -1524,13 +1725,13 @@ msgid "eyebite"
 msgstr "Eyebite"
 
 msgid "feint_description"
-msgstr ""
+msgstr "The user feigns an attack, then strikes with a swift, surprise blow."
 
 msgid "feint"
 msgstr "Feint"
 
 msgid "feline_description"
-msgstr ""
+msgstr "The user focuses its predatory instincts."
 
 msgid "feline"
 msgstr "Feline"
@@ -1542,7 +1743,7 @@ msgid "fester"
 msgstr "Fester"
 
 msgid "fiery_description"
-msgstr ""
+msgstr "The user emits a powerful blast of fire that changes the opponent's type to Fire."
 
 msgid "fiery"
 msgstr "Fiery"
@@ -1554,79 +1755,103 @@ msgid "fire_ball"
 msgstr "Fire Ball"
 
 msgid "fire_claw_description"
-msgstr ""
+msgstr "The user's claws ignite with fire as it delivers a burning attack."
 
 msgid "fire_claw"
 msgstr "Fire Claw"
 
 msgid "fire_shield_description"
-msgstr ""
+msgstr "The user surrounds itself with a protective wall of fire, while also burning the opponent."
 
 msgid "fire_shield"
 msgstr "Fire Shield"
 
 msgid "firestorm_description"
-msgstr ""
+msgstr "The user creates a raging inferno that engulfs the opponent."
 
 msgid "firestorm"
 msgstr "Firestorm"
 
 msgid "flamethrower_description"
-msgstr ""
+msgstr "The user spews a stream of intense flames at the opponent."
 
 msgid "flamethrower"
 msgstr "Flamethrower"
 
 msgid "fledgling_description"
-msgstr ""
+msgstr "The user hurls sharp feathers at the opponent."
 
 msgid "fledgling"
 msgstr "Fledgling"
 
 msgid "flood_description"
-msgstr ""
+msgstr "The user summons a powerful flood that washes over the opponent."
 
 msgid "flood"
 msgstr "Flood"
 
 msgid "flow_description"
-msgstr ""
+msgstr "The user channels a powerful water stream."
 
 msgid "flow"
 msgstr "Flow"
 
+msgid "flower_armor_description"
+msgstr "The user creates an armor out of flowers."
+
+msgid "flower_armor"
+msgstr "Flower Armor"
+
+msgid "flower_bloom_description"
+msgstr "A hard to evade massive bloom of flower petals blasts like a blizzard across the landscape."
+
+msgid "flower_bloom"
+msgstr "Flower Bloom"
+
 msgid "fluff_up_description"
-msgstr ""
+msgstr "The user's body puffs up, healing its wounds."
 
 msgid "fluff_up"
 msgstr "Fluff Up"
 
 msgid "font_description"
-msgstr ""
+msgstr "The user draws energy from a mystical font to heal itself."
 
 msgid "font"
 msgstr "Font"
 
+msgid "food_fight_description"
+msgstr "The user initiates a frantic food fight, rapidly throwing edible projectiles at the opponent with reckless abandon."
+
+msgid "food_fight"
+msgstr "Food Fight"
+
 msgid "frostbite_description"
-msgstr ""
+msgstr "The user shoots a freezing blast that inflicts poison on the opponent."
 
 msgid "frostbite"
 msgstr "Frostbite"
 
 msgid "fume_description"
-msgstr ""
+msgstr "The user becomes enraged."
 
 msgid "fume"
 msgstr "Fume"
 
+msgid "fungal_spore_description"
+msgstr "On touch, the user explodes with spores. These have a small chance of infecting the target and leeching life from them."
+
+msgid "fungal_spore"
+msgstr "Fungal Spore"
+
 msgid "geyser_description"
-msgstr ""
+msgstr "The user erupts with a powerful water spout, changing the opponent's type to Water."
 
 msgid "geyser"
 msgstr "Geyser"
 
 msgid "give_all_description"
-msgstr ""
+msgstr "The user sacrifices itself."
 
 msgid "give_all"
 msgstr "Give All"
@@ -1637,41 +1862,71 @@ msgstr "At the user's glare, the target grows weak and vulnerable."
 msgid "glower"
 msgstr "Glower"
 
+msgid "gnaw_description"
+msgstr "The user nibbles at the target, dealing a small amount of damage. A weak but fast and consistent attack."
+
+msgid "gnaw"
+msgstr "Gnaw"
+
 msgid "goad_description"
-msgstr ""
+msgstr "The user taunts the opponent, causing them to become enraged."
 
 msgid "goad"
 msgstr "Goad"
 
 msgid "gold_digger_description"
-msgstr ""
+msgstr "The user digs into the ground, finding treasure or attacking itself."
 
 msgid "gold_digger"
 msgstr "Gold Digger"
 
+msgid "gourmet_description"
+msgstr "The user devours a nourishing meal, restoring their vitality and rejuvenating their spirits."
+
+msgid "gourmet"
+msgstr "Gourmet"
+
+msgid "greenstone_description"
+msgstr "The user strikes with the force of a falling stone."
+
+msgid "greenstone"
+msgstr "Greenstone"
+
 msgid "grinding_description"
-msgstr ""
+msgstr "The user relentlessly batters the opponent with a barrage of grinding blows, wearing them down with sustained pressure."
 
 msgid "grinding"
 msgstr "Grinding"
 
 msgid "gust_description"
-msgstr ""
+msgstr "The user creates a powerful wind that blows the opponent back."
 
 msgid "gust"
 msgstr "Gust"
 
+msgid "hallucinogen_spore_description"
+msgstr "The user releases a cloud of hallucinogenic spores, disorienting the opponent and altering their perception of reality."
+
+msgid "hallucinogen_spore"
+msgstr "Hallucinogen Spore"
+
+msgid "hammerhead_description"
+msgstr "The user charges forward, striking the opponent with its head."
+
+msgid "hammerhead"
+msgstr "Hammerhead"
+
 msgid "hawk_description"
-msgstr ""
+msgstr "The user soars high into the air before diving down with a powerful attack."
 
 msgid "hawk"
 msgstr "Hawk"
 
-msgid "headbutt_description"
-msgstr ""
+msgid "heavenly_desserts_description"
+msgstr "A bizarre move that can both heal you and send you to heaven by how good it tastes."
 
-msgid "headbutt"
-msgstr "Headbutt"
+msgid "heavenly_desserts"
+msgstr "Heavenly Desserts"
 
 msgid "hibernate_description"
 msgstr "The user falls into a restorative sleep."
@@ -1680,70 +1935,106 @@ msgid "hibernate"
 msgstr "Hibernate"
 
 msgid "ice_claw_description"
-msgstr ""
+msgstr "The user's claws become covered in ice as it delivers a freezing attack."
 
 msgid "ice_claw"
 msgstr "Ice Claw"
 
 msgid "ice_shield_description"
-msgstr ""
+msgstr "The user surrounds itself with a protective wall of ice, while also slowing down the opponent."
 
 msgid "ice_shield"
 msgstr "Ice Shield"
 
 msgid "ice_storm_description"
-msgstr ""
+msgstr "The opponent is engulfed in a freezing aura, creating a treacherous environment."
 
 msgid "ice_storm"
 msgstr "Ice Storm"
 
 msgid "icicle_spear_description"
-msgstr ""
+msgstr "The user launches a volley of sharp ice shards at the opponent."
 
 msgid "icicle_spear"
 msgstr "Icicle Spear"
 
+msgid "infectious_bite_description"
+msgstr "A sharp fast bite that injects a festering toxin. May leave the target with a lingering injury."
+
+msgid "infectious_bite"
+msgstr "Infectious Bite"
+
 msgid "insanity_description"
-msgstr ""
+msgstr "The user becomes consumed by rage, increasing its power."
 
 msgid "insanity"
 msgstr "Insanity"
 
 msgid "invictus_description"
-msgstr ""
+msgstr "The user enters a berserker state, attacking with relentless fury and trapping the opponent."
 
 msgid "invictus"
 msgstr "Invictus"
 
+msgid "just_desserts_description"
+msgstr "The user offers the opponent a poisoned treat, exacting a sweet revenge as they succumb to the toxic effects."
+
+msgid "just_desserts"
+msgstr "Just Desserts"
+
 msgid "kindling_flame_description"
-msgstr ""
+msgstr "The user ignites with inner fire, increasing its attack power."
 
 msgid "kindling_flame"
 msgstr "Kindling Flame"
 
 msgid "kraken_description"
-msgstr ""
+msgstr "The user summons the power of a legendary sea creature, unleashing a devastating attack."
 
 msgid "kraken"
 msgstr "Kraken"
 
 msgid "lantern_description"
-msgstr ""
+msgstr "The user creates a bright light that illuminates the battlefield, boosts its accuracy and damages the opponent."
 
 msgid "lantern"
 msgstr "Lantern"
 
+msgid "laser_beam_description"
+msgstr "A powerful ranged energy attack that may blind that goes at the speed of light."
+
+msgid "laser_beam"
+msgstr "Laser Beam"
+
 msgid "lava_description"
-msgstr ""
+msgstr "The user erupts with molten lava, burning both itself and the opponent."
 
 msgid "lava"
 msgstr "Lava"
+
+msgid "leaf_barrage_description"
+msgstr "Barrage the opponent with a series of leaves."
+
+msgid "leaf_barrage"
+msgstr "Leaf Barrage"
+
+msgid "leaf_stab_description"
+msgstr "The user throws a prickly sharp leaf, which induces a burning feeling on contact as the stab wound bleeds."
+
+msgid "leaf_stab"
+msgstr "Leaf Stab"
 
 msgid "levitate_description"
 msgstr "Combatants float into the air, giving them a vantage point but leaving both struggling to connect with their hand-to-hand attacks."
 
 msgid "levitate"
 msgstr "Levitate"
+
+msgid "lick_lash_description"
+msgstr "The user lashes out with its tongue, dealing damage and possibly leaving the opponent stunned."
+
+msgid "lick_lash"
+msgstr "Lick Lash"
 
 msgid "life_surge_description"
 msgstr "An eruption of life charges the monster, but at the expense of healing its opponent."
@@ -1752,67 +2043,73 @@ msgid "life_surge"
 msgstr "Life Surge"
 
 msgid "lightning_spheres_description"
-msgstr ""
+msgstr "The user launches multiple balls of electricity at the opponent."
 
 msgid "lightning_spheres"
 msgstr "Lightning Spheres"
 
 msgid "lineage_description"
-msgstr ""
+msgstr "The user draws power from its ancestors to unleash an attack."
 
 msgid "lineage"
 msgstr "Lineage"
 
 msgid "lust_description"
-msgstr ""
+msgstr "The user uses its charm to weaken the opponent's defenses."
 
 msgid "lust"
 msgstr "Lust"
 
 msgid "magma_description"
-msgstr ""
+msgstr "The user erupts with a torrent of molten rock."
 
 msgid "magma"
 msgstr "Magma"
 
-msgid "maori_description"
-msgstr ""
+msgid "magnetic_body_description"
+msgstr "A powerful magnetic field is generated, sending metal objects flying wildly across the battlefield and disrupting the opponent's movements."
 
-msgid "maori"
-msgstr "Maori"
+msgid "magnetic_body"
+msgstr "Magnetic Body"
 
 msgid "meltdown_description"
-msgstr ""
+msgstr "The user unleashes a corrosive attack that damages the opponent."
 
 msgid "meltdown"
 msgstr "Meltdown"
 
 msgid "mending_description"
-msgstr ""
+msgstr "The user draws energy from its surroundings to heal itself."
 
 msgid "mending"
 msgstr "Mending"
 
 msgid "midnight_mantle_description"
-msgstr ""
+msgstr "The user shrouds itself in a cloak of darkness, striking out with shadowy tendrils that inflict damage and disorient the opponent."
 
 msgid "midnight_mantle"
 msgstr "Midnight Mantle"
 
+msgid "mind_explosion_description"
+msgstr "A powerful psychic or mushroom hallucinogen attack."
+
+msgid "mind_explosion"
+msgstr "Mind Explosion"
+
 msgid "mind_vise_description"
-msgstr ""
+msgstr "The user traps the opponent's mind, preventing them from acting."
 
 msgid "mind_vise"
 msgstr "Mind Vise"
 
 msgid "mobbing_description"
-msgstr ""
+msgstr "A swarm of small creatures emerges from the user, overwhelming the opponent with a flurry of attacks."
 
 msgid "mobbing"
 msgstr "Mobbing"
 
 msgid "muck_description"
-msgstr ""
+msgstr "The user covers the opponent in a sticky, poisonous substance."
 
 msgid "muck"
 msgstr "Muck"
@@ -1824,25 +2121,31 @@ msgid "muddle"
 msgstr "Muddle"
 
 msgid "mudslide_description"
-msgstr ""
+msgstr "The user creates a massive mudslide that engulfs the opponent."
 
 msgid "mudslide"
 msgstr "Mudslide"
 
 msgid "mystic_blending_description"
-msgstr ""
+msgstr "The user becomes one with its surroundings, healing itself."
 
 msgid "mystic_blending"
 msgstr "Mystic Blending"
 
+msgid "needle_description"
+msgstr "The user stabs the target rapidly with a needle or thorns."
+
+msgid "needle"
+msgstr "Needle"
+
 msgid "negation_description"
-msgstr ""
+msgstr "The user cancels out the effects of the opponent's healing."
 
 msgid "negation"
 msgstr "Negation"
 
 msgid "nest_description"
-msgstr ""
+msgstr "The user constructs a protective nest around itself."
 
 msgid "nest"
 msgstr "Nest"
@@ -1854,13 +2157,13 @@ msgid "neutralize"
 msgstr "Neutralize"
 
 msgid "oedipus_description"
-msgstr ""
+msgstr "The user attacks with a vengeance, confusing the opponent and seeking revenge."
 
 msgid "oedipus"
 msgstr "Oedipus"
 
 msgid "one_million_talons_description"
-msgstr ""
+msgstr "The user unleashes a flurry of rapid, razor-sharp attacks."
 
 msgid "one_million_talons"
 msgstr "One Million Talons"
@@ -1872,13 +2175,25 @@ msgid "one_two"
 msgstr "One-Two"
 
 msgid "orbs_description"
-msgstr "The user undergoes a magical transformation, firing off an energy ball of a random element."
+msgstr "The user fires off an energy ball that causes a mystical transformation in the target."
 
 msgid "orbs"
 msgstr "Orbs"
 
+msgid "oven_description"
+msgstr "The user throws themselves into a fiery oven or pyre, then re-emerges to attack."
+
+msgid "oven_success"
+msgstr "{user} jumps into the fiery oven, embracing the flames!"
+
+msgid "oven_fail"
+msgstr "{user} hesitates and does not jump into the oven!"
+
+msgid "oven"
+msgstr "Oven"
+
 msgid "overfeed_description"
-msgstr ""
+msgstr "The user overloads the opponent with energy, slowing them down."
 
 msgid "overfeed"
 msgstr "Overfeed"
@@ -1896,109 +2211,151 @@ msgid "panjandrum"
 msgstr "Panjandrum"
 
 msgid "peck_description"
-msgstr ""
+msgstr "The user attacks with a sharp peck from its beak."
 
 msgid "peck"
 msgstr "Peck"
 
 msgid "peregrine_description"
-msgstr ""
+msgstr "The user dives from the sky with incredible speed, delivering a powerful, piercing attack."
 
 msgid "peregrine"
 msgstr "Peregrine"
 
 msgid "perfect_cut_description"
-msgstr ""
+msgstr "The user strikes with surgical precision, leaving no room for error."
 
 msgid "perfect_cut"
 msgstr "Perfect Cut"
 
 msgid "petrify_description"
-msgstr ""
+msgstr "The user emits a powerful aura that renders the opponent stuck."
 
 msgid "petrify"
 msgstr "Petrify"
 
 msgid "phantasmal_force_description"
-msgstr ""
+msgstr "The user creates an illusionary copy of itself that attacks the opponent."
 
 msgid "phantasmal_force"
 msgstr "Phantasmal Force"
 
+msgid "piece_of_cake_description"
+msgstr "The user enters a state of effortless ease, healing their wounds and restoring their vitality as everything becomes as simple as enjoying a delicious cake."
+
+msgid "piece_of_cake"
+msgstr "Piece of Cake"
+
 msgid "pit_description"
-msgstr ""
+msgstr "The user creates a pit beneath the opponent, causing them to fall and take damage."
 
 msgid "pit"
 msgstr "Pit"
 
 msgid "platinum_description"
-msgstr ""
+msgstr "The user's body becomes infused with a lustrous metal, granting it increased defense and the ability to inflict damage."
 
 msgid "platinum"
 msgstr "Platinum"
 
 msgid "poison_courtship_description"
-msgstr ""
+msgstr "The user emits a seductive aura laces with toxins, charming the opponent while slowly poisoning them."
 
 msgid "poison_courtship"
 msgstr "Poison Courtship"
 
+msgid "pollen_blast_description"
+msgstr "Releases a cloud of pollen, dealing damage to opponents and potentially causing them to become disoriented."
+
+msgid "pollen_blast"
+msgstr "Pollen Blast"
+
+msgid "potluck_description"
+msgstr "The user and opponent engage in a mutual exchange of gifts, fostering a brief moment of camaraderie in the midst of battle."
+
+msgid "potluck"
+msgstr "Potluck"
+
+msgid "pouch_description"
+msgstr "The user refreshes themselves with a tasty morsel from a pouch or bag."
+
+msgid "pouch"
+msgstr "Pouch"
+
 msgid "proboscis_description"
-msgstr ""
+msgstr "The user extends a long, proboscis-like appendage, draining the opponent's life force while inflicting damage."
 
 msgid "proboscis"
 msgstr "Proboscis"
 
 msgid "pseudopod_description"
-msgstr ""
+msgstr "The user extends a pseudopod to deliver a forceful, sticky blow."
 
 msgid "pseudopod"
 msgstr "Pseudopod"
 
 msgid "punch_description"
-msgstr ""
+msgstr "A classic, powerful strike with the user's fist."
 
 msgid "punch"
 msgstr "Punch"
 
+msgid "pyrokinesis_description"
+msgstr "The user unleashes a wave of intense heat and flames that can scorch its opponents."
+
+msgid "pyrokinesis"
+msgstr "Pyrokinesis"
+
 msgid "quicksand_description"
-msgstr ""
+msgstr "The user creates a treacherous patch of quicksand, trapping and damaging the opponent."
 
 msgid "quicksand"
 msgstr "Quicksand"
 
 msgid "radiance_description"
-msgstr ""
+msgstr "The user emits blinding flash of light, followed by a powerful energy blast."
 
 msgid "radiance"
 msgstr "Radiance"
 
 msgid "ram_description"
-msgstr ""
+msgstr "The user charges forward with incredible force, delivering a devastating physical blow."
 
 msgid "ram"
 msgstr "Ram"
 
 msgid "refresh_description"
-msgstr ""
+msgstr "The user rejuvenates itself, restoring health and entering a state of rapid recovery."
 
 msgid "refresh"
 msgstr "Refresh"
 
 msgid "revenge_stance_description"
-msgstr ""
+msgstr "The user adopts a defensive posture, provoking the opponent into attacking first, while preparing for revenge."
 
 msgid "revenge_stance"
 msgstr "Revenge Stance"
 
+msgid "rift_dash_description"
+msgstr "The user creates a temporary rift in space and dash through it, reappearing at a different location and striking the opponent with a swift attack."
+
+msgid "rift_dash_success"
+msgstr "{user} teleports behind its opponent!"
+
+msgid "rift_dash_fail"
+msgstr "{user} fails to teleport, leaving itself open to attack!"
+
+msgid "rift_dash"
+msgstr "Rift Dash"
+
 msgid "ring_description"
-msgstr ""
+msgstr "The user conjures a ring that expands, engulfing the opponent."
 
 msgid "ring"
 msgstr "Ring"
 
 msgid "riposte_description"
-msgstr ""
+msgstr "The user assumes a defensive stance, preparing to counter any attack with a swift and powerful retaliation."
 
 msgid "riposte"
 msgstr "Riposte"
@@ -2009,6 +2366,18 @@ msgstr "A heavy rock falls on the target."
 msgid "rock"
 msgstr "Rock"
 
+msgid "rocky_barrage_description"
+msgstr "The user unleashes a furious barrage of rocks, threatening to overwhelm the opponent with a crushing avalanche of stone."
+
+msgid "rocky_barrage"
+msgstr "Rocky Barrage"
+
+msgid "roll_description"
+msgstr "The user curls into a ball and rolls over or against the opponent."
+
+msgid "roll"
+msgstr "Roll"
+
 msgid "rot_description"
 msgstr "A sickness befalls the target."
 
@@ -2016,19 +2385,19 @@ msgid "rot"
 msgstr "Rot"
 
 msgid "ruby_description"
-msgstr ""
+msgstr "The user fires a concentrated beam of ruby-like energy, inflicting damage."
 
 msgid "ruby"
 msgstr "Ruby"
 
 msgid "rust_bomb_description"
-msgstr ""
+msgstr "A corrosive projectile that explodes on impact, dealing damage and poisoning the opponent."
 
 msgid "rust_bomb"
 msgstr "Rust Bomb"
 
 msgid "saber_description"
-msgstr ""
+msgstr "The user strikes with a swift and powerful sword-like attack."
 
 msgid "saber"
 msgstr "Saber"
@@ -2040,7 +2409,7 @@ msgid "salamander"
 msgstr "Salamander"
 
 msgid "sand_spray_description"
-msgstr ""
+msgstr "A cloud of abrasive sand is hurled at the opponent, damaging their vision and inflicting damage."
 
 msgid "sand_spray"
 msgstr "Sand Spray"
@@ -2051,6 +2420,12 @@ msgstr "Identifies an opponent's strengths and weaknesses."
 msgid "scope"
 msgstr "Scope"
 
+msgid "shadow_blast_description"
+msgstr "The user releases a blast of negative energy, sucking life from other beings."
+
+msgid "shadow_blast"
+msgstr "Shadow Blast"
+
 msgid "shadow_boxing_description"
 msgstr "A flurry of punches strikes the target."
 
@@ -2058,19 +2433,28 @@ msgid "shadow_boxing"
 msgstr "Shadow Boxing"
 
 msgid "shapechange_description"
-msgstr ""
+msgstr "The user undergoes a rapid transformation, striking the opponent with a surprising and powerful attack."
 
 msgid "shapechange"
 msgstr "Shapechange"
 
+msgid "shooting_star_description"
+msgstr "Heals the user's health by harnessing the energy of a shooting star streaking across the night sky."
+
+msgid "shooting_star_fail"
+msgstr "The lack of starlight from the daytime sky prevents the healing."
+
+msgid "shooting_star"
+msgstr "Shooting Star"
+
 msgid "shrapnel_description"
-msgstr ""
+msgstr "The user unleashes a barrage of sharp fragments, causing widespread damage."
 
 msgid "shrapnel"
 msgstr "Shrapnel"
 
 msgid "shuriken_description"
-msgstr ""
+msgstr "The user hurls a deadly array of throwing stars, reinforcing its own resolve with each hit."
 
 msgid "shuriken"
 msgstr "Shuriken"
@@ -2082,22 +2466,43 @@ msgid "sleep_bomb"
 msgstr "Sleep Bomb"
 
 msgid "sleeping_powder_description"
-msgstr ""
+msgstr "A cloud of sleep-inducing pollen is released, causing the opponent to fall asleep."
 
 msgid "sleeping_powder"
 msgstr "Sleeping Powder"
 
+msgid "slice_description"
+msgstr "The user wields a sharp blade, delivery a powerful, cutting attack."
+
+msgid "slice"
+msgstr "Slice"
+
 msgid "slime_description"
-msgstr ""
+msgstr "A sticky, viscous substance is emitted, engulfing the opponent and dealing damage."
 
 msgid "slime"
 msgstr "Slime"
 
 msgid "snowstorm_description"
-msgstr ""
+msgstr "A blizzard engulfs the opponent, inflicting cold damage and leaving them exhausted."
 
 msgid "snowstorm"
 msgstr "Snowstorm"
+
+msgid "solar_synthesis_description"
+msgstr "Heals the user's health by absorbing sunlight."
+
+msgid "solar_synthesis_fail"
+msgstr "The lack of sunlight prevents the healing."
+
+msgid "solar_synthesis"
+msgstr "Solar Synthesis"
+
+msgid "spiky_strike_description"
+msgstr "The user lashes out with its sharp spines or quills, striking the opponent with a flurry of piercing blows, inflicting pain and damage."
+
+msgid "spiky_strike"
+msgstr "Spiky Strike"
 
 msgid "spit_poison_description"
 msgstr "Liquid death sprays from the user's venom sacs."
@@ -2106,37 +2511,55 @@ msgid "spit_poison"
 msgstr "Spit Poison"
 
 msgid "splinter_description"
-msgstr ""
+msgstr "The user launches a barrage of wooden splinters, blinding and damaging the opponent."
 
 msgid "splinter"
 msgstr "Splinter"
 
 msgid "stabilo_description"
-msgstr ""
+msgstr "The user summons a barrage of sharp wooden splinters that pierce the opponent."
 
 msgid "stabilo"
 msgstr "Stabilo"
 
+msgid "staff_smash_description"
+msgstr "The user delivers a powerful blow with its staff."
+
+msgid "staff_smash"
+msgstr "Staff Smash"
+
 msgid "stampede_description"
-msgstr ""
+msgstr "A powerful, overwhelming charge that inflicts heavy physical damage."
 
 msgid "stampede"
 msgstr "Stampede"
 
 msgid "starfall_description"
-msgstr ""
+msgstr "A shower of celestial bodies descends upon the opponent, inflicting damage and granting the user heightened focus while exhausting the opponent."
 
 msgid "starfall"
 msgstr "Starfall"
 
 msgid "static_field_description"
-msgstr ""
+msgstr "The user generates a static electric field around itself, granting it increased defense."
 
 msgid "static_field"
 msgstr "Static Field"
 
+msgid "steel_jaws_description"
+msgstr "The user clamps down with jaws reinforced by metal. A powerful biting attack."
+
+msgid "steel_jaws"
+msgstr "Steel Jaws"
+
+msgid "stick_description"
+msgstr "The user uses a stick, plant part or twig to poke or smack the opponent."
+
+msgid "stick"
+msgstr "Stick"
+
 msgid "sting_description"
-msgstr ""
+msgstr "The user inflicts a painful sting, injecting poison into the opponent's body."
 
 msgid "sting"
 msgstr "Sting"
@@ -2148,109 +2571,115 @@ msgid "stone_rot"
 msgstr "Stone Rot"
 
 msgid "stonehenge_description"
-msgstr ""
+msgstr "The user manipulates the earth, creating a ring of stones that crush the opponent."
 
 msgid "stonehenge"
 msgstr "Stonehenge"
 
 msgid "strangulation_description"
-msgstr ""
+msgstr "The user constricts the opponent's throat, cutting off their air supply."
 
 msgid "strangulation"
 msgstr "Strangulation"
 
 msgid "strike_description"
-msgstr ""
+msgstr "The user delivers a powerful, focused blow."
 
 msgid "strike"
 msgstr "Strike"
 
 msgid "suck_poison_description"
-msgstr ""
+msgstr "The user draws out the poison from their own body and infects their enemy with it."
 
 msgid "suck_poison"
 msgstr "Suck Poison"
 
 msgid "sudden_glow_description"
-msgstr ""
+msgstr "The user emits a radiant light, healing itself and restoring its stamina."
 
 msgid "sudden_glow"
 msgstr "Sudden Glow"
 
 msgid "sunburst_description"
-msgstr ""
+msgstr "The user channels the energy of the sun, unleashing a blindingly bright attack."
 
 msgid "sunburst"
 msgstr "Sunburst"
 
 msgid "supernova_description"
-msgstr ""
+msgstr "A cataclysmic explosion of energy, dealing immense damage to all opponents."
 
 msgid "supernova"
 msgstr "Supernova"
 
 msgid "suplex_description"
-msgstr ""
+msgstr "A powerful grappling move that throws the opponent to the ground, inflicting damage and granting the user increased resilience."
 
 msgid "suplex"
 msgstr "Suplex"
 
 msgid "surf_description"
-msgstr ""
+msgstr "AA massive wave crashes down upon the opponent."
 
 msgid "surf"
 msgstr "Surf"
 
 msgid "surge_description"
-msgstr ""
+msgstr "A powerful electric discharge that shocks the opponent."
 
 msgid "surge"
 msgstr "Surge"
 
-msgid "sword_description"
-msgstr ""
-
-msgid "sword"
-msgstr "Sword"
-
 msgid "sylvan_description"
-msgstr ""
+msgstr "The user summons the power of nature, transforming the opponent into a wooden puppet."
 
 msgid "sylvan"
 msgstr "Sylvan"
 
+msgid "tail_lash_description"
+msgstr "The user lashes out with their tail or tail like appendage."
+
+msgid "tail_lash"
+msgstr "Tail Lash"
+
 msgid "take_cover_description"
-msgstr ""
+msgstr "The user assumes a defensive stance, increasing its accuracy."
 
 msgid "take_cover"
 msgstr "Take Cover"
 
 msgid "ten_thousand_feathers_description"
-msgstr ""
+msgstr "A flurry of feathers descends upon the opponent, inflicting multiple hits."
 
 msgid "ten_thousand_feathers"
 msgstr "Ten Thousand Feathers"
 
 msgid "terror_description"
-msgstr ""
+msgstr "The target is shaking with fear, unable to pick up or use items."
 
 msgid "terror"
 msgstr "Terror"
 
+msgid "thorn_burst_description"
+msgstr "The user unleashes a rain of thorns, shooting a cloud of sharp, piercing projectiles at the opponent, dealing damage and potentially causing the opponent to become stuck, immobilized by the thorny barrage."
+
+msgid "thorn_burst"
+msgstr "Thorn Burst"
+
 msgid "thunderball_description"
-msgstr ""
+msgstr "With a rumbling like thunder, a hard ball of rock strikes the target."
 
 msgid "thunderball"
 msgstr "Thunderball"
 
 msgid "thunderclap_description"
-msgstr ""
+msgstr "A sudden, deafening clap of thunder that stuns and damages the opponent."
 
 msgid "thunderclap"
 msgstr "Thunderclap"
 
 msgid "time_crisis_description"
-msgstr ""
+msgstr "The user distorts the flow of time, causing the opponent damage."
 
 msgid "time_crisis"
 msgstr "Time Crisis"
@@ -2262,7 +2691,7 @@ msgid "tinder"
 msgstr "Tinder"
 
 msgid "tip_description"
-msgstr ""
+msgstr "The user delivery a swift, precise strike to a vital point."
 
 msgid "tip"
 msgstr "Tip"
@@ -2274,61 +2703,73 @@ msgid "tonguespear"
 msgstr "Tonguespear"
 
 msgid "torch_description"
-msgstr ""
+msgstr "A projectile that strikes the opponent."
 
 msgid "torch"
 msgstr "Torch"
 
+msgid "tornado_description"
+msgstr "The user summons a swirling vortex of air, unleashing a devastating tornado that lifts the opponent off the ground and deals damage."
+
+msgid "tornado"
+msgstr "Tornado"
+
+msgid "trample_description"
+msgstr "The user charges at the opponent with a powerful shoulder tackle, knocking them to the ground and then quickly moving away, leaving the target stuck in place."
+
+msgid "trample"
+msgstr "Trample"
+
 msgid "tsunami_description"
-msgstr ""
+msgstr "The user summons a colossal wave that crashes down upon the opponent."
 
 msgid "tsunami"
 msgstr "Tsunami"
 
 msgid "tux_attack_description"
-msgstr ""
+msgstr "The user transforms into a whirlwind of data, dealing heavy damage."
 
 msgid "tux_attack"
 msgstr "Tux Attack"
 
 msgid "ubuntu_description"
-msgstr ""
+msgstr "The user emits a chaotic energy that randomly alters the opponent's type."
 
 msgid "ubuntu"
 msgstr "Ubuntu"
 
 msgid "undertaker_description"
-msgstr ""
+msgstr "A desperate, self-sacrificing attack that deals a massive damage at the cost of the user's health."
 
 msgid "undertaker"
 msgstr "Undertaker"
 
 msgid "venom_description"
-msgstr ""
+msgstr "The user secretes a corrosive acid that burns the opponent upon contact."
 
 msgid "venom"
 msgstr "Venom"
 
 msgid "venomous_tentacle_description"
-msgstr ""
+msgstr "A poisonous tentacle strikes the opponent, inflicting damage and poisoning them."
 
 msgid "venomous_tentacle"
 msgstr "Venomous Tentacle"
 
 msgid "viper_description"
-msgstr ""
+msgstr "The user launches a volley of sharp, wooden darts with incredible speed and accuracy."
 
 msgid "viper"
 msgstr "Viper"
 
 msgid "vorpal_description"
-msgstr ""
+msgstr "The user unleashes a devastating, precision strike that inflicts severe damage and fills the opponent with a burning desire for revenge."
 
 msgid "vorpal"
 msgstr "Vorpal"
 
 msgid "wall_fire_description"
-msgstr ""
+msgstr "The user conjures a fiery wall that both protects it and scorches the opponent."
 
 msgid "wall_fire"
 msgstr "Wall Fire"
@@ -2340,40 +2781,67 @@ msgid "wall_of_steel"
 msgstr "Wall of Steel"
 
 msgid "wallow_description"
-msgstr ""
+msgstr "The user relaxes in a pool of mud, healing its wounds."
 
 msgid "wallow"
 msgstr "Wallow"
 
 msgid "walls_description"
-msgstr ""
+msgstr "The user constructs sturdy walls of earth or rock to create a defensive barrier."
 
 msgid "walls"
 msgstr "Walls"
 
+msgid "water_blast_description"
+msgstr "The user unleashes a powerful blast of water, striking the opponent with a torrent of liquid force, dealing damage."
+
+msgid "water_blast"
+msgstr "Water Blast"
+
+msgid "water_bullet_description"
+msgstr "A mouthful of water is flung at the target with great alacrity."
+
+msgid "water_bullet"
+msgstr "Water Bullet"
+
 msgid "web_description"
-msgstr ""
+msgstr "A sticky web is shot at the opponent, trapping them and inflicting damage."
 
 msgid "web"
 msgstr "Web"
 
 msgid "webs_wind_description"
-msgstr ""
+msgstr "The user creates a swirling vortex of sticky webs that ensnare the opponent, dealing multiple hits and slowing their movement."
 
 msgid "webs_wind"
 msgstr "Webs Wind"
 
 msgid "whirlwind_description"
-msgstr ""
+msgstr "The user creates a powerful vortex of wind that sweeps the opponent away."
 
 msgid "whirlwind"
 msgstr "Whirlwind"
 
+msgid "wiggle_description"
+msgstr "The user shakes their body back and forth, creating a silly, attention-grabbing display that doesn't do any damage but might be entertaining to watch."
+
+msgid "wiggle_success"
+msgstr "{user} wiggled its body!"
+
+msgid "wiggle"
+msgstr "Wiggle"
+
 msgid "wing_tip_description"
-msgstr ""
+msgstr "The user delivers a sharp, cutting attack with the tip of its wing."
 
 msgid "wing_tip"
 msgstr "Wing Tip"
+
+msgid "woodsmash_description"
+msgstr "The user slams into the opponent with a powerful wooden strike, dealing damage and potentially knocking them back."
+
+msgid "woodsmash"
+msgstr "Woodsmash"
 
 ## MAP ##
 
@@ -2664,6 +3132,9 @@ msgstr "Move"
 msgid "monster_menu_tech"
 msgstr "Techniques"
 
+msgid "monster_menu_item"
+msgstr "Held Item"
+
 msgid "monster_menu_desc"
 msgstr "Description"
 
@@ -2708,6 +3179,9 @@ msgstr "Tuxemon has too many techniques.\n"
 msgid "evolution_confirmation"
 msgstr "{name} is trying to evolve into {evolve}. Allow evolution?"
 
+msgid "evolution_ended"
+msgstr "{name} evolves into {evolve}!"
+
 msgid "no_signal"
 msgstr "No Signal"
 
@@ -2724,16 +3198,19 @@ msgstr "{name} has too many techniques.\n"
 msgid "uninstall_app"
 msgstr "Unable to uninstall the app."
 
+msgid "mission_deletion"
+msgstr "Do you want to delete this mission?"
+
 # Player State
 
 msgid "tuxepedia_progress"
 msgstr "Tuxepedia: {value}%!"
 
 msgid "tuxepedia_data_seen"
-msgstr "Seen {param} out of {all} Tuxemon"
+msgstr "Seen {param} out of {all}"
 
 msgid "tuxepedia_data_caught"
-msgstr "Caught {param} out of {all} Tuxemon"
+msgstr "Caught {param} out of {all}"
 
 msgid "player_start_adventure_today"
 msgstr "The adventure began today."
@@ -2775,6 +3252,9 @@ msgstr "Traded {doc} days ago"
 
 msgid "tuxepedia_exp"
 msgstr "{exp_lv}xp to Lv {lv}"
+
+msgid "no_held_item"
+msgstr "No held item"
 
 # Menu notifications
 msgid "log_off"
@@ -2906,11 +3386,59 @@ msgstr "Cancel Key"
 msgid "menu_back_key"
 msgstr "Back Key"
 
+msgid "menu_reset_default"
+msgstr "Reset Keys to Default"
+
+msgid "menu_language"
+msgstr "Language"
+
+msgid "language_cs_cz"
+msgstr "Czech"
+
+msgid "language_de_de"
+msgstr "German"
+
+msgid "language_eo"
+msgstr "Esperanto"
+
+msgid "language_es_es"
+msgstr "Spanish"
+
+msgid "language_es_mx"
+msgstr "Mexican Spanish"
+
+msgid "language_fi"
+msgstr "Finnish"
+
+msgid "language_fr_fr"
+msgstr "French"
+
+msgid "language_it_it"
+msgstr "Italian"
+
+msgid "language_ja"
+msgstr "Japanese"
+
+msgid "language_nb_no"
+msgstr "Norwegian Bokmål"
+
+msgid "language_pl"
+msgstr "Polish"
+
+msgid "language_pt_br"
+msgstr "Brazilian Portuguese"
+
+msgid "language_zh_cn"
+msgstr "Simplified Chinese"
+
 msgid "enable"
 msgstr "Enable"
 
 msgid "disable"
 msgstr "Disable"
+
+msgid "menu_mute_music"
+msgstr "Mute Music"
 
 msgid "menu_music_volume"
 msgstr "Music Volume"
@@ -3091,6 +3619,12 @@ msgstr "The egg in its pouch does not hatch. Instead, it secretes a delicious dr
 msgid "ambuwl"
 msgstr "Ambuwl"
 
+msgid "ampystoma_description"
+msgstr "You would think AMPYSTOMA's warning coloration would make ambush impossible, but the murky waters it hunts in obscure it until it is ready to reveal itself. It likes to go on land during thunderstorms."
+
+msgid "ampystoma"
+msgstr "Ampystoma"
+
 msgid "angesnow_description"
 msgstr "Those who survive getting lost in hostile, icy conditions often mention a mysterious presence guiding them even when the snow is too heavy to see through."
 
@@ -3133,23 +3667,47 @@ msgstr "It feels uncomfortable commanding its fellow NUT and BOLT, and usually r
 msgid "arthrobolt"
 msgstr "Arthrobolt"
 
+msgid "askylpaws_description"
+msgstr "It is an omen of disaster, often appearing in times of great trouble. This has caused others to sometimes blame it for the misfortune."
+
+msgid "askylpaws"
+msgstr "Askylpaws"
+
+msgid "asudopt_description"
+msgstr "According to legend, ASUDOPT created the world and one day will destroy the world. In the meantime, it sets the world's universal laws."
+
+msgid "asudopt"
+msgstr "Asudopt"
+
 msgid "av8r_description"
 msgstr "If the sun is out, it can fly as far or as high as it likes."
 
 msgid "av8r"
 msgstr "Av8r"
 
-msgid "axylightl_description"
+msgid "axolightl_description"
 msgstr "It lights the deep waters with its tail, marking a safe shelter for fish."
 
-msgid "axylightl"
-msgstr "Axylightl"
+msgid "axolightl"
+msgstr "Axolightl"
 
 msgid "b_ver_1_description"
 msgstr "It is designed for all those times you need something to be bitten by a robot."
 
 msgid "b_ver_1"
 msgstr "B-Ver.1"
+
+msgid "babysnitch_description"
+msgstr "The fuming BABYSNITCH will throw itself into the attack, usually with little effect. But beware: if you laugh at its efforts, it will hunt you once it grows into a BADDRSCRATCH."
+
+msgid "babysnitch"
+msgstr "Babysnitch"
+
+msgid "baddrscratch_description"
+msgstr "The furious BADDRSCRATCH is a fearsome hunter, and it will not stop in its pursuit of its prey - even in the face of certain death."
+
+msgid "baddrscratch"
+msgstr "Baddrscratch"
 
 msgid "bamboon_description"
 msgstr "It fights with its bamboo staff, which it also uses for balance."
@@ -3163,6 +3721,18 @@ msgstr "Each BANLING is waiting for a homeless spirit to nestle in its branches.
 msgid "banling"
 msgstr "Banling"
 
+msgid "bansaken_description"
+msgstr "As twilight hits, the spirits inside BANSAKEN come to life. They like to add naughty children who stay up too late to their number."
+
+msgid "bansaken"
+msgstr "Bansaken"
+
+msgid "banvengeance_description"
+msgstr "BANVENGEANCE seeks to make its own night by growing new trees from running roots to drown out the light, smothering competing plant life."
+
+msgid "banvengeance"
+msgstr "Banvengeance"
+
 msgid "baobaraffe_description"
 msgstr "It stores mass amounts of water in its huge body so that it can travel long distances across hot, dry deserts. It will also share water with thirsty creatures. When it has no water stored it is skinny."
 
@@ -3175,11 +3745,23 @@ msgstr "They travel from river to river in search of water to drink and store. T
 msgid "baoby"
 msgstr "Baoby"
 
+msgid "bedoo_description"
+msgstr "It swallows its victims whole, forcing them into a deep sleep for a few hours whilst it feasts on their dreams. Often, it will accidentally put their victims into a permanent sleep."
+
+msgid "bedoo"
+msgstr "Bedoo"
+
 msgid "beenstalker_description"
 msgstr "What BEENSTALKER lacks in sense and grace, it makes up for in sheer enthusiasm and goodwill. It delights in scaring off vermin, but never harming them."
 
 msgid "beenstalker"
 msgstr "Beenstalker"
+
+msgid "bewhich_description"
+msgstr "When BEWHICH holds its breath, it can appear as a beautiful - though sinister - human. "
+
+msgid "bewhich"
+msgstr "Bewhich"
 
 msgid "bigfin_description"
 msgstr "A whole ecosystem exists on its back, so it tries not to go underwater."
@@ -3187,11 +3769,23 @@ msgstr "A whole ecosystem exists on its back, so it tries not to go underwater."
 msgid "bigfin"
 msgstr "Bigfin"
 
+msgid "birdee_description"
+msgstr "It is omnivorous, but whether it prefers meat or seed depends on its experiences when young."
+
+msgid "birdee"
+msgstr "Birdee"
+
 msgid "birdling_description"
 msgstr "The ignorant believe that it carries its own egg upon its back. It is the guard for a far more important egg than that."
 
 msgid "birdling"
 msgstr "Birdling"
+
+msgid "bishosand_description"
+msgstr "BISHOSAND is fascinated by religious or spiritual symbols it sees and likes to collect them, but is believed to not understand any of them."
+
+msgid "bishosand"
+msgstr "Bishosand"
 
 msgid "blasdoor_description"
 msgstr "BLASDOOR shield those they care about behind their impenetrable bulk, but macerate unwanted intruders and scrap machines between their steel teeth."
@@ -3223,6 +3817,24 @@ msgstr "With its long blue cape, BOXALI can glide above the ground - allowing it
 msgid "boxali"
 msgstr "Boxali"
 
+msgid "boxorox_description"
+msgstr "The dumber it gets, the harder its rocky body becomes."
+
+msgid "boxorox"
+msgstr "Boxorox"
+
+msgid "brachifor_description"
+msgstr "BRACHIFOR can go without eating if it stays perfectly still."
+
+msgid "brachifor"
+msgstr "Brachifor"
+
+msgid "breem_description"
+msgstr "It punctures fruit to place new DUGGOT in them by night. By day it pretends to be a normal bee."
+
+msgid "breem"
+msgstr "Breem"
+
 msgid "brewdin_description"
 msgstr "Born in neglected, once prized, pottery and similar treasures. Rumored to grants wishes to those who can make it smile."
 
@@ -3240,6 +3852,12 @@ msgstr "Be wary when kicking a BRICGARD's nest, because percussive force is the 
 
 msgid "brickhemoth"
 msgstr "Brickhemoth"
+
+msgid "brumi_description"
+msgstr "Neglected brooms may be stolen by BRUMI. "
+
+msgid "brumi"
+msgstr "Brumi"
 
 msgid "budaye_description"
 msgstr "It can convince any group to cooperate for the common good with some encouraging mewls and waves."
@@ -3259,11 +3877,29 @@ msgstr "BUMBULUS is a flying being that produces a cloud of smoke to disguise it
 msgid "bumbulus"
 msgstr "Bumbulus"
 
+msgid "burrlock_description"
+msgstr "BURRLOCK likes to stick to passerbys to help it spread from place to place."
+
+msgid "burrlock"
+msgstr "Burrlock"
+
 msgid "bursa_description"
 msgstr "It rejects fire as basic, and produces only the fire of the mind."
 
 msgid "bursa"
 msgstr "Bursa"
+
+msgid "cacaburr_description"
+msgstr "CACABURR supports many pollinators like TUMBLEBEE and seed lovers like CHICKADEE."
+
+msgid "cacaburr"
+msgstr "Cacaburr"
+
+msgid "cackleen_description"
+msgstr "Some say CACKLEEN is a possessed child, others that is the lost spirit of a girl. "
+
+msgid "cackleen"
+msgstr "Cackleen"
 
 msgid "cairfrey_description"
 msgstr "A jolly piece of furniture who awoke one morning and decided to explore."
@@ -3288,6 +3924,12 @@ msgstr "It looks like a baby, but some specimens have been found that are hundre
 
 msgid "capiti"
 msgstr "Capiti"
+
+msgid "carcharock_description"
+msgstr "CARCHAROCK's ancient instincts are at odds with the modern world, where the scent of PHARFAN and the roar of PANTHERAFIRA have replaced the familiar sounds of its homeland."
+
+msgid "carcharock"
+msgstr "Carcharock"
 
 msgid "cardiling_description"
 msgstr "One wouldn't expect it to breathe fire, until it does."
@@ -3337,6 +3979,12 @@ msgstr "It is found in forests and fields, where it is often mistaken for a turn
 msgid "chibiro"
 msgstr "Chibiro"
 
+msgid "chickadee_description"
+msgstr "CHICKADEE gives longer repeated cries of 'dees' if the danger it senses seems lesser than another."
+
+msgid "chickadee"
+msgstr "Chickadee"
+
 msgid "chillimp_description"
 msgstr "It is rumoured to live atop snowy mountains, but no clear photo of it has ever been taken."
 
@@ -3355,11 +4003,41 @@ msgstr "CHROMEYE was created to observe and learn how humans think and feel."
 msgid "chromeye"
 msgstr "Chromeye"
 
+msgid "claymorior_description"
+msgstr "It is said that only one in a thousand can rule over the CLAYMORIOR as a REGALANCE."
+
+msgid "claymorior"
+msgstr "Claymorior"
+
+msgid "coaldiak_description"
+msgstr "This bear can set fire to anywhere and draw blood from anything."
+
+msgid "coaldiak"
+msgstr "Coaldiak"
+
+msgid "cobarett_description"
+msgstr "It covers itself in thick, billowing smoke so that it can slide easily through thick brush. The source of the smoke is its molten body temperature, which is so hot that tongues of flame shoot from its mouth."
+
+msgid "cobarett"
+msgstr "Cobarett"
+
 msgid "cochini_description"
 msgstr "It is as intelligent and aware as a three-year old child. It tastes delicious."
 
 msgid "cochini"
 msgstr "Cochini"
+
+msgid "cocrune_description"
+msgstr "Whichever way it turns, the blood-red eye faces you."
+
+msgid "cocrune"
+msgstr "Cocrune"
+
+msgid "cohldrabi_description"
+msgstr "It is born underground in cold, snowy areas, and learns how to fly within a few weeks."
+
+msgid "cohldrabi"
+msgstr "Cohldrabi"
 
 msgid "coleorus_description"
 msgstr "It has existed, unchanged, for millions of years."
@@ -3384,6 +4062,12 @@ msgstr "Foods placed in its pitcher are blended and pickled. They are used to st
 
 msgid "conileaf"
 msgstr "Conileaf"
+
+msgid "coppi_description"
+msgstr "COPPI's flowers are surprisingly bitter and smelly, but they are useful in beer brewing and medicine."
+
+msgid "coppi"
+msgstr "Coppi"
 
 msgid "coproblight_description"
 msgstr "Born from the feces of prehistoric Tuxemon, it used the shards of bone within itself for defense."
@@ -3415,6 +4099,12 @@ msgstr "Its mane shines during the day, grows big and red at sunset, and blows a
 msgid "criniotherme"
 msgstr "Criniotherme"
 
+msgid "crustagu_description"
+msgstr "It fires piercing, poisonous spines from its claws to frighten away those who threaten its underwater colonies."
+
+msgid "crustagu"
+msgstr "Crustagu"
+
 msgid "dandicub_description"
 msgstr "After a litter is born, they float all over the world and never see their family again."
 
@@ -3433,11 +4123,35 @@ msgstr "A DANKUSH can stop itself from burning by holding its breath, causing pl
 msgid "dankush"
 msgstr "Dankush"
 
+msgid "delfeco_description"
+msgstr "DELFECO's streamlined body allows for swift navigation through water, and its intelligence is evident in its complex hunting strategies. Despite its size, it's known for its playful nature and strong bond with its trainer."
+
+msgid "delfeco"
+msgstr "Delfeco"
+
 msgid "demosnow_description"
 msgstr "DEMOSNOW delight in luring travelers deeper into the wilderness than is strictly safe, promising them glory and adventure."
 
 msgid "demosnow"
 msgstr "Demosnow"
+
+msgid "devidin_description"
+msgstr "A dicynodont that came back to life and decided to become the dinosaur everyone always mistakes it for."
+
+msgid "devidin"
+msgstr "Devidin"
+
+msgid "devidra_description"
+msgstr "Look closely, for ultra fine fur gives away it is devilishly pretending to be a dinosaur."
+
+msgid "devidra"
+msgstr "Devidra"
+
+msgid "deviraptor_description"
+msgstr "The single pair of feathers on its head are fakes, hinting at its devilish true identity."
+
+msgid "deviraptor"
+msgstr "Deviraptor"
 
 msgid "dinoflop_description"
 msgstr "DINOFLOP delights in quickly turning away from its attackers so their blows land on its shielded and spiny back."
@@ -3450,6 +4164,12 @@ msgstr "It is mistakenly believed that it is a human who died in a fire. Actuall
 
 msgid "djinnbo"
 msgstr "Djinnbo"
+
+msgid "doctsky_description"
+msgstr "The little hyena just wants to take care of others, but has a bad reputation after a movie with it as a villain came out."
+
+msgid "doctsky"
+msgstr "Doctsky"
 
 msgid "dollfin_description"
 msgstr "Each one follows a ship from place to place, exploring the world."
@@ -3480,6 +4200,12 @@ msgstr "Once it had a family, but it ate its parents, and it ate its children, a
 
 msgid "drokoro"
 msgstr "Drokoro"
+
+msgid "duggot_description"
+msgstr "When TUMBLEBEE tries to drink fruit juice, a DUGGOT may latch on and take over its brain."
+
+msgid "duggot"
+msgstr "Duggot"
 
 msgid "dune_pincher_description"
 msgstr "These hermits will wrap themselves in whatever is closest. In the desert, that is the burial shrouds of long-dead pharaohs."
@@ -3529,11 +4255,29 @@ msgstr "ENDUROS is an aggressive brawler that does not pull its blows. Out of th
 msgid "enduros"
 msgstr "Enduros"
 
+msgid "equill_description"
+msgstr "Its bitterness causes it to transform. It hides its ugliness in the dark."
+
+msgid "equill"
+msgstr "Equill"
+
 msgid "eruptibus_description"
 msgstr "Smiths work with it, heating up metals in its caldera."
 
 msgid "eruptibus"
 msgstr "Eruptibus"
+
+msgid "erythroskyte_description"
+msgstr "It has a friendly demeanor, but its giant syringe tail nonetheless scares many away."
+
+msgid "erythroskyte"
+msgstr "Erythroskyte"
+
+msgid "eskipup_description"
+msgstr "Even as a puppy, it can pull 1 ton loads."
+
+msgid "eskipup"
+msgstr "Eskipup"
 
 msgid "exapode_description"
 msgstr "It waves its legs to attract attention, but mostly people just run away."
@@ -3613,6 +4357,24 @@ msgstr "When one is in danger, all FOOFLE hear its cries, wherever they are."
 msgid "foofle"
 msgstr "Foofle"
 
+msgid "flounce_description"
+msgstr "FLOUNCE can be stubborn and solitary, flouncing all the rules unless given good motivation."
+
+msgid "flounce"
+msgstr "Flounce"
+
+msgid "flummack_description"
+msgstr "FLUMMACK no longer desires to be eaten, but to eat - even other FLUMMBY and FLUMMACK go down a treat."
+
+msgid "flummack"
+msgstr "Flummack"
+
+msgid "flummby_description"
+msgstr "FLUMMBY was invented by a scientist who thought food that wanted to be eaten would be more ethical. It leaps into the mouth of anyone who could eat it."
+
+msgid "flummby"
+msgstr "Flummby"
+
 msgid "fordin_description"
 msgstr "When threatened, it curls into a ball and bounces away."
 
@@ -3643,6 +4405,12 @@ msgstr "It can do anything with its prehensile tail, even shake hands and pick f
 msgid "frondly"
 msgstr "Frondly"
 
+msgid "frostuce_description"
+msgstr "One rarely expects to see green waltzing around in a snowstorm."
+
+msgid "frostuce"
+msgstr "Frostuce"
+
 msgid "fruitera_description"
 msgstr "FRUITERA is greedy for fruit, and carries as much as it can. When startled, it drops all its fruit, gathers it all up again, and only then runs away."
 
@@ -3667,11 +4435,23 @@ msgstr "When a child is no longer around to play with their toys, they sometimes
 msgid "fuzzlet"
 msgstr "Fuzzlet"
 
+msgid "galasces_description"
+msgstr "GALASCES can distort its shape to engulf prey its own size."
+
+msgid "galasces"
+msgstr "Galasces"
+
 msgid "galnec_description"
 msgstr "GALNEC buries itself deep in the hot sands of the desert, only its stony tail above ground. In packs, they look like gardens of stone."
 
 msgid "galnec"
 msgstr "Galnec"
+
+msgid "gastronium_description"
+msgstr "GASTRONIUM can eat almost anything but prefers heavy, radioactive materials."
+
+msgid "gastronium"
+msgstr "Gastronium"
 
 msgid "gectile_description"
 msgstr "It is so quick and light that it can walk on leaves."
@@ -3685,11 +4465,41 @@ msgstr "It smiles because it knows how everyone it meets is going to die."
 msgid "ghosteeth"
 msgstr "Ghosteeth"
 
+msgid "gladiatorbug_description"
+msgstr "GLADIATORBUG is a massive insectoid tuxemon with a deep, armored exoskeleton and distinctive wings running along its back. Its mandibles can crush steel. "
+
+msgid "gladiatorbug"
+msgstr "Gladiatorbug"
+
+msgid "gliffary_description"
+msgstr "A mischievous fey creature that is rarely seen, it gathers by mushroom rings and melts iron zealously."
+
+msgid "gliffary"
+msgstr "Gliffary"
+
 msgid "glombroc_description"
 msgstr "It stores its memories in its rocky shell. If some fall off, it is forgetful."
 
 msgid "glombroc"
 msgstr "Glombroc"
+
+msgid "glomon_description"
+msgstr "A colony of bacteria that became new life in a discarded medical glove. It can see out of the back of its body."
+
+msgid "glomon"
+msgstr "Glomon"
+
+msgid "golnagi_description"
+msgstr "GOLNAGI's scales glow, making it almost invisible in the water during dawn and dusk - its preferred times for hunting."
+
+msgid "golnagi"
+msgstr "Golnagi"
+
+msgid "gourda_description"
+msgstr "Competitions to grow the largest GOURDA have resulted in some reaching one ton in weight, but normal GOURDA are much smaller."
+
+msgid "gourda"
+msgstr "Gourda"
 
 msgid "graffiki_description"
 msgstr "GRAFFIKI are as at home in cities as they are in the jungle, tagging their territory with elaborate paintings."
@@ -3733,6 +4543,18 @@ msgstr "Bone armor protects GRYFIX from all but the most powerful of attacks."
 msgid "gryfix"
 msgstr "Gryfix"
 
+msgid "gupphire_description"
+msgstr "GUPPHIRE's scales sparkle, making it a stunning sight to behold. Fishers who see a GUPPHIRE believe it means they will have good luck all year."
+
+msgid "gupphire"
+msgstr "gupphire"
+
+msgid "gupphish_description"
+msgstr "GUPPHISH loves to swim in schools, making it a popular choice for trainers who value teamwork."
+
+msgid "gupphish"
+msgstr "gupphish"
+
 msgid "hampotamos_description"
 msgstr "It nibbles on RINOCEREED, clearing away dead skin, moss and weeds."
 
@@ -3757,17 +4579,53 @@ msgstr "When it inflates its dome, it floats to the top of oceans, or even throu
 msgid "hectapod"
 msgstr "Hectapod"
 
+msgid "helipi_description"
+msgstr "It flies farther with one wing by rotating than with two, but sacrifices the ability to easily aim."
+
+msgid "helipi"
+msgstr "Helipi"
+
 msgid "heronquak_description"
 msgstr "The crystal on its chest is mistaken for a diamond by poachers. It melts when it is removed from HERONQUAK's body."
 
 msgid "heronquak"
 msgstr "Heronquak"
 
+msgid "hissiorite_description"
+msgstr "The base of its neck emits super-heated gas that envelopes its body and causes it to hover a few inches off the ground, similar to a hot air balloon. Because of this it can travel quickly, even over water."
+
+msgid "hissiorite"
+msgstr "Hissiorite"
+
+msgid "hoarse_description"
+msgstr "It appears to be a farm animal, but it was mistreated by its owner."
+
+msgid "hoarse"
+msgstr "Hoarse"
+
+msgid "hoarseshoo_description"
+msgstr "It is what is left when an EQUILL's shadow eats its body."
+
+msgid "hoarseshoo"
+msgstr "Hoarseshoo"
+
+msgid "hoodoll_description"
+msgstr "It sometimes sticks a pin in itself to curse its foes, but no one can tell the difference after."
+
+msgid "hoodoll"
+msgstr "Hoodoll"
+
 msgid "hotline_description"
 msgstr "These curious creatures can leap great distances, letting out a strange, tinny cry that cannot be escaped however far their prey runs."
 
 msgid "hotline"
 msgstr "Hotline"
+
+msgid "houndice_description"
+msgstr "HOUNDICE loves sledding, but it can also sniff out lost hikers under snow."
+
+msgid "houndice"
+msgstr "Houndice"
 
 msgid "howl_description"
 msgstr "HOWL's foolish exterior hides deep wisdom - if only it could communicate it, but its words come out as hoots and howls."
@@ -3805,6 +4663,12 @@ msgstr "When a person rests their head on JELILLOW, its jelly-like skin causes t
 msgid "jelillow"
 msgstr "Jelillow"
 
+msgid "jeluna_description"
+msgstr "The moon exercises its strange influence on Jeluna, causing these aerial jellyfish to change their forms over the course of a month."
+
+msgid "jeluna"
+msgstr "Jeluna"
+
 msgid "jemuar_description"
 msgstr "The gems on its back are the type found when it was born. There are extensive ROCKITTEN breeding facilities over diamond veins."
 
@@ -3841,6 +4705,18 @@ msgstr "KERNEL is a core component of the monster system (kennel) and item syste
 msgid "kernel"
 msgstr "Kernel"
 
+msgid "knightsand_description"
+msgstr "KNIGHTSAND patrols around sand castles inhabits by PAWSAND, but is terrible at building them."
+
+msgid "knightsand"
+msgstr "Knightsand"
+
+msgid "knindling_description"
+msgstr "Any spark from a stone KNINDLING happily tenders into a fire."
+
+msgid "knindling"
+msgstr "Knindling"
+
 msgid "komodraw_description"
 msgstr "It uses its claws to carve its firearm out of wood, and uses it for powerful ranged attacks."
 
@@ -3852,6 +4728,24 @@ msgstr "Many a wrongdoer has fled town after seeing just the silhouette of an ap
 
 msgid "komoduel"
 msgstr "Komoduel"
+
+msgid "konuit_description"
+msgstr "In some places KONUIT is called 'drop bear' and believed to fall on unsuspecting heads below."
+
+msgid "konuit"
+msgstr "Konuit"
+
+msgid "kroki_description"
+msgstr "KROKI spends most of its time in shallow waters, using its powerful jaws to snap at prey."
+
+msgid "kroki"
+msgstr "Kroki"
+
+msgid "krokivip_description"
+msgstr "This venomous crocodilian enjoys ambushing from the water. As it grows closer to evolution, it seeks out larger bodies of water."
+
+msgid "krokivip"
+msgstr "Krokivip"
 
 msgid "lambert_description"
 msgstr "It is placed in its nut by its parent, who then sends it into the world."
@@ -3871,6 +4765,12 @@ msgstr "Long thought to be legless, its leaves are actually vestigial limbs."
 msgid "legko"
 msgstr "Legko"
 
+msgid "legoplaste_description"
+msgstr "It has a very fluid shape and may hunt by sending out random tendrils to sniff or touch nearby prey."
+
+msgid "legoplaste"
+msgstr "Legoplaste"
+
 msgid "lendos_description"
 msgstr "When two UNEYE become tangled, they form a single unified LENDOS."
 
@@ -3882,6 +4782,18 @@ msgstr "It oozes along the sea floor, looking for hard nooks and crannies to hid
 
 msgid "lesmagu"
 msgstr "Lesmagu"
+
+msgid "lettice_description"
+msgstr "Cold weather concentrates the power and vitality of LETTICE."
+
+msgid "lettice"
+msgstr "Lettice"
+
+msgid "leviadile_description"
+msgstr "With its immense size and powerful venomous jaws, LEVIADILE is a dominant predator of the deep sea."
+
+msgid "leviadile"
+msgstr "Leviadile"
 
 msgid "lightmare_description"
 msgstr "It lurks in the depths of the ocean, luring any unsuspecting prey using its light right into its large, gaping mouth."
@@ -3919,6 +4831,18 @@ msgstr "It floats across the tops of cities, contemplating sharks."
 msgid "manosting"
 msgstr "Manosting"
 
+msgid "marvantis_description"
+msgstr "When it evolves, the only trace of its original mimickry is its red ornaments."
+
+msgid "marvantis"
+msgstr "marvantis"
+
+msgid "marvillar_description"
+msgstr "MARVILLAR mimes an ant larvae using scent. It convinces SCARLANT and MYRMISON to feed it, eating skeptics."
+
+msgid "marvillar"
+msgstr "marvillar"
+
 msgid "masknake_description"
 msgstr "When frightened or aggressive, it flashes a beautiful pattern with its tail."
 
@@ -3931,11 +4855,23 @@ msgstr "MAUAI gives itself over to the spirits of lost warriors trapped inside i
 msgid "mauai"
 msgstr "Mauai"
 
+msgid "medipup_description"
+msgstr "When MEDIPUP sniff out sickness, they bounce over and nuzzle the affected creature. MEDIPUP's wet noses are effective, but some patients have been crushed under an overly enthusiastic pack."
+
+msgid "medipup"
+msgstr "Medipup"
+
 msgid "medushock_description"
 msgstr "Tend to stay away from shore and known to be aggressive to people. Stingers are used to stun its prey. Swim safely."
 
 msgid "medushock"
 msgstr "Medushock"
+
+msgid "megafruitera_description"
+msgstr "It has slightly better self control than its younger form, enlarging its nest first if it needs to for extra fruit."
+
+msgid "megafruitera"
+msgstr "Megafruitera"
 
 msgid "memnomnom_description"
 msgstr "It is said that each one's mask is the face of a different dead king."
@@ -3954,6 +4890,12 @@ msgstr "This Tuxemon would enjoy diving into the ground and leaving marks. Somet
 
 msgid "metesaur"
 msgstr "Metesaur"
+
+msgid "metoxic_description"
+msgstr "METOXIC sometimes acts as a flag for PAWSAND castles, spewing poisonous fumes everywhere."
+
+msgid "metoxic"
+msgstr "Metoxic"
 
 msgid "miaownolith_description"
 msgstr "It can speak the human tongue, but only to say cryptic riddles."
@@ -3979,6 +4921,12 @@ msgstr "These cheeky robots are used for their fine motor skills, but they love 
 msgid "mrmoswitch"
 msgstr "Mrmoswitch"
 
+msgid "myrmison_description"
+msgstr "MYRMISON queens will emerge on humid days to try to establish new colonies. This is a very dangerous time for them."
+
+msgid "myrmison"
+msgstr "Myrmison"
+
 msgid "mystikapi_description"
 msgstr "The MYSTIKAPI's saliva augments psychic powers. It licks its eyes and ears to heighten its senses."
 
@@ -3990,6 +4938,18 @@ msgstr "When a SHYBULB has restored a garden to glory, it morphs and proudly tak
 
 msgid "narcileaf"
 msgstr "Narcileaf"
+
+msgid "nebufin_description"
+msgstr "NEBUFIN's angelic appearance is deceptive, as the monster is predatory."
+
+msgid "nebufin"
+msgstr "Nebufin"
+
+msgid "ned_description"
+msgstr "NED has a rivalry with KONUIT, but KONUIT sleeps through most of their arguments."
+
+msgid "ned"
+msgstr "Ned"
 
 msgid "neutrito_description"
 msgstr "NEUTRITO feels nothing. The perfect machine?"
@@ -4003,6 +4963,12 @@ msgstr "NIMBULEX dresses itself in sparks and storm clouds to protect its delica
 msgid "nimbulex"
 msgstr "Nimbulex"
 
+msgid "ninjasmine_description"
+msgstr "NINJASMINE poisons his opponents quickly using his two poison swords."
+
+msgid "ninjasmine"
+msgstr "Ninjasmine"
+
 msgid "noctalo_description"
 msgstr "It inhabits only places abandoned by humans - castles, graveyards and sewers."
 
@@ -4010,7 +4976,7 @@ msgid "noctalo"
 msgstr "Noctalo"
 
 msgid "noctula_description"
-msgstr "It eats bugs and PIPIS eat fruit, so despite living in close proximity they do not compete."
+msgstr "It eats fruit and PIPIS eat bugs, so despite living in close proximity they do not compete."
 
 msgid "noctula"
 msgstr "Noctula"
@@ -4020,6 +4986,12 @@ msgstr "It can smell anything in the ocean, no matter how far away."
 
 msgid "nostray"
 msgstr "Nostray"
+
+msgid "novaquarius_description"
+msgstr "A NOVAQUARIUS sting sends the unwary to the hospital, but BUBBITOISE have developed immunity and will nibble on them."
+
+msgid "novaquarius"
+msgstr "Novaquarius"
 
 msgid "nudiflot_female_description"
 msgstr "It eats and stores the poison of the sea creatures that it feeds upon."
@@ -4087,6 +5059,30 @@ msgstr "Each member of the pride lights their mane from a shared bonfire. As lon
 msgid "pantherafira"
 msgstr "Pantherafira"
 
+msgid "parappi_description"
+msgstr "When cut PARAPPI oozes syrup that seals and hardens over its enemies, turning them to amber."
+
+msgid "parappi"
+msgstr "Parappi"
+
+msgid "pawsand_description"
+msgstr "PAWSAND inhabits sand castles and sand temples made by BISHOSAND and ROOKSAND, some of which are actually ROOKSAND itself."
+
+msgid "pawsand"
+msgstr "Pawsand"
+
+msgid "pearamanca_description"
+msgstr "PEARAMANCA sells insurance to innocent people just trying to buy fruit, which makes it the most terrifying monster of all."
+
+msgid "pearamanca"
+msgstr "Pearamanca"
+
+msgid "pharavion_description"
+msgstr "After great effort, a trainer may evolve a clumsy PHARFAN calf into its adult form, which gracefully floats despite its huge size."
+
+msgid "pharavion"
+msgstr "Pharavion"
+
 msgid "pharfan_description"
 msgstr "At the watering hole it keeps its friends RINOCEREED and HAMPOTAMOS well watered."
 
@@ -4098,6 +5094,12 @@ msgstr "It accompanies divers, providing much needed oxygen."
 
 msgid "picc"
 msgstr "Picc"
+
+msgid "pickoon_description"
+msgstr "It enjoys picking things up and stuffing them discreetly into its scarf."
+
+msgid "pickoon"
+msgstr "Pickoon"
 
 msgid "pigabyte_description"
 msgstr "Scientists found that the best computers have organic implants."
@@ -4147,6 +5149,12 @@ msgstr "By the time a POTTURMEIST has reached its maturity, its protective urn h
 msgid "potturney"
 msgstr "Potturney"
 
+msgid "primordia_description"
+msgstr "It is rumored to be the ancestor of all tuxemon."
+
+msgid "primordia"
+msgstr "Primordia"
+
 msgid "propellercat_description"
 msgstr "Is it a new species, or just the pet of an inventor?"
 
@@ -4177,6 +5185,12 @@ msgstr "Using its shadow puppets, it can use them to fight its opponent with gre
 msgid "pythock"
 msgstr "Pythock"
 
+msgid "pythonova_description"
+msgstr "It is short tempered and when enraged, the flames on its back burn hotter and its smoke tail becomes thicker and longer. It uses its smoke tail to coil around and smother its target."
+
+msgid "pythonova"
+msgstr "Pythonova"
+
 msgid "pythwire_description"
 msgstr "Observations of wild PYTHWIRE inspired the inventor of the first electrical outlet."
 
@@ -4194,6 +5208,24 @@ msgstr "Its tunnels are extensive and wide, the site of tremendous wars between 
 
 msgid "rabbitosaur"
 msgstr "Rabbitosaur"
+
+msgid "raccscal_description"
+msgstr "It has a baglike tail on its back that it can open and close, and even detach and throw at enemies."
+
+msgid "raccscal"
+msgstr "Raccscal"
+
+msgid "raptoucan_description"
+msgstr "It is formidable and aggressive, but only eats fruit."
+
+msgid "raptoucan"
+msgstr "Raptoucan"
+
+msgid "regalance_description"
+msgstr "It can summon a halberd whenever it needs."
+
+msgid "regalance"
+msgstr "Regalance"
 
 msgid "rhincus_description"
 msgstr "It has some properties of a reptile and some of a bird."
@@ -4225,11 +5257,29 @@ msgstr "It uses its tiny rock ears for snuggling."
 msgid "rockitten"
 msgstr "Rockitten"
 
+msgid "rooksand_description"
+msgstr "ROOKSAND sometimes allows those it deems worthy to live inside its sandcastle, and crushes all others."
+
+msgid "rooksand"
+msgstr "Rooksand"
+
 msgid "rosarin_description"
 msgstr "ROSARIN's love is incredible, he's only asking some affection."
 
 msgid "rosarin"
 msgstr "Rosarin"
+
+msgid "ruffalo_description"
+msgstr "RUFFALO possess incredible strength and can charge at high speeds, capable of knocking over trees and small buildings."
+
+msgid "ruffalo"
+msgstr "Ruffalo"
+
+msgid "runesquito_description"
+msgstr "The blood-red marking is RUNESQUITO. The rest is just a rocky shell it rides alongside."
+
+msgid "runesquito"
+msgstr "Runesquito"
 
 msgid "ruption_description"
 msgstr "Once EMBRA's flame becomes hot enough, it engulfs its entire body, essentially replacing it in the process."
@@ -4272,6 +5322,12 @@ msgstr "By night, SAURCHIN emerge from the coral reefs to hunt bigger prey on la
 
 msgid "saurchin"
 msgstr "Saurchin"
+
+msgid "scarlant_description"
+msgstr "Its worst enemy is MARVILLAR, which pretends to be its kin."
+
+msgid "scarlant"
+msgstr "Scarlant"
 
 msgid "sclairus_description"
 msgstr "When a crop is left unharvested - be it from laziness or disaster - its scarecrow becomes a dark and living creature."
@@ -4321,17 +5377,41 @@ msgstr "It wards off attackers by poisoning its spiky shell with goo spat from i
 msgid "shelagu"
 msgstr "Shelagu"
 
+msgid "sheye_description"
+msgstr "SHEYE are weighed down by heavy thoughts. Edgy trainers like them for their sinister appearance and solemn demeanor."
+
+msgid "sheye"
+msgstr "Sheye"
+
+msgid "shimmerain_description"
+msgstr "They say that when a rainbow appears over water, the SHIMMERAIN are spawning."
+
+msgid "shimmerain"
+msgstr "Shimmerain"
+
 msgid "shnark_description"
 msgstr "SHNARK wears its last meal's flesh as a disguise so it can get close to its trusting prey."
 
 msgid "shnark"
 msgstr "Shnark"
 
+msgid "shrab_description"
+msgstr "When a SHEYE frees its mind from always contemplating serious thoughts, it becomes a SHRAB, free in body to wander the world."
+
+msgid "shrab"
+msgstr "Shrab"
+
 msgid "shybulb_description"
 msgstr "When a garden is neglected, a SHYBULB moves in and quietly tends the droopy plants."
 
 msgid "shybulb"
 msgstr "Shybulb"
+
+msgid "shull_description"
+msgstr "SHULL doesn't need to eat or move, but it still enjoys treats and supplements from its favorite person, especially if it is regularly being sent into battle."
+
+msgid "shull"
+msgstr "Shull"
 
 msgid "skwib_description"
 msgstr "The SKWIB contentedly floats through the ocean, examining potential shell-homes. It has to fear for its life before it will finally make a choice."
@@ -4393,17 +5473,47 @@ msgstr "A villainous team is plotting to use SOLIGHT to create a miniature sun i
 msgid "solight"
 msgstr "Solight"
 
+msgid "spectera_description"
+msgstr "This leaf winged bat is omnivorous, but prefers fruit. Both the male and female look after young."
+
+msgid "spectera"
+msgstr "Spectera"
+
+msgid "sphake_description"
+msgstr "SPHAKE is sometimes responsible for small earthquakes that inconveniently vibrate books and cups off your shelves; it eats whatever falls down."
+
+msgid "sphake"
+msgstr "Sphake"
+
 msgid "spighter_description"
 msgstr "It's not fair that something so good at sneaking up on people, can't be snuck up on itself."
 
 msgid "spighter"
 msgstr "Spighter"
 
+msgid "spirain_description"
+msgstr "If a SEIREIN's inner fire dims, its water spirit nature turns it into SPIRAIN."
+
+msgid "spirain"
+msgstr "Spirain"
+
 msgid "spoilurm_description"
 msgstr "SPOILURM disguise themselves as apples, and wait in trees to eat the unexpecting."
 
 msgid "spoilurm"
 msgstr "Spoilurm"
+
+msgid "sprightly_description"
+msgstr "A timid plant, it pops its head aboveground to drink water and sunshine. "
+
+msgid "sprightly"
+msgstr "Sprightly"
+
+msgid "sprorm_description"
+msgstr "SPRORM is fed on by CARDINALE, which can melt it down."
+
+msgid "sprorm"
+msgstr "Sprorm"
 
 msgid "spycozeus_description"
 msgstr "The whispered communications of the forest are given physical form in SPYCOZEUS, which thinks like the trees."
@@ -4428,6 +5538,24 @@ msgstr "STATURSUS has learned to channel its emotions into a single pure flame. 
 
 msgid "statursus"
 msgstr "Statursus"
+
+msgid "stegofor_description"
+msgstr "When it comes time to morph, STEGOFOR migrates in great herds along ancient paths, stripping all vegetation from plants growing along the way."
+
+msgid "stegofor"
+msgstr "Stegofor"
+
+msgid "stomic_description"
+msgstr "STOMIC is radioactive, but radiation resistant bacteria like GLOMON still pose a threat to it."
+
+msgid "stomic"
+msgstr "Stomic"
+
+msgid "stonifly_description"
+msgstr "STONIFLY's sturdy, rock-hard exoskeleton is a natural armor, while its translucent wings allow for swift flight."
+
+msgid "stonifly"
+msgstr "Stonifly"
 
 msgid "strella_description"
 msgstr "Its tails are lures to convince bugs to bite them and be trapped."
@@ -4477,6 +5605,12 @@ msgstr "They absorb any information they come across. Their constant chatter com
 msgid "tetrchimp"
 msgstr "Tetrchimp"
 
+msgid "thumpurn_description"
+msgstr "They thump their enemies with their fists, and thump the ground to give warnings."
+
+msgid "thumpurn"
+msgstr "Thumpurn"
+
 msgid "tigrock_description"
 msgstr "It is said that it had to invent itself because an evolution was not designed."
 
@@ -4501,6 +5635,18 @@ msgstr "TOBISHIMI spawn eggs in vast numbers, and carry them about under their c
 msgid "tobishimi"
 msgstr "Tobishimi"
 
+msgid "tornicane_description"
+msgstr "TORNICANE harnesses the power of both tornado and hurricane. It is a living force of nature and may be savior or doom to those hoping for rain."
+
+msgid "tornicane"
+msgstr "Tornicane"
+
+msgid "toucanary_description"
+msgstr "TOUCANARY only has bright feathers because it grew up surrounded by flowers."
+
+msgid "toucanary"
+msgstr "Toucanary"
+
 msgid "toufigel_description"
 msgstr "It appears to be a fluffy insect, but it is actually a reptile coated in soft snow."
 
@@ -4513,11 +5659,23 @@ msgstr "If you find a circle of mushrooms or clover, it is a place where TOURBID
 msgid "tourbidi"
 msgstr "Tourbidi"
 
+msgid "toxiris_description"
+msgstr "TOXIRIS is extremely powerful, it violently poisons everything in his way."
+
+msgid "toxiris"
+msgstr "Toxiris"
+
 msgid "trapsnap_description"
 msgstr "Its head is the only part of its body that doesn't grow as it ages."
 
 msgid "trapsnap"
 msgstr "Trapsnap"
+
+msgid "trojerror_description"
+msgstr "TROJERROR is a tuxemon that disguises itself as legitimate code or software. Once inside the network, TROJERRORS are able to carry out any action that a legitimate user could perform (deposit, withdrawn and delete)."
+
+msgid "trojerror"
+msgstr "Trojerror"
 
 msgid "tsushimi_description"
 msgstr "While sometimes referred to as its armor, the fleshy plates on TSUSHIMI are softer than its skin. Their purpose remains unknown."
@@ -4585,6 +5743,12 @@ msgstr "Uneye lurks in the shadows, and on the edge of vision."
 msgid "uneye"
 msgstr "Uneye"
 
+msgid "uprout_description"
+msgstr "When it has grown, its ears peel away to show wings that it uses to fly into the trees above where it grew. "
+
+msgid "uprout"
+msgstr "Uprout"
+
 msgid "urcheedle_description"
 msgstr "It can't move or attack, so it sits still and prays that the opponent damages itself on its many needles."
 
@@ -4614,6 +5778,12 @@ msgstr "VIGUEUR compete to see who can lift the heaviest rocks. When they lift o
 
 msgid "vigueur"
 msgstr "Vigueur"
+
+msgid "virware_description"
+msgstr "VIRWARE is usually dormant until the victim activates it, either through downloading a corrupt app or clicking an infected link. Once activated, VIRWARE may complete any number of tasks."
+
+msgid "virware"
+msgstr "Virware"
 
 msgid "vivicinder_description"
 msgstr "It makes its nest in long-burning fires, either of its own creation or in memorials, smithies and glassworks."
@@ -4669,6 +5839,18 @@ msgstr "It is the spirit of a forest. Its hair changes with the seasons."
 msgid "volcoli"
 msgstr "Volcoli"
 
+msgid "volconey_description"
+msgstr "When VOLCONEY thump the earth with their gigantic feet, they call more and more THUMPURN and VOLCONEY to the warren. But when enough strike the earth at once, it is said to cause volcanic eruptions."
+
+msgid "volconey"
+msgstr "Volconey"
+
+msgid "vulpyre_description"
+msgstr "How it evolves and lives is very mysterious, but it is sometimes spotted near a volcano."
+
+msgid "vulpyre"
+msgstr "Vulpyre"
+
 msgid "waysprite_description"
 msgstr "WAYSPRITE are said to form when a person faces a difficult decision."
 
@@ -4681,6 +5863,24 @@ msgstr "When it is heavy with egg, it becomes unable to fly."
 msgid "weavifly"
 msgstr "Weavifly"
 
+msgid "weedlantis_description"
+msgstr "It is said an ancient civilization once used WEEDLANTIS as advisors, but it has since disappeared beneath the sea."
+
+msgid "weedlantis"
+msgstr "Weedlantis"
+
+msgid "weedsea_description"
+msgstr "Once a year, it is pollinated beneath the waves by aquatic tuxemon like Shrab."
+
+msgid "weedsea"
+msgstr "Weedsea"
+
+msgid "wendigger_description"
+msgstr "It is said corpses given an improper burial can grow into WENDIGGER."
+
+msgid "wendigger"
+msgstr "Wendigger"
+
 msgid "windeye_description"
 msgstr "Like a mighty tree, WINDEYE plants itself on the top of hills to soak in the sun and wind. Recharged, it then leaves to find another place under the sky."
 
@@ -4692,6 +5892,12 @@ msgstr "This tuxemon is very friendly. It is common to go hunting with the help 
 
 msgid "wolffsky"
 msgstr "Wolffsky"
+
+msgid "wolololl_description"
+msgstr "WOLOLOLL's sharp spines are tipped with a deadly venom."
+
+msgid "wolololl"
+msgstr "Wolololl"
 
 msgid "woodoor_description"
 msgstr "When a haunted house burns to the ground, sometimes all that is left is the front door. It hops away to find its next home."
@@ -4707,6 +5913,12 @@ msgstr "Wrougon"
 
 msgid "yiinaang_description"
 msgstr "It was born the first time a star fell into a black hole."
+
+msgid "yamada"
+msgstr "Yamada"
+
+msgid "yamada_description"
+msgstr "While ghosts are known for being tricksters, YAMADA tend to take the law seriously, even seeing good behavior as more important than physical might."
 
 msgid "yiinaang"
 msgstr "Yiinaang"
@@ -4810,20 +6022,30 @@ msgid "xeon_2"
 msgstr "Xeon-2"
 
 # Monster categories
+msgid "cat_tobedefined"
+msgstr "To be defined"
 msgid "cat_aggregate"
 msgstr "Aggregate"
 msgid "cat_alarm"
 msgstr "Alarm"
 msgid "cat_alien"
 msgstr "Alien"
+msgid "cat_amoeba"
+msgstr "Amoeba"
 msgid "cat_amped"
 msgstr "Amped"
+msgid "cat_ant_mimic"
+msgstr "Ant Mimic"
 msgid "cat_anteater"
 msgstr "Anteater"
 msgid "cat_anubis"
 msgstr "Anubis"
 msgid "cat_athena"
 msgstr "Athena"
+msgid "cat_attercob"
+msgstr "Attercob"
+msgid "cat_bacteria"
+msgstr "Bacteria"
 msgid "cat_balance"
 msgstr "Balance"
 msgid "cat_balloon"
@@ -4834,6 +6056,8 @@ msgid "cat_barbed"
 msgstr "Barbed"
 msgid "cat_beat"
 msgstr "Beat"
+msgid "cat_bed_trap"
+msgstr "Bed Trap"
 msgid "cat_big_frightfear"
 msgstr "Big Frightfear"
 msgid "cat_big_head"
@@ -4842,8 +6066,12 @@ msgid "cat_bird"
 msgstr "Bird"
 msgid "cat_bird_brain"
 msgstr "Bird Brain"
+msgid "cat_biting_pear"
+msgstr "Biting Pear"
 msgid "cat_bladder"
 msgstr "Bladder"
+msgid "cat_boiling_goldfish"
+msgstr "Boiling Goldfish"
 msgid "cat_bonfire"
 msgstr "Bonfire"
 msgid "cat_brains"
@@ -4856,16 +6084,30 @@ msgid "cat_brick_wall"
 msgstr "Brick Wall"
 msgid "cat_brood"
 msgstr "Brood"
+msgid "cat_buffalo"
+msgstr "Buffalo"
+msgid "cat_bustuarius"
+msgstr "Bustuarius"
 msgid "cat_buzzkill"
 msgstr "Buzzkill"
+msgid "cat_cactus"
+msgstr "Cactus"
 msgid "cat_calf"
 msgstr "Calf"
 msgid "cat_calm_emotion"
 msgstr "Calm Emotion"
+msgid "cat_cannibal_cake"
+msgstr "Cannibal Cake"
 msgid "cat_carol"
 msgstr "Carol"
+msgid "cat_cave_dweller"
+msgstr "Cave-Dweller"
 msgid "cat_cheshire"
 msgstr "Cheshire"
+msgid "cat_chickadee"
+msgstr "Chickadee"
+msgid "cat_chickenhawk"
+msgstr "Chickenhawk"
 msgid "cat_chip"
 msgstr "Chip"
 msgid "cat_cirrus"
@@ -4878,10 +6120,16 @@ msgid "cat_clot"
 msgstr "Clot"
 msgid "cat_cloudburst"
 msgstr "Cloudburst"
+msgid "cat_comet_snake"
+msgstr "Comet Snake"
+msgid "cat_crabby_mussel"
+msgstr "Crabby Mussel"
 msgid "cat_cranky"
 msgstr "Cranky"
 msgid "cat_crested"
 msgstr "Crested"
+msgid "cat_crocodile"
+msgstr "Crocodile"
 msgid "cat_cute"
 msgstr "Cute"
 msgid "cat_cute_boulder"
@@ -4906,8 +6154,12 @@ msgid "cat_devil"
 msgstr "Devil"
 msgid "cat_digger"
 msgstr "Digger"
+msgid "cat_diptera"
+msgstr "Diptera"
 msgid "cat_disguised"
 msgstr "Disguised"
+msgid "cat_dog_toothed"
+msgstr "Dog-Toothed"
 msgid "cat_dragon"
 msgstr "Dragon"
 msgid "cat_dragon_bone"
@@ -4942,6 +6194,8 @@ msgid "cat_enhancement"
 msgstr "Enhancement"
 msgid "cat_enraged_emotion"
 msgstr "Enraged Emotion"
+msgid "cat_erythrocyte"
+msgstr "Erythrocyte"
 msgid "cat_ermine"
 msgstr "Ermine"
 msgid "cat_eureka"
@@ -4962,10 +6216,16 @@ msgid "cat_false_serpent"
 msgstr "False Serpent"
 msgid "cat_false_turnip"
 msgstr "False Turnip"
+msgid "cat_field_dweller"
+msgstr "Field-Dweller"
 msgid "cat_firebird"
 msgstr "Firebird"
+msgid "cat_firefox"
+msgstr "Firefox"
 msgid "cat_fireplace"
 msgstr "Fireplace"
+msgid "cat_firestarter"
+msgstr "Firestarter"
 msgid "cat_flatfoot"
 msgstr "Flatfoot"
 msgid "cat_flicker"
@@ -4976,14 +6236,24 @@ msgid "cat_floret"
 msgstr "Floret"
 msgid "cat_flotsam"
 msgstr "Flotsam"
+msgid "cat_flying_fox_bat"
+msgstr "Flying Fox Bat"
 msgid "cat_foreman"
 msgstr "Foreman"
 msgid "cat_fortified"
 msgstr "Fortified"
 msgid "cat_fossil"
 msgstr "Fossil"
+msgid "cat_freezerburn"
+msgstr "Freezerburn"
 msgid "cat_frost_ape"
 msgstr "Frost Ape"
+msgid "cat_frosty"
+msgstr "Frosty"
+msgid "cat_frozen_produce"
+msgstr "Frozen Produce"
+msgid "cat_fuminous"
+msgstr "Fuminous"
 msgid "cat_galvanised"
 msgstr "Galvanised"
 msgid "cat_gamut"
@@ -5002,8 +6272,12 @@ msgid "cat_glitched"
 msgstr "Glitched"
 msgid "cat_gnawer"
 msgstr "Gnawer"
+msgid "cat_god_penguin"
+msgstr "God Penguin"
 msgid "cat_golem"
 msgstr "Golem"
+msgid "cat_grandfather"
+msgstr "Grandfather"
 msgid "cat_grasshopper"
 msgstr "Grasshopper"
 msgid "cat_gremlin"
@@ -5026,6 +6300,8 @@ msgid "cat_helping_hand"
 msgstr "Helping Hand"
 msgid "cat_hermit"
 msgstr "Hermit"
+msgid "cat_hexer"
+msgstr "Hexer"
 msgid "cat_honour"
 msgstr "Honour"
 msgid "cat_horned_raptor"
@@ -5054,12 +6330,18 @@ msgid "cat_jellyfish"
 msgstr "Jellyfish"
 msgid "cat_joyful"
 msgstr "Joyful"
+msgid "cat_joyful_dolphin"
+msgstr "Joyful Dolphin"
 msgid "cat_kid"
 msgstr "Kid"
+msgid "cat_lagomorph"
+msgstr "Lagomorph"
 msgid "cat_lamenting_emotion"
 msgstr "Lamenting Emotion"
 msgid "cat_light_fin"
 msgstr "Light Fin"
+msgid "cat_lightning_salamander"
+msgstr "Lightning Salamander"
 msgid "cat_lions_tooth"
 msgstr "Lion's Tooth"
 msgid "cat_lit"
@@ -5076,16 +6358,30 @@ msgid "cat_ma_bell"
 msgstr "Ma Bell"
 msgid "cat_macropod"
 msgstr "Macropod"
+msgid "cat_mantid"
+msgstr "Mantid"
+msgid "cat_marsupial"
+msgstr "Marsupial"
 msgid "cat_mazerunner"
 msgstr "Mazerunner"
 msgid "cat_mercury"
 msgstr "Mercury"
 msgid "cat_meteor"
 msgstr "Meteor"
+msgid "cat_meteor_snake"
+msgstr "Meteor Snake"
+msgid "cat_myrmidon"
+msgstr "Myrmidon"
+msgid "cat_microbe"
+msgstr "Microbe"
 msgid "cat_missing_link"
 msgstr "Missing Link"
 msgid "cat_mixed_emotion"
 msgstr "Mixed Emotion"
+msgid "cat_moon_phase"
+msgstr "Moon Phase"
+msgid "cat_muscly_crab"
+msgstr "Muscly Crab"
 msgid "cat_mutual"
 msgstr "Mutual"
 msgid "cat_naive"
@@ -5098,22 +6394,34 @@ msgid "cat_ninth_circle"
 msgstr "Ninth Circle"
 msgid "cat_noble"
 msgstr "Noble"
+msgid "cat_nova_snake"
+msgstr "Nova Snake"
 msgid "cat_old_block"
 msgstr "Old Block"
+msgid "cat_old_man"
+msgstr "Old Man"
 msgid "cat_oracle_bone"
 msgstr "Oracle Bone"
 msgid "cat_overseer"
 msgstr "Overseer"
+msgid "cat_parasitized"
+msgstr "Parasitized"
+msgid "cat_pastry"
+msgstr "Pastry"
 msgid "cat_patu"
 msgstr "Patu"
 msgid "cat_pebble"
 msgstr "Pebble"
 msgid "cat_penguin"
 msgstr "Penguin"
+msgid "cat_percomorph_fish"
+msgstr "Percomorph Fish"
 msgid "cat_petrified"
 msgstr "Petrified"
 msgid "cat_pitcher"
 msgstr "Pitcher"
+msgid "cat_plutonium"
+msgstr "Plutonium"
 msgid "cat_pointy"
 msgstr "Pointy"
 msgid "cat_portal"
@@ -5136,8 +6444,12 @@ msgid "cat_prescient"
 msgstr "Prescient"
 msgid "cat_proboscis"
 msgstr "Proboscis"
+msgid "cat_pugilist"
+msgstr "Pugilist"
 msgid "cat_pulsar"
 msgstr "Pulsar"
+msgid "cat_pumpkin"
+msgstr "Pumpkin"
 msgid "cat_pupil"
 msgstr "Pupil"
 msgid "cat_puppet_master"
@@ -5150,6 +6462,14 @@ msgid "cat_quickdraw"
 msgstr "Quickdraw"
 msgid "cat_rabbit"
 msgstr "Rabbit"
+msgid "cat_raccoon"
+msgstr "Raccoon"
+msgid "cat_radioactive"
+msgstr "Radioactive"
+msgid "cat_red_hands"
+msgstr "Red Hands"
+msgid "cat_reef"
+msgstr "Reef"
 msgid "cat_relic"
 msgstr "Relic"
 msgid "cat_restful"
@@ -5162,8 +6482,24 @@ msgid "cat_reverie"
 msgstr "Reverie"
 msgid "cat_rip"
 msgstr "Rip"
+msgid "cat_roaming"
+msgstr "Roaming"
+msgid "cat_rootball"
+msgstr "Rootball"
 msgid "cat_rueful"
 msgstr "Rueful"
+msgid "cat_samsara"
+msgstr "Samsara"
+msgid "cat_samurai_ghost"
+msgstr "Samurai Ghost"
+msgid "cat_sand_bishop"
+msgstr "Sand Bishop"
+msgid "cat_sand_knight"
+msgstr "Sand Knight"
+msgid "cat_sand_pawn"
+msgstr "Sand Pawn"
+msgid "cat_sand_rock"
+msgstr "Sand Rock"
 msgid "cat_sand_scorpion"
 msgstr "Sand Scorpion"
 msgid "cat_sand_steed"
@@ -5176,6 +6512,10 @@ msgid "cat_screwdriver"
 msgstr "Screwdriver"
 msgid "cat_seasonal"
 msgstr "Seasonal"
+msgid "cat_seaweed"
+msgstr "Seaweed"
+msgid "cat_sea_angel"
+msgstr "Sea Angel"
 msgid "cat_sea_spray"
 msgstr "Sea Spray"
 msgid "cat_sea_storm"
@@ -5204,6 +6544,8 @@ msgid "cat_snout"
 msgstr "Snout"
 msgid "cat_snowball"
 msgstr "Snowball"
+msgid "cat_snowy"
+msgstr "Snowy"
 msgid "cat_sock"
 msgstr "Sock"
 msgid "cat_socket"
@@ -5216,6 +6558,10 @@ msgid "cat_spiked"
 msgstr "Spiked"
 msgid "cat_spiny"
 msgstr "Spiny"
+msgid "cat_spinning_seed"
+msgstr "Spinning Seed"
+msgid "cat_spirit_elephant"
+msgstr "Spirit Elephant"
 msgid "cat_spirit_fire"
 msgstr "Spirit Fire"
 msgid "cat_spook"
@@ -5236,10 +6582,16 @@ msgid "cat_temper"
 msgstr "Temper"
 msgid "cat_tempted"
 msgstr "Tempted"
+msgid "cat_terracotta"
+msgstr "Terracotta"
 msgid "cat_thirsty_okapi"
 msgstr "Thirsty Okapi"
+msgid "cat_thistle"
+msgstr "Thistle"
 msgid "cat_thlay"
 msgstr "Thlay"
+msgid "cat_thorn"
+msgstr "Thorn"
 msgid "cat_threat"
 msgstr "Threat"
 msgid "cat_thunderstone"
@@ -5252,8 +6604,12 @@ msgid "cat_too_hot"
 msgstr "Too Hot"
 msgid "cat_tool_maker"
 msgstr "Tool Maker"
+msgid "cat_toothsome"
+msgstr "Toothsome"
 msgid "cat_tower"
 msgstr "Tower"
+msgid "cat_toxic_flag"
+msgstr "Toxic Flag"
 msgid "cat_toy"
 msgstr "Toy"
 msgid "cat_trailing"
@@ -5264,10 +6620,16 @@ msgid "cat_travel_bug"
 msgstr "Travel Bug"
 msgid "cat_tree_giraffe"
 msgstr "Tree Giraffe"
+msgid "cat_tropical"
+msgstr "Tropical"
 msgid "cat_unknown"
 msgstr "Unknown"
 msgid "cat_urchin"
 msgstr "Urchin"
+msgid "cat_ursus"
+msgstr "Ursus"
+msgid "cat_unwelcome_mouthful"
+msgstr "Unwelcome Mouthful"
 msgid "cat_vagrant"
 msgstr "Vagrant"
 msgid "cat_veiled"
@@ -5282,6 +6644,8 @@ msgid "cat_visitor"
 msgstr "Visitor"
 msgid "cat_volte-face"
 msgstr "Volte Face"
+msgid "cat_water_sprite"
+msgstr "Water Sprite"
 msgid "cat_wavering"
 msgstr "Wavering"
 msgid "cat_weaver"
@@ -5290,6 +6654,8 @@ msgid "cat_westerly"
 msgstr "Westerly"
 msgid "cat_willpower"
 msgstr "Willpower"
+msgid "cat_witch_spirit"
+msgstr "Witch Spirit"
 msgid "cat_woodwose"
 msgstr "Woodwose"
 msgid "cat_woolly"
@@ -5400,6 +6766,91 @@ msgstr "Refined"
 
 msgid "taste_dry"
 msgstr "Dry"
+
+# Terrains
+
+msgid "terrain_freshwater"
+msgstr "Freshwater"
+
+msgid "terrain_grassland"
+msgstr "Grassland"
+
+msgid "terrain_jungle"
+msgstr "Jungle"
+
+msgid "terrain_mountains"
+msgstr "Mountains"
+
+msgid "terrain_ruins"
+msgstr "Ruins"
+
+msgid "terrain_sea"
+msgstr "Sea"
+
+msgid "terrain_swamp"
+msgstr "Swamp"
+
+msgid "terrain_underground"
+msgstr "Underground"
+
+msgid "terrain_extraterrestrial"
+msgstr "Extraterrestrial"
+
+msgid "terrain_extraplanar"
+msgstr "Extraplanar"
+
+msgid "terrain_desert"
+msgstr "Desert"
+
+msgid "terrain_coastal"
+msgstr "Coastal"
+
+msgid "terrain_any"
+msgstr "Any"
+
+msgid "terrain_boreal_snow"
+msgstr "Boreal / Snow"
+
+msgid "terrain_urban"
+msgstr "Urban"
+
+msgid "terrain_woodland"
+msgstr "Woodland"
+
+msgid "terrain_other"
+msgstr "Other"
+
+# Weathers
+
+msgid "weather_misty"
+msgstr "Misty"
+
+msgid "weather_windy"
+msgstr "Windy"
+
+msgid "weather_freezing"
+msgstr "Freezing"
+
+msgid "weather_hot"
+msgstr "Hot"
+
+msgid "weather_cloudy"
+msgstr "Cloudy"
+
+msgid "weather_foggy"
+msgstr "Foggy"
+
+msgid "weather_thunderstorm"
+msgstr "Thunderstorm"
+
+msgid "weather_snow"
+msgstr "Snow"
+
+msgid "weather_rain"
+msgstr "Rain"
+
+msgid "weather_sunny"
+msgstr "Sunny"
 
 # STAT TYPES
 
@@ -5702,11 +7153,11 @@ msgstr "I have been observing you for a while now, I'm glad my followers managed
 "What was your name again? \n"
 "....  .....  ....\n"
 "${{name}}?\n"
-"Not much of a name for someone who illegally owns a Tuxemon.\n"
+"Not much of a name for someone who illegally owns a Tuxemon."
 
 msgid "oops"
 msgstr "Oh. I guess you didn't know that...\n"
-"You shouldn't be afraid, having a Tuxemon by your side is the best thing ever to happen to you.\n"
+"You shouldn't be afraid, having a Tuxemon by your side is the best thing ever to happen to you."
 
 msgid "backstory"
 msgstr "About thirty years ago, a group called Omnichannel started controlling the media.\n"
@@ -5724,7 +7175,7 @@ msgstr "About thirty years ago, a group called Omnichannel started controlling t
 "But only if you agree to help us against Omnichannel.\n"
 "Otherwise, we will report you to Omnichannel ourselves. \n"
 "And you will lose everything. \n"
-"We are always watching.\n"
+"We are always watching."
 
 msgid "backstory9"
 msgstr "What do you say? Will you help us?"
@@ -5738,7 +7189,7 @@ msgstr "???: What do you want? ... ... ... Well too bad. You're not getting in h
 "Allie: Yes, this is the Omnichannel, I'm just a lowly guard though. Who are you?\n"
 "${{name}}...\n"
 "Hmm. A strong name. My house is not too far, maybe... after work... you could show me your strength?\n" 
-"... ... No! what do you mean no? Unless... ... You're Jess's new boyfriend aren't you! She played me this whole time!\n"
+"... ... No! what do you mean no? Unless... ... You're Jess's new boyfriend aren't you! She played me this whole time!"
 
 msgid "mwah2"
 msgstr "JESS!!!"
@@ -5771,7 +7222,7 @@ msgstr "I'm sorry about that scene, Allie is sometimes hard to deal with, unlike
 "Now, outside of a few stragglers in the wild, this generation only interacts with Tuxemon when they work for us.\n"
 "The birthrate is at an all time high, and approval of the Omnichannel has not fallen since the year before the restrictions.\n"
 "Wild Tuxemon were a pervasive curse, threatening to destroying humanity. Omnichannel has fixed that and imposed order.\n"
-"Unchecked, Tuxemon are a force of destruction and anyone who says otherwise is lying. Sorry, I must head to work.\n"
+"Unchecked, Tuxemon are a force of destruction and anyone who says otherwise is lying. Sorry, I must head to work."
 
 msgid "liela_goes_to_battle"
 msgstr "If you are going to disturb me while I pick berries, I'm just going to have to challenge you!"
@@ -5784,7 +7235,7 @@ msgstr "Get the scoop at the Scoop Store!"
 
 msgid "Cotton_Town_Sign"
 msgstr "Welcome to Cotton Town: A Growing Force\n" 
-"↑ Cotton Town --- Route 1 ↓\n"
+"↑ Cotton Town --- Route 1 ↓"
 
 msgid "taba_town_sign"
 msgstr "Taba Town - A peaceful refuge"
@@ -5803,12 +7254,12 @@ msgstr "EEK!!!"
 
 msgid "route2speech2"
 msgstr "Oh. It's just you ${{name}}...\n"
-"Be more considerate the next time you push someone. The cliff is higher than it looks...\n"
+"Be more considerate the next time you push someone. The cliff is higher than it looks..."
 
 msgid "route2speech3"
 msgstr "Although that may not be a bad thing...\n"
 "I know, everyone needs me to lead, but with everything going on...\n"
-"But you don't want to listen to me... do you?\n"
+"But you don't want to listen to me... do you?"
 
 msgid "yestalk"
 msgstr "Really? Thanks..."
@@ -5818,7 +7269,7 @@ msgstr "How insensitive of you! Too bad, you'll have to listen to me anyway!"
 
 msgid "spillit"
 msgstr "You know that I am the leader of the Xero institute and that I recruited you to fight them. But you don't know something else.\n"
-"Allie, who you met before... What? I told you we would be watching, you don't have to be surprised by it.\n"
+"Allie, who you met before... What? I told you we would be watching, you don't have to be surprised by it."
 
 msgid "spillit3"
 msgstr "Whatever... Allie is my sister and means the world to me, so it destroyed me when I found out he had taken her to HQ."
@@ -7387,7 +8838,7 @@ msgid "old_sphalian_center02"
 msgstr "It says that it is under repair"
 
 msgid "old_sphalian_town01"
-msgstr "Sphalian Town - a quiet\, peaceful place"
+msgstr "Sphalian Town - a quiet, peaceful place"
 
 msgid "rubberduck_cave_01"
 msgstr "A good place to hide an item"
@@ -7641,6 +9092,30 @@ msgstr "Please, now return the form to the Shop Assistant, so we can give you th
 msgid "spyder_intro_shopkeeper4"
 msgstr "I'm sorry, you are not a Gold member. This offer is for Gold members only."
 
+msgid "spyder_preintro00"
+msgstr "Alright, let's get this over with. This is the tenth take. Can we please just nail this already?"
+
+msgid "spyder_preintro01"
+msgstr "I swear, if I have to say 'deluxe Tuxemon' one more time, I'm going to lose it. Can't we come up with something more original?"
+
+msgid "spyder_preintro02"
+msgstr "We're just going to end up with a bunch of cheesy, over-the-top marketing nonsense. Can't we aim higher than that?"
+
+msgid "spyder_preintro03"
+msgstr "I'm starting to think that our marketing team has no idea what they're doing. 'Deluxe Tuxemon'? That's the best we can come up with?"
+
+msgid "spyder_preintro04"
+msgstr "Okay, fine. Let's just get this done. But can we please, for the love of all things, try to sound at least somewhat sincere?"
+
+msgid "spyder_postintro00"
+msgstr "Well, that's a wrap. I hope that spot will bring in the sales we need.\n To be honest, I'm not entirely convinced that this 'deluxe Tuxemon' angle is going to fly.\n I mean, are people really going to pay a premium for a creature that can evolve instantly?\n And what's to stop them from just buying the tokens and evolving their own Tuxemon?"
+
+msgid "spyder_postintro01"
+msgstr "And, the Tuxemon themselves are just a bunch of cute, marketable creatures designed to separate kids from their parents' money.\n I mean, we're creating a whole ecosystem around these things, and it's all just a big cash grab.\n We're exploiting people's desire for novelty and their willingness to spend money on anything that's trendy."
+
+msgid "spyder_postintro02"
+msgstr "But hey, it's a lucrative business, and we're just giving people what they want."
+
 # spyder dialogs
 msgid "spyder_papertown_stopthere"
 msgstr "Hey! What do you think you're doing?\n It's not safe to go into the wilds unless you have a tuxemon.\n Come buy one from our shop."
@@ -7695,9 +9170,6 @@ msgstr "Dearie, I can't take your only tuxemon! Come back when you have another.
 
 msgid "spyder_papertown_grannypiper10"
 msgstr "It looks like a business plan."
-
-msgid "spyder_papertown_danteshop"
-msgstr "I'm working, boss, I'm working! \n Oh, it's just you. You know, we throw out so much of our stock. \n It's such a terrible waste. It all goes into the bins behind the back of the Store."
 
 msgid "spyder_papertown_myfirstmon"
 msgstr "Hey, you came! That's great.\n When the fancy new tuxemon come through from the Cathedral, we just threw all our old ones in the bin!\n It seems like such a waste, especially when kids like you don't have any!"
@@ -7780,6 +9252,15 @@ msgstr "Great work on Tuxepedia, my friend.\n You're our top contributor."
 msgid "spyder_cottontown_mom2"
 msgstr "!!!"
 
+msgid "spyder_lostfight"
+msgstr "I guess I shouldn't have picked that fight. But it's the spirit, the spirit of too much coffee, that matters!"
+
+msgid "spyder_confused1"
+msgstr "This guy won't let me through! I can't figure out how to get out of town! If I win, you have to tell me how! \n If I lose... the same!"
+
+msgid "spyder_confused2"
+msgstr "Oh, you say there is another way out on the opposite side of town? Just go right and go straight past the heal center? Thanks!"
+
 msgid "spyder_cottontown_hacker2"
 msgstr "Right, right!\n There's a data center along the river to the north-east of Timber Town.\n If Omnichannel's done anything to the computer network, they would have done it there."
 
@@ -7809,6 +9290,15 @@ msgstr "I fell down a crack in the Dragon's Cave and wound up here somehow.\n Sh
 
 msgid "spyder_cottontunnel_carlos2"
 msgstr "Hmm, perhaps I could have phrased that more nicely."
+
+msgid "spyder_cottontunnel_benden_nocap"
+msgstr "It... escaped! Drokoro is free! Perhaps...\n Perhaps it'll find a place where it can grow strong, where it can truly be itself. There is still hope."
+
+msgid "spyder_cottontunnel_benden_cap"
+msgstr "You... You captured it. Know this, though: the path to becoming a true Dragonrider has begun.\n You'll face many challenges, many trials.\n But if you're worthy, you'll find your own path to balance, your own way to protect this land."
+
+msgid "spyder_cottontunnel_benden1"
+msgstr "We, the Dragonriders, will retreat to Lion Mountain.\n There, we'll watch over this land from afar, hoping that the balance can somehow be restored."
 
 msgid "spyder_cottoncafe_hackerchat"
 msgstr "It's so cool that you're helping with Tuxepedia.\n  ... \n Is there a prize for adding all the tuxemon? \n Only the satisfaction of helping the human race, buddy."
@@ -7879,8 +9369,11 @@ msgstr "You are so engrossed reading the new entries, that you don't notice peop
 msgid "spyder_cotton_tuxepediaintro4"
 msgstr "It's so cool that you came. There's still so many tuxemon to be added - over a hundred, I think. \n You could really get into it, and make a difference to the world. "
 
+msgid "spyder_request_fight"
+msgstr "Do you want a quick battle?"
+
 msgid "spyder_cotton_cafegoth"
-msgstr "Don't look at me. I'm just here for the free canapes."
+msgstr "Don't look at me. I'm just here for the free canapes and heals."
 
 msgid "spyder_cotton_cafeflorist1"
 msgstr "Shhh, it's about to begin."
@@ -7917,6 +9410,30 @@ msgstr "Enjoy the flower display! It's the pride of Leather Town."
 
 msgid "spyder_citypark2_florist"
 msgstr "The flowers look okay, don't they? ... Ever since the mining began in Leather Town, the flowers have been under the weather!"
+
+msgid "spyder_generic_nurse"
+msgstr "Hey, you look tired. Let me help you feel better!"
+
+msgid "spyder_output_nurse1"
+msgstr "You should be good as new now! Just take it easy for a bit and you'll be back to your old self in no time."
+
+msgid "spyder_output_nurse2"
+msgstr "All better! I'm glad I could help. You were looking a bit rough there for a second."
+
+msgid "spyder_output_nurse3"
+msgstr "There we go! You're all fixed up. Don't worry about it, it's all part of the service."
+
+msgid "spyder_output_nurse4"
+msgstr "All healed up! Now, let's get you back on your feet and get you moving again."
+
+msgid "spyder_output_nurse5"
+msgstr "You're all patched up now, just take a load off and rest for a bit."
+
+msgid "spyder_output_nurse6"
+msgstr "Feeling better already? I'm glad I could lend a hand."
+
+msgid "spyder_output_nurse7"
+msgstr "All better now! You were a bit worse for wear, but you're good as new."
 
 msgid "spyder_route2_graf2"
 msgstr "I got served."
@@ -7962,8 +9479,20 @@ msgstr "There used to be a whole section here on the history of our world! \n Bu
 msgid "spyder_museum_postboy1"
 msgstr "Did you know that the first spectacles were made of beryl, not glass? \n … \n I learned that last year from a guide at this museum! But there aren't any guides around this place any more."
 
+msgid "spyder_museum_visitor1"
+msgstr "I'm not sure I like this. I've seen it happen before - a big sponsor comes in, and suddenly the museum's focus changes.\n I hope they're not going to start prioritizing profit over preservation."
+
+msgid "spyder_museum_security1"
+msgstr "I've seen a lot of changes over the years, but this one feels different.\n I've worked with some great people who've left because of the new direction the museum is taking.\n It's hard to see the place I love changing in ways that don't feel right to me."
+
+msgid "spyder_museum_historian1"
+msgstr "I'm trying to research the history of our world, but it's like they're erasing it.\n I've been trying to get access to the archives for months, but Nimrod's people keep stonewalling me.\n I'm starting to feel like I'm running out of time."
+
 msgid "spyder_leather_maniac" 
 msgstr "How is your adventure so far? \n ... \n Wow, so talkative! You are really coming out of your shell." 
+
+msgid "spyder_route3_boulder"
+msgstr "I need to find something in my bag that can help me push this boulder... Ah, if only I had the right item..."
 
 msgid "spyder_route3_sign"
 msgstr "Rehabilitation will begin as soon as possible. \n Please stop nagging us."
@@ -8134,12 +9663,55 @@ msgid "spyder_route4_beck1"
 msgstr "Your serve!"
 msgid "spyder_route4_beck2"
 msgstr "Game, set, match."
+
+msgid "spyder_experiment_flashback1"
+msgstr "Looten: Alright, let's initiate the fusion sequence. This is it, team. We're on the cusp of a major breakthrough."
+
+msgid "spyder_experiment_flashback2"
+msgstr "Moreau: I've been running the simulations, Looten, and I'm still seeing a 3% chance of catastrophic failure.\n Are we really sure we can contain this?"
+
+msgid "spyder_experiment_flashback3"
+msgstr "Heidenstam: What if the containment field collapses?\n We could be looking at a chain reaction that destroys the entire facility."
+
+msgid "spyder_experiment_flashback4"
+msgstr "Looten: We've run the simulations, Moreau. We've accounted for every variable.\n The potential breakthroughs in energy production outweigh the risks.\n We have to take this chance."
+
+msgid "spyder_experiment_flashback5"
+msgstr "Heidenstam: It's not stabilizing! We're losing containment! The readings are off the charts!"
+
+msgid "spyder_experiment_flashback6"
+msgstr "Looten: Shut it down! Shut it down now!"
+
+msgid "spyder_experiment_flashback7"
+msgstr "Looten: Oh God... what have we done? This is... this is not what we intended."
+
+msgid "spyder_experiment_flashback8"
+msgstr "Heidenstam: This is just the beginning. We have no idea what we've unleashed."
+
+msgid "spyder_candy_cafe_trigger"
+msgstr "I've been having trouble sleeping, and it's all because of something I witnessed on a security monitor when I was working as a security officer.\n It's a story that's been weighing on my mind, and I'm not sure if I should share it.\n But if you're willing to listen, I'll tell you what happened."
+
+msgid "spyder_candy_cafe_trigger_yes"
+msgstr "I was working the night shift at Greenwash, and I saw something on the security cameras that I'll never forget.\n It was a moment that changed everything, and I'm still trying to process what I saw..."
+
+msgid "spyder_candy_cafe_trigger_no"
+msgstr "It's probably for the best. It's not a story I like to think about, and I'm not sure I'm ready to relive it."
+
+msgid "spyder_candy_cafe_trigger_after"
+msgstr "I'm glad I could share that with you. It's been a burden to carry this secret."
+
 msgid "spyder_barmaid_cafe1"
 msgstr "Are you okay?\n I guess all your tuxemon were infected, so the Enforcers took them to the Hospital!"
+
 msgid "spyder_barmaid_cafe2"
 msgstr "You can use the PC to get out some non-infected tuxemon."
+
+msgid "spyder_barmaid_cafe2a"
+msgstr "Hold on, I'll lock the café door for a sec while you access the PC, don't want any unwanted Enforcers crashing the party.\n Once you've got your Tuxemon, I'll let the regulars back in."
+
 msgid "spyder_barmaid_cafe3"
 msgstr "Oh dear, you're totally out of tuxemon.\n Well, I have this Nudiflot I don't really want."
+
 msgid "spyder_enforcer_candy1"
 msgstr "Stop right there!\n We are taking all infected tuxemon to the Hospital to be quarantined\n until Greenwash develops a cure for the virus."
 msgid "spyder_enforcer_candy2"
@@ -8222,8 +9794,51 @@ msgstr "The access is blocked. A landslide damaged the route."
 msgid "spyder_routea_firefighter"
 msgstr "It's so quiet here.\n It's a nice break from the noise of the city."
 
+msgid "spyder_timber_cafe_trigger"
+msgstr "I overheard something interesting today, would you like to know?"
+
+msgid "spyder_timber_cafe_trigger_yes"
+msgstr "Ah, I was sitting next to two florists and they were discussing something that caught my attention. It seems they're not too happy about..."
+
+msgid "spyder_timber_cafe_trigger_no"
+msgstr "No worries, it's not that important. Just some gossip about two florists."
+
+msgid "spyder_timber_cafe_trigger_after"
+msgstr "I'm glad I could share that with you. It's always interesting to see how people react to change."
+
+msgid "spyder_timber_cafe_flashback1"
+msgstr "Alex: I'm still fuming about what happened at Greenwash. I had to cancel a whole order of peonies because of the contamination.\n And now I'm worried that our customers will start to lose trust in us."
+
+msgid "spyder_timber_cafe_flashback2"
+msgstr "Gluck: I know, it's a nightmare. I've been trying to find alternative suppliers, but it's not easy.\n And to make matters worse, our orchid shipment was delayed again.\n I'm starting to think that we should just stick to locally-sourced flowers from now on."
+
+msgid "spyder_timber_cafe_flashback3"
+msgstr "Alex: But what's the point of having a flower that's just going to sit there and look pretty? Where's the soul in that?\n I'm trying to create arrangements that are more than just visually appealing, but it's hard when we're dealing with subpar flowers."
+
+msgid "spyder_timber_cafe_flashback4"
+msgstr "Gluck: Soul? You're talking about flowers, Alex! They're just plants. But I do agree that our new bouquet design is really taking off.\n I've had several customers ask for it by name."
+
+msgid "spyder_timber_cafe_flashback5"
+msgstr "Alex: But that's just it - flowers aren't just plants. They're a way to connect with people, to make them feel something.\n And when we're working with low-quality flowers, it's hard to create that connection."
+
+msgid "spyder_timber_cafe_flashback6"
+msgstr "Gluck: I see what you're saying, Alex. But I think we're just making progress.\n We're finding new ways to make flowers more resilient and beautiful. And that's something to be proud of."
+
+msgid "spyder_timber_cafe_flashback7"
+msgstr "Alex: I hope so, Gluck. But I still have my doubts. What if we're messing with nature in ways we don't understand?"
+
+msgid "spyder_timber_cafe_flashback8"
+msgstr "Gluck: Well, I think we're just trying to make the best of what we have.\n And if that means using a little bit of science to make our flowers more amazing, then so be it."
+
+msgid "spyder_timber_cafe_flashback9"
+msgstr "Alex: I just wish we could go back to the way things were. When flowers were simple, and beautiful, and didn't need all this fuss."
+
+msgid "spyder_timber_cafe_flashback10"
+msgstr "Gluck: I understand where you're coming from, Alex. But I think we have to move forward.\n We can't just stick our heads in the sand and pretend that the world isn't changing."
+
 msgid "spyder_magician_timber"
 msgstr "Hey, that's a nice phone you've got there ... Your mum made it for you? Heaps cool! \n Then you've gotta install my newest social media app. It's called Contacts App. \n It keeps track of all the people you meet and tells you what they're up to."
+
 msgid "spyder_candy_catgirl1"
 msgstr "You know, I'm just fascinated by fossils. You know - SHAMMER, RHINCUS, that kind of thing."
 msgid "spyder_candy_catgirl2"
@@ -8329,175 +9944,487 @@ msgid "spyder_timber_firefighter_nochillimp"
 msgstr "Last week a Tikoal almost burnt down its owner's house!"
 msgid "spyder_timber_firefighter_willtrade"
 msgstr "Hey, do you want a TIKOAL? I could really do with a CHILLIMP, if you've got one."
+
 msgid "spyder_flower_mieke1"
 msgstr "It's exciting for us to visit the region of Fondant! You have such unique tuxemon here ... \n Hey, do you want to trade? My Conileaf for a creature that we don't have back home ... \n How about Budaye?"
+
 msgid "spyder_flower_mieke_nobudaye"
 msgstr "Oh it doesn't matter - I can see you don't have a Budaye."
+
 msgid "spyder_flower_mieke_willtrade"
 msgstr "Well, great! Here you go."
+
 msgid "spyder_flower_fez1"
 msgstr "Everyone in our region has to pick from one of the same five boring tuxemon. \n I know like a hundred people with a Foxfire ... \n Hey, do you want to trade? My Foxfire for an Ignibus?"
+
 msgid "spyder_flower_fez_noignibus"
 msgstr "Oh it doesn't matter - I can see you don't have an Ignibus."
+
 msgid "spyder_flower_fez_willtrade"
 msgstr "Well, great! Here you go."
+
 msgid "spyder_flower_cady1"
 msgstr "Oh I'd just love to have a souvenier to take back home with me. \n I just adore those sweet little Grintot. Could you get me one? \n I could give you my Hampotamos in exchange?"
+
 msgid "spyder_flower_cady_nogrintot"
 msgstr "Oh it doesn't matter - I can see you don't have a Grintot. "
+
 msgid "spyder_flower_sandy1"
 msgstr "This Pharfan keeps spraying me with water. What a drag! \n Hey, do you want it? You'd have to give me a Tweesher in return."
+
 msgid "spyder_flower_sandy_notweesher"
 msgstr "Oh it doesn't matter - I can see you don't have a Tweesher."
+
 msgid "spyder_flower_cady_willtrade"
 msgstr "Well, great! Here you go."
+
 msgid "spyder_flower_teach1"
 msgstr "Oh where has my other student gotten to?"
+
 msgid "spyder_flower_monk1"
 msgstr "I'm sorry, only experienced trainers are allowed past this point."
+
 msgid "spyder_flower_monk2"
 msgstr "Welcome master."
 
+msgid "spyder_drinking_trigger"
+msgstr "Yesterday night, something incredible happened.\n I'm still trying to process it all. Would you like to hear about it?"
 
+msgid "spyder_drinking_flashback1"
+msgstr "Captain: I'm off, guys! I'm going on an adventure! I'm going to find the... the... treasure of the mansion!"
+
+msgid "spyder_drinking_flashback2"
+msgstr "Drinking Buddy 1: Dude, you're not even making sense! Sit back down and finish your drink!\n We're in the middle of a sale at Scoop, and I'm not leaving until I get my hands on that new collectible."
+
+msgid "spyder_drinking_flashback3"
+msgstr "Drinking Buddy 2: Yeah, you're not even going to make it out of the shop, let alone find any treasure!"
+
+msgid "spyder_drinking_flashback4"
+msgstr "Captain: No, no, no! I'm a... a... a treasure hunter! I'm going to find it, I'm going to find it! I'll show you, I'll show you all!\n That mansion's been abandoned for years, but I know it's still got secrets. Old Man Jenkins built it, you know.\n He was a rich man, made his fortune in... in... something.\n Don't remember what, but he was rich, I know that much. And then he lost it all, and the mansion fell into ruin.\n But I know it's still got treasure hidden somewhere.\n I've heard stories, you know. Whispers of a hidden room, deep in the basement. And I'm going to find it!"
+
+msgid "spyder_drinking_flashback5"
+msgstr "Drinking Buddy 1: Dude, you're not even making sense! You're just making this up as you go along!"
+
+msgid "spyder_drinking_flashback6"
+msgstr "Drinking Buddy 2: Yeah, and what's with the mansion? You've been talking about that place for years, but you've never even been inside!"
+
+msgid "spyder_drinking_flashback7"
+msgstr "Captain: That's not true! I've been inside, I've explored it! Well, not really explored it, but I've been in the garden.\n And I've seen the tower, the one with the broken clock. It's a sign, I tell you!\n A sign that the treasure is still there, waiting for me to find it!"
+
+msgid "spyder_drinking_flashback8"
+msgstr "Drinking Buddy 1: Dude, you're going to get yourself killed! That place is a death trap!"
+
+msgid "spyder_drinking_flashback9"
+msgstr "Drinking Buddy 2: Yeah, and what about the rumors? You know, the ones about the mansion being haunted?"
+
+msgid "spyder_drinking_flashback10"
+msgstr "Captain: Pfft, don't be ridiculous! I don't believe in ghosts! I'm a... a... a treasure hunter! I'm not afraid of anything!\n I'll show you, I'll show you all!"
+
+msgid "spyder_drinking_flashback11"
+msgstr "Drinking Buddy 1: Well, I guess we'll just have to wait and see if he makes it back in one piece!"
+
+msgid "spyder_drinking_flashback12"
+msgstr "Drinking Buddy 2: Yeah, or if he even remembers where he lives! Poor guy's going to have a killer hangover tomorrow!"
+
+msgid "spyder_drinking_flashback13"
+msgstr "Captain: Treasure... mansion... adventure! I'm going to find it, I'm going to find it!"
+
+msgid "spyder_flower_petshopassistant_welcome"
+msgstr "Hello - we are the Pet Shop Boys."
 
 msgid "spyder_flower_petshopassistant"
-msgstr "Hello - we are the Pet Shop Boys. Are you interested in buying a tuxemon?"
+msgstr "Are you interested in buying a tuxemon?"
+
 msgid "spyder_flower_petshopassistant1"
 msgstr "Each for ${{currency}}500"
+
 msgid "spyder_flower_petshopkeeper1"
 msgstr "I found these eggs in the bough of a tree, and hatched them! \n They appear to be a previously unknown tuxemon. \n I call them Vivipere! I wonder what they morph into."
+
 msgid "spyder_flower_petshopkeeper2"
 msgstr "Tell you what, why don't I give you one and you can come back and tell me what it morphs into!"
+
 msgid "spyder_flower_petshopkeeper3"
 msgstr "Did you get Vivipere to morph yet?"
+
 msgid "spyder_flower_petshopkeeper4"
 msgstr "You got it to morph? \n ... \n And you did it in that particular way? \n I see. Hmmm, I don't really like the look of that morph. \n If I give you another Vivipere, can you bring it back if it ever morphs into something different?"
+
 msgid "spyder_route1_beachcomber"
 msgstr "To run, just hold down the SHIFT key. \n Look! I'm free as an ELOFLY!"
+
 msgid "spyder_cottonhouse1_homemaker"
 msgstr "I feel so safe seeing all the Enforcers around. You can never be too careful. \n The newspapers are always reporting terrible crimes in this very region!"
+
 msgid "spyder_cottonhouse1_firefighter"
 msgstr "Did you know it's possible for tuxemon to have two elements? \n Even a technique can belong to two elements at one."
+
 msgid "spyder_cottonhouse2_magician"
 msgstr "Some conditions replace one another. \n Learning how conditions interact is key to becoming a master of tuxemon fighting."
+
 msgid "spyder_cottonhouse2_catgirl"
 msgstr "Have you met the old man in City Park? He's obsessed with breaking records!"
+
 msgid "spyder_cottonhouse2_shopkeeper"
 msgstr "I don't have a problem with people from other regions. \n Just don't come after my job, alright?"
+
 msgid "spyder_route5_granny"
 msgstr "This park is much more salubrious with the Nimrod construction keeping the Flower City riff-raff out. "
+
 msgid "spyder_leatherhouse1_florist"
 msgstr "There used to be several TV and radio stations operating, but Omnichannel ran them out of business. \n Now we don't have to worry about different journalists contradicting each other."
+
 msgid "spyder_leatherhouse2_tv"
 msgstr "A little green mon is lifting a ship out of a swamp."
+
 msgid "spyder_leatherhouse2_scientist"
 msgstr "I work for Shaft. \n ... \n Where's my helmet? I don't need one, I control the truck remotely from our offices. \n Pretty soon, most jobs in the mines will be automated. "
+
 msgid "spyder_leatherhouse2_miner"
 msgstr "You won't believe what they're digging up in Route 3. \n I've never seen an egg that big. \n Oops, I've said too much. "
+
 msgid "spyder_route1_routesign"
 msgstr "Route 1. Take care!"
+
 msgid "spyder_flowerhouse1_tv"
 msgstr "Two mons are having a fight. \"I'm not your friend, Budaye\", one says."
+
 msgid "spyder_flowerhouse2_soldier"
 msgstr "I worked for Nimrod during the war. \n Not that I got a medal. Or a parade. \n They don't hand those out to mercenaries."
+
+msgid "spyder_flowerhouse2_soldier1"
+msgstr "I worked in the shadows, ensuring the real heroes had access to cutting-edge tools."
+
+msgid "spyder_flowerhouse2_soldier2"
+msgstr "I've seen it in action; it executes complex maneuvers with precision, almost dancing through chaos.\n Yet, beneath its elegance lies a darker side—the potential for destruction is real."
+
+msgid "spyder_flowerhouse2_soldier3"
+msgstr "This technology is both a marvel and a menace, blurring the line between art and weaponry."
+
+msgid "spyder_flowerhouse2_soldier4"
+msgstr "Keep an eye out, and if you encounter Dr. Elara, let me know."
+
+msgid "spyder_flowerhouse2_soldier5"
+msgstr "You met Dr. Elara? Damn it...\n Xeon isn't just a machine; it's a threat that could haunt us all.\n I need to visit some old friends."
+
 msgid "spyder_flowerhouse2_scientist"
 msgstr "Radio FUD wakes me up every morning. \n Not sure I care for their politics, but at least they call it how they see it!"
+
 msgid "spyder_flower_florist"
 msgstr "There used to be a riverboat captain here who could take you up and down the river. \n But I haven't seen him for a few days. "
+
 msgid "spyder_flowerhouse1_firefighter"
 msgstr "The five Pillars are the only big companies in this region. They have a lot of sway."
+
 msgid "spyder_flowerhouse1_granny"
 msgstr "Scoop has managed to cut the price of beef yet again! I don't know how they do it. "
+
+msgid "spyder_nimrod_papers1"
+msgstr "Subject - Soldier #### by Dr. Elara - Mental Health Assessment\n 'The soldier has shown a significant decline in mental health, frequently expressing guilt and remorse over past missions.\n He reports hearing voices of those lost during operations, indicating unresolved trauma and survivor's guilt.\n His fixation on the potential dangers of our technology suggests growing paranoia.\n In summary, the soldier's mental health is precarious, and immediate action is necessary to support him.'"
+
+msgid "spyder_nimrod_papers2"
+msgstr "Subject - Overseer #### by Dr. Orion - Mental Health Assessment\n 'The overseer is exhibiting signs of significant emotional distress, grappling with ethical dilemmas and the weight of recent operational decisions.\n She reports a growing sense of isolation and anxiety, particularly concerning the evolving demands from investors that have necessitated a shift in project priorities.\n Her fixation on the environmental impact of the river diversion project, including the draining of the lake, suggests a profound sense of responsibility and potential moral conflict.'"
+
 msgid "spyder_nimrod_chromerobo1"
 msgstr "Boop beep"
+
 msgid "spyder_nimrod_chromerobo2"
 msgstr "Shoop dee doo woop"
+
 msgid "spyder_nimrod_xeon1"
 msgstr "Whoo ... burr ... target acquired"
+
 msgid "spyder_nimrod_xeon2"
 msgstr "... Daisy, Daisy, give me your answer do ..."
+
 msgid "spyder_nimrod_thatcher1"
 msgstr "Woo-wee. Look at that. Those protesters won't know what hit them."
+
 msgid "spyder_nimrod_thatcher2"
 msgstr "No comment. "
+
 msgid "spyder_nimrod_dirk1"
 msgstr "Are you here for the investor presentation? \n Nimrod shares are a great buy - armies always need weapons!"
+
 msgid "spyder_nimrod_honour1"
 msgstr "Don't you dare touch those prototypes! "
+
 msgid "spyder_nimrod_honour2"
 msgstr "Leave those prototypes alone!"
+
 msgid "spyder_nimrod_antimony1"
 msgstr "Oh god, you destroyed the prototypes. We were just about to start mass production."
+
 msgid "spyder_nimrod_antimony2"
 msgstr "Years of work, down the drain in minutes. "
+
 msgid "spyder_nimrod_berke1"
 msgstr "Don't hurt me, I just write the contracts! I haven't done anything wrong! \n ... \n I mean, no one has done anything wrong. This is all legal and above board."
+
 msgid "spyder_nimrod_rebel1"
 msgstr "Did the Cathedral send you for that new shipment of ... \n No? \n Oh."
+
 msgid "spyder_nimrod_rebel2"
 msgstr "The shipment I was asking about was full of... um ... teddybears."
+
 msgid "spyder_nimrod_maverick1"
 msgstr "At night I play guitar by myself."
+
 msgid "spyder_nimrod_maverick2"
 msgstr "I wish I knew someone I could play music with."
+
 msgid "spyder_nimrod_justice1"
 msgstr "Ask not for whom Ghosteeth tolls!"
+
 msgid "spyder_cotton_lazybrute"
 msgstr "Buzz off, this tunnel is still under construction."
+
 msgid "spyder_nimrod_justice2"
 msgstr "It tolls for me."
+
 msgid "spyder_nimrod_mace1"
 msgstr "I want to quit and become a musician."
+
 msgid "spyder_nimrod_mace2"
 msgstr "I'll call my band, \"Machine Gun Fellows\"."
+
 msgid "spyder_nimrod_argon1"
 msgstr "We fight wars with humans and tuxemon. Many dead, many more injured. \n Using robos instead is the only moral course of action."
+
 msgid "spyder_nimrod_argon2"
 msgstr "I knew I wouldn't be able to convince you."
+
 msgid "spyder_nimrod_zircon1"
 msgstr "If you truly loved tuxemon, you would support us replacing them in war with robos."
+
 msgid "spyder_nimrod_zircon2"
 msgstr "I wish I'd replaced my tuxemon with robos. "
+
 msgid "spyder_nimrod_archer1"
 msgstr "How's the fusion technology coming along? We ... Wait, you're not from Greenwash!"
+
 msgid "spyder_nimrod_archer2"
 msgstr "Keep your mouth shut, okay?"
+
 msgid "spyder_nimrod_bowie1"
 msgstr "Our law enforcement would be a lot easier with some military hardware, friend. ... Who are you? "
+
 msgid "spyder_nimrod_bowie2"
 msgstr "That military hardware question was hypothetical, okay?"
+
 msgid "spyder_nimrod_tru1"
 msgstr "My weapons have won wars and subdued revolts in every corner of the world, and you think you have a chance against me?"
+
 msgid "spyder_nimrod_tru2"
 msgstr "Guard, retrieve the prototypes in the testing room. At least we can salvage something! "
+
 msgid "spyder_nimrod_tru3"
 msgstr "If those imbeciles in Shaft hadn't lost my dragon, beating you would have been a piece of cake."
+
 msgid "spyder_nimrod_guard1"
 msgstr "Sorry bud, private meeting in progress. \n So buzz off!"
+
+msgid "spyder_nimrod_zircon3"
+msgstr "I see you've defeated Argon, I'm curious, how does it feel to win against an idealist?"
+
+msgid "spyder_nimrod_argon3"
+msgstr "Zircon, I.. I didn't think you'd show up here. What do you want?"
+
+msgid "spyder_nimrod_zircon4"
+msgstr "Oh, I just wanted to see how you're doing, Argon. And to remind you of our conversation a while back..."
+
+msgid "spyder_nimrod_zircon5"
+msgstr "I see you're still as idealistic as ever, Argon. But I've come to realize that the only way to truly make a difference is through power.\n And I'm willing to do whatever it takes to achieve that."
+
+msgid "spyder_nimrod_argon4"
+msgstr "I'm sorry, Zircon. I think you've lost your way."
+
+msgid "spyder_nimrod_zircon6"
+msgstr "Enough talk. Let's quickly recharge and settle this once and for all."
+
+msgid "spyder_nimrod_zircon_won"
+msgstr "Ha! I've proven my superiority once again. You're no match for me, Argon."
+
+msgid "spyder_nimrod_argon_won"
+msgstr "Zircon, I'm sorry it had to end like this. You were once a friend and a colleague."
+
+msgid "spyder_nimrod_zircon_lost"
+msgstr "You'll never understand, Argon. You'll never see the truth."
+
+msgid "spyder_nimrod_argon_lost"
+msgstr "Zircon, you've changed. I don't know what's happened to you."
+
+msgid "spyder_nimrod_zircon_draw"
+msgstr "It seems we're evenly matched, Argon. But this isn't the end."
+
+msgid "spyder_nimrod_argon_draw"
+msgstr "Indeed, Zircon. This is far from over."
+
+msgid "spyder_nimrod_pc_message1"
+msgstr "E-mail from Bowie to Tru\n 'I need your help in locating the missing prototype. It was last seen in the testing room.'"
+
+msgid "spyder_nimrod_pc_message2"
+msgstr "E-mail from Maverick to Tru\n 'Are you up for a guitar jam session tonight? I'll bring my axe and we can rock out.'"
+
+msgid "spyder_nimrod_pc_message3"
+msgstr "E-mail from Argon to Lab\n 'I've made some breakthroughs in my research on tuxemon behavior. I'd love to share my findings with you all.'"
+
+msgid "spyder_nimrod_pc_message4"
+msgstr "E-mail from Zircon to Lab\n 'I've published a new paper on advanced robotics. Check it out and let me know what you think.'"
+
+msgid "spyder_nimrod_note1"
+msgstr "Note\n 'I've received an inquiry from the military about our hardware. Let's discuss how to proceed.'"
+
+msgid "spyder_nimrod_note2"
+msgstr "Note\n 'We need to salvage what's left of the prototype and rebuild. Let's meet in the testing room to discuss.'"
+
+msgid "spyder_nimrod_flashback1"
+msgstr "Argon: Zircon, it's good to see you again. I was just reviewing your latest paper on advanced robotics. It's quite impressive."
+
+msgid "spyder_nimrod_flashback2"
+msgstr "Zircon: Ah, Argon. I'm glad to see that your passion for our work hasn't waned.\n I've heard about your recent accomplishments with the tuxemon behavioral studies.\n Quite fascinating."
+
+msgid "spyder_nimrod_flashback3"
+msgstr "Argon: I try to be. I believe that our work can make a real difference in the world."
+
+msgid "spyder_nimrod_flashback4"
+msgstr "Zircon: I used to think that way too, Argon. But after years of working in this field, I've come to realize that the world doesn't run on passion.\n It runs on results."
+
+msgid "spyder_nimrod_flashback5"
+msgstr "Argon: I understand that. But I also believe that our work should be guided by a sense of responsibility and compassion."
+
+msgid "spyder_nimrod_flashback6"
+msgstr "Zircon: Compassion? For what? The tuxemon? They're just machines. Tools to be used and discarded."
+
+msgid "spyder_nimrod_flashback7"
+msgstr "Argon: I know you don't see it that way.\n But I've spent a lot of time studying their behavior, and I'm convinced that they have a level of consciousness that we don't fully understand."
+
+msgid "spyder_nimrod_flashback8"
+msgstr "Zircon: Nonsense. The tuxemon are just complex machines, no different than a toaster or a computer."
+
+msgid "spyder_nimrod_flashback9"
+msgstr "Argon: I disagree. I think they're more like animals, with their own unique personalities and behaviors."
+
+msgid "spyder_nimrod_flashback10"
+msgstr "Zircon: You know, Argon, I used to think the same way you do.\n But then I joined the military and saw firsthand how technology can be used to save lives and protect our country.\n It's easy to get caught up in philosophical debates about the nature of consciousness, but at the end of the day, we have a job to do.\n And that job is to create machines that can help us win wars and keep our citizens safe."
+
+msgid "spyder_nimrod_flashback11"
+msgstr "Argon: I understand where you're coming from.\n But I still believe that we have a responsibility to consider the ethical implications of our work."
+
+msgid "spyder_nimrod_flashback12"
+msgstr "Zircon: And I respect that, Argon. But we can't let our emotions cloud our judgment.\n We have to make tough decisions sometimes, and that's just a fact of life."
+
+msgid "spyder_nimrod_flashback13"
+msgstr "Argon: I share that concern. That's why I believe that we have a responsibility to consider the consequences of our actions."
+
+msgid "spyder_nimrod_flashback14"
+msgstr "Zircon: I agree, Argon. But we can't let that fear hold us back. We must continue to innovate and push the boundaries of what's possible."
+
+msgid "spyder_xeon_creation1"
+msgstr "Dr. Elara: Ladies and gentlemen, I present to you: Xeon, a name that reflects the artificial yet distinct nature of this being.\n The term 'Xeon' is derived from the word 'xenos', meaning 'foreigner' or 'stranger'.\n This name acknowledges that Xeons are created by humans, yet they are a new and separate form of life, with their own unique skills and abilities."
+
+msgid "spyder_xeon_creation2"
+msgstr "Dr. Elara: As you can see, Xeon is a highly advanced artificial being, capable of complex thought and action.\n We've designed it to be a prototype for a new generation of intelligent machines."
+
+msgid "spyder_xeon_creation3"
+msgstr "Argon: This is incredible. How does it work?"
+
+msgid "spyder_xeon_creation4"
+msgstr "Dr. Elara: Xeon's neural network is based on advanced algorithms and machine learning techniques.\n It's capable of learning and adapting at an exponential rate, making it potentially more intelligent than any human."
+
+msgid "spyder_xeon_creation5"
+msgstr "Zircon: That's both exciting and terrifying. What kind of implications does this have for humanity?"
+
+msgid "spyder_xeon_creation6"
+msgstr "Dr. Elara: That's a good question. We're still exploring the possibilities and limitations of Xeon's capabilities.\n But we believe that it has the potential to revolutionize many industries and aspects of our lives."
+
+msgid "spyder_xeon_creation7"
+msgstr "Argon: But what about the risks? We've all heard warnings about the dangers of creating artificial intelligence that surpasses human capabilities."
+
+msgid "spyder_xeon_creation8"
+msgstr "Dr. Elara: We've taken every precaution to ensure that Xeon is safe and controllable.\n We've implemented strict safety protocols and guidelines for its use and development."
+
+msgid "spyder_xeon_creation9"
+msgstr "Zircon: I see. And what about the long-term implications? How do we ensure that Xeon doesn't become a threat to humanity in the future?"
+
+msgid "spyder_xeon_creation10"
+msgstr "Dr. Elara: That's a question we'll continue to grapple with as we move forward with Xeon's development.\n But for now, we're focused on exploring its potential and ensuring that it's used responsibly."
+
+msgid "spyder_xeon_creation11"
+msgstr "Argon: I think we're just starting to scratch the surface of what Xeon can do.\n I'm excited to see where this technology takes us."
+
+msgid "spyder_xeon_creation_trigger"
+msgstr "I was just thinking about Xeon's creation. I have to admit, I'm still trying to process everything that's happened.\n I would have never imagined that the real reason behind Xeon's financial support was to use him for...\n other purposes. I'm deeply disappointed, to say the least. Would you like to hear the story of how Xeon was officially presented?"
+
+msgid "spyder_xeon_creation_trigger_yes"
+msgstr "I was exactly in that spot when I first presented Xeon to the world."
+
+msgid "spyder_xeon_creation_trigger_no"
+msgstr "I understand. It's not an easy story to hear. I just wish things had turned out differently."
+
+msgid "spyder_xeon_creation_trigger_after"
+msgstr "I'm sorry you had to see that. It's hard for me to believe that my creation has been used for such... nefarious purposes.\n I can only hope that one day, Xeon will be able to fulfill his true potential, free from the influence of those who seek to exploit him."
+
+msgid "spyder_enforcershq_trigger"
+msgstr "A note from the Commander's office. Do you want to read it?"
+
+msgid "spyder_enforcershq_flashback1"
+msgstr "Commander: Look at this. A new disease has broken out at Scoop Farms. Multiple tuxemon are infected.\n We need to contain this before it spreads. And we need to find out what's causing it."
+
+msgid "spyder_enforcershq_flashback2"
+msgstr "Officer: Should we send a team immediately?"
+
+msgid "spyder_enforcershq_flashback3"
+msgstr "Commander: Yes. We need to move quickly. We have a confirmed outbreak of the Spyderbite at the Wayfarer Inn.\n We need to assess the situation on the ground first. Is there any chance of containment within the inn?"
+
+msgid "spyder_enforcershq_flashback4"
+msgstr "Doc: That's a possibility, but we need to be cautious.\n The inn is isolated, but we can't rule out the possibility of visitors coming or going."
+
+msgid "spyder_enforcershq_flashback5"
+msgstr "Commander: Then a full quarantine is necessary to prevent further spread.\n We'll provide all necessary supplies and medical care. We'll also need to deploy a team to enforce the quarantine and monitor the situation."
+
+msgid "spyder_enforcershq_flashback6"
+msgstr "Sergeant: I've already compiled a list of personnel who are trained in containment procedures and have experience dealing with diseases."
+
+msgid "spyder_enforcershq_flashback7"
+msgstr "Commander: Good. Dispatch them immediately. We can't afford to delay."
+
 msgid "spyder_route5_goliath1"
 msgstr "Hey, aren't you that meddlesome kid from the Wayfarer Inn?"
+
 msgid "spyder_route5_goliath2"
 msgstr "Quit ruining our plans!"
+
 msgid "spyder_route5_sara1"
 msgstr "My Capiti looks cute and all, but I can't wait until it grows into an adult!"
+
 msgid "spyder_route5_sara2"
 msgstr "Oh well, not today!"
+
 msgid "spyder_route5_hunter1"
 msgstr "It takes a lot to hold a team together."
+
 msgid "spyder_route5_hunter2"
 msgstr "We'll be back."
+
 msgid "spyder_route5_edith1"
 msgstr "Woohoo! Our millionth ant! ... Uhm, I didn't think anyone would hear that."
+
 msgid "spyder_route5_edith2"
 msgstr "Let's see if you're so cocky after Aardart eats her two-millionth ant!"
+
 msgid "spyder_route5_cleo1"
 msgstr "Mother says you can trace our bloodline back to the kings who once ruled this country."
+
 msgid "spyder_route5_cleo2"
 msgstr "Oh ancestors, I've failed you!"
+
 msgid "spyder_route5_tryphaena1"
 msgstr "You know, we're descended from ... You've already heard it? Oh."
+
 msgid "spyder_route5_tryphaena2"
 msgstr "Well, might makes right."
+
 msgid "spyder_timber_mom1"
 msgstr "Hey bojo, your BOARD doesn't work on water. Unless you've got power."
 msgid "spyder_outsidewalled_rogue1"
@@ -8516,70 +10443,136 @@ msgid "spyder_timber_dante1"
 msgstr "Hey buddy! Cool to see you again. "
 msgid "spyder_timber_dante2"
 msgstr "Hey buddy! \n Are you planning to break into these HQ? Cool! \n Make sure you're well prepared before you do, because it's difficult to get out once you're inside! \n You'll need to call your mom to let her know you're safe. Use this app!"
+
 msgid "spyder_scoop_lanth1"
 msgstr "Look how happy the tuxemon are, living so close to one another!"
+
 msgid "spyder_scoop_lanth2"
 msgstr "Typical activist troublemaker. "
+
 msgid "spyder_scoop_paine1"
 msgstr "I feel so terrible that the disease got out. "
+
 msgid "spyder_scoop_paine2"
 msgstr "If those Enforcers hadn't come in and exposed their pet tuxemon to the disease, it would never have left the facility!"
+
 msgid "spyder_scoop_rubid1"
 msgstr "This is actually the most humane way to keep tuxemon."
+
 msgid "spyder_scoop_rubid2"
 msgstr "Studies show that tuxemon find battling more stressful than living in these conditions. "
+
 msgid "spyder_scoop_berys1"
 msgstr "You will notice that none of the tuxemon out here are sick - they were all kept in the containment unit."
+
 msgid "spyder_scoop_berys2"
 msgstr "Scoop did not release the disease! I promise you. "
+
 msgid "spyder_scoop_turner1"
 msgstr "Some of these people will tell you that Enforcers let the disease get out. Don't believe them!"
+
 msgid "spyder_scoop_turner2"
 msgstr "Remember, we had nothing to do with the disease getting out!"
 
 msgid "spyder_scoop_asta1"
 msgstr "Why yes, I am the inventor of the Extreme Restraints. \n What are they, I hear you ask? \n Only a set of manacles so powerful that even a dragon could not escape them. \n They are being used in the containment unit to make sure none of the infected tuxemon escape."
 
+msgid "spyder_scoop_asta2"
+msgstr "Are you sure you want to leave Scoop HQ?"
+
+msgid "spyder_scoop_cctv"
+msgstr "The PC contains a file named 'CCTV'. Would you like to watch it?"
+
+msgid "spyder_scoop_arachne_flashback1"
+msgstr "Nash: The Extreme Restraints are our most secure containment system yet.\n With these manacles, even the strongest tuxemon won't be able to break free from the containment unit."
+
+msgid "spyder_scoop_arachne_flashback2"
+msgstr "Reese: Good. We can't afford any more escapes, not with this disease outbreak spiraling out of control.\n These Restraints better be as effective as you claim."
+
+msgid "spyder_scoop_arachne_flashback3"
+msgstr "Nash: I guarantee it. The materials and design are impenetrable.\n As long as we keep the tuxemon locked up tight in these Restraints, the disease won't be going anywhere."
+
+msgid "spyder_scoop_arachne_flashback4"
+msgstr "Arachne: What do we have here? Looks like you've got quite the fancy set of restraints, don't you?"
+
+msgid "spyder_scoop_arachne_flashback5"
+msgstr "Nash: Who are you? How did you get in here?"
+
+msgid "spyder_scoop_arachne_flashback6"
+msgstr "Arachne: I'm here to relieve you of those lovely Extreme Restraints you've got. They'll make a fine addition to my collection."
+
+msgid "spyder_scoop_arachne_flashback7"
+msgstr "Reese: Stop right there! Those Restraints are crucial to containing the tuxemon outbreak.\n You have no idea what kind of damage you could cause if you take them."
+
+msgid "spyder_scoop_arachne_flashback8"
+msgstr "Arachne: Oh, I think I have a pretty good idea. And I don't really care about your little tuxemon problem. These Restraints are mine now."
+
+msgid "spyder_scoop_arachne_flashback9"
+msgstr "Nash: No, come back! We can't let those Restraints fall into the wrong hands!"
+
+msgid "spyder_scoop_arachne_flashback10"
+msgstr "Reese: This is a disaster - without the Extreme Restraints, the containment unit is useless.\n The tuxemon could break free at any moment!"
+
 msgid "spyder_scoop_alyssa1"
 msgstr "As soon as disease was detected, we moved the infected tuxemon to this containment unit."
+
 msgid "spyder_scoop_alyssa2"
 msgstr "I'm telling you, we kept the disease under control!"
+
 msgid "spyder_scoop_taggart1"
 msgstr "Someone stole the Extreme Restraints we invented to keep tuxemon in the containment unit! Was it you?"
+
 msgid "spyder_scoop_taggart2"
 msgstr "If you didn't steal the Extreme Restraints, who did? "
+
 msgid "spyder_scoop_donald1"
 msgstr "The sick tuxemon we were keeping here in quarantine got out and broke into the storeroom beyond! How will we secure the storeroom?"
+
 msgid "spyder_scoop_donald2"
 msgstr "You might just be strong enough to contain the escaped tuxemon. Please - do it for us. "
+
 msgid "spyder_scoop_orba1"
 msgstr "Yikes! What are you doing here?"
+
 msgid "spyder_scoop_orba2"
 msgstr "What am I doing here, for that matter?"
+
 msgid "spyder_scoop_haf1"
 msgstr "I chased the people who stole the Restraints into this room. But then the sick tuxemon got in, and now we're all stuck!"
+
 msgid "spyder_scoop_weaver1"
 msgstr "I would never have taken the Restraints off those coughing tuxemon if I knew they'd chase us in here!"
+
 msgid "spyder_scoop_weaver2"
 msgstr "Yikes! It turns out crime doesn't pay!"
+
 msgid "spyder_scoop_arachne1"
 msgstr "Oi! Can't you see we're in the middle of a villainous scheme?"
+
 msgid "spyder_scoop_arachne2"
 msgstr "It's too late! I have the Extreme Restraints and there's nothing you can do about it. "
+
 msgid "spyder_scoop_landrace1"
 msgstr "Graar!"
+
 msgid "spyder_scoop_landrace2"
 msgstr "Ufff."
+
 msgid "spyder_scoop_landrace3"
 msgstr "Thanks for getting rid of that brute that was blocking the way! \n Now we can escape with the Extreme Restraints! "
+
 msgid "spyder_scoop_cochini1"
 msgstr "Oink! Oink! "
+
 msgid "spyder_scoop_cochini2"
 msgstr "Oink."
+
 msgid "spyder_scoop_lapinou1"
 msgstr "Aiya!"
+
 msgid "spyder_scoop_lapinou2"
 msgstr "Mhm ah!"
+
 msgid "spyder_tunnelb_beryll1"
 msgstr "I love collecting rocks and stones."
 msgid "spyder_tunnelb_beryll2"
@@ -8887,61 +10880,97 @@ msgid "spyder_omnichannel_strauss1"
 msgstr "I have to shake a lot of hands in my line of work."
 msgid "spyder_omnichannel_strauss2"
 msgstr "Down low. Too slow!"
+
 msgid "spyder_omnichannel_billie1"
-msgstr "Not so fast, ${{name}}! We're not going to let you go in there \n ... by yourself! I'm coming too. \n When you cured my tuxemon, you made me do some serious thinking. \n We can't let them get away with stealing our tuxemon!"
+msgstr "Hey ${{name}}, hold up!\n I've been thinking a lot about what you did for my tuxemon, and I have to admit, it got me thinking about my own priorities.\n I realized I've been too focused on my own goals, and I haven't been doing enough to help others.\n That's why I'm coming with you to take down those tuxemon thieves.\n We owe it to ourselves, our tuxemon, and the entire community to put a stop to their nefarious plans."
+
+msgid "spyder_omnichannel_dante1"
+msgstr "I've been watching you from the shop, and I have to say, I'm impressed.\n You've come a long way since you first got your tuxemon.\n I've been feeling a bit guilty, I'm the one who helped you get that tuxemon, and I feel like I've got a responsibility to help you see this through.\n Plus, I've got to admit, I'm a bit curious to see how this all plays out. So, I'm coming with you to take down those tuxemon thieves.\n Let's do this!"
+
+msgid "spyder_omnichannel_billie2"
+msgstr "I'm proud of you, ${{name}}. You've come a long way since we first met.\n I think it's time for me to head back to Paper Town, but I'll never forget this adventure we shared."
+
+msgid "spyder_omnichannel_dante2"
+msgstr "That was a close one! I'm just glad we were able to take down those thieves.\n You've got a bright future ahead of you, ${{name}}. Don't forget about me when you're a famous tuxemon master, okay?"
+
 msgid "spyder_omnichannel_beaverbrook1"
 msgstr "Aha, it's too late for you! \n Just out of the birthing pit ... the perfect monsters! \n The genes of Drokoro incubated in dragon eggs dug up by Shaft \n ... and fused with three killer robos designed by Nimrod. \n The power of teamwork ... and it's in my hands. "
+
 msgid "spyder_omnichannel_beaverbrook2"
 msgstr "No. It's not possible. \n Two upstarts, one with off-brand tuxemon, defeating my perfect creations. \n If I can just make it to my live radio interview, I'll command my enforcers to complete the takeover."
+
 msgid "spyder_omnichannel_radioannounce"
 msgstr "This is FUD Radio, DJ Worm here and my co-host, \"The Duke of Dead Air\", broadcasting live from the Omnichannel Radio Studios. \n We've got a full hour of lolly-pop, soft rock and accessible hip hop for you - but first, an interview with the head of Omnichannel! \n Ah, it looks like Sir Beaverbrook couldn't make it, but in his place has sent a small child. Well, small child, what do you have to say? \n ... \n Speak up! You're on live radio! \n ... \n Huh, a conspiracy, you say? \n ... \n The Pillars were going to use Greenwash fusion technology, Nimrod killer robos and dragons dug up by Shaft ... \n And they were going to use those fusions to take control of the entire region? \n ... \n And they deliberately spread the Virus to everyone's tuxemon using food from Scoop? \n ... \n And the Enforcers are in on it? \n ... \n And Omnichannel was behind the whole thing, using the media to keep people confused and distracted? \n ... \n You know we work for Omnichannel, right? Doc, please tell me you stopped broadcasting. Doc?! \n ... \n Ouch! Man I really wish Radio FUD didn't go out live. \n I don't think people are going to be very happy with us."
 
 msgid "spyder_dragonscave_benden3"
 msgstr "What is this? These villains are trying to steal Drokoro! But why?"
+
 msgid "spyder_dragonscave_mallory3"
 msgstr "The Drokoro is ours! \n We got Shaft to dig it up from beneath Route 3, and we would have kept it if that infuriating kid hadn't interrupted our plans. \n It is time for the Pillars to combine their strength and rule this region outright! \n Too long have we let the Cathedral and the public tell us what can and cannot be done with Tuxemon. \n When we use Greenwash's fusion technology to combine this Drokoro with the killer robots built by Nimrod, we will be unstoppable! \n And the best part is, Omnichannel will tell the public that this is all in their best interests - and the public will believe them!"
+
 msgid "spyder_dragonscave_benden4"
 msgstr "Please, ${{name}}. If you can't stop these villains, all is lost."
+
 msgid "spyder_dragonscave_tomas1"
 msgstr "Once we each rode a dragon. That was long ago. But just recently a new-born dragon appeared above this island, and crawled into this cave."
+
 msgid "spyder_dragonscave_tomas2"
 msgstr "As you can see, the age of the dragons has passed. The hatchling dragon is our last hope."
+
 msgid "spyder_dragonscave_lessa1"
 msgstr "We stand guard over this, the last dragon. We don't know where it came from or why it hatched. We thought all dragons had hatched long ago."
+
 msgid "spyder_dragonscave_lessa2"
 msgstr "Maybe someone will come who has the power to defeat it."
+
 msgid "spyder_dragonscave_cailin1"
 msgstr "This is our last duty. Dragarbor is so very tired."
+
 msgid "spyder_dragonscave_cailin2"
 msgstr "Thank you."
+
 msgid "spyder_dragonscave_griffin1"
 msgstr "I wonder what it would be like to be swallowed by a dragon ..."
+
 msgid "spyder_dragonscave_griffin2"
 msgstr "Oh well - pobody's nerfect!"
+
 msgid "spyder_dragonscave_daenny1"
 msgstr "Prepare to be defeated!"
+
 msgid "spyder_dragonscave_daenny2"
 msgstr "You may have bested me, but you'll never best Benden."
+
 msgid "spyder_dragonscave_benden1"
 msgstr "I am the last and most powerful of the dragonriders."
+
 msgid "spyder_dragonscave_benden2"
 msgstr "You have proven yourself a worthy opponent for Drokoro. \n I will show you to the sacred inner chamber - after I heal you."
+
 msgid "spyder_dragonscave_mal1"
 msgstr "You have gotten in our way too many times!"
+
 msgid "spyder_dragonscave_mal2"
 msgstr "Ah ha, you fell right into my trap!"
+
 msgid "spyder_dragonscave_ray1"
 msgstr "All we want to do is create a mega-corporation that takes over the government. Is that so wrong?"
+
 msgid "spyder_dragonscave_ray2"
 msgstr "You're taking away my freedoms."
+
 msgid "spyder_dragonscave_lucille1"
 msgstr "The Pillars are the only way we'll get anything done around here."
+
 msgid "spyder_dragonscave_lucille2"
 msgstr "You'll regret this."
+
 msgid "spyder_dragonscave_tru1"
 msgstr "This is for your own good, okay?"
+
 msgid "spyder_dragonscave_tru2"
 msgstr "Whatever. We already took the DNA sample. \n We just wanted to capture Drokoro as a backup. \n You'll never stop them back at Omnichannel HQ."
+
 msgid "spyder_dragonscave_drokoro1"
 msgstr "Rawr!"
 
@@ -9031,59 +11060,116 @@ msgid "spyder_hospital1_rakez"
 msgstr "Rakez"
 msgid "spyder_hospital1_rhizome"
 msgstr "Rhizome"
+
+msgid "spyder_hospital_pc_message1"
+msgstr "E-mail from Researcher 1\n 'Dr. Lee, I've been analyzing the virus samples, and I think we should try a different strain.\n It might trigger a new reaction in the antibodies.'"
+
+msgid "spyder_hospital_pc_message2"
+msgstr "Note from Researcher 2\n 'Dr. Lee, I've found a potential combination of enzymes and antibodies that could slow down the mutation rate.\n I'm running simulations now.'"
+
+msgid "spyder_hospital_pc_message3"
+msgstr "Simulation results from Researcher 2\n 'The enzyme-antibody combination shows promising results. We might have a cure on our hands.'"
+
+msgid "spyder_hospital_pc_message_rivalry1"
+msgstr "E-mail from Researcher 1\n 'Researcher 2, I'm not sure I agree with your approach. We need to be more careful and methodical in our research.\n Your simulations are promising, but we can't rush into conclusions.'"
+
+msgid "spyder_hospital_pc_message_rivalry2"
+msgstr "E-mail from Researcher 2\n 'Researcher 1, you're always so cautious and slow. We need to take risks and push the boundaries of what's possible.\n Our research is too important to be held back by your fear of failure.'"
+
+msgid "spyder_hospital_pc_message4"
+msgstr "E-mail from Enforcer\n 'Dr. Lee, we have reason to believe that you have been conducting unauthorized research. We are at your location and require you to come with us.'"
+
+msgid "spyder_hospital_pc_message5"
+msgstr "E-mail from Dr. Lee to Dr. Chen, Mentor\n 'They are destroying my door, they want to arrest me because of unauthorized research. I can't let them take this away from me.\n This is a breakthrough, a real cure. I need to share it with the world.'"
+
+msgid "spyder_hospital_pc_message6"
+msgstr "E-mail from Researcher 1\n 'Dr. Lee, I've managed to isolate a new strain of the virus that seems susceptible to our current treatments.\n However, I'm concerned about the security implications of this discovery. We need to be extra cautious about who knows about this.'"
+
+msgid "spyder_hospital_pc_message7"
+msgstr "E-mail from Enforcer: 'Dr Lee\n we have received intelligence indicating that you're conducting unauthorized research within the company.\n We have reason to believe that your work poses a significant threat to our organization.\n You're hereby ordered to cease all research immediately and report to the security office.'"
+
+msgid "spyder_hospital_pc_message8"
+msgstr "E-mail from Mysterious Informant\n 'There are people who want to see you fail. They will stop at nothing to destroy your work. Be careful.'"
+
+msgid "spyder_hospital_pc_message9"
+msgstr "E-mail from Robot Assistant\n 'I have detected unauthorized access to your research files. Please investigate immediately.'"
+
 msgid "spyder_hospital1_aurora1"
 msgstr "You will quickly learn that you have chosen for your sparring partner\n the most skilled trainer in the building."
+
 msgid "spyder_hospital1_aurora2"
 msgstr "Not too shabby. I don't suppose I could recruit you for Spyder?"
+
 msgid "spyder_hospital1_eleni1"
 msgstr "Salutations. Test your puissance against my menagerie."
+
 msgid "spyder_hospital1_eleni2"
 msgstr "Bollocks."
+
 msgid "spyder_hospital1_felu1"
 msgstr "You look like you could use a challenge."
+
 msgid "spyder_hospital1_felu2"
 msgstr "Well, I didn't say it would be me."
+
 msgid "spyder_hospital1_fring1"
 msgstr "Boss says we can't help ourselves to the stashed tuxemon ... yet."
+
 msgid "spyder_hospital1_fring2"
 msgstr "This would have been a lot easier with a Moloch or two!"
+
 msgid "spyder_hospital1_liane1"
 msgstr "You wouldn't believe the powerful mons these suckers have handed over."
+
 msgid "spyder_hospital1_liane2"
 msgstr "You may have beaten me, but you'll never stop Spyder."
+
 msgid "spyder_hospital1_luzia1"
 msgstr "Like taking candy from a baby."
+
 msgid "spyder_hospital1_luzia2"
 msgstr "Waa!\n What's the point of having so many of us stationed here.\n No one will get through the DNA blocker."
+
 msgid "spyder_hospital1_pem1"
 msgstr "I don't recognize you from the induction."
+
 msgid "spyder_hospital1_rea1"
 msgstr "Confiscating all the tuxemon was a waste of time.\n No trainer can stop the super-monsters that Spyder is breeding. "
+
 msgid "spyder_hospital1_walt1"
 msgstr "What happened to your uniform? Wait, imposter! Stop right there!"
+
 msgid "spyder_hospital1_walt2"
 msgstr "I'm going to have to report this to head office.\n Thanks for nothing."
+
 msgid "spyder_hospital1_zekar1"
 msgstr "Oi! Stop right there!"
+
 msgid "spyder_hospital1_zekar2"
 msgstr "You may have beaten me, but there's no way you'll beat what they have cooking at HQ."
+
 msgid "spyder_hospital1_rakez1"
 msgstr "I just got involved for the paycheck.\n Is that so wrong?"
+
 msgid "spyder_hospital1_rakez2"
 msgstr "Alright, alright, you've made your point."
+
 msgid "spyder_hospital1_rhizome1"
 msgstr "Stop right there!\n What you are looking at is the intellectual property of Omnichannel!"
+
 msgid "spyder_hospital1_rhizome2"
 msgstr "You might be able to defeat me, but you'll never beat the patent lawyers."
+
 msgid "spyder_hospital1_nurse1"
 msgstr "You have to stop them!\n These villains have taken over the hospital,\n and they're stopping us from releasing the cure."
+
 msgid "spyder_hospital2_nurse1"
 msgstr "Quarantines have their use, especially for people who don't have tuxemon to heal them,\n but Spyder have used this one very cynically."
 
 msgid "spyder_hospital1_scientist1"
 msgstr "We didn't want these tuxemon to be seized, but while they're here we're going to look after them."
 msgid "spyder_hospital1_scientist2"
-msgstr "This might help."
+msgstr "Let's make the most of the situation."
 msgid "spyder_hospital2_scientist2"
 msgstr "Psst! Look familiar?"
 msgid "spyder_hospital2_scientist1"
@@ -9191,6 +11277,8 @@ msgid "spyder_top_magician1"
 msgstr "Have you ever been to the Dojo in Flower City?\n No? A keen battler like you?"
 msgid "spyder_top_magician2"
 msgstr "Well, this should help."
+msgid "spyder_top_magician3"
+msgstr "Why not head to the Dojo in Flower City and see how your battling skills stack up against the best trainers in the region?"
 
 msgid "spyder_mansion_gillette"
 msgstr "Gillette"
@@ -9466,9 +11554,6 @@ msgstr "Granny Piper"
 
 msgid "spyder_papertown_shopkeeper"
 msgstr "Shopkeeper"
-
-msgid "spyder_instore_dante"
-msgstr "Dante"
 
 msgid "spyder_billie"
 msgstr "Billie"
@@ -10122,6 +12207,15 @@ msgstr "Home sweet home!"
 msgid "spyder_papertown_rival"
 msgstr "Billie's House"
 
+msgid "spyder_rivalbedroom_bed"
+msgstr "Bed is messy, but it looks like she's been sleeping well. There's a tuxemon plushie on her pillow."
+
+msgid "spyder_rivalbedroom_bookshelf"
+msgstr "The bookshelf is filled with tuxemon strategy guides and training manuals."
+
+msgid "spyder_rivalbedroom_weights"
+msgstr "There's a diagram on the wall nearby that shows how to use the weight to train a tuxemon's strength."
+
 msgid "spyder_rivalbedroom_radio_morning"
 msgstr "Morning: A Pop song is playing. It's called \"Omni Love: A Journey Through Channels of the Heart\"."
 
@@ -10140,8 +12234,80 @@ msgstr "Night: A Techno song is playing. It's called \"Bot Revolution: Rise of t
 msgid "spyder_rivaldownstairs_tv"
 msgstr "A group of schoolboys stranded on a deserted island, and of their struggles to overcome adversity."
 
+msgid "spyder_rivaldownstairs_package"
+msgstr "For Billie, from Grandma. Memories of Grandpa Bernard."
+
 msgid "spyder_rivaloffice_haiku"
 msgstr "It's a haiku: From Rock to Kitten, Evolution's dance unfolds, Transformation blooms."
+
+msgid "spyder_billie_tv_flashback_trigger"
+msgstr "Watch something else? A recorded episode of Tuxemon League is available."
+
+msgid "spyder_billie_tv_flashback1"
+msgstr "Reporter: Wow, what a clash! Crimson's Agnigon is really putting the pressure on Sapphire's Fribbit!\n Look at that! Agnigon unleashed a devastating Breathe Fire!"
+
+msgid "spyder_billie_tv_flashback2"
+msgstr "Billie: Overrated. Agnigon's moves are predictable. Any decent trainer could see that coming."
+
+msgid "spyder_billie_tv_flashback3"
+msgstr "Reporter: Fribbit is taking a beating! But look at that! Fribbit counters with a powerful Ice Storm! It's a direct hit!"
+
+msgid "spyder_billie_tv_flashback4"
+msgstr "Billie: Ice Storm? Weak."
+
+msgid "spyder_billie_tv_flashback5"
+msgstr "Reporter: This is getting intense! Agnigon is down! Fribbit wins! What a stunning upset!"
+
+msgid "spyder_billie_tv_flashback6"
+msgstr "Billie: Amateur. Agnigon should have used Supernova. A direct hit would have ended the fight in seconds."
+
+msgid "spyder_billie_tv_flashback7"
+msgstr "Reporter: This was an incredible display of skill and strategy from Sapphire."
+
+msgid "spyder_billie_tv_flashback8"
+msgstr "Billie: Skill? Luck. Any decent trainer could have predicted Agnigon's downfall."
+
+msgid "spyder_billie_flashback_trigger"
+msgstr "Do you want to uncover a piece of Billie's backstory?"
+
+msgid "spyder_billie_flashback1"
+msgstr "Granny: You look upset, dear. Is everything alright?"
+
+msgid "spyder_billie_flashback2"
+msgstr "I don't know, Grandma. My parents are always arguing about me."
+
+msgid "spyder_billie_flashback3"
+msgstr "Granny: Oh, honey. That must be hard. But remember, you don't have to agree with everything they say."
+
+msgid "spyder_billie_flashback4"
+msgstr "But they're my parents. I'm supposed to respect them."
+
+msgid "spyder_billie_flashback5"
+msgstr "Granny: Of course, you should. But respect doesn't mean obedience. It means understanding and valuing their love for you."
+
+msgid "spyder_billie_flashback6"
+msgstr "I know, but it's so hard."
+
+msgid "spyder_billie_flashback7"
+msgstr "Granny: Life is full of challenges, dear. But remember, you're not alone. I'm always here for you."
+
+msgid "spyder_billie_flashback8"
+msgstr "I just wish they could understand me."
+
+msgid "spyder_billie_flashback9"
+msgstr "Granny: Sometimes, it takes time for people to see things from a different perspective.\n But in the meantime, you can focus on what you can control. What makes you happy?"
+
+msgid "spyder_billie_flashback10"
+msgstr "Spending time with my friends, training my Tuxemon, and exploring new places."
+
+msgid "spyder_billie_flashback11"
+msgstr "Granny: Remember, it's okay to pursue your own passions, even if they don't always align with your parents' expectations."
+
+msgid "spyder_billie_flashback12"
+msgstr "Thank you, Grandma. I needed to hear that."
+
+msgid "spyder_billie_flashback_end"
+msgstr "Oh dear, how much I would like you to be close to me, Bernard...\n I remember when you were first diagnosed, and you said, 'We'll face this together, as a team.'\n Sometimes it feels like it was just yesterday that you were here with me.\n I see so much of you in Billie... it's like you're still with me, guiding me through her."
 
 msgid "spyder_papertown_restinbed"
 msgstr "You awake fully rested!"
@@ -10174,20 +12340,29 @@ msgid "spyder_citypark_house_maniac5"
 msgstr "How are you getting along with the Book of Wishes? Tell me of your achievements ..."
 
 msgid "spyder_maniac_achievement1"
+msgstr "Book Wishes 1"
+
+msgid "spyder_maniac_achievement2"
 msgstr "Giving a dog tuxemon to a Cat Girl"
 
 msgid "spyder_column1_sign" 
 msgstr "A rare ancient column. This was once part of a temple building." 
+
 msgid "spyder_column2_sign" 
 msgstr "A rare ancient column. Other ruins from the same culture can be found in Route 3. " 
+
 msgid "spyder_ruby_plaque" 
 msgstr "Ruby is just the term for any corundum that is red! \n When corundum comes in other colours like blue, pink and clear, it is called a sapphire. \n When tuxemon eat rubies, they become passionate and vigorous, making them better at physical attacks like slaps, claws and bites." 
+
 msgid "spyder_opal_plaque" 
 msgstr "Opals show flashes of coloured light. \n They form in fissues and dips in rock when water evaporates leaving behind silica. \n Tuxemon that eat opals benefit from its magical warding are better able to escape magical distant attacks like blasts, sprays and rays." 
+
 msgid "spyder_emerald_plaque" 
 msgstr "An emerald is a green variety of beryl. Beryl that is blue is called aquamarine instead. \n A one-carat emerald is larger but less dense than a one-carat diamond. \n Tuxemon that eat emeralds have their sight and intuition heighten, making their ranged attacks like shots, sprays and blasts more potent." 
+
 msgid "spyder_agate_plaque" 
 msgstr "Agate is a rock, often formed by volcanoes and often banded with parallel lines. \n It features a great variety of colours: browns, greys, creams, reds, oranges and even blues. \n Feeding agate to a tuxemon can increase its speed and agility, making it faster to react in battle." 
+
 msgid "spyder_diamond_plaque" 
 msgstr "Famously the hardest gemstone in the world, diamonds are great on necklaces, engagement rings and earrings! \n If your fiance doesn't buy a Shaft diamond ring for you, he doesn't love you! \n Feed diamonds to your tuxemon to harden their skin, making them better able to resist physical blows." 
 
@@ -10196,33 +12371,94 @@ msgstr "Quartz is one of the most abundant minerals on the planet. \n Some quart
 
 msgid "spyder_shaft_plaque"
 msgstr "Sponsored by Shaft. \"We dig it!\""
+
 msgid "spyder_nimrod_plaque"
 msgstr "Sponsored by Nimrod. \"If we didn't sell them, someone else would!\""
+
 msgid "spyder_nimrod2_plaque"
 msgstr "Tuxemon are powerful weapons that have fought alongside humans for as long as there has been war. \n Rock paintings found in caves show prehistoric humans training sabretoothed Rockats to fight wild Wolffsky."
+
 msgid "spyder_nimrod3_plaque"
 msgstr "The symbol of an ancient empire was the Eaglace, because when the empire invaded from the icy north their generals and scouts rode on Eaglace. \n Today, medic teams in our mighty republic are training with Agnidon for protection and transport. "
+
 msgid "spyder_nimrod4_plaque"
 msgstr "But soon, tuxemon and humans may be rendered obsolete. \n Our corporate sponsors Nimrod are developing robot technology that could make war a bloodless affair. \n In the meantime, sign up for the Nimrod Enforcers for good pay, free education and a life of adventure."
+
+msgid "spyder_nimrod5_plaque"
+msgstr "At Nimrod, we believe that technology has the power to transform the world for the better.\n Our unwavering commitment to innovation drives us to develop groundbreaking solutions that address the challenges of today and tomorrow.\n From advancing healthcare to protecting our planet, Nimrod is dedicated to creating a brighter future for all."
+
 msgid "spyder_shaft1_sign"
 msgstr "Shaft Headquarters: Mining Division"
+
 msgid "spyder_shaft2_sign"
 msgstr "Shaft Headquarters: Public Relations Division"
+
+msgid "spyder_leather_note1"
+msgstr "*rummages through the trash can, pulling out a banana peel with a few days' worth of mold on it* Ugh, wait, what's this? A leather notebook...\n Letter from Dr Henry, Former Nimrod Researcher\n I used to work for Nimrod, but I quit due to their priorities. They care more about profit and power than the well-being of tuxemon and their handlers.\n I've seen firsthand the devastating effects of Nimrod's tuxemon breeding programs.\n They're pushing these creatures to their limits, and it's only a matter of time before something goes terribly wrong."
+
+msgid "spyder_leather_note2"
+msgstr "*digs deeper into the trash can, pushing aside banana peels and broken pens* Gross. Okay, what's this? Another notebook...\n Field Notes of Dr Sophia, Conservation Biologist\n My team and I have been monitoring tuxemon populations in the wild, and our data suggests that their numbers are declining at an alarming rate.\n This is likely due to habitat destruction and fragmentation, as well as the increasing demand for tuxemon for military and commercial purposes.\n We've observed that tuxemon are playing a crucial role in maintaining ecosystem balance in certain regions.\n Their loss could have far-reaching consequences for the environment and human societies that depend on these ecosystems."
+
+msgid "spyder_leather_note3"
+msgstr "*pulls out a moldy pizza box and a stack of old newspapers* This trash can is a treasure trove of grossness. Oh, a journal...\n Journal of Dr John, Historian\n My research on the ancient empire's use of tuxemon has led me to question the official narrative.\n It appears that the empire's relationship with tuxemon was more complex and nuanced than previously thought...\n with evidence of both reverence and exploitation.\n I've discovered a series of ancient texts that suggest the empire's use of tuxemon was not solely for military purposes...\n but also for spiritual and ceremonial reasons.\n These texts, written in a long-forgotten language, offer a glimpse into a world where tuxemon were revered as sacred beings.\n As I delve deeper, I'm uncovering a rich tapestry of stories and legends... revealing the empire's profound connection to the tuxemon.\n Fascinating and unsettling, it raises more questions than answers about the empire's rulers."
+
+msgid "spyder_leather_note4"
+msgstr "*reaches to the bottom of the trash can, pulling out a soggy notebook* Ugh, I hope this one isn't ruined. Ah, it's still legible...\n Notebook of Dr Maria, Tuxemon Biologist\n Observations of tuxemon behavior in the wild suggest that they are highly social creatures...\n with complex communication patterns and a strong sense of hierarchy.\n This challenges the common assumption that tuxemon are simply tools for human use.\n Preliminary data suggests that tuxemon are capable of experiencing stress and anxiety when subjected to intense training regimens.\n Further research is needed to understand the long-term effects of this stress on tuxemon well-being."
+
+msgid "spyder_leather_sarah_greeting"
+msgstr "Hey, what's up? I've been worried about my girlfriend lately. She's been acting really strange.\n Do you want to know what's been going on with her?"
+
+msgid "spyder_leather_sarah_yes"
+msgstr "Okay, I'll tell you. I was there..."
+
+msgid "spyder_leather_sarah_no"
+msgstr "No problem. I just thought you should know."
+
+msgid "spyder_leather_sarah_after"
+msgstr "I'm worried. What if we can't fix this? What if it's too late?"
+
+msgid "spyder_leather_sarah1"
+msgstr "I don't know, Sarah. I'm feeling really conflicted about the mine right now. We've been getting some...\n unusual requests from our investors. Changes in our priorities."
+
+msgid "spyder_leather_sarah2"
+msgstr "What's going on? You've been distant lately. Is everything okay? What kind of requests?"
+
+msgid "spyder_leather_sarah3"
+msgstr "I'm not supposed to say. But let's just say that our investors are very interested in the history of this place.\n I think they're looking for something specific. Something that could change everything."
+
+msgid "spyder_leather_sarah4"
+msgstr "But what about the mine? What about the people who work here? You didn't know what would happen. You didn't know about the eggs."
+
+msgid "spyder_leather_sarah5"
+msgstr "That's no excuse. I should have known better. I should have thought about the consequences.\n I'm one of the ones who proposed diverting the river and draining the lake. I'm one of the ones who made this happen."
+
+msgid "spyder_leather_sarah6"
+msgstr "You're doing the right thing now. You're trying to make it right. I'm here for you. We'll get through this together."
+
+msgid "spyder_leather_sarah7"
+msgstr "I hope so. I really do. But it's hard to shake off the feeling of guilt. It's hard to forget what we've done."
+
 msgid "spyder_leathercafe_sign"
 msgstr "Open Air Cafe and Marketplace"
+
 msgid "spyder_leathercbd_sign"
 msgstr "Leather Town Business District"
 
 msgid "spyder_leatherhouse1_radio_morning"
 msgstr "An R&B song is playing. It's called \"Possessuns, Part I\"."
+
 msgid "spyder_leatherhouse1_radio"
 msgstr "An R&B song is playing. It's called \"Possessuns, Part II\"."
+
 msgid "spyder_leatherhouse1_radio_dusk"
 msgstr "An Electronic song is playing. It's called \"Beats Of BotBot\"."
+
 msgid "spyder_leatherhouse1_radio_dawn"
 msgstr "A Country song is playing. It's called \"Heavyhearted At Losing My Rockat\"."
+
 msgid "spyder_leatherhouse1_radio_night"
 msgstr "A song is playing. It's called \"Fondent Tango\"."
+
 msgid "spyder_flower_dojo_sign"
 msgstr "Dojo of the Five Elements: Master Tuxemon Battle"
 
@@ -10244,6 +12480,7 @@ msgid "spyder_dojo_zhu1"
 msgstr "Let me tell you how Tastes work."
 msgid "spyder_dojo_xiang1"
 msgstr "Let me tell you how Techniques work."
+
 msgid "spyder_dojo_fu2"
 msgstr "Throughout their lives, most monsters pass through different stages.\n For example, a Rockitten may become a Rockat and then a Jemuar. This is called Morphing.\n Most Morphing occurs because a monster reaches a certain level,\n but there are other ways that Morphing can occur,\n like Dollfin becoming Bigfin when exposed to Sweet Sand."
 msgid "spyder_dojo_yin2"
@@ -10252,12 +12489,44 @@ msgid "spyder_dojo_zhu2"
 msgstr "Every monster has two Tastes: Warm and Cold.\n A Warm Taste makes the monster 10 percent better in one Stat:\n Speed for Peppy Taste, Melee for Salty Taste, Armor for Hearty Taste,\n Ranged for Zesty Taste and Dodge for Refined Taste.\n A Cold Taste makes the monster 10 percent worse in one Stat:\n Speed for Mild Taste, Melee for Sweet Taste,\n Armor for Soft Taste, Ranged for Flakey Taste and Dodge for Dry Taste."
 msgid "spyder_dojo_xiang2"
 msgstr "In combat, monsters can choose from up to four techniques that they know.\n Techniques have an accuracy, which determines how likely they are to occur.\n If a technique has a Power, that determines how much Damage it does.\n Some techniques impose a condition on the user or the target,\n or both - and the technique's Potency determines how likely that is to occur.\n Some techniques, once used, take a while to become available again."
+
 msgid "spyder_dojo_fu3"
-msgstr "I have developed a potion that reverts a tuxemon back to its base form.\n Shall I give the Button Potion to one of your tuxemon?"
+msgstr "I have developed a potion that reverts a tuxemon back to its base form."
+msgid "spyder_dojo_fu3a"
+msgstr "I'm sorry, but I see you don't have any tuxemon that have evolved yet. This potion won't be of much use to you at the moment."
+msgid "spyder_dojo_fu3b"
+msgstr "Ah, I see you have a tuxemon that has reached its first evolution. Ask my student, if you're interested in the Button Potion.\n He's been studying the art of reversal."
+msgid "spyder_dojo_fu3c"
+msgstr "Impressive, you have a tuxemon that has reached its second evolution. Ask my student, if you're interested in the Button Potion.\n She's been researching the intricacies of advanced evolutions."
+msgid "spyder_dojo_fu3d"
+msgstr "Feel free to ask my students, if you're interested in the Button Potion. Both of them might have use for it, depending on their current research."
+
+msgid "spyder_dojo_fu_student1"
+msgstr "You're interested in using the Button Potion on one of your tuxemon? That'll be ${{currency}}500?, if you're willing to part with it."
+msgid "spyder_dojo_fu_student1a"
+msgstr "A small price to pay for the knowledge that will be gained from reversing a tuxemon that has reached its first evolution."
+msgid "spyder_dojo_fu_student1b"
+msgstr "The insights gained from reversing a tuxemon that has reached its second evolution will be invaluable to my research."
+msgid "spyder_dojo_fu_student1c"
+msgstr "I see. Well, if you're not interested or can't afford it, I won't pressure you. The Button Potion is a rare and valuable item, after all.\n Maybe another time, then?"
+msgid "spyder_dojo_fu_nochoice"
+msgstr "I'm ready to assist you, but please, choose the tuxemon that will undergo the reversal process."
+
 msgid "spyder_dojo_zhu3"
-msgstr "I have developed a potion that changes a tuxemon's taste.\n Shall I give the Taste-Changer Potion to one of your tuxemon for ${{currency}}50?"
+msgstr "I have developed a potion that changes a tuxemon's taste. Shall I give the Taste-Changer Potion to one of your tuxemon for ${{currency}}50?"
+msgid "spyder_dojo_zhu3a"
+msgstr "I'm afraid you don't have enough funds to afford the Taste-Changer Potion."
+
 msgid "spyder_dojo_xiang3"
-msgstr "I have developed a potion that allows a tuxemon to re-learn a technique that it has forgotten.\n Shall I give the Re-Learner Potion to one of your tuxemon?"
+msgstr "I have developed a potion that allows a tuxemon to re-learn a technique that it has forgotten.\n Shall I give the Re-Learner Potion to one of your tuxemon for ${{currency}}200?"
+msgid "spyder_dojo_xiang3a"
+msgstr "Not enough to cover the cost of the Re-Learner Potion."
+msgid "spyder_dojo_xiang3b"
+msgstr "The Re-Learner Potion has taken effect, your tuxemon's forgotten technique has been restored."
+msgid "spyder_dojo_xiang3c"
+msgstr "Unfortunately, the Re-Learner Potion had an unexpected side effect, and your tuxemon has now forgotten one of its current techniques."
+msgid "spyder_dojo_xiang3d"
+msgstr "Be cautious, young trainer, for the Re-Learner Potion is potent and may have unintended consequences on tuxemon that have not learned many techniques yet.\n I advise using it only on those who have reached a high level of mastery."
 
 msgid "spyder_dojo_wan"
 msgstr "Master Wan"
@@ -10371,8 +12640,12 @@ msgstr "Billie has added their tuxemon data to TUXEPEDIA."
 
 msgid "spyder_wayfarerinn_sign"
 msgstr "Welcome to the Wayfarer Inn! "
+
 msgid "spyder_omnichannel_note"
 msgstr "Haha, suckers - you'll never find me. \n It's on the Omnichannel CEO's letterhead."
+
+msgid "spyder_omnichannel_intro"
+msgstr "The PC contains a file named 'Cut Intro'. Would you like to watch the cut scenes?"
 
 msgid "spyder_walled_osman"
 msgstr "Osman"
@@ -10608,7 +12881,7 @@ msgid "spyder_greenwash_heidenstam1"
 msgstr "This has been one heck of a work experience placement."
 msgid "spyder_greenwash_heidenstam2"
 msgstr "Gee, thanks a bunch."
-    
+
 msgid "spyder_greenwash_louis"
 msgstr "Louis"
 msgid "spyder_greenwash_clarence"
@@ -10638,49 +12911,132 @@ msgstr "Heidenstam"
 
 msgid "spyder_greenwash_fossilisator1"
 msgstr "Hello there, I suppose you are here to see my finest invention - the De-Fossilator.\n ... No? You're here to investigate why the Greenwash staff went on strike\n and got locked out by the Enforcers?"
+
 msgid "spyder_greenwash_fossilisator2"
 msgstr "While you're here you might as well see the De-Fossilator in action."
+
 msgid "spyder_greenwash_fossilisator3"
 msgstr "Ah, I see you have a toothed bird fossil. Shall I de-fossilate it?"
+
 msgid "spyder_greenwash_fossilisator4"
 msgstr "It worked! The fossil turned into a Rhincus!"
+
 msgid "spyder_greenwash_fossilisator5"
 msgstr "Ah, I see you have an ancient dog fossil. Shall I de-fossilate it?"
+
 msgid "spyder_greenwash_fossilisator6"
 msgstr "It worked! The fossil turned into a Shammer!"
+
 msgid "spyder_greenwash_fossilisator7"
 msgstr "Maybe another time then."
+
 msgid "spyder_greenwash_fossilisator8"
 msgstr "Ah, I see you have two ancient fossils. Shall I de-fossilate both?"
+
 msgid "spyder_greenwash_fossilisator9"
 msgstr "It worked! The fossils turned into a Shammer and a Rhincus!"
 
 msgid "spyder_greenwash_looten1"
 msgstr "Prepare to face the power of my fusion tuxemon!"
+
 msgid "spyder_greenwash_looten2"
 msgstr "Well, I guess fusion technology isn't quite there yet.\n We've been working on it for years!"
+
 msgid "spyder_greenwash_looten3"
 msgstr "Here's the closest we've come -- it's a cute fusion of an ant and an Aardorn.\n Not exactly the ultimate killing machine Omnichannel wanted us to create.\n I mean … uh! You didn't hear that from me."
+
 msgid "spyder_greenwash_looten4"
 msgstr "The funny thing is, because of its fusion DNA, it makes DNA screeners behave all funny."
+
 msgid "spyder_greenwash_moreau1"
 msgstr "You shouldn't be here! "
+
 msgid "spyder_greenwash_moreau2"
 msgstr "The fusion experiment blew up!"
+
 msgid "spyder_greenwash_dippel1"
 msgstr "Maybe we went too far …"
+
 msgid "spyder_greenwash_dippel2"
 msgstr "Or not far enough! "
+
 msgid "spyder_greenwash_aissa1"
 msgstr "Stay out - Greenwash has this all under control."
+
 msgid "spyder_greenwash_aissa2"
 msgstr "We're all going to die!"
+
 msgid "spyder_greenwash_aissa"
 msgstr "Aissa"
+
 msgid "spyder_greenwash_dippel"
 msgstr "Dippel"
+
 msgid "spyder_greenwash_moreau"
 msgstr "Moreau"
+
+msgid "spyder_greenwash_note1"
+msgstr "Note from Dempsey\n 'Fusion experiment risks: unstable creatures, environmental damage, human casualties. Must convince Looten to shut down experiment.'"
+
+msgid "spyder_greenwash_pc_message1"
+msgstr "E-mail from Selby to Looten\n 'I've been thinking a lot about the De-Fossilator and I have to admit, I'm getting a bit uneasy about the whole thing.'"
+
+msgid "spyder_greenwash_pc_message2"
+msgstr "E-mail from Dempsey to Looten\n 'I've been reviewing the latest data from the fusion experiment and I have to say, I'm getting a bit worried.\n The creatures we're creating are not what I expected. They're... unstable.'"
+
+msgid "spyder_greenwash_pc_message3"
+msgstr "E-mail from Looten to Greenwash Staff\n As you are all aware, we are on the cusp of a major breakthrough with the fusion experiment.\n I want to assure you that everything is under control and we are making great progress.\n As you know, our previous test did not yield the results we had hoped for.\n We have learned from that experience and are preparing for a new test.\n It will incorporate the knowledge and insights we gained from the previous failure.\n We have made significant adjustments to the experiment's parameters and are confident that this new test will be a success.\n I want to assure you that we are taking all necessary precautions to ensure the safety of our staff and the success of the experiment.\n Please disregard any rumors or concerns you may have heard.\n Keep up the good work, and let's make this next test a success!'"
+
+msgid "spyder_pc_recorded_conversation"
+msgstr "Found a recorded conversation on PC. Play back?"
+
+msgid "spyder_fossilator_flashback1"
+msgstr "Selby: I've done it! I've created a device that can reverse the fossilization process. It's a breakthrough, a scientific miracle."
+
+msgid "spyder_fossilator_flashback2"
+msgstr "Looten: Incredible! This could be a game-changer. Imagine the possibilities. We could bring extinct creatures back to life.\n We could study them, learn from them, and even use them for our own purposes."
+
+msgid "spyder_fossilator_flashback3"
+msgstr "Chip: But what about the ethical implications? Should we really be interfering with the natural order of things?\n What if these creatures can't adapt to the modern world?"
+
+msgid "spyder_fossilator_flashback4"
+msgstr "Looten: Ethics? We're scientists. Our job is to push the boundaries, to explore the unknown. And besides, this could be a lucrative venture.\n We can charge a premium for de-fossilating rare and valuable creatures."
+
+msgid "spyder_fossilator_flashback5"
+msgstr "Selby: I understand your concerns, but I believe this technology could be used for good.\n We could use it to study extinct ecosystems, to learn about climate change, and even to help endangered species."
+
+msgid "spyder_fossilator_flashback6"
+msgstr "Looten: That's a noble goal. But for now, let's focus on the potential profits.\n We can charge a premium for de-fossilating rare and valuable creatures. People will pay top dollar to have their own personal dinosaur."
+
+msgid "spyder_fossilator_flashback7"
+msgstr "Selby: I just hope we're making the right decision."
+
+msgid "spyder_dempsey_flashback1"
+msgstr "Dempsey: I'm starting to think this whole thing is a bit out of control. The city's in chaos, and people are getting hurt."
+
+msgid "spyder_dempsey_flashback2"
+msgstr "Looten: Out of control? What are you talking about? We're making progress. The fusion experiment is almost ready."
+
+msgid "spyder_dempsey_flashback3"
+msgstr "Dempsey: At what cost? The city's in chaos, and people are getting hurt. And what about the ethics of it all?\n Creating creatures that could potentially harm humans and the environment?"
+
+msgid "spyder_dempsey_flashback4"
+msgstr "Looten: Ethics? In the grand scheme of things, a few casualties are a small price to pay for scientific advancement.\n We're pushing the boundaries of what's possible."
+
+msgid "spyder_dempsey_flashback5"
+msgstr "Dempsey: I don't agree. We're playing God here. We're meddling with nature in ways we don't fully understand."
+
+msgid "spyder_dempsey_flashback6"
+msgstr "Looten: And what's wrong with that? We have the power to create life, to shape the future. We're not just scientists; we're pioneers."
+
+msgid "spyder_dempsey_flashback7"
+msgstr "Dempsey: Pioneers? Or mad scientists? We're crossing a line."
+
+msgid "spyder_dempsey_flashback8"
+msgstr "Looten: You're just a pessimist. You'll see the benefits eventually.\n The creatures we create will revolutionize society."
+
+msgid "spyder_dempsey_flashback9"
+msgstr "Dempsey: I hope you're right. But I'm starting to doubt it."
 
 msgid "spyder_leathergym_board"
 msgstr "Chad ${{var:chad_points}} vs Brad ${{var:brad_points}}"
@@ -10745,6 +13101,9 @@ msgstr "I'm writing a book about my journey to the Archipelago. It is composed o
 
 msgid "spyder_omnichannel_sign"
 msgstr "Omnichannel HQ: We Make Headlines"
+
+msgid "spyder_confusedperson"
+msgstr "Confused Guy"
 
 msgid "cotton_misa_fireplace"
 msgstr "It looks like someone burned papers."
@@ -10834,7 +13193,7 @@ msgstr "Professor:\n"
 "I've heard that you want to learn about Tuxemon.\n"
 "Tuxemon are little animals, some call them monsters, that we befriend and use to battle other Tuxemon.\n"
 "I was wondering, I just received three new Tuxemon for research and I would like to give you one.\n"
-"Which one would you like?\n"
+"Which one would you like?"
 
 msgid "professor_dialog6.1"
 msgstr "Professor: An excellent choice! Hydrone is a water Tuxemon."

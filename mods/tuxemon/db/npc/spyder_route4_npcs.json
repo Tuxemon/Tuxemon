@@ -78,5 +78,15 @@
         "slug": "interactive_obj"
       }
   
+  },
+  {
+    "slug": "spyder_route4_nurse",
+    "template": 
+      {
+        "sprite_name": "nurse_green",
+        "combat_front": "nurse",
+        "slug": "nurse"
+      }
+  
   }
 ]

@@ -1,16 +1,22 @@
 {
   "conditions": [
-    "is type metal"
+    {
+      "type": "type",
+      "parameters": ["metal"],
+      "operator": "is"
+    }
   ],
   "effects": [],
   "slug": "tm_metal",
   "sort": "utility",
   "sprite": "gfx/items/tm_metal.png",
   "category": "technique",
-  "type": "Consumable",
+  "cost": 2500,
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
+  "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

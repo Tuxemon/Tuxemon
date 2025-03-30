@@ -1,172 +1,146 @@
 [
   {
     "slug": "spyder_nimrod_zircon",
-    "template": 
-      {
-        "sprite_name": "scientist_brown",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_brown",
+      "combat_front": "scientist_brown",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_nimrod_xeon",
-    "template": 
-      {
-        "sprite_name": "robot",
-        "combat_front": "xeon",
-        "slug": "robot"
-      }
-  
+    "template": {
+      "sprite_name": "robot",
+      "combat_front": "xeon",
+      "slug": "robot"
+    }
   },
   {
     "slug": "spyder_nimrod_tru",
-    "template": 
-      {
-        "sprite_name": "knight",
-        "combat_front": "knightlord",
-        "slug": "knightlord"
-      }
-  
+    "template": {
+      "sprite_name": "knight",
+      "combat_front": "knightlord",
+      "slug": "knightlord"
+    }
   },
   {
     "slug": "spyder_nimrod_thatcher",
-    "template": 
-      {
-        "sprite_name": "knight",
-        "combat_front": "enforcer_agent",
-        "slug": "enforcer_agent"
-      }
-  
+    "template": {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_agent",
+      "slug": "enforcer_agent"
+    }
   },
   {
     "slug": "spyder_nimrod_rebel",
-    "template": 
-      {
-        "sprite_name": "soldier",
-        "combat_front": "aviator",
-        "slug": "aviator"
-      }
-  
+    "template": {
+      "sprite_name": "soldier",
+      "combat_front": "aviator",
+      "slug": "aviator"
+    }
   },
   {
     "slug": "spyder_nimrod_maverick",
-    "template": 
-      {
-        "sprite_name": "soldier",
-        "combat_front": "soldier",
-        "slug": "soldier"
-      }
-  
+    "template": {
+      "sprite_name": "soldier",
+      "combat_front": "soldier",
+      "slug": "soldier"
+    }
   },
   {
     "slug": "spyder_nimrod_mace",
-    "template": 
-      {
-        "sprite_name": "scientist",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_nimrod_justice",
-    "template": 
-      {
-        "sprite_name": "soldier",
-        "combat_front": "soldier",
-        "slug": "soldier"
-      }
-  
+    "template": {
+      "sprite_name": "soldier",
+      "combat_front": "soldier",
+      "slug": "soldier"
+    }
   },
   {
     "slug": "spyder_nimrod_honour",
-    "template": 
-      {
-        "sprite_name": "soldier",
-        "combat_front": "soldier",
-        "slug": "soldier"
-      }
-  
+    "template": {
+      "sprite_name": "soldier",
+      "combat_front": "soldier",
+      "slug": "soldier"
+    }
   },
   {
     "slug": "spyder_nimrod_chromerobo",
-    "template": 
-      {
-        "sprite_name": "robot",
-        "combat_front": "chrome_robo",
-        "slug": "robot"
-      }
-  
+    "template": {
+      "sprite_name": "robot",
+      "combat_front": "chrome_robo",
+      "slug": "robot"
+    }
   },
   {
     "slug": "spyder_nimrod_antimony",
-    "template": 
-      {
-        "sprite_name": "scientist_fiery",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_fiery",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_nimrod_bowie",
-    "template": 
-      {
-        "sprite_name": "knight",
-        "combat_front": "enforcer_boss",
-        "slug": "enforcer_boss"
-      }
-  
+    "template": {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_boss",
+      "slug": "enforcer_boss"
+    }
   },
   {
     "slug": "spyder_nimrod_archer",
-    "template": 
-      {
-        "sprite_name": "soldier",
-        "combat_front": "soldier",
-        "slug": "soldier"
-      }
-  
+    "template": {
+      "sprite_name": "soldier",
+      "combat_front": "soldier",
+      "slug": "soldier"
+    }
   },
   {
     "slug": "spyder_nimrod_argon",
-    "template": 
-      {
-        "sprite_name": "scientist_black",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_black",
+      "combat_front": "scientist_black",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_nimrod_dirk",
-    "template": 
-      {
-        "sprite_name": "knight",
-        "combat_front": "enforcer_rookie",
-        "slug": "enforcer_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_rookie",
+      "slug": "enforcer_rookie"
+    }
   },
   {
     "slug": "spyder_nimrod_jake",
-    "template": 
-      {
-        "sprite_name": "soldier",
-        "combat_front": "soldier",
-        "slug": "soldier"
-      }
-  
+    "template": {
+      "sprite_name": "soldier",
+      "combat_front": "soldier",
+      "slug": "soldier"
+    }
   },
   {
     "slug": "spyder_nimrod_jervis",
-    "template": 
-      {
-        "sprite_name": "scientist_brown",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_brown",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
+  },
+  {
+    "slug": "spyder_nimrod_elara",
+    "template": {
+      "sprite_name": "florist_rose",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
   }
 ]

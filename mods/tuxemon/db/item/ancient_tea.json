@@ -1,16 +1,21 @@
 {
   "conditions": [],
   "effects": [
-    "gain_xp 1277"
+    {
+      "type": "gain_xp",
+      "parameters": ["1277"]
+    }
   ],
   "slug": "ancient_tea",
   "sort": "potion",
   "sprite": "gfx/items/ancient_tea.png",
   "category": "none",
-  "type": "Consumable",
+  "cost": 3150,
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
+  "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

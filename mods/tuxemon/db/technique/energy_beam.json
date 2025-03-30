@@ -1,0 +1,40 @@
+{
+  "tech_id": 191,
+  "accuracy": 1,
+  "animation": "energy_beam",
+  "effects": [
+    {
+      "type": "give",
+      "parameters": ["burn", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
+  ],
+  "flip_axes": "",
+  "is_fast": false,
+  "potency": 1,
+  "power": 0,
+  "range": "ranged",
+  "recharge": 2,
+  "sfx": "sfx_blaster",
+  "slug": "energy_beam",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "powerful",
+  "tags": ["calamity", "fury"],
+  "types": [
+    "earth", "fire"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

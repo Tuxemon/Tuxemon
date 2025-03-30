@@ -3,9 +3,14 @@
   "accuracy": 1,
   "animation": "wall_ice",
   "effects": [
-    "give elementalshield,user",
-    "give slow,target",
-    "enhance"
+    {
+      "type": "give",
+      "parameters": ["elementalshield", "own_monster"]
+    },
+    {
+      "type": "give",
+      "parameters": ["slow", "enemy_monster"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -16,14 +21,17 @@
   "sfx": "sfx_blaster",
   "slug": "ice_shield",
   "sort": "damage",
+  "modifiers": [],
   "target": {
-    "enemy monster": 2,
-    "enemy team": 0,
-    "enemy trainer": 0,
-    "own monster": 0,
-    "own team": 0,
-    "own trainer": 0
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
   },
+  "category": "exotic",
+  "tags": ["soldier", "ice", "shielded"],
   "types": [
     "water"
   ],

@@ -1,0 +1,23 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "negative",
+  "effects": [
+    {
+      "type": "noddingoff",
+      "parameters": ["0.5"]
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_noddingoff.png",
+  "range": "special",
+  "repl_tech": "empty",
+  "sfx": "sfx_pulse",
+  "slug": "noddingoff",
+  "sort": "meta",
+  "cond_id": 6,
+  "duration": 5,
+  "use_failure": null,
+  "use_success": "combat_state_dozing_get",
+  "gain_cond": "combat_state_noddingoff_get"
+}

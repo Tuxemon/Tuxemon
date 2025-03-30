@@ -1,19 +1,19 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 
-from tuxemon.db import StatType
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.monster import Monster
 from tuxemon.session import Session
-from tuxemon.tools import compare
 
 logger = logging.getLogger(__name__)
 
 
+@dataclass
 class CheckEvolutionCondition(EventCondition):
     """
     Check to see the player has at least one tuxemon evolving.
@@ -41,60 +41,20 @@ class CheckEvolutionCondition(EventCondition):
             logger.error(f"{_character} not found")
             return False
 
-        client = session.client
-        _evolution: bool = False
+        context = {"map_inside": session.client.map_inside, "use_item": False}
 
-        evolving: list[tuple[Monster, Monster]] = []
+        evolving_monsters = []
         for monster in character.monsters:
             if monster.evolutions:
-                evolved = Monster()
                 for evolution in monster.evolutions:
-                    evolved.load_from_db(evolution.monster_slug)
-                    op = "greater_or_equal"
-                    if compare(op, monster.level, evolution.at_level):
-                        _evolution = True
-                    if evolution.gender == monster.gender:
-                        _evolution = True
-                    if character.has_type(evolution.element):
-                        _evolution = True
-                    if character.has_tech(evolution.tech):
-                        _evolution = True
-                    if evolution.inside == client.map_inside:
-                        _evolution = True
-                    if evolution.traded == monster.traded:
-                        _evolution = True
-                    if evolution.stats:
-                        params = evolution.stats.split(":")
-                        operator = params[1]
-                        stat1 = monster.return_stat(StatType(params[0]))
-                        stat2 = monster.return_stat(StatType(params[2]))
-                        _evolution = compare(operator, stat1, stat2)
-                    if evolution.variable:
-                        parts = evolution.variable.split(":")
-                        key, value = parts[:2]
-                        if (
-                            key in character.game_variables
-                            and character.game_variables[key] == value
-                        ):
-                            _evolution = True
-                    if evolution.steps:
-                        result = evolution.steps - int(monster.steps)
-                        if result == 0:
-                            _evolution = True
-                            monster.steps += 1
-                        monster.levelling_up = True
-                        monster.got_experience = True
-                    if evolution.bond:
-                        parts = evolution.bond.split(":")
-                        operator, value = parts[:2]
-                        _bond = monster.bond
-                        _evolution = compare(operator, _bond, int(value))
-                    # use the item on the monster
-                    if evolution.item:
-                        _evolution = False
-                    if _evolution:
-                        evolving.append((monster, evolved))
+                    if monster.evolution_handler.can_evolve(
+                        evolution_item=evolution, context=context
+                    ):
+                        evolved_monster = Monster()
+                        evolved_monster.load_from_db(evolution.monster_slug)
+                        evolving_monsters.append((monster, evolved_monster))
 
-        if evolving:
-            character.pending_evolutions = evolving
-        return len(evolving) > 0
+        if evolving_monsters:
+            character.pending_evolutions = evolving_monsters
+
+        return len(evolving_monsters) > 0

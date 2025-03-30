@@ -3,11 +3,11 @@
     "category": "foreman",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "bullet"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "static_field"
         },
         {
@@ -15,15 +15,15 @@
             "technique": "shuriken"
         },
         {
-            "level_learned": 6,
+            "level_learned": 7,
             "technique": "clamp_on"
         },
         {
-            "level_learned": 8,
+            "level_learned": 10,
             "technique": "muddle"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "bubble_trap"
         },
         {
@@ -31,12 +31,20 @@
             "technique": "beam"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "surge"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "thunderclap"
+        },
+        {
+            "level_learned": 37,
+            "technique": "magnetic_body"
+        },
+        {
+            "level_learned": 43,
+            "technique": "laser_beam"
         }
     ],
     "evolutions": [],
@@ -50,6 +58,8 @@
             "evo_stage": "stage1"
         }
     ],
+    "terrains": [],
+    "tags": ["machine", "bomber", "gadgets", "light", "electricity"],
     "shape": "humanoid",
     "stage": "stage2",
     "types": [

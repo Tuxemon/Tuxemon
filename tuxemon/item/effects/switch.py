@@ -1,22 +1,18 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
-from tuxemon.db import ElementType
+from tuxemon.db import db
 from tuxemon.element import Element
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
-
-
-class SwitchEffectResult(ItemEffectResult):
-    pass
 
 
 @dataclass
@@ -38,18 +34,16 @@ class SwitchEffect(ItemEffect):
 
     def apply(
         self, item: Item, target: Union[Monster, None]
-    ) -> SwitchEffectResult:
-        done: bool = False
-        elements = list(ElementType)
+    ) -> ItemEffectResult:
+        elements = list(db.database["element"])
         if target:
             if self.element != "random":
                 ele = Element(self.element)
                 if ele not in target.types:
                     target.types = [ele]
-                    done = True
             else:
-                _target = random.choice(elements)
-                ele = Element(_target)
-                target.types = [ele]
-                done = True
-        return {"success": done, "num_shakes": 0, "extra": None}
+                random_target_element = random.choice(elements)
+                target.types = [Element(random_target_element)]
+        return ItemEffectResult(
+            name=item.name, success=target is not None, num_shakes=0, extras=[]
+        )

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """This module initializes the display and creates dictionaries of resources.
 It contains all the static and dynamic variables used throughout the game such
 as display resolution, scale, etc.
@@ -52,7 +52,7 @@ config.generate_default_config()
 CONFIG = config.TuxemonConfig(paths.USER_CONFIG_PATH)
 
 # Starting map
-STARTING_MAP = "debug.tmx"
+STARTING_MAP = "start_"
 
 with open(paths.USER_CONFIG_PATH, "w") as fp:
     CONFIG.cfg.write(fp)
@@ -115,6 +115,8 @@ SEA_BLUE_COLOR = (0, 105, 148)
 DARKGRAY_COLOR = (169, 169, 169)
 DIMGRAY_COLOR = (105, 105, 105)
 # Default colors
+UNAVAILABLE_COLOR = (220, 220, 220)
+UNAVAILABLE_COLOR_SHOP = (51, 51, 51)
 TRANSPARENT_COLOR = (255, 255, 255, 0)
 BACKGROUND_COLOR = (248, 248, 248)  # Guyabano
 FONT_COLOR = BLACK_COLOR
@@ -205,6 +207,17 @@ MOVERATE_RANGE: tuple[float, float] = (0.0, 20.0)
 TRANS_TIME: float = 0.3  # transition time
 
 # PC
+U_KM: str = "km"
+U_MI: str = "mi"
+U_KG: str = "kg"
+U_LB: str = "lb"
+U_CM: str = "cm"
+U_FT: str = "ft"
+MUSIC_RANGE: tuple[float, float] = (0.0, 1.0)
+SOUND_RANGE: tuple[float, float] = (0.0, 1.0)
+MUSIC_LOOP: int = -1
+MUSIC_FADEIN: int = 1000  # milliseconds
+MUSIC_FADEOUT: int = 1000  # milliseconds
 KENNEL: str = "Kennel"
 LOCKER: str = "Locker"
 MAX_KENNEL: int = 30  # nr max of pc monsters
@@ -213,12 +226,14 @@ MAX_LOCKER: int = 30  # nr max of pc items
 # Items
 INFINITE_ITEMS: int = -1
 MAX_TYPES_BAG: int = 99  # eg 5 capture devices, 1 type and 5 items
+# Items menu
+MAX_MENU_ITEMS: int = 11
 
 # Monsters
 MAX_LEVEL: int = 999
 MAX_MOVES: int = 4
 MISSING_IMAGE: str = "gfx/sprites/battle/missing.png"
-CATCH_RATE_RANGE: tuple[int, int] = (0, 255)
+CATCH_RATE_RANGE: tuple[int, int] = (0, 100)
 CATCH_RESISTANCE_RANGE: tuple[float, float] = (0.0, 2.0)
 # set bond and define range
 BOND: int = 25
@@ -231,8 +246,6 @@ COEFF_EXP: int = 3
 # weight and height (min and max) = -/+ 10%
 WEIGHT_RANGE: tuple[float, float] = (-0.1, 0.1)
 HEIGHT_RANGE: tuple[float, float] = (-0.1, 0.1)
-# tastes (malus and bonus)
-TASTE_RANGE: tuple[float, float] = (-0.1, 0.1)
 
 # Capture
 TOTAL_SHAKES: int = 4
@@ -248,14 +261,18 @@ STATUS_POSITIVE: float = 1.0
 # if the status is negative
 STATUS_NEGATIVE: float = 1.2
 
+# Camera
+CAMERA_SHAKE_RANGE: tuple[float, float] = (0.0, 3.0)
+
 # Techniques
 RECHARGE_RANGE: tuple[int, int] = (0, 5)
 POTENCY_RANGE: tuple[float, float] = (0.0, 1.0)
 ACCURACY_RANGE: tuple[float, float] = (0.0, 1.0)
 POWER_RANGE: tuple[float, float] = (0.0, 3.0)
-HEALING_POWER_RANGE: tuple[int, int] = (0, 10)
+HEALING_POWER_RANGE: tuple[float, float] = (0.0, 3.0)
 
 # Combat
+MONSTERS_DOUBLE: int = 3  # 3 monsters to trigger 1vs2 or viceversa
 # Hud right/left lines
 HUD_RT_LINE1: tuple[int, int] = (12, 11)  # monster, lv, etc.
 HUD_RT_LINE2: tuple[int, int] = (12, 19)  # position hp_bar
@@ -266,6 +283,10 @@ HUD_LT_LINE2: tuple[int, int] = (5, 13)  # position hp_bar
 RIGHT_COMBAT: dict[str, tuple[int, int, int, int]] = {}
 # where appears the monster (character right side)
 RIGHT_COMBAT["home"] = (0, 62, 95, 70)
+# 1st spot 2 vs 2
+RIGHT_COMBAT["home0"] = (15, 62, 95, 70)
+# 2nd spot 2 vs 2
+RIGHT_COMBAT["home1"] = (-15, 62, 95, 70)
 # name, level, etc.
 RIGHT_COMBAT["hud"] = (145, 45, 110, 50)
 # 1st spot 2 vs 2
@@ -278,6 +299,10 @@ RIGHT_COMBAT["party"] = (145, 57, 110, 50)
 LEFT_COMBAT: dict[str, tuple[int, int, int, int]] = {}
 # where appears the monster (character left side)
 LEFT_COMBAT["home"] = (140, 18, 95, 70)
+# 1st spot 2 vs 2
+LEFT_COMBAT["home0"] = (125, 18, 95, 70)
+# 2nd spot 2 vs 2
+LEFT_COMBAT["home1"] = (155, 18, 95, 70)
 # name, level, etc.
 LEFT_COMBAT["hud"] = (18, 0, 85, 30)
 # 1st spot 2 vs 2
@@ -291,6 +316,10 @@ LEFT_COMBAT["party"] = (18, 12, 85, 30)
 # it calculates the user strength
 # eg: user_strength = user.melee * (COEFF_DAMAGE + user.level)
 COEFF_DAMAGE: int = 7
+# This is used as random offset in the def speed_test
+SPEED_OFFSET: float = 50.0
+# This is used as multiplier in the def speed_test
+MULTIPLIER_SPEED: float = 1.5
 
 # Min and max multiplier are the multiplier upper/lower bounds
 MULTIPLIER_RANGE: tuple[float, float] = (0.25, 4.0)
@@ -307,7 +336,6 @@ MULT_MAP = {
 SORT_ORDER: list[str] = [
     "potion",
     "utility",
-    "food",
     "quest",
     "meta",
     "damage",
@@ -338,11 +366,6 @@ ICON_OPPONENT_SLOT: tuple[float, float] = (
     SCREEN_SIZE[0] * 0.06,
     SCREEN_SIZE[1] * 0.26,
 )
-
-# Fonts
-FONT_BASIC: str = "PressStart2P.ttf"
-FONT_CHINESE: str = "SourceHanSerifCN-Bold.otf"
-FONT_JAPANESE: str = "SourceHanSerifJP-Bold.otf"
 
 # If scaling is enabled, scale the tiles based on the resolution
 if CONFIG.large_gui:
@@ -398,7 +421,7 @@ def pygame_init() -> None:
     SCREEN_RECT = SCREEN.get_rect()
 
     # Disable the mouse cursor visibility
-    pg.mouse.set_visible(not CONFIG.hide_mouse)
+    pg.mouse.set_visible(not CONFIG.controller.hide_mouse)
 
     # Set up any gamepads that we detect
     # The following event types will be generated by the joysticks:

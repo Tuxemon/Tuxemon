@@ -1,0 +1,24 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "negative",
+  "effects": [
+    {
+      "type": "wild",
+      "parameters": ["0.25", "8"]
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_wild.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "repl_tech": "empty",
+  "sfx": "sfx_pulse",
+  "slug": "wild",
+  "sort": "meta",
+  "cond_id": 26,
+  "use_failure": null,
+  "use_success": "combat_state_wild_end",
+  "gain_cond": "combat_state_wild_get"
+}

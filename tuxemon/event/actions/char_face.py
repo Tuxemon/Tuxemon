@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -58,7 +58,7 @@ class CharFaceAction(EventAction):
         if character.isplayer:
             world_state = self.session.client.get_state_by_name(WorldState)
             if world_state.in_transition:
-                world_state.delayed_facing = direction
+                world_state.teleporter.delayed_facing = direction
             else:
                 character.facing = direction
         else:

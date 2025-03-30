@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -30,6 +30,16 @@ class FadeTransitionBase(State):
         caller: Optional[State] = None,
         color: ColorLike = prepare.BLACK_COLOR,
     ) -> None:
+        """
+        Parameters:
+            state_duration: The duration of the transition state in seconds.
+                If not provided, a default value will be used.
+            fade_duration: The duration of the fade animation in seconds.
+                If not provided, a default value will be used.
+            caller: The state that initiated the transition. If not provided,
+                it will be set to None.
+            color: The color to use for the fade transition. Defaults to black.
+        """
         super().__init__()
 
         logger.debug("Initializing fade transition")
@@ -72,12 +82,11 @@ class FadeOutTransition(FadeTransitionBase):
         )
 
     def shutdown(self) -> None:
-        if self.client.current_music["previoussong"]:
-            self.client.event_engine.execute_action(
-                "play_music",
-                [self.client.current_music["previoussong"]],
+        if self.client.current_music.previous_song:
+            self.client.current_music.play(
+                self.client.current_music.previous_song
             )
-            self.client.current_music["previoussong"] = None
+            self.client.current_music.previous_song = None
         self.client.pop_state(self.caller)
 
 

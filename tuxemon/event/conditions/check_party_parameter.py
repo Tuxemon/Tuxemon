@@ -1,20 +1,19 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import final
 
 from tuxemon.event import MapCondition, get_npc
-from tuxemon.event.conditions.common_party import CommonPartyCondition
+from tuxemon.event.conditions.common import CommonCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
+from tuxemon.tools import compare
 
 logger = logging.getLogger(__name__)
 
 
-@final
 @dataclass
 class CheckPartyParameterCondition(EventCondition):
     """
@@ -58,6 +57,10 @@ class CheckPartyParameterCondition(EventCondition):
             return False
         party = len(character.monsters)
         times = party if int(_times) > party else int(_times)
-        return CommonPartyCondition.check_party_parameter(
-            character.monsters, _attribute, _value, _operator, times
+
+        count = sum(
+            1
+            for monster in character.monsters
+            if CommonCondition.check_parameter(monster, _attribute, _value)
         )
+        return compare(_operator, count, times)

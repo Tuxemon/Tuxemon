@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="54">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="24" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="62">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="dungeon"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="dojo1"/>
-  <property name="types" value="dungeon"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
  <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
@@ -18,28 +18,28 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYKA9iNBlYIgEYmSATYyQPCE9yPpH2aMhMBoCgz8EAIpIBC0=
+   eAFjYKA9iNBlYIgEYmSATYyQPCE9yPqHIrtOi4GhHoiRATYxQvK49MwFmj0PzXxsYsjmY5NHF8NmHzYxZHOxyWMTA+lBtw+XGLL55OhB1j/Kpk8IAAAY9Bst
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFgyUE6rQYGOqBGBlgEyMkj0vPXKDZ89DMRxfTFUI2nYEBXR4kiy6GzT5sYsgmY5PHJobNPlxiyOaju5EYPcj6R9n0CQEALKoXQA==
+   eAFjYBgFIykE3LUxfeuKJKYrhCnvhiQPk3XBIgaTozZNyM3Y7BtoN2Nz06gYZggAAOUPA8Q=
   </data>
  </layer>
  <layer id="4" name="Above Player" width="24" height="12">
   <data encoding="base64" compression="zlib">
-   eAFjYBgFgykEqnQwXYMiJkRAHiqNogdJy0ws5mMTQ9LCgE0eWQybXdjEkM3EJo9NDKQH2S6YGdjEYHLk6kHWP8qmTwgAAKP1C2s=
+   eAFjYBgFgykEqnQwXYMiJkRAHiqNogdTC1VFsNmFTQzZUmzy2MSQ9Yyyh18IAADlwgVD
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">
-  <object id="3" type="collision" x="0" y="0" width="16" height="192"/>
-  <object id="4" type="collision" x="0" y="0" width="384" height="32"/>
-  <object id="5" type="collision" x="368" y="0" width="16" height="192"/>
-  <object id="6" type="collision" x="80" y="0" width="16" height="144"/>
-  <object id="7" type="collision" x="288" y="0" width="16" height="144"/>
-  <object id="8" type="collision" x="208" y="0" width="16" height="144"/>
-  <object id="9" type="collision" x="160" y="0" width="16" height="144"/>
-  <object id="10" type="collision" x="176" y="48" width="32" height="32"/>
+  <object id="3" type="collision" x="0" y="32" width="16" height="160"/>
+  <object id="4" type="collision" x="0" y="16" width="384" height="16"/>
+  <object id="5" type="collision" x="368" y="32" width="16" height="160"/>
+  <object id="6" type="collision" x="80" y="32" width="16" height="112"/>
+  <object id="7" type="collision" x="288" y="32" width="16" height="112"/>
+  <object id="8" type="collision" x="208" y="32" width="16" height="112"/>
+  <object id="9" type="collision" x="160" y="32" width="16" height="112"/>
+  <object id="10" type="collision" x="176" y="64" width="32" height="16"/>
   <object id="11" type="collision" x="16" y="96" width="32" height="16"/>
   <object id="12" type="collision" x="48" y="64" width="32" height="16"/>
   <object id="13" type="collision" x="96" y="96" width="32" height="16"/>
@@ -48,218 +48,8 @@
   <object id="16" type="collision" x="256" y="64" width="32" height="16"/>
   <object id="17" type="collision" x="304" y="96" width="32" height="16"/>
   <object id="18" type="collision" x="336" y="64" width="32" height="16"/>
-  <object id="19" type="collision" x="352" y="80" width="16" height="16"/>
-  <object id="20" type="collision" x="304" y="112" width="16" height="16"/>
-  <object id="21" type="collision" x="272" y="80" width="16" height="16"/>
-  <object id="22" type="collision" x="224" y="112" width="16" height="16"/>
-  <object id="23" type="collision" x="144" y="80" width="16" height="16"/>
-  <object id="24" type="collision" x="96" y="112" width="16" height="16"/>
-  <object id="25" type="collision" x="64" y="80" width="16" height="16"/>
-  <object id="26" type="collision" x="16" y="112" width="16" height="16"/>
   <object id="27" type="collision-line" x="192" y="96">
    <polyline points="0,0 16,0"/>
-  </object>
- </objectgroup>
- <objectgroup color="#ffff00" id="5" name="Events">
-  <object id="1" name="Play Music" type="event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="play_music music_dojo_theme"/>
-    <property name="cond1" value="not music_playing music_dojo_theme"/>
-   </properties>
-  </object>
-  <object id="2" name="Teleport to Flower City" type="event" x="176" y="176" width="32" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_flower_city.tmx,34,18,0.3"/>
-    <property name="act2" value="char_face player,down"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,down"/>
-   </properties>
-  </object>
-  <object id="28" name="Teleport to Dojo 2" type="event" x="192" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_dojo2.tmx,10,9,0.3"/>
-    <property name="act2" value="char_face player,right"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,right"/>
-   </properties>
-  </object>
-  <object id="29" name="Player Spawn" type="event" x="80" y="160" width="16" height="16"/>
-  <object id="30" name="Environment" type="event" x="16" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable environment:interior"/>
-    <property name="cond1" value="not variable_set environment:interior"/>
-   </properties>
-  </object>
-  <object id="31" name="Board B" type="event" x="96" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_dojo_board_b"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="32" name="Board A" type="event" x="16" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_dojo_board_a"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="33" name="Board D" type="event" x="304" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_dojo_board_d"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="34" name="Board C" type="event" x="224" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_dojo_board_c"/>
-    <property name="cond1" value="is char_facing_tile player"/>
-    <property name="cond2" value="is button_pressed K_RETURN"/>
-   </properties>
-  </object>
-  <object id="36" name="Create Fu" type="event" x="48" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_dojo_fu,3,2"/>
-    <property name="cond1" value="not char_exists spyder_dojo_fu"/>
-   </properties>
-  </object>
-  <object id="37" name="Create Yin" type="event" x="128" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_dojo_yin,8,2"/>
-    <property name="cond1" value="not char_exists spyder_dojo_yin"/>
-   </properties>
-  </object>
-  <object id="38" name="Create Zhu" type="event" x="258" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_dojo_zhu,16,2"/>
-    <property name="cond1" value="not char_exists spyder_dojo_zhu"/>
-   </properties>
-  </object>
-  <object id="39" name="Create Xiang" type="event" x="336" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_dojo_xiang,21,2"/>
-    <property name="cond1" value="not char_exists spyder_dojo_xiang"/>
-   </properties>
-  </object>
-  <object id="40" name="Create Zhao" type="event" x="160" y="144" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_dojo_zhao,10,9"/>
-    <property name="act2" value="char_face spyder_dojo_zhao,right"/>
-    <property name="cond1" value="not char_exists spyder_dojo_zhao"/>
-   </properties>
-  </object>
-  <object id="41" name="Talk Fu1" type="event" x="0" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_dojo_fu1"/>
-    <property name="act2" value="translated_dialog spyder_dojo_fu2"/>
-    <property name="act3" value="set_variable fufirsttime:yes"/>
-    <property name="behav1" value="talk spyder_dojo_fu"/>
-    <property name="cond1" value="not variable_set fufirsttime:yes"/>
-   </properties>
-  </object>
-  <object id="42" name="Talk Yin1" type="event" x="0" y="64" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_dojo_yin1"/>
-    <property name="act2" value="translated_dialog spyder_dojo_yin2"/>
-    <property name="act3" value="set_variable yinfirsttime:yes"/>
-    <property name="behav1" value="talk spyder_dojo_yin"/>
-    <property name="cond1" value="not variable_set yinfirsttime:yes"/>
-   </properties>
-  </object>
-  <object id="43" name="Talk Zhu1" type="event" x="0" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_dojo_zhu1"/>
-    <property name="act2" value="translated_dialog spyder_dojo_zhu2"/>
-    <property name="act3" value="set_variable zhufirsttime:yes"/>
-    <property name="behav1" value="talk spyder_dojo_zhu"/>
-    <property name="cond1" value="not variable_set zhufirsttime:yes"/>
-   </properties>
-  </object>
-  <object id="44" name="Talk Xiang1" type="event" x="0" y="96" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_dojo_xiang1"/>
-    <property name="act2" value="translated_dialog spyder_dojo_xiang2"/>
-    <property name="act3" value="set_variable xiangfirsttime:yes"/>
-    <property name="behav1" value="talk spyder_dojo_xiang"/>
-    <property name="cond1" value="not variable_set xiangfirsttime:yes"/>
-   </properties>
-  </object>
-  <object id="45" name="Talk Zhao1" type="event" x="0" y="112" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_dojo_zhao1"/>
-    <property name="behav1" value="talk spyder_dojo_zhao"/>
-   </properties>
-  </object>
-  <object id="46" name="Talk Fu2" type="event" x="368" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_dojo_fu3"/>
-    <property name="behav1" value="talk spyder_dojo_fu"/>
-    <property name="cond1" value="is variable_set fufirsttime:yes"/>
-   </properties>
-  </object>
-  <object id="47" name="Talk Yin2" type="event" x="368" y="16" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_dojo_yin2"/>
-    <property name="behav1" value="talk spyder_dojo_yin"/>
-    <property name="cond1" value="is variable_set yinfirsttime:yes"/>
-   </properties>
-  </object>
-  <object id="48" name="Talk Xiang2" type="event" x="368" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_dojo_xiang3"/>
-    <property name="behav1" value="talk spyder_dojo_xiang"/>
-    <property name="cond1" value="is variable_set xiangfirsttime:yes"/>
-   </properties>
-  </object>
-  <object id="49" name="Talk Zhu YN" type="event" x="368" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_dojo_zhu3"/>
-    <property name="act2" value="translated_dialog_choice yes:no,zhu_taste"/>
-    <property name="act3" value="set_variable zhu_yn:yes"/>
-    <property name="behav1" value="talk spyder_dojo_zhu"/>
-    <property name="cond1" value="is variable_set zhufirsttime:yes"/>
-    <property name="cond2" value="not variable_set zhu_yn:yes"/>
-    <property name="cond3" value="not variable_set zhu_taste:yes"/>
-    <property name="cond4" value="not variable_set zhu_taste:no"/>
-   </properties>
-  </object>
-  <object id="50" name="Talk Zhu Taste" type="event" x="368" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="get_player_monster tasteful_zhu"/>
-    <property name="act2" value="translated_dialog_choice taste_cold:taste_warm,which_taste"/>
-    <property name="act3" value="set_variable zhu_tastes_choice:yes"/>
-    <property name="act4" value="modify_money player,-50"/>
-    <property name="cond1" value="is variable_set zhu_taste:yes"/>
-    <property name="cond2" value="is variable_set zhu_yn:yes"/>
-    <property name="cond4" value="not variable_set zhu_tastes_choice:yes"/>
-   </properties>
-  </object>
-  <object id="51" name="Talk Zhu Warm" type="event" x="368" y="48" width="16" height="16">
-   <properties>
-    <property name="act2" value="change_taste tasteful_zhu,warm"/>
-    <property name="act3" value="set_variable zhu_taste_done:yes"/>
-    <property name="cond1" value="is variable_set which_taste:taste_warm"/>
-    <property name="cond3" value="not variable_set zhu_taste_done:yes"/>
-   </properties>
-  </object>
-  <object id="52" name="Talk Zhu Cold" type="event" x="368" y="48" width="16" height="16">
-   <properties>
-    <property name="act2" value="change_taste tasteful_zhu,cold"/>
-    <property name="act3" value="set_variable zhu_taste_done:yes"/>
-    <property name="cond1" value="is variable_set which_taste:taste_cold"/>
-    <property name="cond3" value="not variable_set zhu_taste_done:yes"/>
-   </properties>
-  </object>
-  <object id="53" name="Talk Zhu End" type="event" x="368" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="set_variable zhu_taste:null"/>
-    <property name="act2" value="set_variable which_taste:null"/>
-    <property name="act3" value="set_variable zhu_yn:null"/>
-    <property name="act4" value="set_variable zhu_tastes_choice:null"/>
-    <property name="act5" value="set_variable zhu_taste_done:null"/>
-    <property name="cond1" value="is variable_set zhu_taste_done:yes"/>
-   </properties>
   </object>
  </objectgroup>
 </map>

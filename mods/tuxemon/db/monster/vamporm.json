@@ -3,11 +3,11 @@
     "category": "clot",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "proboscis"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "spit_poison"
         },
         {
@@ -15,32 +15,36 @@
             "technique": "refresh"
         },
         {
-            "level_learned": 6,
+            "level_learned": 7,
             "technique": "font"
         },
         {
-            "level_learned": 8,
+            "level_learned": 10,
             "technique": "hibernate"
         },
         {
-            "level_learned": 10,
+            "level_learned": 13,
             "technique": "goad"
         },
         {
             "level_learned": 16,
-            "technique": "geyser"
+            "technique": "tonguespear"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "sleeping_powder"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "venomous_tentacle"
         },
         {
             "level_learned": 28,
             "technique": "icicle_spear"
+        },
+        {
+            "level_learned": 55,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [
@@ -59,6 +63,8 @@
             "evo_stage": "stage2"
         }
     ],
+    "terrains": [],
+    "tags": ["bite", "healing", "bug"],
     "shape": "grub",
     "stage": "basic",
     "types": [

@@ -5,10 +5,6 @@ events:
     conditions:
     - not music_playing music_cathedral_theme
     type: "event"
-  Player Spawn:
-    x: 6
-    y: 8
-    type: "event"
   Go Outside:
     actions:
     - transition_teleport spyder_crystal_town.tmx,34,7,0.3

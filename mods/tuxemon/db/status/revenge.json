@@ -1,0 +1,22 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "positive",
+  "effects": [
+    {
+      "type": "revenge"
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_revenge.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "revenge",
+  "sort": "meta",
+  "cond_id": 32,
+  "use_failure": null,
+  "use_success": "combat_state_revenge_get",
+  "gain_cond": null
+}

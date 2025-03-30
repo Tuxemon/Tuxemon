@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -30,11 +30,12 @@ class GetPartyMonsterAction(EventAction):
 
     def start(self) -> None:
         player = self.session.player
-        self.npc_slug = "player" if self.npc_slug is None else self.npc_slug
+        self.npc_slug = self.npc_slug or "player"
         trainer = get_npc(self.session, self.npc_slug)
-        assert trainer
-        for mon in trainer.monsters:
-            index = trainer.monsters.index(mon)
+        if not trainer:
+            raise ValueError(f"NPC '{self.npc_slug}' not found")
+
+        for index, mon in enumerate(trainer.monsters):
             player.game_variables[f"iid_slot_{index}"] = str(
                 mon.instance_id.hex
             )

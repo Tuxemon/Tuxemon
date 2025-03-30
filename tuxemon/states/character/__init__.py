@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from collections.abc import Callable
@@ -7,25 +7,32 @@ from typing import Any, Optional
 
 import pygame_menu
 from pygame_menu import locals
-from pygame_menu.locals import POSITION_CENTER
 
 from tuxemon import formula
 from tuxemon import prepare as pre
-from tuxemon.db import OutputBattle, SeenStatus, db
+from tuxemon.db import MonsterModel, OutputBattle, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.menu.theme import get_theme
 from tuxemon.npc import NPC
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
-from tuxemon.tools import transform_resource_filename
+from tuxemon.time_handler import today_ordinal
 
 MenuGameObj = Callable[[], object]
+lookup_cache: dict[str, MonsterModel] = {}
 
 
 def fix_measure(measure: int, percentage: float) -> int:
     """it returns the correct measure based on percentage"""
     return round(measure * percentage)
+
+
+def _lookup_monsters() -> None:
+    monsters = list(db.database["monster"])
+    for mon in monsters:
+        results = db.lookup(mon, table="monster")
+        if results.txmn_id > 0:
+            lookup_cache[mon] = results
 
 
 class CharacterState(PygameMenuState):
@@ -55,25 +62,26 @@ class CharacterState(PygameMenuState):
         player = "player" if self.char.isplayer else self.char.slug
 
         # tuxepedia data
-        monsters = list(db.database["monster"])
-        filters = []
-        for mon in monsters:
-            results = db.lookup(mon, table="monster")
-            if results.txmn_id > 0:
-                filters.append(results)
-        tuxepedia = list(self.char.tuxepedia.values())
-        caught = tuxepedia.count(SeenStatus.caught)
-        seen = tuxepedia.count(SeenStatus.seen) + caught
-        percentage = round((seen / len(filters)) * 100, 1)
+        filters = list(lookup_cache.values())
+        completeness = self.char.tuxepedia.get_completeness(len(filters))
+        percentage = round(completeness * 100, 1)
+        seen = self.char.tuxepedia.get_seen_count()
+        caught = self.char.tuxepedia.get_caught_count()
 
-        _msg_progress = {"value": str(percentage)}
+        if self.char.tuxepedia.entries:
+            _msg_progress = {"value": str(percentage)}
+            _msg_seen = {"param": str(seen + caught), "all": str(len(filters))}
+            _msg_caught = {"param": str(caught), "all": str(len(filters))}
+        else:
+            _msg_progress = {"value": "-"}
+            _msg_seen = {"param": "-", "all": "-"}
+            _msg_caught = {"param": "-", "all": "-"}
+
         msg_progress = T.format("tuxepedia_progress", _msg_progress)
-        _msg_seen = {"param": str(seen), "all": str(len(filters))}
         msg_seen = T.format("tuxepedia_data_seen", _msg_seen)
-        _msg_caught = {"param": str(caught), "all": str(len(filters))}
         msg_caught = T.format("tuxepedia_data_caught", _msg_caught)
 
-        today = formula.today_ordinal()
+        today = today_ordinal()
         date = self.char.game_variables.get("date_start_game", today)
         date_begin = today - int(date)
         msg_begin = (
@@ -82,20 +90,21 @@ class CharacterState(PygameMenuState):
             else T.translate("player_start_adventure_today")
         )
 
-        battles = self.char.battles
-        tot = 0
-        won = 0
-        lost = 0
-        draw = 0
-        for battle in battles:
+        battle_outcomes = {
+            OutputBattle.won: 0,
+            OutputBattle.lost: 0,
+            OutputBattle.draw: 0,
+        }
+
+        for battle in self.char.battles:
             if battle.fighter == player:
-                tot += 1
-                if battle.outcome == OutputBattle.won:
-                    won += 1
-                elif battle.outcome == OutputBattle.lost:
-                    lost += 1
-                else:
-                    draw += 1
+                battle_outcomes[battle.outcome] += 1
+
+        tot = sum(battle_outcomes.values())
+        won = battle_outcomes[OutputBattle.won]
+        lost = battle_outcomes[OutputBattle.lost]
+        draw = battle_outcomes[OutputBattle.draw]
+
         _msg_battles = {
             "tot": str(tot),
             "won": str(won),
@@ -105,13 +114,13 @@ class CharacterState(PygameMenuState):
         msg_battles = T.format("player_battles", _msg_battles)
         # steps
         steps = self.char.steps
-        unit = self.char.game_variables.get("unit_measure", "Metric")
-        if unit == "Metric":
+        unit = self.client.config.unit_measure
+        if unit == "metric":
             walked = formula.convert_km(steps)
-            unit_walked = "km"
+            unit_walked = pre.U_KM
         else:
             walked = formula.convert_mi(steps)
-            unit_walked = "mi"
+            unit_walked = pre.U_MI
         _msg_walked = {"distance": str(walked), "unit": unit_walked}
         msg_walked = T.format("player_walked", _msg_walked)
         # name
@@ -126,9 +135,9 @@ class CharacterState(PygameMenuState):
         )
         lab1.translate(fix_measure(width, 0.45), fix_measure(height, 0.15))
         # money
-        money = self.char.money.get(player, 0)
+        money = self.char.money_controller.money_manager.get_money()
         lab2: Any = menu.add.label(
-            title=T.translate("wallet") + ": " + str(money),
+            title=f"{T.translate('wallet')}: {money}",
             label_id="money",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
@@ -193,7 +202,7 @@ class CharacterState(PygameMenuState):
         # image
         combat_front = self.char.template.combat_front
         _path = f"gfx/sprites/player/{combat_front}.png"
-        new_image = pygame_menu.BaseImage(transform_resource_filename(_path))
+        new_image = self._create_image(_path)
         new_image.scale(pre.SCALE, pre.SCALE)
         image_widget = menu.add.image(image_path=new_image.copy())
         image_widget.set_float(origin_position=True)
@@ -202,6 +211,8 @@ class CharacterState(PygameMenuState):
         )
 
     def __init__(self, **kwargs: Any) -> None:
+        if not lookup_cache:
+            _lookup_monsters()
         character: Optional[NPC] = None
         for element in kwargs.values():
             character = element["character"]
@@ -217,26 +228,14 @@ class CharacterState(PygameMenuState):
             else pre.BG_PLAYER1
         )
 
-        background = pygame_menu.BaseImage(
-            image_path=transform_resource_filename(bg),
-            drawing_position=POSITION_CENTER,
-        )
-        theme = get_theme()
+        theme = self._setup_theme(bg)
         theme.scrollarea_position = locals.POSITION_EAST
-        theme.background_color = background
         theme.widget_alignment = locals.ALIGN_CENTER
 
         super().__init__(height=height, width=width)
 
         self.add_menu_items(self.menu)
-        self.repristinate()
-
-    def repristinate(self) -> None:
-        """Repristinate original theme (color, alignment, etc.)"""
-        theme = get_theme()
-        theme.scrollarea_position = locals.SCROLLAREA_POSITION_NONE
-        theme.background_color = self.background_color
-        theme.widget_alignment = locals.ALIGN_LEFT
+        self.reset_theme()
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         party = self.char.monsters
@@ -244,9 +243,8 @@ class CharacterState(PygameMenuState):
             params = {"party": party}
             self.client.replace_state("PartyState", kwargs=params)
         if (
-            event.button == buttons.BACK
-            or event.button == buttons.B
-            or event.button == buttons.A
-        ) and event.pressed:
+            event.button in (buttons.BACK, buttons.B, buttons.A)
+            and event.pressed
+        ):
             self.client.pop_state()
         return None

@@ -1,0 +1,44 @@
+{
+  "tech_id": 225,
+  "accuracy": 1.0,
+  "animation": "explosion_mushroom_128",
+  "effects": [
+    {
+      "type": "give",
+      "parameters": ["exhausted", "own_monster"]
+    },
+    {
+      "type": "give",
+      "parameters": ["confused", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
+  ],
+  "flip_axes": "",
+  "is_fast": false,
+  "potency": 0.5,
+  "power": 3.0,
+  "range": "ranged",
+  "recharge": 3,
+  "sfx": "sfx_blaster",
+  "slug": "mind_explosion",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "exotic",
+  "tags": ["mental"],
+  "types": [
+    "metal", "wood"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

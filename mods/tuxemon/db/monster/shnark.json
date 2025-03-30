@@ -3,27 +3,27 @@
     "category": "disguised",
     "moveset": [
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "proboscis"
         },
         {
-            "level_learned": 2,
+            "level_learned": 1,
             "technique": "chill_mist"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "font"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "goad"
         },
         {
-            "level_learned": 12,
-            "technique": "snowstorm"
+            "level_learned": 13,
+            "technique": "flood"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "flow"
         },
         {
@@ -31,8 +31,16 @@
             "technique": "kraken"
         },
         {
-            "level_learned": 32,
-            "technique": "flood"
+            "level_learned": 31,
+            "technique": "water_blast"
+        },
+        {
+            "level_learned": 40,
+            "technique": "snowstorm"
+        },
+        {
+            "level_learned": 55,
+            "technique": "shadow_blast"
         }
     ],
     "evolutions": [],
@@ -42,6 +50,8 @@
             "evo_stage": "basic"
         }
     ],
+    "terrains": [],
+    "tags": ["bite", "water", "darkness"],
     "shape": "piscine",
     "stage": "stage1",
     "types": [

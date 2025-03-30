@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="68">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="75">
  <properties>
   <property name="east" value="flower_city"/>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="route5"/>
   <property name="south" value="timber_town"/>
-  <property name="types" value="route"/>
+  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
@@ -70,7 +70,7 @@
   </object>
   <object id="20" name="encounter 3" type="event" x="400" y="64" width="96" height="112">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -78,7 +78,7 @@
   </object>
   <object id="24" name="encounter 3" type="event" x="96" y="64" width="112" height="112">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -86,7 +86,7 @@
   </object>
   <object id="25" name="encounter 3" type="event" x="208" y="112" width="176" height="64">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -94,7 +94,7 @@
   </object>
   <object id="26" name="encounter 3" type="event" x="240" y="176" width="144" height="64">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -102,7 +102,7 @@
   </object>
   <object id="27" name="encounter 3" type="event" x="80" y="256" width="496" height="32">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -110,7 +110,7 @@
   </object>
   <object id="28" name="encounter 3" type="event" x="48" y="32" width="32" height="208">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -118,7 +118,7 @@
   </object>
   <object id="29" name="encounter 3" type="event" x="80" y="32" width="496" height="16">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -126,7 +126,7 @@
   </object>
   <object id="30" name="encounter 3" type="event" x="224" y="48" width="80" height="48">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -134,7 +134,7 @@
   </object>
   <object id="31" name="encounter 3" type="event" x="400" y="192" width="96" height="48">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -142,7 +142,7 @@
   </object>
   <object id="32" name="encounter 3" type="event" x="320" y="48" width="64" height="48">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -150,7 +150,7 @@
   </object>
   <object id="33" name="encounter 3" type="event" x="80" y="192" width="32" height="48">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -158,7 +158,7 @@
   </object>
   <object id="34" name="encounter 3" type="event" x="176" y="192" width="48" height="48">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -166,7 +166,7 @@
   </object>
   <object id="35" name="encounter 3" type="event" x="128" y="192" width="48" height="64">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -174,7 +174,7 @@
   </object>
   <object id="36" name="encounter 3" type="event" x="512" y="128" width="32" height="32">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -182,7 +182,7 @@
   </object>
   <object id="37" name="encounter 3" type="event" x="512" y="160" width="64" height="96">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -190,7 +190,7 @@
   </object>
   <object id="38" name="encounter 3" type="event" x="560" y="112" width="16" height="32">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -198,7 +198,7 @@
   </object>
   <object id="39" name="encounter 3" type="event" x="512" y="48" width="64" height="64">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -206,7 +206,7 @@
   </object>
   <object id="40" name="encounter 3" type="event" x="48" y="240" width="16" height="48">
    <properties>
-    <property name="act1" value="random_encounter route5,11"/>
+    <property name="act1" value="random_encounter spyder_route5,11"/>
     <property name="act2" value="play_map_animation grass,0.1,noloop,player"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_moved player"/>
@@ -353,52 +353,110 @@
   </object>
   <object id="62" name="Talk Sara" type="event" x="384" y="128" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_route5_sara"/>
-    <property name="act1" value="translated_dialog spyder_route5_sara1"/>
-    <property name="act2" value="add_monster capiti,20,spyder_route5_sara,5,10"/>
-    <property name="act3" value="start_battle player,spyder_route5_sara"/>
-    <property name="act4" value="translated_dialog spyder_route5_sara2"/>
-    <property name="act6" value="set_variable route5sara:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_route5_sara"/>
+    <property name="act3" value="translated_dialog spyder_route5_sara1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster capiti,20,spyder_route5_sara,5,10"/>
+    <property name="act6" value="start_battle player,spyder_route5_sara"/>
+    <property name="act7" value="translated_dialog spyder_route5_sara2"/>
+    <property name="act8" value="set_variable route5sara:yes"/>
     <property name="cond1" value="not variable_set route5sara:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="63" name="Talk Cleo" type="event" x="320" y="96" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_route5_cleo"/>
-    <property name="act1" value="translated_dialog spyder_route5_cleo1"/>
-    <property name="act2" value="add_monster memnomnom,20,spyder_route5_cleo,5,10"/>
-    <property name="act3" value="add_monster memnomnom,20,spyder_route5_cleo,5,10"/>
-    <property name="act4" value="start_battle player,spyder_route5_cleo"/>
-    <property name="act5" value="translated_dialog spyder_route5_cleo2"/>
-    <property name="act6" value="set_variable route5cleo:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_route5_cleo"/>
+    <property name="act3" value="translated_dialog spyder_route5_cleo1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster memnomnom,20,spyder_route5_cleo,5,10"/>
+    <property name="act6" value="add_monster memnomnom,20,spyder_route5_cleo,5,10"/>
+    <property name="act7" value="start_battle player,spyder_route5_cleo"/>
+    <property name="act8" value="translated_dialog spyder_route5_cleo2"/>
+    <property name="act9" value="set_variable route5cleo:yes"/>
     <property name="cond1" value="not variable_set route5cleo:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="64" name="Talk Tryphaena" type="event" x="288" y="96" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_route5_tryphaena"/>
-    <property name="act1" value="translated_dialog spyder_route5_tryphaena1"/>
-    <property name="act2" value="add_monster miaownolith,24,spyder_route5_tryphaena,5,10"/>
-    <property name="act3" value="add_monster criniotherme,22,spyder_route5_tryphaena,5,10"/>
-    <property name="act4" value="start_battle player,spyder_route5_tryphaena"/>
-    <property name="act5" value="translated_dialog spyder_route5_tryphaena2"/>
-    <property name="act6" value="set_variable route5tryphaena:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_route5_tryphaena"/>
+    <property name="act3" value="translated_dialog spyder_route5_tryphaena1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster miaownolith,24,spyder_route5_tryphaena,5,10"/>
+    <property name="act6" value="add_monster criniotherme,22,spyder_route5_tryphaena,5,10"/>
+    <property name="act7" value="start_battle player,spyder_route5_tryphaena"/>
+    <property name="act8" value="translated_dialog spyder_route5_tryphaena2"/>
+    <property name="act9" value="set_variable route5tryphaena:yes"/>
     <property name="cond1" value="not variable_set route5tryphaena:yes"/>
     <property name="cond2" value="is char_at player"/>
    </properties>
   </object>
   <object id="65" name="Talk Edith" type="event" x="304" y="240" width="16" height="16">
    <properties>
-    <property name="act0" value="pathfind_to_player spyder_route5_edith"/>
-    <property name="act1" value="translated_dialog spyder_route5_edith1"/>
-    <property name="act2" value="add_monster aardart,20,spyder_route5_edith,5,10"/>
-    <property name="act3" value="start_battle player,spyder_route5_edith"/>
-    <property name="act4" value="translated_dialog spyder_route5_edith2"/>
-    <property name="act6" value="set_variable route5edith:yes"/>
+    <property name="act1" value="lock_controls"/>
+    <property name="act2" value="pathfind_to_player spyder_route5_edith"/>
+    <property name="act3" value="translated_dialog spyder_route5_edith1"/>
+    <property name="act4" value="unlock_controls"/>
+    <property name="act5" value="add_monster aardart,20,spyder_route5_edith,5,10"/>
+    <property name="act6" value="start_battle player,spyder_route5_edith"/>
+    <property name="act7" value="translated_dialog spyder_route5_edith2"/>
+    <property name="act8" value="set_variable route5edith:yes"/>
     <property name="cond1" value="not variable_set route5edith:yes"/>
     <property name="cond2" value="is char_at player"/>
+   </properties>
+  </object>
+  <object id="68" name="Post Talk Sara" type="event" x="272" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route5_sara2"/>
+    <property name="behav1" value="talk spyder_route5_sara"/>
+    <property name="cond1" value="is variable_set route5sara:yes"/>
+   </properties>
+  </object>
+  <object id="69" name="Post Talk Edith" type="event" x="272" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route5_edith2"/>
+    <property name="behav1" value="talk spyder_route5_edith"/>
+    <property name="cond1" value="is variable_set route5edith:yes"/>
+   </properties>
+  </object>
+  <object id="70" name="Post Talk Tryphaena" type="event" x="256" y="176" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route5_tryphaena2"/>
+    <property name="behav1" value="talk spyder_route5_tryphaena"/>
+    <property name="cond1" value="is variable_set route5tryphaena:yes"/>
+   </properties>
+  </object>
+  <object id="71" name="Post Talk Cleo" type="event" x="256" y="192" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route5_cleo2"/>
+    <property name="behav1" value="talk spyder_route5_cleo"/>
+    <property name="cond1" value="is variable_set route5cleo:yes"/>
+   </properties>
+  </object>
+  <object id="72" name="Post Talk Hunter" type="event" x="32" y="128" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_route5_hunter2"/>
+    <property name="behav1" value="talk spyder_route5_hunter"/>
+    <property name="cond1" value="is variable_set route5hunter:yes"/>
+   </properties>
+  </object>
+  <object id="73" name="Create Nurse" type="event" x="496" y="32" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_route5_nurse,31,2"/>
+    <property name="cond1" value="not char_exists spyder_route5_nurse"/>
+   </properties>
+  </object>
+  <object id="74" name="Talk Nurse" type="event" x="496" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog spyder_generic_nurse"/>
+    <property name="act2" value="set_monster_health"/>
+    <property name="act3" value="set_monster_status"/>
+    <property name="act4" value="translated_dialog spyder_output_nurse5"/>
+    <property name="behav1" value="talk spyder_route5_nurse"/>
    </properties>
   </object>
  </objectgroup>

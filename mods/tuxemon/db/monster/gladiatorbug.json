@@ -1,0 +1,75 @@
+{
+    "slug": "gladiatorbug",
+    "category": "bustuarius",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 1,
+            "technique": "buzz"
+        },
+        {
+            "level_learned": 4,
+            "technique": "splinter"
+        },
+        {
+            "level_learned": 7,
+            "technique": "font"
+        },
+        {
+            "level_learned": 10,
+            "technique": "evasion"
+        },
+        {
+            "level_learned": 13,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 16,
+            "technique": "shuriken"
+        },
+        {
+            "level_learned": 19,
+            "technique": "steel_jaws"
+        },
+        {
+            "level_learned": 25,
+            "technique": "riposte"
+        },
+        {
+            "level_learned": 31,
+            "technique": "give_all"
+        },
+        {
+            "level_learned": 37,
+            "technique": "magnetic_body"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "katapill",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "katacoon",
+            "evo_stage": "stage1"
+        }
+    ],
+    "terrains": ["urban", "woodland"],
+    "tags": ["fists", "bug", "shielded"],
+    "shape": "humanoid",
+    "stage": "stage2",
+    "types": [
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 60,
+    "height": 178,
+    "weight": 78,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.85,
+    "upper_catch_resistance": 1.1
+}

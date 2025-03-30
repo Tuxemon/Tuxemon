@@ -1,0 +1,89 @@
+{
+    "slug": "pawsand",
+    "category": "sand_pawn",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "boulder"
+        },
+        {
+            "level_learned": 1,
+            "technique": "sand_spray"
+        },
+        {
+            "level_learned": 4,
+            "technique": "mudslide"
+        },
+        {
+            "level_learned": 7,
+            "technique": "stonehenge"
+        },
+        {
+            "level_learned": 13,
+            "technique": "avalanche"
+        },
+        {
+            "level_learned": 19,
+            "technique": "muck"
+        },
+        {
+            "level_learned": 22,
+            "technique": "slice"
+        },
+        {
+            "level_learned": 25,
+            "technique": "lineage"
+        },
+        {
+            "level_learned": 31,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 55,
+            "technique": "earthquake"
+        }
+    ],
+    "evolutions": [
+        {
+            "monster_slug": "knightsand",
+            "item": "sweet_sand"
+        },
+        {
+            "monster_slug": "bishosand",
+            "item": "earth_booster"
+        },
+        {
+            "monster_slug": "rooksand",
+            "item": "pyramidion"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "knightsand",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "bishosand",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "rooksand",
+            "evo_stage": "stage1"
+        }
+    ],
+    "terrains": ["coastal", "desert"],
+    "tags": ["fists", "ground", "water"],
+    "shape": "blob",
+    "stage": "basic",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["neuter"],
+    "txmn_id": 372,
+    "height": 90,
+    "weight": 20,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

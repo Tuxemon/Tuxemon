@@ -3,35 +3,35 @@
     "category": "seasonal",
     "moveset": [
         {
-            "level_learned": 2,
-            "technique": "supernova"
-        },
-        {
-            "level_learned": 2,
-            "technique": "flamethrower"
-        },
-        {
-            "level_learned": 6,
-            "technique": "sudden_glow"
-        },
-        {
-            "level_learned": 8,
-            "technique": "sleep_bomb"
-        },
-        {
-            "level_learned": 12,
+            "level_learned": 1,
             "technique": "fire_claw"
         },
         {
-            "level_learned": 16,
+            "level_learned": 1,
             "technique": "fire_shield"
         },
         {
-            "level_learned": 20,
+            "level_learned": 4,
+            "technique": "sudden_glow"
+        },
+        {
+            "level_learned": 7,
+            "technique": "sleep_bomb"
+        },
+        {
+            "level_learned": 13,
+            "technique": "arcane_eye"
+        },
+        {
+            "level_learned": 16,
+            "technique": "conjurer"
+        },
+        {
+            "level_learned": 19,
             "technique": "shadow_boxing"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "lava"
         },
         {
@@ -39,20 +39,22 @@
             "technique": "thunderclap"
         },
         {
-            "level_learned": 32,
+            "level_learned": 31,
             "technique": "give_all"
         },
         {
-            "level_learned": 36,
-            "technique": "conjurer"
+            "level_learned": 37,
+            "technique": "flamethrower"
         },
         {
             "level_learned": 40,
-            "technique": "arcane_eye"
+            "technique": "supernova"
         }
     ],
     "evolutions": [],
     "history": [],
+    "terrains": [],
+    "tags": ["plant", "shapeshifter"],
     "shape": "humanoid",
     "stage": "standalone",
     "types": [

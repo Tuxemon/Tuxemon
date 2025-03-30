@@ -1,0 +1,44 @@
+{
+  "tech_id": 220,
+  "accuracy": 0.9,
+  "animation": "beartrap",
+  "effects": [
+    {
+      "type": "give",
+      "parameters": ["slow", "enemy_monster"]
+    },
+    {
+      "type": "multiattack",
+      "parameters": ["2"]
+    },
+    {
+      "type": "damage"
+    }
+  ],
+  "flip_axes": "",
+  "is_fast": true,
+  "potency": 0.15,
+  "power": 1.2,
+  "range": "touch",
+  "recharge": 3,
+  "sfx": "sfx_blaster",
+  "slug": "electric_multibite",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "exotic",
+  "tags": ["bite", "electricity"],
+  "types": [
+    "water", "fire"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

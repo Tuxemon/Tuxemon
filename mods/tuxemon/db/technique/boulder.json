@@ -3,8 +3,10 @@
   "accuracy": 1,
   "animation": "shield_rock",
   "effects": [
-    "give hardshell,user",
-    "enhance"
+    {
+      "type": "give",
+      "parameters": ["hardshell", "own_monster"]
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -15,14 +17,17 @@
   "sfx": "sfx_crumble2",
   "slug": "boulder",
   "sort": "damage",
+  "modifiers": [],
   "target": {
-    "enemy monster": 0,
-    "enemy team": 0,
-    "enemy trainer": 0,
-    "own monster": 2,
-    "own team": 0,
-    "own trainer": 0
+    "enemy_monster": false,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": true,
+    "own_team": false,
+    "own_trainer": false
   },
+  "category": "condition_imposer",
+  "tags": ["rock", "bug", "shielded"],
   "types": [
     "aether"
   ],

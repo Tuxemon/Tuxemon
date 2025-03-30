@@ -1,5 +1,10 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.battle_is.BattleIsCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.bill_is.BillIsCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.button_combo.ButtonComboCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.button_count.ButtonCountCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.button_held.ButtonHeldCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.button_pressed.ButtonPressedCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.camera_position.CameraPositionCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_at.CharAtCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_defeated.CharDefeatedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_exists.CharExistsCondition
@@ -8,6 +13,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_facing_tile.CharFacingTileCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_in.CharInCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_moved.CharMovedCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.char_position.CharPositionCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_sprite.CharSpriteCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_char_parameter.CheckCharParameterCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_evolution.CheckEvolutionCondition
@@ -17,11 +23,13 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_world.CheckWorldCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.current_state.CurrentStateCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_bag.HasBagCondition
-.. autoscriptinfoclass:: tuxemon.event.conditions.has_box.HasBoxCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_item.HasItemCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.has_kennel.HasKennelCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_monster.HasMonsterCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_party_breeder.HasPartyBreederCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_tech.HasTechCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.has_tuxepedia.HasTuxepediaCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.kennel.KennelCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.location_inside.LocationInsideCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.location_name.LocationNameCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.location_type.LocationTypeCondition
@@ -35,5 +43,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.to_use_tile.ToUseTileCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.true.TrueCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.tuxepedia.TuxepediaCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.variable_highest.VariableHighestCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.variable_is.VariableIsCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.variable_lowest.VariableLowestCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.variable_set.VariableSetCondition

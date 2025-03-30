@@ -1,0 +1,35 @@
+{
+    "active_mods": [
+      "tuxemon"
+    ],
+    "mod_versions": {
+      "tuxemon": "1.0.0"
+    },
+    "mod_activation": {
+      "tuxemon": true
+    },
+    "mod_tables": {
+      "tuxemon": [
+        "item",
+        "monster",
+        "npc",
+        "status",
+        "technique",
+        "encounter",
+        "dialogue",
+        "environment",
+        "sounds",
+        "music",
+        "animation",
+        "economy",
+        "element",
+        "taste",
+        "shape",
+        "template",
+        "mission",
+        "terrain",
+        "weather"
+      ]
+    },
+    "mod_table_exclusions": {}
+  }

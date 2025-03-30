@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="19" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="8">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="19" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="8">
  <tileset firstgid="1" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
   <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
  </tileset>
@@ -17,12 +17,17 @@
  </layer>
  <layer id="2" name="Layer 2" width="19" height="16">
   <data encoding="base64" compression="zlib">
-   eAGlkj1Ow0AQhQcEfYKR3ZqeQIAeYbgFP1LSJxyJm9AHDgANDSDgDEDD+5QdMbGyYMFIT2892v08b+3eulk/o80lffuhDrX/JqMm9K+28vs4T8HaL8x2pG1pIO0lh+V1LVa7Xvpmb9KrRMGCUYRz9M/Vi6yHxHqszRDVbJidSMcSBYuZ8KHcZ2M+WO9ifEifPhee1k81hO+CwQw452PFuWLf1yvOTw0Yp4nlM13omTvLsZ5rpy06LM7hsXZbrHifq615/BwM7gknK9+U5zNpot406VL+W8EgE84ssWbq+b93m2HFeWEwC869wePecHRf2uigmmssj+9ifZTegcO4KxfzeK4u7tmdtVaZxTyeq4t7dmeNxPpvwYrfqkum3B6y/jVbOz9ZvwDg6WMV
+   eAGlkk1OAkEQhUuDewEDa/cKAnsicAt/EtwLR+Im7oEDwIateAZ14/tgKpYdWiZayeP1VLq/qdfD+ZlZNaOLA337pfrav8hoEPqzy/w+zlOwunWzlnQlXUudwmF5vYiV1mvV7E3aShQsGPVwjv6DepG1OcAa1MxG0lCiYDETfiP32ZgP1rsYH9Kns3Bf7wjfPzCYAed8rDhX7Pv6JGHCuCtYPtOjnrmzYyxnusPiHB6rnbDifZ4m8/g5GNwTTla+Kc/30rN6k0JT+bGCQSacWWLN1fP/3jLDivPCYBace4PHveFo3bBxr7nXkzy+i/Vt8Q4cxqrxM4/nKuOe3VmVplnM47nKuGd31lis/xas+K3KZMrtIetfs6X5yfoFXl5fDg==
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="19" height="16">
   <data encoding="base64" compression="zlib">
-   eAFjYBhYkKiNsH+CAoJNDqsNySxs+oVZsYnSVuyJAgPDUyCG0ZTYxqzIwMACxDCaErNAeil1E3J4kuOmAjrHB7J7KQ07Rzq7nVL3Dlf9AOIQCec=
+   eAFjYBhYkKiNsH+CAoJNDqsNySxs+oVZsYnSVuyJAgPDUyAGARgN4ZFOMisyMLAAMYwm3QRUHSC3UQKQw5McNxXQOT6Q3UuJv0F6HensdkrdO1z1AwCu1gfe
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="19" height="16">
+  <data encoding="base64" compression="zlib">
+   eAFjYBgF6CHwUIGBAYSpCZ4AzXsExIMJPAa65ykQj4LREBiqIQAAuoUGEQ==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Collisions">
@@ -43,6 +48,5 @@
   </object>
  </objectgroup>
  <objectgroup id="5" name="Events">
-  <object id="7" name="Player Spawn" type="event" x="256" y="48" width="16" height="16"/>
  </objectgroup>
 </map>

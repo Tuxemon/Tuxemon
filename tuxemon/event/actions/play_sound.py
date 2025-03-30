@@ -1,11 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon import audio
+from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 
 
@@ -38,17 +38,19 @@ class PlaySoundAction(EventAction):
     volume: Optional[float] = None
 
     def start(self) -> None:
-        player = self.session.player
-        sound_volume = float(player.game_variables["sound_volume"])
-        volume: float = 0.0
-        if not self.volume:
-            volume = sound_volume
-        else:
-            if 0.0 <= self.volume <= 1.0:
-                volume = self.volume * sound_volume
-            else:
+        client = self.session.client
+        sound_volume = client.config.sound_volume
+
+        if self.volume is not None:
+            lower, upper = prepare.SOUND_RANGE
+            if not (lower <= self.volume <= upper):
                 raise ValueError(
-                    f"{self.volume} must be between 0.0 and 1.0",
+                    f"Volume must be between {lower} and {upper}",
                 )
-        sound = audio.load_sound(self.filename, volume)
-        sound.play()
+        volume = (
+            self.volume * sound_volume
+            if self.volume is not None
+            else sound_volume
+        )
+
+        client.sound_manager.play_sound(self.filename, volume)

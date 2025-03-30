@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -15,7 +15,6 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.session import local_session
-from tuxemon.states.techniques import TechniqueMenuState
 from tuxemon.tools import open_choice_dialog, open_dialog
 
 if TYPE_CHECKING:
@@ -74,7 +73,8 @@ class WorldMenuState(PygameMenuState):
         if player.menu_player:
             CharacterState = change("CharacterState", kwargs=param)
             menu.append(("menu_player", CharacterState))
-        if player.missions:
+        mission = player.mission_manager.get_missions_with_met_prerequisites()
+        if mission:
             MissionState = change("MissionState", kwargs=param)
             menu.append(("menu_missions", MissionState))
         if player.menu_save:
@@ -84,10 +84,10 @@ class WorldMenuState(PygameMenuState):
         menu.append(("menu_options", change("ControlState")))
         menu.append(("exit", exit_game))
         for itm in player.items:
-            if itm.menu:
+            if itm.world_menu:
                 menu.insert(
-                    itm.menu[0],
-                    (itm.menu[1], change(itm.menu[2])),
+                    itm.world_menu.position,
+                    (itm.world_menu.label_key, change(itm.world_menu.state)),
                 )
         add_menu_items(self.menu, menu)
 
@@ -146,6 +146,12 @@ class WorldMenuState(PygameMenuState):
             params = {"monster": monster, "source": self.name}
             self.client.push_state("MonsterInfoState", kwargs=params)
 
+        def monster_item(monster: Monster) -> None:
+            """Show monster item."""
+            self.client.pop_state()
+            params = {"monster": monster, "source": self.name}
+            self.client.push_state("MonsterItemState", kwargs=params)
+
         def positive_answer(monster: Monster) -> None:
             success = False
             player = local_session.player
@@ -185,7 +191,8 @@ class WorldMenuState(PygameMenuState):
         def monster_techs(monster: Monster) -> None:
             """Show techniques."""
             self.client.pop_state()
-            self.client.push_state(TechniqueMenuState(monster=monster))
+            params = {"monster": monster, "source": self.name}
+            self.client.push_state("MonsterMovesState", kwargs=params)
 
         def open_monster_submenu(
             menu_item: MenuItem[WorldMenuGameObj],
@@ -193,6 +200,7 @@ class WorldMenuState(PygameMenuState):
             original = monster_menu.get_selected_item()
             _info = T.translate("monster_menu_info").upper()
             _tech = T.translate("monster_menu_tech").upper()
+            _item = T.translate("monster_menu_item").upper()
             _move = T.translate("monster_menu_move").upper()
             _release = T.translate("monster_menu_release").upper()
             if original and original.game_object:
@@ -202,6 +210,7 @@ class WorldMenuState(PygameMenuState):
                     menu=(
                         ("info", _info, partial(monster_stats, mon)),
                         ("tech", _tech, partial(monster_techs, mon)),
+                        ("item", _item, partial(monster_item, mon)),
                         ("move", _move, partial(select_monster, mon)),
                         ("release", _release, partial(release_monster, mon)),
                     ),

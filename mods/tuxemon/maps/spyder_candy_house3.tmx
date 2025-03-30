@@ -5,7 +5,7 @@
   <property name="inside" type="bool" value="true"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="candy_house3"/>
-  <property name="types" value="notype"/>
+  <property name="map_type" value="notype"/>
  </properties>
  <tileset firstgid="1" name="Tilesets_16x16" tilewidth="16" tileheight="16" tilecount="1760" columns="40">
   <image source="../gfx/tilesets/Tilesets_16x16.png" width="640" height="704"/>
@@ -105,7 +105,7 @@
     <property name="act2" value="get_player_monster shammer,slug,shammer"/>
     <property name="act3" value="trading shammer,propellercat"/>
     <property name="act4" value="set_variable catgirl_candy_hastraded:yes"/>
-    <property name="act5" value="set_mission player,spyder_maniac_achievement1,change,completed"/>
+    <property name="act5" value="set_mission player"/>
     <property name="cond1" value="is has_monster player,shammer"/>
     <property name="cond2" value="not has_monster player,rhincus"/>
     <property name="cond3" value="is variable_set catgirl_candy_willtrade:yes"/>
@@ -140,7 +140,7 @@
     <property name="act27" value="translated_dialog spyder_candy_eliane4"/>
     <property name="act30" value="set_variable giveegg:yes"/>
     <property name="act31" value="add_item ancient_egg"/>
-    <property name="act32" value="translated_dialog ancient_egg"/>
+    <property name="act32" value="translated_dialog ancient_egg,,center"/>
     <property name="act40" value="pathfind spyder_candy_eliane,3,1"/>
     <property name="act41" value="remove_npc spyder_candy_eliane"/>
     <property name="act50" value="unlock_controls"/>

@@ -218,6 +218,13 @@
             "y": 3240
         },
         {
+            "fileName": "spyder_candy_scoop.tmx",
+            "height": 0,
+            "width": 0,
+            "x": -1220,
+            "y": 2240
+        },
+        {
             "fileName": "spyder_cotton_tunnel.tmx",
             "height": 0,
             "width": 0,
@@ -720,6 +727,34 @@
             "width": 224,
             "x": 512,
             "y": -1376
+        },
+        {
+            "fileName": "spyder_dojo4.tmx",
+            "height": 192,
+            "width": 384,
+            "x": -576,
+            "y": 0
+        },
+        {
+            "fileName": "spyder_candy_cafe.tmx",
+            "height": 192,
+            "width": 192,
+            "x": 1024,
+            "y": 3200
+        },
+        {
+            "fileName": "spyder_greenwash_level3.tmx",
+            "height": 224,
+            "width": 256,
+            "x": -896,
+            "y": 2688
+        },
+        {
+            "fileName": "spyder_nimrod_room.tmx",
+            "height": 112,
+            "width": 144,
+            "x": -144,
+            "y": 320
         }
     ],
     "onlyShowAdjacentMaps": false,

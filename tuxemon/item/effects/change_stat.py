@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -12,10 +12,6 @@ from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
-
-
-class IncreaseEffectResult(ItemEffectResult):
-    pass
 
 
 @dataclass
@@ -35,7 +31,7 @@ class ChangeStatEffect(ItemEffect):
 
     def apply(
         self, item: Item, target: Union[Monster, None]
-    ) -> IncreaseEffectResult:
+    ) -> ItemEffectResult:
         assert target
 
         if self.statistic not in list(StatType):
@@ -45,4 +41,6 @@ class ChangeStatEffect(ItemEffect):
         client = self.session.client.event_engine
         params = [self.name, self.statistic, self.percentage]
         client.execute_action("modify_monster_stats", params, True)
-        return {"success": True, "num_shakes": 0, "extra": None}
+        return ItemEffectResult(
+            name=item.name, success=True, num_shakes=0, extras=[]
+        )

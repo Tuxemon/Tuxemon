@@ -1,0 +1,23 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "positive",
+  "effects": [
+    {
+      "type": "prickly",
+      "parameters": ["8","touch:melee"]
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_prickly.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "prickly",
+  "sort": "meta",
+  "cond_id": 29,
+  "use_failure": null,
+  "use_success": "combat_state_prickly_get",
+  "gain_cond": null
+}

@@ -1,0 +1,34 @@
+{
+  "animation": null,
+  "modifiers": [
+    {
+      "attribute": "type",
+      "values": ["fire"],
+      "multiplier": 0.0
+    },
+    {
+      "attribute": "type",
+      "values": ["frost"],
+      "multiplier": 2.0
+    }
+  ],
+  "category": "negative",
+  "effects": [
+    {
+      "type": "burnt",
+      "parameters": ["8"]
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_burn.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "burn",
+  "sort": "meta",
+  "cond_id": 22,
+  "use_failure": "generic_failure",
+  "use_success": "combat_state_burn_end",
+  "gain_cond": "combat_state_burn_get"
+}

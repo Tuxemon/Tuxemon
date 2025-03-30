@@ -1,0 +1,291 @@
+[
+  {
+    "slug": "spyder_paper_mart",
+    "monsters": [],
+    "items": [
+      {
+        "name": "potion",
+        "price": 20,
+        "cost": 5
+      },
+      {
+        "name": "revive",
+        "price": 100,
+        "cost": 20
+      },
+      {
+        "name": "tuxeball",
+        "price": 50,
+        "cost": 10
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cotton_scoop",
+    "monsters": [],
+    "items": [
+      {
+        "name": "potion",
+        "price": 20,
+        "cost": 5
+      },
+      {
+        "name": "revive",
+        "price": 100,
+        "cost": 20
+      },
+      {
+        "name": "tuxeball",
+        "price": 50,
+        "cost": 10
+      }
+    ]
+  },
+  {
+    "slug": "spyder_cotton_tech",
+    "monsters": [],
+    "items": [
+      {
+        "name": "miaow_milk",
+        "price": 2000,
+        "cost": 400
+      },
+      {
+        "name": "pyramidion",
+        "price": 2000,
+        "cost": 400
+      },
+      {
+        "name": "ox_stick",
+        "price": 2000,
+        "cost": 400
+      },
+      {
+        "name": "tm_avalanche",
+        "price": 2000,
+        "cost": 400,
+        "inventory": 1
+      },
+      {
+        "name": "tm_blossom",
+        "price": 1000,
+        "cost": 200,
+        "inventory": 1
+      }
+    ]
+  },
+  {
+    "slug": "spyder_leather_scoop",
+    "monsters": [],
+    "items": [
+      {
+        "name": "super_potion",
+        "price": 50,
+        "cost": 10
+      },
+      {
+        "name": "revive",
+        "price": 100,
+        "cost": 20
+      },
+      {
+        "name": "cureall",
+        "price": 250,
+        "cost": 50
+      },
+      {
+        "name": "tuxeball_noble",
+        "price": 150,
+        "cost": 30
+      },
+      {
+        "name": "tuxeball_lavish",
+        "price": 200,
+        "cost": 40
+      }
+    ]
+  },
+  {
+    "slug": "spyder_flower_scoop",
+    "monsters": [],
+    "items": [
+      {
+        "name": "super_potion",
+        "price": 50,
+        "cost": 10
+      },
+      {
+        "name": "mega_potion",
+        "price": 200,
+        "cost": 50
+      },
+      {
+        "name": "revive",
+        "price": 100,
+        "cost": 20
+      },
+      {
+        "name": "cureall",
+        "price": 250,
+        "cost": 50
+      },
+      {
+        "name": "tuxeball_lavish",
+        "price": 200,
+        "cost": 40
+      },
+      {
+        "name": "tuxeball_grand",
+        "price": 250,
+        "cost": 50
+      }
+    ]
+  },
+  {
+    "slug": "spyder_timber_scoop",
+    "monsters": [],
+    "items": [
+      {
+        "name": "super_potion",
+        "price": 50,
+        "cost": 10
+      },
+      {
+        "name": "mega_potion",
+        "price": 200,
+        "cost": 50
+      },
+      {
+        "name": "revive",
+        "price": 100,
+        "cost": 20
+      },
+      {
+        "name": "cureall",
+        "price": 250,
+        "cost": 50
+      },
+      {
+        "name": "tuxeball_grand",
+        "price": 250,
+        "cost": 50
+      },
+      {
+        "name": "tuxeball_majestic",
+        "price": 400,
+        "cost": 80
+      },
+      {
+        "name": "tuxeball_diurnal",
+        "price": 300,
+        "cost": 60,
+        "variables": [
+          {
+            "daytime": "true"
+          }
+        ]
+      },
+      {
+        "name": "tuxeball_nocturnal",
+        "price": 300,
+        "cost": 60,
+        "variables": [
+          {
+            "daytime": "false"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candy_scoop",
+    "monsters": [],
+    "items": [
+      {
+        "name": "mega_potion",
+        "price": 200,
+        "cost": 50
+      },
+      {
+        "name": "imperial_potion",
+        "price": 500,
+        "cost": 100
+      },
+      {
+        "name": "revive",
+        "price": 100,
+        "cost": 20
+      },
+      {
+        "name": "cureall",
+        "price": 250,
+        "cost": 50
+      },
+      {
+        "name": "tuxeball_majestic",
+        "price": 400,
+        "cost": 80
+      },
+      {
+        "name": "tuxeball_diurnal",
+        "price": 300,
+        "cost": 60,
+        "variables": [
+          {
+            "daytime": "true"
+          }
+        ]
+      },
+      {
+        "name": "tuxeball_nocturnal",
+        "price": 300,
+        "cost": 60,
+        "variables": [
+          {
+            "daytime": "false"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "spyder_candy_tech",
+    "monsters": [],
+    "items": [
+      {
+        "name": "peace_lily",
+        "price": 2000,
+        "cost": 400
+      },
+      {
+        "name": "lucky_bamboo",
+        "price": 2000,
+        "cost": 400
+      },
+      {
+        "name": "tm_frostbite",
+        "price": 2000,
+        "cost": 400,
+        "inventory": 1
+      },
+      {
+        "name": "tm_supernova",
+        "price": 2000,
+        "cost": 400,
+        "inventory": 1
+      },
+      {
+        "name": "tm_vorpal",
+        "price": 2000,
+        "cost": 400,
+        "inventory": 1
+      },
+      {
+        "name": "tm_cavity",
+        "price": 2000,
+        "cost": 400,
+        "inventory": 1
+      }
+    ]
+  }
+]

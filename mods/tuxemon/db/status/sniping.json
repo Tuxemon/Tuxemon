@@ -1,0 +1,33 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "positive",
+  "effects": [
+    {
+      "type": "statchange"
+    },
+    {
+      "type": "sniping"
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_sniping.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "sniping",
+  "sort": "meta",
+  "statmelee": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "statranged": {
+    "value": 2,
+    "operation": "*"
+  },
+  "cond_id": 13,
+  "use_failure": null,
+  "use_success": "combat_state_sniping_get",
+  "gain_cond": null
+}

@@ -1,7 +1,7 @@
 Tuxemon
 =========
 
-Copyright (C) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+Copyright (C) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 
 Graphics
 ---------
@@ -82,8 +82,6 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 * ["Beachcomber"](https://wiki.tuxemon.org/index.php?title=Beachcomber). Overland sprites from Catch Challenger.
 
 * ["Beachgoer"](https://wiki.tuxemon.org/index.php?title=Beachgoer). Front sprites by tamashihoshi. Overland sprites by Catch Challenger. Face sprite by Superpowers Asset Packs.
-
-* ["Birb Robo"](https://wiki.tuxemon.org/index.php?title=Birb_Robo). Front sprite by FiveAsOne. Overland sprites by Catch Challenger.
 
 * ["Brute"](https://wiki.tuxemon.org/index.php?title=Brute). Overland sprites from the Superpowers Asset Packs.
 
@@ -500,7 +498,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 [Cavalcadeur](https://wiki.tuxemon.org/Cavalcadeur)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
-* ["Axylightl"](http://forum.tuxemon.org/viewtopic.php?id=43) by
+* ["Axolightl"](http://forum.tuxemon.org/viewtopic.php?id=43) by
 [Cavalcadeur](https://wiki.tuxemon.org/Cavalcadeur) and
 [josepharaoh99](https://wiki.tuxemon.org/Josepharaoh99)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
@@ -886,35 +884,47 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Tea"](https://wiki.tuxemon.org/File:Tea_1.png) [https://opengameart.org/content/infusions-icons CC0]
 
-* ["Tuxeball Earth"](https://wiki.tuxemon.org/File:Capture_device_yellow.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Tuxeball Fire"](https://wiki.tuxemon.org/File:Capture_device_red.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Tuxeball Metal"](https://wiki.tuxemon.org/File:Capture_device_violet.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Tuxeball Wood"](https://wiki.tuxemon.org/File:Capture_device_green.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Tuxeball Water"](https://wiki.tuxemon.org/File:Tuxeball_water.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Tuxeball Female"](https://wiki.tuxemon.org/File:Tuxeball_female.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Tuxeball Park"](https://wiki.tuxemon.org/File:Tuxeball_park.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Tuxeball Male"](https://wiki.tuxemon.org/File:Tuxeball_male.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
-* ["Tuxeball Neuter"](https://wiki.tuxemon.org/File:Tuxeball_neuter.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-
 * ["Tuxeball Ancient"](https://wiki.tuxemon.org/File:Tuxeball_ancient.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Tuxeball Candy"](https://wiki.tuxemon.org/File:Tuxeball_candy.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Tuxeball Crusher"](https://wiki.tuxemon.org/File:Tuxeball_crusher.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Tuxeball Diurnal"](https://wiki.tuxemon.org/File:Tuxeball_diurnal.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Earth"](https://wiki.tuxemon.org/File:Capture_device_yellow.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Female"](https://wiki.tuxemon.org/File:Tuxeball_female.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Fire"](https://wiki.tuxemon.org/File:Capture_device_red.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Gambler"](https://wiki.tuxemon.org/File:Tuxeball_gambler.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Grand"](https://wiki.tuxemon.org/File:Tuxeball_grand.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 * ["Tuxeball Hardened"](https://wiki.tuxemon.org/File:Tuxeball_hardened.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Tuxeball Lavish"](https://wiki.tuxemon.org/File:Tuxeball_lavish.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Tuxeball Majestic"](https://wiki.tuxemon.org/File:Tuxeball_majestic.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Male"](https://wiki.tuxemon.org/File:Tuxeball_male.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Metal"](https://wiki.tuxemon.org/File:Capture_device_violet.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Neuter"](https://wiki.tuxemon.org/File:Tuxeball_neuter.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Noble"](https://wiki.tuxemon.org/File:Tuxeball_noble.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Nocturnal"](https://wiki.tuxemon.org/File:Tuxeball_nocturnal.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
 * ["Tuxeball Omni"](https://wiki.tuxemon.org/File:Tuxeball_omni.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Park"](https://wiki.tuxemon.org/File:Tuxeball_park.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Water"](https://wiki.tuxemon.org/File:Tuxeball_water.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+* ["Tuxeball Wood"](https://wiki.tuxemon.org/File:Capture_device_green.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Tuxeball Xero"](https://wiki.tuxemon.org/File:Tuxeball_xero.png) adapted by JaskRendix from a sprite by tamashihoshi, licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -1046,6 +1056,9 @@ By JaskRendix
 * ["Appearance"](https://wiki.tuxemon.org/File:Appearance.gif)
 Animation by Tamashihoshi and created for the Tuxemon project.
 
+* ["Beam"](https://wiki.tuxemon.org/File:Beam.gif)
+Animation by HippasusTwo
+
 * ["Beartrap"](https://wiki.tuxemon.org/File:Beartrap.gif)
 [https://opengameart.org/content/animated-traps CC0]
 
@@ -1074,6 +1087,9 @@ From the Superpowers Asset Packs.
 * ["Breath Fire"](https://wiki.tuxemon.org/File:Breath_fire.gif)
 [https://ansimuz.itch.io/gothicvania-patreon-collection CC BY]
 
+* ["Bubble Attack"](https://wiki.tuxemon.org/images/3/37/Bubbleattack.gif)
+Animation by HippasusTwo
+
 * ["Buff Armour"](https://wiki.tuxemon.org/File:Buff_armour.gif)
 Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
 
@@ -1085,6 +1101,9 @@ Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel
 
 * ["Buff Ranged"](https://wiki.tuxemon.org/File:Buff_ranged.gif)
 Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Cake Chomp"](https://wiki.tuxemon.org/File:Cakechomp.gif)
+Modified from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule. Animated by HippasusTwo for the purpose of food themed moves.
 
 * ["Calling"](https://wiki.tuxemon.org/File:Calling.gif)
 By JaskRendix
@@ -1139,6 +1158,9 @@ Adapted by JaskRendix (12 Hits For Separation - 11) [https://opengameart.org/con
 [http://opengameart.org/content/electrical-disintegration-animation CC0], found by
 [josepharaoh99](https://wiki.tuxemon.org/Josepharaoh99)
 
+* ["Divinity Beam"](https://wiki.tuxemon.org/images/d/d0/Divinitybeam.gif)
+Animation by HippasusTwo
+
 * ["Drip Animations"](https://forum.tuxemon.org/viewtopic.php?id=70) by
 [josepharaoh99](https://wiki.tuxemon.org/Josepharaoh99)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) with recolor by [treetrnk](https://github.com/treetrnk)
@@ -1152,6 +1174,9 @@ Adapted by JaskRendix (Drip Animations) is licensed under [CC-BY-SA 4.0](https:/
 * ["Drip Red"](https://wiki.tuxemon.org/File:Drip_red.gif)
 Adapted by JaskRendix (Drip Animations) is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
+* ["Egg Crack"](https://wiki.tuxemon.org/images/6/69/Eggcrack.gif)
+Animation by HippasusTwo
+
 * ["Emerald"](https://wiki.tuxemon.org/File:Emerald_64.gif)
 Adapted by JaskRendix, from the Superpowers Asset Packs (Crystal)
 
@@ -1160,6 +1185,9 @@ By JaskRendix
 
 * ["Emerald Radiate"](https://wiki.tuxemon.org/File:Emerald_radiate.gif)
 By JaskRendix
+
+* ["Energy Beam"](https://wiki.tuxemon.org/images/b/b0/Energybeam.gif)
+Animation by HippasusTwo
 
 * ["Explosion Big"](https://wiki.tuxemon.org/File:Explosion_big_126.gif)
 From the Superpowers Asset Packs.
@@ -1237,6 +1265,12 @@ Animation by Tamashihoshi and created for the Tuxemon project.
 * ["Flameball Red"](https://wiki.tuxemon.org/File:Flameball_red.gif)
 Adapted and resized by JaskRendix (Flameball Blue) [https://opengameart.org/content/bosses-and-monsters-spritesheets-ars-notoria CC BY 3.0 on OGA]
 
+* ["Flower"](https://wiki.tuxemon.org/File:Flower.gif)
+Animation by HippasusTwo
+
+* ["Food Throw"](https://wiki.tuxemon.org/File:Foodthrow.gif)
+Modified from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule. Animated by HippasusTwo for the purpose of food themed moves.
+
 * ["Gloop Blue"](https://wiki.tuxemon.org/File:Gloop_blue.gif)
 Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 
@@ -1248,6 +1282,9 @@ Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchCh
 
 * ["Gloop Violet"](https://wiki.tuxemon.org/File:Gloop_violet.gif)
 Adapted by JaskRendix (Gloop Blue) from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Gnaw"](https://wiki.tuxemon.org/images/4/4f/Gnaw.gif)
+Animation by HippasusTwo
 
 * ["Green Circle"](https://wiki.tuxemon.org/File:Green_circle.gif)
 Adapted by JaskRendix (12 Hits For Separation - 7) [https://opengameart.org/content/more-pixelated-attackhit-animations CC BY on OGA]
@@ -1285,6 +1322,9 @@ From the Superpowers Asset Packs.
 * ["Lance Ice"](https://wiki.tuxemon.org/File:Lance_ice.gif)
 Resized by Sanglorian from the Superpowers Asset Packs.
 
+* ["Leafstab"](https://wiki.tuxemon.org/File:Leafstab.gif)
+Animation by HippasusTwo
+
 * ["Lightning Bolt"](https://wiki.tuxemon.org/File:Lightning_bolt_138.gif)
 From the Superpowers Asset Packs.
 
@@ -1311,6 +1351,12 @@ By JaskRendix
 
 * ["Misc Hit Preview"](https://wiki.tuxemon.org/File:Misc_Hit_preview.gif)
 [https://opengameart.org/content/pixelated-hit-animations CC BY on OGA]  This work, made by Viktor Hahn (Viktor.Hahn@web.de), is licensed under the Creative Commons Attributio...
+
+* ["Needle"](https://wiki.tuxemon.org/images/9/95/Needle.gif)
+Animation by HippasusTwo
+
+* ["Pollen Bullet"](https://wiki.tuxemon.org/images/4/4f/Pollenbullet.gif)
+Animation by HippasusTwo
 
 * ["Pound Attack"](https://forum.tuxemon.org/viewtopic.php?id=74) by
 [tamashihoshi](https://wiki.tuxemon.org/Tamashihoshi)
@@ -1356,6 +1402,9 @@ From the Superpowers Asset Packs.
 * ["Rockfall"](https://wiki.tuxemon.org/File:Rockfall_264.gif)
 From the Superpowers Asset Packs.
 
+* ["Rolling Ball"](https://wiki.tuxemon.org/images/c/c2/Rollingball.gif)
+Animation by HippasusTwo
+
 * ["Ruby"](https://wiki.tuxemon.org/File:Ruby_64.gif)
 Adapted by JaskRendix, from the Superpowers Asset Packs (Crystal)
 
@@ -1369,7 +1418,10 @@ By JaskRendix
 A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
 
 * ["Screen"](https://wiki.tuxemon.org/File:Screen.gif)
-Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan B...
+Adapted by Sanglorian from a sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["Shadow Blast"](https://wiki.tuxemon.org/images/6/6d/Shadowblast.gif)
+Animation by HippasusTwo
 
 * ["Shield Fire"](https://wiki.tuxemon.org/File:Shield_fire.gif) adapted by Jask Rendix (Shield Ice) [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
@@ -1496,6 +1548,12 @@ By daneeklu [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0
 * ["Spikes Rock"](https://wiki.tuxemon.org/File:Spikes_rock.gif)
 By daneeklu [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
+* ["Staff Strike"](https://wiki.tuxemon.org/images/a/ab/Staffstrike.gif)
+Animation by HippasusTwo
+
+* ["Tail"](https://wiki.tuxemon.org/images/5/52/Tail.gif)
+Animation by HippasusTwo
+
 * ["Tentacles Water"](https://wiki.tuxemon.org/File:Tentacles_water_128.gif)
 [http://opengameart.org/content/extended-lpc-magic-pack CC BY-SA 3.0, on OpenGameArt]
 
@@ -1504,6 +1562,9 @@ By daneeklu, adapted by Sanglorian for 64x64px.  [http://opengameart.org/content
 
 * ["Thunderstrike"](https://wiki.tuxemon.org/File:Thunderstrike.gif)
 Animation by Tamashihoshi and created for the Tuxemon project.
+
+* ["Tongue Lash"](https://wiki.tuxemon.org/images/2/26/Tonguelash.gif)
+Animation by HippasusTwo
 
 * ["Tornado Basic"](https://wiki.tuxemon.org/File:Tornado_basic.gif)
 Animation by Tamashihoshi and created for the Tuxemon project.
@@ -1544,6 +1605,9 @@ Adapted by JaskRendix (Waterfall)
 * ["Warp"](https://wiki.tuxemon.org/File:Warp.gif)
 [https://opengameart.org/content/warp-effect-0 CC BY]
 
+* ["Water Bullet"](https://wiki.tuxemon.org/images/e/eb/Waterbullet.gif)
+Animation by HippasusTwo
+
 * ["Waterfall"](https://wiki.tuxemon.org/File:Waterfall.gif)
 By josepharaoh99
 
@@ -1559,6 +1623,9 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["Whisp Fire"](https://wiki.tuxemon.org/File:Whisp_fire.gif)
 By ansimuz, [source link](https://opengameart.org/content/gothicvania-cemetery-pack)
+
+* ["Woodsmash"](https://wiki.tuxemon.org/images/8/8c/Woodsmash.gif)
+Animation by HippasusTwo
 
 * ["X Attack"](https://wiki.tuxemon.org/File:X_attack.gif)
 Animation by josepharaoh99 and created for the Tuxemon project.

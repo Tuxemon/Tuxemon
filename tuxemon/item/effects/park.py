@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
@@ -12,10 +12,6 @@ from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
-
-
-class ParkEffectResult(ItemEffectResult):
-    pass
 
 
 @dataclass
@@ -33,7 +29,7 @@ class ParkEffect(ItemEffect):
 
     def apply(
         self, item: Item, target: Union[Monster, None]
-    ) -> ParkEffectResult:
+    ) -> ItemEffectResult:
         assert target
 
         if self.method == "capture":
@@ -51,4 +47,6 @@ class ParkEffect(ItemEffect):
         else:
             raise ValueError(f"Must be capture, doll or food")
 
-        return {"success": True, "num_shakes": 0, "extra": None}
+        return ItemEffectResult(
+            name=item.name, success=True, num_shakes=0, extras=[]
+        )

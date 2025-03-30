@@ -1,0 +1,84 @@
+{
+    "slug": "golnagi",
+    "category": "boiling_goldfish",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "take_cover"
+        },
+        {
+            "level_learned": 1,
+            "technique": "flood"
+        },
+        {
+            "level_learned": 4,
+            "technique": "mobbing"
+        },
+        {
+            "level_learned": 7,
+            "technique": "fire_shield"
+        },
+        {
+            "level_learned": 13,
+            "technique": "breathe_fire"
+        },
+        {
+            "level_learned": 19,
+            "technique": "water_blast"
+        },
+        {
+            "level_learned": 25,
+            "technique": "fiery"
+        },
+        {
+            "level_learned": 31,
+            "technique": "refresh"
+        },
+        {
+            "level_learned": 34,
+            "technique": "tsunami"
+        },
+        {
+            "level_learned": 37,
+            "technique": "supernova"
+        },
+        {
+            "level_learned": 40,
+            "technique": "kraken"
+        },
+        {
+            "level_learned": 52,
+            "technique": "energy_beam"
+        },
+        {
+            "level_learned": 55,
+            "technique": "firestorm"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "gupphish",
+            "evo_stage": "basic"
+        },
+        {
+            "mon_slug": "gupphire",
+            "evo_stage": "stage1"
+        }
+    ],
+    "terrains": ["sea"],
+    "tags": ["flame", "water"],
+    "shape": "piscine",
+    "stage": "stage2",
+    "types": [
+        "fire", "water"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 393,
+    "height": 130,
+    "weight": 16,
+    "catch_rate": 35.0,
+    "lower_catch_resistance": 0.9,
+    "upper_catch_resistance": 1.15
+}
+

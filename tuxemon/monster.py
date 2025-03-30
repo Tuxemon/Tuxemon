@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -9,38 +9,37 @@ from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon import formula, fusion, graphics, prepare, tools
-from tuxemon.condition.condition import (
-    Condition,
-    decode_condition,
-    encode_condition,
-)
 from tuxemon.db import (
-    CategoryCondition,
-    ElementType,
+    CategoryStatus,
     EvolutionStage,
     GenderType,
     MonsterEvolutionItemModel,
     MonsterHistoryItemModel,
     MonsterMovesetItemModel,
-    MonsterShape,
     PlagueType,
-    ResponseCondition,
+    ResponseStatus,
     StatType,
-    TasteCold,
-    TasteWarm,
     db,
 )
 from tuxemon.element import Element
+from tuxemon.evolution import Evolution
+from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.shape import Shape
 from tuxemon.sprite import Sprite
+from tuxemon.status.status import (
+    Status,
+    decode_status,
+    encode_status,
+)
+from tuxemon.taste import Taste
 from tuxemon.technique.technique import Technique, decode_moves, encode_moves
+from tuxemon.time_handler import today_ordinal
 
 if TYPE_CHECKING:
     import pygame
 
     from tuxemon.npc import NPC
-    from tuxemon.states.combat.combat import EnqueuedAction
 
 logger = logging.getLogger(__name__)
 
@@ -67,7 +66,6 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "mod_ranged",
     "mod_speed",
     "mod_hp",
-    "plague",
 )
 
 
@@ -89,8 +87,7 @@ class Monster:
     """
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
-        if save_data is None:
-            save_data = dict()
+        save_data = save_data or {}
 
         self.slug = ""
         self.name = ""
@@ -120,6 +117,7 @@ class Monster:
         self.moves: list[Technique] = []
         self.moveset: list[MonsterMovesetItemModel] = []
         self.evolutions: list[MonsterEvolutionItemModel] = []
+        self.evolution_handler = Evolution(self)
         self.history: list[MonsterHistoryItemModel] = []
         self.stage = EvolutionStage.standalone
         self.flairs: dict[str, Flair] = {}
@@ -127,6 +125,7 @@ class Monster:
         self.faint_cry = ""
         self.owner: Optional[NPC] = None
         self.possible_genders: list[GenderType] = []
+        self.held_item = MonsterItemHandler()
 
         self.money_modifier = 0
         self.experience_modifier = 1
@@ -134,7 +133,7 @@ class Monster:
 
         self.types: list[Element] = []
         self.default_types: list[Element] = []
-        self.shape = MonsterShape.default
+        self.shape = ""
         self.randomly = True
         self.out_of_range = False
         self.got_experience = False
@@ -142,10 +141,10 @@ class Monster:
         self.traded = False
         self.wild = False
 
-        self.status: list[Condition] = []
-        self.plague = PlagueType.healthy
-        self.taste_cold = TasteCold.tasteless
-        self.taste_warm = TasteWarm.tasteless
+        self.status: list[Status] = []
+        self.plague: dict[str, PlagueType] = {}
+        self.taste_cold: str = "tasteless"
+        self.taste_warm: str = "tasteless"
 
         self.max_moves = prepare.MAX_MOVES
         self.txmn_id = 0
@@ -154,11 +153,12 @@ class Monster:
         self.height = 0.0
         self.weight = 0.0
 
-        # The multiplier for checks when a monster ball is thrown this should be a value between 0-255 meaning that
-        # 0 is 0% capture rate and 255 has a very good chance of capture. This numbers are based on the capture system
-        # calculations. This is inspired by the calculations which can be found at:
-        # https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_catch_rate
-        self.catch_rate = 125.0
+        # The multiplier for checks when a monster ball is thrown this should be a value between 0-100 meaning that
+        # 0 is 0% capture rate and 100 has a very good chance of capture. This numbers are based on the capture system
+        # calculations. This was originally inspired by the calculations which can be found at:
+        # https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_catch_rate, but has been modified to fit with
+        # most people's intuitions.
+        self.catch_rate = 100.0
 
         # The catch_resistance value is calculated during the capture. The upper and lower catch_resistance
         # set the span on which the catch_resistance will be. For more information check capture.py
@@ -195,31 +195,28 @@ class Monster:
             slug: Slug to lookup.
 
         """
+        try:
+            results = db.lookup(slug, table="monster")
+        except KeyError:
+            raise RuntimeError(f"Monster {slug} not found")
 
-        # Look up the monster by name and set the attributes in this instance
-        results = db.lookup(slug, table="monster")
-
-        if results is None:
-            raise RuntimeError(f"monster {slug} is not found")
         self.level = random.randint(2, 5)
         self.slug = results.slug
         self.name = T.translate(results.slug)
         self.description = T.translate(f"{results.slug}_description")
         self.cat = results.category
         self.category = T.translate(f"cat_{self.cat}")
-        self.plague = self.plague
-        self.shape = results.shape or MonsterShape.default
+        self.shape = results.shape
         self.stage = results.stage or EvolutionStage.standalone
+        self.tags = results.tags
         self.taste_cold = self.set_taste_cold(self.taste_cold)
         self.taste_warm = self.set_taste_warm(self.taste_warm)
         self.steps = self.steps
         self.bond = self.bond
 
         # types
-        for _ele in results.types:
-            _element = Element(_ele)
-            self.types.append(_element)
-            self.default_types.append(_element)
+        self.types = [Element(ele) for ele in results.types]
+        self.default_types = self.types[:]
 
         self.randomly = results.randomly or self.randomly
         self.got_experience = self.got_experience
@@ -240,23 +237,9 @@ class Monster:
             results.lower_catch_resistance or self.lower_catch_resistance
         )
 
-        # Look up the moves that this monster can learn AND LEARN THEM.
-        moveset = results.moveset
-        if moveset:
-            for move in moveset:
-                self.moveset.append(move)
-
-        # Look up the evolutions for this monster.
-        evolutions = results.evolutions
-        if evolutions:
-            for evolution in evolutions:
-                self.evolutions.append(evolution)
-
-        # history
-        history = results.history
-        if history:
-            for element in history:
-                self.history.append(element)
+        self.moveset.extend(results.moveset or [])
+        self.evolutions.extend(results.evolutions or [])
+        self.history.extend(results.history or [])
 
         # Look up the monster's sprite image paths
         if results.sprites:
@@ -270,12 +253,16 @@ class Monster:
             self.menu_sprite_2 = self.get_sprite_path(results.sprites.menu2)
 
         # get sound slugs for this monster, defaulting to a generic type-based sound
-        if results.sounds:
-            self.combat_call = results.sounds.combat_call
-            self.faint_call = results.sounds.faint_call
-        else:
-            self.combat_call = f"sound_{self.types[0].name}_call"
-            self.faint_call = f"sound_{self.types[0].name}_faint"
+        self.combat_call = (
+            results.sounds.combat_call
+            if results.sounds
+            else f"sound_{self.types[0].slug}_call"
+        )
+        self.faint_call = (
+            results.sounds.faint_call
+            if results.sounds
+            else f"sound_{self.types[0].slug}_faint"
+        )
 
     def learn(
         self,
@@ -313,32 +300,26 @@ class Monster:
             value: The stat.
 
         """
-        value = 0
-        if stat == StatType.armour:
-            return self.armour
-        elif stat == StatType.dodge:
-            return self.dodge
-        elif stat == StatType.hp:
-            return self.hp
-        elif stat == StatType.melee:
-            return self.melee
-        elif stat == StatType.ranged:
-            return self.ranged
-        elif stat == StatType.speed:
-            return self.speed
-        else:
-            return value
+        stat_map: dict[StatType, int] = {
+            StatType.armour: self.armour,
+            StatType.dodge: self.dodge,
+            StatType.hp: self.hp,
+            StatType.melee: self.melee,
+            StatType.ranged: self.ranged,
+            StatType.speed: self.speed,
+        }
 
-    def has_type(self, element: Optional[ElementType]) -> bool:
+        return stat_map.get(stat, 0)
+
+    def has_type(self, type_slug: Optional[str]) -> bool:
         """
         Returns TRUE if there is the type among the types.
         """
-        ret: bool = False
-        if element:
-            eles = [ele for ele in self.types if ele.slug == element]
-            if eles:
-                ret = True
-        return ret
+        return (
+            type_slug in [type_obj.slug for type_obj in self.types]
+            if type_slug
+            else False
+        )
 
     def give_experience(self, amount: int = 1) -> int:
         """
@@ -368,48 +349,73 @@ class Monster:
             levels += 1
         return levels
 
-    def apply_status(self, status: Condition) -> None:
+    def apply_status(self, status: Status) -> None:
         """
         Apply a status to the monster by replacing or removing
         the previous status.
 
         Parameters:
-            status: The status condition.
+            status: The status.
 
         """
-        count_status = len(self.status)
-        if count_status == 0:
+        if not self.status:
             self.status.append(status)
+            return
+
+        if any(t.slug == status.slug for t in self.status):
+            return
+
+        self.status[0].nr_turn = 0
+        status.nr_turn = 1
+
+        if self.status[0].category == CategoryStatus.positive:
+            if status.repl_pos == ResponseStatus.replaced:
+                self.status = [status]
+            elif status.repl_pos == ResponseStatus.removed:
+                self.status.clear()
+        elif self.status[0].category == CategoryStatus.negative:
+            if status.repl_neg == ResponseStatus.replaced:
+                self.status = [status]
+            elif status.repl_pos == ResponseStatus.removed:
+                self.status.clear()
         else:
-            # if the status exists
-            if any(t for t in self.status if t.slug == status.slug):
-                return
-            # if the status doesn't exist.
-            else:
-                # start counting nr turns
-                self.status[0].nr_turn = 0
-                status.nr_turn = 1
-                if self.status[0].category == CategoryCondition.positive:
-                    if status.repl_pos == ResponseCondition.replaced:
-                        self.status.clear()
-                        self.status.append(status)
-                    elif status.repl_pos == ResponseCondition.removed:
-                        self.status.clear()
-                    else:
-                        # noddingoff, exhausted, festering
-                        return
-                elif self.status[0].category == CategoryCondition.negative:
-                    if status.repl_neg == ResponseCondition.replaced:
-                        self.status.clear()
-                        self.status.append(status)
-                    elif status.repl_pos == ResponseCondition.removed:
-                        self.status.clear()
-                    else:
-                        # chargedup, charging
-                        return
-                else:
-                    self.status.clear()
-                    self.status.append(status)
+            self.status = [status]
+
+    def calculate_base_stats(self) -> None:
+        """
+        Calculate the base stats of the monster.
+        """
+        level = self.level
+        multiplier = level + prepare.COEFF_STATS
+        shape = Shape(self.shape).attributes
+        self.armour = (shape.armour * multiplier) + self.mod_armour
+        self.dodge = (shape.dodge * multiplier) + self.mod_dodge
+        self.hp = (shape.hp * multiplier) + self.mod_hp
+        self.melee = (shape.melee * multiplier) + self.mod_melee
+        self.ranged = (shape.ranged * multiplier) + self.mod_ranged
+        self.speed = (shape.speed * multiplier) + self.mod_speed
+
+    def apply_stat_updates(self) -> None:
+        """
+        Apply updates to the monster's stats.
+        """
+        taste_cold = Taste.get_taste(self.taste_cold)
+        taste_warm = Taste.get_taste(self.taste_warm)
+        self.armour = formula.update_stat(
+            "armour", self.armour, taste_cold, taste_warm
+        )
+        self.dodge = formula.update_stat(
+            "dodge", self.dodge, taste_cold, taste_warm
+        )
+        self.melee = formula.update_stat(
+            "melee", self.melee, taste_cold, taste_warm
+        )
+        self.ranged = formula.update_stat(
+            "ranged", self.ranged, taste_cold, taste_warm
+        )
+        self.speed = formula.update_stat(
+            "speed", self.speed, taste_cold, taste_warm
+        )
 
     def set_stats(self) -> None:
         """
@@ -419,56 +425,58 @@ class Monster:
         when called during a level up.
 
         """
-        level = self.level
+        self.calculate_base_stats()
+        self.apply_stat_updates()
 
-        multiplier = level + prepare.COEFF_STATS
-        shape = Shape(self.shape)
-        self.armour = (shape.armour * multiplier) + self.mod_armour
-        self.dodge = (shape.dodge * multiplier) + self.mod_dodge
-        self.hp = (shape.hp * multiplier) + self.mod_hp
-        self.melee = (shape.melee * multiplier) + self.mod_melee
-        self.ranged = (shape.ranged * multiplier) + self.mod_ranged
-        self.speed = (shape.speed * multiplier) + self.mod_speed
-        # updates stats based on additional parameters
-        self.armour += formula.update_armour(self)
-        self.dodge += formula.update_dodge(self)
-        self.melee += formula.update_melee(self)
-        self.ranged += formula.update_ranged(self)
-        self.speed += formula.update_speed(self)
+    def set_taste_cold(self, taste_slug: str = "tasteless") -> str:
+        """Sets the cold taste of the monster."""
 
-    def set_taste_cold(self, taste_cold: TasteCold) -> TasteCold:
-        """
-        It returns the cold taste.
-        """
-        if taste_cold.tasteless:
-            values = list(TasteCold)
-            values.remove(TasteCold.tasteless)
-            result = random.choice(values)
-            self.taste_cold = result
-            return self.taste_cold
+        if taste_slug == "tasteless":
+            cold_tastes = [
+                taste.slug
+                for taste in Taste.get_all_tastes().values()
+                if taste.taste_type == "cold" and taste.slug != "tasteless"
+            ]
+            if cold_tastes:
+                self.taste_cold = random.choice(cold_tastes)
+            else:
+                self.taste_cold = taste_slug
         else:
-            return self.taste_cold
+            taste = Taste.get_taste(taste_slug)
+            if taste is None:
+                self.taste_cold = taste_slug
+            else:
+                self.taste_cold = taste.slug
 
-    def set_taste_warm(self, taste_warm: TasteWarm) -> TasteWarm:
-        """
-        It returns the warm taste.
-        """
-        if taste_warm.tasteless:
-            values = list(TasteWarm)
-            values.remove(TasteWarm.tasteless)
-            result = random.choice(values)
-            self.taste_warm = result
-            self.set_stats()
-            return self.taste_warm
+        return self.taste_cold
+
+    def set_taste_warm(self, taste_slug: str = "tasteless") -> str:
+        """Sets the warm taste of the monster."""
+
+        if taste_slug == "tasteless":
+            warm_tastes = [
+                taste.slug
+                for taste in Taste.get_all_tastes().values()
+                if taste.taste_type == "warm" and taste.slug != "tasteless"
+            ]
+            if warm_tastes:
+                self.taste_warm = random.choice(warm_tastes)
+            else:
+                self.taste_warm = taste_slug
         else:
-            self.set_stats()
-            return self.taste_warm
+            taste = Taste.get_taste(taste_slug)
+            if taste is None:
+                self.taste_warm = taste_slug
+            else:
+                self.taste_warm = taste.slug
+
+        return self.taste_warm
 
     def set_capture(self, amount: int) -> int:
         """
         It returns the capture date.
         """
-        self.capture = formula.today_ordinal() if amount == 0 else amount
+        self.capture = today_ordinal() if amount == 0 else amount
         return self.capture
 
     def set_char_weight(self, value: float) -> float:
@@ -493,13 +501,11 @@ class Monster:
 
         """
         logger.info(
-            "Leveling %s from %i to %i!"
-            % (self.name, self.level, self.level + 1)
+            f"Leveling {self.name} from {self.level} to {self.level + 1}!"
         )
         # Increase Level and stats
         self.levelling_up = True
-        self.level += 1
-        self.level = min(self.level, prepare.MAX_LEVEL)
+        self.level = min(self.level + 1, prepare.MAX_LEVEL)
         self.set_stats()
 
     def set_level(self, level: int) -> None:
@@ -518,11 +524,7 @@ class Monster:
         >>> bulbatux.set_level(20)
 
         """
-        if level > prepare.MAX_LEVEL:
-            level = prepare.MAX_LEVEL
-        elif level < 1:
-            level = 1
-        self.level = level
+        self.level = min(max(level, 1), prepare.MAX_LEVEL)
         self.total_experience = self.experience_required()
         self.set_stats()
 
@@ -534,21 +536,16 @@ class Monster:
             level: The level of the monster.
 
         """
-        moves = []
-        for move in self.moveset:
-            if move.level_learned <= level:
-                moves.append(move.technique)
-
-        if len(moves) <= prepare.MAX_MOVES:
-            for ele in moves:
-                tech = Technique()
-                tech.load(ele)
-                self.learn(tech)
-        else:
-            for ele in moves[-prepare.MAX_MOVES :]:
-                tech = Technique()
-                tech.load(ele)
-                self.learn(tech)
+        eligible_moves = [
+            move.technique
+            for move in self.moveset
+            if move.level_learned <= level
+        ]
+        moves_to_learn = eligible_moves[-prepare.MAX_MOVES :]
+        for move in moves_to_learn:
+            tech = Technique()
+            tech.load(move)
+            self.learn(tech)
 
     def update_moves(self, levels_earned: int) -> list[Technique]:
         """
@@ -562,19 +559,21 @@ class Monster:
             techniques: list containing the learned techniques
 
         """
-        _technique = []
+        new_level = self.level - levels_earned
+        new_moves = self.moves.copy()
+        new_techniques = []
         for move in self.moveset:
             if (
                 move.technique not in (m.slug for m in self.moves)
-                and (self.level - levels_earned)
-                < move.level_learned
-                <= self.level
+                and new_level < move.level_learned <= self.level
             ):
                 technique = Technique()
                 technique.load(move.technique)
-                _technique.append(technique)
-                self.learn(technique)
-        return _technique
+                new_moves.append(technique)
+                new_techniques.append(technique)
+
+        self.moves = new_moves
+        return new_techniques
 
     def experience_required(self, level_ofs: int = 0) -> int:
         """
@@ -602,11 +601,16 @@ class Monster:
             The surface of the monster sprite.
 
         """
-        if sprite == "front":
-            surface = graphics.load_sprite(self.front_battle_sprite, **kwargs)
-        elif sprite == "back":
-            surface = graphics.load_sprite(self.back_battle_sprite, **kwargs)
-        elif sprite == "menu":
+        sprite_mapping = {
+            "front": self.front_battle_sprite,
+            "back": self.back_battle_sprite,
+            "menu": None,  # handled separately
+        }
+
+        if sprite not in sprite_mapping:
+            raise ValueError(f"Cannot find sprite for: {sprite}")
+
+        if sprite == "menu":
             assert (
                 not kwargs
             ), "kwargs aren't supported for loading menu sprites"
@@ -614,7 +618,10 @@ class Monster:
                 [self.menu_sprite_1, self.menu_sprite_2], 0.25
             )
         else:
-            raise ValueError(f"Cannot find sprite for: {sprite}")
+            sprite_path = sprite_mapping[sprite]
+            if sprite_path is None:
+                raise ValueError(f"Sprite path for {sprite} is not set")
+            surface = graphics.load_sprite(sprite_path, **kwargs)
 
         # Apply flairs to the monster sprite
         for flair in self.flairs.values():
@@ -668,17 +675,22 @@ class Monster:
         Loads the monster's sprite images as Pygame surfaces.
 
         Returns:
-            ``True`` if the sprites are already loaded.
+            ``True`` if the sprites are already loaded, ``False`` otherwise.
 
         """
-        if len(self.sprites):
+        if self.sprites:
             return True
 
-        self.sprites["front"] = graphics.load_and_scale(
-            self.front_battle_sprite
-        )
-        self.sprites["back"] = graphics.load_and_scale(self.back_battle_sprite)
-        self.sprites["menu"] = graphics.load_and_scale(self.menu_sprite_1)
+        sprite_paths = {
+            "front": self.front_battle_sprite,
+            "back": self.back_battle_sprite,
+            "menu": self.menu_sprite_1,
+        }
+
+        self.sprites = {
+            key: graphics.load_and_scale(path)
+            for key, path in sprite_paths.items()
+        }
         return False
 
     def get_state(self) -> Mapping[str, Any]:
@@ -696,13 +708,15 @@ class Monster:
         }
 
         save_data["instance_id"] = str(self.instance_id.hex)
+        save_data["plague"] = self.plague
 
         body = self.body.get_state()
         if body:
             save_data["body"] = body
 
-        save_data["condition"] = encode_condition(self.status)
+        save_data["status"] = encode_status(self.status)
         save_data["moves"] = encode_moves(self.moves)
+        save_data["held_item"] = self.held_item.encode_item()
 
         return save_data
 
@@ -723,7 +737,7 @@ class Monster:
         for move in decode_moves(save_data.get("moves")):
             self.moves.append(move)
         self.status = []
-        for cond in decode_condition(save_data.get("condition")):
+        for cond in decode_status(save_data.get("status")):
             self.status.append(cond)
 
         for key, value in save_data.items():
@@ -733,6 +747,12 @@ class Monster:
                 self.instance_id = uuid.UUID(value)
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
                 setattr(self, key, value)
+            elif key == "plague" and value:
+                self.plague = value
+            elif key == "held_item" and value:
+                item = self.held_item.decode_item(value)
+                if item:
+                    self.held_item.set_item(item)
 
         self.load_sprites()
 
@@ -740,7 +760,7 @@ class Monster:
         """
         Kills the monster, sets 0 HP and applies faint status.
         """
-        faint = Condition()
+        faint = Status()
         faint.load("faint")
         self.current_hp = 0
         self.status.clear()
@@ -759,14 +779,6 @@ class Monster:
         else:
             self.status = []
 
-    def speed_test(self, action: EnqueuedAction) -> int:
-        assert isinstance(action.method, Technique)
-        technique = action.method
-        if technique.is_fast:
-            return int(random.randrange(0, int(self.speed)) * 1.5)
-        else:
-            return random.randrange(0, int(self.speed))
-
     def find_tech_by_id(self, instance_id: uuid.UUID) -> Optional[Technique]:
         """
         Finds a tech among the monster's moves which has the given id.
@@ -775,6 +787,34 @@ class Monster:
         return next(
             (m for m in self.moves if m.instance_id == instance_id), None
         )
+
+
+class MonsterItemHandler:
+    def __init__(self, item: Optional[Item] = None):
+        self.item = item
+
+    def set_item(self, item: Item) -> None:
+        if item.behaviors.holdable:
+            self.item = item
+        else:
+            logger.error(f"{item.name} can't be held")
+
+    def get_item(self) -> Optional[Item]:
+        return self.item
+
+    def has_item(self) -> bool:
+        return self.item is not None
+
+    def clear_item(self) -> None:
+        self.item = None
+
+    def encode_item(self) -> Mapping[str, Any]:
+        return self.item.get_state() if self.item is not None else {}
+
+    def decode_item(
+        self, json_data: Optional[Mapping[str, Any]]
+    ) -> Optional[Item]:
+        return Item(save_data=json_data) if json_data is not None else None
 
 
 def decode_monsters(

@@ -1,16 +1,21 @@
 {
   "conditions": [],
   "effects": [
-    "change_stat melee,0.05"
+    {
+      "type": "change_stat",
+      "parameters": ["melee","0.05"]
+    }
   ],
   "slug": "raise_melee",
   "sort": "utility",
   "sprite": "gfx/items/raise_melee.png",
   "category": "stats",
-  "type": "Consumable",
+  "cost": 10000,
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
+  "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

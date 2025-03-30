@@ -1,21 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon.db import (
-    Comparison,
-    ElementType,
-    EvolutionStage,
-    GenderType,
-    MonsterShape,
-    StatType,
-    TasteCold,
-    TasteWarm,
-)
+from tuxemon.db import Comparison, EvolutionStage, GenderType, StatType
 from tuxemon.event.eventaction import EventAction
 from tuxemon.menu.interface import MenuItem
 from tuxemon.monster import Monster
@@ -78,11 +69,13 @@ class GetPlayerMonsterAction(EventAction):
 
         if filter_name is None and value_name is None:
             self.result = True
+            return self.result
 
         if target:
             # filter slug
             if filter_name == "slug" and target.slug == value_name:
                 self.result = True
+                return self.result
             # filter genders
             if (
                 filter_name == "gender"
@@ -90,6 +83,7 @@ class GetPlayerMonsterAction(EventAction):
                 and target.gender == value_name
             ):
                 self.result = True
+                return self.result
             # filter evolution stages
             if (
                 filter_name == "evolution_stage"
@@ -97,34 +91,23 @@ class GetPlayerMonsterAction(EventAction):
                 and target.stage == value_name
             ):
                 self.result = True
+                return self.result
             # filter element / type
-            if (
-                filter_name == "element"
-                and value_name in list(ElementType)
-                and target.has_type(ElementType(value_name))
-            ):
+            if filter_name == "element" and target.has_type(value_name):
                 self.result = True
+                return self.result
             # filter shape
-            if (
-                filter_name == "shape"
-                and value_name in list(MonsterShape)
-                and target.shape == value_name
-            ):
+            if filter_name == "shape" and target.shape == value_name:
                 self.result = True
+                return self.result
             # filter taste warm
-            if (
-                filter_name == "taste_warm"
-                and value_name in list(TasteWarm)
-                and target.taste_warm == value_name
-            ):
+            if filter_name == "taste_warm" and target.taste_warm == value_name:
                 self.result = True
+                return self.result
             # filter taste cold
-            if (
-                filter_name == "taste_cold"
-                and value_name in list(TasteCold)
-                and target.taste_cold == value_name
-            ):
+            if filter_name == "taste_cold" and target.taste_cold == value_name:
                 self.result = True
+                return self.result
 
             # filter numeric fields
             if self.extra is not None:
@@ -144,8 +127,9 @@ class GetPlayerMonsterAction(EventAction):
                 extra = int(self.extra)
                 if value_name in list(Comparison):
                     self.result = compare(value_name, field, extra)
+                    return self.result
 
-        return self.result
+        return False
 
     def set_var(self, menu_item: MenuItem[Monster]) -> None:
         self.choose = True

@@ -3,23 +3,23 @@
     "category": "gel",
     "moveset": [
         {
-            "level_learned": 2,
-            "technique": "all_in"
+            "level_learned": 1,
+            "technique": "solar_synthesis"
         },
         {
-            "level_learned": 2,
-            "technique": "fester"
+            "level_learned": 1,
+            "technique": "slime"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "sylvan"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "stonehenge"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "clairaudience"
         },
         {
@@ -27,23 +27,23 @@
             "technique": "negation"
         },
         {
-            "level_learned": 20,
-            "technique": "maori"
+            "level_learned": 19,
+            "technique": "greenstone"
         },
         {
             "level_learned": 28,
             "technique": "breath"
         },
         {
-            "level_learned": 32,
-            "technique": "lantern"
+            "level_learned": 31,
+            "technique": "all_in"
         },
         {
             "level_learned": 34,
             "technique": "surge"
         },
         {
-            "level_learned": 38,
+            "level_learned": 37,
             "technique": "mudslide"
         },
         {
@@ -51,7 +51,7 @@
             "technique": "earthquake"
         },
         {
-            "level_learned": 56,
+            "level_learned": 55,
             "technique": "thunderball"
         }
     ],
@@ -71,6 +71,8 @@
             "evo_stage": "stage2"
         }
     ],
+    "terrains": ["swamp", "underground"],
+    "tags": ["plant", "rock", "ground", "toxic"],
     "shape": "blob",
     "stage": "basic",
     "types": [

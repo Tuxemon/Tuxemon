@@ -1,0 +1,92 @@
+{
+    "slug": "medipup",
+    "category": "erythrocyte",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "barking"
+        },
+        {
+            "level_learned": 1,
+            "technique": "ram"
+        },
+        {
+            "level_learned": 4,
+            "technique": "revenge_stance"
+        },
+        {
+            "level_learned": 7,
+            "technique": "canine"
+        },
+        {
+            "level_learned": 13,
+            "technique": "hibernate"
+        },
+        {
+            "level_learned": 16,
+            "technique": "mystic_blending"
+        },
+        {
+            "level_learned": 19,
+            "technique": "take_cover"
+        },
+        {
+            "level_learned": 25,
+            "technique": "life_surge"
+        },
+        {
+            "level_learned": 28,
+            "technique": "sand_spray"
+        },
+        {
+            "level_learned": 31,
+            "technique": "fluff_up"
+        },
+        {
+            "level_learned": 37,
+            "technique": "all_in"
+        },
+        {
+            "level_learned": 40,
+            "technique": "saber"
+        },
+        {
+            "level_learned": 49,
+            "technique": "needle"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 24,
+            "monster_slug": "doctsky"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "doctsky",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "askylpaws",
+            "evo_stage": "stage2"
+        },
+        {
+            "mon_slug": "erythroskyte",
+            "evo_stage": "stage2"
+        }
+    ],
+    "terrains": ["urban"],
+    "tags": ["healing"],
+    "shape": "varmint",
+    "stage": "basic",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 281,
+    "height": 30,
+    "weight": 3,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

@@ -3,25 +3,35 @@
   "accuracy": 0.8,
   "animation": "ruby_absorb",
   "effects": [
-    "damage"
+    {
+      "type": "give",
+      "parameters": ["sniping", "own_monster"]
+    },
+    {
+      "type": "healing"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
   "potency": 0.9,
-  "power": 1.6,
-  "range": "ranged",
+  "power": 0.0,
+  "healing_power": 2.0,
+  "range": "special",
   "recharge": 2,
   "sfx": "sfx_blaster",
   "slug": "nest",
   "sort": "damage",
+  "modifiers": [],
   "target": {
-    "enemy monster": 2,
-    "enemy team": 0,
-    "enemy trainer": 0,
-    "own monster": 0,
-    "own team": 0,
-    "own trainer": 0
+    "enemy_monster": false,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": true,
+    "own_team": false,
+    "own_trainer": false
   },
+  "category": "powerful",
+  "tags": ["bird", "healing"],
   "types": [
     "fire"
   ],

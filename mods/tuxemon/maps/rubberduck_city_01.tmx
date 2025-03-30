@@ -196,14 +196,14 @@
  <objectgroup color="#ffff00" id="7" name="Events">
   <object id="1" name="Teleport to map1 (lower)" type="event" x="672" y="80" width="128" height="16">
    <properties>
-    <property name="act10" value="teleport map1.tmx,12,12"/>
+    <property name="act10" value="transition_teleport rubberduck_city_01.tmx,12,12"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
   <object id="2" name="Teleport to map1 (lower)" type="event" x="112" y="624" width="16" height="80">
    <properties>
-    <property name="act10" value="teleport route_rbd_01.tmx,37,10"/>
+    <property name="act10" value="transition_teleport rubberduck_route_01.tmx,37,10"/>
     <property name="cond10" value="is char_at player"/>
     <property name="cond20" value="is char_facing player,left"/>
    </properties>

@@ -3,9 +3,17 @@
   "accuracy": 1,
   "animation": "drip_green",
   "effects": [
-    "give poison,user",
-    "give festering,target",
-    "area"
+    {
+      "type": "give",
+      "parameters": ["poison", "own_monster"]
+    },
+    {
+      "type": "give",
+      "parameters": ["festering", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
   ],
   "flip_axes": "",
   "is_fast": false,
@@ -16,14 +24,17 @@
   "sfx": "sfx_bubbles",
   "slug": "fester",
   "sort": "damage",
+  "modifiers": [],
   "target": {
-    "enemy monster": 2,
-    "enemy team": 0,
-    "enemy trainer": 0,
-    "own monster": 0,
-    "own team": 0,
-    "own trainer": 0
+    "enemy_monster": true,
+    "enemy_team": true,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
   },
+  "category": "exotic",
+  "tags": ["toxic"],
   "types": [
     "earth",
     "wood"

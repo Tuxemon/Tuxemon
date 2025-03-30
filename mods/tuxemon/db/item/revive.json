@@ -1,21 +1,36 @@
 {
   "conditions": [
-    "is current_hp ==,0",
-    "is status faint"
+    {
+      "type": "current_hp",
+      "parameters": ["==", "0"],
+      "operator": "is"
+    },
+    {
+      "type": "status",
+      "parameters": ["faint"],
+      "operator": "is"
+    }
   ],
   "effects": [
-    "restore",
-    "heal 20"
+    {
+      "type": "restore"
+    },
+    {
+      "type": "heal",
+      "parameters": ["20","fixed"]
+    }
   ],
   "slug": "revive",
-  "sort": "food",
+  "sort": "potion",
   "sprite": "gfx/items/revive.png",
-  "category": "revive",
-  "type": "Consumable",
+  "category": "potion",
+  "cost": 1500,
   "usable_in": [
     "MainCombatMenuState",
     "WorldState"
   ],
+  "modifiers": [],
+  "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

@@ -6,7 +6,7 @@
   <property name="north" value="route1"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="paper_town"/>
-  <property name="types" value="town"/>
+  <property name="map_type" value="town"/>
   <property name="west" value="routec"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
@@ -234,6 +234,7 @@
   <object id="219" name="Chosen - Rockitten" type="event" x="512" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster rockitten,5"/>
+    <property name="act2" value="translated_dialog rockitten,,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:rockitten"/>
     <property name="cond1" value="is variable_set rockittenchosen:yes"/>
@@ -243,6 +244,7 @@
   <object id="220" name="Chosen - Lambert" type="event" x="512" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster lambert,5"/>
+    <property name="act2" value="translated_dialog lambert,,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:lambert"/>
     <property name="cond1" value="is variable_set lambertchosen:yes"/>
@@ -252,6 +254,7 @@
   <object id="221" name="Chosen - Nut" type="event" x="512" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster nut,5"/>
+    <property name="act2" value="translated_dialog nut,,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:nut"/>
     <property name="cond1" value="is variable_set nutchosen:yes"/>
@@ -261,6 +264,7 @@
   <object id="222" name="Chosen - Tweesher" type="event" x="512" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster tweesher,5"/>
+    <property name="act2" value="translated_dialog tweesher,,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:tweesher"/>
     <property name="cond1" value="is variable_set tweesherchosen:yes"/>
@@ -270,6 +274,7 @@
   <object id="223" name="Chosen - Agnite" type="event" x="512" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster agnite,5"/>
+    <property name="act2" value="translated_dialog agnite,,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:agnite"/>
     <property name="cond1" value="is variable_set agnitechosen:yes"/>
@@ -287,6 +292,7 @@
     <property name="act51" value="char_face spyder_billie,player"/>
     <property name="act60" value="translated_dialog spyder_papertown_firstfight"/>
     <property name="act61" value="add_monster billie_choice,5,spyder_billie,5,10"/>
+    <property name="act62" value="set_monster_attribute add_monster,gender,male"/>
     <property name="act70" value="start_battle player,spyder_billie"/>
     <property name="act80" value="set_variable firstfightdue:no"/>
     <property name="act81" value="set_variable firstfightend:yes"/>
@@ -378,7 +384,7 @@
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act4" value="char_face player,up"/>
     <property name="act5" value="transition_teleport spyder_flower_city.tmx,17,30,0.3"/>
-    <property name="cond1" value="is variable_set rivergoto:flower"/>
+    <property name="cond1" value="is variable_set rivergoto:flower_city"/>
    </properties>
   </object>
   <object id="207" name="Destination - Leather" type="event" x="224" y="256" width="16" height="16">
@@ -386,7 +392,7 @@
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_leather_town.tmx,17,19,0.3"/>
     <property name="act4" value="char_face player,right"/>
-    <property name="cond1" value="is variable_set rivergoto:leather"/>
+    <property name="cond1" value="is variable_set rivergoto:leather_town"/>
    </properties>
   </object>
   <object id="208" name="Destination - Paper" type="event" x="192" y="256" width="16" height="16">
@@ -394,7 +400,7 @@
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_paper_town.tmx,4,13,0.3"/>
     <property name="act4" value="char_face player,up"/>
-    <property name="cond1" value="is variable_set rivergoto:paper"/>
+    <property name="cond1" value="is variable_set rivergoto:paper_town"/>
    </properties>
   </object>
   <object id="209" name="Destination - Candy" type="event" x="192" y="240" width="16" height="16">
@@ -402,7 +408,7 @@
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_candy_port.tmx,37,13,0.3"/>
     <property name="act4" value="char_face player,down"/>
-    <property name="cond1" value="is variable_set rivergoto:candy"/>
+    <property name="cond1" value="is variable_set rivergoto:candy_port"/>
    </properties>
   </object>
   <object id="210" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
@@ -426,7 +432,7 @@
     <property name="act1" value="set_variable rivergoto:nothing"/>
     <property name="act2" value="transition_teleport spyder_timber_town.tmx,8,21,0.3"/>
     <property name="act4" value="char_face player,up"/>
-    <property name="cond1" value="is variable_set rivergoto:timber"/>
+    <property name="cond1" value="is variable_set rivergoto:timber_town"/>
    </properties>
   </object>
   <object id="213" name="Teleport to Manor" type="event" x="160" y="192" width="16" height="16">

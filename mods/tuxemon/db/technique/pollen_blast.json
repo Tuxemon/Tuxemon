@@ -1,0 +1,40 @@
+{
+  "tech_id": 212,
+  "accuracy": 0.8,
+  "animation": "pollenbullet",
+  "effects": [
+    {
+      "type": "give",
+      "parameters": ["confused", "enemy_monster"]
+    },
+    {
+      "type": "damage"
+    }
+  ],
+  "flip_axes": "",
+  "is_fast": false,
+  "potency": 0.3,
+  "power": 1.5,
+  "range": "ranged",
+  "recharge": 2,
+  "sfx": "sfx_blaster",
+  "slug": "pollen_blast",
+  "sort": "damage",
+  "modifiers": [],
+  "target": {
+    "enemy_monster": true,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": false,
+    "own_team": false,
+    "own_trainer": false
+  },
+  "category": "powerful",
+  "tags": ["plant"],
+  "types": [
+    "wood"
+  ],
+  "use_failure": "combat_miss",
+  "use_success": null,
+  "use_tech": "combat_used_x"
+}

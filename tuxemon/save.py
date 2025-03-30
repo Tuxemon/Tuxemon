@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import base64
@@ -10,7 +10,7 @@ import logging
 import os
 from collections.abc import Callable, Mapping
 from operator import itemgetter
-from typing import Any, Literal, NewType, Optional, TextIO, TypeVar
+from typing import Any, Literal, Optional, TextIO, TypedDict, TypeVar
 
 import pygame
 
@@ -36,15 +36,14 @@ slot_number: Optional[int] = None
 TIME_FORMAT = "%Y-%m-%d %H:%M"
 config = prepare.CONFIG
 
-EncodedScreenshot = NewType("EncodedScreenshot", str)
 
-
-class SaveData(NPCState):
-    screenshot: EncodedScreenshot
+class SaveData(TypedDict):
+    screenshot: str
     screenshot_width: int
     screenshot_height: int
     time: str
     version: int
+    npc_state: NPCState
 
 
 def capture_screenshot(client: LocalPygameClient) -> pygame.surface.Surface:
@@ -73,11 +72,11 @@ def get_save_data(session: Session) -> SaveData:
 
     Returns:
         Game data to save, must be JSON encodable.
-
     """
     screenshot = capture_screenshot(session.client)
     npc_state = session.player.get_state(session)
-    save_data: SaveData = {
+
+    return {
         "screenshot": base64.b64encode(
             pygame.image.tobytes(screenshot, "RGB")
         ).decode(),
@@ -85,9 +84,8 @@ def get_save_data(session: Session) -> SaveData:
         "screenshot_height": screenshot.get_height(),
         "time": datetime.datetime.now().strftime(TIME_FORMAT),
         "version": SAVE_VERSION,
-        **npc_state,  # type: ignore[misc]
+        "npc_state": npc_state,
     }
-    return save_data
 
 
 def _get_save_extension() -> str:
@@ -188,10 +186,7 @@ def open_save_file(save_path: str) -> Optional[dict[str, Any]]:
         return None
 
 
-def save(
-    save_data: SaveData,
-    slot: int,
-) -> None:
+def save(save_data: SaveData, slot: int) -> None:
     """
     Saves the current game state to a file using gzip compressed JSON.
 
@@ -200,8 +195,6 @@ def save(
         slot: The save slot to save the data to.
 
     """
-    # Save a screenshot of the current frame
-
     save_path = get_save_path(slot)
     save_path_tmp = save_path + ".tmp"
     json_kwargs = {
@@ -241,8 +234,8 @@ def load(slot: int) -> Optional[SaveData]:
         # File not found; it probably wasn't ever created, so don't panic
         return None
     else:
-        save_data["error"] = "Save file corrupted"
-        save_data["player_name"] = "BROKEN SAVE!"
+        save_data["npc_state"]["error"] = "Save file corrupted"
+        save_data["npc_state"]["player_name"] = "BROKEN SAVE!"
         logger.error("Failed loading save file.")
         return save_data  # type: ignore[return-value]
 

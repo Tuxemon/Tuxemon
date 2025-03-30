@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
-from tuxemon.db import ElementType, db
+from tuxemon.db import TechniqueModel, db
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 
 if TYPE_CHECKING:
@@ -14,8 +14,7 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
-class LearnMmEffectResult(ItemEffectResult):
-    pass
+lookup_cache: dict[str, TechniqueModel] = {}
 
 
 @dataclass
@@ -33,24 +32,36 @@ class LearnMmEffect(ItemEffect):
 
     def apply(
         self, item: Item, target: Union[Monster, None]
-    ) -> LearnMmEffectResult:
-        learn: bool = False
-        element = ElementType(self.element)
-        techs = list(db.database["technique"])
-        filters: list[str] = []
-        for mov in techs:
-            results = db.lookup(mov, table="technique")
-            if results.randomly and element in results.types:
-                filters.append(results.slug)
+    ) -> ItemEffectResult:
+        if not lookup_cache:
+            _lookup_techniques(self.element)
+
         moves = [tech.slug for tech in target.moves] if target else []
-        _techs = list(set(filters) - set(moves))
-        client = self.session.client
-        if _techs and target:
-            tech_slug = random.choice(_techs)
+
+        available = list(set(list(lookup_cache.keys())) - set(moves))
+
+        if available and target:
+            tech_slug = random.choice(available)
+
+            client = self.session.client
             var = f"{self.name}:{str(target.instance_id.hex)}"
             client.event_engine.execute_action("set_variable", [var], True)
             client.event_engine.execute_action(
                 "add_tech", [self.name, tech_slug], True
             )
-            learn = True
-        return {"success": learn, "num_shakes": 0, "extra": None}
+
+            return ItemEffectResult(
+                name=item.name, success=True, num_shakes=0, extras=[]
+            )
+
+        return ItemEffectResult(
+            name=item.name, success=False, num_shakes=0, extras=[]
+        )
+
+
+def _lookup_techniques(element: str) -> None:
+    monsters = list(db.database["technique"])
+    for mon in monsters:
+        results = db.lookup(mon, table="technique")
+        if results.randomly and element in results.types:
+            lookup_cache[mon] = results

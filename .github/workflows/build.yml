@@ -22,6 +22,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Update package list
+      run: |
+        sudo apt update
+
     # Command copied from flathub build process
     - name: Validate appdata file
       run: |
@@ -82,16 +86,17 @@ jobs:
         run: python3 -m pip install -r requirements.txt
 
       - name: Install cx-freeze
-        run: python3 -m pip install cx-freeze
+        run: python3 -m pip install cx-freeze pyyaml
 
       - name: Build
         run: |
           copy buildconfig/setup_cx_freeze.py setup_cx_freeze.py
+          copy buildconfig/build_config.yaml build_config.yaml
           python setup_cx_freeze.py build
 
       - name: Install nsis
         run: |
-          Invoke-WebRequest -Uri "https://sourceforge.net/projects/nsis/files/NSIS%203/3.09/nsis-3.09-setup.exe" -OutFile "nsis.exe"
+          Invoke-WebRequest -Uri "https://sourceforge.net/projects/nsis/files/NSIS%203/3.10/nsis-3.10-setup.exe" -OutFile "nsis.exe"
 
       - name: Build Installer
         run: |
@@ -145,7 +150,7 @@ jobs:
     if: ${{ github.ref == 'refs/heads/development' || (github.event_name == 'push' && github.ref_type == 'tag' && startswith(github.ref_name, 'v'))  }}
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v3 # must stick at v3 until flatpak-github-actions/flatpak-builder updates also to v4!
+        uses: actions/download-artifact@v4
         with:
           path: artifacts
 

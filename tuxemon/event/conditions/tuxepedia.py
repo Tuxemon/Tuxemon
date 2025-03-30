@@ -1,14 +1,19 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from tuxemon.db import SeenStatus, db
+from dataclasses import dataclass
+
+from tuxemon.db import MonsterModel, db
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
 from tuxemon.tools import compare
 
+lookup_cache: dict[str, MonsterModel] = {}
 
+
+@dataclass
 class TuxepediaCondition(EventCondition):
     """
     Check Tuxepedia's progress.
@@ -30,32 +35,28 @@ class TuxepediaCondition(EventCondition):
     name = "tuxepedia"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
+        if not lookup_cache:
+            _lookup_monsters()
+
         player = session.player
-        # Read the parameters
-        operator = condition.parameters[0]
-        amount: float = 0.0
-        # Tuxepedia data
-        monsters = list(db.database["monster"])
-        filters = []
-        for mon in monsters:
-            results = db.lookup(mon, table="monster")
-            if results.txmn_id > 0:
-                filters.append(results)
-        # Total monsters
-        total = len(filters)
-        if len(condition.parameters) == 3:
-            total = int(condition.parameters[2])
-        # Tuxepedia operation
-        tuxepedia = list(player.tuxepedia.values())
-        caught = tuxepedia.count(SeenStatus.caught)
-        seen = tuxepedia.count(SeenStatus.seen) + caught
-        percentage = round((seen / total), 1)
-        # Check number
-        value = float(condition.parameters[1])
-        if 0.0 <= value <= 1.0:
-            amount = value
+        operator, value, *_total = condition.parameters
+
+        if _total:
+            total = int(_total[0])
         else:
-            raise ValueError(
-                f"{value} must be between 0.0 and 1.0",
-            )
-        return compare(operator, percentage, amount)
+            total = len(lookup_cache)
+
+        completeness = player.tuxepedia.get_completeness(total)
+
+        if not 0.0 <= float(value) <= 1.0:
+            raise ValueError(f"{value} must be between 0.0 and 100.0")
+
+        return compare(operator, completeness, float(value))
+
+
+def _lookup_monsters() -> None:
+    monsters = list(db.database["monster"])
+    for mon in monsters:
+        results = db.lookup(mon, table="monster")
+        if results.txmn_id > 0:
+            lookup_cache[mon] = results

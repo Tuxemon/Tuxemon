@@ -1,0 +1,23 @@
+{
+  "slug": "spyder_omnichannel",
+  "monsters": [
+    {
+      "monster": "dark_robo",
+      "encounter_rate": 0.5,
+      "exp_req_mod": 1,
+      "level_range": [
+        30,
+        31
+      ]
+    },
+    {
+      "monster": "xeon_2",
+      "encounter_rate": 0.5,
+      "exp_req_mod": 1,
+      "level_range": [
+        30,
+        31
+      ]
+    }
+  ]
+}

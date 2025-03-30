@@ -3,31 +3,31 @@
     "category": "calm_emotion",
     "moveset": [
         {
-            "level_learned": 2,
-            "technique": "perfect_cut"
+            "level_learned": 1,
+            "technique": "buzz"
         },
         {
-            "level_learned": 2,
-            "technique": "shrapnel"
+            "level_learned": 1,
+            "technique": "bullet"
         },
         {
-            "level_learned": 6,
+            "level_learned": 4,
             "technique": "blade"
         },
         {
-            "level_learned": 8,
+            "level_learned": 7,
             "technique": "strike"
         },
         {
-            "level_learned": 12,
+            "level_learned": 13,
             "technique": "wall_of_steel"
         },
         {
-            "level_learned": 20,
+            "level_learned": 19,
             "technique": "amnesia"
         },
         {
-            "level_learned": 24,
+            "level_learned": 25,
             "technique": "peregrine"
         },
         {
@@ -42,6 +42,8 @@
             "evo_stage": "basic"
         }
     ],
+    "terrains": ["extraplanar", "urban"],
+    "tags": ["mental", "machine", "gadgets"],
     "shape": "blob",
     "stage": "stage1",
     "types": [

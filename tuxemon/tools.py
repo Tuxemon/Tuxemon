@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """
 
 Do not import platform-specific libraries such as pygame.
@@ -130,7 +130,9 @@ def scale(number: int) -> int:
     return prepare.SCALE * number
 
 
-def calc_dialog_rect(screen_rect: pygame.rect.Rect) -> pygame.rect.Rect:
+def calc_dialog_rect(
+    screen_rect: pygame.rect.Rect, position: str
+) -> pygame.rect.Rect:
     """
     Return a rect that is the area for a dialog box on the screen.
 
@@ -139,19 +141,44 @@ def calc_dialog_rect(screen_rect: pygame.rect.Rect) -> pygame.rect.Rect:
 
     Parameters:
         screen_rect: Rectangle of the screen.
+        position: Position of the dialog box. Can be 'top', 'bottom', 'center',
+            'topleft', 'topright', 'bottomleft', 'bottomright', 'right', 'left'.
 
     Returns:
         Rectangle for a dialog.
-
     """
     rect = screen_rect.copy()
     if prepare.CONFIG.large_gui:
         rect.height = int(rect.height * 0.4)
-        rect.bottomleft = screen_rect.bottomleft
     else:
         rect.height = int(rect.height * 0.25)
         rect.width = int(rect.width * 0.8)
-        rect.center = screen_rect.centerx, rect.centery * 7
+
+    if position == "top":
+        rect.top = screen_rect.top
+        rect.centerx = screen_rect.centerx
+    elif position == "bottom":
+        rect.bottom = screen_rect.bottom
+        rect.centerx = screen_rect.centerx
+    elif position == "center":
+        rect.center = screen_rect.center
+    elif position == "topleft":
+        rect.topleft = screen_rect.topleft
+    elif position == "topright":
+        rect.topright = screen_rect.topright
+    elif position == "bottomleft":
+        rect.bottomleft = screen_rect.bottomleft
+    elif position == "bottomright":
+        rect.bottomright = screen_rect.bottomright
+    elif position == "left":
+        rect.left = screen_rect.left
+        rect.centery = screen_rect.centery
+    elif position == "right":
+        rect.right = screen_rect.right
+        rect.centery = screen_rect.centery
+    else:
+        raise ValueError("Invalid position.")
+
     return rect
 
 
@@ -160,6 +187,7 @@ def open_dialog(
     text: Sequence[str],
     avatar: Optional[Sprite] = None,
     colors: dict[str, Any] = {},
+    position: str = "bottom",
 ) -> State:
     """
     Open a dialog with the standard window size.
@@ -168,6 +196,9 @@ def open_dialog(
         session: Game session.
         text: List of strings.
         avatar: Optional avatar sprite.
+        colors: Dictionary containing background color, font color, etc.
+        position: Position of the dialog box. Can be 'top', 'bottom', 'center',
+            'topleft', 'topright', 'bottomleft', 'bottomright'.
 
     Returns:
         The pushed dialog state.
@@ -175,7 +206,7 @@ def open_dialog(
     """
     from tuxemon.states.dialog import DialogState
 
-    rect = calc_dialog_rect(session.client.screen.get_rect())
+    rect = calc_dialog_rect(session.client.screen.get_rect(), position)
     return session.client.push_state(
         DialogState(
             text=text,
@@ -257,23 +288,32 @@ def cast_value(
 ) -> Any:
     (type_constructors, param_name), value = i
 
+    # Normalize type constructors to a list
     if not isinstance(type_constructors, Sequence):
         type_constructors = [type_constructors]
 
-    if (value is None or value == "") and (
-        None in type_constructors or type(None) in type_constructors
-    ):
-        return None
+    # Early return for None or empty string if None is in type constructors
+    if value is None or value == "":
+        if None in type_constructors or type(None) in type_constructors:
+            return None
 
-    # checks int, float to avoid float > int or int > float
-    if any(_con in type_constructors for _con in [float, int]):
+    # Check for numeric types first to avoid float > int or int > float
+    numeric_constructors = [float, int]
+    if any(_con in type_constructors for _con in numeric_constructors):
         for _cons in type_constructors:
             if _cons is None:
                 return None
             elif type(value) == _cons:
                 return value
-            continue
+        # If value is not already of a numeric type, try to cast it
+        for _cons in numeric_constructors:
+            if _cons in type_constructors:
+                try:
+                    return _cons(value)
+                except (ValueError, TypeError):
+                    pass
 
+    # Try to cast value to each type constructor
     for constructor in type_constructors:
         if not constructor:
             continue
@@ -292,6 +332,7 @@ def cast_value(
             except (ValueError, TypeError):
                 pass
 
+    # If all attempts fail, raise a ValueError
     raise ValueError(
         f"Error parsing parameter {param_name} with value {value} and "
         f"constructor list {type_constructors}",
@@ -331,7 +372,7 @@ def cast_dataclass_parameters(self: Any) -> None:
 def show_item_result_as_dialog(
     session: Session,
     item: Item,
-    result: Mapping[str, Any],
+    result: bool,
 ) -> None:
     """
     Show generic dialog if item was used or not.
@@ -339,10 +380,10 @@ def show_item_result_as_dialog(
     Parameters:
         session: Game session.
         item: Item object.
-        result: A dict with a ``success`` key indicating success or failure.
+        result: Boolean indicating success or failure.
 
     """
-    msg_type = "use_success" if result["success"] else "use_failure"
+    msg_type = "use_success" if result else "use_failure"
     template = getattr(item, msg_type)
     if template:
         message = T.translate(replace_text(session, template))

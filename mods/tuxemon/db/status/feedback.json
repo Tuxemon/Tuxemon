@@ -1,0 +1,23 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "positive",
+  "effects": [
+    {
+      "type": "feedback",
+      "parameters": ["8","ranged:reach"]
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_feedback.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "feedback",
+  "sort": "meta",
+  "cond_id": 30,
+  "use_failure": null,
+  "use_success": "combat_state_feedback_get",
+  "gain_cond": null
+}

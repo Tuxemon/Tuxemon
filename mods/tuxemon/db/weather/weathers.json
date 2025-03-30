@@ -1,0 +1,182 @@
+[
+    {
+      "slug": "misty",
+      "name": "weather_misty",
+      "element_modifier": {
+        "earth": 1,
+        "fire": 1,
+        "frost": 1,
+        "heroic": 1,
+        "lightning": 1,
+        "cosmic": 1,
+        "normal": 1,
+        "shadow": 1,
+        "sky": 1,
+        "venom": 1,
+        "water": 1,
+        "wood": 1
+      }
+    },
+    {
+      "slug": "windy",
+      "name": "weather_windy",
+      "element_modifier": {
+        "earth": 1,
+        "fire": 1,
+        "frost": 1,
+        "heroic": 1,
+        "lightning": 1,
+        "cosmic": 1,
+        "normal": 1,
+        "shadow": 1,
+        "sky": 1,
+        "venom": 1,
+        "water": 1,
+        "wood": 1
+      }
+    },
+    {
+      "slug": "freezing",
+      "name": "weather_freezing",
+      "element_modifier": {
+        "earth": 1,
+        "fire": 1,
+        "frost": 1,
+        "heroic": 1,
+        "lightning": 1,
+        "cosmic": 1,
+        "normal": 1,
+        "shadow": 1,
+        "sky": 1,
+        "venom": 1,
+        "water": 1,
+        "wood": 1
+      }
+    },
+    {
+      "slug": "hot",
+      "name": "weather_hot",
+      "element_modifier": {
+        "earth": 1,
+        "fire": 1,
+        "frost": 1,
+        "heroic": 1,
+        "lightning": 1,
+        "cosmic": 1,
+        "normal": 1,
+        "shadow": 1,
+        "sky": 1,
+        "venom": 1,
+        "water": 1,
+        "wood": 1
+      }
+    },
+    {
+      "slug": "cloudy",
+      "name": "weather_cloudy",
+      "element_modifier": {
+        "earth": 1,
+        "fire": 1,
+        "frost": 1,
+        "heroic": 1,
+        "lightning": 1,
+        "cosmic": 1,
+        "normal": 1,
+        "shadow": 1,
+        "sky": 1,
+        "venom": 1,
+        "water": 1,
+        "wood": 1
+      }
+    },
+    {
+      "slug": "foggy",
+      "name": "weather_foggy",
+      "element_modifier": {
+        "earth": 1,
+        "fire": 1,
+        "frost": 1,
+        "heroic": 1,
+        "lightning": 1,
+        "cosmic": 1,
+        "normal": 1,
+        "shadow": 1,
+        "sky": 1,
+        "venom": 1,
+        "water": 1,
+        "wood": 1
+      }
+    },
+    {
+      "slug": "thunderstorm",
+      "name": "weather_thunderstorm",
+      "element_modifier": {
+        "earth": 1,
+        "fire": 1,
+        "frost": 1,
+        "heroic": 1,
+        "lightning": 1,
+        "cosmic": 1,
+        "normal": 1,
+        "shadow": 1,
+        "sky": 1,
+        "venom": 1,
+        "water": 1,
+        "wood": 1
+      }
+    },
+    {
+      "slug": "snow",
+      "name": "weather_snow",
+      "element_modifier": {
+        "earth": 1,
+        "fire": 1,
+        "frost": 1,
+        "heroic": 1,
+        "lightning": 1,
+        "cosmic": 1,
+        "normal": 1,
+        "shadow": 1,
+        "sky": 1,
+        "venom": 1,
+        "water": 1,
+        "wood": 1
+      }
+    },
+    {
+      "slug": "rain",
+      "name": "weather_rain",
+      "element_modifier": {
+        "earth": 1,
+        "fire": 1,
+        "frost": 1,
+        "heroic": 1,
+        "lightning": 1,
+        "cosmic": 1,
+        "normal": 1,
+        "shadow": 1,
+        "sky": 1,
+        "venom": 1,
+        "water": 1,
+        "wood": 1
+      }
+    },
+    {
+      "slug": "sunny",
+      "name": "weather_sunny",
+      "element_modifier": {
+        "earth": 1,
+        "fire": 1,
+        "frost": 1,
+        "heroic": 1,
+        "lightning": 1,
+        "cosmic": 1,
+        "normal": 1,
+        "shadow": 1,
+        "sky": 1,
+        "venom": 1,
+        "water": 1,
+        "wood": 1
+      }
+    }
+  ]

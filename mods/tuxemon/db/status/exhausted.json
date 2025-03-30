@@ -1,0 +1,33 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "negative",
+  "effects": [
+    {
+      "type": "statchange"
+    },
+    {
+      "type": "exhausted"
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_exhausted.png",
+  "range": "special",
+  "repl_neg": "replaced",
+  "repl_tech": "tired",
+  "sfx": "sfx_pulse",
+  "slug": "exhausted",
+  "sort": "meta",
+  "statmelee": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "statranged": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "cond_id": 11,
+  "use_failure": null,
+  "use_success": "combat_state_exhausted_get",
+  "gain_cond": null
+}

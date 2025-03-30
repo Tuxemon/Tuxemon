@@ -3,11 +3,16 @@
   "accuracy": 1,
   "animation": null,
   "effects": [
-    "give noddingoff,user",
-    "healing user"
+    {
+      "type": "give",
+      "parameters": ["noddingoff", "own_monster"]
+    },
+    {
+      "type": "prop_healing",
+      "parameters": ["own_monster", "0.66"]
+    }
   ],
   "flip_axes": "",
-  "healing_power": 8,
   "is_fast": false,
   "potency": 1,
   "power": 0,
@@ -16,14 +21,17 @@
   "sfx": "sfx_blaster",
   "slug": "hibernate",
   "sort": "damage",
+  "modifiers": [],
   "target": {
-    "enemy monster": 0,
-    "enemy team": 0,
-    "enemy trainer": 0,
-    "own monster": 2,
-    "own team": 0,
-    "own trainer": 0
+    "enemy_monster": false,
+    "enemy_team": false,
+    "enemy_trainer": false,
+    "own_monster": true,
+    "own_team": false,
+    "own_trainer": false
   },
+  "category": "exotic",
+  "tags": ["megafauna"],
   "types": [
     "aether"
   ],

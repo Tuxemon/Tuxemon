@@ -1,11 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-"""This module contains the Tuxemon server and client.
-"""
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+"""This module contains the Tuxemon server and client."""
 from __future__ import annotations
 
 import logging
 import pprint
+from collections.abc import Sequence
 from datetime import datetime
 from typing import TYPE_CHECKING, Any, Literal, Optional, TypedDict
 
@@ -14,6 +14,7 @@ import pygame as pg
 from tuxemon import prepare
 from tuxemon.middleware import Controller, Multiplayer
 from tuxemon.npc import NPC
+from tuxemon.platform.const import buttons
 from tuxemon.session import local_session
 from tuxemon.states import world
 
@@ -31,6 +32,7 @@ except ImportError:
 
 if TYPE_CHECKING:
     from tuxemon.client import LocalPygameClient
+    from tuxemon.platform.events import PlayerInput
 
 
 class CharDict(TypedDict):
@@ -48,6 +50,59 @@ class EventData(TypedDict, total=False):
     char_dict: CharDict
     kb_key: str
     target: str
+
+
+class NetworkManager:
+    def __init__(self, parent: LocalPygameClient) -> None:
+        self.parent = parent
+        self.server: Optional[TuxemonServer] = None
+        self.client: Optional[TuxemonClient] = None
+        self.ishost = False
+        self.isclient = False
+        self._was_host = False
+        self._was_client = False
+
+    def initialize(self) -> None:
+        self.server = TuxemonServer(self.parent)
+        self.client = TuxemonClient(self.parent)
+
+    def update(self, time_delta: float) -> None:
+        if self.client and self.client.listening:
+            self.client.update(time_delta)
+            self.parent.add_clients_to_map(self.client.client.registry)
+
+        if self.server and self.server.listening:
+            self.server.update()
+
+        is_currently_host = bool(self.server and self.server.listening)
+        is_currently_client = bool(self.client and self.client.listening)
+
+        if is_currently_host != self._was_host:
+            self.ishost = is_currently_host
+            self._was_host = is_currently_host
+            if self.ishost:
+                logger.info("NetworkManager: Host connection just established")
+            else:
+                logger.info("NetworkManager: Host connection just lost")
+
+        if is_currently_client != self._was_client:
+            self.isclient = is_currently_client
+            self._was_client = is_currently_client
+            if self.isclient:
+                logger.info(
+                    "NetworkManager: Client connection just established"
+                )
+            else:
+                logger.info("NetworkManager: Client connection just lost")
+
+    def is_host(self) -> bool:
+        return self.ishost
+
+    def is_client(self) -> bool:
+        return self.isclient
+
+    def is_connected(self) -> bool:
+        return self.client is not None and self.client.listening
 
 
 class TuxemonServer:
@@ -293,56 +348,33 @@ class ControllerServer:
                 if self.game.current_state:
                     self.game.current_state.process_event(controller_event)
 
-    def net_controller_loop(self) -> Any:
+    def net_controller_loop(self) -> Sequence[PlayerInput]:
         """
         Process all network events from controllers and pass them
         down to current State. All network events are converted to keyboard
         events for compatibility.
         """
+        event_map = {
+            "KEYDOWN:up": PlayerInput(button=buttons.UP, value=1),
+            "KEYUP:up": PlayerInput(button=buttons.UP, value=0),
+            "KEYDOWN:down": PlayerInput(button=buttons.DOWN, value=1),
+            "KEYUP:down": PlayerInput(button=buttons.DOWN, value=0),
+            "KEYDOWN:left": PlayerInput(button=buttons.LEFT, value=1),
+            "KEYUP:left": PlayerInput(button=buttons.LEFT, value=0),
+            "KEYDOWN:right": PlayerInput(button=buttons.RIGHT, value=1),
+            "KEYUP:right": PlayerInput(button=buttons.RIGHT, value=0),
+            "KEYDOWN:enter": PlayerInput(button=buttons.A, value=1),
+            "KEYUP:enter": PlayerInput(button=buttons.A, value=0),
+            "KEYDOWN:esc": PlayerInput(button=buttons.BACK, value=1),
+            "KEYUP:esc": PlayerInput(button=buttons.BACK, value=0),
+        }
         events = []
         for event_data in self.network_events:
-            if event_data == "KEYDOWN:up":
-                event = self.game.keyboard_events["KEYDOWN"]["up"]
-
-            elif event_data == "KEYUP:up":
-                event = self.game.keyboard_events["KEYUP"]["up"]
-
-            elif event_data == "KEYDOWN:down":
-                event = self.game.keyboard_events["KEYDOWN"]["down"]
-
-            elif event_data == "KEYUP:down":
-                event = self.game.keyboard_events["KEYUP"]["down"]
-
-            elif event_data == "KEYDOWN:left":
-                event = self.game.keyboard_events["KEYDOWN"]["left"]
-
-            elif event_data == "KEYUP:left":
-                event = self.game.keyboard_events["KEYUP"]["left"]
-
-            elif event_data == "KEYDOWN:right":
-                event = self.game.keyboard_events["KEYDOWN"]["right"]
-
-            elif event_data == "KEYUP:right":
-                event = self.game.keyboard_events["KEYUP"]["right"]
-
-            elif event_data == "KEYDOWN:enter":
-                event = self.game.keyboard_events["KEYDOWN"]["enter"]
-
-            elif event_data == "KEYUP:enter":
-                event = self.game.keyboard_events["KEYUP"]["enter"]
-
-            elif event_data == "KEYDOWN:esc":
-                event = self.game.keyboard_events["KEYDOWN"]["escape"]
-
-            elif event_data == "KEYUP:esc":
-                event = self.game.keyboard_events["KEYUP"]["escape"]
-
-            else:
-                logger.debug("Unknown network event: " + str(event_data))
-                event = None
-
+            event = event_map.get(event_data)
             if event:
                 events.append(event)
+            else:
+                logger.warning(f"Unknown network event: {event_data}")
 
         # Clear out the network events list once all events have been processed.
         self.network_events = []
@@ -396,7 +428,7 @@ class TuxemonClient:
             self.join_multiplayer(time_delta)
 
         if self.client.registered and not self.populated:
-            self.game.isclient = True
+            self.game.network_manager.isclient = True
             self.populate_player()
 
         if self.ping_time >= 2:
@@ -501,7 +533,7 @@ class TuxemonClient:
 
         """
         # Don't allow player to join another game if they are hosting.
-        if self.game.ishost:
+        if self.game.network_manager.ishost:
             self.enable_join_multiplayer = False
             return False
 
@@ -665,7 +697,10 @@ class TuxemonClient:
 
         if event_type and kb_key:
             if event_type == "CLIENT_FACING":
-                if self.game.isclient or self.game.ishost:
+                if (
+                    self.game.network_manager.isclient
+                    or self.game.network_manager.ishost
+                ):
                     event_data = {
                         "type": event_type,
                         "event_number": self.event_list[event_type],

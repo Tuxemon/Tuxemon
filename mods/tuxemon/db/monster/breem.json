@@ -1,0 +1,60 @@
+{
+    "slug": "breem",
+    "category": "parasitized",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 1,
+            "technique": "solar_synthesis"
+        },
+        {
+            "level_learned": 4,
+            "technique": "spit_poison"
+        },
+        {
+            "level_learned": 10,
+            "technique": "poison_courtship"
+        },
+        {
+            "level_learned": 16,
+            "technique": "buzz"
+        },
+        {
+            "level_learned": 19,
+            "technique": "needle"
+        },
+        {
+            "level_learned": 25,
+            "technique": "viper"
+        },
+        {
+            "level_learned": 34,
+            "technique": "thorn_burst"
+        }
+    ],
+    "evolutions": [],
+    "history": [
+        {
+            "mon_slug": "duggot",
+            "evo_stage": "basic"
+        }
+    ],
+    "terrains": [],
+    "tags": ["plant", "toxic", "bug", "sharp"],
+    "shape": "flier",
+    "stage": "stage1",
+    "types": [
+        "earth",
+        "wood"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 344,
+    "height": 100,
+    "weight": 25,
+    "catch_rate": 70.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

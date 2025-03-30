@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -33,10 +33,10 @@ class AnimationEntity:
 
     def load(self, slug: str) -> None:
         """Loads animation."""
-
-        results = db.lookup(slug, table="animation")
-        if results is None:
-            raise RuntimeError(f"animation {slug} is not found")
+        try:
+            results = db.lookup(slug, table="animation")
+        except KeyError:
+            raise RuntimeError(f"Animation {slug} not found")
 
         self.slug = results.slug
         self.file = results.file

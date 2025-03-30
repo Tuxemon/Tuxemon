@@ -1,0 +1,26 @@
+{
+  "animation": null,
+  "modifiers": [],
+  "category": "negative",
+  "effects": [
+    {
+      "type": "statchange"
+    }
+  ],
+  "flip_axes": "",
+  "icon": "gfx/ui/icons/status/icon_slow.png",
+  "range": "special",
+  "repl_pos": "replaced",
+  "repl_neg": "replaced",
+  "sfx": "sfx_pulse",
+  "slug": "slow",
+  "sort": "meta",
+  "statspeed": {
+    "value": 0.5,
+    "operation": "*"
+  },
+  "cond_id": 21,
+  "use_failure": null,
+  "use_success": "combat_state_slow_get",
+  "gain_cond": null
+}

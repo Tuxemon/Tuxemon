@@ -1,0 +1,35 @@
+{
+  "conditions": [
+    {
+      "type": "wild_monster",
+      "operator": "is"
+    },
+    {
+      "type": "category",
+      "parameters": ["threat"],
+      "operator": "not"
+    }
+  ],
+  "effects": [
+    {
+      "type": "capture_combined",
+      "parameters": ["variable","daytime:true","0.2","1.5"]
+    }
+  ],
+  "animation": "capture_1",
+  "slug": "tuxeball_diurnal",
+  "sort": "utility",
+  "sprite": "gfx/items/tuxeball_diurnal.png",
+  "category": "capture",
+  "cost": 350,
+  "usable_in": [
+    "MainCombatMenuState"
+  ],
+  "modifiers": [],
+  "behaviors": {
+    "throwable": true
+  },
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
+}

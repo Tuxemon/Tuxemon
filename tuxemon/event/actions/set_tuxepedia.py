@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -43,27 +43,13 @@ class SetTuxepediaAction(EventAction):
             logger.error(f"{self.character} not found")
             return
         # start tuxepedia operations
-        tuxepedia = character.tuxepedia
-        _seen = SeenStatus.seen
-        _caught = SeenStatus.caught
-        # check label
         if self.label not in list(SeenStatus):
             raise ValueError(f"{self.label} isn't among {list(SeenStatus)}")
         label = SeenStatus(self.label)
-        # check if existing monster
-        monsters = list(db.database["monster"])
-        if self.monster_slug not in monsters:
+
+        if self.monster_slug not in db.database["monster"]:
             raise ValueError(f"{self.monster_slug} isn't a monster")
-        # regroup monsters
-        caught = [key for key, value in tuxepedia.items() if value == _caught]
-        seen = [key for key, value in tuxepedia.items() if value == _seen]
-        # append monster to tuxepedia
-        monster = self.monster_slug
-        name = T.translate(monster)
-        if label == _caught and monster not in caught:
-            logger.info(f"Tuxepedia: {name} is registered as {_caught}!")
-            tuxepedia[monster] = label
-        # avoid reset caught into seen
-        if label == _seen and monster not in seen and monster not in caught:
-            logger.info(f"Tuxepedia: {name} is registered as {_seen}!")
-            tuxepedia[monster] = label
+
+        monster_name = T.translate(self.monster_slug)
+        character.tuxepedia.add_entry(self.monster_slug, label)
+        logger.info(f"Tuxepedia: {monster_name} is registered as {label}!")

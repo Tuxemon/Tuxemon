@@ -1,0 +1,60 @@
+{
+    "slug": "scarlant",
+    "category": "myrmidon",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "clamp_on"
+        },
+        {
+            "level_learned": 1,
+            "technique": "gnaw"
+        },
+        {
+            "level_learned": 4,
+            "technique": "ants"
+        },
+        {
+            "level_learned": 10,
+            "technique": "blood_nets"
+        },
+        {
+            "level_learned": 16,
+            "technique": "sting"
+        },
+        {
+            "level_learned": 19,
+            "technique": "energy_claws"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 8,
+            "monster_slug": "shull"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "shull",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "myrmison",
+            "evo_stage": "stage2"
+        }
+    ],
+    "terrains": ["grassland", "jungle", "mountains", "swamp", "urban", "woodland"],
+    "tags": ["bug", "bite"],
+    "shape": "varmint",
+    "stage": "basic",
+    "types": [
+        "metal"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 289,
+    "height": 30,
+    "weight": 2,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

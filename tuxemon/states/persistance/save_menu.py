@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
@@ -95,7 +95,7 @@ class SaveMenuState(PopUpMenu[None]):
             thumb_image = pygame.Surface(thumb_rect.size)
             thumb_image.fill(prepare.WHITE_COLOR)
 
-        if "error" in save_data:
+        if "error" in save_data["npc_state"]:
             red = prepare.RED_COLOR
             pygame.draw.line(thumb_image, red, [0, 0], thumb_rect.size, 3)
             pygame.draw.line(
@@ -121,11 +121,11 @@ class SaveMenuState(PopUpMenu[None]):
         x = int(rect.width * 0.5)
         text.draw_text(
             slot_image,
-            save_data["player_name"],
+            save_data["npc_state"]["player_name"],
             (x, 0, 500, 500),
             font=self.font,
         )
-        if "error" not in save_data:
+        if "error" not in save_data["npc_state"]:
             text.draw_text(
                 slot_image,
                 save_data["time"],

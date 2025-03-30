@@ -1,20 +1,32 @@
 {
   "conditions": [
-    "is type earth:water",
-    "is max_moves",
-    "not has_tech avalanche"
+    {
+      "type": "type",
+      "parameters": ["earth:water"],
+      "operator": "is"
+    },
+    {
+      "type": "has_tech",
+      "parameters": ["avalanche"],
+      "operator": "not"
+    }
   ],
   "effects": [
-    "learn_tm avalanche"
+    {
+      "type": "learn_tm",
+      "parameters": ["avalanche"]
+    }
   ],
   "slug": "tm_avalanche",
   "sort": "utility",
   "sprite": "gfx/items/tm_earth.png",
   "category": "technique",
-  "type": "Consumable",
+  "cost": 2500,
   "usable_in": [
     "WorldState"
   ],
+  "modifiers": [],
+  "behaviors": {},
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

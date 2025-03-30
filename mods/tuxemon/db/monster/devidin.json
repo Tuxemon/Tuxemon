@@ -1,0 +1,76 @@
+{
+    "slug": "devidin",
+    "category": "dog_toothed",
+    "moveset": [
+        {
+            "level_learned": 1,
+            "technique": "invictus"
+        },
+        {
+            "level_learned": 1,
+            "technique": "mind_vise"
+        },
+        {
+            "level_learned": 4,
+            "technique": "stonehenge"
+        },
+        {
+            "level_learned": 10,
+            "technique": "breathe_fire"
+        },
+        {
+            "level_learned": 13,
+            "technique": "phantasmal_force"
+        },
+        {
+            "level_learned": 19,
+            "technique": "terror"
+        },
+        {
+            "level_learned": 25,
+            "technique": "earthquake"
+        },
+        {
+            "level_learned": 31,
+            "technique": "flamethrower"
+        },
+        {
+            "level_learned": 40,
+            "technique": "energy_beam"
+        },
+        {
+            "level_learned": 55,
+            "technique": "supernova"
+        }
+    ],
+    "evolutions": [
+        {
+            "at_level": 18,
+            "monster_slug": "devidra"
+        }
+    ],
+    "history": [
+        {
+            "mon_slug": "devidra",
+            "evo_stage": "stage1"
+        },
+        {
+            "mon_slug": "deviraptor",
+            "evo_stage": "stage2"
+        }
+    ],
+    "terrains": ["grassland", "jungle", "underground"],
+    "tags": ["ghost", "rock", "bite", "shapeshifter", "darkness"],
+    "shape": "landrace",
+    "stage": "basic",
+    "types": [
+        "earth"
+    ],
+    "possible_genders": ["male", "female"],
+    "txmn_id": 292,
+    "height": 73,
+    "weight": 36,
+    "catch_rate": 100.0,
+    "lower_catch_resistance": 0.95,
+    "upper_catch_resistance": 1.05
+}

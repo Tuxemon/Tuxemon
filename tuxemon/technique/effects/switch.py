@@ -1,12 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import random
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
-from tuxemon.db import ElementType
+from tuxemon.combat import get_target_monsters
+from tuxemon.db import db
 from tuxemon.element import Element
 from tuxemon.locale import T
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
@@ -16,84 +17,83 @@ if TYPE_CHECKING:
     from tuxemon.technique.technique import Technique
 
 
-class SwitchEffectResult(TechEffectResult):
-    pass
-
-
 @dataclass
 class SwitchEffect(TechEffect):
     """
     Changes monster type.
-    "switch user,wood"
-    "switch target,fire"
-    "switch both,random"
-    if "switch target,random"
-    then the type is chosen randomly.
 
+    Parameters:
+        objectives: The targets (e.g. own_monster, enemy_monster, etc.), if
+            single "enemy_monster" or "enemy_monster:own_monster"
+        element: The element (e.g. wood, fire, etc.) or random.
+
+    eg switch enemy_monster,wood
+    eg switch enemy_monster:own_monster,fire
+    eg switch own_monster,random
     """
 
     name = "switch"
-    objective: str
+    objectives: str
     element: str
 
     def apply(
         self, tech: Technique, user: Monster, target: Monster
-    ) -> SwitchEffectResult:
-        extra: Optional[str] = None
-        done: bool = False
-        elements = list(ElementType)
-        if self.element != "random":
-            ele = Element(self.element)
-            if ele not in target.types:
-                if self.objective == "user":
-                    user.types = [ele]
-                    done = True
-                elif self.objective == "target":
-                    target.types = [ele]
-                    done = True
-                elif self.objective == "both":
-                    user.types = [ele]
-                    target.types = [ele]
-                    done = True
+    ) -> TechEffectResult:
+
+        elements = list(db.database["element"])
+        combat = tech.combat_state
+        assert combat
+
+        tech.hit = tech.accuracy >= combat._random_tech_hit.get(user, 0.0)
+
+        if not tech.hit:
+            return TechEffectResult(
+                name=tech.name,
+                success=tech.hit,
+                damage=0,
+                element_multiplier=0.0,
+                should_tackle=False,
+                extras=[],
+            )
+
+        objectives = self.objectives.split(":")
+        monsters = get_target_monsters(objectives, tech, user, target)
+
+        if self.element == "random":
+            new_type = Element(random.choice(elements))
         else:
-            _user = random.choice(elements)
-            _target = random.choice(elements)
-            ele_u = Element(_user)
-            ele_t = Element(_target)
-            if self.objective == "user":
-                user.types = [ele_u]
-                done = True
-            elif self.objective == "target":
-                target.types = [ele_t]
-                done = True
-            elif self.objective == "both":
-                user.types = [ele_u]
-                target.types = [ele_t]
-                done = True
-        if done:
-            _type: str = ""
-            _monster: str = ""
-            if self.objective == "both":
-                params = {
-                    "user": user.name.upper(),
-                    "type1": T.translate(user.types[0].slug),
-                    "target": target.name.upper(),
-                    "type2": T.translate(target.types[0].slug),
-                }
-                extra = T.format("combat_state_switch_both", params)
+            new_type = Element(self.element)
+
+        messages = []
+        for monster in monsters:
+            if monster.has_type(new_type.slug):
+                messages.append(get_failure_message(monster, new_type))
             else:
-                if self.objective == "target":
-                    _monster = target.name.upper()
-                    _type = T.translate(target.types[0].slug)
-                if self.objective == "user":
-                    _monster = user.name.upper()
-                    _type = T.translate(user.types[0].slug)
-                params = {"target": _monster, "types": _type}
-                extra = T.format("combat_state_switch", params)
-        return {
-            "success": done,
-            "damage": 0,
-            "element_multiplier": 0.0,
-            "should_tackle": False,
-            "extra": extra,
-        }
+                monster.types = [new_type]
+                messages.append(get_extra_message(monster, new_type))
+
+        extra = ["\n".join(messages)]
+        return TechEffectResult(
+            name=tech.name,
+            success=tech.hit,
+            damage=0,
+            element_multiplier=0.0,
+            should_tackle=False,
+            extras=extra,
+        )
+
+
+def get_extra_message(monster: Monster, new_type: Element) -> str:
+    params = {
+        "target": monster.name.upper(),
+        "types": T.translate(new_type.slug).upper(),
+    }
+    return T.format("combat_state_switch", params)
+
+
+def get_failure_message(monster: Monster, new_type: Element) -> str:
+    params = {
+        "target": monster.name.upper(),
+        "type": T.translate(new_type.slug).upper(),
+    }
+    return T.format("combat_state_switch_fail", params)

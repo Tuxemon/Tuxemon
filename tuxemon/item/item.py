@@ -1,17 +1,18 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2024 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
 import logging
 import uuid
 from collections.abc import Mapping, Sequence
-from typing import TYPE_CHECKING, Any, ClassVar, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
 import pygame
 
-from tuxemon import graphics, plugin, prepare
+from tuxemon import graphics, prepare
 from tuxemon.constants import paths
-from tuxemon.db import ItemCategory, ItemType, State, db
+from tuxemon.core_manager import ConditionManager, EffectManager
+from tuxemon.db import ItemCategory, State, db
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.locale import T
@@ -32,19 +33,14 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
 class Item:
     """An item object is an item that can be used either in or out of combat."""
 
-    effects_classes: ClassVar[Mapping[str, type[ItemEffect]]] = {}
-    conditions_classes: ClassVar[Mapping[str, type[ItemCondition]]] = {}
-
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
-        if save_data is None:
-            save_data = dict()
+        save_data = save_data or {}
 
         self.slug = ""
         self.name = ""
         self.description = ""
         self.instance_id = uuid.uuid4()
         self.quantity = 1
-        self.type = ItemType.consumable
         self.animation: Optional[str] = None
         self.flip_axes = ""
         # The path to the sprite to load.
@@ -52,9 +48,6 @@ class Item:
         self.category = ItemCategory.none
         self.surface: Optional[pygame.surface.Surface] = None
         self.surface_size_original = (0, 0)
-
-        self.effects: Sequence[ItemEffect] = []
-        self.conditions: Sequence[ItemCondition] = []
         self.combat_state: Optional[CombatState] = None
 
         self.sort = ""
@@ -62,19 +55,12 @@ class Item:
         self.use_success = ""
         self.use_failure = ""
         self.usable_in: Sequence[State] = []
+        self.cost: Optional[int] = None
 
-        # load effect and condition plugins if it hasn't been done already
-        if not Item.effects_classes:
-            Item.effects_classes = plugin.load_plugins(
-                paths.ITEM_EFFECT_PATH,
-                "effects",
-                interface=ItemEffect,
-            )
-            Item.conditions_classes = plugin.load_plugins(
-                paths.ITEM_CONDITION_PATH,
-                "conditions",
-                interface=ItemCondition,
-            )
+        self.effect_manager = EffectManager(ItemEffect, paths.ITEM_EFFECT_PATH)
+        self.condition_manager = ConditionManager(
+            ItemCondition, paths.ITEM_CONDITION_PATH
+        )
 
         self.set_state(save_data)
 
@@ -87,15 +73,16 @@ class Item:
             slug: The item slug to look up in the monster.item database.
 
         """
-        results = db.lookup(slug, table="item")
-
-        if results is None:
-            raise RuntimeError(f"item {slug} is not found")
+        try:
+            results = db.lookup(slug, table="item")
+        except KeyError:
+            raise RuntimeError(f"Item {slug} not found")
 
         self.slug = results.slug
         self.name = T.translate(self.slug)
         self.description = T.translate(f"{self.slug}_description")
         self.quantity = 1
+        self.modifiers = results.modifiers
 
         # item use notifications (translated!)
         self.use_item = T.translate(results.use_item)
@@ -103,96 +90,23 @@ class Item:
         self.use_failure = T.translate(results.use_failure)
 
         # misc attributes (not translated!)
-        self.visible = results.visible
-        self.menu = results.menu
+        self.world_menu = results.world_menu
+        self.behaviors = results.behaviors
+        self.cost = results.cost
         self.sort = results.sort
         self.category = results.category or ItemCategory.none
-        self.type = results.type or ItemType.consumable
         self.sprite = results.sprite
         self.usable_in = results.usable_in
-        self.effects = self.parse_effects(results.effects)
-        self.conditions = self.parse_conditions(results.conditions)
+        self.effects = self.effect_manager.parse_effects(results.effects)
+        self.conditions = self.condition_manager.parse_conditions(
+            results.conditions
+        )
         self.surface = graphics.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
 
         # Load the animation sprites that will be used for this technique
         self.animation = results.animation
         self.flip_axes = results.flip_axes
-
-    def parse_effects(
-        self,
-        raw: Sequence[str],
-    ) -> Sequence[ItemEffect]:
-        """
-        Convert effect strings to effect objects.
-
-        Takes raw effects list from the item's json and parses it into a
-        form more suitable for the engine.
-
-        Parameters:
-            raw: The raw effects list pulled from the item's db entry.
-
-        Returns:
-            Effects turned into a list of ItemEffect objects.
-
-        """
-        ret = list()
-
-        for line in raw:
-            name = line.split()[0]
-            if len(line.split()) > 1:
-                params = line.split()[1].split(",")
-            else:
-                params = []
-            try:
-                effect = Item.effects_classes[name]
-            except KeyError:
-                logger.error(f'Error: ItemEffect "{name}" not implemented')
-            else:
-                ret.append(effect(*params))
-
-        return ret
-
-    def parse_conditions(
-        self,
-        raw: Sequence[str],
-    ) -> Sequence[ItemCondition]:
-        """
-        Convert condition strings to condition objects.
-
-        Takes raw condition list from the item's json and parses it into a
-        form more suitable for the engine.
-
-        Parameters:
-            raw: The raw conditions list pulled from the item's db entry.
-
-        Returns:
-            Conditions turned into a list of ItemCondition objects.
-
-        """
-        ret = list()
-
-        for line in raw:
-            op = line.split()[0]
-            name = line.split()[1]
-            if len(line.split()) > 2:
-                params = line.split()[2].split(",")
-            else:
-                params = []
-            try:
-                condition = Item.conditions_classes[name]
-                if op == "is":
-                    condition._op = True
-                elif op == "not":
-                    condition._op = False
-                else:
-                    raise ValueError(f"{op} must be 'is' or 'not'")
-            except KeyError:
-                logger.error(f'Error: ItemCondition "{name}" not implemented')
-            else:
-                ret.append(condition(*params))
-
-        return ret
 
     def validate(self, target: Optional[Monster]) -> bool:
         """
@@ -210,15 +124,18 @@ class Item:
         if not target:
             return False
 
-        result = True
-
-        for condition in self.conditions:
-            if condition._op is True:
-                event = condition.test(target)
-            else:
-                event = not condition.test(target)
-            result = result and event
-        return result
+        return all(
+            (
+                condition.test(target)
+                if isinstance(condition, (ItemCondition)) and condition._op
+                else (
+                    not condition.test(target)
+                    if isinstance(condition, (ItemCondition))
+                    else False
+                )
+            )
+            for condition in self.conditions
+        )
 
     def use(self, user: NPC, target: Optional[Monster]) -> ItemEffectResult:
         """
@@ -230,26 +147,33 @@ class Item:
             target: The monster or object that we are using this item on.
 
         Returns:
-            A dictionary with various effect result properties
+            An ItemEffectResult object containing the result of the item's effect.
 
         """
         # defaults for the return. items can override these values.
-        meta_result: ItemEffectResult = {
-            "name": self.name,
-            "num_shakes": 0,
-            "success": False,
-            "extra": None,
-        }
+        meta_result = ItemEffectResult(
+            name=self.name,
+            success=False,
+            num_shakes=0,
+            extras=[],
+        )
 
-        # Loop through all the effects of this technique and execute the effect's function.
         for effect in self.effects:
-            result = effect.apply(self, target)
-            meta_result.update(result)
+            if isinstance(effect, ItemEffect):
+                result = effect.apply(self, target)
+                meta_result.name = result.name
+                meta_result.success = meta_result.success or result.success
+                meta_result.num_shakes += result.num_shakes
+                meta_result.extras.extend(result.extras)
+            else:
+                logger.warning(
+                    f"Effect {effect} is not a valid StatusEffect. Skipping..."
+                )
 
         # If this is a consumable item, remove it from the player's inventory.
         if (
-            prepare.CONFIG.items_consumed_on_failure or meta_result["success"]
-        ) and self.type == "Consumable":
+            prepare.CONFIG.items_consumed_on_failure or meta_result.success
+        ) and self.behaviors.consumable:
             if self.quantity <= 1:
                 user.remove_item(self)
             else:

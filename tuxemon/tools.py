@@ -186,7 +186,7 @@ def open_dialog(
     session: Session,
     text: Sequence[str],
     avatar: Optional[Sprite] = None,
-    colors: dict[str, Any] = {},
+    box_style: dict[str, Any] = {},
     position: str = "bottom",
 ) -> State:
     """
@@ -196,7 +196,7 @@ def open_dialog(
         session: Game session.
         text: List of strings.
         avatar: Optional avatar sprite.
-        colors: Dictionary containing background color, font color, etc.
+        box_style: Dictionary containing background color, font color, etc.
         position: Position of the dialog box. Can be 'top', 'bottom', 'center',
             'topleft', 'topright', 'bottomleft', 'bottomright'.
 
@@ -212,7 +212,7 @@ def open_dialog(
             text=text,
             avatar=avatar,
             rect=rect,
-            colors=colors,
+            box_style=box_style,
         )
     )
 

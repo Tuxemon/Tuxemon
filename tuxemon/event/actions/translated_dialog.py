@@ -39,14 +39,19 @@ class TranslatedDialogAction(EventAction):
         position: Position of the dialog box. Can be 'top', 'bottom', 'center',
             'topleft', 'topright', 'bottomleft', 'bottomright', 'right', 'left'.
             Default 'bottom'.
+        alignment: Alignment of text in the dialog box, it can be 'left', 'center'
+            or 'right'. Default 'left'.
+        vertical_alignment: Alignment of text in the dialog box, it can be 'bottom',
+            'middle' or 'top'. Default 'top'.
         style: a predefined style in db/dialogue/dialogue.json
-
     """
 
     name = "translated_dialog"
     raw_parameters: str
     avatar: Union[int, str, None] = None
     position: Optional[str] = None
+    alignment: Optional[str] = None
+    v_alignment: Optional[str] = None
     style: Optional[str] = None
 
     def start(self) -> None:
@@ -57,12 +62,16 @@ class TranslatedDialogAction(EventAction):
             avatar_sprite = get_avatar(self.session, self.avatar)
 
         dialogue = self.style if self.style else "default"
+        alignment = self.alignment if self.alignment else "left"
+        v_alignment = self.v_alignment if self.v_alignment else "top"
         style = _get_style(dialogue)
-        colors: dict[str, Any] = {
+        box_style: dict[str, Any] = {
             "bg_color": string_to_colorlike(style.bg_color),
             "font_color": string_to_colorlike(style.font_color),
             "font_shadow": string_to_colorlike(style.font_shadow_color),
             "border": style.border_path,
+            "alignment": alignment,
+            "v_alignment": v_alignment,
         }
         position = self.position if self.position else "bottom"
 
@@ -70,7 +79,7 @@ class TranslatedDialogAction(EventAction):
             session=self.session,
             text=key,
             avatar=avatar_sprite,
-            colors=colors,
+            box_style=box_style,
             position=position,
         )
 

@@ -1504,9 +1504,6 @@ msgstr "Może robią park wodny!"
 msgid "hmmm3"
 msgstr "Jaki to ma sens? Trasa i tak jest prawie cała w trawie."
 
-msgid "menu_alphabet_n_columns"
-msgstr "13"
-
 ## MENU TRANSLATIONS ##
 msgid "menu_alphabet"
 msgstr ""

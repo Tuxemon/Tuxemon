@@ -3061,9 +3061,6 @@ msgstr "From ${{map_name}} to ${{east}}"
 msgid "menu_alphabet"
 msgstr "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-!"
 
-msgid "menu_alphabet_n_columns"
-msgstr "13"
-
 msgid "dont_care"
 msgstr "DON'T CARE"
 

@@ -59,6 +59,7 @@ def parse_yaml(path: str) -> Any:
         except yaml.YAMLError as e:
             raise ValueError(f"Error parsing YAML file: {e}")
 
+
 class MapLoader:
 
     def load_map_data(self, path: str) -> TuxemonMap:
@@ -107,12 +108,18 @@ class MapLoader:
             _scenario = prepare.fetch("maps", f"{txmn_map.scenario}.yaml")
             yaml_files.append(_scenario)
 
+        yaml_collision: MutableMapping[
+            tuple[int, int], Optional[RegionProperties]
+        ] = {}
+
         yaml_loader = YAMLEventLoader()
         events = {"event": list(txmn_map.events), "init": list(txmn_map.inits)}
 
         for yaml_file in yaml_files:
             if os.path.exists(yaml_file):
                 try:
+                    event = yaml_loader.load_collision(yaml_file)
+                    yaml_collision.update(event)
                     events["event"].extend(
                         yaml_loader.load_events(yaml_file, "event")["event"]
                     )
@@ -126,6 +133,7 @@ class MapLoader:
             else:
                 logger.warning(f"YAML file {yaml_file} not found")
 
+        txmn_map.collision_map.update(yaml_collision)
         txmn_map.events = events["event"]
         txmn_map.inits = events["init"]
 
@@ -151,8 +159,7 @@ class YAMLEventLoader:
         Returns:
             A dictionary with collision coordinates as keys.
         """
-        # yaml_data: dict[str, list[dict[str, Any]]] = {}
-        yaml_data = parse_yaml(path)
+        yaml_data: dict[str, list[dict[str, Any]]] = parse_yaml(path)
 
         collision_dict: MutableMapping[
             tuple[int, int], Optional[RegionProperties]
@@ -188,8 +195,7 @@ class YAMLEventLoader:
             A dictionary with "events" and "inits" as keys, each containing a list
             of EventObject instances.
         """
-        # yaml_data: dict[str, dict[str, dict[str, Any]]] = {}
-        yaml_data = parse_yaml(path)
+        yaml_data: dict[str, dict[str, dict[str, Any]]] = parse_yaml(path)
 
         events_dict: dict[str, list[EventObject]] = {"event": [], "init": []}
 

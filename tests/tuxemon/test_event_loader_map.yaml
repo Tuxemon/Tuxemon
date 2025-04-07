@@ -1,0 +1,19 @@
+events:
+  test_event:
+    x: 1
+    y: 2
+    width: 3
+    height: 4
+    type: "event"
+    actions:
+      - action_type arg1,arg2"
+    conditions:
+      - operator condition_type arg1,arg2"
+    behav:
+      - behav_type arg1,arg2"
+collisions:
+  - x: 2
+    y: 4
+    width: 2
+    height: 2
+    type: "collision"

@@ -41,7 +41,6 @@ class TeleportFaintAction(EventAction):
     rgb: Optional[str] = None
 
     def start(self) -> None:
-        self.character = "player" if self.character is None else self.character
         character = get_npc(self.session, self.character)
         if character is None:
             logger.error(f"{self.character} not found")

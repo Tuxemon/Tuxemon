@@ -853,7 +853,7 @@
   </object>
   <object id="155" name="Default" type="event" x="16" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="teleport_faint"/>
+    <property name="act1" value="teleport_faint player"/>
     <property name="cond1" value="is char_defeated player"/>
    </properties>
   </object>

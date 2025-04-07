@@ -52,7 +52,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Professor Sprite"](https://github.com/Tuxemon/Tuxemon/tree/development/tuxemon/resources/sprites) by
-[ZhongQian TiaoGong](https://github.com/Qiangong2/)
+[Kurt Stine](https://github.com/Qiangong2/)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Misa Sprite"](https://wiki.tuxemon.org/index.php?title=File:FT_Trainer.gif)
@@ -60,7 +60,7 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Team Xero Grunt Sprite"](https://github.com/Tuxemon/Tuxemon/tree/development/tuxemon/resources/sprites) by
-[ZhongQian TiaoGong](https://github.com/Qiangong2/)
+[Kurt Stine](https://github.com/Qiangong2/)
 is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
 
 * ["Tuxemart Employee sprite"](https://wiki.tuxemon.org/index.php?title=Shop_Assistant) by
@@ -2062,6 +2062,8 @@ is licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/
   * mysticIsle
   * battle
   * battleFinal
+* Songs from [Ove's Essential Game Audio Pack Collection](https://opengameart.org/content/oves-essential-game-audio-pack-collection-160-files-updated) by Ove Melaa are licensed under CC BY 3.0;
+  * All music under `OveMelaaFullScores` and `OveMelaaLoops`
 
 Sounds
 --------

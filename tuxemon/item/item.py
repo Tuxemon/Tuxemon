@@ -11,7 +11,8 @@ import pygame
 
 from tuxemon import graphics, prepare
 from tuxemon.constants import paths
-from tuxemon.core_manager import ConditionManager, EffectManager
+from tuxemon.core.core_manager import ConditionManager, EffectManager
+from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import ItemCategory, State, db
 from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
@@ -101,6 +102,8 @@ class Item:
         self.conditions = self.condition_manager.parse_conditions(
             results.conditions
         )
+        self.condition_handler = ConditionProcessor(self.conditions)
+        self.effect_handler = EffectProcessor(self.effects)
         self.surface = graphics.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
 
@@ -111,75 +114,33 @@ class Item:
     def validate(self, target: Optional[Monster]) -> bool:
         """
         Check if the target meets all conditions that the item has on it's use.
-
-        Parameters:
-            target: The monster or object that we are using this item on.
-
-        Returns:
-            Whether the item may be used by the user on the target.
-
         """
-        if not self.conditions:
-            return True
-        if not target:
-            return False
-
-        return all(
-            (
-                condition.test(target)
-                if isinstance(condition, (ItemCondition)) and condition._op
-                else (
-                    not condition.test(target)
-                    if isinstance(condition, (ItemCondition))
-                    else False
-                )
-            )
-            for condition in self.conditions
-        )
+        return self.condition_handler.validate(target=target)
 
     def use(self, user: NPC, target: Optional[Monster]) -> ItemEffectResult:
         """
-        Applies this item's effects as defined in the "effect" column of
-        the item database.
-
-        Parameters:
-            user: The npc that is using this item.
-            target: The monster or object that we are using this item on.
-
-        Returns:
-            An ItemEffectResult object containing the result of the item's effect.
-
+        Applies the item's effects using EffectProcessor and returns the results.
         """
-        # defaults for the return. items can override these values.
         meta_result = ItemEffectResult(
             name=self.name,
             success=False,
             num_shakes=0,
             extras=[],
         )
-
-        for effect in self.effects:
-            if isinstance(effect, ItemEffect):
-                result = effect.apply(self, target)
-                meta_result.name = result.name
-                meta_result.success = meta_result.success or result.success
-                meta_result.num_shakes += result.num_shakes
-                meta_result.extras.extend(result.extras)
-            else:
-                logger.warning(
-                    f"Effect {effect} is not a valid StatusEffect. Skipping..."
-                )
+        result = self.effect_handler.process_item(
+            source=self, target=target, meta_result=meta_result
+        )
 
         # If this is a consumable item, remove it from the player's inventory.
         if (
-            prepare.CONFIG.items_consumed_on_failure or meta_result.success
+            prepare.CONFIG.items_consumed_on_failure or result.success
         ) and self.behaviors.consumable:
             if self.quantity <= 1:
                 user.remove_item(self)
             else:
                 self.quantity -= 1
 
-        return meta_result
+        return result
 
     def get_state(self) -> Mapping[str, Any]:
         """

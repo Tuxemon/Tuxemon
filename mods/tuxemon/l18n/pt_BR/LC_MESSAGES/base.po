@@ -857,9 +857,6 @@ msgstr "Ponta da Asa"
 msgid "menu_alphabet"
 msgstr "AÁÀÂÃBCÇDEÉÈÊFGHIÍÌJKLMNOÓÒÔÕPQRSTUÚÙVWXYZaáàâãbcçdeéèêẽfghiíìjklmnoóòôõpqrstuúùvwxyz1234567890.-!"
 
-msgid "menu_alphabet_n_columns"
-msgstr "14"
-
 # Monster Menu notifications
 msgid "monster_menu_info"
 msgstr "Informações"

@@ -9,8 +9,8 @@ events:
     actions:
     - change_bg
     - lock_controls
-    - create_npc spyder_paperscoop_santino,7,6
-    - char_face spyder_paperscoop_santino,left
+    - create_npc spyder_shopassistant,7,6
+    - char_face spyder_shopassistant,left
     - create_npc spyder_dante,7,7
     - char_face spyder_dante,left
     - create_npc spyder_papermart_miles,4,7
@@ -103,11 +103,11 @@ events:
     - wait 0.5
     - char_face spyder_dante,up
     - wait 0.5
-    - char_face spyder_paperscoop_santino,down
+    - char_face spyder_shopassistant,down
     - wait 0.5
-    - pathfind spyder_paperscoop_santino,6,6
+    - pathfind spyder_shopassistant,6,6
     - wait 0.5
-    - char_face spyder_paperscoop_santino,down
+    - char_face spyder_shopassistant,down
     - wait 0.5
     - char_face spyder_dante,left
     - wait 0.5
@@ -117,7 +117,7 @@ events:
     - char_face spyder_dante,down
     - pathfind player,6,10
     - transition_teleport spyder_bedroom.tmx,3,4,0.3
-    - remove_npc spyder_paperscoop_santino
+    - remove_npc spyder_shopassistant
     - remove_npc spyder_dante
     - set_variable intro_scoop:done
     - unlock_controls

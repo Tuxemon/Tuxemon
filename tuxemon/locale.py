@@ -70,7 +70,7 @@ class LocaleFinder:
                                 info = LocaleInfo(
                                     locale, category, domain, path
                                 )
-                                logger.debug("found: %s", info)
+                                logger.debug(f"found: {info}")
                                 yield info
 
     def has_locale(self, locale_name: str) -> bool:
@@ -111,7 +111,7 @@ class GettextCompiler:
             catalog = read_po(po_file)
         with open(mo_path, "wb") as mo_file:
             write_mo(mo_file, catalog)
-            logger.debug("writing l18n mo: %s", mo_path)
+            logger.debug(f"writing l18n mo: {mo_path}")
 
     def get_mo_path(self, locale: str, category: str, domain: str) -> str:
         """
@@ -145,8 +145,10 @@ class TranslatorPo:
         self.locale_finder = locale_finder
         self.gettext_compiler = gettext_compiler
         self.locale_name: str = LOCALE_CONFIG.slug
-        self.translate: Callable[[str], str] = lambda x: x
+        self.translate: Callable[[str], str] = self._translate_with_cache
         self.language_changed_callbacks: list[Callable[[str], None]] = []
+        self._translation_cache: dict[str, str] = {}
+        self.collect_languages()
 
     def collect_languages(self, recompile_translations: bool = False) -> None:
         """
@@ -156,7 +158,6 @@ class TranslatorPo:
             recompile_translations: ``True`` if the translations should be
                 recompiled (useful for testing local changes to the
                 translations).
-
         """
         self.build_translations(recompile_translations)
         self.load_translator(self.locale_name)
@@ -169,7 +170,6 @@ class TranslatorPo:
             recompile_translations: ``True`` if the translations should be
                 recompiled (useful for testing local changes to the
                 translations).
-
         """
         for info in self.locale_finder.search_locales():
             mo_path = self.gettext_compiler.get_mo_path(
@@ -202,9 +202,8 @@ class TranslatorPo:
         Parameters:
             locale_name: Name of the locale.
             domain: Name of the domain.
-
         """
-        logger.debug("loading translator for: %s", locale_name)
+        logger.debug(f"loading translator for: {locale_name}")
         localedir = os.path.join(paths.CACHE_DIR, LOCALE_DIR)
         fallback = gettext.translation("base", localedir, [FALLBACK_LOCALE])
         trans = (
@@ -212,12 +211,27 @@ class TranslatorPo:
         )
 
         if trans is fallback:
-            logger.warning("Locale %s not found. Using fallback.", locale_name)
+            logger.warning(f"Locale {locale_name} not found. Using fallback.")
 
         trans.add_fallback(fallback)
-        trans.install()
-        self.translate = trans.gettext
+        self._set_translate_function(trans.gettext)
         self.locale_name = locale_name
+
+    def _set_translate_function(
+        self, translate_func: Callable[[str], str]
+    ) -> None:
+        """Sets the internal translation function and clears the cache."""
+        self._real_translate = translate_func
+        self._translation_cache.clear()
+
+    def _translate_with_cache(self, message: str) -> str:
+        """Translates a message, caching the result."""
+        if message in self._translation_cache:
+            return self._translation_cache[message]
+
+        translated_message = self._real_translate(message)
+        self._translation_cache[message] = translated_message
+        return translated_message
 
     def get_current_language(self) -> str:
         """
@@ -289,9 +303,12 @@ class TranslatorPo:
             return False
         return trans.gettext(msgid) != msgid
 
-    def _print_translation_error(self, locale_name: str, msgid: str) -> None:
-        """Prints an error message when a translation is missing."""
-        print(f"Translation doesn't exist for '{locale_name}': {msgid}")
+    def _log_missing_translation(self, locale_name: str, msgid: str) -> None:
+        """
+        Logs an error when a translation for the given msgid is missing
+        for a specific locale.
+        """
+        logger.error(f"Translation doesn't exist for '{locale_name}': {msgid}")
 
     def check_translation(self, message_id: str) -> None:
         """
@@ -313,11 +330,11 @@ class TranslatorPo:
                         and message_id
                         and not self.has_translation(locale_name, message_id)
                     ):
-                        self._print_translation_error(locale_name, message_id)
+                        self._log_missing_translation(locale_name, message_id)
             else:
                 if self.is_language_supported(_locale):
                     if not self.has_translation(_locale, message_id):
-                        self._print_translation_error(_locale, message_id)
+                        self._log_missing_translation(_locale, message_id)
                 else:
                     raise ValueError(f"Locale '{_locale}' doesn't exist.")
 

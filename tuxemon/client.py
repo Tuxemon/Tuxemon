@@ -19,6 +19,7 @@ from tuxemon.db import MapType
 from tuxemon.event import EventObject
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.map import TuxemonMap
+from tuxemon.map_loader import MapLoader
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.input_manager import InputManager
 from tuxemon.session import local_session
@@ -74,6 +75,7 @@ class LocalPygameClient:
         self.network_manager = networking.NetworkManager(self)
         self.network_manager.initialize()
 
+        self.map_loader = MapLoader()
         # Set up our combat engine and router.
         # self.combat_engine = CombatEngine(self)
         # self.combat_router = CombatRouter(self, self.combat_engine)

@@ -1,182 +1,146 @@
 [
   {
     "slug": "spyder_hospital1_aurora",
-    "template": 
-      {
-        "sprite_name": "spyderboss_blonde",
-        "combat_front": "spyder_boss",
-        "slug": "spyder_boss"
-      }
-  
+    "template": {
+      "sprite_name": "spyderboss_blonde",
+      "combat_front": "spyder_boss",
+      "slug": "spyder_boss"
+    }
   },
   {
     "slug": "spyder_hospital1_pem",
-    "template": 
-      {
-        "sprite_name": "spyderrookie",
-        "combat_front": "spyder_rookie",
-        "slug": "spyder_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
   },
   {
     "slug": "spyder_hospital1_luzia",
-    "template": 
-      {
-        "sprite_name": "spyderboss_fiery",
-        "combat_front": "spyder_boss",
-        "slug": "spyder_boss"
-      }
-  
+    "template": {
+      "sprite_name": "spyderboss_fiery",
+      "combat_front": "spyder_boss",
+      "slug": "spyder_boss"
+    }
   },
   {
     "slug": "spyder_hospital1_liane",
-    "template": 
-      {
-        "sprite_name": "spyderboss_green",
-        "combat_front": "spyder_boss",
-        "slug": "spyder_boss"
-      }
-  
+    "template": {
+      "sprite_name": "spyderboss_green",
+      "combat_front": "spyder_boss",
+      "slug": "spyder_boss"
+    }
   },
   {
     "slug": "spyder_hospital1_fring",
-    "template": 
-      {
-        "sprite_name": "spyderrookie",
-        "combat_front": "spyder_rookie",
-        "slug": "spyder_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
   },
   {
     "slug": "spyder_hospital1_felu",
-    "template": 
-      {
-        "sprite_name": "spyderrookie",
-        "combat_front": "spyder_rookie",
-        "slug": "spyder_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
   },
   {
     "slug": "spyder_hospital1_eleni",
-    "template": 
-      {
-        "sprite_name": "spyderboss_lapi",
-        "combat_front": "spyder_boss",
-        "slug": "spyder_boss"
-      }
-  
+    "template": {
+      "sprite_name": "spyderboss_lapi",
+      "combat_front": "spyder_boss",
+      "slug": "spyder_boss"
+    }
   },
   {
     "slug": "spyder_hospital1_rakez",
-    "template": 
-      {
-        "sprite_name": "spyderrookie",
-        "combat_front": "spyder_rookie",
-        "slug": "spyder_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
   },
   {
     "slug": "spyder_hospital1_rea",
-    "template": 
-      {
-        "sprite_name": "spyderboss",
-        "combat_front": "spyder_boss",
-        "slug": "spyder_boss"
-      }
-  
+    "template": {
+      "sprite_name": "spyderboss",
+      "combat_front": "spyder_boss",
+      "slug": "spyder_boss"
+    }
   },
   {
     "slug": "spyder_hospital1_zekar",
-    "template": 
-      {
-        "sprite_name": "spyderrookie",
-        "combat_front": "spyder_rookie",
-        "slug": "spyder_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
   },
   {
     "slug": "spyder_hospital1_walt",
-    "template": 
-      {
-        "sprite_name": "spyderrookie",
-        "combat_front": "spyder_rookie",
-        "slug": "spyder_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
   },
   {
     "slug": "spyder_hospital1_rhizome",
-    "template": 
-      {
-        "sprite_name": "professor_brown",
-        "combat_front": "professor",
-        "slug": "professor"
-      }
-  
+    "template": {
+      "sprite_name": "professor_brown",
+      "combat_front": "professor",
+      "slug": "professor"
+    }
   },
   {
     "slug": "spyder_hospital1_smith",
-    "template": 
-      {
-        "sprite_name": "scientist_brown",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_brown",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_hospital1_lesley",
-    "template": 
-      {
-        "sprite_name": "scientist_black",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_black",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_hospital1_trafford",
-    "template": 
-      {
-        "sprite_name": "scientist_fiery",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_fiery",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_hospital1_marylyn",
-    "template": 
-      {
-        "sprite_name": "nurse_green",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse_green",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   },
   {
     "slug": "spyder_hospital1_melanie",
-    "template": 
-      {
-        "sprite_name": "nurse_blonde",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse_blonde",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   },
   {
     "slug": "spyder_hospital1_audie",
-    "template": 
-      {
-        "sprite_name": "nurse_blue",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse_blue",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   }
 ]

@@ -7,8 +7,7 @@ from collections.abc import Sequence
 from typing import TYPE_CHECKING, Optional
 
 from tuxemon.boundary import BoundaryChecker
-from tuxemon.db import Direction
-from tuxemon.map import get_adjacent_position, get_coords_ext, pairs
+from tuxemon.map import dirs2, get_adjacent_position, get_coords_ext, pairs
 from tuxemon.prepare import CONFIG
 
 if TYPE_CHECKING:
@@ -36,6 +35,9 @@ class PathfindNode:
         return self.parent
 
     def set_parent(self, parent: PathfindNode) -> None:
+        if parent is None or parent == self:
+            raise ValueError("Parent cannot be None or the node itself.")
+        logger.debug(f"Setting parent for {self.value}: {parent.value}")
         self.parent = parent
         self.depth = parent.depth + 1
 
@@ -44,6 +46,14 @@ class PathfindNode:
 
     def get_depth(self) -> int:
         return self.depth
+
+    def reconstruct_path(self) -> list[tuple[int, int]]:
+        path = []
+        current: Optional[PathfindNode] = self
+        while current:
+            path.append(current.value)
+            current = current.parent
+        return path[:-1]
 
     def __str__(self) -> str:
         s = str(self.value)
@@ -78,12 +88,8 @@ class Pathfinder:
         pathnode = self.pathfind_r(dest, [PathfindNode(start)], set())
         logger.info(f"Pathfinding from {start} to {dest}.")
         if pathnode:
-            path = []
-            while pathnode:
-                path.append(pathnode.get_value())
-                pathnode = pathnode.get_parent()
-            logger.info(f"Path found: {path[::-1]}.")
-            return path[:-1]
+            path = pathnode.reconstruct_path()
+            return path
         else:
             character = self.world_state.get_entity_pos(start)
             if character:
@@ -114,28 +120,23 @@ class Pathfinder:
         if not queue:
             return None
         collision_map = self.world_state.get_collision_map()
-        known_nodes.add(queue[0].get_value())
-        logger.debug(
-            f"Starting pathfinding from {queue[0].get_value()} to {dest}."
-        )
         while queue:
             node = queue.pop(0)
             logger.debug(f"Checking node {node.get_value()}.")
             if node.get_value() == dest:
-                logger.info(
-                    f"Destination {dest} reached via {node.get_value()}."
-                )
+                logger.info(f"Destination {dest} reached.")
                 return node
-            else:
-                for adj_pos in self.get_exits(
-                    node.get_value(), collision_map, known_nodes
-                ):
-                    if adj_pos not in known_nodes:
-                        known_nodes.add(adj_pos)
-                        queue.append(PathfindNode(adj_pos, node))
-                        logger.debug(
-                            f"Adding adjacent position {adj_pos} to the queue."
-                        )
+            for adj_pos in self.get_exits(
+                node.get_value(), collision_map, known_nodes
+            ):
+                if adj_pos not in known_nodes:
+                    known_nodes.add(adj_pos)
+                    new_node = PathfindNode(adj_pos)
+                    new_node.set_parent(node)
+                    queue.append(new_node)
+                    logger.debug(
+                        f"Added adjacent position {adj_pos} to the queue."
+                    )
         logger.warning(f"No path found to destination {dest}.")
         return None
 
@@ -196,14 +197,9 @@ class Pathfinder:
                 "No explicit exits can be determined."
             )
 
-        # get exits by checking surrounding tiles
         adjacent_tiles = set()
-        for direction in [
-            Direction.down,
-            Direction.right,
-            Direction.up,
-            Direction.left,
-        ]:
+        # Loop through all directions dynamically using dirs2
+        for direction, vector in dirs2.items():
             neighbor = get_adjacent_position(position, direction)
             # If we have specific exits defined, make sure the neighbor is one of them
             # Also, skip this neighbor if it's in the list of nodes we want to avoid

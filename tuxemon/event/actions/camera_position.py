@@ -6,6 +6,7 @@ import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
+from tuxemon.camera import Camera
 from tuxemon.event.eventaction import EventAction
 from tuxemon.states.world.worldstate import WorldState
 
@@ -34,31 +35,29 @@ class CameraPositionAction(EventAction):
 
     def start(self) -> None:
         world = self.session.client.get_state_by_name(WorldState)
-        if self.x is not None and self.y is not None:
-            self._move_camera(world, self.x, self.y)
-        else:
-            self._reset_camera(world)
-
-    def _move_camera(self, world: WorldState, x: int, y: int) -> None:
-        map_size = self.session.client.map_size
-        if not world.boundary_checker.is_within_boundaries((x, y)):
-            logger.error(f"({x, y}) is outside the map bounds {map_size}")
-            return
         camera = world.camera_manager.get_active_camera()
         if camera is None:
             logger.error("No active camera found.")
             return
+        if self.x is not None and self.y is not None:
+            map_size = self.session.client.map_size
+            if not world.boundary_checker.is_within_boundaries(
+                (self.x, self.y)
+            ):
+                logger.error(
+                    f"({self.x, self.y}) is outside the map bounds {map_size}"
+                )
+                return
+            self._move_camera(camera, self.x, self.y)
+        else:
+            self._reset_camera(camera)
 
+    def _move_camera(self, camera: Camera, x: int, y: int) -> None:
         if camera.follows_entity:
             camera.unfollow()
-
         camera.set_position(x, y)
         logger.info(f"Camera has been set to ({x, y})")
 
-    def _reset_camera(self, world: WorldState) -> None:
-        camera = world.camera_manager.get_active_camera()
-        if camera is None:
-            logger.error("No active camera found.")
-            return
+    def _reset_camera(self, camera: Camera) -> None:
         camera.reset_to_entity_center()
         logger.info("Camera has been reset to entity's center")

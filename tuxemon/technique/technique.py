@@ -8,7 +8,8 @@ from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon.constants import paths
-from tuxemon.core_manager import ConditionManager, EffectManager
+from tuxemon.core.core_manager import ConditionManager, EffectManager
+from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import Range, db
 from tuxemon.element import Element
 from tuxemon.locale import T
@@ -118,6 +119,8 @@ class Technique:
         self.conditions = self.condition_manager.parse_conditions(
             results.conditions
         )
+        self.condition_handler = ConditionProcessor(self.conditions)
+        self.effect_handler = EffectProcessor(self.effects)
         self.target = results.target.model_dump()
         self.usable_on = results.usable_on
         self.modifiers = results.modifiers
@@ -139,31 +142,8 @@ class Technique:
     def validate(self, target: Optional[Monster]) -> bool:
         """
         Check if the target meets all conditions that the technique has on its use.
-
-        Parameters:
-            target: The monster or object that we are using this technique on.
-
-        Returns:
-            Whether the technique may be used.
-
         """
-        if not self.conditions:
-            return True
-        if not target:
-            return False
-
-        return all(
-            (
-                condition.test(target)
-                if isinstance(condition, (TechCondition)) and condition._op
-                else (
-                    not condition.test(target)
-                    if isinstance(condition, (TechCondition))
-                    else False
-                )
-            )
-            for condition in self.conditions
-        )
+        return self.condition_handler.validate(target=target)
 
     def recharge(self) -> None:
         self.next_use -= 1
@@ -173,66 +153,21 @@ class Technique:
 
     def use(self, user: Monster, target: Monster) -> TechEffectResult:
         """
-        Apply the technique.
-
-        Applies this technique's effects as defined in the "effect" column of
-        the technique database. This method will execute a function with the
-        same name as the effect defined in the database. If you want to add a
-        new effect, simply create a new function under the Technique class
-        with the name of the effect you define in monster.db.
-
-        Parameters:
-            user: The Monster object that used this technique.
-            target: Monster object that we are using this technique on.
-
-        Returns:
-            A dictionary with the effect name, success and misc properties.
-
-        Examples:
-
-        >>> technique = Technique()
-        >>> technique.load("technique_poison_sting")
-        >>> bulbatux.learn(technique)
-        >>>
-        >>> bulbatux.moves[0].use(user=bulbatux, target=tuxmander)
-
+        Applies the technique's effects using EffectProcessor and returns the results.
         """
-        # Loop through all the effects of this technique and execute the
-        # effect's function.
-        # TODO: more robust API
-        # TODO: separate classes for each Technique
-        # TODO: consider moving message templates to the JSON DB
-
-        # Defaults for the return. items can override these values in their
-        # return.
         meta_result = TechEffectResult(
             name=self.name,
             success=False,
-            should_tackle=False,
             damage=0,
             element_multiplier=0.0,
+            should_tackle=False,
             extras=[],
         )
-
+        result = self.effect_handler.process_tech(
+            source=self, user=user, target=target, meta_result=meta_result
+        )
         self.next_use = self.recharge_length
-
-        for effect in self.effects:
-            if isinstance(effect, TechEffect):
-                result = effect.apply(self, user, target)
-                meta_result.name = result.name
-                meta_result.success = meta_result.success or result.success
-                meta_result.should_tackle = (
-                    meta_result.should_tackle or result.should_tackle
-                )
-                meta_result.damage += result.damage
-                meta_result.element_multiplier += result.element_multiplier
-                meta_result.extras.extend(result.extras)
-            else:
-                logger.warning(
-                    f"Effect {effect} is not a valid StatusEffect. Skipping..."
-                )
-
-        return meta_result
+        return result
 
     def has_type(self, type_slug: Optional[str]) -> bool:
         """

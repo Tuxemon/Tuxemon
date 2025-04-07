@@ -54,9 +54,10 @@ class CameraManager:
         Parameters:
             camera: The camera instance to be added.
         """
-        self.cameras.append(camera)
-        if self.active_camera is None:
-            self.set_active_camera(camera)
+        if camera not in self.cameras:
+            self.cameras.append(camera)
+            if self.active_camera is None:
+                self.set_active_camera(camera)
 
     def set_active_camera(self, camera: Camera) -> None:
         """
@@ -76,7 +77,7 @@ class CameraManager:
         else:
             raise ValueError("Camera not managed by this CameraManager.")
 
-    def update(self) -> None:
+    def update(self, delta_time: float) -> None:
         """
         Updates the active camera, if one is set.
 
@@ -84,7 +85,7 @@ class CameraManager:
         state is updated.
         """
         if self.active_camera:
-            self.active_camera.update()
+            self.active_camera.update(delta_time)
 
     def handle_input(self, event: PlayerInput) -> Optional[PlayerInput]:
         """
@@ -157,6 +158,7 @@ class Camera:
     """
 
     FRAME_RATE: int = 60
+    TRANSITION_SPEED: float = 5.0
 
     def __init__(self, entity: Entity[Any], boundary: BoundaryChecker):
         """
@@ -174,8 +176,58 @@ class Camera:
         self.follows_entity = True
         self.free_roaming_enabled = False
         self.boundary = boundary
+
         self.shake_intensity = 0.0
         self.shake_duration = 0.0
+
+        self.smooth_transition_speed = self.TRANSITION_SPEED
+        self.is_moving_smoothly = False
+        self.pending_follow = False
+
+    @staticmethod
+    def get_distance(pos1: Vector2, pos2: Vector2) -> float:
+        """Calculate the Euclidean distance between two positions."""
+        return float(((pos2.x - pos1.x) ** 2 + (pos2.y - pos1.y) ** 2) ** 0.5)
+
+    def move_smoothly_to(
+        self, target_x: float, target_y: float, duration: float
+    ) -> None:
+        """Start a smooth movement toward the target position over the given duration."""
+        self.target_position = self.get_center(Vector2(target_x, target_y))
+        self.smooth_transition_speed = (
+            self.get_distance(self.position, self.target_position) / duration
+        )
+        self.is_moving_smoothly = True
+
+    def update_smooth_transition(self, delta_time: float) -> None:
+        """Smoothly move the camera toward the target position."""
+        dx = self.target_position.x - self.position.x
+        dy = self.target_position.y - self.position.y
+
+        distance_to_target = (dx**2 + dy**2) ** 0.5
+        step = self.smooth_transition_speed * delta_time
+
+        if step >= distance_to_target:
+            self.position = self.target_position
+            self.is_moving_smoothly = False
+            if self.pending_follow:
+                self.follow()
+                self.pending_follow = False
+        else:
+            self.position.x += step * (dx / distance_to_target)
+            self.position.y += step * (dy / distance_to_target)
+
+    def smooth_reset_to_entity_center(self, duration: float) -> None:
+        """
+        Smoothly moves the camera to the center of the entity's tile over the given duration.
+
+        Parameters:
+            duration: The time (in seconds) it should take to move to the entity's center.
+        """
+        target_position = self.get_entity_center()
+        tile = unproject(target_position)
+        self.move_smoothly_to(tile[0], tile[1], duration)
+        self.pending_follow = True
 
     def follow(self) -> None:
         """
@@ -215,10 +267,12 @@ class Camera:
             Vector2(self.entity.position3.x, self.entity.position3.y)
         )
 
-    def update(self) -> None:
+    def update(self, delta_time: float) -> None:
         """
         Updates the camera's position if it's set to follow the entity.
         """
+        if self.is_moving_smoothly:
+            self.update_smooth_transition(delta_time)
         if self.follows_entity:
             self.position = self.get_entity_center()
         self.handle_shake()
@@ -310,15 +364,13 @@ class Camera:
         Applies the shake effect to the camera's position if the shake duration is active.
         """
         if self.shake_duration > 0:
-            original_position = Vector2(self.position.x, self.position.y)
-            self.position.x += random.uniform(
+            jitter_x = random.uniform(
                 -self.shake_intensity, self.shake_intensity
             )
-            self.position.y += random.uniform(
+            jitter_y = random.uniform(
                 -self.shake_intensity, self.shake_intensity
             )
-
+            self.position += Vector2(jitter_x, jitter_y)
             self.shake_duration -= 1 / self.FRAME_RATE
-            if self.shake_duration <= 0:
-                self.shake_duration = 0
-                self.position = original_position
+        else:
+            self.shake_duration = 0.0

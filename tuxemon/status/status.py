@@ -8,7 +8,8 @@ from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon.constants import paths
-from tuxemon.core_manager import ConditionManager, EffectManager
+from tuxemon.core.core_manager import ConditionManager, EffectManager
+from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import (
     CategoryStatus,
     Range,
@@ -129,6 +130,8 @@ class Status:
         self.conditions = self.condition_manager.parse_conditions(
             results.conditions
         )
+        self.condition_handler = ConditionProcessor(self.conditions)
+        self.effect_handler = EffectProcessor(self.effects)
 
         # Load the animation sprites that will be used for this status
         self.animation = results.animation
@@ -147,44 +150,12 @@ class Status:
     def validate(self, target: Optional[Monster]) -> bool:
         """
         Check if the target meets all conditions that the status has on its use.
-
-        Parameters:
-            target: The monster or object that we are using this status on.
-
-        Returns:
-            Whether the condition may be used.
-
         """
-        if not self.conditions:
-            return True
-        if not target:
-            return False
-
-        return all(
-            (
-                condition.test(target)
-                if isinstance(condition, (StatusCondition)) and condition._op
-                else (
-                    not condition.test(target)
-                    if isinstance(condition, (StatusCondition))
-                    else False
-                )
-            )
-            for condition in self.conditions
-        )
+        return self.condition_handler.validate(target=target)
 
     def use(self, target: Monster) -> StatusEffectResult:
         """
-        Apply the status.
-
-        Parameters:
-            user: The Monster object that used this status.
-            target: Monster object that we are using this status on.
-
-        Returns:
-            An StatusEffectResult object containing the result of the status's
-                effect.
-
+        Applies the status's effects using EffectProcessor and returns the results.
         """
         meta_result = StatusEffectResult(
             name=self.name,
@@ -193,21 +164,11 @@ class Status:
             techniques=[],
             extras=[],
         )
+        result = self.effect_handler.process_status(
+            source=self, target=target, meta_result=meta_result
+        )
 
-        for effect in self.effects:
-            if isinstance(effect, StatusEffect):
-                result = effect.apply(self, target)
-                meta_result.name = result.name
-                meta_result.success = meta_result.success or result.success
-                meta_result.statuses.extend(result.statuses)
-                meta_result.techniques.extend(result.techniques)
-                meta_result.extras.extend(result.extras)
-            else:
-                logger.warning(
-                    f"Effect {effect} is not a valid StatusEffect. Skipping..."
-                )
-
-        return meta_result
+        return result
 
     def get_state(self) -> Mapping[str, Any]:
         """

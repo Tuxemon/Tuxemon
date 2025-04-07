@@ -1966,9 +1966,6 @@ msgstr "Supernova"
 msgid "take_cover"
 msgstr "À Couvert"
 
-msgid "menu_alphabet_n_columns"
-msgstr "13"
-
 msgid "kindling_flame"
 msgstr "Flamme Étincelante"
 

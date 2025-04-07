@@ -74,16 +74,17 @@ class StartBattleAction(EventAction):
             f"Starting battle between {fighters[0].name} and {fighters[1].name}!"
         )
         self.session.client.push_state(
-            CombatState(
-                players=(fighters[0], fighters[1]),
-                combat_type="trainer",
-                graphics=env.battle_graphics,
-                battle_mode="single",
-            )
+            "CombatState",
+            players=(fighters[0], fighters[1]),
+            combat_type="trainer",
+            graphics=env.battle_graphics,
+            battle_mode="single",
         )
 
         filename = env.battle_music if not self.music else self.music
-        self.session.client.current_music.play(filename)
+        self.session.client.event_engine.execute_action(
+            "play_music", [filename], True
+        )
 
     def update(self) -> None:
         try:

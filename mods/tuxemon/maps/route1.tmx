@@ -188,8 +188,16 @@
     <property name="act21" value="create_npc bob,32,26,stand"/>
     <property name="act22" value="create_npc marissa,33,26,stand"/>
     <property name="act23" value="create_npc tuxemart_keeper,34,26,stand"/>
-    <property name="cond1" value="not variable_set letusthrough:no"/>
-    <property name="cond2" value="not variable_set letusthrough:almost"/>
+    <property name="cond10" value="not variable_set letusthrough:no"/>
+    <property name="cond11" value="not variable_set letusthrough:almost"/>
+    <property name="cond12" value="not char_exists liela"/>
+    <property name="cond13" value="not char_exists bob"/>
+    <property name="cond14" value="not char_exists marissa"/>
+    <property name="cond15" value="not char_exists tuxemart_keeper"/>
+    <property name="cond16" value="not char_exists omnigrunt"/>
+    <property name="cond17" value="not char_exists omnigrunt2"/>
+    <property name="cond18" value="not char_exists omnigrunt3"/>
+    <property name="cond19" value="not char_exists omnigrunt4"/>
    </properties>
   </object>
   <object id="112" name="they're angry" type="event" x="592" y="336" width="16" height="32">
@@ -473,7 +481,10 @@
     <property name="act10" value="wait 2.2"/>
     <property name="act20" value="char_move omnigrunt4, up 1"/>
     <property name="act30" value="char_face omnigrunt4,down"/>
+    <property name="act40" value="remove_npc omnigrunt4"/>
+    <property name="act50" value="set_variable replaceomnigrunt4:yes"/>
     <property name="cond1" value="is variable_set threemusketeers:yay"/>
+    <property name="cond2" value="not variable_set replaceomnigrunt4:yes"/>
    </properties>
   </object>
   <object id="128" name="kyle sucks" type="event" x="400" y="352" width="16" height="16">
@@ -640,6 +651,7 @@
     <property name="act1" value="create_npc omnigrunt4,34,26,stand"/>
     <property name="act2" value="char_face omnigrunt4,down"/>
     <property name="cond1" value="not char_exists omnigrunt4"/>
+    <property name="cond2" value="is variable_set replaceomnigrunt4:yes"/>
    </properties>
   </object>
   <object id="142" name="hey!" type="event" x="384" y="480" width="16" height="160">

@@ -35,6 +35,14 @@ logger.debug(f"basedir: {BASEDIR}")
 mods_folder = os.path.normpath(os.path.join(LIBDIR, "..", "mods"))
 logger.debug(f"mods: {mods_folder}")
 
+# mods subfolders
+mods_subfolders = [
+    f
+    for f in os.listdir(mods_folder)
+    if os.path.isdir(os.path.join(mods_folder, f))
+]
+logger.debug(f"Mods subfolders: {mods_subfolders}")
+
 # action/condition plugins (eventually move out of lib folder)
 CONDITIONS_PATH = os.path.normpath(os.path.join(LIBDIR, "event/conditions"))
 ACTIONS_PATH = os.path.normpath(os.path.join(LIBDIR, "event/actions"))

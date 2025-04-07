@@ -184,6 +184,7 @@ def load_sprite(
 def load_animated_sprite(
     filenames: Iterable[str],
     delay: float,
+    scale: float = prepare.SCALE,
 ) -> Sprite:
     """
     Load a set of images and return an animated sprite.
@@ -197,16 +198,22 @@ def load_animated_sprite(
     Parameters:
         filenames: Filenames to load.
         delay: Frame interval; time between each frame.
+        scale: A scaling factor applied to the images during loading.
+            Defaults to the 'prepare.SCALE' constant.
 
     Returns:
         Loaded animated sprite.
-
     """
     anim = []
     for filename in filenames:
         if os.path.exists(filename):
-            image = load_and_scale(filename)
+            image = load_and_scale(filename, scale)
             anim.append((image, delay))
+        else:
+            logger.error(f"File not found: {filename}")
+
+    if not anim:
+        raise ValueError("Cannot create animated sprite: no valid frames.")
 
     tech = SurfaceAnimation(anim, True)
     tech.play()
@@ -293,29 +300,6 @@ def create_animation(
     data = [(f, duration) for f in frames]
     animation = SurfaceAnimation(data, loop=loop)
     return animation
-
-
-def scale_tile(
-    surface: pygame.surface.Surface,
-    tile_size: int,
-) -> pygame.surface.Surface:
-    """
-    Scales a map tile based on resolution.
-
-    Parameters:
-        surface: Surface to rescale.
-        tile_size: Desired size.
-
-    Returns:
-        The rescaled surface.
-
-    """
-    if type(surface) is pygame.Surface:
-        surface = pygame.transform.scale(surface, tile_size)
-    else:
-        surface.scale(tile_size)
-
-    return surface
 
 
 def scale_sprite(
@@ -442,7 +426,7 @@ def capture_screenshot(game: LocalPygameClient) -> pygame.surface.Surface:
     return screenshot
 
 
-def get_avatar(session: Session, avatar: Union[str, int]) -> Optional[Sprite]:
+def get_avatar(session: Session, avatar: str) -> Optional[Sprite]:
     """
     Retrieves the avatar sprite of a monster or NPC.
 
@@ -451,30 +435,36 @@ def get_avatar(session: Session, avatar: Union[str, int]) -> Optional[Sprite]:
         avatar: The identifier of the avatar to be used.
 
     Returns:
-        The surface of the monster or NPC avatar sprite, or None if not found.
-
+        The sprite for the monster or NPC avatar, or None if not found.
     """
-    if isinstance(avatar, int):
+    if avatar.isdigit():
         try:
-            return session.player.monsters[avatar].get_sprite("menu")
+            monster = session.player.monsters[int(avatar)]
+            return monster.get_sprite("menu")
         except IndexError:
             logger.debug(f"Invalid avatar monster slot: {avatar}")
             return None
 
-    if avatar in db.database["monster"]:
-        monster = db.lookup(avatar, table="monster")
-        if not monster.sprites:
-            logger.warning(f"Monster '{avatar}' has no sprites")
+    if avatar in db.database.get("monster", {}):
+        monster_data = db.lookup(avatar, table="monster")
+        if not monster_data.sprites:
+            logger.error(f"Monster '{avatar}' has no sprites")
             return None
-        menu_sprites = [
-            transform_resource_filename(f"{monster.sprites.menu1}.png"),
-            transform_resource_filename(f"{monster.sprites.menu2}.png"),
-        ]
-        return load_animated_sprite(menu_sprites, 0.25)
 
-    if avatar in db.database["npc"]:
-        npc = db.lookup(avatar, table="npc")
-        path = f"gfx/sprites/player/{npc.template.combat_front}.png"
+        # Replace MonsterSpriteHandler with direct logic
+        menu_sprites = [
+            transform_resource_filename(f"{monster_data.sprites.menu1}.png"),
+            transform_resource_filename(f"{monster_data.sprites.menu2}.png"),
+        ]
+        try:
+            return load_animated_sprite(menu_sprites, 0.25)
+        except ValueError as e:
+            logger.error(f"Failed to load animated sprite for '{avatar}': {e}")
+            return None
+
+    if avatar in db.database.get("npc", {}):
+        npc_data = db.lookup(avatar, table="npc")
+        path = f"gfx/sprites/player/{npc_data.template.combat_front}.png"
         sprite = load_sprite(path)
         scale_sprite(sprite, 0.5)
         return sprite

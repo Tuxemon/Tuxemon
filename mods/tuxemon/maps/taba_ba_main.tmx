@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="19" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="50">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="19" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="51">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="scenario" value="xero"/>
@@ -573,6 +573,14 @@
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is variable_set fourthacolyte:finished"/>
     <property name="cond3" value="not variable_set kyletalkafter4th:done"/>
+   </properties>
+  </object>
+  <object id="50" name="movin on up" type="event" x="272" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_stairwell_1.tmx,1,8,0.5"/>
+    <property name="cond1" value="is variable_set fourthacolyte:finished"/>
+    <property name="cond2" value="is char_at player"/>
+    <property name="cond3" value="is char_facing player,right"/>
    </properties>
   </object>
  </objectgroup>

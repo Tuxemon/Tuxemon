@@ -1,138 +1,114 @@
 [
   {
     "slug": "spyder_route3_qqq",
-    "template": 
-      {
-        "sprite_name": "spyderrookie",
-        "combat_front": "spyder_rookie",
-        "slug": "spyder_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
   },
   {
     "slug": "spyder_route3_zoolander",
-    "template": 
-      {
-        "sprite_name": "overseer",
-        "combat_front": "overseer",
-        "slug": "overseer"
-      }
-  
+    "template": {
+      "sprite_name": "overseer",
+      "combat_front": "overseer",
+      "slug": "overseer"
+    }
   },
   {
     "slug": "spyder_route3_weaver",
-    "template": 
-      {
-        "sprite_name": "knight",
-        "combat_front": "knight",
-        "slug": "knight"
-      }
-  
+    "template": {
+      "sprite_name": "knight",
+      "combat_front": "knight",
+      "slug": "knight"
+    }
   },
   {
     "slug": "spyder_route3_wanda",
-    "template": 
-      {
-        "sprite_name": "fisher",
-        "combat_front": "fisher",
-        "slug": "fisher"
-      }
-  
+    "template": {
+      "sprite_name": "fisher",
+      "combat_front": "fisher",
+      "slug": "fisher"
+    }
   },
   {
     "slug": "spyder_route3_twig",
-    "template": 
-      {
-        "sprite_name": "miner_yellow",
-        "combat_front": "miner",
-        "slug": "miner"
-      }
-  
+    "template": {
+      "sprite_name": "miner_yellow",
+      "combat_front": "miner",
+      "slug": "miner"
+    }
   },
   {
     "slug": "spyder_route3_surat",
-    "template": 
-      {
-        "sprite_name": "miner_red",
-        "combat_front": "miner",
-        "slug": "miner"
-      }
-  
+    "template": {
+      "sprite_name": "miner_red",
+      "combat_front": "miner",
+      "slug": "miner"
+    }
   },
   {
     "slug": "spyder_route3_roxby",
-    "template": 
-      {
-        "sprite_name": "miner_green",
-        "combat_front": "miner",
-        "slug": "miner"
-      }
-  
+    "template": {
+      "sprite_name": "miner_green",
+      "combat_front": "miner",
+      "slug": "miner"
+    }
   },
   {
     "slug": "spyder_route3_novak",
-    "template": 
-      {
-        "sprite_name": "tennisplayer",
-        "combat_front": "tennisplayer",
-        "slug": "tennisplayer"
-      }
-  
+    "template": {
+      "sprite_name": "tennisplayer",
+      "combat_front": "tennisplayer",
+      "slug": "tennisplayer"
+    }
   },
   {
     "slug": "spyder_route3_curie",
-    "template": 
-      {
-        "sprite_name": "scientist",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_route3_connor",
-    "template": 
-      {
-        "sprite_name": "tennisplayer",
-        "combat_front": "tennisplayer",
-        "slug": "tennisplayer"
-      }
-  
+    "template": {
+      "sprite_name": "tennisplayer",
+      "combat_front": "tennisplayer",
+      "slug": "tennisplayer"
+    }
   },
   {
     "slug": "spyder_route3_ryland",
-    "template": 
-      {
-        "sprite_name": "spyderrookie",
-        "combat_front": "spyder_rookie",
-        "slug": "spyder_rookie"
-      }  
+    "template": {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
   },
   {
     "slug": "spyder_route3_miner1",
-    "template":
-      {
-        "sprite_name": "miner_blue",
-        "combat_front": "miner",
-        "slug": "miner"
-      }
+    "template": {
+      "sprite_name": "miner_blue",
+      "combat_front": "miner",
+      "slug": "miner"
+    }
   },
   {
     "slug": "spyder_route3_miner2",
-    "template":
-      {
-        "sprite_name": "miner_red",
-        "combat_front": "miner",
-        "slug": "miner"
-      }
+    "template": {
+      "sprite_name": "miner_red",
+      "combat_front": "miner",
+      "slug": "miner"
+    }
   },
   {
     "slug": "spyder_route3_miner3",
-    "template":
-      {
-        "sprite_name": "miner_yellow",
-        "combat_front": "miner",
-        "slug": "miner"
-      }
+    "template": {
+      "sprite_name": "miner_yellow",
+      "combat_front": "miner",
+      "slug": "miner"
+    }
   }
 ]

@@ -157,14 +157,13 @@ class WorldMenuState(PygameMenuState):
             player = local_session.player
             success = player.release_monster(monster)
 
-            # Close the dialog and confirmation menu, and inform the user
-            # their tuxemon has been released.
             if success:
                 self.client.pop_state()
                 self.client.pop_state()
                 params = {"name": monster.name.upper()}
                 msg = T.format("tuxemon_released", params)
                 open_dialog(local_session, [msg])
+                monster_menu.remove_monster_sprite_display(monster)
                 monster_menu.refresh_menu_items()
                 monster_menu.on_menu_selection_change()
             else:

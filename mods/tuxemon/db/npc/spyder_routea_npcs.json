@@ -1,162 +1,122 @@
 [
   {
     "slug": "spyder_routea_connie",
-    "template": 
-      {
-        "sprite_name": "beachcomber_copper",
-        "combat_front": "beachgoer",
-        "slug": "beachgoer"
-      }
-  
+    "template": {
+      "sprite_name": "beachcomber_copper",
+      "combat_front": "beachgoer",
+      "slug": "beachgoer"
+    }
   },
   {
     "slug": "spyder_routea_dagger",
-    "template": 
-      {
-        "sprite_name": "boss_orange",
-        "combat_front": "rocker",
-        "slug": "rocker"
-      }
-  
+    "template": {
+      "sprite_name": "boss_orange",
+      "combat_front": "rocker",
+      "slug": "rocker"
+    }
   },
   {
     "slug": "spyder_routea_doris",
-    "template": 
-      {
-        "sprite_name": "florist_blue",
-        "combat_front": "florist",
-        "slug": "florist"
-      }
-  
+    "template": {
+      "sprite_name": "florist_blue",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
   },
   {
     "slug": "spyder_routea_joe",
-    "template": 
-      {
-        "sprite_name": "beachcomber_fiery",
-        "combat_front": "yellowbelt",
-        "slug": "yellowbelt"
-      }
-  
+    "template": {
+      "sprite_name": "beachcomber_fiery",
+      "combat_front": "yellowbelt",
+      "slug": "yellowbelt"
+    }
   },
   {
     "slug": "spyder_routea_koan",
-    "template": 
-      {
-        "sprite_name": "boss_red",
-        "combat_front": "rocker",
-        "slug": "rocker"
-      }
-  
+    "template": {
+      "sprite_name": "boss_red",
+      "combat_front": "rocker",
+      "slug": "rocker"
+    }
   },
   {
     "slug": "spyder_routea_lexi",
-    "template": 
-      {
-        "sprite_name": "catgirl_violet",
-        "combat_front": "catgirl",
-        "slug": "catgirl"
-      }
-  
+    "template": {
+      "sprite_name": "catgirl_violet",
+      "combat_front": "catgirl",
+      "slug": "catgirl"
+    }
   },
   {
     "slug": "spyder_routea_lotu",
-    "template": 
-      {
-        "sprite_name": "monk_red",
-        "combat_front": "monk",
-        "slug": "monk"
-      }
-  
+    "template": {
+      "sprite_name": "monk_red",
+      "combat_front": "monk",
+      "slug": "monk"
+    }
   },
   {
     "slug": "spyder_routea_rosy",
-    "template": 
-      {
-        "sprite_name": "picnicker",
-        "combat_front": "picnicker",
-        "slug": "picnicker"
-      }
-  
+    "template": {
+      "sprite_name": "picnicker",
+      "combat_front": "picnicker",
+      "slug": "picnicker"
+    }
   },
   {
     "slug": "spyder_routea_vince",
-    "template": 
-      {
-        "sprite_name": "goth",
-        "combat_front": "goth",
-        "slug": "goth"
-      }
-  
+    "template": {
+      "sprite_name": "goth",
+      "combat_front": "goth",
+      "slug": "goth"
+    }
   },
   {
     "slug": "spyder_routea_jarod",
-    "template": 
-      {
-        "sprite_name": "firefighter",
-        "combat_front": "firefighter",
-        "slug": "firefighter"
-      }
-  
+    "template": {
+      "sprite_name": "firefighter",
+      "combat_front": "firefighter",
+      "slug": "firefighter"
+    }
   },
   {
     "slug": "spyder_routea_john",
-    "template": 
-      {
-        "sprite_name": "maniac_green",
-        "combat_front": "adventurer",
-        "slug": "maniac"
-      }
-  
-  },
-  {
-    "slug": "spyder_routea_little",
-    "template": 
-      {
-        "sprite_name": "knight_red",
-        "combat_front": "knight",
-        "slug": "knight"
-      }
-  
+    "template": {
+      "sprite_name": "maniac_green",
+      "combat_front": "adventurer",
+      "slug": "maniac"
+    }
   },
   {
     "slug": "spyder_routea_super",
-    "template": 
-      {
-        "sprite_name": "box",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "box",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_routea_cureall",
-    "template": 
-      {
-        "sprite_name": "box",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "box",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_routea_tea",
-    "template": 
-      {
-        "sprite_name": "box",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "box",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_routea_nurse",
-    "template": 
-      {
-        "sprite_name": "nurse_blonde",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse_blonde",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   }
 ]

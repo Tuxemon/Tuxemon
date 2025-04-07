@@ -137,9 +137,6 @@ msgstr "Junttaa"
 msgid "refresh"
 msgstr "Virkistä"
 
-msgid "menu_alphabet_n_columns"
-msgstr "13"
-
 msgid "venomous_tentacle"
 msgstr "Myrkkylonkero"
 

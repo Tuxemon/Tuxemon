@@ -1,4 +1,10 @@
 events:
+  Update Time Variables:
+    actions:
+    - update_time player
+    conditions:
+    - is current_state TeleporterState
+    type: "event"
   Cathedral:
     actions:
     - set_bill player,bill_cathedral

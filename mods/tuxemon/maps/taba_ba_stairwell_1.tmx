@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="13">
+ <properties>
+  <property name="edges" value="clamped"/>
+  <property name="scenario" value="xero"/>
+ </properties>
+ <tileset firstgid="1" name="core_indoor_floors" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_floors.png" width="736" height="1344"/>
+ </tileset>
+ <tileset firstgid="3865" name="core_indoor_stairs" tilewidth="16" tileheight="16" tilecount="2970" columns="45">
+  <image source="../gfx/tilesets/core_indoor_stairs.png" width="720" height="1056"/>
+ </tileset>
+ <tileset firstgid="6835" name="core_indoor_walls" tilewidth="16" tileheight="16" tilecount="3864" columns="46">
+  <image source="../gfx/tilesets/core_indoor_walls.png" width="736" height="1344"/>
+ </tileset>
+ <layer id="1" name="Tile Layer 1" width="12" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYIAAaWbCGBnQQj2yHlqpz1AkXi0ITyNR/RES1Q91DABrEBFE
+  </data>
+ </layer>
+ <layer id="2" name="Tile Layer 2" width="12" height="12">
+  <data encoding="base64" compression="zlib">
+   eJzLUGRgyCAS8wLxNBKwNRAfIQGD1E8VBeoFYmKADVD9IaDaw0SqB5kPAtj89k0Rt3psfpuORz02vx3Foh7kflag29lI8K8RUK0xCf4lNm5BOJPE+AWFAQAdrzs9
+  </data>
+ </layer>
+ <layer id="3" name="Tile Layer 3" width="12" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAtyBBlYMgUpbElo2DAAADWzQD8
+  </data>
+ </layer>
+ <layer id="4" name="Above Player" width="12" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B8AAACQAAB
+  </data>
+ </layer>
+ <objectgroup color="#ff2600" id="6" name="Collisions">
+  <object id="1" type="collision" x="0" y="0" width="192" height="48"/>
+  <object id="3" type="collision" x="176" y="48" width="16" height="144"/>
+  <object id="4" type="collision" x="0" y="160" width="176" height="32"/>
+  <object id="5" type="collision" x="0" y="80" width="112" height="48"/>
+  <object id="6" type="collision" x="0" y="64" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup color="#fffb00" id="5" name="Events">
+  <object id="7" name="teleport to main" type="event" x="0" y="128" width="16" height="32">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_main.tmx,16,3,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="8" name="teleport to stairwell 2" type="event" x="0" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="transition_teleport taba_ba_stairwell_2.tmx,3,5,0.5"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,left"/>
+   </properties>
+  </object>
+  <object id="9" name="create healer" type="event" x="112" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc omnigrunt2,10,3,stand"/>
+    <property name="cond1" value="not char_exists omnigrunt2"/>
+   </properties>
+  </object>
+  <object id="10" name="heal me stairwell 1" type="event" x="160" y="64" width="16" height="16">
+   <properties>
+    <property name="act1" value="translated_dialog finaltabahealer"/>
+    <property name="act3" value="set_monster_health"/>
+    <property name="act4" value="set_monster_status"/>
+    <property name="act5" value="play_sound sound_confirm"/>
+    <property name="act7" value="wait 1.2"/>
+    <property name="act8" value="translated_dialog finaltabahealer2"/>
+    <property name="act9" value="char_face omnigrunt2,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,up"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+  <object id="12" name="heal me stairwell 1" type="event" x="144" y="48" width="16" height="16">
+   <properties>
+    <property name="act1" value="char_face omnigrunt2,left"/>
+    <property name="act2" value="translated_dialog finaltabahealer"/>
+    <property name="act3" value="set_monster_health"/>
+    <property name="act4" value="set_monster_status"/>
+    <property name="act5" value="play_sound sound_confirm"/>
+    <property name="act7" value="wait 1.2"/>
+    <property name="act8" value="translated_dialog finaltabahealer2"/>
+    <property name="act9" value="char_face omnigrunt2,down"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="is char_facing player,right"/>
+    <property name="cond3" value="is button_pressed K_RETURN"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

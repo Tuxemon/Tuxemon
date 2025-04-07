@@ -1,52 +1,42 @@
 [
   {
     "slug": "p_one",
-    "template": 
-      {
-        "sprite_name": "p_one",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "p_one",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "p_two",
-    "template": 
-      {
-        "sprite_name": "p_two",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "p_two",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "p_three",
-    "template": 
-      {
-        "sprite_name": "p_three",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "p_three",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "p_four",
-    "template": 
-      {
-        "sprite_name": "p_four",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "p_four",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "p_five",
-    "template": 
-      {
-        "sprite_name": "p_five",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "p_five",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   }
 ]

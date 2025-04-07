@@ -796,6 +796,9 @@ msgstr "{name} cannot be used on any of your Tuxemon right now."
 msgid "technique_description"
 msgstr "ID.{id} ({types}) - Accuracy {acc}%, Potency {pot}%, Power {pow}/3, Recharge {rec} turns"
 
+msgid "technique_combat"
+msgstr "{name} ({types})\n Power {pow}/{max_pow}\n Accuracy {acc}%\n Recharge {rec} turns"
+
 msgid "technique_id_types_recharge"
 msgstr "ID.{id} ({types}) - Recharge {rec} turns"
 
@@ -3061,9 +3064,6 @@ msgstr "From ${{map_name}} to ${{east}}"
 msgid "menu_alphabet"
 msgstr "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-!"
 
-msgid "menu_alphabet_n_columns"
-msgstr "13"
-
 msgid "dont_care"
 msgstr "DON'T CARE"
 
@@ -3400,6 +3400,9 @@ msgstr "German"
 
 msgid "language_eo"
 msgstr "Esperanto"
+
+msgid "language_en_us"
+msgstr "English"
 
 msgid "language_es_es"
 msgstr "Spanish"
@@ -6740,32 +6743,62 @@ msgstr "Taste Cold"
 msgid "taste_peppy"
 msgstr "Peppy"
 
+msgid "taste_peppy_description"
+msgstr "A burst of fizzy energy, like popping candy that makes you twitch with anticipation."
+
 msgid "taste_mild"
 msgstr "Mild"
+
+msgid "taste_mild_description"
+msgstr "A gentle, calming flavor, like warm milk that slows the world around you."
 
 msgid "taste_salty"
 msgstr "Salty"
 
+msgid "taste_salty_description"
+msgstr "A briny taste, like seawater on a storm-tossed deck, that strengthens your resolve."
+
 msgid "taste_sweet"
 msgstr "Sweet"
+
+msgid "taste_sweet_description"
+msgstr "A cloying, sugary flavor, like melted candy that makes your limbs heavy."
 
 msgid "taste_hearty"
 msgstr "Hearty"
 
+msgid "taste_hearty_description"
+msgstr "A rich, earthy taste, like dense bread that fortifies your defenses."
+
 msgid "taste_soft"
 msgstr "Soft"
+
+msgid "taste_soft_description"
+msgstr "A delicate, airy flavor, like whipped cream that leaves you feeling vulnerable."
 
 msgid "taste_zesty"
 msgstr "Zesty"
 
+msgid "taste_zesty_description"
+msgstr "A sharp, tangy taste, like citrus sparks that ignite your focus."
+
 msgid "taste_flakey"
 msgstr "Flakey"
+
+msgid "taste_flakey_description"
+msgstr "A crumbly, light flavor, like dry pastry that makes your aim waver."
 
 msgid "taste_refined"
 msgstr "Refined"
 
+msgid "taste_refined_description"
+msgstr "A subtle, elegant taste, like fine tea that sharpens your reflexes."
+
 msgid "taste_dry"
 msgstr "Dry"
+
+msgid "taste_dry_description"
+msgstr "A parched, dusty flavor, like stale crackers that dull your senses."
 
 # Terrains
 
@@ -8620,6 +8653,48 @@ msgid "headupstairstababa7"
 msgstr "The Battle Area Master is up those stairs on the far side.\n"
 "I'd wish you luck, but, y'know? I don't actually want you to win!"
 
+msgid "finaltabahealer"
+msgstr "You'll find the Battle Area Master upstairs. I'm actually excited for you!\n"
+"It's a bit bittersweet though. This may be the final time I get to heal your Tuxemon..."
+
+msgid "finaltabahealer2"
+msgstr "What? You thought Omnichannel would pay for more than a single grunt to heal Tuxemon?\n"
+"Nope, it's been me the whole time!"
+
+msgid "tabawaitup"
+msgstr "Hey! ${{name}}! Wait up!"
+
+msgid "tabawaitup2"
+msgstr "Phew, looks like I caught you. Looks like you're about to face the Master. That's good, I-"
+
+msgid "tabawaitup3"
+msgstr "You didn't have to run up the stairs, Speck!"
+
+msgid "tabawaitup4"
+msgstr "Oh, come on Christie, I wasn't running. You're just slow."
+
+msgid "tabawaitup5"
+msgstr "UGGGH. You are UN. BE. LIEVABLE."
+
+msgid "tabawaitup6"
+msgstr "Hey, ${{name}}, is it alright if I punch him? A good whack to his face would probably do him some good."
+
+msgid "tabawaitup7"
+msgstr "Hey, hey, hey. We don't need to go that far."
+
+msgid "tabawaitup8"
+msgstr "Anyway... I was thinking, what's the point of making us go through all this?"
+
+msgid "tabawaitup9"
+msgstr "Through what, exactly?"
+
+msgid "tabawaitup10"
+msgstr "Training, The Trial, Life in this cursed land. Y'know, all the hits."
+
+msgid "tabawaitup11"
+msgstr "Seriously though, why even have The Trial? Omnichannel hasn't felt the need to do this in the past. Why now?"
+
+
 msgid "ripjimmy"
 msgstr "The grave says:\n"
 "Here lies Jimmy. A friend, a knight, and ... bad person overall. However, ... never ... ... Help! ...\n"
@@ -9707,48 +9782,67 @@ msgstr "Vince"
 
 msgid "spyder_routea_rosy1"
 msgstr "I came here to play with my Shammer, but he's just lazing around in the sun."
+
 msgid "spyder_routea_rosy2"
 msgstr "That perked him up, thank you!"
+
 msgid "spyder_routea_lotu1"
 msgstr "You younglings, always in such a rush to experience the world."
+
 msgid "spyder_routea_lotu2"
 msgstr "Leave time to stop and smell the flowers every once in a while."
+
 msgid "spyder_routea_connie1"
 msgstr "A morning run's just the thing to clear the head."
+
 msgid "spyder_routea_connie2"
 msgstr "A tuxemon battle, that's the tonic!"
+
 msgid "spyder_routea_lexi1"
 msgstr "There's some great tuxemon on this route!"
+
 msgid "spyder_routea_lexi2"
 msgstr "I simply love bugs, don't you?"
+
 msgid "spyder_routea_joe1"
 msgstr "I got my report card from school yesterday."
+
 msgid "spyder_routea_joe2"
 msgstr "'Needs improvement.'' Where have I heard that before?"
+
 msgid "spyder_routea_koan1"
 msgstr "Flower City is cold but I like where I'm living."
+
 msgid "spyder_routea_koan2"
 msgstr "What can I possibly say?"
+
 msgid "spyder_routea_dagger1"
 msgstr "Someone said you were asking after me."
+
 msgid "spyder_routea_dagger2"
 msgstr "No one said you were asking after me. I'm just a blaggard."
+
 msgid "spyder_routea_doris1"
 msgstr "I love the color of the leaves this time of year."
+
 msgid "spyder_routea_doris2"
 msgstr "Thank you. It's always a pleasure to battle someone new."
+
 msgid "spyder_routea_vince1"
 msgstr "I love to just sit by myself in the park and read."
+
 msgid "spyder_routea_vince2"
 msgstr "... Just me, alone in nature."
+
 msgid "spyder_routea_vince3"
 msgstr "... Gee, you really can't take a hint can you kid?"
+
 msgid "spyder_routea_vince4"
 msgstr "Oh golly, my spine is broken! On my book, I mean."
+
 msgid "spyder_routea_maniac"
 msgstr "It's funny\n I come to the park to get away from people\n but I always end up running into someone I know!"
-msgid "spyder_routea_little1"
-msgstr "The access is blocked. A landslide damaged the route."
+
 msgid "spyder_routea_firefighter"
 msgstr "It's so quiet here.\n It's a nice break from the noise of the city."
 
@@ -12065,8 +12159,6 @@ msgid "spyder_wayfarer2_kim"
 msgstr "Kim"
 msgid "spyder_routea_john"
 msgstr "John"
-msgid "spyder_routea_little"
-msgstr "Little"
 msgid "spyder_candyhouse1_sawyer"
 msgstr "Sawyer"
 msgid "spyder_leathermuseum_giles"
@@ -12097,18 +12189,6 @@ msgid "spyder_cottoncenter_ada"
 msgstr "Ada"
 msgid "spyder_cottoncenter_ada1"
 msgstr "The computer system is experiencing technical difficulties.\n Withdrawing and depositing monsters and items is currently unavailable.\n Thank you for your patience."
-msgid "spyder_candyscoop_clint"
-msgstr "Clint"
-msgid "spyder_cottonscoop_joe"
-msgstr "Joe"
-msgid "spyder_flowerscoop_jarod"
-msgstr "Jarod"
-msgid "spyder_paperscoop_santino"
-msgstr "Santino"
-msgid "spyder_timberscoop_leandro"
-msgstr "Leandro"
-msgid "spyder_leatherscoop_blake"
-msgstr "Blake"
 
 msgid "spyder_riverboatcaptain"
 msgstr "Riverboat Captain"

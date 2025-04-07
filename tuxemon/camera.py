@@ -54,9 +54,10 @@ class CameraManager:
         Parameters:
             camera: The camera instance to be added.
         """
-        self.cameras.append(camera)
-        if self.active_camera is None:
-            self.set_active_camera(camera)
+        if camera not in self.cameras:
+            self.cameras.append(camera)
+            if self.active_camera is None:
+                self.set_active_camera(camera)
 
     def set_active_camera(self, camera: Camera) -> None:
         """
@@ -310,15 +311,13 @@ class Camera:
         Applies the shake effect to the camera's position if the shake duration is active.
         """
         if self.shake_duration > 0:
-            original_position = Vector2(self.position.x, self.position.y)
-            self.position.x += random.uniform(
+            jitter_x = random.uniform(
                 -self.shake_intensity, self.shake_intensity
             )
-            self.position.y += random.uniform(
+            jitter_y = random.uniform(
                 -self.shake_intensity, self.shake_intensity
             )
-
+            self.position += Vector2(jitter_x, jitter_y)
             self.shake_duration -= 1 / self.FRAME_RATE
-            if self.shake_duration <= 0:
-                self.shake_duration = 0
-                self.position = original_position
+        else:
+            self.shake_duration = 0.0

@@ -1,52 +1,42 @@
 [
   {
     "slug": "spyder_tuxeball_green",
-    "template": 
-      {
-        "sprite_name": "tuxeball_green",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "tuxeball_green",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_tuxeball_red",
-    "template": 
-      {
-        "sprite_name": "tuxeball_red",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "tuxeball_red",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_tuxeball_violet",
-    "template": 
-      {
-        "sprite_name": "tuxeball_violet",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "tuxeball_violet",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_tuxeball_yellow",
-    "template": 
-      {
-        "sprite_name": "tuxeball_yellow",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "tuxeball_yellow",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_tuxeball",
-    "template": 
-      {
-        "sprite_name": "tuxeball",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "tuxeball",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   }
 ]

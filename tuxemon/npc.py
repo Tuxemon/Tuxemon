@@ -256,19 +256,6 @@ class NPC(Entity[NPCState]):
         except (KeyError, TypeError):
             pass
 
-    def stop_moving(self) -> None:
-        """
-        Completely stop all movement.
-
-        Be careful, if stopped while in the path, it might not be tile-aligned.
-
-        May continue if move_direction is set.
-
-        """
-        self.velocity3.x = 0
-        self.velocity3.y = 0
-        self.velocity3.z = 0
-
     def cancel_path(self) -> None:
         """
         Stop following a path.

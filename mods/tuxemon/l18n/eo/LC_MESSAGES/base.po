@@ -240,9 +240,6 @@ msgstr "Run"
 msgid "menu_alphabet"
 msgstr "ABCĈDEFGĜHĤIJĴKLMNOPRSŜTUŬVZabcĉdefgĝhĥijĵklmnoprsŝtuŭvz1234567890.-!\0"
 
-msgid "menu_alphabet_n_columns"
-msgstr "14"
-
 # Monster Menu notifications
 msgid "monster_menu_info"
 msgstr "Informoj"

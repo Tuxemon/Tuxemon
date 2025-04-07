@@ -30,71 +30,14 @@ class TuxemonConfig:
 
         # update with customized values
         if config_path:
-            cfg.read(config_path)
+            self.cfg.read(config_path)
 
-        # [display]
-        resolution_x = cfg.getint("display", "resolution_x")
-        resolution_y = cfg.getint("display", "resolution_y")
-        self.resolution = resolution_x, resolution_y
-        self.splash = cfg.getboolean("display", "splash")
-        self.fullscreen = cfg.getboolean("display", "fullscreen")
-        self.fps = cfg.getfloat("display", "fps")
-        self.show_fps = cfg.getboolean("display", "show_fps")
-        self.scaling = cfg.getboolean("display", "scaling")
-        self.collision_map = cfg.getboolean("display", "collision_map")
-        self.large_gui = cfg.getboolean("display", "large_gui")
-        self.window_caption = cfg.get("display", "window_caption")
-
-        # [game]
-        self.data = cfg.get("game", "data")
-        self.cli = cfg.getboolean("game", "cli_enabled")
-        self.net_controller_enabled = cfg.getboolean(
-            "game",
-            "net_controller_enabled",
-        )
-        self.dev_tools = cfg.getboolean("game", "dev_tools")
-        self.recompile_translations = cfg.getboolean(
-            "game",
-            "recompile_translations",
-        )
-        self.skip_titlescreen = cfg.getboolean("game", "skip_titlescreen")
-        self.compress_save: Optional[str] = cfg.get("game", "compress_save")
-        if self.compress_save == "None":
-            self.compress_save = None
-
-        # [gameplay]
-        self.items_consumed_on_failure = cfg.getboolean(
-            "gameplay",
-            "items_consumed_on_failure",
-        )
-        self.encounter_rate_modifier = cfg.getfloat(
-            "gameplay",
-            "encounter_rate_modifier",
-        )
-        self.dialog_speed = cfg.get(
-            "gameplay",
-            "dialog_speed",
-        )
-        assert self.dialog_speed in ("slow", "max")
-        self.unit_measure = cfg.get("gameplay", "unit_measure")
-        assert self.unit_measure in ("metric", "imperial")
-        self.hemisphere = cfg.get("gameplay", "hemisphere")
-        assert self.hemisphere in ("northern", "southern")
-        sound_volume = cfg.getfloat("gameplay", "sound_volume")
-        self.sound_volume = max(0.0, min(sound_volume, 1.0))
-        music_volume = cfg.getfloat("gameplay", "music_volume")
-        self.music_volume = max(0.0, min(music_volume, 1.0))
-
-        # [player]
-        self.player_animation_speed = cfg.getfloat("player", "animation_speed")
-        self.player_npc = cfg.get("player", "player_npc")
-        self.player_walkrate = cfg.getfloat("player", "player_walkrate")
-        self.player_runrate = cfg.getfloat("player", "player_runrate")
+        self.load_config()
 
         self.input = InputConfig(self.cfg)
         self.controller = ControllerConfig(self.cfg)
-        self.logging = LoggingConfig(cfg)
-        self.locale = LocaleConfig(cfg)
+        self.logging = LoggingConfig(self.cfg)
+        self.locale = LocaleConfig(self.cfg)
 
         # not configurable from the file yet
         self.mods = ["tuxemon"]
@@ -104,9 +47,74 @@ class TuxemonConfig:
         with open(self.config_path, "w") as fp:
             self.cfg.write(fp)
 
+    def load_config(self) -> None:
+        # [display]
+        resolution_x = self.cfg.getint("display", "resolution_x")
+        resolution_y = self.cfg.getint("display", "resolution_y")
+        self.resolution = resolution_x, resolution_y
+        self.splash = self.cfg.getboolean("display", "splash")
+        self.fullscreen = self.cfg.getboolean("display", "fullscreen")
+        self.fps = self.cfg.getfloat("display", "fps")
+        self.show_fps = self.cfg.getboolean("display", "show_fps")
+        self.scaling = self.cfg.getboolean("display", "scaling")
+        self.collision_map = self.cfg.getboolean("display", "collision_map")
+        self.large_gui = self.cfg.getboolean("display", "large_gui")
+        self.window_caption = self.cfg.get("display", "window_caption")
+
+        # [game]
+        self.data = self.cfg.get("game", "data")
+        self.cli = self.cfg.getboolean("game", "cli_enabled")
+        self.net_controller_enabled = self.cfg.getboolean(
+            "game",
+            "net_controller_enabled",
+        )
+        self.dev_tools = self.cfg.getboolean("game", "dev_tools")
+        self.recompile_translations = self.cfg.getboolean(
+            "game",
+            "recompile_translations",
+        )
+        self.skip_titlescreen = self.cfg.getboolean("game", "skip_titlescreen")
+        self.compress_save: Optional[str] = self.cfg.get(
+            "game", "compress_save"
+        )
+        if self.compress_save == "None":
+            self.compress_save = None
+
+        # [gameplay]
+        self.items_consumed_on_failure = self.cfg.getboolean(
+            "gameplay",
+            "items_consumed_on_failure",
+        )
+        self.encounter_rate_modifier = self.cfg.getfloat(
+            "gameplay",
+            "encounter_rate_modifier",
+        )
+        self.dialog_speed = self.cfg.get(
+            "gameplay",
+            "dialog_speed",
+        )
+        assert self.dialog_speed in ("slow", "max")
+        self.unit_measure = self.cfg.get("gameplay", "unit_measure")
+        assert self.unit_measure in ("metric", "imperial")
+        self.hemisphere = self.cfg.get("gameplay", "hemisphere")
+        assert self.hemisphere in ("northern", "southern")
+        sound_volume = self.cfg.getfloat("gameplay", "sound_volume")
+        self.sound_volume = max(0.0, min(sound_volume, 1.0))
+        music_volume = self.cfg.getfloat("gameplay", "music_volume")
+        self.music_volume = max(0.0, min(music_volume, 1.0))
+
+        # [player]
+        self.player_animation_speed = self.cfg.getfloat(
+            "player", "animation_speed"
+        )
+        self.player_npc = self.cfg.get("player", "player_npc")
+        self.player_walkrate = self.cfg.getfloat("player", "player_walkrate")
+        self.player_runrate = self.cfg.getfloat("player", "player_runrate")
+
     def reload_config(self) -> None:
         assert self.config_path
         self.cfg.read(self.config_path)
+        self.load_config()
         self.input.cfg = self.cfg
         self.input.reload_input_map()
 

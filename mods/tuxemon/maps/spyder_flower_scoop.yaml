@@ -19,17 +19,17 @@ events:
     type: "event"
   Create Shopkeeper:
     actions:
-    - create_npc spyder_flowerscoop_jarod,1,6
-    - char_face spyder_flowerscoop_jarod,right
-    - set_economy spyder_flowerscoop_jarod,spyder_flower_scoop
+    - create_npc spyder_shopassistant,1,6
+    - char_face spyder_shopassistant,right
+    - set_economy spyder_shopassistant,spyder_flower_scoop
     conditions:
-    - not char_exists spyder_flowerscoop_jarod
+    - not char_exists spyder_shopassistant
     type: "event"
   Open Shop 1:
     actions:
-    - char_face spyder_flowerscoop_jarod,right
+    - char_face spyder_shopassistant,right
     - translated_dialog spyder_scoop_welcome
-    - open_shop spyder_flowerscoop_jarod
+    - open_shop spyder_shopassistant
     conditions:
     - is char_facing_tile player
     - is button_pressed K_RETURN
@@ -38,9 +38,9 @@ events:
     type: "event"
   Open Shop 2:
     actions:
-    - char_face spyder_flowerscoop_jarod,down
+    - char_face spyder_shopassistant,down
     - translated_dialog spyder_scoop_welcome
-    - open_shop spyder_flowerscoop_jarod
+    - open_shop spyder_shopassistant
     conditions:
     - is char_facing_tile player
     - is button_pressed K_RETURN
@@ -93,16 +93,16 @@ events:
     - set_layer
     - unlock_controls
     - camera_position
-    - pathfind spyder_flowerscoop_jarod,1,6
-    - char_face spyder_flowerscoop_jarod,right
+    - pathfind spyder_shopassistant,1,6
+    - char_face spyder_shopassistant,right
     conditions:
     - is variable_set ocaptain:yes
     type: "event"
   Trigger Flashback:
     actions:
     - lock_controls
-    - pathfind spyder_flowerscoop_jarod,3,8
-    - char_face spyder_flowerscoop_jarod,right
+    - pathfind spyder_shopassistant,3,8
+    - char_face spyder_shopassistant,right
     - translated_dialog spyder_drinking_trigger
     - translated_dialog_choice no:yes,ocaptain
     - unlock_controls

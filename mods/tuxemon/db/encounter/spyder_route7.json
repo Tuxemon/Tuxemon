@@ -9,10 +9,10 @@
           "daytime": "true"
         }
       ],
-      "exp_req_mod": 1,
+      "exp_req_mod": 3,
       "level_range": [
-        35,
-        40
+        15,
+        20
       ]
     },
     {
@@ -23,10 +23,10 @@
           "daytime": "true"
         }
       ],
-      "exp_req_mod": 1,
+      "exp_req_mod": 3,
       "level_range": [
-        35,
-        40
+        15,
+        20
       ]
     },
     {
@@ -37,10 +37,10 @@
           "daytime": "true"
         }
       ],
-      "exp_req_mod": 1,
+      "exp_req_mod": 3,
       "level_range": [
-        35,
-        40
+        15,
+        20
       ]
     },
     {
@@ -51,10 +51,10 @@
           "daytime": "false"
         }
       ],
-      "exp_req_mod": 1,
+      "exp_req_mod": 3,
       "level_range": [
-        35,
-        40
+        15,
+        20
       ]
     },
     {
@@ -65,10 +65,10 @@
           "daytime": "false"
         }
       ],
-      "exp_req_mod": 1,
+      "exp_req_mod": 3,
       "level_range": [
-        35,
-        40
+        15,
+        20
       ]
     },
     {
@@ -79,10 +79,10 @@
           "daytime": "false"
         }
       ],
-      "exp_req_mod": 1,
+      "exp_req_mod": 3,
       "level_range": [
-        35,
-        40
+        15,
+        20
       ]
     }
   ]

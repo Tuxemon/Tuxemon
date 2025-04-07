@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import itertools
 import logging
-import os
 import uuid
 from collections import defaultdict
 from collections.abc import Mapping, MutableMapping, Sequence
@@ -28,7 +27,6 @@ from tuxemon.db import Direction
 from tuxemon.entity import Entity
 from tuxemon.graphics import ColorLike
 from tuxemon.map import RegionProperties, TuxemonMap, dirs2, proj
-from tuxemon.map_loader import TMXMapLoader, YAMLEventLoader
 from tuxemon.map_view import MapRenderer
 from tuxemon.math import Vector2
 from tuxemon.movement import Pathfinder
@@ -769,15 +767,21 @@ class WorldState(state.State):
         Parameters:
             map_name: The name of the map to load.
         """
-        logger.debug(f"Loading map '{map_name}' from disk.")
-        map_data = self.load_map_data(map_name)
+        logger.debug(f"Loading map '{map_name}' using Client's MapLoader.")
+        map_data = self.client.map_loader.load_map_data(map_name)
 
         self.current_map = map_data
-        self.collision_map = map_data.collision_map
-        self.surface_map = map_data.surface_map
-        self.collision_lines_map = map_data.collision_lines_map
-        self.map_size = map_data.size
-        self.map_area = map_data.area
+        self.collision_map: MutableMapping[
+            tuple[int, int], Optional[RegionProperties]
+        ] = map_data.collision_map
+        self.surface_map: MutableMapping[tuple[int, int], dict[str, float]] = (
+            map_data.surface_map
+        )
+        self.collision_lines_map: set[tuple[tuple[int, int], Direction]] = (
+            map_data.collision_lines_map
+        )
+        self.map_size: tuple[int, int] = map_data.size
+        self.map_area: int = map_data.area
 
         self.boundary_checker.update_boundaries(self.map_size)
         self.client.load_map(map_data)
@@ -800,43 +804,6 @@ class WorldState(state.State):
         player = local_session.player
         self.add_player(player)
         self.stop_char(player)
-
-    def load_map_data(self, path: str) -> TuxemonMap:
-        """
-        Returns map data as a dictionary to be used for map changing.
-
-        Parameters:
-            path: Path of the map to load.
-
-        Returns:
-            Loaded map.
-
-        """
-        txmn_map = TMXMapLoader().load(path)
-        yaml_files = [path.replace(".tmx", ".yaml")]
-
-        if txmn_map.scenario:
-            _scenario = prepare.fetch("maps", f"{txmn_map.scenario}.yaml")
-            yaml_files.append(_scenario)
-
-        _events = list(txmn_map.events)
-        _inits = list(txmn_map.inits)
-        events = {"event": _events, "init": _inits}
-
-        yaml_loader = YAMLEventLoader()
-
-        for yaml_file in yaml_files:
-            if os.path.exists(yaml_file):
-                yaml_data = yaml_loader.load_events(yaml_file, "event")
-                events["event"].extend(yaml_data["event"])
-                yaml_data = yaml_loader.load_events(yaml_file, "init")
-                events["init"].extend(yaml_data["init"])
-            else:
-                logger.warning(f"YAML file {yaml_file} not found")
-
-        txmn_map.events = events["event"]
-        txmn_map.inits = events["init"]
-        return txmn_map
 
     @no_type_check  # only used by multiplayer which is disabled
     def check_interactable_space(self) -> bool:

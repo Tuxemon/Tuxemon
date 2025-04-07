@@ -1,22 +1,18 @@
 [
   {
     "slug": "spyder_routee_calliope",
-    "template": 
-      {
-        "sprite_name": "knight_red",
-        "combat_front": "enforcer_agent",
-        "slug": "enforcer_agent"
-      }
-  
+    "template": {
+      "sprite_name": "knight_red",
+      "combat_front": "enforcer_agent",
+      "slug": "enforcer_agent"
+    }
   },
   {
     "slug": "spyder_routee_aiolos",
-    "template": 
-      {
-        "sprite_name": "knight_green",
-        "combat_front": "enforcer_rookie",
-        "slug": "enforcer_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "knight_green",
+      "combat_front": "enforcer_rookie",
+      "slug": "enforcer_rookie"
+    }
   }
 ]

@@ -91,7 +91,9 @@ class StartDoubleBattleAction(EventAction):
         )
         # music
         filename = env.battle_music if not self.music else self.music
-        self.session.client.current_music.play(filename)
+        self.session.client.event_engine.execute_action(
+            "play_music", [filename], True
+        )
 
     def update(self) -> None:
         try:

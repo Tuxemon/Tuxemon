@@ -1,201 +1,162 @@
 [
   {
     "slug": "spyder_greenwash_aissa",
-    "template": 
-      {
-        "sprite_name": "nurse_red",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse_red",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   },
   {
     "slug": "spyder_greenwash_alex",
-    "template": 
-      {
-        "sprite_name": "florist_rose",
-        "combat_front": "florist",
-        "slug": "florist"
-      }
-  
+    "template": {
+      "sprite_name": "florist_rose",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
   },
   {
     "slug": "spyder_greenwash_broer",
-    "template": 
-      {
-        "sprite_name": "nurse_lapi",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse_lapi",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   },
   {
     "slug": "spyder_greenwash_chip",
-    "template": 
-      {
-        "sprite_name": "scientist_fiery",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_fiery",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_greenwash_clarence",
-    "template": 
-      {
-        "sprite_name": "scientist_brown",
-        "combat_front": "aviator",
-        "slug": "aviator"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_brown",
+      "combat_front": "aviator",
+      "slug": "aviator"
+    }
   },
   {
     "slug": "spyder_greenwash_dempsey",
-    "template": 
-      {
-        "sprite_name": "rogue_copper",
-        "combat_front": "rogue",
-        "slug": "rogue"
-      }
-  
+    "template": {
+      "sprite_name": "rogue_copper",
+      "combat_front": "rogue",
+      "slug": "rogue"
+    }
   },
   {
     "slug": "spyder_greenwash_dippel",
-    "template": 
-      {
-        "sprite_name": "scientist_fiery",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_fiery",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_greenwash_gluck",
-    "template": 
-      {
-        "sprite_name": "florist_fiery",
-        "combat_front": "florist",
-        "slug": "florist"
-      }
-  
+    "template": {
+      "sprite_name": "florist_fiery",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
   },
   {
     "slug": "spyder_greenwash_gregor",
-    "template": 
-      {
-        "sprite_name": "scientist_brown",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_brown",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_greenwash_guard",
-    "template": 
-      {
-        "sprite_name": "soldier",
-        "combat_front": "soldier",
-        "slug": "soldier"
-      }
-  
+    "template": {
+      "sprite_name": "soldier",
+      "combat_front": "soldier",
+      "slug": "soldier"
+    }
   },
   {
     "slug": "spyder_greenwash_heidenstam",
-    "template": 
-      {
-        "sprite_name": "postboy_red",
-        "combat_front": "cooldude",
-        "slug": "postboy"
-      }
-  
+    "template": {
+      "sprite_name": "postboy_red",
+      "combat_front": "cooldude",
+      "slug": "postboy"
+    }
   },
   {
     "slug": "spyder_greenwash_hunt",
-    "template": 
-      {
-        "sprite_name": "scientist_black",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_black",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_greenwash_lewie",
-    "template": 
-      {
-        "sprite_name": "firefighter",
-        "combat_front": "firefighter",
-        "slug": "firefighter"
-      }
-  
+    "template": {
+      "sprite_name": "firefighter",
+      "combat_front": "firefighter",
+      "slug": "firefighter"
+    }
   },
   {
     "slug": "spyder_greenwash_lewis",
-    "template": 
-      {
-        "sprite_name": "firefighter",
-        "combat_front": "firefighter",
-        "slug": "firefighter"
-      }
-  
+    "template": {
+      "sprite_name": "firefighter",
+      "combat_front": "firefighter",
+      "slug": "firefighter"
+    }
   },
   {
     "slug": "spyder_greenwash_looten",
-    "template": 
-      {
-        "sprite_name": "goth",
-        "combat_front": "goth",
-        "slug": "goth"
-      }
-  
+    "template": {
+      "sprite_name": "goth",
+      "combat_front": "goth",
+      "slug": "goth"
+    }
   },
   {
     "slug": "spyder_greenwash_louis",
-    "template": 
-      {
-        "sprite_name": "scientist",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_greenwash_moreau",
-    "template": 
-      {
-        "sprite_name": "scientist_black",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_black",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_greenwash_morehouse",
-    "template": 
-      {
-        "sprite_name": "scientist",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
-  },{
+    "template": {
+      "sprite_name": "scientist",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
+  },
+  {
     "slug": "spyder_greenwash_norton",
-    "template": 
-      {
-        "sprite_name": "firefighter",
-        "combat_front": "firefighter",
-        "slug": "firefighter"
-      }
-  
+    "template": {
+      "sprite_name": "firefighter",
+      "combat_front": "firefighter",
+      "slug": "firefighter"
+    }
   },
   {
     "slug": "spyder_greenwash_selby",
-    "template": 
-      {
-        "sprite_name": "scientist_fiery",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_fiery",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   }
 ]

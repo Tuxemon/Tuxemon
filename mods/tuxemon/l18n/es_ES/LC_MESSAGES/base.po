@@ -568,9 +568,6 @@ msgstr "Punta de Ala"
 msgid "menu_alphabet"
 msgstr "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ\0abcdefghijklmnñopqrstuvwxyz\01234567890.-¡!"
 
-msgid "menu_alphabet_n_columns"
-msgstr "14"
-
 msgid "menu_char_variants"
 msgstr "AÁ\n"
 "EÉ\n"

@@ -295,29 +295,6 @@ def create_animation(
     return animation
 
 
-def scale_tile(
-    surface: pygame.surface.Surface,
-    tile_size: int,
-) -> pygame.surface.Surface:
-    """
-    Scales a map tile based on resolution.
-
-    Parameters:
-        surface: Surface to rescale.
-        tile_size: Desired size.
-
-    Returns:
-        The rescaled surface.
-
-    """
-    if type(surface) is pygame.Surface:
-        surface = pygame.transform.scale(surface, tile_size)
-    else:
-        surface.scale(tile_size)
-
-    return surface
-
-
 def scale_sprite(
     sprite: Sprite,
     ratio: float,

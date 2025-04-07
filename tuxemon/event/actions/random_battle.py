@@ -100,7 +100,9 @@ class RandomBattleAction(EventAction):
             )
         )
 
-        self.session.client.current_music.play(env.battle_music)
+        self.session.client.event_engine.execute_action(
+            "play_music", [env.battle_music], True
+        )
 
     def update(self) -> None:
         try:

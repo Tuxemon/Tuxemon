@@ -711,6 +711,8 @@
     <property name="act3" value="create_npc rock,38,38,stand"/>
     <property name="cond1" value="is variable_set go_get_tuxemon:yes"/>
     <property name="cond2" value="not variable_set havetuxemon:yes"/>
+    <property name="cond3" value="not char_exists postboy"/>
+    <property name="cond4" value="not char_exists rock"/>
    </properties>
   </object>
   <object id="148" name="myrock" type="event" x="592" y="624" width="16" height="16">
@@ -779,7 +781,6 @@
     <property name="act1" value="remove_npc postboy"/>
     <property name="act2" value="remove_npc rock"/>
     <property name="cond1" value="is variable_set havetuxemon:yes"/>
-    <property name="cond2" value="is char_exists postboy"/>
    </properties>
   </object>
   <object id="157" name="propeller cat" type="event" x="64" y="64" width="16" height="64">

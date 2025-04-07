@@ -1,72 +1,58 @@
 [
   {
     "slug": "spyder_park_reception",
-    "template": 
-      {
-        "sprite_name": "magician_grey",
-        "combat_front": "magician",
-        "slug": "magician"
-      }
-  
+    "template": {
+      "sprite_name": "magician_grey",
+      "combat_front": "magician",
+      "slug": "magician"
+    }
   },
   {
     "slug": "spyder_park_florist",
-    "template": 
-      {
-        "sprite_name": "florist_fiery",
-        "combat_front": "florist",
-        "slug": "florist"
-      }
-  
+    "template": {
+      "sprite_name": "florist_fiery",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
   },
   {
     "slug": "spyder_park_guardian",
-    "template": 
-      {
-        "sprite_name": "magician_fiery",
-        "combat_front": "magician",
-        "slug": "magician"
-      }
-  
+    "template": {
+      "sprite_name": "magician_fiery",
+      "combat_front": "magician",
+      "slug": "magician"
+    }
   },
   {
     "slug": "spyder_park_soldier",
-    "template": 
-      {
-        "sprite_name": "soldier",
-        "combat_front": "soldier",
-        "slug": "soldier"
-      }
-  
+    "template": {
+      "sprite_name": "soldier",
+      "combat_front": "soldier",
+      "slug": "soldier"
+    }
   },
   {
     "slug": "spyder_park_scientist",
-    "template": 
-      {
-        "sprite_name": "scientist",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_park_professor",
-    "template": 
-      {
-        "sprite_name": "professor_brown",
-        "combat_front": "professor",
-        "slug": "professor"
-      }
-  
+    "template": {
+      "sprite_name": "professor_brown",
+      "combat_front": "professor",
+      "slug": "professor"
+    }
   },
   {
     "slug": "spyder_park_tennisplayer",
-    "template": 
-      {
-        "sprite_name": "tennisplayer",
-        "combat_front": "tennisplayer",
-        "slug": "tennisplayer"
-      }
-  
+    "template": {
+      "sprite_name": "tennisplayer",
+      "combat_front": "tennisplayer",
+      "slug": "tennisplayer"
+    }
   }
 ]

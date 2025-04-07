@@ -52,10 +52,10 @@
   </object>
   <object id="20" name="Create Shopkeeper" type="event" x="16" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_cottonscoop_joe,1,6"/>
-    <property name="act2" value="char_face spyder_cottonscoop_joe,right"/>
-    <property name="act3" value="set_economy spyder_cottonscoop_joe,spyder_cotton_scoop"/>
-    <property name="cond1" value="not char_exists spyder_cottonscoop_joe"/>
+    <property name="act1" value="create_npc spyder_shopkeeper,1,6"/>
+    <property name="act2" value="char_face spyder_shopkeeper,right"/>
+    <property name="act3" value="set_economy spyder_shopkeeper,spyder_cotton_scoop"/>
+    <property name="cond1" value="not char_exists spyder_shopkeeper"/>
    </properties>
   </object>
   <object id="21" name="Create Assistant" type="event" x="112" y="128" width="16" height="16">
@@ -74,7 +74,7 @@
   <object id="23" name="Devices, no explain" type="event" x="96" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_cottonscoop_devicenoexplan"/>
-    <property name="act2" value="pathfind spyder_cottonscoop_joe,1,6"/>
+    <property name="act2" value="pathfind spyder_shopkeeper,1,6"/>
     <property name="act3" value="set_variable heardcapture:null"/>
     <property name="cond1" value="is variable_set heardcapture:yes"/>
    </properties>
@@ -84,7 +84,7 @@
     <property name="act1" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act12" value="translated_dialog spyder_cottonscoop_deviceexplan"/>
-    <property name="act20" value="pathfind spyder_cottonscoop_joe,1,6"/>
+    <property name="act20" value="pathfind spyder_shopkeeper,1,6"/>
     <property name="act21" value="pathfind spyder_shopassistant,6,9"/>
     <property name="act22" value="translated_dialog spyder_cottonscoop_deviceexplan2"/>
     <property name="act30" value="set_variable heardcapture:null"/>
@@ -96,8 +96,8 @@
    <properties>
     <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
-    <property name="act20" value="pathfind spyder_cottonscoop_joe,5,9"/>
-    <property name="act21" value="char_face spyder_cottonscoop_joe,down"/>
+    <property name="act20" value="pathfind spyder_shopkeeper,5,9"/>
+    <property name="act21" value="char_face spyder_shopkeeper,down"/>
     <property name="act22" value="translated_dialog spyder_cottonscoop_deviceoffer"/>
     <property name="act23" value="translated_dialog_choice yes:no,heardcapture"/>
     <property name="act30" value="add_item tuxeball"/>
@@ -119,18 +119,18 @@
   </object>
   <object id="30" name="Open Shop" type="event" x="32" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="char_face spyder_cottonscoop_joe,right"/>
+    <property name="act1" value="char_face spyder_shopkeeper,right"/>
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
-    <property name="act3" value="open_shop spyder_cottonscoop_joe"/>
+    <property name="act3" value="open_shop spyder_shopkeeper"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="31" name="Open Shop" type="event" x="16" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="char_face spyder_cottonscoop_joe,down"/>
+    <property name="act1" value="char_face spyder_shopkeeper,down"/>
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
-    <property name="act3" value="open_shop spyder_cottonscoop_joe"/>
+    <property name="act3" value="open_shop spyder_shopkeeper"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

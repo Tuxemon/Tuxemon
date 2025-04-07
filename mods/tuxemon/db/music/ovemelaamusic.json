@@ -1,0 +1,82 @@
+[
+    {
+        "slug" : "music_enterin_the_skies",
+        "file" : "OveMelaaFullScores/Enterin The Skies.mp3"
+    },
+    {
+        "slug": "music_earth_is_all_we_have",
+        "file": "OveMelaaFullScores/Ove - Earth Is All We Have .ogg"
+    },
+    {
+        "slug": "music_approaching_the_green_grass",
+        "file": "OveMelaaFullScores/Ove Melaa - Approaching The Green Grass.ogg"
+    },
+    {
+        "slug": "music_bell_hell",
+        "file": "OveMelaaFullScores/Ove Melaa - BellHell.ogg"
+    },
+    {
+        "slug": "music_dark_blue",
+        "file": "OveMelaaFullScores/Ove Melaa - Dark Blue.ogg"
+    },
+    {
+        "slug": "music_dead_buried_cold",
+        "file": "OveMelaaFullScores/Ove Melaa - Dead, Buried and Cold(Ambient Pad).ogg"
+    },
+    {
+        "slug": "music_deader_better",
+        "file": "OveMelaaFullScores/Ove Melaa - Deader = Better.ogg"
+    },
+    {
+        "slug": "music_flesheating_mothers_no_loop",
+        "file":"OveMelaaFullScores/Ove Melaa - Flesheating Mothers Part XVIII.ogg"
+    },
+    {
+        "slug": "music_flew",
+        "file":"OveMelaaFullScores/Ove Melaa - Flew.mp3"
+    },
+    {
+        "slug": "music_gloomey",
+        "file":"OveMelaaFullScores/Ove Melaa - Gloomey.ogg"
+    },
+    {
+        "slug": "music_goat",
+        "file":"OveMelaaFullScores/Ove Melaa - GOAT.ogg"
+    },
+    {
+        "slug": "music_hero_within",
+        "file": "OveMelaaFullScores/Ove Melaa - Hero Within.mp3"
+    },
+    {
+        "slug": "music_high_stakes_low_chances",
+        "file":"OveMelaaFullScores/Ove Melaa - High Stakes,Low Chances.mp3"
+    },
+    {
+        "slug": "music_i_have_just_been_eaten",
+        "file":"OveMelaaFullScores/Ove Melaa - I have just been eaten.ogg"
+    },
+    {
+        "slug": "music_infection_by_chewing",
+        "file":"OveMelaaFullScores/Ove Melaa - Infection By Chewing.ogg"
+    },
+    {
+        "slug": "music_italo_loop_incomplete",
+        "file":"OveMelaaFullScores/Ove Melaa - ItaloLoopDikkoDikko.ogg"
+    },
+    {
+        "slug": "music_they_came_by_boat",
+        "file": "OveMelaaFullScores/Ove Melaa - They Came By Boat.ogg"
+    },
+    {
+        "slug": "music_zombie_ambient",
+        "file":"OveMelaaFullScores/Ove Melaa - ZombieAmbient.ogg"
+    },
+    {
+        "slug": "music_flesheating_mothers_loop",
+        "file": "OveMelaaFullScores/OveMelaa-FlesheatingMothers-loopfix.ogg"
+    },
+    {
+        "slug": "music_italo_unlimited_loop",
+        "file": "OveMelaaFullScores/OveMelaa-ItaloUnlimited-loopfix.mp3"
+    }
+]

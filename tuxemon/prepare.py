@@ -462,20 +462,20 @@ def fetch(*args: str) -> str:
     for mod_name in CONFIG.mods:
         # when assets are in folder with the source
         path = os.path.join(paths.mods_folder, mod_name, relative_path)
-        logger.debug("searching asset: %s", path)
+        logger.debug(f"searching asset: {path}")
         if os.path.exists(path):
             return path
 
         # when assets are in a system path (like for os packages and android)
         for root_path in paths.system_installed_folders:
             path = os.path.join(root_path, "mods", mod_name, relative_path)
-            logger.debug("searching asset: %s", path)
+            logger.debug(f"searching asset: {path}")
             if os.path.exists(path):
                 return path
 
         # mods folder is in same folder as the launch script
         path = os.path.join(paths.BASEDIR, "mods", mod_name, relative_path)
-        logger.debug("searching asset: %s", path)
+        logger.debug(f"searching asset: {path}")
         if os.path.exists(path):
             return path
 

@@ -98,7 +98,7 @@ class InputMenu(Menu[InputMenuObj]):
         self.update_char_counter()
 
         self.char_counter.rect.topleft = (
-            self.text_area.rect.right + (self.rect.width * 0.25),
+            int(self.text_area.rect.right + (self.rect.width * 0.25)),
             self.text_area.rect.top,
         )
         self.sprites.add(self.char_counter)

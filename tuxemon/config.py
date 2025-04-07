@@ -10,6 +10,7 @@ from typing import Any, Optional
 import pygame
 
 from tuxemon.animation import Animation
+from tuxemon.constants import paths
 from tuxemon.platform.const import buttons, events
 
 Animation.default_transition = "out_quint"
@@ -41,6 +42,7 @@ class TuxemonConfig:
 
         # not configurable from the file yet
         self.mods = ["tuxemon"]
+        assert all(mod in paths.mods_subfolders for mod in self.mods)
 
     def save_config(self) -> None:
         assert self.config_path

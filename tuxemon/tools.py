@@ -204,16 +204,13 @@ def open_dialog(
         The pushed dialog state.
 
     """
-    from tuxemon.states.dialog import DialogState
-
     rect = calc_dialog_rect(session.client.screen.get_rect(), position)
     return session.client.push_state(
-        DialogState(
-            text=text,
-            avatar=avatar,
-            rect=rect,
-            box_style=box_style,
-        )
+        "DialogState",
+        text=text,
+        avatar=avatar,
+        rect=rect,
+        box_style=box_style,
     )
 
 
@@ -233,13 +230,10 @@ def open_choice_dialog(
         The pushed dialog choice state.
 
     """
-    from tuxemon.states.choice.choice_state import ChoiceState
-
     return session.client.push_state(
-        ChoiceState(
-            menu=menu,
-            escape_key_exits=escape_key_exits,
-        )
+        "ChoiceState",
+        menu=menu,
+        escape_key_exits=escape_key_exits,
     )
 
 

@@ -49,8 +49,10 @@ class DialogState(PopUpMenu[None]):
             "font_color": self.font_color,
             "font_shadow": self.font_shadow_color,
             "border": self.borders_filename,
+            "alignment": "left",
+            "v_alignment": "top",
         }
-        box_style = box_style or {}
+
         final_box_style = default_box_style.copy()
         final_box_style.update(box_style)
 

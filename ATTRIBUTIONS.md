@@ -1030,6 +1030,28 @@ is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/
 
 * ["XP Transmitter"](https://wiki.tuxemon.org/File:Pixel_icons_by_oceansdream24.png) [http://opengameart.org/content/various-inventory-24-pixel-icon-set CC BY 3.0 on OGA, from OceansDream]
 
+* ["Antidote Grapes"](https://wiki.tuxemon.org/File:I_C_Grapes_24x24.png) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Cure Festering"](https://wiki.tuxemon.org/File:I_C_Pear_24x24.png) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Die"](https://wiki.tuxemon.org/File:Die.png) Adapted by Sanglorian from the Superpowers Asset Packs.
+
+* ["Feather"](https://wiki.tuxemon.org/File:Feather_.png) Adapted by Sanglorian from the Superpowers Asset Packs.
+
+* ["Flute"](https://wiki.tuxemon.org/File:Flute_.png) Adapted by Sanglorian from the Superpowers Asset Packs.
+
+* ["Horseshoe"](https://wiki.tuxemon.org/File:Horseshoe.png) Adapted by Sanglorian from the Superpowers Asset Packs.
+
+* ["Marble"](https://wiki.tuxemon.org/File:Pixel_icons_by_oceansdream23.png) [http://opengameart.org/content/various-inventory-24-pixel-icon-set CC BY 3.0 on OGA, from OceansDream]
+
+* ["Open Hand"](https://wiki.tuxemon.org/File:Pixel_icons_by_oceansdream32.png) [http://opengameart.org/content/various-inventory-24-pixel-icon-set CC BY 3.0 on OGA, from OceansDream]
+
+* ["Refreshing Slice"](https://wiki.tuxemon.org/File:I_C_Watermellon_24x24.png) Adapted by Sanglorian from a sprite by Henrique Lazarini from the CC0 "496 pixel art icons for medieval/fantasy RPG" set.
+
+* ["Toy Bear"](https://wiki.tuxemon.org/File:Plushmouboo.png) A sprite from [https://github.com/alphaonex86/CatchChallenger-datapack Catch Challenger (CC BY)], art director Jordan Brule. Project developer Herman Brule.
+
+* ["XP Feeder"](https://wiki.tuxemon.org/File:Pixel_icons_by_oceansdream35.png) [http://opengameart.org/content/various-inventory-24-pixel-icon-set CC BY 3.0 on OGA, from OceansDream]
+
 ### Item Animations
 
 * ["Capture 1"](https://wiki.tuxemon.org/File:Capture_1.gif)

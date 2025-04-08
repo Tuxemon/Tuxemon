@@ -755,6 +755,74 @@ msgstr "XP Transmitter"
 msgid "xp_transmitter_description"
 msgstr "When this item is in your possession, all monsters that did not participate in defeating a monster get half of the XP. The remainder goes to the monsters that did participate."
 
+# Held Items
+
+msgid "antidote_grapes"
+msgstr "Antidote Grapes"
+
+msgid "antidote_grapes_description"
+msgstr "Pop a few of these and you'll laugh in the face of poison! Delicious and detoxifying all in one bite."
+
+msgid "cure_festering"
+msgstr "Cure Festering"
+
+msgid "cure_festering_description"
+msgstr "Rinse out the wound and you'll be right."
+
+msgid "die"
+msgstr "Die"
+
+msgid "die_description"
+msgstr "Confused? Roll the die and do whatever it says!"
+
+msgid "feather"
+msgstr "Feather"
+
+msgid "feather_description"
+msgstr "Tickle your assailant and force them to relinquish their grip!"
+
+msgid "flute"
+msgstr "Flute"
+
+msgid "flute_description"
+msgstr "Play a soothing tune and stay sharp! With this flute, nodding off and dozing are no match for you."
+
+msgid "horseshoe"
+msgstr "Horseshoe"
+
+msgid "horseshoe_description"
+msgstr "On the wrong foot? Put a horseshoe on it!"
+
+msgid "marble"
+msgstr "Marble"
+
+msgid "marble_description"
+msgstr "Never lose your marbles again!"
+
+msgid "open_hand"
+msgstr "Open Hand"
+
+msgid "open_hand_description"
+msgstr "Attacks made by a tuxemon holding this item will never reduce a foe below 1 HP."
+
+msgid "refreshing_slice"
+msgstr "Refreshing Slice"
+
+msgid "refreshing_slice_description"
+msgstr "Take a juicy bite and feel the fatigue melt away. Exhaustion doesn't stand a chance against this revitalizing treat!"
+
+msgid "toy_bear"
+msgstr "Toy Bear"
+
+msgid "toy_bear_description"
+msgstr "Substitute this toy bear for yourself when your life energy is being sapped!"
+
+msgid "xp_feeder"
+msgstr "XP Feeder"
+
+msgid "xp_feeder_description"
+msgstr "A tuxemon that holds this item receives half of all XP gained by your party, regardless of whether it participated in battle.\n The remainder of the XP is split between monsters that did participate."
+
 # Map Types:
 
 msgid "no_type"

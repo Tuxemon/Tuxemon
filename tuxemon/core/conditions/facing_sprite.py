@@ -5,8 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from tuxemon.core.core_condition import CoreCondition
 from tuxemon.event import get_npc_pos
-from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.map import get_coords, get_direction
 
 if TYPE_CHECKING:
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class FacingSpriteCondition(ItemCondition):
+class FacingSpriteCondition(CoreCondition):
     """
     Checks if the player is facing a specific sprite.
     (eg. maniac, swimmer, log)
@@ -24,7 +24,7 @@ class FacingSpriteCondition(ItemCondition):
     name = "facing_sprite"
     sprite: str
 
-    def test(self, target: Monster) -> bool:
+    def test_with_monster(self, target: Monster) -> bool:
         player = self.session.player
         client = self.session.client
         tiles = get_coords(player.tile_pos, client.map_size)

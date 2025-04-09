@@ -5,14 +5,14 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.item.itemcondition import ItemCondition
+from tuxemon.core.core_condition import CoreCondition
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
 @dataclass
-class CanEvolveCondition(ItemCondition):
+class CanEvolveCondition(CoreCondition):
     """
     Checks if the target Monster meets its evolution criteria.
 
@@ -22,7 +22,7 @@ class CanEvolveCondition(ItemCondition):
 
     name = "can_evolve"
 
-    def test(self, target: Monster) -> bool:
+    def test_with_monster(self, target: Monster) -> bool:
         context = {
             "map_inside": self.session.client.map_inside,
             "use_item": True,

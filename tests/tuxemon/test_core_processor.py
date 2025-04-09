@@ -3,15 +3,13 @@
 import unittest
 from unittest.mock import MagicMock, Mock
 
+from tuxemon.core.core_condition import CoreCondition
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.item.item import Item
-from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.monster import Monster
 from tuxemon.status.status import Status
-from tuxemon.status.statuscondition import StatusCondition
 from tuxemon.status.statuseffect import StatusEffect, StatusEffectResult
-from tuxemon.technique.techcondition import TechCondition
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
@@ -115,9 +113,7 @@ class TestEffectProcessor(unittest.TestCase):
 
 class TestConditionProcessor(unittest.TestCase):
     def setUp(self):
-        self.status_condition = MagicMock(spec=StatusCondition)
-        self.tech_condition = MagicMock(spec=TechCondition)
-        self.item_condition = MagicMock(spec=ItemCondition)
+        self.core_condition = MagicMock(spec=CoreCondition)
         self.target_monster = MagicMock(spec=Monster)
 
     def test_no_conditions(self):
@@ -125,60 +121,87 @@ class TestConditionProcessor(unittest.TestCase):
         self.assertTrue(processor.validate(self.target_monster))
 
     def test_no_target(self):
-        processor = ConditionProcessor(conditions=[self.status_condition])
+        processor = ConditionProcessor(conditions=[self.core_condition])
         self.assertFalse(processor.validate(None))
 
     def test_condition_passes_with_op(self):
-        self.status_condition._op = True
-        self.status_condition.test.return_value = True
+        self.core_condition._op = True
+        self.core_condition.test_with_monster.return_value = True
 
-        processor = ConditionProcessor(conditions=[self.status_condition])
+        processor = ConditionProcessor(conditions=[self.core_condition])
         self.assertTrue(processor.validate(self.target_monster))
 
     def test_condition_fails_with_op(self):
-        self.status_condition._op = True
-        self.status_condition.test.return_value = False
+        self.core_condition._op = True
+        self.core_condition.test_with_monster.return_value = False
 
-        processor = ConditionProcessor(conditions=[self.status_condition])
+        processor = ConditionProcessor(conditions=[self.core_condition])
         self.assertFalse(processor.validate(self.target_monster))
 
     def test_condition_passes_without_op(self):
-        self.status_condition._op = False
-        self.status_condition.test.return_value = False
+        self.core_condition._op = False
+        self.core_condition.test_with_monster.return_value = False
 
-        processor = ConditionProcessor(conditions=[self.status_condition])
+        processor = ConditionProcessor(conditions=[self.core_condition])
         self.assertTrue(processor.validate(self.target_monster))
 
     def test_condition_fails_without_op(self):
-        self.status_condition._op = False
-        self.status_condition.test.return_value = True
+        self.core_condition._op = False
+        self.core_condition.test_with_monster.return_value = True
 
-        processor = ConditionProcessor(conditions=[self.status_condition])
-        self.assertFalse(processor.validate(self.target_monster))
-
-    def test_multiple_conditions_all_pass(self):
-        self.status_condition._op = True
-        self.status_condition.test.return_value = True
-        self.tech_condition._op = False
-        self.tech_condition.test.return_value = False
-
-        processor = ConditionProcessor(
-            conditions=[self.status_condition, self.tech_condition]
-        )
-        self.assertTrue(processor.validate(self.target_monster))
-
-    def test_multiple_conditions_one_fails(self):
-        self.status_condition._op = True
-        self.status_condition.test.return_value = True
-        self.tech_condition._op = False
-        self.tech_condition.test.return_value = True
-
-        processor = ConditionProcessor(
-            conditions=[self.status_condition, self.tech_condition]
-        )
+        processor = ConditionProcessor(conditions=[self.core_condition])
         self.assertFalse(processor.validate(self.target_monster))
 
     def test_invalid_condition_type(self):
         invalid_condition = MagicMock()
         processor = ConditionProcessor(conditions=[invalid_condition])
         self.assertFalse(processor.validate(self.target_monster))
+
+    def test_multiple_conditions_all_pass(self):
+        self.core_condition._op = True
+        self.core_condition.test_with_monster.return_value = True
+
+        another_condition = MagicMock(spec=CoreCondition)
+        another_condition._op = True
+        another_condition.test_with_monster.return_value = True
+
+        processor = ConditionProcessor(
+            conditions=[self.core_condition, another_condition]
+        )
+        self.assertTrue(processor.validate(self.target_monster))
+
+    def test_multiple_conditions_one_fails(self):
+        self.core_condition._op = True
+        self.core_condition.test_with_monster.return_value = True
+
+        another_condition = MagicMock(spec=CoreCondition)
+        another_condition._op = True
+        another_condition.test_with_monster.return_value = False
+
+        processor = ConditionProcessor(
+            conditions=[self.core_condition, another_condition]
+        )
+        self.assertFalse(processor.validate(self.target_monster))
+
+    def test_unsupported_target_type(self):
+        unsupported_target = MagicMock()
+        processor = ConditionProcessor(conditions=[self.core_condition])
+        self.assertFalse(processor.validate(unsupported_target))
+
+    def test_empty_target(self):
+        empty_target = MagicMock()
+        processor = ConditionProcessor(conditions=[self.core_condition])
+        self.assertFalse(processor.validate(empty_target))
+
+    def test_method_invocation_count(self):
+        self.core_condition._op = True
+        self.core_condition.test_with_monster.return_value = True
+        processor = ConditionProcessor(conditions=[self.core_condition])
+        processor.validate(self.target_monster)
+        self.core_condition.test_with_monster.assert_called_once_with(
+            self.target_monster
+        )
+
+    def test_empty_conditions_with_none_target(self):
+        processor = ConditionProcessor(conditions=[])
+        self.assertTrue(processor.validate(None))

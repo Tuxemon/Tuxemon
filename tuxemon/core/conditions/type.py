@@ -5,14 +5,14 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.item.itemcondition import ItemCondition
+from tuxemon.core.core_condition import CoreCondition
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
 @dataclass
-class TypeCondition(ItemCondition):
+class TypeCondition(CoreCondition):
     """
     Compares the target Monster's type against the given types.
 
@@ -23,7 +23,7 @@ class TypeCondition(ItemCondition):
     name = "type"
     elements: str
 
-    def test(self, target: Monster) -> bool:
+    def test_with_monster(self, target: Monster) -> bool:
         ret: bool = False
         elements: list[str] = []
         if self.elements.find(":"):

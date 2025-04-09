@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
-from tuxemon.technique.techcondition import TechCondition
+from tuxemon.core.core_condition import CoreCondition
 from tuxemon.tools import compare
 
 if TYPE_CHECKING:
@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class CurrentHitPointsCondition(TechCondition):
+class CurrentHitPointsCondition(CoreCondition):
     """
     Compares the Monster's current hitpoints against the given value.
 
@@ -36,6 +36,6 @@ class CurrentHitPointsCondition(TechCondition):
     operator: str
     hp: Union[int, float]
 
-    def test(self, target: Monster) -> bool:
+    def test_with_monster(self, target: Monster) -> bool:
         value = target.hp * self.hp if type(self.hp) is float else self.hp
         return compare(self.operator, target.current_hp, value)

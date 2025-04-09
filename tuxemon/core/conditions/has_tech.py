@@ -5,14 +5,14 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.item.itemcondition import ItemCondition
+from tuxemon.core.core_condition import CoreCondition
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
 @dataclass
-class HasTechCondition(ItemCondition):
+class HasTechCondition(CoreCondition):
     """
     Checks if the monster knows already the technique.
 
@@ -23,7 +23,7 @@ class HasTechCondition(ItemCondition):
     name = "has_tech"
     expected: str
 
-    def test(self, target: Monster) -> bool:
+    def test_with_monster(self, target: Monster) -> bool:
         if any(t for t in target.moves if t.slug == self.expected):
             return True
         else:

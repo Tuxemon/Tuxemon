@@ -5,15 +5,15 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from tuxemon.core.core_condition import CoreCondition
 from tuxemon.db import MapType
-from tuxemon.item.itemcondition import ItemCondition
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
 @dataclass
-class LocationTypeCondition(ItemCondition):
+class LocationTypeCondition(CoreCondition):
     """
     Checks against the location type the player's in.
 
@@ -24,7 +24,7 @@ class LocationTypeCondition(ItemCondition):
     name = "location_type"
     location_type: str
 
-    def test(self, target: Monster) -> bool:
+    def test_with_monster(self, target: Monster) -> bool:
         types = [maps.value for maps in MapType]
         if self.location_type in types:
             if self.session.client.map_type == self.location_type:

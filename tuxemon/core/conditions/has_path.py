@@ -5,32 +5,26 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.item.itemcondition import ItemCondition
+from tuxemon.core.core_condition import CoreCondition
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
 @dataclass
-class HasStatusCondition(ItemCondition):
+class HasPathCondition(CoreCondition):
     """
-    Checks if the creature has a status or not.
+    Checks against the creature's evolution paths.
 
-    Parameters:
-    -
-
-    Example:
-    "conditions": [
-        "is has_status"
-        "is has_status xxx"
-    ],
+    Accepts a single parameter and returns whether it is applied.
 
     """
 
-    name = "has_status"
+    name = "has_path"
+    expected: str
 
-    def test(self, target: Monster) -> bool:
-        if target.status:
+    def test_with_monster(self, target: Monster) -> bool:
+        if any(t for t in target.evolutions if t.item == self.expected):
             return True
         else:
             return False

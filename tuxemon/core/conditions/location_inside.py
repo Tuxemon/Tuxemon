@@ -5,14 +5,14 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.item.itemcondition import ItemCondition
+from tuxemon.core.core_condition import CoreCondition
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
 @dataclass
-class LocationInsideCondition(ItemCondition):
+class LocationInsideCondition(CoreCondition):
     """
     Checks against the location type the player's in.
 
@@ -23,7 +23,7 @@ class LocationInsideCondition(ItemCondition):
     name = "location_inside"
     location_inside: str
 
-    def test(self, target: Monster) -> bool:
+    def test_with_monster(self, target: Monster) -> bool:
         if self.location_inside == "inside":
             if self.session.client.map_inside:
                 return True

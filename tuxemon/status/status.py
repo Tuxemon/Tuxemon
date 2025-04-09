@@ -8,6 +8,7 @@ from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon.constants import paths
+from tuxemon.core.core_condition import CoreCondition
 from tuxemon.core.core_manager import ConditionManager, EffectManager
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import (
@@ -17,7 +18,6 @@ from tuxemon.db import (
     db,
 )
 from tuxemon.locale import T
-from tuxemon.status.statuscondition import StatusCondition
 from tuxemon.status.statuseffect import StatusEffect, StatusEffectResult
 
 if TYPE_CHECKING:
@@ -73,7 +73,7 @@ class Status:
             StatusEffect, paths.STATUS_EFFECT_PATH
         )
         self.condition_manager = ConditionManager(
-            StatusCondition, paths.STATUS_CONDITION_PATH
+            CoreCondition, paths.CORE_CONDITION_PATH
         )
 
         self.set_state(save_data)

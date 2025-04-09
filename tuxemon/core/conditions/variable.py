@@ -5,14 +5,14 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
-from tuxemon.item.itemcondition import ItemCondition
+from tuxemon.core.core_condition import CoreCondition
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
 @dataclass
-class VariableCondition(ItemCondition):
+class VariableCondition(CoreCondition):
     """Checks against the variables of the context.
     Accepts two parameters; variable name and expected value.
     """
@@ -21,13 +21,14 @@ class VariableCondition(ItemCondition):
     var_name: str
     expected: Union[str, int, None] = None
 
-    def test(self, target: Monster) -> bool:
+    def test_with_monster(self, target: Monster) -> bool:
         var_name = self.var_name
         expect = self.expected
 
+        player = self.session.player
         if type(expect) is str:
-            return bool(self.user.game_variables[var_name] == expect)
+            return bool(player.game_variables[var_name] == expect)
         elif type(expect) is int:
-            return bool(self.user.game_variables[var_name] >= expect)
+            return bool(player.game_variables[var_name] >= expect)
         else:
-            return not self.user.game_variables[var_name]
+            return not player.game_variables[var_name]

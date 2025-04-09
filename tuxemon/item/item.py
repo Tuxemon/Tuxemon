@@ -11,10 +11,10 @@ import pygame
 
 from tuxemon import graphics, prepare
 from tuxemon.constants import paths
+from tuxemon.core.core_condition import CoreCondition
 from tuxemon.core.core_manager import ConditionManager, EffectManager
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import ItemCategory, State, db
-from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.locale import T
 
@@ -60,7 +60,7 @@ class Item:
 
         self.effect_manager = EffectManager(ItemEffect, paths.ITEM_EFFECT_PATH)
         self.condition_manager = ConditionManager(
-            ItemCondition, paths.ITEM_CONDITION_PATH
+            CoreCondition, paths.CORE_CONDITION_PATH
         )
 
         self.set_state(save_data)

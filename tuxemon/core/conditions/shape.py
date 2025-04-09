@@ -5,14 +5,14 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.item.itemcondition import ItemCondition
+from tuxemon.core.core_condition import CoreCondition
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
 
 
 @dataclass
-class ShapeCondition(ItemCondition):
+class ShapeCondition(CoreCondition):
     """
     Compares the target Monster's shape against the given types.
 
@@ -23,7 +23,7 @@ class ShapeCondition(ItemCondition):
     name = "shape"
     shapes: str
 
-    def test(self, target: Monster) -> bool:
+    def test_with_monster(self, target: Monster) -> bool:
         shapes: list[str] = []
         if self.shapes.find(":"):
             shapes = self.shapes.split(":")

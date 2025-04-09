@@ -5,8 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
+from tuxemon.core.core_condition import CoreCondition
 from tuxemon.db import SurfaceKeys
-from tuxemon.item.itemcondition import ItemCondition
 from tuxemon.map import get_coords, get_direction
 from tuxemon.states.world.worldstate import WorldState
 
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class FacingTileCondition(ItemCondition):
+class FacingTileCondition(CoreCondition):
     """
     Checks if the player is facing specific tiles.
 
@@ -24,7 +24,7 @@ class FacingTileCondition(ItemCondition):
     name = "facing_tile"
     facing_tile: str
 
-    def test(self, target: Monster) -> bool:
+    def test_with_monster(self, target: Monster) -> bool:
         player = self.session.player
         client = self.session.client
         # get all the coordinates around the player

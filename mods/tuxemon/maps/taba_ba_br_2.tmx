@@ -132,7 +132,7 @@
     <property name="act4" value="set_variable acolyte2battledone:yes"/>
     <property name="act5" value="teleport_faint"/>
     <property name="cond1" value="is variable_set talkedonce:yes"/>
-    <property name="cond2" value="is variable_set battle_last_result:lost"/>
+    <property name="cond2" value="not variable_set battle_last_result:won"/>
     <property name="cond3" value="not variable_set acolyte2battledone:yes"/>
    </properties>
   </object>

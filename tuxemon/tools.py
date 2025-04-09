@@ -34,7 +34,7 @@ from tuxemon.locale import T, replace_text
 from tuxemon.math import Vector2
 
 if TYPE_CHECKING:
-    import pygame
+    from pygame.rect import Rect
 
     from tuxemon.item.item import Item
     from tuxemon.session import Session
@@ -130,9 +130,7 @@ def scale(number: int) -> int:
     return prepare.SCALE * number
 
 
-def calc_dialog_rect(
-    screen_rect: pygame.rect.Rect, position: str
-) -> pygame.rect.Rect:
+def calc_dialog_rect(screen_rect: Rect, position: str) -> Rect:
     """
     Return a rect that is the area for a dialog box on the screen.
 

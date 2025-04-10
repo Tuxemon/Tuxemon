@@ -11,9 +11,7 @@ logger = logging.getLogger(__name__)
 PLUGIN_INCLUDE_PATTERNS = [
     "event.actions",
     "event.conditions",
-    "item.effects",
-    "technique.effects",
-    "status.effects",
+    "core.effects",
     "core.conditions",
 ]
 
@@ -45,10 +43,7 @@ logger.debug(f"Mods subfolders: {mods_subfolders}")
 CONDITIONS_PATH = os.path.normpath(os.path.join(LIBDIR, "event/conditions"))
 ACTIONS_PATH = os.path.normpath(os.path.join(LIBDIR, "event/actions"))
 
-ITEM_EFFECT_PATH = os.path.normpath(os.path.join(LIBDIR, "item/effects"))
-TECH_EFFECT_PATH = os.path.normpath(os.path.join(LIBDIR, "technique/effects"))
-STATUS_EFFECT_PATH = os.path.normpath(os.path.join(LIBDIR, "status/effects"))
-
+CORE_EFFECT_PATH = os.path.normpath(os.path.join(LIBDIR, "core/effects"))
 CORE_CONDITION_PATH = os.path.normpath(os.path.join(LIBDIR, "core/conditions"))
 
 # --- User Data Paths ---

@@ -7,8 +7,8 @@ from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon import formula
 from tuxemon.combat import set_var
+from tuxemon.core.core_effect import TechEffect, TechEffectResult
 from tuxemon.locale import T
-from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster

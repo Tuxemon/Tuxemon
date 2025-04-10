@@ -7,10 +7,15 @@ from collections.abc import Sequence
 from typing import TYPE_CHECKING, Optional, Union
 
 from tuxemon.core.core_condition import CoreCondition
-from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
+from tuxemon.core.core_effect import (
+    ItemEffect,
+    ItemEffectResult,
+    StatusEffect,
+    StatusEffectResult,
+    TechEffect,
+    TechEffectResult,
+)
 from tuxemon.plugin import PluginObject
-from tuxemon.status.statuseffect import StatusEffect, StatusEffectResult
-from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item

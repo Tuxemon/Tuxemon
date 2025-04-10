@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon.constants import paths
 from tuxemon.core.core_condition import CoreCondition
+from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
 from tuxemon.core.core_manager import ConditionManager, EffectManager
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import (
@@ -18,7 +19,6 @@ from tuxemon.db import (
     db,
 )
 from tuxemon.locale import T
-from tuxemon.status.statuseffect import StatusEffect, StatusEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -70,7 +70,7 @@ class Status:
         self.use_failure = ""
 
         self.effect_manager = EffectManager(
-            StatusEffect, paths.STATUS_EFFECT_PATH
+            StatusEffect, paths.CORE_EFFECT_PATH
         )
         self.condition_manager = ConditionManager(
             CoreCondition, paths.CORE_CONDITION_PATH

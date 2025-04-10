@@ -4,13 +4,18 @@ import unittest
 from unittest.mock import MagicMock, Mock
 
 from tuxemon.core.core_condition import CoreCondition
+from tuxemon.core.core_effect import (
+    ItemEffect,
+    ItemEffectResult,
+    StatusEffect,
+    StatusEffectResult,
+    TechEffect,
+    TechEffectResult,
+)
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.item.item import Item
-from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.monster import Monster
 from tuxemon.status.status import Status
-from tuxemon.status.statuseffect import StatusEffect, StatusEffectResult
-from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 from tuxemon.technique.technique import Technique
 
 

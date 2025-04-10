@@ -8,9 +8,9 @@ from typing import Optional
 import pygame
 
 from tuxemon import prepare, tools
+from tuxemon.core.core_effect import ItemEffectResult
 from tuxemon.db import State
 from tuxemon.item.item import Item
-from tuxemon.core.core_effect import ItemEffectResult
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu

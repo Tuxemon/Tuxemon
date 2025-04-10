@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="130">
+<map version="1.10" tiledversion="1.11.1-99-gec89c545" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="20" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="130">
  <properties>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="route"/>
   <property name="north" value="route7"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="routea"/>
   <property name="south" value="flower_city"/>
-  <property name="map_type" value="route"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
  <tileset firstgid="1441" source="../gfx/tilesets/core_outdoor.tsx"/>
@@ -17,12 +17,12 @@
  </layer>
  <layer id="2" name="Layer 2" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAHdVrtOW0EQvSCEkE0f0vMDIHrskk+IcR8QHxEFJVACogHyD6FCQOckbRIFRUrSBVr4BhDnyHvsw2QvXitUjHTuzt2ZObszO/exMFkNZMH0weSYyqJxuJ6j2YLvNtAAmgGzuKd0MG4m/VUa+5Z/rx9hPwZy6y5Z7AuEtoC5AryEzyi+Zfi0CtFOfG8aVeXw/T1XPvaXcn6KfMmR43uNGq8VYj2dB4bK9+T6Dmy7hdiDn/rFOVw/hc9ZQGuqqtpAnD8v4PsLn8uANXCtA3H+Cn56jnxPrvOc9GzOTFRVDrJrBG22fifNfj30bNIvJ7L/xtp/AIrvifoGuCisr6/bn314lf0xPkWQT+trLo6yl/J9Rt2+AKNEvPSL+SqW+zsC14cCPsX8D9/8rLMM9ZL9vcVeVwvRhZ/EuZnvNXK9GTNfcuXeB+QrkR/BST1Ezrg/uf6EcgAcAvT/lcDvGuPEQb+63tH+5NuD7yeAvXGXwO8a+bxfRvHJrprkxgusIxH3Cs4/l2/k+4rAb4bvIkqj6sLbHJ/WC2G1tz1YWBdK5FNufevw6mfiZ0MP1Zt65PPcPC/W4NbOhefDs6GoPtQjH+ck3meK4f4l++n5k43zdXzKQfkrxvnEK9tjfDoT53uP/Fg79rTOlOu+A3LvavWzfMXFkfze0z1sxntdfZ7LV77kYd+KF2qtyCfHxyDZvY61ZOZfx6dY1dH7SM8K+6kzjfdkQhfjKD7xxnE3fRPjvPPxHzq+k/V/zTj+f0d7vPd3dVyL9/qniHrO1+fuAU8S2vE=
+   eAHdls1OVEEQhRtjDIHZo3teQOLemSWPwDh7Z8JDEBLRpRg2Ku8gK6PsRtkC0ZAgO2WLzwDhnEyfzKHSd25PYkJiJXW7bnf1113VdX9Suj95/SClN9Al6HLQDu7nlU+YcwBdK8x9Zn0rAD+u1Cfwa+M9h0+3UnuZt7WUkqvv73/lPcUZKOZ/ES8ZJd5L5HhYqaN8HmiS78nttxjbrdR38FO9OMPtL/D5GrT7MKUeNPYfVvB+w+dP0CFYI2jsv4TfRn4WfE9u85z0bC4upFRSjasFtpi/z8uTfOjZpF9JNP4La1807G8TLArz6+tOeu9eNT6LpxnkaX31xVbjtbzvyNsRtE3EpZ+fgdvc30ew9it4vp4z3G7jrXacMrWd4bbztrHXF5U6gJ8k8q4Q69854yWr9D7g/mrkR3BSDZEZ9yfXMxjvoR+g9D/Pyu8a54lBv6ba0f7kO4bvNyhr4yYrv2vkeb208TSunJTan1hHIvY6zr8Ub+QdY+KJ6alAuVVeeFviab0wrfF2jBHmhRJ5im0yOr36mfjZ0EP5ph15HpvHxRxc27nwfHg2FOWHduSxT+J1pjncv2QvP38aY38TTzEofs1xnrgam8XTmThvB/Exd6xpnSnXfQUtvatVz/IViy35XtNjbMZrXXVeile+5LBuxYXZKPIp8ThJ457HRpj5N/E0V3n0OtKzwnrqP8J7MusAbRtP3Nju5m9i7HdeHzmP72T/v+b/dxyP9/6ujmvxXv8U0S75et8tAGLYwA==
   </data>
  </layer>
  <layer id="3" name="Layer 3" width="20" height="40">
   <data encoding="base64" compression="zlib">
-   eAFjYKAtEAcaL4GGJSmw0h6o1wENO5Jh3kFWiKZ0IJWBhjPJMA+mpR/ImICGJ8IkyaC3A/XsQMM7gfxdZJgF0nIfiB+g4YdA/iMgJgewMzIwcAAxJzA8uYAYzAbyuYCYEmAINMsIGkeUmDNU9DqwMDA4AjG1QAbQrEwKzQPFLQiEAuMhDIjDgThiBMUJxPej5GgIjIbAaAiMhsBoCIyGALVDAAClCBdk
+   eAHtkcENgkAQRYdEo9KAWAY2IBQB2AFQDVCNSjOolfCQ2xwZPDE/eZudw/+b/SPyX52JjxQXw5M3vIkiNeSVeCtFbchr8LaKzpD3wPtUvJj7hZkDvrfiw/yFJToEIkc47UVC+N2ZQ7AoJusKW1GyE0lhLVVk1ca8abeTMvaQQwH3De1k/r2f3oA34A14A96AN7B2AyO5Vhae
   </data>
  </layer>
  <layer id="4" name="Above Player" width="20" height="40">
@@ -436,22 +436,6 @@
     <property name="cond2" value="not variable_set vincesecond:yes"/>
    </properties>
   </object>
-  <object id="97" name="Teleport Route7" type="event" x="16" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_route7.tmx,1,39,0.3"/>
-    <property name="act2" value="char_face player,up"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,up"/>
-   </properties>
-  </object>
-  <object id="98" name="Teleport Route7" type="event" x="32" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_route7.tmx,1,39,0.3"/>
-    <property name="act2" value="char_face player,up"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,up"/>
-   </properties>
-  </object>
   <object id="109" name="Teleport to Top" type="event" x="80" y="96" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_mansion_top.tmx,7,18,0.3"/>
@@ -466,18 +450,6 @@
     <property name="act2" value="char_face player,up"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>
-   </properties>
-  </object>
-  <object id="111" name="Create Guard" type="event" x="32" y="32" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_routea_little,2,2"/>
-    <property name="cond1" value="not char_exists spyder_routea_little"/>
-   </properties>
-  </object>
-  <object id="112" name="Talk Guard" type="event" x="0" y="48" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_routea_little1"/>
-    <property name="behav1" value="talk spyder_routea_little"/>
    </properties>
   </object>
   <object id="113" name="Create Super Potion" type="event" x="160" y="96" width="16" height="16">

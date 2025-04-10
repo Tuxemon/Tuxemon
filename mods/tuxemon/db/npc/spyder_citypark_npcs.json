@@ -1,142 +1,114 @@
 [
   {
     "slug": "spyder_citypark_bobette",
-    "template": 
-      {
-        "sprite_name": "catgirl_green",
-        "combat_front": "catgirl",
-        "slug": "catgirl"
-      }
-  
+    "template": {
+      "sprite_name": "catgirl_green",
+      "combat_front": "catgirl",
+      "slug": "catgirl"
+    }
   },
   {
     "slug": "spyder_citypark_edith",
-    "template": 
-      {
-        "sprite_name": "picnicker",
-        "combat_front": "picnicker",
-        "slug": "picnicker"
-      }
-  
+    "template": {
+      "sprite_name": "picnicker",
+      "combat_front": "picnicker",
+      "slug": "picnicker"
+    }
   },
   {
     "slug": "spyder_citypark_florist",
-    "template": 
-      {
-        "sprite_name": "florist_fiery",
-        "combat_front": "florist",
-        "slug": "florist"
-      }
-  
+    "template": {
+      "sprite_name": "florist_fiery",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
   },
   {
     "slug": "spyder_citypark_frances",
-    "template": 
-      {
-        "sprite_name": "florist_black",
-        "combat_front": "florist",
-        "slug": "florist"
-      }
-  
+    "template": {
+      "sprite_name": "florist_black",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
   },
   {
     "slug": "spyder_citypark_magdalene",
-    "template": 
-      {
-        "sprite_name": "granny",
-        "combat_front": "adventurer",
-        "slug": "granny"
-      }
-  
+    "template": {
+      "sprite_name": "granny",
+      "combat_front": "adventurer",
+      "slug": "granny"
+    }
   },
   {
     "slug": "spyder_citypark_prue",
-    "template": 
-      {
-        "sprite_name": "florist_rose",
-        "combat_front": "florist",
-        "slug": "florist"
-      }
-  
+    "template": {
+      "sprite_name": "florist_rose",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
   },
   {
     "slug": "spyder_citypark_mack",
-    "template": 
-      {
-        "sprite_name": "maniac_green",
-        "combat_front": "adventurer",
-        "slug": "maniac"
-      }
-  
+    "template": {
+      "sprite_name": "maniac_green",
+      "combat_front": "adventurer",
+      "slug": "maniac"
+    }
   },
   {
     "slug": "spyder_citypark_nurse",
-    "template": 
-      {
-        "sprite_name": "nurse_red",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse_red",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   },
   {
     "slug": "spyder_citypark_cd1",
-    "template": 
-      {
-        "sprite_name": "box",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "box",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_citypark_cd2",
-    "template": 
-      {
-        "sprite_name": "box",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "box",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_citypark_restoration",
-    "template": 
-      {
-        "sprite_name": "box",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "box",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_citypark_potion1",
-    "template": 
-      {
-        "sprite_name": "box",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "box",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_citypark_potion2",
-    "template": 
-      {
-        "sprite_name": "box",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "box",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_citypark_house_maniac",
-    "template": 
-      {
-        "sprite_name": "maniac_green",
-        "combat_front": "adventurer",
-        "slug": "maniac"
-      }
-  
+    "template": {
+      "sprite_name": "maniac_green",
+      "combat_front": "adventurer",
+      "slug": "maniac"
+    }
   }
 ]

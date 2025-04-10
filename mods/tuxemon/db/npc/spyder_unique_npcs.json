@@ -1,52 +1,58 @@
 [
   {
-   "slug": "spyder_dante",
-   "template": 
-    {
-     "sprite_name": "shopassistant",
-     "combat_front": "adventurer",
-     "slug": "shopassistant"
+    "slug": "spyder_dante",
+    "template": {
+      "sprite_name": "shopassistant",
+      "combat_front": "adventurer",
+      "slug": "shopassistant"
     }
- 
   },
   {
-   "slug": "spyder_shady",
-   "template": 
-    {
-     "sprite_name": "cooldude_blue",
-     "combat_front": "cooldude",
-     "slug": "cooldude"
+    "slug": "spyder_shady",
+    "template": {
+      "sprite_name": "cooldude_blue",
+      "combat_front": "cooldude",
+      "slug": "cooldude"
     }
- 
   },
   {
-   "slug": "spyder_captain",
-   "template": 
-    {
-     "sprite_name": "riverboatcaptain",
-     "combat_front": "enforcer_rookie",
-     "slug": "riverboatcaptain"
+    "slug": "spyder_captain",
+    "template": {
+      "sprite_name": "riverboatcaptain",
+      "combat_front": "enforcer_rookie",
+      "slug": "riverboatcaptain"
     }
- 
   },
   {
-   "slug": "spyder_billie",
-   "template": 
-    {
-     "sprite_name": "fashionista",
-     "combat_front": "fashionista",
-     "slug": "fashionista"
+    "slug": "spyder_billie",
+    "template": {
+      "sprite_name": "fashionista",
+      "combat_front": "fashionista",
+      "slug": "fashionista"
     }
- 
   },
   {
-   "slug": "spyder_cathedral_nurse",
-   "template": 
-    {
+    "slug": "spyder_cathedral_nurse",
+    "template": {
       "sprite_name": "nurse",
       "combat_front": "nurse",
       "slug": "nurse"
     }
- 
+  },
+  {
+    "slug": "spyder_shopkeeper",
+    "template": {
+      "sprite_name": "shopassistant",
+      "combat_front": "shopassistant",
+      "slug": "shopassistant"
+    }
+  },
+  {
+    "slug": "spyder_shopassistant",
+    "template": {
+      "sprite_name": "shopassistant",
+      "combat_front": "shopassistant",
+      "slug": "shopassistant"
+    }
   }
 ]

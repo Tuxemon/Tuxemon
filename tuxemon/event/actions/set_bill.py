@@ -22,7 +22,7 @@ class SetBillAction(EventAction):
     Script usage:
         .. code-block::
 
-            set_money <slug>,<bill_slug>,[amount]
+            set_bill <slug>,<bill_slug>,[amount]
 
     Script parameters:
         character: Either "player" or character slug name (e.g. "npc_maple").

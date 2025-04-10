@@ -36,7 +36,7 @@ class DialogState(PopUpMenu[None]):
         self,
         text: Sequence[str] = (),
         avatar: Optional[Sprite] = None,
-        colors: dict[str, Any] = {},
+        box_style: dict[str, Any] = {},
         **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
@@ -44,22 +44,28 @@ class DialogState(PopUpMenu[None]):
         self.avatar = avatar
         self.character_delay = DEFAULT_CHARACTER_DELAY
 
-        default_colors: dict[str, Any] = {
+        default_box_style: dict[str, Any] = {
             "bg_color": self.background_color,
             "font_color": self.font_color,
             "font_shadow": self.font_shadow_color,
             "border": self.borders_filename,
+            "alignment": "left",
+            "v_alignment": "top",
         }
-        colors = colors or {}
-        final_colors = default_colors.copy()
-        final_colors.update(colors)
 
-        _border = load_and_scale(final_colors["border"])
+        final_box_style = default_box_style.copy()
+        final_box_style.update(box_style)
+
+        _border = load_and_scale(final_box_style["border"])
         self.window._set_border(_border)
-        self.window._color = final_colors["bg_color"]
+        self.window._color = final_box_style["bg_color"]
 
         self.dialog_box = TextArea(
-            self.font, final_colors["font_color"], final_colors["font_shadow"]
+            font=self.font,
+            font_color=final_box_style["font_color"],
+            font_shadow=final_box_style["font_shadow"],
+            alignment=final_box_style["alignment"],
+            vertical_alignment=final_box_style["v_alignment"],
         )
         self.dialog_box.rect = self.calc_internal_rect()
         self.sprites.add(self.dialog_box)

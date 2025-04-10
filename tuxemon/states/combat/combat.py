@@ -48,13 +48,10 @@ from tuxemon.ai import AI
 from tuxemon.animation import Animation, Task
 from tuxemon.combat import (
     alive_party,
-    award_experience,
-    award_money,
     battlefield,
     defeated,
     fainted,
     get_awake_monsters,
-    get_winners,
     set_var,
     track_battles,
 )
@@ -88,6 +85,7 @@ from .combat_classes import (
     EnqueuedAction,
     MethodAnimationCache,
 )
+from .reward_system import RewardSystem
 
 logger = logging.getLogger(__name__)
 
@@ -1076,34 +1074,21 @@ class CombatState(CombatAnimations):
             monster: Monster that was fainted.
 
         """
-        winners = get_winners(monster, self._damage_map)
-        if winners:
-            new_techniques = []
-            for winner in winners:
-                # Award money and experience
-                awarded_mon = award_money(monster, winner)
-                awarded_exp = award_experience(
-                    monster, winner, self._damage_map
-                )
+        reward_system = RewardSystem(self._damage_map, self.is_trainer_battle)
+        rewards = reward_system.award_rewards(monster)
 
-                if winner.owner and winner.owner.isplayer:
-                    levels = winner.give_experience(awarded_exp)
-                    new_techniques = winner.update_moves(levels)
-                    if self.is_trainer_battle:
-                        self._prize += awarded_mon
+        # Update combat state with rewards
+        self._prize += rewards.prize
+        for message in rewards.messages:
+            if self._xp_message:
+                self._xp_message += "\n" + message
+            else:
+                self._xp_message = message
 
-                # Log experience gain
-                if winner.owner and winner.owner.isplayer:
-                    params = {"name": winner.name.upper(), "xp": awarded_exp}
-                    if self._xp_message is not None:
-                        self._xp_message += "\n" + T.format(
-                            "combat_gain_exp", params
-                        )
-                    else:
-                        self._xp_message = T.format("combat_gain_exp", params)
-
-                # Update HUD and handle level up
-                self.update_hud_and_level_up(winner, new_techniques)
+        if rewards.update:
+            self.update_hud_and_level_up(
+                rewards.winners[0].winner, rewards.moves
+            )
 
     def update_hud_and_level_up(
         self, winner: Monster, techniques: list[Technique]

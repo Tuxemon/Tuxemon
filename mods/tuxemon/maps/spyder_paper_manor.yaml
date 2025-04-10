@@ -1,0 +1,66 @@
+collisions:
+  - x: 2
+    y: 4
+    width: 2
+    height: 2
+    type: "collision"
+  - x: 0
+    y: 7
+    width: 1
+    height: 1
+    type: "collision"
+  - x: 9
+    y: 7
+    width: 1
+    height: 1
+    type: "collision"
+  - x: 9
+    y: 2
+    width: 1
+    height: 1
+    type: "collision"
+  - x: 7
+    y: 3
+    width: 1
+    height: 3
+    type: "collision"
+  - x: 0
+    y: 1
+    width: 10
+    height: 1
+    type: "collision"
+  - x: 0
+    y: 2
+    width: 1
+    height: 1
+    type: "collision"
+events:
+  Route Music:
+    actions:
+    - play_music music_cathedral_theme
+    conditions:
+    - not music_playing music_cathedral_theme
+    type: "event"
+  Go Outside:
+    actions:
+    - transition_teleport spyder_paper_town.tmx,10,13,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    x: 6
+    y: 7
+    type: "event"
+  Create Princeton:
+    actions:
+    - create_npc spyder_papermanor_princeton,1,5
+    - char_face spyder_papermanor_princeton,right
+    conditions:
+    - not char_exists spyder_papermanor_princeton
+    type: "event"
+  Talk Princeton:
+    actions:
+    - translated_dialog spyder_papermanor_oldman
+    behav:
+    - talk spyder_papermanor_princeton
+    type: "event"

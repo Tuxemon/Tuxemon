@@ -6,7 +6,8 @@ from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.prepare import TRANS_TIME, fetch
+from tuxemon.graphics import ColorLike, string_to_colorlike
+from tuxemon.prepare import BLACK_COLOR, TRANS_TIME, fetch
 from tuxemon.states.world.worldstate import WorldState
 
 
@@ -46,9 +47,9 @@ class TransitionTeleportAction(EventAction):
         target_map = fetch("maps", self.map_name)
 
         if self.world.npcs and self.world.current_map.filename != target_map:
-            for _npc in self.world.npcs:
-                if _npc.moving or _npc.path:
-                    self.world.npcs.remove(_npc)
+            self.world.npcs = [
+                npc for npc in self.world.npcs if not (npc.moving or npc.path)
+            ]
 
         if self.world.teleporter.delayed_teleport:
             self.stop()
@@ -58,23 +59,27 @@ class TransitionTeleportAction(EventAction):
 
         # Start the screen transition
         _time = TRANS_TIME if self.trans_time is None else self.trans_time
-        action = self.session.client.event_engine
-        self.transition = action.get_action("screen_transition", [_time])
+        rgb: ColorLike = BLACK_COLOR
+        if self.rgb:
+            rgb = string_to_colorlike(self.rgb)
+        self.setup_delayed_teleport()
+        self.world.transition_manager.fade_and_teleport(
+            _time,
+            rgb,
+            lambda: self.world.teleporter.handle_delayed_teleport(
+                self.world.player
+            ),
+        )
 
     def update(self) -> None:
         if self.done:
             return
 
-        assert self.transition
-
-        if not self.transition.done:
-            self.transition.update()
-        else:
-            self.transition.cleanup()
-            # set the delayed teleport
-            self.world.teleporter.delayed_char = None
-            self.world.teleporter.delayed_teleport = True
-            self.world.teleporter.delayed_mapname = self.map_name
-            self.world.teleporter.delayed_x = self.x
-            self.world.teleporter.delayed_y = self.y
-            self.stop()
+    def setup_delayed_teleport(self) -> None:
+        """Configure delayed teleport after the screen transition."""
+        self.world.teleporter.delayed_char = None
+        self.world.teleporter.delayed_teleport = True
+        self.world.teleporter.delayed_mapname = self.map_name
+        self.world.teleporter.delayed_x = self.x
+        self.world.teleporter.delayed_y = self.y
+        self.stop()

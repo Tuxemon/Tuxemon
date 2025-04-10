@@ -11,7 +11,7 @@ from typing import TYPE_CHECKING
 import pygame
 from pygame.rect import Rect
 
-from tuxemon import combat, graphics, tools
+from tuxemon import combat, graphics, prepare, tools
 from tuxemon.db import State, TechSort
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
@@ -253,6 +253,40 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
             # set next menu after the selection is made
             menu.on_menu_selection = choose_target  # type: ignore[assignment]
+
+            def show() -> None:
+                tech = menu.get_selected_item()
+                assert tech and tech.game_object
+                types = " ".join(
+                    map(lambda s: (s.name), tech.game_object.types)
+                )
+                label = T.format(
+                    "technique_combat",
+                    {
+                        "name": tech.game_object.name,
+                        "types": types,
+                        "acc": int(tech.game_object.accuracy * 100),
+                        "pow": tech.game_object.power,
+                        "max_pow": prepare.POWER_RANGE[1],
+                        "rec": str(tech.game_object.recharge_length),
+                    },
+                )
+                self.combat.alert(label, dialog_speed="max")
+
+            def hide() -> None:
+                name = (
+                    ""
+                    if self.monster.owner is None
+                    else self.monster.owner.name
+                )
+                params = {"name": self.monster.name, "player": name}
+                message = T.format(self.combat.graphics.msgid, params)
+                self.combat.alert(message, dialog_speed="max")
+
+            menu.on_menu_selection_change_callback = show
+            menu.on_close_callback = hide
+            menu.on_menu_selection_change()
+            menu.on_close()
 
         def choose_target(menu_item: MenuItem[Technique]) -> None:
             # open menu to choose target of technique

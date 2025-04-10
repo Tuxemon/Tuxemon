@@ -1,202 +1,162 @@
 [
   {
     "slug": "spyder_scoop_alyssa",
-    "template": 
-      {
-        "sprite_name": "nurse_blonde",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse_blonde",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   },
   {
     "slug": "spyder_scoop_paine",
-    "template": 
-      {
-        "sprite_name": "nurse_green",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse_green",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   },
   {
     "slug": "spyder_scoop_orba",
-    "template": 
-      {
-        "sprite_name": "spyderrookie",
-        "combat_front": "spyder_rookie",
-        "slug": "spyder_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
   },
   {
     "slug": "spyder_scoop_rubid",
-    "template": 
-      {
-        "sprite_name": "scientist",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_scoop_weaver",
-    "template": 
-      {
-        "sprite_name": "spyderrookie",
-        "combat_front": "spyder_rookie",
-        "slug": "spyder_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
   },
   {
     "slug": "spyder_scoop_turner",
-    "template": 
-      {
-        "sprite_name": "knight",
-        "combat_front": "enforcer_rookie",
-        "slug": "enforcer_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_rookie",
+      "slug": "enforcer_rookie"
+    }
   },
   {
     "slug": "spyder_scoop_taggart",
-    "template": 
-      {
-        "sprite_name": "nurse_red",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse_red",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   },
   {
     "slug": "spyder_scoop_arachne",
-    "template": 
-      {
-        "sprite_name": "spyderboss_blonde",
-        "combat_front": "spyder_boss",
-        "slug": "spyder_boss"
-      }
-  
+    "template": {
+      "sprite_name": "spyderboss_blonde",
+      "combat_front": "spyder_boss",
+      "slug": "spyder_boss"
+    }
   },
   {
     "slug": "spyder_scoop_berys",
-    "template": 
-      {
-        "sprite_name": "professor_black",
-        "combat_front": "professor",
-        "slug": "professor"
-      }
-  
+    "template": {
+      "sprite_name": "professor_black",
+      "combat_front": "professor",
+      "slug": "professor"
+    }
   },
   {
     "slug": "spyder_scoop_cochinia",
-    "template": 
-      {
-        "sprite_name": "varmint",
-        "combat_front": "cochini",
-        "slug": "noclass"
-      }
-  
+    "template": {
+      "sprite_name": "varmint",
+      "combat_front": "cochini",
+      "slug": "noclass"
+    }
   },
   {
     "slug": "spyder_scoop_cochinib",
-    "template": 
-      {
-        "sprite_name": "varmint",
-        "combat_front": "cochini",
-        "slug": "noclass"
-      }
-  
+    "template": {
+      "sprite_name": "varmint",
+      "combat_front": "cochini",
+      "slug": "noclass"
+    }
   },
   {
     "slug": "spyder_scoop_cochinic",
-    "template": 
-      {
-        "sprite_name": "varmint",
-        "combat_front": "cochini",
-        "slug": "noclass"
-      }
-  
+    "template": {
+      "sprite_name": "varmint",
+      "combat_front": "cochini",
+      "slug": "noclass"
+    }
   },
   {
     "slug": "spyder_scoop_donald",
-    "template": 
-      {
-        "sprite_name": "cooldude_fiery",
-        "combat_front": "cooldude",
-        "slug": "cooldude"
-      }
-  
+    "template": {
+      "sprite_name": "cooldude_fiery",
+      "combat_front": "cooldude",
+      "slug": "cooldude"
+    }
   },
   {
     "slug": "spyder_scoop_landrace",
-    "template": 
-      {
-        "sprite_name": "landrace",
-        "combat_front": "sludgehog",
-        "slug": "noclass"
-      }
-  
+    "template": {
+      "sprite_name": "landrace",
+      "combat_front": "sludgehog",
+      "slug": "noclass"
+    }
   },
   {
     "slug": "spyder_scoop_lanth",
-    "template": 
-      {
-        "sprite_name": "professor",
-        "combat_front": "professor",
-        "slug": "professor"
-      }
-  
+    "template": {
+      "sprite_name": "professor",
+      "combat_front": "professor",
+      "slug": "professor"
+    }
   },
   {
     "slug": "spyder_scoop_lapinoua",
-    "template": 
-      {
-        "sprite_name": "varmint",
-        "combat_front": "lapinou",
-        "slug": "noclass"
-      }
-  
+    "template": {
+      "sprite_name": "varmint",
+      "combat_front": "lapinou",
+      "slug": "noclass"
+    }
   },
   {
     "slug": "spyder_scoop_lapinoub",
-    "template": 
-      {
-        "sprite_name": "varmint",
-        "combat_front": "lapinou",
-        "slug": "noclass"
-      }
-  
+    "template": {
+      "sprite_name": "varmint",
+      "combat_front": "lapinou",
+      "slug": "noclass"
+    }
   },
   {
     "slug": "spyder_scoop_lapinouc",
-    "template": 
-      {
-        "sprite_name": "varmint",
-        "combat_front": "lapinou",
-        "slug": "noclass"
-      }
-  
+    "template": {
+      "sprite_name": "varmint",
+      "combat_front": "lapinou",
+      "slug": "noclass"
+    }
   },
   {
     "slug": "spyder_scoop_nash",
-    "template": 
-      {
-        "sprite_name": "scientist_fiery",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_fiery",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_scoop_reese",
-    "template": 
-      {
-        "sprite_name": "scientist_brown",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_brown",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   }
 ]

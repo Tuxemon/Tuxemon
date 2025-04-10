@@ -25,7 +25,8 @@
   ],
   "modifiers": [],
   "behaviors": {
-    "show_dialog_on_success": false
+    "show_dialog_on_success": false,
+    "resellable": true
   },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",

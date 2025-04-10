@@ -12,11 +12,9 @@ PLUGIN_INCLUDE_PATTERNS = [
     "event.actions",
     "event.conditions",
     "item.effects",
-    "item.conditions",
     "technique.effects",
-    "technique.conditions",
     "status.effects",
-    "status.conditions",
+    "core.conditions",
 ]
 
 # --- Core Game Paths ---
@@ -35,22 +33,23 @@ logger.debug(f"basedir: {BASEDIR}")
 mods_folder = os.path.normpath(os.path.join(LIBDIR, "..", "mods"))
 logger.debug(f"mods: {mods_folder}")
 
+# mods subfolders
+mods_subfolders = [
+    f
+    for f in os.listdir(mods_folder)
+    if os.path.isdir(os.path.join(mods_folder, f))
+]
+logger.debug(f"Mods subfolders: {mods_subfolders}")
+
 # action/condition plugins (eventually move out of lib folder)
 CONDITIONS_PATH = os.path.normpath(os.path.join(LIBDIR, "event/conditions"))
 ACTIONS_PATH = os.path.normpath(os.path.join(LIBDIR, "event/actions"))
 
 ITEM_EFFECT_PATH = os.path.normpath(os.path.join(LIBDIR, "item/effects"))
-ITEM_CONDITION_PATH = os.path.normpath(os.path.join(LIBDIR, "item/conditions"))
-
 TECH_EFFECT_PATH = os.path.normpath(os.path.join(LIBDIR, "technique/effects"))
-TECH_CONDITION_PATH = os.path.normpath(
-    os.path.join(LIBDIR, "technique/conditions")
-)
-
 STATUS_EFFECT_PATH = os.path.normpath(os.path.join(LIBDIR, "status/effects"))
-STATUS_CONDITION_PATH = os.path.normpath(
-    os.path.join(LIBDIR, "status/conditions")
-)
+
+CORE_CONDITION_PATH = os.path.normpath(os.path.join(LIBDIR, "core/conditions"))
 
 # --- User Data Paths ---
 

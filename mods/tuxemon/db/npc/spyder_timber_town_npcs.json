@@ -1,52 +1,42 @@
 [
   {
     "slug": "spyder_timberhouse_zed",
-    "template": 
-      {
-        "sprite_name": "firefighter",
-        "combat_front": "firefighter",
-        "slug": "firefighter"
-      }
-  
+    "template": {
+      "sprite_name": "firefighter",
+      "combat_front": "firefighter",
+      "slug": "firefighter"
+    }
   },
   {
     "slug": "spyder_timbercafe_grady",
-    "template": 
-      {
-        "sprite_name": "magician",
-        "combat_front": "magician",
-        "slug": "magician"
-      }
-  
+    "template": {
+      "sprite_name": "magician",
+      "combat_front": "magician",
+      "slug": "magician"
+    }
   },
   {
-    "slug": "spyder_timberscoop_leandro",
-    "template": 
-      {
-        "sprite_name": "shopkeeper",
-        "combat_front": "adventurer",
-        "slug": "shopkeeper"
-      }
-  
+    "slug": "spyder_shopassistant",
+    "template": {
+      "sprite_name": "shopkeeper",
+      "combat_front": "adventurer",
+      "slug": "shopkeeper"
+    }
   },
   {
     "slug": "spyder_outsidewalled_rogue",
-    "template": 
-      {
-        "sprite_name": "rogue_green",
-        "combat_front": "rogue",
-        "slug": "rogue"
-      }
-  
+    "template": {
+      "sprite_name": "rogue_green",
+      "combat_front": "rogue",
+      "slug": "rogue"
+    }
   },
   {
     "slug": "spyder_outsidewalled_midas",
-    "template": 
-      {
-        "sprite_name": "picnicker",
-        "combat_front": "picnicker",
-        "slug": "picnicker"
-      }
-  
+    "template": {
+      "sprite_name": "picnicker",
+      "combat_front": "picnicker",
+      "slug": "picnicker"
+    }
   }
 ]

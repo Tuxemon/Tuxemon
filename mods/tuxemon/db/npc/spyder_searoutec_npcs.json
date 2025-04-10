@@ -1,142 +1,114 @@
 [
   {
     "slug": "spyder_searoutec_alpha",
-    "template": 
-      {
-        "sprite_name": "swimmer_red",
-        "combat_front": "swimmer",
-        "slug": "swimmer"
-      }
-  
+    "template": {
+      "sprite_name": "swimmer_red",
+      "combat_front": "swimmer",
+      "slug": "swimmer"
+    }
   },
   {
     "slug": "spyder_searoutec_river",
-    "template": 
-      {
-        "sprite_name": "swimmer_orange",
-        "combat_front": "swimmer",
-        "slug": "swimmer"
-      }
-  
+    "template": {
+      "sprite_name": "swimmer_orange",
+      "combat_front": "swimmer",
+      "slug": "swimmer"
+    }
   },
   {
     "slug": "spyder_searoutec_nigel",
-    "template": 
-      {
-        "sprite_name": "dragonrider_blue",
-        "combat_front": "dragonrider",
-        "slug": "dragonrider"
-      }
-  
+    "template": {
+      "sprite_name": "dragonrider_blue",
+      "combat_front": "dragonrider",
+      "slug": "dragonrider"
+    }
   },
   {
     "slug": "spyder_searoutec_more",
-    "template": 
-      {
-        "sprite_name": "swimmer_green",
-        "combat_front": "swimmer",
-        "slug": "swimmer"
-      }
-  
+    "template": {
+      "sprite_name": "swimmer_green",
+      "combat_front": "swimmer",
+      "slug": "swimmer"
+    }
   },
   {
     "slug": "spyder_searoutec_rutherford",
-    "template": 
-      {
-        "sprite_name": "scientist",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_searoutec_sandy",
-    "template": 
-      {
-        "sprite_name": "fisher",
-        "combat_front": "fisher",
-        "slug": "fisher"
-      }
-  
+    "template": {
+      "sprite_name": "fisher",
+      "combat_front": "fisher",
+      "slug": "fisher"
+    }
   },
   {
     "slug": "spyder_searoutec_maurice",
-    "template": 
-      {
-        "sprite_name": "fisher_fiery",
-        "combat_front": "fisher",
-        "slug": "fisher"
-      }
-  
+    "template": {
+      "sprite_name": "fisher_fiery",
+      "combat_front": "fisher",
+      "slug": "fisher"
+    }
   },
   {
     "slug": "spyder_searoutec_leek",
-    "template": 
-      {
-        "sprite_name": "swimmer",
-        "combat_front": "swimmer",
-        "slug": "swimmer"
-      }
-  
+    "template": {
+      "sprite_name": "swimmer",
+      "combat_front": "swimmer",
+      "slug": "swimmer"
+    }
   },
   {
     "slug": "spyder_searoutec_wade",
-    "template": 
-      {
-        "sprite_name": "swimmer_blue",
-        "combat_front": "swimmer",
-        "slug": "swimmer"
-      }
-  
+    "template": {
+      "sprite_name": "swimmer_blue",
+      "combat_front": "swimmer",
+      "slug": "swimmer"
+    }
   },
   {
     "slug": "spyder_searoutec_stafford",
-    "template": 
-      {
-        "sprite_name": "beachcomber_copper",
-        "combat_front": "yellowbelt",
-        "slug": "beachcomber"
-      }
-  
+    "template": {
+      "sprite_name": "beachcomber_copper",
+      "combat_front": "yellowbelt",
+      "slug": "beachcomber"
+    }
   },
   {
     "slug": "spyder_searoutec_gil",
-    "template": 
-      {
-        "sprite_name": "swimmer_blue",
-        "combat_front": "swimmer",
-        "slug": "swimmer"
-      }
-  
+    "template": {
+      "sprite_name": "swimmer_blue",
+      "combat_front": "swimmer",
+      "slug": "swimmer"
+    }
   },
   {
     "slug": "spyder_searoutec_carstair",
-    "template": 
-      {
-        "sprite_name": "beachcomber_blue",
-        "combat_front": "yellowbelt",
-        "slug": "beachcomber"
-      }
-  
+    "template": {
+      "sprite_name": "beachcomber_blue",
+      "combat_front": "yellowbelt",
+      "slug": "beachcomber"
+    }
   },
   {
     "slug": "spyder_searoutec_beech",
-    "template": 
-      {
-        "sprite_name": "swimmer_red",
-        "combat_front": "swimmer",
-        "slug": "swimmer"
-      }
-  
+    "template": {
+      "sprite_name": "swimmer_red",
+      "combat_front": "swimmer",
+      "slug": "swimmer"
+    }
   },
   {
     "slug": "spyder_searoutec_beta",
-    "template": 
-      {
-        "sprite_name": "swimmer_orange",
-        "combat_front": "swimmer",
-        "slug": "swimmer"
-      }
-  
+    "template": {
+      "sprite_name": "swimmer_orange",
+      "combat_front": "swimmer",
+      "slug": "swimmer"
+    }
   }
 ]

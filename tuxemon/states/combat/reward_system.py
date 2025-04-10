@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from collections.abc import Iterable
 from enum import Enum
 from typing import TYPE_CHECKING
 
@@ -10,7 +9,7 @@ from tuxemon.combat import alive_party
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
-    from tuxemon.states.combat.combat_classes import DamageReport
+    from tuxemon.states.combat.combat_classes import DamageTracker
     from tuxemon.technique.technique import Technique
     from tuxemon.monster import Monster
 
@@ -42,7 +41,7 @@ class RewardData:
 
 class RewardSystem:
     def __init__(
-        self, damage_map: Iterable[DamageReport], is_trainer_battle: bool
+        self, damage_map: DamageTracker, is_trainer_battle: bool
     ) -> None:
         self.damage_map = damage_map
         self.is_trainer_battle = is_trainer_battle
@@ -138,17 +137,12 @@ def calculate_money(loser: Monster, winner: Monster) -> int:
 
 
 def calculate_experience(
-    loser: Monster, winner: Monster, damages: Iterable[DamageReport]
+    loser: Monster, winner: Monster, damages: DamageTracker
 ) -> int:
     """
     Calculate experience to be awarded using defined methods.
     """
-    hits = hits_mon = 0
-    for damage in damages:
-        if damage.defense == loser:
-            hits += 1
-            if damage.attack == winner:
-                hits_mon += 1
+    hits, hits_mon = damages.count_hits(loser, winner)
 
     method = (
         winner.owner.game_variables.get(
@@ -194,13 +188,11 @@ def calculate_experience_base(
     return int((total_experience // (level * hits)) * experience_modifier)
 
 
-def get_winners(
-    loser: Monster, damages: Iterable[DamageReport]
-) -> set[Monster]:
+def get_winners(loser: Monster, damages: DamageTracker) -> set[Monster]:
     """
     Extract the monsters who hit the loser.
     """
-    winners = {damage.attack for damage in damages if damage.defense == loser}
+    winners = damages.get_attackers(loser)
     if winners:
         monster = next(iter(winners))
         trainer = monster.owner

@@ -5,7 +5,7 @@ from unittest.mock import MagicMock, patch
 
 from tuxemon.monster import Monster
 from tuxemon.npc import NPC
-from tuxemon.states.combat.combat_classes import DamageReport
+from tuxemon.states.combat.combat_classes import DamageReport, DamageTracker
 from tuxemon.states.combat.reward_system import (
     RewardSystem,
     calculate_experience,
@@ -30,9 +30,8 @@ class TestRewardSystem(unittest.TestCase):
         self.winner.owner.isplayer = True
         self.winner.owner.game_variables = {"method_experience": "default"}
 
-        self.damage_map = [
-            DamageReport(attack=self.winner, defense=self.loser, damage=10)
-        ]
+        self.damage_tracker = DamageTracker()
+        self.damage_tracker.log_damage(self.winner, self.loser, 10, 1)
 
     def test_calculate_money_default_method(self):
         money = calculate_money(self.loser, self.winner)
@@ -40,9 +39,9 @@ class TestRewardSystem(unittest.TestCase):
         self.assertEqual(money, expected_money)
 
     def test_calculate_experience_default_method(self):
-        hits = len(self.damage_map)
+        hits, _ = self.damage_tracker.count_hits(self.loser, self.winner)
         experience = calculate_experience(
-            self.loser, self.winner, self.damage_map
+            self.loser, self.winner, self.damage_tracker
         )
         expected_experience = int(
             (self.loser.total_experience // (self.loser.level * hits))
@@ -51,7 +50,7 @@ class TestRewardSystem(unittest.TestCase):
         self.assertEqual(experience, expected_experience)
 
     def test_calculate_experience_base(self):
-        hits = len(self.damage_map)
+        hits, _ = self.damage_tracker.count_hits(self.loser, self.winner)
         experience = calculate_experience_base(
             self.loser.total_experience,
             self.loser.level,
@@ -65,7 +64,7 @@ class TestRewardSystem(unittest.TestCase):
         self.assertEqual(experience, expected_experience)
 
     def test_get_winners(self):
-        winners = get_winners(self.loser, self.damage_map)
+        winners = get_winners(self.loser, self.damage_tracker)
         self.assertIn(self.winner, winners)
 
     @patch("tuxemon.combat.alive_party")
@@ -79,7 +78,7 @@ class TestRewardSystem(unittest.TestCase):
         owner = MagicMock(spec=NPC)
         owner.monsters = mock_monsters
 
-        hits = len(self.damage_map)
+        hits, _ = self.damage_tracker.count_hits(self.loser, self.winner)
         expected_exp = int(
             (self.loser.total_experience // (self.loser.level * hits))
             * self.loser.experience_modifier
@@ -95,7 +94,9 @@ class TestRewardSystem(unittest.TestCase):
             monster.give_experience.assert_called_once_with(expected_exp)
 
     def test_reward_system(self):
-        reward_system = RewardSystem(self.damage_map, is_trainer_battle=True)
+        reward_system = RewardSystem(
+            self.damage_tracker, is_trainer_battle=True
+        )
         rewards = reward_system.award_rewards(self.loser)
 
         self.assertEqual(len(rewards.winners), 1)
@@ -103,7 +104,7 @@ class TestRewardSystem(unittest.TestCase):
 
         awarded_money = calculate_money(self.loser, self.winner)
         awarded_exp = calculate_experience(
-            self.loser, self.winner, self.damage_map
+            self.loser, self.winner, self.damage_tracker
         )
         self.assertEqual(rewards.winners[0].money, awarded_money)
         self.assertEqual(rewards.winners[0].experience, awarded_exp)

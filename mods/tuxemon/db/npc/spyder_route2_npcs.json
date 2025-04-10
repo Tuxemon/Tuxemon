@@ -1,32 +1,26 @@
 [
   {
     "slug": "spyder_route2_marion",
-    "template": 
-      {
-        "sprite_name": "picnicker",
-        "combat_front": "picnicker",
-        "slug": "picnicker"
-      }
-  
+    "template": {
+      "sprite_name": "picnicker",
+      "combat_front": "picnicker",
+      "slug": "picnicker"
+    }
   },
   {
     "slug": "spyder_route2_graf",
-    "template": 
-      {
-        "sprite_name": "tennisplayer_green",
-        "combat_front": "tennisplayer",
-        "slug": "tennisplayer"
-      }
-  
+    "template": {
+      "sprite_name": "tennisplayer_green",
+      "combat_front": "tennisplayer",
+      "slug": "tennisplayer"
+    }
   },
   {
     "slug": "spyder_route2_roddick",
-    "template": 
-      {
-        "sprite_name": "tennisplayer_fiery",
-        "combat_front": "tennisplayer",
-        "slug": "tennisplayer"
-      }
-  
+    "template": {
+      "sprite_name": "tennisplayer_fiery",
+      "combat_front": "tennisplayer",
+      "slug": "tennisplayer"
+    }
   }
 ]

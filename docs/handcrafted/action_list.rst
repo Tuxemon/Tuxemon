@@ -8,6 +8,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.call_event.CallEventAction
 .. autoscriptinfoclass:: tuxemon.event.actions.camera_follow.CameraFollowAction
 .. autoscriptinfoclass:: tuxemon.event.actions.camera_mode.CameraModeAction
+.. autoscriptinfoclass:: tuxemon.event.actions.camera_move.CameraMoveAction
 .. autoscriptinfoclass:: tuxemon.event.actions.camera_position.CameraPositionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.camera_shake.CameraShakeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_bg.ChangeBgAction
@@ -35,6 +36,8 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.delayed_teleport.DelayedTeleportAction
 .. autoscriptinfoclass:: tuxemon.event.actions.dojo_method.DojoMethodAction
 .. autoscriptinfoclass:: tuxemon.event.actions.evolution.EvolutionAction
+.. autoscriptinfoclass:: tuxemon.event.actions.fade_in.FadeInAction
+.. autoscriptinfoclass:: tuxemon.event.actions.fade_out.FadeOutAction
 .. autoscriptinfoclass:: tuxemon.event.actions.fadeout_music.FadeoutMusicAction
 .. autoscriptinfoclass:: tuxemon.event.actions.format_variable.FormatVariableAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_monster_tech.GetMonsterTechAction
@@ -100,6 +103,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.set_party_status.SetPartyStatusAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_player_name.SetPlayerNameAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_random_variable.SetRandomVariableAction
+.. autoscriptinfoclass:: tuxemon.event.actions.set_teleport_faint.SetTeleportFaintAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_template.SetTemplateAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_tuxepedia.SetTuxepediaAction
 .. autoscriptinfoclass:: tuxemon.event.actions.set_variable.SetVariableAction

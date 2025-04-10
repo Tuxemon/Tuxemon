@@ -14,7 +14,11 @@ import re
 from collections.abc import Iterable, Sequence
 from typing import TYPE_CHECKING, Any, Optional, Protocol, Union
 
-import pygame
+from pygame.color import Color
+from pygame.image import load
+from pygame.rect import Rect
+from pygame.surface import Surface
+from pygame.transform import scale
 from pytmx.pytmx import TileFlags
 from pytmx.util_pygame import handle_transformation, smart_convert
 
@@ -31,11 +35,7 @@ if TYPE_CHECKING:
 logger = logging.getLogger(__name__)
 
 
-ColorLike = Union[
-    pygame.color.Color,
-    tuple[int, int, int],
-    tuple[int, int, int, int],
-]
+ColorLike = Union[Color, tuple[int, int, int], tuple[int, int, int, int]]
 
 
 class LoaderProtocol(Protocol):
@@ -43,17 +43,17 @@ class LoaderProtocol(Protocol):
         self,
         rect: Optional[tuple[int, int, int, int]] = None,
         flags: Optional[TileFlags] = None,
-    ) -> pygame.surface.Surface:
+    ) -> Surface:
         pass
 
 
 def strip_from_sheet(
-    sheet: pygame.surface.Surface,
+    sheet: Surface,
     start: tuple[int, int],
     size: tuple[int, int],
     columns: int,
     rows: int = 1,
-) -> Sequence[pygame.surface.Surface]:
+) -> Sequence[Surface]:
     """
     Strips individual frames from a sprite sheet.
 
@@ -72,15 +72,15 @@ def strip_from_sheet(
     for j in range(rows):
         for i in range(columns):
             location = (start[0] + size[0] * i, start[1] + size[1] * j)
-            frames.append(sheet.subsurface(pygame.rect.Rect(location, size)))
+            frames.append(sheet.subsurface(Rect(location, size)))
     return frames
 
 
 def strip_coords_from_sheet(
-    sheet: pygame.surface.Surface,
+    sheet: Surface,
     coords: Sequence[tuple[int, int]],
     size: tuple[int, int],
-) -> Sequence[pygame.surface.Surface]:
+) -> Sequence[Surface]:
     """
     Strip specific coordinates from a sprite sheet.
 
@@ -96,11 +96,11 @@ def strip_coords_from_sheet(
     frames = []
     for coord in coords:
         location = (coord[0] * size[0], coord[1] * size[1])
-        frames.append(sheet.subsurface(pygame.rect.Rect(location, size)))
+        frames.append(sheet.subsurface(Rect(location, size)))
     return frames
 
 
-def cursor_from_image(image: pygame.surface.Surface) -> Sequence[str]:
+def cursor_from_image(image: Surface) -> Sequence[str]:
     """Take a valid image and create a mouse cursor."""
     colors = {(0, 0, 0, 255): "X", (255, 255, 255, 255): "."}
     rect = image.get_rect()
@@ -114,9 +114,7 @@ def cursor_from_image(image: pygame.surface.Surface) -> Sequence[str]:
     return icon_string
 
 
-def load_and_scale(
-    filename: str, scale: float = prepare.SCALE
-) -> pygame.surface.Surface:
+def load_and_scale(filename: str, scale: float = prepare.SCALE) -> Surface:
     """
     Load an image and scale it according to game settings.
 
@@ -134,7 +132,7 @@ def load_and_scale(
     return scale_surface(load_image(filename), scale)
 
 
-def load_image(filename: str) -> pygame.surface.Surface:
+def load_image(filename: str) -> Surface:
     """Load image from the resources folder
 
     * Filename will be transformed to be loaded from game resource folder
@@ -152,13 +150,10 @@ def load_image(filename: str) -> pygame.surface.Surface:
 
     """
     filename = transform_resource_filename(filename)
-    return smart_convert(pygame.image.load(filename), None, True)
+    return smart_convert(load(filename), None, True)
 
 
-def load_sprite(
-    filename: str,
-    **rect_kwargs: Any,
-) -> Sprite:
+def load_sprite(filename: str, **rect_kwargs: Any) -> Sprite:
     """
     Load an image from disk and return a sprite.
 
@@ -184,6 +179,7 @@ def load_sprite(
 def load_animated_sprite(
     filenames: Iterable[str],
     delay: float,
+    scale: float = prepare.SCALE,
 ) -> Sprite:
     """
     Load a set of images and return an animated sprite.
@@ -197,36 +193,37 @@ def load_animated_sprite(
     Parameters:
         filenames: Filenames to load.
         delay: Frame interval; time between each frame.
+        scale: A scaling factor applied to the images during loading.
+            Defaults to the 'prepare.SCALE' constant.
 
     Returns:
         Loaded animated sprite.
-
     """
     anim = []
     for filename in filenames:
         if os.path.exists(filename):
-            image = load_and_scale(filename)
+            image = load_and_scale(filename, scale)
             anim.append((image, delay))
+        else:
+            logger.error(f"File not found: {filename}")
+
+    if not anim:
+        raise ValueError("Cannot create animated sprite: no valid frames.")
 
     tech = SurfaceAnimation(anim, True)
     tech.play()
     return Sprite(animation=tech)
 
 
-def scale_surface(
-    surface: pygame.surface.Surface,
-    factor: float,
-) -> pygame.surface.Surface:
+def scale_surface(surface: Surface, factor: float) -> Surface:
     """Scale a surface. Just a shortcut."""
-    return pygame.transform.scale(
+    return scale(
         surface,
         [int(i * factor) for i in surface.get_size()],
     )
 
 
-def load_frames_files(
-    directory: str, name: str
-) -> Iterable[pygame.surface.Surface]:
+def load_frames_files(directory: str, name: str) -> Iterable[Surface]:
     """
     Load frames from filenames.
 
@@ -244,10 +241,7 @@ def load_frames_files(
         yield load_and_scale(filename)
 
 
-def animation_frame_files(
-    directory: str,
-    name: str,
-) -> Sequence[str]:
+def animation_frame_files(directory: str, name: str) -> Sequence[str]:
     r"""
     Return list of filenames from directory for use in animation.
 
@@ -274,9 +268,7 @@ def animation_frame_files(
 
 
 def create_animation(
-    frames: Iterable[pygame.surface.Surface],
-    duration: float,
-    loop: bool,
+    frames: Iterable[Surface], duration: float, loop: bool
 ) -> SurfaceAnimation:
     """
     Create animation from frames, a list of surfaces.
@@ -295,33 +287,7 @@ def create_animation(
     return animation
 
 
-def scale_tile(
-    surface: pygame.surface.Surface,
-    tile_size: int,
-) -> pygame.surface.Surface:
-    """
-    Scales a map tile based on resolution.
-
-    Parameters:
-        surface: Surface to rescale.
-        tile_size: Desired size.
-
-    Returns:
-        The rescaled surface.
-
-    """
-    if type(surface) is pygame.Surface:
-        surface = pygame.transform.scale(surface, tile_size)
-    else:
-        surface.scale(tile_size)
-
-    return surface
-
-
-def scale_sprite(
-    sprite: Sprite,
-    ratio: float,
-) -> None:
+def scale_sprite(sprite: Sprite, ratio: float) -> None:
     """
     Scale a sprite's image in place.
 
@@ -335,17 +301,13 @@ def scale_sprite(
     sprite.rect.height = int(sprite.rect.height * ratio)
     sprite.rect.center = center
     assert sprite._original_image
-    sprite._original_image = pygame.transform.scale(
-        sprite._original_image,
-        sprite.rect.size,
-    )
+    sprite._original_image = scale(sprite._original_image, sprite.rect.size)
     sprite._needs_update = True
 
 
 def convert_alpha_to_colorkey(
-    surface: pygame.surface.Surface,
-    colorkey: ColorLike = prepare.FUCHSIA_COLOR,
-) -> pygame.surface.Surface:
+    surface: Surface, colorkey: ColorLike = prepare.FUCHSIA_COLOR
+) -> Surface:
     """
     Convert image with per-pixel alpha to normal surface with colorkey.
 
@@ -361,7 +323,7 @@ def convert_alpha_to_colorkey(
         New surface with colorkey.
 
     """
-    image = pygame.Surface(surface.get_size())
+    image = Surface(surface.get_size())
     image.fill(colorkey)
     image.set_colorkey(colorkey)
     image.blit(surface, (0, 0))
@@ -390,19 +352,19 @@ def scaled_image_loader(
         The loader to use.
 
     """
-    colorkey_color = pygame.Color(f"#{colorkey}") if colorkey else None
+    colorkey_color = Color(f"#{colorkey}") if colorkey else None
 
     # load the tileset image
-    image = pygame.image.load(filename)
+    image = load(filename)
 
     # scale the tileset image to match game scale
     scaled_size = scale_sequence(image.get_size())
-    image = pygame.transform.scale(image, scaled_size)
+    image = scale(image, scaled_size)
 
     def load_image(
         rect: Optional[tuple[int, int, int, int]] = None,
         flags: Optional[TileFlags] = None,
-    ) -> pygame.surface.Surface:
+    ) -> Surface:
         if rect:
             # scale the rect to match the scaled image
             rect = scale_sequence(rect)
@@ -423,7 +385,7 @@ def scaled_image_loader(
     return load_image
 
 
-def capture_screenshot(game: LocalPygameClient) -> pygame.surface.Surface:
+def capture_screenshot(game: LocalPygameClient) -> Surface:
     """
     Capture a screenshot of the current map.
 
@@ -436,13 +398,13 @@ def capture_screenshot(game: LocalPygameClient) -> pygame.surface.Surface:
     """
     from tuxemon.states.world.worldstate import WorldState
 
-    screenshot = pygame.Surface(game.screen.get_size())
+    screenshot = Surface(game.screen.get_size())
     world = game.get_state_by_name(WorldState)
     world.draw(screenshot)
     return screenshot
 
 
-def get_avatar(session: Session, avatar: Union[str, int]) -> Optional[Sprite]:
+def get_avatar(session: Session, avatar: str) -> Optional[Sprite]:
     """
     Retrieves the avatar sprite of a monster or NPC.
 
@@ -451,30 +413,36 @@ def get_avatar(session: Session, avatar: Union[str, int]) -> Optional[Sprite]:
         avatar: The identifier of the avatar to be used.
 
     Returns:
-        The surface of the monster or NPC avatar sprite, or None if not found.
-
+        The sprite for the monster or NPC avatar, or None if not found.
     """
-    if isinstance(avatar, int):
+    if avatar.isdigit():
         try:
-            return session.player.monsters[avatar].get_sprite("menu")
+            monster = session.player.monsters[int(avatar)]
+            return monster.get_sprite("menu")
         except IndexError:
             logger.debug(f"Invalid avatar monster slot: {avatar}")
             return None
 
-    if avatar in db.database["monster"]:
-        monster = db.lookup(avatar, table="monster")
-        if not monster.sprites:
-            logger.warning(f"Monster '{avatar}' has no sprites")
+    if avatar in db.database.get("monster", {}):
+        monster_data = db.lookup(avatar, table="monster")
+        if not monster_data.sprites:
+            logger.error(f"Monster '{avatar}' has no sprites")
             return None
-        menu_sprites = [
-            transform_resource_filename(f"{monster.sprites.menu1}.png"),
-            transform_resource_filename(f"{monster.sprites.menu2}.png"),
-        ]
-        return load_animated_sprite(menu_sprites, 0.25)
 
-    if avatar in db.database["npc"]:
-        npc = db.lookup(avatar, table="npc")
-        path = f"gfx/sprites/player/{npc.template.combat_front}.png"
+        # Replace MonsterSpriteHandler with direct logic
+        menu_sprites = [
+            transform_resource_filename(f"{monster_data.sprites.menu1}.png"),
+            transform_resource_filename(f"{monster_data.sprites.menu2}.png"),
+        ]
+        try:
+            return load_animated_sprite(menu_sprites, 0.25)
+        except ValueError as e:
+            logger.error(f"Failed to load animated sprite for '{avatar}': {e}")
+            return None
+
+    if avatar in db.database.get("npc", {}):
+        npc_data = db.lookup(avatar, table="npc")
+        path = f"gfx/sprites/player/{npc_data.template.combat_front}.png"
         sprite = load_sprite(path)
         scale_sprite(sprite, 0.5)
         return sprite
@@ -483,9 +451,7 @@ def get_avatar(session: Session, avatar: Union[str, int]) -> Optional[Sprite]:
     return None
 
 
-def string_to_colorlike(
-    color: str,
-) -> ColorLike:
+def string_to_colorlike(color: str) -> ColorLike:
     """
     It converts a string into a ColorLike.
 

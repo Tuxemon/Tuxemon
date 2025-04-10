@@ -284,7 +284,7 @@
   <object id="224" name="First Fight - Start" type="event" x="400" y="128" width="16" height="16">
    <properties>
     <property name="act10" value="lock_controls"/>
-    <property name="act11" value="set_variable teleport_faint:spyder_bedroom.tmx 3 4"/>
+    <property name="act11" value="set_teleport_faint player,spyder_bedroom.tmx,3,4"/>
     <property name="act20" value="create_npc spyder_billie,13,14"/>
     <property name="act30" value="pathfind spyder_billie,25,13"/>
     <property name="act40" value="wait 1.0"/>
@@ -329,7 +329,7 @@
     <property name="act50" value="set_monster_health"/>
     <property name="act60" value="set_monster_status"/>
     <property name="act70" value="set_variable firstfightend:no"/>
-    <property name="cond1" value="is variable_set battle_last_result:lost"/>
+    <property name="cond1" value="not variable_set battle_last_result:won"/>
     <property name="cond2" value="is variable_set firstfightend:yes"/>
    </properties>
   </object>

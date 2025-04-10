@@ -1,301 +1,234 @@
 [
   {
     "slug": "spyder_cottontown_barmaid",
-    "template": 
-      {
-        "sprite_name": "barmaid",
-        "combat_front": "barmaid",
-        "slug": "barmaid"
-      }
-  
+    "template": {
+      "sprite_name": "barmaid",
+      "combat_front": "barmaid",
+      "slug": "barmaid"
+    }
   },
   {
     "slug": "spyder_cottontown_monk",
-    "template": 
-      {
-        "sprite_name": "monk",
-        "combat_front": "monk",
-        "slug": "monk"
-      }
-  
+    "template": {
+      "sprite_name": "monk",
+      "combat_front": "monk",
+      "slug": "monk"
+    }
   },
   {
     "slug": "spyder_cottontown_hacker",
-    "template": 
-      {
-        "sprite_name": "magician",
-        "combat_front": "magician",
-        "slug": "magician"
-      }
-  
+    "template": {
+      "sprite_name": "magician",
+      "combat_front": "magician",
+      "slug": "magician"
+    }
   },
   {
     "slug": "spyder_cottonhouse1_rodger",
-    "template": 
-      {
-        "sprite_name": "firefighter",
-        "combat_front": "firefighter",
-        "slug": "firefighter"
-      }
-  
+    "template": {
+      "sprite_name": "firefighter",
+      "combat_front": "firefighter",
+      "slug": "firefighter"
+    }
   },
   {
     "slug": "spyder_cottonhouse1_lila",
-    "template": 
-      {
-        "sprite_name": "homemaker_blonde",
-        "combat_front": "adventurer",
-        "slug": "homemaker"
-      }
-  
+    "template": {
+      "sprite_name": "homemaker_blonde",
+      "combat_front": "adventurer",
+      "slug": "homemaker"
+    }
   },
   {
     "slug": "spyder_cottoncafe_juliana",
-    "template": 
-      {
-        "sprite_name": "homemaker",
-        "combat_front": "adventurer",
-        "slug": "homemaker"
-      }
-  
+    "template": {
+      "sprite_name": "homemaker",
+      "combat_front": "adventurer",
+      "slug": "homemaker"
+    }
   },
   {
     "slug": "spyder_cottoncafe_cayden",
-    "template": 
-      {
-        "sprite_name": "goth",
-        "combat_front": "goth",
-        "slug": "goth"
-      }
-  
+    "template": {
+      "sprite_name": "goth",
+      "combat_front": "goth",
+      "slug": "goth"
+    }
   },
   {
     "slug": "spyder_cottoncafe_wilford",
-    "template": 
-      {
-        "sprite_name": "shopassistant",
-        "combat_front": "shopassistant",
-        "slug": "shopassistant"
-      }
-  
+    "template": {
+      "sprite_name": "shopassistant",
+      "combat_front": "shopassistant",
+      "slug": "shopassistant"
+    }
   },
   {
     "slug": "spyder_cottoncafe_hillary",
-    "template": 
-      {
-        "sprite_name": "florist_blue",
-        "combat_front": "florist",
-        "slug": "florist"
-      }
-  
+    "template": {
+      "sprite_name": "florist_blue",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
   },
   {
     "slug": "spyder_cottoncafe_lotus",
-    "template": 
-      {
-        "sprite_name": "granny_lapi",
-        "combat_front": "adventurer",
-        "slug": "granny"
-      }
-  
+    "template": {
+      "sprite_name": "granny_lapi",
+      "combat_front": "adventurer",
+      "slug": "granny"
+    }
   },
   {
     "slug": "spyder_cottonartshop_phoenix",
-    "template": 
-      {
-        "sprite_name": "goth",
-        "combat_front": "adventurer",
-        "slug": "goth"
-      }
-  
+    "template": {
+      "sprite_name": "goth",
+      "combat_front": "adventurer",
+      "slug": "goth"
+    }
   },
   {
     "slug": "spyder_cottonartshop_philis",
-    "template": 
-      {
-        "sprite_name": "granny_green",
-        "combat_front": "adventurer",
-        "slug": "granny"
-      }
-  
+    "template": {
+      "sprite_name": "granny_green",
+      "combat_front": "adventurer",
+      "slug": "granny"
+    }
   },
   {
     "slug": "spyder_cottonhouse2_sidney",
-    "template": 
-      {
-        "sprite_name": "catgirl_fiery",
-        "combat_front": "catgirl",
-        "slug": "catgirl"
-      }
-  
+    "template": {
+      "sprite_name": "catgirl_fiery",
+      "combat_front": "catgirl",
+      "slug": "catgirl"
+    }
   },
   {
     "slug": "spyder_cottonartshop_luvinia",
-    "template": 
-      {
-        "sprite_name": "florist",
-        "combat_front": "florist",
-        "slug": "florist"
-      }
-  
+    "template": {
+      "sprite_name": "florist",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
   },
   {
     "slug": "spyder_cottonhouse2_neva",
-    "template": 
-      {
-        "sprite_name": "picnicker",
-        "combat_front": "picnicker",
-        "slug": "picnicker"
-      }
-  
+    "template": {
+      "sprite_name": "picnicker",
+      "combat_front": "picnicker",
+      "slug": "picnicker"
+    }
   },
   {
     "slug": "spyder_cottonhouse2_davis",
-    "template": 
-      {
-        "sprite_name": "shopkeeper_blonde",
-        "combat_front": "adventurer",
-        "slug": "shopkeeper"
-      }
-  
+    "template": {
+      "sprite_name": "shopkeeper_blonde",
+      "combat_front": "adventurer",
+      "slug": "shopkeeper"
+    }
   },
   {
     "slug": "spyder_cottonartshop_carter",
-    "template": 
-      {
-        "sprite_name": "shopkeeper_brown",
-        "combat_front": "adventurer",
-        "slug": "shopkeeper"
-      }
-  
+    "template": {
+      "sprite_name": "shopkeeper_brown",
+      "combat_front": "adventurer",
+      "slug": "shopkeeper"
+    }
   },
   {
     "slug": "spyder_cottoncenter_ada",
-    "template": 
-      {
-        "sprite_name": "nurse_green",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse_green",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   },
   {
-    "slug": "spyder_cottonscoop_joe",
-    "template": 
-      {
-        "sprite_name": "shopkeeper",
-        "combat_front": "adventurer",
-        "slug": "shopkeeper"
-      }
-  
-  },
-  {
-    "slug": "spyder_shopassistant",
-    "template": 
-      {
-        "sprite_name": "shopassistant",
-        "combat_front": "shopassistant",
-        "slug": "shopassistant"
-      }
-  
+    "slug": "spyder_shopkeeper",
+    "template": {
+      "sprite_name": "shopkeeper",
+      "combat_front": "adventurer",
+      "slug": "shopkeeper"
+    }
   },
   {
     "slug": "spyder_cottontunnel_box1",
-    "template": 
-      {
-        "sprite_name": "box",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "box",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_cottontunnel_box2",
-    "template": 
-      {
-        "sprite_name": "box",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "box",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_cottontunnel_box3",
-    "template": 
-      {
-        "sprite_name": "box",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "box",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_cottontunnel_box4",
-    "template": 
-      {
-        "sprite_name": "box",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "box",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_cottontunnel_box5",
-    "template": 
-      {
-        "sprite_name": "box",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "box",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_cottontunnel_box6",
-    "template": 
-      {
-        "sprite_name": "box",
-        "combat_front": "noclass",
-        "slug": "interactive_obj"
-      }
-  
+    "template": {
+      "sprite_name": "box",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
   },
   {
     "slug": "spyder_cottontunnel_professor",
-    "template": 
-      {
-        "sprite_name": "professor_fiery",
-        "combat_front": "professor",
-        "slug": "professor"
-      }
-  
+    "template": {
+      "sprite_name": "professor_fiery",
+      "combat_front": "professor",
+      "slug": "professor"
+    }
   },
   {
     "slug": "spyder_cottontunnel_shopassistant",
-    "template": 
-      {
-        "sprite_name": "shopassistant_black",
-        "combat_front": "shopassistant",
-        "slug": "shopassistant"
-      }
-  
+    "template": {
+      "sprite_name": "shopassistant_black",
+      "combat_front": "shopassistant",
+      "slug": "shopassistant"
+    }
   },
   {
     "slug": "spyder_cottontunnel_carlos",
-    "template": 
-      {
-        "sprite_name": "dragonrider_black",
-        "combat_front": "dragonrider",
-        "slug": "dragonrider"
-      }
-  
+    "template": {
+      "sprite_name": "dragonrider_black",
+      "combat_front": "dragonrider",
+      "slug": "dragonrider"
+    }
   },
   {
     "slug": "spyder_confusedperson",
-    "template": 
-      {
-        "sprite_name": "childactor_fiery",
-        "combat_front": "tennisplayer_fiery",
-        "slug": "childactor"
-      }
+    "template": {
+      "sprite_name": "childactor_fiery",
+      "combat_front": "tennisplayer_fiery",
+      "slug": "childactor"
+    }
   }
 ]

@@ -32,7 +32,7 @@ events:
     - translated_dialog xero_taba_restinbed
     - set_monster_health
     - set_monster_status
-    - set_variable teleport_faint:player_house_bedroom.tmx 3 4
+    - set_teleport_faint player,player_house_bedroom.tmx,3,4
     conditions:
     - is button_pressed K_RETURN
     - is char_facing_tile player

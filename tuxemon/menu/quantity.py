@@ -15,6 +15,12 @@ from tuxemon.session import local_session
 
 logger = logging.getLogger(__name__)
 
+QUANTITY_INCREMENT = 1
+QUANTITY_PAGE_INCREMENT = 10
+MIN_QUANTITY = 1
+CURRENCY_SYMBOL = "$"
+QUANTITY_SYMBOL = "x"
+
 
 class QuantityMenu(Menu[None]):
     """Menu used to select quantities."""
@@ -57,39 +63,39 @@ class QuantityMenu(Menu[None]):
                 self.close()
                 self.callback(0)
                 return None
-
             elif event.button == buttons.A:
                 self.menu_select_sound.play()
                 self.close()
                 self.callback(self.quantity)
                 return None
+            else:
+                self._update_quantity(event.button)
 
-            elif event.button == buttons.UP:
-                self.quantity += 1
-
-            elif event.button == buttons.DOWN:
-                self.quantity -= 1
-
-            elif event.button == buttons.RIGHT:
-                self.quantity += 10
-
-            elif event.button == buttons.LEFT:
-                self.quantity -= 10
-
-            if self.quantity <= 0:
-                self.quantity = 1
-            elif (
-                self.max_quantity is not None
-                and self.quantity > self.max_quantity
-            ):
-                self.quantity = self.max_quantity
-
+            self._clamp_quantity()
             self.reload_items()
 
         return None
 
+    def _update_quantity(self, button: int) -> None:
+        if button == buttons.UP:
+            self.quantity += QUANTITY_INCREMENT
+        elif button == buttons.DOWN:
+            self.quantity -= QUANTITY_INCREMENT
+        elif button == buttons.RIGHT:
+            self.quantity += QUANTITY_PAGE_INCREMENT
+        elif button == buttons.LEFT:
+            self.quantity -= QUANTITY_PAGE_INCREMENT
+
+    def _clamp_quantity(self) -> None:
+        if self.quantity <= 0:
+            self.quantity = MIN_QUANTITY
+        elif (
+            self.max_quantity is not None and self.quantity > self.max_quantity
+        ):
+            self.quantity = self.max_quantity
+
     def initialize_items(self) -> Generator[MenuItem[None], None, None]:
-        label = f"{'x':1} {self.quantity}"
+        label = f"{QUANTITY_SYMBOL:1} {self.quantity}"
         image = self.shadow_text(label)
         yield MenuItem(image, label, None, None)
 
@@ -119,7 +125,7 @@ class QuantityAndPriceMenu(QuantityMenu):
             self.price if self.quantity == 0 else self.quantity * self.price
         )
         price_tag = T.translate("shop_buy_free") if price == 0 else price
-        label = f"{'$':1} {price_tag}"
+        label = f"{CURRENCY_SYMBOL:1} {price_tag}"
         image = self.shadow_text(label)
         yield MenuItem(image, label, None, None)
 
@@ -140,6 +146,6 @@ class QuantityAndCostMenu(QuantityMenu):
         yield from super().initialize_items()
 
         cost = self.cost if self.quantity == 0 else self.quantity * self.cost
-        label = f"{'$':1} {cost}"
+        label = f"{CURRENCY_SYMBOL:1} {cost}"
         image = self.shadow_text(label)
         yield MenuItem(image, label, None, None)

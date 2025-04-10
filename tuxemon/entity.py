@@ -93,30 +93,23 @@ class Entity(Generic[SaveDict]):
 
         Parameters:
             pos: Position to be added.
-
         """
         coords = (int(pos[0]), int(pos[1]))
         region = self.world.collision_map.get(coords)
 
-        # Handle player vs non-player entities
-        if self.isplayer and region:
-            prop = RegionProperties(
-                region.enter_from or [],  # Use empty list if not present
-                region.exit_from or [],
-                region.endure or [],
-                self,
-                region.key,
-            )
-        else:
-            prop = RegionProperties(
-                enter_from=[],
-                exit_from=[],
-                endure=[],
-                entity=self,
-                key=None,
-            )
+        enter_from = region.enter_from if self.isplayer and region else []
+        exit_from = region.exit_from if self.isplayer and region else []
+        endure = region.endure if self.isplayer and region else []
+        key = region.key if self.isplayer and region else None
 
-        # Update collision map
+        prop = RegionProperties(
+            enter_from=enter_from,
+            exit_from=exit_from,
+            endure=endure,
+            entity=self,
+            key=key,
+        )
+
         self.world.collision_map[coords] = prop
 
     def remove_collision(self) -> None:
@@ -127,8 +120,7 @@ class Entity(Generic[SaveDict]):
         if not region:
             return  # Nothing to remove
 
-        if region.enter_from or region.exit_from or region.endure:
-            # Update properties
+        if any([region.enter_from, region.exit_from, region.endure]):
             prop = RegionProperties(
                 region.enter_from,
                 region.exit_from,

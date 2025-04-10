@@ -29,16 +29,18 @@ class TestPathfinder(unittest.TestCase):
         node1 = MagicMock(spec=PathfindNode)
         node1.get_value.return_value = start
         node1.get_parent.return_value = None
+        node1.reconstruct_path.return_value = [start]
 
         node2 = MagicMock(spec=PathfindNode)
         node2.get_value.return_value = dest
         node2.get_parent.return_value = node1
+        node2.reconstruct_path.return_value = [start, dest]
 
         self.pathfinder.pathfind_r = MagicMock(return_value=node2)
 
         path = self.pathfinder.pathfind(start, dest)
 
-        self.assertEqual(path, [(1, 1)])
+        self.assertEqual(path, [start, dest])
 
     def test_pathfind_failure(self):
         start = (0, 0)

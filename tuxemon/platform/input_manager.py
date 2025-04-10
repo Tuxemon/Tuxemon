@@ -6,6 +6,7 @@ import logging
 from collections.abc import Generator
 from typing import TYPE_CHECKING, Optional
 
+from tuxemon.platform.input_history import InputHistory
 from tuxemon.platform.platform_pygame.events import (
     PygameEventQueueHandler,
     PygameGamepadInput,
@@ -31,6 +32,7 @@ class InputManager:
         Initializes the input manager with the given config.
         """
         self.event_queue = PygameEventQueueHandler()
+        self.input_history = InputHistory()
         self.controller = config.controller
         self.input = config.input
         self.controller_overlay: Optional[PygameTouchOverlayInput] = None
@@ -93,4 +95,6 @@ class InputManager:
         """
         Processes the input events.
         """
-        return self.event_queue.process_events()
+        for event in self.event_queue.process_events():
+            self.input_history.add(event)
+            yield event

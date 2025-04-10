@@ -20,6 +20,7 @@ class Taste:
     def __init__(self, slug: Optional[str] = None) -> None:
         self.name: str = ""
         self.taste_type: str = ""
+        self.description: str = ""
         self.modifiers: Sequence[Modifier] = []
 
         if slug:
@@ -32,6 +33,7 @@ class Taste:
             cached_taste = Taste._tastes[slug]
             self.slug = slug
             self.name = cached_taste.name
+            self.description = cached_taste.description
             self.modifiers = cached_taste.modifiers
             self.taste_type = cached_taste.taste_type
             return
@@ -43,6 +45,7 @@ class Taste:
 
         self.slug = slug
         self.name = T.translate(self.slug)
+        self.description = T.translate(f"{results.slug}_description")
         self.modifiers = results.modifiers
         self.taste_type = results.taste_type
 
@@ -87,4 +90,9 @@ class Taste:
         cls._tastes.clear()
 
     def __repr__(self) -> str:
-        return f"Taste(slug={self.slug}, name={self.name}, modifier={self.modifiers}, type={self.taste_type})"
+        return (
+            f"Taste(slug={self.slug}, "
+            f"name={self.name}, "
+            f"modifier={self.modifiers}, "
+            f"type={self.taste_type})"
+        )

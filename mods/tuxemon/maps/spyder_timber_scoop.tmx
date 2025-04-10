@@ -52,10 +52,10 @@
   </object>
   <object id="20" name="Create Shopkeeper" type="event" x="16" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_timberscoop_leandro,1,6"/>
-    <property name="act2" value="char_face spyder_timberscoop_leandro,right"/>
-    <property name="act3" value="set_economy spyder_timberscoop_leandro,spyder_timber_scoop"/>
-    <property name="cond1" value="not char_exists spyder_timberscoop_leandro"/>
+    <property name="act1" value="create_npc spyder_shopassistant,1,6"/>
+    <property name="act2" value="char_face spyder_shopassistant,right"/>
+    <property name="act3" value="set_economy spyder_shopassistant,spyder_timber_scoop"/>
+    <property name="cond1" value="not char_exists spyder_shopassistant"/>
    </properties>
   </object>
   <object id="28" name="Route Music" type="event" x="0" y="0" width="16" height="16">
@@ -66,18 +66,18 @@
   </object>
   <object id="29" name="Open Shop" type="event" x="32" y="96" width="16" height="16">
    <properties>
-    <property name="act1" value="char_face spyder_timberscoop_leandro,right"/>
+    <property name="act1" value="char_face spyder_shopassistant,right"/>
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
-    <property name="act3" value="open_shop spyder_timberscoop_leandro"/>
+    <property name="act3" value="open_shop spyder_shopassistant"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
   <object id="30" name="Open Shop" type="event" x="16" y="112" width="16" height="16">
    <properties>
-    <property name="act1" value="char_face spyder_timberscoop_leandro,down"/>
+    <property name="act1" value="char_face spyder_shopassistant,down"/>
     <property name="act2" value="translated_dialog spyder_scoop_welcome"/>
-    <property name="act3" value="open_shop spyder_timberscoop_leandro"/>
+    <property name="act3" value="open_shop spyder_shopassistant"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

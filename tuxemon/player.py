@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import logging
 
-from tuxemon import prepare, time_handler
 from tuxemon.map import proj
 from tuxemon.npc import NPC
 from tuxemon.states.world.worldstate import WorldState
@@ -49,38 +48,15 @@ class Player(NPC):
         # increases steps player
         self.steps += diff_x + diff_y
 
-        # increases steps party monsters
-        for monster in self.monsters:
-            monster.steps += diff_x + diff_y
+        if diff_x != 0 or diff_y != 0:
+            self.steps += diff_x + diff_y
 
-        # checks variables starting with steps_
-        for key, value in self.game_variables.items():
-            if key.startswith("steps_"):
-                if float(value) > 0.0:
-                    self.game_variables[key] = float(value) - (diff_x + diff_y)
-                else:
-                    self.game_variables[key] = 0.0
+            if self.monsters:
+                for monster in self.monsters:
+                    monster.steps += diff_x + diff_y
 
-        # Get current time
-        current_time = time_handler.get_current_time()
-
-        # Update time-related variables
-        self.game_variables["hour"] = current_time.strftime("%H")
-        self.game_variables["day_of_year"] = str(
-            current_time.timetuple().tm_yday
-        )
-        self.game_variables["year"] = current_time.strftime("%Y")
-        self.game_variables["weekday"] = current_time.strftime("%A")
-        self.game_variables["leap_year"] = (
-            "true" if time_handler.is_leap_year(current_time.year) else "false"
-        )
-        self.game_variables["daytime"] = (
-            time_handler.calculate_day_night_cycle(current_time)
-        )
-        self.game_variables["stage_of_day"] = (
-            time_handler.calculate_day_stage_of_day(current_time)
-        )
-        self.game_variables["season"] = time_handler.determine_season(
-            current_time,
-            prepare.CONFIG.hemisphere,
-        )
+            for key, value in self.game_variables.items():
+                if key.startswith("steps_"):
+                    self.game_variables[key] = max(
+                        0.0, float(value) - (diff_x + diff_y)
+                    )

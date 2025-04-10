@@ -5,20 +5,19 @@ from __future__ import annotations
 import logging
 import uuid
 from collections.abc import Mapping, Sequence
-from typing import TYPE_CHECKING, Any, ClassVar, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
-from tuxemon import plugin
 from tuxemon.constants import paths
+from tuxemon.core.core_condition import CoreCondition
+from tuxemon.core.core_manager import ConditionManager, EffectManager
+from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import (
     CategoryStatus,
-    CommonCondition,
-    CommonEffect,
     Range,
     ResponseStatus,
     db,
 )
 from tuxemon.locale import T
-from tuxemon.status.statuscondition import StatusCondition
 from tuxemon.status.statuseffect import StatusEffect, StatusEffectResult
 
 if TYPE_CHECKING:
@@ -38,9 +37,6 @@ class Status:
     Particular status that tuxemon monsters can be affected.
 
     """
-
-    effects_classes: ClassVar[Mapping[str, type[StatusEffect]]] = {}
-    conditions_classes: ClassVar[Mapping[str, type[StatusCondition]]] = {}
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         save_data = save_data or {}
@@ -73,18 +69,12 @@ class Status:
         self.use_success = ""
         self.use_failure = ""
 
-        # load effect and status plugins if it hasn't been done already
-        if not Status.effects_classes:
-            Status.effects_classes = plugin.load_plugins(
-                paths.STATUS_EFFECT_PATH,
-                "effects",
-                interface=StatusEffect,
-            )
-            Status.conditions_classes = plugin.load_plugins(
-                paths.STATUS_CONDITION_PATH,
-                "conditions",
-                interface=StatusCondition,
-            )
+        self.effect_manager = EffectManager(
+            StatusEffect, paths.STATUS_EFFECT_PATH
+        )
+        self.condition_manager = ConditionManager(
+            CoreCondition, paths.CORE_CONDITION_PATH
+        )
 
         self.set_state(save_data)
 
@@ -136,8 +126,12 @@ class Status:
         self.range = results.range or Range.melee
         self.cond_id = results.cond_id or self.cond_id
 
-        self.conditions = self.parse_conditions(results.conditions)
-        self.effects = self.parse_effects(results.effects)
+        self.effects = self.effect_manager.parse_effects(results.effects)
+        self.conditions = self.condition_manager.parse_conditions(
+            results.conditions
+        )
+        self.condition_handler = ConditionProcessor(self.conditions)
+        self.effect_handler = EffectProcessor(self.effects)
 
         # Load the animation sprites that will be used for this status
         self.animation = results.animation
@@ -145,66 +139,6 @@ class Status:
 
         # Load the sound effect for this status
         self.sfx = results.sfx
-
-    def parse_effects(
-        self,
-        raw: Sequence[CommonEffect],
-    ) -> Sequence[StatusEffect]:
-        """
-        Convert effect strings to effect objects.
-
-        Takes raw effects list from the status's json and parses it into a
-        form more suitable for the engine.
-
-        Parameters:
-            raw: The raw effects list pulled from the status's db entry.
-
-        Returns:
-            Effects turned into a list of StatusEffect objects.
-
-        """
-        effects = []
-        for effect in raw:
-            try:
-                effect_class = Status.effects_classes[effect.type]
-            except KeyError:
-                logger.error(f'StatusEffect "{effect.type}" not implemented')
-            else:
-                effects.append(effect_class(*effect.parameters))
-        return effects
-
-    def parse_conditions(
-        self,
-        raw: Sequence[CommonCondition],
-    ) -> Sequence[StatusCondition]:
-        """
-        Convert condition strings to condition objects.
-
-        Takes raw condition list from the condition's json and parses it into a
-        form more suitable for the engine.
-
-        Parameters:
-            raw: The raw conditions list pulled from the status's db entry.
-
-        Returns:
-            Conditions turned into a list of StatusCondition objects.
-
-        """
-        conditions = []
-        for condition in raw:
-            try:
-                condition_class = Status.conditions_classes[condition.type]
-            except KeyError:
-                logger.error(
-                    f'StatusCondition "{condition.type}" not implemented'
-                )
-                continue
-
-            condition_obj = condition_class(*condition.parameters)
-            condition_obj._op = condition.operator == "is"
-            conditions.append(condition_obj)
-
-        return conditions
 
     def advance_round(self) -> None:
         """
@@ -216,40 +150,12 @@ class Status:
     def validate(self, target: Optional[Monster]) -> bool:
         """
         Check if the target meets all conditions that the status has on its use.
-
-        Parameters:
-            target: The monster or object that we are using this status on.
-
-        Returns:
-            Whether the condition may be used.
-
         """
-        if not self.conditions:
-            return True
-        if not target:
-            return False
-
-        return all(
-            (
-                condition.test(target)
-                if condition._op
-                else not condition.test(target)
-            )
-            for condition in self.conditions
-        )
+        return self.condition_handler.validate(target=target)
 
     def use(self, target: Monster) -> StatusEffectResult:
         """
-        Apply the status.
-
-        Parameters:
-            user: The Monster object that used this status.
-            target: Monster object that we are using this status on.
-
-        Returns:
-            An StatusEffectResult object containing the result of the status's
-                effect.
-
+        Applies the status's effects using EffectProcessor and returns the results.
         """
         meta_result = StatusEffectResult(
             name=self.name,
@@ -258,16 +164,11 @@ class Status:
             techniques=[],
             extras=[],
         )
+        result = self.effect_handler.process_status(
+            source=self, target=target, meta_result=meta_result
+        )
 
-        for effect in self.effects:
-            result = effect.apply(self, target)
-            meta_result.name = result.name
-            meta_result.success = meta_result.success or result.success
-            meta_result.statuses.extend(result.statuses)
-            meta_result.techniques.extend(result.techniques)
-            meta_result.extras.extend(result.extras)
-
-        return meta_result
+        return result
 
     def get_state(self) -> Mapping[str, Any]:
         """

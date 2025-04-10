@@ -34,7 +34,7 @@ from tuxemon.locale import T, replace_text
 from tuxemon.math import Vector2
 
 if TYPE_CHECKING:
-    import pygame
+    from pygame.rect import Rect
 
     from tuxemon.item.item import Item
     from tuxemon.session import Session
@@ -130,9 +130,7 @@ def scale(number: int) -> int:
     return prepare.SCALE * number
 
 
-def calc_dialog_rect(
-    screen_rect: pygame.rect.Rect, position: str
-) -> pygame.rect.Rect:
+def calc_dialog_rect(screen_rect: Rect, position: str) -> Rect:
     """
     Return a rect that is the area for a dialog box on the screen.
 
@@ -186,7 +184,7 @@ def open_dialog(
     session: Session,
     text: Sequence[str],
     avatar: Optional[Sprite] = None,
-    colors: dict[str, Any] = {},
+    box_style: dict[str, Any] = {},
     position: str = "bottom",
 ) -> State:
     """
@@ -196,7 +194,7 @@ def open_dialog(
         session: Game session.
         text: List of strings.
         avatar: Optional avatar sprite.
-        colors: Dictionary containing background color, font color, etc.
+        box_style: Dictionary containing background color, font color, etc.
         position: Position of the dialog box. Can be 'top', 'bottom', 'center',
             'topleft', 'topright', 'bottomleft', 'bottomright'.
 
@@ -204,16 +202,13 @@ def open_dialog(
         The pushed dialog state.
 
     """
-    from tuxemon.states.dialog import DialogState
-
     rect = calc_dialog_rect(session.client.screen.get_rect(), position)
     return session.client.push_state(
-        DialogState(
-            text=text,
-            avatar=avatar,
-            rect=rect,
-            colors=colors,
-        )
+        "DialogState",
+        text=text,
+        avatar=avatar,
+        rect=rect,
+        box_style=box_style,
     )
 
 
@@ -233,13 +228,10 @@ def open_choice_dialog(
         The pushed dialog choice state.
 
     """
-    from tuxemon.states.choice.choice_state import ChoiceState
-
     return session.client.push_state(
-        ChoiceState(
-            menu=menu,
-            escape_key_exits=escape_key_exits,
-        )
+        "ChoiceState",
+        menu=menu,
+        escape_key_exits=escape_key_exits,
     )
 
 

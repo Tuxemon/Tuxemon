@@ -30,7 +30,9 @@
     "WorldState"
   ],
   "modifiers": [],
-  "behaviors": {},
+  "behaviors": {
+    "resellable": true
+  },
   "use_failure": "generic_failure",
   "use_item": "combat_used_x",
   "use_success": "generic_success"

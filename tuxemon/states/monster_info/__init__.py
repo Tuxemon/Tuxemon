@@ -284,7 +284,7 @@ class MonsterInfoState(PygameMenuState):
         for elements in labels:
             f.pack(elements)
         # image
-        new_image = self._create_image(monster.front_battle_sprite)
+        new_image = self._create_image(monster.sprite_handler.front_path)
         new_image.scale(prepare.SCALE, prepare.SCALE)
         image_widget = menu.add.image(image_path=new_image.copy())
         image_widget.set_float(origin_position=True)

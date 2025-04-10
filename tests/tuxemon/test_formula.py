@@ -8,6 +8,7 @@ from tuxemon import prepare
 from tuxemon.db import Modifier
 from tuxemon.element import Element
 from tuxemon.formula import (
+    Loader,
     average_damage,
     calculate_time_based_multiplier,
     capture,
@@ -16,6 +17,7 @@ from tuxemon.formula import (
     set_height,
     set_weight,
     shake_check,
+    simple_damage_calculate,
     simple_damage_multiplier,
     simple_heal,
     strongest_link,
@@ -298,18 +300,22 @@ class TestShakeCheck(unittest.TestCase):
 
 
 class TestCapture(unittest.TestCase):
+    def setUp(self):
+        config_capture = Loader.get_config_capture("config_capture.yaml")
+        self.max_shake_rate = config_capture.shake_divisor
+        self.total_shake = config_capture.total_shakes
 
     @patch("random.randint")
     def test_capture_success(self, mock_randint):
-        mock_randint.return_value = prepare.MAX_SHAKE_RATE // 2
-        shake_check = prepare.MAX_SHAKE_RATE
+        mock_randint.return_value = self.max_shake_rate // 2
+        shake_check = self.max_shake_rate
         captured, shakes = capture(shake_check)
         self.assertTrue(captured)
-        self.assertEqual(shakes, prepare.TOTAL_SHAKES)
+        self.assertEqual(shakes, self.total_shake)
 
     @patch("random.randint")
     def test_capture_failure_first_shake(self, mock_randint):
-        mock_randint.return_value = prepare.MAX_SHAKE_RATE
+        mock_randint.return_value = self.max_shake_rate
         shake_check = 0
         captured, shakes = capture(shake_check)
         self.assertFalse(captured)
@@ -318,11 +324,11 @@ class TestCapture(unittest.TestCase):
     @patch("random.randint")
     def test_capture_failure_middle_shake(self, mock_randint):
         mock_randint.side_effect = [
-            prepare.MAX_SHAKE_RATE // 4,
-            prepare.MAX_SHAKE_RATE // 4,
-            prepare.MAX_SHAKE_RATE,
+            self.max_shake_rate // 4,
+            self.max_shake_rate // 4,
+            self.max_shake_rate,
         ]
-        shake_check = prepare.MAX_SHAKE_RATE // 4
+        shake_check = self.max_shake_rate // 4
         captured, shakes = capture(shake_check)
         self.assertFalse(captured)
         self.assertEqual(shakes, 3)
@@ -330,19 +336,19 @@ class TestCapture(unittest.TestCase):
     @patch("random.randint")
     def test_capture_failure_last_shake(self, mock_randint):
         mock_randint.side_effect = [
-            prepare.MAX_SHAKE_RATE // 4,
-            prepare.MAX_SHAKE_RATE // 4,
-            prepare.MAX_SHAKE_RATE // 4,
-            prepare.MAX_SHAKE_RATE,
+            self.max_shake_rate // 4,
+            self.max_shake_rate // 4,
+            self.max_shake_rate // 4,
+            self.max_shake_rate,
         ]
-        shake_check = prepare.MAX_SHAKE_RATE // 4
+        shake_check = self.max_shake_rate // 4
         captured, shakes = capture(shake_check)
         self.assertFalse(captured)
-        self.assertEqual(shakes, prepare.TOTAL_SHAKES)
+        self.assertEqual(shakes, self.total_shake)
 
     @patch("random.randint")
     def test_capture_edge_case_shake_check_zero(self, mock_randint):
-        mock_randint.return_value = prepare.MAX_SHAKE_RATE // 2
+        mock_randint.return_value = self.max_shake_rate // 2
         shake_check = 0
         captured, shakes = capture(shake_check)
         self.assertFalse(captured)
@@ -350,11 +356,11 @@ class TestCapture(unittest.TestCase):
 
     @patch("random.randint")
     def test_capture_edge_case_shake_check_max(self, mock_randint):
-        mock_randint.return_value = prepare.MAX_SHAKE_RATE // 2
-        shake_check = prepare.MAX_SHAKE_RATE
+        mock_randint.return_value = self.max_shake_rate // 2
+        shake_check = self.max_shake_rate
         captured, shakes = capture(shake_check)
         self.assertTrue(captured)
-        self.assertEqual(shakes, prepare.TOTAL_SHAKES)
+        self.assertEqual(shakes, self.total_shake)
 
 
 class TestDamageCalculations(unittest.TestCase):
@@ -554,3 +560,78 @@ class TestDamageCalculations(unittest.TestCase):
         self.assertEqual(cumulative_damage(modifiers, self.monster), 1.0)
         self.assertEqual(average_damage(modifiers, self.monster), 1.0)
         self.assertEqual(first_applicable_damage(modifiers, self.monster), 1.0)
+
+
+class TestSimpleDamageCalculate(unittest.TestCase):
+    def setUp(self):
+        self.mock_technique = MagicMock()
+        self.mock_user = MagicMock()
+        self.mock_target = MagicMock()
+
+        self.fire = MagicMock(spec=Element)
+        self.fire.slug = "fire"
+        self.water = MagicMock(spec=Element)
+        self.water.slug = "water"
+
+        self.mock_user.level = 10
+        self.mock_technique.power = 50
+
+        self.mock_technique.types = [self.fire]
+        self.fire.lookup_multiplier = MagicMock(return_value=2.0)
+
+        self.mock_target.types = [self.water]
+        self.fire.lookup_multiplier = MagicMock(return_value=2.0)
+
+    def test_valid_melee_damage(self):
+        self.mock_technique.range = "melee"
+        self.mock_user.melee = 30
+        self.mock_target.armour = 20
+
+        damage, multiplier = simple_damage_calculate(
+            self.mock_technique, self.mock_user, self.mock_target
+        )
+
+        self.assertIsInstance(damage, int)
+        self.assertGreater(damage, 0)
+        self.assertGreater(multiplier, 0.0)
+
+    def test_valid_touch_damage(self):
+        self.mock_technique.range = "touch"
+        self.mock_user.melee = 25
+        self.mock_target.dodge = 10
+
+        damage, multiplier = simple_damage_calculate(
+            self.mock_technique, self.mock_user, self.mock_target
+        )
+
+        self.assertGreater(damage, 0)
+        self.assertGreater(multiplier, 0.0)
+
+    def test_additional_factors_applied(self):
+        self.mock_technique.range = "ranged"
+        self.mock_user.ranged = 40
+        self.mock_target.dodge = 15
+
+        additional_factors = {"weather_bonus": 0.2}
+
+        damage, multiplier = simple_damage_calculate(
+            self.mock_technique,
+            self.mock_user,
+            self.mock_target,
+            additional_factors=additional_factors,
+        )
+
+        self.assertGreater(damage, 0)
+        self.assertAlmostEqual(multiplier, 0.2, delta=0.2)
+
+    def test_level_based_damage(self):
+        self.mock_technique.range = "reliable"
+        self.mock_user.level = 15
+        self.mock_target.resist = 3
+
+        damage, multiplier = simple_damage_calculate(
+            self.mock_technique, self.mock_user, self.mock_target
+        )
+
+        self.assertGreater(damage, 0)
+        self.assertGreater(multiplier, 0.0)

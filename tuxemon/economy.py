@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING, Optional, Union
 from tuxemon.db import EconomyItemModel, EconomyModel, EconomyMonsterModel, db
 from tuxemon.item.item import Item
 from tuxemon.monster import Monster
+from tuxemon.prepare import GRAD_BLUE
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC
@@ -23,7 +24,13 @@ class Economy:
 
     def __init__(self, slug: Optional[str] = None) -> None:
         if slug:
-            self.model = EconomyModel(slug=slug, items=[], monsters=[])
+            self.model = EconomyModel(
+                slug=slug,
+                resale_multiplier=0.0,
+                background=GRAD_BLUE,
+                items=[],
+                monsters=[],
+            )
             self.load(slug)
 
     def load(self, slug: str) -> None:
@@ -43,6 +50,8 @@ class Economy:
             raise RuntimeError(f"Failed to find economy with slug {slug}")
 
         self.model.slug = results.slug
+        self.model.resale_multiplier = results.resale_multiplier
+        self.model.background = results.background
         self.model.items = [
             EconomyItemModel.model_validate(item) for item in results.items
         ]
@@ -70,7 +79,7 @@ class Economy:
             return int(getattr(item, field))
         return None
 
-    def lookup_item(self, item_slug: str, field: str) -> int:
+    def lookup_item(self, item_slug: str, field: str) -> Optional[int]:
         """
         Looks up the value of a field for an item in the economy, raising an
         error if not found.
@@ -80,19 +89,9 @@ class Economy:
             field: The field to look up.
 
         Returns:
-            The value of the field.
-
-        Raises:
-            RuntimeError: If the field is not found for the item in the
-            economy.
+            The value of the field or None.
         """
-        value = self.lookup_item_field(item_slug, field)
-        if value is None:
-            raise RuntimeError(
-                f"{field.capitalize()} for item '{item_slug}' not found in "
-                f"economy '{self.model.slug}'"
-            )
-        return value
+        return self.lookup_item_field(item_slug, field)
 
     def lookup_item_price(self, item_slug: str) -> int:
         """
@@ -104,7 +103,12 @@ class Economy:
         Returns:
             The price of the item.
         """
-        return self.lookup_item(item_slug, "price")
+        value = self.lookup_item(item_slug, "price")
+        if value is None:
+            raise RuntimeError(
+                f"'{item_slug}' not found in economy '{self.model.slug}'"
+            )
+        return value
 
     def lookup_item_cost(self, item_slug: str) -> int:
         """
@@ -116,7 +120,12 @@ class Economy:
         Returns:
             The cost of the item.
         """
-        return self.lookup_item(item_slug, "cost")
+        value = self.lookup_item(item_slug, "cost")
+        if value is None:
+            raise RuntimeError(
+                f"'{item_slug}' not found in economy '{self.model.slug}'"
+            )
+        return value
 
     def lookup_item_inventory(self, item_slug: str) -> int:
         """
@@ -128,7 +137,12 @@ class Economy:
         Returns:
             The inventory of the item.
         """
-        return self.lookup_item(item_slug, "inventory")
+        value = self.lookup_item(item_slug, "inventory")
+        if value is None:
+            raise RuntimeError(
+                f"'{item_slug}' not found in economy '{self.model.slug}'"
+            )
+        return value
 
     def update_item_quantity(self, item_slug: str, quantity: int) -> None:
         """
@@ -230,12 +244,13 @@ class Economy:
                 )
 
             monster_in_shop = Monster()
+            monster_in_shop.load_from_db(monster.name)
+            monster_in_shop.level = monster.level
+            monster_in_shop.current_hp = monster_in_shop.hp
             if monster.variables:
                 if self.variable(monster.variables, character):
-                    monster_in_shop.load_from_db(monster.name)
                     entities.append(monster_in_shop)
             else:
-                monster_in_shop.load_from_db(monster.name)
                 entities.append(monster_in_shop)
 
         return entities

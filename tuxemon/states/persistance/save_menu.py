@@ -5,22 +5,33 @@ from __future__ import annotations
 import logging
 import os
 from base64 import b64decode
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
-import pygame
-from pygame import Rect
+from pygame import SRCALPHA
+from pygame.draw import line
+from pygame.image import frombuffer
+from pygame.rect import Rect
+from pygame.surface import Surface
+from pygame.transform import smoothscale
 
-from tuxemon import prepare, save, tools
+from tuxemon import prepare, save
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu
 from tuxemon.save import get_save_path
 from tuxemon.session import local_session
-from tuxemon.ui import text
+from tuxemon.tools import open_choice_dialog
+from tuxemon.ui.text import draw_text
+
+if TYPE_CHECKING:
+    from tuxemon.save import SaveData
 
 logger = logging.getLogger(__name__)
 
 cfgcheck = prepare.CONFIG
+
+SLOT_WIDTH_RATIO = 0.80
+SLOT_HEIGHT_RATIO = 6
 
 
 class SaveMenuState(PopUpMenu[None]):
@@ -35,7 +46,12 @@ class SaveMenuState(PopUpMenu[None]):
     def initialize_items(self) -> None:
         empty_image = None
         rect = self.client.screen.get_rect()
-        slot_rect = Rect(0, 0, rect.width * 0.80, rect.height // 6)
+        slot_rect = Rect(
+            0,
+            0,
+            rect.width * SLOT_WIDTH_RATIO,
+            rect.height // SLOT_HEIGHT_RATIO,
+        )
         for i in range(self.number_of_slots):
             # Check to see if a save exists for the current slot
             save_path = get_save_path(i + 1)
@@ -49,13 +65,10 @@ class SaveMenuState(PopUpMenu[None]):
                 item = MenuItem(empty_image, "SAVE", None, None)
                 self.add(item)
 
-    def render_empty_slot(
-        self,
-        rect: pygame.rect.Rect,
-    ) -> pygame.surface.Surface:
-        slot_image = pygame.Surface(rect.size, pygame.SRCALPHA)
+    def render_empty_slot(self, rect: Rect) -> Surface:
+        slot_image = Surface(rect.size, SRCALPHA)
         rect = rect.move(0, rect.height // 2 - 10)
-        text.draw_text(
+        draw_text(
             slot_image,
             T.translate("empty_slot"),
             rect,
@@ -63,77 +76,85 @@ class SaveMenuState(PopUpMenu[None]):
         )
         return slot_image
 
-    def render_slot(
-        self,
-        rect: pygame.rect.Rect,
-        slot_num: int,
-    ) -> pygame.surface.Surface:
-        slot_image = pygame.Surface(rect.size, pygame.SRCALPHA)
+    def render_slot(self, rect: Rect, slot_num: int) -> Surface:
+        slot_image = Surface(rect.size, SRCALPHA)
 
-        # Try and load the save game and draw details about the save
+        # Load the save data
         save_data = save.load(slot_num)
-        assert save_data
+        if not save_data:
+            logger.critical(f"Save data not found for slot {slot_num}.")
+            raise RuntimeError(
+                f"Critical error: Save data missing for slot {slot_num}"
+            )
+
+        # Draw the thumbnail
+        thumb_image = self._get_thumbnail(save_data, rect)
+        slot_image.blit(thumb_image, (rect.width * 0.20, 0))
+
+        # Draw the slot text
+        rect = rect.move(0, rect.height // 2 - 10)
+        self._draw_slot_text(slot_image, rect, slot_num, save_data)
+
+        return slot_image
+
+    def _get_thumbnail(self, save_data: SaveData, rect: Rect) -> Surface:
         if "screenshot" in save_data:
             screenshot = b64decode(save_data["screenshot"])
             size = (
                 save_data["screenshot_width"],
                 save_data["screenshot_height"],
             )
-            thumb_image = pygame.image.frombuffer(
-                screenshot,
-                size,
-                "RGB",
-            ).convert()
+            thumb_image = frombuffer(screenshot, size, "RGB").convert()
             thumb_rect = thumb_image.get_rect().fit(rect)
-            thumb_image = pygame.transform.smoothscale(
-                thumb_image,
-                thumb_rect.size,
-            )
+            return smoothscale(thumb_image, thumb_rect.size)
         else:
             thumb_rect = rect.copy()
             thumb_rect.width //= 5
-            thumb_image = pygame.Surface(thumb_rect.size)
+            thumb_image = Surface(thumb_rect.size)
             thumb_image.fill(prepare.WHITE_COLOR)
 
         if "error" in save_data["npc_state"]:
-            red = prepare.RED_COLOR
-            pygame.draw.line(thumb_image, red, [0, 0], thumb_rect.size, 3)
-            pygame.draw.line(
-                thumb_image,
-                red,
-                [0, thumb_rect.height],
-                [thumb_rect.width, 0],
-                3,
-            )
+            self._draw_error_indicator(thumb_image, thumb_rect)
 
-        # Draw the screenshot
-        slot_image.blit(thumb_image, (rect.width * 0.20, 0))
+        return thumb_image
 
-        # Draw the slot text
-        rect = rect.move(0, rect.height // 2 - 10)
-        text.draw_text(
+    def _draw_error_indicator(
+        self, thumb_image: Surface, thumb_rect: Rect
+    ) -> None:
+        red = prepare.RED_COLOR
+        line(thumb_image, red, [0, 0], thumb_rect.size, 3)
+        line(
+            thumb_image, red, [0, thumb_rect.height], [thumb_rect.width, 0], 3
+        )
+
+    def _draw_slot_text(
+        self,
+        slot_image: Surface,
+        rect: Rect,
+        slot_num: int,
+        save_data: SaveData,
+    ) -> None:
+        draw_text(
             slot_image,
-            T.translate("slot") + " " + str(slot_num),
+            f"{T.translate('slot')} {slot_num}",
             rect,
             font=self.font,
         )
 
         x = int(rect.width * 0.5)
-        text.draw_text(
+        draw_text(
             slot_image,
             save_data["npc_state"]["player_name"],
             (x, 0, 500, 500),
             font=self.font,
         )
         if "error" not in save_data["npc_state"]:
-            text.draw_text(
+            draw_text(
                 slot_image,
                 save_data["time"],
                 (x, 50, 500, 500),
                 font=self.font,
             )
-
-        return slot_image
 
     def save(self) -> None:
         self.client.event_engine.execute_action(
@@ -152,6 +173,13 @@ class SaveMenuState(PopUpMenu[None]):
         def negative_answer() -> None:
             self.client.pop_state()  # close confirmation menu
 
+        def delete_answer() -> None:
+            slot = self.selected_index + 1
+            delete_save_slot(slot)
+            self.menu_items.clear()
+            self.reload_items()
+            self.client.pop_state()  # close confirmation menu
+
         def ask_confirmation() -> None:
             # open menu to confirm the save
             var_menu = []
@@ -159,7 +187,9 @@ class SaveMenuState(PopUpMenu[None]):
             var_menu.append(("overwrite", _overwrite, positive_answer))
             _keep = T.translate("save_keep")
             var_menu.append(("keep", _keep, negative_answer))
-            tools.open_choice_dialog(local_session, var_menu, True)
+            _delete = T.translate("save_delete")
+            var_menu.append(("delete", _delete, delete_answer))
+            open_choice_dialog(local_session, var_menu, True)
 
         save_data = save.load(self.selected_index + 1)
         if save_data:
@@ -167,3 +197,33 @@ class SaveMenuState(PopUpMenu[None]):
         else:
             self.client.pop_state()  # close save menu
             self.save()
+
+
+def delete_save_slot(slot_num: int) -> bool:
+    """
+    Deletes the save file for the given slot number.
+
+    Parameters:
+        slot_num: The slot number of the save to delete.
+
+    Returns:
+        bool: True if the save file was deleted successfully, False otherwise.
+    """
+    save_path = get_save_path(slot_num)
+    if os.path.exists(save_path):
+        try:
+            os.remove(save_path)
+            logger.info(
+                f"Save slot {slot_num} deleted successfully at path {save_path}."
+            )
+            return True
+        except OSError as e:
+            logger.error(
+                f"Failed to delete save slot {slot_num} at path {save_path}. Error: {e}"
+            )
+            return False
+    else:
+        logger.warning(
+            f"Save slot {slot_num} does not exist at path {save_path}."
+        )
+        return False

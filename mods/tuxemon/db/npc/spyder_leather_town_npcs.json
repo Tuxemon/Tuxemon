@@ -208,7 +208,7 @@
     }
   },
   {
-    "slug": "spyder_leatherscoop_blake",
+    "slug": "spyder_shopassistant",
     "template": {
       "sprite_name": "shopkeeper",
       "combat_front": "adventurer",

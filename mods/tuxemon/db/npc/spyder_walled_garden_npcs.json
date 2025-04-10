@@ -1,132 +1,106 @@
 [
   {
     "slug": "spyder_walled_crassus",
-    "template": 
-      {
-        "sprite_name": "ceo",
-        "combat_front": "ceo",
-        "slug": "ceo"
-      }
-  
+    "template": {
+      "sprite_name": "ceo",
+      "combat_front": "ceo",
+      "slug": "ceo"
+    }
   },
   {
     "slug": "spyder_walled_alexander",
-    "template": 
-      {
-        "sprite_name": "ceo",
-        "combat_front": "ceo",
-        "slug": "ceo"
-      }
-  
+    "template": {
+      "sprite_name": "ceo",
+      "combat_front": "ceo",
+      "slug": "ceo"
+    }
   },
   {
     "slug": "spyder_walled_rufus",
-    "template": 
-      {
-        "sprite_name": "cooldude",
-        "combat_front": "cooldude",
-        "slug": "cooldude"
-      }
-  
+    "template": {
+      "sprite_name": "cooldude",
+      "combat_front": "cooldude",
+      "slug": "cooldude"
+    }
   },
   {
     "slug": "spyder_walled_vanderbilt",
-    "template": 
-      {
-        "sprite_name": "ceo",
-        "combat_front": "ceo",
-        "slug": "ceo"
-      }
-  
+    "template": {
+      "sprite_name": "ceo",
+      "combat_front": "ceo",
+      "slug": "ceo"
+    }
   },
   {
     "slug": "spyder_walled_astor",
-    "template": 
-      {
-        "sprite_name": "cooldude",
-        "combat_front": "cooldude",
-        "slug": "cooldude"
-      }
-  
+    "template": {
+      "sprite_name": "cooldude",
+      "combat_front": "cooldude",
+      "slug": "cooldude"
+    }
   },
   {
     "slug": "spyder_walled_ford",
-    "template": 
-      {
-        "sprite_name": "picnicker",
-        "combat_front": "picnicker",
-        "slug": "picnicker"
-      }
-  
+    "template": {
+      "sprite_name": "picnicker",
+      "combat_front": "picnicker",
+      "slug": "picnicker"
+    }
   },
   {
     "slug": "spyder_walled_girard",
-    "template": 
-      {
-        "sprite_name": "ceo",
-        "combat_front": "ceo",
-        "slug": "ceo"
-      }
-  
+    "template": {
+      "sprite_name": "ceo",
+      "combat_front": "ceo",
+      "slug": "ceo"
+    }
   },
   {
     "slug": "spyder_walled_augustus",
-    "template": 
-      {
-        "sprite_name": "ceo",
-        "combat_front": "ceo",
-        "slug": "ceo"
-      }
-  
+    "template": {
+      "sprite_name": "ceo",
+      "combat_front": "ceo",
+      "slug": "ceo"
+    }
   },
   {
     "slug": "spyder_walled_fugger",
-    "template": 
-      {
-        "sprite_name": "ceo",
-        "combat_front": "ceo",
-        "slug": "ceo"
-      }
-  
+    "template": {
+      "sprite_name": "ceo",
+      "combat_front": "ceo",
+      "slug": "ceo"
+    }
   },
   {
     "slug": "spyder_walled_carnegie",
-    "template": 
-      {
-        "sprite_name": "ceo",
-        "combat_front": "ceo",
-        "slug": "ceo"
-      }
-  
+    "template": {
+      "sprite_name": "ceo",
+      "combat_front": "ceo",
+      "slug": "ceo"
+    }
   },
   {
     "slug": "spyder_walled_osman",
-    "template": 
-      {
-        "sprite_name": "cooldude",
-        "combat_front": "cooldude",
-        "slug": "cooldude"
-      }
-  
+    "template": {
+      "sprite_name": "cooldude",
+      "combat_front": "cooldude",
+      "slug": "cooldude"
+    }
   },
   {
     "slug": "spyder_walled_musa",
-    "template": 
-      {
-        "sprite_name": "ceo",
-        "combat_front": "ceo",
-        "slug": "ceo"
-      }
-  
+    "template": {
+      "sprite_name": "ceo",
+      "combat_front": "ceo",
+      "slug": "ceo"
+    }
   },
   {
     "slug": "spyder_walled_midas",
-    "template": 
-      {
-        "sprite_name": "picnicker",
-        "combat_front": "picnicker",
-        "slug": "picnicker"
-      }
-  
+    "template": {
+      "sprite_name": "picnicker",
+      "combat_front": "picnicker",
+      "slug": "picnicker"
+    }
   }
 ]

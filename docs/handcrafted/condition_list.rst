@@ -1,5 +1,8 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.battle_is.BattleIsCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.bill_is.BillIsCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.button_combo.ButtonComboCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.button_count.ButtonCountCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.button_held.ButtonHeldCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.button_pressed.ButtonPressedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.camera_position.CameraPositionCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.char_at.CharAtCondition
@@ -37,6 +40,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.one_of.OneOfCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.party_infected.PartyInfectedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.party_size.PartySizeCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.teleport_faint.TeleportFaintCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.to_use_tile.ToUseTileCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.true.TrueCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.tuxepedia.TuxepediaCondition

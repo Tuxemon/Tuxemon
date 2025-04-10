@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="272">
+<map version="1.10" tiledversion="1.11.1-99-gec89c545" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="272">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="map_type" value="route"/>
@@ -17,7 +17,7 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="40">
   <data encoding="base64" compression="zlib">
-   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
+   eAHVlb2OFDEQhIcVxGSQ8hLLny5DIuRtnCCiAUEGTzMJIocInmYSIrq4/Xbr+vyzc4g/S3Vtu6u7y23vXLkzTWUjnk1Xx9Z4+C/uTdOj3TQ9DjwJfIi18ND21tAmLAnsY93/NuS9O2B363osXGJb9v1BD7qyfRo6ib3akdN+y18OPVcv5waIbdmRvpe/oI+aPX3L4E5G+j6GPnJs7d85+pTz4vYpMzFY6XsVbr9XX38Pfbyjz8HTXO9JA93Yy93TX2r0+ndiX87Ihf0a+r4dcPf+ac6ebAmNAsPfPtpdNzz0OZ8zEqezzhHQA/mw5fCusWtoE3o5pD9/U9BH3hyv/L3ewiceS96jjdojffJnfcvh7ZOXeljlP0dfyf2K9VGb5mfq0z3m++vdI/rQ37JLaKgBjUvoEzh3zcqvcRG2VFDrk/L72+Qs2fJ7vKxw+ou+Wo7cJ8/BedzW9KknvfFJ5wzO8wZJ8QL9EF9DPcLiq9WfgwQ4Yz5X7pXWftY16hMrXy1+DT1CbeAb6eMc5GBds8rFUH9ao6h3ATTQC7f4RvqWOJ/AYF2z9KvWK++vevsTkXcNzJE8g/zkVLzQyu3753ybcz31i/4uMRekraWPfsiW4AHfr83FG/U8a9Na/VIv/JzSJtT4Xhtei+vx4txUHzVL5BCUS5jDkQFXFl6L67Hi3ESf7pOxRA5BuYTRgCc7B7kHcc59s3rPGbX7LZETSCtz7Bp+0NMmn3iKaw35MjIX/xLcDHHz3ho8MIe/hxEPv9ucD1/urdbeX631rYAvm3PlNdy8zxq/W3zYoy/qrwmxPO5dxJvVWz/yd39WX4neZEgfezV98vsoodnBWehFtvjdtjjocKvarNG3hAbg2jT3Oj7PNVk7hzk+LPvocKuarKUvfyv8jeptLrs6qJUttd22OOhw6/ry22QtTks7vylxasN1Mb+pPtftc9VFa7a8iZo27S27629iq7593FsPquN6fS69/iZG3yv1MA/66nmZZ67W+Xxaw69Z76nifa3vlXroEMeHfNI4yk1e6cnYD3qMX3W9jvdWb9V/b6z53Xlcb561ab1leG7O7Fa5fK0ea3hcby6ux2+Zn1Mnc17HxptATdN+8D+lFtPby7Wdq1pC5nB+ceFgvzy4vqd4/FttL1Y+Rqn0RXutUXtzv3Pvf9XHXf9tW+vfvvL+/qW9HzEpJ1I=
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="40">
@@ -31,7 +31,7 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="Collisions">
-  <object id="3" type="collision" x="48" y="608" width="592" height="32"/>
+  <object id="3" type="collision" x="16" y="608" width="624" height="32"/>
   <object id="153" type="collision" x="464" y="496" width="80" height="64"/>
   <object id="155" type="collision" x="560" y="512" width="80" height="96"/>
   <object id="156" type="collision" x="416" y="480" width="48" height="96"/>
@@ -77,14 +77,6 @@
    <properties>
     <property name="act1" value="play_music music_chibi_ninja"/>
     <property name="cond1" value="not music_playing music_chibi_ninja"/>
-   </properties>
-  </object>
-  <object id="5" name="Teleport Route" type="event" x="16" y="624" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_routea.tmx,1,0,0.3"/>
-    <property name="act2" value="char_face player,down"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,down"/>
    </properties>
   </object>
   <object id="7" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
@@ -220,14 +212,6 @@
     <property name="cond2" value="is char_moved player"/>
    </properties>
   </object>
-  <object id="231" name="Teleport Route" type="event" x="32" y="624" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_routea.tmx,2,0,0.3"/>
-    <property name="act2" value="char_face player,up"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,up"/>
-   </properties>
-  </object>
   <object id="233" name="Teleport Crystal 2" type="event" x="576" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="transition_teleport spyder_crystal_town.tmx,36,24,0.3"/>
@@ -248,9 +232,9 @@
     <property name="act10" value="pathfind_to_player spyder_route7_arnaut"/>
     <property name="act11" value="translated_dialog spyder_route7_arnaut1"/>
     <property name="act12" value="unlock_controls"/>
-    <property name="act13" value="add_monster fluttaflap,40,spyder_route7_arnaut,5,10"/>
-    <property name="act14" value="add_monster metesaur,30,spyder_route7_arnaut,5,10"/>
-    <property name="act15" value="add_monster heronquak,30,spyder_route7_arnaut,5,10"/>
+    <property name="act13" value="add_monster fluttaflap,20,spyder_route7_arnaut,5,10"/>
+    <property name="act14" value="add_monster metesaur,10,spyder_route7_arnaut,5,10"/>
+    <property name="act15" value="add_monster heronquak,10,spyder_route7_arnaut,5,10"/>
     <property name="act16" value="start_battle player,spyder_route7_arnaut"/>
     <property name="act17" value="translated_dialog spyder_route7_arnaut2"/>
     <property name="act18" value="set_variable route7arnaut:yes"/>
@@ -307,9 +291,9 @@
     <property name="act10" value="pathfind_to_player spyder_route7_nino"/>
     <property name="act11" value="translated_dialog spyder_route7_nino1"/>
     <property name="act12" value="unlock_controls"/>
-    <property name="act13" value="add_monster vividactil,40,spyder_route7_nino,5,10"/>
-    <property name="act14" value="add_monster fluttaflap,40,spyder_route7_nino,5,10"/>
-    <property name="act15" value="add_monster statursus,40,spyder_route7_nino,5,10"/>
+    <property name="act13" value="add_monster vividactil,20,spyder_route7_nino,5,10"/>
+    <property name="act14" value="add_monster fluttaflap,20,spyder_route7_nino,5,10"/>
+    <property name="act15" value="add_monster statursus,20,spyder_route7_nino,5,10"/>
     <property name="act16" value="start_battle player,spyder_route7_nino"/>
     <property name="act17" value="translated_dialog spyder_route7_nino2"/>
     <property name="act18" value="set_variable route7nino:yes"/>
@@ -330,11 +314,11 @@
     <property name="act10" value="pathfind_to_player spyder_route7_sordello"/>
     <property name="act11" value="translated_dialog spyder_route7_sordello1"/>
     <property name="act12" value="unlock_controls"/>
-    <property name="act13" value="add_monster fuzzlet,30,spyder_route7_sordello,5,10"/>
-    <property name="act14" value="add_monster ziggurat,30,spyder_route7_sordello,5,10"/>
-    <property name="act15" value="add_monster woodoor,30,spyder_route7_sordello,5,10"/>
-    <property name="act16" value="add_monster potturmeist,30,spyder_route7_sordello,5,10"/>
-    <property name="act17" value="add_monster squink,30,spyder_route7_sordello,5,10"/>
+    <property name="act13" value="add_monster fuzzlet,10,spyder_route7_sordello,5,10"/>
+    <property name="act14" value="add_monster ziggurat,10,spyder_route7_sordello,5,10"/>
+    <property name="act15" value="add_monster woodoor,10,spyder_route7_sordello,5,10"/>
+    <property name="act16" value="add_monster potturmeist,10,spyder_route7_sordello,5,10"/>
+    <property name="act17" value="add_monster squink,10,spyder_route7_sordello,5,10"/>
     <property name="act18" value="start_battle player,spyder_route7_sordello"/>
     <property name="act19" value="translated_dialog spyder_route7_sordello2"/>
     <property name="act20" value="set_variable route7sordello:yes"/>
@@ -355,10 +339,10 @@
     <property name="act10" value="pathfind_to_player spyder_route7_statius"/>
     <property name="act11" value="translated_dialog spyder_route7_statius1"/>
     <property name="act12" value="unlock_controls"/>
-    <property name="act13" value="add_monster aardart,30,spyder_route7_statius,5,10"/>
-    <property name="act14" value="add_monster pairagrim,30,spyder_route7_statius,5,10"/>
-    <property name="act15" value="add_monster bolt,30,spyder_route7_statius,5,10"/>
-    <property name="act16" value="add_monster fribbit,30,spyder_route7_statius,5,10"/>
+    <property name="act13" value="add_monster aardart,10,spyder_route7_statius,5,10"/>
+    <property name="act14" value="add_monster pairagrim,10,spyder_route7_statius,5,10"/>
+    <property name="act15" value="add_monster bolt,10,spyder_route7_statius,5,10"/>
+    <property name="act16" value="add_monster fribbit,10,spyder_route7_statius,5,10"/>
     <property name="act17" value="start_battle player,spyder_route7_statius"/>
     <property name="act18" value="translated_dialog spyder_route7_statius2"/>
     <property name="act19" value="set_variable route7statius:yes"/>
@@ -379,10 +363,10 @@
     <property name="act10" value="pathfind_to_player spyder_route7_jacopo"/>
     <property name="act11" value="translated_dialog spyder_route7_jacopo1"/>
     <property name="act12" value="unlock_controls"/>
-    <property name="act13" value="add_monster shelagu,30,spyder_route7_jacopo,5,10"/>
-    <property name="act14" value="add_monster vivisource,30,spyder_route7_jacopo,5,10"/>
-    <property name="act15" value="add_monster statursus,30,spyder_route7_jacopo,5,10"/>
-    <property name="act16" value="add_monster statursus,35,spyder_route7_jacopo,5,10"/>
+    <property name="act13" value="add_monster shelagu,10,spyder_route7_jacopo,5,10"/>
+    <property name="act14" value="add_monster vivisource,10,spyder_route7_jacopo,5,10"/>
+    <property name="act15" value="add_monster statursus,10,spyder_route7_jacopo,5,10"/>
+    <property name="act16" value="add_monster statursus,15,spyder_route7_jacopo,5,10"/>
     <property name="act17" value="start_battle player,spyder_route7_jacopo"/>
     <property name="act18" value="translated_dialog spyder_route7_jacopo2"/>
     <property name="act19" value="set_variable route7jacopo:yes"/>
@@ -403,9 +387,9 @@
     <property name="act10" value="pathfind_to_player spyder_route7_pia"/>
     <property name="act11" value="translated_dialog spyder_route7_pia1"/>
     <property name="act12" value="unlock_controls"/>
-    <property name="act13" value="add_monster anoleaf,35,spyder_route7_pia,5,10"/>
-    <property name="act14" value="add_monster gectile,40,spyder_route7_pia,5,10"/>
-    <property name="act15" value="add_monster velocitile,45,spyder_route7_pia,5,10"/>
+    <property name="act13" value="add_monster anoleaf,15,spyder_route7_pia,5,10"/>
+    <property name="act14" value="add_monster gectile,20,spyder_route7_pia,5,10"/>
+    <property name="act15" value="add_monster velocitile,25,spyder_route7_pia,5,10"/>
     <property name="act16" value="start_battle player,spyder_route7_pia"/>
     <property name="act17" value="translated_dialog spyder_route7_pia2"/>
     <property name="act18" value="set_variable route7pia:yes"/>
@@ -425,9 +409,9 @@
     <property name="act10" value="pathfind_to_player spyder_route7_penitent"/>
     <property name="act11" value="translated_dialog spyder_route7_penitent1"/>
     <property name="act12" value="unlock_controls"/>
-    <property name="act13" value="add_monster rhinocarpe,40,spyder_route7_penitent,5,10"/>
-    <property name="act14" value="add_monster bursa,30,spyder_route7_penitent,5,10"/>
-    <property name="act15" value="add_monster dandicub,30,spyder_route7_penitent,5,10"/>
+    <property name="act13" value="add_monster rhinocarpe,20,spyder_route7_penitent,5,10"/>
+    <property name="act14" value="add_monster bursa,10,spyder_route7_penitent,5,10"/>
+    <property name="act15" value="add_monster dandicub,10,spyder_route7_penitent,5,10"/>
     <property name="act16" value="start_battle player,spyder_route7_penitent"/>
     <property name="act17" value="translated_dialog spyder_route7_penitent2"/>
     <property name="act18" value="set_variable route7penitent:yes"/>
@@ -447,8 +431,8 @@
     <property name="act10" value="pathfind_to_player spyder_route7_hugh"/>
     <property name="act11" value="translated_dialog spyder_route7_hugh1"/>
     <property name="act12" value="unlock_controls"/>
-    <property name="act13" value="add_monster qetzlrokilus,40,spyder_route7_hugh,5,10"/>
-    <property name="act14" value="add_monster velocitile,40,spyder_route7_hugh,5,10"/>
+    <property name="act13" value="add_monster qetzlrokilus,20,spyder_route7_hugh,5,10"/>
+    <property name="act14" value="add_monster velocitile,20,spyder_route7_hugh,5,10"/>
     <property name="act15" value="start_battle player,spyder_route7_hugh"/>
     <property name="act16" value="translated_dialog spyder_route7_hugh2"/>
     <property name="act17" value="set_variable route7hugh:yes"/>
@@ -468,9 +452,9 @@
     <property name="act10" value="pathfind_to_player spyder_route7_manfred"/>
     <property name="act11" value="translated_dialog spyder_route7_manfred1"/>
     <property name="act12" value="unlock_controls"/>
-    <property name="act13" value="add_monster chenipode,30,spyder_route7_manfred,5,10"/>
-    <property name="act14" value="add_monster chenipode,30,spyder_route7_manfred,5,10"/>
-    <property name="act15" value="add_monster exapode,40,spyder_route7_manfred,5,10"/>
+    <property name="act13" value="add_monster chenipode,10,spyder_route7_manfred,5,10"/>
+    <property name="act14" value="add_monster chenipode,10,spyder_route7_manfred,5,10"/>
+    <property name="act15" value="add_monster exapode,20,spyder_route7_manfred,5,10"/>
     <property name="act16" value="start_battle player,spyder_route7_manfred"/>
     <property name="act17" value="translated_dialog spyder_route7_manfred2"/>
     <property name="act18" value="set_variable route7manfred:yes"/>
@@ -491,9 +475,9 @@
     <property name="act10" value="pathfind_to_player spyder_route7_conrad"/>
     <property name="act11" value="translated_dialog spyder_route7_conrad1"/>
     <property name="act12" value="unlock_controls"/>
-    <property name="act13" value="add_monster tux,40,spyder_route7_conrad,5,10"/>
-    <property name="act14" value="add_monster snowrilla,40,spyder_route7_conrad,5,10"/>
-    <property name="act15" value="add_monster chillimp,30,spyder_route7_conrad,5,10"/>
+    <property name="act13" value="add_monster tux,20,spyder_route7_conrad,5,10"/>
+    <property name="act14" value="add_monster snowrilla,20,spyder_route7_conrad,5,10"/>
+    <property name="act15" value="add_monster chillimp,10,spyder_route7_conrad,5,10"/>
     <property name="act16" value="start_battle player,spyder_route7_conrad"/>
     <property name="act17" value="translated_dialog spyder_route7_conrad2"/>
     <property name="act18" value="set_variable route7conrad:yes"/>

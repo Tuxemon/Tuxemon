@@ -32,7 +32,6 @@ class ModifyBillAction(EventAction):
 
     eg. "modify_bill player,bill_slug,-50"
     eg. "modify_bill player,bill_slug,,name_variable"
-
     """
 
     name = "modify_bill"
@@ -69,10 +68,6 @@ class ModifyBillAction(EventAction):
         if not T.has_translation("en_US", self.bill_slug):
             logger.error(f"Please add {self.bill_slug} to the en_US base.po")
 
-        bill_amount = money_manager.get_bill(self.bill_slug).amount
-        if bill_amount <= 0:
-            logger.error(f"Bill '{self.bill_slug}' doesn't exist")
-            return
         if amount >= 0:
             money_manager.add_bill(self.bill_slug, amount)
         else:

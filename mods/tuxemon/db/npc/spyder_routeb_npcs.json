@@ -1,52 +1,42 @@
 [
   {
     "slug": "spyder_routeb_electra",
-    "template": 
-      {
-        "sprite_name": "knight_green",
-        "combat_front": "enforcer_agent",
-        "slug": "enforcer_agent"
-      }
-  
+    "template": {
+      "sprite_name": "knight_green",
+      "combat_front": "enforcer_agent",
+      "slug": "enforcer_agent"
+    }
   },
   {
     "slug": "spyder_routeb_cytherea",
-    "template": 
-      {
-        "sprite_name": "knight",
-        "combat_front": "enforcer_rookie",
-        "slug": "enforcer_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_rookie",
+      "slug": "enforcer_rookie"
+    }
   },
   {
     "slug": "spyder_routeb_nephthys",
-    "template": 
-      {
-        "sprite_name": "knight_red",
-        "combat_front": "enforcer_agent",
-        "slug": "enforcer_agent"
-      }
-  
+    "template": {
+      "sprite_name": "knight_red",
+      "combat_front": "enforcer_agent",
+      "slug": "enforcer_agent"
+    }
   },
   {
     "slug": "spyder_routeb_sedna",
-    "template": 
-      {
-        "sprite_name": "knight_red",
-        "combat_front": "enforcer_rookie",
-        "slug": "enforcer_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "knight_red",
+      "combat_front": "enforcer_rookie",
+      "slug": "enforcer_rookie"
+    }
   },
   {
     "slug": "spyder_routeb_calypso",
-    "template": 
-      {
-        "sprite_name": "knight_yellow",
-        "combat_front": "enforcer_boss",
-        "slug": "enforcer_boss"
-      }
-  
+    "template": {
+      "sprite_name": "knight_yellow",
+      "combat_front": "enforcer_boss",
+      "slug": "enforcer_boss"
+    }
   }
 ]

@@ -54,13 +54,13 @@ class TestCamera(unittest.TestCase):
         self.assertEqual(self.camera.get_entity_center(), Vector2(88, 88))
 
     def test_update_follow(self):
-        self.camera.update()
+        self.camera.update(0.1)
         self.assertEqual(self.camera.position, Vector2(88, 88))
 
     def test_update_unfollow(self):
-        self.camera.update()
+        self.camera.update(0.1)
         self.camera.unfollow()
-        self.camera.update()
+        self.camera.update(0.1)
         self.assertEqual(self.camera.position, Vector2(88, 88))
         self.camera.move(dx=10)
         self.assertNotEqual(self.camera.position, Vector2(88, 88))
@@ -144,7 +144,7 @@ class TestCameraManager(unittest.TestCase):
 
     def test_update(self):
         self.manager.add_camera(self.camera1)
-        self.manager.update()
+        self.manager.update(0.1)
         self.camera1.update.assert_called_once()
 
     def test_handle_input(self):

@@ -5,14 +5,15 @@ from __future__ import annotations
 import logging
 import uuid
 from collections.abc import Mapping, Sequence
-from typing import TYPE_CHECKING, Any, ClassVar, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
-from tuxemon import plugin
 from tuxemon.constants import paths
-from tuxemon.db import CommonCondition, CommonEffect, Range, db
+from tuxemon.core.core_condition import CoreCondition
+from tuxemon.core.core_manager import ConditionManager, EffectManager
+from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
+from tuxemon.db import Range, db
 from tuxemon.element import Element
 from tuxemon.locale import T
-from tuxemon.technique.techcondition import TechCondition
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -32,9 +33,6 @@ class Technique:
     Particular skill that tuxemon monsters can use in battle.
 
     """
-
-    effects_classes: ClassVar[Mapping[str, type[TechEffect]]] = {}
-    conditions_classes: ClassVar[Mapping[str, type[TechCondition]]] = {}
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         save_data = save_data or {}
@@ -67,18 +65,10 @@ class Technique:
         self.use_failure = ""
         self.use_tech = ""
 
-        # load effect and condition plugins if it hasn't been done already
-        if not Technique.effects_classes:
-            Technique.effects_classes = plugin.load_plugins(
-                paths.TECH_EFFECT_PATH,
-                "effects",
-                interface=TechEffect,
-            )
-            Technique.conditions_classes = plugin.load_plugins(
-                paths.TECH_CONDITION_PATH,
-                "conditions",
-                interface=TechCondition,
-            )
+        self.effect_manager = EffectManager(TechEffect, paths.TECH_EFFECT_PATH)
+        self.condition_manager = ConditionManager(
+            CoreCondition, paths.CORE_CONDITION_PATH
+        )
 
         self.set_state(save_data)
 
@@ -125,8 +115,12 @@ class Technique:
         self.range = results.range or Range.melee
         self.tech_id = results.tech_id
 
-        self.conditions = self.parse_conditions(results.conditions)
-        self.effects = self.parse_effects(results.effects)
+        self.effects = self.effect_manager.parse_effects(results.effects)
+        self.conditions = self.condition_manager.parse_conditions(
+            results.conditions
+        )
+        self.condition_handler = ConditionProcessor(self.conditions)
+        self.effect_handler = EffectProcessor(self.effects)
         self.target = results.target.model_dump()
         self.usable_on = results.usable_on
         self.modifiers = results.modifiers
@@ -138,66 +132,6 @@ class Technique:
         # Load the sound effect for this technique
         self.sfx = results.sfx
 
-    def parse_effects(
-        self,
-        raw: Sequence[CommonEffect],
-    ) -> Sequence[TechEffect]:
-        """
-        Convert effect strings to effect objects.
-
-        Takes raw effects list from the technique's json and parses it into a
-        form more suitable for the engine.
-
-        Parameters:
-            raw: The raw effects list pulled from the technique's db entry.
-
-        Returns:
-            Effects turned into a list of TechEffect objects.
-
-        """
-        effects = []
-        for effect in raw:
-            try:
-                effect_class = Technique.effects_classes[effect.type]
-            except KeyError:
-                logger.error(f'TechEffect "{effect.type}" not implemented')
-            else:
-                effects.append(effect_class(*effect.parameters))
-        return effects
-
-    def parse_conditions(
-        self,
-        raw: Sequence[CommonCondition],
-    ) -> Sequence[TechCondition]:
-        """
-        Convert condition strings to condition objects.
-
-        Takes raw condition list from the technique's json and parses it into a
-        form more suitable for the engine.
-
-        Parameters:
-            raw: The raw conditions list pulled from the technique's db entry.
-
-        Returns:
-            Conditions turned into a list of TechCondition objects.
-
-        """
-        conditions = []
-        for condition in raw:
-            try:
-                condition_class = Technique.conditions_classes[condition.type]
-            except KeyError:
-                logger.error(
-                    f'TechCondition "{condition.type}" not implemented'
-                )
-                continue
-
-            condition_obj = condition_class(*condition.parameters)
-            condition_obj._op = condition.operator == "is"
-            conditions.append(condition_obj)
-
-        return conditions
-
     def advance_round(self) -> None:
         """
         Advance the counter for this technique if used.
@@ -208,27 +142,8 @@ class Technique:
     def validate(self, target: Optional[Monster]) -> bool:
         """
         Check if the target meets all conditions that the technique has on its use.
-
-        Parameters:
-            target: The monster or object that we are using this technique on.
-
-        Returns:
-            Whether the technique may be used.
-
         """
-        if not self.conditions:
-            return True
-        if not target:
-            return False
-
-        return all(
-            (
-                condition.test(target)
-                if condition._op
-                else not condition.test(target)
-            )
-            for condition in self.conditions
-        )
+        return self.condition_handler.validate(target=target)
 
     def recharge(self) -> None:
         self.next_use -= 1
@@ -238,62 +153,21 @@ class Technique:
 
     def use(self, user: Monster, target: Monster) -> TechEffectResult:
         """
-        Apply the technique.
-
-        Applies this technique's effects as defined in the "effect" column of
-        the technique database. This method will execute a function with the
-        same name as the effect defined in the database. If you want to add a
-        new effect, simply create a new function under the Technique class
-        with the name of the effect you define in monster.db.
-
-        Parameters:
-            user: The Monster object that used this technique.
-            target: Monster object that we are using this technique on.
-
-        Returns:
-            A dictionary with the effect name, success and misc properties.
-
-        Examples:
-
-        >>> technique = Technique()
-        >>> technique.load("technique_poison_sting")
-        >>> bulbatux.learn(technique)
-        >>>
-        >>> bulbatux.moves[0].use(user=bulbatux, target=tuxmander)
-
+        Applies the technique's effects using EffectProcessor and returns the results.
         """
-        # Loop through all the effects of this technique and execute the
-        # effect's function.
-        # TODO: more robust API
-        # TODO: separate classes for each Technique
-        # TODO: consider moving message templates to the JSON DB
-
-        # Defaults for the return. items can override these values in their
-        # return.
         meta_result = TechEffectResult(
             name=self.name,
             success=False,
-            should_tackle=False,
             damage=0,
             element_multiplier=0.0,
+            should_tackle=False,
             extras=[],
         )
-
+        result = self.effect_handler.process_tech(
+            source=self, user=user, target=target, meta_result=meta_result
+        )
         self.next_use = self.recharge_length
-
-        # Loop through all the effects of this technique and execute the effect's function.
-        for effect in self.effects:
-            result = effect.apply(self, user, target)
-            meta_result.name = result.name
-            meta_result.success = meta_result.success or result.success
-            meta_result.should_tackle = (
-                meta_result.should_tackle or result.should_tackle
-            )
-            meta_result.damage += result.damage
-            meta_result.element_multiplier += result.element_multiplier
-            meta_result.extras.extend(result.extras)
-
-        return meta_result
+        return result
 
     def has_type(self, type_slug: Optional[str]) -> bool:
         """

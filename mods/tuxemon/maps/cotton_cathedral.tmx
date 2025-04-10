@@ -80,7 +80,7 @@
     <property name="act60" value="char_face tabanurse,down"/>
     <property name="act70" value="translated_dialog okaythen2"/>
     <property name="act80" value="set_variable chooses:none"/>
-    <property name="act90" value="set_variable teleport_faint:cotton_cathedral.tmx 6 7"/>
+    <property name="act90" value="set_teleport_faint player,cotton_cathedral.tmx,6,7"/>
     <property name="cond10" value="is variable_set chooses:yes"/>
    </properties>
   </object>

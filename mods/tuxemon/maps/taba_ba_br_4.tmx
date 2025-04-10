@@ -94,7 +94,7 @@
     <property name="act1" value="clear_variable 1stbattle"/>
     <property name="act2" value="char_face loch,left"/>
     <property name="act3" value="translated_dialog tabaacolyte4talklost"/>
-    <property name="act7" value="teleport_faint 1.5"/>
+    <property name="act7" value="teleport_faint player,1.5"/>
     <property name="cond1" value="is variable_set 1stbattle:done"/>
     <property name="cond2" value="is char_defeated player"/>
    </properties>
@@ -128,7 +128,7 @@
     <property name="act1" value="clear_variable 2ndbattle"/>
     <property name="act2" value="char_face loch,left"/>
     <property name="act4" value="translated_dialog tabaacolyte4talklost"/>
-    <property name="act7" value="teleport_faint 1.5"/>
+    <property name="act7" value="teleport_faint player,1.5"/>
     <property name="cond1" value="is variable_set 2ndbattle:done"/>
     <property name="cond2" value="is char_defeated player"/>
    </properties>
@@ -138,7 +138,7 @@
     <property name="act10" value="clear_variable 3rdbattle"/>
     <property name="act11" value="char_face loch,left"/>
     <property name="act13" value="translated_dialog tabaacolyte4talklost"/>
-    <property name="act16" value="teleport_faint 1.5"/>
+    <property name="act16" value="teleport_faint player,1.5"/>
     <property name="cond1" value="is variable_set 3rdbattle:done"/>
     <property name="cond2" value="is char_defeated player"/>
    </properties>

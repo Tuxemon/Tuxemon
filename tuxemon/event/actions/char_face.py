@@ -57,7 +57,7 @@ class CharFaceAction(EventAction):
         # we've reached the apex of the transition.
         if character.isplayer:
             world_state = self.session.client.get_state_by_name(WorldState)
-            if world_state.in_transition:
+            if world_state.transition_manager.in_transition:
                 world_state.teleporter.delayed_facing = direction
             else:
                 character.facing = direction

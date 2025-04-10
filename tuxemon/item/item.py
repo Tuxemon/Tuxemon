@@ -5,14 +5,16 @@ from __future__ import annotations
 import logging
 import uuid
 from collections.abc import Mapping, Sequence
-from typing import TYPE_CHECKING, Any, ClassVar, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
 import pygame
 
-from tuxemon import graphics, plugin, prepare
+from tuxemon import graphics, prepare
 from tuxemon.constants import paths
-from tuxemon.db import CommonCondition, CommonEffect, ItemCategory, State, db
-from tuxemon.item.itemcondition import ItemCondition
+from tuxemon.core.core_condition import CoreCondition
+from tuxemon.core.core_manager import ConditionManager, EffectManager
+from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
+from tuxemon.db import ItemCategory, State, db
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.locale import T
 
@@ -31,9 +33,6 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
 
 class Item:
     """An item object is an item that can be used either in or out of combat."""
-
-    effects_classes: ClassVar[Mapping[str, type[ItemEffect]]] = {}
-    conditions_classes: ClassVar[Mapping[str, type[ItemCondition]]] = {}
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         save_data = save_data or {}
@@ -57,20 +56,12 @@ class Item:
         self.use_success = ""
         self.use_failure = ""
         self.usable_in: Sequence[State] = []
-        self.cost: Optional[int] = None
+        self.cost: int = 0
 
-        # load effect and condition plugins if it hasn't been done already
-        if not Item.effects_classes:
-            Item.effects_classes = plugin.load_plugins(
-                paths.ITEM_EFFECT_PATH,
-                "effects",
-                interface=ItemEffect,
-            )
-            Item.conditions_classes = plugin.load_plugins(
-                paths.ITEM_CONDITION_PATH,
-                "conditions",
-                interface=ItemCondition,
-            )
+        self.effect_manager = EffectManager(ItemEffect, paths.ITEM_EFFECT_PATH)
+        self.condition_manager = ConditionManager(
+            CoreCondition, paths.CORE_CONDITION_PATH
+        )
 
         self.set_state(save_data)
 
@@ -107,8 +98,12 @@ class Item:
         self.category = results.category or ItemCategory.none
         self.sprite = results.sprite
         self.usable_in = results.usable_in
-        self.effects = self.parse_effects(results.effects)
-        self.conditions = self.parse_conditions(results.conditions)
+        self.effects = self.effect_manager.parse_effects(results.effects)
+        self.conditions = self.condition_manager.parse_conditions(
+            results.conditions
+        )
+        self.condition_handler = ConditionProcessor(self.conditions)
+        self.effect_handler = EffectProcessor(self.effects)
         self.surface = graphics.load_and_scale(self.sprite)
         self.surface_size_original = self.surface.get_size()
 
@@ -116,130 +111,36 @@ class Item:
         self.animation = results.animation
         self.flip_axes = results.flip_axes
 
-    def parse_effects(
-        self,
-        raw: Sequence[CommonEffect],
-    ) -> Sequence[ItemEffect]:
-        """
-        Convert effect strings to effect objects.
-
-        Takes raw effects list from the item's json and parses it into a
-        form more suitable for the engine.
-
-        Parameters:
-            raw: The raw effects list pulled from the item's db entry.
-
-        Returns:
-            Effects turned into a list of ItemEffect objects.
-
-        """
-        effects = []
-        for effect in raw:
-            try:
-                effect_class = Item.effects_classes[effect.type]
-            except KeyError:
-                logger.error(f'ItemEffect "{effect.type}" not implemented')
-            else:
-                effects.append(effect_class(*effect.parameters))
-        return effects
-
-    def parse_conditions(
-        self,
-        raw: Sequence[CommonCondition],
-    ) -> Sequence[ItemCondition]:
-        """
-        Convert condition objects to ItemCondition objects.
-
-        Takes raw condition list from the item's json and parses it into a
-        form more suitable for the engine.
-
-        Parameters:
-            raw: The raw conditions list pulled from the item's db entry.
-
-        Returns:
-            Conditions turned into a list of ItemCondition objects.
-
-        """
-        conditions = []
-        for condition in raw:
-            try:
-                condition_class = Item.conditions_classes[condition.type]
-            except KeyError:
-                logger.error(
-                    f'ItemCondition "{condition.type}" not implemented'
-                )
-                continue
-
-            condition_obj = condition_class(*condition.parameters)
-            condition_obj._op = condition.operator == "is"
-            conditions.append(condition_obj)
-
-        return conditions
-
     def validate(self, target: Optional[Monster]) -> bool:
         """
         Check if the target meets all conditions that the item has on it's use.
-
-        Parameters:
-            target: The monster or object that we are using this item on.
-
-        Returns:
-            Whether the item may be used by the user on the target.
-
         """
-        if not self.conditions:
-            return True
-        if not target:
-            return False
-
-        return all(
-            (
-                condition.test(target)
-                if condition._op
-                else not condition.test(target)
-            )
-            for condition in self.conditions
-        )
+        return self.condition_handler.validate(target=target)
 
     def use(self, user: NPC, target: Optional[Monster]) -> ItemEffectResult:
         """
-        Applies this item's effects as defined in the "effect" column of
-        the item database.
-
-        Parameters:
-            user: The npc that is using this item.
-            target: The monster or object that we are using this item on.
-
-        Returns:
-            An ItemEffectResult object containing the result of the item's effect.
-
+        Applies the item's effects using EffectProcessor and returns the results.
         """
-        # defaults for the return. items can override these values.
         meta_result = ItemEffectResult(
             name=self.name,
             success=False,
             num_shakes=0,
             extras=[],
         )
-
-        # Loop through all the effects of this technique and execute the effect's function.
-        for effect in self.effects:
-            result = effect.apply(self, target)
-            meta_result.name = result.name
-            meta_result.success = meta_result.success or result.success
-            meta_result.num_shakes += result.num_shakes
-            meta_result.extras.extend(result.extras)
+        result = self.effect_handler.process_item(
+            source=self, target=target, meta_result=meta_result
+        )
 
         # If this is a consumable item, remove it from the player's inventory.
         if (
-            prepare.CONFIG.items_consumed_on_failure or meta_result.success
+            prepare.CONFIG.items_consumed_on_failure or result.success
         ) and self.behaviors.consumable:
             if self.quantity <= 1:
                 user.remove_item(self)
             else:
                 self.quantity -= 1
 
-        return meta_result
+        return result
 
     def get_state(self) -> Mapping[str, Any]:
         """

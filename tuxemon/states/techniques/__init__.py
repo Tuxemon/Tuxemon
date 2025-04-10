@@ -121,7 +121,7 @@ class TechniqueMenuState(Menu[Technique]):
         # load the backpack icon
         self.backpack_center = self.rect.width * 0.16, self.rect.height * 0.45
         self.load_sprite(
-            self.mon.front_battle_sprite,
+            self.mon.sprite_handler.front_path,
             center=self.backpack_center,
             layer=100,
         )

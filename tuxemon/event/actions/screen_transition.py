@@ -28,7 +28,6 @@ class ScreenTransitionAction(EventAction):
 
     eg: "screen_transition 3"
     eg: "screen_transition 3,255:0:0:50" (red)
-
     """
 
     name = "screen_transition"
@@ -45,6 +44,9 @@ class ScreenTransitionAction(EventAction):
         if self.rgb:
             rgb = string_to_colorlike(self.rgb)
 
-        if not world.in_transition:
-            world.fade_and_teleport(_time, rgb)
-            self.stop()
+        def fade_in() -> None:
+            world.transition_manager.fade_in(_time, rgb)
+
+        world.transition_manager.fade_out(_time, rgb)
+        world.task(fade_in, _time)
+        self.stop()

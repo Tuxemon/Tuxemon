@@ -126,6 +126,7 @@ def _handle_change_contacts(save_data: dict[str, Any]) -> None:
         save_data["relationships"] = new
         del save_data["contacts"]
 
+
 def _handle_change_teleport_faint(save_data: dict[str, Any]) -> None:
     """
     Updates tuxepedia field in the save data.
@@ -140,7 +141,6 @@ def _handle_change_teleport_faint(save_data: dict[str, Any]) -> None:
                     int(new_value[2]),
                 )
                 save_data["teleport_faint"] = new_tuple
-
 
 
 def _handle_change_money(save_data: dict[str, Any]) -> None:

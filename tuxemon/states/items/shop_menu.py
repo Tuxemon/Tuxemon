@@ -21,13 +21,13 @@ from tuxemon.ui.text import TextArea
 
 if TYPE_CHECKING:
     from tuxemon.economy import Economy
+    from tuxemon.money import MoneyManager
     from tuxemon.npc import NPC
 
 INFINITE_ITEMS = prepare.INFINITE_ITEMS
 
 
 class ShopMenuState(Menu[Item]):
-    background_filename = prepare.BG_SHOP
     draw_borders = False
 
     def __init__(
@@ -64,8 +64,12 @@ class ShopMenuState(Menu[Item]):
         self.seller = seller
         self.buyer_purge = buyer_purge
         self.economy = economy
+        self.update_background(self.economy.model.background)
         self.buyer_manager = self.buyer.money_controller.money_manager
         self.seller_manager = self.seller.money_controller.money_manager
+        self.transaction_manager = TransactionManager(
+            self.economy, self.buyer_manager, self.seller_manager
+        )
 
     def calc_internal_rect(self) -> pygame.rect.Rect:
         # area in the screen where the item list is
@@ -76,85 +80,16 @@ class ShopMenuState(Menu[Item]):
         rect.height = int(self.rect.height * 0.60)
         return rect
 
-    def initialize_items(self) -> Generator[MenuItem[Item], None, None]:
-        """Get all player inventory items and add them to menu."""
-        inventory = []
-        # when the player buys
-        if self.buyer.isplayer:
-            inventory = [item for item in self.seller.items]
-        # when the player sells
-        if self.seller.isplayer:
-            inventory = [
-                item
-                for item in self.seller.items
-                for t in self.economy.model.items
-                if item.slug == t.name
-            ]
-
-        # required because the max() below will fail if inv empty
-        if not inventory:
-            return
-
-        # when the player buys, sort based on price
-        if self.buyer.isplayer:
-            inventory = sorted(
-                inventory, key=lambda x: self.economy.lookup_item_price(x.slug)
-            )
-        # when the player buys, sort based on cost
-        if self.seller.isplayer:
-            inventory = sorted(
-                inventory, key=lambda x: self.economy.lookup_item_cost(x.slug)
-            )
-
-        self.inventory = inventory
-
-        page_size = prepare.MAX_MENU_ITEMS
-        self.total_pages = -(-len(inventory) // page_size)
-
-        self.current_page = max(
-            0, min(self.current_page, self.total_pages - 1)
-        )
-
-        start_index = self.current_page * page_size
-        end_index = (self.current_page + 1) * page_size
-        page_items = inventory[start_index:end_index]
-
-        for itm in page_items:
-            # buying
-            if self.buyer.isplayer:
-                # recall variable quantity
-                key = f"{self.economy.model.slug}:{itm.slug}"
-                self.qty = self.buyer.game_variables[key]
-
-                fg = None
-                self.wallet = self.buyer_manager.get_money()
-                self.price = self.economy.lookup_item_price(itm.slug)
-                if self.price > self.wallet:
-                    fg = self.unavailable_color_shop
-                if itm.quantity != INFINITE_ITEMS:
-                    if self.qty == 0:
-                        label = f"${self.price:4} {T.translate('shop_buy_soldout')}"
-                    else:
-                        label = f"${self.price:4} {itm.name} x {self.qty}"
-                else:
-                    label = f"${self.price:4} {itm.name}"
-                image = self.shadow_text(label, fg=fg)
-                yield MenuItem(image, itm.name, itm.description, itm)
-            # selling
-            if self.seller.isplayer:
-                self.cost = self.economy.lookup_item_cost(itm.slug)
-                if itm.quantity != INFINITE_ITEMS:
-                    label = f"${self.cost:3} {itm.name} x {itm.quantity}"
-                else:
-                    label = f"${self.cost:3} {itm.name}"
-                image = self.shadow_text(label)
-                yield MenuItem(image, itm.name, itm.description, itm)
-
     def is_valid_entry(self, item: Optional[Item]) -> bool:
-        if self.buyer.isplayer and item:
-            if self.price > self.wallet:
-                return False
-            if self.qty == 0:
+        """Check if the selected item is valid for purchase or sale."""
+        if not item:
+            return False
+        if self.buyer.isplayer:
+            price = self.economy.lookup_item_price(item.slug)
+            wallet = self.buyer_manager.get_money()
+            key = f"{self.economy.model.slug}:{item.slug}"
+            qty = self.buyer.game_variables.get(key, 0)
+            if price > wallet or qty == 0:
                 return False
         return True
 
@@ -169,153 +104,135 @@ class ShopMenuState(Menu[Item]):
             if item.description:
                 self.alert(item.description)
 
-    def get_current_page_number(self) -> int:
-        """
-        Returns the current page number.
-        """
-        return self.current_page
+    def get_filtered_inventory(self) -> list[Item]:
+        """Filter and sort the inventory to exclude sold-out items."""
+        return filter_inventory(
+            self.buyer, self.seller, self.economy, self.buyer.isplayer
+        )
 
-    def prev_page(self) -> None:
-        """
-        Goes to the previous page.
+    def generate_item_label(
+        self,
+        item: Item,
+        qty: Optional[int] = None,
+        price: Optional[int] = None,
+        seller_mode: bool = False,
+    ) -> str:
+        """Generate the label for shop items, handling both buyer and seller modes."""
+        return generate_item_label(item, self.economy, qty, price, seller_mode)
 
-        This method clears the current page, decrements the current page number,
-        and then adds the items from the previous page to the menu.
-        """
-        if self.current_page > 0:
-            self.current_page -= 1
-            self.reload_shop()
+    def _populate_menu_items(
+        self, inventory: list[Item]
+    ) -> Generator[MenuItem[Item], None, None]:
+        for item in inventory:
+            if self.buyer.isplayer:
+                key = f"{self.economy.model.slug}:{item.slug}"
+                qty = self.buyer.game_variables.get(key, 0)
+                price = self.economy.lookup_item_price(item.slug)
+                fg = (
+                    self.unavailable_color_shop
+                    if price > self.buyer_manager.get_money()
+                    else None
+                )
+                label = self.generate_item_label(item, qty, price)
+                image = self.shadow_text(label, fg=fg)
+                menu_item = MenuItem(image, item.name, item.description, item)
+                yield menu_item
+                if hasattr(self, "add"):
+                    self.add(menu_item)
+            elif self.seller.isplayer:
+                cost = self.economy.lookup_item(item.slug, "cost") or round(
+                    item.cost * self.economy.model.resale_multiplier
+                )
+                label = self.generate_item_label(
+                    item, qty=None, price=cost, seller_mode=True
+                )
+                image = self.shadow_text(label)
+                menu_item = MenuItem(image, item.name, item.description, item)
+                yield menu_item
+                if hasattr(self, "add"):
+                    self.add(menu_item)
 
-    def next_page(self) -> None:
-        """
-        Goes to the next page.
+    def initialize_items(self) -> Generator[MenuItem[Item], None, None]:
+        self.inventory = self.get_filtered_inventory()
+        if not self.inventory:
+            return
 
-        This method clears the current page, increments the current page number,
-        and then adds the items from the next page to the menu.
-        """
         page_size = prepare.MAX_MENU_ITEMS
-        total_pages = -(-len(self.inventory) // page_size)
-        if self.current_page < total_pages - 1:
-            self.current_page += 1
-            self.reload_shop()
+        self.total_pages = Paginator.total_pages(self.inventory, page_size)
+        self.current_page = max(
+            0, min(self.current_page, self.total_pages - 1)
+        )
+
+        paged_inventory = Paginator.paginate(
+            self.inventory, page_size, self.current_page
+        )
+        yield from self._populate_menu_items(paged_inventory)
 
     def reload_shop(self) -> None:
         self.clear()
+        self.inventory = self.get_filtered_inventory()
+
         page_size = prepare.MAX_MENU_ITEMS
-        start_index = self.current_page * page_size
-        end_index = (self.current_page + 1) * page_size
-        page_items = self.inventory[start_index:end_index]
+        paged_inventory = Paginator.paginate(
+            self.inventory, page_size, self.current_page
+        )
+        list(
+            self._populate_menu_items(paged_inventory)
+        )  # Force generator execution
 
-        for itm in page_items:
-            if self.buyer.isplayer:
-                key = f"{self.economy.model.slug}:{itm.slug}"
-                self.qty = self.buyer.game_variables[key]
-                fg = None
-                self.wallet = self.buyer_manager.get_money()
-                self.price = self.economy.lookup_item_price(itm.slug)
-                if self.price > self.wallet:
-                    fg = self.unavailable_color_shop
-                if itm.quantity != INFINITE_ITEMS:
-                    if self.qty == 0:
-                        label = f"${self.price:4} {T.translate('shop_buy_soldout')}"
-                    else:
-                        label = f"${self.price:4} {itm.name} x {self.qty}"
-                else:
-                    label = f"${self.price:4} {itm.name}"
-                image = self.shadow_text(label, fg=fg)
-                self.add(MenuItem(image, itm.name, itm.description, itm))
-            if self.seller.isplayer:
-                self.cost = self.economy.lookup_item_cost(itm.slug)
-                if itm.quantity != INFINITE_ITEMS:
-                    label = f"${self.cost:3} {itm.name} x {itm.quantity}"
-                else:
-                    label = f"${self.cost:3} {itm.name}"
-                image = self.shadow_text(label)
-                self.add(MenuItem(image, itm.name, itm.description, itm))
-
-        # Adjust selected_index if it's out of bounds after reloading
-        if self.menu_items:
-            self.selected_index = min(
-                self.selected_index, len(self.menu_items) - 1
-            )
-        else:
-            self.selected_index = -1
+        self.selected_index = (
+            min(self.selected_index, len(self.menu_items) - 1)
+            if self.menu_items
+            else -1
+        )
         self.on_menu_selection_change()
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-        """
-        Processes a player input event.
+        page_size = prepare.MAX_MENU_ITEMS
+        total_pages = Paginator.total_pages(self.inventory, page_size)
 
-        Parameters:
-            event: The player input event.
-
-        Returns:
-            Optional[PlayerInput]: The processed event or None if it's not handled.
-        """
         if event.button == buttons.RIGHT and event.pressed:
-            if self.current_page <= self.total_pages:
-                self.next_page()
+            # Move to the next page if possible
+            if self.current_page < total_pages - 1:
+                self.current_page += 1
+                self.reload_shop()
         elif event.button == buttons.LEFT and event.pressed:
-            if self.current_page >= 0:
-                self.prev_page()
+            # Move to the previous page if possible
+            if self.current_page > 0:
+                self.current_page -= 1
+                self.reload_shop()
         else:
             return super().process_event(event)
+
         return None
 
 
 class ShopBuyMenuState(ShopMenuState):
-    """This is the state for when a player wants to buy something."""
+    """State for buying items."""
 
     def on_menu_selection(self, menu_item: MenuItem[Item]) -> None:
-        """
-        Called when player has selected something from the shop's inventory.
-
-        Currently, opens a new menu depending on the state context.
-
-        Parameters:
-            menu_item: Selected menu item.
-
-        """
         item = menu_item.game_object
         price = self.economy.lookup_item_price(item.slug)
         label = f"{self.economy.model.slug}:{item.slug}"
 
-        def buy_item(itm: Item, quantity: int) -> None:
-            if not quantity:
-                return
-
-            in_bag = self.buyer.find_item(itm.slug)
-            if in_bag:
-                # reduces quantity only no-infinite items
-                if itm.quantity != INFINITE_ITEMS:
-                    itm.quantity -= quantity
-                    self.buyer.game_variables[label] -= quantity
-                in_bag.quantity += quantity
-            else:
-                if itm.quantity != INFINITE_ITEMS:
-                    itm.quantity -= quantity
-                    self.buyer.game_variables[label] -= quantity
-                new_buy = Item()
-                new_buy.load(itm.slug)
-                new_buy.quantity = quantity
-                self.buyer.add_item(new_buy)
-            amount = quantity * price
-            self.buyer_manager.remove_money(amount)
-
+        def buy_item(quantity: int) -> None:
+            self.transaction_manager.buy_item(
+                self.buyer, item, quantity, label
+            )
             self.reload_items()
             if item not in self.seller.items:
-                # We're pointing at a new item
                 self.on_menu_selection_change()
 
         money = self.buyer_manager.get_money()
         qty_can_afford = int(money / price)
-        inventory = self.buyer.game_variables[label]
-        _inventory = 99999 if inventory == INFINITE_ITEMS else inventory
-        max_quantity = min(_inventory, qty_can_afford)
+        inventory = self.buyer.game_variables.get(label, INFINITE_ITEMS)
+        max_quantity = min(
+            qty_can_afford, inventory if inventory != INFINITE_ITEMS else 99999
+        )
 
         self.client.push_state(
             QuantityAndPriceMenu(
-                callback=partial(buy_item, item),
+                callback=partial(buy_item),
                 max_quantity=max_quantity,
                 quantity=1,
                 shrink_to_items=True,
@@ -325,45 +242,140 @@ class ShopBuyMenuState(ShopMenuState):
 
 
 class ShopSellMenuState(ShopMenuState):
-    """This is the state for when a player wants to buy something."""
+    """State for selling items."""
 
     def on_menu_selection(self, menu_item: MenuItem[Item]) -> None:
-        """
-        Called when player has selected something from the inventory.
-
-        Currently, opens a new menu depending on the state context.
-
-        Parameters:
-            menu_item: Selected menu item.
-
-        """
         item = menu_item.game_object
-        cost = self.economy.lookup_item_cost(item.slug)
+        cost = self.economy.lookup_item(item.slug, "cost") or round(
+            item.cost * self.economy.model.resale_multiplier
+        )
 
-        def sell_item(itm: Item, quantity: int) -> None:
-            if not quantity:
-                return
-
-            diff = itm.quantity - quantity
-            if diff <= 0:
-                self.seller.remove_item(itm)
-            else:
-                itm.quantity = diff
-
-            amount = quantity * cost
-            self.seller_manager.add_money(amount)
-
+        def sell_item(quantity: int) -> None:
+            self.transaction_manager.sell_item(self.seller, item, quantity)
             self.reload_items()
             if item not in self.seller.items:
-                # We're pointing at a new item
                 self.on_menu_selection_change()
 
         self.client.push_state(
             QuantityAndCostMenu(
-                callback=partial(sell_item, item),
+                callback=partial(sell_item),
                 max_quantity=item.quantity,
                 quantity=1,
                 shrink_to_items=True,
                 cost=cost,
             )
         )
+
+
+class TransactionManager:
+    """Handles all transaction operations for the shop."""
+
+    def __init__(
+        self,
+        economy: Economy,
+        buyer_manager: MoneyManager,
+        seller_manager: MoneyManager,
+    ) -> None:
+        self.economy = economy
+        self.buyer_manager = buyer_manager
+        self.seller_manager = seller_manager
+
+    def buy_item(
+        self, buyer: NPC, item: Item, quantity: int, label: str
+    ) -> None:
+        """Process buying of items."""
+        if item.quantity != INFINITE_ITEMS:
+            item.quantity -= quantity
+            buyer.game_variables[label] -= quantity
+
+        in_bag = buyer.find_item(item.slug)
+        if in_bag:
+            in_bag.quantity += quantity
+        else:
+            new_item = Item()
+            new_item.load(item.slug)
+            new_item.quantity = quantity
+            buyer.add_item(new_item)
+
+        price = self.economy.lookup_item_price(item.slug)
+        total_cost = quantity * price
+        self.buyer_manager.remove_money(total_cost)
+
+    def sell_item(self, seller: NPC, item: Item, quantity: int) -> None:
+        """Process selling of items."""
+        remaining_quantity = item.quantity - quantity
+        if remaining_quantity <= 0:
+            seller.remove_item(item)
+        else:
+            item.quantity = remaining_quantity
+
+        cost = self.economy.lookup_item(item.slug, "cost")
+        if cost is None:
+            cost = round(item.cost * self.economy.model.resale_multiplier)
+
+        total_amount = quantity * cost
+        self.seller_manager.add_money(total_amount)
+
+
+class Paginator:
+    @staticmethod
+    def paginate(
+        items: list[Item], page_size: int, page_number: int
+    ) -> list[Item]:
+        start = page_number * page_size
+        end = start + page_size
+        return items[start:end]
+
+    @staticmethod
+    def total_pages(items: list[Item], page_size: int) -> int:
+        return -(-len(items) // page_size)
+
+
+def filter_inventory(
+    buyer: NPC, seller: NPC, economy: Economy, is_player_buyer: bool
+) -> list[Item]:
+    inventory = (
+        seller.items
+        if is_player_buyer
+        else [item for item in seller.items if item.behaviors.resellable]
+    )
+
+    if is_player_buyer:
+        inventory = [
+            item
+            for item in inventory
+            if buyer.game_variables.get(f"{economy.model.slug}:{item.slug}", 0)
+            > 0
+            or item.quantity == INFINITE_ITEMS
+        ]
+
+    return sorted(inventory, key=lambda x: x.name)
+
+
+def generate_item_label(
+    item: Item,
+    economy: Economy,
+    qty: Optional[int] = None,
+    price: Optional[int] = None,
+    seller_mode: bool = False,
+) -> str:
+    if seller_mode:
+        cost = economy.lookup_item(item.slug, "cost") or round(
+            item.cost * economy.model.resale_multiplier
+        )
+        return (
+            f"${cost:3} {item.name} x {item.quantity}"
+            if item.quantity != INFINITE_ITEMS
+            else f"${cost:3} {item.name}"
+        )
+    else:
+        qty = qty or 0
+        price = price or 0
+        if item.quantity != INFINITE_ITEMS:
+            return (
+                f"${price:4} {item.name} x {qty}"
+                if qty > 0
+                else f"${price:4} {T.translate('shop_buy_soldout')}"
+            )
+        else:
+            return f"${price:4} {item.name}"

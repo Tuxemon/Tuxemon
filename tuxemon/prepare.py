@@ -182,7 +182,6 @@ BG_PARTY: str = "gfx/ui/background/player_info2.png"
 BG_ITEMS: str = ITEM_MENU
 BG_ITEMS_BACKPACK: str = "gfx/ui/item/backpack.png"
 BG_MOVES: str = ITEM_MENU
-BG_SHOP: str = ITEM_MENU
 BG_MONSTERS: str = "gfx/ui/monster/monster_menu_bg.png"
 
 # Native resolution is similar to the old gameboy resolution. This is
@@ -248,9 +247,6 @@ WEIGHT_RANGE: tuple[float, float] = (-0.1, 0.1)
 HEIGHT_RANGE: tuple[float, float] = (-0.1, 0.1)
 
 # Capture
-TOTAL_SHAKES: int = 4
-MAX_SHAKE_RATE: int = 65536
-SHAKE_CONSTANT: int = 524325
 # default modifiers
 STATUS_MODIFIER: float = 1.0
 TUXEBALL_MODIFIER: float = 1.0

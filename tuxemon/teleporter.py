@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional
 
 from tuxemon import prepare
@@ -13,6 +14,29 @@ if TYPE_CHECKING:
     from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
+
+
+@dataclass
+class TeleportFaint:
+    map_name: str = "default.tmx"
+    x: int = 0
+    y: int = 0
+
+    @classmethod
+    def from_tuple(cls, data: tuple[str, int, int]) -> TeleportFaint:
+        return cls(data[0], data[1], data[2])
+
+    def is_valid(self, map_name: str, x: int, y: int) -> bool:
+        return self.map_name == map_name and self.x == x and self.y == y
+
+    def is_default(self) -> bool:
+        return self.map_name == "default.tmx" and self.x == 0 and self.y == 0
+
+    def to_tuple(self) -> tuple[str, int, int]:
+        return (self.map_name, self.x, self.y)
+
+    def to_list(self) -> list[str]:
+        return [self.map_name, str(self.x), str(self.y)]
 
 
 class Teleporter:

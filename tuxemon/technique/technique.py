@@ -8,12 +8,12 @@ from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon.constants import paths
+from tuxemon.core.core_condition import CoreCondition
 from tuxemon.core.core_manager import ConditionManager, EffectManager
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import Range, db
 from tuxemon.element import Element
 from tuxemon.locale import T
-from tuxemon.technique.techcondition import TechCondition
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -67,7 +67,7 @@ class Technique:
 
         self.effect_manager = EffectManager(TechEffect, paths.TECH_EFFECT_PATH)
         self.condition_manager = ConditionManager(
-            TechCondition, paths.TECH_CONDITION_PATH
+            CoreCondition, paths.CORE_CONDITION_PATH
         )
 
         self.set_state(save_data)

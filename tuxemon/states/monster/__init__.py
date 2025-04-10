@@ -5,7 +5,7 @@ from __future__ import annotations
 from collections.abc import Generator
 from typing import Optional
 
-import pygame
+from pygame import SRCALPHA
 from pygame.font import Font
 from pygame.rect import Rect
 from pygame.surface import Surface
@@ -86,7 +86,7 @@ class MonsterMenuState(Menu[Optional[Monster]]):
         # make 6 slots
         for _ in range(local_session.player.party_limit):
             rect = Rect(0, 0, width, height)
-            surface = Surface(rect.size, pygame.SRCALPHA)
+            surface = Surface(rect.size, SRCALPHA)
             item = MenuItem(surface, None, None, None)
             yield item
 
@@ -121,7 +121,6 @@ class MonsterMenuState(Menu[Optional[Monster]]):
 
         Parameters:
             monster: The monster corresponding to the menu item, if any.
-
         """
         return monster is not None
 
@@ -242,7 +241,7 @@ class MonsterSpriteDisplay:
 class MonsterPortraitDisplay:
     def __init__(self, menu_state: MonsterMenuState) -> None:
         self.menu_state = menu_state
-        self.portrait = pygame.sprite.Sprite()
+        self.portrait = Sprite()
         self.portrait.rect = Rect(0, 0, 0, 0)
         self.menu_state.sprites.add(self.portrait)
 
@@ -254,7 +253,7 @@ class MonsterPortraitDisplay:
                 image = sprite.image
             except AttributeError:
                 pass
-        image = image or Surface((1, 1), pygame.SRCALPHA)
+        image = image or Surface((1, 1), SRCALPHA)
 
         self.portrait.image = image
         width, height = prepare.SCREEN_SIZE

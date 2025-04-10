@@ -649,6 +649,10 @@ class Menu(Generic[T], state.State):
         image = graphics.load_and_scale(self.cursor_filename)
         self.arrow = MenuCursor(image)
 
+    def update_background(self, new_filename: str) -> None:
+        self.background_filename = new_filename
+        self.load_graphics()
+
     def show_cursor(self) -> None:
         """Show the cursor that indicates the selected object."""
         if self.arrow not in self.menu_sprites:

@@ -35,16 +35,16 @@ events:
     type: "event"
   Teleport Faint:
     actions:
-    - teleport_faint
+    - teleport_faint player
     conditions:
     - is char_defeated player
     - not location_type clinic
     - not location_name wayfarer_inn1:wayfarer_inn2:scoop3:scoop4:paper_town:bedroom
     - is current_state WorldState
-    - not variable_set teleport_faint:spyder_leather_town.tmx 4 14
-    - not variable_set teleport_faint:spyder_timber_cafe.tmx 1 10
-    - not variable_set teleport_faint:spyder_candy_cafe.tmx 1 10
-    - not variable_set teleport_faint:spyder_cotton_cafe.tmx 1 10
+    - not teleport_faint player,spyder_leather_town.tmx,4,14
+    - not teleport_faint player,spyder_timber_cafe.tmx,1,10
+    - not teleport_faint player,spyder_candy_cafe.tmx,1,10
+    - not teleport_faint player,spyder_cotton_cafe.tmx,1,10
     type: "event"
   Auto healing teleported:
     actions:
@@ -95,47 +95,47 @@ events:
     type: "event"
   Teleport Exception 4:
     actions:
-    - teleport_faint
+    - teleport_faint player
     - set_monster_health
     - set_monster_status
     - set_variable teleport_clinic:none
     conditions:
     - is char_defeated player
     - is current_state WorldState
-    - is variable_set teleport_faint:spyder_leather_town.tmx 4 14
+    - is teleport_faint player,spyder_leather_town.tmx,4,14
     type: "event"
   Teleport Exception 5:
     actions:
-    - teleport_faint
+    - teleport_faint player
     - set_monster_health
     - set_monster_status
     - set_variable teleport_clinic:none
     conditions:
     - is char_defeated player
     - is current_state WorldState
-    - is variable_set teleport_faint:spyder_timber_cafe.tmx 1 10
+    - is teleport_faint player,spyder_timber_cafe.tmx,1,10
     type: "event"
   Teleport Exception 6:
     actions:
-    - teleport_faint
+    - teleport_faint player
     - set_monster_health
     - set_monster_status
     - set_variable teleport_clinic:none
     conditions:
     - is char_defeated player
     - is current_state WorldState
-    - is variable_set teleport_faint:spyder_candy_cafe.tmx 1 10
+    - is teleport_faint player,spyder_candy_cafe.tmx,1,10
     type: "event"
   Teleport Exception 7:
     actions:
-    - teleport_faint
+    - teleport_faint player
     - set_monster_health
     - set_monster_status
     - set_variable teleport_clinic:none
     conditions:
     - is char_defeated player
     - is current_state WorldState
-    - is variable_set teleport_faint:spyder_cotton_cafe.tmx 1 10
+    - is teleport_faint player,spyder_cotton_cafe.tmx,1,10
     type: "event"
   Evolution all:
     actions:

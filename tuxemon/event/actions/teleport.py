@@ -49,7 +49,7 @@ class TeleportAction(EventAction):
 
         # Check to see if we're also performing a transition. If we are, wait
         # to perform the teleport at the apex of the transition
-        if world.in_transition:
+        if world.transition_manager.in_transition:
             if not world.teleporter.delayed_teleport:
                 world.teleporter.delayed_char = char
                 world.teleporter.delayed_teleport = True

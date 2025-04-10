@@ -1,6 +1,8 @@
 [
   {
     "slug": "spyder_paper_mart",
+    "resale_multiplier": 0.5,
+    "background": "gfx/ui/item/item_menu_bg.png",
     "monsters": [],
     "items": [
       {
@@ -22,6 +24,8 @@
   },
   {
     "slug": "spyder_cotton_scoop",
+    "resale_multiplier": 0.5,
+    "background": "gfx/ui/item/item_menu_bg.png",
     "monsters": [],
     "items": [
       {
@@ -43,6 +47,8 @@
   },
   {
     "slug": "spyder_cotton_tech",
+    "resale_multiplier": 0.5,
+    "background": "gfx/ui/item/item_menu_bg.png",
     "monsters": [],
     "items": [
       {
@@ -76,6 +82,8 @@
   },
   {
     "slug": "spyder_leather_scoop",
+    "resale_multiplier": 0.5,
+    "background": "gfx/ui/item/item_menu_bg.png",
     "monsters": [],
     "items": [
       {
@@ -107,6 +115,8 @@
   },
   {
     "slug": "spyder_flower_scoop",
+    "resale_multiplier": 0.5,
+    "background": "gfx/ui/item/item_menu_bg.png",
     "monsters": [],
     "items": [
       {
@@ -143,6 +153,8 @@
   },
   {
     "slug": "spyder_timber_scoop",
+    "resale_multiplier": 0.5,
+    "background": "gfx/ui/item/item_menu_bg.png",
     "monsters": [],
     "items": [
       {
@@ -199,6 +211,8 @@
   },
   {
     "slug": "spyder_candy_scoop",
+    "resale_multiplier": 0.5,
+    "background": "gfx/ui/item/item_menu_bg.png",
     "monsters": [],
     "items": [
       {
@@ -250,6 +264,8 @@
   },
   {
     "slug": "spyder_candy_tech",
+    "resale_multiplier": 0.5,
+    "background": "gfx/ui/item/item_menu_bg.png",
     "monsters": [],
     "items": [
       {

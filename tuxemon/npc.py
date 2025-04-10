@@ -16,7 +16,7 @@ from tuxemon.entity import Entity
 from tuxemon.item.item import Item, decode_items, encode_items
 from tuxemon.locale import T
 from tuxemon.map import dirs2, dirs3, get_direction, proj
-from tuxemon.map_view import SpriteRenderer
+from tuxemon.map_view import SpriteController
 from tuxemon.math import Vector2
 from tuxemon.mission import MissionManager
 from tuxemon.money import MoneyController
@@ -24,6 +24,7 @@ from tuxemon.monster import Monster, decode_monsters, encode_monsters
 from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
 from tuxemon.technique.technique import Technique
+from tuxemon.teleporter import TeleportFaint
 from tuxemon.tools import vector2_to_tile_pos
 from tuxemon.tuxepedia import Tuxepedia, decode_tuxepedia, encode_tuxepedia
 
@@ -52,6 +53,7 @@ class NPCState(TypedDict):
     monster_boxes: dict[str, Sequence[Mapping[str, Any]]]
     item_boxes: dict[str, Sequence[Mapping[str, Any]]]
     tile_pos: tuple[int, int]
+    teleport_faint: tuple[str, int, int]
 
 
 def tile_distance(tile0: Iterable[float], tile1: Iterable[float]) -> float:
@@ -114,6 +116,7 @@ class NPC(Entity[NPCState]):
         self.items: list[Item] = []
         self.mission_manager = MissionManager(self)
         self.economy: Optional[Economy] = None
+        self.teleport_faint = TeleportFaint()
         # Variables for long-term item and monster storage
         # Keeping these separate so other code can safely
         # assume that all values are lists
@@ -147,7 +150,7 @@ class NPC(Entity[NPCState]):
         # Move direction allows other functions to move the npc in a controlled way.
         # To move the npc, change the value to one of four directions: left, right, up or down.
         # The npc will then move one tile in that direction until it is set to None.
-        self.sprite_renderer = SpriteRenderer(self)
+        self.sprite_controller = SpriteController(self)
 
     def get_state(self, session: Session) -> NPCState:
         """
@@ -178,6 +181,7 @@ class NPC(Entity[NPCState]):
             "monster_boxes": dict(),
             "item_boxes": dict(),
             "tile_pos": self.tile_pos,
+            "teleport_faint": self.teleport_faint.to_tuple(),
         }
 
         self.monster_boxes.save(state)
@@ -215,11 +219,15 @@ class NPC(Entity[NPCState]):
         self.monster_boxes.load(save_data)
         self.item_boxes.load(save_data)
 
+        self.teleport_faint = TeleportFaint.from_tuple(
+            save_data["teleport_faint"]
+        )
+
         _template = save_data["template"]
         self.template.slug = _template["slug"]
         self.template.sprite_name = _template["sprite_name"]
         self.template.combat_front = _template["combat_front"]
-        self.sprite_renderer._load_sprites()
+        self.sprite_controller.load_sprites(self.template)
 
     def pathfind(self, destination: tuple[int, int]) -> None:
         """
@@ -321,7 +329,7 @@ class NPC(Entity[NPCState]):
 
         """
         # update physics.  eventually move to another class
-        self.sprite_renderer.update(time_delta)
+        self.sprite_controller.update(time_delta)
         self.update_physics(time_delta)
 
         if self.pathfinding and not self.path:
@@ -355,7 +363,7 @@ class NPC(Entity[NPCState]):
         # TODO: its not possible to move the entity with physics b/c this stops that
         if not self.path:
             self.cancel_movement()
-            self.sprite_renderer.surface_animations.stop()
+            self.sprite_controller.stop_animation()
 
     def move_one_tile(self, direction: Direction) -> None:
         """
@@ -399,7 +407,7 @@ class NPC(Entity[NPCState]):
             # it still occasionally happens though!
             # eventually, there will need to be a global clock for the game,
             # not based on wall time, to prevent visual glitches.
-            self.sprite_renderer.surface_animations.play()
+            self.sprite_controller.play_animation()
             self.path_origin = self.tile_pos
             self.velocity3 = moverate * dirs3[direction]
             self.remove_collision()

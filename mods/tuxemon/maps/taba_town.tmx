@@ -272,7 +272,7 @@
   </object>
   <object id="123" name="Check for Healing Center Teleport" type="event" x="208" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="teleport_faint"/>
+    <property name="act1" value="teleport_faint player"/>
     <property name="cond1" value="is char_defeated player"/>
    </properties>
   </object>
@@ -803,8 +803,8 @@
   </object>
   <object id="160" name="Default" type="event" x="16" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable teleport_faint:healing_center.tmx 6 7"/>
-    <property name="cond1" value="not variable_set teleport_faint"/>
+    <property name="act1" value="set_teleport_faint player,healing_center.tmx,6,7"/>
+    <property name="cond1" value="not teleport_faint player"/>
    </properties>
   </object>
   <object id="163" name="Teleport to house1" type="event" x="784" y="96" width="16" height="16">

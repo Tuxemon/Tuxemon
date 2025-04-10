@@ -7,7 +7,6 @@ import logging
 import uuid
 from collections import defaultdict
 from collections.abc import Mapping, MutableMapping, Sequence
-from functools import partial
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -25,7 +24,6 @@ from tuxemon.boundary import BoundaryChecker
 from tuxemon.camera import Camera, CameraManager, project
 from tuxemon.db import Direction
 from tuxemon.entity import Entity
-from tuxemon.graphics import ColorLike
 from tuxemon.map import RegionProperties, TuxemonMap, dirs2, proj
 from tuxemon.map_view import MapRenderer
 from tuxemon.math import Vector2
@@ -35,6 +33,7 @@ from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event
 from tuxemon.session import local_session
 from tuxemon.states.world.world_menus import WorldMenuState
+from tuxemon.states.world.world_transition import WorldTransition
 from tuxemon.teleporter import Teleporter
 
 if TYPE_CHECKING:
@@ -97,14 +96,7 @@ class WorldState(state.State):
 
         self.current_map: TuxemonMap
 
-        ######################################################################
-        #                            Transitions                             #
-        ######################################################################
-
-        # default variables for transition
-        self.transition_alpha = 0
-        self.transition_surface: Optional[pygame.surface.Surface] = None
-        self.in_transition = False
+        self.transition_manager = WorldTransition(self)
 
         if local_session.player is None:
             new_player = Player(prepare.PLAYER_NPC, world=self)
@@ -128,42 +120,6 @@ class WorldState(state.State):
         """Called before another state gets focus"""
         self.lock_controls(self.player)
         self.stop_char(self.player)
-
-    def set_transition_surface(self, color: ColorLike) -> None:
-        self.transition_surface = pygame.Surface(
-            self.client.screen.get_size(), pygame.SRCALPHA
-        )
-        self.transition_surface.fill(color)
-
-    def set_transition_state(self, in_transition: bool) -> None:
-        """Update the transition state."""
-        self.in_transition = in_transition
-
-    def fade_out(self, duration: float, color: ColorLike) -> None:
-        self.set_transition_surface(color)
-        self.animate(
-            self,
-            transition_alpha=255,
-            initial=0,
-            duration=duration,
-            round_values=True,
-        )
-        self.stop_char(self.player)
-        self.lock_controls(self.player)
-
-    def fade_in(self, duration: float, color: ColorLike) -> None:
-        self.set_transition_surface(color)
-        self.animate(
-            self,
-            transition_alpha=0,
-            initial=255,
-            duration=duration,
-            round_values=True,
-        )
-        self.task(
-            partial(self.unlock_controls, self.player),
-            max(duration, 0),
-        )
 
     def broadcast_player_teleport_change(self) -> None:
         """Tell clients/host that player has moved after teleport."""
@@ -211,7 +167,7 @@ class WorldState(state.State):
         """
         self.screen = surface
         self.map_renderer.draw(surface, self.current_map)
-        self.fullscreen_animations(surface)
+        self.transition_manager.draw(surface)
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         """
@@ -725,22 +681,6 @@ class WorldState(state.State):
         pygame.draw.line(surface, (255, 50, 50), (0, cy), (w, cy))
 
         surface.unlock()
-
-    ####################################################
-    #         Full Screen Animations Functions         #
-    ####################################################
-    def fullscreen_animations(self, surface: pygame.surface.Surface) -> None:
-        """
-        Handles fullscreen animations such as transitions, cutscenes, etc.
-
-        Parameters:
-            surface: Surface to draw onto.
-
-        """
-        if self.in_transition:
-            assert self.transition_surface
-            self.transition_surface.set_alpha(self.transition_alpha)
-            surface.blit(self.transition_surface, (0, 0))
 
     ####################################################
     #             Map Change/Load Functions            #

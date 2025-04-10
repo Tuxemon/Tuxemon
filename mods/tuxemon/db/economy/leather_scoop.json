@@ -1,5 +1,7 @@
 {
   "slug": "leather_scoop",
+  "resale_multiplier": 0.5,
+  "background": "gfx/ui/item/item_menu_bg.png",
   "monsters": [],
   "items": [
     {

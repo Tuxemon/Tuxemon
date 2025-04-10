@@ -1248,6 +1248,9 @@ msgstr "Yes, overwrite this save."
 msgid "save_keep"
 msgstr "No, keep this save."
 
+msgid "save_delete"
+msgstr "Yes, delete this save."
+
 msgid "slot"
 msgstr "Slot"
 

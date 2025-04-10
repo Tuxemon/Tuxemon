@@ -4,14 +4,12 @@ from __future__ import annotations
 
 import logging
 from collections.abc import Sequence
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, Union
 
-from tuxemon.item.itemcondition import ItemCondition
+from tuxemon.core.core_condition import CoreCondition
 from tuxemon.item.itemeffect import ItemEffect, ItemEffectResult
 from tuxemon.plugin import PluginObject
-from tuxemon.status.statuscondition import StatusCondition
 from tuxemon.status.statuseffect import StatusEffect, StatusEffectResult
-from tuxemon.technique.techcondition import TechCondition
 from tuxemon.technique.techeffect import TechEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -102,22 +100,34 @@ class ConditionProcessor:
         self.conditions = conditions
 
     def _validate_condition(
-        self, condition: PluginObject, target: Monster
+        self,
+        condition: PluginObject,
+        target: Union[Monster, Item, Status, Technique],
     ) -> bool:
-        if not isinstance(
-            condition, (StatusCondition, TechCondition, ItemCondition)
-        ):
+        """
+        Validate conditions dynamically based on the target's attributes.
+        """
+        if not isinstance(condition, CoreCondition):
             return False
 
-        if condition._op:
-            return condition.test(target)
-        else:
-            return not condition.test(target)
+        target_type = target.__class__.__name__.lower()
+        test_method_name = f"test_with_{target_type}"
 
-    def validate(self, target: Optional[Monster]) -> bool:
+        try:
+            test_method = getattr(condition, test_method_name)
+            return condition._op == bool(test_method(target))
+        except AttributeError:
+            logger.error(
+                f"Missing required method: {test_method_name} for {target_type}"
+            )
+            return False
+
+    def validate(
+        self, target: Optional[Union[Monster, Item, Status, Technique]]
+    ) -> bool:
         if not self.conditions:
             return True
-        if not target:
+        if target is None:
             return False
 
         return all(

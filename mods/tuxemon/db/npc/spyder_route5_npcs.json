@@ -1,82 +1,66 @@
 [
   {
     "slug": "spyder_route5_cleo",
-    "template": 
-      {
-        "sprite_name": "catgirl_blonde",
-        "combat_front": "catgirl",
-        "slug": "catgirl"
-      }
-  
+    "template": {
+      "sprite_name": "catgirl_blonde",
+      "combat_front": "catgirl",
+      "slug": "catgirl"
+    }
   },
   {
     "slug": "spyder_route5_edith",
-    "template": 
-      {
-        "sprite_name": "picnicker",
-        "combat_front": "picnicker",
-        "slug": "picnicker"
-      }
-  
+    "template": {
+      "sprite_name": "picnicker",
+      "combat_front": "picnicker",
+      "slug": "picnicker"
+    }
   },
   {
     "slug": "spyder_route5_hunter",
-    "template": 
-      {
-        "sprite_name": "soldier",
-        "combat_front": "soldier",
-        "slug": "soldier"
-      }
-  
+    "template": {
+      "sprite_name": "soldier",
+      "combat_front": "soldier",
+      "slug": "soldier"
+    }
   },
   {
     "slug": "spyder_route5_goliath",
-    "template": 
-      {
-        "sprite_name": "spyderrookie",
-        "combat_front": "spyder_rookie",
-        "slug": "spyder_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
   },
   {
     "slug": "spyder_route5_sara",
-    "template": 
-      {
-        "sprite_name": "picnicker",
-        "combat_front": "picnicker",
-        "slug": "picnicker"
-      }
-  
+    "template": {
+      "sprite_name": "picnicker",
+      "combat_front": "picnicker",
+      "slug": "picnicker"
+    }
   },
   {
     "slug": "spyder_route5_tryphaena",
-    "template": 
-      {
-        "sprite_name": "florist_blue",
-        "combat_front": "florist",
-        "slug": "florist"
-      }
-  
+    "template": {
+      "sprite_name": "florist_blue",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
   },
   {
     "slug": "spyder_route5_lexia",
-    "template": 
-      {
-        "sprite_name": "granny_lapi",
-        "combat_front": "adventurer",
-        "slug": "granny"
-      }
-  
+    "template": {
+      "sprite_name": "granny_lapi",
+      "combat_front": "adventurer",
+      "slug": "granny"
+    }
   },
   {
     "slug": "spyder_route5_nurse",
-    "template": 
-      {
-        "sprite_name": "nurse_blue",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse_blue",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   }
 ]

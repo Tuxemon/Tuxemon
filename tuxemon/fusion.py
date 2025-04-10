@@ -11,14 +11,15 @@
 # serve only as examples of potential fusions.
 from __future__ import annotations
 
+import json
+import logging
 from collections.abc import Mapping
 from typing import Any, Optional
 
-try:
-    from PIL import Image
-except ImportError:
-    Image = Any
-import json
+from PIL import Image as PILImage
+from PIL.Image import Image
+
+logger = logging.getLogger(__name__)
 
 
 class Body:
@@ -176,22 +177,30 @@ class Body:
 
         # Set the face properties from the json data
         self.face_image_path = body_dict["face_image_path"]
-        self.face_size = body_dict["face_size"]
-        self.head_size = body_dict["head_size"]
-        self.face_center = body_dict["face_center"]
+        self.face_size = tuple(body_dict["face_size"])
+        self.head_size = tuple(body_dict["head_size"])
+        self.face_center = tuple(body_dict["face_center"])
 
         # Set the body properties from the json data
         self.body_image_path = body_dict["body_image_path"]
-        self.face_position = body_dict["face_position"]
+        self.face_position = tuple(body_dict["face_position"])
 
         # Set the _color properties from the json data
-        self.primary_colors = body_dict["primary_colors"]
-        self.secondary_colors = body_dict["secondary_colors"]
-        self.tertiary_colors = body_dict["tertiary_colors"]
+        self.primary_colors = [
+            tuple(color) for color in body_dict["primary_colors"]
+        ]
+        self.secondary_colors = [
+            tuple(color) for color in body_dict["secondary_colors"]
+        ]
+        self.tertiary_colors = [
+            tuple(color) for color in body_dict["tertiary_colors"]
+        ]
 
         # Load the image files.
-        self.body_image = Image.open(self.body_image_path)
-        self.face_image = Image.open(self.face_image_path)
+        if self.body_image_path:
+            self.body_image = PILImage.open(self.body_image_path)
+        if self.face_image_path:
+            self.face_image = PILImage.open(self.face_image_path)
 
     def get_state(self) -> Optional[Mapping[str, Any]]:
         if self.name:
@@ -226,7 +235,7 @@ def replace_color(
 
     """
     img = image.convert("RGBA")
-    datas = img.getdata()
+    datas = list(img.getdata())
 
     r = original_color[0]
     g = original_color[1]
@@ -285,100 +294,120 @@ def fuse(
 
 
     """
-
-    # Create a working copy of the body image so we don't alter the
-    # original sprite.
-    body_image = body.body_image.copy()
-
-    # Replace the _color of the body with the colors of the face.
-    for i, _ in enumerate(body.primary_colors):
-        body_image = replace_color(
-            body_image,
-            body.primary_colors[i],
-            face.primary_colors[i],
-        )
-        body_image = replace_color(
-            body_image,
-            body.secondary_colors[i],
-            face.secondary_colors[i],
-        )
-        body_image = replace_color(
-            body_image,
-            body.tertiary_colors[i],
-            face.tertiary_colors[i],
-        )
-
-    # Set a scale for the images so we can resize them.
-    # Scaling results in a better image result.
-    scale = 4
-
-    # Scale the images
-    body_image = body_image.resize(
-        (
-            body_image.getdata().size[0] * scale,
-            body_image.getdata().size[1] * scale,
-        )
+    logger.info(
+        f"Starting fusion for body '{body.name}' and face '{face.name}'."
     )
-    face.face_image = face.face_image.resize(
-        (
-            face.face_image.getdata().size[0] * scale,
-            face.face_image.getdata().size[1] * scale,
-        )
+    logger.debug(
+        f"Body size: {body.body_image.size}, mode: {body.body_image.mode}"
+    )
+    logger.debug(
+        f"Face size: {face.face_image.size}, mode: {face.face_image.mode}"
     )
 
-    # Update face size after we've performed our scaling.
-    face.face_size = (
-        face.face_image.getdata().size[0],
-        face.face_image.getdata().size[1],
+    color_mappings = get_color_mappings(body, face)
+    logger.info("Replacing colors in body image...")
+    body_image = replace_multiple_colors(body.body_image, color_mappings)
+
+    logger.info("Resizing face image to match body's proportions...")
+    new_face_image = resize_face_image(
+        face.face_image, body.head_size, face.head_size
+    )
+    logger.debug(f"Resized face dimensions: {new_face_image.size}")
+
+    logger.info("Calculating face position...")
+    face_position = calculate_face_position(body, new_face_image)
+    logger.debug(f"Calculated face position: {face_position}")
+
+    logger.info("Pasting face image onto body image...")
+    fused_image = paste_face_onto_body(
+        body_image, new_face_image, face_position
     )
 
-    # Scale the new face position.
-    body.face_position = (
-        ((body.face_position[0] - 1) * scale) + 1,
-        ((body.face_position[1] - 1) * scale) + 1,
-    )
-
-    # Compare the head size of the body and the face so we can scale
-    # the face to fit the body.
-    ratio_x = float(body.head_size[0]) / float(face.head_size[0])
-    ratio_y = float(body.head_size[1]) / float(face.head_size[1])
-
-    # Resize the head in ratio with the head size of the body
-    new_size = (
-        int(face.face_image.getdata().size[0] * ratio_x),
-        int(face.face_image.getdata().size[1] * ratio_y),
-    )
-    face.face_image = face.face_image.resize(new_size)
-
-    face.face_size = (
-        face.face_image.getdata().size[0],
-        face.face_image.getdata().size[1],
-    )
-
-    # Paste the face onto the body
-    position = (
-        body.face_position[0] - (face.face_size[0] / 2),
-        body.face_position[1] - (face.face_size[1] / 2),
-    )
-    body_image.paste(face.face_image, position, face.face_image)
-
-    # For some reason this looks really good.
-    # Scale the image back down using Image.ANTIALIAS
-    x = body_image.getdata().size[0] / (scale / 2)
-    y = body_image.getdata().size[1] / (scale / 2)
-    newsize = (x, y)
-    body_image = body_image.resize(newsize, Image.ANTIALIAS)
-
-    # Scale the image down further to its original size without ANTIALIAS
-    x /= scale / 2
-    y /= scale / 2
-    newsize = (x, y)
-    body_image = body_image.resize(newsize)
-
-    # Save the resulting image
     if save:
         if not filename:
             filename = f"fusion/{body.prefix}{face.suffix}.png"
-        body_image.save(filename)
+        logger.info(f"Saving fused image to file: {filename}.")
+        fused_image.save(filename)
+        logger.debug(f"Final fused image dimensions: {fused_image.size}")
 
-    return body_image
+    logger.info("Fusion process completed successfully!")
+    return fused_image
+
+
+def get_color_mappings(
+    body: Body, face: Body
+) -> list[tuple[tuple[int, int, int], tuple[int, int, int]]]:
+    """
+    Generates a list of color mappings that define the correspondence
+    between the body's and face's primary, secondary, and tertiary colors
+    for replacement.
+    """
+    color_mappings = (
+        [
+            (body.primary_colors[i], face.primary_colors[i])
+            for i in range(len(body.primary_colors))
+        ]
+        + [
+            (body.secondary_colors[i], face.secondary_colors[i])
+            for i in range(len(body.secondary_colors))
+        ]
+        + [
+            (body.tertiary_colors[i], face.tertiary_colors[i])
+            for i in range(len(body.tertiary_colors))
+        ]
+    )
+    return color_mappings
+
+
+def replace_multiple_colors(
+    image: Image,
+    color_sets: list[tuple[tuple[int, int, int], tuple[int, int, int]]],
+) -> Image:
+    """
+    Replaces multiple colors in an image based on a list of original
+    and replacement color pairs.
+    """
+    for original_color, replacement_color in color_sets:
+        image = replace_color(image, original_color, replacement_color)
+    return image
+
+
+def resize_face_image(
+    face_image: Image,
+    body_head_size: tuple[int, int],
+    face_head_size: tuple[int, int],
+) -> Image:
+    """
+    Resizes the face image proportionally to match the dimensions of
+    the body's head.
+    """
+    ratio_x = float(body_head_size[0]) / float(face_head_size[0])
+    ratio_y = float(body_head_size[1]) / float(face_head_size[1])
+    new_size = (
+        int(face_image.size[0] * ratio_x),
+        int(face_image.size[1] * ratio_y),
+    )
+    return face_image.resize(new_size)
+
+
+def calculate_face_position(body: Body, face_image: Image) -> tuple[int, int]:
+    """
+    Calculates the position where the face image should be pasted onto
+    the body image, ensuring correct alignment.
+    """
+    return (
+        int(body.face_position[0] - (face_image.size[0] / 2)),
+        int(body.face_position[1] - (face_image.size[1] / 2)),
+    )
+
+
+def paste_face_onto_body(
+    body_image: Image, face_image: Image, position: tuple[int, int]
+) -> Image:
+    """
+    Pastes the resized face image onto the body image at the specified
+    position, returning the modified body image.
+    """
+    body_image_copy = body_image.copy()
+    body_image_copy.paste(face_image, position, face_image)
+    return body_image_copy

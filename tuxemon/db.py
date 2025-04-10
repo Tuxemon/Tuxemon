@@ -218,6 +218,9 @@ class ItemBehaviors(BaseModel):
     holdable: bool = Field(
         False, description="Whether or not this item is holdable."
     )
+    resellable: bool = Field(
+        False, description="Whether or not this item is resellable."
+    )
 
 
 class WorldMenuEntry(BaseModel):
@@ -267,11 +270,7 @@ class ItemModel(BaseModel):
         None,
         description="Item adds to World Menu a button (position, label -inside the PO -,state, eg. 3:nu_phone:PhoneState)",
     )
-    cost: Optional[int] = Field(
-        None,
-        description="The standard cost of the item.",
-        gt=0,
-    )
+    cost: int = Field(0, description="The standard cost of the item.", ge=0)
     modifiers: list[Modifier] = Field(..., description="Various modifiers")
 
     # Validate fields that refer to translated text
@@ -1387,7 +1386,6 @@ class TasteModel(BaseModel):
 
 
 class EconomyEntityModel(BaseModel):
-    name: str = Field(..., description="Name of the entity")
     price: int = Field(0, description="Price of the entity")
     cost: int = Field(0, description="Cost of the entity")
     inventory: int = Field(-1, description="Quantity of the entity")
@@ -1400,6 +1398,7 @@ class EconomyEntityModel(BaseModel):
 
 class EconomyItemModel(EconomyEntityModel):
     name: str = Field(..., description="Name of the entity")
+    inventory: int = Field(-1, description="Quantity of the entity")
 
     @field_validator("name")
     def item_exists(cls: EconomyEntityModel, v: str) -> str:
@@ -1410,6 +1409,8 @@ class EconomyItemModel(EconomyEntityModel):
 
 class EconomyMonsterModel(EconomyEntityModel):
     name: str = Field(..., description="Name of the entity")
+    inventory: int = Field(1, description="Quantity of the entity", gt=0)
+    level: int = Field(1, description="Level of the entity", gt=0)
 
     @field_validator("name")
     def monster_exists(cls: EconomyEntityModel, v: str) -> str:
@@ -1420,8 +1421,16 @@ class EconomyMonsterModel(EconomyEntityModel):
 
 class EconomyModel(BaseModel):
     slug: str = Field(..., description="Slug uniquely identifying the economy")
+    resale_multiplier: float = Field(..., description="Resale multiplier")
+    background: str = Field(..., description="Sprite used for background")
     items: Sequence[EconomyItemModel]
     monsters: Sequence[EconomyMonsterModel]
+
+    @field_validator("background")
+    def background_exists(cls: EconomyModel, v: str) -> str:
+        if has.file(v) and has.size(v, prepare.NATIVE_RESOLUTION):
+            return v
+        raise ValueError(f"no resource exists with path: {v}")
 
 
 class TemplateModel(BaseModel):

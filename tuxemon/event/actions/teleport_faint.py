@@ -6,6 +6,7 @@ import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 
 logger = logging.getLogger(__name__)
@@ -23,30 +24,49 @@ class TeleportFaintAction(EventAction):
     Script usage:
         .. code-block::
 
-            teleport_faint [trans_time]
+            teleport_faint [character][,trans_time][,rgb]
 
     Script parameters:
+        character: Either "player" or npc slug name (e.g. "npc_maple").
         trans_time: Transition time in seconds - default 0.3
+        rgb: color (eg red > 255,0,0 > 255:0:0) - default rgb(0,0,0)
 
+    eg: "teleport_faint player,3"
+    eg: "teleport_faint player,3,255:0:0:50" (red)
     """
 
     name = "teleport_faint"
+    character: Optional[str] = None
     trans_time: Optional[float] = None
+    rgb: Optional[str] = None
 
     def start(self) -> None:
-        player = self.session.player
+        character = get_npc(self.session, self.character)
+        if character is None:
+            logger.error(f"{self.character} not found")
+            return
+
         client = self.session.client
         current_state = client.current_state
         if current_state and current_state.name == "DialogState":
             client.pop_state()
 
-        if "teleport_faint" in player.game_variables:
-            teleport = str(player.game_variables["teleport_faint"]).split(" ")
-        else:
-            logger.error("The teleport_faint variable has not been set.")
+        if character.teleport_faint.is_default():
+            logger.error(
+                "The teleport_faint variable has not been set, use 'set_teleport_faint'."
+            )
             return
+        else:
+            teleport = character.teleport_faint
 
-        if self.trans_time is not None:
-            teleport.append(str(self.trans_time))
         action = client.event_engine
-        action.execute_action("transition_teleport", teleport)
+        action.execute_action(
+            "transition_teleport",
+            [
+                teleport.map_name,
+                teleport.x,
+                teleport.y,
+                self.trans_time,
+                self.rgb,
+            ],
+        )

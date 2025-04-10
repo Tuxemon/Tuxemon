@@ -18,7 +18,7 @@ events:
   Create Nurse:
     actions:
     - create_npc spyder_cathedral_nurse,5,4
-    - set_variable teleport_faint:spyder_candy_center.tmx 6 7
+    - set_teleport_faint player,spyder_candy_center.tmx,6,7
     - load_yaml spyder_cathedral
     conditions:
     - not char_exists spyder_cathedral_nurse

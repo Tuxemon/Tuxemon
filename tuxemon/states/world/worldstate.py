@@ -4,11 +4,9 @@ from __future__ import annotations
 
 import itertools
 import logging
-import os
 import uuid
 from collections import defaultdict
 from collections.abc import Mapping, MutableMapping, Sequence
-from functools import partial
 from typing import (
     TYPE_CHECKING,
     Any,
@@ -26,9 +24,7 @@ from tuxemon.boundary import BoundaryChecker
 from tuxemon.camera import Camera, CameraManager, project
 from tuxemon.db import Direction
 from tuxemon.entity import Entity
-from tuxemon.graphics import ColorLike
 from tuxemon.map import RegionProperties, TuxemonMap, dirs2, proj
-from tuxemon.map_loader import TMXMapLoader, YAMLEventLoader
 from tuxemon.map_view import MapRenderer
 from tuxemon.math import Vector2
 from tuxemon.movement import Pathfinder
@@ -37,6 +33,7 @@ from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event
 from tuxemon.session import local_session
 from tuxemon.states.world.world_menus import WorldMenuState
+from tuxemon.states.world.world_transition import WorldTransition
 from tuxemon.teleporter import Teleporter
 
 if TYPE_CHECKING:
@@ -99,14 +96,7 @@ class WorldState(state.State):
 
         self.current_map: TuxemonMap
 
-        ######################################################################
-        #                            Transitions                             #
-        ######################################################################
-
-        # default variables for transition
-        self.transition_alpha = 0
-        self.transition_surface: Optional[pygame.surface.Surface] = None
-        self.in_transition = False
+        self.transition_manager = WorldTransition(self)
 
         if local_session.player is None:
             new_player = Player(prepare.PLAYER_NPC, world=self)
@@ -130,42 +120,6 @@ class WorldState(state.State):
         """Called before another state gets focus"""
         self.lock_controls(self.player)
         self.stop_char(self.player)
-
-    def set_transition_surface(self, color: ColorLike) -> None:
-        self.transition_surface = pygame.Surface(
-            self.client.screen.get_size(), pygame.SRCALPHA
-        )
-        self.transition_surface.fill(color)
-
-    def set_transition_state(self, in_transition: bool) -> None:
-        """Update the transition state."""
-        self.in_transition = in_transition
-
-    def fade_out(self, duration: float, color: ColorLike) -> None:
-        self.set_transition_surface(color)
-        self.animate(
-            self,
-            transition_alpha=255,
-            initial=0,
-            duration=duration,
-            round_values=True,
-        )
-        self.stop_char(self.player)
-        self.lock_controls(self.player)
-
-    def fade_in(self, duration: float, color: ColorLike) -> None:
-        self.set_transition_surface(color)
-        self.animate(
-            self,
-            transition_alpha=0,
-            initial=255,
-            duration=duration,
-            round_values=True,
-        )
-        self.task(
-            partial(self.unlock_controls, self.player),
-            max(duration, 0),
-        )
 
     def broadcast_player_teleport_change(self) -> None:
         """Tell clients/host that player has moved after teleport."""
@@ -199,7 +153,7 @@ class WorldState(state.State):
         super().update(time_delta)
         self.update_npcs(time_delta)
         self.map_renderer.update(time_delta)
-        self.camera_manager.update()
+        self.camera_manager.update(time_delta)
 
         logger.debug("*** Game Loop Started ***")
 
@@ -213,7 +167,7 @@ class WorldState(state.State):
         """
         self.screen = surface
         self.map_renderer.draw(surface, self.current_map)
-        self.fullscreen_animations(surface)
+        self.transition_manager.draw(surface)
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         """
@@ -729,22 +683,6 @@ class WorldState(state.State):
         surface.unlock()
 
     ####################################################
-    #         Full Screen Animations Functions         #
-    ####################################################
-    def fullscreen_animations(self, surface: pygame.surface.Surface) -> None:
-        """
-        Handles fullscreen animations such as transitions, cutscenes, etc.
-
-        Parameters:
-            surface: Surface to draw onto.
-
-        """
-        if self.in_transition:
-            assert self.transition_surface
-            self.transition_surface.set_alpha(self.transition_alpha)
-            surface.blit(self.transition_surface, (0, 0))
-
-    ####################################################
     #             Map Change/Load Functions            #
     ####################################################
     def change_map(self, map_name: str) -> None:
@@ -769,15 +707,21 @@ class WorldState(state.State):
         Parameters:
             map_name: The name of the map to load.
         """
-        logger.debug(f"Loading map '{map_name}' from disk.")
-        map_data = self.load_map_data(map_name)
+        logger.debug(f"Loading map '{map_name}' using Client's MapLoader.")
+        map_data = self.client.map_loader.load_map_data(map_name)
 
         self.current_map = map_data
-        self.collision_map = map_data.collision_map
-        self.surface_map = map_data.surface_map
-        self.collision_lines_map = map_data.collision_lines_map
-        self.map_size = map_data.size
-        self.map_area = map_data.area
+        self.collision_map: MutableMapping[
+            tuple[int, int], Optional[RegionProperties]
+        ] = map_data.collision_map
+        self.surface_map: MutableMapping[tuple[int, int], dict[str, float]] = (
+            map_data.surface_map
+        )
+        self.collision_lines_map: set[tuple[tuple[int, int], Direction]] = (
+            map_data.collision_lines_map
+        )
+        self.map_size: tuple[int, int] = map_data.size
+        self.map_area: int = map_data.area
 
         self.boundary_checker.update_boundaries(self.map_size)
         self.client.load_map(map_data)
@@ -800,43 +744,6 @@ class WorldState(state.State):
         player = local_session.player
         self.add_player(player)
         self.stop_char(player)
-
-    def load_map_data(self, path: str) -> TuxemonMap:
-        """
-        Returns map data as a dictionary to be used for map changing.
-
-        Parameters:
-            path: Path of the map to load.
-
-        Returns:
-            Loaded map.
-
-        """
-        txmn_map = TMXMapLoader().load(path)
-        yaml_files = [path.replace(".tmx", ".yaml")]
-
-        if txmn_map.scenario:
-            _scenario = prepare.fetch("maps", f"{txmn_map.scenario}.yaml")
-            yaml_files.append(_scenario)
-
-        _events = list(txmn_map.events)
-        _inits = list(txmn_map.inits)
-        events = {"event": _events, "init": _inits}
-
-        yaml_loader = YAMLEventLoader()
-
-        for yaml_file in yaml_files:
-            if os.path.exists(yaml_file):
-                yaml_data = yaml_loader.load_events(yaml_file, "event")
-                events["event"].extend(yaml_data["event"])
-                yaml_data = yaml_loader.load_events(yaml_file, "init")
-                events["init"].extend(yaml_data["init"])
-            else:
-                logger.warning(f"YAML file {yaml_file} not found")
-
-        txmn_map.events = events["event"]
-        txmn_map.inits = events["init"]
-        return txmn_map
 
     @no_type_check  # only used by multiplayer which is disabled
     def check_interactable_space(self) -> bool:

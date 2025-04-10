@@ -219,10 +219,35 @@ def iter_render_text(
     fg: ColorLike,
     bg: ColorLike,
     rect: Rect,
+    alignment: str = "left",
+    vertical_alignment: str = "top",
 ) -> Generator[tuple[Rect, Surface], None, None]:
     line_height = guest_font_height(font)
-    for line_index, line in enumerate(constrain_width(text, font, rect.width)):
-        top = rect.top + line_index * line_height
+
+    # Convert generator to list to calculate total height
+    lines = list(constrain_width(text, font, rect.width))
+    total_text_height = len(lines) * line_height
+
+    # Calculate vertical alignment offset
+    if vertical_alignment == "middle":
+        vertical_offset = (rect.height - total_text_height) // 2
+    elif vertical_alignment == "bottom":
+        vertical_offset = rect.height - total_text_height
+    else:
+        vertical_offset = 0
+
+    for line_index, line in enumerate(lines):
+        # Adjust `top` based on the vertical alignment
+        top = rect.top + line_index * line_height + vertical_offset
+
+        # Calculate horizontal alignment offset
+        if alignment == "center":
+            offset = (rect.width - font.size(line)[0]) // 2
+        elif alignment == "right":
+            offset = rect.width - font.size(line)[0]
+        else:
+            offset = 0
+
         for scrap in build_line(line):
             if scrap[-1] == " ":
                 # No need to blit a white sprite onto a white background
@@ -231,7 +256,7 @@ def iter_render_text(
             surface = shadow_text(font, fg, bg, scrap[-1])
             update_rect = surface.get_rect(
                 top=top,
-                left=rect.left + dirty_length,
+                left=rect.left + dirty_length + offset,
             )
             yield update_rect, surface
 

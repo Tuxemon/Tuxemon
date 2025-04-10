@@ -1,172 +1,138 @@
 [
   {
     "slug": "spyder_omnichannel_beaverbrook",
-    "template": 
-      {
-        "sprite_name": "ceo",
-        "combat_front": "ceo",
-        "slug": "ceo"
-      }
-  
+    "template": {
+      "sprite_name": "ceo",
+      "combat_front": "ceo",
+      "slug": "ceo"
+    }
   },
   {
     "slug": "spyder_omnichannel_schwartz",
-    "template": 
-      {
-        "sprite_name": "rogue",
-        "combat_front": "rogue",
-        "slug": "rogue"
-      }
-  
+    "template": {
+      "sprite_name": "rogue",
+      "combat_front": "rogue",
+      "slug": "rogue"
+    }
   },
   {
     "slug": "spyder_omnichannel_strauss",
-    "template": 
-      {
-        "sprite_name": "warrior",
-        "combat_front": "warrior",
-        "slug": "warrior"
-      }
-  
+    "template": {
+      "sprite_name": "warrior",
+      "combat_front": "warrior",
+      "slug": "warrior"
+    }
   },
   {
     "slug": "spyder_omnichannel_william",
-    "template": 
-      {
-        "sprite_name": "beachcomber_black",
-        "combat_front": "yellowbelt",
-        "slug": "yellowbelt"
-      }
-  
+    "template": {
+      "sprite_name": "beachcomber_black",
+      "combat_front": "yellowbelt",
+      "slug": "yellowbelt"
+    }
   },
   {
     "slug": "spyder_omnichannel_tohei",
-    "template": 
-      {
-        "sprite_name": "spyderrookie",
-        "combat_front": "spyder_rookie",
-        "slug": "spyder_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
   },
   {
     "slug": "spyder_omnichannel_worm",
-    "template": 
-      {
-        "sprite_name": "37707_female",
-        "combat_front": "ceo",
-        "slug": "ceo"
-      }
-  
+    "template": {
+      "sprite_name": "37707_female",
+      "combat_front": "ceo",
+      "slug": "ceo"
+    }
   },
   {
     "slug": "spyder_omnichannel_enforcer",
-    "template": 
-      {
-        "sprite_name": "knight",
-        "combat_front": "enforcer_rookie",
-        "slug": "enforcer_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_rookie",
+      "slug": "enforcer_rookie"
+    }
   },
   {
     "slug": "spyder_omnichannel_thedukeofdeadair",
-    "template": 
-      {
-        "sprite_name": "rogue_red",
-        "combat_front": "rogue",
-        "slug": "rogue"
-      }
-  
+    "template": {
+      "sprite_name": "rogue_red",
+      "combat_front": "rogue",
+      "slug": "rogue"
+    }
   },
   {
     "slug": "spyder_omnichannel_dempsey",
-    "template": 
-      {
-        "sprite_name": "spyderboss",
-        "combat_front": "spyder_boss",
-        "slug": "spyder_boss"
-      }
-  
+    "template": {
+      "sprite_name": "spyderboss",
+      "combat_front": "spyder_boss",
+      "slug": "spyder_boss"
+    }
   },
   {
     "slug": "spyder_omnichannel_crane",
-    "template": 
-      {
-        "sprite_name": "spyderrookie",
-        "combat_front": "spyder_rookie",
-        "slug": "spyder_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
   },
   {
     "slug": "spyder_omnichannel_carnegie",
-    "template": 
-      {
-        "sprite_name": "cooldude",
-        "combat_front": "cooldude",
-        "slug": "cooldude"
-      }
-  
+    "template": {
+      "sprite_name": "cooldude",
+      "combat_front": "cooldude",
+      "slug": "cooldude"
+    }
   },
   {
     "slug": "spyder_omnichannel_byrne",
-    "template": 
-      {
-        "sprite_name": "professor_green",
-        "combat_front": "professor",
-        "slug": "professor"
-      }
-  
+    "template": {
+      "sprite_name": "professor_green",
+      "combat_front": "professor",
+      "slug": "professor"
+    }
   },
   {
     "slug": "spyder_omnichannel_bettger",
-    "template": 
-      {
-        "sprite_name": "rogue_copper",
-        "combat_front": "rogue",
-        "slug": "rogue"
-      }
-  
+    "template": {
+      "sprite_name": "rogue_copper",
+      "combat_front": "rogue",
+      "slug": "rogue"
+    }
   },
   {
     "slug": "spyder_omnichannel_talbot",
-    "template": 
-      {
-        "sprite_name": "spyderrookie",
-        "combat_front": "spyder_rookie",
-        "slug": "spyder_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
   },
   {
     "slug": "spyder_omnichannel_gore",
-    "template": 
-      {
-        "sprite_name": "spyderrookie",
-        "combat_front": "spyder_rookie",
-        "slug": "spyder_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "spyderrookie",
+      "combat_front": "spyder_rookie",
+      "slug": "spyder_rookie"
+    }
   },
   {
     "slug": "spyder_omnichannel_danita",
-    "template": 
-      {
-        "sprite_name": "nurse",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   },
   {
     "slug": "spyder_omnichannel_ethan",
-    "template": 
-      {
-        "sprite_name": "maniac_yellow",
-        "combat_front": "adventurer",
-        "slug": "maniac"
-      }
-  
+    "template": {
+      "sprite_name": "maniac_yellow",
+      "combat_front": "adventurer",
+      "slug": "maniac"
+    }
   }
 ]

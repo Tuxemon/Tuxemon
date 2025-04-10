@@ -1795,9 +1795,6 @@ msgstr "Red"
 msgid "wing_tip"
 msgstr "Punta del Ala"
 
-msgid "menu_alphabet_n_columns"
-msgstr "13"
-
 msgid "quicklyknight2"
 msgstr "Dos personas controlan Omnichannel. La junta directiva es una broma."
 

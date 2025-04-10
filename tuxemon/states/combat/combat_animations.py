@@ -186,9 +186,9 @@ class CombatAnimations(ABC, Menu[None]):
 
         # Load monster sprite and set final position
         monster_sprite = monster.get_sprite(
-            "back" if npc == self.players[0] else "front",
-            midbottom=feet,
+            "back" if npc == self.players[0] else "front"
         )
+        monster_sprite.rect.midbottom = feet
         self.sprites.add(monster_sprite)
         self._monster_sprite_map[monster] = monster_sprite
 
@@ -664,11 +664,9 @@ class CombatAnimations(ABC, Menu[None]):
             )
             self._monster_sprite_map[opponent] = enemy
         else:
-            enemy = opp_mon.get_sprite(
-                "front",
-                bottom=back_island.rect.bottom - scale(24),
-                centerx=back_island.rect.centerx,
-            )
+            enemy = opp_mon.get_sprite("front")
+            enemy.rect.bottom = back_island.rect.bottom - scale(24)
+            enemy.rect.centerx = back_island.rect.centerx
             self._monster_sprite_map[opp_mon] = enemy
             self.monsters_in_play[opponent].append(opp_mon)
             self.update_hud(opponent)

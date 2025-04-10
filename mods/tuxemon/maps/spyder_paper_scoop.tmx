@@ -58,9 +58,9 @@
   </object>
   <object id="60" name="Create Shopkeeper" type="event" x="0" y="64" width="16" height="16">
    <properties>
-    <property name="act1" value="create_npc spyder_paperscoop_santino,0,4"/>
-    <property name="act2" value="char_face spyder_paperscoop_santino,up"/>
-    <property name="cond1" value="not char_exists spyder_paperscoop_santino"/>
+    <property name="act1" value="create_npc spyder_shopassistant,0,4"/>
+    <property name="act2" value="char_face spyder_shopassistant,up"/>
+    <property name="cond1" value="not char_exists spyder_shopassistant"/>
    </properties>
   </object>
   <object id="61" name="Create Dante" type="event" x="176" y="96" width="16" height="16">

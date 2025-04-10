@@ -1,112 +1,90 @@
 [
   {
     "slug": "spyder_grannypiper",
-    "template": 
-      {
-        "sprite_name": "granny_yellow",
-        "combat_front": "adventurer",
-        "slug": "granny"
-      }
-  
+    "template": {
+      "sprite_name": "granny_yellow",
+      "combat_front": "adventurer",
+      "slug": "granny"
+    }
   },
   {
     "slug": "spyder_conileaffrolicking",
-    "template": 
-      {
-        "sprite_name": "conileaf",
-        "combat_front": "adventurer",
-        "slug": "noclass"
-      }
-  
+    "template": {
+      "sprite_name": "conileaf",
+      "combat_front": "adventurer",
+      "slug": "noclass"
+    }
   },
   {
     "slug": "spyder_rockittenfrolicking",
-    "template": 
-      {
-        "sprite_name": "rockitten",
-        "combat_front": "adventurer",
-        "slug": "noclass"
-      }
-  
+    "template": {
+      "sprite_name": "rockitten",
+      "combat_front": "adventurer",
+      "slug": "noclass"
+    }
   },
   {
     "slug": "spyder_papermart_harith",
-    "template": 
-      {
-        "sprite_name": "beachcomber_copper",
-        "combat_front": "adventurer",
-        "slug": "beachcomber"
-      }
-  
+    "template": {
+      "sprite_name": "beachcomber_copper",
+      "combat_front": "adventurer",
+      "slug": "beachcomber"
+    }
   },
   {
     "slug": "spyder_papermart_miles",
-    "template": 
-      {
-        "sprite_name": "tennisplayer_green",
-        "combat_front": "tennisplayer",
-        "slug": "tennisplayer"
-      }
-  
+    "template": {
+      "sprite_name": "tennisplayer_green",
+      "combat_front": "tennisplayer",
+      "slug": "tennisplayer"
+    }
   },
   {
     "slug": "spyder_papermart_shirley",
-    "template": 
-      {
-        "sprite_name": "picnicker",
-        "combat_front": "picnicker",
-        "slug": "picnicker"
-      }
-  
+    "template": {
+      "sprite_name": "picnicker",
+      "combat_front": "picnicker",
+      "slug": "picnicker"
+    }
   },
   {
     "slug": "spyder_papermart_rafael",
-    "template": 
-      {
-        "sprite_name": "tennisplayer_lapi",
-        "combat_front": "tennisplayer",
-        "slug": "tennisplayer"
-      }
-  
+    "template": {
+      "sprite_name": "tennisplayer_lapi",
+      "combat_front": "tennisplayer",
+      "slug": "tennisplayer"
+    }
   },
   {
     "slug": "spyder_papertown_mom",
-    "template": 
-      {
-        "sprite_name": "homemaker",
-        "combat_front": "adventurer",
-        "slug": "homemaker"
-      }
-  
+    "template": {
+      "sprite_name": "homemaker",
+      "combat_front": "adventurer",
+      "slug": "homemaker"
+    }
   },
   {
     "slug": "spyder_papertown_silver",
-    "template": 
-      {
-        "sprite_name": "florist",
-        "combat_front": "florist",
-        "slug": "florist"
-      }
-  
+    "template": {
+      "sprite_name": "florist",
+      "combat_front": "florist",
+      "slug": "florist"
+    }
   },
   {
     "slug": "spyder_papermanor_princeton",
-    "template": 
-      {
-        "sprite_name": "maniac_yellow",
-        "combat_front": "adventurer",
-        "slug": "maniac"
-      }
-  
+    "template": {
+      "sprite_name": "maniac_yellow",
+      "combat_front": "adventurer",
+      "slug": "maniac"
+    }
   },
   {
-    "slug": "spyder_paperscoop_santino",
-    "template": 
-      {
-        "sprite_name": "shopkeeper",
-        "combat_front": "adventurer",
-        "slug": "shopkeeper"
-      }
-  
+    "slug": "spyder_shopassistant",
+    "template": {
+      "sprite_name": "shopkeeper",
+      "combat_front": "adventurer",
+      "slug": "shopkeeper"
+    }
   }
 ]

@@ -35,7 +35,7 @@ events:
     - translated_dialog spyder_papertown_restinbed
     - set_monster_health
     - set_monster_status
-    - set_variable teleport_faint:spyder_bedroom.tmx 6 5
+    - set_teleport_faint player,spyder_bedroom.tmx,6,5
     conditions:
     - is button_pressed K_RETURN
     - is char_facing_tile player

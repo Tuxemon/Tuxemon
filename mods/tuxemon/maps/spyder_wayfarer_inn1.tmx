@@ -119,7 +119,7 @@
     <property name="act51" value="unlock_controls"/>
     <property name="act60" value="translated_dialog okaythen2"/>
     <property name="act70" value="set_variable chooses:none"/>
-    <property name="act80" value="set_variable teleport_faint:spyder_wayfarer_inn1.tmx 11 9"/>
+    <property name="act80" value="set_teleport_faint player,spyder_wayfarer_inn1.tmx,11,9"/>
     <property name="cond1" value="is variable_set chooses:yes"/>
    </properties>
   </object>

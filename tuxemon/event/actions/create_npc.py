@@ -68,7 +68,7 @@ class CreateNpcAction(EventAction):
             load_party_monsters(npc, npc_details, game_variables)
         if npc_details.items:
             load_party_items(npc, npc_details, game_variables)
-        npc.sprite_renderer._load_sprites()
+        npc.sprite_controller.load_sprites(npc.template)
 
 
 lookup_cache: dict[str, NpcModel] = {}

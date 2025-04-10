@@ -3,7 +3,9 @@ from __future__ import annotations
 from typing import Literal, Optional, Union
 
 import pygame
+from pygame.font import Font
 from pygame.rect import Rect
+from pygame.surface import Surface
 
 from tuxemon import prepare
 from tuxemon.graphics import ColorLike
@@ -20,9 +22,13 @@ class TextArea(Sprite):
 
     def __init__(
         self,
-        font: pygame.font.Font,
+        font: Font,
         font_color: ColorLike,
         font_shadow: ColorLike = prepare.FONT_SHADOW_COLOR,
+        background_color: Optional[ColorLike] = None,
+        background_image: Optional[Surface] = None,
+        alignment: str = "left",
+        vertical_alignment: str = "top",
     ) -> None:
         super().__init__()
         self.rect = Rect(0, 0, 0, 0)
@@ -30,6 +36,10 @@ class TextArea(Sprite):
         self.font = font
         self.font_color = font_color
         self.font_shadow = font_shadow
+        self.background_color = background_color
+        self.background_image = background_image
+        self.alignment = alignment
+        self.vertical_alignment = vertical_alignment
         self._rendered_text = None
         self._text_rect = None
         self._text = ""
@@ -72,26 +82,46 @@ class TextArea(Sprite):
 
     next = __next__
 
+    def set_background(
+        self,
+        background_color: Optional[ColorLike] = None,
+        background_image: Optional[Surface] = None,
+    ) -> None:
+        self.image = Surface(self.rect.size, pygame.SRCALPHA)
+
+        if background_color:
+            self.image.fill(background_color)
+        if background_image:
+            self.image.blit(background_image, (0, 0))
+
     def _start_text_animation(self) -> None:
         self.drawing_text = True
-        self.image = pygame.Surface(self.rect.size, pygame.SRCALPHA)
+        self.image = Surface(self.rect.size, pygame.SRCALPHA)
+
+        if self.background_color:
+            self.image.fill(self.background_color)
+        if self.background_image:
+            self.image.blit(self.background_image, (0, 0))
+
         self._iter = draw.iter_render_text(
-            self._text,
-            self.font,
-            self.font_color,
-            self.font_shadow,
-            self.image.get_rect(),
+            text=self._text,
+            font=self.font,
+            fg=self.font_color,
+            bg=self.font_shadow,
+            rect=self.image.get_rect(),
+            alignment=self.alignment,
+            vertical_alignment=self.vertical_alignment,
         )
 
 
 def draw_text(
-    surface: pygame.surface.Surface,
+    surface: Surface,
     text: str,
     rect: Union[Rect, tuple[int, int, int, int]],
     *,
     justify: Literal["left", "center", "right"] = "left",
     align: Literal["top", "middle", "bottom"] = "top",
-    font: pygame.font.Font,
+    font: Font,
     font_size: Optional[int] = None,
     font_color: Optional[ColorLike] = None,
 ) -> None:
@@ -123,84 +153,49 @@ def draw_text(
     if not text:
         return
 
-    # Create a text surface so we can determine how many pixels
-    # wide each character is
-    text_surface = font.render(text, True, font_color)
-
-    # Calculate the number of pixels per letter based on the size
-    # of the text and the number of characters in the text
-    pixels_per_letter = text_surface.get_width() / len(text)
-
-    # Create a list of the lines of text as well as a list of the
-    # individual words so we can check each line's length in pixels
+    # Create a list of lines of text
     lines: list[str] = []
     wordlist: list[str] = []
+    text_surface = font.render(text, True, font_color)
+    pixels_per_letter = text_surface.get_width() / len(text)
 
-    # Loop through each word in the text and add it to the word list
+    # Word wrapping logic
     for word in text.split():
-        # If there is a linebreak in this word, then split it up into a list separated by \n
         if "\\n" in word:
             w = word.split("\\n")
-
-            # Loop through the list and every time we encounter a blank string, then that is
-            # a new line. So we append the current line and reset the word list for a new line
             for item in w:
                 if item == "":
-                    # This is a new line!
                     lines.append(" ".join(wordlist))
                     wordlist = []
-                # If we encounter an actual word, then just append it to the word list
                 else:
                     wordlist.append(item)
-
-        # If there's no line break, continue normally to word wrap
         else:
-            # Append the word to the current line
             wordlist.append(word)
-
-            # Here, we convert the list into a string separated by spaces and multiply
-            # the number of characters in the string by the number of pixels per letter
-            # that we calculated earlier. This will let us know how large the text will
-            # be in pixels.
             if len(" ".join(wordlist)) * pixels_per_letter > width:
-                # If the size exceeds the width of the menu, then append the line to the
-                # list of lines, but stripping off the last word we added (because this
-                # was the word that made us exceed the menubox's size).
                 lines.append(" ".join(wordlist[:-1]))
-
-                # Reset the wordlist for the next line and add the word we stripped off
-                wordlist = []
-                wordlist.append(word)
-
-    # If the last line is not blank, then append it to the list
+                wordlist = [word]
     if " ".join(wordlist) != "":
         lines.append(" ".join(wordlist))
 
-    # If the justification was set, handle the position of the text automatically
-    if justify == "center":
-        if lines:
-            _left = (left + (width / 2)) - (
-                (len(lines[0]) * pixels_per_letter) / 2
-            )
-        else:
-            _left = 0
-
-    elif justify == "right":
-        raise NotImplementedError("Needs to be implemented")
-
-    # If text alignment was set, handle the position of the text automatically
+    # Calculate vertical alignment (align)
+    total_text_height = len(lines) * text_surface.get_height()
     if align == "middle":
-        _top = (top + (height / 2)) - (
-            (text_surface.get_height() * len(lines)) / 2
-        )
-
+        _top = top + (height - total_text_height) / 2
     elif align == "bottom":
-        raise NotImplementedError("Needs to be implemented")
+        _top = top + height - total_text_height
 
     # Set a spacing variable that we will add to space each line.
     spacing = 0
-    for item in lines:
-        line = font.render(item, True, font_color)
+    for line in lines:
+        line_surface = font.render(line, True, font_color)
+        line_width = line_surface.get_width()
 
-        surface.blit(line, (_left, _top + spacing))
-        spacing += line.get_height()  # + self.line_spacing
+        if justify == "center":
+            _left = left + (width - line_width) / 2
+        elif justify == "right":
+            _left = left + width - line_width
+        else:
+            _left = left
+
+        surface.blit(line_surface, (_left, _top + spacing))
+        spacing += line_surface.get_height()

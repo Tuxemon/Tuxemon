@@ -1,142 +1,114 @@
 [
   {
     "slug": "spyder_wayfarer1_bismuth",
-    "template": 
-      {
-        "sprite_name": "scientist_black",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist_black",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_wayfarer1_victor",
-    "template": 
-      {
-        "sprite_name": "knight",
-        "combat_front": "enforcer_rookie",
-        "slug": "enforcer_rookie"
-      }
-  
+    "template": {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_rookie",
+      "slug": "enforcer_rookie"
+    }
   },
   {
     "slug": "spyder_wayfarer1_ratcher",
-    "template": 
-      {
-        "sprite_name": "nurse",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   },
   {
     "slug": "spyder_wayfarer1_nightshade",
-    "template": 
-      {
-        "sprite_name": "nurse_blue",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse_blue",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   },
   {
     "slug": "spyder_wayfarer1_morton",
-    "template": 
-      {
-        "sprite_name": "beachcomber_fiery",
-        "combat_front": "yellowbelt",
-        "slug": "yellowbelt"
-      }
-  
+    "template": {
+      "sprite_name": "beachcomber_fiery",
+      "combat_front": "yellowbelt",
+      "slug": "yellowbelt"
+    }
   },
   {
     "slug": "spyder_wayfarer1_jessie",
-    "template": 
-      {
-        "sprite_name": "nurse_red",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse_red",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   },
   {
     "slug": "spyder_wayfarer1_morningstar",
-    "template": 
-      {
-        "sprite_name": "nurse_lapi",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse_lapi",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   },
   {
     "slug": "spyder_wayfarer1_james",
-    "template": 
-      {
-        "sprite_name": "scientist",
-        "combat_front": "scientist",
-        "slug": "scientist"
-      }
-  
+    "template": {
+      "sprite_name": "scientist",
+      "combat_front": "scientist",
+      "slug": "scientist"
+    }
   },
   {
     "slug": "spyder_wayfarer1_bravo",
-    "template": 
-      {
-        "sprite_name": "knight",
-        "combat_front": "enforcer_agent",
-        "slug": "enforcer_agent"
-      }
-  
+    "template": {
+      "sprite_name": "knight",
+      "combat_front": "enforcer_agent",
+      "slug": "enforcer_agent"
+    }
   },
   {
     "slug": "spyder_wayfarer2_gae",
-    "template": 
-      {
-        "sprite_name": "granny",
-        "combat_front": "adventurer",
-        "slug": "granny"
-      }
-  
+    "template": {
+      "sprite_name": "granny",
+      "combat_front": "adventurer",
+      "slug": "granny"
+    }
   },
   {
     "slug": "spyder_wayfarer1_addy",
-    "template": 
-      {
-        "sprite_name": "nurse_green",
-        "combat_front": "nurse",
-        "slug": "nurse"
-      }
-  
+    "template": {
+      "sprite_name": "nurse_green",
+      "combat_front": "nurse",
+      "slug": "nurse"
+    }
   },
   {
     "slug": "spyder_wayfarer1_wes",
-    "template": 
-      {
-        "sprite_name": "maniac_violet",
-        "combat_front": "adventurer",
-        "slug": "maniac"
-      }
-  
+    "template": {
+      "sprite_name": "maniac_violet",
+      "combat_front": "adventurer",
+      "slug": "maniac"
+    }
   },
   {
     "slug": "spyder_wayfarer2_kim",
-    "template": 
-      {
-        "sprite_name": "maniac",
-        "combat_front": "adventurer",
-        "slug": "maniac"
-      }
-  
+    "template": {
+      "sprite_name": "maniac",
+      "combat_front": "adventurer",
+      "slug": "maniac"
+    }
   },
   {
     "slug": "spyder_wayfarer1_norm",
-    "template": 
-      {
-        "sprite_name": "shopkeeper_brown",
-        "combat_front": "adventurer",
-        "slug": "shopkeeper"
-      }
-  
+    "template": {
+      "sprite_name": "shopkeeper_brown",
+      "combat_front": "adventurer",
+      "slug": "shopkeeper"
+    }
   }
 ]

@@ -272,7 +272,7 @@
   </object>
   <object id="123" name="Check for Healing Center Teleport" type="event" x="208" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="teleport_faint"/>
+    <property name="act1" value="teleport_faint player"/>
     <property name="cond1" value="is char_defeated player"/>
    </properties>
   </object>
@@ -711,6 +711,8 @@
     <property name="act3" value="create_npc rock,38,38,stand"/>
     <property name="cond1" value="is variable_set go_get_tuxemon:yes"/>
     <property name="cond2" value="not variable_set havetuxemon:yes"/>
+    <property name="cond3" value="not char_exists postboy"/>
+    <property name="cond4" value="not char_exists rock"/>
    </properties>
   </object>
   <object id="148" name="myrock" type="event" x="592" y="624" width="16" height="16">
@@ -779,7 +781,6 @@
     <property name="act1" value="remove_npc postboy"/>
     <property name="act2" value="remove_npc rock"/>
     <property name="cond1" value="is variable_set havetuxemon:yes"/>
-    <property name="cond2" value="is char_exists postboy"/>
    </properties>
   </object>
   <object id="157" name="propeller cat" type="event" x="64" y="64" width="16" height="64">
@@ -802,8 +803,8 @@
   </object>
   <object id="160" name="Default" type="event" x="16" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="set_variable teleport_faint:healing_center.tmx 6 7"/>
-    <property name="cond1" value="not variable_set teleport_faint"/>
+    <property name="act1" value="set_teleport_faint player,healing_center.tmx,6,7"/>
+    <property name="cond1" value="not teleport_faint player"/>
    </properties>
   </object>
   <object id="163" name="Teleport to house1" type="event" x="784" y="96" width="16" height="16">

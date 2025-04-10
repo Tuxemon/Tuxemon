@@ -337,6 +337,12 @@ class Menu(Generic[T], state.State):
         # holds sprites representing menu items
         self.create_new_menu_items_group()
 
+        # callbacks
+        self.on_close_callback: Optional[Callable[[], None]] = None
+        self.on_menu_selection_change_callback: Optional[
+            Callable[[], None]
+        ] = None
+
         self.font_filename = prepare.fetch("font", self.font_filename)
         self.set_font()  # load default font
         self.load_graphics()  # load default graphics
@@ -405,6 +411,7 @@ class Menu(Generic[T], state.State):
         text_area: TextArea,
         text: str,
         callback: Optional[Callable[[], None]] = None,
+        dialog_speed: str = "slow",
     ) -> None:
         """
         Set and animate a text area.
@@ -413,10 +420,10 @@ class Menu(Generic[T], state.State):
             text_area: Text area to animate.
             text: Text to display.
             callback: Function called when alert is complete.
-
+            dialog_speed: Speed of blitting chars to the dialog box.
         """
         text_area.text = text
-        if CONFIG.dialog_speed == "max":
+        if CONFIG.dialog_speed == "max" or dialog_speed == "max":
             # exhaust the iterator to immediately blit every char to the dialog
             # box
             for _ in text_area:
@@ -430,6 +437,7 @@ class Menu(Generic[T], state.State):
         self,
         message: str,
         callback: Optional[Callable[[], None]] = None,
+        dialog_speed: str = "slow",
     ) -> None:
         """
         Write a message to the first available text area.
@@ -441,7 +449,7 @@ class Menu(Generic[T], state.State):
         Parameters:
             message: Message to write.
             callback: Function called when alert is complete.
-
+            dialog_speed: Speed of blitting chars to the dialog box.
         """
 
         def find_textarea() -> TextArea:
@@ -453,7 +461,7 @@ class Menu(Generic[T], state.State):
                 message,
             )
 
-        self.animate_text(find_textarea(), message, callback)
+        self.animate_text(find_textarea(), message, callback, dialog_speed)
 
     def initialize_items(self) -> Optional[Iterable[MenuItem[T]]]:
         """
@@ -640,6 +648,10 @@ class Menu(Generic[T], state.State):
         # handle the arrow cursor
         image = graphics.load_and_scale(self.cursor_filename)
         self.arrow = MenuCursor(image)
+
+    def update_background(self, new_filename: str) -> None:
+        self.background_filename = new_filename
+        self.load_graphics()
 
     def show_cursor(self) -> None:
         """Show the cursor that indicates the selected object."""
@@ -962,6 +974,7 @@ class Menu(Generic[T], state.State):
         if self.state in ["normal", "opening"]:
             self.state = "closing"
             ani = self.animate_close()
+            self.on_close()
             if ani:
                 ani.callback = self.client.pop_state
             else:
@@ -1042,6 +1055,11 @@ class Menu(Generic[T], state.State):
     def on_open(self) -> None:
         """Hook is called after opening animation has finished."""
 
+    def on_close(self) -> None:
+        """Hook is called after opening animation has finished."""
+        if self.on_close_callback:
+            self.on_close_callback()
+
     def on_menu_selection(self, selected_item: MenuItem[T]) -> None:
         """
         Hook for things to happen when player selects a menu option.
@@ -1068,6 +1086,8 @@ class Menu(Generic[T], state.State):
         Override in subclass.
 
         """
+        if self.on_menu_selection_change_callback:
+            self.on_menu_selection_change_callback()
 
     def animate_open(self) -> Optional[Animation]:
         """

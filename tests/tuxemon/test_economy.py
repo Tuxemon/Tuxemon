@@ -15,6 +15,8 @@ class GetDefaultPriceAndCost(EconomyTestBase):
         self.economy = Economy()
         self.economy.model = EconomyModel(
             slug="test_economy",
+            background="gfx/ui/item/item_menu_bg.png",
+            resale_multiplier=0.5,
             items=[
                 EconomyItemModel(
                     name="potion",

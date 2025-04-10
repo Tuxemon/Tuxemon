@@ -6,9 +6,13 @@ import logging
 import math
 import random
 from collections.abc import Sequence
-from typing import TYPE_CHECKING, Optional
+from dataclasses import dataclass
+from typing import TYPE_CHECKING, Any, Optional
+
+import yaml
 
 from tuxemon import prepare as pre
+from tuxemon.constants import paths
 
 if TYPE_CHECKING:
     from tuxemon.db import Modifier
@@ -21,13 +25,71 @@ logger = logging.getLogger(__name__)
 
 multiplier_cache: dict[tuple[str, str], float] = {}
 
-range_map: dict[str, tuple[str, str]] = {
-    "melee": ("melee", "armour"),
-    "touch": ("melee", "dodge"),
-    "ranged": ("ranged", "dodge"),
-    "reach": ("ranged", "armour"),
-    "reliable": ("level", "resist"),
-}
+
+@dataclass
+class StatWeight:
+    stat: str
+    weight: float
+
+
+@dataclass
+class RangeMapEntry:
+    user_stat: StatWeight
+    target_stat: StatWeight
+
+
+@dataclass
+class CaptureConfig:
+    total_shakes: int
+    shake_constant: int
+    shake_denominator: int
+    shake_divisor: int
+    shake_hp_multiplier: int
+    shake_current_hp_multiplier: int
+    shake_hp_divisor: int
+
+
+def load_yaml(filepath: str) -> Any:
+    try:
+        with open(filepath) as file:
+            return yaml.safe_load(file)
+    except FileNotFoundError:
+        logger.error(f"Config file not found: {filepath}")
+        raise
+    except yaml.YAMLError as exc:
+        logger.error(f"Error parsing YAML file: {exc}")
+        raise exc
+
+
+class Loader:
+    _config_capture: Optional[CaptureConfig] = None
+    _range_map: dict[str, RangeMapEntry] = {}
+
+    @classmethod
+    def get_config_capture(cls, filename: str) -> CaptureConfig:
+        yaml_path = f"{paths.mods_folder}/{filename}"
+        if cls._config_capture is None:
+            raw_map = load_yaml(yaml_path)
+            cls._config_capture = CaptureConfig(**raw_map)
+        return cls._config_capture
+
+    @classmethod
+    def get_range_map(cls, filename: str) -> dict[str, RangeMapEntry]:
+        yaml_path = f"{paths.mods_folder}/{filename}"
+        if not cls._range_map:
+            raw_map = load_yaml(yaml_path)
+            cls._range_map = {
+                key: RangeMapEntry(
+                    user_stat=StatWeight(
+                        stat=item[0]["user_stat"], weight=item[0]["weight"]
+                    ),
+                    target_stat=StatWeight(
+                        stat=item[1]["target_stat"], weight=item[1]["weight"]
+                    ),
+                )
+                for key, item in raw_map.items()
+            }
+        return cls._range_map
 
 
 def simple_damage_multiplier(
@@ -46,7 +108,6 @@ def simple_damage_multiplier(
 
     Returns:
         The attack multiplier.
-
     """
     multiplier = 1.0
     for attack_type in attack_types:
@@ -117,33 +178,54 @@ def simple_damage_calculate(
 
     Returns:
         A tuple (damage, multiplier).
-
     """
+    range_map = Loader.get_range_map("range_map.yaml")
+
     if technique.range not in range_map:
         logger.error(
             f"Unhandled damage category for technique '{technique.name}': {technique.range}"
         )
         return 0, 0.0
 
-    user_stat, target_stat = range_map[technique.range]
+    range_map_entry = range_map[technique.range]
 
-    if user_stat == "level":
-        user_strength = pre.COEFF_DAMAGE + user.level
+    user_strength: float = 0
+    user_stat = range_map_entry.user_stat
+    if user_stat.stat == "level":
+        user_strength += (pre.COEFF_DAMAGE + user.level) * user_stat.weight
     else:
-        user_strength = getattr(user, user_stat) * (
-            pre.COEFF_DAMAGE + user.level
+        user_strength += (
+            getattr(user, user_stat.stat, 0)
+            * (pre.COEFF_DAMAGE + user.level)
+            * user_stat.weight
         )
+    logger.debug(f"User strength: {user_strength}")
 
-    if target_stat == "resist":
-        target_resist = 1
+    target_resist: float = 0
+    target_stat = range_map_entry.target_stat
+    if target_stat.stat == "resist":
+        target_resist += 1 * target_stat.weight
     else:
-        target_resist = getattr(target, target_stat)
+        target_resist += (
+            getattr(target, target_stat.stat, 0) * target_stat.weight
+        )
+    logger.debug(f"Target resistance: {target_resist}")
+
+    target_resist = max(1, target_resist)
+    logger.debug(
+        f"Target resistance (after preventing division by zero): {target_resist}"
+    )
 
     mult = simple_damage_multiplier(
         (technique.types), (target.types), additional_factors
     )
+    logger.debug(f"Damage multiplier: {mult}")
+
     move_strength = technique.power * mult
+    logger.debug(f"Move strength: {move_strength}")
+
     damage = int(user_strength * move_strength / target_resist)
+    logger.debug(f"Final damage: {damage}")
     return damage, mult
 
 
@@ -523,89 +605,117 @@ def shake_check(
     target: Monster, status_modifier: float, tuxeball_modifier: float
 ) -> float:
     """
-    It calculates the shake_check.
+    Calculates the shake_check value used to determine capture success.
 
     Parameters:
-        target: The monster we are trying to catch.
-        status_modifier: The status modifier.
-        tuxeball_modifier: The tuxeball modifier.
+        target: The monster being captured.
+        status_modifier: Modifier based on the monster's status condition.
+        tuxeball_modifier: Modifier based on the type of capture device.
 
     Returns:
-        The shake check.
+        The shake_check value.
     """
-    # The max catch rate.
+    config_capture = Loader.get_config_capture("config_capture.yaml")
     max_catch_rate = pre.CATCH_RATE_RANGE[1]
-    # Constant used in shake_check calculations
-    shake_constant = pre.SHAKE_CONSTANT
+    shake_constant = config_capture.shake_constant
+    shake_denominator = config_capture.shake_denominator
+    shake_divisor = config_capture.shake_divisor
+    hp_multiplier = config_capture.shake_hp_multiplier
+    current_hp_multiplier = config_capture.shake_current_hp_multiplier
+    hp_divisor = config_capture.shake_hp_divisor
 
-    # This is taken from http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
-    # Specifically the catch rate and the shake_check is based on the Generation III-IV
-    # The rate of which a tuxemon is caught is approximately catch_check/255
+    # Calculate catch_check using Generation III-IV formula
+    # Reference: http://bulbapedia.bulbagarden.net/wiki/Catch_rate#Capture_method_.28Generation_VI.29
+    # Approximate capture rate is catch_check / 255
     catch_check = (
-        (3 * target.hp - 2 * target.current_hp)
+        (hp_multiplier * target.hp - current_hp_multiplier * target.current_hp)
         * target.catch_rate
         * status_modifier
         * tuxeball_modifier
-        / (3 * target.hp)
+        / (hp_divisor * target.hp)
     )
+    # Compute shake_check based on the catch_check value
     shake_check = shake_constant / (
-        math.sqrt(math.sqrt(max_catch_rate / catch_check)) * 8
+        math.sqrt(math.sqrt(max_catch_rate / catch_check)) * shake_denominator
     )
-    # Catch_resistance is a randomly generated number between the lower and upper catch_resistance of a tuxemon.
-    # This value is used to slightly increase or decrease the chance of a tuxemon being caught. The value changes
-    # Every time a new capture device is thrown.
+    # Introduce random variability using catch_resistance
+    # catch_resistance adjusts shake_check slightly for each capture attempt
     catch_resistance = random.uniform(
         target.lower_catch_resistance, target.upper_catch_resistance
     )
-    # Catch_resistance is applied to the shake_check
-    shake_check = shake_check * catch_resistance
+    shake_check *= catch_resistance
 
-    # Debug section
-    logger.debug("--- Capture Variables ---")
+    # Debugging: Log detailed calculations for troubleshooting
+    logger.debug("--- Debugging Capture Calculations ---")
     logger.debug(
-        "(3*target.hp - 2*target.current_hp) "
-        "* target.catch_rate * status_modifier * tuxeball_modifier / (3*target.hp)"
+        f"Capture formula: ({hp_multiplier} * target.hp - {current_hp_multiplier} * target.current_hp) * "
+        f"target.catch_rate * status_modifier * tuxeball_modifier / ({hp_divisor} * target.hp)"
     )
-
-    msg = "(3 * {0.hp} - 2 * {0.current_hp}) * {0.catch_rate} * {1} * {2} / (3 * {0.hp})"
-
-    logger.debug(msg.format(target, status_modifier, tuxeball_modifier))
-    logger.debug("shake_constant/(sqrt(sqrt(max_catch_rate/catch_check))*8)")
-    logger.debug(f"524325/(sqrt(sqrt(255/{catch_check}))*8)")
-
-    msg = "Each shake has a {}/65536 chance of breaking the creature free. (shake_check = {})"
     logger.debug(
-        msg.format(
-            round((shake_constant - shake_check) / shake_constant, 2),
-            round(shake_check),
-        )
+        f"target.hp: {target.hp}, target.current_hp: {target.current_hp}, "
+        f"target.catch_rate: {target.catch_rate}, status_modifier: {status_modifier}, "
+        f"tuxeball_modifier: {tuxeball_modifier}"
+    )
+    logger.debug(f"Calculated catch_check: {catch_check}")
+    logger.debug("--- Shake Check Calculation ---")
+    logger.debug(
+        f"shake_constant: {shake_constant}, shake_denominator: {shake_denominator}, "
+        f"max_catch_rate: {max_catch_rate}"
+    )
+    logger.debug(
+        f"Shake formula: {shake_constant}/(sqrt(sqrt(max_catch_rate/catch_check))"
+        f"*{shake_denominator})"
+    )
+    logger.debug(f"Final shake_check value: {round(shake_check, 2)}")
+
+    shake_chance = round((shake_constant - shake_check) / shake_constant, 2)
+    logger.debug("--- Final Shake Statistics ---")
+    logger.debug(
+        f"shake_check: {round(shake_check)}, "
+        f"Chance to break free per shake: {shake_chance}/{shake_divisor}"
     )
     return shake_check
 
 
 def capture(shake_check: float) -> tuple[bool, int]:
     """
-    It defines if the wild monster is captured or not.
+    Determines if the wild monster is successfully captured or escapes.
 
     Parameters:
-        shake_check: Float.
+        shake_check: The calculated value used in capture evaluation.
 
     Returns:
-        If it's captured: (True, total_shakes)
-        If it isn't captured: (False, nr_shakes)
-
+        (True) if the monster is captured.
+        (False) if the monster escapes after a specific number of shakes.
     """
-    # The number of shakes that a tuxemon can do to escape.
-    total_shakes = pre.TOTAL_SHAKES
-    # In every shake a random number form [0-65536] will be produced.
-    max_shake_rate = pre.MAX_SHAKE_RATE
-    # 4 shakes to give monster chance to escape
+    config_capture = Loader.get_config_capture("config_capture.yaml")
+    total_shakes = config_capture.total_shakes
+    shake_divisor = config_capture.shake_divisor
+
     for i in range(0, total_shakes):
-        random_num = random.randint(0, max_shake_rate)
+        random_num = random.randint(0, shake_divisor)
         logger.debug(f"shake check {i}: random number {random_num}")
         if random_num > int(shake_check):
             return (False, i + 1)
     return (True, total_shakes)
+
+
+def relative_escape(user: Monster, target: Monster) -> bool:
+    monster_strength = (target.melee + target.ranged + target.dodge) / 3
+    level_advantage = user.level - target.level
+    escape_chance = (
+        0.2
+        + (0.1 * level_advantage)
+        - (0.05 * monster_strength / 10)
+        + (0.05 * user.speed / 10)
+    )
+    escape_chance = max(0, min(escape_chance, 1))
+    return random.random() <= escape_chance
+
+
+def default_escape(user: Monster, target: Monster, attempts: int) -> bool:
+    escape_chance = 0.4 + (0.15 * (attempts + user.level - target.level))
+    return random.random() <= escape_chance
 
 
 def attempt_escape(
@@ -615,51 +725,27 @@ def attempt_escape(
     Attempt to escape from a target monster.
 
     Parameters:
-    - method: The escape method to use.
-    - user: The monster attempting to escape.
-    - target: The monster from which the user is attempting to escape.
-    - attempts: The number of attempts the user has made to escape so far.
+        method: The escape method to use.
+        user: The monster attempting to escape.
+        target: The monster from which the user is attempting to escape.
+        attempts: The number of attempts the user has made to escape so far.
 
     Returns:
-    - bool: True if the escape is successful, False otherwise.
+        True if the escape is successful, False otherwise.
 
     Raises:
-    - ValueError: If the specified method is not supported.
+        ValueError: If the specified method is not supported.
     """
-
-    def relative_method() -> bool:
-        monster_strength = (target.melee + target.ranged + target.dodge) / 3
-        level_advantage = user.level - target.level
-        escape_chance = (
-            0.2
-            + (0.1 * level_advantage)
-            - (0.05 * monster_strength / 10)
-            + (0.05 * user.speed / 10)
-        )
-        escape_chance = max(0, min(escape_chance, 1))
-        return random.random() <= escape_chance
-
-    def always_method() -> bool:
+    if method == "default":
+        return default_escape(user, target, attempts)
+    elif method == "relative":
+        return relative_escape(user, target)
+    elif method == "always":
         return True
-
-    def never_method() -> bool:
+    elif method == "never":
         return False
-
-    def default_method() -> bool:
-        escape_chance = 0.4 + (0.15 * (attempts + user.level - target.level))
-        return random.random() <= escape_chance
-
-    methods = {
-        "default": default_method,
-        "relative": relative_method,
-        "always": always_method,
-        "never": never_method,
-    }
-
-    if method not in methods:
+    else:
         raise ValueError(f"A formula for {method} doesn't exist.")
-
-    return methods[method]()
 
 
 def speed_monster(monster: Monster, technique: Technique) -> int:

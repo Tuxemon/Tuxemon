@@ -44,7 +44,7 @@ events:
     - unlock_controls
     - translated_dialog okaythen2
     - set_variable chooses:none
-    - set_variable teleport_faint:spyder_candy_cafe.tmx 1 10
+    - set_teleport_faint player,spyder_candy_cafe.tmx,1,10
     conditions:
     - is variable_set chooses:yes
     type: "event"

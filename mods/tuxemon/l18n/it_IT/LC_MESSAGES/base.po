@@ -1787,9 +1787,6 @@ msgid "menu_alphabet"
 msgstr ""
 "AÀBCDEÈÉFGHIÌJKLMNOÒPQRSTUÙVWXYZaàbcdeèéfghiìjklmnoòpqrstuùvwxyz1234567890.-!"
 
-msgid "menu_alphabet_n_columns"
-msgstr "14"
-
 msgid "professorexists1"
 msgstr "Grazie Ben."
 

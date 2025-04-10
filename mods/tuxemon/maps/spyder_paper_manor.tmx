@@ -30,36 +30,4 @@
    eJxjYBhZ4KQiddTAAAByVgHV
   </data>
  </layer>
- <objectgroup color="#ff0000" id="5" name="Collisions">
-  <object id="60" type="collision" x="32" y="64" width="32" height="32"/>
-  <object id="63" type="collision" x="0" y="112" width="16" height="16"/>
-  <object id="64" type="collision" x="144" y="112" width="16" height="16"/>
-  <object id="65" type="collision" x="144" y="32" width="16" height="16"/>
-  <object id="66" type="collision" x="112" y="48" width="16" height="48"/>
-  <object id="67" type="collision" x="0" y="16" width="160" height="16"/>
-  <object id="68" type="collision" x="0" y="32" width="16" height="16"/>
- </objectgroup>
- <objectgroup color="#ffff00" id="6" name="Events">
-  <object id="69" name="Go Outside" type="event" x="96" y="112" width="16" height="16">
-   <properties>
-    <property name="act1" value="transition_teleport spyder_paper_town.tmx,10,13,0.3"/>
-    <property name="act2" value="char_face player,down"/>
-    <property name="cond1" value="is char_at player"/>
-    <property name="cond2" value="is char_facing player,down"/>
-   </properties>
-  </object>
-  <object id="70" name="Create NPCs" type="event" x="0" y="0" width="16" height="16">
-   <properties>
-    <property name="act1" value="create_npc spyder_papermanor_princeton,1,5"/>
-    <property name="act2" value="char_face spyder_papermanor_princeton,right"/>
-    <property name="cond1" value="not char_exists spyder_papermanor_princeton"/>
-   </properties>
-  </object>
-  <object id="71" name="Old Man" type="event" x="16" y="80" width="16" height="16">
-   <properties>
-    <property name="act1" value="translated_dialog spyder_papermanor_oldman"/>
-    <property name="behav1" value="talk spyder_papermanor_princeton"/>
-   </properties>
-  </object>
- </objectgroup>
 </map>

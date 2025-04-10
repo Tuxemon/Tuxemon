@@ -1,8 +1,9 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
+import os
 import uuid
-from collections.abc import Generator
+from collections.abc import Generator, MutableMapping
 from math import cos, pi, sin
 from typing import Any, Optional
 
@@ -48,10 +49,133 @@ region_properties = [
 ]
 
 
+def parse_yaml(path: str) -> Any:
+    """
+    Parses a large YAML file efficiently using a streaming loader.
+    """
+    with open(path) as fp:
+        try:
+            return yaml.load(fp.read(), Loader=yaml.SafeLoader)
+        except yaml.YAMLError as e:
+            raise ValueError(f"Error parsing YAML file: {e}")
+
+
+class MapLoader:
+
+    def load_map_data(self, path: str) -> TuxemonMap:
+        """
+        Loads map data from a TMX file and associated YAML event files.
+
+        Parameters:
+            path: The path to the TMX map file.
+
+        Returns:
+            A TuxemonMap object containing the loaded map data and events.
+        """
+        logger.debug(f"Load map '{path}'.")
+        txmn_map = self._load_map_from_disk(path)
+        self._process_and_merge_events(txmn_map, path)
+        return txmn_map
+
+    def _load_map_from_disk(self, path: str) -> TuxemonMap:
+        """
+        Loads only the TMX map data from the file.
+
+        Parameters:
+            path: The path to the TMX map file.
+
+        Returns:
+            A TuxemonMap object with the loaded map data.
+        """
+        try:
+            return TMXMapLoader().load(path)
+        except Exception as e:
+            logger.error(f"Failed to load TMX map from {path}: {e}")
+            raise
+
+    def _process_and_merge_events(
+        self, txmn_map: TuxemonMap, path: str
+    ) -> None:
+        """
+        Processes and merges events from YAML files into the map.
+
+        Parameters:
+            txmn_map: The TuxemonMap object to update.
+            path: The path to the TMX map file for deriving YAML paths.
+        """
+        yaml_files = [path.replace(".tmx", ".yaml")]
+        if txmn_map.scenario:
+            _scenario = prepare.fetch("maps", f"{txmn_map.scenario}.yaml")
+            yaml_files.append(_scenario)
+
+        yaml_collision: MutableMapping[
+            tuple[int, int], Optional[RegionProperties]
+        ] = {}
+
+        yaml_loader = YAMLEventLoader()
+        events = {"event": list(txmn_map.events), "init": list(txmn_map.inits)}
+
+        for yaml_file in yaml_files:
+            if os.path.exists(yaml_file):
+                try:
+                    event = yaml_loader.load_collision(yaml_file)
+                    yaml_collision.update(event)
+                    events["event"].extend(
+                        yaml_loader.load_events(yaml_file, "event")["event"]
+                    )
+                    events["init"].extend(
+                        yaml_loader.load_events(yaml_file, "init")["init"]
+                    )
+                except Exception as e:
+                    logger.error(
+                        f"Failed to load events from {yaml_file}: {e}"
+                    )
+            else:
+                logger.warning(f"YAML file {yaml_file} not found")
+
+        txmn_map.collision_map.update(yaml_collision)
+        txmn_map.events = events["event"]
+        txmn_map.inits = events["init"]
+
+
 class YAMLEventLoader:
     """
     Support for reading game events from a YAML file.
     """
+
+    def load_collision(
+        self, path: str
+    ) -> MutableMapping[tuple[int, int], Optional[RegionProperties]]:
+        """
+        Load collision data from a YAML file.
+
+        This function reads a YAML file at the specified path and extracts collision
+        data from it. The collision data is used to create a dictionary of coordinates
+        that represent the collision areas.
+
+        Parameters:
+            path: Path to the file.
+
+        Returns:
+            A dictionary with collision coordinates as keys.
+        """
+        yaml_data: dict[str, list[dict[str, Any]]] = parse_yaml(path)
+
+        collision_dict: MutableMapping[
+            tuple[int, int], Optional[RegionProperties]
+        ] = {}
+
+        if "collisions" in yaml_data:
+            for collision_data in yaml_data["collisions"]:
+                x = int(collision_data.get("x", 0))
+                y = int(collision_data.get("y", 0))
+                w = int(collision_data.get("width", 1))
+                h = int(collision_data.get("height", 1))
+                event_type = str(collision_data.get("type"))
+                coords = [(x + i, y + j) for i in range(w) for j in range(h)]
+                for coord in coords:
+                    collision_dict[coord] = None
+        return collision_dict
 
     def load_events(
         self, path: str, source: str
@@ -71,10 +195,7 @@ class YAMLEventLoader:
             A dictionary with "events" and "inits" as keys, each containing a list
             of EventObject instances.
         """
-        yaml_data: dict[str, dict[str, dict[str, Any]]] = {}
-
-        with open(path) as fp:
-            yaml_data = yaml.load(fp.read(), Loader=yaml.SafeLoader)
+        yaml_data: dict[str, dict[str, dict[str, Any]]] = parse_yaml(path)
 
         events_dict: dict[str, list[EventObject]] = {"event": [], "init": []}
 
@@ -171,83 +292,15 @@ class TMXMapLoader:
             The loaded map.
 
         """
-        data = pytmx.TiledMap(
-            filename=filename,
-            image_loader=self.image_loader,
-            pixelalpha=True,
-        )
+        data = self.load_tiled_map(filename)
         tile_size = (data.tilewidth, data.tileheight)
         data.tilewidth, data.tileheight = prepare.TILE_SIZE
-        events = []
-        inits = []
-        surface_map: dict[tuple[int, int], dict[str, float]] = {}
-        collision_map: dict[tuple[int, int], Optional[RegionProperties]] = {}
-        collision_lines_map = set()
-        maps = data.properties
 
-        # get all tiles which have properties and/or collisions
-        gids_with_props = {}
-        gids_with_colliders = {}
-        gids_with_surface = {}
-        for gid, props in data.tile_properties.items():
-            conds = extract_region_properties(props)
-            gids_with_props[gid] = conds if conds else None
-            colliders = props.get("colliders")
-            if colliders is not None:
-                gids_with_colliders[gid] = colliders
-            for _surface in SurfaceKeys:
-                surface = props.get(_surface)
-                if surface is not None:
-                    gids_with_surface[gid] = {_surface: surface}
-
-        # for each tile, apply the properties and collisions for the tile location
-        for layer in data.visible_tile_layers:
-            layer = data.layers[layer]
-            for x, y, gid in layer.iter_data():
-                tile_props = gids_with_props.get(gid)
-                if tile_props is not None:
-                    collision_map[(x, y)] = tile_props
-                # colliders
-                colliders = gids_with_colliders.get(gid)
-                if colliders is not None:
-                    for obj in colliders:
-                        obj_type = obj.type
-                        if obj_type and obj_type.lower().startswith(
-                            "collision"
-                        ):
-                            if getattr(obj, "closed", True):
-                                region_conditions = copy_dict_with_keys(
-                                    obj.properties, region_properties
-                                )
-                                _extract = extract_region_properties(
-                                    region_conditions
-                                )
-                                collision_map[(x, y)] = _extract
-                        for line in self.collision_lines_from_object(
-                            obj, tile_size
-                        ):
-                            coords, direction = line
-                            lx, ly = coords
-                            line = (lx + x, ly + y), direction
-                            collision_lines_map.add(line)
-                # surfaces
-                surface = gids_with_surface.get(gid)
-                if surface is not None:
-                    surface_map[(x, y)] = surface
-
-        for obj in data.objects:
-            obj_type = obj.type
-            if obj_type and obj_type.lower().startswith("collision"):
-                for tile_position, props in self.extract_tile_collisions(
-                    obj, tile_size
-                ):
-                    collision_map[tile_position] = props
-                for line in self.collision_lines_from_object(obj, tile_size):
-                    collision_lines_map.add(line)
-            elif obj_type == "event":
-                events.append(self.load_event(obj, tile_size))
-            elif obj_type == "init":
-                inits.append(self.load_event(obj, tile_size))
+        collision_map, collision_lines_map = self.load_collision_data(
+            data, tile_size
+        )
+        surface_map = self.load_surface_data(data)
+        events, inits = self.load_events_and_inits(data, tile_size)
 
         return TuxemonMap(
             events,
@@ -256,9 +309,119 @@ class TMXMapLoader:
             collision_map,
             collision_lines_map,
             data,
-            maps,
+            data.properties,
             filename,
         )
+
+    def load_tiled_map(self, filename: str) -> pytmx.TiledMap:
+        return pytmx.TiledMap(
+            filename=filename,
+            image_loader=self.image_loader,
+            pixelalpha=True,
+        )
+
+    def load_collision_data(
+        self, data: pytmx.TiledMap, tile_size: tuple[int, int]
+    ) -> tuple[
+        dict[tuple[int, int], Optional[RegionProperties]],
+        set[tuple[tuple[int, int], Direction]],
+    ]:
+        collision_map: dict[tuple[int, int], Optional[RegionProperties]] = {}
+        collision_lines_map: set[tuple[tuple[int, int], Direction]] = set()
+        gids_with_props = {}
+        gids_with_colliders = {}
+
+        for gid, props in data.tile_properties.items():
+            conds = extract_region_properties(props)
+            gids_with_props[gid] = conds if conds else None
+            colliders = props.get("colliders")
+            if colliders is not None:
+                gids_with_colliders[gid] = colliders
+
+        for layer in data.visible_tile_layers:
+            layer = data.layers[layer]
+            for x, y, gid in layer.iter_data():
+                tile_props = gids_with_props.get(gid)
+                if tile_props is not None:
+                    collision_map[(x, y)] = tile_props
+                colliders = gids_with_colliders.get(gid)
+                if colliders is not None:
+                    for obj in colliders:
+                        self.process_collision_object(
+                            obj,
+                            tile_size,
+                            collision_map,
+                            collision_lines_map,
+                            x,
+                            y,
+                        )
+
+        for obj in data.objects:
+            if obj.type and obj.type.lower().startswith("collision"):
+                for tile_position, props in self.extract_tile_collisions(
+                    obj, tile_size
+                ):
+                    collision_map[tile_position] = props
+                for line in self.collision_lines_from_object(obj, tile_size):
+                    collision_lines_map.add(line)
+
+        return collision_map, collision_lines_map
+
+    def load_surface_data(
+        self, data: pytmx.TiledMap
+    ) -> dict[tuple[int, int], dict[str, float]]:
+        surface_map = {}
+        gids_with_surface = {}
+
+        for gid, props in data.tile_properties.items():
+            for _surface in SurfaceKeys:
+                surface = props.get(_surface)
+                if surface is not None:
+                    gids_with_surface[gid] = {_surface: surface}
+
+        for layer in data.visible_tile_layers:
+            layer = data.layers[layer]
+            for x, y, gid in layer.iter_data():
+                surface = gids_with_surface.get(gid)
+                if surface is not None:
+                    surface_map[(x, y)] = surface
+
+        return surface_map
+
+    def load_events_and_inits(
+        self, data: pytmx.TiledMap, tile_size: tuple[int, int]
+    ) -> tuple[list[EventObject], list[EventObject]]:
+        events: list[EventObject] = []
+        inits: list[EventObject] = []
+
+        for obj in data.objects:
+            if obj.type == "event":
+                events.append(self.load_event(obj, tile_size))
+            elif obj.type == "init":
+                inits.append(self.load_event(obj, tile_size))
+
+        return events, inits
+
+    def process_collision_object(
+        self,
+        obj: pytmx.TiledObject,
+        tile_size: tuple[int, int],
+        collision_map: dict[tuple[int, int], Optional[RegionProperties]],
+        collision_lines_map: set[tuple[tuple[int, int], Direction]],
+        x: int,
+        y: int,
+    ) -> None:
+        if obj.type and obj.type.lower().startswith("collision"):
+            if getattr(obj, "closed", True):
+                region_conditions = copy_dict_with_keys(
+                    obj.properties, region_properties
+                )
+                _extract = extract_region_properties(region_conditions)
+                collision_map[(x, y)] = _extract
+            for line in self.collision_lines_from_object(obj, tile_size):
+                coords, direction = line
+                lx, ly = coords
+                collision_lines_map.add(((lx + x, ly + y), direction))
 
     def extract_tile_collisions(
         self,

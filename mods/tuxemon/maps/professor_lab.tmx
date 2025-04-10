@@ -3,9 +3,9 @@
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="notype"/>
   <property name="scenario" value="xero"/>
   <property name="slug" value="professor_lab"/>
-  <property name="map_type" value="notype"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_floors.tsx"/>
  <tileset firstgid="3865" source="../gfx/tilesets/core_indoor_walls.tsx"/>
@@ -335,7 +335,7 @@
     <property name="cond3" value="not variable_set endbattleprof:yes"/>
    </properties>
   </object>
-  <object id="116" name="first battle lost" type="event" x="144" y="0" width="16" height="16">
+  <object id="116" name="first battle lost or draw" type="event" x="144" y="0" width="16" height="16">
    <properties>
     <property name="act2" value="modify_money player,120"/>
     <property name="act3" value="set_variable firstbattledone:yes"/>
@@ -343,7 +343,7 @@
     <property name="act5" value="set_variable ohnotyou:itsme"/>
     <property name="act6" value="set_variable endbattleprof:yes"/>
     <property name="cond1" value="is variable_set finishedbattle:yes"/>
-    <property name="cond2" value="is variable_set battle_last_result:lost"/>
+    <property name="cond2" value="not variable_set battle_last_result:won"/>
     <property name="cond3" value="not variable_set endbattleprof:yes"/>
    </properties>
   </object>

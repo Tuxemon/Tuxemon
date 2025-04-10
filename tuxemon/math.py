@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Generator, Sequence
+from math import sqrt
 from typing import TypeVar, Union, overload
 
 SelfType = TypeVar("SelfType", bound="Vector")
@@ -24,11 +25,27 @@ class Vector(ABC, Sequence[float]):
     def __str__(self) -> str:
         return f"{type(self)}{tuple(self)}"
 
+    @property
+    def magnitude(self) -> float:
+        return sqrt(sum(component**2 for component in self))
+
+    @property
+    def normalized(self: SelfType) -> SelfType:
+        """
+        Returns the normalized vector (unit vector).
+        """
+        if self.magnitude == 0:
+            return type(self)([0] * len(self))
+        return self * (1 / self.magnitude)
+
+    @property
+    def as_tuple(self) -> tuple[float, ...]:
+        return tuple(self)
+
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Sequence) or len(self) != len(other):
             return NotImplemented
-
-        return tuple(self) == tuple(other)
+        return self.as_tuple == tuple(other)
 
     def __len__(self) -> int:
         return len(tuple(iter(self)))

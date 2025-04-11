@@ -26,10 +26,7 @@ class LocationTypeCondition(CoreCondition):
 
     def test_with_monster(self, target: Monster) -> bool:
         types = [maps.value for maps in MapType]
-        if self.location_type in types:
-            if self.session.client.map_type == self.location_type:
-                return True
-            else:
-                return False
-        else:
-            return False
+        return (
+            self.location_type in types
+            and self.session.client.map_type == self.location_type
+        )

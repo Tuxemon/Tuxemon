@@ -21,13 +21,14 @@ logger = logging.getLogger(__name__)
 @dataclass
 class CoreCondition:
     """
-    CoreCondition handles multiple condition types with operational state tracking via _op.
+    CoreCondition handles multiple condition types with operational state
+    tracking via is_expected.
     """
 
     name: ClassVar[str]
     session: Session = field(init=False, repr=False)
     # Represents truth state (is/not)
-    _op: bool = field(default=False, init=False)
+    is_expected: bool = field(default=False, init=False)
 
     def __post_init__(self) -> None:
         self.session = local_session
@@ -59,23 +60,32 @@ class CoreCondition:
         Validate all conditions for multiple targets using the appropriate test methods.
         """
         if not targets:
+            logger.warning("No targets provided for validation.")
             return False
+
+        failed_targets = []
 
         for target in targets:
             target_type = target.__class__.__name__.lower()
             test_method_name = f"test_with_{target_type}"
 
-            try:
-                test_method = getattr(self, test_method_name)
-                if not test_method(target):
-                    return False
-            except AttributeError:
+            test_method = getattr(self, test_method_name, None)
+            if test_method is None:
                 logger.warning(
-                    f"No test method found for target type: {target_type}"
+                    f"Missing test method '{test_method_name}' for target: {target}"
                 )
-                return False
+                failed_targets.append(target)
+                continue
+
+            try:
+                if not test_method(target):
+                    failed_targets.append(target)
             except Exception as e:
                 logger.error(f"Error while testing target {target_type}: {e}")
-                return False
+                failed_targets.append(target)
+
+        if failed_targets:
+            logger.info(f"Validation failed for targets: {failed_targets}")
+            return False
 
         return True

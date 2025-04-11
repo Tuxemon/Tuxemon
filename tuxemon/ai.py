@@ -30,7 +30,7 @@ class TechniqueTracker:
             for mov in self.moves
             if not recharging(mov)
             for opponent in opponents
-            if mov.validate(opponent)
+            if mov.validate_monster(opponent)
         ]
 
 

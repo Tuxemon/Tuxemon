@@ -66,7 +66,7 @@ class TechniqueMenuState(Menu[Technique]):
         tech = menu_technique.game_object
 
         if not any(
-            menu_technique.game_object.validate(m)
+            menu_technique.game_object.validate_monster(m)
             for m in local_session.player.monsters
         ):
             msg = T.format("item_no_available_target", {"name": tech.name})
@@ -97,7 +97,7 @@ class TechniqueMenuState(Menu[Technique]):
             self.client.pop_state()  # close the confirm dialog
 
             menu = self.client.push_state(MonsterMenuState())
-            menu.is_valid_entry = technique.validate  # type: ignore[assignment]
+            menu.is_valid_entry = technique.validate_monster  # type: ignore[assignment]
             menu.on_menu_selection = use_technique  # type: ignore[assignment]
 
         def cancel() -> None:

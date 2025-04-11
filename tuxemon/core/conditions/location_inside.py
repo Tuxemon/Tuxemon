@@ -25,14 +25,7 @@ class LocationInsideCondition(CoreCondition):
 
     def test_with_monster(self, target: Monster) -> bool:
         if self.location_inside == "inside":
-            if self.session.client.map_inside:
-                return True
-            else:
-                return False
+            return self.session.client.map_inside
         elif self.location_inside == "outside":
-            if self.session.client.map_inside:
-                return False
-            else:
-                return True
-        else:
-            return False
+            return not self.session.client.map_inside
+        return False

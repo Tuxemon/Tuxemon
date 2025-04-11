@@ -115,7 +115,9 @@ class ItemMenuState(Menu[Item]):
         item = menu_item.game_object
 
         # Check if the item can be used on any monster
-        if not any(item.validate(m) for m in local_session.player.monsters):
+        if not any(
+            item.validate_monster(m) for m in local_session.player.monsters
+        ):
             self.on_menu_selection_change()
             error_message = self.get_error_message(item)
             tools.open_dialog(local_session, [error_message])
@@ -203,7 +205,7 @@ class ItemMenuState(Menu[Item]):
             self.client.remove_state_by_name("ChoiceState")
             if item.behaviors.requires_monster_menu:
                 menu = self.client.push_state(MonsterMenuState())
-                menu.is_valid_entry = item.validate  # type: ignore[assignment]
+                menu.is_valid_entry = item.validate_monster  # type: ignore[assignment]
                 menu.on_menu_selection = use_item_with_monster  # type: ignore[assignment]
             else:
                 use_item_without_monster()

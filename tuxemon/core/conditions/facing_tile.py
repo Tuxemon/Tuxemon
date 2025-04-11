@@ -27,25 +27,21 @@ class FacingTileCondition(CoreCondition):
     def test_with_monster(self, target: Monster) -> bool:
         player = self.session.player
         client = self.session.client
-        # get all the coordinates around the player
-        tiles = get_coords(player.tile_pos, client.map_size)
-        tile_location = None
 
-        # check if the NPC is facing a specific set of tiles
+        tiles = get_coords(player.tile_pos, client.map_size)
+
         world = client.get_state_by_name(WorldState)
-        if self.facing_tile in SurfaceKeys:
-            label = world.get_all_tile_properties(
-                world.surface_map, self.facing_tile
-            )
-        else:
-            label = world.check_collision_zones(
+        label = (
+            world.get_all_tile_properties(world.surface_map, self.facing_tile)
+            if self.facing_tile in SurfaceKeys
+            else world.check_collision_zones(
                 world.collision_map, self.facing_tile
             )
+        )
         tiles = list(set(tiles).intersection(label))
 
-        # Next, we check the player position and see if we're one tile
-        # away from the tile.
-        for coords in tiles:
-            tile_location = get_direction(player.tile_pos, coords)
+        tile_location = next(
+            (get_direction(player.tile_pos, coords) for coords in tiles), None
+        )
 
         return player.facing == tile_location

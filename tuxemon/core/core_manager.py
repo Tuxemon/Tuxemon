@@ -102,8 +102,8 @@ class CoreManager:
                 continue
 
             condition_obj = condition_class(*condition.parameters)
-            if hasattr(condition_obj, "_op"):
-                condition_obj._op = condition.operator == "is"
+            if hasattr(condition_obj, "is_expected"):
+                condition_obj.is_expected = condition.operator == "is"
             conditions.append(condition_obj)
 
         return conditions

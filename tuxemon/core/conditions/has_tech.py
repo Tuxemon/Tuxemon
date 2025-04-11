@@ -24,7 +24,4 @@ class HasTechCondition(CoreCondition):
     expected: str
 
     def test_with_monster(self, target: Monster) -> bool:
-        if any(t for t in target.moves if t.slug == self.expected):
-            return True
-        else:
-            return False
+        return any(t.slug == self.expected for t in target.moves)

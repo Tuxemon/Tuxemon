@@ -115,7 +115,7 @@ class ConditionProcessor:
 
         try:
             test_method = getattr(condition, test_method_name)
-            return condition._op == bool(test_method(target))
+            return condition.is_expected == bool(test_method(target))
         except AttributeError:
             logger.error(
                 f"Missing required method: {test_method_name} for {target_type}"

@@ -105,7 +105,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         run = Technique()
         run.load("menu_run")
         run.combat_state = self.combat
-        if not run.validate(self.monster):
+        if not run.validate_monster(self.monster):
             params = {
                 "monster": self.monster.name.upper(),
                 "status": self.monster.status[0].name.lower(),
@@ -133,7 +133,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             swap = Technique()
             swap.load("swap")
             swap.combat_state = self.combat
-            if not swap.validate(self.monster):
+            if not swap.validate_monster(self.monster):
                 params = {
                     "monster": self.monster.name.upper(),
                     "status": self.monster.status[0].name.lower(),
@@ -177,7 +177,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         def enqueue_item(item: Item, menu_item: MenuItem[Monster]) -> None:
             target = menu_item.game_object
             # is the item valid to use?
-            if not item.validate(target):
+            if not item.validate_monster(target):
                 params = {"name": item.name.upper()}
                 msg = T.format("cannot_use_item_monster", params)
                 tools.open_dialog(local_session, [msg])
@@ -320,7 +320,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             target = menu_item.game_object
 
             # Check if the technique can be used on the target
-            if not technique.validate(target):
+            if not technique.validate_monster(target):
                 params = {"name": technique.name.upper()}
                 msg = T.format("cannot_use_tech_monster", params)
                 tools.open_dialog(local_session, [msg])

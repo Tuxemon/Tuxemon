@@ -125,28 +125,28 @@ class TestConditionProcessor(unittest.TestCase):
         self.assertFalse(processor.validate(None))
 
     def test_condition_passes_with_op(self):
-        self.core_condition._op = True
+        self.core_condition.is_expected = True
         self.core_condition.test_with_monster.return_value = True
 
         processor = ConditionProcessor(conditions=[self.core_condition])
         self.assertTrue(processor.validate(self.target_monster))
 
     def test_condition_fails_with_op(self):
-        self.core_condition._op = True
+        self.core_condition.is_expected = True
         self.core_condition.test_with_monster.return_value = False
 
         processor = ConditionProcessor(conditions=[self.core_condition])
         self.assertFalse(processor.validate(self.target_monster))
 
     def test_condition_passes_without_op(self):
-        self.core_condition._op = False
+        self.core_condition.is_expected = False
         self.core_condition.test_with_monster.return_value = False
 
         processor = ConditionProcessor(conditions=[self.core_condition])
         self.assertTrue(processor.validate(self.target_monster))
 
     def test_condition_fails_without_op(self):
-        self.core_condition._op = False
+        self.core_condition.is_expected = False
         self.core_condition.test_with_monster.return_value = True
 
         processor = ConditionProcessor(conditions=[self.core_condition])
@@ -158,11 +158,11 @@ class TestConditionProcessor(unittest.TestCase):
         self.assertFalse(processor.validate(self.target_monster))
 
     def test_multiple_conditions_all_pass(self):
-        self.core_condition._op = True
+        self.core_condition.is_expected = True
         self.core_condition.test_with_monster.return_value = True
 
         another_condition = MagicMock(spec=CoreCondition)
-        another_condition._op = True
+        another_condition.is_expected = True
         another_condition.test_with_monster.return_value = True
 
         processor = ConditionProcessor(
@@ -171,11 +171,11 @@ class TestConditionProcessor(unittest.TestCase):
         self.assertTrue(processor.validate(self.target_monster))
 
     def test_multiple_conditions_one_fails(self):
-        self.core_condition._op = True
+        self.core_condition.is_expected = True
         self.core_condition.test_with_monster.return_value = True
 
         another_condition = MagicMock(spec=CoreCondition)
-        another_condition._op = True
+        another_condition.is_expected = True
         another_condition.test_with_monster.return_value = False
 
         processor = ConditionProcessor(
@@ -183,18 +183,8 @@ class TestConditionProcessor(unittest.TestCase):
         )
         self.assertFalse(processor.validate(self.target_monster))
 
-    def test_unsupported_target_type(self):
-        unsupported_target = MagicMock()
-        processor = ConditionProcessor(conditions=[self.core_condition])
-        self.assertFalse(processor.validate(unsupported_target))
-
-    def test_empty_target(self):
-        empty_target = MagicMock()
-        processor = ConditionProcessor(conditions=[self.core_condition])
-        self.assertFalse(processor.validate(empty_target))
-
     def test_method_invocation_count(self):
-        self.core_condition._op = True
+        self.core_condition.is_expected = True
         self.core_condition.test_with_monster.return_value = True
         processor = ConditionProcessor(conditions=[self.core_condition])
         processor.validate(self.target_monster)

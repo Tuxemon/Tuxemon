@@ -111,7 +111,7 @@ class Item:
         self.animation = results.animation
         self.flip_axes = results.flip_axes
 
-    def validate(self, target: Optional[Monster]) -> bool:
+    def validate_monster(self, target: Monster) -> bool:
         """
         Check if the target meets all conditions that the item has on it's use.
         """

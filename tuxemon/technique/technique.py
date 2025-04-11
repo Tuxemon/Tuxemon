@@ -139,7 +139,7 @@ class Technique:
         """
         self.counter += 1
 
-    def validate(self, target: Optional[Monster]) -> bool:
+    def validate_monster(self, target: Monster) -> bool:
         """
         Check if the target meets all conditions that the technique has on its use.
         """

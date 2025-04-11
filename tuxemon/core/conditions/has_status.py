@@ -21,7 +21,4 @@ class HasStatusCondition(CoreCondition):
     name = "has_status"
 
     def test_with_monster(self, target: Monster) -> bool:
-        if target.status:
-            return True
-        else:
-            return False
+        return bool(target.status)

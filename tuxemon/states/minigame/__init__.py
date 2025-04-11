@@ -63,11 +63,11 @@ class MinigameState(PygameMenuState):
         )
         new_image.scale(prepare.SCALE, prepare.SCALE)
         menu.add.image(image_path=new_image.copy())
+
         choice = random.sample(data, 5)
-        pos = random.choice(range(len(choice)))
         if tuxemon not in choice:
-            choice.pop()
-            choice.insert(pos, tuxemon)
+            pos = random.randint(0, len(choice) - 1)
+            choice[pos] = tuxemon
 
         def checking(mon: MonsterModel) -> None:
             if mon.slug == self.tuxemon.slug:

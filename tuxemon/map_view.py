@@ -5,9 +5,11 @@ from __future__ import annotations
 import logging
 import os
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Optional, Union
+from typing import TYPE_CHECKING, Optional
 
 import pygame
+from pygame.rect import Rect
+from pygame.surface import Surface
 
 from tuxemon import prepare
 from tuxemon.db import EntityFacing
@@ -25,10 +27,6 @@ if TYPE_CHECKING:
     from tuxemon.npc import NPC
     from tuxemon.states.world.worldstate import WorldState
 
-SpriteMap = Union[
-    dict[str, SurfaceAnimation], dict[str, pygame.surface.Surface]
-]
-
 
 @dataclass
 class AnimationInfo:
@@ -39,19 +37,16 @@ class AnimationInfo:
 
 @dataclass
 class WorldSurfaces:
-    surface: pygame.surface.Surface
+    surface: Surface
     position3: Vector2
     layer: int
 
 
-sprite_cache: dict[str, pygame.surface.Surface] = {}
-standing_sprite_cache: dict[
-    str, dict[EntityFacing, pygame.surface.Surface]
-] = {}
-walking_sprite_cache: dict[str, SurfaceAnimation] = {}
+sprite_cache: dict[str, Surface] = {}
+standing_sprite_cache: dict[str, dict[EntityFacing, Surface]] = {}
 
 
-def load_and_scale_with_cache(file_path: str) -> pygame.surface.Surface:
+def load_and_scale_with_cache(file_path: str) -> Surface:
     """
     Load and scale an image, using a cache to avoid redundant file operations.
     """
@@ -68,40 +63,27 @@ def load_walking_animations_with_cache(
     template: NpcTemplateModel, facing: EntityFacing, frame_duration: float
 ) -> SurfaceAnimation:
     """
-    Load walking animations with caching to avoid redundant frame processing.
+    Load walking animations without caching.
     """
-    cache_key = f"{template.sprite_name}_{facing.value}_walk"
-    if cache_key not in walking_sprite_cache:
-        logger.info(f"Creating new walking animation for: {cache_key}")
-        images: list[str] = [
-            f"sprites/{template.sprite_name}_{facing.value}_walk.{str(0).zfill(3)}.png",
-            f"sprites/{template.sprite_name}_{facing.value}.png",
-            f"sprites/{template.sprite_name}_{facing.value}_walk.{str(1).zfill(3)}.png",
-            f"sprites/{template.sprite_name}_{facing.value}.png",
-        ]
-        frames: list[tuple[pygame.surface.Surface, float]] = [
-            (load_and_scale_with_cache(image), frame_duration)
-            for image in images
-        ]
-        walking_sprite_cache[cache_key] = SurfaceAnimation(frames, loop=True)
-    else:
-        logger.info(f"Using cached walking animation for: {cache_key}")
-    return walking_sprite_cache[cache_key]
+    logger.info(
+        f"Loading new walking animation for: {template.sprite_name}, {facing.value}"
+    )
+    images: list[str] = [
+        f"sprites/{template.sprite_name}_{facing.value}_walk.{str(0).zfill(3)}.png",
+        f"sprites/{template.sprite_name}_{facing.value}.png",
+        f"sprites/{template.sprite_name}_{facing.value}_walk.{str(1).zfill(3)}.png",
+        f"sprites/{template.sprite_name}_{facing.value}.png",
+    ]
+    frames: list[tuple[Surface, float]] = [
+        (load_and_scale_with_cache(image), frame_duration) for image in images
+    ]
+    return SurfaceAnimation(frames, loop=True)
 
 
 def clear_standing_cache(cache_key: str) -> None:
     """Clears a specific item from the standing cache."""
     if cache_key in standing_sprite_cache:
         del standing_sprite_cache[cache_key]
-        logger.info(f"Cleared cache for: {cache_key}")
-    else:
-        logger.info(f"No cache found for: {cache_key}")
-
-
-def clear_walking_cache(cache_key: str) -> None:
-    """Clears a specific item from the walking cache."""
-    if cache_key in walking_sprite_cache:
-        del walking_sprite_cache[cache_key]
         logger.info(f"Cleared cache for: {cache_key}")
     else:
         logger.info(f"No cache found for: {cache_key}")
@@ -130,7 +112,7 @@ class SpriteController:
         )
         self.sprite_renderer.play()
 
-    def get_frame(self, ani: str) -> pygame.surface.Surface:
+    def get_frame(self, ani: str) -> Surface:
         """Get the current frame of the sprite animation."""
         return self.sprite_renderer.get_frame(ani, self.npc)
 
@@ -171,14 +153,12 @@ class SpriteRenderer:
 
     def __init__(self) -> None:
         """Initialize the SpriteRenderer."""
-        self.standing: dict[
-            Union[EntityFacing, str], pygame.surface.Surface
-        ] = {}
+        self.standing: dict[EntityFacing, Surface] = {}
         self.sprite: dict[str, SurfaceAnimation] = {}
         self.surface_animations = SurfaceAnimationCollection()
         self.player_width = 0
         self.player_height = 0
-        self.rect = pygame.rect.Rect(0, 0, 0, 0)
+        self.rect = Rect(0, 0, 0, 0)
         self.frame_duration = self._calculate_frame_duration()
 
     def load_sprites(
@@ -222,7 +202,7 @@ class SpriteRenderer:
         self.player_width, self.player_height = self.standing[
             EntityFacing.front
         ].get_size()
-        self.rect = pygame.rect.Rect(
+        self.rect = Rect(
             (
                 tile_pos[0],
                 tile_pos[1],
@@ -252,16 +232,23 @@ class SpriteRenderer:
         """Update the sprite animation."""
         self.surface_animations.update(time_delta)
 
-    def get_frame(self, ani: str, npc: NPC) -> pygame.surface.Surface:
+    def get_frame(self, ani: str, npc: NPC) -> Surface:
         """Get the current frame of the sprite animation."""
-        frame_dict: SpriteMap = self.sprite if npc.moving else self.standing
-        if ani in frame_dict:
-            frame = frame_dict[ani]
-            if isinstance(frame, SurfaceAnimation):
-                frame.rate = npc.moverate / prepare.CONFIG.player_walkrate
-                return frame.get_current_frame()
-            return frame
-        raise ValueError(f"Animation '{ani}' not found.")
+        if npc.moving:
+            frame_dict = self.sprite
+            if ani in frame_dict:
+                frame = frame_dict[ani]
+                if isinstance(frame, SurfaceAnimation):
+                    frame.rate = npc.moverate / prepare.CONFIG.player_walkrate
+                    return frame.get_current_frame()
+                else:
+                    raise ValueError(
+                        f"Expected SurfaceAnimation, got {type(frame)}"
+                    )
+            raise ValueError(f"Animation '{ani}' not found.")
+        else:
+            facing = EntityFacing(ani)
+            return self.standing[facing]
 
     def play(self) -> None:
         """Play the sprite animation."""
@@ -276,22 +263,20 @@ class MapRenderer:
     """Renders the game map, NPCs, and animations."""
 
     def __init__(
-        self, world_state: WorldState, screen: pygame.Surface, camera: Camera
+        self, world_state: WorldState, screen: Surface, camera: Camera
     ):
         """Initializes the MapRenderer."""
         self.world_state = world_state
         self.screen = screen
         self.camera = camera
-        self.layer = pygame.Surface(self.screen.get_size(), pygame.SRCALPHA)
+        self.layer = Surface(self.screen.get_size(), pygame.SRCALPHA)
         self.layer_color: ColorLike = prepare.TRANSPARENT_COLOR
-        self.bubble: dict[NPC, pygame.surface.Surface] = {}
+        self.bubble: dict[NPC, Surface] = {}
         self.cinema_x_ratio: Optional[float] = None
         self.cinema_y_ratio: Optional[float] = None
         self.map_animations: dict[str, AnimationInfo] = {}
 
-    def draw(
-        self, surface: pygame.surface.Surface, current_map: TuxemonMap
-    ) -> None:
+    def draw(self, surface: Surface, current_map: TuxemonMap) -> None:
         """Draws the map, sprites, and animations onto the given surface."""
         self._prepare_map_rendering(current_map)
         screen_surfaces = self._get_and_position_surfaces(
@@ -318,7 +303,7 @@ class MapRenderer:
 
     def _get_and_position_surfaces(
         self, sprite_layer: int
-    ) -> list[tuple[pygame.surface.Surface, pygame.rect.Rect, int]]:
+    ) -> list[tuple[Surface, Rect, int]]:
         """Retrieves and positions surfaces for rendering."""
         npc_surfaces = self._get_npc_surfaces(sprite_layer)
         map_animations = self._get_map_animations()
@@ -329,21 +314,19 @@ class MapRenderer:
 
     def _draw_map_and_sprites(
         self,
-        surface: pygame.surface.Surface,
-        screen_surfaces: list[
-            tuple[pygame.surface.Surface, pygame.rect.Rect, int]
-        ],
+        surface: Surface,
+        screen_surfaces: list[tuple[Surface, Rect, int]],
         current_map: TuxemonMap,
     ) -> None:
         """Draws the map and sprites onto the surface."""
         assert current_map.renderer
         current_map.renderer.draw(surface, surface.get_rect(), screen_surfaces)
 
-    def _apply_effects(self, surface: pygame.surface.Surface) -> None:
+    def _apply_effects(self, surface: Surface) -> None:
         """Applies visual effects to the surface."""
         self._set_layer(surface)
 
-    def _apply_cinema_bars(self, surface: pygame.surface.Surface) -> None:
+    def _apply_cinema_bars(self, surface: Surface) -> None:
         """Applies cinema bars (letterboxing) to the surface."""
         if self.cinema_x_ratio is not None:
             self._apply_horizontal_bars(self.cinema_x_ratio, surface)
@@ -371,7 +354,7 @@ class MapRenderer:
 
     def _position_surfaces(
         self, surfaces: list[WorldSurfaces]
-    ) -> list[tuple[pygame.surface.Surface, pygame.rect.Rect, int]]:
+    ) -> list[tuple[Surface, Rect, int]]:
         """Positions surfaces on the screen."""
         screen_surfaces = []
         for frame in surfaces:
@@ -379,7 +362,7 @@ class MapRenderer:
             position = frame.position3
             layer = frame.layer
             screen_position = self.world_state.get_pos_from_tilepos(position)
-            rect = pygame.rect.Rect(screen_position, surface.get_size())
+            rect = Rect(screen_position, surface.get_size())
             if surface.get_height() > prepare.TILE_SIZE[1]:
                 rect.y -= surface.get_height() // 2
             screen_surfaces.append((surface, rect, layer))
@@ -387,9 +370,7 @@ class MapRenderer:
 
     def _set_bubble(
         self,
-        screen_surfaces: list[
-            tuple[pygame.surface.Surface, pygame.rect.Rect, int]
-        ],
+        screen_surfaces: list[tuple[Surface, Rect, int]],
     ) -> None:
         """Adds speech bubbles to the screen surfaces."""
         if self.bubble:
@@ -408,7 +389,7 @@ class MapRenderer:
                 )
                 screen_surfaces.append((surface, bubble_rect, 100))
 
-    def _set_layer(self, surface: pygame.surface.Surface) -> None:
+    def _set_layer(self, surface: Surface) -> None:
         """Applies the layer effect to the surface."""
         self.layer.fill(self.layer_color)
         surface.blit(self.layer, (0, 0))
@@ -421,14 +402,14 @@ class MapRenderer:
         frame = sprite_renderer.get_frame(state, npc)
         return [WorldSurfaces(frame, proj(npc.position3), layer)]
 
-    def debug_drawing(self, surface: pygame.surface.Surface) -> None:
+    def debug_drawing(self, surface: Surface) -> None:
         """Draws debug information on the surface."""
         self.world_state.debug_drawing(surface)
 
     def _apply_vertical_bars(
         self,
         aspect_ratio: float,
-        screen: pygame.surface.Surface,
+        screen: Surface,
     ) -> None:
         """Applies vertical cinema bars."""
         screen_aspect_ratio = prepare.SCREEN_SIZE[0] / prepare.SCREEN_SIZE[1]
@@ -438,7 +419,7 @@ class MapRenderer:
                 * (1 - screen_aspect_ratio / aspect_ratio)
                 / 2
             )
-            bar = pygame.Surface((prepare.SCREEN_SIZE[0], bar_height))
+            bar = Surface((prepare.SCREEN_SIZE[0], bar_height))
             bar.fill(prepare.BLACK_COLOR)
             screen.blit(bar, (0, 0))
             screen.blit(bar, (0, prepare.SCREEN_SIZE[1] - bar_height))
@@ -446,7 +427,7 @@ class MapRenderer:
     def _apply_horizontal_bars(
         self,
         aspect_ratio: float,
-        screen: pygame.surface.Surface,
+        screen: Surface,
     ) -> None:
         """Applies horizontal cinema bars."""
         screen_aspect_ratio = prepare.SCREEN_SIZE[1] / prepare.SCREEN_SIZE[0]
@@ -456,7 +437,7 @@ class MapRenderer:
                 * (1 - screen_aspect_ratio / aspect_ratio)
                 / 2
             )
-            bar = pygame.Surface((bar_width, prepare.SCREEN_SIZE[1]))
+            bar = Surface((bar_width, prepare.SCREEN_SIZE[1]))
             bar.fill(prepare.BLACK_COLOR)
             screen.blit(bar, (0, 0))
             screen.blit(bar, (prepare.SCREEN_SIZE[0] - bar_width, 0))

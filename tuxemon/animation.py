@@ -486,7 +486,7 @@ class Animation(pygame.sprite.Sprite):
 
         """
         if self._round_values:
-            value = int(round(value, 0))
+            value = round(value)
 
         attr = getattr(target, name)
         if callable(attr):

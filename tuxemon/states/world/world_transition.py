@@ -6,6 +6,7 @@ from collections.abc import Callable
 from typing import TYPE_CHECKING, Optional
 
 import pygame
+from pygame.surface import Surface
 
 from tuxemon.graphics import ColorLike
 
@@ -17,11 +18,11 @@ class WorldTransition:
     def __init__(self, world: WorldState) -> None:
         self.world = world
         self.transition_alpha = 0
-        self.transition_surface: Optional[pygame.surface.Surface] = None
+        self.transition_surface: Optional[Surface] = None
         self.in_transition = False
 
     def set_transition_surface(self, color: ColorLike) -> None:
-        self.transition_surface = pygame.Surface(
+        self.transition_surface = Surface(
             self.world.client.screen.get_size(), pygame.SRCALPHA
         )
         self.transition_surface.fill(color)
@@ -80,7 +81,7 @@ class WorldTransition:
         task = self.world.task(teleport_function, duration)
         task.chain(fade_in, duration + 0.5)
 
-    def draw(self, surface: pygame.surface.Surface) -> None:
+    def draw(self, surface: Surface) -> None:
         if self.in_transition:
             assert self.transition_surface
             self.transition_surface.set_alpha(self.transition_alpha)

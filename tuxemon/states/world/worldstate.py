@@ -18,6 +18,7 @@ from typing import (
 
 import pygame
 from pygame.rect import Rect
+from pygame.surface import Surface
 
 from tuxemon import networking, prepare, state
 from tuxemon.boundary import BoundaryChecker
@@ -88,7 +89,7 @@ class WorldState(state.State):
         self.npcs: list[NPC] = []
         self.npcs_off_map: list[NPC] = []
         self.wants_to_move_char: dict[str, Direction] = {}
-        self.allow_char_movement: list[str] = []
+        self.allow_char_movement: set[str] = set()
 
         ######################################################################
         #                              Map                                   #
@@ -157,7 +158,7 @@ class WorldState(state.State):
 
         logger.debug("*** Game Loop Started ***")
 
-    def draw(self, surface: pygame.surface.Surface) -> None:
+    def draw(self, surface: Surface) -> None:
         """
         Draw the game world to the screen.
 
@@ -541,7 +542,7 @@ class WorldState(state.State):
         then the character will start moving after this is called.
 
         """
-        self.allow_char_movement.append(char.slug)
+        self.allow_char_movement.add(char.slug)
         if char.slug in self.wants_to_move_char.keys():
             _dir = self.wants_to_move_char.get(char.slug, Direction.down)
             self.move_char(char, _dir)
@@ -641,7 +642,7 @@ class WorldState(state.State):
 
         return Rect(x, y, tw, th)
 
-    def _npc_to_pgrect(self, npc: NPC) -> pygame.rect.Rect:
+    def _npc_to_pgrect(self, npc: NPC) -> Rect:
         """Returns a Rect (in screen-coords) version of an NPC's bounding box."""
         pos = self.get_pos_from_tilepos(proj(npc.position3))
         return Rect(pos, self.tile_size)
@@ -649,7 +650,7 @@ class WorldState(state.State):
     ####################################################
     #                Debug Drawing                     #
     ####################################################
-    def debug_drawing(self, surface: pygame.surface.Surface) -> None:
+    def debug_drawing(self, surface: Surface) -> None:
         from pygame.gfxdraw import box
 
         surface.lock()

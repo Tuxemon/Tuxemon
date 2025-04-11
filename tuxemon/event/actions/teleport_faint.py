@@ -24,7 +24,7 @@ class TeleportFaintAction(EventAction):
     Script usage:
         .. code-block::
 
-            teleport_faint [character][,trans_time][,rgb]
+            teleport_faint <character>[,trans_time][,rgb]
 
     Script parameters:
         character: Either "player" or npc slug name (e.g. "npc_maple").
@@ -36,7 +36,7 @@ class TeleportFaintAction(EventAction):
     """
 
     name = "teleport_faint"
-    character: Optional[str] = None
+    character: str
     trans_time: Optional[float] = None
     rgb: Optional[str] = None
 

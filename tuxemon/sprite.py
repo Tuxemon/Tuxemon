@@ -204,11 +204,12 @@ class Sprite(DirtySprite):
         """
         Update the image of the sprite.
         """
-        image: Optional[Surface]
+        image: Optional[Surface] = None
         if self._original_image is not None and self._needs_rescale:
             w = self.rect.width if self._width is None else self._width
             h = self.rect.height if self._height is None else self._height
-            image = scale(self._original_image, (w, h))
+            if (w, h) != self._original_image.get_size():
+                image = scale(self._original_image, (w, h))
             center = self.rect.center
             self.rect.size = w, h
             self.rect.center = center
@@ -216,7 +217,11 @@ class Sprite(DirtySprite):
             image = self._original_image
 
         if image is not None and self._rotation:
-            image = rotozoom(image, self._rotation, 1)
+            image = (
+                rotozoom(image, self._rotation, 1)
+                if self._rotation != 0
+                else image
+            )
             rect = image.get_rect(center=self.rect.center)
             self.rect.size = rect.size
             self.rect.center = rect.center
@@ -242,7 +247,7 @@ class Sprite(DirtySprite):
         Parameters:
             width: The new width of the sprite.
         """
-        width = int(round(width, 0))
+        width = round(width)
         if not width == self._width:
             self._width = width
             self._needs_rescale = True
@@ -266,7 +271,7 @@ class Sprite(DirtySprite):
         Parameters:
             height: The new height of the sprite.
         """
-        height = int(round(height, 0))
+        height = round(height)
         if not height == self._height:
             self._height = height
             self._needs_rescale = True
@@ -290,7 +295,7 @@ class Sprite(DirtySprite):
         Parameters:
             value: The new rotation of the sprite.
         """
-        value = int(round(value, 0)) % 360
+        value = round(value) % 360
         if not value == self._rotation:
             self._rotation = value
             self._needs_update = True
@@ -312,8 +317,7 @@ class Sprite(DirtySprite):
             x: The new x-coordinate of the sprite.
             y: The new y-coordinate of the sprite.
         """
-        self.rect.x = x
-        self.rect.y = y
+        self.rect.topleft = (x, y)
 
     def get_position(self) -> tuple[int, int]:
         """
@@ -333,14 +337,9 @@ class Sprite(DirtySprite):
         """
         return self.visible
 
-    def toggle_visible(sprite: Sprite) -> None:
-        """
-        Toggles the visibility of a sprite.
-
-        Parameters:
-            sprite: The sprite to toggle visibility for.
-        """
-        sprite.visible = not sprite.visible
+    def toggle_visible(self) -> None:
+        """Toggles the visibility of a sprite."""
+        self.visible = not self.visible
 
 
 class CaptureDeviceSprite(Sprite):

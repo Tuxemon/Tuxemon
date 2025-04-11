@@ -64,16 +64,16 @@ class TestTransition(TestCase):
     @patch("pygame.Surface")
     def test_draw_with_transition(self, MockSurface):
         mock_surface = MagicMock()
+        mock_transition_surface = MockSurface.return_value
         self.transition.set_transition_surface((0, 0, 0, 255))
         self.transition.set_transition_state(True)
 
+        self.transition.transition_surface = MockSurface()
         self.transition.transition_alpha = 100
         self.transition.draw(mock_surface)
 
-        self.transition.transition_surface.set_alpha.assert_called_with(100)
-        mock_surface.blit.assert_called_with(
-            self.transition.transition_surface, (0, 0)
-        )
+        mock_transition_surface.set_alpha.assert_called_with(100)
+        mock_surface.blit.assert_called_with(mock_transition_surface, (0, 0))
 
     @patch("pygame.Surface")
     def test_alpha_change_during_fade(self, MockSurface):
@@ -142,16 +142,17 @@ class TestTransition(TestCase):
     @patch("pygame.Surface")
     def test_draw(self, MockSurface):
         mock_surface = MagicMock()
+        mock_transition_surface = MockSurface.return_value
         self.transition.set_transition_surface((0, 0, 0, 255))
         self.transition.set_transition_state(True)
+
+        self.transition.transition_surface = MockSurface()
         self.transition.transition_alpha = 128
 
         self.transition.draw(mock_surface)
 
-        self.transition.transition_surface.set_alpha.assert_called_with(128)
-        mock_surface.blit.assert_called_with(
-            self.transition.transition_surface, (0, 0)
-        )
+        mock_transition_surface.set_alpha.assert_called_with(128)
+        mock_surface.blit.assert_called_with(mock_transition_surface, (0, 0))
 
     def test_no_draw_when_not_in_transition(self):
         mock_surface = MagicMock()

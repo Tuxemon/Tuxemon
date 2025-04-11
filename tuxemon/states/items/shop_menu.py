@@ -17,6 +17,7 @@ from tuxemon.menu.quantity import QuantityAndCostMenu, QuantityAndPriceMenu
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.sprite import Sprite
+from tuxemon.ui.paginator import Paginator
 from tuxemon.ui.text import TextArea
 
 if TYPE_CHECKING:
@@ -315,20 +316,6 @@ class TransactionManager:
 
         total_amount = quantity * cost
         self.seller_manager.add_money(total_amount)
-
-
-class Paginator:
-    @staticmethod
-    def paginate(
-        items: list[Item], page_size: int, page_number: int
-    ) -> list[Item]:
-        start = page_number * page_size
-        end = start + page_size
-        return items[start:end]
-
-    @staticmethod
-    def total_pages(items: list[Item], page_size: int) -> int:
-        return -(-len(items) // page_size)
 
 
 def filter_inventory(

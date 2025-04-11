@@ -20,6 +20,7 @@ from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
 from tuxemon.states.monster import MonsterMenuState
+from tuxemon.ui.paginator import Paginator
 from tuxemon.ui.text import TextArea
 
 
@@ -69,6 +70,7 @@ class ItemMenuState(Menu[Item]):
         self.menu_items.line_spacing = tools.scale(7)
         self.current_page = 0
         self.total_pages = 0
+        self.inventory: list[Item] = []
 
         # this is the area where the item description is displayed
         rect = self.client.screen.get_rect()
@@ -225,13 +227,13 @@ class ItemMenuState(Menu[Item]):
     def initialize_items(self) -> Generator[MenuItem[Item], None, None]:
         """Get all player inventory items and add them to menu."""
         state = self.determine_state_called_from()
-        inventory = self.get_inventory(state)
+        self.inventory = self.get_inventory(state)
 
-        if not inventory:
+        if not self.inventory:
             return
 
         page_size = prepare.MAX_MENU_ITEMS
-        self.total_pages = -(-len(inventory) // page_size)
+        self.total_pages = Paginator.total_pages(self.inventory, page_size)
 
         self.current_page = max(
             0, min(self.current_page, self.total_pages - 1)
@@ -239,7 +241,7 @@ class ItemMenuState(Menu[Item]):
 
         start_index = self.current_page * page_size
         end_index = (self.current_page + 1) * page_size
-        page_items = inventory[start_index:end_index]
+        page_items = self.inventory[start_index:end_index]
 
         for obj in sort_inventory(page_items):
             label = f"{obj.name} x {obj.quantity}"
@@ -285,53 +287,28 @@ class ItemMenuState(Menu[Item]):
         if item.description:
             self.alert(item.description)
 
-    def prev_page(self) -> None:
-        """
-        Goes to the previous page.
-
-        This method clears the current page, decrements the current page number,
-        and then adds the items from the previous page to the menu.
-        """
-        if self.current_page > 0:
-            self.current_page -= 1
-            self.reload_items()
-
-    def next_page(self) -> None:
-        """
-        Goes to the next page.
-
-        This method clears the current page, increments the current page number,
-        and then adds the items from the next page to the menu.
-        """
-        state = self.determine_state_called_from()
-        inventory = self.get_inventory(state)
-        page_size = prepare.MAX_MENU_ITEMS
-        total_pages = -(-len(inventory) // page_size)
-        if self.current_page < total_pages - 1:
-            self.current_page += 1
-            self.reload_items()
-
     def reload_items(self) -> None:
         self.clear()
         state = self.determine_state_called_from()
-        inventory = self.get_inventory(state)
-        page_size = prepare.MAX_MENU_ITEMS
-        page_items = inventory[
-            self.current_page * page_size : (self.current_page + 1) * page_size
-        ]
+        self.inventory = self.get_inventory(state)
+
+        total_pages, page_items = Paginator.calculate_page_data(
+            self.inventory, self.current_page, prepare.MAX_MENU_ITEMS
+        )
+
         for obj in sort_inventory(page_items):
             label = f"{obj.name} x {obj.quantity}"
             image = self.shadow_text(label, bg=prepare.DIMGRAY_COLOR)
             self.add(MenuItem(image, obj.name, obj.description, obj))
 
-        # Adjust selected_index if it's out of bounds after reloading
         if self.menu_items:
             self.selected_index = min(
                 self.selected_index, len(self.menu_items) - 1
             )
         else:
             self.selected_index = -1
-        self.update_page_number_display(len(inventory))
+
+        self.update_page_number_display(len(self.inventory))
         self.on_menu_selection_change()
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
@@ -344,20 +321,27 @@ class ItemMenuState(Menu[Item]):
         Returns:
             Optional[PlayerInput]: The processed event or None if it's not handled.
         """
+        page_size = prepare.MAX_MENU_ITEMS
+        total_pages = Paginator.total_pages(self.inventory, page_size)
         if event.button == buttons.RIGHT and event.pressed:
-            if self.current_page <= self.total_pages:
-                self.next_page()
+            # Move to the next page if possible
+            if self.current_page < total_pages - 1:
+                self.current_page += 1
+                self.reload_items()
         elif event.button == buttons.LEFT and event.pressed:
-            if self.current_page >= 0:
-                self.prev_page()
+            # Move to the previous page if possible
+            if self.current_page > 0:
+                self.current_page -= 1
+                self.reload_items()
         else:
             return super().process_event(event)
         return None
 
     def update_page_number_display(self, total_items: int) -> None:
         internal_rect = self.calc_internal_rect()
-        page_size = prepare.MAX_MENU_ITEMS
-        total_pages = (total_items + page_size - 1) // page_size
+        total_pages, _ = Paginator.calculate_page_data(
+            self.inventory, self.current_page, prepare.MAX_MENU_ITEMS
+        )
         page_text = f"{self.current_page + 1}/{total_pages}"
         image = self.shadow_text(page_text)
         self.page_number_display.image = image

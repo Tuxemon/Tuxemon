@@ -18,9 +18,7 @@ from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.save import get_index_of_latest_save
-from tuxemon.session import local_session
 from tuxemon.state import State
-from tuxemon.time_handler import today_ordinal
 
 logger = logging.getLogger(__name__)
 
@@ -55,12 +53,11 @@ class StartState(PygameMenuState):
         config = prepare.CONFIG
 
         def new_game() -> None:
-            destination = f"{prepare.STARTING_MAP}{config.mods[0]}.tmx"
-            map_path = prepare.fetch("maps", destination)
-            self.client.push_state("WorldState", map_name=map_path)
-            game_var = local_session.player.game_variables
-            game_var["date_start_game"] = today_ordinal()
-            self.client.pop_state(self)
+            event_engine = self.client.event_engine
+            mod = config.mods[0]
+            map_name = prepare.STARTING_MAP
+            event_engine.execute_action("start_game", [map_name, mod])
+            self.client.remove_state_by_name("StartState")
 
         def change_state(
             state: Union[State, str],

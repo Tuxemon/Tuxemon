@@ -14,6 +14,44 @@ from tuxemon.tools import cast_dataclass_parameters
 logger = logging.getLogger(__name__)
 
 
+class ActionContextManager:
+    def __init__(self, action: EventAction) -> None:
+        self.action = action
+
+    def __enter__(self) -> EventAction:
+        """
+        Called once when entering the context.
+
+        Ensures the action is started, unless it is marked as cancelled.
+        Logs a warning if the action is cancelled.
+
+        Returns:
+            EventAction: The managed action.
+        """
+        if self.action.cancelled:
+            logger.warning("Event is cancelled, not starting")
+        else:
+            self.action.start()
+        return self.action
+
+    def __exit__(
+        self,
+        exc_type: Optional[type[BaseException]],
+        exc_val: Optional[BaseException],
+        exc_tb: Optional[TracebackType],
+    ) -> None:
+        """
+        Called once when exiting the context.
+
+        Ensures the action is properly cleaned up, unless it is marked as cancelled.
+        Logs a warning if the action is cancelled.
+        """
+        if self.action.cancelled:
+            logger.warning("Event is cancelled, not cleaning up")
+            return
+        self.action.cleanup()
+
+
 @dataclass
 class EventAction(ABC):
     """EventActions are executed during gameplay.
@@ -90,33 +128,6 @@ class EventAction(ABC):
         self.session = local_session
         cast_dataclass_parameters(self)
 
-    def __enter__(self) -> None:
-        """
-        Called only once, when the action is started.
-
-        Context Protocol.
-        """
-        if self.cancelled:
-            logger.warning("Event is cancelled, not starting")
-            return
-        self.start()
-
-    def __exit__(
-        self,
-        exc_type: Optional[type[BaseException]],
-        exc_val: Optional[BaseException],
-        exc_tb: Optional[TracebackType],
-    ) -> None:
-        """
-        Called only once, when action is stopped and needs to close.
-
-        Context Protocol.
-        """
-        if self.cancelled:
-            logger.warning("Event is cancelled, not cleaning up")
-            return
-        self.cleanup()
-
     def stop(self) -> None:
         """
         Call when the action is done.
@@ -139,7 +150,7 @@ class EventAction(ABC):
             logger.debug("Action is cancelled, not executing")
             return
         try:
-            with self:
+            with ActionContextManager(self):
                 self.run()
         except Exception as e:
             logger.error(f"Error executing action: {e}")

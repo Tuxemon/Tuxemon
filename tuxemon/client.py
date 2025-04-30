@@ -125,7 +125,7 @@ class LocalPygameClient:
         self.events = map_data.events
         self.inits = list(map_data.inits)
         self.event_engine.reset()
-        self.event_engine.current_map = map_data
+        self.event_engine.set_current_map(map_data)
         self.maps = map_data.maps
 
         # Map properties

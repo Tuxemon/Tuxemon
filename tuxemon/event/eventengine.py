@@ -134,10 +134,15 @@ class EventEngine:
             interface=EventAction,  # type: ignore[type-abstract]
         )
 
+    def set_current_map(self, new_map: Optional[TuxemonMap]) -> None:
+        """Updates the current map."""
+        if self.current_map != new_map:
+            self.current_map = new_map
+
     def reset(self) -> None:
         """Clear out running events.  Use when changing maps."""
         self.running_events = dict()
-        self.current_map = None
+        self.set_current_map(None)
         self.timer = 0.0
         self.wait = 0.0
         self.button = None
@@ -392,7 +397,7 @@ class EventEngine:
         current_map = self.current_map
 
         # Loop through the list of actions and update them
-        for i, e in self.running_events.items():
+        for event_id, running_event in self.running_events.items():
             # If the current map has changed, then `reset` has also been
             # called, which replaced self.running_events with an empty dict.
             # We need to stop processing the running_events, as they may not
@@ -405,93 +410,106 @@ class EventEngine:
                 return
 
             # Check for cancellation
-            if e.cancelled:
-                to_remove.add(i)
+            if running_event.cancelled:
+                to_remove.add(event_id)
                 continue
 
-            while True:
-                """
-                * if RunningEvent is currently running an action, then continue
-                    to do so
-                * if not, attempt to get the next queued action
-                * if no queued action, do not check the RunningEvent next frame
-                * if there is an action, then update it
-                * if action is finished, then clear the pointer to the action
-                    and inc. the index, cleanup
-                * RunningEvent will be checked next frame
+            if not self.process_running_event(running_event):
+                # Event is complete or failed; mark it for removal
+                to_remove.add(event_id)
 
-                This loop will execute as many actions as possible for every
-                MapEvent. For example, some actions like set_variable do not
-                require several frames, so all of them will be processed this
-                frame.
+        # Clean up completed or cancelled events
+        for event_id in to_remove:
+            self.running_events.pop(event_id, None)
 
-                If an action is not finished, then this loop breaks and will
-                check another RunningEvent, but the position in the action list
-                is remembered and will be restored.
-                """
-                if e.current_action is None:
-                    next_action = e.get_next_action()
+    def process_running_event(self, running_event: RunningEvent) -> bool:
+        """
+        Processes a single running event by handling its current or next action.
 
-                    if next_action is None:
-                        # no next action, so remove the running event
-                        to_remove.add(i)
-                        break
+        Parameters:
+            running_event: The event being processed.
 
-                    else:
-                        # got an action, so start it
-                        action = self.get_action(
-                            next_action.type,
-                            next_action.parameters,
-                        )
+        Returns:
+            True if the event continues to run, False if it is complete.
+        """
+        while True:
+            """
+            * if RunningEvent is currently running an action, then continue
+                to do so
+            * if not, attempt to get the next queued action
+            * if no queued action, do not check the RunningEvent next frame
+            * if there is an action, then update it
+            * if action is finished, then clear the pointer to the action
+                and inc. the index, cleanup
+            * RunningEvent will be checked next frame
 
-                        if action is None:
-                            # action was not loaded, so, break?  raise
-                            # exception, idk
-                            # TODO: raise custom exception instead of None
-                            # return?
-                            # TODO: decide what to do for actions not loaded
-                            logger.debug("action is not loaded!")
-                            to_remove.add(i)
-                            break
+            This loop will execute as many actions as possible for every
+            MapEvent. For example, some actions like set_variable do not
+            require several frames, so all of them will be processed this
+            frame.
 
-                        else:
-                            # start the action
-                            # with add_error_context(e.map_event, next_action,
-                            # self.session):
-                            action.start()
+            If an action is not finished, then this loop breaks and will
+            check another RunningEvent, but the position in the action list
+            is remembered and will be restored.
+            """
+            current_action = running_event.current_action
 
-                            # save the action that is running
-                            e.current_action = action
+            # Handle initialization of the next action if none is active
+            if current_action is None:
+                if not self.handle_next_action(running_event):
+                    return False  # Event is complete
+                continue
 
-                # update the action
-                action = e.current_action
-                if action.cancelled:
-                    logger.debug(f"Action is cancelled, not updating")
-                    e.advance()
-                    e.current_action = None
-                    continue
-                # with add_error_context(e.map_event, e.current_map_action,
-                # self.session):
-                action.update()
+            # Check for cancellation
+            if current_action.cancelled:
+                logger.debug("Action is cancelled, advancing to the next one.")
+                running_event.advance()
+                running_event.current_action = None
+                continue
 
-                if action.done:
-                    # action finished, so continue and do the next one,
-                    # if available
-                    action.cleanup()
-                    e.advance()
-                    e.current_action = None
-                    logger.debug(f"action finished: {action}")
+            # with add_error_context(e.map_event, e.current_map_action,
+            # self.session):
+            current_action.update()
 
-                else:
-                    # action didn't finish, so move on to next RunningEvent
-                    break
+            if current_action.done:
+                # action finished, so continue and do the next one,
+                # if available
+                current_action.cleanup()
+                running_event.advance()
+                running_event.current_action = None
+                logger.debug(f"Action finished: {current_action}")
+            else:
+                # Action is still running, exit the loop
+                return True
 
-        for i in to_remove:
-            try:
-                del self.running_events[i]
-            except KeyError:
-                # map changes or engine resets may cause this error
-                pass
+    def handle_next_action(self, running_event: RunningEvent) -> bool:
+        """
+        Initializes the next action for a running event.
+
+        Parameters:
+            running_event: The event being processed.
+
+        Returns:
+            True if a new action was successfully started, False if none exist.
+        """
+        next_action_data = running_event.get_next_action()
+
+        if next_action_data is None:
+            # No more actions; event is complete
+            return False
+
+        action = self.get_action(
+            next_action_data.type, next_action_data.parameters
+        )
+        if action is None:
+            logger.debug("Action is not loaded, skipping event.")
+            return False
+
+        # start the action
+        # with add_error_context(e.map_event, next_action, self.session):
+        action.start()
+        running_event.current_action = action
+        return True
 
 
 @contextmanager

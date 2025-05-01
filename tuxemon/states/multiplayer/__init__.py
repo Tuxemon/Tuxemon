@@ -10,6 +10,7 @@ from tuxemon.animation import Animation
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PopUpMenu, PygameMenuState
+from tuxemon.networking import ConnectionState
 from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
 
@@ -77,9 +78,9 @@ class MultiplayerMenu(PygameMenuState):
             )
 
         # not hosting, so start the process
-        elif not self.network.isclient:
+        elif not self.network.is_client():
             # Configure this game to host
-            self.network.ishost = True
+            self.network.connection_state = ConnectionState.HOST
             self.network.server.server.listen()
             self.network.server.listening = True
 
@@ -105,7 +106,7 @@ class MultiplayerMenu(PygameMenuState):
     def scan_for_games(self) -> None:
         # start the game scanner
         assert self.network.client
-        if not self.network.ishost:
+        if not self.network.is_host():
             self.network.client.enable_join_multiplayer = True
             self.network.client.listening = True
             self.network.client.client.listen()
@@ -120,7 +121,7 @@ class MultiplayerMenu(PygameMenuState):
 
     def join(self) -> None:
         assert self.network.client
-        if self.network.ishost:
+        if self.network.is_host():
             return
         else:
             self.network.client.enable_join_multiplayer = True

@@ -10,11 +10,8 @@ from threading import Thread
 from typing import Any, Optional, TypeVar, Union, overload
 
 import pygame
-from pygame.font import Font, get_default_font
-from pygame.image import save as pg_save
 from pygame.surface import Surface
 
-from tuxemon import networking, prepare, rumble
 from tuxemon.audio import MusicPlayerState, SoundManager
 from tuxemon.cli.processor import CommandProcessor
 from tuxemon.config import TuxemonConfig
@@ -23,10 +20,13 @@ from tuxemon.event import EventObject
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.map import TuxemonMap
 from tuxemon.map_loader import MapLoader
+from tuxemon.networking import NetworkManager
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.input_manager import InputManager
+from tuxemon.rumble import RumbleManager
 from tuxemon.session import local_session
 from tuxemon.state import State, StateManager
+from tuxemon.state_draw import EventDebugDrawer, Renderer, StateDrawer
 from tuxemon.states.world.worldstate import WorldState
 
 StateType = TypeVar("StateType", bound=State)
@@ -72,8 +72,19 @@ class LocalPygameClient:
         self.frame_number = 0
         self.save_to_disk = False
 
+        # Initialize drawers
+        self.state_drawer = StateDrawer(
+            self.screen, self.state_manager, config
+        )
+        self.event_debug_drawer = EventDebugDrawer(self.screen)
+        self.renderer = Renderer(
+            self.screen,
+            self.state_drawer,
+            config.window_caption,
+        )
+
         # Set up our networking for multiplayer.
-        self.network_manager = networking.NetworkManager(self)
+        self.network_manager = NetworkManager(self)
         self.network_manager.initialize()
 
         self.map_loader = MapLoader()
@@ -102,7 +113,7 @@ class LocalPygameClient:
             thread.start()
 
         # Set up rumble support for gamepads
-        self.rumble_manager = rumble.RumbleManager()
+        self.rumble_manager = RumbleManager()
         self.rumble = self.rumble_manager.rumbler
 
         # TODO: phase these out
@@ -151,41 +162,6 @@ class LocalPygameClient:
         self.map_south = map_data.south_trans
         self.map_east = map_data.east_trans
         self.map_west = map_data.west_trans
-
-    def draw_event_debug(self) -> None:
-        """
-        Very simple overlay of event data.  Needs some love.
-
-        """
-        y = 20
-        x = 4
-
-        yy = y
-        xx = x
-
-        font = Font(get_default_font(), 15)
-        for event in self.event_engine.partial_events:
-            w = 0
-            for valid, item in event:
-                p = " ".join(item.parameters)
-                text = f"{item.operator} {item.type}: {p}"
-                if valid:
-                    color = prepare.GREEN_COLOR
-                else:
-                    color = prepare.RED_COLOR
-                image = font.render(text, True, color)
-                self.screen.blit(image, (xx, yy))
-                ww, hh = image.get_size()
-                yy += hh
-                w = max(w, ww)
-
-            xx += w + 20
-
-            if xx > 1000:
-                xx = x
-                y += 200
-
-            yy = y
 
     def process_events(
         self,
@@ -270,8 +246,6 @@ class LocalPygameClient:
         frame_length = 1.0 / self.fps
         time_since_draw = 0.0
         last_update = clock()
-        fps_timer = 0.0
-        frames = 0
 
         while not self.exit:
             clock_tick = clock() - last_update
@@ -280,13 +254,12 @@ class LocalPygameClient:
             update(clock_tick)
             if time_since_draw >= frame_length:
                 time_since_draw -= frame_length
-                draw(screen)
+                draw()
                 if self.input_manager.controller_overlay:
                     self.input_manager.controller_overlay.draw(screen)
                 flip()
-                frames += 1
-
-            fps_timer, frames = self.handle_fps(clock_tick, fps_timer, frames)
+            if self.config.show_fps:
+                self.renderer.update_fps(clock_tick)
             time.sleep(0.01)
 
     def update(self, time_delta: float) -> None:
@@ -351,80 +324,16 @@ class LocalPygameClient:
         if self.state_manager.current_state is None:
             self.exit = True
 
-    def draw(self, surface: Surface) -> None:
-        """
-        Draw all active states.
-
-        Parameters:
-            surface: Surface where the drawing takes place.
-
-        """
-        # TODO: refactor into Widget
-
-        # iterate through layers and determine optimal drawing strategy
-        # this is a big performance boost for states covering other states
-        # force_draw is used for transitions, mostly
-        to_draw = list()
-        full_screen = surface.get_rect()
-        for state in self.state_manager.active_states:
-            to_draw.append(state)
-
-            # if this state covers the screen
-            # break here so lower screens are not drawn
-            if (
-                not state.transparent
-                and state.rect == full_screen
-                and not state.force_draw
-            ):
-                break
-
-        # draw from bottom up for proper layering
-        for state in reversed(to_draw):
-            state.draw(surface)
-
-        if self.config.collision_map:
-            self.draw_event_debug()
-
-        if self.save_to_disk:
-            filename = "snapshot%05d.tga" % self.frame_number
-            self.frame_number += 1
-            pg_save(self.screen, filename)
-
-    def handle_fps(
-        self,
-        clock_tick: float,
-        fps_timer: float,
-        frames: int,
-    ) -> tuple[float, int]:
-        """
-        Compute and print the frames per second.
-
-        This function only prints FPS if that option has been set in the
-        config. It only prints the FPS if at least one second has elapsed
-        since the last time it printed them.
-
-        Parameters:
-            clock_tick: Seconds elapsed since the last ``update`` call.
-            fps_timer: Number of seconds elapsed since the last time the FPS
-                were printed.
-            frames: Number of frames printed since the last time the FPS were
-                printed.
-
-        Returns:
-            Updated values of ``fps_timer`` and ``frames``. They will be the
-            same as the values passed unless the FPS are printed, in which case
-            they are reset to 0.
-        """
-        if not self.show_fps:
-            return fps_timer, frames
-
-        fps_timer += clock_tick
-        if fps_timer >= 1:
-            with_fps = f"{self.caption} - {frames / fps_timer:.2f} FPS"
-            pygame.display.set_caption(with_fps)
-            return 0, 0
-
-        return fps_timer, frames
+    def draw(self) -> None:
+        """Centralized draw logic."""
+        self.renderer.draw(
+            frame_number=self.frame_number,
+            save_to_disk=self.save_to_disk,
+            collision_map=self.config.collision_map,
+            debug_drawer=self.event_debug_drawer,
+            partial_events=self.event_engine.partial_events,
+        )
+        self.frame_number += 1
 
     def add_clients_to_map(self, registry: Mapping[str, Any]) -> None:
         """

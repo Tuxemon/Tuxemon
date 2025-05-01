@@ -1,12 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
+import os
+from ctypes import CDLL, LibraryLoader
+from typing import Optional, Union
 
-try:
-    from ctypes import cdll
-except ImportError:
-    cdll = None
-from tuxemon.rumble.tools import *
+from tuxemon.rumble.tools import Rumble, find_library
+
+from .libshake import LibShakeRumble
 
 # Set up logging for the rumble manager.
 logger = logging.getLogger(__name__)
@@ -14,25 +15,46 @@ logger = logging.getLogger(__name__)
 
 class RumbleManager:
     def __init__(self) -> None:
-        """The Rumble Manager automatically selects an available
+        """
+        The Rumble Manager automatically selects an available
         rumble backend and controls controller haptic feedback.
         """
+        self.rumbler: Union[LibShakeRumble, Rumble]
+        self.backend: Optional[str] = None
 
-        # Select the rumble backend to use.
-        self.backend = None
-        locations = ["libshake.so", "./libshake.so", "/usr/lib/libshake.so"]
-        if not cdll:
-            logger.debug("Ctypes is unavailable.")
-            lib_shake = None
-        else:
-            lib_shake = find_library(locations)
+        # Get backend locations, allowing for dynamic configuration
+        locations = os.getenv("RUMBLE_BACKEND_LOCATIONS", "").split(",") or [
+            "libshake.so",
+            "./libshake.so",
+            "/usr/lib/libshake.so",
+        ]
+
+        # Attempt to locate the backend
+        logger.info(f"Attempting to locate rumble backends in: {locations}")
+        lib_shake = self.select_backend(locations)
 
         if lib_shake:
-            logger.debug("Using libShake as backend.")
-            from .libshake import LibShakeRumble
-
+            logger.info("Using libShake as backend.")
             self.backend = "libShake"
             self.rumbler = LibShakeRumble(lib_shake)
         else:
-            logger.error("No rumble backends available.")
+            logger.warning("No backend available, using Rumble.")
             self.rumbler = Rumble()
+
+    def select_backend(self, locations: list[str]) -> Optional[str]:
+        """
+        Attempts to locate a backend library from the provided locations.
+        """
+        try:
+            from ctypes import cdll
+        except ImportError:
+            logger.debug("Ctypes is unavailable.")
+            return None
+
+        lib_shake = find_library(locations)
+        if lib_shake:
+            logger.debug(f"Found library at: {lib_shake}")
+            return lib_shake
+        else:
+            logger.debug("No backend library found.")
+            return None

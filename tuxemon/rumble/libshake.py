@@ -1,11 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from ctypes import *
-from threading import Thread
+from threading import Lock, Thread
 from time import sleep
 from typing import Any
 
-from tuxemon.rumble.tools import Rumble
+from tuxemon.rumble.tools import Rumble, RumbleParams
 
 Shake_EffectType = c_int
 SHAKE_EFFECT_RUMBLE = Shake_EffectType(0)
@@ -73,190 +73,142 @@ class Shake_Effect(Structure):
 
 class LibShakeRumble(Rumble):
     def __init__(self, library: str = "libshake.so") -> None:
-        self.libShake = cdll.LoadLibrary(library)
-        self.libShake.Shake_Init()
+        try:
+            self.libShake = cdll.LoadLibrary(library)
+            self.libShake.Shake_Init()
+        except OSError as e:
+            raise RuntimeError(f"Failed to load library '{library}': {e}")
+
         self.effect_type = SHAKE_EFFECT_PERIODIC
         self.periodic_waveform = SHAKE_PERIODIC_SINE
+        self.lock = Lock()
 
-    def rumble(
-        self,
-        target: float = 0,
-        period: float = 25,
-        magnitude: float = 24576,
-        length: float = 2,
-        delay: float = 0,
-        attack_length: float = 256,
-        attack_level: float = 0,
-        fade_length: float = 256,
-        fade_level: float = 0,
-        direction: float = 16384,
-    ) -> None:
-        # Target -1 will target all available devices
-        if target == -1:
+    def rumble(self, params: RumbleParams) -> None:
+        """
+        Start the rumble effect for the given target device(s).
+        """
+        if params.target == -1:  # Target all devices
             for i in range(self.libShake.Shake_NumOfDevices()):
-                self._start_thread(
-                    i,
-                    period,
-                    magnitude,
-                    length,
-                    delay,
-                    attack_length,
-                    attack_level,
-                    fade_length,
-                    fade_level,
-                    direction,
-                )
+                params.target = i
+                self._start_thread(params)
         else:
-            self._start_thread(
-                target,
-                period,
-                magnitude,
-                length,
-                delay,
-                attack_length,
-                attack_level,
-                fade_length,
-                fade_level,
-                direction,
-            )
+            self._start_thread(params)
 
-    def _rumble_thread(
-        self,
-        target: float = 0,
-        period: float = 25,
-        magnitude: float = 24576,
-        length: float = 2,
-        delay: float = 0,
-        attack_length: float = 256,
-        attack_level: float = 0,
-        fade_length: float = 256,
-        fade_level: float = 0,
-        direction: float = 16384,
-    ) -> None:
+    def _execute_rumble_effect(self, params: RumbleParams) -> None:
+        """
+        Execute the rumble effect on the target device.
+        """
         if self.libShake.Shake_NumOfDevices() > 0:
-            device = self.libShake.Shake_Open(target)
+            device = self.libShake.Shake_Open(int(params.target))
 
-            effect = Shake_Effect()
-            self.libShake.Shake_InitEffect(pointer(effect), self.effect_type)
-            if self.effect_type == SHAKE_EFFECT_PERIODIC:
-                effect.periodic.waveform = self.periodic_waveform
-                effect.periodic.period = period
-                effect.periodic.magnitude = magnitude
-                effect.periodic.envelope.attackLengeth = attack_length
-                effect.periodic.envelope.attackLevel = attack_level
-                effect.periodic.envelope.fadeLength = fade_length
-                effect.periodic.envelope.fadeLevel = fade_level
-            effect.direction = direction
-            effect.length = int(length * 1000)
-            effect.delay = delay
+            with self.lock:
+                effect = Shake_Effect()
+                self.libShake.Shake_InitEffect(
+                    pointer(effect), self.effect_type
+                )
 
-            id = self.libShake.Shake_UploadEffect(device, pointer(effect))
-            self.libShake.Shake_Play(device, id)
+                if self.effect_type == SHAKE_EFFECT_PERIODIC:
+                    effect.periodic.waveform = self.periodic_waveform
+                    effect.periodic.period = int(params.period)
+                    effect.periodic.magnitude = int(params.magnitude)
+                    effect.periodic.envelope.attackLength = int(
+                        params.attack_length
+                    )
+                    effect.periodic.envelope.attackLevel = int(
+                        params.attack_level
+                    )
+                    effect.periodic.envelope.fadeLength = int(
+                        params.fade_length
+                    )
+                    effect.periodic.envelope.fadeLevel = int(params.fade_level)
 
-            sleep(length)
-            self.libShake.Shake_EraseEffect(device, id)
+                effect.direction = int(params.direction)
+                effect.length = int(
+                    params.length * 1000
+                )  # Convert to milliseconds
+                effect.delay = int(params.delay)
+
+                id = self.libShake.Shake_UploadEffect(device, pointer(effect))
+                self.libShake.Shake_Play(device, id)
+
+                sleep(params.length)  # Wait for the duration of the effect
+                self.libShake.Shake_EraseEffect(device, id)
+
             self.libShake.Shake_Close(device)
 
-    def _start_thread(
-        self,
-        target: float = 0,
-        period: float = 25,
-        magnitude: float = 24576,
-        length: float = 2,
-        delay: float = 0,
-        attack_length: float = 256,
-        attack_level: float = 0,
-        fade_length: float = 256,
-        fade_level: float = 0,
-        direction: float = 16384,
-    ) -> None:
-        t = Thread(
-            target=self._rumble_thread,
-            args=(
-                target,
-                period,
-                magnitude,
-                length,
-                delay,
-                attack_length,
-                attack_level,
-                fade_length,
-                fade_level,
-                direction,
-            ),
-        )
+    def _start_thread(self, params: RumbleParams) -> None:
+        """
+        Start a thread to execute the rumble effect.
+        """
+        t = Thread(target=self._execute_rumble_effect, args=(params,))
         t.daemon = True
         t.start()
 
     def device_info(self, device: Any) -> None:
-        print("Device #%d" % self.libShake.Shake_DeviceId(device))
-        print(" Name:", self.libShake.Shake_DeviceName(device))
-        print(
-            " Adjustable gain:", self.libShake.Shake_QueryGainSupport(device)
-        )
-        print(
-            " Adjustable autocenter:",
-            self.libShake.Shake_QueryAutocenterSupport(device),
-        )
-        print(
-            " Effect capacity:",
-            self.libShake.Shake_DeviceEffectCapacity(device),
-        )
+        """
+        Retrieve information about a device. Optionally print or log the details.
+
+        Parameters:
+            device: The target device.
+        """
+        info = {
+            "id": self.libShake.Shake_DeviceId(device),
+            "name": self.libShake.Shake_DeviceName(device),
+            "gain_support": self.libShake.Shake_QueryGainSupport(device),
+            "autocenter_support": self.libShake.Shake_QueryAutocenterSupport(
+                device
+            ),
+            "effect_capacity": self.libShake.Shake_DeviceEffectCapacity(
+                device
+            ),
+            "supported_effects": [],
+        }
+
+        # Add supported effects
+        effect_types = [
+            ("SHAKE_EFFECT_RUMBLE", SHAKE_EFFECT_RUMBLE),
+            ("SHAKE_EFFECT_PERIODIC", SHAKE_EFFECT_PERIODIC),
+            ("SHAKE_EFFECT_CONSTANT", SHAKE_EFFECT_CONSTANT),
+            ("SHAKE_EFFECT_SPRING", SHAKE_EFFECT_SPRING),
+            ("SHAKE_EFFECT_FRICTION", SHAKE_EFFECT_FRICTION),
+            ("SHAKE_EFFECT_DAMPER", SHAKE_EFFECT_DAMPER),
+            ("SHAKE_EFFECT_INERTIA", SHAKE_EFFECT_INERTIA),
+            ("SHAKE_EFFECT_RAMP", SHAKE_EFFECT_RAMP),
+        ]
+        waveforms = [
+            ("SHAKE_PERIODIC_SQUARE", SHAKE_PERIODIC_SQUARE),
+            ("SHAKE_PERIODIC_TRIANGLE", SHAKE_PERIODIC_TRIANGLE),
+            ("SHAKE_PERIODIC_SINE", SHAKE_PERIODIC_SINE),
+            ("SHAKE_PERIODIC_SAW_UP", SHAKE_PERIODIC_SAW_UP),
+            ("SHAKE_PERIODIC_SAW_DOWN", SHAKE_PERIODIC_SAW_DOWN),
+            ("SHAKE_PERIODIC_CUSTOM", SHAKE_PERIODIC_CUSTOM),
+        ]
+
+        for name, effect in effect_types:
+            if self.libShake.Shake_QueryEffectSupport(device, effect):
+                info["supported_effects"].append(name)
+                if effect == SHAKE_EFFECT_PERIODIC:
+                    for waveform_name, waveform in waveforms:
+                        if self.libShake.Shake_QueryWaveformSupport(
+                            device, waveform
+                        ):
+                            info["supported_effects"].append(
+                                f"* {waveform_name}"
+                            )
+
+        print(f"Device #{info['id']}")
+        print(f" Name: {info['name']}")
+        print(f" Adjustable gain: {info['gain_support']}")
+        print(f" Adjustable autocenter: {info['autocenter_support']}")
+        print(f" Effect capacity: {info['effect_capacity']}")
         print(" Supported effects:")
-        if self.libShake.Shake_QueryEffectSupport(device, SHAKE_EFFECT_RUMBLE):
-            print("  SHAKE_EFFECT_RUMBLE")
+        for effect in info["supported_effects"]:
+            print(f"  {effect}")
 
-        if self.libShake.Shake_QueryEffectSupport(
-            device, SHAKE_EFFECT_PERIODIC
-        ):
-            print("  SHAKE_EFFECT_PERIODIC")
-            if self.libShake.Shake_QueryWaveformSupport(
-                device, SHAKE_PERIODIC_SQUARE
-            ):
-                print("  * SHAKE_PERIODIC_SQUARE")
-            if self.libShake.Shake_QueryWaveformSupport(
-                device, SHAKE_PERIODIC_TRIANGLE
-            ):
-                print("  * SHAKE_PERIODIC_TRIANGLE")
-            if self.libShake.Shake_QueryWaveformSupport(
-                device, SHAKE_PERIODIC_SINE
-            ):
-                print("  * SHAKE_PERIODIC_SINE")
-            if self.libShake.Shake_QueryWaveformSupport(
-                device, SHAKE_PERIODIC_SAW_UP
-            ):
-                print("  * SHAKE_PERIODIC_SAW_UP")
-            if self.libShake.Shake_QueryWaveformSupport(
-                device, SHAKE_PERIODIC_SAW_DOWN
-            ):
-                print("  * SHAKE_PERIODIC_SAW_DOWN")
-            if self.libShake.Shake_QueryWaveformSupport(
-                device, SHAKE_PERIODIC_CUSTOM
-            ):
-                print("  * SHAKE_PERIODIC_CUSTOM")
-
-        if self.libShake.Shake_QueryEffectSupport(
-            device, SHAKE_EFFECT_CONSTANT
-        ):
-            print("  SHAKE_EFFECT_CONSTANT")
-        if self.libShake.Shake_QueryEffectSupport(device, SHAKE_EFFECT_SPRING):
-            print("  SHAKE_EFFECT_SPRING")
-        if self.libShake.Shake_QueryEffectSupport(
-            device, SHAKE_EFFECT_FRICTION
-        ):
-            print("  SHAKE_EFFECT_FRICTION")
-        if self.libShake.Shake_QueryEffectSupport(device, SHAKE_EFFECT_DAMPER):
-            print("  SHAKE_EFFECT_DAMPER")
-        if self.libShake.Shake_QueryEffectSupport(
-            device, SHAKE_EFFECT_INERTIA
-        ):
-            print("  SHAKE_EFFECT_INERTIA")
-        if self.libShake.Shake_QueryEffectSupport(device, SHAKE_EFFECT_RAMP):
-            print("  SHAKE_EFFECT_RAMP")
-
-    def device_count(self) -> Any:
-        # Shake_NumOfDevices is supposed to return int
-        return self.libShake.Shake_NumOfDevices()
+    def device_count(self) -> int:
+        """Return the number of available devices."""
+        return int(self.libShake.Shake_NumOfDevices())
 
     def quit(self) -> None:
+        """Clean up and release resources."""
         self.libShake.Shake_Quit()

@@ -10,6 +10,7 @@ from pygame.surface import Surface
 from tuxemon import prepare
 from tuxemon.graphics import ColorLike
 from tuxemon.platform.events import PlayerInput
+from tuxemon.rumble.tools import RumbleParams
 from tuxemon.state import State
 
 logger = logging.getLogger(__name__)
@@ -41,7 +42,8 @@ class FlashTransition(State):
         self.transition_alpha = 0.0
         self.max_flash_count = max_flash_count
         self.flash_count = 0
-        self.client.rumble.rumble(-1, length=1.5)
+        params = RumbleParams(target=-1, length=1.5)
+        self.client.rumble.rumble(params)
         self.color = color
 
     def resume(self) -> None:

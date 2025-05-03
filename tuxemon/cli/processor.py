@@ -13,8 +13,10 @@ from tuxemon.cli.context import InvokeContext
 from tuxemon.cli.exceptions import CommandNotFoundError, ParseError
 from tuxemon.cli.formatter import Formatter
 from tuxemon.plugin import (
-    DefaultPluginLoader,
     FileSystemPluginDiscovery,
+    ImportLibPluginLoader,
+    PluginFilter,
+    PluginLoader,
     PluginManager,
     get_available_classes,
 )
@@ -123,10 +125,11 @@ class CommandProcessor:
             folder: Folder to search.
         """
         discovery = FileSystemPluginDiscovery([folder])
-        loader = DefaultPluginLoader()
-        pm = PluginManager(discovery, loader)
-        pm.INCLUDE_PATTERNS = ["commands"]
-        pm.EXCLUDE_CLASSES = ["CLICommand"]
+        loader = PluginLoader(ImportLibPluginLoader())
+        filter = PluginFilter(
+            include_patterns=["commands"], exclude_classes=["CLICommand"]
+        )
+        pm = PluginManager(discovery, loader, filter)
         pm.collect_plugins()
         for cmd_class in get_available_classes(pm, interface=CLICommand):
             if cmd_class.usable_from_root:

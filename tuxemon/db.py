@@ -25,6 +25,7 @@ from pydantic import (
 
 from tuxemon import prepare
 from tuxemon.constants.paths import mods_folder
+from tuxemon.formula import config_monster
 from tuxemon.locale import T
 from tuxemon.surfanim import FlipAxes
 
@@ -531,7 +532,7 @@ class MonsterEvolutionItemModel(BaseModel):
                 )
             if not param[1].isdigit():
                 raise ValueError(f"{param[1]} isn't a number (int)")
-            lower, upper = prepare.BOND_RANGE
+            lower, upper = config_monster.bond_range
             if int(param[1]) < lower or int(param[1]) > upper:
                 raise ValueError(
                     f"the bond is between {lower} and {upper} ({v})"

@@ -235,15 +235,11 @@ CATCH_RATE_RANGE: tuple[int, int] = (0, 100)
 CATCH_RESISTANCE_RANGE: tuple[float, float] = (0.0, 2.0)
 # set bond and define range
 BOND: int = 25
-BOND_RANGE: tuple[int, int] = (0, 100)
 # set multiplier stats (multiplier: level + coefficient)
 COEFF_STATS: int = 7
 # set experience required for levelling up
 # (level + level_ofs) ** coefficient) - level_ofs default 0
 COEFF_EXP: int = 3
-# weight and height (min and max) = -/+ 10%
-WEIGHT_RANGE: tuple[float, float] = (-0.1, 0.1)
-HEIGHT_RANGE: tuple[float, float] = (-0.1, 0.1)
 
 # Camera
 CAMERA_SHAKE_RANGE: tuple[float, float] = (0.0, 3.0)

@@ -15,7 +15,7 @@ from tuxemon import prepare as pre
 from tuxemon.constants import paths
 
 if TYPE_CHECKING:
-    from tuxemon.db import Modifier
+    from tuxemon.db import AttributesModel, Modifier
     from tuxemon.element import Element
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
@@ -85,6 +85,13 @@ class CaptureConfig:
 
 
 @dataclass
+class MonsterConfig:
+    bond_range: tuple[int, int] = (0, 100)
+    weight_range: tuple[float, float] = (-0.1, 0.1)
+    height_range: tuple[float, float] = (-0.1, 0.1)
+
+
+@dataclass
 class CombatConfig:
     letter_time: float
     action_time: float
@@ -121,6 +128,7 @@ def load_yaml(filepath: str) -> Any:
 
 class Loader:
     _config_combat: Optional[CombatConfig] = None
+    _config_monster: Optional[MonsterConfig] = None
     _config_capture: Optional[CaptureConfig] = None
     _range_map: dict[str, RangeMapEntry] = {}
     _capture_devices: Optional[CaptureDevicesConfig] = None
@@ -176,6 +184,14 @@ class Loader:
         return cls._config_combat
 
     @classmethod
+    def get_config_monster(cls, filename: str) -> MonsterConfig:
+        yaml_path = f"{paths.mods_folder}/{filename}"
+        if cls._config_monster is None:
+            raw_map = load_yaml(yaml_path)
+            cls._config_monster = MonsterConfig(**raw_map)
+        return cls._config_monster
+
+    @classmethod
     def get_config_capture(cls, filename: str) -> CaptureConfig:
         yaml_path = f"{paths.mods_folder}/{filename}"
         if cls._config_capture is None:
@@ -203,6 +219,7 @@ class Loader:
 
 
 config_combat = Loader.get_config_combat("config_combat.yaml")
+config_monster = Loader.get_config_monster("config_monster.yaml")
 config_capdev = Loader.get_capture_devices("capture_devices.yaml")
 
 
@@ -606,93 +623,135 @@ def simple_lifeleech(user: Monster, target: Monster, divisor: int) -> int:
     return heal
 
 
+def calculate_base_stats(monster: Monster, attribute: AttributesModel) -> None:
+    """
+    Calculate the base stats of the monster dynamically.
+    """
+    level = monster.level
+    multiplier = level + pre.COEFF_STATS
+
+    stat_names = ["armour", "dodge", "hp", "melee", "ranged", "speed"]
+
+    for stat in stat_names:
+        base_value = getattr(attribute, stat) * multiplier
+        modifier = getattr(monster.modifiers, stat, None)
+
+        if modifier is None:
+            modifier = 0
+
+        final_value = base_value + modifier
+        setattr(monster, stat, final_value)
+
+
+def apply_stat_updates(
+    monster: Monster, taste_cold: Optional[Taste], taste_warm: Optional[Taste]
+) -> None:
+    """Apply updates to the monster's stats."""
+    attributes = ["armour", "dodge", "melee", "ranged", "speed"]
+
+    for attr in attributes:
+        setattr(
+            monster,
+            attr,
+            update_stat(attr, getattr(monster, attr), taste_cold, taste_warm),
+        )
+
+
 def update_stat(
     stat_name: str,
     stat_value: int,
-    taste_warm: Optional[Taste],
     taste_cold: Optional[Taste],
+    taste_warm: Optional[Taste],
 ) -> int:
-    """
-    It returns a bonus / malus of the stat based on additional parameters.
-    """
+    """Applies modifiers from tastes to adjust the stat."""
     modified_stat = float(stat_value)
 
-    if taste_cold:
-        for modifier in taste_cold.modifiers:
-            if stat_name in modifier.values:
-                logger.debug(
-                    f"Applying modifier: {modifier.multiplier} for {stat_name}"
-                )
-                modified_stat *= modifier.multiplier
-
-    if taste_warm:
-        for modifier in taste_warm.modifiers:
-            if stat_name in modifier.values:
-                logger.debug(
-                    f"Applying modifier: {modifier.multiplier} for {stat_name}"
-                )
-                modified_stat *= modifier.multiplier
+    for taste in (taste_cold, taste_warm):
+        if taste:
+            for modifier in taste.modifiers:
+                if stat_name in modifier.values:
+                    logger.debug(
+                        f"Applying modifier: {modifier.multiplier} for {stat_name}"
+                    )
+                    modified_stat *= modifier.multiplier
 
     return int(modified_stat)
 
 
-def set_weight(kg: float) -> float:
-    """
-    It generates a personalized weight,
-    random number: between +/- 10%.
-    Eg 100 kg +/- 10 kg
-    """
-    _minor, _major = pre.WEIGHT_RANGE
-    if kg == 0:
-        weight = kg
+def set_health(
+    monster: Monster, value: Union[float, int], adjust: bool = False
+) -> None:
+    """Sets or adjusts monster's health, ensuring valid limits."""
+    if adjust:
+        monster.current_hp += (
+            int(monster.hp * value) if isinstance(value, float) else int(value)
+        )
     else:
-        minor = kg + (kg * _minor)
-        major = kg + (kg * _major)
-        weight = round(random.uniform(minor, major), 2)
-    return weight
+        monster.current_hp = (
+            int(monster.hp * value) if isinstance(value, float) else int(value)
+        )
+
+    monster.current_hp = max(0, min(monster.current_hp, monster.hp))
+
+    if monster.current_hp == 0:
+        monster.faint()
 
 
-def set_height(cm: float) -> float:
+def change_bond(monster: Monster, value: Union[int, float]) -> None:
+    """Adjusts the monster's bond value while enforcing limits."""
+    _minor, _major = config_monster.bond_range
+    bond_change = (
+        int(value * monster.bond) if isinstance(value, float) else value
+    )
+    monster.bond += bond_change
+    monster.bond = max(_minor, min(monster.bond, _major))
+
+
+def set_weight(monster: Monster, value: float) -> float:
     """
-    It generates a personalized height,
-    random number: between +/- 10%.
-    Eg 100 cm +/- 10 cm
+    Sets a personalized weight for each monster.
+    If the current weight already matches the provided value, it remains unchanged.
+    Otherwise, it calculates a random weight within the allowed range.
     """
-    _minor, _major = pre.HEIGHT_RANGE
-    if cm == 0:
-        height = cm
-    else:
-        minor = cm + (cm * _minor)
-        major = cm + (cm * _major)
-        height = round(random.uniform(minor, major), 2)
-    return height
+    if monster.weight == value:
+        return value
+    _minor, _major = config_monster.weight_range
+    min_weight = value * (1 + _minor)
+    max_weight = value * (1 + _major)
+    return round(random.uniform(min_weight, max_weight), 2)
+
+
+def set_height(monster: Monster, value: float) -> float:
+    """
+    Sets a personalized height for each monster.
+    If the current height already matches the provided value, it remains unchanged.
+    Otherwise, it calculates a random height within the allowed range.
+    """
+    if monster.height == value:
+        return value
+    _minor, _major = config_monster.height_range
+    min_height = value * (1 + _minor)
+    max_height = value * (1 + _major)
+    return round(random.uniform(min_height, max_height), 2)
 
 
 def convert_lbs(kg: float) -> float:
-    """
-    It converts kilograms into pounds.
-    """
+    """It converts kilograms into pounds."""
     return round(kg * pre.COEFF_POUNDS, 2)
 
 
 def convert_ft(cm: float) -> float:
-    """
-    It converts centimeters into feet.
-    """
+    """It converts centimeters into feet."""
     return round(cm * pre.COEFF_FEET, 2)
 
 
 def convert_km(steps: float) -> float:
-    """
-    It converts steps into kilometers.
-    """
+    """It converts steps into kilometers."""
     return round(steps / 1000, 2)
 
 
 def convert_mi(steps: float) -> float:
-    """
-    It converts steps into miles.
-    """
+    """It converts steps into miles."""
     km = convert_km(steps)
     return round(km * pre.COEFF_MILES, 2)
 
@@ -1068,3 +1127,43 @@ def speed_monster(monster: Monster, technique: Technique) -> int:
     speed_modifier += float(monster.dodge) * config_combat.dodge_modifier
 
     return int(speed_modifier)
+
+
+def modify_stat(
+    monster: Monster, stat: str, value: float, operation: str
+) -> None:
+    """
+    Helper method to modify a monster's stat based on the specified operation.
+
+    Parameters:
+        monster: The monster instance.
+        stat: The stat to modify.
+        value: The value to apply.
+        operation: "add" for integer addition, "multiply" for float scaling.
+    """
+    logger.info(f"{value} {operation} operation on {stat}")
+
+    stat_map = {
+        "armour": "armour",
+        "dodge": "dodge",
+        "hp": "hp",
+        "melee": "melee",
+        "speed": "speed",
+        "ranged": "ranged",
+    }
+
+    stat_attr = stat_map.get(stat)
+
+    if stat_attr:
+        current_value = getattr(monster.modifiers, stat_attr, 0)
+
+        if operation == "add":
+            new_value = current_value + int(value)
+        elif operation == "multiply":
+            base_value = getattr(monster, stat_attr) * value
+            new_value = current_value + int(base_value)
+        else:
+            raise ValueError(f"Invalid operation: {operation}")
+
+        setattr(monster.modifiers, stat_attr, new_value)
+        monster.set_stats()

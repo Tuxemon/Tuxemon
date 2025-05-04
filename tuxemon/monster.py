@@ -6,6 +6,7 @@ import logging
 import random
 import uuid
 from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon import formula, fusion, graphics, prepare, tools
@@ -61,13 +62,24 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
     "traded",
     "steps",
     "bond",
-    "mod_armour",
-    "mod_dodge",
-    "mod_melee",
-    "mod_ranged",
-    "mod_speed",
-    "mod_hp",
 )
+
+
+@dataclass
+class ModifierStats:
+    armour: int = 0
+    dodge: int = 0
+    hp: int = 0
+    melee: int = 0
+    ranged: int = 0
+    speed: int = 0
+
+    def to_dict(self) -> dict[str, int]:
+        return self.__dict__
+
+    @classmethod
+    def from_dict(cls, data: dict[str, int]) -> ModifierStats:
+        return cls(**data)
 
 
 # class definition for tuxemon flairs:
@@ -107,13 +119,7 @@ class Monster:
         self.steps = 0.0
         self.bond = prepare.BOND
 
-        # modifier values
-        self.mod_armour = 0
-        self.mod_dodge = 0
-        self.mod_melee = 0
-        self.mod_ranged = 0
-        self.mod_speed = 0
-        self.mod_hp = 0
+        self.modifiers = ModifierStats()
 
         self.moves: list[Technique] = []
         self.moveset: list[MonsterMovesetItemModel] = []
@@ -229,8 +235,8 @@ class Monster:
         self.txmn_id = results.txmn_id
         self.capture = self.set_capture(self.capture)
         self.capture_device = self.capture_device
-        self.height = self.set_char_height(results.height)
-        self.weight = self.set_char_weight(results.weight)
+        self.height = formula.set_height(self, results.height)
+        self.weight = formula.set_weight(self, results.weight)
         self.gender = random.choice(list(results.possible_genders))
         self.catch_rate = results.catch_rate or self.catch_rate
         self.upper_catch_resistance = (
@@ -426,17 +432,10 @@ class Monster:
 
     def calculate_base_stats(self) -> None:
         """
-        Calculate the base stats of the monster.
+        Calculate the base stats of the monster dynamically.
         """
-        level = self.level
-        multiplier = level + prepare.COEFF_STATS
         shape = Shape(self.shape).attributes
-        self.armour = (shape.armour * multiplier) + self.mod_armour
-        self.dodge = (shape.dodge * multiplier) + self.mod_dodge
-        self.hp = (shape.hp * multiplier) + self.mod_hp
-        self.melee = (shape.melee * multiplier) + self.mod_melee
-        self.ranged = (shape.ranged * multiplier) + self.mod_ranged
-        self.speed = (shape.speed * multiplier) + self.mod_speed
+        formula.calculate_base_stats(self, shape)
 
     def apply_stat_updates(self) -> None:
         """
@@ -444,21 +443,7 @@ class Monster:
         """
         taste_cold = Taste.get_taste(self.taste_cold)
         taste_warm = Taste.get_taste(self.taste_warm)
-        self.armour = formula.update_stat(
-            "armour", self.armour, taste_cold, taste_warm
-        )
-        self.dodge = formula.update_stat(
-            "dodge", self.dodge, taste_cold, taste_warm
-        )
-        self.melee = formula.update_stat(
-            "melee", self.melee, taste_cold, taste_warm
-        )
-        self.ranged = formula.update_stat(
-            "ranged", self.ranged, taste_cold, taste_warm
-        )
-        self.speed = formula.update_stat(
-            "speed", self.speed, taste_cold, taste_warm
-        )
+        formula.apply_stat_updates(self, taste_cold, taste_warm)
 
     def set_stats(self) -> None:
         """
@@ -521,22 +506,6 @@ class Monster:
         """
         self.capture = today_ordinal() if amount == 0 else amount
         return self.capture
-
-    def set_char_weight(self, value: float) -> float:
-        """
-        Set weight for each monster.
-
-        """
-        result = value if self.weight == value else formula.set_weight(value)
-        return result
-
-    def set_char_height(self, value: float) -> float:
-        """
-        Set height for each monster.
-
-        """
-        result = value if self.height == value else formula.set_height(value)
-        return result
 
     def level_up(self) -> None:
         """
@@ -656,6 +625,7 @@ class Monster:
         save_data["status"] = encode_status(self.status)
         save_data["moves"] = encode_moves(self.moves)
         save_data["held_item"] = self.held_item.encode_item()
+        save_data["modifiers"] = self.modifiers.to_dict()
 
         return save_data
 
@@ -692,6 +662,8 @@ class Monster:
                 item = self.held_item.decode_item(value)
                 if item:
                     self.held_item.set_item(item)
+            elif key == "modifiers" and value:
+                self.modifiers.from_dict(value)
 
         self.load_sprites()
 

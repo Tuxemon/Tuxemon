@@ -175,32 +175,6 @@ class SetStats(MonsterTestBase):
         self.assertEqual(self.mon.hp, self.value)
 
 
-class SetCharHeight(MonsterTestBase):
-    def setUp(self):
-        self.mon = Monster()
-        self.mon.name = "agnite"
-
-    def test_set_char_height(self):
-        value = 10.0
-        self.mon.set_char_height(value)
-        lower, upper = prepare.HEIGHT_RANGE
-        self.assertGreaterEqual(self.mon.height, lower * value)
-        self.assertLessEqual(self.mon.height, upper * value)
-
-
-class SetCharWeight(MonsterTestBase):
-    def setUp(self):
-        self.mon = Monster()
-        self.mon.name = "agnite"
-
-    def test_set_char_weight(self):
-        value = 10.0
-        self.mon.set_char_weight(value)
-        lower, upper = prepare.WEIGHT_RANGE
-        self.assertGreaterEqual(self.mon.weight, lower * value)
-        self.assertLessEqual(self.mon.weight, upper * value)
-
-
 class Learn(MonsterTestBase):
     _tech = TechniqueModel(
         tech_id=69,

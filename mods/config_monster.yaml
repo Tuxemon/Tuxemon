@@ -1,0 +1,7 @@
+
+# Defines the bond value range (0 = no bond, 100 = max bond)
+bond_range: [0, 100]
+# Defines a random interval for weight fluctuation (±10% variation)
+weight_range: [-0.1, 0.1]
+# Defines a random interval for height fluctuation (±10% variation)
+height_range: [-0.1, 0.1]

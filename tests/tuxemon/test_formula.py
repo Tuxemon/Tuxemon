@@ -10,8 +10,12 @@ from tuxemon.element import Element
 from tuxemon.formula import (
     average_damage,
     calculate_time_based_multiplier,
+    change_bond,
+    config_monster,
     cumulative_damage,
     first_applicable_damage,
+    modify_stat,
+    set_health,
     set_height,
     set_weight,
     simple_damage_calculate,
@@ -133,42 +137,50 @@ class TestCalculateTimeBasedMultiplier(unittest.TestCase):
 
 
 class TestSetWeight(unittest.TestCase):
+    def setUp(self):
+        self.monster = MagicMock(spec=Monster, weight=0)
+        self.minor, self.major = config_monster.weight_range
+
     def test_set_weight_zero(self):
-        weight = set_weight(0)
+        weight = set_weight(self.monster, 0)
         self.assertEqual(weight, 0)
 
     def test_set_weight_positive(self):
-        weight = set_weight(100)
-        self.assertGreaterEqual(weight, 100 * 0.9)
-        self.assertLessEqual(weight, 100 * 1.1)
+        weight = set_weight(self.monster, 100)
+        self.assertGreaterEqual(weight, 100 * (1 + self.minor))
+        self.assertLessEqual(weight, 100 * (1 + self.major))
 
     def test_set_weight_negative(self):
-        weight = set_weight(-50)
-        self.assertGreaterEqual(weight, -50 * 1.1)
-        self.assertLessEqual(weight, -50 * 0.9)
+        weight = set_weight(self.monster, -50)
+        self.assertGreaterEqual(weight, -50 * (1 + self.major))
+        self.assertLessEqual(weight, -50 * (1 + self.minor))
 
     def test_set_weight_randomness(self):
-        weights = [set_weight(75) for _ in range(100)]
+        weights = [set_weight(self.monster, 75) for _ in range(100)]
         self.assertGreaterEqual(len(set(weights)), 1)
 
 
 class TestSetHeight(unittest.TestCase):
+    def setUp(self):
+        self.monster = MagicMock(spec=Monster, height=0)
+        self.minor, self.major = config_monster.height_range
+
     def test_set_height_zero(self):
-        height = set_height(0)
+        height = set_height(self.monster, 0)
         self.assertEqual(height, 0)
 
     def test_set_height_positive(self):
-        height = set_height(100)
-        self.assertGreaterEqual(height, 100 * 0.9)
-        self.assertLessEqual(height, 100 * 1.1)
+        height = set_height(self.monster, 100)
+        self.assertGreaterEqual(height, 100 * (1 + self.minor))
+        self.assertLessEqual(height, 100 * (1 + self.major))
 
     def test_set_height_negative(self):
-        height = set_height(-50)
-        self.assertGreaterEqual(height, -50 * 1.1)
-        self.assertLessEqual(height, -50 * 0.9)
+        height = set_height(self.monster, -50)
+        self.assertGreaterEqual(height, -50 * (1 + self.major))
+        self.assertLessEqual(height, -50 * (1 + self.minor))
 
     def test_set_height_randomness(self):
-        heights = [set_height(75) for _ in range(100)]
+        heights = [set_height(self.monster, 75) for _ in range(100)]
         self.assertGreaterEqual(len(set(heights)), 1)
 
 
@@ -499,3 +511,142 @@ class TestSimpleDamageCalculate(unittest.TestCase):
 
         self.assertGreater(damage, 0)
         self.assertGreater(multiplier, 0.0)
+
+
+class TestModifyStat(unittest.TestCase):
+
+    def setUp(self):
+        self.monster = MagicMock(spec=Monster)
+        self.monster.modifiers = MagicMock()
+        self.monster.set_stats = MagicMock()
+
+    def test_add_operation(self):
+        self.monster.modifiers.armour = 10
+        stat = "armour"
+        value = 5.0
+        operation = "add"
+        expected_value = 15
+        modify_stat(self.monster, stat, value, operation)
+        self.assertEqual(self.monster.modifiers.armour, expected_value)
+        self.monster.set_stats.assert_called_once()
+
+    def test_multiply_operation(self):
+        self.monster.armour = 10
+        self.monster.modifiers.armour = 0
+        stat = "armour"
+        value = 1.5
+        operation = "multiply"
+        expected_value = 15
+        modify_stat(self.monster, stat, value, operation)
+        self.assertEqual(self.monster.modifiers.armour, expected_value)
+        self.monster.set_stats.assert_called_once()
+
+    def test_invalid_operation(self):
+        stat = "armour"
+        value = 5.0
+        operation = "invalid"
+        with self.assertRaises(ValueError):
+            modify_stat(self.monster, stat, value, operation)
+
+    def test_unrecognized_stat(self):
+        stat = "unknown"
+        value = 5.0
+        operation = "add"
+        modify_stat(self.monster, stat, value, operation)
+        self.monster.set_stats.assert_not_called()
+
+    def test_modify_stat_calls_set_stats(self):
+        self.monster.modifiers.armour = 10
+        stat = "armour"
+        value = 5.0
+        operation = "add"
+        modify_stat(self.monster, stat, value, operation)
+        self.monster.set_stats.assert_called_once()
+
+
+class TestSetHealth(unittest.TestCase):
+    def setUp(self):
+        self.monster = MagicMock(spec=Monster, hp=100, current_hp=100)
+        self.monster.faint = MagicMock()
+
+    def test_set_health_direct(self):
+        set_health(self.monster, 50)
+        self.assertEqual(self.monster.current_hp, 50)
+
+    def test_set_health_percentage(self):
+        set_health(self.monster, 0.5)
+        self.assertEqual(self.monster.current_hp, 50)
+
+    def test_adjust_health_add(self):
+        set_health(self.monster, 10, adjust=True)
+        self.assertEqual(self.monster.current_hp, 100)
+
+    def test_adjust_health_subtract(self):
+        set_health(self.monster, -30, adjust=True)
+        self.assertEqual(self.monster.current_hp, 70)
+
+    def test_hp_max_limit(self):
+        for value in [1.5, 9999]:
+            set_health(self.monster, value)
+            self.assertEqual(self.monster.current_hp, self.monster.hp)
+
+    def test_faint_triggered_on_zero_hp(self):
+        self.monster.faint.reset_mock()
+        set_health(self.monster, -200, adjust=True)
+        self.assertEqual(self.monster.current_hp, 0)
+        self.monster.faint.assert_called_once()
+
+    def test_set_health_to_zero(self):
+        set_health(self.monster, 0)
+        self.assertEqual(self.monster.current_hp, 0)
+        self.monster.faint.assert_called_once()
+
+    def test_hp_min_limit(self):
+        for value in [-100, -200]:
+            set_health(self.monster, value, adjust=True)
+            self.assertEqual(self.monster.current_hp, 0)
+            self.monster.faint.assert_called()
+
+    def test_set_health_percentage(self):
+        for value in [0.5, 0.25]:
+            set_health(self.monster, value)
+            self.assertEqual(
+                self.monster.current_hp, int(self.monster.hp * value)
+            )
+
+    def test_adjust_health_cap(self):
+        for value in [50, 200]:
+            set_health(self.monster, value, adjust=True)
+            self.assertEqual(self.monster.current_hp, self.monster.hp)
+
+
+class TestChangeBond(unittest.TestCase):
+    def setUp(self):
+        self.monster = MagicMock(spec=Monster, bond=50)
+        self.minor, self.major = config_monster.bond_range
+
+    def test_increase_bond_direct(self):
+        change_bond(self.monster, 10)
+        self.assertEqual(self.monster.bond, 60)
+
+    def test_decrease_bond_direct(self):
+        change_bond(self.monster, -20)
+        self.assertEqual(self.monster.bond, 30)
+
+    def test_increase_bond_percentage(self):
+        change_bond(self.monster, 0.2)
+        expected_bond = min(self.major, 50 + int(50 * 0.2))
+        self.assertEqual(self.monster.bond, expected_bond)
+
+    def test_decrease_bond_percentage(self):
+        change_bond(self.monster, -0.5)
+        expected_bond = max(self.minor, 50 + int(50 * -0.5))
+        self.assertEqual(self.monster.bond, expected_bond)
+
+    def test_bond_does_not_exceed_max(self):
+        change_bond(self.monster, 100)
+        self.assertEqual(self.monster.bond, self.major)
+
+    def test_bond_does_not_go_below_min(self):
+        change_bond(self.monster, -100)
+        self.assertEqual(self.monster.bond, self.minor)

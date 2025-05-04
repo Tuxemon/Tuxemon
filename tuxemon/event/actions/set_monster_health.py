@@ -9,7 +9,7 @@ from typing import Optional, Union, final
 
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
-from tuxemon.monster import Monster
+from tuxemon.formula import set_health
 
 logger = logging.getLogger(__name__)
 
@@ -32,25 +32,11 @@ class SetMonsterHealthAction(EventAction):
             hp to be restored to. A int value, which is the number of HP
             to be restored to. If no health is specified, the hp is maxed
             out.
-
     """
 
     name = "set_monster_health"
     variable: Optional[str] = None
     health: Optional[Union[int, float]] = None
-
-    @staticmethod
-    def set_health(monster: Monster, value: Union[float, int]) -> None:
-        if isinstance(value, float):
-            monster.current_hp = int(monster.hp * value)
-        else:
-            monster.current_hp = int(value)
-        # checks max and min
-        if monster.current_hp <= 0:
-            monster.faint()
-        if monster.current_hp > monster.hp:
-            monster.current_hp = monster.hp
-        logger.info(f"{monster.name}'s {monster.current_hp} HP")
 
     def start(self) -> None:
         player = self.session.player
@@ -61,7 +47,7 @@ class SetMonsterHealthAction(EventAction):
 
         if self.variable is None:
             for mon in player.monsters:
-                self.set_health(mon, monster_health)
+                set_health(mon, monster_health)
         else:
             if self.variable not in player.game_variables:
                 logger.error(f"Game variable {self.variable} not found")
@@ -71,4 +57,4 @@ class SetMonsterHealthAction(EventAction):
             if monster is None:
                 logger.error("Monster not found")
                 return
-            self.set_health(monster, monster_health)
+            set_health(monster, monster_health)

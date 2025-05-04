@@ -50,12 +50,9 @@ class Player(NPC):
         if diff_x != 0 or diff_y != 0:
             self.steps += diff_x + diff_y
 
+            if self.step_tracker.trackers:
+                self.step_tracker.update_all(diff_x, diff_y)
+
             if self.monsters:
                 for monster in self.monsters:
                     monster.steps += diff_x + diff_y
-
-            for key, value in self.game_variables.items():
-                if key.startswith("steps_"):
-                    self.game_variables[key] = max(
-                        0.0, float(value) - (diff_x + diff_y)
-                    )

@@ -246,18 +246,21 @@ events:
     type: "event"
   Set Bonding Variable:
     actions:
-    - set_variable steps_bonding:1000
+    - add_step_tracker player,steps_bonding,1000,0
+    - set_variable start_bonding:yes
     conditions:
-    - not variable_set steps_bonding
+    - not variable_set start_bonding:yes
     - is has_item player,friendship_scroll
     type: "event"
   Bond Up 1000 Steps:
     actions:
     - modify_monster_bond
-    - set_variable steps_bonding:1000
+    - remove_step_tracker player,steps_bonding
+    - add_step_tracker player,steps_bonding,1000,0
+    - clear_variable start_bonding
     conditions:
-    - is variable_set steps_bonding
-    - is variable_is steps_bonding,equals,0.0
+    - is variable_set start_bonding:yes
+    - is step_tracker player,steps_bonding,0
     - is has_item player,friendship_scroll
     type: "event"
   Bond Down -10 Fainted:

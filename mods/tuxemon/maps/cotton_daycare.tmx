@@ -120,7 +120,7 @@
     <property name="act10" value="translated_dialog cotton_breeder4a"/>
     <property name="act15" value="clear_variable confirm"/>
     <property name="act20" value="set_variable breeder_state:5"/>
-    <property name="act30" value="set_variable steps_breeder_time:10000"/>
+    <property name="act30" value="add_step_tracker player,steps_breeder,10000,5000:0"/>
     <property name="cond10" value="is variable_set breeder_state:4"/>
     <property name="cond20" value="is variable_set confirm:yes"/>
    </properties>
@@ -149,7 +149,7 @@
     <property name="act10" value="translated_dialog cotton_breeder6a"/>
     <property name="act20" value="set_variable breeder_state:5"/>
     <property name="cond10" value="is variable_set breeder_state:6"/>
-    <property name="cond20" value="is variable_is steps_breeder_time,greater_or_equal,5000"/>
+    <property name="cond20" value="not step_tracker player,steps_breeder,5000"/>
    </properties>
   </object>
   <object id="31" name="breeder state 6b" type="event" x="144" y="112" width="16" height="16">
@@ -157,8 +157,7 @@
     <property name="act10" value="translated_dialog cotton_breeder6b"/>
     <property name="act20" value="set_variable breeder_state:5"/>
     <property name="cond10" value="is variable_set breeder_state:6"/>
-    <property name="cond20" value="is variable_is steps_breeder_time,less_than,5000"/>
-    <property name="cond30" value="is variable_is steps_breeder_time,greater_than,0"/>
+    <property name="cond20" value="is step_tracker player,steps_breeder,5000"/>
    </properties>
   </object>
   <object id="32" name="breeder state 6c" type="event" x="160" y="112" width="16" height="16">
@@ -168,15 +167,16 @@
     <property name="act40" value="translated_dialog cotton_breeder_continue"/>
     <property name="act50" value="translated_dialog_choice yes:no,continue"/>
     <property name="act60" value="set_variable breeder_state:7"/>
+    <property name="act70" value="remove_step_tracker player,steps_breeder"/>
     <property name="cond10" value="is variable_set breeder_state:6"/>
-    <property name="cond20" value="is variable_is steps_breeder_time,equals,0.0"/>
+    <property name="cond20" value="is step_tracker player,steps_breeder,0"/>
    </properties>
   </object>
   <object id="33" name="breeder state 7a" type="event" x="144" y="128" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder7a"/>
     <property name="act20" value="set_variable breeder_state:5"/>
-    <property name="act30" value="set_variable steps_breeder_time:10000"/>
+    <property name="act30" value="add_step_tracker player,steps_breeder,10000,5000:0"/>
     <property name="act40" value="clear_variable continue"/>
     <property name="cond10" value="is variable_set breeder_state:7"/>
     <property name="cond20" value="is variable_set continue:yes"/>

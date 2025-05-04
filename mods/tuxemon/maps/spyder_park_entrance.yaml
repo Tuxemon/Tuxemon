@@ -78,7 +78,7 @@ events:
     - pathfind player,4,9
     - char_face player,down
     - set_variable paypark:null
-    - set_variable steps_park:500
+    - add_step_tracker player,steps_park,500,100:0
     - set_variable menu_park_captured:0
     - set_variable menu_park_seen:0
     - unlock_controls

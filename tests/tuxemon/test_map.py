@@ -19,6 +19,7 @@ from tuxemon.map import (
     get_pos_from_tilepos,
     orientation_by_angle,
     pairs,
+    parse_path_parameters,
     point_to_grid,
     snap_interval,
     snap_point,
@@ -26,6 +27,107 @@ from tuxemon.map import (
     tiles_inside_rect,
 )
 from tuxemon.math import Vector2
+
+
+class TestParsePathParameters(unittest.TestCase):
+    def test_single_move(self):
+        origin = (0, 0)
+        move_list = ["up"]
+        expected_path = [(0, -1)]
+        self.assertEqual(
+            list(parse_path_parameters(origin, move_list)), expected_path
+        )
+
+    def test_multiple_moves(self):
+        origin = (0, 0)
+        move_list = ["up", "right", "down"]
+        expected_path = [(0, -1), (1, -1), (1, 0)]
+        self.assertEqual(
+            list(parse_path_parameters(origin, move_list)), expected_path
+        )
+
+    def test_move_with_tiles(self):
+        origin = (0, 0)
+        move_list = ["up 2", "right 3"]
+        expected_path = [(0, -1), (0, -2), (1, -2), (2, -2), (3, -2)]
+        self.assertEqual(
+            list(parse_path_parameters(origin, move_list)), expected_path
+        )
+
+    def test_invalid_direction(self):
+        origin = (0, 0)
+        move_list = [" invalid"]
+        with self.assertRaises(ValueError):
+            list(parse_path_parameters(origin, move_list))
+
+    def test_empty_move_list(self):
+        origin = (0, 0)
+        move_list = []
+        expected_path = []
+        self.assertEqual(
+            list(parse_path_parameters(origin, move_list)), expected_path
+        )
+
+    def test_invalid_tiles(self):
+        origin = (0, 0)
+        move_list = ["up abc"]
+        with self.assertRaises(ValueError):
+            list(parse_path_parameters(origin, move_list))
+
+    def test_move_list_with_spaces(self):
+        origin = (0, 0)
+        move_list = ["up  ", " right 2"]
+        expected_path = [(0, -1), (1, -1), (2, -1)]
+        self.assertEqual(
+            list(parse_path_parameters(origin, move_list)), expected_path
+        )
+
+    def test_move_list_with_trailing_spaces(self):
+        origin = (0, 0)
+        move_list = ["up  ", " right 2  "]
+        expected_path = [(0, -1), (1, -1), (2, -1)]
+        self.assertEqual(
+            list(parse_path_parameters(origin, move_list)), expected_path
+        )
+
+    def test_boundary_move(self):
+        origin = (0, 0)
+        move_list = ["left 1"]
+        expected_path = [(-1, 0)]
+        self.assertEqual(
+            list(parse_path_parameters(origin, move_list)), expected_path
+        )
+
+    def test_case_insensitivity(self):
+        origin = (0, 0)
+        move_list = ["UP 2", "rIgHt 3"]
+        expected_path = [(0, -1), (0, -2), (1, -2), (2, -2), (3, -2)]
+        self.assertEqual(
+            list(parse_path_parameters(origin, move_list)), expected_path
+        )
+
+    def test_zero_movement(self):
+        origin = (0, 0)
+        move_list = ["up 0"]
+        expected_path = []
+        self.assertEqual(
+            list(parse_path_parameters(origin, move_list)), expected_path
+        )
+
+    def test_large_movement(self):
+        origin = (0, 0)
+        move_list = ["right 10000"]
+        expected_path = [(i, 0) for i in range(1, 10001)]
+        self.assertEqual(
+            list(parse_path_parameters(origin, move_list)), expected_path
+        )
+
+    def test_multiple_invalid_moves(self):
+        origin = (0, 0)
+        move_list = ["invalid", "wrong", "down 2"]
+
+        with self.assertRaises(ValueError):
+            list(parse_path_parameters(origin, move_list))
 
 
 class TestSnapInterval(unittest.TestCase):

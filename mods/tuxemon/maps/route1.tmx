@@ -286,7 +286,7 @@
     <property name="act42" value="char_face misa,right"/>
     <property name="act43" value="translated_dialog soiwashearing6"/>
     <property name="act44" value="char_face xerogrunt1,down"/>
-    <property name="act45" value="char_move misa, down 1"/>
+    <property name="act45" value="char_move misa,down 1"/>
     <property name="act46" value="wait 1.2"/>
     <property name="act47" value="char_face misa,up"/>
     <property name="act50" value="translated_dialog soiwashearing7"/>
@@ -308,7 +308,7 @@
     <property name="act71" value="translated_dialog yesmaam"/>
     <property name="act72" value="char_move marissa,right 1"/>
     <property name="act73" value="char_face marissa,left"/>
-    <property name="act74" value="char_move misa, down 1"/>
+    <property name="act74" value="char_move misa,down 1"/>
     <property name="act75" value="wait 0.3"/>
     <property name="act76" value="char_face misa,left"/>
     <property name="act77" value="wait 0.4"/>
@@ -443,7 +443,7 @@
     <property name="act58" value="wait 0.3"/>
     <property name="act59" value="char_face kyle,down"/>
     <property name="act60" value="translated_dialog ohaimisa7"/>
-    <property name="act61" value="char_move kyle, down 1"/>
+    <property name="act61" value="char_move kyle,down 1"/>
     <property name="act62" value="pathfind kyle,32,33"/>
     <property name="act63" value="set_variable threemusketeers:yay"/>
     <property name="act64" value="remove_npc kyle"/>
@@ -479,7 +479,7 @@
   <object id="127" name="omnigrunt4move" type="event" x="416" y="384" width="16" height="16">
    <properties>
     <property name="act10" value="wait 2.2"/>
-    <property name="act20" value="char_move omnigrunt4, up 1"/>
+    <property name="act20" value="char_move omnigrunt4,up 1"/>
     <property name="act30" value="char_face omnigrunt4,down"/>
     <property name="act40" value="remove_npc omnigrunt4"/>
     <property name="act50" value="set_variable replaceomnigrunt4:yes"/>
@@ -697,7 +697,7 @@
     <property name="act38" value="translated_dialog welcometotaba7"/>
     <property name="act39" value="translated_dialog gasp"/>
     <property name="act40" value="pathfind kyle, 53,36"/>
-    <property name="act41" value="char_face kyle, down"/>
+    <property name="act41" value="char_face kyle,down"/>
     <property name="act42" value="translated_dialog welcometotaba8"/>
     <property name="act43" value="wait 0.4"/>
     <property name="act44" value="translated_dialog welcometotaba9"/>

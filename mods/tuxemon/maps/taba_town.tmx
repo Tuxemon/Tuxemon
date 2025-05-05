@@ -305,7 +305,7 @@
     <property name="act40" value="create_npc knight3,38,39,stand"/>
     <property name="act60" value="translated_dialog hellolovelypeople"/>
     <property name="act70" value="create_npc npc_mom,43,46,stand"/>
-    <property name="act80" value="char_face npc_mom, left"/>
+    <property name="act80" value="char_face npc_mom,left"/>
     <property name="act90" value="set_variable goodbyeoldknight:hedead"/>
     <property name="cond10" value="is variable_set goodbyeoldknight:yes"/>
    </properties>
@@ -552,7 +552,7 @@
     <property name="act7" value="translated_dialog thetvbescreamin"/>
     <property name="act8" value="set_variable comeinside:yes"/>
     <property name="act9" value="pathfind npc_mom,43,46"/>
-    <property name="act91" value="char_face npc_mom, up"/>
+    <property name="act91" value="char_face npc_mom,up"/>
     <property name="act92" value="remove_npc npc_mom"/>
     <property name="cond1" value="is variable_set goodbyeoldknight:finallydone"/>
     <property name="cond2" value="not variable_set comeinside:yes"/>

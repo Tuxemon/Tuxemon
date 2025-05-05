@@ -356,7 +356,7 @@
     <property name="act10" value="translated_dialog yahaha"/>
     <property name="act20" value="create_npc allie,6,15,stand"/>
     <property name="act30" value="pathfind allie,4,8"/>
-    <property name="act40" value="char_face allie, right"/>
+    <property name="act40" value="char_face allie,right"/>
     <property name="act50" value="wait 0.7"/>
     <property name="act60" value="translated_dialog gasp"/>
     <property name="act70" value="pathfind allie,5,9"/>

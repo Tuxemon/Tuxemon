@@ -295,7 +295,7 @@
   <object id="257" name="learn from me" type="event" x="240" y="160" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog theinfo"/>
-    <property name="act20" value="char_move aeble, down 1, right 8, up 1"/>
+    <property name="act20" value="char_move aeble,down 1,right 8,up 1"/>
     <property name="act30" value="char_speed aeble, 0.5"/>
     <property name="act40" value="pathfind aeble, 22, 10"/>
     <property name="act50" value="remove_npc aeble"/>

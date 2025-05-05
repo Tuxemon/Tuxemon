@@ -120,7 +120,7 @@
     <property name="act94" value="char_move omnigrunt7,left 6"/>
     <property name="act95" value="translated_dialog uhhjason3"/>
     <property name="act96" value="wait 0.5"/>
-    <property name="act97" value="char_move omnigrunt7, left 7"/>
+    <property name="act97" value="char_move omnigrunt7,left 7"/>
     <property name="act98" value="remove_npc omnigrunt7"/>
     <property name="act99" value="unlock_controls"/>
     <property name="act999" value="set_variable jason:gone"/>

@@ -79,6 +79,46 @@ def translate_short_path(
         yield (int(position_vec.x), int(position_vec.y))
 
 
+def simple_path(
+    origin: tuple[int, int], direction: Direction, tiles: int
+) -> Generator[tuple[int, int], None, None]:
+    """Generate a simple path in the given direction from the origin."""
+    origin_vec = Vector2(origin)
+    for _ in range(tiles):
+        origin_vec += dirs2[direction]
+        yield (int(origin_vec.x), int(origin_vec.y))
+
+
+def parse_path_parameters(
+    origin: tuple[int, int], move_list: Sequence[str]
+) -> Generator[tuple[int, int], None, None]:
+    """Parse a list of move commands and generate the corresponding path."""
+    for move in move_list:
+        move = move.strip()
+        if not move:
+            continue
+
+        parts = move.split(maxsplit=1)
+        direction = parts[0].lower()
+        tiles_str = parts[1] if len(parts) > 1 else "1"
+
+        try:
+            direction_enum = Direction(direction)
+        except ValueError:
+            raise ValueError(f"Invalid direction '{direction}'")
+
+        try:
+            tiles = int(tiles_str)
+            if tiles <= 0:
+                continue
+        except ValueError:
+            raise ValueError(f"Invalid tile count '{tiles_str}'")
+
+        for point in simple_path(origin, direction_enum, tiles):
+            yield point
+        origin = point
+
+
 def get_coords(
     tile: tuple[int, int], map_size: tuple[int, int], radius: int = 1
 ) -> list[tuple[int, int]]:

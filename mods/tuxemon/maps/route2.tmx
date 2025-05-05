@@ -172,7 +172,7 @@
     <property name="act080" value="char_face misa,left"/>
     <property name="act090" value="wait 1"/>
     <property name="act100" value="translated_dialog spillit5"/>
-    <property name="act110" value="char_face misa, down"/>
+    <property name="act110" value="char_face misa,down"/>
     <property name="act120" value="wait 1"/>
     <property name="act130" value="translated_dialog spillit6"/>
     <property name="act140" value="char_face misa,right"/>

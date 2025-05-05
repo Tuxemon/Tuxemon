@@ -227,7 +227,7 @@
     <property name="act44" value="char_face cam,up"/>
     <property name="act45" value="wait 0.3"/>
     <property name="act46" value="set_variable cammove:now"/>
-    <property name="act47" value="char_move cam,right 3,up 2, right 2"/>
+    <property name="act47" value="char_move cam,right 3,up 2,right 2"/>
     <property name="act48" value="remove_npc cam"/>
     <property name="act50" value="pathfind zeke,7,9"/>
     <property name="act51" value="char_face zeke,left"/>
@@ -255,7 +255,7 @@
   <object id="16" name="movin out" type="event" x="96" y="0" width="16" height="16">
    <properties>
     <property name="act1" value="wait 0.4"/>
-    <property name="act2" value="char_move omnigrunt6,right 4,up 2, right 2"/>
+    <property name="act2" value="char_move omnigrunt6,right 4,up 2,right 2"/>
     <property name="act3" value="remove_npc omnigrunt6"/>
     <property name="act4" value="set_variable cammove:gone"/>
     <property name="cond1" value="is variable_set cammove:now"/>

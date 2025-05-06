@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, ClassVar
+from typing import ClassVar
 
 from tuxemon.event import MapCondition
 from tuxemon.session import Session
@@ -25,22 +25,6 @@ class EventCondition:
             Value of the condition.
         """
         return True
-
-    def get_persist(self, session: Session) -> dict[str, Any]:
-        """
-        Return dictionary for this event class's data.
-        This dictionary will track movement and be shared across all
-        conditions. It will be saved when the game is saved.
-
-        Returns:
-            Dictionary with the persisting information.
-        """
-        try:
-            return session.client.event_persist[self.name]
-        except KeyError:
-            persist: dict[str, Any] = {}
-            session.client.event_persist[self.name] = persist
-            return persist
 
     @property
     def done(self) -> bool:

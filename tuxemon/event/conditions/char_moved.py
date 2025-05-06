@@ -4,9 +4,11 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
+from typing import Optional
 
 from tuxemon.event import MapCondition, collide, get_npc
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.event.eventpersist import EventPersist
 from tuxemon.npc import NPC
 from tuxemon.session import Session
 
@@ -45,49 +47,61 @@ class CharMovedCondition(EventCondition):
         if character is None:
             logger.error(f"{condition.parameters[0]} not found")
             return False
-        return self.generic_test(session, condition, character)
+        return generic_test(
+            self.name, session.client.event_persist, condition, character
+        )
 
-    def generic_test(
-        self,
-        session: Session,
-        condition: MapCondition,
-        character: NPC,
-    ) -> bool:
-        # check where the character is going, not where it is
-        move_destination = character.move_destination
 
-        # a hash/id of sorts for the condition
-        condition_str = str(condition)
+def generic_test(
+    name: str, persist: EventPersist, condition: MapCondition, character: NPC
+) -> bool:
+    """
+    Determine if a character has moved onto an event tile.
 
-        stopped = move_destination is None
-        collide_next = False
-        if move_destination is not None:
-            collide_next = collide(condition, move_destination)
+    Parameters:
+        name: The unique identifier for the event condition.
+        persist: The event persistence object used to track state changes.
+        condition: The event condition being evaluated.
+        character: The character whose movement is being assessed.
 
-        # persist is data shared for all char_moved EventConditions
-        persist = self.get_persist(session)
+    Returns:
+        True if the character has moved onto the event tile, False otherwise.
+    """
+    # Retrieve where the character is going (not where it currently is)
+    move_destination = character.move_destination
 
-        # only test if tile was moved into
-        # get previous destination for this particular condition
-        last_destination = persist.get(condition_str)
-        if last_destination is None and (stopped or collide_next):
-            persist[condition_str] = move_destination
+    # Create a unique identifier for the condition (hash/id of sorts)
+    condition_str = str(condition)
 
-        # has the character moved onto or away from the event?
-        # Check to see if the character's "move destination" has changed since the
-        # last frame. If it has, WE'RE MOVING!!!
-        moved = move_destination != last_destination
+    stopped = move_destination is None
+    collide_next = False
+    if move_destination is not None:
+        collide_next = collide(condition, move_destination)
 
-        # is the character colliding with the condition boundaries?
-        collided = collide(condition, character.tile_pos)
+    # Retrieve persistent storage where movement tracking data is stored
+    stored = persist.get_event_data(name)
 
-        # Update the current character's last move destination
-        # TODO: some sort of global tracking of player instead of recording it
-        # in conditions
-        persist[condition_str] = move_destination
+    # Get the last recorded destination for this specific condition
+    last_destination: Optional[tuple[int, int]] = stored.get(condition_str)
 
-        # determine if the tile has truly changed
-        if collided and moved and last_destination is not None:
-            persist[condition_str] = None
-            return True
-        return False
+    # If no last destination is recorded, update storage when movement stops or collides
+    if last_destination is None and (stopped or collide_next):
+        persist.update_event_data(name, condition_str, move_destination)
+
+    # Check whether the character's move destination has changed since the last frame
+    moved = move_destination != last_destination
+
+    # Verify if the character is currently colliding with the condition boundaries
+    collided = collide(condition, character.tile_pos)
+
+    # Update movement tracking data for this condition
+    persist.update_event_data(name, condition_str, move_destination)
+
+    # If the character moved into the tile AND previously had a recorded position,
+    # trigger the event
+    if collided and moved and last_destination is not None:
+        # Reset tracking to ensure the condition triggers only once
+        persist.update_event_data(name, condition_str, None)
+        return True
+
+    return False

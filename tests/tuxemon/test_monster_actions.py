@@ -4,7 +4,6 @@ import unittest
 from unittest.mock import MagicMock, patch
 
 from tuxemon import prepare
-from tuxemon.client import LocalPygameClient
 from tuxemon.db import (
     AttributesModel,
     ElementModel,
@@ -12,8 +11,10 @@ from tuxemon.db import (
     MonsterModel,
     ShapeModel,
     StatusModel,
+    TechniqueModel,
     db,
 )
+from tuxemon.event.eventengine import EventEngine
 from tuxemon.player import Player
 from tuxemon.session import local_session
 from tuxemon.surfanim import FlipAxes
@@ -91,12 +92,38 @@ class TestMonsterActions(unittest.TestCase):
         cond_id=0,
     )
 
+    _ram = TechniqueModel(
+        tech_id=69,
+        accuracy=0.85,
+        flip_axes=FlipAxes.NONE,
+        potency=0.0,
+        power=1.5,
+        range="melee",
+        recharge=1,
+        sfx="sfx_blaster",
+        slug="ram",
+        sort="damage",
+        target={
+            "enemy_monster": False,
+            "enemy_team": False,
+            "enemy_trainer": False,
+            "own_monster": False,
+            "own_team": False,
+            "own_trainer": False,
+        },
+        types=[],
+        use_tech="combat_used_x",
+        tags=["animal"],
+        category="simple",
+        effects=[],
+        modifiers=[],
+    )
+
     def setUp(self):
         self.mock_screen = MagicMock()
+        local_session.client = MagicMock()
+        local_session.client.event_engine = EventEngine(local_session)
         with patch.object(Player, "__init__", mockPlayer):
-            local_session.client = LocalPygameClient(
-                prepare.CONFIG, self.mock_screen
-            )
             self.action = local_session.client.event_engine
             local_session.player = Player()
             self.player = local_session.player
@@ -108,10 +135,12 @@ class TestMonsterActions(unittest.TestCase):
             self._element_model = {"fire": self._fire}
             self._element_model["metal"] = self._metal
             self._condition_model = {"faint": self._faint}
+            self._technique_model = {"ram": self._ram}
             db.database["monster"] = self._monster_model
             db.database["shape"] = self._shape_model
             db.database["element"] = self._element_model
             db.database["status"] = self._condition_model
+            db.database["technique"] = self._technique_model
 
     def test_add_monster(self):
         _params = ["agnite", 5]

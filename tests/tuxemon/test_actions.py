@@ -4,10 +4,10 @@ import unittest
 from unittest.mock import MagicMock, patch
 
 from tuxemon import prepare
-from tuxemon.client import LocalPygameClient
-from tuxemon.db import Direction, db
+from tuxemon.db import Direction
 from tuxemon.entity import Body
 from tuxemon.event.actions.char_move import parse_path_parameters
+from tuxemon.event.eventengine import EventEngine
 from tuxemon.math import Point3
 from tuxemon.player import Player
 from tuxemon.session import local_session
@@ -25,10 +25,7 @@ class TestVariableActions(unittest.TestCase):
     def setUp(self):
         self.mock_screen = MagicMock()
         with patch.object(Player, "__init__", mockPlayer):
-            local_session.client = LocalPygameClient(
-                prepare.CONFIG, self.mock_screen
-            )
-            self.action = local_session.client.event_engine
+            self.action = EventEngine(local_session)
             local_session.player = Player()
             self.player = local_session.player
 
@@ -132,10 +129,7 @@ class TestActionsSetPlayer(unittest.TestCase):
     def setUp(self):
         self.mock_screen = MagicMock()
         with patch.object(Player, "__init__", mockPlayer):
-            local_session.client = LocalPygameClient(
-                prepare.CONFIG, self.mock_screen
-            )
-            self.action = local_session.client.event_engine
+            self.action = EventEngine(local_session)
             local_session.player = Player()
             self.player = local_session.player
 
@@ -152,10 +146,7 @@ class TestBattleActions(unittest.TestCase):
     def setUp(self):
         self.mock_screen = MagicMock()
         with patch.object(Player, "__init__", mockPlayer):
-            local_session.client = LocalPygameClient(
-                prepare.CONFIG, self.mock_screen
-            )
-            self.action = local_session.client.event_engine
+            self.action = EventEngine(local_session)
             local_session.player = Player()
             self.player = local_session.player
 
@@ -201,11 +192,15 @@ class TestBattleActions(unittest.TestCase):
 class TestCharacterActions(unittest.TestCase):
     def setUp(self):
         self.mock_screen = MagicMock()
+        local_session.client = MagicMock()
+        local_session.client.config.player_walkrate = (
+            prepare.CONFIG.player_walkrate
+        )
+        local_session.client.config.player_runrate = (
+            prepare.CONFIG.player_runrate
+        )
         with patch.object(Player, "__init__", mockPlayer):
-            local_session.client = LocalPygameClient(
-                prepare.CONFIG, self.mock_screen
-            )
-            self.action = local_session.client.event_engine
+            self.action = EventEngine(local_session)
             local_session.player = Player()
             self.player = local_session.player
 

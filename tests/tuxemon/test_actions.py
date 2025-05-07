@@ -36,6 +36,17 @@ class TestVariableActions(unittest.TestCase):
         self.action.execute_action("set_variable", ["name:jimmy"])
         self.assertEqual(self.player.game_variables["name"], "jimmy")
 
+    def test_set_variables_same_key(self):
+        self.action.execute_action("set_variable", ["name:jimmy", "name:saul"])
+        self.assertEqual(self.player.game_variables["name"], "saul")
+
+    def test_set_variables_different_key(self):
+        self.action.execute_action(
+            "set_variable", ["first:jimmy", "last:saul"]
+        )
+        self.assertEqual(self.player.game_variables["first"], "jimmy")
+        self.assertEqual(self.player.game_variables["last"], "saul")
+
     def test_clear_variable_not_exist(self):
         self.action.execute_action("clear_variable", ["name"])
         with self.assertRaises(KeyError):

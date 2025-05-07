@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional
 
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
@@ -13,19 +12,23 @@ from tuxemon.session import Session
 @dataclass
 class VariableSetCondition(EventCondition):
     """
-    Check to see if a player game variable exists and has a particular value.
+    Checks if one or more player game variables exist and optionally match
+    specified values.
 
-    If the variable does not exist it will return ``False``.
+    If a variable does not exist, the condition returns `False`.
 
     Script usage:
         .. code-block::
 
-            is variable_set <variable>[:value]
+            is variable_set <variable>[:value],[<variable>[:value] ...]
 
     Script parameters:
         variable: The variable to check.
-        value: Optional value to check for.
+        value: Optional value to check against. If omitted, the condition
+            only checks for the variable's existence.
 
+    The condition returns `True` if all specified variables exist and
+    match their given values (if provided). Otherwise, it returns `False`.
     """
 
     name = "variable_set"
@@ -33,16 +36,15 @@ class VariableSetCondition(EventCondition):
     def test(self, session: Session, condition: MapCondition) -> bool:
         player = session.player
 
-        parts = condition.parameters[0].split(":")
-        key = parts[0]
-        if len(parts) > 1:
-            value: Optional[str] = parts[1]
-        else:
-            value = None
+        for part in condition.parameters:
+            key, _, value = part.partition(":")
+            exists = key in player.game_variables
 
-        exists = key in player.game_variables
+            if value:
+                if exists and player.game_variables[key] == value:
+                    return True
+            else:
+                if exists:
+                    return True
 
-        if value is None:
-            return exists
-        else:
-            return exists and player.game_variables[key] == value
+        return False

@@ -2,8 +2,9 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import final
+from collections.abc import Sequence
+from dataclasses import dataclass, field
+from typing import Any, final
 
 from tuxemon.event.eventaction import EventAction
 
@@ -12,28 +13,30 @@ from tuxemon.event.eventaction import EventAction
 @dataclass
 class SetVariableAction(EventAction):
     """
-    Set the key in the player.game_variables dictionary.
+    Updates the player's game variables by setting key-value pairs.
 
     Script usage:
         .. code-block::
 
-            set_variable <variable>:<value>
+            set_variable <variable>:<value>[,<variable>:<value>]
 
     Script parameters:
-        variable: Name of the variable.
-        value: Value of the variable
+        variable: The name of the variable.
+        value: The assigned value for the variable.
+
+    This implementation supports multiple parameters, allowing multiple
+    variable assignments in one call.
     """
 
     name = "set_variable"
-    var_list: str
+    raw_parameters: Sequence[str] = field(init=False)
+
+    def __init__(self, *args: Any) -> None:
+        super().__init__()
+        self.raw_parameters = args
 
     def start(self) -> None:
         player = self.session.player
-
-        # Split the variable into a key: value pair
-        var_list = self.var_list.split(":")
-        var_key = str(var_list[0])
-        var_value = str(var_list[1])
-
-        # Append the game_variables dictionary with the key: value pair
-        player.game_variables[var_key] = var_value
+        for param in self.raw_parameters:
+            var_key, _, var_value = param.partition(":")
+            player.game_variables[var_key] = var_value

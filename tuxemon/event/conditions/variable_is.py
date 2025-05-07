@@ -26,7 +26,6 @@ class VariableIsCondition(EventCondition):
             "less_or_equal", "greater_than", "greater_or_equal", "equals"
             and "not_equals".
         value2: Either a variable or a number.
-
     """
 
     name = "variable_is"

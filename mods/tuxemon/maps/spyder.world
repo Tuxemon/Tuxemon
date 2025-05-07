@@ -561,18 +561,32 @@
             "y": -640
         },
         {
-            "fileName": "spyder_lion_mountain.tmx",
-            "height": 1600,
+            "fileName": "spyder_lion_mountain_low.tmx",
+            "height": 320,
+            "width": 640,
+            "x": 1600,
+            "y": -960
+        },
+        {
+            "fileName": "spyder_lion_mountain_middle.tmx",
+            "height": 640,
+            "width": 640,
+            "x": 1600,
+            "y": -1600
+        },
+        {
+            "fileName": "spyder_lion_mountain_high.tmx",
+            "height": 640,
             "width": 640,
             "x": 1600,
             "y": -2240
         },
         {
             "fileName": "spyder_crystal_town.tmx",
-            "height": 400,
+            "height": 320,
             "width": 640,
             "x": 960,
-            "y": -1040
+            "y": -960
         },
         {
             "fileName": "spyder_crystal_town_cafe.tmx",

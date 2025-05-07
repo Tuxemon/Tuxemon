@@ -167,7 +167,7 @@
   </object>
   <object id="208" name="Teleport Crystal 1" type="event" x="560" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_crystal_town.tmx,35,24,0.3"/>
+    <property name="act1" value="transition_teleport spyder_crystal_town.tmx,35,19,0.3"/>
     <property name="act2" value="char_face player,up"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>
@@ -214,7 +214,7 @@
   </object>
   <object id="233" name="Teleport Crystal 2" type="event" x="576" y="0" width="16" height="16">
    <properties>
-    <property name="act1" value="transition_teleport spyder_crystal_town.tmx,36,24,0.3"/>
+    <property name="act1" value="transition_teleport spyder_crystal_town.tmx,36,19,0.3"/>
     <property name="act2" value="char_face player,up"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="is char_facing player,up"/>

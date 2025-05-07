@@ -28,7 +28,7 @@ events:
     type: "event"
   Teleport Mountain:
     actions:
-    - transition_teleport spyder_lion_mountain.tmx,7,98,0.3
+    - transition_teleport spyder_lion_mountain_low.tmx,7,18,0.3
     - char_face player,up
     conditions:
     - is char_at player

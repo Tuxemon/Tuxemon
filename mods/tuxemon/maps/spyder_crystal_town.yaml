@@ -7,7 +7,7 @@ events:
     - is char_at player
     - is char_facing player,down
     x: 35
-    y: 24
+    y: 19
     type: "event"
   Teleport Route7 2:
     actions:
@@ -17,7 +17,7 @@ events:
     - is char_at player
     - is char_facing player,down
     x: 36
-    y: 24
+    y: 19
     type: "event"
   Teleport House:
     actions:
@@ -27,7 +27,7 @@ events:
     - is char_at player
     - is char_facing player,up
     x: 37
-    y: 22
+    y: 17
     type: "event"
   Teleport Cafe:
     actions:
@@ -37,7 +37,7 @@ events:
     - is char_at player
     - is char_facing player,up
     x: 23
-    y: 5
+    y: 4
     type: "event"
   Music:
     actions:
@@ -47,13 +47,13 @@ events:
     type: "event"
   Lion Mountain1:
     actions:
-    - transition_teleport spyder_lion_mountain.tmx,0,89,0.3
+    - transition_teleport spyder_lion_mountain_low.tmx,0,9,0.3
     - char_face player,right
     conditions:
     - is char_at player
     - is char_facing player,right
     x: 39
-    y: 14
+    y: 9
     type: "event"
   Tuxecenter:
     actions:
@@ -63,7 +63,7 @@ events:
     - is char_at player
     - is char_facing player,up
     x: 34
-    y: 6
+    y: 4
     type: "event"
   Mountain Sign:
     actions:
@@ -72,7 +72,7 @@ events:
     - is char_facing_tile player
     - is button_pressed K_RETURN
     x: 37
-    y: 12
+    y: 7
     type: "event"
   Town Sign:
     actions:
@@ -81,7 +81,7 @@ events:
     - is char_facing_tile player
     - is button_pressed K_RETURN
     x: 32
-    y: 22
+    y: 17
     type: "event"
   Town Frozen Lake:
     actions:
@@ -94,7 +94,7 @@ events:
     type: "event"
   Create Hacker:
     actions:
-    - create_npc spyder_crystal_magician_fiery,32,7
+    - create_npc spyder_crystal_magician_fiery,32,5
     conditions:
     - not char_exists spyder_crystal_magician_fiery
     type: "event"
@@ -126,15 +126,15 @@ events:
     type: "event"
   Lion Mountain2:
     actions:
-    - transition_teleport spyder_lion_mountain.tmx,0,90,0.3
+    - transition_teleport spyder_lion_mountain_low.tmx,0,10,0.3
     - char_face player,right
     conditions:
     - is char_at player
     - is char_facing player,right
     x: 39
-    y: 15
+    y: 10
     type: "event"
-  Crystal Inn:
+  Crystal Bank:
     actions:
     - transition_teleport spyder_crystal_bank1.tmx,2,15,0.3
     - char_face player,down

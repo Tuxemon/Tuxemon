@@ -5,10 +5,109 @@ events:
     conditions:
     - not music_playing music_cathedral_theme
     type: "event"
-  Intro Storekeeper:
+  Go Outside:
     actions:
-    - change_bg
-    - lock_controls
+    - transition_teleport spyder_paper_town.tmx,19,13,0.3
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    - is variable_set intro_scoop:done
+    x: 6
+    y: 10
+    type: "event"
+  Create Shopkeeper:
+    actions:
+    - create_npc spyder_shopassistant,0,4
+    - char_face spyder_shopassistant,up
+    conditions:
+    - not char_exists spyder_shopassistant
+    - is variable_set intro_scoop:done
+    type: "event"
+  Create Dante:
+    actions:
+    - create_npc spyder_dante,11,6
+    - char_wander spyder_dante
+    conditions:
+    - not char_exists spyder_dante
+    - is variable_set intro_scoop:done
+    type: "event"
+  Talk Dante No Party:
+    actions:
+    - translated_dialog spyder_papertown_danteresting
+    - set_variable dantefirst:yes
+    behav:
+    - talk spyder_dante
+    conditions:
+    - is variable_set intro_scoop:done
+    - not party_size player,greater_than,0
+    type: "event"
+  Talk Dante Party:
+    actions:
+    - translated_dialog spyder_papertown_danteworking
+    behav:
+    - talk spyder_dante
+    conditions:
+    - is variable_set intro_scoop:done
+    - is party_size player,greater_than,0
+    type: "event"
+  Potions:
+    actions:
+    - translated_dialog potions_in_shop
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 8
+    y: 5
+    width: 5
+    type: "event"
+  CapDev 1st:
+    actions:
+    - change_state JournalInfoState,dollfin
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 8
+    y: 8
+    type: "event"
+  CapDev 2nd:
+    actions:
+    - change_state JournalInfoState,memnomnom
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 9
+    y: 8
+    type: "event"
+  CapDev 3rd:
+    actions:
+    - change_state JournalInfoState,budaye
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 10
+    y: 8
+    type: "event"
+  CapDev 4th:
+    actions:
+    - change_state JournalInfoState,grintot
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 11
+    y: 8
+    type: "event"
+  CapDev 5th:
+    actions:
+    - change_state JournalInfoState,ignibus
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    x: 12
+    y: 8
+    type: "event"
+### The following are the events related to the starting sequence ###
+  Create NPCs:
+    actions:
     - create_npc spyder_shopassistant,7,6
     - char_face spyder_shopassistant,left
     - create_npc spyder_dante,7,7
@@ -23,6 +122,20 @@ events:
     - char_face spyder_papermart_harith,right
     - create_npc spyder_billie,4,3
     - char_face spyder_billie,right
+    conditions:
+    - not char_exists spyder_shopassistant
+    - not char_exists spyder_dante
+    - not char_exists spyder_papermart_miles
+    - not char_exists spyder_papermart_shirley
+    - not char_exists spyder_route2_roddick
+    - not char_exists spyder_papermart_harith
+    - not char_exists spyder_billie
+    - not variable_set intro_scoop:done
+    type: "event"
+  Intro Storekeeper:
+    actions:
+    - change_bg
+    - lock_controls
     - translated_dialog spyder_intro_shopkeeper1
     - pathfind spyder_dante,5,3
     - char_face spyder_dante,left
@@ -130,28 +243,33 @@ events:
     - set_variable billie_choice:budaye
     conditions:
     - is variable_set myintrochoice:budaye
+    - not variable_set billie_choice
     type: "event"
   Billie Dollfin:
     actions:
     - set_variable billie_choice:dollfin
     conditions:
     - is variable_set myintrochoice:dollfin
+    - not variable_set billie_choice
     type: "event"
   Billie Grintot:
     actions:
     - set_variable billie_choice:grintot
     conditions:
     - is variable_set myintrochoice:grintot
+    - not variable_set billie_choice
     type: "event"
   Billie Ignibus:
     actions:
     - set_variable billie_choice:ignibus
     conditions:
     - is variable_set myintrochoice:ignibus
+    - not variable_set billie_choice
     type: "event"
   Billie Memnomnom:
     actions:
     - set_variable billie_choice:memnomnom
     conditions:
     - is variable_set myintrochoice:memnomnom
+    - not variable_set billie_choice
     type: "event"

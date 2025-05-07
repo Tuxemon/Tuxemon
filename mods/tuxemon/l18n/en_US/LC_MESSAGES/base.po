@@ -9652,6 +9652,9 @@ msgstr "The fishing's good in Flower City - but who wants to walk that far? \n H
 msgid "spyder_papertown_danteresting"
 msgstr "I'm working, boss, I'm working! \n Oh, it's just you. You know, we throw out so much of our stock. It's such a terrible waste. \n It all goes into the bins behind the back of the Store."
 
+msgid "spyder_papertown_danteworking"
+msgstr "Hah, I knew you were up to something!\n Well, looks like you've got yourself a little troublemaker now.\n Hope you're ready - once they find a home, they don't forget it!"
+
 msgid "spyder_cotton_nurse1" 
 msgstr "Welcome to the Cathedral Centre! \n Do you want to heal your Tuxemon?"
 

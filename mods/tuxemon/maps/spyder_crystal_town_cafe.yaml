@@ -1,7 +1,7 @@
 events:
   Go Outside:
     actions:
-    - transition_teleport spyder_crystal_town.tmx,23,6,0.3
+    - transition_teleport spyder_crystal_town.tmx,23,5,0.3
     - char_face player,down
     conditions:
     - is char_at player

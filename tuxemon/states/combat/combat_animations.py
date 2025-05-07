@@ -50,7 +50,7 @@ def scale_area(area: tuple[int, int, int, int]) -> Rect:
     return Rect(tools.scale_sequence(area))
 
 
-class CombatAnimations(ABC, Menu[None]):
+class CombatAnimations(Menu[None], ABC):
     """
     Collection of combat animations.
 

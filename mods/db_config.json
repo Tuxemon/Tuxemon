@@ -1,35 +1,64 @@
 {
-    "active_mods": [
-      "tuxemon"
-    ],
-    "mod_versions": {
-      "tuxemon": "1.0.0"
-    },
-    "mod_activation": {
-      "tuxemon": true
-    },
-    "mod_tables": {
-      "tuxemon": [
-        "item",
-        "monster",
-        "npc",
-        "status",
-        "technique",
-        "encounter",
-        "dialogue",
-        "environment",
-        "sounds",
-        "music",
-        "animation",
-        "economy",
-        "element",
-        "taste",
-        "shape",
-        "template",
-        "mission",
-        "terrain",
-        "weather"
-      ]
-    },
-    "mod_table_exclusions": {}
-  }
+  "model_map": {
+    "economy": "tuxemon.db.EconomyModel",
+    "element": "tuxemon.db.ElementModel",
+    "taste": "tuxemon.db.TasteModel",
+    "shape": "tuxemon.db.ShapeModel",
+    "template": "tuxemon.db.TemplateModel",
+    "mission": "tuxemon.db.MissionModel",
+    "encounter": "tuxemon.db.EncounterModel",
+    "dialogue": "tuxemon.db.DialogueModel",
+    "environment": "tuxemon.db.EnvironmentModel",
+    "item": "tuxemon.db.ItemModel",
+    "monster": "tuxemon.db.MonsterModel",
+    "music": "tuxemon.db.MusicModel",
+    "animation": "tuxemon.db.AnimationModel",
+    "npc": "tuxemon.db.NpcModel",
+    "sounds": "tuxemon.db.SoundModel",
+    "status": "tuxemon.db.StatusModel",
+    "technique": "tuxemon.db.TechniqueModel",
+    "terrain": "tuxemon.db.TerrainModel",
+    "weather": "tuxemon.db.WeatherModel"
+  },
+  "mod_base_path": "mods",
+  "mod_db_subfolder": "db",
+  "file_extensions": [
+    ".json",
+    ".yaml"
+  ],
+  "default_lookup_table": "monster",
+  "active_mods": [
+    "tuxemon"
+  ],
+  "mod_versions": {
+    "tuxemon": "1.0.0"
+  },
+  "mod_activation": {
+    "tuxemon": true
+  },
+  "mod_tables": {
+    "tuxemon": [
+      "item",
+      "monster",
+      "npc",
+      "status",
+      "technique",
+      "encounter",
+      "dialogue",
+      "environment",
+      "sounds",
+      "music",
+      "animation",
+      "economy",
+      "element",
+      "taste",
+      "shape",
+      "template",
+      "mission",
+      "terrain",
+      "weather"
+    ]
+  },
+  "mod_table_exclusions": {},
+  "mod_dependencies": {}
+}

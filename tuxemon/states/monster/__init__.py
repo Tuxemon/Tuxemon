@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Generator
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from pygame import SRCALPHA
 from pygame.font import Font
@@ -21,6 +21,9 @@ from tuxemon.sprite import Sprite
 from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea, draw_text
 
+if TYPE_CHECKING:
+    from tuxemon.npc import NPC
+
 
 class MonsterMenuState(Menu[Optional[Monster]]):
     """
@@ -33,7 +36,8 @@ class MonsterMenuState(Menu[Optional[Monster]]):
     background_filename = prepare.BG_MONSTERS
     draw_borders = False
 
-    def __init__(self) -> None:
+    def __init__(self, character: NPC) -> None:
+        self.char = character
         super().__init__()
 
         # make a text area to show messages
@@ -54,7 +58,7 @@ class MonsterMenuState(Menu[Optional[Monster]]):
         self.monster_slot_border = MonsterSlotBorder()
 
         # TODO: something better than this global, load_sprites stuff
-        for monster in local_session.player.monsters:
+        for monster in self.char.monsters:
             monster.load_sprites()
 
     def calc_menu_items_rect(self) -> Rect:
@@ -69,7 +73,7 @@ class MonsterMenuState(Menu[Optional[Monster]]):
     ) -> Generator[MenuItem[Optional[Monster]], None, None]:
         # position the monster portrait
         try:
-            monster = local_session.player.monsters[self.selected_index]
+            monster = self.char.monsters[self.selected_index]
             self.monster_portrait_display.update(monster)
         except IndexError:
             self.monster_portrait_display.update(None)
@@ -80,11 +84,11 @@ class MonsterMenuState(Menu[Optional[Monster]]):
         # position and animate the monster portrait
         width = prepare.SCREEN_SIZE[0] // 2
         height = prepare.SCREEN_SIZE[1] // int(
-            local_session.player.party_limit * 1.5,
+            self.char.party_limit * 1.5,
         )
 
         # make 6 slots
-        for _ in range(local_session.player.party_limit):
+        for _ in range(self.char.party_limit):
             rect = Rect(0, 0, width, height)
             surface = Surface(rect.size, SRCALPHA)
             item = MenuItem(surface, None, None, None)
@@ -131,7 +135,7 @@ class MonsterMenuState(Menu[Optional[Monster]]):
         for index, item in enumerate(self.menu_items):
             monster: Optional[Monster]
             try:
-                monster = local_session.player.monsters[index]
+                monster = self.char.monsters[index]
             except IndexError:
                 monster = None
             item.game_object = monster
@@ -162,7 +166,7 @@ class MonsterMenuState(Menu[Optional[Monster]]):
 
     def on_menu_selection_change(self) -> None:
         try:
-            monster = local_session.player.monsters[self.selected_index]
+            monster = self.char.monsters[self.selected_index]
             self.monster_portrait_display.update(monster)
         except IndexError:
             self.monster_portrait_display.update(None)

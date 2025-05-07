@@ -40,7 +40,6 @@ class State(ABC):
      * process_event - Called when there is a new input event
      * pause         - Called when state is no longer active
      * shutdown      - Called before state is destroyed
-
     """
 
     rect = Rect((0, 0), prepare.SCREEN_SIZE)
@@ -56,7 +55,6 @@ class State(ABC):
             rect: Area of the screen will be drawn on.
 
         Important!  The state must be ready to be drawn after this is called.
-
         """
         self.start_time = 0.0
         self.current_time = 0.0
@@ -69,7 +67,7 @@ class State(ABC):
 
         # TODO: fix local session
         self.client = local_session.client
-        self._hooks: dict[str, list[Callable[..., None]]] = {}
+        self.hook_manager = HookManager()
 
     @property
     def name(self) -> str:
@@ -86,7 +84,6 @@ class State(ABC):
 
         Returns:
             Loaded sprite.
-
         """
         layer = kwargs.pop("layer", 0)
         sprite = graphics.load_sprite(filename, **kwargs)
@@ -105,7 +102,6 @@ class State(ABC):
 
         Returns:
             Resulting animation.
-
         """
         ani = Animation(*targets, **kwargs)
         self.animations.add(ani)
@@ -130,7 +126,6 @@ class State(ABC):
 
         Returns:
             The created task.
-
         """
         if not args:
             raise ValueError("Must provide a function to be called")
@@ -151,7 +146,6 @@ class State(ABC):
 
         Parameters:
             target: Object whose animations should be removed.
-
         """
         remove_animations_of(target, self.animations)
 
@@ -175,7 +169,6 @@ class State(ABC):
         Returns:
             ``None`` if the event should not be passed to the next
             handlers. Otherwise, return the input event.
-
         """
         return event
 
@@ -185,11 +178,10 @@ class State(ABC):
 
         Parameters:
             time_delta: Amount of time in fractional seconds since last update.
-
         """
         self.animations.update(time_delta)
         self.sprites.update(time_delta)
-        self.trigger_hook("update", time_delta)
+        self.trigger_hook("state_update", time_delta)
 
     def draw(self, surface: Surface) -> None:
         """
@@ -201,9 +193,8 @@ class State(ABC):
 
         Parameters:
             surface: Surface to be rendered onto.
-
         """
-        self.trigger_hook("draw", surface)
+        self.trigger_hook("state_draw", surface)
 
     def resume(self) -> None:
         """
@@ -218,9 +209,8 @@ class State(ABC):
 
         Example uses: starting music, open menu, starting animations,
         timers, etc.
-
         """
-        self.trigger_hook("resume")
+        self.trigger_hook("state_resume")
 
     def pause(self) -> None:
         """
@@ -235,9 +225,8 @@ class State(ABC):
 
         Example uses: stopping music, sounds, fading out, making state
         graphics dim, etc.
-
         """
-        self.trigger_hook("pause")
+        self.trigger_hook("state_pause")
 
     def shutdown(self) -> None:
         """
@@ -249,28 +238,28 @@ class State(ABC):
         Make sure to release any references to objects that may cause
         cyclical dependencies.
         """
-        self.trigger_hook("shutdown")
+        self.trigger_hook("state_shutdown")
 
     def register_hook(
-        self, hook_name: str, callback: Callable[..., None]
+        self, hook_name: str, callback: Callable[..., None], priority: int = 0
     ) -> None:
-        if hook_name not in self._hooks:
-            self._hooks[hook_name] = []
-        self._hooks[hook_name].append(callback)
+        self.hook_manager.register_hook(hook_name, callback, priority)
 
     def unregister_hook(
         self, hook_name: str, callback: Callable[..., None]
     ) -> None:
-        if hook_name in self._hooks:
-            try:
-                self._hooks[hook_name].remove(callback)
-            except ValueError:
-                pass
+        if self.hook_manager.is_hook_registered(hook_name):
+            self.hook_manager.unregister_hook(hook_name, callback)
 
     def trigger_hook(self, hook_name: str, *args: Any, **kwargs: Any) -> None:
-        if hook_name in self._hooks:
-            for callback in self._hooks[hook_name]:
-                callback(*args, **kwargs)
+        if self.hook_manager.is_hook_registered(hook_name):
+            self.hook_manager.trigger_hook(hook_name, *args, **kwargs)
+
+    def replace_hooks(
+        self, hook_name: str, hooks: list[tuple[int, Callable[..., None]]]
+    ) -> None:
+        if self.hook_manager.is_hook_registered(hook_name):
+            self.hook_manager._hooks[hook_name] = hooks
 
 
 class StateManager:
@@ -281,7 +270,6 @@ class StateManager:
         package: Name of package to search for states.
         on_state_change: Optional callback to be executed when top state
             changes.
-
     """
 
     def __init__(
@@ -290,91 +278,39 @@ class StateManager:
         on_state_change: Optional[Callable[[], None]] = None,
     ) -> None:
         self.package = package
+        self.hook_manager = HookManager()
+        self.state_repository = StateRepository()
         self._state_queue: list[tuple[str, Mapping[str, Any]]] = []
         self._state_stack: list[State] = []
-        self._state_dict: dict[str, type[State]] = {}
         self._resume_set: set[State] = set()
-        self._global_hooks: dict[str, list[Callable[..., None]]] = {}
         if on_state_change:
             self.register_global_hook("on_state_change", on_state_change)
         self.register_global_hook("pre_state_update", lambda time_delta: None)
         self.register_global_hook("post_state_update", lambda time_delta: None)
 
     def register_global_hook(
-        self, hook_name: str, callback: Callable[..., None]
+        self, hook_name: str, callback: Callable[..., None], priority: int = 0
     ) -> None:
-        """
-        Registers a callback function for a specific hook name.
-
-        Parameters:
-            hook_name: The name of the hook.
-            callback: The callback function to register.
-        """
-        if not isinstance(hook_name, str) or not hook_name:
-            raise ValueError(f"Hook '{hook_name}' must be a non-empty string")
-        if not callable(callback):
-            raise ValueError("Callback must be a callable function")
-        if hook_name not in self._global_hooks:
-            self._global_hooks[hook_name] = []
-        self._global_hooks[hook_name].append(callback)
+        self.hook_manager.register_hook(hook_name, callback, priority)
 
     def unregister_global_hook(
         self, hook_name: str, callback: Callable[..., None]
     ) -> None:
-        """
-        Unregisters a previously registered callback function for a
-        specific hook name.
-
-        Parameters:
-            hook_name: The name of the hook.
-            callback: The callback function to unregister.
-        """
-        if hook_name not in self._global_hooks:
-            raise ValueError(f"Hook '{hook_name}' not found")
-        try:
-            self._global_hooks[hook_name].remove(callback)
-        except ValueError:
-            raise ValueError("Callback not found for hook")
+        self.hook_manager.unregister_hook(hook_name, callback)
 
     def trigger_global_hook(
         self, hook_name: str, *args: Any, **kwargs: Any
     ) -> None:
-        """
-        Triggers all registered callback functions for a specific hook
-        name, passing in any additional arguments.
-
-        Parameters:
-            hook_name: The name of the hook.
-            *args: Additional positional arguments to pass to the callbacks.
-            **kwargs: Additional keyword arguments to pass to the callbacks.
-        """
-        if hook_name not in self._global_hooks:
-            raise ValueError(f"Hook name '{hook_name}' not found")
-        for callback in self._global_hooks[hook_name]:
-            callback(*args, **kwargs)
+        self.hook_manager.trigger_hook(hook_name, *args, **kwargs)
 
     def is_hook_registered(self, hook_name: str) -> bool:
-        """
-        Checks if a hook with the given name is registered.
-        """
-        return hook_name in self._global_hooks
-
-    def debug_hooks(self) -> None:
-        """
-        Prints out all registered hooks and their callback functions for
-        debugging purposes.
-        """
-        for hook_name, callbacks in self._global_hooks.items():
-            logger.debug(f"Hook: {hook_name}")
-            for i, callback in enumerate(callbacks):
-                logger.debug(f"  Callback {i+1}: {callback.__name__}")
+        return self.hook_manager.is_hook_registered(hook_name)
 
     def auto_state_discovery(self) -> None:
         """
         Scan a folder, load states found in it, and register them.
 
         TODO: this functionality duplicates the plugin code.
-
         """
         state_folder = os.path.join(paths.LIBDIR, *self.package.split(".")[1:])
         exclude_endings = (".py", ".pyc", ".pyo", "__pycache__")
@@ -386,30 +322,22 @@ class StateManager:
                 self.register_state(state)
 
     def register_state(self, state: type[State]) -> None:
-        """
-        Add a state class.
-
-        Parameters:
-            state: The state to add.
-
-        """
+        """Add a state class."""
         name = state.__name__
         logger.debug(f"loading state: {name}")
-        self._state_dict[name] = state
+        self.state_repository.add_state(state)
 
     def _instance(self, state_name: str, **kwargs: Any) -> State:
-        """
-        Create new instance of State. Builder patter, WIP.
-
-        Parameters:
-            state_name: Name of state to create.
-
-        """
+        """Create new instance of State."""
         try:
-            state = self._state_dict[state_name]
+            state_cls = self.state_repository.get_state(state_name)
         except KeyError:
             raise RuntimeError(f"Cannot find state: {state_name}")
-        return state(**kwargs) if kwargs else state()
+
+        builder = StateBuilder(state_cls)
+        for key, value in kwargs.items():
+            builder.add_attribute(key, value)
+        return builder.build()
 
     @staticmethod
     def collect_states_from_module(
@@ -426,7 +354,6 @@ class StateManager:
 
         Yields:
             Each game state class.
-
         """
         classes = inspect.getmembers(sys.modules[import_name], inspect.isclass)
 
@@ -446,7 +373,6 @@ class StateManager:
 
         Yields:
             Each game state class.
-
         """
         try:
             import_name = self.package + "." + folder
@@ -467,7 +393,6 @@ class StateManager:
 
         Parameters:
             time_delta: Amount of time passed since last frame.
-
         """
         logger.debug("updating states")
         self.trigger_global_hook("pre_state_update", time_delta)
@@ -487,7 +412,6 @@ class StateManager:
 
         Parameters:
             state: State to check for resume
-
         """
         if state in self._resume_set:
             logger.debug(f"removing {state.name} from resume set")
@@ -495,16 +419,8 @@ class StateManager:
             state.resume()
 
     def query_all_states(self) -> Mapping[str, type[State]]:
-        """
-        Return a dictionary of all loaded states.
-
-        Keys are state names, values are State classes.
-
-        Returns:
-            Dictionary of all loaded states.
-
-        """
-        return self._state_dict.copy()
+        """Return a dictionary of all loaded states."""
+        return self.state_repository.all_states()
 
     def queue_state(self, state_name: str, **kwargs: Any) -> None:
         """
@@ -517,7 +433,6 @@ class StateManager:
             state_name: Name of state to start.
             kwargs: Arguments to pass to the ``__init__`` method of the
                 new state.
-
         """
         logger.debug(f"queue state: {state_name}")
         self._state_queue.append((state_name, kwargs))
@@ -533,7 +448,6 @@ class StateManager:
         Parameters:
             state: The state to remove from stack. Use None (or omit) for
                 current state.
-
         """
         # handle situation where there is a queued state
         if self._state_queue:
@@ -577,7 +491,6 @@ class StateManager:
 
         Parameters:
             state: State to remove
-
         """
         try:
             index = self._state_stack.index(state)
@@ -650,7 +563,6 @@ class StateManager:
 
         Returns:
             Instanced state.
-
         """
         logger.debug(f"push state: {state_name}")
         previous = self.current_state
@@ -710,7 +622,6 @@ class StateManager:
 
         Returns:
             Instanced state.
-
         """
         logger.debug(f"replace state: {state_name}")
         # raise error if stack is empty
@@ -746,7 +657,6 @@ class StateManager:
 
         Returns:
             Currently running state.
-
         """
         try:
             return self._state_stack[0]
@@ -760,7 +670,6 @@ class StateManager:
 
         Returns:
             List of active states.
-
         """
         return self._state_stack[:]
 
@@ -771,7 +680,6 @@ class StateManager:
 
         Returns:
             List of queued states
-
         """
         return self._state_queue[:]
 
@@ -798,7 +706,6 @@ class StateManager:
 
         Returns:
             State with that name, if one exist. ``None`` otherwise.
-
         """
         for state in self.active_states:
             if (
@@ -821,7 +728,6 @@ class StateManager:
 
         Returns:
             State with that name, if one exist. ``None`` otherwise.
-
         """
         for queued_state in self._state_queue:
             if queued_state[0] == state_name:
@@ -832,3 +738,164 @@ class StateManager:
     def get_active_state_names(self) -> Sequence[str]:
         """List of names of active states."""
         return [state.name for state in self._state_stack]
+
+
+class StateRepository:
+    def __init__(self) -> None:
+        self._state_dict: dict[str, type[State]] = {}
+
+    def add_state(self, state: type[State], strict: bool = False) -> None:
+        """
+        Adds a state to the repository.
+
+        Parameters:
+            state: The state class to register.
+            strict: If True, raises an error if the state is already registered.
+                Defaults to False.
+
+        Raises:
+            ValueError: If the state is already registered and strict is True.
+        """
+        name = state.__name__
+        if name in self._state_dict:
+            if strict:
+                raise ValueError(f"State '{name}' is already registered.")
+            else:
+                logger.warning(
+                    f"State '{name}' is already registered. Overwriting."
+                )
+        self._state_dict[name] = state
+
+    def get_state(self, name: str) -> type[State]:
+        """Retrieve a state by its name."""
+        try:
+            return self._state_dict[name]
+        except KeyError:
+            raise ValueError(f"State '{name}' is not registered.")
+
+    def all_states(self) -> dict[str, type[State]]:
+        """Retrieve all registered states."""
+        return self._state_dict.copy()
+
+
+class StateBuilder:
+    def __init__(self, state_cls: type[State]) -> None:
+        """
+        Initializes the builder for a specific state class.
+
+        Parameters:
+            state_cls: The class of the state to be constructed.
+        """
+        self.state_cls = state_cls
+        self.attributes: dict[str, Any] = {}
+
+    def add_attribute(self, key: str, value: Any) -> StateBuilder:
+        """
+        Add an attribute or parameter to the state.
+
+        Parameters:
+            key: The name of the attribute.
+            value: The value of the attribute.
+
+        Returns:
+            The builder instance (for method chaining).
+        """
+        self.attributes[key] = value
+        return self
+
+    def build(self) -> State:
+        """
+        Constructs the state instance with the specified attributes.
+
+        Returns:
+            An instance of the state class.
+        """
+        return self.state_cls(**self.attributes)
+
+
+class HookManager:
+    def __init__(self) -> None:
+        self._hooks: dict[str, list[tuple[int, Callable[..., None]]]] = {}
+
+    def register_hook(
+        self, name: str, callback: Callable[..., None], priority: int = 0
+    ) -> None:
+        """
+        Registers a callback function for a specified hook.
+
+        Parameters:
+            name: The unique name of the hook (non-empty string).
+            callback: A callable function for the hook.
+            priority: Execution priority (default is 0).
+
+        Raises:
+            ValueError: If the name is empty or callback is not callable.
+        """
+        if not isinstance(name, str) or not name:
+            raise ValueError("Hook name must be a non-empty string.")
+        if not callable(callback):
+            raise ValueError("Callback must be callable.")
+
+        if name not in self._hooks:
+            self._hooks[name] = []
+        self._hooks[name].append((priority, callback))
+        self._hooks[name].sort(reverse=True, key=lambda hook: hook[0])
+
+    def unregister_hook(
+        self,
+        name: str,
+        callback: Callable[..., None],
+        priority: Optional[int] = None,
+    ) -> None:
+        """
+        Unregisters a callback function from a specified hook.
+
+        Parameters:
+            name: The unique name of the hook.
+            callback: The callback function to remove.
+            priority: The priority of the callback (optional).
+
+        Raises:
+            ValueError: If the hook does not exist.
+        """
+        if name not in self._hooks:
+            raise ValueError(f"Hook '{name}' not found.")
+        self._hooks[name] = [
+            (p, cb)
+            for p, cb in self._hooks[name]
+            if cb != callback or (priority is not None and p != priority)
+        ]
+        if not self._hooks[name]:
+            del self._hooks[name]
+
+    def trigger_hook(self, name: str, *args: Any, **kwargs: Any) -> None:
+        """
+        Triggers all registered callback functions for a specific hook
+        name, passing in any additional arguments.
+
+        Parameters:
+            hook_name: The name of the hook.
+            *args: Additional positional arguments to pass to the callbacks.
+            **kwargs: Additional keyword arguments to pass to the callbacks.
+        """
+        if name not in self._hooks:
+            raise ValueError(f"Hook '{name}' is not registered.")
+        for _, callback in self._hooks[name]:
+            callback(*args, **kwargs)
+
+    def debug_hooks(self) -> None:
+        """Log all hooks and their priorities."""
+        for name, callbacks in self._hooks.items():
+            logger.debug(f"Hook: {name}")
+            for priority, callback in callbacks:
+                logger.debug(f"  Priority {priority}: {callback.__name__}")
+
+    def reset_hooks(self) -> None:
+        """Reset all hooks."""
+        self._hooks.clear()
+
+    def is_hook_registered(self, name: str) -> bool:
+        """
+        Checks if a hook with the given name is registered.
+        """
+        return name in self._hooks

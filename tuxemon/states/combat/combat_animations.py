@@ -14,8 +14,8 @@ from collections.abc import MutableMapping
 from functools import partial
 from typing import TYPE_CHECKING, Literal, Optional, Union
 
-import pygame
 from pygame.rect import Rect
+from pygame.transform import flip as pg_flip
 
 from tuxemon import graphics, prepare, tools
 from tuxemon.combat import alive_party, build_hud_text, fainted
@@ -389,7 +389,6 @@ class CombatAnimations(Menu[None], ABC):
         Parameters:
             monster: Monster who needs to update the hud.
             filename: Filename of the hud.
-
         """
         if monster in self.hud:
             return self.hud[monster]
@@ -406,7 +405,6 @@ class CombatAnimations(Menu[None], ABC):
             home: Label blit over the sprite.
             is_right: Boolean side (true: right side, false: left side).
                 right side (player), left side (opponent)
-
         """
         if is_right:
             line1, line2 = prepare.HUD_RT_LINE1, prepare.HUD_RT_LINE2
@@ -428,9 +426,9 @@ class CombatAnimations(Menu[None], ABC):
 
         Parameters:
             monster: The monster that needs to update the HUD.
-            hud_position: The part of the layout where the HUD will be displayed (e.g. "hud0", etc.).
+            hud_position: The part of the layout where the HUD will be
+                displayed (e.g. "hud0", etc.).
             animate: Whether the HUD should be animated (slide in) or not.
-
         """
         trainer_battle = self.is_trainer_battle
         menu = self.graphics.menu
@@ -529,7 +527,6 @@ class CombatAnimations(Menu[None], ABC):
         Parameters:
             player: The player whose HUD is being animated.
             home: Location and size of the HUD.
-
         """
         if self.get_side(home) == "left":
             tray, centerx, offset = self.animate_party_hud_left(home)
@@ -618,7 +615,6 @@ class CombatAnimations(Menu[None], ABC):
 
         Note:
             Party HUD is the arrow thing with balls.  Yes, that one.
-
         """
         for dev in self.capdevs:
             prev = dev.state
@@ -703,10 +699,8 @@ class CombatAnimations(Menu[None], ABC):
         """Flip the sprites horizontally."""
 
         def flip() -> None:
-            enemy.image = pygame.transform.flip(enemy.image, True, False)
-            player_back.image = pygame.transform.flip(
-                player_back.image, True, False
-            )
+            enemy.image = pg_flip(enemy.image, True, False)
+            player_back.image = pg_flip(player_back.image, True, False)
 
         flip()
         self.task(flip, 1.5)
@@ -779,7 +773,6 @@ class CombatAnimations(Menu[None], ABC):
 
         Returns:
             The animated item sprite.
-
         """
         monster_sprite = self._monster_sprite_map[monster]
         sprite = self.load_sprite(item.sprite)
@@ -809,7 +802,6 @@ class CombatAnimations(Menu[None], ABC):
             monster: The monster being captured.
             item: The capture device used to capture the monster.
             sprite: The sprite to animate.
-
         """
         monster_sprite = self._monster_sprite_map[monster]
         capdev = self.animate_throwing(monster, item)
@@ -920,7 +912,6 @@ class CombatAnimations(Menu[None], ABC):
         Parameters:
             character: The character whose HUD needs to be updated.
             animate: Whether to animate the HUD update. Defaults to True.
-
         """
         monsters = self.monsters_in_play.get(character)
         if not monsters:

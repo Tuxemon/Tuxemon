@@ -8,7 +8,7 @@ from collections.abc import Callable, Mapping, Sequence
 from math import cos, pi, sin, sqrt
 from typing import Any, Optional, Union
 
-import pygame
+from pygame.sprite import Group, Sprite
 
 __all__ = ("Task", "Animation", "remove_animations_of")
 
@@ -32,7 +32,6 @@ def check_number(value: Any) -> float:
 
     Parameters:
         value: Some object.
-
     """
     try:
         return float(value)
@@ -40,14 +39,13 @@ def check_number(value: Any) -> float:
         raise ValueError
 
 
-def remove_animations_of(target: object, group: pygame.sprite.Group) -> None:
+def remove_animations_of(target: object, group: Group) -> None:
     """
     Find animations that target objects and remove those animations.
 
     Parameters:
         target: Object whose animations should be removed.
         group: Pygame group where to remove the animations.
-
     """
     animations = [ani for ani in group.sprites() if isinstance(ani, Animation)]
     to_remove = [
@@ -56,7 +54,7 @@ def remove_animations_of(target: object, group: pygame.sprite.Group) -> None:
     group.remove(*to_remove)
 
 
-class TaskBase(pygame.sprite.Sprite):
+class TaskBase(Sprite):
     _valid_schedules: Sequence[str] = []
 
     def __init__(self) -> None:
@@ -132,7 +130,7 @@ class Task(TaskBase):
         times: Number of intervals.
 
     Examples:
-        >>> task_group = pygame.sprite.Group()
+        >>> task_group = Group()
 
         >>> # like a delay
         >>> def call_later():
@@ -159,7 +157,6 @@ class Task(TaskBase):
         >>> task.chain(Task(something_else))
 
         When chaining tasks, do not add the chained tasks to a group.
-
     """
 
     _valid_schedules = ("on interval", "on finish", "on abort")
@@ -310,7 +307,7 @@ class Task(TaskBase):
             task.add(*groups)
 
 
-class Animation(pygame.sprite.Sprite):
+class Animation(Sprite):
     """
     Change numeric values over time.
 
@@ -392,7 +389,6 @@ class Animation(pygame.sprite.Sprite):
             in order to find the actual value one has to add the initial
             one.
         kwargs: Properties of the ``targets`` to be used, and their values.
-
     """
 
     default_duration = 1000.0

@@ -55,7 +55,7 @@
   </object>
   <object id="10" name="Use Computer" type="event" x="48" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="change_state PCState"/>
+    <property name="act1" value="change_state PCState,player"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>

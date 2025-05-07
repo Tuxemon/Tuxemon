@@ -54,7 +54,6 @@ class GetPlayerMonsterAction(EventAction):
         filter_name: the name of the first filter
         value_name: the actual value to filter
         extra: used to filter more
-
     """
 
     name = "get_player_monster"
@@ -93,7 +92,11 @@ class GetPlayerMonsterAction(EventAction):
                 self.result = True
                 return self.result
             # filter element / type
-            if filter_name == "element" and target.has_type(value_name):
+            if (
+                filter_name == "element"
+                and value_name
+                and target.has_type(value_name)
+            ):
                 self.result = True
                 return self.result
             # filter shape
@@ -145,7 +148,9 @@ class GetPlayerMonsterAction(EventAction):
         self.result = False
         self.choose = False
         # pull up the monster menu so we know which one we are saving
-        menu = self.session.client.push_state(MonsterMenuState())
+        menu = self.session.client.push_state(
+            MonsterMenuState(self.session.player)
+        )
         menu.is_valid_entry = self.validate  # type: ignore[assignment]
         menu.on_menu_selection = self.set_var  # type: ignore[assignment]
         # if without filters, no closing by clicking back

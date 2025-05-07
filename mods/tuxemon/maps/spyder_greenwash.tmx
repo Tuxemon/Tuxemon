@@ -77,7 +77,7 @@
     <property name="act23" value="translated_dialog spyder_greenwash_looten4"/>
     <property name="act40" value="set_variable gotaardant:yes"/>
     <property name="act50" value="add_item aardant"/>
-    <property name="act51" value="translated_dialog aardant,,center"/>
+    <property name="act51" value="translated_dialog aardant,,center,center,middle"/>
     <property name="behav1" value="talk spyder_greenwash_looten"/>
     <property name="cond1" value="not variable_set gotaardant:yes"/>
    </properties>
@@ -183,7 +183,7 @@
     <property name="act06" value="start_battle player,spyder_greenwash_broer"/>
     <property name="act07" value="translated_dialog spyder_greenwash_broer2"/>
     <property name="act08" value="add_item potion"/>
-    <property name="act09" value="translated_dialog potion,,center"/>
+    <property name="act09" value="translated_dialog potion,,center,center,middle"/>
     <property name="act10" value="set_variable greenwashbroer:yes"/>
     <property name="cond1" value="not variable_set greenwashbroer:yes"/>
     <property name="cond2" value="is char_at player"/>

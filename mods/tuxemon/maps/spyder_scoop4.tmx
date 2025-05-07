@@ -141,7 +141,7 @@
   <object id="39" name="Talk Landrace" type="event" x="160" y="112" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_scoop_landrace1"/>
-    <property name="act3" value="wild_encounter sludgehog,40,,,interior"/>
+    <property name="act3" value="wild_encounter sludgehog,40,3,,interior"/>
     <property name="act4" value="translated_dialog spyder_scoop_landrace2"/>
     <property name="act6" value="set_variable scooplandrace:yes"/>
     <property name="act61" value="remove_npc spyder_scoop_landrace"/>
@@ -168,7 +168,7 @@
   <object id="41" name="Talk LapinouA" type="event" x="16" y="64" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_scoop_lapinou1"/>
-    <property name="act3" value="wild_encounter lapinou,30,,,interior"/>
+    <property name="act3" value="wild_encounter lapinou,30,3,,interior"/>
     <property name="act4" value="translated_dialog spyder_scoop_lapinou2"/>
     <property name="act6" value="set_variable scooplapinoua:yes"/>
     <property name="act7" value="remove_npc spyder_scoop_lapinoua"/>
@@ -187,7 +187,7 @@
   <object id="43" name="Talk LapinouB" type="event" x="144" y="256" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_scoop_lapinou1"/>
-    <property name="act3" value="wild_encounter lapinou,30,,,interior"/>
+    <property name="act3" value="wild_encounter lapinou,30,3,,interior"/>
     <property name="act4" value="translated_dialog spyder_scoop_lapinou2"/>
     <property name="act6" value="set_variable scooplapinoub:yes"/>
     <property name="act7" value="remove_npc spyder_scoop_lapinoub"/>
@@ -206,7 +206,7 @@
   <object id="45" name="Talk LapinouC" type="event" x="16" y="256" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_scoop_lapinou1"/>
-    <property name="act3" value="wild_encounter lapinou,30,,,interior"/>
+    <property name="act3" value="wild_encounter lapinou,30,3,,interior"/>
     <property name="act4" value="translated_dialog spyder_scoop_lapinou2"/>
     <property name="act6" value="set_variable scooplapinouc:yes"/>
     <property name="act7" value="remove_npc spyder_scoop_lapinouc"/>
@@ -225,7 +225,7 @@
   <object id="47" name="Talk CochiniA" type="event" x="64" y="160" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_scoop_cochini1"/>
-    <property name="act3" value="wild_encounter cochini,30,,,interior"/>
+    <property name="act3" value="wild_encounter cochini,30,3,,interior"/>
     <property name="act4" value="translated_dialog spyder_scoop_cochini2"/>
     <property name="act6" value="set_variable scoopcochinia:yes"/>
     <property name="act7" value="remove_npc spyder_scoop_cochinia"/>
@@ -244,7 +244,7 @@
   <object id="49" name="Talk CochiniB" type="event" x="16" y="304" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_scoop_cochini1"/>
-    <property name="act3" value="wild_encounter cochini,30,,,interior"/>
+    <property name="act3" value="wild_encounter cochini,30,3,,interior"/>
     <property name="act4" value="translated_dialog spyder_scoop_cochini2"/>
     <property name="act6" value="set_variable scoopcochinib:yes"/>
     <property name="act7" value="remove_npc spyder_scoop_cochinib"/>
@@ -263,7 +263,7 @@
   <object id="51" name="Talk CochiniC" type="event" x="144" y="288" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_scoop_cochini1"/>
-    <property name="act3" value="wild_encounter cochini,30,,,interior"/>
+    <property name="act3" value="wild_encounter cochini,30,3,,interior"/>
     <property name="act4" value="translated_dialog spyder_scoop_cochini2"/>
     <property name="act6" value="set_variable scoopcochinic:yes"/>
     <property name="act7" value="remove_npc spyder_scoop_cochinic"/>

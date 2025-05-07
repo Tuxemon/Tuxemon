@@ -7,17 +7,24 @@ from collections.abc import Callable, Generator
 from functools import partial
 from typing import Any, Optional
 
+import yaml
 from pygame.rect import Rect
 
 from tuxemon import tools
+from tuxemon.constants import paths
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.platform.const import buttons, events, intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.session import local_session
-from tuxemon.states.choice.choice_state import ChoiceState
 from tuxemon.ui.text import TextArea
+
+
+def load_names(file_path: str) -> Any:
+    yaml_path = f"{paths.mods_folder}/{file_path}"
+    with open(yaml_path) as file:
+        return yaml.safe_load(file)
 
 
 class InputMenuObj:
@@ -59,6 +66,7 @@ class InputMenu(Menu[InputMenuObj]):
             initial: Optional string to pre-fill the input box with.
 
         """
+        self.name_data = load_names("npc_names.yaml")
         super().__init__(**kwargs)
         self.is_first_input = True
         self.input_string = initial
@@ -212,18 +220,28 @@ class InputMenu(Menu[InputMenuObj]):
         This is called when the user selects "Don't Care".
         """
         variables = local_session.player.game_variables
-        default_names: str
-        if "gender_choice" in variables:
-            if variables["gender_choice"] == "gender_male":
-                default_names = T.translate("random_names_male")
-            elif variables["gender_choice"] == "gender_female":
-                default_names = T.translate("random_names_female")
-            else:
-                default_names = T.translate("random_names")
-        else:
-            default_names = T.translate("random_names")
-        self.input_string = rd.choice(default_names.split("\n"))
+        gender = variables.get("gender_choice", "neutral")
+        if gender not in ["male", "female"]:
+            gender = "neutral"
+        language = T.get_current_language().lower()
+        self.input_string = self.get_random_name(gender, language)
         self.update_text_area()
+
+    def get_random_name(self, gender: str, language: str) -> str:
+        try:
+            name = rd.choice(self.name_data["random_names"][language][gender])
+        except KeyError:
+            default = self.client.config.locale.slug.lower()
+            try:
+                name = rd.choice(
+                    self.name_data["random_names"][default][gender]
+                )
+            except KeyError:
+                raise ValueError(
+                    f"Names not found for language '{language}' "
+                    f"or fallback language '{default}' and gender '{gender}'."
+                )
+        return str(name)
 
     def _create_empty_item(self) -> MenuItem[InputMenuObj]:
         empty = MenuItem(
@@ -261,7 +279,7 @@ class InputMenu(Menu[InputMenuObj]):
                     (c, c, partial(self.add_input_char_and_pop, c))
                     for c in all_variants
                 ]
-                self.client.push_state(ChoiceState(menu=choices))
+                self.client.push_state("ChoiceState", menu=choices)
 
     def _handle_backspace_event(self) -> None:
         self.backspace()

@@ -3,14 +3,12 @@
 from __future__ import annotations
 
 import logging
-import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
-from tuxemon import formula, prepare
+from tuxemon import formula
 from tuxemon.core.core_effect import ItemEffect, ItemEffectResult
-from tuxemon.db import CategoryStatus as Category
-from tuxemon.db import GenderType, SeenStatus
+from tuxemon.db import SeenStatus
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -35,7 +33,7 @@ class CaptureCombinedEffect(ItemEffect):
         assert target
 
         # Calculate status modifier
-        status_modifier = self._calculate_status_modifier(target)
+        status_modifier = formula.calculate_status_modifier(item, target)
 
         # Calculate tuxeball modifier
         tuxeball_modifier = self._calculate_tuxeball_modifier(item, target)
@@ -56,16 +54,6 @@ class CaptureCombinedEffect(ItemEffect):
             name=item.name, success=True, num_shakes=shakes
         )
 
-    def _calculate_status_modifier(self, target: Monster) -> float:
-        status_modifier = prepare.STATUS_MODIFIER
-        if target.status and target.status[0].category:
-            status_modifier = (
-                prepare.STATUS_NEGATIVE
-                if target.status[0].category == Category.negative
-                else prepare.STATUS_POSITIVE
-            )
-        return status_modifier
-
     def _calculate_tuxeball_modifier(
         self, item: Item, target: Monster
     ) -> float:
@@ -73,99 +61,32 @@ class CaptureCombinedEffect(ItemEffect):
         Calculate the status effectiveness modifier based on the opponent's
         status.
         """
-        tuxeball_modifier = prepare.TUXEBALL_MODIFIER
-
-        if self.category == "element":
-            tuxeball_modifier = self._calculate_element_tuxeball_modifier(
-                target
-            )
-        elif self.category == "gender":
-            tuxeball_modifier = self._calculate_gender_tuxeball_modifier(
-                target
-            )
-        elif self.category == "variable":
-            tuxeball_modifier = self._calculate_variable_tuxeball_modifier()
-        elif self.category == "gambler":
-            tuxeball_modifier = self._calculate_gambler_tuxeball_modifier()
-        elif self.category == "monster":
-            tuxeball_modifier = self._calculate_monster_tuxeball_modifier(
-                item, target
-            )
-        else:  # Flavored-based tuxeball
-            target.taste_warm = self.label
-
-        return tuxeball_modifier
-
-    def _calculate_element_tuxeball_modifier(self, opponent: Monster) -> float:
-        """
-        Calculate the tuxeball effectiveness modifier based on the item's
-        element and the opponent's type.
-        """
-        if opponent.types[0].slug != self.label:
-            return self.lower_bound
-        return self.upper_bound
-
-    def _calculate_gender_tuxeball_modifier(self, opponent: Monster) -> float:
-        """
-        Calculate the tuxeball effectiveness modifier based on the item's
-        gender and the opponent's gender.
-        """
-        if opponent.gender != GenderType(self.label):
-            return self.lower_bound
-        return self.upper_bound
-
-    def _calculate_variable_tuxeball_modifier(self) -> float:
-        """
-        Calculate the tuxeball effectiveness modifier based on the item's
-        variable and the game variables.
-        """
-        key, value = self.label.split(":")
-        if (
-            key in self.session.player.game_variables
-            and self.session.player.game_variables[key] == value
-        ):
-            return self.upper_bound
-        return self.lower_bound
-
-    def _calculate_gambler_tuxeball_modifier(self) -> float:
-        """
-        Calculate the tuxeball effectiveness modifier based on the item's
-        gambler category.
-        """
-        return random.uniform(self.lower_bound, self.upper_bound)
-
-    def _calculate_monster_tuxeball_modifier(
-        self, item: Item, target: Monster
-    ) -> float:
-        """
-        Calculate the tuxeball effectiveness modifier based on the item's
-        monster category.
-        """
+        capdev_modifier = formula.config_capdev.capdev_modifier
         assert item.combat_state
         our_monster = item.combat_state.monsters_in_play[self.session.player]
 
         if not our_monster:
-            return prepare.TUXEBALL_MODIFIER
+            return capdev_modifier
 
         monster = our_monster[0]
 
         if not monster.types or not monster.types:
-            return prepare.TUXEBALL_MODIFIER
+            return capdev_modifier
 
         if self.label == "xero":
             return (
                 self.upper_bound
-                if monster.types[0].slug != target.types[0].slug
+                if monster.types != target.types
                 else self.lower_bound
             )
         elif self.label == "omni":
             return (
                 self.lower_bound
-                if monster.types[0].slug != target.types[0].slug
+                if monster.types != target.types
                 else self.upper_bound
             )
         else:
-            return prepare.TUXEBALL_MODIFIER
+            return capdev_modifier
 
     def _apply_capture_effects(self, item: Item, target: Monster) -> None:
         assert item.combat_state

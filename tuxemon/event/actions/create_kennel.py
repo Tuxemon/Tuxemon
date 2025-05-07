@@ -2,10 +2,14 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from typing import final
 
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
 
 
 @final
@@ -22,17 +26,22 @@ class CreateKennelAction(EventAction):
     Script usage:
         .. code-block::
 
-            create_kennel <kennel>
+            create_kennel <character>,<kennel>
 
     Script parameters:
+        character: Either "player" or npc slug name (e.g. "npc_maple").
         kennel: Name of the kennel.
-
     """
 
     name = "create_kennel"
+    npc_slug: str
     kennel: str
 
     def start(self) -> None:
-        player = self.session.player
-        if not player.monster_boxes.has_box(self.kennel, "monster"):
-            player.monster_boxes.create_box(self.kennel, "monster")
+        character = get_npc(self.session, self.npc_slug)
+        if character is None:
+            logger.error(f"{self.npc_slug} not found")
+            return
+
+        if not character.monster_boxes.has_box(self.kennel, "monster"):
+            character.monster_boxes.create_box(self.kennel, "monster")

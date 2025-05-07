@@ -36,4 +36,4 @@ class CharWalkAction(EventAction):
         if character is None:
             logger.error(f"{self.character} not found")
             return
-        character.moverate = self.session.client.config.player_walkrate
+        character.body.moverate = self.session.client.config.player_walkrate

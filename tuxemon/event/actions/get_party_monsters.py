@@ -22,7 +22,6 @@ class GetPartyMonsterAction(EventAction):
 
     Script parameters:
         npc_slug: npc slug name (e.g. "npc_maple") - default "player"
-
     """
 
     name = "get_party_monster"

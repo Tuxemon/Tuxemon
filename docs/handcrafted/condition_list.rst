@@ -42,6 +42,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.party_size.PartySizeCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.teleport_faint.TeleportFaintCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.to_use_tile.ToUseTileCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.tracker.TrackerCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.true.TrueCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.tuxepedia.TuxepediaCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.variable_highest.VariableHighestCondition

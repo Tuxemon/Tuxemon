@@ -12,8 +12,7 @@
   ],
   "effects": [
     {
-      "type": "capture_combined",
-      "parameters": ["element","wood","0.2","1.5"]
+      "type": "capture"
     }
   ],
   "animation": "capture_1",

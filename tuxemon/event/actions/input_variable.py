@@ -51,11 +51,10 @@ class InputVariableAction(EventAction):
     def start(self) -> None:
         _escape = True if self.escape else False
         self.session.client.push_state(
-            InputMenu(
-                prompt=T.translate(self.question),
-                callback=self.check_setcode,
-                escape_key_exits=_escape,
-            )
+            "InputMenu",
+            prompt=T.translate(self.question),
+            callback=self.check_setcode,
+            escape_key_exits=_escape,
         )
 
     def update(self) -> None:

@@ -18,7 +18,7 @@ events:
     type: "event"
   Use Computer:
     actions:
-    - change_state PCState
+    - change_state PCState,player
     conditions:
     - is char_facing_tile player
     - is button_pressed K_RETURN

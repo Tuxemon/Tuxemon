@@ -381,14 +381,16 @@
     <property name="act16" value="char_face player,down"/>
     <property name="act20" value="translated_dialog spyder_cottontown_mom"/>
     <property name="act25" value="add_item nu_phone"/>
-    <property name="act26" value="translated_dialog nu_phone,,center"/>
+    <property name="act26" value="translated_dialog nu_phone,,center,center,middle"/>
     <property name="act30" value="add_item app_banking"/>
-    <property name="act31" value="translated_dialog app_banking,,center"/>
+    <property name="act31" value="translated_dialog app_banking,,center,center,middle"/>
     <property name="act35" value="add_item app_map"/>
-    <property name="act36" value="translated_dialog app_map,,center"/>
+    <property name="act36" value="translated_dialog app_map,,center,center,middle"/>
     <property name="act40" value="pathfind spyder_papertown_mom,23,23"/>
     <property name="act41" value="set_variable spokenmomcotton:yes"/>
     <property name="act42" value="remove_npc spyder_papertown_mom"/>
+    <property name="act50" value="add_tracker player,cotton_town"/>
+    <property name="act51" value="add_tracker player,paper_town"/>
     <property name="cond1" value="not variable_set spokenmomcotton:yes"/>
     <property name="cond2" value="is char_at player"/>
     <property name="cond3" value="not has_item player,nu_phone"/>

@@ -43,8 +43,9 @@ class DelayedTeleportAction(EventAction):
 
     def start(self) -> None:
         world = self.session.client.get_state_by_name(WorldState)
+        delayed_teleport = world.teleporter.delayed_teleport
 
-        if world.teleporter.delayed_teleport:
+        if delayed_teleport.is_active:
             logger.error("Stop, there is a teleport in progress")
             return
 
@@ -53,8 +54,8 @@ class DelayedTeleportAction(EventAction):
             logger.error(f"{self.character} not found")
             return
 
-        world.teleporter.delayed_char = char
-        world.teleporter.delayed_teleport = True
-        world.teleporter.delayed_mapname = self.map_name
-        world.teleporter.delayed_x = self.position_x
-        world.teleporter.delayed_y = self.position_y
+        delayed_teleport.char = char
+        delayed_teleport.is_active = True
+        delayed_teleport.mapname = self.map_name
+        delayed_teleport.x = self.position_x
+        delayed_teleport.y = self.position_y

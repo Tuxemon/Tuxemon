@@ -23,7 +23,6 @@ class PrintCommand(CLICommand):
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
             line: Complete text as entered into the prompt.
-
         """
         variable = line.strip()
         if variable:

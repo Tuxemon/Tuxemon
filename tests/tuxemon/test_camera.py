@@ -32,7 +32,7 @@ class TestCamera(unittest.TestCase):
     def setUp(self):
         prepare.TILE_SIZE = (16, 16)
         self.entity = Mock()
-        self.entity.position3 = Vector2(5.0, 5.0)
+        self.entity.position = Vector2(5.0, 5.0)
         self.boundary = Mock()
         self.boundary.get_boundary_validity.return_value = (True, True)
         self.camera = Camera(self.entity, self.boundary)
@@ -93,7 +93,7 @@ class TestCamera(unittest.TestCase):
 
     def test_switch_to_entity(self):
         new_entity = Mock()
-        new_entity.position3 = Vector2(10.0, 10.0)
+        new_entity.position = Vector2(10.0, 10.0)
         self.camera.switch_to_entity(new_entity)
         self.assertEqual(self.camera.entity, new_entity)
         self.assertEqual(self.camera.position, Vector2(168, 168))
@@ -101,7 +101,7 @@ class TestCamera(unittest.TestCase):
 
     def test_switch_to_original_entity(self):
         new_entity = Mock()
-        new_entity.position3 = Vector2(10.0, 10.0)
+        new_entity.position = Vector2(10.0, 10.0)
         self.camera.switch_to_entity(new_entity)
         self.camera.switch_to_original_entity()
         self.assertEqual(self.camera.entity, self.entity)

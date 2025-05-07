@@ -48,7 +48,6 @@ class GetMonsterTechAction(EventAction):
     eg. "get_monster_tech name_variable,monster_id"
     eg. "get_monster_tech name_variable,monster_id,element,water"
     eg, "get_monster_tech name_variable,monster_id,power,less_than,1.6"
-
     """
 
     name = "get_monster_tech"
@@ -129,7 +128,7 @@ class GetMonsterTechAction(EventAction):
         for mon in monsters:
             # pull up the monster menu so we know which one we are saving
             menu = self.session.client.push_state(
-                TechniqueMenuState(monster=mon)
+                TechniqueMenuState(character=self.session.player, monster=mon)
             )
             menu.is_valid_entry = self.validate  # type: ignore[assignment]
             menu.on_menu_selection = self.set_var  # type: ignore[assignment]

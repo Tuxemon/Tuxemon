@@ -8,9 +8,11 @@ from collections.abc import Callable, Generator, Iterable, Sequence
 from itertools import product
 from typing import Optional
 
-import pygame
+from pygame import SRCALPHA
+from pygame.font import Font
 from pygame.rect import Rect
 from pygame.surface import Surface
+from pygame.transform import scale
 
 from tuxemon import prepare
 from tuxemon.graphics import ColorLike
@@ -110,7 +112,7 @@ class GraphicBox(Sprite):
         Updates the object's image by drawing the box on a new surface.
         """
         rect = Rect((0, 0), self._rect.size)
-        surface = pygame.Surface(rect.size, pygame.SRCALPHA)
+        surface = Surface(rect.size, SRCALPHA)
         self._draw(surface, rect)
         self.image = surface
 
@@ -123,9 +125,7 @@ class GraphicBox(Sprite):
 
         # Fill center
         if self._background:
-            surface.blit(
-                pygame.transform.scale(self._background, inner.size), inner
-            )
+            surface.blit(scale(self._background, inner.size), inner)
         elif self._color:
             surface.fill(self._color, inner)
         elif self._fill_tiles:
@@ -186,19 +186,19 @@ class GraphicBox(Sprite):
         surface_blit(tile_se, (inner.right, inner.bottom))
 
 
-def guest_font_height(font: pygame.font.Font) -> int:
+def guest_font_height(font: Font) -> int:
     return guess_rendered_text_size("Tg", font)[1]
 
 
 def guess_rendered_text_size(
     text: str,
-    font: pygame.font.Font,
+    font: Font,
 ) -> tuple[int, int]:
     return font.size(text)
 
 
 def shadow_text(
-    font: pygame.font.Font,
+    font: Font,
     fg: ColorLike,
     bg: ColorLike,
     text: str,
@@ -208,7 +208,7 @@ def shadow_text(
 
     offset = layout((0.5, 0.5))
     size = [int(math.ceil(a + b)) for a, b in zip(offset, top.get_size())]
-    image = pygame.Surface(size, pygame.SRCALPHA)
+    image = Surface(size, SRCALPHA)
 
     image.blit(shadow, tuple(offset))
     image.blit(top, (0, 0))
@@ -217,7 +217,7 @@ def shadow_text(
 
 def iter_render_text(
     text: str,
-    font: pygame.font.Font,
+    font: Font,
     fg: ColorLike,
     bg: ColorLike,
     rect: Rect,
@@ -270,7 +270,7 @@ def build_line(text: str) -> Generator[str, None, None]:
 
 def constrain_width(
     text: str,
-    font: pygame.font.Font,
+    font: Font,
     width: int,
 ) -> Generator[str, None, None]:
     for line in iterate_word_lines(text):
@@ -325,7 +325,7 @@ def blit_alpha(
 
     x = location[0]
     y = location[1]
-    temp = pygame.Surface((source.get_width(), source.get_height())).convert()
+    temp = Surface((source.get_width(), source.get_height())).convert()
     temp.blit(target, (-x, -y))
     temp.blit(source, (0, 0))
     temp.set_alpha(opacity)

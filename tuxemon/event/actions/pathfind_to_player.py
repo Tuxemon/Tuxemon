@@ -49,7 +49,7 @@ class PathfindToPlayerAction(EventAction):
             closest = get_coord_direction(
                 player.tile_pos, self.direction, client.map_size, distance
             )
-            self.npc.facing = self.direction
+            self.npc.body.facing = self.direction
         else:
             target = self.npc.tile_pos
             coords = get_coords(player.tile_pos, client.map_size, distance)

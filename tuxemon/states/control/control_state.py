@@ -249,7 +249,7 @@ class ControlState(PygameMenuState):
         self.client.event_engine = EventEngine(local_session)
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-        if event.button == buttons.BACK:
+        if event.button in (buttons.BACK, buttons.B):
             self.reload_controls()
             if not self.main_menu:
                 self.client.pop_state()

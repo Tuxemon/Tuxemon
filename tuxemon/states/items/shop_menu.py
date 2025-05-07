@@ -6,7 +6,7 @@ from collections.abc import Generator
 from functools import partial
 from typing import TYPE_CHECKING, Optional
 
-import pygame
+from pygame.rect import Rect
 
 from tuxemon import prepare, tools
 from tuxemon.item.item import Item
@@ -72,7 +72,7 @@ class ShopMenuState(Menu[Item]):
             self.economy, self.buyer_manager, self.seller_manager
         )
 
-    def calc_internal_rect(self) -> pygame.rect.Rect:
+    def calc_internal_rect(self) -> Rect:
         # area in the screen where the item list is
         rect = self.rect.copy()
         rect.width = int(rect.width * 0.58)

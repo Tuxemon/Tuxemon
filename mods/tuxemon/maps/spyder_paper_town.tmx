@@ -3,10 +3,10 @@
  <properties>
   <property name="east" value="brideswood"/>
   <property name="edges" value="clamped"/>
+  <property name="map_type" value="town"/>
   <property name="north" value="route1"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="paper_town"/>
-  <property name="map_type" value="town"/>
   <property name="west" value="routec"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_city_and_country.tsx"/>
@@ -32,7 +32,7 @@
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAFjYBg+QFhq+Phl1Ce0CQEFQdqYSy1T7Qe5+6jlz1FzRkOAHiGwkJOBYREQj4LREBgMIeAqRJorYOmXXJo020ZVj4YAfUMAAKV8DQM=
+   eAFjYBg+QFhq+Phl1Ce0CQEFQdqYSy1T7Qe5+6jlz1FzRkOAHiGwkJOBYREQj4LREBiKIQBLv+TSQ9HPo24eOSEAAJsPDKw=
   </data>
  </layer>
  <layer id="5" name="Above Player" width="40" height="20">
@@ -61,7 +61,6 @@
   <object id="193" type="collision" x="0" y="96" width="64" height="32"/>
   <object id="194" type="collision" x="0" y="128" width="32" height="96"/>
   <object id="195" type="collision" x="96" y="160" width="96" height="32"/>
-  <object id="197" type="collision" x="64" y="240" width="16" height="16"/>
   <object id="202" type="collision" x="176" y="192" width="32" height="16"/>
   <object id="247" type="collision" x="336" y="64" width="16" height="16"/>
   <object id="249" type="collision" x="464" y="0" width="64" height="80"/>
@@ -91,11 +90,19 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
+  <object id="134" name="Sign Repairs" type="event" x="64" y="240" width="16" height="16">
+   <properties>
+    <property name="act1" value="create_npc spyder_sign,4,15"/>
+    <property name="cond1" value="not char_exists spyder_sign"/>
+    <property name="cond2" value="not variable_set captainreturns:yes"/>
+   </properties>
+  </object>
   <object id="138" name="Under Repairs" type="event" x="64" y="240" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_multi_underrepairs"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
+    <property name="cond3" value="not variable_set captainreturns:yes"/>
    </properties>
   </object>
   <object id="139" name="Paper Town Sign" type="event" x="192" y="16" width="16" height="16">
@@ -234,7 +241,7 @@
   <object id="219" name="Chosen - Rockitten" type="event" x="512" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster rockitten,5"/>
-    <property name="act2" value="translated_dialog rockitten,,center"/>
+    <property name="act2" value="translated_dialog rockitten,,center,center,middle"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:rockitten"/>
     <property name="cond1" value="is variable_set rockittenchosen:yes"/>
@@ -244,7 +251,7 @@
   <object id="220" name="Chosen - Lambert" type="event" x="512" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster lambert,5"/>
-    <property name="act2" value="translated_dialog lambert,,center"/>
+    <property name="act2" value="translated_dialog lambert,,center,center,middle"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:lambert"/>
     <property name="cond1" value="is variable_set lambertchosen:yes"/>
@@ -254,7 +261,7 @@
   <object id="221" name="Chosen - Nut" type="event" x="512" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster nut,5"/>
-    <property name="act2" value="translated_dialog nut,,center"/>
+    <property name="act2" value="translated_dialog nut,,center,center,middle"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:nut"/>
     <property name="cond1" value="is variable_set nutchosen:yes"/>
@@ -264,7 +271,7 @@
   <object id="222" name="Chosen - Tweesher" type="event" x="512" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster tweesher,5"/>
-    <property name="act2" value="translated_dialog tweesher,,center"/>
+    <property name="act2" value="translated_dialog tweesher,,center,center,middle"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:tweesher"/>
     <property name="cond1" value="is variable_set tweesherchosen:yes"/>
@@ -274,7 +281,7 @@
   <object id="223" name="Chosen - Agnite" type="event" x="512" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster agnite,5"/>
-    <property name="act2" value="translated_dialog agnite,,center"/>
+    <property name="act2" value="translated_dialog agnite,,center,center,middle"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:agnite"/>
     <property name="cond1" value="is variable_set agnitechosen:yes"/>
@@ -346,7 +353,7 @@
     <property name="cond2" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="200" name="Create Captain" type="event" x="64" y="224" width="16" height="16">
+  <object id="200" name="Create Captain" type="event" x="64" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_captain,4,14"/>
     <property name="act2" value="char_face spyder_captain,up"/>

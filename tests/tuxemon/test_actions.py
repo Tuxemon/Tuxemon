@@ -6,7 +6,9 @@ from unittest.mock import MagicMock, patch
 from tuxemon import prepare
 from tuxemon.client import LocalPygameClient
 from tuxemon.db import Direction, db
+from tuxemon.entity import Body
 from tuxemon.event.actions.char_move import parse_path_parameters
+from tuxemon.math import Point3
 from tuxemon.player import Player
 from tuxemon.session import local_session
 from tuxemon.tuxepedia import Tuxepedia
@@ -16,6 +18,7 @@ def mockPlayer(self) -> None:
     self.name = "Jeff"
     self.game_variables = {}
     self.tuxepedia = Tuxepedia()
+    self.body = Body(Point3(0, 0, 0))
 
 
 class TestVariableActions(unittest.TestCase):
@@ -207,12 +210,12 @@ class TestCharacterActions(unittest.TestCase):
             self.player = local_session.player
 
     def test_char_speed_between_limits(self):
-        self.player.moverate = prepare.CONFIG.player_walkrate
+        self.player.body.moverate = prepare.CONFIG.player_walkrate
         self.action.execute_action("char_speed", ["player", 6.9])
         self.assertEqual(self.player.moverate, 6.9)
 
     def test_char_speed_outside_limits(self):
-        self.player.moverate = prepare.CONFIG.player_walkrate
+        self.player.body.moverate = prepare.CONFIG.player_walkrate
         lower, upper = prepare.MOVERATE_RANGE
         with self.assertRaises(ValueError):
             self.action.execute_action("char_speed", ["player", lower - 1])
@@ -220,18 +223,18 @@ class TestCharacterActions(unittest.TestCase):
             self.action.execute_action("char_speed", ["player", upper + 1])
 
     def test_char_walk(self):
-        self.player.moverate = 6.9
+        self.player.body.moverate = 6.9
         self.action.execute_action("char_walk", ["player"])
         self.assertEqual(self.player.moverate, prepare.CONFIG.player_walkrate)
 
     def test_char_run(self):
-        self.player.moverate = 6.9
+        self.player.body.moverate = 6.9
         self.action.execute_action("char_run", ["player"])
         self.assertEqual(self.player.moverate, prepare.CONFIG.player_runrate)
 
     def test_char_face(self):
         self.player.isplayer = False
-        self.player.facing = Direction.down
+        self.player.body.facing = Direction.down
         self.action.execute_action("char_face", ["player", "up"])
         self.assertEqual(self.player.facing, Direction.up)
 

@@ -82,7 +82,7 @@ class CharWanderAction(EventAction):
 
             # Choose a random direction that is free and walk toward it
             origin = (character.tile_pos[0], character.tile_pos[1])
-            exits = world.pathfinder.get_exits(origin)
+            exits = world.pathfinder.get_exits(origin, character.facing)
             if exits:
                 path = random.choice(exits)
                 if not output or path in output:

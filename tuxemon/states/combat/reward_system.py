@@ -18,9 +18,9 @@ from dataclasses import dataclass
 
 class ExperienceMethod(Enum):
     DEFAULT = "default"
-    PROPORTIONAL = "proportional"
-    TEST = "test"
+    XP_EQUAL = "xp_equal"
     XP_TRANSMITTER = "xp_transmitter"
+    XP_FEEDER = "xp_feeder"
 
 
 @dataclass
@@ -74,16 +74,34 @@ class RewardSystem:
                 - `prize`: The total monetary prize awarded if the
                 battle was against a trainer.
         """
-        winners = get_winners(monster, self.damage_map)
+        winners = self.damage_map.get_attackers(monster)
         rewards_data = RewardData([], [], [], False, 0)
 
         if winners:
+            winner = next(iter(winners))
+
+            if winner.owner is not None:
+                all_monsters = set(alive_party(winner.owner))
+            else:
+                all_monsters = set()
+
+            non_participants = all_monsters - winners
+
+            if non_participants:
+                _, awarded_exp = calculate_experience(
+                    monster, next(iter(winners)), self.damage_map
+                )
+                for non_participant in non_participants:
+                    levels = non_participant.give_experience(awarded_exp)
+                    non_participant.update_moves(levels)
+
             for winner in winners:
                 # Award money and experience
-                awarded_money = calculate_money(monster, winner)
-                awarded_exp = calculate_experience(
+                awarded_exp, _ = calculate_experience(
                     monster, winner, self.damage_map
                 )
+                awarded_money = calculate_money(monster, winner)
+
                 rewards_data.winners.append(
                     RewardDataEntry(
                         winner=winner,
@@ -117,66 +135,109 @@ def calculate_money(loser: Monster, winner: Monster) -> int:
     """
     Calculate money to be awarded using a default method or custom methods.
     """
-    method = (
-        winner.owner.game_variables.get(
-            "method_money", ExperienceMethod.DEFAULT.value
-        )
-        if winner.owner and winner.owner.isplayer
-        else ExperienceMethod.DEFAULT.value
-    )
+    held_item = winner.held_item.get_item()
 
     def default_method() -> int:
         return int(loser.level * loser.money_modifier)
 
     methods = {ExperienceMethod.DEFAULT.value: default_method}
 
-    if method not in methods:
-        raise ValueError(f"A formula for {method} doesn't exist.")
-
-    return methods[method]()
+    return methods[ExperienceMethod.DEFAULT.value]()
 
 
 def calculate_experience(
     loser: Monster, winner: Monster, damages: DamageTracker
-) -> int:
+) -> tuple[int, int]:
     """
-    Calculate experience to be awarded using defined methods.
+    Calculate experience for participants and non-participants using defined methods.
+
+    Returns:
+        tuple[int, int]: (participant_exp, non_participant_exp)
     """
-    hits, hits_mon = damages.count_hits(loser, winner)
+    total_hits, monster_hits = damages.count_hits(loser, winner)
 
-    method = (
-        winner.owner.game_variables.get(
-            "method_experience", ExperienceMethod.DEFAULT.value
-        )
-        if winner.owner and winner.owner.isplayer
-        else ExperienceMethod.DEFAULT.value
-    )
-
-    def default_method() -> int:
-        return calculate_experience_base(
+    def default_method() -> tuple[int, int]:
+        exp = calculate_experience_base(
             loser.total_experience,
             loser.level,
-            hits,
+            total_hits,
+            loser.experience_modifier,
+        )
+        return exp, 0
+
+    def equal_method() -> tuple[int, int]:
+        exp = calculate_experience_base(
+            loser.total_experience,
+            loser.level,
+            total_hits,
+            loser.experience_modifier,
+        ) * round(monster_hits / total_hits)
+        return exp, 0
+
+    def feeder_method() -> tuple[int, int]:
+        total_exp = calculate_experience_base(
+            loser.total_experience,
+            loser.level,
+            total_hits,
             loser.experience_modifier,
         )
 
-    def proportional_method() -> int:
-        return calculate_experience_base(
+        participants = damages.get_attackers(loser)
+        item_holder_exp = total_exp // 2
+        participant_exp = (
+            (total_exp - item_holder_exp) // len(participants)
+            if participants
+            else 0
+        )
+
+        held_item = winner.held_item.get_item()
+        if held_item and held_item.slug == ExperienceMethod.XP_FEEDER.value:
+            participant_exp = item_holder_exp
+
+        return participant_exp, 0
+
+    def transmitter_method() -> tuple[int, int]:
+        total_exp = calculate_experience_base(
             loser.total_experience,
             loser.level,
-            hits,
+            total_hits,
             loser.experience_modifier,
-        ) * round(hits_mon / hits)
+        )
+
+        participants = damages.get_attackers(loser)
+
+        if winner.owner is None:
+            return 0, 0
+
+        all_monsters = set(alive_party(winner.owner))
+        non_participants = all_monsters - participants
+
+        participant_exp = (
+            total_exp // 2 // len(participants) if participants else 0
+        )
+        non_participant_exp = (
+            total_exp // 2 // len(non_participants) if non_participants else 0
+        )
+
+        return participant_exp, non_participant_exp
 
     methods = {
         ExperienceMethod.DEFAULT.value: default_method,
-        ExperienceMethod.PROPORTIONAL.value: proportional_method,
+        ExperienceMethod.XP_EQUAL.value: equal_method,
+        ExperienceMethod.XP_TRANSMITTER.value: transmitter_method,
+        ExperienceMethod.XP_FEEDER.value: feeder_method,
     }
 
-    if method not in methods:
-        raise ValueError(f"A formula for {method} doesn't exist.")
+    held_item = winner.held_item.get_item()
+    if held_item:
+        if held_item.slug == ExperienceMethod.XP_TRANSMITTER.value:
+            return methods[ExperienceMethod.XP_TRANSMITTER.value]()
+        elif held_item.slug == ExperienceMethod.XP_FEEDER.value:
+            return methods[ExperienceMethod.XP_FEEDER.value]()
+        elif held_item.slug == ExperienceMethod.XP_EQUAL.value:
+            return methods[ExperienceMethod.XP_EQUAL.value]()
 
-    return methods[method]()
+    return methods[ExperienceMethod.DEFAULT.value]()
 
 
 def calculate_experience_base(
@@ -186,21 +247,3 @@ def calculate_experience_base(
     Base formula for experience calculation.
     """
     return int((total_experience // (level * hits)) * experience_modifier)
-
-
-def get_winners(loser: Monster, damages: DamageTracker) -> set[Monster]:
-    """
-    Extract the monsters who hit the loser.
-    """
-    winners = damages.get_attackers(loser)
-    if winners:
-        monster = next(iter(winners))
-        trainer = monster.owner
-        if (
-            trainer
-            and trainer.isplayer
-            and trainer.game_variables.get("method_experience")
-            == ExperienceMethod.XP_TRANSMITTER.value
-        ):
-            return set(alive_party(trainer))
-    return winners

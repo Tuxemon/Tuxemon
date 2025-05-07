@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "spyder_sign",
+    "template": {
+      "sprite_name": "sign",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
+  },
+  {
+    "slug": "spyder_sign_flower1",
+    "template": {
+      "sprite_name": "sign",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
+  },
+  {
+    "slug": "spyder_sign_flower2",
+    "template": {
+      "sprite_name": "sign",
+      "combat_front": "noclass",
+      "slug": "interactive_obj"
+    }
+  }
+]

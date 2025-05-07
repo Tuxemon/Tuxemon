@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from functools import partial
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import pygame_menu
 from pygame_menu import locals
@@ -15,6 +15,9 @@ from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.session import local_session
 from tuxemon.tools import open_choice_dialog, open_dialog
+
+if TYPE_CHECKING:
+    from tuxemon.npc import NPC
 
 MenuGameObj = Callable[[], Any]
 
@@ -29,7 +32,7 @@ class NuPhoneBanking(PygameMenuState):
         self,
         menu: pygame_menu.Menu,
     ) -> None:
-        money_manager = self.player.money_controller.money_manager
+        money_manager = self.char.money_controller.money_manager
         bank_account = money_manager.get_bank_balance()
         wallet_player = money_manager.get_money()
 
@@ -184,7 +187,7 @@ class NuPhoneBanking(PygameMenuState):
             )
         menu.set_title(T.translate("app_banking")).center_content()
 
-    def __init__(self) -> None:
+    def __init__(self, character: NPC) -> None:
         width, height = prepare.SCREEN_SIZE
 
         theme = self._setup_theme(prepare.BG_PHONE_BANKING)
@@ -194,7 +197,7 @@ class NuPhoneBanking(PygameMenuState):
         # menu
         theme.title = True
 
-        self.player = local_session.player
+        self.char = character
 
         super().__init__(
             height=height,

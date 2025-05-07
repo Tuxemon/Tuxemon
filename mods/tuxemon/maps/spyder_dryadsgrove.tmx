@@ -585,7 +585,7 @@
   <object id="212" name="Get Volcoli" type="event" x="96" y="288" width="32" height="32">
    <properties>
     <property name="act1" value="translated_dialog spyder_dryadsgrove_volcoli1"/>
-    <property name="act2" value="wild_encounter volcoli,50"/>
+    <property name="act2" value="wild_encounter volcoli,50,3"/>
     <property name="act3" value="set_variable dryadsgrovevolcoli:yes"/>
     <property name="act4" value="remove_npc spyder_volcoli"/>
     <property name="cond1" value="is char_facing_tile player"/>
@@ -832,7 +832,7 @@
     <property name="act1" value="translated_dialog spyder_dryadsgrove_boy_yes"/>
     <property name="act2" value="set_variable ruff:proceed"/>
     <property name="act3" value="add_monster wolffsky,10"/>
-    <property name="act4" value="translated_dialog wolffsky,,center"/>
+    <property name="act4" value="translated_dialog wolffsky,,center,center,middle"/>
     <property name="act5" value="set_monster_attribute add_monster,name,RUFF"/>
     <property name="act6" value="set_monster_attribute add_monster,gender,male"/>
     <property name="act7" value="set_monster_attribute add_monster,traded,1"/>

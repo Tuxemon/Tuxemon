@@ -584,7 +584,7 @@
   <object id="449" name="Talk Snarlon" type="event" x="32" y="48" width="16" height="16">
    <properties>
     <property name="act2" value="translated_dialog spyder_lionmountain_snarlon1"/>
-    <property name="act3" value="wild_encounter snarlon,60,,,night_snowplain"/>
+    <property name="act3" value="wild_encounter snarlon,60,3,,night_snowplain"/>
     <property name="act4" value="translated_dialog spyder_lionmountain_snarlon2"/>
     <property name="act6" value="set_variable snarlonmountain:yes"/>
     <property name="act7" value="remove_npc spyder_lionmountain_snarlon"/>

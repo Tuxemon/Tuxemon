@@ -9,6 +9,7 @@ from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import ColorLike, string_to_colorlike
 from tuxemon.prepare import BLACK_COLOR, TRANS_TIME, fetch
 from tuxemon.states.world.worldstate import WorldState
+from tuxemon.teleporter import DelayedTeleport
 
 
 @final
@@ -43,6 +44,7 @@ class TransitionTeleportAction(EventAction):
 
     def start(self) -> None:
         self.world = self.session.client.get_state_by_name(WorldState)
+        delayed_teleport = self.world.teleporter.delayed_teleport
 
         target_map = fetch("maps", self.map_name)
 
@@ -51,7 +53,7 @@ class TransitionTeleportAction(EventAction):
                 npc for npc in self.world.npcs if not (npc.moving or npc.path)
             ]
 
-        if self.world.teleporter.delayed_teleport:
+        if delayed_teleport.is_active:
             self.stop()
             return
 
@@ -62,7 +64,7 @@ class TransitionTeleportAction(EventAction):
         rgb: ColorLike = BLACK_COLOR
         if self.rgb:
             rgb = string_to_colorlike(self.rgb)
-        self.setup_delayed_teleport()
+        self.setup_delayed_teleport(delayed_teleport)
         self.world.transition_manager.fade_and_teleport(
             _time,
             rgb,
@@ -75,11 +77,11 @@ class TransitionTeleportAction(EventAction):
         if self.done:
             return
 
-    def setup_delayed_teleport(self) -> None:
+    def setup_delayed_teleport(self, delayed: DelayedTeleport) -> None:
         """Configure delayed teleport after the screen transition."""
-        self.world.teleporter.delayed_char = None
-        self.world.teleporter.delayed_teleport = True
-        self.world.teleporter.delayed_mapname = self.map_name
-        self.world.teleporter.delayed_x = self.x
-        self.world.teleporter.delayed_y = self.y
+        delayed.char = None
+        delayed.is_active = True
+        delayed.mapname = self.map_name
+        delayed.x = self.x
+        delayed.y = self.y
         self.stop()

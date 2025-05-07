@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.states.sink import SinkState
 
 
 @final
@@ -27,4 +26,4 @@ class LockControlsAction(
     name = "lock_controls"
 
     def start(self) -> None:
-        self.session.client.push_state(SinkState())
+        self.session.client.push_state("SinkState")

@@ -29,7 +29,6 @@ class TrainerBattleCommand(CLICommand):
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
             line: Complete text as entered into the prompt.
-
         """
         args = parse(line)
         if not args:

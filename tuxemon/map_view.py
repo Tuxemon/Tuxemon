@@ -5,16 +5,20 @@ from __future__ import annotations
 import logging
 import os
 from dataclasses import dataclass
+from itertools import chain
 from typing import TYPE_CHECKING, Optional
 
 import pygame
+from pygame.draw import line
+from pygame.gfxdraw import box
 from pygame.rect import Rect
 from pygame.surface import Surface
 
 from tuxemon import prepare
+from tuxemon.camera import project
 from tuxemon.db import EntityFacing
-from tuxemon.graphics import ColorLike, load_and_scale
-from tuxemon.map import proj
+from tuxemon.graphics import ColorLike, apply_cinema_bars, load_and_scale
+from tuxemon.map import get_pos_from_tilepos, proj
 from tuxemon.math import Vector2
 from tuxemon.surfanim import SurfaceAnimation, SurfaceAnimationCollection
 
@@ -275,18 +279,17 @@ class MapRenderer:
         self.cinema_x_ratio: Optional[float] = None
         self.cinema_y_ratio: Optional[float] = None
         self.map_animations: dict[str, AnimationInfo] = {}
+        self.debug_renderer = DebugRenderer(world_state)
 
     def draw(self, surface: Surface, current_map: TuxemonMap) -> None:
         """Draws the map, sprites, and animations onto the given surface."""
         self._prepare_map_rendering(current_map)
-        screen_surfaces = self._get_and_position_surfaces(
-            current_map.sprite_layer
-        )
+        screen_surfaces = self._get_and_position_surfaces(current_map)
         self._draw_map_and_sprites(surface, screen_surfaces, current_map)
         self._apply_effects(surface)
         self._apply_cinema_bars(surface)
         if prepare.CONFIG.collision_map:
-            self.debug_drawing(surface)
+            self.debug_renderer.draw_debug(current_map, surface)
 
     def update(self, time_delta: float) -> None:
         """Update the map animations."""
@@ -302,14 +305,14 @@ class MapRenderer:
         current_map.renderer.center((camera_x, camera_y))
 
     def _get_and_position_surfaces(
-        self, sprite_layer: int
+        self, current_map: TuxemonMap
     ) -> list[tuple[Surface, Rect, int]]:
         """Retrieves and positions surfaces for rendering."""
-        npc_surfaces = self._get_npc_surfaces(sprite_layer)
+        npc_surfaces = self._get_npc_surfaces(current_map.sprite_layer)
         map_animations = self._get_map_animations()
         surfaces = npc_surfaces + map_animations
-        screen_surfaces = self._position_surfaces(surfaces)
-        self._set_bubble(screen_surfaces)
+        screen_surfaces = self._position_surfaces(current_map, surfaces)
+        self._set_bubble(current_map, screen_surfaces)
         return screen_surfaces
 
     def _draw_map_and_sprites(
@@ -329,9 +332,9 @@ class MapRenderer:
     def _apply_cinema_bars(self, surface: Surface) -> None:
         """Applies cinema bars (letterboxing) to the surface."""
         if self.cinema_x_ratio is not None:
-            self._apply_horizontal_bars(self.cinema_x_ratio, surface)
+            apply_bars("horizontal", self.cinema_x_ratio, surface)
         if self.cinema_y_ratio is not None:
-            self._apply_vertical_bars(self.cinema_y_ratio, surface)
+            apply_bars("vertical", self.cinema_y_ratio, surface)
 
     def _get_npc_surfaces(self, current_map: int) -> list[WorldSurfaces]:
         """Retrieves surfaces for NPCs."""
@@ -353,7 +356,7 @@ class MapRenderer:
         ]
 
     def _position_surfaces(
-        self, surfaces: list[WorldSurfaces]
+        self, current_map: TuxemonMap, surfaces: list[WorldSurfaces]
     ) -> list[tuple[Surface, Rect, int]]:
         """Positions surfaces on the screen."""
         screen_surfaces = []
@@ -361,7 +364,7 @@ class MapRenderer:
             surface = frame.surface
             position = frame.position3
             layer = frame.layer
-            screen_position = self.world_state.get_pos_from_tilepos(position)
+            screen_position = get_pos_from_tilepos(current_map, position)
             rect = Rect(screen_position, surface.get_size())
             if surface.get_height() > prepare.TILE_SIZE[1]:
                 rect.y -= surface.get_height() // 2
@@ -370,14 +373,24 @@ class MapRenderer:
 
     def _set_bubble(
         self,
+        current_map: TuxemonMap,
         screen_surfaces: list[tuple[Surface, Rect, int]],
+        layer: int = 100,
+        offset_divisor: int = 10,
     ) -> None:
-        """Adds speech bubbles to the screen surfaces."""
+        """
+        Adds speech bubbles to the screen surfaces.
+
+        This method calculates the appropriate position for each speech bubble
+        relative to the associated NPC's sprite and places it on the screen.
+        The bubbles are layered according to the specified rendering layer,
+        with options for vertical offset adjustment to fine-tune their placement.
+        """
         if self.bubble:
             for npc, surface in self.bubble.items():
                 sprite_renderer = npc.sprite_controller.get_sprite_renderer()
-                center_x, center_y = self.world_state.get_pos_from_tilepos(
-                    Vector2(npc.tile_pos)
+                center_x, center_y = get_pos_from_tilepos(
+                    current_map, Vector2(npc.tile_pos)
                 )
                 bubble_rect = surface.get_rect()
                 bubble_rect.centerx = sprite_renderer.rect.centerx
@@ -385,9 +398,9 @@ class MapRenderer:
                 bubble_rect.x = center_x
                 bubble_rect.y = center_y - (
                     surface.get_height()
-                    + int(sprite_renderer.rect.height / 10)
+                    + int(sprite_renderer.rect.height / offset_divisor)
                 )
-                screen_surfaces.append((surface, bubble_rect, 100))
+                screen_surfaces.append((surface, bubble_rect, layer))
 
     def _set_layer(self, surface: Surface) -> None:
         """Applies the layer effect to the surface."""
@@ -400,44 +413,85 @@ class MapRenderer:
         moving = "walking" if npc.moving else "idle"
         state = sprite_renderer.ANIMATION_MAPPING[moving][npc.facing.value]
         frame = sprite_renderer.get_frame(state, npc)
-        return [WorldSurfaces(frame, proj(npc.position3), layer)]
+        return [WorldSurfaces(frame, proj(npc.position), layer)]
 
-    def debug_drawing(self, surface: Surface) -> None:
+
+class DebugRenderer:
+    def __init__(
+        self,
+        world_state: WorldState,
+        event_color: ColorLike = (0, 255, 0, 128),
+        collision_color: ColorLike = (255, 0, 0, 128),
+        center_line_color: ColorLike = (255, 50, 50),
+    ) -> None:
+        self.world_state = world_state
+        self.event_color = event_color
+        self.collision_color = collision_color
+        self.center_line_color = center_line_color
+
+    def draw_debug(self, current_map: TuxemonMap, surface: Surface) -> None:
         """Draws debug information on the surface."""
-        self.world_state.debug_drawing(surface)
+        surface.lock()
+        self._draw_events(current_map, surface)
+        self._draw_collision_tiles(current_map, surface)
+        self._draw_center_lines(surface)
+        surface.unlock()
 
-    def _apply_vertical_bars(
-        self,
-        aspect_ratio: float,
-        screen: Surface,
-    ) -> None:
-        """Applies vertical cinema bars."""
-        screen_aspect_ratio = prepare.SCREEN_SIZE[0] / prepare.SCREEN_SIZE[1]
-        if screen_aspect_ratio < aspect_ratio:
-            bar_height = int(
-                prepare.SCREEN_SIZE[1]
-                * (1 - screen_aspect_ratio / aspect_ratio)
-                / 2
-            )
-            bar = Surface((prepare.SCREEN_SIZE[0], bar_height))
-            bar.fill(prepare.BLACK_COLOR)
-            screen.blit(bar, (0, 0))
-            screen.blit(bar, (0, prepare.SCREEN_SIZE[1] - bar_height))
+    def _draw_events(self, current_map: TuxemonMap, surface: Surface) -> None:
+        """Draws event-related debug information on the surface."""
+        for event in self.world_state.client.events:
+            vector = Vector2(event.x, event.y)
+            topleft = get_pos_from_tilepos(current_map, vector)
+            size = project((event.w, event.h))
+            rect = topleft, size
+            box(surface, rect, self.event_color)
 
-    def _apply_horizontal_bars(
-        self,
-        aspect_ratio: float,
-        screen: Surface,
+    def _draw_collision_tiles(
+        self, current_map: TuxemonMap, surface: Surface
     ) -> None:
-        """Applies horizontal cinema bars."""
-        screen_aspect_ratio = prepare.SCREEN_SIZE[1] / prepare.SCREEN_SIZE[0]
-        if screen_aspect_ratio < aspect_ratio:
-            bar_width = int(
-                prepare.SCREEN_SIZE[0]
-                * (1 - screen_aspect_ratio / aspect_ratio)
-                / 2
-            )
-            bar = Surface((bar_width, prepare.SCREEN_SIZE[1]))
-            bar.fill(prepare.BLACK_COLOR)
-            screen.blit(bar, (0, 0))
-            screen.blit(bar, (prepare.SCREEN_SIZE[0] - bar_width, 0))
+        # We need to iterate over all collidable objects. Start with walls/collision boxes.
+        box_iter = map(
+            lambda box: collision_box_to_pgrect(current_map, box),
+            self.world_state.collision_map,
+        )
+
+        # Next, deal with solid NPCs.
+        npc_iter = map(
+            lambda npc: npc_to_pgrect(current_map, npc),
+            self.world_state.npcs,
+        )
+        for item in chain(box_iter, npc_iter):
+            box(surface, item, self.collision_color)
+
+    def _draw_center_lines(self, surface: Surface) -> None:
+        w, h = surface.get_size()
+        cx, cy = w // 2, h // 2
+        line(surface, self.center_line_color, (cx, 0), (cx, h))
+        line(surface, self.center_line_color, (0, cy), (w, cy))
+
+
+def apply_bars(orientation: str, aspect_ratio: float, screen: Surface) -> None:
+    apply_cinema_bars(
+        aspect_ratio,
+        screen,
+        orientation,
+        prepare.SCREEN_SIZE,
+        prepare.BLACK_COLOR,
+    )
+
+
+def collision_box_to_pgrect(
+    current_map: TuxemonMap, box: tuple[int, int]
+) -> Rect:
+    """
+    Returns a Rect (in screen-coords) version of a collision box (in world-coords).
+    """
+    x, y = get_pos_from_tilepos(current_map, Vector2(box))
+    tw, th = prepare.TILE_SIZE
+    return Rect(x, y, tw, th)
+
+
+def npc_to_pgrect(current_map: TuxemonMap, npc: NPC) -> Rect:
+    """Returns a Rect (in screen-coords) version of an NPC's bounding box."""
+    pos = get_pos_from_tilepos(current_map, proj(npc.position))
+    return Rect(pos, prepare.TILE_SIZE)

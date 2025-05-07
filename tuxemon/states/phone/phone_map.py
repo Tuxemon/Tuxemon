@@ -2,18 +2,72 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+import logging
 from collections.abc import Callable
-from typing import Any
+from dataclasses import dataclass
+from typing import TYPE_CHECKING, Any, Optional
 
 import pygame_menu
+import yaml
 from pygame_menu import locals
 
 from tuxemon import prepare
+from tuxemon.constants import paths
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.session import local_session
+
+if TYPE_CHECKING:
+    from tuxemon.npc import NPC
 
 MenuGameObj = Callable[[], Any]
+
+logger = logging.getLogger(__name__)
+
+
+@dataclass
+class NuPhoneMapConfig:
+    map_path: str
+    map_data: list[tuple[float, float, str]]
+
+
+def load_yaml(filepath: str) -> Any:
+    try:
+        with open(filepath) as file:
+            return yaml.safe_load(file)
+    except FileNotFoundError:
+        logger.error(f"Config file not found: {filepath}")
+        raise
+    except yaml.YAMLError as exc:
+        logger.error(f"Error parsing YAML file: {exc}")
+        raise exc
+
+
+class Loader:
+    _config_nuphone_map: Optional[NuPhoneMapConfig] = None
+
+    @classmethod
+    def get_config_nuphone_map(cls, filename: str) -> NuPhoneMapConfig:
+        yaml_path = f"{paths.mods_folder}/{filename}"
+        if not cls._config_nuphone_map:
+            raw_data = load_yaml(yaml_path)
+            if not isinstance(raw_data, dict):
+                raise ValueError("Invalid YAML data")
+
+            map_path = raw_data.get("map_path")
+            map_data = raw_data.get("map_data")
+            if not map_path or not map_data:
+                raise ValueError("Missing required keys in YAML data")
+
+            map_data = [(item[0], item[1], item[2]) for item in map_data]
+
+            cls._config_nuphone_map = NuPhoneMapConfig(
+                map_path=map_path,
+                map_data=map_data,
+            )
+        return cls._config_nuphone_map
+
+
+data = Loader.get_config_nuphone_map("nu_phone_map.yaml")
 
 
 def fix_measure(measure: int, percentage: float) -> int:
@@ -23,11 +77,8 @@ def fix_measure(measure: int, percentage: float) -> int:
 
 class NuPhoneMap(PygameMenuState):
     """
-    The map will be generated from a game variable called: "phone_map"
     If there is no variable, then it'll be shown the Spyder map.
 
-    The coordinates of the cities / location will be obtained by game variables
-    beginning with the prefix: "nu_map_"
     where location is the msgid of the location (PO), x and y are coordinates
 
     If the player is in Cotton Town, then Cotton Town will be underlined and not
@@ -35,67 +86,52 @@ class NuPhoneMap(PygameMenuState):
 
     If there are no trackers (locations), then it'll be not possible to consult
     the app. It'll appear a pop up with: "GPS tracker not updating."
-
-    Some examples:
-    game_variables["nu_map_1"] = "leather_town*0.20*0.42"
-    game_variables["nu_map_2"] = "cotton_town*0.20*0.52"
-    game_variables["nu_map_3"] = "paper_town*0.20*0.62"
-    game_variables["nu_map_4"] = "candy_town*-0.15*0.62"
-    game_variables["nu_map_5"] = "timber_town*-0.15*0.42"
-    game_variables["nu_map_6"] = "flower_city*-0.15*0.32"
-
     """
 
     def add_menu_items(
         self,
         menu: pygame_menu.Menu,
     ) -> None:
-        phone_map = self.player.game_variables.get(
-            "phone_map", prepare.PHONE_MAP
-        )
-        # map
-        new_image = self._create_image(phone_map)
+        new_image = self._create_image(data.map_path)
         new_image.scale(prepare.SCALE, prepare.SCALE)
         menu.add.image(image_path=new_image.copy())
         underline = False
         selectable = True
 
-        for key, value in self.player.game_variables.items():
-            if key.startswith("nu_map_"):
-                info = value.split("*")
-                place = info[0]
-                x = float(info[1])
-                y = float(info[2])
-                # player is here
-                if self.client.map_slug == place:
-                    underline = True
-                    selectable = False
+        for key, value in self.char.tracker.locations.items():
+            for map_data in data.map_data:
+                if key == map_data[2]:
+                    x = map_data[0]
+                    y = map_data[1]
+                    # player is here
+                    if self.client.map_slug == key:
+                        underline = True
+                        selectable = False
 
-                lab: Any = menu.add.label(
-                    title=T.translate(place),
-                    selectable=selectable,
-                    float=True,
-                    underline=underline,
-                    font_size=self.font_size_small,
-                )
-                lab.translate(
-                    fix_measure(menu._width, x), fix_measure(menu._height, y)
-                )
+                    lab: Any = menu.add.label(
+                        title=T.translate(key),
+                        selectable=selectable,
+                        float=True,
+                        underline=underline,
+                        font_size=self.font_size_small,
+                    )
+                    lab.translate(
+                        fix_measure(menu._width, x),
+                        fix_measure(menu._height, y),
+                    )
 
-        # menu
         menu.set_title(title=T.translate("app_map")).center_content()
 
-    def __init__(self) -> None:
+    def __init__(self, character: NPC) -> None:
         width, height = prepare.SCREEN_SIZE
 
         theme = self._setup_theme(prepare.BG_PHONE_MAP)
         theme.scrollarea_position = locals.POSITION_EAST
         theme.widget_alignment = locals.ALIGN_CENTER
 
-        # menu
         theme.title = True
 
-        self.player = local_session.player
+        self.char = character
 
         super().__init__(
             height=height,

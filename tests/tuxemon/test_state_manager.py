@@ -1,8 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
-from unittest import skip
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 from tuxemon.state import State, StateManager
 
@@ -10,6 +9,7 @@ from tuxemon.state import State, StateManager
 def create_state(name):
     mock_state = Mock(spec=State, name=f"mock {name}")
     mock_state.__name__ = name
+    mock_state.name = name
     return mock_state
 
 
@@ -260,13 +260,21 @@ class EnqueueThenPop(StateManagerTestBase):
         self.sm.pop_state()
         self.sm.update(0)
 
-    @skip("need to mock the factory")
-    def test_current_state(self):
-        active = list(i.name for i in self.sm.active_states if i.name == "c")
-        active = list(i.name for i in self.sm.active_states)
-        assert len(active) == 1
-        state_c = active.pop()
-        self.assertEqual(state_c, self.sm.current_state)
+    @patch.object(StateManager, "_instance")
+    def test_current_state(self, mock_instance):
+        mock_state_c = self.create_and_register_state("c")
+        mock_instance.return_value = mock_state_c
+
+        while self.sm.active_states:
+            self.sm.pop_state()
+
+        self.sm.push_state("c")
+
+        self.assertIn(mock_state_c, self.sm.active_states)
+
+        active = [i.name for i in self.sm.active_states]
+        self.assertEqual(len(active), 1)
+        self.assertEqual(active[0], "c")
 
     def test_queued_not_in_active_states(self):
         active = set(i.name for i in self.sm.active_states)
@@ -287,118 +295,3 @@ class WhenEmpty(StateManagerTestBase):
 
     def test_no_states_current_state_is_none(self):
         self.assertEqual(self.sm.current_state, None)
-
-
-class TestStateHooks(unittest.TestCase):
-
-    def test_state_hooks(self):
-        state = State()
-        mock_callback = Mock()
-
-        state.register_hook("update", mock_callback)
-        state.update(0.1)
-        mock_callback.assert_called_once_with(0.1)
-        mock_callback.reset_mock()
-
-        state.register_hook("draw", mock_callback)
-        mock_surface = Mock()
-        state.draw(mock_surface)
-        mock_callback.assert_called_once_with(mock_surface)
-        mock_callback.reset_mock()
-
-        state.register_hook("resume", mock_callback)
-        state.resume()
-        mock_callback.assert_called_once()
-        mock_callback.reset_mock()
-
-        state.register_hook("pause", mock_callback)
-        state.pause()
-        mock_callback.assert_called_once()
-        mock_callback.reset_mock()
-
-        state.register_hook("shutdown", mock_callback)
-        state.shutdown()
-        mock_callback.assert_called_once()
-        mock_callback.reset_mock()
-
-        state.unregister_hook("update", mock_callback)
-        state.update(0.1)
-        mock_callback.assert_not_called()
-
-    def test_state_hooks_multiple_callbacks(self):
-        state = State()
-        mock_callback1 = Mock()
-        mock_callback2 = Mock()
-
-        state.register_hook("update", mock_callback1)
-        state.register_hook("update", mock_callback2)
-        state.update(0.1)
-
-        mock_callback1.assert_called_once_with(0.1)
-        mock_callback2.assert_called_once_with(0.1)
-
-    def test_state_hooks_unregister_nonexistent(self):
-        state = State()
-        mock_callback = Mock()
-        state.unregister_hook("update", mock_callback)
-
-    def test_state_hooks_unregister_correct_callback(self):
-        state = State()
-        mock_callback1 = Mock()
-        mock_callback2 = Mock()
-        state.register_hook("update", mock_callback1)
-        state.register_hook("update", mock_callback2)
-        state.unregister_hook("update", mock_callback1)
-        state.update(0.1)
-        mock_callback1.assert_not_called()
-        mock_callback2.assert_called_once()
-
-
-class TestStateManagerHooks(unittest.TestCase):
-
-    def test_global_hooks(self):
-        manager = StateManager("test")
-        mock_callback = Mock()
-
-        manager.register_global_hook("pre_state_update", mock_callback)
-        manager.update(0.1)
-        mock_callback.assert_called_once_with(0.1)
-        mock_callback.reset_mock()
-
-        manager.register_global_hook("post_state_update", mock_callback)
-        manager.update(0.1)
-        mock_callback.assert_called()
-        mock_callback.reset_mock()
-
-        manager.unregister_global_hook("pre_state_update", mock_callback)
-        manager.update(0.1)
-        mock_callback.assert_called_once_with(0.1)
-
-    def test_global_hooks_multiple_callbacks(self):
-        manager = StateManager("test")
-        mock_callback1 = Mock()
-        mock_callback2 = Mock()
-
-        manager.register_global_hook("pre_state_update", mock_callback1)
-        manager.register_global_hook("pre_state_update", mock_callback2)
-        manager.update(0.1)
-
-        mock_callback1.assert_called_once_with(0.1)
-        mock_callback2.assert_called_once_with(0.1)
-
-    def test_global_hooks_unregister_nonexistent(self):
-        manager = StateManager("test")
-        mock_callback = Mock()
-        with self.assertRaises(ValueError):
-            manager.unregister_global_hook("pre_state_update", mock_callback)
-
-    def test_global_hooks_unregister_correct_callback(self):
-        manager = StateManager("test")
-        mock_callback1 = Mock()
-        mock_callback2 = Mock()
-        manager.register_global_hook("pre_state_update", mock_callback1)
-        manager.register_global_hook("pre_state_update", mock_callback2)
-        manager.unregister_global_hook("pre_state_update", mock_callback1)
-        manager.update(0.1)
-        mock_callback1.assert_not_called()
-        mock_callback2.assert_called_once()

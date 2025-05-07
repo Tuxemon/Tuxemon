@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from functools import partial
-from typing import Any, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
 import pygame_menu
 from pygame_menu import locals
@@ -15,7 +15,9 @@ from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
-from tuxemon.session import local_session
+
+if TYPE_CHECKING:
+    from tuxemon.npc import NPC
 
 MAX_PAGE = 20
 
@@ -56,24 +58,30 @@ class JournalState(PygameMenuState):
 
         monsters = sorted(monsters, key=lambda x: x.txmn_id)
 
-        player = local_session.player
         for mon in monsters:
-            if player.tuxepedia.is_registered(mon.slug):
-                param = {"monster": mon}
+            if self.char.tuxepedia.is_registered(mon.slug):
                 label = f"{mon.txmn_id}. {T.translate(mon.slug).upper()}"
-                if player.tuxepedia.is_seen(mon.slug):
+                if self.char.tuxepedia.is_seen(mon.slug):
                     menu.add.button(
                         label,
-                        change_state("JournalInfoState", kwargs=param),
+                        change_state(
+                            "JournalInfoState",
+                            character=self.char,
+                            monster=mon,
+                        ),
                         font_size=self.font_size_small,
                         button_id=mon.slug,
                     ).translate(
                         fix_measure(width, 0.25), fix_measure(height, 0.01)
                     )
-                elif player.tuxepedia.is_caught(mon.slug):
+                elif self.char.tuxepedia.is_caught(mon.slug):
                     menu.add.button(
                         label + "◉",
-                        change_state("JournalInfoState", kwargs=param),
+                        change_state(
+                            "JournalInfoState",
+                            character=self.char,
+                            monster=mon,
+                        ),
                         font_size=self.font_size_small,
                         button_id=mon.slug,
                         underline=True,
@@ -92,14 +100,11 @@ class JournalState(PygameMenuState):
                     fix_measure(width, 0.25), fix_measure(height, 0.01)
                 )
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(
+        self, character: NPC, monsters: list[MonsterModel], page: int
+    ) -> None:
         if not lookup_cache:
             _lookup_monsters()
-        monsters: list[MonsterModel] = []
-        page: int = 0
-        for ele in kwargs.values():
-            monsters = ele["monsters"]
-            page = ele["page"]
 
         width, height = prepare.SCREEN_SIZE
 
@@ -136,6 +141,7 @@ class JournalState(PygameMenuState):
             height=height, width=width, columns=columns, rows=int(rows)
         )
 
+        self.char = character
         self._page = page
         self._monster_list = monster_list
         self.add_menu_items(self.menu, monster_list)
@@ -147,14 +153,17 @@ class JournalState(PygameMenuState):
         max_page = (
             len(box) + MAX_PAGE - 1
         ) // MAX_PAGE  # calculate max_page correctly
-        param: dict[str, Any] = {"monsters": box}
 
         if event.button in (buttons.RIGHT, buttons.LEFT) and event.pressed:
             self._page = (
                 self._page + (1 if event.button == buttons.RIGHT else -1)
             ) % max_page
-            param["page"] = self._page
-            client.replace_state("JournalState", kwargs=param)
+            client.replace_state(
+                "JournalState",
+                character=self.char,
+                monsters=box,
+                page=self._page,
+            )
 
         elif event.button in (buttons.BACK, buttons.B) and event.pressed:
             client.pop_state()

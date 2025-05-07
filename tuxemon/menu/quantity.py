@@ -43,7 +43,6 @@ class QuantityMenu(Menu[None]):
             callback: Function to be called when dialog is confirmed. The
                 quantity will be sent as only argument.
             shrink_to_items: Whether to fit the border to contents.
-
         """
         super().__init__()
         self.quantity = quantity

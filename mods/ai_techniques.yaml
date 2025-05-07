@@ -1,0 +1,29 @@
+techniques:
+  slug: # Can be a monster_slug (wild battle) or trainer_slug (trainer battle).
+    melee_bonus: 1.0  # Optional: Bonus multiplier applied to melee techniques.
+    touch_bonus: 1.0  # Optional: Bonus multiplier applied to touch-based techniques.
+    special_bonus: 1.0  # Optional: Bonus multiplier applied to special techniques.
+    ranged_bonus: 1.0  # Optional: Bonus multiplier applied to ranged techniques.
+    reach_bonus: 1.0  # Optional: Bonus multiplier applied to techniques with extended reach.
+    reliable_bonus: 1.0  # Optional: Bonus multiplier applied to techniques deemed reliable.
+
+    # Optional: Weight assigned to the base power of a technique. Higher values indicate prioritization of power.
+    power_weight: 1.0
+
+    # Optional: Weight assigned to the accuracy of a technique. Higher values indicate prioritization of precision.
+    accuracy_weight: 1.0
+
+    # Optional: Weight assigned to elemental effectiveness. Higher values indicate prioritization of exploiting elemental advantages.
+    elemental_multiplier_weight: 1.0
+
+    # Optional: Scaling for elemental effectiveness based on opponent's health condition.
+    elemental_health_scaling: 1.0  # Higher values increase effectiveness against opponents with high health.
+    elemental_health_threshold: 1.0  # Threshold for scaling; effectiveness applies if opponent's health is above this percentage.
+
+    # Optional: Threshold and weight for rewarding healing techniques based on the target's health.
+    health_priority_threshold: 0.5  # Techniques are rewarded if the target's health is below this percentage.
+    healing_weight: 1.5  # Determines the significance of healing effectiveness.
+
+    # Optional: Threshold and weight for penalizing healing techniques if the target's health is near full.
+    healing_penalty_threshold: 0.9  # Techniques are penalized if the target's health is above this percentage.
+    healing_penalty_weight: 0.5  # Determines the significance of the penalty applied.

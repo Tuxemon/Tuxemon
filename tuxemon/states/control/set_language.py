@@ -12,6 +12,7 @@ from tuxemon.animation import Animation
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
+from tuxemon.session import local_session
 
 
 class SetLanguage(PygameMenuState):
@@ -41,7 +42,9 @@ class SetLanguage(PygameMenuState):
             self.client.replace_state("StartState")
         else:
             self.client.pop_state()
-            self.client.replace_state("WorldMenuState")
+            self.client.replace_state(
+                "WorldMenuState", character=local_session.player
+            )
 
     def initialize_items(
         self,

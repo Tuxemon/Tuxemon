@@ -38,7 +38,7 @@ from tuxemon.technique.technique import Technique, decode_moves, encode_moves
 from tuxemon.time_handler import today_ordinal
 
 if TYPE_CHECKING:
-    import pygame
+    from pygame.surface import Surface
 
     from tuxemon.npc import NPC
 
@@ -358,15 +358,11 @@ class Monster:
 
         return stat_map.get(stat, 0)
 
-    def has_type(self, type_slug: Optional[str]) -> bool:
+    def has_type(self, type_slug: str) -> bool:
         """
         Returns TRUE if there is the type among the types.
         """
-        return (
-            type_slug in [type_obj.slug for type_obj in self.types]
-            if type_slug
-            else False
-        )
+        return type_slug in {type_obj.slug for type_obj in self.types}
 
     def give_experience(self, amount: int = 1) -> int:
         """
@@ -750,7 +746,7 @@ class MonsterSpriteHandler:
         self.menu1_path = menu1_path
         self.menu2_path = menu2_path
         self.flairs = flairs
-        self.sprite_cache: dict[str, pygame.Surface] = {}
+        self.sprite_cache: dict[str, Surface] = {}
         self.animated_sprite_cache: dict[str, Sprite] = {}
 
     def get_sprite_path(self, sprite: str) -> str:
@@ -775,7 +771,7 @@ class MonsterSpriteHandler:
         logger.error(f"Could not find monster sprite {sprite}")
         return prepare.MISSING_IMAGE
 
-    def load_sprite(self, path: str, **kwargs: Any) -> pygame.Surface:
+    def load_sprite(self, path: str, **kwargs: Any) -> Surface:
         """
         Loads the monster's sprite images as Pygame surfaces.
 
@@ -856,8 +852,8 @@ class MonsterSpriteHandler:
         return sprite
 
     def apply_flairs(
-        self, image: pygame.Surface, sprite_type: str, **kwargs: Any
-    ) -> pygame.Surface:
+        self, image: Surface, sprite_type: str, **kwargs: Any
+    ) -> Surface:
         """Applies flairs to the given sprite image."""
         for flair in self.flairs.values():
             flair_path = self.get_sprite_path(
@@ -868,9 +864,7 @@ class MonsterSpriteHandler:
                 image.blit(flair_surface, (0, 0))
         return image
 
-    def load_sprites(
-        self, scale: float = prepare.SCALE
-    ) -> dict[str, pygame.Surface]:
+    def load_sprites(self, scale: float = prepare.SCALE) -> dict[str, Surface]:
         """Loads all monster sprites and caches them."""
         sprite_paths = {
             "front": self.front_path,

@@ -8,6 +8,7 @@ from typing import Optional, final
 
 from tuxemon import prepare, save
 from tuxemon.event.eventaction import EventAction
+from tuxemon.npc import NPCState
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
@@ -36,7 +37,6 @@ class LoadGameAction(EventAction):
 
     eg: "load_game" (slot4.save)
     eg: "load_game 1"
-
     """
 
     name = "load_game"
@@ -48,7 +48,7 @@ class LoadGameAction(EventAction):
 
         logger.info("Loading!")
         save_data = save.load(index)
-        if save_data and "error" not in save_data["npc_state"]:
+        if save_data:
             try:
                 old_world = client.get_state_by_name(WorldState)
                 # when game is loaded from world menu
@@ -69,7 +69,9 @@ class LoadGameAction(EventAction):
 
             # TODO: Get player from whatever place and use self.client in
             # order to build a Session
-            self.session.player.set_state(self.session, save_data["npc_state"])
+            self.session.player.set_state(
+                self.session, save_data.get("npc_state", NPCState())
+            )
 
             # teleport the player to the correct position using an event
             # engine action

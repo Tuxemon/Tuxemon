@@ -290,7 +290,6 @@ class TMXMapLoader:
 
         Returns:
             The loaded map.
-
         """
         data = self.load_tiled_map(filename)
         tile_size = (data.tilewidth, data.tileheight)

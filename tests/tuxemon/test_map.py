@@ -2,16 +2,21 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
 from math import pi
+from unittest.mock import MagicMock
 
+from tuxemon import prepare
 from tuxemon.compat import Rect
 from tuxemon.db import Direction, Orientation
 from tuxemon.map import (
+    angle_of_points,
     direction_to_list,
     get_adjacent_position,
     get_coord_direction,
     get_coords,
     get_coords_ext,
     get_direction,
+    get_explicit_tile_exits,
+    get_pos_from_tilepos,
     orientation_by_angle,
     pairs,
     point_to_grid,
@@ -20,6 +25,7 @@ from tuxemon.map import (
     snap_rect,
     tiles_inside_rect,
 )
+from tuxemon.math import Vector2
 
 
 class TestSnapInterval(unittest.TestCase):
@@ -144,6 +150,28 @@ class TestTilesInsideRect(unittest.TestCase):
         self.assertEqual(list(tiles_inside_rect(rect, grid_size)), [(0, 0)])
 
 
+class TestAngleOfPoints(unittest.TestCase):
+    def test_horizontal_right(self):
+        self.assertEqual(angle_of_points((0, 0), (1, 0)), 0.0)
+
+    def test_horizontal_left(self):
+        self.assertTrue(angle_of_points((0, 0), (-1, 0)), pi)
+
+    def test_vertical_up(self):
+        self.assertTrue(angle_of_points((0, 0), (0, 1)), pi / 2)
+
+    def test_vertical_down(self):
+        self.assertTrue(angle_of_points((0, 0), (0, -1)), 3 * pi / 2)
+
+    def test_diagonal(self):
+        self.assertTrue(angle_of_points((0, 0), (1, 1)), pi / 4)
+
+    def test_arbitrary_angle(self):
+        result = angle_of_points((2, 3), (5, 7))
+        expected = 0.9272952180016122
+        self.assertTrue(result, expected)
+
+
 class TestOrientationByAngle(unittest.TestCase):
     def test_vertical(self):
         angle = 3 / 2 * pi
@@ -167,6 +195,51 @@ class TestOrientationByAngle(unittest.TestCase):
         angle = 1e-7
         with self.assertRaises(Exception):
             orientation_by_angle(angle)
+
+    def test_near_two_pi(self):
+        angle = 2 * pi - 1e-7
+        with self.assertRaises(ValueError):
+            orientation_by_angle(angle)
+
+    def test_negative_angle(self):
+        angle = -pi / 2
+        with self.assertRaises(ValueError):
+            orientation_by_angle(angle)
+
+    def test_exact_pi(self):
+        angle = pi
+        with self.assertRaises(ValueError):
+            orientation_by_angle(angle)
+
+    def test_random_non_aligned(self):
+        angle = pi / 3  # 60 degrees
+        with self.assertRaises(ValueError):
+            orientation_by_angle(angle)
+
+    def test_extreme_values_positive(self):
+        angle = 10 * pi
+        with self.assertRaises(ValueError):
+            orientation_by_angle(angle)
+
+    def test_extreme_values_negative(self):
+        angle = -5 * pi
+        with self.assertRaises(ValueError):
+            orientation_by_angle(angle)
+
+    def test_large_input_set(self):
+        angles = [0.0, pi / 2, pi, 3 * pi / 2, 2 * pi] * 1000
+        for angle in angles:
+            if angle in {0.0, 2 * pi}:
+                self.assertEqual(
+                    orientation_by_angle(angle), Orientation.horizontal
+                )
+            elif angle in {pi / 2, 3 * pi / 2}:
+                self.assertEqual(
+                    orientation_by_angle(angle), Orientation.vertical
+                )
+            else:
+                with self.assertRaises(ValueError):
+                    orientation_by_angle(angle)
 
 
 class TestGetCoordsExt(unittest.TestCase):
@@ -258,14 +331,14 @@ class TestGetCoords(unittest.TestCase):
         map_size = (5, 5)
         tile = (2, 2)
         radius = 1
-        expected_coords = [(2, 3), (3, 2), (1, 2), (2, 1)]
+        expected_coords = [(2, 3), (3, 2), (2, 1), (1, 2)]
         self.assertEqual(get_coords(tile, map_size, radius), expected_coords)
 
     def test_radius_greater_than_one(self):
         map_size = (5, 5)
         tile = (2, 2)
         radius = 2
-        expected_coords = [(2, 4), (2, 0), (4, 2), (0, 2)]
+        expected_coords = [(2, 4), (4, 2), (2, 0), (0, 2)]
         self.assertEqual(get_coords(tile, map_size, radius), expected_coords)
 
     def test_tile_at_edge(self):
@@ -293,17 +366,16 @@ class TestGetCoords(unittest.TestCase):
         map_size = (100, 100)
         tile = (50, 50)
         radius = 10
-        expected_coords = [(40, 50), (50, 40), (60, 50), (50, 60)]
+        expected_coords = [(50, 60), (60, 50), (50, 40), (40, 50)]
         self.assertEqual(get_coords(tile, map_size, radius), expected_coords)
 
     def test_negative_radius(self):
         map_size = (5, 5)
         tile = (2, 2)
         radius = -1
-        self.assertEqual(
-            get_coords(tile, map_size, radius),
-            [(2, 3), (3, 2), (1, 2), (2, 1)],
-        )
+
+        with self.assertRaises(ValueError):
+            get_coords(tile, map_size, radius)
 
     def test_zero_radius(self):
         map_size = (5, 5)
@@ -316,7 +388,7 @@ class TestGetCoords(unittest.TestCase):
         map_size = (10, 10)
         tile = (0, 0)
         radius = 5
-        expected_coords = [(5, 0), (0, 5)]
+        expected_coords = [(0, 5), (5, 0)]
         self.assertEqual(get_coords(tile, map_size, radius), expected_coords)
 
     def test_tile_in_corner_with_large_radius(self):
@@ -597,3 +669,141 @@ class TestDirectionToList(unittest.TestCase):
     def test_invalid_direction(self):
         with self.assertRaises(ValueError):
             direction_to_list("invalid direction")
+
+
+class TestGetExplicitTileExits(unittest.TestCase):
+
+    def test_no_endure_no_exit_from(self):
+        position = (1, 1)
+        tile = MagicMock(endure=None, exit_from=[])
+        facing = Direction.down
+        skip_nodes = None
+
+        exits = get_explicit_tile_exits(position, tile, facing, skip_nodes)
+        self.assertEqual(exits, [])
+
+    def test_endure_with_no_skip_nodes(self):
+        position = (1, 1)
+        tile = MagicMock(endure=[Direction.down], exit_from=[])
+        facing = Direction.down
+        skip_nodes = None
+
+        exits = get_explicit_tile_exits(position, tile, facing, skip_nodes)
+        self.assertEqual(exits, [(1, 2)])
+
+    def test_endure_with_skip_nodes(self):
+        position = (1, 1)
+        tile = MagicMock(endure=[Direction.down], exit_from=[])
+        facing = Direction.down
+        skip_nodes = {(1, 2)}
+
+        exits = get_explicit_tile_exits(position, tile, facing, skip_nodes)
+        self.assertEqual(exits, [])
+
+    def test_exit_from_with_multiple_directions(self):
+        position = (1, 1)
+        tile = MagicMock(endure=None, exit_from=[Direction.up, Direction.left])
+        facing = Direction.down
+        skip_nodes = None
+
+        exits = get_explicit_tile_exits(position, tile, facing, skip_nodes)
+        expected_exits = [(0, 1), (1, 0)]
+        self.assertEqual(sorted(exits), sorted(expected_exits))
+
+    def test_exit_from_with_skip_nodes(self):
+        position = (1, 1)
+        tile = MagicMock(endure=None, exit_from=[Direction.up, Direction.left])
+        facing = Direction.down
+        skip_nodes = {(1, 0)}
+
+        exits = get_explicit_tile_exits(position, tile, facing, skip_nodes)
+        expected_exits = [(0, 1)]
+        self.assertEqual(exits, expected_exits)
+
+    def test_invalid_tile_properties(self):
+        position = (1, 1)
+        tile = MagicMock(side_effect=TypeError)
+        facing = Direction.down
+        skip_nodes = None
+
+        exits = get_explicit_tile_exits(position, tile, facing, skip_nodes)
+        self.assertEqual(exits, [])
+
+
+class TestGetPosFromTilePos(unittest.TestCase):
+    def test_get_pos_from_tilepos(self):
+        mock_map = MagicMock()
+        mock_map.renderer.get_center_offset.return_value = (50, 75)
+
+        tile_position = Vector2(3, 4)
+
+        expected_px = 3 * prepare.TILE_SIZE[0]
+        expected_py = 4 * prepare.TILE_SIZE[1]
+        expected_x = expected_px + 50
+        expected_y = expected_py + 75
+        expected_result = (expected_x, expected_y)
+
+        result = get_pos_from_tilepos(mock_map, tile_position)
+        self.assertEqual(result, expected_result)
+
+    def test_different_tile_size(self):
+        mock_map = MagicMock()
+        mock_map.renderer.get_center_offset.return_value = (50, 75)
+
+        tile_position = Vector2(2, 3)
+
+        expected_px = 2 * prepare.TILE_SIZE[0]
+        expected_py = 3 * prepare.TILE_SIZE[1]
+        expected_result = (expected_px + 50, expected_py + 75)
+
+        result = get_pos_from_tilepos(mock_map, tile_position)
+        self.assertEqual(result, expected_result)
+
+    def test_tile_position_origin(self):
+        mock_map = MagicMock()
+        mock_map.renderer.get_center_offset.return_value = (50, 75)
+
+        tile_position = Vector2(0, 0)
+
+        expected_result = (50, 75)
+        result = get_pos_from_tilepos(mock_map, tile_position)
+        self.assertEqual(result, expected_result)
+
+    def test_negative_tile_position(self):
+        mock_map = MagicMock()
+        mock_map.renderer.get_center_offset.return_value = (50, 75)
+
+        tile_position = Vector2(-1, -2)
+
+        expected_px = -1 * prepare.TILE_SIZE[0]
+        expected_py = -2 * prepare.TILE_SIZE[1]
+        expected_result = (expected_px + 50, expected_py + 75)
+
+        result = get_pos_from_tilepos(mock_map, tile_position)
+        self.assertEqual(result, expected_result)
+
+    def test_large_tile_position(self):
+        mock_map = MagicMock()
+        mock_map.renderer.get_center_offset.return_value = (50, 75)
+
+        tile_position = Vector2(1000, 2000)
+
+        expected_px = 1000 * prepare.TILE_SIZE[0]
+        expected_py = 2000 * prepare.TILE_SIZE[1]
+        expected_result = (expected_px + 50, expected_py + 75)
+
+        result = get_pos_from_tilepos(mock_map, tile_position)
+        self.assertEqual(result, expected_result)
+
+    def test_zero_center_offset(self):
+        mock_map = MagicMock()
+        mock_map.renderer.get_center_offset.return_value = (0, 0)
+
+        tile_position = Vector2(5, 7)
+
+        expected_px = 5 * prepare.TILE_SIZE[0]
+        expected_py = 7 * prepare.TILE_SIZE[1]
+        expected_result = (expected_px, expected_py)
+
+        result = get_pos_from_tilepos(mock_map, tile_position)
+        self.assertEqual(result, expected_result)

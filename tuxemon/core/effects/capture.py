@@ -6,9 +6,8 @@ import logging
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
-from tuxemon import formula, prepare
+from tuxemon import formula
 from tuxemon.core.core_effect import ItemEffect, ItemEffectResult
-from tuxemon.db import CategoryStatus as Category
 from tuxemon.db import SeenStatus
 from tuxemon.technique.technique import Technique
 
@@ -31,10 +30,13 @@ class CaptureEffect(ItemEffect):
         assert target
 
         # Calculate status modifier
-        status_modifier = self._calculate_status_modifier(target)
+        status_modifier = formula.calculate_status_modifier(item, target)
 
         # Calculate tuxeball modifier
-        tuxeball_modifier = self._calculate_tuxeball_modifier(item, target)
+        player = self.session.player
+        tuxeball_modifier = formula.calculate_capdev_modifier(
+            item, target, player
+        )
 
         # Perform shake check and capture calculation
         shake_check = formula.shake_check(
@@ -53,45 +55,8 @@ class CaptureEffect(ItemEffect):
             name=item.name, success=True, num_shakes=shakes
         )
 
-    def _calculate_status_modifier(self, target: Monster) -> float:
-        status_modifier = prepare.STATUS_MODIFIER
-        if target.status and target.status[0].category:
-            status_modifier = (
-                prepare.STATUS_NEGATIVE
-                if target.status[0].category == Category.negative
-                else prepare.STATUS_POSITIVE
-            )
-        return status_modifier
-
-    def _calculate_tuxeball_modifier(
-        self, item: Item, target: Monster
-    ) -> float:
-        tuxeball_modifier = prepare.TUXEBALL_MODIFIER
-
-        if item.slug == "tuxeball_crusher":
-            crusher = ((target.armour / 5) * 0.01) + 1
-            if crusher >= 1.4:
-                crusher = 1.4
-            if (
-                self._calculate_status_modifier(target)
-                == prepare.STATUS_POSITIVE
-            ):
-                crusher = 0.01
-            tuxeball_modifier = crusher
-        elif item.slug == "tuxeball_ancient":
-            tuxeball_modifier = 99.0
-        elif item.slug == "tuxeball_noble":
-            tuxeball_modifier = 1.25
-        elif item.slug == "tuxeball_lavish":
-            tuxeball_modifier = 1.5
-        elif item.slug == "tuxeball_grand":
-            tuxeball_modifier = 1.75
-        elif item.slug == "tuxeball_majestic":
-            tuxeball_modifier = 2.0
-
-        return tuxeball_modifier
-
     def _handle_capture_failure(self, item: Item, target: Monster) -> None:
+        formula.on_capture_fail(item, target, self.session.player)
         assert item.combat_state
         if item.slug == "tuxeball_park":
             empty = Technique()
@@ -102,13 +67,8 @@ class CaptureEffect(ItemEffect):
             item.combat_state._action_queue.rewrite(target, empty)
 
     def _apply_capture_effects(self, item: Item, target: Monster) -> None:
+        formula.on_capture_success(item, target, self.session.player)
         assert item.combat_state
-        if item.slug == "tuxeball_candy":
-            target.level += 1
-        elif item.slug == "tuxeball_hardened":
-            tuxeball = self.session.player.find_item(item.slug)
-            if tuxeball:
-                tuxeball.quantity -= 1
 
         if self.session.player.tuxepedia.is_seen(target.slug):
             item.combat_state._new_tuxepedia = True

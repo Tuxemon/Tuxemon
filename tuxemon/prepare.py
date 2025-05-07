@@ -168,7 +168,6 @@ BG_PHONE: str = GRAD_BLUE
 BG_PHONE_BANKING: str = GRAD_BLUE
 BG_PHONE_CONTACTS: str = GRAD_BLUE
 BG_PHONE_MAP: str = GRAD_BLUE
-PHONE_MAP: str = "gfx/ui/background/spyder_map.png"
 BG_START_SCREEN: str = GRAD_BLUE
 PYGAME_LOGO: str = "gfx/ui/intro/pygame_logo.png"
 CREATIVE_COMMONS: str = "gfx/ui/intro/creative_commons.png"
@@ -245,17 +244,6 @@ COEFF_EXP: int = 3
 # weight and height (min and max) = -/+ 10%
 WEIGHT_RANGE: tuple[float, float] = (-0.1, 0.1)
 HEIGHT_RANGE: tuple[float, float] = (-0.1, 0.1)
-
-# Capture
-# default modifiers
-STATUS_MODIFIER: float = 1.0
-TUXEBALL_MODIFIER: float = 1.0
-# standard modifiers if target has status:
-# if the status is positive
-# equal to status_modifier, but it can be changed
-STATUS_POSITIVE: float = 1.0
-# if the status is negative
-STATUS_NEGATIVE: float = 1.2
 
 # Camera
 CAMERA_SHAKE_RANGE: tuple[float, float] = (0.0, 3.0)

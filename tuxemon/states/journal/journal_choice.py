@@ -5,7 +5,7 @@ from __future__ import annotations
 import math
 from collections.abc import Callable
 from functools import partial
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import pygame_menu
 from pygame_menu import locals
@@ -14,7 +14,9 @@ from tuxemon import prepare
 from tuxemon.db import MonsterModel, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.session import local_session
+
+if TYPE_CHECKING:
+    from tuxemon.npc import NPC
 
 MAX_PAGE = 20
 
@@ -44,7 +46,6 @@ class JournalChoice(PygameMenuState):
         menu: pygame_menu.Menu,
         monsters: list[MonsterModel],
     ) -> None:
-        player = local_session.player
         width = menu._width
         height = menu._height
 
@@ -66,17 +67,21 @@ class JournalChoice(PygameMenuState):
                 mon
                 for mon in monsters
                 if start < mon.txmn_id <= end
-                and player.tuxepedia.is_registered(mon.slug)
+                and self.char.tuxepedia.is_registered(mon.slug)
             ]
             label = T.format(
                 "page_tuxepedia", {"a": str(start), "b": str(end)}
             ).upper()
 
             if tuxepedia:
-                param = {"monsters": monsters, "page": page}
                 menu.add.button(
                     label,
-                    change_state("JournalState", kwargs=param),
+                    change_state(
+                        "JournalState",
+                        character=self.char,
+                        monsters=monsters,
+                        page=page,
+                    ),
                     font_size=self.font_size_small,
                 ).translate(
                     fix_measure(width, 0.18), fix_measure(height, 0.01)
@@ -91,7 +96,7 @@ class JournalChoice(PygameMenuState):
                     fix_measure(width, 0.18), fix_measure(height, 0.01)
                 )
 
-    def __init__(self) -> None:
+    def __init__(self, character: NPC) -> None:
         if not lookup_cache:
             _lookup_monsters()
         width, height = prepare.SCREEN_SIZE
@@ -99,6 +104,8 @@ class JournalChoice(PygameMenuState):
         theme = self._setup_theme(prepare.BG_JOURNAL_CHOICE)
         theme.scrollarea_position = locals.POSITION_EAST
         theme.widget_alignment = locals.ALIGN_LEFT
+
+        self.char = character
 
         columns = 2
 

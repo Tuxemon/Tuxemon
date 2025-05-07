@@ -15,6 +15,7 @@ from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import Range, db
 from tuxemon.element import Element
 from tuxemon.locale import T
+from tuxemon.surfanim import FlipAxes
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -44,7 +45,7 @@ class Technique:
         self.animation: Optional[str] = None
         self.combat_state: Optional[CombatState] = None
         self.description = ""
-        self.flip_axes = ""
+        self.flip_axes = FlipAxes.NONE
         self.hit = False
         self.is_fast = False
         self.randomly = True
@@ -163,15 +164,11 @@ class Technique:
         self.next_use = self.recharge_length
         return result
 
-    def has_type(self, type_slug: Optional[str]) -> bool:
+    def has_type(self, type_slug: str) -> bool:
         """
         Returns TRUE if there is the type among the types.
         """
-        return (
-            type_slug in [type_obj.slug for type_obj in self.types]
-            if type_slug
-            else False
-        )
+        return type_slug in {type_obj.slug for type_obj in self.types}
 
     def set_stats(self) -> None:
         """

@@ -14,7 +14,6 @@ from tuxemon.menu.menu import PygameMenuState
 from tuxemon.monster import Monster
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
-from tuxemon.session import local_session
 from tuxemon.time_handler import today_ordinal
 
 lookup_cache: dict[str, MonsterModel] = {}
@@ -332,7 +331,7 @@ class MonsterInfoState(PygameMenuState):
             "MonsterMenuState",
             "MonsterTakeState",
         ]:
-            monsters = self._get_monsters()
+            monsters = _get_monsters(self._monster, self._source)
             slot = monsters.index(self._monster)
 
             if event.button == buttons.RIGHT and event.pressed:
@@ -352,13 +351,15 @@ class MonsterInfoState(PygameMenuState):
 
         return None
 
-    def _get_monsters(self) -> list[Monster]:
-        if self._source == "MonsterTakeState":
-            box = local_session.player.monster_boxes.get_box_name(
-                self._monster.instance_id
-            )
-            if box is None:
-                raise ValueError("Box doesn't exist")
-            return local_session.player.monster_boxes.get_monsters(box)
-        else:
-            return local_session.player.monsters
+
+def _get_monsters(monster: Monster, source: str) -> list[Monster]:
+    owner = monster.owner
+    if owner is None:
+        raise ValueError("Owner doesn't exist")
+    if source == "MonsterTakeState":
+        box = owner.monster_boxes.get_box_name(monster.instance_id)
+        if box is None:
+            raise ValueError("Box doesn't exist")
+        return owner.monster_boxes.get_monsters(box)
+    else:
+        return owner.monsters

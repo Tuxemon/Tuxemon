@@ -33,7 +33,6 @@ class TestConditionParentCommand(CLICommand):
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
             line: Input text after the command name.
-
         """
         print("need more arguments or syntax error", file=sys.stderr)
 
@@ -43,7 +42,6 @@ class TestConditionParentCommand(CLICommand):
 
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
-
         """
         conditions = ctx.session.client.event_engine.get_conditions()
         for condition in conditions:
@@ -58,7 +56,6 @@ class TestConditionCommand(CLICommand):
     Subcommand used by ``test`` to evaluate EventConditions.
 
     * "is" prefix is implied; do not include "is" or "not".
-
     """
 
     usable_from_root = False
@@ -72,7 +69,6 @@ class TestConditionCommand(CLICommand):
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
             line: Input text after the command name.
-
         """
         line = f"is {self.name} {line}"
         try:

@@ -271,6 +271,13 @@
     <property name="cond1" value="not music_playing music_town_theme"/>
    </properties>
   </object>
+  <object id="281" name="Seen Leather" type="event" x="608" y="512" width="16" height="32">
+   <properties>
+    <property name="act1" value="add_tracker player,leather_town"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not tracker player,leather_town"/>
+   </properties>
+  </object>
   <object id="288" name="Create Captain" type="event" x="240" y="304" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_captain,15,19"/>

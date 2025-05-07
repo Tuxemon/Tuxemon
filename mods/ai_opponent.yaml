@@ -1,0 +1,47 @@
+# Rules for AI Decision Making
+rules:
+  default:
+    # Weight assigned to health in scoring an opponent.
+    # Opponents with higher remaining HP score higher relative to their max HP.
+    health_weight: 1.0
+
+    # Weight assigned to armour in scoring.
+    # Opponents with higher armour are evaluated as tougher targets.
+    armour_weight: 1.0
+
+    # Weight assigned to dodge (evasion capability) in scoring.
+    # Opponents with higher dodge may be harder to hit, increasing their priority.
+    dodge_weight: 1.0
+
+    # Weight assigned to melee attack capability.
+    # Opponents with stronger melee attacks may be evaluated as dangerous targets.
+    melee_weight: 1.0
+
+    # Weight assigned to ranged attack capability.
+    # Opponents with stronger ranged attacks may be evaluated as dangerous at a distance.
+    ranged_weight: 1.0
+
+    # Weight assigned to speed in scoring.
+    # Faster opponents may pose a higher threat as they act earlier in combat rounds.
+    speed_weight: 1.0
+
+    # Weight assigned to status effects in scoring.
+    # Opponents with harmful status effects like "poisoned" or "stunned" receive higher scores.
+    status_effects_weight: 1.0
+
+    # List of predefined multipliers for status effects.
+    # These values specify how much each status effect increases an opponent's priority.
+    status_effects:
+      poisoned: 1.0  # Opponent is poisoned; slightly increases their evaluation score.
+
+    # The threshold for level difference consideration.
+    # If the level difference (positive or negative) exceeds this value, it's factored into the score.
+    level_difference_threshold: 5
+
+    # Weight for level differences in evaluations.
+    # Larger differences are scaled based on this weight.
+    level_difference_weight: 0.3
+  # The unique identifier (slug) of the NPC character the player is battling against.
+  # This helps associate specific configurations or strategies with this NPC character.
+  character_slug:
+    health_weight: 1.0

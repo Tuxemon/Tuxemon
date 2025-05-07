@@ -19,6 +19,7 @@ from tuxemon.db import (
     db,
 )
 from tuxemon.locale import T
+from tuxemon.surfanim import FlipAxes
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -50,7 +51,7 @@ class Status:
         self.category: Optional[CategoryStatus] = None
         self.combat_state: Optional[CombatState] = None
         self.description = ""
-        self.flip_axes = ""
+        self.flip_axes = FlipAxes.NONE
         self.gain_cond = ""
         self.icon = ""
         self.link: Optional[Monster] = None

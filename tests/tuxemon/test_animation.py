@@ -4,7 +4,7 @@ import unittest
 from collections.abc import Callable
 from unittest.mock import Mock, call
 
-import pygame
+from pygame.sprite import Group
 
 from tuxemon.animation import Task
 
@@ -60,7 +60,7 @@ class TestAnimation(unittest.TestCase):
     def test_add_chained_callback_to_group_when_original_task_finished(self):
         task = Task(self.mock_callback, DEFAULT_INTERVAL)
         task.chain(self.other_mock_callback, DEFAULT_INTERVAL)
-        task_group = pygame.sprite.Group()
+        task_group = Group()
         task_group.add(task)
 
         task_group.update(DEFAULT_INTERVAL)

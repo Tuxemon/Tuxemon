@@ -105,7 +105,7 @@
     <property name="act32" value="add_item tuxeball"/>
     <property name="act33" value="add_item tuxeball"/>
     <property name="act34" value="add_item tuxeball"/>
-    <property name="act35" value="translated_dialog tuxeball,,center"/>
+    <property name="act35" value="translated_dialog tuxeball,,center,center,middle"/>
     <property name="act40" value="set_variable visitcottonmart:yes"/>
     <property name="act41" value="unlock_controls"/>
     <property name="cond4" value="not variable_set visitcottonmart:yes"/>

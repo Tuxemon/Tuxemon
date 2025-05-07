@@ -140,7 +140,7 @@
     <property name="act03" value="pathfind spyder_dante,29,25"/>
     <property name="act04" value="translated_dialog spyder_timber_dante2"/>
     <property name="act05" value="add_item app_contacts"/>
-    <property name="act06" value="translated_dialog app_contacts,,center"/>
+    <property name="act06" value="translated_dialog app_contacts,,center,center,middle"/>
     <property name="act07" value="add_contacts player,spyder_papertown_mom,family,100"/>
     <property name="act08" value="add_contacts player,spyder_dante,friend,80"/>
     <property name="act09" value="pathfind spyder_dante,24,31"/>
@@ -161,10 +161,20 @@
     <property name="behav1" value="talk spyder_dante"/>
    </properties>
   </object>
-  <object id="332" name="Seen Timber" type="event" x="64" y="16" width="32" height="16">
+  <object id="332" name="Seen Timber 1" type="event" x="64" y="16" width="32" height="16">
    <properties>
-    <property name="act2" value="set_variable seentimber:yes"/>
+    <property name="act1" value="set_variable seentimber:yes"/>
+    <property name="act2" value="add_tracker player,timber_town"/>
     <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not tracker player,timber_town"/>
+   </properties>
+  </object>
+  <object id="328" name="Seen Timber 2" type="event" x="608" y="176" width="16" height="64">
+   <properties>
+    <property name="act1" value="set_variable seentimber:yes"/>
+    <property name="act2" value="add_tracker player,timber_town"/>
+    <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not tracker player,timber_town"/>
    </properties>
   </object>
   <object id="333" name="Create Captain" type="event" x="160" y="336" width="16" height="16">
@@ -357,7 +367,7 @@
     <property name="act07" value="char_face spyder_papertown_mom,up"/>
     <property name="act08" value="translated_dialog spyder_timber_mom1"/>
     <property name="act09" value="add_item surfboard"/>
-    <property name="act10" value="translated_dialog surfboard,,center"/>
+    <property name="act10" value="translated_dialog surfboard,,center,center,middle"/>
     <property name="act11" value="translated_dialog spyder_timber_mom2"/>
     <property name="act12" value="pathfind spyder_papertown_mom,26,23"/>
     <property name="act13" value="remove_npc spyder_papertown_mom"/>

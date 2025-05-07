@@ -107,6 +107,9 @@ def get_sound_engine(
     global _sound_engine
 
     if _sound_engine is not None:
+        _sound_engine.set_sound_volume(
+            sound_type=sound.SOUND_TYPE_WIDGET_SELECTION, volume=volume
+        )
         return _sound_engine
 
     sound_engine = pygame_menu.Sound()

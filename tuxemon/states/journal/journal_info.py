@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
 import pygame_menu
 from pygame_menu import locals
@@ -13,7 +13,9 @@ from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
-from tuxemon.session import local_session
+
+if TYPE_CHECKING:
+    from tuxemon.npc import NPC
 
 lookup_cache: dict[str, MonsterModel] = {}
 
@@ -221,12 +223,11 @@ class JournalInfoState(PygameMenuState):
             fix_measure(width, 0.20), fix_measure(height, 0.05)
         )
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(
+        self, character: NPC, monster: Optional[MonsterModel]
+    ) -> None:
         if not lookup_cache:
             _lookup_monsters()
-        monster: Optional[MonsterModel] = None
-        for element in kwargs.values():
-            monster = element["monster"]
         if monster is None:
             raise ValueError("No monster")
         width, height = prepare.SCREEN_SIZE
@@ -237,7 +238,8 @@ class JournalInfoState(PygameMenuState):
 
         super().__init__(height=height, width=width)
 
-        checks = local_session.player.tuxepedia.is_caught(monster.slug)
+        self.char = character
+        checks = self.char.tuxepedia.is_caught(monster.slug)
         self.caught = checks
         self._monster = monster
         self.add_menu_items(self.menu, monster)
@@ -245,7 +247,7 @@ class JournalInfoState(PygameMenuState):
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         client = self.client
-        monsters = local_session.player.tuxepedia.get_monsters()
+        monsters = self.char.tuxepedia.get_monsters()
         models = list(lookup_cache.values())
         model_dict = {model.slug: model for model in models}
         monster_models = sorted(
@@ -265,7 +267,8 @@ class JournalInfoState(PygameMenuState):
             )
             client.replace_state(
                 "JournalInfoState",
-                kwargs={"monster": monster_models[new_index]},
+                character=self.char,
+                monster=monster_models[new_index],
             )
 
         elif (

@@ -68,7 +68,6 @@ class RunningEvent:
 
         Returns:
             Next action to execute. ``None`` if there isn't one.
-
         """
         # if None, then make a new one
         try:
@@ -162,7 +161,6 @@ class EventEngine:
         Returns:
             New instance of the action with the appropriate parameters if
             that action is loaded. ``None`` otherwise.
-
         """
         parameters = parameters or []
 
@@ -193,7 +191,6 @@ class EventEngine:
     def get_actions(self) -> list[type[EventAction]]:
         """
         Return list of EventActions.
-
         """
         return list(self.actions.values())
 
@@ -211,7 +208,6 @@ class EventEngine:
         Returns:
             New instance of the condition if that condition is loaded.
             ``None`` otherwise.
-
         """
         # TODO: make generic
         try:
@@ -223,7 +219,6 @@ class EventEngine:
     def get_conditions(self) -> list[type[EventCondition]]:
         """
         Return list of EventConditions.
-
         """
         return list(self.conditions.values())
 
@@ -241,7 +236,6 @@ class EventEngine:
 
         Returns:
             The value of the condition.
-
         """
         map_condition = self.get_condition(cond_data.type)
         if map_condition is None:
@@ -271,7 +265,6 @@ class EventEngine:
             action_name: Name of the action.
             parameters: Parameters of the action.
             skip: Boolean for skipping the action.update().
-
         """
         parameters = parameters or []
 
@@ -301,7 +294,6 @@ class EventEngine:
 
         Parameters:
             map_event: Event whose actions will be executed.
-
         """
         if map_event.id is None:
             raise ValueError("Event ID is required")
@@ -325,7 +317,6 @@ class EventEngine:
 
         Parameters:
             map_event: Event to process.
-
         """
         if prepare.CONFIG.collision_map:
             # TODO: wrap with add_error_context
@@ -349,7 +340,6 @@ class EventEngine:
 
         Parameters:
             events: Iterable of events to process.
-
         """
         for event in events:
             self.process_map_event(event)
@@ -360,7 +350,6 @@ class EventEngine:
 
         Parameters:
             dt: Amount of time passed in seconds since last frame.
-
         """
         # debug
         self.partial_events = list()
@@ -372,7 +361,6 @@ class EventEngine:
         Checks conditions. If any are satisfied, start the MapActions.
 
         Actions may be started during this function.
-
         """
         # do the "init" events.  this will be done just once
         # TODO: make event engine generic, so can be used in global scope,
@@ -399,7 +387,6 @@ class EventEngine:
 
         Parameters:
             dt: Amount of time passed in seconds since last frame.
-
         """
         to_remove = set()
         current_map = self.current_map

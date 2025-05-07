@@ -154,7 +154,6 @@ class Mission:
     def load(self, slug: str) -> None:
         """
         Loads and sets mission from the db.
-
         """
         try:
             results = db.lookup(slug, table="mission")
@@ -188,7 +187,6 @@ class Mission:
     def get_state(self) -> Mapping[str, Any]:
         """
         Prepares a dictionary of the mission to be saved to a file.
-
         """
         save_data = {
             attr: getattr(self, attr)
@@ -203,7 +201,6 @@ class Mission:
     def set_state(self, save_data: Mapping[str, Any]) -> None:
         """
         Loads information from saved data.
-
         """
         if not save_data:
             return

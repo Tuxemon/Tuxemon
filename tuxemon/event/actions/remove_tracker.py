@@ -1,0 +1,41 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+from __future__ import annotations
+
+import logging
+from dataclasses import dataclass
+from typing import final
+
+from tuxemon.event import get_npc
+from tuxemon.event.eventaction import EventAction
+
+logger = logging.getLogger(__name__)
+
+
+@final
+@dataclass
+class RemoveTrackerAction(EventAction):
+    """
+    Remove tracker.
+
+    Script usage:
+        .. code-block::
+
+            remove_tracker <character>,<location>
+
+    Script parameters:
+        character: Either "player" or character slug name (e.g. "npc_maple").
+        location: location name (e.g. "paper_town").
+    """
+
+    name = "remove_tracker"
+    character: str
+    location: str
+
+    def start(self) -> None:
+        character = get_npc(self.session, self.character)
+        if character is None:
+            logger.error(f"{self.character} not found")
+            return
+
+        character.tracker.remove_location(self.location)

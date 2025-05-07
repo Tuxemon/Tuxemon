@@ -14,6 +14,7 @@ from tuxemon.animation import Animation
 from tuxemon.db import db
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
+from tuxemon.session import local_session
 
 ChoiceMenuGameObj = Callable[[], None]
 MAX_MENU_ELEMENTS = 15
@@ -72,8 +73,11 @@ class ChoiceMonster(PygameMenuState):
             action = self.client.event_engine
             _set_tuxepedia = ["player", monster.slug, "caught"]
             action.execute_action("set_tuxepedia", _set_tuxepedia, True)
-            param = {"monster": monster}
-            self.client.push_state("JournalInfoState", kwargs=param)
+            self.client.push_state(
+                "JournalInfoState",
+                character=local_session.player,
+                monster=monster,
+            )
             action.execute_action("clear_tuxepedia", [monster.slug], True)
 
         self.menu.add.banner(

@@ -16,24 +16,21 @@ from typing import (
     no_type_check,
 )
 
-import pygame
-from pygame.rect import Rect
 from pygame.surface import Surface
 
-from tuxemon import networking, prepare, state
+from tuxemon import networking, prepare
 from tuxemon.boundary import BoundaryChecker
-from tuxemon.camera import Camera, CameraManager, project
+from tuxemon.camera import Camera, CameraManager
 from tuxemon.db import Direction
 from tuxemon.entity import Entity
-from tuxemon.map import RegionProperties, TuxemonMap, dirs2, proj
+from tuxemon.map import RegionProperties, TuxemonMap
 from tuxemon.map_view import MapRenderer
-from tuxemon.math import Vector2
 from tuxemon.movement import Pathfinder
 from tuxemon.platform.const import intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event
 from tuxemon.session import local_session
-from tuxemon.states.world.world_menus import WorldMenuState
+from tuxemon.state import State
 from tuxemon.states.world.world_transition import WorldTransition
 from tuxemon.teleporter import Teleporter
 
@@ -64,7 +61,7 @@ CollisionMap = Mapping[
 ]
 
 
-class WorldState(state.State):
+class WorldState(State):
     """The state responsible for the world game play"""
 
     def __init__(
@@ -190,63 +187,62 @@ class WorldState(state.State):
         Returns:
             Passed events, if other states should process it, ``None``
             otherwise.
-
         """
         event = translate_input_event(event)
 
-        if event.button == intentions.WORLD_MENU:
-            if event.pressed:
-                logger.info("Opening main menu!")
-                self.client.release_controls()
-                self.client.push_state(WorldMenuState())
-                return None
+        # Handle menu activation
+        if event.button == intentions.WORLD_MENU and event.pressed:
+            logger.info("Opening main menu!")
+            self.client.release_controls()
+            self.client.push_state("WorldMenuState", character=self.player)
+            return None
 
-        # map may not have a player registered
+        # Return early if no player is registered
         if self.player is None:
             return None
 
-        if event.button == intentions.INTERACT:
-            if event.pressed:
-                multiplayer = False
-                if multiplayer:
-                    self.check_interactable_space()
-                    return None
+        # Handle interaction event
+        if event.button == intentions.INTERACT and event.pressed:
+            if False:  # Multiplayer logic placeholder
+                self.check_interactable_space()
+                return None
 
+        # Handle running movement toggle
         if event.button == intentions.RUN:
-            if event.held:
-                self.player.moverate = self.client.config.player_runrate
-            else:
-                self.player.moverate = self.client.config.player_walkrate
+            self.player.body.moverate = (
+                self.client.config.player_runrate
+                if event.held
+                else self.client.config.player_walkrate
+            )
 
-        # If we receive an arrow key press, set the facing and
-        # moving direction to that direction
-        direction = direction_map.get(event.button)
-        if direction is not None:
-            if self.camera.follows_entity:
-                if event.held:
-                    self.wants_to_move_char[self.player.slug] = direction
-                    if self.player.slug in self.allow_char_movement:
-                        self.move_char(self.player, direction)
-                    return None
-                elif not event.pressed:
-                    if self.player.slug in self.wants_to_move_char.keys():
-                        self.stop_char(self.player)
-                        return None
-            else:
+        # Handle directional movement
+        if (direction := direction_map.get(event.button)) is not None:
+            if not self.camera.follows_entity:
                 return self.camera_manager.handle_input(event)
+            if event.held:
+                self.wants_to_move_char[self.player.slug] = direction
+                if self.player.slug in self.allow_char_movement:
+                    self.move_char(self.player, direction)
+                return None
+            if (
+                not event.pressed
+                and self.player.slug in self.wants_to_move_char
+            ):
+                self.stop_char(self.player)
+                return None
 
-        if prepare.DEV_TOOLS:
-            if event.pressed and event.button == intentions.NOCLIP:
+        # Debug tools (DEV_TOOLS)
+        if prepare.DEV_TOOLS and event.pressed:
+            if event.button == intentions.NOCLIP:
                 self.player.ignore_collisions = (
                     not self.player.ignore_collisions
                 )
                 return None
-
-            if event.pressed and event.button == intentions.RELOAD_MAP:
+            elif event.button == intentions.RELOAD_MAP:
                 self.current_map.reload_tiles()
                 return None
 
-        # if we made it this far, return the event for others to use
+        # Return event for others to process
         return event
 
     ####################################################
@@ -474,57 +470,9 @@ class WorldState(state.State):
                 return RegionProperties([], [], [], entity_or_label, None)
 
     def pathfind(
-        self,
-        start: tuple[int, int],
-        dest: tuple[int, int],
+        self, start: tuple[int, int], dest: tuple[int, int], facing: Direction
     ) -> Optional[Sequence[tuple[int, int]]]:
-        return self.pathfinder.pathfind(start, dest)
-
-    def get_explicit_tile_exits(
-        self,
-        position: tuple[int, int],
-        tile: RegionProperties,
-        skip_nodes: Optional[set[tuple[int, int]]] = None,
-    ) -> list[tuple[float, ...]]:
-        """
-        Check for exits from tile which are defined in the map.
-
-        This will return exits which were defined by the map creator.
-
-        Checks "endure" and "exits" properties of the tile.
-
-        Parameters:
-            position: Original position.
-            tile: Region properties of the tile.
-            skip_nodes: Set of nodes to skip.
-
-        """
-        skip_nodes = skip_nodes or set()
-        exits: list[tuple[float, ...]] = []
-
-        try:
-            # Check if the player's current position has any exit limitations.
-            if tile.endure:
-                direction = (
-                    self.player.facing
-                    if len(tile.endure) > 1 or not tile.endure
-                    else tile.endure[0]
-                )
-                exit_position = tuple(dirs2[direction] + position)
-                if exit_position not in skip_nodes:
-                    exits.append(exit_position)
-
-            # Check if the tile explicitly defines exits.
-            if tile.exit_from:
-                exits.extend(
-                    tuple(dirs2[direction] + position)
-                    for direction in tile.exit_from
-                    if tuple(dirs2[direction] + position) not in skip_nodes
-                )
-        except (KeyError, TypeError):
-            return []
-
-        return exits
+        return self.pathfinder.pathfind(start, dest, facing)
 
     ####################################################
     #              Character Movement                  #
@@ -585,29 +533,6 @@ class WorldState(state.State):
         """
         char.move_direction = direction
 
-    def get_pos_from_tilepos(
-        self,
-        tile_position: Vector2,
-    ) -> tuple[int, int]:
-        """
-        Returns the map pixel coordinate based on tile position.
-
-        USE this to draw to the screen.
-
-        Parameters:
-            tile_position: An [x, y] tile position.
-
-        Returns:
-            The pixel coordinates to draw at the given tile position.
-
-        """
-        assert self.current_map.renderer
-        cx, cy = self.current_map.renderer.get_center_offset()
-        px, py = project(tile_position)
-        x = px + cx
-        y = py + cy
-        return x, y
-
     def update_npcs(self, time_delta: float) -> None:
         """
         Allow NPCs to be updated.
@@ -630,58 +555,6 @@ class WorldState(state.State):
         # they should be when we change maps.
         for entity in self.npcs_off_map:
             entity.update(time_delta)
-
-    def _collision_box_to_pgrect(self, box: tuple[int, int]) -> Rect:
-        """
-        Returns a Rect (in screen-coords) version of a collision box (in world-coords).
-        """
-
-        # For readability
-        x, y = self.get_pos_from_tilepos(Vector2(box))
-        tw, th = self.tile_size
-
-        return Rect(x, y, tw, th)
-
-    def _npc_to_pgrect(self, npc: NPC) -> Rect:
-        """Returns a Rect (in screen-coords) version of an NPC's bounding box."""
-        pos = self.get_pos_from_tilepos(proj(npc.position3))
-        return Rect(pos, self.tile_size)
-
-    ####################################################
-    #                Debug Drawing                     #
-    ####################################################
-    def debug_drawing(self, surface: Surface) -> None:
-        from pygame.gfxdraw import box
-
-        surface.lock()
-
-        # draw events
-        for event in self.client.events:
-            vector = Vector2(event.x, event.y)
-            topleft = self.get_pos_from_tilepos(vector)
-            size = project((event.w, event.h))
-            rect = topleft, size
-            box(surface, rect, (0, 255, 0, 128))
-
-        # We need to iterate over all collidable objects.  So, let's start
-        # with the walls/collision boxes.
-        box_iter = map(self._collision_box_to_pgrect, self.collision_map)
-
-        # Next, deal with solid NPCs.
-        npc_iter = map(self._npc_to_pgrect, self.npcs)
-
-        # draw noc and wall collision tiles
-        red = (255, 0, 0, 128)
-        for item in itertools.chain(box_iter, npc_iter):
-            box(surface, item, red)
-
-        # draw center lines to verify camera is correct
-        w, h = surface.get_size()
-        cx, cy = w // 2, h // 2
-        pygame.draw.line(surface, (255, 50, 50), (cx, 0), (cx, h))
-        pygame.draw.line(surface, (255, 50, 50), (0, cy), (w, cy))
-
-        surface.unlock()
 
     ####################################################
     #             Map Change/Load Functions            #

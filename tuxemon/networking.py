@@ -164,7 +164,6 @@ class TuxemonServer:
 
         :param cuuid: Clients unique user identification number.
         :param event_data: Event information sent by client.
-
         """
         registry = self.server.registry
         # Only respond to the latest message of a given type
@@ -246,7 +245,6 @@ class TuxemonServer:
         Parameters:
             cuuid: Clients unique user identification number.
             event_data: Notification flag information.
-
         """
         cuuid = str(cuuid)
         event_data["type"] = "NOTIFY_" + event_data["type"]
@@ -270,7 +268,6 @@ class TuxemonServer:
 
         :type cuuid: String
         :type event_data: Dictionary
-
         """
         cuuid = str(cuuid)
         event_data["type"] = "NOTIFY_" + event_data["type"]
@@ -307,7 +304,6 @@ class TuxemonServer:
 
         :type cuuid: String
         :type event_data: Dictionary
-
         """
         cuuid = str(cuuid)
         event_data["type"] = "NOTIFY_" + event_data["type"]
@@ -422,7 +418,6 @@ class TuxemonClient:
 
         Parameters:
             time_delta: Time since last frame.
-
         """
         if self.enable_join_multiplayer:
             self.join_multiplayer(time_delta)
@@ -530,7 +525,6 @@ class TuxemonClient:
 
         Parameters:
             time_delta: Time since last frame.
-
         """
         # Don't allow player to join another game if they are hosting.
         if self.game.network_manager.ishost:
@@ -615,7 +609,6 @@ class TuxemonClient:
         Parameters:
             direction: Facing/Movement direction of clients character.
             event_type: Event type sent to server used for event_legal() and event_execute() functions in middleware.
-
         """
         if event_type not in self.event_list:
             self.event_list[event_type] = 0
@@ -638,7 +631,6 @@ class TuxemonClient:
         :param event: Pygame key event.
 
         :type event: Dictionary
-
         """
         if self.game.current_state != self.game.get_state_by_name(
             world.WorldState
@@ -728,7 +720,6 @@ class TuxemonClient:
 
         :type cuuid: String
         :type event_data: Dictionary
-
         """
         sprite = self.client.registry[cuuid]["sprite"]
         self.client.registry[cuuid]["map_name"] = event_data["map_name"]
@@ -751,7 +742,6 @@ class TuxemonClient:
 
         :rtype: None
         :returns: None
-
         """
         if event_type not in self.event_list:
             self.event_list[event_type] = 1
@@ -783,7 +773,6 @@ class TuxemonClient:
         """Sends server a ping to let it know that it is still alive.
 
         :param: None
-
         """
         event_type = "PING"
         if event_type not in self.event_list:

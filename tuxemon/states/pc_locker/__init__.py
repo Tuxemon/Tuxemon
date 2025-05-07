@@ -29,6 +29,7 @@ logger = logging.getLogger(__name__)
 if TYPE_CHECKING:
     from tuxemon.animation import Animation
     from tuxemon.item.item import Item
+    from tuxemon.npc import NPC
 
 
 MenuGameObj = Callable[[], object]
@@ -54,7 +55,7 @@ class ItemTakeState(PygameMenuState):
         menu: pygame_menu.Menu,
         items: Sequence[Item],
     ) -> None:
-        self.item_boxes = self.player.item_boxes
+        self.item_boxes = self.char.item_boxes
         self.box = self.item_boxes.get_items(self.box_name)
 
         def locker_options(instance_id: str) -> None:
@@ -139,13 +140,13 @@ class ItemTakeState(PygameMenuState):
             self.client.remove_state_by_name("ChoiceState")
             self.client.remove_state_by_name("ItemTakeState")
             diff = itm.quantity - quantity
-            retrieve = self.player.find_item(itm.slug)
+            retrieve = self.char.find_item(itm.slug)
             if diff <= 0:
                 self.item_boxes.remove_item(itm)
                 if retrieve is not None:
                     retrieve.quantity += quantity
                 else:
-                    self.player.add_item(itm)
+                    self.char.add_item(itm)
             else:
                 itm.quantity = diff
                 if retrieve is not None:
@@ -155,7 +156,7 @@ class ItemTakeState(PygameMenuState):
                     new_item = item.Item()
                     new_item.load(itm.slug)
                     new_item.quantity = quantity
-                    self.player.add_item(new_item)
+                    self.char.add_item(new_item)
             open_dialog(
                 local_session,
                 [
@@ -211,7 +212,7 @@ class ItemTakeState(PygameMenuState):
         label = f"{box_label} ({len(self.box)} types - {sum(sum_total)} items)"
         menu.set_title(label).center_content()
 
-    def __init__(self, box_name: str) -> None:
+    def __init__(self, box_name: str, character: NPC) -> None:
         width, height = prepare.SCREEN_SIZE
 
         theme = self._setup_theme(prepare.BG_PC_LOCKER)
@@ -224,8 +225,8 @@ class ItemTakeState(PygameMenuState):
         columns = 3
 
         self.box_name = box_name
-        self.player = local_session.player
-        self.box = self.player.item_boxes.get_items(self.box_name)
+        self.char = character
+        self.box = self.char.item_boxes.get_items(self.box_name)
 
         # Widgets are like a pygame_menu label, image, etc.
         num_widgets = 2
@@ -252,12 +253,13 @@ class ItemTakeState(PygameMenuState):
 class ItemBoxState(PygameMenuState):
     """Menu to choose an item box."""
 
-    def __init__(self) -> None:
+    def __init__(self, character: NPC) -> None:
         _, height = prepare.SCREEN_SIZE
 
         super().__init__(height=height)
 
         self.animation_offset = 0
+        self.char = character
 
         menu_items_map = self.get_menu_items_map()
         self.add_menu_items(self.menu, menu_items_map)
@@ -269,7 +271,7 @@ class ItemBoxState(PygameMenuState):
     ) -> None:
         menu.add.vertical_fill()
         for key, callback in items:
-            num_itms = local_session.player.item_boxes.get_items(key)
+            num_itms = self.char.item_boxes.get_items(key)
             sum_total = []
             for ele in num_itms:
                 sum_total.append(ele.quantity)
@@ -335,9 +337,9 @@ class ItemStorageState(ItemBoxState):
     """Menu to choose a box, which you can then take an item from."""
 
     def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
-        player = local_session.player
+        item_boxes = self.char.item_boxes
         menu_items_map = []
-        for box_name, items in player.item_boxes.item_boxes.items():
+        for box_name, items in item_boxes.item_boxes.items():
             if box_name not in HIDDEN_LIST_LOCKER:
                 if not items:
                     menu_callback = partial(
@@ -347,7 +349,9 @@ class ItemStorageState(ItemBoxState):
                     )
                 else:
                     menu_callback = self.change_state(
-                        "ItemTakeState", box_name=box_name
+                        "ItemTakeState",
+                        box_name=box_name,
+                        character=self.char,
                     )
                 menu_items_map.append((box_name, menu_callback))
         return menu_items_map
@@ -357,12 +361,12 @@ class ItemDropOffState(ItemBoxState):
     """Menu to choose a box, which you can then drop off an item into."""
 
     def get_menu_items_map(self) -> Sequence[tuple[str, MenuGameObj]]:
-        player = local_session.player
+        item_boxes = self.char.item_boxes
         menu_items_map = []
-        for box_name, items in player.item_boxes.item_boxes.items():
+        for box_name, items in item_boxes.item_boxes.items():
             if box_name not in HIDDEN_LIST_LOCKER:
                 menu_callback = self.change_state(
-                    "ItemDropOff", box_name=box_name
+                    "ItemDropOff", box_name=box_name, character=self.char
                 )
                 menu_items_map.append((box_name, menu_callback))
         return menu_items_map
@@ -371,16 +375,16 @@ class ItemDropOffState(ItemBoxState):
 class ItemDropOff(ItemMenuState):
     """Shows all items in player's bag, puts it into box if selected."""
 
-    def __init__(self, box_name: str) -> None:
-        super().__init__()
+    def __init__(self, box_name: str, character: NPC) -> None:
+        super().__init__(character=character)
 
         self.box_name = box_name
+        self.char = character
 
     def on_menu_selection(
         self,
         menu_item: MenuItem[Optional[Item]],
     ) -> None:
-        player = local_session.player
         game_object = menu_item.game_object
         assert game_object
 
@@ -393,8 +397,9 @@ class ItemDropOff(ItemMenuState):
             new_item = item.Item()
             new_item.load(itm.slug)
             diff = itm.quantity - quantity
+            item_boxes = self.char.item_boxes
 
-            box = player.item_boxes.get_items(self.box_name)
+            box = item_boxes.get_items(self.box_name)
 
             def find_monster_box(itm: Item, box: list[Item]) -> Optional[Item]:
                 for ele in box:
@@ -405,34 +410,32 @@ class ItemDropOff(ItemMenuState):
             if box:
                 retrieve = find_monster_box(itm, box)
                 if retrieve is not None:
-                    stored = player.item_boxes.get_items_by_iid(
-                        retrieve.instance_id
-                    )
+                    stored = item_boxes.get_items_by_iid(retrieve.instance_id)
                     if stored is not None:
                         if diff <= 0:
                             stored.quantity += quantity
-                            player.remove_item(itm)
+                            self.char.remove_item(itm)
                         else:
                             stored.quantity += quantity
                             itm.quantity = diff
                 else:
                     if diff <= 0:
                         new_item.quantity = quantity
-                        player.item_boxes.add_item(self.box_name, new_item)
-                        player.remove_item(itm)
+                        item_boxes.add_item(self.box_name, new_item)
+                        self.char.remove_item(itm)
                     else:
                         itm.quantity = diff
                         new_item.quantity = quantity
-                        player.item_boxes.add_item(self.box_name, new_item)
+                        item_boxes.add_item(self.box_name, new_item)
             else:
                 if diff <= 0:
                     new_item.quantity = quantity
-                    player.item_boxes.add_item(self.box_name, new_item)
-                    player.remove_item(itm)
+                    item_boxes.add_item(self.box_name, new_item)
+                    self.char.remove_item(itm)
                 else:
                     itm.quantity = diff
                     new_item.quantity = quantity
-                    player.item_boxes.add_item(self.box_name, new_item)
+                    item_boxes.add_item(self.box_name, new_item)
 
         self.client.push_state(
             QuantityMenu(

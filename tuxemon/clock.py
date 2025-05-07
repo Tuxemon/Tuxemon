@@ -152,7 +152,6 @@ class Scheduler:
 
         Returns:
             Reference to scheduled item
-
         """
         last_ts = self._get_nearest_ts()
         if soft:
@@ -184,7 +183,6 @@ class Scheduler:
         Returns:
             The number of time units since the last "tick", or 0 if this
             was the first tick.
-
         """
         delta_t = self.set_time(self._time())
         self._times.append(int(delta_t))
@@ -219,7 +217,6 @@ class Scheduler:
         Returns:
             The number of time units since the last update, or 0.0 if this
             was the first update.
-
         """
         # self._last_ts will be -1 before first time set
         if self._last_ts < 0:
@@ -352,7 +349,6 @@ class Scheduler:
 
         Parameters:
             func: The function to remove from the schedule.
-
         """
 
         def remove(list_: list[ScheduledItem]) -> bool:
@@ -386,7 +382,6 @@ class Clock(Scheduler):
         Parameters:
             gradient:
             offset:
-
         """
         X = 0
         Y = 0

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from functools import partial
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import pygame_menu
 from pygame_menu import locals
@@ -16,6 +16,9 @@ from tuxemon.menu.menu import PygameMenuState
 from tuxemon.relationship import RELATIONSHIP_STRENGTH
 from tuxemon.session import local_session
 from tuxemon.tools import open_choice_dialog, open_dialog
+
+if TYPE_CHECKING:
+    from tuxemon.npc import NPC
 
 MenuGameObj = Callable[[], Any]
 
@@ -58,7 +61,7 @@ class NuPhoneContacts(PygameMenuState):
                 )
 
         # slug and phone number from the tuple
-        connections = self.player.relationships.get_all_connections()
+        connections = self.char.relationships.get_all_connections()
         for slug, contact in connections.items():
             menu.add.button(
                 title=T.translate(slug),
@@ -82,7 +85,7 @@ class NuPhoneContacts(PygameMenuState):
         # menu
         menu.set_title(T.translate("app_contacts")).center_content()
 
-    def __init__(self) -> None:
+    def __init__(self, character: NPC) -> None:
         width, height = prepare.SCREEN_SIZE
 
         theme = self._setup_theme(prepare.BG_PHONE_CONTACTS)
@@ -92,15 +95,15 @@ class NuPhoneContacts(PygameMenuState):
         # menu
         theme.title = True
 
-        self.player = local_session.player
+        self.char = character
 
         super().__init__(
             height=height,
             width=width,
         )
 
-        for relation in self.player.relationships.connections.values():
-            relation.apply_decay(self.player)
+        for relation in self.char.relationships.connections.values():
+            relation.apply_decay(self.char)
 
         self.add_menu_items(self.menu)
         self.reset_theme()

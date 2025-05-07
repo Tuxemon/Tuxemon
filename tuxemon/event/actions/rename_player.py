@@ -37,14 +37,13 @@ class RenamePlayerAction(EventAction):
 
     def start(self) -> None:
         self.session.client.push_state(
-            InputMenu(
-                prompt=T.translate("input_name"),
-                callback=self.set_player_name,
-                escape_key_exits=False,
-                initial=self.session.player.name,
-                char_limit=prepare.PLAYER_NAME_LIMIT,
-                random=bool(self.random),
-            )
+            "InputMenu",
+            prompt=T.translate("input_name"),
+            callback=self.set_player_name,
+            escape_key_exits=False,
+            initial=self.session.player.name,
+            char_limit=prepare.PLAYER_NAME_LIMIT,
+            random=bool(self.random),
         )
 
     def update(self) -> None:

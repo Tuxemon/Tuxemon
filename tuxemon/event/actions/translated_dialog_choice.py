@@ -57,7 +57,7 @@ class TranslatedDialogChoiceAction(EventAction):
             text = T.translate(val)
             var_menu.append((text, text, partial(_set_variable, val, player)))
 
-        self.session.client.push_state(ChoiceState(menu=var_menu))
+        self.session.client.push_state("ChoiceState", menu=var_menu)
 
     def update(self) -> None:
         try:

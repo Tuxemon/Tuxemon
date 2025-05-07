@@ -5,7 +5,7 @@ from __future__ import annotations
 from collections.abc import Callable
 from typing import TYPE_CHECKING, Optional
 
-import pygame
+from pygame import SRCALPHA
 from pygame.surface import Surface
 
 from tuxemon.graphics import ColorLike
@@ -23,7 +23,7 @@ class WorldTransition:
 
     def set_transition_surface(self, color: ColorLike) -> None:
         self.transition_surface = Surface(
-            self.world.client.screen.get_size(), pygame.SRCALPHA
+            self.world.client.screen.get_size(), SRCALPHA
         )
         self.transition_surface.fill(color)
 

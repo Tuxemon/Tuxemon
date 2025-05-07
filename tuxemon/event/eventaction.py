@@ -95,7 +95,6 @@ class EventAction(ABC):
         Called only once, when the action is started.
 
         Context Protocol.
-
         """
         if self.cancelled:
             logger.warning("Event is cancelled, not starting")
@@ -112,7 +111,6 @@ class EventAction(ABC):
         Called only once, when action is stopped and needs to close.
 
         Context Protocol.
-
         """
         if self.cancelled:
             logger.warning("Event is cancelled, not cleaning up")
@@ -127,7 +125,6 @@ class EventAction(ABC):
 
         If an EventAction overrides update, it must eventually call this
         method.
-
         """
         self._done = True
 
@@ -137,10 +134,9 @@ class EventAction(ABC):
 
         This may cause the game to hang if an action is waiting on game
         changes.
-
         """
         if self.cancelled:
-            logger.debug(f"Action is cancelled, not executing")
+            logger.debug("Action is cancelled, not executing")
             return
         try:
             with self:
@@ -157,10 +153,9 @@ class EventAction(ABC):
 
         This may cause the game to hang if an action is waiting on game
         changes.
-
         """
         if self.cancelled:
-            logger.debug(f"Action is cancelled, not running")
+            logger.debug("Action is cancelled, not running")
             return
         try:
             while not self.done and not self.cancelled:
@@ -178,7 +173,6 @@ class EventAction(ABC):
         Will be true when action is finished.
 
         If you need the action to stop, call EventAction.stop().
-
         """
         return self._done
 
@@ -193,10 +187,9 @@ class EventAction(ABC):
         put all the code here.  If the action will need to run over
         several frames, you can init your action here, then override
         the update method.
-
         """
         if self.cancelled:
-            logger.debug(f"Action is cancelled, not starting")
+            logger.debug("Action is cancelled, not starting")
             self.stop()
             return
         try:
@@ -219,10 +212,9 @@ class EventAction(ABC):
         until EventAction.stop() is called.  If you do not ever call stop(),
         then this action will block all others in the list and will continue
         to run until the parent EventEngine is stopped.
-
         """
         if self.cancelled:
-            logger.debug(f"Action is cancelled, not updating")
+            logger.debug("Action is cancelled, not updating")
             return
         try:
             self.stop()
@@ -245,10 +237,9 @@ class EventAction(ABC):
 
         You do not need to override this, but it may be useful for some
         actions which require special handling before they are closed.
-
         """
         if self.cancelled:
-            logger.debug(f"Action is cancelled, not cleaning up")
+            logger.debug("Action is cancelled, not cleaning up")
             return
         try:
             # clean up the action

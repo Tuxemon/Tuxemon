@@ -264,7 +264,7 @@ class Camera:
             Vector2: The center of the entity's tile.
         """
         return self.get_center(
-            Vector2(self.entity.position3.x, self.entity.position3.y)
+            Vector2(self.entity.position.x, self.entity.position.y)
         )
 
     def update(self, delta_time: float) -> None:

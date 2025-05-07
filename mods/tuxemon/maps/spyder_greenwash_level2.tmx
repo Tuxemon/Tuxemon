@@ -260,7 +260,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator4"/>
     <property name="act2" value="add_monster rhincus,30"/>
-    <property name="act3" value="translated_dialog rhincus,,center"/>
+    <property name="act3" value="translated_dialog rhincus,,center,center,middle"/>
     <property name="act4" value="add_item rhincus_fossil,-1"/>
     <property name="act5" value="set_variable got_rhincus:yes"/>
     <property name="cond1" value="is variable_set rhincus_choice:yes"/>
@@ -271,7 +271,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator6"/>
     <property name="act2" value="add_monster shammer,30"/>
-    <property name="act3" value="translated_dialog shammer,,center"/>
+    <property name="act3" value="translated_dialog shammer,,center,center,middle"/>
     <property name="act4" value="add_item shammer_fossil,-1"/>
     <property name="act5" value="set_variable got_shammer:yes"/>
     <property name="act6" value="set_mission player"/>
@@ -295,9 +295,9 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_greenwash_fossilisator9"/>
     <property name="act2" value="add_monster shammer,30"/>
-    <property name="act3" value="translated_dialog shammer,,center"/>
+    <property name="act3" value="translated_dialog shammer,,center,center,middle"/>
     <property name="act4" value="add_monster rhincus,30"/>
-    <property name="act5" value="translated_dialog rhincus,,center"/>
+    <property name="act5" value="translated_dialog rhincus,,center,center,middle"/>
     <property name="act6" value="add_item shammer_fossil,-1"/>
     <property name="act7" value="add_item rhincus_fossil,-1"/>
     <property name="act8" value="set_variable got_both_fossils:yes"/>

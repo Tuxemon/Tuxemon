@@ -24,7 +24,6 @@ class HelpCommand(CLICommand):
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
             line: Input text after the command name.
-
         """
         command, tail = ctx.root_command.resolve(ctx, line)
         if command is not ctx.root_command:

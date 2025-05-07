@@ -38,7 +38,6 @@ class Battle:
 
         Returns:
             Dictionary containing all the information about the battle.
-
         """
         save_data = {
             attr: getattr(self, attr)
@@ -56,7 +55,6 @@ class Battle:
 
         Parameters:
             save_data: Data used to reconstruct the battle.
-
         """
         if not save_data:
             return

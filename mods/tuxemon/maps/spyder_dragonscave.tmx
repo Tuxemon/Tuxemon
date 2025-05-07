@@ -216,7 +216,7 @@
   <object id="74" name="Get Drokoro" type="event" x="208" y="48" width="64" height="32">
    <properties>
     <property name="act1" value="translated_dialog spyder_dragonscave_drokoro1"/>
-    <property name="act2" value="wild_encounter drokoro,50,,,cave"/>
+    <property name="act2" value="wild_encounter drokoro,50,3,,cave"/>
     <property name="act3" value="set_variable dragonscavedrokoro:yes"/>
     <property name="act4" value="remove_npc spyder_drokoro"/>
     <property name="cond1" value="is char_facing_tile player"/>
@@ -227,7 +227,7 @@
   <object id="75" name="Get Drokoro" type="event" x="192" y="32" width="96" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_dragonscave_drokoro1"/>
-    <property name="act2" value="wild_encounter drokoro,50,,,cave"/>
+    <property name="act2" value="wild_encounter drokoro,50,3,,cave"/>
     <property name="act3" value="set_variable dragonscavedrokoro:yes"/>
     <property name="act4" value="remove_npc spyder_drokoro"/>
     <property name="cond1" value="is char_facing_tile player"/>

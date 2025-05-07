@@ -183,6 +183,7 @@
     <property name="act19" value="set_variable seencandy:yes"/>
     <property name="act20" value="set_variable confiscation_candy:yes"/>
     <property name="act30" value="set_variable confiscation_location:land1"/>
+    <property name="act40" value="add_tracker player,candy_town"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="not variable_set confiscation_candy:yes"/>
    </properties>
@@ -226,7 +227,7 @@
     <property name="act15" value="wait 1"/>
     <property name="act20" value="translated_dialog spyder_enforcer_candy4"/>
     <property name="act25" value="wait 1"/>
-    <property name="act30" value="quarantine spyderbite,in"/>
+    <property name="act30" value="quarantine player,spyderbite,in"/>
     <property name="act40" value="set_variable party_sick:yes"/>
     <property name="act45" value="pathfind spyder_candy_henrik,35,10"/>
     <property name="act50" value="set_variable confiscation_done:yes"/>
@@ -240,8 +241,10 @@
   </object>
   <object id="185" name="Seen Candy" type="event" x="224" y="16" width="96" height="16">
    <properties>
-    <property name="act2" value="set_variable seencandy:yes"/>
+    <property name="act1" value="set_variable seencandy:yes"/>
+    <property name="act2" value="add_tracker player,candy_town"/>
     <property name="cond1" value="is char_at player"/>
+    <property name="cond2" value="not tracker player,candy_town"/>
    </properties>
   </object>
   <object id="197" name="Teleport to Candy Scoop" type="event" x="48" y="192" width="16" height="16">
@@ -370,7 +373,7 @@
   <object id="194" name="Get cureall" type="event" x="144" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_candy_eliane3"/>
-    <property name="act2" value="translated_dialog cureall,,center"/>
+    <property name="act2" value="translated_dialog cureall,,center,center,middle"/>
     <property name="act3" value="add_item elianeoutput"/>
     <property name="act4" value="set_variable elianeoutput:none"/>
     <property name="cond1" value="is variable_set elianeoutput:cureall"/>
@@ -379,7 +382,7 @@
   <object id="192" name="Get restoration" type="event" x="128" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_candy_eliane3"/>
-    <property name="act2" value="translated_dialog restoration,,center"/>
+    <property name="act2" value="translated_dialog restoration,,center,center,middle"/>
     <property name="act3" value="add_item elianeoutput"/>
     <property name="act4" value="set_variable elianeoutput:none"/>
     <property name="cond1" value="is variable_set elianeoutput:restoration"/>
@@ -388,7 +391,7 @@
   <object id="173" name="Get potion" type="event" x="112" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_candy_eliane3"/>
-    <property name="act2" value="translated_dialog potion,,center"/>
+    <property name="act2" value="translated_dialog potion,,center,center,middle"/>
     <property name="act3" value="add_item elianeoutput"/>
     <property name="act4" value="set_variable elianeoutput:none"/>
     <property name="cond1" value="is variable_set elianeoutput:potion"/>
@@ -397,7 +400,7 @@
   <object id="181" name="Get tea" type="event" x="96" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_candy_eliane3"/>
-    <property name="act2" value="translated_dialog tea,,center"/>
+    <property name="act2" value="translated_dialog tea,,center,center,middle"/>
     <property name="act3" value="add_item elianeoutput"/>
     <property name="act4" value="set_variable elianeoutput:none"/>
     <property name="cond1" value="is variable_set elianeoutput:tea"/>
@@ -433,6 +436,7 @@
     <property name="act19" value="set_variable seencandy:yes"/>
     <property name="act20" value="set_variable confiscation_candy:yes"/>
     <property name="act30" value="set_variable confiscation_location:river"/>
+    <property name="act40" value="add_tracker player,candy_town"/>
     <property name="cond1" value="is char_at player"/>
     <property name="cond2" value="not variable_set confiscation_candy:yes"/>
    </properties>
@@ -459,7 +463,7 @@
     <property name="act15" value="wait 1"/>
     <property name="act20" value="translated_dialog spyder_enforcer_candy4"/>
     <property name="act25" value="wait 1"/>
-    <property name="act30" value="quarantine spyderbite,in"/>
+    <property name="act30" value="quarantine player,spyderbite,in"/>
     <property name="act40" value="set_variable party_sick:yes"/>
     <property name="act45" value="pathfind spyder_candy_henrik,21,5"/>
     <property name="act50" value="set_variable confiscation_done:yes"/>

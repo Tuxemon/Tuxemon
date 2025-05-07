@@ -53,12 +53,11 @@ class RenameMonsterAction(EventAction):
         self.monster = monster
 
         self.session.client.push_state(
-            InputMenu(
-                prompt=T.translate("input_monster_name"),
-                callback=self.set_monster_name,
-                escape_key_exits=False,
-                initial=T.translate(self.monster.slug),
-            )
+            "InputMenu",
+            prompt=T.translate("input_monster_name"),
+            callback=self.set_monster_name,
+            escape_key_exits=False,
+            initial=T.translate(self.monster.slug),
         )
 
     def update(self) -> None:

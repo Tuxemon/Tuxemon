@@ -32,7 +32,6 @@ class Formatter:
             footer: Text to display after table.
             ruler: Character to use to underline the header.
             maxcol: Width of table in characters.
-
         """
         print(header)
         print(ruler * len(header))

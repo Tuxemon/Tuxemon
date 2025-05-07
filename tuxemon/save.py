@@ -2,17 +2,18 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import base64
-import datetime
 import importlib
 import json
 import logging
 import os
+from base64 import b64encode
 from collections.abc import Callable, Mapping
+from datetime import datetime
 from operator import itemgetter
 from typing import Any, Literal, Optional, TextIO, TypedDict, TypeVar
 
-import pygame
+from pygame.image import tobytes
+from pygame.surface import Surface
 
 from tuxemon import prepare
 from tuxemon.client import LocalPygameClient
@@ -37,7 +38,7 @@ TIME_FORMAT = "%Y-%m-%d %H:%M"
 config = prepare.CONFIG
 
 
-class SaveData(TypedDict):
+class SaveData(TypedDict, total=False):
     screenshot: str
     screenshot_width: int
     screenshot_height: int
@@ -46,7 +47,7 @@ class SaveData(TypedDict):
     npc_state: NPCState
 
 
-def capture_screenshot(client: LocalPygameClient) -> pygame.surface.Surface:
+def capture_screenshot(client: LocalPygameClient) -> Surface:
     """
     Capture a screenshot.
 
@@ -55,9 +56,8 @@ def capture_screenshot(client: LocalPygameClient) -> pygame.surface.Surface:
 
     Returns:
         Captured image.
-
     """
-    screenshot = pygame.Surface(client.screen.get_size())
+    screenshot = Surface(client.screen.get_size())
     world = client.get_state_by_name(WorldState)
     world.draw(screenshot)
     return screenshot
@@ -77,12 +77,10 @@ def get_save_data(session: Session) -> SaveData:
     npc_state = session.player.get_state(session)
 
     return {
-        "screenshot": base64.b64encode(
-            pygame.image.tobytes(screenshot, "RGB")
-        ).decode(),
+        "screenshot": b64encode(tobytes(screenshot, "RGB")).decode(),
         "screenshot_width": screenshot.get_width(),
         "screenshot_height": screenshot.get_height(),
-        "time": datetime.datetime.now().strftime(TIME_FORMAT),
+        "time": datetime.now().strftime(TIME_FORMAT),
         "version": SAVE_VERSION,
         "npc_state": npc_state,
     }
@@ -193,7 +191,6 @@ def save(save_data: SaveData, slot: int) -> None:
     Parameters:
         save_data: The data to save.
         slot: The save slot to save the data to.
-
     """
     save_path = get_save_path(slot)
     save_path_tmp = save_path + ".tmp"
@@ -223,21 +220,14 @@ def load(slot: int) -> Optional[SaveData]:
 
     Returns:
         Dictionary containing game data to load.
-
     """
     save_path = get_save_path(slot)
     save_data = open_save_file(save_path)
 
-    if save_data:
-        return upgrade_save(save_data)
-    elif save_data is None:
+    if save_data is None:
         # File not found; it probably wasn't ever created, so don't panic
         return None
-    else:
-        save_data["npc_state"]["error"] = "Save file corrupted"
-        save_data["npc_state"]["player_name"] = "BROKEN SAVE!"
-        logger.error("Failed loading save file.")
-        return save_data  # type: ignore[return-value]
+    return upgrade_save(save_data)
 
 
 def get_index_of_latest_save() -> Optional[int]:
@@ -246,7 +236,7 @@ def get_index_of_latest_save() -> Optional[int]:
         save_path = get_save_path(slot_index + 1)
         save_data = open_save_file(save_path)
         if save_data is not None:
-            time_of_save = datetime.datetime.strptime(
+            time_of_save = datetime.strptime(
                 save_data["time"],
                 TIME_FORMAT,
             )

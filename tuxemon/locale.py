@@ -352,7 +352,6 @@ class TranslatorPo:
 
         Returns:
             The formatted string.
-
         """
         text = text.replace(r"\n", "\n")
         text = self.translate(text)

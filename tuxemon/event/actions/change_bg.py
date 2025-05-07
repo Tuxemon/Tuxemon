@@ -12,8 +12,6 @@ from tuxemon import prepare
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.menu.theme import get_theme
-from tuxemon.states.idle.color_state import ColorState
-from tuxemon.states.idle.image_state import ImageState
 
 logger = logging.getLogger()
 
@@ -95,7 +93,7 @@ class ChangeBgAction(EventAction):
                 )
                 return
 
-        if client.current_state.name != str(ImageState):
+        if client.current_state.name != "ImageState":
             if self.background is None:
                 if len(client.state_manager.active_states) > 2:
                     client.pop_state()
@@ -104,12 +102,13 @@ class ChangeBgAction(EventAction):
                 _background = self.background.split(":")
                 if len(_background) == 1:
                     client.push_state(
-                        ImageState(
-                            background=self.background, image=self.image
-                        )
+                        "ImageState",
+                        background=self.background,
+                        image=self.image,
                     )
+
                 else:
-                    client.push_state(ColorState(color=self.background))
+                    client.push_state("ColorState", color=self.background)
 
     def cleanup(self) -> None:
         theme = get_theme()

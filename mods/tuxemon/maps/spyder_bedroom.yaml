@@ -10,7 +10,7 @@ events:
     type: "event"
   Use Computer:
     actions:
-    - change_state PCState
+    - change_state PCState,player
     conditions:
     - is char_facing_tile player
     - is button_pressed K_RETURN
@@ -59,15 +59,15 @@ events:
     - change_bg gradient_blue,spyder_tumble,image
     - translated_dialog spyder_intro01
     - change_bg gradient_blue,dollfin,monster
-    - translated_dialog dollfin
+    - translated_dialog dollfin,,,center,middle
     - change_bg gradient_blue,ignibus,monster
-    - translated_dialog ignibus
+    - translated_dialog ignibus,,,center,middle
     - change_bg gradient_blue,memnomnom,monster
-    - translated_dialog memnomnom
+    - translated_dialog memnomnom,,,center,middle
     - change_bg gradient_blue,budaye,monster
-    - translated_dialog budaye
+    - translated_dialog budaye,,,center,middle
     - change_bg gradient_blue,grintot,monster
-    - translated_dialog grintot
+    - translated_dialog grintot,,,center,middle
     - change_bg gradient_blue,spyder_monsters,image
     - translated_dialog spyder_intro02
     - change_bg gradient_blue,spyder_morph,image

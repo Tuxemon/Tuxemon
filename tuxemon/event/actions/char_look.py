@@ -74,7 +74,7 @@ class CharLookAction(EventAction):
             directions = self.limit_direction or list(Direction)
             direction = random.choice(directions)
             if direction != character.facing:
-                character.facing = direction
+                character.body.facing = direction
 
         def schedule() -> None:
             """

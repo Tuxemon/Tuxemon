@@ -39,6 +39,7 @@ class TeleportAction(EventAction):
 
     def start(self) -> None:
         world = self.session.client.get_state_by_name(WorldState)
+        delayed_teleport = world.teleporter.delayed_teleport
 
         char = get_npc(self.session, self.character)
         if char is None:
@@ -50,12 +51,12 @@ class TeleportAction(EventAction):
         # Check to see if we're also performing a transition. If we are, wait
         # to perform the teleport at the apex of the transition
         if world.transition_manager.in_transition:
-            if not world.teleporter.delayed_teleport:
-                world.teleporter.delayed_char = char
-                world.teleporter.delayed_teleport = True
-                world.teleporter.delayed_mapname = self.map_name
-                world.teleporter.delayed_x = self.x
-                world.teleporter.delayed_y = self.y
+            if not delayed_teleport.is_active:
+                delayed_teleport.char = char
+                delayed_teleport.is_active = True
+                delayed_teleport.mapname = self.map_name
+                delayed_teleport.x = self.x
+                delayed_teleport.y = self.y
         else:
             # Teleport the character immediately
             world.teleporter.teleport_character(

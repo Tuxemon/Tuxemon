@@ -136,7 +136,7 @@
    <properties>
     <property name="act1" value="create_npc spyder_log,13,13"/>
     <property name="cond1" value="not char_exists spyder_log"/>
-    <property name="cond2" value="not variable_set spyder_log:remove"/>
+    <property name="cond2" value="not variable_set spyder_log:remove_entity"/>
    </properties>
   </object>
   <object id="179" name="encounter 3" type="event" x="224" y="112" width="16" height="16">

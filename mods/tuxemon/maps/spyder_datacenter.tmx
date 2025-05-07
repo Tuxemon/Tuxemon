@@ -96,7 +96,7 @@
   <object id="61" name="PC2" type="event" x="112" y="48" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog spyder_data_pc02"/>
-    <property name="act2" value="wild_encounter kernel,50"/>
+    <property name="act2" value="wild_encounter kernel,50,3"/>
     <property name="act3" value="set_variable kernelquest:done"/>
     <property name="cond1" value="is char_facing_tile player"/>
     <property name="cond2" value="is button_pressed K_RETURN"/>
@@ -296,7 +296,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_box_goldpass1"/>
     <property name="act2" value="add_item gold_pass"/>
-    <property name="act3" value="translated_dialog gold_pass,,center"/>
+    <property name="act3" value="translated_dialog gold_pass,,center,center,middle"/>
     <property name="act4" value="remove_npc spyder_box_goldpass"/>
     <property name="behav1" value="talk spyder_box_goldpass"/>
    </properties>
@@ -360,7 +360,7 @@
   <object id="103" name="PC7 No" type="event" x="128" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog generic_wrong"/>
-    <property name="act2" value="wild_encounter blasdoor,40"/>
+    <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen3:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s3"/>
     <property name="cond1" value="is variable_set tallest:snarlon"/>
@@ -378,7 +378,7 @@
   <object id="105" name="PC8 No" type="event" x="240" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog generic_wrong"/>
-    <property name="act2" value="wild_encounter blasdoor,40"/>
+    <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen4:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s4"/>
     <property name="cond1" value="is variable_set smallest:squink"/>
@@ -396,7 +396,7 @@
   <object id="107" name="PC10 No" type="event" x="288" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog generic_wrong"/>
-    <property name="act2" value="wild_encounter blasdoor,40"/>
+    <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen2:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s2"/>
     <property name="cond1" value="is variable_set binary193:statursus"/>
@@ -414,7 +414,7 @@
   <object id="109" name="PC9 No" type="event" x="192" y="272" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog generic_wrong"/>
-    <property name="act2" value="wild_encounter blasdoor,40"/>
+    <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen1:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s1"/>
     <property name="cond1" value="is variable_set heaviest:apeoro"/>
@@ -432,7 +432,7 @@
   <object id="111" name="PC5 No" type="event" x="192" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog generic_wrong"/>
-    <property name="act2" value="wild_encounter blasdoor,40"/>
+    <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen6:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s6"/>
     <property name="cond1" value="is variable_set binary144:rhincus"/>
@@ -450,7 +450,7 @@
   <object id="113" name="PC6 No" type="event" x="288" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog generic_wrong"/>
-    <property name="act2" value="wild_encounter blasdoor,40"/>
+    <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen7:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s7"/>
     <property name="cond1" value="is variable_set binary77:ruption"/>
@@ -468,7 +468,7 @@
   <object id="115" name="PC4 No" type="event" x="80" y="112" width="16" height="16">
    <properties>
     <property name="act1" value="translated_dialog generic_wrong"/>
-    <property name="act2" value="wild_encounter blasdoor,40"/>
+    <property name="act2" value="wild_encounter blasdoor,40,3"/>
     <property name="act3" value="set_variable datascreen5:yes"/>
     <property name="act4" value="remove_npc spyder_datacenter_s5"/>
     <property name="cond1" value="is variable_set lightest:furnursus"/>

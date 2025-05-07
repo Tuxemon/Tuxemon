@@ -105,7 +105,6 @@ class Body:
 
         Returns:
             A tuple (x, y) of the face size in pixels.
-
         """
 
         img = self.face_image
@@ -120,7 +119,6 @@ class Body:
 
         Returns:
             A json string of the current instance.
-
         """
 
         body_dict = self.__dict__
@@ -135,7 +133,6 @@ class Body:
 
         Parameters:
             filename: The path to the file to save.
-
         """
 
         if not filename:
@@ -159,7 +156,6 @@ class Body:
 
             >>> sapsnap = Body()
             >>> sapsnap.load('fusion/Sapsnap.json')
-
         """
         # If "file" is set to true, then assume that json_data is a path to a
         # file containing json.

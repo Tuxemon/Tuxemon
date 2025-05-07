@@ -5,7 +5,7 @@ from __future__ import annotations
 import math
 from collections.abc import Callable, Sequence
 from functools import partial
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 import pygame_menu
 from pygame_menu import locals
@@ -18,6 +18,9 @@ from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.session import local_session
 from tuxemon.tools import open_dialog
+
+if TYPE_CHECKING:
+    from tuxemon.npc import NPC
 
 MenuGameObj = Callable[[], Any]
 
@@ -49,12 +52,10 @@ class NuPhone(PygameMenuState):
             open_dialog(local_session, [no_signal])
 
         def _uninstall(itm: Item) -> None:
-            count = sum(
-                [1 for ele in self.player.items if ele.slug == itm.slug]
-            )
+            count = sum([1 for ele in self.char.items if ele.slug == itm.slug])
             if count > 1:
-                self.player.remove_item(itm)
-                self.client.replace_state("NuPhone")
+                self.char.remove_item(itm)
+                self.client.replace_state("NuPhone", character=self.char)
             else:
                 open_dialog(
                     local_session,
@@ -79,11 +80,7 @@ class NuPhone(PygameMenuState):
         menu.set_title(desc).center_content()
 
         # no gps tracker (nu map)
-        trackers = [
-            key
-            for key in self.player.game_variables
-            if key.startswith("nu_map_")
-        ]
+        trackers = self.char.tracker.locations
 
         for item in items:
             label = T.translate(item.name).upper()
@@ -92,13 +89,15 @@ class NuPhone(PygameMenuState):
                 change = (
                     _no_signal
                     if self._no_signal
-                    else _change_state("NuPhoneBanking")
+                    else _change_state("NuPhoneBanking", character=self.char)
                 )
             elif item.slug == "app_contacts":
-                change = _change_state("NuPhoneContacts")
+                change = _change_state("NuPhoneContacts", character=self.char)
             elif item.slug == "app_map":
                 change = (
-                    _change_state("NuPhoneMap") if trackers else _no_trackers
+                    _change_state("NuPhoneMap", character=self.char)
+                    if trackers
+                    else _no_trackers
                 )
             new_image = self._create_image(item.sprite)
             new_image.scale(prepare.SCALE, prepare.SCALE)
@@ -121,7 +120,7 @@ class NuPhone(PygameMenuState):
                 wordwrap=True,
             )
 
-    def __init__(self) -> None:
+    def __init__(self, character: NPC) -> None:
         width, height = prepare.SCREEN_SIZE
 
         theme = self._setup_theme(prepare.BG_PHONE)
@@ -131,10 +130,10 @@ class NuPhone(PygameMenuState):
         # menu
         theme.title = True
 
-        self.player = local_session.player
+        self.char = character
 
         menu_items_map = []
-        for itm in self.player.items:
+        for itm in self.char.items:
             if (
                 itm.category == "phone"
                 and itm.slug != "nu_phone"

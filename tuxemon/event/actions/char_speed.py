@@ -41,6 +41,6 @@ class CharSpeedAction(EventAction):
             return
         if MOVERATE_RANGE[0] < self.speed < MOVERATE_RANGE[1]:
             logger.info(f"{character.name}'s moverate is {self.speed}")
-            character.moverate = self.speed
+            character.body.moverate = self.speed
         else:
             raise ValueError(f"{self.speed} isn't among {MOVERATE_RANGE}")

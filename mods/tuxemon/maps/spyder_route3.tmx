@@ -180,7 +180,7 @@
     <property name="act30" value="pathfind spyder_route3_ryland,9,8"/>
     <property name="act40" value="pathfind spyder_route3_zoolander,7,8"/>
     <property name="act50" value="translated_dialog spyder_route3_drag1"/>
-    <property name="act60" value="play_map_animation dragonbirth,0.1,noloop,6,8"/>
+    <property name="act60" value="play_tile_animation 6,8,dragonbirth,0.1,noloop"/>
     <property name="act61" value="wait 5.0"/>
     <property name="act73" value="translated_dialog spyder_route3_drag2"/>
     <property name="act74" value="pathfind spyder_route3_ryland,17,10"/>
@@ -210,7 +210,7 @@
     <property name="act06" value="start_battle player,spyder_route3_zoolander"/>
     <property name="act07" value="translated_dialog spyder_route3_zoolander2"/>
     <property name="act08" value="add_item sledgehammer"/>
-    <property name="act09" value="translated_dialog sledgehammer,,center"/>
+    <property name="act09" value="translated_dialog sledgehammer,,center,center,middle"/>
     <property name="act10" value="set_variable zoolanderdefeat:yes"/>
     <property name="behav1" value="talk spyder_route3_zoolander"/>
     <property name="cond1" value="not variable_set zoolanderdefeat:yes"/>
@@ -433,7 +433,7 @@
     <property name="act08" value="start_battle player,spyder_route3_wanda"/>
     <property name="act09" value="translated_dialog spyder_route3_wanda2"/>
     <property name="act10" value="add_item fishing_rod"/>
-    <property name="act11" value="translated_dialog fishing_rod,,center"/>
+    <property name="act11" value="translated_dialog fishing_rod,,center,center,middle"/>
     <property name="act12" value="set_variable route3wanda:yes"/>
     <property name="behav1" value="talk spyder_route3_wanda"/>
     <property name="cond1" value="not variable_set route3wanda:yes"/>
@@ -533,7 +533,7 @@
    <properties>
     <property name="act1" value="create_npc spyder_boulder,32,7"/>
     <property name="cond1" value="not char_exists spyder_boulder"/>
-    <property name="cond2" value="not variable_set spyder_boulder:remove"/>
+    <property name="cond2" value="not variable_set spyder_boulder:remove_entity"/>
    </properties>
   </object>
   <object id="676" name="Environment Day" type="event" x="16" y="0" width="16" height="16">
@@ -595,7 +595,7 @@
     <property name="act11" value="start_battle player,spyder_route3_wanda"/>
     <property name="act12" value="translated_dialog spyder_route3_wanda2"/>
     <property name="act13" value="add_item fishing_rod"/>
-    <property name="act14" value="translated_dialog fishing_rod,,center"/>
+    <property name="act14" value="translated_dialog fishing_rod,,center,center,middle"/>
     <property name="act15" value="set_variable route3wanda:yes"/>
     <property name="cond1" value="not variable_set route3wanda:yes"/>
     <property name="cond2" value="is char_at player"/>

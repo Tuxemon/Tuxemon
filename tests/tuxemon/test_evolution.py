@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from tuxemon.db import (
     ElementModel,
@@ -13,12 +13,13 @@ from tuxemon.element import Element
 from tuxemon.monster import Monster
 from tuxemon.player import Player
 from tuxemon.session import local_session
+from tuxemon.surfanim import FlipAxes
 from tuxemon.technique.technique import Technique
 
 _ram = TechniqueModel(
     tech_id=69,
     accuracy=0.85,
-    flip_axes="",
+    flip_axes=FlipAxes.NONE,
     potency=0.0,
     power=1.5,
     range="melee",
@@ -45,7 +46,7 @@ _ram = TechniqueModel(
 _strike = TechniqueModel(
     tech_id=69,
     accuracy=0.85,
-    flip_axes="",
+    flip_axes=FlipAxes.NONE,
     potency=0.0,
     power=1.5,
     range="melee",

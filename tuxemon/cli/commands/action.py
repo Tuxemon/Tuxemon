@@ -34,7 +34,6 @@ class ActionParentCommand(CLICommand):
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
             line: Input text after the command name.
-
         """
         if not line:
             print(
@@ -53,7 +52,6 @@ class ActionParentCommand(CLICommand):
 
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
-
         """
         actions = ctx.session.client.event_engine.get_actions()
         for action in actions:
@@ -78,7 +76,6 @@ class ActionCommand(CLICommand):
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
             line: Input text after the command name.
-
         """
         line = f"{self.name} {line}"
         name, args = parse_action_string(line)

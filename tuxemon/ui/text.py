@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Literal, Optional, Union
 
-import pygame
+from pygame import SRCALPHA
 from pygame.font import Font
 from pygame.rect import Rect
 from pygame.surface import Surface
@@ -89,7 +89,7 @@ class TextArea(Sprite):
         background_color: Optional[ColorLike] = None,
         background_image: Optional[Surface] = None,
     ) -> None:
-        self.image = Surface(self.rect.size, pygame.SRCALPHA)
+        self.image = Surface(self.rect.size, SRCALPHA)
 
         if background_color:
             self.image.fill(background_color)
@@ -98,7 +98,7 @@ class TextArea(Sprite):
 
     def _start_text_animation(self) -> None:
         self.drawing_text = True
-        self.image = Surface(self.rect.size, pygame.SRCALPHA)
+        self.image = Surface(self.rect.size, SRCALPHA)
 
         if self.background_color:
             self.image.fill(self.background_color)
@@ -143,7 +143,6 @@ def draw_text(
         font_color: Tuple of RGB values of the font _color to use.
 
     .. image:: images/menu/justify_center.png
-
     """
     left, top, width, height = rect
     _left: float = left

@@ -43,7 +43,6 @@ class MetaCommand(CLICommand):
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
             line: Input text after the command name.
-
         """
         print("No command provided. Available commands:", file=sys.stderr)
         for command in self._commands:
@@ -55,7 +54,6 @@ class MetaCommand(CLICommand):
 
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
-
         """
         return self._commands
 
@@ -67,7 +65,6 @@ class CommandProcessor:
     Parameters:
         session: Session which will be controlled by the debug prompt.
         prompt: Default text to display before the input area, ie "> ".
-
     """
 
     def __init__(self, session: Session, prompt: str = "> ") -> None:
@@ -81,7 +78,6 @@ class CommandProcessor:
     def run(self) -> None:
         """
         Repeatedly get input from user, parse it, and run the commands.
-
         """
         ctx = InvokeContext(
             processor=self,
@@ -125,7 +121,6 @@ class CommandProcessor:
 
         Parameters:
             folder: Folder to search.
-
         """
         discovery = FileSystemPluginDiscovery([folder])
         loader = DefaultPluginLoader()

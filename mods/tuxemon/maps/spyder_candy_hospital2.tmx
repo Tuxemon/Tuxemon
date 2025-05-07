@@ -245,7 +245,7 @@
    <properties>
     <property name="act1" value="translated_dialog spyder_hospital2_scientist2"/>
     <property name="act2" value="set_variable quarantine_qua2:yes"/>
-    <property name="act3" value="quarantine spyderbite,out,1"/>
+    <property name="act3" value="quarantine player,spyderbite,out,1"/>
     <property name="behav1" value="talk spyder_hospital1_trafford"/>
     <property name="cond1" value="not variable_set quarantine_qua2:yes"/>
    </properties>

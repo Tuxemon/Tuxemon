@@ -15,10 +15,7 @@ if TYPE_CHECKING:
 
 
 class CLICommand(ABC):
-    """
-    Base class for CLIOptions.
-
-    """
+    """Base class for CLIOptions."""
 
     name: ClassVar[str] = "command name"
     description: ClassVar[str] = "command description"
@@ -32,7 +29,6 @@ class CLICommand(ABC):
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
             line: Input text after the command name.
-
         """
 
     def get_parameters(self, ctx: InvokeContext) -> Iterable[Parameter]:
@@ -41,7 +37,6 @@ class CLICommand(ABC):
 
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
-
         """
         for cmd in self.get_subcommands(ctx):
             yield Parameter(cmd.name)
@@ -52,7 +47,6 @@ class CLICommand(ABC):
 
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
-
         """
         return ()
 
@@ -69,7 +63,6 @@ class CLICommand(ABC):
 
         Raises:
             CommandNotFoundError: If command by name is not found.
-
         """
         for command in self.get_subcommands(ctx):
             if command.name == name:
@@ -94,7 +87,6 @@ class CLICommand(ABC):
             `char_face` is a command, but doesn't have "player" as a subcommand,
             so the remaining portion of the string will be treated as an
             argument to "char_face".
-
         """
         head, tail = split(path)
         try:

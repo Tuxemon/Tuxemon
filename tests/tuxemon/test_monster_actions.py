@@ -16,6 +16,7 @@ from tuxemon.db import (
 )
 from tuxemon.player import Player
 from tuxemon.session import local_session
+from tuxemon.surfanim import FlipAxes
 from tuxemon.tuxepedia import Tuxepedia
 
 
@@ -81,7 +82,7 @@ class TestMonsterActions(unittest.TestCase):
     _faint = StatusModel(
         effects=[],
         modifiers=[],
-        flip_axes="",
+        flip_axes=FlipAxes.NONE,
         icon="gfx/ui/icons/status/icon_faint.png",
         sfx="sfx_faint",
         slug="faint",

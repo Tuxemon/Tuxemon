@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+import random
 import unittest
 from unittest.mock import MagicMock, call
 
@@ -367,6 +368,7 @@ class TestSpeedTestFunction(unittest.TestCase):
             )
 
     def test_fast_vs_normal_technique(self):
+        random.seed(69)
         self.tech.is_fast = True
         results1_fast = [
             speed_monster(self.monster1, self.tech) for _ in range(1000)

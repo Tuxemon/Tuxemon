@@ -7,7 +7,7 @@ import math
 import random
 from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 import yaml
 
@@ -17,13 +17,48 @@ from tuxemon.constants import paths
 if TYPE_CHECKING:
     from tuxemon.db import Modifier
     from tuxemon.element import Element
+    from tuxemon.item.item import Item
     from tuxemon.monster import Monster
+    from tuxemon.npc import NPC
     from tuxemon.taste import Taste
     from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
 
 multiplier_cache: dict[tuple[str, str], float] = {}
+
+
+@dataclass
+class CaptureDeviceEffect:
+    target_attribute: str = ""
+    operation: str = ""
+    value: Union[str, int] = 1
+
+
+@dataclass
+class CaptureDeviceConfig:
+    specific_capdev_modifier: Optional[float] = None
+    positive_modifier: float = 1.0
+    negative_modifier: float = 1.2
+    specific_status_modifiers: Optional[dict[str, float]] = None
+    fallback_element_malus: float = 0.2
+    specific_element_modifiers: Optional[dict[str, float]] = None
+    fallback_gender_malus: float = 0.2
+    specific_gender_modifiers: Optional[dict[str, float]] = None
+    fallback_variables_malus: float = 0.2
+    fallback_variables_bonus: float = 1.5
+    specific_variables_modifiers: Optional[list[dict[str, Any]]] = None
+    random_bounds: Optional[tuple[float, float]] = None
+    capdev_persistent_on_success: bool = False
+    capdev_persistent_on_failure: bool = False
+    capdev_effects: Optional[list[CaptureDeviceEffect]] = None
+
+
+@dataclass
+class CaptureDevicesConfig:
+    items: dict[str, CaptureDeviceConfig]
+    status_modifier: float = 1.0
+    capdev_modifier: float = 1.0
 
 
 @dataclass
@@ -88,6 +123,49 @@ class Loader:
     _config_combat: Optional[CombatConfig] = None
     _config_capture: Optional[CaptureConfig] = None
     _range_map: dict[str, RangeMapEntry] = {}
+    _capture_devices: Optional[CaptureDevicesConfig] = None
+
+    @classmethod
+    def get_capture_devices(cls, filename: str) -> CaptureDevicesConfig:
+        yaml_path = f"{paths.mods_folder}/{filename}"
+        if cls._capture_devices is None:
+            raw_map = load_yaml(yaml_path)
+            items = {}
+
+            for slug, data in raw_map["items"].items():
+                # Parse capdev_effects directly as a list
+                capdev_effects = None
+                if "capdev_effects" in data:
+                    capdev_effects = [
+                        CaptureDeviceEffect(
+                            target_attribute=effect["target_attribute"],
+                            operation=effect["operation"],
+                            value=effect["value"],
+                        )
+                        for effect in data["capdev_effects"]
+                    ]
+
+                # Create a new dictionary excluding "capdev_effects" to avoid duplication
+                filtered_data = {
+                    key: value
+                    for key, value in data.items()
+                    if key != "capdev_effects"
+                }
+
+                items[slug] = CaptureDeviceConfig(
+                    **filtered_data,
+                    capdev_effects=capdev_effects,
+                )
+
+            # Handle global settings
+            status_modifier = raw_map.get("status_modifier", 1.0)
+            capdev_modifier = raw_map.get("capdev_modifier", 1.0)
+            cls._capture_devices = CaptureDevicesConfig(
+                status_modifier=status_modifier,
+                capdev_modifier=capdev_modifier,
+                items=items,
+            )
+        return cls._capture_devices
 
     @classmethod
     def get_config_combat(cls, filename: str) -> CombatConfig:
@@ -125,6 +203,7 @@ class Loader:
 
 
 config_combat = Loader.get_config_combat("config_combat.yaml")
+config_capdev = Loader.get_capture_devices("capture_devices.yaml")
 
 
 def simple_damage_multiplier(
@@ -731,6 +810,190 @@ def capture(shake_check: float) -> tuple[bool, int]:
         if random_num > int(shake_check):
             return (False, i + 1)
     return (True, total_shakes)
+
+
+def calculate_status_modifier(item: Item, target: Monster) -> float:
+    config = config_capdev.items.get(item.slug)
+    status_modifier = config_capdev.status_modifier
+
+    if config is None or not target.status:
+        return status_modifier
+
+    logger.debug(f"Base status_modifier: {status_modifier}")
+    logger.debug(f"Negative modifier: {config.negative_modifier}")
+    logger.debug(f"Positive modifier: {config.positive_modifier}")
+    logger.debug(f"Specific modifiers: {config.specific_status_modifiers}")
+
+    negative_modifier = config.negative_modifier
+    positive_modifier = config.positive_modifier
+    specific_status = config.specific_status_modifiers
+
+    for status in target.status:
+        if specific_status and status.slug in specific_status:
+            specific_modifier = specific_status[status.slug]
+            logger.debug(
+                f"Specific modifier found for status '{status.slug}': {specific_modifier}"
+            )
+            status_modifier *= specific_modifier
+
+        if status.category:
+            category_modifier = (
+                negative_modifier
+                if status.category == "negative"
+                else positive_modifier
+            )
+            logger.debug(
+                f"Applying category modifier for '{status.category}': {category_modifier}"
+            )
+            status_modifier *= category_modifier
+
+    logger.debug(
+        f"Final status_modifier for item '{item.slug}' and target '{target.slug}': {status_modifier}"
+    )
+    return status_modifier
+
+
+def calculate_capdev_modifier(
+    item: Item, target: Monster, character: NPC
+) -> float:
+    config = config_capdev.items.get(item.slug)
+    capdev_modifier = config_capdev.capdev_modifier
+
+    if config is None:
+        return capdev_modifier
+
+    specific_capdev_modifier = config.specific_capdev_modifier
+
+    if specific_capdev_modifier:
+        logger.debug(
+            f"Specific capdev_modifier found for item '{item.slug}': {specific_capdev_modifier}"
+        )
+        capdev_modifier *= specific_capdev_modifier
+
+    if item.slug == "tuxeball_crusher":
+        crusher = ((target.armour / 5) * 0.01) + 1
+        if crusher >= 1.4:
+            crusher = 1.4
+        if calculate_status_modifier(item, target) == config.positive_modifier:
+            crusher = 0.01
+        capdev_modifier *= crusher
+
+    specific_element_modifiers = config.specific_element_modifiers
+
+    if specific_element_modifiers:
+        logger.debug(
+            f"Checking specific element modifiers for item '{item.slug}' and target types"
+        )
+        for slug, modifier in specific_element_modifiers.items():
+            if target.has_type(slug):
+                logger.debug(
+                    f"Target matches element '{slug}'. Applying modifier: {modifier}"
+                )
+                capdev_modifier *= modifier
+        logger.debug(
+            "No matching element found. Applying fallback_element_malus"
+        )
+        capdev_modifier *= config.fallback_element_malus
+
+    specific_gender_modifiers = config.specific_gender_modifiers
+
+    if specific_gender_modifiers:
+        logger.debug(
+            f"Checking specific gender modifiers for item '{item.slug}' and target gender '{target.gender}'"
+        )
+        for slug, modifier in specific_gender_modifiers.items():
+            if target.gender == slug:
+                logger.debug(
+                    f"Target matches gender '{slug}'. Applying modifier: {modifier}"
+                )
+                capdev_modifier *= modifier
+        logger.debug(
+            "No matching gender found. Applying fallback_gender_malus"
+        )
+        capdev_modifier *= config.fallback_gender_malus
+
+    specific_variables_modifiers = config.specific_variables_modifiers
+
+    if specific_variables_modifiers:
+        logger.debug(
+            f"Checking specific variable modifiers for item '{item.slug}' and target game variables"
+        )
+        for variables in specific_variables_modifiers:
+            if (
+                not isinstance(variables, dict)
+                or "key" not in variables
+                or "value" not in variables
+            ):
+                logger.warning(f"Invalid variables structure: {variables}")
+                continue
+            if (
+                character.game_variables.get(variables["key"])
+                == variables["value"]
+            ):
+                capdev_modifier *= config.fallback_variables_bonus
+        logger.debug(
+            "No matching variable found. Applying fallback_variables_malus"
+        )
+        capdev_modifier *= config.fallback_variables_malus
+
+    random_bounds = config.random_bounds
+
+    if random_bounds:
+        random_value = random.uniform(random_bounds[0], random_bounds[1])
+        logger.debug(
+            f"Using random bounds {random_bounds}. Generated random value: {random_value}"
+        )
+        capdev_modifier *= random_value
+
+    logger.debug(
+        f"Returning final capdev_modifier for item '{item.slug}': {capdev_modifier}"
+    )
+    return capdev_modifier
+
+
+def on_capture_fail(item: Item, target: Monster, character: NPC) -> None:
+    config = config_capdev.items.get(item.slug)
+    if config is None:
+        return
+
+    if config.capdev_persistent_on_failure:
+        tuxeball = character.find_item(item.slug)
+        if tuxeball:
+            tuxeball.quantity += 1
+
+
+def on_capture_success(item: Item, target: Monster, character: NPC) -> None:
+    config = config_capdev.items.get(item.slug)
+    if config is None:
+        return
+
+    if config.capdev_persistent_on_success:
+        tuxeball = character.find_item(item.slug)
+        if tuxeball:
+            tuxeball.quantity += 1
+
+    if config.capdev_effects:
+        apply_effects(config.capdev_effects, target)
+
+
+def apply_effects(config: list[CaptureDeviceEffect], target: Monster) -> None:
+    for effect in config:
+        target_attr = effect.target_attribute
+        operation = effect.operation
+        value = effect.value
+
+        if operation == "increment" and isinstance(value, int):
+            setattr(target, target_attr, getattr(target, target_attr) + value)
+        elif operation == "decrement" and isinstance(value, int):
+            setattr(target, target_attr, getattr(target, target_attr) - value)
+        elif operation == "multiply" and isinstance(value, int):
+            setattr(target, target_attr, getattr(target, target_attr) * value)
+        elif operation == "divide" and isinstance(value, int):
+            setattr(target, target_attr, getattr(target, target_attr) / value)
+        elif operation == "set" and isinstance(value, str):
+            setattr(target, target_attr, value)
+        else:
+            raise ValueError(f"Unsupported operation: {operation}")
 
 
 def relative_escape(user: Monster, target: Monster) -> bool:

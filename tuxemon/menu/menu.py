@@ -5,8 +5,9 @@ from __future__ import annotations
 import logging
 import math
 from collections.abc import Callable, Iterable, Sequence
+from enum import Enum
 from functools import partial
-from typing import Any, Generic, Literal, Optional, TypeVar, Union
+from typing import Any, Generic, Optional, TypeVar, Union
 
 import pygame_menu
 from pygame import SRCALPHA
@@ -16,7 +17,7 @@ from pygame.surface import Surface
 from pygame_menu import baseimage, locals, themes
 from pygame_menu.widgets.core.widget import Widget
 
-from tuxemon import graphics, prepare, state, tools
+from tuxemon import graphics, prepare, tools
 from tuxemon.animation import Animation
 from tuxemon.graphics import ColorLike
 from tuxemon.menu.events import playerinput_to_event
@@ -30,12 +31,19 @@ from tuxemon.sprite import (
     SpriteGroup,
     VisualSpriteList,
 )
+from tuxemon.state import State
 from tuxemon.ui.draw import GraphicBox
 from tuxemon.ui.text import TextArea
 
 logger = logging.getLogger(__name__)
 
-MenuState = Literal["closed", "opening", "normal", "disabled", "closing"]
+
+class MenuState(Enum):
+    CLOSED = "closed"
+    OPENING = "opening"
+    NORMAL = "normal"
+    DISABLED = "disabled"
+    CLOSING = "closing"
 
 
 def layout_func(scale: float) -> Callable[[Sequence[float]], Sequence[float]]:
@@ -50,7 +58,7 @@ layout = layout_func(prepare.SCALE)
 T = TypeVar("T", covariant=True)
 
 
-class PygameMenuState(state.State):
+class PygameMenuState(State):
     """
     A Pygame menu state class.
     """
@@ -283,7 +291,7 @@ class PygameMenuState(state.State):
         return None
 
 
-class Menu(Generic[T], state.State):
+class Menu(Generic[T], State):
     """
     A class to create menu objects.
 
@@ -293,7 +301,7 @@ class Menu(Generic[T], state.State):
 
     Attributes:
         rect: The rect of the menu in pixels, defaults to 0, 0, 400, 200.
-        state: An arbitrary state of the menu. E.g. "opening" or "closing".
+        state: An arbitrary state of the menu. E.g. MenuState.OPENING or MenuState.CLOSING.
         selected_index: The index position of the currently selected menu item.
         menu_items: A list of available menu items.
 
@@ -331,7 +339,7 @@ class Menu(Generic[T], state.State):
         self.rect = self.rect.copy()  # do not remove!
         self.selected_index = selected_index
         # state: closed, opening, normal, disabled, closing
-        self.state: MenuState = "closed"
+        self.state = MenuState.CLOSED
         self._show_contents = False
         self._needs_refresh = False
         self._anchors: dict[str, Union[int, tuple[int, int]]] = {}
@@ -790,7 +798,7 @@ class Menu(Generic[T], state.State):
             disabled = all(not i.enabled for i in self.menu_items)
         valid_change = (
             event.pressed
-            and self.state == "normal"
+            and self.state == MenuState.NORMAL
             and not disabled
             and self.menu_items
         )
@@ -940,15 +948,15 @@ class Menu(Generic[T], state.State):
             return None
 
     def resume(self) -> None:
-        if self.state == "closed":
+        if self.state == MenuState.CLOSED:
 
             def show_items() -> None:
-                self.state = "normal"
+                self.state = MenuState.NORMAL
                 self._show_contents = True
                 self.on_menu_selection_change()
                 self.on_open()
 
-            self.state = "opening"
+            self.state = MenuState.OPENING
             self.reload_items()
             self.refresh_layout()
 
@@ -966,12 +974,12 @@ class Menu(Generic[T], state.State):
                     )
                 ani.callback = show_items
             else:
-                self.state = "normal"
+                self.state = MenuState.NORMAL
                 show_items()
 
     def close(self) -> None:
-        if self.state in ["normal", "opening"]:
-            self.state = "closing"
+        if self.state in [MenuState.NORMAL, MenuState.OPENING]:
+            self.state = MenuState.CLOSING
             ani = self.animate_close()
             self.on_close()
             if ani:

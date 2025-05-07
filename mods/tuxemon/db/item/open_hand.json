@@ -9,6 +9,7 @@
   ],
   "modifiers": [],
   "behaviors": {
+    "consumable": false,
     "holdable": true
   },
   "use_failure": "generic_failure",

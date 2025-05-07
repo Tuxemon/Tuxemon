@@ -39,35 +39,49 @@ class TeleportFaint:
         return [self.map_name, str(self.x), str(self.y)]
 
 
+@dataclass
+class DelayedTeleport:
+    char: Optional[NPC] = None
+    mapname: str = ""
+    x: int = 0
+    y: int = 0
+    facing: Optional[Direction] = None
+    is_active: bool = False
+
+
 class Teleporter:
     """
-    Manages teleportation of characters in the game world.
+    Facilitates teleportation of characters within the game world.
 
-    This class provides methods for teleporting characters to specific
-    locations, as well as handling delayed teleportations that occur
-    during screen transitions.
+    This class is responsible for instant and delayed teleportation of
+    characters to specific locations. It ensures the smooth transition
+    of characters between maps, handles screen state changes, and maintains
+    game world consistency during teleportation.
 
     Attributes:
-        delayed_teleport: Whether a delayed teleportation is pending.
-        delayed_char: The character to teleport, or None if the player.
-        delayed_mapname: The name of the map to teleport to.
-            Must exist in the world state.
-        delayed_x: The X position to teleport to.
-            Must be valid within the map boundaries.
-        delayed_y: The Y position to teleport to.
-            Must be valid within the map boundaries.
-        delayed_facing: The direction to face after teleporting.
-            Should align with the world context.
+        world: The current game world state that contains maps, characters,
+            and game logic.
+
+        delayed_teleport (DelayedTeleport): An object encapsulating all the
+            parameters related to delayed teleportation, including:
+            - char: The character to teleport, or None for the player.
+            - mapname: The target map's name. Must exist in the game's world
+                state.
+            - x: The X coordinate within the target map. Must be valid within
+                boundaries.
+            - y: The Y coordinate within the target map. Must be valid within
+                boundaries.
+            - facing: The direction the character faces post-teleportation.
+            - is_active: Indicates whether delayed teleportation is pending.
     """
 
-    def __init__(self, world: WorldState) -> None:
+    def __init__(
+        self,
+        world: WorldState,
+        delayed_teleport: Optional[DelayedTeleport] = None,
+    ) -> None:
         self.world = world
-        self.delayed_teleport = False
-        self.delayed_char: Optional[NPC] = None
-        self.delayed_mapname = ""
-        self.delayed_x = 0
-        self.delayed_y = 0
-        self.delayed_facing: Optional[Direction] = None
+        self.delayed_teleport = delayed_teleport or DelayedTeleport()
 
     def handle_delayed_teleport(self, character: NPC) -> None:
         if self.delayed_teleport:
@@ -80,16 +94,19 @@ class Teleporter:
         Parameters:
             char: The character to teleport, or None if the player.
         """
-        self.teleport_character(
-            self.delayed_char or character,
-            self.delayed_mapname,
-            self.delayed_x,
-            self.delayed_y,
-        )
-        if self.delayed_facing:
-            (self.delayed_char or character).facing = self.delayed_facing
-            self.delayed_facing = None
-        self.delayed_teleport = False
+        if self.delayed_teleport.is_active:
+            self.teleport_character(
+                self.delayed_teleport.char or character,
+                self.delayed_teleport.mapname,
+                self.delayed_teleport.x,
+                self.delayed_teleport.y,
+            )
+            if self.delayed_teleport.facing:
+                (self.delayed_teleport.char or character).body.facing = (
+                    self.delayed_teleport.facing
+                )
+                self.delayed_teleport.facing = None
+            self.delayed_teleport.is_active = False
 
     def teleport_character(
         self,

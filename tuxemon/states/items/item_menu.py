@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Generator, Sequence
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 import pygame
 
@@ -22,6 +22,9 @@ from tuxemon.sprite import Sprite
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.ui.paginator import Paginator
 from tuxemon.ui.text import TextArea
+
+if TYPE_CHECKING:
+    from tuxemon.npc import NPC
 
 
 def sort_inventory(
@@ -58,7 +61,8 @@ class ItemMenuState(Menu[Item]):
     background_filename = prepare.BG_ITEMS
     draw_borders = False
 
-    def __init__(self) -> None:
+    def __init__(self, character: NPC) -> None:
+        self.char = character
         super().__init__()
 
         # this sprite is used to display the item
@@ -117,9 +121,7 @@ class ItemMenuState(Menu[Item]):
         item = menu_item.game_object
 
         # Check if the item can be used on any monster
-        if not any(
-            item.validate_monster(m) for m in local_session.player.monsters
-        ):
+        if not any(item.validate_monster(m) for m in self.char.monsters):
             self.on_menu_selection_change()
             error_message = self.get_error_message(item)
             tools.open_dialog(local_session, [error_message])
@@ -186,7 +188,7 @@ class ItemMenuState(Menu[Item]):
 
         def use_item_with_monster(menu_item: MenuItem[Monster]) -> None:
             """Use the item with a monster."""
-            player = local_session.player
+            player = self.char
             monster = menu_item.game_object
             result = item.use(player, monster)
             self.client.remove_state_by_name("MonsterMenuState")
@@ -196,7 +198,7 @@ class ItemMenuState(Menu[Item]):
 
         def use_item_without_monster() -> None:
             """Use the item without a monster."""
-            player = local_session.player
+            player = self.char
             self.client.remove_state_by_name("ItemMenuState")
             self.client.remove_state_by_name("WorldMenuState")
             result = item.use(player, None)
@@ -206,7 +208,7 @@ class ItemMenuState(Menu[Item]):
             """Confirm the use of the item."""
             self.client.remove_state_by_name("ChoiceState")
             if item.behaviors.requires_monster_menu:
-                menu = self.client.push_state(MonsterMenuState())
+                menu = self.client.push_state(MonsterMenuState(self.char))
                 menu.is_valid_entry = item.validate_monster  # type: ignore[assignment]
                 menu.on_menu_selection = use_item_with_monster  # type: ignore[assignment]
             else:
@@ -246,24 +248,21 @@ class ItemMenuState(Menu[Item]):
         page_items = self.inventory[start_index:end_index]
 
         for obj in sort_inventory(page_items):
+            enable = self.is_valid_entry(obj)
             label = f"{obj.name} x {obj.quantity}"
             image = self.shadow_text(label, bg=prepare.DIMGRAY_COLOR)
-            yield MenuItem(image, obj.name, obj.description, obj)
+            yield MenuItem(image, obj.name, obj.description, obj, enable)
 
     def get_inventory(self, state: str) -> list[Item]:
         """Get player inventory items based on the current state."""
         if state == "MainCombatMenuState":
             return [
                 item
-                for item in local_session.player.items
+                for item in self.char.items
                 if State[state] in item.usable_in
             ]
         else:
-            return [
-                item
-                for item in local_session.player.items
-                if item.behaviors.visible
-            ]
+            return [item for item in self.char.items if item.behaviors.visible]
 
     def on_menu_selection_change(self) -> None:
         """Called when menu selection changes."""
@@ -271,6 +270,9 @@ class ItemMenuState(Menu[Item]):
         if selected_item:
             self.animate_item_selection(selected_item.game_object)
             self.show_item_description(selected_item.game_object)
+
+    def is_valid_entry(self, item: Optional[Item]) -> bool:
+        return item is not None
 
     def animate_item_selection(self, item: Item) -> None:
         """Animate the selected item being pulled from the bag."""
@@ -299,9 +301,10 @@ class ItemMenuState(Menu[Item]):
         )
 
         for obj in sort_inventory(page_items):
+            enable = self.is_valid_entry(obj)
             label = f"{obj.name} x {obj.quantity}"
             image = self.shadow_text(label, bg=prepare.DIMGRAY_COLOR)
-            self.add(MenuItem(image, obj.name, obj.description, obj))
+            self.add(MenuItem(image, obj.name, obj.description, obj, enable))
 
         if self.menu_items:
             self.selected_index = min(

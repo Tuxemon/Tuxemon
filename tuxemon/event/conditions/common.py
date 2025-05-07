@@ -48,7 +48,6 @@ class CommonCondition:
 
         eg. "player,name,alpha" -> is the player named alpha? true/false
         eg. "technique,power,2.0" -> is the technique power 2.0? true/false
-
         """
         attr = CommonCondition._get_attribute(entity, parameter)
         if attr is None:

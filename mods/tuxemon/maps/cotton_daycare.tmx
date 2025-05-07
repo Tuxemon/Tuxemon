@@ -86,8 +86,8 @@
    <properties>
     <property name="act10" value="translated_dialog cotton_breeder2a_1"/>
     <property name="act15" value="breeding female"/>
-    <property name="act16" value="create_kennel cotton_breeder"/>
-    <property name="act17" value="set_kennel_visible daycare,false"/>
+    <property name="act16" value="create_kennel player,cotton_breeder"/>
+    <property name="act17" value="set_kennel_visible player,daycare,false"/>
     <property name="act18" value="store_monster breeding_mother,cotton_breeder"/>
     <property name="act20" value="translated_dialog cotton_breeder2a_2"/>
     <property name="act30" value="breeding male"/>

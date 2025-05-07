@@ -7,12 +7,20 @@ from collections.abc import Sequence
 from typing import TYPE_CHECKING, Optional
 
 from tuxemon.boundary import BoundaryChecker
-from tuxemon.map import dirs2, get_adjacent_position, get_coords_ext, pairs
+from tuxemon.map import (
+    dirs2,
+    get_adjacent_position,
+    get_coords_ext,
+    get_explicit_tile_exits,
+    pairs,
+)
 from tuxemon.prepare import CONFIG
 
 if TYPE_CHECKING:
+    from tuxemon.db import Direction
     from tuxemon.npc import NPC
     from tuxemon.states.world.worldstate import CollisionMap, WorldState
+
 logger = logging.getLogger(__name__)
 
 
@@ -73,7 +81,7 @@ class Pathfinder:
         self.boundary_checker = boundary_checker
 
     def pathfind(
-        self, start: tuple[int, int], dest: tuple[int, int]
+        self, start: tuple[int, int], dest: tuple[int, int], facing: Direction
     ) -> Optional[Sequence[tuple[int, int]]]:
         """
         Attempts to find a path from the start position to the destination position.
@@ -81,11 +89,19 @@ class Pathfinder:
         Parameters:
             start: The starting position as a tuple of (x, y) coordinates.
             dest: The destination position as a tuple of (x, y) coordinates.
+            facing: The direction the character is currently facing, which influences
+                pathfinding decisions.
 
         Returns:
-            A sequence of positions representing the path if found, or None if no path exists.
+            A sequence of positions representing the path if found, or None if no path
+                exists.
         """
-        pathnode = self.pathfind_r(dest, [PathfindNode(start)], set())
+        pathnode = self.pathfind_r(
+            dest=dest,
+            queue=[PathfindNode(start)],
+            known_nodes=set(),
+            facing=facing,
+        )
         logger.info(f"Pathfinding from {start} to {dest}.")
         if pathnode:
             path = pathnode.reconstruct_path()
@@ -105,14 +121,18 @@ class Pathfinder:
         dest: tuple[int, int],
         queue: list[PathfindNode],
         known_nodes: set[tuple[int, int]],
+        facing: Direction,
     ) -> Optional[PathfindNode]:
         """
         A recursive helper method that explores possible paths to the destination.
 
         Parameters:
             dest: The destination position as a tuple of (x, y) coordinates.
-            queue: A deque of PathfindNode objects representing the current nodes to explore.
+            queue: A deque of PathfindNode objects representing the current nodes to
+                explore.
             known_nodes: A set of positions that have already been explored.
+            facing: The direction the character is currently facing, which guides path
+                exploration.
 
         Returns:
             The PathfindNode representing the destination if found, or None if no path exists.
@@ -127,7 +147,10 @@ class Pathfinder:
                 logger.info(f"Destination {dest} reached.")
                 return node
             for adj_pos in self.get_exits(
-                node.get_value(), collision_map, known_nodes
+                position=node.get_value(),
+                facing=facing,
+                collision_map=collision_map,
+                skip_nodes=known_nodes,
             ):
                 if adj_pos not in known_nodes:
                     known_nodes.add(adj_pos)
@@ -164,6 +187,7 @@ class Pathfinder:
     def get_exits(
         self,
         position: tuple[int, int],
+        facing: Direction,
         collision_map: Optional[CollisionMap] = None,
         skip_nodes: Optional[set[tuple[int, int]]] = None,
     ) -> Sequence[tuple[int, int]]:
@@ -172,6 +196,8 @@ class Pathfinder:
 
         Parameters:
             position: The original position as a tuple of (x, y) coordinates.
+            facing: The direction the character is currently facing, used to determine
+                valid exits.
             collision_map: An optional mapping of collisions with entities and terrain.
             skip_nodes: A set of nodes to skip during the exit check.
 
@@ -187,8 +213,8 @@ class Pathfinder:
         exits = []
         tile_data = collision_map.get(position)
         if tile_data is not None:
-            exits = self.world_state.get_explicit_tile_exits(
-                position, tile_data, skip_nodes
+            exits = get_explicit_tile_exits(
+                position, tile_data, facing, skip_nodes
             )
             logger.debug(f"Found explicit exits: {exits}.")
         else:
@@ -245,7 +271,7 @@ class Pathfinder:
     def is_tile_traversable(self, npc: NPC, tile: tuple[int, int]) -> bool:
         """Checks if a tile is traversable for the given NPC."""
         _map_size = self.world_state.map_size
-        _exit = tile in self.get_exits(npc.tile_pos)
+        _exit = tile in self.get_exits(npc.tile_pos, npc.facing)
 
         _direction = []
         for neighbor in get_coords_ext(tile, _map_size):

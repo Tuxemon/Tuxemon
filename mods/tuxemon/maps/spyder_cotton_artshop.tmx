@@ -212,7 +212,7 @@
    <properties>
     <property name="act1" value="set_variable has_sold_painting:yes"/>
     <property name="act2" value="add_item p_monsters_eyes"/>
-    <property name="act3" value="translated_dialog p_monsters_eyes,,center"/>
+    <property name="act3" value="translated_dialog p_monsters_eyes,,center,center,middle"/>
     <property name="act4" value="set_variable bought_monsters_eyes:yes"/>
     <property name="act5" value="modify_money player,-1000"/>
     <property name="act6" value="remove_noc p_one"/>
@@ -224,7 +224,7 @@
    <properties>
     <property name="act1" value="set_variable has_sold_painting:yes"/>
     <property name="act2" value="add_item p_starry_night"/>
-    <property name="act3" value="translated_dialog p_starry_night,,center"/>
+    <property name="act3" value="translated_dialog p_starry_night,,center,center,middle"/>
     <property name="act4" value="set_variable bought_starry:yes"/>
     <property name="act5" value="modify_money player,-1000"/>
     <property name="act6" value="remove_noc p_two"/>
@@ -236,7 +236,7 @@
    <properties>
     <property name="act1" value="set_variable has_sold_painting:yes"/>
     <property name="act2" value="add_item p_trepidation"/>
-    <property name="act3" value="translated_dialog p_trepidation,,center"/>
+    <property name="act3" value="translated_dialog p_trepidation,,center,center,middle"/>
     <property name="act4" value="set_variable bought_trepidation:yes"/>
     <property name="act5" value="modify_money player,-1000"/>
     <property name="act6" value="remove_noc p_three"/>
@@ -248,11 +248,11 @@
    <properties>
     <property name="act01" value="set_variable has_sold_paintings:yes"/>
     <property name="act02" value="add_item p_starry_night"/>
-    <property name="act03" value="translated_dialog p_starry_night,,center"/>
+    <property name="act03" value="translated_dialog p_starry_night,,center,center,middle"/>
     <property name="act04" value="add_item p_trepidation"/>
-    <property name="act05" value="translated_dialog p_trepidation,,center"/>
+    <property name="act05" value="translated_dialog p_trepidation,,center,center,middle"/>
     <property name="act06" value="add_item p_monsters_eyes"/>
-    <property name="act07" value="translated_dialog p_monsters_eyes,,center"/>
+    <property name="act07" value="translated_dialog p_monsters_eyes,,center,center,middle"/>
     <property name="act15" value="remove_npc p_one"/>
     <property name="act16" value="remove_npc p_two"/>
     <property name="act17" value="remove_npc p_three"/>

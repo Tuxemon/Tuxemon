@@ -7,19 +7,19 @@ from typing import Optional
 
 from pygame.surface import Surface
 
-from tuxemon import prepare, state
+from tuxemon import prepare
 from tuxemon.platform.events import PlayerInput
-from tuxemon.states.transition.fade import FadeOutTransition
+from tuxemon.state import State, StateManager
 
 logger = logging.getLogger(__name__)
 
 
-class SplashState(state.State):
+class SplashState(State):
     """The state responsible for the splash screen."""
 
     default_duration = 3
 
-    def __init__(self, parent: state.StateManager) -> None:
+    def __init__(self, parent: StateManager) -> None:
         super().__init__()
 
         self.parent = parent
@@ -65,4 +65,4 @@ class SplashState(state.State):
 
     def fade_out(self) -> None:
         self.triggered = True
-        self.parent.push_state(FadeOutTransition())
+        self.parent.push_state("FadeOutTransition")

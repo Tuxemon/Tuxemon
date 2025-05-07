@@ -144,7 +144,7 @@
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
     <property name="act40" value="add_item tm_all_in"/>
-    <property name="act41" value="translated_dialog tm_all_in,,center"/>
+    <property name="act41" value="translated_dialog tm_all_in,,center,center,middle"/>
     <property name="behav1" value="talk spyder_dojo_saturn"/>
     <property name="cond1" value="not variable_set dojosaturn:yes"/>
    </properties>
@@ -162,7 +162,7 @@
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
     <property name="act40" value="add_item tm_blade"/>
-    <property name="act41" value="translated_dialog tm_blade,,center"/>
+    <property name="act41" value="translated_dialog tm_blade,,center,center,middle"/>
     <property name="behav1" value="talk spyder_dojo_hephastus"/>
     <property name="cond1" value="not variable_set dojohephastus:yes"/>
    </properties>
@@ -180,7 +180,7 @@
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
     <property name="act40" value="add_item tm_panjandrum"/>
-    <property name="act41" value="translated_dialog tm_panjandrum,,center"/>
+    <property name="act41" value="translated_dialog tm_panjandrum,,center,center,middle"/>
     <property name="behav1" value="talk spyder_dojo_hermes"/>
     <property name="cond1" value="not variable_set dojohermes:yes"/>
    </properties>
@@ -198,7 +198,7 @@
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
     <property name="act40" value="add_item tm_shadow_boxing"/>
-    <property name="act41" value="translated_dialog tm_shadow_boxing,,center"/>
+    <property name="act41" value="translated_dialog tm_shadow_boxing,,center,center,middle"/>
     <property name="behav1" value="talk spyder_dojo_orion"/>
     <property name="cond1" value="not variable_set dojoorion:yes"/>
    </properties>
@@ -216,7 +216,7 @@
     <property name="act20" value="set_monster_health"/>
     <property name="act30" value="set_monster_status"/>
     <property name="act40" value="add_item tm_scope"/>
-    <property name="act41" value="translated_dialog tm_scope,,center"/>
+    <property name="act41" value="translated_dialog tm_scope,,center,center,middle"/>
     <property name="behav1" value="talk spyder_dojo_ares"/>
     <property name="cond1" value="not variable_set dojoares:yes"/>
    </properties>

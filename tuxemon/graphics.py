@@ -470,3 +470,39 @@ def string_to_colorlike(color: str) -> ColorLike:
         else (int(part[0]), int(part[1]), int(part[2]))
     )
     return rgb
+
+
+def apply_cinema_bars(
+    aspect_ratio: float,
+    screen: Surface,
+    orientation: str,
+    screen_size: tuple[int, int],
+    black_color: tuple[int, int, int],
+) -> None:
+    """
+    Applies cinema bars (letterboxing) to the screen in either horizontal or vertical orientation.
+    """
+    if orientation == "horizontal":
+        screen_aspect_ratio = screen_size[1] / screen_size[0]
+        if screen_aspect_ratio < aspect_ratio:
+            bar_width = int(
+                screen_size[0] * (1 - screen_aspect_ratio / aspect_ratio) / 2
+            )
+            bar = Surface((bar_width, screen_size[1]))
+            bar.fill(black_color)
+            screen.blit(bar, (0, 0))
+            screen.blit(bar, (screen_size[0] - bar_width, 0))
+    elif orientation == "vertical":
+        screen_aspect_ratio = screen_size[0] / screen_size[1]
+        if screen_aspect_ratio < aspect_ratio:
+            bar_height = int(
+                screen_size[1] * (1 - screen_aspect_ratio / aspect_ratio) / 2
+            )
+            bar = Surface((screen_size[0], bar_height))
+            bar.fill(black_color)
+            screen.blit(bar, (0, 0))
+            screen.blit(bar, (0, screen_size[1] - bar_height))
+    else:
+        raise ValueError(
+            f"Invalid orientation: '{orientation}'. Must be 'horizontal' or 'vertical'."
+        )

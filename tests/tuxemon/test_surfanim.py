@@ -3,11 +3,10 @@
 import unittest
 
 import pygame
+from pygame.surface import Surface
 
 from tuxemon.surfanim import (
-    PAUSED,
-    PLAYING,
-    STOPPED,
+    State,
     SurfaceAnimation,
     SurfaceAnimationCollection,
     clip,
@@ -15,20 +14,22 @@ from tuxemon.surfanim import (
 
 
 class TestSurfaceAnimation(unittest.TestCase):
-    def setUp(self):
-        pygame.init()
-        self.frames = [
-            (pygame.Surface((10, 10)), 1.0),
-            (pygame.Surface((20, 20)), 2.0),
-        ]
-        self.animation = SurfaceAnimation(self.frames)
 
-    def tearDown(self):
+    @classmethod
+    def setUpClass(cls):
+        pygame.init()
+
+    @classmethod
+    def tearDownClass(cls):
         pygame.quit()
+
+    def setUp(self):
+        self.frames = [(Surface((10, 10)), 1.0), (Surface((20, 20)), 2.0)]
+        self.animation = SurfaceAnimation(self.frames)
 
     def test_init(self):
         self.assertEqual(self.animation.loop, True)
-        self.assertEqual(self.animation.state, STOPPED)
+        self.assertEqual(self.animation.state, State.STOPPED)
 
     def test_get_frame(self):
         self.assertEqual(self.animation.get_frame(0).get_size(), (10, 10))
@@ -55,17 +56,17 @@ class TestSurfaceAnimation(unittest.TestCase):
 
     def test_play(self):
         self.animation.play()
-        self.assertEqual(self.animation.state, PLAYING)
+        self.assertEqual(self.animation.state, State.PLAYING)
 
     def test_pause(self):
         self.animation.play()
         self.animation.pause()
-        self.assertEqual(self.animation.state, PAUSED)
+        self.assertEqual(self.animation.state, State.PAUSED)
 
     def test_stop(self):
         self.animation.play()
         self.animation.stop()
-        self.assertEqual(self.animation.state, STOPPED)
+        self.assertEqual(self.animation.state, State.STOPPED)
 
     def test_update(self):
         self.animation.play()
@@ -117,16 +118,13 @@ class TestSurfaceAnimation(unittest.TestCase):
 
 class TestSurfaceAnimationCollection(unittest.TestCase):
     def setUp(self):
-        frames = [
-            (pygame.Surface((10, 10)), 1.0),
-            (pygame.Surface((20, 20)), 2.0),
-        ]
+        frames = [(Surface((10, 10)), 1.0), (Surface((20, 20)), 2.0)]
         self.animation = SurfaceAnimation(frames)
 
     def test_init(self):
         collection = SurfaceAnimationCollection()
         self.assertEqual(collection._animations, [])
-        self.assertEqual(collection._state, STOPPED)
+        self.assertEqual(collection._state, State.STOPPED)
 
     def test_add_single_animation(self):
         collection = SurfaceAnimationCollection(self.animation)
@@ -151,21 +149,21 @@ class TestSurfaceAnimationCollection(unittest.TestCase):
     def test_play(self):
         collection = SurfaceAnimationCollection(self.animation)
         collection.play()
-        self.assertEqual(collection._state, PLAYING)
+        self.assertEqual(collection._state, State.PLAYING)
 
     def test_pause(self):
         collection = SurfaceAnimationCollection(self.animation)
         collection.pause()
-        self.assertEqual(collection._state, PAUSED)
+        self.assertEqual(collection._state, State.PAUSED)
 
     def test_stop(self):
         collection = SurfaceAnimationCollection(self.animation)
         collection.stop()
-        self.assertEqual(collection._state, STOPPED)
+        self.assertEqual(collection._state, State.STOPPED)
 
     def test_state_property(self):
         collection = SurfaceAnimationCollection(self.animation)
-        self.assertEqual(collection.state, STOPPED)
+        self.assertEqual(collection.state, State.STOPPED)
 
     def test_remove(self):
         animations = [self.animation for _ in range(3)]

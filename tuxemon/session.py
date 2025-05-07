@@ -28,7 +28,6 @@ class Session:
             client: Game client.
             world: Game world.
             player: Player object.
-
         """
         self.client = client
         self.world = world

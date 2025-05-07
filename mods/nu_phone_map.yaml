@@ -1,0 +1,8 @@
+map_path: "gfx/ui/background/spyder_map.png"
+map_data:
+  - [0.20, 0.42, "leather_town"]
+  - [0.20, 0.52, "cotton_town"]
+  - [0.20, 0.62, "paper_town"]
+  - [-0.15, 0.62, "candy_town"]
+  - [-0.15, 0.42, "timber_town"]
+  - [-0.15, 0.32, "flower_city"]

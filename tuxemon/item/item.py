@@ -17,6 +17,7 @@ from tuxemon.core.core_manager import ConditionManager, EffectManager
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import ItemCategory, State, db
 from tuxemon.locale import T
+from tuxemon.surfanim import FlipAxes
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -43,7 +44,7 @@ class Item:
         self.instance_id = uuid.uuid4()
         self.quantity = 1
         self.animation: Optional[str] = None
-        self.flip_axes = ""
+        self.flip_axes = FlipAxes.NONE
         # The path to the sprite to load.
         self.sprite = ""
         self.category = ItemCategory.none

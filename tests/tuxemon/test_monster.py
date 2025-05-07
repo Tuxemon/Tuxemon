@@ -3,7 +3,8 @@
 import unittest
 from unittest.mock import MagicMock, patch
 
-import pygame
+from pygame import SRCALPHA
+from pygame.surface import Surface
 
 from tuxemon import prepare
 from tuxemon.db import (
@@ -15,6 +16,7 @@ from tuxemon.db import (
 )
 from tuxemon.monster import Monster, MonsterSpriteHandler
 from tuxemon.prepare import MAX_LEVEL
+from tuxemon.surfanim import FlipAxes
 from tuxemon.taste import Taste
 from tuxemon.technique.technique import Technique
 from tuxemon.time_handler import today_ordinal
@@ -203,7 +205,7 @@ class Learn(MonsterTestBase):
     _tech = TechniqueModel(
         tech_id=69,
         accuracy=0.85,
-        flip_axes="",
+        flip_axes=FlipAxes.NONE,
         potency=0.0,
         power=1.5,
         range="melee",
@@ -279,7 +281,7 @@ class TestMonsterSpriteHandler(unittest.TestCase):
     @patch("tuxemon.graphics.load_sprite")
     def test_load_sprite(self, mock_load_sprite):
         mock_surface = MagicMock()
-        mock_surface.image = pygame.Surface((100, 100))
+        mock_surface.image = Surface((100, 100))
         mock_load_sprite.return_value = mock_surface
 
         sprite = self.handler.load_sprite(
@@ -322,8 +324,8 @@ class TestMonsterSpriteHandler(unittest.TestCase):
 
     @patch("tuxemon.graphics.load_sprite")
     def test_get_sprite_with_flairs(self, mock_load_sprite):
-        base_surface = pygame.Surface((100, 100))
-        flair_surface = pygame.Surface((50, 50), pygame.SRCALPHA)
+        base_surface = Surface((100, 100))
+        flair_surface = Surface((50, 50), SRCALPHA)
 
         mock_base = MagicMock()
         mock_base.image = base_surface
@@ -338,7 +340,7 @@ class TestMonsterSpriteHandler(unittest.TestCase):
 
     @patch("tuxemon.graphics.load_and_scale")
     def test_load_sprites(self, mock_load_and_scale):
-        mock_surface = pygame.Surface((100, 100))
+        mock_surface = Surface((100, 100))
         mock_load_and_scale.return_value = mock_surface
 
         sprites = self.handler.load_sprites()
@@ -360,7 +362,7 @@ class TestMonsterSpriteHandler(unittest.TestCase):
     @patch("tuxemon.graphics.load_sprite")
     def test_sprite_cache_usage(self, mock_load_sprite):
         mock_surface = MagicMock()
-        mock_surface.image = pygame.Surface((100, 100))
+        mock_surface.image = Surface((100, 100))
         mock_load_sprite.return_value = mock_surface
 
         sprite1 = self.handler.load_sprite(self.front_path)
@@ -372,7 +374,7 @@ class TestMonsterSpriteHandler(unittest.TestCase):
     @patch("tuxemon.graphics.load_sprite")
     def test_empty_flairs(self, mock_load_sprite):
         mock_surface = MagicMock()
-        mock_surface.image = pygame.Surface((100, 100))
+        mock_surface.image = Surface((100, 100))
         mock_load_sprite.return_value = mock_surface
 
         self.handler.flairs = {}

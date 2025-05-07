@@ -76,21 +76,24 @@
   </object>
   <object id="40" name="create knight" type="event" x="176" y="80" width="16" height="16">
    <properties>
-    <property name="act010" value="create_npc knight3,6,10,stand"/>
-    <property name="act020" value="char_face knight3,up"/>
-    <property name="act030" value="wait 0.7"/>
-    <property name="act040" value="char_face knight3,left"/>
-    <property name="act050" value="wait 0.7"/>
-    <property name="act060" value="char_face knight3,right"/>
-    <property name="act070" value="wait 0.7"/>
-    <property name="act080" value="char_face knight3,up"/>
-    <property name="act090" value="wait 0.2"/>
-    <property name="act100" value="translated_dialog bothofyou"/>
-    <property name="act110" value="wait 0.8"/>
-    <property name="act120" value="char_face knight3,down"/>
-    <property name="act130" value="wait 0.5"/>
-    <property name="act140" value="set_variable goodbyeoldknight:yes"/>
-    <property name="act150" value="remove_npc knight3"/>
+    <property name="act05" value="char_stop player"/>
+    <property name="act06" value="lock_controls"/>
+    <property name="act10" value="create_npc knight3,6,10,stand"/>
+    <property name="act11" value="char_face knight3,up"/>
+    <property name="act12" value="wait 0.7"/>
+    <property name="act13" value="char_face knight3,left"/>
+    <property name="act14" value="wait 0.7"/>
+    <property name="act15" value="char_face knight3,right"/>
+    <property name="act16" value="wait 0.7"/>
+    <property name="act17" value="char_face knight3,up"/>
+    <property name="act18" value="wait 0.2"/>
+    <property name="act19" value="translated_dialog bothofyou"/>
+    <property name="act20" value="wait 0.8"/>
+    <property name="act21" value="char_face knight3,down"/>
+    <property name="act22" value="wait 0.5"/>
+    <property name="act23" value="set_variable goodbyeoldknight:yes"/>
+    <property name="act24" value="remove_npc knight3"/>
+    <property name="act25" value="unlock_controls"/>
     <property name="cond10" value="is variable_set thewifedidspeak:yes"/>
     <property name="cond20" value="not variable_set goodbyeoldknight:yes"/>
     <property name="cond30" value="not variable_set goodbyeoldknight:finallydone"/>
@@ -111,6 +114,7 @@
     <property name="behav10" value="talk npc_wife"/>
     <property name="cond10" value="is variable_set thewifedidspeak:yes"/>
     <property name="cond20" value="not variable_set maplecotton"/>
+    <property name="cond30" value="is variable_set goodbyeoldknight:yes"/>
    </properties>
   </object>
   <object id="47" name="talkHouse3" type="event" x="192" y="128" width="16" height="16">

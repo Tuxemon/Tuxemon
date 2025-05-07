@@ -38,7 +38,7 @@ class DieHardEffect(StatusEffect):
                 target.current_hp = self.hp
                 target.status.clear()
                 extra = [T.format("combat_state_diehard_tech", params)]
-            if target.current_hp == self.hp:
+            if target.hp_ratio == 1.0:
                 target.status.clear()
                 extra = [T.format("combat_state_diehard_end", params)]
 

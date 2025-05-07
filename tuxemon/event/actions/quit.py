@@ -18,12 +18,9 @@ class QuitAction(EventAction):
         .. code-block::
 
             quit
-
     """
 
     name = "quit"
 
     def start(self) -> None:
-        # TODO: API
-        self.session.client.exit = True
-        self.session.client.done = True
+        self.session.client.quit()

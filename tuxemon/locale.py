@@ -2,12 +2,12 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import dataclasses
 import gettext
 import logging
 import os
 import os.path
 from collections.abc import Callable, Generator, Iterable, Mapping, Sequence
+from dataclasses import dataclass
 from gettext import GNUTranslations
 from typing import Any, Optional
 
@@ -26,7 +26,7 @@ LOCALE_DIR = "l18n"
 LOCALE_CONFIG = prepare.CONFIG.locale
 
 
-@dataclasses.dataclass(frozen=True, order=True)
+@dataclass(frozen=True, order=True)
 class LocaleInfo:
     """Information about a locale."""
 

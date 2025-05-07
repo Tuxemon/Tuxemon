@@ -13,7 +13,7 @@ from natsort import natsorted
 
 from tuxemon import prepare
 from tuxemon.compat import Rect
-from tuxemon.db import Direction, Orientation, SurfaceKeys
+from tuxemon.db import Direction, Orientation
 from tuxemon.event import EventObject, MapAction, MapCondition
 from tuxemon.graphics import scaled_image_loader
 from tuxemon.lib.bresenham import bresenham
@@ -370,13 +370,15 @@ class TMXMapLoader:
         self, data: pytmx.TiledMap
     ) -> dict[tuple[int, int], dict[str, float]]:
         surface_map = {}
-        gids_with_surface = {}
+        gids_with_surface: dict[int, Any] = {}
 
         for gid, props in data.tile_properties.items():
-            for _surface in SurfaceKeys:
-                surface = props.get(_surface)
+            for surface_key in prepare.SURFACE_KEYS:
+                surface = props.get(surface_key)
                 if surface is not None:
-                    gids_with_surface[gid] = {_surface: surface}
+                    if gid not in gids_with_surface:
+                        gids_with_surface[gid] = {}
+                    gids_with_surface[gid][surface_key] = surface
 
         for layer in data.visible_tile_layers:
             layer = data.layers[layer]

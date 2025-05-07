@@ -9,7 +9,6 @@ from tuxemon.cli.context import InvokeContext
 class RandomEncounterCommand(CLICommand):
     """
     Start random encounter using "default_encounter".
-
     """
 
     name = "random_encounter"

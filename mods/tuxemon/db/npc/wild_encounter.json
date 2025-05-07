@@ -1,0 +1,8 @@
+{
+  "slug": "wild_encounter",
+  "template": {
+    "sprite_name": "invisible",
+    "combat_front": "noclass",
+    "slug": "noclass"
+  }
+}

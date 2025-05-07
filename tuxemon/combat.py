@@ -346,7 +346,7 @@ def _handle_win(
             set_var(session, "battle_last_trainer", winner.slug)
             return T.format("combat_victory", info)
     else:
-        if winner.slug == "random_encounter_dummy":
+        if winner.monsters[0].wild:
             info["name"] = winner.monsters[0].name.upper()
         return T.format("combat_victory", info)
 

@@ -32,7 +32,6 @@ class ChoiceMonsterAction(EventAction):
             (monster slugs eg: rockitten:apeoro),
             separated by a colon ":".
         variable: Variable to store the result of the choice.
-
     """
 
     name = "choice_monster"
@@ -61,6 +60,6 @@ class ChoiceMonsterAction(EventAction):
 
     def update(self) -> None:
         try:
-            self.session.client.get_state_by_name(ChoiceMonster)
+            self.session.client.get_state_by_name("ChoiceMonster")
         except ValueError:
             self.stop()

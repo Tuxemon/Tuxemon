@@ -3,7 +3,6 @@
 import unittest
 from datetime import datetime
 
-from tuxemon import prepare
 from tuxemon.time_handler import (
     calculate_day_night_cycle,
     calculate_day_stage_of_day,

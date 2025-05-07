@@ -32,7 +32,6 @@ class ChoiceNpcAction(EventAction):
             (item slugs eg: maple:billie),
             separated by a colon ":".
         variable: Variable to store the result of the choice.
-
     """
 
     name = "choice_npc"
@@ -61,6 +60,6 @@ class ChoiceNpcAction(EventAction):
 
     def update(self) -> None:
         try:
-            self.session.client.get_state_by_name(ChoiceNpc)
+            self.session.client.get_state_by_name("ChoiceNpc")
         except ValueError:
             self.stop()

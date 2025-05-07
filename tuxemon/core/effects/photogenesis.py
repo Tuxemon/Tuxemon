@@ -65,10 +65,10 @@ class PhotogenesisEffect(TechEffect):
             if heal == 0:
                 extra = [tech.use_failure]
             else:
-                if user.current_hp < user.hp:
-                    heal_amount = min(heal, user.hp - user.current_hp)
+                if user.hp_ratio < 1.0:
+                    heal_amount = min(heal, user.missing_hp)
                     user.current_hp += heal_amount
                     done = True
-                elif user.current_hp == user.hp:
+                elif user.hp_ratio == 1.0:
                     extra = ["combat_full_health"]
         return TechEffectResult(name=tech.name, success=done, extras=extra)

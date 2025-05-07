@@ -27,7 +27,6 @@ class MetaCommand(CLICommand):
 
     Parameters:
         commands: Sequence of commands to make available at the prompt.
-
     """
 
     name = "Meta Command"
@@ -86,7 +85,7 @@ class CommandProcessor:
             current_command=self.root_command,
             formatter=Formatter(),
         )
-        session = PromptSession()
+        session: PromptSession[str] = PromptSession()
 
         while True:
             try:
@@ -112,8 +111,7 @@ class CommandProcessor:
                 print("Got KeyboardInterrupt")
                 print("Press CTRL-D to quit.")
 
-        event_engine = self.session.client.event_engine
-        event_engine.execute_action("quit")
+        self.session.client.quit()
 
     def collect_commands(self, folder: str) -> Iterable[CLICommand]:
         """

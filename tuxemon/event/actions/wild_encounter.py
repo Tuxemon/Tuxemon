@@ -9,11 +9,10 @@ from typing import Optional, final
 from tuxemon import monster, prepare
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
+from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import ColorLike, string_to_colorlike
 from tuxemon.item.item import Item
-from tuxemon.npc import NPC
-from tuxemon.states.combat.combat import CombatState
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
@@ -39,7 +38,6 @@ class WildEncounterAction(EventAction):
         env: Environment (grass default)
         rgb: color (eg red > 255,0,0 > 255:0:0) - default rgb(255,255,255)
         held_item: item held by the monster
-
     """
 
     name = "wild_encounter"
@@ -79,8 +77,14 @@ class WildEncounterAction(EventAction):
                 logger.error(f"{item.name} isn't 'holdable'")
         current_monster.wild = True
 
-        self.world = self.session.client.get_state_by_name(WorldState)
-        npc = NPC("random_encounter_dummy", world=self.world)
+        event_engine = self.session.client.event_engine
+        event_engine.execute_action("create_npc", [self.name, 0, 0], True)
+
+        npc = get_npc(self.session, self.name)
+        if npc is None:
+            logger.error(f"{self.name} not found")
+            return
+
         npc.add_monster(current_monster, len(npc.monsters))
         # NOTE: random battles are implemented as trainer battles.
         #       this is a hack. remove this once trainer/random battlers are fixed
@@ -99,6 +103,7 @@ class WildEncounterAction(EventAction):
             battle_mode="single",
         )
 
+        self.world = self.session.client.get_state_by_name(WorldState)
         self.world.lock_controls(player)
         self.world.stop_char(player)
 
@@ -116,11 +121,11 @@ class WildEncounterAction(EventAction):
             self.session.client.get_queued_state_by_name("CombatState")
         except ValueError:
             try:
-                self.session.client.get_state_by_name(CombatState)
+                self.session.client.get_state_by_name("CombatState")
             except ValueError:
                 self.stop()
 
     def cleanup(self) -> None:
         npc = None
         if self.world:
-            self.world.remove_entity("random_encounter_dummy")
+            self.world.remove_entity(self.name)

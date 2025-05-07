@@ -7,7 +7,7 @@ from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import ColorLike, string_to_colorlike
-from tuxemon.prepare import BLACK_COLOR, TRANS_TIME, fetch
+from tuxemon.prepare import BLACK_COLOR, TRANS_TIME
 from tuxemon.states.world.worldstate import WorldState
 from tuxemon.teleporter import DelayedTeleport
 
@@ -32,7 +32,6 @@ class TransitionTeleportAction(EventAction):
         y: Y coordinate of the map to teleport to.
         trans_time: Transition time in seconds - default 0.3
         rgb: color (eg red > 255,0,0 > 255:0:0) - default rgb(0,0,0)
-
     """
 
     name = "transition_teleport"
@@ -45,13 +44,6 @@ class TransitionTeleportAction(EventAction):
     def start(self) -> None:
         self.world = self.session.client.get_state_by_name(WorldState)
         delayed_teleport = self.world.teleporter.delayed_teleport
-
-        target_map = fetch("maps", self.map_name)
-
-        if self.world.npcs and self.world.current_map.filename != target_map:
-            self.world.npcs = [
-                npc for npc in self.world.npcs if not (npc.moving or npc.path)
-            ]
 
         if delayed_teleport.is_active:
             self.stop()

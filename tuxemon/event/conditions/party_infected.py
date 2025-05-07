@@ -27,7 +27,6 @@ class PartyInfectedCondition(EventCondition):
         character: Either "player" or npc slug name (e.g. "npc_maple").
         plague_slug: The slug of the plague to target.
         value: all, some or none.
-
     """
 
     name = "party_infected"

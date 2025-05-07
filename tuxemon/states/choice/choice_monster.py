@@ -77,6 +77,7 @@ class ChoiceMonster(PygameMenuState):
                 "JournalInfoState",
                 character=local_session.player,
                 monster=monster,
+                source=self.name,
             )
             action.execute_action("clear_tuxepedia", [monster.slug], True)
 

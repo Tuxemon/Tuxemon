@@ -18,7 +18,6 @@ class TrueCondition(EventCondition):
         .. code-block::
 
             is true
-
     """
 
     name = "true"

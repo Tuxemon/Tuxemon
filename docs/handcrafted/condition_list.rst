@@ -41,6 +41,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.party_infected.PartyInfectedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.party_size.PartySizeCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.teleport_faint.TeleportFaintCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.tile_property_updated.TilePropertyUpdatedCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.to_use_tile.ToUseTileCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.tracker.TrackerCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.true.TrueCondition

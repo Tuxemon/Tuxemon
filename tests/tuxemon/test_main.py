@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
-from typing import Optional
 from unittest.mock import MagicMock, patch
 
 from tuxemon.client import LocalPygameClient

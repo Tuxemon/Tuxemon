@@ -10,7 +10,6 @@ from typing import final
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
-from tuxemon.menu.input import InputMenu
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +27,6 @@ class RenameMonsterAction(EventAction):
 
     Script parameters:
         variable: Name of the variable where to store the monster id.
-
     """
 
     name = "rename_monster"
@@ -62,6 +60,6 @@ class RenameMonsterAction(EventAction):
 
     def update(self) -> None:
         try:
-            self.session.client.get_state_by_name(InputMenu)
+            self.session.client.get_state_by_name("InputMenu")
         except ValueError:
             self.stop()

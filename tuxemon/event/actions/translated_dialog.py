@@ -10,7 +10,6 @@ from tuxemon.db import DialogueModel, db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import get_avatar, string_to_colorlike
 from tuxemon.locale import process_translate_text
-from tuxemon.states.dialog import DialogState
 from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
@@ -85,7 +84,7 @@ class TranslatedDialogAction(EventAction):
 
     def update(self) -> None:
         try:
-            self.session.client.get_state_by_name(DialogState)
+            self.session.client.get_state_by_name("DialogState")
         except ValueError:
             self.stop()
 

@@ -20,7 +20,6 @@ class ToUseTileCondition(EventCondition):
         .. code-block::
 
             is to_use_tile
-
     """
 
     name = "to_use_tile"

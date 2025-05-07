@@ -133,7 +133,6 @@ class LocalPygameClient:
         self.map_name = map_data.name
         self.map_desc = map_data.description
         self.map_inside = map_data.inside
-        self.map_area = map_data.area
         self.map_size = map_data.size
 
         # Check if the map type exists
@@ -300,7 +299,6 @@ class LocalPygameClient:
 
         Parameters:
             time_delta: Elapsed time since last frame.
-
         """
         # Update our networking
         self.network_manager.update(time_delta)
@@ -329,12 +327,16 @@ class LocalPygameClient:
         if self.exit:
             self.done = True
 
+    def quit(self) -> None:
+        """Handles quitting the game."""
+        self.exit = True
+        self.done = True
+
     def release_controls(self) -> None:
         """
         Send inputs which release held buttons/axis
 
         Use to prevent player from holding buttons while state changes.
-
         """
         events = self.input_manager.event_queue.release_controls()
         self.key_events = list(self.process_events(events))
@@ -345,7 +347,6 @@ class LocalPygameClient:
 
         Parameters:
             time_delta: Amount of time passed since last frame.
-
         """
         self.state_manager.update(time_delta)
         if self.state_manager.current_state is None:

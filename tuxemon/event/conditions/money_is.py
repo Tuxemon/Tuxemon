@@ -32,7 +32,6 @@ class MoneyIsCondition(EventCondition):
 
     eg. "is money_is player,equals,50"
     eg. "is money_is player,equals,name_variable" (name_variable:75)
-
     """
 
     name = "money_is"

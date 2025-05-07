@@ -33,7 +33,6 @@ class CreateNpcAction(EventAction):
         tile_pos_x: X position to place the NPC on.
         tile_pos_y: Y position to place the NPC on.
         behavior: Behavior of the NPC (e.g. "wander"). Unused for now.
-
     """
 
     name = "create_npc"
@@ -55,6 +54,8 @@ class CreateNpcAction(EventAction):
                 return
 
         npc = NPC(slug, world=world)
+        world.npcs.append(npc)
+
         client = self.session.client.event_engine
         client.execute_action(
             "char_position", [slug, self.tile_pos_x, self.tile_pos_y], True

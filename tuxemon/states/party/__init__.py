@@ -60,7 +60,6 @@ class PartyState(PygameMenuState):
         self.char = monsters[0].owner
         if self.char is None:
             raise ValueError(f"{monsters[0].name}'s owner not found")
-        game_variables = self.char.game_variables
         menu._auto_centering = False
         # party
         lab1: Any = menu.add.label(
@@ -71,31 +70,33 @@ class PartyState(PygameMenuState):
             float=True,
         )
         lab1.translate(fix_measure(width, 0.05), fix_measure(height, 0.15))
+        # levels
+        levels = [monster.level for monster in self.char.monsters]
+        level_lowest = min(levels)
+        level_highest = max(levels)
+        level_average = round(sum(levels) / len(levels))
         # highest
-        highest_level = game_variables.get("party_level_highest", 0)
         highest = T.translate("menu_party_level_highest")
         lab2: Any = menu.add.label(
-            title=f"{highest}: {highest_level}",
+            title=f"{highest}: {level_highest}",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
             float=True,
         )
         lab2.translate(fix_measure(width, 0.05), fix_measure(height, 0.25))
         # average
-        average_level = game_variables.get("party_level_average", 0)
         average = T.translate("menu_party_level_average")
         lab3: Any = menu.add.label(
-            title=f"{average}: {average_level}",
+            title=f"{average}: {level_average}",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
             float=True,
         )
         lab3.translate(fix_measure(width, 0.05), fix_measure(height, 0.30))
         # lowest
-        lowest_level = game_variables.get("party_level_lowest", 0)
         lowest = T.translate("menu_party_level_lowest")
         lab4: Any = menu.add.label(
-            title=f"{lowest}: {lowest_level}",
+            title=f"{lowest}: {level_lowest}",
             font_size=self.font_size_smaller,
             align=locals.ALIGN_LEFT,
             float=True,

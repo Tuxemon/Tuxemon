@@ -22,7 +22,6 @@ class MusicPlayingCondition(EventCondition):
 
     Script parameters:
         music_filename: Name of the music.
-
     """
 
     name = "music_playing"

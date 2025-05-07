@@ -31,7 +31,6 @@ class ChangeStateAction(EventAction):
         optional: Variable related to specific states
             (e.g. variable with monster_id for MonsterInfo, monster slug
             for JournalInfoState and character slug for CharacterState).
-
     """
 
     name = "change_state"
@@ -43,10 +42,13 @@ class ChangeStateAction(EventAction):
         self.action = self.client.event_engine
 
         if self.client.current_state is None:
-            raise RuntimeError("Current state is None")
+            raise RuntimeError("No current state active. This is unexpected.")
 
         if self.client.current_state.name == self.state_name:
-            return  # No need to change state if already in the target state
+            logger.error(
+                f"The state '{self.state_name}' is already active. No action taken."
+            )
+            return
 
         self._handle_state_transition()
 
@@ -77,7 +79,10 @@ class ChangeStateAction(EventAction):
         _set_tuxepedia = ["player", journal.slug, "caught"]
         self.action.execute_action("set_tuxepedia", _set_tuxepedia, True)
         self.client.push_state(
-            self.state_name, character=self.session.player, monster=journal
+            self.state_name,
+            character=self.session.player,
+            monster=journal,
+            source=self.name,
         )
         self.action.execute_action("clear_tuxepedia", [journal.slug], True)
 

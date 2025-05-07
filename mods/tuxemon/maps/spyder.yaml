@@ -171,8 +171,9 @@ events:
     type: "event"
   Allow Swim:
     actions:
-    - update_tile_properties surfable
+    - update_tile_properties surfable,1
     conditions:
+    - not tile_property_updated surfable,1
     - is variable_set swimming:yes
     - is current_state WorldState
     type: "event"
@@ -180,6 +181,7 @@ events:
     actions:
     - update_tile_properties surfable,0
     conditions:
+    - not tile_property_updated surfable,0
     - is variable_set swimming:no
     - is current_state WorldState
     type: "event"

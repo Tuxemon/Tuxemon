@@ -19,7 +19,6 @@ if TYPE_CHECKING:
 class TestConditionParentCommand(CLICommand):
     """
     Command that will test a condition.
-
     """
 
     name = "test"

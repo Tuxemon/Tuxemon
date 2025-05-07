@@ -15,7 +15,6 @@ from tuxemon.cli.parser import parse
 class TrainerBattleCommand(CLICommand):
     """
     Command to start a trainer battle.
-
     """
 
     name = "trainer_battle"

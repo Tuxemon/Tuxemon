@@ -9,7 +9,6 @@ from tuxemon.cli.context import InvokeContext
 class QuitCommand(CLICommand):
     """
     Quit the game.
-
     """
 
     name = "quit"

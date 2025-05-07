@@ -32,7 +32,6 @@ class ChoiceItemAction(EventAction):
             (item slugs eg: potion:tea),
             separated by a colon ":".
         variable: Variable to store the result of the choice.
-
     """
 
     name = "choice_item"
@@ -61,6 +60,6 @@ class ChoiceItemAction(EventAction):
 
     def update(self) -> None:
         try:
-            self.session.client.get_state_by_name(ChoiceItem)
+            self.session.client.get_state_by_name("ChoiceItem")
         except ValueError:
             self.stop()

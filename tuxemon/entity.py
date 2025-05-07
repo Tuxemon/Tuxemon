@@ -107,7 +107,6 @@ class Entity(Generic[SaveDict]):
     ) -> None:
         self.slug = slug
         self.world = world
-        world.add_entity(self)
         self.instance_id = uuid.uuid4()
         self.body = Body(
             position=Point3(0, 0, 0), moverate=CONFIG.player_walkrate

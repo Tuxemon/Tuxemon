@@ -188,6 +188,14 @@ class Monster:
         self.set_state(save_data)
         self.set_stats()
 
+    @property
+    def hp_ratio(self) -> float:
+        return min(self.current_hp / self.hp if self.hp > 0 else 0.0, 1.0)
+
+    @property
+    def missing_hp(self) -> int:
+        return max(min(self.hp - self.current_hp, self.hp), 0)
+
     def load_from_db(self, slug: str) -> None:
         """
         Loads and sets this monster's attributes from the monster.db database.

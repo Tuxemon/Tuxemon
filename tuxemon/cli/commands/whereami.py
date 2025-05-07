@@ -11,7 +11,6 @@ from tuxemon.cli.context import InvokeContext
 class WhereAmICommand(CLICommand):
     """
     Display player map name.
-
     """
 
     name = "whereami"

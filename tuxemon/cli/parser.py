@@ -11,7 +11,6 @@ def parse(text: str) -> list[str]:
 
     Parameters:
         text: Text to split into tokens.
-
     """
     return shlex.split(text)
 
@@ -22,7 +21,6 @@ def split(line: str) -> tuple[str, str]:
 
     Parameters:
         line: Text to split.
-
     """
     try:
         index = line.index(" ")

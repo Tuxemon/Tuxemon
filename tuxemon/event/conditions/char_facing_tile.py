@@ -5,10 +5,10 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 
-from tuxemon.db import SurfaceKeys
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.map import get_coords, get_direction
+from tuxemon.prepare import SURFACE_KEYS
 from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
@@ -30,7 +30,6 @@ class CharFacingTileCondition(EventCondition):
     Script parameters:
         character: Either "player" or character slug name (e.g. "npc_maple").
         value: value (eg surfable) inside the tileset.
-
     """
 
     name = "char_facing_tile"
@@ -55,7 +54,7 @@ class CharFacingTileCondition(EventCondition):
         world = session.client.get_state_by_name(WorldState)
         if len(condition.parameters) > 1:
             value = condition.parameters[1]
-            if value in SurfaceKeys:
+            if value in SURFACE_KEYS:
                 label = world.get_all_tile_properties(world.surface_map, value)
             else:
                 label = world.check_collision_zones(world.collision_map, value)

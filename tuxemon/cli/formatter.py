@@ -12,7 +12,6 @@ class Formatter:
     Print formatted text things.
 
     Currently just supports printing things in a table.
-
     """
 
     def print_table(

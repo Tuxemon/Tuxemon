@@ -206,7 +206,7 @@ class MonsterTakeState(PygameMenuState):
                 partial(kennel_options, iid),
                 selection_effect=HighlightSelection(),
             )
-            diff = round((monster.current_hp / monster.hp) * 100, 1)
+            diff = round((monster.hp_ratio) * 100, 1)
             level = f"Lv.{monster.level}"
             menu.add.progress_bar(
                 level,

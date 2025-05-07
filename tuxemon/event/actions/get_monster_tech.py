@@ -143,7 +143,7 @@ class GetMonsterTechAction(EventAction):
 
     def update(self) -> None:
         try:
-            self.session.client.get_state_by_name(TechniqueMenuState)
+            self.session.client.get_state_by_name("TechniqueMenuState")
         except ValueError:
             player = self.session.player
             if self.result and not self.choose:

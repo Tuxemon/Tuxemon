@@ -86,8 +86,7 @@ class TestTrainerAIDecisionStrategy(unittest.TestCase):
                 items={"potion": ItemEntry(hp_range=(0.2, 0.8))}
             )
         )
-        self.mock_ai.monster.current_hp = 40
-        self.mock_ai.monster.hp = 100
+        self.mock_ai.monster.hp_ratio = 40 / 100
 
         strategy = TrainerAIDecisionStrategy(
             self.mock_evaluator, self.mock_tracker

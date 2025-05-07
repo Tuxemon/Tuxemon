@@ -7,7 +7,6 @@ from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
-from tuxemon.menu.input import InputMenu
 
 
 @final
@@ -35,7 +34,6 @@ class InputVariableAction(EventAction):
 
     -> "is variable_set response_question:whatswrittenbytheplayer"
     -> "not variable_set response_question:whatswrittenbytheplayer"
-
     """
 
     name = "input_variable"
@@ -59,6 +57,6 @@ class InputVariableAction(EventAction):
 
     def update(self) -> None:
         try:
-            self.session.client.get_state_by_name(InputMenu)
+            self.session.client.get_state_by_name("InputMenu")
         except ValueError:
             self.stop()

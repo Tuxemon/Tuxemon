@@ -23,7 +23,6 @@ class OnceCondition(EventCondition):
     Script parameters:
         timeframe: nr of days the event stays "blocked" (eg. 1, 7, etc.)
         variable: Variable where the date is stored.
-
     """
 
     name = "once"

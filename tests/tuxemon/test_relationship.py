@@ -5,7 +5,6 @@ from typing import Any, Mapping
 from unittest.mock import MagicMock
 
 from tuxemon.relationship import (
-    RELATIONSHIP_STRENGTH,
     Connection,
     Relationships,
     decode_relationships,

@@ -13,7 +13,6 @@ from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from tuxemon.monster import Monster
-from tuxemon.states.dialog import DialogState
 from tuxemon.technique.technique import Technique
 from tuxemon.tools import open_choice_dialog
 
@@ -36,7 +35,6 @@ class DojoMethodAction(EventAction):
         option: The action to perform. Can be either:
             - "technique": Learn a forgotten technique from the monster's moveset.
             - "monster": Devolve the monster.
-
     """
 
     name = "dojo_method"
@@ -107,7 +105,7 @@ class DojoMethodAction(EventAction):
 
     def update(self) -> None:
         try:
-            self.session.client.get_state_by_name(DialogState)
+            self.session.client.get_state_by_name("DialogState")
         except ValueError:
             self.stop()
 

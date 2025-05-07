@@ -11,7 +11,6 @@ from tuxemon.cli.context import InvokeContext
 class ShellCommand(CLICommand):
     """
     Open python shell.
-
     """
 
     name = "shell"

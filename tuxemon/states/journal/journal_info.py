@@ -224,7 +224,7 @@ class JournalInfoState(PygameMenuState):
         )
 
     def __init__(
-        self, character: NPC, monster: Optional[MonsterModel]
+        self, character: NPC, monster: Optional[MonsterModel], source: str
     ) -> None:
         if not lookup_cache:
             _lookup_monsters()
@@ -239,6 +239,7 @@ class JournalInfoState(PygameMenuState):
         super().__init__(height=height, width=width)
 
         self.char = character
+        self.source = source
         checks = self.char.tuxepedia.is_caught(monster.slug)
         self.caught = checks
         self._monster = monster
@@ -255,7 +256,11 @@ class JournalInfoState(PygameMenuState):
             key=lambda x: x.txmn_id,
         )
 
-        if event.button in (buttons.RIGHT, buttons.LEFT) and event.pressed:
+        if (
+            event.button in (buttons.RIGHT, buttons.LEFT)
+            and event.pressed
+            and self.source in ("JournalInfoState", "JournalState")
+        ):
             if not monster_models:
                 return None
 
@@ -269,6 +274,7 @@ class JournalInfoState(PygameMenuState):
                 "JournalInfoState",
                 character=self.char,
                 monster=monster_models[new_index],
+                source=self.name,
             )
 
         elif (

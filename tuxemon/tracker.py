@@ -57,8 +57,6 @@ def decode_tracking(json_data: Mapping[str, Any]) -> TrackingData:
 
 def encode_tracking(tracking_data: TrackingData) -> Mapping[str, Any]:
     return {
-        "tracker": {
-            location: data.get_state()
-            for location, data in tracking_data.locations.items()
-        }
+        location: data.get_state()
+        for location, data in tracking_data.locations.items()
     }

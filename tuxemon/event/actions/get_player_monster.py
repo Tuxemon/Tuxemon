@@ -163,7 +163,7 @@ class GetPlayerMonsterAction(EventAction):
 
     def update(self) -> None:
         try:
-            self.session.client.get_state_by_name(MonsterMenuState)
+            self.session.client.get_state_by_name("MonsterMenuState")
         except ValueError:
             player = self.session.player
             if self.result and not self.choose:

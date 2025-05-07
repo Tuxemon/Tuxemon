@@ -29,7 +29,6 @@ class TuxepediaCondition(EventCondition):
             and "not_equals".
         percentage: Number between 0.1 and 1.0
         total: Total, by default the tot number of tuxemon.
-
     """
 
     name = "tuxepedia"

@@ -23,7 +23,6 @@ class MonsterFlairCondition(EventCondition):
         slot: Position of the monster in the player monster list.
         category: Category of the flair.
         name: Name of the flair.
-
     """
 
     name = "monster_flair"

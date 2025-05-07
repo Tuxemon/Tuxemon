@@ -12,7 +12,6 @@ from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T, replace_text
 from tuxemon.npc import NPC
-from tuxemon.states.choice.choice_state import ChoiceState
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +30,6 @@ class TranslatedDialogChoiceAction(EventAction):
     Script parameters:
         choices: List of possible choices, separated by a colon ":".
         variable: Variable to store the result of the choice.
-
     """
 
     name = "translated_dialog_choice"
@@ -61,6 +59,6 @@ class TranslatedDialogChoiceAction(EventAction):
 
     def update(self) -> None:
         try:
-            self.session.client.get_state_by_name(ChoiceState)
+            self.session.client.get_state_by_name("ChoiceState")
         except ValueError:
             self.stop()

@@ -20,7 +20,6 @@ class ActionParentCommand(CLICommand):
 
     Actions are listed as options, but when invoked, return
     subcommands that will execute the action.
-
     """
 
     name = "action"
@@ -64,7 +63,6 @@ class ActionParentCommand(CLICommand):
 class ActionCommand(CLICommand):
     """
     Subcommand used by ``action`` to invoke EventActions.
-
     """
 
     usable_from_root = False

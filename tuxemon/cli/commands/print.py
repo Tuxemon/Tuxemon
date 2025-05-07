@@ -9,7 +9,6 @@ from tuxemon.cli.context import InvokeContext
 class PrintCommand(CLICommand):
     """
     Print variables set by map event actions.
-
     """
 
     name = "print"

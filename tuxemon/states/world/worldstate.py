@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import itertools
 import logging
 import uuid
 from collections import defaultdict
@@ -22,7 +21,6 @@ from tuxemon import networking, prepare
 from tuxemon.boundary import BoundaryChecker
 from tuxemon.camera import Camera, CameraManager
 from tuxemon.db import Direction
-from tuxemon.entity import Entity
 from tuxemon.map import RegionProperties, TuxemonMap
 from tuxemon.map_view import MapRenderer
 from tuxemon.movement import Pathfinder
@@ -38,7 +36,6 @@ if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.networking import EventData
     from tuxemon.npc import NPC
-    from tuxemon.player import Player
 
 logger = logging.getLogger(__name__)
 
@@ -64,10 +61,7 @@ CollisionMap = Mapping[
 class WorldState(State):
     """The state responsible for the world game play"""
 
-    def __init__(
-        self,
-        map_name: str,
-    ) -> None:
+    def __init__(self, map_name: str) -> None:
         super().__init__()
 
         from tuxemon.player import Player
@@ -93,6 +87,16 @@ class WorldState(State):
         ######################################################################
 
         self.current_map: TuxemonMap
+        self.collision_map: MutableMapping[
+            tuple[int, int], Optional[RegionProperties]
+        ] = {}
+        self.surface_map: MutableMapping[tuple[int, int], dict[str, float]] = (
+            {}
+        )
+        self.collision_lines_map: set[tuple[tuple[int, int], Direction]] = (
+            set()
+        )
+        self.map_size: tuple[int, int] = (0, 0)
 
         self.transition_manager = WorldTransition(self)
 
@@ -253,33 +257,6 @@ class WorldState(State):
     so it doesn't rely on a running game, players, or a screen
     """
 
-    def add_player(self, player: Player) -> None:
-        """
-        WIP.  Eventually handle players coming and going (for server).
-
-        Parameters:
-            player: Player to add to the world.
-
-        """
-        self.player = player
-        self.add_entity(player)
-
-    def add_entity(self, entity: Entity[Any]) -> None:
-        """
-        Add an entity to the world.
-
-        Parameters:
-            entity: Entity to add.
-
-        """
-        from tuxemon.npc import NPC
-
-        entity.world = self
-
-        # Maybe in the future the world should have a dict of entities instead?
-        if isinstance(entity, NPC):
-            self.npcs.append(entity)
-
     def get_entity(self, slug: str) -> Optional[NPC]:
         """
         Get an entity from the world.
@@ -380,6 +357,45 @@ class WorldState(State):
         return [
             coords for coords, props in surface_map.items() if label in props
         ]
+
+    def update_tile_property(self, label: str, moverate: float) -> None:
+        """
+        Updates the movement rate property for existing tile entries in the
+        surface map.
+
+        This method modifies the moverate value for tiles that already contain
+        the specified label, ensuring that no new dictionary entries are created.
+        If the label is not present in a tile's properties, the tile remains
+        unchanged. The update process runs efficiently to prevent unnecessary
+        modifications.
+
+        Parameters:
+            label: The property key to update (e.g., terrain type).
+            moverate: The new movement rate value to assign.
+        """
+        if label not in prepare.SURFACE_KEYS:
+            return
+
+        for coord in self.get_all_tile_properties(self.surface_map, label):
+            props = self.surface_map.get(coord)
+            if props and props.get(label) != moverate:
+                props[label] = moverate
+
+    def all_tiles_modified(self, label: str, moverate: float) -> bool:
+        """
+        Checks if all tiles with the specified label have been modified.
+
+        Parameters:
+            label: The property key to check.
+            moverate: The expected movement rate.
+
+        Returns:
+            True if all tiles have the expected moverate, False otherwise.
+        """
+        return all(
+            self.surface_map[coord].get(label) == moverate
+            for coord in self.get_all_tile_properties(self.surface_map, label)
+        )
 
     def check_collision_zones(
         self,
@@ -585,17 +601,10 @@ class WorldState(State):
         map_data = self.client.map_loader.load_map_data(map_name)
 
         self.current_map = map_data
-        self.collision_map: MutableMapping[
-            tuple[int, int], Optional[RegionProperties]
-        ] = map_data.collision_map
-        self.surface_map: MutableMapping[tuple[int, int], dict[str, float]] = (
-            map_data.surface_map
-        )
-        self.collision_lines_map: set[tuple[tuple[int, int], Direction]] = (
-            map_data.collision_lines_map
-        )
-        self.map_size: tuple[int, int] = map_data.size
-        self.map_area: int = map_data.area
+        self.collision_map = map_data.collision_map
+        self.surface_map = map_data.surface_map
+        self.collision_lines_map = map_data.collision_lines_map
+        self.map_size = map_data.size
 
         self.boundary_checker.update_boundaries(self.map_size)
         self.client.load_map(map_data)
@@ -605,8 +614,8 @@ class WorldState(State):
         """
         Clears all existing NPCs from the game state.
         """
-        self.npcs = []
-        self.npcs_off_map = []
+        self.npcs.clear()
+        self.npcs_off_map.clear()
 
     def update_player_state(self) -> None:
         """
@@ -616,8 +625,10 @@ class WorldState(State):
             player: The player object to update.
         """
         player = local_session.player
-        self.add_player(player)
+        player.world = self
+        self.npcs.append(player)
         self.stop_char(player)
+        self.player = player
 
     @no_type_check  # only used by multiplayer which is disabled
     def check_interactable_space(self) -> bool:

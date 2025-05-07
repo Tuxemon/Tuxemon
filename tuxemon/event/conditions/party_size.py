@@ -29,7 +29,6 @@ class PartySizeCondition(EventCondition):
             "less_or_equal", "greater_than", "greater_or_equal", "equals"
             and "not_equals".
         value: The value to compare the party size with.
-
     """
 
     name = "party_size"

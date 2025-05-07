@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import dataclasses
+from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -12,11 +12,10 @@ if TYPE_CHECKING:
     from tuxemon.session import Session
 
 
-@dataclasses.dataclass
+@dataclass
 class InvokeContext:
     """
     Context object for use by CLICommands.
-
     """
 
     processor: CommandProcessor

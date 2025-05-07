@@ -1,17 +1,12 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-import random
 import unittest
 from unittest.mock import MagicMock, patch
 
 from tuxemon.formula import (
-    CaptureDeviceConfig,
-    CaptureDevicesConfig,
     Loader,
-    calculate_capdev_modifier,
     calculate_status_modifier,
     capture,
-    config_capdev,
     shake_check,
 )
 from tuxemon.monster import Monster

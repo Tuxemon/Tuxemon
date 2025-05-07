@@ -34,8 +34,6 @@ logger = logging.getLogger(__name__)
 T.collect_languages(False)
 T.load_translator()
 
-SurfaceKeys = prepare.SURFACE_KEYS
-
 
 class Direction(str, Enum):
     up = "up"

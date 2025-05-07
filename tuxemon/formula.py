@@ -583,7 +583,7 @@ def simple_recover(target: Monster, divisor: int) -> int:
         Recovered health.
 
     """
-    heal = min(target.hp // divisor, target.hp - target.current_hp)
+    heal = min(target.hp // divisor, target.missing_hp)
     return heal
 
 
@@ -600,9 +600,7 @@ def simple_lifeleech(user: Monster, target: Monster, divisor: int) -> int:
         Damage/Gain of HPs.
 
     """
-    heal = min(
-        target.hp // divisor, target.current_hp, user.hp - user.current_hp
-    )
+    heal = min(target.hp // divisor, target.current_hp, user.missing_hp)
     return heal
 
 

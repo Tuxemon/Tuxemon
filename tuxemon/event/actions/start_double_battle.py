@@ -11,7 +11,6 @@ from tuxemon.db import db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.prepare import MONSTERS_DOUBLE
-from tuxemon.states.combat.combat import CombatState
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +30,6 @@ class StartDoubleBattleAction(EventAction):
         character1: Either "player" or character slug name (e.g. "npc_maple").
         character2: Either "player" or character slug name (e.g. "npc_maple").
         music: The name of the music file to play (Optional).
-
     """
 
     name = "start_double_battle"
@@ -96,6 +94,6 @@ class StartDoubleBattleAction(EventAction):
 
     def update(self) -> None:
         try:
-            self.session.client.get_state_by_name(CombatState)
+            self.session.client.get_state_by_name("CombatState")
         except ValueError:
             self.stop()

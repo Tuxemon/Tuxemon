@@ -14,7 +14,6 @@ from tuxemon.event import get_monster_by_iid, get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from tuxemon.monster import Monster
-from tuxemon.states.dialog import DialogState
 from tuxemon.time_handler import today_ordinal
 from tuxemon.tools import open_dialog
 
@@ -43,7 +42,6 @@ class SpawnMonsterAction(EventAction):
     Script parameters:
         character: Either "player" or npc slug name (e.g. "npc_maple").
             the one who is going to receive the new born
-
     """
 
     name = "spawn_monster"
@@ -118,7 +116,7 @@ class SpawnMonsterAction(EventAction):
 
     def update(self) -> None:
         try:
-            self.session.client.get_state_by_name(DialogState)
+            self.session.client.get_state_by_name("DialogState")
         except ValueError:
             self.stop()
 

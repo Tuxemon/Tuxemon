@@ -8,7 +8,6 @@ from typing import Optional, final
 from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
-from tuxemon.menu.input import InputMenu
 
 
 @final
@@ -25,7 +24,6 @@ class RenamePlayerAction(EventAction):
     Script parameters:
         random: Adding "random" makes appear the
         dontcare button in the input.
-
     """
 
     name = "rename_player"
@@ -48,6 +46,6 @@ class RenamePlayerAction(EventAction):
 
     def update(self) -> None:
         try:
-            self.session.client.get_state_by_name(InputMenu)
+            self.session.client.get_state_by_name("InputMenu")
         except ValueError:
             self.stop()

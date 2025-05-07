@@ -305,7 +305,7 @@ class MonsterInfoRenderer:
         hp_rect.left = left
         hp_rect.height = tools.scale(8)
         hp_rect.centery = rect.centery
-        self.hp_bar.value = monster.current_hp / monster.hp
+        self.hp_bar.value = monster.hp_ratio
         self.hp_bar.draw(surface, hp_rect)
 
     def draw_name_and_level(

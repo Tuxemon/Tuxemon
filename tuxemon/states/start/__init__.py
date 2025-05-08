@@ -73,7 +73,7 @@ class StartState(PygameMenuState):
             )
 
         def exit_game() -> None:
-            self.client.exit = True
+            self.client.quit()
 
         if index is not None:
             menu.add.button(

@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 import logging
-import os.path
 import time
 from collections.abc import Generator, Iterable, Mapping, Sequence
+from enum import Enum
+from os.path import basename
 from threading import Thread
 from typing import Any, Optional, TypeVar, Union, overload
 
@@ -34,16 +35,22 @@ StateType = TypeVar("StateType", bound=State)
 logger = logging.getLogger(__name__)
 
 
+class ClientState(Enum):
+    RUNNING = "running"
+    EXITING = "exiting"
+    DONE = "done"
+
+
 class LocalPygameClient:
     """
-    Client class for entire project.
+    Client class for the entire project.
 
-    Contains the game loop, and contains
-    the event_loop which passes events to States as needed.
+    Contains the game loop and the event_loop, which passes events to
+    States as needed.
 
     Parameters:
-        config: The config for the game.
-
+        config: The configuration for the game.
+        screen: The surface where the game is rendered.
     """
 
     def __init__(self, config: TuxemonConfig, screen: Surface) -> None:
@@ -55,8 +62,8 @@ class LocalPygameClient:
         )
         self.state_manager.auto_state_discovery()
         self.screen = screen
+        self.state = ClientState.RUNNING
         self.caption = config.window_caption
-        self.done = False
         self.fps = config.fps
         self.show_fps = config.show_fps
         self.current_time = 0.0
@@ -119,7 +126,6 @@ class LocalPygameClient:
         # TODO: phase these out
         self.key_events: Sequence[PlayerInput] = []
         self.event_data: dict[str, Any] = {}
-        self.exit = False
 
     def on_state_change(self) -> None:
         logger.debug("resetting controls due to state change")
@@ -131,7 +137,6 @@ class LocalPygameClient:
 
         Parameters:
             map_data: The map to load.
-
         """
         self.events = map_data.events
         self.inits = list(map_data.inits)
@@ -218,7 +223,6 @@ class LocalPygameClient:
         Returns:
             The event if no state keeps it. If some state keeps the
             event then the return value is ``None``.
-
         """
         for state in self.active_states:
             _game_event = state.process_event(game_event)
@@ -235,7 +239,6 @@ class LocalPygameClient:
         we pass this session.Client instance to networking which in turn
         executes the "main_loop" method every frame.
         This leaves the networking component responsible for the main loop.
-
         """
         update = self.update
         draw = self.draw
@@ -246,20 +249,24 @@ class LocalPygameClient:
         time_since_draw = 0.0
         last_update = clock()
 
-        while not self.exit:
-            clock_tick = clock() - last_update
-            last_update = clock()
-            time_since_draw += clock_tick
-            update(clock_tick)
-            if time_since_draw >= frame_length:
-                time_since_draw -= frame_length
-                draw()
-                if self.input_manager.controller_overlay:
-                    self.input_manager.controller_overlay.draw(screen)
-                flip()
-            if self.config.show_fps:
-                self.renderer.update_fps(clock_tick)
-            time.sleep(0.01)
+        while self.state != ClientState.DONE:
+            if self.state == ClientState.RUNNING:
+                clock_tick = clock() - last_update
+                last_update = clock()
+                time_since_draw += clock_tick
+                update(clock_tick)
+                if time_since_draw >= frame_length:
+                    time_since_draw -= frame_length
+                    draw()
+                    if self.input_manager.controller_overlay:
+                        self.input_manager.controller_overlay.draw(screen)
+                    flip()
+                if self.config.show_fps:
+                    self.renderer.update_fps(clock_tick)
+                time.sleep(0.01)
+            elif self.state == ClientState.EXITING:
+                self.perform_cleanup()
+                self.state = ClientState.DONE
 
     def update(self, time_delta: float) -> None:
         """
@@ -297,13 +304,14 @@ class LocalPygameClient:
         # Update the game engine
         self.update_states(time_delta)
 
-        if self.exit:
-            self.done = True
-
     def quit(self) -> None:
         """Handles quitting the game."""
-        self.exit = True
-        self.done = True
+        self.state = ClientState.EXITING
+
+    def perform_cleanup(self) -> None:
+        """Handles necessary cleanup before shutting down."""
+        self.current_music.stop()
+        logger.info("Performing cleanup before exiting...")
 
     def release_controls(self) -> None:
         """
@@ -323,7 +331,7 @@ class LocalPygameClient:
         """
         self.state_manager.update(time_delta)
         if self.state_manager.current_state is None:
-            self.exit = True
+            self.state = ClientState.EXITING
 
     def draw(self) -> None:
         """Centralized draw logic."""
@@ -378,7 +386,6 @@ class LocalPygameClient:
 
         Returns:
             File path of the current map, if there is one.
-
         """
         world = self.get_state_by_name(WorldState)
         return world.current_map.filename
@@ -389,14 +396,13 @@ class LocalPygameClient:
 
         Returns:
             Name of the current map.
-
         """
         map_path = self.get_map_filepath()
         if map_path is None:
             raise ValueError("Name of the map requested when no map is active")
 
         # extract map name from path
-        return os.path.basename(map_path)
+        return basename(map_path)
 
     """
     The following methods provide an interface to the state stack

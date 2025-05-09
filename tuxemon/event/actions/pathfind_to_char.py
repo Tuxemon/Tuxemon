@@ -9,6 +9,7 @@ from tuxemon.db import Direction
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.map import get_coord_direction, get_direction
+from tuxemon.session import Session
 
 
 @final
@@ -41,11 +42,11 @@ class PathfindToCharAction(EventAction):
     direction: Optional[Direction] = None
     distance: Optional[int] = None
 
-    def start(self) -> None:
-        client = self.session.client
-        target_entity = get_npc(self.session, self.target_entity)
+    def start(self, session: Session) -> None:
+        client = session.client
+        target_entity = get_npc(session, self.target_entity)
         assert target_entity
-        self.moving_entity = get_npc(self.session, self.entity)
+        self.moving_entity = get_npc(session, self.entity)
         assert self.moving_entity
 
         distance = max(1, self.distance or 1)
@@ -61,7 +62,7 @@ class PathfindToCharAction(EventAction):
 
         self.moving_entity.pathfind(closest)
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         assert self.moving_entity
         if not (self.moving_entity.moving or self.moving_entity.path):
             self.stop()

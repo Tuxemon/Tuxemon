@@ -8,6 +8,7 @@ from typing import final
 from tuxemon.economy import Economy
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 
 @final
@@ -31,9 +32,9 @@ class SetEconomyAction(EventAction):
     npc_slug: str
     economy_slug: str
 
-    def start(self) -> None:
-        player = self.session.player
-        npc = get_npc(self.session, self.npc_slug)
+    def start(self, session: Session) -> None:
+        player = session.player
+        npc = get_npc(session, self.npc_slug)
         assert npc
 
         npc.economy = Economy(self.economy_slug)

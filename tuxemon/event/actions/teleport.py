@@ -8,6 +8,7 @@ from typing import final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
@@ -37,16 +38,16 @@ class TeleportAction(EventAction):
     x: int
     y: int
 
-    def start(self) -> None:
-        world = self.session.client.get_state_by_name(WorldState)
+    def start(self, session: Session) -> None:
+        world = session.client.get_state_by_name(WorldState)
         delayed_teleport = world.teleporter.delayed_teleport
 
-        char = get_npc(self.session, self.character)
+        char = get_npc(session, self.character)
         if char is None:
             logger.error(f"{self.character} not found")
             return
 
-        self.session.client.current_music.stop()
+        session.client.current_music.stop()
 
         # Check to see if we're also performing a transition. If we are, wait
         # to perform the teleport at the apex of the transition

@@ -9,6 +9,7 @@ from typing import Optional, final
 from tuxemon import save
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
+from tuxemon.session import Session
 from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
@@ -43,15 +44,13 @@ class SaveGameAction(EventAction):
     name = "save_game"
     index: Optional[int] = None
 
-    def start(self) -> None:
+    def start(self, session: Session) -> None:
         index = 4 if self.index is None else self.index + 1
         slot = 0 if self.index is None else self.index
 
         logger.info("Saving!")
         try:
-            save_data = save.get_save_data(
-                self.session,
-            )
+            save_data = save.get_save_data(session)
             save.save(
                 save_data,
                 index,
@@ -61,9 +60,9 @@ class SaveGameAction(EventAction):
             raise
             logger.error("Unable to save game!!")
             logger.error(e)
-            open_dialog(self.session.client, [T.translate("save_failure")])
+            open_dialog(session.client, [T.translate("save_failure")])
         else:
             if self.index is not None:
-                open_dialog(self.session.client, [T.translate("save_success")])
+                open_dialog(session.client, [T.translate("save_success")])
             else:
                 logger.info(T.translate("save_success"))

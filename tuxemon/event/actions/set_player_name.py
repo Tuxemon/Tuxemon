@@ -9,6 +9,7 @@ from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -35,12 +36,12 @@ class SetPlayerNameAction(EventAction):
     name = "set_player_name"
     choice: str
 
-    def start(self) -> None:
+    def start(self, session: Session) -> None:
         name: str = ""
         if self.choice.find(":"):
             elements = self.choice.split(":")
             name = random.choice(elements)
         else:
             name = self.choice
-        self.session.player.name = T.translate(name)
+        session.player.name = T.translate(name)
         logger.info(f"Player name is {T.translate(name)}")

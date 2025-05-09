@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -36,8 +37,8 @@ class FormatVariableAction(EventAction):
     variable: str
     type_format: str
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
         key = self.variable
         type_format = self.type_format
         value = player.game_variables.get(key, None)

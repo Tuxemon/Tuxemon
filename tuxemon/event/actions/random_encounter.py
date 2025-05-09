@@ -12,6 +12,7 @@ from tuxemon.combat import check_battle_legal
 from tuxemon.db import EncounterItemModel
 from tuxemon.encounter import Encounter, EncounterData
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -49,8 +50,8 @@ class RandomEncounterAction(EventAction):
     total_prob: Optional[float] = None
     rgb: Optional[str] = None
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
 
         if not check_battle_legal(player):
             logger.error("Battle is not legal, won't start")
@@ -88,6 +89,6 @@ class RandomEncounterAction(EventAction):
                 rgb,
                 held_item,
             ]
-            self.session.client.event_engine.execute_action(
+            session.client.event_engine.execute_action(
                 "wild_encounter", params, True
             )

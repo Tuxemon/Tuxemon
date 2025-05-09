@@ -8,6 +8,7 @@ from typing import Optional, final
 from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
+from tuxemon.session import Session
 
 
 @final
@@ -30,22 +31,23 @@ class RenamePlayerAction(EventAction):
     random: Optional[str] = None
 
     def set_player_name(self, name: str) -> None:
-        client = self.session.client
+        client = self.client
         client.event_engine.execute_action("set_player_name", [name], True)
 
-    def start(self) -> None:
-        self.session.client.push_state(
+    def start(self, session: Session) -> None:
+        self.client = session.client
+        session.client.push_state(
             "InputMenu",
             prompt=T.translate("input_name"),
             callback=self.set_player_name,
             escape_key_exits=False,
-            initial=self.session.player.name,
+            initial=session.player.name,
             char_limit=prepare.PLAYER_NAME_LIMIT,
             random=bool(self.random),
         )
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         try:
-            self.session.client.get_state_by_name("InputMenu")
+            session.client.get_state_by_name("InputMenu")
         except ValueError:
             self.stop()

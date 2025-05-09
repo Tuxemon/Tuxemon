@@ -10,6 +10,7 @@ from typing import Optional, final
 from tuxemon.db import Direction
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
@@ -45,9 +46,9 @@ class CharLookAction(EventAction):
     frequency: Optional[float] = None
     directions: Optional[str] = None
 
-    def start(self) -> None:
-        character = get_npc(self.session, self.character)
-        world = self.session.client.get_state_by_name(WorldState)
+    def start(self, session: Session) -> None:
+        character = get_npc(session, self.character)
+        world = session.client.get_state_by_name(WorldState)
 
         if not character:
             logger.error(f"{self.character} not found")
@@ -63,7 +64,7 @@ class CharLookAction(EventAction):
             # Suspend looking around if a dialog window is open
             if any(
                 state_name in ("WorldMenuState", "DialogState", "ChoiceState")
-                for state_name in self.session.client.active_state_names
+                for state_name in session.client.active_state_names
             ):
                 return
 

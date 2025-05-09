@@ -8,15 +8,16 @@ from dataclasses import dataclass, field
 from types import TracebackType
 from typing import ClassVar, Optional
 
-from tuxemon.session import Session, local_session
+from tuxemon.session import Session
 from tuxemon.tools import cast_dataclass_parameters
 
 logger = logging.getLogger(__name__)
 
 
 class ActionContextManager:
-    def __init__(self, action: EventAction) -> None:
+    def __init__(self, action: EventAction, session: Session) -> None:
         self.action = action
+        self.session = session
 
     def __enter__(self) -> EventAction:
         """
@@ -31,7 +32,7 @@ class ActionContextManager:
         if self.action.cancelled:
             logger.warning("Event is cancelled, not starting")
         else:
-            self.action.start()
+            self.action.start(self.session)
         return self.action
 
     def __exit__(
@@ -49,7 +50,7 @@ class ActionContextManager:
         if self.action.cancelled:
             logger.warning("Event is cancelled, not cleaning up")
             return
-        self.action.cleanup()
+        self.action.cleanup(self.session)
 
 
 @dataclass
@@ -119,13 +120,11 @@ class EventAction(ABC):
     """
 
     name: ClassVar[str]
-    session: Session = field(init=False, repr=False)
     _done: bool = field(default=False, init=False)
     _skip: bool = field(default=False, init=False)
     cancelled: bool = field(default=False, init=False)
 
     def __post_init__(self) -> None:
-        self.session = local_session
         cast_dataclass_parameters(self)
 
     def stop(self) -> None:
@@ -139,7 +138,7 @@ class EventAction(ABC):
         """
         self._done = True
 
-    def execute(self) -> None:
+    def execute(self, session: Session) -> None:
         """
         Blocking call to run the action. Will setup and cleanup action.
 
@@ -150,13 +149,13 @@ class EventAction(ABC):
             logger.debug("Action is cancelled, not executing")
             return
         try:
-            with ActionContextManager(self):
-                self.run()
+            with ActionContextManager(self, session):
+                self.run(session)
         except Exception as e:
             logger.error(f"Error executing action: {e}")
             raise
 
-    def run(self) -> None:
+    def run(self, session: Session) -> None:
         """
         Blocking call to run the action, without start or cleanup.
 
@@ -173,7 +172,7 @@ class EventAction(ABC):
                 if self._skip:
                     return
                 else:
-                    self.update()
+                    self.update(session)
         except Exception as e:
             logger.error(f"Error running action: {e}")
             raise
@@ -188,7 +187,7 @@ class EventAction(ABC):
         return self._done
 
     @abstractmethod
-    def start(self) -> None:
+    def start(self, session: Session) -> None:
         """
         Called only once, when the action is started.
 
@@ -210,7 +209,7 @@ class EventAction(ABC):
             logger.error(f"Error starting action: {e}")
             raise
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         """
         Called once per frame while action is running.
 
@@ -242,7 +241,7 @@ class EventAction(ABC):
         """
         self.cancelled = True
 
-    def cleanup(self) -> None:
+    def cleanup(self, session: Session) -> None:
         """
         Called only once, when action is stopped and needs to close.
 

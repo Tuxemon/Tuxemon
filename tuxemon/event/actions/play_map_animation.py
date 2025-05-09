@@ -9,6 +9,7 @@ from typing import final
 from tuxemon.animation_entity import setup_and_play_animation
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
@@ -42,14 +43,14 @@ class PlayMapAnimationAction(EventAction):
     loop: str
     character: str
 
-    def start(self) -> None:
-        character = get_npc(self.session, self.character)
+    def start(self, session: Session) -> None:
+        character = get_npc(session, self.character)
 
         if character is None:
             logger.error(f"Character '{self.character}' not found")
             return
 
-        world_state = self.session.client.get_state_by_name(WorldState)
+        world_state = session.client.get_state_by_name(WorldState)
         position = character.tile_pos
         animations = world_state.map_renderer.map_animations
 

@@ -8,6 +8,7 @@ from typing import final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
@@ -32,10 +33,10 @@ class CharStopAction(EventAction):
     name = "char_stop"
     character: str
 
-    def start(self) -> None:
-        character = get_npc(self.session, self.character)
+    def start(self, session: Session) -> None:
+        character = get_npc(session, self.character)
         if character is None:
             logger.error(f"{self.character} not found")
             return
-        world = self.session.client.get_state_by_name(WorldState)
+        world = session.client.get_state_by_name(WorldState)
         world.movement.stop_char(character)

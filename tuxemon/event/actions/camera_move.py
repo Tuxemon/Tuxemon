@@ -8,6 +8,7 @@ from typing import Optional, final
 
 from tuxemon.camera import Camera
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
@@ -34,8 +35,8 @@ class CameraMoveAction(EventAction):
     x: Optional[int] = None
     y: Optional[int] = None
 
-    def start(self) -> None:
-        world = self.session.client.get_state_by_name(WorldState)
+    def start(self, session: Session) -> None:
+        world = session.client.get_state_by_name(WorldState)
         self.camera = world.camera_manager.get_active_camera()
         if self.camera is None:
             logger.error("No active camera found.")
@@ -44,7 +45,7 @@ class CameraMoveAction(EventAction):
             if not world.boundary_checker.is_within_boundaries(
                 (self.x, self.y)
             ):
-                map_size = self.session.client.map_size
+                map_size = session.client.map_size
                 logger.error(
                     f"({self.x, self.y}) is outside the map bounds {map_size}"
                 )

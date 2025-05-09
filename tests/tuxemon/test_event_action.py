@@ -4,25 +4,27 @@ import unittest
 from unittest.mock import MagicMock
 
 from tuxemon.event.eventaction import ActionContextManager
+from tuxemon.session import Session
 
 
 class TestActionContextManager(unittest.TestCase):
     def setUp(self) -> None:
         self.mock_action = MagicMock()
+        self.mock_session = MagicMock(spec=Session)
         self.mock_action.cancelled = False
 
     def test_context_manager_enter(self):
-        with ActionContextManager(self.mock_action):
+        with ActionContextManager(self.mock_action, self.mock_session):
             self.mock_action.start.assert_called_once()
 
     def test_context_manager_exit(self):
-        with ActionContextManager(self.mock_action):
+        with ActionContextManager(self.mock_action, self.mock_session):
             pass  # Enter and exit
         self.mock_action.cleanup.assert_called_once()
 
     def test_cancelled_action(self):
         self.mock_action.cancelled = True
-        with ActionContextManager(self.mock_action):
+        with ActionContextManager(self.mock_action, self.mock_session):
             self.mock_action.start.assert_not_called()
         self.mock_action.cleanup.assert_not_called()
 
@@ -31,5 +33,5 @@ class TestActionContextManager(unittest.TestCase):
             side_effect=Exception("Cleanup error")
         )
         with self.assertRaises(Exception):
-            with ActionContextManager(self.mock_action):
+            with ActionContextManager(self.mock_action, self.mock_session):
                 pass

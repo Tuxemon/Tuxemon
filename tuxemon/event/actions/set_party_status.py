@@ -8,6 +8,7 @@ from typing import final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -30,8 +31,8 @@ class SetPartyStatusAction(EventAction):
     name = "set_party_status"
     character: str
 
-    def start(self) -> None:
-        char = get_npc(self.session, self.character)
+    def start(self, session: Session) -> None:
+        char = get_npc(session, self.character)
         if char is None:
             logger.error(f"{self.character} not found")
             return
@@ -57,6 +58,6 @@ class SetPartyStatusAction(EventAction):
 
         if variables:
             for variable in variables:
-                self.session.client.event_engine.execute_action(
+                session.client.event_engine.execute_action(
                     "set_variable", [variable], True
                 )

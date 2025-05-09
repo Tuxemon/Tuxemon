@@ -11,6 +11,7 @@ from tuxemon.db import db
 from tuxemon.event import get_monster_by_iid, get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
+from tuxemon.session import Session
 
 logger = logging.getLogger()
 
@@ -37,8 +38,9 @@ class ChangeStateAction(EventAction):
     state_name: str
     optional: Optional[str] = None
 
-    def start(self) -> None:
-        self.client = self.session.client
+    def start(self, session: Session) -> None:
+        self.session = session
+        self.client = session.client
         self.action = self.client.event_engine
 
         if self.client.current_state is None:
@@ -106,9 +108,9 @@ class ChangeStateAction(EventAction):
         params = {"character": character}
         self.client.push_state(self.state_name, kwargs=params)
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         try:
-            self.session.client.get_state_by_name(self.state_name)
+            session.client.get_state_by_name(self.state_name)
         except ValueError:
             self.stop()
 

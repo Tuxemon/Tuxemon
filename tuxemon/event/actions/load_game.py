@@ -9,6 +9,7 @@ from typing import Optional, final
 from tuxemon import prepare, save
 from tuxemon.event.eventaction import EventAction
 from tuxemon.npc import NPCState
+from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
@@ -42,8 +43,8 @@ class LoadGameAction(EventAction):
     name = "load_game"
     index: Optional[int] = None
 
-    def start(self) -> None:
-        client = self.session.client
+    def start(self, session: Session) -> None:
+        client = session.client
         index = 4 if self.index is None else self.index + 1
 
         logger.info("Loading!")
@@ -69,8 +70,8 @@ class LoadGameAction(EventAction):
 
             # TODO: Get player from whatever place and use self.client in
             # order to build a Session
-            self.session.player.set_state(
-                self.session, save_data.get("npc_state", NPCState())
+            session.player.set_state(
+                session, save_data.get("npc_state", NPCState())
             )
 
             # teleport the player to the correct position using an event

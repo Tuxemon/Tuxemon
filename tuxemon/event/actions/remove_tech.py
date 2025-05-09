@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -33,8 +34,8 @@ class RemoveTechAction(EventAction):
     name = "remove_tech"
     tech_id: str
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
         if self.tech_id not in player.game_variables:
             logger.error(f"Game variable {self.tech_id} not found")
             return

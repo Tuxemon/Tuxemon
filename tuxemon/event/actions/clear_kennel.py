@@ -9,6 +9,7 @@ from typing import Optional, final
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.prepare import KENNEL
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -42,8 +43,8 @@ class ClearKennelAction(EventAction):
     kennel: str
     transfer: Optional[str] = None
 
-    def start(self) -> None:
-        character = get_npc(self.session, self.npc_slug)
+    def start(self, session: Session) -> None:
+        character = get_npc(session, self.npc_slug)
         if character is None:
             logger.error(f"{self.npc_slug} not found")
             return

@@ -10,6 +10,7 @@ from tuxemon.db import DialogueModel, db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import get_avatar, string_to_colorlike
 from tuxemon.locale import process_translate_text
+from tuxemon.session import Session
 from tuxemon.tools import open_dialog
 
 logger = logging.getLogger(__name__)
@@ -53,12 +54,12 @@ class TranslatedDialogAction(EventAction):
     v_alignment: Optional[str] = None
     style: Optional[str] = None
 
-    def start(self) -> None:
-        key = process_translate_text(self.session, self.raw_parameters, [])
+    def start(self, session: Session) -> None:
+        key = process_translate_text(session, self.raw_parameters, [])
 
         avatar_sprite = None
         if self.avatar:
-            avatar_sprite = get_avatar(self.session, self.avatar)
+            avatar_sprite = get_avatar(session, self.avatar)
 
         dialogue = self.style if self.style else "default"
         alignment = self.alignment if self.alignment else "left"
@@ -75,16 +76,16 @@ class TranslatedDialogAction(EventAction):
         position = self.position if self.position else "bottom"
 
         open_dialog(
-            client=self.session.client,
+            client=session.client,
             text=key,
             avatar=avatar_sprite,
             box_style=box_style,
             position=position,
         )
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         try:
-            self.session.client.get_state_by_name("DialogState")
+            session.client.get_state_by_name("DialogState")
         except ValueError:
             self.stop()
 

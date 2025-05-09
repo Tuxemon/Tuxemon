@@ -8,6 +8,7 @@ from typing import Optional, final
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import ColorLike, string_to_colorlike
 from tuxemon.prepare import BLACK_COLOR, TRANS_TIME
+from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 from tuxemon.teleporter import DelayedTeleport
 
@@ -41,15 +42,15 @@ class TransitionTeleportAction(EventAction):
     trans_time: Optional[float] = None
     rgb: Optional[str] = None
 
-    def start(self) -> None:
-        self.world = self.session.client.get_state_by_name(WorldState)
+    def start(self, session: Session) -> None:
+        self.world = session.client.get_state_by_name(WorldState)
         delayed_teleport = self.world.teleporter.delayed_teleport
 
         if delayed_teleport.is_active:
             self.stop()
             return
 
-        self.session.client.current_music.stop()
+        session.client.current_music.stop()
 
         # Start the screen transition
         _time = TRANS_TIME if self.trans_time is None else self.trans_time
@@ -65,7 +66,7 @@ class TransitionTeleportAction(EventAction):
             ),
         )
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         if self.done:
             return
 

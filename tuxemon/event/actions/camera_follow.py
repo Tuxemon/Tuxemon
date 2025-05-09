@@ -8,6 +8,7 @@ from typing import Optional, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
@@ -32,10 +33,10 @@ class CameraFollowAction(EventAction):
     name = "camera_follow"
     npc_slug: Optional[str] = None
 
-    def start(self) -> None:
+    def start(self, session: Session) -> None:
         self.npc_slug = self.npc_slug or "player"
-        character = get_npc(self.session, self.npc_slug)
-        world = self.session.client.get_state_by_name(WorldState)
+        character = get_npc(session, self.npc_slug)
+        world = session.client.get_state_by_name(WorldState)
         active_camera = world.camera_manager.get_active_camera()
 
         if active_camera is None:

@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +32,7 @@ class ClearVariableAction(EventAction):
     name = "clear_variable"
     variable: str
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
         key = self.variable
         player.game_variables.pop(key, None)

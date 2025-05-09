@@ -8,6 +8,7 @@ from random import randint
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -39,8 +40,8 @@ class RandomIntegerAction(EventAction):
     lower_bound: int
     upper_bound: int
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
 
         # Append the game_variables dictionary with a random number between
         # upper and lower bound, inclusive:

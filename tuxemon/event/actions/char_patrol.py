@@ -10,6 +10,7 @@ from typing import Any, final
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.map import parse_path_parameters
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +51,7 @@ class CharPatrolAction(EventAction):
         self.patrol_points: list[tuple[int, int]] = field(default_factory=list)
         self.patrol_index: int = 0
 
-    def start(self) -> None:
+    def start(self, session: Session) -> None:
         if len(self.raw_parameters) < 2:
             logger.error(
                 "Insufficient parameters: requires NPC and patrol path"
@@ -59,7 +60,7 @@ class CharPatrolAction(EventAction):
 
         npc_name = self.raw_parameters[0]
         move_list = self.raw_parameters[1:]
-        self.character = get_npc(self.session, npc_name)
+        self.character = get_npc(session, npc_name)
 
         if not self.character:
             logger.error(f"NPC '{npc_name}' not found")
@@ -73,7 +74,7 @@ class CharPatrolAction(EventAction):
             logger.error(f"Failed to parse patrol path: {e}")
             return
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         if not self.character or not self.patrol_points:
             self.stop()
             return

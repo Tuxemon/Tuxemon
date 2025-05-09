@@ -147,6 +147,12 @@ class SpriteRenderer:
             "left": "left_walk",
             "right": "right_walk",
         },
+        "running": {
+            "up": "back_walk",
+            "down": "front_walk",
+            "left": "left_walk",
+            "right": "right_walk",
+        },
         "idle": {
             "up": "back",
             "down": "front",
@@ -410,7 +416,7 @@ class MapRenderer:
     def _get_sprites(self, npc: NPC, layer: int) -> list[WorldSurfaces]:
         """Retrieves sprite surfaces for an NPC."""
         sprite_renderer = npc.sprite_controller.get_sprite_renderer()
-        moving = "walking" if npc.moving else "idle"
+        moving = npc.mover.state.value
         state = sprite_renderer.ANIMATION_MAPPING[moving][npc.facing.value]
         frame = sprite_renderer.get_frame(state, npc)
         return [WorldSurfaces(frame, proj(npc.position), layer)]

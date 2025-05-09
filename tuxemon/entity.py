@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import uuid
 from collections.abc import Mapping, Sequence
+from enum import Enum
 from typing import TYPE_CHECKING, Any, Generic, Optional, TypeVar
 
 from tuxemon.db import Direction
@@ -18,6 +19,12 @@ if TYPE_CHECKING:
 
 
 SaveDict = TypeVar("SaveDict", bound=Mapping[str, Any])
+
+
+class EntityState(Enum):
+    IDLE = "idle"
+    WALKING = "walking"
+    RUNNING = "running"
 
 
 class Body:
@@ -73,6 +80,7 @@ class Mover:
         facing: Direction = Direction.down,
         moverate: float = 0.0,
     ) -> None:
+        self.state = EntityState.IDLE
         self.body = body
         self.facing = facing
         self.moverate = moverate  # walk by default
@@ -88,20 +96,28 @@ class Mover:
         if normalized_direction in self.direction_map:
             self.body.velocity = Vector3(*normalized_direction) * speed
             self.facing = self.direction_map[normalized_direction]
+            self.state = (
+                EntityState.RUNNING
+                if speed > CONFIG.player_walkrate
+                else EntityState.WALKING
+            )
         else:
             raise ValueError("Invalid direction")
 
     def stop(self) -> None:
         """Stops movement without affecting acceleration."""
         self.body.velocity = Vector3(0, 0, 0)
+        self.state = EntityState.IDLE
 
     def running(self) -> None:
         """Boosts moverate to running speed."""
         self.moverate = CONFIG.player_runrate
+        self.state = EntityState.RUNNING
 
     def walking(self) -> None:
         """Resets moverate back to walking speed."""
         self.moverate = CONFIG.player_walkrate
+        self.state = EntityState.WALKING
 
 
 class Entity(Generic[SaveDict]):

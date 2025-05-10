@@ -41,7 +41,10 @@ class CheckEvolutionCondition(EventCondition):
             logger.error(f"{_character} not found")
             return False
 
-        context = {"map_inside": session.client.map_inside, "use_item": False}
+        context = {
+            "map_inside": session.client.map_manager.map_inside,
+            "use_item": False,
+        }
 
         evolving_monsters = []
         for monster in character.monsters:

@@ -29,7 +29,7 @@ class CallEventAction(EventAction):
 
     def start(self) -> None:
         event_engine = self.session.client.event_engine
-        events = self.session.client.events
+        events = self.session.client.map_manager.events
 
         for e in events:
             if e.name == self.event_name:

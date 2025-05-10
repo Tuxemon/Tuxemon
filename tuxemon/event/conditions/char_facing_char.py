@@ -41,7 +41,9 @@ class CharFacingCharCondition(EventCondition):
             return False
 
         # get all the coordinates around the npc
-        npc_tiles = get_coords(character2.tile_pos, client.map_size)
+        npc_tiles = get_coords(
+            character2.tile_pos, client.map_manager.map_size
+        )
         npc_location = get_direction(character1.tile_pos, character2.tile_pos)
 
         if character1.tile_pos in npc_tiles:

@@ -101,15 +101,6 @@ class SeenStatus(str, Enum):
     caught = "caught"
 
 
-class MapType(str, Enum):
-    notype = "notype"
-    town = "town"
-    route = "route"
-    clinic = "clinic"
-    shop = "shop"
-    dungeon = "dungeon"
-
-
 class StatType(str, Enum):
     armour = "armour"
     dodge = "dodge"

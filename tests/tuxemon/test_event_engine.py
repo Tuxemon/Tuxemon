@@ -5,6 +5,7 @@ from unittest.mock import Mock
 
 from tuxemon.client import LocalPygameClient
 from tuxemon.event.eventengine import EventEngine
+from tuxemon.map_manager import MapManager
 from tuxemon.session import Session, local_session
 
 
@@ -47,6 +48,7 @@ class TestEventEngine(unittest.TestCase):
         event = EventObject(1)
         self.eng.session = Mock(spec=Session)
         self.eng.session.client = Mock(spec=LocalPygameClient)
-        self.eng.session.client.inits = []
+        self.eng.session.client.map_manager = Mock(spec=MapManager)
+        self.eng.session.client.map_manager.inits = []
         self.eng.start_event(event)
         self.assertIn(1, self.eng.running_events)

@@ -5,14 +5,18 @@ from unittest.mock import MagicMock
 
 from tuxemon.client import LocalPygameClient
 from tuxemon.db import Direction
+from tuxemon.event.eventmanager import EventManager
 from tuxemon.movement import MovementManager
 from tuxemon.npc import NPC
+from tuxemon.platform.input_manager import InputManager
 
 
 class TestMovementManager(unittest.TestCase):
 
     def setUp(self):
         self.mock_client = MagicMock(spec=LocalPygameClient)
+        self.mock_client.event_manager = MagicMock(spec=EventManager)
+        self.mock_client.input_manager = MagicMock(spec=InputManager)
         self.movement_manager = MovementManager(self.mock_client)
         self.mock_npc = MagicMock(spec=NPC)
         self.mock_npc.slug = "npc_1"
@@ -25,7 +29,7 @@ class TestMovementManager(unittest.TestCase):
         self.movement_manager.wants_to_move_char["npc_1"] = Direction.up
         self.movement_manager.stop_char(self.mock_npc)
         self.assertNotIn("npc_1", self.movement_manager.wants_to_move_char)
-        self.mock_client.release_controls.assert_called_once()
+        self.mock_client.event_manager.release_controls.assert_called_once()
         self.mock_npc.cancel_movement.assert_called_once()
 
     def test_unlock_controls(self):
@@ -43,7 +47,7 @@ class TestMovementManager(unittest.TestCase):
         self.movement_manager.wants_to_move_char["npc_1"] = Direction.left
         self.movement_manager.stop_and_reset_char(self.mock_npc)
         self.assertNotIn("npc_1", self.movement_manager.wants_to_move_char)
-        self.mock_client.release_controls.assert_called_once()
+        self.mock_client.event_manager.release_controls.assert_called_once()
         self.mock_npc.abort_movement.assert_called_once()
 
     def test_is_movement_allowed(self):

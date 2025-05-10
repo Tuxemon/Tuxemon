@@ -8,8 +8,8 @@ from collections.abc import Generator
 from typing import Any
 
 from tuxemon import prepare
-from tuxemon.db import MapType
 from tuxemon.map_loader import region_properties
+from tuxemon.map_manager import map_types_list
 from tuxemon.script.parser import parse_action_string
 
 # Constants
@@ -106,8 +106,8 @@ class TestTMXFiles(unittest.TestCase):
             prop = root.find("properties")
             if prop is not None:
                 self.assertTrue(
-                    _is_object_property(prop, "map_type", list(MapType)),
-                    f"Map Type wrong name {to_basename(path)} ({list(MapType)})",
+                    _is_object_property(prop, "map_type", map_types_list),
+                    f"Map Type wrong name {to_basename(path)} ({map_types_list})",
                 )
 
     def test_object_id(self) -> None:

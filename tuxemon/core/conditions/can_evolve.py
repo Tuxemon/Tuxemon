@@ -25,7 +25,7 @@ class CanEvolveCondition(CoreCondition):
 
     def test_with_monster(self, session: Session, target: Monster) -> bool:
         context = {
-            "map_inside": session.client.map_inside,
+            "map_inside": session.client.map_manager.map_inside,
             "use_item": True,
         }
         if not target.evolutions:

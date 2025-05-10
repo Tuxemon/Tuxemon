@@ -40,7 +40,7 @@ class CameraPositionAction(EventAction):
             logger.error("No active camera found.")
             return
         if self.x is not None and self.y is not None:
-            map_size = self.session.client.map_size
+            map_size = self.session.client.map_manager.map_size
             if not world.boundary_checker.is_within_boundaries(
                 (self.x, self.y)
             ):

@@ -4,16 +4,16 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from tuxemon.db import MapType
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
+from tuxemon.map_manager import map_types_list
 from tuxemon.session import Session
 
 
 @dataclass
 class LocationTypeCondition(EventCondition):
     """
-    Check to see if the player is in a certain location type.
+    Determines whether the player is currently in a specified location type.
 
     Script usage:
         .. code-block::
@@ -21,29 +21,28 @@ class LocationTypeCondition(EventCondition):
             is location_type <slug>
 
     Script parameters:
-        slug: Slug name.
-        Either all, notype, town, route, clinic, shop, dungeon
+        slug: A string identifier for the location type.
+        Acceptable values: "all" (matches any location)
 
-    eg. "is location_type clinic"
-    eg. "is location_type town:shop"
+    Example usages:
+        - "is location_type clinic"  -> Checks if the player is in a clinic.
+        - "is location_type town:shop"  -> Checks if the player is in either
+            a town or a shop.
 
+    The condition evaluates whether the player's current map type matches
+    any of the specified location types.
     """
 
     name = "location_type"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
         client = session.client
-        ret: bool = False
         location = condition.parameters[0]
-        locs: list[str] = []
-        if location.find(":") > 1:
-            locs = location.split(":")
-        else:
-            if location == "all":
-                locs = list(MapType)
-            else:
-                locs.append(location)
 
-        if client.map_type and client.map_type in locs:
-            ret = True
-        return ret
+        locs = (
+            location.split(":")
+            if ":" in location
+            else (map_types_list if location == "all" else [location])
+        )
+
+        return client.map_manager.map_type.name in locs

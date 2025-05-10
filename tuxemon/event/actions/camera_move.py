@@ -44,7 +44,7 @@ class CameraMoveAction(EventAction):
             if not world.boundary_checker.is_within_boundaries(
                 (self.x, self.y)
             ):
-                map_size = self.session.client.map_size
+                map_size = self.session.client.map_manager.map_size
                 logger.error(
                     f"({self.x, self.y}) is outside the map bounds {map_size}"
                 )

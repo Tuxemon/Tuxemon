@@ -33,7 +33,7 @@ class CameraPositionCondition(EventCondition):
     name = "camera_position"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        map_size = session.client.map_size
+        map_size = session.client.map_manager.map_size
         pos_x = int(condition.parameters[0])
         pos_y = int(condition.parameters[1])
         world = session.client.get_state_by_name(WorldState)

@@ -28,7 +28,7 @@ class FacingSpriteCondition(CoreCondition):
     def test_with_monster(self, session: Session, target: Monster) -> bool:
         player = session.player
         client = session.client
-        tiles = get_coords(player.tile_pos, client.map_size)
+        tiles = get_coords(player.tile_pos, client.map_manager.map_size)
 
         for coords in tiles:
             npc = get_npc_pos(session, coords)

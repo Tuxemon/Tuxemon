@@ -89,7 +89,7 @@ class MovementManager:
         """Stops the character and releases movement controls."""
         if self.has_pending_movement(character):
             del self.wants_to_move_char[character.slug]
-        self.client.release_controls()
+        self.client.event_manager.release_controls(self.client.input_manager)
         character.cancel_movement()
 
     def unlock_controls(self, character: NPC) -> None:
@@ -106,7 +106,7 @@ class MovementManager:
         """Stops the character and aborts all ongoing movement actions."""
         if self.has_pending_movement(character):
             del self.wants_to_move_char[character.slug]
-        self.client.release_controls()
+        self.client.event_manager.release_controls(self.client.input_manager)
         character.abort_movement()
 
     def is_movement_allowed(self, character: NPC) -> bool:

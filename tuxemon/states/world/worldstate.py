@@ -197,7 +197,9 @@ class WorldState(State):
         # Handle menu activation
         if event.button == intentions.WORLD_MENU and event.pressed:
             logger.info("Opening main menu!")
-            self.client.release_controls()
+            self.client.event_manager.release_controls(
+                self.client.input_manager
+            )
             self.client.push_state("WorldMenuState", character=self.player)
             return None
 
@@ -638,7 +640,7 @@ class WorldState(State):
         self.map_size = map_data.size
 
         self.boundary_checker.update_boundaries(self.map_size)
-        self.client.load_map(map_data)
+        self.client.map_manager.load_map(map_data)
         self.clear_npcs()
 
     def clear_npcs(self) -> None:

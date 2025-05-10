@@ -29,7 +29,7 @@ class FacingTileCondition(CoreCondition):
         player = session.player
         client = session.client
 
-        tiles = get_coords(player.tile_pos, client.map_size)
+        tiles = get_coords(player.tile_pos, client.map_manager.map_size)
 
         world = client.get_state_by_name(WorldState)
         label = (

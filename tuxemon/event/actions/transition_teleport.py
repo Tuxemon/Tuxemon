@@ -60,6 +60,7 @@ class TransitionTeleportAction(EventAction):
         self.world.transition_manager.fade_and_teleport(
             _time,
             rgb,
+            self.world.player,
             lambda: self.world.teleporter.handle_delayed_teleport(
                 self.world.player
             ),

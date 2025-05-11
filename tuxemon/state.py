@@ -71,6 +71,8 @@ class State(ABC):
         self.client = local_session.client
         self.hook_manager = HookManager()
 
+        self._scheduled_task: Optional[Task] = None
+
     @property
     def name(self) -> str:
         return self.__class__.__name__
@@ -242,6 +244,12 @@ class State(ABC):
         """
         self.trigger_hook("state_shutdown")
 
+    def stop_scheduled_callbacks(self) -> None:
+        """Stops any further scheduled callbacks by killing the task."""
+        if self._scheduled_task:
+            self._scheduled_task.abort()
+            self._scheduled_task = None
+
     def schedule_callback(
         self,
         frequency: float,
@@ -255,8 +263,6 @@ class State(ABC):
         This utility method sets up repeated execution of a given callback
         by scheduling it within a dynamic time frame.
 
-        - Cancels any previously scheduled instances of the same callback
-            to avoid duplicates.
         - Stops scheduling if the frequency is set to zero.
         - Ensures the execution interval falls within the defined limits
             (`min_frequency` to `max_frequency`).
@@ -269,14 +275,14 @@ class State(ABC):
             min_frequency: The minimum allowed execution delay. Defaults to 0.5.
             max_frequency: The maximum allowed execution delay. Defaults to 5.
         """
-        self.remove_animations_of(
-            partial(self.schedule_callback, frequency, callback)
-        )
+        print("cum")
         if frequency == 0.0:
             return
         _frequency = min(max_frequency, max(min_frequency, frequency))
         time = (min_frequency + min_frequency * random.random()) * _frequency
-        self.task(partial(self.schedule_callback, _frequency, callback), time)
+        self._scheduled_task = self.task(
+            partial(self.schedule_callback, _frequency, callback), time
+        )
         callback()
 
     def register_hook(

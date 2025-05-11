@@ -33,4 +33,4 @@ class RemoveNpcAction(EventAction):
         world = self.session.client.get_state_by_name(WorldState)
 
         # Get the npc's parameters from the action
-        world.remove_entity(self.npc_slug)
+        self.session.client.npc_manager.remove_npc(self.npc_slug)

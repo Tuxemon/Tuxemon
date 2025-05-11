@@ -340,7 +340,7 @@ class MapRenderer:
         """Retrieves surfaces for NPCs."""
         return [
             surf
-            for npc in self.world_state.npcs
+            for npc in self.world_state.client.npc_manager.npcs.values()
             for surf in self._get_sprites(npc, current_map)
         ]
 
@@ -458,7 +458,7 @@ class DebugRenderer:
         # Next, deal with solid NPCs.
         npc_iter = map(
             lambda npc: npc_to_pgrect(current_map, npc),
-            self.world_state.npcs,
+            self.world_state.client.npc_manager.npcs.values(),
         )
         for item in chain(box_iter, npc_iter):
             box(surface, item, self.collision_color)

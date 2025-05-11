@@ -65,16 +65,11 @@ def get_npc(session: Session, slug: str) -> Optional[NPC]:
 
     Returns:
         The NPC object or None if the NPC is not found.
-
     """
-    from tuxemon.states.world.worldstate import WorldState
-
     if slug == "player":
         return session.player
 
-    world = session.client.get_state_by_name(WorldState)
-
-    return world.get_entity(slug)
+    return session.client.npc_manager.get_npc(slug)
 
 
 def get_npc_by_iid(session: Session, iid: uuid.UUID) -> Optional[NPC]:
@@ -87,13 +82,8 @@ def get_npc_by_iid(session: Session, iid: uuid.UUID) -> Optional[NPC]:
 
     Returns:
         The NPC object or None if the NPC is not found.
-
     """
-    from tuxemon.states.world.worldstate import WorldState
-
-    world = session.client.get_state_by_name(WorldState)
-
-    return world.get_entity_by_iid(iid)
+    return session.client.npc_manager.get_npc_by_iid(iid)
 
 
 def get_npc_pos(session: Session, pos: tuple[int, int]) -> Optional[NPC]:
@@ -106,17 +96,12 @@ def get_npc_pos(session: Session, pos: tuple[int, int]) -> Optional[NPC]:
 
     Returns:
         The NPC object or None if the NPC is not found.
-
     """
-    from tuxemon.states.world.worldstate import WorldState
-
     player = session.player
     if player.tile_pos == pos:
         return session.player
 
-    world = session.client.get_state_by_name(WorldState)
-
-    return world.get_entity_pos(pos)
+    return session.client.npc_manager.get_entity_pos(pos)
 
 
 def get_monster_by_iid(session: Session, iid: uuid.UUID) -> Optional[Monster]:
@@ -129,13 +114,8 @@ def get_monster_by_iid(session: Session, iid: uuid.UUID) -> Optional[Monster]:
 
     Returns:
         The monster object or None if the monster is not found.
-
     """
-    from tuxemon.states.world.worldstate import WorldState
-
-    world = session.client.get_state_by_name(WorldState)
-
-    return world.get_monster_by_iid(iid)
+    return session.client.npc_manager.get_monster_by_iid(iid)
 
 
 def collide(condition: MapCondition, tile_position: tuple[int, int]) -> bool:
@@ -148,7 +128,6 @@ def collide(condition: MapCondition, tile_position: tuple[int, int]) -> bool:
 
     Returns:
         Whether the tile position is contained in the map condition area.
-
     """
     return (
         condition.x < tile_position[0] + 1

@@ -4,10 +4,12 @@ import unittest
 from unittest.mock import MagicMock
 
 from tuxemon.boundary import BoundaryChecker
+from tuxemon.client import LocalPygameClient
 from tuxemon.db import Direction
 from tuxemon.map import RegionProperties, dirs2
 from tuxemon.movement import Pathfinder, PathfindNode, get_tile_moverate
 from tuxemon.npc import NPC
+from tuxemon.npc_manager import NPCManager
 from tuxemon.prepare import CONFIG
 from tuxemon.states.world.worldstate import WorldState
 
@@ -16,7 +18,10 @@ class TestPathfinder(unittest.TestCase):
     def setUp(self):
         self.world_state = MagicMock(spec=WorldState)
         self.world_state.player = MagicMock(spec=NPC)
+        self.client = MagicMock(spec=LocalPygameClient)
+        self.client.npc_manager = MagicMock(spec=NPCManager)
         self.world_state.player.facing = MagicMock(spec=Direction)
+        self.world_state.client = self.client
         self.boundary_checker = MagicMock(spec=BoundaryChecker)
         self.pathfinder = Pathfinder(self.world_state, self.boundary_checker)
         self.world_state.collision_lines_map = {}
@@ -26,7 +31,7 @@ class TestPathfinder(unittest.TestCase):
         start = (0, 0)
         dest = (1, 1)
         self.world_state.get_collision_map.return_value = {}
-        self.world_state.get_entity_pos.return_value = None
+        self.client.npc_manager.get_entity_pos.return_value = None
 
         node1 = MagicMock(spec=PathfindNode)
         node1.get_value.return_value = start
@@ -48,14 +53,14 @@ class TestPathfinder(unittest.TestCase):
         start = (0, 0)
         dest = (1, 1)
         self.world_state.get_collision_map.return_value = {}
-        self.world_state.get_entity_pos.return_value = None
+        self.client.npc_manager.get_entity_pos.return_value = None
 
         self.pathfinder.pathfind_r = MagicMock(return_value=None)
 
         path = self.pathfinder.pathfind(start, dest, Direction.down)
 
         self.assertIsNone(path)
-        self.world_state.get_entity_pos.assert_called_once_with(start)
+        self.client.npc_manager.get_entity_pos.assert_called_once_with(start)
 
     def test_is_valid_position(self):
         position = (1, 1)
@@ -83,7 +88,7 @@ class TestPathfinder(unittest.TestCase):
         tile = (1, 2)
 
         self.pathfinder.get_exits = MagicMock(return_value=[tile])
-        self.world_state.get_entity_pos = MagicMock(return_value=None)
+        self.client.npc_manager.get_entity_pos = MagicMock(return_value=None)
 
         self.assertTrue(self.pathfinder.is_tile_traversable(npc, tile))
 
@@ -91,7 +96,7 @@ class TestPathfinder(unittest.TestCase):
         other_npc.moving = True
         other_npc.moverate = CONFIG.player_walkrate
         other_npc.facing = Direction.up
-        self.world_state.get_entity_pos.return_value = other_npc
+        self.client.npc_manager.get_entity_pos.return_value = other_npc
         self.assertFalse(self.pathfinder.is_tile_traversable(npc, tile))
 
         npc.ignore_collisions = True
@@ -160,7 +165,7 @@ class TestPathfinder(unittest.TestCase):
         start = (1, 1)
         dest = (1, 1)
         self.world_state.get_collision_map.return_value = {}
-        self.world_state.get_entity_pos.return_value = None
+        self.client.npc_manager.get_entity_pos.return_value = None
         path = self.pathfinder.pathfind(start, dest, Direction.down)
         self.assertEqual(path, [])
 
@@ -179,7 +184,7 @@ class TestPathfinder(unittest.TestCase):
         npc.facing = Direction.down
         tile = (1, 2)
         self.pathfinder.get_exits = MagicMock(return_value=[tile])
-        self.world_state.get_entity_pos = MagicMock(return_value=None)
+        self.client.npc_manager.get_entity_pos = MagicMock(return_value=None)
         self.assertTrue(self.pathfinder.is_tile_traversable(npc, tile))
 
     def test_get_tile_moverate_with_no_surface_data(self):

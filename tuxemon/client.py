@@ -23,6 +23,7 @@ from tuxemon.event.eventpersist import EventPersist
 from tuxemon.map import TuxemonMap
 from tuxemon.map_loader import MapLoader
 from tuxemon.networking import NetworkManager
+from tuxemon.npc_manager import NPCManager
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.input_manager import InputManager
 from tuxemon.rumble import RumbleManager
@@ -96,6 +97,7 @@ class LocalPygameClient:
         self.network_manager.initialize()
 
         self.map_loader = MapLoader()
+        self.npc_manager = NPCManager()
         # Set up our combat engine and router.
         # self.combat_engine = CombatEngine(self)
         # self.combat_router = CombatRouter(self, self.combat_engine)
@@ -348,42 +350,6 @@ class LocalPygameClient:
             partial_events=self.event_engine.partial_events,
         )
         self.frame_number += 1
-
-    def add_clients_to_map(self, registry: Mapping[str, Any]) -> None:
-        """
-        Add players in the current map as npcs.
-
-        Checks to see if clients are supposed to be displayed on the current
-        map. If they are on the same map as the host then it will add them to
-        the npc's list. If they are still being displayed and have left the
-        map it will remove them from the map.
-
-        Parameters:
-            registry: Locally hosted Neteria client/server registry.
-
-        """
-        world = self.get_state_by_name(WorldState)
-        world.npcs = []
-        world.npcs_off_map = []
-        for client in registry:
-            if "sprite" in registry[client]:
-                sprite = registry[client]["sprite"]
-                client_map = registry[client]["map_name"]
-                current_map = self.get_map_name()
-
-                # Add the player to the screen if they are on the same map.
-                if client_map == current_map:
-                    if sprite not in world.npcs:
-                        world.npcs.append(sprite)
-                    if sprite in world.npcs_off_map:
-                        world.npcs_off_map.remove(sprite)
-
-                # Remove player from the map if they have changed maps.
-                elif client_map != current_map:
-                    if sprite not in world.npcs_off_map:
-                        world.npcs_off_map.append(sprite)
-                    if sprite in world.npcs:
-                        world.npcs.remove(sprite)
 
     def get_map_filepath(self) -> Optional[str]:
         """

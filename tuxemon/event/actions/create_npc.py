@@ -46,15 +46,11 @@ class CreateNpcAction(EventAction):
 
         slug = self.npc_slug
 
-        for element in world.npcs:
-            if element.slug == slug:
-                logger.error(
-                    f"'{slug}' already exists on the map. Skipping creation."
-                )
-                return
+        if self.session.client.npc_manager.npc_exists(slug):
+            return
 
         npc = NPC(slug, world=world)
-        world.npcs.append(npc)
+        self.session.client.npc_manager.add_npc(npc)
 
         client = self.session.client.event_engine
         client.execute_action(

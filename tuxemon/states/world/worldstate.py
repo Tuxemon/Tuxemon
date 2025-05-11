@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import logging
-import uuid
 from collections import defaultdict
 from collections.abc import Mapping, MutableMapping, Sequence
 from typing import (
@@ -34,7 +33,6 @@ from tuxemon.teleporter import Teleporter
 
 if TYPE_CHECKING:
     from tuxemon.entity import Entity
-    from tuxemon.monster import Monster
     from tuxemon.networking import EventData
     from tuxemon.npc import NPC
 
@@ -74,13 +72,6 @@ class WorldState(State):
         # Provide access to the screen surface
         self.screen = self.client.screen
         self.tile_size = prepare.TILE_SIZE
-
-        #####################################################################
-        #                           Player Details                           #
-        ######################################################################
-
-        self.npcs: list[NPC] = []
-        self.npcs_off_map: list[NPC] = []
 
         ######################################################################
         #                              Map                                   #
@@ -132,15 +123,18 @@ class WorldState(State):
         self.network = self.client.network_manager
         if self.network.is_connected():
             assert self.network.client
-            self.client.add_clients_to_map(self.network.client.client.registry)
+            current_map = self.client.get_map_name()
+            self.client.npc_manager.add_clients_to_map(
+                self.network.client.client.registry, current_map
+            )
             self.network.client.update_player(self.player.facing)
 
         # Update the location of the npcs. Doesn't send network data.
-        for npc in self.npcs:
+        for npc in self.client.npc_manager.npcs.values():
             char_dict = {"tile_pos": npc.tile_pos}
             networking.update_client(npc, char_dict, self.client)
 
-        for npc in self.npcs_off_map:
+        for npc in self.client.npc_manager.npcs_off_map.values():
             char_dict = {"tile_pos": npc.tile_pos}
             networking.update_client(npc, char_dict, self.client)
 
@@ -153,7 +147,8 @@ class WorldState(State):
 
         """
         super().update(time_delta)
-        self.update_npcs(time_delta)
+        self.client.npc_manager.update_npcs(time_delta, self.client)
+        self.client.npc_manager.update_npcs_off_map(time_delta, self.client)
         self.map_renderer.update(time_delta)
         self.camera_manager.update(time_delta)
 
@@ -250,91 +245,6 @@ class WorldState(State):
     ####################################################
     #            Pathfinding and Collisions            #
     ####################################################
-    """
-    Eventually refactor pathing/collisions into a more generic class
-    so it doesn't rely on a running game, players, or a screen
-    """
-
-    def get_entity(self, slug: str) -> Optional[NPC]:
-        """
-        Get an entity from the world.
-
-        Parameters:
-            slug: The entity slug.
-
-        """
-        return next((npc for npc in self.npcs if npc.slug == slug), None)
-
-    def get_entity_by_iid(self, iid: uuid.UUID) -> Optional[NPC]:
-        """
-        Get an entity from the world.
-
-        Parameters:
-            iid: The entity instance ID.
-
-        """
-        return next((npc for npc in self.npcs if npc.instance_id == iid), None)
-
-    def get_entity_pos(self, pos: tuple[int, int]) -> Optional[NPC]:
-        """
-        Get an entity from the world by its position.
-
-        Parameters:
-            pos: The entity position.
-
-        """
-        return next((npc for npc in self.npcs if npc.tile_pos == pos), None)
-
-    def remove_entity(self, slug: str) -> None:
-        """
-        Remove an entity from the world.
-
-        Parameters:
-            slug: The entity slug.
-
-        """
-        npc = self.get_entity(slug)
-        if npc:
-            npc.remove_collision()
-            self.npcs.remove(npc)
-
-    def get_all_entities(self) -> Sequence[NPC]:
-        """
-        List of players and NPCs, for collision checking.
-
-        Returns:
-            The list of entities in the map.
-
-        """
-        return self.npcs
-
-    def get_all_monsters(self) -> list[Monster]:
-        """
-        List of all monsters in the world.
-
-        Returns:
-            The list of monsters in the map.
-
-        """
-        return [monster for npc in self.npcs for monster in npc.monsters]
-
-    def get_monster_by_iid(self, iid: uuid.UUID) -> Optional[Monster]:
-        """
-        Get a monster from the world.
-
-        Parameters:
-            iid: The monster instance ID.
-
-        """
-        return next(
-            (
-                monster
-                for npc in self.npcs
-                for monster in npc.monsters
-                if monster.instance_id == iid
-            ),
-            None,
-        )
 
     def get_all_tile_properties(
         self,
@@ -531,7 +441,7 @@ class WorldState(State):
         ] = defaultdict(lambda: RegionProperties([], [], [], None, None))
 
         # Get all the NPCs' tile positions
-        for npc in self.get_all_entities():
+        for npc in self.client.npc_manager.get_all_entities():
             collision_dict[npc.tile_pos] = self._get_region_properties(
                 npc.tile_pos, npc
             )
@@ -580,29 +490,6 @@ class WorldState(State):
     ) -> Optional[Sequence[tuple[int, int]]]:
         return self.pathfinder.pathfind(start, dest, facing)
 
-    def update_npcs(self, time_delta: float) -> None:
-        """
-        Allow NPCs to be updated.
-
-        Parameters:
-            time_delta: Ellapsed time.
-
-        """
-        # TODO: This function may be moved to a server
-        # Draw any game NPC's
-        for entity in self.get_all_entities():
-            entity.update(time_delta)
-
-            if entity.update_location:
-                char_dict = {"tile_pos": entity.final_move_dest}
-                networking.update_client(entity, char_dict, self.client)
-                entity.update_location = False
-
-        # Move any multiplayer characters that are off map so we know where
-        # they should be when we change maps.
-        for entity in self.npcs_off_map:
-            entity.update(time_delta)
-
     ####################################################
     #             Map Change/Load Functions            #
     ####################################################
@@ -639,14 +526,7 @@ class WorldState(State):
 
         self.boundary_checker.update_boundaries(self.map_size)
         self.client.load_map(map_data)
-        self.clear_npcs()
-
-    def clear_npcs(self) -> None:
-        """
-        Clears all existing NPCs from the game state.
-        """
-        self.npcs.clear()
-        self.npcs_off_map.clear()
+        self.client.npc_manager.clear_npcs()
 
     def update_player_state(self) -> None:
         """
@@ -657,9 +537,9 @@ class WorldState(State):
         """
         player = local_session.player
         player.world = self
-        self.npcs.append(player)
         self.movement.stop_char(player)
         self.player = player
+        self.client.npc_manager.add_npc(player)
 
     @no_type_check  # only used by multiplayer which is disabled
     def check_interactable_space(self) -> bool:
@@ -692,7 +572,7 @@ class WorldState(State):
                         tile = (player_tile_pos[0] - 1, player_tile_pos[1])
                     elif direction == Direction.right:
                         tile = (player_tile_pos[0] + 1, player_tile_pos[1])
-                    for npc in self.npcs:
+                    for npc in self.client.npc_manager.npcs:
                         tile_pos = (
                             int(round(npc.tile_pos[0])),
                             int(round(npc.tile_pos[1])),

@@ -159,7 +159,9 @@ class Pathfinder:
             path = pathnode.reconstruct_path()
             return path
         else:
-            character = self.world_state.get_entity_pos(start)
+            character = self.world_state.client.npc_manager.get_entity_pos(
+                start
+            )
             if character:
                 logger.error(
                     f"{character.name}'s pathfinding failed in {self.world_state.current_map.filename}."
@@ -331,7 +333,7 @@ class Pathfinder:
         # Check for collisions with moving entities
         _map_size = self.world_state.map_size
         for neighbor in get_coords_ext(tile, _map_size):
-            char = self.world_state.get_entity_pos(neighbor)
+            char = self.world_state.client.npc_manager.get_entity_pos(neighbor)
             if (
                 char
                 and char.moving

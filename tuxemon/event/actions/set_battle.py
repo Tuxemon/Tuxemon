@@ -9,6 +9,7 @@ from typing import final
 from tuxemon.battle import Battle
 from tuxemon.db import OutputBattle
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -39,8 +40,8 @@ class SetBattleAction(EventAction):
     outcome: str
     opponent: str
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
 
         _output = list(OutputBattle)
         if self.outcome not in _output:

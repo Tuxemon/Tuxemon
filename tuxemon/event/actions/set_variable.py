@@ -7,6 +7,7 @@ from dataclasses import dataclass, field
 from typing import Any, final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 
 @final
@@ -35,8 +36,8 @@ class SetVariableAction(EventAction):
         super().__init__()
         self.raw_parameters = args
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
         for param in self.raw_parameters:
             var_key, _, var_value = param.partition(":")
             player.game_variables[var_key] = var_value

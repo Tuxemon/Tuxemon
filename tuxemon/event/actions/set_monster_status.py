@@ -10,6 +10,7 @@ from typing import Optional, final
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
+from tuxemon.session import Session
 from tuxemon.status.status import Status
 
 logger = logging.getLogger(__name__)
@@ -51,8 +52,8 @@ class SetMonsterStatusAction(EventAction):
             status.link = monster
             monster.apply_status(status)
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
         steps = player.steps
         if not player.monsters:
             return
@@ -65,7 +66,7 @@ class SetMonsterStatusAction(EventAction):
                 logger.error(f"Game variable {self.variable} not found")
                 return
             monster_id = uuid.UUID(player.game_variables[self.variable])
-            monster = get_monster_by_iid(self.session, monster_id)
+            monster = get_monster_by_iid(session, monster_id)
             if monster is None:
                 logger.error("Monster not found")
                 return

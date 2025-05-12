@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 from collections.abc import Callable, Mapping, Sequence
+from enum import Enum
 from math import cos, pi, sin, sqrt
 from typing import Any, Optional, Union
 
@@ -18,10 +19,12 @@ ScheduledFunction = Callable[[], Any]
 
 logger = logging.getLogger(__name__)
 
-ANIMATION_NOT_STARTED = 0
-ANIMATION_RUNNING = 1
-ANIMATION_DELAYED = 2
-ANIMATION_FINISHED = 3
+
+class AnimationState(Enum):
+    NOT_STARTED = 0
+    RUNNING = 1
+    DELAYED = 2
+    FINISHED = 3
 
 
 def check_number(value: Any) -> float:
@@ -39,18 +42,22 @@ def check_number(value: Any) -> float:
         raise ValueError
 
 
-def remove_animations_of(target: object, group: Group) -> None:
+def remove_animations_of(
+    target: object, group: Group[Union[Task, Animation]]
+) -> None:
     """
-    Find animations that target objects and remove those animations.
+    Removes animations associated with a given target.
 
     Parameters:
-        target: Object whose animations should be removed.
-        group: Pygame group where to remove the animations.
+        target: The object whose animations should be removed.
+        group: A Pygame group containing `Animation` instances.
     """
-    animations = [ani for ani in group.sprites() if isinstance(ani, Animation)]
-    to_remove = [
-        ani for ani in animations if target in [i[0] for i in ani.targets]
-    ]
+    animations = {ani for ani in group if isinstance(ani, Animation)}
+    to_remove = {
+        ani for ani in animations if target in {i[0] for i in ani.targets}
+    }
+    if not to_remove:
+        logger.debug(f"No animations found for target: {target}")
     group.remove(*to_remove)
 
 
@@ -84,7 +91,6 @@ class TaskBase(Sprite):
         Parameters:
             func: Callable to schedule.
             when: Time when ``func`` is going to be called.
-
         """
         if when is None:
             when = self._valid_schedules[0]
@@ -97,12 +103,9 @@ class TaskBase(Sprite):
         self._callbacks[when].append(func)
 
     def _execute_callbacks(self, when: str) -> None:
-        try:
-            callbacks = self._callbacks[when]
-        except KeyError:
-            return
-        else:
-            [cb() for cb in callbacks]
+        if when in self._callbacks:
+            for cb in self._callbacks[when]:
+                cb()
 
 
 class Task(TaskBase):
@@ -181,7 +184,7 @@ class Task(TaskBase):
         self._loops = times
         self._duration: float = 0
         self._chain: list[Task] = []
-        self._state = ANIMATION_RUNNING
+        self._state = AnimationState.RUNNING
         self.schedule(callback)
 
     def chain(
@@ -203,10 +206,8 @@ class Task(TaskBase):
             callback: Function to execute each interval.
             interval: Time between callbacks.
             times: Number of intervals.
-
         """
-        task = Task(callback, interval, times)
-        self.chain_task(task)
+        self.chain_task(Task(callback, interval, times))
 
     def chain_task(self, *others: Task) -> Sequence[Task]:
         """
@@ -220,13 +221,12 @@ class Task(TaskBase):
 
         Returns:
             The sequence of added Tasks.
-
         """
         if self._loops <= -1:
-            raise RuntimeError
+            raise RuntimeError("Cannot chain a task to an infinite loop task.")
         for task in others:
             if not isinstance(task, Task):
-                raise TypeError
+                raise TypeError(f"Expected Task, got {type(task).__name__}")
             self._chain.append(task)
         return others
 
@@ -243,10 +243,12 @@ class Task(TaskBase):
 
         Parameters:
             dt: Time passed since last update.
-
         """
-        if self._state is not ANIMATION_RUNNING:
-            raise RuntimeError
+        if self._state is not AnimationState.RUNNING:
+            raise RuntimeError(
+                f"Task cannot proceed: expected state"
+                f" {AnimationState.RUNNING.name}, but found {self._state.name}."
+            )
 
         self._duration += dt
         if self._duration >= self._interval:
@@ -265,8 +267,8 @@ class Task(TaskBase):
 
     def finish(self) -> None:
         """Force task to finish, while executing callbacks."""
-        if self._state is ANIMATION_RUNNING:
-            self._state = ANIMATION_FINISHED
+        if self._state is AnimationState.RUNNING:
+            self._state = AnimationState.FINISHED
             self._execute_callbacks("on interval")
             self._execute_callbacks("on finish")
             self._execute_chain()
@@ -277,7 +279,7 @@ class Task(TaskBase):
         Returns:
             Whether the task is finished or not.
         """
-        return self._state is ANIMATION_FINISHED
+        return self._state is AnimationState.FINISHED
 
     def reset_delay(self, new_delay: float) -> None:
         """
@@ -294,7 +296,7 @@ class Task(TaskBase):
 
     def abort(self) -> None:
         """Force task to finish, without executing callbacks."""
-        self._state = ANIMATION_FINISHED
+        self._state = AnimationState.FINISHED
         self._cleanup()
 
     def _cleanup(self) -> None:
@@ -414,31 +416,44 @@ class Animation(Sprite):
         ] = list()
         self._targets: Sequence[object] = list()
         self.delay = delay
-        self._state = ANIMATION_NOT_STARTED
+        self._state = AnimationState.NOT_STARTED
         self._round_values = round_values
 
         self._duration = (
             self.default_duration if duration is None else duration
         )
 
-        if transition is None:
-            transition = self.default_transition
-
-        if isinstance(transition, str):
-            transition = getattr(AnimationTransition, transition)
-            assert callable(transition)
-
-        self._transition = transition
+        self._transition = self._resolve_transition(transition)
         self._initial = initial
         self._relative = relative
         self._elapsed = 0.0
 
         if not kwargs:
-            raise ValueError
+            raise ValueError(
+                "Animation must have at least one property to modify"
+            )
         self.props = kwargs
 
         if targets:
             self.start(*targets)
+
+    def _resolve_transition(
+        self, transition: Union[str, Callable[[float], float], None] = None
+    ) -> Callable[[float], float]:
+        if transition is None:
+            transition = self.default_transition
+
+        if isinstance(transition, str):
+            transition = getattr(AnimationTransition, transition)
+            if not callable(transition):
+                raise ValueError(f"Invalid transition name: {transition}")
+
+        if not callable(transition):
+            raise TypeError(
+                "Provided transition must be a callable function or a valid string identifier"
+            )
+
+        return transition
 
     def _get_value(self, target: object, name: str) -> float:
         """
@@ -450,7 +465,6 @@ class Animation(Sprite):
 
         Returns:
             Attribute value.
-
         """
         if self._initial is None:
             value = getattr(target, name)
@@ -479,7 +493,6 @@ class Animation(Sprite):
             target: Object to be modified.
             name: Name of attribute to be modified.
             value: New value of the attribute.
-
         """
         if self._round_values:
             value = round(value)
@@ -505,13 +518,12 @@ class Animation(Sprite):
 
         Parameters:
             dt: Time passed since last update.
-
         """
-        if self._state is ANIMATION_FINISHED:
+        if self._state is AnimationState.FINISHED:
             return
             # raise RuntimeError
 
-        if self._state is not ANIMATION_RUNNING:
+        if self._state is not AnimationState.RUNNING:
             return
 
         self._elapsed += dt
@@ -544,9 +556,8 @@ class Animation(Sprite):
         * Final callback ('callback') will be called.
         * Final values will be applied.
         * Animation will be removed from group.
-
         """
-        # if self._state is not ANIMATION_RUNNING:
+        # if self._state is not AnimationState.RUNNING:
         #     raise RuntimeError
 
         if self.targets is not None:
@@ -568,12 +579,11 @@ class Animation(Sprite):
         * Final callback will be executed.
         * Values will not change.
         * Animation will be removed from group.
-
         """
-        # if self._state is not ANIMATION_RUNNING:
+        # if self._state is not AnimationState.RUNNING:
         #     raise RuntimeError
 
-        self._state = ANIMATION_FINISHED
+        self._state = AnimationState.FINISHED
         self.targets = []
         self.kill()
         if hasattr(self, "callback"):
@@ -592,13 +602,12 @@ class Animation(Sprite):
 
         Raises:
             RuntimeError: If the animation is already started.
-
         """
         # TODO: weakref the targets
-        if self._state is not ANIMATION_NOT_STARTED:
+        if self._state is not AnimationState.NOT_STARTED:
             raise RuntimeError
 
-        self._state = ANIMATION_RUNNING
+        self._state = AnimationState.RUNNING
         self._targets = targets
 
         if self.delay == 0:

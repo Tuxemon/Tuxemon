@@ -12,6 +12,7 @@ from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from tuxemon.npc import NPC
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -36,8 +37,8 @@ class OpenShopAction(EventAction):
     npc_slug: str
     menu: Optional[str] = None
 
-    def start(self) -> None:
-        character = get_npc(self.session, self.npc_slug)
+    def start(self, session: Session) -> None:
+        character = get_npc(session, self.npc_slug)
         if character is None:
             logger.error(f"{self.npc_slug} not found")
             return
@@ -48,27 +49,27 @@ class OpenShopAction(EventAction):
             economy = Economy("default")
 
         def push_buy_menu(npc: NPC) -> None:
-            self.session.client.push_state(
+            session.client.push_state(
                 "ShopBuyMenuState",
-                buyer=self.session.player,
+                buyer=session.player,
                 seller=npc,
                 economy=economy,
             )
 
         def push_sell_menu(npc: NPC) -> None:
-            self.session.client.push_state(
+            session.client.push_state(
                 "ShopSellMenuState",
                 buyer=npc,
-                seller=self.session.player,
+                seller=session.player,
                 economy=economy,
             )
 
         def buy_menu(npc: NPC) -> None:
-            self.session.client.pop_state()
+            session.client.pop_state()
             push_buy_menu(npc)
 
         def sell_menu(npc: NPC) -> None:
-            self.session.client.pop_state()
+            session.client.pop_state()
             push_sell_menu(npc)
 
         buy = T.translate("buy")
@@ -80,7 +81,7 @@ class OpenShopAction(EventAction):
 
         menu = self.menu or "both"
         if menu == "both":
-            self.session.client.push_state(
+            session.client.push_state(
                 "ChoiceState", menu=var_menu, escape_key_exits=True
             )
         elif menu == "buy":

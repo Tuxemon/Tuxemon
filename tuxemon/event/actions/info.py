@@ -9,6 +9,7 @@ from typing import final
 
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -42,15 +43,15 @@ class InfoAction(EventAction):
     variable: str
     attribute: str
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
         attribute = self.attribute
         variable = self.variable
         if self.variable not in player.game_variables:
             logger.error(f"Game variable {variable} not found")
             return
         monster_id = uuid.UUID(player.game_variables[variable])
-        monster = get_monster_by_iid(self.session, monster_id)
+        monster = get_monster_by_iid(session, monster_id)
         if monster is None:
             monster = player.monster_boxes.get_monsters_by_iid(monster_id)
             if monster is None:
@@ -68,6 +69,6 @@ class InfoAction(EventAction):
         else:
             attr = getattr(monster, attribute)
 
-        client = self.session.client.event_engine
+        client = session.client.event_engine
         var = f"{self.name}_{attribute}:{attr}"
         client.execute_action("set_variable", [var], True)

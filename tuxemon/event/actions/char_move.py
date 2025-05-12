@@ -10,6 +10,7 @@ from typing import Any, final
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.map import parse_path_parameters
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -47,13 +48,13 @@ class CharMoveAction(EventAction):
 
     # parameter checking not supported due to undefined number of parameters
 
-    def start(self) -> None:
+    def start(self, session: Session) -> None:
         if len(self.raw_parameters) < 2:
             logger.error("Insufficient parameters")
             return
 
         character_name = self.raw_parameters[0]
-        self.character = get_npc(self.session, character_name)
+        self.character = get_npc(session, character_name)
 
         if self.character is None:
             logger.error(f"Character '{character_name}' not found")
@@ -77,7 +78,7 @@ class CharMoveAction(EventAction):
         else:
             logger.error("No valid path was generated")
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         if self.character is None:
             self.stop()
             return

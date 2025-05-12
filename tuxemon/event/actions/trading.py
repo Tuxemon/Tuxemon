@@ -11,6 +11,7 @@ from tuxemon.db import SeenStatus, db
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
+from tuxemon.session import Session
 from tuxemon.time_handler import today_ordinal
 
 logger = logging.getLogger(__name__)
@@ -41,10 +42,10 @@ class TradingAction(EventAction):
     variable: str
     added: str
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
         _monster_id = uuid.UUID(player.game_variables[self.variable])
-        monster_id = get_monster_by_iid(self.session, _monster_id)
+        monster_id = get_monster_by_iid(session, _monster_id)
         if monster_id is None:
             logger.error("Monster not found")
             return
@@ -58,7 +59,7 @@ class TradingAction(EventAction):
             monster_id.owner.tuxepedia.add_entry(new.slug, SeenStatus.caught)
         else:
             _added_id = uuid.UUID(player.game_variables[self.added])
-            added_id = get_monster_by_iid(self.session, _added_id)
+            added_id = get_monster_by_iid(session, _added_id)
             if added_id is None:
                 logger.error("Monster not found")
                 return

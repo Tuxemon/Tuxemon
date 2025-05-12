@@ -91,7 +91,7 @@ class TestTransition(TestCase):
     @patch("pygame.Surface")
     def test_fade_out(self, MockSurface):
         mock_color = (0, 0, 0, 255)
-        self.transition.fade_out(1.0, mock_color)
+        self.transition.fade_out(1.0, mock_color, self.mock_world.player)
 
         self.mock_world.animate.assert_called_with(
             self.transition,
@@ -127,7 +127,9 @@ class TestTransition(TestCase):
     def test_fade_and_teleport(self, MockSurface):
         mock_color = (0, 0, 0, 255)
         mock_teleport = MagicMock()
-        self.transition.fade_and_teleport(1.0, mock_color, mock_teleport)
+        self.transition.fade_and_teleport(
+            1.0, mock_color, self.mock_world.player, mock_teleport
+        )
 
         self.mock_world.animate.assert_called_with(
             self.transition,

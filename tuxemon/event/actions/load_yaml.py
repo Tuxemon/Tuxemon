@@ -10,6 +10,7 @@ from typing import final
 from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 from tuxemon.map_loader import YAMLEventLoader
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -34,8 +35,8 @@ class LoadYamlAction(EventAction):
     name = "load_yaml"
     file: str
 
-    def start(self) -> None:
-        client = self.session.client
+    def start(self, session: Session) -> None:
+        client = session.client
         yaml_path = prepare.fetch("maps", f"{self.file}.yaml")
 
         _events = list(client.events)

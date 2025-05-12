@@ -147,6 +147,12 @@ class SpriteRenderer:
             "left": "left_walk",
             "right": "right_walk",
         },
+        "running": {
+            "up": "back_walk",
+            "down": "front_walk",
+            "left": "left_walk",
+            "right": "right_walk",
+        },
         "idle": {
             "up": "back",
             "down": "front",
@@ -327,7 +333,8 @@ class MapRenderer:
 
     def _apply_effects(self, surface: Surface) -> None:
         """Applies visual effects to the surface."""
-        self._set_layer(surface)
+        self.layer.fill(self.layer_color)
+        surface.blit(self.layer, (0, 0))
 
     def _apply_cinema_bars(self, surface: Surface) -> None:
         """Applies cinema bars (letterboxing) to the surface."""
@@ -386,31 +393,28 @@ class MapRenderer:
         The bubbles are layered according to the specified rendering layer,
         with options for vertical offset adjustment to fine-tune their placement.
         """
-        if self.bubble:
-            for npc, surface in self.bubble.items():
-                sprite_renderer = npc.sprite_controller.get_sprite_renderer()
-                center_x, center_y = get_pos_from_tilepos(
-                    current_map, Vector2(npc.tile_pos)
-                )
-                bubble_rect = surface.get_rect()
-                bubble_rect.centerx = sprite_renderer.rect.centerx
-                bubble_rect.bottom = sprite_renderer.rect.top
-                bubble_rect.x = center_x
-                bubble_rect.y = center_y - (
-                    surface.get_height()
-                    + int(sprite_renderer.rect.height / offset_divisor)
-                )
-                screen_surfaces.append((surface, bubble_rect, layer))
+        if not self.bubble:
+            return
 
-    def _set_layer(self, surface: Surface) -> None:
-        """Applies the layer effect to the surface."""
-        self.layer.fill(self.layer_color)
-        surface.blit(self.layer, (0, 0))
+        for npc, surface in self.bubble.items():
+            sprite_renderer = npc.sprite_controller.get_sprite_renderer()
+            center_x, center_y = get_pos_from_tilepos(
+                current_map, Vector2(npc.tile_pos)
+            )
+            bubble_rect = surface.get_rect()
+            bubble_rect.centerx = sprite_renderer.rect.centerx
+            bubble_rect.bottom = sprite_renderer.rect.top
+            bubble_rect.x = center_x
+            bubble_rect.y = center_y - (
+                surface.get_height()
+                + int(sprite_renderer.rect.height / offset_divisor)
+            )
+            screen_surfaces.append((surface, bubble_rect, layer))
 
     def _get_sprites(self, npc: NPC, layer: int) -> list[WorldSurfaces]:
         """Retrieves sprite surfaces for an NPC."""
         sprite_renderer = npc.sprite_controller.get_sprite_renderer()
-        moving = "walking" if npc.moving else "idle"
+        moving = npc.mover.state.value
         state = sprite_renderer.ANIMATION_MAPPING[moving][npc.facing.value]
         frame = sprite_renderer.get_frame(state, npc)
         return [WorldSurfaces(frame, proj(npc.position), layer)]

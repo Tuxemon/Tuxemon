@@ -7,6 +7,7 @@ from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
+from tuxemon.session import Session
 
 
 @final
@@ -42,21 +43,22 @@ class InputVariableAction(EventAction):
     escape: Optional[str] = None
 
     def check_setcode(self, name: str) -> None:
-        client = self.session.client.event_engine
+        client = self.client.event_engine
         var = f"{self.variable}:{name.lower()}"
         client.execute_action("set_variable", [var], True)
 
-    def start(self) -> None:
+    def start(self, session: Session) -> None:
+        self.client = session.client
         _escape = True if self.escape else False
-        self.session.client.push_state(
+        session.client.push_state(
             "InputMenu",
             prompt=T.translate(self.question),
             callback=self.check_setcode,
             escape_key_exits=_escape,
         )
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         try:
-            self.session.client.get_state_by_name("InputMenu")
+            session.client.get_state_by_name("InputMenu")
         except ValueError:
             self.stop()

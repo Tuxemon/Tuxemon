@@ -9,6 +9,7 @@ from typing import final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -39,8 +40,8 @@ class WithdrawMonsterAction(EventAction):
     variable: str
     character: str
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
         if self.variable not in player.game_variables:
             logger.error(f"Game variable {self.variable} not found")
             return
@@ -52,7 +53,7 @@ class WithdrawMonsterAction(EventAction):
             return
         player.monster_boxes.remove_monster(monster)
 
-        character = get_npc(self.session, self.character)
+        character = get_npc(session, self.character)
         if character is None:
             logger.error(f"{self.character} not found")
             return

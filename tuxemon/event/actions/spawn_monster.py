@@ -14,6 +14,7 @@ from tuxemon.event import get_monster_by_iid, get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from tuxemon.monster import Monster
+from tuxemon.session import Session
 from tuxemon.time_handler import today_ordinal
 from tuxemon.tools import open_dialog
 
@@ -47,20 +48,20 @@ class SpawnMonsterAction(EventAction):
     name = "spawn_monster"
     character: str
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
         mother_id = uuid.UUID(player.game_variables["breeding_mother"])
         father_id = uuid.UUID(player.game_variables["breeding_father"])
 
         mother = get_monster_by_iid(
-            self.session, mother_id
+            session, mother_id
         ) or player.monster_boxes.get_monsters_by_iid(mother_id)
         if mother is None:
             logger.debug(f"Mother {mother_id} not found.")
             return
 
         father = get_monster_by_iid(
-            self.session, father_id
+            session, father_id
         ) or player.monster_boxes.get_monsters_by_iid(father_id)
         if father is None:
             logger.debug(f"Father {father_id} not found.")
@@ -104,7 +105,7 @@ class SpawnMonsterAction(EventAction):
         ]
 
         # Add the child to the character's monsters
-        character = get_npc(self.session, self.character)
+        character = get_npc(session, self.character)
         if character is None:
             logger.error(f"{self.character} not found")
             return
@@ -112,11 +113,11 @@ class SpawnMonsterAction(EventAction):
 
         # Display a message to the player
         msg = T.format("got_new_tuxemon", {"monster_name": child.name})
-        open_dialog(self.session.client, [msg])
+        open_dialog(session.client, [msg])
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         try:
-            self.session.client.get_state_by_name("DialogState")
+            session.client.get_state_by_name("DialogState")
         except ValueError:
             self.stop()
 

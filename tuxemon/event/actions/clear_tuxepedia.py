@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 
 @final
@@ -32,8 +33,8 @@ class ClearTuxepediaAction(EventAction):
     name = "clear_tuxepedia"
     monster_key: Optional[str] = None
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
         if self.monster_key is None:
             player.tuxepedia.reset()
         else:

@@ -9,6 +9,7 @@ from typing import Optional, final
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -35,8 +36,8 @@ class SetBillAction(EventAction):
     bill_slug: str
     amount: Optional[int] = None
 
-    def start(self) -> None:
-        character = get_npc(self.session, self.character)
+    def start(self, session: Session) -> None:
+        character = get_npc(session, self.character)
 
         if character is None:
             logger.error(f"Character '{self.character}' not found")

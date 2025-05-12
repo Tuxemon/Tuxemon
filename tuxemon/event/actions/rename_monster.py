@@ -10,6 +10,7 @@ from typing import final
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -36,21 +37,21 @@ class RenameMonsterAction(EventAction):
         self.monster.name = name
         logger.info(f"Now {T.translate(self.monster.slug)} is {name}!")
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
         if self.variable not in player.game_variables:
             logger.error(f"Game variable {self.variable} not found")
             return
 
         monster_id = uuid.UUID(player.game_variables[self.variable])
-        monster = get_monster_by_iid(self.session, monster_id)
+        monster = get_monster_by_iid(session, monster_id)
         if monster is None:
             logger.error("Monster not found")
             return
 
         self.monster = monster
 
-        self.session.client.push_state(
+        session.client.push_state(
             "InputMenu",
             prompt=T.translate("input_monster_name"),
             callback=self.set_monster_name,
@@ -58,8 +59,8 @@ class RenameMonsterAction(EventAction):
             initial=T.translate(self.monster.slug),
         )
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         try:
-            self.session.client.get_state_by_name("InputMenu")
+            session.client.get_state_by_name("InputMenu")
         except ValueError:
             self.stop()

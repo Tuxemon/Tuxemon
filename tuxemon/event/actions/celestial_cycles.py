@@ -11,6 +11,7 @@ import yaml
 from tuxemon.constants import paths
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -61,8 +62,8 @@ class CelestialCyclesAction(EventAction):
 
     name = "celestial_cycles"
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
         day_of_year = int(player.game_variables.get("day_of_year", 1))
         bodies = Loader.get_config_celestial_cycle(f"{self.name}.yaml")
 

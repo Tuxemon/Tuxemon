@@ -9,6 +9,7 @@ from tuxemon.db import db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.item import Item
+from tuxemon.session import Session
 
 
 @final
@@ -35,10 +36,10 @@ class AddItemAction(EventAction):
     quantity: Optional[int] = None
     npc_slug: Optional[str] = None
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
         self.npc_slug = self.npc_slug or "player"
-        trainer = get_npc(self.session, self.npc_slug)
+        trainer = get_npc(session, self.npc_slug)
         if not trainer:
             raise ValueError(f"NPC '{self.npc_slug}' not found")
 

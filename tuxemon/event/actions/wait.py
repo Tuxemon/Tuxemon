@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 
 @final
@@ -29,9 +30,9 @@ class WaitAction(EventAction):
     seconds: float
 
     # TODO: use event loop time, not wall clock
-    def start(self) -> None:
+    def start(self, session: Session) -> None:
         self.finish_time = time.time() + self.seconds
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         if time.time() >= self.finish_time:
             self.stop()

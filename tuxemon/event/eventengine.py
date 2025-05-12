@@ -286,7 +286,7 @@ class EventEngine:
             return
 
         try:
-            return action.execute()
+            return action.execute(self.session)
         except Exception as e:
             logger.error(f"Error executing action '{action_name}': {e}")
             raise
@@ -469,12 +469,12 @@ class EventEngine:
 
             # with add_error_context(e.map_event, e.current_map_action,
             # self.session):
-            current_action.update()
+            current_action.update(self.session)
 
             if current_action.done:
                 # action finished, so continue and do the next one,
                 # if available
-                current_action.cleanup()
+                current_action.cleanup(self.session)
                 running_event.advance()
                 running_event.current_action = None
                 logger.debug(f"Action finished: {current_action}")
@@ -507,7 +507,7 @@ class EventEngine:
 
         # start the action
         # with add_error_context(e.map_event, next_action, self.session):
-        action.start()
+        action.start(self.session)
         running_event.current_action = action
         return True
 

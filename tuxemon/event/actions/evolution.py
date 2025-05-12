@@ -13,6 +13,7 @@ from tuxemon.event import get_monster_by_iid, get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from tuxemon.monster import Monster
+from tuxemon.session import Session
 from tuxemon.tools import open_choice_dialog, open_dialog
 
 logger = logging.getLogger(__name__)
@@ -44,15 +45,16 @@ class EvolutionAction(EventAction):
     variable: Optional[str] = None
     evolution: Optional[str] = None
 
-    def start(self) -> None:
-        client = self.session.client
-        character = get_npc(self.session, self.npc_slug)
+    def start(self, session: Session) -> None:
+        self.session = session
+        client = session.client
+        character = get_npc(session, self.npc_slug)
         if character is None:
             logger.error(f"{self.npc_slug} not found")
             return
 
         self.character = character
-        self.client = self.session.client
+        self.client = session.client
 
         if len(client.state_manager.active_states) > MAX_ACTIVE_STATES:
             return

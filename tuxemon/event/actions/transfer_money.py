@@ -8,6 +8,7 @@ from typing import final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -36,9 +37,9 @@ class TransferMoneyAction(EventAction):
     amount: int
     slug2: str
 
-    def start(self) -> None:
-        character1 = get_npc(self.session, self.slug1)
-        character2 = get_npc(self.session, self.slug2)
+    def start(self, session: Session) -> None:
+        character1 = get_npc(session, self.slug1)
+        character2 = get_npc(session, self.slug2)
 
         if not character1 or not character2:
             _char = self.slug1 if not character1 else self.slug2

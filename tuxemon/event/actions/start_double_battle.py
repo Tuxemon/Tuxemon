@@ -11,6 +11,7 @@ from tuxemon.db import db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.prepare import MONSTERS_DOUBLE
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -37,11 +38,11 @@ class StartDoubleBattleAction(EventAction):
     character2: Optional[str] = None
     music: Optional[str] = None
 
-    def start(self) -> None:
+    def start(self, session: Session) -> None:
         self.character2 = self.character2 or "player"
 
-        character1 = get_npc(self.session, self.character1)
-        character2 = get_npc(self.session, self.character2)
+        character1 = get_npc(session, self.character1)
+        character2 = get_npc(session, self.character2)
 
         if not character1 or not character2:
             _char = self.character1 if not character1 else self.character2
@@ -59,7 +60,7 @@ class StartDoubleBattleAction(EventAction):
             if fighter.isplayer:
                 env_slug = fighter.game_variables.get("environment", "grass")
             else:
-                env_slug = self.session.player.game_variables.get(
+                env_slug = session.player.game_variables.get(
                     "environment", "grass"
                 )
 
@@ -79,7 +80,7 @@ class StartDoubleBattleAction(EventAction):
         logger.info(
             f"Starting double battle between {fighters[0].name} and {fighters[1].name}!"
         )
-        self.session.client.push_state(
+        session.client.push_state(
             "CombatState",
             players=(fighters[0], fighters[1]),
             combat_type="trainer",
@@ -88,12 +89,12 @@ class StartDoubleBattleAction(EventAction):
         )
         # music
         filename = env.battle_music if not self.music else self.music
-        self.session.client.event_engine.execute_action(
+        session.client.event_engine.execute_action(
             "play_music", [filename], True
         )
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         try:
-            self.session.client.get_state_by_name("CombatState")
+            session.client.get_state_by_name("CombatState")
         except ValueError:
             self.stop()

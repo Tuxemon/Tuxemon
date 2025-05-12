@@ -8,6 +8,7 @@ from typing import Optional, final
 
 from tuxemon.camera import Camera
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
@@ -33,14 +34,14 @@ class CameraPositionAction(EventAction):
     x: Optional[int] = None
     y: Optional[int] = None
 
-    def start(self) -> None:
-        world = self.session.client.get_state_by_name(WorldState)
+    def start(self, session: Session) -> None:
+        world = session.client.get_state_by_name(WorldState)
         camera = world.camera_manager.get_active_camera()
         if camera is None:
             logger.error("No active camera found.")
             return
         if self.x is not None and self.y is not None:
-            map_size = self.session.client.map_size
+            map_size = session.client.map_size
             if not world.boundary_checker.is_within_boundaries(
                 (self.x, self.y)
             ):

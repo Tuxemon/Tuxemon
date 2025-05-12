@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 from tuxemon.tools import number_or_variable, ops_dict
 
 logger = logging.getLogger(__name__)
@@ -42,8 +43,8 @@ class VariableMathAction(EventAction):
     var2: str
     result: Optional[str] = None
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
 
         # Read the parameters
         var = self.var1

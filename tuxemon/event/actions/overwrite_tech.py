@@ -9,6 +9,7 @@ from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
+from tuxemon.session import Session
 from tuxemon.technique.technique import Technique
 
 logger = logging.getLogger(__name__)
@@ -45,8 +46,8 @@ class OverwriteTechAction(EventAction):
         monster.moves.insert(slot, added)
         logger.info(f"{removed.name} replaced by {added.name}")
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
         if self.removed not in player.game_variables:
             logger.error(f"Game variable {self.removed} not found")
             return

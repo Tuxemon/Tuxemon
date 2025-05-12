@@ -34,6 +34,7 @@ if TYPE_CHECKING:
     from tuxemon.item.item import Item
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
+    from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -65,11 +66,13 @@ class CombatAnimations(Menu[None], ABC):
 
     def __init__(
         self,
+        session: Session,
         players: tuple[NPC, NPC],
         graphics: BattleGraphicsModel,
         battle_mode: Literal["single", "double"],
     ) -> None:
         super().__init__()
+        self.session = session
         self.players = list(players)
         self.graphics = graphics
         self.is_double = battle_mode == "double"

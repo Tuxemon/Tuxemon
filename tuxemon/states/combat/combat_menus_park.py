@@ -14,6 +14,7 @@ from tuxemon.monster import Monster
 from tuxemon.states.items.item_menu import ItemMenuState
 
 if TYPE_CHECKING:
+    from tuxemon.session import Session
     from tuxemon.states.combat.combat import CombatState
 
 
@@ -29,8 +30,11 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
     escape_key_exits = False
     columns = 2
 
-    def __init__(self, cmb: CombatState, monster: Monster) -> None:
+    def __init__(
+        self, session: Session, cmb: CombatState, monster: Monster
+    ) -> None:
         super().__init__()
+        self.session = session
         self.combat = cmb
         self.player = cmb.players[0]  # human
         self.enemy = cmb.players[1]  # ai

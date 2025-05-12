@@ -82,6 +82,7 @@ class StartDoubleBattleAction(EventAction):
         )
         session.client.push_state(
             "CombatState",
+            session=session,
             players=(fighters[0], fighters[1]),
             combat_type="trainer",
             graphics=env.battle_graphics,

@@ -98,6 +98,7 @@ class WildEncounterAction(EventAction):
 
         session.client.queue_state(
             "CombatState",
+            session=session,
             players=(player, npc),
             combat_type="monster",
             graphics=environment.battle_graphics,

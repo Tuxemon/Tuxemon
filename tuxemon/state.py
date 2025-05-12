@@ -275,7 +275,6 @@ class State(ABC):
             min_frequency: The minimum allowed execution delay. Defaults to 0.5.
             max_frequency: The maximum allowed execution delay. Defaults to 5.
         """
-        print("cum")
         if frequency == 0.0:
             return
         _frequency = min(max_frequency, max(min_frequency, frequency))

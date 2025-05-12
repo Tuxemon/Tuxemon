@@ -128,4 +128,4 @@ class WildEncounterAction(EventAction):
 
     def cleanup(self, session: Session) -> None:
         npc = None
-        self.session.client.npc_manager.remove_npc(self.name)
+        session.client.npc_manager.remove_npc(self.name)

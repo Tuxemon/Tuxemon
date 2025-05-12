@@ -47,11 +47,11 @@ class CreateNpcAction(EventAction):
 
         slug = self.npc_slug
 
-        if self.session.client.npc_manager.npc_exists(slug):
+        if session.client.npc_manager.npc_exists(slug):
             return
 
         npc = NPC(slug, world=world)
-        self.session.client.npc_manager.add_npc(npc)
+        session.client.npc_manager.add_npc(npc)
 
         client = session.client.event_engine
         client.execute_action(

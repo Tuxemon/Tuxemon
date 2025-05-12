@@ -100,6 +100,7 @@ class RandomBattleAction(EventAction):
         logger.info(f"Starting battle with '{npc.name}'!")
         session.client.push_state(
             "CombatState",
+            session=session,
             players=(player, npc),
             combat_type="trainer",
             graphics=env.battle_graphics,

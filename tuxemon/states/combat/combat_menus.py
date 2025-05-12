@@ -18,7 +18,6 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu, PopUpMenu
 from tuxemon.monster import Monster
-from tuxemon.session import local_session
 from tuxemon.sprite import SpriteGroup, VisualSpriteList
 from tuxemon.states.items.item_menu import ItemMenuState
 from tuxemon.states.monster import MonsterMenuState
@@ -28,6 +27,7 @@ from tuxemon.ui.text import TextArea
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
+    from tuxemon.session import Session
     from tuxemon.states.combat.combat import CombatState
 
 logger = logging.getLogger(__name__)
@@ -47,9 +47,12 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
     escape_key_exits = False
     columns = 2
 
-    def __init__(self, cmb: CombatState, monster: Monster) -> None:
+    def __init__(
+        self, session: Session, cmb: CombatState, monster: Monster
+    ) -> None:
         super().__init__()
         assert monster.owner
+        self.session = session
         self.combat = cmb
         self.character = monster.owner
         self.monster = monster
@@ -104,7 +107,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         run = Technique()
         run.load("menu_run")
         run.combat_state = self.combat
-        if not run.validate_monster(local_session, self.monster):
+        if not run.validate_monster(self.session, self.monster):
             params = {
                 "monster": self.monster.name.upper(),
                 "status": self.monster.status[0].name.lower(),
@@ -123,7 +126,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             swap = Technique()
             swap.load("swap")
             swap.combat_state = self.combat
-            if not swap.validate_monster(local_session, self.monster):
+            if not swap.validate_monster(self.session, self.monster):
                 params = {
                     "monster": self.monster.name.upper(),
                     "status": self.monster.status[0].name.lower(),
@@ -188,14 +191,14 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         def validate_item(item: Optional[Item]) -> bool:
             if item and item.behaviors.throwable:
                 for opponent in self.opponents:
-                    if not item.validate_monster(local_session, opponent):
+                    if not item.validate_monster(self.session, opponent):
                         return False
                 return True
             return True
 
         def validate(item: Item, menu_item: MenuItem[Monster]) -> bool:
             if isinstance(menu_item, Monster):
-                return item.validate_monster(local_session, menu_item)
+                return item.validate_monster(self.session, menu_item)
             return False
 
         def enqueue_item(item: Item, menu_item: MenuItem[Monster]) -> None:
@@ -205,7 +208,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             if target.status:
                 target.status[0].combat_state = self.combat
                 target.status[0].phase = "enqueue_item"
-                result_status = target.status[0].use(local_session, target)
+                result_status = target.status[0].use(self.session, target)
                 if result_status.extras:
                     templates = [
                         T.translate(extra) for extra in result_status.extras
@@ -339,7 +342,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             target = menu_item.game_object
 
             # Check if the technique can be used on the target
-            if not technique.validate_monster(local_session, target):
+            if not technique.validate_monster(self.session, target):
                 params = {"name": technique.name.upper()}
                 msg = T.format("cannot_use_tech_monster", params)
                 tools.open_dialog(self.client, [msg])
@@ -357,7 +360,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             # Pre-check the technique for validity
             self.combat._combat_variables["action_tech"] = technique.slug
             technique = combat.pre_checking(
-                local_session, self.monster, technique, target, self.combat
+                self.session, self.monster, technique, target, self.combat
             )
 
             # Enqueue the action

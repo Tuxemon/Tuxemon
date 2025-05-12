@@ -39,7 +39,7 @@ from collections.abc import Iterable, MutableMapping, Sequence
 from enum import Enum
 from functools import partial
 from itertools import chain
-from typing import Any, Literal, Optional, Union
+from typing import TYPE_CHECKING, Any, Literal, Optional, Union
 
 from pygame.rect import Rect
 from pygame.surface import Surface
@@ -69,9 +69,6 @@ from tuxemon.menu.interface import MenuItem
 from tuxemon.monster import Monster
 from tuxemon.npc import NPC
 from tuxemon.platform.const import buttons
-from tuxemon.platform.events import PlayerInput
-from tuxemon.session import local_session
-from tuxemon.sprite import Sprite
 from tuxemon.state import State
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.status.status import Status
@@ -88,6 +85,11 @@ from .combat_classes import (
     MethodAnimationCache,
 )
 from .reward_system import RewardSystem
+
+if TYPE_CHECKING:
+    from tuxemon.platform.events import PlayerInput
+    from tuxemon.session import Session
+    from tuxemon.sprite import Sprite
 
 logger = logging.getLogger(__name__)
 
@@ -152,6 +154,7 @@ class CombatState(CombatAnimations):
 
     def __init__(
         self,
+        session: Session,
         players: tuple[NPC, NPC],
         graphics: BattleGraphicsModel,
         combat_type: Literal["monster", "trainer"],
@@ -181,7 +184,7 @@ class CombatState(CombatAnimations):
         self._random_tech_hit: dict[Monster, float] = {}
         self._combat_variables: dict[str, Any] = {}
 
-        super().__init__(players, graphics, battle_mode)
+        super().__init__(session, players, graphics, battle_mode)
         self.is_trainer_battle = combat_type == "trainer"
         self.show_combat_dialog()
         self.transition_phase(CombatPhase.BEGIN)
@@ -368,7 +371,7 @@ class CombatState(CombatAnimations):
             for player in self.remaining_players:
                 if self.monsters_in_play[player] and not player.isplayer:
                     for mon in self.monsters_in_play[player]:
-                        battlefield(local_session, mon)
+                        battlefield(self.session, mon)
 
         elif phase == CombatPhase.DECISION:
             self.reset_status_icons()
@@ -382,7 +385,7 @@ class CombatState(CombatAnimations):
                         else:
                             for tech in monster.moves:
                                 tech.recharge()
-                            AI(local_session, self, monster, player)
+                            AI(self.session, self, monster, player)
 
         elif phase == CombatPhase.ACTION:
             self._action_queue.sort()
@@ -398,7 +401,7 @@ class CombatState(CombatAnimations):
             for monster in self.active_monsters:
                 for status in monster.status:
                     # validate status
-                    if status.validate_monster(local_session, monster):
+                    if status.validate_monster(self.session, monster):
                         status.combat_state = self
                         # update counter nr turns
                         status.nr_turn += 1
@@ -416,7 +419,7 @@ class CombatState(CombatAnimations):
             draws = self.defeated_players
             for draw in draws:
                 message = track_battles(
-                    session=local_session,
+                    session=self.session,
                     output="draw",
                     player=draw,
                     players=draws,
@@ -428,7 +431,7 @@ class CombatState(CombatAnimations):
             message = ""
             for winner in winners:
                 message = track_battles(
-                    session=local_session,
+                    session=self.session,
                     output="won",
                     player=winner,
                     players=losers,
@@ -437,7 +440,7 @@ class CombatState(CombatAnimations):
                 )
             for loser in losers:
                 message += "\n" + track_battles(
-                    session=local_session,
+                    session=self.session,
                     output="lost",
                     player=loser,
                     players=winners,
@@ -626,7 +629,7 @@ class CombatState(CombatAnimations):
         if removed is not None and removed.status:
             removed.status[0].combat_state = self
             removed.status[0].phase = "add_monster_into_play"
-            removed.status[0].use(local_session, removed)
+            removed.status[0].use(self.session, removed)
 
         # Create message for combat swap
         format_params = {
@@ -723,7 +726,7 @@ class CombatState(CombatAnimations):
         message = T.format(self.graphics.msgid, params)
         self.text_animations_queue.append((partial(self.alert, message), 0))
         state = self.client.push_state(
-            self.graphics.menu, cmb=self, monster=monster
+            self.graphics.menu, session=self.session, cmb=self, monster=monster
         )
         state.rect = self.calculate_menu_rectangle()
 
@@ -829,7 +832,7 @@ class CombatState(CombatAnimations):
         # monster uses move
         method.advance_round()
         method.combat_state = self
-        result_tech = method.use(local_session, user, target)
+        result_tech = method.use(self.session, user, target)
         context = {
             "user": user.name,
             "name": method.name,
@@ -845,7 +848,7 @@ class CombatState(CombatAnimations):
         if user.status:
             user.status[0].combat_state = self
             user.status[0].phase = "perform_action_tech"
-            result_status = user.status[0].use(local_session, user)
+            result_status = user.status[0].use(self.session, user)
             if result_status.extras:
                 templates = [
                     T.translate(extra) for extra in result_status.extras
@@ -937,7 +940,7 @@ class CombatState(CombatAnimations):
     ) -> None:
         action_time = 0.0
         item.combat_state = self
-        result_item = item.use(local_session, user, target)
+        result_item = item.use(self.session, user, target)
         context = {
             "user": user.name,
             "name": item.name,
@@ -985,7 +988,7 @@ class CombatState(CombatAnimations):
         status.combat_state = self
         status.phase = "perform_action_status"
         status.advance_round()
-        result = status.use(local_session, target)
+        result = status.use(self.session, target)
         context = {
             "name": status.name,
             "target": target.name,
@@ -1056,7 +1059,7 @@ class CombatState(CombatAnimations):
         monster.faint()
         iid = str(monster.instance_id.hex)
         label = f"{self.name.lower()}_faint"
-        set_var(local_session, label, iid)
+        set_var(self.session, label, iid)
 
     def award_experience_and_money(self, monster: Monster) -> None:
         """
@@ -1163,7 +1166,7 @@ class CombatState(CombatAnimations):
         if monster.status:
             monster.status[0].combat_state = self
             monster.status[0].phase = "check_party_hp"
-            result_status = monster.status[0].use(local_session, monster)
+            result_status = monster.status[0].use(self.session, monster)
             if result_status.extras:
                 templates = [
                     T.translate(extra) for extra in result_status.extras

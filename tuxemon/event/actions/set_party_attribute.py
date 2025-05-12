@@ -9,6 +9,7 @@ from typing import final
 from tuxemon.event import get_npc
 from tuxemon.event.actions.common import CommonAction
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -36,8 +37,8 @@ class SetPartyAttributeAction(EventAction):
     attribute: str
     value: str
 
-    def start(self) -> None:
-        character = get_npc(self.session, self.character)
+    def start(self, session: Session) -> None:
+        character = get_npc(session, self.character)
         assert character
         for monster in character.monsters:
             CommonAction.set_entity_attribute(

@@ -7,6 +7,7 @@ from typing import final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 
 @final
@@ -32,12 +33,12 @@ class PathfindAction(EventAction):
     tile_pos_x: int
     tile_pos_y: int
 
-    def start(self) -> None:
-        self.npc = get_npc(self.session, self.npc_slug)
+    def start(self, session: Session) -> None:
+        self.npc = get_npc(session, self.npc_slug)
         assert self.npc
         self.npc.pathfind((self.tile_pos_x, self.tile_pos_y))
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         assert self.npc
         if not self.npc.moving and not self.npc.path:
             self.stop()

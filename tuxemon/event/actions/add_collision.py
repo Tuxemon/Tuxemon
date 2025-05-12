@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
 
@@ -34,8 +35,8 @@ class AddCollisionAction(EventAction):
     x: Optional[int] = None
     y: Optional[int] = None
 
-    def start(self) -> None:
-        world = self.session.client.get_state_by_name(WorldState)
+    def start(self, session: Session) -> None:
+        world = session.client.get_state_by_name(WorldState)
         if self.x and self.y:
             world.add_collision_position(self.label, (self.x, self.y))
         else:

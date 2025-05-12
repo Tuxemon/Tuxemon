@@ -7,6 +7,7 @@ from typing import Optional, final
 
 from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 
 @final
@@ -37,8 +38,8 @@ class PlaySoundAction(EventAction):
     filename: str
     volume: Optional[float] = None
 
-    def start(self) -> None:
-        client = self.session.client
+    def start(self, session: Session) -> None:
+        client = session.client
         sound_volume = client.config.sound_volume
 
         if self.volume is not None:

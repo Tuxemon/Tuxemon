@@ -8,6 +8,7 @@ from typing import Optional, final
 
 from tuxemon.db import EvolutionStage, MonsterModel, db
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 lookup_cache: dict[str, MonsterModel] = {}
 
@@ -42,7 +43,7 @@ class RandomMonsterAction(EventAction):
     shape: Optional[str] = None
     evo: Optional[str] = None
 
-    def start(self) -> None:
+    def start(self, session: Session) -> None:
         if not lookup_cache:
             _lookup_monsters()
 
@@ -75,7 +76,7 @@ class RandomMonsterAction(EventAction):
 
         monster_slug = rd.choice(filters)
 
-        self.session.client.event_engine.execute_action(
+        session.client.event_engine.execute_action(
             "add_monster",
             [
                 monster_slug,

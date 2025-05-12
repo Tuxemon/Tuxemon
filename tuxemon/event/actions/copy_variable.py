@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -33,8 +34,8 @@ class CopyVariableAction(EventAction):
     var1: str
     var2: str
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
         first = self.var1
         second = self.var2
         player.game_variables[first] = player.game_variables[second]

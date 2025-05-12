@@ -7,6 +7,7 @@ from typing import Optional, final
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 
 @final
@@ -27,10 +28,10 @@ class GetPartyMonsterAction(EventAction):
     name = "get_party_monster"
     npc_slug: Optional[str] = None
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
         self.npc_slug = self.npc_slug or "player"
-        trainer = get_npc(self.session, self.npc_slug)
+        trainer = get_npc(session, self.npc_slug)
         if not trainer:
             raise ValueError(f"NPC '{self.npc_slug}' not found")
 

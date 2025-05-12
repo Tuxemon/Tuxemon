@@ -13,6 +13,7 @@ from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import ColorLike, string_to_colorlike
 from tuxemon.item.item import Item
+from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
@@ -49,8 +50,8 @@ class WildEncounterAction(EventAction):
     rgb: Optional[str] = None
     held_item: Optional[str] = None
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
 
         if not check_battle_legal(player):
             logger.warning("battle is not legal, won't start")
@@ -77,10 +78,10 @@ class WildEncounterAction(EventAction):
                 logger.error(f"{item.name} isn't 'holdable'")
         current_monster.wild = True
 
-        event_engine = self.session.client.event_engine
+        event_engine = session.client.event_engine
         event_engine.execute_action("create_npc", [self.name, 0, 0], True)
 
-        npc = get_npc(self.session, self.name)
+        npc = get_npc(session, self.name)
         if npc is None:
             logger.error(f"{self.name} not found")
             return
@@ -95,7 +96,7 @@ class WildEncounterAction(EventAction):
 
         player.tuxepedia.add_entry(current_monster.slug)
 
-        self.session.client.queue_state(
+        session.client.queue_state(
             "CombatState",
             players=(player, npc),
             combat_type="monster",
@@ -103,29 +104,29 @@ class WildEncounterAction(EventAction):
             battle_mode="single",
         )
 
-        self.world = self.session.client.get_state_by_name(WorldState)
+        self.world = session.client.get_state_by_name(WorldState)
         self.world.movement.lock_controls(player)
         self.world.movement.stop_char(player)
 
         rgb: ColorLike = prepare.WHITE_COLOR
         if self.rgb:
             rgb = string_to_colorlike(self.rgb)
-        self.session.client.push_state("FlashTransition", color=rgb)
+        session.client.push_state("FlashTransition", color=rgb)
 
-        self.session.client.event_engine.execute_action(
+        session.client.event_engine.execute_action(
             "play_music", [environment.battle_music], True
         )
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         try:
-            self.session.client.get_queued_state_by_name("CombatState")
+            session.client.get_queued_state_by_name("CombatState")
         except ValueError:
             try:
-                self.session.client.get_state_by_name("CombatState")
+                session.client.get_state_by_name("CombatState")
             except ValueError:
                 self.stop()
 
-    def cleanup(self) -> None:
+    def cleanup(self, session: Session) -> None:
         npc = None
         if self.world:
             self.world.remove_entity(self.name)

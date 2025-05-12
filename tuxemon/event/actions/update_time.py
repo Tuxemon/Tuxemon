@@ -9,6 +9,7 @@ from typing import final
 from tuxemon import prepare
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 from tuxemon.time_handler import (
     calculate_day_night_cycle,
     calculate_day_stage_of_day,
@@ -40,8 +41,8 @@ class UpdateTimeAction(EventAction):
     name = "update_time"
     character: str
 
-    def start(self) -> None:
-        character = get_npc(self.session, self.character)
+    def start(self, session: Session) -> None:
+        character = get_npc(session, self.character)
         if character is None:
             logger.error(f"{self.character} not found")
             return

@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
 
@@ -34,6 +35,6 @@ class UpdateTilePropertiesAction(EventAction):
     label: str
     moverate: float
 
-    def start(self) -> None:
-        world = self.session.client.get_state_by_name(WorldState)
+    def start(self, session: Session) -> None:
+        world = session.client.get_state_by_name(WorldState)
         world.update_tile_property(self.label, self.moverate)

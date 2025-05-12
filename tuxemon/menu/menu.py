@@ -414,7 +414,6 @@ class Menu(Generic[T], State):
                 self.task(next_character, self.character_delay)
 
         self.character_delay = self.default_character_delay
-        self.remove_animations_of(next_character)
         next_character()
 
     def animate_text(

@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 
 @final
@@ -32,8 +33,8 @@ class SetRandomVariableAction(EventAction):
     var_key: str
     var_value: str
 
-    def start(self) -> None:
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        player = session.player
 
         # Split the values
         value: str = ""

@@ -8,6 +8,7 @@ from typing import Optional, final
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import ColorLike, string_to_colorlike
 from tuxemon.prepare import BLACK_COLOR, TRANS_TIME
+from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
 
@@ -34,11 +35,11 @@ class FadeInAction(EventAction):
     trans_time: Optional[float] = None
     rgb: Optional[str] = None
 
-    def start(self) -> None:
+    def start(self, session: Session) -> None:
         pass
 
-    def update(self) -> None:
-        world = self.session.client.get_state_by_name(WorldState)
+    def update(self, session: Session) -> None:
+        world = session.client.get_state_by_name(WorldState)
         _time = TRANS_TIME if self.trans_time is None else self.trans_time
         rgb: ColorLike = BLACK_COLOR
         if self.rgb:

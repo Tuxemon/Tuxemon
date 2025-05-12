@@ -12,6 +12,7 @@ from tuxemon import prepare
 from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.menu.theme import get_theme
+from tuxemon.session import Session
 
 logger = logging.getLogger()
 
@@ -64,9 +65,9 @@ class ChangeBgAction(EventAction):
     image: Optional[str] = None
     category: Optional[str] = None
 
-    def start(self) -> None:
+    def start(self, session: Session) -> None:
         # don't override previous state if we are still in the state.
-        client = self.session.client
+        client = session.client
         if client.current_state is None:
             # obligatory "should not happen"
             raise RuntimeError
@@ -110,7 +111,7 @@ class ChangeBgAction(EventAction):
                 else:
                     client.push_state("ColorState", color=self.background)
 
-    def cleanup(self) -> None:
+    def cleanup(self, session: Session) -> None:
         theme = get_theme()
         theme.background_color = prepare.BACKGROUND_COLOR
         theme.widget_alignment = locals.ALIGN_LEFT

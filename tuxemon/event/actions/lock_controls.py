@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 
 @final
@@ -25,5 +26,5 @@ class LockControlsAction(
 
     name = "lock_controls"
 
-    def start(self) -> None:
-        self.session.client.push_state("SinkState")
+    def start(self, session: Session) -> None:
+        session.client.push_state("SinkState")

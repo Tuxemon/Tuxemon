@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
 
@@ -39,7 +40,7 @@ class StartCinemaModeAction(EventAction):
     aspect_y_ratio: Optional[float] = 2.39
     aspect_x_ratio: Optional[float] = None
 
-    def start(self) -> None:
-        world = self.session.client.get_state_by_name(WorldState)
+    def start(self, session: Session) -> None:
+        world = session.client.get_state_by_name(WorldState)
         world.map_renderer.cinema_y_ratio = self.aspect_y_ratio
         world.map_renderer.cinema_x_ratio = self.aspect_x_ratio

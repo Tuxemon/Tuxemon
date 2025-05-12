@@ -12,6 +12,7 @@ from tuxemon.event.eventaction import EventAction
 from tuxemon.item.item import Item
 from tuxemon.monster import Monster
 from tuxemon.npc import NPC
+from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
@@ -41,8 +42,8 @@ class CreateNpcAction(EventAction):
     tile_pos_y: int
     behavior: Optional[str] = None
 
-    def start(self) -> None:
-        world = self.session.client.get_state_by_name(WorldState)
+    def start(self, session: Session) -> None:
+        world = session.client.get_state_by_name(WorldState)
 
         slug = self.npc_slug
 
@@ -56,7 +57,7 @@ class CreateNpcAction(EventAction):
         npc = NPC(slug, world=world)
         world.npcs.append(npc)
 
-        client = self.session.client.event_engine
+        client = session.client.event_engine
         client.execute_action(
             "char_position", [slug, self.tile_pos_x, self.tile_pos_y], True
         )
@@ -64,7 +65,7 @@ class CreateNpcAction(EventAction):
         npc_details = load_party(slug)
         npc.template = npc_details.template
         npc.forfeit = npc_details.forfeit
-        game_variables = self.session.player.game_variables
+        game_variables = session.player.game_variables
         if npc_details.monsters:
             load_party_monsters(npc, npc_details, game_variables)
         if npc_details.items:

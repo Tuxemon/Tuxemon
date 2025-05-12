@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from typing import Any, final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 
 @final
@@ -21,7 +22,7 @@ class BehaviorAction(EventAction):
     name = "behav"
     behavior: str
 
-    def start(self) -> None:
+    def start(self, session: Session) -> None:
         values = self.behavior.split(":")
         behavior = values[0]
         _action: dict[str, list[Any]] = {}
@@ -33,6 +34,6 @@ class BehaviorAction(EventAction):
             _action["transition_teleport"] = [_destination, int(_x), int(_y)]
             _action["char_face"] = ["player", _direction]
         if _action:
-            client = self.session.client.event_engine
+            client = session.client.event_engine
             for _act, _params in _action.items():
                 client.execute_action(_act, _params, False)

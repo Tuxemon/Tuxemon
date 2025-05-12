@@ -13,6 +13,7 @@ from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from tuxemon.monster import Monster
+from tuxemon.session import Session
 from tuxemon.technique.technique import Technique
 from tuxemon.tools import open_choice_dialog
 
@@ -41,12 +42,12 @@ class DojoMethodAction(EventAction):
     variable_name: str
     option: str
 
-    def start(self) -> None:
-        self.client = self.session.client
-        player = self.session.player
+    def start(self, session: Session) -> None:
+        self.client = session.client
+        player = session.player
         monster_id = uuid.UUID(player.game_variables[self.variable_name])
 
-        monster = get_monster_by_iid(self.session, monster_id)
+        monster = get_monster_by_iid(session, monster_id)
         if monster is None:
             logger.debug(f"Monster {monster_id} not found.")
             return
@@ -67,7 +68,7 @@ class DojoMethodAction(EventAction):
             ]
 
             if not learnable_moves:
-                self.session.player.game_variables["dojo_notech"] = "on"
+                session.player.game_variables["dojo_notech"] = "on"
                 return
 
             # Create menu options for each learnable move
@@ -101,11 +102,11 @@ class DojoMethodAction(EventAction):
                     )
                 )
 
-        open_choice_dialog(self.session.client, menu)
+        open_choice_dialog(session.client, menu)
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         try:
-            self.session.client.get_state_by_name("DialogState")
+            session.client.get_state_by_name("DialogState")
         except ValueError:
             self.stop()
 

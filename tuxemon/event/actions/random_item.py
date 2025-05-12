@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 
 @final
@@ -34,7 +35,7 @@ class RandomItemAction(EventAction):
     quantity: Optional[int] = None
     trainer_slug: Optional[str] = None
 
-    def start(self) -> None:
+    def start(self, session: Session) -> None:
         # check if multiple items
         item: str = ""
         items: list[str] = []
@@ -44,6 +45,6 @@ class RandomItemAction(EventAction):
         else:
             item = self.item_slug
 
-        self.session.client.event_engine.execute_action(
+        session.client.event_engine.execute_action(
             "add_item", [item, self.quantity, self.trainer_slug], True
         )

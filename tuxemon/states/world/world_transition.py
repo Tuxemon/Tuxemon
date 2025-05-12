@@ -11,6 +11,7 @@ from pygame.surface import Surface
 from tuxemon.graphics import ColorLike
 
 if TYPE_CHECKING:
+    from tuxemon.npc import NPC
     from tuxemon.states.world.worldstate import WorldState
 
 
@@ -22,16 +23,26 @@ class WorldTransition:
         self.in_transition = False
 
     def set_transition_surface(self, color: ColorLike) -> None:
-        self.transition_surface = Surface(
-            self.world.client.screen.get_size(), SRCALPHA
-        )
-        self.transition_surface.fill(color)
+        if (
+            self.transition_surface
+            and self.transition_surface.get_at((0, 0)) == color
+        ):
+            return
+
+        new_surface = Surface(self.world.client.screen.get_size(), SRCALPHA)
+        new_surface.fill(color)
+        self.transition_surface = new_surface
 
     def set_transition_state(self, in_transition: bool) -> None:
         """Update the transition state."""
         self.in_transition = in_transition
 
-    def fade_out(self, duration: float, color: ColorLike) -> None:
+    def fade_out(
+        self,
+        duration: float,
+        color: ColorLike,
+        character: Optional[NPC] = None,
+    ) -> None:
         self.set_transition_surface(color)
         self.world.animate(
             self,
@@ -40,11 +51,15 @@ class WorldTransition:
             duration=duration,
             round_values=True,
         )
-        self.world.movement.stop_char(self.world.player)
-        self.world.movement.lock_controls(self.world.player)
+        self.lock_character_controls(character)
         self.set_transition_state(True)
 
-    def fade_in(self, duration: float, color: ColorLike) -> None:
+    def fade_in(
+        self,
+        duration: float,
+        color: ColorLike,
+        character: Optional[NPC] = None,
+    ) -> None:
         self.set_transition_surface(color)
         self.world.animate(
             self,
@@ -53,10 +68,7 @@ class WorldTransition:
             duration=duration,
             round_values=True,
         )
-        self.world.task(
-            lambda: self.world.movement.unlock_controls(self.world.player),
-            max(duration, 0),
-        )
+        self.unlock_character_controls(character, duration)
 
         def cleanup() -> None:
             self.set_transition_state(False)
@@ -67,17 +79,18 @@ class WorldTransition:
         self,
         duration: float,
         color: ColorLike,
+        character: NPC,
         teleport_function: Callable[[], None],
     ) -> None:
         def fade_in() -> None:
-            self.fade_in(duration, color)
+            self.fade_in(duration, color, character)
 
-        self.world.movement.lock_controls(self.world.player)
+        self.world.movement.lock_controls(character)
         self.world.remove_animations_of(self.world)
-        self.world.remove_animations_of(self.set_transition_state)
-        self.world.movement.stop_and_reset_char(self.world.player)
+        self.world.stop_scheduled_callbacks()
+        self.world.movement.stop_and_reset_char(character)
 
-        self.fade_out(duration, color)
+        self.fade_out(duration, color, character)
         task = self.world.task(teleport_function, duration)
         task.chain(fade_in, duration + 0.5)
 
@@ -85,4 +98,19 @@ class WorldTransition:
         if self.in_transition:
             assert self.transition_surface
             self.transition_surface.set_alpha(self.transition_alpha)
-            surface.blit(self.transition_surface, (0, 0))
+            if self.transition_alpha > 0:
+                surface.blit(self.transition_surface, (0, 0))
+
+    def lock_character_controls(self, character: Optional[NPC]) -> None:
+        if character:
+            self.world.movement.stop_char(character)
+            self.world.movement.lock_controls(character)
+
+    def unlock_character_controls(
+        self, character: Optional[NPC], duration: float
+    ) -> None:
+        if character:
+            self.world.task(
+                lambda: self.world.movement.unlock_controls(character),
+                max(duration, 0),
+            )

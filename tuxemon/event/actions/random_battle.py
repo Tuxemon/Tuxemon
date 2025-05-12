@@ -13,6 +13,7 @@ from tuxemon.db import MonsterModel, NpcModel, db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
+from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 from tuxemon.time_handler import today_ordinal
 
@@ -45,7 +46,7 @@ class RandomBattleAction(EventAction):
     min_level: int
     max_level: int
 
-    def start(self) -> None:
+    def start(self, session: Session) -> None:
         if not lookup_cache_npc or not lookup_cache_mon:
             _lookup()
 
@@ -64,12 +65,12 @@ class RandomBattleAction(EventAction):
         npc_filters = list(lookup_cache_npc.values())
         self.opponent = random.choice(npc_filters)
 
-        event_engine = self.session.client.event_engine
+        event_engine = session.client.event_engine
         event_engine.execute_action(
             "create_npc", [self.opponent.slug, 0, 0], True
         )
 
-        npc = get_npc(self.session, self.opponent.slug)
+        npc = get_npc(session, self.opponent.slug)
         if npc is None:
             logger.error(f"{self.opponent.slug} not found")
             return
@@ -88,7 +89,7 @@ class RandomBattleAction(EventAction):
             current_monster.experience_modifier = level
             npc.add_monster(current_monster, len(npc.monsters))
 
-        player = self.session.player
+        player = session.player
         env_slug = player.game_variables.get("environment", "grass")
         env = db.lookup(env_slug, table="environment")
 
@@ -97,7 +98,7 @@ class RandomBattleAction(EventAction):
             return
 
         logger.info(f"Starting battle with '{npc.name}'!")
-        self.session.client.push_state(
+        session.client.push_state(
             "CombatState",
             players=(player, npc),
             combat_type="trainer",
@@ -105,19 +106,19 @@ class RandomBattleAction(EventAction):
             battle_mode="single",
         )
 
-        self.session.client.event_engine.execute_action(
+        session.client.event_engine.execute_action(
             "play_music", [env.battle_music], True
         )
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         try:
-            self.session.client.get_state_by_name("CombatState")
+            session.client.get_state_by_name("CombatState")
         except ValueError:
             self.stop()
 
-    def cleanup(self) -> None:
+    def cleanup(self, session: Session) -> None:
         npc = None
-        world = self.session.client.get_state_by_name(WorldState)
+        world = session.client.get_state_by_name(WorldState)
         if world:
             world.remove_entity(self.opponent.slug)
 

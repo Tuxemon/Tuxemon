@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -36,8 +37,8 @@ class RemoveStateAction(EventAction):
     name = "remove_state"
     state_name: Optional[str] = None
 
-    def start(self) -> None:
-        client = self.session.client
+    def start(self, session: Session) -> None:
+        client = session.client
         state_name = self.state_name
 
         if client.current_state is None:

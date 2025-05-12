@@ -7,6 +7,7 @@ from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.rumble.tools import RumbleParams
+from tuxemon.session import Session
 
 
 @final
@@ -51,7 +52,7 @@ class RumbleAction(EventAction):
     fade_level: float = 0
     direction: float = 16384
 
-    def start(self) -> None:
+    def start(self, session: Session) -> None:
         max_power = 24576  # Maximum rumble intensity
         magnitude = int((self.power * 0.01) * max_power)
 
@@ -67,4 +68,4 @@ class RumbleAction(EventAction):
             fade_level=self.fade_level,
             direction=self.direction,
         )
-        self.session.client.rumble.rumble(params)
+        session.client.rumble.rumble(params)

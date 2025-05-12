@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from typing import final
 
 from tuxemon.event.eventaction import EventAction
+from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -26,5 +27,5 @@ class UnpauseMusicAction(EventAction):
 
     name = "unpause_music"
 
-    def start(self) -> None:
-        self.session.client.current_music.unpause()
+    def start(self, session: Session) -> None:
+        session.client.current_music.unpause()

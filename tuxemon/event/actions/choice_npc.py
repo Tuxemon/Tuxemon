@@ -11,6 +11,7 @@ from typing import final
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T, replace_text
 from tuxemon.npc import NPC
+from tuxemon.session import Session
 from tuxemon.states.choice.choice_npc import ChoiceNpc
 
 logger = logging.getLogger(__name__)
@@ -39,14 +40,14 @@ class ChoiceNpcAction(EventAction):
     choices: str
     variable: str
 
-    def start(self) -> None:
+    def start(self, session: Session) -> None:
         def _set_variable(var_value: str, player: NPC) -> None:
             player.game_variables[self.variable] = var_value
-            self.session.client.pop_state()
+            session.client.pop_state()
 
         # perform text substitutions
-        choices = replace_text(self.session, self.choices)
-        player = self.session.player
+        choices = replace_text(session, self.choices)
+        player = session.player
 
         # make menu options for each string between the colons
         var_list: list[str] = choices.split(":")
@@ -56,10 +57,10 @@ class ChoiceNpcAction(EventAction):
             text = T.translate(val)
             var_menu.append((text, val, partial(_set_variable, val, player)))
 
-        self.session.client.push_state(ChoiceNpc(menu=var_menu))
+        session.client.push_state(ChoiceNpc(menu=var_menu))
 
-    def update(self) -> None:
+    def update(self, session: Session) -> None:
         try:
-            self.session.client.get_state_by_name("ChoiceNpc")
+            session.client.get_state_by_name("ChoiceNpc")
         except ValueError:
             self.stop()

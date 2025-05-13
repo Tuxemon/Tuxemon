@@ -1,10 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
-import os
 import uuid
+from collections import defaultdict
 from collections.abc import Generator, MutableMapping
 from math import cos, pi, sin
+from pathlib import Path
 from typing import Any, Optional
 
 import pytmx
@@ -60,7 +61,61 @@ def parse_yaml(path: str) -> Any:
             raise ValueError(f"Error parsing YAML file: {e}")
 
 
+class EventLoader:
+    """
+    Handles loading collision and specific events from YAML files.
+    """
+
+    def __init__(self) -> None:
+        self.yaml_loader = YAMLEventLoader()
+
+    def load_collision_events(
+        self, yaml_file: Path
+    ) -> MutableMapping[tuple[int, int], Optional[RegionProperties]]:
+        """
+        Loads collision event data from a YAML file.
+
+        Parameters:
+            yaml_file: The path to the YAML file.
+
+        Returns:
+            A dictionary mapping coordinates to collision properties.
+        """
+        try:
+            return self.yaml_loader.load_collision(yaml_file.as_posix())
+        except Exception as e:
+            logger.error(
+                f"Failed to load collision events from {yaml_file}: {e}"
+            )
+            return {}
+
+    def load_specific_events(
+        self, yaml_file: Path, event_type: str
+    ) -> list[EventObject]:
+        """
+        Loads specific events (e.g., 'event' or 'init') from a YAML file.
+
+        Parameters:
+            yaml_file: The path to the YAML file.
+            event_type: The type of event to load.
+
+        Returns:
+            A list of events of the specified type.
+        """
+        try:
+            return self.yaml_loader.load_events(
+                yaml_file.as_posix(), event_type
+            )[event_type]
+        except Exception as e:
+            logger.error(
+                f"Failed to load '{event_type}' events from {yaml_file}: {e}"
+            )
+            return []
+
+
 class MapLoader:
+    def __init__(self) -> None:
+        self.event_loader = EventLoader()
 
     def load_map_data(self, path: str) -> TuxemonMap:
         """
@@ -93,6 +148,68 @@ class MapLoader:
             logger.error(f"Failed to load TMX map from {path}: {e}")
             raise
 
+    def _process_events(self, yaml_files: list[Path]) -> tuple[
+        MutableMapping[tuple[int, int], Optional[RegionProperties]],
+        defaultdict[str, list[EventObject]],
+    ]:
+        """
+        Processes events from YAML files and returns structured data.
+
+        Parameters:
+            yaml_files: List of YAML file paths.
+
+        Returns:
+            Tuple containing collision map and event dictionary.
+        """
+        yaml_collision: MutableMapping[
+            tuple[int, int], Optional[RegionProperties]
+        ] = {}
+        events: defaultdict[str, list[EventObject]] = defaultdict(list)
+
+        for yaml_file in yaml_files:
+            if yaml_file.exists():
+                yaml_collision.update(
+                    self.event_loader.load_collision_events(yaml_file)
+                )
+                events["event"].extend(
+                    self.event_loader.load_specific_events(yaml_file, "event")
+                )
+                events["init"].extend(
+                    self.event_loader.load_specific_events(yaml_file, "init")
+                )
+            else:
+                logger.warning(f"YAML file {yaml_file} not found")
+
+        return yaml_collision, events
+
+    def _merge_events(
+        self,
+        txmn_map: TuxemonMap,
+        yaml_collision: MutableMapping[
+            tuple[int, int], Optional[RegionProperties]
+        ],
+        events: dict[str, list[EventObject]],
+    ) -> None:
+        """
+        Merges processed events into the TuxemonMap.
+
+        Parameters:
+            txmn_map: The TuxemonMap object to update.
+            yaml_collision: Collision event data.
+            events: Dictionary containing events and init sequences.
+        """
+        # Debugging before merging
+        logger.debug(f"TMX events before merging: {len(txmn_map.events)}")
+        logger.debug(f"TMX inits before merging: {len(txmn_map.inits)}")
+
+        txmn_map.collision_map.update(yaml_collision)
+        txmn_map.events = list(txmn_map.events) + events["event"]
+        txmn_map.inits = list(txmn_map.inits) + events["init"]
+
+        # Debugging after merging
+        logger.debug(f"Total TMX events after merge: {len(txmn_map.events)}")
+        logger.debug(f"Total TMX inits after merge: {len(txmn_map.inits)}")
+
     def _process_and_merge_events(
         self, txmn_map: TuxemonMap, path: str
     ) -> None:
@@ -103,45 +220,17 @@ class MapLoader:
             txmn_map: The TuxemonMap object to update.
             path: The path to the TMX map file for deriving YAML paths.
         """
-        yaml_files = [path.replace(".tmx", ".yaml")]
+        yaml_files = [Path(path).with_suffix(".yaml")]
         if txmn_map.scenario:
             _scenario = prepare.fetch("maps", f"{txmn_map.scenario}.yaml")
-            yaml_files.append(_scenario)
+            yaml_files.append(Path(_scenario))
 
-        yaml_collision: MutableMapping[
-            tuple[int, int], Optional[RegionProperties]
-        ] = {}
-
-        yaml_loader = YAMLEventLoader()
-        events = {"event": list(txmn_map.events), "init": list(txmn_map.inits)}
-
-        for yaml_file in yaml_files:
-            if os.path.exists(yaml_file):
-                try:
-                    event = yaml_loader.load_collision(yaml_file)
-                    yaml_collision.update(event)
-                    events["event"].extend(
-                        yaml_loader.load_events(yaml_file, "event")["event"]
-                    )
-                    events["init"].extend(
-                        yaml_loader.load_events(yaml_file, "init")["init"]
-                    )
-                except Exception as e:
-                    logger.error(
-                        f"Failed to load events from {yaml_file}: {e}"
-                    )
-            else:
-                logger.warning(f"YAML file {yaml_file} not found")
-
-        txmn_map.collision_map.update(yaml_collision)
-        txmn_map.events = events["event"]
-        txmn_map.inits = events["init"]
+        yaml_collision, events = self._process_events(yaml_files)
+        self._merge_events(txmn_map, yaml_collision, events)
 
 
 class YAMLEventLoader:
-    """
-    Support for reading game events from a YAML file.
-    """
+    """Support for reading game events from a YAML file."""
 
     def load_collision(
         self, path: str

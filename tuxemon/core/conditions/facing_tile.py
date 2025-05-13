@@ -33,10 +33,12 @@ class FacingTileCondition(CoreCondition):
 
         world = client.get_state_by_name(WorldState)
         label = (
-            world.get_all_tile_properties(world.surface_map, self.facing_tile)
+            world.get_all_tile_properties(
+                client.map_manager.surface_map, self.facing_tile
+            )
             if self.facing_tile in SURFACE_KEYS
             else world.check_collision_zones(
-                world.collision_map, self.facing_tile
+                client.map_manager.collision_map, self.facing_tile
             )
         )
         tiles = list(set(tiles).intersection(label))

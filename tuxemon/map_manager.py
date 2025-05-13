@@ -1,16 +1,17 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
-from collections.abc import Sequence
+from collections.abc import MutableMapping, Sequence
 from dataclasses import dataclass
 from typing import Any, Optional
 
 import yaml
 
 from tuxemon.constants import paths
+from tuxemon.db import Direction
 from tuxemon.event import EventObject
 from tuxemon.event.eventengine import EventEngine
-from tuxemon.map import TuxemonMap
+from tuxemon.map import RegionProperties, TuxemonMap
 
 logger = logging.getLogger(__name__)
 
@@ -44,12 +45,21 @@ class MapManager:
         self.map_name = ""
         self.map_desc = ""
         self.map_inside = False
-        self.map_size = (0, 0)
+        self.map_size: tuple[int, int] = (0, 0)
         self.map_type = MapType()
         self.map_north = ""
         self.map_south = ""
         self.map_east = ""
         self.map_west = ""
+        self.collision_lines_map: set[tuple[tuple[int, int], Direction]] = (
+            set()
+        )
+        self.surface_map: MutableMapping[tuple[int, int], dict[str, float]] = (
+            {}
+        )
+        self.collision_map: MutableMapping[
+            tuple[int, int], Optional[RegionProperties]
+        ] = {}
 
     def load_map(self, map_data: TuxemonMap) -> None:
         """Loads a new map, updates properties, and resets relevant events."""
@@ -62,6 +72,9 @@ class MapManager:
         self.map_desc = map_data.description
         self.map_inside = map_data.inside
         self.map_size = map_data.size
+        self.collision_lines_map = map_data.collision_lines_map
+        self.collision_map = map_data.collision_map
+        self.surface_map = map_data.surface_map
 
         # Reset and update event system
         self.event_engine.reset()

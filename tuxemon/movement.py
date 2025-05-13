@@ -16,7 +16,6 @@ from tuxemon.map import (
 from tuxemon.prepare import CONFIG
 
 if TYPE_CHECKING:
-    from tuxemon.boundary import BoundaryChecker
     from tuxemon.client import LocalPygameClient
     from tuxemon.db import Direction
     from tuxemon.npc import NPC
@@ -124,13 +123,15 @@ class MovementManager:
 
 class Pathfinder:
     def __init__(
-        self, world_state: WorldState, boundary_checker: BoundaryChecker
+        self,
+        client: LocalPygameClient,
+        world_state: WorldState,
     ) -> None:
         """
         Initializes the Pathfinder instance with the given world state.
         """
+        self.client = client
         self.world_state = world_state
-        self.boundary_checker = boundary_checker
 
     def pathfind(
         self, start: tuple[int, int], dest: tuple[int, int], facing: Direction
@@ -160,9 +161,10 @@ class Pathfinder:
             return path
         else:
             character = self.world_state.get_entity_pos(start)
-            if character:
+            if character and self.client.map_manager.current_map:
+                filename = self.client.map_manager.current_map.filename
                 logger.error(
-                    f"{character.name}'s pathfinding failed in {self.world_state.current_map.filename}."
+                    f"{character.name}'s pathfinding failed in {filename}."
                 )
             else:
                 logger.error(f"No character found at start position {start}.")
@@ -233,7 +235,7 @@ class Pathfinder:
         """
         return (
             position not in skip_nodes
-            and self.boundary_checker.is_within_boundaries(position)
+            and self.client.boundary.is_within_boundaries(position)
         )
 
     def get_exits(
@@ -290,7 +292,10 @@ class Pathfinder:
                 )
                 continue
 
-            if (position, direction) in self.world_state.collision_lines_map:
+            if (
+                position,
+                direction,
+            ) in self.client.map_manager.collision_lines_map:
                 logger.debug(
                     f"Wall detected between {position} and {neighbor}."
                 )
@@ -329,7 +334,7 @@ class Pathfinder:
             return False
 
         # Check for collisions with moving entities
-        _map_size = self.world_state.map_size
+        _map_size = self.client.map_manager.map_size
         for neighbor in get_coords_ext(tile, _map_size):
             char = self.world_state.get_entity_pos(neighbor)
             if (

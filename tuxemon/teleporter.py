@@ -10,6 +10,7 @@ from tuxemon import prepare
 from tuxemon.db import Direction
 
 if TYPE_CHECKING:
+    from tuxemon.client import LocalPygameClient
     from tuxemon.npc import NPC
     from tuxemon.states.world.worldstate import WorldState
 
@@ -59,6 +60,8 @@ class Teleporter:
     game world consistency during teleportation.
 
     Attributes:
+        client: The client responsible for rendering and managing the game's
+            graphical interface and user interactions.
         world: The current game world state that contains maps, characters,
             and game logic.
 
@@ -77,9 +80,11 @@ class Teleporter:
 
     def __init__(
         self,
+        client: LocalPygameClient,
         world: WorldState,
         delayed_teleport: Optional[DelayedTeleport] = None,
     ) -> None:
+        self.client = client
         self.world = world
         self.delayed_teleport = delayed_teleport or DelayedTeleport()
 
@@ -144,8 +149,8 @@ class Teleporter:
         logger.debug(f"Preparing {character.slug} for teleportation...")
         self.world.movement.stop_char(character)
 
-        if len(self.world.client.state_manager.active_states) == 2:
-            self.world.client.push_state_with_timeout("TeleporterState", 15)
+        if len(self.client.state_manager.active_states) == 2:
+            self.client.push_state_with_timeout("TeleporterState", 15)
 
         self.world.movement.lock_controls(character)
         logger.info(f"{character.slug} is prepared for teleportation.")
@@ -164,8 +169,8 @@ class Teleporter:
 
     def _switch_map_if_needed(self, map_name: str) -> None:
         if (
-            self.world.current_map is None
-            or map_name != self.world.current_map.filename
+            self.client.map_manager.current_map is None
+            or map_name != self.client.map_manager.current_map.filename
         ):
             target_map = prepare.fetch("maps", map_name)
             if not target_map:
@@ -175,7 +180,7 @@ class Teleporter:
     def _update_character_position(
         self, character: NPC, x: int, y: int
     ) -> None:
-        if not self.world.boundary_checker.is_within_boundaries((x, y)):
+        if not self.client.boundary.is_within_boundaries((x, y)):
             raise ValueError(
                 f"Coordinates ({x}, {y}) are out of map boundaries."
             )

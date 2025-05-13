@@ -55,9 +55,13 @@ class CharFacingTileCondition(EventCondition):
         if len(condition.parameters) > 1:
             value = condition.parameters[1]
             if value in SURFACE_KEYS:
-                label = world.get_all_tile_properties(world.surface_map, value)
+                label = world.get_all_tile_properties(
+                    client.map_manager.surface_map, value
+                )
             else:
-                label = world.check_collision_zones(world.collision_map, value)
+                label = world.check_collision_zones(
+                    client.map_manager.collision_map, value
+                )
             tiles = list(set(npc_tiles).intersection(label))
 
         # return common coordinates

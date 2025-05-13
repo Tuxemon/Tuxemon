@@ -47,6 +47,9 @@ class TestMapManager(unittest.TestCase):
         map_data.south_trans = "south"
         map_data.east_trans = "east"
         map_data.west_trans = "west"
+        map_data.collision_lines_map = set()
+        map_data.surface_map = {}
+        map_data.collision_map = {}
 
         map_manager.load_map(map_data)
 
@@ -64,6 +67,11 @@ class TestMapManager(unittest.TestCase):
         self.assertEqual(map_manager.map_south, map_data.south_trans)
         self.assertEqual(map_manager.map_east, map_data.east_trans)
         self.assertEqual(map_manager.map_west, map_data.west_trans)
+        self.assertEqual(
+            map_manager.collision_lines_map, map_data.collision_lines_map
+        )
+        self.assertEqual(map_manager.surface_map, map_data.surface_map)
+        self.assertEqual(map_manager.collision_map, map_data.collision_map)
 
         event_engine.reset.assert_called_once()
         event_engine.set_current_map.assert_called_once_with(map_data)

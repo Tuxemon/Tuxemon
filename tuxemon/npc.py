@@ -264,7 +264,7 @@ class NPC(Entity[NPCState]):
 
     def check_continue(self) -> None:
         try:
-            tile = self.world.collision_map[self.tile_pos]
+            tile = self.world.client.map_manager.collision_map[self.tile_pos]
             if tile and tile.endure:
                 _direction = (
                     self.facing if len(tile.endure) > 1 else tile.endure[0]
@@ -422,7 +422,7 @@ class NPC(Entity[NPCState]):
         * If the next waypoint is blocked, the waypoint will be removed
         """
         target = self.path[-1]
-        surface_map = self.world.surface_map
+        surface_map = self.world.client.map_manager.surface_map
         direction = get_direction(proj(self.position), target)
         self.set_facing(direction)
         try:

@@ -14,6 +14,7 @@ import pygame
 from pygame.surface import Surface
 
 from tuxemon.audio import MusicPlayerState, SoundManager
+from tuxemon.boundary import BoundaryChecker
 from tuxemon.cli.processor import CommandProcessor
 from tuxemon.config import TuxemonConfig
 from tuxemon.event.eventengine import EventEngine
@@ -102,6 +103,7 @@ class LocalPygameClient:
 
         self.map_loader = MapLoader()
         self.map_manager = MapManager(self.event_engine)
+        self.boundary = BoundaryChecker()
 
         # Set up a variable that will keep track of currently playing music.
         self.current_music = MusicPlayerState()

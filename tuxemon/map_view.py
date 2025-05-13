@@ -456,7 +456,7 @@ class DebugRenderer:
         # We need to iterate over all collidable objects. Start with walls/collision boxes.
         box_iter = map(
             lambda box: collision_box_to_pgrect(current_map, box),
-            self.world_state.collision_map,
+            self.world_state.client.map_manager.collision_map,
         )
 
         # Next, deal with solid NPCs.

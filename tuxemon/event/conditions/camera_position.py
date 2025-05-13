@@ -42,7 +42,7 @@ class CameraPositionCondition(EventCondition):
             logger.error("No active camera found.")
             return False
         cx, cy = unproject(camera.position)
-        if not world.boundary_checker.is_within_boundaries((pos_x, pos_y)):
+        if not session.client.boundary.is_within_boundaries((pos_x, pos_y)):
             logger.error(
                 f"({pos_x, pos_y}) is outside the map bounds {map_size}"
             )

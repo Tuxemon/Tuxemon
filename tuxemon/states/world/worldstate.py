@@ -18,10 +18,9 @@ from typing import (
 from pygame.surface import Surface
 
 from tuxemon import networking, prepare
-from tuxemon.boundary import BoundaryChecker
 from tuxemon.camera import Camera, CameraManager
 from tuxemon.db import Direction
-from tuxemon.map import RegionProperties, TuxemonMap
+from tuxemon.map import RegionProperties
 from tuxemon.map_view import MapRenderer
 from tuxemon.movement import MovementManager, Pathfinder
 from tuxemon.platform.const import intentions
@@ -68,9 +67,8 @@ class WorldState(State):
         from tuxemon.player import Player
 
         self.movement = MovementManager(self.client)
-        self.boundary_checker = BoundaryChecker()
-        self.teleporter = Teleporter(self)
-        self.pathfinder = Pathfinder(self, self.boundary_checker)
+        self.teleporter = Teleporter(self.client, self)
+        self.pathfinder = Pathfinder(self.client, self)
         # Provide access to the screen surface
         self.screen = self.client.screen
         self.tile_size = prepare.TILE_SIZE
@@ -82,29 +80,13 @@ class WorldState(State):
         self.npcs: list[NPC] = []
         self.npcs_off_map: list[NPC] = []
 
-        ######################################################################
-        #                              Map                                   #
-        ######################################################################
-
-        self.current_map: TuxemonMap
-        self.collision_map: MutableMapping[
-            tuple[int, int], Optional[RegionProperties]
-        ] = {}
-        self.surface_map: MutableMapping[tuple[int, int], dict[str, float]] = (
-            {}
-        )
-        self.collision_lines_map: set[tuple[tuple[int, int], Direction]] = (
-            set()
-        )
-        self.map_size: tuple[int, int] = (0, 0)
-
         self.transition_manager = WorldTransition(self)
 
         if local_session.player is None:
             new_player = Player(prepare.PLAYER_NPC, world=self)
             local_session.player = new_player
 
-        self.camera = Camera(local_session.player, self.boundary_checker)
+        self.camera = Camera(local_session.player, self.client.boundary)
         self.map_renderer = MapRenderer(self, self.screen, self.camera)
         self.camera_manager = CameraManager()
         self.camera_manager.add_camera(self.camera)
@@ -168,7 +150,9 @@ class WorldState(State):
 
         """
         self.screen = surface
-        self.map_renderer.draw(surface, self.current_map)
+        if self.client.map_manager.current_map is None:
+            raise ValueError("Unable to draw the game world.")
+        self.map_renderer.draw(surface, self.client.map_manager.current_map)
         self.transition_manager.draw(surface)
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
@@ -243,7 +227,8 @@ class WorldState(State):
                 )
                 return None
             elif event.button == intentions.RELOAD_MAP:
-                self.current_map.reload_tiles()
+                assert self.client.map_manager.current_map
+                self.client.map_manager.current_map.reload_tiles()
                 return None
 
         # Return event for others to process
@@ -376,8 +361,10 @@ class WorldState(State):
         if label not in prepare.SURFACE_KEYS:
             return
 
-        for coord in self.get_all_tile_properties(self.surface_map, label):
-            props = self.surface_map.get(coord)
+        for coord in self.get_all_tile_properties(
+            self.client.map_manager.surface_map, label
+        ):
+            props = self.client.map_manager.surface_map.get(coord)
             if props and props.get(label) != moverate:
                 props[label] = moverate
 
@@ -393,8 +380,10 @@ class WorldState(State):
             True if all tiles have the expected moverate, False otherwise.
         """
         return all(
-            self.surface_map[coord].get(label) == moverate
-            for coord in self.get_all_tile_properties(self.surface_map, label)
+            self.client.map_manager.surface_map[coord].get(label) == moverate
+            for coord in self.get_all_tile_properties(
+                self.client.map_manager.surface_map, label
+            )
         )
 
     def check_collision_zones(
@@ -434,7 +423,7 @@ class WorldState(State):
             pos: The X, Y coordinates (as floats) indicating the entity's position.
         """
         coords = (int(pos[0]), int(pos[1]))
-        region = self.collision_map.get(coords)
+        region = self.client.map_manager.collision_map.get(coords)
 
         enter_from = region.enter_from if entity.isplayer and region else []
         exit_from = region.exit_from if entity.isplayer and region else []
@@ -449,7 +438,7 @@ class WorldState(State):
             key=key,
         )
 
-        self.collision_map[coords] = prop
+        self.client.map_manager.collision_map[coords] = prop
 
     def remove_collision(self, tile_pos: tuple[int, int]) -> None:
         """
@@ -458,7 +447,7 @@ class WorldState(State):
         Parameters:
             tile_pos: The X, Y tile coordinates to be removed from the collision map.
         """
-        region = self.collision_map.get(tile_pos)
+        region = self.client.map_manager.collision_map.get(tile_pos)
         if not region:
             return  # Nothing to remove
 
@@ -470,13 +459,15 @@ class WorldState(State):
                 None,
                 region.key,
             )
-            self.collision_map[tile_pos] = prop
+            self.client.map_manager.collision_map[tile_pos] = prop
         else:
             # Remove region
-            del self.collision_map[tile_pos]
+            del self.client.map_manager.collision_map[tile_pos]
 
     def add_collision_label(self, label: str) -> None:
-        coords = self.check_collision_zones(self.collision_map, label)
+        coords = self.check_collision_zones(
+            self.client.map_manager.collision_map, label
+        )
         properties = RegionProperties(
             enter_from=[],
             exit_from=[],
@@ -486,7 +477,7 @@ class WorldState(State):
         )
         if coords:
             for coord in coords:
-                self.collision_map[coord] = properties
+                self.client.map_manager.collision_map[coord] = properties
 
     def add_collision_position(
         self, label: str, position: tuple[int, int]
@@ -498,7 +489,7 @@ class WorldState(State):
             key=label,
             entity=None,
         )
-        self.collision_map[position] = properties
+        self.client.map_manager.collision_map[position] = properties
 
     def remove_collision_label(self, label: str) -> None:
         properties = RegionProperties(
@@ -508,10 +499,12 @@ class WorldState(State):
             key=label,
             entity=None,
         )
-        coords = self.check_collision_zones(self.collision_map, label)
+        coords = self.check_collision_zones(
+            self.client.map_manager.collision_map, label
+        )
         if coords:
             for coord in coords:
-                self.collision_map[coord] = properties
+                self.client.map_manager.collision_map[coord] = properties
 
     def get_collision_map(self) -> CollisionMap:
         """
@@ -539,21 +532,23 @@ class WorldState(State):
             )
 
         # Add surface map entries to the collision dictionary
-        for coords, surface in self.surface_map.items():
+        for coords, surface in self.client.map_manager.surface_map.items():
             for label, value in surface.items():
                 if float(value) == 0:
                     collision_dict[coords] = self._get_region_properties(
                         coords, label
                     )
 
-        collision_dict.update({k: v for k, v in self.collision_map.items()})
+        collision_dict.update(
+            {k: v for k, v in self.client.map_manager.collision_map.items()}
+        )
 
         return dict(collision_dict)
 
     def _get_region_properties(
         self, coords: tuple[int, int], entity_or_label: Union[NPC, str]
     ) -> RegionProperties:
-        region = self.collision_map.get(coords)
+        region = self.client.map_manager.collision_map.get(coords)
         if region:
             if isinstance(entity_or_label, str):
                 return RegionProperties(
@@ -632,15 +627,9 @@ class WorldState(State):
         """
         logger.debug(f"Loading map '{map_name}' using Client's MapLoader.")
         map_data = self.client.map_loader.load_map_data(map_name)
-
-        self.current_map = map_data
-        self.collision_map = map_data.collision_map
-        self.surface_map = map_data.surface_map
-        self.collision_lines_map = map_data.collision_lines_map
-        self.map_size = map_data.size
-
-        self.boundary_checker.update_boundaries(self.map_size)
         self.client.map_manager.load_map(map_data)
+        map_size = self.client.map_manager.map_size
+        self.client.boundary.update_boundaries(map_size)
         self.clear_npcs()
 
     def clear_npcs(self) -> None:
@@ -674,12 +663,12 @@ class WorldState(State):
             ``True`` if there is an Npc to interact with. ``False`` otherwise.
 
         """
-        collision_dict = self.player.get_collision_map(
-            self
-        )  # FIXME: method doesn't exist
+        collision_dict = self.get_collision_map()
         player_tile_pos = self.player.tile_pos
         collisions = self.player.collision_check(
-            player_tile_pos, collision_dict, self.collision_lines_map
+            player_tile_pos,
+            collision_dict,
+            self.client.map_manager.collision_lines_map,
         )
         if not collisions:
             pass

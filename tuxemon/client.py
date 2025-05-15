@@ -30,7 +30,6 @@ from tuxemon.rumble import RumbleManager
 from tuxemon.session import local_session
 from tuxemon.state import State, StateManager
 from tuxemon.state_draw import EventDebugDrawer, Renderer, StateDrawer
-from tuxemon.states.world.worldstate import WorldState
 
 StateType = TypeVar("StateType", bound=State)
 
@@ -104,7 +103,7 @@ class LocalPygameClient:
 
         self.npc_manager = NPCManager()
         self.map_loader = MapLoader()
-        self.map_manager = MapManager(self.event_engine)
+        self.map_manager = MapManager()
         self.boundary = BoundaryChecker()
 
         # Set up a variable that will keep track of currently playing music.

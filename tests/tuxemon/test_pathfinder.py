@@ -22,10 +22,9 @@ class TestPathfinder(unittest.TestCase):
         self.client.map_manager.map_size = (10, 10)
         self.client.map_manager.collision_lines_map = {}
         self.client.boundary = MagicMock(spec=BoundaryChecker)
+        self.client.npc_manager = MagicMock(spec=NPCManager)
         self.world_state = MagicMock(spec=WorldState)
         self.world_state.player = MagicMock(spec=NPC)
-        self.client = MagicMock(spec=LocalPygameClient)
-        self.client.npc_manager = MagicMock(spec=NPCManager)
         self.world_state.player.facing = MagicMock(spec=Direction)
         self.pathfinder = Pathfinder(self.client, self.world_state)
 

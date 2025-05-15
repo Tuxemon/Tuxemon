@@ -514,6 +514,10 @@ class WorldState(State):
         """
         logger.debug(f"Loading map '{map_name}' using Client's MapLoader.")
         map_data = self.client.map_loader.load_map_data(map_name)
+
+        self.client.event_engine.reset()
+        self.client.event_engine.set_current_map(map_data)
+
         self.client.map_manager.load_map(map_data)
         self.client.npc_manager.clear_npcs()
         map_size = self.client.map_manager.map_size

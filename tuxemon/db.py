@@ -133,13 +133,6 @@ class MissionStatus(str, Enum):
     removed = "removed"
 
 
-class EntityFacing(str, Enum):
-    front = "front"
-    back = "back"
-    left = "left"
-    right = "right"
-
-
 class MusicStatus(str, Enum):
     playing = "playing"
     paused = "paused"

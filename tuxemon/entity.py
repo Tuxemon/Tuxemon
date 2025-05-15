@@ -111,13 +111,15 @@ class Mover:
 
     def running(self) -> None:
         """Boosts moverate to running speed."""
-        self.moverate = CONFIG.player_runrate
-        self.state = EntityState.RUNNING
+        if self.body.velocity != Vector3(0, 0, 0):
+            self.moverate = CONFIG.player_runrate
+            self.state = EntityState.RUNNING
 
     def walking(self) -> None:
         """Resets moverate back to walking speed."""
-        self.moverate = CONFIG.player_walkrate
-        self.state = EntityState.WALKING
+        if self.body.velocity != Vector3(0, 0, 0):
+            self.moverate = CONFIG.player_walkrate
+            self.state = EntityState.WALKING
 
 
 class Entity(Generic[SaveDict]):

@@ -387,7 +387,8 @@
   </object>
   <object id="55" name="Default Template" type="event" x="208" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="set_template player,default"/>
+    <property name="act1" value="set_layer"/>
+    <property name="act2" value="set_template player,default"/>
     <property name="cond1" value="is char_sprite player,invisible"/>
     <property name="cond2" value="is variable_set zircon_argon:done"/>
    </properties>

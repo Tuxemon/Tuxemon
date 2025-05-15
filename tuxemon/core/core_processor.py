@@ -43,6 +43,8 @@ class EffectProcessor:
         target: Monster,
     ) -> TechEffectResult:
         meta_result = TechEffectResult(name=source.name)
+        if not self.effects:
+            return meta_result
         for effect in self.effects:
             if isinstance(effect, TechEffect):
                 result = effect.apply(session, source, user, target)
@@ -56,6 +58,8 @@ class EffectProcessor:
         target: Optional[Monster],
     ) -> ItemEffectResult:
         meta_result = ItemEffectResult(name=source.name)
+        if not self.effects:
+            return meta_result
         for effect in self.effects:
             if isinstance(effect, ItemEffect):
                 result = effect.apply(session, source, target)
@@ -69,6 +73,8 @@ class EffectProcessor:
         target: Monster,
     ) -> StatusEffectResult:
         meta_result = StatusEffectResult(name=source.name)
+        if not self.effects:
+            return meta_result
         for effect in self.effects:
             if isinstance(effect, StatusEffect):
                 result = effect.apply(session, source, target)

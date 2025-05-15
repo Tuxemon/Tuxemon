@@ -19,6 +19,7 @@ from tuxemon.surfanim import FlipAxes
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
+    from tuxemon.plugin import PluginObject
     from tuxemon.session import Session
     from tuxemon.states.combat.combat import CombatState
 
@@ -33,8 +34,10 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
 class Technique:
     """
     Particular skill that tuxemon monsters can use in battle.
-
     """
+
+    effect_manager: Optional[EffectManager] = None
+    condition_manager: Optional[ConditionManager] = None
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         save_data = save_data or {}
@@ -67,10 +70,17 @@ class Technique:
         self.use_failure = ""
         self.use_tech = ""
 
-        self.effect_manager = EffectManager(TechEffect, paths.CORE_EFFECT_PATH)
-        self.condition_manager = ConditionManager(
-            CoreCondition, paths.CORE_CONDITION_PATH
-        )
+        if Technique.effect_manager is None:
+            Technique.effect_manager = EffectManager(
+                TechEffect, paths.CORE_EFFECT_PATH
+            )
+        if Technique.condition_manager is None:
+            Technique.condition_manager = ConditionManager(
+                CoreCondition, paths.CORE_CONDITION_PATH
+            )
+
+        self.effects: Sequence[PluginObject] = []
+        self.conditions: Sequence[PluginObject] = []
 
         self.set_state(save_data)
 
@@ -117,10 +127,12 @@ class Technique:
         self.range = results.range or Range.melee
         self.tech_id = results.tech_id
 
-        self.effects = self.effect_manager.parse_effects(results.effects)
-        self.conditions = self.condition_manager.parse_conditions(
-            results.conditions
-        )
+        if self.effect_manager and results.effects:
+            self.effects = self.effect_manager.parse_effects(results.effects)
+        if self.condition_manager and results.conditions:
+            self.conditions = self.condition_manager.parse_conditions(
+                results.conditions
+            )
         self.condition_handler = ConditionProcessor(self.conditions)
         self.effect_handler = EffectProcessor(self.effects)
         self.target = results.target.model_dump()

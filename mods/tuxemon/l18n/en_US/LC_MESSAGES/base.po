@@ -9655,6 +9655,15 @@ msgstr "I'm working, boss, I'm working! \n Oh, it's just you. You know, we throw
 msgid "spyder_papertown_danteworking"
 msgstr "Hah, I knew you were up to something!\n Well, looks like you've got yourself a little troublemaker now.\n Hope you're ready - once they find a home, they don't forget it!"
 
+msgid "spyder_papertown_dante1"
+msgstr "Look who decided to swing by again!\n What, did you miss me? You're looking sharper than last time - I swear, you're leveling up every time I see you."
+
+msgid "spyder_papertown_dante2"
+msgstr "Guess what? Granny Piper finally decided to go big - she opened a daycare!\n Gotta respect the hustle. Not everyone's cut out to train tuxemon; some folks just take care of them instead.\n Me? I stick to selling stuff and making sarcastic comments."
+
+msgid "spyder_papertown_dante3"
+msgstr "Wow. You really pulled it off.\n First the thieves, now this? I gotta say, I knew you had guts, but this... this is big.\n The city's gonna feel this one for a long time. Hope you're ready for whatever comes next.\n Speaking of disasters - my boss is breathing down my neck because the store's PC isn't working.\n Probably some network problem, but hey, I sell stuff, I don't fix tech.\n If you know anything about computers, please save me before I get blamed for breaking it."
+
 msgid "spyder_cotton_nurse1" 
 msgstr "Welcome to the Cathedral Centre! \n Do you want to heal your Tuxemon?"
 

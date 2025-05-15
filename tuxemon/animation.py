@@ -53,9 +53,9 @@ def remove_animations_of(
         group: A Pygame group containing `Animation` instances.
     """
     animations = {ani for ani in group if isinstance(ani, Animation)}
-    to_remove = {
-        ani for ani in animations if target in {i[0] for i in ani.targets}
-    }
+    to_remove = [
+        ani for ani in animations if target in [i[0] for i in ani.targets]
+    ]
     if not to_remove:
         logger.debug(f"No animations found for target: {target}")
     group.remove(*to_remove)

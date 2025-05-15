@@ -203,7 +203,7 @@ events:
     - char_face spyder_grannypiper,up
     - translated_dialog spyder_billie_flashback_end
     - set_variable billie_grandma:done
-    - set_layer
+    - set_layer 0:0:0:255
     - unlock_controls
     - set_variable flashback:off
     - transition_teleport spyder_paper_rival_downstairs.tmx,7,9

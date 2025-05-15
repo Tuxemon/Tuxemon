@@ -235,7 +235,7 @@ events:
     - is variable_set stage_of_day:night
     - not variable_set flashback:on
     - is location_inside
-    - not check_world layer,255:255:255:0
+    - is check_world layer
     type: "event"
   Day Cycle Outside:
     actions:

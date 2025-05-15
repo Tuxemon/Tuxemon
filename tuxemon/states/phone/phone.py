@@ -12,9 +12,9 @@ from pygame_menu import locals
 from pygame_menu.widgets.selection.highlight import HighlightSelection
 
 from tuxemon import prepare
-from tuxemon.db import MapType
 from tuxemon.item.item import Item
 from tuxemon.locale import T
+from tuxemon.map_manager import MAP_TYPES
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.tools import open_dialog
 
@@ -69,9 +69,11 @@ class NuPhone(PygameMenuState):
         ]
 
         # menu
-        network = [MapType.town, MapType.clinic, MapType.shop]
+        network = [
+            mt for mt in MAP_TYPES if mt.name in {"town", "clinic", "shop"}
+        ]
         desc = T.translate("nu_phone")
-        if self.client.map_type in network:
+        if self.client.map_manager.map_type in network:
             desc = T.translate("omnichannel_mobile")
         else:
             desc = T.translate("no_signal")

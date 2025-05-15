@@ -101,15 +101,6 @@ class SeenStatus(str, Enum):
     caught = "caught"
 
 
-class MapType(str, Enum):
-    notype = "notype"
-    town = "town"
-    route = "route"
-    clinic = "clinic"
-    shop = "shop"
-    dungeon = "dungeon"
-
-
 class StatType(str, Enum):
     armour = "armour"
     dodge = "dodge"
@@ -131,13 +122,6 @@ class MissionStatus(str, Enum):
     completed = "completed"
     failed = "failed"
     removed = "removed"
-
-
-class EntityFacing(str, Enum):
-    front = "front"
-    back = "back"
-    left = "left"
-    right = "right"
 
 
 class MusicStatus(str, Enum):

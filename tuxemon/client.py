@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 import time
-from collections.abc import Generator, Iterable, Mapping, Sequence
+from collections.abc import Mapping, Sequence
 from enum import Enum
 from os.path import basename
 from threading import Thread
@@ -14,14 +14,14 @@ import pygame
 from pygame.surface import Surface
 
 from tuxemon.audio import MusicPlayerState, SoundManager
+from tuxemon.boundary import BoundaryChecker
 from tuxemon.cli.processor import CommandProcessor
 from tuxemon.config import TuxemonConfig
-from tuxemon.db import MapType
-from tuxemon.event import EventObject
 from tuxemon.event.eventengine import EventEngine
+from tuxemon.event.eventmanager import EventManager
 from tuxemon.event.eventpersist import EventPersist
-from tuxemon.map import TuxemonMap
 from tuxemon.map_loader import MapLoader
+from tuxemon.map_manager import MapManager
 from tuxemon.networking import NetworkManager
 from tuxemon.npc_manager import NPCManager
 from tuxemon.platform.events import PlayerInput
@@ -70,10 +70,6 @@ class LocalPygameClient:
         self.show_fps = config.show_fps
         self.current_time = 0.0
 
-        # somehow this value is being patched somewhere
-        self.events: Sequence[EventObject] = []
-        self.inits: list[EventObject] = []
-
         # setup controls
         self.input_manager = InputManager(config)
 
@@ -96,16 +92,20 @@ class LocalPygameClient:
         self.network_manager = NetworkManager(self)
         self.network_manager.initialize()
 
-        self.map_loader = MapLoader()
-        self.npc_manager = NPCManager()
         # Set up our combat engine and router.
         # self.combat_engine = CombatEngine(self)
         # self.combat_router = CombatRouter(self, self.combat_engine)
 
         # Set up our game's event engine which executes actions based on
         # conditions defined in map files.
+        self.event_manager = EventManager(self.state_manager)
         self.event_engine = EventEngine(local_session)
         self.event_persist = EventPersist()
+
+        self.npc_manager = NPCManager()
+        self.map_loader = MapLoader()
+        self.map_manager = MapManager(self.event_engine)
+        self.boundary = BoundaryChecker()
 
         # Set up a variable that will keep track of currently playing music.
         self.current_music = MusicPlayerState()
@@ -135,108 +135,8 @@ class LocalPygameClient:
         return self.state == ClientState.RUNNING
 
     def on_state_change(self) -> None:
-        logger.debug("resetting controls due to state change")
-        self.release_controls()
-
-    def load_map(self, map_data: TuxemonMap) -> None:
-        """
-        Load a map.
-
-        Parameters:
-            map_data: The map to load.
-        """
-        self.events = map_data.events
-        self.inits = list(map_data.inits)
-        self.event_engine.reset()
-        self.event_engine.set_current_map(map_data)
-        self.maps = map_data.maps
-
-        # Map properties
-        self.map_slug = map_data.slug
-        self.map_name = map_data.name
-        self.map_desc = map_data.description
-        self.map_inside = map_data.inside
-        self.map_size = map_data.size
-
-        # Check if the map type exists
-        self.map_type = MapType.notype
-        if map_data.map_type in list(MapType):
-            self.map_type = MapType(map_data.map_type)
-        else:
-            logger.warning(
-                f"The type '{map_data.map_type}' doesn't exist."
-                f"By default assigned {MapType.notype}!"
-            )
-
-        # Cardinal points
-        self.map_north = map_data.north_trans
-        self.map_south = map_data.south_trans
-        self.map_east = map_data.east_trans
-        self.map_west = map_data.west_trans
-
-    def process_events(
-        self,
-        events: Iterable[PlayerInput],
-    ) -> Generator[PlayerInput, None, None]:
-        """
-        Process all events for this frame.
-
-        Events are first sent to the active state.
-        States can choose to keep the events or return them.
-        If they are kept, no other state nor the event engine will get that
-        event.
-        If they are returned, they will be passed to the next state.
-        Kept or returned, the state may process it.
-        Eventually, if all states have returned the event, it will go to the
-        event engine.
-        The event engine also can keep or return the event.
-        All unused events will be added to Client.key_events each frame.
-
-        Conditions in the event system can then check that list.
-        States can "keep" events by simply returning None from
-        State.process_event
-
-        Parameters:
-            events: Sequence of events.
-
-        Yields:
-            Unprocessed event.
-        """
-        game_event: Optional[PlayerInput]
-
-        for game_event in events:
-            if game_event:
-                game_event = self._send_event(game_event)
-                if game_event:
-                    yield game_event
-
-    def _send_event(
-        self,
-        game_event: PlayerInput,
-    ) -> Optional[PlayerInput]:
-        """
-        Send event down processing chain
-
-        Probably a poorly named method.  Beginning from top state,
-        process event, then as long as a new event is returned from
-        the state, the event will be processed by the next active
-        state in the stack.
-
-        The final destination for the event will be the event engine.
-
-        Parameters:
-            game_event: Event to process.
-
-        Returns:
-            The event if no state keeps it. If some state keeps the
-            event then the return value is ``None``.
-        """
-        for state in self.active_states:
-            _game_event = state.process_event(game_event)
-            if _game_event is None:
-                break
-            return _game_event
-        return None
+        logger.debug("State change detected. Resetting controls.")
+        self.event_manager.release_controls(self.input_manager)
 
     def main(self) -> None:
         """
@@ -294,10 +194,7 @@ class LocalPygameClient:
         events = self.input_manager.process_events()
 
         # process the events and collect the unused ones
-        key_events = list(self.process_events(events))
-
-        # TODO: phase this out in favor of event-dispatch
-        self.key_events = key_events
+        self.key_events = list(self.event_manager.process_events(events))
 
         # Run our event engine which will check to see if game conditions
         # are met and run an action associated with that condition.
@@ -319,15 +216,6 @@ class LocalPygameClient:
         """Handles necessary cleanup before shutting down."""
         self.current_music.stop()
         logger.info("Performing cleanup before exiting...")
-
-    def release_controls(self) -> None:
-        """
-        Send inputs which release held buttons/axis
-
-        Use to prevent player from holding buttons while state changes.
-        """
-        events = self.input_manager.event_queue.release_controls()
-        self.key_events = list(self.process_events(events))
 
     def update_states(self, time_delta: float) -> None:
         """
@@ -351,16 +239,6 @@ class LocalPygameClient:
         )
         self.frame_number += 1
 
-    def get_map_filepath(self) -> Optional[str]:
-        """
-        Gets the filepath of the current map.
-
-        Returns:
-            File path of the current map, if there is one.
-        """
-        world = self.get_state_by_name(WorldState)
-        return world.current_map.filename
-
     def get_map_name(self) -> str:
         """
         Gets the name of the current map.
@@ -368,7 +246,7 @@ class LocalPygameClient:
         Returns:
             Name of the current map.
         """
-        map_path = self.get_map_filepath()
+        map_path = self.map_manager.get_map_filepath()
         if map_path is None:
             raise ValueError("Name of the map requested when no map is active")
 

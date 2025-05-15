@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.core.core_condition import CoreCondition
-from tuxemon.db import MapType
+from tuxemon.map_manager import map_types_list
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -16,18 +16,17 @@ if TYPE_CHECKING:
 @dataclass
 class LocationTypeCondition(CoreCondition):
     """
-    Checks against the location type the player's in.
-
-    Shop, center, town, route, dungeon or notype.
-
+    Determines whether the player's current location type matches a
+    specified category.
     """
 
     name = "location_type"
     location_type: str
 
     def test_with_monster(self, session: Session, target: Monster) -> bool:
-        types = [maps.value for maps in MapType]
         return (
-            self.location_type in types
-            and session.client.map_type == self.location_type
+            self.location_type in map_types_list
+            and session.client.map_manager.is_in_location_type(
+                self.location_type
+            )
         )

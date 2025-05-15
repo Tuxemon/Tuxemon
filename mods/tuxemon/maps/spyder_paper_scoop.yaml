@@ -50,6 +50,36 @@ events:
     - is variable_set intro_scoop:done
     - is party_size player,greater_than,0
     type: "event"
+  Talk Dante Player Returns:
+    actions:
+    - translated_dialog spyder_papertown_dante1
+    - set_variable spokendante:yes
+    behav:
+    - talk spyder_dante
+    conditions:
+    - is variable_set zoolanderdefeat:yes
+    - not variable_set spokendante:yes
+    type: "event"
+  Talk Dante Daycare:
+    actions:
+    - translated_dialog spyder_papertown_dante2
+    behav:
+    - talk spyder_dante
+    conditions:
+    - is variable_set zoolanderdefeat:yes
+    - not variable_set omnichannelradioannounce:yes
+    - is variable_set spokendante:yes
+    type: "event"
+  Talk Dante Omnichannel:
+    actions:
+    - translated_dialog spyder_papertown_dante3
+    behav:
+    - talk spyder_dante
+    conditions:
+    - is variable_set zoolanderdefeat:yes
+    - is variable_set omnichannelradioannounce:yes
+    - is variable_set spokendante:yes
+    type: "event"
   Potions:
     actions:
     - translated_dialog potions_in_shop

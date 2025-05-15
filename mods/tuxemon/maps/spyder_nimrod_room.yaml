@@ -71,7 +71,7 @@ events:
     - remove_npc spyder_nimrod_zircon
     - set_variable zircon_argon:done
     - set_variable flashback:off
-    - set_layer
+    - set_layer 0:0:0:255
     - unlock_controls
     - transition_teleport spyder_nimrod_middle.tmx,14,10
     conditions:
@@ -112,7 +112,7 @@ events:
     - remove_npc spyder_nimrod_thatcher
     - set_variable enforcers_response:done
     - set_variable flashback:off
-    - set_layer
+    - set_layer 0:0:0:255
     - unlock_controls
     - char_face player,right
     - transition_teleport spyder_wayfarer_inn1.tmx,9,6

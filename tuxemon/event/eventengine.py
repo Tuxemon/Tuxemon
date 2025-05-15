@@ -311,8 +311,8 @@ class EventEngine:
             token = RunningEvent(map_event)
             self.running_events[map_event.id] = token
 
-            if map_event in self.session.client.inits:
-                self.session.client.inits.remove(map_event)
+            if map_event in self.session.client.map_manager.inits:
+                self.session.client.map_manager.inits.remove(map_event)
 
     def process_map_event(self, map_event: EventObject) -> None:
         """
@@ -370,11 +370,11 @@ class EventEngine:
         # do the "init" events.  this will be done just once
         # TODO: make event engine generic, so can be used in global scope,
         # not just maps
-        if self.session.client.inits:
-            self.process_map_events(self.session.client.inits)
+        if self.session.client.map_manager.inits:
+            self.process_map_events(self.session.client.map_manager.inits)
 
         # process any other events
-        self.process_map_events(self.session.client.events)
+        self.process_map_events(self.session.client.map_manager.events)
 
     def cancel_event(self, event_id: int) -> None:
         """Cancels the event with the given ID."""
@@ -535,7 +535,7 @@ def add_error_context(
     except Exception:
         from lxml import etree
 
-        file_name = session.client.get_map_filepath()
+        file_name = session.client.map_manager.get_map_filepath()
         tree = etree.parse(file_name)
         event_node = tree.find("//object[@id='%s']" % event.id)
         msg = None

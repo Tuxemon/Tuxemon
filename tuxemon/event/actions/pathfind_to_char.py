@@ -55,7 +55,10 @@ class PathfindToCharAction(EventAction):
             target_entity.tile_pos, self.moving_entity.tile_pos
         )
         closest = get_coord_direction(
-            target_entity.tile_pos, direction, client.map_size, distance
+            target_entity.tile_pos,
+            direction,
+            client.map_manager.map_size,
+            distance,
         )
 
         self.moving_entity.set_facing(direction)

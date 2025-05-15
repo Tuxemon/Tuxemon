@@ -399,12 +399,12 @@ def replace_text(session: Session, text: str) -> str:
         "${{money}}": str(player.money_controller.money_manager.get_money()),
         "${{tuxepedia_seen}}": str(player.tuxepedia.get_seen_count()),
         "${{tuxepedia_caught}}": str(player.tuxepedia.get_caught_count()),
-        "${{map_name}}": client.map_name,
-        "${{map_desc}}": client.map_desc,
-        "${{north}}": client.map_north,
-        "${{south}}": client.map_south,
-        "${{east}}": client.map_east,
-        "${{west}}": client.map_west,
+        "${{map_name}}": client.map_manager.map_name,
+        "${{map_desc}}": client.map_manager.map_desc,
+        "${{north}}": client.map_manager.map_north,
+        "${{south}}": client.map_manager.map_south,
+        "${{east}}": client.map_manager.map_east,
+        "${{west}}": client.map_manager.map_west,
     }
 
     # Add unit-specific replacements

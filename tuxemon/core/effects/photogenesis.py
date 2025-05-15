@@ -61,7 +61,7 @@ class PhotogenesisEffect(TechEffect):
 
         factors = {self.name: multiplier}
 
-        if tech.hit and not session.client.map_inside:
+        if tech.hit and not session.client.map_manager.map_inside:
             heal = formula.simple_heal(tech, user, factors)
             if heal == 0:
                 extra = [tech.use_failure]

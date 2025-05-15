@@ -41,6 +41,6 @@ class LocationNameCondition(EventCondition):
         else:
             names.append(name)
 
-        if client.map_slug in names:
+        if client.map_manager.map_slug in names:
             ret = True
         return ret

@@ -384,7 +384,7 @@ class Menu(Generic[T], State):
         self.menu_sprites.empty()
         self.animations.empty()
 
-        self.client.release_controls()
+        self.client.event_manager.release_controls(self.client.input_manager)
 
         del self.arrow
         del self.menu_items

@@ -27,4 +27,4 @@ class LocationInsideCondition(EventCondition):
 
     def test(self, session: Session, condition: MapCondition) -> bool:
         client = session.client
-        return client.map_inside
+        return client.map_manager.map_inside

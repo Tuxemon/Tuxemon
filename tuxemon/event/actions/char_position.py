@@ -40,7 +40,7 @@ class CharPositionAction(EventAction):
             return
 
         position = (self.tile_pos_x, self.tile_pos_y)
-        if not character.world.boundary_checker.is_within_boundaries(position):
+        if not session.client.boundary.is_within_boundaries(position):
             raise ValueError(
                 f"Character is outside the boundaries of the map at ({position[0]}, {position[1]})"
             )

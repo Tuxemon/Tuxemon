@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 import os
 from dataclasses import dataclass
+from enum import Enum
 from itertools import chain
 from typing import TYPE_CHECKING, Optional
 
@@ -16,7 +17,6 @@ from pygame.surface import Surface
 
 from tuxemon import prepare
 from tuxemon.camera import project
-from tuxemon.db import EntityFacing
 from tuxemon.graphics import ColorLike, apply_cinema_bars, load_and_scale
 from tuxemon.map import get_pos_from_tilepos, proj
 from tuxemon.math import Vector2
@@ -30,6 +30,13 @@ if TYPE_CHECKING:
     from tuxemon.map import TuxemonMap
     from tuxemon.npc import NPC
     from tuxemon.states.world.worldstate import WorldState
+
+
+class EntityFacing(str, Enum):
+    front = "front"
+    back = "back"
+    left = "left"
+    right = "right"
 
 
 @dataclass
@@ -280,7 +287,7 @@ class MapRenderer:
         self.screen = screen
         self.camera = camera
         self.layer = Surface(self.screen.get_size(), pygame.SRCALPHA)
-        self.layer_color: ColorLike = prepare.TRANSPARENT_COLOR
+        self.layer_color: Optional[ColorLike] = None
         self.bubble: dict[NPC, Surface] = {}
         self.cinema_x_ratio: Optional[float] = None
         self.cinema_y_ratio: Optional[float] = None
@@ -292,7 +299,8 @@ class MapRenderer:
         self._prepare_map_rendering(current_map)
         screen_surfaces = self._get_and_position_surfaces(current_map)
         self._draw_map_and_sprites(surface, screen_surfaces, current_map)
-        self._apply_effects(surface)
+        if self.layer_color:
+            self._apply_effects(surface)
         self._apply_cinema_bars(surface)
         if prepare.CONFIG.collision_map:
             self.debug_renderer.draw_debug(current_map, surface)
@@ -333,7 +341,8 @@ class MapRenderer:
 
     def _apply_effects(self, surface: Surface) -> None:
         """Applies visual effects to the surface."""
-        self.layer.fill(self.layer_color)
+        if self.layer_color and self.layer.get_at((0, 0)) != self.layer_color:
+            self.layer.fill(self.layer_color)
         surface.blit(self.layer, (0, 0))
 
     def _apply_cinema_bars(self, surface: Surface) -> None:
@@ -443,7 +452,7 @@ class DebugRenderer:
 
     def _draw_events(self, current_map: TuxemonMap, surface: Surface) -> None:
         """Draws event-related debug information on the surface."""
-        for event in self.world_state.client.events:
+        for event in self.world_state.client.map_manager.events:
             vector = Vector2(event.x, event.y)
             topleft = get_pos_from_tilepos(current_map, vector)
             size = project((event.w, event.h))
@@ -456,7 +465,7 @@ class DebugRenderer:
         # We need to iterate over all collidable objects. Start with walls/collision boxes.
         box_iter = map(
             lambda box: collision_box_to_pgrect(current_map, box),
-            self.world_state.collision_map,
+            self.world_state.client.map_manager.collision_map,
         )
 
         # Next, deal with solid NPCs.

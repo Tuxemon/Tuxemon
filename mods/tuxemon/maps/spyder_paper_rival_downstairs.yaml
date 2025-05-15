@@ -108,6 +108,7 @@ events:
     type: "event"
   Default Template:
     actions:
+    - set_layer
     - set_template player,default
     conditions:
     - is char_sprite player,invisible

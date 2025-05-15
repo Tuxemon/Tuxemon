@@ -23,6 +23,7 @@ from tuxemon.surfanim import FlipAxes
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
+    from tuxemon.plugin import PluginObject
     from tuxemon.session import Session
     from tuxemon.states.combat.combat import CombatState
 
@@ -37,8 +38,10 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
 class Status:
     """
     Particular status that tuxemon monsters can be affected.
-
     """
+
+    effect_manager: Optional[EffectManager] = None
+    condition_manager: Optional[ConditionManager] = None
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         save_data = save_data or {}
@@ -71,12 +74,17 @@ class Status:
         self.use_success = ""
         self.use_failure = ""
 
-        self.effect_manager = EffectManager(
-            StatusEffect, paths.CORE_EFFECT_PATH
-        )
-        self.condition_manager = ConditionManager(
-            CoreCondition, paths.CORE_CONDITION_PATH
-        )
+        if Status.effect_manager is None:
+            Status.effect_manager = EffectManager(
+                StatusEffect, paths.CORE_EFFECT_PATH
+            )
+        if Status.condition_manager is None:
+            Status.condition_manager = ConditionManager(
+                CoreCondition, paths.CORE_CONDITION_PATH
+            )
+
+        self.effects: Sequence[PluginObject] = []
+        self.conditions: Sequence[PluginObject] = []
 
         self.set_state(save_data)
 
@@ -128,10 +136,12 @@ class Status:
         self.range = results.range or Range.melee
         self.cond_id = results.cond_id or self.cond_id
 
-        self.effects = self.effect_manager.parse_effects(results.effects)
-        self.conditions = self.condition_manager.parse_conditions(
-            results.conditions
-        )
+        if self.effect_manager and results.effects:
+            self.effects = self.effect_manager.parse_effects(results.effects)
+        if self.condition_manager and results.conditions:
+            self.conditions = self.condition_manager.parse_conditions(
+                results.conditions
+            )
         self.condition_handler = ConditionProcessor(self.conditions)
         self.effect_handler = EffectProcessor(self.effects)
 

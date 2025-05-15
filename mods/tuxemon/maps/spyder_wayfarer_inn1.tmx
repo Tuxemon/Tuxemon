@@ -430,7 +430,8 @@
   </object>
   <object id="91" name="Default Template" type="event" x="144" y="80" width="16" height="16">
    <properties>
-    <property name="act1" value="set_template player,default"/>
+    <property name="act1" value="set_layer"/>
+    <property name="act2" value="set_template player,default"/>
     <property name="cond1" value="is char_sprite player,invisible"/>
     <property name="cond2" value="is variable_set enforcers_response:done"/>
    </properties>

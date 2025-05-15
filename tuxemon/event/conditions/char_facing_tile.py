@@ -48,16 +48,20 @@ class CharFacingTileCondition(EventCondition):
         tile_location = None
         # get all the coordinates around the npc
         client = session.client
-        npc_tiles = get_coords(character.tile_pos, client.map_size)
+        npc_tiles = get_coords(character.tile_pos, client.map_manager.map_size)
 
         # check if the NPC is facing a specific set of tiles
         world = session.client.get_state_by_name(WorldState)
         if len(condition.parameters) > 1:
             value = condition.parameters[1]
             if value in SURFACE_KEYS:
-                label = world.get_all_tile_properties(world.surface_map, value)
+                label = world.get_all_tile_properties(
+                    client.map_manager.surface_map, value
+                )
             else:
-                label = world.check_collision_zones(world.collision_map, value)
+                label = world.check_collision_zones(
+                    client.map_manager.collision_map, value
+                )
             tiles = list(set(npc_tiles).intersection(label))
 
         # return common coordinates

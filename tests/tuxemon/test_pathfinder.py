@@ -7,6 +7,7 @@ from tuxemon.boundary import BoundaryChecker
 from tuxemon.client import LocalPygameClient
 from tuxemon.db import Direction
 from tuxemon.map import RegionProperties, dirs2
+from tuxemon.map_manager import MapManager
 from tuxemon.movement import Pathfinder, PathfindNode, get_tile_moverate
 from tuxemon.npc import NPC
 from tuxemon.npc_manager import NPCManager
@@ -16,16 +17,17 @@ from tuxemon.states.world.worldstate import WorldState
 
 class TestPathfinder(unittest.TestCase):
     def setUp(self):
+        self.client = MagicMock(spec=LocalPygameClient)
+        self.client.map_manager = MagicMock(spec=MapManager)
+        self.client.map_manager.map_size = (10, 10)
+        self.client.map_manager.collision_lines_map = {}
+        self.client.boundary = MagicMock(spec=BoundaryChecker)
         self.world_state = MagicMock(spec=WorldState)
         self.world_state.player = MagicMock(spec=NPC)
         self.client = MagicMock(spec=LocalPygameClient)
         self.client.npc_manager = MagicMock(spec=NPCManager)
         self.world_state.player.facing = MagicMock(spec=Direction)
-        self.world_state.client = self.client
-        self.boundary_checker = MagicMock(spec=BoundaryChecker)
-        self.pathfinder = Pathfinder(self.world_state, self.boundary_checker)
-        self.world_state.collision_lines_map = {}
-        self.world_state.map_size = (10, 10)
+        self.pathfinder = Pathfinder(self.client, self.world_state)
 
     def test_pathfind_success(self):
         start = (0, 0)
@@ -66,18 +68,18 @@ class TestPathfinder(unittest.TestCase):
         position = (1, 1)
         skip_nodes = {(2, 2)}
 
-        self.boundary_checker.is_within_boundaries.return_value = True
+        self.client.boundary.is_within_boundaries.return_value = True
 
         self.assertTrue(
             self.pathfinder.is_valid_position(position, skip_nodes)
         )
 
-        self.boundary_checker.is_within_boundaries.return_value = False
+        self.client.boundary.is_within_boundaries.return_value = False
         self.assertFalse(
             self.pathfinder.is_valid_position(position, skip_nodes)
         )
 
-        self.boundary_checker.is_within_boundaries.return_value = True
+        self.client.boundary.is_within_boundaries.return_value = True
         self.assertFalse(self.pathfinder.is_valid_position((2, 2), skip_nodes))
 
     def test_is_tile_traversable(self):
@@ -172,7 +174,7 @@ class TestPathfinder(unittest.TestCase):
     def test_is_valid_position_out_of_bounds(self):
         position = (10, 10)
         skip_nodes = set()
-        self.boundary_checker.is_within_boundaries.return_value = False
+        self.client.boundary.is_within_boundaries.return_value = False
         self.assertFalse(
             self.pathfinder.is_valid_position(position, skip_nodes)
         )
@@ -249,7 +251,7 @@ class TestPathfinder(unittest.TestCase):
             ),
         }
         self.world_state.get_collision_map.return_value = collision_map
-        self.boundary_checker.is_within_boundaries.return_value = True
+        self.client.boundary.is_within_boundaries.return_value = True
 
         exits = self.pathfinder.get_exits(position, Direction.down)
 
@@ -262,7 +264,7 @@ class TestPathfinder(unittest.TestCase):
             position: MagicMock(endure=None, exit_from=[]),
         }
         self.world_state.get_collision_map.return_value = collision_map
-        self.boundary_checker.is_within_boundaries.return_value = True
+        self.client.boundary.is_within_boundaries.return_value = True
 
         exits = self.pathfinder.get_exits(position, Direction.down)
 
@@ -292,7 +294,7 @@ class TestPathfinder(unittest.TestCase):
             position: MagicMock(endure=None, exit_from=[]),
         }
         self.world_state.get_collision_map.return_value = collision_map
-        self.boundary_checker.is_within_boundaries.return_value = False
+        self.client.boundary.is_within_boundaries.return_value = False
 
         exits = self.pathfinder.get_exits(position, Direction.down)
 
@@ -324,7 +326,7 @@ class TestPathfinder(unittest.TestCase):
             ),
         }
         self.world_state.get_collision_map.return_value = collision_map
-        self.boundary_checker.is_within_boundaries.return_value = True
+        self.client.boundary.is_within_boundaries.return_value = True
 
         skip_nodes = {(2, 1)}
         exits = self.pathfinder.get_exits(
@@ -340,7 +342,7 @@ class TestPathfinder(unittest.TestCase):
             (1, 2): MagicMock(endure=None, exit_from=[]),
         }
         self.world_state.get_collision_map.return_value = collision_map
-        self.boundary_checker.is_within_boundaries.return_value = False
+        self.client.boundary.is_within_boundaries.return_value = False
 
         exits = self.pathfinder.get_exits(position, Direction.down)
 

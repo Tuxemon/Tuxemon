@@ -76,7 +76,7 @@ class CharWanderAction(EventAction):
                 return
 
             # character stops if the player looks at it
-            tiles = get_coords(player.tile_pos, client.map_size)
+            tiles = get_coords(player.tile_pos, client.map_manager.map_size)
             direction = get_direction(player.tile_pos, character.tile_pos)
             if character.tile_pos in tiles and player.facing == direction:
                 return

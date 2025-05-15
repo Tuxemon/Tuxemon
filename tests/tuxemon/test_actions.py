@@ -7,7 +7,7 @@ from tuxemon import prepare
 from tuxemon.db import Direction
 from tuxemon.entity import Body, Mover
 from tuxemon.event.eventengine import EventEngine
-from tuxemon.math import Point3
+from tuxemon.math import Point3, Vector3
 from tuxemon.player import Player
 from tuxemon.session import local_session
 from tuxemon.tuxepedia import Tuxepedia
@@ -204,12 +204,6 @@ class TestCharacterActions(unittest.TestCase):
     def setUp(self):
         self.mock_screen = MagicMock()
         local_session.client = MagicMock()
-        local_session.client.config.player_walkrate = (
-            prepare.CONFIG.player_walkrate
-        )
-        local_session.client.config.player_runrate = (
-            prepare.CONFIG.player_runrate
-        )
         with patch.object(Player, "__init__", mockPlayer):
             self.action = EventEngine(local_session)
             local_session.player = Player()
@@ -230,11 +224,13 @@ class TestCharacterActions(unittest.TestCase):
 
     def test_char_walk(self):
         self.player.set_moverate(6.9)
+        self.player.body.velocity = Vector3(1, 0, 0)
         self.action.execute_action("char_walk", ["player"])
         self.assertEqual(self.player.moverate, prepare.CONFIG.player_walkrate)
 
     def test_char_run(self):
         self.player.set_moverate(6.9)
+        self.player.body.velocity = Vector3(1, 0, 0)
         self.action.execute_action("char_run", ["player"])
         self.assertEqual(self.player.moverate, prepare.CONFIG.player_runrate)
 

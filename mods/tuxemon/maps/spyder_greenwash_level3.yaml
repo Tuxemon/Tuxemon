@@ -90,7 +90,6 @@ events:
     - set_variable incident_greenwash:done
     - unlock_controls
     - set_variable flashback:off
-    - set_layer
     - transition_teleport spyder_candy_cafe.tmx,4,7
     - char_face player,left
     conditions:
@@ -120,7 +119,7 @@ events:
     - remove_npc spyder_greenwash_chip
     - remove_npc spyder_greenwash_selby
     - set_variable unveildefossilator:done
-    - set_layer
+    - set_layer 0:0:0:255
     - unlock_controls
     - set_variable flashback:off
     - transition_teleport spyder_greenwash_level2.tmx,9,2
@@ -152,7 +151,7 @@ events:
     - pathfind spyder_greenwash_looten,2,4
     - remove_npc spyder_greenwash_looten
     - set_variable dempsey_flashback:done
-    - set_layer
+    - set_layer 0:0:0:255
     - unlock_controls
     - camera_position
     - set_variable flashback:off

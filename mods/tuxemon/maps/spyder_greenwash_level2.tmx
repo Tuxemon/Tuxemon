@@ -393,10 +393,20 @@
     <property name="cond1" value="is variable_set dempsey_flashback:yes"/>
    </properties>
   </object>
-  <object id="136" name="Default" type="event" x="176" y="16" width="16" height="16">
+  <object id="136" name="Default Fossilator" type="event" x="176" y="16" width="16" height="16">
    <properties>
-    <property name="act1" value="set_template player,default"/>
+    <property name="act1" value="set_layer"/>
+    <property name="act2" value="set_template player,default"/>
     <property name="cond1" value="is char_sprite player,invisible"/>
+    <property name="cond2" value="is variable_set unveildefossilator:done"/>
+   </properties>
+  </object>
+  <object id="114" name="Default Dempsey" type="event" x="176" y="16" width="16" height="16">
+   <properties>
+    <property name="act1" value="set_layer"/>
+    <property name="act2" value="set_template player,default"/>
+    <property name="cond1" value="is char_sprite player,invisible"/>
+    <property name="cond2" value="is variable_set dempsey_flashback:done"/>
    </properties>
   </object>
  </objectgroup>

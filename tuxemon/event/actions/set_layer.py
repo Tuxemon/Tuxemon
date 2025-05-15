@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon import prepare
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import string_to_colorlike
 from tuxemon.session import Session
@@ -37,7 +36,6 @@ class SetLayerAction(EventAction):
     rgb: Optional[str] = None
 
     def start(self, session: Session) -> None:
-        transparent = prepare.TRANSPARENT_COLOR
-        rgb = string_to_colorlike(self.rgb) if self.rgb else transparent
+        rgb = string_to_colorlike(self.rgb) if self.rgb else None
         world = session.client.get_state_by_name(WorldState)
         world.map_renderer.layer_color = rgb

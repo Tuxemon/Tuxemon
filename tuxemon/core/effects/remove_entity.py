@@ -29,7 +29,7 @@ class RemoveEntityEffect(ItemEffect):
         remove: bool = False
         client = session.client
         player = session.player
-        tiles = get_coords(player.tile_pos, client.map_size)
+        tiles = get_coords(player.tile_pos, client.map_manager.map_size)
 
         for coords in tiles:
             npc = get_npc_pos(session, coords)

@@ -22,6 +22,7 @@ from tuxemon.surfanim import FlipAxes
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.npc import NPC
+    from tuxemon.plugin import PluginObject
     from tuxemon.session import Session
     from tuxemon.states.combat.combat import CombatState
 
@@ -35,6 +36,9 @@ SIMPLE_PERSISTANCE_ATTRIBUTES = (
 
 class Item:
     """An item object is an item that can be used either in or out of combat."""
+
+    effect_manager: Optional[EffectManager] = None
+    condition_manager: Optional[ConditionManager] = None
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         save_data = save_data or {}
@@ -60,10 +64,17 @@ class Item:
         self.usable_in: Sequence[State] = []
         self.cost: int = 0
 
-        self.effect_manager = EffectManager(ItemEffect, paths.CORE_EFFECT_PATH)
-        self.condition_manager = ConditionManager(
-            CoreCondition, paths.CORE_CONDITION_PATH
-        )
+        if Item.effect_manager is None:
+            Item.effect_manager = EffectManager(
+                ItemEffect, paths.CORE_EFFECT_PATH
+            )
+        if Item.condition_manager is None:
+            Item.condition_manager = ConditionManager(
+                CoreCondition, paths.CORE_CONDITION_PATH
+            )
+
+        self.effects: Sequence[PluginObject] = []
+        self.conditions: Sequence[PluginObject] = []
 
         self.set_state(save_data)
 
@@ -100,10 +111,12 @@ class Item:
         self.category = results.category or ItemCategory.none
         self.sprite = results.sprite
         self.usable_in = results.usable_in
-        self.effects = self.effect_manager.parse_effects(results.effects)
-        self.conditions = self.condition_manager.parse_conditions(
-            results.conditions
-        )
+        if self.effect_manager and results.effects:
+            self.effects = self.effect_manager.parse_effects(results.effects)
+        if self.condition_manager and results.conditions:
+            self.conditions = self.condition_manager.parse_conditions(
+                results.conditions
+            )
         self.condition_handler = ConditionProcessor(self.conditions)
         self.effect_handler = EffectProcessor(self.effects)
         self.surface = graphics.load_and_scale(self.sprite)

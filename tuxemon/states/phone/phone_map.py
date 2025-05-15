@@ -104,7 +104,7 @@ class NuPhoneMap(PygameMenuState):
                     x = map_data[0]
                     y = map_data[1]
                     # player is here
-                    if self.client.map_slug == key:
+                    if self.client.map_manager.map_slug == key:
                         underline = True
                         selectable = False
 

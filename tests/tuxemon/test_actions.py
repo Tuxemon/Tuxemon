@@ -54,6 +54,20 @@ class TestVariableActions(unittest.TestCase):
         self.action.execute_action("clear_variable", ["name"])
         self.assertIsNone(self.player.game_variables.get("name"))
 
+    def test_clear_multiple_variables_exist(self):
+        self.action.execute_action(
+            "set_variable", ["first:jimmy", "last:saul"]
+        )
+        self.action.execute_action("clear_variable", ["first", "last"])
+        self.assertIsNone(self.player.game_variables.get("first"))
+        self.assertIsNone(self.player.game_variables.get("last"))
+
+    def test_clear_multiple_variables_exist_and_not(self):
+        self.action.execute_action("set_variable", ["last:saul"])
+        self.action.execute_action("clear_variable", ["first", "last"])
+        self.assertIsNone(self.player.game_variables.get("first"))
+        self.assertIsNone(self.player.game_variables.get("last"))
+
     def test_copy_variable(self):
         self.action.execute_action("set_variable", ["name:jeff"])
         self.action.execute_action("copy_variable", ["friend", "name"])

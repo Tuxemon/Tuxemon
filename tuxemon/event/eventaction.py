@@ -4,10 +4,13 @@ from __future__ import annotations
 
 import logging
 from abc import ABC, abstractmethod
+from collections.abc import Sequence
 from dataclasses import dataclass, field
 from types import TracebackType
-from typing import ClassVar, Optional
+from typing import Any, ClassVar, Optional
 
+from tuxemon.constants.paths import ACTIONS_PATH
+from tuxemon.plugin import load_plugins
 from tuxemon.session import Session
 from tuxemon.tools import cast_dataclass_parameters
 
@@ -116,7 +119,6 @@ class EventAction(ABC):
     Parameters:
         session: Object containing the session information.
         parameters: Parameters of the action.
-
     """
 
     name: ClassVar[str]
@@ -257,3 +259,62 @@ class EventAction(ABC):
         except Exception as e:
             logger.error(f"Error cleaning up action: {e}")
             raise
+
+
+class ActionManager:
+    def __init__(self) -> None:
+        self.actions = load_plugins(
+            ACTIONS_PATH,
+            "actions",
+            interface=EventAction,  # type: ignore[type-abstract]
+        )
+
+    def get_action(
+        self,
+        name: str,
+        parameters: Optional[Sequence[Any]] = None,
+    ) -> Optional[EventAction]:
+        """
+        Get an action that is loaded into the engine.
+
+        A new instance will be returned each time.
+
+        Return ``None`` if action is not loaded.
+
+        Parameters:
+            name: Name of the action.
+            parameters: List of parameters that the action accepts.
+
+        Returns:
+            New instance of the action with the appropriate parameters if
+            that action is loaded. ``None`` otherwise.
+        """
+        parameters = parameters or []
+
+        try:
+            action = self.actions[name]
+
+        except KeyError:
+            error = f'Error: EventAction "{name}" not implemented'
+            logger.warning(error)
+            return None
+
+        if parameters == [""]:
+            return action()
+
+        try:
+            return action(*parameters)
+        except TypeError as e:
+            logger.warning(
+                f"Error instantiating {action} with parameters {parameters}: {e}"
+            )
+            return None
+        except Exception as e:
+            logger.error(
+                f"Unexpected error instantiating {action} with parameters {parameters}: {e}"
+            )
+            return None
+
+    def get_actions(self) -> list[type[EventAction]]:
+        """Return list of EventActions."""
+        return list(self.actions.values())

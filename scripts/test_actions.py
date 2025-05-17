@@ -24,5 +24,5 @@ for mod_name in CONFIG.mods:
         txmn_map = loader.load(str(path))
         for event in txmn_map.events:
             for act in event.acts:
-                if not engine.get_action(act.type, act.parameters):
+                if not engine.action_manager.get_action(act.type, act.parameters):
                     print(f"{path} failed")

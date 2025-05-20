@@ -326,7 +326,7 @@ class MapRenderer:
         map_animations = self._get_map_animations()
         surfaces = npc_surfaces + map_animations
         screen_surfaces = self._position_surfaces(current_map, surfaces)
-        self._set_bubble(current_map, screen_surfaces)
+        screen_surfaces = self._set_bubble(current_map, screen_surfaces)
         return screen_surfaces
 
     def _draw_map_and_sprites(
@@ -356,7 +356,7 @@ class MapRenderer:
         """Retrieves surfaces for NPCs."""
         return [
             surf
-            for npc in self.world_state.npcs
+            for npc in self.world_state.client.npc_manager.npcs.values()
             for surf in self._get_sprites(npc, current_map)
         ]
 
@@ -393,7 +393,7 @@ class MapRenderer:
         screen_surfaces: list[tuple[Surface, Rect, int]],
         layer: int = 100,
         offset_divisor: int = 10,
-    ) -> None:
+    ) -> list[tuple[Surface, Rect, int]]:
         """
         Adds speech bubbles to the screen surfaces.
 
@@ -403,7 +403,7 @@ class MapRenderer:
         with options for vertical offset adjustment to fine-tune their placement.
         """
         if not self.bubble:
-            return
+            return screen_surfaces
 
         for npc, surface in self.bubble.items():
             sprite_renderer = npc.sprite_controller.get_sprite_renderer()
@@ -419,6 +419,7 @@ class MapRenderer:
                 + int(sprite_renderer.rect.height / offset_divisor)
             )
             screen_surfaces.append((surface, bubble_rect, layer))
+        return screen_surfaces
 
     def _get_sprites(self, npc: NPC, layer: int) -> list[WorldSurfaces]:
         """Retrieves sprite surfaces for an NPC."""
@@ -471,7 +472,7 @@ class DebugRenderer:
         # Next, deal with solid NPCs.
         npc_iter = map(
             lambda npc: npc_to_pgrect(current_map, npc),
-            self.world_state.npcs,
+            self.world_state.client.npc_manager.npcs.values(),
         )
         for item in chain(box_iter, npc_iter):
             box(surface, item, self.collision_color)

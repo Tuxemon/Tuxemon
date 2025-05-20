@@ -23,13 +23,13 @@ from tuxemon.event.eventpersist import EventPersist
 from tuxemon.map_loader import MapLoader
 from tuxemon.map_manager import MapManager
 from tuxemon.networking import NetworkManager
+from tuxemon.npc_manager import NPCManager
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.input_manager import InputManager
 from tuxemon.rumble import RumbleManager
 from tuxemon.session import local_session
 from tuxemon.state import State, StateManager
 from tuxemon.state_draw import EventDebugDrawer, Renderer, StateDrawer
-from tuxemon.states.world.worldstate import WorldState
 
 StateType = TypeVar("StateType", bound=State)
 
@@ -101,8 +101,9 @@ class LocalPygameClient:
         self.event_engine = EventEngine(local_session)
         self.event_persist = EventPersist()
 
+        self.npc_manager = NPCManager()
         self.map_loader = MapLoader()
-        self.map_manager = MapManager(self.event_engine)
+        self.map_manager = MapManager()
         self.boundary = BoundaryChecker()
 
         # Set up a variable that will keep track of currently playing music.
@@ -236,41 +237,6 @@ class LocalPygameClient:
             partial_events=self.event_engine.partial_events,
         )
         self.frame_number += 1
-
-    def add_clients_to_map(self, registry: Mapping[str, Any]) -> None:
-        """
-        Add players in the current map as npcs.
-
-        Checks to see if clients are supposed to be displayed on the current
-        map. If they are on the same map as the host then it will add them to
-        the npc's list. If they are still being displayed and have left the
-        map it will remove them from the map.
-
-        Parameters:
-            registry: Locally hosted Neteria client/server registry.
-        """
-        world = self.get_state_by_name(WorldState)
-        world.npcs = []
-        world.npcs_off_map = []
-        for client in registry:
-            if "sprite" in registry[client]:
-                sprite = registry[client]["sprite"]
-                client_map = registry[client]["map_name"]
-                current_map = self.get_map_name()
-
-                # Add the player to the screen if they are on the same map.
-                if client_map == current_map:
-                    if sprite not in world.npcs:
-                        world.npcs.append(sprite)
-                    if sprite in world.npcs_off_map:
-                        world.npcs_off_map.remove(sprite)
-
-                # Remove player from the map if they have changed maps.
-                elif client_map != current_map:
-                    if sprite not in world.npcs_off_map:
-                        world.npcs_off_map.append(sprite)
-                    if sprite in world.npcs:
-                        world.npcs.remove(sprite)
 
     def get_map_name(self) -> str:
         """

@@ -119,8 +119,7 @@ class RandomBattleAction(EventAction):
     def cleanup(self, session: Session) -> None:
         npc = None
         world = session.client.get_state_by_name(WorldState)
-        if world:
-            world.remove_entity(self.opponent.slug)
+        session.client.npc_manager.remove_npc(self.opponent.slug)
 
 
 def _lookup() -> None:

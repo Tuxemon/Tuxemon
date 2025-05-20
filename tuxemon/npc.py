@@ -452,7 +452,9 @@ class NPC(Entity[NPCState]):
 
     def handle_obstruction(self, target: tuple[int, int]) -> None:
         if self.pathfinding:
-            npc = self.world.get_entity_pos(self.pathfinding)
+            npc = self.world.client.npc_manager.get_entity_pos(
+                self.pathfinding
+            )
             if npc:
                 logger.info(
                     f"{npc.slug} obstructing {self.slug}, recalculating path."

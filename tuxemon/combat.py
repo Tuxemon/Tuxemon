@@ -93,9 +93,8 @@ def pre_checking(
         technique.target.get(target_type, False)
         for target_type in ["enemy_monster", "enemy_team", "enemy_trainer"]
     ):
-        method = Technique()
         slug = random.choice(infected_slugs)
-        method.load(slug)
+        method = Technique.create(slug)
         result_method = method.use(session, monster, target)
         if result_method.success:
             technique = method

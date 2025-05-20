@@ -363,8 +363,7 @@ class TrainerAIDecisionStrategy(AIDecisionStrategy):
         valid_actions = self.tracker.get_valid_moves(ai.opponents)
 
         if not valid_actions:
-            skip = Technique()
-            skip.load("skip")
+            skip = Technique.create("skip")
             return skip, target
 
         config = self.check_ai_techs(ai.monster)
@@ -407,8 +406,7 @@ class WildAIDecisionStrategy(AIDecisionStrategy):
         valid_actions = self.tracker.get_valid_moves(ai.opponents)
 
         if not valid_actions:
-            skip = Technique()
-            skip.load("skip")
+            skip = Technique.create("skip")
             return skip, target
 
         config = self.check_ai_techs(ai.monster)

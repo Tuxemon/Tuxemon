@@ -2,7 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
 import pygame_menu
 import pygame_menu.widgets
@@ -15,10 +15,12 @@ from tuxemon import prepare
 from tuxemon.db import MonsterModel, db
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.monster import Monster
 from tuxemon.platform.const import buttons
-from tuxemon.platform.events import PlayerInput
 from tuxemon.technique.technique import Technique
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
+    from tuxemon.platform.events import PlayerInput
 
 lookup_cache: dict[str, MonsterModel] = {}
 
@@ -91,8 +93,7 @@ class MonsterMovesState(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
         menu._width = fix_measure(width, 0.97)
 
-        technique = Technique()
-        technique.load(slug)
+        technique = Technique.create(slug)
 
         self._add_description_label(menu, technique)
         self._add_info_label(menu, technique)

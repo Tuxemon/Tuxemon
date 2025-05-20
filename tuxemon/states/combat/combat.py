@@ -611,8 +611,7 @@ class CombatState(CombatAnimations):
             monster: Added monster.
             removed: Monster that was previously in play, if any.
         """
-        capture_device = Item()
-        capture_device.load(monster.capture_device)
+        capture_device = Item.create(monster.capture_device)
         sprite = self._method_cache.get(capture_device, False)
         if not sprite:
             raise ValueError(f"Sprite not found for item {capture_device}")

@@ -7,15 +7,17 @@ import uuid
 from collections.abc import Callable
 from dataclasses import dataclass
 from functools import partial
-from typing import final
+from typing import TYPE_CHECKING, final
 
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from tuxemon.monster import Monster
-from tuxemon.session import Session
 from tuxemon.technique.technique import Technique
 from tuxemon.tools import open_choice_dialog
+
+if TYPE_CHECKING:
+    from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -112,8 +114,7 @@ class DojoMethodAction(EventAction):
 
     def devolve(self, monster: Monster, slug: str) -> None:
         """Deny the evolution"""
-        devolution = Monster()
-        devolution.load_from_db(slug)
+        devolution = Monster.create(slug)
         monster.evolution_handler.evolve_monster(devolution)
         logger.info(f"{monster.name}'s devolved!")
         self.client.sound_manager.play_sound("sound_confirm")
@@ -121,8 +122,7 @@ class DojoMethodAction(EventAction):
 
     def learn(self, monster: Monster, technique: str) -> None:
         """Deny the evolution"""
-        tech = Technique()
-        tech.load(technique)
+        tech = Technique.create(technique)
         monster.learn(tech)
         logger.info(f"{tech.name} learned!")
         self.client.sound_manager.play_sound("sound_confirm")

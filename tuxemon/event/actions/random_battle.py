@@ -79,8 +79,7 @@ class RandomBattleAction(EventAction):
         monsters = random.sample(monster_filters, self.nr_txmns)
         for monster in monsters:
             level = random.randint(self.min_level, self.max_level)
-            current_monster = Monster()
-            current_monster.load_from_db(monster.slug)
+            current_monster = Monster.create(monster.slug)
             current_monster.set_level(level)
             current_monster.set_moves(level)
             current_monster.set_capture(today_ordinal())

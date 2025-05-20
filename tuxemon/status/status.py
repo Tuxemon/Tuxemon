@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import logging
-import uuid
 from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Optional
+from uuid import UUID, uuid4
 
 from tuxemon.constants import paths
 from tuxemon.core.core_condition import CoreCondition
@@ -46,7 +46,7 @@ class Status:
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
         save_data = save_data or {}
 
-        self.instance_id = uuid.uuid4()
+        self.instance_id = uuid4()
         self.steps = 0.0
         self.bond = False
         self.counter = 0
@@ -87,6 +87,14 @@ class Status:
         self.conditions: Sequence[PluginObject] = []
 
         self.set_state(save_data)
+
+    @classmethod
+    def create(
+        cls, slug: str, save_data: Optional[Mapping[str, Any]] = None
+    ) -> Status:
+        method = cls(save_data)
+        method.load(slug)
+        return method
 
     def load(self, slug: str) -> None:
         """
@@ -204,7 +212,7 @@ class Status:
 
         for key, value in save_data.items():
             if key == "instance_id" and value:
-                self.instance_id = uuid.UUID(value)
+                self.instance_id = UUID(value)
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
                 setattr(self, key, value)
 

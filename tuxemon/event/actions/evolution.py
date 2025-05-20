@@ -7,14 +7,16 @@ import uuid
 from collections.abc import Callable
 from dataclasses import dataclass
 from functools import partial
-from typing import Optional, final
+from typing import TYPE_CHECKING, Optional, final
 
 from tuxemon.event import get_monster_by_iid, get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from tuxemon.monster import Monster
-from tuxemon.session import Session
 from tuxemon.tools import open_choice_dialog, open_dialog
+
+if TYPE_CHECKING:
+    from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -37,7 +39,6 @@ class EvolutionAction(EventAction):
         variable: Name of the variable where to store the monster id. If no
             variable is specified, all monsters get experience.
         evolution: Slug of the evolution.
-
     """
 
     name = "evolution"
@@ -86,8 +87,7 @@ class EvolutionAction(EventAction):
             )
             return
         else:
-            evolved = Monster()
-            evolved.load_from_db(evolution)
+            evolved = Monster.create(evolution)
             monster.evolution_handler.evolve_monster(evolved)
             self.client.push_state(
                 "EvolutionTransition",

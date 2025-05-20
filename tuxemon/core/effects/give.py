@@ -9,11 +9,11 @@ from typing import TYPE_CHECKING
 from tuxemon.combat import get_target_monsters
 from tuxemon.core.core_effect import TechEffect, TechEffectResult
 from tuxemon.status.status import Status
-from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
     from tuxemon.session import Session
+    from tuxemon.technique.technique import Technique
 
 
 @dataclass
@@ -47,8 +47,7 @@ class GiveEffect(TechEffect):
         success = tech.potency >= potency and tech.accuracy >= value
 
         if success:
-            status = Status()
-            status.load(self.condition)
+            status = Status.create(self.condition)
             status.steps = player.steps
             status.link = user
 

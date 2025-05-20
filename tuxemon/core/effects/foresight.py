@@ -45,8 +45,7 @@ class ForesightEffect(TechEffect):
         combat = tech.combat_state
         assert combat
 
-        set_technique = Technique()
-        set_technique.load(tech.slug)
+        set_technique = Technique.create(tech.slug)
         set_technique.power = self.turn
 
         next_turn = combat._turn + self.turn

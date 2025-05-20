@@ -293,8 +293,7 @@ class TransactionManager:
         if in_bag:
             in_bag.quantity += quantity
         else:
-            new_item = Item()
-            new_item.load(item.slug)
+            new_item = Item.create(item.slug)
             new_item.quantity = quantity
             buyer.add_item(new_item)
 

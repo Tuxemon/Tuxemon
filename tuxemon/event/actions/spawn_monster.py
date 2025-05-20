@@ -7,16 +7,18 @@ import random
 import re
 import uuid
 from dataclasses import dataclass
-from typing import final
+from typing import TYPE_CHECKING, final
 
 from tuxemon import formula
 from tuxemon.event import get_monster_by_iid, get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
 from tuxemon.monster import Monster
-from tuxemon.session import Session
 from tuxemon.time_handler import today_ordinal
 from tuxemon.tools import open_dialog
+
+if TYPE_CHECKING:
+    from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -89,8 +91,7 @@ class SpawnMonsterAction(EventAction):
         level = (father.level + mother.level) // 2
 
         # Create a new child monster
-        child = Monster()
-        child.load_from_db(seed_slug)
+        child = Monster.create(seed_slug)
         child.set_level(level)
         child.set_moves(level)
         child.set_capture(today_ordinal())

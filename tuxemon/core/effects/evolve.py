@@ -32,8 +32,7 @@ class EvolveEffect(ItemEffect):
         else:
             evolution = random.choice(choices).monster_slug
 
-        new_monster = Monster()
-        new_monster.load_from_db(evolution)
+        new_monster = Monster.create(evolution)
         target.evolution_handler.evolve_monster(new_monster)
 
         session.client.push_state(

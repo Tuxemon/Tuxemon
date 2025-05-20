@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import logging
 import random
-import uuid
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Optional
+from uuid import UUID, uuid4
 
 from tuxemon import formula, fusion, graphics, prepare, tools
 from tuxemon.db import (
@@ -29,11 +29,7 @@ from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.shape import Shape
 from tuxemon.sprite import Sprite
-from tuxemon.status.status import (
-    Status,
-    decode_status,
-    encode_status,
-)
+from tuxemon.status.status import Status, decode_status, encode_status
 from tuxemon.taste import Taste
 from tuxemon.technique.technique import Technique, decode_moves, encode_moves
 from tuxemon.time_handler import today_ordinal
@@ -42,6 +38,7 @@ if TYPE_CHECKING:
     from pygame.surface import Surface
 
     from tuxemon.npc import NPC
+
 
 logger = logging.getLogger(__name__)
 
@@ -89,14 +86,12 @@ class Flair:
         self.name = name
 
 
-# class definition for first active tuxemon to use in combat:
 class Monster:
     """
     Tuxemon monster.
 
     A class for a Tuxemon monster object. This class acts as a skeleton for
     a Tuxemon, fetching its details from a database.
-
     """
 
     def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
@@ -106,7 +101,7 @@ class Monster:
         self.name = ""
         self.cat = ""
         self.description = ""
-        self.instance_id = uuid.uuid4()
+        self.instance_id = uuid4()
 
         self.armour = 0
         self.dodge = 0
@@ -194,6 +189,14 @@ class Monster:
         self.set_state(save_data)
         self.set_stats()
 
+    @classmethod
+    def create(
+        cls, slug: str, save_data: Optional[Mapping[str, Any]] = None
+    ) -> Monster:
+        method = cls(save_data)
+        method.load(slug)
+        return method
+
     @property
     def hp_ratio(self) -> float:
         return min(self.current_hp / self.hp if self.hp > 0 else 0.0, 1.0)
@@ -202,7 +205,7 @@ class Monster:
     def missing_hp(self) -> int:
         return max(min(self.hp - self.current_hp, self.hp), 0)
 
-    def load_from_db(self, slug: str) -> None:
+    def load(self, slug: str) -> None:
         """
         Loads and sets this monster's attributes from the monster.db database.
 
@@ -210,7 +213,6 @@ class Monster:
 
         Parameters:
             slug: Slug to lookup.
-
         """
         try:
             results = db.lookup(slug, table="monster")
@@ -554,8 +556,7 @@ class Monster:
         ]
         moves_to_learn = eligible_moves[-prepare.MAX_MOVES :]
         for move in moves_to_learn:
-            tech = Technique()
-            tech.load(move)
+            tech = Technique.create(move)
             self.learn(tech)
 
     def update_moves(self, levels_earned: int) -> list[Technique]:
@@ -578,8 +579,7 @@ class Monster:
                 move.technique not in (m.slug for m in self.moves)
                 and new_level < move.level_learned <= self.level
             ):
-                technique = Technique()
-                technique.load(move.technique)
+                technique = Technique.create(move.technique)
                 new_moves.append(technique)
                 new_techniques.append(technique)
 
@@ -639,7 +639,7 @@ class Monster:
         if not save_data:
             return
 
-        self.load_from_db(save_data["slug"])
+        self.load(save_data["slug"])
 
         self.moves = []
         for move in decode_moves(save_data.get("moves")):
@@ -652,7 +652,7 @@ class Monster:
             if key == "body" and value:
                 self.body.set_state(value)
             elif key == "instance_id" and value:
-                self.instance_id = uuid.UUID(value)
+                self.instance_id = UUID(value)
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
                 setattr(self, key, value)
             elif key == "plague" and value:
@@ -670,8 +670,7 @@ class Monster:
         """
         Kills the monster, sets 0 HP and applies faint status.
         """
-        faint = Status()
-        faint.load("faint")
+        faint = Status.create("faint")
         self.current_hp = 0
         self.status.clear()
         self.apply_status(faint)
@@ -689,7 +688,7 @@ class Monster:
         else:
             self.status = []
 
-    def find_tech_by_id(self, instance_id: uuid.UUID) -> Optional[Technique]:
+    def find_tech_by_id(self, instance_id: UUID) -> Optional[Technique]:
         """
         Finds a tech among the monster's moves which has the given id.
 

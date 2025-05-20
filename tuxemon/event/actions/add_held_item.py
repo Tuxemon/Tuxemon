@@ -53,8 +53,7 @@ class AddHeldItemction(EventAction):
             logger.error(f"{monster.name} held already {held.name}")
             return
 
-        item = Item()
-        item.load(self.item)
+        item = Item.create(self.item)
         if item.behaviors.holdable == False:
             logger.error(f"{item.name} isn't holdable")
             return

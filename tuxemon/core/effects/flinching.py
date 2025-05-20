@@ -37,8 +37,7 @@ class FlinchingEffect(StatusEffect):
             user = status.link
             empty = status.repl_tech
             assert user and empty
-            skip = Technique()
-            skip.load(empty)
+            skip = Technique.create(empty)
             tech = [skip]
             user.status.clear()
         return StatusEffectResult(

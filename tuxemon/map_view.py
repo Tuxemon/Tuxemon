@@ -25,11 +25,10 @@ from tuxemon.surfanim import SurfaceAnimation, SurfaceAnimationCollection
 logger = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
-    from tuxemon.camera import Camera
+    from tuxemon.client import LocalPygameClient
     from tuxemon.db import NpcTemplateModel
     from tuxemon.map import TuxemonMap
     from tuxemon.npc import NPC
-    from tuxemon.states.world.worldstate import WorldState
 
 
 class EntityFacing(str, Enum):
@@ -279,20 +278,19 @@ class SpriteRenderer:
 class MapRenderer:
     """Renders the game map, NPCs, and animations."""
 
-    def __init__(
-        self, world_state: WorldState, screen: Surface, camera: Camera
-    ):
+    def __init__(self, client: LocalPygameClient):
         """Initializes the MapRenderer."""
-        self.world_state = world_state
-        self.screen = screen
-        self.camera = camera
+        self.client = client
+        self.screen = client.screen
+        self.camera_manager = client.camera_manager
+        self.camera = self.camera_manager.get_active_camera()
         self.layer = Surface(self.screen.get_size(), pygame.SRCALPHA)
         self.layer_color: Optional[ColorLike] = None
         self.bubble: dict[NPC, Surface] = {}
         self.cinema_x_ratio: Optional[float] = None
         self.cinema_y_ratio: Optional[float] = None
         self.map_animations: dict[str, AnimationInfo] = {}
-        self.debug_renderer = DebugRenderer(world_state)
+        self.debug_renderer = DebugRenderer(client)
 
     def draw(self, surface: Surface, current_map: TuxemonMap) -> None:
         """Draws the map, sprites, and animations onto the given surface."""
@@ -307,6 +305,7 @@ class MapRenderer:
 
     def update(self, time_delta: float) -> None:
         """Update the map animations."""
+        self.camera_manager.update(time_delta)
         for anim_data in self.map_animations.values():
             anim_data.animation.update(time_delta)
 
@@ -314,7 +313,8 @@ class MapRenderer:
         """Prepares the map renderer for drawing."""
         if current_map.renderer is None:
             current_map.initialize_renderer()
-        camera_x, camera_y = self.camera.position
+        position = self.camera.position if self.camera else Vector2(0, 0)
+        camera_x, camera_y = position
         assert current_map.renderer
         current_map.renderer.center((camera_x, camera_y))
 
@@ -356,7 +356,7 @@ class MapRenderer:
         """Retrieves surfaces for NPCs."""
         return [
             surf
-            for npc in self.world_state.client.npc_manager.npcs.values()
+            for npc in self.client.npc_manager.npcs.values()
             for surf in self._get_sprites(npc, current_map)
         ]
 
@@ -433,12 +433,12 @@ class MapRenderer:
 class DebugRenderer:
     def __init__(
         self,
-        world_state: WorldState,
+        client: LocalPygameClient,
         event_color: ColorLike = (0, 255, 0, 128),
         collision_color: ColorLike = (255, 0, 0, 128),
         center_line_color: ColorLike = (255, 50, 50),
     ) -> None:
-        self.world_state = world_state
+        self.client = client
         self.event_color = event_color
         self.collision_color = collision_color
         self.center_line_color = center_line_color
@@ -453,7 +453,7 @@ class DebugRenderer:
 
     def _draw_events(self, current_map: TuxemonMap, surface: Surface) -> None:
         """Draws event-related debug information on the surface."""
-        for event in self.world_state.client.map_manager.events:
+        for event in self.client.map_manager.events:
             vector = Vector2(event.x, event.y)
             topleft = get_pos_from_tilepos(current_map, vector)
             size = project((event.w, event.h))
@@ -466,13 +466,13 @@ class DebugRenderer:
         # We need to iterate over all collidable objects. Start with walls/collision boxes.
         box_iter = map(
             lambda box: collision_box_to_pgrect(current_map, box),
-            self.world_state.client.map_manager.collision_map,
+            self.client.map_manager.collision_map,
         )
 
         # Next, deal with solid NPCs.
         npc_iter = map(
             lambda npc: npc_to_pgrect(current_map, npc),
-            self.world_state.client.npc_manager.npcs.values(),
+            self.client.npc_manager.npcs.values(),
         )
         for item in chain(box_iter, npc_iter):
             box(surface, item, self.collision_color)

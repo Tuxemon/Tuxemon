@@ -6,14 +6,17 @@ from unittest.mock import MagicMock
 
 from tuxemon.constants import paths
 from tuxemon.db import db
+from tuxemon.event.eventaction import ActionManager
+from tuxemon.event.eventcondition import ConditionManager
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.map_loader import TMXMapLoader
 from tuxemon.prepare import CONFIG
 from tuxemon.session import Session
 
-
 db.load("monster")
-engine = EventEngine(Session(None, None, None))
+action = ActionManager()
+condition = ConditionManager()
+engine = EventEngine(Session(None, None, None), action, condition)
 loader = TMXMapLoader()
 loader.image_loader = MagicMock()
 

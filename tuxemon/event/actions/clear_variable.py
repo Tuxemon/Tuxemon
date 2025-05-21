@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import logging
-from dataclasses import dataclass
-from typing import final
+from collections.abc import Sequence
+from dataclasses import dataclass, field
+from typing import Any, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
@@ -12,27 +13,31 @@ from tuxemon.session import Session
 logger = logging.getLogger(__name__)
 
 
-# noinspection PyAttributeOutsideInit
 @final
 @dataclass
 class ClearVariableAction(EventAction):
     """
-    Clear the value of a variable from the game.
+    Removes specified variables from the player's stored variables.
 
     Script usage:
         .. code-block::
 
-            clear_variable <variable>
+            clear_variable <variable1>[,variable2]
 
     Script parameters:
-        variable: The variable to clear.
-
+        variable: One or more variables to be removed.
     """
 
     name = "clear_variable"
-    variable: str
+    raw_parameters: Sequence[str] = field(init=False)
+
+    def __init__(self, *args: Any) -> None:
+        super().__init__()
+        self.raw_parameters = args
 
     def start(self, session: Session) -> None:
         player = session.player
-        key = self.variable
-        player.game_variables.pop(key, None)
+        for param in self.raw_parameters:
+            if param not in player.game_variables:
+                logger.error(f"Key '{param}' not found in game variables")
+            player.game_variables.pop(param, None)

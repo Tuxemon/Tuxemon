@@ -18,6 +18,8 @@ from tuxemon.boundary import BoundaryChecker
 from tuxemon.camera import CameraManager
 from tuxemon.cli.processor import CommandProcessor
 from tuxemon.config import TuxemonConfig
+from tuxemon.event.eventaction import ActionManager
+from tuxemon.event.eventcondition import ConditionManager
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.event.eventmanager import EventManager
 from tuxemon.event.eventpersist import EventPersist
@@ -99,7 +101,11 @@ class LocalPygameClient:
         # Set up our game's event engine which executes actions based on
         # conditions defined in map files.
         self.event_manager = EventManager(self.state_manager)
-        self.event_engine = EventEngine(local_session)
+        self.action_manager = ActionManager()
+        self.condition_manager = ConditionManager()
+        self.event_engine = EventEngine(
+            local_session, self.action_manager, self.condition_manager
+        )
         self.event_persist = EventPersist()
 
         self.npc_manager = NPCManager()

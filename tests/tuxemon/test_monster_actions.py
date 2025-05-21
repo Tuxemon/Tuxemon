@@ -3,7 +3,6 @@
 import unittest
 from unittest.mock import MagicMock, patch
 
-from tuxemon import prepare
 from tuxemon.db import (
     AttributesModel,
     ElementModel,
@@ -14,6 +13,8 @@ from tuxemon.db import (
     TechniqueModel,
     db,
 )
+from tuxemon.event.eventaction import ActionManager
+from tuxemon.event.eventcondition import ConditionManager
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.player import Player
 from tuxemon.session import local_session
@@ -120,9 +121,13 @@ class TestMonsterActions(unittest.TestCase):
     )
 
     def setUp(self):
+        action = ActionManager()
+        condition = ConditionManager()
         self.mock_screen = MagicMock()
         local_session.client = MagicMock()
-        local_session.client.event_engine = EventEngine(local_session)
+        local_session.client.event_engine = EventEngine(
+            local_session, action, condition
+        )
         with patch.object(Player, "__init__", mockPlayer):
             self.action = local_session.client.event_engine
             local_session.player = Player()

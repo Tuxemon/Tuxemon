@@ -6,14 +6,17 @@ import logging
 from collections.abc import Generator, Iterable, Sequence
 from contextlib import contextmanager
 from textwrap import dedent
-from typing import Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 from tuxemon import prepare
-from tuxemon.event import EventObject, MapAction, MapCondition
-from tuxemon.event.eventaction import ActionManager, EventAction
-from tuxemon.event.eventcondition import ConditionManager
-from tuxemon.map import TuxemonMap
-from tuxemon.session import Session
+
+if TYPE_CHECKING:
+    from tuxemon.event import EventObject, MapAction, MapCondition
+    from tuxemon.event.eventaction import ActionManager, EventAction
+    from tuxemon.event.eventcondition import ConditionManager
+    from tuxemon.map import TuxemonMap
+    from tuxemon.session import Session
+
 
 logger = logging.getLogger(__name__)
 
@@ -102,8 +105,15 @@ class EventEngine:
         session: Object containing the session information.
     """
 
-    def __init__(self, session: Session) -> None:
+    def __init__(
+        self,
+        session: Session,
+        action: ActionManager,
+        condition: ConditionManager,
+    ) -> None:
         self.session = session
+        self.action_manager = action
+        self.condition_manager = condition
 
         self.running_events: dict[int, RunningEvent] = dict()
         self.name = "Event"
@@ -114,9 +124,6 @@ class EventEngine:
 
         # debug
         self.partial_events: list[Sequence[tuple[bool, MapCondition]]] = list()
-
-        self.action_manager = ActionManager()
-        self.condition_manager = ConditionManager()
 
     def set_current_map(self, new_map: Optional[TuxemonMap]) -> None:
         """Updates the current map."""

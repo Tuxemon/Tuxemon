@@ -1,9 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
-from unittest.mock import Mock
+from unittest.mock import MagicMock
 
 from tuxemon.client import LocalPygameClient
+from tuxemon.event.eventaction import ActionManager
+from tuxemon.event.eventcondition import ConditionManager
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.map_manager import MapManager
 from tuxemon.session import Session, local_session
@@ -11,7 +13,9 @@ from tuxemon.session import Session, local_session
 
 class TestEventEngine(unittest.TestCase):
     def setUp(self):
-        self.eng = EventEngine(local_session)
+        action = MagicMock(spec=ActionManager)
+        condition = MagicMock(spec=ConditionManager)
+        self.eng = EventEngine(local_session, action, condition)
 
     def test_init(self):
         self.assertIsNone(self.eng.current_map)
@@ -35,9 +39,9 @@ class TestEventEngine(unittest.TestCase):
                 self.id = id
 
         event = EventObject(1)
-        self.eng.session = Mock(spec=Session)
-        self.eng.session.client = Mock(spec=LocalPygameClient)
-        self.eng.session.client.map_manager = Mock(spec=MapManager)
+        self.eng.session = MagicMock(spec=Session)
+        self.eng.session.client = MagicMock(spec=LocalPygameClient)
+        self.eng.session.client.map_manager = MagicMock(spec=MapManager)
         self.eng.session.client.map_manager.inits = []
         self.eng.start_event(event)
         self.assertIn(1, self.eng.running_events)

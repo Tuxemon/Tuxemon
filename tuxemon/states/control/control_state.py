@@ -11,26 +11,20 @@ from pygame_menu import locals
 
 from tuxemon import prepare
 from tuxemon.animation import Animation
-from tuxemon.event.eventengine import EventEngine
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.platform_pygame.events import PygameKeyboardInput
-from tuxemon.session import local_session
 from tuxemon.state import State
 
 
 class ControlState(PygameMenuState):
-    """
-    This state is responsible for the option menu.
-    """
+    """This state is responsible for the option menu."""
 
     def __init__(self, **kwargs: Any) -> None:
-        """
-        Used when initializing the state.
-        """
+        """Used when initializing the state."""
         theme = get_theme()
         theme.scrollarea_position = locals.POSITION_EAST
         theme.widget_alignment = locals.ALIGN_CENTER
@@ -246,7 +240,6 @@ class ControlState(PygameMenuState):
             self.client.config.input.keyboard_button_map
         )
         self.client.input_manager.event_queue.set_input(0, 0, keyboard)
-        self.client.event_engine = EventEngine(local_session)
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
         if event.button in (buttons.BACK, buttons.B):

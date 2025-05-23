@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from typing import TYPE_CHECKING, Optional, no_type_check
+from typing import TYPE_CHECKING, Optional
 
 from tuxemon import log, prepare
 from tuxemon.session import local_session
@@ -13,6 +13,7 @@ if TYPE_CHECKING:
 
     from tuxemon.client import LocalPygameClient
     from tuxemon.config import TuxemonConfig
+    from tuxemon.headless_client import HeadlessClient
 
 logger = logging.getLogger(__name__)
 
@@ -21,12 +22,11 @@ def main(load_slot: Optional[int] = None) -> None:
     """
     Configure and start the game.
 
-    Add all available states to our scene manager (:class:`tools.Client`)
-    and start the game using the pygame interface.
+    Add all available states to our scene manager and start the game
+    using the pygame interface.
 
     Parameters:
         load_slot: Number of the save slot to load, if any.
-
     """
     log.configure()
     prepare.init()
@@ -77,12 +77,9 @@ def configure_game_states(
     config: TuxemonConfig,
     load_slot: Optional[int] = None,
 ) -> None:
-    # background state is used to prevent other states from
-    # being required to track dirty screen areas.  for example,
-    # in the start state, there is a menu on a blank background,
-    # since menus do not clean up dirty areas, the blank,
-    # "Background state" will do that.  The alternative is creating
-    # a system for states to clean up their dirty screen areas.
+    # The "BackgroundState" prevents other states from tracking dirty screen areas.
+    # For example, menus in the start state don't clean up dirty areas, so a blank
+    # background handles that instead of requiring each state to manage cleanup.
     client.push_state("BackgroundState")
     if not config.skip_titlescreen:
         client.push_state("StartState")
@@ -120,12 +117,8 @@ def configure_debug_options(client: LocalPygameClient) -> None:
         action("add_item", ("apple",))
 
 
-@no_type_check  # FIXME: dead code
 def headless() -> None:
     """Sets up out headless server and start the game."""
-    from tuxemon.client import HeadlessClient
-
-    control = HeadlessClient()
-    control.auto_state_discovery()
+    control = HeadlessClient(prepare.CONFIG)
     control.push_state("HeadlessServerState")
     control.main()

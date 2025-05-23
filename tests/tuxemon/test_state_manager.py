@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import MagicMock, patch
 
-from tuxemon.state import State, StateManager
+from tuxemon.state import HookManager, State, StateManager, StateRepository
 
 
 def create_state(name):
-    mock_state = Mock(spec=State, name=f"mock {name}")
+    mock_state = MagicMock(spec=State, name=f"mock {name}")
     mock_state.__name__ = name
     mock_state.name = name
     return mock_state
@@ -22,7 +22,7 @@ class StateManagerTestBase(unittest.TestCase):
 
 class PushWhenEmpty(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail")
+        self.sm = StateManager("head.tail", HookManager(), StateRepository())
         self.create_and_register_state("a")
         self.state_a = self.sm.push_state("a")
         self.sm.update(0)
@@ -41,7 +41,7 @@ class PushWhenEmpty(StateManagerTestBase):
 
 class PushWhenNotEmpty(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail")
+        self.sm = StateManager("head.tail", HookManager(), StateRepository())
         self.create_and_register_state("a")
         self.create_and_register_state("b")
         self.state_a = self.sm.push_state("a")
@@ -70,7 +70,7 @@ class PushWhenNotEmpty(StateManagerTestBase):
 
 class Pop(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail")
+        self.sm = StateManager("head.tail", HookManager(), StateRepository())
         self.create_and_register_state("a")
         self.create_and_register_state("b")
         self.state_a = self.sm.push_state("a")
@@ -110,7 +110,7 @@ class Pop(StateManagerTestBase):
 
 class Resume(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail")
+        self.sm = StateManager("head.tail", HookManager(), StateRepository())
         self.create_and_register_state("a")
         self.create_and_register_state("b")
         self.state_a = self.sm.push_state("a")
@@ -140,7 +140,7 @@ class Resume(StateManagerTestBase):
 
 class RemoveWhenCurrent(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail")
+        self.sm = StateManager("head.tail", HookManager(), StateRepository())
         self.create_and_register_state("a")
         self.create_and_register_state("b")
         self.state_a = self.sm.push_state("a")
@@ -171,7 +171,7 @@ class RemoveWhenCurrent(StateManagerTestBase):
 
 class RemoveWhenNotCurrent(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail")
+        self.sm = StateManager("head.tail", HookManager(), StateRepository())
         self.create_and_register_state("a")
         self.create_and_register_state("b")
         self.state_a = self.sm.push_state("a")
@@ -202,7 +202,7 @@ class RemoveWhenNotCurrent(StateManagerTestBase):
 
 class Replace(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail")
+        self.sm = StateManager("head.tail", HookManager(), StateRepository())
         self.create_and_register_state("a")
         self.create_and_register_state("b")
         self.state_a = self.sm.push_state("a")
@@ -231,7 +231,7 @@ class Replace(StateManagerTestBase):
 
 class Enqueue(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail")
+        self.sm = StateManager("head.tail", HookManager(), StateRepository())
         self.create_and_register_state("a")
         self.create_and_register_state("b")
         self.create_and_register_state("c")
@@ -250,7 +250,7 @@ class Enqueue(StateManagerTestBase):
 
 class EnqueueThenPop(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail")
+        self.sm = StateManager("head.tail", HookManager(), StateRepository())
         self.create_and_register_state("a")
         self.create_and_register_state("b")
         self.create_and_register_state("c")
@@ -283,7 +283,7 @@ class EnqueueThenPop(StateManagerTestBase):
 
 class WhenEmpty(StateManagerTestBase):
     def setUp(self):
-        self.sm = StateManager("head.tail")
+        self.sm = StateManager("head.tail", HookManager(), StateRepository())
 
     def test_pop_raises_runtimeError(self):
         with self.assertRaises(RuntimeError):

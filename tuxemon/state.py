@@ -69,7 +69,6 @@ class State(ABC):
 
         # TODO: fix local session
         self.client = local_session.client
-        self.hook_manager = HookManager()
 
         self._scheduled_task: Optional[Task] = None
 
@@ -287,23 +286,23 @@ class State(ABC):
     def register_hook(
         self, hook_name: str, callback: Callable[..., None], priority: int = 0
     ) -> None:
-        self.hook_manager.register_hook(hook_name, callback, priority)
+        self.client.hook_manager.register_hook(hook_name, callback, priority)
 
     def unregister_hook(
         self, hook_name: str, callback: Callable[..., None]
     ) -> None:
-        if self.hook_manager.is_hook_registered(hook_name):
-            self.hook_manager.unregister_hook(hook_name, callback)
+        if self.client.hook_manager.is_hook_registered(hook_name):
+            self.client.hook_manager.unregister_hook(hook_name, callback)
 
     def trigger_hook(self, hook_name: str, *args: Any, **kwargs: Any) -> None:
-        if self.hook_manager.is_hook_registered(hook_name):
-            self.hook_manager.trigger_hook(hook_name, *args, **kwargs)
+        if self.client.hook_manager.is_hook_registered(hook_name):
+            self.client.hook_manager.trigger_hook(hook_name, *args, **kwargs)
 
     def replace_hooks(
         self, hook_name: str, hooks: list[tuple[int, Callable[..., None]]]
     ) -> None:
-        if self.hook_manager.is_hook_registered(hook_name):
-            self.hook_manager._hooks[hook_name] = hooks
+        if self.client.hook_manager.is_hook_registered(hook_name):
+            self.client.hook_manager._hooks[hook_name] = hooks
 
 
 class StateManager:
@@ -312,6 +311,8 @@ class StateManager:
 
     Parameters:
         package: Name of package to search for states.
+        hook: Manages hooks for executing custom logic during state changes.
+        repository: Repository for accessing state instances.
         on_state_change: Optional callback to be executed when top state
             changes.
     """
@@ -319,11 +320,13 @@ class StateManager:
     def __init__(
         self,
         package: str,
+        hook: HookManager,
+        repository: StateRepository,
         on_state_change: Optional[Callable[[], None]] = None,
     ) -> None:
         self.package = package
-        self.hook_manager = HookManager()
-        self.state_repository = StateRepository()
+        self.hook_manager = hook
+        self.state_repository = repository
         self._state_queue: list[tuple[str, Mapping[str, Any]]] = []
         self._state_stack: list[State] = []
         self._resume_set: set[State] = set()

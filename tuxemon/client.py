@@ -30,7 +30,7 @@ from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.input_manager import InputManager
 from tuxemon.rumble import RumbleManager
 from tuxemon.session import local_session
-from tuxemon.state import State, StateManager
+from tuxemon.state import HookManager, State, StateManager, StateRepository
 from tuxemon.state_draw import EventDebugDrawer, Renderer, StateDrawer
 
 StateType = TypeVar("StateType", bound=State)
@@ -59,8 +59,12 @@ class LocalPygameClient:
     def __init__(self, config: TuxemonConfig, screen: Surface) -> None:
         self.config = config
 
+        self.hook_manager = HookManager()
+        self.state_repository = StateRepository()
         self.state_manager = StateManager(
-            "tuxemon.states",
+            package="tuxemon.states",
+            hook=self.hook_manager,
+            repository=self.state_repository,
             on_state_change=self.on_state_change,
         )
         self.state_manager.auto_state_discovery()

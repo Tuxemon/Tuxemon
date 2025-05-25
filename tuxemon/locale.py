@@ -4,11 +4,10 @@ from __future__ import annotations
 
 import gettext
 import logging
-import os
-import os.path
 from collections.abc import Callable, Generator, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from gettext import GNUTranslations
+from pathlib import Path
 from typing import Any, Optional
 
 from babel.messages.mofile import write_mo
@@ -45,7 +44,7 @@ class LocaleFinder:
     """
 
     def __init__(self, root_dir: str) -> None:
-        self.root_dir = root_dir
+        self.root_dir = Path(root_dir)
         self.locale_names: set[str] = set()
 
     def search_locales(self) -> Generator[LocaleInfo, Any, None]:
@@ -56,21 +55,24 @@ class LocaleFinder:
             LocaleInfo: Information about each found locale.
         """
         logger.debug("searching locales...")
-        for locale in os.listdir(self.root_dir):
-            self.locale_names.add(locale)
-            locale_path = os.path.join(self.root_dir, locale)
-            if os.path.isdir(locale_path):
-                for category in os.listdir(locale_path):
-                    category_path = os.path.join(locale_path, category)
-                    if os.path.isdir(category_path):
-                        for name in os.listdir(category_path):
-                            path = os.path.join(category_path, name)
-                            if os.path.isfile(path) and name.endswith(".po"):
-                                domain = name[:-3]
+        for locale_path in self.root_dir.iterdir():
+            if locale_path.is_dir():
+                self.locale_names.add(locale_path.name)
+                for category_path in locale_path.iterdir():
+                    if category_path.is_dir():
+                        for file_path in category_path.iterdir():
+                            if (
+                                file_path.is_file()
+                                and file_path.suffix == ".po"
+                            ):
+                                domain = file_path.stem
                                 info = LocaleInfo(
-                                    locale, category, domain, path
+                                    locale_path.name,
+                                    category_path.name,
+                                    domain,
+                                    file_path.as_posix(),
                                 )
-                                logger.debug(f"found: {info}")
+                                logger.debug(f"Found: {info}")
                                 yield info
 
     def has_locale(self, locale_name: str) -> bool:
@@ -105,13 +107,16 @@ class GettextCompiler:
             po_path: The path to the gettext translation file (.po) to compile.
             mo_path: The path to store the compiled translation file (.mo).
         """
-        mofolder = os.path.dirname(mo_path)
-        os.makedirs(mofolder, exist_ok=True)
-        with open(po_path, encoding="UTF8") as po_file:
+        path = Path(mo_path)
+        mofolder = path.parent
+        mofolder.mkdir(parents=True, exist_ok=True)
+
+        with Path(po_path).open(encoding="UTF8") as po_file:
             catalog = read_po(po_file)
-        with open(mo_path, "wb") as mo_file:
+
+        with path.open("wb") as mo_file:
             write_mo(mo_file, catalog)
-            logger.debug(f"writing l18n mo: {mo_path}")
+            logger.debug(f"writing l18n mo: {path}")
 
     def get_mo_path(self, locale: str, category: str, domain: str) -> str:
         """
@@ -126,9 +131,13 @@ class GettextCompiler:
             The path to the MO file.
             l18n/locale/LC_category/domain_name.mo
         """
-        return os.path.join(
-            self.cache_dir, LOCALE_DIR, locale, category, domain + ".mo"
-        )
+        return (
+            Path(self.cache_dir)
+            / LOCALE_DIR
+            / locale
+            / category
+            / f"{domain}.mo"
+        ).as_posix()
 
 
 class TranslatorPo:
@@ -172,11 +181,15 @@ class TranslatorPo:
                 translations).
         """
         for info in self.locale_finder.search_locales():
-            mo_path = self.gettext_compiler.get_mo_path(
-                info.locale, info.category, info.domain
+            mo_path = Path(
+                self.gettext_compiler.get_mo_path(
+                    info.locale, info.category, info.domain
+                )
             )
-            if recompile_translations or not os.path.exists(mo_path):
-                self.gettext_compiler.compile_gettext(info.path, mo_path)
+            if recompile_translations or not mo_path.exists():
+                self.gettext_compiler.compile_gettext(
+                    info.path, mo_path.as_posix()
+                )
                 logger.info(f"Built translation file: {mo_path}")
         logger.info("Translation files built successfully")
 
@@ -204,10 +217,13 @@ class TranslatorPo:
             domain: Name of the domain.
         """
         logger.debug(f"loading translator for: {locale_name}")
-        localedir = os.path.join(paths.CACHE_DIR, LOCALE_DIR)
-        fallback = gettext.translation("base", localedir, [FALLBACK_LOCALE])
+        localedir = paths.L18N_MO_FILES
+        fallback = gettext.translation(
+            "base", localedir.as_posix(), [FALLBACK_LOCALE]
+        )
         trans = (
-            self._get_translation(locale_name, domain, localedir) or fallback
+            self._get_translation(locale_name, domain, localedir.as_posix())
+            or fallback
         )
 
         if trans is fallback:
@@ -297,8 +313,10 @@ class TranslatorPo:
         Returns:
             True if the translation exists, False otherwise.
         """
-        localedir = os.path.join(paths.CACHE_DIR, LOCALE_DIR)
-        trans = self._get_translation(locale_name, "base", localedir)
+        localedir = paths.L18N_MO_FILES
+        trans = self._get_translation(
+            locale_name, "base", localedir.as_posix()
+        )
         if trans is None:
             return False
         return trans.gettext(msgid) != msgid
@@ -560,6 +578,6 @@ def process_translate_text(
 
 
 locale_finder = LocaleFinder(prepare.fetch("l18n"))
-gettext_compiler = GettextCompiler(paths.CACHE_DIR)
+gettext_compiler = GettextCompiler(paths.CACHE_DIR.as_posix())
 T = TranslatorPo(locale_finder, gettext_compiler)
 T.collect_languages()

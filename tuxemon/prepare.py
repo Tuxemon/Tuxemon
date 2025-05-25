@@ -7,8 +7,8 @@ as display resolution, scale, etc.
 from __future__ import annotations
 
 import logging
-import os.path
 import re
+from pathlib import Path
 from typing import TYPE_CHECKING
 
 import yaml
@@ -36,27 +36,24 @@ joystick_blacklist = [
 ]
 
 # Create game dir if missing
-if not os.path.isdir(paths.USER_STORAGE_DIR):
-    os.makedirs(paths.USER_STORAGE_DIR)
+paths.USER_STORAGE_DIR.mkdir(parents=True, exist_ok=True)
 
 # Create game data dir if missing
-if not os.path.isdir(paths.USER_GAME_DATA_DIR):
-    os.makedirs(paths.USER_GAME_DATA_DIR)
+paths.USER_GAME_DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 # Create game savegame dir if missing
-if not os.path.isdir(paths.USER_GAME_SAVE_DIR):
-    os.makedirs(paths.USER_GAME_SAVE_DIR)
+paths.USER_GAME_SAVE_DIR.mkdir(parents=True, exist_ok=True)
 
 # Generate default config
 config.generate_default_config()
 
 # Read "tuxemon.yaml" config from disk, update and write back
-CONFIG = config.TuxemonConfig(paths.USER_CONFIG_PATH)
+CONFIG = config.TuxemonConfig(paths.USER_CONFIG_PATH.as_posix())
 
 # Starting map
 STARTING_MAP = "start_"
 
-with open(paths.USER_CONFIG_PATH, "w") as fp:
+with paths.USER_CONFIG_PATH.open("w") as fp:
     yaml.dump(CONFIG.config, fp, default_flow_style=False, indent=4)
 
 # Set up the screen size and caption
@@ -330,7 +327,7 @@ else:
     SCALE = 1
 
 # Reference user save dir
-SAVE_PATH = os.path.join(paths.USER_GAME_SAVE_DIR, "slot")
+SAVE_PATH = paths.USER_GAME_SAVE_DIR / "slot"
 SAVE_METHOD = "JSON"
 # SAVE_METHOD = "CBOR"
 
@@ -361,10 +358,10 @@ def pygame_init() -> None:
     pg.init()
     pg.display.set_caption(CONFIG.window_caption)
 
-    from tuxemon import platform
+    from tuxemon.platform import is_android
 
     fullscreen = pg.FULLSCREEN if CONFIG.fullscreen else 0
-    if platform.android:
+    if is_android():
         fullscreen = pg.FULLSCREEN
     flags = pg.HWSURFACE | pg.DOUBLEBUF | fullscreen
 
@@ -406,26 +403,26 @@ def init() -> None:
 # eventually, this should be configured at game launch, or in a config file instead
 # of looking all over creation for the required files.
 def fetch(*args: str) -> str:
-    relative_path = os.path.join(*args)
+    relative_path = Path(*args)
 
     for mod_name in CONFIG.mods:
         # when assets are in folder with the source
-        path = os.path.join(paths.mods_folder, mod_name, relative_path)
+        path = paths.mods_folder / mod_name / relative_path
         logger.debug(f"searching asset: {path}")
-        if os.path.exists(path):
-            return path
+        if path.exists():
+            return path.as_posix()
 
-        # when assets are in a system path (like for os packages and android)
+        # when assets are in a system path (like for OS packages and Android)
         for root_path in paths.system_installed_folders:
-            path = os.path.join(root_path, "mods", mod_name, relative_path)
+            path = root_path / "mods" / mod_name / relative_path
             logger.debug(f"searching asset: {path}")
-            if os.path.exists(path):
-                return path
+            if path.exists():
+                return path.as_posix()
 
-        # mods folder is in same folder as the launch script
-        path = os.path.join(paths.BASEDIR, "mods", mod_name, relative_path)
+        # mods folder is in the same folder as the launch script
+        path = paths.BASEDIR / "mods" / mod_name / relative_path
         logger.debug(f"searching asset: {path}")
-        if os.path.exists(path):
-            return path
+        if path.exists():
+            return path.as_posix()
 
-    raise OSError(f"cannot load file {relative_path}")
+    raise OSError(f"Cannot load file {relative_path}")

@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 import logging
-import os
 from dataclasses import dataclass
 from enum import Enum
 from itertools import chain
+from pathlib import Path
 from typing import TYPE_CHECKING, Optional
 
 import pygame
@@ -195,11 +195,13 @@ class SpriteRenderer:
                     if is_interactive_object
                     else f"{template.sprite_name}_{facing.value}.png"
                 )
-                path = os.path.join(
-                    "sprites_obj" if is_interactive_object else "sprites",
-                    filename,
+                path = (
+                    Path("sprites_obj" if is_interactive_object else "sprites")
+                    / filename
                 )
-                sprite_dict[facing] = load_and_scale_with_cache(path)
+                sprite_dict[facing] = load_and_scale_with_cache(
+                    path.as_posix()
+                )
             standing_sprite_cache[template.sprite_name] = sprite_dict
         else:
             logger.info(

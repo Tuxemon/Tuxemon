@@ -6,6 +6,7 @@ import logging
 import random
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
+from pathlib import Path
 from typing import TYPE_CHECKING, Any, Optional
 
 import yaml
@@ -113,9 +114,9 @@ class AITechniques:
     techniques: dict[str, SingleTechnique]
 
 
-def load_yaml(filepath: str) -> Any:
+def load_yaml(filepath: Path) -> Any:
     try:
-        with open(filepath) as file:
+        with filepath.open() as file:
             return yaml.safe_load(file)
     except FileNotFoundError:
         logger.error(f"Config file not found: {filepath}")
@@ -133,7 +134,7 @@ class AIConfigLoader:
 
     @classmethod
     def get_ai_opponent(cls, filename: str) -> AIOpponent:
-        yaml_path = f"{paths.mods_folder}/{filename}"
+        yaml_path = paths.mods_folder / filename
         if cls._ai_opponent is None:
             raw_map = load_yaml(yaml_path)
 
@@ -150,7 +151,7 @@ class AIConfigLoader:
 
     @classmethod
     def get_ai_items(cls, filename: str) -> AIItems:
-        yaml_path = f"{paths.mods_folder}/{filename}"
+        yaml_path = paths.mods_folder / filename
         if cls._ai_items is None:
             raw_map = load_yaml(yaml_path)
             cls._ai_items = AIItems(**raw_map)
@@ -158,7 +159,7 @@ class AIConfigLoader:
 
     @classmethod
     def get_ai_character(cls, filename: str) -> AITrainers:
-        yaml_path = f"{paths.mods_folder}/{filename}"
+        yaml_path = paths.mods_folder / filename
         if cls._ai_character is None:
             raw_map = load_yaml(yaml_path)
 
@@ -189,7 +190,7 @@ class AIConfigLoader:
 
     @classmethod
     def get_ai_techniques(cls, filename: str) -> AITechniques:
-        yaml_path = f"{paths.mods_folder}/{filename}"
+        yaml_path = paths.mods_folder / filename
         if cls._ai_techniques is None:
             raw_map = load_yaml(yaml_path)
 

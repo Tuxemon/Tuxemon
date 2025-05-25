@@ -359,7 +359,7 @@ class StateManager:
 
         TODO: this functionality duplicates the plugin code.
         """
-        state_folder = Path(paths.LIBDIR) / Path(*self.package.split(".")[1:])
+        state_folder = paths.LIBDIR / Path(*self.package.split(".")[1:])
         exclude_endings = {".py", ".pyc", ".pyo"}
         exclude_names = {"__pycache__"}
 

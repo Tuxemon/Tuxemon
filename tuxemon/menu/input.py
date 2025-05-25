@@ -22,8 +22,8 @@ from tuxemon.ui.text import TextArea
 
 
 def load_names(file_path: str) -> Any:
-    yaml_path = f"{paths.mods_folder}/{file_path}"
-    with open(yaml_path) as file:
+    yaml_path = paths.mods_folder / file_path
+    with yaml_path.open() as file:
         return yaml.safe_load(file)
 
 

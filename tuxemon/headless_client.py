@@ -6,7 +6,7 @@ import logging
 import time
 from collections.abc import Mapping, Sequence
 from enum import Enum
-from os.path import basename
+from pathlib import Path
 from typing import Any, Optional, TypeVar, Union, overload
 
 from tuxemon.audio import MusicPlayerState, SoundManager
@@ -195,9 +195,7 @@ class HeadlessClient:
         map_path = self.map_manager.get_map_filepath()
         if map_path is None:
             raise ValueError("Name of the map requested when no map is active")
-
-        # extract map name from path
-        return basename(map_path)
+        return Path(map_path).name
 
     """
     The following methods provide an interface to the state stack

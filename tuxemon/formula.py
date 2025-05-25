@@ -7,6 +7,7 @@ import math
 import random
 from collections.abc import Sequence
 from dataclasses import dataclass
+from pathlib import Path
 from typing import TYPE_CHECKING, Any, Optional, Union
 
 import yaml
@@ -114,9 +115,9 @@ class CombatConfig:
                 )
 
 
-def load_yaml(filepath: str) -> Any:
+def load_yaml(filepath: Path) -> Any:
     try:
-        with open(filepath) as file:
+        with filepath.open() as file:
             return yaml.safe_load(file)
     except FileNotFoundError:
         logger.error(f"Config file not found: {filepath}")
@@ -135,7 +136,7 @@ class Loader:
 
     @classmethod
     def get_capture_devices(cls, filename: str) -> CaptureDevicesConfig:
-        yaml_path = f"{paths.mods_folder}/{filename}"
+        yaml_path = paths.mods_folder / filename
         if cls._capture_devices is None:
             raw_map = load_yaml(yaml_path)
             items = {}
@@ -177,7 +178,7 @@ class Loader:
 
     @classmethod
     def get_config_combat(cls, filename: str) -> CombatConfig:
-        yaml_path = f"{paths.mods_folder}/{filename}"
+        yaml_path = paths.mods_folder / filename
         if cls._config_combat is None:
             raw_map = load_yaml(yaml_path)
             cls._config_combat = CombatConfig(**raw_map)
@@ -185,7 +186,7 @@ class Loader:
 
     @classmethod
     def get_config_monster(cls, filename: str) -> MonsterConfig:
-        yaml_path = f"{paths.mods_folder}/{filename}"
+        yaml_path = paths.mods_folder / filename
         if cls._config_monster is None:
             raw_map = load_yaml(yaml_path)
             cls._config_monster = MonsterConfig(**raw_map)
@@ -193,7 +194,7 @@ class Loader:
 
     @classmethod
     def get_config_capture(cls, filename: str) -> CaptureConfig:
-        yaml_path = f"{paths.mods_folder}/{filename}"
+        yaml_path = paths.mods_folder / filename
         if cls._config_capture is None:
             raw_map = load_yaml(yaml_path)
             cls._config_capture = CaptureConfig(**raw_map)
@@ -201,7 +202,7 @@ class Loader:
 
     @classmethod
     def get_range_map(cls, filename: str) -> dict[str, RangeMapEntry]:
-        yaml_path = f"{paths.mods_folder}/{filename}"
+        yaml_path = paths.mods_folder / filename
         if not cls._range_map:
             raw_map = load_yaml(yaml_path)
             cls._range_map = {

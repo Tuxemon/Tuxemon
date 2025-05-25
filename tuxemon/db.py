@@ -5,11 +5,11 @@ from __future__ import annotations
 import difflib
 import json
 import logging
-import os
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from enum import Enum
 from importlib import import_module
+from pathlib import Path
 from typing import Annotated, Any, Literal, Optional, Union, overload
 
 import yaml
@@ -1657,15 +1657,15 @@ class ModMetadataLoader:
         self, active_mods: list[str], base_path: str = "mods"
     ) -> None:
         self.active_mods = active_mods
-        self.base_path = base_path
+        self.base_path = Path(base_path)
 
     def load_metadata(self) -> dict[str, dict[str, Any]]:
         metadata = {}
         for mod_directory in self.active_mods:
-            mod_path = os.path.join(self.base_path, mod_directory, "mod.json")
-            if os.path.exists(mod_path):
+            mod_path = self.base_path / mod_directory / "mod.json"
+            if mod_path.exists():
                 try:
-                    with open(mod_path) as f:
+                    with mod_path.open() as f:
                         metadata[mod_directory] = json.load(f)
                 except json.JSONDecodeError as e:
                     logger.error(
@@ -1716,35 +1716,38 @@ class ModelLoader:
 
 class DataLoader:
     def __init__(self, path: str, config: DatabaseConfig):
-        self.path = path
+        self.path = Path(path)
         self.config = config
 
     def load_files(self, directory: TableName) -> dict[str, Any]:
         preloaded_data: dict[str, Any] = {}
         extensions = self.config.file_extensions
-        for entry in os.scandir(os.path.join(self.path, directory)):
+        directory_path = self.path / directory
+        for entry in directory_path.iterdir():
             if entry.is_file() and any(
-                entry.name.endswith(ext) for ext in extensions
+                entry.suffix == ext for ext in extensions
             ):
                 try:
-                    with open(entry.path) as fp:
-                        if entry.name.endswith(".json"):
-                            item = json.load(fp)
-                        else:
-                            item = yaml.safe_load(fp)
+                    with entry.open() as fp:
+                        item = (
+                            json.load(fp)
+                            if entry.suffix == ".json"
+                            else yaml.safe_load(fp)
+                        )
+
                     if isinstance(item, list):
                         for sub_item in item:
                             self._load_dict(
-                                sub_item, entry.path, preloaded_data
+                                sub_item, entry.as_posix(), preloaded_data
                             )
                     else:
-                        self._load_dict(item, entry.path, preloaded_data)
+                        self._load_dict(item, entry.as_posix(), preloaded_data)
                 except (
                     json.JSONDecodeError,
                     yaml.YAMLError,
                     FileNotFoundError,
                 ) as e:
-                    logger.error(f"Error loading file '{entry.path}': {e}")
+                    logger.error(f"Error loading file '{entry}': {e}")
         return preloaded_data
 
     def _load_dict(
@@ -1776,7 +1779,6 @@ class ModData:
         self.model_map = load_model_map(config.model_map)
         self.loader = ModelLoader(self.model_map)
         self._load_mod_metadata()
-        self.path = ""
         if self.config.mod_tables:
             for mod, tables in self.config.mod_tables.items():
                 if mod in self.config.active_mods:
@@ -1835,8 +1837,10 @@ class ModData:
     def _preload_table_from_mod(
         self, table: TableName, mod_directory: str
     ) -> None:
-        self.path = os.path.join(
-            config.mod_base_path, mod_directory, config.mod_db_subfolder
+        self.path = (
+            Path(config.mod_base_path)
+            / mod_directory
+            / config.mod_db_subfolder
         )
         if (
             self.config.mod_versions
@@ -1845,10 +1849,10 @@ class ModData:
             logger.info(
                 f"Loading mod '{mod_directory}' version {self.config.mod_versions[mod_directory]}"
             )
-        if not os.path.exists(self.path):
+        if not self.path.exists():
             logger.warning(f"Mod directory '{self.path}' not found.")
             return
-        db_path = os.path.join(self.path, table)
+        db_path = self.path / str(table)
         if (
             self.config.mod_table_exclusions
             and mod_directory in self.config.mod_table_exclusions
@@ -1856,8 +1860,8 @@ class ModData:
         ):
             logger.info(f"Table '{table}' excluded by mod '{mod_directory}'.")
             return
-        if os.path.exists(db_path):
-            data_loader = DataLoader(self.path, self.config)
+        if db_path.exists():
+            data_loader = DataLoader(self.path.as_posix(), self.config)
             if table not in self.preloaded:
                 self.preloaded[table] = {}
             self.preloaded[table].update(data_loader.load_files(table))
@@ -2131,11 +2135,11 @@ class ModData:
                     if table in tables and mod in self.config.active_mods
                 ]
                 for mod in mods_associated:
-                    mod_path = os.path.join(
-                        self.config.mod_base_path,
-                        mod,
-                        self.config.mod_db_subfolder,
-                    )
+                    mod_path = (
+                        Path(self.config.mod_base_path)
+                        / mod
+                        / self.config.mod_db_subfolder
+                    )  # Using pathlib
                     logger.info(
                         f"Preloading table '{table}' from mod path '{mod_path}'."
                     )
@@ -2223,10 +2227,9 @@ class Validator:
         Returns:
             True if file exists
         """
-
         try:
-            path = prepare.fetch(file)
-            return os.path.exists(path)
+            path = Path(prepare.fetch(file))
+            return path.exists()
         except OSError:
             return False
 
@@ -2275,7 +2278,7 @@ class Validator:
         return slug in self.db.preloaded[table]
 
 
-path = prepare.fetch(mods_folder, "db_config.json")
+path = prepare.fetch(mods_folder.as_posix(), "db_config.json")
 config = load_config(path)
 # Global database container
 db = ModData(config)

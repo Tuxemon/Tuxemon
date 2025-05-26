@@ -5,6 +5,7 @@ from collections.abc import Generator, Mapping
 from typing import Any, ClassVar, Optional, TypedDict
 
 import pygame as pg
+from pygame.event import Event
 from pygame.rect import Rect
 from pygame.surface import Surface
 
@@ -37,7 +38,6 @@ class PygameEventQueueHandler(EventQueueHandler):
         Parameters:
             player: Number of the player the handler belongs to.
             handler: Handler whose events will be processed from now on.
-
         """
         self._inputs[player].append(handler)
 
@@ -71,7 +71,7 @@ class PygameEventQueueHandler(EventQueueHandler):
                 yield from player_input.get_events()
 
 
-class PygameEventHandler(InputHandler[pg.event.Event]):
+class PygameEventHandler(InputHandler[Event]):
     """
     Input handler of Pygame events.
     """
@@ -90,7 +90,6 @@ class PygameGamepadInput(PygameEventHandler):
         deadzone: Threshold used to detect when an analog stick should
             be considered not pressed, as obtaining an exact value of 0 is
             almost impossible.
-
     """
 
     # Xbox 360 Controller buttons:
@@ -147,7 +146,7 @@ class PygameGamepadInput(PygameEventHandler):
         else:
             self.release(button)
 
-    def process_event(self, input_event: pg.event.Event) -> None:
+    def process_event(self, input_event: Event) -> None:
         """
         Processes a pygame event.
 
@@ -158,7 +157,7 @@ class PygameGamepadInput(PygameEventHandler):
         self.check_hat(input_event)
         self.check_axis(input_event)
 
-    def check_button(self, pg_event: pg.event.Event) -> None:
+    def check_button(self, pg_event: Event) -> None:
         """
         Checks for button press/release events.
 
@@ -171,7 +170,7 @@ class PygameGamepadInput(PygameEventHandler):
         except (KeyError, AttributeError):
             pass
 
-    def check_hat(self, pg_event: pg.event.Event) -> None:
+    def check_hat(self, pg_event: Event) -> None:
         """
         Checks for hat switch motion events.
 
@@ -193,7 +192,7 @@ class PygameGamepadInput(PygameEventHandler):
                 self.handle_button(buttons.UP, False)
                 self.handle_button(buttons.DOWN, False)
 
-    def check_axis(self, pg_event: pg.event.Event) -> None:
+    def check_axis(self, pg_event: Event) -> None:
         """
         Checks for axis motion events.
 
@@ -230,7 +229,6 @@ class PygameKeyboardInput(PygameEventHandler):
 
     Parameters:
         event_map: Mapping of original identifiers to button identifiers.
-
     """
 
     default_input_map = {
@@ -246,7 +244,7 @@ class PygameKeyboardInput(PygameEventHandler):
         None: events.UNICODE,
     }
 
-    def process_event(self, input_event: pg.event.Event) -> None:
+    def process_event(self, input_event: Event) -> None:
         """
         Processes a pygame event.
 
@@ -259,9 +257,7 @@ class PygameKeyboardInput(PygameEventHandler):
         if pressed or released:
             self._handle_key_event(input_event, pressed)
 
-    def _handle_key_event(
-        self, input_event: pg.event.Event, pressed: bool
-    ) -> None:
+    def _handle_key_event(self, input_event: Event, pressed: bool) -> None:
         """Handles key press or release events."""
         try:
             button = self.event_map[input_event.key]
@@ -273,9 +269,7 @@ class PygameKeyboardInput(PygameEventHandler):
             else:
                 self.release(button)
 
-    def _handle_unicode_event(
-        self, input_event: pg.event.Event, pressed: bool
-    ) -> None:
+    def _handle_unicode_event(self, input_event: Event, pressed: bool) -> None:
         """Handles Unicode input events."""
         try:
             if pressed:
@@ -309,118 +303,89 @@ class DPadButtonInfo(TypedDict):
 class TouchOverlayUI:
     def __init__(self, transparency: int) -> None:
         self.transparency = transparency
-        self.dpad: DPadInfo = {
-            "surface": Surface((0, 0)),
-            "position": (0, 0),
-            "rect": {
-                "up": Rect(0, 0, 0, 0),
-                "down": Rect(0, 0, 0, 0),
-                "left": Rect(0, 0, 0, 0),
-                "right": Rect(0, 0, 0, 0),
-            },
-        }
-        self.a_button: DPadButtonInfo = {
-            "surface": Surface((0, 0)),
-            "position": (0, 0),
-            "rect": Rect(0, 0, 0, 0),
-        }
-        self.b_button: DPadButtonInfo = {
-            "surface": Surface((0, 0)),
-            "position": (0, 0),
-            "rect": Rect(0, 0, 0, 0),
-        }
+        self.dpad: DPadInfo = self.create_dpad()
+        self.a_button: DPadButtonInfo = self.create_button()
+        self.b_button: DPadButtonInfo = self.create_button()
         self.load()
 
+    def create_dpad(self) -> DPadInfo:
+        return DPadInfo(
+            surface=Surface((0, 0)),
+            position=(0, 0),
+            rect=DPadRectsInfo(
+                up=Rect(0, 0, 0, 0),
+                down=Rect(0, 0, 0, 0),
+                left=Rect(0, 0, 0, 0),
+                right=Rect(0, 0, 0, 0),
+            ),
+        )
+
+    def create_button(self) -> DPadButtonInfo:
+        return DPadButtonInfo(
+            surface=Surface((0, 0)),
+            position=(0, 0),
+            rect=Rect(0, 0, 0, 0),
+        )
+
     def load(self) -> None:
+        """Loads the UI elements."""
         self.dpad["surface"] = graphics.load_and_scale("gfx/d-pad.png")
         self.dpad["position"] = (
             0,
             prepare.SCREEN_SIZE[1] - self.dpad["surface"].get_height(),
         )
-        up = Rect(
-            self.dpad["position"][0] + (self.dpad["surface"].get_width() / 3),
-            self.dpad["position"][1],
-            self.dpad["surface"].get_width() / 3,
-            self.dpad["surface"].get_height() / 2,
-        )
-        down = Rect(
-            self.dpad["position"][0] + (self.dpad["surface"].get_width() / 3),
-            self.dpad["position"][1] + (self.dpad["surface"].get_height() / 2),
-            self.dpad["surface"].get_width() / 3,
-            self.dpad["surface"].get_height() / 2,
-        )
-        left = Rect(
-            self.dpad["position"][0],
-            self.dpad["position"][1] + (self.dpad["surface"].get_height() / 3),
-            self.dpad["surface"].get_width() / 2,
-            self.dpad["surface"].get_height() / 3,
-        )
-        right = Rect(
-            self.dpad["position"][0] + (self.dpad["surface"].get_width() / 2),
-            self.dpad["position"][1] + (self.dpad["surface"].get_height() / 3),
-            self.dpad["surface"].get_width() / 2,
-            self.dpad["surface"].get_height() / 3,
-        )
-        self.dpad["rect"] = {
-            "up": up,
-            "down": down,
-            "left": left,
-            "right": right,
-        }
 
-        self.a_button["surface"] = graphics.load_and_scale("gfx/a-button.png")
-        self.a_button["position"] = (
+        width, height = (
+            self.dpad["surface"].get_width(),
+            self.dpad["surface"].get_height(),
+        )
+        pos_x, pos_y = self.dpad["position"]
+
+        self.dpad["rect"]["up"] = Rect(
+            pos_x + (width / 3), pos_y, width / 3, height / 2
+        )
+        self.dpad["rect"]["down"] = Rect(
+            pos_x + (width / 3), pos_y + (height / 2), width / 3, height / 2
+        )
+        self.dpad["rect"]["left"] = Rect(
+            pos_x, pos_y + (height / 3), width / 2, height / 3
+        )
+        self.dpad["rect"]["right"] = Rect(
+            pos_x + (width / 2), pos_y + (height / 3), width / 2, height / 3
+        )
+
+        self.load_button(self.a_button, "gfx/a-button.png", 1.0)
+        self.load_button(self.b_button, "gfx/b-button.png", 2.1)
+
+    def load_button(
+        self, button: DPadButtonInfo, image_path: str, scale: float
+    ) -> None:
+        button["surface"] = graphics.load_and_scale(image_path)
+        button["position"] = (
             prepare.SCREEN_SIZE[0]
-            - int(self.a_button["surface"].get_width() * 1.0),
+            - int(button["surface"].get_width() * scale),
             int(
                 self.dpad["position"][1]
                 + (self.dpad["surface"].get_height() / 2)
-                - (self.a_button["surface"].get_height() / 2)
+                - (button["surface"].get_height() / 2)
             ),
         )
-        self.a_button["rect"] = Rect(
-            self.a_button["position"][0],
-            self.a_button["position"][1],
-            self.a_button["surface"].get_width(),
-            self.a_button["surface"].get_height(),
-        )
-
-        self.b_button["surface"] = graphics.load_and_scale("gfx/b-button.png")
-        self.b_button["position"] = (
-            prepare.SCREEN_SIZE[0]
-            - int(self.b_button["surface"].get_width() * 2.1),
-            int(
-                self.dpad["position"][1]
-                + (self.dpad["surface"].get_height() / 2)
-                - (self.b_button["surface"].get_height() / 2)
-            ),
-        )
-        self.b_button["rect"] = Rect(
-            self.b_button["position"][0],
-            self.b_button["position"][1],
-            self.b_button["surface"].get_width(),
-            self.b_button["surface"].get_height(),
+        button["rect"] = Rect(
+            button["position"][0],
+            button["position"][1],
+            button["surface"].get_width(),
+            button["surface"].get_height(),
         )
 
     def draw(self, screen: Surface) -> None:
-        blit_alpha(
-            screen,
-            self.dpad["surface"],
-            self.dpad["position"],
-            self.transparency,
-        )
-        blit_alpha(
-            screen,
-            self.a_button["surface"],
-            self.a_button["position"],
-            self.transparency,
-        )
-        blit_alpha(
-            screen,
-            self.b_button["surface"],
-            self.b_button["position"],
-            self.transparency,
-        )
+        """Draws the UI overlay."""
+        for element in [self.dpad, self.a_button, self.b_button]:
+            blit_alpha(
+                screen,
+                element["surface"],
+                element["position"],
+                self.transparency,
+            )
 
 
 class PygameTouchOverlayInput(PygameEventHandler):
@@ -429,43 +394,53 @@ class PygameTouchOverlayInput(PygameEventHandler):
     def __init__(self, transparency: int) -> None:
         super().__init__()
         self.ui = TouchOverlayUI(transparency)
-        self.buttons[buttons.UP] = PlayerInput(buttons.UP)
-        self.buttons[buttons.DOWN] = PlayerInput(buttons.DOWN)
-        self.buttons[buttons.LEFT] = PlayerInput(buttons.LEFT)
-        self.buttons[buttons.RIGHT] = PlayerInput(buttons.RIGHT)
-        self.buttons[buttons.A] = PlayerInput(buttons.A)
-        self.buttons[buttons.B] = PlayerInput(buttons.B)
+        self.buttons = {
+            buttons.UP: PlayerInput(buttons.UP),
+            buttons.DOWN: PlayerInput(buttons.DOWN),
+            buttons.LEFT: PlayerInput(buttons.LEFT),
+            buttons.RIGHT: PlayerInput(buttons.RIGHT),
+            buttons.A: PlayerInput(buttons.A),
+            buttons.B: PlayerInput(buttons.B),
+        }
         self.load()
 
     def load(self) -> None:
+        """Loads the UI elements."""
         self.ui.load()
 
-    def process_event(self, input_event: pg.event.Event) -> None:
+    def process_event(self, input_event: Event) -> None:
+        """Handles touch events."""
+        if input_event.type not in (pg.MOUSEBUTTONDOWN, pg.MOUSEBUTTONUP):
+            return
+
+        mouse_pos = input_event.pos
         pressed = input_event.type == pg.MOUSEBUTTONDOWN
-        released = input_event.type == pg.MOUSEBUTTONUP
-        button = None
-        if (pressed or released) and input_event.button == 1:
-            mouse_pos = input_event.pos
-            dpad_rect = self.ui.dpad["rect"]
-            if dpad_rect["up"].collidepoint(mouse_pos):
-                button = buttons.UP
-            elif dpad_rect["down"].collidepoint(mouse_pos):
-                button = buttons.DOWN
-            elif dpad_rect["left"].collidepoint(mouse_pos):
-                button = buttons.LEFT
-            elif dpad_rect["right"].collidepoint(mouse_pos):
-                button = buttons.RIGHT
-            elif self.ui.a_button["rect"].collidepoint(mouse_pos):
-                button = buttons.A
-            elif self.ui.b_button["rect"].collidepoint(mouse_pos):
-                button = buttons.B
-        if pressed and button:
-            self.press(button)
-        elif released:
-            for button in self.buttons:
+
+        button = self.get_touched_button(mouse_pos)
+        if button is not None:
+            if pressed:
+                self.press(button)
+            else:
                 self.release(button)
 
+    def get_touched_button(self, mouse_pos: tuple[int, int]) -> Optional[int]:
+        """Determine which button was pressed based on position."""
+        if self.ui.dpad["rect"]["up"].collidepoint(mouse_pos):
+            return buttons.UP
+        if self.ui.dpad["rect"]["down"].collidepoint(mouse_pos):
+            return buttons.DOWN
+        if self.ui.dpad["rect"]["left"].collidepoint(mouse_pos):
+            return buttons.LEFT
+        if self.ui.dpad["rect"]["right"].collidepoint(mouse_pos):
+            return buttons.RIGHT
+        if self.ui.a_button["rect"].collidepoint(mouse_pos):
+            return buttons.A
+        if self.ui.b_button["rect"].collidepoint(mouse_pos):
+            return buttons.B
+        return None
+
     def draw(self, screen: Surface) -> None:
+        """Draws the UI overlay."""
         self.ui.draw(screen)
 
 
@@ -475,7 +450,6 @@ class PygameMouseInput(PygameEventHandler):
 
     Parameters:
         event_map: Mapping of original identifiers to button identifiers.
-
     """
 
     default_input_map = {
@@ -483,7 +457,7 @@ class PygameMouseInput(PygameEventHandler):
         pg.MOUSEBUTTONUP: buttons.MOUSELEFT,
     }
 
-    def process_event(self, pg_event: pg.event.Event) -> None:
+    def process_event(self, pg_event: Event) -> None:
         if pg_event.type == pg.MOUSEBUTTONDOWN:
             self.press(buttons.MOUSELEFT, pg_event.pos)
         elif pg_event.type == pg.MOUSEBUTTONUP:

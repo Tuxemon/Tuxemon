@@ -42,14 +42,18 @@ class InputManager:
         """
         Sets up the input devices based on the config.
         """
-        try:
-            self.setup_keyboard()
-            self.setup_gamepad()
-            self.setup_controller_overlay()
-            self.setup_mouse()
-        except Exception as e:
-            logger.error(f"Unexpected error setting up inputs: {e}")
-            raise
+        setup_methods = [
+            self.setup_keyboard,
+            self.setup_gamepad,
+            self.setup_controller_overlay,
+            self.setup_mouse,
+        ]
+
+        for setup_method in setup_methods:
+            try:
+                setup_method()
+            except Exception as e:
+                logger.error(f"Error setting up {setup_method.__name__}: {e}")
 
     def setup_keyboard(self) -> None:
         """

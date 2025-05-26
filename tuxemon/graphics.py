@@ -460,16 +460,15 @@ def string_to_colorlike(color: str) -> ColorLike:
 
     Returns:
         The ColorLike.
-
     """
-    rgb: ColorLike = prepare.BLACK_COLOR
-    part = color.split(":")
-    rgb = (
-        (int(part[0]), int(part[1]), int(part[2]), int(part[3]))
-        if len(part) == 4
-        else (int(part[0]), int(part[1]), int(part[2]))
-    )
-    return rgb
+    part = list(map(int, color.split(":")))
+
+    if len(part) == 3:
+        return (part[0], part[1], part[2])
+    elif len(part) == 4:
+        return (part[0], part[1], part[2], part[3])
+
+    raise ValueError("Invalid color format. Expected 'R:G:B' or 'R:G:B:A'")
 
 
 def apply_cinema_bars(

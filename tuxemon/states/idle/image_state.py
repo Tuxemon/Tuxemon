@@ -13,8 +13,8 @@ from tuxemon.platform.events import PlayerInput
 
 class ImageState(PygameMenuState):
     """
-    It imposes an image over the world, where it'll be possible to
-    dispay dialogues, etc.
+    A state that overlays an image over the game world, useful for displaying
+    dialogues, menus, or other UI elements.
     """
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:

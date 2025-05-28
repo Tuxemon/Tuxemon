@@ -368,7 +368,9 @@ def pygame_init() -> None:
         fullscreen = pg.FULLSCREEN
     flags = pg.HWSURFACE | pg.DOUBLEBUF | fullscreen
 
-    SCREEN = pg.display.set_mode(SCREEN_SIZE, flags)
+    if CONFIG.vsync:
+        pg.display.set_allow_screensaver()
+    SCREEN = pg.display.set_mode(SCREEN_SIZE, flags, vsync=CONFIG.vsync)
     SCREEN_RECT = SCREEN.get_rect()
 
     # Disable the mouse cursor visibility

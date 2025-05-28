@@ -56,7 +56,6 @@ class HeadlessClient:
         )
         self.state_manager.auto_state_discovery()
         self.state = ClientState.RUNNING
-        self.show_fps = config.show_fps
         self.current_time = 0.0
 
         # setup controls

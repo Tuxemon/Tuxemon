@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, final
 
 import yaml
@@ -24,9 +25,9 @@ class CelestialCycle:
     phase_data: list[tuple[int, str]]
 
 
-def load_yaml(filepath: str) -> Any:
+def load_yaml(filepath: Path) -> Any:
     try:
-        with open(filepath) as file:
+        with filepath.open() as file:
             return yaml.safe_load(file)
     except FileNotFoundError:
         logger.error(f"Config file not found: {filepath}")
@@ -41,7 +42,7 @@ class Loader:
 
     @classmethod
     def get_config_celestial_cycle(cls, filename: str) -> list[CelestialCycle]:
-        yaml_path = f"{paths.mods_folder}/{filename}"
+        yaml_path = paths.mods_folder / filename
         if not cls._config_celestial_cycle:
             raw_data = load_yaml(yaml_path)
             cls._config_celestial_cycle = [

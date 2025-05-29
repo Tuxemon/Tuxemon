@@ -1,7 +1,6 @@
 """
 Script to validate map actions
 """
-from pathlib import Path
 from unittest.mock import MagicMock
 
 from tuxemon.constants import paths
@@ -21,9 +20,7 @@ loader = TMXMapLoader()
 loader.image_loader = MagicMock()
 
 for mod_name in CONFIG.mods:
-    for path in (
-        Path().joinpath(paths.mods_folder, mod_name, "maps").glob("*.tmx")
-    ):
+    for path in (paths.mods_folder / mod_name / "maps").glob("*.tmx"):
         txmn_map = loader.load(str(path))
         for event in txmn_map.events:
             for act in event.acts:

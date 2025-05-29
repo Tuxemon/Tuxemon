@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import logging
-import os
 from base64 import b64decode
+from pathlib import Path
 from typing import TYPE_CHECKING, Optional
 
 from pygame import SRCALPHA
@@ -44,8 +44,9 @@ class SaveMenuState(PopUpMenu[None]):
     def create_menu_item(
         self, slot_rect: Rect, slot_index: int, selectable: bool = True
     ) -> MenuItem[None]:
-        save_path = get_save_path(slot_index)
-        if os.path.exists(save_path):
+        save_path = Path(get_save_path(slot_index))
+
+        if save_path.exists():
             image = self.render_slot(slot_rect, slot_index)
             return MenuItem(image, T.translate("menu_save"), None, None, True)
         else:
@@ -197,10 +198,11 @@ def delete_save_slot(slot_num: int) -> bool:
     Returns:
         bool: True if the save file was deleted successfully, False otherwise.
     """
-    save_path = get_save_path(slot_num)
-    if os.path.exists(save_path):
+    save_path = Path(get_save_path(slot_num))
+
+    if save_path.exists():
         try:
-            os.remove(save_path)
+            save_path.unlink()
             logger.info(
                 f"Save slot {slot_num} deleted successfully at path {save_path}."
             )

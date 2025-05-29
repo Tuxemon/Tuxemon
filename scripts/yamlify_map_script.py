@@ -1,5 +1,4 @@
 """
-
 Move the scripts from TMX file to a YAML file
 
 * the YAML file will have same name as map
@@ -17,25 +16,27 @@ the events group.  They can be deleted, if desired.
 USAGE
 
 python yamlify_map_script.py FILE0 FILE1 FILE2 ...
-
 """
+
 import logging
-import os
+import sys
 import xml.etree.ElementTree as ET
 from collections import defaultdict
+from pathlib import Path
+from typing import Any, DefaultDict
+from xml.etree.ElementTree import Element
 
-import click
 import yaml
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__file__)
 
 
-def renumber_event(event_node):
+def renumber_event(event_node: Element) -> DefaultDict[Any, list]:
     groups = (
-        ("act", list()),
-        ("cond", list()),
-        ("behav", list()),
+        ("act", []),
+        ("cond", []),
+        ("behav", []),
     )
 
     for node in event_node:
@@ -57,10 +58,10 @@ def renumber_event(event_node):
     return children
 
 
-def rewrite_events(filename: str):
-    def do_the_thing():
+def rewrite_events(filename: Path) -> None:
+    def do_the_thing() -> None:
         properties = xml_event_object.find("properties")
-        event_node = dict()
+        event_node = {}
         for names, divisor in [[["x", "width"], tw], [["y", "height"], th]]:
             for name in names:
                 value = xml_event_object.attrib.get(name, None)
@@ -69,7 +70,7 @@ def rewrite_events(filename: str):
         event_type = xml_event_object.get("type")
         if event_type not in [None, "event"]:
             event_node["type"] = event_type
-        if properties:
+        if properties is not None and len(properties) > 0:
             xml_event_object.remove(properties)
             children = renumber_event(properties)
             for cname, tname in mapping:
@@ -80,15 +81,13 @@ def rewrite_events(filename: str):
 
     tree = ET.parse(filename)
     root = tree.getroot()
-    yaml_filename = filename[:-4] + ".yaml"
+    yaml_filename = filename.with_suffix(".yaml")
 
-    # if there is an existing yaml, try to load it so it is updated instead of replaced
     try:
-        with open(yaml_filename) as fp:
+        with yaml_filename.open() as fp:
             yaml_doc = yaml.load(fp, Loader=yaml.SafeLoader)
     except FileNotFoundError:
-        yaml_doc = dict()
-        yaml_doc["events"] = dict()
+        yaml_doc = {"events": {}}
 
     mapping = (
         ("conditions", "cond"),
@@ -104,28 +103,16 @@ def rewrite_events(filename: str):
     for xml_event_object in root.findall(".//object[@type='event']"):
         do_the_thing()
 
-    with open(yaml_filename, "w") as fp:
-        fp.write(yaml.dump(yaml_doc, Dumper=yaml.SafeDumper))
+    with yaml_filename.open("w") as fp:
+        yaml.dump(yaml_doc, fp, Dumper=yaml.SafeDumper)
 
     tree.write(filename, encoding="UTF-8", xml_declaration=True)
 
 
-def process_tmxmap(filename):
-    logging.info("processing file %s", filename)
-    rewrite_events(filename)
-    # python's xml export changes formatting, so use tiled
-    # to export the map again and fix formatting
-    tiled_exe = "/home/ltheden/Downloads/Tiled-1.7.0-x86_64.AppImage"
-    cmd = "{} --export-map {} {}".format(tiled_exe, filename, filename)
-    os.system(cmd)
-
-
-@click.command()
-@click.argument("filename", nargs=-1)
-def click_shim(filename):
-    for fn in filename:
-        process_tmxmap(fn)
-
-
 if __name__ == "__main__":
-    click_shim()
+    if len(sys.argv) < 2:
+        print("USAGE: python yamlify_map_script.py FILE0 FILE1 FILE2 ...")
+        sys.exit(1)
+
+    for filename in sys.argv[1:]:
+        rewrite_events(Path(filename))

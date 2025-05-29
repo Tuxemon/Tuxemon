@@ -2,7 +2,6 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import logging
 import os
-from ctypes import CDLL, LibraryLoader
 from typing import Optional, Union
 
 from tuxemon.rumble.tools import Rumble, find_library

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-import os.path
+from pathlib import Path
 from typing import Optional, Protocol
 
 import pygame
@@ -164,11 +164,13 @@ class SoundManager:
         filename = db.lookup_file("sounds", slug)
         filename = transform_resource_filename("sounds", filename)
 
-        if not os.path.exists(filename):
+        path = Path(filename)
+
+        if not path.exists():
             logger.error(f"audio file does not exist: {filename}")
             return None
 
-        return filename
+        return path.as_posix()
 
     def load_sound(
         self, slug: str, value: float = prepare.CONFIG.sound_volume

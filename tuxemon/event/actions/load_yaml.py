@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 import logging
-import os
 from dataclasses import dataclass
+from pathlib import Path
 from typing import final
 
 from tuxemon import prepare
@@ -37,14 +37,18 @@ class LoadYamlAction(EventAction):
 
     def start(self, session: Session) -> None:
         client = session.client
-        yaml_path = prepare.fetch("maps", f"{self.file}.yaml")
+        yaml_path = Path(prepare.fetch("maps", f"{self.file}.yaml"))
 
         _events = list(client.map_manager.events)
         _inits = list(client.map_manager.inits)
-        if os.path.exists(yaml_path):
-            yaml_events = YAMLEventLoader().load_events(yaml_path, "event")
+        if yaml_path.exists():
+            yaml_events = YAMLEventLoader().load_events(
+                yaml_path.as_posix(), "event"
+            )
             _events.extend(yaml_events["event"])
-            yaml_inits = YAMLEventLoader().load_events(yaml_path, "init")
+            yaml_inits = YAMLEventLoader().load_events(
+                yaml_path.as_posix(), "init"
+            )
             _inits.extend(yaml_inits["init"])
         else:
             raise ValueError(f"{yaml_path} doesn't exist")

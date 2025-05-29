@@ -66,11 +66,11 @@ class Item:
 
         if Item.effect_manager is None:
             Item.effect_manager = EffectManager(
-                ItemEffect, paths.CORE_EFFECT_PATH
+                ItemEffect, paths.CORE_EFFECT_PATH.as_posix()
             )
         if Item.condition_manager is None:
             Item.condition_manager = ConditionManager(
-                CoreCondition, paths.CORE_CONDITION_PATH
+                CoreCondition, paths.CORE_CONDITION_PATH.as_posix()
             )
 
         self.effects: Sequence[PluginObject] = []

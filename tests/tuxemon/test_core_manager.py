@@ -2,6 +2,7 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import tempfile
 import unittest
+from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 from tuxemon.core.core_manager import (
@@ -15,8 +16,8 @@ from tuxemon.plugin import PluginObject
 
 class TestCoreManager(unittest.TestCase):
     def setUp(self):
-        self.temp_dir = tempfile.TemporaryDirectory()
-        self.path = self.temp_dir.name
+        self.temp_dir = Path(tempfile.mkdtemp())
+        self.path = self.temp_dir / "tuxemon"
         self.category = "category"
         self.plugin_interface = MagicMock(spec=PluginObject)
         self.manager = CoreManager(
@@ -24,7 +25,10 @@ class TestCoreManager(unittest.TestCase):
         )
 
     def tearDown(self):
-        self.temp_dir.cleanup()
+        for item in self.temp_dir.iterdir():
+            if item.is_dir():
+                item.rmdir()
+        self.temp_dir.rmdir()
 
     @patch("tuxemon.plugin.load_plugins")
     def test_load_plugins(self, mock_load_plugins):
@@ -77,15 +81,18 @@ class TestCoreManager(unittest.TestCase):
 class TestEffectManager(unittest.TestCase):
     def setUp(self):
         self.effect_class = MagicMock(spec=PluginObject)
-        self.temp_dir = tempfile.TemporaryDirectory()
-        self.path = self.temp_dir.name
+        self.temp_dir = Path(tempfile.mkdtemp())
+        self.path = self.temp_dir / "tuxemon"
         self.category = "effects"
         self.manager = EffectManager(
             self.effect_class, self.path, self.category
         )
 
     def tearDown(self):
-        self.temp_dir.cleanup()
+        for item in self.temp_dir.iterdir():
+            if item.is_dir():
+                item.rmdir()
+        self.temp_dir.rmdir()
 
     def test_parse_effects(self):
         effect_instance = MagicMock(spec=PluginObject)
@@ -100,15 +107,18 @@ class TestEffectManager(unittest.TestCase):
 class TestConditionManager(unittest.TestCase):
     def setUp(self):
         self.condition_class = MagicMock(spec=PluginObject)
-        self.temp_dir = tempfile.TemporaryDirectory()
-        self.path = self.temp_dir.name
+        self.temp_dir = Path(tempfile.mkdtemp())
+        self.path = self.temp_dir / "tuxemon"
         self.category = "conditions"
         self.manager = ConditionManager(
             self.condition_class, self.path, self.category
         )
 
     def tearDown(self):
-        self.temp_dir.cleanup()
+        for item in self.temp_dir.iterdir():
+            if item.is_dir():
+                item.rmdir()
+        self.temp_dir.rmdir()
 
     def test_parse_conditions(self):
         condition_instance = MagicMock(spec=PluginObject)

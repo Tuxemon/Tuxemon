@@ -5,6 +5,7 @@ from __future__ import annotations
 import logging
 import random
 from dataclasses import dataclass
+from pathlib import Path
 from typing import TYPE_CHECKING, Any, Union
 
 import yaml
@@ -47,9 +48,9 @@ class FishingConfig:
             raise ValueError("Lower bound cannot be greater than upper bound.")
 
 
-def load_yaml(filepath: str) -> Any:
+def load_yaml(filepath: Path) -> Any:
     try:
-        with open(filepath) as file:
+        with filepath.open() as file:
             return yaml.safe_load(file)
     except FileNotFoundError:
         logger.error(f"Config file not found: {filepath}")
@@ -64,7 +65,7 @@ class Loader:
 
     @classmethod
     def get_config_fishing(cls, filename: str) -> dict[str, FishingConfig]:
-        yaml_path = f"{paths.mods_folder}/{filename}"
+        yaml_path = paths.mods_folder / filename
         if not cls._config_fishing:
             raw_map = load_yaml(yaml_path)
             cls._config_fishing = {

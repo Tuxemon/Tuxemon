@@ -8,7 +8,6 @@ from tuxemon.config import TuxemonConfig
 from tuxemon.main import (
     configure_debug_options,
     configure_game_states,
-    initialize_client,
 )
 
 
@@ -20,23 +19,21 @@ class TestGameInitialization(unittest.TestCase):
         self.mock_client.state_manager = MagicMock()
         self.mock_client.event_engine = MagicMock()
 
-    @patch("tuxemon.client.LocalPygameClient")
-    def test_initialize_client_success(self, MockLocalPygameClient):
-        MockLocalPygameClient.return_value = self.mock_client
+    @patch("tuxemon.client.LocalPygameClient.create")
+    def test_create_client_success(self, MockCreate):
+        MockCreate.return_value = self.mock_client
 
-        client = initialize_client(self.mock_config, self.mock_screen)
+        client = LocalPygameClient.create(self.mock_config, self.mock_screen)
 
         self.assertEqual(client, self.mock_client)
-        MockLocalPygameClient.assert_called_once_with(
-            self.mock_config, self.mock_screen
-        )
+        MockCreate.assert_called_once_with(self.mock_config, self.mock_screen)
 
-    @patch("tuxemon.client.LocalPygameClient")
-    def test_initialize_client_failure(self, MockLocalPygameClient):
-        MockLocalPygameClient.side_effect = TypeError("Invalid arguments")
+    @patch("tuxemon.client.LocalPygameClient.create")
+    def test_create_client_failure(self, MockCreate):
+        MockCreate.side_effect = TypeError("Invalid arguments")
 
         with self.assertRaises(TypeError):
-            initialize_client(self.mock_config, self.mock_screen)
+            LocalPygameClient.create(self.mock_config, self.mock_screen)
 
     def test_configure_game_states_with_load_slot(self):
         load_slot = 1

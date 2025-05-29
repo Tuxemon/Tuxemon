@@ -299,3 +299,44 @@ class TestPygameTouchOverlayInput(unittest.TestCase):
         self.assertFalse(
             any(button.pressed for button in self.touch_input.buttons.values())
         )
+
+    def test_simultaneous_presses(self):
+        events = [
+            Event(
+                pg.MOUSEBUTTONDOWN,
+                button=1,
+                pos=self.touch_input.ui.dpad["rect"]["up"].center,
+            ),
+            Event(
+                pg.MOUSEBUTTONDOWN,
+                button=1,
+                pos=self.touch_input.ui.a_button["rect"].center,
+            ),
+        ]
+        for event in events:
+            self.touch_input.process_event(event)
+        self.assertTrue(self.touch_input.buttons[buttons.UP].pressed)
+        self.assertTrue(self.touch_input.buttons[buttons.A].pressed)
+
+    def test_touch_on_border(self):
+        border_pos = (
+            self.touch_input.ui.dpad["rect"]["up"].right,
+            self.touch_input.ui.dpad["rect"]["down"].top,
+        )
+        event = Event(pg.MOUSEBUTTONDOWN, button=1, pos=border_pos)
+        self.touch_input.process_event(event)
+        self.assertFalse(self.touch_input.buttons[buttons.UP].pressed)
+        self.assertFalse(self.touch_input.buttons[buttons.DOWN].pressed)
+
+    def test_touch_outside_screen(self):
+        event = Event(pg.MOUSEBUTTONDOWN, button=1, pos=(900, 700))
+        self.touch_input.process_event(event)
+        self.assertFalse(
+            any(button.pressed for button in self.touch_input.buttons.values())
+        )
+
+    def test_persistent_press(self):
+        up_rect = self.touch_input.ui.dpad["rect"]["up"]
+        event = Event(pg.MOUSEBUTTONDOWN, button=1, pos=up_rect.center)
+        self.touch_input.process_event(event)
+        self.assertTrue(self.touch_input.buttons[buttons.UP].pressed)

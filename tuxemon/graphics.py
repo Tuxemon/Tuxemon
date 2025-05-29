@@ -9,9 +9,9 @@ have a home in any specific place.
 from __future__ import annotations
 
 import logging
-import os
 import re
 from collections.abc import Iterable, Sequence
+from pathlib import Path
 from typing import TYPE_CHECKING, Any, Optional, Protocol, Union
 
 from pygame.color import Color
@@ -201,11 +201,12 @@ def load_animated_sprite(
     """
     anim = []
     for filename in filenames:
-        if os.path.exists(filename):
-            image = load_and_scale(filename, scale)
+        path = Path(filename)
+        if path.exists():
+            image = load_and_scale(path.as_posix(), scale)
             anim.append((image, delay))
         else:
-            logger.error(f"File not found: {filename}")
+            logger.error(f"File not found: {path}")
 
     if not anim:
         raise ValueError("Cannot create animated sprite: no valid frames.")
@@ -259,11 +260,14 @@ def animation_frame_files(directory: str, name: str) -> Sequence[str]:
 
     """
     pattern = re.compile(rf"{name}\.?_?[0-9]+\.png")
-    frames = [
-        os.path.join(directory, filename)
-        for filename in sorted(os.listdir(directory))
-        if pattern.match(filename)
-    ]
+    dir_path = Path(directory)
+    frames = sorted(
+        [
+            file.as_posix()
+            for file in dir_path.iterdir()
+            if file.is_file() and pattern.match(file.name)
+        ]
+    )
     return frames
 
 
@@ -460,16 +464,15 @@ def string_to_colorlike(color: str) -> ColorLike:
 
     Returns:
         The ColorLike.
-
     """
-    rgb: ColorLike = prepare.BLACK_COLOR
-    part = color.split(":")
-    rgb = (
-        (int(part[0]), int(part[1]), int(part[2]), int(part[3]))
-        if len(part) == 4
-        else (int(part[0]), int(part[1]), int(part[2]))
-    )
-    return rgb
+    part = list(map(int, color.split(":")))
+
+    if len(part) == 3:
+        return (part[0], part[1], part[2])
+    elif len(part) == 4:
+        return (part[0], part[1], part[2], part[3])
+
+    raise ValueError("Invalid color format. Expected 'R:G:B' or 'R:G:B:A'")
 
 
 def apply_cinema_bars(

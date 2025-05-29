@@ -6,7 +6,7 @@ import logging
 import time
 from collections.abc import Mapping, Sequence
 from enum import Enum
-from os.path import basename
+from pathlib import Path
 from threading import Thread
 from typing import Any, Optional, TypeVar, Union, overload
 
@@ -57,6 +57,26 @@ class LocalPygameClient:
         screen: The surface where the game is rendered.
     """
 
+    @classmethod
+    def create(
+        cls, config: TuxemonConfig, screen: Surface
+    ) -> LocalPygameClient:
+        """
+        Initialize the LocalPygameClient with the given configuration and screen.
+        """
+        try:
+            client = LocalPygameClient(config, screen)
+            logger.info("Client initialized successfully.")
+        except (TypeError, ValueError) as e:
+            logger.error(f"Failed to initialize client: {e}")
+            raise
+        except Exception as e:
+            logger.critical(
+                f"Unexpected error during client initialization: {e}"
+            )
+            raise
+        return client
+
     def __init__(self, config: TuxemonConfig, screen: Surface) -> None:
         self.config = config
 
@@ -71,9 +91,6 @@ class LocalPygameClient:
         self.state_manager.auto_state_discovery()
         self.screen = screen
         self.state = ClientState.RUNNING
-        self.caption = config.window_caption
-        self.fps = config.fps
-        self.show_fps = config.show_fps
         self.current_time = 0.0
 
         # setup controls
@@ -91,7 +108,7 @@ class LocalPygameClient:
         self.renderer = Renderer(
             self.screen,
             self.state_drawer,
-            config.window_caption,
+            self.config,
         )
 
         # Set up our networking for multiplayer.
@@ -163,7 +180,7 @@ class LocalPygameClient:
         screen = self.screen
         flip = pygame.display.update
         clock = time.time
-        frame_length = 1.0 / self.fps
+        frame_length = 1.0 / self.config.fps
         time_since_draw = 0.0
         last_update = clock()
 
@@ -260,9 +277,7 @@ class LocalPygameClient:
         map_path = self.map_manager.get_map_filepath()
         if map_path is None:
             raise ValueError("Name of the map requested when no map is active")
-
-        # extract map name from path
-        return basename(map_path)
+        return Path(map_path).name
 
     """
     The following methods provide an interface to the state stack

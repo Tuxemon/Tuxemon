@@ -25,7 +25,8 @@ from tuxemon.movement import MovementManager, Pathfinder
 from tuxemon.platform.const import intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event
-from tuxemon.session import local_session
+from tuxemon.player import Player
+from tuxemon.session import Session
 from tuxemon.state import State
 from tuxemon.states.world.world_transition import WorldTransition
 from tuxemon.teleporter import Teleporter
@@ -59,11 +60,9 @@ CollisionMap = Mapping[
 class WorldState(State):
     """The state responsible for the world game play"""
 
-    def __init__(self, map_name: str) -> None:
+    def __init__(self, session: Session, map_name: str) -> None:
         super().__init__()
-
-        from tuxemon.player import Player
-
+        self.session = session
         self.movement = MovementManager(self.client)
         self.teleporter = Teleporter(self.client, self)
         self.pathfinder = Pathfinder(self.client, self)
@@ -73,11 +72,9 @@ class WorldState(State):
 
         self.transition_manager = WorldTransition(self)
 
-        if local_session.player is None:
-            new_player = Player(prepare.PLAYER_NPC, world=self)
-            local_session.player = new_player
+        self.player = Player.create(self.session, self)
 
-        self.camera = Camera(local_session.player, self.client.boundary)
+        self.camera = Camera(self.player, self.client.boundary)
         self.client.camera_manager.add_camera(self.camera)
         self.map_renderer = MapRenderer(self.client)
 
@@ -490,17 +487,7 @@ class WorldState(State):
     ####################################################
     def change_map(self, map_name: str) -> None:
         """
-        Changes the current map and updates the player state.
-
-        Parameters:
-            map_name: The name of the map to load.
-        """
-        self.load_and_update_map(map_name)
-        self.update_player_state()
-
-    def load_and_update_map(self, map_name: str) -> None:
-        """
-        Loads a new map and updates the game state accordingly.
+        Changes the current map and updates the game state accordingly.
 
         This method loads the map data, updates the game state, and notifies
         the client and boundary checker. The currently loaded map is updated
@@ -521,19 +508,6 @@ class WorldState(State):
         map_size = self.client.map_manager.map_size
         self.client.boundary.update_boundaries(map_size)
 
-    def update_player_state(self) -> None:
-        """
-        Updates the player's state after changing maps.
-
-        Parameters:
-            player: The player object to update.
-        """
-        player = local_session.player
-        player.world = self
-        self.movement.stop_char(player)
-        self.player = player
-        self.client.npc_manager.add_npc(player)
-
     @no_type_check  # only used by multiplayer which is disabled
     def check_interactable_space(self) -> bool:
         """
@@ -543,7 +517,6 @@ class WorldState(State):
 
         Returns:
             ``True`` if there is an Npc to interact with. ``False`` otherwise.
-
         """
         collision_dict = self.get_collision_map()
         player_tile_pos = self.player.tile_pos
@@ -591,7 +564,6 @@ class WorldState(State):
 
         :type event_data: Dictionary
         :type registry: Dictionary
-
         """
         target = registry[event_data["target"]]["sprite"]
         target_name = str(target.name)
@@ -611,7 +583,7 @@ class WorldState(State):
                 if self.wants_duel:
                     if event_data["response"] == "Accept":
                         world = self.client.current_state
-                        pd = local_session.player.__dict__
+                        pd = self.player.__dict__
                         event_data = {
                             "type": "CLIENT_INTERACTION",
                             "interaction": "START_DUEL",

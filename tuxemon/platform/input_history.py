@@ -11,10 +11,9 @@ from tuxemon.platform.tools import translate_input_event
 
 class InputHistory:
     def __init__(self, max_size: int = 25):
-        self.max_size = max_size
-        self.history: Deque[PlayerInput] = deque()
-        self.raw_max_size = max_size * 10
-        self.raw_history: Deque[PlayerInput] = deque()
+        self.raw_history: Deque[PlayerInput] = deque(maxlen=max_size * 10)
+        self.history: Deque[PlayerInput] = deque(maxlen=max_size)
+        self.last_history_event: Optional[PlayerInput] = None
 
     def add(self, event: PlayerInput) -> None:
         """
@@ -27,14 +26,15 @@ class InputHistory:
         """
         event = translate_input_event(event)
 
-        if not self.history or event.button != self.history[-1].button:
+        if (
+            not self.history or event.button != self.last_history_event.button
+            if self.last_history_event
+            else True
+        ):
             self.history.append(event)
-            if len(self.history) > self.max_size:
-                self.history.popleft()
+            self.last_history_event = event
 
         self.raw_history.append(event)
-        if len(self.raw_history) > self.raw_max_size:
-            self.raw_history.popleft()
 
     def is_button_combo(self, buttons: list[int]) -> bool:
         """
@@ -46,7 +46,7 @@ class InputHistory:
         Returns:
             True if the button combination is found, False otherwise.
         """
-        if len(buttons) > self.max_size:
+        if len(buttons) > len(self.history):
             raise ValueError(
                 "Button combination is longer than max history size."
             )
@@ -101,8 +101,9 @@ class InputHistory:
         Returns:
             The last button clicked, or None if the history is empty.
         """
-        if self.raw_history and self.raw_history[-1].pressed:
-            return self.raw_history[-1].button
+        for event in reversed(self.raw_history):
+            if event.pressed:
+                return event.button
         return None
 
     def clear_history(self) -> None:

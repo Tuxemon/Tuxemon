@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-import os
 import unittest
 from collections.abc import Generator
+from pathlib import Path
 from typing import Any
 
 import yaml
@@ -33,9 +33,10 @@ def expand_expected_scenarios() -> None:
 
 
 def get_yaml_files(folder_path: str) -> Generator[str, Any, None]:
-    for file in os.listdir(folder_path):
-        if file.endswith(".yaml"):
-            yield os.path.join(folder_path, file)
+    folder = Path(folder_path)
+    for file in folder.iterdir():
+        if file.suffix == ".yaml" and file.is_file():
+            yield file.as_posix()
 
 
 def load_yaml_files(folder_path: str) -> dict[str, dict]:
@@ -62,7 +63,7 @@ class TestYAMLFiles(unittest.TestCase):
                 self.assertLessEqual(
                     len(event_name),
                     MAX_LENGTH_NAME,
-                    f"Event name {event_name} exceeds {MAX_LENGTH_NAME} characters: {os.path.basename(path)}",
+                    f"Event name {event_name} exceeds {MAX_LENGTH_NAME} characters: {Path(path).name}",
                 )
 
     def test_yaml_event_labels(self):
@@ -72,7 +73,7 @@ class TestYAMLFiles(unittest.TestCase):
                     self.assertIn(
                         name,
                         YAML_ATTR,
-                        f"Event name {name} isn't among {YAML_ATTR}: {os.path.basename(path)}",
+                        f"Event name {name} isn't among {YAML_ATTR}: {Path(path).name}",
                     )
 
     def test_yaml_event_type(self):
@@ -81,7 +82,7 @@ class TestYAMLFiles(unittest.TestCase):
                 self.assertIn(
                     event_data["type"],
                     YAML_TYPES,
-                    f"Event type {event_data['type']} isn't among {YAML_TYPES}: {os.path.basename(path)}",
+                    f"Event type {event_data['type']} isn't among {YAML_TYPES}: {Path(path).name}",
                 )
 
     def test_yaml_event_x_coordinate(self):
@@ -91,7 +92,7 @@ class TestYAMLFiles(unittest.TestCase):
                     self.assertIsInstance(
                         event_data["x"],
                         int,
-                        f"Value of 'x' should be an integer: {os.path.basename(path)}",
+                        f"Value of 'x' should be an integer: {Path(path).name}",
                     )
 
     def test_yaml_event_y_coordinate(self):
@@ -101,7 +102,7 @@ class TestYAMLFiles(unittest.TestCase):
                     self.assertIsInstance(
                         event_data["y"],
                         int,
-                        f"Value of 'y' should be an integer: {os.path.basename(path)}",
+                        f"Value of 'y' should be an integer: {Path(path).name}",
                     )
 
     def test_yaml_event_width(self):
@@ -111,7 +112,7 @@ class TestYAMLFiles(unittest.TestCase):
                     self.assertIsInstance(
                         event_data["width"],
                         int,
-                        f"Value of 'width' should be an integer: {os.path.basename(path)}",
+                        f"Value of 'width' should be an integer: {Path(path).name}",
                     )
 
     def test_yaml_event_height(self):
@@ -121,7 +122,7 @@ class TestYAMLFiles(unittest.TestCase):
                     self.assertIsInstance(
                         event_data["height"],
                         int,
-                        f"Value of 'height' should be an integer: {os.path.basename(path)}",
+                        f"Value of 'height' should be an integer: {Path(path).name}",
                     )
 
     def test_actions_structure(self):
@@ -132,7 +133,7 @@ class TestYAMLFiles(unittest.TestCase):
                         self.assertIsInstance(
                             action,
                             str,
-                            f"Action in event should be a string: {os.path.basename(path)}",
+                            f"Action in event should be a string: {Path(path).name}",
                         )
 
     def test_actions_teleport(self):
@@ -146,7 +147,7 @@ class TestYAMLFiles(unittest.TestCase):
                                 prepare.fetch(FOLDER, params[0])
                             except OSError:
                                 self.fail(
-                                    f"Map '{params[0]}' does not exist in object {action} at {os.path.basename(path)}"
+                                    f"Map '{params[0]}' does not exist in object {action} at {Path(path).name}"
                                 )
 
     def test_conditions_structure(self):
@@ -157,7 +158,7 @@ class TestYAMLFiles(unittest.TestCase):
                         self.assertIsInstance(
                             condition,
                             str,
-                            f"Condition in event should be a string: {os.path.basename(path)}",
+                            f"Condition in event should be a string: {Path(path).name}",
                         )
 
     def test_conditions_operator(self):
@@ -167,5 +168,5 @@ class TestYAMLFiles(unittest.TestCase):
                     for condition in event_data["conditions"]:
                         self.assertTrue(
                             condition.lower().startswith(("is ", "not ")),
-                            f"Condition '{condition}' should start with 'is' or 'not': {os.path.basename(path)}",
+                            f"Condition '{condition}' should start with 'is' or 'not': {Path(path).name}",
                         )

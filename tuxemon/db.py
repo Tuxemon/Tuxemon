@@ -1714,61 +1714,6 @@ class ModelLoader:
         raise RuntimeError(f"Failed to load item for table '{table}'.")
 
 
-class DataLoader:
-    def __init__(self, path: str, config: DatabaseConfig):
-        self.path = Path(path)
-        self.config = config
-
-    def load_files(self, directory: TableName) -> dict[str, Any]:
-        preloaded_data: dict[str, Any] = {}
-        extensions = self.config.file_extensions
-        directory_path = self.path / directory
-        for entry in directory_path.iterdir():
-            if entry.is_file() and any(
-                entry.suffix == ext for ext in extensions
-            ):
-                try:
-                    with entry.open() as fp:
-                        item = (
-                            json.load(fp)
-                            if entry.suffix == ".json"
-                            else yaml.safe_load(fp)
-                        )
-
-                    if isinstance(item, list):
-                        for sub_item in item:
-                            self._load_dict(
-                                sub_item, entry.as_posix(), preloaded_data
-                            )
-                    else:
-                        self._load_dict(item, entry.as_posix(), preloaded_data)
-                except (
-                    json.JSONDecodeError,
-                    yaml.YAMLError,
-                    FileNotFoundError,
-                ) as e:
-                    logger.error(f"Error loading file '{entry}': {e}")
-        return preloaded_data
-
-    def _load_dict(
-        self,
-        item: Mapping[str, Any],
-        path: str,
-        preloaded_data: dict[str, Any],
-    ) -> None:
-        if item["slug"] in preloaded_data:
-            if path in preloaded_data[item["slug"]].get("paths", []):
-                logger.error(
-                    f"Error: Item with slug {item['slug']} was already loaded from this path ({path})."
-                )
-                return
-            else:
-                preloaded_data[item["slug"]]["paths"].append(path)
-        else:
-            preloaded_data[item["slug"]] = item
-            preloaded_data[item["slug"]]["paths"] = [path]
-
-
 class ModData:
 
     def __init__(
@@ -1823,51 +1768,48 @@ class ModData:
     def _preload_table(
         self, table: TableName, mod_directory: Optional[str] = None
     ) -> None:
+        """Preloads table data from mod directories."""
         active_mods = [
             mod
             for mod in self.config.active_mods
             if not self.config.mod_activation
             or self.config.mod_activation.get(mod, True)
         ]
-        if mod_directory is None:
-            for mod_directory in active_mods:
-                self._preload_table_from_mod(table, mod_directory)
-        else:
-            self._preload_table_from_mod(table, mod_directory)
+        mod_directories = [mod_directory] if mod_directory else active_mods
 
-    def _preload_table_from_mod(
-        self, table: TableName, mod_directory: str
-    ) -> None:
-        self.path = (
-            Path(config.mod_base_path)
-            / mod_directory
-            / config.mod_db_subfolder
-        )
-        if (
-            self.config.mod_versions
-            and mod_directory in self.config.mod_versions
-        ):
-            logger.info(
-                f"Loading mod '{mod_directory}' version {self.config.mod_versions[mod_directory]}"
+        for mod_dir in mod_directories:
+            path = (
+                Path(self.config.mod_base_path)
+                / mod_dir
+                / self.config.mod_db_subfolder
             )
-        if not self.path.exists():
-            logger.warning(f"Mod directory '{self.path}' not found.")
-            return
-        db_path = self.path / str(table)
-        if (
-            self.config.mod_table_exclusions
-            and mod_directory in self.config.mod_table_exclusions
-            and table in self.config.mod_table_exclusions[mod_directory]
-        ):
-            logger.info(f"Table '{table}' excluded by mod '{mod_directory}'.")
-            return
-        if db_path.exists():
-            data_loader = DataLoader(self.path.as_posix(), self.config)
-            if table not in self.preloaded:
-                self.preloaded[table] = {}
-            self.preloaded[table].update(data_loader.load_files(table))
-        else:
-            logger.warning(f"Database directory '{db_path}' not found.")
+
+            if (
+                self.config.mod_versions
+                and mod_dir in self.config.mod_versions
+            ):
+                logger.info(
+                    f"Loading mod '{mod_dir}' version {self.config.mod_versions[mod_dir]}"
+                )
+
+            if not path.exists():
+                logger.warning(f"Mod directory '{path}' not found.")
+                continue
+
+            db_path = path / str(table)
+            if (
+                self.config.mod_table_exclusions
+                and mod_dir in self.config.mod_table_exclusions
+                and table in self.config.mod_table_exclusions[mod_dir]
+            ):
+                logger.info(f"Table '{table}' excluded by mod '{mod_dir}'.")
+                continue
+
+            if db_path.exists():
+                data_loader = load_files(table, path, self.config)
+                self.preloaded.setdefault(table, {}).update(data_loader)
+            else:
+                logger.warning(f"Database directory '{db_path}' not found.")
 
     def load(
         self,
@@ -2101,11 +2043,11 @@ class ModData:
                         Path(self.config.mod_base_path)
                         / mod
                         / self.config.mod_db_subfolder
-                    )  # Using pathlib
+                    )
                     logger.info(
                         f"Preloading table '{table}' from mod path '{mod_path}'."
                     )
-                    self._preload_table_from_mod(table, mod)
+                    self._preload_table(table, mod)
 
             self._load_models_from_preloaded(table, validate)
         except Exception as e:
@@ -2141,6 +2083,54 @@ class ModData:
             logger.error(
                 f"Unexpected error while adding entry to table '{table}': {ex}"
             )
+
+
+def load_files(
+    directory: TableName, path: Path, config: DatabaseConfig
+) -> dict[str, Any]:
+    preloaded_data: dict[str, Any] = {}
+    extensions = config.file_extensions
+    directory_path = path / directory
+    for entry in directory_path.iterdir():
+        if entry.is_file() and any(entry.suffix == ext for ext in extensions):
+            try:
+                with entry.open() as fp:
+                    item = (
+                        json.load(fp)
+                        if entry.suffix == ".json"
+                        else yaml.safe_load(fp)
+                    )
+
+                if isinstance(item, list):
+                    for sub_item in item:
+                        load_dict(sub_item, entry, preloaded_data)
+                else:
+                    load_dict(item, entry, preloaded_data)
+            except (
+                json.JSONDecodeError,
+                yaml.YAMLError,
+                FileNotFoundError,
+            ) as e:
+                logger.error(f"Error loading file '{entry}': {e}")
+    return preloaded_data
+
+
+def load_dict(
+    item: Mapping[str, Any],
+    path: Path,
+    preloaded_data: dict[str, Any],
+) -> None:
+    if item["slug"] in preloaded_data:
+        if path in preloaded_data[item["slug"]].get("paths", []):
+            logger.error(
+                f"Error: Item with slug {item['slug']} was already loaded from this path ({path})."
+            )
+            return
+        else:
+            preloaded_data[item["slug"]]["paths"].append(path)
+    else:
+        preloaded_data[item["slug"]] = item
+        preloaded_data[item["slug"]]["paths"] = [path]
 
 
 def load_config(config_path: str) -> DatabaseConfig:

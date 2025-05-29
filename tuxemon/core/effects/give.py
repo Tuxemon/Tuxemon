@@ -55,6 +55,6 @@ class GiveEffect(TechEffect):
             if monsters:
                 for monster in monsters:
                     monster.apply_status(status)
-                combat.reset_status_icons()
+                combat.update_icons_for_monsters()
 
         return TechEffectResult(name=tech.name, success=bool(monsters))

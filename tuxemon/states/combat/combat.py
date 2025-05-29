@@ -44,7 +44,7 @@ from typing import TYPE_CHECKING, Any, Literal, Optional, Union
 from pygame.rect import Rect
 from pygame.surface import Surface
 
-from tuxemon import graphics, prepare
+from tuxemon import graphics
 from tuxemon.ai import AI
 from tuxemon.animation import Animation, Task
 from tuxemon.combat import (
@@ -178,9 +178,6 @@ class CombatState(CombatAnimations):
         self._post_animation_task: Optional[Task] = None
         self._xp_message: Optional[str] = None
         self._max_positions: dict[NPC, int] = {}
-        self._status_icon_cache: dict[
-            tuple[str, tuple[float, float]], Sprite
-        ] = {}
         self._random_tech_hit: dict[Monster, float] = {}
         self._combat_variables: dict[str, Any] = {}
 
@@ -374,7 +371,7 @@ class CombatState(CombatAnimations):
                         battlefield(self.session, mon)
 
         elif phase == CombatPhase.DECISION:
-            self.reset_status_icons()
+            self.update_icons_for_monsters()
             if not self._decision_queue:
                 for player in list(self.human_players) + list(self.ai_players):
                     for monster in self.monsters_in_play[player]:
@@ -641,58 +638,15 @@ class CombatState(CombatAnimations):
                 (partial(self.alert, message), 0)
             )
 
-    def get_status_icon_position(
-        self, monster: Monster, monsters_in_play: Sequence[Monster]
-    ) -> tuple[float, float]:
-        icon_positions = {
-            (True, 1): prepare.ICON_OPPONENT_SLOT,
-            (True, 0): prepare.ICON_OPPONENT_DEFAULT,
-            (False, 1): prepare.ICON_PLAYER_SLOT,
-            (False, 0): prepare.ICON_PLAYER_DEFAULT,
-        }
-        return icon_positions[
-            (
-                monsters_in_play == self.monsters_in_play_left,
-                monsters_in_play.index(monster),
-            )
-        ]
-
-    def reset_status_icons(self) -> None:
-        """
-        Update/reset status icons for monsters.
-        """
-        # update huds
+    def update_icons_for_monsters(self) -> None:
+        """Update/reset status icons for monsters."""
         for player in self.active_players:
             self.update_hud(player, False)
-        # remove all status icons
-        self.sprites.remove(*self._status_icons.values())
-        self._status_icons.clear()
-
-        # add status icons
-        for monster in self.active_monsters:
-            self._status_icons[monster] = []
-            for status in monster.status:
-                if status.icon:
-                    icon_position = (
-                        self.get_status_icon_position(
-                            monster, self.monsters_in_play_left
-                        )
-                        if monster in self.monsters_in_play_left
-                        else self.get_status_icon_position(
-                            monster, self.monsters_in_play_right
-                        )
-                    )
-                    cache_key = (status.icon, icon_position)
-                    if cache_key not in self._status_icon_cache:
-                        self._status_icon_cache[cache_key] = self.load_sprite(
-                            status.icon, layer=200, center=icon_position
-                        )
-
-                    icon = self._status_icon_cache[cache_key]
-                    self.sprites.add(icon, layer=200)
-                    self._status_icons[monster].append(icon)
-
-        # update tuxemon balls to reflect status
+        self.status_icons.update_icons_for_monsters(
+            self.active_monsters,
+            self.monsters_in_play_left,
+            self.monsters_in_play_right,
+        )
         self.animate_update_party_hud()
 
     def show_combat_dialog(self) -> None:

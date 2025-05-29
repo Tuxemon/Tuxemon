@@ -2,14 +2,15 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-from collections.abc import MutableMapping
+from collections.abc import MutableMapping, Sequence
 from typing import TYPE_CHECKING
 
 from pygame.rect import Rect
 
-from tuxemon import tools
+from tuxemon import prepare, tools
 from tuxemon.menu.interface import ExpBar, HpBar
 from tuxemon.sprite import Sprite
+from tuxemon.state import State
 
 if TYPE_CHECKING:
     from tuxemon.db import BattleGraphicsModel
@@ -102,3 +103,79 @@ class CombatUI:
         """
         self.draw_hp_bars(graphics, hud)
         self.draw_exp_bars(graphics, hud)
+
+
+class CombatStatusIcon:
+    """Handles creation, caching, and updating of status icons."""
+
+    def __init__(self, state: State) -> None:
+        self.state = state
+        self._status_icon_cache: dict[
+            tuple[str, tuple[float, float]], Sprite
+        ] = {}
+        self._status_icons: dict[Monster, list[Sprite]] = {}
+
+    def determine_icon_position(
+        self,
+        monster: Monster,
+        monsters_in_play: Sequence[Monster],
+        base_monsters: Sequence[Monster],
+    ) -> tuple[float, float]:
+        icon_positions = {
+            (True, 1): prepare.ICON_OPPONENT_SLOT,
+            (True, 0): prepare.ICON_OPPONENT_DEFAULT,
+            (False, 1): prepare.ICON_PLAYER_SLOT,
+            (False, 0): prepare.ICON_PLAYER_DEFAULT,
+        }
+        return icon_positions[
+            (
+                monsters_in_play == base_monsters,
+                monsters_in_play.index(monster),
+            )
+        ]
+
+    def update_icons_for_monsters(
+        self,
+        active_monsters: Sequence[Monster],
+        monsters_left: Sequence[Monster],
+        monsters_right: Sequence[Monster],
+    ) -> None:
+        """Reset status icons for monsters."""
+        # remove all status icons
+        self.state.sprites.remove(*self._status_icons.values())
+        self._status_icons.clear()
+
+        # add status icons
+        for monster in active_monsters:
+            self._status_icons[monster] = []
+            for status in monster.status:
+                if status.icon:
+                    icon_position = (
+                        self.determine_icon_position(
+                            monster, monsters_left, monsters_left
+                        )
+                        if monster in monsters_left
+                        else self.determine_icon_position(
+                            monster, monsters_right, monsters_left
+                        )
+                    )
+                    cache_key = (status.icon, icon_position)
+                    if cache_key not in self._status_icon_cache:
+                        self._status_icon_cache[cache_key] = (
+                            self.state.load_sprite(
+                                status.icon, layer=200, center=icon_position
+                            )
+                        )
+
+                    icon = self._status_icon_cache[cache_key]
+                    self.state.sprites.add(icon, layer=200)
+                    self._status_icons[monster].append(icon)
+
+    def remove_monster_icons(self, monster: Monster) -> None:
+        if monster in self._status_icons:
+            for icon in self._status_icons[monster]:
+                icon.kill()
+            del self._status_icons[monster]
+
+    def get_icons_for_monster(self, monster: Monster) -> list[Sprite]:
+        return self._status_icons.get(monster, [])

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-import os
+from pathlib import Path
 from unittest import TestCase
 from unittest.mock import MagicMock, patch
 
@@ -116,26 +116,26 @@ class TestSpriteRenderer(TestCase):
         mock_load_and_scale.return_value = Surface((1, 1))
         self.sprite_controller.load_sprites(self.npc.template)
         expected_paths = [
-            os.path.join("sprites", "adventurer_front.png"),
-            os.path.join("sprites", "adventurer_back.png"),
-            os.path.join("sprites", "adventurer_left.png"),
-            os.path.join("sprites", "adventurer_right.png"),
-            os.path.join("sprites", "adventurer_front_walk.000.png"),
-            os.path.join("sprites", "adventurer_front.png"),
-            os.path.join("sprites", "adventurer_front_walk.001.png"),
-            os.path.join("sprites", "adventurer_front.png"),
-            os.path.join("sprites", "adventurer_back_walk.000.png"),
-            os.path.join("sprites", "adventurer_back.png"),
-            os.path.join("sprites", "adventurer_back_walk.001.png"),
-            os.path.join("sprites", "adventurer_back.png"),
-            os.path.join("sprites", "adventurer_left_walk.000.png"),
-            os.path.join("sprites", "adventurer_left.png"),
-            os.path.join("sprites", "adventurer_left_walk.001.png"),
-            os.path.join("sprites", "adventurer_left.png"),
-            os.path.join("sprites", "adventurer_right_walk.000.png"),
-            os.path.join("sprites", "adventurer_right.png"),
-            os.path.join("sprites", "adventurer_right_walk.001.png"),
-            os.path.join("sprites", "adventurer_right.png"),
+            Path("sprites") / "adventurer_front.png",
+            Path("sprites") / "adventurer_back.png",
+            Path("sprites") / "adventurer_left.png",
+            Path("sprites") / "adventurer_right.png",
+            Path("sprites") / "adventurer_front_walk.000.png",
+            Path("sprites") / "adventurer_front.png",
+            Path("sprites") / "adventurer_front_walk.001.png",
+            Path("sprites") / "adventurer_front.png",
+            Path("sprites") / "adventurer_back_walk.000.png",
+            Path("sprites") / "adventurer_back.png",
+            Path("sprites") / "adventurer_back_walk.001.png",
+            Path("sprites") / "adventurer_back.png",
+            Path("sprites") / "adventurer_left_walk.000.png",
+            Path("sprites") / "adventurer_left.png",
+            Path("sprites") / "adventurer_left_walk.001.png",
+            Path("sprites") / "adventurer_left.png",
+            Path("sprites") / "adventurer_right_walk.000.png",
+            Path("sprites") / "adventurer_right.png",
+            Path("sprites") / "adventurer_right_walk.001.png",
+            Path("sprites") / "adventurer_right.png",
         ]
         actual_paths = [
             call[0][0] for call in mock_load_and_scale.call_args_list

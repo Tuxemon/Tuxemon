@@ -66,7 +66,7 @@ class LoadGameAction(EventAction):
             map_path = prepare.fetch(
                 "maps", save_data["npc_state"]["current_map"]
             )
-            client.push_state("WorldState", map_name=map_path)
+            client.push_state("WorldState", session=session, map_name=map_path)
 
             # TODO: Get player from whatever place and use self.client in
             # order to build a Session

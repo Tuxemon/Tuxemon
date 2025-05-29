@@ -2,9 +2,9 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
-import os
 import sys
 from collections.abc import Iterable, Sequence
+from pathlib import Path
 from typing import TYPE_CHECKING
 
 from prompt_toolkit import PromptSession
@@ -74,9 +74,9 @@ class CommandProcessor:
     def __init__(self, client: LocalPygameClient, prompt: str = "> ") -> None:
         self.prompt = prompt
         self.client = client
-        folder = os.path.join(os.path.dirname(__file__), "commands")
+        folder = Path(__file__).parent / "commands"
         # TODO: add folder(s) from mods
-        commands = list(self.collect_commands(folder))
+        commands = list(self.collect_commands(folder.as_posix()))
         self.root_command = MetaCommand(commands)
 
     def run(self) -> None:

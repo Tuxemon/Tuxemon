@@ -94,7 +94,7 @@ def _get_save_extension() -> str:
 
 def get_save_path(slot: int) -> str:
     extension = _get_save_extension()
-    return f"{prepare.SAVE_PATH}{slot}.{extension}"
+    return f"{prepare.SAVE_PATH.as_posix()}{slot}.{extension}"
 
 
 def json_action(

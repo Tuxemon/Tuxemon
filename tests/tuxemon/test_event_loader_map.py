@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-import os
 import unittest
+from pathlib import Path
 
 from tuxemon.map_loader import YAMLEventLoader, parse_yaml
 
@@ -10,8 +10,8 @@ class TestYAMLEventLoader(unittest.TestCase):
 
     def setUp(self):
         self.loader = YAMLEventLoader()
-        self.valid_yaml_path = os.path.join(
-            "tests/tuxemon", "test_event_loader_map.yaml"
+        self.valid_yaml_path = (
+            Path("tests/tuxemon") / "test_event_loader_map.yaml"
         )
 
     def test_parse_yaml_success(self):

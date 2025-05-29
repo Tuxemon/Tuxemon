@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-import os
 import re
 import unittest
 import xml.etree.ElementTree as ET
 from collections.abc import Generator
+from pathlib import Path
 from typing import Any
 
 from tuxemon import prepare
@@ -26,9 +26,10 @@ def expand_expected_scenarios() -> None:
 
 
 def get_tmx_files(folder_path: str) -> Generator[str, Any, None]:
-    for file in os.listdir(folder_path):
-        if file.endswith(".tmx"):
-            yield os.path.join(folder_path, file)
+    folder = Path(folder_path)
+    for file in folder.iterdir():
+        if file.suffix == ".tmx" and file.is_file():
+            yield file.as_posix()
 
 
 def load_tmx_files(folder_path: str) -> dict[str, ET.Element]:
@@ -40,7 +41,7 @@ def load_tmx_files(folder_path: str) -> dict[str, ET.Element]:
 
 
 def to_basename(filepath: str) -> str:
-    return os.path.basename(filepath)
+    return Path(filepath).name
 
 
 def _is_object_property(
@@ -245,14 +246,12 @@ class TestTMXFiles(unittest.TestCase):
                 and "source" in tileset_element.attrib
             ):
                 tileset_source = tileset_element.attrib["source"]
-                base_path = prepare.fetch("gfx")
-                merged_path = os.path.realpath(
-                    os.path.join(base_path, tileset_source)
-                )
+                base_path = Path(prepare.fetch("gfx"))
+                merged_path = (base_path / tileset_source).resolve()
                 msg = (
                     f"Source '{merged_path}' doesn't exist {to_basename(path)}"
                 )
-                self.assertTrue(os.path.isfile(merged_path), msg)
+                self.assertTrue(merged_path.is_file(), msg)
 
     def test_layer_number(self) -> None:
         missing_layers = []

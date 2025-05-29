@@ -22,8 +22,8 @@ from tuxemon.ui.text import TextArea
 
 
 def load_names(file_path: str) -> Any:
-    yaml_path = f"{paths.mods_folder}/{file_path}"
-    with open(yaml_path) as file:
+    yaml_path = paths.mods_folder / file_path
+    with yaml_path.open() as file:
         return yaml.safe_load(file)
 
 
@@ -270,7 +270,7 @@ class InputMenu(Menu[InputMenuObj]):
                 self.leaving_char_variant_dialog = False
             else:
                 menu_item.game_object()
-        elif event.held and event.hold_time > self.client.fps:
+        elif event.held and event.hold_time > self.client.config.fps:
             base_char = menu_item.game_object.char
             if base_char:
                 variants = self.char_variants.get(base_char, "")

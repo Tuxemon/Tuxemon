@@ -6,7 +6,6 @@ https://github.com/vXtreniusX/TuxemonContentServer
 """
 
 import json
-import os
 import urllib.request
 from typing import Any
 
@@ -46,9 +45,8 @@ def download_package(
         release = str(release).replace(char, "_")
 
     url = str(repo) + f"/packages/{name}/releases/{str(release)}/download"
-    filename = os.path.join(
-        paths.CACHE_DIR,
-        f"downloaded_packages/{name}.{release}.zip",
+    filename = (
+        paths.CACHE_DIR / "downloaded_packages" / f"{name}.{release}.zip"
     )
 
     # Apparently this function is ported from urllib from python2.
@@ -56,13 +54,13 @@ def download_package(
     # https://docs.python.org/3/library/urllib.request.html#urllib.request.urlretrieve
     urllib.request.urlretrieve(url, filename=filename)
 
-    outfolder = os.path.join(paths.BASEDIR, "mods", f"{name}")
+    outfolder = paths.BASEDIR / "mods" / name
 
     self.write_package_to_list(outfolder, name)
 
     if not dont_extract:
         self.extract(filename, outfolder)
-        with open(f"{outfolder}/meta.json", "w") as metafile:
+        with (outfolder / "meta.json").open("w") as metafile:
             meta = self.get_package_info(name, repo)
             metafile.write(json.dumps(meta, indent=4, sort_keys=False))
 
@@ -118,8 +116,8 @@ def install_dependencies(
         )
 
         # Symlink deps
-        mainfolder = os.path.join(paths.BASEDIR, "mods", name)
-        depfolder = os.path.join(paths.BASEDIR, "mods", pack)
-        symlink_missing(mainfolder, depfolder)
+        mainfolder = paths.BASEDIR / "mods" / name
+        depfolder = paths.BASEDIR / "mods" / pack
+        symlink_missing(mainfolder.as_posix(), depfolder)
     else:
         pass

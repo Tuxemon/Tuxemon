@@ -29,11 +29,8 @@ CATEGORY_PATHS: dict[str, str] = {
 @dataclass
 class ChangeBgAction(EventAction):
     """
-    Change the background.
-
-    Eg:
-    act1 change_bg background
-    act2 change_bg
+    Handles the background change within the session, allowing users
+    to apply a new background color or image dynamically.
 
     Script usage:
         .. code-block::
@@ -41,23 +38,20 @@ class ChangeBgAction(EventAction):
             change_bg <background>[,image][,category]
 
     Script parameters:
-        background:
-        - it can be the name of the file (see below note)
-        - it can be a RGB color separated by ":" (eg 255:0:0)
+        background: The background identifier, which can be:
+            - A file name located in `gfx/ui/background/`
+            - An RGB color formatted as `R:G:B` (e.g., `255:0:0`)
+        image: An optional image identifier, which can be:
+            - A monster slug (stored in `gfx/sprites/battle`)
+            - A template slug (stored in `gfx/sprites/player`)
+            - An item slug (stored in `gfx/items`)
+            - A direct file path
+        category: The category of the image (e.g., monster, template,
+            item, image). If omitted, defaults to "background".
 
-        image: monster_slug or template_slug or path
-            if path, then "gfx/ui/background/"
-            if template (eg. ceo) in "gfx/sprites/player"
-            "change_bg gradient_blue,ceo"
-
-        category: (optional) category of the image (e.g. monster, template, etc.)
-            if not provided, it will default to "background"
-
-        note: the background or image (if not monster or template)
-            must be inside the folder (gfx/ui/background/)
-
-        background size: 240x160
-
+    Notes:
+        - Background images must be in `gfx/ui/background/`.
+        - Background dimensions must be 240x160 pixels.
     """
 
     name = "change_bg"

@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-import os
 import unittest
+from pathlib import Path
 
 from PIL import Image
 
@@ -23,8 +23,9 @@ class TestFusion(unittest.TestCase):
         self.body.tertiary_colors = [(0, 255, 0)]  # Green
 
     def tearDown(self):
-        if os.path.exists(self.image_path):
-            os.remove(self.image_path)
+        image_path = Path(self.image_path)
+        if image_path.exists():
+            image_path.unlink()
 
     def test_replace_color(self):
         result_image = replace_color(self.image, (255, 0, 0), (0, 0, 255))

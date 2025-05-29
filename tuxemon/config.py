@@ -27,11 +27,17 @@ class TuxemonConfig:
         self.config = generate_default_config()
         self.config_path = config_path
 
-        # Load customized configuration if the yaml file exists
+        # Load customized configuration if the YAML file exists
         if config_path:
             try:
                 with open(config_path) as yaml_file:
-                    self.config.update(yaml.safe_load(yaml_file))
+                    loaded_config = yaml.safe_load(yaml_file)
+
+                    # Merge only existing sections while keeping defaults
+                    for category, defaults in self.config.items():
+                        if category in loaded_config:
+                            defaults.update(loaded_config[category])
+
             except FileNotFoundError:
                 # File does not exist; keep using defaults
                 pass
@@ -67,6 +73,7 @@ class TuxemonConfig:
         self.splash: bool = display["splash"]
         self.fullscreen: bool = display["fullscreen"]
         self.fps: float = display["fps"]
+        self.vsync: bool = display["vsync"]
         self.show_fps: bool = display["show_fps"]
         self.scaling: bool = display["scaling"]
         self.collision_map: bool = display["collision_map"]
@@ -280,6 +287,7 @@ def generate_default_config() -> dict[str, Any]:
             "splash": True,
             "fullscreen": False,
             "fps": 60.0,
+            "vsync": True,
             "show_fps": False,
             "scaling": True,
             "collision_map": False,

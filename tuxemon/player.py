@@ -3,10 +3,15 @@
 from __future__ import annotations
 
 import logging
+from typing import TYPE_CHECKING
 
 from tuxemon.map import proj
 from tuxemon.npc import NPC
-from tuxemon.states.world.worldstate import WorldState
+from tuxemon.prepare import PLAYER_NPC
+
+if TYPE_CHECKING:
+    from tuxemon.session import Session
+    from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -22,6 +27,15 @@ class Player(NPC):
     ) -> None:
         super().__init__(npc_slug, world=world)
         self.isplayer = True
+
+    @classmethod
+    def create(
+        cls, session: Session, world: WorldState, slug: str = PLAYER_NPC
+    ) -> Player:
+        """Creates a player instance only if one doesn't already exist."""
+        if session.player is None:
+            session.player = cls(slug, world)
+        return session.player
 
     def update(self, time_delta: float) -> None:
         """

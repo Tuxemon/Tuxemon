@@ -23,9 +23,9 @@ class MapType:
 
 
 def load_map_types(filename: str) -> list[MapType]:
-    yaml_path = f"{paths.mods_folder}/{filename}"
     """Loads map types from a YAML file and returns a list of MapType instances."""
-    with open(yaml_path, encoding="utf-8") as file:
+    yaml_path = paths.mods_folder / filename
+    with yaml_path.open(encoding="utf-8") as file:
         data = yaml.safe_load(file)
         return [MapType(**entry) for entry in data.get("map_types", [])]
 

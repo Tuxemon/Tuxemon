@@ -56,5 +56,6 @@ class GiveEffect(TechEffect):
                 for monster in monsters:
                     monster.apply_status(status)
                 combat.update_icons_for_monsters()
+                combat.animate_update_party_hud()
 
         return TechEffectResult(name=tech.name, success=bool(monsters))

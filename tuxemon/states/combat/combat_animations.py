@@ -26,7 +26,7 @@ from tuxemon.menu.menu import Menu
 from tuxemon.sprite import CaptureDeviceSprite, Sprite
 from tuxemon.tools import scale, scale_sequence
 
-from .combat_ui import CombatStatusIcon, CombatUI
+from .combat_ui import CombatUI, StatusIconManager
 
 if TYPE_CHECKING:
     from tuxemon.animation import Animation
@@ -89,7 +89,7 @@ class CombatAnimations(Menu[None], ABC):
         self.text_animations_queue: list[TimedCallable] = []
         self._text_animation_time_left: float = 0
         self.ui = CombatUI()
-        self.status_icons = CombatStatusIcon(self)
+        self.status_icons = StatusIconManager(self)
 
         _right = prepare.RIGHT_COMBAT
         _left = prepare.LEFT_COMBAT
@@ -376,8 +376,7 @@ class CombatAnimations(Menu[None], ABC):
         )
         self.play_sound_effect(cry)
         self.animate(sprite.rect, x=x_diff, relative=True, duration=2)
-        for icon in self.status_icons.get_icons_for_monster(monster):
-            self.animate(icon.image, initial=255, set_alpha=0, duration=2)
+        self.status_icons.animate_icons(monster, self.animate)
 
     def check_hud(self, monster: Monster, filename: str) -> Sprite:
         """

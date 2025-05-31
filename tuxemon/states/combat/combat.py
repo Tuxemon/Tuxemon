@@ -372,8 +372,10 @@ class CombatState(CombatAnimations):
 
         elif phase == CombatPhase.DECISION:
             self.update_icons_for_monsters()
+            self.animate_update_party_hud()
             if not self._decision_queue:
                 for player in list(self.human_players) + list(self.ai_players):
+                    self.update_hud(player, False)
                     for monster in self.monsters_in_play[player]:
                         value = random.random()
                         self._random_tech_hit[monster] = value
@@ -640,14 +642,11 @@ class CombatState(CombatAnimations):
 
     def update_icons_for_monsters(self) -> None:
         """Update/reset status icons for monsters."""
-        for player in self.active_players:
-            self.update_hud(player, False)
         self.status_icons.update_icons_for_monsters(
             self.active_monsters,
             self.monsters_in_play_left,
             self.monsters_in_play_right,
         )
-        self.animate_update_party_hud()
 
     def show_combat_dialog(self) -> None:
         """Create and show the area where battle messages are displayed."""

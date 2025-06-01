@@ -40,7 +40,6 @@ logger = logging.getLogger(__name__)
 
 sprite_layer = 0
 hud_layer = 100
-TimedCallable = tuple[partial[None], float]
 
 
 def toggle_visible(sprite: Sprite) -> None:
@@ -86,8 +85,6 @@ class CombatAnimations(Menu[None], ABC):
         self.hud: MutableMapping[Monster, Sprite] = {}
         self.is_trainer_battle = False
         self.capdevs: list[CaptureDeviceSprite] = []
-        self.text_animations_queue: list[TimedCallable] = []
-        self._text_animation_time_left: float = 0
         self.ui = CombatUI()
         self._status_icons: defaultdict[Monster, list[Sprite]] = defaultdict(
             list

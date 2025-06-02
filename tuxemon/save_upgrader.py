@@ -217,18 +217,3 @@ def _handle_change_monster_name(save_data: dict[str, Any]) -> None:
         }
         for entry, value in save_data["tuxepedia"].items()
     }
-
-
-def _update_current_map(version: int, save_data: dict[str, Any]) -> None:
-    """
-    Updates current map if necessary.
-
-    Parameters:
-        version: The version of the saved data.
-        save_data: The save data.
-
-    """
-    if version in MAP_RENAMES:
-        new_name = MAP_RENAMES[version].get(save_data["current_map"])
-        if new_name:
-            save_data["current_map"] = new_name

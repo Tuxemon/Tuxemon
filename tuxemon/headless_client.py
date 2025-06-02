@@ -11,6 +11,7 @@ from typing import Any, Optional, TypeVar, Union, overload
 
 from tuxemon.audio import MusicPlayerState, SoundManager
 from tuxemon.boundary import BoundaryChecker
+from tuxemon.camera import CameraManager
 from tuxemon.config import TuxemonConfig
 from tuxemon.event.eventaction import ActionManager
 from tuxemon.event.eventcondition import ConditionManager
@@ -24,7 +25,7 @@ from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.input_manager import InputManager
 from tuxemon.rumble import RumbleManager
 from tuxemon.session import local_session
-from tuxemon.state import State, StateManager
+from tuxemon.state import HookManager, State, StateManager, StateRepository
 
 StateType = TypeVar("StateType", bound=State)
 
@@ -50,8 +51,12 @@ class HeadlessClient:
     def __init__(self, config: TuxemonConfig) -> None:
         self.config = config
 
+        self.hook_manager = HookManager()
+        self.state_repository = StateRepository()
         self.state_manager = StateManager(
-            "tuxemon.states",
+            package="tuxemon.states",
+            hook=self.hook_manager,
+            repository=self.state_repository,
             on_state_change=self.on_state_change,
         )
         self.state_manager.auto_state_discovery()
@@ -79,6 +84,7 @@ class HeadlessClient:
         self.map_loader = MapLoader()
         self.map_manager = MapManager()
         self.boundary = BoundaryChecker()
+        self.camera_manager = CameraManager()
 
         # Set up a variable that will keep track of currently playing music.
         self.current_music = MusicPlayerState()

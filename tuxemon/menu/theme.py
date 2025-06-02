@@ -76,6 +76,7 @@ def get_theme() -> pygame_menu.Theme:
         -2 * tuxemon_background_center_rect.height // 3,
     )
 
+    tuxemon_border._surface = tuxemon_border._surface.convert_alpha()
     tuxemon_background = tuxemon_border.copy().crop_rect(
         tuxemon_background_center_rect
     )

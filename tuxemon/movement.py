@@ -82,7 +82,7 @@ class MovementManager:
 
     def move_char(self, character: NPC, direction: Direction) -> None:
         """Initiates movement of the character in the specified direction."""
-        character.move_direction = direction
+        character.set_move_direction(direction)
 
     def stop_char(self, character: NPC) -> None:
         """Stops the character and releases movement controls."""

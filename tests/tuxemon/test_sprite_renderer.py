@@ -84,9 +84,9 @@ class TestSpriteRenderer(TestCase):
         # * / 1000: This converts the time from milliseconds to seconds.
         # * * 2: Because the idle frame is repeated, we multiply by 2 to account
         # for the total time spent showing all the frames in the animation.
-        prepare.CONFIG.player_walkrate = 2.0
-        frame_duration = self.sprite_renderer._calculate_frame_duration()
-        self.assertEqual(frame_duration, 1 / 3)
+        rate = 2.0
+        duration = self.sprite_renderer._calculate_frame_duration(rate=rate)
+        self.assertEqual(duration, 1 / 3)
 
     def test_get_frame_standing(self):
         self.npc.moving = False

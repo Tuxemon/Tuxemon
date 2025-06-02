@@ -166,7 +166,6 @@ class CombatState(CombatAnimations):
         self._action_queue = ActionQueue()
         self._decision_queue: list[Monster] = []
         # player => home areas on screen
-        self._layout: dict[NPC, dict[str, list[Rect]]] = {}
         self._monster_sprite_map: MutableMapping[
             Union[NPC, Monster], Sprite
         ] = {}
@@ -476,16 +475,36 @@ class CombatState(CombatAnimations):
         if self.phase == CombatPhase.DECISION:
             # show monster action menu for human players
             if self._decision_queue:
-                monster = self._decision_queue.pop()
-                for tech in monster.moves:
-                    tech.recharge()
-                self.show_monster_action_menu(monster)
+                if self.is_double:
+                    self.handle_double_action(self._decision_queue)
+                else:
+                    self.handle_single_action(self._decision_queue)
 
         elif self.phase == CombatPhase.ACTION:
             self.handle_action_queue()
 
         elif self.phase == CombatPhase.POST_ACTION:
             self.handle_action_queue()
+
+    def handle_single_action(self, pending_monsters: list[Monster]) -> None:
+        if pending_monsters:
+            monster = pending_monsters.pop(0)
+            for tech in monster.moves:
+                tech.recharge()
+            self.show_monster_action_menu(monster)
+
+    def handle_double_action(self, pending_monsters: list[Monster]) -> None:
+        if len(pending_monsters) >= 2:
+            monster1 = pending_monsters.pop(0)
+            for tech in monster1.moves:
+                tech.recharge()
+            self.show_monster_action_menu(monster1)
+            monster2 = pending_monsters.pop(0)
+            for tech in monster2.moves:
+                tech.recharge()
+            self.show_monster_action_menu(monster2)
+        elif pending_monsters:
+            self.handle_single_action(pending_monsters)
 
     def handle_action_queue(self) -> None:
         """Take one action from the queue and do it."""
@@ -677,18 +696,9 @@ class CombatState(CombatAnimations):
         params = {"name": monster.name, "player": name}
         message = T.format(self.graphics.msgid, params)
         self.text_animations_queue.append((partial(self.alert, message), 0))
-        state = self.client.push_state(
+        self.client.push_state(
             self.graphics.menu, session=self.session, cmb=self, monster=monster
         )
-        state.rect = self.calculate_menu_rectangle()
-
-    def calculate_menu_rectangle(self) -> Rect:
-        rect_screen = self.client.screen.get_rect()
-        menu_width = rect_screen.w // 2.5
-        menu_height = rect_screen.h // 4
-        rect = Rect(0, 0, menu_width, menu_height)
-        rect.bottomright = rect_screen.w, rect_screen.h
-        return rect
 
     def enqueue_damage(
         self, attacker: Monster, defender: Monster, damage: int

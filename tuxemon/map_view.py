@@ -238,9 +238,15 @@ class SpriteRenderer:
             self.sprite[f"{facing.value}_walk"] = animation
         self.surface_animations.add(self.sprite)
 
-    def _calculate_frame_duration(self) -> float:
+    def _calculate_frame_duration(
+        self,
+        rate: float = prepare.CONFIG.player_walkrate,
+        time_scale: int = 1000,
+        frame_divisor: int = 3,
+        speed_factor: float = 2,
+    ) -> float:
         """Calculate the frame duration for walking animations."""
-        return (1000 / prepare.CONFIG.player_walkrate) / 3 / 1000 * 2
+        return (time_scale / rate) / frame_divisor / time_scale * speed_factor
 
     def set_position(self, position: tuple[int, int]) -> None:
         """Set the position of the sprite."""

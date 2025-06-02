@@ -96,9 +96,9 @@ class TestMoneyManager(TestCase):
     def test_remove_bill(self):
         money_manager = MoneyManager()
         money_manager.add_bill("bill1", 100)
-        money_manager.remove_bill("bill1", 50)
+        money_manager.remove_bill("bill1", -50)
         self.assertEqual(money_manager.bills, {"bill1": BillEntry(amount=50)})
-        money_manager.remove_bill("bill1", 50)
+        money_manager.remove_bill("bill1", -50)
         self.assertEqual(money_manager.bills, {"bill1": BillEntry(amount=0)})
 
     def test_pay_bill_with_money(self):

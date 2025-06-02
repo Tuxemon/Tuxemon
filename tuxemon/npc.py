@@ -149,16 +149,6 @@ class NPC(Entity[NPCState]):
         # the destination due to speed issues or framerate jitters.
         self.path_origin: Optional[tuple[int, int]] = None
 
-        # movement related
-        # Set this value to move the npc (see below)
-        self.move_direction: Optional[Direction] = None
-        # Set this value to change the facing direction
-        self.ignore_collisions = False
-
-        # What is "move_direction"?
-        # Move direction allows other functions to move the npc in a controlled way.
-        # To move the npc, change the value to one of four directions: left, right, up or down.
-        # The npc will then move one tile in that direction until it is set to None.
         self.sprite_controller = SpriteController(self)
 
     def get_state(self, session: Session) -> NPCState:
@@ -301,7 +291,7 @@ class NPC(Entity[NPCState]):
             # we are in the middle of moving between tiles
             self.path = [self.path[-1]]
             self.pathfinding = None
-            self.move_direction = None
+            self.set_move_direction()
         else:
             self.abort_movement()
 
@@ -316,7 +306,7 @@ class NPC(Entity[NPCState]):
         """
         if not preserve_position and self.path_origin is not None:
             self.tile_pos = self.path_origin
-        self.move_direction = None
+        self.set_move_direction()
         self.stop_moving()
         self.cancel_path()
 

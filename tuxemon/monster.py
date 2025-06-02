@@ -123,8 +123,6 @@ class Monster:
         self.history: list[MonsterHistoryItemModel] = []
         self.stage = EvolutionStage.standalone
         self.flairs: dict[str, Flair] = {}
-        self.battle_cry = ""
-        self.faint_cry = ""
         self.owner: Optional[NPC] = None
         self.possible_genders: list[GenderType] = []
         self.held_item = MonsterItemHandler()

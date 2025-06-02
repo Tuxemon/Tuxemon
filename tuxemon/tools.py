@@ -41,6 +41,7 @@ if TYPE_CHECKING:
     from tuxemon.session import Session
     from tuxemon.sprite import Sprite
     from tuxemon.state import State
+    from tuxemon.technique.technique import Technique
 
 
 logger = logging.getLogger(__name__)
@@ -98,7 +99,6 @@ def transform_resource_filename(*filename: str) -> str:
 
     Returns:
         The absolute path of the resource.
-
     """
     return prepare.fetch(*filename)
 
@@ -112,7 +112,6 @@ def scale_sequence(sequence: TVarSequence) -> TVarSequence:
 
     Returns:
         Scaled sequence.
-
     """
     return type(sequence)(i * prepare.SCALE for i in sequence)
 
@@ -126,7 +125,6 @@ def scale(number: int) -> int:
 
     Returns:
         Scaled integer.
-
     """
     return prepare.SCALE * number
 
@@ -201,7 +199,6 @@ def open_dialog(
 
     Returns:
         The pushed dialog state.
-
     """
     rect = calc_dialog_rect(client.screen.get_rect(), position)
     return client.push_state(
@@ -364,9 +361,9 @@ def cast_dataclass_parameters(self: Any) -> None:
             setattr(self, field_name, new_value)
 
 
-def show_item_result_as_dialog(
+def show_result_as_dialog(
     session: Session,
-    item: Item,
+    entity: Union[Item, Technique],
     result: bool,
 ) -> None:
     """
@@ -374,12 +371,11 @@ def show_item_result_as_dialog(
 
     Parameters:
         session: Game session.
-        item: Item object.
+        entity: Object (Item or Technique).
         result: Boolean indicating success or failure.
-
     """
     msg_type = "use_success" if result else "use_failure"
-    template = getattr(item, msg_type)
+    template = getattr(entity, msg_type)
     if template:
         message = T.translate(replace_text(session, template))
         open_dialog(session.client, [message])
@@ -400,7 +396,6 @@ def round_to_divisible(x: float, base: int = 16) -> int:
 
     Returns:
         Rounded number that is divisible by ``base``.
-
     """
     return int(base * round(float(x) / base))
 
@@ -420,7 +415,6 @@ def copy_dict_with_keys(
 
     Returns:
         New mapping with the keys restricted to those in ``keys``.
-
     """
     return {k: source[k] for k in keys if k in source}
 
@@ -431,7 +425,6 @@ def assert_never(value: Never) -> NoReturn:
 
     Parameters:
         value: The value that will be checked for exhaustiveness.
-
     """
     assert False, f"Unhandled value: {value} ({type(value).__name__})"
 
@@ -456,7 +449,6 @@ def compare(
 
     Returns:
         boolean: true / false
-
     """
     if key == Comparison.less_than or key == "<":
         return bool(lt(value1, value2))

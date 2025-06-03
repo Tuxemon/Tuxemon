@@ -53,7 +53,7 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
         return rect
 
     def initialize_items(self) -> Generator[MenuItem[MenuGameObj], None, None]:
-        del self.combat.hud[self.monster]
+        self.combat.hud_manager.delete_hud(self.monster)
         self.combat.update_hud(self.player, False)
         menu_items_map = (
             ("menu_ball", self.throw_tuxeball),

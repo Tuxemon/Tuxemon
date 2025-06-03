@@ -13,25 +13,6 @@ from tuxemon.ai import (
 )
 
 
-class TestRecharging(unittest.TestCase):
-    def test_recharging(self):
-        mock_technique = MagicMock(next_use=0)
-        global recharging
-        recharging = MagicMock(side_effect=lambda move: move.next_use == 0)
-        self.assertTrue(
-            recharging(mock_technique), "The technique should be recharging."
-        )
-
-    def test_not_recharging(self):
-        mock_technique = MagicMock(next_use=1)
-        global recharging
-        recharging = MagicMock(side_effect=lambda move: move.next_use == 0)
-        self.assertFalse(
-            recharging(mock_technique),
-            "The technique should not be recharging.",
-        )
-
-
 class TestOpponentEvaluator(unittest.TestCase):
     def setUp(self):
         self.mock_combat = MagicMock()

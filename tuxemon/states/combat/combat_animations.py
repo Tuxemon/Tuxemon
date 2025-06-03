@@ -25,7 +25,7 @@ from tuxemon.menu.menu import Menu
 from tuxemon.sprite import CaptureDeviceSprite, Sprite
 from tuxemon.tools import scale, scale_sequence
 
-from .combat_ui import CombatUI, FieldMonsters, StatusIconManager
+from .combat_ui import CombatUI, FieldMonsters, HudManager, StatusIconManager
 
 if TYPE_CHECKING:
     from tuxemon.animation import Animation
@@ -102,12 +102,12 @@ class CombatAnimations(Menu[None], ABC):
         self._monster_sprite_map: MutableMapping[
             Union[NPC, Monster], Sprite
         ] = {}
-        self.hud: MutableMapping[Monster, Sprite] = {}
         self.is_trainer_battle = False
         self.capdevs: list[CaptureDeviceSprite] = []
         self.ui = CombatUI()
         self.status_icons = StatusIconManager(self)
-        self._layout = prepare_layout(self.players)
+        _layout = prepare_layout(self.players)
+        self.hud_manager = HudManager(_layout)
 
     def animate_open(self) -> None:
         self.transition_none_normal()
@@ -116,7 +116,7 @@ class CombatAnimations(Menu[None], ABC):
         """From newly opened to normal."""
         self.animate_parties_in()
 
-        for player, layout in self._layout.items():
+        for player, layout in self.hud_manager.layout.items():
             self.animate_party_hud_in(player, layout["party"][0])
 
         for player in self.players[: 2 if self.is_trainer_battle else 1]:
@@ -229,8 +229,7 @@ class CombatAnimations(Menu[None], ABC):
             monster_index = str(monsters.index(monster))
         else:
             monster_index = ""
-
-        center = self._layout[npc][f"home{monster_index}"][0].center
+        center = self.hud_manager.get_rect(npc, f"home{monster_index}").center
         return center[0], center[1] + tools.scale(11)
 
     def update_monster_feet(
@@ -284,7 +283,7 @@ class CombatAnimations(Menu[None], ABC):
             self._monster_sprite_map[monster].kill()
             self.status_icons.remove_monster_icons(monster)
             del self._monster_sprite_map[monster]
-            self.delete_hud(monster)
+            self.hud_manager.delete_hud(monster)
 
         self.animate_monster_leave(monster)
         self.task(kill_monster, 2)
@@ -387,10 +386,11 @@ class CombatAnimations(Menu[None], ABC):
             monster: Monster who needs to update the hud.
             filename: Filename of the hud.
         """
-        if monster in self.hud:
-            return self.hud[monster]
-        else:
-            return self.load_sprite(filename, layer=hud_layer)
+        sprite = self.hud_manager.get_hud(monster)
+        if sprite is None:
+            sprite = self.load_sprite(filename, layer=hud_layer)
+
+        return sprite
 
     def split_label(self, hud: Sprite, label: str, is_right: bool) -> None:
         """
@@ -429,8 +429,9 @@ class CombatAnimations(Menu[None], ABC):
         """
         trainer_battle = self.is_trainer_battle
         menu = self.graphics.menu
-        assert monster.owner
-        hud_rect = self._layout[monster.owner][hud_position][0]
+        if not monster.owner:
+            raise ValueError("Monster must have an owner.")
+        hud_rect = self.hud_manager.get_rect(monster.owner, hud_position)
 
         def build_hud_sprite(hud: Sprite, is_player: bool) -> Sprite:
             """
@@ -480,7 +481,7 @@ class CombatAnimations(Menu[None], ABC):
                 self.check_hud(monster, self.graphics.hud.hud_opponent), False
             )
 
-        self.hud[monster] = hud
+        self.hud_manager.assign_hud(monster, hud)
 
         if animate:
             self.build_animate_hp_bar(monster)
@@ -631,8 +632,8 @@ class CombatAnimations(Menu[None], ABC):
         # Get player and opponent
         player, opponent = self.players
         opp_mon = opponent.monsters[0]
-        player_home = self._layout[player]["home"][0]
-        opp_home = self._layout[opponent]["home"][0]
+        player_home = self.hud_manager.get_rect(player, "home")
+        opp_home = self.hud_manager.get_rect(opponent, "home")
 
         # Define animation constants
         y_mod = scale(50)
@@ -716,11 +717,11 @@ class CombatAnimations(Menu[None], ABC):
         animate = partial(
             self.animate, transition="out_quad", duration=duration
         )
-
+        position1 = self.hud_manager.get_rect(self.players[1], "home")
         animate(
             enemy.rect,
             back_island.rect,
-            centerx=self._layout[self.players[1]]["home"][0].centerx,
+            centerx=position1.centerx,
         )
         animate(
             enemy.rect,
@@ -729,10 +730,11 @@ class CombatAnimations(Menu[None], ABC):
             transition="out_back",
             relative=True,
         )
+        position2 = self.hud_manager.get_rect(self.players[0], "home")
         animate(
             player_back.rect,
             front_island.rect,
-            centerx=self._layout[self.players[0]]["home"][0].centerx,
+            centerx=position2.centerx,
         )
         animate(
             player_back.rect,
@@ -817,7 +819,7 @@ class CombatAnimations(Menu[None], ABC):
         def kill_monster() -> None:
             self._monster_sprite_map[monster].kill()
             del self._monster_sprite_map[monster]
-            self.delete_hud(monster)
+            self.hud_manager.delete_hud(monster)
 
         def shake_ball(initial_delay: float) -> None:
             # Define reusable shake animation functions
@@ -891,17 +893,6 @@ class CombatAnimations(Menu[None], ABC):
             capture_capsule(breakout_delay)
             blink_monster(breakout_delay)
             show_failure(breakout_delay)
-
-    def delete_hud(self, monster: Monster) -> None:
-        """
-        Removes the specified monster's entry from the HUD.
-
-        Parameters:
-            monster: The monster to remove from the HUD.
-        """
-        if monster in self.hud:
-            self.hud[monster].kill()
-            del self.hud[monster]
 
     def update_hud(self, character: NPC, animate: bool = True) -> None:
         """

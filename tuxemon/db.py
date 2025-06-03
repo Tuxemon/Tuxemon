@@ -1714,71 +1714,21 @@ class ModelLoader:
         raise RuntimeError(f"Failed to load item for table '{table}'.")
 
 
-class DataLoader:
-    def __init__(self, path: str, config: DatabaseConfig):
-        self.path = Path(path)
-        self.config = config
-
-    def load_files(self, directory: TableName) -> dict[str, Any]:
-        preloaded_data: dict[str, Any] = {}
-        extensions = self.config.file_extensions
-        directory_path = self.path / directory
-        for entry in directory_path.iterdir():
-            if entry.is_file() and any(
-                entry.suffix == ext for ext in extensions
-            ):
-                try:
-                    with entry.open() as fp:
-                        item = (
-                            json.load(fp)
-                            if entry.suffix == ".json"
-                            else yaml.safe_load(fp)
-                        )
-
-                    if isinstance(item, list):
-                        for sub_item in item:
-                            self._load_dict(
-                                sub_item, entry.as_posix(), preloaded_data
-                            )
-                    else:
-                        self._load_dict(item, entry.as_posix(), preloaded_data)
-                except (
-                    json.JSONDecodeError,
-                    yaml.YAMLError,
-                    FileNotFoundError,
-                ) as e:
-                    logger.error(f"Error loading file '{entry}': {e}")
-        return preloaded_data
-
-    def _load_dict(
-        self,
-        item: Mapping[str, Any],
-        path: str,
-        preloaded_data: dict[str, Any],
-    ) -> None:
-        if item["slug"] in preloaded_data:
-            if path in preloaded_data[item["slug"]].get("paths", []):
-                logger.error(
-                    f"Error: Item with slug {item['slug']} was already loaded from this path ({path})."
-                )
-                return
-            else:
-                preloaded_data[item["slug"]]["paths"].append(path)
-        else:
-            preloaded_data[item["slug"]] = item
-            preloaded_data[item["slug"]]["paths"] = [path]
-
-
 class ModData:
 
-    def __init__(self, config: DatabaseConfig) -> None:
+    def __init__(
+        self,
+        config: DatabaseConfig,
+        loader: ModelLoader,
+        resolver: DependencyResolver,
+        mod_loader: ModMetadataLoader,
+    ) -> None:
         self.config = config
+        self.resolver = resolver
+        self.loader = loader
         self.preloaded: dict[TableName, dict[str, Any]] = {}
         self.database: dict[TableName, dict[str, DataModel]] = {}
-        self.mod_metadata: dict[str, dict[str, Any]] = {}
-        self.model_map = load_model_map(config.model_map)
-        self.loader = ModelLoader(self.model_map)
-        self._load_mod_metadata()
+        self.mod_metadata = mod_loader.load_metadata()
         if self.config.mod_tables:
             for mod, tables in self.config.mod_tables.items():
                 if mod in self.config.active_mods:
@@ -1786,10 +1736,6 @@ class ModData:
                         if table not in self.preloaded:
                             self.preloaded[table] = {}
                             self.database[table] = {}
-
-    def _resolve_dependencies(self, mod: str) -> list[str]:
-        resolver = DependencyResolver(self.config.mod_dependencies)
-        return resolver.resolve(mod)
 
     def preload(
         self, directory: Union[TableName, Literal["all"]] = "all"
@@ -1806,7 +1752,7 @@ class ModData:
             if self.config.mod_tables:
                 for mod, tables in self.config.mod_tables.items():
                     if mod in self.config.active_mods:
-                        dependencies = self._resolve_dependencies(mod)
+                        dependencies = self.resolver.resolve(mod)
                         mods_to_load = dependencies + [mod]
                         for mod_to_load in mods_to_load:
                             if mod_to_load in self.config.mod_tables:
@@ -1822,58 +1768,48 @@ class ModData:
     def _preload_table(
         self, table: TableName, mod_directory: Optional[str] = None
     ) -> None:
+        """Preloads table data from mod directories."""
         active_mods = [
             mod
             for mod in self.config.active_mods
             if not self.config.mod_activation
             or self.config.mod_activation.get(mod, True)
         ]
-        if mod_directory is None:
-            for mod_directory in active_mods:
-                self._preload_table_from_mod(table, mod_directory)
-        else:
-            self._preload_table_from_mod(table, mod_directory)
+        mod_directories = [mod_directory] if mod_directory else active_mods
 
-    def _preload_table_from_mod(
-        self, table: TableName, mod_directory: str
-    ) -> None:
-        self.path = (
-            Path(config.mod_base_path)
-            / mod_directory
-            / config.mod_db_subfolder
-        )
-        if (
-            self.config.mod_versions
-            and mod_directory in self.config.mod_versions
-        ):
-            logger.info(
-                f"Loading mod '{mod_directory}' version {self.config.mod_versions[mod_directory]}"
+        for mod_dir in mod_directories:
+            path = (
+                Path(self.config.mod_base_path)
+                / mod_dir
+                / self.config.mod_db_subfolder
             )
-        if not self.path.exists():
-            logger.warning(f"Mod directory '{self.path}' not found.")
-            return
-        db_path = self.path / str(table)
-        if (
-            self.config.mod_table_exclusions
-            and mod_directory in self.config.mod_table_exclusions
-            and table in self.config.mod_table_exclusions[mod_directory]
-        ):
-            logger.info(f"Table '{table}' excluded by mod '{mod_directory}'.")
-            return
-        if db_path.exists():
-            data_loader = DataLoader(self.path.as_posix(), self.config)
-            if table not in self.preloaded:
-                self.preloaded[table] = {}
-            self.preloaded[table].update(data_loader.load_files(table))
-        else:
-            logger.warning(f"Database directory '{db_path}' not found.")
 
-    def _load_mod_metadata(self) -> None:
-        """Loads mod metadata from mod.json files."""
-        loader = ModMetadataLoader(
-            self.config.active_mods, config.mod_base_path
-        )
-        self.mod_metadata = loader.load_metadata()
+            if (
+                self.config.mod_versions
+                and mod_dir in self.config.mod_versions
+            ):
+                logger.info(
+                    f"Loading mod '{mod_dir}' version {self.config.mod_versions[mod_dir]}"
+                )
+
+            if not path.exists():
+                logger.warning(f"Mod directory '{path}' not found.")
+                continue
+
+            db_path = path / str(table)
+            if (
+                self.config.mod_table_exclusions
+                and mod_dir in self.config.mod_table_exclusions
+                and table in self.config.mod_table_exclusions[mod_dir]
+            ):
+                logger.info(f"Table '{table}' excluded by mod '{mod_dir}'.")
+                continue
+
+            if db_path.exists():
+                data_loader = load_files(table, path, self.config)
+                self.preloaded.setdefault(table, {}).update(data_loader)
+            else:
+                logger.warning(f"Database directory '{db_path}' not found.")
 
     def load(
         self,
@@ -1902,36 +1838,32 @@ class ModData:
     def _load_models_from_preloaded(
         self, table: TableName, validate: bool
     ) -> None:
-        """
-        Loads models from the preloaded data into the main database.
-        """
+        """Loads models from preloaded data into the main database."""
         for item in self.preloaded[table].values():
             if "paths" in item:
                 del item["paths"]
 
-            try:
-                model = self.loader.load(item, table, validate)
+            model = self._validate_and_load(item, table, validate)
+            if model:
                 self.database[table][model.slug] = model
-            except ValidationError as e:
-                logger.error(
-                    f"Failed to load model for item '{item.get('slug', 'unknown')}' in table '{table}': {e}"
-                )
 
-    def _validate_data(
-        self, item: Mapping[str, Any], table: TableName
-    ) -> DataModel:
-        """Validates the given data."""
+    def _validate_and_load(
+        self, item: Mapping[str, Any], table: TableName, validate: bool
+    ) -> Optional[DataModel]:
+        """Validates and loads a model entry."""
         try:
-            model_class = self.model_map.get(table)
-            if model_class:
-                return model_class(**item)
-            else:
+            model_class = self.loader.model_map.get(table)
+            if not model_class:
                 raise ValueError(f"Unexpected table: {table}")
+
+            return model_class(**item)
         except ValidationError as e:
             logger.error(
-                f"Validation failed for '{item['slug']}' in table '{table}': {e}"
+                f"Validation failed for '{item.get('slug', 'unknown')}' in table '{table}': {e}"
             )
-            raise e
+            if validate:
+                raise e
+            return None
 
     def load_model(
         self, item: Mapping[str, Any], table: TableName, validate: bool = False
@@ -1946,23 +1878,9 @@ class ModData:
             validate: Whether or not we should raise an exception if validation
                 fails
         """
-        try:
-            if validate:
-                model = self._validate_data(item, table)
-            else:
-                model_class = self.model_map.get(table)
-                if model_class:
-                    model = model_class(**item)
-                else:
-                    raise ValueError(f"Unexpected table: {table}")
-
+        model = self._validate_and_load(item, table, validate)
+        if model:
             self.database[table][model.slug] = model
-        except ValidationError as e:
-            logger.error(
-                f"Validation failed for '{item['slug']}' in table '{table}': {e}"
-            )
-            if validate:
-                raise e
 
     @overload
     def lookup(self, slug: str) -> MonsterModel:
@@ -2082,37 +2000,23 @@ class ModData:
             f"Lookup failed for unknown {table} '{slug}'. {hint}"
         )
 
-    def lookup_file(self, table: TableName, slug: str) -> str:
-        """
-        Does a lookup with the given slug in the given table.
+    def get_entry(self, table: TableName, slug: str) -> str:
+        """Checks existence of an entry and returns its file path if available."""
+        table_data = self.database.get(table)
 
-        It expects a dictionary with two keys, 'slug' and 'file'.
-
-        Parameters:
-            slug: The slug of the file record.
-            table: The table to do the lookup in, such as "sounds" or "music".
-
-        Returns:
-            The 'file' property of the resulting dictionary OR the slug if it
-            doesn't exist.
-        """
-        entry = self.database[table].get(slug)
-        if entry:
-            file_name = getattr(entry, "file", None)
-            if file_name:
-                return str(file_name)
-            else:
-                return slug
-        else:
-            raise EntryNotFoundError(
-                f"Entry {slug} not found in table '{table}'."
+        if not table_data:
+            raise ValueError(
+                f"Table '{table}' does not exist in the database."
             )
 
-    def has_entry(self, slug: str, table: TableName) -> bool:
-        table_entry = self.database[table]
-        if not table_entry:
-            raise ValueError(f"{table} table wasn't loaded")
-        return slug in table_entry
+        entry = table_data.get(slug)
+
+        if entry is None:
+            raise EntryNotFoundError(
+                f"Entry '{slug}' not found in table '{table}'."
+            )
+
+        return getattr(entry, "file", slug)
 
     def reload(self, table: TableName, validate: bool = True) -> None:
         """Reloads the data for a specific table."""
@@ -2139,11 +2043,11 @@ class ModData:
                         Path(self.config.mod_base_path)
                         / mod
                         / self.config.mod_db_subfolder
-                    )  # Using pathlib
+                    )
                     logger.info(
                         f"Preloading table '{table}' from mod path '{mod_path}'."
                     )
-                    self._preload_table_from_mod(table, mod)
+                    self._preload_table(table, mod)
 
             self._load_models_from_preloaded(table, validate)
         except Exception as e:
@@ -2179,6 +2083,54 @@ class ModData:
             logger.error(
                 f"Unexpected error while adding entry to table '{table}': {ex}"
             )
+
+
+def load_files(
+    directory: TableName, path: Path, config: DatabaseConfig
+) -> dict[str, Any]:
+    preloaded_data: dict[str, Any] = {}
+    extensions = config.file_extensions
+    directory_path = path / directory
+    for entry in directory_path.iterdir():
+        if entry.is_file() and any(entry.suffix == ext for ext in extensions):
+            try:
+                with entry.open() as fp:
+                    item = (
+                        json.load(fp)
+                        if entry.suffix == ".json"
+                        else yaml.safe_load(fp)
+                    )
+
+                if isinstance(item, list):
+                    for sub_item in item:
+                        load_dict(sub_item, entry, preloaded_data)
+                else:
+                    load_dict(item, entry, preloaded_data)
+            except (
+                json.JSONDecodeError,
+                yaml.YAMLError,
+                FileNotFoundError,
+            ) as e:
+                logger.error(f"Error loading file '{entry}': {e}")
+    return preloaded_data
+
+
+def load_dict(
+    item: Mapping[str, Any],
+    path: Path,
+    preloaded_data: dict[str, Any],
+) -> None:
+    if item["slug"] in preloaded_data:
+        if path in preloaded_data[item["slug"]].get("paths", []):
+            logger.error(
+                f"Error: Item with slug {item['slug']} was already loaded from this path ({path})."
+            )
+            return
+        else:
+            preloaded_data[item["slug"]]["paths"].append(path)
+    else:
+        preloaded_data[item["slug"]] = item
+        preloaded_data[item["slug"]]["paths"] = [path]
 
 
 def load_config(config_path: str) -> DatabaseConfig:
@@ -2280,7 +2232,11 @@ class Validator:
 
 path = prepare.fetch(mods_folder.as_posix(), "db_config.json")
 config = load_config(path)
+model_map = load_model_map(config.model_map)
+loader = ModelLoader(model_map)
+resolver = DependencyResolver(config.mod_dependencies)
+mod_loader = ModMetadataLoader(config.active_mods, config.mod_base_path)
 # Global database container
-db = ModData(config)
+db = ModData(config, loader, resolver, mod_loader)
 # Validator container
 has = Validator(db)

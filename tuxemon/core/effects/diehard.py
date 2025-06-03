@@ -25,7 +25,6 @@ class DieHardEffect(StatusEffect):
 
     Parameters:
         hp: The amount of HP to set.
-
     """
 
     name = "diehard"
@@ -41,7 +40,7 @@ class DieHardEffect(StatusEffect):
                 target.current_hp = self.hp
                 target.status.clear()
                 extra = [T.format("combat_state_diehard_tech", params)]
-            if target.hp_ratio == 1.0:
+            if target.current_hp == self.hp:
                 target.status.clear()
                 extra = [T.format("combat_state_diehard_end", params)]
 

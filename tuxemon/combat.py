@@ -151,7 +151,7 @@ def fainted(monster: Monster) -> bool:
     """
     Checks to see if the monster is fainted.
     """
-    return has_status(monster, "faint") or monster.current_hp <= 0
+    return has_status(monster, "faint") or monster.is_fainted
 
 
 def recharging(technique: Technique) -> bool:

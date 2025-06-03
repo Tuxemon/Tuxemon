@@ -144,6 +144,7 @@ class TestRewardSystem(unittest.TestCase):
                 give_experience=MagicMock(),
                 status=[],
                 current_hp=50,
+                is_fainted=False,
             )
             for _ in range(3)
         ]

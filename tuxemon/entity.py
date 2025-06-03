@@ -43,6 +43,11 @@ class Body:
         self.acceleration = acceleration or Vector3(0, 0, 0)
 
     @property
+    def is_moving(self) -> bool:
+        """Returns whether the entity is currently moving."""
+        return self.velocity != Vector3(0, 0, 0)
+
+    @property
     def acceleration_magnitude(self) -> float:
         """
         Returns the magnitude of the acceleration vector.
@@ -85,6 +90,7 @@ class Mover:
         self.facing = facing
         self.moverate = moverate  # walk by default
         self.direction_map = {tuple(v.normalized): k for k, v in dirs3.items()}
+        self.move_direction: Optional[Direction] = None
 
     @property
     def current_direction(self) -> Vector3:
@@ -108,18 +114,32 @@ class Mover:
         """Stops movement without affecting acceleration."""
         self.body.velocity = Vector3(0, 0, 0)
         self.state = EntityState.IDLE
+        self.moverate = CONFIG.player_walkrate
 
     def running(self) -> None:
         """Boosts moverate to running speed."""
-        if self.body.velocity != Vector3(0, 0, 0):
+        if self.body.is_moving:
             self.moverate = CONFIG.player_runrate
             self.state = EntityState.RUNNING
 
     def walking(self) -> None:
         """Resets moverate back to walking speed."""
-        if self.body.velocity != Vector3(0, 0, 0):
+        if self.body.is_moving:
             self.moverate = CONFIG.player_walkrate
             self.state = EntityState.WALKING
+
+    def update_movement_state(self, running: bool) -> None:
+        """
+        Updates movement state based on whether the player is running
+        or walking.
+        """
+        if self.body.is_moving:
+            if running:
+                self.running()
+            else:
+                self.walking()
+        else:
+            self.stop()
 
 
 class Entity(Generic[SaveDict]):
@@ -144,9 +164,10 @@ class Entity(Generic[SaveDict]):
         self.instance_id = uuid.uuid4()
         self.body = Body(position=Point3(0, 0, 0))
         self.mover = Mover(self.body, moverate=CONFIG.player_walkrate)
-        self.tile_pos = (0, 0)
-        self.update_location = False
+        self.tile_pos: tuple[int, int] = (0, 0)
+        self.update_location: bool = False
         self.isplayer: bool = False
+        self.ignore_collisions: bool = False
 
     # === PHYSICS START =======================================================
     def stop_moving(self) -> None:
@@ -196,6 +217,17 @@ class Entity(Generic[SaveDict]):
         """
         self.mover.facing = direction
 
+    def set_move_direction(
+        self, direction: Optional[Direction] = None
+    ) -> None:
+        """
+        Sets the move direction of the entity.
+
+        Parameters:
+            direction: The new direction the entity will face.
+        """
+        self.mover.move_direction = direction
+
     def add_collision(self, pos: Sequence[float]) -> None:
         """
         Set the entity's wandering position in the collision zone.
@@ -228,11 +260,21 @@ class Entity(Generic[SaveDict]):
     @property
     def moving(self) -> bool:
         """Return ``True`` if the entity is moving."""
-        return self.body.velocity != Vector3(0, 0, 0)
+        return self.body.is_moving
 
     @property
     def facing(self) -> Direction:
         return self.mover.facing
+
+    @property
+    def move_direction(self) -> Optional[Direction]:
+        """
+        Move direction allows other functions to move the entity in a
+        controlled way. To move the entity, change the value to one of
+        four directions: left, right, up or down. The entity will then
+        move one tile in that direction until it is set to None.
+        """
+        return self.mover.move_direction
 
     def get_state(self, session: Session) -> SaveDict:
         """

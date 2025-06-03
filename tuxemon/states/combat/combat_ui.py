@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import MutableMapping
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Union
 
 from pygame.rect import Rect
 
@@ -14,6 +14,7 @@ from tuxemon.sprite import Sprite
 if TYPE_CHECKING:
     from tuxemon.db import BattleGraphicsModel
     from tuxemon.monster import Monster
+    from tuxemon.npc import NPC
 
 
 class CombatUI:
@@ -102,3 +103,34 @@ class CombatUI:
         """
         self.draw_hp_bars(graphics, hud)
         self.draw_exp_bars(graphics, hud)
+
+
+class MonsterSpriteMap:
+    def __init__(self) -> None:
+        self.sprite_map: MutableMapping[Union[NPC, Monster], Sprite] = {}
+
+    def get_sprite(self, entity: Union[NPC, Monster]) -> Sprite:
+        """Retrieves the sprite for the given entity, raising an error if not found."""
+        if entity not in self.sprite_map:
+            raise KeyError(f"Sprite not found for entity: {entity.name}")
+        return self.sprite_map[entity]
+
+    def add_sprite(self, entity: Union[NPC, Monster], sprite: Sprite) -> None:
+        """Associates a sprite with the given entity."""
+        self.sprite_map[entity] = sprite
+
+    def remove_sprite(self, entity: Union[NPC, Monster]) -> None:
+        """Removes and cleans up the sprite associated with the given entity."""
+        if entity in self.sprite_map:
+            self.sprite_map[entity].kill()
+            del self.sprite_map[entity]
+
+    def update_sprite_position(
+        self, entity: Union[NPC, Monster], new_feet: tuple[int, int]
+    ) -> None:
+        """Updates the position of the given entity's sprite to match the new feet position."""
+        if entity not in self.sprite_map:
+            raise KeyError(
+                f"Cannot update position: No sprite found for entity {entity.name}"
+            )
+        self.sprite_map[entity].rect.midbottom = new_feet

@@ -230,8 +230,9 @@ class Monster:
         self.shape = results.shape
         self.stage = results.stage or EvolutionStage.standalone
         self.tags = results.tags
-        self.taste_cold = self.set_taste_cold(self.taste_cold)
-        self.taste_warm = self.set_taste_warm(self.taste_warm)
+        self.taste_cold, self.taste_warm = Taste.generate(
+            self.taste_cold, self.taste_warm
+        )
         self.steps = self.steps
         self.bond = self.bond
 
@@ -458,50 +459,6 @@ class Monster:
         """
         self.calculate_base_stats()
         self.apply_stat_updates()
-
-    def set_taste_cold(self, taste_slug: str = "tasteless") -> str:
-        """Sets the cold taste of the monster."""
-
-        if taste_slug == "tasteless":
-            cold_tastes = [
-                taste.slug
-                for taste in Taste.get_all_tastes().values()
-                if taste.taste_type == "cold" and taste.slug != "tasteless"
-            ]
-            if cold_tastes:
-                self.taste_cold = random.choice(cold_tastes)
-            else:
-                self.taste_cold = taste_slug
-        else:
-            taste = Taste.get_taste(taste_slug)
-            if taste is None:
-                self.taste_cold = taste_slug
-            else:
-                self.taste_cold = taste.slug
-
-        return self.taste_cold
-
-    def set_taste_warm(self, taste_slug: str = "tasteless") -> str:
-        """Sets the warm taste of the monster."""
-
-        if taste_slug == "tasteless":
-            warm_tastes = [
-                taste.slug
-                for taste in Taste.get_all_tastes().values()
-                if taste.taste_type == "warm" and taste.slug != "tasteless"
-            ]
-            if warm_tastes:
-                self.taste_warm = random.choice(warm_tastes)
-            else:
-                self.taste_warm = taste_slug
-        else:
-            taste = Taste.get_taste(taste_slug)
-            if taste is None:
-                self.taste_warm = taste_slug
-            else:
-                self.taste_warm = taste.slug
-
-        return self.taste_warm
 
     def set_capture(self, amount: int) -> int:
         """

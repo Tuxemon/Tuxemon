@@ -407,9 +407,7 @@ class MonsterDropOff(MonsterMenuState):
 
     def is_valid_entry(self, monster: Optional[Monster]) -> bool:
         alive_monsters = [
-            mon
-            for mon in self.char.monsters
-            if not any("faint" in s.slug for s in mon.status)
+            mon for mon in self.char.monsters if not mon.is_fainted
         ]
         if monster is not None:
             return len(alive_monsters) != 1 or monster not in alive_monsters

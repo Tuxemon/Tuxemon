@@ -5,7 +5,6 @@ from __future__ import annotations
 import logging
 from dataclasses import dataclass
 
-from tuxemon.combat import has_status
 from tuxemon.event import MapCondition, get_npc
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
@@ -39,10 +38,7 @@ class CharDefeatedCondition(EventCondition):
 
         if character.monsters:
             for mon in character.monsters:
-                if mon.is_fainted and not has_status(mon, "faint"):
+                if mon.is_fainted and not mon.status.is_fainted:
                     mon.faint()
-            return all(
-                "faint" in (s.slug for s in mon.status)
-                for mon in character.monsters
-            )
+            return all(mon.status.is_fainted for mon in character.monsters)
         return False

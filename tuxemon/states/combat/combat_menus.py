@@ -132,7 +132,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         if not run.validate_monster(self.session, self.monster):
             params = {
                 "monster": self.monster.name.upper(),
-                "status": self.monster.status[0].name.lower(),
+                "status": self.monster.status.current_status.name.lower(),
             }
             msg = T.format("combat_player_run_status", params)
             tools.open_dialog(self.client, [msg])
@@ -150,7 +150,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             if not swap.validate_monster(self.session, self.monster):
                 params = {
                     "monster": self.monster.name.upper(),
-                    "status": self.monster.status[0].name.lower(),
+                    "status": self.monster.status.current_status.name.lower(),
                 }
                 msg = T.format("combat_player_swap_status", params)
                 tools.open_dialog(self.client, [msg])
@@ -226,10 +226,12 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             target = menu_item.game_object
 
             # check target status
-            if target.status:
-                target.status[0].combat_state = self.combat
-                target.status[0].phase = "enqueue_item"
-                result_status = target.status[0].use(self.session, target)
+            if target.status.status_exists():
+                target.status.current_status.combat_state = self.combat
+                target.status.current_status.phase = "enqueue_item"
+                result_status = target.status.current_status.use(
+                    self.session, target
+                )
                 if result_status.extras:
                     templates = [
                         T.translate(extra) for extra in result_status.extras

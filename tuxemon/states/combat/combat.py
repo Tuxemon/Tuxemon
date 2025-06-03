@@ -373,7 +373,7 @@ class CombatState(CombatAnimations):
 
             # apply status effects to the monsters
             for monster in self.active_monsters:
-                for status in monster.status:
+                for status in monster.status.get_statuses():
                     # validate status
                     if status.validate_monster(self.session, monster):
                         status.combat_state = self
@@ -618,13 +618,13 @@ class CombatState(CombatAnimations):
 
         # Remove "bond" status from all active monsters
         for mon in self.active_monsters:
-            mon.status = [sta for sta in mon.status if not sta.bond]
+            mon.status.remove_bonded_statuses()
 
         # Handle removed monster's status effects
-        if removed is not None and removed.status:
-            removed.status[0].combat_state = self
-            removed.status[0].phase = "add_monster_into_play"
-            removed.status[0].use(self.session, removed)
+        if removed is not None and removed.status.status_exists():
+            removed.status.current_status.combat_state = self
+            removed.status.current_status.phase = "add_monster_into_play"
+            removed.status.current_status.use(self.session, removed)
 
         # Create message for combat swap
         format_params = {
@@ -783,10 +783,10 @@ class CombatState(CombatAnimations):
             params = {"name": target.name.upper()}
             message = T.format("combat_call_tuxemon", params)
         # check statuses
-        if user.status:
-            user.status[0].combat_state = self
-            user.status[0].phase = "perform_action_tech"
-            result_status = user.status[0].use(self.session, user)
+        if user.status.status_exists():
+            user.status.current_status.combat_state = self
+            user.status.current_status.phase = "perform_action_tech"
+            result_status = user.status.current_status.use(self.session, user)
             if result_status.extras:
                 templates = [
                     T.translate(extra) for extra in result_status.extras
@@ -795,7 +795,7 @@ class CombatState(CombatAnimations):
                 message += "\n" + template
             if result_status.statuses:
                 status = random.choice(result_status.statuses)
-                user.apply_status(status)
+                user.status.apply_status(status)
 
         if result_tech.success and method.use_success:
             template = getattr(method, "use_success")
@@ -1086,10 +1086,12 @@ class CombatState(CombatAnimations):
         Parameters:
             monster: Monster that was defeated.
         """
-        if monster.status:
-            monster.status[0].combat_state = self
-            monster.status[0].phase = "check_party_hp"
-            result_status = monster.status[0].use(self.session, monster)
+        if monster.status.status_exists():
+            monster.status.current_status.combat_state = self
+            monster.status.current_status.phase = "check_party_hp"
+            result_status = monster.status.current_status.use(
+                self.session, monster
+            )
             if result_status.extras:
                 templates = [
                     T.translate(extra) for extra in result_status.extras

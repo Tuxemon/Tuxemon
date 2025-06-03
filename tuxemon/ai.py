@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING, Any, Optional
 import yaml
 
 from tuxemon import prepare
-from tuxemon.combat import has_status, pre_checking, recharging
+from tuxemon.combat import pre_checking, recharging
 from tuxemon.constants import paths
 from tuxemon.formula import simple_damage_multiplier
 from tuxemon.technique.technique import Technique
@@ -506,7 +506,8 @@ def check_item_conditions(item_entry: ItemEntry, ai: AI) -> bool:
         return False
 
     if item_entry.status_effects and not any(
-        has_status(ai.monster, status) for status in item_entry.status_effects
+        ai.monster.status.has_status(status)
+        for status in item_entry.status_effects
     ):
         return False
 
@@ -545,14 +546,14 @@ def check_tech_conditions(condition: TechniqueCondition, ai: AI) -> bool:
 
     if condition.status_effects:
         return any(
-            has_status(ai.monster, status)
+            ai.monster.status.has_status(status)
             for status in condition.status_effects
         )
 
     if condition.opponent_status:
         if not ai.combat.is_double:
             return any(
-                has_status(ai.opponents[0], opponent_status)
+                ai.opponents[0].status.has_status(opponent_status)
                 for opponent_status in condition.opponent_status
             )
 
@@ -599,7 +600,7 @@ def calculate_score(
         speed_score = opponent.speed * config.speed_weight
 
     if config.status_effects and config.status_effects_weight:
-        for status in opponent.status:
+        for status in opponent.status.get_statuses():
             if status.slug in config.status_effects:
                 status_effect_score += (
                     config.status_effects.get(status.slug, 1.0)

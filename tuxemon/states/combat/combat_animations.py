@@ -567,7 +567,7 @@ class CombatAnimations(Menu[None], ABC):
                         },
                     )
                     status = "faint"
-                elif monster.status:
+                elif monster.status.status_exists():
                     sprite = self._load_sprite(
                         self.graphics.icons.icon_status,
                         {

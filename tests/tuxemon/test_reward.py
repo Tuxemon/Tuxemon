@@ -3,7 +3,7 @@
 import unittest
 from unittest.mock import MagicMock, patch
 
-from tuxemon.monster import Monster
+from tuxemon.monster import Monster, MonsterStatusHandler
 from tuxemon.npc import NPC
 from tuxemon.states.combat.combat_classes import DamageTracker
 from tuxemon.states.combat.reward_system import (
@@ -22,12 +22,12 @@ class TestRewardSystem(unittest.TestCase):
         self.loser.money_modifier = 2.0
         self.loser.total_experience = 1000
         self.loser.experience_modifier = 1.5
-        self.loser.status = []
+        self.loser.status = MonsterStatusHandler()
         self.loser.current_hp = 0
 
         self.winner = MagicMock(spec=Monster)
         self.winner.name = "rockitten"
-        self.winner.status = []
+        self.winner.status = MonsterStatusHandler()
         self.winner.current_hp = 50
         self.winner.owner = MagicMock(spec=NPC)
         self.winner.owner.isplayer = True
@@ -142,7 +142,7 @@ class TestRewardSystem(unittest.TestCase):
             MagicMock(
                 spec=Monster,
                 give_experience=MagicMock(),
-                status=[],
+                status=MonsterStatusHandler(),
                 current_hp=50,
                 is_fainted=False,
             )

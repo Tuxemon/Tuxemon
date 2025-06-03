@@ -43,12 +43,12 @@ class RestoreEffect(ItemEffect):
             ):
                 checking = [
                     ele
-                    for ele in target.status
+                    for ele in target.status.get_statuses()
                     if ele.category == self.category
                 ]
                 # removes negative or positive statuses
                 if checking:
-                    target.status.clear()
+                    target.status.clear_status()
                 else:
                     pass
             else:
@@ -56,6 +56,6 @@ class RestoreEffect(ItemEffect):
                     f"{self.category} must be positive or negative."
                 )
         else:
-            target.status.clear()
+            target.status.clear_status()
 
         return ItemEffectResult(name=item.name, success=True)

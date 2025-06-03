@@ -77,10 +77,10 @@ def pre_checking(
     Pre checking allows to check if there are statuses
     or other conditions that change the chosen technique.
     """
-    if monster.status:
-        monster.status[0].combat_state = combat
-        monster.status[0].phase = "pre_checking"
-        result_status = monster.status[0].use(session, target)
+    if monster.status.status_exists():
+        monster.status.current_status.combat_state = combat
+        monster.status.current_status.phase = "pre_checking"
+        result_status = monster.status.current_status.use(session, target)
         if result_status.techniques:
             technique = random.choice(result_status.techniques)
 
@@ -99,13 +99,6 @@ def pre_checking(
         if result_method.success:
             technique = method
     return technique
-
-
-def has_status(monster: Monster, status_name: str) -> bool:
-    """
-    Checks to see if the monster has a specific status.
-    """
-    return any(t for t in monster.status if t.slug == status_name)
 
 
 def has_effect(technique: Technique, effect_name: str) -> bool:
@@ -151,7 +144,7 @@ def fainted(monster: Monster) -> bool:
     """
     Checks to see if the monster is fainted.
     """
-    return has_status(monster, "faint") or monster.is_fainted
+    return monster.status.is_fainted or monster.is_fainted
 
 
 def recharging(technique: Technique) -> bool:

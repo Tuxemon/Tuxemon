@@ -9,7 +9,7 @@ from tuxemon.formula import (
     capture,
     shake_check,
 )
-from tuxemon.monster import Monster
+from tuxemon.monster import Monster, MonsterStatusHandler
 
 
 class TestShakeCheck(unittest.TestCase):
@@ -148,30 +148,33 @@ class TestCapture(unittest.TestCase):
 class TestCalculateStatusModifier(unittest.TestCase):
     def setUp(self):
         self.item = MagicMock(slug="example")
-        self.target = MagicMock()
+        self.target = MagicMock(spec=Monster, slug="mock_target")
+        self.target.status = MonsterStatusHandler()
 
     def test_no_config_or_status(self):
-        self.target.status = None
         result = calculate_status_modifier(self.item, self.target)
         self.assertEqual(result, 1.0)
 
     def test_no_target_status(self):
-        self.target.status = None
         result = calculate_status_modifier(self.item, self.target)
         self.assertEqual(result, 1.0)
 
     def test_negative_category_modifier_applied(self):
-        self.target.status = [MagicMock(slug="unknown", category="negative")]
+        self.target.status.status = [
+            MagicMock(slug="unknown", category="negative")
+        ]
         result = calculate_status_modifier(self.item, self.target)
         self.assertEqual(result, 1.2)
 
     def test_positive_category_modifier_applied(self):
-        self.target.status = [MagicMock(slug="unknown", category="positive")]
+        self.target.status.status = [
+            MagicMock(slug="unknown", category="positive")
+        ]
         result = calculate_status_modifier(self.item, self.target)
         self.assertEqual(result, 1.0)
 
     def test_multiple_status_modifiers(self):
-        self.target.status = [
+        self.target.status.status = [
             MagicMock(slug="unknown", category="negative"),
             MagicMock(slug="name_status", category="positive"),
         ]

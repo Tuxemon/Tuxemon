@@ -42,6 +42,6 @@ class LifeLeechEffect(StatusEffect):
             user.current_hp = min(user.hp, user.current_hp + damage)
             lifeleech = True
         if fainted(user):
-            target.status.clear()
+            target.status.clear_status()
 
         return StatusEffectResult(name=status.name, success=lifeleech)

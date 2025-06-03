@@ -44,12 +44,12 @@ class SetMonsterStatusAction(EventAction):
         monster: Monster, value: Optional[str], steps: float
     ) -> None:
         if not value:
-            monster.status = list()
+            monster.status.clear_status()
         else:
             status = Status.create(value)
             status.steps = steps
             status.link = monster
-            monster.apply_status(status)
+            monster.status.apply_status(status)
 
     def start(self, session: Session) -> None:
         player = session.player

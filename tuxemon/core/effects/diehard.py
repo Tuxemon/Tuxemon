@@ -38,10 +38,10 @@ class DieHardEffect(StatusEffect):
             params = {"target": target.name.upper()}
             if fainted(target):
                 target.current_hp = self.hp
-                target.status.clear()
+                target.status.clear_status()
                 extra = [T.format("combat_state_diehard_tech", params)]
             if target.current_hp == self.hp:
-                target.status.clear()
+                target.status.clear_status()
                 extra = [T.format("combat_state_diehard_end", params)]
 
         return StatusEffectResult(name=status.name, success=True, extras=extra)

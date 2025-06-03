@@ -22,6 +22,6 @@ class CurrentStatusCondition(CoreCondition):
     expected: str
 
     def test_with_monster(self, session: Session, target: Monster) -> bool:
-        return self.expected in [
-            x.slug for x in target.status if hasattr(x, "slug")
-        ]
+        return any(
+            self.expected == x.slug for x in target.status.get_statuses()
+        )

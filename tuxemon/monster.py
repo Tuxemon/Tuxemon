@@ -141,7 +141,7 @@ class Monster:
         self.traded = False
         self.wild = False
 
-        self.status: list[Status] = []
+        self.status = MonsterStatusHandler()
         self.plague: dict[str, PlagueType] = {}
         self.taste_cold: str = "tasteless"
         self.taste_warm: str = "tasteless"
@@ -401,38 +401,6 @@ class Monster:
             levels += 1
         return levels
 
-    def apply_status(self, status: Status) -> None:
-        """
-        Apply a status to the monster by replacing or removing
-        the previous status.
-
-        Parameters:
-            status: The status.
-
-        """
-        if not self.status:
-            self.status.append(status)
-            return
-
-        if any(t.slug == status.slug for t in self.status):
-            return
-
-        self.status[0].nr_turn = 0
-        status.nr_turn = 1
-
-        if self.status[0].category == CategoryStatus.positive:
-            if status.repl_pos == ResponseStatus.replaced:
-                self.status = [status]
-            elif status.repl_pos == ResponseStatus.removed:
-                self.status.clear()
-        elif self.status[0].category == CategoryStatus.negative:
-            if status.repl_neg == ResponseStatus.replaced:
-                self.status = [status]
-            elif status.repl_pos == ResponseStatus.removed:
-                self.status.clear()
-        else:
-            self.status = [status]
-
     def calculate_base_stats(self) -> None:
         """
         Calculate the base stats of the monster dynamically.
@@ -623,7 +591,7 @@ class Monster:
         if body:
             save_data["body"] = body
 
-        save_data["status"] = encode_status(self.status)
+        save_data["status"] = self.status.encode_status()
         save_data["moves"] = encode_moves(self.moves)
         save_data["held_item"] = self.held_item.encode_item()
         save_data["modifiers"] = self.modifiers.to_dict()
@@ -646,9 +614,8 @@ class Monster:
         self.moves = []
         for move in decode_moves(save_data.get("moves")):
             self.moves.append(move)
-        self.status = []
-        for cond in decode_status(save_data.get("status")):
-            self.status.append(cond)
+
+        self.status.decode_status(save_data)
 
         for key, value in save_data.items():
             if key == "body" and value:
@@ -672,10 +639,8 @@ class Monster:
         """
         Kills the monster, sets 0 HP and applies faint status.
         """
-        faint = Status.create("faint")
+        self.status.apply_faint()
         self.current_hp = 0
-        self.status.clear()
-        self.apply_status(faint)
 
     def end_combat(self) -> None:
         """
@@ -685,10 +650,11 @@ class Monster:
         for move in self.moves:
             move.full_recharge()
 
-        if "faint" in (s.slug for s in self.status):
+        if not self.status.is_fainted:
+            self.status.clear_status()
+
+        if self.is_fainted:
             self.faint()
-        else:
-            self.status = []
 
     def find_tech_by_id(self, instance_id: UUID) -> Optional[Technique]:
         """
@@ -865,6 +831,79 @@ class MonsterSpriteHandler:
                 flairs[new_flair.category] = new_flair
 
         return flairs
+
+
+class MonsterStatusHandler:
+    def __init__(self, status: Optional[list[Status]] = None):
+        self.status = status if status is not None else []
+
+    @property
+    def current_status(self) -> Status:
+        if not self.status:
+            raise ValueError("Monster has no status to retrieve.")
+        return self.status[0]
+
+    @property
+    def is_fainted(self) -> bool:
+        return self.has_status("faint")
+
+    def apply_status(self, new_status: Status) -> None:
+        """
+        Apply a status to the monster by replacing or removing
+        the previous status.
+
+        Parameters:
+            status: The status.
+        """
+        if not self.status:
+            self.status.append(new_status)
+            return
+
+        if any(t.slug == new_status.slug for t in self.status):
+            return
+
+        current_status = self.current_status
+        current_status.nr_turn = 0
+        new_status.nr_turn = 1
+
+        if current_status.category == CategoryStatus.positive:
+            if new_status.repl_pos == ResponseStatus.replaced:
+                self.status = [new_status]
+            elif new_status.repl_pos == ResponseStatus.removed:
+                self.clear_status()
+        elif current_status.category == CategoryStatus.negative:
+            if new_status.repl_neg == ResponseStatus.replaced:
+                self.status = [new_status]
+            elif new_status.repl_pos == ResponseStatus.removed:
+                self.clear_status()
+        else:
+            self.status = [new_status]
+
+    def clear_status(self) -> None:
+        if self.status:
+            self.status.clear()
+
+    def apply_faint(self) -> None:
+        self.status = [Status.create("faint")]
+
+    def get_statuses(self) -> list[Status]:
+        return self.status
+
+    def has_status(self, status_slug: str) -> bool:
+        return any(status_slug == status.slug for status in self.status)
+
+    def status_exists(self) -> bool:
+        return bool(self.status)
+
+    def remove_bonded_statuses(self) -> None:
+        self.status = [sta for sta in self.get_statuses() if not sta.bond]
+
+    def encode_status(self) -> Sequence[Mapping[str, Any]]:
+        return encode_status(self.status)
+
+    def decode_status(self, json_data: Optional[Mapping[str, Any]]) -> None:
+        if json_data and "status" in json_data:
+            self.status = [cond for cond in decode_status(json_data["status"])]
 
 
 class MonsterItemHandler:

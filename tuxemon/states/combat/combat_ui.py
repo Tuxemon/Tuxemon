@@ -147,7 +147,7 @@ class StatusIconManager:
         self._status_icons.clear()
         for monster in active_monsters:
             self._status_icons[monster] = []
-            for status in monster.status:
+            for status in monster.status.get_statuses():
                 if status.icon:
                     is_left = monster in monsters_left
                     icon_position = self.determine_icon_position(

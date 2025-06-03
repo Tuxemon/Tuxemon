@@ -42,6 +42,6 @@ class LifeGiftEffect(StatusEffect):
             target.current_hp = min(target.hp, target.current_hp + damage)
             lifegift = True
         if fainted(user):
-            target.status.clear()
+            target.status.clear_status()
 
         return StatusEffectResult(name=status.name, success=lifegift)

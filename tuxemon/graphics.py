@@ -66,7 +66,6 @@ def strip_from_sheet(
 
     Returns:
         Sequence of stripped frames.
-
     """
     frames = []
     for j in range(rows):
@@ -91,7 +90,6 @@ def strip_coords_from_sheet(
 
     Returns:
         Sequence of stripped frames.
-
     """
     frames = []
     for coord in coords:
@@ -108,8 +106,14 @@ def cursor_from_image(image: Surface) -> Sequence[str]:
     for j in range(rect.height):
         this_row = []
         for i in range(rect.width):
-            pixel = tuple(image.get_at((i, j)))
-            this_row.append(colors.get(pixel, " "))
+            pixel = image.get_at((i, j))
+            pixel_tuple: tuple[int, int, int, int] = (
+                pixel.r,
+                pixel.g,
+                pixel.b,
+                pixel.a,
+            )
+            this_row.append(colors.get(pixel_tuple, " "))
         icon_string.append("".join(this_row))
     return icon_string
 
@@ -127,7 +131,6 @@ def load_and_scale(filename: str, scale: float = prepare.SCALE) -> Surface:
 
     Returns:
         Loaded and scaled image.
-
     """
     return scale_surface(load_image(filename), scale)
 
@@ -147,7 +150,6 @@ def load_image(filename: str) -> Surface:
 
     Returns:
         Loaded image.
-
     """
     filename = transform_resource_filename(filename)
     return smart_convert(load(filename), None, True)
@@ -169,7 +171,6 @@ def load_sprite(filename: str, **rect_kwargs: Any) -> Sprite:
 
     Returns:
         Loaded sprite.
-
     """
     sprite = Sprite(image=load_and_scale(filename))
     sprite.rect = sprite.image.get_rect(**rect_kwargs)
@@ -236,7 +237,6 @@ def load_frames_files(directory: str, name: str) -> Iterable[Surface]:
 
     Yields:
         Loaded and scaled frames.
-
     """
     for filename in animation_frame_files(directory, name):
         yield load_and_scale(filename)
@@ -257,7 +257,6 @@ def animation_frame_files(directory: str, name: str) -> Sequence[str]:
 
     Returns:
         Sequence of filenames.
-
     """
     pattern = re.compile(rf"{name}\.?_?[0-9]+\.png")
     dir_path = Path(directory)
@@ -284,7 +283,6 @@ def create_animation(
 
     Returns:
         Created animation.
-
     """
     data = [(f, duration) for f in frames]
     animation = SurfaceAnimation(data, loop=loop)
@@ -298,7 +296,6 @@ def scale_sprite(sprite: Sprite, ratio: float) -> None:
     Parameters:
         sprite: Sprite to rescale.
         ratio: Amount to scale by.
-
     """
     center = sprite.rect.center
     sprite.rect.width = int(sprite.rect.width * ratio)
@@ -325,7 +322,6 @@ def convert_alpha_to_colorkey(
 
     Returns:
         New surface with colorkey.
-
     """
     image = Surface(surface.get_size())
     image.fill(colorkey)
@@ -354,7 +350,6 @@ def scaled_image_loader(
 
     Returns:
         The loader to use.
-
     """
     colorkey_color = Color(f"#{colorkey}") if colorkey else None
 
@@ -398,7 +393,6 @@ def capture_screenshot(game: LocalPygameClient) -> Surface:
 
     Returns:
         The captured screenshot.
-
     """
     from tuxemon.states.world.worldstate import WorldState
 

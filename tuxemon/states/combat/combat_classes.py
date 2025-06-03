@@ -1,7 +1,10 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+from collections import deque
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Optional, Union
+from functools import partial
+from typing import Deque, Optional, Union
 
 from tuxemon.animation_entity import AnimationEntity
 from tuxemon.formula import config_combat, speed_monster
@@ -319,9 +322,9 @@ class ActionQueue:
                 (
                     pend.user
                     and isinstance(pend.user, Monster)
-                    and pend.user.current_hp <= 0
+                    and pend.user.is_fainted
                 )
-                or pend.target.current_hp <= 0
+                or pend.target.is_fainted
             )
         ]
 
@@ -436,3 +439,57 @@ class ActionQueue:
             A list of actions that occurred in the specified turn.
         """
         return self._action_history.get_actions_by_turn(turn)
+
+
+def compute_text_anim_time(message: str) -> float:
+    """
+    Compute required time for a text animation.
+
+    Parameters:
+        message: The given text to be animated.
+
+    Returns:
+        The time in seconds expected to be taken by the animation.
+    """
+    return config_combat.action_time + config_combat.letter_time * len(message)
+
+
+class TextAnimationManager:
+    """
+    Manages a queue of timed text animations.
+    """
+
+    def __init__(self) -> None:
+        self.text_queue: Deque[tuple[Callable[[], None], float]] = deque()
+        self._text_time_left: float = 0
+        self._xp_messages: list[str] = []
+
+    def update_text_animation(self, time_delta: float) -> None:
+        """Update the text animation."""
+        self._text_time_left -= time_delta
+        if self._text_time_left <= 0 and self.text_queue:
+            next_animation, self._text_time_left = self.text_queue.popleft()
+            next_animation()
+
+    def add_text_animation(
+        self, animation: Callable[..., None], duration: float = 0
+    ) -> None:
+        """Adds a text animation to the queue."""
+        self.text_queue.append((animation, duration))
+
+    def get_text_animation_time_left(self) -> float:
+        return self._text_time_left
+
+    def add_xp_message(self, message: str) -> None:
+        """Handles XP messages separately, appends them and prepares animation."""
+        self._xp_messages.append(message)
+
+    def trigger_xp_animation(self, alert_func: Callable[..., None]) -> None:
+        """Only triggers XP animation when explicitly called."""
+        if self._xp_messages:
+            combined_message = "\n".join(self._xp_messages)
+            timed_text_animation = partial(alert_func, combined_message)
+            self.add_text_animation(
+                timed_text_animation, compute_text_anim_time(combined_message)
+            )
+            self._xp_messages.clear()

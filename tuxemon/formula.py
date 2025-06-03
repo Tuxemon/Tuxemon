@@ -692,7 +692,7 @@ def set_health(
 
     monster.current_hp = max(0, min(monster.current_hp, monster.hp))
 
-    if monster.current_hp == 0:
+    if monster.is_fainted:
         monster.faint()
 
 

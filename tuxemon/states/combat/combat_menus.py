@@ -51,6 +51,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         self, session: Session, cmb: CombatState, monster: Monster
     ) -> None:
         super().__init__()
+        self.rect = self.calculate_menu_rectangle()
         assert monster.owner
         self.session = session
         self.combat = cmb
@@ -63,32 +64,55 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         if self.character == cmb.players[1]:
             self.enemy = cmb.players[0]
             self.opponents = cmb.monsters_in_play[self.enemy]
+        self.menu_visibility = {
+            "menu_fight": True,
+            "menu_monster": True,
+            "menu_item": True,
+            "menu_forfeit": self.enemy.forfeit,
+            "menu_run": True,
+        }
+
+    def calculate_menu_rectangle(self) -> Rect:
+        rect_screen = self.client.screen.get_rect()
+        menu_width = rect_screen.w // 2.5
+        menu_height = rect_screen.h // 4
+        rect = Rect(0, 0, menu_width, menu_height)
+        rect.bottomright = rect_screen.w, rect_screen.h
+        return rect
 
     def initialize_items(self) -> Generator[MenuItem[MenuGameObj], None, None]:
         common_menu_items = (
-            ("menu_fight", self.open_technique_menu, True),
-            ("menu_monster", self.open_swap_menu, True),
-            ("menu_item", self.open_item_menu, True),
+            ("menu_fight", self.open_technique_menu),
+            ("menu_monster", self.open_swap_menu),
+            ("menu_item", self.open_item_menu),
         )
 
         if self.combat.is_trainer_battle:
             menu_items_map = common_menu_items + (
-                ("menu_forfeit", self.forfeit, self.enemy.forfeit),
+                ("menu_forfeit", self.forfeit),
             )
         else:
-            menu_items_map = common_menu_items + (
-                ("menu_run", self.run, True),
-            )
+            menu_items_map = common_menu_items + (("menu_run", self.run),)
 
-        for key, callback, enable in menu_items_map:
-            foreground = self.unavailable_color if not enable else None
+        for key, callback in menu_items_map:
+            foreground = (
+                self.unavailable_color
+                if not self.menu_visibility[key]
+                else None
+            )
             yield MenuItem(
                 self.shadow_text(T.translate(key).upper(), fg=foreground),
                 T.translate(key).upper(),
                 None,
                 callback,
-                enable,
+                self.menu_visibility[key],
             )
+
+    def update_menu_visibility(self, key: str, visible: bool) -> None:
+        if key in self.menu_visibility:
+            self.menu_visibility[key] = visible
+        else:
+            raise ValueError(f"Invalid menu item key: {key}")
 
     def forfeit(self) -> None:
         """
@@ -113,7 +137,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             msg = T.format("combat_player_run_status", params)
             tools.open_dialog(self.client, [msg])
             return
-        self.client.pop_state(self)
+        self.client.remove_state_by_name("MainCombatMenuState")
         self.combat.enqueue_action(self.party[0], run, self.opponents[0])
 
     def open_swap_menu(self) -> None:
@@ -132,8 +156,8 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 tools.open_dialog(self.client, [msg])
                 return
             self.combat.enqueue_action(self.monster, swap, added)
-            self.client.pop_state()  # close technique menu
-            self.client.pop_state()  # close the monster action menu
+            self.client.remove_state_by_name("MonsterMenuState")
+            self.client.remove_state_by_name("MainCombatMenuState")
 
         def validate_monster(menu_item: Monster) -> bool:
             if combat.fainted(menu_item):
@@ -171,7 +195,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         def choose_target(menu_item: MenuItem[Item]) -> None:
             # open menu to choose target of item
             item = menu_item.game_object
-            self.client.pop_state()  # close the item menu
+            self.client.remove_state_by_name("ItemMenuState")
             if State["MainCombatMenuState"] in item.usable_in:
                 if item.behaviors.throwable:
                     enemy = self.opponents[0]
@@ -218,9 +242,9 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             self.combat.enqueue_action(self.character, item, target)
 
             # close all the open menus
-            self.client.pop_state()  # close target chooser
+            self.client.remove_state_by_name("MainCombatMenuState")
             if not item.behaviors.throwable:
-                self.client.pop_state()  # close the monster action menu
+                self.client.remove_state_by_name("MonsterMenuState")
 
         choose_item()
 
@@ -364,181 +388,126 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
             # close all the open menus
             if len(self.opponents) > 1:
-                self.client.pop_state()  # close target chooser
-            self.client.pop_state()  # close technique menu
-            self.client.pop_state()  # close the monster action menu
+                self.client.remove_state_by_name("CombatTargetMenuState")
+            self.client.remove_state_by_name("Menu")
+            self.client.remove_state_by_name("MainCombatMenuState")
 
         choose_technique()
 
 
 class CombatTargetMenuState(Menu[Monster]):
-    """
-    Menu for selecting targets of techniques and items.
-
-    This special menu draws over the combat screen.
-    """
+    """Menu for selecting targets of techniques and items."""
 
     transparent = True
 
-    def create_new_menu_items_group(self) -> None:
-        # these groups will not automatically position the sprites
-        self.menu_items = VisualSpriteList()
-        self.menu_sprites = SpriteGroup()
-
     def __init__(
-        self,
-        combat_state: CombatState,
-        monster: Monster,
-        technique: Technique,
+        self, combat_state: CombatState, monster: Monster, technique: Technique
     ) -> None:
-        """
-        Initializes the CombatTargetMenuState.
-
-        Parameters:
-            combat_state: The current combat state.
-            monster: The monster that is using the technique.
-            technique: The technique being used.
-        """
         super().__init__()
         assert monster.owner
         self.monster = monster
         self.combat_state = combat_state
         self.character = monster.owner
         self.technique = technique
-        self.party = combat_state.monsters_in_play[self.character]
-        self._determine_enemy_and_opponents()
+
+        self.menu_items = VisualSpriteList(parent=self.calc_menu_items_rect)
+        self.menu_sprites = SpriteGroup()
+        self.targeting_map: defaultdict[str, list[Monster]] = defaultdict(list)
+
         self._create_menu()
 
     def initialize_items(self) -> Generator[MenuItem[Monster], None, None]:
-        self.targeting_map: defaultdict[str, list[Monster]] = defaultdict(list)
-
+        """Generates menu items based on targeting rules."""
         if (
             self.technique.has_type("aether")
             or self.technique.sort == TechSort.meta
         ):
-            sprite = self.combat_state._monster_sprite_map[self.monster]
-            aet = MenuItem(self.surface, None, self.monster.name, self.monster)
-            aet.rect = sprite.rect.copy()
-            aet.rect.inflate_ip(tools.scale(8), tools.scale(8))
-            yield aet
+            yield self._create_menu_item(self.monster)
             return
 
         for player, monsters in self.combat_state.monsters_in_play.items():
-            if len(monsters) == 2:
-                targeting_class = (
-                    "own_monster"
-                    if player == self.character
-                    else "enemy_monster"
-                )
-                self.targeting_map[targeting_class].extend(monsters)
+            targeting_class = (
+                "own_monster" if player == self.character else "enemy_monster"
+            )
+            self.targeting_map[targeting_class].extend(monsters)
 
-                if (
-                    targeting_class not in self.technique.target
-                    or not self.technique.target[targeting_class]
-                ):
-                    continue
+            if (
+                targeting_class not in self.technique.target
+                or not self.technique.target[targeting_class]
+            ):
+                continue
 
-                for monster in monsters:
-                    sprite = self.combat_state._monster_sprite_map[monster]
-                    mon = MenuItem(self.surface, None, monster.name, monster)
-                    mon.rect = sprite.rect.copy()
-                    mon.rect.inflate_ip(tools.scale(8), tools.scale(8))
-                    if monster == monsters[0]:
-                        mon.rect.right = sprite.rect.right
-                    else:
-                        mon.rect.left = sprite.rect.left
-                    yield mon
+            for monster in monsters:
+                yield self._create_menu_item(monster)
 
-    def _determine_enemy_and_opponents(self) -> None:
-        """
-        Determines the enemy and opponents based on the character.
-        """
-        if self.character == self.combat_state.players[0]:
-            self.enemy = self.combat_state.players[1]
-            self.opponents = self.combat_state.monsters_in_play[self.enemy]
-        elif self.character == self.combat_state.players[1]:
-            self.enemy = self.combat_state.players[0]
-            self.opponents = self.combat_state.monsters_in_play[self.enemy]
+    def _create_menu_item(self, monster: Monster) -> MenuItem[Monster]:
+        """Creates a menu item for a given monster."""
+        sprite = self.combat_state._monster_sprite_map[monster]
+        item = MenuItem(self.surface, None, monster.name, monster)
+        item.rect = sprite.rect.copy()
+        item.rect.inflate_ip(tools.scale(1), tools.scale(1))
+        return item
 
     def _create_menu(self) -> None:
-        """
-        Creates the menu.
-        """
+        """Sets up the menu UI."""
         rect_screen = self.client.screen.get_rect()
-        menu_width = rect_screen.w // 2
-        menu_height = rect_screen.h // 4
-        rect = Rect(0, 0, menu_width, menu_height)
+        rect = Rect(0, 0, rect_screen.w // 2, rect_screen.h // 4)
         rect.bottomright = rect_screen.w, rect_screen.h
-        border = graphics.load_and_scale(self.borders_filename)
-        self.dialog_box = GraphicBox(border, None, self.background_color)
-        self.dialog_box.rect = rect
-        self.sprites.add(self.dialog_box, layer=100)
-        self.text_area = TextArea(self.font, self.font_color)
-        self.text_area.rect = self.dialog_box.calc_inner_rect(
-            self.dialog_box.rect,
+
+        self.window = GraphicBox(
+            graphics.load_and_scale(self.borders_filename),
+            None,
+            self.background_color,
         )
+        self.window.rect = rect
+        self.sprites.add(self.window, layer=100)
+
+        self.text_area = TextArea(self.font, self.font_color)
+        self.text_area.rect = self.window.calc_inner_rect(self.window.rect)
         self.sprites.add(self.text_area, layer=100)
 
-        # load and scale the menu borders
-        border = graphics.load_and_scale(self.borders_filename)
-        self.border = GraphicBox(border, None, None)
-
-        rect = Rect((0, 0), self.rect.size)
-        self.surface = Surface(rect.size, SRCALPHA)
+        self.surface = Surface(self.window.rect.size, SRCALPHA)
+        self.border = GraphicBox(
+            graphics.load_and_scale(self.borders_filename), None, None
+        )
 
     def determine_target(self) -> None:
-        """
-        Determines the optimal target.
-        """
+        """Finds the best target based on technique settings."""
         for target_tag, target_value in self.technique.target.items():
             if target_value:
                 for target in self.targeting_map.get(target_tag, []):
                     menu_item = self.search_items(target)
                     if menu_item and menu_item.enabled:
-                        self._set_selected_index(menu_item)
-
-    def _set_selected_index(self, menu_item: MenuItem[Monster]) -> None:
-        """
-        Sets the selected index to the index of the given menu item.
-        """
-        try:
-            index = self.menu_items.sprites().index(menu_item)
-            self.selected_index = index
-        except ValueError:
-            # Handle the case where menu_item is not found in self.menu_items
-            raise ValueError(f"Menu item {menu_item} not found in menu items")
+                        self.selected_index = self.menu_items.sprites().index(
+                            menu_item
+                        )
+                        return
 
     def refresh_layout(self) -> None:
-        """
-        Refreshes the layout after determining the optimal target.
-        """
+        """Updates layout after determining the target."""
         self.determine_target()
         super().refresh_layout()
 
-    def _clear_old_borders(self) -> None:
-        """
-        Clears out the old borders.
-        """
+    def _update_borders(self) -> None:
+        """Clears old borders and draws new ones around the selected item."""
         for sprite in self.menu_items:
             sprite.image.fill((0, 0, 0, 0))
-            sprite.remove()
 
-    def _draw_new_border(self) -> None:
-        """
-        Draws a new border around the selected item.
-        """
-        selected_item = self.get_selected_item()
-        if selected_item:
-            selected_item.image = Surface(selected_item.rect.size, SRCALPHA)
-            self.border.draw(selected_item.image)
+        if selected := self.get_selected_item():
+            selected.image = Surface(selected.rect.size, SRCALPHA)
+            monster = selected.game_object
+            pos = self.combat_state._monster_sprite_map[monster]
+            scale = tools.scale(12)
+            selected.rect.center = (
+                pos.rect.centerx - scale,
+                pos.rect.centery - scale,
+            )
+            self.border.draw(selected.image)
 
-            # Show item description
-            if selected_item.description:
-                self.alert(selected_item.description)
+            if selected.description:
+                self.alert(selected.description)
 
     def on_menu_selection_change(self) -> None:
-        """
-        Draws borders around sprites when selection changes.
-        """
-        self._clear_old_borders()
-        self._draw_new_border()
+        """Handles border updates when selection changes."""
+        self.hide_cursor()
+        self._update_borders()

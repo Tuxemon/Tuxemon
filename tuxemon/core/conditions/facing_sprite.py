@@ -19,7 +19,6 @@ class FacingSpriteCondition(CoreCondition):
     """
     Checks if the player is facing a specific sprite.
     (eg. maniac, swimmer, log)
-
     """
 
     name = "facing_sprite"
@@ -30,10 +29,11 @@ class FacingSpriteCondition(CoreCondition):
         client = session.client
         tiles = get_coords(player.tile_pos, client.map_manager.map_size)
 
-        for coords in tiles:
-            npc = get_npc_pos(session, coords)
-            if npc and npc.template.sprite_name == self.sprite:
-                facing = get_direction(player.tile_pos, npc.tile_pos)
-                return player.facing == facing
+        facing_directions = {
+            get_direction(player.tile_pos, npc.tile_pos)
+            for coords in tiles
+            if (npc := get_npc_pos(session, coords))
+            and npc.template.sprite_name == self.sprite
+        }
 
-        return False
+        return player.facing in facing_directions

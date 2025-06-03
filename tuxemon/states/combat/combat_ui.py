@@ -106,6 +106,7 @@ class CombatUI:
         self.draw_hp_bars(graphics, hud)
         self.draw_exp_bars(graphics, hud)
 
+
 class StatusIconManager:
     """Handles creation, caching, and updating of status icons."""
 
@@ -216,6 +217,7 @@ class StatusIconManager:
                 animate_func(icon.image, initial=0, set_alpha=255, duration=2)
             else:
                 icon.image.set_alpha(255)
+
 
 class MonsterSpriteMap:
     def __init__(self) -> None:

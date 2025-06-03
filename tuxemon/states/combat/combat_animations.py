@@ -26,7 +26,7 @@ from tuxemon.menu.menu import Menu
 from tuxemon.sprite import CaptureDeviceSprite, Sprite
 from tuxemon.tools import scale, scale_sequence
 
-from .combat_ui import CombatUI, StatusIconManager, MonsterSpriteMap
+from .combat_ui import CombatUI, MonsterSpriteMap, StatusIconManager
 
 if TYPE_CHECKING:
     from tuxemon.animation import Animation

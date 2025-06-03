@@ -758,9 +758,11 @@ class CombatState(CombatAnimations):
         target: Monster,
     ) -> None:
         action_time = 0.0
-        # action is performed, so now use sprites to animate it
-        # this value will be None if the target is off screen
-        target_sprite = self.sprite_map.get_sprite(target)
+        # animate action; target sprite is None if off-screen
+        try:
+            target_sprite = self.sprite_map.get_sprite(target)
+        except KeyError:
+            target_sprite = None
         # slightly delay the monster shake, so technique animation
         # is synchronized with the damage shake motion
         hit_delay = 0.0
@@ -819,20 +821,26 @@ class CombatState(CombatAnimations):
             target_sprite = self.sprite_map.get_sprite(user)
 
         if result_tech.should_tackle:
-            user_sprite = self.sprite_map.get_sprite(user)
-            self.animate_sprite_tackle(user_sprite)
+            try:
+                user_sprite = self.sprite_map.get_sprite(user)
+            except KeyError:
+                user_sprite = None
 
-            self.task(
-                partial(
-                    self.animate_sprite_take_damage,
-                    target_sprite,
-                ),
-                hit_delay + 0.2,
-            )
-            self.task(
-                partial(self.blink, target_sprite),
-                hit_delay + 0.6,
-            )
+            if user_sprite:
+                self.animate_sprite_tackle(user_sprite)
+
+            if target_sprite:
+                self.task(
+                    partial(
+                        self.animate_sprite_take_damage,
+                        target_sprite,
+                    ),
+                    hit_delay + 0.2,
+                )
+                self.task(
+                    partial(self.blink, target_sprite),
+                    hit_delay + 0.6,
+                )
 
             self.enqueue_damage(user, target, result_tech.damage)
 
@@ -971,7 +979,10 @@ class CombatState(CombatAnimations):
             is_flipped: Whether the animation should be flipped.
         """
         if target_sprite is None:
-            target_sprite = self.sprite_map.get_sprite(target)
+            try:
+                target_sprite = self.sprite_map.get_sprite(target)
+            except KeyError:
+                target_sprite = None
 
         animation = self._method_cache.get(method, is_flipped)
 

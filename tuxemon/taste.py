@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import random
 from collections.abc import Sequence
 from typing import Optional
 
@@ -88,6 +89,36 @@ class Taste:
     def clear_cache(cls) -> None:
         """Clears the taste cache."""
         cls._tastes.clear()
+
+    @classmethod
+    def generate(
+        cls, cold_slug: str = "tasteless", warm_slug: str = "tasteless"
+    ) -> tuple[str, str]:
+        """
+        Generates initial cold and warm tastes.
+        If 'tasteless', a random taste of that type is chosen.
+        """
+        cold_taste = cold_slug
+        if cold_taste == "tasteless":
+            cold_tastes = [
+                taste.slug
+                for taste in cls.get_all_tastes().values()
+                if taste.taste_type == "cold" and taste.slug != "tasteless"
+            ]
+            if cold_tastes:
+                cold_taste = random.choice(cold_tastes)
+
+        warm_taste = warm_slug
+        if warm_taste == "tasteless":
+            warm_tastes = [
+                taste.slug
+                for taste in cls.get_all_tastes().values()
+                if taste.taste_type == "warm" and taste.slug != "tasteless"
+            ]
+            if warm_tastes:
+                warm_taste = random.choice(warm_tastes)
+
+        return cold_taste, warm_taste
 
     def __repr__(self) -> str:
         return (

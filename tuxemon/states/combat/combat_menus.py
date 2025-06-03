@@ -253,9 +253,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         def choose_technique() -> None:
             available_techniques = [
-                tech
-                for tech in self.monster.moves
-                if not combat.recharging(tech)
+                tech for tech in self.monster.moves if not tech.is_recharging
             ]
 
             # open menu to choose technique
@@ -273,7 +271,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
                 tech_color = None
                 tech_enabled = True
 
-                if combat.recharging(tech):
+                if tech.is_recharging:
                     tech_name = f"{tech.name} ({abs(tech.next_use)})"
                     tech_color = self.unavailable_color
                     tech_enabled = False

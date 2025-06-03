@@ -5,11 +5,9 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any, Optional
 
 import pygame_menu
-import pygame_menu.widgets
-import pygame_menu.widgets.widget
-import pygame_menu.widgets.widget.label
-import pygame_menu.widgets.widget.progressbar
 from pygame_menu import locals
+from pygame_menu.widgets.widget.label import Label
+from pygame_menu.widgets.widget.progressbar import ProgressBar
 
 from tuxemon import prepare
 from tuxemon.db import MonsterModel, db
@@ -105,10 +103,7 @@ class MonsterMovesState(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
         description_label = None
         for widget in menu.get_widgets():
-            if (
-                isinstance(widget, pygame_menu.widgets.widget.label.Label)
-                and widget.get_id() == "description"
-            ):
+            if isinstance(widget, Label) and widget.get_id() == "description":
                 description_label = widget
                 break
         if description_label is None:
@@ -120,6 +115,7 @@ class MonsterMovesState(PygameMenuState):
                 align=locals.ALIGN_LEFT,
                 float=True,
             )
+            assert isinstance(self.description_label, Label)
             self.description_label.translate(
                 fix_measure(width, 0.01), fix_measure(height, 0.56)
             )
@@ -132,10 +128,7 @@ class MonsterMovesState(PygameMenuState):
         width, height = prepare.SCREEN_SIZE
         info_label = None
         for widget in menu.get_widgets():
-            if (
-                isinstance(widget, pygame_menu.widgets.widget.label.Label)
-                and widget.get_id() == "label"
-            ):
+            if isinstance(widget, Label) and widget.get_id() == "label":
                 info_label = widget
                 break
         types = " ".join(map(lambda s: T.translate(s.slug), technique.types))
@@ -156,6 +149,7 @@ class MonsterMovesState(PygameMenuState):
                 align=locals.ALIGN_LEFT,
                 float=True,
             )
+            assert isinstance(self.info_label, Label)
             self.info_label.translate(
                 fix_measure(width, 0.01), fix_measure(height, 0.70)
             )
@@ -170,9 +164,7 @@ class MonsterMovesState(PygameMenuState):
         bar_accuracy = None
         bar_potency = None
         for widget in menu.get_widgets():
-            if isinstance(
-                widget, pygame_menu.widgets.widget.progressbar.ProgressBar
-            ):
+            if isinstance(widget, ProgressBar):
                 if widget.get_title() == T.translate("technique_power"):
                     bar_power = widget
                 elif widget.get_title() == T.translate("technique_accuracy"):

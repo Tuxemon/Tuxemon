@@ -203,6 +203,10 @@ class Monster:
     def missing_hp(self) -> int:
         return max(min(self.hp - self.current_hp, self.hp), 0)
 
+    @property
+    def is_fainted(self) -> bool:
+        return self.current_hp <= 0
+
     def load(self, slug: str) -> None:
         """
         Loads and sets this monster's attributes from the monster.db database.

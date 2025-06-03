@@ -319,9 +319,9 @@ class ActionQueue:
                 (
                     pend.user
                     and isinstance(pend.user, Monster)
-                    and pend.user.current_hp <= 0
+                    and pend.user.is_fainted
                 )
-                or pend.target.current_hp <= 0
+                or pend.target.is_fainted
             )
         ]
 

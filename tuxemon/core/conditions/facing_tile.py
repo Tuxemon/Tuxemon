@@ -19,7 +19,6 @@ if TYPE_CHECKING:
 class FacingTileCondition(CoreCondition):
     """
     Checks if the player is facing specific tiles.
-
     """
 
     name = "facing_tile"
@@ -42,9 +41,7 @@ class FacingTileCondition(CoreCondition):
             )
         )
         tiles = list(set(tiles).intersection(label))
-
-        tile_location = next(
-            (get_direction(player.tile_pos, coords) for coords in tiles), None
-        )
-
-        return player.facing == tile_location
+        tile_locations = {
+            get_direction(player.tile_pos, coords) for coords in tiles
+        }
+        return player.facing in tile_locations

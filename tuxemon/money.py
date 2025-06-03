@@ -89,7 +89,7 @@ class MoneyManager:
 
     def remove_bill(self, bill_name: str, amount: int) -> None:
         if bill_name in self.bills:
-            self.bills[bill_name].amount -= amount
+            self.bills[bill_name].amount += amount
             if self.bills[bill_name].amount < 0:
                 del self.bills[bill_name]
         else:
@@ -98,14 +98,14 @@ class MoneyManager:
     def pay_bill_with_money(self, bill_name: str, amount: int) -> None:
         if bill_name in self.bills:
             self.remove_money(amount)
-            self.remove_bill(bill_name, amount)
+            self.remove_bill(bill_name, -abs(amount))
         else:
             raise KeyError(f"No such bill: {bill_name}")
 
     def pay_bill_with_deposit(self, bill_name: str, amount: int) -> None:
         if bill_name in self.bills:
             self.withdraw_from_bank(amount)
-            self.remove_bill(bill_name, amount)
+            self.remove_bill(bill_name, -abs(amount))
         else:
             raise KeyError(f"No such bill: {bill_name}")
 

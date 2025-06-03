@@ -42,7 +42,6 @@ def sort_inventory(
 
     Returns:
         Sorted copy of the inventory.
-
     """
 
     def rank_item(item: Item) -> tuple[int, str]:
@@ -184,7 +183,7 @@ class ItemMenuState(Menu[Item]):
             if (
                 item.behaviors.show_dialog_on_failure and not result.success
             ) or (item.behaviors.show_dialog_on_success and result.success):
-                tools.show_item_result_as_dialog(
+                tools.show_result_as_dialog(
                     local_session, item, result.success
                 )
 

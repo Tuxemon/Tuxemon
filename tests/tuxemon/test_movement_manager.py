@@ -23,7 +23,7 @@ class TestMovementManager(unittest.TestCase):
 
     def test_move_char(self):
         self.movement_manager.move_char(self.mock_npc, Direction.up)
-        self.assertEqual(self.mock_npc.move_direction, Direction.up)
+        self.mock_npc.set_move_direction.assert_called_with(Direction.up)
 
     def test_stop_char(self):
         self.movement_manager.wants_to_move_char["npc_1"] = Direction.up
@@ -36,7 +36,7 @@ class TestMovementManager(unittest.TestCase):
         self.movement_manager.wants_to_move_char["npc_1"] = Direction.down
         self.movement_manager.unlock_controls(self.mock_npc)
         self.assertIn("npc_1", self.movement_manager.allow_char_movement)
-        self.assertEqual(self.mock_npc.move_direction, Direction.down)
+        self.mock_npc.set_move_direction.assert_called_with(Direction.down)
 
     def test_lock_controls(self):
         self.movement_manager.allow_char_movement.add("npc_1")

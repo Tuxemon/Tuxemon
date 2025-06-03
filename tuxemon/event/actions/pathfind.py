@@ -25,7 +25,6 @@ class PathfindAction(EventAction):
 
     Script parameters:
         npc_slug: Either "player" or npc slug name (e.g. "npc_maple").
-
     """
 
     name = "pathfind"
@@ -34,11 +33,12 @@ class PathfindAction(EventAction):
     tile_pos_y: int
 
     def start(self, session: Session) -> None:
-        self.npc = get_npc(session, self.npc_slug)
-        assert self.npc
-        self.npc.pathfind((self.tile_pos_x, self.tile_pos_y))
+        self.moving_entity = get_npc(session, self.npc_slug)
+        assert self.moving_entity
+        destination = (self.tile_pos_x, self.tile_pos_y)
+        self.moving_entity.pathfind(destination)
 
     def update(self, session: Session) -> None:
-        assert self.npc
-        if not self.npc.moving and not self.npc.path:
+        assert self.moving_entity
+        if not (self.moving_entity.moving or self.moving_entity.path):
             self.stop()

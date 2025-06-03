@@ -52,7 +52,7 @@ class MusicPlayerState:
         if filename in self.cache:
             return self.cache[filename]
         else:
-            path = prepare.fetch("music", db.lookup_file("music", filename))
+            path = prepare.fetch("music", db.get_entry("music", filename))
             self.cache[filename] = path
             return path
 
@@ -161,7 +161,7 @@ class SoundManager:
         if slug is None or slug == "":
             return None
 
-        filename = db.lookup_file("sounds", slug)
+        filename = db.get_entry("sounds", slug)
         filename = transform_resource_filename("sounds", filename)
 
         path = Path(filename)

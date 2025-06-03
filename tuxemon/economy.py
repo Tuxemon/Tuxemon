@@ -225,14 +225,12 @@ class Economy:
                     item.name, "inventory"
                 )
 
-            itm_in_shop = Item()
+            itm_in_shop = Item.create(item.name)
             if item.variables:
                 if self.variable(item.variables, character):
-                    itm_in_shop.load(item.name)
                     itm_in_shop.quantity = int(character.game_variables[label])
                     entities.append(itm_in_shop)
             else:
-                itm_in_shop.load(item.name)
                 itm_in_shop.quantity = int(character.game_variables[label])
                 entities.append(itm_in_shop)
 
@@ -243,8 +241,7 @@ class Economy:
                     monster.name, "inventory"
                 )
 
-            monster_in_shop = Monster()
-            monster_in_shop.load_from_db(monster.name)
+            monster_in_shop = Monster.create(monster.name)
             monster_in_shop.level = monster.level
             monster_in_shop.current_hp = monster_in_shop.hp
             if monster.variables:

@@ -57,7 +57,9 @@ class StartState(PygameMenuState):
         def new_game() -> None:
             destination = f"{prepare.STARTING_MAP}{config.mods[0]}.tmx"
             map_path = prepare.fetch("maps", destination)
-            self.client.push_state("WorldState", map_name=map_path)
+            self.client.push_state(
+                "WorldState", session=local_session, map_name=map_path
+            )
             game_var = local_session.player.game_variables
             game_var["date_start_game"] = today_ordinal()
             self.client.pop_state(self)
@@ -148,7 +150,9 @@ class ModsChoice(PygameMenuState):
         def new_game(mod_name: str) -> None:
             destination = f"{prepare.STARTING_MAP}{mod_name}.tmx"
             map_path = prepare.fetch("maps", destination)
-            self.client.push_state("WorldState", map_name=map_path)
+            self.client.push_state(
+                "WorldState", session=local_session, map_name=map_path
+            )
             game_var = local_session.player.game_variables
             game_var["date_start_game"] = today_ordinal()
             self.client.pop_state(self)

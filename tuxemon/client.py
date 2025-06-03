@@ -6,7 +6,7 @@ import logging
 import time
 from collections.abc import Mapping, Sequence
 from enum import Enum
-from os.path import basename
+from pathlib import Path
 from threading import Thread
 from typing import Any, Optional, TypeVar, Union, overload
 
@@ -15,21 +15,24 @@ from pygame.surface import Surface
 
 from tuxemon.audio import MusicPlayerState, SoundManager
 from tuxemon.boundary import BoundaryChecker
+from tuxemon.camera import CameraManager
 from tuxemon.cli.processor import CommandProcessor
 from tuxemon.config import TuxemonConfig
+from tuxemon.event.eventaction import ActionManager
+from tuxemon.event.eventcondition import ConditionManager
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.event.eventmanager import EventManager
 from tuxemon.event.eventpersist import EventPersist
 from tuxemon.map_loader import MapLoader
 from tuxemon.map_manager import MapManager
 from tuxemon.networking import NetworkManager
+from tuxemon.npc_manager import NPCManager
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.input_manager import InputManager
 from tuxemon.rumble import RumbleManager
 from tuxemon.session import local_session
-from tuxemon.state import State, StateManager
+from tuxemon.state import HookManager, State, StateManager, StateRepository
 from tuxemon.state_draw import EventDebugDrawer, Renderer, StateDrawer
-from tuxemon.states.world.worldstate import WorldState
 
 StateType = TypeVar("StateType", bound=State)
 
@@ -54,19 +57,40 @@ class LocalPygameClient:
         screen: The surface where the game is rendered.
     """
 
+    @classmethod
+    def create(
+        cls, config: TuxemonConfig, screen: Surface
+    ) -> LocalPygameClient:
+        """
+        Initialize the LocalPygameClient with the given configuration and screen.
+        """
+        try:
+            client = LocalPygameClient(config, screen)
+            logger.info("Client initialized successfully.")
+        except (TypeError, ValueError) as e:
+            logger.error(f"Failed to initialize client: {e}")
+            raise
+        except Exception as e:
+            logger.critical(
+                f"Unexpected error during client initialization: {e}"
+            )
+            raise
+        return client
+
     def __init__(self, config: TuxemonConfig, screen: Surface) -> None:
         self.config = config
 
+        self.hook_manager = HookManager()
+        self.state_repository = StateRepository()
         self.state_manager = StateManager(
-            "tuxemon.states",
+            package="tuxemon.states",
+            hook=self.hook_manager,
+            repository=self.state_repository,
             on_state_change=self.on_state_change,
         )
         self.state_manager.auto_state_discovery()
         self.screen = screen
         self.state = ClientState.RUNNING
-        self.caption = config.window_caption
-        self.fps = config.fps
-        self.show_fps = config.show_fps
         self.current_time = 0.0
 
         # setup controls
@@ -84,7 +108,7 @@ class LocalPygameClient:
         self.renderer = Renderer(
             self.screen,
             self.state_drawer,
-            config.window_caption,
+            self.config,
         )
 
         # Set up our networking for multiplayer.
@@ -98,12 +122,18 @@ class LocalPygameClient:
         # Set up our game's event engine which executes actions based on
         # conditions defined in map files.
         self.event_manager = EventManager(self.state_manager)
-        self.event_engine = EventEngine(local_session)
+        self.action_manager = ActionManager()
+        self.condition_manager = ConditionManager()
+        self.event_engine = EventEngine(
+            local_session, self.action_manager, self.condition_manager
+        )
         self.event_persist = EventPersist()
 
+        self.npc_manager = NPCManager()
         self.map_loader = MapLoader()
-        self.map_manager = MapManager(self.event_engine)
+        self.map_manager = MapManager()
         self.boundary = BoundaryChecker()
+        self.camera_manager = CameraManager()
 
         # Set up a variable that will keep track of currently playing music.
         self.current_music = MusicPlayerState()
@@ -150,7 +180,7 @@ class LocalPygameClient:
         screen = self.screen
         flip = pygame.display.update
         clock = time.time
-        frame_length = 1.0 / self.fps
+        frame_length = 1.0 / self.config.fps
         time_since_draw = 0.0
         last_update = clock()
 
@@ -237,41 +267,6 @@ class LocalPygameClient:
         )
         self.frame_number += 1
 
-    def add_clients_to_map(self, registry: Mapping[str, Any]) -> None:
-        """
-        Add players in the current map as npcs.
-
-        Checks to see if clients are supposed to be displayed on the current
-        map. If they are on the same map as the host then it will add them to
-        the npc's list. If they are still being displayed and have left the
-        map it will remove them from the map.
-
-        Parameters:
-            registry: Locally hosted Neteria client/server registry.
-        """
-        world = self.get_state_by_name(WorldState)
-        world.npcs = []
-        world.npcs_off_map = []
-        for client in registry:
-            if "sprite" in registry[client]:
-                sprite = registry[client]["sprite"]
-                client_map = registry[client]["map_name"]
-                current_map = self.get_map_name()
-
-                # Add the player to the screen if they are on the same map.
-                if client_map == current_map:
-                    if sprite not in world.npcs:
-                        world.npcs.append(sprite)
-                    if sprite in world.npcs_off_map:
-                        world.npcs_off_map.remove(sprite)
-
-                # Remove player from the map if they have changed maps.
-                elif client_map != current_map:
-                    if sprite not in world.npcs_off_map:
-                        world.npcs_off_map.append(sprite)
-                    if sprite in world.npcs:
-                        world.npcs.remove(sprite)
-
     def get_map_name(self) -> str:
         """
         Gets the name of the current map.
@@ -282,9 +277,7 @@ class LocalPygameClient:
         map_path = self.map_manager.get_map_filepath()
         if map_path is None:
             raise ValueError("Name of the map requested when no map is active")
-
-        # extract map name from path
-        return basename(map_path)
+        return Path(map_path).name
 
     """
     The following methods provide an interface to the state stack

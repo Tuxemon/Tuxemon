@@ -56,17 +56,15 @@ class ConfusedEffect(StatusEffect):
                 chosen_technique = random.choice(available_techniques)
                 tech = [chosen_technique]
             elif status.repl_tech:
-                replacement_technique = Technique()
-                replacement_technique.load(status.repl_tech)
+                replacement_technique = Technique.create(status.repl_tech)
                 tech = [replacement_technique]
 
         if (
             status.phase == "perform_action_tech"
             and combat._combat_variables[CONFUSED_KEY] == "on"
         ):
-            replacement = Technique()
             slug = combat._combat_variables.get("action_tech", "skip")
-            replacement.load(slug)
+            replacement = Technique.create(slug)
             extra = _get_extra_message(target, replacement)
 
         return StatusEffectResult(

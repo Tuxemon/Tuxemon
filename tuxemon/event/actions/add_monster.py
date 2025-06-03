@@ -59,8 +59,7 @@ class AddMonsterAction(EventAction):
         else:
             monster_slug = self.monster_slug
 
-        monster = Monster()
-        monster.load_from_db(monster_slug)
+        monster = Monster.create(monster_slug)
         monster.set_level(self.monster_level)
         monster.set_moves(self.monster_level)
         monster.set_capture(today_ordinal())

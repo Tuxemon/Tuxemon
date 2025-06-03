@@ -52,7 +52,7 @@ class ActionParentCommand(CLICommand):
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
         """
-        actions = ctx.client.event_engine.get_actions()
+        actions = ctx.client.event_engine.action_manager.get_actions()
         for action in actions:
             command = ActionCommand()
             command.name = action.name

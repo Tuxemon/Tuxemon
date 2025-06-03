@@ -5,6 +5,8 @@ from __future__ import annotations
 from collections.abc import Callable, Generator
 from typing import TYPE_CHECKING, Optional
 
+from pygame.rect import Rect
+
 from tuxemon.db import ItemCategory
 from tuxemon.item.item import Item
 from tuxemon.locale import T
@@ -24,7 +26,6 @@ MenuGameObj = Callable[[], None]
 class MainParkMenuState(PopUpMenu[MenuGameObj]):
     """
     Main menu Park: ball, food, doll and run
-
     """
 
     escape_key_exits = False
@@ -34,6 +35,7 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
         self, session: Session, cmb: CombatState, monster: Monster
     ) -> None:
         super().__init__()
+        self.rect = self.calculate_menu_rectangle()
         self.session = session
         self.combat = cmb
         self.player = cmb.players[0]  # human
@@ -41,6 +43,14 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
         self.monster = monster
         self.opponents = cmb.monsters_in_play[self.enemy]
         self.description: Optional[str] = None
+
+    def calculate_menu_rectangle(self) -> Rect:
+        rect_screen = self.client.screen.get_rect()
+        menu_width = rect_screen.w // 2.5
+        menu_height = rect_screen.h // 4
+        rect = Rect(0, 0, menu_width, menu_height)
+        rect.bottomright = rect_screen.w, rect_screen.h
+        return rect
 
     def initialize_items(self) -> Generator[MenuItem[MenuGameObj], None, None]:
         del self.combat.hud[self.monster]

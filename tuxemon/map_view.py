@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 import logging
-import os
 from dataclasses import dataclass
 from enum import Enum
 from itertools import chain
+from pathlib import Path
 from typing import TYPE_CHECKING, Optional
 
 import pygame
@@ -25,11 +25,10 @@ from tuxemon.surfanim import SurfaceAnimation, SurfaceAnimationCollection
 logger = logging.getLogger(__name__)
 
 if TYPE_CHECKING:
-    from tuxemon.camera import Camera
+    from tuxemon.client import LocalPygameClient
     from tuxemon.db import NpcTemplateModel
     from tuxemon.map import TuxemonMap
     from tuxemon.npc import NPC
-    from tuxemon.states.world.worldstate import WorldState
 
 
 class EntityFacing(str, Enum):
@@ -196,11 +195,13 @@ class SpriteRenderer:
                     if is_interactive_object
                     else f"{template.sprite_name}_{facing.value}.png"
                 )
-                path = os.path.join(
-                    "sprites_obj" if is_interactive_object else "sprites",
-                    filename,
+                path = (
+                    Path("sprites_obj" if is_interactive_object else "sprites")
+                    / filename
                 )
-                sprite_dict[facing] = load_and_scale_with_cache(path)
+                sprite_dict[facing] = load_and_scale_with_cache(
+                    path.as_posix()
+                )
             standing_sprite_cache[template.sprite_name] = sprite_dict
         else:
             logger.info(
@@ -237,9 +238,15 @@ class SpriteRenderer:
             self.sprite[f"{facing.value}_walk"] = animation
         self.surface_animations.add(self.sprite)
 
-    def _calculate_frame_duration(self) -> float:
+    def _calculate_frame_duration(
+        self,
+        rate: float = prepare.CONFIG.player_walkrate,
+        time_scale: int = 1000,
+        frame_divisor: int = 3,
+        speed_factor: float = 2,
+    ) -> float:
         """Calculate the frame duration for walking animations."""
-        return (1000 / prepare.CONFIG.player_walkrate) / 3 / 1000 * 2
+        return (time_scale / rate) / frame_divisor / time_scale * speed_factor
 
     def set_position(self, position: tuple[int, int]) -> None:
         """Set the position of the sprite."""
@@ -279,20 +286,19 @@ class SpriteRenderer:
 class MapRenderer:
     """Renders the game map, NPCs, and animations."""
 
-    def __init__(
-        self, world_state: WorldState, screen: Surface, camera: Camera
-    ):
+    def __init__(self, client: LocalPygameClient):
         """Initializes the MapRenderer."""
-        self.world_state = world_state
-        self.screen = screen
-        self.camera = camera
+        self.client = client
+        self.screen = client.screen
+        self.camera_manager = client.camera_manager
+        self.camera = self.camera_manager.get_active_camera()
         self.layer = Surface(self.screen.get_size(), pygame.SRCALPHA)
         self.layer_color: Optional[ColorLike] = None
         self.bubble: dict[NPC, Surface] = {}
         self.cinema_x_ratio: Optional[float] = None
         self.cinema_y_ratio: Optional[float] = None
         self.map_animations: dict[str, AnimationInfo] = {}
-        self.debug_renderer = DebugRenderer(world_state)
+        self.debug_renderer = DebugRenderer(client)
 
     def draw(self, surface: Surface, current_map: TuxemonMap) -> None:
         """Draws the map, sprites, and animations onto the given surface."""
@@ -307,6 +313,7 @@ class MapRenderer:
 
     def update(self, time_delta: float) -> None:
         """Update the map animations."""
+        self.camera_manager.update(time_delta)
         for anim_data in self.map_animations.values():
             anim_data.animation.update(time_delta)
 
@@ -314,7 +321,8 @@ class MapRenderer:
         """Prepares the map renderer for drawing."""
         if current_map.renderer is None:
             current_map.initialize_renderer()
-        camera_x, camera_y = self.camera.position
+        position = self.camera.position if self.camera else Vector2(0, 0)
+        camera_x, camera_y = position
         assert current_map.renderer
         current_map.renderer.center((camera_x, camera_y))
 
@@ -326,7 +334,7 @@ class MapRenderer:
         map_animations = self._get_map_animations()
         surfaces = npc_surfaces + map_animations
         screen_surfaces = self._position_surfaces(current_map, surfaces)
-        self._set_bubble(current_map, screen_surfaces)
+        screen_surfaces = self._set_bubble(current_map, screen_surfaces)
         return screen_surfaces
 
     def _draw_map_and_sprites(
@@ -356,7 +364,7 @@ class MapRenderer:
         """Retrieves surfaces for NPCs."""
         return [
             surf
-            for npc in self.world_state.npcs
+            for npc in self.client.npc_manager.npcs.values()
             for surf in self._get_sprites(npc, current_map)
         ]
 
@@ -393,7 +401,7 @@ class MapRenderer:
         screen_surfaces: list[tuple[Surface, Rect, int]],
         layer: int = 100,
         offset_divisor: int = 10,
-    ) -> None:
+    ) -> list[tuple[Surface, Rect, int]]:
         """
         Adds speech bubbles to the screen surfaces.
 
@@ -403,7 +411,7 @@ class MapRenderer:
         with options for vertical offset adjustment to fine-tune their placement.
         """
         if not self.bubble:
-            return
+            return screen_surfaces
 
         for npc, surface in self.bubble.items():
             sprite_renderer = npc.sprite_controller.get_sprite_renderer()
@@ -419,6 +427,7 @@ class MapRenderer:
                 + int(sprite_renderer.rect.height / offset_divisor)
             )
             screen_surfaces.append((surface, bubble_rect, layer))
+        return screen_surfaces
 
     def _get_sprites(self, npc: NPC, layer: int) -> list[WorldSurfaces]:
         """Retrieves sprite surfaces for an NPC."""
@@ -432,12 +441,12 @@ class MapRenderer:
 class DebugRenderer:
     def __init__(
         self,
-        world_state: WorldState,
+        client: LocalPygameClient,
         event_color: ColorLike = (0, 255, 0, 128),
         collision_color: ColorLike = (255, 0, 0, 128),
         center_line_color: ColorLike = (255, 50, 50),
     ) -> None:
-        self.world_state = world_state
+        self.client = client
         self.event_color = event_color
         self.collision_color = collision_color
         self.center_line_color = center_line_color
@@ -452,7 +461,7 @@ class DebugRenderer:
 
     def _draw_events(self, current_map: TuxemonMap, surface: Surface) -> None:
         """Draws event-related debug information on the surface."""
-        for event in self.world_state.client.map_manager.events:
+        for event in self.client.map_manager.events:
             vector = Vector2(event.x, event.y)
             topleft = get_pos_from_tilepos(current_map, vector)
             size = project((event.w, event.h))
@@ -465,13 +474,13 @@ class DebugRenderer:
         # We need to iterate over all collidable objects. Start with walls/collision boxes.
         box_iter = map(
             lambda box: collision_box_to_pgrect(current_map, box),
-            self.world_state.client.map_manager.collision_map,
+            self.client.map_manager.collision_map,
         )
 
         # Next, deal with solid NPCs.
         npc_iter = map(
             lambda npc: npc_to_pgrect(current_map, npc),
-            self.world_state.npcs,
+            self.client.npc_manager.npcs.values(),
         )
         for item in chain(box_iter, npc_iter):
             box(surface, item, self.collision_color)

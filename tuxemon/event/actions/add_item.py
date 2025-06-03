@@ -28,7 +28,6 @@ class AddItemAction(EventAction):
         quantity: Quantity of the item to add or to reduce. By default it is 1.
         npc_slug: Slug of the trainer that will receive the item. It
             defaults to the current player.
-
     """
 
     name = "add_item"
@@ -55,8 +54,7 @@ class AddItemAction(EventAction):
         else:
             _item = self.item_slug
 
-        itm = Item()
-        itm.load(_item)
+        itm = Item.create(_item)
         existing = trainer.find_item(_item)
         if existing:
             if self.quantity is None:

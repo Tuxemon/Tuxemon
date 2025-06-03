@@ -211,8 +211,7 @@ class Learn(MonsterTestBase):
         db.database["technique"] = self._tech_model
 
     def test_learn(self):
-        tech = Technique()
-        tech.load("ram")
+        tech = Technique.create("ram")
         self.mon.learn(tech)
         self.assertEqual(len(self.mon.moves), 1)
         move = self.mon.moves[0]

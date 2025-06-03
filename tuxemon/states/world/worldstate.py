@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import logging
-import uuid
 from collections import defaultdict
 from collections.abc import Mapping, MutableMapping, Sequence
 from typing import (
@@ -18,7 +17,7 @@ from typing import (
 from pygame.surface import Surface
 
 from tuxemon import networking, prepare
-from tuxemon.camera import Camera, CameraManager
+from tuxemon.camera import Camera
 from tuxemon.db import Direction
 from tuxemon.map import RegionProperties
 from tuxemon.map_view import MapRenderer
@@ -26,14 +25,14 @@ from tuxemon.movement import MovementManager, Pathfinder
 from tuxemon.platform.const import intentions
 from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event
-from tuxemon.session import local_session
+from tuxemon.player import Player
+from tuxemon.session import Session
 from tuxemon.state import State
 from tuxemon.states.world.world_transition import WorldTransition
 from tuxemon.teleporter import Teleporter
 
 if TYPE_CHECKING:
     from tuxemon.entity import Entity
-    from tuxemon.monster import Monster
     from tuxemon.networking import EventData
     from tuxemon.npc import NPC
 
@@ -61,11 +60,9 @@ CollisionMap = Mapping[
 class WorldState(State):
     """The state responsible for the world game play"""
 
-    def __init__(self, map_name: str) -> None:
+    def __init__(self, session: Session, map_name: str) -> None:
         super().__init__()
-
-        from tuxemon.player import Player
-
+        self.session = session
         self.movement = MovementManager(self.client)
         self.teleporter = Teleporter(self.client, self)
         self.pathfinder = Pathfinder(self.client, self)
@@ -73,23 +70,13 @@ class WorldState(State):
         self.screen = self.client.screen
         self.tile_size = prepare.TILE_SIZE
 
-        #####################################################################
-        #                           Player Details                           #
-        ######################################################################
-
-        self.npcs: list[NPC] = []
-        self.npcs_off_map: list[NPC] = []
-
         self.transition_manager = WorldTransition(self)
 
-        if local_session.player is None:
-            new_player = Player(prepare.PLAYER_NPC, world=self)
-            local_session.player = new_player
+        self.player = Player.create(self.session, self)
 
-        self.camera = Camera(local_session.player, self.client.boundary)
-        self.map_renderer = MapRenderer(self, self.screen, self.camera)
-        self.camera_manager = CameraManager()
-        self.camera_manager.add_camera(self.camera)
+        self.camera = Camera(self.player, self.client.boundary)
+        self.client.camera_manager.add_camera(self.camera)
+        self.map_renderer = MapRenderer(self.client)
 
         if map_name:
             self.change_map(map_name)
@@ -114,15 +101,18 @@ class WorldState(State):
         self.network = self.client.network_manager
         if self.network.is_connected():
             assert self.network.client
-            self.client.add_clients_to_map(self.network.client.client.registry)
+            current_map = self.client.get_map_name()
+            self.client.npc_manager.add_clients_to_map(
+                self.network.client.client.registry, current_map
+            )
             self.network.client.update_player(self.player.facing)
 
         # Update the location of the npcs. Doesn't send network data.
-        for npc in self.npcs:
+        for npc in self.client.npc_manager.npcs.values():
             char_dict = {"tile_pos": npc.tile_pos}
             networking.update_client(npc, char_dict, self.client)
 
-        for npc in self.npcs_off_map:
+        for npc in self.client.npc_manager.npcs_off_map.values():
             char_dict = {"tile_pos": npc.tile_pos}
             networking.update_client(npc, char_dict, self.client)
 
@@ -135,9 +125,9 @@ class WorldState(State):
 
         """
         super().update(time_delta)
-        self.update_npcs(time_delta)
+        self.client.npc_manager.update_npcs(time_delta, self.client)
+        self.client.npc_manager.update_npcs_off_map(time_delta, self.client)
         self.map_renderer.update(time_delta)
-        self.camera_manager.update(time_delta)
 
         logger.debug("*** Game Loop Started ***")
 
@@ -199,15 +189,12 @@ class WorldState(State):
 
         # Handle running movement toggle
         if event.button == intentions.RUN:
-            if event.held:
-                self.player.mover.running()
-            else:
-                self.player.mover.walking()
+            self.player.mover.update_movement_state(event.held)
 
         # Handle directional movement
         if (direction := direction_map.get(event.button)) is not None:
             if not self.camera.follows_entity:
-                return self.camera_manager.handle_input(event)
+                return self.client.camera_manager.handle_input(event)
             if event.held:
                 self.movement.queue_movement(self.player.slug, direction)
                 if self.movement.is_movement_allowed(self.player):
@@ -237,91 +224,6 @@ class WorldState(State):
     ####################################################
     #            Pathfinding and Collisions            #
     ####################################################
-    """
-    Eventually refactor pathing/collisions into a more generic class
-    so it doesn't rely on a running game, players, or a screen
-    """
-
-    def get_entity(self, slug: str) -> Optional[NPC]:
-        """
-        Get an entity from the world.
-
-        Parameters:
-            slug: The entity slug.
-
-        """
-        return next((npc for npc in self.npcs if npc.slug == slug), None)
-
-    def get_entity_by_iid(self, iid: uuid.UUID) -> Optional[NPC]:
-        """
-        Get an entity from the world.
-
-        Parameters:
-            iid: The entity instance ID.
-
-        """
-        return next((npc for npc in self.npcs if npc.instance_id == iid), None)
-
-    def get_entity_pos(self, pos: tuple[int, int]) -> Optional[NPC]:
-        """
-        Get an entity from the world by its position.
-
-        Parameters:
-            pos: The entity position.
-
-        """
-        return next((npc for npc in self.npcs if npc.tile_pos == pos), None)
-
-    def remove_entity(self, slug: str) -> None:
-        """
-        Remove an entity from the world.
-
-        Parameters:
-            slug: The entity slug.
-
-        """
-        npc = self.get_entity(slug)
-        if npc:
-            npc.remove_collision()
-            self.npcs.remove(npc)
-
-    def get_all_entities(self) -> Sequence[NPC]:
-        """
-        List of players and NPCs, for collision checking.
-
-        Returns:
-            The list of entities in the map.
-
-        """
-        return self.npcs
-
-    def get_all_monsters(self) -> list[Monster]:
-        """
-        List of all monsters in the world.
-
-        Returns:
-            The list of monsters in the map.
-
-        """
-        return [monster for npc in self.npcs for monster in npc.monsters]
-
-    def get_monster_by_iid(self, iid: uuid.UUID) -> Optional[Monster]:
-        """
-        Get a monster from the world.
-
-        Parameters:
-            iid: The monster instance ID.
-
-        """
-        return next(
-            (
-                monster
-                for npc in self.npcs
-                for monster in npc.monsters
-                if monster.instance_id == iid
-            ),
-            None,
-        )
 
     def get_all_tile_properties(
         self,
@@ -526,7 +428,7 @@ class WorldState(State):
         ] = defaultdict(lambda: RegionProperties([], [], [], None, None))
 
         # Get all the NPCs' tile positions
-        for npc in self.get_all_entities():
+        for npc in self.client.npc_manager.get_all_entities():
             collision_dict[npc.tile_pos] = self._get_region_properties(
                 npc.tile_pos, npc
             )
@@ -577,45 +479,12 @@ class WorldState(State):
     ) -> Optional[Sequence[tuple[int, int]]]:
         return self.pathfinder.pathfind(start, dest, facing)
 
-    def update_npcs(self, time_delta: float) -> None:
-        """
-        Allow NPCs to be updated.
-
-        Parameters:
-            time_delta: Ellapsed time.
-
-        """
-        # TODO: This function may be moved to a server
-        # Draw any game NPC's
-        for entity in self.get_all_entities():
-            entity.update(time_delta)
-
-            if entity.update_location:
-                char_dict = {"tile_pos": entity.final_move_dest}
-                networking.update_client(entity, char_dict, self.client)
-                entity.update_location = False
-
-        # Move any multiplayer characters that are off map so we know where
-        # they should be when we change maps.
-        for entity in self.npcs_off_map:
-            entity.update(time_delta)
-
     ####################################################
     #             Map Change/Load Functions            #
     ####################################################
     def change_map(self, map_name: str) -> None:
         """
-        Changes the current map and updates the player state.
-
-        Parameters:
-            map_name: The name of the map to load.
-        """
-        self.load_and_update_map(map_name)
-        self.update_player_state()
-
-    def load_and_update_map(self, map_name: str) -> None:
-        """
-        Loads a new map and updates the game state accordingly.
+        Changes the current map and updates the game state accordingly.
 
         This method loads the map data, updates the game state, and notifies
         the client and boundary checker. The currently loaded map is updated
@@ -627,30 +496,14 @@ class WorldState(State):
         """
         logger.debug(f"Loading map '{map_name}' using Client's MapLoader.")
         map_data = self.client.map_loader.load_map_data(map_name)
+
+        self.client.event_engine.reset()
+        self.client.event_engine.set_current_map(map_data)
+
         self.client.map_manager.load_map(map_data)
+        self.client.npc_manager.clear_npcs()
         map_size = self.client.map_manager.map_size
         self.client.boundary.update_boundaries(map_size)
-        self.clear_npcs()
-
-    def clear_npcs(self) -> None:
-        """
-        Clears all existing NPCs from the game state.
-        """
-        self.npcs.clear()
-        self.npcs_off_map.clear()
-
-    def update_player_state(self) -> None:
-        """
-        Updates the player's state after changing maps.
-
-        Parameters:
-            player: The player object to update.
-        """
-        player = local_session.player
-        player.world = self
-        self.npcs.append(player)
-        self.movement.stop_char(player)
-        self.player = player
 
     @no_type_check  # only used by multiplayer which is disabled
     def check_interactable_space(self) -> bool:
@@ -661,7 +514,6 @@ class WorldState(State):
 
         Returns:
             ``True`` if there is an Npc to interact with. ``False`` otherwise.
-
         """
         collision_dict = self.get_collision_map()
         player_tile_pos = self.player.tile_pos
@@ -683,7 +535,7 @@ class WorldState(State):
                         tile = (player_tile_pos[0] - 1, player_tile_pos[1])
                     elif direction == Direction.right:
                         tile = (player_tile_pos[0] + 1, player_tile_pos[1])
-                    for npc in self.npcs:
+                    for npc in self.client.npc_manager.npcs:
                         tile_pos = (
                             int(round(npc.tile_pos[0])),
                             int(round(npc.tile_pos[1])),
@@ -709,7 +561,6 @@ class WorldState(State):
 
         :type event_data: Dictionary
         :type registry: Dictionary
-
         """
         target = registry[event_data["target"]]["sprite"]
         target_name = str(target.name)
@@ -729,7 +580,7 @@ class WorldState(State):
                 if self.wants_duel:
                     if event_data["response"] == "Accept":
                         world = self.client.current_state
-                        pd = local_session.player.__dict__
+                        pd = self.player.__dict__
                         event_data = {
                             "type": "CLIENT_INTERACTION",
                             "interaction": "START_DUEL",

@@ -1,17 +1,17 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
-from unittest.mock import Mock
+from unittest.mock import MagicMock
 
-from tuxemon.state import HookManager, State, StateManager
+from tuxemon.state import HookManager, State, StateManager, StateRepository
 
 
 class TestHookManager(unittest.TestCase):
     def setUp(self):
         self.hook_manager = HookManager()
-        self.mock_callback = Mock()
-        self.mock_callback1 = Mock()
-        self.mock_callback2 = Mock()
+        self.mock_callback = MagicMock()
+        self.mock_callback1 = MagicMock()
+        self.mock_callback2 = MagicMock()
 
     def test_register_hook(self):
         self.hook_manager.register_hook(
@@ -73,10 +73,10 @@ class TestHookManager(unittest.TestCase):
 class TestStateManagerHooks(unittest.TestCase):
 
     def setUp(self):
-        self.manager = StateManager("test")
-        self.mock_callback = Mock()
-        self.mock_callback1 = Mock()
-        self.mock_callback2 = Mock()
+        self.manager = StateManager("test", HookManager(), StateRepository())
+        self.mock_callback = MagicMock()
+        self.mock_callback1 = MagicMock()
+        self.mock_callback2 = MagicMock()
 
     def test_global_hooks(self):
         self.manager.register_global_hook(
@@ -146,62 +146,98 @@ class TestStateHooks(unittest.TestCase):
 
     def setUp(self):
         self.state = State()
-        self.mock_callback = Mock()
-        self.mock_surface = Mock()
-        self.mock_callback1 = Mock()
-        self.mock_callback2 = Mock()
+        self.state.client = MagicMock()
+        self.state.client.hook_manager = HookManager()
+        self.mock_callback = MagicMock()
+        self.mock_surface = MagicMock()
+        self.mock_callback1 = MagicMock()
+        self.mock_callback2 = MagicMock()
 
-        self.state.register_hook("state_update", lambda time_delta: None)
-        self.state.register_hook("state_draw", lambda surface: None)
-        self.state.register_hook("state_resume", lambda: None)
-        self.state.register_hook("state_pause", lambda: None)
-        self.state.register_hook("state_shutdown", lambda: None)
+        self.state.client.hook_manager.register_hook(
+            "state_update", lambda time_delta: None
+        )
+        self.state.client.hook_manager.register_hook(
+            "state_draw", lambda surface: None
+        )
+        self.state.client.hook_manager.register_hook(
+            "state_resume", lambda: None
+        )
+        self.state.client.hook_manager.register_hook(
+            "state_pause", lambda: None
+        )
+        self.state.client.hook_manager.register_hook(
+            "state_shutdown", lambda: None
+        )
 
     def test_state_hooks(self):
-        self.state.register_hook("state_update", self.mock_callback)
+        self.state.client.hook_manager.register_hook(
+            "state_update", self.mock_callback
+        )
         self.state.update(0.1)
         self.mock_callback.assert_called_once_with(0.1)
         self.mock_callback.reset_mock()
 
-        self.state.register_hook("state_draw", self.mock_callback)
+        self.state.client.hook_manager.register_hook(
+            "state_draw", self.mock_callback
+        )
         self.state.draw(self.mock_surface)
         self.mock_callback.assert_called_once_with(self.mock_surface)
         self.mock_callback.reset_mock()
 
-        self.state.register_hook("state_resume", self.mock_callback)
+        self.state.client.hook_manager.register_hook(
+            "state_resume", self.mock_callback
+        )
         self.state.resume()
         self.mock_callback.assert_called_once()
         self.mock_callback.reset_mock()
 
-        self.state.register_hook("state_pause", self.mock_callback)
+        self.state.client.hook_manager.register_hook(
+            "state_pause", self.mock_callback
+        )
         self.state.pause()
         self.mock_callback.assert_called_once()
         self.mock_callback.reset_mock()
 
-        self.state.register_hook("state_shutdown", self.mock_callback)
+        self.state.client.hook_manager.register_hook(
+            "state_shutdown", self.mock_callback
+        )
         self.state.shutdown()
         self.mock_callback.assert_called_once()
         self.mock_callback.reset_mock()
 
-        self.state.unregister_hook("state_update", self.mock_callback)
+        self.state.client.hook_manager.unregister_hook(
+            "state_update", self.mock_callback
+        )
         self.state.update(0.1)
         self.mock_callback.assert_not_called()
 
     def test_state_hooks_multiple_callbacks(self):
-        self.state.register_hook("state_update", self.mock_callback1)
-        self.state.register_hook("state_update", self.mock_callback2)
+        self.state.client.hook_manager.register_hook(
+            "state_update", self.mock_callback1
+        )
+        self.state.client.hook_manager.register_hook(
+            "state_update", self.mock_callback2
+        )
         self.state.update(0.1)
 
         self.mock_callback1.assert_called_once_with(0.1)
         self.mock_callback2.assert_called_once_with(0.1)
 
     def test_state_hooks_unregister_nonexistent(self):
-        self.state.unregister_hook("state_update", self.mock_callback)
+        self.state.client.hook_manager.unregister_hook(
+            "state_update", self.mock_callback
+        )
 
     def test_state_hooks_unregister_correct_callback(self):
-        self.state.register_hook("state_update", self.mock_callback1)
-        self.state.register_hook("state_update", self.mock_callback2)
-        self.state.unregister_hook("state_update", self.mock_callback1)
+        self.state.client.hook_manager.register_hook(
+            "state_update", self.mock_callback1
+        )
+        self.state.client.hook_manager.register_hook(
+            "state_update", self.mock_callback2
+        )
+        self.state.client.hook_manager.unregister_hook(
+            "state_update", self.mock_callback1
+        )
         self.state.update(0.1)
         self.mock_callback1.assert_not_called()
         self.mock_callback2.assert_called_once()
@@ -216,24 +252,32 @@ class TestStateHooks(unittest.TestCase):
         self.mock_callback1.assert_called_once_with(0.1)
         self.mock_callback2.assert_called_once_with(0.1)
 
-        hooks = self.state.hook_manager._hooks["state_update"]
+        hooks = self.state.client.hook_manager._hooks["state_update"]
         expected = [(10, self.mock_callback1), (5, self.mock_callback2)]
         self.assertEqual(hooks, expected)
 
     def test_trigger_unregistered_hook(self):
         self.assertFalse(
-            self.state.hook_manager.is_hook_registered("unregistered_hook")
+            self.state.client.hook_manager.is_hook_registered(
+                "unregistered_hook"
+            )
         )
 
     def test_dynamic_hook_creation(self):
-        self.state.register_hook("dynamic_hook", self.mock_callback)
-        self.state.trigger_hook("dynamic_hook", "test_arg")
+        self.state.client.hook_manager.register_hook(
+            "dynamic_hook", self.mock_callback
+        )
+        self.state.client.hook_manager.trigger_hook("dynamic_hook", "test_arg")
 
         self.mock_callback.assert_called_once_with("test_arg")
 
     def test_hook_execution_timing(self):
-        self.state.register_hook("state_update", self.mock_callback)
-        self.state.register_hook("state_pause", self.mock_callback2)
+        self.state.client.hook_manager.register_hook(
+            "state_update", self.mock_callback
+        )
+        self.state.client.hook_manager.register_hook(
+            "state_pause", self.mock_callback2
+        )
 
         self.state.update(0.1)
         self.mock_callback.assert_called_once_with(0.1)
@@ -243,26 +287,38 @@ class TestStateHooks(unittest.TestCase):
         self.mock_callback.assert_called_once()
 
     def test_reset_hooks(self):
-        self.state.register_hook("state_update", self.mock_callback1)
-        self.state.register_hook("state_update", self.mock_callback2)
-        self.state.hook_manager.reset_hooks()
+        self.state.client.hook_manager.register_hook(
+            "state_update", self.mock_callback1
+        )
+        self.state.client.hook_manager.register_hook(
+            "state_update", self.mock_callback2
+        )
+        self.state.client.hook_manager.reset_hooks()
         self.assertFalse(
-            self.state.hook_manager.is_hook_registered("state_update")
+            self.state.client.hook_manager.is_hook_registered("state_update")
         )
         self.state.trigger_hook("state_update", 0.1)
 
     def test_invalid_hook_arguments(self):
         with self.assertRaises(ValueError):
-            self.state.register_hook("", self.mock_callback)
+            self.state.client.hook_manager.register_hook(
+                "", self.mock_callback
+            )
 
         with self.assertRaises(ValueError):
-            self.state.register_hook("state_update", None)
+            self.state.client.hook_manager.register_hook("state_update", None)
 
     def test_multiple_states_interacting(self):
         state2 = State()
-        state2.register_hook("state_update", self.mock_callback2)
+        state2.client = MagicMock()
+        state2.client.hook_manager = HookManager()
+        state2.client.hook_manager.register_hook(
+            "state_update", self.mock_callback2
+        )
 
-        self.state.register_hook("state_update", self.mock_callback1)
+        self.state.client.hook_manager.register_hook(
+            "state_update", self.mock_callback1
+        )
 
         self.state.update(0.1)
         state2.update(0.2)
@@ -271,8 +327,12 @@ class TestStateHooks(unittest.TestCase):
         self.mock_callback2.assert_called_once_with(0.2)
 
     def test_concurrent_hooks(self):
-        self.state.register_hook("state_draw", self.mock_callback1)
-        self.state.register_hook("state_update", self.mock_callback2)
+        self.state.client.hook_manager.register_hook(
+            "state_draw", self.mock_callback1
+        )
+        self.state.client.hook_manager.register_hook(
+            "state_update", self.mock_callback2
+        )
 
         self.state.draw(self.mock_surface)
         self.state.update(0.1)
@@ -284,14 +344,20 @@ class TestStateHooks(unittest.TestCase):
         def error_callback(*args, **kwargs):
             raise RuntimeError("Error in callback")
 
-        self.state.register_hook("state_update", error_callback)
+        self.state.client.hook_manager.register_hook(
+            "state_update", error_callback
+        )
 
         with self.assertRaises(RuntimeError):
             self.state.update(0.1)
 
     def test_hook_persistence_across_lifecycle(self):
-        self.state.register_hook("state_resume", self.mock_callback)
-        self.state.register_hook("state_pause", self.mock_callback2)
+        self.state.client.hook_manager.register_hook(
+            "state_resume", self.mock_callback
+        )
+        self.state.client.hook_manager.register_hook(
+            "state_pause", self.mock_callback2
+        )
 
         self.state.resume()
         self.mock_callback.assert_called_once()

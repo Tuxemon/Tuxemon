@@ -55,4 +55,8 @@ class RemoveEffect(TechEffect):
                     if has_status(monster, self.status):
                         monster.status.clear()
 
+        if monsters:
+            combat.update_icons_for_monsters()
+            combat.animate_update_party_hud()
+
         return TechEffectResult(name=tech.name, success=bool(monsters))

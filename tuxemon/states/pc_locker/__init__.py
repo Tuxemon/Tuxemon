@@ -14,7 +14,7 @@ from pygame_menu import locals
 from pygame_menu.widgets.selection.highlight import HighlightSelection
 
 from tuxemon import prepare
-from tuxemon.item import item
+from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
@@ -152,8 +152,7 @@ class ItemTakeState(PygameMenuState):
                     retrieve.quantity += quantity
                 else:
                     # item deposited
-                    new_item = item.Item()
-                    new_item.load(itm.slug)
+                    new_item = Item.create(itm.slug)
                     new_item.quantity = quantity
                     self.char.add_item(new_item)
             open_dialog(
@@ -393,8 +392,7 @@ class ItemDropOff(ItemMenuState):
                 return
 
             # item deposited
-            new_item = item.Item()
-            new_item.load(itm.slug)
+            new_item = Item.create(itm.slug)
             diff = itm.quantity - quantity
             item_boxes = self.char.item_boxes
 

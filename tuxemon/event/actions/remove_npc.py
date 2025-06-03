@@ -7,7 +7,6 @@ from typing import final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
-from tuxemon.states.world.worldstate import WorldState
 
 
 @final
@@ -23,15 +22,10 @@ class RemoveNpcAction(EventAction):
 
     Script parameters:
         npc_slug: Npc slug name (e.g. "npc_maple").
-
     """
 
     name = "remove_npc"
     npc_slug: str
 
     def start(self, session: Session) -> None:
-        # Get a copy of the world state.
-        world = session.client.get_state_by_name(WorldState)
-
-        # Get the npc's parameters from the action
-        world.remove_entity(self.npc_slug)
+        session.client.npc_manager.remove_npc(self.npc_slug)

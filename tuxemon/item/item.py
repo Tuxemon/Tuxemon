@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import logging
-import uuid
 from collections.abc import Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Optional
+from uuid import UUID, uuid4
 
 from pygame.surface import Surface
 
@@ -46,7 +46,7 @@ class Item:
         self.slug = ""
         self.name = ""
         self.description = ""
-        self.instance_id = uuid.uuid4()
+        self.instance_id = uuid4()
         self.quantity = 1
         self.animation: Optional[str] = None
         self.flip_axes = FlipAxes.NONE
@@ -66,17 +66,25 @@ class Item:
 
         if Item.effect_manager is None:
             Item.effect_manager = EffectManager(
-                ItemEffect, paths.CORE_EFFECT_PATH
+                ItemEffect, paths.CORE_EFFECT_PATH.as_posix()
             )
         if Item.condition_manager is None:
             Item.condition_manager = ConditionManager(
-                CoreCondition, paths.CORE_CONDITION_PATH
+                CoreCondition, paths.CORE_CONDITION_PATH.as_posix()
             )
 
         self.effects: Sequence[PluginObject] = []
         self.conditions: Sequence[PluginObject] = []
 
         self.set_state(save_data)
+
+    @classmethod
+    def create(
+        cls, slug: str, save_data: Optional[Mapping[str, Any]] = None
+    ) -> Item:
+        method = cls(save_data)
+        method.load(slug)
+        return method
 
     def load(self, slug: str) -> None:
         """Loads and sets this item's attributes from the item.db database.
@@ -180,7 +188,7 @@ class Item:
 
         for key, value in save_data.items():
             if key == "instance_id" and value:
-                self.instance_id = uuid.UUID(value)
+                self.instance_id = UUID(value)
             elif key in SIMPLE_PERSISTANCE_ATTRIBUTES:
                 setattr(self, key, value)
 

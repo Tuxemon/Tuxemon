@@ -166,6 +166,7 @@ class Teleporter:
         logger.debug(f"Finalizing teleportation for {character.slug}...")
         self.world.movement.unlock_controls(character)
         logger.info(f"{character.slug} has completed teleportation.")
+        self.client.npc_manager.add_npc(character)
 
     def _switch_map_if_needed(self, map_name: str) -> None:
         if (

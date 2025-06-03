@@ -79,8 +79,7 @@ class RandomBattleAction(EventAction):
         monsters = random.sample(monster_filters, self.nr_txmns)
         for monster in monsters:
             level = random.randint(self.min_level, self.max_level)
-            current_monster = Monster()
-            current_monster.load_from_db(monster.slug)
+            current_monster = Monster.create(monster.slug)
             current_monster.set_level(level)
             current_monster.set_moves(level)
             current_monster.set_capture(today_ordinal())
@@ -120,8 +119,7 @@ class RandomBattleAction(EventAction):
     def cleanup(self, session: Session) -> None:
         npc = None
         world = session.client.get_state_by_name(WorldState)
-        if world:
-            world.remove_entity(self.opponent.slug)
+        session.client.npc_manager.remove_npc(self.opponent.slug)
 
 
 def _lookup() -> None:

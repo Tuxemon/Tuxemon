@@ -5,14 +5,17 @@ from __future__ import annotations
 import logging
 import uuid
 from dataclasses import dataclass
-from typing import final
+from typing import TYPE_CHECKING, final
 
 from tuxemon.db import SeenStatus, db
 from tuxemon.event import get_monster_by_iid
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
-from tuxemon.session import Session
 from tuxemon.time_handler import today_ordinal
+
+if TYPE_CHECKING:
+    from tuxemon.session import Session
+
 
 logger = logging.getLogger(__name__)
 
@@ -68,8 +71,7 @@ class TradingAction(EventAction):
 
 def _create_traded_monster(removed: Monster, added: str) -> Monster:
     """Create a new monster with the same level and moves as the removed monster."""
-    new = Monster()
-    new.load_from_db(added)
+    new = Monster.create(added)
     new.set_level(removed.level)
     new.set_moves(removed.level)
     new.set_capture(today_ordinal())

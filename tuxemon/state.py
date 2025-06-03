@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import inspect
 import logging
-import os.path
 import random
 import sys
 import warnings
@@ -12,6 +11,7 @@ from abc import ABC
 from collections.abc import Callable, Generator, Mapping, Sequence
 from functools import partial
 from importlib import import_module
+from pathlib import Path
 from typing import Any, Optional, TypeVar, Union, overload
 
 from pygame.rect import Rect
@@ -69,7 +69,6 @@ class State(ABC):
 
         # TODO: fix local session
         self.client = local_session.client
-        self.hook_manager = HookManager()
 
         self._scheduled_task: Optional[Task] = None
 
@@ -287,23 +286,23 @@ class State(ABC):
     def register_hook(
         self, hook_name: str, callback: Callable[..., None], priority: int = 0
     ) -> None:
-        self.hook_manager.register_hook(hook_name, callback, priority)
+        self.client.hook_manager.register_hook(hook_name, callback, priority)
 
     def unregister_hook(
         self, hook_name: str, callback: Callable[..., None]
     ) -> None:
-        if self.hook_manager.is_hook_registered(hook_name):
-            self.hook_manager.unregister_hook(hook_name, callback)
+        if self.client.hook_manager.is_hook_registered(hook_name):
+            self.client.hook_manager.unregister_hook(hook_name, callback)
 
     def trigger_hook(self, hook_name: str, *args: Any, **kwargs: Any) -> None:
-        if self.hook_manager.is_hook_registered(hook_name):
-            self.hook_manager.trigger_hook(hook_name, *args, **kwargs)
+        if self.client.hook_manager.is_hook_registered(hook_name):
+            self.client.hook_manager.trigger_hook(hook_name, *args, **kwargs)
 
     def replace_hooks(
         self, hook_name: str, hooks: list[tuple[int, Callable[..., None]]]
     ) -> None:
-        if self.hook_manager.is_hook_registered(hook_name):
-            self.hook_manager._hooks[hook_name] = hooks
+        if self.client.hook_manager.is_hook_registered(hook_name):
+            self.client.hook_manager._hooks[hook_name] = hooks
 
 
 class StateManager:
@@ -312,6 +311,8 @@ class StateManager:
 
     Parameters:
         package: Name of package to search for states.
+        hook: Manages hooks for executing custom logic during state changes.
+        repository: Repository for accessing state instances.
         on_state_change: Optional callback to be executed when top state
             changes.
     """
@@ -319,11 +320,13 @@ class StateManager:
     def __init__(
         self,
         package: str,
+        hook: HookManager,
+        repository: StateRepository,
         on_state_change: Optional[Callable[[], None]] = None,
     ) -> None:
         self.package = package
-        self.hook_manager = HookManager()
-        self.state_repository = StateRepository()
+        self.hook_manager = hook
+        self.state_repository = repository
         self._state_queue: list[tuple[str, Mapping[str, Any]]] = []
         self._state_stack: list[State] = []
         self._resume_set: set[State] = set()
@@ -356,14 +359,22 @@ class StateManager:
 
         TODO: this functionality duplicates the plugin code.
         """
-        state_folder = os.path.join(paths.LIBDIR, *self.package.split(".")[1:])
-        exclude_endings = (".py", ".pyc", ".pyo", "__pycache__")
-        logger.debug(f"loading game states from {state_folder}")
-        for folder in os.listdir(state_folder):
-            if any(folder.endswith(end) for end in exclude_endings):
-                continue
-            for state in self.collect_states_from_path(folder):
-                self.register_state(state)
+        state_folder = paths.LIBDIR / Path(*self.package.split(".")[1:])
+        exclude_endings = {".py", ".pyc", ".pyo"}
+        exclude_names = {"__pycache__"}
+
+        logger.debug(f"Loading game states from {state_folder}")
+
+        for folder in state_folder.iterdir():
+            if (
+                folder.is_dir()
+                and not any(
+                    folder.name.endswith(end) for end in exclude_endings
+                )
+                and folder.name not in exclude_names
+            ):
+                for state in self.collect_states_from_path(folder):
+                    self.register_state(state)
 
     def register_state(self, state: type[State]) -> None:
         """Add a state class."""
@@ -407,7 +418,7 @@ class StateManager:
 
     def collect_states_from_path(
         self,
-        folder: str,
+        folder: Path,
     ) -> Generator[type[State], None, None]:
         """
         Load states from disk, but do not register it.
@@ -419,7 +430,7 @@ class StateManager:
             Each game state class.
         """
         try:
-            import_name = self.package + "." + folder
+            import_name = self.package + "." + folder.name
             import_module(import_name)
             yield from self.collect_states_from_module(import_name)
         except Exception as e:
@@ -481,6 +492,31 @@ class StateManager:
         logger.debug(f"queue state: {state_name}")
         self._state_queue.append((state_name, kwargs))
 
+    def pop_current_state(self) -> None:
+        """Pop the current state from the stack."""
+        if not self._state_stack:
+            raise RuntimeError("Attempted to pop state when stack was empty.")
+
+        state = self._state_stack.pop(0)
+        logger.debug(f"Pop state: {state.name}")
+
+        self._check_resume(state)
+        state.pause()
+        state.shutdown()
+
+        if self._state_stack:
+            self._resume_set.add(self._state_stack[0])
+
+        if self.is_hook_registered("on_state_change"):
+            self.trigger_global_hook("on_state_change")
+
+    def handle_queued_state(self) -> None:
+        """Handle a queued state if one exists."""
+        if self._state_queue:
+            state_name, kwargs = self._state_queue.pop(0)
+            self.replace_state(state_name, **kwargs)
+            logger.debug(f"Pop state, using queue instead: {state_name}")
+
     def pop_state(self, state: Optional[State] = None) -> None:
         """
         Pop some state.
@@ -493,41 +529,30 @@ class StateManager:
             state: The state to remove from stack. Use None (or omit) for
                 current state.
         """
-        # handle situation where there is a queued state
         if self._state_queue:
-            state_name, kwargs = self._state_queue.pop(0)
-            self.replace_state(state_name, **kwargs)
-            logger.debug(f"pop state, using queue instead: {state_name}")
+            self.handle_queued_state()
             return
 
-        # raise error if stack is empty
-        if not self._state_stack:
-            raise RuntimeError("Attempted to pop state when stack was empty.")
-
-        # pop the top state
         if state is None:
-            state = self._state_stack[0]
+            self.pop_current_state()
+        else:
+            index = self.find_state_in_stack(state)
+            if index == 0:
+                self.pop_current_state()
+            else:
+                logger.debug(f"Pop-remove state: {state.name}")
+                self._state_stack.remove(state)
 
+    def find_state_in_stack(self, state: State) -> int:
+        """Find the state in the stack."""
         try:
             index = self._state_stack.index(state)
         except IndexError:
-            raise RuntimeError(
-                "Attempted to pop state when state was not active.",
+            logger.critical(
+                "Attempted to remove state which is not in the stack",
             )
-
-        if index == 0:
-            logger.debug(f"pop state: {state.name}")
-            self._state_stack.pop(0)
-            self._check_resume(state)
-            state.pause()
-            state.shutdown()
-            if self._state_stack:
-                self._resume_set.add(self._state_stack[0])
-            if self.is_hook_registered("on_state_change"):
-                self.trigger_global_hook("on_state_change")
-        else:
-            logger.debug(f"pop-remove state: {state.name}")
-            self._state_stack.remove(state)
+            raise RuntimeError
+        return index
 
     def remove_state(self, state: State) -> None:
         """
@@ -536,14 +561,7 @@ class StateManager:
         Parameters:
             state: State to remove
         """
-        try:
-            index = self._state_stack.index(state)
-        except IndexError:
-            logger.critical(
-                "Attempted to remove state which is not in the stack",
-            )
-            raise RuntimeError
-
+        index = self.find_state_in_stack(state)
         if index == 0:
             logger.debug(f"remove-pop state: {state.name}")
             self.pop_state()

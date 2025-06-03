@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-import os.path
+from pathlib import Path
 from typing import Optional, Protocol
 
 import pygame
@@ -52,7 +52,7 @@ class MusicPlayerState:
         if filename in self.cache:
             return self.cache[filename]
         else:
-            path = prepare.fetch("music", db.lookup_file("music", filename))
+            path = prepare.fetch("music", db.get_entry("music", filename))
             self.cache[filename] = path
             return path
 
@@ -161,14 +161,16 @@ class SoundManager:
         if slug is None or slug == "":
             return None
 
-        filename = db.lookup_file("sounds", slug)
+        filename = db.get_entry("sounds", slug)
         filename = transform_resource_filename("sounds", filename)
 
-        if not os.path.exists(filename):
+        path = Path(filename)
+
+        if not path.exists():
             logger.error(f"audio file does not exist: {filename}")
             return None
 
-        return filename
+        return path.as_posix()
 
     def load_sound(
         self, slug: str, value: float = prepare.CONFIG.sound_volume

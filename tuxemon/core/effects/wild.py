@@ -40,8 +40,7 @@ class WildEffect(StatusEffect):
             user = status.link
             empty = status.repl_tech
             assert user and empty
-            skip = Technique()
-            skip.load(empty)
+            skip = Technique.create(empty)
             tech = [skip]
             if not fainted(user):
                 damage = user.hp // self.divisor

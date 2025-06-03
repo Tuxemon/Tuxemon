@@ -40,7 +40,7 @@ class TestConditionParentCommand(CLICommand):
         Parameters:
             ctx: Contains references to parts of the game and CLI interface.
         """
-        conditions = ctx.client.event_engine.get_conditions()
+        conditions = ctx.client.event_engine.condition_manager.get_conditions()
         for condition in conditions:
             command = TestConditionCommand()
             command.name = condition.name

@@ -86,8 +86,7 @@ def mockPlayer(self) -> None:
     member1.slug = "nut"
     member2 = Monster()
     member2.slug = "rockitten"
-    tech = Technique()
-    tech.load("ram")
+    tech = Technique.create("ram")
     member1.learn(tech)
     self.monsters = [member1, member2]
 
@@ -363,8 +362,7 @@ class TestCanEvolve(unittest.TestCase):
 
     def test_moves_match(self):
         self.mon.owner = self.player
-        tech = Technique()
-        tech.load("ram")
+        tech = Technique.create("ram")
         self.mon.learn(tech)
         evo = MonsterEvolutionItemModel(monster_slug="rockat", moves=["ram"])
         context = {"map_inside": True}
@@ -372,8 +370,7 @@ class TestCanEvolve(unittest.TestCase):
 
     def test_moves_mismatch(self):
         self.mon.owner = self.player
-        tech = Technique()
-        tech.load("ram")
+        tech = Technique.create("ram")
         self.mon.learn(tech)
         evo = MonsterEvolutionItemModel(
             monster_slug="rockat", moves=["strike"]

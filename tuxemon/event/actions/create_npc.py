@@ -5,15 +5,18 @@ from __future__ import annotations
 import logging
 from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Any, Optional, final
+from typing import TYPE_CHECKING, Any, Optional, final
 
-from tuxemon.db import NpcModel, PartyMemberModel, db
+from tuxemon.db import db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.item import Item
 from tuxemon.monster import Monster
 from tuxemon.npc import NPC
-from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
+
+if TYPE_CHECKING:
+    from tuxemon.db import NpcModel, PartyMemberModel
+    from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -47,15 +50,11 @@ class CreateNpcAction(EventAction):
 
         slug = self.npc_slug
 
-        for element in world.npcs:
-            if element.slug == slug:
-                logger.error(
-                    f"'{slug}' already exists on the map. Skipping creation."
-                )
-                return
+        if session.client.npc_manager.npc_exists(slug):
+            return
 
         npc = NPC(slug, world=world)
-        world.npcs.append(npc)
+        session.client.npc_manager.add_npc(npc)
 
         client = session.client.event_engine
         client.execute_action(
@@ -100,8 +99,7 @@ def load_party_monsters(
 
 def party_monster(npc_monster: PartyMemberModel) -> Monster:
     """Creates a new monster object from the database details."""
-    monster = Monster()
-    monster.load_from_db(npc_monster.slug)
+    monster = Monster.create(npc_monster.slug)
     monster.money_modifier = npc_monster.money_mod
     monster.experience_modifier = npc_monster.exp_req_mod
     monster.set_level(npc_monster.level)
@@ -120,7 +118,7 @@ def load_party_items(
         if npc_item.variables and check_variables(
             npc_item.variables, game_variables
         ):
-            item = Item(save_data=npc_item.model_dump())
+            item = Item.create(npc_item.slug, npc_item.model_dump())
             item.quantity = npc_item.quantity
             npc.add_item(item)
 

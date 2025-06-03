@@ -9,7 +9,6 @@ from tuxemon.camera import unproject
 from tuxemon.event import MapCondition
 from tuxemon.event.eventcondition import EventCondition
 from tuxemon.session import Session
-from tuxemon.states.world.worldstate import WorldState
 from tuxemon.tools import compare
 
 logger = logging.getLogger(__name__)
@@ -36,8 +35,7 @@ class CameraPositionCondition(EventCondition):
         map_size = session.client.map_manager.map_size
         pos_x = int(condition.parameters[0])
         pos_y = int(condition.parameters[1])
-        world = session.client.get_state_by_name(WorldState)
-        camera = world.camera_manager.get_active_camera()
+        camera = session.client.camera_manager.get_active_camera()
         if camera is None:
             logger.error("No active camera found.")
             return False

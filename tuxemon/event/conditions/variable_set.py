@@ -36,15 +36,9 @@ class VariableSetCondition(EventCondition):
     def test(self, session: Session, condition: MapCondition) -> bool:
         player = session.player
 
-        for part in condition.parameters:
-            key, _, value = part.partition(":")
-            exists = key in player.game_variables
-
-            if value:
-                if exists and player.game_variables[key] == value:
-                    return True
-            else:
-                if exists:
-                    return True
-
-        return False
+        return all(
+            key in player.game_variables
+            and (not value or player.game_variables[key] == value)
+            for part in condition.parameters
+            for key, _, value in [part.partition(":")]
+        )

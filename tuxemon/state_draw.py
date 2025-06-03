@@ -23,7 +23,7 @@ class Renderer:
         self,
         screen: Surface,
         state_drawer: StateDrawer,
-        caption: str,
+        config: TuxemonConfig,
     ) -> None:
         """
         Initializes the Renderer class.
@@ -35,11 +35,13 @@ class Renderer:
         Parameters:
             screen: The pygame screen surface where everything is drawn.
             state_drawer: Handles rendering the current game state.
-            caption: The window title used for displaying FPS updates.
+            config: Configuration settings that may affect rendering
+                behavior.
         """
         self.screen = screen
         self.state_drawer = state_drawer
-        self.caption = caption
+        self.caption = config.window_caption
+        self.vsync = config.vsync
         self.frames = 0
         self.fps_timer = 0.0
 
@@ -93,10 +95,10 @@ class Renderer:
         self.fps_timer += clock_tick
         self.frames += 1
         if self.fps_timer >= 1.0:
-            fps_display = (
-                f"{self.caption} - {self.frames / self.fps_timer:.2f} FPS"
-            )
-            pygame.display.set_caption(fps_display)
+            fps = self.frames / self.fps_timer
+            vsync_status = "VSync ON" if self.vsync else "VSync OFF"
+            with_fps = f"{self.caption} - {fps:.2f} FPS - {vsync_status}"
+            pygame.display.set_caption(with_fps)
             self.fps_timer = 0.0
             self.frames = 0
 

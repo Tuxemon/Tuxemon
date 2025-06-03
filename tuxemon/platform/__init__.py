@@ -1,5 +1,7 @@
+# SPDX-License-Identifier: GPL-3.0
+# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 """
-Put platform specific fixes here
+Platform-specific implementations and configurations.
 """
 
 from __future__ import annotations
@@ -9,24 +11,31 @@ import os
 from collections.abc import Sequence
 from pathlib import Path
 
-__all__ = ("android", "init", "mixer", "get_user_storage_dir")
+__all__ = (
+    "init",
+    "mixer",
+    "get_user_storage_dir",
+    "get_system_storage_dirs",
+    "is_android",
+)
 
 logger = logging.getLogger(__name__)
 
 _pygame = False
-android = None
+android_module = None
 
 try:
     import android
     import android.mixer as android_mixer
 
     mixer = android_mixer
+    android_module = android
 except ImportError:
     pass
 else:
     logger.info("Using Android mixer")
 
-if android is None:
+if android_module is None:
     try:
         import pygame.mixer as pygame_mixer
 
@@ -39,9 +48,15 @@ if android is None:
 
 
 def init() -> None:
-    """Must be called before pygame.init() to enable low latency sound."""
-    # reduce sound latency.  the pygame defaults were ok for 2001,
-    # but these values are more acceptable for faster computers
+    """
+    Initializes the sound system to enable low latency sound.
+
+    This function must be called before pygame.init() to take effect.
+    It adjusts the sound settings to reduce latency, making it more
+    suitable for modern computers. The default Pygame settings were
+    optimized for slower computers in 2001, but these updated values
+    provide better performance on faster machines.
+    """
     if _pygame:
         logger.debug("pre-init pygame mixer")
         try:
@@ -50,54 +65,26 @@ def init() -> None:
             logger.error(f"Failed to initialize Pygame mixer: {e}")
 
 
-def get_user_storage_dir() -> str:
+def get_user_storage_dir() -> Path:
     """
     Returns the user storage directory.
     Mutable storage for things like config, save games, mods, cache.
     """
     if is_android():
-        paths = _get_android_storage_paths()
-        if paths:
-            return paths[0]
-    return str(Path.home() / ".tuxemon")
+        if android_module is not None:
+            return Path(
+                android_module.context.getExternalFilesDir(None).getPath()
+            )
+    logger.error("Android module is not available or not running on Android")
+    return Path.home() / ".tuxemon"
 
 
 def is_android() -> bool:
     """Checks if the platform is Android."""
-    try:
-        import android
-
-        return True
-    except ImportError:
-        return False
+    return android_module is not None
 
 
-def _get_android_storage_paths() -> list[str]:
-    """Helper function to get Android storage paths."""
-    paths: list[str] = []
-
-    if is_android():
-        paths.extend(_get_android_storage_paths())
-    else:
-        paths.append("/usr/share/tuxemon/")
-        paths.append("/usr/local/share/tuxemon/")
-        try:
-            xdg_data_dirs = os.environ.get("XDG_DATA_DIRS", "")
-            if xdg_data_dirs:
-                for data_dir in xdg_data_dirs.split(":"):
-                    path = Path(data_dir) / "tuxemon"
-                    if path.exists():
-                        paths.append(str(path))
-                    else:
-                        logger.debug(f"Checking XDG data directory: {path}")
-
-        except Exception as e:
-            logger.error(f"Error handling XDG_DATA_DIRS: {e}")
-
-    return paths
-
-
-def get_system_storage_dirs() -> Sequence[str]:
+def get_system_storage_dirs() -> Sequence[Path]:
     """
     Returns a sequence of system storage directories.
     Should be immutable storage for things like system installed code/mods.
@@ -105,24 +92,29 @@ def get_system_storage_dirs() -> Sequence[str]:
     The primary user of this storage are packages for operating systems
     that will install the mods into a folder like /usr/share/tuxemon.
     """
-    paths: list[str] = []
+    paths: list[Path] = []
 
-    if is_android():
-        paths.extend(_get_android_storage_paths())
-    else:
-        paths.append("/usr/share/tuxemon/")
-        paths.append("/usr/local/share/tuxemon/")
+    if not is_android():
+        paths.extend(
+            [
+                Path("/usr/share/tuxemon/"),
+                Path("/usr/local/share/tuxemon/"),
+            ]
+        )
+
         try:
             xdg_data_dirs = os.environ.get("XDG_DATA_DIRS", "")
             if xdg_data_dirs:
                 for data_dir in xdg_data_dirs.split(":"):
                     path = Path(data_dir) / "tuxemon"
                     if path.exists():
-                        paths.append(str(path))
+                        paths.append(path)
                     else:
                         logger.debug(f"Checking XDG data directory: {path}")
 
         except Exception as e:
             logger.error(f"Error handling XDG_DATA_DIRS: {e}")
 
+    # You need to implement the android logic here
+    # For now, I'm just returning the paths
     return paths

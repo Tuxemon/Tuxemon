@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 import unittest
-from unittest.mock import Mock, patch
+from unittest.mock import MagicMock, patch
 
 import pygame
 
@@ -12,15 +12,17 @@ from tuxemon.state_draw import EventDebugDrawer, Renderer, StateDrawer
 class TestRenderer(unittest.TestCase):
 
     def setUp(self):
-        self.screen = Mock()
-        self.state_drawer = Mock()
-        self.caption = "Test Caption"
-        self.renderer = Renderer(self.screen, self.state_drawer, self.caption)
+        self.debug_drawer = MagicMock()
+        self.screen = MagicMock()
+        self.state_drawer = MagicMock()
+        self.config = MagicMock()
+        self.config.window_caption = "Test Caption"
+        self.renderer = Renderer(self.screen, self.state_drawer, self.config)
 
     def test_init(self):
         self.assertEqual(self.renderer.screen, self.screen)
         self.assertEqual(self.renderer.state_drawer, self.state_drawer)
-        self.assertEqual(self.renderer.caption, self.caption)
+        self.assertEqual(self.renderer.caption, self.config.window_caption)
         self.assertEqual(self.renderer.frames, 0)
         self.assertEqual(self.renderer.fps_timer, 0.0)
 
@@ -29,13 +31,12 @@ class TestRenderer(unittest.TestCase):
         frame_number = 1
         save_to_disk = True
         collision_map = False
-        debug_drawer = Mock()
         partial_events = []
         self.renderer.draw(
             frame_number,
             save_to_disk,
             collision_map,
-            debug_drawer,
+            self.debug_drawer,
             partial_events,
         )
         self.state_drawer.draw.assert_called_once()
@@ -46,13 +47,12 @@ class TestRenderer(unittest.TestCase):
         frame_number = 1
         save_to_disk = False
         collision_map = False
-        debug_drawer = Mock()
         partial_events = []
         self.renderer.draw(
             frame_number,
             save_to_disk,
             collision_map,
-            debug_drawer,
+            self.debug_drawer,
             partial_events,
         )
         self.state_drawer.draw.assert_called_once()
@@ -63,90 +63,79 @@ class TestRenderer(unittest.TestCase):
         frame_number = 1
         save_to_disk = False
         collision_map = True
-        debug_drawer = Mock()
         partial_events = []
         self.renderer.draw(
             frame_number,
             save_to_disk,
             collision_map,
-            debug_drawer,
+            self.debug_drawer,
             partial_events,
         )
         self.state_drawer.draw.assert_called_once()
-        debug_drawer.draw_event_debug.assert_called_once_with(partial_events)
+        self.debug_drawer.draw_event_debug.assert_called_once_with(
+            partial_events
+        )
 
     @patch("pygame.image.save")
     def test_draw_no_collision_map(self, mock_save):
         frame_number = 1
         save_to_disk = False
         collision_map = False
-        debug_drawer = Mock()
         partial_events = []
         self.renderer.draw(
             frame_number,
             save_to_disk,
             collision_map,
-            debug_drawer,
+            self.debug_drawer,
             partial_events,
         )
         self.state_drawer.draw.assert_called_once()
-        debug_drawer.draw_event_debug.assert_not_called()
+        self.debug_drawer.draw_event_debug.assert_not_called()
 
 
 class TestStateDrawer(unittest.TestCase):
+
+    def setUp(self):
+        self.surface = MagicMock()
+        self.state_manager = MagicMock()
+        self.config = MagicMock()
+        self.state_drawer = StateDrawer(
+            self.surface, self.state_manager, self.config
+        )
+        self.state1 = MagicMock()
+        self.state2 = MagicMock()
+
     def test_init(self):
-        surface = Mock()
-        state_manager = Mock()
-        config = Mock()
-        state_drawer = StateDrawer(surface, state_manager, config)
-        self.assertEqual(state_drawer.surface, surface)
-        self.assertEqual(state_drawer.state_manager, state_manager)
-        self.assertEqual(state_drawer.config, config)
+        self.assertEqual(self.state_drawer.surface, self.surface)
+        self.assertEqual(self.state_drawer.state_manager, self.state_manager)
+        self.assertEqual(self.state_drawer.config, self.config)
 
     def test_draw(self):
-        surface = Mock()
-        state_manager = Mock()
-        config = Mock()
-        state_drawer = StateDrawer(surface, state_manager, config)
-        state1 = Mock()
-        state2 = Mock()
-        state_manager.active_states = [state1, state2]
-        state_drawer.draw()
-        state1.draw.assert_called_once_with(surface)
-        state2.draw.assert_called_once_with(surface)
+        self.state_manager.active_states = [self.state1, self.state2]
+        self.state_drawer.draw()
+        self.state1.draw.assert_called_once_with(self.surface)
+        self.state2.draw.assert_called_once_with(self.surface)
 
     def test_draw_with_transparency(self):
-        surface = Mock()
-        state_manager = Mock()
-        config = Mock()
-        state_drawer = StateDrawer(surface, state_manager, config)
-        state1 = Mock()
-        state1.transparent = False
-        state1.rect = Mock()
-        state1.rect.return_value = (0, 0, 100, 100)
-        state2 = Mock()
-        state_manager.active_states = [state1, state2]
-        state_drawer.draw()
-        state1.draw.assert_called_once_with(surface)
-        state2.draw.assert_called_once_with(surface)
+        self.state1.transparent = False
+        self.state1.rect = MagicMock()
+        self.state1.rect.return_value = (0, 0, 100, 100)
+        self.state_manager.active_states = [self.state1, self.state2]
+        self.state_drawer.draw()
+        self.state1.draw.assert_called_once_with(self.surface)
+        self.state2.draw.assert_called_once_with(self.surface)
 
     def test_draw_with_full_screen(self):
-        surface = Mock()
-        state_manager = Mock()
-        config = Mock()
-        state_drawer = StateDrawer(surface, state_manager, config)
-        state1 = Mock()
-        state1.transparent = False
-        state1.rect = Mock()
-        state1.rect.return_value = (0, 0, 100, 100)
-        state1.force_draw = False
-        state2 = Mock()
-        state_manager.active_states = [state1, state2]
-        surface.get_rect.return_value = (0, 0, 100, 100)
-        state1.rect.return_value = (0, 0, 100, 100)
-        state_drawer.draw()
-        state1.draw.assert_called_once_with(surface)
-        state2.draw.assert_called_once_with(surface)
+        self.state1.transparent = False
+        self.state1.rect = MagicMock()
+        self.state1.rect.return_value = (0, 0, 100, 100)
+        self.state1.force_draw = False
+        self.state_manager.active_states = [self.state1, self.state2]
+        self.surface.get_rect.return_value = (0, 0, 100, 100)
+        self.state1.rect.return_value = (0, 0, 100, 100)
+        self.state_drawer.draw()
+        self.state1.draw.assert_called_once_with(self.surface)
+        self.state2.draw.assert_called_once_with(self.surface)
 
 
 class TestEventDebugDrawer(unittest.TestCase):
@@ -160,7 +149,7 @@ class TestEventDebugDrawer(unittest.TestCase):
         pygame.quit()
 
     def test_init(self):
-        screen = Mock()
+        screen = MagicMock()
         event_debug_drawer = EventDebugDrawer(screen)
         self.assertEqual(event_debug_drawer.screen, screen)
         self.assertEqual(event_debug_drawer.max_width, 1000)
@@ -172,19 +161,19 @@ class TestEventDebugDrawer(unittest.TestCase):
         self.assertEqual(event_debug_drawer.failure_color, prepare.RED_COLOR)
 
     def test_draw_event_debug(self):
-        screen = Mock()
+        screen = MagicMock()
         event_debug_drawer = EventDebugDrawer(screen)
-        event1 = [(True, Mock()), (False, Mock())]
+        event1 = [(True, MagicMock()), (False, MagicMock())]
         event1[0][1].parameters = ["param1", "param2"]
         event1[1][1].parameters = ["param3", "param4"]
-        event2 = [(True, Mock()), (False, Mock())]
+        event2 = [(True, MagicMock()), (False, MagicMock())]
         event2[0][1].parameters = ["param5", "param6"]
         event2[1][1].parameters = ["param7", "param8"]
         event_debug_drawer.draw_event_debug([event1, event2])
         self.assertTrue(screen.blit.called)
 
     def test_render_text(self):
-        screen = Mock()
+        screen = MagicMock()
         event_debug_drawer = EventDebugDrawer(screen)
         text = "Test text"
         color = (255, 0, 0)

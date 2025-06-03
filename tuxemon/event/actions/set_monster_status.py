@@ -46,8 +46,7 @@ class SetMonsterStatusAction(EventAction):
         if not value:
             monster.status = list()
         else:
-            status = Status()
-            status.load(value)
+            status = Status.create(value)
             status.steps = steps
             status.link = monster
             monster.apply_status(status)

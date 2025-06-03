@@ -61,8 +61,7 @@ class CaptureEffect(ItemEffect):
         formula.on_capture_fail(item, target, self.session.player)
         assert item.combat_state
         if item.slug == "tuxeball_park":
-            empty = Technique()
-            empty.load("empty")
+            empty = Technique.create("empty")
             _wander = "spyder_park_wander"
             label = self.session.player.game_variables.get(item.slug, _wander)
             empty.use_tech = label

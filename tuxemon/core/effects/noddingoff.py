@@ -40,8 +40,7 @@ class NoddingOffEffect(StatusEffect):
         tech: list[Technique] = []
 
         if status.phase == "pre_checking" and status.repl_tech:
-            skip = Technique()
-            skip.load(status.repl_tech)
+            skip = Technique.create(status.repl_tech)
             tech = [skip]
 
         if status.phase == "perform_action_tech" and self.wake_up(status):

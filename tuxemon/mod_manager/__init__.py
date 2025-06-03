@@ -1,13 +1,11 @@
 # SPDX-License-Identifier: GPL-3.0
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
-import configparser
 import json
 import logging
 import os
-import pathlib
 import shutil
-import urllib.request
 import zipfile
+from pathlib import Path
 from typing import Any, Optional
 
 import requests
@@ -28,18 +26,18 @@ def sanitize_paths(path: str) -> str:
 
 class Manager:
     def __init__(
-        self, *other_urls: Any, default_to_cache: bool = True
+        self, *other_urls: str, default_to_cache: bool = True
     ) -> None:
         """
         (basic) Mod managment library.
         """
 
-        if len(other_urls) == 0:
-            other_urls = ["http://127.0.0.1:5000"]
+        if not other_urls:
+            other_urls = ("http://127.0.0.1:5000",)
 
-        self.packages_path = os.path.join(paths.CACHE_DIR, "packages")
+        self.packages_path = paths.CACHE_DIR / "packages"
 
-        self.url = other_urls
+        self.url: tuple[str, ...] = other_urls
         self.packages: list[Any] = []
 
         if default_to_cache:
@@ -48,12 +46,12 @@ class Manager:
     def write_to_cache(self) -> None:
         """Writes self.packages to the cache file"""
 
-        with open(self.packages_path, "w") as file:
+        with self.packages_path.open("w") as file:
             file.write(json.dumps(self.packages, indent=4))
 
     def read_from_cache(self) -> Any:
         """Read self.packages from the cache file"""
-        with open(self.packages_path) as file:
+        with self.packages_path.open() as file:
             return json.loads(file.read())
 
     def cache_to_pkglist(self) -> None:
@@ -134,8 +132,8 @@ class Manager:
             + f"/packages/{author}/{name}/releases/{release}/download"
         )
 
-        filename = os.path.join(
-            paths.CACHE_DIR, f"downloaded_packages/{name}.{release}.zip"
+        filename = (
+            paths.CACHE_DIR / f"downloaded_packages/{name}.{release}.zip"
         )
 
         logging.info(f"Downloading release {release} of {author}/{name}")
@@ -145,19 +143,19 @@ class Manager:
             file_size = r.headers["content-length"]
             downloaded_size = 0
             r.raise_for_status()
-            with open(filename, "wb") as file:
+            with filename.open("wb") as file:
                 for chunk in r.iter_content(chunk_size=8096):
                     file.write(chunk)
                     downloaded_size += 8096
                     logger.debug(f"Downloaded {downloaded_size} bytes")
 
-        outfolder = os.path.join(paths.BASEDIR, "mods", name)
-
-        self.write_package_to_list(os.path.relpath(outfolder), name)
+        outfolder = paths.BASEDIR / "mods" / name
+        outfolder.mkdir(parents=True, exist_ok=True)
+        self.write_package_to_list(outfolder.as_posix(), name)
 
         if not dont_extract:
             logging.info("Extracting...")
-            self.install_local_package(filename, name=name)
+            self.install_local_package(filename.as_posix(), name=name)
 
         if install_deps:
             # This function calls download_package, might cause issues
@@ -179,8 +177,7 @@ class Manager:
         **args: Any,
     ) -> None:
         """Recursively resolve dependencies and symlink them"""
-        logger.debug(author, name, repo)
-        # Request dependencies for specified package
+        logger.debug(f"Resolving dependencies for {author}/{name} from {repo}")
         r = requests.get(
             f"{repo}/api/packages/{author}/{name}/dependencies/?only_hard=1"
         )
@@ -188,16 +185,15 @@ class Manager:
             raise ValueError(
                 f"Requested {r.url}, received status code {r.status_code}"
             )
-        logger.debug(r.text, author, name)
+        logger.debug(f"Dependency data received: {r.text}")
         dep_list = r.json()
         # Resolve dependencies
         for dependency in dep_list:
             for entry in dep_list[dependency]:
                 for package in entry["packages"]:
                     package = sanitize_paths(package)
-                    if os.path.exists(
-                        os.path.join(paths.BASEDIR, "mods", package)
-                    ):
+                    package_path = paths.BASEDIR / "mods" / package
+                    if package_path.exists():
                         continue
                     if package == "default":
                         continue
@@ -244,7 +240,7 @@ class Manager:
     def write_package_to_list(self, path_to_folder: str, name: str) -> None:
         """Writes specified package to the package list"""
         # Write the absolute path to the list
-        with open(paths.USER_GAME_DATA_DIR + "/package.list", "w+") as file:
+        with (paths.USER_GAME_DATA_DIR / "package.list").open("w+") as file:
             if not len(file.read()) == 0:
                 before = json.loads(file.read())
             else:
@@ -256,14 +252,14 @@ class Manager:
 
     def read_package_from_list(self, name: str) -> Any:
         """Reads path of the specified mod"""
-        with open(paths.USER_GAME_DATA_DIR + "/package.list") as file:
+        with (paths.USER_GAME_DATA_DIR / "package.list").open() as file:
             data = file.read()
             return json.loads(data)[name]
 
     def remove_package_from_list(self, name: str) -> None:
         """Removes specified package from the package list"""
         # Write the absolute path to the list
-        with open(paths.USER_GAME_DATA_DIR + "/package.list", "r+") as file:
+        with (paths.USER_GAME_DATA_DIR / "package.list").open("r+") as file:
             data = file.read()
             if not len(data) == 0:
                 before = json.loads(data)
@@ -293,16 +289,16 @@ class Manager:
     ) -> None:
         """
         Installs local packages.
-        Based on the download_package function, but without the downloads
+        Based on the download_package function, but without the downloads.
         """
-        outfolder = os.path.join(paths.BASEDIR, "mods")
-        self.write_package_to_list(os.path.relpath(outfolder), name)
+        outfolder = paths.BASEDIR / "mods"
+        outfolder.mkdir(parents=True, exist_ok=True)
+        self.write_package_to_list(outfolder.as_posix(), name)
         with zipfile.ZipFile(filename) as zipf:
-            free = shutil.disk_usage(os.getcwd()).free
-            # get the filesize, based on https://stackoverflow.com/a/39953116/14590202
+            free_space = shutil.disk_usage(Path.cwd()).free
             zipsize = sum(zinfo.file_size for zinfo in zipf.filelist)
-            if zipsize > free:
+            if zipsize > free_space:
                 raise OSError(
-                    f"Zip contents are bigger than available disk space ({zipsize} > {free})"
+                    f"Zip contents are bigger than available disk space ({zipsize} > {free_space})"
                 )
-            zipf.extractall(path=os.path.join(outfolder, name))
+            zipf.extractall(path=outfolder / name)

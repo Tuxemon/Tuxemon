@@ -9,7 +9,6 @@ from typing import Optional, final
 from tuxemon.camera import Camera
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
-from tuxemon.states.world.worldstate import WorldState
 
 logger = logging.getLogger(__name__)
 
@@ -36,8 +35,7 @@ class CameraMoveAction(EventAction):
     y: Optional[int] = None
 
     def start(self, session: Session) -> None:
-        world = session.client.get_state_by_name(WorldState)
-        self.camera = world.camera_manager.get_active_camera()
+        self.camera = session.client.camera_manager.get_active_camera()
         if self.camera is None:
             logger.error("No active camera found.")
             return

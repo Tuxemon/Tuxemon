@@ -45,7 +45,6 @@ class CharFacingTileCondition(EventCondition):
             for w in range(0, condition.width)
             for h in range(0, condition.height)
         ]
-        tile_location = None
         # get all the coordinates around the npc
         client = session.client
         npc_tiles = get_coords(character.tile_pos, client.map_manager.map_size)
@@ -66,9 +65,7 @@ class CharFacingTileCondition(EventCondition):
 
         # return common coordinates
         tiles = list(set(tiles).intersection(npc_tiles))
-
-        for coords in tiles:
-            tile_location = get_direction(character.tile_pos, coords)
-            if character.facing == tile_location:
-                return True
-        return False
+        tile_locations = {
+            get_direction(character.tile_pos, coords) for coords in tiles
+        }
+        return character.facing in tile_locations

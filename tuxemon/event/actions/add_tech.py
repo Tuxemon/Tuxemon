@@ -55,8 +55,7 @@ class AddTechAction(EventAction):
             logger.error("Monster not found")
             return
 
-        tech = Technique()
-        tech.load(self.technique)
+        tech = Technique.create(self.technique)
         if self.power:
             lower, upper = prepare.POWER_RANGE
             if lower <= self.power <= upper:

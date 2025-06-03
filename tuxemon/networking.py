@@ -74,7 +74,10 @@ class NetworkManager:
     def update(self, time_delta: float) -> None:
         if self.client and self.client.listening:
             self.client.update(time_delta)
-            self.parent.add_clients_to_map(self.client.client.registry)
+            current_map = self.parent.get_map_name()
+            self.parent.npc_manager.add_clients_to_map(
+                self.client.client.registry, current_map
+            )
 
         if self.server and self.server.listening:
             self.server.update()

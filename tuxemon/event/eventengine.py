@@ -6,15 +6,17 @@ import logging
 from collections.abc import Generator, Iterable, Sequence
 from contextlib import contextmanager
 from textwrap import dedent
-from typing import Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Optional, Union
 
-from tuxemon import plugin, prepare
-from tuxemon.constants import paths
-from tuxemon.event import EventObject, MapAction, MapCondition
-from tuxemon.event.eventaction import EventAction
-from tuxemon.event.eventcondition import EventCondition
-from tuxemon.map import TuxemonMap
-from tuxemon.session import Session
+from tuxemon import prepare
+
+if TYPE_CHECKING:
+    from tuxemon.event import EventObject, MapAction, MapCondition
+    from tuxemon.event.eventaction import ActionManager, EventAction
+    from tuxemon.event.eventcondition import ConditionManager
+    from tuxemon.map import TuxemonMap
+    from tuxemon.session import Session
+
 
 logger = logging.getLogger(__name__)
 
@@ -38,7 +40,6 @@ class RunningEvent:
     Parameters:
         map_event: Event defined in the map containing the information
             about the actions.
-
     """
 
     __slots__ = (
@@ -102,11 +103,17 @@ class EventEngine:
 
     Parameters:
         session: Object containing the session information.
-
     """
 
-    def __init__(self, session: Session) -> None:
+    def __init__(
+        self,
+        session: Session,
+        action: ActionManager,
+        condition: ConditionManager,
+    ) -> None:
         self.session = session
+        self.action_manager = action
+        self.condition_manager = condition
 
         self.running_events: dict[int, RunningEvent] = dict()
         self.name = "Event"
@@ -117,22 +124,6 @@ class EventEngine:
 
         # debug
         self.partial_events: list[Sequence[tuple[bool, MapCondition]]] = list()
-
-        self.conditions = plugin.load_plugins(
-            paths.CONDITIONS_PATH,
-            "conditions",
-            interface=EventCondition,
-        )
-
-        # Mypy fails to typecheck here because
-        # https://github.com/python/mypy/issues/4717
-        # The workarounds are ugly, so we will wait
-        # for that to be fixed.
-        self.actions = plugin.load_plugins(
-            paths.ACTIONS_PATH,
-            "actions",
-            interface=EventAction,  # type: ignore[type-abstract]
-        )
 
     def set_current_map(self, new_map: Optional[TuxemonMap]) -> None:
         """Updates the current map."""
@@ -146,86 +137,6 @@ class EventEngine:
         self.timer = 0.0
         self.wait = 0.0
         self.button = None
-
-    def get_action(
-        self,
-        name: str,
-        parameters: Optional[Sequence[Any]] = None,
-    ) -> Optional[EventAction]:
-        """
-        Get an action that is loaded into the engine.
-
-        A new instance will be returned each time.
-
-        Return ``None`` if action is not loaded.
-
-        Parameters:
-            name: Name of the action.
-            parameters: List of parameters that the action accepts.
-
-        Returns:
-            New instance of the action with the appropriate parameters if
-            that action is loaded. ``None`` otherwise.
-        """
-        parameters = parameters or []
-
-        try:
-            action = self.actions[name]
-
-        except KeyError:
-            error = f'Error: EventAction "{name}" not implemented'
-            logger.warning(error)
-            return None
-
-        if parameters == [""]:
-            return action()
-
-        try:
-            return action(*parameters)
-        except TypeError as e:
-            logger.warning(
-                f"Error instantiating {action} with parameters {parameters}: {e}"
-            )
-            return None
-        except Exception as e:
-            logger.error(
-                f"Unexpected error instantiating {action} with parameters {parameters}: {e}"
-            )
-            return None
-
-    def get_actions(self) -> list[type[EventAction]]:
-        """
-        Return list of EventActions.
-        """
-        return list(self.actions.values())
-
-    def get_condition(self, name: str) -> Optional[EventCondition]:
-        """
-        Get a condition that is loaded into the engine.
-
-        A new instance will be returned each time.
-
-        Return ``None`` if condition is not loaded.
-
-        Parameters:
-            name: Name of the condition.
-
-        Returns:
-            New instance of the condition if that condition is loaded.
-            ``None`` otherwise.
-        """
-        # TODO: make generic
-        try:
-            return self.conditions[name]()
-        except KeyError:
-            logger.warning(f'EventCondition "{name}" not implemented')
-            return None
-
-    def get_conditions(self) -> list[type[EventCondition]]:
-        """
-        Return list of EventConditions.
-        """
-        return list(self.conditions.values())
 
     def check_condition(
         self,
@@ -242,7 +153,7 @@ class EventEngine:
         Returns:
             The value of the condition.
         """
-        map_condition = self.get_condition(cond_data.type)
+        map_condition = self.condition_manager.get_condition(cond_data.type)
         if map_condition is None:
             logger.debug(f'map condition "{cond_data.type}" is not loaded')
             return False
@@ -273,7 +184,7 @@ class EventEngine:
         """
         parameters = parameters or []
 
-        action = self.get_action(action_name, parameters)
+        action = self.action_manager.get_action(action_name, parameters)
         if action is None:
             error_msg = f'Map action "{action_name}" is not loaded'
             logger.warning(error_msg)
@@ -498,7 +409,7 @@ class EventEngine:
             # No more actions; event is complete
             return False
 
-        action = self.get_action(
+        action = self.action_manager.get_action(
             next_action_data.type, next_action_data.parameters
         )
         if action is None:
@@ -528,7 +439,6 @@ def add_error_context(
         event: Event associated with the condition or action.
         item: Condition or action that produces the error.
         session: Object containing the session information.
-
     """
     try:
         yield

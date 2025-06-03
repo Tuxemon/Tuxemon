@@ -39,8 +39,7 @@ class DisappearEffect(TechEffect):
             user_sprite.toggle_visible()
             user.out_of_range = True
             # Create a new technique to land the user
-            land_technique = Technique()
-            land_technique.load(self.attack)
+            land_technique = Technique.create(self.attack)
             # Add the land action to the pending queue
             land_action = EnqueuedAction(user, land_technique, target)
             combat._action_queue.add_pending(land_action, combat._turn)

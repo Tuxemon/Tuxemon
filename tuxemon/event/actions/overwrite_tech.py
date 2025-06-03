@@ -5,12 +5,14 @@ from __future__ import annotations
 import logging
 import uuid
 from dataclasses import dataclass
-from typing import final
+from typing import TYPE_CHECKING, final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.monster import Monster
-from tuxemon.session import Session
 from tuxemon.technique.technique import Technique
+
+if TYPE_CHECKING:
+    from tuxemon.monster import Monster
+    from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
 
@@ -40,8 +42,7 @@ class OverwriteTechAction(EventAction):
 
     def overwrite(self, monster: Monster, removed: Technique) -> None:
         slot = monster.moves.index(removed)
-        added = Technique()
-        added.load(self.added)
+        added = Technique.create(self.added)
         monster.moves.remove(removed)
         monster.moves.insert(slot, added)
         logger.info(f"{removed.name} replaced by {added.name}")

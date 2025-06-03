@@ -6,13 +6,14 @@ import logging
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon import monster, prepare
+from tuxemon import prepare
 from tuxemon.combat import check_battle_legal
 from tuxemon.db import db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import ColorLike, string_to_colorlike
 from tuxemon.item.item import Item
+from tuxemon.monster import Monster
 from tuxemon.session import Session
 from tuxemon.states.world.worldstate import WorldState
 
@@ -59,8 +60,7 @@ class WildEncounterAction(EventAction):
 
         logger.info("Starting wild encounter!")
 
-        current_monster = monster.Monster()
-        current_monster.load_from_db(self.monster_slug)
+        current_monster = Monster.create(self.monster_slug)
         current_monster.level = self.monster_level
         current_monster.set_level(self.monster_level)
         current_monster.set_moves(self.monster_level)
@@ -70,8 +70,7 @@ class WildEncounterAction(EventAction):
         if self.money is not None:
             current_monster.money_modifier = self.money
         if self.held_item is not None:
-            item = Item()
-            item.load(self.held_item)
+            item = Item.create(self.held_item)
             if item.behaviors.holdable:
                 current_monster.held_item.set_item(item)
             else:
@@ -129,5 +128,4 @@ class WildEncounterAction(EventAction):
 
     def cleanup(self, session: Session) -> None:
         npc = None
-        if self.world:
-            self.world.remove_entity(self.name)
+        session.client.npc_manager.remove_npc(self.name)

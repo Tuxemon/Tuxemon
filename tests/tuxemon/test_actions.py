@@ -6,6 +6,8 @@ from unittest.mock import MagicMock, patch
 from tuxemon import prepare
 from tuxemon.db import Direction
 from tuxemon.entity import Body, Mover
+from tuxemon.event.eventaction import ActionManager
+from tuxemon.event.eventcondition import ConditionManager
 from tuxemon.event.eventengine import EventEngine
 from tuxemon.math import Point3, Vector3
 from tuxemon.player import Player
@@ -23,9 +25,11 @@ def mockPlayer(self) -> None:
 
 class TestVariableActions(unittest.TestCase):
     def setUp(self):
+        action = ActionManager()
+        condition = ConditionManager()
         self.mock_screen = MagicMock()
         with patch.object(Player, "__init__", mockPlayer):
-            self.action = EventEngine(local_session)
+            self.action = EventEngine(local_session, action, condition)
             local_session.player = Player()
             self.player = local_session.player
 
@@ -53,6 +57,20 @@ class TestVariableActions(unittest.TestCase):
         self.action.execute_action("set_variable", ["name:jimmy"])
         self.action.execute_action("clear_variable", ["name"])
         self.assertIsNone(self.player.game_variables.get("name"))
+
+    def test_clear_multiple_variables_exist(self):
+        self.action.execute_action(
+            "set_variable", ["first:jimmy", "last:saul"]
+        )
+        self.action.execute_action("clear_variable", ["first", "last"])
+        self.assertIsNone(self.player.game_variables.get("first"))
+        self.assertIsNone(self.player.game_variables.get("last"))
+
+    def test_clear_multiple_variables_exist_and_not(self):
+        self.action.execute_action("set_variable", ["last:saul"])
+        self.action.execute_action("clear_variable", ["first", "last"])
+        self.assertIsNone(self.player.game_variables.get("first"))
+        self.assertIsNone(self.player.game_variables.get("last"))
 
     def test_copy_variable(self):
         self.action.execute_action("set_variable", ["name:jeff"])
@@ -138,9 +156,11 @@ class TestVariableActions(unittest.TestCase):
 
 class TestActionsSetPlayer(unittest.TestCase):
     def setUp(self):
+        action = ActionManager()
+        condition = ConditionManager()
         self.mock_screen = MagicMock()
         with patch.object(Player, "__init__", mockPlayer):
-            self.action = EventEngine(local_session)
+            self.action = EventEngine(local_session, action, condition)
             local_session.player = Player()
             self.player = local_session.player
 
@@ -155,9 +175,11 @@ class TestActionsSetPlayer(unittest.TestCase):
 
 class TestBattleActions(unittest.TestCase):
     def setUp(self):
+        action = ActionManager()
+        condition = ConditionManager()
         self.mock_screen = MagicMock()
         with patch.object(Player, "__init__", mockPlayer):
-            self.action = EventEngine(local_session)
+            self.action = EventEngine(local_session, action, condition)
             local_session.player = Player()
             self.player = local_session.player
 
@@ -202,10 +224,12 @@ class TestBattleActions(unittest.TestCase):
 
 class TestCharacterActions(unittest.TestCase):
     def setUp(self):
+        action = ActionManager()
+        condition = ConditionManager()
         self.mock_screen = MagicMock()
         local_session.client = MagicMock()
         with patch.object(Player, "__init__", mockPlayer):
-            self.action = EventEngine(local_session)
+            self.action = EventEngine(local_session, action, condition)
             local_session.player = Player()
             self.player = local_session.player
 

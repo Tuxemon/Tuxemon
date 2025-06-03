@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from collections.abc import Generator, Mapping, Sequence
+from collections import defaultdict
+from collections.abc import Generator, Mapping
 from typing import Any, ClassVar, Generic, Optional, TypeVar
 
 _InputEventType = TypeVar("_InputEventType", contravariant=True)
@@ -16,7 +17,7 @@ class EventQueueHandler(ABC):
     * Sole manager of platform events
     """
 
-    _inputs: Mapping[int, Sequence[InputHandler[Any]]]
+    _inputs: defaultdict[int, list[InputHandler[Any]]] = defaultdict(list)
 
     def release_controls(self) -> Generator[PlayerInput, None, None]:
         """
@@ -28,7 +29,6 @@ class EventQueueHandler(ABC):
 
         Yields:
             Inputs to release all buttons.
-
         """
         for value in self._inputs.values():
             for input_handler in value:
@@ -48,7 +48,6 @@ class EventQueueHandler(ABC):
 
         Yields:
             Game events (PlayerInput objects).
-
         """
         raise NotImplementedError
 
@@ -59,7 +58,6 @@ class InputHandler(ABC, Generic[_InputEventType]):
 
     Parameters:
         event_map: Mapping of original identifiers to button identifiers.
-
     """
 
     default_input_map: ClassVar[Mapping[Optional[int], int]]
@@ -70,10 +68,10 @@ class InputHandler(ABC, Generic[_InputEventType]):
     ) -> None:
         if event_map is None:
             event_map = self.default_input_map
-        self.buttons = {}
+        self.buttons = {
+            button: PlayerInput(button) for button in event_map.values()
+        }
         self.event_map = event_map
-        for button in event_map.values():
-            self.buttons[button] = PlayerInput(button)
 
     @abstractmethod
     def process_event(self, input_event: _InputEventType) -> None:
@@ -82,7 +80,6 @@ class InputHandler(ABC, Generic[_InputEventType]):
 
         Parameters:
             input_event: Input event to process.
-
         """
         raise NotImplementedError
 
@@ -94,12 +91,10 @@ class InputHandler(ABC, Generic[_InputEventType]):
 
         Yields:
             Inputs to release all buttons of this handler.
-
         """
-        for inp in self.buttons.values():
-            if inp.held:
-                inp.previous_value = inp.value
-                yield PlayerInput(inp.button, 0, 0)
+        for inp in filter(lambda b: b.held, self.buttons.values()):
+            inp.previous_value = inp.value
+            yield PlayerInput(inp.button, 0, 0)
 
     def get_events(self) -> Generator[PlayerInput, None, None]:
         """
@@ -107,17 +102,14 @@ class InputHandler(ABC, Generic[_InputEventType]):
 
         Yields:
             Player inputs (before updating their state).
-
         """
-        for inp in self.buttons.values():
-            if inp.held:
-                yield inp
-                inp.previous_value = inp.value
-                inp.hold_time += 1
-            elif inp.triggered:
-                yield inp
-                inp.previous_value = inp.value
-                inp.triggered = False
+        for inp in filter(
+            lambda b: b.held or b.triggered, self.buttons.values()
+        ):
+            yield inp
+            inp.previous_value = inp.value
+            inp.hold_time += 1 if inp.held else 0
+            inp.triggered = False
 
     def press(self, button: int, value: float = 1) -> None:
         """
@@ -126,7 +118,6 @@ class InputHandler(ABC, Generic[_InputEventType]):
         Parameters:
             button: Identifier of the button to press.
             value: Intensity value used for pressing the button.
-
         """
         inp = self.buttons[button]
         inp.previous_value = inp.value
@@ -140,7 +131,6 @@ class InputHandler(ABC, Generic[_InputEventType]):
 
         Parameters:
             button: Identifier of the button to release.
-
         """
         inp = self.buttons[button]
         inp.previous_value = inp.value
@@ -171,7 +161,6 @@ class PlayerInput:
             support intermediate or negative values. Other input may store
             the unicode key pressed, or the mouse coordinates.
         hold_time: The number of frames this input has been hold.
-
     """
 
     __slots__ = ("button", "value", "hold_time", "triggered", "previous_value")
@@ -207,7 +196,6 @@ class PlayerInput:
 
         Returns:
             Whether the input has been pressed.
-
         """
         return bool(self.value) and self.hold_time == 1
 
@@ -218,7 +206,6 @@ class PlayerInput:
 
         Returns:
             Whether the input is being hold.
-
         """
         return bool(self.value)
 

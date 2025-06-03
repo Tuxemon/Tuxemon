@@ -56,13 +56,13 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         self.combat = cmb
         self.character = monster.owner
         self.monster = monster
-        self.party = cmb.monsters_in_play[self.character]
+        self.party = cmb.field_monsters.get_monsters(self.character)
         if self.character == cmb.players[0]:
             self.enemy = cmb.players[1]
-            self.opponents = cmb.monsters_in_play[self.enemy]
+            self.opponents = cmb.field_monsters.get_monsters(self.enemy)
         if self.character == cmb.players[1]:
             self.enemy = cmb.players[0]
-            self.opponents = cmb.monsters_in_play[self.enemy]
+            self.opponents = cmb.field_monsters.get_monsters(self.enemy)
 
     def initialize_items(self) -> Generator[MenuItem[MenuGameObj], None, None]:
         common_menu_items = (

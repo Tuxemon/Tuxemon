@@ -26,7 +26,7 @@ from tuxemon.menu.menu import Menu
 from tuxemon.sprite import CaptureDeviceSprite, Sprite
 from tuxemon.tools import scale, scale_sequence
 
-from .combat_ui import CombatUI
+from .combat_ui import CombatUI, FieldMonsters
 
 if TYPE_CHECKING:
     from tuxemon.animation import Animation
@@ -49,6 +49,29 @@ def toggle_visible(sprite: Sprite) -> None:
 
 def scale_area(area: tuple[int, int, int, int]) -> Rect:
     return Rect(tools.scale_sequence(area))
+
+
+def prepare_layout(
+    players: list[NPC],
+    right: dict[str, tuple[int, int, int, int]] = prepare.RIGHT_COMBAT,
+    left: dict[str, tuple[int, int, int, int]] = prepare.LEFT_COMBAT,
+) -> dict[NPC, dict[str, list[Rect]]]:
+    """
+    Arranges player positions for combat using predefined layouts.
+
+    Parameters:
+        players: List of NPCs to be positioned.
+        right: Dictionary mapping labels to rectangular areas on the right.
+        left: Dictionary mapping labels to rectangular areas on the left.
+
+    Returns:
+        A dictionary mapping each player to their designated layout.
+    """
+    layout = [
+        {key: list(map(scale_area, [(*value,)])) for key, value in p.items()}
+        for p in (right, left)
+    ]
+    return {player: layout[index] for index, player in enumerate(players)}
 
 
 class CombatAnimations(Menu[None], ABC):
@@ -77,9 +100,7 @@ class CombatAnimations(Menu[None], ABC):
         self.graphics = graphics
         self.is_double = battle_mode == "double"
 
-        self.monsters_in_play: defaultdict[NPC, list[Monster]] = defaultdict(
-            list
-        )
+        self.field_monsters = FieldMonsters()
         self._monster_sprite_map: MutableMapping[
             Union[NPC, Monster], Sprite
         ] = {}
@@ -92,25 +113,7 @@ class CombatAnimations(Menu[None], ABC):
         self._status_icons: defaultdict[Monster, list[Sprite]] = defaultdict(
             list
         )
-
-        _right = prepare.RIGHT_COMBAT
-        _left = prepare.LEFT_COMBAT
-
-        # convert the list/tuple of coordinates to Rects
-        layout = [
-            {
-                key: list(map(scale_area, [(*value,)]))
-                for key, value in p.items()
-            }
-            for p in (_right, _left)
-        ]
-
-        # end config =========================================
-
-        # map positions to players
-        self._layout = {
-            player: layout[index] for index, player in enumerate(self.players)
-        }
+        self._layout = prepare_layout(self.players)
 
     def animate_open(self) -> None:
         self.transition_none_normal()
@@ -227,8 +230,9 @@ class CombatAnimations(Menu[None], ABC):
         Returns:
             The x and y coordinates of the feet position.
         """
-        if is_double and monster in self.monsters_in_play[npc]:
-            monster_index = str(self.monsters_in_play[npc].index(monster))
+        monsters = self.field_monsters.get_monsters(npc)
+        if is_double and monster in monsters:
+            monster_index = str(monsters.index(monster))
         else:
             monster_index = ""
 
@@ -293,7 +297,7 @@ class CombatAnimations(Menu[None], ABC):
         self.animate_monster_leave(monster)
         self.task(kill_monster, 2)
 
-        for monsters in self.monsters_in_play.values():
+        for monsters in self.field_monsters.get_all_monsters().values():
             if monster in monsters:
                 monsters.remove(monster)
 
@@ -667,7 +671,7 @@ class CombatAnimations(Menu[None], ABC):
             enemy.rect.bottom = back_island.rect.bottom - scale(24)
             enemy.rect.centerx = back_island.rect.centerx
             self._monster_sprite_map[opp_mon] = enemy
-            self.monsters_in_play[opponent].append(opp_mon)
+            self.field_monsters.add_monster(opponent, opp_mon)
             self.update_hud(opponent)
 
         self.sprites.add(enemy)
@@ -915,7 +919,7 @@ class CombatAnimations(Menu[None], ABC):
             character: The character whose HUD needs to be updated.
             animate: Whether to animate the HUD update. Defaults to True.
         """
-        monsters = self.monsters_in_play.get(character)
+        monsters = self.field_monsters.get_monsters(character)
         if not monsters:
             return
 

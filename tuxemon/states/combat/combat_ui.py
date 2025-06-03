@@ -142,7 +142,7 @@ class FieldMonsters:
         """Returns a dictionary containing all NPCs and their active monsters."""
         return self.monsters_in_play
 
-      
+
 class StatusIconManager:
     """Handles creation, caching, and updating of status icons."""
 

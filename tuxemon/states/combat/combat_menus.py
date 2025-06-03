@@ -425,7 +425,10 @@ class CombatTargetMenuState(Menu[Monster]):
             yield self._create_menu_item(self.monster)
             return
 
-        for player, monsters in self.combat_state.monsters_in_play.items():
+        for (
+            player,
+            monsters,
+        ) in self.combat_state.field_monsters.get_all_monsters().items():
             targeting_class = (
                 "own_monster" if player == self.character else "enemy_monster"
             )

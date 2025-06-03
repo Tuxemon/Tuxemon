@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import logging
 from abc import ABC
-from collections import defaultdict
 from collections.abc import MutableMapping
 from functools import partial
 from typing import TYPE_CHECKING, Literal, Optional, Union
@@ -26,7 +25,7 @@ from tuxemon.menu.menu import Menu
 from tuxemon.sprite import CaptureDeviceSprite, Sprite
 from tuxemon.tools import scale, scale_sequence
 
-from .combat_ui import CombatUI, StatusIconManager, FieldMonsters
+from .combat_ui import CombatUI, FieldMonsters, StatusIconManager
 
 if TYPE_CHECKING:
     from tuxemon.animation import Animation

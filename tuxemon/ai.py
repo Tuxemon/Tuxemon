@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING, Any, Optional
 import yaml
 
 from tuxemon import prepare
-from tuxemon.combat import has_status, pre_checking, recharging
+from tuxemon.combat import has_status, pre_checking
 from tuxemon.constants import paths
 from tuxemon.formula import simple_damage_multiplier
 from tuxemon.technique.technique import Technique
@@ -215,7 +215,7 @@ class TechniqueTracker:
         return [
             (mov, opponent)
             for mov in self.moves
-            if not recharging(mov)
+            if not mov.is_recharging
             for opponent in opponents
             if mov.validate_monster(self.session, opponent)
         ]

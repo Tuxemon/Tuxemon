@@ -23,9 +23,10 @@ events:
   Cathedral Share:
     actions:
     - variable_math battle_last_prize,*,cathedral_share
+    - format_variable battle_last_prize,int
+    - modify_bill player,bill_cathedral,,battle_last_prize
     - format_variable battle_last_prize,-int
     - modify_money player,,battle_last_prize
-    - modify_bill player,bill_cathedral,,battle_last_prize
     - set_variable battle_last_prize:0
     conditions:
     - is variable_set battle_last_result:won

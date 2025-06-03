@@ -2,8 +2,9 @@
 # Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
 from __future__ import annotations
 
+from collections import defaultdict
 from collections.abc import Callable, MutableMapping, Sequence
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from pygame.rect import Rect
 
@@ -16,6 +17,7 @@ from tuxemon.state import State
 if TYPE_CHECKING:
     from tuxemon.db import BattleGraphicsModel
     from tuxemon.monster import Monster
+    from tuxemon.npc import NPC
 
 
 class CombatUI:
@@ -104,6 +106,43 @@ class CombatUI:
         """
         self.draw_hp_bars(graphics, hud)
         self.draw_exp_bars(graphics, hud)
+
+
+class HudManager:
+    def __init__(self, layout: dict[NPC, dict[str, list[Rect]]]) -> None:
+        """Manages HUD positions and mappings for NPCs in combat."""
+        self.layout = layout
+        self.hud_map: MutableMapping[Monster, Sprite] = defaultdict(Sprite)
+
+    def assign_hud(self, monster: Monster, hud_sprite: Sprite) -> None:
+        """Assigns a HUD sprite to a monster."""
+        self.hud_map[monster] = hud_sprite
+
+    def delete_hud(self, monster: Monster) -> None:
+        """Removes the HUD sprite associated with a monster, if it exists."""
+        if monster in self.hud_map:
+            self.hud_map[monster].kill()
+            del self.hud_map[monster]
+
+    def get_rect(self, npc: NPC, position_key: str) -> Rect:
+        """Retrieves the Rect object for a given NPC and position key."""
+        if npc not in self.layout:
+            raise KeyError(f"NPC {npc.name} not found in layout.")
+
+        rect_list = self.layout[npc].get(position_key)
+
+        if not rect_list:
+            raise ValueError(
+                f"No Rect found for position key '{position_key}' in NPC {npc.name}."
+            )
+
+        return rect_list[0]
+
+    def get_hud(self, monster: Monster) -> Optional[Sprite]:
+        """
+        Retrieves the HUD sprite for a given monster if it exists.
+        """
+        return self.hud_map.get(monster)
 
 
 class StatusIconManager:

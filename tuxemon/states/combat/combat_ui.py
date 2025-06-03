@@ -144,6 +144,7 @@ class HudManager:
         """
         return self.hud_map.get(monster)
 
+
 class StatusIconManager:
     """Handles creation, caching, and updating of status icons."""
 
@@ -254,4 +255,3 @@ class StatusIconManager:
                 animate_func(icon.image, initial=0, set_alpha=255, duration=2)
             else:
                 icon.image.set_alpha(255)
-

@@ -10,7 +10,6 @@ from __future__ import annotations
 import logging
 from abc import ABC
 from collections import defaultdict
-from collections.abc import MutableMapping
 from functools import partial
 from typing import TYPE_CHECKING, Literal, Optional, Union
 
@@ -26,7 +25,12 @@ from tuxemon.menu.menu import Menu
 from tuxemon.sprite import CaptureDeviceSprite, Sprite
 from tuxemon.tools import scale, scale_sequence
 
-from .combat_ui import CombatUI, HudManager, MonsterSpriteMap, StatusIconManager
+from .combat_ui import (
+    CombatUI,
+    HudManager,
+    MonsterSpriteMap,
+    StatusIconManager,
+)
 
 if TYPE_CHECKING:
     from tuxemon.animation import Animation
@@ -129,6 +133,8 @@ class CombatAnimations(Menu[None], ABC):
     def animate_trainer_leave(self, trainer: Union[NPC, Monster]) -> None:
         """Animate the trainer leaving the screen."""
         sprite = self.sprite_map.get_sprite(trainer)
+        if sprite is None:
+            raise KeyError(f"Sprite not found for entity: {trainer.name}")
         side = self.get_side(sprite.rect)
         x_diff = scale(-150 if side == "left" else 150)
         self.animate(sprite.rect, x=x_diff, relative=True, duration=0.8)
@@ -352,6 +358,8 @@ class CombatAnimations(Menu[None], ABC):
 
     def animate_monster_leave(self, monster: Monster) -> None:
         sprite = self.sprite_map.get_sprite(monster)
+        if sprite is None:
+            raise KeyError(f"Sprite not found for entity: {monster.name}")
         x_diff = (
             -scale(150) if self.get_side(sprite.rect) == "left" else scale(150)
         )
@@ -763,6 +771,8 @@ class CombatAnimations(Menu[None], ABC):
             The animated item sprite.
         """
         monster_sprite = self.sprite_map.get_sprite(monster)
+        if monster_sprite is None:
+            raise KeyError(f"Sprite not found for entity: {monster.name}")
         sprite = self.load_sprite(item.sprite)
         animate = partial(
             self.animate, sprite.rect, transition="in_quad", duration=1.0
@@ -792,6 +802,8 @@ class CombatAnimations(Menu[None], ABC):
             sprite: The sprite to animate.
         """
         monster_sprite = self.sprite_map.get_sprite(monster)
+        if monster_sprite is None:
+            raise KeyError(f"Sprite not found for entity: {monster.name}")
         capdev = self.animate_throwing(monster, item)
         animate = partial(
             self.animate, capdev.rect, transition="in_quad", duration=1.0

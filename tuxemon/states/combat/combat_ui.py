@@ -261,10 +261,10 @@ class MonsterSpriteMap:
     def __init__(self) -> None:
         self.sprite_map: MutableMapping[Union[NPC, Monster], Sprite] = {}
 
-    def get_sprite(self, entity: Union[NPC, Monster]) -> Sprite:
+    def get_sprite(self, entity: Union[NPC, Monster]) -> Optional[Sprite]:
         """Retrieves the sprite for the given entity, raising an error if not found."""
         if entity not in self.sprite_map:
-            raise KeyError(f"Sprite not found for entity: {entity.name}")
+            return None
         return self.sprite_map[entity]
 
     def add_sprite(self, entity: Union[NPC, Monster], sprite: Sprite) -> None:

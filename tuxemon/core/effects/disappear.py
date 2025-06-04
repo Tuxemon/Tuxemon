@@ -34,7 +34,7 @@ class DisappearEffect(TechEffect):
 
         # Get the user's sprite
         user_sprite = combat.sprite_map.get_sprite(user)
-        if user_sprite.is_visible():
+        if user_sprite and user_sprite.is_visible():
             # Make the user disappear
             user_sprite.toggle_visible()
             user.out_of_range = True

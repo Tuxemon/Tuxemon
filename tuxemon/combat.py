@@ -78,9 +78,10 @@ def pre_checking(
     or other conditions that change the chosen technique.
     """
     if monster.status.status_exists():
-        monster.status.current_status.combat_state = combat
-        monster.status.current_status.phase = "pre_checking"
-        result_status = monster.status.current_status.use(session, target)
+        status = monster.status.current_status
+        result_status = status.execute_status_action(
+            session, combat, target, "pre_checking"
+        )
         if result_status.techniques:
             technique = random.choice(result_status.techniques)
 
@@ -140,13 +141,6 @@ def has_effect_param(
     )
 
 
-def fainted(monster: Monster) -> bool:
-    """
-    Checks to see if the monster is fainted.
-    """
-    return monster.status.is_fainted or monster.is_fainted
-
-
 def get_awake_monsters(
     character: NPC,
     monsters: list[Monster],
@@ -169,7 +163,7 @@ def get_awake_monsters(
     awake_monsters = [
         monster
         for monster in character.monsters
-        if not fainted(monster) and monster not in monsters
+        if not monster.is_fainted and monster not in monsters
     ]
 
     if awake_monsters:
@@ -186,14 +180,12 @@ def alive_party(character: NPC) -> list[Monster]:
     """
     Returns a list with all the monsters alive in the character's party.
     """
-    return [monster for monster in character.monsters if not fainted(monster)]
+    return [m for m in character.monsters if not m.is_fainted]
 
 
 def fainted_party(party: Sequence[Monster]) -> bool:
-    """
-    Whether the party is fainted or not.
-    """
-    return all(map(fainted, party))
+    """Whether the party is fainted or not."""
+    return all(monster.is_fainted for monster in party)
 
 
 def defeated(character: NPC) -> bool:

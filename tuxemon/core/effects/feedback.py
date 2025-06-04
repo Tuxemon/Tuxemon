@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import fainted
 from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.monster import Monster
 from tuxemon.technique.technique import Technique
@@ -54,7 +53,7 @@ class FeedBackEffect(CoreEffect):
                 and method.hit
                 and method.range in ranges
                 and action.target.instance_id == target.instance_id
-                and not fainted(attacker)
+                and not attacker.is_fainted
             ):
                 damage = target.hp // self.divisor
                 attacker.current_hp = max(0, attacker.current_hp - damage)

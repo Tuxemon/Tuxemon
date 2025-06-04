@@ -18,7 +18,7 @@ from pygame.rect import Rect
 from pygame.transform import flip as pg_flip
 
 from tuxemon import graphics, prepare, tools
-from tuxemon.combat import alive_party, build_hud_text, fainted
+from tuxemon.combat import alive_party, build_hud_text
 from tuxemon.formula import config_combat
 from tuxemon.locale import T
 from tuxemon.menu.interface import ExpBar, HpBar
@@ -557,7 +557,7 @@ class CombatAnimations(Menu[None], ABC):
             scaled_top = scale(1)
 
             if monster:
-                if fainted(monster):
+                if monster.status.is_fainted:
                     sprite = self._load_sprite(
                         self.graphics.icons.icon_faint,
                         {

@@ -51,7 +51,6 @@ from tuxemon.combat import (
     alive_party,
     battlefield,
     defeated,
-    fainted,
     get_awake_monsters,
     set_var,
     track_battles,
@@ -508,7 +507,7 @@ class CombatState(CombatAnimations):
 
         def validate(menu_item: MenuItem[Monster]) -> bool:
             if isinstance(menu_item, Monster):
-                if fainted(menu_item):
+                if menu_item.is_fainted:
                     return False
                 if menu_item in self.active_monsters:
                     return False
@@ -622,9 +621,10 @@ class CombatState(CombatAnimations):
 
         # Handle removed monster's status effects
         if removed is not None and removed.status.status_exists():
-            removed.status.current_status.combat_state = self
-            removed.status.current_status.phase = "add_monster_into_play"
-            removed.status.current_status.use(self.session, removed)
+            status = removed.status.current_status
+            status.execute_status_action(
+                self.session, self, removed, "add_monster_into_play"
+            )
 
         # Create message for combat swap
         format_params = {
@@ -784,9 +784,10 @@ class CombatState(CombatAnimations):
             message = T.format("combat_call_tuxemon", params)
         # check statuses
         if user.status.status_exists():
-            user.status.current_status.combat_state = self
-            user.status.current_status.phase = "perform_action_tech"
-            result_status = user.status.current_status.use(self.session, user)
+            status = user.status.current_status
+            result_status = status.execute_status_action(
+                self.session, self, user, "perform_action_tech"
+            )
             if result_status.extras:
                 templates = [
                     T.translate(extra) for extra in result_status.extras
@@ -877,8 +878,9 @@ class CombatState(CombatAnimations):
         target: Monster,
     ) -> None:
         action_time = 0.0
-        item.combat_state = self
-        result_item = item.use(self.session, user, target)
+        result_item = item.execute_item_action(
+            self.session, self, user, target
+        )
         context = {
             "user": user.name,
             "name": item.name,
@@ -923,10 +925,10 @@ class CombatState(CombatAnimations):
 
     def _handle_status(self, status: Status, target: Monster) -> None:
         action_time = 0.0
-        status.combat_state = self
-        status.phase = "perform_action_status"
+        result = status.execute_status_action(
+            self.session, self, target, "perform_action_status"
+        )
         status.advance_round()
-        result = status.use(self.session, target)
         context = {
             "name": status.name,
             "target": target.name,
@@ -1049,7 +1051,7 @@ class CombatState(CombatAnimations):
         """
         for _, party in self.monsters_in_play.items():
             for monster in party:
-                if fainted(monster):
+                if monster.is_fainted:
                     params = {"name": monster.name.upper()}
                     msg = T.format("combat_fainted", params)
                     self.text_anim.add_text_animation(
@@ -1076,7 +1078,7 @@ class CombatState(CombatAnimations):
             for monster in monster_party:
                 self.animate_hp(monster)
                 self.apply_status_effects(monster)
-                if fainted(monster):
+                if monster.is_fainted:
                     self.handle_monster_defeat(monster)
 
     def apply_status_effects(self, monster: Monster) -> None:
@@ -1087,10 +1089,9 @@ class CombatState(CombatAnimations):
             monster: Monster that was defeated.
         """
         if monster.status.status_exists():
-            monster.status.current_status.combat_state = self
-            monster.status.current_status.phase = "check_party_hp"
-            result_status = monster.status.current_status.use(
-                self.session, monster
+            status = monster.status.current_status
+            result_status = status.execute_status_action(
+                self.session, self, monster, "check_party_hp"
             )
             if result_status.extras:
                 templates = [
@@ -1170,7 +1171,7 @@ class CombatState(CombatAnimations):
         return [
             monster
             for monster in self.players[0].monsters
-            if not fainted(monster)
+            if not monster.is_fainted
         ]
 
     @property
@@ -1181,7 +1182,7 @@ class CombatState(CombatAnimations):
         return [
             monster
             for monster in self.players[1].monsters
-            if not fainted(monster)
+            if not monster.is_fainted
         ]
 
     @property

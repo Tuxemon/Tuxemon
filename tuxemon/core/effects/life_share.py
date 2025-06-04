@@ -6,7 +6,6 @@ import math
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import fainted
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -46,7 +45,7 @@ class LifeShareEffect(CoreEffect):
                 if self.direction == "user_to_target"
                 else (target, user)
             )
-            if not fainted(source) and not fainted(dest):
+            if not source.is_fainted and not dest.is_fainted:
                 if self.method == "weighted":
                     weighted_average(source, dest)
                 elif self.method == "geometric":

@@ -6,7 +6,6 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import fainted
 from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.technique.technique import Technique
 
@@ -42,7 +41,7 @@ class WildEffect(CoreEffect):
             assert user and empty
             skip = Technique.create(empty)
             tech = [skip]
-            if not fainted(user):
+            if not user.is_fainted:
                 damage = user.hp // self.divisor
                 user.current_hp = max(0, user.current_hp - damage)
         return StatusEffectResult(

@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import fainted
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -36,7 +35,7 @@ class LifeSwapEffect(CoreEffect):
         )
         done = False
         if tech.hit:
-            if not fainted(user) and not fainted(target):
+            if not user.is_fainted and not target.is_fainted:
                 hp_user, hp_target = user.current_hp, target.current_hp
                 user.current_hp = min(user.hp, hp_target)
                 target.current_hp = min(target.hp, hp_user)

@@ -22,12 +22,12 @@ class TestRewardSystem(unittest.TestCase):
         self.loser.money_modifier = 2.0
         self.loser.total_experience = 1000
         self.loser.experience_modifier = 1.5
-        self.loser.status = MonsterStatusHandler()
+        self.loser.status = MagicMock(spec=MonsterStatusHandler)
         self.loser.current_hp = 0
 
         self.winner = MagicMock(spec=Monster)
         self.winner.name = "rockitten"
-        self.winner.status = MonsterStatusHandler()
+        self.winner.status = MagicMock(spec=MonsterStatusHandler)
         self.winner.current_hp = 50
         self.winner.owner = MagicMock(spec=NPC)
         self.winner.owner.isplayer = True

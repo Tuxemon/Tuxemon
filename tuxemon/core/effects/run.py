@@ -87,5 +87,5 @@ class RunEffect(CoreEffect):
         players_to_remove = list(combat.players)
         for player in players_to_remove:
             combat.clean_combat()
-            del combat.monsters_in_play[player]
+            combat.field_monsters.remove_npc(player)
             combat.players.remove(player)

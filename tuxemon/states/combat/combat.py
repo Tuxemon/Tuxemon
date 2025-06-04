@@ -35,7 +35,7 @@ from __future__ import annotations
 
 import logging
 import random
-from collections.abc import Iterable, MutableMapping, Sequence
+from collections.abc import Iterable, Sequence
 from enum import Enum
 from functools import partial
 from itertools import chain
@@ -155,9 +155,6 @@ class CombatState(CombatAnimations):
         self.text_anim = TextAnimationManager()
         self._decision_queue: list[Monster] = []
         # player => home areas on screen
-        self._monster_sprite_map: MutableMapping[
-            Union[NPC, Monster], Sprite
-        ] = {}
         self._turn: int = 0
         self._prize: int = 0
         self._captured_mon: Optional[Monster] = None
@@ -340,8 +337,9 @@ class CombatState(CombatAnimations):
 
             # record the useful properties of the last monster we fought
             for player in self.remaining_players:
-                if self.monsters_in_play[player] and not player.isplayer:
-                    for mon in self.monsters_in_play[player]:
+                monsters = self.field_monsters.get_monsters(player)
+                if monsters and not player.isplayer:
+                    for mon in monsters:
                         battlefield(self.session, mon)
 
         elif phase == CombatPhase.DECISION:
@@ -350,7 +348,8 @@ class CombatState(CombatAnimations):
             if not self._decision_queue:
                 for player in list(self.human_players) + list(self.ai_players):
                     self.update_hud(player, False)
-                    for monster in self.monsters_in_play[player]:
+                    monsters = self.field_monsters.get_monsters(player)
+                    for monster in monsters:
                         value = random.random()
                         self._random_tech_hit[monster] = value
                         if player in self.human_players:
@@ -543,15 +542,16 @@ class CombatState(CombatAnimations):
         if len(alive_party(player)) == 1:
             self._max_positions[player] = 1
             if self.is_double:
-                monster = self.monsters_in_play[player][0]
+                monster = self.field_monsters.get_monsters(player)[0]
                 new_feet = self.get_feet_position(player, monster, False)
-                self.update_monster_feet(monster, new_feet)
+                self.sprite_map.update_sprite_position(monster, new_feet)
         else:
             if self.is_double:
                 self._max_positions[player] = 2
             else:
                 self._max_positions[player] = 1
-        return self._max_positions[player] - len(self.monsters_in_play[player])
+        on_the_field = self.field_monsters.get_monsters(player)
+        return self._max_positions[player] - len(on_the_field)
 
     def fill_battlefield_positions(self, ask: bool = False) -> None:
         """
@@ -567,9 +567,8 @@ class CombatState(CombatAnimations):
         for player in self.active_players:
             positions_available = self.update_player_positions(player)
             if positions_available:
-                available = get_awake_monsters(
-                    player, self.monsters_in_play[player], self._turn
-                )
+                monsters = self.field_monsters.get_monsters(player)
+                available = get_awake_monsters(player, monsters, self._turn)
                 for _ in range(positions_available):
                     if player in humans and ask:
                         self.ask_player_for_monster(player)
@@ -611,7 +610,7 @@ class CombatState(CombatAnimations):
         if not sprite:
             raise ValueError(f"Sprite not found for item {capture_device}")
 
-        self.monsters_in_play[player].append(monster)
+        self.field_monsters.add_monster(player, monster)
         self.animate_monster_release(player, monster, sprite)
         self.update_hud(player)
 
@@ -761,16 +760,16 @@ class CombatState(CombatAnimations):
         target: Monster,
     ) -> None:
         action_time = 0.0
-        # action is performed, so now use sprites to animate it
-        # this value will be None if the target is off screen
-        target_sprite = self._monster_sprite_map.get(target, None)
+        # animate action; target sprite is None if off-screen
+        target_sprite = self.sprite_map.get_sprite(target)
         # slightly delay the monster shake, so technique animation
         # is synchronized with the damage shake motion
         hit_delay = 0.0
         # monster uses move
         method.advance_round()
-        method.combat_state = self
-        result_tech = method.use(self.session, user, target)
+        result_tech = method.execute_tech_action(
+            self.session, self, user, target
+        )
         context = {
             "user": user.name,
             "name": method.name,
@@ -820,10 +819,11 @@ class CombatState(CombatAnimations):
         # animation own_monster, technique doesn't tackle
         hit_delay += 0.5
         if method.target["own_monster"]:
-            target_sprite = self._monster_sprite_map.get(user, None)
+            target_sprite = self.sprite_map.get_sprite(user)
 
         if result_tech.should_tackle:
-            user_sprite = self._monster_sprite_map.get(user, None)
+            user_sprite = self.sprite_map.get_sprite(user)
+
             if user_sprite:
                 self.animate_sprite_tackle(user_sprite)
 
@@ -862,7 +862,7 @@ class CombatState(CombatAnimations):
 
         is_flipped = False
         for trainer in self.ai_players:
-            if user in self.monsters_in_play[trainer]:
+            if user in self.field_monsters.get_monsters(trainer):
                 is_flipped = True
                 break
 
@@ -978,7 +978,7 @@ class CombatState(CombatAnimations):
             is_flipped: Whether the animation should be flipped.
         """
         if target_sprite is None:
-            target_sprite = self._monster_sprite_map.get(target, None)
+            target_sprite = self.sprite_map.get_sprite(target)
 
         animation = self._method_cache.get(method, is_flipped)
 
@@ -1049,7 +1049,7 @@ class CombatState(CombatAnimations):
         * Animation to remove monster is handled here
         TODO: check for faint status, not HP
         """
-        for _, party in self.monsters_in_play.items():
+        for _, party in self.field_monsters.get_all_monsters().items():
             for monster in party:
                 if monster.is_fainted:
                     params = {"name": monster.name.upper()}
@@ -1074,7 +1074,7 @@ class CombatState(CombatAnimations):
 
         * Monsters will be removed from play here
         """
-        for monster_party in self.monsters_in_play.values():
+        for monster_party in self.field_monsters.get_all_monsters().values():
             for monster in monster_party:
                 self.animate_hp(monster)
                 self.apply_status_effects(monster)
@@ -1141,27 +1141,18 @@ class CombatState(CombatAnimations):
 
     @property
     def active_monsters(self) -> Sequence[Monster]:
-        """
-        List of any non-defeated monsters on battlefield.
-
-        Returns:
-            Sequence of active monsters.
-        """
-        return list(chain.from_iterable(self.monsters_in_play.values()))
+        """List of any non-defeated monsters on battlefield."""
+        return self.field_monsters.active_monsters
 
     @property
     def monsters_in_play_right(self) -> Sequence[Monster]:
-        """
-        List of any monsters in battle (right side).
-        """
-        return self.monsters_in_play[self.players[0]]
+        """List of any monsters in battle (right side)."""
+        return self.field_monsters.get_monsters(self.players[0])
 
     @property
     def monsters_in_play_left(self) -> Sequence[Monster]:
-        """
-        List of any monsters in battle (left side).
-        """
-        return self.monsters_in_play[self.players[1]]
+        """List of any monsters in battle (left side)."""
+        return self.field_monsters.get_monsters(self.players[1])
 
     @property
     def all_monsters_right(self) -> Sequence[Monster]:

@@ -177,6 +177,17 @@ class Technique:
     def full_recharge(self) -> None:
         self.next_use = 0
 
+    def execute_tech_action(
+        self,
+        session: Session,
+        combat_instance: CombatState,
+        user: Monster,
+        target: Monster,
+    ) -> TechEffectResult:
+        """Executes the tech action and returns the result."""
+        self.combat_state = combat_instance
+        return self.use(session, user, target)
+
     def use(
         self, session: Session, user: Monster, target: Monster
     ) -> TechEffectResult:

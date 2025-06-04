@@ -441,9 +441,9 @@ class AI:
         self.character = character
         self.monster = monster
         self.opponents: list[Monster] = (
-            combat.monsters_in_play[combat.players[1]]
+            combat.field_monsters.get_monsters(combat.players[1])
             if character == combat.players[0]
-            else combat.monsters_in_play[combat.players[0]]
+            else combat.field_monsters.get_monsters(combat.players[0])
         )
 
         self.evaluator = OpponentEvaluator(

@@ -57,13 +57,13 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         self.combat = cmb
         self.character = monster.owner
         self.monster = monster
-        self.party = cmb.monsters_in_play[self.character]
+        self.party = cmb.field_monsters.get_monsters(self.character)
         if self.character == cmb.players[0]:
             self.enemy = cmb.players[1]
-            self.opponents = cmb.monsters_in_play[self.enemy]
+            self.opponents = cmb.field_monsters.get_monsters(self.enemy)
         if self.character == cmb.players[1]:
             self.enemy = cmb.players[0]
-            self.opponents = cmb.monsters_in_play[self.enemy]
+            self.opponents = cmb.field_monsters.get_monsters(self.enemy)
         self.menu_visibility = {
             "menu_fight": True,
             "menu_monster": True,
@@ -424,7 +424,10 @@ class CombatTargetMenuState(Menu[Monster]):
             yield self._create_menu_item(self.monster)
             return
 
-        for player, monsters in self.combat_state.monsters_in_play.items():
+        for (
+            player,
+            monsters,
+        ) in self.combat_state.field_monsters.get_all_monsters().items():
             targeting_class = (
                 "own_monster" if player == self.character else "enemy_monster"
             )
@@ -441,7 +444,9 @@ class CombatTargetMenuState(Menu[Monster]):
 
     def _create_menu_item(self, monster: Monster) -> MenuItem[Monster]:
         """Creates a menu item for a given monster."""
-        sprite = self.combat_state._monster_sprite_map[monster]
+        sprite = self.combat_state.sprite_map.get_sprite(monster)
+        if sprite is None:
+            raise KeyError(f"Sprite not found for entity: {monster.name}")
         item = MenuItem(self.surface, None, monster.name, monster)
         item.rect = sprite.rect.copy()
         item.rect.inflate_ip(tools.scale(1), tools.scale(1))
@@ -495,7 +500,9 @@ class CombatTargetMenuState(Menu[Monster]):
         if selected := self.get_selected_item():
             selected.image = Surface(selected.rect.size, SRCALPHA)
             monster = selected.game_object
-            pos = self.combat_state._monster_sprite_map[monster]
+            pos = self.combat_state.sprite_map.get_sprite(monster)
+            if pos is None:
+                raise KeyError(f"Sprite not found for entity: {monster.name}")
             scale = tools.scale(12)
             selected.rect.center = (
                 pos.rect.centerx - scale,

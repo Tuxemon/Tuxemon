@@ -64,7 +64,9 @@ class CaptureCombinedEffect(CoreEffect):
         """
         capdev_modifier = formula.config_capdev.capdev_modifier
         assert item.combat_state
-        our_monster = item.combat_state.monsters_in_play[self.session.player]
+        our_monster = item.combat_state.field_monsters.get_monsters(
+            self.session.player
+        )
 
         if not our_monster:
             return capdev_modifier

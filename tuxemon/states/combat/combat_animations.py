@@ -9,8 +9,6 @@ from __future__ import annotations
 
 import logging
 from abc import ABC
-from collections import defaultdict
-from collections.abc import MutableMapping
 from functools import partial
 from typing import TYPE_CHECKING, Literal, Optional, Union
 
@@ -26,7 +24,13 @@ from tuxemon.menu.menu import Menu
 from tuxemon.sprite import CaptureDeviceSprite, Sprite
 from tuxemon.tools import scale, scale_sequence
 
-from .combat_ui import CombatUI, HudManager, StatusIconManager
+from .combat_ui import (
+    CombatUI,
+    FieldMonsters,
+    HudManager,
+    MonsterSpriteMap,
+    StatusIconManager,
+)
 
 if TYPE_CHECKING:
     from tuxemon.animation import Animation
@@ -98,13 +102,8 @@ class CombatAnimations(Menu[None], ABC):
         self.players = list(players)
         self.graphics = graphics
         self.is_double = battle_mode == "double"
-
-        self.monsters_in_play: defaultdict[NPC, list[Monster]] = defaultdict(
-            list
-        )
-        self._monster_sprite_map: MutableMapping[
-            Union[NPC, Monster], Sprite
-        ] = {}
+        self.field_monsters = FieldMonsters()
+        self.sprite_map = MonsterSpriteMap()
         self.is_trainer_battle = False
         self.capdevs: list[CaptureDeviceSprite] = []
         self.ui = CombatUI()
@@ -130,7 +129,9 @@ class CombatAnimations(Menu[None], ABC):
 
     def animate_trainer_leave(self, trainer: Union[NPC, Monster]) -> None:
         """Animate the trainer leaving the screen."""
-        sprite = self._monster_sprite_map[trainer]
+        sprite = self.sprite_map.get_sprite(trainer)
+        if sprite is None:
+            raise KeyError(f"Sprite not found for entity: {trainer.name}")
         side = self.get_side(sprite.rect)
         x_diff = scale(-150 if side == "left" else 150)
         self.animate(sprite.rect, x=x_diff, relative=True, duration=0.8)
@@ -194,7 +195,7 @@ class CombatAnimations(Menu[None], ABC):
         )
         monster_sprite.rect.midbottom = feet
         self.sprites.add(monster_sprite)
-        self._monster_sprite_map[monster] = monster_sprite
+        self.sprite_map.add_sprite(monster, monster_sprite)
 
         # Position monster sprite off screen and animate it to final spot
         monster_sprite.rect.top = self.client.screen.get_height()
@@ -227,23 +228,13 @@ class CombatAnimations(Menu[None], ABC):
         Returns:
             The x and y coordinates of the feet position.
         """
-        if is_double and monster in self.monsters_in_play[npc]:
-            monster_index = str(self.monsters_in_play[npc].index(monster))
+        monsters = self.field_monsters.get_monsters(npc)
+        if is_double and monster in monsters:
+            monster_index = str(monsters.index(monster))
         else:
             monster_index = ""
         center = self.hud_manager.get_rect(npc, f"home{monster_index}").center
         return center[0], center[1] + tools.scale(11)
-
-    def update_monster_feet(
-        self, monster: Monster, new_feet: tuple[int, int]
-    ) -> None:
-        """
-        Updates the feet position of a monster sprite.
-
-        This function updates the position of a monster sprite to match the
-        new feet position.
-        """
-        self._monster_sprite_map[monster].rect.midbottom = new_feet
 
     def animate_sprite_spin(self, sprite: Sprite) -> None:
         self.animate(
@@ -282,15 +273,14 @@ class CombatAnimations(Menu[None], ABC):
 
         def kill_monster() -> None:
             """Remove the monster's sprite and HUD elements."""
-            self._monster_sprite_map[monster].kill()
+            self.sprite_map.remove_sprite(monster)
             self.status_icons.remove_monster_icons(monster)
-            del self._monster_sprite_map[monster]
             self.hud_manager.delete_hud(monster)
 
         self.animate_monster_leave(monster)
         self.task(kill_monster, 2)
 
-        for monsters in self.monsters_in_play.values():
+        for monsters in self.field_monsters.get_all_monsters().values():
             if monster in monsters:
                 monsters.remove(monster)
 
@@ -365,7 +355,9 @@ class CombatAnimations(Menu[None], ABC):
         return "left" if rect.centerx < scale(100) else "right"
 
     def animate_monster_leave(self, monster: Monster) -> None:
-        sprite = self._monster_sprite_map[monster]
+        sprite = self.sprite_map.get_sprite(monster)
+        if sprite is None:
+            raise KeyError(f"Sprite not found for entity: {monster.name}")
         x_diff = (
             -scale(150) if self.get_side(sprite.rect) == "left" else scale(150)
         )
@@ -660,13 +652,13 @@ class CombatAnimations(Menu[None], ABC):
                 bottom=back_island.rect.bottom - scale(12),
                 centerx=back_island.rect.centerx,
             )
-            self._monster_sprite_map[opponent] = enemy
+            self.sprite_map.add_sprite(opponent, enemy)
         else:
             enemy = opp_mon.get_sprite("front")
             enemy.rect.bottom = back_island.rect.bottom - scale(24)
             enemy.rect.centerx = back_island.rect.centerx
-            self._monster_sprite_map[opp_mon] = enemy
-            self.monsters_in_play[opponent].append(opp_mon)
+            self.sprite_map.add_sprite(opp_mon, enemy)
+            self.field_monsters.add_monster(opponent, opp_mon)
             self.update_hud(opponent)
 
         self.sprites.add(enemy)
@@ -688,7 +680,7 @@ class CombatAnimations(Menu[None], ABC):
                 centerx=front_island.rect.centerx,
             )
 
-        self._monster_sprite_map[player] = player_back
+        self.sprite_map.add_sprite(player, player_back)
         self.flip_sprites(enemy, player_back)
         self.animate_sprites(enemy, back_island, front_island, player_back)
         if not self.is_trainer_battle:
@@ -776,7 +768,9 @@ class CombatAnimations(Menu[None], ABC):
         Returns:
             The animated item sprite.
         """
-        monster_sprite = self._monster_sprite_map[monster]
+        monster_sprite = self.sprite_map.get_sprite(monster)
+        if monster_sprite is None:
+            raise KeyError(f"Sprite not found for entity: {monster.name}")
         sprite = self.load_sprite(item.sprite)
         animate = partial(
             self.animate, sprite.rect, transition="in_quad", duration=1.0
@@ -805,7 +799,9 @@ class CombatAnimations(Menu[None], ABC):
             item: The capture device used to capture the monster.
             sprite: The sprite to animate.
         """
-        monster_sprite = self._monster_sprite_map[monster]
+        monster_sprite = self.sprite_map.get_sprite(monster)
+        if monster_sprite is None:
+            raise KeyError(f"Sprite not found for entity: {monster.name}")
         capdev = self.animate_throwing(monster, item)
         animate = partial(
             self.animate, capdev.rect, transition="in_quad", duration=1.0
@@ -819,8 +815,7 @@ class CombatAnimations(Menu[None], ABC):
         sprite.rect.midbottom = monster_sprite.rect.midbottom
 
         def kill_monster() -> None:
-            self._monster_sprite_map[monster].kill()
-            del self._monster_sprite_map[monster]
+            self.sprite_map.remove_sprite(monster)
             self.hud_manager.delete_hud(monster)
 
         def shake_ball(initial_delay: float) -> None:
@@ -904,7 +899,7 @@ class CombatAnimations(Menu[None], ABC):
             character: The character whose HUD needs to be updated.
             animate: Whether to animate the HUD update. Defaults to True.
         """
-        monsters = self.monsters_in_play.get(character)
+        monsters = self.field_monsters.get_monsters(character)
         if not monsters:
             return
 

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Generator
+from functools import partial
 from typing import TYPE_CHECKING
 
 import pygame
@@ -100,7 +101,7 @@ class TechniqueMenuState(Menu[Technique]):
             self.client.pop_state()  # close the confirm dialog
 
             menu = self.client.push_state(MonsterMenuState(self.char))
-            menu.is_valid_entry = technique.validate_monster  # type: ignore[assignment]
+            menu.is_valid_entry = partial(technique.validate_monster, local_session)  # type: ignore[method-assign]
             menu.on_menu_selection = use_technique  # type: ignore[assignment]
 
         def cancel() -> None:

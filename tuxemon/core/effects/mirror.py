@@ -34,8 +34,8 @@ class MirrorEffect(CoreEffect):
         combat = tech.combat_state
         assert combat
 
-        user_sprite = combat._monster_sprite_map.get(user)
-        target_sprite = combat._monster_sprite_map.get(target)
+        user_sprite = combat.sprite_map.get_sprite(user)
+        target_sprite = combat.sprite_map.get_sprite(target)
 
         assert user_sprite and target_sprite
 
@@ -48,8 +48,8 @@ class MirrorEffect(CoreEffect):
             )
             combat.sprites.add(front_user)
             combat.sprites.add(back_target)
-            combat._monster_sprite_map[user] = back_target
-            combat._monster_sprite_map[target] = front_user
+            combat.sprite_map.add_sprite(user, back_target)
+            combat.sprite_map.add_sprite(target, front_user)
             combat.sprites.remove(user_sprite)
             combat.sprites.remove(target_sprite)
 
@@ -63,7 +63,7 @@ class MirrorEffect(CoreEffect):
                 side, midbottom=target_sprite.rect.midbottom
             )
             combat.sprites.add(front_user)
-            combat._monster_sprite_map[target] = front_user
+            combat.sprite_map.add_sprite(target, front_user)
             combat.sprites.remove(target_sprite)
 
         elif self.direction == "target_to_user":
@@ -76,7 +76,7 @@ class MirrorEffect(CoreEffect):
                 side, midbottom=user_sprite.rect.midbottom
             )
             combat.sprites.add(back_target)
-            combat._monster_sprite_map[user] = back_target
+            combat.sprite_map.add_sprite(user, back_target)
             combat.sprites.remove(user_sprite)
 
         return TechEffectResult(name=tech.name, success=True)

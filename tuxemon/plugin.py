@@ -46,12 +46,12 @@ class PluginMetadata:
     dependencies: list[str] = field(default_factory=list)
 
     @classmethod
-    def from_yaml(cls, metadata_file: str) -> Optional[PluginMetadata]:
+    def from_yaml(cls, metadata_file: Path) -> Optional[PluginMetadata]:
         """Loads metadata from a YAML file and converts the version field."""
-        if not os.path.exists(metadata_file):
+        if not metadata_file.exists():
             return None
 
-        with open(metadata_file, encoding="utf-8") as f:
+        with metadata_file.open(encoding="utf-8") as f:
             data = yaml.safe_load(f)
 
         try:
@@ -263,7 +263,7 @@ class PluginManager:
     def load_plugin_metadata(self, module: str) -> None:
         """Load metadata for plugins and validate dependencies."""
         yaml_path = Path(module.replace(".", "/")).with_suffix(".yaml")
-        metadata = PluginMetadata.from_yaml(yaml_path.as_posix())
+        metadata = PluginMetadata.from_yaml(yaml_path)
 
         if metadata is None:
             logger.error(f"No metadata found for {module}.yaml, skipping.")

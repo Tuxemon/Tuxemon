@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import ItemEffect, ItemEffectResult
+from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 from tuxemon.db import db
 from tuxemon.element import Element
 
@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class SwitchTypeEffect(ItemEffect):
+class SwitchTypeEffect(CoreEffect):
     """
     Changes monster type.
 
@@ -33,16 +33,15 @@ class SwitchTypeEffect(ItemEffect):
     name = "switch_type"
     element: str
 
-    def apply(
-        self, session: Session, item: Item, target: Union[Monster, None]
+    def apply_item_target(
+        self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
         elements = list(db.database["element"])
-        if target:
-            if self.element != "random":
-                ele = Element(self.element)
-                if ele not in target.types:
-                    target.types = [ele]
-            else:
-                random_target_element = random.choice(elements)
-                target.types = [Element(random_target_element)]
-        return ItemEffectResult(name=item.name, success=target is not None)
+        if self.element != "random":
+            ele = Element(self.element)
+            if ele not in target.types:
+                target.types = [ele]
+        else:
+            random_target_element = random.choice(elements)
+            target.types = [Element(random_target_element)]
+        return ItemEffectResult(name=item.name, success=True)

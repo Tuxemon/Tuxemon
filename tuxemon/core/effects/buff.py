@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import ItemEffect, ItemEffectResult
+from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 from tuxemon.db import StatType
 
 if TYPE_CHECKING:
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class BuffEffect(ItemEffect):
+class BuffEffect(CoreEffect):
     """
     Increases or decreases target's stats by percentage temporarily.
 
@@ -29,11 +29,9 @@ class BuffEffect(ItemEffect):
     statistic: StatType
     percentage: float
 
-    def apply(
-        self, session: Session, item: Item, target: Union[Monster, None]
+    def apply_item_target(
+        self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
-        assert target
-
         if self.statistic not in list(StatType):
             raise ValueError(f"{self.statistic} isn't among {list(StatType)}")
 

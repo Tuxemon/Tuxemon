@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import get_target_monsters
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.event.conditions.common import CommonCondition
 from tuxemon.prepare import RECHARGE_RANGE
 
@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class CoolDownEffect(TechEffect):
+class CoolDownEffect(CoreEffect):
     """
     CoolDown is an effect that modifies the next_use value of a monster's
     techniques, delaying their availability within a specified recharge range.
@@ -37,7 +37,7 @@ class CoolDownEffect(TechEffect):
     parameter: str
     value: str
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
 

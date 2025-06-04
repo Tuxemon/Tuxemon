@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING
 
 from tuxemon import formula
-from tuxemon.core.core_effect import ItemEffect, ItemEffectResult
+from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 from tuxemon.db import SeenStatus
 
 if TYPE_CHECKING:
@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 @dataclass
-class CaptureCombinedEffect(ItemEffect):
+class CaptureCombinedEffect(CoreEffect):
     """Attempts to capture the target."""
 
     name = "capture_combined"
@@ -28,10 +28,9 @@ class CaptureCombinedEffect(ItemEffect):
     lower_bound: float
     upper_bound: float
 
-    def apply(
-        self, session: Session, item: Item, target: Union[Monster, None]
+    def apply_item_target(
+        self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
-        assert target
         self.session = session
 
         # Calculate status modifier

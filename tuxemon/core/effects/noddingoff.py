@@ -6,7 +6,7 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.locale import T
 from tuxemon.technique.technique import Technique
 
@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class NoddingOffEffect(StatusEffect):
+class NoddingOffEffect(CoreEffect):
     """
     This effect has a chance to apply the nodding off status effect.
 
@@ -33,7 +33,7 @@ class NoddingOffEffect(StatusEffect):
     name = "noddingoff"
     chance: float
 
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         extra: list[str] = []

@@ -33,8 +33,8 @@ class Player(NPC):
         cls, session: Session, world: WorldState, slug: str = PLAYER_NPC
     ) -> Player:
         """Creates a player instance only if one doesn't already exist."""
-        if session.player is None:
-            session.player = cls(slug, world)
+        if not session.has_player():
+            session.set_player(cls(slug, world))
         return session.player
 
     def update(self, time_delta: float) -> None:

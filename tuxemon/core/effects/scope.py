@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class ScopeEffect(TechEffect):
+class ScopeEffect(CoreEffect):
     """
     Scope: scan monster stats.
 
@@ -23,7 +23,7 @@ class ScopeEffect(TechEffect):
 
     name = "scope"
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         params = {

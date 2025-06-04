@@ -9,7 +9,7 @@ from uuid import UUID, uuid4
 
 from tuxemon.constants import paths
 from tuxemon.core.core_condition import CoreCondition
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.core.core_manager import ConditionManager, EffectManager
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import Range, db
@@ -72,7 +72,7 @@ class Technique:
 
         if Technique.effect_manager is None:
             Technique.effect_manager = EffectManager(
-                TechEffect, paths.CORE_EFFECT_PATH.as_posix()
+                CoreEffect, paths.CORE_EFFECT_PATH.as_posix()
             )
         if Technique.condition_manager is None:
             Technique.condition_manager = ConditionManager(
@@ -91,6 +91,11 @@ class Technique:
         method = cls(save_data)
         method.load(slug)
         return method
+
+    @property
+    def is_recharging(self) -> bool:
+        """Returns whether the technique is currently recharging."""
+        return self.next_use > 0
 
     def load(self, slug: str) -> None:
         """
@@ -157,7 +162,6 @@ class Technique:
     def advance_round(self) -> None:
         """
         Advance the counter for this technique if used.
-
         """
         self.counter += 1
 
@@ -197,7 +201,6 @@ class Technique:
     def set_stats(self) -> None:
         """
         Reset technique stats default value.
-
         """
         self.potency = self.default_potency
         self.power = self.default_power
@@ -205,7 +208,6 @@ class Technique:
     def get_state(self) -> Mapping[str, Any]:
         """
         Prepares a dictionary of the technique to be saved to a file.
-
         """
         save_data = {
             attr: getattr(self, attr)
@@ -220,7 +222,6 @@ class Technique:
     def set_state(self, save_data: Mapping[str, Any]) -> None:
         """
         Loads information from saved data.
-
         """
         if not save_data:
             return

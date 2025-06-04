@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import fainted
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.db import Range
 from tuxemon.formula import simple_damage_calculate
 from tuxemon.monster import Monster
@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class RevengeEffect(StatusEffect):
+class RevengeEffect(CoreEffect):
     """
     Revenge:
     The next time you are attacked, the attacker takes the same amount of
@@ -30,7 +30,7 @@ class RevengeEffect(StatusEffect):
 
     name = "revenge"
 
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         done: bool = False

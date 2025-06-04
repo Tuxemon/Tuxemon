@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import fainted
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class HarpoonedEffect(StatusEffect):
+class HarpoonedEffect(CoreEffect):
     """
     Harpooned: If you swap out, take damage equal to 1/8th your maximum HP
 
@@ -27,7 +27,7 @@ class HarpoonedEffect(StatusEffect):
     name = "harpooned"
     divisor: int
 
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         if status.phase == "add_monster_into_play":

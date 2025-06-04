@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import fainted
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class WildEffect(StatusEffect):
+class WildEffect(CoreEffect):
     """
     Wild: 1/4 chance each turn that instead of using the chosen
     technique, you take 1/8 your maximum HP in unmodified damage.
@@ -32,7 +32,7 @@ class WildEffect(StatusEffect):
     chance: float
     divisor: int
 
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         tech: list[Technique] = []

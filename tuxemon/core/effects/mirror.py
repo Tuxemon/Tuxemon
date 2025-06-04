@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class MirrorEffect(TechEffect):
+class MirrorEffect(CoreEffect):
     """
     A mirror effect that switches the user and target sprites.
 
@@ -28,7 +28,7 @@ class MirrorEffect(TechEffect):
     name = "mirror"
     direction: str
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         combat = tech.combat_state

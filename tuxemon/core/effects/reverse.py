@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import get_target_monsters
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class ReverseEffect(TechEffect):
+class ReverseEffect(CoreEffect):
     """
     Reverse "Switch" effect:
     it returns the original monster type.
@@ -31,7 +31,7 @@ class ReverseEffect(TechEffect):
     name = "reverse"
     objectives: str
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         combat = tech.combat_state

@@ -12,7 +12,7 @@ from pygame.surface import Surface
 from tuxemon import graphics, prepare
 from tuxemon.constants import paths
 from tuxemon.core.core_condition import CoreCondition
-from tuxemon.core.core_effect import ItemEffect, ItemEffectResult
+from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 from tuxemon.core.core_manager import ConditionManager, EffectManager
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import ItemCategory, State, db
@@ -66,7 +66,7 @@ class Item:
 
         if Item.effect_manager is None:
             Item.effect_manager = EffectManager(
-                ItemEffect, paths.CORE_EFFECT_PATH.as_posix()
+                CoreEffect, paths.CORE_EFFECT_PATH.as_posix()
             )
         if Item.condition_manager is None:
             Item.condition_manager = ConditionManager(

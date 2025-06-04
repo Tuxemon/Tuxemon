@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon import formula
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class MoneyEffect(TechEffect):
+class MoneyEffect(CoreEffect):
     """
     A tech effect that rewards the player with money if successful,
     or damages the monster if it fails.
@@ -28,7 +28,7 @@ class MoneyEffect(TechEffect):
 
     name = "money"
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         extra: list[str] = []

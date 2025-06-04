@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING
 
 from tuxemon import formula
-from tuxemon.core.core_effect import ItemEffect, ItemEffectResult
+from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 from tuxemon.db import SeenStatus
 from tuxemon.technique.technique import Technique
 
@@ -20,15 +20,14 @@ logger = logging.getLogger(__name__)
 
 
 @dataclass
-class CaptureEffect(ItemEffect):
+class CaptureEffect(CoreEffect):
     """Attempts to capture the target."""
 
     name = "capture"
 
-    def apply(
-        self, session: Session, item: Item, target: Union[Monster, None]
+    def apply_item_target(
+        self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
-        assert target
         self.session = session
 
         # Calculate status modifier

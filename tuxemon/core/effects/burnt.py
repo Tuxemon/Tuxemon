@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.formula import weakest_link
 from tuxemon.locale import T
 
@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class BurntEffect(StatusEffect):
+class BurntEffect(CoreEffect):
     """
     This effect has a chance to apply the burnt status.
 
@@ -28,7 +28,7 @@ class BurntEffect(StatusEffect):
     name = "burnt"
     divisor: int
 
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         burnt: bool = False

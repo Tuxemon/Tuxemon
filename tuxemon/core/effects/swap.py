@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from functools import partial
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class SwapEffect(TechEffect):
+class SwapEffect(CoreEffect):
     """
     Used just for combat: change order of monsters.
 
@@ -28,7 +28,7 @@ class SwapEffect(TechEffect):
 
     name = "swap"
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         # TODO: implement actions as events, so that combat state can find them

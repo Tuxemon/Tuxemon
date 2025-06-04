@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
-from tuxemon.core.core_effect import ItemEffect, ItemEffectResult
+from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 from tuxemon.db import CategoryStatus
 
 if TYPE_CHECKING:
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class RestoreEffect(ItemEffect):
+class RestoreEffect(CoreEffect):
     """
     Remove status/statuses.
 
@@ -32,10 +32,9 @@ class RestoreEffect(ItemEffect):
     name = "restore"
     category: Union[str, None] = None
 
-    def apply(
-        self, session: Session, item: Item, target: Union[Monster, None]
+    def apply_item_target(
+        self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
-        assert target
         if self.category:
             if (
                 self.category == CategoryStatus.positive

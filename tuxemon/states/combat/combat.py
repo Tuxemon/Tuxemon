@@ -222,7 +222,7 @@ class CombatState(CombatAnimations):
             surface: Surface where to draw.
         """
         super().draw(surface)
-        self.ui.draw_all_ui(self.graphics, self.hud)
+        self.ui.draw_all_ui(self.graphics, self.hud_manager.hud_map)
 
     def determine_phase(
         self, phase: Optional[CombatPhase]
@@ -1037,7 +1037,7 @@ class CombatState(CombatAnimations):
                 self.text_anim.add_xp_message(mex)
             if winner.owner and winner.owner.isplayer:
                 self.task(partial(self.animate_exp, winner), 2.5)
-                self.task(partial(self.delete_hud, winner), 3.2)
+                self.task(partial(self.hud_manager.delete_hud, winner), 3.2)
                 self.task(partial(self.update_hud, winner.owner, False), 3.2)
 
     def animate_party_status(self) -> None:

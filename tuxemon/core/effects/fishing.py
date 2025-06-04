@@ -6,17 +6,16 @@ import logging
 import random
 from dataclasses import dataclass
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Union
+from typing import TYPE_CHECKING, Any
 
 import yaml
 
 from tuxemon.constants import paths
-from tuxemon.core.core_effect import ItemEffect, ItemEffectResult
+from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 from tuxemon.db import MonsterModel, db
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
-    from tuxemon.monster import Monster
     from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
@@ -75,14 +74,12 @@ class Loader:
 
 
 @dataclass
-class FishingEffect(ItemEffect):
+class FishingEffect(CoreEffect):
     """This effect triggers fishing."""
 
     name = "fishing"
 
-    def apply(
-        self, session: Session, item: Item, target: Union[Monster, None]
-    ) -> ItemEffectResult:
+    def apply_item(self, session: Session, item: Item) -> ItemEffectResult:
         if not lookup_cache:
             _lookup_monsters()
 

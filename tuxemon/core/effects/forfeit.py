@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import set_var
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.db import OutputBattle
 from tuxemon.locale import T
 
@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class ForfeitEffect(TechEffect):
+class ForfeitEffect(CoreEffect):
     """
     Forfeit allows player to forfeit.
 
@@ -26,7 +26,7 @@ class ForfeitEffect(TechEffect):
 
     name = "forfeit"
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         combat = tech.combat_state

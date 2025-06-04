@@ -3,7 +3,9 @@
 import unittest
 from unittest.mock import MagicMock, patch
 
+from tuxemon.menu.input import InputMenu
 from tuxemon.state import HookManager, State, StateManager, StateRepository
+from tuxemon.states.world.worldstate import WorldState
 
 
 def create_state(name):
@@ -295,3 +297,24 @@ class WhenEmpty(StateManagerTestBase):
 
     def test_no_states_current_state_is_none(self):
         self.assertEqual(self.sm.current_state, None)
+
+
+class TestStateManagerResumeCallCount(unittest.TestCase):
+    def setUp(self):
+        self.state_manager = StateManager(
+            "game", HookManager(), StateRepository()
+        )
+        self.world_state = MagicMock(spec=WorldState)
+        self.input_menu = MagicMock(spec=InputMenu)
+        self.state_manager.push_state(self.world_state)
+
+    def test_resume_called_when_popping_input_menu(self):
+        self.state_manager.push_state(self.input_menu)
+        self.input_menu.confirm()
+        self.state_manager.update(0.1)
+        self.world_state.resume.assert_called()
+
+    def test_resume_called_when_popping_state(self):
+        self.state_manager.push_state(self.input_menu)
+        self.state_manager.pop_state()
+        self.world_state.resume.assert_called()

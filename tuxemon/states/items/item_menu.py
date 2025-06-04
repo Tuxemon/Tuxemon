@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Generator, Sequence
+from functools import partial
 from typing import TYPE_CHECKING, Optional
 
 import pygame
@@ -208,7 +209,7 @@ class ItemMenuState(Menu[Item]):
             self.client.remove_state_by_name("ChoiceState")
             if item.behaviors.requires_monster_menu:
                 menu = self.client.push_state(MonsterMenuState(self.char))
-                menu.is_valid_entry = item.validate_monster  # type: ignore[assignment]
+                menu.is_valid_entry = partial(item.validate_monster, local_session)  # type: ignore[method-assign]
                 menu.on_menu_selection = use_item_with_monster  # type: ignore[assignment]
             else:
                 use_item_without_monster()

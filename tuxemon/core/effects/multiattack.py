@@ -6,7 +6,7 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class MultiAttackEffect(TechEffect):
+class MultiAttackEffect(CoreEffect):
     """
     Multiattack #: Do # attacks.
 
@@ -29,7 +29,7 @@ class MultiAttackEffect(TechEffect):
     name = "multiattack"
     times: int
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         assert tech.combat_state

@@ -95,7 +95,7 @@ class TestCanEvolve(unittest.TestCase):
     def setUp(self):
         self.mon = Monster()
         with patch.object(Player, "__init__", mockPlayer):
-            local_session.player = Player()
+            local_session.set_player(Player())
             self.player = local_session.player
 
     def test_no_owner(self):

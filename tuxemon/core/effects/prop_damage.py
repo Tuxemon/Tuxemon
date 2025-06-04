@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import get_target_monsters
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class PropDamageEffect(TechEffect):
+class PropDamageEffect(CoreEffect):
     """
     Proportional Damage:
     This effect does damage to the enemy equal to % of the target's maximum HP.
@@ -33,7 +33,7 @@ class PropDamageEffect(TechEffect):
     objectives: str
     proportional: float
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
 

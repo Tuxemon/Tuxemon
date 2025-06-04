@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING
 
 from tuxemon.combat import set_var
-from tuxemon.core.core_effect import ItemEffect, ItemEffectResult
+from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class ParkEffect(ItemEffect):
+class ParkEffect(CoreEffect):
     """
     Handles the items used in the park.
 
@@ -28,11 +28,9 @@ class ParkEffect(ItemEffect):
     name = "park"
     method: str
 
-    def apply(
-        self, session: Session, item: Item, target: Union[Monster, None]
+    def apply_item_target(
+        self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
-        assert target
-
         if self.method == "capture":
             labels = [
                 "spyder_park_afraid",

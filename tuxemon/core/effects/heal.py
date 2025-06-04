@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
 from tuxemon.combat import has_status
-from tuxemon.core.core_effect import ItemEffect, ItemEffectResult
+from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 from tuxemon.db import ItemCategory
 from tuxemon.locale import T
 
@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class HealEffect(ItemEffect):
+class HealEffect(CoreEffect):
     """
     Heals the target by 'amount' hp.
 
@@ -35,12 +35,9 @@ class HealEffect(ItemEffect):
     amount: Union[int, float]
     heal_type: str
 
-    def apply(
-        self, session: Session, item: Item, target: Union[Monster, None]
+    def apply_item_target(
+        self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
-        if not target:
-            raise ValueError("Target cannot be None")
-
         category = ItemCategory.potion
         if has_status(target, "festering") and item.category == category:
             return ItemEffectResult(

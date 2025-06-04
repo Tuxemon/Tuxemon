@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.status.status import Status
 
 if TYPE_CHECKING:
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class ExhaustedEffect(StatusEffect):
+class ExhaustedEffect(CoreEffect):
     """
     Exhausted status
 
@@ -22,7 +22,7 @@ class ExhaustedEffect(StatusEffect):
 
     name = "exhausted"
 
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         player = target.owner

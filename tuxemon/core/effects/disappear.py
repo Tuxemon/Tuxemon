@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.states.combat.combat_classes import EnqueuedAction
 from tuxemon.technique.technique import Technique
 
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class DisappearEffect(TechEffect):
+class DisappearEffect(CoreEffect):
     """
     Tuxemon disappears. It's followed by "appear".
 
@@ -26,14 +26,14 @@ class DisappearEffect(TechEffect):
     name = "disappear"
     attack: str
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         combat = tech.combat_state
         assert combat
 
         # Get the user's sprite
-        user_sprite = combat._monster_sprite_map.get(user, None)
+        user_sprite = combat.sprite_map.get_sprite(user)
         if user_sprite and user_sprite.is_visible():
             # Make the user disappear
             user_sprite.toggle_visible()

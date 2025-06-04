@@ -3,29 +3,26 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import ItemEffect, ItemEffectResult
+from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 from tuxemon.event import get_npc_pos
 from tuxemon.map import get_coords, get_direction
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
-    from tuxemon.monster import Monster
     from tuxemon.session import Session
 
 
 @dataclass
-class RemoveEntityEffect(ItemEffect):
+class RemoveEntityEffect(CoreEffect):
     """
     Removes the NPC and creates a variable.
     """
 
     name = "remove_entity"
 
-    def apply(
-        self, session: Session, item: Item, target: Union[Monster, None]
-    ) -> ItemEffectResult:
+    def apply_item(self, session: Session, item: Item) -> ItemEffectResult:
         remove: bool = False
         client = session.client
         player = session.player

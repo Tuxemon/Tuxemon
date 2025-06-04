@@ -124,13 +124,13 @@ class TestMonsterActions(unittest.TestCase):
         action = ActionManager()
         condition = ConditionManager()
         self.mock_screen = MagicMock()
-        local_session.client = MagicMock()
+        local_session.set_client(MagicMock())
         local_session.client.event_engine = EventEngine(
             local_session, action, condition
         )
         with patch.object(Player, "__init__", mockPlayer):
             self.action = local_session.client.event_engine
-            local_session.player = Player()
+            local_session.set_player(Player())
             self.player = local_session.player
             self.player.monsters = []
             self._monster_model = {"agnite": self._agnite}

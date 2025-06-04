@@ -9,7 +9,7 @@ from uuid import UUID, uuid4
 
 from tuxemon.constants import paths
 from tuxemon.core.core_condition import CoreCondition
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.core.core_manager import ConditionManager, EffectManager
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import Range, db
@@ -72,7 +72,7 @@ class Technique:
 
         if Technique.effect_manager is None:
             Technique.effect_manager = EffectManager(
-                TechEffect, paths.CORE_EFFECT_PATH.as_posix()
+                CoreEffect, paths.CORE_EFFECT_PATH.as_posix()
             )
         if Technique.condition_manager is None:
             Technique.condition_manager = ConditionManager(

@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import fainted
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.monster import Monster
 from tuxemon.technique.technique import Technique
 
@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class PricklyBackEffect(StatusEffect):
+class PricklyBackEffect(CoreEffect):
     """
     Each time you are hit by a Physical move the attacker takes damage equal to
     your maximum HP divided by the divisor.
@@ -30,7 +30,7 @@ class PricklyBackEffect(StatusEffect):
     divisor: int
     ranges: str
 
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         done: bool = False

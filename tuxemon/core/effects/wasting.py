@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import fainted
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class WastingEffect(StatusEffect):
+class WastingEffect(CoreEffect):
     """
     Wasting: Take #/16 of your maximum HP in damage each turn
     where # = the number of turns that you have had this status.
@@ -28,7 +28,7 @@ class WastingEffect(StatusEffect):
     name = "wasting"
     divisor: int
 
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         done: bool = False

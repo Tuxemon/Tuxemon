@@ -30,7 +30,7 @@ class TestVariableActions(unittest.TestCase):
         self.mock_screen = MagicMock()
         with patch.object(Player, "__init__", mockPlayer):
             self.action = EventEngine(local_session, action, condition)
-            local_session.player = Player()
+            local_session.set_player(Player())
             self.player = local_session.player
 
     def test_set_variable(self):
@@ -161,7 +161,7 @@ class TestActionsSetPlayer(unittest.TestCase):
         self.mock_screen = MagicMock()
         with patch.object(Player, "__init__", mockPlayer):
             self.action = EventEngine(local_session, action, condition)
-            local_session.player = Player()
+            local_session.set_player(Player())
             self.player = local_session.player
 
     def test_set_player_name(self):
@@ -180,7 +180,7 @@ class TestBattleActions(unittest.TestCase):
         self.mock_screen = MagicMock()
         with patch.object(Player, "__init__", mockPlayer):
             self.action = EventEngine(local_session, action, condition)
-            local_session.player = Player()
+            local_session.set_player(Player())
             self.player = local_session.player
 
     def test_set_battle_won(self):
@@ -227,10 +227,10 @@ class TestCharacterActions(unittest.TestCase):
         action = ActionManager()
         condition = ConditionManager()
         self.mock_screen = MagicMock()
-        local_session.client = MagicMock()
+        local_session.set_client(MagicMock())
         with patch.object(Player, "__init__", mockPlayer):
             self.action = EventEngine(local_session, action, condition)
-            local_session.player = Player()
+            local_session.set_player(Player())
             self.player = local_session.player
 
     def test_char_speed_between_limits(self):

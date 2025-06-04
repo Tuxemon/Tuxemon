@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -14,14 +14,14 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class FesteringEffect(StatusEffect):
+class FesteringEffect(CoreEffect):
     """
     This effect has a chance to apply the festering status effect.
     """
 
     name = "festering"
 
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         return StatusEffectResult(name=status.name, success=True)

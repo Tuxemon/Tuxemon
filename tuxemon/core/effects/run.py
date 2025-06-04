@@ -7,7 +7,7 @@ from typing import TYPE_CHECKING, Any, Optional
 
 from tuxemon import formula
 from tuxemon.combat import set_var
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
@@ -18,12 +18,12 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class RunEffect(TechEffect):
+class RunEffect(CoreEffect):
     """Run allows monster to run."""
 
     name = "run"
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         extra: list[str] = []

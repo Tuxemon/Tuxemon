@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import fainted
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.formula import simple_lifeleech
 
 if TYPE_CHECKING:
@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class LifeGiftEffect(StatusEffect):
+class LifeGiftEffect(CoreEffect):
     """
     This effect has a chance to apply the lifegift status effect.
 
@@ -30,7 +30,7 @@ class LifeGiftEffect(StatusEffect):
     name = "lifegift"
     divisor: int
 
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         lifegift: bool = False

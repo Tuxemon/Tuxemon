@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon import formula
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.shape import Shape
 
 if TYPE_CHECKING:
@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class PhotogenesisEffect(TechEffect):
+class PhotogenesisEffect(CoreEffect):
     """
     Healing effect based on photogenesis or not.
 
@@ -33,7 +33,7 @@ class PhotogenesisEffect(TechEffect):
     peak_hour: int
     end_hour: int
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         player = user.owner

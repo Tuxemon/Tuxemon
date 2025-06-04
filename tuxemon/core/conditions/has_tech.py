@@ -25,4 +25,4 @@ class HasTechCondition(CoreCondition):
     expected: str
 
     def test_with_monster(self, session: Session, target: Monster) -> bool:
-        return any(t.slug == self.expected for t in target.moves)
+        return target.moves.has_move(self.expected)

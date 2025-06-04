@@ -137,7 +137,7 @@ class Evolution:
         if evolution_item.traded is not None:
             conditions.append(evolution_item.traded == self.monster.traded)
         if evolution_item.moves:
-            moves_slugs = {mov.slug for mov in self.monster.moves}
+            moves_slugs = {mov.slug for mov in self.monster.moves.get_moves()}
             conditions.extend(
                 monster in moves_slugs for monster in evolution_item.moves
             )

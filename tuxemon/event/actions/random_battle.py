@@ -81,7 +81,7 @@ class RandomBattleAction(EventAction):
             level = random.randint(self.min_level, self.max_level)
             current_monster = Monster.create(monster.slug)
             current_monster.set_level(level)
-            current_monster.set_moves(level)
+            current_monster.moves.set_moves(level)
             current_monster.set_capture(today_ordinal())
             current_monster.current_hp = current_monster.hp
             current_monster.money_modifier = level

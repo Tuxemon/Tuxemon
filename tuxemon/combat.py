@@ -119,7 +119,7 @@ def party_no_tech(party: list[Monster]) -> list[str]:
     """
     Return list of monsters without techniques.
     """
-    return [p.name for p in party if not p.moves]
+    return [p.name for p in party if not p.moves.has_moves()]
 
 
 def has_effect_param(

@@ -44,7 +44,7 @@ class CheckMaxTechCondition(EventCondition):
         monsters = [
             monster
             for monster in player.monsters
-            if len(monster.moves) > max_techs
+            if len(monster.moves.current_moves) > max_techs
         ]
         session.client.event_data[self.name] = monsters
         return bool(monsters)

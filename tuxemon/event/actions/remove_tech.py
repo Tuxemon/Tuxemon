@@ -42,7 +42,7 @@ class RemoveTechAction(EventAction):
         tech_id = uuid.UUID(player.game_variables[self.tech_id])
 
         for monster in player.monsters:
-            technique = monster.find_tech_by_id(tech_id)
+            technique = monster.moves.find_tech_by_id(tech_id)
             if technique:
-                monster.moves.remove(technique)
+                monster.moves.forget(technique)
                 logger.info(f"{technique.name} removed from {monster.name}")

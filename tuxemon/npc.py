@@ -607,10 +607,8 @@ class NPC(Entity[NPCState]):
         Parameters:
             tech: The slug name of the technique.
         """
-        for technique in self.monsters:
-            for move in technique.moves:
-                if move.slug == tech:
-                    return True
+        for monster in self.monsters:
+            return monster.moves.has_move(tech)
         return False
 
     def has_type(self, element: str) -> bool:

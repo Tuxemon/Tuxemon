@@ -35,7 +35,9 @@ class StuckEffect(CoreEffect):
     ) -> StatusEffectResult:
         done: bool = False
         ranges = self.ranges.split(":")
-        moves = [tech for tech in target.moves if tech.range in ranges]
+        moves = [
+            tech for tech in target.moves.get_moves() if tech.range in ranges
+        ]
         if status.phase == "perform_action_status":
             done = True
         # applies effect on techniques

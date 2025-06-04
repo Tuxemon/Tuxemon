@@ -116,8 +116,7 @@ class Monster:
 
         self.modifiers = ModifierStats()
 
-        self.moves: list[Technique] = []
-        self.moveset: list[MonsterMovesetItemModel] = []
+        self.moves = MonsterMovesHandler()
         self.evolutions: list[MonsterEvolutionItemModel] = []
         self.evolution_handler = Evolution(self)
         self.history: list[MonsterHistoryItemModel] = []
@@ -146,7 +145,6 @@ class Monster:
         self.taste_cold: str = "tasteless"
         self.taste_warm: str = "tasteless"
 
-        self.max_moves = prepare.MAX_MOVES
         self.txmn_id = 0
         self.capture = 0
         self.capture_device = "tuxeball"
@@ -259,7 +257,7 @@ class Monster:
             results.lower_catch_resistance or self.lower_catch_resistance
         )
 
-        self.moveset.extend(results.moveset or [])
+        self.moves.set_moveset(results.moveset or [])
         self.evolutions.extend(results.evolutions or [])
         self.history.extend(results.history or [])
 
@@ -329,16 +327,6 @@ class Monster:
         return self.sprite_handler.get_sprite(
             sprite_type, frame_duration, scale, **kwargs
         )
-
-    def learn(self, technique: Technique) -> None:
-        """
-        Adds a technique to this tuxemon's moveset.
-
-        Parameters:
-            technique: The technique for the monster to learn.
-        """
-
-        self.moves.append(technique)
 
     def reset_types(self) -> None:
         """
@@ -500,51 +488,6 @@ class Monster:
         self.total_experience = self.experience_required()
         self.set_stats()
 
-    def set_moves(self, level: int) -> None:
-        """
-        Set monster moves according to the level.
-
-        Parameters:
-            level: The level of the monster.
-
-        """
-        eligible_moves = [
-            move.technique
-            for move in self.moveset
-            if move.level_learned <= level
-        ]
-        moves_to_learn = eligible_moves[-prepare.MAX_MOVES :]
-        for move in moves_to_learn:
-            tech = Technique.create(move)
-            self.learn(tech)
-
-    def update_moves(self, levels_earned: int) -> list[Technique]:
-        """
-        Set monster moves according to the levels increased.
-        Excludes the moves already learned.
-
-        Parameters:
-            levels_earned: Number of levels earned.
-
-        Returns:
-            techniques: list containing the learned techniques
-
-        """
-        new_level = self.level - levels_earned
-        new_moves = self.moves.copy()
-        new_techniques = []
-        for move in self.moveset:
-            if (
-                move.technique not in (m.slug for m in self.moves)
-                and new_level < move.level_learned <= self.level
-            ):
-                technique = Technique.create(move.technique)
-                new_moves.append(technique)
-                new_techniques.append(technique)
-
-        self.moves = new_moves
-        return new_techniques
-
     def experience_required(self, level_ofs: int = 0) -> int:
         """
         Gets the experience requirement for the given level.
@@ -581,7 +524,7 @@ class Monster:
             save_data["body"] = body
 
         save_data["status"] = encode_status(self.status)
-        save_data["moves"] = encode_moves(self.moves)
+        save_data["moves"] = self.moves.encode_moves()
         save_data["held_item"] = self.held_item.encode_item()
         save_data["modifiers"] = self.modifiers.to_dict()
 
@@ -600,9 +543,8 @@ class Monster:
 
         self.load(save_data["slug"])
 
-        self.moves = []
-        for move in decode_moves(save_data.get("moves")):
-            self.moves.append(move)
+        self.moves.decode_moves(save_data)
+
         self.status = []
         for cond in decode_status(save_data.get("status")):
             self.status.append(cond)
@@ -639,22 +581,12 @@ class Monster:
         Ends combat, recharges all moves and heals statuses.
         """
         self.out_of_range = False
-        for move in self.moves:
-            move.full_recharge()
+        self.moves.full_recharge_moves()
 
         if "faint" in (s.slug for s in self.status):
             self.faint()
         else:
             self.status = []
-
-    def find_tech_by_id(self, instance_id: UUID) -> Optional[Technique]:
-        """
-        Finds a tech among the monster's moves which has the given id.
-
-        """
-        return next(
-            (m for m in self.moves if m.instance_id == instance_id), None
-        )
 
 
 class MonsterSpriteHandler:
@@ -850,6 +782,138 @@ class MonsterItemHandler:
         self, json_data: Optional[Mapping[str, Any]]
     ) -> Optional[Item]:
         return Item(save_data=json_data) if json_data is not None else None
+
+
+class MonsterMovesHandler:
+    def __init__(
+        self,
+        moves: Optional[list[Technique]] = None,
+        moveset: Optional[Sequence[MonsterMovesetItemModel]] = None,
+    ):
+        self.moves = moves if moves is not None else []
+        self.moveset = moveset if moveset is not None else []
+
+    @property
+    def current_moves(self) -> list[Technique]:
+        return self.moves
+
+    def set_moveset(self, moveset: Sequence[MonsterMovesetItemModel]) -> None:
+        """Sets the raw moveset data from the database."""
+        self.moveset = moveset
+
+    def learn(self, technique: Technique) -> None:
+        """
+        Adds a technique to this tuxemon's moveset.
+
+        Parameters:
+            technique: The technique for the monster to learn.
+        """
+
+        self.moves.append(technique)
+
+    def forget(self, technique: Technique) -> None:
+        """
+        Removes a technique from the monster's moveset.
+
+        Parameters:
+            technique: The technique to forget.
+        """
+        if technique in self.moves:
+            self.moves.remove(technique)
+
+    def replace_move(self, index: int, new_move: Technique) -> None:
+        """
+        Replaces a move at a given index with a new technique.
+
+        Parameters:
+            index: The position of the move to replace.
+            new_move: The new technique to insert.
+        """
+        if 0 <= index < len(self.moves):
+            self.moves[index] = new_move
+
+    def set_moves(
+        self, level: int, max_moves: int = prepare.MAX_MOVES
+    ) -> None:
+        """
+        Set monster moves according to the level.
+
+        Parameters:
+            level: The level of the monster.
+            max_moves: The maximum number of moves the monster can learn.
+        """
+        eligible_moves = [
+            move.technique
+            for move in self.moveset
+            if move.level_learned <= level
+        ]
+        moves_to_learn = eligible_moves[-max_moves:]
+        for move in moves_to_learn:
+            tech = Technique.create(move)
+            self.learn(tech)
+
+    def update_moves(
+        self, monster_level: int, levels_earned: int
+    ) -> list[Technique]:
+        """
+        Set monster moves according to the levels increased.
+        Excludes the moves already learned.
+
+        Parameters:
+            monster_level: The current level of the monster.
+            levels_earned: Number of levels earned.
+
+        Returns:
+            techniques: list containing the learned techniques
+        """
+        new_level = monster_level - levels_earned
+        new_moves = self.moves.copy()
+        new_techniques = []
+        for move in self.moveset:
+            if (
+                move.technique not in (m.slug for m in self.moves)
+                and new_level < move.level_learned <= monster_level
+            ):
+                technique = Technique.create(move.technique)
+                new_moves.append(technique)
+                new_techniques.append(technique)
+
+        self.moves = new_moves
+        return new_techniques
+
+    def recharge_moves(self) -> None:
+        for move in self.moves:
+            move.recharge()
+
+    def full_recharge_moves(self) -> None:
+        for move in self.moves:
+            move.full_recharge()
+
+    def set_stats(self) -> None:
+        for move in self.moves:
+            move.set_stats()
+
+    def find_tech_by_id(self, instance_id: UUID) -> Optional[Technique]:
+        """Finds a technique among the monster's moves which has the given id."""
+        return next(
+            (m for m in self.moves if m.instance_id == instance_id), None
+        )
+
+    def has_moves(self) -> bool:
+        return bool(self.moves)
+
+    def has_move(self, move_slug: str) -> bool:
+        return any(move.slug == move_slug for move in self.get_moves())
+
+    def get_moves(self) -> list[Technique]:
+        return self.moves
+
+    def encode_moves(self) -> Sequence[Mapping[str, Any]]:
+        return encode_moves(self.moves)
+
+    def decode_moves(self, json_data: Optional[Mapping[str, Any]]) -> None:
+        if json_data and "moves" in json_data:
+            self.moves = [mov for mov in decode_moves(json_data["moves"])]
 
 
 def decode_monsters(

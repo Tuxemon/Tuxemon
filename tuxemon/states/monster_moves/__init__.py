@@ -63,7 +63,7 @@ class MonsterMovesState(PygameMenuState):
         lab1.translate(fix_measure(width, 0.50), fix_measure(height, 0.10))
         # moves
         moveset: list[Technique] = []
-        moveset = monster.moves
+        moveset = monster.moves.get_moves()
         output = sorted(moveset, key=lambda x: x.tech_id)
 
         _height = 0.10

@@ -473,7 +473,9 @@ def replace_text(session: Session, text: str) -> str:
             + "_cold}}": T.translate(f"taste_{monster.taste_cold}"),
             "${{monster_"
             + str(i)
-            + "_moves}}": " - ".join(_move.name for _move in monster.moves),
+            + "_moves}}": " - ".join(
+                _move.name for _move in monster.moves.get_moves()
+            ),
         }
 
         # Add unit-specific monster replacements

@@ -24,10 +24,13 @@ class TestRewardSystem(unittest.TestCase):
         self.loser.experience_modifier = 1.5
         self.loser.status = []
         self.loser.current_hp = 0
+        self.loser.moves = MagicMock()
 
         self.winner = MagicMock(spec=Monster)
         self.winner.name = "rockitten"
         self.winner.status = []
+        self.winner.level = 5
+        self.winner.moves = MagicMock()
         self.winner.current_hp = 50
         self.winner.owner = MagicMock(spec=NPC)
         self.winner.owner.isplayer = True
@@ -142,6 +145,8 @@ class TestRewardSystem(unittest.TestCase):
             MagicMock(
                 spec=Monster,
                 give_experience=MagicMock(),
+                moves=MagicMock(),
+                level=5,
                 status=[],
                 current_hp=50,
                 is_fainted=False,

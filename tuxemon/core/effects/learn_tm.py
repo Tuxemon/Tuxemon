@@ -29,9 +29,7 @@ class LearnTmEffect(CoreEffect):
     def apply_item_target(
         self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
-        target_moves = {tech.slug for tech in target.moves}
-
-        if self.technique not in target_moves:
+        if not target.moves.has_move(self.technique):
             client = session.client
             var = f"{self.name}:{str(target.instance_id.hex)}"
             client.event_engine.execute_action("set_variable", [var], True)

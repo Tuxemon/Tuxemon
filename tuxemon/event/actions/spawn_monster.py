@@ -93,17 +93,16 @@ class SpawnMonsterAction(EventAction):
         # Create a new child monster
         child = Monster.create(seed_slug)
         child.set_level(level)
-        child.set_moves(level)
+        child.moves.set_moves(level)
         child.set_capture(today_ordinal())
         child.name = name
         child.current_hp = child.hp
 
         # Give the child a random move from the father
-        father_moves = len(father.moves)
+        father_moves = len(father.moves.current_moves)
         replace_tech = random.randrange(0, 2)
-        child.moves[replace_tech] = father.moves[
-            random.randrange(0, father_moves - 1)
-        ]
+        random_move = father.moves.get_moves()[random.randrange(father_moves)]
+        child.moves.replace_move(replace_tech, random_move)
 
         # Add the child to the character's monsters
         character = get_npc(session, self.character)

@@ -131,7 +131,7 @@ class TechniqueMenuState(Menu[Technique]):
         )
 
         moveset: list[Technique] = []
-        moveset = self.monster.moves
+        moveset = self.monster.moves.get_moves()
         output = sorted(moveset, key=lambda x: x.tech_id)
 
         for tech in output:

@@ -81,4 +81,4 @@ class AddTechAction(EventAction):
                     f"{self.accuracy} must be between {lower} and {upper}",
                 )
         logger.info(f"{monster.name} learned {tech.name}!")
-        monster.learn(tech)
+        monster.moves.learn(tech)

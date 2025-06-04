@@ -41,10 +41,9 @@ class OverwriteTechAction(EventAction):
     added: str
 
     def overwrite(self, monster: Monster, removed: Technique) -> None:
-        slot = monster.moves.index(removed)
+        slot = monster.moves.current_moves.index(removed)
         added = Technique.create(self.added)
-        monster.moves.remove(removed)
-        monster.moves.insert(slot, added)
+        monster.moves.replace_move(slot, added)
         logger.info(f"{removed.name} replaced by {added.name}")
 
     def start(self, session: Session) -> None:
@@ -54,7 +53,7 @@ class OverwriteTechAction(EventAction):
             return
         tech_id = uuid.UUID(player.game_variables[self.removed])
         for monster in player.monsters:
-            technique = monster.find_tech_by_id(tech_id)
+            technique = monster.moves.find_tech_by_id(tech_id)
             if technique is None:
                 logger.error(f"Technique not found in {monster.name}")
                 return

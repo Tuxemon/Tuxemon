@@ -206,15 +206,14 @@ class Learn(MonsterTestBase):
     def setUp(self):
         self.mon = Monster()
         self.mon.name = "agnite"
-        self.mon.moves = []
         self._tech_model = {"ram": self._tech}
         db.database["technique"] = self._tech_model
 
     def test_learn(self):
         tech = Technique.create("ram")
-        self.mon.learn(tech)
-        self.assertEqual(len(self.mon.moves), 1)
-        move = self.mon.moves[0]
+        self.mon.moves.learn(tech)
+        self.assertEqual(len(self.mon.moves.current_moves), 1)
+        move = self.mon.moves.current_moves[0]
         self.assertEqual(move.slug, "ram")
         self.assertEqual(move.tech_id, 69)
         self.assertEqual(move.accuracy, 0.85)

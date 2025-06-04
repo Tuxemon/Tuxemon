@@ -63,7 +63,7 @@ class WildEncounterAction(EventAction):
         current_monster = Monster.create(self.monster_slug)
         current_monster.level = self.monster_level
         current_monster.set_level(self.monster_level)
-        current_monster.set_moves(self.monster_level)
+        current_monster.moves.set_moves(self.monster_level)
         current_monster.current_hp = current_monster.hp
         if self.exp is not None:
             current_monster.experience_modifier = self.exp

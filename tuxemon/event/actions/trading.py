@@ -73,7 +73,7 @@ def _create_traded_monster(removed: Monster, added: str) -> Monster:
     """Create a new monster with the same level and moves as the removed monster."""
     new = Monster.create(added)
     new.set_level(removed.level)
-    new.set_moves(removed.level)
+    new.moves.set_moves(removed.level)
     new.set_capture(today_ordinal())
     new.current_hp = new.hp
     new.traded = True

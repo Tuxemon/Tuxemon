@@ -54,7 +54,9 @@ class CoolDownEffect(CoreEffect):
 
         objectives = self.objectives.split(":")
         monsters = get_target_monsters(objectives, tech, user, target)
-        moves_to_update = [move for mon in monsters for move in mon.moves]
+        moves_to_update = [
+            move for mon in monsters for move in mon.moves.get_moves()
+        ]
 
         if self.parameter == "types":
             moves_to_update = [

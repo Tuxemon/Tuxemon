@@ -61,7 +61,7 @@ class AddMonsterAction(EventAction):
 
         monster = Monster.create(monster_slug)
         monster.set_level(self.monster_level)
-        monster.set_moves(self.monster_level)
+        monster.moves.set_moves(self.monster_level)
         monster.set_capture(today_ordinal())
         monster.current_hp = monster.hp
 

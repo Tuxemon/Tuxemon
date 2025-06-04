@@ -449,7 +449,9 @@ class AI:
         self.evaluator = OpponentEvaluator(
             self.combat, self.monster, self.opponents
         )
-        self.tracker = TechniqueTracker(self.session, self.monster.moves)
+        self.tracker = TechniqueTracker(
+            self.session, self.monster.moves.get_moves()
+        )
 
         self.decision_strategy = (
             TrainerAIDecisionStrategy(self.evaluator, self.tracker)

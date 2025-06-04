@@ -37,7 +37,7 @@ class LearnMmEffect(CoreEffect):
         if not lookup_cache:
             _lookup_techniques(self.element)
 
-        moves = [tech.slug for tech in target.moves]
+        moves = [tech.slug for tech in target.moves.get_moves()]
 
         available = list(set(list(lookup_cache.keys())) - set(moves))
 

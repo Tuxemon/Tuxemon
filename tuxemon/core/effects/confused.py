@@ -78,7 +78,7 @@ class ConfusedEffect(CoreEffect):
 def _get_available_techniques(user: Monster) -> list[Technique]:
     return [
         move
-        for move in user.moves
+        for move in user.moves.get_moves()
         if not move.is_recharging
         and not has_effect_param(move, "give", "condition", "confused")
     ]

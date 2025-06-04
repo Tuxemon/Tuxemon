@@ -354,8 +354,7 @@ class CombatState(CombatAnimations):
                         if player in self.human_players:
                             self._decision_queue.append(monster)
                         else:
-                            for tech in monster.moves:
-                                tech.recharge()
+                            monster.moves.recharge_moves()
                             AI(self.session, self, monster, player)
 
         elif phase == CombatPhase.ACTION:
@@ -462,19 +461,16 @@ class CombatState(CombatAnimations):
     def handle_single_action(self, pending_monsters: list[Monster]) -> None:
         if pending_monsters:
             monster = pending_monsters.pop(0)
-            for tech in monster.moves:
-                tech.recharge()
+            monster.moves.recharge_moves()
             self.show_monster_action_menu(monster)
 
     def handle_double_action(self, pending_monsters: list[Monster]) -> None:
         if len(pending_monsters) >= 2:
             monster1 = pending_monsters.pop(0)
-            for tech in monster1.moves:
-                tech.recharge()
+            monster1.moves.recharge_moves()
             self.show_monster_action_menu(monster1)
             monster2 = pending_monsters.pop(0)
-            for tech in monster2.moves:
-                tech.recharge()
+            monster2.moves.recharge_moves()
             self.show_monster_action_menu(monster2)
         elif pending_monsters:
             self.handle_single_action(pending_monsters)
@@ -1310,8 +1306,7 @@ class CombatState(CombatAnimations):
                 # reset type
                 mon.reset_types()
                 # reset technique stats
-                for tech in mon.moves:
-                    tech.set_stats()
+                mon.moves.set_stats()
 
         # clear action queue
         self._action_queue.clear_queue()

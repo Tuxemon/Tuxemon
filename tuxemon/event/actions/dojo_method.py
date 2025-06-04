@@ -64,9 +64,9 @@ class DojoMethodAction(EventAction):
             # Get the moves that the monster can learn but hasn't yet
             learnable_moves = [
                 tech.technique
-                for tech in monster.moveset
+                for tech in monster.moves.moveset
                 if tech.level_learned <= monster.level
-                and tech.technique not in [mov.slug for mov in monster.moves]
+                and not monster.moves.has_move(tech.technique)
             ]
 
             if not learnable_moves:
@@ -123,7 +123,7 @@ class DojoMethodAction(EventAction):
     def learn(self, monster: Monster, technique: str) -> None:
         """Deny the evolution"""
         tech = Technique.create(technique)
-        monster.learn(tech)
+        monster.moves.learn(tech)
         logger.info(f"{tech.name} learned!")
         self.client.sound_manager.play_sound("sound_confirm")
         self.client.pop_state()

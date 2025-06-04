@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import fainted
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.db import Range
 from tuxemon.formula import simple_damage_calculate
 from tuxemon.monster import Monster
@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class RetaliateEffect(StatusEffect):
+class RetaliateEffect(CoreEffect):
     """
     Retaliate:
     Accumulate all damage taken between entering this state and next dealing
@@ -31,7 +31,7 @@ class RetaliateEffect(StatusEffect):
 
     name = "retaliate"
 
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         done: bool = False

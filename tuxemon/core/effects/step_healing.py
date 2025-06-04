@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import get_target_monsters
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.formula import simple_heal
 
 if TYPE_CHECKING:
@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class StepHealingEffect(TechEffect):
+class StepHealingEffect(CoreEffect):
     """
     This effect calculates healing to the target based on the combined
     step count of the party. The healing is scaled using a specified
@@ -35,7 +35,7 @@ class StepHealingEffect(TechEffect):
     healing_factor: float
     scaling_constant: float
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         monsters: list[Monster] = []

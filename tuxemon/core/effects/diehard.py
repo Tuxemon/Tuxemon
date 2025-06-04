@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import fainted
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class DieHardEffect(StatusEffect):
+class DieHardEffect(CoreEffect):
     """
     DieHard: When HP would fall below 1, set it to 1, remove this status and
     print "X fights through the pain."
@@ -30,7 +30,7 @@ class DieHardEffect(StatusEffect):
     name = "diehard"
     hp: int
 
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         extra: list[str] = []

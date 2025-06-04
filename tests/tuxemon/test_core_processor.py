@@ -5,98 +5,100 @@ from unittest.mock import MagicMock, Mock
 
 from tuxemon.core.core_condition import CoreCondition
 from tuxemon.core.core_effect import (
-    ItemEffect,
+    CoreEffect,
     ItemEffectResult,
-    StatusEffect,
     StatusEffectResult,
-    TechEffect,
     TechEffectResult,
 )
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
-from tuxemon.item.item import Item
 from tuxemon.monster import Monster
 from tuxemon.session import Session
-from tuxemon.status.status import Status
-from tuxemon.technique.technique import Technique
 
 
 class TestEffectProcessor(unittest.TestCase):
     def setUp(self):
-        self.user = Mock(spec=Monster)
-        self.target = Mock(spec=Monster)
-        self.session = Mock(spec=Session)
+        self.session = Mock()
+        self.user = Mock()
+        self.target = Mock()
+        self.technique = Mock()
+        self.technique.name = "Fireball"
 
-        self.technique = Mock(spec=Technique)
-        self.technique.name = ""
-        self.item = Mock(spec=Item)
-        self.item.name = ""
-        self.status = Mock(spec=Status)
-        self.status.name = ""
+        self.tech_effect = Mock(spec=CoreEffect)
+        self.tech_effect.apply_tech_target.return_value = TechEffectResult(
+            name="Fireball",
+            success=True,
+            damage=15,
+            element_multiplier=1.5,
+            should_tackle=False,
+            extras=["Burn"],
+        )
 
-        self.tech_effect = Mock(spec=TechEffect)
-        self.item_effect = Mock(spec=ItemEffect)
-        self.status_effect = Mock(spec=StatusEffect)
-
-        self.effects = [self.tech_effect, self.item_effect, self.status_effect]
-        self.processor = EffectProcessor(self.effects)
+        self.processor = EffectProcessor([self.tech_effect])
 
     def test_process_tech(self):
-        self.tech_effect.apply.return_value = TechEffectResult(
-            name="Technique",
-            success=True,
-            damage=10,
-            element_multiplier=1.2,
-            should_tackle=False,
-            extras=["Critical"],
+        result = self.processor.process_tech(
+            self.session, self.technique, self.user, self.target
         )
 
-        final_result = self.processor.process_tech(
-            session=self.session,
-            source=self.technique,
-            user=self.user,
-            target=self.target,
+        self.assertTrue(result.success)
+        self.assertEqual(result.damage, 15)
+        self.assertEqual(result.element_multiplier, 1.5)
+        self.assertListEqual(result.extras, ["Burn"])
+
+
+class TestEffectProcessorItem(unittest.TestCase):
+    def setUp(self):
+        self.session = Mock()
+        self.target = Mock()
+        self.item = Mock()
+        self.item.name = "Potion"
+
+        self.item_effect = Mock(spec=CoreEffect)
+        self.item_effect.apply_item_target.return_value = ItemEffectResult(
+            name="Potion", success=True, num_shakes=3, extras=["Healing Boost"]
         )
 
-        self.assertTrue(final_result.success)
-        self.assertEqual(final_result.damage, 10)
-        self.assertEqual(final_result.element_multiplier, 1.2)
-        self.assertListEqual(final_result.extras, ["Critical"])
+        self.processor = EffectProcessor([self.item_effect])
 
     def test_process_item(self):
-        self.item_effect.apply.return_value = ItemEffectResult(
-            name="Healing Item",
-            success=True,
-            num_shakes=2,
-            extras=["Heal Boost"],
+        result = self.processor.process_item(
+            self.session, self.item, self.target
         )
 
-        final_result = self.processor.process_item(
-            session=self.session, source=self.item, target=self.target
+        self.assertTrue(result.success)
+        self.assertEqual(result.num_shakes, 3)
+        self.assertListEqual(result.extras, ["Healing Boost"])
+
+
+class TestEffectProcessorStatus(unittest.TestCase):
+    def setUp(self):
+        self.session = Mock()
+        self.target = Mock()
+        self.status = Mock()
+        self.status.name = "Poison"
+
+        self.status_effect = Mock(spec=CoreEffect)
+        self.status_effect.apply_status_target.return_value = (
+            StatusEffectResult(
+                name="Poison",
+                success=True,
+                statuses=["Poisoned"],
+                techniques=["Weaken"],
+                extras=["Extended Duration"],
+            )
         )
 
-        self.assertTrue(final_result.success)
-        self.assertEqual(final_result.num_shakes, 2)
-        self.assertListEqual(final_result.extras, ["Heal Boost"])
+        self.processor = EffectProcessor([self.status_effect])
 
     def test_process_status(self):
-        self.status_effect.apply.return_value = StatusEffectResult(
-            name="Poison Status",
-            success=True,
-            statuses=["Poison"],
-            techniques=["Weaken"],
-            extras=["Duration Boost"],
+        result = self.processor.process_status(
+            self.session, self.status, self.target
         )
 
-        final_result = self.processor.process_status(
-            session=self.session,
-            source=self.status,
-            target=self.target,
-        )
-
-        self.assertTrue(final_result.success)
-        self.assertListEqual(final_result.statuses, ["Poison"])
-        self.assertListEqual(final_result.techniques, ["Weaken"])
-        self.assertListEqual(final_result.extras, ["Duration Boost"])
+        self.assertTrue(result.success)
+        self.assertListEqual(result.statuses, ["Poisoned"])
+        self.assertListEqual(result.techniques, ["Weaken"])
+        self.assertListEqual(result.extras, ["Extended Duration"])
 
 
 class TestConditionProcessor(unittest.TestCase):

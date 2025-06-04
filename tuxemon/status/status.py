@@ -9,7 +9,7 @@ from uuid import UUID, uuid4
 
 from tuxemon.constants import paths
 from tuxemon.core.core_condition import CoreCondition
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.core.core_manager import ConditionManager, EffectManager
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import (
@@ -76,7 +76,7 @@ class Status:
 
         if Status.effect_manager is None:
             Status.effect_manager = EffectManager(
-                StatusEffect, paths.CORE_EFFECT_PATH.as_posix()
+                CoreEffect, paths.CORE_EFFECT_PATH.as_posix()
             )
         if Status.condition_manager is None:
             Status.condition_manager = ConditionManager(

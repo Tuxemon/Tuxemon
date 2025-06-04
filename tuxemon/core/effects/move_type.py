@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class MoveTypeEffect(TechEffect):
+class MoveTypeEffect(CoreEffect):
     """
     Move Type Effect:
     This effect changes the type of a move to match the type of the monster
@@ -38,7 +38,7 @@ class MoveTypeEffect(TechEffect):
     name = "move_type"
     direction: str
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
 

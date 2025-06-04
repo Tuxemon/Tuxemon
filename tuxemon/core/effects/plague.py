@@ -6,7 +6,7 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.db import PlagueType
 from tuxemon.locale import T
 
@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class PlagueEffect(TechEffect):
+class PlagueEffect(CoreEffect):
     """
     Plague is an effect that can infect a monster with a specific disease,
     with a configurable spreadness.
@@ -31,7 +31,7 @@ class PlagueEffect(TechEffect):
     plague_slug: str
     spreadness: float
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
 

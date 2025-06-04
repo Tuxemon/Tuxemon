@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import fainted
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class LifeSwapEffect(TechEffect):
+class LifeSwapEffect(CoreEffect):
     """
     Swaps the current HP amounts of the two monsters.
 
@@ -26,7 +26,7 @@ class LifeSwapEffect(TechEffect):
 
     name = "life_swap"
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         tech.hit = tech.accuracy >= (

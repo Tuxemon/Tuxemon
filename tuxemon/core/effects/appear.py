@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class AppearEffect(TechEffect):
+class AppearEffect(CoreEffect):
     """
     Tuxemon re-appears, it follows "disappear".
 
@@ -22,20 +22,20 @@ class AppearEffect(TechEffect):
 
     name = "appear"
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         combat = tech.combat_state
         assert combat
         # Check if the user is disappeared
-        user_sprite = combat._monster_sprite_map.get(user, None)
+        user_sprite = combat.sprite_map.get_sprite(user)
         if user_sprite and not user_sprite.is_visible():
             # Make the user appear
             user_sprite.toggle_visible()
             user.out_of_range = False
 
         # Check if the target is disappeared
-        target_sprite = combat._monster_sprite_map.get(target, None)
+        target_sprite = combat.sprite_map.get_sprite(target)
         if target_sprite and not target_sprite.is_visible():
             # If the target is disappeared, don't tackle
             target_is_disappeared = True

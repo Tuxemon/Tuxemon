@@ -8,11 +8,10 @@ from typing import TYPE_CHECKING, Optional, Union
 
 from tuxemon.core.core_condition import CoreCondition
 from tuxemon.core.core_effect import (
-    ItemEffect,
+    CoreEffect,
+    EffectResult,
     ItemEffectResult,
-    StatusEffect,
     StatusEffectResult,
-    TechEffect,
     TechEffectResult,
 )
 from tuxemon.plugin import PluginObject
@@ -35,20 +34,39 @@ class EffectProcessor:
     def __init__(self, effects: Sequence[PluginObject]) -> None:
         self.effects = effects
 
+    def process_globally(
+        self,
+        session: Session,
+    ) -> EffectResult:
+        meta_result = EffectResult()
+        if not self.effects:
+            return meta_result
+        for effect in self.effects:
+            if isinstance(effect, CoreEffect):
+                result = effect.apply_globally(session)
+                self._merge_results_global(meta_result, result)
+        return meta_result
+
     def process_tech(
         self,
         session: Session,
         source: Technique,
-        user: Monster,
-        target: Monster,
+        user: Optional[Monster],
+        target: Optional[Monster],
     ) -> TechEffectResult:
         meta_result = TechEffectResult(name=source.name)
         if not self.effects:
             return meta_result
         for effect in self.effects:
-            if isinstance(effect, TechEffect):
-                result = effect.apply(session, source, user, target)
-                self._merge_results_technique(meta_result, result)
+            if isinstance(effect, CoreEffect):
+                if user and target:
+                    result = effect.apply_tech_target(
+                        session, source, user, target
+                    )
+                    self._merge_results_technique(meta_result, result)
+                if user is None and target is None:
+                    result = effect.apply_tech(session, source)
+                    self._merge_results_technique(meta_result, result)
         return meta_result
 
     def process_item(
@@ -61,8 +79,11 @@ class EffectProcessor:
         if not self.effects:
             return meta_result
         for effect in self.effects:
-            if isinstance(effect, ItemEffect):
-                result = effect.apply(session, source, target)
+            if isinstance(effect, CoreEffect):
+                if target:
+                    result = effect.apply_item_target(session, source, target)
+                else:
+                    result = effect.apply_item(session, source)
                 self._merge_results_item(meta_result, result)
         return meta_result
 
@@ -70,16 +91,27 @@ class EffectProcessor:
         self,
         session: Session,
         source: Status,
-        target: Monster,
+        target: Optional[Monster],
     ) -> StatusEffectResult:
         meta_result = StatusEffectResult(name=source.name)
         if not self.effects:
             return meta_result
         for effect in self.effects:
-            if isinstance(effect, StatusEffect):
-                result = effect.apply(session, source, target)
+            if isinstance(effect, CoreEffect):
+                if target:
+                    result = effect.apply_status_target(
+                        session, source, target
+                    )
+                else:
+                    result = effect.apply_status(session, source)
                 self._merge_results_status(meta_result, result)
         return meta_result
+
+    @staticmethod
+    def _merge_results_global(
+        meta_result: EffectResult, result: EffectResult
+    ) -> None:
+        meta_result.success |= result.success
 
     @staticmethod
     def _merge_results_technique(

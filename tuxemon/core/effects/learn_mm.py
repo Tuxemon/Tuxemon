@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import ItemEffect, ItemEffectResult
+from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 from tuxemon.db import TechniqueModel, db
 
 if TYPE_CHECKING:
@@ -19,7 +19,7 @@ lookup_cache: dict[str, TechniqueModel] = {}
 
 
 @dataclass
-class LearnMmEffect(ItemEffect):
+class LearnMmEffect(CoreEffect):
     """
     This effect teaches the target a random type technique.
 
@@ -31,17 +31,17 @@ class LearnMmEffect(ItemEffect):
     name = "learn_mm"
     element: str
 
-    def apply(
-        self, session: Session, item: Item, target: Union[Monster, None]
+    def apply_item_target(
+        self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
         if not lookup_cache:
             _lookup_techniques(self.element)
 
-        moves = [tech.slug for tech in target.moves] if target else []
+        moves = [tech.slug for tech in target.moves]
 
         available = list(set(list(lookup_cache.keys())) - set(moves))
 
-        if available and target:
+        if available:
             tech_slug = random.choice(available)
 
             client = session.client

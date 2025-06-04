@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import get_target_monsters
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.formula import simple_damage_calculate
 
 if TYPE_CHECKING:
@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class StepDamageEffect(TechEffect):
+class StepDamageEffect(CoreEffect):
     """
     This effect calculates damage to the target based on the number of steps
     taken by the monster. The damage is scaled using a specified formula, which
@@ -35,7 +35,7 @@ class StepDamageEffect(TechEffect):
     scaling_factor: float
     scaling_constant: float
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         damage = 0

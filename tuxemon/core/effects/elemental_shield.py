@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import fainted
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.monster import Monster
 from tuxemon.technique.technique import Technique
 
@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class ElementalShieldBackEffect(StatusEffect):
+class ElementalShieldBackEffect(CoreEffect):
     """
     Elemental Shield:
     Each time you are hit by a Special move the attacker takes damage equal to
@@ -31,7 +31,7 @@ class ElementalShieldBackEffect(StatusEffect):
     divisor: int
     ranges: str
 
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         done: bool = False

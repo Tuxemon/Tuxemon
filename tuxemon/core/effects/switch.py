@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import get_target_monsters
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.db import db
 from tuxemon.element import Element
 from tuxemon.locale import T
@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class SwitchEffect(TechEffect):
+class SwitchEffect(CoreEffect):
     """
     Changes monster type.
 
@@ -37,7 +37,7 @@ class SwitchEffect(TechEffect):
     objectives: str
     element: str
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
 

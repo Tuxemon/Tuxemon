@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
@@ -15,14 +15,14 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class LockdownEffect(StatusEffect):
+class LockdownEffect(CoreEffect):
     """
     This effect has a chance to apply the lockdown status effect.
     """
 
     name = "lockdown"
 
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         extra: list[str] = []

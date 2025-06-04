@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class SnipingEffect(StatusEffect):
+class SnipingEffect(CoreEffect):
     """
     Sniping status
 
@@ -22,7 +22,7 @@ class SnipingEffect(StatusEffect):
 
     name = "sniping"
 
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         if status.phase == "perform_action_tech":

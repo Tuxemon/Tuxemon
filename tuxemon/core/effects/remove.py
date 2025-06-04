@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import get_target_monsters, has_status
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class RemoveEffect(TechEffect):
+class RemoveEffect(CoreEffect):
     """
     This effect has a chance to remove a status effect.
 
@@ -33,7 +33,7 @@ class RemoveEffect(TechEffect):
     status: str
     objectives: str
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         monsters: list[Monster] = []

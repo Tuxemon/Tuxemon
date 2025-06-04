@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING
 
 from tuxemon.combat import set_var
-from tuxemon.core.core_effect import ItemEffect, ItemEffectResult
+from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class GainXpEffect(ItemEffect):
+class GainXpEffect(CoreEffect):
     """
     Add exp to the target by 'amount'.
 
@@ -27,10 +27,9 @@ class GainXpEffect(ItemEffect):
     name = "gain_xp"
     amount: int
 
-    def apply(
-        self, session: Session, item: Item, target: Union[Monster, None]
+    def apply_item_target(
+        self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
-        assert target
         set_var(session, self.name, str(target.instance_id.hex))
         client = session.client.event_engine
         _params = [self.name, self.amount]

@@ -35,7 +35,7 @@ from __future__ import annotations
 
 import logging
 import random
-from collections.abc import Iterable, MutableMapping, Sequence
+from collections.abc import Iterable, Sequence
 from enum import Enum
 from functools import partial
 from itertools import chain
@@ -156,9 +156,6 @@ class CombatState(CombatAnimations):
         self.text_anim = TextAnimationManager()
         self._decision_queue: list[Monster] = []
         # player => home areas on screen
-        self._monster_sprite_map: MutableMapping[
-            Union[NPC, Monster], Sprite
-        ] = {}
         self._turn: int = 0
         self._prize: int = 0
         self._captured_mon: Optional[Monster] = None
@@ -546,7 +543,7 @@ class CombatState(CombatAnimations):
             if self.is_double:
                 monster = self.monsters_in_play[player][0]
                 new_feet = self.get_feet_position(player, monster, False)
-                self.update_monster_feet(monster, new_feet)
+                self.sprite_map.update_sprite_position(monster, new_feet)
         else:
             if self.is_double:
                 self._max_positions[player] = 2
@@ -761,9 +758,8 @@ class CombatState(CombatAnimations):
         target: Monster,
     ) -> None:
         action_time = 0.0
-        # action is performed, so now use sprites to animate it
-        # this value will be None if the target is off screen
-        target_sprite = self._monster_sprite_map.get(target, None)
+        # animate action; target sprite is None if off-screen
+        target_sprite = self.sprite_map.get_sprite(target)
         # slightly delay the monster shake, so technique animation
         # is synchronized with the damage shake motion
         hit_delay = 0.0
@@ -819,10 +815,11 @@ class CombatState(CombatAnimations):
         # animation own_monster, technique doesn't tackle
         hit_delay += 0.5
         if method.target["own_monster"]:
-            target_sprite = self._monster_sprite_map.get(user, None)
+            target_sprite = self.sprite_map.get_sprite(user)
 
         if result_tech.should_tackle:
-            user_sprite = self._monster_sprite_map.get(user, None)
+            user_sprite = self.sprite_map.get_sprite(user)
+
             if user_sprite:
                 self.animate_sprite_tackle(user_sprite)
 
@@ -976,7 +973,7 @@ class CombatState(CombatAnimations):
             is_flipped: Whether the animation should be flipped.
         """
         if target_sprite is None:
-            target_sprite = self._monster_sprite_map.get(target, None)
+            target_sprite = self.sprite_map.get_sprite(target)
 
         animation = self._method_cache.get(method, is_flipped)
 

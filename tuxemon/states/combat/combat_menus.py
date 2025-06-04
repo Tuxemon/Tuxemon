@@ -440,7 +440,9 @@ class CombatTargetMenuState(Menu[Monster]):
 
     def _create_menu_item(self, monster: Monster) -> MenuItem[Monster]:
         """Creates a menu item for a given monster."""
-        sprite = self.combat_state._monster_sprite_map[monster]
+        sprite = self.combat_state.sprite_map.get_sprite(monster)
+        if sprite is None:
+            raise KeyError(f"Sprite not found for entity: {monster.name}")
         item = MenuItem(self.surface, None, monster.name, monster)
         item.rect = sprite.rect.copy()
         item.rect.inflate_ip(tools.scale(1), tools.scale(1))
@@ -494,7 +496,9 @@ class CombatTargetMenuState(Menu[Monster]):
         if selected := self.get_selected_item():
             selected.image = Surface(selected.rect.size, SRCALPHA)
             monster = selected.game_object
-            pos = self.combat_state._monster_sprite_map[monster]
+            pos = self.combat_state.sprite_map.get_sprite(monster)
+            if pos is None:
+                raise KeyError(f"Sprite not found for entity: {monster.name}")
             scale = tools.scale(12)
             selected.rect.center = (
                 pos.rect.centerx - scale,

@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.states.combat.combat_classes import EnqueuedAction
 from tuxemon.technique.technique import Technique
 
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class ForesightEffect(TechEffect):
+class ForesightEffect(CoreEffect):
     """
     The ForesightEffect allows you to set a future turn where the associated technique
     will be reused with its power set to the specified number of turns. This effect
@@ -35,7 +35,7 @@ class ForesightEffect(TechEffect):
     name = "foresight"
     turn: int
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
 

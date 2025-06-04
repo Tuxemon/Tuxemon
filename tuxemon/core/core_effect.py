@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, Any, ClassVar, Union
+from typing import TYPE_CHECKING, ClassVar
 
 from tuxemon.tools import cast_dataclass_parameters
 
@@ -41,39 +41,39 @@ class StatusEffectResult(EffectResult):
 
 
 @dataclass
-class Effect:
+class CoreEffect:
     name: ClassVar[str]
 
     def __post_init__(self) -> None:
         cast_dataclass_parameters(self)
 
-    def apply(
-        self, session: Session, *args: Any, **kwargs: Any
-    ) -> EffectResult:
-        raise NotImplementedError(
-            "This method should be implemented by subclasses"
-        )
+    def apply_globally(self, session: Session) -> EffectResult:
+        return EffectResult()
 
-
-@dataclass
-class TechEffect(Effect):
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         return TechEffectResult(name=tech.name)
 
+    def apply_tech(
+        self, session: Session, tech: Technique
+    ) -> TechEffectResult:
+        return TechEffectResult(name=tech.name)
 
-@dataclass
-class ItemEffect(Effect):
-    def apply(
-        self, session: Session, item: Item, target: Union[Monster, None]
+    def apply_item_target(
+        self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
         return ItemEffectResult(name=item.name)
 
+    def apply_item(self, session: Session, item: Item) -> ItemEffectResult:
+        return ItemEffectResult(name=item.name)
 
-@dataclass
-class StatusEffect(Effect):
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
+    ) -> StatusEffectResult:
+        return StatusEffectResult(name=status.name)
+
+    def apply_status(
+        self, session: Session, status: Status
     ) -> StatusEffectResult:
         return StatusEffectResult(name=status.name)

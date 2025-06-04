@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class SacrificeEffect(TechEffect):
+class SacrificeEffect(CoreEffect):
     """
     Sacrifice:
     Monster takes damage equal to its current (or part) HP,
@@ -32,7 +32,7 @@ class SacrificeEffect(TechEffect):
     name = "sacrifice"
     multiplier: float
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
 

@@ -63,6 +63,7 @@ class WorldState(State):
     def __init__(self, session: Session, map_name: str) -> None:
         super().__init__()
         self.session = session
+        self.session.set_world(self)
         self.movement = MovementManager(self.client)
         self.teleporter = Teleporter(self.client, self)
         self.pathfinder = Pathfinder(self.client, self)

@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class EmptyEffect(TechEffect):
+class EmptyEffect(CoreEffect):
     """
     "This effect lets the technique show the animation, but it also prevents
     the technique from failing. Without it, the technique would automatically
@@ -23,7 +23,7 @@ class EmptyEffect(TechEffect):
 
     name = "empty"
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         combat = tech.combat_state

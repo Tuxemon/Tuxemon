@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import has_effect_param
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.locale import T
 from tuxemon.technique.technique import Technique
 
@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class ConfusedEffect(StatusEffect):
+class ConfusedEffect(CoreEffect):
     """
     Confused: Instead of the technique chosen, the Confused monster uses a
     random technique (from the ones they have available, other than the one
@@ -32,7 +32,7 @@ class ConfusedEffect(StatusEffect):
     name = "confused"
     chance: float
 
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         CONFUSED_KEY = self.name

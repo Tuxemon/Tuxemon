@@ -6,7 +6,7 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import StatusEffect, StatusEffectResult
+from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.technique.technique import Technique
 
 if TYPE_CHECKING:
@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class FlinchingEffect(StatusEffect):
+class FlinchingEffect(CoreEffect):
     """
     Flinching: 50% chance to miss your next turn.
     If you do miss your next turn, this status ends.
@@ -29,7 +29,7 @@ class FlinchingEffect(StatusEffect):
     name = "flinching"
     chance: float
 
-    def apply(
+    def apply_status_target(
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         tech: list[Technique] = []

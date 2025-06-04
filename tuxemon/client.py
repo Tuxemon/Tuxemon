@@ -243,6 +243,7 @@ class LocalPygameClient:
     def perform_cleanup(self) -> None:
         """Handles necessary cleanup before shutting down."""
         self.current_music.stop()
+        local_session.reset()
         logger.info("Performing cleanup before exiting...")
 
     def update_states(self, time_delta: float) -> None:

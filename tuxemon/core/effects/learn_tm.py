@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Union
+from typing import TYPE_CHECKING
 
-from tuxemon.core.core_effect import ItemEffect, ItemEffectResult
+from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.item.item import Item
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class LearnTmEffect(ItemEffect):
+class LearnTmEffect(CoreEffect):
     """
     This effect teaches the technique in the parameters.
 
@@ -26,15 +26,12 @@ class LearnTmEffect(ItemEffect):
     name = "learn_tm"
     technique: str
 
-    def apply(
-        self, session: Session, item: Item, target: Union[Monster, None]
+    def apply_item_target(
+        self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
+        target_moves = {tech.slug for tech in target.moves}
 
-        target_moves = (
-            {tech.slug for tech in target.moves} if target else set()
-        )
-
-        if target and self.technique not in target_moves:
+        if self.technique not in target_moves:
             client = session.client
             var = f"{self.name}:{str(target.instance_id.hex)}"
             client.event_engine.execute_action("set_variable", [var], True)

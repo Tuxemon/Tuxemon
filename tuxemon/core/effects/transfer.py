@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.combat import has_status
-from tuxemon.core.core_effect import TechEffect, TechEffectResult
+from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 
 @dataclass
-class TransferEffect(TechEffect):
+class TransferEffect(CoreEffect):
     """
     Transfers a specified condition from one entity to another.
 
@@ -29,7 +29,7 @@ class TransferEffect(TechEffect):
     condition: str
     direction: str
 
-    def apply(
+    def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
         tech.hit = tech.accuracy >= (

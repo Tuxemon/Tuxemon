@@ -765,8 +765,9 @@ class CombatState(CombatAnimations):
         hit_delay = 0.0
         # monster uses move
         method.advance_round()
-        method.combat_state = self
-        result_tech = method.use(self.session, user, target)
+        result_tech = method.execute_tech_action(
+            self.session, self, user, target
+        )
         context = {
             "user": user.name,
             "name": method.name,

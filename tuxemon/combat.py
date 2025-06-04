@@ -95,8 +95,10 @@ def pre_checking(
     ):
         slug = random.choice(infected_slugs)
         method = Technique.create(slug)
-        result_method = method.use(session, monster, target)
-        if result_method.success:
+        result_tech = method.execute_tech_action(
+            session, combat, monster, target
+        )
+        if result_tech.success:
             technique = method
     return technique
 

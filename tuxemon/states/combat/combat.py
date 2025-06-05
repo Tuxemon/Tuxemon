@@ -503,7 +503,7 @@ class CombatState(CombatAnimations):
         def add(menuitem: MenuItem[Monster]) -> None:
             monster = menuitem.game_object
             self.add_monster_into_play(player, monster)
-            self.client.pop_state()
+            self.client.remove_state_by_name("MonsterMenuState")
 
         def validate(menu_item: MenuItem[Monster]) -> bool:
             if isinstance(menu_item, Monster):
@@ -1328,7 +1328,7 @@ class CombatState(CombatAnimations):
         self.phase = None
         # open Tuxepedia if monster is captured
         if self._captured_mon and self._new_tuxepedia:
-            self.client.pop_state()
+            self.client.remove_state_by_name("CombatState")
             params = {"monster": self._captured_mon, "source": self.name}
             self.client.push_state("MonsterInfoState", kwargs=params)
         else:

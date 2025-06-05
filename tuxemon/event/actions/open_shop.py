@@ -65,11 +65,11 @@ class OpenShopAction(EventAction):
             )
 
         def buy_menu(npc: NPC) -> None:
-            session.client.pop_state()
+            session.client.remove_state_by_name("ChoiceState")
             push_buy_menu(npc)
 
         def sell_menu(npc: NPC) -> None:
-            session.client.pop_state()
+            session.client.remove_state_by_name("ChoiceState")
             push_sell_menu(npc)
 
         buy = T.translate("buy")

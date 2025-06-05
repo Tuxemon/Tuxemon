@@ -147,17 +147,17 @@ class WorldMenuState(PygameMenuState):
             # TODO: API for getting the game player obj
             context["monster"] = monster
             context["old_index"] = self.char.monsters.index(monster)
-            self.client.pop_state()  # close the info/move menu
+            self.client.remove_state_by_name("ChoiceState")
 
         def monster_stats(monster: Monster) -> None:
             """Show monster statistics."""
-            self.client.pop_state()
+            self.client.remove_state_by_name("ChoiceState")
             params = {"monster": monster, "source": self.name}
             self.client.push_state("MonsterInfoState", kwargs=params)
 
         def monster_item(monster: Monster) -> None:
             """Show monster item."""
-            self.client.pop_state()
+            self.client.remove_state_by_name("ChoiceState")
             params = {"monster": monster, "source": self.name}
             self.client.push_state("MonsterItemState", kwargs=params)
 
@@ -166,8 +166,8 @@ class WorldMenuState(PygameMenuState):
             success = self.char.release_monster(monster)
 
             if success:
-                self.client.pop_state()
-                self.client.pop_state()
+                self.client.remove_state_by_name("ChoiceState")
+                self.client.remove_state_by_name("DialogState")
                 params = {"name": monster.name.upper()}
                 msg = T.format("tuxemon_released", params)
                 open_dialog(self.client, [msg])
@@ -178,13 +178,12 @@ class WorldMenuState(PygameMenuState):
                 open_dialog(self.client, [T.translate("cant_release")])
 
         def negative_answer() -> None:
-            self.client.pop_state()  # close menu
-            self.client.pop_state()  # close confirmation dialog
+            self.client.remove_state_by_name("ChoiceState")
+            self.client.remove_state_by_name("DialogState")
 
         def release_monster(monster: Monster) -> None:
             """Show release monster confirmation dialog."""
-            # Remove the submenu and replace with a confirmation dialog
-            self.client.pop_state()
+            self.client.remove_state_by_name("ChoiceState")
             params = {"name": monster.name.upper()}
             msg = T.format("release_confirmation", params)
             open_dialog(self.client, [msg])
@@ -197,7 +196,7 @@ class WorldMenuState(PygameMenuState):
 
         def monster_techs(monster: Monster) -> None:
             """Show techniques."""
-            self.client.pop_state()
+            self.client.remove_state_by_name("ChoiceState")
             params = {"monster": monster, "source": self.name}
             self.client.push_state("MonsterMovesState", kwargs=params)
 

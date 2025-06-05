@@ -50,7 +50,7 @@ class TeleportFaintAction(EventAction):
         client = session.client
         current_state = client.current_state
         if current_state and current_state.name == "DialogState":
-            client.pop_state()
+            client.remove_state_by_name("DialogState")
 
         if character.teleport_faint.is_default():
             logger.error(

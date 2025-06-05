@@ -93,7 +93,7 @@ class NuPhoneBanking(PygameMenuState):
                     _param = (_ele, _ele, partial(e_pay, ele, bill_name))
                     var_menu.append(_param)
             if var_menu:
-                self.client.pop_state()
+                self.client.remove_state_by_name("ChoiceState")
                 open_choice_dialog(self.client, (var_menu), True)
             else:
                 params = {"operation": T.translate(op)}
@@ -115,25 +115,25 @@ class NuPhoneBanking(PygameMenuState):
                 open_dialog(self.client, [msg])
 
         def deposit(amount: int) -> None:
-            self.client.pop_state()
-            self.client.pop_state()
+            self.client.remove_state_by_name("ChoiceState")
+            self.client.remove_state_by_name("NuPhoneBanking")
             money_manager.deposit_to_bank(amount)
             money_manager.remove_money(amount)
 
         def withdraw(amount: int) -> None:
-            self.client.pop_state()
-            self.client.pop_state()
+            self.client.remove_state_by_name("ChoiceState")
+            self.client.remove_state_by_name("NuPhoneBanking")
             money_manager.withdraw_from_bank(amount)
             money_manager.add_money(amount)
 
         def pay(amount: int, bill_name: str) -> None:
-            self.client.pop_state()
-            self.client.pop_state()
+            self.client.remove_state_by_name("ChoiceState")
+            self.client.remove_state_by_name("NuPhoneBanking")
             money_manager.pay_bill_with_money(bill_name, amount)
 
         def e_pay(amount: int, bill_name: str) -> None:
-            self.client.pop_state()
-            self.client.pop_state()
+            self.client.remove_state_by_name("ChoiceState")
+            self.client.remove_state_by_name("NuPhoneBanking")
             money_manager.pay_bill_with_deposit(bill_name, amount)
 
         if wallet_player > 0:

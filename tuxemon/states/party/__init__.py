@@ -166,5 +166,5 @@ class PartyState(PygameMenuState):
             event.button in (buttons.BACK, buttons.B, buttons.A)
             and event.pressed
         ):
-            self.client.pop_state()
+            self.client.remove_state_by_name("PartyState")
         return None

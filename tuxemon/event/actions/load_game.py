@@ -53,15 +53,15 @@ class LoadGameAction(EventAction):
             try:
                 old_world = client.get_state_by_name(WorldState)
                 # when game is loaded from world menu
-                client.pop_state()
+                client.remove_state_by_name("LoadMenuState")
                 client.pop_state(old_world)
-                client.pop_state()
+                client.remove_state_by_name("WorldMenuState")
             except ValueError:
                 # when game is loaded from the start menu
-                client.pop_state()
+                client.remove_state_by_name("LoadMenuState")
                 # avoid crash save and load same action
                 if self.index is not None:
-                    client.pop_state()
+                    client.remove_state_by_name("StartState")
 
             map_path = prepare.fetch(
                 "maps", save_data["npc_state"]["current_map"]

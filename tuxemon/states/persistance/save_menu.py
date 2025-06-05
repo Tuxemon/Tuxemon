@@ -154,20 +154,20 @@ class SaveMenuState(PopUpMenu[None]):
 
     def on_menu_selection(self, menuitem: MenuItem[None]) -> None:
         def positive_answer() -> None:
-            self.client.pop_state()  # close confirmation menu
-            self.client.pop_state()  # close save menu
+            self.client.remove_state_by_name("ChoiceState")
+            self.client.remove_state_by_name("SaveMenuState")
 
             self.save()
 
         def negative_answer() -> None:
-            self.client.pop_state()  # close confirmation menu
+            self.client.remove_state_by_name("ChoiceState")
 
         def delete_answer() -> None:
             slot = self.selected_index + 1
             delete_save_slot(slot)
             self.menu_items.clear()
             self.reload_items()
-            self.client.pop_state()  # close confirmation menu
+            self.client.remove_state_by_name("ChoiceState")
 
         def ask_confirmation() -> None:
             # open menu to confirm the save
@@ -184,7 +184,7 @@ class SaveMenuState(PopUpMenu[None]):
         if save_data:
             ask_confirmation()
         else:
-            self.client.pop_state()  # close save menu
+            self.client.remove_state_by_name("SaveMenuState")
             self.save()
 
 

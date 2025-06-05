@@ -37,33 +37,31 @@ logger = logging.getLogger()
 
 def check_battle_legal(character: NPC) -> bool:
     """
-    Checks to see if the character has any monsters fit for battle.
+    Checks if the character has monsters fit for battle.
 
     Parameters:
         character: Character object.
 
     Returns:
-        Whether the character has monsters that can fight.
-
+        True if the character's monsters can fight, False otherwise.
     """
     if not character.monsters:
         logger.error(f"Cannot start battle, {character.name} has no monsters!")
         return False
-    else:
-        if fainted_party(character.monsters):
-            logger.error(
-                f"Cannot start battle, {character.name}'s monsters are all DEAD."
-            )
-            return False
-        else:
-            if party_no_tech(character.monsters):
-                no_tech = party_no_tech(character.monsters)
-                logger.error(
-                    f"Cannot start battle, {no_tech} has/have no techniques."
-                )
-                return False
-            else:
-                return True
+
+    if fainted_party(character.monsters):
+        logger.error(
+            f"Cannot start battle, {character.name}'s monsters are all DEAD."
+        )
+        return False
+
+    if party_no_tech(character.monsters):
+        logger.error(
+            f"Cannot start battle, {party_no_tech(character.monsters)} has/have no techniques."
+        )
+        return False
+
+    return True
 
 
 def pre_checking(
@@ -160,7 +158,6 @@ def get_awake_monsters(
 
     Yields:
         Non-fainted monsters.
-
     """
     awake_monsters = [
         monster
@@ -233,7 +230,6 @@ def battlefield(session: Session, monster: Monster) -> None:
         session: Session
         monster: The monster on the ground.
         players: All the remaining players.
-
     """
     set_var(session, "battle_last_monster_name", monster.name)
     set_var(session, "battle_last_monster_level", str(monster.level))
@@ -404,7 +400,6 @@ def set_var(session: Session, key: str, value: str) -> None:
         session: Session
         key: The key game variable.
         value: The value game variable.
-
     """
     client = session.client.event_engine
     var = f"{key}:{value}"
@@ -422,7 +417,6 @@ def set_battle(
         output: Output of the battle: won, lost, draw
         player: The human player.
         enemy: The enemy player.
-
     """
     fighter = "player" if player.isplayer else player.slug
     opponent = "player" if enemy.isplayer else enemy.slug
@@ -449,7 +443,6 @@ def build_hud_text(
 
     Returns:
         A string representing the HUD text for the monster.
-
     """
     if menu == "MainParkMenuState" and monster.owner and is_right:
         # Special case for MainParkMenuState
@@ -487,7 +480,6 @@ def retrieve_from_party(party: list[Monster], method: str) -> Monster:
     Notes:
         If the method is not recognized, a random monster from
         the party will be returned.
-
     """
     methods = {
         "lv_highest": ("level", max),

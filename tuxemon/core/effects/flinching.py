@@ -39,7 +39,7 @@ class FlinchingEffect(CoreEffect):
             assert user and empty
             skip = Technique.create(empty)
             tech = [skip]
-            user.status.clear()
+            user.status.clear_status()
         return StatusEffectResult(
             name=status.name, success=True, techniques=tech
         )

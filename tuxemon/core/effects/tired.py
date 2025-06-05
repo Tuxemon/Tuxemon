@@ -30,5 +30,5 @@ class TiredEffect(CoreEffect):
         if status.phase == "perform_action_tech":
             params = {"target": target.name.upper()}
             extra = [T.format("combat_state_tired_end", params)]
-            target.status.clear()
+            target.status.clear_status()
         return StatusEffectResult(name=status.name, success=True, extras=extra)

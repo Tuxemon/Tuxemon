@@ -26,5 +26,5 @@ class EnragedEffect(CoreEffect):
         self, session: Session, status: Status, target: Monster
     ) -> StatusEffectResult:
         if status.phase == "perform_action_tech":
-            target.status.clear()
+            target.status.clear_status()
         return StatusEffectResult(name=status.name, success=True)

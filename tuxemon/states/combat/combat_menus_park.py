@@ -41,7 +41,7 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
         self.player = cmb.players[0]  # human
         self.enemy = cmb.players[1]  # ai
         self.monster = monster
-        self.opponents = cmb.monsters_in_play[self.enemy]
+        self.opponents = cmb.field_monsters.get_monsters(self.enemy)
         self.description: Optional[str] = None
 
     def calculate_menu_rectangle(self) -> Rect:
@@ -86,7 +86,7 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
     def run(self) -> None:
         for remove in self.combat.players:
             self.combat.clean_combat()
-            del self.combat.monsters_in_play[remove]
+            self.combat.field_monsters.remove_npc(remove)
             self.combat.players.remove(remove)
 
     def check_category(self, cat_slug: str) -> int:

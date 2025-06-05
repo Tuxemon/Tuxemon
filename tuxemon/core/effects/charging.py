@@ -29,14 +29,14 @@ class ChargingEffect(CoreEffect):
         assert player
         _statuses: list[Status] = []
         if status.phase == "perform_action_tech":
-            target.status.clear()
+            target.status.clear_status()
             if status.repl_tech:
                 cond = Status.create(status.repl_tech)
                 cond.steps = player.steps
                 cond.link = target
                 _statuses = [cond]
         if status.phase == "perform_action_item":
-            target.status.clear()
+            target.status.clear_status()
             if status.repl_item:
                 cond = Status.create(status.repl_item)
                 cond.steps = player.steps

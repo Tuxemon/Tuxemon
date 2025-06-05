@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Union
 
-from tuxemon.combat import has_status
 from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 from tuxemon.db import ItemCategory
 from tuxemon.locale import T
@@ -39,7 +38,7 @@ class HealEffect(CoreEffect):
         self, session: Session, item: Item, target: Monster
     ) -> ItemEffectResult:
         category = ItemCategory.potion
-        if has_status(target, "festering") and item.category == category:
+        if target.status.has_status("festering") and item.category == category:
             return ItemEffectResult(
                 name=item.name,
                 extras=[T.translate("combat_state_festering_item")],

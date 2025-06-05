@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import fainted
 from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.formula import simple_lifeleech
 
@@ -36,12 +35,12 @@ class LifeGiftEffect(CoreEffect):
         lifegift: bool = False
         user = status.link
         assert user
-        if status.phase == "perform_action_status" and not fainted(user):
+        if status.phase == "perform_action_status" and not user.is_fainted:
             damage = simple_lifeleech(user, target, self.divisor)
             user.current_hp = max(0, user.current_hp - damage)
             target.current_hp = min(target.hp, target.current_hp + damage)
             lifegift = True
-        if fainted(user):
-            target.status.clear()
+        if user.is_fainted:
+            target.status.clear_status()
 
         return StatusEffectResult(name=status.name, success=lifegift)

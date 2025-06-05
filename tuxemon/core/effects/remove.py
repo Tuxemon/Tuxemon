@@ -6,7 +6,7 @@ import random
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import get_target_monsters, has_status
+from tuxemon.combat import get_target_monsters
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -49,11 +49,11 @@ class RemoveEffect(CoreEffect):
             monsters = get_target_monsters(objectives, tech, user, target)
             if self.status == "all":
                 for monster in monsters:
-                    monster.status.clear()
+                    monster.status.clear_status()
             else:
                 for monster in monsters:
-                    if has_status(monster, self.status):
-                        monster.status.clear()
+                    if monster.status.has_status(self.status):
+                        monster.status.clear_status()
 
         if monsters:
             combat.update_icons_for_monsters()

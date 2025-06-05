@@ -874,7 +874,7 @@ def calculate_status_modifier(item: Item, target: Monster) -> float:
     config = config_capdev.items.get(item.slug)
     status_modifier = config_capdev.status_modifier
 
-    if config is None or not target.status:
+    if config is None or not target.status.status_exists():
         return status_modifier
 
     logger.debug(f"Base status_modifier: {status_modifier}")
@@ -886,7 +886,7 @@ def calculate_status_modifier(item: Item, target: Monster) -> float:
     positive_modifier = config.positive_modifier
     specific_status = config.specific_status_modifiers
 
-    for status in target.status:
+    for status in target.status.get_statuses():
         if specific_status and status.slug in specific_status:
             specific_modifier = specific_status[status.slug]
             logger.debug(

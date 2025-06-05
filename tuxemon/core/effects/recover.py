@@ -41,7 +41,7 @@ class RecoverEffect(CoreEffect):
             healing = bool(heal)
         # check for recover (completely healed)
         if status.phase == "check_party_hp" and target.current_hp >= target.hp:
-            target.status.clear()
+            target.status.clear_status()
             # avoid "overcome" hp bar
             if target.current_hp > target.hp:
                 target.current_hp = target.hp

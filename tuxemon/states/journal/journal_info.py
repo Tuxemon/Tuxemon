@@ -281,6 +281,6 @@ class JournalInfoState(PygameMenuState):
             event.button in (buttons.BACK, buttons.B, buttons.A)
             and event.pressed
         ):
-            client.pop_state()
+            client.remove_state_by_name("JournalInfoState")
 
         return None

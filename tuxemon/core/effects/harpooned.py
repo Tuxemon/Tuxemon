@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import fainted
 from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 
 if TYPE_CHECKING:
@@ -33,6 +32,6 @@ class HarpoonedEffect(CoreEffect):
         if status.phase == "add_monster_into_play":
             damage = target.hp // self.divisor
             target.current_hp = max(0, target.current_hp - damage)
-            if fainted(target):
+            if target.is_fainted:
                 target.faint()
         return StatusEffectResult(name=status.name, success=True)

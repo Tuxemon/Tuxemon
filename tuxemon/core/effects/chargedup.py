@@ -29,7 +29,7 @@ class ChargedUpEffect(CoreEffect):
         assert player
         _statuses: list[Status] = []
         if status.phase == "perform_action_tech":
-            target.status.clear()
+            target.status.clear_status()
             if status.repl_tech:
                 cond = Status.create(status.repl_tech)
                 cond.steps = player.steps

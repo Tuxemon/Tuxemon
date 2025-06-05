@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import fainted
 from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.locale import T
 
@@ -36,12 +35,12 @@ class DieHardEffect(CoreEffect):
         extra: list[str] = []
         if status.phase == "check_party_hp":
             params = {"target": target.name.upper()}
-            if fainted(target):
+            if target.is_fainted:
                 target.current_hp = self.hp
-                target.status.clear()
+                target.status.clear_status()
                 extra = [T.format("combat_state_diehard_tech", params)]
             if target.current_hp == self.hp:
-                target.status.clear()
+                target.status.clear_status()
                 extra = [T.format("combat_state_diehard_end", params)]
 
         return StatusEffectResult(name=status.name, success=True, extras=extra)

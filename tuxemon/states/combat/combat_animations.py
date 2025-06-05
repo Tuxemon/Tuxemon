@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import logging
 from abc import ABC
-from collections import defaultdict
 from functools import partial
 from typing import TYPE_CHECKING, Literal, Optional, Union
 
@@ -17,7 +16,7 @@ from pygame.rect import Rect
 from pygame.transform import flip as pg_flip
 
 from tuxemon import graphics, prepare, tools
-from tuxemon.combat import alive_party, build_hud_text, fainted
+from tuxemon.combat import alive_party, build_hud_text
 from tuxemon.formula import config_combat
 from tuxemon.locale import T
 from tuxemon.menu.interface import ExpBar, HpBar
@@ -27,6 +26,7 @@ from tuxemon.tools import scale, scale_sequence
 
 from .combat_ui import (
     CombatUI,
+    FieldMonsters,
     HudManager,
     MonsterSpriteMap,
     StatusIconManager,
@@ -102,10 +102,7 @@ class CombatAnimations(Menu[None], ABC):
         self.players = list(players)
         self.graphics = graphics
         self.is_double = battle_mode == "double"
-
-        self.monsters_in_play: defaultdict[NPC, list[Monster]] = defaultdict(
-            list
-        )
+        self.field_monsters = FieldMonsters()
         self.sprite_map = MonsterSpriteMap()
         self.is_trainer_battle = False
         self.capdevs: list[CaptureDeviceSprite] = []
@@ -231,8 +228,9 @@ class CombatAnimations(Menu[None], ABC):
         Returns:
             The x and y coordinates of the feet position.
         """
-        if is_double and monster in self.monsters_in_play[npc]:
-            monster_index = str(self.monsters_in_play[npc].index(monster))
+        monsters = self.field_monsters.get_monsters(npc)
+        if is_double and monster in monsters:
+            monster_index = str(monsters.index(monster))
         else:
             monster_index = ""
         center = self.hud_manager.get_rect(npc, f"home{monster_index}").center
@@ -282,7 +280,7 @@ class CombatAnimations(Menu[None], ABC):
         self.animate_monster_leave(monster)
         self.task(kill_monster, 2)
 
-        for monsters in self.monsters_in_play.values():
+        for monsters in self.field_monsters.get_all_monsters().values():
             if monster in monsters:
                 monsters.remove(monster)
 
@@ -551,7 +549,7 @@ class CombatAnimations(Menu[None], ABC):
             scaled_top = scale(1)
 
             if monster:
-                if fainted(monster):
+                if monster.status.is_fainted:
                     sprite = self._load_sprite(
                         self.graphics.icons.icon_faint,
                         {
@@ -561,7 +559,7 @@ class CombatAnimations(Menu[None], ABC):
                         },
                     )
                     status = "faint"
-                elif monster.status:
+                elif monster.status.status_exists():
                     sprite = self._load_sprite(
                         self.graphics.icons.icon_status,
                         {
@@ -660,7 +658,7 @@ class CombatAnimations(Menu[None], ABC):
             enemy.rect.bottom = back_island.rect.bottom - scale(24)
             enemy.rect.centerx = back_island.rect.centerx
             self.sprite_map.add_sprite(opp_mon, enemy)
-            self.monsters_in_play[opponent].append(opp_mon)
+            self.field_monsters.add_monster(opponent, opp_mon)
             self.update_hud(opponent)
 
         self.sprites.add(enemy)
@@ -901,7 +899,7 @@ class CombatAnimations(Menu[None], ABC):
             character: The character whose HUD needs to be updated.
             animate: Whether to animate the HUD update. Defaults to True.
         """
-        monsters = self.monsters_in_play.get(character)
+        monsters = self.field_monsters.get_monsters(character)
         if not monsters:
             return
 

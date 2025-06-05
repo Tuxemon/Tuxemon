@@ -140,6 +140,17 @@ class Item:
         """
         return self.condition_handler.validate(session=session, target=target)
 
+    def execute_item_action(
+        self,
+        session: Session,
+        combat_instance: CombatState,
+        user: NPC,
+        target: Optional[Monster],
+    ) -> ItemEffectResult:
+        """Executes the item action and returns the result."""
+        self.combat_state = combat_instance
+        return self.use(session, user, target)
+
     def use(
         self, session: Session, user: NPC, target: Optional[Monster]
     ) -> ItemEffectResult:

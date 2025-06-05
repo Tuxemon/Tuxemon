@@ -373,10 +373,10 @@ class CaptureDeviceSprite(Sprite):
 
         assert self.monster
 
-        if any(t.slug == "faint" for t in self.monster.status):
+        if self.monster.status.is_fainted:
             self.state = "faint"
             self.sprite.image = self.faint_img
-        elif self.monster.status:
+        elif self.monster.status.status_exists():
             self.state = "effected"
             self.sprite.image = self.effected_img
         else:

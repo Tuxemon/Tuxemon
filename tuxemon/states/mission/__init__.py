@@ -116,11 +116,11 @@ class SingleMissionState(PygameMenuState):
             self.client.remove_state_by_name("DialogState")
             self.client.remove_state_by_name("SingleMissionState")
             self.client.remove_state_by_name("WorldMenuState")
-            self.client.pop_state()
+            self.client.remove_state_by_name("MissionState")
 
         def refuse_deletion() -> None:
             self.client.remove_state_by_name("ChoiceState")
-            self.client.pop_state()
+            self.client.remove_state_by_name("DialogState")
 
         missions = self.character.mission_controller.get_active_missions()
 
@@ -192,7 +192,7 @@ class SingleMissionState(PygameMenuState):
                 },
             )
         elif event.button in (buttons.BACK, buttons.B) and event.pressed:
-            client.pop_state()
+            client.remove_state_by_name("SingleMissionState")
         elif event.button == buttons.A and event.pressed:
             super().process_event(event)
         return None

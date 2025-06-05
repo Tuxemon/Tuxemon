@@ -57,13 +57,13 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         self.combat = cmb
         self.character = monster.owner
         self.monster = monster
-        self.party = cmb.monsters_in_play[self.character]
+        self.party = cmb.field_monsters.get_monsters(self.character)
         if self.character == cmb.players[0]:
             self.enemy = cmb.players[1]
-            self.opponents = cmb.monsters_in_play[self.enemy]
+            self.opponents = cmb.field_monsters.get_monsters(self.enemy)
         if self.character == cmb.players[1]:
             self.enemy = cmb.players[0]
-            self.opponents = cmb.monsters_in_play[self.enemy]
+            self.opponents = cmb.field_monsters.get_monsters(self.enemy)
         self.menu_visibility = {
             "menu_fight": True,
             "menu_monster": True,
@@ -132,7 +132,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
         if not run.validate_monster(self.session, self.monster):
             params = {
                 "monster": self.monster.name.upper(),
-                "status": self.monster.status[0].name.lower(),
+                "status": self.monster.status.current_status.name.lower(),
             }
             msg = T.format("combat_player_run_status", params)
             tools.open_dialog(self.client, [msg])
@@ -150,7 +150,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             if not swap.validate_monster(self.session, self.monster):
                 params = {
                     "monster": self.monster.name.upper(),
-                    "status": self.monster.status[0].name.lower(),
+                    "status": self.monster.status.current_status.name.lower(),
                 }
                 msg = T.format("combat_player_swap_status", params)
                 tools.open_dialog(self.client, [msg])
@@ -160,7 +160,7 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             self.client.remove_state_by_name("MainCombatMenuState")
 
         def validate_monster(menu_item: Monster) -> bool:
-            if combat.fainted(menu_item):
+            if menu_item.is_fainted:
                 return False
             if menu_item in self.combat.active_monsters:
                 return False
@@ -226,10 +226,11 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
             target = menu_item.game_object
 
             # check target status
-            if target.status:
-                target.status[0].combat_state = self.combat
-                target.status[0].phase = "enqueue_item"
-                result_status = target.status[0].use(self.session, target)
+            if target.status.status_exists():
+                status = target.status.current_status
+                result_status = status.execute_status_action(
+                    self.session, self.combat, target, "enqueue_item"
+                )
                 if result_status.extras:
                     templates = [
                         T.translate(extra) for extra in result_status.extras
@@ -425,7 +426,10 @@ class CombatTargetMenuState(Menu[Monster]):
             yield self._create_menu_item(self.monster)
             return
 
-        for player, monsters in self.combat_state.monsters_in_play.items():
+        for (
+            player,
+            monsters,
+        ) in self.combat_state.field_monsters.get_all_monsters().items():
             targeting_class = (
                 "own_monster" if player == self.character else "enemy_monster"
             )

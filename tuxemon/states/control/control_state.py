@@ -245,6 +245,6 @@ class ControlState(PygameMenuState):
         if event.button in (buttons.BACK, buttons.B):
             self.reload_controls()
             if not self.main_menu:
-                self.client.pop_state()
+                self.client.remove_state_by_name("ControlState")
 
         return super().process_event(event)

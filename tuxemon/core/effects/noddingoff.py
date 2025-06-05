@@ -46,7 +46,7 @@ class NoddingOffEffect(CoreEffect):
         if status.phase == "perform_action_tech" and self.wake_up(status):
             params = {"target": target.name.upper()}
             extra = [T.format("combat_state_dozing_end", params)]
-            target.status.clear()
+            target.status.clear_status()
         return StatusEffectResult(
             name=status.name,
             success=True,

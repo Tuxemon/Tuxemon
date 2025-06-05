@@ -43,8 +43,8 @@ class NuPhoneContacts(PygameMenuState):
             )
 
         def call() -> None:
-            self.client.pop_state()
-            self.client.pop_state()
+            self.client.remove_state_by_name("ChoiceState")
+            self.client.remove_state_by_name("NuPhoneContacts")
             # from spyder_cotton_town.tmx to spyder_cotton_town
             map = self.client.get_map_name()
             map_name = map.split(".")[0]

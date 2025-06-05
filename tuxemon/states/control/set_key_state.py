@@ -60,7 +60,7 @@ class SetKeyState(PygameMenuState):
             and pressed_key not in invalid_keys
         ):
             assert pressed_key
-            self.client.pop_state()
+            self.client.remove_state_by_name("SetKeyState")
             pressed_key_str = pygame.key.name(pressed_key)
             if event.value == pressed_key_str:
                 # Update the configuration file with the new key

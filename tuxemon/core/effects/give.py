@@ -54,7 +54,7 @@ class GiveEffect(CoreEffect):
             monsters = get_target_monsters(objectives, tech, user, target)
             if monsters:
                 for monster in monsters:
-                    monster.apply_status(status)
+                    monster.status.apply_status(status)
                 combat.update_icons_for_monsters()
                 combat.animate_update_party_hud()
 

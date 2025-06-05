@@ -42,6 +42,6 @@ class PoisonedEffect(CoreEffect):
                 target.current_hp = max(0, target.current_hp - int(damage))
             else:
                 status.use_failure = T.format("combat_state_immune", params)
-                target.status = []
+                target.status.clear_status()
 
         return StatusEffectResult(name=status.name, success=poisoned)

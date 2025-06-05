@@ -173,6 +173,18 @@ class Status:
         """
         return self.condition_handler.validate(session=session, target=target)
 
+    def execute_status_action(
+        self,
+        session: Session,
+        combat_instance: CombatState,
+        target: Monster,
+        phase: str,
+    ) -> StatusEffectResult:
+        """Executes the current status action and returns the result."""
+        self.combat_state = combat_instance
+        self.phase = phase
+        return self.use(session, target)
+
     def use(self, session: Session, target: Monster) -> StatusEffectResult:
         """
         Applies the status's effects using EffectProcessor and returns the results.

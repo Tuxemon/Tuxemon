@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import has_status
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 
 if TYPE_CHECKING:
@@ -44,8 +43,8 @@ class TransferEffect(CoreEffect):
                 if self.direction == "user_to_target"
                 else (target, user)
             )
-            if has_status(source, self.condition):
+            if source.status.has_status(self.condition):
                 dest.status = source.status
-                source.status = []
+                source.status.clear_status()
                 done = True
         return TechEffectResult(name=tech.name, success=done)

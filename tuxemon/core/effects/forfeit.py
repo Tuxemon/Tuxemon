@@ -50,5 +50,5 @@ class ForfeitEffect(CoreEffect):
         """
         for remove in combat.players:
             combat.clean_combat()
-            del combat.monsters_in_play[remove]
+            combat.field_monsters.remove_npc(remove)
             combat.players.remove(remove)

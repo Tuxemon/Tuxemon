@@ -327,7 +327,7 @@ class MonsterInfoRenderer:
     def draw_status_icons(
         self, surface: Surface, monster: Monster, rect: Rect
     ) -> None:
-        for index, status in enumerate(monster.status):
+        for index, status in enumerate(monster.status.get_statuses()):
             if status.icon:
                 image = load_and_scale(status.icon)
                 pos = (

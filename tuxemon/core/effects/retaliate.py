@@ -5,7 +5,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
-from tuxemon.combat import fainted
 from tuxemon.core.core_effect import CoreEffect, StatusEffectResult
 from tuxemon.db import Range
 from tuxemon.formula import simple_damage_calculate
@@ -56,7 +55,7 @@ class RetaliateEffect(CoreEffect):
                 and method.hit
                 and action.target.instance_id == target.instance_id
                 and method.range != Range.special
-                and not fainted(attacker)
+                and not attacker.is_fainted
             ):
                 attacker.current_hp = max(0, attacker.current_hp - dam)
                 done = True

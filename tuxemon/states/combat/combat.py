@@ -51,7 +51,6 @@ from tuxemon.combat import (
     alive_party,
     battlefield,
     defeated,
-    fainted,
     get_awake_monsters,
     set_var,
     track_battles,
@@ -338,8 +337,9 @@ class CombatState(CombatAnimations):
 
             # record the useful properties of the last monster we fought
             for player in self.remaining_players:
-                if self.monsters_in_play[player] and not player.isplayer:
-                    for mon in self.monsters_in_play[player]:
+                monsters = self.field_monsters.get_monsters(player)
+                if monsters and not player.isplayer:
+                    for mon in monsters:
                         battlefield(self.session, mon)
 
         elif phase == CombatPhase.DECISION:
@@ -348,7 +348,8 @@ class CombatState(CombatAnimations):
             if not self._decision_queue:
                 for player in list(self.human_players) + list(self.ai_players):
                     self.update_hud(player, False)
-                    for monster in self.monsters_in_play[player]:
+                    monsters = self.field_monsters.get_monsters(player)
+                    for monster in monsters:
                         value = random.random()
                         self._random_tech_hit[monster] = value
                         if player in self.human_players:
@@ -369,7 +370,7 @@ class CombatState(CombatAnimations):
 
             # apply status effects to the monsters
             for monster in self.active_monsters:
-                for status in monster.status:
+                for status in monster.status.get_statuses():
                     # validate status
                     if status.validate_monster(self.session, monster):
                         status.combat_state = self
@@ -497,11 +498,11 @@ class CombatState(CombatAnimations):
         def add(menuitem: MenuItem[Monster]) -> None:
             monster = menuitem.game_object
             self.add_monster_into_play(player, monster)
-            self.client.pop_state()
+            self.client.remove_state_by_name("MonsterMenuState")
 
         def validate(menu_item: MenuItem[Monster]) -> bool:
             if isinstance(menu_item, Monster):
-                if fainted(menu_item):
+                if menu_item.is_fainted:
                     return False
                 if menu_item in self.active_monsters:
                     return False
@@ -537,7 +538,7 @@ class CombatState(CombatAnimations):
         if len(alive_party(player)) == 1:
             self._max_positions[player] = 1
             if self.is_double:
-                monster = self.monsters_in_play[player][0]
+                monster = self.field_monsters.get_monsters(player)[0]
                 new_feet = self.get_feet_position(player, monster, False)
                 self.sprite_map.update_sprite_position(monster, new_feet)
         else:
@@ -545,7 +546,8 @@ class CombatState(CombatAnimations):
                 self._max_positions[player] = 2
             else:
                 self._max_positions[player] = 1
-        return self._max_positions[player] - len(self.monsters_in_play[player])
+        on_the_field = self.field_monsters.get_monsters(player)
+        return self._max_positions[player] - len(on_the_field)
 
     def fill_battlefield_positions(self, ask: bool = False) -> None:
         """
@@ -561,9 +563,8 @@ class CombatState(CombatAnimations):
         for player in self.active_players:
             positions_available = self.update_player_positions(player)
             if positions_available:
-                available = get_awake_monsters(
-                    player, self.monsters_in_play[player], self._turn
-                )
+                monsters = self.field_monsters.get_monsters(player)
+                available = get_awake_monsters(player, monsters, self._turn)
                 for _ in range(positions_available):
                     if player in humans and ask:
                         self.ask_player_for_monster(player)
@@ -605,19 +606,20 @@ class CombatState(CombatAnimations):
         if not sprite:
             raise ValueError(f"Sprite not found for item {capture_device}")
 
-        self.monsters_in_play[player].append(monster)
+        self.field_monsters.add_monster(player, monster)
         self.animate_monster_release(player, monster, sprite)
         self.update_hud(player)
 
         # Remove "bond" status from all active monsters
         for mon in self.active_monsters:
-            mon.status = [sta for sta in mon.status if not sta.bond]
+            mon.status.remove_bonded_statuses()
 
         # Handle removed monster's status effects
-        if removed is not None and removed.status:
-            removed.status[0].combat_state = self
-            removed.status[0].phase = "add_monster_into_play"
-            removed.status[0].use(self.session, removed)
+        if removed is not None and removed.status.status_exists():
+            status = removed.status.current_status
+            status.execute_status_action(
+                self.session, self, removed, "add_monster_into_play"
+            )
 
         # Create message for combat swap
         format_params = {
@@ -761,8 +763,9 @@ class CombatState(CombatAnimations):
         hit_delay = 0.0
         # monster uses move
         method.advance_round()
-        method.combat_state = self
-        result_tech = method.use(self.session, user, target)
+        result_tech = method.execute_tech_action(
+            self.session, self, user, target
+        )
         context = {
             "user": user.name,
             "name": method.name,
@@ -775,10 +778,11 @@ class CombatState(CombatAnimations):
             params = {"name": target.name.upper()}
             message = T.format("combat_call_tuxemon", params)
         # check statuses
-        if user.status:
-            user.status[0].combat_state = self
-            user.status[0].phase = "perform_action_tech"
-            result_status = user.status[0].use(self.session, user)
+        if user.status.status_exists():
+            status = user.status.current_status
+            result_status = status.execute_status_action(
+                self.session, self, user, "perform_action_tech"
+            )
             if result_status.extras:
                 templates = [
                     T.translate(extra) for extra in result_status.extras
@@ -787,7 +791,7 @@ class CombatState(CombatAnimations):
                 message += "\n" + template
             if result_status.statuses:
                 status = random.choice(result_status.statuses)
-                user.apply_status(status)
+                user.status.apply_status(status)
 
         if result_tech.success and method.use_success:
             template = getattr(method, "use_success")
@@ -854,7 +858,7 @@ class CombatState(CombatAnimations):
 
         is_flipped = False
         for trainer in self.ai_players:
-            if user in self.monsters_in_play[trainer]:
+            if user in self.field_monsters.get_monsters(trainer):
                 is_flipped = True
                 break
 
@@ -870,8 +874,9 @@ class CombatState(CombatAnimations):
         target: Monster,
     ) -> None:
         action_time = 0.0
-        item.combat_state = self
-        result_item = item.use(self.session, user, target)
+        result_item = item.execute_item_action(
+            self.session, self, user, target
+        )
         context = {
             "user": user.name,
             "name": item.name,
@@ -916,10 +921,10 @@ class CombatState(CombatAnimations):
 
     def _handle_status(self, status: Status, target: Monster) -> None:
         action_time = 0.0
-        status.combat_state = self
-        status.phase = "perform_action_status"
+        result = status.execute_status_action(
+            self.session, self, target, "perform_action_status"
+        )
         status.advance_round()
-        result = status.use(self.session, target)
         context = {
             "name": status.name,
             "target": target.name,
@@ -1040,9 +1045,9 @@ class CombatState(CombatAnimations):
         * Animation to remove monster is handled here
         TODO: check for faint status, not HP
         """
-        for _, party in self.monsters_in_play.items():
+        for _, party in self.field_monsters.get_all_monsters().items():
             for monster in party:
-                if fainted(monster):
+                if monster.is_fainted:
                     params = {"name": monster.name.upper()}
                     msg = T.format("combat_fainted", params)
                     self.text_anim.add_text_animation(
@@ -1065,11 +1070,11 @@ class CombatState(CombatAnimations):
 
         * Monsters will be removed from play here
         """
-        for monster_party in self.monsters_in_play.values():
+        for monster_party in self.field_monsters.get_all_monsters().values():
             for monster in monster_party:
                 self.animate_hp(monster)
                 self.apply_status_effects(monster)
-                if fainted(monster):
+                if monster.is_fainted:
                     self.handle_monster_defeat(monster)
 
     def apply_status_effects(self, monster: Monster) -> None:
@@ -1079,10 +1084,11 @@ class CombatState(CombatAnimations):
         Parameters:
             monster: Monster that was defeated.
         """
-        if monster.status:
-            monster.status[0].combat_state = self
-            monster.status[0].phase = "check_party_hp"
-            result_status = monster.status[0].use(self.session, monster)
+        if monster.status.status_exists():
+            status = monster.status.current_status
+            result_status = status.execute_status_action(
+                self.session, self, monster, "check_party_hp"
+            )
             if result_status.extras:
                 templates = [
                     T.translate(extra) for extra in result_status.extras
@@ -1131,27 +1137,18 @@ class CombatState(CombatAnimations):
 
     @property
     def active_monsters(self) -> Sequence[Monster]:
-        """
-        List of any non-defeated monsters on battlefield.
-
-        Returns:
-            Sequence of active monsters.
-        """
-        return list(chain.from_iterable(self.monsters_in_play.values()))
+        """List of any non-defeated monsters on battlefield."""
+        return self.field_monsters.active_monsters
 
     @property
     def monsters_in_play_right(self) -> Sequence[Monster]:
-        """
-        List of any monsters in battle (right side).
-        """
-        return self.monsters_in_play[self.players[0]]
+        """List of any monsters in battle (right side)."""
+        return self.field_monsters.get_monsters(self.players[0])
 
     @property
     def monsters_in_play_left(self) -> Sequence[Monster]:
-        """
-        List of any monsters in battle (left side).
-        """
-        return self.monsters_in_play[self.players[1]]
+        """List of any monsters in battle (left side)."""
+        return self.field_monsters.get_monsters(self.players[1])
 
     @property
     def all_monsters_right(self) -> Sequence[Monster]:
@@ -1161,7 +1158,7 @@ class CombatState(CombatAnimations):
         return [
             monster
             for monster in self.players[0].monsters
-            if not fainted(monster)
+            if not monster.is_fainted
         ]
 
     @property
@@ -1172,7 +1169,7 @@ class CombatState(CombatAnimations):
         return [
             monster
             for monster in self.players[1].monsters
-            if not fainted(monster)
+            if not monster.is_fainted
         ]
 
     @property
@@ -1329,7 +1326,7 @@ class CombatState(CombatAnimations):
         self.phase = None
         # open Tuxepedia if monster is captured
         if self._captured_mon and self._new_tuxepedia:
-            self.client.pop_state()
+            self.client.remove_state_by_name("CombatState")
             params = {"monster": self._captured_mon, "source": self.name}
             self.client.push_state("MonsterInfoState", kwargs=params)
         else:

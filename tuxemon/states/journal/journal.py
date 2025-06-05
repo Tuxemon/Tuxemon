@@ -168,7 +168,7 @@ class JournalState(PygameMenuState):
             )
 
         elif event.button in (buttons.BACK, buttons.B) and event.pressed:
-            client.pop_state()
+            client.remove_state_by_name("JournalState")
 
         else:
             return super().process_event(event)

@@ -7,7 +7,7 @@ import uuid
 from dataclasses import dataclass
 from typing import Optional, final
 
-from tuxemon.db import db
+from tuxemon.db import MonsterModel, db
 from tuxemon.event import get_monster_by_iid, get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
@@ -73,11 +73,7 @@ class ChangeStateAction(EventAction):
 
     def _handle_journal_info_state(self, optional: str) -> None:
         """Handle the JournalInfoState transition."""
-        journal = db.lookup(optional, table="monster")
-        if journal is None:
-            logger.error("Journal not found")
-            return
-
+        journal = MonsterModel.lookup(optional, db)
         _set_tuxepedia = ["player", journal.slug, "caught"]
         self.action.execute_action("set_tuxepedia", _set_tuxepedia, True)
         self.client.push_state(

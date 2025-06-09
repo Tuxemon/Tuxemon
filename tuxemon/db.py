@@ -10,7 +10,7 @@ from dataclasses import dataclass
 from enum import Enum
 from importlib import import_module
 from pathlib import Path
-from typing import Annotated, Any, Literal, Optional, Union, overload
+from typing import Annotated, Any, ClassVar, Literal, Optional, Union, cast
 
 import yaml
 from PIL import Image
@@ -215,6 +215,7 @@ class WorldMenuEntry(BaseModel):
 
 
 class ItemModel(BaseModel):
+    table_name: ClassVar[str] = "item"
     model_config = ConfigDict(title="Item")
     slug: str = Field(..., description="The slug of the item")
     use_item: str = Field(
@@ -258,6 +259,14 @@ class ItemModel(BaseModel):
     cost: int = Field(0, description="The standard cost of the item.", ge=0)
     modifiers: list[Modifier] = Field(..., description="Various modifiers")
 
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> ItemModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(ItemModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"Item {slug} not found")
+
     # Validate fields that refer to translated text
     @field_validator("use_item", "use_success", "use_failure")
     def translation_exists(cls: ItemModel, v: str) -> str:
@@ -300,12 +309,21 @@ class AttributesModel(BaseModel):
 
 
 class ShapeModel(BaseModel):
+    table_name: ClassVar[str] = "shape"
     slug: str = Field(
         ..., description="Slug of the shape, used as a unique identifier."
     )
     attributes: AttributesModel = Field(
         ..., description="Statistical attributes of the shape."
     )
+
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> ShapeModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(ShapeModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"Shape {slug} not found")
 
     @field_validator("slug")
     def translation_exists_shape(cls: ShapeModel, v: str) -> str:
@@ -573,6 +591,7 @@ class MonsterSoundsModel(BaseModel):
 
 # Validate assignment allows us to assign a default inside a validator
 class MonsterModel(BaseModel, validate_assignment=True):
+    table_name: ClassVar[str] = "monster"
     slug: str = Field(..., description="The slug of the monster")
     category: str = Field(..., description="The category of monster")
     txmn_id: int = Field(..., description="The id of the monster")
@@ -633,6 +652,14 @@ class MonsterModel(BaseModel, validate_assignment=True):
         None,
         description="The sounds this monster has",
     )
+
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> MonsterModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(MonsterModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"Monster {slug} not found")
 
     # Set the default sprites based on slug. Specifying 'always' is needed
     # because by default pydantic doesn't validate null fields.
@@ -788,6 +815,7 @@ class TargetModel(BaseModel):
 
 
 class TechniqueModel(BaseModel):
+    table_name: ClassVar[str] = "technique"
     slug: str = Field(..., description="The slug of the technique")
     sort: TechSort = Field(..., description="The sort of technique this is")
     category: TechCategory = Field(
@@ -874,6 +902,14 @@ class TechniqueModel(BaseModel):
         le=prepare.POTENCY_RANGE[1],
     )
 
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> TechniqueModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(TechniqueModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"Technique {slug} not found")
+
     @field_validator("use_tech", "use_success", "use_failure")
     def translation_exists(
         cls: TechniqueModel, v: Optional[str]
@@ -928,6 +964,7 @@ class TechniqueModel(BaseModel):
 
 
 class StatusModel(BaseModel):
+    table_name: ClassVar[str] = "status"
     slug: str = Field(..., description="The slug of the status")
     sort: TechSort = Field(..., description="The sort of status this is")
     icon: str = Field(..., description="The icon to use for the condition")
@@ -994,6 +1031,14 @@ class StatusModel(BaseModel):
     statdodge: Optional[StatModel] = Field(None)
     statmelee: Optional[StatModel] = Field(None)
     statranged: Optional[StatModel] = Field(None)
+
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> StatusModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(StatusModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"Status {slug} not found")
 
     # Validate resources that should exist
     @field_validator("icon")
@@ -1122,6 +1167,7 @@ class NpcTemplateModel(BaseModel):
 
 
 class NpcModel(BaseModel):
+    table_name: ClassVar[str] = "npc"
     slug: str = Field(..., description="Slug of the name of the NPC")
     forfeit: bool = Field(False, description="Whether you can forfeit or not")
     template: NpcTemplateModel
@@ -1131,6 +1177,14 @@ class NpcModel(BaseModel):
     items: Sequence[BagItemModel] = Field(
         [], description="List of items in the NPCs bag"
     )
+
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> NpcModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(NpcModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"NPC {slug} not found")
 
 
 class BattleHudModel(BaseModel):
@@ -1240,11 +1294,22 @@ class BattleGraphicsModel(BaseModel):
 
 
 class EnvironmentModel(BaseModel):
+    table_name: ClassVar[str] = "environment"
     slug: str = Field(..., description="Slug of the name of the environment")
     battle_music: str = Field(
         ..., description="Filename of the music to use for this environment"
     )
     battle_graphics: BattleGraphicsModel
+
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> EnvironmentModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(
+                EnvironmentModel, db.lookup(slug, table=cls.table_name)
+            )
+        except EntryNotFoundError:
+            raise RuntimeError(f"Encounter {slug} not found")
 
     @field_validator("battle_music")
     def battle_music_exists(cls: EnvironmentModel, v: str) -> str:
@@ -1296,6 +1361,7 @@ class EncounterItemModel(BaseModel):
 
 
 class EncounterModel(BaseModel):
+    table_name: ClassVar[str] = "encounter"
     slug: str = Field(
         ..., description="Slug to uniquely identify this encounter"
     )
@@ -1303,8 +1369,17 @@ class EncounterModel(BaseModel):
         [], description="Monsters encounterable"
     )
 
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> EncounterModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(EncounterModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"Encounter {slug} not found")
+
 
 class DialogueModel(BaseModel):
+    table_name: ClassVar[str] = "dialogue"
     slug: str = Field(
         ..., description="Slug to uniquely identify this dialogue"
     )
@@ -1314,7 +1389,14 @@ class DialogueModel(BaseModel):
     border_slug: str = Field(..., description="Name of the border")
     border_path: str = Field(..., description="Path to the border")
 
-    # Validate resources that should exist
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> DialogueModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(DialogueModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"Dialogue {slug} not found")
+
     @field_validator("border_slug")
     def file_exists(cls: DialogueModel, v: str) -> str:
         file: str = f"gfx/borders/{v}.png"
@@ -1335,9 +1417,18 @@ class ElementItemModel(BaseModel):
 
 
 class ElementModel(BaseModel):
+    table_name: ClassVar[str] = "element"
     slug: str = Field(..., description="Slug uniquely identifying the type")
     icon: str = Field(..., description="The icon to use for the type")
     types: Sequence[ElementItemModel]
+
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> ElementModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(ElementModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"Element {slug} not found")
 
     @field_validator("slug")
     def translation_exists_element(cls: ElementModel, v: str) -> str:
@@ -1353,6 +1444,7 @@ class ElementModel(BaseModel):
 
 
 class TasteModel(BaseModel):
+    table_name: ClassVar[str] = "taste"
     slug: str = Field(..., description="Slug of the taste")
     name: str = Field(..., description="Name of the taste")
     taste_type: Literal["warm", "cold"] = Field(
@@ -1361,6 +1453,14 @@ class TasteModel(BaseModel):
     modifiers: Sequence[Modifier] = Field(
         ..., description="Modifiers associated with the taste"
     )
+
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> TasteModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(TasteModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"Taste {slug} not found")
 
     @field_validator("name")
     def translation_exists_taste(cls: TasteModel, v: str) -> str:
@@ -1404,11 +1504,20 @@ class EconomyMonsterModel(EconomyEntityModel):
 
 
 class EconomyModel(BaseModel):
+    table_name: ClassVar[str] = "economy"
     slug: str = Field(..., description="Slug uniquely identifying the economy")
     resale_multiplier: float = Field(..., description="Resale multiplier")
     background: str = Field(..., description="Sprite used for background")
     items: Sequence[EconomyItemModel]
     monsters: Sequence[EconomyMonsterModel]
+
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> EconomyModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(EconomyModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"Economy {slug} not found")
 
     @field_validator("background")
     def background_exists(cls: EconomyModel, v: str) -> str:
@@ -1434,6 +1543,7 @@ class ProgressModel(BaseModel):
 
 
 class MissionModel(BaseModel):
+    table_name: ClassVar[str] = "mission"
     slug: str = Field(..., description="Slug uniquely identifying the mission")
     description: str = Field(
         ..., description="Detailed description of the mission objectives"
@@ -1459,6 +1569,14 @@ class MissionModel(BaseModel):
         ...,
         description="List of mission slugs that must be completed before this mission",
     )
+
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> MissionModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(MissionModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"Mission {slug} not found")
 
     @field_validator("slug")
     def translation_exists_mission(cls: MissionModel, v: str) -> str:
@@ -1516,8 +1634,17 @@ class SoundModel(BaseModel):
 
 
 class AnimationModel(BaseModel):
+    table_name: ClassVar[str] = "animation"
     slug: str = Field(..., description="Unique slug for the animation")
     file: str = Field(..., description="File of the animation")
+
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> AnimationModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(AnimationModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"Animation {slug} not found")
 
     @field_validator("file")
     def file_exists(cls: AnimationModel, v: str, info: ValidationInfo) -> str:
@@ -1529,11 +1656,20 @@ class AnimationModel(BaseModel):
 
 
 class TerrainModel(BaseModel):
+    table_name: ClassVar[str] = "terrain"
     slug: str = Field(..., description="Slug of the terrain")
     name: str = Field(..., description="Name of the terrain condition")
     element_modifier: dict[str, float] = Field(
         ..., description="Modifiers for elemental techniques in this terrain"
     )
+
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> TerrainModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(TerrainModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"Terrain {slug} not found")
 
     @field_validator("name")
     def translation_exists_item(cls: TerrainModel, v: str) -> str:
@@ -1543,6 +1679,7 @@ class TerrainModel(BaseModel):
 
 
 class WeatherModel(BaseModel):
+    table_name: ClassVar[str] = "weather"
     slug: str = Field(..., description="Slug of the weather")
     name: str = Field(..., description="Name of the weather condition")
     element_modifier: dict[str, float] = Field(
@@ -1550,34 +1687,20 @@ class WeatherModel(BaseModel):
         description="Modifiers for elemental techniques during this weather",
     )
 
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> WeatherModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(WeatherModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"Weather {slug} not found")
+
     @field_validator("name")
     def translation_exists_item(cls: WeatherModel, v: str) -> str:
         if has.translation(v):
             return v
         raise ValueError(f"no translation exists with msgid: {v}")
 
-
-TableName = Literal[
-    "economy",
-    "element",
-    "taste",
-    "shape",
-    "terrain",
-    "weather",
-    "template",
-    "mission",
-    "encounter",
-    "dialogue",
-    "environment",
-    "item",
-    "monster",
-    "music",
-    "animation",
-    "npc",
-    "sounds",
-    "status",
-    "technique",
-]
 
 DataModel = Union[
     EconomyModel,
@@ -1603,9 +1726,9 @@ DataModel = Union[
 
 
 def load_model_map(
-    model_map_config: dict[TableName, str],
-) -> dict[TableName, type[DataModel]]:
-    model_map: dict[TableName, type[DataModel]] = {}
+    model_map_config: dict[str, str],
+) -> dict[str, type[DataModel]]:
+    model_map: dict[str, type[DataModel]] = {}
     for table, model_path in model_map_config.items():
         module_name, class_name = model_path.rsplit(".", 1)
         module = import_module(module_name)
@@ -1615,16 +1738,16 @@ def load_model_map(
 
 @dataclass
 class DatabaseConfig:
-    model_map: dict[TableName, str]
+    model_map: dict[str, str]
     mod_base_path: str
     mod_db_subfolder: str
     file_extensions: list[str]
-    default_lookup_table: TableName
+    default_lookup_table: str
     active_mods: list[str]
     mod_versions: dict[str, str]
     mod_table_exclusions: dict[str, list[str]]
     mod_activation: dict[str, bool]
-    mod_tables: dict[str, list[TableName]]
+    mod_tables: dict[str, list[str]]
     mod_dependencies: dict[str, list[str]]
 
 
@@ -1677,10 +1800,10 @@ class ModMetadataLoader:
 
 
 class ModelLoader:
-    def __init__(self, model_map: dict[TableName, type[DataModel]]):
+    def __init__(self, model_map: dict[str, type[DataModel]]):
         self.model_map = model_map
 
-    def validate(self, item: Mapping[str, Any], table: TableName) -> DataModel:
+    def validate(self, item: Mapping[str, Any], table: str) -> DataModel:
         try:
             model_class = self.model_map.get(table)
             if model_class:
@@ -1694,7 +1817,7 @@ class ModelLoader:
             raise e
 
     def load(
-        self, item: Mapping[str, Any], table: TableName, validate: bool = False
+        self, item: Mapping[str, Any], table: str, validate: bool = False
     ) -> DataModel:
         try:
             if validate:
@@ -1726,8 +1849,8 @@ class ModData:
         self.config = config
         self.resolver = resolver
         self.loader = loader
-        self.preloaded: dict[TableName, dict[str, Any]] = {}
-        self.database: dict[TableName, dict[str, DataModel]] = {}
+        self.preloaded: dict[str, dict[str, Any]] = {}
+        self.database: dict[str, dict[str, DataModel]] = {}
         self.mod_metadata = mod_loader.load_metadata()
         if self.config.mod_tables:
             for mod, tables in self.config.mod_tables.items():
@@ -1737,9 +1860,7 @@ class ModData:
                             self.preloaded[table] = {}
                             self.database[table] = {}
 
-    def preload(
-        self, directory: Union[TableName, Literal["all"]] = "all"
-    ) -> None:
+    def preload(self, directory: str = "all") -> None:
         """
         Loads all data from JSON files located under our data path as an
         untyped preloaded dictionary.
@@ -1766,7 +1887,7 @@ class ModData:
             self._preload_table(directory, None)
 
     def _preload_table(
-        self, table: TableName, mod_directory: Optional[str] = None
+        self, table: str, mod_directory: Optional[str] = None
     ) -> None:
         """Preloads table data from mod directories."""
         active_mods = [
@@ -1813,7 +1934,7 @@ class ModData:
 
     def load(
         self,
-        directory: Union[TableName, Literal["all"]] = "all",
+        directory: str = "all",
         validate: bool = True,
     ) -> None:
         """
@@ -1835,9 +1956,7 @@ class ModData:
         else:
             self._load_models_from_preloaded(directory, validate)
 
-    def _load_models_from_preloaded(
-        self, table: TableName, validate: bool
-    ) -> None:
+    def _load_models_from_preloaded(self, table: str, validate: bool) -> None:
         """Loads models from preloaded data into the main database."""
         for item in self.preloaded[table].values():
             if "paths" in item:
@@ -1848,7 +1967,7 @@ class ModData:
                 self.database[table][model.slug] = model
 
     def _validate_and_load(
-        self, item: Mapping[str, Any], table: TableName, validate: bool
+        self, item: Mapping[str, Any], table: str, validate: bool
     ) -> Optional[DataModel]:
         """Validates and loads a model entry."""
         try:
@@ -1866,7 +1985,7 @@ class ModData:
             return None
 
     def load_model(
-        self, item: Mapping[str, Any], table: TableName, validate: bool = False
+        self, item: Mapping[str, Any], table: str, validate: bool = False
     ) -> None:
         """
         Loads a single json object, casts it to the appropriate data model,
@@ -1882,91 +2001,7 @@ class ModData:
         if model:
             self.database[table][model.slug] = model
 
-    @overload
-    def lookup(self, slug: str) -> MonsterModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["monster"]) -> MonsterModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["status"]) -> StatusModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["technique"]) -> TechniqueModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["item"]) -> ItemModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["npc"]) -> NpcModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["encounter"]) -> EncounterModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["dialogue"]) -> DialogueModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["economy"]) -> EconomyModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["element"]) -> ElementModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["taste"]) -> TasteModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["shape"]) -> ShapeModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["terrain"]) -> TerrainModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["weather"]) -> WeatherModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["template"]) -> TemplateModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["mission"]) -> MissionModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["music"]) -> MusicModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["animation"]) -> AnimationModel:
-        pass
-
-    @overload
-    def lookup(self, slug: str, table: Literal["sounds"]) -> SoundModel:
-        pass
-
-    @overload
-    def lookup(
-        self, slug: str, table: Literal["environment"]
-    ) -> EnvironmentModel:
-        pass
-
-    def lookup(
-        self, slug: str, table: Optional[TableName] = None
-    ) -> DataModel:
+    def lookup(self, slug: str, table: Optional[str] = None) -> DataModel:
         """
         Looks up a monster, technique, item, npc, etc based on slug.
 
@@ -1987,7 +2022,7 @@ class ModData:
             self.log_missing_entry_and_raise(table, slug)
         return table_entry[slug]
 
-    def log_missing_entry_and_raise(self, table: TableName, slug: str) -> None:
+    def log_missing_entry_and_raise(self, table: str, slug: str) -> None:
         """Logs a missing entry and raises EntryNotFoundError."""
         options = difflib.get_close_matches(slug, self.database[table].keys())
         options_str = ", ".join(repr(s) for s in options)
@@ -2000,7 +2035,7 @@ class ModData:
             f"Lookup failed for unknown {table} '{slug}'. {hint}"
         )
 
-    def get_entry(self, table: TableName, slug: str) -> str:
+    def get_entry(self, table: str, slug: str) -> str:
         """Checks existence of an entry and returns its file path if available."""
         table_data = self.database.get(table)
 
@@ -2018,7 +2053,7 @@ class ModData:
 
         return getattr(entry, "file", slug)
 
-    def reload(self, table: TableName, validate: bool = True) -> None:
+    def reload(self, table: str, validate: bool = True) -> None:
         """Reloads the data for a specific table."""
         if table not in self.database:
             logger.error(f"Table '{table}' not loaded.")
@@ -2054,7 +2089,7 @@ class ModData:
             logger.error(f"Error reloading table '{table}': {e}")
 
     def add_entry(
-        self, table: TableName, data: dict[str, Any], validate: bool = True
+        self, table: str, data: dict[str, Any], validate: bool = True
     ) -> None:
         try:
             model = self.loader.load(data, table, validate)
@@ -2086,7 +2121,7 @@ class ModData:
 
 
 def load_files(
-    directory: TableName, path: Path, config: DatabaseConfig
+    directory: str, path: Path, config: DatabaseConfig
 ) -> dict[str, Any]:
     preloaded_data: dict[str, Any] = {}
     extensions = config.file_extensions
@@ -2213,7 +2248,7 @@ class Validator:
                     )
         return True
 
-    def db_entry(self, table: TableName, slug: str) -> bool:
+    def db_entry(self, table: str, slug: str) -> bool:
         """
         Check to see if the given slug exists in the database for the given
         table.

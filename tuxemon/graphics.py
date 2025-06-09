@@ -23,7 +23,7 @@ from pytmx.pytmx import TileFlags
 from pytmx.util_pygame import handle_transformation, smart_convert
 
 from tuxemon import prepare
-from tuxemon.db import db
+from tuxemon.db import MonsterModel, NpcModel, db
 from tuxemon.session import Session
 from tuxemon.sprite import Sprite
 from tuxemon.surfanim import SurfaceAnimation
@@ -422,7 +422,7 @@ def get_avatar(session: Session, avatar: str) -> Optional[Sprite]:
             return None
 
     if avatar in db.database.get("monster", {}):
-        monster_data = db.lookup(avatar, table="monster")
+        monster_data = MonsterModel.lookup(avatar, db)
         if not monster_data.sprites:
             logger.error(f"Monster '{avatar}' has no sprites")
             return None
@@ -439,7 +439,7 @@ def get_avatar(session: Session, avatar: str) -> Optional[Sprite]:
             return None
 
     if avatar in db.database.get("npc", {}):
-        npc_data = db.lookup(avatar, table="npc")
+        npc_data = NpcModel.lookup(avatar, db)
         path = f"gfx/sprites/player/{npc_data.template.combat_front}.png"
         sprite = load_sprite(path)
         scale_sprite(sprite, 0.5)

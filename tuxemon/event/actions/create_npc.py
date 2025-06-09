@@ -7,7 +7,7 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Optional, final
 
-from tuxemon.db import db
+from tuxemon.db import NpcModel, db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.item import Item
 from tuxemon.monster import Monster
@@ -15,7 +15,7 @@ from tuxemon.npc import NPC
 from tuxemon.states.world.worldstate import WorldState
 
 if TYPE_CHECKING:
-    from tuxemon.db import NpcModel, PartyMemberModel
+    from tuxemon.db import PartyMemberModel
     from tuxemon.session import Session
 
 logger = logging.getLogger(__name__)
@@ -79,7 +79,7 @@ def load_party(slug: str) -> NpcModel:
     if slug in lookup_cache:
         return lookup_cache[slug]
     else:
-        npc_details = db.lookup(slug, "npc")
+        npc_details = NpcModel.lookup(slug, db)
         lookup_cache[slug] = npc_details
         return npc_details
 

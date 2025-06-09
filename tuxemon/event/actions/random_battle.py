@@ -9,7 +9,7 @@ from typing import final
 
 from tuxemon import prepare
 from tuxemon.combat import check_battle_legal
-from tuxemon.db import MonsterModel, NpcModel, db
+from tuxemon.db import EnvironmentModel, MonsterModel, NpcModel, db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.monster import Monster
@@ -90,8 +90,7 @@ class RandomBattleAction(EventAction):
 
         player = session.player
         env_slug = player.game_variables.get("environment", "grass")
-        env = db.lookup(env_slug, table="environment")
-
+        env = EnvironmentModel.lookup(env_slug, db)
         if not (check_battle_legal(player) and check_battle_legal(npc)):
             logger.warning("Battle is not legal, won't start")
             return
@@ -127,11 +126,11 @@ def _lookup() -> None:
     npcs = list(db.database["npc"])
 
     for mon in monsters:
-        _mon = db.lookup(mon, table="monster")
+        _mon = MonsterModel.lookup(mon, db)
         if _mon.txmn_id > 0 and _mon.randomly:
             lookup_cache_mon[mon] = _mon
 
     for npc in npcs:
-        _npc = db.lookup(npc, table="npc")
+        _npc = NpcModel.lookup(npc, db)
         if not _npc.monsters:
             lookup_cache_npc[npc] = _npc

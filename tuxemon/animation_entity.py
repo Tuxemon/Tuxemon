@@ -8,7 +8,7 @@ from collections.abc import Iterable
 from pygame.surface import Surface
 
 from tuxemon import prepare
-from tuxemon.db import db
+from tuxemon.db import AnimationModel, db
 from tuxemon.graphics import create_animation, load_frames_files
 from tuxemon.map_view import AnimationInfo
 
@@ -34,11 +34,7 @@ class AnimationEntity:
 
     def load(self, slug: str) -> None:
         """Loads animation."""
-        try:
-            results = db.lookup(slug, table="animation")
-        except KeyError:
-            raise RuntimeError(f"Animation {slug} not found")
-
+        results = AnimationModel.lookup(slug, db)
         self.slug = results.slug
         self.file = results.file
 

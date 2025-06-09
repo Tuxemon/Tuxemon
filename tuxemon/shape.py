@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from typing import Optional
 
-from tuxemon.db import AttributesModel, db
+from tuxemon.db import AttributesModel, ShapeModel, db
 
 logger = logging.getLogger(__name__)
 
@@ -33,11 +33,7 @@ class Shape:
             self.attributes = cached_shape.attributes
             return
 
-        try:
-            results = db.lookup(slug, table="shape")
-        except KeyError:
-            raise RuntimeError(f"Shape {slug} not found")
-
+        results = ShapeModel.lookup(slug, db)
         self.attributes = results.attributes
 
         Shape._shapes[slug] = self

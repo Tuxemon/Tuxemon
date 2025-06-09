@@ -6,7 +6,7 @@ import logging
 from collections.abc import Sequence
 from typing import Optional
 
-from tuxemon.db import ElementItemModel, db
+from tuxemon.db import ElementItemModel, ElementModel, db
 from tuxemon.locale import T
 
 logger = logging.getLogger(__name__)
@@ -36,11 +36,7 @@ class Element:
             self.icon = cached_element.icon
             return
 
-        try:
-            results = db.lookup(slug, table="element")
-        except KeyError:
-            raise RuntimeError(f"Element {slug} not found")
-
+        results = ElementModel.lookup(slug, db)
         self.slug = slug
         self.name = T.translate(self.slug)
         self.types = results.types

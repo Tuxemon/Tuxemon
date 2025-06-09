@@ -7,7 +7,7 @@ from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Optional
 
-from tuxemon.db import MissionStatus, db
+from tuxemon.db import MissionModel, MissionStatus, db
 from tuxemon.locale import T
 
 if TYPE_CHECKING:
@@ -155,11 +155,7 @@ class Mission:
         """
         Loads and sets mission from the db.
         """
-        try:
-            results = db.lookup(slug, table="mission")
-        except KeyError:
-            raise RuntimeError(f"Mission {slug} not found")
-
+        results = MissionModel.lookup(slug, db)
         self.slug = results.slug
         self.name = T.translate(results.slug)
         self.description = T.translate(results.description)

@@ -59,6 +59,6 @@ class LearnMmEffect(CoreEffect):
 def _lookup_techniques(element: str) -> None:
     monsters = list(db.database["technique"])
     for mon in monsters:
-        results = db.lookup(mon, table="technique")
+        results = TechniqueModel.lookup(mon, db)
         if results.randomly and element in results.types:
             lookup_cache[mon] = results

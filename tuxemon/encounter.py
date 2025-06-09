@@ -8,7 +8,7 @@ from collections.abc import Sequence
 from typing import TYPE_CHECKING, Optional
 
 from tuxemon import prepare
-from tuxemon.db import EncounterItemModel, db
+from tuxemon.db import EncounterItemModel, EncounterModel, db
 
 if TYPE_CHECKING:
     from tuxemon.npc import NPC
@@ -23,11 +23,7 @@ class EncounterData:
 
     def load_encounters(self, slug: str) -> Sequence[EncounterItemModel]:
         """Loads encounter data from the db."""
-        try:
-            results = db.lookup(slug, table="encounter")
-        except KeyError:
-            raise RuntimeError(f"Encounter {slug} not found")
-
+        results = EncounterModel.lookup(slug, db)
         return results.monsters
 
     def get_encounters(self) -> Sequence[EncounterItemModel]:

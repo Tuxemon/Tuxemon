@@ -16,6 +16,7 @@ from tuxemon.db import (
     GenderType,
     MonsterEvolutionItemModel,
     MonsterHistoryItemModel,
+    MonsterModel,
     MonsterMovesetItemModel,
     MonsterSpritesModel,
     PlagueType,
@@ -214,11 +215,7 @@ class Monster:
         Parameters:
             slug: Slug to lookup.
         """
-        try:
-            results = db.lookup(slug, table="monster")
-        except KeyError:
-            raise RuntimeError(f"Monster {slug} not found")
-
+        results = MonsterModel.lookup(slug, db)
         self.level = random.randint(2, 5)
         self.slug = results.slug
         self.name = T.translate(results.slug)
@@ -709,7 +706,7 @@ class MonsterSpriteHandler:
         if not slug:
             return {}
 
-        results = db.lookup(slug, table="monster")
+        results = MonsterModel.lookup(slug, db)
         flairs: dict[str, Flair] = {}
 
         for flair in results.flairs:

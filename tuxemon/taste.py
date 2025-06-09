@@ -7,7 +7,7 @@ import random
 from collections.abc import Sequence
 from typing import Optional
 
-from tuxemon.db import Modifier, db
+from tuxemon.db import Modifier, TasteModel, db
 from tuxemon.locale import T
 
 logger = logging.getLogger(__name__)
@@ -39,11 +39,7 @@ class Taste:
             self.taste_type = cached_taste.taste_type
             return
 
-        try:
-            results = db.lookup(slug, table="taste")
-        except KeyError:
-            raise RuntimeError(f"Taste {slug} not found")
-
+        results = TasteModel.lookup(slug, db)
         self.slug = slug
         self.name = T.translate(self.slug)
         self.description = T.translate(f"{results.slug}_description")

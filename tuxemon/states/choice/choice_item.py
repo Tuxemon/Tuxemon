@@ -9,7 +9,7 @@ from pygame_menu.locals import POSITION_EAST
 from pygame_menu.widgets.selection.highlight import HighlightSelection
 
 from tuxemon import prepare
-from tuxemon.db import db
+from tuxemon.db import ItemModel, db
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 
@@ -84,10 +84,7 @@ class ChoiceItem(PygameMenuState):
         slug: str,
         callback: Callable[[], None],
     ) -> None:
-        try:
-            item = db.lookup(slug, table="item")
-        except KeyError:
-            raise RuntimeError(f"Item {slug} not found")
+        item = ItemModel.lookup(slug, db)
         new_image = self._create_image(item.sprite)
         new_image.scale(
             prepare.SCALE * SCALE_SPRITE, prepare.SCALE * SCALE_SPRITE

@@ -11,7 +11,7 @@ from typing import TYPE_CHECKING, Any, Optional, TypedDict
 from tuxemon import prepare
 from tuxemon.battle import Battle, decode_battle, encode_battle
 from tuxemon.boxes import ItemBoxes, MonsterBoxes
-from tuxemon.db import Direction, db
+from tuxemon.db import Direction, NpcModel, db
 from tuxemon.entity import Entity
 from tuxemon.item.item import Item, decode_items, encode_items
 from tuxemon.locale import T
@@ -95,7 +95,7 @@ class NPC(Entity[NPCState]):
         super().__init__(slug=npc_slug, world=world)
 
         # load initial data from the npc database
-        npc_data = db.lookup(npc_slug, table="npc")
+        npc_data = NpcModel.lookup(npc_slug, db)
         self.template = npc_data.template
 
         # This is the NPC's name to be used in dialog

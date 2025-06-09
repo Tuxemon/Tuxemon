@@ -16,6 +16,7 @@ from tuxemon.db import (
     CategoryStatus,
     Range,
     ResponseStatus,
+    StatusModel,
     db,
 )
 from tuxemon.locale import T
@@ -104,11 +105,7 @@ class Status:
         Parameters:
             The slug of the status to look up in the database.
         """
-        try:
-            results = db.lookup(slug, table="status")
-        except KeyError:
-            raise RuntimeError(f"Status {slug} not found")
-
+        results = StatusModel.lookup(slug, db)
         self.slug = results.slug  # a short English identifier
         self.name = T.translate(self.slug)
         self.description = T.translate(f"{self.slug}_description")

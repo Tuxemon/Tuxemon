@@ -11,7 +11,7 @@ from pygame_menu.widgets.selection.highlight import HighlightSelection
 
 from tuxemon import prepare
 from tuxemon.animation import Animation
-from tuxemon.db import db
+from tuxemon.db import MonsterModel, db
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 from tuxemon.session import local_session
@@ -58,11 +58,7 @@ class ChoiceMonster(PygameMenuState):
         slug: str,
         callback: Callable[[], None],
     ) -> None:
-        try:
-            monster = db.lookup(slug, table="monster")
-        except KeyError:
-            raise RuntimeError(f"Monster {slug} not found")
-
+        monster = MonsterModel.lookup(slug, db)
         path = f"gfx/sprites/battle/{monster.slug}-front.png"
         new_image = self._create_image(path)
         new_image.scale(

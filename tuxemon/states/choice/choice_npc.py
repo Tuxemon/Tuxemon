@@ -11,7 +11,7 @@ from pygame_menu.widgets.selection.highlight import HighlightSelection
 
 from tuxemon import prepare
 from tuxemon.animation import Animation
-from tuxemon.db import db
+from tuxemon.db import NpcModel, db
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.theme import get_theme
 
@@ -63,10 +63,7 @@ class ChoiceNpc(PygameMenuState):
         slug: str,
         callback: Callable[[], None],
     ) -> None:
-        try:
-            npc = db.lookup(slug, table="npc")
-        except KeyError:
-            raise RuntimeError(f"NPC {slug} not found")
+        npc = NpcModel.lookup(slug, db)
         path = f"gfx/sprites/player/{npc.template.combat_front}.png"
         new_image = self._create_image(path)
         new_image.scale(

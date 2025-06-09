@@ -153,7 +153,8 @@ class EvolutionTransition(State):
         if slug not in db.database["monster"]:
             logger.error(f"{slug} doesn't exist.")
             return None
-        return db.lookup(slug, table="monster")
+        results = MonsterModel.lookup(slug, db)
+        return results
 
     def _load_sprite(self, slug: str) -> Sprite:
         path = tools.transform_resource_filename(

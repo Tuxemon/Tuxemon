@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from typing import Optional
 
-from tuxemon.db import db
+from tuxemon.db import TerrainModel, db
 
 logger = logging.getLogger(__name__)
 
@@ -31,11 +31,7 @@ class Terrain:
             self.element_modifier = cached_terrain.element_modifier
             return
 
-        try:
-            results = db.lookup(slug, table="terrain")
-        except KeyError:
-            raise RuntimeError(f"Terrain {slug} not found")
-
+        results = TerrainModel.lookup(slug, db)
         self.element_modifier = results.element_modifier
 
         Terrain._terrains[slug] = self

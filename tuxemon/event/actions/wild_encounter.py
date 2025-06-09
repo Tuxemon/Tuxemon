@@ -8,7 +8,7 @@ from typing import Optional, final
 
 from tuxemon import prepare
 from tuxemon.combat import check_battle_legal
-from tuxemon.db import db
+from tuxemon.db import EnvironmentModel, db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.graphics import ColorLike, string_to_colorlike
@@ -91,7 +91,7 @@ class WildEncounterAction(EventAction):
 
         env_var = player.game_variables.get("environment", "grass")
         env = env_var if self.env is None else self.env
-        environment = db.lookup(env, table="environment")
+        environment = EnvironmentModel.lookup(env, db)
 
         player.tuxepedia.add_entry(current_monster.slug)
 

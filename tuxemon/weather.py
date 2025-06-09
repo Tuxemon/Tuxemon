@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from typing import Optional
 
-from tuxemon.db import db
+from tuxemon.db import WeatherModel, db
 
 logger = logging.getLogger(__name__)
 
@@ -31,11 +31,7 @@ class Weather:
             self.element_modifier = cached_weather.element_modifier
             return
 
-        try:
-            results = db.lookup(slug, table="weather")
-        except KeyError:
-            raise RuntimeError(f"Weather {slug} not found")
-
+        results = WeatherModel.lookup(slug, db)
         self.element_modifier = results.element_modifier
 
         Weather._weathers[slug] = self

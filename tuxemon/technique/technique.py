@@ -12,7 +12,7 @@ from tuxemon.core.core_condition import CoreCondition
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
 from tuxemon.core.core_manager import ConditionManager, EffectManager
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
-from tuxemon.db import Range, db
+from tuxemon.db import Range, TechniqueModel, db
 from tuxemon.element import Element
 from tuxemon.locale import T
 from tuxemon.surfanim import FlipAxes
@@ -105,11 +105,7 @@ class Technique:
         Parameters:
             The slug of the technique to look up in the database.
         """
-        try:
-            results = db.lookup(slug, table="technique")
-        except KeyError:
-            raise RuntimeError(f"Technique {slug} not found")
-
+        results = TechniqueModel.lookup(slug, db)
         self.slug = results.slug  # a short English identifier
         self.name = T.translate(self.slug)
         self.description = T.translate(f"{self.slug}_description")

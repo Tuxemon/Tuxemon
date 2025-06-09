@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon.combat import check_battle_legal
-from tuxemon.db import db
+from tuxemon.db import EnvironmentModel, db
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
 from tuxemon.session import Session
@@ -63,7 +63,7 @@ class StartBattleAction(EventAction):
                     "environment", "grass"
                 )
 
-        env = db.lookup(env_slug, table="environment")
+        env = EnvironmentModel.lookup(env_slug, db)
 
         fighters = sorted(
             [character1, character2], key=lambda x: not x.isplayer

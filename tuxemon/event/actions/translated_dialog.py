@@ -95,7 +95,7 @@ def _get_style(cache_key: str) -> DialogueModel:
         return style_cache[cache_key]
     else:
         try:
-            style = db.lookup(cache_key, table="dialogue")
+            style = DialogueModel.lookup(cache_key, db)
             style_cache[cache_key] = style
             return style
         except KeyError:

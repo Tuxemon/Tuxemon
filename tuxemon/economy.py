@@ -44,11 +44,7 @@ class Economy:
             RuntimeError: If the economy with the given slug is not found
             in the database.
         """
-        try:
-            results = db.lookup(slug, table="economy")
-        except KeyError:
-            raise RuntimeError(f"Failed to find economy with slug {slug}")
-
+        results = EconomyModel.lookup(slug, db)
         self.model.slug = results.slug
         self.model.resale_multiplier = results.resale_multiplier
         self.model.background = results.background

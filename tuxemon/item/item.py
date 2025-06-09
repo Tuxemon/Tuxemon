@@ -15,7 +15,7 @@ from tuxemon.core.core_condition import CoreCondition
 from tuxemon.core.core_effect import CoreEffect, ItemEffectResult
 from tuxemon.core.core_manager import ConditionManager, EffectManager
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
-from tuxemon.db import ItemCategory, State, db
+from tuxemon.db import ItemCategory, ItemModel, State, db
 from tuxemon.locale import T
 from tuxemon.surfanim import FlipAxes
 
@@ -95,11 +95,7 @@ class Item:
             slug: The item slug to look up in the monster.item database.
 
         """
-        try:
-            results = db.lookup(slug, table="item")
-        except KeyError:
-            raise RuntimeError(f"Item {slug} not found")
-
+        results = ItemModel.lookup(slug, db)
         self.slug = results.slug
         self.name = T.translate(self.slug)
         self.description = T.translate(f"{self.slug}_description")

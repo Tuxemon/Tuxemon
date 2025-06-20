@@ -1,0 +1,104 @@
+# -----------------------------------------------------------------------------
+# DIALOGUE CONFIGURATION – LLM INTEGRATION FOR TUXEMON
+#
+# This file controls how Tuxemon generates in-game dialogue or character cues
+# using connected large language models (LLMs) like Mistral, OpenAI, or Ollama.
+#
+# How it works:
+#
+# • Each backend (under `llm:`) defines how to send a prompt to an LLM service.
+# • You write a "prompt" (see `prompts:` below) that describes what the character is like
+#   and what they want to communicate in the scene.
+# • That prompt is inserted into the `template` field for the selected backend.
+# • The LLM returns either:
+#     - A Python list of short lines of in-character dialogue, OR
+#     - A single paragraph of actor-style guidance (i.e., how to perform the character).
+# • Your game's code then shows this text during gameplay.
+#
+# Editing tips:
+#
+# • Use `{prompt}`, `{language}`, and `{player_name}` in templates - they'll be replaced automatically.
+# • Adjust wording in the `template` to fit either style:
+#     - Write “Return a Python list...” if you want NPC dialogue.
+#     - Write “Write a short paragraph...” if you want an actor-style cue.
+# • See the `prompts:` section to define specific character behaviors or moods for a scene.
+# -----------------------------------------------------------------------------
+
+llm:
+  backend: "test"  # can be: "mistral", "ollama", "openai", "gemini" or "test"
+
+  test:
+    response: |
+      ["Hello {player_name}!", "Welcome to our village."]
+
+  openai:
+    api_key_env: "OPENAI_API_KEY"
+    api_url: "https://api.openai.com/v1/chat/completions"
+    model: "gpt-4"
+    temperature: 0.7
+    max_tokens: 150
+    template: >
+      {prompt}
+
+      Return only a Python list of 2-3 short dialog lines the character might say.
+      Each line must be no more than 130 characters.
+      Avoid any inappropriate, violent, or profane language.
+      The tone should match a whimsical, family-friendly monster-catching game-
+      lighthearted, adventurous, and suitable for all ages.
+      The dialog must be written in {language}, using natural phrasing suitable for a fantasy adventure game.
+      Feel free to include the player's name: {player_name}.
+      Only return a valid Python list of strings. No extra explanations or formatting.
+
+  mistral:
+    api_key_env: "MISTRAL_API_KEY"
+    api_url: "https://api.mistral.ai/v1/chat/completions"
+    model: "open-mistral-7b"
+    temperature: 0.7
+    max_tokens: 150
+    template: >
+      {prompt}
+
+      Return only a Python list of 2-3 short dialog lines the character might say.
+      Each line must be no more than 130 characters.
+      Avoid any inappropriate, violent, or profane language.
+      The tone should match a whimsical, family-friendly monster-catching game-
+      lighthearted, adventurous, and suitable for all ages.
+      The dialog must be written in {language}, using natural phrasing suitable for a fantasy adventure game.
+      Feel free to include the player's name: {player_name}.
+      Only return a valid Python list of strings. No extra explanations or formatting.
+
+  ollama:
+    api_url: "http://localhost:11434/api/generate"
+    model: "tinyllama"
+    template: >
+      {prompt}
+
+      Return only a Python list of 2-3 short dialog lines the character might say.
+      Each line must be no more than 130 characters.
+      Avoid any inappropriate, violent, or profane language.
+      The tone should match a whimsical, family-friendly monster-catching game-
+      lighthearted, adventurous, and suitable for all ages.
+      The dialog must be written in {language}, using natural phrasing suitable for a fantasy adventure game.
+      Feel free to include the player's name: {player_name}.
+      Only return a valid Python list of strings. No extra explanations or formatting.
+
+  gemini:
+    api_key_env: "GEMINI_API_KEY"
+    api_url: "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"
+    template: >
+      {prompt}
+
+      Return only a Python list of 2-3 short dialog lines the character might say.
+      Each line must be no more than 130 characters.
+      Avoid any inappropriate, violent, or profane language.
+      The tone should match a whimsical, family-friendly monster-catching game-
+      lighthearted, adventurous, and suitable for all ages.
+      The dialog must be written in {language}, using natural phrasing suitable for a fantasy adventure game.
+      Feel free to include the player's name: {player_name}.
+      Only return a valid Python list of strings. No extra explanations or formatting.
+
+prompts:
+  test_intro_npc: |
+    Your name is Kai, you're a brooding, fiercely competitive rival trainer with a mysterious past.
+    You're feeling frustrated because {player_name} keeps catching up to you.
+    You must tell {player_name} that they're not ready to face what's ahead-and warn them about the strange Tuxemon behavior deep in the forest.

@@ -44,6 +44,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.fade_out.FadeOutAction
 .. autoscriptinfoclass:: tuxemon.event.actions.fadeout_music.FadeoutMusicAction
 .. autoscriptinfoclass:: tuxemon.event.actions.format_variable.FormatVariableAction
+.. autoscriptinfoclass:: tuxemon.event.actions.generated_dialog.GeneratedDialogAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_monster_tech.GetMonsterTechAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_party_monsters.GetPartyMonsterAction
 .. autoscriptinfoclass:: tuxemon.event.actions.get_player_monster.GetPlayerMonsterAction

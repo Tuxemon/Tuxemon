@@ -50,6 +50,10 @@ class MainParkMenuState(PopUpMenu[MenuGameObj]):
         self.enemy = cmb.players[1]  # ai
         self.monster = monster
         self.opponents = cmb.field_monsters.get_monsters(self.enemy)
+        if not self.client.park_session.is_active:
+            raise ValueError(
+                "Use the event action 'park_experience start' to enable the Park Session"
+            )
         self.encounter = session.client.park_session.start_encounter(
             self.opponents[0]
         )

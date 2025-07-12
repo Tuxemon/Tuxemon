@@ -118,7 +118,7 @@ class StatusIconManager:
     ) -> tuple[float, float]:
         owner = monster.get_owner()
         layout_data = self._layouts.get(owner, {})
-        rects = layout_data.get(f"status_icon{index}", [])
+        rects = layout_data.get(f"monster_status_icon_slot_{index}", [])
         return rects[0].topleft if rects else (0, 0)
 
     def recalculate_icon_positions(self) -> None:

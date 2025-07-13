@@ -4122,6 +4122,9 @@ msgstr "To The Bottom"
 msgid "menu_party_level_lowest"
 msgstr "Lowest Level"
 
+msgid "menu_party_alignment"
+msgstr "Alignment"
+
 msgid "menu_party_level_highest"
 msgstr "Highest Level"
 

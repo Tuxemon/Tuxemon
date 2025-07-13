@@ -1418,13 +1418,32 @@ class EnvironmentModel(BaseModel, BaseLookupModel):
         raise ValueError(f"the music {v} doesn't exist in the db")
 
 
+class HeldItemProbability(BaseModel):
+    item_slug: str = Field(
+        ..., description="Slug of the item that can be held."
+    )
+    probability: float = Field(
+        ...,
+        ge=0.0,
+        le=1.0,
+        description="Probability (0.0-1.0) of this item being held.",
+    )
+
+    @field_validator("item_slug")
+    def item_exists(cls, v: str) -> str:
+        if not has.db_entry("item", v):
+            raise ValueError(f"the item '{v}' doesn't exist in the db")
+        return v
+
+
 class EncounterItemModel(BaseModel):
     monster: str = Field(..., description="Monster slug for this encounter")
     encounter_rate: float = Field(
         ..., description="Probability of encountering this monster."
     )
-    held_items: Sequence[str] = Field(
-        ..., description="A list of items that will be held."
+    held_items: Sequence[HeldItemProbability] = Field(
+        [],
+        description="A list of items that will be held with their probabilities.",
     )
     level_range: Sequence[int] = Field(
         ...,
@@ -1440,24 +1459,40 @@ class EncounterItemModel(BaseModel):
         description="Modifier for the experience points required to defeat this wild monster.",
         gt=0.0,
     )
+    level_offset: Optional[int] = Field(
+        None,
+        description="Offset (+/- levels) to apply to the monster's level.",
+    )
+    level_offset_range: Optional[tuple[int, int]] = Field(
+        None,
+        description="Range of offset (+/- levels) to apply randomly to base level.",
+    )
+    min_player_level: Optional[int] = Field(
+        None,
+        description="Minimum average level of player's party for this encounter.",
+    )
+    max_player_level: Optional[int] = Field(
+        None,
+        description="Maximum average level of player's party for this encounter.",
+    )
+    scaling_enabled: bool = Field(
+        False,
+        description="If true, scales the monster level based on player's party level average.",
+    )
+    override_level_range: bool = Field(
+        False,
+        description="If true, allows scaling to override a monster's declared level_range and match party average directly.",
+    )
+    scaling_offset_range: Optional[tuple[int, int]] = Field(
+        None,
+        description="Range used for random offset when scaling level overrides are applied (e.g. [-3, +4])",
+    )
 
     @field_validator("monster")
     def monster_exists(cls: EncounterItemModel, v: str) -> str:
         if has.db_entry("monster", v):
             return v
         raise ValueError(f"the monster {v} doesn't exist in the db")
-
-    @field_validator("held_items")
-    def item_exists(
-        cls: EncounterItemModel, v: Sequence[str]
-    ) -> Sequence[str]:
-        if v:
-            for item in v:
-                if not has.db_entry("item", item):
-                    raise ValueError(
-                        f"the item '{item}' doesn't exist in the db"
-                    )
-        return v
 
 
 class EncounterModel(BaseModel, BaseLookupModel):
@@ -1467,6 +1502,22 @@ class EncounterModel(BaseModel, BaseLookupModel):
     )
     monsters: Sequence[EncounterItemModel] = Field(
         [], description="Monsters encounterable"
+    )
+    scaling_zone: bool = Field(
+        False,
+        description="If true, this zone applies level scaling to all monsters",
+    )
+    scale_offset_range: Optional[tuple[int, int]] = Field(
+        None,
+        description="Custom offset range applied when scaling override is active (e.g. -3 to +5)",
+    )
+    scale_multiplier: float = Field(
+        1.0,
+        description="Multiplier applied to party average to define base scaled level",
+    )
+    override_level_range: bool = Field(
+        False,
+        description="If true, allows scaling to override a monster's declared level_range and match party average directly.",
     )
 
     @classmethod

@@ -183,4 +183,4 @@ class TechniqueMenuState(Menu[Technique]):
         # show technique description
         if technique:
             if technique.description:
-                self.alert(technique.description)
+                self.dialog.alert(technique.description)

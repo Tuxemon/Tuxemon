@@ -19,13 +19,13 @@ from pygame_menu.widgets.core.widget import Widget
 from tuxemon import graphics, prepare, tools
 from tuxemon.animation import Animation, ScheduleType
 from tuxemon.graphics import ColorLike
+from tuxemon.menu.alert import AlertManager
 from tuxemon.menu.controller import MenuController
 from tuxemon.menu.events import playerinput_to_event
 from tuxemon.menu.interface import MenuCursor, MenuItem
 from tuxemon.menu.theme import get_sound_engine, get_theme
 from tuxemon.platform.const import buttons, intentions
 from tuxemon.platform.events import PlayerInput
-from tuxemon.prepare import CONFIG
 from tuxemon.sprite import (
     RelativeGroup,
     SpriteGroup,
@@ -33,7 +33,6 @@ from tuxemon.sprite import (
 )
 from tuxemon.state import State
 from tuxemon.ui.draw import GraphicBox, TextRenderer
-from tuxemon.ui.text import TextArea
 
 logger = logging.getLogger(__name__)
 
@@ -317,7 +316,6 @@ class Menu(Generic[T], State):
         state: An arbitrary state of the menu. E.g. MenuState.OPENING or MenuState.CLOSING.
         selected_index: The index position of the currently selected menu item.
         menu_items: A list of available menu items.
-
     """
 
     # defaults for the menu
@@ -339,7 +337,6 @@ class Menu(Generic[T], State):
     borders_filename = "gfx/borders/borders.png"
     cursor_filename = "gfx/arrow.png"
     cursor_move_duration = 0.20
-    default_character_delay = 0.05
     shrink_to_items = False  # fit the border to contents
     escape_key_exits = True  # escape key closes menu
     animate_contents = False  # show contents while window opens
@@ -355,6 +352,7 @@ class Menu(Generic[T], State):
         self.state_controller = MenuController()
         self._show_contents = False
         self._needs_refresh = False
+        self.dialog = AlertManager(self.sprites, self.task)
         self._anchors: dict[str, Union[int, tuple[int, int]]] = {}
         self.__dict__.update(kwargs)
 
@@ -415,88 +413,6 @@ class Menu(Generic[T], State):
         del self.arrow
         del self.menu_items
         del self.menu_sprites
-
-    def start_text_animation(
-        self,
-        text_area: TextArea,
-        callback: Optional[Callable[[], None]] = None,
-    ) -> None:
-        """
-        Start an animation to show text area, one character at a time.
-
-        Parameters:
-            text_area: Text area to animate.
-            callback: Function called when alert is complete.
-        """
-
-        def next_character() -> None:
-            try:
-                next(text_area)
-            except StopIteration:
-                if callback:
-                    callback()
-            else:
-                self.task(next_character, interval=self.character_delay)
-
-        self.character_delay = self.default_character_delay
-        next_character()
-
-    def animate_text(
-        self,
-        text_area: TextArea,
-        text: str,
-        callback: Optional[Callable[[], None]] = None,
-        dialog_speed: str = "slow",
-    ) -> None:
-        """
-        Set and animate a text area.
-
-        Parameters:
-            text_area: Text area to animate.
-            text: Text to display.
-            callback: Function called when alert is complete.
-            dialog_speed: Speed of blitting chars to the dialog box.
-        """
-        text_area.text = text
-        if CONFIG.dialog_speed == "max" or dialog_speed == "max":
-            # exhaust the iterator to immediately blit every char to the dialog
-            # box
-            for _ in text_area:
-                pass
-            if callback:
-                callback()
-        else:
-            self.start_text_animation(text_area, callback)
-
-    def alert(
-        self,
-        message: str,
-        callback: Optional[Callable[[], None]] = None,
-        dialog_speed: str = "slow",
-    ) -> None:
-        """
-        Write a message to the first available text area.
-
-        Generally, a state will have just one, if any, text area.
-        The first one found will be used to display the message.
-        If no text area is found, a RuntimeError will be raised.
-
-        Parameters:
-            message: Message to write.
-            callback: Function called when alert is complete.
-            dialog_speed: Speed of blitting chars to the dialog box.
-        """
-
-        def find_textarea() -> TextArea:
-            for sprite in self.sprites:
-                if isinstance(sprite, TextArea):
-                    return sprite
-            raise RuntimeError(
-                "attempted to use 'alert' on state without a TextArea",
-                message,
-            )
-
-        self.animate_text(find_textarea(), message, callback, dialog_speed)
 
     def initialize_items(self) -> Optional[Iterable[MenuItem[T]]]:
         """

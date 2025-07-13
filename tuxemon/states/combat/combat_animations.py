@@ -634,10 +634,10 @@ class CombatAnimations(Menu[None], ABC):
         """Display the alert message."""
         if self.is_trainer_battle:
             params = {"name": self.players[1].name.upper()}
-            self.alert(T.format("combat_trainer_appeared", params))
+            self.dialog.alert(T.format("combat_trainer_appeared", params))
         else:
             params = {"name": self.players[1].monsters[0].name.upper()}
-            self.alert(T.format("combat_wild_appeared", params))
+            self.dialog.alert(T.format("combat_wild_appeared", params))
 
     def animate_throwing(
         self,
@@ -740,7 +740,7 @@ class CombatAnimations(Menu[None], ABC):
                 gotcha += "\n" + info
                 delay += len(gotcha) * config_combat.letter_time
                 self.task(
-                    partial(self.alert, gotcha),
+                    partial(self.dialog.alert, gotcha),
                     interval=delay,
                 )
 
@@ -769,7 +769,7 @@ class CombatAnimations(Menu[None], ABC):
                 failed = T.translate(label)
                 delay += len(failed) * config_combat.letter_time
                 self.task(
-                    partial(self.alert, failed),
+                    partial(self.dialog.alert, failed),
                     interval=delay,
                 )
 

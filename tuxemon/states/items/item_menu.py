@@ -303,7 +303,7 @@ class ItemMenuState(Menu[Item]):
     def show_item_description(self, item: Item) -> None:
         """Show the description of the selected item."""
         if item.description:
-            self.alert(item.description)
+            self.dialog.alert(item.description)
 
     def reload_items(self) -> None:
         self.clear()

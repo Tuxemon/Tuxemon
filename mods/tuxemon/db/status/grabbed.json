@@ -2,17 +2,23 @@
   "animation": null,
   "modifiers": [],
   "category": "negative",
-	"conditions": [
+  "conditions": [
     {
       "type": "current_hp",
-      "parameters": [">", "0"],
+      "parameters": [
+        ">",
+        "0"
+      ],
       "operator": "is"
     }
-	],
+  ],
   "effects": [
     {
       "type": "grabbed",
-      "parameters": ["2", "ranged:reach"]
+      "parameters": [
+        "2",
+        "ranged:reach"
+      ]
     }
   ],
   "flip_axes": "",

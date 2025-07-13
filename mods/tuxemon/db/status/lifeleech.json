@@ -2,17 +2,22 @@
   "animation": null,
   "modifiers": [],
   "category": "negative",
-	"conditions": [
+  "conditions": [
     {
       "type": "current_hp",
-      "parameters": [">", "0"],
+      "parameters": [
+        ">",
+        "0"
+      ],
       "operator": "is"
     }
-	],
+  ],
   "effects": [
     {
       "type": "lifeleech",
-      "parameters": ["16"]
+      "parameters": [
+        "16"
+      ]
     }
   ],
   "flip_axes": "",

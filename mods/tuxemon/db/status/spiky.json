@@ -5,7 +5,9 @@
   "effects": [
     {
       "type": "spiky",
-      "parameters": ["8"]
+      "parameters": [
+        "8"
+      ]
     }
   ],
   "flip_axes": "",

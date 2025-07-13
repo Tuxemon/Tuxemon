@@ -15,6 +15,7 @@ from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import Range, TechniqueModel, db
 from tuxemon.element import ElementTypesHandler
 from tuxemon.locale import T
+from tuxemon.modifiers import ModifiersHandler
 from tuxemon.surfanim import FlipAxes
 
 if TYPE_CHECKING:
@@ -66,6 +67,7 @@ class Technique:
         self.sort: str = ""
         self.slug: str = ""
         self.types: ElementTypesHandler = ElementTypesHandler()
+        self.modifiers: ModifiersHandler = ModifiersHandler()
         self.usable_on: bool = False
         self.use_success: str = ""
         self.use_failure: str = ""
@@ -149,7 +151,7 @@ class Technique:
         self.effect_handler = EffectProcessor(self.effects)
         self.target = results.target.model_dump()
         self.usable_on = results.usable_on
-        self.modifiers = results.modifiers
+        self.modifiers = ModifiersHandler(results.modifiers)
 
         # Load the animation sprites that will be used for this technique
         self.animation = results.animation

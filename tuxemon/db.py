@@ -408,6 +408,13 @@ class ShapeModel(BaseModel, BaseLookupModel):
         raise ValueError(f"no translation exists with msgid: {v}")
 
 
+class LearningMethod(str, Enum):
+    LEVEL_UP = "level_up"
+    TM = "tm"
+    EVENT = "event"
+    EVOLUTION = "evolution"
+
+
 class MonsterMovesetItemModel(BaseModel):
     level_learned: int = Field(
         ..., description="Monster level in which this moveset is learned", gt=0
@@ -415,7 +422,18 @@ class MonsterMovesetItemModel(BaseModel):
     technique: str = Field(
         ...,
         description="Name of the technique for this moveset item",
-        json_schema_extra={"unique": True},
+    )
+    evolution_stage_learned: Optional[EvolutionStage] = Field(
+        None,
+        description="Evolution stage at which this technique is learned. If None, not tied to a specific evolution stage beyond level.",
+    )
+    can_be_forgotten: bool = Field(
+        True,
+        description="Indicates if this technique can be forgotten by the monster.",
+    )
+    learning_method: LearningMethod = Field(
+        LearningMethod.LEVEL_UP,
+        description="Method by which the technique is learned.",
     )
 
     @field_validator("technique")

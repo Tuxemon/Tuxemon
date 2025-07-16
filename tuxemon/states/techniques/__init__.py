@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Generator
 from functools import partial
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from pygame.rect import Rect
 
@@ -184,3 +184,9 @@ class TechniqueMenuState(Menu[Technique]):
         if technique:
             if technique.description:
                 self.alert(technique.description)
+
+    def is_valid_entry(self, technique: Optional[Technique]) -> bool:
+        """
+        Used to determine if a given technique should be selectable.
+        """
+        return technique is not None

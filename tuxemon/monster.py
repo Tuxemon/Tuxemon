@@ -6,7 +6,7 @@ import logging
 import random
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, fields
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any, Optional, Union
 from uuid import UUID, uuid4
 
 from tuxemon import formula, graphics, prepare, tools
@@ -16,6 +16,7 @@ from tuxemon.db import (
     EffectPhase,
     EvolutionStage,
     GenderType,
+    LearningMethod,
     MonsterEvolutionItemModel,
     MonsterFlairItemModel,
     MonsterHistoryItemModel,
@@ -204,7 +205,7 @@ class Monster:
     def spawn_base(cls, slug: str, level: int) -> Monster:
         monster = cls.create(slug)
         monster.set_level(level)
-        monster.moves.set_moves(level)
+        monster.moves.set_moves(level, monster.stage)
         monster.current_hp = monster.hp
         return monster
 
@@ -865,7 +866,7 @@ class MonsterMovesHandler:
         moveset: Optional[Sequence[MonsterMovesetItemModel]] = None,
     ):
         self.moves = moves if moves is not None else []
-        self.moveset = moveset if moveset is not None else []
+        self.moveset = list(moveset) if moveset is not None else []
 
     @property
     def current_moves(self) -> list[Technique]:
@@ -873,7 +874,7 @@ class MonsterMovesHandler:
 
     def set_moveset(self, moveset: Sequence[MonsterMovesetItemModel]) -> None:
         """Sets the raw moveset data from the database."""
-        self.moveset = moveset
+        self.moveset = list(moveset)
 
     def learn(self, technique: Technique) -> None:
         """
@@ -885,15 +886,51 @@ class MonsterMovesHandler:
 
         self.moves.append(technique)
 
-    def forget(self, technique: Technique) -> None:
+    def forget(self, technique: Technique) -> bool:
         """
         Removes a technique from the monster's moveset.
 
         Parameters:
             technique: The technique to forget.
         """
+        moveset_entry = next(
+            (m for m in self.moveset if m.technique == technique.slug), None
+        )
+        if moveset_entry and not moveset_entry.can_be_forgotten:
+            return False
         if technique in self.moves:
             self.moves.remove(technique)
+            return True
+        return False
+
+    def is_move_eligible(
+        self,
+        move: MonsterMovesetItemModel,
+        level: int,
+        evolution_stage: Optional[EvolutionStage] = None,
+        method: LearningMethod = LearningMethod.LEVEL_UP,
+    ) -> bool:
+        if move.learning_method != method:
+            return False
+        return move.level_learned <= level and (
+            move.evolution_stage_learned is None
+            or (
+                evolution_stage is not None
+                and move.evolution_stage_learned == evolution_stage
+            )
+        )
+
+    def can_forget(self, technique: Technique) -> bool:
+        entry = next(
+            (m for m in self.moveset if m.technique == technique.slug), None
+        )
+        return entry is not None and entry.can_be_forgotten
+
+    def remove_forced(self, technique: Technique) -> bool:
+        if technique in self.moves:
+            self.moves.remove(technique)
+            return True
+        return False
 
     def replace_move(self, index: int, new_move: Technique) -> None:
         """
@@ -907,53 +944,94 @@ class MonsterMovesHandler:
             self.moves[index] = new_move
 
     def set_moves(
-        self, level: int, max_moves: int = prepare.MAX_MOVES
+        self,
+        level: int,
+        evolution_stage: Optional[EvolutionStage] = None,
+        max_moves: int = prepare.MAX_MOVES,
+        method: LearningMethod = LearningMethod.LEVEL_UP,
     ) -> None:
         """
         Set monster moves according to the level.
 
         Parameters:
-            level: The level of the monster.
-            max_moves: The maximum number of moves the monster can learn.
+            level: The current level of the monster.
+            evolution_stage: The monster's current evolution stage,
+                if applicable.
+            max_moves: The maximum number of moves the monster can have
+                at once.
+            method: The method by which the monster learns moves
+                (e.g., LEVEL_UP, EVOLUTION).
         """
         eligible_moves = [
             move.technique
             for move in self.moveset
-            if move.level_learned <= level
+            if self.is_move_eligible(
+                move=move,
+                level=level,
+                method=method,
+                evolution_stage=evolution_stage,
+            )
         ]
+
         moves_to_learn = eligible_moves[-max_moves:]
-        for move in moves_to_learn:
-            tech = Technique.create(move)
-            self.learn(tech)
+        for move_name in moves_to_learn:
+            technique = Technique.create(move_name)
+            self.learn(technique)
+            logger.debug(
+                f"Monster learned technique: {technique.slug} at level {level} and stage {evolution_stage}"
+            )
 
     def update_moves(
-        self, monster_level: int, levels_earned: int
+        self,
+        monster_level: int,
+        levels_earned: int,
+        evolution_stage: Optional[EvolutionStage] = None,
+        method: LearningMethod = LearningMethod.LEVEL_UP,
     ) -> list[Technique]:
-        """
-        Set monster moves according to the levels increased.
-        Excludes the moves already learned.
-
-        Parameters:
-            monster_level: The current level of the monster.
-            levels_earned: Number of levels earned.
-
-        Returns:
-            techniques: list containing the learned techniques
-        """
-        new_level = monster_level - levels_earned
-        new_moves = self.moves.copy()
+        start_level = monster_level - levels_earned
         new_techniques = []
+
         for move in self.moveset:
             if (
-                move.technique not in (m.slug for m in self.moves)
-                and new_level < move.level_learned <= monster_level
+                start_level < move.level_learned <= monster_level
+                and self.is_move_eligible(
+                    move=move,
+                    level=monster_level,
+                    evolution_stage=evolution_stage,
+                    method=method,
+                )
+                and move.technique not in (m.slug for m in self.moves)
             ):
                 technique = Technique.create(move.technique)
-                new_moves.append(technique)
+                self.moves.append(technique)
                 new_techniques.append(technique)
+                logger.debug(
+                    f"Monster learned new technique: {technique.slug} between levels {start_level}-{monster_level} and stage {evolution_stage} via {method.name}"
+                )
 
-        self.moves = new_moves
         return new_techniques
+
+    def learn_by_method(
+        self,
+        technique_slug: str,
+        methods: Union[LearningMethod, set[LearningMethod]],
+    ) -> Optional[Technique]:
+        if isinstance(methods, LearningMethod):
+            methods = {methods}
+
+        move_data = next(
+            (m for m in self.moveset if m.technique == technique_slug), None
+        )
+
+        if not move_data or move_data.learning_method not in methods:
+            return None
+
+        technique = Technique.create(technique_slug)
+        self.learn(technique)
+        logger.debug(
+            f"Monster learned technique via {move_data.learning_method.value.upper()}: {technique_slug}"
+        )
+        return technique
 
     def recharge_moves(self) -> None:
         for move in self.moves:

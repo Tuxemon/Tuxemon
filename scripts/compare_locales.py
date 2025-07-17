@@ -8,14 +8,15 @@ This will check all locales and print locales that do not conform.
 
 Output is JSON, suitable to copy/paste into a locale file.
 """
+
 import glob
 import json
 import os
 
 # assume run from test folder
-locale_folder = '../../../tuxemon/resources/db/locale/'
-locale_glob = locale_folder + '*.json'
-master_filename = 'en_US.json'
+locale_folder = "../../../tuxemon/resources/db/locale/"
+locale_glob = locale_folder + "*.json"
+master_filename = "en_US.json"
 
 
 def load_keys(filename):

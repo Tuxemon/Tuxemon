@@ -2,16 +2,17 @@
 dont_extract = True  # Switching to false will make the download function
 #                    # extract the downloaded package to the mods folder
 
-from tuxemon.mod_manager import Manager
 import os
 import readline
+
+from tuxemon.mod_manager import Manager
 
 print(
     "",
     "Test package downloader.",
     "Check tuxemon/mod_manager/__init__.py for module.",
     "Downloads are located at ~/.tuxemon/cache/downloaded_packages",
-    sep="\n"
+    sep="\n",
 )
 
 os.makedirs(os.path.expanduser("~/.tuxemon/cache/downloaded_packages"), exist_ok=True)
@@ -39,7 +40,14 @@ while True:
         else:
             install_deps = False
 
-        man.download_package(author, name, release=release, repo=ip, dont_extract=dont_extract, install_deps=install_deps)
+        man.download_package(
+            author,
+            name,
+            release=release,
+            repo=ip,
+            dont_extract=dont_extract,
+            install_deps=install_deps,
+        )
 
     except EOFError:
         break

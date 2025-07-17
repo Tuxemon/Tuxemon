@@ -4,6 +4,7 @@
     author: Andy Mender <andymenderunix@gmail.com>
     license: GPLv3
 """
+
 import os.path
 
 

@@ -1,8 +1,8 @@
-from tuxemon.mod_manager import Manager
-
 from pprint import pprint
 
-#ip_list = ["http://127.0.0.1:5000", "http://127.0.0.1:5001"]
+from tuxemon.mod_manager import Manager
+
+# ip_list = ["http://127.0.0.1:5000", "http://127.0.0.1:5001"]
 ip_list = ["http://127.0.0.1:5000"]
 man = Manager(ip_list)
 
@@ -13,7 +13,7 @@ man.update_all()
 
 pprint(man.list_packages())
 """
-print("-"*10)
+print("-" * 10)
 for i in man.list_packages():
     print(i)
 

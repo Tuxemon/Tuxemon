@@ -452,7 +452,7 @@ class CombatState(CombatAnimations):
                 return True
             return False
 
-        state = self.client.push_state(MonsterMenuState(player))
+        state = self.client.push_state(MonsterMenuState(player.monsters))
         # must use a partial because alert relies on a text box that may not
         # exist until after the state hs been startup
         state.task(

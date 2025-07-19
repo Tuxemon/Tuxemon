@@ -20,8 +20,9 @@ from tuxemon import graphics, prepare, tools
 from tuxemon.animation import Animation, ScheduleType
 from tuxemon.graphics import ColorLike
 from tuxemon.menu.controller import MenuController
+from tuxemon.menu.cursor import MenuCursor, MenuCursorController
 from tuxemon.menu.events import playerinput_to_event
-from tuxemon.menu.interface import MenuCursor, MenuItem
+from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.theme import get_sound_engine, get_theme
 from tuxemon.platform.const import buttons, intentions
 from tuxemon.platform.events import PlayerInput
@@ -379,6 +380,15 @@ class Menu(Generic[T], State):
             font_shadow_color=self.font_shadow_color,
         )
 
+        self.cursor_controller: MenuCursorController[T] = MenuCursorController(
+            cursor_filename=self.cursor_filename,
+            menu_sprites=self.menu_sprites,
+            get_selected_item=self.get_selected_item,
+            animate=self.animate,
+            duration=self.cursor_move_duration,
+            remove_animations=self.remove_animations_of,
+        )
+
     def set_input_handler(self, handler: InputHandler) -> None:
         """
         Sets a new input handler for the menu, enabling dynamic replacement
@@ -412,9 +422,9 @@ class Menu(Generic[T], State):
 
         self.client.event_manager.release_controls(self.client.input_manager)
 
-        del self.arrow
         del self.menu_items
         del self.menu_sprites
+        del self.cursor_controller
 
     def start_text_animation(
         self,
@@ -648,32 +658,17 @@ class Menu(Generic[T], State):
             # set the helper to draw the _background
             self.window = GraphicBox(border, background, self.background_color)
 
-        # handle the arrow cursor
-        image = graphics.load_and_scale(self.cursor_filename)
-        self.arrow = MenuCursor(image)
-
     def update_background(self, new_filename: str) -> None:
         self.background_filename = new_filename
         self.load_graphics()
 
     def show_cursor(self) -> None:
         """Show the cursor that indicates the selected object."""
-        if self.arrow not in self.menu_sprites:
-            self.menu_sprites.add(self.arrow)
-        self.trigger_cursor_update(False)
-        selected = self.get_selected_item()
-        assert selected
-        selected.in_focus = True
-        selected.update_image()
+        self.cursor_controller.show_cursor()
 
     def hide_cursor(self) -> None:
         """Hide the cursor that indicates the selected object."""
-        if self.arrow in self.menu_sprites:
-            self.menu_sprites.remove(self.arrow)
-            selected = self.get_selected_item()
-            if selected is not None:
-                selected.in_focus = False
-                selected.update_image()
+        self.cursor_controller.hide_cursor()
 
     def refresh_layout(self) -> None:
         """Fit border to contents and hide/show cursor."""
@@ -683,9 +678,9 @@ class Menu(Generic[T], State):
         disabled = all(not i.enabled for i in self.menu_items)
 
         if self.menu_items and not disabled:
-            self.show_cursor()
+            self.cursor_controller.show_cursor()
         else:
-            self.hide_cursor()
+            self.cursor_controller.hide_cursor()
 
         if self.shrink_to_items:
             self.fit_border()
@@ -777,16 +772,10 @@ class Menu(Generic[T], State):
         Move also cursor and trigger focus changes.
         """
         previous = self.get_selected_item()
-        if previous is not None:
-            previous.in_focus = False
-            previous.update_image()
         self.selected_index = index
         self.menu_select_sound.play()
-        self.trigger_cursor_update(animate)
         selected = self.get_selected_item()
-        assert selected
-        selected.in_focus = True
-        selected.update_image()
+        self.cursor_controller.update_selection_focus(previous, selected)
         self.on_menu_selection_change()
 
     def search_items(self, target_object: Any) -> Optional[MenuItem[T]]:
@@ -807,38 +796,6 @@ class Menu(Generic[T], State):
             ),
             None,
         )
-
-    def trigger_cursor_update(
-        self, animate: bool = True
-    ) -> Optional[Animation]:
-        """
-        Force the menu cursor to move into the correct position.
-
-        Parameters:
-            animate: If True, then arrow will move smoothly into position.
-
-        Returns:
-            Animation of the cursor if ``animate`` is ``True``. ``None``
-            otherwise.
-        """
-        selected = self.get_selected_item()
-        if not selected:
-            return None
-
-        x, y = selected.rect.midleft
-        x -= tools.scale(2)
-
-        if animate:
-            self.remove_animations_of(self.arrow.rect)
-            return self.animate(
-                self.arrow.rect,
-                right=x,
-                centery=y,
-                duration=self.cursor_move_duration,
-            )
-        else:
-            self.arrow.rect.midright = x, y
-            return None
 
     def get_selected_item(self) -> Optional[MenuItem[T]]:
         """
@@ -937,9 +894,7 @@ class Menu(Generic[T], State):
         Returns:
             Rectangle that contains the menu items.
         """
-        # WARNING: hardcoded values related to menu arrow size
-        #          if menu arrow image changes, this should be adjusted
-        cursor_margin = -tools.scale(11), -tools.scale(5)
+        cursor_margin = self.cursor_controller.get_margin()
         inner = self.calc_internal_rect()
         menu_rect = inner.inflate(*cursor_margin)
         menu_rect.bottomright = inner.bottomright

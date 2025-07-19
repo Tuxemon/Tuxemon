@@ -240,28 +240,3 @@ class MenuItem(Generic[T], Sprite):
             f"<{self.__class__.__name__} at 0x{id(self):x} "
             f"label={self.label!r}, enabled={self.enabled}>"
         )
-
-
-class MenuCursor(Sprite):
-    """
-    Visual indicator for the currently selected menu item.
-
-    Typically rendered as an arrow or icon, the MenuCursor tracks the selected item
-    in a menu interface. It supports optional pixel offsets to fine-tune its position
-    relative to the target item.
-
-    Inherits from:
-        Sprite: Provides image, rect, and positioning logic.
-
-    Parameters:
-        image: The visual representation of the cursor.
-        x_offset: Horizontal offset from the anchor point. Defaults to 0.
-        y_offset: Vertical offset from the anchor point. Defaults to 0.
-    """
-
-    def __init__(
-        self, image: Surface, x_offset: int = 0, y_offset: int = 0
-    ) -> None:
-        super().__init__(image=image)
-        self.x_offset = x_offset
-        self.y_offset = y_offset

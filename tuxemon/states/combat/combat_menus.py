@@ -18,7 +18,6 @@ from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu, PopUpMenu
 from tuxemon.monster import Monster
-from tuxemon.sprite import SpriteGroup, VisualSpriteList
 from tuxemon.states.items.item_menu import ItemMenuState
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.technique.technique import Technique
@@ -404,9 +403,6 @@ class CombatTargetMenuState(Menu[Monster]):
         self.combat_state = combat_state
         self.character = monster.get_owner()
         self.technique = technique
-
-        self.menu_items = VisualSpriteList(parent=self.calc_menu_items_rect)
-        self.menu_sprites = SpriteGroup()
         self.targeting_map: defaultdict[str, list[Monster]] = defaultdict(list)
 
         self._create_menu()

@@ -454,3 +454,13 @@ def compare(
         return bool(ne(value1, value2))
     else:
         raise ValueError(f"{key} isn't among {list(Comparison)}")
+
+
+def parse_flag(value: Optional[str]) -> bool:
+    """
+    Convert a string flag to a boolean.
+
+    Accepted truthy values: "true", "1", "yes" (case-insensitive).
+    All other values (including None) return False.
+    """
+    return str(value or "").strip().lower() in {"true", "1", "yes"}

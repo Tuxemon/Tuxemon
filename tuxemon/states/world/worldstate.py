@@ -43,7 +43,7 @@ direction_map: Mapping[int, Direction] = {
 
 
 class WorldSave(TypedDict, total=False):
-    pass
+    menu_flags: dict[str, bool]
 
 
 class WorldState(State):
@@ -73,10 +73,14 @@ class WorldState(State):
     def get_state(self, session: Session) -> WorldSave:
         """Returns a dictionary of the World to be saved."""
         state: WorldSave = {}
+        state["menu_flags"] = self.menu_manager.menu_flags.export()
         return state
 
     def set_state(self, session: Session, save_data: WorldSave) -> None:
         """Recreates the World from the provided saved data."""
+        self.menu_manager.menu_flags.import_flags(
+            save_data.get("menu_flags", {})
+        )
 
     def resume(self) -> None:
         """Called after returning focus to this state"""

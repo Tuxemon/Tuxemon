@@ -14,7 +14,10 @@ from tuxemon import prepare
 from tuxemon.animation import ScheduleType
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
+from tuxemon.platform.const import buttons
+from tuxemon.platform.events import PlayerInput
 from tuxemon.states.monster import MonsterMenuHandler
+from tuxemon.states.world.world_menu_flags import MenuFlags
 
 if TYPE_CHECKING:
     from tuxemon.animation import Animation
@@ -69,13 +72,14 @@ class WorldMenuManager:
     """Manages persistent menu items and builds the dynamic world menu."""
 
     def __init__(self, client: LocalPygameClient) -> None:
+        self.menu_flags = MenuFlags()
         self.menu_items: list[MenuItem] = []
-        self.menu_state: Optional[WorldMenuState] = None
+        self.menu_renderer: Optional[WorldMenuState] = None
         self.client = client
 
-    def set_menu_state(self, menu_state: WorldMenuState) -> None:
+    def set_menu_renderer(self, menu_renderer: WorldMenuState) -> None:
         """Links the menu manager to a WorldMenuState instance."""
-        self.menu_state = menu_state
+        self.menu_renderer = menu_renderer
 
     def set_item_enabled(self, key: str, enabled: bool) -> None:
         """Enables or disables a menu item by its key, if it exists."""
@@ -137,7 +141,9 @@ class WorldMenuManager:
         self.update_menu_display()
 
     def remove_item(self, key: str) -> None:
-        """Removes a menu item by its label key from the manager's persistent list."""
+        """
+        Removes a menu item by its label key from the manager's persistent list.
+        """
         label = T.translate(key).upper()
         initial_len = len(self.menu_items)
 
@@ -150,8 +156,8 @@ class WorldMenuManager:
 
     def update_menu_display(self) -> None:
         """Notifies the linked WorldMenuState to refresh its display."""
-        if self.menu_state:
-            self.menu_state.update_menu_from_manager()
+        if self.menu_renderer:
+            self.menu_renderer.update_menu_from_manager()
 
     def _get_change_state_callback(
         self, state: str, **kwargs: Any
@@ -171,15 +177,24 @@ class WorldMenuManager:
     def _insert_item_specific_entries_in_menu(
         self, player: NPC, current_menu: list[MenuItem]
     ) -> None:
-        """Inserts item-specific menu entries into the current_menu at their defined positions."""
+        """
+        Inserts item-specific menu entries into the current_menu at their
+        defined positions.
+        """
         entries: list[tuple[int, MenuItem]] = []
 
         for itm in player.items.get_items():
-            wm = getattr(itm, "world_menu", None)
+            wm = itm.world_menu
             if wm and all(
                 hasattr(wm, attr)
-                for attr in ["position", "label_key", "state"]
+                for attr in ["position", "label_key", "state", "enabled"]
             ):
+                if wm.enabled and wm.label_key not in self.menu_flags._flags:
+                    self.menu_flags.set_enabled(wm.label_key, True)
+
+                if not self.menu_flags.is_enabled(wm.label_key):
+                    continue
+
                 if not self.item_exists(wm.label_key, current_menu):
                     label = T.translate(wm.label_key).upper()
                     callback = self._get_change_state_callback(
@@ -198,7 +213,9 @@ class WorldMenuManager:
     def _merge_persistent_items(
         self, current_menu: list[MenuItem]
     ) -> list[MenuItem]:
-        """Appends persistent menu items, ensuring no duplicate labels are added."""
+        """
+        Appends persistent menu items, ensuring no duplicate labels are added.
+        """
         return [
             item
             for item in self.menu_items
@@ -210,25 +227,25 @@ class WorldMenuManager:
         Builds the complete list of menu items based on the player's state
         and any globally managed items.
         """
-        if self.menu_state is None:
+        if self.menu_renderer is None:
             logger.error(
-                "WorldMenuManager: menu_state is not set. Returning empty menu."
+                "WorldMenuManager: menu_renderer is not set. Returning empty menu."
             )
             return []
 
         param = {"character": player}
         current_menu: list[MenuItem] = []
 
-        if player.monsters and player.menu_monsters:
+        if player.monsters and self.menu_flags.is_enabled("menu_monster"):
             current_menu.append(
                 MenuItem(
                     "menu_monster",
                     T.translate("menu_monster").upper(),
-                    self.menu_state.open_monster_menu,
+                    self.menu_renderer.open_monster_menu,
                 )
             )
 
-        if player.items.get_items() and player.menu_bag:
+        if player.items.get_items() and self.menu_flags.is_enabled("menu_bag"):
             current_menu.append(
                 self._menu_item(
                     "menu_bag",
@@ -238,7 +255,7 @@ class WorldMenuManager:
                 )
             )
 
-        if player.menu_player:
+        if self.menu_flags.is_enabled("menu_player"):
             current_menu.append(
                 self._menu_item("menu_player", "CharacterState", kwargs=param)
             )
@@ -248,10 +265,10 @@ class WorldMenuManager:
                 self._menu_item("menu_missions", "MissionState", kwargs=param)
             )
 
-        if player.menu_save:
+        if self.menu_flags.is_enabled("menu_save"):
             current_menu.append(self._menu_item("menu_save", "SaveMenuState"))
 
-        if player.menu_load:
+        if self.menu_flags.is_enabled("menu_load"):
             current_menu.append(self._menu_item("menu_load", "LoadMenuState"))
 
         current_menu.append(self._menu_item("menu_options", "ControlState"))
@@ -277,7 +294,7 @@ class WorldMenuState(PygameMenuState):
         self.char = character
         super().__init__(height=prepare.SCREEN_SIZE[1])
         self.menu_manager = menu_manager
-        self.menu_manager.set_menu_state(self)
+        self.menu_manager.set_menu_renderer(self)
         self.update_menu_from_manager()
         self.handler = MonsterMenuHandler(self.client, self.char)
 
@@ -303,3 +320,9 @@ class WorldMenuState(PygameMenuState):
         ani = self.animate(self, animation_offset=0, duration=0.50)
         ani.schedule(self.update_animation_position, ScheduleType.ON_UPDATE)
         return ani
+
+    def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
+        if event.button in (buttons.START, buttons.BACK) and event.pressed:
+            self.client.pop_state()
+            return None
+        return None

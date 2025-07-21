@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from tuxemon import prepare
+from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.map_loader import region_properties
 from tuxemon.map_manager import map_types_list
 from tuxemon.script.parser import parse_action_string
@@ -89,7 +90,7 @@ def _is_valid_operand_name(name) -> bool:
 class TestTMXFiles(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.folder_path = prepare.fetch(FOLDER)
+        cls.folder_path = fetch_asset(FOLDER)
         cls.loaded_data = load_tmx_files(cls.folder_path)
         expand_expected_scenarios()
 
@@ -180,7 +181,7 @@ class TestTMXFiles(unittest.TestCase):
                     action, params = parse_action_string(prop.attrib["value"])
                     if action == "transition_teleport":
                         try:
-                            prepare.fetch(FOLDER, params[0])
+                            fetch_asset(FOLDER, params[0])
                         except OSError:
                             self.fail(
                                 f"Map '{params[0]}' does not exist in object {obj} at {to_basename(path)}"
@@ -246,7 +247,7 @@ class TestTMXFiles(unittest.TestCase):
                 and "source" in tileset_element.attrib
             ):
                 tileset_source = tileset_element.attrib["source"]
-                base_path = Path(prepare.fetch("gfx"))
+                base_path = Path(fetch_asset("gfx"))
                 merged_path = (base_path / tileset_source).resolve()
                 msg = (
                     f"Source '{merged_path}' doesn't exist {to_basename(path)}"

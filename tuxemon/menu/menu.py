@@ -18,6 +18,7 @@ from pygame_menu.widgets.core.widget import Widget
 
 from tuxemon import graphics, prepare, tools
 from tuxemon.animation import Animation, ScheduleType
+from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.graphics import ColorLike
 from tuxemon.menu.controller import MenuController
 from tuxemon.menu.events import playerinput_to_event
@@ -367,7 +368,7 @@ class Menu(Generic[T], State):
             Callable[[], None]
         ] = None
 
-        self.font_filename = prepare.fetch("font", self.font_filename)
+        self.font_filename = fetch_asset("font", self.font_filename)
         self.font = self.set_font()  # load default font
         self.load_graphics()  # load default graphics
         self.reload_sounds()  # load default sounds

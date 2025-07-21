@@ -8,6 +8,7 @@ from typing import Any
 import yaml
 
 from tuxemon import prepare
+from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.script.parser import parse_action_string
 
 EXPECTED_SCENARIOS = ["spyder", "xero", "tobedefined"]
@@ -53,7 +54,7 @@ def load_yaml_files(folder_path: str) -> dict[str, dict]:
 class TestYAMLFiles(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.folder_path = prepare.fetch(FOLDER)
+        cls.folder_path = fetch_asset(FOLDER)
         cls.loaded_data = load_yaml_files(cls.folder_path)
         expand_expected_scenarios()
 
@@ -144,7 +145,7 @@ class TestYAMLFiles(unittest.TestCase):
                         command, params = parse_action_string(action)
                         if command == "transition_teleport":
                             try:
-                                prepare.fetch(FOLDER, params[0])
+                                fetch_asset(FOLDER, params[0])
                             except OSError:
                                 self.fail(
                                     f"Map '{params[0]}' does not exist in object {action} at {Path(path).name}"

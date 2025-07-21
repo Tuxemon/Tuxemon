@@ -26,6 +26,7 @@ from typing import (
 
 from tuxemon import prepare
 from tuxemon.compat.rect import ReadOnlyRect
+from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.db import Comparison
 from tuxemon.locale import T
 from tuxemon.math import Vector2
@@ -101,7 +102,7 @@ def transform_resource_filename(*filename: str) -> str:
     Returns:
         The absolute path of the resource.
     """
-    return prepare.fetch(*filename)
+    return fetch_asset(*filename)
 
 
 def get_screen_rect(sprite: Sprite, internal_rect: Rect) -> Rect:

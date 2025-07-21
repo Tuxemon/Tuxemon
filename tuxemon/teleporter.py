@@ -6,7 +6,7 @@ import logging
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional
 
-from tuxemon import prepare
+from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.db import Direction
 
 if TYPE_CHECKING:
@@ -176,7 +176,7 @@ class Teleporter:
             self.map_manager.current_map is None
             or map_name != self.map_manager.current_map.filename
         ):
-            target_map = prepare.fetch("maps", map_name)
+            target_map = fetch_asset("maps", map_name)
             if not target_map:
                 raise ValueError(f"Map '{map_name}' does not exist.")
             self.map_transition.change_map(target_map)

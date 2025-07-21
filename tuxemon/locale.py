@@ -15,6 +15,7 @@ from babel.messages.pofile import read_po
 
 from tuxemon import prepare
 from tuxemon.constants import paths
+from tuxemon.constants.asset_loader import fetch_asset, fetch_mod_asset_roots
 
 logger = logging.getLogger(__name__)
 
@@ -375,7 +376,8 @@ class TranslatorPo:
             return self.translate(text)
 
 
-locale_finder = LocaleFinder(Path(prepare.fetch("l18n")))
+fetch_mod_asset_roots(prepare.CONFIG)
+locale_finder = LocaleFinder(Path(fetch_asset("l18n")))
 gettext_compiler = GettextCompiler(paths.CACHE_DIR)
 T = TranslatorPo(locale_finder, gettext_compiler)
 T.collect_languages()

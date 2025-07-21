@@ -11,6 +11,7 @@ from pygame_menu.widgets.core.widget import Widget
 from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
 
 from tuxemon import prepare
+from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.tools import scale, transform_resource_filename
 
 _theme: Optional[pygame_menu.Theme] = None
@@ -106,7 +107,7 @@ def get_theme() -> pygame_menu.Theme:
     theme.title_font_color = prepare.FONT_COLOR
     theme.title_background_color = prepare.TRANSPARENT_COLOR
     theme.widget_font_shadow_color = prepare.FONT_SHADOW_COLOR
-    font = prepare.fetch("font", prepare.CONFIG.locale.font_file)
+    font = fetch_asset("font", prepare.CONFIG.locale.font_file)
     theme.title_font = font
     theme.widget_font = font
 

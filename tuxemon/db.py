@@ -34,6 +34,10 @@ from pydantic import (
 )
 
 from tuxemon import prepare
+from tuxemon.constants.asset_loader import (
+    fetch_asset,
+    fetch_mod_asset_roots,
+)
 from tuxemon.constants.paths import mods_folder
 from tuxemon.formula import config_monster
 from tuxemon.locale import T
@@ -2342,7 +2346,7 @@ class Validator:
             True if file exists
         """
         try:
-            path = Path(prepare.fetch(file))
+            path = Path(fetch_asset(file))
             return path.exists()
         except OSError:
             return False
@@ -2358,7 +2362,7 @@ class Validator:
         Returns:
             True if file respects
         """
-        path = prepare.fetch(file)
+        path = fetch_asset(file)
         with Image.open(path) as sprite:
             native = prepare.NATIVE_RESOLUTION
             if size == native:
@@ -2392,7 +2396,8 @@ class Validator:
         return slug in self.db.preloaded[table]
 
 
-path = prepare.fetch(mods_folder.as_posix(), "db_config.yaml")
+fetch_mod_asset_roots(prepare.CONFIG)
+path = fetch_asset(mods_folder.as_posix(), "db_config.yaml")
 config = load_config(path)
 model_map = load_model_map(config.model_map)
 loader = ModelLoader(model_map)

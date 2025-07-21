@@ -13,6 +13,7 @@ from pygame.surface import Surface
 from pygame_menu import locals
 
 from tuxemon import prepare
+from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const import buttons
@@ -56,7 +57,7 @@ class StartState(PygameMenuState):
 
         def new_game() -> None:
             destination = f"{prepare.STARTING_MAP}{config.mods[0]}.tmx"
-            map_path = prepare.fetch("maps", destination)
+            map_path = fetch_asset("maps", destination)
             self.client.push_state(
                 "WorldState", session=local_session, map_name=map_path
             )
@@ -149,7 +150,7 @@ class ModsChoice(PygameMenuState):
 
         def new_game(mod_name: str) -> None:
             destination = f"{prepare.STARTING_MAP}{mod_name}.tmx"
-            map_path = prepare.fetch("maps", destination)
+            map_path = fetch_asset("maps", destination)
             self.client.push_state(
                 "WorldState", session=local_session, map_name=map_path
             )

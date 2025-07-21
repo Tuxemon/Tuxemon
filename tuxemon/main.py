@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING, Optional
 
 from tuxemon import log, prepare
 from tuxemon.client import LocalPygameClient
+from tuxemon.constants.asset_loader import fetch_asset
 from tuxemon.headless_client import HeadlessClient
 from tuxemon.session import local_session
 
@@ -74,7 +75,7 @@ def configure_game_states(
     if config.skip_titlescreen and config.mods:
         if len(config.mods) == 1:
             destination = f"{prepare.STARTING_MAP}{config.mods[0]}.tmx"
-            map_name = prepare.fetch("maps", destination)
+            map_name = fetch_asset("maps", destination)
             client.push_state(
                 "WorldState", session=local_session, map_name=map_name
             )

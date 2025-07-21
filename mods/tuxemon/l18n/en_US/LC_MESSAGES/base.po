@@ -886,6 +886,13 @@ msgstr "Researcher's Stylus"
 msgid "researcher_stylus_description"
 msgstr "Interfaces with digital and ancient data carriers."
 
+msgid "tachyon_collector"
+msgstr "Tachyon Collector"
+
+msgid "tachyon_collector_description"
+msgstr ""
+"Captures and measures the presence of tachyons emitted by time manipulation."
+
 msgid "archeologist_sensor"
 msgstr "Archeologist's Sensor"
 
@@ -4369,6 +4376,12 @@ msgstr "Reusable tool."
 
 msgid "craft_unknown_output"
 msgstr "The outcome of this recipe remains a well-kept secret."
+
+msgid "lore_trigger_success"
+msgstr "An ancient story reemerges! Could this change everything?"
+
+msgid "quest_trigger_success"
+msgstr "A new quest begins! Your next challenge is calling."
 
 # Default mod names on selection menu
 msgid "xero_campaign"

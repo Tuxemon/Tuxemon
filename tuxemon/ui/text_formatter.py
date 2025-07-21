@@ -9,7 +9,7 @@ from typing import Optional
 
 from tuxemon import prepare
 from tuxemon.formula import convert_ft, convert_km, convert_lbs, convert_mi
-from tuxemon.locale import TranslatorPo
+from tuxemon.locale import TranslatorManager
 from tuxemon.menu.formatter import CurrencyFormatter
 from tuxemon.session import Session
 from tuxemon.ui.cipher_processor import CipherProcessor
@@ -27,7 +27,7 @@ class TextFormatter:
     def __init__(
         self,
         session: Session,
-        translator: TranslatorPo,
+        translator: TranslatorManager,
         cipher_processor: Optional[CipherProcessor] = None,
         paginator: Optional[TextPaginator] = None,
     ):
@@ -43,7 +43,7 @@ class TextFormatter:
         cls,
         session: Session,
         text: str,
-        translator: TranslatorPo,
+        translator: TranslatorManager,
         cipher_processor: Optional[CipherProcessor] = None,
         paginator: Optional[TextPaginator] = None,
     ) -> str:

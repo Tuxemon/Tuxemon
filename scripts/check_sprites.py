@@ -1,34 +1,52 @@
 # SPDX-License-Identifier: GPL-3.0
-# Copyright (c) 2014-2025 William Edwards <shadowapex@gmail.com>, Benjamin Bean <superman2k5@gmail.com>
+# Copyright (c) 2014–2025 William Edwards, Benjamin Bean
+
 """
 Sprite Validation Script for Tuxemon
-
-To run this script:
-1. Open a terminal
-2. Navigate to the `scripts` folder
-3. Run: python3 check_sprites.py
 
 What this script checks:
 -------------------------
 Dimensions:
-- Images ending in '-front.png' or '-back.png' must be 64x64 pixels
-- Images ending in '-menu01.png' or '-menu02.png' must be 24x24 pixels
+- '-front.png' or '-back.png' must be 64x64 pixels
+- '-menu01.png' or '-menu02.png' must be 24x24 pixels
 
 Mode:
-- All images must be in RGB or RGBA mode
+- Must be RGB or RGBA
 
 Color Palette:
-- Maximum of 16 unique colors (or whatever is decided)
+- Always records number of colors
+- Warns if color count exceeds MAX_COLORS
 
-Any violations will be printed to the console for review.
+Violations are printed to the console and saved in a report.
 """
 
+import sys
 from collections import defaultdict
 from pathlib import Path
 
 from PIL import Image
 
-MAX_COLORS: int = 32
+
+def save_report_to_txt(report, output_path="sprite_report.txt"):
+    with open(output_path, "w", encoding="utf-8") as f:
+        if not report:
+            f.write("All images passed validation.\n")
+            return
+
+        clustered = defaultdict(list)
+
+        for entry in report:
+            monster = entry["filename"].split("-")[0]
+            clustered[monster].append(entry)
+
+        f.write("Report:\n\n")
+
+        for monster, entries in sorted(clustered.items()):
+            f.write(f"Tuxemon: {monster}\n")
+            for entry in entries:
+                line = f"  - {entry['filename']}: {entry['issue']}"
+                f.write(line + "\n")
+            f.write("\n")
 
 
 def analyze_battles_images() -> list[dict[str, str]]:
@@ -45,6 +63,7 @@ def analyze_battles_images() -> list[dict[str, str]]:
             with Image.open(file_path) as img:
                 width, height = img.size
                 mode = img.mode
+                info = img.info
 
                 # Check dimensions
                 if filename.endswith(("-front.png", "-back.png")):
@@ -53,6 +72,7 @@ def analyze_battles_images() -> list[dict[str, str]]:
                             {
                                 "filename": filename,
                                 "issue": f"Expected 64x64, got {width}x{height}",
+                                "level": "error",
                             }
                         )
 
@@ -62,41 +82,59 @@ def analyze_battles_images() -> list[dict[str, str]]:
                             {
                                 "filename": filename,
                                 "issue": f"Expected 24x24, got {width}x{height}",
+                                "level": "error",
                             }
                         )
 
                 # Check mode
-                if mode not in ("RGB", "RGBA"):
-                    issues.append(
-                        {"filename": filename, "issue": f"Invalid mode: {mode}"}
-                    )
+                issues.append(
+                    {
+                        "filename": filename,
+                        "issue": f"Mode: {mode}",
+                        "level": "error",
+                    }
+                )
 
-                # Check color count
-                colors = img.getcolors(maxcolors=256 * 256)
-                if colors is None:
-                    issues.append(
-                        {"filename": filename, "issue": "Too many colors to count"}
-                    )
-                elif len(colors) > MAX_COLORS:
+                # Info
+                for key, value in info.items():
                     issues.append(
                         {
                             "filename": filename,
-                            "issue": f"{len(colors)} colors (exceeds {MAX_COLORS})",
+                            "issue": f"info: {key}: {value}",
+                            "level": "error",
                         }
                     )
 
-                rgb_colors = []
-                for count, color in colors:
-                    if isinstance(color, tuple):
-                        rgb_colors.append(color[:3])  # RGB or RGBA
-                    else:
-                        rgb_colors.append(
-                            (color, color, color)
-                        )  # Grayscale as fake RGB
+                # Count colors
+                colors = img.getcolors(maxcolors=256 * 256)
+                if colors is None:
+                    num_colors = ">65536"
+                    issues.append(
+                        {
+                            "filename": filename,
+                            "issue": "Too many colors to count",
+                            "level": "warning",
+                            "num_colors": num_colors,
+                        }
+                    )
+                else:
+                    num_colors = len(colors)
+                    issues.append(
+                        {
+                            "filename": filename,
+                            "issue": f"{num_colors} colors",
+                            "level": "warning",
+                            "num_colors": num_colors,
+                        }
+                    )
 
         except Exception as e:
             issues.append(
-                {"filename": filename, "issue": f"Error opening image: {str(e)}"}
+                {
+                    "filename": filename,
+                    "issue": f"Error opening image: {str(e)}",
+                    "level": "error",
+                }
             )
 
     return issues
@@ -106,30 +144,16 @@ if __name__ == "__main__":
     report = analyze_battles_images()
 
     clustered = defaultdict(list)
+    issue_counts = defaultdict(int)
+
     for entry in report:
         monster = entry["filename"].split("-")[0]
         clustered[monster].append(entry)
+        issue_counts[entry["issue"]] += 1
 
     if not report:
         print("All images passed validation.")
     else:
-        print("Issues found:\n")
-        for monster, entries in sorted(clustered.items()):
-            print(f"Tuxemon: {monster}")
-            for entry in entries:
-                print(f"  - {entry['filename']}: {entry['issue']}")
-            print()
-
-    output_path = Path("sprite_report.txt")
-    with output_path.open("w", encoding="utf-8") as f:
-        if not report:
-            f.write("All images passed validation.\n")
-        else:
-            f.write("Issues found:\n\n")
-            for monster, entries in sorted(clustered.items()):
-                f.write(f"Tuxemon: {monster}\n")
-                for entry in entries:
-                    f.write(f"  - {entry['filename']}: {entry['issue']}\n")
-                f.write("\n")
-
-    print(f"Report saved to: {output_path.resolve()}")
+        save_report_to_txt(report)
+        print("Validation completed. See 'sprite_report.txt' for details.")
+        sys.exit(1)

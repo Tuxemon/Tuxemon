@@ -9,6 +9,7 @@ import yaml
 
 from tuxemon import prepare
 from tuxemon.constants.asset_loader import fetch_asset
+from tuxemon.db import db
 from tuxemon.script.parser import parse_action_string
 
 EXPECTED_SCENARIOS = ["spyder", "xero", "tobedefined"]
@@ -30,7 +31,8 @@ YAML_TYPES = ["init", "collision", "event"]
 
 def expand_expected_scenarios() -> None:
     for mod in prepare.CONFIG.mods:
-        EXPECTED_SCENARIOS.append(f"{prepare.STARTING_MAP}{mod}")
+        map: str = db.require_mod_attribute(mod, "starting_map")
+        EXPECTED_SCENARIOS.append(map.removesuffix(".tmx"))
 
 
 def get_yaml_files(folder_path: str) -> Generator[str, Any, None]:

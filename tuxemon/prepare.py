@@ -69,9 +69,6 @@ def _setup_user_environment() -> config.TuxemonConfig:
 # How it would be called in the main part of the file:
 CONFIG = _setup_user_environment()
 
-# Starting map
-STARTING_MAP = "start_"
-
 # Set up the screen size and caption
 SCREEN_SIZE = CONFIG.resolution
 

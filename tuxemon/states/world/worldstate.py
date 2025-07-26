@@ -27,6 +27,7 @@ from tuxemon.state import State
 from tuxemon.states.world.world_menus import WorldMenuManager
 from tuxemon.states.world.world_transition import WorldTransition
 from tuxemon.teleporter import Teleporter
+from tuxemon.tools import extract_mod_name
 
 if TYPE_CHECKING:
     from tuxemon.entity import Entity
@@ -51,6 +52,7 @@ class WorldState(State):
 
     def __init__(self, session: Session, map_name: str) -> None:
         super().__init__()
+        self.mod_name = extract_mod_name(map_name)
         self.session = session
         self.session.set_world(self)
         self.screen = self.client.screen

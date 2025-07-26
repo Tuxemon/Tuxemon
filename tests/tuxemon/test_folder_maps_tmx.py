@@ -9,6 +9,7 @@ from typing import Any
 
 from tuxemon import prepare
 from tuxemon.constants.asset_loader import fetch_asset
+from tuxemon.db import db
 from tuxemon.map_loader import region_properties
 from tuxemon.map_manager import map_types_list
 from tuxemon.script.parser import parse_action_string
@@ -23,7 +24,8 @@ EXPECTED_SCENARIOS = ["spyder", "xero", "tobedefined"]
 
 def expand_expected_scenarios() -> None:
     for mod in prepare.CONFIG.mods:
-        EXPECTED_SCENARIOS.append(f"{prepare.STARTING_MAP}{mod}")
+        map: str = db.require_mod_attribute(mod, "starting_map")
+        EXPECTED_SCENARIOS.append(map.removesuffix(".tmx"))
 
 
 def get_tmx_files(folder_path: str) -> Generator[str, Any, None]:

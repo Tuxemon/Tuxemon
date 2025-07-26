@@ -69,6 +69,26 @@ def fetch_mod_asset_roots(config: TuxemonConfig, force: bool = False) -> None:
     logger.debug(f"[ModRoots] Final mod asset roots: {_MOD_ASSET_ROOTS}")
 
 
+def fetch_all_l18n_roots() -> list[Path]:
+    """
+    Returns a list of all discovered 'l18n' directories within mod asset roots.
+    """
+    l18n_roots = []
+    if not _HAS_POPULATED:
+        logger.warning(
+            "Attempted to fetch l18n roots before _MOD_ASSET_ROOTS was populated."
+        )
+
+    for root in _MOD_ASSET_ROOTS:
+        l18n_path = root / "l18n"
+        if l18n_path.is_dir():
+            l18n_roots.append(l18n_path)
+            logger.debug(f"Discovered l18n root: {l18n_path}")
+        else:
+            logger.debug(f"No l18n directory found in mod root: {root}")
+    return l18n_roots
+
+
 @lru_cache(maxsize=512)
 def fetch_asset(*args: str) -> str:
     """

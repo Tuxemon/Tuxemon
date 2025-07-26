@@ -2249,6 +2249,38 @@ class ModData:
                 f"Unexpected error while adding entry to table '{table}': {ex}"
             )
 
+    def get_mod_attribute(
+        self, mod_name: str, attribute_name: str
+    ) -> Optional[Any]:
+        """
+        Retrieves a specific attribute (field) from a mod's metadata.
+
+        Parameters:
+            mod_name: The directory name of the mod (e.g., "tuxemon").
+            attribute_name: The name of the attribute/field to retrieve
+                (e.g., "starting_map", "name", "authors").
+
+        Returns:
+            The value of the attribute if found, otherwise None.
+        """
+        mod_meta = self.mod_metadata.get(mod_name)
+        if mod_meta:
+            value = mod_meta.get(attribute_name)
+            if value is None:
+                logger.debug(
+                    f"Attribute '{attribute_name}' not found in mod '{mod_name}'"
+                )
+            return value
+        return None
+
+    def require_mod_attribute(self, mod_name: str, attribute_name: str) -> Any:
+        value = self.get_mod_attribute(mod_name, attribute_name)
+        if value is None:
+            raise ValueError(
+                f"mod.yaml in '{mod_name}' lacks required attribute '{attribute_name}'"
+            )
+        return value
+
 
 def load_files(
     directory: str, path: Path, config: DatabaseConfig

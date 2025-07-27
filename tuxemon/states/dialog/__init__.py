@@ -10,6 +10,7 @@ from tuxemon.menu.menu import PopUpMenu
 from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.sprite import Sprite
+from tuxemon.tools import scale
 from tuxemon.ui.text import TextArea
 
 if TYPE_CHECKING:
@@ -49,6 +50,7 @@ class DialogState(PopUpMenu[None]):
             "font_color": self.font_color,
             "font_shadow": self.font_shadow_color,
             "border": self.borders_filename,
+            "line_spacing": 10,
             "alignment": "left",
             "v_alignment": "top",
         }
@@ -60,6 +62,7 @@ class DialogState(PopUpMenu[None]):
         _border = load_and_scale(final_box_style["border"])
         self.window._set_border(_border)
         self.window._color = final_box_style["bg_color"]
+        line_spacing = scale(final_box_style["line_spacing"])
 
         self.dialog_box = TextArea(
             font=self.font,

@@ -11243,7 +11243,8 @@ msgstr ""
 
 msgid "spyder_intro_shopkeeper4"
 msgstr ""
-"I'm sorry, you are not a Gold member. This offer is for Gold members only."
+"I'm sorry, you are not a Gold member. This offer is for Gold members only.\n"
+"Please go home now."
 
 msgid "spyder_preintro00"
 msgstr ""

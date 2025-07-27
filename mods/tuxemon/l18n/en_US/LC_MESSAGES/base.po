@@ -8590,6 +8590,18 @@ msgstr "Dry"
 msgid "taste_dry_description"
 msgstr "A parched, dusty flavor, like stale crackers that dull your senses."
 
+msgid "taste_savory"
+msgstr "Savory"
+
+msgid "taste_savory_description"
+msgstr "A rich, slow-roasted flavor, like smoky mushrooms and caramelized onions that settle warmly in your core."
+
+msgid "taste_bland"
+msgstr "Bland"
+
+msgid "taste_bland_description"
+msgstr "A vague, chalky taste, like powdered mashed potatoes made with a sigh instead of water."
+
 # Terrains
 msgid "terrain_freshwater"
 msgstr "Freshwater"

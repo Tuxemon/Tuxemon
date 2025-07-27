@@ -11432,6 +11432,9 @@ msgstr ""
 "Huh, must be a fluke. There's no way the new model would be worse than the "
 "old!"
 
+msgid "spyder_papertown_firstfight_pause"
+msgstr "..."
+
 msgid "spyder_papertown_firstfight_lose"
 msgstr "As expected! Old models can't compare to new ones!"
 

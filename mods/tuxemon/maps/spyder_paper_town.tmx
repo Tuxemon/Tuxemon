@@ -311,7 +311,8 @@
     <property name="act10" value="translated_dialog spyder_papertown_firstfight_win"/>
     <property name="act11" value="pathfind spyder_billie,25,14"/>
     <property name="act12" value="wait 1.0"/>
-    <property name="act13" value="pathfind_to_char player,spyder_billie,down"/>
+    <property name="act13" value="translated_dialog spyder_papertown_firstfight_pause"/>
+    <property name="act14" value="pathfind_to_char player,spyder_billie,down"/>
     <property name="act15" value="translated_dialog spyder_papertown_firstfight_after"/>
     <property name="act20" value="pathfind spyder_billie,15,14"/>
     <property name="act30" value="remove_npc spyder_billie"/>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="9" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="59">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="9" height="7" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="59">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
+  <property name="map_type" value="notype"/>
   <property name="scenario" value="spyder"/>
   <property name="slug" value="downstairs"/>
-  <property name="map_type" value="notype"/>
  </properties>
  <tileset firstgid="1" source="../gfx/tilesets/core_indoor_stairs.tsx"/>
  <tileset firstgid="2971" source="../gfx/tilesets/core_indoor_floors.tsx"/>
@@ -64,7 +64,7 @@
   <object id="41" name="Create Homemaker" type="event" x="64" y="64" width="16" height="16">
    <properties>
     <property name="act1" value="create_npc spyder_papertown_mom,5,5"/>
-    <property name="act3" value="char_wander spyder_papertown_mom"/>
+    <property name="act3" value="char_wander spyder_papertown_mom,,1,2,7,5"/>
     <property name="cond1" value="not char_exists spyder_papertown_mom"/>
    </properties>
   </object>

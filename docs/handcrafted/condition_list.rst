@@ -22,6 +22,7 @@
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_party_parameter.CheckPartyParameterCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.check_world.CheckWorldCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.current_state.CurrentStateCondition
+.. autoscriptinfoclass:: tuxemon.event.conditions.faction_reputation.FactionReputationCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_bag.HasBagCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_item.HasItemCondition
 .. autoscriptinfoclass:: tuxemon.event.conditions.has_kennel.HasKennelCondition

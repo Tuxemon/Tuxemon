@@ -16,6 +16,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.camera_shake.CameraShakeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.celestial_cycles.CelestialCyclesAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_bg.ChangeBgAction
+.. autoscriptinfoclass:: tuxemon.event.actions.change_faction_membership.ChangeFactionMembershipAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_state.ChangeStateAction
 .. autoscriptinfoclass:: tuxemon.event.actions.change_taste.ChangeTasteAction
 .. autoscriptinfoclass:: tuxemon.event.actions.char_face.CharFaceAction
@@ -59,6 +60,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_bill.ModifyBillAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_char_attribute.ModifyCharAttributeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_contacts.ModifyContactsAction
+.. autoscriptinfoclass:: tuxemon.event.actions.modify_faction_reputation.ModifyFactionReputationAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_money.ModifyMoneyAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_monster_bond.ModifyMonsterBondAction
 .. autoscriptinfoclass:: tuxemon.event.actions.modify_monster_health.ModifyMonsterHealthAction

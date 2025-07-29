@@ -31,6 +31,7 @@ from pydantic import (
     ValidationError,
     ValidationInfo,
     field_validator,
+    model_validator,
 )
 
 from tuxemon import prepare
@@ -1637,6 +1638,142 @@ class TemplateModel(BaseModel):
     )
 
 
+class FactionKind(str, Enum):
+    GYM = "gym"
+    TEAM = "team"
+    LEAGUE = "league"
+    CLUB = "club"
+    VILLAGE = "village"
+    ORGANIZATION = "organization"
+    ELITE = "elite"
+    ACADEMY = "academy"
+
+
+class FactionAlignment(str, Enum):
+    HEROIC = "heroic"
+    VILLAINOUS = "villainous"
+    ROGUE = "rogue"
+    NEUTRAL = "neutral"
+    CHAOTIC = "chaotic"
+    LAWFUL = "lawful"
+
+
+class FactionRelationStatus(str, Enum):
+    ALLY = "ally"
+    RIVAL = "rival"
+    HOSTILE = "hostile"
+    NEUTRAL = "neutral"
+    UNKNOWN = "unknown"
+
+
+class RankRequirement(BaseModel):
+    min_reputation: int = 0
+    variables: Sequence[dict[str, Any]] = Field(
+        [],
+        description="List of variables that affect the requirement.",
+        min_length=1,
+    )
+
+
+class RankStep(BaseModel):
+    title: str
+    threshold: int
+    requirement: Optional[RankRequirement] = None
+
+
+class FactionModel(BaseModel, BaseLookupModel):
+    table_name: ClassVar[str] = "faction"
+
+    slug: str = Field(..., description="Unique ID of the faction")
+    kind: Optional[FactionKind] = Field(
+        FactionKind.TEAM, description="Faction type (gym, team, league, etc.)"
+    )
+    alignment: Optional[FactionAlignment] = Field(
+        None, description="Faction alignment: heroic, villainous, rogue, etc."
+    )
+    badge_id: Optional[str] = Field(
+        None, description="Associated badge ID if applicable"
+    )
+    leader_char: Optional[str] = Field(
+        None, description="Slug of the faction leader NPC"
+    )
+    ranks: list[RankStep] = Field(
+        default_factory=lambda: [
+            RankStep(title="Recruit", threshold=0),
+            RankStep(title="Agent", threshold=50),
+            RankStep(title="Elite", threshold=100),
+        ],
+        description="Rank steps based on reputation",
+    )
+    members: list[str] = Field(
+        default_factory=list,
+        description="NPC slugs that belong to this faction",
+    )
+    reputation: dict[str, int] = Field(
+        default_factory=dict,
+        description="Reputation scores for NPC members, used for rank evaluation and internal hierarchy",
+    )
+    relations: dict[str, FactionRelationStatus] = Field(
+        default_factory=dict, description="Relationships with other factions"
+    )
+
+    @classmethod
+    def lookup(cls, slug: str, db: ModData) -> FactionModel:
+        """Retrieve an instance from the database using a slug."""
+        try:
+            return cast(FactionModel, db.lookup(slug, table=cls.table_name))
+        except EntryNotFoundError:
+            raise RuntimeError(f"Mission {slug} not found")
+
+    @field_validator("slug")
+    def translation_exists_faction(cls: FactionModel, v: str) -> str:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+    @field_validator("members")
+    def member_exists(cls: FactionModel, v: Sequence[str]) -> Sequence[str]:
+        for npc_slug in v:
+            if not has.db_entry("npc", npc_slug):
+                raise ValueError(
+                    f"The npc '{npc_slug}' doesn't exist in the db"
+                )
+        return v
+
+    @field_validator("leader_char")
+    def leader_exists(cls: FactionModel, v: Optional[str]) -> Optional[str]:
+        if v:
+            if not has.db_entry("npc", v):
+                raise ValueError(f"The npc '{v}' doesn't exist in the db")
+        return v
+
+    @model_validator(mode="before")
+    def validate_faction_integrity(
+        cls, values: dict[str, Any]
+    ) -> dict[str, Any]:
+        members = values.get("members", [])
+        reputation = values.get("reputation", {})
+        leader = values.get("leader_char")
+
+        missing_reputation = [m for m in members if m not in reputation]
+        if missing_reputation:
+            raise ValueError(
+                f"Missing reputation entries for members: {', '.join(missing_reputation)}"
+            )
+
+        if leader and leader not in members:
+            raise ValueError(
+                f"Faction leader '{leader}' must also be a member."
+            )
+
+        if leader and leader not in reputation:
+            raise ValueError(
+                f"Faction leader '{leader}' is missing a reputation score."
+            )
+
+        return values
+
+
 class ProgressModel(BaseModel):
     game_variables: dict[str, Any] = Field(
         ...,
@@ -1827,6 +1964,7 @@ DataModel = Union[
     SoundModel,
     StatusModel,
     TechniqueModel,
+    FactionModel,
 ]
 
 

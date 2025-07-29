@@ -8590,6 +8590,10 @@ msgstr "Dry"
 msgid "taste_dry_description"
 msgstr "A parched, dusty flavor, like stale crackers that dull your senses."
 
+# Factions
+msgid "faction_enforcers"
+msgstr "Enforcers"
+
 # Terrains
 msgid "terrain_freshwater"
 msgstr "Freshwater"

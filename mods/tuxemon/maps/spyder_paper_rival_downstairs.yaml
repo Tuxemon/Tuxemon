@@ -54,8 +54,9 @@ events:
     - is char_at player
     - is char_facing player,down
     type: event
-    x: 1
+    x: 0
     y: 11
+    width: 3
   Package:
     actions:
     - translated_dialog spyder_rivaldownstairs_package

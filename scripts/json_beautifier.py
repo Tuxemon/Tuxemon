@@ -43,13 +43,9 @@ def beautify_json_file(
     except FileNotFoundError:
         print(f"Error: File not found at '{file_path}'.")
     except json.JSONDecodeError:
-        print(
-            f"Error: Invalid JSON format in '{file_path}'. Please check its syntax."
-        )
+        print(f"Error: Invalid JSON format in '{file_path}'. Please check its syntax.")
     except Exception as e:
-        print(
-            f"An unexpected error occurred while processing '{file_path}': {e}"
-        )
+        print(f"An unexpected error occurred while processing '{file_path}': {e}")
 
 
 def beautify_json_in_directory(
@@ -65,9 +61,7 @@ def beautify_json_in_directory(
         beautify_json_file(file_path, indent)
 
     if not found_files:
-        print(
-            "No JSON files found in the specified directory or its subdirectories."
-        )
+        print("No JSON files found in the specified directory or its subdirectories.")
 
 
 if __name__ == "__main__":
@@ -130,6 +124,4 @@ if __name__ == "__main__":
                     exit()
             beautify_json_in_directory(target_path, args.indent)
         else:
-            print(
-                f"Error: Path '{target_path}' is neither a file nor a directory."
-            )
+            print(f"Error: Path '{target_path}' is neither a file nor a directory.")

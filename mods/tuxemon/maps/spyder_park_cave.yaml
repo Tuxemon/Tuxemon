@@ -1,7 +1,7 @@
 events:
   Alert 100:
     actions:
-    - translated_dialog spyder_park_steps100
+    - translated_dialog spyder_park_steps100,,center,center
     conditions:
     - is step_tracker player,steps_park,100
     type: event
@@ -29,7 +29,6 @@ events:
     - transition_teleport spyder_park_entrance.tmx,5,4,0.3
     - char_face player,up
     - add_item tuxeball_park,-25
-    - clear_variable park_out
     - park_experience stop
     - remove_step_tracker player,steps_park
     conditions:
@@ -75,7 +74,6 @@ events:
     actions:
     - transition_teleport spyder_park_entrance.tmx,5,4,0.3
     - char_face player,up
-    - clear_variable park_out
     - park_experience stop
     conditions:
     - not has_item player,tuxeball_park

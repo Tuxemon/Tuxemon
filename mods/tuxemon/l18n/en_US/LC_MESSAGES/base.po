@@ -4129,6 +4129,9 @@ msgstr "To The Bottom"
 msgid "menu_party_level_lowest"
 msgstr "Lowest Level"
 
+msgid "menu_party_alignment"
+msgstr "Alignment"
+
 msgid "menu_party_level_highest"
 msgstr "Highest Level"
 
@@ -8590,6 +8593,18 @@ msgstr "Dry"
 msgid "taste_dry_description"
 msgstr "A parched, dusty flavor, like stale crackers that dull your senses."
 
+msgid "taste_savory"
+msgstr "Savory"
+
+msgid "taste_savory_description"
+msgstr "A rich, slow-roasted flavor, like smoky mushrooms and caramelized onions that settle warmly in your core."
+
+msgid "taste_bland"
+msgstr "Bland"
+
+msgid "taste_bland_description"
+msgstr "A vague, chalky taste, like powdered mashed potatoes made with a sigh instead of water."
+
 # Factions
 msgid "faction_enforcers"
 msgstr "Enforcers"
@@ -11247,7 +11262,8 @@ msgstr ""
 
 msgid "spyder_intro_shopkeeper4"
 msgstr ""
-"I'm sorry, you are not a Gold member. This offer is for Gold members only."
+"I'm sorry, you are not a Gold member. This offer is for Gold members only.\n"
+"Please go home now."
 
 msgid "spyder_preintro00"
 msgstr ""
@@ -11434,6 +11450,9 @@ msgid "spyder_papertown_firstfight_win"
 msgstr ""
 "Huh, must be a fluke. There's no way the new model would be worse than the "
 "old!"
+
+msgid "spyder_papertown_firstfight_pause"
+msgstr "..."
 
 msgid "spyder_papertown_firstfight_lose"
 msgstr "As expected! Old models can't compare to new ones!"

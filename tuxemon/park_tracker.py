@@ -88,11 +88,37 @@ class ParkSession:
         self.tracker = ParkTracker()
         self.encounters: dict[str, ParkEncounter] = {}
         self.encounter_history: dict[str, list[ParkEncounter]] = {}
+        self._is_active: bool = False
+
+    @property
+    def is_active(self) -> bool:
+        """
+        Returns True if the park session is currently active, False otherwise.
+        """
+        return self._is_active
+
+    def activate_session(self) -> None:
+        """Activates the park session."""
+        if not self._is_active:
+            self._is_active = True
+            logger.info("Park session activated.")
+        else:
+            logger.debug("Park session is already active.")
+
+    def deactivate_session(self) -> None:
+        """Deactivates the park session."""
+        if self._is_active:
+            self._is_active = False
+            logger.info("Park session deactivated.")
+        else:
+            logger.debug("Park session is already inactive.")
 
     def reset_session(self) -> None:
         self.tracker.clear_all()
         self.encounters.clear()
         self.encounter_history.clear()
+        self._is_active = False
+        logger.info("Park session reset and deactivated.")
 
     def record_capture(self) -> None:
         self.tracker.record_successful_capture()

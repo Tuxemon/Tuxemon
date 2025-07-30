@@ -322,7 +322,10 @@ class WorldMenuState(PygameMenuState):
         return ani
 
     def process_event(self, event: PlayerInput) -> Optional[PlayerInput]:
-        if event.button in (buttons.START, buttons.BACK) and event.pressed:
+        if (
+            event.button in (buttons.START, buttons.B, buttons.BACK)
+            and event.pressed
+        ):
             self.client.pop_state()
             return None
-        return None
+        return super().process_event(event)

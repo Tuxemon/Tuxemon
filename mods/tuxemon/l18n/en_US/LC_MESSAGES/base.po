@@ -4080,17 +4080,53 @@ msgstr "Evolution"
 msgid "yes_evolutions"
 msgstr "Evolutions"
 
-msgid "tuxepedia_capture_today"
+msgid "tuxepedia_acquisition_unknown_today"
+msgstr "Acquired today"
+
+msgid "tuxepedia_acquisition_unknown_days_ago"
+msgstr "Acquired {doc} days ago"
+
+msgid "tuxepedia_acquisition_captured_today"
 msgstr "Captured today"
 
-msgid "tuxepedia_trade_today"
-msgstr "Traded today"
-
-msgid "tuxepedia_capture"
+msgid "tuxepedia_acquisition_captured_days_ago"
 msgstr "Captured {doc} days ago"
 
-msgid "tuxepedia_trade"
+msgid "tuxepedia_acquisition_traded_today"
+msgstr "Traded today"
+
+msgid "tuxepedia_acquisition_traded_days_ago"
 msgstr "Traded {doc} days ago"
+
+msgid "tuxepedia_acquisition_bred_today"
+msgstr "Bred today"
+
+msgid "tuxepedia_acquisition_bred_days_ago"
+msgstr "Bred {doc} days ago"
+
+msgid "tuxepedia_acquisition_gifted_today"
+msgstr "Gifted today"
+
+msgid "tuxepedia_acquisition_gifted_days_ago"
+msgstr "Gifted {doc} days ago"
+
+msgid "tuxepedia_acquisition_purchased_today"
+msgstr "Purchased today"
+
+msgid "tuxepedia_acquisition_purchased_days_ago"
+msgstr "Purchased {doc} days ago"
+
+msgid "tuxepedia_acquisition_rescued_today"
+msgstr "Rescued today"
+
+msgid "tuxepedia_acquisition_rescued_days_ago"
+msgstr "Rescued {doc} days ago"
+
+msgid "tuxepedia_acquisition_created_today"
+msgstr "Created today"
+
+msgid "tuxepedia_acquisition_created_days_ago"
+msgstr "Created {doc} days ago"
 
 msgid "tuxepedia_exp"
 msgstr "{exp_lv}xp to Lv {lv}"

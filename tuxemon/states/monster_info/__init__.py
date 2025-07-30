@@ -164,21 +164,9 @@ class MonsterInfoState(PygameMenuState):
         )
         lab9.translate(fxw(0.50), fxh(0.45))
         # capture
-        doc = today_ordinal() - monster.capture
-        if doc >= 1:
-            ref = (
-                T.format("tuxepedia_trade", {"doc": doc})
-                if monster.has_acquisition(Acquisition.TRADED)
-                else T.format("tuxepedia_capture", {"doc": doc})
-            )
-        else:
-            ref = (
-                T.translate("tuxepedia_trade_today")
-                if monster.has_acquisition(Acquisition.TRADED)
-                else T.translate("tuxepedia_capture_today")
-            )
+        reference = get_acquisition_reference(monster)
         lab10: Any = menu.add.label(
-            title=ref,
+            title=reference,
             label_id="capture",
             font_size=self.font_type.smaller,
             align=locals.ALIGN_LEFT,
@@ -345,6 +333,14 @@ class MonsterInfoState(PygameMenuState):
             client.remove_state_by_name("MonsterInfoState")
 
         return None
+
+
+def get_acquisition_reference(monster: Monster) -> str:
+    acq_type = monster.acquisition
+    doc = today_ordinal() - monster.capture
+    time_key = "today" if doc < 1 else "days_ago"
+    msgid = f"tuxepedia_acquisition_{acq_type.value}_{time_key}"
+    return T.translate(msgid) if doc < 1 else T.format(msgid, {"doc": doc})
 
 
 def _get_monsters(monster: Monster, source: str) -> list[Monster]:

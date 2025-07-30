@@ -85,7 +85,7 @@ class WorldState(State):
 
     def set_state(self, session: Session, save_data: WorldSave) -> None:
         """Recreates the World from the provided saved data."""
-        self.faction_manager.get_state(save_data.get("factions_manager", {}), self.client.npc_manager)
+        self.faction_manager.get_state(save_data.get("factions_manager", {}))
         self.menu_manager.menu_flags.import_flags(
             save_data.get("menu_flags", {})
         )

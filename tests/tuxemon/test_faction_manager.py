@@ -124,30 +124,45 @@ class TestFactionManager(unittest.TestCase):
         save_data = {
             "factions_manager": {
                 "faction1": {
-                    "members": {"npc1": {"reputation": 10, "is_member": True}}
+                    "members": {"npc1": {"reputation": 10, "is_member": True}},
+                    "public_reputation": 5,
+                    "relations": {"faction2": "ALLY"},
                 }
             }
         }
-        npc_manager = Mock()
+
         faction1 = Faction()
         faction1.slug = "faction1"
         self.faction_manager.register(faction1)
-        self.faction_manager.get_state(save_data, npc_manager)
+        self.faction_manager.get_state(save_data)
         self.assertEqual(faction1.get_reputation("npc1"), 10)
+        self.assertIn("npc1", faction1.members)
+        self.assertEqual(faction1.public_reputation, 5)
+        self.assertEqual(
+            faction1.get_relation("faction2"), FactionRelationStatus.ALLY
+        )
 
     def test_set_state(self):
         npc_manager = Mock()
         npc_manager.get_all_npc_slugs.return_value = ["npc1"]
+
         faction1 = Faction()
         faction1.slug = "faction1"
         faction1.add_member("npc1")
         faction1.reputation["npc1"] = 10
+        faction1.set_public_reputation(5)
+        faction1.set_relation("faction2", FactionRelationStatus.ALLY)
         self.faction_manager.register(faction1)
         state = self.faction_manager.set_state(npc_manager)
         self.assertIn("factions_manager", state)
-        self.assertIn("faction1", state["factions_manager"])
-        self.assertIn("members", state["factions_manager"]["faction1"])
-        self.assertIn("npc1", state["factions_manager"]["faction1"]["members"])
+        faction_data = state["factions_manager"].get("faction1")
+        self.assertIsNotNone(faction_data)
+        member_data = faction_data.get("members", {}).get("npc1")
+        self.assertEqual(member_data["reputation"], 10)
+        self.assertTrue(member_data["is_member"])
+        self.assertEqual(faction_data.get("public_reputation"), 5)
+        self.assertIn("relations", faction_data)
+        self.assertEqual(faction_data["relations"].get("faction2"), "ALLY")
 
     def test_load_core_factions_empty_list(self):
         self.faction_manager.load_core_factions([])

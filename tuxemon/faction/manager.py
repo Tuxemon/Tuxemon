@@ -117,9 +117,7 @@ class FactionManager:
             for slug, faction in self._factions.items()
         }
 
-    def get_state(
-        self, save_data: Mapping[str, Any], npc_manager: NPCManager
-    ) -> None:
+    def get_state(self, save_data: Mapping[str, Any]) -> None:
         self.clear_membership_cache()
 
         factions_save_data = save_data.get("factions_manager", {})
@@ -136,41 +134,17 @@ class FactionManager:
                 continue
 
             members_data = faction_data.get("members", {})
-            for npc_slug, npc_data in members_data.items():
-                reputation = npc_data.get("reputation", 0)
-                is_member = npc_data.get("is_member", False)
-
-                faction.reputation[npc_slug] = reputation
-
-                if is_member:
-                    faction.add_member(npc_slug)
-                else:
-                    faction.remove_member(npc_slug)
-
-                logger.debug(
-                    f"Loaded faction '{faction_slug}' data for NPC '{npc_slug}': "
-                    f"reputation={reputation}, is_member={is_member}"
-                )
+            public_rep = faction_data.get("public_reputation", 0)
+            relations = faction_data.get("relations", {})
+            faction.from_save_data(members_data, public_rep, relations)
 
     def set_state(self, npc_manager: NPCManager) -> dict[str, Any]:
         factions_save_data: dict[str, Any] = {}
 
+        npc_slugs = npc_manager.get_all_npc_slugs()
         for faction_slug, faction in self._factions.items():
-            members_data: dict[str, Any] = {}
-
-            for npc_slug in npc_manager.get_all_npc_slugs():
-                reputation = faction.get_reputation(npc_slug)
-                is_member = faction.has_member(npc_slug)
-
-                if reputation != 0 or is_member:
-                    members_data[npc_slug] = {
-                        "reputation": reputation,
-                        "is_member": is_member,
-                    }
-
-            if members_data:
-                factions_save_data[faction_slug] = {
-                    "members": members_data,
-                }
+            faction_data = faction.to_save_data(npc_slugs)
+            if faction_data:
+                factions_save_data[faction_slug] = faction_data
 
         return {"factions_manager": factions_save_data}

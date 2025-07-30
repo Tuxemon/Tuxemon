@@ -1717,6 +1717,9 @@ class FactionModel(BaseModel, BaseLookupModel):
     relations: dict[str, FactionRelationStatus] = Field(
         default_factory=dict, description="Relationships with other factions"
     )
+    public_reputation: int = Field(
+        0, description="General public reputation score of the faction."
+    )
 
     @classmethod
     def lookup(cls, slug: str, db: ModData) -> FactionModel:

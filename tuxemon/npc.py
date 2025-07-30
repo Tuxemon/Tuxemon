@@ -110,13 +110,6 @@ class NPC(Entity[NPCState]):
         self.money_controller = MoneyController(self)
         # list of ways player can interact with the Npc
         self.interactions: Sequence[str] = []
-        # menu labels (world menu)
-        self.menu_save: bool = True
-        self.menu_load: bool = True
-        self.menu_player: bool = True
-        self.menu_monsters: bool = True
-        self.menu_bag: bool = True
-        self.menu_missions: bool = True
         self.mission_controller = MissionController(self)
         self.economy: Optional[Economy] = None
         self.shop_inventory: Optional[ShopInventory] = None

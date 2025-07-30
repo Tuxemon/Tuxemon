@@ -45,6 +45,7 @@ direction_map: Mapping[int, Direction] = {
 
 class WorldSave(TypedDict, total=False):
     factions_manager: dict[str, Any]
+    menu_flags: dict[str, bool]
 
 
 class WorldState(State):
@@ -78,14 +79,16 @@ class WorldState(State):
             "factions_manager": self.faction_manager.set_state(
                 self.client.npc_manager
             ),
+            "menu_flags": self.menu_manager.menu_flags.export(),
         }
         return state
 
     def set_state(self, session: Session, save_data: WorldSave) -> None:
         """Recreates the World from the provided saved data."""
-        self.client.npc_manager
-        faction_data = save_data.get("factions_manager", {})
-        self.faction_manager.get_state(faction_data, self.client.npc_manager)
+        self.faction_manager.get_state(save_data.get("factions_manager", {}), self.client.npc_manager)
+        self.menu_manager.menu_flags.import_flags(
+            save_data.get("menu_flags", {})
+        )
 
     def resume(self) -> None:
         """Called after returning focus to this state"""

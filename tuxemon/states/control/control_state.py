@@ -7,7 +7,8 @@ from functools import partial
 from typing import Any, Optional, Union
 
 import pygame_menu
-from pygame_menu import locals
+from pygame_menu.locals import ALIGN_CENTER, POSITION_EAST
+from pygame_menu.sound import SOUND_TYPE_WIDGET_SELECTION
 
 from tuxemon import prepare
 from tuxemon.animation import Animation, ScheduleType
@@ -26,8 +27,8 @@ class ControlState(PygameMenuState):
     def __init__(self, **kwargs: Any) -> None:
         """Used when initializing the state."""
         theme = get_theme()
-        theme.scrollarea_position = locals.POSITION_EAST
-        theme.widget_alignment = locals.ALIGN_CENTER
+        theme.scrollarea_position = POSITION_EAST
+        theme.widget_alignment = ALIGN_CENTER
         self.main_menu = "main_menu" in kwargs and kwargs["main_menu"]
         kwargs.pop("main_menu", None)
         super().__init__(**kwargs)
@@ -161,6 +162,8 @@ class ControlState(PygameMenuState):
                 self.client.config.update_attribute(
                     "gameplay", "sound_volume", str(volume)
                 )
+                sound = self.menu.get_sound()
+                sound.set_sound_volume(SOUND_TYPE_WIDGET_SELECTION, volume)
 
             music.set_onchange(on_change_music)
             sound.set_onchange(on_change_sound)

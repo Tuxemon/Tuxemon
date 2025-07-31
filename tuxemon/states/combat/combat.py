@@ -695,8 +695,6 @@ class CombatState(CombatAnimations):
                         status.set_combat_state(self)
                         status.nr_turn += 1
                         self.enqueue_action(None, status, monster)
-            # avoid multiple effect status
-            monster.set_stats()
 
     def enqueue_damage(
         self, attacker: Monster, defender: Monster, damage: int

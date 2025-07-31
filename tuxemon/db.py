@@ -795,16 +795,34 @@ class MonsterModel(BaseModel, BaseLookupModel, validate_assignment=True):
 
 class StatModel(BaseModel):
     value: float = Field(
-        0.0, description="The value of the stat", ge=0.0, le=2.0
+        0.0,
+        description="Direct value adjustment (used when step is not provided)",
+    )
+    step: Optional[int] = Field(
+        None,
+        description="Optional step delta to apply (e.g., +2 step to speed)",
+        ge=-6,
+        le=6,
     )
     max_deviation: int = Field(
-        0, description="The maximum deviation of the stat"
+        0,
+        description="Maximum random deviation for the value or calculated step impact",
     )
     operation: str = Field(
-        "+", description="The operation to be done to the stat"
+        "+",
+        description="Operation applied to stat (ignored if using step)",
     )
     overridetofull: bool = Field(
-        False, description="Whether or not to override to full"
+        False,
+        description="If True and stat is HP, override current HP to full",
+    )
+    max_step_limit: float = Field(
+        6.0,
+        description="Maximum absolute value for stat steps used in nonlinear scaling (e.g., 6.0 for ±6)",
+    )
+    scaling_mode: str = Field(
+        "nonlinear",
+        description="Defines how step scaling is applied: 'linear' for base*(1+step), 'nonlinear' for tiered scaling",
     )
 
 

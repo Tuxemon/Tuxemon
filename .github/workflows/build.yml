@@ -76,7 +76,6 @@ jobs:
           prerelease: ${{ env.IS_RELEASE == 'false' }}
           name: ${{ steps.release_title.outputs.value }}
           tag_name: ${{ steps.release_tag.outputs.value }}
-          # TODO: Add windows artifact again when #1229 is fixed
-          # **/artifacts/tuxemon_windows_installer/*.exe
           files: |
+            **/artifacts/tuxemon_windows_installer/*.exe
             **/Tuxemon-x86_64/Tuxemon.flatpak

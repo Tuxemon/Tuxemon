@@ -1198,6 +1198,51 @@ class StatusModel(BaseModel, BaseLookupModel):
         raise ValueError(f"the sound {v} doesn't exist in the db")
 
 
+class DialogueChoice(BaseModel):
+    slug: str = Field(..., description="The player's response or choice text")
+    next_node: Optional[DialogueNode] = Field(
+        None, description="The next dialogue node triggered by this choice"
+    )
+    variable: Optional[str] = Field(
+        None,
+        description="Name of the game variable to set when this choice is selected",
+    )
+    value: Optional[str] = Field(
+        None,
+        description="Value to assign to the variable when this choice is selected",
+    )
+    variables: Sequence[dict[str, str]] = Field(
+        default_factory=list,
+        description="List of variable conditions required to show this choice",
+    )
+    negated_variables: Sequence[dict[str, str]] = Field(
+        default_factory=list,
+        description="List of variable conditions that must NOT be met for this choice to be shown. Each dict maps variable names to disallowed values.",
+    )
+
+    @field_validator("slug")
+    def translation_exists(cls: NpcDialogueModel, v: str) -> str:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+
+class DialogueNode(BaseModel):
+    slug: str = Field(
+        ..., description="The NPC's line of dialogue at this point"
+    )
+    choices: list[DialogueChoice] = Field(
+        default_factory=list,
+        description="List of player choices available after this line",
+    )
+
+    @field_validator("slug")
+    def translation_exists(cls: NpcDialogueModel, v: str) -> str:
+        if has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+
 class PartyMemberModel(BaseModel):
     slug: str = Field(..., description="Slug of the monster")
     level: int = Field(..., description="Level of the monster", gt=0)
@@ -1278,6 +1323,38 @@ class NpcTemplateModel(BaseModel):
         raise ValueError(f"the template {v} doesn't exist in the db")
 
 
+class NpcDialogueModel(BaseModel):
+    pre_battle: Optional[str] = Field(
+        None, description="Slug of the dialogue shown before the battle starts"
+    )
+    post_battle_win: Optional[str] = Field(
+        None, description="Dialogue shown if the NPC wins the battle"
+    )
+    post_battle_lose: Optional[str] = Field(
+        None, description="Dialogue shown if the NPC loses the battle"
+    )
+    post_battle_draw: Optional[str] = Field(
+        None, description="Dialogue shown if the battle ends in a draw"
+    )
+    dialogtrees: dict[str, DialogueNode] = Field(
+        default_factory=dict,
+        description="Named branching dialogue trees for different contexts",
+    )
+
+    @field_validator(
+        "pre_battle",
+        "post_battle_win",
+        "post_battle_lose",
+        "post_battle_draw",
+    )
+    def translation_exists(
+        cls: NpcDialogueModel, v: Optional[str]
+    ) -> Optional[str]:
+        if not v or has.translation(v):
+            return v
+        raise ValueError(f"no translation exists with msgid: {v}")
+
+
 class NpcModel(BaseModel, BaseLookupModel):
     table_name: ClassVar[str] = "npc"
     slug: str = Field(..., description="Slug of the name of the NPC")
@@ -1288,6 +1365,9 @@ class NpcModel(BaseModel, BaseLookupModel):
     )
     items: Sequence[BagItemModel] = Field(
         [], description="List of items in the NPCs bag"
+    )
+    dialogue: Optional[NpcDialogueModel] = Field(
+        None, description="Dialogue for this NPC"
     )
 
     @classmethod

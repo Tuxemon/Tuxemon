@@ -41,6 +41,7 @@
 .. autoscriptinfoclass:: tuxemon.event.actions.create_kennel.CreateKennelAction
 .. autoscriptinfoclass:: tuxemon.event.actions.create_npc.CreateNpcAction
 .. autoscriptinfoclass:: tuxemon.event.actions.delayed_teleport.DelayedTeleportAction
+.. autoscriptinfoclass:: tuxemon.event.actions.dialogue_tree.DialogTreeAction
 .. autoscriptinfoclass:: tuxemon.event.actions.dojo_method.DojoMethodAction
 .. autoscriptinfoclass:: tuxemon.event.actions.evolution.EvolutionAction
 .. autoscriptinfoclass:: tuxemon.event.actions.fade_in.FadeInAction

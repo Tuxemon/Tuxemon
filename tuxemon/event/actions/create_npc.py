@@ -7,7 +7,7 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Optional, final
 
-from tuxemon.db import NpcModel, db
+from tuxemon.db import NpcDialogueModel, NpcModel, db
 from tuxemon.event.eventaction import EventAction
 from tuxemon.item.item import Item
 from tuxemon.monster import Monster
@@ -67,6 +67,21 @@ class CreateNpcAction(EventAction):
         if npc_details.items:
             load_party_items(npc, npc_details, game_variables)
         npc.sprite_controller.load_sprites(npc.template)
+
+        dialogue = npc_details.dialogue or NpcDialogueModel(
+            pre_battle=None,
+            post_battle_win=None,
+            post_battle_lose=None,
+            post_battle_draw=None,
+        )
+
+        npc.dialogue = NpcDialogueModel(
+            pre_battle=dialogue.pre_battle,
+            post_battle_win=dialogue.post_battle_win,
+            post_battle_lose=dialogue.post_battle_lose,
+            post_battle_draw=dialogue.post_battle_draw,
+            dialogtrees=dialogue.dialogtrees,
+        )
 
 
 lookup_cache: dict[str, NpcModel] = {}

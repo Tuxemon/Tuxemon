@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING, Any, Optional, TypedDict
 from tuxemon import prepare
 from tuxemon.battle import BattlesHandler
 from tuxemon.boxes import ItemBoxes, MonsterBoxes
-from tuxemon.db import Direction, NpcModel, db
+from tuxemon.db import Direction, NpcDialogueModel, NpcModel, db
 from tuxemon.entity import Entity
 from tuxemon.item.item import Item, decode_items, encode_items
 from tuxemon.locale import T
@@ -127,6 +127,7 @@ class NPC(Entity[NPCState]):
         self.items = NPCBagHandler(item_boxes=self.item_boxes)
         self.pending_evolutions: list[tuple[Monster, Monster]] = []
         self.steps: float = 0.0
+        self.dialogue: Optional[NpcDialogueModel] = None
 
         # pathfinding and waypoint related
         self.pathfinding: Optional[tuple[int, int]] = None

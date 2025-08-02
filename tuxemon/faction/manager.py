@@ -33,7 +33,7 @@ class FactionManager:
         for slug in faction_slugs:
             try:
                 faction = Faction()
-                faction.load(slug)
+                faction.load_from_db(slug)
                 self.register(faction)
                 logger.debug(f"Successfully loaded core faction: {slug}")
             except Exception as e:

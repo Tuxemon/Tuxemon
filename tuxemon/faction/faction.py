@@ -31,8 +31,7 @@ class Faction:
 
     MAX_PUBLIC_REPUTATION: int = 100
 
-    def __init__(self, save_data: Optional[Mapping[str, Any]] = None) -> None:
-        save_data = save_data or {}
+    def __init__(self) -> None:
         self._rank_cache: dict[str, str] = {}
         self.slug: str = ""
         self.name: str = ""
@@ -46,13 +45,6 @@ class Faction:
         self.reputation: dict[str, int] = {}
         self.relations: dict[str, FactionRelationStatus] = {}
         self._public_reputation: int = 0
-
-    def load(self, slug: str) -> None:
-        """
-        Loads and sets faction from the db using a slug.
-        """
-        results = FactionModel.lookup(slug, db)
-        self._populate_from_model(results)
 
     @classmethod
     def load_from_db(cls, slug: str) -> Faction:

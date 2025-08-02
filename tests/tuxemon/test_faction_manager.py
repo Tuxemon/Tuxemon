@@ -24,7 +24,7 @@ class TestFactionManager(unittest.TestCase):
         faction2 = Faction()
         faction2.slug = "faction2"
 
-        with patch.object(Faction, "load") as mock_load:
+        with patch.object(Faction, "load_from_db") as mock_load:
             with patch.object(
                 self.faction_manager, "register"
             ) as mock_register:

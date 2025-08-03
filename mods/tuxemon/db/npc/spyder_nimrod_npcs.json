@@ -1,6 +1,16 @@
 [
   {
     "slug": "spyder_nimrod_zircon",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_nimrod_zircon1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_nimrod_zircon2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "scientist_brown",
       "combat_front": "scientist_brown",
@@ -9,6 +19,16 @@
   },
   {
     "slug": "spyder_nimrod_xeon",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_nimrod_xeon1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_nimrod_xeon2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "robot",
       "combat_front": "xeon",
@@ -17,6 +37,16 @@
   },
   {
     "slug": "spyder_nimrod_tru",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_nimrod_tru1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_nimrod_tru2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "knight",
       "combat_front": "knightlord",
@@ -25,6 +55,16 @@
   },
   {
     "slug": "spyder_nimrod_thatcher",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_nimrod_thatcher1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_nimrod_thatcher2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_agent",
@@ -33,6 +73,16 @@
   },
   {
     "slug": "spyder_nimrod_rebel",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_nimrod_rebel1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_nimrod_rebel2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "soldier",
       "combat_front": "aviator",
@@ -41,6 +91,16 @@
   },
   {
     "slug": "spyder_nimrod_maverick",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_nimrod_maverick1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_nimrod_maverick2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -49,6 +109,16 @@
   },
   {
     "slug": "spyder_nimrod_mace",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_nimrod_mace1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_nimrod_mace2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "scientist",
       "combat_front": "scientist",
@@ -57,6 +127,16 @@
   },
   {
     "slug": "spyder_nimrod_justice",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_nimrod_justice1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_nimrod_justice2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -65,6 +145,16 @@
   },
   {
     "slug": "spyder_nimrod_honour",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_nimrod_honour1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_nimrod_honour2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -73,6 +163,16 @@
   },
   {
     "slug": "spyder_nimrod_chromerobo",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_nimrod_chromerobo1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_nimrod_chromerobo2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "robot",
       "combat_front": "chrome_robo",
@@ -81,6 +181,16 @@
   },
   {
     "slug": "spyder_nimrod_antimony",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_nimrod_antimony1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_nimrod_antimony2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "scientist_fiery",
       "combat_front": "scientist",
@@ -89,6 +199,16 @@
   },
   {
     "slug": "spyder_nimrod_bowie",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_nimrod_bowie1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_nimrod_bowie2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "knight",
       "combat_front": "enforcer_boss",
@@ -97,6 +217,16 @@
   },
   {
     "slug": "spyder_nimrod_archer",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_nimrod_archer1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_nimrod_archer2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "soldier",
       "combat_front": "soldier",
@@ -105,6 +235,16 @@
   },
   {
     "slug": "spyder_nimrod_argon",
+    "dialogue": {
+      "dialogue": {
+        "default": {
+          "pre_battle": "spyder_nimrod_argon1",
+          "post_battle_win": null,
+          "post_battle_lose": "spyder_nimrod_argon2",
+          "post_battle_draw": null
+        }
+      }
+    },
     "template": {
       "sprite_name": "scientist_black",
       "combat_front": "scientist_black",

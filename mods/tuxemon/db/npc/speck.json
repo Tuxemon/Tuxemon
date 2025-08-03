@@ -1,10 +1,8 @@
 {
   "slug": "speck",
-  "template": 
-    {
-      "sprite_name": "beachcomber",
-      "combat_front": "beachgoer",
-      "slug": "beachgoer"
-    }
-
+  "template": {
+    "sprite_name": "beachcomber",
+    "combat_front": "beachgoer",
+    "slug": "beachgoer"
+  }
 }

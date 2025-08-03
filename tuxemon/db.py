@@ -1278,6 +1278,69 @@ class NpcTemplateModel(BaseModel):
         raise ValueError(f"the template {v} doesn't exist in the db")
 
 
+class DialogueContent(BaseModel):
+    # This model holds all dialogue types
+    greeting: Optional[Union[str, list[str]]] = Field(
+        None, description="Greeting dialogue"
+    )
+    idle: Optional[Union[str, list[str]]] = Field(
+        None, description="Idle chatter"
+    )
+    farewell: Optional[Union[str, list[str]]] = Field(
+        None, description="Dialogue when saying goodbye"
+    )
+    pre_battle: Optional[Union[str, list[str]]] = Field(
+        None, description="Dialogue before a battle"
+    )
+    post_battle_win: Optional[Union[str, list[str]]] = Field(
+        None, description="Dialogue if NPC wins"
+    )
+    post_battle_lose: Optional[Union[str, list[str]]] = Field(
+        None, description="Dialogue if NPC loses"
+    )
+    post_battle_draw: Optional[Union[str, list[str]]] = Field(
+        None, description="Dialogue if battle is a draw"
+    )
+
+    @field_validator("*")
+    def translation_exists(
+        cls, v: Optional[Union[str, list[str]]]
+    ) -> Optional[Union[str, list[str]]]:
+        if not v:
+            return v
+
+        if isinstance(v, str):
+            if not has.translation(v):
+                raise ValueError(f"No translation exists with msgid: {v}")
+        elif isinstance(v, list):
+            for msgid in v:
+                if not has.translation(msgid):
+                    raise ValueError(
+                        f"No translation exists with msgid: {msgid}"
+                    )
+        return v
+
+
+class DialogueProfile(BaseModel):
+    default: DialogueContent = Field(
+        ..., description="The default dialogue for the NPC"
+    )
+    location_based: dict[str, DialogueContent] = Field(
+        default_factory=dict,
+        description="Overrides for dialogue based on location (map.tmx)",
+    )
+
+    def get_dialogue_for_location(self, location: str) -> DialogueContent:
+        """Returns location-specific dialogue if available, otherwise default."""
+        return self.location_based.get(location, self.default)
+
+
+class NpcSpeech(BaseModel):
+    profile: DialogueProfile = Field(
+        ..., description="All dialogue for the NPC"
+    )
+
+
 class NpcModel(BaseModel, BaseLookupModel):
     table_name: ClassVar[str] = "npc"
     slug: str = Field(..., description="Slug of the name of the NPC")
@@ -1288,6 +1351,9 @@ class NpcModel(BaseModel, BaseLookupModel):
     )
     items: Sequence[BagItemModel] = Field(
         [], description="List of items in the NPCs bag"
+    )
+    speech: Optional[NpcSpeech] = Field(
+        None, description="Dialogue for this NPC"
     )
 
     @classmethod

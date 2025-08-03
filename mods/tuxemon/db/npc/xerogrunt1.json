@@ -1,10 +1,8 @@
 {
   "slug": "xerogrunt1",
-  "template": 
-    {
-      "sprite_name": "xerogrunt",
-      "combat_front": "adventurer",
-      "slug": "xerogrunt"
-    }
-
+  "template": {
+    "sprite_name": "xerogrunt",
+    "combat_front": "adventurer",
+    "slug": "xerogrunt"
+  }
 }

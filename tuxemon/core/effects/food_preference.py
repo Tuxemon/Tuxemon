@@ -27,6 +27,8 @@ OPPOSITE_TASTES = {
     "taste_flakey": "taste_zesty",
     "taste_refined": "taste_dry",
     "taste_dry": "taste_refined",
+    "taste_savory": "taste_bland",
+    "taste_bland": "taste_savory",
 }
 
 

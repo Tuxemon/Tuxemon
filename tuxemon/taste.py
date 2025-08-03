@@ -7,8 +7,9 @@ import random
 from collections.abc import Sequence
 from typing import Optional
 
-from tuxemon.db import Modifier, TasteModel, db
+from tuxemon.db import TasteModel, db
 from tuxemon.locale import T
+from tuxemon.modifiers import ModifiersHandler
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +24,7 @@ class Taste:
         self.taste_type: str = ""
         self.description: str = ""
         self.rarity_score: float = 1.0
-        self.modifiers: Sequence[Modifier] = []
+        self.modifiers: ModifiersHandler = ModifiersHandler()
 
         if slug:
             self.load(slug)
@@ -45,7 +46,7 @@ class Taste:
         self.slug = slug
         self.name = T.translate(self.slug)
         self.description = T.translate(f"{results.slug}_description")
-        self.modifiers = results.modifiers
+        self.modifiers = ModifiersHandler(list(results.modifiers))
         self.taste_type = results.taste_type
         self.rarity_score = results.rarity_score
 

@@ -1,0 +1,15 @@
+{
+  "effects": [],
+  "slug": "tachyon_collector",
+  "sort": "utility",
+  "sprite": "gfx/items/box.png",
+  "category": "none",
+  "usable_in": [
+    ""
+  ],
+  "modifiers": [],
+  "behaviors": {},
+  "use_failure": "generic_failure",
+  "use_item": "combat_used_x",
+  "use_success": "generic_success"
+}

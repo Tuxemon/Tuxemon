@@ -65,14 +65,14 @@ class PartyState(PygameMenuState):
         )
         lab1.translate(fxw(0.05), fxh(0.15))
         # levels
-        levels = [monster.level for monster in self.char.monsters]
-        level_lowest = min(levels)
-        level_highest = max(levels)
-        level_average = round(sum(levels) / len(levels))
+        level_lowest = self.char.party.level_lowest
+        level_highest = self.char.party.level_highest
+        level_average = self.char.party.level_average
+        party_alignment = self.char.party.get_alignment()
         # highest
         highest = T.translate("menu_party_level_highest")
         lab2: Any = menu.add.label(
-            title=f"{highest}: {level_highest}",
+            title=f"{highest}: {level_highest or 0}",
             font_size=self.font_type.smaller,
             align=locals.ALIGN_LEFT,
             float=True,
@@ -81,7 +81,7 @@ class PartyState(PygameMenuState):
         # average
         average = T.translate("menu_party_level_average")
         lab3: Any = menu.add.label(
-            title=f"{average}: {level_average}",
+            title=f"{average}: {level_average or 0}",
             font_size=self.font_type.smaller,
             align=locals.ALIGN_LEFT,
             float=True,
@@ -90,12 +90,22 @@ class PartyState(PygameMenuState):
         # lowest
         lowest = T.translate("menu_party_level_lowest")
         lab4: Any = menu.add.label(
-            title=f"{lowest}: {level_lowest}",
+            title=f"{lowest}: {level_lowest or 0}",
             font_size=self.font_type.smaller,
             align=locals.ALIGN_LEFT,
             float=True,
         )
         lab4.translate(fxw(0.05), fxh(0.35))
+        # alignment
+        if party_alignment:
+            alignment = T.translate("menu_party_alignment")
+            lab7: Any = menu.add.label(
+                title=f"{alignment}: {T.translate(party_alignment)}",
+                font_size=self.font_type.smaller,
+                align=locals.ALIGN_LEFT,
+                float=True,
+            )
+            lab7.translate(fxw(0.05), fxh(0.40))
 
         total = sum(monster.steps for monster in monsters)
         # bond

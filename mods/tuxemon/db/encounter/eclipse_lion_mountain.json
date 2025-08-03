@@ -1,0 +1,125 @@
+{
+  "monsters": [
+    {
+      "encounter_rate": 3.5,
+      "exp_req_mod": 1,
+      "held_items": [],
+      "level_range": [
+        55,
+        65
+      ],
+      "monster": "snowrilla",
+      "variables": [
+        {
+          "daytime": "true"
+        }
+      ]
+    },
+    {
+      "encounter_rate": 3.5,
+      "exp_req_mod": 1,
+      "held_items": [],
+      "level_range": [
+        65,
+        75
+      ],
+      "monster": "snowrilla",
+      "variables": [
+        {
+          "daytime": "false"
+        }
+      ]
+    },
+    {
+      "encounter_rate": 3.5,
+      "exp_req_mod": 1,
+      "held_items": [],
+      "level_range": [
+        55,
+        65
+      ],
+      "monster": "tadcool",
+      "variables": [
+        {
+          "daytime": "true"
+        }
+      ]
+    },
+    {
+      "encounter_rate": 3.5,
+      "exp_req_mod": 1,
+      "held_items": [],
+      "level_range": [
+        65,
+        75
+      ],
+      "monster": "bumbulus",
+      "variables": [
+        {
+          "daytime": "false"
+        }
+      ]
+    },
+    {
+      "encounter_rate": 3.5,
+      "exp_req_mod": 1,
+      "held_items": [],
+      "level_range": [
+        55,
+        65
+      ],
+      "monster": "chillimp",
+      "variables": [
+        {
+          "daytime": "true"
+        }
+      ]
+    },
+    {
+      "encounter_rate": 3.5,
+      "exp_req_mod": 1,
+      "held_items": [],
+      "level_range": [
+        65,
+        75
+      ],
+      "monster": "bumbulus",
+      "variables": [
+        {
+          "daytime": "false"
+        }
+      ]
+    },
+    {
+      "encounter_rate": 3.5,
+      "exp_req_mod": 1,
+      "held_items": [],
+      "level_range": [
+        55,
+        65
+      ],
+      "monster": "tux",
+      "variables": [
+        {
+          "daytime": "true"
+        }
+      ]
+    },
+    {
+      "encounter_rate": 3.5,
+      "exp_req_mod": 1,
+      "held_items": [],
+      "level_range": [
+        65,
+        75
+      ],
+      "monster": "tux",
+      "variables": [
+        {
+          "daytime": "false"
+        }
+      ]
+    }
+  ],
+  "slug": "eclipse_lion_mountain"
+}

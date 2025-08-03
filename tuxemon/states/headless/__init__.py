@@ -7,7 +7,7 @@ from typing import Optional
 from pygame.rect import Rect
 
 from tuxemon.platform.events import PlayerInput
-from tuxemon.state import State
+from tuxemon.state.state import State
 
 
 class HeadlessServerState(State):

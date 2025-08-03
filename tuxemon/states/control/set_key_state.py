@@ -28,7 +28,10 @@ class SetKeyState(PygameMenuState):
         theme.scrollarea_position = locals.POSITION_EAST
         theme.widget_alignment = locals.ALIGN_CENTER
         super().__init__(**kwargs)
-        self.menu.add.label(T.translate("options_new_input_key0").upper())
+        self.menu.add.label(
+            T.translate("options_new_input_key0").upper(),
+            font_size=self.font_type.small,
+        )
         self.value = value
         self.reset_theme()
 
@@ -77,13 +80,7 @@ class SetKeyState(PygameMenuState):
         )
 
     def animate_open(self) -> Animation:
-        """
-        Animate the menu popping in.
-
-        Returns:
-            Popping in animation.
-
-        """
+        """Animate the menu popping in."""
         self.animation_size = 0.0
         ani = self.animate(self, animation_size=1.0, duration=0.2)
         ani.schedule(self.update_animation_size, ScheduleType.ON_UPDATE)

@@ -53,7 +53,7 @@ msgid "super_potion"
 msgstr "スーパーポーション"
 
 msgid "super_potion_description"
-msgstr "モンスター1体のHPを150回復する。"
+msgstr "モンスター1体のHPを100回復する。"
 
 msgid "here_to_west"
 msgstr "${{map_name}} から ${{west}}"

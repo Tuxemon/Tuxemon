@@ -13,6 +13,7 @@ python renumber_events.py [--ascii/--natural] FILE0 FILE1 FILE2 ...
 Natural sort ordering is default.  Use ASCII for fixing old maps.
 
 """
+
 import logging
 import os
 import xml.etree.ElementTree as ET
@@ -49,7 +50,9 @@ def renumber_event(event_node, sorting_method):
         for i, action in zip(count(10, 10), items):
             name, value = action
             name = name_template.format(i)
-            child = ET.SubElement(event_node, "property", attrib={"name": name, "value": value})
+            child = ET.SubElement(
+                event_node, "property", attrib={"name": name, "value": value}
+            )
             children.append(child)
 
     return children

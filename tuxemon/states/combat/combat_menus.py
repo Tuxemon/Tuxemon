@@ -14,6 +14,7 @@ from pygame.surface import Surface
 
 from tuxemon import combat, graphics, prepare, tools
 from tuxemon.db import EffectPhase, State, TechSort
+from tuxemon.item.filter import ItemFilter
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu, PopUpMenu
@@ -22,7 +23,7 @@ from tuxemon.sprite import SpriteGroup, VisualSpriteList
 from tuxemon.states.items.item_menu import ItemMenuState
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.technique.technique import Technique
-from tuxemon.ui.draw import GraphicBox
+from tuxemon.ui.graphic_box import GraphicBox
 from tuxemon.ui.text import TextArea
 
 if TYPE_CHECKING:
@@ -184,8 +185,10 @@ class MainCombatMenuState(PopUpMenu[MenuGameObj]):
 
         def choose_item() -> None:
             # open menu to choose item
+            items_filtered = ItemFilter(self.character)
+            items_filtered.set_filter_usable_in_state("MainCombatMenuState")
             menu = self.client.push_state(
-                ItemMenuState(self.character, self.name)
+                ItemMenuState(self.character, self.name, items_filtered)
             )
 
             # set next menu after the selection is made

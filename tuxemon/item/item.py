@@ -17,6 +17,7 @@ from tuxemon.core.core_manager import ConditionManager, EffectManager
 from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import ItemCategory, ItemModel, State, db
 from tuxemon.locale import T
+from tuxemon.modifiers import ModifiersHandler
 from tuxemon.surfanim import FlipAxes
 
 if TYPE_CHECKING:
@@ -49,6 +50,7 @@ class Item:
         self.quantity: int = 1
         self.animation: Optional[str] = None
         self.flip_axes: FlipAxes = FlipAxes.NONE
+        self.modifiers: ModifiersHandler = ModifiersHandler()
         # The path to the sprite to load.
         self.sprite: str = ""
         self.category: ItemCategory = ItemCategory.none
@@ -67,6 +69,7 @@ class Item:
         self.wear: int = 0
         self.max_wear: int = 0
         self.break_chance: float = 0.0
+        self.menu_actions_data: Sequence[Mapping[str, str]] = []
 
         if Item.effect_manager is None:
             Item.effect_manager = EffectManager(
@@ -119,7 +122,7 @@ class Item:
         self.slug = results.slug
         self.name = T.translate(self.slug)
         self.description = T.translate(f"{self.slug}_description")
-        self.modifiers = results.modifiers
+        self.modifiers = ModifiersHandler(results.modifiers)
 
         # item use notifications (translated!)
         self.use_item = T.translate(results.use_item)
@@ -128,7 +131,7 @@ class Item:
         self.confirm_text = T.translate(results.confirm_text)
         self.cancel_text = T.translate(results.cancel_text)
 
-        # misc attributes (not translated!)
+        self.menu_actions_data = results.menu_actions
         self.world_menu = results.world_menu
         self.behaviors = results.behaviors
         self.cost = results.cost

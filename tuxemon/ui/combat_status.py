@@ -10,7 +10,7 @@ from pygame.rect import Rect
 
 from tuxemon.animation import Animation
 from tuxemon.sprite import Sprite
-from tuxemon.state import State
+from tuxemon.state.state import State
 
 logger = logging.getLogger(__name__)
 
@@ -118,7 +118,7 @@ class StatusIconManager:
     ) -> tuple[float, float]:
         owner = monster.get_owner()
         layout_data = self._layouts.get(owner, {})
-        rects = layout_data.get(f"status_icon{index}", [])
+        rects = layout_data.get(f"monster_status_icon_slot_{index}", [])
         return rects[0].topleft if rects else (0, 0)
 
     def recalculate_icon_positions(self) -> None:

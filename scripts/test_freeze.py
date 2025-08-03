@@ -9,6 +9,7 @@ torture test the codebase by importing all the files alone.
 
 import os
 import sys
+
 import cx_Freeze
 
 parent = os.path.abspath(os.path.join(__file__, "..", ".."))

@@ -21,6 +21,7 @@ from tuxemon.db import (
     db,
 )
 from tuxemon.locale import T
+from tuxemon.modifiers import ModifiersHandler
 from tuxemon.surfanim import FlipAxes
 
 if TYPE_CHECKING:
@@ -81,6 +82,7 @@ class Status:
         self.slug: str = ""
         self.use_success: str = ""
         self.use_failure: str = ""
+        self.modifiers: ModifiersHandler = ModifiersHandler()
 
         if Status.effect_manager is None:
             Status.effect_manager = EffectManager(
@@ -130,7 +132,7 @@ class Status:
 
         self.icon = results.icon
 
-        self.modifiers = results.modifiers
+        self.modifiers = ModifiersHandler(results.modifiers)
         # monster stats
         self.statspeed = results.statspeed
         self.stathp = results.stathp

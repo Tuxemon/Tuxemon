@@ -55,7 +55,7 @@ msgid "super_potion"
 msgstr "Super lektvar"
 
 msgid "super_potion_description"
-msgstr "Vyléčí tvoru 150 životů."
+msgstr "Vyléčí tvoru 100 životů."
 
 # Imperial Potion
 msgid "imperial_potion"

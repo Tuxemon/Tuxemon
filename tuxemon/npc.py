@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 import uuid
+from collections import Counter
 from collections.abc import Iterable, Mapping, Sequence
 from math import hypot
 from typing import TYPE_CHECKING, Any, Optional, TypedDict
@@ -18,7 +19,7 @@ from tuxemon.locale import T
 from tuxemon.map import dirs2, get_direction, proj
 from tuxemon.map_view import SpriteController
 from tuxemon.math import Vector2
-from tuxemon.mission import MissionController
+from tuxemon.mission import MissionController, MissionManager
 from tuxemon.money import MoneyController
 from tuxemon.monster import Monster, decode_monsters, encode_monsters
 from tuxemon.movement import get_tile_moverate
@@ -110,14 +111,7 @@ class NPC(Entity[NPCState]):
         self.money_controller = MoneyController(self)
         # list of ways player can interact with the Npc
         self.interactions: Sequence[str] = []
-        # menu labels (world menu)
-        self.menu_save: bool = True
-        self.menu_load: bool = True
-        self.menu_player: bool = True
-        self.menu_monsters: bool = True
-        self.menu_bag: bool = True
-        self.menu_missions: bool = True
-        self.mission_controller = MissionController(self)
+        self.mission_controller = MissionController(self, MissionManager())
         self.economy: Optional[Economy] = None
         self.shop_inventory: Optional[ShopInventory] = None
         self.teleport_faint = TeleportFaint()
@@ -178,8 +172,8 @@ class NPC(Entity[NPCState]):
             "monsters": self.party.encode_party(),
             "player_name": self.name,
             "player_steps": self.steps,
-            "monster_boxes": dict(),
-            "item_boxes": dict(),
+            "monster_boxes": self.monster_boxes.get_state(),
+            "item_boxes": self.item_boxes.get_state(),
             "tile_pos": self.tile_pos,
             "teleport_faint": self.teleport_faint.to_tuple(),
             "tracker": encode_tracking(self.tracker),
@@ -187,8 +181,6 @@ class NPC(Entity[NPCState]):
             "unlocked_letters": encode_cipher(self.unlocked_letters),
         }
 
-        self.monster_boxes.save(state)
-        self.item_boxes.save(state)
         state["money"] = self.money_controller.save()
 
         return state
@@ -214,7 +206,7 @@ class NPC(Entity[NPCState]):
         self.money_controller.load(save_data)
         self.unlocked_letters = decode_cipher(save_data)
         self.monster_boxes.load(self, save_data)
-        self.item_boxes.load(self, save_data)
+        self.item_boxes.load(save_data)
 
         self.teleport_faint = TeleportFaint.from_tuple(
             save_data["teleport_faint"]
@@ -670,6 +662,28 @@ class PartyHandler:
         """Returns the maximum number of monsters allowed in the party."""
         return self._party_limit
 
+    @property
+    def level_lowest(self) -> Optional[int]:
+        """Returns the lowest level among monsters in the party, or None if empty."""
+        if not self._monsters:
+            return None
+        return min(mon.level for mon in self._monsters)
+
+    @property
+    def level_highest(self) -> Optional[int]:
+        """Returns the highest level among monsters in the party, or None if empty."""
+        if not self._monsters:
+            return None
+        return max(mon.level for mon in self._monsters)
+
+    @property
+    def level_average(self) -> Optional[int]:
+        """Returns the average level of monsters in the party, or None if empty."""
+        if not self._monsters:
+            return None
+        total = sum(mon.level for mon in self._monsters)
+        return round(total / len(self._monsters))
+
     def add_monster(
         self,
         monster: Monster,
@@ -833,6 +847,27 @@ class PartyHandler:
             for monster in self._monsters:
                 monster.owner = None
         self._monsters.clear()
+
+    def get_alignment(self) -> Optional[str]:
+        """
+        Returns the dominant elemental type in the party,
+        based on the most frequently occurring type among monsters.
+        If no types are found, returns None.
+        """
+        type_counter: Counter[str] = Counter()
+
+        for monster in self._monsters:
+            try:
+                type_slugs = monster.types.get_type_slugs()
+                type_counter.update(type_slugs)
+            except Exception:
+                continue  # Skip if the monster has no types
+
+        if not type_counter:
+            return None
+
+        dominant_type, _ = type_counter.most_common(1)[0]
+        return dominant_type
 
     def encode_party(self) -> Sequence[Mapping[str, Any]]:
         return encode_monsters(self._monsters)

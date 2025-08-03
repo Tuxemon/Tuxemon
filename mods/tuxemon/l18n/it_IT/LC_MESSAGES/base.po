@@ -55,7 +55,7 @@ msgid "super_potion"
 msgstr "Super pozione"
 
 msgid "super_potion_description"
-msgstr "Fa recuperare 150 PV a un mostro."
+msgstr "Fa recuperare 100 PV a un mostro."
 
 # Imperial Potion
 msgid "imperial_potion"

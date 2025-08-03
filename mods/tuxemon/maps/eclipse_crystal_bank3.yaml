@@ -1,0 +1,33 @@
+events:
+  Environment:
+    actions:
+    - set_variable environment:interior
+    conditions:
+    - not variable_set environment:interior
+    height: 1
+    width: 1
+    x: 1
+    y: 0
+    type: event
+  Play Music:
+    actions:
+    - play_music music_omnichannel
+    conditions:
+    - not music_playing music_omnichannel
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: event
+  Teleport to Bank 2:
+    actions:
+    - transition_teleport eclipse_crystal_bank2.tmx,2,10,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    height: 1
+    width: 1
+    x: 2
+    y: 13
+    type: event

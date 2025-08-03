@@ -1,6 +1,6 @@
 {
   "tech_id": 192,
-  "accuracy": 0.99,
+  "accuracy": 0.95,
   "animation": "divinity_beam",
   "effects": [
     {

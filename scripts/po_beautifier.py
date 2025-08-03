@@ -15,7 +15,9 @@ To beautify a file but NOT remove obsolete entries:
 
 from argparse import ArgumentParser
 from pathlib import Path
+
 from polib import pofile
+
 
 def beautify_po_file(filepath: Path, remove_obsolete_entries: bool = True):
     """
@@ -47,13 +49,16 @@ def beautify_po_file(filepath: Path, remove_obsolete_entries: bool = True):
     except Exception as e:
         print(f"Error processing {filepath}: {e}")
 
-def beautify_po_in_directory(directory_path: Path, remove_obsolete_entries: bool = True):
+
+def beautify_po_in_directory(
+    directory_path: Path, remove_obsolete_entries: bool = True
+):
     """
     Walks through a directory and beautifies all .po files found.
     """
     directory_path = directory_path.resolve()
     print(f"Searching for .po files in '{directory_path}'...")
-    
+
     found_files = False
     for file_path in directory_path.rglob("*.po"):
         found_files = True
@@ -61,6 +66,7 @@ def beautify_po_in_directory(directory_path: Path, remove_obsolete_entries: bool
 
     if not found_files:
         print("No .po files found in the specified directory.")
+
 
 if __name__ == "__main__":
     parser = ArgumentParser(description="Beautify one or more .po files.")

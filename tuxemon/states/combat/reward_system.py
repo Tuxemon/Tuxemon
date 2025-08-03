@@ -115,9 +115,9 @@ class RewardSystem:
                 # Grant experience and update moves
                 if winner.owner and winner.owner.isplayer:
                     levels = winner.give_experience(awarded_exp)
-                    rewards_data.moves = winner.moves.update_moves(
-                        winner.level, levels
-                    )
+                    new_moves = winner.moves.update_moves(winner.level, levels)
+                    if new_moves:
+                        rewards_data.moves.extend(new_moves)
                     rewards_data.messages.append(
                         T.format(
                             "combat_gain_exp",
@@ -164,25 +164,23 @@ def calculate_experience(
         exp = calculate_experience_base(
             loser.total_experience,
             loser.level,
-            total_hits,
             loser.experience_modifier,
         )
         return exp, 0
 
     def equal_method() -> tuple[int, int]:
-        exp = calculate_experience_base(
+        total_exp = calculate_experience_base(
             loser.total_experience,
             loser.level,
-            total_hits,
             loser.experience_modifier,
-        ) * round(monster_hits / total_hits)
-        return exp, 0
+        )
+        proportional_exp = int(total_exp * (monster_hits / total_hits))
+        return proportional_exp, 0
 
     def feeder_method() -> tuple[int, int]:
         total_exp = calculate_experience_base(
             loser.total_experience,
             loser.level,
-            total_hits,
             loser.experience_modifier,
         )
 
@@ -204,7 +202,6 @@ def calculate_experience(
         total_exp = calculate_experience_base(
             loser.total_experience,
             loser.level,
-            total_hits,
             loser.experience_modifier,
         )
 
@@ -245,9 +242,9 @@ def calculate_experience(
 
 
 def calculate_experience_base(
-    total_experience: float, level: int, hits: int, experience_modifier: float
+    total_experience: float, level: int, experience_modifier: float
 ) -> int:
     """
-    Base formula for experience calculation.
+    Base formula for experience calculation without hits.
     """
-    return int((total_experience // (level * hits)) * experience_modifier)
+    return int((total_experience // level) * experience_modifier)

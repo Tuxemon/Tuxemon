@@ -66,13 +66,13 @@ from tuxemon.menu.interface import MenuItem
 from tuxemon.monster import Monster
 from tuxemon.npc import NPC
 from tuxemon.platform.const import buttons
-from tuxemon.state import State
+from tuxemon.state.state import State
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.status.status import Status
 from tuxemon.technique.technique import Technique
 from tuxemon.tools import assert_never
 from tuxemon.ui.combat_swap import SwapTracker
-from tuxemon.ui.draw import GraphicBox
+from tuxemon.ui.graphic_box import GraphicBox
 from tuxemon.ui.text import TextArea
 
 from .combat_animations import CombatAnimations
@@ -1080,7 +1080,7 @@ class CombatState(CombatAnimations):
             if owner.isplayer:
                 self.task(partial(self.animate_exp, winner), interval=2.5)
                 self.task(
-                    partial(self.update_hud, owner, False, True), interval=3.2
+                    partial(self.update_hud, owner, False, True), interval=4.0
                 )
 
     def animate_party_status(self) -> None:

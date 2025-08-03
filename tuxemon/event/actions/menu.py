@@ -3,32 +3,36 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional, final
+from typing import TYPE_CHECKING, Optional, final
 
 from tuxemon.event.eventaction import EventAction
-from tuxemon.session import Session
+
+if TYPE_CHECKING:
+    from tuxemon.session import Session
 
 
 @final
 @dataclass
 class MenuAction(EventAction):
     """
-    Enable/disable one or more menu.
+    Toggle visibility of one or more world menu entries, or apply a preset.
 
     Script usage:
         .. code-block::
 
-            menu <act>[,menu]
+            menu <flag>[,menu_1:menu_2:...]   # toggles specific menus
+            menu <preset>                     # applies preset config
 
-    Script parameters:
-        act: enable or disable
-        menu: specific menu (menu_monster, menu_bag, menu_player,
-            exit, menu_options, menu_save, menu_load)
-            without specification, everything disabled
+    Parameters:
+        flag: "enable" or "disable", applied to specified menus (or all)
+        preset: one of defined presets ("minimal", etc.)
 
-    eg. menu disable,menu_bag
-    eg. menu enable,menu_player
-
+    Examples:
+        menu reset                         > clears all menu flags
+        menu enable                        > enables all menus
+        menu disable,menu_bag:menu_player  > disables specified menus
+        menu enable,all                    > enables all menus
+        menu minimal                       > applies "minimal" preset
     """
 
     name = "menu"
@@ -36,28 +40,32 @@ class MenuAction(EventAction):
     menu: Optional[str] = None
 
     def start(self, session: Session) -> None:
-        player = session.player
-        result = True if self.act == "enable" else False
+        flags = session.world.menu_manager.menu_flags
+        valid_keys = flags.DEFAULT_PRESETS["full"].keys()
+        presets = flags.DEFAULT_PRESETS.keys()
 
-        if self.menu is None:
-            player.menu_bag = result
-            player.menu_load = result
-            player.menu_monsters = result
-            player.menu_save = result
-            player.menu_player = result
-            player.menu_missions = result
+        if self.act == "reset":
+            flags.reset_flags()
+            flags.apply_preset("raw")
+            session.world.menu_manager.update_menu_display()
+            return
+
+        if self.act in presets:
+            flags.apply_preset(self.act)
         else:
-            if self.menu == "menu_bag":
-                player.menu_bag = result
-            elif self.menu == "menu_load":
-                player.menu_load = result
-            elif self.menu == "menu_monsters":
-                player.menu_monsters = result
-            elif self.menu == "menu_save":
-                player.menu_save = result
-            elif self.menu == "menu_player":
-                player.menu_player = result
-            elif self.menu == "menu_missions":
-                player.menu_missions = result
+            if self.act not in ("enable", "disable"):
+                raise ValueError(
+                    f"Invalid menu action: '{self.act}' must be 'enable', 'disable', or a preset name."
+                )
+
+            result = self.act == "enable"
+
+            if self.menu is None or self.menu.strip() == "all":
+                for key in valid_keys:
+                    flags.set_enabled(key, result)
             else:
-                raise ValueError(f"{self.menu} isn't valid.")
+                keys = [k.strip() for k in self.menu.split(":")]
+                for key in keys:
+                    flags.set_enabled(key, result)
+
+        session.world.menu_manager.update_menu_display()

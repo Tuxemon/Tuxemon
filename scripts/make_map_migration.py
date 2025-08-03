@@ -16,11 +16,11 @@ Example:
 python scripts/make_map_migration.py mods/tuxemon/gfx/tilesets/My_tuxemon_sheet.png mods/tuxemon/gfx/tilesets/core_outdoor.png txmn-core.yaml
 
 """
+
 import click
 import pygame
 import pygame.gfxdraw
 import yaml
-
 
 tilewidth = 16
 tileheight = 16
@@ -57,7 +57,10 @@ def main(src_filepath, dst_filepath, output_filepath):
     src_rect.left = screen_width // 2
     tiles_per_row = src_rect.width // tilewidth
     total_tiles = (tiles_per_row * (src_rect.height // tileheight)) - 1
-    preview_tile_size = tilewidth * preview_scale_factor, tileheight * preview_scale_factor
+    preview_tile_size = (
+        tilewidth * preview_scale_factor,
+        tileheight * preview_scale_factor,
+    )
     screen = pygame.display.set_mode((screen_width, screen_height))
     hover = None
     running = True

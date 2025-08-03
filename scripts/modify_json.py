@@ -21,8 +21,8 @@ The new json files will be located at the output file
 -GDMarkou
 """
 
-import os
 import json
+import os
 import sys
 
 
@@ -45,12 +45,12 @@ def json_to_dict(json_file):
 def save_dict(json_dict, output_file):
     """Writes the new value of the json file to the output_folder
 
-   Parameters
-   ----------
-   json_dict: dict
-   output_file: file .json
-   """
-    with open(output_file, 'w') as fp:
+    Parameters
+    ----------
+    json_dict: dict
+    output_file: file .json
+    """
+    with open(output_file, "w") as fp:
         json.dump(json_dict, fp, indent=4, sort_keys=False, default=str)
 
 
@@ -71,7 +71,7 @@ def modify_json(input_folder, output_folder, variable_name, variable_value):
     try:
         jsons = os.listdir(input_folder)
     except FileNotFoundError:
-        print('Input file cannot be found or does not exist')
+        print("Input file cannot be found or does not exist")
         sys.exit(1)
     if len(jsons) < 1:
         try:
@@ -90,15 +90,15 @@ def modify_json(input_folder, output_folder, variable_name, variable_value):
             jdict[variable_name] = variable_value
             save_path = os.path.join(output_folder, jfile)
             save_dict(jdict, save_path)
-        print('Folder <' + output_folder + '> was created')
+        print("Folder <" + output_folder + "> was created")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         if len(sys.argv) != 5:
             raise Exception()
     except Exception:
-        print('The number of arguments should be 4')
+        print("The number of arguments should be 4")
         sys.exit(1)
     input_folder = sys.argv[1]
     output_folder = sys.argv[2]

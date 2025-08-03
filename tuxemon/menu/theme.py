@@ -5,7 +5,8 @@ from typing import Optional
 
 import pygame_menu
 from pygame.surface import Surface
-from pygame_menu import locals, sound
+from pygame_menu.locals import ALIGN_LEFT, SCROLLAREA_POSITION_NONE
+from pygame_menu.sound import SOUND_TYPE_WIDGET_SELECTION
 from pygame_menu.widgets.core.selection import Selection
 from pygame_menu.widgets.core.widget import Widget
 from pygame_menu.widgets.widget.menubar import MENUBAR_STYLE_ADAPTIVE
@@ -85,11 +86,11 @@ def get_theme() -> pygame_menu.Theme:
 
     theme = pygame_menu.Theme(
         background_color=tuxemon_background,
-        widget_alignment=locals.ALIGN_LEFT,
+        widget_alignment=ALIGN_LEFT,
         title=False,
         widget_selection_effect=TuxemonArrowSelection(),
         border_color=tuxemon_border,
-        scrollarea_position=locals.SCROLLAREA_POSITION_NONE,
+        scrollarea_position=SCROLLAREA_POSITION_NONE,
         widget_padding=(10, 20),
         title_close_button=False,
         title_bar_style=MENUBAR_STYLE_ADAPTIVE,
@@ -125,13 +126,13 @@ def get_sound_engine(
 
     if _sound_engine is not None:
         _sound_engine.set_sound_volume(
-            sound_type=sound.SOUND_TYPE_WIDGET_SELECTION, volume=volume
+            sound_type=SOUND_TYPE_WIDGET_SELECTION, volume=volume
         )
         return _sound_engine
 
     sound_engine = pygame_menu.Sound()
     sound_engine.set_sound(
-        sound_type=sound.SOUND_TYPE_WIDGET_SELECTION,
+        sound_type=SOUND_TYPE_WIDGET_SELECTION,
         sound_file=filename,
         volume=float(volume),
     )

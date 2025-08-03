@@ -83,12 +83,11 @@ class TestRewardSystem(unittest.TestCase):
         self.assertEqual(money, expected_money)
 
     def test_calculate_experience_default_method(self):
-        hits, _ = self.damage_tracker.count_hits(self.loser, self.winner)
         experience = calculate_experience(
             self.loser, self.winner, self.damage_tracker
         )
         expected_experience = int(
-            (self.loser.total_experience // (self.loser.level * hits))
+            (self.loser.total_experience // (self.loser.level))
             * self.loser.experience_modifier
         )
         self.assertEqual(experience[0], expected_experience)
@@ -117,7 +116,6 @@ class TestRewardSystem(unittest.TestCase):
         total_exp = calculate_experience_base(
             self.loser.total_experience,
             self.loser.level,
-            self.damage_tracker.count_hits(self.loser, self.winner)[0],
             self.loser.experience_modifier,
         )
         participants = self.damage_tracker.get_attackers(self.loser)
@@ -126,15 +124,13 @@ class TestRewardSystem(unittest.TestCase):
         self.assertEqual(experience[0], participant_exp)
 
     def test_calculate_experience_base(self):
-        hits, _ = self.damage_tracker.count_hits(self.loser, self.winner)
         experience = calculate_experience_base(
             self.loser.total_experience,
             self.loser.level,
-            hits,
             self.loser.experience_modifier,
         )
         expected_experience = int(
-            (self.loser.total_experience // (self.loser.level * hits))
+            (self.loser.total_experience // (self.loser.level))
             * self.loser.experience_modifier
         )
         self.assertEqual(experience, expected_experience)
@@ -174,3 +170,66 @@ class TestRewardSystem(unittest.TestCase):
 
         for monster in mock_monsters:
             monster.give_experience.assert_called()
+
+    def test_award_rewards_no_winners(self):
+        empty_tracker = DamageTracker()
+        reward_system = RewardSystem(empty_tracker, is_trainer_battle=True)
+        rewards = reward_system.award_rewards(self.loser)
+
+        self.assertEqual(len(rewards.winners), 0)
+        self.assertEqual(rewards.prize, 0)
+        self.assertFalse(rewards.update)
+        self.assertEqual(rewards.moves, [])
+        self.assertEqual(rewards.messages, [])
+
+    def test_award_rewards_no_new_moves(self):
+        self.winner.moves.update_moves.return_value = []
+        reward_system = RewardSystem(
+            self.damage_tracker, is_trainer_battle=True
+        )
+        rewards = reward_system.award_rewards(self.loser)
+
+        self.assertEqual(rewards.moves, [])
+
+    def test_award_rewards_multiple_move_updates(self):
+        self.winner.moves.update_moves.return_value = ["Fireball"]
+        second_winner = MagicMock(spec=Monster)
+        second_winner.name = "rockitten"
+        second_winner.level = 5
+        second_winner.moves = MagicMock()
+        second_winner.moves.update_moves.return_value = ["Ram"]
+        second_winner.owner = self.winner.owner
+        second_winner.status = MagicMock(spec=MonsterStatusHandler)
+        second_winner.current_hp = 50
+        second_winner.held_item = MagicMock(slug="default")
+
+        self.damage_tracker.log_damage(second_winner, self.loser, 5, 1)
+
+        reward_system = RewardSystem(
+            self.damage_tracker, is_trainer_battle=True
+        )
+        rewards = reward_system.award_rewards(self.loser)
+
+        self.assertIn("Fireball", rewards.moves)
+        self.assertIn("Ram", rewards.moves)
+        self.assertEqual(len(rewards.moves), 2)
+
+    def test_award_rewards_with_held_item_modifier(self):
+        self.winner.held_item.get_item.return_value.slug = "xp_booster"
+        reward_system = RewardSystem(
+            self.damage_tracker, is_trainer_battle=True
+        )
+        rewards = reward_system.award_rewards(self.loser)
+
+        self.assertGreater(rewards.winners[0].experience, 0)
+
+    def test_award_rewards_non_player_monster(self):
+        self.winner.owner.isplayer = False
+        reward_system = RewardSystem(
+            self.damage_tracker, is_trainer_battle=True
+        )
+        rewards = reward_system.award_rewards(self.loser)
+
+        self.assertEqual(rewards.prize, 0)
+        self.assertEqual(rewards.messages, [])
+        self.assertFalse(rewards.update)

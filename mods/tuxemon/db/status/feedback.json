@@ -5,7 +5,10 @@
   "effects": [
     {
       "type": "feedback",
-      "parameters": ["8","ranged:reach"]
+      "parameters": [
+        "8",
+        "ranged:reach"
+      ]
     }
   ],
   "flip_axes": "",

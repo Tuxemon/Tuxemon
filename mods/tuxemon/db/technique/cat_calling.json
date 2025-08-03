@@ -6,7 +6,7 @@
     {
       "type": "give",
       "parameters": [
-        "harpooned",
+        "charmed",
         "enemy_monster"
       ]
     }

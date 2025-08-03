@@ -32,8 +32,9 @@ from tuxemon.sprite import (
     VisualSpriteList,
 )
 from tuxemon.state import State
-from tuxemon.ui.draw import GraphicBox, TextRenderer
+from tuxemon.ui.graphic_box import GraphicBox
 from tuxemon.ui.text import TextArea
+from tuxemon.ui.text_renderer import TextRenderer
 
 logger = logging.getLogger(__name__)
 
@@ -712,7 +713,7 @@ class Menu(Generic[T], State):
 
     def set_font(
         self,
-        size: int = 5,
+        size: int = prepare.FONT_SIZE,
         font: Optional[str] = None,
         line_spacing: int = 10,
     ) -> Font:

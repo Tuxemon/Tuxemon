@@ -2,17 +2,23 @@
   "animation": null,
   "modifiers": [],
   "category": "negative",
-	"conditions": [
+  "conditions": [
     {
       "type": "current_hp",
-      "parameters": [">", "0"],
+      "parameters": [
+        ">",
+        "0"
+      ],
       "operator": "is"
     }
-	],
+  ],
   "effects": [
     {
       "type": "stuck",
-      "parameters": ["2", "melee:touch"]
+      "parameters": [
+        "2",
+        "melee:touch"
+      ]
     }
   ],
   "flip_axes": "",

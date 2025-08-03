@@ -5,7 +5,9 @@
   "effects": [
     {
       "type": "harpooned",
-      "parameters": ["8"]
+      "parameters": [
+        "8"
+      ]
     }
   ],
   "flip_axes": "",

@@ -72,7 +72,7 @@ from tuxemon.status.status import Status
 from tuxemon.technique.technique import Technique
 from tuxemon.tools import assert_never
 from tuxemon.ui.combat_swap import SwapTracker
-from tuxemon.ui.draw import GraphicBox
+from tuxemon.ui.graphic_box import GraphicBox
 from tuxemon.ui.text import TextArea
 
 from .combat_animations import CombatAnimations

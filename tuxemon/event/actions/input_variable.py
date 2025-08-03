@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Optional, final
+from typing import TYPE_CHECKING, Optional, final
 
 from tuxemon.event.eventaction import EventAction
 from tuxemon.locale import T
-from tuxemon.session import Session
+from tuxemon.tools import parse_flag
+
+if TYPE_CHECKING:
+    from tuxemon.session import Session
 
 
 @final
@@ -24,11 +27,12 @@ class InputVariableAction(EventAction):
 
     Script parameters:
         question: The question the player needs to reply (eg. "access_code")
-                  then you create the msgid "access_code" inside the PO file:
-                  msgid "access_code"
-                  msgstr "Here the actual question?"
+            then you create the msgid "access_code" inside the PO file:
+                msgid "access_code"
+                msgstr "Here the actual question?"
         variable: Name of the variable where to store the output.
-        escape: Whether the input can be closed or not. Default False.
+        escape: Optional string flag ("true", "1", "yes" for True),
+            defaults to False when omitted
 
     eg. "input_variable access_code,response_question"
     eg. "input_variable access_code,response_question,escape"
@@ -49,7 +53,7 @@ class InputVariableAction(EventAction):
 
     def start(self, session: Session) -> None:
         self.client = session.client
-        _escape = True if self.escape else False
+        _escape = parse_flag(self.escape)
         session.client.push_state(
             "InputMenu",
             prompt=T.translate(self.question),

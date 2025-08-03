@@ -33,7 +33,7 @@ from tuxemon.ui.combat_layout import (
 from tuxemon.ui.combat_monsters import FieldMonsters, MonsterSpriteMap
 from tuxemon.ui.combat_status import StatusIconManager
 from tuxemon.ui.combat_zone import CombatZone
-from tuxemon.ui.text import HorizontalAlignment
+from tuxemon.ui.text_alignment import HorizontalAlignment
 
 if TYPE_CHECKING:
     from tuxemon.animation import Animation
@@ -123,7 +123,9 @@ class CombatAnimations(Menu[None], ABC):
         monster sprite moving into position, and the capture device opening animation.
         It also plays the combat call sound.
         """
-        self.hud_manager.assign(npc, monster, self.is_double)
+        self.hud_manager.assign(
+            len(self.players), npc, monster, self.is_double
+        )
         feet = self.hud_manager.get_feet_position(npc, monster)
 
         # Load and scale capture device sprite
@@ -512,6 +514,9 @@ class CombatAnimations(Menu[None], ABC):
         # Get player and opponent
         player, opponent = self.players
         opp_mon = opponent.monsters[0]
+        self.hud_manager.assign(
+            len(self.players), opponent, opp_mon, self.is_double
+        )
         player_home = self.hud_manager.get_rect(player, "home")
         opp_home = self.hud_manager.get_rect(opponent, "home")
 

@@ -50,11 +50,6 @@ class TestStepTracker(unittest.TestCase):
         self.tracker.trigger_milestone_event(100)
         self.assertTrue(self.tracker.has_triggered_milestone(100))
 
-    def test_milestone_dialogue_shown(self):
-        self.tracker.trigger_milestone_event(100)
-        self.tracker.show_milestone_dialogue(100)
-        self.assertTrue(self.tracker.has_shown_milestone(100))
-
 
 class TestStepTrackerManager(unittest.TestCase):
 

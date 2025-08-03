@@ -11,7 +11,7 @@ from pygame.surface import Surface
 
 from tuxemon import prepare
 from tuxemon.graphics import ColorLike
-from tuxemon.ui.draw import TextRenderer
+from tuxemon.ui.text_renderer import TextRenderer
 
 if TYPE_CHECKING:
     from tuxemon.config import TuxemonConfig

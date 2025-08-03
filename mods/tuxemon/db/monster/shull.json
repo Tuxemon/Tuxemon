@@ -31,7 +31,11 @@
     {
       "at_level": 20,
       "monster_slug": "myrmison",
-      "variable": "daytime:false"
+      "variables": [
+        {
+          "daytime": "false"
+        }
+      ]
     }
   ],
   "history": [

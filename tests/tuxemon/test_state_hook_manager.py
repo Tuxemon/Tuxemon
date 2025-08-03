@@ -3,7 +3,9 @@
 import unittest
 from unittest.mock import MagicMock
 
-from tuxemon.state import HookManager, State, StateManager, StateRepository
+from tuxemon.state.manager import StateManager
+from tuxemon.state.repository import StateRepository
+from tuxemon.state.state import HookManager, State
 
 
 class TestHookManager(unittest.TestCase):

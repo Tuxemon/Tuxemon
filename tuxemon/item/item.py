@@ -69,6 +69,7 @@ class Item:
         self.wear: int = 0
         self.max_wear: int = 0
         self.break_chance: float = 0.0
+        self.menu_actions_data: Sequence[Mapping[str, str]] = []
 
         if Item.effect_manager is None:
             Item.effect_manager = EffectManager(
@@ -130,7 +131,7 @@ class Item:
         self.confirm_text = T.translate(results.confirm_text)
         self.cancel_text = T.translate(results.cancel_text)
 
-        # misc attributes (not translated!)
+        self.menu_actions_data = results.menu_actions
         self.world_menu = results.world_menu
         self.behaviors = results.behaviors
         self.cost = results.cost

@@ -1,6 +1,6 @@
 {
   "tech_id": 235,
-  "accuracy": 0.9,
+  "accuracy": 1.0,
   "animation": "cakechomp",
   "effects": [
     {
@@ -24,7 +24,7 @@
   "flip_axes": "",
   "healing_power": 1.0,
   "speed": "normal",
-  "potency": 0.9,
+  "potency": 0.8,
   "power": 0.0,
   "range": "special",
   "recharge": 1,
@@ -40,7 +40,7 @@
     "own_team": false,
     "own_trainer": false
   },
-  "category": "condition_imposer",
+  "category": "special",
   "tags": [
     "food"
   ],

@@ -16,53 +16,63 @@ logger = logging.getLogger(__name__)
 @dataclass
 class CheckMissionCondition(EventCondition):
     """
-    Check to see the character has failed or completed a mission.
-    Check to see if a mission is still pending.
+    Check mission status for one or more missions.
 
     Script usage:
         .. code-block::
 
-            is check_mission <character>,<method>,<status>
+            is check_mission <character>,<method>,<status>[,<mode>]
 
-    Script parameters:
-        character: Either "player" or npc slug name (e.g. "npc_maple").
-        method: Mission or missions.
-        "all" means all the existing missions.
+    Parameters:
+        character: Either "player" or NPC slug (e.g. "npc_maple")
+        method: Mission slug(s), colon-separated (e.g. "mission1:mission2") or "all"
+        status: One of ["pending", "completed", "failed"]
+        mode (optional): "any" (default) or "all"
+            "any" returns True if at least one mission matches status
+            "all" returns True only if all listed missions match status
 
-    eg. "is check_mission player,mission1,completed"
-    eg. "is check_mission player,mission1,pending"
-    eg. "is check_mission player,mission1:mission2,completed"
-    eg. "is check_mission player,all,completed"
-
+    Examples:
+        - "is check_mission player,mission1,completed"
+        - "is check_mission player,mission1:mission2,completed,all"
+        - "is check_mission player,all,pending"
+        - "is check_mission npc_maple,missionA:missionB,failed,any"
     """
 
     name = "check_mission"
 
     def test(self, session: Session, condition: MapCondition) -> bool:
-        _character, _mission, _status = condition.parameters[:3]
+        params = condition.parameters
+        if len(params) < 3:
+            logger.error("Not enough parameters in check_mission condition.")
+            return False
+
+        _character, _mission, _status = params[:3]
+        _mode = params[3].lower() if len(params) > 3 else "any"
+
         character = get_npc(session, _character)
         if character is None:
-            logger.error(f"{_character} not found")
+            logger.error(f"Character '{_character}' not found.")
             return False
-        # status mission
-        if _status not in list(MissionStatus):
-            logger.error(f"{_status} isn't among {list(MissionStatus)}")
+
+        if _status not in MissionStatus.__members__:
+            logger.error(f"'{_status}' isn't a valid MissionStatus.")
             return False
-        # retrieve all missions
-        _missions: list[str] = []
+        target_status = MissionStatus[_status]
+
         if _mission == "all":
-            _missions = [
-                m.slug for m in character.mission_controller.get_missions()
-            ]
+            missions = character.mission_controller.get_missions()
         else:
-            _missions = _mission.split(":")
+            mission_slugs = _mission.split(":")
+            missions = [
+                m
+                for m in character.mission_controller.get_missions()
+                if m.slug in mission_slugs
+            ]
 
-        if not _missions:
+        if not missions:
+            logger.info("No missions matched the criteria.")
             return False
 
-        result = [
-            mission
-            for mission in character.mission_controller.get_missions()
-            if mission.status == _status and mission.slug in _missions
-        ]
-        return bool(result)
+        if _mode == "all":
+            return all(m.status == target_status for m in missions)
+        return any(m.status == target_status for m in missions)

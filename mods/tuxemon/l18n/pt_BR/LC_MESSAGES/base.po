@@ -107,7 +107,7 @@ msgid "imperial_potion"
 msgstr "Poção Imperial"
 
 msgid "super_potion_description"
-msgstr "Cura um monstro em 150 HP."
+msgstr "Cura um monstro em 100 HP."
 
 # Super Potion
 msgid "super_potion"

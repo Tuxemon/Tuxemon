@@ -12,6 +12,7 @@ import pygame_menu
 
 from tuxemon import prepare
 from tuxemon.animation import ScheduleType
+from tuxemon.item.filter import ItemFilter
 from tuxemon.locale import T
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.platform.const import buttons
@@ -246,12 +247,15 @@ class WorldMenuManager:
             )
 
         if player.items.get_items() and self.menu_flags.is_enabled("menu_bag"):
+            items_filtered = ItemFilter(player)
+            items_filtered.set_filter_all_visible()
             current_menu.append(
                 self._menu_item(
                     "menu_bag",
                     "ItemMenuState",
                     character=player,
                     source="WorldMenuState",
+                    item_filter=items_filtered,
                 )
             )
 
@@ -262,7 +266,9 @@ class WorldMenuManager:
 
         if player.mission_controller.get_missions_with_met_prerequisites():
             current_menu.append(
-                self._menu_item("menu_missions", "MissionState", kwargs=param)
+                self._menu_item(
+                    "menu_missions", "MissionState", character=player
+                )
             )
 
         if self.menu_flags.is_enabled("menu_save"):

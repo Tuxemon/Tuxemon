@@ -10,7 +10,7 @@ from pygame.rect import Rect
 
 from tuxemon.animation import Animation
 from tuxemon.sprite import Sprite
-from tuxemon.state import State
+from tuxemon.state.state import State
 
 logger = logging.getLogger(__name__)
 

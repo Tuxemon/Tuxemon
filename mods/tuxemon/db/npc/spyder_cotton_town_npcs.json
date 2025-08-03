@@ -42,7 +42,7 @@
   {
     "slug": "spyder_cottoncafe_juliana",
     "template": {
-      "sprite_name": "homemaker",
+      "sprite_name": "homemaker_black",
       "combat_front": "adventurer",
       "slug": "homemaker"
     }

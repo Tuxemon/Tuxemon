@@ -15,7 +15,7 @@
     }
   ],
   "flip_axes": "x",
-  "speed": "fast",
+  "speed": "normal",
   "potency": 1,
   "power": 1.25,
   "range": "melee",

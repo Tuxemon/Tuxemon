@@ -1,0 +1,41 @@
+events:
+  Create NPCs:
+    actions:
+    - create_npc eclipse_crystal_granny,8,3
+    - char_wander eclipse_crystal_granny
+    conditions:
+    - not char_exists eclipse_crystal_granny
+    type: event
+  Go Outside:
+    actions:
+    - transition_teleport eclipse_crystal_town.tmx,37,18,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    type: event
+    x: 4
+    y: 7
+  Play Music:
+    actions:
+    - play_music music_home
+    conditions:
+    - not music_playing music_home
+    type: event
+  Talk NPCs:
+    actions:
+    - translated_dialog eclipse_crystal_grannypiper
+    behav:
+    - talk eclipse_crystal_granny
+    type: event
+  Watch TV:
+    actions:
+    - translated_dialog eclipse_crystal_tvwatch
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    height: 1
+    type: event
+    width: 2
+    x: 1
+    y: 5

@@ -22,7 +22,7 @@
     }
   ],
   "flip_axes": "",
-  "speed": "normal",
+  "speed": "slow",
   "potency": 0.8,
   "power": 2.2,
   "randomly": false,

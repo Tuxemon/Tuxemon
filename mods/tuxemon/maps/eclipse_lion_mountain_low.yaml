@@ -1,0 +1,194 @@
+events:
+  Create Emilio:
+    actions:
+    - create_npc eclipse_lionmountain_emilio,27,12
+    conditions:
+    - not char_exists eclipse_lionmountain_emilio
+    height: 1
+    width: 1
+    x: 27
+    y: 12
+    type: event
+  Create Nurse:
+    actions:
+    - create_npc eclipse_lionmountain_nurse,10,9
+    conditions:
+    - not char_exists eclipse_lionmountain_nurse
+    height: 1
+    width: 1
+    x: 10
+    y: 9
+    type: event
+  Encounters:
+    actions:
+    - random_encounter eclipse_lion_mountain
+    - play_map_animation grass_blue,0.1,noloop,player
+    conditions:
+    - is char_moved player
+    - is char_at player
+    height: 4
+    width: 4
+    x: 8
+    y: 4
+    type: event
+  Environment Day:
+    actions:
+    - set_variable environment:snow
+    conditions:
+    - not variable_set stage_of_day:night
+    - not variable_set environment:snow
+    height: 1
+    width: 1
+    x: 0
+    y: 1
+    type: event
+  Environment Night:
+    actions:
+    - set_variable environment:night_snow
+    conditions:
+    - is variable_set stage_of_day:night
+    - not variable_set environment:night_snow
+    height: 1
+    width: 1
+    x: 0
+    y: 2
+    type: event
+  Play Music:
+    actions:
+    - play_music music_adventure_begins
+    conditions:
+    - not music_playing music_adventure_begins
+    height: 1
+    width: 1
+    x: 0
+    y: 0
+    type: event
+  Post Talk Emilio:
+    actions:
+    - translated_dialog eclipse_lionmountain_emilio2
+    behav:
+    - talk eclipse_lionmountain_emilio
+    conditions:
+    - is variable_set lionmountainemilio:yes
+    height: 1
+    width: 1
+    x: 26
+    y: 16
+    type: event
+  Talk Emilio:
+    actions:
+    - lock_controls
+    - pathfind_to_char player,eclipse_lionmountain_emilio
+    - translated_dialog eclipse_lionmountain_emilio1
+    - unlock_controls
+    - add_monster bumbulus,50,eclipse_lionmountain_emilio,5,10
+    - add_monster glombroc,50,eclipse_lionmountain_emilio,5,10
+    - add_monster tikorch,30,eclipse_lionmountain_emilio,5,10
+    - start_battle player,eclipse_lionmountain_emilio
+    - translated_dialog eclipse_lionmountain_emilio2
+    - set_variable lionmountainemilio:yes
+    conditions:
+    - not variable_set lionmountainemilio:yes
+    - is char_at player
+    height: 1
+    width: 1
+    x: 27
+    y: 17
+    type: event
+  Talk Nurse:
+    actions:
+    - translated_dialog eclipse_lionmountain_nurse1
+    - translated_dialog spyder_generic_nurse
+    - set_monster_health
+    - set_monster_status
+    - translated_dialog spyder_output_nurse7
+    behav:
+    - talk eclipse_lionmountain_nurse
+    height: 1
+    width: 1
+    x: 10
+    y: 8
+    type: event
+  Teleport Mountain Middle 1:
+    actions:
+    - transition_teleport eclipse_lion_mountain_middle.tmx,34,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    height: 1
+    width: 1
+    x: 34
+    y: 0
+    type: event
+  Teleport Mountain Middle 2a:
+    actions:
+    - transition_teleport eclipse_lion_mountain_middle.tmx,11,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    height: 1
+    width: 1
+    x: 11
+    y: 0
+    type: event
+  Teleport Mountain Middle 2b:
+    actions:
+    - transition_teleport eclipse_lion_mountain_middle.tmx,12,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    height: 1
+    width: 1
+    x: 12
+    y: 0
+    type: event
+  Teleport Mountain Middle 3:
+    actions:
+    - transition_teleport eclipse_lion_mountain_middle.tmx,1,39,0.3
+    - char_face player,up
+    conditions:
+    - is char_at player
+    - is char_facing player,up
+    height: 1
+    width: 1
+    x: 1
+    y: 0
+    type: event
+  Teleport Park:
+    actions:
+    - transition_teleport eclipse_park_entrance.tmx,4,3,0.3
+    - char_face player,down
+    conditions:
+    - is char_at player
+    - is char_facing player,down
+    height: 1
+    width: 3
+    x: 6
+    y: 18
+    type: event
+  Teleport Town:
+    actions:
+    - transition_teleport eclipse_crystal_town.tmx,39,10,0.3
+    - char_face player,left
+    conditions:
+    - is char_at player
+    - is char_facing player,left
+    height: 1
+    width: 1
+    x: 0
+    y: 10
+    type: event
+  Welcome Sign:
+    actions:
+    - translated_dialog welcome_location_route
+    conditions:
+    - is char_facing_tile player
+    - is button_pressed K_RETURN
+    height: 1
+    width: 1
+    x: 12
+    y: 8
+    type: event

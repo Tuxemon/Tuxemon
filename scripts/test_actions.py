@@ -1,6 +1,7 @@
 """
 Script to validate map actions
 """
+
 from unittest.mock import MagicMock
 
 from tuxemon.constants import paths

@@ -34,9 +34,9 @@ events:
   Bee Event Stung Item:
     actions:
     - add_item cureall
-    - translated_dialog cureall,,center,center,middle
+    - translated_dialog cureall,,center,center,center
     - add_item restoration
-    - translated_dialog restoration,,center,center,middle
+    - translated_dialog restoration,,center,center,center
     - set_variable beeevent:end
     conditions:
     - is variable_set beeevent:done

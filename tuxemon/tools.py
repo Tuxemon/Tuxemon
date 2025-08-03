@@ -13,6 +13,7 @@ import logging
 import typing
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import fields
+from enum import Enum
 from operator import add, eq, floordiv, ge, gt, le, lt, mul, ne, sub
 from pathlib import Path
 from typing import (
@@ -32,6 +33,7 @@ from tuxemon.db import Comparison
 from tuxemon.locale import T
 from tuxemon.math import Vector2
 from tuxemon.ui.dialogue import calc_dialog_rect
+from tuxemon.ui.text_alignment import DialogPosition
 from tuxemon.ui.text_formatter import TextFormatter
 
 if TYPE_CHECKING:
@@ -41,7 +43,7 @@ if TYPE_CHECKING:
     from tuxemon.item.item import Item
     from tuxemon.session import Session
     from tuxemon.sprite import Sprite
-    from tuxemon.state import State
+    from tuxemon.state.state import State
     from tuxemon.states.choice.choice_state import MenuStateConfig
     from tuxemon.technique.technique import Technique
     from tuxemon.ui.menu_options import MenuOptions
@@ -161,6 +163,32 @@ def scale(number: int) -> int:
     return prepare.SCALE * number
 
 
+TEnum = TypeVar("TEnum", bound=Enum)
+
+
+def safe_enum_value(
+    enum_class: type[TEnum],
+    value: Optional[str],
+    default: TEnum,
+    raise_on_error: bool = False,
+) -> TEnum:
+    """
+    Attempts to convert a string to an enum member.
+    Raises or falls back to default on failure.
+    """
+    try:
+        return enum_class(value)
+    except (ValueError, TypeError) as e:
+        if raise_on_error:
+            raise ValueError(
+                f"Invalid value for {enum_class.__name__}: {value!r}"
+            ) from e
+        logger.warning(
+            f"Invalid value for {enum_class.__name__}: {value!r}, using default: {default}"
+        )
+        return default
+
+
 def fix_measure(measure: int, percentage: float) -> int:
     """it returns the correct measure based on percentage"""
     return round(measure * percentage)
@@ -171,7 +199,7 @@ def open_dialog(
     text: Sequence[str],
     avatar: Optional[Sprite] = None,
     box_style: Optional[dict[str, Any]] = None,
-    position: str = "bottom",
+    position: DialogPosition = DialogPosition.BOTTOM,
     target_coords: Optional[Union[tuple[int, int], Rect]] = None,
     custom_rect: Optional[Rect] = None,
 ) -> State:
@@ -471,3 +499,13 @@ def compare(
         return bool(ne(value1, value2))
     else:
         raise ValueError(f"{key} isn't among {list(Comparison)}")
+
+
+def parse_flag(value: Optional[str]) -> bool:
+    """
+    Convert a string flag to a boolean.
+
+    Accepted truthy values: "true", "1", "yes" (case-insensitive).
+    All other values (including None) return False.
+    """
+    return str(value or "").strip().lower() in {"true", "1", "yes"}

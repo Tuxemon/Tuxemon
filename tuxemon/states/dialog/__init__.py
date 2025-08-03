@@ -11,6 +11,7 @@ from tuxemon.platform.const import buttons
 from tuxemon.platform.events import PlayerInput
 from tuxemon.sprite import Sprite
 from tuxemon.ui.text import TextArea
+from tuxemon.ui.text_alignment import HorizontalAlignment, VerticalAlignment
 
 if TYPE_CHECKING:
     from tuxemon.platform.events import PlayerInput
@@ -29,7 +30,6 @@ class DialogState(PopUpMenu[None]):
     * if text is being displayed, will cause text speed to go max
     * when text is displayed completely, then will show the next message
     * if there are no more messages, then the dialog will close
-
     """
 
     def __init__(
@@ -49,8 +49,8 @@ class DialogState(PopUpMenu[None]):
             "font_color": self.font_color,
             "font_shadow": self.font_shadow_color,
             "border": self.borders_filename,
-            "alignment": "left",
-            "v_alignment": "top",
+            "h_alignment": HorizontalAlignment.LEFT,
+            "v_alignment": VerticalAlignment.TOP,
         }
 
         final_box_style = default_box_style.copy()
@@ -65,8 +65,8 @@ class DialogState(PopUpMenu[None]):
             font=self.font,
             font_color=final_box_style["font_color"],
             font_shadow=final_box_style["font_shadow"],
-            alignment=final_box_style["alignment"],
-            vertical_alignment=final_box_style["v_alignment"],
+            h_alignment=final_box_style["h_alignment"],
+            v_alignment=final_box_style["v_alignment"],
         )
         self.dialog_box.rect = self.calc_internal_rect()
         self.sprites.add(self.dialog_box)

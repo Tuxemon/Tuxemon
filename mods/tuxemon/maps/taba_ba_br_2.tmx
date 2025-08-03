@@ -104,7 +104,7 @@
     <property name="act45" value="char_face garth,up"/>
     <property name="act46" value="wait 0.3"/>
     <property name="act47" value="translated_dialog acolyte2challenger9"/>
-    <property name="act50" value="add_monster mystikapi,5,garth,80,100"/>
+    <property name="act50" value="add_monster mystikapi,5,garth,70,100"/>
     <property name="act51" value="start_battle player,garth"/>
     <property name="act52" value="set_variable talkedonce:yes"/>
     <property name="cond1" value="is char_at player"/>
@@ -140,7 +140,7 @@
    <properties>
     <property name="act1" value="create_npc garth,7,9,stand"/>
     <property name="act2" value="char_face garth,up"/>
-    <property name="act3" value="add_monster mystikapi,5,garth,80,100"/>
+    <property name="act3" value="add_monster mystikapi,5,garth,70,100"/>
     <property name="cond1" value="not char_exists garth"/>
     <property name="cond2" value="is variable_set talkedonce:yes"/>
    </properties>

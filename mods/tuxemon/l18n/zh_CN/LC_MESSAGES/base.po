@@ -54,7 +54,7 @@ msgid "super_potion"
 msgstr "超级治疗药水"
 
 msgid "super_potion_description"
-msgstr "回复一只精灵150点生命."
+msgstr "回复一只精灵100点生命."
 
 # Imperial Potion
 msgid "imperial_potion"

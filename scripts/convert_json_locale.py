@@ -25,5 +25,6 @@ def main(inpath, outpath):
             else:
                 raise Exception
 
+
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2])

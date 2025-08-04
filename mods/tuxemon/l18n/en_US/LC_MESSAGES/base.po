@@ -1832,6 +1832,33 @@ msgstr "It failed!"
 msgid "who_is_that"
 msgstr "Name That Tuxemon"
 
+msgid "score_label"
+msgstr "Score"
+
+msgid "streak_label"
+msgstr "Streak"
+
+msgid "streak_bonus"
+msgstr "Streak Bonus! You're on fire!"
+
+msgid "choose_difficulty"
+msgstr "Choose your difficulty level"
+
+msgid "level_beginner"
+msgstr "Beginner"
+
+msgid "level_easy"
+msgstr "Easy"
+
+msgid "level_normal"
+msgstr "Normal"
+
+msgid "level_hard"
+msgstr "Hard"
+
+msgid "level_expert"
+msgstr "Expert"
+
 msgid "generic_right"
 msgstr "Correct!"
 

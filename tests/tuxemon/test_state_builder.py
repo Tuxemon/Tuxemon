@@ -3,7 +3,7 @@
 import unittest
 from typing import Any
 
-from tuxemon.state import StateBuilder
+from tuxemon.state.builder import StateBuilder
 
 
 class MockState:

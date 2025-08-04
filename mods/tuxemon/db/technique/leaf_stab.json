@@ -32,7 +32,7 @@
     "own_team": false,
     "own_trainer": false
   },
-  "category": "condition_imposer",
+  "category": "simple",
   "tags": [
     "plant"
   ],

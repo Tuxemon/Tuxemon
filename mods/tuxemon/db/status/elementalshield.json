@@ -5,7 +5,10 @@
   "effects": [
     {
       "type": "elemental_shield",
-      "parameters": ["16","special"]
+      "parameters": [
+        "16",
+        "special"
+      ]
     }
   ],
   "flip_axes": "",

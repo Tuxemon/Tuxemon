@@ -1,11 +1,13 @@
-Tools to get/manipulate game files or config should go here.
+## Tools & Scripts Directory
 
-* Scripts should have documentation at the top of the file
-* Do not add script dependencies to requirements.txt or setup.py
-* New python scripts should be written for python 3.9+
-* Scripts do not require unit testing
-* Do not modify project if your script requires another language/runtime
+This folder contains optional utilities for manipulating game files and configurations related to Tuxemon. These are **not required** to run or play the game.
 
-If you are writing a script which is a requirement to play the game,
-then do not write a script.  The game should be playable without the use
-of scripts.
+### General Guidelines
+- **Documentation:** All scripts should include a description and usage instructions at the top of the file.
+- **Language:** New scripts must be written in Python **3.9+**.
+- **Dependencies:** Do **not** add script-specific dependencies to `requirements.txt`.
+- **Testing:** Unit tests are **not required** for scripts in this folder.
+- **External Runtimes:** Scripts should not depend on other languages or runtimes. If they do, they must remain isolated and not alter the project itself.
+
+### Gameplay Rule
+If you're creating functionality that is required to **play** the game, it should be built into the game—not left as a separate script.

@@ -5,7 +5,9 @@
   "effects": [
     {
       "type": "diehard",
-      "parameters": ["1"]
+      "parameters": [
+        "1"
+      ]
     }
   ],
   "flip_axes": "",

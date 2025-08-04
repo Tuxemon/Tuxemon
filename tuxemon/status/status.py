@@ -21,6 +21,7 @@ from tuxemon.db import (
     db,
 )
 from tuxemon.locale import T
+from tuxemon.modifiers import ModifiersHandler
 from tuxemon.surfanim import FlipAxes
 
 if TYPE_CHECKING:
@@ -42,6 +43,8 @@ class Status:
     """
     Particular status that tuxemon monsters can be affected.
     """
+
+    MAX_STACKS: int = 5
 
     effect_manager: Optional[EffectManager] = None
     condition_manager: Optional[ConditionManager] = None
@@ -72,6 +75,7 @@ class Status:
         self.duration: int = 0
         self.phase: EffectPhase = EffectPhase.DEFAULT
         self.range: Range = Range.melee
+        self.stack_level: int = 1
         self.on_positive_status: Optional[ResponseStatus] = None
         self.on_negative_status: Optional[ResponseStatus] = None
         self.on_tech_use: Optional[str] = None
@@ -81,6 +85,7 @@ class Status:
         self.slug: str = ""
         self.use_success: str = ""
         self.use_failure: str = ""
+        self.modifiers: ModifiersHandler = ModifiersHandler()
 
         if Status.effect_manager is None:
             Status.effect_manager = EffectManager(
@@ -130,7 +135,7 @@ class Status:
 
         self.icon = results.icon
 
-        self.modifiers = results.modifiers
+        self.modifiers = ModifiersHandler(results.modifiers)
         # monster stats
         self.statspeed = results.statspeed
         self.stathp = results.stathp

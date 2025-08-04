@@ -169,7 +169,11 @@ class GetMonsterTechAction(EventAction):
         for mon in monsters:
             self.monster: Monster = mon
             menu = session.client.push_state(
-                TechniqueMenuState(character=session.player, monster=mon)
+                TechniqueMenuState(
+                    character=session.player,
+                    techniques=mon.moves.get_moves(),
+                    monster=mon,
+                )
             )
             menu.is_valid_entry = self.validate  # type: ignore[method-assign]
             menu.on_menu_selection = self.set_var  # type: ignore[assignment]

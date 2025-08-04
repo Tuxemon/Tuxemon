@@ -8,38 +8,56 @@ be copy-pasted into en_US.json
 
 from collections import namedtuple
 from json import dump
+
 from openpyxl import load_workbook
 
-excel_path = 'scripts/techniques.xlsx'
+excel_path = "scripts/techniques.xlsx"
 wb2 = load_workbook(excel_path)
-tech_sheet = wb2.get_sheet_by_name('Techs')
+tech_sheet = wb2.get_sheet_by_name("Techs")
 
-DataRow = namedtuple("DataRow", [
-    "name",
-    "id",
-    "element",
-    "recharge",
-    "accuracy",
-    "potency",
-    "user_condition",
-    "target_condition",
-    "animation",
-    "animation_target",
-    "range",
-    "power",
-    "healing_power",
-    "is_fast",
-])
+DataRow = namedtuple(
+    "DataRow",
+    [
+        "name",
+        "id",
+        "element",
+        "recharge",
+        "accuracy",
+        "potency",
+        "user_condition",
+        "target_condition",
+        "animation",
+        "animation_target",
+        "range",
+        "power",
+        "healing_power",
+        "is_fast",
+    ],
+)
 
 axes_flip_mapping = {
     (
-        "hits_for_separation", "breath_blue", "breath_fire", "claw_blue",
-        "claw_yellow_169", "fireball_114", "firelion_right", "lightning_bolt_138",
-        "metal_delete", "power_arc_154", "pushtrap_right", "shield_turtle_right",
-        "slash_200", "slash_fire", "screen", "snake_right", "tornado_basic", 
-        "tornado_volume", "watershot",
+        "hits_for_separation",
+        "breath_blue",
+        "breath_fire",
+        "claw_blue",
+        "claw_yellow_169",
+        "fireball_114",
+        "firelion_right",
+        "lightning_bolt_138",
+        "metal_delete",
+        "power_arc_154",
+        "pushtrap_right",
+        "shield_turtle_right",
+        "slash_200",
+        "slash_fire",
+        "screen",
+        "snake_right",
+        "tornado_basic",
+        "tornado_volume",
+        "watershot",
     ): "x",
-    ("lance_ice", "triforce_163"): "xy"
+    ("lance_ice", "triforce_163"): "xy",
 }
 
 
@@ -53,7 +71,7 @@ def get_animation_flip_axes(animation_name: str) -> str:
 
 def create_json(data_row):
     name = data_row.name.lower().replace(" ", "_").replace("-", "_")
-    name_trans['technique_%s_name' % name] = data_row.name.strip()
+    name_trans["technique_%s_name" % name] = data_row.name.strip()
     types = [t.strip().lower() for t in data_row.element.split(",")]
     effects = []
     if data_row.power:

@@ -31,8 +31,7 @@ class ButtonLockEffect(CoreEffect):
     def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-        combat = tech.combat_state
-        assert combat
+        combat = tech.get_combat_state()
         visible = self.visible.lower() == "true"
         combat._menu_visibility.update_visibility(self.menu, visible)
         return TechEffectResult(name=tech.name, success=True)

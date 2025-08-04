@@ -1,6 +1,6 @@
 {
   "tech_id": 84,
-  "accuracy": 0.9,
+  "accuracy": 1.0,
   "animation": "drip_green",
   "effects": [
     {
@@ -13,7 +13,7 @@
   ],
   "flip_axes": "",
   "speed": "fast",
-  "potency": 1,
+  "potency": 0.9,
   "power": 0,
   "range": "special",
   "recharge": 1,

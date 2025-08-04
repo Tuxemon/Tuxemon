@@ -7,7 +7,7 @@ from tuxemon.db import MissionStatus
 from tuxemon.mission import (
     Mission,
     MissionController,
-    MissionProgress,
+    MissionManager,
 )
 from tuxemon.npc import NPC, NPCBagHandler, PartyHandler
 
@@ -15,22 +15,27 @@ from tuxemon.npc import NPC, NPCBagHandler, PartyHandler
 class TestMissionManager(TestCase):
     def setUp(self):
         self.character = MagicMock(spec=NPC)
+        self.character.slug = "test_character"
         self.mission = Mission()
-        self.mission_controller = MissionController(self.character)
+        self.manager = MissionManager()
+        self.mission_controller = MissionController(
+            self.character, self.manager
+        )
         self.mission_manager = self.mission_controller.mission_manager
 
     def test_add_mission(self):
         self.mission_manager.add_mission(self.mission)
-        self.assertEqual(self.mission_manager.missions, [self.mission])
+        output = {self.mission.slug: self.mission}
+        self.assertEqual(self.mission_manager.missions, output)
 
     def test_remove_mission(self):
         self.mission_manager.add_mission(self.mission)
         self.mission_manager.remove_mission(self.mission)
-        self.assertEqual(self.mission_manager.missions, [])
+        self.assertEqual(self.mission_manager.missions, {})
 
     def test_remove_mission_not_found(self):
-        with self.assertRaises(ValueError):
-            self.mission_manager.remove_mission(self.mission)
+        self.mission_manager.remove_mission(self.mission)
+        self.assertEqual(self.mission_manager.get_mission_count(), 0)
 
     def test_find_mission(self):
         self.mission.slug = "test_mission"
@@ -109,54 +114,6 @@ class TestMissionManager(TestCase):
         )
         self.assertFalse(self.mission.check_required_monsters(self.character))
 
-    def test_get_progress(self):
-        self.mission.progress = []
-        self.character.game_variables = {"key": "value"}
-        self.assertEqual(self.mission.get_progress(self.character), 0.0)
-
-        self.mission.progress = [
-            MissionProgress(
-                game_variables={"key": "wrong_value"},
-                completion_percentage=50.0,
-            ),
-        ]
-        self.character.game_variables = {"key": "value"}
-        self.assertEqual(self.mission.get_progress(self.character), 0.0)
-
-        self.mission.progress = [
-            MissionProgress(
-                game_variables={"key": "value"}, completion_percentage=100.0
-            ),
-            MissionProgress(
-                game_variables={"key": "value"}, completion_percentage=50.0
-            ),
-        ]
-        self.character.game_variables = {"key": "value"}
-        self.assertEqual(self.mission.get_progress(self.character), 75.0)
-
-        self.mission.progress = [
-            MissionProgress(
-                game_variables={"key": "value"}, completion_percentage=100.0
-            ),
-            MissionProgress(
-                game_variables={"key": "wrong_value"},
-                completion_percentage=50.0,
-            ),
-        ]
-        self.character.game_variables = {"key": "value"}
-        self.assertEqual(self.mission.get_progress(self.character), 100.0)
-
-        self.mission.progress = [
-            MissionProgress(
-                game_variables={"key": "value"}, completion_percentage=0.0
-            ),
-            MissionProgress(
-                game_variables={"key": "value"}, completion_percentage=0.0
-            ),
-        ]
-        self.character.game_variables = {"key": "value"}
-        self.assertEqual(self.mission.get_progress(self.character), 0.0)
-
     def test_check_all_prerequisites_with_no_missions(self):
         self.assertTrue(self.mission_controller.check_all_prerequisites())
 
@@ -194,3 +151,18 @@ class TestMissionManager(TestCase):
             self.mission_manager.add_mission(mock_mission)
 
         self.assertEqual(self.mission_manager.get_mission_count(), 1000)
+
+    def test_remove_duplicate_mission(self):
+        self.mission_manager.add_mission(self.mission)
+        self.mission_manager.remove_mission(self.mission)
+        self.assertEqual(self.mission_manager.get_mission_count(), 0)
+
+    def test_add_and_remove_mission(self):
+        self.mission_manager.add_mission(self.mission)
+        self.mission_manager.remove_mission(self.mission)
+        self.assertEqual(self.mission_manager.get_mission_count(), 0)
+
+    def test_add_duplicate_mission(self):
+        self.mission_manager.add_mission(self.mission)
+        self.mission_manager.add_mission(self.mission)
+        self.assertEqual(self.mission_manager.get_mission_count(), 1)

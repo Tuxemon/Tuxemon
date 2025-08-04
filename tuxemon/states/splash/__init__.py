@@ -3,13 +3,16 @@
 from __future__ import annotations
 
 import logging
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
 
 from pygame.surface import Surface
 
 from tuxemon import prepare
 from tuxemon.platform.events import PlayerInput
-from tuxemon.state import State, StateManager
+from tuxemon.state.state import State
+
+if TYPE_CHECKING:
+    from tuxemon.state.manager import StateManager
 
 logger = logging.getLogger(__name__)
 

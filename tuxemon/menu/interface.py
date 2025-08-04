@@ -11,7 +11,7 @@ from pygame.surface import Surface
 from tuxemon import prepare, tools
 from tuxemon.graphics import ColorLike, load_and_scale
 from tuxemon.sprite import Sprite
-from tuxemon.ui.draw import GraphicBox
+from tuxemon.ui.graphic_box import GraphicBox
 
 
 class Bar:

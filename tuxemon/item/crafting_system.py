@@ -21,9 +21,11 @@ logger = logging.getLogger(__name__)
 class CraftingResult:
     success: bool
     message_slug: str
+    output_type: str
     crafted_items: list[Item] = field(default_factory=list)
     failure_reason: Optional[str] = None
     used_method: Optional[str] = None
+    revealed_content_slug: Optional[str] = None
 
 
 class CraftingSystem:
@@ -130,6 +132,7 @@ class CraftingSystem:
             return CraftingResult(
                 success=False,
                 message_slug="generic_failure",
+                output_type="",
                 crafted_items=[],
                 failure_reason="Missing required ingredients.",
             )
@@ -142,6 +145,7 @@ class CraftingSystem:
             return CraftingResult(
                 success=False,
                 message_slug="invalid_recipe",
+                output_type="",
                 crafted_items=[],
                 failure_reason=f"Recipe '{recipe_slug}' not found.",
             )
@@ -155,6 +159,7 @@ class CraftingSystem:
                 return CraftingResult(
                     success=False,
                     message_slug="generic_failure",
+                    output_type="",
                     crafted_items=[],
                     failure_reason=f"Missing or insufficient '{item_slug}'",
                 )
@@ -170,26 +175,44 @@ class CraftingSystem:
                     f"[Craft] Removed '{item_slug}' (exact quantity matched)"
                 )
 
-        crafted_items = []
+        crafted_items: list[Item] = []
+        revealed_content_slug: Optional[str] = None
+        message_slug: str = "generic_success"
 
         selected = self.select_weighted_output(recipe.possible_outputs)
-        slug = selected["slug"]
-        qty = selected.get("quantity", 1)
-        logger.debug(f"[Craft] Selected output: {slug} x{qty}")
+        slug: str = selected["slug"]
+        output_type: str = selected.get("type", "item")
+        qty: int = selected.get("quantity", 1)
+        logger.debug(
+            f"[Craft] Selected output: {slug} x{qty} (type: {output_type})"
+        )
 
-        if npc_bag_handler.has_item(slug):
-            existing = npc_bag_handler.find_item(slug)
-            if existing:
-                existing.set_quantity(existing.quantity + qty)
-                crafted_items.append(existing)
-                logger.debug(
-                    f"[Craft] Increased quantity of existing item '{slug}' by {qty}"
-                )
+        if output_type == "item":
+            if npc_bag_handler.has_item(slug):
+                existing = npc_bag_handler.find_item(slug)
+                if existing:
+                    existing.set_quantity(existing.quantity + qty)
+                    crafted_items.append(existing)
+                    logger.debug(
+                        f"[Craft] Increased quantity of existing item '{slug}' by {qty}"
+                    )
+            else:
+                new_item = Item().create(slug)
+                npc_bag_handler.add_item(new_item, qty)
+                crafted_items.append(new_item)
+                logger.debug(f"[Craft] Added new item '{slug}' x{qty} to bag")
+        elif output_type == "lore_trigger":
+            revealed_content_slug = slug
+            message_slug = "lore_trigger_success"
+            logger.debug(f"[Craft] Lore trigger activated for slug '{slug}'")
+        elif output_type == "quest_trigger":
+            revealed_content_slug = slug
+            message_slug = "quest_trigger_success"
+            logger.debug(f"[Craft] Quest trigger activated for slug '{slug}'")
         else:
-            new_item = Item().create(slug)
-            npc_bag_handler.add_item(new_item, qty)
-            crafted_items.append(new_item)
-            logger.debug(f"[Craft] Added new item '{slug}' x{qty} to bag")
+            raise ValueError(
+                f"[Craft] Unknown output type '{output_type}' for slug '{slug}'"
+            )
 
         # Consume tools if necessary
         for tool_entry in recipe.required_tools:
@@ -222,6 +245,8 @@ class CraftingSystem:
 
         return CraftingResult(
             success=True,
-            message_slug="generic_success",
+            message_slug=message_slug,
+            output_type=output_type,
             crafted_items=crafted_items,
+            revealed_content_slug=revealed_content_slug,
         )

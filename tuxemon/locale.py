@@ -6,9 +6,8 @@ import gettext
 import logging
 from collections.abc import Callable, Generator, Mapping
 from dataclasses import dataclass
-from gettext import GNUTranslations
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Optional, Union
 
 from babel.messages.mofile import write_mo
 from babel.messages.pofile import read_po
@@ -131,12 +130,11 @@ class GettextCompiler:
         return self.cache_dir / LOCALE_DIR / locale / category / f"{domain}.mo"
 
 
-class TranslatorPo:
+class TranslatorManager:
     """
-    A class used to translate text using gettext.
-
-    This class is responsible for loading and managing translations, as well as
-    providing methods for translating text.
+    Manages multiple Translator instances, allowing for different translation
+    contexts (e.g., base game, mods). It handles compilation of PO files
+    and provides an interface for dynamic language switching and domain management.
     """
 
     def __init__(
@@ -144,33 +142,27 @@ class TranslatorPo:
     ) -> None:
         self.locale_finder = locale_finder
         self.gettext_compiler = gettext_compiler
-        self.locale_name: str = LOCALE_CONFIG.slug
-        self.translate: Callable[[str], str] = self._translate_with_cache
+        self.localedir = paths.L18N_MO_FILES
+        self._translators: dict[str, TranslatorPo] = {}
+        self._current_translator_key: str = "base"
         self.language_changed_callbacks: list[Callable[[str], None]] = []
-        self._translation_cache: dict[str, str] = {}
-        self.collect_languages()
+        self.collect_and_compile_translations()
+        self.load_translator_for_domain(
+            self._current_translator_key, LOCALE_CONFIG.slug
+        )
 
-    def collect_languages(self, recompile_translations: bool = False) -> None:
+    def collect_and_compile_translations(
+        self, recompile_translations: bool = False
+    ) -> None:
         """
-        Collect languages/locales with available translation files.
-
-        Parameters:
-            recompile_translations: ``True`` if the translations should be
-                recompiled (useful for testing local changes to the
-                translations).
-        """
-        self.build_translations(recompile_translations)
-        self.load_translator(self.locale_name)
-
-    def build_translations(self, recompile_translations: bool = False) -> None:
-        """
-        Create MO files for existing PO translation files.
+        Collects available translation files using the LocaleFinder and
+        compiles them into MO files using the GettextCompiler.
 
         Parameters:
-            recompile_translations: ``True`` if the translations should be
-                recompiled (useful for testing local changes to the
-                translations).
+            recompile_translations: If True, recompiles MO files even
+                if they exist.
         """
+        logger.debug("Collecting and compiling translations...")
         for info in self.locale_finder.search_locales():
             mo_path = self.gettext_compiler.get_mo_path(
                 info.locale, info.category, info.domain
@@ -178,51 +170,387 @@ class TranslatorPo:
             if recompile_translations or not mo_path.exists():
                 self.gettext_compiler.compile_gettext(info.path, mo_path)
                 logger.info(f"Built translation file: {mo_path}")
-        logger.info("Translation files built successfully")
+        logger.info("Translation files compilation complete.")
 
-    def _get_translation(
-        self, locale_name: str, domain: str, localedir: Path
-    ) -> Optional[GNUTranslations]:
-        """
-        Gets all translators for the given locale and domain.
-        """
-        for info in self.locale_finder.search_locales():
-            if info.locale == locale_name and info.domain == domain:
-                return gettext.translation(
-                    info.domain, localedir, [locale_name]
-                )
-        return None
-
-    def load_translator(
-        self, locale_name: str = LOCALE_CONFIG.slug, domain: str = "base"
+    def load_translator_for_domain(
+        self, domain: str, locale_name: str
     ) -> None:
         """
-        Load a selected locale for translation.
+        Loads or reloads a Translator instance for a specific domain and locale.
+        This method ensures that a Translator exists for the given domain.
 
         Parameters:
-            locale_name: Name of the locale.
-            domain: Name of the domain.
+            domain: The translation domain (e.g., "base", "my_mod_id").
+            locale_name: The locale to load for this domain.
         """
-        logger.debug(f"loading translator for: {locale_name}")
-        localedir = paths.L18N_MO_FILES
-        fallback = gettext.translation("base", localedir, [FALLBACK_LOCALE])
-        trans = (
-            self._get_translation(locale_name, domain, localedir) or fallback
+        if not self.locale_finder.has_locale(locale_name):
+            logger.warning(
+                f"Requested locale '{locale_name}' not found for domain '{domain}'. Using fallback '{FALLBACK_LOCALE}'."
+            )
+            actual_locale_name = FALLBACK_LOCALE
+        else:
+            actual_locale_name = locale_name
+
+        self._translators[domain] = TranslatorPo(
+            locale_name=actual_locale_name,
+            domain=domain,
+            localedir=self.localedir,
+            fallback_locale=FALLBACK_LOCALE,
+        )
+        logger.debug(
+            f"Translator for domain '{domain}' loaded/reloaded with locale '{actual_locale_name}'."
         )
 
-        if trans is fallback:
-            logger.warning(f"Locale {locale_name} not found. Using fallback.")
+    def set_current_translator(self, domain: str) -> None:
+        """
+        Sets the active translator based on the provided domain.
+        Subsequent calls to `translate()` (without a domain override)
+        will use this translator.
 
-        trans.add_fallback(fallback)
-        self._set_translate_function(trans.gettext)
-        self.locale_name = locale_name
+        Parameters:
+            domain: The domain of the translator to make active.
+        """
+        if domain not in self._translators:
+            logger.warning(
+                f"Translator for domain '{domain}' is not loaded. "
+                f"Falling back to the 'base' domain translator."
+            )
+            self._current_translator_key = "base"
+            if "base" not in self._translators:
+                self.load_translator_for_domain("base", LOCALE_CONFIG.slug)
+        else:
+            self._current_translator_key = domain
+        logger.debug(
+            f"Current translator set to domain: '{self._current_translator_key}'"
+        )
 
-    def _set_translate_function(
-        self, translate_func: Callable[[str], str]
+    @property
+    def current_translator(self) -> TranslatorPo:
+        """
+        Returns the currently active Translator instance.
+        """
+        return self._translators[self._current_translator_key]
+
+    def translate(self, message: str) -> str:
+        """
+        Translates a message using the currently active translator.
+        This is the primary method for simple text translation.
+
+        Parameters:
+            message: The message string to translate.
+
+        Returns:
+            The translated string.
+        """
+        return self.current_translator.translate(message)
+
+    def format(
+        self,
+        text: str,
+        parameters: Optional[Mapping[str, Any]] = None,
+        domain: Optional[str] = None,
+    ) -> str:
+        """
+        Replaces variables in a translation string with the given parameters,
+        using either the current translator or a specified domain's translator.
+
+        Parameters:
+            text: String to format.
+            parameters: Parameters to format into the string.
+            domain: Optional domain to use for translation.
+                If None, uses the current translator.
+
+        Returns:
+            The formatted string.
+        """
+        target_translator = self.current_translator
+        if domain and domain in self._translators:
+            target_translator = self._translators[domain]
+        elif domain:
+            logger.warning(
+                f"Requested domain '{domain}' not found for formatting. Using current translator."
+            )
+
+        return target_translator.format(text, parameters)
+
+    def maybe_translate(
+        self, text: Optional[str], domain: Optional[str] = None
+    ) -> str:
+        """
+        Try to translate the text. If ``None``, return empty string.
+        Allows specifying a domain for translation.
+
+        Parameters:
+            text: String to translate.
+            domain: Optional domain to use for translation.
+                If None, uses the current translator.
+
+        Returns:
+            Translated string.
+        """
+        if text is None:
+            return ""
+
+        target_translator = self.current_translator
+        if domain and domain in self._translators:
+            target_translator = self._translators[domain]
+        elif domain:
+            logger.warning(
+                f"Requested domain '{domain}' not found for maybe_translate."
+                " Using current translator."
+            )
+
+        return target_translator.maybe_translate(text)
+
+    def get_current_language(self) -> str:
+        """
+        Returns the locale of the currently active translator.
+
+        Returns:
+            The current language slug (e.g., "en_US").
+        """
+        return self.current_translator.locale_name
+
+    def is_language_supported(self, locale_name: str) -> bool:
+        """
+        Checks if a language (locale) is supported by checking with
+        the LocaleFinder.
+
+        Parameters:
+            locale_name: The name of the locale to check.
+
+        Returns:
+            True if the locale exists in the discovered paths, False
+            otherwise.
+        """
+        return self.locale_finder.has_locale(locale_name)
+
+    def change_language(self, new_locale_name: str) -> None:
+        """
+        Changes the language for all currently loaded translator domains.
+        This reloads each active translator with the new locale.
+
+        Parameters:
+            new_locale_name: The name of the locale to switch to (e.g., "fr_FR").
+        """
+        if self.is_language_supported(new_locale_name):
+            domains_to_reload = list(self._translators.keys())
+            for domain in domains_to_reload:
+                self.load_translator_for_domain(domain, new_locale_name)
+
+            LOCALE_CONFIG.slug = new_locale_name
+            logger.info(f"Language changed globally to: {new_locale_name}")
+            self.invoke_language_changed_callbacks(new_locale_name)
+        else:
+            logger.warning(
+                f"Language '{new_locale_name}' is not supported. Language not changed."
+            )
+
+    def get_available_languages(self) -> list[str]:
+        """
+        Returns a sorted list of all available language slugs found by
+        the LocaleFinder.
+        """
+        return sorted(list(self.locale_finder.locale_names))
+
+    def invoke_language_changed_callbacks(self, locale_name: str) -> None:
+        """
+        Notifies all registered callbacks that the language has changed.
+        This method is called internally by `change_language`.
+
+        Parameters:
+            locale_name: The new language slug.
+        """
+        for callback in self.language_changed_callbacks:
+            try:
+                callback(locale_name)
+            except Exception as e:
+                logger.error(
+                    f"Error in language change callback for locale '{locale_name}': {e}",
+                    exc_info=True,
+                )
+
+    def has_translation(
+        self, locale_name: str, msgid: str, domain: str = "base"
+    ) -> bool:
+        """
+        Checks if a translation exists for a certain language and message ID
+        within a specific domain. This method is useful for development checks.
+
+        Parameters:
+            locale_name: The name of the language (locale) to check.
+            msgid: The msgid (original string) of the translation to check.
+            domain: The domain (e.g., "base", "my_mod") to check for the
+                translation.
+
+        Returns:
+            True if the translation exists, False otherwise.
+        """
+        if (
+            domain in self._translators
+            and self._translators[domain].locale_name == locale_name
+        ):
+            return self._translators[domain].has_translation(msgid)
+        else:
+            try:
+                temp_translator = TranslatorPo(
+                    locale_name, domain, self.localedir, FALLBACK_LOCALE
+                )
+                return temp_translator.has_translation(msgid)
+            except Exception as e:
+                logger.debug(
+                    f"Could not create temporary translator for check"
+                    f"(locale='{locale_name}', domain='{domain}'): {e}"
+                )
+                return False
+
+    def _log_missing_translation(
+        self, locale_name: str, msgid: str, domain: str = "base"
     ) -> None:
-        """Sets the internal translation function and clears the cache."""
-        self._real_translate = translate_func
-        self._translation_cache.clear()
+        """
+        Logs an error when a translation for the given msgid is missing
+        for a specific locale and domain.
+        """
+        logger.error(
+            f"Missing translation in domain '{domain}' for locale '{locale_name}': '{msgid}'"
+        )
+
+    def check_translation(self, message_id: str, domain: str = "base") -> None:
+        """
+        Checks if a translation exists for a certain message_id in the
+        specified locale(s) for a given domain, based on the global
+        `translation_mode` configuration.
+
+        Parameters:
+            message_id: The message_id of the translation to check.
+            domain: The domain to check for the translation
+                (e.g., "base", "my_mod").
+        """
+        _locale_mode = prepare.CONFIG.locale.translation_mode
+        if _locale_mode == "none":
+            return
+        elif _locale_mode == "all":
+            locale_names = self.locale_finder.locale_names.copy()
+            if "README.md" in locale_names:
+                locale_names.remove("README.md")
+
+            for locale_name in locale_names:
+                if (
+                    locale_name
+                    and message_id
+                    and not self.has_translation(
+                        locale_name, message_id, domain
+                    )
+                ):
+                    self._log_missing_translation(
+                        locale_name, message_id, domain
+                    )
+        else:
+            if self.is_language_supported(_locale_mode):
+                if not self.has_translation(_locale_mode, message_id, domain):
+                    self._log_missing_translation(
+                        _locale_mode, message_id, domain
+                    )
+            else:
+                raise ValueError(
+                    f"Configured locale mode '{_locale_mode}' doesn't exist as a supported language."
+                )
+
+    def initialize_translations(
+        self,
+        locale_name: str = LOCALE_CONFIG.slug,
+        domain: str = "base",
+        recompile: bool = False,
+    ) -> None:
+        """
+        Compiles translation files and loads the translator for the
+        specified domain and locale.
+
+        Parameters:
+            locale_name: The target locale (e.g., "de_DE", "fr_FR").
+            domain: The domain to load (e.g., "base", "ui").
+            recompile: Whether to force recompilation of translation files.
+        """
+        self.collect_and_compile_translations(recompile_translations=recompile)
+        self.load_translator_for_domain(domain, locale_name)
+        logger.info(
+            f"Initialized translator for domain '{domain}', locale '{locale_name}'"
+        )
+
+
+class TranslatorPo:
+    """
+    A class used to translate text using a specific gettext translation
+    instance. This class handles the core logic of text translation and
+    caching for a given locale and domain.
+    """
+
+    def __init__(
+        self,
+        locale_name: str,
+        domain: str,
+        localedir: Path,
+        fallback_locale: str = FALLBACK_LOCALE,
+    ) -> None:
+        self.locale_name = locale_name
+        self.domain = domain
+        self.localedir = localedir
+        self.fallback_locale = fallback_locale
+        self._translation_cache: dict[str, str] = {}
+        self._real_translate: Callable[[str], str] = (
+            self._load_gettext_translation()
+        )
+        self.translate: Callable[[str], str] = self._translate_with_cache
+
+    def _load_gettext_translation(self) -> Callable[[str], str]:
+        """
+        Loads and returns the gettext translation function for this translator.
+        Handles fallback if the specific translation is not found.
+        """
+        trans: Union[gettext.GNUTranslations, gettext.NullTranslations]
+        try:
+            trans = gettext.translation(
+                self.domain, self.localedir, [self.locale_name]
+            )
+            logger.debug(
+                f"Loaded translation for domain '{self.domain}', locale '{self.locale_name}'"
+            )
+        except FileNotFoundError:
+            logger.warning(
+                f"Translation file not found for domain '{self.domain}',"
+                f"locale '{self.locale_name}'. "
+                f"Attempting to use fallback '{self.fallback_locale}'."
+            )
+            try:
+                trans = gettext.translation(
+                    self.domain, self.localedir, [self.fallback_locale]
+                )
+                logger.debug(
+                    f"Loaded fallback translation for domain '{self.domain}',"
+                    f"locale '{self.fallback_locale}'"
+                )
+            except FileNotFoundError:
+                logger.error(
+                    f"No translation found for domain '{self.domain}' in any locale."
+                    " Using NullTranslations."
+                )
+                trans = gettext.NullTranslations()
+
+        try:
+            fallback_base_trans = gettext.translation(
+                "base", self.localedir, [self.fallback_locale]
+            )
+            trans.add_fallback(fallback_base_trans)
+            logger.debug(
+                f"Added 'base' domain fallback translation for locale '{self.fallback_locale}'"
+            )
+        except FileNotFoundError:
+            logger.error(
+                f"Base fallback translation 'base' for locale '{self.fallback_locale}' not found."
+                "Translations might be very incomplete."
+            )
+
+        return trans.gettext
 
     def _translate_with_cache(self, message: str) -> str:
         """Translates a message, caching the result."""
@@ -235,108 +563,25 @@ class TranslatorPo:
 
     def get_current_language(self) -> str:
         """
-        Returns the current language.
+        Returns the locale name this translator is configured for.
 
         Returns:
             The current language.
         """
         return self.locale_name
 
-    def is_language_supported(self, locale_name: str) -> bool:
+    def has_translation(self, msgid: str) -> bool:
         """
-        Checks if a language is supported.
+        Checks if a translation exists for a given message ID within this
+        translator's context.
 
         Parameters:
-            locale_name: The name of the language to check.
-
-        Returns:
-            True if the language is supported, False otherwise.
-        """
-        return self.locale_finder.has_locale(locale_name)
-
-    def change_language(self, locale_name: str) -> None:
-        """
-        Changes the current language to the specified locale.
-
-        Parameters:
-            locale_name: The name of the locale to switch to.
-        """
-        if self.is_language_supported(locale_name):
-            self.load_translator(locale_name)
-            self.language_changed(locale_name)
-        else:
-            logger.warning(f"Language {locale_name} is not supported")
-
-    def get_available_languages(self) -> list[str]:
-        """
-        Returns a list of all available languages.
-        """
-        return sorted(list(self.locale_finder.locale_names))
-
-    def language_changed(self, locale_name: str) -> None:
-        """
-        Notifies all registered callbacks that the language has changed.
-
-        Parameters:
-            locale_name: The new language.
-        """
-        if self.is_language_supported(locale_name):
-            for callback in self.language_changed_callbacks:
-                callback(locale_name)
-        else:
-            logger.warning(f"Language {locale_name} is not supported")
-
-    def has_translation(self, locale_name: str, msgid: str) -> bool:
-        """
-        Checks if a translation exists for a certain language.
-
-        Parameters:
-            locale_name: The name of the language to check.
             msgid: The msgid of the translation to check.
 
         Returns:
             True if the translation exists, False otherwise.
         """
-        localedir = paths.L18N_MO_FILES
-        trans = self._get_translation(locale_name, "base", localedir)
-        if trans is None:
-            return False
-        return trans.gettext(msgid) != msgid
-
-    def _log_missing_translation(self, locale_name: str, msgid: str) -> None:
-        """
-        Logs an error when a translation for the given msgid is missing
-        for a specific locale.
-        """
-        logger.error(f"Translation doesn't exist for '{locale_name}': {msgid}")
-
-    def check_translation(self, message_id: str) -> None:
-        """
-        Checks if a translation exists for a certain message_id in all existing locales.
-
-        Parameters:
-            message_id: The message_id of the translation to check.
-        """
-        _locale = prepare.CONFIG.locale.translation_mode
-        if _locale == "none":
-            return
-        else:
-            if _locale == "all":
-                locale_names = self.locale_finder.locale_names.copy()
-                locale_names.remove("README.md")
-                for locale_name in locale_names:
-                    if (
-                        locale_name
-                        and message_id
-                        and not self.has_translation(locale_name, message_id)
-                    ):
-                        self._log_missing_translation(locale_name, message_id)
-            else:
-                if self.is_language_supported(_locale):
-                    if not self.has_translation(_locale, message_id):
-                        self._log_missing_translation(_locale, message_id)
-                else:
-                    raise ValueError(f"Locale '{_locale}' doesn't exist.")
+        return self._real_translate(msgid) != msgid
 
     def format(
         self,
@@ -377,5 +622,5 @@ class TranslatorPo:
 
 locale_finder = LocaleFinder(Path(prepare.fetch("l18n")))
 gettext_compiler = GettextCompiler(paths.CACHE_DIR)
-T = TranslatorPo(locale_finder, gettext_compiler)
-T.collect_languages()
+T = TranslatorManager(locale_finder, gettext_compiler)
+T.initialize_translations()

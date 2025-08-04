@@ -6,7 +6,7 @@
     {
       "type": "give",
       "parameters": [
-        "exhausted",
+        "charmed",
         "enemy_monster"
       ]
     }

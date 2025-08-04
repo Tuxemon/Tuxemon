@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import logging
-import uuid
 from dataclasses import dataclass
 from typing import final
+from uuid import UUID
 
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -33,7 +33,6 @@ class WithdrawMonsterAction(EventAction):
         variable: Name of the variable where to store the monster id.
         character: Either "player" or npc slug name (e.g. "npc_maple").
             the one who is going to receive the monster
-
     """
 
     name = "withdraw_monster"
@@ -46,7 +45,7 @@ class WithdrawMonsterAction(EventAction):
             logger.error(f"Game variable {self.variable} not found")
             return
 
-        monster_id = uuid.UUID(player.game_variables[self.variable])
+        monster_id = UUID(player.game_variables[self.variable])
         monster = player.monster_boxes.get_monsters_by_iid(monster_id)
         if monster is None:
             logger.error("Monster not found")

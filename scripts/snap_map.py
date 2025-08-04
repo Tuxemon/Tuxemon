@@ -14,6 +14,7 @@ EXAMPLES:
     python3 scripts/snap_map.py mods/tuxemon/maps/*tmx
 
 """
+
 import xml.etree.ElementTree as ET
 
 import click

@@ -5,7 +5,9 @@
   "effects": [
     {
       "type": "confused",
-      "parameters": ["0.5"]
+      "parameters": [
+        "0.5"
+      ]
     }
   ],
   "flip_axes": "",

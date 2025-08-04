@@ -1,5 +1,12 @@
 {
-  "effects": [],
+  "effects": [
+    {
+      "type": "die",
+      "parameters": [
+        "sniping:enraged"
+      ]
+    }
+  ],
   "slug": "die",
   "sort": "utility",
   "sprite": "gfx/items/die.png",

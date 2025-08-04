@@ -18,14 +18,15 @@ likely reorder the files and make them less tidy.
 
 - Leif
 """
+
 import glob
 import re
-from os.path import normpath, join
+from os.path import join, normpath
 
 # assume run from tests folder
-db_root = normpath('../tuxemon/resources/db')
-db_tables = ['monster']  # tables to check for translation slugs
-master_filename = 'en_US.json'
+db_root = normpath("../tuxemon/resources/db")
+db_tables = ["monster"]  # tables to check for translation slugs
+master_filename = "en_US.json"
 
 # replacement regex table
 # the regular expression table is need so that
@@ -34,10 +35,10 @@ master_filename = 'en_US.json'
 regex_table = dict()
 sub_table = dict()
 suffix_table = {
-    'slug': '',
-    'name_trans': '_name',
-    'description_trans': '_descr',
-    'category_trans': '_category'
+    "slug": "",
+    "name_trans": "_name",
+    "description_trans": "_descr",
+    "category_trans": "_category",
 }
 
 # build table of regex for searching
@@ -56,7 +57,7 @@ for table in db_tables:
         for name, regex in regex_table.items():
             match = regex.search(data)
             if match:
-                d = {'match': match.group(0)}
+                d = {"match": match.group(0)}
                 d.update(match.groupdict())
                 working_dict[name] = d
 
@@ -65,10 +66,10 @@ for table in db_tables:
         changed = False
         for name, suffix in suffix_table.items():
             if suffix:
-                repl = working_dict['slug']['value'] + suffix
-                old = working_dict[name]['match']
+                repl = working_dict["slug"]["value"] + suffix
+                old = working_dict[name]["match"]
                 # the next couple lines can be used to get json to copy/paste to master locale
-                value = working_dict[name]['value']
+                value = working_dict[name]["value"]
                 print('    "{}": "{}",'.format(repl, value))
                 # new = old.replace('""', '"{}"'.format(repl))
                 # data = data.replace(old, new)

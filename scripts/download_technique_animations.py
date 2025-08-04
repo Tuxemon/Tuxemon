@@ -8,10 +8,11 @@ Download wiki .gifs and save as single frame png files
 If the file names have changed from the wiki, the technique
 json files will need to be updated as well.
 """
+
 import os.path
 import pathlib
-import tempfile
 import sys
+import tempfile
 from urllib.parse import urljoin
 
 import requests
@@ -38,7 +39,7 @@ print("Technique animation dir:", ANIMATION_DIR)
 def download_bytes(url: str, filepath: str) -> bool:
     """
     Downloads a stream of bytes from a given URL to a file path.
-    
+
     Returns:
         True on successful byte stream download, False otherwise
     """
@@ -79,7 +80,7 @@ def download_animation_credits(gif_page_url: str) -> str:
     gifpage_source = requests.get(gif_page_url)
     gifpage_tree = html.fromstring(gifpage_source.content)
     credits_blocks = gifpage_tree.xpath("//div[@class='mw-content-ltr']/div/p")
-    
+
     credits_text = ""
     for credits_row in credits_blocks:
         credits_text += credits_row.text.strip() if credits_row.text else ""
@@ -132,9 +133,7 @@ def download_technique_animations(wiki_url: str) -> None:
 
     with tempfile.TemporaryDirectory() as tmp_dirname:
 
-        elements = anim_tree.xpath(
-            "//li[@class='gallerybox']//a[@class='image']"
-        )
+        elements = anim_tree.xpath("//li[@class='gallerybox']//a[@class='image']")
         with open(CREDITS_FILENAME, "w") as credits_file:
             print("### Technique Animations", file=credits_file)
             print("", file=credits_file)
@@ -143,9 +142,7 @@ def download_technique_animations(wiki_url: str) -> None:
                 gif_url = urljoin(animations_url, element[0].get("src"))
                 gif_filename = element.get("href").split("/File:")[-1]
                 filename = gif_url.split("/")[-1]
-                print(
-                    f"Downloading animation [{index}/{len(elements)}] - {filename}"
-                )
+                print(f"Downloading animation [{index}/{len(elements)}] - {filename}")
 
                 temppath = os.path.join(tmp_dirname, filename)
 

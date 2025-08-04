@@ -5,7 +5,10 @@
   "effects": [
     {
       "type": "wild",
-      "parameters": ["0.25", "8"]
+      "parameters": [
+        "0.25",
+        "8"
+      ]
     }
   ],
   "flip_axes": "",

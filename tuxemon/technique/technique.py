@@ -15,6 +15,7 @@ from tuxemon.core.core_processor import ConditionProcessor, EffectProcessor
 from tuxemon.db import Range, TechniqueModel, db
 from tuxemon.element import ElementTypesHandler
 from tuxemon.locale import T
+from tuxemon.modifiers import ModifiersHandler
 from tuxemon.surfanim import FlipAxes
 
 if TYPE_CHECKING:
@@ -66,12 +67,14 @@ class Technique:
         self.sort: str = ""
         self.slug: str = ""
         self.types: ElementTypesHandler = ElementTypesHandler()
+        self.modifiers: ModifiersHandler = ModifiersHandler()
         self.usable_on: bool = False
         self.use_success: str = ""
         self.use_failure: str = ""
         self.use_tech: str = ""
         self.confirm_text: str = ""
         self.cancel_text: str = ""
+        self.menu_actions_data: Sequence[Mapping[str, str]] = []
 
         if Technique.effect_manager is None:
             Technique.effect_manager = EffectManager(
@@ -138,6 +141,7 @@ class Technique:
         self.recharge_length = results.recharge
         self.range = results.range
         self.tech_id = results.tech_id
+        self.menu_actions_data = results.menu_actions
 
         if self.effect_manager and results.effects:
             self.effects = self.effect_manager.parse_effects(results.effects)
@@ -149,7 +153,7 @@ class Technique:
         self.effect_handler = EffectProcessor(self.effects)
         self.target = results.target.model_dump()
         self.usable_on = results.usable_on
-        self.modifiers = results.modifiers
+        self.modifiers = ModifiersHandler(results.modifiers)
 
         # Load the animation sprites that will be used for this technique
         self.animation = results.animation

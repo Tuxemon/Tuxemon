@@ -35,7 +35,11 @@
     {
       "at_level": 30,
       "monster_slug": "bewhich",
-      "variable": "daytime:false"
+      "variables": [
+        {
+          "daytime": "false"
+        }
+      ]
     }
   ],
   "history": [

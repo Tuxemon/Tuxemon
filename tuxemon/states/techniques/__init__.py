@@ -3,28 +3,25 @@
 from __future__ import annotations
 
 from collections.abc import Generator
-from functools import partial
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from pygame.rect import Rect
 
 from tuxemon import prepare
-from tuxemon.core.core_effect import TechEffectResult
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import Menu
 from tuxemon.monster import Monster
 from tuxemon.session import local_session
 from tuxemon.sprite import Sprite
-from tuxemon.states.monster import MonsterMenuState
+from tuxemon.technique.controller import TechController
+from tuxemon.technique.filter import TechFilter
 from tuxemon.technique.technique import Technique
 from tuxemon.tools import (
     open_choice_dialog,
     open_dialog,
     scale,
-    show_result_as_dialog,
 )
-from tuxemon.ui.menu_options import ChoiceOption, MenuOptions
 from tuxemon.ui.text import TextArea
 
 if TYPE_CHECKING:
@@ -37,9 +34,16 @@ class TechniqueMenuState(Menu[Technique]):
     background_filename = prepare.BG_MOVES
     draw_borders = False
 
-    def __init__(self, character: NPC, monster: Monster) -> None:
+    def __init__(
+        self,
+        character: NPC,
+        techniques: list[Technique],
+        monster: Optional[Monster] = None,
+        tech_filter: Optional[TechFilter] = None,
+    ) -> None:
         self.char = character
         self.monster = monster
+        self.tech_filter = tech_filter or TechFilter(techniques)
 
         super().__init__()
 
@@ -92,53 +96,11 @@ class TechniqueMenuState(Menu[Technique]):
 
     def open_confirm_use_menu(self, technique: Technique) -> None:
         """
-        Confirm if player wants to use this technique, or not.
-
-        Parameters:
-            technique: Selected technique.
+        Opens a confirmation menu for the given technique, dynamically creating options.
         """
-
-        def show_item_result(
-            technique: Technique, result: TechEffectResult
-        ) -> None:
-            show_result_as_dialog(local_session, technique, result.success)
-
-        def use_technique(menu_technique: MenuItem[Monster]) -> None:
-            """Use the item with a monster."""
-            monster = menu_technique.game_object
-            # result = technique.use(local_session, monster, monster)
-            self.client.remove_state_by_name("MonsterMenuState")
-            self.client.remove_state_by_name("ItemMenuState")
-            self.client.remove_state_by_name("WorldMenuState")
-            # show_item_result(technique, result)
-
-        def confirm() -> None:
-            self.client.remove_state_by_name("ChoiceState")
-            menu = self.client.push_state(MonsterMenuState(self.char))
-            menu.is_valid_entry = partial(technique.validate_monster, local_session)  # type: ignore[method-assign]
-            menu.on_menu_selection = use_technique  # type: ignore[assignment]
-
-        def cancel() -> None:
-            self.client.remove_state_by_name("ChoiceState")
-
-        def open_choice_menu() -> None:
-            """Open the use/cancel menu."""
-            options = [
-                ChoiceOption(
-                    key="use",
-                    display_text=technique.confirm_text.upper(),
-                    action=confirm,
-                ),
-                ChoiceOption(
-                    key="cancel",
-                    display_text=technique.cancel_text.upper(),
-                    action=cancel,
-                ),
-            ]
-            menu = MenuOptions(options)
-            open_choice_dialog(self.client, menu, escape_key_exits=True)
-
-        open_choice_menu()
+        controller = TechController(local_session, technique, self.char)
+        menu_options = controller.get_confirm_menu_options()
+        open_choice_dialog(self.client, menu_options, escape_key_exits=True)
 
     def initialize_items(
         self,
@@ -146,36 +108,25 @@ class TechniqueMenuState(Menu[Technique]):
         """Get all player techniques."""
         # load the backpack icon
         self.backpack_center = self.rect.width * 0.16, self.rect.height * 0.45
+        if self.monster:
+            sprite = self.monster.sprite_handler.front_path
+        else:
+            sprite = prepare.MISSING_IMAGE
+
         self.load_sprite(
-            self.monster.sprite_handler.front_path,
+            sprite,
             center=self.backpack_center,
             layer=100,
         )
 
-        moveset: list[Technique] = []
-        moveset = self.monster.moves.get_moves()
-        output = sorted(moveset, key=lambda x: x.tech_id)
+        output = self.tech_filter.get_filtered_techniques()
+        if not output:
+            return
+
+        output = sorted(output, key=lambda x: x.tech_id)
 
         for tech in output:
-            name = tech.name
-            types = " ".join(map(lambda s: (s.name), tech.types.current))
-            image = self.shadow_text(name, bg=prepare.DIMGRAY_COLOR)
-            label = T.format(
-                "technique_description",
-                {
-                    "id": tech.tech_id,
-                    "types": types,
-                    "acc": int(tech.accuracy * 100),
-                    "pot": int(tech.potency * 100),
-                    "pow": tech.power,
-                    "rec": str(tech.recharge_length),
-                },
-            )
-            desc: str = ""
-            if tech.description != f"{tech.slug}_description":
-                desc = tech.description
-                label = f"{label} - {desc}"
-            yield MenuItem(image, name, label, tech)
+            yield self.create_technique_menu_item(tech)
 
     def on_menu_selection_change(self) -> None:
         """Called when menu selection changes."""
@@ -184,3 +135,24 @@ class TechniqueMenuState(Menu[Technique]):
         if technique:
             if technique.description:
                 self.alert(technique.description)
+
+    def create_technique_menu_item(
+        self, tech: Technique
+    ) -> MenuItem[Technique]:
+        name = tech.name
+        types = " ".join(s.name for s in tech.types.current)
+        image = self.shadow_text(name, bg=prepare.DIMGRAY_COLOR)
+        label = T.format(
+            "technique_description",
+            {
+                "id": tech.tech_id,
+                "types": types,
+                "acc": int(tech.accuracy * 100),
+                "pot": int(tech.potency * 100),
+                "pow": tech.power,
+                "rec": str(tech.recharge_length),
+            },
+        )
+        if tech.description and tech.description != f"{tech.slug}_description":
+            label = f"{label} - {tech.description}"
+        return MenuItem(image, name, label, tech)

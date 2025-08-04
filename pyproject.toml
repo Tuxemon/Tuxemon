@@ -4,7 +4,6 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tuxemon"
-version = "0.4.35"
 description = "Open source monster-fighting RPG"
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -26,7 +25,7 @@ classifiers = [
         "Topic :: Games/Entertainment :: Role-Playing"
 ]
 requires-python = ">=3.9"
-dynamic = ["dependencies"]
+dynamic = ["version", "dependencies"]
 
 [project.urls]
 homepage = "https://www.tuxemon.org"

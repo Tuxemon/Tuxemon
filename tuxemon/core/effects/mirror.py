@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import TYPE_CHECKING
 
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
-from tuxemon.ui.text import HorizontalAlignment
+from tuxemon.ui.text_alignment import HorizontalAlignment
 
 if TYPE_CHECKING:
     from tuxemon.monster import Monster

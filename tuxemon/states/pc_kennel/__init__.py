@@ -18,7 +18,7 @@ from tuxemon.animation import ScheduleType
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
-from tuxemon.state import State
+from tuxemon.state.state import State
 from tuxemon.states.monster import MonsterMenuState
 from tuxemon.tools import fix_measure, open_choice_dialog, open_dialog
 from tuxemon.ui.menu_options import ChoiceOption, MenuOptions

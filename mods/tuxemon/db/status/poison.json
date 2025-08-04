@@ -3,7 +3,9 @@
   "modifiers": [
     {
       "attribute": "type",
-      "values": ["venom"],
+      "values": [
+        "venom"
+      ],
       "multiplier": 0.0
     }
   ],
@@ -11,7 +13,10 @@
   "effects": [
     {
       "type": "poisoned",
-      "parameters": ["8"]
+      "parameters": [
+        "8",
+        "weakest"
+      ]
     }
   ],
   "flip_axes": "",

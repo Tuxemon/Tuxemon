@@ -32,29 +32,28 @@ class ParkExperienceAction(EventAction):
 
     def start(self, session: Session) -> None:
         if self.option == "start":
-            pass
+            session.client.park_session.activate_session()
         elif self.option == "stop":
+            session.client.park_session.deactivate_session()
             self._handle_stop(session)
         else:
             raise ValueError(f"{self.option} must be 'start' or 'stop'")
 
     def _handle_stop(self, session: Session) -> None:
         self.client = session.client
+        session.player.game_variables.pop("park_out", None)
 
         if self.client.current_state is None:
             raise RuntimeError("No current state active. This is unexpected.")
 
-        if self.client.current_state.name == "ParkState":
-            logger.error(
-                f"The state 'ParkState' is already active. No action taken."
-            )
-            return
-
         self.client.push_state("ParkState", session=session)
 
     def update(self, session: Session) -> None:
-        try:
-            session.client.get_state_by_name("ParkState")
-        except ValueError:
-            session.client.park_session.reset_session()
+        if self.option == "stop":
+            try:
+                session.client.get_state_by_name("ParkState")
+            except ValueError:
+                session.client.park_session.reset_session()
+                self.stop()
+        else:
             self.stop()

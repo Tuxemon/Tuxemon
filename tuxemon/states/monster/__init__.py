@@ -20,7 +20,7 @@ from tuxemon.menu.menu import Menu
 from tuxemon.monster import Monster
 from tuxemon.sprite import Sprite
 from tuxemon.tools import open_choice_dialog, open_dialog
-from tuxemon.ui.draw import GraphicBox
+from tuxemon.ui.graphic_box import GraphicBox
 from tuxemon.ui.menu_options import ChoiceOption, MenuOptions
 from tuxemon.ui.text import TextArea, draw_text
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="285">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="285">
  <properties>
   <property name="east" value="brideswood"/>
   <property name="edges" value="clamped"/>
@@ -22,12 +22,12 @@
  </layer>
  <layer id="2" name="Tile Layer 2" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHNVjlOA0EQ7MgHEBBwhN6AVyAkiDheAcTkCPwAYiRixCv4AezCIwwZQrIfQbW8JY1bPcvsahbRUqncvT3T5fJ47HIsUgGlYYnENfp+i+2ByE4DdvHMhp3PfI55C8CyXa/53sZq9QH57HC1ptm+Mz/sOnCe2/nMqdNyuF/b11302fnMqdNyW01hv+q7czxiz3/wr8lDTx/9smx9Y36/znfbnvX8nwMXBpOjZe3S8ZZzLVu97dXkWbG15u9j9fpd/Vdj+uhfTgU3uK9uEzBFD+fHmP511Xdlzukz8keda+5K3f8FtVeA/IQ+zo8xdds5XfVy3dzRx2dk1cf5MaZursnFnn/h3hX0p/i3ie+64q/9W9T6Yr6xPhviNxT4AHIHz1ls3xT/uPZztNSZQ2/qZ/GdcP6oz7Lq9SL17ki5X7SH5z/Gnoammt4dDP2/xXPSF3NWKn8F+nRN7H3nqr9NRAaFyBAIQ+sa7zXr61EhMgbC6Ms37quzjguRE0C1lEBVayJrXfWeoucMCCOXT7F9fgBvDxsi
+   eAHNVjtOA0EMdZUPUFDwKbMFB+DTISSo+FwA0QE1PR0tNRI14hTcAHbhEIEDJIfgWdknTSzPZgZ2EZast/aM7ZeX2UnKoUgFLw1uL4lrt9i3yNZ7IhsNvok1a3Y+4wnmTeEWbb3GWyvz2UfE48P5nEb7zvxw14GzbuczJk+LYb/c55/ws/MZk6fFXE7hfuV372jEPf9BvyYNPX7Uy6LVjfHDMj9tPur5v4RfGR8dzXLXjraca9HyzWfTTsVa5L6wfNuZlt8lxo/65XeMV+xAi90E38Mezo8h9YtPa165Mef0BfET7tPS3JXa5RW5NzjxAvw4P4bkbec0s1q8OnH42Srlx/kxJG9b+9vY0y/sWYF/in6reNfV/1q/ac0vphvz4z5+Q+Gf8LaN5yzWN0U/1n4NZjzb4Jv6XaScP/KzqHw9S707Uu6Xu4T31+PQlDtHT5r+3+I56Qo5KxWfA35aw/e/K3wfifQKkT48NM2rfdSoz4NCZAgPrSvd2FdnHRciJ3DlUsKrmhNR88r3FHvO4KF1pRv7fgN44RC0
   </data>
  </layer>
  <layer id="3" name="Tile Layer 3" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHV1ckuQ1Ecx/FjY04oC2JBn0OkxQJvgTVtCVW1EBvPoGoW8/QY6MTCPD0BW605vjecuG7uH5Wm6p98nN5zz/DraXspZV+BIqWCNpyOj/HSmD7m9Qv89JfVKFUOBypQCanmGD8PayuNd5vySWNCrCdVmHsu8rjRiCY0w7q/vpbWSaffV61GvPCgG12Q5hv5POTxwoce9EIqndPaSuPt+sPVSk1gElOYhlRGvknyTGEaM5iFdX99La1j9I8xL4RxhDEBaxmfd4Q8UcQQRwJfVYx14khgD/uQSufUrR7XVqLUNvN2sIsIovhpDRfLIx9Y5xFPeMYLflO3zEsihTvc4ye/j9/sJc2xnps0Lhf66/NzIcXnDObz0/lGs5hT7y+15rQ6XwP5hniGBTGIAAbgh3m8fr1VpUY2sYF1rEHfy2RrzrfAM2IRS1jGClZhV1fkucQFznEGu3F2fdK56f5tnpc7MMqc74AshzjCMU5wCpfl/1sB16WcawmMZ18RbaFwzm+7pPf3mmw37/na+Vw70Jmj378kby2Fu/TeYtZG1+YpVQcnslX6eya15hx/kc+8/3evWzi3VrSlcX7S+85U/3eZ//v9TJ2TtM4rgtOzvQ==
+   eAHV1ckyA0Ecx/F2sVfZDpQD3oByVMp2IG+BM0koYjuoXDyDSOxl3x5DRBIO9u0JuBJ7+U7RZUzNX0SlIv5VH53p6e75TWcylLKvmlylam1U06fLboxxvi9HqX6Bh/6CcqUKUYRilECqOcbPw9pK4xuLpDOf/T7Wk8rPuQbyNKIJzWiB9fr6WFonkX53mfK64EQ3uiDNN/I5yeOCGz3ohVQ6p7WVxtv1+8uUCmASU5iGVEa+SfJMYRozmIX1+vpYWsfoH2eeDxPwIwBrGd93iDy7CCOCKAZNz6l1Tph1IohiD/uQSufUrR7nyFNqm3lB7CCEXfy0Rr/J98g6T3jGC17xm7pl3h1iuMcDfvL7+M21pDnWfZPGpUN/XWY6pPiawbx/Ot9YCnPq60utOa3OV0++Ed5hwxjCIAbggXm8/rxVqryb2MA61qDPJbM151vgHbGIJSxjBauwqyvyXOIC5ziD3Ti7PmnfdP8278sgjDLnOyDLIY5wjBOcosHy/y2L43z2NQ/Guy+HNlvY5/erJPb3mmw3H/na+V470Jmmz98dtxbDfWK3mLLRFRlKVaIKqSr9nEmtOcdf5DNfP97nVvatDY4E9k+672T1x8v8388na5+kdd4AQu+w+w==
   </data>
  </layer>
  <layer id="4" name="Above Player" width="40" height="20">
@@ -37,7 +37,7 @@
  </layer>
  <layer id="5" name="Above Player" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eAHt1DkOgkAAheHXukYrjY3eQgFtcbuICzdw69VLaKfeAa/mXxoyVgSZSeYlXwhTwMsjQXI31Z5UQx0NNGHKsCuNECBEhH8koE+ICGNMYFNW9Fljgy0SZDNoZ0/cuE8rksmb8yLj6l5FblLms2987zt+XcvslufdMf+wKWaYY4ElTNl1pD0OOOIEG3JuSRdcYUv6X/+7B72eeFnUz5adfA+/gF/AL5B3gQ/iAxsP
+   eAHt1LsSwUAUxvHTistQMRp5AD1JaF1fBNEr3Hq8BB3egVfzL02sKreTmf1mfpPZLTZnvmRWJPl0neTPNJ3otEXKqKCKGkzptUT68OAjQBbxmMdHgAGG0JQF8yyxQog1onEb0Z1irDf8g6/Srzd7aaaofaXZSZ5nX/neN/x75jlbnHePuMPGmGCKGeYwZdsU2WGPA47QkFNd5IwLtKTzdd/dmeuBp6L5tPRk57AN2AZsA3Eb+ADPUBr/
   </data>
  </layer>
  <objectgroup color="#ff0000" id="6" name="Collisions">
@@ -241,7 +241,7 @@
   <object id="219" name="Chosen - Rockitten" type="event" x="512" y="128" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster rockitten,5"/>
-    <property name="act2" value="translated_dialog rockitten,,center,center,middle"/>
+    <property name="act2" value="translated_dialog rockitten,,center,center,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:rockitten"/>
     <property name="cond1" value="is variable_set rockittenchosen:yes"/>
@@ -251,7 +251,7 @@
   <object id="220" name="Chosen - Lambert" type="event" x="512" y="160" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster lambert,5"/>
-    <property name="act2" value="translated_dialog lambert,,center,center,middle"/>
+    <property name="act2" value="translated_dialog lambert,,center,center,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:lambert"/>
     <property name="cond1" value="is variable_set lambertchosen:yes"/>
@@ -261,7 +261,7 @@
   <object id="221" name="Chosen - Nut" type="event" x="512" y="192" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster nut,5"/>
-    <property name="act2" value="translated_dialog nut,,center,center,middle"/>
+    <property name="act2" value="translated_dialog nut,,center,center,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:nut"/>
     <property name="cond1" value="is variable_set nutchosen:yes"/>
@@ -271,7 +271,7 @@
   <object id="222" name="Chosen - Tweesher" type="event" x="512" y="224" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster tweesher,5"/>
-    <property name="act2" value="translated_dialog tweesher,,center,center,middle"/>
+    <property name="act2" value="translated_dialog tweesher,,center,center,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:tweesher"/>
     <property name="cond1" value="is variable_set tweesherchosen:yes"/>
@@ -281,7 +281,7 @@
   <object id="223" name="Chosen - Agnite" type="event" x="512" y="256" width="16" height="16">
    <properties>
     <property name="act1" value="add_monster agnite,5"/>
-    <property name="act2" value="translated_dialog agnite,,center,center,middle"/>
+    <property name="act2" value="translated_dialog agnite,,center,center,center"/>
     <property name="act3" value="set_variable firstfightdue:yes"/>
     <property name="act4" value="set_variable mymonchoice:agnite"/>
     <property name="cond1" value="is variable_set agnitechosen:yes"/>
@@ -295,8 +295,9 @@
     <property name="act20" value="create_npc spyder_billie,13,14"/>
     <property name="act30" value="pathfind spyder_billie,25,13"/>
     <property name="act40" value="wait 1.0"/>
-    <property name="act50" value="pathfind_to_char player,spyder_billie"/>
+    <property name="act50" value="pathfind_to_char player,spyder_billie,down"/>
     <property name="act51" value="char_face spyder_billie,player"/>
+    <property name="act52" value="char_face player,spyder_billie"/>
     <property name="act60" value="translated_dialog spyder_papertown_firstfight"/>
     <property name="act61" value="add_monster billie_choice,5,spyder_billie,5,10"/>
     <property name="act62" value="set_monster_attribute add_monster,gender,male"/>
@@ -311,7 +312,8 @@
     <property name="act10" value="translated_dialog spyder_papertown_firstfight_win"/>
     <property name="act11" value="pathfind spyder_billie,25,14"/>
     <property name="act12" value="wait 1.0"/>
-    <property name="act13" value="pathfind_to_char player,spyder_billie,down"/>
+    <property name="act13" value="translated_dialog spyder_papertown_firstfight_pause"/>
+    <property name="act14" value="pathfind_to_char player,spyder_billie,down"/>
     <property name="act15" value="translated_dialog spyder_papertown_firstfight_after"/>
     <property name="act20" value="pathfind spyder_billie,15,14"/>
     <property name="act30" value="remove_npc spyder_billie"/>

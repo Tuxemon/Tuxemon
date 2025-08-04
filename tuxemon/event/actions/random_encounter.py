@@ -3,13 +3,12 @@
 from __future__ import annotations
 
 import logging
-from collections.abc import Sequence
 from dataclasses import dataclass
 from typing import Optional, final
 
 from tuxemon import prepare
 from tuxemon.combat import check_battle_legal
-from tuxemon.db import EncounterItemModel, EnvironmentModel, db
+from tuxemon.db import EnvironmentModel, db
 from tuxemon.encounter import Encounter, EncounterData
 from tuxemon.event import get_npc
 from tuxemon.event.eventaction import EventAction
@@ -20,8 +19,6 @@ from tuxemon.session import Session
 from tuxemon.states.combat.combat_context import CombatContext
 
 logger = logging.getLogger(__name__)
-
-encounter_cache: dict[str, Sequence[EncounterItemModel]] = {}
 
 
 @final
@@ -61,8 +58,8 @@ class RandomEncounterAction(EventAction):
             logger.error("Battle is not legal, won't start")
             return
 
-        encounter_data = EncounterData(self.encounter_slug)
-        encounter = Encounter(encounter_data)
+        zone = EncounterData(self.encounter_slug)
+        encounter = Encounter(zone)
         results = encounter.get_valid_encounters(player)
 
         if not results:
@@ -76,7 +73,7 @@ class RandomEncounterAction(EventAction):
             return
 
         held_item = encounter.get_held_item(eligible)
-        level = encounter.get_level(eligible)
+        level = encounter.determine_level(player, eligible)
 
         logger.info("Starting random encounter!")
 

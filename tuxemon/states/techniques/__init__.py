@@ -134,7 +134,7 @@ class TechniqueMenuState(Menu[Technique]):
         # show technique description
         if technique:
             if technique.description:
-                self.dialog.alert(technique.description)
+                self.dialog.alert(technique.description, dialog_speed="max")
 
     def create_technique_menu_item(
         self, tech: Technique

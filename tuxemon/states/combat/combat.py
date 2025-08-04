@@ -170,7 +170,7 @@ class CombatState(CombatAnimations):
         self.notifier = CombatNotifier(
             state=self,
             text_anim_manager=self.text_anim,
-            alert_method=self.alert,
+            alert_method=self.dialog.alert,
             lock_update=self._lock_update,
         )
 

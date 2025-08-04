@@ -70,6 +70,7 @@ class DialogState(PopUpMenu[None]):
             font_shadow=final_box_style["font_shadow"],
             h_alignment=final_box_style["h_alignment"],
             v_alignment=final_box_style["v_alignment"],
+            line_spacing=line_spacing,
         )
         self.dialog_box.rect = self.calc_internal_rect()
         self.sprites.add(self.dialog_box)

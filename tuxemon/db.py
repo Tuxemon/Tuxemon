@@ -166,6 +166,7 @@ class EffectPhase(Enum):
     ON_END = "on_end"
     ON_FAINT = "on_faint"
     ON_START = "on_start"
+    ON_DECISION = "on_decision"
     PERFORM_ITEM = "perform_item"
     PERFORM_STATUS = "perform_status"
     PERFORM_TECH = "perform_tech"
@@ -337,6 +338,9 @@ class ItemModel(BaseModel, BaseLookupModel):
         le=1.0,
     )
     modifiers: list[Modifier] = Field(..., description="Various modifiers")
+    immunity_to_status: Sequence[str] = Field(
+        [], description="Statuses this item grants immunity to"
+    )
 
     @classmethod
     def lookup(cls, slug: str, db: ModData) -> ItemModel:
@@ -376,6 +380,16 @@ class ItemModel(BaseModel, BaseLookupModel):
         ):
             return v
         raise ValueError(f"the animation {v} doesn't exist in the db")
+
+    @field_validator("immunity_to_status")
+    def status_exists(cls: ItemModel, v: Sequence[str]) -> Sequence[str]:
+        if v:
+            for status in v:
+                if status != "all" and not has.db_entry("status", status):
+                    raise ValueError(
+                        f"A status {status} doesn't exist in the db"
+                    )
+        return v
 
 
 class AttributesModel(BaseModel):
@@ -966,6 +980,10 @@ class TechniqueModel(BaseModel, BaseLookupModel):
     cancel_text: str = Field(
         "item_confirm_cancel",
         description="Translation key for the label used when canceling tech usage.",
+    )
+    menu_actions: Sequence[dict[str, str]] = Field(
+        [],
+        description="Custom list of menu actions (key, display_text) for this technique.",
     )
     types: Sequence[str] = Field([], description="Type(s) of the technique")
     usable_on: bool = Field(

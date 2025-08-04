@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 
 from tuxemon.combat import get_target_monsters
 from tuxemon.core.core_effect import CoreEffect, TechEffectResult
+from tuxemon.locale import T
 from tuxemon.status.status import Status
 
 if TYPE_CHECKING:
@@ -36,7 +37,6 @@ class GiveEffect(CoreEffect):
     def apply_tech_target(
         self, session: Session, tech: Technique, user: Monster, target: Monster
     ) -> TechEffectResult:
-        monsters: list[Monster] = []
         combat = tech.get_combat_state()
         player = user.get_owner()
 
@@ -45,18 +45,33 @@ class GiveEffect(CoreEffect):
         value = combat.get_tech_hit(user)
         success = tech.potency >= potency and tech.accuracy >= value
 
+        status = Status.create(self.condition, user, player.steps)
         if success:
-            status = Status.create(self.condition, user, player.steps)
             status.set_combat_state(combat)
 
-            monsters = get_target_monsters(objectives, tech, user, target)
-            if monsters:
-                for monster in monsters:
-                    current = monster.status.get_current_status()
-                    if current:
-                        current.set_combat_state(combat)
-                    monster.status.apply_status(session, status)
-                combat.update_icons_for_monsters()
-                combat.animate_update_party_hud()
+        immune_info = []
+        successful_targets = []
+        extras = []
+        monsters = get_target_monsters(objectives, tech, user, target)
 
-        return TechEffectResult(name=tech.name, success=bool(monsters))
+        for monster in monsters:
+            result = monster.status.apply_status(session, status, monster)
+            if result.applied:
+                successful_targets.append(monster)
+            elif result.blocked_by:
+                immune_info.append(f"{monster.name} ({result.blocked_by})")
+
+        if immune_info:
+            immune_names = ", ".join(immune_info)
+            key = (
+                "combat_state_immune"
+                if len(immune_info) == 1
+                else "combat_state_immune_multiple"
+            )
+            params = {"target": immune_names, "method": status.name}
+            extract_text = T.format(key, params)
+            extras = [extract_text]
+
+        return TechEffectResult(
+            name=tech.name, success=bool(monsters), extras=extras
+        )

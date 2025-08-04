@@ -74,6 +74,7 @@ class Technique:
         self.use_tech: str = ""
         self.confirm_text: str = ""
         self.cancel_text: str = ""
+        self.menu_actions_data: Sequence[Mapping[str, str]] = []
 
         if Technique.effect_manager is None:
             Technique.effect_manager = EffectManager(
@@ -140,6 +141,7 @@ class Technique:
         self.recharge_length = results.recharge
         self.range = results.range
         self.tech_id = results.tech_id
+        self.menu_actions_data = results.menu_actions
 
         if self.effect_manager and results.effects:
             self.effects = self.effect_manager.parse_effects(results.effects)

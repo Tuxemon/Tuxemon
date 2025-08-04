@@ -71,6 +71,7 @@ from tuxemon.states.monster import MonsterMenuState
 from tuxemon.status.status import Status
 from tuxemon.technique.technique import Technique
 from tuxemon.tools import assert_never
+from tuxemon.ui.combat_notifier import CombatNotifier, TextAnimationManager
 from tuxemon.ui.combat_swap import SwapTracker
 from tuxemon.ui.graphic_box import GraphicBox
 from tuxemon.ui.text import TextArea
@@ -82,8 +83,6 @@ from .combat_classes import (
     EnqueuedAction,
     MenuVisibility,
     MethodAnimationCache,
-    TextAnimationManager,
-    compute_text_anim_time,
 )
 from .combat_context import CombatContext
 from .reward_system import RewardSystem
@@ -168,6 +167,12 @@ class CombatState(CombatAnimations):
         )
         self.ai_manager = AIManager(self.session, self)
         self.swap_tracker = SwapTracker()
+        self.notifier = CombatNotifier(
+            state=self,
+            text_anim_manager=self.text_anim,
+            alert_method=self.alert,
+            lock_update=self._lock_update,
+        )
 
     @staticmethod
     def is_task_finished(task: Union[Task, Animation]) -> bool:
@@ -339,6 +344,7 @@ class CombatState(CombatAnimations):
         elif phase == CombatPhase.DECISION:
             self.update_icons_for_monsters()
             self.animate_update_party_hud()
+            self.check_decisions()
             if not self._decision_queue:
                 self.initialize_hit_chances()
                 self.process_player_decisions()
@@ -425,12 +431,7 @@ class CombatState(CombatAnimations):
             self.perform_action(action.user, action.method, action.target)
             self.task(self.check_party_hp, interval=1)
             self.task(self.animate_party_status, interval=3)
-            self.task(
-                partial(
-                    self.text_anim.trigger_xp_animation, self.dialog.alert
-                ),
-                interval=3,
-            )
+            self.notifier.trigger_xp_and_wait_for_input()
 
     def ask_player_for_monster(self, player: NPC) -> None:
         """
@@ -623,22 +624,7 @@ class CombatState(CombatAnimations):
         Handles combat messages by triggering text animation and blocking input
         until the message has been processed.
         """
-        if message:
-            action_time = compute_text_anim_time(message)
-            self.lock_and_wait(delay=action_time, message=message)
-
-    def lock_and_wait(
-        self, delay: float, message: Optional[str] = None
-    ) -> None:
-        if message:
-            self.text_anim.add_text_animation(
-                partial(self.dialog.alert, message), delay
-            )
-        if self._lock_update:
-            self.task(
-                partial(self.client.push_state, "WaitForInputState"),
-                interval=delay,
-            )
+        self.notifier.show_message_and_wait_for_input(message)
 
     def track_battle_results(
         self,
@@ -688,6 +674,21 @@ class CombatState(CombatAnimations):
                 else:
                     monster.moves.recharge_moves()
                     self.ai_manager.process_ai_turn(monster, player)
+
+    def check_decisions(self) -> None:
+        for player in list(self.active_players):
+            monsters = self.field_monsters.get_monsters(player)
+            for monster in monsters:
+                held_item = monster.held_item.get_item()
+                if held_item:
+                    held_item.execute_item_action(
+                        self.session, self, player, monster
+                    )
+                status = monster.status.get_current_status()
+                if status:
+                    status.execute_status_action(
+                        self.session, self, monster, EffectPhase.ON_DECISION
+                    )
 
     def apply_statuses(self) -> None:
         """
@@ -827,7 +828,7 @@ class CombatState(CombatAnimations):
                 message += "\n" + template
             if result_status.statuses:
                 status = random.choice(result_status.statuses)
-                user.status.apply_status(self.session, status)
+                user.status.apply_status(self.session, status, user)
 
         if result_tech.success and method.use_success:
             template = getattr(method, "use_success")
@@ -845,7 +846,7 @@ class CombatState(CombatAnimations):
 
         if m:
             message += "\n" + m
-            action_time += compute_text_anim_time(message)
+            action_time += self.text_anim.compute_text_anim_time(message)
 
         self.play_sound_effect(method.sfx)
         # animation own_monster, technique doesn't tackle
@@ -886,7 +887,9 @@ class CombatState(CombatAnimations):
                 if element_damage_key:
                     m = T.translate(element_damage_key)
                     message += "\n" + m
-                    action_time += compute_text_anim_time(message)
+                    action_time += self.text_anim.compute_text_anim_time(
+                        message
+                    )
 
         self.text_anim.add_text_animation(
             partial(self.dialog.alert, message), action_time
@@ -953,7 +956,7 @@ class CombatState(CombatAnimations):
                 tmpl = "\n".join(extra_tmpls)
             if template:
                 message += "\n" + tmpl
-                action_time += compute_text_anim_time(message)
+                action_time += self.text_anim.compute_text_anim_time(message)
             self.play_animation(item, target, None, action_time)
 
         self.text_anim.add_text_animation(
@@ -990,7 +993,7 @@ class CombatState(CombatAnimations):
             templates = [T.translate(extra) for extra in result.extras]
             message = message + "\n" + "\n".join(templates)
         if message:
-            action_time += compute_text_anim_time(message)
+            action_time += self.text_anim.compute_text_anim_time(message)
             self.text_anim.add_text_animation(
                 partial(self.dialog.alert, message), action_time
             )
@@ -1140,7 +1143,7 @@ class CombatState(CombatAnimations):
                     T.translate(extra) for extra in result_status.extras
                 ]
                 extra = "\n".join(templates)
-                action_time = compute_text_anim_time(extra)
+                action_time = self.text_anim.compute_text_anim_time(extra)
                 self.text_anim.add_text_animation(
                     partial(self.dialog.alert, extra), action_time
                 )

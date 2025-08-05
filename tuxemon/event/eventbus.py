@@ -52,8 +52,11 @@ class EventBus:
 
         if event_name not in self._listeners:
             self._listeners[event_name] = []
+
         self._listeners[event_name].append(Listener(priority, listener))
-        self._listeners[event_name].sort(reverse=True)  # Higher priority first
+        self._listeners[event_name].sort(
+            key=lambda l: l.priority, reverse=True
+        )
 
     def unsubscribe(
         self,

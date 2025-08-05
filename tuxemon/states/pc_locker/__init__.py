@@ -15,12 +15,13 @@ from pygame_menu.widgets.selection.highlight import HighlightSelection
 
 from tuxemon import prepare
 from tuxemon.animation import ScheduleType
+from tuxemon.item.filter import ItemFilter
 from tuxemon.item.item import Item
 from tuxemon.locale import T
 from tuxemon.menu.interface import MenuItem
 from tuxemon.menu.menu import PygameMenuState
 from tuxemon.menu.quantity import QuantityMenu
-from tuxemon.state import State
+from tuxemon.state.state import State
 from tuxemon.states.items.item_menu import ItemMenuState
 from tuxemon.tools import fix_measure, open_choice_dialog, open_dialog
 from tuxemon.ui.menu_options import ChoiceOption, MenuOptions
@@ -381,7 +382,11 @@ class ItemDropOff(ItemMenuState):
     """Shows all items in player's bag, puts it into box if selected."""
 
     def __init__(self, box_name: str, character: NPC) -> None:
-        super().__init__(character=character, source=self.name)
+        items_filtered = ItemFilter(character)
+        items_filtered.set_filter_all_visible()
+        super().__init__(
+            character=character, source=self.name, item_filter=items_filtered
+        )
 
         self.box_name = box_name
         self.char = character

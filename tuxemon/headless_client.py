@@ -13,6 +13,7 @@ from tuxemon.audio import MusicPlayerState, SoundManager
 from tuxemon.boundary import BoundaryChecker
 from tuxemon.camera import CameraManager
 from tuxemon.config import TuxemonConfig
+from tuxemon.constants import paths
 from tuxemon.event.eventaction import ActionManager
 from tuxemon.event.eventcondition import ConditionManager
 from tuxemon.event.eventengine import EventEngine
@@ -25,7 +26,10 @@ from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.input_manager import InputManager
 from tuxemon.rumble import RumbleManager
 from tuxemon.session import local_session
-from tuxemon.state import HookManager, State, StateManager, StateRepository
+from tuxemon.state.loader import StateLoader
+from tuxemon.state.manager import StateManager
+from tuxemon.state.repository import StateRepository
+from tuxemon.state.state import HookManager, State
 
 StateType = TypeVar("StateType", bound=State)
 
@@ -53,13 +57,16 @@ class HeadlessClient:
 
         self.hook_manager = HookManager()
         self.state_repository = StateRepository()
+        loader = StateLoader(
+            base_package="tuxemon.states", lib_dir=paths.LIBDIR
+        )
+        loader.auto_state_discovery(self.state_repository)
         self.state_manager = StateManager(
             package="tuxemon.states",
             hook=self.hook_manager,
             repository=self.state_repository,
             on_state_change=self.on_state_change,
         )
-        self.state_manager.auto_state_discovery()
         self.state = ClientState.RUNNING
         self.current_time = 0.0
 

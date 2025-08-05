@@ -23,7 +23,7 @@ from tuxemon.platform.events import PlayerInput
 from tuxemon.platform.tools import translate_input_event
 from tuxemon.player import Player
 from tuxemon.session import Session
-from tuxemon.state import State
+from tuxemon.state.state import State
 from tuxemon.states.world.world_menus import WorldMenuManager
 from tuxemon.states.world.world_transition import WorldTransition
 from tuxemon.teleporter import Teleporter

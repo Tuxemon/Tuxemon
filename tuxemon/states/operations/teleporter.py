@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Optional
 
 from tuxemon.platform.events import PlayerInput
-from tuxemon.state import State
+from tuxemon.state.state import State
 
 
 class TeleporterState(State):

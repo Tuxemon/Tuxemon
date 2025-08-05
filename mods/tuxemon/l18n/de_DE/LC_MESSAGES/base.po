@@ -55,7 +55,7 @@ msgid "super_potion"
 msgstr "Super Trank"
 
 msgid "super_potion_description"
-msgstr "Heilt ein Monster um 150 HP."
+msgstr "Heilt ein Monster um 100 HP."
 
 # Imperial Potion
 msgid "imperial_potion"

@@ -515,7 +515,7 @@ class AI:
         """
         Send action tech.
         """
-        self.character.game_variables["action_tech"] = technique.slug
+        self.combat._combat_variables["action_tech"] = technique.slug
         technique = pre_checking(
             self.session, self.monster, technique, target, self.combat
         )

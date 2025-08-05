@@ -21,7 +21,7 @@
     {
       "type": "heal",
       "parameters": [
-        "20",
+        "50",
         "fixed"
       ]
     }

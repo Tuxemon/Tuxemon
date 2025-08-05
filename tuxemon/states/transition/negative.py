@@ -8,7 +8,7 @@ from typing import Optional
 from pygame.surface import Surface
 
 from tuxemon.platform.events import PlayerInput
-from tuxemon.state import State
+from tuxemon.state.state import State
 
 logger = logging.getLogger(__name__)
 

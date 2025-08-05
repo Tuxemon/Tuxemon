@@ -28,15 +28,7 @@ class MissionState(PygameMenuState):
     This state is responsible for the mission menu.
     """
 
-    def __init__(self, **kwargs: Any) -> None:
-        """
-        Used when initializing the state.
-        """
-        character: Optional[NPC] = None
-        for element in kwargs.values():
-            character = element["character"]
-        if character is None:
-            raise ValueError("No character found")
+    def __init__(self, character: NPC) -> None:
         self.character = character
         width, height = prepare.SCREEN_SIZE
 
@@ -59,32 +51,30 @@ class MissionState(PygameMenuState):
             return partial(self.client.push_state, state, **kwargs)
 
         missions = self.character.mission_controller.get_active_missions()
+
+        missions.sort(key=lambda m: m.slug)
+
         for key, mission in enumerate(missions, start=1):
-            if mission.check_all_prerequisites(self.character):
-                progress = mission.get_progress(self.character)
-                label = f"{key}. {mission.name} ({round(progress, 1)}%)"
-                menu.add.button(
-                    title=label,
-                    action=change_state(
-                        "SingleMissionState",
-                        kwargs={
-                            "mission": mission,
-                            "character": self.character,
-                        },
-                    ),
-                    font_size=self.font_type.small,
-                )
+            if not mission.check_all_prerequisites(self.character):
+                continue
+
+            progress = round(mission.get_progress(), 1)
+            repeatable = "@" if mission.repeatable else ""
+            label = f"{key}. {mission.name}{repeatable} ({progress}%)"
+
+            menu.add.button(
+                title=label,
+                action=change_state(
+                    "SingleMissionState",
+                    mission=mission,
+                    character=self.character,
+                ),
+                font_size=self.font_type.small,
+            )
 
 
 class SingleMissionState(PygameMenuState):
-    def __init__(self, **kwargs: Any) -> None:
-        mission: Optional[Mission] = None
-        character: Optional[NPC] = None
-        for element in kwargs.values():
-            mission = element["mission"]
-            character = element["character"]
-        if mission is None or character is None:
-            raise ValueError("No mission")
+    def __init__(self, mission: Mission, character: NPC) -> None:
         self.mission = mission
         self.character = character
         width, height = prepare.SCREEN_SIZE
@@ -123,7 +113,10 @@ class SingleMissionState(PygameMenuState):
             open_choice_dialog(self.client, menu)
 
         def confirm_deletion() -> None:
-            self.mission.update_status(MissionStatus.failed)
+            self.mission.update_status(MissionStatus.removed)
+            self.character.mission_controller.mission_manager.remove_by_slug(
+                self.mission.slug
+            )
             self.client.remove_state_by_name("ChoiceState")
             self.client.remove_state_by_name("DialogState")
             self.client.remove_state_by_name("SingleMissionState")
@@ -134,16 +127,6 @@ class SingleMissionState(PygameMenuState):
             self.client.remove_state_by_name("ChoiceState")
             self.client.remove_state_by_name("DialogState")
 
-        missions = self.character.mission_controller.get_active_missions()
-
-        single = missions.index(self.mission)
-        menu.add.label(
-            title=f"{single + 1}/{len(missions)}",
-            label_id="number",
-            font_size=self.font_type.small,
-            align=locals.ALIGN_RIGHT,
-            float=False,
-        )
         menu.add.label(
             title=f"{self.mission.name}",
             label_id="name",
@@ -151,6 +134,7 @@ class SingleMissionState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=False,
         )
+
         menu.add.label(
             title=self.mission.description,
             label_id="description",
@@ -158,28 +142,38 @@ class SingleMissionState(PygameMenuState):
             align=locals.ALIGN_LEFT,
             float=False,
         )
+
+        if self.mission.repeatable:
+            menu.add.label(
+                title=T.translate("mission_repeatable"),
+                font_size=self.font_type.small,
+                align=locals.ALIGN_LEFT,
+            )
+
         next_missions = (
             ", ".join(m["slug"] for m in self.mission.connected_missions)
             if self.mission.connected_missions
             else "-"
         )
         menu.add.label(
-            title=f"Next missions: {next_missions}",
+            title=f"{T.translate('mission_next')}: {next_missions}",
             label_id="next_missions",
             font_size=self.font_type.small,
             align=locals.ALIGN_LEFT,
             float=False,
         )
-        progress = self.mission.get_progress(self.character)
+
+        progress = self.mission.get_progress()
         menu.add.progress_bar(
-            title="Progress",
+            title=T.translate("mission_progress"),
             default=progress,
             font_size=self.font_type.small,
             align=locals.ALIGN_LEFT,
             float=False,
         )
+
         menu.add.button(
-            title="Delete",
+            title=T.translate("mission_delete"),
             action=delete_mission,
             font_size=self.font_type.small,
         )
@@ -198,10 +192,8 @@ class SingleMissionState(PygameMenuState):
             )
             client.replace_state(
                 "SingleMissionState",
-                kwargs={
-                    "mission": missions[new_index],
-                    "character": self.character,
-                },
+                mission=missions[new_index],
+                character=self.character,
             )
         elif event.button in (buttons.BACK, buttons.B) and event.pressed:
             client.remove_state_by_name("SingleMissionState")

@@ -737,6 +737,12 @@ class MonsterSpriteHandler:
         }
 
 
+@dataclass
+class StatusApplyResult:
+    applied: bool
+    blocked_by: Optional[str] = None
+
+
 class MonsterStatusHandler:
     def __init__(self, status: Optional[list[Status]] = None):
         self.status = status if status is not None else []
@@ -750,7 +756,19 @@ class MonsterStatusHandler:
             return None
         return self.status[0]
 
-    def apply_status(self, session: Session, new_status: Status) -> None:
+    def is_blocked(self, monster: Monster, status_slug: str) -> Optional[str]:
+        """Check if the monster's held item grants immunity to the given status."""
+        item = monster.held_item.get_item()
+        if item and item.is_immune(status_slug):
+            logger.debug(
+                f"Item '{item.name}' blocks status '{status_slug}' for monster '{monster.name}'."
+            )
+            return item.name
+        return None
+
+    def apply_status(
+        self, session: Session, new_status: Status, monster: Monster
+    ) -> StatusApplyResult:
         """
         Apply a status effect to a monster during combat by replacing or removing
         the previous status effect.
@@ -759,33 +777,76 @@ class MonsterStatusHandler:
         ensuring proper transitions between statuses based on their category and
         interaction rules.
         """
+        logger.debug(
+            f"Trying to apply status '{new_status.slug}' to monster '{monster.name}'."
+        )
+
+        blocked_by = self.is_blocked(monster, new_status.slug)
+        if blocked_by:
+            logger.debug(
+                f"Status '{new_status.slug}' blocked by '{blocked_by}'."
+            )
+            return StatusApplyResult(applied=False, blocked_by=blocked_by)
+
         current_status = self.get_current_status()
         if current_status is None:
+            logger.debug("No current status, applying new status directly.")
             self.add_status(new_status)
             new_status.nr_turn = 1
             new_status.apply_phase_and_use(session, EffectPhase.ON_START)
-            return
+            return StatusApplyResult(applied=True)
 
         if self.has_status(new_status.slug):
-            return
+            logger.debug(
+                f"Monster already has status '{new_status.slug}', skipping."
+            )
+            current_status.stack_level = min(
+                current_status.stack_level + 1, Status.MAX_STACKS
+            )
+            logger.debug(
+                f"Stacking status '{new_status.slug}': now at {current_status.stack_level}/{Status.MAX_STACKS}."
+            )
+            return StatusApplyResult(
+                applied=False, blocked_by=current_status.name
+            )
 
+        logger.debug(
+            f"Ending current status '{current_status.slug}' with ON_END phase."
+        )
         current_status.apply_phase_and_use(session, EffectPhase.ON_END)
 
         new_status.nr_turn = 1
+        logger.debug(
+            f"Starting new status '{new_status.slug}' with ON_START phase."
+        )
         new_status.apply_phase_and_use(session, EffectPhase.ON_START)
 
         if current_status.category == CategoryStatus.positive:
+            logger.debug(
+                f"Current status is positive. Transition rule: {new_status.on_positive_status}"
+            )
             if new_status.on_positive_status == ResponseStatus.replaced:
                 self.add_status(new_status)
             elif new_status.on_positive_status == ResponseStatus.removed:
                 self.remove_status()
         elif current_status.category == CategoryStatus.negative:
+            logger.debug(
+                f"Current status is negative. Transition rule: {new_status.on_negative_status}"
+            )
             if new_status.on_negative_status == ResponseStatus.replaced:
                 self.add_status(new_status)
             elif new_status.on_positive_status == ResponseStatus.removed:
                 self.remove_status()
         else:
+            logger.debug(
+                "Current status has no category. Applying new status."
+            )
             self.add_status(new_status)
+
+        logger.debug(
+            f"Status '{new_status.slug}' successfully applied to monster '{monster.name}'."
+        )
+        return StatusApplyResult(applied=True)
 
     def add_status(self, status: Status) -> None:
         if self.has_status(status.slug):

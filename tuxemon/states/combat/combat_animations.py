@@ -33,7 +33,7 @@ from tuxemon.ui.combat_layout import (
 from tuxemon.ui.combat_monsters import FieldMonsters, MonsterSpriteMap
 from tuxemon.ui.combat_status import StatusIconManager
 from tuxemon.ui.combat_zone import CombatZone
-from tuxemon.ui.text import HorizontalAlignment
+from tuxemon.ui.text_alignment import HorizontalAlignment
 
 if TYPE_CHECKING:
     from tuxemon.animation import Animation
@@ -271,21 +271,71 @@ class CombatAnimations(Menu[None], ABC):
             transition="out_quint",
         )
 
-    def animate_exp(self, monster: Monster) -> None:
-        target_previous = monster.experience_required()
-        target_next = monster.experience_required(1)
-        diff_value = monster.total_experience - target_previous
-        diff_target = target_next - target_previous
-        value = max(0, min(1, (diff_value) / (diff_target)))
-        if monster.levelling_up:
-            value = 1.0
-        exp_bar = self.bars.get_exp_bar(monster)
-        self.animate(
-            exp_bar,
-            value=value,
-            duration=0.7,
-            transition="out_quint",
+    def calculate_bar_value(
+        self, total_experience: int, xp_start: int, xp_end: int
+    ) -> float:
+        """
+        Calculates normalized bar progress as a float between 0.0 and 1.0.
+        Prevents overflow/underflow visually.
+        """
+        return max(
+            0.0, min(1.0, (total_experience - xp_start) / (xp_end - xp_start))
         )
+
+    def animate_exp(self, monster: Monster) -> None:
+        exp_bar = self.bars.get_exp_bar(monster)
+
+        if monster.levelling_up:
+
+            def fill_to_max() -> Animation:
+                return self.animate(
+                    exp_bar,
+                    value=1.0,
+                    duration=0.3,
+                    transition="linear",
+                )
+
+            def reset_bar() -> Animation:
+                return self.animate(
+                    exp_bar,
+                    value=0.0,
+                    duration=0.1,
+                    transition="linear",
+                    delay=1.0,
+                )
+
+            def animate_new_level_progress() -> Animation:
+                value_for_new_level = self.calculate_bar_value(
+                    total_experience=monster.total_experience,
+                    xp_start=monster.experience_required(),
+                    xp_end=monster.experience_required(1),
+                )
+                return self.animate(
+                    exp_bar,
+                    value=value_for_new_level,
+                    duration=0.7,
+                    transition="linear",
+                    delay=0.5,
+                )
+
+            self.chain_animations(
+                fill_to_max,
+                reset_bar,
+                animate_new_level_progress,
+            )
+
+        else:
+            value = self.calculate_bar_value(
+                total_experience=monster.total_experience,
+                xp_start=monster.experience_required(),
+                xp_end=monster.experience_required(1),
+            )
+            self.animate(
+                exp_bar,
+                value=value,
+                duration=0.7,
+                transition="out_quint",
+            )
 
     def animate_monster_leave(self, monster: Monster) -> None:
         sprite = self.sprite_map.get_sprite(monster)

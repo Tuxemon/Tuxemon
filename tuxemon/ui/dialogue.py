@@ -9,6 +9,7 @@ from pygame import Rect
 
 from tuxemon import prepare
 from tuxemon.db import DialogueModel, db
+from tuxemon.ui.text_alignment import DialogPosition
 
 logger = logging.getLogger(__name__)
 
@@ -41,7 +42,7 @@ def resolve_reference_rect(
 
 def calc_dialog_rect(
     screen_rect: Rect,
-    position: str,
+    position: DialogPosition,
     target_coords: Optional[Union[tuple[int, int], Rect]] = None,
 ) -> Rect:
     """
@@ -66,29 +67,29 @@ def calc_dialog_rect(
     rect = scale_dialog_size(screen_rect)
     reference_rect = resolve_reference_rect(screen_rect, target_coords)
 
-    if position == "top":
+    if position == DialogPosition.TOP:
         rect.top = reference_rect.top
         rect.centerx = reference_rect.centerx
-    elif position == "bottom":
+    elif position == DialogPosition.BOTTOM:
         rect.bottom = reference_rect.bottom
         rect.centerx = reference_rect.centerx
-    elif position == "center":
+    elif position == DialogPosition.CENTER:
         rect.center = reference_rect.center
-    elif position == "topleft":
+    elif position == DialogPosition.TOPLEFT:
         rect.topleft = reference_rect.topleft
-    elif position == "topright":
+    elif position == DialogPosition.TOPRIGHT:
         rect.topright = reference_rect.topright
-    elif position == "bottomleft":
+    elif position == DialogPosition.BOTTOMLEFT:
         rect.bottomleft = reference_rect.bottomleft
-    elif position == "bottomright":
+    elif position == DialogPosition.BOTTOMRIGHT:
         rect.bottomright = reference_rect.bottomright
-    elif position == "left":
+    elif position == DialogPosition.LEFT:
         rect.left = reference_rect.left
         rect.centery = reference_rect.centery
-    elif position == "right":
+    elif position == DialogPosition.RIGHT:
         rect.right = reference_rect.right
         rect.centery = reference_rect.centery
-    elif position == "at_target":
+    elif position == DialogPosition.AT_TARGET:
         if not isinstance(target_coords, tuple):
             raise ValueError(
                 "For 'at_target' position, target_coords must be a (x, y) tuple."

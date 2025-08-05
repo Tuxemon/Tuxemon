@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="45">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="44">
  <properties>
   <property name="edges" value="clamped"/>
   <property name="inside" type="bool" value="true"/>
@@ -11,6 +11,7 @@
  <tileset firstgid="1551" source="../gfx/tilesets/core_outdoor.tsx"/>
  <tileset firstgid="4326" source="../gfx/tilesets/core_indoor_floors.tsx"/>
  <tileset firstgid="8190" source="../gfx/tilesets/core_indoor_walls.tsx"/>
+ <tileset firstgid="12054" source="../../../../../../Tuxemon/mods/tuxemon/gfx/tilesets/core_set pieces.tsx"/>
  <layer id="1" name="Tile Layer 1" width="12" height="12">
   <data encoding="base64" compression="zlib">
    eJzbr8zAsJ8E/JZELK1CGhYRHMVDCQMArcop6Q==
@@ -18,7 +19,7 @@
  </layer>
  <layer id="2" name="Tile Layer 5" width="12" height="12">
   <data encoding="base64" compression="zlib">
-   eJxjYCAduLMQz/4MxF+gYreAOI8Zt7mGvAwMQowMDMKMEP5PIO7Foz6MF1NsDR71IHCCGYJPAvEpID6Npv4CEwTDgD8ajQwuAdVtANIbgfgiExYFaOaB1J8HieFQT4x56OrxmUdtUAq0owyIy6F27QCGHQCNIB4B
+   eJxjYCAduLMQz/4MxF+gYu/1GRjymHGba8jLwCDEyMAgzAjh8xkwMPTiUR/Giym2Bo96EDjBDMEngfgUEJ9GU3+BCYJhwB+NRgaXgOo2AOmNQHyRCYsCNPNA6s+DxHCoJ8Y8dPX4zKM2KAXaUQbE5VC7dgDDDgDWNh2K
   </data>
  </layer>
  <layer id="3" name="Tile Layer 4" width="12" height="12">
@@ -83,6 +84,7 @@
   <object id="20" name="First Visit to Cotton Cafe" type="event" x="160" y="48" width="16" height="16">
    <properties>
     <property name="act01" value="wait 0.1"/>
+    <property name="act09" value="translated_dialog spyder_cotton_tuxepediawelcome"/>
     <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
     <property name="act15" value="pathfind spyder_cottontown_hacker,7,3"/>
@@ -100,11 +102,14 @@
     <property name="act50" value="screen_transition 0.5"/>
     <property name="act51" value="wait 0.5"/>
     <property name="act52" value="set_variable visitedcottoncafe:yes"/>
-    <property name="act54" value="add_item app_tuxepedia"/>
-    <property name="act55" value="translated_dialog app_tuxepedia,,center,center,middle"/>
+    <property name="act53" value="add_item app_tuxepedia"/>
+    <property name="act54" value="translated_dialog app_tuxepedia,,center,center,center"/>
+    <property name="act86" value="pathfind spyder_cottontown_hacker,6,5"/>
+    <property name="act87" value="char_face player,left"/>
     <property name="act88" value="translated_dialog spyder_cotton_tuxepediaintro4"/>
     <property name="act90" value="unlock_controls"/>
     <property name="act91" value="pathfind spyder_cottontown_barmaid,0,4"/>
+    <property name="act92" value="char_face spyder_cottontown_barmaid,down"/>
     <property name="behav1" value="talk spyder_cottontown_hacker"/>
     <property name="cond1" value="not variable_set visitedcottoncafe:yes"/>
    </properties>

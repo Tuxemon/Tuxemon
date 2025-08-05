@@ -4,7 +4,10 @@ import unittest
 from unittest.mock import MagicMock, patch
 
 from tuxemon.menu.input import InputMenu
-from tuxemon.state import HookManager, State, StateManager, StateRepository
+from tuxemon.state.factory import StateFactory
+from tuxemon.state.manager import StateManager
+from tuxemon.state.repository import StateRepository
+from tuxemon.state.state import HookManager, State
 from tuxemon.states.world.worldstate import WorldState
 
 
@@ -262,7 +265,7 @@ class EnqueueThenPop(StateManagerTestBase):
         self.sm.pop_state()
         self.sm.update(0)
 
-    @patch.object(StateManager, "_instance")
+    @patch.object(StateFactory, "create_state")
     def test_current_state(self, mock_instance):
         mock_state_c = self.create_and_register_state("c")
         mock_instance.return_value = mock_state_c

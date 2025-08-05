@@ -19,7 +19,7 @@ from tuxemon.locale import T
 from tuxemon.map import dirs2, get_direction, proj
 from tuxemon.map_view import SpriteController
 from tuxemon.math import Vector2
-from tuxemon.mission import MissionController
+from tuxemon.mission import MissionController, MissionManager
 from tuxemon.money import MoneyController
 from tuxemon.monster import Monster, decode_monsters, encode_monsters
 from tuxemon.movement import get_tile_moverate
@@ -111,7 +111,7 @@ class NPC(Entity[NPCState]):
         self.money_controller = MoneyController(self)
         # list of ways player can interact with the Npc
         self.interactions: Sequence[str] = []
-        self.mission_controller = MissionController(self)
+        self.mission_controller = MissionController(self, MissionManager())
         self.economy: Optional[Economy] = None
         self.shop_inventory: Optional[ShopInventory] = None
         self.teleport_faint = TeleportFaint()
@@ -172,8 +172,8 @@ class NPC(Entity[NPCState]):
             "monsters": self.party.encode_party(),
             "player_name": self.name,
             "player_steps": self.steps,
-            "monster_boxes": dict(),
-            "item_boxes": dict(),
+            "monster_boxes": self.monster_boxes.get_state(),
+            "item_boxes": self.item_boxes.get_state(),
             "tile_pos": self.tile_pos,
             "teleport_faint": self.teleport_faint.to_tuple(),
             "tracker": encode_tracking(self.tracker),
@@ -181,8 +181,6 @@ class NPC(Entity[NPCState]):
             "unlocked_letters": encode_cipher(self.unlocked_letters),
         }
 
-        self.monster_boxes.save(state)
-        self.item_boxes.save(state)
         state["money"] = self.money_controller.save()
 
         return state
@@ -208,7 +206,7 @@ class NPC(Entity[NPCState]):
         self.money_controller.load(save_data)
         self.unlocked_letters = decode_cipher(save_data)
         self.monster_boxes.load(self, save_data)
-        self.item_boxes.load(self, save_data)
+        self.item_boxes.load(save_data)
 
         self.teleport_faint = TeleportFaint.from_tuple(
             save_data["teleport_faint"]

@@ -16,6 +16,10 @@ the events group.  They can be deleted, if desired.
 USAGE
 
 python yamlify_map_script.py FILE0 FILE1 FILE2 ...
+
+You can run the script from the /scripts/ folder like this:
+
+    python yamlify_map_script.py ../mods/tuxemon/maps/map.tmx
 """
 
 import logging
@@ -58,27 +62,7 @@ def renumber_event(event_node: Element) -> DefaultDict[Any, list]:
     return children
 
 
-def rewrite_events(filename: Path) -> None:
-    def do_the_thing() -> None:
-        properties = xml_event_object.find("properties")
-        event_node = {}
-        for names, divisor in [[["x", "width"], tw], [["y", "height"], th]]:
-            for name in names:
-                value = xml_event_object.attrib.get(name, None)
-                if value is not None:
-                    event_node[name] = int(value) // divisor
-        event_type = xml_event_object.get("type")
-        if event_type not in [None, "event"]:
-            event_node["type"] = event_type
-        if properties is not None and len(properties) > 0:
-            xml_event_object.remove(properties)
-            children = renumber_event(properties)
-            for cname, tname in mapping:
-                if tname in children:
-                    event_node[cname] = children.pop(tname)
-            assert not children
-        yaml_doc["events"][xml_event_object.attrib["name"]] = event_node
-
+def extract_events(filename: Path) -> None:
     tree = ET.parse(filename)
     root = tree.getroot()
     yaml_filename = filename.with_suffix(".yaml")
@@ -98,15 +82,35 @@ def rewrite_events(filename: Path) -> None:
     tw = int(root.get("tilewidth"))
     th = int(root.get("tileheight"))
 
-    for xml_event_object in root.findall(".//object[@type='interact']"):
-        do_the_thing()
-    for xml_event_object in root.findall(".//object[@type='event']"):
-        do_the_thing()
+    def process_event(obj: Element) -> None:
+        event_node = {}
+        for names, divisor in [[["x", "width"], tw], [["y", "height"], th]]:
+            for name in names:
+                value = obj.attrib.get(name)
+                if value is not None:
+                    event_node[name] = int(value) // divisor
+
+        event_node["height"] = int(obj.attrib.get("height", "1")) // th
+        event_node["width"] = int(obj.attrib.get("width", "1")) // tw
+        event_node["type"] = obj.attrib.get("type", "event")
+
+        properties = obj.find("properties")
+        if properties is not None and len(properties) > 0:
+            children = renumber_event(properties)
+            for cname, tname in mapping:
+                if tname in children:
+                    event_node[cname] = children.pop(tname)
+            assert not children
+
+        yaml_doc["events"][obj.attrib["name"]] = event_node
+
+    for obj in root.findall(".//object[@type='interact']"):
+        process_event(obj)
+    for obj in root.findall(".//object[@type='event']"):
+        process_event(obj)
 
     with yaml_filename.open("w") as fp:
-        yaml.dump(yaml_doc, fp, Dumper=yaml.SafeDumper)
-
-    tree.write(filename, encoding="UTF-8", xml_declaration=True)
+        yaml.dump(yaml_doc, fp, Dumper=yaml.SafeDumper, sort_keys=False)
 
 
 if __name__ == "__main__":
@@ -115,4 +119,4 @@ if __name__ == "__main__":
         sys.exit(1)
 
     for filename in sys.argv[1:]:
-        rewrite_events(Path(filename))
+        extract_events(Path(filename))

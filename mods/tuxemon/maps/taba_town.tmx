@@ -242,7 +242,7 @@
     <property name="cond20" value="is char_facing player,up"/>
    </properties>
   </object>
-  <object id="124" name="Tuxemart Sign" type="event" x="528" y="192" width="16" height="16">
+  <object id="107" name="Tuxemart Sign" type="event" x="528" y="192" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog taba_town_sign_tuxemart"/>
     <property name="cond10" value="is char_facing_tile player"/>
@@ -276,7 +276,7 @@
     <property name="cond1" value="is char_defeated player"/>
    </properties>
   </object>
-  <object id="125" name="bring on the nurses" type="event" x="352" y="640" width="16" height="16">
+  <object id="132" name="bring on the nurses" type="event" x="352" y="640" width="16" height="16">
    <properties>
     <property name="act10" value="create_npc nurse1,37,39,stand"/>
     <property name="act20" value="create_npc nurse2,38,39,stand"/>
@@ -295,7 +295,7 @@
     <property name="cond30" value="is button_pressed K_RETURN"/>
    </properties>
   </object>
-  <object id="127" name="bring the cavalry" type="event" x="672" y="752" width="16" height="16">
+  <object id="154" name="bring the cavalry" type="event" x="672" y="752" width="16" height="16">
    <properties>
     <property name="act10" value="char_stop player"/>
     <property name="act11" value="lock_controls"/>
@@ -330,7 +330,7 @@
     <property name="cond10" value="is variable_set goodbyeoldknight:hedead"/>
    </properties>
   </object>
-  <object id="125" name="cavalrysamewalk" type="event" x="736" y="720" width="16" height="16">
+  <object id="141" name="cavalrysamewalk" type="event" x="736" y="720" width="16" height="16">
    <properties>
     <property name="act10" value="pathfind knight3,38,43"/>
     <property name="act20" value="set_variable foome:ye"/>
@@ -338,7 +338,7 @@
     <property name="cond20" value="not variable_set foome:ye"/>
    </properties>
   </object>
-  <object id="126" name="timetowalk" type="event" x="736" y="752" width="16" height="16">
+  <object id="142" name="timetowalk" type="event" x="736" y="752" width="16" height="16">
    <properties>
     <property name="act010" value="translated_dialog cometomepls"/>
     <property name="act020" value="set_variable talkpls:yes"/>
@@ -362,7 +362,7 @@
     <property name="cond10" value="is variable_set talkpls:yes"/>
    </properties>
   </object>
-  <object id="128" name="listentime" type="event" x="736" y="752" width="16" height="16">
+  <object id="158" name="listentime" type="event" x="736" y="752" width="16" height="16">
    <properties>
     <property name="act010" value="wait 0.6"/>
     <property name="act020" value="translated_dialog hellolovelypeople2"/>
@@ -384,7 +384,7 @@
     <property name="cond10" value="is variable_set goodbyeoldknight:helpme"/>
    </properties>
   </object>
-  <object id="129" name="listentime2" type="event" x="736" y="752" width="16" height="16">
+  <object id="185" name="listentime2" type="event" x="736" y="752" width="16" height="16">
    <properties>
     <property name="act010" value="char_face allie,up"/>
     <property name="act020" value="translated_dialog whereismyhairbrush"/>
@@ -422,7 +422,7 @@
     <property name="cond10" value="is variable_set goodbyeoldknight:ohwell"/>
    </properties>
   </object>
-  <object id="130" name="listentime3" type="event" x="736" y="752" width="16" height="16">
+  <object id="100" name="listentime3" type="event" x="736" y="752" width="16" height="16">
    <properties>
     <property name="act010" value="pathfind allie,37,45"/>
     <property name="act020" value="char_face allie,down"/>
@@ -465,7 +465,7 @@
     <property name="cond10" value="is variable_set goodbyeoldknight:herewegoagain"/>
    </properties>
   </object>
-  <object id="126" name="listentime5" type="event" x="736" y="752" width="16" height="16">
+  <object id="144" name="listentime5" type="event" x="736" y="752" width="16" height="16">
    <properties>
     <property name="act010" value="create_npc knight4,33,44"/>
     <property name="act020" value="char_face knight4,right"/>
@@ -502,7 +502,7 @@
     <property name="cond10" value="is variable_set goodbyeoldknight:mama"/>
    </properties>
   </object>
-  <object id="127" name="listentime6" type="event" x="736" y="752" width="16" height="16">
+  <object id="152" name="listentime6" type="event" x="736" y="752" width="16" height="16">
    <properties>
     <property name="act010" value="pathfind knight4, 37,44"/>
     <property name="act020" value="char_face knight4,down"/>
@@ -576,7 +576,7 @@
     <property name="cond1" value="not char_exists xerogrund1"/>
    </properties>
   </object>
-  <object id="149" name="plsletmepass" type="event" x="384" y="368" width="16" height="16">
+  <object id="101" name="plsletmepass" type="event" x="384" y="368" width="16" height="16">
    <properties>
     <property name="act1" value="char_stop player"/>
     <property name="act2" value="translated_dialog hey"/>
@@ -757,7 +757,7 @@
     <property name="cond40" value="not variable_set greeter_greets:yes"/>
    </properties>
   </object>
-  <object id="150" name="jaime3" type="event" x="448" y="176" width="16" height="16">
+  <object id="102" name="jaime3" type="event" x="448" y="176" width="16" height="16">
    <properties>
     <property name="act10" value="translated_dialog taba_greeting3"/>
     <property name="act20" value="char_face taba_greeter,down"/>

@@ -25,16 +25,15 @@ def expand_expected_scenarios() -> None:
         EXPECTED_SCENARIOS.append(f"{prepare.STARTING_MAP}{mod}")
 
 
-def get_tmx_files(folder_path: str) -> Generator[str, Any, None]:
-    folder = Path(folder_path)
-    for file in folder.iterdir():
+def get_tmx_files(folder_path: Path) -> Generator[Path, Any, None]:
+    for file in folder_path.iterdir():
         if file.suffix == ".tmx" and file.is_file():
-            yield file.as_posix()
+            yield file
 
 
 def load_tmx_files(folder_path: str) -> dict[str, ET.Element]:
-    loaded_data: dict[str, ET.Element] = {}
-    for file_path in get_tmx_files(folder_path):
+    loaded_data: dict[Path, ET.Element] = {}
+    for file_path in get_tmx_files(Path(folder_path)):
         tree = ET.parse(file_path)
         loaded_data[file_path] = tree.getroot()
     return loaded_data
@@ -95,211 +94,259 @@ class TestTMXFiles(unittest.TestCase):
 
     def test_top_level_properties_scenario(self) -> None:
         for path, root in self.loaded_data.items():
-            prop = root.find("properties")
-            if prop is not None:
-                self.assertTrue(
-                    _is_object_property(prop, "scenario", EXPECTED_SCENARIOS),
-                    f"Scenario wrong name {to_basename(path)} ({EXPECTED_SCENARIOS})",
-                )
+            with self.subTest(file=to_basename(path)):
+                prop = root.find("properties")
+                if prop is not None:
+                    self.assertTrue(
+                        _is_object_property(
+                            prop, "scenario", EXPECTED_SCENARIOS
+                        ),
+                        f"Scenario wrong name ({EXPECTED_SCENARIOS})",
+                    )
 
     def test_top_level_properties_map_type(self) -> None:
         for path, root in self.loaded_data.items():
-            prop = root.find("properties")
-            if prop is not None:
-                self.assertTrue(
-                    _is_object_property(prop, "map_type", map_types_list),
-                    f"Map Type wrong name {to_basename(path)} ({map_types_list})",
-                )
+            with self.subTest(file=to_basename(path)):
+                prop = root.find("properties")
+                if prop is not None:
+                    self.assertTrue(
+                        _is_object_property(prop, "map_type", map_types_list),
+                        f"Map Type wrong name ({map_types_list})",
+                    )
 
     def test_object_id(self) -> None:
         for path, root in self.loaded_data.items():
-            for obj in root.findall(".//object"):
-                object_id = obj.attrib.get("id")
-                if object_id and not _is_valid_integer(object_id):
-                    self.fail(
-                        f"Invalid id '{object_id}' in object {obj} at {to_basename(path)}"
-                    )
+            with self.subTest(file=to_basename(path)):
+                for obj in root.findall(".//object"):
+                    with self.subTest(object_element=obj):
+                        object_id = obj.attrib.get("id")
+                        if object_id and not _is_valid_integer(object_id):
+                            self.fail(
+                                f"Invalid id '{object_id}' in object {obj}"
+                            )
 
     def test_object_id_duplicate(self) -> None:
-        object_ids: set[int] = set()
         for path, root in self.loaded_data.items():
-            for obj in root.findall(".//objectgroup/object"):
-                object_id = obj.attrib.get("id")
-                if object_id and not _is_valid_integer(object_id):
-                    self.assertNotIn(
-                        object_id,
-                        object_ids,
-                        f"ID '{object_id}' is a duplicate in {to_basename(path)}",
-                    )
-                    object_ids.add(object_id)
+            with self.subTest(file=to_basename(path)):
+                object_ids: set[str] = set()
+                for obj in root.findall(".//objectgroup/object"):
+                    object_id = obj.attrib.get("id")
+                    if object_id and _is_valid_integer(object_id):
+                        if object_id in object_ids:
+                            self.fail(f"ID '{object_id}' is a duplicate")
+                        object_ids.add(object_id)
 
     def test_object_types(self) -> None:
         for path, root in self.loaded_data.items():
-            for obj in root.findall(".//object"):
-                obj_name = obj.attrib.get("type", "")
-                if not _is_object_type(obj_name):
-                    if len(obj_name) == 0:
-                        obj_name = "type:'event' is missing from the object!"
-                    msg = f"{obj_name} {to_basename(path)}"
-                    self.fail(msg)
+            with self.subTest(file=to_basename(path)):
+                for obj in root.findall(".//object"):
+                    with self.subTest(object_element=obj):
+                        obj_name = obj.attrib.get("type", "")
+                        if not _is_object_type(obj_name):
+                            if not obj_name:
+                                obj_name = (
+                                    "type:'event' is missing from the object!"
+                                )
+                            self.fail(f"{obj_name}")
 
     def test_object_property_name(self):
         for path, root in self.loaded_data.items():
-            for obj in root.findall(".//object"):
-                for prop in obj.findall("properties/property"):
-                    name = prop.attrib["name"]
-                    if not _is_valid_property_name(name):
-                        self.fail(
-                            f"Invalid property name '{name}' in object {obj} at {to_basename(path)}"
-                        )
-                    value = prop.attrib["value"]
-                    if name.startswith("cond"):
-                        pattern = r"^(is|not)"
-                        if not re.match(pattern, value):
-                            self.fail(
-                                f"Invalid property value '{value}' for name '{name}' in object {obj} at {to_basename(path)}"
-                            )
+            with self.subTest(file=to_basename(path)):
+                for obj in root.findall(".//object"):
+                    with self.subTest(object_element=obj):
+                        for prop in obj.findall("properties/property"):
+                            with self.subTest(property_element=prop):
+                                name = prop.attrib["name"]
+                                if not _is_valid_property_name(name):
+                                    self.fail(
+                                        f"Invalid property name '{name}'"
+                                    )
+                                value = prop.attrib["value"]
+                                if name.startswith("cond"):
+                                    pattern = r"^(is|not)"
+                                    if not re.match(pattern, value):
+                                        self.fail(
+                                            f"Invalid property value '{value}' for name '{name}'"
+                                        )
 
     def test_object_property_name_duplicate(self):
         for path, root in self.loaded_data.items():
-            for obj in root.findall(".//object"):
-                property_names = {}
-                for prop in obj.findall("properties/property"):
-                    if _is_valid_property_name(prop.attrib["name"]):
-                        if prop.attrib["name"] in property_names:
-                            self.fail(
-                                f"Duplicate property name '{prop.attrib['name']}' in object {obj} at {to_basename(path)}"
-                            )
-                        else:
-                            property_names[prop.attrib["name"]] = True
+            with self.subTest(file=to_basename(path)):
+                for obj in root.findall(".//object"):
+                    with self.subTest(object_element=obj):
+                        property_names = {}
+                        for prop in obj.findall("properties/property"):
+                            name = prop.attrib["name"]
+                            if _is_valid_property_name(name):
+                                if name in property_names:
+                                    self.fail(
+                                        f"Duplicate property name '{name}'"
+                                    )
+                                else:
+                                    property_names[name] = True
 
     def test_object_property_value_teleport(self):
         for path, root in self.loaded_data.items():
-            for obj in root.findall(".//object"):
-                for prop in obj.findall("properties/property"):
-                    action, params = parse_action_string(prop.attrib["value"])
-                    if action == "transition_teleport":
-                        try:
-                            prepare.fetch(FOLDER, params[0])
-                        except OSError:
-                            self.fail(
-                                f"Map '{params[0]}' does not exist in object {obj} at {to_basename(path)}"
-                            )
+            with self.subTest(file=to_basename(path)):
+                for obj in root.findall(".//object"):
+                    with self.subTest(object_element=obj):
+                        for prop in obj.findall("properties/property"):
+                            with self.subTest(property_element=prop):
+                                try:
+                                    action, params = parse_action_string(
+                                        prop.attrib["value"]
+                                    )
+                                    if action == "transition_teleport":
+                                        prepare.fetch(FOLDER, params[0])
+                                except OSError:
+                                    self.fail(
+                                        f"Map '{params[0]}' does not exist"
+                                    )
 
     def test_object_width(self):
         for path, root in self.loaded_data.items():
-            for obj in root.findall(".//object"):
-                width = obj.attrib.get("width")
-                if width and not _is_valid_integer(width):
-                    self.fail(
-                        f"Invalid width '{width}' in object {obj} at {to_basename(path)}"
-                    )
-                if width and not _is_multiple_of_16(width):
-                    self.fail(
-                        f"Width '{width}' is not a multiple of 16 in object {obj} at {to_basename(path)}"
-                    )
+            with self.subTest(file=to_basename(path)):
+                for obj in root.findall(".//object"):
+                    with self.subTest(object_element=obj):
+                        width = obj.attrib.get("width")
+                        if width:
+                            if not _is_valid_integer(width):
+                                self.fail(f"Invalid width '{width}'")
+                            if not _is_multiple_of_16(width):
+                                self.fail(
+                                    f"Width '{width}' is not a multiple of 16"
+                                )
 
     def test_object_height(self):
         for path, root in self.loaded_data.items():
-            for obj in root.findall(".//object"):
-                height = obj.attrib.get("height")
-                if height and not _is_valid_integer(height):
-                    self.fail(
-                        f"Invalid height '{height}' in object {obj} at {to_basename(path)}"
-                    )
-                if height and not _is_multiple_of_16(height):
-                    self.fail(
-                        f"Height '{height}' is not a multiple of 16 in object {obj} at {to_basename(path)}"
-                    )
+            with self.subTest(file=to_basename(path)):
+                for obj in root.findall(".//object"):
+                    with self.subTest(object_element=obj):
+                        height = obj.attrib.get("height")
+                        if height:
+                            if not _is_valid_integer(height):
+                                self.fail(f"Invalid height '{height}'")
+                            if not _is_multiple_of_16(height):
+                                self.fail(
+                                    f"Height '{height}' is not a multiple of 16"
+                                )
 
     def test_object_x(self) -> None:
         for path, root in self.loaded_data.items():
-            for obj in root.findall(".//object"):
-                _x = obj.attrib.get("x")
-                if _x and not _is_valid_integer(_x):
-                    self.fail(
-                        f"Invalid x '{_x}' in object {obj} at {to_basename(path)}"
-                    )
-                if _x and not _is_multiple_of_16(_x):
-                    self.fail(
-                        f"X '{_x}' is not a multiple of 16 in object {obj} at {to_basename(path)}"
-                    )
+            with self.subTest(file=to_basename(path)):
+                for obj in root.findall(".//object"):
+                    with self.subTest(object_element=obj):
+                        _x = obj.attrib.get("x")
+                        if _x:
+                            if not _is_valid_integer(_x):
+                                self.fail(f"Invalid x '{_x}'")
+                            if not _is_multiple_of_16(_x):
+                                self.fail(f"X '{_x}' is not a multiple of 16")
 
     def test_object_y(self) -> None:
         for path, root in self.loaded_data.items():
-            for obj in root.findall(".//object"):
-                _y = obj.attrib.get("y")
-                if _y and not _is_valid_integer(_y):
-                    self.fail(
-                        f"Invalid y '{_y}' in object {obj} at {to_basename(path)}"
-                    )
-                if _y and not _is_multiple_of_16(_y):
-                    self.fail(
-                        f"Y '{_y}' is not a multiple of 16 in object {obj} at {to_basename(path)}"
-                    )
+            with self.subTest(file=to_basename(path)):
+                for obj in root.findall(".//object"):
+                    with self.subTest(object_element=obj):
+                        _y = obj.attrib.get("y")
+                        if _y:
+                            if not _is_valid_integer(_y):
+                                self.fail(f"Invalid y '{_y}'")
+                            if not _is_multiple_of_16(_y):
+                                self.fail(f"Y '{_y}' is not a multiple of 16")
 
     def test_tileset_source(self) -> None:
         for path, root in self.loaded_data.items():
-            tileset_element = root.find(".//tileset")
-            if (
-                tileset_element is not None
-                and "source" in tileset_element.attrib
-            ):
-                tileset_source = tileset_element.attrib["source"]
-                base_path = Path(prepare.fetch("gfx"))
-                merged_path = (base_path / tileset_source).resolve()
-                msg = (
-                    f"Source '{merged_path}' doesn't exist {to_basename(path)}"
-                )
-                self.assertTrue(merged_path.is_file(), msg)
+            with self.subTest(file=to_basename(path)):
+                tileset_element = root.find(".//tileset")
+                if (
+                    tileset_element is not None
+                    and "source" in tileset_element.attrib
+                ):
+                    tileset_source = tileset_element.attrib["source"]
+                    base_path = Path(prepare.fetch("gfx"))
+                    merged_path = (base_path / tileset_source).resolve()
+                    msg = f"Source '{merged_path}' doesn't exist"
+                    self.assertTrue(merged_path.is_file(), msg)
 
     def test_layer_number(self) -> None:
-        missing_layers = []
         for path, root in self.loaded_data.items():
-            layer_elements = root.findall(".//layer")
-            if len(layer_elements) < MIN_LAYERS:
-                missing_layers.append((to_basename(path)))
-        if missing_layers:
-            print(
-                f"The following files TMX don't have at least {MIN_LAYERS} layers:"
-            )
-            for layer in missing_layers:
-                print(layer)
-            self.fail(f"File TMX must contain at least {MIN_LAYERS} layers.")
+            with self.subTest(file=to_basename(path)):
+                layer_elements = root.findall(".//layer")
+                self.assertGreaterEqual(
+                    len(layer_elements),
+                    MIN_LAYERS,
+                    f"File must contain at least {MIN_LAYERS} layers.",
+                )
 
     def test_object_bounds(self) -> None:
         for path, root in self.loaded_data.items():
-            map_width = int(root.attrib["width"]) * int(
-                root.attrib["tilewidth"]
-            )
-            map_height = int(root.attrib["height"]) * int(
-                root.attrib["tileheight"]
-            )
+            with self.subTest(file=to_basename(path)):
+                map_width = int(root.attrib["width"]) * int(
+                    root.attrib["tilewidth"]
+                )
+                map_height = int(root.attrib["height"]) * int(
+                    root.attrib["tileheight"]
+                )
 
-            for obj in root.findall(".//object"):
-                obj_name = obj.attrib.get("name", "collision")
-                obj_x = int(obj.attrib.get("x", 0))
-                obj_y = int(obj.attrib.get("y", 0))
-                obj_width = int(obj.attrib.get("width", 0))
-                obj_height = int(obj.attrib.get("height", 0))
+                for obj in root.findall(".//object"):
+                    with self.subTest(object_element=obj):
+                        obj_name = obj.attrib.get("name", "collision")
+                        obj_x = int(obj.attrib.get("x", 0))
+                        obj_y = int(obj.attrib.get("y", 0))
+                        obj_width = int(obj.attrib.get("width", 0))
+                        obj_height = int(obj.attrib.get("height", 0))
 
-                self.assertLessEqual(
-                    obj_x,
-                    map_width - obj_width,
-                    f"Object '{obj_name}' at ({obj_x}, {obj_y}) with size ({obj_width}, {obj_height}) is out of bounds in map '{to_basename(path)}' with size ({map_width}, {map_height})",
-                )
-                self.assertLessEqual(
-                    obj_y,
-                    map_height - obj_height,
-                    f"Object '{obj_name}' at ({obj_x}, {obj_y}) with size ({obj_width}, {obj_height}) is out of bounds in map '{to_basename(path)}' with size ({map_width}, {map_height})",
-                )
-                self.assertGreaterEqual(
-                    obj_x,
+                        msg = f"Object '{obj_name}' is out of bounds."
+                        self.assertLessEqual(obj_x, map_width - obj_width, msg)
+                        self.assertLessEqual(
+                            obj_y, map_height - obj_height, msg
+                        )
+                        self.assertGreaterEqual(obj_x, 0, msg)
+                        self.assertGreaterEqual(obj_y, 0, msg)
+
+    def test_map_attributes_validity(self) -> None:
+        for path, root in self.loaded_data.items():
+            with self.subTest(file=to_basename(path)):
+                map_attributes = ["width", "height", "tilewidth", "tileheight"]
+                for attr in map_attributes:
+                    value = root.attrib.get(attr)
+                    self.assertIsNotNone(
+                        value, f"Missing required map attribute: '{attr}'."
+                    )
+                    self.assertTrue(
+                        _is_valid_integer(value),
+                        f"Invalid integer value '{value}' for map attribute '{attr}'.",
+                    )
+
+    def test_unique_layer_names(self) -> None:
+        for path, root in self.loaded_data.items():
+            with self.subTest(file=to_basename(path)):
+                layer_names = [
+                    layer.attrib["name"]
+                    for layer in root.findall(".//layer")
+                    if "name" in layer.attrib
+                ]
+                duplicates = {
+                    name for name in layer_names if layer_names.count(name) > 1
+                }
+                self.assertEqual(
+                    len(duplicates),
                     0,
-                    f"Object '{obj_name}' at ({obj_x}, {obj_y}) with size ({obj_width}, {obj_height}) is out of bounds in map '{to_basename(path)}' with size ({map_width}, {map_height})",
+                    f"Duplicate layer names found: {', '.join(sorted(duplicates))}",
                 )
-                self.assertGreaterEqual(
-                    obj_y,
-                    0,
-                    f"Object '{obj_name}' at ({obj_x}, {obj_y}) with size ({obj_width}, {obj_height}) is out of bounds in map '{to_basename(path)}' with size ({map_width}, {map_height})",
-                )
+
+    def test_object_property_name_duplicate_with_subtest(self):
+        for path, root in self.loaded_data.items():
+            with self.subTest(file=to_basename(path)):
+                for obj in root.findall(".//object"):
+                    with self.subTest(object_element=obj):
+                        property_names = set()
+                        for prop in obj.findall("properties/property"):
+                            name = prop.attrib["name"]
+                            self.assertNotIn(
+                                name,
+                                property_names,
+                                f"Duplicate property name '{name}' within the same object.",
+                            )
+                            property_names.add(name)

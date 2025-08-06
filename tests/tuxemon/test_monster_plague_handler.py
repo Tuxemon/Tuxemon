@@ -3,7 +3,7 @@
 import unittest
 
 from tuxemon.db import PlagueType
-from tuxemon.monster import MonsterPlagueHandler
+from tuxemon.monster_dir.plague import MonsterPlagueHandler
 
 
 class TestMonsterPlagueHandler(unittest.TestCase):

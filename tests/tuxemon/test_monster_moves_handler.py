@@ -3,7 +3,7 @@
 import unittest
 from unittest.mock import MagicMock, patch
 
-from tuxemon.monster import MonsterMovesHandler
+from tuxemon.monster_dir.moves import MonsterMovesHandler
 
 
 class TestMonsterMovesHandler(unittest.TestCase):

@@ -142,7 +142,7 @@ class TechniqueMenuState(Menu[Technique]):
         """
         return technique is not None
 
-      def create_technique_menu_item(
+    def create_technique_menu_item(
         self, tech: Technique
     ) -> MenuItem[Technique]:
         name = tech.name

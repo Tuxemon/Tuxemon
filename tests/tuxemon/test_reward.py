@@ -210,6 +210,7 @@ class TestRewardSystem(unittest.TestCase):
         self.winner.moves.update_moves.return_value = ["Fireball"]
         second_winner = MagicMock(spec=Monster)
         second_winner.name = "rockitten"
+        second_winner.stage = "basic"
         second_winner.level = 5
         second_winner.moves = MagicMock()
         second_winner.moves.update_moves.return_value = ["Ram"]

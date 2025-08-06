@@ -70,7 +70,7 @@ def get_theme() -> pygame_menu.Theme:
         return _theme
 
     tuxemon_border = pygame_menu.BaseImage(
-        image_path=transform_resource_filename("gfx/borders/borders.png"),
+        image_path=transform_resource_filename("gfx/borders/borders-thin.png"),
     ).scale(5, 5, smooth=False)
 
     tuxemon_background_center_rect = tuxemon_border.get_rect()

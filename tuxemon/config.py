@@ -118,6 +118,13 @@ class TuxemonConfig:
             "combat_click_to_continue"
         ]
 
+        # [graphics]
+        graphics = self.config["graphics"]
+        self.dialog_box_style: str = graphics["dialog_box_style"]
+        self.menu_border: str = graphics["menu_border"]
+        self.menu_cursor: str = graphics["menu_cursor"]
+        self.menu_sound: str = graphics["menu_sound"]
+
         # [player]
         player = self.config["player"]
         self.player_animation_speed: float = player["animation_speed"]
@@ -318,6 +325,12 @@ def generate_default_config() -> dict[str, Any]:
             "sound_volume": 0.2,
             "music_volume": 0.5,
             "combat_click_to_continue": False,
+        },
+        "graphics": {
+            "dialog_box_style": "default",
+            "menu_border": "gfx/borders/borders.png",
+            "menu_cursor": "gfx/arrow.png",
+            "menu_sound": "sound_menu_select",
         },
         "player": {
             "animation_speed": 0.15,

@@ -114,7 +114,7 @@ class PygameMenuState(State):
 
         if sound_engine is None:
             sound_file = self.client.sound_manager.get_sound_filename(
-                "sound_menu_select"
+                prepare.CONFIG.menu_sound
             )
             sound_volume = self.client.config.sound_volume
             sound_engine = get_sound_engine(sound_volume, sound_file)
@@ -335,10 +335,10 @@ class Menu(Generic[T], State):
     unavailable_color_shop: ColorLike = prepare.UNAVAILABLE_COLOR_SHOP
     # File to load for image background
     background_filename: Optional[str] = None
-    menu_select_sound_filename = "sound_menu_select"
+    menu_select_sound_filename = prepare.CONFIG.menu_sound
     font_filename = prepare.CONFIG.locale.font_file
-    borders_filename = "gfx/borders/borders.png"
-    cursor_filename = "gfx/arrow.png"
+    borders_filename = prepare.CONFIG.menu_border
+    cursor_filename = prepare.CONFIG.menu_cursor
     cursor_move_duration = 0.20
     default_character_delay = 0.05
     shrink_to_items = False  # fit the border to contents

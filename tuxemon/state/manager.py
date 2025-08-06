@@ -194,10 +194,6 @@ class StateManager:
             logger.critical("Attempted to remove a state not in the stack")
             raise RuntimeError
 
-    def remove_state(self, state: State) -> None:
-        """Remove a state from the stack by reference."""
-        self.pop_state(state)
-
     def remove_state_by_name(self, state_name: str) -> None:
         """
         Remove a state from the stack by its name.
@@ -309,7 +305,7 @@ class StateManager:
         previous = self.state_stack.current()
         instance = self.push_state(state_name, **kwargs)
         if previous is not None:
-            self.remove_state(previous)
+            self.pop_state(previous)
         return instance
 
     def push_state_with_timeout(

@@ -123,7 +123,10 @@ class StateLoader:
                 try:
                     for state_cls in self.collect_states_from_path(entry):
                         repository.add_state(state_cls)
-                        logger.debug(f"Registered state: {state_cls.__name__}")
+                        state_name = getattr(
+                            state_cls, "name", state_cls.__name__
+                        )
+                        logger.debug(f"Registered state: {state_name}")
                 except Exception:
                     logger.error(
                         f"Skipping directory '{entry.name}' due to errors during state collection.",

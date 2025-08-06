@@ -6,7 +6,7 @@ import logging
 from collections.abc import Callable
 from dataclasses import dataclass
 from functools import partial
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any, ClassVar, Optional
 
 import pygame_menu
 
@@ -294,6 +294,8 @@ class WorldMenuManager:
 
 class WorldMenuState(PygameMenuState):
     """Menu for the world state."""
+
+    name: ClassVar[str] = "WorldMenuState"
 
     def __init__(self, menu_manager: WorldMenuManager, character: NPC) -> None:
         """Initialize menu state and build menu separately."""

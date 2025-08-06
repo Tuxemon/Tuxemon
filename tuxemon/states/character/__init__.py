@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import Any, Optional
+from typing import Any, ClassVar, Optional
 
 import pygame_menu
 from pygame_menu import locals
@@ -42,6 +42,8 @@ class CharacterState(PygameMenuState):
     battles, wallet, etc.).
 
     """
+
+    name: ClassVar[str] = "CharacterState"
 
     def add_menu_items(
         self,

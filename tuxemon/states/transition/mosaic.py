@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 import random
-from typing import Optional
+from typing import ClassVar, Optional
 
 from pygame import draw as pg_draw
 from pygame.rect import Rect
@@ -20,6 +20,7 @@ logger = logging.getLogger(__name__)
 class MosaicTransition(State):
     """The state responsible for the mosaic transitions."""
 
+    name: ClassVar[str] = "MosaicTransition"
     force_draw = True
 
     def __init__(self, duration: float = 1.0, tile_size: int = 10) -> None:

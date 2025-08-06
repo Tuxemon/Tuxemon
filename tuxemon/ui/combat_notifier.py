@@ -11,7 +11,7 @@ from typing import TYPE_CHECKING, Deque, Optional
 from tuxemon.formula import config_combat
 
 if TYPE_CHECKING:
-    from tuxemon.state import State
+    from tuxemon.state.state import State
 
 logger = logging.getLogger(__name__)
 

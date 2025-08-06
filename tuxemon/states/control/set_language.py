@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from functools import partial
-from typing import Any
+from typing import Any, ClassVar
 
 import pygame_menu
 from pygame_menu import locals
@@ -20,6 +20,8 @@ class SetLanguage(PygameMenuState):
     This state is responsible for setting the input keys.
     This only works for pygame events.
     """
+
+    name: ClassVar[str] = "SetLanguage"
 
     def __init__(self, main_menu: bool, **kwargs: Any) -> None:
         """

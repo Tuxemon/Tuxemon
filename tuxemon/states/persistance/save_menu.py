@@ -5,7 +5,7 @@ from __future__ import annotations
 import logging
 from base64 import b64decode
 from pathlib import Path
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, ClassVar, Optional
 
 from pygame import SRCALPHA
 from pygame.image import frombuffer
@@ -34,6 +34,7 @@ SLOT_HEIGHT_RATIO = 6
 
 
 class SaveMenuState(PopUpMenu[None]):
+    name: ClassVar[str] = "SaveMenuState"
     number_of_slots = 3
     shrink_to_items = True
 

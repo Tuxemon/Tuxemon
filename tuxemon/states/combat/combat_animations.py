@@ -10,7 +10,7 @@ from __future__ import annotations
 import logging
 from abc import ABC
 from functools import partial
-from typing import TYPE_CHECKING, Optional, Union
+from typing import TYPE_CHECKING, ClassVar, Optional, Union
 
 from pygame.rect import Rect
 from pygame.transform import flip as pg_flip
@@ -65,6 +65,8 @@ class CombatAnimations(Menu[None], ABC):
     the screen, with the occasional creation/removal of sprites....
     but never game objects.
     """
+
+    name: ClassVar[str] = "CombatAnimations"
 
     def __init__(self, context: CombatContext) -> None:
         super().__init__()

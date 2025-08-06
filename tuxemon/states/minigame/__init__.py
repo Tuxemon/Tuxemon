@@ -5,6 +5,7 @@ from __future__ import annotations
 import random
 from collections.abc import Callable
 from functools import partial
+from typing import ClassVar
 
 import pygame_menu
 from pygame_menu import locals
@@ -32,6 +33,8 @@ class MinigameState(PygameMenuState):
     """Menu for the Journal Info state.
 
     Shows details of the single monster."""
+
+    name: ClassVar[str] = "MinigameState"
 
     def add_menu_items(
         self,

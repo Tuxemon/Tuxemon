@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 import random
-from typing import Optional
+from typing import ClassVar, Optional
 
 from pygame.surface import Surface
 
@@ -18,6 +18,7 @@ logger = logging.getLogger(__name__)
 class StaticTransition(State):
     """The state responsible for the static transition."""
 
+    name: ClassVar[str] = "StaticTransition"
     force_draw = True
 
     def __init__(self, duration: float = 1.0) -> None:

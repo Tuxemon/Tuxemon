@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import Any, Optional
+from typing import Any, ClassVar, Optional
 
 import pygame_menu
 from pygame_menu import locals
@@ -27,8 +27,9 @@ class PartyState(PygameMenuState):
 
     Shows details of the party (e.g. monster travelling distance,
     average level, etc.).
-
     """
+
+    name: ClassVar[str] = "PartyState"
 
     def __init__(self, **kwargs: Any) -> None:
         monsters: list[Monster] = []

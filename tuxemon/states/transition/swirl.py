@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import logging
-from typing import Optional
+from typing import ClassVar, Optional
 
 from pygame.surface import Surface
 from pygame.transform import rotate, scale
@@ -18,6 +18,7 @@ logger = logging.getLogger(__name__)
 class SwirlTransition(State):
     """The state responsible for the swirl transitions."""
 
+    name: ClassVar[str] = "SwirlTransition"
     force_draw = True
 
     def __init__(
